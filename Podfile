@@ -10,3 +10,4 @@ platform :ios, '7.0'
 #pod 'MBProgressHUD', :head
 pod 'SDWebImage', :head
 #pod 'CocoaLumberjack'
+pod 'AFNetworking', '~> 2.5'
