@@ -28,11 +28,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
     // Do any additional setup after loading the view from its nib.
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-    MainScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight - 114);
+    MainScroll.frame = CGRectMake(0, 44, screenWidth, screenHeight - 94);
     ShowUserWallpaperImage.frame = CGRectMake(0, 0, screenWidth, 240);
     ImgShade.frame = CGRectMake(0, 0, screenWidth, 174);
     DataUrl = [[UrlDataClass alloc]init];
@@ -55,7 +56,7 @@
     ShowUserProfile.layer.borderWidth=2.5;
     ShowUserProfile.layer.masksToBounds = YES;
     ShowUserProfile.layer.borderColor=[[UIColor whiteColor] CGColor];
-    
+
     ShowKosongData_1.text = CustomLocalisedString(@"Toomuchwhitespacehere", nil);
     ShowKosongData_2.text = CustomLocalisedString(@"Recommendsomethingcoolnow", nil);
     
@@ -485,6 +486,9 @@
     ShowTextFollowers.textAlignment = NSTextAlignmentCenter;
     ShowTextFollowers.backgroundColor = [UIColor clearColor];
     [MainScroll addSubview:ShowTextFollowers];
+    
+//    GetFollowersCount = @"chong chee yong";
+//    GetFollowingCount = @"yip how mei";
     
     UILabel *ShowFollowersCount = [[UILabel alloc]init];
     ShowFollowersCount.text = GetFollowersCount;
@@ -1556,7 +1560,7 @@ NSLog(@"Init Draft click");
                 for (NSDictionary * dict in PhotoData) {
                     NSMutableArray *UrlArray = [[NSMutableArray alloc]init];
                     for (NSDictionary * dict_ in dict) {
-                        NSDictionary *UserInfoData = [dict_ valueForKey:@"s"];
+                        NSDictionary *UserInfoData = [dict_ valueForKey:@"m"];
                         
                         NSString *url = [[NSString alloc]initWithFormat:@"%@",[UserInfoData objectForKey:@"url"]];
                         [UrlArray addObject:url];
@@ -2740,13 +2744,15 @@ NSLog(@"Init Draft click");
     NSLog(@"button %li",(long)getbuttonIDN);
     
     FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromRight;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self presentViewController:FeedDetailView animated:NO completion:nil];
+//    CATransition *transition = [CATransition animation];
+//    transition.duration = 0.2;
+//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    transition.type = kCATransitionPush;
+//    transition.subtype = kCATransitionFromRight;
+//    [self.view.window.layer addAnimation:transition forKey:nil];
+//    [self presentViewController:FeedDetailView animated:NO completion:nil];
+//    [FeedDetailView GetPostID:[PostsData_IDArray objectAtIndex:getbuttonIDN]];
+    [self.navigationController pushViewController:FeedDetailView animated:YES];
     [FeedDetailView GetPostID:[PostsData_IDArray objectAtIndex:getbuttonIDN]];
 }
 -(IBAction)ImageButtonOnClick2:(id)sender{
@@ -2754,13 +2760,15 @@ NSLog(@"Init Draft click");
     NSLog(@"button %li",(long)getbuttonIDN);
     
     FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromRight;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self presentViewController:FeedDetailView animated:NO completion:nil];
+//    CATransition *transition = [CATransition animation];
+//    transition.duration = 0.2;
+//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    transition.type = kCATransitionPush;
+//    transition.subtype = kCATransitionFromRight;
+//    [self.view.window.layer addAnimation:transition forKey:nil];
+//    [self presentViewController:FeedDetailView animated:NO completion:nil];
+//    [FeedDetailView GetPostID:[LikesData_IDArray objectAtIndex:getbuttonIDN]];
+    [self.navigationController pushViewController:FeedDetailView animated:YES];
     [FeedDetailView GetPostID:[LikesData_IDArray objectAtIndex:getbuttonIDN]];
 }
 

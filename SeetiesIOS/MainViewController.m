@@ -16,7 +16,7 @@
 //#import "ProgressHUD.h"
 #import "ExpertsUserProfileViewController.h"
 #import "NotificationViewController.h"
-#import "LandingViewController.h"
+#import "LandingV2ViewController.h"
 #import <CoreLocation/CoreLocation.h>
 
 #import "LanguageManager.h"
@@ -4017,7 +4017,7 @@
                 [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
             }
             
-            LandingViewController *LandingView = [[LandingViewController alloc]init];
+            LandingV2ViewController *LandingView = [[LandingV2ViewController alloc]init];
             [self presentViewController:LandingView animated:YES completion:nil];
         }else{
             //reset clicked

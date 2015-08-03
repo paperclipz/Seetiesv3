@@ -10,6 +10,8 @@
                 <outlet property="BarImage" destination="TsX-vu-wKk" id="PIX-qp-VmB"/>
                 <outlet property="SaveButton" destination="ZlO-Xo-l5J" id="5Io-9b-Nbl"/>
                 <outlet property="ShowTitle" destination="eY1-Xh-k9P" id="A3K-XX-Kg6"/>
+                <outlet property="Tblview" destination="rqb-kB-M4d" id="US2-kl-BxN"/>
+                <outlet property="spinnerView" destination="flg-Uf-H9v" id="Uw1-X6-Zlz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -54,6 +56,20 @@
                     <rect key="frame" x="13" y="33" width="20" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="rqb-kB-M4d">
+                    <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="6SL-1g-F27"/>
+                        <outlet property="delegate" destination="-1" id="Zmf-cg-iWR"/>
+                    </connections>
+                </tableView>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" id="flg-Uf-H9v">
+                    <rect key="frame" x="142" y="22" width="37" height="37"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="color" red="0.20000000000000001" green="0.70980392160000005" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <point key="canvasLocation" x="691" y="187"/>

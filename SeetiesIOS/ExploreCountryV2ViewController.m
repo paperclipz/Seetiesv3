@@ -24,6 +24,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+     DataUrl = [[ UrlDataClass alloc]init];
     // Do any additional setup after loading the view from its nib.
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
@@ -34,7 +36,7 @@
     
     MainScroll.delegate = self;
     UserScroll.delegate = self;
-    DataUrl = [[ UrlDataClass alloc]init];
+   
     MainScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight - 64);
     UserScroll.frame = CGRectMake(0, 0, screenWidth, 280);
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
@@ -63,8 +65,10 @@
     [self.view.window.layer addAnimation:transition forKey:nil];
     //[self presentViewController:ListingDetail animated:NO completion:nil];
     [self dismissViewControllerAnimated:NO completion:nil];
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
--(void)viewDidAppear:(BOOL)animated{
+-(void)viewWillAppear:(BOOL)animated{
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetCategoryString = [defaults objectForKey:@"Filter_Explore_Category"];
@@ -103,7 +107,7 @@
     }
 
     
-    [super viewDidAppear:animated];
+    [super viewWillAppear:animated];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -121,9 +125,11 @@
     [self.view.window.layer addAnimation:transition forKey:nil];
     //[self presentViewController:ListingDetail animated:NO completion:nil];
     [self dismissViewControllerAnimated:NO completion:nil];
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 -(void)GetCountryName:(NSString *)CountryName GetCountryIDN:(NSString *)CountryIDN{
-
+    DataUrl = [[UrlDataClass alloc]init];
     GetCountryIDN = CountryIDN;
     GetCountryName = CountryName;
     
@@ -299,13 +305,15 @@
     NSLog(@"button %li",(long)getbuttonIDN);
     
     FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromRight;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self presentViewController:FeedDetailView animated:NO completion:nil];
+//    CATransition *transition = [CATransition animation];
+//    transition.duration = 0.2;
+//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    transition.type = kCATransitionPush;
+//    transition.subtype = kCATransitionFromRight;
+//    [self.view.window.layer addAnimation:transition forKey:nil];
+//    [self presentViewController:FeedDetailView animated:NO completion:nil];
+//    [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
+    [self.navigationController pushViewController:FeedDetailView animated:YES];
     [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
 }
 -(IBAction)FollowButton:(id)sender{

@@ -22,6 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
     // Do any additional setup after loading the view from its nib.
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
@@ -441,33 +442,40 @@
         NSLog(@"UserNameArray is %@",[UserNameArray objectAtIndex:getbuttonIDN]);
     }else if ([GetType isEqualToString:@"like"]){
         FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
-        CATransition *transition = [CATransition animation];
-        transition.duration = 0.2;
-        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-        transition.type = kCATransitionPush;
-        transition.subtype = kCATransitionFromRight;
-        [self.view.window.layer addAnimation:transition forKey:nil];
-        [self presentViewController:FeedDetailView animated:NO completion:nil];
+//        CATransition *transition = [CATransition animation];
+//        transition.duration = 0.2;
+//        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//        transition.type = kCATransitionPush;
+//        transition.subtype = kCATransitionFromRight;
+//        [self.view.window.layer addAnimation:transition forKey:nil];
+//        [self presentViewController:FeedDetailView animated:NO completion:nil];
+//        [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
+        
+        [self.navigationController pushViewController:FeedDetailView animated:YES];
         [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
     }else if ([GetType isEqualToString:@"mention"]){
         FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
-        CATransition *transition = [CATransition animation];
-        transition.duration = 0.2;
-        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-        transition.type = kCATransitionPush;
-        transition.subtype = kCATransitionFromRight;
-        [self.view.window.layer addAnimation:transition forKey:nil];
-        [self presentViewController:FeedDetailView animated:NO completion:nil];
+//        CATransition *transition = [CATransition animation];
+//        transition.duration = 0.2;
+//        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//        transition.type = kCATransitionPush;
+//        transition.subtype = kCATransitionFromRight;
+//        [self.view.window.layer addAnimation:transition forKey:nil];
+//        [self presentViewController:FeedDetailView animated:NO completion:nil];
+//        [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
+        [self.navigationController pushViewController:FeedDetailView animated:YES];
         [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
     }else if ([GetType isEqualToString:@"comment"]){
         FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
-        CATransition *transition = [CATransition animation];
-        transition.duration = 0.2;
-        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-        transition.type = kCATransitionPush;
-        transition.subtype = kCATransitionFromRight;
-        [self.view.window.layer addAnimation:transition forKey:nil];
-        [self presentViewController:FeedDetailView animated:NO completion:nil];
+//        CATransition *transition = [CATransition animation];
+//        transition.duration = 0.2;
+//        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//        transition.type = kCATransitionPush;
+//        transition.subtype = kCATransitionFromRight;
+//        [self.view.window.layer addAnimation:transition forKey:nil];
+//        [self presentViewController:FeedDetailView animated:NO completion:nil];
+//        [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
+        [self.navigationController pushViewController:FeedDetailView animated:YES];
         [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
     }else{
     
@@ -477,13 +485,15 @@
         
         if ([GetAction isEqualToString:@"post"]) {
             FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
-            CATransition *transition = [CATransition animation];
-            transition.duration = 0.2;
-            transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-            transition.type = kCATransitionPush;
-            transition.subtype = kCATransitionFromRight;
-            [self.view.window.layer addAnimation:transition forKey:nil];
-            [self presentViewController:FeedDetailView animated:NO completion:nil];
+//            CATransition *transition = [CATransition animation];
+//            transition.duration = 0.2;
+//            transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//            transition.type = kCATransitionPush;
+//            transition.subtype = kCATransitionFromRight;
+//            [self.view.window.layer addAnimation:transition forKey:nil];
+//            [self presentViewController:FeedDetailView animated:NO completion:nil];
+//            [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
+            [self.navigationController pushViewController:FeedDetailView animated:YES];
             [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
         }else if([GetAction isEqualToString:@"none"]){
         

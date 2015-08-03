@@ -24,6 +24,5 @@
 
 //com.Seeties.SeetiesIOS.Live
 //com.Seeties.SeetiesIOS.Dev
-//efbiewjkf
 @end
 

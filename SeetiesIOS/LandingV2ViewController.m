@@ -35,6 +35,8 @@
 
 #import <Parse/Parse.h>
 #import "InstagramLoginWebViewController.h"
+
+#import "CRMotionView.h"
 @interface LandingV2ViewController ()
 
 @end
@@ -46,59 +48,84 @@
     // Do any additional setup after loading the view from its nib.
     DataUrl = [[UrlDataClass alloc]init];
     FBLoginButton.hidden = YES;
+    FBLoginButton.layer.cornerRadius = 5;
     LogInButton.hidden = YES;
     WhyWeUseFBButton.hidden = YES;
     SignUpWithEmailButton.hidden = YES;
     InstagramButton.hidden = YES;
+    InstagramButton.layer.cornerRadius = 5;
     
     MainText.text = NSLocalizedString(@"LandingPage_MainText", nil);
     [FBLoginButton setTitle:NSLocalizedString(@"LandingPage_ContinueFacebook",nil) forState:UIControlStateNormal];
     [LogInButton setTitle:NSLocalizedString(@"LandingPage_Login",nil) forState:UIControlStateNormal];
     [WhyWeUseFBButton setTitle:NSLocalizedString(@"LandingPage_WhyUseFacebook",nil) forState:UIControlStateNormal];
-    [SignUpWithEmailButton setTitle:NSLocalizedString(@"LandingPage_SignupWithEmail",nil) forState:UIControlStateNormal];
-    
+   // [SignUpWithEmailButton setTitle:NSLocalizedString(@"LandingPage_SignupWithEmail",nil) forState:UIControlStateNormal];
+    [SignUpWithEmailButton setTitle:@"Sign up" forState:UIControlStateNormal];
+
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    FBLoginButton.frame = CGRectMake((screenWidth/2) - 130, screenHeight - 186, 260, 50);
-    LogInButton.frame = CGRectMake(screenWidth - 74 - 15, screenHeight - 60, 74, 34);
+    FBLoginButton.frame = CGRectMake((screenWidth/2) - 130, screenHeight - 256, 260, 50);
+    LogInButton.frame = CGRectMake((screenWidth/2) + 130 - 74, screenHeight - 130, 74, 34);
     WhyWeUseFBButton.frame = CGRectMake(0, screenHeight - 128, screenWidth, 34);
-    InstagramButton.frame = CGRectMake(0, screenHeight - 90, screenWidth, 34);
-    SignUpWithEmailButton.frame = CGRectMake(20, screenHeight - 60, 125, 34);
-    MainText.frame = CGRectMake((screenWidth/2) - 122, 200, 244, 65);
-    MainLogo.frame = CGRectMake((screenWidth/2) - 104, 100, 208, 82);
+    InstagramButton.frame = CGRectMake((screenWidth/2) - 130, screenHeight - 198, 260, 50);
+    SignUpWithEmailButton.frame = CGRectMake((screenWidth/2) - 130, screenHeight - 130, 125, 34);
+    MainText.frame = CGRectMake(30, 150, screenWidth - 60, 65);
+    MainLogo.frame = CGRectMake((screenWidth/2) - 104, 70, 208, 82);
     ShowBackgroundImage.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
+    ShowTnCText.frame = CGRectMake(30, screenHeight - 70, screenWidth - 60, 50);
     
     [self DeleteAllSaveData];
     
-    if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ){
-        
-        CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-        if( screenHeight < screenWidth ){
-            screenHeight = screenWidth;
-        }
-        if( screenHeight > 480 && screenHeight < 667 ){
-            //   NSLog(@"iPhone 5/5s");
-            animationImages = @[[UIImage imageNamed:@"640x1136-01.jpg"], [UIImage imageNamed:@"640x1136-03.jpg"], [UIImage imageNamed:@"640x1136-04.jpg"]];
-            //  ShowBackgroundImage.image = [UIImage imageNamed:@"LandingBackground.jpg"];
-        } else if ( screenHeight > 480 && screenHeight < 736 ){
-            //  NSLog(@"iPhone 6");
-            animationImages = @[[UIImage imageNamed:@"750x1334-01.jpg"], [UIImage imageNamed:@"750x1334-03.jpg"], [UIImage imageNamed:@"750x1334-04.jpg"]];
-        } else if ( screenHeight > 480 ){
-            // NSLog(@"iPhone 6 Plus");
-            animationImages = @[[UIImage imageNamed:@"1242x2208-01.jpg"], [UIImage imageNamed:@"1242x2208-03.jpg"], [UIImage imageNamed:@"1242x2208-04.jpg"]];
-        }    else {
-            //NSLog(@"iPhone 4/4s");
-            animationImages = @[[UIImage imageNamed:@"640x960-01.jpg"], [UIImage imageNamed:@"640x960-03.jpg"], [UIImage imageNamed:@"640x960-04.jpg"]];
-            // ShowBackgroundImage.image = [UIImage imageNamed:@"LandingBackground2.jpg"];
-        }
-        
-    }
+
+//    CRMotionView *motionView = [[CRMotionView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
+//    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"DemoTest.png"]];
+//    [motionView setContentView:imageView];
+//    [BackgroundView addSubview:motionView];
+//    [motionView setScrollDragEnabled:YES];
+//    [motionView setScrollBounceEnabled:NO];
+    
+//    if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ){
+//        
+//        CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+//        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+//        if( screenHeight < screenWidth ){
+//            screenHeight = screenWidth;
+//        }
+//        if( screenHeight > 480 && screenHeight < 667 ){
+//            //   NSLog(@"iPhone 5/5s");
+//            animationImages = @[[UIImage imageNamed:@"640x1136-01.jpg"], [UIImage imageNamed:@"640x1136-03.jpg"], [UIImage imageNamed:@"640x1136-04.jpg"]];
+//            //  ShowBackgroundImage.image = [UIImage imageNamed:@"LandingBackground.jpg"];
+//        } else if ( screenHeight > 480 && screenHeight < 736 ){
+//            //  NSLog(@"iPhone 6");
+//            animationImages = @[[UIImage imageNamed:@"750x1334-01.jpg"], [UIImage imageNamed:@"750x1334-03.jpg"], [UIImage imageNamed:@"750x1334-04.jpg"]];
+//        } else if ( screenHeight > 480 ){
+//            // NSLog(@"iPhone 6 Plus");
+//            animationImages = @[[UIImage imageNamed:@"1242x2208-01.jpg"], [UIImage imageNamed:@"1242x2208-03.jpg"], [UIImage imageNamed:@"1242x2208-04.jpg"]];
+//        }    else {
+//            //NSLog(@"iPhone 4/4s");
+//            animationImages = @[[UIImage imageNamed:@"640x960-01.jpg"], [UIImage imageNamed:@"640x960-03.jpg"], [UIImage imageNamed:@"640x960-04.jpg"]];
+//            // ShowBackgroundImage.image = [UIImage imageNamed:@"LandingBackground2.jpg"];
+//        }
+//        
+//    }
     
     
     count = 0;
 }
+
+//- (CRMotionView *)motionViewWithImage
+//{
+//    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+//    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+//    CRMotionView *motionView = [[CRMotionView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
+//    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"DemoTest.png"]];
+//    [motionView setContentView:imageView];
+//    [self.view addSubview:motionView];
+//    [motionView setScrollDragEnabled:YES];
+//    [motionView setScrollBounceEnabled:NO];
+//    return motionView;
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -183,19 +210,31 @@
     NSString *CheckProvisioningStatus = [defaults objectForKey:@"CheckProvisioningStatus"];
     NSLog(@"CheckProvisioningStatus is %@",CheckProvisioningStatus);
     NSString *APIVersionSet = [defaults objectForKey:@"APIVersionSet"];
+    NSLog(@"APIVersionSet is %@",APIVersionSet);
     NSTimer *RandomTimer;
     if ([CheckLogin isEqualToString:@"LoginDone"]) {
         ShowBackgroundImage.image = [UIImage imageNamed:@"HomeBg.png"];
         MainLogo.hidden = YES;
         MainText.hidden = YES;
-        if ([APIVersionSet isEqualToString:@"1.3"]) {
-            
-        }else{
+        ShowTnCText.hidden = YES;
+//        if ([APIVersionSet isEqualToString:@"1.3"]) {
+//            
+//        }else{
             [self GetAlllanguages];
-        }
+        //}
         
         RandomTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(ChangeView2) userInfo:nil repeats:NO];
     }else{
+        CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+        
+        CRMotionView *motionView = [[CRMotionView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"DemoTest.png"]];
+        [motionView setContentView:imageView];
+        [BackgroundView addSubview:motionView];
+        [motionView setScrollDragEnabled:YES];
+        [motionView setScrollBounceEnabled:NO];
+        
         if ([CheckProvisioningStatus isEqualToString:@"1"]) {
             PTnCViewController *PTnCView = [[PTnCViewController alloc]init];
             [self presentViewController:PTnCView animated:YES completion:nil];
@@ -211,11 +250,11 @@
         }else if([CheckProvisioningStatus isEqualToString:@"5"]){
             RandomTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(changeview) userInfo:nil repeats:NO];
         }else{
-            if ([APIVersionSet isEqualToString:@"1.3"]) {
+         //   if ([APIVersionSet isEqualToString:@"1.3"]) {
                 
-            }else{
+          //  }else{
                 [self GetAlllanguages];
-            }
+         //   }
             RandomTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(changeview) userInfo:nil repeats:NO];
         }
         
@@ -235,7 +274,11 @@
     return UIStatusBarStyleLightContent;
 }
 -(void)changeview{
-    [self animateImages];
+    //[self animateImages];
+    
+
+    
+    
     FBLoginButton.hidden = NO;
     LogInButton.hidden = NO;
     WhyWeUseFBButton.hidden = NO;
@@ -266,13 +309,12 @@
     [[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
     
     FeedV2ViewController *firstViewController=[[FeedV2ViewController alloc]initWithNibName:@"FeedV2ViewController" bundle:nil];
-    //UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:firstViewController];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:firstViewController];
     //firstViewController.title= CustomLocalisedString(@"MainTab_Feed",nil);TabBarNew.png
     //firstViewController.tabBarItem.image=[UIImage imageNamed:@"TabBarFeed.png"];//TabBarFeed.png
     
-    
-    
-    ExploreViewController *secondViewController=[[ExploreViewController alloc]initWithNibName:@"ExploreViewController" bundle:nil];
+    Explore2ViewController *secondViewController=[[Explore2ViewController alloc]initWithNibName:@"Explore2ViewController" bundle:nil];
+    UINavigationController *navController2 = [[UINavigationController alloc] initWithRootViewController:secondViewController];
     //secondViewController.title= CustomLocalisedString(@"MainTab_Explore",nil);
     //secondViewController.tabBarItem.image=[UIImage imageNamed:@"TabBarExplore.png"];
     
@@ -282,15 +324,17 @@
     //        //threeViewController.tabBarItem.image=[UIImage imageNamed:@"TabBarPublish.png"];
     
     NotificationViewController *fourViewController=[[NotificationViewController alloc]initWithNibName:@"NotificationViewController" bundle:nil];
+    UINavigationController *navController3 = [[UINavigationController alloc] initWithRootViewController:fourViewController];
     //fourViewController.title= CustomLocalisedString(@"MainTab_Like",nil);
     //  fourViewController.tabBarItem.image=[UIImage imageNamed:@"TabBarActivity.png"];
     
     ProfileV2ViewController *fiveViewController=[[ProfileV2ViewController alloc]initWithNibName:@"ProfileV2ViewController" bundle:nil];
+    UINavigationController *navController4 = [[UINavigationController alloc] initWithRootViewController:fiveViewController];
     //fiveViewController.title= CustomLocalisedString(@"MainTab_Profile",nil);
     //  fiveViewController.tabBarItem.image=[UIImage imageNamed:@"TabBarProfile.png"];
     
     //adding view controllers to your tabBarController bundling them in an array
-    tabBarController.viewControllers=[NSArray arrayWithObjects:firstViewController,secondViewController,threeViewController,fourViewController,fiveViewController, nil];
+    tabBarController.viewControllers=[NSArray arrayWithObjects:navController,navController2,threeViewController,navController3,navController4, nil];
     
     
     //[self presentModalViewController:tabBarController animated:YES];

@@ -12,7 +12,7 @@
 #import "Locale.h"
 #import "Constants.h"
 #import "FeedV2DetailViewController.h"
-#import "LandingViewController.h"
+#import "LandingV2ViewController.h"
 #import "SearchDetailViewController.h"
 #import "SearchViewV2.h"
 #import <CoreLocation/CoreLocation.h>
@@ -36,6 +36,7 @@
 @implementation FeedV2ViewController
 
 - (void)viewDidLoad {
+
     [super viewDidLoad];
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
     // Do any additional setup after loading the view from its nib.
@@ -74,6 +75,8 @@
     AddFollowCount = 0;
     CheckLoadDone = NO;
     
+    DontLoadAgain = 0;
+    
     self.locationManager = [[CLLocationManager alloc]init];
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     self.locationManager.delegate = self;
@@ -94,9 +97,13 @@
         }
     }
     [self.locationManager startUpdatingLocation];
+    
     for (UIView *subview in MainScroll.subviews) {
         [subview removeFromSuperview];
     }
+    
+
+
     //[self GetFeedDataFromServer];
     CheckGoPost = 0;
     heightcheck = 0;
@@ -105,10 +112,15 @@
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     
     
-    DontLoadAgain = 0;
+    
     //[self GetExternalIPAddress];
+    
+
+    
+
 
 }
+
 -(void)GetExternalIPAddress{
     NSURL *iPURL = [NSURL URLWithString:@"https://geoip.seeties.me/geoip/index.php"];
     if (iPURL) {
@@ -179,8 +191,13 @@
     }
     NSLog(@"no location get feed data");
     [manager stopUpdatingLocation];
-    [self GetExternalIPAddress];
-    [self GetFeedDataFromServer];
+    if (DontLoadAgain == 0) {
+        DontLoadAgain = 1;
+        [self GetExternalIPAddress];
+        [self GetFeedDataFromServer];
+    }else{
+        
+    }
     
     
 }
@@ -198,6 +215,7 @@
 //    }else{
 //      [MainScroll setContentOffset:CGPointZero animated:YES];
 //    }
+
     self.screenName = @"IOS Feed Main View V2";
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -325,6 +343,32 @@
         [ShowActivity startAnimating];
 
     }
+    
+    TempBackground = [[UIView alloc]init];
+    TempBackground.frame = CGRectMake(0, 0, screenWidth, screenHeight);
+    TempBackground.backgroundColor = [UIColor blackColor];
+    TempBackground.alpha = 0.5f;
+    [self.view addSubview:TempBackground];
+    TempBackground.hidden = YES;
+    
+    ShowSelectImageButton = [[UIButton alloc]init];
+    ShowSelectImageButton.frame = CGRectMake(160, 800, 100, 100);
+    [ShowSelectImageButton setTitle:@"Image" forState:UIControlStateNormal];
+    ShowSelectImageButton.backgroundColor = [UIColor redColor];
+    [ShowSelectImageButton addTarget:self action:@selector(OpenSelectImgButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:ShowSelectImageButton];
+    
+    ShowSelectDaftButton = [[UIButton alloc]init];
+    ShowSelectDaftButton.frame = CGRectMake(160, 800, 100, 100);
+    [ShowSelectDaftButton setTitle:@"Draft" forState:UIControlStateNormal];
+    ShowSelectDaftButton.backgroundColor = [UIColor redColor];
+    [self.view addSubview:ShowSelectDaftButton];
+    
+    CheckButtonClick = NO;
+    
+
+    
+
 
 }
 -(IBAction)ClickBackToTopButton:(id)sender{
@@ -341,12 +385,13 @@
     
     [ShowActivity stopAnimating];
     //[ShowActivity removeFromSuperview];
-
+    
+    CheckButtonClick = NO;
+    TempBackground.hidden = YES;
+    ShowSelectImageButton.frame = CGRectMake(160, 800, 100, 100);
+    ShowSelectDaftButton.frame = CGRectMake(160, 800, 100, 100);
 }
--(IBAction)ChangeViewButton:(id)sender{
-    NSLog(@"ChangeViewButton Click");
-//    SelectImageViewController *SelectImageView = [[SelectImageViewController alloc]init];
-//    [self presentViewController:SelectImageView animated:YES completion:nil];
+-(IBAction)OpenSelectImgButton:(id)sender{
     DoImagePickerController *cont = [[DoImagePickerController alloc] initWithNibName:@"DoImagePickerController" bundle:nil];
     cont.delegate = self;
     cont.nResultType = DO_PICKER_RESULT_ASSET;//DO_PICKER_RESULT_UIIMAGE
@@ -354,6 +399,82 @@
     cont.nColumnCount = 3;
     
     [self presentViewController:cont animated:YES completion:nil];
+
+}
+-(IBAction)ChangeViewButton:(id)sender{
+    NSLog(@"ChangeViewButton Click");
+//    SelectImageViewController *SelectImageView = [[SelectImageViewController alloc]init];
+//    [self presentViewController:SelectImageView animated:YES completion:nil];
+    
+//    DoImagePickerController *cont = [[DoImagePickerController alloc] initWithNibName:@"DoImagePickerController" bundle:nil];
+//    cont.delegate = self;
+//    cont.nResultType = DO_PICKER_RESULT_ASSET;//DO_PICKER_RESULT_UIIMAGE
+//    cont.nMaxCount = 10;
+//    cont.nColumnCount = 3;
+//    
+//    [self presentViewController:cont animated:YES completion:nil];
+    
+
+    
+    if (CheckButtonClick == NO) {
+        CheckButtonClick = YES;
+        TempBackground.hidden = NO;
+
+        
+        [UIView animateWithDuration:0.2f
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseOut
+                         animations:^{
+                             ShowSelectImageButton.frame = CGRectMake(160, 300, 100, 100);
+                             ShowSelectDaftButton.frame = CGRectMake(160, 300, 100, 100);
+                         }
+                         completion:^(BOOL finished) {
+                             
+                             [UIView animateWithDuration:0.2f
+                                                   delay:0
+                                                 options:UIViewAnimationOptionCurveEaseOut
+                                              animations:^{
+                                                  ShowSelectImageButton.frame = CGRectMake(50, 300, 100, 100);
+                                                  ShowSelectDaftButton.frame = CGRectMake(250, 300, 100, 100);
+                                              }
+                                              completion:^(BOOL finished) {
+                                                  
+                                              }];
+                         }];
+    }else{
+        CheckButtonClick = NO;
+        
+        [UIView animateWithDuration:0.2f
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseOut
+                         animations:^{
+                             ShowSelectImageButton.frame = CGRectMake(160, 300, 100, 100);
+                             ShowSelectDaftButton.frame = CGRectMake(160, 300, 100, 100);
+                         }
+                         completion:^(BOOL finished) {
+                             
+                             [UIView animateWithDuration:0.2f
+                                                   delay:0
+                                                 options:UIViewAnimationOptionCurveEaseOut
+                                              animations:^{
+                                                  ShowSelectImageButton.frame = CGRectMake(160, 800, 100, 100);
+                                                  ShowSelectDaftButton.frame = CGRectMake(160, 800, 100, 100);
+                                              }
+                                              completion:^(BOOL finished) {
+                                                 TempBackground.hidden = YES;
+                                              }];
+                         }];
+    }
+    
+
+    
+    
+
+    
+
+
+    
+    
 }
 #pragma mark - DoImagePickerControllerDelegate
 - (void)didCancelDoImagePickerController
@@ -365,9 +486,10 @@
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-- (void)testRefresh:(UIRefreshControl *)refreshControl
+- (void)testRefresh:(UIRefreshControl *)refreshControlTemp
 {
-    refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@""];
+    NSLog(@"in herer testrefresh???");
+    refreshControlTemp.attributedTitle = [[NSAttributedString alloc] initWithString:@""];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
@@ -376,8 +498,8 @@
             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
             [formatter setDateFormat:@"MMM d, h:mm a"];
             NSString *lastUpdate = [NSString stringWithFormat:@"Last updated on %@", [formatter stringFromDate:[NSDate date]]];
-            refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdate];
-            [refreshControl endRefreshing];
+            refreshControlTemp.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdate];
+            [refreshControlTemp endRefreshing];
             NSLog(@"refresh end");
             for (UIView *subview in MainScroll.subviews) {
                 [subview removeFromSuperview];
@@ -406,13 +528,14 @@
         });
     });
 }
+
 -(void)InitView_V2{
     
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@""];
     [refreshControl addTarget:self action:@selector(testRefresh:) forControlEvents:UIControlEventValueChanged];
     [MainScroll addSubview:refreshControl];
-
+    
     //CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     if (CheckSuggestions == YES) {//draw suggestion fren
@@ -1013,27 +1136,49 @@
         NSString *TempImage = [[NSString alloc]initWithFormat:@"%@",[PhotoArray objectAtIndex:i]];
         NSArray *SplitArray = [TempImage componentsSeparatedByString:@","];
         AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
-        ShowImage.frame = CGRectMake(0, heightcheck + i, screenWidth, 245);
         ShowImage.contentMode = UIViewContentModeScaleAspectFill;
         ShowImage.layer.masksToBounds = YES;
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
         NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[SplitArray objectAtIndex:0]];
+        UIImage *image_;
+        UIImage *newImage;
         if ([FullImagesURL_First length] == 0) {
-            ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
+            image_ = [UIImage imageNamed:@"NoImage.png"];
+           // ShowImage.frame = CGRectMake(0, heightcheck + i, screenWidth, screenWidth);
         }else{
             NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL_First];
-            ShowImage.imageURL = url_NearbySmall;
+         //   ShowImage.imageURL = url_NearbySmall;
+            NSData *data = [[NSData alloc]initWithContentsOfURL:url_NearbySmall];
+            image_ = [[UIImage alloc]initWithData:data];
         }
-        [MainScroll addSubview:ShowImage];
+        float oldWidth = image_.size.width;
+        float scaleFactor = screenWidth / oldWidth;
         
-        UIImageView *ImageShade = [[UIImageView alloc]init];
-        ImageShade.frame = CGRectMake(0, heightcheck + i, screenWidth, 149);
-        ImageShade.image = [UIImage imageNamed:@"ImageShade.png"];
-        ImageShade.alpha = 0.2;
-        [MainScroll addSubview:ImageShade];
+        float newHeight = image_.size.height * scaleFactor;
+        float newWidth = oldWidth * scaleFactor;
+        
+        UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight));
+        [image_ drawInRect:CGRectMake(0, 0, newWidth, newHeight)];
+        newImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        ShowImage.image = newImage;
+        
+        ShowImage.frame = CGRectMake(0, heightcheck + i, screenWidth, newImage.size.height);
+       // ShowImage.frame = CGRectMake(0, heightcheck + i, screenWidth, 200);
+        [MainScroll addSubview:ShowImage];
+        //heightcheck += 210;
+        
+//        NSLog(@"image_.size.height is %f",image_.size.height);
+//        NSLog(@"newImage.size.height is %f",newImage.size.height);
+        
+//        UIImageView *ImageShade = [[UIImageView alloc]init];
+//        ImageShade.frame = CGRectMake(0, heightcheck + i, screenWidth, 149);
+//        ImageShade.image = [UIImage imageNamed:@"ImageShade.png"];
+//        ImageShade.alpha = 0.2;
+//        [MainScroll addSubview:ImageShade];
         
         UIButton *SelectButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        SelectButton.frame = CGRectMake(0, heightcheck + i, screenWidth, 340);
+        SelectButton.frame = CGRectMake(0, heightcheck + i, screenWidth, newImage.size.height + 100);
         [SelectButton setTitle:@"" forState:UIControlStateNormal];
         SelectButton.tag = i;
         [SelectButton setBackgroundColor:[UIColor clearColor]];
@@ -1043,9 +1188,10 @@
         
         UIImageView *ShowPin = [[UIImageView alloc]init];
         ShowPin.image = [UIImage imageNamed:@"FeedPin.png"];
-        ShowPin.frame = CGRectMake(15, 259 + heightcheck + i, 8, 11);
+        ShowPin.frame = CGRectMake(15, newImage.size.height + 8 + heightcheck + i, 8, 11);
+        //ShowPin.frame = CGRectMake(15, 210 + 8 + heightcheck + i, 8, 11);
         [MainScroll addSubview:ShowPin];
-        
+
         NSString *TempDistanceString = [[NSString alloc]initWithFormat:@"%@",[DistanceArray objectAtIndex:i]];
         if ([TempDistanceString isEqualToString:@"0"]) {
             
@@ -1070,7 +1216,8 @@
           //  NSLog(@"FullShowLocatinString is %@",FullShowLocatinString);
             
             UILabel *ShowDistance = [[UILabel alloc]init];
-            ShowDistance.frame = CGRectMake(screenWidth - 115, 254 + heightcheck + i, 100, 20);
+            ShowDistance.frame = CGRectMake(screenWidth - 115, newImage.size.height + heightcheck + i, 100, 20);
+           // ShowDistance.frame = CGRectMake(screenWidth - 115, 210 + heightcheck + i, 100, 20);
             ShowDistance.text = FullShowLocatinString;
             ShowDistance.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
             ShowDistance.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
@@ -1082,17 +1229,19 @@
 
         
         UILabel *ShowAddress = [[UILabel alloc]init];
-        ShowAddress.frame = CGRectMake(30, 254 + heightcheck + i, screenWidth - 150, 20);
+        ShowAddress.frame = CGRectMake(30, newImage.size.height + 3 + heightcheck + i, screenWidth - 150, 20);
+        //ShowAddress.frame = CGRectMake(30, 210 + 3 + heightcheck + i, screenWidth - 150, 20);
         ShowAddress.text = [PlaceNameArray objectAtIndex:i];
         ShowAddress.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
         ShowAddress.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
         ShowAddress.backgroundColor = [UIColor clearColor];
         [MainScroll addSubview:ShowAddress];
-        
+
 
         
-        heightcheck += 284;
-        
+        heightcheck += newImage.size.height + 30;
+        //heightcheck += 210 + 30;
+
         NSString *TempGetStirng = [[NSString alloc]initWithFormat:@"%@",[TitleArray objectAtIndex:i]];
         if ([TempGetStirng length] == 0 || [TempGetStirng isEqualToString:@""] || [TempGetStirng isEqualToString:@"(null)"]) {
         }else{
@@ -1164,7 +1313,7 @@
             heightcheck += ShowMessage.frame.size.height + 10;
             //   heightcheck += 30;
         }
-        
+
         
         
         AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
@@ -1417,14 +1566,15 @@
         
         }
         
-        
         heightcheck += 55;
+      //  heightcheck += newImage.size.height + 10;
         
         UIImageView *ShowGradient = [[UIImageView alloc]init];
         ShowGradient.frame = CGRectMake(0, heightcheck + i, screenWidth, 25);
         ShowGradient.image = [UIImage imageNamed:@"FeedGradient.png"];
         [MainScroll addSubview:ShowGradient];
         heightcheck += 24;
+        
         
         [MainScroll setContentSize:CGSizeMake(screenWidth, heightcheck + i)];
     }
@@ -1491,22 +1641,22 @@
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);
     
-    FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromRight;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self presentViewController:FeedDetailView animated:NO completion:nil];
-    [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
+//    FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
+//    CATransition *transition = [CATransition animation];
+//    transition.duration = 0.2;
+//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    transition.type = kCATransitionPush;
+//    transition.subtype = kCATransitionFromRight;
+//    [self.view.window.layer addAnimation:transition forKey:nil];
+//    [self presentViewController:FeedDetailView animated:NO completion:nil];
+//    [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
     
-//    FeedV2DetailViewController *vc = [[FeedV2DetailViewController alloc] initWithNibName:@"FeedV2DetailViewController" bundle:nil];
-//   // UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:vc] ;
-//   // [self presentModalViewController:navController animated:YES];
-//    
-//    [self.navigationController pushViewController:vc animated:YES];
-//    [vc GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
+    FeedV2DetailViewController *vc = [[FeedV2DetailViewController alloc] initWithNibName:@"FeedV2DetailViewController" bundle:nil];
+   // UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:vc] ;
+   // [self presentModalViewController:navController animated:YES];
+    
+    [self.navigationController pushViewController:vc animated:YES];
+    [vc GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
     
 }
 //-(void)GetUserSuggestions{
@@ -1747,6 +1897,12 @@
                 [ShowAlert show];
                 // send user back login screen.
             }else{
+                
+                
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                [defaults setObject:GetData forKey:@"LocalFeed_JsonData"];
+                [defaults setInteger:DontLoadAgain forKey:@"LocalFeed_DontLoadAgain"];
+                [defaults synchronize];
                 
                 NSDictionary *GetAllData = [res valueForKey:@"data"];
                // NSLog(@"GetAllData ===== %@",GetAllData);
@@ -2419,6 +2575,7 @@
             //get back
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             NSString *GetBackCheckAPI = [defaults objectForKey:@"CheckAPI"];
+            NSString *GetBackAPIVersion = [defaults objectForKey:@"APIVersionSet"];
 
             //cancel clicked ...do your action
             NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
@@ -2429,10 +2586,11 @@
             }
             //save back
             [defaults setObject:GetBackCheckAPI forKey:@"CheckAPI"];
+            [defaults setObject:GetBackAPIVersion forKey:@"APIVersionSet"];
             [defaults synchronize];
             
             
-            LandingViewController *LandingView = [[LandingViewController alloc]init];
+            LandingV2ViewController *LandingView = [[LandingV2ViewController alloc]init];
             [self presentViewController:LandingView animated:YES completion:nil];
         }else{
             //reset clicked

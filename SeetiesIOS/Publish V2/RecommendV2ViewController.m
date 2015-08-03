@@ -806,8 +806,8 @@
         
         
         FeedV2ViewController *firstViewController=[[FeedV2ViewController alloc]initWithNibName:@"FeedV2ViewController" bundle:nil];
-        //UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:firstViewController];
-        ExploreViewController *secondViewController=[[ExploreViewController alloc]initWithNibName:@"ExploreViewController" bundle:nil];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:firstViewController];
+        Explore2ViewController *secondViewController=[[Explore2ViewController alloc]initWithNibName:@"Explore2ViewController" bundle:nil];
         
         SelectImageViewController *threeViewController=[[SelectImageViewController alloc]initWithNibName:@"SelectImageViewController" bundle:nil];
         
@@ -816,7 +816,7 @@
         ProfileV2ViewController *fiveViewController=[[ProfileV2ViewController alloc]initWithNibName:@"ProfileV2ViewController" bundle:nil];
         
         //adding view controllers to your tabBarController bundling them in an array
-        tabBarController.viewControllers=[NSArray arrayWithObjects:firstViewController,secondViewController,threeViewController,fourViewController,fiveViewController, nil];
+        tabBarController.viewControllers=[NSArray arrayWithObjects:navController,secondViewController,threeViewController,fourViewController,fiveViewController, nil];
         tabBarController.selectedIndex = 4;
         
         //[self presentModalViewController:tabBarController animated:YES];
@@ -914,8 +914,8 @@
             
             
             FeedV2ViewController *firstViewController=[[FeedV2ViewController alloc]initWithNibName:@"FeedV2ViewController" bundle:nil];
-           // UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:firstViewController];
-            ExploreViewController *secondViewController=[[ExploreViewController alloc]initWithNibName:@"ExploreViewController" bundle:nil];
+            UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:firstViewController];
+            Explore2ViewController *secondViewController=[[Explore2ViewController alloc]initWithNibName:@"Explore2ViewController" bundle:nil];
             
             SelectImageViewController *threeViewController=[[SelectImageViewController alloc]initWithNibName:@"SelectImageViewController" bundle:nil];
             
@@ -924,7 +924,7 @@
             ProfileV2ViewController *fiveViewController=[[ProfileV2ViewController alloc]initWithNibName:@"ProfileV2ViewController" bundle:nil];
             
             //adding view controllers to your tabBarController bundling them in an array
-            tabBarController.viewControllers=[NSArray arrayWithObjects:firstViewController,secondViewController,threeViewController,fourViewController,fiveViewController, nil];
+            tabBarController.viewControllers=[NSArray arrayWithObjects:navController,secondViewController,threeViewController,fourViewController,fiveViewController, nil];
 
             if ([GetPostID length] == 0 || [GetPostID isEqualToString:@""]) {
                 
@@ -2038,8 +2038,8 @@
                 [tabBarController.tabBar setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
                 
                 FeedV2ViewController *firstViewController=[[FeedV2ViewController alloc]initWithNibName:@"FeedV2ViewController" bundle:nil];
-               // UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:firstViewController];
-                ExploreViewController *secondViewController=[[ExploreViewController alloc]initWithNibName:@"ExploreViewController" bundle:nil];
+                UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:firstViewController];
+                Explore2ViewController *secondViewController=[[Explore2ViewController alloc]initWithNibName:@"Explore2ViewController" bundle:nil];
                 
                 SelectImageViewController *threeViewController=[[SelectImageViewController alloc]initWithNibName:@"SelectImageViewController" bundle:nil];
                 
@@ -2048,7 +2048,7 @@
                 ProfileV2ViewController *fiveViewController=[[ProfileV2ViewController alloc]initWithNibName:@"ProfileV2ViewController" bundle:nil];
                 
                 //adding view controllers to your tabBarController bundling them in an array
-                tabBarController.viewControllers=[NSArray arrayWithObjects:firstViewController,secondViewController,threeViewController,fourViewController,fiveViewController, nil];
+                tabBarController.viewControllers=[NSArray arrayWithObjects:navController,secondViewController,threeViewController,fourViewController,fiveViewController, nil];
                 //tabBarController.selectedIndex = 4;
 
                 [[[[UIApplication sharedApplication] delegate] window] setRootViewController:tabBarController];

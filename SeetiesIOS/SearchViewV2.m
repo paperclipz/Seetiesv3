@@ -760,7 +760,7 @@
     NSString *replaced = [originalString stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     NSLog(@"replaced is %@",replaced);
    // NSString *FullString = [[NSString alloc]initWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?address=%@&components=country:MY&key=AIzaSyDOH-6gH-anGu-AEOI3KX7_n5WLkz2gg-c",replaced];
-    NSString *FullString = [[NSString alloc]initWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?input=%@&radius=500&sensor=false&types=geocode&key=AIzaSyChnTBSAm0k30WSCjlV-29tBi8eCFRptq8",replaced];
+    NSString *FullString = [[NSString alloc]initWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?input=%@&radius=500&sensor=false&types=geocode&key=AIzaSyCFM5ytVF7QUtRiQm_E12vKVp01sl_f_xM",replaced];
     NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
     NSLog(@"check postBack URL ==== %@",postBack);
     NSURL *url = [NSURL URLWithString:[postBack stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
@@ -878,7 +878,7 @@
 -(void)GetPlaceDetail{
     //https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJ3WWMjifu0TERagGedoFyKgM&key=AIzaSyChnTBSAm0k30WSCjlV-29tBi8eCFRptq8
     
-    NSString *FullString = [[NSString alloc]initWithFormat:@"https://maps.googleapis.com/maps/api/place/details/json?placeid=%@&key=AIzaSyChnTBSAm0k30WSCjlV-29tBi8eCFRptq8",GetSearchPlaceID];
+    NSString *FullString = [[NSString alloc]initWithFormat:@"https://maps.googleapis.com/maps/api/place/details/json?placeid=%@&key=AIzaSyCFM5ytVF7QUtRiQm_E12vKVp01sl_f_xM",GetSearchPlaceID];
     
     NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
     NSLog(@"check postBack URL ==== %@",postBack);

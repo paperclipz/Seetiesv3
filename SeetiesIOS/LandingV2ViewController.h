@@ -10,6 +10,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "GAITrackedViewController.h"
 #import "UrlDataClass.h"
+
 @interface LandingV2ViewController : GAITrackedViewController{
 IBOutlet UIButton *FBLoginButton;
 IBOutlet UIButton *LogInButton;
@@ -21,6 +22,7 @@ IBOutlet UILabel *MainText;
 IBOutlet UIImageView *MainLogo;
     
     IBOutlet UIButton *InstagramButton;
+    IBOutlet UILabel *ShowTnCText;
 
 UrlDataClass *DataUrl;
 NSMutableData *webData;

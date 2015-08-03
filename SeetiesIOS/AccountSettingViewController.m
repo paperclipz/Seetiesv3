@@ -9,7 +9,7 @@
 #import "AccountSettingViewController.h"
 
 #import "ChangePasswordViewController.h"
-#import "LandingViewController.h"
+#import "LandingV2ViewController.h"
 
 #import "ProfileV2ViewController.h"
 #import "ExploreViewController.h"
@@ -813,8 +813,8 @@
                     [[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
                     
                     FeedV2ViewController *firstViewController=[[FeedV2ViewController alloc]initWithNibName:@"FeedV2ViewController" bundle:nil];
-                    //UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:firstViewController];
-                    ExploreViewController *secondViewController=[[ExploreViewController alloc]initWithNibName:@"ExploreViewController" bundle:nil];
+                    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:firstViewController];
+                    Explore2ViewController *secondViewController=[[Explore2ViewController alloc]initWithNibName:@"Explore2ViewController" bundle:nil];
                     
                     SelectImageViewController *threeViewController=[[SelectImageViewController alloc]initWithNibName:@"SelectImageViewController" bundle:nil];
                     
@@ -823,7 +823,7 @@
                     ProfileV2ViewController *fiveViewController=[[ProfileV2ViewController alloc]initWithNibName:@"ProfileV2ViewController" bundle:nil];
                     
                     //adding view controllers to your tabBarController bundling them in an array
-                    tabBarController.viewControllers=[NSArray arrayWithObjects:firstViewController,secondViewController,threeViewController,fourViewController,fiveViewController, nil];
+                    tabBarController.viewControllers=[NSArray arrayWithObjects:navController,secondViewController,threeViewController,fourViewController,fiveViewController, nil];
                     
                     
                     //[self presentModalViewController:tabBarController animated:YES];
@@ -863,6 +863,7 @@
         if ([statusString isEqualToString:@"ok"]) {
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             NSString *GetBackCheckAPI = [defaults objectForKey:@"CheckAPI"];
+            NSString *GetBackAPIVersion = [defaults objectForKey:@"APIVersionSet"];
             
             //cancel clicked ...do your action
             NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
@@ -899,10 +900,11 @@
             
             //save back
             [defaults setObject:GetBackCheckAPI forKey:@"CheckAPI"];
+            [defaults setObject:GetBackAPIVersion forKey:@"APIVersionSet"];
             [defaults synchronize];
             
             
-            LandingViewController *LandingView = [[LandingViewController alloc]init];
+            LandingV2ViewController *LandingView = [[LandingV2ViewController alloc]init];
             [self presentViewController:LandingView animated:YES completion:nil];
         }
         

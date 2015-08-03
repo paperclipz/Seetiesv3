@@ -97,7 +97,13 @@
     BOOL CheckPromotion;
     
     NSString *ExternalIPAddress;
+    
+    UIButton *ShowSelectImageButton;
+    UIButton *ShowSelectDaftButton;
+    UIView *TempBackground;
+    BOOL CheckButtonClick;
 }
+
 -(IBAction)NearbyButton:(id)sender;
 -(IBAction)FiltersButton:(id)sender;
 -(IBAction)ClickBackToTopButton:(id)sender;

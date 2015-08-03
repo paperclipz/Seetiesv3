@@ -385,13 +385,13 @@
         [[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
     
         FeedV2ViewController *firstViewController=[[FeedV2ViewController alloc]initWithNibName:@"FeedV2ViewController" bundle:nil];
-        //UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:firstViewController];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:firstViewController];
         //firstViewController.title= CustomLocalisedString(@"MainTab_Feed",nil);TabBarNew.png
         //firstViewController.tabBarItem.image=[UIImage imageNamed:@"TabBarFeed.png"];//TabBarFeed.png
 
 
     
-        ExploreViewController *secondViewController=[[ExploreViewController alloc]initWithNibName:@"ExploreViewController" bundle:nil];
+        Explore2ViewController *secondViewController=[[Explore2ViewController alloc]initWithNibName:@"Explore2ViewController" bundle:nil];
         //secondViewController.title= CustomLocalisedString(@"MainTab_Explore",nil);
         //secondViewController.tabBarItem.image=[UIImage imageNamed:@"TabBarExplore.png"];
         
@@ -409,7 +409,7 @@
       //  fiveViewController.tabBarItem.image=[UIImage imageNamed:@"TabBarProfile.png"];
         
         //adding view controllers to your tabBarController bundling them in an array
-        tabBarController.viewControllers=[NSArray arrayWithObjects:firstViewController,secondViewController,threeViewController,fourViewController,fiveViewController, nil];
+        tabBarController.viewControllers=[NSArray arrayWithObjects:navController,secondViewController,threeViewController,fourViewController,fiveViewController, nil];
         
         
         //[self presentModalViewController:tabBarController animated:YES];

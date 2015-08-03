@@ -18,7 +18,7 @@
 #import "LocationFeedDetailViewController.h"
 #import "NearByRecommtationViewController.h"
 
-#import "LandingViewController.h"
+#import "LandingV2ViewController.h"
 #import "RecommendV2ViewController.h"
 #import "NSString+ChangeAsciiString.h"
 @interface FeedV2DetailViewController ()
@@ -39,10 +39,10 @@
     PageControlOn.frame = CGRectMake(15, 300, screenWidth - 30, 37);
     LocationButton.frame = CGRectMake(screenWidth - 74 - 15, 20, 60, 44);
     
-    ShowDownBarView.frame = CGRectMake(0, screenHeight - 62, screenWidth, 62);
+    ShowDownBarView.frame = CGRectMake(0, screenHeight - 62 - 50, screenWidth, 62);
     ShowbarView.frame = CGRectMake(0, 0, screenWidth, 64);
     ShowBarImg.frame = CGRectMake(0, 0, screenWidth, 64);
-    MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight - 62);
+    MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight - 62 - 50);
     MImageScroll.frame = CGRectMake(0, 0, screenWidth, 340);
     ShowLanguageTranslationView.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     ShowLanguageTranslationView.hidden = YES;
@@ -120,14 +120,14 @@
 -(void)swipeRight:(UISwipeGestureRecognizer*)gestureRecognizer
 {
 //    //Do what you want here
-//    CATransition *transition = [CATransition animation];
-//    transition.duration = 0.2;
-//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//    transition.type = kCATransitionPush;
-//    transition.subtype = kCATransitionFromLeft;
-//    [self.view.window.layer addAnimation:transition forKey:nil];
-//    //[self presentViewController:ListingDetail animated:NO completion:nil];
-//    [self dismissViewControllerAnimated:NO completion:nil];
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.2;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromLeft;
+    [self.view.window.layer addAnimation:transition forKey:nil];
+    //[self presentViewController:ListingDetail animated:NO completion:nil];
+    [self dismissViewControllerAnimated:NO completion:nil];
     
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
@@ -211,6 +211,9 @@
     [super viewWillDisappear:animated];
     
 }
+- (void)dealloc {
+    [MainScroll setDelegate:nil];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -228,10 +231,11 @@
     //[self presentViewController:ListingDetail animated:NO completion:nil];
     [self dismissViewControllerAnimated:NO completion:nil];
     
-//    [self.navigationController popToRootViewControllerAnimated:YES];
+    //[self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)GetPostID:(NSString *)PostID{
-DataUrl = [[UrlDataClass alloc]init];
+    DataUrl = [[UrlDataClass alloc]init];
     GetPostID = PostID;
     NSLog(@"GetPostID is %@",GetPostID);
     [self GetPostAllData];
@@ -3454,6 +3458,7 @@ NSLog(@"Facebook Button Click");
             //get back
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             NSString *GetBackCheckAPI = [defaults objectForKey:@"CheckAPI"];
+            NSString *GetBackAPIVersion = [defaults objectForKey:@"APIVersionSet"];
             
             //cancel clicked ...do your action
             NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
@@ -3464,10 +3469,11 @@ NSLog(@"Facebook Button Click");
             }
             //save back
             [defaults setObject:GetBackCheckAPI forKey:@"CheckAPI"];
+            [defaults setObject:GetBackAPIVersion forKey:@"APIVersionSet"];
             [defaults synchronize];
             
             
-            LandingViewController *LandingView = [[LandingViewController alloc]init];
+            LandingV2ViewController *LandingView = [[LandingV2ViewController alloc]init];
             [self presentViewController:LandingView animated:YES completion:nil];
         }else{
             //reset clicked

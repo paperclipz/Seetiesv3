@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "LandingViewController.h"
+#import "LandingV2ViewController.h"
 #import "GAI.h"
 #import "Foursquare2.h"
 #import "PTnCViewController.h"
@@ -42,7 +42,10 @@
 #import "ProfileV2ViewController.h"
 #import "TellaStoryViewController.h"
 
+#import "PInterestV2ViewController.h"
+
 #import "DoImagePickerController.h"
+#import "TestFeedV2ViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -432,8 +435,8 @@
     
     
     FeedV2ViewController *firstViewController=[[FeedV2ViewController alloc]initWithNibName:@"FeedV2ViewController" bundle:nil];
-    //UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:firstViewController];
-    ExploreViewController *secondViewController=[[ExploreViewController alloc]initWithNibName:@"ExploreViewController" bundle:nil];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:firstViewController];
+    Explore2ViewController *secondViewController=[[Explore2ViewController alloc]initWithNibName:@"Explore2ViewController" bundle:nil];
     
     SelectImageViewController *threeViewController=[[SelectImageViewController alloc]initWithNibName:@"SelectImageViewController" bundle:nil];
     
@@ -442,7 +445,7 @@
     ProfileV2ViewController *fiveViewController=[[ProfileV2ViewController alloc]initWithNibName:@"ProfileV2ViewController" bundle:nil];
     
     //adding view controllers to your tabBarController bundling them in an array
-    tabBarController.viewControllers=[NSArray arrayWithObjects:firstViewController,secondViewController,threeViewController,fourViewController,fiveViewController, nil];
+    tabBarController.viewControllers=[NSArray arrayWithObjects:navController,secondViewController,threeViewController,fourViewController,fiveViewController, nil];
      tabBarController.selectedIndex = 3;
     [[[[UIApplication sharedApplication] delegate] window] setRootViewController:tabBarController];
     
@@ -451,7 +454,7 @@
 -(void)CheckApiVersion{
     //https://itcave-api.seeties.me/v1.3/system/apiversion?device_type=2 - itcave test
     //https://ios-api.seeties.me/v1.3/system/apiversion?device_type=2 - live
-    NSString *FullString = [[NSString alloc]initWithFormat:@"https://ios-api.seeties.me/v1.3/system/apiversion?device_type=2"];
+    NSString *FullString = [[NSString alloc]initWithFormat:@"https://itcave-api.seeties.me/v1.3/system/apiversion?device_type=2"];
     
     
     NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
@@ -485,7 +488,7 @@
 //    alert.tag = 100;
 //    [alert show];
     
-    LandingViewController *LandingView = [[LandingViewController alloc]init];
+    LandingV2ViewController *LandingView = [[LandingV2ViewController alloc]init];
     self.window.rootViewController = LandingView;
 
 
@@ -530,7 +533,7 @@
     [defaults synchronize];
     
     if ([GetVersionString isEqualToString:APIVersionSet]) {
-        LandingViewController *LandingView = [[LandingViewController alloc]init];
+        LandingV2ViewController *LandingView = [[LandingV2ViewController alloc]init];
         self.window.rootViewController = LandingView;
         
 //        DoImagePickerController *cont = [[DoImagePickerController alloc] initWithNibName:@"DoImagePickerController" bundle:nil];

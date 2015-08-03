@@ -980,7 +980,7 @@
     NSString *replaced = [originalString stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     NSLog(@"replaced is %@",replaced);
     // NSString *FullString = [[NSString alloc]initWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?address=%@&components=country:MY&key=AIzaSyDOH-6gH-anGu-AEOI3KX7_n5WLkz2gg-c",replaced];
-    NSString *FullString = [[NSString alloc]initWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?location=%@,%@&input=%@&radius=50000&key=AIzaSyChnTBSAm0k30WSCjlV-29tBi8eCFRptq8&type=address",GetLatPoint,GetLongPoint,replaced];
+    NSString *FullString = [[NSString alloc]initWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?location=%@,%@&input=%@&radius=50000&key=AIzaSyCFM5ytVF7QUtRiQm_E12vKVp01sl_f_xM&type=address",GetLatPoint,GetLongPoint,replaced];
     NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
     NSLog(@"google check postBack URL ==== %@",postBack);
     NSURL *url = [NSURL URLWithString:[postBack stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
@@ -1369,8 +1369,8 @@
             
             
             FeedV2ViewController *firstViewController=[[FeedV2ViewController alloc]initWithNibName:@"FeedV2ViewController" bundle:nil];
-            //UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:firstViewController];
-            ExploreViewController *secondViewController=[[ExploreViewController alloc]initWithNibName:@"ExploreViewController" bundle:nil];
+            UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:firstViewController];
+            Explore2ViewController *secondViewController=[[Explore2ViewController alloc]initWithNibName:@"Explore2ViewController" bundle:nil];
             
             SelectImageViewController *threeViewController=[[SelectImageViewController alloc]initWithNibName:@"SelectImageViewController" bundle:nil];
             
@@ -1379,7 +1379,7 @@
             ProfileV2ViewController *fiveViewController=[[ProfileV2ViewController alloc]initWithNibName:@"ProfileV2ViewController" bundle:nil];
             
             //adding view controllers to your tabBarController bundling them in an array
-            tabBarController.viewControllers=[NSArray arrayWithObjects:firstViewController,secondViewController,threeViewController,fourViewController,fiveViewController, nil];
+            tabBarController.viewControllers=[NSArray arrayWithObjects:navController,secondViewController,threeViewController,fourViewController,fiveViewController, nil];
             
             
             //[self presentModalViewController:tabBarController animated:YES];
@@ -1434,7 +1434,7 @@
     
 }
 -(void)GetGooglePlaceDetail{
-    NSString *FullString = [[NSString alloc]initWithFormat:@"https://maps.googleapis.com/maps/api/place/details/json?placeid=%@&key=AIzaSyChnTBSAm0k30WSCjlV-29tBi8eCFRptq8",GetPlaceID];
+    NSString *FullString = [[NSString alloc]initWithFormat:@"https://maps.googleapis.com/maps/api/place/details/json?placeid=%@&key=AIzaSyCFM5ytVF7QUtRiQm_E12vKVp01sl_f_xM",GetPlaceID];
     NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
     NSLog(@"check postBack URL ==== %@",postBack);
     NSURL *url = [NSURL URLWithString:[postBack stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];

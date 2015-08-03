@@ -23,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
     DataUrl = [[UrlDataClass alloc]init];
     
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
@@ -543,24 +543,30 @@
     NSLog(@"button %li",(long)getbuttonIDN);
     
     ExploreCountryV2ViewController *ExploreCountryView = [[ExploreCountryV2ViewController alloc]init];
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromRight;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self presentViewController:ExploreCountryView animated:NO completion:nil];
+//    CATransition *transition = [CATransition animation];
+//    transition.duration = 0.2;
+//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    transition.type = kCATransitionPush;
+//    transition.subtype = kCATransitionFromRight;
+//    [self.view.window.layer addAnimation:transition forKey:nil];
+//    [self presentViewController:ExploreCountryView animated:NO completion:nil];
+//    [ExploreCountryView GetCountryName:[NameArray objectAtIndex:getbuttonIDN] GetCountryIDN:[CountryIDArray objectAtIndex:getbuttonIDN]];
+    
+    [self.navigationController pushViewController:ExploreCountryView animated:YES];
     [ExploreCountryView GetCountryName:[NameArray objectAtIndex:getbuttonIDN] GetCountryIDN:[CountryIDArray objectAtIndex:getbuttonIDN]];
 }
 -(IBAction)ClickButton2:(id)sender{
     ExploreCountryV2ViewController *ExploreCountryView = [[ExploreCountryV2ViewController alloc]init];
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromRight;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self presentViewController:ExploreCountryView animated:NO completion:nil];
+//    CATransition *transition = [CATransition animation];
+//    transition.duration = 0.2;
+//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    transition.type = kCATransitionPush;
+//    transition.subtype = kCATransitionFromRight;
+//    [self.view.window.layer addAnimation:transition forKey:nil];
+//    [self presentViewController:ExploreCountryView animated:NO completion:nil];
+//    [ExploreCountryView GetCountryName:[NameArray lastObject] GetCountryIDN:[CountryIDArray lastObject]];
+    
+    [self.navigationController pushViewController:ExploreCountryView animated:YES];
     [ExploreCountryView GetCountryName:[NameArray lastObject] GetCountryIDN:[CountryIDArray lastObject]];
 }
 -(IBAction)LetsgoButton:(id)sender{

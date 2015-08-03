@@ -11,7 +11,7 @@
 #import "SearchViewController.h"
 #import "ExploreCountryViewController.h"
 #import "NotificationViewController.h"
-#import "LandingViewController.h"
+#import "LandingV2ViewController.h"
 #import "LanguageManager.h"
 #import "Locale.h"
 #import "Constants.h"
@@ -325,6 +325,7 @@
             //cancel clicked ...do your action
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             NSString *GetBackCheckAPI = [defaults objectForKey:@"CheckAPI"];
+            NSString *GetBackAPIVersion = [defaults objectForKey:@"APIVersionSet"];
 
             //cancel clicked ...do your action
             NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
@@ -336,9 +337,10 @@
             
             //save back
             [defaults setObject:GetBackCheckAPI forKey:@"CheckAPI"];
+            [defaults setObject:GetBackAPIVersion forKey:@"APIVersionSet"];
             [defaults synchronize];
             
-            LandingViewController *LandingView = [[LandingViewController alloc]init];
+            LandingV2ViewController *LandingView = [[LandingV2ViewController alloc]init];
             [self presentViewController:LandingView animated:YES completion:nil];
         }else{
             //reset clicked

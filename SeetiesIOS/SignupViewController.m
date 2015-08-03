@@ -27,6 +27,7 @@
     EmailField.delegate = self;
     UsernameField.delegate = self;
     PasswordField.delegate = self;
+    ConfirmPasswrodField.delegate = self;
     
     RedIcon.hidden = YES;
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
@@ -35,20 +36,21 @@
     Scrollview.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     ShowBackgroundImage.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     LoginBackgroundImg_1.frame = CGRectMake(0, 78, screenWidth, 89);
-    LoginBackgroundImg_2.frame = CGRectMake(0, 122, screenWidth, 89);
+    LoginBackgroundImg_2.frame = CGRectMake(0, 165, screenWidth, 89);
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     ShowTitle.frame = CGRectMake(0, 30, screenWidth, 44);
-    SignUpButton.frame = CGRectMake(15, 266, screenWidth - 30, 50);
-    ShowTnC.frame = CGRectMake((screenWidth/2) - 122, 218, 244, 40);
-    Line01.frame = CGRectMake((screenWidth/2) - 90, 251, 80, 1);
-    Line02.frame = CGRectMake((screenWidth/2) + 2, 251, 87, 1);
+    SignUpButton.frame = CGRectMake(15, 310, screenWidth - 30, 50);
+    ShowTnC.frame = CGRectMake((screenWidth/2) - 122, 262, 244, 40);
+    Line01.frame = CGRectMake((screenWidth/2) - 90, 298, 80, 1);
+    Line02.frame = CGRectMake((screenWidth/2) + 2, 298, 87, 1);
     
     EmailField.frame = CGRectMake(15, 80, screenWidth - 15, 40);
     UsernameField.frame = CGRectMake(15, 122, screenWidth - 15, 40);
-    PasswordField.frame = CGRectMake(15, 170, screenWidth - 15, 40);
+    PasswordField.frame = CGRectMake(15, 169, screenWidth - 15, 40);
+    ConfirmPasswrodField.frame = CGRectMake(15, 212, screenWidth - 15, 40);
     
-    TermsButton.frame = CGRectMake((screenWidth/2) - 90, 228, 82, 30);
-    PrivacyButton.frame = CGRectMake((screenWidth/2) + 2, 228, 101, 30);
+    TermsButton.frame = CGRectMake((screenWidth/2) - 90, 272, 82, 30);
+    PrivacyButton.frame = CGRectMake((screenWidth/2) + 2, 272, 101, 30);
     
     RedIcon.frame = CGRectMake(screenWidth - 40, 184, 12, 12);
     
@@ -90,6 +92,7 @@
        // RedIcon.hidden = NO;
     }else if(textField == PasswordField){
         [UsernameField resignFirstResponder];
+        [ConfirmPasswrodField becomeFirstResponder];
       //  [PasswordField resignFirstResponder];
         if([PasswordField.text length] < 8){
            // RedIcon.hidden = NO;
@@ -97,6 +100,8 @@
           //  RedIcon.hidden = YES;
             [PasswordField resignFirstResponder];
         }
+    }else if(textField == ConfirmPasswrodField){
+    
     }else{
         [textField resignFirstResponder];
     }
@@ -145,8 +150,11 @@
 }
 -(IBAction)RegisterButton:(id)sender{
     
+    NSString *emailRegEx = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,10}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegEx];
     
-    if ([EmailField.text length] == 0) {
+    
+    if ([EmailField.text length] == 0 || [emailTest evaluateWithObject:EmailField.text] == NO) {
         UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"EmailError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [ShowAlert show];
     }else if([UsernameField.text length] == 0){

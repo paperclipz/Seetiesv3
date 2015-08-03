@@ -12,7 +12,7 @@
 #import "EditInterestV2ViewController.h"
 #import "AccountSettingViewController.h"
 #import "LLARingSpinnerView.h"
-#import "LandingViewController.h"
+#import "LandingV2ViewController.h"
 #import "OpenWebViewController.h"
 #import "FeedbackViewController.h"
 
@@ -123,7 +123,7 @@
     [self presentViewController:AccountSettingView animated:NO completion:nil];
 }
 -(IBAction)EditInterestButton:(id)sender{
-    EditInterestViewController *EditInterestView = [[EditInterestViewController alloc]init];
+    EditInterestV2ViewController *EditInterestView = [[EditInterestV2ViewController alloc]init];
     CATransition *transition = [CATransition animation];
     transition.duration = 0.2;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
@@ -249,6 +249,7 @@
             
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             NSString *GetBackCheckAPI = [defaults objectForKey:@"CheckAPI"];
+            //NSString *GetBackAPIVersion = [defaults objectForKey:@"APIVersionSet"];
 
             
             NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
@@ -283,10 +284,11 @@
 
             //save back
             [defaults setObject:GetBackCheckAPI forKey:@"CheckAPI"];
+            //[defaults setObject:GetBackAPIVersion forKey:@"APIVersionSet"];
             [defaults synchronize];
             
             
-            LandingViewController *LandingView = [[LandingViewController alloc]init];
+            LandingV2ViewController *LandingView = [[LandingV2ViewController alloc]init];
             [self presentViewController:LandingView animated:YES completion:nil];
 
         }

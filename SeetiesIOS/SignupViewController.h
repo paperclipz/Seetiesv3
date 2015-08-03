@@ -16,6 +16,7 @@
     IBOutlet UITextField *EmailField;
     IBOutlet UITextField *UsernameField;
     IBOutlet UITextField *PasswordField;
+    IBOutlet UITextField *ConfirmPasswrodField;
     IBOutlet UILabel *ShowTitle;
     IBOutlet UILabel *ShowTnC;
     IBOutlet UIButton *SignUpButton;

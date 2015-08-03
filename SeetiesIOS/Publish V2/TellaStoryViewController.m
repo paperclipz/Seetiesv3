@@ -1578,7 +1578,7 @@
         //firstViewController.title= CustomLocalisedString(@"MainTab_Feed",nil);
        // firstViewController.tabBarItem.image=[UIImage imageNamed:@"TabBarFeed.png"];
         
-        ExploreViewController *secondViewController=[[ExploreViewController alloc]initWithNibName:@"ExploreViewController" bundle:nil];
+        Explore2ViewController *secondViewController=[[Explore2ViewController alloc]initWithNibName:@"Explore2ViewController" bundle:nil];
         //secondViewController.title= CustomLocalisedString(@"MainTab_Explore",nil);
       //  secondViewController.tabBarItem.image=[UIImage imageNamed:@"TabBarExplore.png"];
         

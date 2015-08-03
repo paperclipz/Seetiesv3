@@ -7,12 +7,29 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface EditInterestV2ViewController : UIViewController{
+#import "UrlDataClass.h"
+@interface EditInterestV2ViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>{
 
     IBOutlet UILabel *ShowTitle;
     IBOutlet UIButton *SaveButton;
     IBOutlet UIImageView *BarImage;
+    
+    IBOutlet UITableView *Tblview;
+
+    NSMutableArray *CategoryArray;
+    NSMutableArray *BackgroundColorArray;
+    NSMutableArray *CategoryIDArray;
+    NSMutableArray *SelectCategoryIDArray;
+    NSMutableArray *GetImageArray1;
+    
+    NSMutableArray *selectedIndexes;
+    
+    UrlDataClass *DataUrl;
+    NSMutableData *webData;
+    
+    IBOutlet UIActivityIndicatorView *spinnerView;
+    UIButton *LoadingBlackBackground;
+    UILabel *ShowLoadingText;
 }
 -(IBAction)SaveButton:(id)sender;
 -(IBAction)BackButton:(id)sender;

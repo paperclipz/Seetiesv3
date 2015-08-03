@@ -30,7 +30,7 @@
     
     NSString *GetSortStringData;
     
-     NSString *GetWhatViewCome;
+    NSString *GetWhatViewCome;
     
     UIButton *SelectAllButton;
 }
