@@ -533,7 +533,7 @@
     [defaults synchronize];
     
     if ([GetVersionString isEqualToString:APIVersionSet]) {
-        LandingV2ViewController *LandingView = [[LandingV2ViewController alloc]init];
+        TestFeedV2ViewController *LandingView = [[TestFeedV2ViewController alloc]init];
         self.window.rootViewController = LandingView;
         
 //        DoImagePickerController *cont = [[DoImagePickerController alloc] initWithNibName:@"DoImagePickerController" bundle:nil];

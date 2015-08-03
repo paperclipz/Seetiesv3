@@ -458,6 +458,27 @@
 		0BA492461AF0D6F1006F10A1 /* SubMenu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA492371AF0D6F1006F10A1 /* SubMenu@3x.png */; };
 		0BA8CF751B058F8200108DBA /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA8CF731B058F8200108DBA /* FilterViewController.m */; };
 		0BA8CF761B058F8200108DBA /* FilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA8CF741B058F8200108DBA /* FilterViewController.xib */; };
+		0BA951FC1B6F644C0029629A /* CRMotionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA951F71B6F644C0029629A /* CRMotionView.m */; };
+		0BA951FD1B6F644C0029629A /* CRZoomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA951F91B6F644C0029629A /* CRZoomScrollView.m */; };
+		0BA951FE1B6F644C0029629A /* UIScrollView+CRScrollIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA951FB1B6F644C0029629A /* UIScrollView+CRScrollIndicator.m */; };
+		0BA952011B6F64BC0029629A /* ProximaNovaSoft-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BA951FF1B6F64BC0029629A /* ProximaNovaSoft-Bold.ttf */; };
+		0BA952021B6F64BC0029629A /* ProximaNovaSoft-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BA952001B6F64BC0029629A /* ProximaNovaSoft-Regular.ttf */; };
+		0BA952061B6F64CD0029629A /* UserDemo1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0BA952031B6F64CC0029629A /* UserDemo1.jpg */; };
+		0BA952071B6F64CD0029629A /* UserDemo2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0BA952041B6F64CC0029629A /* UserDemo2.jpg */; };
+		0BA952081B6F64CD0029629A /* UserDemo3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0BA952051B6F64CD0029629A /* UserDemo3.jpg */; };
+		0BA9520B1B6F64D40029629A /* DemoProfile.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0BA952091B6F64D40029629A /* DemoProfile.jpg */; };
+		0BA9520C1B6F64D40029629A /* DemoTest.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA9520A1B6F64D40029629A /* DemoTest.png */; };
+		0BA952101B6F64E10029629A /* TestFeedV2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA9520E1B6F64E10029629A /* TestFeedV2ViewController.m */; };
+		0BA952111B6F64E10029629A /* TestFeedV2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA9520F1B6F64E10029629A /* TestFeedV2ViewController.xib */; };
+		0BA952161B6F65080029629A /* NewProfileV2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA952141B6F65080029629A /* NewProfileV2ViewController.m */; };
+		0BA952171B6F65080029629A /* NewProfileV2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA952151B6F65080029629A /* NewProfileV2ViewController.xib */; };
+		0BA9521A1B6F65130029629A /* Demoanner.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0BA952181B6F65130029629A /* Demoanner.jpg */; };
+		0BA9521B1B6F65130029629A /* DemoBackground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0BA952191B6F65130029629A /* DemoBackground.jpg */; };
+		0BA952201B6F65340029629A /* SearchViewV2Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA9521E1B6F65340029629A /* SearchViewV2Controller.m */; };
+		0BA952211B6F65340029629A /* SearchViewV2Controller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA9521F1B6F65340029629A /* SearchViewV2Controller.xib */; };
+		0BA952261B6F654B0029629A /* PInterestV2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA952241B6F654B0029629A /* PInterestV2ViewController.m */; };
+		0BA952271B6F654B0029629A /* PInterestV2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA952251B6F654B0029629A /* PInterestV2ViewController.xib */; };
+		0BA9522B1B6F65710029629A /* A3ParallaxScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA9522A1B6F65710029629A /* A3ParallaxScrollView.m */; };
 		0BB834F21A81CE32004F8AC2 /* ProfileBlank@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB834F11A81CE32004F8AC2 /* ProfileBlank@2x.png */; };
 		0BC3161B1AD7AC9600D6651F /* BtnDelete.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BC316151AD7AC9600D6651F /* BtnDelete.png */; };
 		0BC3161C1AD7AC9600D6651F /* BtnDelete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BC316161AD7AC9600D6651F /* BtnDelete@2x.png */; };
@@ -1321,6 +1342,35 @@
 		0BA8CF721B058F8200108DBA /* FilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterViewController.h; sourceTree = "<group>"; };
 		0BA8CF731B058F8200108DBA /* FilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterViewController.m; sourceTree = "<group>"; };
 		0BA8CF741B058F8200108DBA /* FilterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterViewController.xib; sourceTree = "<group>"; };
+		0BA951F61B6F644C0029629A /* CRMotionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRMotionView.h; sourceTree = "<group>"; };
+		0BA951F71B6F644C0029629A /* CRMotionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRMotionView.m; sourceTree = "<group>"; };
+		0BA951F81B6F644C0029629A /* CRZoomScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRZoomScrollView.h; sourceTree = "<group>"; };
+		0BA951F91B6F644C0029629A /* CRZoomScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRZoomScrollView.m; sourceTree = "<group>"; };
+		0BA951FA1B6F644C0029629A /* UIScrollView+CRScrollIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+CRScrollIndicator.h"; sourceTree = "<group>"; };
+		0BA951FB1B6F644C0029629A /* UIScrollView+CRScrollIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+CRScrollIndicator.m"; sourceTree = "<group>"; };
+		0BA951FF1B6F64BC0029629A /* ProximaNovaSoft-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNovaSoft-Bold.ttf"; sourceTree = "<group>"; };
+		0BA952001B6F64BC0029629A /* ProximaNovaSoft-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNovaSoft-Regular.ttf"; sourceTree = "<group>"; };
+		0BA952031B6F64CC0029629A /* UserDemo1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = UserDemo1.jpg; sourceTree = "<group>"; };
+		0BA952041B6F64CC0029629A /* UserDemo2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = UserDemo2.jpg; sourceTree = "<group>"; };
+		0BA952051B6F64CD0029629A /* UserDemo3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = UserDemo3.jpg; sourceTree = "<group>"; };
+		0BA952091B6F64D40029629A /* DemoProfile.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DemoProfile.jpg; sourceTree = "<group>"; };
+		0BA9520A1B6F64D40029629A /* DemoTest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DemoTest.png; sourceTree = "<group>"; };
+		0BA9520D1B6F64E10029629A /* TestFeedV2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFeedV2ViewController.h; sourceTree = "<group>"; };
+		0BA9520E1B6F64E10029629A /* TestFeedV2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestFeedV2ViewController.m; sourceTree = "<group>"; };
+		0BA9520F1B6F64E10029629A /* TestFeedV2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestFeedV2ViewController.xib; sourceTree = "<group>"; };
+		0BA952131B6F65080029629A /* NewProfileV2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewProfileV2ViewController.h; sourceTree = "<group>"; };
+		0BA952141B6F65080029629A /* NewProfileV2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewProfileV2ViewController.m; sourceTree = "<group>"; };
+		0BA952151B6F65080029629A /* NewProfileV2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewProfileV2ViewController.xib; sourceTree = "<group>"; };
+		0BA952181B6F65130029629A /* Demoanner.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Demoanner.jpg; sourceTree = "<group>"; };
+		0BA952191B6F65130029629A /* DemoBackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DemoBackground.jpg; sourceTree = "<group>"; };
+		0BA9521D1B6F65340029629A /* SearchViewV2Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewV2Controller.h; sourceTree = "<group>"; };
+		0BA9521E1B6F65340029629A /* SearchViewV2Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewV2Controller.m; sourceTree = "<group>"; };
+		0BA9521F1B6F65340029629A /* SearchViewV2Controller.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchViewV2Controller.xib; sourceTree = "<group>"; };
+		0BA952231B6F654B0029629A /* PInterestV2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PInterestV2ViewController.h; sourceTree = "<group>"; };
+		0BA952241B6F654B0029629A /* PInterestV2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PInterestV2ViewController.m; sourceTree = "<group>"; };
+		0BA952251B6F654B0029629A /* PInterestV2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PInterestV2ViewController.xib; sourceTree = "<group>"; };
+		0BA952291B6F65710029629A /* A3ParallaxScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A3ParallaxScrollView.h; sourceTree = "<group>"; };
+		0BA9522A1B6F65710029629A /* A3ParallaxScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A3ParallaxScrollView.m; sourceTree = "<group>"; };
 		0BB834F11A81CE32004F8AC2 /* ProfileBlank@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProfileBlank@2x.png"; sourceTree = "<group>"; };
 		0BC316151AD7AC9600D6651F /* BtnDelete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BtnDelete.png; sourceTree = "<group>"; };
 		0BC316161AD7AC9600D6651F /* BtnDelete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BtnDelete@2x.png"; sourceTree = "<group>"; };
@@ -2036,7 +2086,7 @@
 			path = LLARingSpinnerView;
 			sourceTree = "<group>";
 		};
-		0B83ECDF1AD76ED500739B7A /* Profile V2 */ = {
+		0B83ECDF1AD76ED500739B7A /* Profile V1.3 */ = {
 			isa = PBXGroup;
 			children = (
 				0B83ECE01AD76EEB00739B7A /* ProfileV2ViewController.h */,
@@ -2046,12 +2096,14 @@
 				0BC316221AD7E41100D6651F /* UserProfileV2ViewController.m */,
 				0BC316231AD7E41100D6651F /* UserProfileV2ViewController.xib */,
 			);
-			name = "Profile V2";
+			name = "Profile V1.3";
 			sourceTree = "<group>";
 		};
 		0B98B1611ADE748E00630F82 /* Font */ = {
 			isa = PBXGroup;
 			children = (
+				0BA951FF1B6F64BC0029629A /* ProximaNovaSoft-Bold.ttf */,
+				0BA952001B6F64BC0029629A /* ProximaNovaSoft-Regular.ttf */,
 				0B98B1621ADE748E00630F82 /* Adriane Text Bold Italic.otf */,
 			);
 			path = Font;
@@ -2068,6 +2120,58 @@
 				0B749A851B09E08E008D792B /* Filter2ViewController.xib */,
 			);
 			name = "Filter View";
+			sourceTree = "<group>";
+		};
+		0BA951F51B6F644C0029629A /* CRMotionView */ = {
+			isa = PBXGroup;
+			children = (
+				0BA951F61B6F644C0029629A /* CRMotionView.h */,
+				0BA951F71B6F644C0029629A /* CRMotionView.m */,
+				0BA951F81B6F644C0029629A /* CRZoomScrollView.h */,
+				0BA951F91B6F644C0029629A /* CRZoomScrollView.m */,
+				0BA951FA1B6F644C0029629A /* UIScrollView+CRScrollIndicator.h */,
+				0BA951FB1B6F644C0029629A /* UIScrollView+CRScrollIndicator.m */,
+			);
+			path = CRMotionView;
+			sourceTree = "<group>";
+		};
+		0BA952121B6F64E70029629A /* Profile 2.0 */ = {
+			isa = PBXGroup;
+			children = (
+				0BA952131B6F65080029629A /* NewProfileV2ViewController.h */,
+				0BA952141B6F65080029629A /* NewProfileV2ViewController.m */,
+				0BA952151B6F65080029629A /* NewProfileV2ViewController.xib */,
+			);
+			name = "Profile 2.0";
+			sourceTree = "<group>";
+		};
+		0BA9521C1B6F651D0029629A /* Search 2.0 */ = {
+			isa = PBXGroup;
+			children = (
+				0BA9521D1B6F65340029629A /* SearchViewV2Controller.h */,
+				0BA9521E1B6F65340029629A /* SearchViewV2Controller.m */,
+				0BA9521F1B6F65340029629A /* SearchViewV2Controller.xib */,
+			);
+			name = "Search 2.0";
+			sourceTree = "<group>";
+		};
+		0BA952221B6F65390029629A /* Provisioning 2.0 */ = {
+			isa = PBXGroup;
+			children = (
+				0BA952231B6F654B0029629A /* PInterestV2ViewController.h */,
+				0BA952241B6F654B0029629A /* PInterestV2ViewController.m */,
+				0BA952251B6F654B0029629A /* PInterestV2ViewController.xib */,
+			);
+			name = "Provisioning 2.0";
+			sourceTree = "<group>";
+		};
+		0BA952281B6F65710029629A /* A3ParallaxScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				0BA952291B6F65710029629A /* A3ParallaxScrollView.h */,
+				0BA9522A1B6F65710029629A /* A3ParallaxScrollView.m */,
+			);
+			path = A3ParallaxScrollView;
 			sourceTree = "<group>";
 		};
 		0BD150EC1AD3FA5400248671 /* New Feed V2 */ = {
@@ -2806,11 +2910,17 @@
 		FC61E6DF19ED1A1A006BECBE /* SeetiesIOS */ = {
 			isa = PBXGroup;
 			children = (
+				0BA952221B6F65390029629A /* Provisioning 2.0 */,
+				0BA9521C1B6F651D0029629A /* Search 2.0 */,
+				0BA952121B6F64E70029629A /* Profile 2.0 */,
+				0BA9520D1B6F64E10029629A /* TestFeedV2ViewController.h */,
+				0BA9520E1B6F64E10029629A /* TestFeedV2ViewController.m */,
+				0BA9520F1B6F64E10029629A /* TestFeedV2ViewController.xib */,
 				0B4E7DF51B4F704500103F7F /* Version 1 */,
 				0B4E7DF31B4F6FFC00103F7F /* Login Page */,
 				0B6FBE3F1B25443C0005877B /* Invite Friends */,
 				0BA8CF771B058F8F00108DBA /* Filter View */,
-				0B83ECDF1AD76ED500739B7A /* Profile V2 */,
+				0B83ECDF1AD76ED500739B7A /* Profile V1.3 */,
 				0BD150EC1AD3FA5400248671 /* New Feed V2 */,
 				0BD5957D1AC1728B004E1CB8 /* Publish V2 */,
 				FC64335F1A2307E000E3659B /* Notification Page */,
@@ -2848,6 +2958,13 @@
 		FC61E6E019ED1A1A006BECBE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0BA952181B6F65130029629A /* Demoanner.jpg */,
+				0BA952191B6F65130029629A /* DemoBackground.jpg */,
+				0BA952091B6F64D40029629A /* DemoProfile.jpg */,
+				0BA9520A1B6F64D40029629A /* DemoTest.png */,
+				0BA952031B6F64CC0029629A /* UserDemo1.jpg */,
+				0BA952041B6F64CC0029629A /* UserDemo2.jpg */,
+				0BA952051B6F64CD0029629A /* UserDemo3.jpg */,
 				0B7088A61B26992A00572217 /* Invite */,
 				0B98B1611ADE748E00630F82 /* Font */,
 				0B7E89471ADE2B8900D3091A /* Tour */,
@@ -3011,6 +3128,8 @@
 		FCA874B619F1065300D252CC /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				0BA952281B6F65710029629A /* A3ParallaxScrollView */,
+				0BA951F51B6F644C0029629A /* CRMotionView */,
 				0B7E28CE1B0B4B62002DAC6A /* NSString+ChangeAsciiString.h */,
 				0B7E28CF1B0B4B62002DAC6A /* NSString+ChangeAsciiString.m */,
 				0B3B30821AFCBBE900D3A148 /* AviarySDK */,
@@ -3329,6 +3448,7 @@
 				0BE86AAB1B0074E600879894 /* FeedPin@3x.png in Resources */,
 				0B46A0EE1AD52C9B001C08D8 /* PostTime@2x.png in Resources */,
 				0B8229C61ADFD4CE00BD8F47 /* BtnBlank@3x.png in Resources */,
+				0BA9521A1B6F65130029629A /* Demoanner.jpg in Resources */,
 				0B6439901AD3CB3F005DB6EF /* BrightnessButton@2x.png in Resources */,
 				0B5755021ADCE7DB0043854F /* ArrowDown@2x.png in Resources */,
 				FC59C05919FF8630008BA54B /* ExtasViewController.xib in Resources */,
@@ -3422,6 +3542,7 @@
 				FC59C07319FF8ACD008BA54B /* Icon.png in Resources */,
 				0B7E89631ADE447700D3091A /* iPhone4_Tour.png in Resources */,
 				0B7088D71B26992A00572217 /* InviteFacebook.png in Resources */,
+				0BA952071B6F64CD0029629A /* UserDemo2.jpg in Resources */,
 				0BE86AA11B0067B900879894 /* 1242x2208-01.jpg in Resources */,
 				0B5C149F1B3181F700085163 /* FindPeople@3x.png in Resources */,
 				0B46A0F41AD52E43001C08D8 /* PostShade2@2x.png in Resources */,
@@ -3469,6 +3590,7 @@
 				0B90EC371AD634C40011E1D3 /* BtnFindFriends.png in Resources */,
 				FC6DAD911A1DC3510097B1C9 /* LanguageChi@3x.png in Resources */,
 				0B6DEBC91AF1DA5800A7489A /* dropdown.png in Resources */,
+				0BA9521B1B6F65130029629A /* DemoBackground.jpg in Resources */,
 				0BE7E3F11ADD13EE00310A69 /* BtnLetsgo.png in Resources */,
 				0B5754EB1ADCDFBA0043854F /* TabBarActivity@3x.png in Resources */,
 				0B36072D1A84705B00CF4EB1 /* TableThree@2x.png in Resources */,
@@ -3544,9 +3666,11 @@
 				FC6DAD931A1DC3510097B1C9 /* LanguageEng@2x.png in Resources */,
 				FC6DAD761A1D84A90097B1C9 /* PostShare.png in Resources */,
 				0B63CBBA1A8DFD98007E848E /* MoreRecommendation.png in Resources */,
+				0BA9520C1B6F64D40029629A /* DemoTest.png in Resources */,
 				0B6439B61AD3CB3F005DB6EF /* IconLink.png in Resources */,
 				FC67552F1A03FAD500DDACCB /* ShowImgCount.png in Resources */,
 				FC6DAD751A1D84A90097B1C9 /* PostNoLike@3x.png in Resources */,
+				0BA952011B6F64BC0029629A /* ProximaNovaSoft-Bold.ttf in Resources */,
 				0B7088E21B26992A00572217 /* InviteOther@3x.png in Resources */,
 				0B46A0DE1AD52C9B001C08D8 /* NextImage.png in Resources */,
 				0B2845701A7F7BB0005DE4F6 /* SearchHover@3x.png in Resources */,
@@ -3661,6 +3785,7 @@
 				0B5754F01ADCDFBA0043854F /* TabBarFeed@2x.png in Resources */,
 				0B64399C1AD3CB3F005DB6EF /* ClearIcon@2x.png in Resources */,
 				0BC3161F1AD7AC9600D6651F /* BtnEdit@2x.png in Resources */,
+				0BA952021B6F64BC0029629A /* ProximaNovaSoft-Regular.ttf in Resources */,
 				FC6DAD601A1D849E0097B1C9 /* AddCollection@3x.png in Resources */,
 				0B6439BA1AD3CB3F005DB6EF /* IconLocation@2x.png in Resources */,
 				0B3127991A8A188700DE8081 /* SeeMoreHover@3x.png in Resources */,
@@ -3702,6 +3827,7 @@
 				FC614A7819F4C59C00775B98 /* PSelectYourInterestViewController.xib in Resources */,
 				0B6439C81AD3CB3F005DB6EF /* PhotoAddTile.png in Resources */,
 				FC614A4919F4B4AD00775B98 /* MainViewController.xib in Resources */,
+				0BA952111B6F64E10029629A /* TestFeedV2ViewController.xib in Resources */,
 				FCB77AD619F0F498005CC1C7 /* Default-568h@2x.png in Resources */,
 				0B31279F1A8A191F00DE8081 /* ExploreMoreHover@3x.png in Resources */,
 				0B90EC261AD634C40011E1D3 /* ActionComment@2x.png in Resources */,
@@ -3787,6 +3913,7 @@
 				0BE7E3FB1ADD155500310A69 /* BannerFestival@3x.png in Resources */,
 				FCCE3C471A26D24600F962F8 /* PostLiked.png in Resources */,
 				0BA8CF761B058F8200108DBA /* FilterViewController.xib in Resources */,
+				0BA952081B6F64CD0029629A /* UserDemo3.jpg in Resources */,
 				FC9726C11A675A590060F4E0 /* NoNotification@3x_02.png in Resources */,
 				0B5754F41ADCDFBA0043854F /* TabBarNew@3x.png in Resources */,
 				FC3C8C301A0211550080E074 /* SearchBar.png in Resources */,
@@ -3806,6 +3933,7 @@
 				FC6DAD5E1A1D849E0097B1C9 /* AddCollection.png in Resources */,
 				0B6DEBE91AF2238D00A7489A /* InteractLike@3x.png in Resources */,
 				FC6DAD901A1DC3510097B1C9 /* LanguageChi@2x.png in Resources */,
+				0BA952171B6F65080029629A /* NewProfileV2ViewController.xib in Resources */,
 				0B6439C51AD3CB3F005DB6EF /* NextArrow.png in Resources */,
 				FCA14BEE1A4A5FB3008D228D /* ShowFollowerAndFollowingViewController.xib in Resources */,
 				0B90EC3B1AD634C40011E1D3 /* BtnShowLess@2x.png in Resources */,
@@ -3841,6 +3969,7 @@
 				0B6DEBE61AF2238D00A7489A /* InteractComment@3x.png in Resources */,
 				0B90EC471AD634C40011E1D3 /* InfoContact@2x.png in Resources */,
 				0B756D801B2A7C6200CB5CB2 /* IconFBMessenger@2x.png in Resources */,
+				0BA952271B6F654B0029629A /* PInterestV2ViewController.xib in Resources */,
 				0B51A6FE1ADB9DFF00D3A6E4 /* Testingaaaaaa.png in Resources */,
 				0B28456F1A7F7BB0005DE4F6 /* SearchHover@2x.png in Resources */,
 				0BE7E3F31ADD13EE00310A69 /* BtnLetsgo@3x.png in Resources */,
@@ -3880,6 +4009,7 @@
 				0BE86A921B0067B900879894 /* 640x960-01.jpg in Resources */,
 				0B90EC3E1AD634C40011E1D3 /* BtnShowMore@2x.png in Resources */,
 				FCD043A01A2C0266000CE96B /* Follow@2x.png in Resources */,
+				0BA952061B6F64CD0029629A /* UserDemo1.jpg in Resources */,
 				0B52C16F1AB694E300E1BC8F /* ButtonArrow.png in Resources */,
 				0B98B15E1ADE5B5E00630F82 /* ArrowUp.png in Resources */,
 				0B90EC3F1AD634C40011E1D3 /* BtnShowMore@3x.png in Resources */,
@@ -3914,6 +4044,7 @@
 				0BE86A941B0067B900879894 /* 640x960-03.jpg in Resources */,
 				0BA4923A1AF0D6F1006F10A1 /* ArrowAction@3x.png in Resources */,
 				0B90EC381AD634C40011E1D3 /* BtnFindFriends@2x.png in Resources */,
+				0BA952211B6F65340029629A /* SearchViewV2Controller.xib in Resources */,
 				0B66A13F1B157D23001CB3B7 /* DoPhotoCell.xib in Resources */,
 				0BE86A6B1B004B3500879894 /* SearchBoxPin.png in Resources */,
 				0BD595C91AC172A4004E1CB8 /* SelectPhotoFrame@3x.png in Resources */,
@@ -3964,6 +4095,7 @@
 				0B7088EE1B26992A00572217 /* Whatsapp@3x.png in Resources */,
 				0B63CBBE1A8E1003007E848E /* HomeBg.png in Resources */,
 				0B749A871B09E08E008D792B /* Filter2ViewController.xib in Resources */,
+				0BA9520B1B6F64D40029629A /* DemoProfile.jpg in Resources */,
 				FC66FAEC1A10921800A935B1 /* LandingLogo.png in Resources */,
 				0B6439DB1AD3CB3F005DB6EF /* TabDivider@2x.png in Resources */,
 				0B6439D81AD3CB3F005DB6EF /* TabArrow@2x.png in Resources */,
@@ -4045,9 +4177,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BA952101B6F64E10029629A /* TestFeedV2ViewController.m in Sources */,
 				FCD043A91A2C5526000CE96B /* OpenWebViewController.m in Sources */,
 				0BD595AD1AC1728B004E1CB8 /* PECropViewController.m in Sources */,
 				0BD595AC1AC1728B004E1CB8 /* PECropView.m in Sources */,
+				0BA9522B1B6F65710029629A /* A3ParallaxScrollView.m in Sources */,
 				0B83ECE81AD775D800739B7A /* ExploreCountryV2ViewController.m in Sources */,
 				FC61E6E619ED1A1A006BECBE /* AppDelegate.m in Sources */,
 				0B46A0F91AD53EE7001C08D8 /* FeedV2DetailViewController.m in Sources */,
@@ -4065,12 +4199,14 @@
 				FC3C8C121A01F4DF0080E074 /* FSOAuthNoAppStore.m in Sources */,
 				FC10FBAE1A2E22F9009CECAC /* SearchDetailViewController.m in Sources */,
 				0BD595B51AC1728B004E1CB8 /* TellaStoryViewController.m in Sources */,
+				0BA952261B6F654B0029629A /* PInterestV2ViewController.m in Sources */,
 				FC40C53E1A0A870E000AB551 /* MainTableViewCell.m in Sources */,
 				0BD595A91AC1728B004E1CB8 /* ConfirmPlaceViewController.m in Sources */,
 				0B6FBE431B25446A0005877B /* InviteFrenViewController.m in Sources */,
 				0BD595AF1AC1728B004E1CB8 /* UIImage+PECrop.m in Sources */,
 				FC551E1419F6084D006088A9 /* AccountSettingViewController.m in Sources */,
 				FCC594F21A199A3B00A874A9 /* ExploreCountryViewController.m in Sources */,
+				0BA952161B6F65080029629A /* NewProfileV2ViewController.m in Sources */,
 				FC3902421A1123C3000B7598 /* PublishMainViewController.m in Sources */,
 				FCCE3C5A1A270A6E00F962F8 /* BHInputToolbar.m in Sources */,
 				FC3C8C251A020E330080E074 /* EditLocationViewController.m in Sources */,
@@ -4094,6 +4230,7 @@
 				FC6433581A2307BD00E3659B /* LocationFeedDetailViewController.m in Sources */,
 				0B5787F91AEF6BA9006559E2 /* RecommendV2ViewController.m in Sources */,
 				FC3C8BFD1A01F4C90080E074 /* FSVenue.m in Sources */,
+				0BA951FE1B6F644C0029629A /* UIScrollView+CRScrollIndicator.m in Sources */,
 				FC3D37941A167188000E57AB /* SearchViewController.m in Sources */,
 				0B6B35F11B27F2F40042D169 /* NearByRecommtationViewController.m in Sources */,
 				FC345E7C1A263CA200F6862D /* ExpertsUserProfileViewController.m in Sources */,
@@ -4108,6 +4245,7 @@
 				0B6439361AD3C6F2005DB6EF /* AddLinkViewController.m in Sources */,
 				FC6433631A2307F100E3659B /* NotificationViewController.m in Sources */,
 				0B45F16C1ACA4D99006E83CC /* AddContactViewController.m in Sources */,
+				0BA951FD1B6F644C0029629A /* CRZoomScrollView.m in Sources */,
 				FCA874CE19F10D0100D252CC /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				FC59C04919FF85FD008BA54B /* ChooseCategoryViewController.m in Sources */,
 				FC3C8C131A01F4DF0080E074 /* FSOperation.m in Sources */,
@@ -4137,10 +4275,12 @@
 				FCA874B419F103BF00D252CC /* ExpertLoginViewController.m in Sources */,
 				FC45680A1A093A05008DFCFE /* AsyncImageView.m in Sources */,
 				0BD150F01AD3FA6A00248671 /* FeedV2ViewController.m in Sources */,
+				0BA952201B6F65340029629A /* SearchViewV2Controller.m in Sources */,
 				FC614A7719F4C59C00775B98 /* PSelectYourInterestViewController.m in Sources */,
 				FC3C8C141A01F4DF0080E074 /* FSWebLogin.m in Sources */,
 				FC8972491A5E1B7E0027D5AC /* SubmitProfileViewController.m in Sources */,
 				FC59C05319FF861E008BA54B /* AddLocationViewController.m in Sources */,
+				0BA951FC1B6F644C0029629A /* CRMotionView.m in Sources */,
 				0B4AFE401ACE7DD400B4F95E /* AddHourViewController.m in Sources */,
 				FC61E6E319ED1A1A006BECBE /* main.m in Sources */,
 				0BA8CF751B058F8200108DBA /* FilterViewController.m in Sources */,
