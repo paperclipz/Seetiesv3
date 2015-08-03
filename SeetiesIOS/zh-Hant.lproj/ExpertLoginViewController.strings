@@ -1,0 +1,18 @@
+
+/* Class = "IBUILabel"; text = "Login to your"; ObjectID = "7je-AT-ScU"; */
+"7je-AT-ScU.text" = "Login to your";
+
+/* Class = "IBUILabel"; text = "Forgot password?"; ObjectID = "Kg4-6G-5y1"; */
+"Kg4-6G-5y1.text" = "Forgot password?";
+
+/* Class = "IBUITextField"; placeholder = "Password"; ObjectID = "dmr-r2-foX"; */
+"dmr-r2-foX.placeholder" = "hahahah";
+
+/* Class = "IBUITextField"; placeholder = "Username / Email Address"; ObjectID = "ehu-rh-fNb"; */
+"ehu-rh-fNb.placeholder" = "Username / Email Address";
+
+/* Class = "IBUILabel"; text = "Seetizen Expert account"; ObjectID = "lTJ-NP-Z3Y"; */
+"lTJ-NP-Z3Y.text" = "Seetizen Expert account";
+
+/* Class = "IBUILabel"; text = "Need help?"; ObjectID = "mat-KA-km3"; */
+"mat-KA-km3.text" = "Need help?";

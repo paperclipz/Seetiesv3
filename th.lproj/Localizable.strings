@@ -1,0 +1,399 @@
+/* 
+  Localizable.strings
+  SeetiesIOS
+
+  Created by Chong Chee Yong on 10/20/14.
+  Copyright (c) 2014 Ahyong87. All rights reserved.
+*/
+
+
+"ExpertLogin_Username" = "Username / Email Address";
+"ExpertLogin_Password" = "Password";
+"ExpertLogin_Title" = "เข้าระบบ";
+"ExpertLogin_LoginButton" = "เข้าระบบ";
+"ExpertLogin_ForgotPassword" = "ลืมพาสเวิร์ด?";
+"ExpertLogin_NeedHelp" = "ต้องการความช่วยเหลือ?";
+
+"SignUpPage_Username" = "ยูสเซอร์เนม";
+"SignUpPage_Password" = "พาสเวิร์ด";
+"SignUpPage_Email" = "อีเมล";
+"SignUpPage_Title" = "ลงทะเบียน";
+"SignUpPage_SignUpButton" = "ลงทะเบียน";
+"SignUpPage_TnC" = "เมื่อลงทะเบียน คุณยอมรับข้อกำหนดและนโยบายข้อมูลส่วนตัวของ Seeties ";
+
+"WhyWeUserFB_Title" = "ทำไมต้อง Facebook?";
+"WhyWeUserFB_Detail" = "ไม่เสียเวลาสร้างแอคเคาท์และจำรหัสผ่านใหม่ \nให้คุณแชร์รีวิวและคำแนะนำดีๆ ให้เพื่อนได้ทันที";
+"WhyWeUserFB_Privacy" = "Seeties จะไม่โพสต์ข้อมูลก่อนคุณอนุญาต เราเคารพพื้นที่ส่วนบุคคลของคุณ​";
+
+"LandingPage_MainText" = "โมบาย Citypass สำหรับไลฟ์สไตล์คนเมืองและนักเดินทางมืออาชีพ";
+"LandingPage_ContinueFacebook" = "เข้าระบบผ่าน Facebook";
+"LandingPage_WhyUseFacebook" = "ทำไมต้อง Facebook?";
+"LandingPage_Login" = "เข้าระบบ";
+"LandingPage_SignupWithEmail" = "สร้างแอคเคาท์";
+
+"SettingsPage_Title" = "ตั้งค่า";
+"SettingsPage_Account" = "แอคเคาท์";
+"SettingsPage_EditProfile" = "แก้ไขโปรไฟล์";
+"SettingsPage_EditInterests" = "แก้ไขหัวข้อสนใจ";
+"SettingsPage_AccountSettings" = " ตั้งค่าแอคเคาท์";
+"SettingsPage_Find&InviteFriends" = "ดูสิว่ามีเพื่อนแล้วกี่คน แล้วคุณจะเชิญใครอีกดี";
+"SettingsPage_SUPPORT" = "ความช่วยเหลือ";
+"SettingsPage_AboutSeeties" = "เกี่ยวกับ Seeties";
+"SettingsPage_TermsofUse" = "ข้อกำหนด";
+"SettingsPage_PrivacyPolicy" = "ข้อมูลส่วนตัว ";
+"SettingsPage_Feedback" = "ข้อเสนอแนะ";
+"SettingsPage_Checkforupdates" = "เช็คอัพเดท";
+"SettingsPage_LogOut" = "ออกระบบ";
+"SettingsPage_Cancel" = "ยกเลิก";
+
+
+"ExplorePage_Title" = "10 รีวิวน่าสนใจอาทิตย์นี้";
+"ExplorePage_SubTitle" = "เรารวบรวมรีวิวดีๆ 10 โพสต์จากทุกประเทศมาให้คุณ";
+"ExplorePage_SecondTitle" = "10 รีวิวน่าสนใจจาก Seetizen Expert";
+
+"MainTab_Feed" = "หน้าหลัก";
+"MainTab_Explore" = "ค้นหา";
+"MainTab_Like" = "ไลค์";
+"MainTab_Profile" = "โปรไฟล์";
+
+"Provisioning_PTnC_1" = "Spice up your city life!";
+"Provisioning_PTnC_2" = "Discover the most exciting adventures, exotic food, hidden gems & coolest events in your city & around Southeast Asia!";
+"Provisioning_PTnC_3" = "By continuing, you agree to Seeties' Terms of Use & Privacy Notice.";
+"Provisioning_PTnC_4" = "Accept & Continue";
+"Provisioning_PTnC_5" = "ข้อกำหนดและเงื่อนไข";
+"Provisioning_PTnC_6" = "ฉันยอมรับข้อกำหนดการใช้งานและข้อชี้แจงข้อมูลส่วนบุคคลของ Seeties";
+"Cancel" = "ยกเลิก";
+"Agree" = "ยอมรับ";
+
+"Provisioning_PTellUsYourCityView_1" = "ข้อมูลที่อยู่";
+"Provisioning_PTellUsYourCityView_2" = "ระบุที่อยู่ให้ชัดเจน (ใส่ชื่อย่าน, อำเภอ หรือจังหวัด) เพื่อให้ Seeties แสดงรีวิวได้เหมาะกับคุณมากขึ้น";
+"Provisioning_PTellUsYourCityView_3" = "พิมพ์ที่อยู่";
+"Provisioning_PTellUsYourCityView_4" = "ระบุเมืองของคุณ";
+"Provisioning_PTellUsYourCityView_5" = "พิมพ์ชื่อเมือง";
+"Provisioning_PTellUsYourCityView_6" = "ข้อมูลภาษา";
+"Provisioning_PTellUsYourCityView_7" = "เลือกภาษาที่คุณต้องการใช้";
+"Provisioning_PTellUsYourCityView_8" = "ต่อไป";
+"Provisioning_PTellUsYourCityView_9" = "ภาษาหลัก";
+"Provisioning_PTellUsYourCityView_10" = "ภาษารอง";
+
+"Provisioning_PSelectYourInterestView_Title" = "เลือกประเภทหัวข้อ";
+
+"Provisioning_PFollowTheExpertsView_Title" = "บล็อกเกอร์ไลฟ์สไตล์ตัวจริง";
+"Provisioning_PFollowTheExpertsView_SubTitle" = "Seetizen Expert คือชุมชนบล็อกเกอร์และนักเขียนรีวิวที่อาศัยอยู่ในพื้นที่ ข้อมูลจริง แน่น และครอบคลุม";
+
+
+"Food & Drink" = "อาหาร & เครื่องดื่ม ";
+"For Her" = "For Her";
+"For Him" = "For Him";
+"Art " = "งานศิลป์";
+"Leisure & Entertainment" = "กิจกรรมบันเทิง";
+"Staycation" = "ทริปสุดชิล";
+"Landmark & Culture" = "วัฒนธรรม & สถานที่สำคัญ";
+"Nightlife" = "ไนท์ไลฟ์";
+"Sport" = "สปอร์ต & แอดเวนเจอร์";
+"YOLO" = "YOLO";
+
+
+"NearbyImg" = "Nearby.png";
+"LocalImg" = "Local.png";
+"ForeignLandImg" = "ForeignLand.png";
+"ExpertsImg" = "ExpertsLabel.png";
+
+
+"EditProfilePhoto" = "เปลี่ยนรูปโปรไฟล์";
+"EditCoverBackground" = "เปลี่ยนรูปแบล็คกราวน์";
+"ShareToFacebook" = "แชร์ไป Facebook";
+"CopyLink" = "ก็อปปี้ลิงค์";
+
+"EditProfileText" = "แก้ไขโปรไฟล์";
+"EditProfileSubText" = "โปรไฟล์";
+"EditProfileUsername" = "ชื่อผู้ใช้";
+"EditProfileFullname" = "ชื่อ";
+"EditProfileWebsite" = "เว็บไซต์";
+"EditProfileBio" = "แนะนำตัวเอง";
+"EditProfileLocation" = "ที่อยู่";
+"EditProfileSave" = "เซฟ";
+"Selectyourinterest" = "เลือกหัวข้อที่สนใจ";
+"Primary" = "ภาษาหลัก";
+"Secondary" = "ภาษารอง";
+"AppLangauge" = "เลือกภาษาใช้ในแอพ";
+"ChangePassword" = "เปลี่ยนพาสเวิร์ด";
+"Gender" = "เพศ";
+"Birthday" = "วันเกิด";
+"Deactivateaccount" = "ลบแอคเคาท์";
+"Male" = "ชาย";
+"Female" = "หญิง";
+
+"Gotosite" = "ไปที่เว็บไซต์";
+"Likes" = "ไลค์";
+"CommentsBig" = "คอมเมนท์";
+"MoreRecommendations" = "ดูรีวิวอื่นเพิ่มเติม";
+"ExploreMore" = "ดูเพิ่มอีก";
+
+
+"Followers" = "ติดตาม";
+"Following" = "ตามติด";
+
+"EditProfilePhoto" = "เปลี่ยนรูปโปรไฟล์";
+"EditCoverPhoto" = "เปลี่ยนรูปแบล็คกราวน์";
+
+"ChangePassword" = "เปลี่ยนพาสเวิร์ด";
+"CurrentPassword" = "พาสเวิร์ดปัจจุบัน";
+"NewPassword" = "พาสเวิร์ดใหม่";
+"NewPasswordAgain" = "ยืนยันพาสเวิร์ดใหม่";
+"Submit" = "ส่ง";
+
+"FeedbackDetail" = "ให้คำแนะนำกับเราได้ หากคุณมีไอเดียดีๆ หรือรายงานปัญหาให้เราทราบ หากคุณเจอบั๊ก";
+"IncludeScreenshot" = "ใส่ภาพหน้าจอ";
+
+"ForgotPassword" = "ลืมพาสเวิร์ด? ";
+"ForgotPasswordDetail" = "ใช้ยูสเซอร์เนมหรืออีเมลที่ลิงค์กับแอคเคาท์ Seeties ในการรีเซ็ทพาสเวิร์ด ";
+"ResetPassword" = "รีเซ็ทพาสเวิร์ด";
+
+"Notification" = "แจ้งเตือน";
+"Search" = "ค้นหา";
+
+"GoodDay" = "สวัสดีคุณ";
+"WhatWouldyouiketodo" = "ให้เราช่วยอะไรได้บ้าง?";
+"Recommend" = "เขียนรีวิวบน ";
+"SometingOnSeeties" = "Seeties";
+"GotoDrafts" = "ไปที่ดราฟท์";
+
+"Changesearchlocation" = "เปลี่ยนสถานที่";
+"searchlocation" = "ระบุสถานที่ค้นหา";
+"Currentlocation" = "ที่อยู่ปัจจุบัน";
+"SEARCHHISTORY" = "ประวัติการค้นหา";
+"SearchData" = "ประวัติการค้นหา";
+"findPeople" = "ค้นหาสมาชิก";
+"People" = "สมาชิก";
+"SortBy" = "ค้นหาโดย";
+"MostRecent" = "ล่าสุด";
+"Popular" = "ยอดนิยม";
+"Distance" = "ระยะทาง";
+
+"Drafts" = "ดราฟท์";
+"Done" = "เรียบร้อย";
+
+"Chooseacategory" = "เลือกประเภทหัวข้อ";
+"Addlocation" = "เพิ่มที่อยู่";
+"Extras" = "ข้อมูลเพิ่มเติม";
+"Publish" = "โพสต์";
+"EditLocation" = "แก้ไขที่อยู่";
+"PLACENAME" = "ชื่อสถานที่";
+"LOCATIONADDRESS" = "ที่อยู่";
+
+"Tags" = "แท็ก";
+"TagsDetail" = "ใช้คอมมาคั่นแท็ก (เช่น อาหารญี่ปุ่น, ร้านกาแฟ, เสื้อผ้า, ยิม)";
+"AlsoShareto" = "แชร์ไปที่...";
+"URL" = "URL";
+
+"TapToChange" = "แตะเพื่อเปลี่ยนรูป";
+"ORSEARCHBYCATEGORY" = "หรือค้นหาตามหัวข้อ";
+"Recommendationsorpeople" = "รีวิวหรือ Expert ";
+"FindPeopleName" = "ค้นหาตามชื่อ";
+"SelectPhotos" = "เลือกรูป";
+"SelectCategory" = "เลือกหัวข้อ";
+"Positionyoulocation" = "เลื่อนแผนที่และวางพินให้ถูกต้อง";
+"LocationOnMap" = "ดูที่อยู่บนแผนที่";
+"Tapheretopin" = "แตะและวางพินให้ถูกต้อง";
+
+"Howdoyouwanttodoaddimage" = "เพิ่มรูป";
+"PhotoLibrary" = "อัลบั้มภาพ";
+"Camera" = "ถ่ายรูป";
+"PleaseWait" = "โปรดรอสักครู่...";
+"Directions" = "เส้นทาง";
+"Comments" = "คอมเมนท์";
+"Send" = "ส่ง";
+
+"SaveasDraft" = "เซฟดราฟท์";
+"Discard" = "ลบ";
+"Doyouwantsave" = "เซฟดราฟท์?";
+"ContentLanguage" = "ภาษาของรีวิว";
+"NearbySuggestions" = "รีวิวใกล้คุณ";
+"Searchforaplace" = "พิมพ์ชื่อสถานที่ที่คุณหา";
+
+"FOLLOWERS" = "ติดตาม";
+"FOLLOWING" = "ตามติด";
+
+"SearchNearby" = "ดูรีวิวใกล้คุณ";
+"Suggestions" = "สถานที่แนะนำ";
+"TypetoSearch" = "หาพิซซ่า, มาร์ตินี่, โบว์ลิ่ง... ";
+"Entersearchlocation" = "ค้นหา";
+"ORADDACATEGORYBELOW" = "หรือเลือกหัวข้อด้านล่าง";
+"TaptoEdit" = "แตะเพื่อแก้ไข";
+
+"SkipButton" = "ข้าม";
+"DoneButton" = "เรียบร้อย";
+
+"WelcometoSeeties" = "ยินดีต้อนรับสู่ Seeties ";
+"Seewhypeopleloveus" = "มาดูกันว่าทำไมใครๆ ก็รัก Seeties ";
+"Slideformore" = "เริ่มเลย!";
+"Recommend" = "แนะนำสถานที่น่าสนใจเพื่อคนท้องถิ่นและนักท่องเที่ยว";
+"Shareyourstories" = "แชร์เรื่องราวดีๆ พร้อมทำความรู้จักเพื่อนใหม่หัวใจชอบเที่ยว";
+"Friends" = "อัพเดทข้อมูลเพื่อนซี้และสถานที่ยอดฮิตรอบตัว";
+"Seewhatyourfriends" = "ติดตามเรื่องราวน่าสนใจของสถานที่ดีๆ ที่เพื่อนไปสัมผัส และตามรอยข้อมูลสถานที่กิน เที่ยว เล่น ";
+"AnewWay" = "ให้คุณรู้จักเอเชียดีมากขึ้น ";
+"Eatwhere" = "กิน เที่ยว สัมผัสงานเทศกาลแปลกใหม่ตามแบบฉบับคนท้องถิ่นที่จะช่วยให้ชีวิตมีสีสันมากขึ้น ";
+"Allofyour" = "บันทึกการเดินทางของคุณ";
+"Keepyourbestcity" = "บันทึกความทรงจำดีๆ ในแต่ละวันและระหว่างการเดินทางที่คุณจะจดจำไปชั่วชีวิต พร้อมเป็นบันทึกเรื่องเล่าให้เพื่อนๆ หาแรงบันดาลใจ";
+
+"Feed" = "ฟีด";
+"NearBy" = "ใกล้";
+"Share" = "แชร์";
+
+
+"TopRecommendations" = "มาแรง";
+"FeaturedUserin" = "แนะนำเพื่อนใหม่";
+"Posts" = "รีวิว";
+
+"Brightness" = "ปรับแสง";
+"Crop" = "ครอป";
+"Reset" = "รีเซ็ต";
+"Rotate" = "หมุน";
+"Whereisthis" = "คุณถ่ายรูปนี้ที่ไหน?";
+"SkipAndDone" = "โพสต์";
+"Publish" = "โพสต์";
+"Addtag" = "เพิ่มแท็ก";
+"youcanchoose2" = "คุณเลือกได้ 2 หัวข้อ";
+"ChooseCategories" = "เลือกหัวข้อ";
+
+"Price" = "ราคา";
+"Tellushowmuch" = "ค่าเสียหายเท่าไร?";
+
+"AddContact" = "โทรศัพท์";
+"TellusContact" = "เพิ่มโทรศัพท์";
+
+"Addfb" = "เพิ่ม Facebook/ เว็บไซต์...";
+"AddPrice" = "เพิ่มราคา...";
+"AddPhoneNumber" = "เพิ่มโทรศัพท์...";
+"link" = "Link";
+"TellusLink" = "เพิ่มลิงค์";
+"AddLink" = "เพิ่มลิงค์...";
+"TellStory" = "เขียนรีวิว";
+"Chooseuptp10photo" = "เลือกรูปได้ถึง 10 ภาพ";
+"Suggestions" = "แนะนำ";
+"ConfirmLocation" = "ข้อมูลติดต่อ";
+
+"Writeacaptionhere" = "ใส่แคปชั่น...";
+"Toomuchwhitespacehere" = "โล่งมาก! ";
+"Recommendsomethingcoolnow" = "เขียนรีวิวแรกกันเหอะ";
+
+"Edit" = "แก้ไข";
+"Delete" = "ลบ";
+"ShowMore" = "อ่านเพิ่ม";
+"ShowLess" = "ลดลง";
+
+"Festival" = "Festival";
+"DiscovertheColors" = "สีสันแห่งเอเชีย 365 วัน ไม่มีเบื่อ";
+
+
+"Filter" = "ฟิลเตอร์";
+"ChooseacategoryBig" = "เลือกประเภทหัวข้อ";
+"SortByBig" = "ค้นหาโดย";
+
+"KM" = "กิโล";
+"Within" = "ภายใน";
+
+"SelectAll" = "เลือกทั้งหมด";
+"UnSelectAll" = "ไม่เลือกเลย";
+
+"DeletePost" = "คุณต้องการลบโพสต์นี้? ";
+"Delete1" = "ลบ";
+
+"likeText_1" = "ไลค์รีวิวนี้";
+"likeText_and" = "และ";
+"likeText_and_2" = "และอีก";
+"likeText_andOther" = "คนไลค์รีวิวนี้";
+
+"Unfollow" = "เลิกตาม";
+"StopFollowing" = "ต้องการเลิกตาม";
+"GoogleText" = "แตะไอคอนแปลภาษาเพื่ออ่านรีวิวเป็นภาษาอังกฤษ";
+"Dontshowagain" = "ไม่ต้องแสดงอีก";
+
+"ApplyFilter" = "ฟิลเตอร์";
+"ErrorConnection" = "เกิดข้อผิดพลาดระหว่างการเชื่อมต่อ";
+"NoData" = "โปรดตรวจสอบ wifi และเครือข่ายข้อมูลของคุณ";
+"SomethingError" = "เกิดข้อผิดพลาด โปรดลองอีกครั้ง ";
+
+"NoNotification" = "คุณไม่มีคำแจ้งเตือนใหม่";
+"NoNotificationDetail" = "ขออภัย! เรากำลังเพิ่มรีวิวในเมืองคุณ";
+
+"Recommend" = "เขียนรีวิวบน";
+"RecommendSaveDraft" = "เซฟดราฟท์";
+"ShowQualityRecommendation" = "เขียนรีวิวคุณภาพทำได้ง่ายๆ ";
+"ShowQR_Title" = "รีวิวคุณภาพ";
+"ShowQR_Detail" = "รีวิวคุณภาพ: เขียนรีวิวให้ยาวอย่างน้อย 150 คำ สั้น กระชับ และอ่านสนุก";
+"Next" = "ถัดไป";
+"AddBlogLink" = "เพิ่มบล็อกลิงค์";
+"AskExit" = "คุณต้องการออกจากหน้านี้?";
+"AskSaveDraft" = "เซฟดราฟท์";
+"Exit" = "ออก";
+
+"ConfirmPlace_Search" = "ค้นหาอีกครั้ง";
+"ConfirmPlace_Text" = "ที่อยู่ไม่ถูกต้อง?";
+
+"Currency" = "เลือกสกุลเงิน";
+"pax" = "ต่อคน";
+
+"EmailError" = "ขออภัย อีเมลไม่ถูกต้อง";
+"UsernameError" = "ยูสเซอร์เนมต้องมีอย่างน้อย 6 ตัว";
+"PasswordError" = "พาสเวิร์ดสั้นเกินไป ต้องมีอย่างน้อย 8 ตัว ";
+
+"LimitExceed" = "เกินที่กำหนด";
+"LimitText" = "คุณเลือกเกิน 2 หัวข้อไม่ได้ ";
+"SelectPhoto" = "โปรดเลือกรูป";
+"TypeToSearch_Place" = "พิมพ์ชื่อสถานที่";
+"MaximumPhoto" = "สูงสุด 10 รูป";
+
+"SavePhotoChange" = "เซฟรูปใหม่?";
+"Photo_Yes" = "ใช่";
+"Photo_No" = "ไม่";
+"DoYouWantDelete" = "คุณต้องการลบรูปนี้? ";
+
+"Searchpeople" = "หาโดยชื่อจริงหรือยูสเซอร์เนม";
+"NearbyResult" = "ผลลัพธ์ใกล้คุณ";
+"SearchResult" = "ผลลัพธ์";
+"Letsgo" = "ไปกันเลย!";
+
+"FindFriends" = "หาเพื่อนใหม่";
+"Feelinglonelyonseeties" = "ชวนเพื่อนมาเล่น Seeties และหาสถานที่กิน เที่ยว เล่นดีๆ ไปพร้อมๆ กัน ";
+"InviteFacebook" = "ชวนเพื่อน Facebook มาเล่น Seeties";
+"xFriendsOnSeeties" = "คนบน Seeties";
+"FollowAll" = "ติดตามทั้งหมด";
+"Suggestionsforyou" = "เพื่อนใหม่น่ารู้จัก";
+"InviteFriends" = "ชวนเพื่อน";
+"Inviteall" = "ชวนทั้งหมด";
+"Invite" = "ชวน";
+"ConnectyouFacebook" = "เชื่อม Facebook กับ Seeties";
+"ConnectToFacebook" = "เชื่อมต่อ Facebook";
+"EasilySendaLink" = "ชวนเพื่อนมาเล่น Seeties ได้ง่ายๆ ไม่ว่าจะแอพไหน";
+"InViaFacebook" = "Facebook Messenger";
+"InViaWhatsapp" = "Whatsapp";
+"InViaWeChat" = "WeChat";
+"InViaLine" = "LINE";
+"Buildyournetwork" = "สร้างเน็ทเวิร์คเพื่อนใหม่!";
+"Findorinviteyourfriends" = "ชวนเพื่อนมาเล่น Seeties กัน";
+
+"HoldNDragTheThumbnails" = "กดรูปค้างไว้เพื่อเปลี่ยนอันดับ ภาพปกจะเป็นรูปแรกสุด";
+"Dragthemap" = "เลื่อนแผนที่ให้อยู่ในตำแหน่งที่ต้องการและกดค้างไว้เพื่อปักพิน";
+"Addthisplace" = "เพิ่มที่อยู่ใหม่?";
+"Cannotfindinthelist" = "ไม่เจอที่อยู่ที่ต้องการ? เพิ่มที่อยู่ใหม่เลย";
+"Addplacename" = "เพิ่มชื่อ";
+"AddAddress" = "เพิ่มที่อยู่";
+"tapthemaptoadjustpin" = "เลื่อนแผนที่ให้ถูกต้อง แล้วปักพิน";
+"Pleasefillinplacename" = "โปรดใส่ชื่อและที่อยู่";
+
+"NearbyRecommendations" = "รีวิวแนะนำใกล้ๆ";
+"InViaSMS" = "SMS";
+"SendMessage" = "รู้จัก Seeties เปล่า แอพใหม่สำหรับหาที่กิน เที่ยว เล่นตามสไตล์คนเมือง ลองโหลดเลย";
+"DeleteMessage" = "คุณต้องการลบคอมเมนท์หรือไม่?";
+"NoComment" = "ไม่มีคอมเมนท์";
+"FristComment" = "คอมเมนท์เลย";
+
+"Oops" = "Oops!";
+"PleaseSelectatleast1category" = "โปรดเลือกหัวข้ออย่างน้อยหนึ่งอัน";
+
+"NoResultFound" = "ไม่มีผลลัพธ์";
+"Pleasetryadiffrentsearch" = "ลองค้นหาใหม่อีกครั้ง ";
+
+"SeeallComment" = "อ่านคอมเมนท์ทั้งหมด";

@@ -1,0 +1,396 @@
+/* 
+  Localizable.strings
+  SeetiesIOS
+
+  Created by Chong Chee Yong on 10/20/14.
+  Copyright (c) 2014 Ahyong87. All rights reserved.
+*/
+
+
+"ExpertLogin_Username" = "Username / Email Address";
+"ExpertLogin_Password" = "Password";
+"ExpertLogin_Title" = "Masuk";
+"ExpertLogin_LoginButton" = "Masuk";
+"ExpertLogin_ForgotPassword" = "Lupa kata sandi kamu?";
+"ExpertLogin_NeedHelp" = "Perlu bantuan?";
+
+"SignUpPage_Username" = "Buat nama pengguna";
+"SignUpPage_Password" = "Buat kata sandi";
+"SignUpPage_Email" = "Email";
+"SignUpPage_Title" = "Daftar";
+"SignUpPage_SignUpButton" = "Daftar";
+"SignUpPage_TnC" = "Dengan mendaftar, kamu setuju dengan Seeties Syarat dan ketentuan pengguna dan Privasi";
+
+"WhyWeUserFB_Title" = "Kenapa Facebook?";
+"WhyWeUserFB_Detail" = "Lebih cepat, menggunakan kata sandi yg sama, \nDan kamu dapat dengan mudah sharing postingan kamu ke teman-teman kamu";
+"WhyWeUserFB_Privacy" = "PRIVASI KAMU SANGAT DI HORMATI.TIDAK ADA YANG AKAN DI POSTING TANPA IJIN ANDA";
+
+"LandingPage_MainText" = "Mobile citypass kamu untuk hidup dan perjalanan seperti lokal";
+"LandingPage_ContinueFacebook" = "Teruskan dengan Facebook";
+"LandingPage_WhyUseFacebook" = "Kenapa kita menggunakan Facebook?";
+"LandingPage_Login" = "Masuk";
+"LandingPage_SignupWithEmail" = "Daftar dengan email";
+
+"SettingsPage_Title" = "Pengaturan";
+"SettingsPage_Account" = "Akun";
+"SettingsPage_EditProfile" = "Sunting Profil";
+"SettingsPage_EditInterests" = "Sunting Minat";
+"SettingsPage_AccountSettings" = "Akun Pengaturan";
+"SettingsPage_Find&InviteFriends" = "Cari dan Undang teman";
+"SettingsPage_SUPPORT" = "Bantuan";
+"SettingsPage_AboutSeeties" = "Tentang Seeties";
+"SettingsPage_TermsofUse" = "Ketentuan Penggunaan";
+"SettingsPage_PrivacyPolicy" = "Pernyataan Privasi";
+"SettingsPage_Feedback" = "Masukan";
+"SettingsPage_Checkforupdates" = "Periksa Pembaruan";
+"SettingsPage_LogOut" = "Keluar";
+"SettingsPage_Cancel" = "Batal";
+
+"ExplorePage_Title" = "Top 10 minggu ini";
+"ExplorePage_SubTitle" = "Top rekomendasi minggu ini dari negara fitur";
+"ExplorePage_SecondTitle" = "Top 10 rekomendasi mingguan dari Seetizen Expert dari";
+
+"MainTab_Feed" = "Beranda";
+"MainTab_Explore" = "Jelajah";
+"MainTab_Like" = "Suka";
+"MainTab_Profile" = "Profil";
+
+"Provisioning_PTnC_1" = "Spice up your city life!";
+"Provisioning_PTnC_2" = "Discover the most exciting adventures, exotic food, hidden gems & coolest events in your city & around Southeast Asia!";
+"Provisioning_PTnC_3" = "By continuing, you agree to Seeties' Terms of Use & Privacy Notice.";
+"Provisioning_PTnC_4" = "Accept & Continue";
+"Provisioning_PTnC_5" = "Ketentuan";
+"Provisioning_PTnC_6" = "Saya Setuju dengan ketentuan dan Privasi Seeties";
+"Cancel" = "Batal";
+"Agree" = "Setuju";
+
+"Provisioning_PTellUsYourCityView_1" = "Kota mu";
+"Provisioning_PTellUsYourCityView_2" = "Masukan lokasi dengan detail (alamat, kota) untuk menikmati pengalaman menggunakan seeties lebih baik";
+"Provisioning_PTellUsYourCityView_3" = "Cari alamat";
+"Provisioning_PTellUsYourCityView_4" = "Masuka Kotamu";
+"Provisioning_PTellUsYourCityView_5" = "Cari lokasi";
+"Provisioning_PTellUsYourCityView_6" = "Pilih Bahasa";
+"Provisioning_PTellUsYourCityView_7" = "Pilih konten bahasa yang kamu mau baca";
+"Provisioning_PTellUsYourCityView_8" = "Lanjut";
+"Provisioning_PTellUsYourCityView_9" = "Bahasa Pertama";
+"Provisioning_PTellUsYourCityView_10" = "Bahasa Kedua";
+
+"Provisioning_PSelectYourInterestView_Title" = "Pilih apa yang kamu suka";
+
+"Provisioning_PFollowTheExpertsView_Title" = "Jumpa dengan Experts lokal yuk!";
+"Provisioning_PFollowTheExpertsView_SubTitle" = "Mereka kumpulan orang lokal yang aktif yang suka menulis dan berbagi lokal rekomendasi";
+
+
+"Food & Drink" = "Makanan & Minuman";
+"For Her" = "Untuk Wanita";
+"For Him" = "Untuk Pria";
+"Art " = "Kesenian";
+"Leisure & Entertainment" = "Waktu luang & Hiburan";
+"Staycation" = "Staycation";
+"Landmark & Culture" = "Tempat penting & Budaya";
+"Nightlife" = "Hiburan Malam";
+"Sport" = "Olahraga";
+"YOLO" = "YOLO";
+
+
+"NearbyImg" = "Nearby.png";
+"LocalImg" = "Local.png";
+"ForeignLandImg" = "ForeignLand.png";
+"ExpertsImg" = "ExpertsLabel.png";
+
+"EditProfilePhoto" = "Sunting Foto Profil";
+"EditCoverBackground" = "Sunting Latar Sampul";
+"ShareToFacebook" = "Bagikan di Facebook";
+"CopyLink" = "Salin Link";
+
+"EditProfileText" = "Sunting Profil";
+"EditProfileSubText" = "Publik Profil";
+"EditProfileUsername" = "Nama Pengguna";
+"EditProfileFullname" = "Nama";
+"EditProfileWebsite" = "Situs web";
+"EditProfileBio" = "Tentang kamu";
+"EditProfileLocation" = "Lokasi";
+"EditProfileSave" = "Simpan";
+"Selectyourinterest" = "Pilih hobi kamu";
+"Primary" = "Utama";
+"Secondary" = "Sekunder";
+"AppLangauge" = "Bahasa aplikasi ";
+"ChangePassword" = "Ubah kata sandi";
+"Gender" = "Jenis Kelamin";
+"Birthday" = "Ulang tahun";
+"Deactivateaccount" = "Hapus Akun";
+"Male" = "Pria";
+"Female" = "Wanita";
+
+"Gotosite" = "Buka situs web";
+"Likes" = "Suka";
+"CommentsBig" = "KOMENTAR";
+"MoreRecommendations" = "Rekomendasi lainnya";
+"ExploreMore" = "jelajahi lebih banyak";
+
+"Followers" = "Pengikut";
+"Following" = "Mengikuti";
+
+"EditProfilePhoto" = "Sunting Foto Profil";
+"EditCoverPhoto" = "Sunting Latar Sampul";
+
+"ChangePassword" = "Ganti Kata Sandi";
+"CurrentPassword" = "Kata sandi lama";
+"NewPassword" = "Kata sandi baru";
+"NewPasswordAgain" = "Konfirmasi sandi baru";
+"Submit" = "Kirim";
+
+"FeedbackDetail" = "Beritahu kami perubahan apa yang ingin kamu lihat atau kelemahan yang kamu temukan";
+"IncludeScreenshot" = "Sertakan tangkapan layar";
+
+"ForgotPassword" = "Lupa kata kunci?";
+"ForgotPasswordDetail" = "Kami bantu untuk set ulang kata kunci kamu dengan menggunakan nama Seeties akun atau alamat email akun kamu";
+"ResetPassword" = "Set ulang kata kunci";
+
+"Notification" = "Pemberitahuan";
+"Search" = "mencari";
+
+"GoodDay" = "Halo";
+"WhatWouldyouiketodo" = "apa sih hal favorit kamu?";
+"Recommend" = "Rekomendasikan";
+"SometingOnSeeties" = "di Seeties";
+"GotoDrafts" = "Pergi ke draf";
+
+"Changesearchlocation" = "Ganti pencarian lokasi";
+"searchlocation" = "Cari lokasi";
+"Currentlocation" = "Lokasi Sekarang";
+"SEARCHHISTORY" = "CARI RIWAYAT";
+"SearchData" = "Cari riwayat";
+"findPeople" = "Cari Orang";
+"People" = "Orang";
+"SortBy" = "Sortir Dengan";
+"MostRecent" = "Terbaru";
+"Popular" = "Populer";
+"Distance" = "Jarak";
+
+"Drafts" = "Draf";
+
+"Done" = "Selasai";
+
+"Chooseacategory" = "Pilih kategori";
+"Addlocation" = "Tambahkan lokasi";
+"Extras" = "Tambahan";
+"Publish" = "Terbit";
+"EditLocation" = "Sunting lokasi";
+"PLACENAME" = "NAMA TEMPAT";
+"LOCATIONADDRESS" = "ALAMAT LOKASI";
+
+"Tags" = "TAG";
+"TagsDetail" = "koma, pemisah, tag (contoh: makanan jepang, trak joging, parfum, salsa, kopi)";
+"AlsoShareto" = "JUGA DIBAGIKAN KE…";
+"URL" = "URL";
+
+"TapToChange" = "Tekan untuk mengubah";
+"ORSEARCHBYCATEGORY" = "ATAU CARI DARI KATAGORI";
+"Recommendationsorpeople" = "Rekomendasi atau expert";
+"FindPeopleName" = "Cari dari nama";
+"SelectPhotos" = "Pilih foto";
+"SelectCategory" = "Pilih Katagori";
+"Positionyoulocation" = "Gerak peta untuk tandai lokasi yang benar";
+"LocationOnMap" = "Liat lokasi di peta";
+"Tapheretopin" = "Tekan di sini untuk tandai lokasi";
+
+"Howdoyouwanttodoaddimage" = "Tambah gambar";
+"PhotoLibrary" = "Kumpulan Photo";
+"Camera" = "Kamera";
+"PleaseWait" = "Please wait...";
+"Directions" = "Arah";
+"Comments" = "Komentar";
+"Send" = "Kirim";
+
+"SaveasDraft" = "Simpan Draf";
+"Discard" = "Buang";
+"Doyouwantsave" = "Simpan di draf?";
+"ContentLanguage" = "KONTEN BAHASA";
+"NearbySuggestions" = "Sugesti terdekat";
+"Searchforaplace" = "Cari tempat untuk";
+
+"FOLLOWERS" = "Pengikut";
+"FOLLOWING" = "Mengikuti";
+
+"SearchNearby" = "LIHAT SEKITAR";
+"Suggestions" = "Tulis kota kamu";
+"TypetoSearch" = "Mencari pizza, martini, bowling, dan lainya";
+"Entersearchlocation" = "mencari";
+"ORADDACATEGORYBELOW" = "Atau tambah katagori di bawah ini";
+"TaptoEdit" = "Ketuk untuk mengedit";
+
+"SkipButton" = "LEWAT";
+"DoneButton" = "SELASAI";
+
+"WelcometoSeeties" = "Selamat datang di Seeties!";
+"Seewhypeopleloveus" = "Lihat mengapa masyarakat menyukai kita ";
+"Slideformore" = "Ayo mulai!";
+"Recommend" = "Ceritakan banyak pengalamanmu";
+"Shareyourstories" = "Bagikan Ceritamu dan dapatkan followers yang banyak";
+"Friends" = "Teman dan tempat terdekat";
+"Seewhatyourfriends" = "Lihat rekomendasi teman kamu, dan temukan tempat terbaik sekitar mu";
+"AnewWay" = "Cara baru untuk menjelajahi Asia";
+"Eatwhere" = "Makan layaknya orang lokal makan dan pergi kemana mereka biasa pergi. Kamu bisa temukan festival lokal juga";
+"Allofyour" = "Profil kamu";
+"Keepyourbestcity" = "Ini sebagus Discovery Channel. Simpan aktifiti terbaik di kotamu. Kamu akan mendapatkan followers yang banyak, karena terinspirasi oleh mu";
+
+"Feed" = "Teman";
+"NearBy" = "Berdekatan";
+"Share" = "Bagikan";
+
+"TopRecommendations" = "Tren sekarang";
+"FeaturedUserin" = "Banyak teman, tambah senang!";
+"Posts" = "Rekomendasi";
+
+"Brightness" = "Cahaya";
+"Crop" = "Potong";
+"Reset" = "Ubah";
+"Rotate" = "Putar";
+"Whereisthis" = "Dimanakah lokasi ini?";
+"SkipAndDone" = "Lewati & Selesai";
+"Publish" = "Terbit";
+"Addtag" = "Tambah tag";
+"youcanchoose2" = "Kamu bisa pilih 2 katagori yang terkait";
+"ChooseCategories" = "Piilih ";
+
+"Price" = "Harga";
+"Tellushowmuch" = "Berapa ?";
+
+"AddContact" = "Telepon";
+"TellusContact" = "Tambah nomor telepon";
+
+"Addfb" = "Tambah Facebook / Situs URL...";
+"AddPrice" = "Tambah Harga...";
+"AddPhoneNumber" = "Tambah nomor telepon...";
+"link" = "Link";
+"TellusLink" = "Tambah link";
+"AddLink" = "Tambah link...";
+"TellStory" = "Ceritakan Ceritamu";
+"Chooseuptp10photo" = "Pilih hingga 10 foto";
+"Suggestions" = "Saran";
+
+"ConfirmLocation" = "Informasi Kontak";
+"Writeacaptionhere" = "Tulis judul di sini...";
+"Toomuchwhitespacehere" = "Terlalu banyak ruang putih di sini";
+"Recommendsomethingcoolnow" = "Rekomendasikan sesuatu yang keren sekarang";
+
+"Edit" = "Sunting";
+"Delete" = "Hapus";
+"ShowMore" = "Tambahkan";
+"ShowLess" = "Kurangi";
+
+"Festival" = "Perayaan";
+"DiscovertheColors" = "Temukan warna warni Asia";
+
+"Filter" = "Filter";
+"ChooseacategoryBig" = "PILIH KATEGORI";
+"SortByBig" = "SORTIR DENGAN";
+
+"KM" = "KM";
+"Within" = "Sekitar";
+
+"SelectAll" = "Pilih semua";
+"UnSelectAll" = "Tidak pilih semua";
+
+"DeletePost" = "Are you sure you want to delete post?";
+"Delete1" = "Delete";
+
+"likeText_1" = "liked this";
+"likeText_and" = "and";
+"likeText_and_2" = "and";
+"likeText_andOther" = "other liked this";
+
+"Unfollow" = "Unfollow";
+"StopFollowing" = "Stop following";
+"GoogleText" = "Tap the translation icon to see the content in English. ";
+"Dontshowagain" = "Don't show again";
+
+"ApplyFilter" = "Terapkan penyaring";
+"ErrorConnection" = "Koneksi eror";
+"NoData" = "Mohon mengecek wifi atau data plan kamu";
+"SomethingError" = "Eror tidak teridentifikasi muncul, silahkan coba lagi";
+
+"NoNotification" = "Kamu belum mempunyai pemberitahuan";
+"NoNotificationDetail" = "Dapatkan pemberitahuan saat orang menyukai, atau memberi komentar pada rekomendasi kamu";
+
+"Recommend" = "Rekomendasikan";
+"RecommendSaveDraft" = "Simpan Draf";
+"ShowQualityRecommendation" = "Membuta rekomendasi berkualitas sangatlah mudah!";
+"ShowQR_Title" = "Rekomendasi berkualitas";
+"ShowQR_Detail" = "Untuk rekomendasi berkualitas: Hanya dengan tulis rekomendasi dengan min 300 karakter, singakt dan padat!";
+"Next" = "Lanjut";
+"AddBlogLink" = "Tambah blog link";
+"AskExit" = "Kamu yakin untuk keluar?";
+"AskSaveDraft" = "Simpan di draf";
+"Exit" = "Keluar";
+
+"ConfirmPlace_Search" = "Cari lagi?";
+"ConfirmPlace_Text" = "Salah tempat?";
+
+"Currency" = "Pilih mata uang";
+"pax" = "Per orang";
+
+"EmailError" = "Sorry email kamu tidak sah";
+"UsernameError" = "Nama akun min 6 karakter";
+"PasswordError" = "Kata kunci terlalu pendek, min 8 karakter";
+
+"LimitExceed" = "Melebihi limit";
+"LimitText" = "Kamu harus milih 2 katagori jangan lebih";
+"SelectPhoto" = "Silahkan memilih foto";
+"TypeToSearch_Place" = "Tulis nama lokasi";
+"MaximumPhoto" = "Maksimal 10 foto.";
+
+"SavePhotoChange" = "Simpan perubahan?";
+"Photo_Yes" = "Ya";
+"Photo_No" = "Tidak";
+"DoYouWantDelete" = "Yakin hapus foto ini?";
+
+"Searchpeople" = "Cari dengan nama pengguna, nama lengkap";
+"NearbyResult" = "Hasil terdekat";
+"SearchResult" = "Mencari hasil";
+"Letsgo" = "Ayo!";
+
+"FindFriends" = "Cari teman";
+"Feelinglonelyonseeties" = "Kamu kesepian? Sekarang waktunya untuk undang kawan-kawanmu gabung di Seeties";
+"InviteFacebook" = "Undang Teman Facebook kamu bergabung di Seeties";
+"xFriendsOnSeeties" = "Teman mu di Seeties";
+"FollowAll" = "Ikuti semua ";
+"Suggestionsforyou" = "Saran untuk kamu";
+"InviteFriends" = "Undang Teman";
+"Inviteall" = "Undang Semua";
+"Invite" = "Undang";
+"ConnectyouFacebook" = "Hubungkan Facebook untuk mencari teman di Seeties";
+"ConnectToFacebook" = "terhubung dengan Facebook";
+"EasilySendaLink" = "Mudahnya berbagi tautan ke temanmu dengan apps ini";
+"InViaFacebook" = "Facebook Messenger";
+"InViaWhatsapp" = "Whatsapp";
+"InViaWeChat" = "WeChat";
+"InViaLine" = "LINE";
+"Buildyournetwork" = "Build your network!";
+"Findorinviteyourfriends" = "Undang dan berjumpa dengan temanmu";
+
+"HoldNDragTheThumbnails" = "Tahan dan tarik foto untuk mengatur posisi. Foto pertama akan di jadikan sebagai cover";
+"Dragthemap" = "Tarik map, dan tekan untuk tandai lokasi";
+"Addthisplace" = "Tambah lokasi ini?";
+"Cannotfindinthelist" = "Tidak bisa menemukan lokasi?  membuat tempay baru";
+"Addplacename" = "Nama tempat";
+"AddAddress" = "Alamat";
+"tapthemaptoadjustpin" = "tekan map untuk merubah tanda";
+"Pleasefillinplacename" = "Mohon isi nama tempat dan alamat";
+
+"NearbyRecommendations" = "Rekomendasi sekitarmu";
+"InViaSMS" = "SMS";
+"SendMessage" = "Check out Seeties, dan jelajahi tempat makan, bermain, jalan jalan di sekitarmu";
+"DeleteMessage" = "Are you sure you want to delete this comment?";
+
+"NoComment" = "Tidak ada Komentar lagi";
+"FristComment" = "Jadilah komentator pertama";
+
+"Oops" = "Oops!";
+"PleaseSelectatleast1category" = "Mohon pilih setidaknya dari 1 katagori";
+
+"NoResultFound" = "Tidak ada hasil";
+"Pleasetryadiffrentsearch" = "Mohon Cari yang lain";
+
+"SeeallComment" = "See all comments";

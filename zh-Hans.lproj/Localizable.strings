@@ -1,0 +1,398 @@
+/* 
+  Localizable.strings
+  SeetiesIOS
+
+  Created by Chong Chee Yong on 10/20/14.
+  Copyright (c) 2014 Ahyong87. All rights reserved.
+*/
+"ExpertLogin_Username" = "用户名字 ／ 邮件地址";
+"ExpertLogin_Password" = "密码";
+"ExpertLogin_Title" = "登入";
+"ExpertLogin_LoginButton" = "登入";
+"ExpertLogin_ForgotPassword" = "忘记密码？";
+"ExpertLogin_NeedHelp" = "需要帮助?";
+
+"SignUpPage_Username" = "创建用户名";
+"SignUpPage_Password" = "创建密码";
+"SignUpPage_Email" = "电邮";
+"SignUpPage_Title" = "注册";
+"SignUpPage_SignUpButton" = "注册";
+"SignUpPage_TnC" = "登入即表示您同意接受 Seeties 服务条款和隐私权政策";
+
+"WhyWeUserFB_Title" = "为什么使用 Facebook?";
+"WhyWeUserFB_Detail" = "让您更快登录，减少记密码的烦恼。\n也可以即时与朋友分享美好的东西。";
+"WhyWeUserFB_Privacy" = "您的隐私是收到高度遵守。未经您的许可绝不公开。";
+
+"LandingPage_MainText" = "带领您走访地方生活及旅行的通行证。";
+"LandingPage_ContinueFacebook" = "使用 Facebook 账号登入";
+"LandingPage_WhyUseFacebook" = "为什么使用 Facebook?";
+"LandingPage_Login" = "登入";
+"LandingPage_SignupWithEmail" = "电邮注册";
+
+"SettingsPage_Title" = "设定";
+"SettingsPage_Account" = "帐户";
+"SettingsPage_EditProfile" = "编辑个人资料";
+"SettingsPage_EditInterests" = "编辑喜好";
+"SettingsPage_AccountSettings" = "帐户设定";
+"SettingsPage_Find&InviteFriends" = "寻找及邀请朋友";
+"SettingsPage_SUPPORT" = "支援";
+"SettingsPage_AboutSeeties" = "关於 Seeties";
+"SettingsPage_TermsofUse" = "使用条款";
+"SettingsPage_PrivacyPolicy" = "隐私政策";
+"SettingsPage_Feedback" = "意见反映";
+"SettingsPage_Checkforupdates" = "检查版本更新";
+"SettingsPage_LogOut" = "登出";
+"SettingsPage_Cancel" = "取消";
+
+
+"ExplorePage_Title" = "每周十大排行榜";
+"ExplorePage_SubTitle" = "本周来自特色国家的首要推荐";
+"ExplorePage_SecondTitle" = "每周前十名来自Seeties Expert的推荐文";
+
+"MainTab_Feed" = "首页";
+"MainTab_Explore" = "探索";
+"MainTab_Like" = "喜爱";
+"MainTab_Profile" = "专页";
+
+"Provisioning_PTnC_1" = "Spice up your city life!";
+"Provisioning_PTnC_2" = "Discover the most exciting adventures, exotic food, hidden gems & coolest events in your city & around Southeast Asia!";
+"Provisioning_PTnC_3" = "By continuing, you agree to Seeties' Terms of Use & Privacy Notice.";
+"Provisioning_PTnC_4" = "Accept & Continue";
+"Provisioning_PTnC_5" = "条款及细则";
+"Provisioning_PTnC_6" = "我同意Seeties的使用条款和隐私通知";
+"Cancel" = "取消";
+"Agree" = "同意";
+
+"Provisioning_PTellUsYourCityView_1" = "您的城市";
+"Provisioning_PTellUsYourCityView_2" = "输入精准所在地（例如：区域、城市）以享受Seeties更好的用户体验";
+"Provisioning_PTellUsYourCityView_3" = "搜寻地址";
+"Provisioning_PTellUsYourCityView_4" = "输入您的城市";
+"Provisioning_PTellUsYourCityView_5" = "搜寻所在地";
+"Provisioning_PTellUsYourCityView_6" = "选择语言";
+"Provisioning_PTellUsYourCityView_7" = "选择想要阅读的语言";
+"Provisioning_PTellUsYourCityView_8" = "继续";
+"Provisioning_PTellUsYourCityView_9" = "第一语言";
+"Provisioning_PTellUsYourCityView_10" = "次要语言";
+
+"Provisioning_PSelectYourInterestView_Title" = "选择您的喜好";
+
+"Provisioning_PFollowTheExpertsView_Title" = "结识各国在地部落客";
+"Provisioning_PFollowTheExpertsView_SubTitle" = "他们也被成为Seetizen Expert， 是一群喜爱分享和书写具有素质推荐文的在地达人";
+
+
+"Food & Drink" = "道地飲食";
+"For Her" = "給她";
+"For Him" = "給他";
+"Art " = "艺术";
+"Leisure & Entertainment" = "休闲娱乐";
+"Staycation" = "民宿度假";
+"Landmark & Culture" = "文化景点";
+"Nightlife" = "夜生活";
+"Sport" = "运动";
+"YOLO" = "YOLO";
+
+"NearbyImg" = "NearbyTraditional.png";
+"LocalImg" = "LocalTraditional.png";
+"ForeignLandImg" = "ForeignLandSimplified.png";
+"ExpertsImg" = "ExpertsLabelChineseSimplified.png";
+
+"EditProfilePhoto" = "编辑个人头像";
+"EditCoverBackground" = "编辑封面背景";
+"ShareToFacebook" = "分享至脸书";
+"CopyLink" = "复制连接";
+
+"EditProfileText" = "编辑个人资料";
+"EditProfileSubText" = "公开的个人资料";
+"EditProfileUsername" = "用戶名";
+"EditProfileFullname" = "全名";
+"EditProfileWebsite" = "个人网站";
+"EditProfileBio" = "个人简介";
+"EditProfileLocation" = "添加地标";
+"EditProfileSave" = "储存";
+"Selectyourinterest" = "选择你喜爱的类别";
+"Primary" = "主要";
+"Secondary" = "次要";
+"AppLangauge" = "程序语言";
+"ChangePassword" = "更改密码";
+"Gender" = "性别";
+"Birthday" = "生日";
+"Deactivateaccount" = "删除帐户";
+"Male" = "男性";
+"Female" = "女性";
+
+"Gotosite" = "链接网站";
+"Likes" = "喜爱";
+"CommentsBig" = "留言";
+
+"MoreRecommendations" = "更多推荐";
+"ExploreMore" = "探索更多";
+
+"Followers" = "粉丝";
+"Following" = "已关注";
+
+"EditProfilePhoto" = "编辑个人头像";
+"EditCoverPhoto" = "编辑封面背景";
+
+"ChangePassword" = "更换密码";
+"CurrentPassword" = "当前密码";
+"NewPassword" = "新密码";
+"NewPasswordAgain" = "再次输入新密码";
+"Submit" = "提交";
+
+"FeedbackDetail" = "请告诉我们您希望看见的改进，或是您面对的系统故障";
+"IncludeScreenshot" = "附上屏幕截图";
+
+"ForgotPassword" = "忘记密码?";
+"ForgotPasswordDetail" = "使用Seeties用户名或是电邮链接你的户口重设密码";
+"ResetPassword" = "重设密码";
+
+"Notification" = "通知";
+"Search" = "搜寻";
+
+"GoodDay" = "，您好！";
+"WhatWouldyouiketodo" = "你想做些什么吗？";
+"Recommend" = "推荐好康";
+"SometingOnSeeties" = "在 Seeties";
+"GotoDrafts" = "去草稿";
+
+"Changesearchlocation" = "更改搜寻所在地";
+"searchlocation" = "搜寻位置";
+"Currentlocation" = "所在位置";
+"SEARCHHISTORY" = "搜寻记录";
+"SearchData" = "搜寻记录";
+"findPeople" = "寻人";
+"People" = "用户";
+"SortBy" = "排序";
+"MostRecent" = "按最新";
+"Popular" = "最热门";
+"Distance" = "按距离";
+
+"Drafts" = "草稿";
+"Done" = "完成";
+
+"Chooseacategory" = "选择分类";
+"Addlocation" = "添加地标";
+"Extras" = "其他";
+"Publish" = "发表";
+"EditLocation" = "编辑所在地";
+"PLACENAME" = "地方名";
+"LOCATIONADDRESS" = "地址";
+
+"Tags" = "标签";
+"TagsDetail" = "逗号，分隔，标签 （例如：日式料理，慢跑道，香水，萨尔萨舞，咖啡)";
+"AlsoShareto" = "分享至...";
+"URL" = "链接网站";
+
+"TapToChange" = "点击更改";
+"ORSEARCHBYCATEGORY" = "或者通过分类搜索";
+"Recommendationsorpeople" = "推荐文或达人";
+"FindPeopleName" = "名称搜索";
+"SelectPhotos" = "选择相片";
+"SelectCategory" = "选择类别";
+"Positionyoulocation" = "移动地图以寻找正确位置";
+"LocationOnMap" = "在地图上查看位置";
+"Tapheretopin" = "点击这里标签准确位置";
+"Howdoyouwanttodoaddimage" = "添加相片?";
+"PhotoLibrary" = "相片库";
+"Camera" = "相机";
+"PleaseWait" = "请稍候...";
+"Directions" = "方向导航";
+"Comments" = "留言";
+"Send" = "发送";
+
+"SaveasDraft" = "储存为推荐文";
+"Discard" = "舍弃";
+"Doyouwantsave" = "储存草稿?";
+"ContentLanguage" = "内容语言";
+"NearbySuggestions" = "建议地点";
+"Searchforaplace" = "搜寻地点";
+
+"FOLLOWERS" = "粉丝";
+"FOLLOWING" = "已关注";
+
+"SearchNearby" = "搜寻附近";
+"Suggestions" = "建议";
+"TypetoSearch" = "输入搜寻项目";
+"Entersearchlocation" = "搜寻";
+"ORADDACATEGORYBELOW" = "或从以下添加标签";
+"TaptoEdit" = "点击编辑";
+
+"SkipButton" = "跳过";
+"DoneButton" = "完成";
+
+"WelcometoSeeties" = "欢迎来到Seeties！";
+"Seewhypeopleloveus" = "了解更多关于Seeties的特色，探索为何Seeties如此有趣吧！";
+"Slideformore" = "开始启动！";
+"Recommend" = "分享您的故事";
+"Shareyourstories" = "简易、快速和方便！上载照片 > 添加位置 > 撰写推荐文 > 发表";
+"Friends" = "好友与周边好去处";
+"Seewhatyourfriends" = "关注朋友新动态，结交新朋友和探索周边吃喝玩乐和逛街的好地方";
+"AnewWay" = "探索缤纷亚洲";
+"Eatwhere" = "搜寻相关推荐文和节庆，帮助您更完善的规划行程。";
+"Allofyour" = "捕捉和留住当下美好的时刻";
+"Keepyourbestcity" = "完整的个人资料分享能让人一目了然。从现在开始分享您的旅程故事、炫丽的照片和徽章来吸引他人的注目吧！";
+
+"Feed" = "朋友";
+"NearBy" = "探索周边";
+"Share" = "分享";
+
+"TopRecommendations" = "最热门推荐文";
+"FeaturedUserin" = "结交新朋友，欢乐无穷！";
+"Posts" = "推荐文";
+
+"Brightness" = "光度";
+"Crop" = "剪裁";
+"Reset" = "重设";
+"Rotate" = "旋转";
+"Whereisthis" = "这是哪里？";
+"SkipAndDone" = "跳过和完成";
+"Publish" = "发表";
+"Addtag" = "添加标签";
+"youcanchoose2" = "你可选择两个相关类别";
+"ChooseCategories" = "选择类别";
+
+"Price" = "价格";
+"Tellushowmuch" = "多少钱？";
+
+"AddContact" = "电话";
+"TellusContact" = "添加电话号码";
+
+"Addfb" = "添加脸书链接／网址...";
+"AddPrice" = "添加价格...";
+"AddPhoneNumber" = "添加联络号码...";
+"link" = "链接";
+"TellusLink" = "添加链接";
+"AddLink" = "添加链接...";
+
+"TellStory" = "分享故事";
+"Chooseuptp10photo" = "可选择多达10张照片";
+"Suggestions" = "建议";
+
+"ConfirmLocation" = "联系资讯";
+
+"Writeacaptionhere" = "撰写说明...";
+"Toomuchwhitespacehere" = "分享和丰富您的个人资料吧！";
+"Recommendsomethingcoolnow" = "开始推薦吧！";
+
+"Edit" = "编辑";
+"Delete" = "删除";
+"ShowMore" = "展开";
+"ShowLess" = "收起";
+
+"Festival" = "节日";
+"DiscovertheColors" = "探索缤纷亚洲";
+
+"Filter" = "筛选";
+"ChooseacategoryBig" = "选择类别";
+"SortByBig" = "列表排序";
+
+"KM" = "公里内";
+"Within" = "Sekitar";
+
+"SelectAll" = "全选";
+"UnSelectAll" = "取消全选";
+
+"DeletePost" = "确定删除此推荐文?";
+"Delete1" = "删除";
+
+
+"likeText_1" = "说赞";
+"likeText_and" = "和";
+"likeText_and_2" = "和其他";
+"likeText_andOther" = "人说赞";
+
+"Unfollow" = "取消关注";
+"StopFollowing" = "取消关注";
+"GoogleText" = "点击翻译图标以查看英文内容。";
+"Dontshowagain" = "不再显示";
+
+"ApplyFilter" = "确定筛选";
+"ErrorConnection" = "网络连接失误";
+"NoData" = "请检查你的无线网络或是移动数据";
+"SomethingError" = "出现未知错误，请稍后再试";
+
+
+"NoNotification" = "您目前还没有任何互动";
+"NoNotificationDetail" = "当人们说赞或给你留言时，您将会在这里收到通知。";
+
+"Recommend" = "推荐好康";
+"RecommendSaveDraft" = "存稿";
+"ShowQualityRecommendation" = "撰写优质推荐文是非常简单的";
+"ShowQR_Title" = "优质推荐文";
+"ShowQR_Detail" = "优质推荐文：简洁的300字就可成为优质推荐唷!";
+"Next" = "下一步";
+"AddBlogLink" = "添加部落格链接";
+"AskExit" = "确定退出？";
+"AskSaveDraft" = "保存草稿";
+"Exit" = "退出";
+
+"ConfirmPlace_Search" = "再搜寻";
+"ConfirmPlace_Text" = "地方错误?";
+
+"Currency" = "货币";
+"pax" = "个人";
+
+"EmailError" = "抱歉，电邮无效";
+"UsernameError" = "用户名须备六个字数以上";
+"PasswordError" = "密码太短，须备八个字";
+
+"LimitExceed" = "超出上限";
+"LimitText" = "只可选择两个";
+"SelectPhoto" = "请选择照片";
+"TypeToSearch_Place" = "建议地点";
+"MaximumPhoto" = "已经没位了！";
+
+"SavePhotoChange" = "保存已更改的照片";
+"Photo_Yes" = "确定";
+"Photo_No" = "否";
+"DoYouWantDelete" = "确定删除此照片?";
+
+"Searchpeople" = "输入用户名或全名";
+"NearbyResult" = "周边";
+"SearchResult" = "搜寻结果";
+"Letsgo" = "立即探索!";
+
+
+"FindFriends" = "找寻好友";
+"Feelinglonelyonseeties" = "想拥有更丰富的Seeties体验? 赶紧你的好友加入我们吧!";
+"InviteFacebook" = "邀请脸书好友加入Seeties";
+"xFriendsOnSeeties" = "好友已加入Seeties";
+"FollowAll" = "全数关注";
+"Suggestionsforyou" = "为你推介";
+"InviteFriends" = "邀请好友";
+"Inviteall" = "全数邀请";
+"Invite" = "邀请";
+"ConnectyouFacebook" = "链接脸书以便找寻更多好友";
+"ConnectToFacebook" = "与脸书链接";
+"EasilySendaLink" = "链接以下程式以发放邀请于好友们加入";
+"InViaFacebook" = "使用脸书邀请好友";
+"InViaWhatsapp" = "使用whatsapp邀请好友";
+"InViaWeChat" = "使用微信邀请好友";
+"InViaLine" = "使用line邀请好友";
+"Buildyournetwork" = "开创朋友圈!";
+"Findorinviteyourfriends" = "找寻与邀请好友";
+
+"HoldNDragTheThumbnails" = "锁定与拖动照片以自定义照片排列顺序。 首张照片将成为推荐文封面。";
+"Dragthemap" = "拖动地图后点击到精确位置";
+"Addthisplace" = "创建位置?";
+"Cannotfindinthelist" = "无法寻获位置? 创建位置";
+"Addplacename" = "添加位置名称";
+"AddAddress" = "添加地址";
+"tapthemaptoadjustpin" = "点击地图以更改标志位置";
+"Pleasefillinplacename" = "请输入位置名称与地址";
+
+"NearbyRecommendations" = "就近推荐ns";
+"InViaSMS" = "短讯";
+"SendMessage" = "点入Seeties让我们一起探索您附近吃喝玩乐的好地方。超棒的～";
+"DeleteMessage" = "确定删除这一则留言?";
+
+"NoComment" = "暂无留言";
+"FristComment" = "快告知文主你曾流连于此吧！";
+
+"Oops" = "哎呀!";
+"PleaseSelectatleast1category" = "需选择至少一个类别才可筛选类别哟!";
+
+"NoResultFound" = "无法寻获相关资料.";
+"Pleasetryadiffrentsearch" = "请尝试其他关键词.";
+
+"SeeallComment" = "查看所有留言";

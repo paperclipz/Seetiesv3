@@ -1,0 +1,103 @@
+/* 
+  Localizable.strings
+  SeetiesIOS
+
+  Created by Chong Chee Yong on 10/20/14.
+  Copyright (c) 2014 Ahyong87. All rights reserved.
+*/
+
+
+"ExpertLogin_Username" = "Username / Email Address";
+"ExpertLogin_Password" = "Password";
+"ExpertLogin_Title" = "Log In";
+"ExpertLogin_LoginButton" = "Log In";
+"ExpertLogin_ForgotPassword" = "Forgot Password?";
+"ExpertLogin_NeedHelp" = "Need help?";
+
+"SignUpPage_Username" = "Create a username";
+"SignUpPage_Password" = "Password - 8 characters or more";
+"SignUpPage_Email" = "Email";
+"SignUpPage_Title" = "Sign Up";
+"SignUpPage_SignUpButton" = "Sign Up";
+"SignUpPage_TnC" = "By signing up, you agree to Seeties' Terms of Use & Privacy Notice.";
+
+"WhyWeUserFB_Title" = "Why Facebook?";
+"WhyWeUserFB_Detail" = "It makes sign in super duper fast, one less password to remember. \n\n\nAnd you can instantly share many wonderful things with your friends.";
+"WhyWeUserFB_Privacy" = "YOUR PRIVACY IS HIGHLY RESPECTED. NOTHING WILL BE POSTED WITHOUT YOUR PERMISSION.";
+
+"LandingPage_MainText" = "Your mobile citypass for living and traveling like a local.";
+"LandingPage_ContinueFacebook" = "Continue with Facebook";
+"LandingPage_WhyUseFacebook" = "Why we use facebook";
+"LandingPage_Login" = "Log In";
+"LandingPage_SignupWithEmail" = "Sign up with email";
+
+
+"SettingsPage_Title" = "Settings";
+"SettingsPage_Account" = "ACCOUNT";
+"SettingsPage_EditProfile" = "Edit Profile";
+"SettingsPage_EditInterests" = "Edit Interests";
+"SettingsPage_AccountSettings" = "Account Settings";
+"SettingsPage_Find&InviteFriends" = "Find & Invite Friends";
+"SettingsPage_SUPPORT" = "SUPPORT";
+"SettingsPage_AboutSeeties" = "About Seeties";
+"SettingsPage_TermsofUse" = "Terms of Use";
+"SettingsPage_PrivacyPolicy" = "Privacy Policy";
+"SettingsPage_Feedback" = "Feedback";
+"SettingsPage_Checkforupdates" = "Check for updates";
+"SettingsPage_LogOut" = "Log Out";
+
+"ExplorePage_Title" = "Weekly Top 10";
+"ExplorePage_SubTitle" = "Top recommendations of the week from featured countries";
+
+"MainTab_Feed" = "Home";
+"MainTab_Explore" = "Explore";
+"MainTab_Like" = "Like";
+"MainTab_Profile" = "Profile";
+
+"Provisioning_PTnC_1" = "Spice up your city life!";
+"Provisioning_PTnC_2" = "Discover the most exciting adventures, exotic food, hidden gems & coolest events in your city & around Southeast Asia!";
+"Provisioning_PTnC_3" = "By continuing, you agree to Seeties' Terms of Use & Privacy Notice";
+"Provisioning_PTnC_4" = "Accept & Continue";
+"Provisioning_PTnC_5" = "Terms & Conditions";
+"Provisioning_PTnC_6" = "I agree to Seeties' Terms of Use & Privacy Notice";
+"Cancel" = "Cancel";
+"Agree" = "Agree";
+
+"Provisioning_PTellUsYourCityView_1" = "Your city";
+"Provisioning_PTellUsYourCityView_2" = "Enter a more precise location (eg: area, town) to enjoy better user experience in Seeties";
+"Provisioning_PTellUsYourCityView_3" = "Search address";
+"Provisioning_PTellUsYourCityView_4" = "Enter your city";
+"Provisioning_PTellUsYourCityView_5" = "Search location";
+"Provisioning_PTellUsYourCityView_6" = "Choose language";
+"Provisioning_PTellUsYourCityView_7" = "Choose the content language you want to read.";
+"Provisioning_PTellUsYourCityView_8" = "Continue";
+"Provisioning_PTellUsYourCityView_9" = "Primary Language";
+"Provisioning_PTellUsYourCityView_10" = "Secondary Language";
+
+"Provisioning_PSelectYourInterestView_Title" = "Choose what you love";
+
+"Provisioning_PFollowTheExpertsView_Title" = "Meet the Local Bloggers";
+"Provisioning_PFollowTheExpertsView_SubTitle" = "Also known as Seetizen Experts, they love to write and share quality local recommendations";
+
+"Art" = "Art & Entertainment";
+"Beauty" = "Beauty & Fashion";
+"Food" = "Food & Drinks";
+"Outdoor" = "Outdoor & Sport";
+"Staycation" = "Staycation";
+"Product" = "Product";
+"Nightlife" = "Nightlife";
+"Culture" = "Culture & Landmark";
+"Kitchen" = "Kitchen Recipe";
+
+"NearbyImg" = "Nearby.png";
+"LocalImg" = "Local.png";
+"ForeignLandImg" = "ForeignLand.png";
+"ExpertsImg" = "ExpertsLabel.png";
+
+
+
+
+
+
+
+

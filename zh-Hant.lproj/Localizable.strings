@@ -1,0 +1,406 @@
+/* 
+  Localizable.strings
+  SeetiesIOS
+
+  Created by Chong Chee Yong on 10/20/14.
+  Copyright (c) 2014 Ahyong87. All rights reserved.
+*/
+"ExpertLogin_Username" = "用戶名字 ／ 郵件地址";
+"ExpertLogin_Password" = "密碼";
+"ExpertLogin_Title" = "登入";
+"ExpertLogin_LoginButton" = "登入";
+"ExpertLogin_ForgotPassword" = "忘記密碼？";
+"ExpertLogin_NeedHelp" = "需要幫助？";
+
+"SignUpPage_Username" = "創建用戶名";
+"SignUpPage_Password" = "創建密碼";
+"SignUpPage_Email" = "電郵";
+"SignUpPage_Title" = "註冊";
+"SignUpPage_SignUpButton" = "註冊";
+"SignUpPage_TnC" = "登入即表示您同意接受 Seeties 服務條款和隱私權政策";
+
+"WhyWeUserFB_Title" = "為什麼使用 Facebook?";
+"WhyWeUserFB_Detail" = "一, 省去了回想密碼的煩惱 二, 只需一鍵便可登入 三, 及時與臉書親友們分享新鮮事";
+"WhyWeUserFB_Privacy" = "無需為你的隱私擔憂, 我們絕對會視您的個人資料為高度機密!";
+
+"LandingPage_MainText" = "帶領您走訪地方生活及旅行的通行證。";
+"LandingPage_ContinueFacebook" = "使用 Facebook 賬號登入";
+"LandingPage_WhyUseFacebook" = "為什麼使用 facebook?";
+"LandingPage_Login" = "登入";
+"LandingPage_SignupWithEmail" = "電郵註冊";
+
+"SettingsPage_Title" = "設定";
+"SettingsPage_Account" = "帳戶";
+"SettingsPage_EditProfile" = "編輯個人資料";
+"SettingsPage_EditInterests" = "編輯偏好類別";
+"SettingsPage_AccountSettings" = "帳戶設定";
+"SettingsPage_Find&InviteFriends" = "尋找及邀請朋友";
+"SettingsPage_SUPPORT" = "支援";
+"SettingsPage_AboutSeeties" = "關於 Seeties";
+"SettingsPage_TermsofUse" = "使用條款";
+"SettingsPage_PrivacyPolicy" = "隱私政策";
+"SettingsPage_Feedback" = "意見反映";
+"SettingsPage_Checkforupdates" = "檢查版本更新";
+"SettingsPage_LogOut" = "登出";
+"SettingsPage_Cancel" = "取消";
+
+"ExplorePage_Title" = "每週十大排行榜";
+"ExplorePage_SubTitle" = "本週來自特色國家的首要推薦";
+"ExplorePage_SecondTitle" = "The best recommendations of the week from Seetizen Experts in";
+
+"MainTab_Feed" = "首頁";
+"MainTab_Explore" = "探索";
+"MainTab_Like" = "喜愛";
+"MainTab_Profile" = "專頁";
+
+"Provisioning_PTnC_1" = "Spice up your city life!";
+"Provisioning_PTnC_2" = "Discover the most exciting adventures, exotic food, hidden gems & coolest events in your city & around Southeast Asia!";
+"Provisioning_PTnC_3" = "By continuing, you agree to Seeties' Terms of Use & Privacy Notice.";
+"Provisioning_PTnC_4" = "Accept & Continue";
+"Provisioning_PTnC_5" = "條款及細則";
+"Provisioning_PTnC_6" = "我同意Seeties的使用條款和隱私通知";
+"Cancel" = "取消";
+"Agree" = "同意";
+
+"Provisioning_PTellUsYourCityView_1" = "您的城市";
+"Provisioning_PTellUsYourCityView_2" = "輸入精准所在地（例如：區域、城市）以享受Seeties更好的用戶體驗";
+"Provisioning_PTellUsYourCityView_3" = "搜尋地址";
+"Provisioning_PTellUsYourCityView_4" = "輸入您的城市";
+"Provisioning_PTellUsYourCityView_5" = "搜尋所在地";
+"Provisioning_PTellUsYourCityView_6" = "選擇語言";
+"Provisioning_PTellUsYourCityView_7" = "選擇想要閱讀的語言";
+"Provisioning_PTellUsYourCityView_8" = "繼續";
+"Provisioning_PTellUsYourCityView_9" = "第一語言";
+"Provisioning_PTellUsYourCityView_10" = "次要語言";
+
+"Provisioning_PSelectYourInterestView_Title" = "選擇您的喜好";
+
+"Provisioning_PFollowTheExpertsView_Title" = "結識各國在地部落客";
+"Provisioning_PFollowTheExpertsView_SubTitle" = "他們也被成為Seetizen Expert， 是一群喜愛分享和書寫具有素質推薦文的在地達人";
+
+
+"Food & Drink" = "道地飲食";
+"For Her" = "給她";
+"For Him" = "給他";
+"Art " = "藝術";
+"Leisure & Entertainment" = "休閒娛樂";
+"Staycation" = "民宿度假";
+"Landmark & Culture" = "文化景點";
+"Nightlife" = "夜生活";
+"Sport" = "運動";
+"YOLO" = "YOLO";
+
+
+"NearbyImg" = "Nearby.png";
+"LocalImg" = "Local.png";
+"ForeignLandImg" = "ForeignLand.png";
+"ExpertsImg" = "ExpertsLabel.png";
+
+"NearbyImg" = "NearbyTraditional.png";
+"LocalImg" = "LocalTraditional.png";
+"ForeignLandImg" = "ForeignLandTraditional.png";
+"ExpertsImg" = "ExpertsLabelChineseTraditional.png";
+
+"EditProfilePhoto" = "編輯個人頭相";
+"EditCoverBackground" = "編輯封面背景";
+"ShareToFacebook" = "分享至臉書";
+"CopyLink" = "複製連接";
+
+"EditProfileText" = "編輯個人資料";
+"EditProfileSubText" = "公開的個人資料";
+"EditProfileUsername" = "用戶名";
+"EditProfileFullname" = "全名";
+"EditProfileWebsite" = "個人網站";
+"EditProfileBio" = "個人簡介";
+"EditProfileLocation" = "添加地標";
+"EditProfileSave" = "儲存";
+
+"Selectyourinterest" = "選擇你所偏好的類別";
+"Primary" = "主要";
+"Secondary" = "次要";
+"AppLangauge" = "程序語言";
+"ChangePassword" = "更改密碼";
+"Gender" = "性别";
+"Birthday" = "生日";
+"Deactivateaccount" = "刪除帳戶";
+"Male" = "男性";
+"Female" = "女性";
+
+"Gotosite" = "鏈接網站";
+"Likes" = "贊";
+"CommentsBig" = "留言";
+"MoreRecommendations" = "更多推薦";
+"ExploreMore" = "探索更多";
+
+"Followers" = "粉絲";
+"Following" = "已關注";
+
+"EditProfilePhoto" = "編輯大頭貼照";
+"EditCoverPhoto" = "編輯封面背景";
+
+"ChangePassword" = "更換密碼";
+"CurrentPassword" = "當前密碼";
+"NewPassword" = "新密碼";
+"NewPasswordAgain" = "確認新密碼";
+"Submit" = "提交";
+
+"FeedbackDetail" = "我們會很樂於知道您對我們程式的建議與看法.";
+"IncludeScreenshot" = "附上截圖";
+
+"ForgotPassword" = "忘記密碼?";
+"ForgotPasswordDetail" = "使用Seeties用戶名或是电邮鏈接你的戶口重設密碼";
+"ResetPassword" = "重設密碼";
+
+"Notification" = "通知";
+"Search" = "搜索";
+
+"GoodDay" = "，您好！";
+"WhatWouldyouiketodo" = "你想做些什麼嗎？";
+"Recommend" = "推薦好康";
+"SometingOnSeeties" = "在 Seeties";
+"GotoDrafts" = "去草稿";
+
+"Changesearchlocation" = "更改搜尋所在地";
+"searchlocation" = "搜尋位置";
+"Currentlocation" = "所在位置";
+"SEARCHHISTORY" = "搜尋記錄";
+"SearchData" = "搜尋記錄";
+"findPeople" = "尋人";
+"People" = "用戶";
+"SortBy" = "排序";
+"MostRecent" = "按最新";
+"Popular" = "最熱門";
+"Distance" = "按距離";
+
+"Drafts" = "草稿";
+"Done" = "完成";
+
+"Chooseacategory" = "選擇分類";
+"Addlocation" = "添加地標";
+"Extras" = "其他";
+"Publish" = "發表";
+"EditLocation" = "編輯所在地";
+"PLACENAME" = "地方名";
+"LOCATIONADDRESS" = "地址";
+
+"Tags" = "標籤";
+"TagsDetail" = "逗號，分隔，標籤 （例如：日式料理，慢跑道，香水，薩爾薩舞，咖啡）";
+"AlsoShareto" = "分享至...";
+"URL" = "鏈接網站";
+
+"TapToChange" = "點擊更改";
+"ORSEARCHBYCATEGORY" = "或者通過分類搜索";
+"Recommendationsorpeople" = "推薦文或達人";
+"FindPeopleName" = "名稱搜索";
+"SelectPhotos" = "選擇相片";
+"SelectCategory" = "選擇類別";
+"Positionyoulocation" = "移動地圖以尋找正確位置";
+"LocationOnMap" = "在地圖上查看位置";
+"Tapheretopin" = "點擊這裡標籤準確位置";
+
+"Howdoyouwanttodoaddimage" = "添加相片";
+"PhotoLibrary" = "相片庫";
+"Camera" = "相機";
+"PleaseWait" = "請稍候...";
+
+"Directions" = "方向導航";
+"Comments" = "留言";
+"Send" = "發送";
+
+
+"SaveasDraft" = "儲存為草稿";
+"Discard" = "捨棄";
+"Doyouwantsave" = "儲存草稿?";
+"ContentLanguage" = "內容語言";
+"NearbySuggestions" = "建議地點";
+"Searchforaplace" = "搜尋地點";
+
+"FOLLOWERS" = "粉絲";
+"FOLLOWING" = "已關注";
+
+"SearchNearby" = "搜索附近";
+"Suggestions" = "建議";
+"TypetoSearch" = "輸入搜索關鍵詞";
+"Entersearchlocation" = "搜尋";
+"ORADDACATEGORYBELOW" = "或添加以下類別";
+"TaptoEdit" = "點擊編輯";
+
+"SkipButton" = "跳過";
+"DoneButton" = "完成";
+
+"WelcometoSeeties" = "歡迎來到Seeties！";
+"Seewhypeopleloveus" = "瞭解更多關於Seeties的特色，探索為何Seeties如此有趣吧！";
+"Slideformore" = "開始啓動！";
+"Recommend" = "分享您的故事";
+"Shareyourstories" = "簡易、快速和方便！上載相片 > 添加位置 > 撰寫推薦文 > 發表";
+"Friends" = "好友與周邊好去處";
+"Seewhatyourfriends" = "關注朋友新動態，結交新朋友和探索周邊吃喝玩樂和逛街的好地方";
+"AnewWay" = "探索繽紛亞洲";
+"Eatwhere" = "搜尋相關推薦文和節慶，幫助您更完善的規劃行程。";
+"Allofyour" = "捕捉和留住當下美好的時刻";
+"Keepyourbestcity" = "完整的個人資料分享能讓人一目瞭然。從現在開始分享您的旅程故事、炫麗的照片和徽章來吸引他人的注目吧！";
+
+"Feed" = "朋友";
+"NearBy" = "探索周邊";
+"Share" = "分享";
+
+"TopRecommendations" = "最熱門推薦文";
+"FeaturedUserin" = "結識新友, 更添樂趣!";
+"Posts" = "推荐文";
+
+
+"Brightness" = "光度";
+"Crop" = "剪裁";
+"Reset" = "重設";
+"Rotate" = "旋轉";
+"Whereisthis" = "拍攝地點";
+"SkipAndDone" = "跳過和完成";
+"Publish" = "發表";
+"Addtag" = "添加標籤";
+"youcanchoose2" = "你可選擇兩個相關類別";
+"ChooseCategories" = "選擇類別";
+
+"Price" = "價格";
+"Tellushowmuch" = "多少錢？";
+
+"AddContact" = "電話";
+"TellusContact" = "添加電話號碼";
+
+"Addfb" = "添加臉書鏈接／網址...";
+"AddPrice" = "添加價格...";
+"AddPhoneNumber" = "添加聯絡號碼...";
+"link" = "鏈接";
+"TellusLink" = "添加鏈接";
+"AddLink" = "添加鏈接...";
+
+"TellStory" = "分享故事";
+"Chooseuptp10photo" = "10張相片為上限";
+"Suggestions" = "建議";
+
+"ConfirmLocation" = "聯繫資訊";
+
+"Writeacaptionhere" = "撰寫說明...";
+"Toomuchwhitespacehere" = "分享和豐富您的個人資料吧！";
+"Recommendsomethingcoolnow" = "開始推薦吧！";
+
+"Edit" = "編輯";
+"Delete" = "删除";
+"ShowMore" = "展開";
+"ShowLess" = "收起";
+
+"Festival" = "節日";
+"DiscovertheColors" = "探索繽紛亞洲";
+
+"Filter" = "篩選";
+
+
+"ChooseacategoryBig" = "選擇類別";
+"SortByBig" = "列表排序";
+
+"KM" = "公里内";
+"Within" = "Sekitar";
+
+"SelectAll" = "全選";
+"UnSelectAll" = "取消選項";
+
+"DeletePost" = "確定刪除此推薦文?";
+"Delete1" = "删除";
+
+"likeText_1" = "說贊";
+"likeText_and" = "與";
+"likeText_and_2" = "與其他";
+"likeText_andOther" = "人說贊";
+
+"Unfollow" = "取消關注";
+"StopFollowing" = "取消關注";
+"GoogleText" = "點擊翻譯圖標以查看英文內容。";
+"Dontshowagain" = "不再顯示";
+
+"ApplyFilter" = "開始搜尋";
+"ErrorConnection" = "網絡連接失誤";
+"NoData" = "請檢查你的無線網絡或是移動數據";
+"SomethingError" = "出現未知錯誤，請稍後再試";
+
+"NoNotification" = "暂无动态通知";
+"NoNotificationDetail" = "您所有推薦文的最新動態將顯示於此。";
+
+"Recommend" = "推荐好康";
+"RecommendSaveDraft" = "存稿";
+"ShowQualityRecommendation" = "撰寫優質推薦文是非常簡單的";
+"ShowQR_Title" = "優質推薦文";
+"ShowQR_Detail" = "優質推薦文：簡潔的300字就可成為優質推薦唷!";
+"Next" = "下一步";
+"AddBlogLink" = "添加部落格鏈接";
+"AskExit" = "确定退出？";
+"AskSaveDraft" = "保存草稿";
+"Exit" = "退出";
+
+"ConfirmPlace_Search" = "再搜尋";
+"ConfirmPlace_Text" = "地方錯誤?";
+
+"Currency" = "貨幣";
+"pax" = "个人";
+
+"EmailError" = "抱歉，电郵無效";
+"UsernameError" = "用戶名须备要六個字数以上";
+"PasswordError" = "密码太短，须备八个字";
+
+"LimitExceed" = "超出上限";
+"LimitText" = "只可選擇兩個";
+"SelectPhoto" = "請選擇相片";
+"TypeToSearch_Place" = "尋找地方";
+"MaximumPhoto" = "已經沒位了！";
+
+"SavePhotoChange" = "保存已更改的相片";
+"Photo_Yes" = "确定";
+"Photo_No" = "否";
+"DoYouWantDelete" = "確定刪除此相片";
+
+"Searchpeople" = "輸入用戶名或全名";
+"NearbyResult" = "周边";
+"SearchResult" = "搜尋結果";
+"Letsgo" = "立即探索!";
+
+"FindFriends" = "找尋好友";
+"Feelinglonelyonseeties" = "想擁有更豐富的Seeties體驗? 趕緊邀請你的好友加入我們吧!";
+"InviteFacebook" = "邀請臉書好友加入Seeties";
+"xFriendsOnSeeties" = "好友已加入Seeties";
+"FollowAll" = "全數關注";
+"Suggestionsforyou" = "為你推介";
+"InviteFriends" = "邀請好友";
+"Inviteall" = "全數邀請";
+"Invite" = "邀請";
+"ConnectyouFacebook" = "鏈接臉書以便找尋更多好友";
+"ConnectToFacebook" = "與臉書鏈接";
+"EasilySendaLink" = "鏈接以下程式以發放邀請于好友們加入";
+"InViaFacebook" = "使用脸书邀请好友";
+"InViaWhatsapp" = "使用whatapp邀请好友";
+"InViaWeChat" = "使用微信邀請好友";
+"InViaLine" = "使用line邀請好友";
+"Buildyournetwork" = "開船朋友圈!";
+"Findorinviteyourfriends" = "找尋與邀請好友";
+
+"HoldNDragTheThumbnails" = "鎖定與拖動相片以自定義相片排列順序。首張相片將成為推薦文封面。";
+"Dragthemap" = "拖動地圖后點擊到精準位置";
+"Addthisplace" = "創建位置?";
+"Cannotfindinthelist" = "無法尋獲位置? 創建位置";
+"Addplacename" = "添加位置名稱";
+"AddAddress" = "添加地址";
+"tapthemaptoadjustpin" = "點擊地圖以更改標誌位置";
+"Pleasefillinplacename" = "請輸入位置名稱與地址";
+
+"NearbyRecommendations" = "就近推薦";
+"InViaSMS" = "短訊";
+"SendMessage" = "點入Seeties 讓我們一起探索您附近吃喝玩樂的好地方 。超棒的～";
+"DeleteMessage" = "確定刪除這一則留言?";
+
+"NoComment" = "暫無留言";
+"FristComment" = "快告知文主你曾流連於此吧!";
+
+"Oops" = "哎呀!";
+"PleaseSelectatleast1category" = "需選擇至少一個類別才可篩選類別喲!";
+
+"NoResultFound" = "無法尋獲相關資料.";
+"Pleasetryadiffrentsearch" = "請嘗試其他關鍵詞,";
+
+"SeeallComment" = "查看所有留言";
