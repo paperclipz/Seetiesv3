@@ -30,6 +30,7 @@
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     
     heightcheck = 0;
+
     
     AddressArray = [[NSMutableArray alloc]init];
     [AddressArray addObject:@"Love Hotel, Tapipei City, Taiwan"];

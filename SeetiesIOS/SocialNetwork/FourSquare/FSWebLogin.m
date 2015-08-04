@@ -23,7 +23,7 @@
 	if (self != nil) {
 		self.url = url;
         self.delegate = delegate;
-        [self removeCookiesFromPreviousLogin];
+        [self removeCookiesFromPreviouNSLogin];
 	}
 	return self;
 }
@@ -64,7 +64,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 	return YES;
 }
 
-- (void)removeCookiesFromPreviousLogin {
+- (void)removeCookiesFromPreviouNSLogin {
     NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     for (NSHTTPCookie *cookie in [storage cookies]) {
         if ([[cookie domain] rangeOfString:@"foursquare.com"].length) {

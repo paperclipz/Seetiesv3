@@ -46,7 +46,6 @@
             BOOL gotNumber;
             unsigned charCode;
             NSString *xForHex = @"";
-            
             // Is it hex or decimal?
             if ([scanner scanString:@"x" intoString:&xForHex]) {
                 gotNumber = [scanner scanHexInt:&charCode];

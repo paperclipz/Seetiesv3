@@ -434,8 +434,8 @@
                 // NSDate *startDate = [f dateFromString:start];
                 NSDate *now = [NSDate date];
                 
-                NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-                NSDateComponents *components = [gregorianCalendar components:NSDayCalendarUnit
+                NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+                NSDateComponents *components = [gregorianCalendar components:NSCalendarUnitDay
                                                                     fromDate:date
                                                                       toDate:now
                                                                      options:0];

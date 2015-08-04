@@ -315,7 +315,7 @@
 -(IBAction)CheckNewUpdateButton:(id)sender{
 
     BOOL CheckUpdate = [self appHasNewVersion];
-    NSLog(CheckUpdate ? @"Yes" : @"No");
+   // NSLog(CheckUpdate ? @"Yes" : @"No");
     if (CheckUpdate == YES) {
         UIAlertView *alertview = [[UIAlertView alloc]initWithTitle:@"" message:@"A new version of Seeties is available to download" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alertview show];

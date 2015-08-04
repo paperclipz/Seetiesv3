@@ -22,15 +22,15 @@
 #define IS_IN_DEBUG_MODE
 
 #ifndef IS_IN_DEBUG_MODE
-#undef NSLog
-#define NSLog(args, ...)
+#undef SLog
+#define SLog(args, ...)
 #endif
 
 #ifdef IS_IN_DEBUG_MODE
-#   define SLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#   define SLog(fmt, ...) SLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
 #else
 #   define SLog(...)
 #endif
 
 // ALog always displays output regardless of the DEBUG setting
-#define AMLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#define AMLog(fmt, ...) SLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)

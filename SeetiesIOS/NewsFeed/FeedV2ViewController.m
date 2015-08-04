@@ -17,7 +17,6 @@
 #import "SearchViewV2.h"
 #import <CoreLocation/CoreLocation.h>
 #import "UserProfileV2ViewController.h"
-#import "FilterViewController.h"
 #import "Filter2ViewController.h"
 #import "InviteFrenViewController.h"
 
@@ -1983,8 +1982,8 @@
                        // NSDate *startDate = [f dateFromString:start];
                         NSDate *now = [NSDate date];
                         
-                        NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-                        NSDateComponents *components = [gregorianCalendar components:NSDayCalendarUnit
+                        NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+                        NSDateComponents *components = [gregorianCalendar components:NSCalendarUnitDay
                                                                             fromDate:date
                                                                               toDate:now
                                                                              options:0];
@@ -2394,8 +2393,8 @@
                         // NSDate *startDate = [f dateFromString:start];
                         NSDate *now = [NSDate date];
                         
-                        NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-                        NSDateComponents *components = [gregorianCalendar components:NSDayCalendarUnit
+                        NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+                        NSDateComponents *components = [gregorianCalendar components:NSCalendarUnitDay
                                                                             fromDate:date
                                                                               toDate:now
                                                                              options:0];
