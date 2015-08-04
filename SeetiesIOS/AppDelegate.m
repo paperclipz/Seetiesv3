@@ -61,16 +61,16 @@
     // ****************************************************************************
     // Uncomment and fill in with your Parse credentials:
     [Parse setApplicationId:@"MMpGchSOutbiRC4KpHW47VLBFFQgv2jj5DIM4Qdi" clientKey:@"4kkfBL3btDWxoQN89WRBXVWYEUDZKD38XuzCakK7"];
-   // [Parse setApplicationId:@"UDy6JpDrh7N6mWznTYusRruA8a1VrCLK2s5gCXZo" clientKey:@"cDs5Sml0kIzwplNSMOnXgV5LnJiAP0UK1Z2K5pZm"];
+    // [Parse setApplicationId:@"UDy6JpDrh7N6mWznTYusRruA8a1VrCLK2s5gCXZo" clientKey:@"cDs5Sml0kIzwplNSMOnXgV5LnJiAP0UK1Z2K5pZm"];
     // ****************************************************************************
     
-//    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
-//                                                    UIUserNotificationTypeBadge |
-//                                                    UIUserNotificationTypeSound);
-//    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
-//                                                                             categories:nil];
-//    [application registerUserNotificationSettings:settings];
-//    [application registerForRemoteNotifications];
+    //    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
+    //                                                    UIUserNotificationTypeBadge |
+    //                                                    UIUserNotificationTypeSound);
+    //    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
+    //                                                                             categories:nil];
+    //    [application registerUserNotificationSettings:settings];
+    //    [application registerForRemoteNotifications];
     
     if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
         UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
@@ -86,13 +86,13 @@
     [defaults synchronize];
     [self CheckApiVersion];
     
-
+    
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     LanguageManager *languageManager = [LanguageManager sharedLanguageManager];
     NSLog(@"Language: %@", [[[NSBundle mainBundle] preferredLocalizations] objectAtIndex:0]);
     NSLog(@"Region: %@", [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]);
-
+    
     /*
      * Check the user defaults to find whether a localisation has been set before.
      * If it hasn't been set, (i.e. first run of the app), select the locale based
@@ -118,7 +118,7 @@
         
         // If the device locale doesn't match any of the available ones, just pick the first one.
         if (![userDefaults stringForKey:DEFAULTS_KEY_LANGUAGE_CODE]) {
-          //  NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
+            //  NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
             NSString *language = [[NSString alloc]initWithFormat:@"%@",[[NSLocale preferredLanguages] objectAtIndex:0]];
             NSLog(@"Get System language is %@",language);
             // zh-Hans - Simplified Chinese
@@ -163,13 +163,13 @@
     
     
     // Optional: automatically send uncaught exceptions to Google Analytics.
-    [GAI sharedInstance].trackUncaughtExceptions = YES;
-    // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
-    [GAI sharedInstance].dispatchInterval = 30;
-    // Optional: set Logger to VERBOSE for debug information.
-    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
-    // Initialize tracker. Replace with your tracking ID.
-    [[GAI sharedInstance] trackerWithTrackingId:@"UA-45737845-4"];
+//    [GAI sharedInstance].trackUncaughtExceptions = YES;
+//    // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
+//    [GAI sharedInstance].dispatchInterval = 30;
+//    // Optional: set Logger to VERBOSE for debug information.
+//    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
+//    // Initialize tracker. Replace with your tracking ID.
+//    [[GAI sharedInstance] trackerWithTrackingId:@"UA-45737845-4"];
     
     [Foursquare2 setupFoursquareWithClientId:@"V0RPRPAUHB1ZCFSKOXKNM0JA3Q1RN1QUBK14RZFOUYY15I4R"
                                       secret:@"T5XT0AVNHLLO1NMXRNFCDBYGA453E12CTVN0WOSIHREEZTWA"
@@ -178,7 +178,7 @@
     //NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *CheckLogin = [defaults objectForKey:@"CheckLogin"];
     if ([CheckLogin isEqualToString:@"LoginDone"]) {
-
+        
     }else{
         NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
         NSLog(@"language is %@",language);
@@ -187,28 +187,28 @@
         [defaults synchronize];
     }
     
-   // zh-Hans - Simplified Chinese
-   // zh-Hant - Traditional Chinese
-   // en - English
-   // th - Thai
-   // id - Bahasa Indonesia
+    // zh-Hans - Simplified Chinese
+    // zh-Hant - Traditional Chinese
+    // en - English
+    // th - Thai
+    // id - Bahasa Indonesia
     
-//    LandingViewController *LandingView = [[LandingViewController alloc]init];
-//    self.window.rootViewController = LandingView;
-//    self.window.backgroundColor = [UIColor whiteColor];
-//    [self.window makeKeyAndVisible];
-//
-////    SearchViewV2 *LandingView = [[SearchViewV2 alloc]init];
-////    self.window.rootViewController = LandingView;
-//
-//    
-////    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
-////     (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
-////    
-////    UIRemoteNotificationType enabledTypes = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
-////    NSLog(@"enabledTypes is %u",enabledTypes);
-////    
-////    
+    //    LandingViewController *LandingView = [[LandingViewController alloc]init];
+    //    self.window.rootViewController = LandingView;
+    //    self.window.backgroundColor = [UIColor whiteColor];
+    //    [self.window makeKeyAndVisible];
+    //
+    ////    SearchViewV2 *LandingView = [[SearchViewV2 alloc]init];
+    ////    self.window.rootViewController = LandingView;
+    //
+    //
+    ////    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+    ////     (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    ////
+    ////    UIRemoteNotificationType enabledTypes = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
+    ////    NSLog(@"enabledTypes is %u",enabledTypes);
+    ////
+    ////
     application.applicationIconBadgeNumber = 0;
     
     // Whenever a person opens the app, check for a cached session
@@ -247,7 +247,7 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     NSLog(@"applicationWillEnterForeground");
-   // [self CheckApiVersion];
+    // [self CheckApiVersion];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -370,48 +370,48 @@
     [FBAppEvents activateApp];
 }
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-//    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-//    [currentInstallation setDeviceTokenFromData:deviceToken];
-//    currentInstallation.channels = @[@"global"];
-//    [currentInstallation saveInBackground];
+    //    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    //    [currentInstallation setDeviceTokenFromData:deviceToken];
+    //    currentInstallation.channels = @[@"global"];
+    //    [currentInstallation saveInBackground];
     NSLog(@"deviceToken = %@",deviceToken);
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:deviceToken forKey:@"DeviceTokenPush"];
     [defaults synchronize];
     
     
-//    NSData *GetDeviceToken = [defaults objectForKey:@"DeviceTokenPush"];
-//    NSString *GetUserUID = [defaults objectForKey:@"Useruid"];
-//    NSLog(@"GetDeviceToken is %@",GetDeviceToken);
-//    NSLog(@"GetUserUID is %@",GetUserUID);
-//    if ([GetDeviceToken length] == 0 || GetDeviceToken == (id)[NSNull null] || GetDeviceToken.length == 0) {
-//        
-//    }else{
-//        NSString *Check = [defaults objectForKey:@"CheckGetPushToken"];
-//        if ([Check isEqualToString:@"Done"]) {
-//            
-//        }else{
-//            if ([GetUserUID length] == 0 || GetUserUID == (id)[NSNull null] || GetUserUID.length == 0) {
-//                PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-//                [currentInstallation setDeviceTokenFromData:GetDeviceToken];
-//                currentInstallation.channels = @[@"IOS_FirstLogin"];
-//                [currentInstallation saveInBackground];
-//            }else{
-//                PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-//                [currentInstallation setDeviceTokenFromData:GetDeviceToken];
-//                NSString *tempTokenString = [[NSString alloc]initWithFormat:@"seeties_%@",GetUserUID];
-//                currentInstallation.channels = @[tempTokenString,@"all"];
-//                [currentInstallation saveInBackground];
-//            //    NSLog(@"work here?");
-//                NSString *TempString = @"Done";
-//                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//                [defaults setObject:TempString forKey:@"CheckGetPushToken"];
-//                [defaults synchronize];
-//            }
-//
-//        }
-//        
-//    }
+    //    NSData *GetDeviceToken = [defaults objectForKey:@"DeviceTokenPush"];
+    //    NSString *GetUserUID = [defaults objectForKey:@"Useruid"];
+    //    NSLog(@"GetDeviceToken is %@",GetDeviceToken);
+    //    NSLog(@"GetUserUID is %@",GetUserUID);
+    //    if ([GetDeviceToken length] == 0 || GetDeviceToken == (id)[NSNull null] || GetDeviceToken.length == 0) {
+    //
+    //    }else{
+    //        NSString *Check = [defaults objectForKey:@"CheckGetPushToken"];
+    //        if ([Check isEqualToString:@"Done"]) {
+    //
+    //        }else{
+    //            if ([GetUserUID length] == 0 || GetUserUID == (id)[NSNull null] || GetUserUID.length == 0) {
+    //                PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    //                [currentInstallation setDeviceTokenFromData:GetDeviceToken];
+    //                currentInstallation.channels = @[@"IOS_FirstLogin"];
+    //                [currentInstallation saveInBackground];
+    //            }else{
+    //                PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    //                [currentInstallation setDeviceTokenFromData:GetDeviceToken];
+    //                NSString *tempTokenString = [[NSString alloc]initWithFormat:@"seeties_%@",GetUserUID];
+    //                currentInstallation.channels = @[tempTokenString,@"all"];
+    //                [currentInstallation saveInBackground];
+    //            //    NSLog(@"work here?");
+    //                NSString *TempString = @"Done";
+    //                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    //                [defaults setObject:TempString forKey:@"CheckGetPushToken"];
+    //                [defaults synchronize];
+    //            }
+    //
+    //        }
+    //
+    //    }
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
@@ -446,7 +446,7 @@
     
     //adding view controllers to your tabBarController bundling them in an array
     tabBarController.viewControllers=[NSArray arrayWithObjects:navController,secondViewController,threeViewController,fourViewController,fiveViewController, nil];
-     tabBarController.selectedIndex = 3;
+    tabBarController.selectedIndex = 3;
     [[[[UIApplication sharedApplication] delegate] window] setRootViewController:tabBarController];
     
 }
@@ -484,21 +484,21 @@
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     NSLog(@"AppDelegate Check API Version Error.");
-//    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error Connection" message:@"Check your wifi or 3G data." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//    alert.tag = 100;
-//    [alert show];
+    //    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error Connection" message:@"Check your wifi or 3G data." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    //    alert.tag = 100;
+    //    [alert show];
     
     LandingV2ViewController *LandingView = [[LandingV2ViewController alloc]init];
     self.window.rootViewController = LandingView;
-
-
+    
+    
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 }
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-
+    
     NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
     NSLog(@"AppDelegate Check API Version return get data to server ===== %@",GetData);
     
@@ -525,7 +525,7 @@
         //dev use
         CheckAPI = @"0";
     }else{
-    //live
+        //live
         CheckAPI = @"1";
     }
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -533,26 +533,26 @@
     [defaults synchronize];
     
     if ([GetVersionString isEqualToString:APIVersionSet]) {
-        TestFeedV2ViewController *LandingView = [[TestFeedV2ViewController alloc]init];
+        LandingV2ViewController *LandingView = [[LandingV2ViewController alloc]init];
         self.window.rootViewController = LandingView;
         
-//        DoImagePickerController *cont = [[DoImagePickerController alloc] initWithNibName:@"DoImagePickerController" bundle:nil];
-//        cont.delegate = self;
-//        cont.nResultType = DO_PICKER_RESULT_ASSET;//DO_PICKER_RESULT_UIIMAGE
-//        cont.nMaxCount = 10;
-//        cont.nColumnCount = 3;
-//        self.window.rootViewController = cont;
-
+        //        DoImagePickerController *cont = [[DoImagePickerController alloc] initWithNibName:@"DoImagePickerController" bundle:nil];
+        //        cont.delegate = self;
+        //        cont.nResultType = DO_PICKER_RESULT_ASSET;//DO_PICKER_RESULT_UIIMAGE
+        //        cont.nMaxCount = 10;
+        //        cont.nColumnCount = 3;
+        //        self.window.rootViewController = cont;
+        
         self.window.backgroundColor = [UIColor whiteColor];
         [self.window makeKeyAndVisible];
         
-
+        
     }else{
         UIAlertView *ShowAlertView = [[UIAlertView alloc]initWithTitle:GetTitleString message:GetMessageString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         ShowAlertView.tag = 200;
         [ShowAlertView show];
     }
-
+    
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (alertView.tag == 100) {

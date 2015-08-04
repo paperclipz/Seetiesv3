@@ -10,7 +10,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "UrlDataClass.h"
 @interface AppDelegate : UIResponder <UIApplicationDelegate>{
-
+    
     UrlDataClass *DataUrl;
     NSMutableData *webData;
     NSString *APIVersionSet;
@@ -25,4 +25,3 @@
 //com.Seeties.SeetiesIOS.Live
 //com.Seeties.SeetiesIOS.Dev
 @end
-

@@ -8,6 +8,6 @@ platform :ios, '7.0'
 #pod 'MKNetworkKit', :head
 #pod 'RestKit', :head
 #pod 'MBProgressHUD', :head
-pod 'SDWebImage', :head
+#pod 'SDWebImage', :head
 #pod 'CocoaLumberjack'
 pod 'AFNetworking', '~> 2.5'

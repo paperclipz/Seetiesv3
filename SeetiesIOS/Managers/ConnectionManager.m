@@ -46,56 +46,56 @@
     return [NSString stringWithFormat:@"%@%@",self.serverPath,self.subPath];
 }
 
-//-(void)requestServerWithPost:(bool)isPost requestType:(ServerRequestType)type param:(NSDictionary*)dict completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
-//{
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-//    
-//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-//    
-//    NSLog(@"Request Server [%@]",[self getFullURLwithType:type]);
-//    
-//    if(isPost)
-//    {
-//        [manager POST:[self getFullURLwithType:type] parameters:dict
-//              success:^(AFHTTPRequestOperation *operation, id responseObject)
-//         {
-//             [self storeServerData:responseObject requestType:type];
-//             completeBlock(responseObject);
-//             NSLog(@"JSON: %@", responseObject);
-//         }
-//              failure:
-//         ^(AFHTTPRequestOperation *operation, NSError *error) {
-//             NSLog(@"Error: %@", error);
-//         }];
-//    }
-//    else{
-//        
-//        [manager POST:[self getFullURLwithType:type] parameters:nil
-//              success:^(AFHTTPRequestOperation *operation, id responseObject)
-//         {
-//             [self storeServerData:responseObject requestType:type];
-//             completeBlock(responseObject);
-//             NSLog(@"JSON: %@", responseObject);
-//         }
-//              failure:
-//         ^(AFHTTPRequestOperation *operation, NSError *error) {
-//             NSLog(@"Error: %@", error);
-//         }];
-//        
-//    }
-//    
-//    
-//}
-//
-//-(void)storeServerData:(id)obj requestType:(ServerRequestType)type
-//{
-//    switch (type) {
-//        case ServerRequestTypeLogin:
-//            break;
-//        default:
-//            break;
-//    }
-//}
+-(void)requestServerWithPost:(bool)isPost requestType:(ServerRequestType)type param:(NSDictionary*)dict completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    NSLog(@"Request Server [%@]",[self getFullURLwithType:type]);
+    
+    if(isPost)
+    {
+        [manager POST:[self getFullURLwithType:type] parameters:dict
+              success:^(AFHTTPRequestOperation *operation, id responseObject)
+         {
+             [self storeServerData:responseObject requestType:type];
+             completeBlock(responseObject);
+             NSLog(@"JSON: %@", responseObject);
+         }
+              failure:
+         ^(AFHTTPRequestOperation *operation, NSError *error) {
+             NSLog(@"Error: %@", error);
+         }];
+    }
+    else{
+        
+        [manager POST:[self getFullURLwithType:type] parameters:nil
+              success:^(AFHTTPRequestOperation *operation, id responseObject)
+         {
+             [self storeServerData:responseObject requestType:type];
+             completeBlock(responseObject);
+             NSLog(@"JSON: %@", responseObject);
+         }
+              failure:
+         ^(AFHTTPRequestOperation *operation, NSError *error) {
+             NSLog(@"Error: %@", error);
+         }];
+        
+    }
+    
+    
+}
+
+-(void)storeServerData:(id)obj requestType:(ServerRequestType)type
+{
+    switch (type) {
+        case ServerRequestTypeLogin:
+            break;
+        default:
+            break;
+    }
+}
 
 @end
