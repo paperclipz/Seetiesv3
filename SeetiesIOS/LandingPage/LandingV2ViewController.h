@@ -16,7 +16,7 @@
 #import "NotificationViewController.h"
 #import "ProfileV2ViewController.h"
 
-@interface LandingV2ViewController : GAITrackedViewController{
+@interface LandingV2ViewController : GAITrackedViewController <UITabBarControllerDelegate>{
 IBOutlet UIButton *FBLoginButton;
 IBOutlet UIButton *LogInButton;
 IBOutlet UIButton *WhyWeUseFBButton;

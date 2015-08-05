@@ -1136,7 +1136,6 @@
 		8AD6C2CC1B707ACB0040437E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		8AD6C2CE1B707B1E0040437E /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		8AD6C2D01B707B270040437E /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
-		8AD6C2D31B707D120040437E /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		8AD6C2D41B707D120040437E /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		8AD6C2D51B707D120040437E /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		8AD6C2D61B707D120040437E /* LanguageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageManager.h; sourceTree = "<group>"; };
@@ -2438,7 +2437,6 @@
 		8AD6C2D21B707D120040437E /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				8AD6C2D31B707D120040437E /* Constants.h */,
 				8AD6C2D41B707D120040437E /* JSONKit.h */,
 				8AD6C2D51B707D120040437E /* JSONKit.m */,
 				8AD6C2D61B707D120040437E /* LanguageManager.h */,

@@ -11,7 +11,6 @@
 //@import AssetsLibrary;
 #import "LanguageManager.h"
 #import "Locale.h"
-#import "Constants.h"
 
 @interface SubmitProfileViewController ()
 

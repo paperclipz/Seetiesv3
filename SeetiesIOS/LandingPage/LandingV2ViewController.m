@@ -26,7 +26,6 @@
 
 #import "LanguageManager.h"
 #import "Locale.h"
-#import "Constants.h"
 
 
 #import <Parse/Parse.h>
@@ -251,35 +250,11 @@
 }
 -(void)ChangeView2{
     
-    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    
-    self.tabBarController=[[UITabBarController alloc]init];
-    self.tabBarController.tabBar.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
-    
-    [[UITabBar appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
-    
-
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:self.navFeedV2ViewController,self.navExplore2ViewController,self.selectImageViewController,self.navNotificationViewController,self.navProfileV2ViewController, nil];
-
     [[[[UIApplication sharedApplication] delegate] window] setRootViewController:self.tabBarController];
     
     
-    
 }
 
--(void)didSelectViewAtIndex:(ViewType)viewType
-{
-
-    switch (viewType) {
-        default:
-
-        case ViewTypeNewsFeed:
-            
-            
-            break;
-    }
-}
 - (void)animateImages
 {
     
@@ -302,6 +277,25 @@
 }
 
 #pragma mark - Declaration
+
+-(UITabBarController*)tabBarController
+{
+    if(!_tabBarController)
+    {
+        CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+        
+        
+        _tabBarController = [UITabBarController new];
+        _tabBarController.tabBar.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
+        [[UITabBar appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
+        self.tabBarController.viewControllers = [NSArray arrayWithObjects:self.navFeedV2ViewController,self.navExplore2ViewController,self.selectImageViewController,self.navNotificationViewController,self.navProfileV2ViewController, nil];
+
+    }
+    
+    return _tabBarController;
+}
+
 -(FeedV2ViewController*)feedV2ViewController
 {
     if(!_feedV2ViewController){

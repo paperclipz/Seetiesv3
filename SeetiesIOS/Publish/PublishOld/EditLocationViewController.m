@@ -11,7 +11,6 @@
 #import "PublishViewController.h"
 #import "LanguageManager.h"
 #import "Locale.h"
-#import "Constants.h"
 
 @interface EditLocationViewController ()
 @property (strong, nonatomic) NSArray *nearbyVenues;

@@ -15,4 +15,6 @@ typedef void (^IErrorBlock)(id object);
 @property(nonatomic,strong)NSString* subPath;
 
 +(id)Instance;
++ (void) setDeploymentType:(int)value;
+
 @end

@@ -9,7 +9,6 @@
 #import "Filter2ViewController.h"
 #import "LanguageManager.h"
 #import "Locale.h"
-#import "Constants.h"
 @interface Filter2ViewController ()
 
 @end

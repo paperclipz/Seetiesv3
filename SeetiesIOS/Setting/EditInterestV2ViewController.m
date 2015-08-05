@@ -9,7 +9,6 @@
 #import "EditInterestV2ViewController.h"
 #import "LanguageManager.h"
 #import "Locale.h"
-#import "Constants.h"
 @interface EditInterestV2ViewController ()
 
 @end

@@ -36,6 +36,7 @@ static UrlDataClass *sharedMyManager = nil;
         NSString *CheckAPI = [defaults objectForKey:@"CheckAPI"];
         if ([CheckAPI isEqualToString:@"0"]) {
           //  NSLog(@"CheckAPI is 0");
+
             ExpertLogin_Url = @"https://itcave-api.seeties.me/v1.3/login";
             UserRegister_Url = @"https://itcave-api.seeties.me/v1.3/register";
             FacebookRegister_Url = @"https://itcave-api.seeties.me/v1.3/login/facebook";

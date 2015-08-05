@@ -11,7 +11,7 @@
 #import "AsyncImageView.h"
 #import "LanguageManager.h"
 #import "Locale.h"
-#import "Constants.h"
+
 #import "AppDelegate.h"
 @interface InviteFrenViewController ()
 

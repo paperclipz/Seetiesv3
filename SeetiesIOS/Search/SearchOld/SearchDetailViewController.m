@@ -13,7 +13,6 @@
 #import "Filter2ViewController.h"
 #import "LanguageManager.h"
 #import "Locale.h"
-#import "Constants.h"
 #import "NSString+ChangeAsciiString.h"
 @interface SearchDetailViewController ()
 

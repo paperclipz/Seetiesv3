@@ -23,10 +23,19 @@
     return instance;
 }
 
+
+//=============    DEV : 0    ||       LIVE : 1     ================//
+static int type = 0;
+
++ (void) setDeploymentType:(int)value
+{
+    type = value;
+}
+
 -(id)init
 {
     self = [super init];
-    self.serverPath = SERVER_PATH;
+    self.serverPath = type==0?SERVER_PATH_DEV:SERVER_PATH_LIVE;
     self.dataManager = [DataStore sharedInstance];
     
     return self;

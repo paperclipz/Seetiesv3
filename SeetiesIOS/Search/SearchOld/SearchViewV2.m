@@ -12,7 +12,7 @@
 
 #import "LanguageManager.h"
 #import "Locale.h"
-#import "Constants.h"
+
 @interface SearchViewV2 ()<CLLocationManagerDelegate>
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;

@@ -12,7 +12,6 @@
 #import "DoPhotoCell.h"
 #import "LanguageManager.h"
 #import "Locale.h"
-#import "Constants.h"
 @implementation DoImagePickerController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

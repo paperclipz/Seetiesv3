@@ -10,7 +10,6 @@
 #import "PECropView.h"
 #import "LanguageManager.h"
 #import "Locale.h"
-#import "Constants.h"
 @interface PECropViewController () <UIActionSheetDelegate>
 
 @property (nonatomic) PECropView *cropView;

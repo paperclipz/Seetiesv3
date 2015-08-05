@@ -17,7 +17,6 @@
 #import "SelectImageViewController.h"
 #import "LanguageManager.h"
 #import "Locale.h"
-#import "Constants.h"
 #import "NSString+ChangeAsciiString.h"
 
 @interface ProfileV2ViewController ()

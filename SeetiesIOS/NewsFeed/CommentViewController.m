@@ -12,7 +12,6 @@
 
 #import "LanguageManager.h"
 #import "Locale.h"
-#import "Constants.h"
 
 #define kStatusBarHeight 20
 #define kDefaultToolbarHeight 40
