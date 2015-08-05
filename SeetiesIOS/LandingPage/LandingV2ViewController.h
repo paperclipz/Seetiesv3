@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "GAITrackedViewController.h"
 #import "UrlDataClass.h"
-
+@class LeveyTabBarController;
 @interface LandingV2ViewController : GAITrackedViewController{
+    LeveyTabBarController *leveyTabBarController;
+    
 IBOutlet UIButton *FBLoginButton;
 IBOutlet UIButton *LogInButton;
 IBOutlet UIButton *WhyWeUseFBButton;
@@ -43,6 +45,7 @@ NSURLConnection *theConnection_GetAllCategory;
 
 IBOutlet UIActivityIndicatorView *ShowActivity;
 }
+@property (nonatomic, retain) IBOutlet LeveyTabBarController *leveyTabBarController;
 -(IBAction)FbButton:(id)sender;
 -(IBAction)ExpertLoginButton:(id)sender;
 -(IBAction)WhyWeUseFBButton:(id)sender;

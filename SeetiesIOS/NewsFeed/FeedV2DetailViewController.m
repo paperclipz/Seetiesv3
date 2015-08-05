@@ -21,6 +21,8 @@
 #import "LandingV2ViewController.h"
 #import "RecommendV2ViewController.h"
 #import "NSString+ChangeAsciiString.h"
+
+#import "LeveyTabBarController.h"
 @interface FeedV2DetailViewController ()
 @end
 
@@ -42,7 +44,7 @@
     ShowDownBarView.frame = CGRectMake(0, screenHeight - 62 - 50, screenWidth, 62);
     ShowbarView.frame = CGRectMake(0, 0, screenWidth, 64);
     ShowBarImg.frame = CGRectMake(0, 0, screenWidth, 64);
-    MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight - 62 - 50);
+    MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight - 62);
     MImageScroll.frame = CGRectMake(0, 0, screenWidth, 340);
     ShowLanguageTranslationView.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     ShowLanguageTranslationView.hidden = YES;
@@ -116,6 +118,8 @@
     UISwipeGestureRecognizer *swipeRight =[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeRight:)];
     swipeRight.direction=UISwipeGestureRecognizerDirectionRight;
     [MainScroll addGestureRecognizer:swipeRight];
+    
+
 }
 -(void)swipeRight:(UISwipeGestureRecognizer*)gestureRecognizer
 {
@@ -133,7 +137,9 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
+    
+    //self.leveyTabBarController.tabBar.frame = CGRectMake(0, 300, 320, 100);
+    
    // self.screenName = @"IOS Feed Detail Page";
     self.screenName = @"IOS Feed Detail View V2";
     
@@ -2673,31 +2679,45 @@
     }
     
 }
-//- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-//{
-//  //  NSLog(@"+scrollViewWillBeginDragging");
-//  //  ShowbarView.hidden = YES;
-//    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-//  //  CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-//    [UIView animateWithDuration:0.2
-//                          delay:0
-//                        options:UIViewAnimationOptionCurveEaseIn
-//                     animations:^{
-//                         ShowbarView.frame = CGRectMake(0, -64, screenWidth, 64);
-//                       //  ShowDownBarView.frame = CGRectMake(0, screenHeight, screenWidth, 50);
-//                     }
-//                     completion:^(BOOL finished) {
-//                     }];
-//}
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+  //  NSLog(@"+scrollViewWillBeginDragging");
+  //  ShowbarView.hidden = YES;
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+    [UIView animateWithDuration:0.2
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                       //  MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight - 64);
+                        // ShowbarView.frame = CGRectMake(0, -64, screenWidth, 64);
+                         ShowDownBarView.frame = CGRectMake(0, screenHeight - 60, screenWidth, 60);
+                         self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight, screenWidth, 50);
+                     }
+                     completion:^(BOOL finished) {
+                     }];
+}
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-   // NSLog(@"scrollViewDidEndDragging");
+    NSLog(@"scrollViewDidEndDragging");
 }
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-   // NSLog(@"-scrollViewDidEndDecelerating");
-    
+    NSLog(@"-scrollViewDidEndDecelerating");
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+    [UIView animateWithDuration:0.2
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                      //   MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight - 114);
+                        // ShowbarView.frame = CGRectMake(0, 0, screenWidth, 64);
+                         ShowDownBarView.frame = CGRectMake(0, screenHeight - 110, screenWidth, 60);
+                         self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
+                     }
+                     completion:^(BOOL finished) {
+                     }];
 }
 
 - (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0BD634FC1B71C9B800D82414 /* LeveyTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD634F91B71C9B800D82414 /* LeveyTabBar.m */; };
+		0BD634FD1B71C9B800D82414 /* LeveyTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD634FB1B71C9B800D82414 /* LeveyTabBarController.m */; };
+		0BD635011B71FF8B00D82414 /* RecommendPopUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD634FF1B71FF8B00D82414 /* RecommendPopUpViewController.m */; };
+		0BD635021B71FF8B00D82414 /* RecommendPopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD635001B71FF8B00D82414 /* RecommendPopUpViewController.xib */; };
 		8AD6BA601B705DF20040437E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA5F1B705DF20040437E /* main.m */; };
 		8AD6BA631B705DF20040437E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA621B705DF20040437E /* AppDelegate.m */; };
 		8AD6BA661B705DF20040437E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA651B705DF20040437E /* ViewController.m */; };
@@ -844,6 +848,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0BD634F81B71C9B800D82414 /* LeveyTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeveyTabBar.h; sourceTree = "<group>"; };
+		0BD634F91B71C9B800D82414 /* LeveyTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeveyTabBar.m; sourceTree = "<group>"; };
+		0BD634FA1B71C9B800D82414 /* LeveyTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeveyTabBarController.h; sourceTree = "<group>"; };
+		0BD634FB1B71C9B800D82414 /* LeveyTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeveyTabBarController.m; sourceTree = "<group>"; };
+		0BD634FE1B71FF8B00D82414 /* RecommendPopUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendPopUpViewController.h; sourceTree = "<group>"; };
+		0BD634FF1B71FF8B00D82414 /* RecommendPopUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendPopUpViewController.m; sourceTree = "<group>"; };
+		0BD635001B71FF8B00D82414 /* RecommendPopUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendPopUpViewController.xib; sourceTree = "<group>"; };
 		2B526FE01F3F3414439C16DF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AD6BA5A1B705DF20040437E /* SeetiesIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeetiesIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AD6BA5E1B705DF20040437E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1900,6 +1911,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		0BD634F71B71C9B800D82414 /* LeveyTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				0BD634F81B71C9B800D82414 /* LeveyTabBar.h */,
+				0BD634F91B71C9B800D82414 /* LeveyTabBar.m */,
+				0BD634FA1B71C9B800D82414 /* LeveyTabBarController.h */,
+				0BD634FB1B71C9B800D82414 /* LeveyTabBarController.m */,
+			);
+			path = LeveyTabBar;
+			sourceTree = "<group>";
+		};
 		34C5B861384748B0A7678DB2 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1961,6 +1983,9 @@
 				8AD6BA6A1B705DF20040437E /* Images.xcassets */,
 				8AD6BA6C1B705DF20040437E /* LaunchScreen.xib */,
 				8AD6BA5D1B705DF20040437E /* Supporting Files */,
+				0BD634FE1B71FF8B00D82414 /* RecommendPopUpViewController.h */,
+				0BD634FF1B71FF8B00D82414 /* RecommendPopUpViewController.m */,
+				0BD635001B71FF8B00D82414 /* RecommendPopUpViewController.xib */,
 			);
 			path = SeetiesIOS;
 			sourceTree = "<group>";
@@ -2498,6 +2523,7 @@
 		8AD6C2E51B707D120040437E /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				0BD634F71B71C9B800D82414 /* LeveyTabBar */,
 				8AD6C2E61B707D120040437E /* A3ParallaxScrollView */,
 				8AD6C2E91B707D120040437E /* AsyncImageView.h */,
 				8AD6C2EA1B707D120040437E /* AsyncImageView.m */,
@@ -3799,6 +3825,7 @@
 				8AD6C7E61B70934D0040437E /* SettingsButton.png in Resources */,
 				8AD6C5CA1B70934D0040437E /* BackButton2.png in Resources */,
 				8AD6C5B91B70934D0040437E /* AddCollection@3x.png in Resources */,
+				0BD635021B71FF8B00D82414 /* RecommendPopUpViewController.xib in Resources */,
 				8AD6C70F1B70934D0040437E /* IconLocation.png in Resources */,
 				8AD6C79D1B70934D0040437E /* SearchInBox@3x.png in Resources */,
 				8AD6C66F1B70934D0040437E /* FollowMini@2x.png in Resources */,
@@ -4158,7 +4185,9 @@
 				8AD6C34D1B707D120040437E /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				8AD6BE561B706CF30040437E /* AssetHelper.m in Sources */,
 				8AD6C0B91B706CF30040437E /* ShowFollowerAndFollowingViewController.m in Sources */,
+				0BD634FD1B71C9B800D82414 /* LeveyTabBarController.m in Sources */,
 				8AD6C0B11B706CF30040437E /* SignupViewController.m in Sources */,
+				0BD635011B71FF8B00D82414 /* RecommendPopUpViewController.m in Sources */,
 				8AD6C2A91B7072FB0040437E /* WhereIsThisViewController.m in Sources */,
 				8AD6C3361B707D120040437E /* CRZoomScrollView.m in Sources */,
 				8AD6C0BE1B706CF30040437E /* FeedV2DetailViewController.m in Sources */,
@@ -4211,6 +4240,7 @@
 				8AD6C0CA1B706CF30040437E /* NewProfileV2ViewController.m in Sources */,
 				8AD6C3441B707D120040437E /* BHExpandingTextView.m in Sources */,
 				8AD6BE491B706CF30040437E /* Explore2ViewController.m in Sources */,
+				0BD634FC1B71C9B800D82414 /* LeveyTabBar.m in Sources */,
 				8AD6C0B31B706CF30040437E /* ConnectionManager.m in Sources */,
 				8AD6C29F1B7072FB0040437E /* SelectPhotosViewController.m in Sources */,
 				8AD6C0D41B706CF30040437E /* PSearchLocationViewController.m in Sources */,

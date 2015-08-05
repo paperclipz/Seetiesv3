@@ -37,12 +37,14 @@
 #import "InstagramLoginWebViewController.h"
 
 #import "CRMotionView.h"
+#import "LeveyTabBarController.h"
+#import "RecommendPopUpViewController.h"
 @interface LandingV2ViewController ()
 
 @end
 
 @implementation LandingV2ViewController
-
+@synthesize leveyTabBarController;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -294,57 +296,98 @@
 -(void)ChangeView2{
     NSLog(@"ChangeView2 in here???");
     
-    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+//    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+//    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-    UITabBarController *tabBarController=[[UITabBarController alloc]init];
-    tabBarController.tabBar.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
-    //  [tabBarController.tabBar setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
-    //FirstViewController and SecondViewController are the view controller you want on your UITabBarController
-    // UIImage* tabBarBackground = [UIImage imageNamed:@"TabBarBg@2x-1.png"];
-    //   [[UITabBar appearance] setShadowImage:tabBarBackground];
-    //   [[UITabBar appearance] setBackgroundImage:tabBarBackground];
+//    UITabBarController *tabBarController=[[UITabBarController alloc]init];
+//    tabBarController.tabBar.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
+//    //  [tabBarController.tabBar setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
+//    //FirstViewController and SecondViewController are the view controller you want on your UITabBarController
+//    // UIImage* tabBarBackground = [UIImage imageNamed:@"TabBarBg@2x-1.png"];
+//    //   [[UITabBar appearance] setShadowImage:tabBarBackground];
+//    //   [[UITabBar appearance] setBackgroundImage:tabBarBackground];
+//    
+//    
+//   // [[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
+//    [[UITabBar appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
+//    
+//    FeedV2ViewController *firstViewController=[[FeedV2ViewController alloc]initWithNibName:@"FeedV2ViewController" bundle:nil];
+//    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:firstViewController];
+//    //firstViewController.title= CustomLocalisedString(@"MainTab_Feed",nil);TabBarNew.png
+//    //firstViewController.tabBarItem.image=[UIImage imageNamed:@"TabBarFeed_on.png"];//TabBarFeed.png
+//
+//    
+//    Explore2ViewController *secondViewController=[[Explore2ViewController alloc]initWithNibName:@"Explore2ViewController" bundle:nil];
+//    UINavigationController *navController2 = [[UINavigationController alloc] initWithRootViewController:secondViewController];
+//    //secondViewController.title= CustomLocalisedString(@"MainTab_Explore",nil);
+//    //secondViewController.tabBarItem.image=[UIImage imageNamed:@"TabBarExplore.png"];
+//    
+//    SelectImageViewController *threeViewController=[[SelectImageViewController alloc]initWithNibName:@"SelectImageViewController" bundle:nil];
+//    //        PublishMainViewController *threeViewController=[[PublishMainViewController alloc]initWithNibName:@"PublishMainViewController" bundle:nil];
+//    //        //threeViewController.title=@"";
+//    //        //threeViewController.tabBarItem.image=[UIImage imageNamed:@"TabBarPublish.png"];
+//    
+//    NotificationViewController *fourViewController=[[NotificationViewController alloc]initWithNibName:@"NotificationViewController" bundle:nil];
+//    UINavigationController *navController3 = [[UINavigationController alloc] initWithRootViewController:fourViewController];
+//    //fourViewController.title= CustomLocalisedString(@"MainTab_Like",nil);
+//    //  fourViewController.tabBarItem.image=[UIImage imageNamed:@"TabBarActivity.png"];
+//    
+//    ProfileV2ViewController *fiveViewController=[[ProfileV2ViewController alloc]initWithNibName:@"ProfileV2ViewController" bundle:nil];
+//    UINavigationController *navController4 = [[UINavigationController alloc] initWithRootViewController:fiveViewController];
+//    //fiveViewController.title= CustomLocalisedString(@"MainTab_Profile",nil);
+//    //  fiveViewController.tabBarItem.image=[UIImage imageNamed:@"TabBarProfile.png"];
+//    
+//    //adding view controllers to your tabBarController bundling them in an array
+//    tabBarController.viewControllers=[NSArray arrayWithObjects:navController,navController2,threeViewController,navController3,navController4, nil];
+//    
+//    
+//    //[self presentModalViewController:tabBarController animated:YES];
+//    // [self presentViewController:tabBarController animated:NO completion:nil];
+//    [[[[UIApplication sharedApplication] delegate] window] setRootViewController:tabBarController];
     
-    
-   // [[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
-    [[UITabBar appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
     
     FeedV2ViewController *firstViewController=[[FeedV2ViewController alloc]initWithNibName:@"FeedV2ViewController" bundle:nil];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:firstViewController];
-    //firstViewController.title= CustomLocalisedString(@"MainTab_Feed",nil);TabBarNew.png
-    //firstViewController.tabBarItem.image=[UIImage imageNamed:@"TabBarFeed.png"];//TabBarFeed.png
-    
     Explore2ViewController *secondViewController=[[Explore2ViewController alloc]initWithNibName:@"Explore2ViewController" bundle:nil];
-    UINavigationController *navController2 = [[UINavigationController alloc] initWithRootViewController:secondViewController];
-    //secondViewController.title= CustomLocalisedString(@"MainTab_Explore",nil);
-    //secondViewController.tabBarItem.image=[UIImage imageNamed:@"TabBarExplore.png"];
-    
-    SelectImageViewController *threeViewController=[[SelectImageViewController alloc]initWithNibName:@"SelectImageViewController" bundle:nil];
-    //        PublishMainViewController *threeViewController=[[PublishMainViewController alloc]initWithNibName:@"PublishMainViewController" bundle:nil];
-    //        //threeViewController.title=@"";
-    //        //threeViewController.tabBarItem.image=[UIImage imageNamed:@"TabBarPublish.png"];
-    
+    //SelectImageViewController *threeViewController=[[SelectImageViewController alloc]initWithNibName:@"SelectImageViewController" bundle:nil];
+    RecommendPopUpViewController *threeViewController=[[RecommendPopUpViewController alloc]initWithNibName:@"RecommendPopUpViewController" bundle:nil];
     NotificationViewController *fourViewController=[[NotificationViewController alloc]initWithNibName:@"NotificationViewController" bundle:nil];
-    UINavigationController *navController3 = [[UINavigationController alloc] initWithRootViewController:fourViewController];
-    //fourViewController.title= CustomLocalisedString(@"MainTab_Like",nil);
-    //  fourViewController.tabBarItem.image=[UIImage imageNamed:@"TabBarActivity.png"];
-    
     ProfileV2ViewController *fiveViewController=[[ProfileV2ViewController alloc]initWithNibName:@"ProfileV2ViewController" bundle:nil];
+    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:firstViewController];
+    UINavigationController *navController2 = [[UINavigationController alloc] initWithRootViewController:secondViewController];
+    UINavigationController *navController3 = [[UINavigationController alloc] initWithRootViewController:fourViewController];
     UINavigationController *navController4 = [[UINavigationController alloc] initWithRootViewController:fiveViewController];
-    //fiveViewController.title= CustomLocalisedString(@"MainTab_Profile",nil);
-    //  fiveViewController.tabBarItem.image=[UIImage imageNamed:@"TabBarProfile.png"];
     
-    //adding view controllers to your tabBarController bundling them in an array
-    tabBarController.viewControllers=[NSArray arrayWithObjects:navController,navController2,threeViewController,navController3,navController4, nil];
+    NSArray *ctrlArr = [NSArray arrayWithObjects:navController,navController2,threeViewController,navController3,navController4,nil];
     
+    NSMutableDictionary *imgDic = [NSMutableDictionary dictionaryWithCapacity:3];
+    [imgDic setObject:[UIImage imageNamed:@"TabBarFeed.png"] forKey:@"Default"];
+    [imgDic setObject:[UIImage imageNamed:@"TabBarFeed_on.png"] forKey:@"Highlighted"];
+    [imgDic setObject:[UIImage imageNamed:@"TabBarFeed_on.png"] forKey:@"Seleted"];
+    NSMutableDictionary *imgDic2 = [NSMutableDictionary dictionaryWithCapacity:3];
+    [imgDic2 setObject:[UIImage imageNamed:@"TabBarExplore.png"] forKey:@"Default"];
+    [imgDic2 setObject:[UIImage imageNamed:@"TabBarExplore_on.png"] forKey:@"Highlighted"];
+    [imgDic2 setObject:[UIImage imageNamed:@"TabBarExplore_on.png"] forKey:@"Seleted"];
+    NSMutableDictionary *imgDic3 = [NSMutableDictionary dictionaryWithCapacity:3];
+    [imgDic3 setObject:[UIImage imageNamed:@"TabBarNew.png"] forKey:@"Default"];
+    [imgDic3 setObject:[UIImage imageNamed:@"TabBarNew.png"] forKey:@"Highlighted"];
+    [imgDic3 setObject:[UIImage imageNamed:@"TabBarNew.png"] forKey:@"Seleted"];
+    NSMutableDictionary *imgDic4 = [NSMutableDictionary dictionaryWithCapacity:3];
+    [imgDic4 setObject:[UIImage imageNamed:@"TabBarActivity.png"] forKey:@"Default"];
+    [imgDic4 setObject:[UIImage imageNamed:@"TabBarActivity_on.png"] forKey:@"Highlighted"];
+    [imgDic4 setObject:[UIImage imageNamed:@"TabBarActivity_on.png"] forKey:@"Seleted"];
+    NSMutableDictionary *imgDic5 = [NSMutableDictionary dictionaryWithCapacity:3];
+    [imgDic5 setObject:[UIImage imageNamed:@"TabBarProfile.png"] forKey:@"Default"];
+    [imgDic5 setObject:[UIImage imageNamed:@"TabBarProfile_on.png"] forKey:@"Highlighted"];
+    [imgDic5 setObject:[UIImage imageNamed:@"TabBarProfile_on.png"] forKey:@"Seleted"];
     
-    //[self presentModalViewController:tabBarController animated:YES];
-    // [self presentViewController:tabBarController animated:NO completion:nil];
-    [[[[UIApplication sharedApplication] delegate] window] setRootViewController:tabBarController];
+    NSArray *imgArr = [NSArray arrayWithObjects:imgDic,imgDic2,imgDic3,imgDic4,imgDic5,nil];
     
+    leveyTabBarController = [[LeveyTabBarController alloc] initWithViewControllers:ctrlArr imageArray:imgArr];
+    [leveyTabBarController.tabBar setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
+    [leveyTabBarController setTabBarTransparent:YES];
     
-    
-    
+    [[[[UIApplication sharedApplication] delegate] window] setRootViewController:leveyTabBarController];
 }
 - (void)animateImages
 {
