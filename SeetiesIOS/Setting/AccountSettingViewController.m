@@ -810,7 +810,8 @@
                     // UIImage* tabBarBackground = [UIImage imageNamed:@"TabBarBg@2x-1.png"];
                     //   [[UITabBar appearance] setShadowImage:tabBarBackground];
                     //   [[UITabBar appearance] setBackgroundImage:tabBarBackground];
-                    [[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
+                   // [[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
+                    [[UITabBar appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
                     
                     FeedV2ViewController *firstViewController=[[FeedV2ViewController alloc]initWithNibName:@"FeedV2ViewController" bundle:nil];
                     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:firstViewController];

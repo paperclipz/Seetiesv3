@@ -81,7 +81,7 @@
     NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
     NSLog(@"theRequest === %@",theRequest);
     [theRequest addValue:@"" forHTTPHeaderField:@"Accept-Encoding"];
-    
+
     theConnection_GetFollower = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
     [theConnection_GetFollower start];
     

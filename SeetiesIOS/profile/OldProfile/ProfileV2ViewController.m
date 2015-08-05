@@ -1342,7 +1342,7 @@ NSLog(@"Init Draft click");
         
         NSString *ErrorString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"error"]];
      //   NSLog(@"ErrorString is %@",ErrorString);
-        NSString *MessageString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"message"]];
+     //   NSString *MessageString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"message"]];
      //   NSLog(@"MessageString is %@",MessageString);
         
         if ([ErrorString isEqualToString:@"0"]) {
@@ -2135,9 +2135,9 @@ NSLog(@"Init Draft click");
                         [f setDateFormat:@"yyyy-MM-dd"];
                         // NSDate *startDate = [f dateFromString:start];
                         NSDate *now = [NSDate date];
-                        
-                        NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-                        NSDateComponents *components = [gregorianCalendar components:NSDayCalendarUnit
+                
+                        NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+                        NSDateComponents *components = [gregorianCalendar components:NSCalendarUnitDay
                                                                             fromDate:date
                                                                               toDate:now
                                                                              options:0];

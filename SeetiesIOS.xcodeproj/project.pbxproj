@@ -26,8 +26,6 @@
 		8AD6BE501B706CF30040437E /* ExploreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BAEC1B706CF10040437E /* ExploreViewController.xib */; };
 		8AD6BE511B706CF30040437E /* Filter2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BAEF1B706CF10040437E /* Filter2ViewController.m */; };
 		8AD6BE521B706CF30040437E /* Filter2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BAF01B706CF10040437E /* Filter2ViewController.xib */; };
-		8AD6BE531B706CF30040437E /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BAF21B706CF10040437E /* FilterViewController.m */; };
-		8AD6BE541B706CF30040437E /* FilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BAF31B706CF10040437E /* FilterViewController.xib */; };
 		8AD6BE561B706CF30040437E /* AssetHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BAF91B706CF10040437E /* AssetHelper.m */; };
 		8AD6BE571B706CF30040437E /* DoAlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BAFB1B706CF10040437E /* DoAlbumCell.m */; };
 		8AD6BE581B706CF30040437E /* DoAlbumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BAFC1B706CF10040437E /* DoAlbumCell.xib */; };
@@ -880,9 +878,6 @@
 		8AD6BAEE1B706CF10040437E /* Filter2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Filter2ViewController.h; sourceTree = "<group>"; };
 		8AD6BAEF1B706CF10040437E /* Filter2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Filter2ViewController.m; sourceTree = "<group>"; };
 		8AD6BAF01B706CF10040437E /* Filter2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Filter2ViewController.xib; sourceTree = "<group>"; };
-		8AD6BAF11B706CF10040437E /* FilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterViewController.h; sourceTree = "<group>"; };
-		8AD6BAF21B706CF10040437E /* FilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterViewController.m; sourceTree = "<group>"; };
-		8AD6BAF31B706CF10040437E /* FilterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterViewController.xib; sourceTree = "<group>"; };
 		8AD6BAF51B706CF10040437E /* PEPhotoCropEditor.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PEPhotoCropEditor.bundle; sourceTree = "<group>"; };
 		8AD6BAF81B706CF10040437E /* AssetHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetHelper.h; sourceTree = "<group>"; };
 		8AD6BAF91B706CF10040437E /* AssetHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetHelper.m; sourceTree = "<group>"; };
@@ -2033,9 +2028,6 @@
 				8AD6BAEE1B706CF10040437E /* Filter2ViewController.h */,
 				8AD6BAEF1B706CF10040437E /* Filter2ViewController.m */,
 				8AD6BAF01B706CF10040437E /* Filter2ViewController.xib */,
-				8AD6BAF11B706CF10040437E /* FilterViewController.h */,
-				8AD6BAF21B706CF10040437E /* FilterViewController.m */,
-				8AD6BAF31B706CF10040437E /* FilterViewController.xib */,
 			);
 			path = FilterSorting;
 			sourceTree = "<group>";
@@ -3992,7 +3984,6 @@
 				8AD6BE501B706CF30040437E /* ExploreViewController.xib in Resources */,
 				8AD6C79C1B70934D0040437E /* SearchInBox@2x.png in Resources */,
 				8AD6C74A1B70934D0040437E /* InviteFacebook.png in Resources */,
-				8AD6BE541B706CF30040437E /* FilterViewController.xib in Resources */,
 				8AD6C6FC1B70934D0040437E /* IconBrightness@3x.png in Resources */,
 				8AD6C6F61B70934D0040437E /* GotoPlace@3x.png in Resources */,
 				8AD6C7551B70934D0040437E /* InviteIcon@3x.png in Resources */,
@@ -4250,7 +4241,6 @@
 				8AD6C0B51B706CF30040437E /* InstagramLoginWebViewController.m in Sources */,
 				8AD6C0D61B706CF30040437E /* PSelectYourInterestViewController.m in Sources */,
 				8AD6C2831B7072FB0040437E /* AddLinkViewController.m in Sources */,
-				8AD6BE531B706CF30040437E /* FilterViewController.m in Sources */,
 				8AD6C0FC1B706CF30040437E /* SearchViewV2.m in Sources */,
 				8AD6BE4F1B706CF30040437E /* ExploreViewController.m in Sources */,
 				8AD6C2811B7072FB0040437E /* AddHourViewController.m in Sources */,
