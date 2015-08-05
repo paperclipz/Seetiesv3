@@ -11,70 +11,37 @@
 #import "SearchViewV2Controller.h"
 #import "NewProfileV2ViewController.h"
 @interface TestFeedV2ViewController ()
+{
+    IBOutlet UIScrollView *MainScroll;
+    IBOutlet UIButton *Top;
+    UIRefreshControl *refreshControl;
+    
+    IBOutlet UIActivityIndicatorView *ShowActivity;
+    int heightcheck;
+    
+    NSMutableArray *arrAddress;
+    NSMutableArray *arrTitle;
+    NSMutableArray *arrMessage;
+    NSMutableArray *arrType;
 
+}
 @end
 
 @implementation TestFeedV2ViewController
 
-- (void)viewDidLoad {
-    
-    [super viewDidLoad];
+-(void)initSelfView
+{
     // Do any additional setup after loading the view from its nib.
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     MainScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight);
     MainScroll.delegate = self;
-   // MainScroll.alwaysBounceHorizontal = YES;
+    // MainScroll.alwaysBounceHorizontal = YES;
     MainScroll.alwaysBounceVertical = YES;
     
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     
     heightcheck = 0;
-    
-    AddressArray = [[NSMutableArray alloc]init];
-    [AddressArray addObject:@"Love Hotel, Tapipei City, Taiwan"];
-    [AddressArray addObject:@""];
-    [AddressArray addObject:@"Setapak, Malaysia"];
-    [AddressArray addObject:@"Thailand"];
-    [AddressArray addObject:@""];
-    [AddressArray addObject:@"ss17, Petaling Jaya"];
-    [AddressArray addObject:@"Port Dickson, Malaysia"];
-    [AddressArray addObject:@""];
-    [AddressArray addObject:@"Port Dickson, Malaysia"];
-    
-    TitleArray = [[NSMutableArray alloc]init];
-    [TitleArray addObject:@"A Good Homestay in Taiwan"];
-    [TitleArray addObject:@""];
-    [TitleArray addObject:@""];
-    [TitleArray addObject:@"A Good Homestay in Taiwan"];
-    [TitleArray addObject:@""];
-    [TitleArray addObject:@""];
-    [TitleArray addObject:@""];
-    [TitleArray addObject:@""];
-    [TitleArray addObject:@"A Good Homestay in Taiwan"];
-    
-    MessageArray = [[NSMutableArray alloc]init];
-    [MessageArray addObject:@"It's 5 a.m., and although my head hit the pillow, post-nightcap, just a few hours prior, i can't sleep,. As always when i travel, i'm tired to afbhiafnjeafj aefjeajfeaj feajf eajf jnea"];
-    [MessageArray addObject:@""];
-    [MessageArray addObject:@""];
-    [MessageArray addObject:@"It's 5 a.m., and although my head hit the pillow, post-nightcap, just a few hours prior, i can't sleep,. As always when i travel, i'm tired to afbhiafnjeafj aefjeajfeaj feajf eajf jnea"];
-    [MessageArray addObject:@""];
-    [MessageArray addObject:@"It's 5 a.m., and although my head hit the pillow, post-nightcap, just a few hours prior, i can't sleep,. As always when i travel, i'm tired to afbhiafnjeafj aefjeajfeaj feajf eajf jnea"];
-    [MessageArray addObject:@""];
-    [MessageArray addObject:@""];
-    [MessageArray addObject:@"It's 5 a.m., and although my head hit the pillow, post-nightcap, just a few hours prior, i can't sleep,. As always when i travel, i'm tired to afbhiafnjeafj aefjeajfeaj feajf eajf jnea"];
-    
-    TypeArray = [[NSMutableArray alloc]init];
-    [TypeArray addObject:@"Post"];
-    [TypeArray addObject:@"Promotion"];
-    [TypeArray addObject:@"Post"];
-    [TypeArray addObject:@"Post"];
-    [TypeArray addObject:@"User"];
-    [TypeArray addObject:@"Post"];
-    [TypeArray addObject:@"Post"];
-    [TypeArray addObject:@"Promotion"];
-    [TypeArray addObject:@"Post"];
-
     refreshControl = [[UIRefreshControl alloc] init];
     refreshControl.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Loading..."];
@@ -90,6 +57,63 @@
         [ShowActivity startAnimating];
         [self LoadInitView];
     }
+
+}
+
+-(void)initData
+{
+    arrAddress = [[NSMutableArray alloc]init];
+    [arrAddress addObject:@"Love Hotel, Tapipei City, Taiwan"];
+    [arrAddress addObject:@""];
+    [arrAddress addObject:@"Setapak, Malaysia"];
+    [arrAddress addObject:@"Thailand"];
+    [arrAddress addObject:@""];
+    [arrAddress addObject:@"ss17, Petaling Jaya"];
+    [arrAddress addObject:@"Port Dickson, Malaysia"];
+    [arrAddress addObject:@""];
+    [arrAddress addObject:@"Port Dickson, Malaysia"];
+    
+    arrTitle = [[NSMutableArray alloc]init];
+    [arrTitle addObject:@"A Good Homestay in Taiwan"];
+    [arrTitle addObject:@""];
+    [arrTitle addObject:@""];
+    [arrTitle addObject:@"A Good Homestay in Taiwan"];
+    [arrTitle addObject:@""];
+    [arrTitle addObject:@""];
+    [arrTitle addObject:@""];
+    [arrTitle addObject:@""];
+    [arrTitle addObject:@"A Good Homestay in Taiwan"];
+    
+    arrMessage = [[NSMutableArray alloc]init];
+    [arrMessage addObject:@"It's 5 a.m., and although my head hit the pillow, post-nightcap, just a few hours prior, i can't sleep,. As always when i travel, i'm tired to afbhiafnjeafj aefjeajfeaj feajf eajf jnea"];
+    [arrMessage addObject:@""];
+    [arrMessage addObject:@""];
+    [arrMessage addObject:@"It's 5 a.m., and although my head hit the pillow, post-nightcap, just a few hours prior, i can't sleep,. As always when i travel, i'm tired to afbhiafnjeafj aefjeajfeaj feajf eajf jnea"];
+    [arrMessage addObject:@""];
+    [arrMessage addObject:@"It's 5 a.m., and although my head hit the pillow, post-nightcap, just a few hours prior, i can't sleep,. As always when i travel, i'm tired to afbhiafnjeafj aefjeajfeaj feajf eajf jnea"];
+    [arrMessage addObject:@""];
+    [arrMessage addObject:@""];
+    [arrMessage addObject:@"It's 5 a.m., and although my head hit the pillow, post-nightcap, just a few hours prior, i can't sleep,. As always when i travel, i'm tired to afbhiafnjeafj aefjeajfeaj feajf eajf jnea"];
+    
+    arrType = [[NSMutableArray alloc]init];
+    [arrType addObject:@"Post"];
+    [arrType addObject:@"Promotion"];
+    [arrType addObject:@"Post"];
+    [arrType addObject:@"Post"];
+    [arrType addObject:@"User"];
+    [arrType addObject:@"Post"];
+    [arrType addObject:@"Post"];
+    [arrType addObject:@"Promotion"];
+    [arrType addObject:@"Post"];
+
+}
+
+- (void)viewDidLoad {
+    
+    [super viewDidLoad];
+    [self initData];
+    [self initSelfView];
+
     
     
 
@@ -173,7 +197,7 @@
     
     for ( int i = 0; i < 9; i++) {
         
-        NSString *GetType = [TypeArray objectAtIndex:i];
+        NSString *GetType = [arrType objectAtIndex:i];
         if ([GetType isEqualToString:@"Post"]) {
             int TempHeight = heightcheck + i;
             int TempCountWhiteHeight = 0;
@@ -244,7 +268,7 @@
             
             UILabel *ShowAddress = [[UILabel alloc]init];
             ShowAddress.frame = CGRectMake(20, heightcheck + i, screenWidth - 40, 20);
-            ShowAddress.text = [AddressArray objectAtIndex:i];
+            ShowAddress.text = [arrAddress objectAtIndex:i];
             ShowAddress.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
             ShowAddress.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
             [MainScroll addSubview:ShowAddress];
@@ -253,7 +277,7 @@
             TempCountWhiteHeight = newImage.size.height + 25;
             
             
-            NSString *TempGetStirng = [[NSString alloc]initWithFormat:@"%@",[TitleArray objectAtIndex:i]];
+            NSString *TempGetStirng = [[NSString alloc]initWithFormat:@"%@",[arrTitle objectAtIndex:i]];
             if ([TempGetStirng length] == 0 || [TempGetStirng isEqualToString:@""] || [TempGetStirng isEqualToString:@"(null)"]) {
                 
             }else{
@@ -276,7 +300,7 @@
                 TempCountWhiteHeight += ShowTitle.frame.size.height + 10;
             }
             
-            NSString *TempGetMessage = [[NSString alloc]initWithFormat:@"%@",[MessageArray objectAtIndex:i]];
+            NSString *TempGetMessage = [[NSString alloc]initWithFormat:@"%@",[arrMessage objectAtIndex:i]];
             //TempGetMessage = [TempGetMessage stringByDecodingXMLEntities];
             if ([TempGetMessage length] == 0 || [TempGetMessage isEqualToString:@""] || [TempGetMessage isEqualToString:@"(null)"]) {
                 

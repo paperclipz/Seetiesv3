@@ -89,8 +89,7 @@
         UIImageView *ShowImage_Feed = [[UIImageView alloc]init];
         ShowImage_Feed.frame = CGRectMake((screenWidth / 2) - 175 , screenHeight - 50, 50, 50);
         ShowImage_Feed.image = [UIImage imageNamed:@"TabBarFeed.png"];
-        [self.tabBarController.view addSubview:ShowImage_Feed];
-        
+      //  [self.tabBarController.view addSubview:ShowImage_Feed];
         UIImageView *ShowImage_Explore = [[UIImageView alloc]init];
         ShowImage_Explore.frame = CGRectMake((screenWidth / 2) - 100, screenHeight - 50, 50, 50);
         ShowImage_Explore.image = [UIImage imageNamed:@"TabBarExplore.png"];
@@ -115,7 +114,7 @@
         UIImageView *ShowImage_Feed = [[UIImageView alloc]init];
         ShowImage_Feed.frame = CGRectMake((screenWidth / 2) - 153 , screenHeight - 50, 50, 50);
         ShowImage_Feed.image = [UIImage imageNamed:@"TabBarFeed.png"];
-        [self.tabBarController.view addSubview:ShowImage_Feed];
+       // [self.tabBarController.view addSubview:ShowImage_Feed];
         
         UIImageView *ShowImage_Explore = [[UIImageView alloc]init];
         ShowImage_Explore.frame = CGRectMake((screenWidth / 2) - 89, screenHeight - 50, 50, 50);

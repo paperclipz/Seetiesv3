@@ -14,6 +14,18 @@ typedef enum
     ServerRequestTypeNewsFeed = 2
     
 }ServerRequestType;
+
+typedef enum
+{
+    ViewTypeNewsFeed = 1,
+    ViewTypeExplore = 2,
+    ViewTypeNitification = 3,
+    ViewTypeExploreProfile
+    
+}ViewType;
+
+
 extern NSString *const SERVER_PATH;
+extern NSString *const IP_URL_PATH;
 
 @end

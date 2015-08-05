@@ -61,7 +61,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="SignUpWithEmailButton:" destination="-1" eventType="touchUpInside" id="HmP-91-q9J"/>
+                        <action selector="btnSignupWithEmailClicked:" destination="-1" eventType="touchUpInside" id="IJa-OV-koX"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0gQ-u0-EIL">
@@ -75,7 +75,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="FbButton:" destination="-1" eventType="touchUpInside" id="GFo-cg-DVn"/>
+                        <action selector="btnFacebookClicked:" destination="-1" eventType="touchUpInside" id="pap-Xd-B5J"/>
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LandingLogo.png" id="fYu-yM-GJg">
@@ -92,7 +92,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="ExpertLoginButton:" destination="-1" eventType="touchUpInside" id="EKY-jo-e1e"/>
+                        <action selector="BtnExpertLoginClicked:" destination="-1" eventType="touchUpInside" id="z5S-ED-3Tr"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="iNb-UJ-Hby">

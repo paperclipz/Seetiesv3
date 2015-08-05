@@ -1034,9 +1034,6 @@
 		8AD6BE1C1B706CF30040437E /* pin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin@2x.png"; sourceTree = "<group>"; };
 		8AD6BE1D1B706CF30040437E /* poweredByFoursquare_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poweredByFoursquare_gray.png; sourceTree = "<group>"; };
 		8AD6BE1E1B706CF30040437E /* poweredByFoursquare_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "poweredByFoursquare_gray@2x.png"; sourceTree = "<group>"; };
-		8AD6BE201B706CF30040437E /* TestFeedV2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFeedV2ViewController.h; sourceTree = "<group>"; };
-		8AD6BE211B706CF30040437E /* TestFeedV2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestFeedV2ViewController.m; sourceTree = "<group>"; };
-		8AD6BE221B706CF30040437E /* TestFeedV2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestFeedV2ViewController.xib; sourceTree = "<group>"; };
 		8AD6C11F1B706DFF0040437E /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
 		8AD6C1201B706DFF0040437E /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
 		8AD6C1211B706DFF0040437E /* GAIEcommerceFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceFields.h; sourceTree = "<group>"; };
@@ -1957,7 +1954,6 @@
 				8AD6BDDE1B706CF30040437E /* Search */,
 				8AD6BDF21B706CF30040437E /* Setting */,
 				8AD6BE0D1B706CF30040437E /* SocialNetwork */,
-				8AD6BE1F1B706CF30040437E /* TestFeedsv2 */,
 				8AD6BA611B705DF20040437E /* AppDelegate.h */,
 				8AD6BA621B705DF20040437E /* AppDelegate.m */,
 				8AD6BA641B705DF20040437E /* ViewController.h */,
@@ -2344,16 +2340,6 @@
 				8AD6BE1E1B706CF30040437E /* poweredByFoursquare_gray@2x.png */,
 			);
 			path = FourSquare;
-			sourceTree = "<group>";
-		};
-		8AD6BE1F1B706CF30040437E /* TestFeedsv2 */ = {
-			isa = PBXGroup;
-			children = (
-				8AD6BE201B706CF30040437E /* TestFeedV2ViewController.h */,
-				8AD6BE211B706CF30040437E /* TestFeedV2ViewController.m */,
-				8AD6BE221B706CF30040437E /* TestFeedV2ViewController.xib */,
-			);
-			path = TestFeedsv2;
 			sourceTree = "<group>";
 		};
 		8AD6C11E1B706DFF0040437E /* GoogleAnalyticsServicesiOS_3.09 */ = {

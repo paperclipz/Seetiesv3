@@ -10,5 +10,7 @@
 
 @implementation SConstant
 NSString *const SERVER_PATH = @"www.google.com";
+NSString *const IP_URL_PATH = @"https://geoip.seeties.me/geoip/index.php";
+
 
 @end

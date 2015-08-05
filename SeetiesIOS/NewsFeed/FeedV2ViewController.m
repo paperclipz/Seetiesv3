@@ -28,6 +28,94 @@
 #include <ifaddrs.h>
 #include <arpa/inet.h>
 @interface FeedV2ViewController ()<CLLocationManagerDelegate>
+{
+    IBOutlet UIScrollView *MainScroll;
+    IBOutlet UIActivityIndicatorView *ShowActivity;
+    IBOutlet UIView *KosongView;
+    UrlDataClass *DataUrl;
+    NSMutableData *webData;
+    //LLARingSpinnerView *spinnerView;
+    NSURLConnection *theConnection_All;
+    NSURLConnection *theConnection_MorePost;
+    NSURLConnection *theConnection_UserSuggestions;
+    NSURLConnection *theConnection_Following;
+    //data array
+    NSMutableArray *TitleArray;
+    NSMutableArray *UserInfo_NameArray;
+    NSMutableArray *UserInfo_UrlArray;
+    NSMutableArray *PhotoArray;
+    NSMutableArray *PhotoCaptionArray;
+    NSMutableArray *LocationDataArray;
+    NSMutableArray *UpdatedTimeArray;
+    NSMutableArray *SelfCheckLikeArray;
+    NSMutableArray *TotalLikeArray;
+    NSMutableArray *TotalCommentArray;
+    NSMutableArray *PostIDArray;
+    NSMutableArray *PlaceNameArray;
+    NSMutableArray *MessageArray;
+    NSMutableArray *DistanceArray;
+    NSMutableArray *SearchDisplayNameArray;
+    
+    NSInteger TotalPage;
+    NSInteger CurrentPage;
+    NSInteger DataCount;
+    NSInteger DataTotal;
+    
+    BOOL CheckLoad;
+    BOOL CheckSuggestions;
+    BOOL CheckFirstTimeUser;
+    NSInteger CountFollowFirstTime;
+    
+    //user suggestions data
+    NSMutableArray *User_IDArray;
+    NSMutableArray *User_NameArray;
+    NSMutableArray *User_LocationArray;
+    NSMutableArray *User_ProfilePhotoArray;
+    NSMutableArray *User_PhotoArray;
+    NSMutableArray *User_UserNameArray;
+    
+    NSString *GetUserID;
+    
+    UIScrollView *ShowUserSuggestionsView;
+    
+    NSInteger CheckFollow;
+    NSInteger AddFollowCount;
+    
+    IBOutlet UILabel *ShowFeedText;
+    IBOutlet UIButton *NearbyButton;
+    IBOutlet UIImageView *BarImage;
+    
+    BOOL CheckLoadDone;
+    NSInteger DontLoadAgain;
+    
+    NSString *latPoint;
+    NSString *lonPoint;
+    int heightcheck;
+    UIActivityIndicatorView * activityindicator1;
+    
+    IBOutlet UIImageView *ArrowIcon;
+    IBOutlet UILabel *KosongLabel_1;
+    IBOutlet UILabel *KosongLabel_2;
+    
+    NSInteger CheckGoPost;
+    
+    IBOutlet UIButton *FilterButton;
+    
+    IBOutlet UIButton *ClickBackToTopButton;
+    
+    NSString *GetPromotionImage;
+    NSString *GetPromotionUserName;
+    
+    BOOL CheckPromotion;
+    
+    NSString *ExternalIPAddress;
+    
+    UIButton *ShowSelectImageButton;
+    UIButton *ShowSelectDaftButton;
+    UIView *TempBackground;
+    BOOL CheckButtonClick;
+
+}
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;
 
@@ -35,15 +123,33 @@
 #define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 @implementation FeedV2ViewController
 
-- (void)viewDidLoad {
-
-    [super viewDidLoad];
+-(void)initSelfView
+{
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
-    // Do any additional setup after loading the view from its nib.
-    DataUrl = [[UrlDataClass alloc]init];
     
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    MainScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight - 104);
+    ClickBackToTopButton.frame = CGRectMake(0, 0, screenWidth, 64);
+    ShowFeedText.frame = CGRectMake(15, 20, screenWidth - 30, 44);
+    BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
+    NearbyButton.frame = CGRectMake(screenWidth - 84 - 15, 27, 84, 30);
+    KosongView.hidden = YES;
+    KosongView.frame = CGRectMake(0, screenHeight - 150, screenWidth, 100);
+    
+    ArrowIcon.frame = CGRectMake((screenWidth / 2) - 8, 8, 16, 16);
+    KosongLabel_1.frame = CGRectMake(15, 41, screenWidth - 30, 21);
+    KosongLabel_2.frame = CGRectMake(15, 63, screenWidth - 30, 21);
+    ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
+
+}
+
+- (void)viewDidLoad {
+
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+    DataUrl = [[UrlDataClass alloc]init];
+    [self initSelfView];
     
     CheckLoad = NO;
     CheckSuggestions = NO;
@@ -54,19 +160,9 @@
     [MainScroll setScrollEnabled:YES];
      MainScroll.alwaysBounceVertical = TRUE;
     MainScroll.backgroundColor = [UIColor whiteColor];
-    MainScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight - 104);
-    ClickBackToTopButton.frame = CGRectMake(0, 0, screenWidth, 64);
-    ShowFeedText.frame = CGRectMake(15, 20, screenWidth - 30, 44);
-    BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
-    NearbyButton.frame = CGRectMake(screenWidth - 84 - 15, 27, 84, 30);
+  
    // [self InitView];
    // [self GetFeedDataFromServer];
-    KosongView.hidden = YES;
-    KosongView.frame = CGRectMake(0, screenHeight - 150, screenWidth, 100);
-    
-    ArrowIcon.frame = CGRectMake((screenWidth / 2) - 8, 8, 16, 16);
-    KosongLabel_1.frame = CGRectMake(15, 41, screenWidth - 30, 21);
-    KosongLabel_2.frame = CGRectMake(15, 63, screenWidth - 30, 21);
     
     ShowFeedText.text = CustomLocalisedString(@"MainTab_Feed",nil);
     [NearbyButton setTitle:CustomLocalisedString(@"NearBy",nil) forState:UIControlStateNormal];
@@ -109,7 +205,6 @@
     heightcheck = 0;
     CountFollowFirstTime = 3;
     
-    ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     
     
     
