@@ -506,14 +506,15 @@
 }
 
 -(IBAction)SearchButton:(id)sender{
-
     SearchViewV2Controller *SearchView = [[SearchViewV2Controller alloc]initWithNibName:@"SearchViewV2Controller" bundle:nil];
-    [self presentViewController:SearchView animated:YES completion:nil];
+    //[self presentViewController:SearchView animated:YES completion:nil];
+    [self.view.window.rootViewController presentViewController:SearchView animated:YES completion:nil];
 }
 -(IBAction)FiltersButton:(id)sender{
     NSLog(@"Open Filters Button Click");
     Filter2ViewController *FilterView = [[Filter2ViewController alloc]init];
-    [self presentViewController:FilterView animated:YES completion:nil];
+    //[self presentViewController:FilterView animated:YES completion:nil];
+    [self.view.window.rootViewController presentViewController:FilterView animated:YES completion:nil];
     [FilterView GetWhatViewComeHere:@"Feed"];
 }
 @end

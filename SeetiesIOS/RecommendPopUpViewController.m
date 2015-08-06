@@ -112,7 +112,7 @@
     cont.nColumnCount = 3;
     
     [self presentViewController:cont animated:YES completion:nil];
-    
+    //[self.view.window.rootViewController presentViewController:cont animated:YES completion:nil];
 }
 -(IBAction)BackgroundButton:(id)sender{
     [UIView animateWithDuration:0.2f
