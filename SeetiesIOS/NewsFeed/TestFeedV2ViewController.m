@@ -11,33 +11,13 @@
 #import "SearchViewV2Controller.h"
 #import "Filter2ViewController.h"
 @interface TestFeedV2ViewController ()
-{
-    IBOutlet UIScrollView *MainScroll;
-    IBOutlet UIButton *Top;
-    UIRefreshControl *refreshControl;
-    
-    IBOutlet UIActivityIndicatorView *ShowActivity;
-    int heightcheck;
-    
-    NSMutableArray *arrAddress;
-    NSMutableArray *arrTitle;
-    NSMutableArray *arrMessage;
-    NSMutableArray *arrType;
 
-}
 @end
 
 @implementation TestFeedV2ViewController
 
-<<<<<<< HEAD
-- (void)viewDidLoad {
-    
-    [super viewDidLoad];
-    [[self navigationController] setNavigationBarHidden:YES animated:YES];
-=======
 -(void)initSelfView
 {
->>>>>>> 51808a06ba337fe0ab3d9ee605e63dc1504fd9ae
     // Do any additional setup after loading the view from its nib.
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
@@ -133,7 +113,7 @@
     [self initData];
     [self initSelfView];
 
-    
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
     
 
 

@@ -9,18 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "GAITrackedViewController.h"
 #import "UrlDataClass.h"
-@class LeveyTabBarController;
-@interface LandingV2ViewController : GAITrackedViewController{
-    LeveyTabBarController *leveyTabBarController;
-    
-
 #import "Explore2ViewController.h"
 #import "FeedV2ViewController.h"
 #import "SelectImageViewController.h"
 #import "NotificationViewController.h"
 #import "ProfileV2ViewController.h"
-
+@class LeveyTabBarController;
 @interface LandingV2ViewController : GAITrackedViewController <UITabBarControllerDelegate>{
+    
+    LeveyTabBarController *leveyTabBarController;
+    
 IBOutlet UIButton *FBLoginButton;
 IBOutlet UIButton *LogInButton;
 IBOutlet UIButton *WhyWeUseFBButton;
