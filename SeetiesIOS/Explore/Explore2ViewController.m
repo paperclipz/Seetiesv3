@@ -9,23 +9,20 @@
 #import "Explore2ViewController.h"
 #import "LanguageManager.h"
 #import "Locale.h"
-#import "Constants.h"
 #import "AsyncImageView.h"
-#import "ExploreCountryV2ViewController.h"
 #import "OpenWebViewController.h"
 #import "SearchResultV2ViewController.h"
+#import "ExploreCountryV2ViewController.h"
+
 @interface Explore2ViewController ()
 
 @end
 
 @implementation Explore2ViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+-(void)initSelfView
+{
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
-    DataUrl = [[UrlDataClass alloc]init];
-    
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
@@ -33,28 +30,18 @@
     
     CountriesScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight - 114);
     SearchTblView.frame = CGRectMake(0, 64, screenWidth, screenHeight - 114);
-   // MainLine.frame = CGRectMake(0, 113, screenWidth, 1);
     SearchTblView.hidden = YES;
-    //mySearchBar.frame = CGRectMake(0, 20, screenWidth, 44);
     mySearchBar.delegate = self;
-//    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setDefaultTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Helvetica" size:14], NSForegroundColorAttributeName:[UIColor whiteColor]}];
     [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setDefaultTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
-    
     [mySearchBar setTintColor:[UIColor whiteColor]];
     
-    
     [self.view addSubview:SearchTblView];
-
-    
-//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
-//                                   initWithTarget:self
-//                                   action:@selector(dismissKeyboard)];
-//    
-//    [self.view addGestureRecognizer:tap];
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
-    [self GetExploreDataFromServer];
-    CheckTblview = 0;
-    
+
+}
+
+-(void)initData
+{
     LocalSearchTextArray = [[NSMutableArray alloc]init];
     [LocalSearchTextArray addObject:@"Coffee"];
     [LocalSearchTextArray addObject:@"Pizza"];
@@ -62,21 +49,24 @@
     [LocalSearchTextArray addObject:@"Sushi"];
     [LocalSearchTextArray addObject:@"Museum"];
     [LocalSearchTextArray addObject:@"Hiking"];
-}
-//-(void)dismissKeyboard
-//{
-//    [mySearchBar setShowsCancelButton:NO animated:YES];
-//    [mySearchBar resignFirstResponder];
-//    SearchTblView.hidden = YES;
-//}
 
+}
+
+- (void)viewDidLoad {
+    
+    [super viewDidLoad];
+    [self initData];
+    [self initSelfView];
+    [self GetExploreDataFromServer];
+    CheckTblview = 0;
+    
+  }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
     SearchTblView.hidden = NO;
     [searchBar setShowsCancelButton:YES animated:YES];
 }
-
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
 {
@@ -221,7 +211,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
     
-    NSString *FullString = [[NSString alloc]initWithFormat:@"%@?token=%@",DataUrl.Explore_Url,GetExpertToken];
+    NSString *FullString = [[NSString alloc]initWithFormat:@"%@?token=%@",[[UrlDataClass sharedManager] Explore_Url],GetExpertToken];
     
     
     NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];

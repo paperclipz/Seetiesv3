@@ -18,7 +18,7 @@
 
 #import "LanguageManager.h"
 #import "Locale.h"
-#import "Constants.h"
+
 @interface SettingsViewController ()
 @property (nonatomic, strong) LLARingSpinnerView *spinnerView;
 @end

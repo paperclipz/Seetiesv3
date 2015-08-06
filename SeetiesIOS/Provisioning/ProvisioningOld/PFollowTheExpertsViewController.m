@@ -19,7 +19,6 @@
 
 #import "LanguageManager.h"
 #import "Locale.h"
-#import "Constants.h"
 @interface PFollowTheExpertsViewController ()
 
 @end

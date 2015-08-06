@@ -9,7 +9,7 @@
 #import "SearchViewV2Controller.h"
 #import "LanguageManager.h"
 #import "Locale.h"
-#import "Constants.h"
+
 @interface SearchViewV2Controller ()
 
 @end

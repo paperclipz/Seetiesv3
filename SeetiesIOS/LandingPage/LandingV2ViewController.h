@@ -13,6 +13,14 @@
 @interface LandingV2ViewController : GAITrackedViewController{
     LeveyTabBarController *leveyTabBarController;
     
+
+#import "Explore2ViewController.h"
+#import "FeedV2ViewController.h"
+#import "SelectImageViewController.h"
+#import "NotificationViewController.h"
+#import "ProfileV2ViewController.h"
+
+@interface LandingV2ViewController : GAITrackedViewController <UITabBarControllerDelegate>{
 IBOutlet UIButton *FBLoginButton;
 IBOutlet UIButton *LogInButton;
 IBOutlet UIButton *WhyWeUseFBButton;
@@ -52,6 +60,31 @@ IBOutlet UIActivityIndicatorView *ShowActivity;
 -(IBAction)SignUpWithEmailButton:(id)sender;
 -(IBAction)InstagramButton:(id)sender;
 
+//@property (nonatomic,strong)
+
+
 -(void)UploadInformationToServer;
 -(void)GetAlllanguages;
+
+
+//=========================================== Revamp Changes =======================================//
+
+@property(nonatomic,strong)UITabBarController* tabBarController;
+
+@property(nonatomic,strong)FeedV2ViewController* feedV2ViewController;
+@property(nonatomic,strong)UINavigationController* navFeedV2ViewController;
+
+@property(nonatomic,strong)Explore2ViewController* explore2ViewController;
+@property(nonatomic,strong)UINavigationController* navExplore2ViewController;
+
+@property(nonatomic,strong)SelectImageViewController* selectImageViewController;
+@property(nonatomic,strong)UINavigationController* navSelectImageViewController;
+
+@property(nonatomic,strong)NotificationViewController* notificationViewController;
+@property(nonatomic,strong)UINavigationController* navNotificationViewController;
+
+@property(nonatomic,strong)ProfileV2ViewController* profileV2ViewController;
+@property(nonatomic,strong)UINavigationController* navProfileV2ViewController;
+//=========================================== Revamp Changes =======================================//
+
 @end

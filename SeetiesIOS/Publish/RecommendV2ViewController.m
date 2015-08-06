@@ -20,7 +20,7 @@
 
 #import "LanguageManager.h"
 #import "Locale.h"
-#import "Constants.h"
+
 
 #import "ConfirmPlaceViewController.h"
 #import "ShowImageViewController.h"

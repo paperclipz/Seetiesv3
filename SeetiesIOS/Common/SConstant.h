@@ -8,12 +8,45 @@
 #import <Foundation/Foundation.h>
 
 @interface SConstant : NSObject
+
+
 typedef enum
 {
     ServerRequestTypeLogin = 1,
     ServerRequestTypeNewsFeed = 2
     
 }ServerRequestType;
-extern NSString *const SERVER_PATH;
+
+typedef enum
+{
+    ViewTypeNewsFeed = 1,
+    ViewTypeExplore = 2,
+    ViewTypeNitification = 3,
+    ViewTypeExploreProfile
+    
+}ViewType;
+
+extern NSString *const SERVER_PATH_LIVE;
+extern NSString *const SERVER_PATH_DEV;
+extern NSString *const SERVER_SUBPATH;
+
+
+extern NSString *const IP_URL_PATH;
+
 
 @end
+
+#ifndef Language_Changer_Constants_h
+#define Language_Changer_Constants_h
+
+// NSUserDefaults keys
+#define DEFAULTS_KEY_LANGUAGE_CODE @"LanguageCode" // The key against which to store the selected language code.
+
+/*
+ * Custom localised string macro, functioning in a similar way to the standard NSLocalisedString().
+ */
+#define CustomLocalisedString(key, comment) \
+[[LanguageManager sharedLanguageManager] getTranslationForKey:key]
+
+#endif
+

@@ -15,7 +15,6 @@
 
 #import "LanguageManager.h"
 #import "Locale.h"
-#import "Constants.h"
 @interface SelectImageViewController ()
 @property (nonatomic, strong) ALAssetsLibrary *assetsLibrary;
 @property (nonatomic, strong) NSMutableArray *groups;

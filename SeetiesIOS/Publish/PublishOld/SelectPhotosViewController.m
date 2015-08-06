@@ -13,7 +13,6 @@
 
 #import "LanguageManager.h"
 #import "Locale.h"
-#import "Constants.h"
 
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <QuartzCore/QuartzCore.h>

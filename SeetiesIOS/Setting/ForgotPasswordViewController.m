@@ -11,7 +11,7 @@
 
 #import "LanguageManager.h"
 #import "Locale.h"
-#import "Constants.h"
+
 @interface ForgotPasswordViewController ()
 @property (nonatomic, strong) LLARingSpinnerView *spinnerView;
 @end

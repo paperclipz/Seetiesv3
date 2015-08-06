@@ -11,7 +11,6 @@
 
 #import "LanguageManager.h"
 #import "Locale.h"
-#import "Constants.h"
 @interface ShowFollowerAndFollowingViewController ()
 
 @end

@@ -10,7 +10,6 @@
 //#import "ProgressHUD.h"
 #import "LanguageManager.h"
 #import "Locale.h"
-#import "Constants.h"
 @interface EditInterestViewController ()
 
 @end

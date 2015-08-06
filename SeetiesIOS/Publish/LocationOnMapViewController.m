@@ -9,7 +9,6 @@
 #import "LocationOnMapViewController.h"
 #import "LanguageManager.h"
 #import "Locale.h"
-#import "Constants.h"
 @interface LocationOnMapViewController ()
 
 @end

@@ -9,7 +9,7 @@
 #import "OpenWebViewController.h"
 #import "LanguageManager.h"
 #import "Locale.h"
-#import "Constants.h"
+
 @interface OpenWebViewController ()
 
 @end

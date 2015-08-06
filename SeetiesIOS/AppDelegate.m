@@ -20,7 +20,7 @@
 #import "PublishViewController.h"
 #import "PublishMainViewController.h"
 #import "AddLocationViewController.h"
-#import "Constants.h"
+
 #import "LanguageManager.h"
 #import "Locale.h"
 #import "SearchViewV2.h"
@@ -85,7 +85,6 @@
     [defaults setObject:APIVersionSet forKey:@"APIVersionSet"];
     [defaults synchronize];
     [self CheckApiVersion];
-    
     
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -528,6 +527,11 @@
         //live
         CheckAPI = @"1";
     }
+    
+    // ========== Set live or dev environment server path to conneciton manager ========== //
+    [ConnectionManager setDeploymentType:[CheckAPI intValue]];
+    // ========== Set live or dev environment server path to conneciton manager ========== //
+
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:CheckAPI forKey:@"CheckAPI"];
     [defaults synchronize];

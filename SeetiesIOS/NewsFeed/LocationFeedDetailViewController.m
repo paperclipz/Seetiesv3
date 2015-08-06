@@ -9,7 +9,6 @@
 #import "LocationFeedDetailViewController.h"
 #import "LanguageManager.h"
 #import "Locale.h"
-#import "Constants.h"
 @interface LocationFeedDetailViewController ()
 
 @end

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+<<<<<<< HEAD
 @interface TestFeedV2ViewController : UIViewController<UIScrollViewDelegate>{
 
     IBOutlet UIScrollView *MainScroll;
@@ -26,4 +27,7 @@
     NSMutableArray *TypeArray;
 }
 -(IBAction)SearchButton:(id)sender;
+=======
+@interface TestFeedV2ViewController : UIViewController<UIScrollViewDelegate>
+>>>>>>> 51808a06ba337fe0ab3d9ee605e63dc1504fd9ae
 @end

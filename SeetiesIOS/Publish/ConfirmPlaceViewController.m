@@ -14,7 +14,6 @@
 #import "AddLinkViewController.h"
 #import "LanguageManager.h"
 #import "Locale.h"
-#import "Constants.h"
 #import "WhereIsThisViewController.h"
 #import "RecommendV2ViewController.h"
 #import "LocationOnMapViewController.h"

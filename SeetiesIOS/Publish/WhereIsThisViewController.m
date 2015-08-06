@@ -22,7 +22,6 @@
 
 #import "LanguageManager.h"
 #import "Locale.h"
-#import "Constants.h"
 @interface WhereIsThisViewController ()<CLLocationManagerDelegate>
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;
