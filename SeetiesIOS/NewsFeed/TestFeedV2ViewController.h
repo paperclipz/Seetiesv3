@@ -8,5 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TestFeedV2ViewController : UIViewController<UIScrollViewDelegate>
+@interface TestFeedV2ViewController : UIViewController<UIScrollViewDelegate>{
+
+    IBOutlet UIScrollView *MainScroll;
+    UIRefreshControl *refreshControl;
+    IBOutlet UIActivityIndicatorView *ShowActivity;
+    IBOutlet UILabel *ShowFeedText;
+    IBOutlet UIButton *SearchButton;
+    IBOutlet UIButton *FilterButton;
+    IBOutlet UIImageView *BarImage;
+    
+    int heightcheck;
+    
+    NSMutableArray *arrAddress;
+    NSMutableArray *arrTitle;
+    NSMutableArray *arrMessage;
+    NSMutableArray *arrType;
+}
+-(IBAction)SearchButton:(id)sender;
+
 @end

@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
     
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
@@ -62,10 +63,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(IBAction)BackButton:(id)sender{
 
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 
 -(void)InitContentView{
     
@@ -383,7 +381,7 @@
     NSLog(@"heightcheck = %d",heightcheck);
     
     CGSize contentSize = MainScroll.frame.size;
-    contentSize.height = GetHeight + CollectionView.frame.size.height;
+    contentSize.height = GetHeight + CollectionView.frame.size.height + 50;
     MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     MainScroll.contentSize = contentSize;
     

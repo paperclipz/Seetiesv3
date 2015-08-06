@@ -83,6 +83,7 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
     self.screenName = @"IOS Profile V2";
+
     if (screenWidth > 320) {
         NSLog(@"iphone 6 / iphone 6 plus");
         UIImageView *ShowImage_Feed = [[UIImageView alloc]init];
@@ -135,6 +136,7 @@
         ShowImage_Profile.image = [UIImage imageNamed:@"TabBarProfile_on.png"];
         [self.tabBarController.view addSubview:ShowImage_Profile];
     }
+
     UIButton *BackToTopButton = [UIButton buttonWithType:UIButtonTypeCustom];
     BackToTopButton.frame = CGRectMake(0, screenHeight - 50, 80, 50);
     [BackToTopButton setTitle:@"" forState:UIControlStateNormal];

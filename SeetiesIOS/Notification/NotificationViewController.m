@@ -50,59 +50,59 @@
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-    if (screenWidth > 320) {
-        NSLog(@"iphone 6 / iphone 6 plus");
-        UIImageView *ShowImage_Feed = [[UIImageView alloc]init];
-        ShowImage_Feed.frame = CGRectMake((screenWidth / 2) - 175 , screenHeight - 50, 50, 50);
-        ShowImage_Feed.image = [UIImage imageNamed:@"TabBarFeed.png"];
-        [self.tabBarController.view addSubview:ShowImage_Feed];
-        
-        UIImageView *ShowImage_Explore = [[UIImageView alloc]init];
-        ShowImage_Explore.frame = CGRectMake((screenWidth / 2) - 100, screenHeight - 50, 50, 50);
-        ShowImage_Explore.image = [UIImage imageNamed:@"TabBarExplore.png"];
-        [self.tabBarController.view addSubview:ShowImage_Explore];
-        
-        UIImageView *ShowImage = [[UIImageView alloc]init];
-        ShowImage.frame = CGRectMake((screenWidth / 2) - 25, screenHeight - 50, 50, 50);
-        ShowImage.image = [UIImage imageNamed:@"TabBarNew.png"];
-        [self.tabBarController.view addSubview:ShowImage];
-        
-        UIImageView *ShowImage_Collecation = [[UIImageView alloc]init];
-        ShowImage_Collecation.frame = CGRectMake((screenWidth / 2) + 50, screenHeight - 50, 50, 50);
-        ShowImage_Collecation.image = [UIImage imageNamed:@"TabBarActivity_on.png"];
-        [self.tabBarController.view addSubview:ShowImage_Collecation];
-        
-        UIImageView *ShowImage_Profile = [[UIImageView alloc]init];
-        ShowImage_Profile.frame = CGRectMake((screenWidth / 2) + 125, screenHeight - 50, 50, 50);
-        ShowImage_Profile.image = [UIImage imageNamed:@"TabBarProfile.png"];
-        [self.tabBarController.view addSubview:ShowImage_Profile];
-    }else{
-        NSLog(@"iphone 5 / iphone 5s / iphone 4");
-        UIImageView *ShowImage_Feed = [[UIImageView alloc]init];
-        ShowImage_Feed.frame = CGRectMake((screenWidth / 2) - 153 , screenHeight - 50, 50, 50);
-        ShowImage_Feed.image = [UIImage imageNamed:@"TabBarFeed.png"];
-        [self.tabBarController.view addSubview:ShowImage_Feed];
-        
-        UIImageView *ShowImage_Explore = [[UIImageView alloc]init];
-        ShowImage_Explore.frame = CGRectMake((screenWidth / 2) - 89, screenHeight - 50, 50, 50);
-        ShowImage_Explore.image = [UIImage imageNamed:@"TabBarExplore.png"];
-        [self.tabBarController.view addSubview:ShowImage_Explore];
-        
-        UIImageView *ShowImage = [[UIImageView alloc]init];
-        ShowImage.frame = CGRectMake((screenWidth / 2) - 25, screenHeight - 50, 50, 50);
-        ShowImage.image = [UIImage imageNamed:@"TabBarNew.png"];
-        [self.tabBarController.view addSubview:ShowImage];
-        
-        UIImageView *ShowImage_Collecation = [[UIImageView alloc]init];
-        ShowImage_Collecation.frame = CGRectMake((screenWidth / 2) + 39, screenHeight - 50, 50, 50);
-        ShowImage_Collecation.image = [UIImage imageNamed:@"TabBarActivity_on.png"];
-        [self.tabBarController.view addSubview:ShowImage_Collecation];
-        
-        UIImageView *ShowImage_Profile = [[UIImageView alloc]init];
-        ShowImage_Profile.frame = CGRectMake((screenWidth / 2) + 106, screenHeight - 50, 50, 50);
-        ShowImage_Profile.image = [UIImage imageNamed:@"TabBarProfile.png"];
-        [self.tabBarController.view addSubview:ShowImage_Profile];
-    }
+//    if (screenWidth > 320) {
+//        NSLog(@"iphone 6 / iphone 6 plus");
+//        UIImageView *ShowImage_Feed = [[UIImageView alloc]init];
+//        ShowImage_Feed.frame = CGRectMake((screenWidth / 2) - 175 , screenHeight - 50, 50, 50);
+//        ShowImage_Feed.image = [UIImage imageNamed:@"TabBarFeed.png"];
+//        [self.tabBarController.view addSubview:ShowImage_Feed];
+//        
+//        UIImageView *ShowImage_Explore = [[UIImageView alloc]init];
+//        ShowImage_Explore.frame = CGRectMake((screenWidth / 2) - 100, screenHeight - 50, 50, 50);
+//        ShowImage_Explore.image = [UIImage imageNamed:@"TabBarExplore.png"];
+//        [self.tabBarController.view addSubview:ShowImage_Explore];
+//        
+//        UIImageView *ShowImage = [[UIImageView alloc]init];
+//        ShowImage.frame = CGRectMake((screenWidth / 2) - 25, screenHeight - 50, 50, 50);
+//        ShowImage.image = [UIImage imageNamed:@"TabBarNew.png"];
+//        [self.tabBarController.view addSubview:ShowImage];
+//        
+//        UIImageView *ShowImage_Collecation = [[UIImageView alloc]init];
+//        ShowImage_Collecation.frame = CGRectMake((screenWidth / 2) + 50, screenHeight - 50, 50, 50);
+//        ShowImage_Collecation.image = [UIImage imageNamed:@"TabBarActivity_on.png"];
+//        [self.tabBarController.view addSubview:ShowImage_Collecation];
+//        
+//        UIImageView *ShowImage_Profile = [[UIImageView alloc]init];
+//        ShowImage_Profile.frame = CGRectMake((screenWidth / 2) + 125, screenHeight - 50, 50, 50);
+//        ShowImage_Profile.image = [UIImage imageNamed:@"TabBarProfile.png"];
+//        [self.tabBarController.view addSubview:ShowImage_Profile];
+//    }else{
+//        NSLog(@"iphone 5 / iphone 5s / iphone 4");
+//        UIImageView *ShowImage_Feed = [[UIImageView alloc]init];
+//        ShowImage_Feed.frame = CGRectMake((screenWidth / 2) - 153 , screenHeight - 50, 50, 50);
+//        ShowImage_Feed.image = [UIImage imageNamed:@"TabBarFeed.png"];
+//        [self.tabBarController.view addSubview:ShowImage_Feed];
+//        
+//        UIImageView *ShowImage_Explore = [[UIImageView alloc]init];
+//        ShowImage_Explore.frame = CGRectMake((screenWidth / 2) - 89, screenHeight - 50, 50, 50);
+//        ShowImage_Explore.image = [UIImage imageNamed:@"TabBarExplore.png"];
+//        [self.tabBarController.view addSubview:ShowImage_Explore];
+//        
+//        UIImageView *ShowImage = [[UIImageView alloc]init];
+//        ShowImage.frame = CGRectMake((screenWidth / 2) - 25, screenHeight - 50, 50, 50);
+//        ShowImage.image = [UIImage imageNamed:@"TabBarNew.png"];
+//        [self.tabBarController.view addSubview:ShowImage];
+//        
+//        UIImageView *ShowImage_Collecation = [[UIImageView alloc]init];
+//        ShowImage_Collecation.frame = CGRectMake((screenWidth / 2) + 39, screenHeight - 50, 50, 50);
+//        ShowImage_Collecation.image = [UIImage imageNamed:@"TabBarActivity_on.png"];
+//        [self.tabBarController.view addSubview:ShowImage_Collecation];
+//        
+//        UIImageView *ShowImage_Profile = [[UIImageView alloc]init];
+//        ShowImage_Profile.frame = CGRectMake((screenWidth / 2) + 106, screenHeight - 50, 50, 50);
+//        ShowImage_Profile.image = [UIImage imageNamed:@"TabBarProfile.png"];
+//        [self.tabBarController.view addSubview:ShowImage_Profile];
+//    }
     
     UIButton *BackToTopButton = [UIButton buttonWithType:UIButtonTypeCustom];
     BackToTopButton.frame = CGRectMake(0, screenHeight - 50, 80, 50);

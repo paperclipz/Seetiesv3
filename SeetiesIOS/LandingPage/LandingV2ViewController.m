@@ -17,6 +17,9 @@
 #import <QuartzCore/QuartzCore.h>
 #import "PTellUsYourCityViewController.h"
 #import "ExploreViewController.h"
+#import "Explore2ViewController.h"
+#import "NotificationViewController.h"
+#import "ProfileV2ViewController.h"
 #import "PublishMainViewController.h"
 
 #import "PTellUsYourCityViewController.h"
@@ -32,6 +35,11 @@
 #import "InstagramLoginWebViewController.h"
 
 #import "CRMotionView.h"
+#import "LeveyTabBarController.h"
+#import "RecommendPopUpViewController.h"
+
+#import "TestFeedV2ViewController.h"
+#import "NewProfileV2ViewController.h"
 @interface LandingV2ViewController ()
 {
 
@@ -39,7 +47,7 @@
 @end
 
 @implementation LandingV2ViewController
-
+@synthesize leveyTabBarController;
 -(void)initSelfView
 {
     DataUrl = [[UrlDataClass alloc]init];
@@ -249,8 +257,50 @@
 }
 -(void)ChangeView2{
     
-    [[[[UIApplication sharedApplication] delegate] window] setRootViewController:self.tabBarController];
+  //  [[[[UIApplication sharedApplication] delegate] window] setRootViewController:self.tabBarController];
     
+    TestFeedV2ViewController *firstViewController=[[TestFeedV2ViewController alloc]initWithNibName:@"TestFeedV2ViewController" bundle:nil];
+    Explore2ViewController *secondViewController=[[Explore2ViewController alloc]initWithNibName:@"Explore2ViewController" bundle:nil];
+    //SelectImageViewController *threeViewController=[[SelectImageViewController alloc]initWithNibName:@"SelectImageViewController" bundle:nil];
+    RecommendPopUpViewController *threeViewController=[[RecommendPopUpViewController alloc]initWithNibName:@"RecommendPopUpViewController" bundle:nil];
+    NotificationViewController *fourViewController=[[NotificationViewController alloc]initWithNibName:@"NotificationViewController" bundle:nil];
+    //ProfileV2ViewController *fiveViewController=[[ProfileV2ViewController alloc]initWithNibName:@"ProfileV2ViewController" bundle:nil];
+    NewProfileV2ViewController *fiveViewController=[[NewProfileV2ViewController alloc]initWithNibName:@"NewProfileV2ViewController" bundle:nil];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:firstViewController];
+    UINavigationController *navController2 = [[UINavigationController alloc] initWithRootViewController:secondViewController];
+    UINavigationController *navController3 = [[UINavigationController alloc] initWithRootViewController:fourViewController];
+    UINavigationController *navController4 = [[UINavigationController alloc] initWithRootViewController:fiveViewController];
+    
+    NSArray *ctrlArr = [NSArray arrayWithObjects:navController,navController2,threeViewController,navController3,navController4,nil];
+    
+    NSMutableDictionary *imgDic = [NSMutableDictionary dictionaryWithCapacity:3];
+    [imgDic setObject:[UIImage imageNamed:@"TabBarFeed.png"] forKey:@"Default"];
+    [imgDic setObject:[UIImage imageNamed:@"TabBarFeed_on.png"] forKey:@"Highlighted"];
+    [imgDic setObject:[UIImage imageNamed:@"TabBarFeed_on.png"] forKey:@"Seleted"];
+    NSMutableDictionary *imgDic2 = [NSMutableDictionary dictionaryWithCapacity:3];
+    [imgDic2 setObject:[UIImage imageNamed:@"TabBarExplore.png"] forKey:@"Default"];
+    [imgDic2 setObject:[UIImage imageNamed:@"TabBarExplore_on.png"] forKey:@"Highlighted"];
+    [imgDic2 setObject:[UIImage imageNamed:@"TabBarExplore_on.png"] forKey:@"Seleted"];
+    NSMutableDictionary *imgDic3 = [NSMutableDictionary dictionaryWithCapacity:3];
+    [imgDic3 setObject:[UIImage imageNamed:@"TabBarNew.png"] forKey:@"Default"];
+    [imgDic3 setObject:[UIImage imageNamed:@"TabBarNew.png"] forKey:@"Highlighted"];
+    [imgDic3 setObject:[UIImage imageNamed:@"TabBarNew.png"] forKey:@"Seleted"];
+    NSMutableDictionary *imgDic4 = [NSMutableDictionary dictionaryWithCapacity:3];
+    [imgDic4 setObject:[UIImage imageNamed:@"TabBarActivity.png"] forKey:@"Default"];
+    [imgDic4 setObject:[UIImage imageNamed:@"TabBarActivity_on.png"] forKey:@"Highlighted"];
+    [imgDic4 setObject:[UIImage imageNamed:@"TabBarActivity_on.png"] forKey:@"Seleted"];
+    NSMutableDictionary *imgDic5 = [NSMutableDictionary dictionaryWithCapacity:3];
+    [imgDic5 setObject:[UIImage imageNamed:@"TabBarProfile.png"] forKey:@"Default"];
+    [imgDic5 setObject:[UIImage imageNamed:@"TabBarProfile_on.png"] forKey:@"Highlighted"];
+    [imgDic5 setObject:[UIImage imageNamed:@"TabBarProfile_on.png"] forKey:@"Seleted"];
+    
+    NSArray *imgArr = [NSArray arrayWithObjects:imgDic,imgDic2,imgDic3,imgDic4,imgDic5,nil];
+    
+    leveyTabBarController = [[LeveyTabBarController alloc] initWithViewControllers:ctrlArr imageArray:imgArr];
+    [leveyTabBarController.tabBar setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
+    [leveyTabBarController setTabBarTransparent:YES];
+    
+    [[[[UIApplication sharedApplication] delegate] window] setRootViewController:leveyTabBarController];
     
 }
 
