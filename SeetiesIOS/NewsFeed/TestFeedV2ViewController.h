@@ -11,10 +11,13 @@
 @interface TestFeedV2ViewController : UIViewController<UIScrollViewDelegate>{
 
     IBOutlet UIScrollView *MainScroll;
-    IBOutlet UIButton *Top;
     UIRefreshControl *refreshControl;
-    
     IBOutlet UIActivityIndicatorView *ShowActivity;
+    IBOutlet UILabel *ShowFeedText;
+    IBOutlet UIButton *SearchButton;
+    IBOutlet UIButton *FilterButton;
+    IBOutlet UIImageView *BarImage;
+    
     int heightcheck;
     
     NSMutableArray *AddressArray;
@@ -23,5 +26,4 @@
     NSMutableArray *TypeArray;
 }
 -(IBAction)SearchButton:(id)sender;
--(IBAction)ProfileButton:(id)sender;
 @end

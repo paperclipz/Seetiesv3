@@ -11,6 +11,9 @@
 		0BD634FD1B71C9B800D82414 /* LeveyTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD634FB1B71C9B800D82414 /* LeveyTabBarController.m */; };
 		0BD635011B71FF8B00D82414 /* RecommendPopUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD634FF1B71FF8B00D82414 /* RecommendPopUpViewController.m */; };
 		0BD635021B71FF8B00D82414 /* RecommendPopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD635001B71FF8B00D82414 /* RecommendPopUpViewController.xib */; };
+		0BE340231B73021B00F49625 /* Adriane Text Bold Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0BE340201B73021B00F49625 /* Adriane Text Bold Italic.otf */; };
+		0BE340241B73021B00F49625 /* ProximaNovaSoft-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BE340211B73021B00F49625 /* ProximaNovaSoft-Bold.ttf */; };
+		0BE340251B73021B00F49625 /* ProximaNovaSoft-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BE340221B73021B00F49625 /* ProximaNovaSoft-Regular.ttf */; };
 		8AD6BA601B705DF20040437E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA5F1B705DF20040437E /* main.m */; };
 		8AD6BA631B705DF20040437E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA621B705DF20040437E /* AppDelegate.m */; };
 		8AD6BA661B705DF20040437E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA651B705DF20040437E /* ViewController.m */; };
@@ -855,6 +858,9 @@
 		0BD634FE1B71FF8B00D82414 /* RecommendPopUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendPopUpViewController.h; sourceTree = "<group>"; };
 		0BD634FF1B71FF8B00D82414 /* RecommendPopUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendPopUpViewController.m; sourceTree = "<group>"; };
 		0BD635001B71FF8B00D82414 /* RecommendPopUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendPopUpViewController.xib; sourceTree = "<group>"; };
+		0BE340201B73021B00F49625 /* Adriane Text Bold Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Adriane Text Bold Italic.otf"; sourceTree = "<group>"; };
+		0BE340211B73021B00F49625 /* ProximaNovaSoft-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNovaSoft-Bold.ttf"; sourceTree = "<group>"; };
+		0BE340221B73021B00F49625 /* ProximaNovaSoft-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNovaSoft-Regular.ttf"; sourceTree = "<group>"; };
 		2B526FE01F3F3414439C16DF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AD6BA5A1B705DF20040437E /* SeetiesIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeetiesIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AD6BA5E1B705DF20040437E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1922,6 +1928,16 @@
 			path = LeveyTabBar;
 			sourceTree = "<group>";
 		};
+		0BE3401F1B73021B00F49625 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				0BE340201B73021B00F49625 /* Adriane Text Bold Italic.otf */,
+				0BE340211B73021B00F49625 /* ProximaNovaSoft-Bold.ttf */,
+				0BE340221B73021B00F49625 /* ProximaNovaSoft-Regular.ttf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
 		34C5B861384748B0A7678DB2 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1993,6 +2009,7 @@
 		8AD6BA5D1B705DF20040437E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0BE3401F1B73021B00F49625 /* Font */,
 				8AD6C80C1B7096BA0040437E /* Localizable.strings */,
 				8AD6C3531B70934C0040437E /* Images */,
 				8AD6BA951B7060790040437E /* PrefixHeader.pch */,
@@ -3939,6 +3956,7 @@
 				8AD6C6181B70934D0040437E /* 750x1334-03.jpg in Resources */,
 				8AD6C6351B70934D0040437E /* LoginBackground.png in Resources */,
 				8AD6C6941B70934D0040437E /* ArrowUp.png in Resources */,
+				0BE340231B73021B00F49625 /* Adriane Text Bold Italic.otf in Resources */,
 				8AD6C7CA1B70934D0040437E /* TabBarProfile_on@3x.png in Resources */,
 				8AD6C7D21B70934D0040437E /* RoundHighlight.png in Resources */,
 				8AD6C7C51B70934D0040437E /* TabBarProfile.png in Resources */,
@@ -4011,6 +4029,7 @@
 				8AD6C7201B70934D0040437E /* InfoContact.png in Resources */,
 				8AD6C6D21B70934D0040437E /* ClearIcon@3x.png in Resources */,
 				8AD6C5D01B70934D0040437E /* TableOne@2x.png in Resources */,
+				0BE340251B73021B00F49625 /* ProximaNovaSoft-Regular.ttf in Resources */,
 				8AD6C0B61B706CF30040437E /* InstagramLoginWebViewController.xib in Resources */,
 				8AD6C73E1B70934D0040437E /* IconWhatsapp.png in Resources */,
 				8AD6C7071B70934D0040437E /* IconDelete@2x.png in Resources */,
@@ -4119,6 +4138,7 @@
 				8AD6C71D1B70934D0040437E /* InfoBoxLower@2x.png in Resources */,
 				8AD6C6AF1B70934D0040437E /* BtnDelete.png in Resources */,
 				8AD6C6971B70934D0040437E /* AvatarComment.png in Resources */,
+				0BE340241B73021B00F49625 /* ProximaNovaSoft-Bold.ttf in Resources */,
 				8AD6C5C41B70934D0040437E /* Icon-Spotlight-iOS7.png in Resources */,
 				8AD6C7461B70934D0040437E /* InviteEmail@3x.png in Resources */,
 				8AD6C6FD1B70934D0040437E /* IconCover.png in Resources */,

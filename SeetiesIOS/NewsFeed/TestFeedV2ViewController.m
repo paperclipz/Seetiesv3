@@ -9,7 +9,7 @@
 #import "TestFeedV2ViewController.h"
 #import "AsyncImageView.h"
 #import "SearchViewV2Controller.h"
-#import "NewProfileV2ViewController.h"
+#import "Filter2ViewController.h"
 @interface TestFeedV2ViewController ()
 
 @end
@@ -19,6 +19,7 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
     // Do any additional setup after loading the view from its nib.
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
@@ -27,7 +28,15 @@
    // MainScroll.alwaysBounceHorizontal = YES;
     MainScroll.alwaysBounceVertical = YES;
     
+    ShowFeedText.frame = CGRectMake(15, 20, screenWidth - 30, 44);
+    BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
+    SearchButton.frame = CGRectMake(screenWidth - 84 - 15, 27, 84, 30);
+    
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
+    
+//    ShowFeedText.text = CustomLocalisedString(@"MainTab_Feed",nil);
+//    [NearbyButton setTitle:CustomLocalisedString(@"NearBy",nil) forState:UIControlStateNormal];
+//    [FilterButton setTitle:CustomLocalisedString(@"Filter", nil) forState:UIControlStateNormal];
     
     heightcheck = 0;
 
@@ -78,7 +87,11 @@
 
     refreshControl = [[UIRefreshControl alloc] init];
     refreshControl.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Loading..."];
+    refreshControl.bounds = CGRectMake(refreshControl.bounds.origin.x - 20,
+                                       0,
+                                       refreshControl.bounds.size.width,
+                                       refreshControl.bounds.size.height);
+   // refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Loading..."];
     [refreshControl addTarget:self action:@selector(testRefresh) forControlEvents:UIControlEventValueChanged];
     [MainScroll addSubview:refreshControl];
     
@@ -440,10 +453,10 @@
         
     }
         
-    [MainScroll setContentSize:CGSizeMake(screenWidth, heightcheck + 169)];
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    [defaults setObject:@"Done" forKey:@"TestLocalData"];
-//    [defaults synchronize];
+    [MainScroll setContentSize:CGSizeMake(screenWidth, heightcheck + 169 + 50)];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:@"Done" forKey:@"TestLocalData"];
+    [defaults synchronize];
     
     [ShowActivity stopAnimating];
 }
@@ -458,6 +471,11 @@
     }
     
     refreshControl = [[UIRefreshControl alloc] init];
+    refreshControl.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    refreshControl.bounds = CGRectMake(refreshControl.bounds.origin.x - 20,
+                                       0,
+                                       refreshControl.bounds.size.width,
+                                       refreshControl.bounds.size.height);
     refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@""];
     [refreshControl addTarget:self action:@selector(testRefresh) forControlEvents:UIControlEventValueChanged];
     [MainScroll addSubview:refreshControl];
@@ -483,8 +501,10 @@
     SearchViewV2Controller *SearchView = [[SearchViewV2Controller alloc]initWithNibName:@"SearchViewV2Controller" bundle:nil];
     [self presentViewController:SearchView animated:YES completion:nil];
 }
--(IBAction)ProfileButton:(id)sender{
-    NewProfileV2ViewController *NewProfileV2View = [[NewProfileV2ViewController alloc]initWithNibName:@"NewProfileV2ViewController" bundle:nil];
-    [self presentViewController:NewProfileV2View animated:YES completion:nil];
+-(IBAction)FiltersButton:(id)sender{
+    NSLog(@"Open Filters Button Click");
+    Filter2ViewController *FilterView = [[Filter2ViewController alloc]init];
+    [self presentViewController:FilterView animated:YES completion:nil];
+    [FilterView GetWhatViewComeHere:@"Feed"];
 }
 @end

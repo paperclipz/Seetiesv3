@@ -39,6 +39,9 @@
 #import "CRMotionView.h"
 #import "LeveyTabBarController.h"
 #import "RecommendPopUpViewController.h"
+
+#import "TestFeedV2ViewController.h"
+#import "NewProfileV2ViewController.h"
 @interface LandingV2ViewController ()
 
 @end
@@ -346,13 +349,14 @@
 //    [[[[UIApplication sharedApplication] delegate] window] setRootViewController:tabBarController];
     
     
-    FeedV2ViewController *firstViewController=[[FeedV2ViewController alloc]initWithNibName:@"FeedV2ViewController" bundle:nil];
+   // FeedV2ViewController *firstViewController=[[FeedV2ViewController alloc]initWithNibName:@"FeedV2ViewController" bundle:nil];
+    TestFeedV2ViewController *firstViewController=[[TestFeedV2ViewController alloc]initWithNibName:@"TestFeedV2ViewController" bundle:nil];
     Explore2ViewController *secondViewController=[[Explore2ViewController alloc]initWithNibName:@"Explore2ViewController" bundle:nil];
     //SelectImageViewController *threeViewController=[[SelectImageViewController alloc]initWithNibName:@"SelectImageViewController" bundle:nil];
     RecommendPopUpViewController *threeViewController=[[RecommendPopUpViewController alloc]initWithNibName:@"RecommendPopUpViewController" bundle:nil];
     NotificationViewController *fourViewController=[[NotificationViewController alloc]initWithNibName:@"NotificationViewController" bundle:nil];
-    ProfileV2ViewController *fiveViewController=[[ProfileV2ViewController alloc]initWithNibName:@"ProfileV2ViewController" bundle:nil];
-    
+    //ProfileV2ViewController *fiveViewController=[[ProfileV2ViewController alloc]initWithNibName:@"ProfileV2ViewController" bundle:nil];
+    NewProfileV2ViewController *fiveViewController=[[NewProfileV2ViewController alloc]initWithNibName:@"NewProfileV2ViewController" bundle:nil];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:firstViewController];
     UINavigationController *navController2 = [[UINavigationController alloc] initWithRootViewController:secondViewController];
     UINavigationController *navController3 = [[UINavigationController alloc] initWithRootViewController:fourViewController];

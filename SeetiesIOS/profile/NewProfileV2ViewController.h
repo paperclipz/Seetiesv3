@@ -22,5 +22,5 @@
     UIView *CollectionView;
     UIView *LikeView;
 }
--(IBAction)BackButton:(id)sender;
+
 @end
