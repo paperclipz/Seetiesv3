@@ -830,6 +830,7 @@
 		8AD6C8051B70934D0040437E /* warning-flat-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6C5B41B70934D0040437E /* warning-flat-icon.png */; };
 		8AD6C80A1B7096BA0040437E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6C80C1B7096BA0040437E /* Localizable.strings */; };
 		8AD6C8161B709A450040437E /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6C8151B709A450040437E /* SettingsViewController.xib */; };
+		8AD6C81D1B73382E0040437E /* Localisator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6C81C1B73382E0040437E /* Localisator.m */; };
 		D44BD397CA9972010A37D9F6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B526FE01F3F3414439C16DF /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -1814,6 +1815,8 @@
 		8AD6C8131B7097450040437E /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
 		8AD6C8141B7097620040437E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 		8AD6C8151B709A450040437E /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		8AD6C81B1B73382E0040437E /* Localisator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Localisator.h; sourceTree = "<group>"; };
+		8AD6C81C1B73382E0040437E /* Localisator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Localisator.m; sourceTree = "<group>"; };
 		A6BFDB1BE373200E64D8CBE7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CAB2B54F0EC79309593A3C4C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2105,6 +2108,8 @@
 		8AD6BD711B706CF30040437E /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				8AD6C81B1B73382E0040437E /* Localisator.h */,
+				8AD6C81C1B73382E0040437E /* Localisator.m */,
 				8AD6BD721B706CF30040437E /* ConnectionManager.h */,
 				8AD6BD731B706CF30040437E /* ConnectionManager.m */,
 				8AD6BD741B706CF30040437E /* DataStore.h */,
@@ -4175,6 +4180,7 @@
 				8AD6BE571B706CF30040437E /* DoAlbumCell.m in Sources */,
 				8AD6C2AE1B7074110040437E /* TestFeedV2ViewController.m in Sources */,
 				8AD6C2951B7072FB0040437E /* DraftsViewController.m in Sources */,
+				8AD6C81D1B73382E0040437E /* Localisator.m in Sources */,
 				8AD6C33C1B707D120040437E /* LLARingSpinnerView.m in Sources */,
 				8AD6C0C41B706CF30040437E /* LocationFeedDetailViewController.m in Sources */,
 				8AD6C0C81B706CF30040437E /* NotificationViewController.m in Sources */,

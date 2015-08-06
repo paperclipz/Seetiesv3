@@ -56,6 +56,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    SETLANGUAGE(@"zh-Hans");
+    SLog(@"language supported : == %@",LOCALIZATION(@"ExpertLogin_Username"));
     [Fabric with:@[CrashlyticsKit]];
     
     // ****************************************************************************

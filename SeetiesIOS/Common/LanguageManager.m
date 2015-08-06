@@ -35,7 +35,6 @@
         Locale *indonesian = [[Locale alloc] initWithLanguageCode:@"id" countryCode:@"it" name:@"Bahasa Indonesia"];
         Locale *thai = [[Locale alloc] initWithLanguageCode:@"th" countryCode:@"jp" name:@"Thai"];
         Locale *philippines = [[Locale alloc] initWithLanguageCode:@"tl-PH" countryCode:@"jp" name:@"Filipino"];
-        
         self.availableLocales = @[english, cn_simplified, cn_traditional, indonesian, thai,philippines];
     }
     
@@ -110,11 +109,8 @@
  */
 - (NSString *)getTranslationForKey:(NSString *)key {
     
-    // Get the language code.
-   // NSString *languageCode = [[[NSUserDefaults standardUserDefaults] stringForKey:DEFAULTS_KEY_LANGUAGE_CODE] lowercaseString];
     NSString *languageCode = [[NSUserDefaults standardUserDefaults] stringForKey:DEFAULTS_KEY_LANGUAGE_CODE];
- //   NSLog(@"languageCode is %@",languageCode);
-    // Get the relevant language bundle.
+
     NSString *bundlePath = [[NSBundle mainBundle] pathForResource:languageCode ofType:@"lproj"];
     NSBundle *languageBundle = [NSBundle bundleWithPath:bundlePath];
   //  NSLog(@"bundlePath is %@",bundlePath);

@@ -40,7 +40,6 @@
 
 @implementation LandingV2ViewController
 
-
 -(void)initSelfView
 {
     DataUrl = [[UrlDataClass alloc]init];

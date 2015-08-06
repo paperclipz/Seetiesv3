@@ -18,6 +18,9 @@
 #import "JSONKit.h"
 #import "ConnectionManager.h"
 #import "UrlDataClass.h"
+#import "LanguageManager.h"
+#import "Localisator.h"
+
 #endif
 
 #define IS_IN_DEBUG_MODE
