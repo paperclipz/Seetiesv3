@@ -7,100 +7,150 @@
 //
 
 #import "ConnectionManager.h"
-#import "DataStore.h"
 
 @interface ConnectionManager()
-@property (strong, nonatomic) DataStore *dataManager;
+@property (strong, nonatomic) DataManager *dataManager;
 
 @end
 @implementation ConnectionManager
 + (id)Instance {
-    static DataStore *instance = nil;
+    static ConnectionManager *instance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        instance = [[self alloc] init];
+        instance = [[self alloc]init];
+        
     });
     return instance;
 }
 
-
-//=============    DEV : 0    ||       LIVE : 1     ================//
-static int type = 0;
-
-+ (void) setDeploymentType:(int)value
++(DataManager*)dataManager
 {
-    type = value;
+    return [[ConnectionManager Instance] dataManager];
 }
-
 -(id)init
 {
-    self = [super init];
-    self.serverPath = type==0?SERVER_PATH_DEV:SERVER_PATH_LIVE;
-    self.dataManager = [DataStore sharedInstance];
-    
+    self = [super initWithHostName:SERVER_PATH_DEV];//set default dev
+    self.dataManager = [DataManager Instance];
+
     return self;
+}
+
+-(void)requestForDEploymentTarget:(IDBlock)completeBlock errorHandler:(MKNKErrorBlock)errorBlock
+{
+    self.hostName = SERVER_PATH_DEV;
+    NSString *FullString = [self getFullURLwithType:ServerRequestTypeGetApiVersion];
+
+    MKNetworkOperation *op = [self operationWithPath:FullString
+                                              params:nil
+                                          httpMethod:@"GET" ssl:YES];
+    
+    [op setPostDataEncoding:MKNKPostDataEncodingTypeURL];
+    
+    [op addCompletionHandler:^(MKNetworkOperation *completedOperation) {
+        NSString *jsonString = [completedOperation responseString];
+        NSDictionary *responseDict = [jsonString objectFromJSONString];
+        
+        [self storeServerData:responseDict requestType:ServerRequestTypeGetApiVersion];
+        if(completeBlock)
+        {
+            completeBlock(responseDict);
+        }
+        
+    } errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
+        SLog(@"\n\nerror == %@", [error localizedDescription]);
+        errorBlock(error);
+       
+    }];
+    [self enqueueOperation:op];
+}
+
+-(void)processApiversion
+{
+    self.hostName = self.dataManager.apiVersionModel.production?SERVER_PATH_LIVE:SERVER_PATH_DEV;
 }
 
 -(NSString*)getFullURLwithType:(ServerRequestType)type
 {
+    NSString* str;
     switch (type) {
         case ServerRequestTypeLogin:
  
             break;
             
+        case ServerRequestTypeGetLanguage:
+            str =  @"v1.3/system/languages";
+            break;
+            
+        case ServerRequestTypeGetApiVersion:
+            str = @"v1.3/system/apiversion?device_type=2";
+            break;
         default:
             break;
     }
     
-    return [NSString stringWithFormat:@"%@%@",self.serverPath,self.subPath];
+   // return [NSString stringWithFormat:@"%@%@",self.serverPath,self.subPath];
+    
+    return str;
 }
 
--(void)requestServerWithPost:(bool)isPost requestType:(ServerRequestType)type param:(NSDictionary*)dict completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
+#pragma mark - Service Request
+
+- (MKNetworkOperation*)requestServerWithPost:(BOOL)isPost requestType:(ServerRequestType)serverRequestType param:(NSDictionary*)dict completionHandler:(IDBlock)completionBlock errorHandler:(MKNKErrorBlock)errorBlock
 {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+ 
+    NSString *fullURL = [self getFullURLwithType:serverRequestType];
+    NSString *httpMethod = (isPost) ? @"POST" : @"GET";
+    SLog(@"\n\nRequest URL: %@\nRequest JSON:\n%@", fullURL, [dict JSONString]);
+
     
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    MKNetworkOperation *op = [self operationWithPath:fullURL
+                                              params:dict
+                                          httpMethod:httpMethod ssl:YES];
     
-    NSLog(@"Request Server [%@]",[self getFullURLwithType:type]);
+    [op setPostDataEncoding:MKNKPostDataEncodingTypeJSON];
     
-    if(isPost)
-    {
-        [manager POST:[self getFullURLwithType:type] parameters:dict
-              success:^(AFHTTPRequestOperation *operation, id responseObject)
-         {
-             [self storeServerData:responseObject requestType:type];
-             completeBlock(responseObject);
-             NSLog(@"JSON: %@", responseObject);
-         }
-              failure:
-         ^(AFHTTPRequestOperation *operation, NSError *error) {
-             NSLog(@"Error: %@", error);
-         }];
-    }
-    else{
+    [op addCompletionHandler:^(MKNetworkOperation *completedOperation) {
+        NSString *jsonString = [completedOperation responseString];
+        SLog(@"\n\nRequest URL: %@\nResponse JSON:\n%@", fullURL, jsonString);
+        NSDictionary *responseDict = [jsonString objectFromJSONString];
+
+        [self storeServerData:responseDict requestType:serverRequestType];
+        [self processApiversion];
+        if (completionBlock) {
+            completionBlock(responseDict);
+        }
+        //[self loadJsonAndStoreInModel:responseDict ServerRequestType:serverRequestType];
         
-        [manager POST:[self getFullURLwithType:type] parameters:nil
-              success:^(AFHTTPRequestOperation *operation, id responseObject)
-         {
-             [self storeServerData:responseObject requestType:type];
-             completeBlock(responseObject);
-             NSLog(@"JSON: %@", responseObject);
-         }
-              failure:
-         ^(AFHTTPRequestOperation *operation, NSError *error) {
-             NSLog(@"Error: %@", error);
-         }];
+//        if (completionBlock) {
+//            [self invokeCompletionBlock:completionBlock forType:serverRequestType];
+//        }
         
-    }
-    
-    
+        
+    } errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
+        SLog(@"\n\nerror == %@", [error localizedDescription]);
+        if (errorBlock) {
+            errorBlock(error);
+        }
+    }];
+    [self enqueueOperation:op];
+    return op;
 }
 
 -(void)storeServerData:(id)obj requestType:(ServerRequestType)type
 {
+    
+    //make checking for status fail or success here
     switch (type) {
         case ServerRequestTypeLogin:
+            break;
+        case ServerRequestTypeGetApiVersion:
+            self.dataManager.apiVersionModel = [[ApiVersionModel alloc]initWithDictionary:obj error:nil];
+            
+            SLog(@" %@",self.dataManager.apiVersionModel.title);
+            break;
+            
+        case ServerRequestTypeGetLanguage:
+            self.dataManager.languageModels = [[LanguageModels alloc]initWithDictionary:obj error:nil];            
             break;
         default:
             break;

@@ -13,7 +13,6 @@
 #import "AsyncImageView.h"
 #import "WhyWeUseFBViewController.h"
 #import "SignupViewController.h"
-
 #import <QuartzCore/QuartzCore.h>
 #import "PTellUsYourCityViewController.h"
 #import "ExploreViewController.h"
@@ -21,15 +20,11 @@
 #import "NotificationViewController.h"
 #import "ProfileV2ViewController.h"
 #import "PublishMainViewController.h"
-
 #import "PTellUsYourCityViewController.h"
 #import "PSelectYourInterestViewController.h"
 #import "PFollowTheExpertsViewController.h"
-
-
 #import "LanguageManager.h"
 #import "Locale.h"
-
 
 #import <Parse/Parse.h>
 #import "InstagramLoginWebViewController.h"
@@ -50,6 +45,10 @@
 @synthesize leveyTabBarController;
 -(void)initSelfView
 {
+    
+    BackgroundView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    ShowBackgroundImage.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    
     DataUrl = [[UrlDataClass alloc]init];
     FBLoginButton.hidden = YES;
     FBLoginButton.layer.cornerRadius = 5;
@@ -166,12 +165,16 @@
         
     }
 }
+
+// A validation done on app login before proceeding
+-(void)validationBeforeProceed
+{
+
+}
 -(void)viewDidAppear:(BOOL)animated{
+    
     [super viewDidAppear:animated];
-    
-    BackgroundView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
-    ShowBackgroundImage.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
-    
+    [self validationBeforeProceed];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *CheckLogin = [defaults objectForKey:@"CheckLogin"];
     NSString *CheckProvisioningStatus = [defaults objectForKey:@"CheckProvisioningStatus"];
@@ -239,20 +242,14 @@
 }
 -(void)changeview{
     //[self animateImages];
-    
 
-    
     
     FBLoginButton.hidden = NO;
     LogInButton.hidden = NO;
     WhyWeUseFBButton.hidden = NO;
     SignUpWithEmailButton.hidden = NO;
     InstagramButton.hidden = NO;
-    //
-    //    ShowBackgroundImage.animationImages = animationImages;
-    //    ShowBackgroundImage.animationDuration = 8.0f;
-    //    ShowBackgroundImage.animationRepeatCount = 0;
-    //    [ShowBackgroundImage startAnimating];
+
     
 }
 -(void)ChangeView2{
@@ -996,7 +993,6 @@
     [ShowActivity startAnimating];
     
     NSString *FullString = [[NSString alloc]initWithFormat:@"%@",DataUrl.GetAlllangauge_Url];
-    
     
     NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
     NSLog(@"check postBack URL ==== %@",postBack);
