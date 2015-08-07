@@ -7,6 +7,7 @@
 //
 
 #import "Localisator.h"
+#import "Locale.h"
 
 #define kDeviceLanguage @"DeviceLanguage"
 
@@ -60,6 +61,24 @@ static NSBundle *bundle = nil;
     }
     return self;
 }
+
+//-(NSArray*)availableLanguages
+//{
+//    if(!_availableLanguages)
+//    {
+//        Locale *english = [[Locale alloc] initWithLanguageCode:@"en" countryCode:@"gb" name:@"English"];
+//        Locale *cn_simplified = [[Locale alloc] initWithLanguageCode:@"zh-Hans" countryCode:@"fr" name:@"Simplified Chinese"];
+//        Locale *cn_traditional = [[Locale alloc] initWithLanguageCode:@"zh-Hant" countryCode:@"de" name:@"Traditional Chinese"];
+//        Locale *indonesian = [[Locale alloc] initWithLanguageCode:@"id" countryCode:@"it" name:@"Bahasa Indonesia"];
+//        Locale *thai = [[Locale alloc] initWithLanguageCode:@"th" countryCode:@"jp" name:@"Thai"];
+//        Locale *philippines = [[Locale alloc] initWithLanguageCode:@"tl-PH" countryCode:@"jp" name:@"Filipino"];
+//        _availableLanguages = @[english, cn_simplified, cn_traditional, indonesian, thai,philippines];
+//    }
+//    
+//    return _availableLanguages;
+//
+//}
+
 
 -(void)setSupportedDeviceLanguage
 {

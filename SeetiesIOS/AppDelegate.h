@@ -13,7 +13,6 @@
     
     UrlDataClass *DataUrl;
     NSMutableData *webData;
-    NSString *APIVersionSet;
 }
 
 @property (strong, nonatomic) UIWindow *window;

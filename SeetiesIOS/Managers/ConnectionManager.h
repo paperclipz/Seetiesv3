@@ -7,14 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AFHTTPRequestOperationManager.h"
+#import "MKNetworkEngine.h"
+#import "DataManager.h"
+
 typedef void (^IDBlock)(id object);
 typedef void (^IErrorBlock)(id object);
-@interface ConnectionManager :NSObject
+@interface ConnectionManager :MKNetworkEngine
 @property(nonatomic,strong)NSString* serverPath;
 @property(nonatomic,strong)NSString* subPath;
 
 +(id)Instance;
-+ (void) setDeploymentType:(int)value;
+
+
+- (MKNetworkOperation*)requestServerWithPost:(BOOL)isPost requestType:(ServerRequestType)serverRequestType param:(NSDictionary*)dict completionHandler:(IDBlock)completionBlock errorHandler:(MKNKErrorBlock)errorBlock;
+-(void)requestForDEploymentTarget:(IDBlock)completeBlock errorHandler:(MKNKErrorBlock)errorBlock;
++(DataManager*)dataManager;
 
 @end

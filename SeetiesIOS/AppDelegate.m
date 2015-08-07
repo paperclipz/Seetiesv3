@@ -48,22 +48,33 @@
 #import "TestFeedV2ViewController.h"
 @interface AppDelegate ()
 
+@property(nonatomic,strong)LandingV2ViewController* landingV2ViewController;
 @end
+
 
 @implementation AppDelegate
 
+-(void)registrationForApi
+{
+    [Fabric with:@[CrashlyticsKit]];
+    [Parse setApplicationId:@"MMpGchSOutbiRC4KpHW47VLBFFQgv2jj5DIM4Qdi" clientKey:@"4kkfBL3btDWxoQN89WRBXVWYEUDZKD38XuzCakK7"];
+    [Foursquare2 setupFoursquareWithClientId:@"V0RPRPAUHB1ZCFSKOXKNM0JA3Q1RN1QUBK14RZFOUYY15I4R"
+                                      secret:@"T5XT0AVNHLLO1NMXRNFCDBYGA453E12CTVN0WOSIHREEZTWA"
+                                 callbackURL:@"testapp123://foursquare"];
+
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
-    SETLANGUAGE(@"zh-Hans");
-    SLog(@"language supported : == %@",LOCALIZATION(@"ExpertLogin_Username"));
-    [Fabric with:@[CrashlyticsKit]];
+    [self registrationForApi];
+    
+//    NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
+//    SETLANGUAGE(@"zh-Hans");
+//    SLog(@"language supported : == %@",LOCALIZATION(@"ExpertLogin_Username"));
     
     // ****************************************************************************
     // Uncomment and fill in with your Parse credentials:
-    [Parse setApplicationId:@"MMpGchSOutbiRC4KpHW47VLBFFQgv2jj5DIM4Qdi" clientKey:@"4kkfBL3btDWxoQN89WRBXVWYEUDZKD38XuzCakK7"];
     // [Parse setApplicationId:@"UDy6JpDrh7N6mWznTYusRruA8a1VrCLK2s5gCXZo" clientKey:@"cDs5Sml0kIzwplNSMOnXgV5LnJiAP0UK1Z2K5pZm"];
     // ****************************************************************************
     
@@ -82,13 +93,11 @@
     } else {
         [[UIApplication sharedApplication] registerForRemoteNotificationTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     }
-    APIVersionSet = @"1.3";
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:APIVersionSet forKey:@"APIVersionSet"];
-    [defaults synchronize];
     [self CheckApiVersion];
-    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:API_VERSION forKey:@"APIVersionSet"];
+    [defaults synchronize];
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     LanguageManager *languageManager = [LanguageManager sharedLanguageManager];
@@ -173,44 +182,19 @@
 //    // Initialize tracker. Replace with your tracking ID.
 //    [[GAI sharedInstance] trackerWithTrackingId:@"UA-45737845-4"];
     
-    [Foursquare2 setupFoursquareWithClientId:@"V0RPRPAUHB1ZCFSKOXKNM0JA3Q1RN1QUBK14RZFOUYY15I4R"
-                                      secret:@"T5XT0AVNHLLO1NMXRNFCDBYGA453E12CTVN0WOSIHREEZTWA"
-                                 callbackURL:@"testapp123://foursquare"];
     
     //NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *CheckLogin = [defaults objectForKey:@"CheckLogin"];
-    if ([CheckLogin isEqualToString:@"LoginDone"]) {
-        
-    }else{
+    if (![CheckLogin isEqualToString:@"LoginDone"]) {
+      
         NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
         NSLog(@"language is %@",language);
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:language forKey:@"SystemLanguage"];
         [defaults synchronize];
+
     }
-    
-    // zh-Hans - Simplified Chinese
-    // zh-Hant - Traditional Chinese
-    // en - English
-    // th - Thai
-    // id - Bahasa Indonesia
-    
-    //    LandingViewController *LandingView = [[LandingViewController alloc]init];
-    //    self.window.rootViewController = LandingView;
-    //    self.window.backgroundColor = [UIColor whiteColor];
-    //    [self.window makeKeyAndVisible];
-    //
-    ////    SearchViewV2 *LandingView = [[SearchViewV2 alloc]init];
-    ////    self.window.rootViewController = LandingView;
-    //
-    //
-    ////    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
-    ////     (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
-    ////
-    ////    UIRemoteNotificationType enabledTypes = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
-    ////    NSLog(@"enabledTypes is %u",enabledTypes);
-    ////
-    ////
+   
     application.applicationIconBadgeNumber = 0;
     
     // Whenever a person opens the app, check for a cached session
@@ -454,130 +438,64 @@
 }
 
 -(void)CheckApiVersion{
-    //https://itcave-api.seeties.me/v1.3/system/apiversion?device_type=2 - itcave test
-    //https://ios-api.seeties.me/v1.3/system/apiversion?device_type=2 - live
-    NSString *FullString = [[NSString alloc]initWithFormat:@"https://itcave-api.seeties.me/v1.3/system/apiversion?device_type=2"];
     
-    
-    NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
-    NSLog(@"check postBack URL ==== %@",postBack);
-    //   NSURL *url = [NSURL URLWithString:[postBack stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSURL *url = [NSURL URLWithString:postBack];
-    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
-    NSLog(@"theRequest === %@",theRequest);
-    [theRequest addValue:@"" forHTTPHeaderField:@"Accept-Encoding"];
-    NSURLConnection *theConnection_CheckNotification = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
-    [theConnection_CheckNotification start];
-    
-    
-    if( theConnection_CheckNotification ){
-        webData = [NSMutableData data];
-    }
-}
--(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-    [webData setLength: 0];
-    
-}
--(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    [webData appendData:data];
-}
--(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    NSLog(@"AppDelegate Check API Version Error.");
-    //    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error Connection" message:@"Check your wifi or 3G data." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-    //    alert.tag = 100;
-    //    [alert show];
-    
-    LandingV2ViewController *LandingView = [[LandingV2ViewController alloc]init];
-    self.window.rootViewController = LandingView;
-    
-    
-    
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
-}
--(void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    
-    NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
-    NSLog(@"AppDelegate Check API Version return get data to server ===== %@",GetData);
-    
-    NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *myError = nil;
-    NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
-    NSLog(@"Return Json = %@",res);
-    
-    NSString *GetVersionString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"version"]];
-    NSLog(@"GetVersionString is %@",GetVersionString);
-    
-    NSString *GetTitleString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"title"]];
-    NSLog(@"GetTitleString is %@",GetTitleString);
-    
-    NSString *GetMessageString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"message"]];
-    NSLog(@"GetMessageString is %@",GetMessageString);
-    
-    NSString *GetProductionString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"production"]];
-    NSLog(@"GetProductionString is %@",GetProductionString);
-    
-    NSString *CheckAPI = [[NSString alloc]init];
-    
-    if ([GetProductionString isEqualToString:@"0"]) {
-        //dev use
-        CheckAPI = @"0";
-    }else{
-        //live
-        CheckAPI = @"1";
-    }
-    
-    // ========== Set live or dev environment server path to conneciton manager ========== //
-    [ConnectionManager setDeploymentType:[CheckAPI intValue]];
-    // ========== Set live or dev environment server path to conneciton manager ========== //
+    [[ConnectionManager Instance]requestForDEploymentTarget:^(id object) {
+       
+        [[ConnectionManager Instance]requestServerWithPost:NO requestType:ServerRequestTypeGetLanguage param:nil completionHandler:^(id object) {
+            
+            [self processAPIVersion];
+            
+        } errorHandler:nil];
 
+    } errorHandler:nil];
+  
+
+}
+#pragma mark - Declaration
+-(LandingV2ViewController*)landingV2ViewController
+{
+    if(!_landingV2ViewController)
+    {
+        _landingV2ViewController = [LandingV2ViewController new];
+    }
+    
+    return _landingV2ViewController;
+}
+
+#pragma mark -  connection processing
+-(void)processAPIVersion
+{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:CheckAPI forKey:@"CheckAPI"];
+    
+    ApiVersionModel* model =[[ConnectionManager dataManager] apiVersionModel] ;
+    [defaults setObject:model.version forKey:@"CheckAPI"];
     [defaults synchronize];
     
-    if ([GetVersionString isEqualToString:APIVersionSet]) {
-        LandingV2ViewController *LandingView = [[LandingV2ViewController alloc]init];
-        self.window.rootViewController = LandingView;
+    //Check version if same then proceed, if not same then promp error and also proceed to landing
+    if (![model.version isEqualToString:API_VERSION]) {
+      
         
-        //        DoImagePickerController *cont = [[DoImagePickerController alloc] initWithNibName:@"DoImagePickerController" bundle:nil];
-        //        cont.delegate = self;
-        //        cont.nResultType = DO_PICKER_RESULT_ASSET;//DO_PICKER_RESULT_UIIMAGE
-        //        cont.nMaxCount = 10;
-        //        cont.nColumnCount = 3;
-        //        self.window.rootViewController = cont;
+        [UIAlertView showWithTitle:model.title
+                           message:model.message
+                 cancelButtonTitle:@"OK"
+                 otherButtonTitles:nil
+                          tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                              if (buttonIndex == [alertView cancelButtonIndex]) {
+                                  NSString *iTunesLink = @"https://itunes.apple.com/app/seeties-mobile-citypass-for/id956400552?mt=8";
+                                  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
+                              }
+                          }];
         
-        self.window.backgroundColor = [UIColor whiteColor];
-        [self.window makeKeyAndVisible];
-        
-        
-    }else{
-        UIAlertView *ShowAlertView = [[UIAlertView alloc]initWithTitle:GetTitleString message:GetMessageString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        ShowAlertView.tag = 200;
-        [ShowAlertView show];
+
     }
-    
+   
+    self.window.rootViewController = self.landingV2ViewController;
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+
 }
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (alertView.tag == 100) {
-        if (buttonIndex == [alertView cancelButtonIndex]){
-            exit(0);
-        }else{
-            //reset clicked
-        }
-    }else{
-        if (buttonIndex == [alertView cancelButtonIndex]){//https://itunes.apple.com/app/seeties-mobile-citypass-for/id956400552?mt=8
-            NSString *iTunesLink = @"https://itunes.apple.com/app/seeties-mobile-citypass-for/id956400552?mt=8";
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
-        }else{
-            //reset clicked
-        }
-    }
-    
-}
+
+
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {
     NSSetUncaughtExceptionHandler(&myExceptionHandler);

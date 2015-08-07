@@ -9,10 +9,11 @@
 #import "SConstant.h"
 
 @implementation SConstant
-NSString *const SERVER_PATH_LIVE = @"https://ios-api.seeties.me/";
-NSString *const SERVER_PATH_DEV = @"https://itcave-api.seeties.me/";
+NSString *const SERVER_PATH_LIVE = @"ios-api.seeties.me";
+NSString *const SERVER_PATH_DEV = @"itcave-api.seeties.me";
 
-NSString *const SERVER_SUBPATH= @"https://itcave-api.seeties.me/";
+
+
 
 
 

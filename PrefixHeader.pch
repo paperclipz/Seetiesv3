@@ -20,7 +20,10 @@
 #import "UrlDataClass.h"
 #import "LanguageManager.h"
 #import "Localisator.h"
-
+#import "Model.h"
+#import "UIAlertView+Blocks.h"
+#import "DataManager.h"
+#import "TSMessage.h"
 #endif
 
 #define IS_IN_DEBUG_MODE

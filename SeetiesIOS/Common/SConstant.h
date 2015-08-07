@@ -7,13 +7,17 @@
 
 #import <Foundation/Foundation.h>
 
+#define API_VERSION @"1.3"
+
 @interface SConstant : NSObject
 
 
 typedef enum
 {
     ServerRequestTypeLogin = 1,
-    ServerRequestTypeNewsFeed = 2
+    ServerRequestTypeNewsFeed = 2,
+    ServerRequestTypeGetLanguage = 3,
+    ServerRequestTypeGetApiVersion = 4
     
 }ServerRequestType;
 
@@ -29,8 +33,6 @@ typedef enum
 extern NSString *const SERVER_PATH_LIVE;
 extern NSString *const SERVER_PATH_DEV;
 extern NSString *const SERVER_SUBPATH;
-
-
 extern NSString *const IP_URL_PATH;
 
 
