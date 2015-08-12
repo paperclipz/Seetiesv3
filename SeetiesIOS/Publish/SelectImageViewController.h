@@ -10,7 +10,7 @@
 #import "AsyncImageView.h"
 #import "LLARingSpinnerView.h"
 #import "GAITrackedViewController.h"
-@interface SelectImageViewController : GAITrackedViewController<UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>{
+@interface SelectImageViewController : BaseViewController<UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>{
 
     IBOutlet UIScrollView *MainScroll;
     IBOutlet UIView *AlbumView;

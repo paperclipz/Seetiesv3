@@ -7,150 +7,296 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		006844613A669DFB9A5F126D0E81D8BA /* ADBackFadeTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F2A57B5C1CC5ECF1A04458E9215C7F /* ADBackFadeTransition.m */; };
+		02DAD317D56986551B5E8F759515375E /* ADTransitionController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 697E1FD70427BCBDEE0297C303AA8CF7 /* ADTransitionController-dummy.m */; };
+		04A6B32885C43E400032A7255E315B22 /* ADFadeTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = D2206144BA49E0927E98123B6059C5CB /* ADFadeTransition.m */; };
+		05BC8F67CD45A387CC2CACA5BE55E252 /* ADZoomTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3D82D32549C71E237E6ACB95944416 /* ADZoomTransition.m */; };
+		05D5F411875B54988DE7805BB0604F21 /* HexColor.h in Headers */ = {isa = PBXBuildFile; fileRef = BC6E7A578B46E08DD891B95174B6B6E0 /* HexColor.h */; };
+		08831944338B760E09A8047621DB0CD6 /* LMAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 008BEA6C1371A35F20A82665C47CB17E /* LMAddress.h */; };
 		0A3A3A320F9566360182121CE04FA2F4 /* TSBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = D81EE2D1911B8A17F76246D8E88C94D8 /* TSBlurView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		130C06B746B4B5B32242C335FFE11367 /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 562DDCBEFA240027AB61BCF9500A747A /* Pods-dummy.m */; };
-		15340B533D7E7497A0F6079518FBFE27 /* JSONModelClassProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F73C06CB24D0707949270B5FE2858D5 /* JSONModelClassProperty.h */; };
-		178972EAAB2837C80ADECEB442E0DAC9 /* JSONAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = D278E5FD25F475DC7C7B51A4856AA21B /* JSONAPI.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		1CFF99226D60B25EED1E56809A2288B5 /* JSONHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 473BBD78B08AD84D732AEBDE434AD1D4 /* JSONHTTPClient.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		1D20C000DEC2BEA7BE9C7BDA65A3A2EC /* JSONModelError.m in Sources */ = {isa = PBXBuildFile; fileRef = 285C2BCEEE7856BA9B1C640F58225239 /* JSONModelError.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		0CE52C6A11B8FDCF1381FFD9677984B5 /* JSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 890F9DA2341FF50AB8189F1F9AC799E6 /* JSONModel.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		0D42428FAE8C6A4CCB52FF29D63DAD60 /* ADModernPushTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BF291B7806E8B24266360F4C335D6C8 /* ADModernPushTransition.h */; };
+		10604D0D1F5E5718C07E205CD5618632 /* ADPushRotateTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 327DE5119A2342DFA33F8CEE0799BBD9 /* ADPushRotateTransition.m */; };
+		1426A7EEBF506F32123641144089E846 /* JSONModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 8698A8FFF6E7FC92F7432578EAE4F548 /* JSONModelClassProperty.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		187FD92F79BFD0F073CC9CE8E657042E /* JSONModel+networking.h in Headers */ = {isa = PBXBuildFile; fileRef = 36BD9EC52278379B3B9632FAF70F0F2E /* JSONModel+networking.h */; };
 		1DCACFD79257CAAE5817DEFC03651802 /* TSBlurView.h in Headers */ = {isa = PBXBuildFile; fileRef = A485D3CA1BEE11E510231A6A246BF3DF /* TSBlurView.h */; };
-		21FDD51B305EDEFE9413C0C0D4B8946E /* JSONModelError.h in Headers */ = {isa = PBXBuildFile; fileRef = ECAF84C7C0CE4636865FEDD82B79ECCF /* JSONModelError.h */; };
-		29C9B069596C5F57ABFFAA03D431447A /* NSArray+JSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7701497B7C7CC590C11D58EACAEB7E86 /* NSArray+JSONModel.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		363085ADF23DFAA56B6EFB45F9E14999 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85672D419B219ECBB489D28EA578A5F /* Foundation.framework */; };
-		3646498D4FF61EE6A6050647F5E3ABBB /* JSONHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = E5300280EC510857A8776553D8496B29 /* JSONHTTPClient.h */; };
-		460B0289DDCBF247387220E8B5DE2BA3 /* JSONValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BF435A65255791B0693B21491FFB56A /* JSONValueTransformer.h */; };
-		47871F6A53EBD446199A193ADDE49AEC /* JSONKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C17E8E47B80D14FCA03C1A6862CE456 /* JSONKeyMapper.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		4851A4CCCEE934E8E28FF9FB0306616A /* JSONKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 399BBDDD49751424065780C027F1E3FB /* JSONKeyMapper.h */; };
-		508E1003F0FA859772BD29D755E3007C /* JSONModel+networking.h in Headers */ = {isa = PBXBuildFile; fileRef = A76363DE205C33AE7798CE3D13DD94EC /* JSONModel+networking.h */; };
-		58A7DA80825367F93BF7B27187F92816 /* NSArray+JSONModel.h in Headers */ = {isa = PBXBuildFile; fileRef = F9CFE3D33CBB243DAEFEAFB285902A0B /* NSArray+JSONModel.h */; };
+		1F1D1391CE876536EE866FEB14A00286 /* ADSwapTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D2FC9B16EEA3616059BFB846F312428 /* ADSwapTransition.h */; };
+		2335C4158D0CC5B0BCD38AF88B2A8B37 /* ADBackFadeTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 60D7CB626C34A27394AB60E7347A4DF6 /* ADBackFadeTransition.h */; };
+		2C40DCAB0C4CFBA84979FB5BBEAB3FB1 /* ADTransitioningViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = D4E7218FC57115336E75444CCE225346 /* ADTransitioningViewController.h */; };
+		327BD8CED9EDAA36100EE79BD8CEE43D /* ADCubeTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 6967CE861D3613C3738B04E04DEB94B9 /* ADCubeTransition.m */; };
+		328AB96866561EEC9DE1FC18414B6E12 /* JSONModelError.h in Headers */ = {isa = PBXBuildFile; fileRef = 50F5F7E522789CF1FA6F35BF8A25E89C /* JSONModelError.h */; };
+		3A52DAE15F7E762CF544EEB793824007 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC470D5E769142C0731546AAC39B0DA3 /* QuartzCore.framework */; };
+		4087193E44497424F260BB8BD4CC7832 /* ADGhostTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B88129344273CBF3C25F47A1C97C931 /* ADGhostTransition.m */; };
+		41189DA1A9A8173FBAC2BBA56C6DED0A /* JSONModelClassProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = D2F1F371FFA7FB718B73DDEDB3FD392B /* JSONModelClassProperty.h */; };
+		4410FF61F4F3F988410139FBA078167D /* ADSwipeTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 58B03DFB7E424459900D69B99342E878 /* ADSwipeTransition.h */; };
+		4780293EB8C8A46A75E653F9B8D1F32E /* ADScaleTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = BF50262AB27C02868A168DA6BAE1B0B3 /* ADScaleTransition.h */; };
+		48555BF20EB4277A51293F5109989356 /* LMAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = AB96868A98B2047905DFCB3D3148CA54 /* LMAddress.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		593022975CE4F4D8F94060DF2A905276 /* HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2869861843E20F37BCBB26CECCAED78F /* HexColor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5B684EED599C8671411F1B733734839D /* TSMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C6524691A5652F5E3B6DED2912AB6E /* TSMessageView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		5FB1D0A1E9CB43EF0A750564B821CEAC /* HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3506FEEF2DCE975FB36512FF8D891F /* HexColor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		62C3E83A0B7DA821276F355050A5D926 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85672D419B219ECBB489D28EA578A5F /* Foundation.framework */; };
-		703E0B1ECA93EBAD5A6F70AD093B3771 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85672D419B219ECBB489D28EA578A5F /* Foundation.framework */; };
-		706B740B99938EE67A9BA9318A0C4AC3 /* JSONModelArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F7DBFD0FFC983235484BDD4D007DD9 /* JSONModelArray.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		746659E57AB6C4E6359A8590A607BD5B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85672D419B219ECBB489D28EA578A5F /* Foundation.framework */; };
-		79A3A6718369088D91ABDFEBA8857CA5 /* JSONModelLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 9EF5B58CFA7BEB401FB574513A52D191 /* JSONModelLib.h */; };
+		62C3E83A0B7DA821276F355050A5D926 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63CF5CF8F5B2FC1B06EC0EC2D93752B /* Foundation.framework */; };
+		679FF2F1A3F9A67965BB09203CD87EA7 /* JSONValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 618B52CB2AD9E4963C8369B95B4FC8AE /* JSONValueTransformer.h */; };
+		68A089893C87386F34DF742B9308791C /* JSONModelArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 788098A2381F04D0773C4F914D64E729 /* JSONModelArray.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		6A7EE8519346915D5AC3167EFBF871D6 /* ADGlueTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 249070CDD399BA355D9F155ECFE00B6A /* ADGlueTransition.m */; };
+		70F3576B4D8B159A48A6643E5295FA14 /* ADScaleTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = C39CAF11561FC2B7A010B82939E12D7D /* ADScaleTransition.m */; };
+		71598B09D78BD8C3B986B17218E8A370 /* JSONModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 70EFA0637E249F4E86F5BAAC04366132 /* JSONModel.h */; };
+		7EB363A9959B2A7EE551591FFE70A8E1 /* ADNavigationControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 803A4F67771F133D86B834B59EDDE7F6 /* ADNavigationControllerDelegate.h */; };
 		7F33BC4D534996BB66FA75AC1EA47F99 /* TSMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C452BBFE6EA4F45AE10A742A95E253F /* TSMessage.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		83DA4841CF138612538AB2333C03359B /* ADGlueTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 8DDA2BB93F40943D6069F3E4D2E3B228 /* ADGlueTransition.h */; };
+		843F3E9A7FE47C134FE391E509484653 /* ADFoldTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = E25091EDBAEE8C175F6C73F963E65DB8 /* ADFoldTransition.h */; };
+		850A123147BFE54FF56745E10E9E6B06 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63CF5CF8F5B2FC1B06EC0EC2D93752B /* Foundation.framework */; };
+		8C175759E2DBE469F931C82CDDA3E5A6 /* JSONAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4B456BE9FF036973B187AD6DC5A21E /* JSONAPI.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		8C26471A0A5F0A91D2D8CD46231AE2D8 /* ADTransitioningDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1443F1B467E6F61781352FCC307790E1 /* ADTransitioningDelegate.h */; };
+		8DD80EA353B19A888A7AD9EF3D5AFC32 /* UIViewController+ADTransitionController.h in Headers */ = {isa = PBXBuildFile; fileRef = 123F1FA69D3FEF3D1C90C36F3D0F4814 /* UIViewController+ADTransitionController.h */; };
+		8E9F7B6BF909DED5A857B320549F318A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63CF5CF8F5B2FC1B06EC0EC2D93752B /* Foundation.framework */; };
+		8F619874E1354281C8430A27B62EF689 /* ADSlideTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C103E4BEEDEC9DEF1B87229C0A802E9 /* ADSlideTransition.m */; };
+		921432D2399E79800A9EFF67822EBF0A /* ADCarrouselTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 966BDB89CDC42AEA173850E02E3F03AA /* ADCarrouselTransition.h */; };
+		9460B0FEC75622BE6CEE705F0E99BE2E /* JSONModelError.m in Sources */ = {isa = PBXBuildFile; fileRef = CD002FD42C7F31FF34CE0F4F49845401 /* JSONModelError.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		963743FF40E6D2328AE474F2C5576F79 /* TSMessageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 40AFC1B7930D45B52AF2CBACF01F70A4 /* TSMessageView.h */; };
-		A2391D9E2A66C238F10FED8E3BB8A4BB /* JSONModel+networking.m in Sources */ = {isa = PBXBuildFile; fileRef = 474E5AD394B38AE1FBFA691296573736 /* JSONModel+networking.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		ABB0C694285447289C0061921425BD4F /* HexColor.h in Headers */ = {isa = PBXBuildFile; fileRef = DFD2546FE1430CB26C3A2DB3B7A12B5B /* HexColor.h */; };
-		AE878BD9FBEEEB8A3678F6055FB1C7D8 /* JSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EBFF3E23E8F46861116540D286826F /* JSONValueTransformer.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		B49AF569F78D3EED6CC30374A0858970 /* HexColors-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCABFCF61ADA24B13D9E6CDE07ADA93 /* HexColors-dummy.m */; };
+		96A8A0CA056D633AE07980213C3E3050 /* ADModernPushTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D5929D4C7542BC94BB9A513ABB5B8F3 /* ADModernPushTransition.m */; };
+		971158BDDA46A41E2BD23799DD54FF44 /* UIViewController+ADTransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DEC5FAC53A1CC77414A3AEC365366A /* UIViewController+ADTransitionController.m */; };
+		972C866285BA131B0C617CE8D4F34A5D /* JSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F756774DA830F64340853EAE66B6C49 /* JSONValueTransformer.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		9B7A2224F5CDB9A5C0E3552A1C8D8C56 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63CF5CF8F5B2FC1B06EC0EC2D93752B /* Foundation.framework */; };
+		9BD9B07ECA6042103FC037FA8A957450 /* LMGeocoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5839944E450D41964E806FD35FB45CEB /* LMGeocoder.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		9D934553C8065C948BB6934FCA8B1C12 /* ADCubeTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = DF38F4F30152A6CE37FB76337AAB8A9E /* ADCubeTransition.h */; };
+		A351F429D8D33ECF9AFF3AC48F28F81C /* ADNavigationControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 73141044DD04DCB96967AEBD69FBCA85 /* ADNavigationControllerDelegate.m */; };
+		A3CFF13E19C6812A15BBE67C39DF9E22 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63CF5CF8F5B2FC1B06EC0EC2D93752B /* Foundation.framework */; };
+		A83CFA22719F99A7252749FBCB04C98F /* ADGhostTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = F152812B35849E9FC99B5246DF9E6CA6 /* ADGhostTransition.h */; };
+		A9180ACD090E09FB75A12A269CDBC574 /* LMGeocoder-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A54E2E7A45EA7BB3C494A03446005165 /* LMGeocoder-dummy.m */; };
+		A9E3093EDA0928E13068FC6E9D7C9645 /* JSONModel-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BA572C078C328CFE8DFBB9295DE51F2C /* JSONModel-dummy.m */; };
+		AA8187D618D0B610EC9E010C5CD6ED17 /* JSONAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 6856ECE9FA74E884F69B29C534FAA59A /* JSONAPI.h */; };
+		ADBFA30C6933B761FBFD763F9BD56CEC /* ADCrossTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 55398F2CAA6118F1F6951DC2E266D221 /* ADCrossTransition.m */; };
+		AE58D6BDC5AA37EE6658F306AA3CBEFF /* ADPushRotateTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 83AF8FA2E451D133BF2C35A7524F1DD4 /* ADPushRotateTransition.h */; };
+		AFBC4DEFB6BEB269C372647819B2AEB6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63CF5CF8F5B2FC1B06EC0EC2D93752B /* Foundation.framework */; };
+		AFF48AC0EF11A29F1D230825CECF0551 /* ADSwipeTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA840038F739D10928BB793902E9A53 /* ADSwipeTransition.m */; };
+		B04BBFADD9E268921652D65B410DF9A7 /* ADSlideTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = D395BF71A9D71943BEA039C9EBBC5DBE /* ADSlideTransition.h */; };
+		B12A80DDE698F52A93D61427A102CA34 /* ADTransitioningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D69DBF1E1EE079CF7673A623A49312AE /* ADTransitioningViewController.m */; };
+		B5E47D3AE3D06433346178E333CEA471 /* JSONHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D29D98C44F606BE13943EC11DD976242 /* JSONHTTPClient.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		B7977A551603CC63344946E662410C14 /* ADFlipTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2357C8819C3BF49BE255772BC3AEC0AC /* ADFlipTransition.m */; };
+		BB59A1658793876FB6684F72AE515C7F /* ADFoldTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = EA14FD0F540ED7EDA601EF64353B7032 /* ADFoldTransition.m */; };
+		BD63475E0A2C2266118880A2212B93E4 /* LMGeocoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 909664156E4B18F569C512398FAD2B97 /* LMGeocoder.h */; };
+		BEF971A0B3047A90A42024B2C28FC4B6 /* ADTransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A58606AD048C39E4E1276C1478CA74 /* ADTransitionController.m */; };
+		C1A85824306F684D4E5FFC0FC0EBED03 /* JSONKeyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = C41A14F182E1EA52F66F05F9A3BAAB4B /* JSONKeyMapper.h */; };
+		C3CA561C931FD3C52361F0D1724646A3 /* ADTransformTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABA2133E22592EACB8C5DE4A931AE8C /* ADTransformTransition.m */; };
+		C45749485BFFA1B88EE389BD362D4F14 /* ADTransitionController.h in Headers */ = {isa = PBXBuildFile; fileRef = AB146937C2F5A12045E0F0F67536045F /* ADTransitionController.h */; };
+		C4CAD3E04758A93D1970BFCFBFDF03CF /* ADSwapTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 117B0ECC64943C949B44F2751C42210F /* ADSwapTransition.m */; };
+		C5051CA01B57F6164520A18551002666 /* ADDualTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = A3402C08AF879AE101494B1EF36E60F8 /* ADDualTransition.m */; };
+		CCDECFEB2A3525C53F7F2EBDAC3B21B3 /* JSONModelArray.h in Headers */ = {isa = PBXBuildFile; fileRef = A53AF09004BD9EFFBABB21FF8E8E83BC /* JSONModelArray.h */; };
+		CF2A6C68BE3919B37BEDC20E56AC0A03 /* ADTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 9616718F9891E65B5B7026A0D9772AEE /* ADTransition.h */; };
 		CF502E0C925FDFD25418FD3D0AB219E6 /* TSMessages-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A72A74658CFFD3ED37922D2B6C002A62 /* TSMessages-dummy.m */; };
-		D4CD0AF04070EA3C56F78979C4E8D170 /* JSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E45F396A340E83F6B65FEE55A96301CD /* JSONModel.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		D89466C048F5BF9C0E3C5405CAAFA169 /* JSONModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 29EC3C7A135EA9BEEB43F0C314A8CAC0 /* JSONModelClassProperty.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		E0C90361DE1580F5DA23AD02D233F70A /* JSONModelArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 664ECF4AEE1DF81C1E539D4E5FCF3514 /* JSONModelArray.h */; };
-		E1F217E8A038632F9E259F578537C009 /* JSONAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E7CEC603423D3A6B0D3B0CA77DE6D92 /* JSONAPI.h */; };
-		E85D23E4056A8374DD5FC5E7D25DFE59 /* JSONModel-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 134A5A89494E0ECD06F194B0DE5D2132 /* JSONModel-dummy.m */; };
-		F0D074E1E88397633657860DD9C59E58 /* JSONModel.h in Headers */ = {isa = PBXBuildFile; fileRef = BA66C446791CD7CDFEB56027E9D0B3E2 /* JSONModel.h */; };
+		D294E7E092DA6F0362C3E00C4393E225 /* NSArray+JSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7C3F89504F11F81D824735CDD3E190 /* NSArray+JSONModel.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		D38A302C270C100C8DC5AB777FAB06F3 /* ADCarrouselTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 6643DDF28F20C15EA9F0D707C2548499 /* ADCarrouselTransition.m */; };
+		D3C64745E3A4F932E914B45811B47D24 /* ADDualTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 25C682801A90DEEA6FB80A84C101744A /* ADDualTransition.h */; };
+		D4672CF0C97C9F151725EF54E19DE8FF /* JSONModelLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B0C63FDA7CA0F933BD94F101D0D663 /* JSONModelLib.h */; };
+		DF9788343B1613E113E42D624EFDD62A /* ADTransformTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = F157FE3DF2722BD1297FE35B91098EED /* ADTransformTransition.h */; };
+		E1B6D298EBDF04DFEC17BC8A5CEB4436 /* ADTransitioningDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E38C715B5622C3F511413DDE3373B6D3 /* ADTransitioningDelegate.m */; };
+		E351A126DCD17D7E184C46DBADD41A3F /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E66495373D7AADE5C43495AB9E243A /* Pods-dummy.m */; };
+		E39662BA6228642905E81845938A286A /* NSArray+JSONModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 5190395D41077C53ED8049EC6B344D69 /* NSArray+JSONModel.h */; };
+		E3C733CC17EBAD9E5F629FBBFBEA5398 /* ADCrossTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A53D53DB066563C6DE37CB09EB9482F /* ADCrossTransition.h */; };
+		E4E21F9CD1C0A4F5508BEAB3118FFFA0 /* HexColors-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A44E3F0253360A595CBF49549094C0E7 /* HexColors-dummy.m */; };
+		E5697947B96C8D08004826D3CB980A42 /* ADSwipeFadeTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = BD4E32AE6554F6D46F7FEC6A5E66F3AB /* ADSwipeFadeTransition.m */; };
+		E58303B55E04171FC92E15F01E0FE200 /* ADZoomTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = B6CE716416075BC79279D113A00227F7 /* ADZoomTransition.h */; };
+		E73FCEA6FF5D8A90EC9848573BB5B0D0 /* ADFadeTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D243C8A3974CB888BC9B6B3E4B26901 /* ADFadeTransition.h */; };
+		E8BF0ABDADA5B0EFF5B2F443DD3BCB2B /* JSONKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1057D0031DAE771864D3B54FCDDA9EA2 /* JSONKeyMapper.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		E95A7F114E2239A23D96715989085131 /* ADTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF3C380CBF54ABB1A91486660CB6C5 /* ADTransition.m */; };
+		ED286EC041A515A863A8E788FE739DA7 /* ADFlipTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 34A0F53A8CE71F06E7D4D82EE740BEBE /* ADFlipTransition.h */; };
+		ED7F8BA3B5599B279931AE377E6865D2 /* ADSwipeFadeTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = B59CB72AD307D11128E4A73FB25848D6 /* ADSwipeFadeTransition.h */; };
+		EEC626D5DD48821F94A2027E132A4986 /* JSONHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F5F43324A424CAA6C3DDCA27480CAF7 /* JSONHTTPClient.h */; };
+		F41337BB2815377EC7FCFF80F1F55EB9 /* JSONModel+networking.m in Sources */ = {isa = PBXBuildFile; fileRef = E00FBCE3AA40572D42EBFF0C7F6A6624 /* JSONModel+networking.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		F9D316B150FE5DD9116E98F56EDE6C67 /* TSMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B1695ECE4BC33E800E822E2BFCC72CF /* TSMessage.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1F77BFA00B67D3C5D5AD10A064D86627 /* PBXContainerItemProxy */ = {
+		1F8EBE70226C6A7709D14C98E0423197 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 5A5C6B4E13BB9DAB79FFAAA3BF0D0815;
+			remoteGlobalIDString = 1000B1EC643F1A92AFDE2C108ED3140C;
+			remoteInfo = HexColors;
+		};
+		36F4605193F022ABA4C86CBA9A3E51DF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1000B1EC643F1A92AFDE2C108ED3140C;
+			remoteInfo = HexColors;
+		};
+		4015F59CDACBE13CD9259827AE7CE03D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 526FAA5A501FBFA4D1016ED1352AFCCA;
 			remoteInfo = JSONModel;
 		};
-		258C9B4018CD3E9D8889AEA8B371CB02 /* PBXContainerItemProxy */ = {
+		506A51028A0588425803E5EA56249CD6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 18A4BA8BFD66F76A5A3AE5290D46B994;
 			remoteInfo = TSMessages;
 		};
-		532364C7D75D645182998EDEBC482F50 /* PBXContainerItemProxy */ = {
+		E5A874597543232AD27EC2D31DC97C52 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 91D6EADFEB5F13480E265498F5D6080B;
-			remoteInfo = HexColors;
+			remoteGlobalIDString = F4E59DF14D10A1EBC924E57BBE6B1F10;
+			remoteInfo = LMGeocoder;
 		};
-		A669AF5A3A7F1E95C6E65124B78F8DCE /* PBXContainerItemProxy */ = {
+		F8B9447899B160A62072342F08D503A9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 91D6EADFEB5F13480E265498F5D6080B;
-			remoteInfo = HexColors;
+			remoteGlobalIDString = E39C125D4DAC405604512DCF4B9B8B40;
+			remoteInfo = ADTransitionController;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0C17E8E47B80D14FCA03C1A6862CE456 /* JSONKeyMapper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONKeyMapper.m; path = JSONModel/JSONModelTransformations/JSONKeyMapper.m; sourceTree = "<group>"; };
-		134A5A89494E0ECD06F194B0DE5D2132 /* JSONModel-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "JSONModel-dummy.m"; sourceTree = "<group>"; };
-		1420FD59480425DB960DA4B6F59B152A /* libJSONModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJSONModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		008BEA6C1371A35F20A82665C47CB17E /* LMAddress.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LMAddress.h; path = LMGeocoder/LMAddress.h; sourceTree = "<group>"; };
+		08253E2147E6BD2D741D9B6F9C2C688C /* ADTransitionController.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ADTransitionController.xcconfig; sourceTree = "<group>"; };
+		0D5929D4C7542BC94BB9A513ABB5B8F3 /* ADModernPushTransition.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ADModernPushTransition.m; path = ADTransitionController/ADModernPushTransition.m; sourceTree = "<group>"; };
+		1057D0031DAE771864D3B54FCDDA9EA2 /* JSONKeyMapper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONKeyMapper.m; path = JSONModel/JSONModelTransformations/JSONKeyMapper.m; sourceTree = "<group>"; };
+		117B0ECC64943C949B44F2751C42210F /* ADSwapTransition.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ADSwapTransition.m; path = ADTransitionController/ADSwapTransition.m; sourceTree = "<group>"; };
+		123F1FA69D3FEF3D1C90C36F3D0F4814 /* UIViewController+ADTransitionController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIViewController+ADTransitionController.h"; path = "ADTransitionController/UIViewController+ADTransitionController.h"; sourceTree = "<group>"; };
+		1443F1B467E6F61781352FCC307790E1 /* ADTransitioningDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ADTransitioningDelegate.h; path = ADTransitionController/ADTransitioningDelegate.h; sourceTree = "<group>"; };
 		14C6524691A5652F5E3B6DED2912AB6E /* TSMessageView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TSMessageView.m; path = Pod/Classes/TSMessageView.m; sourceTree = "<group>"; };
 		15A529C27057E4A57D259CBC6E6CE49C /* Pods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-acknowledgements.markdown"; sourceTree = "<group>"; };
-		1D3A7B9BB355CB4E6A07029DA2E6F1C5 /* NotificationBackgroundSuccessIcon.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NotificationBackgroundSuccessIcon.png; path = Pod/Assets/NotificationBackgroundSuccessIcon.png; sourceTree = "<group>"; };
-		1FBB1FF0E59EEC77676A62EDC3B0DF9D /* NotificationBackgroundMessage@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NotificationBackgroundMessage@2x.png"; path = "Pod/Assets/NotificationBackgroundMessage@2x.png"; sourceTree = "<group>"; };
-		20BADAF471AFF353A158D60DC78863FC /* NotificationBackgroundSuccess.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NotificationBackgroundSuccess.png; path = Pod/Assets/NotificationBackgroundSuccess.png; sourceTree = "<group>"; };
-		27FEC30C6FA50EB1AE16776313A85E45 /* NotificationButtonBackground.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NotificationButtonBackground.png; path = Pod/Assets/NotificationButtonBackground.png; sourceTree = "<group>"; };
-		285C2BCEEE7856BA9B1C640F58225239 /* JSONModelError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONModelError.m; path = JSONModel/JSONModel/JSONModelError.m; sourceTree = "<group>"; };
-		29EC3C7A135EA9BEEB43F0C314A8CAC0 /* JSONModelClassProperty.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONModelClassProperty.m; path = JSONModel/JSONModel/JSONModelClassProperty.m; sourceTree = "<group>"; };
-		2A7F589FB66B8AA5DA6061FC43B1579B /* NotificationBackgroundWarningIcon.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NotificationBackgroundWarningIcon.png; path = Pod/Assets/NotificationBackgroundWarningIcon.png; sourceTree = "<group>"; };
-		2E7CEC603423D3A6B0D3B0CA77DE6D92 /* JSONAPI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONAPI.h; path = JSONModel/JSONModelNetworking/JSONAPI.h; sourceTree = "<group>"; };
-		32EBFF3E23E8F46861116540D286826F /* JSONValueTransformer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONValueTransformer.m; path = JSONModel/JSONModelTransformations/JSONValueTransformer.m; sourceTree = "<group>"; };
-		335E5E2E7FE9B27F58EF24F00468EBC4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.release.xcconfig; sourceTree = "<group>"; };
-		33A0D5CD57E14FF152429A888BDB88C7 /* HexColors.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = HexColors.xcconfig; sourceTree = "<group>"; };
-		38646D8233F3A8560BBBD5CD948F477A /* NotificationBackgroundWarning@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NotificationBackgroundWarning@2x.png"; path = "Pod/Assets/NotificationBackgroundWarning@2x.png"; sourceTree = "<group>"; };
-		399BBDDD49751424065780C027F1E3FB /* JSONKeyMapper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONKeyMapper.h; path = JSONModel/JSONModelTransformations/JSONKeyMapper.h; sourceTree = "<group>"; };
+		1ABA2133E22592EACB8C5DE4A931AE8C /* ADTransformTransition.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ADTransformTransition.m; path = ADTransitionController/ADTransformTransition.m; sourceTree = "<group>"; };
+		1BF291B7806E8B24266360F4C335D6C8 /* ADModernPushTransition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ADModernPushTransition.h; path = ADTransitionController/ADModernPushTransition.h; sourceTree = "<group>"; };
+		2357C8819C3BF49BE255772BC3AEC0AC /* ADFlipTransition.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ADFlipTransition.m; path = ADTransitionController/ADFlipTransition.m; sourceTree = "<group>"; };
+		249070CDD399BA355D9F155ECFE00B6A /* ADGlueTransition.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ADGlueTransition.m; path = ADTransitionController/ADGlueTransition.m; sourceTree = "<group>"; };
+		25C682801A90DEEA6FB80A84C101744A /* ADDualTransition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ADDualTransition.h; path = ADTransitionController/ADDualTransition.h; sourceTree = "<group>"; };
+		2869861843E20F37BCBB26CECCAED78F /* HexColor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = HexColor.m; path = Classes/HexColor.m; sourceTree = "<group>"; };
+		2F3D82D32549C71E237E6ACB95944416 /* ADZoomTransition.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ADZoomTransition.m; path = ADTransitionController/ADZoomTransition.m; sourceTree = "<group>"; };
+		3089C4336D891E93408823C769E5C5CA /* libADTransitionController.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libADTransitionController.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		31687CEE0C8A32847F907C9A4300067B /* NotificationBackgroundWarning@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NotificationBackgroundWarning@2x.png"; path = "Pod/Assets/NotificationBackgroundWarning@2x.png"; sourceTree = "<group>"; };
+		31F2A57B5C1CC5ECF1A04458E9215C7F /* ADBackFadeTransition.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ADBackFadeTransition.m; path = ADTransitionController/ADBackFadeTransition.m; sourceTree = "<group>"; };
+		327DE5119A2342DFA33F8CEE0799BBD9 /* ADPushRotateTransition.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ADPushRotateTransition.m; path = ADTransitionController/ADPushRotateTransition.m; sourceTree = "<group>"; };
+		34A0F53A8CE71F06E7D4D82EE740BEBE /* ADFlipTransition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ADFlipTransition.h; path = ADTransitionController/ADFlipTransition.h; sourceTree = "<group>"; };
+		3513519650B2C3389576030B63DA11C1 /* NotificationBackgroundSuccess.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NotificationBackgroundSuccess.png; path = Pod/Assets/NotificationBackgroundSuccess.png; sourceTree = "<group>"; };
+		36BD9EC52278379B3B9632FAF70F0F2E /* JSONModel+networking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "JSONModel+networking.h"; path = "JSONModel/JSONModelNetworking/JSONModel+networking.h"; sourceTree = "<group>"; };
+		3B88129344273CBF3C25F47A1C97C931 /* ADGhostTransition.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ADGhostTransition.m; path = ADTransitionController/ADGhostTransition.m; sourceTree = "<group>"; };
 		3C452BBFE6EA4F45AE10A742A95E253F /* TSMessage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TSMessage.m; path = Pod/Classes/TSMessage.m; sourceTree = "<group>"; };
+		3D2FC9B16EEA3616059BFB846F312428 /* ADSwapTransition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ADSwapTransition.h; path = ADTransitionController/ADSwapTransition.h; sourceTree = "<group>"; };
+		3EA840038F739D10928BB793902E9A53 /* ADSwipeTransition.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ADSwipeTransition.m; path = ADTransitionController/ADSwipeTransition.m; sourceTree = "<group>"; };
 		40AFC1B7930D45B52AF2CBACF01F70A4 /* TSMessageView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TSMessageView.h; path = Pod/Classes/TSMessageView.h; sourceTree = "<group>"; };
-		44F7DBFD0FFC983235484BDD4D007DD9 /* JSONModelArray.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONModelArray.m; path = JSONModel/JSONModel/JSONModelArray.m; sourceTree = "<group>"; };
-		473BBD78B08AD84D732AEBDE434AD1D4 /* JSONHTTPClient.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONHTTPClient.m; path = JSONModel/JSONModelNetworking/JSONHTTPClient.m; sourceTree = "<group>"; };
-		474E5AD394B38AE1FBFA691296573736 /* JSONModel+networking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "JSONModel+networking.m"; path = "JSONModel/JSONModelNetworking/JSONModel+networking.m"; sourceTree = "<group>"; };
-		562DDCBEFA240027AB61BCF9500A747A /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
-		57A32E794A5F93E02B05DB7C5249CD65 /* TSMessagesDefaultDesign.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; name = TSMessagesDefaultDesign.json; path = Pod/Assets/TSMessagesDefaultDesign.json; sourceTree = "<group>"; };
-		616190D0BCFDFED637804480C3407959 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		620EAC1132453124C5CDA3D2E6D45746 /* TSMessages.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TSMessages.xcconfig; sourceTree = "<group>"; };
+		42B0C63FDA7CA0F933BD94F101D0D663 /* JSONModelLib.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONModelLib.h; path = JSONModel/JSONModelLib.h; sourceTree = "<group>"; };
+		484A91EB2EC17EF8FF174928D6CBFA6E /* ADTransitionController-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "ADTransitionController-Private.xcconfig"; sourceTree = "<group>"; };
+		4A53D53DB066563C6DE37CB09EB9482F /* ADCrossTransition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ADCrossTransition.h; path = ADTransitionController/ADCrossTransition.h; sourceTree = "<group>"; };
+		4D243C8A3974CB888BC9B6B3E4B26901 /* ADFadeTransition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ADFadeTransition.h; path = ADTransitionController/ADFadeTransition.h; sourceTree = "<group>"; };
+		50F5F7E522789CF1FA6F35BF8A25E89C /* JSONModelError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONModelError.h; path = JSONModel/JSONModel/JSONModelError.h; sourceTree = "<group>"; };
+		5190395D41077C53ED8049EC6B344D69 /* NSArray+JSONModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+JSONModel.h"; path = "JSONModel/JSONModelCategories/NSArray+JSONModel.h"; sourceTree = "<group>"; };
+		55398F2CAA6118F1F6951DC2E266D221 /* ADCrossTransition.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ADCrossTransition.m; path = ADTransitionController/ADCrossTransition.m; sourceTree = "<group>"; };
+		5839944E450D41964E806FD35FB45CEB /* LMGeocoder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LMGeocoder.m; path = LMGeocoder/LMGeocoder.m; sourceTree = "<group>"; };
+		587431AE04E5D7C6E567A14253CDFDB5 /* NotificationBackgroundMessage.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NotificationBackgroundMessage.png; path = Pod/Assets/NotificationBackgroundMessage.png; sourceTree = "<group>"; };
+		58B03DFB7E424459900D69B99342E878 /* ADSwipeTransition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ADSwipeTransition.h; path = ADTransitionController/ADSwipeTransition.h; sourceTree = "<group>"; };
+		5C68879DD3F7F0254B04FBBF649EB865 /* JSONModel-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JSONModel-prefix.pch"; sourceTree = "<group>"; };
+		60D7CB626C34A27394AB60E7347A4DF6 /* ADBackFadeTransition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ADBackFadeTransition.h; path = ADTransitionController/ADBackFadeTransition.h; sourceTree = "<group>"; };
+		613B943507B0DF722D118FE2949A7DFB /* TSMessages-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TSMessages-prefix.pch"; sourceTree = "<group>"; };
+		618B52CB2AD9E4963C8369B95B4FC8AE /* JSONValueTransformer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONValueTransformer.h; path = JSONModel/JSONModelTransformations/JSONValueTransformer.h; sourceTree = "<group>"; };
+		63CA043E8771517F6B44B5EA69C95CB9 /* NotificationBackgroundErrorIcon@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NotificationBackgroundErrorIcon@2x.png"; path = "Pod/Assets/NotificationBackgroundErrorIcon@2x.png"; sourceTree = "<group>"; };
 		641AE05DD55E5E6AC1590CD7B4A18F97 /* Pods-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-resources.sh"; sourceTree = "<group>"; };
-		664ECF4AEE1DF81C1E539D4E5FCF3514 /* JSONModelArray.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONModelArray.h; path = JSONModel/JSONModel/JSONModelArray.h; sourceTree = "<group>"; };
-		693164FDD7F53ABC11022080D5293874 /* NotificationBackgroundSuccessIcon@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NotificationBackgroundSuccessIcon@2x.png"; path = "Pod/Assets/NotificationBackgroundSuccessIcon@2x.png"; sourceTree = "<group>"; };
-		6A35DBAE4FB14766F60C04870A4D60CC /* JSONModel-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JSONModel-prefix.pch"; sourceTree = "<group>"; };
-		6BF435A65255791B0693B21491FFB56A /* JSONValueTransformer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONValueTransformer.h; path = JSONModel/JSONModelTransformations/JSONValueTransformer.h; sourceTree = "<group>"; };
-		6DCABFCF61ADA24B13D9E6CDE07ADA93 /* HexColors-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "HexColors-dummy.m"; sourceTree = "<group>"; };
-		7701497B7C7CC590C11D58EACAEB7E86 /* NSArray+JSONModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSArray+JSONModel.m"; path = "JSONModel/JSONModelCategories/NSArray+JSONModel.m"; sourceTree = "<group>"; };
-		7D3506FEEF2DCE975FB36512FF8D891F /* HexColor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = HexColor.m; path = Classes/HexColor.m; sourceTree = "<group>"; };
-		81AFE1C78C8FEA70F02DA0A191CC1E5C /* HexColors-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "HexColors-Private.xcconfig"; sourceTree = "<group>"; };
-		84D9AF7B64A6E602D80DC1FED55BFF30 /* NotificationBackgroundWarningIcon@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NotificationBackgroundWarningIcon@2x.png"; path = "Pod/Assets/NotificationBackgroundWarningIcon@2x.png"; sourceTree = "<group>"; };
+		6643DDF28F20C15EA9F0D707C2548499 /* ADCarrouselTransition.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ADCarrouselTransition.m; path = ADTransitionController/ADCarrouselTransition.m; sourceTree = "<group>"; };
+		6856ECE9FA74E884F69B29C534FAA59A /* JSONAPI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONAPI.h; path = JSONModel/JSONModelNetworking/JSONAPI.h; sourceTree = "<group>"; };
+		6967CE861D3613C3738B04E04DEB94B9 /* ADCubeTransition.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ADCubeTransition.m; path = ADTransitionController/ADCubeTransition.m; sourceTree = "<group>"; };
+		697E1FD70427BCBDEE0297C303AA8CF7 /* ADTransitionController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ADTransitionController-dummy.m"; sourceTree = "<group>"; };
+		6C4B456BE9FF036973B187AD6DC5A21E /* JSONAPI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONAPI.m; path = JSONModel/JSONModelNetworking/JSONAPI.m; sourceTree = "<group>"; };
+		6F5F43324A424CAA6C3DDCA27480CAF7 /* JSONHTTPClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONHTTPClient.h; path = JSONModel/JSONModelNetworking/JSONHTTPClient.h; sourceTree = "<group>"; };
+		70EFA0637E249F4E86F5BAAC04366132 /* JSONModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONModel.h; path = JSONModel/JSONModel/JSONModel.h; sourceTree = "<group>"; };
+		73141044DD04DCB96967AEBD69FBCA85 /* ADNavigationControllerDelegate.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ADNavigationControllerDelegate.m; path = ADTransitionController/ADNavigationControllerDelegate.m; sourceTree = "<group>"; };
+		74AAC33A297B68C988074FFA19D7CD27 /* JSONModel-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "JSONModel-Private.xcconfig"; sourceTree = "<group>"; };
+		788098A2381F04D0773C4F914D64E729 /* JSONModelArray.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONModelArray.m; path = JSONModel/JSONModel/JSONModelArray.m; sourceTree = "<group>"; };
+		79A58606AD048C39E4E1276C1478CA74 /* ADTransitionController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ADTransitionController.m; path = ADTransitionController/ADTransitionController.m; sourceTree = "<group>"; };
+		7C103E4BEEDEC9DEF1B87229C0A802E9 /* ADSlideTransition.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ADSlideTransition.m; path = ADTransitionController/ADSlideTransition.m; sourceTree = "<group>"; };
+		7CBB4610F4ECD9D2C452E983DD52D273 /* NotificationBackgroundSuccess@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NotificationBackgroundSuccess@2x.png"; path = "Pod/Assets/NotificationBackgroundSuccess@2x.png"; sourceTree = "<group>"; };
+		7F756774DA830F64340853EAE66B6C49 /* JSONValueTransformer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONValueTransformer.m; path = JSONModel/JSONModelTransformations/JSONValueTransformer.m; sourceTree = "<group>"; };
+		7FC3C5CF0B843C64B9143DAAB70983CF /* HexColors-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "HexColors-prefix.pch"; sourceTree = "<group>"; };
+		800B6C3C331683735512FF567AFD432F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.debug.xcconfig; sourceTree = "<group>"; };
+		803A4F67771F133D86B834B59EDDE7F6 /* ADNavigationControllerDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ADNavigationControllerDelegate.h; path = ADTransitionController/ADNavigationControllerDelegate.h; sourceTree = "<group>"; };
+		80E66495373D7AADE5C43495AB9E243A /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
+		83AF8FA2E451D133BF2C35A7524F1DD4 /* ADPushRotateTransition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ADPushRotateTransition.h; path = ADTransitionController/ADPushRotateTransition.h; sourceTree = "<group>"; };
+		85E1E79F6335ECF1A424E0A04EA7E33F /* NotificationBackgroundError.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NotificationBackgroundError.png; path = Pod/Assets/NotificationBackgroundError.png; sourceTree = "<group>"; };
+		8698A8FFF6E7FC92F7432578EAE4F548 /* JSONModelClassProperty.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONModelClassProperty.m; path = JSONModel/JSONModel/JSONModelClassProperty.m; sourceTree = "<group>"; };
+		890F9DA2341FF50AB8189F1F9AC799E6 /* JSONModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONModel.m; path = JSONModel/JSONModel/JSONModel.m; sourceTree = "<group>"; };
 		8B1695ECE4BC33E800E822E2BFCC72CF /* TSMessage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TSMessage.h; path = Pod/Classes/TSMessage.h; sourceTree = "<group>"; };
-		90F7512F2003C7F66450AE28E02D3214 /* TSMessages-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TSMessages-prefix.pch"; sourceTree = "<group>"; };
-		9BB09A26A1C7A8D4C4F57B9C0164C6E1 /* NotificationButtonBackground@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NotificationButtonBackground@2x.png"; path = "Pod/Assets/NotificationButtonBackground@2x.png"; sourceTree = "<group>"; };
-		9C86CC1103EB52A7C9C746A0C14081A7 /* NotificationBackgroundErrorIcon@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NotificationBackgroundErrorIcon@2x.png"; path = "Pod/Assets/NotificationBackgroundErrorIcon@2x.png"; sourceTree = "<group>"; };
-		9EF5B58CFA7BEB401FB574513A52D191 /* JSONModelLib.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONModelLib.h; path = JSONModel/JSONModelLib.h; sourceTree = "<group>"; };
-		9F73C06CB24D0707949270B5FE2858D5 /* JSONModelClassProperty.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONModelClassProperty.h; path = JSONModel/JSONModel/JSONModelClassProperty.h; sourceTree = "<group>"; };
-		A3F95B451091EE53BCA43D7AE3D9C4EC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.debug.xcconfig; sourceTree = "<group>"; };
+		8B340071515C02B57FA46FA00AC21B6E /* NotificationBackgroundSuccessIcon.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NotificationBackgroundSuccessIcon.png; path = Pod/Assets/NotificationBackgroundSuccessIcon.png; sourceTree = "<group>"; };
+		8DDA2BB93F40943D6069F3E4D2E3B228 /* ADGlueTransition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ADGlueTransition.h; path = ADTransitionController/ADGlueTransition.h; sourceTree = "<group>"; };
+		8E0051ABFE155849624A9B594BF5B977 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.release.xcconfig; sourceTree = "<group>"; };
+		8E15BAF8BA45CA56F78B11F923837558 /* libHexColors.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHexColors.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FBF3C380CBF54ABB1A91486660CB6C5 /* ADTransition.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ADTransition.m; path = ADTransitionController/ADTransition.m; sourceTree = "<group>"; };
+		909664156E4B18F569C512398FAD2B97 /* LMGeocoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LMGeocoder.h; path = LMGeocoder/LMGeocoder.h; sourceTree = "<group>"; };
+		90D9B3897BA94A70A890ED0641065477 /* TSMessagesDefaultDesign.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; name = TSMessagesDefaultDesign.json; path = Pod/Assets/TSMessagesDefaultDesign.json; sourceTree = "<group>"; };
+		90EF5250C8F4A0C7BC258C855A88C0AB /* NotificationBackgroundSuccessIcon@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NotificationBackgroundSuccessIcon@2x.png"; path = "Pod/Assets/NotificationBackgroundSuccessIcon@2x.png"; sourceTree = "<group>"; };
+		91362993EF67685532F9912D4DFA2C30 /* LMGeocoder-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "LMGeocoder-Private.xcconfig"; sourceTree = "<group>"; };
+		9301E3D3D69A0DA1BB4352F6BFAFB3DF /* NotificationBackgroundWarningIcon.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NotificationBackgroundWarningIcon.png; path = Pod/Assets/NotificationBackgroundWarningIcon.png; sourceTree = "<group>"; };
+		9616718F9891E65B5B7026A0D9772AEE /* ADTransition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ADTransition.h; path = ADTransitionController/ADTransition.h; sourceTree = "<group>"; };
+		966BDB89CDC42AEA173850E02E3F03AA /* ADCarrouselTransition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ADCarrouselTransition.h; path = ADTransitionController/ADCarrouselTransition.h; sourceTree = "<group>"; };
+		99DEC5FAC53A1CC77414A3AEC365366A /* UIViewController+ADTransitionController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+ADTransitionController.m"; path = "ADTransitionController/UIViewController+ADTransitionController.m"; sourceTree = "<group>"; };
+		A3402C08AF879AE101494B1EF36E60F8 /* ADDualTransition.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ADDualTransition.m; path = ADTransitionController/ADDualTransition.m; sourceTree = "<group>"; };
+		A44E3F0253360A595CBF49549094C0E7 /* HexColors-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "HexColors-dummy.m"; sourceTree = "<group>"; };
 		A485D3CA1BEE11E510231A6A246BF3DF /* TSBlurView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TSBlurView.h; path = Pod/Classes/TSBlurView.h; sourceTree = "<group>"; };
+		A53AF09004BD9EFFBABB21FF8E8E83BC /* JSONModelArray.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONModelArray.h; path = JSONModel/JSONModel/JSONModelArray.h; sourceTree = "<group>"; };
+		A54E2E7A45EA7BB3C494A03446005165 /* LMGeocoder-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "LMGeocoder-dummy.m"; sourceTree = "<group>"; };
 		A621DC824CC7A1A78CC4DA73F16ED285 /* TSMessages-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "TSMessages-Private.xcconfig"; sourceTree = "<group>"; };
+		A63CF5CF8F5B2FC1B06EC0EC2D93752B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		A72A74658CFFD3ED37922D2B6C002A62 /* TSMessages-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TSMessages-dummy.m"; sourceTree = "<group>"; };
-		A76363DE205C33AE7798CE3D13DD94EC /* JSONModel+networking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "JSONModel+networking.h"; path = "JSONModel/JSONModelNetworking/JSONModel+networking.h"; sourceTree = "<group>"; };
-		ACC3969E87C6FA5D192F1358DAC826E3 /* HexColors-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "HexColors-prefix.pch"; sourceTree = "<group>"; };
-		B1C658831782D8F4418BBB95269426CC /* NotificationBackgroundMessage.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NotificationBackgroundMessage.png; path = Pod/Assets/NotificationBackgroundMessage.png; sourceTree = "<group>"; };
-		B4D46D1B412E72FCEB9D6977165AADF3 /* NotificationBackgroundError.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NotificationBackgroundError.png; path = Pod/Assets/NotificationBackgroundError.png; sourceTree = "<group>"; };
-		B8AA44C89385C86AE24A9629A40CBBDE /* JSONModel-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "JSONModel-Private.xcconfig"; sourceTree = "<group>"; };
+		A8A7FC7E28C6CCF83EB4CCC1ACB033C5 /* NotificationBackgroundErrorIcon.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NotificationBackgroundErrorIcon.png; path = Pod/Assets/NotificationBackgroundErrorIcon.png; sourceTree = "<group>"; };
+		AB146937C2F5A12045E0F0F67536045F /* ADTransitionController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ADTransitionController.h; path = ADTransitionController/ADTransitionController.h; sourceTree = "<group>"; };
+		AB96868A98B2047905DFCB3D3148CA54 /* LMAddress.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LMAddress.m; path = LMGeocoder/LMAddress.m; sourceTree = "<group>"; };
+		B461A08F812831A3C110D87274BDD5F0 /* ADTransitionController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ADTransitionController-prefix.pch"; sourceTree = "<group>"; };
+		B59CB72AD307D11128E4A73FB25848D6 /* ADSwipeFadeTransition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ADSwipeFadeTransition.h; path = ADTransitionController/ADSwipeFadeTransition.h; sourceTree = "<group>"; };
+		B6CE716416075BC79279D113A00227F7 /* ADZoomTransition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ADZoomTransition.h; path = ADTransitionController/ADZoomTransition.h; sourceTree = "<group>"; };
+		B7186E45D3137C729D545E23348B0B21 /* NotificationBackgroundWarningIcon@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NotificationBackgroundWarningIcon@2x.png"; path = "Pod/Assets/NotificationBackgroundWarningIcon@2x.png"; sourceTree = "<group>"; };
+		BA572C078C328CFE8DFBB9295DE51F2C /* JSONModel-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "JSONModel-dummy.m"; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		BA66C446791CD7CDFEB56027E9D0B3E2 /* JSONModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONModel.h; path = JSONModel/JSONModel/JSONModel.h; sourceTree = "<group>"; };
-		BF16099CE1CA41B7255387D9C3BBB2CE /* libHexColors.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHexColors.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC6E7A578B46E08DD891B95174B6B6E0 /* HexColor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = HexColor.h; path = Classes/HexColor.h; sourceTree = "<group>"; };
+		BD4E32AE6554F6D46F7FEC6A5E66F3AB /* ADSwipeFadeTransition.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ADSwipeFadeTransition.m; path = ADTransitionController/ADSwipeFadeTransition.m; sourceTree = "<group>"; };
+		BED8EFB89DDD1513FCA189B5D5CCC3D0 /* HexColors.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = HexColors.xcconfig; sourceTree = "<group>"; };
+		BEF3D7CB80CD88340FAA0F5279CE174E /* libJSONModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJSONModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF50262AB27C02868A168DA6BAE1B0B3 /* ADScaleTransition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ADScaleTransition.h; path = ADTransitionController/ADScaleTransition.h; sourceTree = "<group>"; };
 		BF59BC15D23E1E1912C8F334E7236813 /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
-		C165E57B89443700049D89F7ACA6EB15 /* NotificationBackgroundWarning.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NotificationBackgroundWarning.png; path = Pod/Assets/NotificationBackgroundWarning.png; sourceTree = "<group>"; };
-		C1C74FBE4DF1FF4B041A28EF8CE09C53 /* NotificationBackgroundErrorIcon.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NotificationBackgroundErrorIcon.png; path = Pod/Assets/NotificationBackgroundErrorIcon.png; sourceTree = "<group>"; };
-		D278E5FD25F475DC7C7B51A4856AA21B /* JSONAPI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONAPI.m; path = JSONModel/JSONModelNetworking/JSONAPI.m; sourceTree = "<group>"; };
+		C1917EFC0484912A4009698BB680447D /* LMGeocoder-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LMGeocoder-prefix.pch"; sourceTree = "<group>"; };
+		C37A3B568221756E63F930FB6A492AFC /* NotificationBackgroundWarning.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NotificationBackgroundWarning.png; path = Pod/Assets/NotificationBackgroundWarning.png; sourceTree = "<group>"; };
+		C39CAF11561FC2B7A010B82939E12D7D /* ADScaleTransition.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ADScaleTransition.m; path = ADTransitionController/ADScaleTransition.m; sourceTree = "<group>"; };
+		C40F1F0C050AACD15BCBC850CD865C6C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C41A14F182E1EA52F66F05F9A3BAAB4B /* JSONKeyMapper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONKeyMapper.h; path = JSONModel/JSONModelTransformations/JSONKeyMapper.h; sourceTree = "<group>"; };
+		C8AEC2DBA78B48E676A37F133F77F7F7 /* NotificationBackgroundMessage@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NotificationBackgroundMessage@2x.png"; path = "Pod/Assets/NotificationBackgroundMessage@2x.png"; sourceTree = "<group>"; };
+		CD002FD42C7F31FF34CE0F4F49845401 /* JSONModelError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONModelError.m; path = JSONModel/JSONModel/JSONModelError.m; sourceTree = "<group>"; };
+		D2206144BA49E0927E98123B6059C5CB /* ADFadeTransition.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ADFadeTransition.m; path = ADTransitionController/ADFadeTransition.m; sourceTree = "<group>"; };
+		D29D98C44F606BE13943EC11DD976242 /* JSONHTTPClient.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONHTTPClient.m; path = JSONModel/JSONModelNetworking/JSONHTTPClient.m; sourceTree = "<group>"; };
+		D2F1F371FFA7FB718B73DDEDB3FD392B /* JSONModelClassProperty.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONModelClassProperty.h; path = JSONModel/JSONModel/JSONModelClassProperty.h; sourceTree = "<group>"; };
+		D32B964E95A0DB3846C39B7A7AF408C0 /* HexColors-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "HexColors-Private.xcconfig"; sourceTree = "<group>"; };
+		D395BF71A9D71943BEA039C9EBBC5DBE /* ADSlideTransition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ADSlideTransition.h; path = ADTransitionController/ADSlideTransition.h; sourceTree = "<group>"; };
+		D4E7218FC57115336E75444CCE225346 /* ADTransitioningViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ADTransitioningViewController.h; path = ADTransitionController/ADTransitioningViewController.h; sourceTree = "<group>"; };
+		D69DBF1E1EE079CF7673A623A49312AE /* ADTransitioningViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ADTransitioningViewController.m; path = ADTransitionController/ADTransitioningViewController.m; sourceTree = "<group>"; };
 		D81EE2D1911B8A17F76246D8E88C94D8 /* TSBlurView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TSBlurView.m; path = Pod/Classes/TSBlurView.m; sourceTree = "<group>"; };
-		D85672D419B219ECBB489D28EA578A5F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		DB3B690AA7A0D4FB57637D23AB69D9F8 /* JSONModel.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JSONModel.xcconfig; sourceTree = "<group>"; };
-		DBAD1C48C7C08B852A3A4254048A9E89 /* NotificationBackgroundError@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NotificationBackgroundError@2x.png"; path = "Pod/Assets/NotificationBackgroundError@2x.png"; sourceTree = "<group>"; };
-		DFD2546FE1430CB26C3A2DB3B7A12B5B /* HexColor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = HexColor.h; path = Classes/HexColor.h; sourceTree = "<group>"; };
-		E45F396A340E83F6B65FEE55A96301CD /* JSONModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONModel.m; path = JSONModel/JSONModel/JSONModel.m; sourceTree = "<group>"; };
-		E5300280EC510857A8776553D8496B29 /* JSONHTTPClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONHTTPClient.h; path = JSONModel/JSONModelNetworking/JSONHTTPClient.h; sourceTree = "<group>"; };
+		DF38F4F30152A6CE37FB76337AAB8A9E /* ADCubeTransition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ADCubeTransition.h; path = ADTransitionController/ADCubeTransition.h; sourceTree = "<group>"; };
+		E00FBCE3AA40572D42EBFF0C7F6A6624 /* JSONModel+networking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "JSONModel+networking.m"; path = "JSONModel/JSONModelNetworking/JSONModel+networking.m"; sourceTree = "<group>"; };
+		E25091EDBAEE8C175F6C73F963E65DB8 /* ADFoldTransition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ADFoldTransition.h; path = ADTransitionController/ADFoldTransition.h; sourceTree = "<group>"; };
+		E38C715B5622C3F511413DDE3373B6D3 /* ADTransitioningDelegate.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ADTransitioningDelegate.m; path = ADTransitionController/ADTransitioningDelegate.m; sourceTree = "<group>"; };
+		E40B2F6489648D78C0C4D6E87428B4C5 /* NotificationButtonBackground@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NotificationButtonBackground@2x.png"; path = "Pod/Assets/NotificationButtonBackground@2x.png"; sourceTree = "<group>"; };
+		E517BEED5FC3261629A96A9BCB35E1BD /* TSMessages.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TSMessages.xcconfig; sourceTree = "<group>"; };
+		E6CC5119AC34FBEB3CAF617F3836526A /* NotificationButtonBackground.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NotificationButtonBackground.png; path = Pod/Assets/NotificationButtonBackground.png; sourceTree = "<group>"; };
 		E8C8D096A5C2057DB1928AA0E5D09632 /* libTSMessages.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTSMessages.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		ECAF84C7C0CE4636865FEDD82B79ECCF /* JSONModelError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONModelError.h; path = JSONModel/JSONModel/JSONModelError.h; sourceTree = "<group>"; };
-		F9CFE3D33CBB243DAEFEAFB285902A0B /* NSArray+JSONModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+JSONModel.h"; path = "JSONModel/JSONModelCategories/NSArray+JSONModel.h"; sourceTree = "<group>"; };
-		FDAD3C00DB3D93024E62063C0B5DC996 /* NotificationBackgroundSuccess@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NotificationBackgroundSuccess@2x.png"; path = "Pod/Assets/NotificationBackgroundSuccess@2x.png"; sourceTree = "<group>"; };
+		EA14FD0F540ED7EDA601EF64353B7032 /* ADFoldTransition.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ADFoldTransition.m; path = ADTransitionController/ADFoldTransition.m; sourceTree = "<group>"; };
+		EE21B27457725A66D87D59CC3C8C0A13 /* LMGeocoder.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LMGeocoder.xcconfig; sourceTree = "<group>"; };
+		EE7C3F89504F11F81D824735CDD3E190 /* NSArray+JSONModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSArray+JSONModel.m"; path = "JSONModel/JSONModelCategories/NSArray+JSONModel.m"; sourceTree = "<group>"; };
+		F152812B35849E9FC99B5246DF9E6CA6 /* ADGhostTransition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ADGhostTransition.h; path = ADTransitionController/ADGhostTransition.h; sourceTree = "<group>"; };
+		F157FE3DF2722BD1297FE35B91098EED /* ADTransformTransition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ADTransformTransition.h; path = ADTransitionController/ADTransformTransition.h; sourceTree = "<group>"; };
+		F38EEF46ED74339AE4B585627ADE6E5F /* NotificationBackgroundError@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NotificationBackgroundError@2x.png"; path = "Pod/Assets/NotificationBackgroundError@2x.png"; sourceTree = "<group>"; };
+		F403A384980CA4A3866DE3F41F6C83DE /* JSONModel.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JSONModel.xcconfig; sourceTree = "<group>"; };
+		FC470D5E769142C0731546AAC39B0DA3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		FCAD0AB87DA9A39260E470FB73348D1A /* libLMGeocoder.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLMGeocoder.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7AD7EC131B6388BD039846C86F0C193B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFBC4DEFB6BEB269C372647819B2AEB6 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		86D86A895553B8356F95E6920A9923F0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -159,95 +305,122 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CB4619640946767595B4D07C175D22FF /* Frameworks */ = {
+		877ABB78D0F52E51E2032708BE6793A7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				746659E57AB6C4E6359A8590A607BD5B /* Foundation.framework in Frameworks */,
+				850A123147BFE54FF56745E10E9E6B06 /* Foundation.framework in Frameworks */,
+				3A52DAE15F7E762CF544EEB793824007 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DD5EFC3D53CDEB116DBA2AB9148E9753 /* Frameworks */ = {
+		BA0550D4C16D9476277DF896D1C7C640 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				703E0B1ECA93EBAD5A6F70AD093B3771 /* Foundation.framework in Frameworks */,
+				9B7A2224F5CDB9A5C0E3552A1C8D8C56 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EFD9E7F850F22C99251D2DE82105556F /* Frameworks */ = {
+		D58AA696A6DD0338BDF6A5400D1993FC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				363085ADF23DFAA56B6EFB45F9E14999 /* Foundation.framework in Frameworks */,
+				A3CFF13E19C6812A15BBE67C39DF9E22 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D6E13DBDA5DFE3563B026F688AE26CBD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E9F7B6BF909DED5A857B320549F318A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		11F1B6E6768225EBD392EA9957641038 /* JSONModel */ = {
+		00FC04B06EEF8A155D545C321FDCC389 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				2E7CEC603423D3A6B0D3B0CA77DE6D92 /* JSONAPI.h */,
-				D278E5FD25F475DC7C7B51A4856AA21B /* JSONAPI.m */,
-				E5300280EC510857A8776553D8496B29 /* JSONHTTPClient.h */,
-				473BBD78B08AD84D732AEBDE434AD1D4 /* JSONHTTPClient.m */,
-				399BBDDD49751424065780C027F1E3FB /* JSONKeyMapper.h */,
-				0C17E8E47B80D14FCA03C1A6862CE456 /* JSONKeyMapper.m */,
-				BA66C446791CD7CDFEB56027E9D0B3E2 /* JSONModel.h */,
-				E45F396A340E83F6B65FEE55A96301CD /* JSONModel.m */,
-				A76363DE205C33AE7798CE3D13DD94EC /* JSONModel+networking.h */,
-				474E5AD394B38AE1FBFA691296573736 /* JSONModel+networking.m */,
-				664ECF4AEE1DF81C1E539D4E5FCF3514 /* JSONModelArray.h */,
-				44F7DBFD0FFC983235484BDD4D007DD9 /* JSONModelArray.m */,
-				9F73C06CB24D0707949270B5FE2858D5 /* JSONModelClassProperty.h */,
-				29EC3C7A135EA9BEEB43F0C314A8CAC0 /* JSONModelClassProperty.m */,
-				ECAF84C7C0CE4636865FEDD82B79ECCF /* JSONModelError.h */,
-				285C2BCEEE7856BA9B1C640F58225239 /* JSONModelError.m */,
-				9EF5B58CFA7BEB401FB574513A52D191 /* JSONModelLib.h */,
-				6BF435A65255791B0693B21491FFB56A /* JSONValueTransformer.h */,
-				32EBFF3E23E8F46861116540D286826F /* JSONValueTransformer.m */,
-				F9CFE3D33CBB243DAEFEAFB285902A0B /* NSArray+JSONModel.h */,
-				7701497B7C7CC590C11D58EACAEB7E86 /* NSArray+JSONModel.m */,
-				41424D345681B8D5F170CBD4D55BD4B5 /* Support Files */,
-			);
-			path = JSONModel;
-			sourceTree = "<group>";
-		};
-		2DA878AFE8A7FDEF1135E86C2A9C8F33 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				33A0D5CD57E14FF152429A888BDB88C7 /* HexColors.xcconfig */,
-				81AFE1C78C8FEA70F02DA0A191CC1E5C /* HexColors-Private.xcconfig */,
-				6DCABFCF61ADA24B13D9E6CDE07ADA93 /* HexColors-dummy.m */,
-				ACC3969E87C6FA5D192F1358DAC826E3 /* HexColors-prefix.pch */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/HexColors";
-			sourceTree = "<group>";
-		};
-		41424D345681B8D5F170CBD4D55BD4B5 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				DB3B690AA7A0D4FB57637D23AB69D9F8 /* JSONModel.xcconfig */,
-				B8AA44C89385C86AE24A9629A40CBBDE /* JSONModel-Private.xcconfig */,
-				134A5A89494E0ECD06F194B0DE5D2132 /* JSONModel-dummy.m */,
-				6A35DBAE4FB14766F60C04870A4D60CC /* JSONModel-prefix.pch */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/JSONModel";
-			sourceTree = "<group>";
-		};
-		53F661C0CA7190D2CF05023FB33D61E4 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				D85672D419B219ECBB489D28EA578A5F /* Foundation.framework */,
+				A63CF5CF8F5B2FC1B06EC0EC2D93752B /* Foundation.framework */,
+				FC470D5E769142C0731546AAC39B0DA3 /* QuartzCore.framework */,
 			);
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		54149CBA1AECD18818681B9E794BA208 /* TSMessages */ = {
+		03D9AAEE8B528C111DFED08C1FBD2C4C /* ADTransitionController */ = {
+			isa = PBXGroup;
+			children = (
+				60D7CB626C34A27394AB60E7347A4DF6 /* ADBackFadeTransition.h */,
+				31F2A57B5C1CC5ECF1A04458E9215C7F /* ADBackFadeTransition.m */,
+				966BDB89CDC42AEA173850E02E3F03AA /* ADCarrouselTransition.h */,
+				6643DDF28F20C15EA9F0D707C2548499 /* ADCarrouselTransition.m */,
+				4A53D53DB066563C6DE37CB09EB9482F /* ADCrossTransition.h */,
+				55398F2CAA6118F1F6951DC2E266D221 /* ADCrossTransition.m */,
+				DF38F4F30152A6CE37FB76337AAB8A9E /* ADCubeTransition.h */,
+				6967CE861D3613C3738B04E04DEB94B9 /* ADCubeTransition.m */,
+				25C682801A90DEEA6FB80A84C101744A /* ADDualTransition.h */,
+				A3402C08AF879AE101494B1EF36E60F8 /* ADDualTransition.m */,
+				4D243C8A3974CB888BC9B6B3E4B26901 /* ADFadeTransition.h */,
+				D2206144BA49E0927E98123B6059C5CB /* ADFadeTransition.m */,
+				34A0F53A8CE71F06E7D4D82EE740BEBE /* ADFlipTransition.h */,
+				2357C8819C3BF49BE255772BC3AEC0AC /* ADFlipTransition.m */,
+				E25091EDBAEE8C175F6C73F963E65DB8 /* ADFoldTransition.h */,
+				EA14FD0F540ED7EDA601EF64353B7032 /* ADFoldTransition.m */,
+				F152812B35849E9FC99B5246DF9E6CA6 /* ADGhostTransition.h */,
+				3B88129344273CBF3C25F47A1C97C931 /* ADGhostTransition.m */,
+				8DDA2BB93F40943D6069F3E4D2E3B228 /* ADGlueTransition.h */,
+				249070CDD399BA355D9F155ECFE00B6A /* ADGlueTransition.m */,
+				1BF291B7806E8B24266360F4C335D6C8 /* ADModernPushTransition.h */,
+				0D5929D4C7542BC94BB9A513ABB5B8F3 /* ADModernPushTransition.m */,
+				803A4F67771F133D86B834B59EDDE7F6 /* ADNavigationControllerDelegate.h */,
+				73141044DD04DCB96967AEBD69FBCA85 /* ADNavigationControllerDelegate.m */,
+				83AF8FA2E451D133BF2C35A7524F1DD4 /* ADPushRotateTransition.h */,
+				327DE5119A2342DFA33F8CEE0799BBD9 /* ADPushRotateTransition.m */,
+				BF50262AB27C02868A168DA6BAE1B0B3 /* ADScaleTransition.h */,
+				C39CAF11561FC2B7A010B82939E12D7D /* ADScaleTransition.m */,
+				D395BF71A9D71943BEA039C9EBBC5DBE /* ADSlideTransition.h */,
+				7C103E4BEEDEC9DEF1B87229C0A802E9 /* ADSlideTransition.m */,
+				3D2FC9B16EEA3616059BFB846F312428 /* ADSwapTransition.h */,
+				117B0ECC64943C949B44F2751C42210F /* ADSwapTransition.m */,
+				B59CB72AD307D11128E4A73FB25848D6 /* ADSwipeFadeTransition.h */,
+				BD4E32AE6554F6D46F7FEC6A5E66F3AB /* ADSwipeFadeTransition.m */,
+				58B03DFB7E424459900D69B99342E878 /* ADSwipeTransition.h */,
+				3EA840038F739D10928BB793902E9A53 /* ADSwipeTransition.m */,
+				F157FE3DF2722BD1297FE35B91098EED /* ADTransformTransition.h */,
+				1ABA2133E22592EACB8C5DE4A931AE8C /* ADTransformTransition.m */,
+				9616718F9891E65B5B7026A0D9772AEE /* ADTransition.h */,
+				8FBF3C380CBF54ABB1A91486660CB6C5 /* ADTransition.m */,
+				AB146937C2F5A12045E0F0F67536045F /* ADTransitionController.h */,
+				79A58606AD048C39E4E1276C1478CA74 /* ADTransitionController.m */,
+				1443F1B467E6F61781352FCC307790E1 /* ADTransitioningDelegate.h */,
+				E38C715B5622C3F511413DDE3373B6D3 /* ADTransitioningDelegate.m */,
+				D4E7218FC57115336E75444CCE225346 /* ADTransitioningViewController.h */,
+				D69DBF1E1EE079CF7673A623A49312AE /* ADTransitioningViewController.m */,
+				B6CE716416075BC79279D113A00227F7 /* ADZoomTransition.h */,
+				2F3D82D32549C71E237E6ACB95944416 /* ADZoomTransition.m */,
+				123F1FA69D3FEF3D1C90C36F3D0F4814 /* UIViewController+ADTransitionController.h */,
+				99DEC5FAC53A1CC77414A3AEC365366A /* UIViewController+ADTransitionController.m */,
+				E81956FDAD6DBA5219A55546C2121F5B /* Support Files */,
+			);
+			path = ADTransitionController;
+			sourceTree = "<group>";
+		};
+		2E53D1E08AE74A311B32D62A6052F8E4 /* LMGeocoder */ = {
+			isa = PBXGroup;
+			children = (
+				008BEA6C1371A35F20A82665C47CB17E /* LMAddress.h */,
+				AB96868A98B2047905DFCB3D3148CA54 /* LMAddress.m */,
+				909664156E4B18F569C512398FAD2B97 /* LMGeocoder.h */,
+				5839944E450D41964E806FD35FB45CEB /* LMGeocoder.m */,
+				A37891B281D7CA5827D485734B1B2CFB /* Support Files */,
+			);
+			path = LMGeocoder;
+			sourceTree = "<group>";
+		};
+		2F7998449866646328DA74B66DAC6E88 /* TSMessages */ = {
 			isa = PBXGroup;
 			children = (
 				A485D3CA1BEE11E510231A6A246BF3DF /* TSBlurView.h */,
@@ -256,57 +429,87 @@
 				3C452BBFE6EA4F45AE10A742A95E253F /* TSMessage.m */,
 				40AFC1B7930D45B52AF2CBACF01F70A4 /* TSMessageView.h */,
 				14C6524691A5652F5E3B6DED2912AB6E /* TSMessageView.m */,
-				725DB2B7E9E64A6945EA0CB2F5E88787 /* Resources */,
-				9420B1D131F090A8559EC171BF91FA24 /* Support Files */,
+				4FC233E67C2606AA112F415B45E6DAF8 /* Resources */,
+				60C47455B2D60AF75081082D794E90C9 /* Support Files */,
 			);
 			path = TSMessages;
 			sourceTree = "<group>";
 		};
-		725DB2B7E9E64A6945EA0CB2F5E88787 /* Resources */ = {
+		433CD3331B6C3787F473C941B61FC68F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B4D46D1B412E72FCEB9D6977165AADF3 /* NotificationBackgroundError.png */,
-				DBAD1C48C7C08B852A3A4254048A9E89 /* NotificationBackgroundError@2x.png */,
-				C1C74FBE4DF1FF4B041A28EF8CE09C53 /* NotificationBackgroundErrorIcon.png */,
-				9C86CC1103EB52A7C9C746A0C14081A7 /* NotificationBackgroundErrorIcon@2x.png */,
-				B1C658831782D8F4418BBB95269426CC /* NotificationBackgroundMessage.png */,
-				1FBB1FF0E59EEC77676A62EDC3B0DF9D /* NotificationBackgroundMessage@2x.png */,
-				20BADAF471AFF353A158D60DC78863FC /* NotificationBackgroundSuccess.png */,
-				FDAD3C00DB3D93024E62063C0B5DC996 /* NotificationBackgroundSuccess@2x.png */,
-				1D3A7B9BB355CB4E6A07029DA2E6F1C5 /* NotificationBackgroundSuccessIcon.png */,
-				693164FDD7F53ABC11022080D5293874 /* NotificationBackgroundSuccessIcon@2x.png */,
-				C165E57B89443700049D89F7ACA6EB15 /* NotificationBackgroundWarning.png */,
-				38646D8233F3A8560BBBD5CD948F477A /* NotificationBackgroundWarning@2x.png */,
-				2A7F589FB66B8AA5DA6061FC43B1579B /* NotificationBackgroundWarningIcon.png */,
-				84D9AF7B64A6E602D80DC1FED55BFF30 /* NotificationBackgroundWarningIcon@2x.png */,
-				27FEC30C6FA50EB1AE16776313A85E45 /* NotificationButtonBackground.png */,
-				9BB09A26A1C7A8D4C4F57B9C0164C6E1 /* NotificationButtonBackground@2x.png */,
-				57A32E794A5F93E02B05DB7C5249CD65 /* TSMessagesDefaultDesign.json */,
+				00FC04B06EEF8A155D545C321FDCC389 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4FC233E67C2606AA112F415B45E6DAF8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				85E1E79F6335ECF1A424E0A04EA7E33F /* NotificationBackgroundError.png */,
+				F38EEF46ED74339AE4B585627ADE6E5F /* NotificationBackgroundError@2x.png */,
+				A8A7FC7E28C6CCF83EB4CCC1ACB033C5 /* NotificationBackgroundErrorIcon.png */,
+				63CA043E8771517F6B44B5EA69C95CB9 /* NotificationBackgroundErrorIcon@2x.png */,
+				587431AE04E5D7C6E567A14253CDFDB5 /* NotificationBackgroundMessage.png */,
+				C8AEC2DBA78B48E676A37F133F77F7F7 /* NotificationBackgroundMessage@2x.png */,
+				3513519650B2C3389576030B63DA11C1 /* NotificationBackgroundSuccess.png */,
+				7CBB4610F4ECD9D2C452E983DD52D273 /* NotificationBackgroundSuccess@2x.png */,
+				8B340071515C02B57FA46FA00AC21B6E /* NotificationBackgroundSuccessIcon.png */,
+				90EF5250C8F4A0C7BC258C855A88C0AB /* NotificationBackgroundSuccessIcon@2x.png */,
+				C37A3B568221756E63F930FB6A492AFC /* NotificationBackgroundWarning.png */,
+				31687CEE0C8A32847F907C9A4300067B /* NotificationBackgroundWarning@2x.png */,
+				9301E3D3D69A0DA1BB4352F6BFAFB3DF /* NotificationBackgroundWarningIcon.png */,
+				B7186E45D3137C729D545E23348B0B21 /* NotificationBackgroundWarningIcon@2x.png */,
+				E6CC5119AC34FBEB3CAF617F3836526A /* NotificationButtonBackground.png */,
+				E40B2F6489648D78C0C4D6E87428B4C5 /* NotificationButtonBackground@2x.png */,
+				90D9B3897BA94A70A890ED0641065477 /* TSMessagesDefaultDesign.json */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		508B4BB6E25003DA2A4FCE442F91AC72 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				03D9AAEE8B528C111DFED08C1FBD2C4C /* ADTransitionController */,
+				7CAF9E98CC2942F0DAEB001AEDDE26ED /* HexColors */,
+				954E80E1261ED3EA19C44B2F98982F9B /* JSONModel */,
+				2E53D1E08AE74A311B32D62A6052F8E4 /* LMGeocoder */,
+				2F7998449866646328DA74B66DAC6E88 /* TSMessages */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		60C47455B2D60AF75081082D794E90C9 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				E517BEED5FC3261629A96A9BCB35E1BD /* TSMessages.xcconfig */,
+				A621DC824CC7A1A78CC4DA73F16ED285 /* TSMessages-Private.xcconfig */,
+				A72A74658CFFD3ED37922D2B6C002A62 /* TSMessages-dummy.m */,
+				613B943507B0DF722D118FE2949A7DFB /* TSMessages-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/TSMessages";
+			sourceTree = "<group>";
+		};
+		7CAF9E98CC2942F0DAEB001AEDDE26ED /* HexColors */ = {
+			isa = PBXGroup;
+			children = (
+				BC6E7A578B46E08DD891B95174B6B6E0 /* HexColor.h */,
+				2869861843E20F37BCBB26CECCAED78F /* HexColor.m */,
+				FEF9902E492B791492E1AA4451EDCE83 /* Support Files */,
+			);
+			path = HexColors;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
-				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				CDDEC89655475A384E7F8A6862DC4915 /* Pods */,
+				433CD3331B6C3787F473C941B61FC68F /* Frameworks */,
+				508B4BB6E25003DA2A4FCE442F91AC72 /* Pods */,
 				CCA510CFBEA2D207524CDA0D73C3B561 /* Products */,
 				D2411A5FE7F7A004607BED49990C37F4 /* Targets Support Files */,
 			);
-			sourceTree = "<group>";
-		};
-		9420B1D131F090A8559EC171BF91FA24 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				620EAC1132453124C5CDA3D2E6D45746 /* TSMessages.xcconfig */,
-				A621DC824CC7A1A78CC4DA73F16ED285 /* TSMessages-Private.xcconfig */,
-				A72A74658CFFD3ED37922D2B6C002A62 /* TSMessages-dummy.m */,
-				90F7512F2003C7F66450AE28E02D3214 /* TSMessages-prefix.pch */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/TSMessages";
 			sourceTree = "<group>";
 		};
 		952EEBFAF8F7E620423C9F156F25A506 /* Pods */ = {
@@ -314,42 +517,79 @@
 			children = (
 				15A529C27057E4A57D259CBC6E6CE49C /* Pods-acknowledgements.markdown */,
 				BF59BC15D23E1E1912C8F334E7236813 /* Pods-acknowledgements.plist */,
-				562DDCBEFA240027AB61BCF9500A747A /* Pods-dummy.m */,
+				80E66495373D7AADE5C43495AB9E243A /* Pods-dummy.m */,
 				641AE05DD55E5E6AC1590CD7B4A18F97 /* Pods-resources.sh */,
-				A3F95B451091EE53BCA43D7AE3D9C4EC /* Pods.debug.xcconfig */,
-				335E5E2E7FE9B27F58EF24F00468EBC4 /* Pods.release.xcconfig */,
+				800B6C3C331683735512FF567AFD432F /* Pods.debug.xcconfig */,
+				8E0051ABFE155849624A9B594BF5B977 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
 			path = "Target Support Files/Pods";
 			sourceTree = "<group>";
 		};
-		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+		954E80E1261ED3EA19C44B2F98982F9B /* JSONModel */ = {
 			isa = PBXGroup;
 			children = (
-				53F661C0CA7190D2CF05023FB33D61E4 /* iOS */,
+				6856ECE9FA74E884F69B29C534FAA59A /* JSONAPI.h */,
+				6C4B456BE9FF036973B187AD6DC5A21E /* JSONAPI.m */,
+				6F5F43324A424CAA6C3DDCA27480CAF7 /* JSONHTTPClient.h */,
+				D29D98C44F606BE13943EC11DD976242 /* JSONHTTPClient.m */,
+				C41A14F182E1EA52F66F05F9A3BAAB4B /* JSONKeyMapper.h */,
+				1057D0031DAE771864D3B54FCDDA9EA2 /* JSONKeyMapper.m */,
+				70EFA0637E249F4E86F5BAAC04366132 /* JSONModel.h */,
+				890F9DA2341FF50AB8189F1F9AC799E6 /* JSONModel.m */,
+				36BD9EC52278379B3B9632FAF70F0F2E /* JSONModel+networking.h */,
+				E00FBCE3AA40572D42EBFF0C7F6A6624 /* JSONModel+networking.m */,
+				A53AF09004BD9EFFBABB21FF8E8E83BC /* JSONModelArray.h */,
+				788098A2381F04D0773C4F914D64E729 /* JSONModelArray.m */,
+				D2F1F371FFA7FB718B73DDEDB3FD392B /* JSONModelClassProperty.h */,
+				8698A8FFF6E7FC92F7432578EAE4F548 /* JSONModelClassProperty.m */,
+				50F5F7E522789CF1FA6F35BF8A25E89C /* JSONModelError.h */,
+				CD002FD42C7F31FF34CE0F4F49845401 /* JSONModelError.m */,
+				42B0C63FDA7CA0F933BD94F101D0D663 /* JSONModelLib.h */,
+				618B52CB2AD9E4963C8369B95B4FC8AE /* JSONValueTransformer.h */,
+				7F756774DA830F64340853EAE66B6C49 /* JSONValueTransformer.m */,
+				5190395D41077C53ED8049EC6B344D69 /* NSArray+JSONModel.h */,
+				EE7C3F89504F11F81D824735CDD3E190 /* NSArray+JSONModel.m */,
+				BF03AEA5E9086B9C1A9D5B2E123ED966 /* Support Files */,
 			);
-			name = Frameworks;
+			path = JSONModel;
+			sourceTree = "<group>";
+		};
+		A37891B281D7CA5827D485734B1B2CFB /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				EE21B27457725A66D87D59CC3C8C0A13 /* LMGeocoder.xcconfig */,
+				91362993EF67685532F9912D4DFA2C30 /* LMGeocoder-Private.xcconfig */,
+				A54E2E7A45EA7BB3C494A03446005165 /* LMGeocoder-dummy.m */,
+				C1917EFC0484912A4009698BB680447D /* LMGeocoder-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/LMGeocoder";
+			sourceTree = "<group>";
+		};
+		BF03AEA5E9086B9C1A9D5B2E123ED966 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				F403A384980CA4A3866DE3F41F6C83DE /* JSONModel.xcconfig */,
+				74AAC33A297B68C988074FFA19D7CD27 /* JSONModel-Private.xcconfig */,
+				BA572C078C328CFE8DFBB9295DE51F2C /* JSONModel-dummy.m */,
+				5C68879DD3F7F0254B04FBBF649EB865 /* JSONModel-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/JSONModel";
 			sourceTree = "<group>";
 		};
 		CCA510CFBEA2D207524CDA0D73C3B561 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BF16099CE1CA41B7255387D9C3BBB2CE /* libHexColors.a */,
-				1420FD59480425DB960DA4B6F59B152A /* libJSONModel.a */,
-				616190D0BCFDFED637804480C3407959 /* libPods.a */,
+				3089C4336D891E93408823C769E5C5CA /* libADTransitionController.a */,
+				8E15BAF8BA45CA56F78B11F923837558 /* libHexColors.a */,
+				BEF3D7CB80CD88340FAA0F5279CE174E /* libJSONModel.a */,
+				FCAD0AB87DA9A39260E470FB73348D1A /* libLMGeocoder.a */,
+				C40F1F0C050AACD15BCBC850CD865C6C /* libPods.a */,
 				E8C8D096A5C2057DB1928AA0E5D09632 /* libTSMessages.a */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		CDDEC89655475A384E7F8A6862DC4915 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				DA837F963B26EB60F930C54D4CB4E67B /* HexColors */,
-				11F1B6E6768225EBD392EA9957641038 /* JSONModel */,
-				54149CBA1AECD18818681B9E794BA208 /* TSMessages */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		D2411A5FE7F7A004607BED49990C37F4 /* Targets Support Files */ = {
@@ -360,42 +600,97 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		DA837F963B26EB60F930C54D4CB4E67B /* HexColors */ = {
+		E81956FDAD6DBA5219A55546C2121F5B /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				DFD2546FE1430CB26C3A2DB3B7A12B5B /* HexColor.h */,
-				7D3506FEEF2DCE975FB36512FF8D891F /* HexColor.m */,
-				2DA878AFE8A7FDEF1135E86C2A9C8F33 /* Support Files */,
+				08253E2147E6BD2D741D9B6F9C2C688C /* ADTransitionController.xcconfig */,
+				484A91EB2EC17EF8FF174928D6CBFA6E /* ADTransitionController-Private.xcconfig */,
+				697E1FD70427BCBDEE0297C303AA8CF7 /* ADTransitionController-dummy.m */,
+				B461A08F812831A3C110D87274BDD5F0 /* ADTransitionController-prefix.pch */,
 			);
-			path = HexColors;
+			name = "Support Files";
+			path = "../Target Support Files/ADTransitionController";
+			sourceTree = "<group>";
+		};
+		FEF9902E492B791492E1AA4451EDCE83 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				BED8EFB89DDD1513FCA189B5D5CCC3D0 /* HexColors.xcconfig */,
+				D32B964E95A0DB3846C39B7A7AF408C0 /* HexColors-Private.xcconfig */,
+				A44E3F0253360A595CBF49549094C0E7 /* HexColors-dummy.m */,
+				7FC3C5CF0B843C64B9143DAAB70983CF /* HexColors-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/HexColors";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		084961EE090428F45F3909E671EFDAFC /* Headers */ = {
+		0843376458EF1DCC1247A35213751D1A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABB0C694285447289C0061921425BD4F /* HexColor.h in Headers */,
+				AA8187D618D0B610EC9E010C5CD6ED17 /* JSONAPI.h in Headers */,
+				EEC626D5DD48821F94A2027E132A4986 /* JSONHTTPClient.h in Headers */,
+				C1A85824306F684D4E5FFC0FC0EBED03 /* JSONKeyMapper.h in Headers */,
+				187FD92F79BFD0F073CC9CE8E657042E /* JSONModel+networking.h in Headers */,
+				71598B09D78BD8C3B986B17218E8A370 /* JSONModel.h in Headers */,
+				CCDECFEB2A3525C53F7F2EBDAC3B21B3 /* JSONModelArray.h in Headers */,
+				41189DA1A9A8173FBAC2BBA56C6DED0A /* JSONModelClassProperty.h in Headers */,
+				328AB96866561EEC9DE1FC18414B6E12 /* JSONModelError.h in Headers */,
+				D4672CF0C97C9F151725EF54E19DE8FF /* JSONModelLib.h in Headers */,
+				679FF2F1A3F9A67965BB09203CD87EA7 /* JSONValueTransformer.h in Headers */,
+				E39662BA6228642905E81845938A286A /* NSArray+JSONModel.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8DC6667D3A06415CD968BC2B9FFB6A99 /* Headers */ = {
+		B8ADD9B6843526EC144FEBEAC12A9918 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1F217E8A038632F9E259F578537C009 /* JSONAPI.h in Headers */,
-				3646498D4FF61EE6A6050647F5E3ABBB /* JSONHTTPClient.h in Headers */,
-				4851A4CCCEE934E8E28FF9FB0306616A /* JSONKeyMapper.h in Headers */,
-				508E1003F0FA859772BD29D755E3007C /* JSONModel+networking.h in Headers */,
-				F0D074E1E88397633657860DD9C59E58 /* JSONModel.h in Headers */,
-				E0C90361DE1580F5DA23AD02D233F70A /* JSONModelArray.h in Headers */,
-				15340B533D7E7497A0F6079518FBFE27 /* JSONModelClassProperty.h in Headers */,
-				21FDD51B305EDEFE9413C0C0D4B8946E /* JSONModelError.h in Headers */,
-				79A3A6718369088D91ABDFEBA8857CA5 /* JSONModelLib.h in Headers */,
-				460B0289DDCBF247387220E8B5DE2BA3 /* JSONValueTransformer.h in Headers */,
-				58A7DA80825367F93BF7B27187F92816 /* NSArray+JSONModel.h in Headers */,
+				05D5F411875B54988DE7805BB0604F21 /* HexColor.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E04E56334C8DF68CA84C3D2FEA249582 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				08831944338B760E09A8047621DB0CD6 /* LMAddress.h in Headers */,
+				BD63475E0A2C2266118880A2212B93E4 /* LMGeocoder.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E350964B53DE0584361B5056B84FCB6C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2335C4158D0CC5B0BCD38AF88B2A8B37 /* ADBackFadeTransition.h in Headers */,
+				921432D2399E79800A9EFF67822EBF0A /* ADCarrouselTransition.h in Headers */,
+				E3C733CC17EBAD9E5F629FBBFBEA5398 /* ADCrossTransition.h in Headers */,
+				9D934553C8065C948BB6934FCA8B1C12 /* ADCubeTransition.h in Headers */,
+				D3C64745E3A4F932E914B45811B47D24 /* ADDualTransition.h in Headers */,
+				E73FCEA6FF5D8A90EC9848573BB5B0D0 /* ADFadeTransition.h in Headers */,
+				ED286EC041A515A863A8E788FE739DA7 /* ADFlipTransition.h in Headers */,
+				843F3E9A7FE47C134FE391E509484653 /* ADFoldTransition.h in Headers */,
+				A83CFA22719F99A7252749FBCB04C98F /* ADGhostTransition.h in Headers */,
+				83DA4841CF138612538AB2333C03359B /* ADGlueTransition.h in Headers */,
+				0D42428FAE8C6A4CCB52FF29D63DAD60 /* ADModernPushTransition.h in Headers */,
+				7EB363A9959B2A7EE551591FFE70A8E1 /* ADNavigationControllerDelegate.h in Headers */,
+				AE58D6BDC5AA37EE6658F306AA3CBEFF /* ADPushRotateTransition.h in Headers */,
+				4780293EB8C8A46A75E653F9B8D1F32E /* ADScaleTransition.h in Headers */,
+				B04BBFADD9E268921652D65B410DF9A7 /* ADSlideTransition.h in Headers */,
+				1F1D1391CE876536EE866FEB14A00286 /* ADSwapTransition.h in Headers */,
+				ED7F8BA3B5599B279931AE377E6865D2 /* ADSwipeFadeTransition.h in Headers */,
+				4410FF61F4F3F988410139FBA078167D /* ADSwipeTransition.h in Headers */,
+				DF9788343B1613E113E42D624EFDD62A /* ADTransformTransition.h in Headers */,
+				CF2A6C68BE3919B37BEDC20E56AC0A03 /* ADTransition.h in Headers */,
+				C45749485BFFA1B88EE389BD362D4F14 /* ADTransitionController.h in Headers */,
+				8C26471A0A5F0A91D2D8CD46231AE2D8 /* ADTransitioningDelegate.h in Headers */,
+				2C40DCAB0C4CFBA84979FB5BBEAB3FB1 /* ADTransitioningViewController.h in Headers */,
+				E58303B55E04171FC92E15F01E0FE200 /* ADZoomTransition.h in Headers */,
+				8DD80EA353B19A888A7AD9EF3D5AFC32 /* UIViewController+ADTransitionController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,23 +707,21 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		08B4C2F65D5E04ECE5404F66886D04A7 /* Pods */ = {
+		1000B1EC643F1A92AFDE2C108ED3140C /* HexColors */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1A4D88D75B3F5237E5BB2DB796CB944D /* Build configuration list for PBXNativeTarget "Pods" */;
+			buildConfigurationList = B7D13D55A595B88C4E272FE428C3A836 /* Build configuration list for PBXNativeTarget "HexColors" */;
 			buildPhases = (
-				58E634E3BFFF2CF29853767FB49417C9 /* Sources */,
-				DD5EFC3D53CDEB116DBA2AB9148E9753 /* Frameworks */,
+				E8EC66FDA3AC0D6834A40B42A46E1E2A /* Sources */,
+				7AD7EC131B6388BD039846C86F0C193B /* Frameworks */,
+				B8ADD9B6843526EC144FEBEAC12A9918 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				641B2C4006D8E4998FA19F7F6285AC8C /* PBXTargetDependency */,
-				2431A86FB61FF8DF144DA430483F9279 /* PBXTargetDependency */,
-				D6DD0C39BEFC060A9408D3C33BE7A441 /* PBXTargetDependency */,
 			);
-			name = Pods;
-			productName = Pods;
-			productReference = 616190D0BCFDFED637804480C3407959 /* libPods.a */;
+			name = HexColors;
+			productName = HexColors;
+			productReference = 8E15BAF8BA45CA56F78B11F923837558 /* libHexColors.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		18A4BA8BFD66F76A5A3AE5290D46B994 /* TSMessages */ = {
@@ -442,20 +735,20 @@
 			buildRules = (
 			);
 			dependencies = (
-				65B502346B3418C3E1AFD8D1A5F0AA62 /* PBXTargetDependency */,
+				379CC712D67F719F6D4A5DA123120D98 /* PBXTargetDependency */,
 			);
 			name = TSMessages;
 			productName = TSMessages;
 			productReference = E8C8D096A5C2057DB1928AA0E5D09632 /* libTSMessages.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		5A5C6B4E13BB9DAB79FFAAA3BF0D0815 /* JSONModel */ = {
+		526FAA5A501FBFA4D1016ED1352AFCCA /* JSONModel */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D353465E145E050207DFE3DB7D6AE667 /* Build configuration list for PBXNativeTarget "JSONModel" */;
+			buildConfigurationList = 6BF22507E43309FD5C9AF4726F4881E3 /* Build configuration list for PBXNativeTarget "JSONModel" */;
 			buildPhases = (
-				61BE054F971B74EB1861A17C11902EA0 /* Sources */,
-				CB4619640946767595B4D07C175D22FF /* Frameworks */,
-				8DC6667D3A06415CD968BC2B9FFB6A99 /* Headers */,
+				540554D689563E748950AA2C463822F2 /* Sources */,
+				D58AA696A6DD0338BDF6A5400D1993FC /* Frameworks */,
+				0843376458EF1DCC1247A35213751D1A /* Headers */,
 			);
 			buildRules = (
 			);
@@ -463,24 +756,62 @@
 			);
 			name = JSONModel;
 			productName = JSONModel;
-			productReference = 1420FD59480425DB960DA4B6F59B152A /* libJSONModel.a */;
+			productReference = BEF3D7CB80CD88340FAA0F5279CE174E /* libJSONModel.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		91D6EADFEB5F13480E265498F5D6080B /* HexColors */ = {
+		E39C125D4DAC405604512DCF4B9B8B40 /* ADTransitionController */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CB3010AB6A2E6AFF44AD6B98891ECC39 /* Build configuration list for PBXNativeTarget "HexColors" */;
+			buildConfigurationList = DF0859481F9D9A1DC203A2D9B99CC51D /* Build configuration list for PBXNativeTarget "ADTransitionController" */;
 			buildPhases = (
-				A586375F8A344BE044712CC8581ECFF5 /* Sources */,
-				EFD9E7F850F22C99251D2DE82105556F /* Frameworks */,
-				084961EE090428F45F3909E671EFDAFC /* Headers */,
+				3A6088D5F0EAF036B332D24DF4C67FAD /* Sources */,
+				877ABB78D0F52E51E2032708BE6793A7 /* Frameworks */,
+				E350964B53DE0584361B5056B84FCB6C /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = HexColors;
-			productName = HexColors;
-			productReference = BF16099CE1CA41B7255387D9C3BBB2CE /* libHexColors.a */;
+			name = ADTransitionController;
+			productName = ADTransitionController;
+			productReference = 3089C4336D891E93408823C769E5C5CA /* libADTransitionController.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		F4E59DF14D10A1EBC924E57BBE6B1F10 /* LMGeocoder */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88097195107276BAF49626A210815C1F /* Build configuration list for PBXNativeTarget "LMGeocoder" */;
+			buildPhases = (
+				56C3AC027850EACC5A8361DE42A71720 /* Sources */,
+				BA0550D4C16D9476277DF896D1C7C640 /* Frameworks */,
+				E04E56334C8DF68CA84C3D2FEA249582 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LMGeocoder;
+			productName = LMGeocoder;
+			productReference = FCAD0AB87DA9A39260E470FB73348D1A /* libLMGeocoder.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		FFF077278E1337DE3B76E00D629D85D6 /* Pods */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5D69D96C01D899EE67833282F3FC3F0A /* Build configuration list for PBXNativeTarget "Pods" */;
+			buildPhases = (
+				8449FF2E5101445D83B1E15C95414904 /* Sources */,
+				D6E13DBDA5DFE3563B026F688AE26CBD /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5AF6705BC1C9EFD1FBDACC47B3D18EC1 /* PBXTargetDependency */,
+				7765B93B20C4E2C3DF405DEB36DA3FCE /* PBXTargetDependency */,
+				5DA71672CE361A950B0CF20DBA68944C /* PBXTargetDependency */,
+				1150AE33ABDCCDEE456C8AF3DEAC236B /* PBXTargetDependency */,
+				4A6C191097795FEF85D40ECAB636C39F /* PBXTargetDependency */,
+			);
+			name = Pods;
+			productName = Pods;
+			productReference = C40F1F0C050AACD15BCBC850CD865C6C /* libPods.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -504,9 +835,11 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				91D6EADFEB5F13480E265498F5D6080B /* HexColors */,
-				5A5C6B4E13BB9DAB79FFAAA3BF0D0815 /* JSONModel */,
-				08B4C2F65D5E04ECE5404F66886D04A7 /* Pods */,
+				E39C125D4DAC405604512DCF4B9B8B40 /* ADTransitionController */,
+				1000B1EC643F1A92AFDE2C108ED3140C /* HexColors */,
+				526FAA5A501FBFA4D1016ED1352AFCCA /* JSONModel */,
+				F4E59DF14D10A1EBC924E57BBE6B1F10 /* LMGeocoder */,
+				FFF077278E1337DE3B76E00D629D85D6 /* Pods */,
 				18A4BA8BFD66F76A5A3AE5290D46B994 /* TSMessages */,
 			);
 		};
@@ -524,67 +857,122 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		58E634E3BFFF2CF29853767FB49417C9 /* Sources */ = {
+		3A6088D5F0EAF036B332D24DF4C67FAD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				130C06B746B4B5B32242C335FFE11367 /* Pods-dummy.m in Sources */,
+				006844613A669DFB9A5F126D0E81D8BA /* ADBackFadeTransition.m in Sources */,
+				D38A302C270C100C8DC5AB777FAB06F3 /* ADCarrouselTransition.m in Sources */,
+				ADBFA30C6933B761FBFD763F9BD56CEC /* ADCrossTransition.m in Sources */,
+				327BD8CED9EDAA36100EE79BD8CEE43D /* ADCubeTransition.m in Sources */,
+				C5051CA01B57F6164520A18551002666 /* ADDualTransition.m in Sources */,
+				04A6B32885C43E400032A7255E315B22 /* ADFadeTransition.m in Sources */,
+				B7977A551603CC63344946E662410C14 /* ADFlipTransition.m in Sources */,
+				BB59A1658793876FB6684F72AE515C7F /* ADFoldTransition.m in Sources */,
+				4087193E44497424F260BB8BD4CC7832 /* ADGhostTransition.m in Sources */,
+				6A7EE8519346915D5AC3167EFBF871D6 /* ADGlueTransition.m in Sources */,
+				96A8A0CA056D633AE07980213C3E3050 /* ADModernPushTransition.m in Sources */,
+				A351F429D8D33ECF9AFF3AC48F28F81C /* ADNavigationControllerDelegate.m in Sources */,
+				10604D0D1F5E5718C07E205CD5618632 /* ADPushRotateTransition.m in Sources */,
+				70F3576B4D8B159A48A6643E5295FA14 /* ADScaleTransition.m in Sources */,
+				8F619874E1354281C8430A27B62EF689 /* ADSlideTransition.m in Sources */,
+				C4CAD3E04758A93D1970BFCFBFDF03CF /* ADSwapTransition.m in Sources */,
+				E5697947B96C8D08004826D3CB980A42 /* ADSwipeFadeTransition.m in Sources */,
+				AFF48AC0EF11A29F1D230825CECF0551 /* ADSwipeTransition.m in Sources */,
+				C3CA561C931FD3C52361F0D1724646A3 /* ADTransformTransition.m in Sources */,
+				E95A7F114E2239A23D96715989085131 /* ADTransition.m in Sources */,
+				02DAD317D56986551B5E8F759515375E /* ADTransitionController-dummy.m in Sources */,
+				BEF971A0B3047A90A42024B2C28FC4B6 /* ADTransitionController.m in Sources */,
+				E1B6D298EBDF04DFEC17BC8A5CEB4436 /* ADTransitioningDelegate.m in Sources */,
+				B12A80DDE698F52A93D61427A102CA34 /* ADTransitioningViewController.m in Sources */,
+				05BC8F67CD45A387CC2CACA5BE55E252 /* ADZoomTransition.m in Sources */,
+				971158BDDA46A41E2BD23799DD54FF44 /* UIViewController+ADTransitionController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		61BE054F971B74EB1861A17C11902EA0 /* Sources */ = {
+		540554D689563E748950AA2C463822F2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				178972EAAB2837C80ADECEB442E0DAC9 /* JSONAPI.m in Sources */,
-				1CFF99226D60B25EED1E56809A2288B5 /* JSONHTTPClient.m in Sources */,
-				47871F6A53EBD446199A193ADDE49AEC /* JSONKeyMapper.m in Sources */,
-				A2391D9E2A66C238F10FED8E3BB8A4BB /* JSONModel+networking.m in Sources */,
-				E85D23E4056A8374DD5FC5E7D25DFE59 /* JSONModel-dummy.m in Sources */,
-				D4CD0AF04070EA3C56F78979C4E8D170 /* JSONModel.m in Sources */,
-				706B740B99938EE67A9BA9318A0C4AC3 /* JSONModelArray.m in Sources */,
-				D89466C048F5BF9C0E3C5405CAAFA169 /* JSONModelClassProperty.m in Sources */,
-				1D20C000DEC2BEA7BE9C7BDA65A3A2EC /* JSONModelError.m in Sources */,
-				AE878BD9FBEEEB8A3678F6055FB1C7D8 /* JSONValueTransformer.m in Sources */,
-				29C9B069596C5F57ABFFAA03D431447A /* NSArray+JSONModel.m in Sources */,
+				8C175759E2DBE469F931C82CDDA3E5A6 /* JSONAPI.m in Sources */,
+				B5E47D3AE3D06433346178E333CEA471 /* JSONHTTPClient.m in Sources */,
+				E8BF0ABDADA5B0EFF5B2F443DD3BCB2B /* JSONKeyMapper.m in Sources */,
+				F41337BB2815377EC7FCFF80F1F55EB9 /* JSONModel+networking.m in Sources */,
+				A9E3093EDA0928E13068FC6E9D7C9645 /* JSONModel-dummy.m in Sources */,
+				0CE52C6A11B8FDCF1381FFD9677984B5 /* JSONModel.m in Sources */,
+				68A089893C87386F34DF742B9308791C /* JSONModelArray.m in Sources */,
+				1426A7EEBF506F32123641144089E846 /* JSONModelClassProperty.m in Sources */,
+				9460B0FEC75622BE6CEE705F0E99BE2E /* JSONModelError.m in Sources */,
+				972C866285BA131B0C617CE8D4F34A5D /* JSONValueTransformer.m in Sources */,
+				D294E7E092DA6F0362C3E00C4393E225 /* NSArray+JSONModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A586375F8A344BE044712CC8581ECFF5 /* Sources */ = {
+		56C3AC027850EACC5A8361DE42A71720 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FB1D0A1E9CB43EF0A750564B821CEAC /* HexColor.m in Sources */,
-				B49AF569F78D3EED6CC30374A0858970 /* HexColors-dummy.m in Sources */,
+				48555BF20EB4277A51293F5109989356 /* LMAddress.m in Sources */,
+				A9180ACD090E09FB75A12A269CDBC574 /* LMGeocoder-dummy.m in Sources */,
+				9BD9B07ECA6042103FC037FA8A957450 /* LMGeocoder.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8449FF2E5101445D83B1E15C95414904 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E351A126DCD17D7E184C46DBADD41A3F /* Pods-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8EC66FDA3AC0D6834A40B42A46E1E2A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				593022975CE4F4D8F94060DF2A905276 /* HexColor.m in Sources */,
+				E4E21F9CD1C0A4F5508BEAB3118FFFA0 /* HexColors-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2431A86FB61FF8DF144DA430483F9279 /* PBXTargetDependency */ = {
+		1150AE33ABDCCDEE456C8AF3DEAC236B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = JSONModel;
-			target = 5A5C6B4E13BB9DAB79FFAAA3BF0D0815 /* JSONModel */;
-			targetProxy = 1F77BFA00B67D3C5D5AD10A064D86627 /* PBXContainerItemProxy */;
+			name = LMGeocoder;
+			target = F4E59DF14D10A1EBC924E57BBE6B1F10 /* LMGeocoder */;
+			targetProxy = E5A874597543232AD27EC2D31DC97C52 /* PBXContainerItemProxy */;
 		};
-		641B2C4006D8E4998FA19F7F6285AC8C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = HexColors;
-			target = 91D6EADFEB5F13480E265498F5D6080B /* HexColors */;
-			targetProxy = A669AF5A3A7F1E95C6E65124B78F8DCE /* PBXContainerItemProxy */;
-		};
-		65B502346B3418C3E1AFD8D1A5F0AA62 /* PBXTargetDependency */ = {
+		379CC712D67F719F6D4A5DA123120D98 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = HexColors;
-			target = 91D6EADFEB5F13480E265498F5D6080B /* HexColors */;
-			targetProxy = 532364C7D75D645182998EDEBC482F50 /* PBXContainerItemProxy */;
+			target = 1000B1EC643F1A92AFDE2C108ED3140C /* HexColors */;
+			targetProxy = 1F8EBE70226C6A7709D14C98E0423197 /* PBXContainerItemProxy */;
 		};
-		D6DD0C39BEFC060A9408D3C33BE7A441 /* PBXTargetDependency */ = {
+		4A6C191097795FEF85D40ECAB636C39F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = TSMessages;
 			target = 18A4BA8BFD66F76A5A3AE5290D46B994 /* TSMessages */;
-			targetProxy = 258C9B4018CD3E9D8889AEA8B371CB02 /* PBXContainerItemProxy */;
+			targetProxy = 506A51028A0588425803E5EA56249CD6 /* PBXContainerItemProxy */;
+		};
+		5AF6705BC1C9EFD1FBDACC47B3D18EC1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ADTransitionController;
+			target = E39C125D4DAC405604512DCF4B9B8B40 /* ADTransitionController */;
+			targetProxy = F8B9447899B160A62072342F08D503A9 /* PBXContainerItemProxy */;
+		};
+		5DA71672CE361A950B0CF20DBA68944C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = JSONModel;
+			target = 526FAA5A501FBFA4D1016ED1352AFCCA /* JSONModel */;
+			targetProxy = 4015F59CDACBE13CD9259827AE7CE03D /* PBXContainerItemProxy */;
+		};
+		7765B93B20C4E2C3DF405DEB36DA3FCE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = HexColors;
+			target = 1000B1EC643F1A92AFDE2C108ED3140C /* HexColors */;
+			targetProxy = 36F4605193F022ABA4C86CBA9A3E51DF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -623,6 +1011,54 @@
 			};
 			name = Release;
 		};
+		175B7C6A85B383B7BE7AB128C3D6176F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 91362993EF67685532F9912D4DFA2C30 /* LMGeocoder-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/LMGeocoder/LMGeocoder-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		2C63A10D52DF27639E83D4C3C19171E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 74AAC33A297B68C988074FFA19D7CD27 /* JSONModel-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/JSONModel/JSONModel-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		30BC4A35ABC033CA8E52A3BE6B8575DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 800B6C3C331683735512FF567AFD432F /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
 		319170A10A1C953E77AAA9187B9371BB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A621DC824CC7A1A78CC4DA73F16ED285 /* TSMessages-Private.xcconfig */;
@@ -639,9 +1075,25 @@
 			};
 			name = Debug;
 		};
-		608DE699195831F88501A1CFA542402D /* Debug */ = {
+		411A887018FFE5B9CC036422519CE1BB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 81AFE1C78C8FEA70F02DA0A191CC1E5C /* HexColors-Private.xcconfig */;
+			baseConfigurationReference = 8E0051ABFE155849624A9B594BF5B977 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		621A849B483B707E85F837BA48F0912C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D32B964E95A0DB3846C39B7A7AF408C0 /* HexColors-Private.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/HexColors/HexColors-prefix.pch";
@@ -655,32 +1107,48 @@
 			};
 			name = Debug;
 		};
-		6B94BFE4A8F0350B7E0586A03A5EC54B /* Debug */ = {
+		716BABEC385D1E2D50656D7AB268C264 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A3F95B451091EE53BCA43D7AE3D9C4EC /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 74AAC33A297B68C988074FFA19D7CD27 /* JSONModel-Private.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/JSONModel/JSONModel-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		88C2F9983E67C72351DA27F1E315F5A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 484A91EB2EC17EF8FF174928D6CBFA6E /* ADTransitionController-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/ADTransitionController/ADTransitionController-prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
-		6D84F7D00C4D8E7395E14911144F3A4F /* Release */ = {
+		B34107A1F8232CE4289FD0E3FE9A9C1B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 335E5E2E7FE9B27F58EF24F00468EBC4 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 91362993EF67685532F9912D4DFA2C30 /* LMGeocoder-Private.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/LMGeocoder/LMGeocoder-prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -726,12 +1194,12 @@
 			};
 			name = Debug;
 		};
-		C452C8C8924DBD06C3C3F3E4A22A4703 /* Release */ = {
+		CCD5D82ACA162E6CAB82148D8E23ADA1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B8AA44C89385C86AE24A9629A40CBBDE /* JSONModel-Private.xcconfig */;
+			baseConfigurationReference = 484A91EB2EC17EF8FF174928D6CBFA6E /* ADTransitionController-Private.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/JSONModel/JSONModel-prefix.pch";
+				GCC_PREFIX_HEADER = "Target Support Files/ADTransitionController/ADTransitionController-prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
@@ -742,9 +1210,9 @@
 			};
 			name = Release;
 		};
-		D98EA2FDA2797024C3A4D175CA3E3D45 /* Release */ = {
+		F3622670F9686913B169DB3D65B63E23 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 81AFE1C78C8FEA70F02DA0A191CC1E5C /* HexColors-Private.xcconfig */;
+			baseConfigurationReference = D32B964E95A0DB3846C39B7A7AF408C0 /* HexColors-Private.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/HexColors/HexColors-prefix.pch";
@@ -774,39 +1242,23 @@
 			};
 			name = Release;
 		};
-		FE2654128B6D4A7F27E5958D1AC8EDF7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B8AA44C89385C86AE24A9629A40CBBDE /* JSONModel-Private.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/JSONModel/JSONModel-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1A4D88D75B3F5237E5BB2DB796CB944D /* Build configuration list for PBXNativeTarget "Pods" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6B94BFE4A8F0350B7E0586A03A5EC54B /* Debug */,
-				6D84F7D00C4D8E7395E14911144F3A4F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B37F0F91F85060E28F1DAAB522DC7EC1 /* Debug */,
 				052A17875CB827423D627183396CEB60 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5D69D96C01D899EE67833282F3FC3F0A /* Build configuration list for PBXNativeTarget "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30BC4A35ABC033CA8E52A3BE6B8575DC /* Debug */,
+				411A887018FFE5B9CC036422519CE1BB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -820,20 +1272,38 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CB3010AB6A2E6AFF44AD6B98891ECC39 /* Build configuration list for PBXNativeTarget "HexColors" */ = {
+		6BF22507E43309FD5C9AF4726F4881E3 /* Build configuration list for PBXNativeTarget "JSONModel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				608DE699195831F88501A1CFA542402D /* Debug */,
-				D98EA2FDA2797024C3A4D175CA3E3D45 /* Release */,
+				2C63A10D52DF27639E83D4C3C19171E8 /* Debug */,
+				716BABEC385D1E2D50656D7AB268C264 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D353465E145E050207DFE3DB7D6AE667 /* Build configuration list for PBXNativeTarget "JSONModel" */ = {
+		88097195107276BAF49626A210815C1F /* Build configuration list for PBXNativeTarget "LMGeocoder" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				FE2654128B6D4A7F27E5958D1AC8EDF7 /* Debug */,
-				C452C8C8924DBD06C3C3F3E4A22A4703 /* Release */,
+				175B7C6A85B383B7BE7AB128C3D6176F /* Debug */,
+				B34107A1F8232CE4289FD0E3FE9A9C1B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B7D13D55A595B88C4E272FE428C3A836 /* Build configuration list for PBXNativeTarget "HexColors" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				621A849B483B707E85F837BA48F0912C /* Debug */,
+				F3622670F9686913B169DB3D65B63E23 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DF0859481F9D9A1DC203A2D9B99CC51D /* Build configuration list for PBXNativeTarget "ADTransitionController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88C2F9983E67C72351DA27F1E315F5A7 /* Debug */,
+				CCD5D82ACA162E6CAB82148D8E23ADA1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

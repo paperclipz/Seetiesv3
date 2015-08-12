@@ -10,5 +10,8 @@
 
 @interface Model : JSONModel
 
-@property (assign, nonatomic) int status;
+@property (strong, nonatomic) NSString* status;
+@property (strong, nonatomic) NSString* error;
+@property (strong, nonatomic) NSString* message;
+
 @end

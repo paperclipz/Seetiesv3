@@ -590,7 +590,7 @@
     transition.subtype = kCATransitionFromRight;
     [self.view.window.layer addAnimation:transition forKey:nil];
     [self presentViewController:ExploreCountryView animated:NO completion:nil];
-    [ExploreCountryView GetCountryName:[NameArray objectAtIndex:getbuttonIDN] GetCountryIDN:[CountryIDArray objectAtIndex:getbuttonIDN]];
+   // [ExploreCountryView GetCountryName:[NameArray objectAtIndex:getbuttonIDN] GetCountryIDN:[CountryIDArray objectAtIndex:getbuttonIDN]];
     
     
 }
@@ -603,7 +603,7 @@
     transition.subtype = kCATransitionFromRight;
     [self.view.window.layer addAnimation:transition forKey:nil];
     [self presentViewController:ExploreCountryView animated:NO completion:nil];
-    [ExploreCountryView GetCountryName:[NameArray lastObject] GetCountryIDN:[CountryIDArray lastObject]];
+  //  [ExploreCountryView GetCountryName:[NameArray lastObject] GetCountryIDN:[CountryIDArray lastObject]];
     
     
 }

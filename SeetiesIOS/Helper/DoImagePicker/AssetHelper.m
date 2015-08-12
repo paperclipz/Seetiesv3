@@ -89,13 +89,11 @@
     [self initAsset];
     
     _assetPhotos = [[NSMutableArray alloc] init];
-    
     [alGroup setAssetsFilter:[ALAssetsFilter allPhotos]];
     [alGroup enumerateAssetsUsingBlock:^(ALAsset *alPhoto, NSUInteger index, BOOL *stop) {
         
         if(alPhoto == nil)
         {
-            [_assetPhotos addObject:@"TakePhoto.png"];
             if (_bReverse)
                 _assetPhotos = [[NSMutableArray alloc] initWithArray:[[_assetPhotos reverseObjectEnumerator] allObjects]];
             
@@ -105,7 +103,6 @@
         
         [_assetPhotos addObject:alPhoto];
     }];
-    
 }
 
 - (void)getPhotoListOfGroupByIndex:(NSInteger)nGroupIndex result:(void (^)(NSArray *))result
@@ -170,17 +167,10 @@
 
 - (NSDictionary *)getGroupInfo:(NSInteger)nIndex
 {
-//    CGImageRef cgImage = [_assetGroups[nIndex] posterImage];
-//    NSValue *cgImageValue = [NSValue valueWithBytes:&cgImage objCType:@encode(CGImageRef)];
     return @{@"name" : [_assetGroups[nIndex] valueForProperty:ALAssetsGroupPropertyName],
-             @"count" : @([_assetGroups[nIndex] numberOfAssets]),
-             @"image" : [UIImage imageWithCGImage:[_assetGroups[nIndex] posterImage]]};
+             @"count" : @([_assetGroups[nIndex] numberOfAssets])};
 }
-//- (NSDictionary *)getGroupInfo:(NSInteger)nIndex
-//{
-//    return @{@"name" : [_assetGroups[nIndex] valueForProperty:ALAssetsGroupPropertyName],
-//             @"count" : @([_assetGroups[nIndex] numberOfAssets])};
-//}
+
 - (void)clearData
 {
 	_assetGroups = nil;

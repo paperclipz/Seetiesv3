@@ -7,11 +7,10 @@
 
 #import "DoImagePickerController.h"
 #import "AssetHelper.h"
-#import "WhereIsThisViewController.h"
+
 #import "DoAlbumCell.h"
 #import "DoPhotoCell.h"
-#import "LanguageManager.h"
-#import "Locale.h"
+
 @implementation DoImagePickerController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -22,33 +21,20 @@
     }
     return self;
 }
-- (UIStatusBarStyle) preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
-}
+
 - (void)viewDidLoad
 {
-    NSLog(@"come here init ????");
     [super viewDidLoad];
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-   
-    ShowSelectText.frame = CGRectMake(0, -64, screenWidth, 28);
-    ShowSelectText.hidden = YES;
-    ShowChooseUpText.frame = CGRectMake(0, 0, screenWidth, 28);
-    _lbSelectCount.frame = CGRectMake(screenWidth - 50 - 15, 0, 50, 28);
-    //ShowChooseUpText.backgroundColor = [UIColor redColor];
-    ShowChooseUpText.text = CustomLocalisedString(@"Chooseuptp10photo", nil);
-    DoneText.text = CustomLocalisedString(@"DoneButton", nil);
-    _tvAlbumList.alpha = 0.0;
-    TblviewBackImg.alpha = 0.0;
-    _vBottomMenu.alpha = 0.0;
     
     [self initBottomMenu];
     [self initControls];
     
     UINib *nib = [UINib nibWithNibName:@"DoPhotoCell" bundle:nil];
     [_cvPhotoList registerNib:nib forCellWithReuseIdentifier:@"DoPhotoCell"];
+#import "DoImagePickerController.h"
 
-   // _lbSelectCount.frame = CGRectMake(screenWidth - 200, 20, 42, 44);
+    _tvAlbumList.frame = CGRectMake(0, _vBottomMenu.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
+    _tvAlbumList.alpha = 0.0;
 
     [self readAlbumList:YES];
 
@@ -72,39 +58,8 @@
                                              selector: @selector(handleEnterForeground:)
                                                  name: UIApplicationWillEnterForegroundNotification
                                                object: nil];
-    
-    //[self.view addSubview:ShowChooseUpText];
 }
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    _vBottomMenu.frame = CGRectMake(0, 0, screenWidth, 64);
-    _tvAlbumList.frame = CGRectMake((screenWidth/2) - 160,  0, 320, 245);
-    TblviewBackImg.frame = CGRectMake((screenWidth/2) - 160,0, 320, 264);
-    _tvAlbumList.alpha = 0.0;
-    TblviewBackImg.alpha = 0.0;
-    
-    _btCancel.frame = CGRectMake(0, 0, 64, 64);
-    _btSelectAlbum.frame = CGRectMake((screenWidth / 2) - 75, 20, 150, 44);
-    _ivShowMark.frame = CGRectMake((screenWidth / 2) - 65, 38, 13, 8);
-    
-    _lbDone.frame = CGRectMake(screenWidth - 64, 20, 64, 44);
-    _btOK.frame = CGRectMake(screenWidth - 64, 0, 64, 64);
-    
-    _vBottomMenu.alpha = 1.0;
-}
--(void)GetBackSelectData:(NSMutableArray *)SelectedIndexArr BackView:(NSString *)CheckView CheckDraft:(NSString *)DraftCheck{
-    
-    CheckViewData = CheckView;
-    CheckDraft = DraftCheck;
-    if ([CheckDraft isEqualToString:@"Yes"]) {
 
-    }else{
-
-    }
-    // NSLog(@"selectedIndexArr_Thumbs is %@",selectedIndexArr_Thumbs);
-    // NSLog(@"CheckViewData is %@",CheckViewData);
-}
 - (void)viewDidDisappear:(BOOL)animated
 {
     if (_nResultType == DO_PICKER_RESULT_UIIMAGE)
@@ -133,14 +88,14 @@
 	[layer2 setMasksToBounds:YES];
 	[layer2 setCornerRadius:_btUp.frame.size.height / 2.0 - 1];
     
-//    // table view
-//    UIImageView *ivHeader = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _tvAlbumList.frame.size.width, 0.5)];
-//    ivHeader.backgroundColor = DO_ALBUM_NAME_TEXT_COLOR;
-//    _tvAlbumList.tableHeaderView = ivHeader;
-//    
-//    UIImageView *ivFooter = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _tvAlbumList.frame.size.width, 0.5)];
-//    ivFooter.backgroundColor = DO_ALBUM_NAME_TEXT_COLOR;
-//    _tvAlbumList.tableFooterView = ivFooter;
+    // table view
+    UIImageView *ivHeader = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _tvAlbumList.frame.size.width, 0.5)];
+    ivHeader.backgroundColor = DO_ALBUM_NAME_TEXT_COLOR;
+    _tvAlbumList.tableHeaderView = ivHeader;
+    
+    UIImageView *ivFooter = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _tvAlbumList.frame.size.width, 0.5)];
+    ivFooter.backgroundColor = DO_ALBUM_NAME_TEXT_COLOR;
+    _tvAlbumList.tableFooterView = ivFooter;
     
     // dimmed view
     _vDimmed.alpha = 0.0;
@@ -170,17 +125,14 @@
             _btSelectAlbum.enabled = NO;
         
         // calculate tableview's height
-        _tvAlbumList.frame = CGRectMake(_tvAlbumList.frame.origin.x, _tvAlbumList.frame.origin.y, _tvAlbumList.frame.size.width, 245);
+        _tvAlbumList.frame = CGRectMake(_tvAlbumList.frame.origin.x, _tvAlbumList.frame.origin.y, _tvAlbumList.frame.size.width, MIN(aGroups.count * 50, 200));
     }];
 }
 
 #pragma mark - for bottom menu
 - (void)initBottomMenu
 {
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    
-    _vBottomMenu.backgroundColor = [UIColor blackColor];
-    _vBottomMenu.frame = CGRectMake(0, 0, screenWidth, 64);
+    _vBottomMenu.backgroundColor = DO_MENU_BACK_COLOR;
     [_btSelectAlbum setTitleColor:DO_BOTTOM_TEXT_COLOR forState:UIControlStateNormal];
     [_btSelectAlbum setTitleColor:DO_BOTTOM_TEXT_COLOR forState:UIControlStateDisabled];
     
@@ -209,119 +161,51 @@
         _lbSelectCount.text = [NSString stringWithFormat:@"(0/%d)", (int)_nMaxCount];
         _lbSelectCount.textColor = DO_BOTTOM_TEXT_COLOR;
     }
-    
-    NSLog(@"_vBottomMenu is %@",_vBottomMenu);
 }
 
 - (IBAction)onSelectPhoto:(id)sender
 {
-    if ([_dSelected count] == 0) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:CustomLocalisedString(@"SelectPhoto", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
-        
-    }else{
-        if ([CheckDraft isEqualToString:@"Yes"]) {
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            NSMutableArray *TempArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"selectedIndexArr_Thumbs"]];
-            NSArray *aKeys = [_dSelected keysSortedByValueUsingSelector:@selector(compare:)];
-            for (int i = 0; i < _dSelected.count; i++){
-                UIImage *iSelected_Img = [ASSETHELPER getImageAtIndex:[aKeys[i] integerValue] type:ASSET_PHOTO_SCREEN_SIZE];
-                // NSString *base64 = [self encodeToBase64String:iSelected_Img];
-                // [aResult addObject:base64];
-                
-                NSData *imageData = UIImageJPEGRepresentation(iSelected_Img, 1);
-                NSString *imagePath = [self documentsPathForFileName:[NSString stringWithFormat:@"image_%f.jpg", [NSDate timeIntervalSinceReferenceDate]]];
-                [imageData writeToFile:imagePath atomically:YES];
-                
-                [TempArray addObject:imagePath];
-            }
-            
-            [defaults setObject:TempArray forKey:@"selectedIndexArr_Thumbs"];// image data
-            NSData *data = [NSKeyedArchiver archivedDataWithRootObject:_dSelected];
-            [defaults setObject:data forKey:@"selectedIndexArr_Thumbs_Data"];// select data
-            [defaults synchronize];
-        }else{
-         //   NSLog(@"_dSelected is %@",_dSelected);
-            NSMutableArray *aResult = [[NSMutableArray alloc] initWithCapacity:_dSelected.count];
-            
-            NSArray *aKeys = [_dSelected keysSortedByValueUsingSelector:@selector(compare:)];
-          //  NSLog(@"aKeys is %@",aKeys);
-            for (int i = 0; i < _dSelected.count; i++){
-                UIImage *iSelected_Img = [ASSETHELPER getImageAtIndex:[aKeys[i] integerValue] type:ASSET_PHOTO_SCREEN_SIZE];
-               // NSString *base64 = [self encodeToBase64String:iSelected_Img];
-               // [aResult addObject:base64];
-                
-                NSData *imageData = UIImageJPEGRepresentation(iSelected_Img, 1);
-                NSString *imagePath = [self documentsPathForFileName:[NSString stringWithFormat:@"image_%f.jpg", [NSDate timeIntervalSinceReferenceDate]]];
-                [imageData writeToFile:imagePath atomically:YES];
-                
-                [aResult addObject:imagePath];
-            }
-            
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            [defaults setObject:aResult forKey:@"selectedIndexArr_Thumbs"];// image data
-            NSData *data = [NSKeyedArchiver archivedDataWithRootObject:_dSelected];
-            [defaults setObject:data forKey:@"selectedIndexArr_Thumbs_Data"];// select data
-            [defaults synchronize];
-        }
+    SLog(@"onSelectPhoto");
+    NSMutableArray *aResult = [[NSMutableArray alloc] initWithCapacity:_dSelected.count];
+    NSArray *aKeys = [_dSelected keysSortedByValueUsingSelector:@selector(compare:)];
 
-        
-        if ([CheckViewData isEqualToString:@"Yes"]) {
-            
-            [self dismissViewControllerAnimated:YES completion:nil];
-        }else{
-            
-            WhereIsThisViewController *ShowImageView = [[WhereIsThisViewController alloc]init];
-            [self presentViewController:ShowImageView animated:YES completion:nil];
-            // [ShowImageView GetImageData:selectedIndexArr_Thumbs];
+    if (_nResultType == DO_PICKER_RESULT_UIIMAGE)
+    {
+        for (int i = 0; i < _dSelected.count; i++)
+        {
+            UIImage *iSelected = [ASSETHELPER getImageAtIndex:[aKeys[i] integerValue] type:ASSET_PHOTO_SCREEN_SIZE];
+            if (iSelected != nil)
+                [aResult addObject:iSelected];
         }
-        
-      //  [_delegate didSelectPhotosFromDoImagePickerController:self result:aResult];
+    }
+    else
+    {
+        for (int i = 0; i < _dSelected.count; i++)
+            [aResult addObject:[ASSETHELPER getAssetAtIndex:[aKeys[i] integerValue]]];
     }
 
+    [_delegate didSelectPhotosFromDoImagePickerController:self result:aResult];
 }
-- (NSString *)documentsPathForFileName:(NSString *)name {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsPath = [paths objectAtIndex:0];
-    return [documentsPath stringByAppendingPathComponent:name];
-}
-- (NSString *)encodeToBase64String:(UIImage *)image {
-    return [UIImagePNGRepresentation(image) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
-}
-- (UIImage *)decodeBase64ToImage:(NSString *)strEncodeData {
-    NSData *data = [[NSData alloc]initWithBase64EncodedString:strEncodeData options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    return [UIImage imageWithData:data];
-}
+
 - (IBAction)onCancel:(id)sender
 {
-    if ([CheckViewData isEqualToString:@"Yes"]) {
-        [_delegate didCancelDoImagePickerController];
-    }else{
-        [_delegate didCancelDoImagePickerController];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"selectedIndexArr_Thumbs"];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"selectedIndexArr_Thumbs_Data"];
-    }
-
+    [_delegate didCancelDoImagePickerController];
 }
 
 - (IBAction)onSelectAlbum:(id)sender
 {
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-//    NSLog(@"_vBottomMenu == %f",_vBottomMenu.frame.size.height);
-//    NSLog(@"_tvAlbumList == %f",_tvAlbumList.frame.origin.y);
-    if (_vBottomMenu.frame.origin.y == _tvAlbumList.frame.origin.y)
+    if (_tvAlbumList.frame.origin.y == _vBottomMenu.frame.origin.y)
     {
+        SLog(@"onSelectAlbum");
+
         // show tableview
         [UIView animateWithDuration:0.2 animations:^(void) {
 
             _vDimmed.alpha = 0.7;
 
-//            _tvAlbumList.frame = CGRectMake(0,64,
-//                                            _tvAlbumList.frame.size.width, 245);
-            _tvAlbumList.frame = CGRectMake((screenWidth/2) - 160,  64, 320, 245);
+            _tvAlbumList.frame = CGRectMake(0,self.vBottomMenu.frame.size.height,
+                                            _tvAlbumList.frame.size.width, _tvAlbumList.frame.size.height);
             _tvAlbumList.alpha = 1.0;
-            TblviewBackImg.frame = CGRectMake((screenWidth/2) - 160, 64, 320, 264);
-            TblviewBackImg.alpha = 1.0;
             
             _ivShowMark.transform = CGAffineTransformMakeRotation(M_PI);
         }];
@@ -371,10 +255,8 @@
     }
 
     NSDictionary *d = [ASSETHELPER getGroupInfo:indexPath.row];
-    //NSLog(@"d == %@",d);
     cell.lbAlbumName.text   = d[@"name"];
     cell.lbCount.text       = [NSString stringWithFormat:@"%@", d[@"count"]];
-    cell.ImageShow.image = d[@"image"];
     
     return cell;
 }
@@ -389,19 +271,16 @@
 
 - (void)hideBottomMenu
 {
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     [UIView animateWithDuration:0.2 animations:^(void) {
         
         _vDimmed.alpha = 0.0;
-        _tvAlbumList.frame = CGRectMake((screenWidth/2) - 160,  0, 320, 245);
-        TblviewBackImg.frame = CGRectMake((screenWidth/2) - 160, 0, 320, 264);
-       // _tvAlbumList.frame = CGRectMake(0, 0, _tvAlbumList.frame.size.width, 245);
+        
+        _tvAlbumList.frame = CGRectMake(0, _vBottomMenu.frame.origin.y, _tvAlbumList.frame.size.width, _tvAlbumList.frame.size.height);
         _ivShowMark.transform = CGAffineTransformMakeRotation(0);
         
         [UIView setAnimationDelay:0.1];
 
         _tvAlbumList.alpha = 0.0;
-        TblviewBackImg.alpha = 0.0;
     }];
 }
 
@@ -415,88 +294,63 @@
 {
     DoPhotoCell *cell = (DoPhotoCell *)[_cvPhotoList dequeueReusableCellWithReuseIdentifier:@"DoPhotoCell" forIndexPath:indexPath];
 
-    if (indexPath.row == 0) {
-        cell.ivPhoto.image = [UIImage imageNamed:@"TakePhoto.png"];
-        [cell setSelectMode:NO];
-    }else{
-        if (_nColumnCount == 4)
-            cell.ivPhoto.image = [ASSETHELPER getImageAtIndex:indexPath.row  type:ASSET_PHOTO_THUMBNAIL];
-        else
-            cell.ivPhoto.image = [ASSETHELPER getImageAtIndex:indexPath.row  type:ASSET_PHOTO_ASPECT_THUMBNAIL];
-        
-        
-        if (_dSelected[@(indexPath.row)] == nil)
-            [cell setSelectMode:NO];
-        else
-            [cell setSelectMode:YES];
-    }
+    if (_nColumnCount == 4)
+        cell.ivPhoto.image = [ASSETHELPER getImageAtIndex:indexPath.row type:ASSET_PHOTO_THUMBNAIL];
+    else
+        cell.ivPhoto.image = [ASSETHELPER getImageAtIndex:indexPath.row type:ASSET_PHOTO_ASPECT_THUMBNAIL];
+    
 
+	if (_dSelected[@(indexPath.row)] == nil)
+		[cell setSelectMode:NO];
+    else
+		[cell setSelectMode:YES];
 	
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0) {
-        NSLog(@"Open Camera");
-        [self OpenCamera];
-    }else{
-        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-        [UIView animateWithDuration:0.2 animations:
-         ^(void){
-             ShowSelectText.hidden = NO;
-             ShowSelectText.frame = CGRectMake(0, 64, screenWidth, 28);
-         }completion:^(BOOL finished){}];
+    if (_nMaxCount > 1 || _nMaxCount == DO_NO_LIMIT_SELECT)
+    {
+		DoPhotoCell *cell = (DoPhotoCell *)[collectionView cellForItemAtIndexPath:indexPath];
         
-        if (_nMaxCount > 1 || _nMaxCount == DO_NO_LIMIT_SELECT)
-        {
-            DoPhotoCell *cell = (DoPhotoCell *)[collectionView cellForItemAtIndexPath:indexPath];
-            
-            if ((_dSelected[@(indexPath.row)] == nil) && (_nMaxCount > _dSelected.count))
-            {
-                // select
-                _dSelected[@(indexPath.row)] = @(_dSelected.count);
-                [cell setSelectMode:YES];
-            }
-            else
-            {
-                // unselect
-                [_dSelected removeObjectForKey:@(indexPath.row)];
-                [cell setSelectMode:NO];
-                if ([_dSelected count] == 0) {
-                    [UIView animateWithDuration:0.2 animations:
-                     ^(void){
-                         ShowSelectText.frame = CGRectMake(0, -64, screenWidth, 28);
-                     }completion:^(BOOL finished){
-                         ShowSelectText.hidden = YES;
-                     }];
-                }
-                
-
-            }
-            
-            if (_nMaxCount == DO_NO_LIMIT_SELECT)
-                _lbSelectCount.text = [NSString stringWithFormat:@"(%d)", (int)_dSelected.count];
-            else
-                _lbSelectCount.text = [NSString stringWithFormat:@"(%d/%d)", (int)_dSelected.count, (int)_nMaxCount];
-        }
+		if ((_dSelected[@(indexPath.row)] == nil) && (_nMaxCount > _dSelected.count))
+		{
+			// select
+			_dSelected[@(indexPath.row)] = @(_dSelected.count);
+			[cell setSelectMode:YES];
+		}
+		else
+		{
+			// unselect
+			[_dSelected removeObjectForKey:@(indexPath.row)];
+			[cell setSelectMode:NO];
+		}
+        
+        if (_nMaxCount == DO_NO_LIMIT_SELECT)
+            _lbSelectCount.text = [NSString stringWithFormat:@"(%d)", (int)_dSelected.count];
         else
-        {
-            if (_nResultType == DO_PICKER_RESULT_UIIMAGE)
-                [_delegate didSelectPhotosFromDoImagePickerController:self result:@[[ASSETHELPER getImageAtIndex:indexPath.row type:ASSET_PHOTO_SCREEN_SIZE]]];
-            else
-                [_delegate didSelectPhotosFromDoImagePickerController:self result:@[[ASSETHELPER getAssetAtIndex:indexPath.row]]];
-        }
+            _lbSelectCount.text = [NSString stringWithFormat:@"(%d/%d)", (int)_dSelected.count, (int)_nMaxCount];
     }
-
+    else
+    {
+        if (_nResultType == DO_PICKER_RESULT_UIIMAGE)
+            [_delegate didSelectPhotosFromDoImagePickerController:self result:@[[ASSETHELPER getImageAtIndex:indexPath.row type:ASSET_PHOTO_SCREEN_SIZE]]];
+        else
+            [_delegate didSelectPhotosFromDoImagePickerController:self result:@[[ASSETHELPER getAssetAtIndex:indexPath.row]]];
+    }
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    int TestWidth = screenWidth - 12;
-    int FinalWidth = TestWidth / 3;
-    return CGSizeMake(FinalWidth, FinalWidth);
+    if (_nColumnCount == 2)
+        return CGSizeMake(158, 158);
+    else if (_nColumnCount == 3)
+        return CGSizeMake(104, 104);
+    else if (_nColumnCount == 4)
+        return CGSizeMake(77, 77);
+
+    return CGSizeZero;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -593,8 +447,6 @@
     }
 }
 
-
-
 #pragma mark - for photos
 - (void)showPhotosInGroup:(NSInteger)nIndex
 {
@@ -605,26 +457,8 @@
     }
     else if (_nMaxCount > 1)
     {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSData *data = [defaults objectForKey:@"selectedIndexArr_Thumbs_Data"];
-        NSLog(@"apa data is === %@",data);
-        NSMutableDictionary *TempDictonary = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-        if ([CheckDraft isEqualToString:@"Yes"]) {
-            _dSelected = [[NSMutableDictionary alloc] initWithCapacity:_nMaxCount];
-            _lbSelectCount.text = [NSString stringWithFormat:@"(0/%d)", (int)_nMaxCount];
-        }else{
-            if ([ TempDictonary count ] == 0 ) {
-                _dSelected = [[NSMutableDictionary alloc] initWithCapacity:_nMaxCount];
-                _lbSelectCount.text = [NSString stringWithFormat:@"(0/%d)", (int)_nMaxCount];
-            }else{
-                _dSelected = TempDictonary;
-                _lbSelectCount.text = [NSString stringWithFormat:@"(%lu/%d)",(unsigned long)[TempDictonary count], (int)_nMaxCount];
-            }
-        }
-        
-        
-
-
+        _dSelected = [[NSMutableDictionary alloc] initWithCapacity:_nMaxCount];
+        _lbSelectCount.text = [NSString stringWithFormat:@"(0/%d)", (int)_nMaxCount];
     }
     
     [ASSETHELPER getPhotoListOfGroupByIndex:nIndex result:^(NSArray *aPhotos) {
@@ -768,51 +602,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-//- (BOOL)prefersStatusBarHidden
-//{
-//    return YES;
-//}
--(void)OpenCamera{
-    // NSLog(@"Open Camera");
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])  {
-        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-        imagePicker.delegate = self;
-        imagePicker.allowsEditing = NO;
-        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        [self presentViewController:imagePicker animated:YES completion:nil];
-    }else{
-        
-        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@""
-                                                              message:@"Device has no camera"
-                                                             delegate:nil
-                                                    cancelButtonTitle:@"OK"
-                                                    otherButtonTitles: nil];
-        
-        [myAlertView show];
-    }
-}
--(void)imagePickerController:(UIImagePickerController *)picker
-      didFinishPickingImage : (UIImage *)image
-                 editingInfo:(NSDictionary *)editingInfo
+- (BOOL)prefersStatusBarHidden
 {
-    //  UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
-    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-    
-    [library writeImageToSavedPhotosAlbum:[image CGImage] orientation:(ALAssetOrientation)[image imageOrientation] completionBlock:^(NSURL *assetURL, NSError *error){
-        if (error) {
-            // TODO: error handling
-        } else {
-            // TODO: success handling
-           [self readAlbumList:YES];
-        }
-    }];
-    
-    
-    
-    [picker dismissViewControllerAnimated:YES completion:nil];
+    return YES;
 }
--(void)imagePickerControllerDidCancel:(UIImagePickerController *) picker
-{
-    [picker dismissViewControllerAnimated:YES completion:nil];
-}
+
 @end

@@ -12,13 +12,10 @@
 #import "LLARingSpinnerView.h"
 @interface ExploreCountryV2ViewController : UIViewController<UIScrollViewDelegate>{
     
-    IBOutlet UILabel *ShowTItle;
+    IBOutlet UILabel *lblTitle;
     IBOutlet UIScrollView *MainScroll;
     IBOutlet UIScrollView *UserScroll;
     IBOutlet UIImageView *BarImage;
-
-    NSString *GetCountryName;
-    NSString *GetCountryIDN;
     
     UrlDataClass *DataUrl;
     NSMutableData *webData;
@@ -55,10 +52,14 @@
     BOOL CheckLoad_Explore;
     int CheckFirstTimeLoad;
     
+    
+    
    // LLARingSpinnerView *spinnerView;
 }
 -(IBAction)BackButton:(id)sender;
 -(IBAction)SearchButton:(id)sender;
 -(IBAction)FilterButton:(id)sender;
--(void)GetCountryName:(NSString *)CountryName GetCountryIDN:(NSString *)CountryIDN;
+-(void)initData;
+@property(nonatomic,strong)ExploreCountryModel* model;
+
 @end

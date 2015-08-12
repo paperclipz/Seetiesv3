@@ -25,26 +25,37 @@
 #import "PFollowTheExpertsViewController.h"
 #import "LanguageManager.h"
 #import "Locale.h"
-
 #import <Parse/Parse.h>
 #import "InstagramLoginWebViewController.h"
-
 #import "CRMotionView.h"
 #import "LeveyTabBarController.h"
 #import "RecommendPopUpViewController.h"
-
 #import "TestFeedV2ViewController.h"
 #import "NewProfileV2ViewController.h"
+
 @interface LandingV2ViewController ()
 {
-
+    
+    IBOutlet UIButton *FBLoginButton;
+    IBOutlet UIButton *LogInButton;
+    IBOutlet UIButton *WhyWeUseFBButton;
+    IBOutlet UIButton *SignUpWithEmailButton;
+    IBOutlet UIImageView *ShowBackgroundImage;
+    IBOutlet UIView *BackgroundView;
+    IBOutlet UILabel *MainText;
+    IBOutlet UIImageView *MainLogo;
+    IBOutlet UIButton *InstagramButton;
+    IBOutlet UILabel *ShowTnCText;
+    IBOutlet UIActivityIndicatorView *ShowActivity;
 }
+
 @end
 
 @implementation LandingV2ViewController
-@synthesize leveyTabBarController;
+
 -(void)initSelfView
 {
+
     
     BackgroundView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
     ShowBackgroundImage.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
@@ -175,14 +186,14 @@
     
     [super viewDidAppear:animated];
     [self validationBeforeProceed];
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *CheckLogin = [defaults objectForKey:@"CheckLogin"];
     NSString *CheckProvisioningStatus = [defaults objectForKey:@"CheckProvisioningStatus"];
     NSLog(@"CheckProvisioningStatus is %@",CheckProvisioningStatus);
     NSString *APIVersionSet = [defaults objectForKey:@"APIVersionSet"];
     NSLog(@"APIVersionSet is %@",APIVersionSet);
     NSTimer *RandomTimer;
-    if ([CheckLogin isEqualToString:@"LoginDone"]) {
+    if ([Utils isLogin]) {
         ShowBackgroundImage.image = [UIImage imageNamed:@"HomeBg.png"];
         MainLogo.hidden = YES;
         MainText.hidden = YES;
@@ -217,11 +228,8 @@
         }else if([CheckProvisioningStatus isEqualToString:@"5"]){
             RandomTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(changeview) userInfo:nil repeats:NO];
         }else{
-         //   if ([APIVersionSet isEqualToString:@"1.3"]) {
-                
-          //  }else{
-                [self GetAlllanguages];
-         //   }
+      
+            [self GetAlllanguages];
             RandomTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(changeview) userInfo:nil repeats:NO];
         }
         
@@ -241,35 +249,46 @@
     return UIStatusBarStyleLightContent;
 }
 -(void)changeview{
-    //[self animateImages];
 
-    
     FBLoginButton.hidden = NO;
     LogInButton.hidden = NO;
     WhyWeUseFBButton.hidden = NO;
     SignUpWithEmailButton.hidden = NO;
     InstagramButton.hidden = NO;
 
-    
 }
+
 -(void)ChangeView2{
     
-  //  [[[[UIApplication sharedApplication] delegate] window] setRootViewController:self.tabBarController];
+    [[[[UIApplication sharedApplication] delegate] window] setRootViewController:self.leveyTabBarController];
     
-    TestFeedV2ViewController *firstViewController=[[TestFeedV2ViewController alloc]initWithNibName:@"TestFeedV2ViewController" bundle:nil];
-    Explore2ViewController *secondViewController=[[Explore2ViewController alloc]initWithNibName:@"Explore2ViewController" bundle:nil];
-    //SelectImageViewController *threeViewController=[[SelectImageViewController alloc]initWithNibName:@"SelectImageViewController" bundle:nil];
-    RecommendPopUpViewController *threeViewController=[[RecommendPopUpViewController alloc]initWithNibName:@"RecommendPopUpViewController" bundle:nil];
-    NotificationViewController *fourViewController=[[NotificationViewController alloc]initWithNibName:@"NotificationViewController" bundle:nil];
-    //ProfileV2ViewController *fiveViewController=[[ProfileV2ViewController alloc]initWithNibName:@"ProfileV2ViewController" bundle:nil];
-    NewProfileV2ViewController *fiveViewController=[[NewProfileV2ViewController alloc]initWithNibName:@"NewProfileV2ViewController" bundle:nil];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:firstViewController];
-    UINavigationController *navController2 = [[UINavigationController alloc] initWithRootViewController:secondViewController];
-    UINavigationController *navController3 = [[UINavigationController alloc] initWithRootViewController:fourViewController];
-    UINavigationController *navController4 = [[UINavigationController alloc] initWithRootViewController:fiveViewController];
+//TODO:Delete this . use for development purpose only
+    [self.leveyTabBarController setSelectedIndex:0];
+}
+
+- (void)animateImages
+{
     
-    NSArray *ctrlArr = [NSArray arrayWithObjects:navController,navController2,threeViewController,navController3,navController4,nil];
+    [UIView transitionWithView:BackgroundView
+                      duration:2.0f // animation duration
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+                        ShowBackgroundImage.image = [animationImages objectAtIndex:(count % [animationImages count])];
+                    } completion:^(BOOL finished) {
+                        
+                        if (finished) {
+                            count++;
+                            [self animateImages];
+                        }
+                        
+                    }];
     
+}
+
+#pragma mark - Declaration
+
+-(NSArray*)arrTabImages
+{
     NSMutableDictionary *imgDic = [NSMutableDictionary dictionaryWithCapacity:3];
     [imgDic setObject:[UIImage imageNamed:@"TabBarFeed.png"] forKey:@"Default"];
     [imgDic setObject:[UIImage imageNamed:@"TabBarFeed_on.png"] forKey:@"Highlighted"];
@@ -292,38 +311,27 @@
     [imgDic5 setObject:[UIImage imageNamed:@"TabBarProfile_on.png"] forKey:@"Seleted"];
     
     NSArray *imgArr = [NSArray arrayWithObjects:imgDic,imgDic2,imgDic3,imgDic4,imgDic5,nil];
-    
-    leveyTabBarController = [[LeveyTabBarController alloc] initWithViewControllers:ctrlArr imageArray:imgArr];
-    [leveyTabBarController.tabBar setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
-    [leveyTabBarController setTabBarTransparent:YES];
-    
-    [[[[UIApplication sharedApplication] delegate] window] setRootViewController:leveyTabBarController];
-    
-}
 
-- (void)animateImages
+    return imgArr;
+}
+-(LeveyTabBarController*)leveyTabBarController
 {
     
-    // UIImage *image = [animationImages objectAtIndex:(count % [animationImages count])];
+    if(!_leveyTabBarController)
+    {
+         NSArray *arrViewControllers  = [NSArray arrayWithObjects:self.feedV2ViewController.navController,self.explore2ViewController.navController,self.recommendationViewController.navController,self.notificationViewController.navController,self.userProfilePageViewController.navController, nil];
+        
+        
+        _leveyTabBarController = [[LeveyTabBarController alloc]initWithViewControllers:arrViewControllers imageArray:[self arrTabImages]];
+        
+        _leveyTabBarController = [[LeveyTabBarController alloc] initWithViewControllers:arrViewControllers imageArray:[self arrTabImages]];
+        [_leveyTabBarController.tabBar setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
+        [_leveyTabBarController setTabBarTransparent:YES];
+        
+    }
     
-    [UIView transitionWithView:BackgroundView
-                      duration:2.0f // animation duration
-                       options:UIViewAnimationOptionTransitionCrossDissolve
-                    animations:^{
-                        ShowBackgroundImage.image = [animationImages objectAtIndex:(count % [animationImages count])];
-                    } completion:^(BOOL finished) {
-                        
-                        if (finished) {
-                            count++;
-                            [self animateImages];
-                        }
-                        
-                    }];
-    
+    return _leveyTabBarController;
 }
-
-#pragma mark - Declaration
-
 -(UITabBarController*)tabBarController
 {
     if(!_tabBarController)
@@ -331,12 +339,10 @@
         CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
         CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
         
-        
         _tabBarController = [UITabBarController new];
         _tabBarController.tabBar.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
         [[UITabBar appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
-        self.tabBarController.viewControllers = [NSArray arrayWithObjects:self.navFeedV2ViewController,self.navExplore2ViewController,self.selectImageViewController,self.navNotificationViewController,self.navProfileV2ViewController, nil];
-
+        self.tabBarController.viewControllers = [NSArray arrayWithObjects:self.feedV2ViewController.navController,self.explore2ViewController.navController,self.recommendationViewController.navController,self.notificationViewController.navController,self.userProfilePageViewController.navController, nil];
     }
     
     return _tabBarController;
@@ -351,15 +357,6 @@
     return _feedV2ViewController;
 }
 
--(UINavigationController*)navFeedV2ViewController
-{
-    if(!_navFeedV2ViewController)
-    {
-        _navFeedV2ViewController = [[UINavigationController alloc]initWithRootViewController:self.feedV2ViewController];
-    }
-    
-    return _navFeedV2ViewController;
-}
 
 -(Explore2ViewController*)explore2ViewController
 {
@@ -370,15 +367,16 @@
     return _explore2ViewController;
 }
 
--(UINavigationController*)navExplore2ViewController
+
+-(RecommendationViewController*)recommendationViewController
 {
-    if(!_navExplore2ViewController)
+    if(!_recommendationViewController)
     {
-        _navExplore2ViewController = [[UINavigationController alloc]initWithRootViewController:self.explore2ViewController];
+        _recommendationViewController = [RecommendationViewController new];
     }
-    
-    return _navExplore2ViewController;
+    return _recommendationViewController;
 }
+
 
 -(SelectImageViewController*)selectImageViewController
 {
@@ -389,15 +387,6 @@
     return _selectImageViewController;
 }
 
--(UINavigationController*)navSelectImageViewController
-{
-    if(!_navSelectImageViewController)
-    {
-        _navSelectImageViewController = [[UINavigationController alloc]initWithRootViewController:self.selectImageViewController];
-    }
-    
-    return _navSelectImageViewController;
-}
 
 -(NotificationViewController*)notificationViewController
 {
@@ -408,34 +397,15 @@
     return _notificationViewController;
 }
 
--(UINavigationController*)navNotificationViewController
+-(UserProfilePageViewController*)userProfilePageViewController
 {
-    if(!_navNotificationViewController)
-    {
-        _navNotificationViewController = [[UINavigationController alloc]initWithRootViewController:self.notificationViewController];
-    }
-    
-    return _navNotificationViewController;
-}
-
--(ProfileV2ViewController*)profileV2ViewController
-{
-    if(!_profileV2ViewController){
+    if(!_userProfilePageViewController){
         
-        _profileV2ViewController = [ProfileV2ViewController new];
+        _userProfilePageViewController = [UserProfilePageViewController new];
     }
-    return _profileV2ViewController;
+    return _userProfilePageViewController;
 }
 
--(UINavigationController*)navProfileV2ViewController
-{
-    if(!_navProfileV2ViewController)
-    {
-        _navProfileV2ViewController = [[UINavigationController alloc]initWithRootViewController:self.profileV2ViewController];
-    }
-    
-    return _navProfileV2ViewController;
-}
 
 
 #pragma mark - IBAction
@@ -562,16 +532,6 @@
      }];
     //    }
     
-    
-    
-    //    PTnCViewController *PTnCView = [[PTnCViewController alloc]init];
-    //    CATransition *transition = [CATransition animation];
-    //    transition.duration = 0.4;
-    //    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    //    transition.type = kCATransitionPush;
-    //    transition.subtype = kCATransitionFromRight;
-    //    [self.view.window.layer addAnimation:transition forKey:nil];
-    //    [self presentViewController:PTnCView animated:NO completion:nil];
 }
 
 #pragma mark - Request Server Api

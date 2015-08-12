@@ -10,4 +10,17 @@
 
 @implementation Utils
 
++(BOOL)isLogin
+{
+    BOOL isSuccessLogin = false;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *CheckLogin = [defaults objectForKey:@"CheckLogin"];
+
+    
+    if ([CheckLogin isEqualToString:@"LoginDone"]) {
+        isSuccessLogin = true;
+    }
+    
+    return isSuccessLogin;
+}
 @end

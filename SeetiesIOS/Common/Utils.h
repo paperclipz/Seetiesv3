@@ -18,4 +18,7 @@ typedef enum
     CHINESE = 2
 } Language;
 
+
++(BOOL)isLogin;
+
 @end

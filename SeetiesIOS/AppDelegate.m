@@ -94,7 +94,8 @@
         [[UIApplication sharedApplication] registerForRemoteNotificationTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     }
     
-    [self CheckApiVersion];
+    [self requestForApiVersion];
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:API_VERSION forKey:@"APIVersionSet"];
     [defaults synchronize];
@@ -437,7 +438,7 @@
     
 }
 
--(void)CheckApiVersion{
+-(void)requestForApiVersion{
     
     [[ConnectionManager Instance]requestForDEploymentTarget:^(id object) {
        
@@ -468,7 +469,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     ApiVersionModel* model =[[ConnectionManager dataManager] apiVersionModel] ;
-    [defaults setObject:model.version forKey:@"CheckAPI"];
+    [defaults setObject:model.production?@"1":@"0" forKey:@"CheckAPI"];
     [defaults synchronize];
     
     //Check version if same then proceed, if not same then promp error and also proceed to landing

@@ -14,19 +14,25 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-      //  _SelectPhoto.contentMode = UIViewContentModeScaleToFill;
     }
     return self;
 }
 
+#define UIColorWITHRGB(R,G,B) [UIColor colorWithRed:R/255.0 green:G/255.0f blue:B/255.0f alpha:1].CGColor;
 - (void)setSelectMode:(BOOL)bSelect
 {
+    _ivPhoto.layer.borderWidth = 3.0f;
+
     if (bSelect)
-        _SelectPhoto.hidden = NO;
-       // _ivPhoto.alpha = 0.2;
+    {
+        _ivPhoto.layer.borderColor = UIColorWITHRGB(52, 179, 253);
+
+    }
     else
-        _SelectPhoto.hidden = YES;
-       // _ivPhoto.alpha = 1.0;
+    {
+        _ivPhoto.layer.borderColor = [UIColor clearColor].CGColor;
+
+    }
     
 }
 
@@ -38,8 +44,5 @@
     // Drawing code
 }
 */
-- (void)drawRect:(CGRect)rect
-{
-    _SelectPhoto.frame = rect;
-}
+
 @end

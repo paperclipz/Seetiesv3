@@ -13,5 +13,5 @@
 #import "LLARingSpinnerView.h"
 #import "DoImagePickerController.h"
 
-@interface FeedV2ViewController : GAITrackedViewController<UIScrollViewDelegate,DoImagePickerControllerDelegate>
+@interface FeedV2ViewController : BaseViewController<UIScrollViewDelegate,DoImagePickerControllerDelegate>
 @end

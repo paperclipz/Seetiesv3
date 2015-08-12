@@ -1,16 +1,22 @@
 PODS:
+  - ADTransitionController (1.1.1)
   - HexColors (2.2.1)
   - JSONModel (1.1.0)
+  - LMGeocoder (1.0.3)
   - TSMessages (0.9.12):
     - HexColors (~> 2.2.0)
 
 DEPENDENCIES:
+  - ADTransitionController
   - JSONModel
+  - LMGeocoder
   - TSMessages
 
 SPEC CHECKSUMS:
+  ADTransitionController: 72299d31488bcbe59fb87c483a89a637ebc819f8
   HexColors: abfd172e329dab59888614ccba6f216cec59289d
   JSONModel: ec77e9865236a7a09d9cf7668df6b4b328d9ec1d
+  LMGeocoder: 100572f9e572a26d3506ee0604d6629bea391767
   TSMessages: c8cc7b80f2a833af533872cd02010cac061532cc
 
 COCOAPODS: 0.38.2

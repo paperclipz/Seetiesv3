@@ -10,7 +10,7 @@
 #import "UrlDataClass.h"
 #import "GAITrackedViewController.h"
 #import "DoImagePickerController.h"
-@interface NotificationViewController : GAITrackedViewController<UIScrollViewDelegate,DoImagePickerControllerDelegate>{
+@interface NotificationViewController : BaseViewController<UIScrollViewDelegate,DoImagePickerControllerDelegate>{
     UrlDataClass *DataUrl;
     NSMutableData *webData;
     

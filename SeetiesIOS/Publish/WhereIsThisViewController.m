@@ -226,6 +226,7 @@
     }
     return YES;
 }
+
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
     NSLog(@"work here?");
     if (theTextField == SearchField) {
@@ -330,11 +331,6 @@
                 NSString *distance =  [NSString stringWithFormat:@"%@",[dict objectForKey:@"distance"]];
                 [DistanceArray addObject:distance];
             }
-//            NSLog(@"AddressArray is %@",AddressArray);
-//            NSLog(@"CityArray is %@",CityArray);
-//            NSLog(@"CountryArray is %@",CountryArray);
-//            NSLog(@"StateArray is %@",StateArray);
-//            NSLog(@"postalCodeArray is %@",postalCodeArray);
             
             NameArray = [[NSMutableArray alloc]initWithCapacity:[venues count]];
             UrlArray = [[NSMutableArray alloc]initWithCapacity:[venues count]];

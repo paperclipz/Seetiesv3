@@ -10,8 +10,8 @@
 #define DO_RGB(r, g, b)     [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
 #define DO_RGBA(r, g, b, a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 
-#define DO_MENU_BACK_COLOR          DO_RGBA(57, 181, 229, 0.98)
-#define DO_SIDE_BUTTON_COLOR        DO_RGBA(57, 181, 229, 0.9)
+#define DO_MENU_BACK_COLOR          DO_RGBA(57, 185, 238, 0.98)
+#define DO_SIDE_BUTTON_COLOR        DO_RGBA(57, 185, 238, 0.9)
 
 #define DO_ALBUM_NAME_TEXT_COLOR    DO_RGB(57, 185, 238)
 #define DO_ALBUM_COUNT_TEXT_COLOR   DO_RGB(247, 200, 142)
@@ -26,16 +26,7 @@
 // if you don't want to save selected album, remove this.
 #define DO_SAVE_SELECTED_ALBUM
 
-@interface DoImagePickerController : UIViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate>{
-
-    NSString *CheckViewData;
-    NSString *CheckDraft;
-    
-    IBOutlet UIImageView *TblviewBackImg;
-    IBOutlet UILabel *ShowChooseUpText;
-    IBOutlet UILabel *DoneText;
-    IBOutlet UIView *ShowSelectText;
-}
+@interface DoImagePickerController : UIViewController
 
 @property (assign, nonatomic) id            delegate;
 
@@ -56,8 +47,6 @@
 @property (weak, nonatomic) IBOutlet UIView             *vBottomMenu;
 @property (weak, nonatomic) IBOutlet UIButton           *btSelectAlbum;
 @property (weak, nonatomic) IBOutlet UIButton           *btOK;
-@property (weak, nonatomic) IBOutlet UIButton           *btCancel;
-@property (weak, nonatomic) IBOutlet UILabel            *lbDone;
 @property (weak, nonatomic) IBOutlet UIImageView        *ivLine1;
 @property (weak, nonatomic) IBOutlet UIImageView        *ivLine2;
 @property (weak, nonatomic) IBOutlet UILabel            *lbSelectCount;
@@ -89,13 +78,12 @@
 // select photos
 @property (strong, nonatomic)   NSMutableDictionary     *dSelected;
 @property (strong, nonatomic)	NSIndexPath				*lastAccessed;
-- (void)GetBackSelectData:(NSMutableArray *)SelectedIndexArr BackView:(NSString *)CheckView CheckDraft:(NSString *)DraftCheck;
+
 @end
 
 @protocol DoImagePickerControllerDelegate
 
 - (void)didCancelDoImagePickerController;
 - (void)didSelectPhotosFromDoImagePickerController:(DoImagePickerController *)picker result:(NSArray *)aSelected;
-
 
 @end

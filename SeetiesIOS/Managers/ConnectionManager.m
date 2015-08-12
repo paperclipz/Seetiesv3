@@ -55,10 +55,14 @@
         {
             completeBlock(responseDict);
         }
+        [self processApiversion];
         
     } errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
         SLog(@"\n\nerror == %@", [error localizedDescription]);
-        errorBlock(error);
+        if (errorBlock) {
+            errorBlock(error);
+
+        }
        
     }];
     [self enqueueOperation:op];
@@ -84,6 +88,10 @@
         case ServerRequestTypeGetApiVersion:
             str = @"v1.3/system/apiversion?device_type=2";
             break;
+        case ServerRequestTypeGetExplore:
+            str = @"v1.3/explore";
+            break;
+
         default:
             break;
     }
@@ -95,6 +103,41 @@
 
 #pragma mark - Service Request
 
+- (MKNetworkOperation*)requestServerwithAppendString:(NSDictionary*)dict requestType:(ServerRequestType)serverRequestType  completionHandler:(IDBlock)completionBlock errorHandler:(MKNKErrorBlock)errorBlock
+{
+    
+    NSString* fullURL = [NSString stringWithFormat:@"https://%@/%@",self.hostName,[self getFullURLwithType:serverRequestType]];
+    
+    SLog(@"\n\nRequest URL: %@\n",fullURL);
+    
+    // MKNetworkOperation *op = [self operationWithURLString:appendURLString];
+    
+    MKNetworkOperation *op = [self operationWithURLString:fullURL params:dict];
+    
+    [op setPostDataEncoding:MKNKPostDataEncodingTypeURL];
+    
+    
+    
+    [op addCompletionHandler:^(MKNetworkOperation *completedOperation) {
+        NSString *jsonString = [completedOperation responseString];
+        SLog(@"\n\nRequest URL: %@\nResponse JSON:\n%@", fullURL, jsonString);
+        NSDictionary *responseDict = [jsonString objectFromJSONString];
+        
+        [self storeServerData:responseDict requestType:serverRequestType];
+        if (completionBlock) {
+            completionBlock(responseDict);
+        }
+        
+    } errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
+        SLog(@"\n\nerror == %@", [error localizedDescription]);
+        if (errorBlock) {
+            errorBlock(error);
+        }
+    }];
+    [self enqueueOperation:op];
+    return op;
+    
+}
 - (MKNetworkOperation*)requestServerWithPost:(BOOL)isPost requestType:(ServerRequestType)serverRequestType param:(NSDictionary*)dict completionHandler:(IDBlock)completionBlock errorHandler:(MKNKErrorBlock)errorBlock
 {
  
@@ -102,7 +145,6 @@
     NSString *httpMethod = (isPost) ? @"POST" : @"GET";
     SLog(@"\n\nRequest URL: %@\nRequest JSON:\n%@", fullURL, [dict JSONString]);
 
-    
     MKNetworkOperation *op = [self operationWithPath:fullURL
                                               params:dict
                                           httpMethod:httpMethod ssl:YES];
@@ -115,16 +157,9 @@
         NSDictionary *responseDict = [jsonString objectFromJSONString];
 
         [self storeServerData:responseDict requestType:serverRequestType];
-        [self processApiversion];
         if (completionBlock) {
             completionBlock(responseDict);
         }
-        //[self loadJsonAndStoreInModel:responseDict ServerRequestType:serverRequestType];
-        
-//        if (completionBlock) {
-//            [self invokeCompletionBlock:completionBlock forType:serverRequestType];
-//        }
-        
         
     } errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
         SLog(@"\n\nerror == %@", [error localizedDescription]);
@@ -151,6 +186,10 @@
             
         case ServerRequestTypeGetLanguage:
             self.dataManager.languageModels = [[LanguageModels alloc]initWithDictionary:obj error:nil];            
+            break;
+            
+        case ServerRequestTypeGetExplore:
+            self.dataManager.exploreCountryModels = [[ExploreCountryModels alloc]initWithDictionary:obj error:nil];
             break;
         default:
             break;

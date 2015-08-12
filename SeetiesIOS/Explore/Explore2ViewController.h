@@ -9,29 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "UrlDataClass.h"
 #import "DoImagePickerController.h"
-@interface Explore2ViewController : UIViewController<UIScrollViewDelegate,DoImagePickerControllerDelegate,UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>{
+@interface Explore2ViewController : BaseViewController<UIScrollViewDelegate,DoImagePickerControllerDelegate,UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>{
 
-    IBOutlet UIImageView *BarImage;
-    IBOutlet UISearchBar *mySearchBar;
-    IBOutlet UIButton *MainLine;
+
     
     NSString *GetSearchText;
     
-    IBOutlet UIScrollView *CountriesScroll;
     
     UrlDataClass *DataUrl;
     NSMutableData *webData;
     
-    NSMutableArray *CountryIDArray;
-    NSMutableArray *NameArray;
-    NSMutableArray *SeqNoArray;
-    NSMutableArray *ThumbnailArray;
-    
-    NSURLConnection *theConnection_All;
     NSURLConnection *theConnection_GetSearchString;
     
-    IBOutlet UIActivityIndicatorView *ShowActivity;
-    IBOutlet UITableView *SearchTblView;
     
     NSMutableArray *LocalSearchTextArray;
     

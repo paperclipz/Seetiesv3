@@ -24,6 +24,10 @@
 #import "UIAlertView+Blocks.h"
 #import "DataManager.h"
 #import "TSMessage.h"
+#import "BaseViewController.h"
+#import "LMGeocoder.h"
+#import "Foursquare2.h"
+
 #endif
 
 #define IS_IN_DEBUG_MODE

@@ -424,6 +424,7 @@
 
 }
 -(IBAction)ClickButton:(id)sender{
+    SLog(@"ClickButton");
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);
     

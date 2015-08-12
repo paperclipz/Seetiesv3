@@ -1083,7 +1083,6 @@ static NSString * const kAFAviarySecret = @"80ee1b7f54c2ed86";
         
         
         
-        
 //        NSMutableArray *TempArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"selectedIndexArr_Thumbs_Data"]];
         NSMutableArray *TempArray = [[NSMutableArray alloc]init];
 //        SelectImageViewController *SelectImageView = [[SelectImageViewController alloc]init];
@@ -1104,9 +1103,9 @@ static NSString * const kAFAviarySecret = @"80ee1b7f54c2ed86";
 
         [self presentViewController:cont animated:YES completion:nil];
         if ([GetUpdatePost isEqualToString:@"YES"]) {
-            [cont GetBackSelectData:TempArray BackView:@"Yes" CheckDraft:@"Yes"];
+            //[cont GetBackSelectData:TempArray BackView:@"Yes" CheckDraft:@"Yes"];
         }else{
-            [cont GetBackSelectData:TempArray BackView:@"Yes" CheckDraft:@"No"];
+         //   [cont GetBackSelectData:TempArray BackView:@"Yes" CheckDraft:@"No"];
         }
     }
 
