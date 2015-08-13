@@ -415,6 +415,8 @@
                 GetPostTime = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"updated_at"]];
                 GetLikeCheck = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"like"]];
                 PhotoCount = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"photos_count"]];
+                ViewCountString = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"view_count"]];
+                
                 
                 if ([GetLikeCheck isEqualToString:@"0"]) {
                     [LikeButton setImage:[UIImage imageNamed:@"PostLike.png"] forState:UIControlStateNormal];
@@ -1600,9 +1602,39 @@
     
     GetMessageHeight += 90;
     
+    if ([GetUsername isEqualToString:GetPostName]) {
+        
+        UIButton *Line01 = [[UIButton alloc]init];
+        Line01.frame = CGRectMake(15, GetMessageHeight, screenWidth - 30, 1);
+        [Line01 setTitle:@"" forState:UIControlStateNormal];
+        [Line01 setBackgroundColor:[UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0f]];
+        [MainScroll addSubview:Line01];
+        
+        
+        UIImageView *ShowViewIcon = [[UIImageView alloc]init];
+        ShowViewIcon.image = [UIImage imageNamed:@"view.png"];
+        ShowViewIcon.frame = CGRectMake(20, GetMessageHeight + 15, 19, 13);
+        [MainScroll addSubview:ShowViewIcon];
+        
+        NSString *GetFullString = [[NSString alloc]initWithFormat:@"%@ %@",ViewCountString,CustomLocalisedString(@"SeeTotalView", nil)];
+        
+        UILabel *ShowTotalView = [[UILabel alloc]init];
+        ShowTotalView.frame = CGRectMake(50, GetMessageHeight + 10, 200, 20);
+        ShowTotalView.text = GetFullString;
+        ShowTotalView.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+        // ShowUserName.textColor = color;
+        ShowTotalView.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
+        [MainScroll addSubview:ShowTotalView];
+        
+        GetMessageHeight += 30;
+    }
+    
     if ([Like_UsernameArray count] == 0 && [CommentIDArray count] == 0) {
         //GetMessageHeight += 20;
     }else{
+        if ([GetUsername isEqualToString:GetPostName]) {
+            
+        }else{
         UIButton *Line01 = [[UIButton alloc]init];
         Line01.frame = CGRectMake(15, GetMessageHeight, screenWidth - 30, 1);
         [Line01 setTitle:@"" forState:UIControlStateNormal];
@@ -1610,12 +1642,13 @@
         [MainScroll addSubview:Line01];
         
         GetMessageHeight += 10;
+        }
     }
     
 
     
     if ([Like_UsernameArray count] == 0) {
-        
+        GetMessageHeight += 10;
         
     }else{
         

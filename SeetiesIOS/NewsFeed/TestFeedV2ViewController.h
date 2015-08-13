@@ -24,6 +24,7 @@
     NSMutableArray *arrTitle;
     NSMutableArray *arrMessage;
     NSMutableArray *arrType;
+    NSMutableArray *arrImage;
 }
 -(IBAction)SearchButton:(id)sender;
 

@@ -22,5 +22,5 @@
     UIView *CollectionView;
     UIView *LikeView;
 }
-
+-(IBAction)SettingsButton:(id)sender;
 @end

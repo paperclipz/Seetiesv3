@@ -104,7 +104,17 @@
     [arrType addObject:@"Post"];
     [arrType addObject:@"Promotion"];
     [arrType addObject:@"Post"];
-
+    
+    arrImage = [[NSMutableArray alloc]init];
+    [arrImage addObject:@"https://unsplash.it/375/375/?random"];
+    [arrImage addObject:@"https://unsplash.it/375/375/?random"];
+    [arrImage addObject:@"https://unsplash.it/375/500/?random"];
+    [arrImage addObject:@"https://unsplash.it/375/200/?random"];
+    [arrImage addObject:@"https://unsplash.it/375/375/?random"];
+    [arrImage addObject:@"https://unsplash.it/375/450/?random"];
+    [arrImage addObject:@"https://unsplash.it/375/375/?random"];
+    [arrImage addObject:@"https://unsplash.it/375/375/?random"];
+    [arrImage addObject:@"https://unsplash.it/375/600/?random"];
 }
 
 - (void)viewDidLoad {
@@ -212,9 +222,21 @@
             ShowImage.layer.masksToBounds = YES;
             ShowImage.layer.cornerRadius = 5;
             [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
+            NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[arrImage objectAtIndex:i]];
             UIImage *image_;
             UIImage *newImage;
-            image_ = [UIImage imageNamed:@"DemoBackground.jpg"];
+            if ([FullImagesURL_First length] == 0) {
+                image_ = [UIImage imageNamed:@"NoImage.png"];
+                // ShowImage.frame = CGRectMake(0, heightcheck + i, screenWidth, screenWidth);
+            }else{
+                NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL_First];
+                //   ShowImage.imageURL = url_NearbySmall;
+                NSData *data = [[NSData alloc]initWithContentsOfURL:url_NearbySmall];
+                image_ = [[UIImage alloc]initWithData:data];
+            }
+//            UIImage *image_;
+//            UIImage *newImage;
+//            image_ = [UIImage imageNamed:@"DemoBackground.jpg"];
             float oldWidth = image_.size.width;
             float scaleFactor = screenWidth / oldWidth;
             

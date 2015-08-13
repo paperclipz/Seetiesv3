@@ -38,6 +38,7 @@
     NSURLConnection *theConnection_MorePost;
     NSURLConnection *theConnection_UserSuggestions;
     NSURLConnection *theConnection_Following;
+    NSURLConnection *theConnection_TrackPromotedUserViews;
     //data array
     NSMutableArray *TitleArray;
     NSMutableArray *UserInfo_NameArray;
@@ -104,6 +105,7 @@
     
     NSString *GetPromotionImage;
     NSString *GetPromotionUserName;
+    NSString *GetPromotionUid;
     
     BOOL CheckPromotion;
     
@@ -1683,6 +1685,11 @@
     CheckLoadDone = YES;
 }
 -(IBAction)PromotionButton:(id)sender{
+    
+    //need send count to server.
+    [self SendUserTrackerToServer];
+    
+    
     UserProfileV2ViewController *ExpertsUserProfileView = [[UserProfileV2ViewController alloc]init];
     CATransition *transition = [CATransition animation];
     transition.duration = 0.2;
@@ -2320,6 +2327,7 @@
                             GetPromotionImage = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"image"]];
                             NSDictionary *UserData = [dict valueForKey:@"user"];
                             GetPromotionUserName = [[NSString alloc]initWithFormat:@"%@",[UserData valueForKey:@"username"]];
+                            GetPromotionUid = [[NSString alloc]initWithFormat:@"%@",[UserData valueForKey:@"uid"]];
                         }
 
                     }else{
@@ -2329,6 +2337,7 @@
                     
                     NSLog(@"GetPromotionImage is %@",GetPromotionImage);
                     NSLog(@"GetPromotionUserName is %@",GetPromotionUserName);
+                    NSLog(@"GetPromotionUid is %@",GetPromotionUid);
             
                     [ShowUserSuggestionsView removeFromSuperview];
                     [self InitView_V2];
@@ -2428,6 +2437,9 @@
 
  
         }
+    }else if(connection == theConnection_TrackPromotedUserViews){
+        NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+        NSLog(@"theConnection_TrackPromotedUserViews return get data to server ===== %@",GetData);
     }else{
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
      //   NSLog(@"Feed return get data to server ===== %@",GetData);
@@ -2839,5 +2851,25 @@
 -(IBAction)OpenInviteButton:(id)sender{
     InviteFrenViewController *InviteFrenView = [[InviteFrenViewController alloc]init];
     [self presentViewController:InviteFrenView animated:YES completion:nil];
+}
+-(void)SendUserTrackerToServer{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@/tracker/promotion?token=%@",DataUrl.UserWallpaper_Url,GetPromotionUid,GetExpertToken];
+    NSString *postBack = [[NSString alloc] initWithFormat:@"%@",urlString];
+    NSLog(@"GetUserData check postBack URL ==== %@",postBack);
+    // NSURL *url = [NSURL URLWithString:[postBack stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSURL *url = [NSURL URLWithString:postBack];
+    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
+    NSLog(@"theRequest === %@",theRequest);
+    [theRequest addValue:@"" forHTTPHeaderField:@"Accept-Encoding"];
+    
+    theConnection_TrackPromotedUserViews = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+    [theConnection_TrackPromotedUserViews start];
+    
+    
+    if( theConnection_TrackPromotedUserViews ){
+        webData = [NSMutableData data];
+    }
 }
 @end

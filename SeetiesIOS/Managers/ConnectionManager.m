@@ -145,12 +145,10 @@
             break;
         case ServerRequestTypeGetApiVersion:
             self.dataManager.apiVersionModel = [[ApiVersionModel alloc]initWithDictionary:obj error:nil];
-            
-            SLog(@" %@",self.dataManager.apiVersionModel.title);
             break;
             
         case ServerRequestTypeGetLanguage:
-            self.dataManager.languageModels = [[LanguageModels alloc]initWithDictionary:obj error:nil];            
+            self.dataManager.languageModels = [[LanguageModels alloc]initWithDictionary:obj error:nil];
             break;
         default:
             break;

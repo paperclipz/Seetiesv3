@@ -466,8 +466,9 @@
 -(void)processAPIVersion
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    ApiVersionModel* model =[[ConnectionManager dataManager] apiVersionModel] ;
+
+    ApiVersionModel* model =[[ConnectionManager dataManager] apiVersionModel];
+    NSLog(@"model is %@",model);
     [defaults setObject:model.version forKey:@"CheckAPI"];
     [defaults synchronize];
     

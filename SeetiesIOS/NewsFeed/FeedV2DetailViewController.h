@@ -206,6 +206,8 @@
     UIButton *LoadingBlackBackground;
     
     UIButton *SeeAllButton_Nearby;
+    
+    NSString *ViewCountString;
 }
 -(void)GetPostID:(NSString *)PostID;
 

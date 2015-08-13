@@ -8,6 +8,7 @@
 
 #import "NewProfileV2ViewController.h"
 #import "AsyncImageView.h"
+#import "SettingsViewController.h"
 @interface NewProfileV2ViewController ()
 
 @end
@@ -386,7 +387,11 @@
     MainScroll.contentSize = contentSize;
     
 }
+-(IBAction)SettingsButton:(id)sender{
 
+    SettingsViewController *SettingsView = [[SettingsViewController alloc]init];
+    [self.view.window.rootViewController presentViewController:SettingsView animated:YES completion:nil];
+}
 
 
 @end
