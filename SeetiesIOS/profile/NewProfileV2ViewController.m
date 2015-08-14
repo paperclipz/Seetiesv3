@@ -283,10 +283,11 @@
             PostView.hidden = YES;
             CollectionView.hidden = YES;
             LikeView.hidden = NO;
+            [self InitLikeData];
             
-            contentSize.height = GetHeight + LikeView.frame.size.height + 200;
-            MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-            MainScroll.contentSize = contentSize;
+//            contentSize.height = GetHeight + LikeView.frame.size.height + 200;
+//            MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+//            MainScroll.contentSize = contentSize;
             break;
         default:
             break;
@@ -386,6 +387,59 @@
     MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     MainScroll.contentSize = contentSize;
     
+}
+-(void)InitLikeData{
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    
+    NSMutableArray *ArrLikeImg = [[NSMutableArray alloc]init];
+    [ArrLikeImg addObject:@"https://unsplash.it/200/200/?random"];
+    [ArrLikeImg addObject:@"https://unsplash.it/210/210/?random"];
+    [ArrLikeImg addObject:@"https://unsplash.it/220/220/?random"];
+    [ArrLikeImg addObject:@"https://unsplash.it/230/230/?random"];
+    [ArrLikeImg addObject:@"https://unsplash.it/240/240/?random"];
+    [ArrLikeImg addObject:@"https://unsplash.it/250/250/?random"];
+    [ArrLikeImg addObject:@"https://unsplash.it/260/260/?random"];
+    [ArrLikeImg addObject:@"https://unsplash.it/270/270/?random"];
+    [ArrLikeImg addObject:@"https://unsplash.it/280/280/?random"];
+    
+    int TestWidth = screenWidth - 2;
+    //NSLog(@"TestWidth is %i",TestWidth);
+    int FinalWidth = TestWidth / 3;
+    FinalWidth += 1;
+   // NSLog(@"FinalWidth is %i",FinalWidth);
+    int SpaceWidth = FinalWidth + 1;
+    
+    for (NSInteger i = 0; i < 9; i++) {
+        AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
+        ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
+        ShowImage.frame = CGRectMake(0+(i % 3)*SpaceWidth, 0 + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
+        ShowImage.contentMode = UIViewContentModeScaleAspectFill;
+        ShowImage.layer.masksToBounds = YES;
+        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
+        NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[ArrLikeImg objectAtIndex:i]];
+        if ([FullImagesURL_First length] == 0) {
+            ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
+        }else{
+            NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL_First];
+            ShowImage.imageURL = url_NearbySmall;
+        }
+        [LikeView addSubview:ShowImage];
+        
+        
+        UIButton *ImageButton = [[UIButton alloc]init];
+        [ImageButton setBackgroundColor:[UIColor clearColor]];
+        [ImageButton setTitle:@"" forState:UIControlStateNormal];
+        ImageButton.frame = CGRectMake(0+(i % 3)*SpaceWidth, 0 + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
+        ImageButton.tag = i;
+      //  [ImageButton addTarget:self action:@selector(ImageButtonOnClick2:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [LikeView addSubview:ImageButton];
+        //[MainScroll setContentSize:CGSizeMake(320, GetHeight + 105 + (106 * (CGFloat)(i /3)))];
+        LikeView.frame = CGRectMake(0, GetHeight, screenWidth, 0 + FinalWidth + (SpaceWidth * (CGFloat)(i /3)));
+    }
+    
+    
+    [MainScroll setContentSize:CGSizeMake(screenWidth, GetHeight + LikeView.frame.size.height + LikeView.frame.origin.y - FinalWidth)];
 }
 -(IBAction)SettingsButton:(id)sender{
 

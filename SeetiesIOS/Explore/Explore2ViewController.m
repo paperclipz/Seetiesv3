@@ -29,53 +29,16 @@
     BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
     
     CountriesScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight - 114);
-    SearchTblView.frame = CGRectMake(0, 64, screenWidth, screenHeight - 114);
-    SearchTblView.hidden = YES;
-    mySearchBar.delegate = self;
-    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setDefaultTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
-    [mySearchBar setTintColor:[UIColor whiteColor]];
-    
-    [self.view addSubview:SearchTblView];
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
-
-}
-
--(void)initData
-{
-    LocalSearchTextArray = [[NSMutableArray alloc]init];
-    [LocalSearchTextArray addObject:@"Coffee"];
-    [LocalSearchTextArray addObject:@"Pizza"];
-    [LocalSearchTextArray addObject:@"Night Club"];
-    [LocalSearchTextArray addObject:@"Sushi"];
-    [LocalSearchTextArray addObject:@"Museum"];
-    [LocalSearchTextArray addObject:@"Hiking"];
 
 }
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    [self initData];
     [self initSelfView];
     [self GetExploreDataFromServer];
-    CheckTblview = 0;
     
-  }
-
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
-{
-    SearchTblView.hidden = NO;
-    [searchBar setShowsCancelButton:YES animated:YES];
-}
-
-- (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
-{
-    //This'll Hide The cancelButton with Animation
-    [searchBar setShowsCancelButton:NO animated:YES];
-    [searchBar resignFirstResponder];
-    mySearchBar.text = @"";
-    SearchTblView.hidden = YES;
-    //remaining Code'll go here
 }
 
 - (void)didReceiveMemoryWarning {
@@ -89,121 +52,9 @@
     //self.screenName = @"IOS Explore Page";
     //self.title = CustomLocalisedString(@"MainTab_Explore",nil);
     
-    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    
-//    if (screenWidth > 320) {
-//        //NSLog(@"iphone 6 / iphone 6 plus");
-//        UIImageView *ShowImage_Feed = [[UIImageView alloc]init];
-//        ShowImage_Feed.frame = CGRectMake((screenWidth / 2) - 175 , screenHeight - 50, 50, 50);
-//        ShowImage_Feed.image = [UIImage imageNamed:@"TabBarFeed.png"];
-//        [self.tabBarController.view addSubview:ShowImage_Feed];
-//        
-//        UIImageView *ShowImage_Explore = [[UIImageView alloc]init];
-//        ShowImage_Explore.frame = CGRectMake((screenWidth / 2) - 100, screenHeight - 50, 50, 50);
-//        ShowImage_Explore.image = [UIImage imageNamed:@"TabBarExplore_on.png"];
-//        [self.tabBarController.view addSubview:ShowImage_Explore];
-//        
-//        UIImageView *ShowImage = [[UIImageView alloc]init];
-//        ShowImage.frame = CGRectMake((screenWidth / 2) - 25, screenHeight - 50, 50, 50);
-//        ShowImage.image = [UIImage imageNamed:@"TabBarNew.png"];
-//        [self.tabBarController.view addSubview:ShowImage];
-//        
-//        UIImageView *ShowImage_Collecation = [[UIImageView alloc]init];
-//        ShowImage_Collecation.frame = CGRectMake((screenWidth / 2) + 50, screenHeight - 50, 50, 50);
-//        ShowImage_Collecation.image = [UIImage imageNamed:@"TabBarActivity.png"];
-//        [self.tabBarController.view addSubview:ShowImage_Collecation];
-//        
-//        UIImageView *ShowImage_Profile = [[UIImageView alloc]init];
-//        ShowImage_Profile.frame = CGRectMake((screenWidth / 2) + 125, screenHeight - 50, 50, 50);
-//        ShowImage_Profile.image = [UIImage imageNamed:@"TabBarProfile.png"];
-//        [self.tabBarController.view addSubview:ShowImage_Profile];
-//    }else{
-//        NSLog(@"iphone 5 / iphone 5s / iphone 4");
-//        UIImageView *ShowImage_Feed = [[UIImageView alloc]init];
-//        ShowImage_Feed.frame = CGRectMake((screenWidth / 2) - 153 , screenHeight - 50, 50, 50);
-//        ShowImage_Feed.image = [UIImage imageNamed:@"TabBarFeed.png"];
-//        [self.tabBarController.view addSubview:ShowImage_Feed];
-//        
-//        UIImageView *ShowImage_Explore = [[UIImageView alloc]init];
-//        ShowImage_Explore.frame = CGRectMake((screenWidth / 2) - 89, screenHeight - 50, 50, 50);
-//        ShowImage_Explore.image = [UIImage imageNamed:@"TabBarExplore_on.png"];
-//        [self.tabBarController.view addSubview:ShowImage_Explore];
-//        
-//        UIImageView *ShowImage = [[UIImageView alloc]init];
-//        ShowImage.frame = CGRectMake((screenWidth / 2) - 25, screenHeight - 50, 50, 50);
-//        ShowImage.image = [UIImage imageNamed:@"TabBarNew.png"];
-//        [self.tabBarController.view addSubview:ShowImage];
-//        
-//        UIImageView *ShowImage_Collecation = [[UIImageView alloc]init];
-//        ShowImage_Collecation.frame = CGRectMake((screenWidth / 2) + 39, screenHeight - 50, 50, 50);
-//        ShowImage_Collecation.image = [UIImage imageNamed:@"TabBarActivity.png"];
-//        [self.tabBarController.view addSubview:ShowImage_Collecation];
-//        
-//        UIImageView *ShowImage_Profile = [[UIImageView alloc]init];
-//        ShowImage_Profile.frame = CGRectMake((screenWidth / 2) + 106, screenHeight - 50, 50, 50);
-//        ShowImage_Profile.image = [UIImage imageNamed:@"TabBarProfile.png"];
-//        [self.tabBarController.view addSubview:ShowImage_Profile];
-//    }
-    UIButton *BackToTopButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    BackToTopButton.frame = CGRectMake(0, screenHeight - 50, 80, 50);
-    [BackToTopButton setTitle:@"" forState:UIControlStateNormal];
-    //   [SelectButton setImage:[UIImage imageNamed:@"SelectPhotoFrame.png"] forState:UIControlStateSelected];
-    [BackToTopButton setBackgroundColor:[UIColor clearColor]];
-    [BackToTopButton addTarget:self action:@selector(BackToTopButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.tabBarController.view addSubview:BackToTopButton];
-    
-    UIButton *SelectButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    SelectButton.frame = CGRectMake((screenWidth/2) - 40, screenHeight - 50, 80, 50);
-    [SelectButton setTitle:@"" forState:UIControlStateNormal];
-    //   [SelectButton setImage:[UIImage imageNamed:@"SelectPhotoFrame.png"] forState:UIControlStateSelected];
-    [SelectButton setBackgroundColor:[UIColor clearColor]];
-    [SelectButton addTarget:self action:@selector(ChangeViewButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.tabBarController.view addSubview:SelectButton];
-    
 }
 -(IBAction)BackToTopButton:(id)sender{
     self.tabBarController.selectedIndex = 0;
-}
--(IBAction)ChangeViewButton:(id)sender{
-    NSLog(@"ChangeViewButton Click");
-    DoImagePickerController *cont = [[DoImagePickerController alloc] initWithNibName:@"DoImagePickerController" bundle:nil];
-    cont.delegate = self;
-    cont.nResultType = DO_PICKER_RESULT_ASSET;//DO_PICKER_RESULT_UIIMAGE
-    cont.nMaxCount = 10;
-    cont.nColumnCount = 3;
-    
-    [self presentViewController:cont animated:YES completion:nil];
-}
-#pragma mark - DoImagePickerControllerDelegate
-- (void)didCancelDoImagePickerController
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)didSelectPhotosFromDoImagePickerController:(DoImagePickerController *)picker result:(NSArray *)aSelected
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
-    GetSearchText = searchBar.text;
-    NSLog(@"GetSearchText is %@",GetSearchText);
-    
-    if ([GetSearchText isEqualToString:@""] || GetSearchText == nil) {
-        NSLog(@"no searchtext no need save ");
-    }else{
-        NSLog(@"got search data need save.");
-        [mySearchBar resignFirstResponder];
-        [mySearchBar setShowsCancelButton:NO animated:YES];
-        [self GetSearchText];
-    }
-   
-}
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [mySearchBar setShowsCancelButton:NO animated:YES];
-    [mySearchBar resignFirstResponder];
-    SearchTblView.hidden = YES;
 }
 -(void)GetExploreDataFromServer{
     [ShowActivity startAnimating];
@@ -299,70 +150,7 @@
                 [self InitCountriesView];
             }
         }
-    }else if(connection == theConnection_GetSearchString){
-        NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
-        NSLog(@"get data to server   ==== %@",GetData);
-        
-        NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
-        NSError *myError = nil;
-        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
-        
-        NSArray *GetStringData = (NSArray *)[res valueForKey:@"result"];
-        NSLog(@"GetStringData is %@",GetStringData);
-        
-        NSArray *GetcomplexData = (NSArray *)[res valueForKey:@"complex"];
-        NSLog(@"GetcomplexData is %@",GetcomplexData);
-        
-        GetReturnSearchTextArray = [[NSMutableArray alloc]init];
-        
-        for (NSDictionary * dict in GetcomplexData){
-            NSString *tag = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"tag"]];
-            [GetReturnSearchTextArray addObject:tag];
-        }
-        
-        NSDictionary *locationData = [GetcomplexData valueForKey:@"location"];
-        NSLog(@"locationData is %@",locationData);
-        GetReturnSearchAddressArray = [[NSMutableArray alloc]init];
-        GetReturnSearchLatArray = [[NSMutableArray alloc]init];
-        GetReturnSearchLngArray = [[NSMutableArray alloc]init];
-        for (NSDictionary * dict in locationData) {
-            NSString *formatted_address = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"formatted_address"]];
-            //NSLog(@"formatted_address is %@",formatted_address);
-            if ([formatted_address isEqualToString:@"<null>"] || formatted_address == nil) {
-                [GetReturnSearchAddressArray addObject:@""];
-            }else{
-            [GetReturnSearchAddressArray addObject:formatted_address];
-            }
-            
-            NSString *lat = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"lat"]];
-            //NSLog(@"formatted_address is %@",formatted_address);
-            if ([lat isEqualToString:@"<null>"] || lat == nil) {
-                [GetReturnSearchLatArray addObject:@""];
-            }else{
-                [GetReturnSearchLatArray addObject:lat];
-            }
-            
-            NSString *lng = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"lng"]];
-            //NSLog(@"formatted_address is %@",formatted_address);
-            if ([lng isEqualToString:@"<null>"] || lng == nil) {
-                [GetReturnSearchLngArray addObject:@""];
-            }else{
-                [GetReturnSearchLngArray addObject:lng];
-            }
-            
-        }
-        NSLog(@"GetReturnSearchTextArray is %@",GetReturnSearchTextArray);
-        NSLog(@"GetReturnSearchAddressArray is %@",GetReturnSearchAddressArray);
-//        [LocalSuggestionTextArray removeAllObjects];
-//
-//        LocalSuggestionTextArray = [[NSMutableArray alloc]initWithArray:GetStringData];
-//        NSLog(@"LocalSuggestionTextArray is %@",LocalSuggestionTextArray);
-//        [SuggestionTblView reloadData];
-        
-        CheckTblview = 1;
-        [SearchTblView reloadData];
-    }
-}
+    }}
 -(void)InitCountriesView{
     [CountriesScroll setScrollEnabled:YES];
     CountriesScroll.backgroundColor = [UIColor whiteColor];
@@ -569,104 +357,5 @@
     [self.view.window.layer addAnimation:transition forKey:nil];
     [self presentViewController:OpenWebView animated:NO completion:nil];
     [OpenWebView GetTitleString:@"Festival"];
-}
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-
-    
-    if (CheckTblview == 0) {
-        return @"Search History";
-    }else{
-        return @"Suggestions";
-
-    }
-    
-    return 0;
-    
-    
-}
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-    
-}
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    if (CheckTblview == 0) {
-        return [LocalSearchTextArray count];
-    }else{
-        return [GetReturnSearchTextArray count];
-        
-    }
-    return 0;
-}
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *simpleTableIdentifier = @"SimpleTableItem";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
-        
-            UILabel *ShowName = [[UILabel alloc]init];
-            ShowName.frame = CGRectMake(15, 0, 290, 50);
-            ShowName.textColor = [UIColor darkGrayColor];
-            ShowName.tag = 200;
-            ShowName.backgroundColor = [UIColor clearColor];
-            ShowName.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:15];
-            ShowName.numberOfLines = 5;
-                
-            [cell addSubview:ShowName];
-        
-    }
-    [cell setBackgroundColor:[UIColor clearColor]];
-    
-    if (CheckTblview == 0) {
-        UILabel *ShowName = (UILabel *)[cell viewWithTag:200];
-        ShowName.text = [LocalSearchTextArray objectAtIndex:indexPath.row];
-    }else{
-        UILabel *ShowName = (UILabel *)[cell viewWithTag:200];
-        NSString *GetTempAddress = [[NSString alloc]initWithFormat:@"%@",[GetReturnSearchAddressArray objectAtIndex:indexPath.row]];
-        if ([GetTempAddress isEqualToString:@""]) {
-            ShowName.text = [GetReturnSearchTextArray objectAtIndex:indexPath.row];
-        }else{
-            
-            NSString *TempString = [[NSString alloc]initWithFormat:@"%@ > %@",[GetReturnSearchTextArray objectAtIndex:indexPath.row],GetTempAddress];
-            
-            ShowName.text = TempString;
-        }
-        
-        
-        
-        
-    }
-    
-
-    
-    
-    return cell;
-}
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"Click...");
-    SearchResultV2ViewController *SearchResultView = [[SearchResultV2ViewController alloc]init];
-    [self presentViewController:SearchResultView animated:YES completion:nil];
-}
--(void)GetSearchText{
-
-    NSString *FullString = [[NSString alloc]initWithFormat:@"%@tags/%@",DataUrl.UserWallpaper_Url,GetSearchText];
-    NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
-    NSLog(@"check postBack URL ==== %@",postBack);
-    NSURL *url = [NSURL URLWithString:[postBack stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
-    NSLog(@"theRequest === %@",theRequest);
-    [theRequest addValue:@"" forHTTPHeaderField:@"Accept-Encoding"];
-    theConnection_GetSearchString = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
-    [theConnection_GetSearchString start];
-    
-    
-    if( theConnection_GetSearchString ){
-        webData = [NSMutableData data];
-    }
 }
 @end

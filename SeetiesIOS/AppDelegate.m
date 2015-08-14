@@ -45,7 +45,7 @@
 #import "PInterestV2ViewController.h"
 
 #import "DoImagePickerController.h"
-#import "TestFeedV2ViewController.h"
+#import "FeedViewController.h"
 @interface AppDelegate ()
 
 @property(nonatomic,strong)LandingV2ViewController* landingV2ViewController;

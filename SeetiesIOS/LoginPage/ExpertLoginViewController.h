@@ -10,7 +10,10 @@
 #import "GAITrackedViewController.h"
 #import "TPKeyboardAvoidingScrollView.h"
 #import "UrlDataClass.h"
-@interface ExpertLoginViewController : GAITrackedViewController<UITextFieldDelegate,UIScrollViewDelegate>{
+@class LeveyTabBarController;
+@interface ExpertLoginViewController : GAITrackedViewController<UITextFieldDelegate,UIScrollViewDelegate,UITabBarControllerDelegate>{
+    
+    LeveyTabBarController *leveyTabBarController;
 
     IBOutlet UIImageView *ShowBackgroundImage;
     IBOutlet TPKeyboardAvoidingScrollView *Scrollview;
@@ -18,10 +21,12 @@
     IBOutlet UITextField *ShowPassword;
     IBOutlet UILabel *ShowTitle;
     IBOutlet UIImageView *LoginBackgroundImg;
+    IBOutlet UIImageView *LogoImg;
     
     IBOutlet UIButton *LoginButton;
     IBOutlet UIButton *NeedHelpButton;
     IBOutlet UIButton *ForgotPasswordButton;
+    IBOutlet UIButton *CancelButton;
     
     NSString *GetLoginID;
     NSString *GetPassword;

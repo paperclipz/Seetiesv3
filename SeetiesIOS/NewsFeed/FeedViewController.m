@@ -1,21 +1,34 @@
 //
-//  TestFeedV2ViewController.m
+//  FeedViewController.m
 //  SeetiesIOS
 //
-//  Created by Seeties IOS on 7/28/15.
-//  Copyright (c) 2015 Ahyong87. All rights reserved.
+//  Created by Seeties IOS on 8/14/15.
+//  Copyright (c) 2015 Stylar Network. All rights reserved.
 //
 
-#import "TestFeedV2ViewController.h"
+#import "FeedViewController.h"
 #import "AsyncImageView.h"
 #import "SearchViewV2Controller.h"
 #import "Filter2ViewController.h"
-@interface TestFeedV2ViewController ()
+@interface FeedViewController ()
 
 @end
 
-@implementation TestFeedV2ViewController
+@implementation FeedViewController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+    [self initData];
+    [self initSelfView];
+    
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 -(void)initSelfView
 {
     // Do any additional setup after loading the view from its nib.
@@ -32,9 +45,9 @@
     
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     
-//    ShowFeedText.text = CustomLocalisedString(@"MainTab_Feed",nil);
-//    [NearbyButton setTitle:CustomLocalisedString(@"NearBy",nil) forState:UIControlStateNormal];
-//    [FilterButton setTitle:CustomLocalisedString(@"Filter", nil) forState:UIControlStateNormal];
+    //    ShowFeedText.text = CustomLocalisedString(@"MainTab_Feed",nil);
+    //    [NearbyButton setTitle:CustomLocalisedString(@"NearBy",nil) forState:UIControlStateNormal];
+    //    [FilterButton setTitle:CustomLocalisedString(@"Filter", nil) forState:UIControlStateNormal];
     
     heightcheck = 0;
     refreshControl = [[UIRefreshControl alloc] init];
@@ -43,7 +56,7 @@
                                        0,
                                        refreshControl.bounds.size.width,
                                        refreshControl.bounds.size.height);
-   // refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Loading..."];
+    // refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Loading..."];
     [refreshControl addTarget:self action:@selector(testRefresh) forControlEvents:UIControlEventValueChanged];
     [MainScroll addSubview:refreshControl];
     
@@ -56,7 +69,7 @@
         [ShowActivity startAnimating];
         [self LoadInitView];
     }
-
+    
 }
 
 -(void)initData
@@ -115,33 +128,19 @@
     [arrImage addObject:@"https://unsplash.it/375/375/?random"];
     [arrImage addObject:@"https://unsplash.it/375/375/?random"];
     [arrImage addObject:@"https://unsplash.it/375/600/?random"];
-}
-
-- (void)viewDidLoad {
     
-    [super viewDidLoad];
-    [self initData];
-    [self initSelfView];
-
-    [[self navigationController] setNavigationBarHidden:YES animated:YES];
-    
-
-
+   // TestCheck = 0;
+   // TotalCount = 3;
 }
 - (UIStatusBarStyle) preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
+    
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 -(void)testRefresh{
-
+    
     NSLog(@"testRefresh");
     
     [refreshControl endRefreshing];
@@ -158,53 +157,67 @@
         [MainScroll setContentSize:CGSizeMake(screenWidth, 290 + i * 100)];
     }
     
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    [defaults setObject:@"Done" forKey:@"TestLocalData"];
-//    [defaults synchronize];
+    //    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    //    [defaults setObject:@"Done" forKey:@"TestLocalData"];
+    //    [defaults synchronize];
     
     [NSTimer scheduledTimerWithTimeInterval:5.0
                                      target:self
                                    selector:@selector(timerCalled)
                                    userInfo:nil
                                     repeats:NO];
-   // [refreshControl endRefreshing];
+    // [refreshControl endRefreshing];
 }
 -(void)LoadInitView{
-    [NSTimer scheduledTimerWithTimeInterval:2.0
+    [NSTimer scheduledTimerWithTimeInterval:0.5
                                      target:self
                                    selector:@selector(StartInit1stView)
                                    userInfo:nil
                                     repeats:NO];
-
+    
+    //[self StartInit1stView];
 }
 -(void)StartInit1stView{
+    
+    
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
     UIButton *TempButton = [[UIButton alloc]init];
-    TempButton.frame = CGRectMake(10, 10, screenWidth - 20, 70);
+    TempButton.frame = CGRectMake(10, 0, screenWidth - 20, 70);
     [TempButton setTitle:@"" forState:UIControlStateNormal];
     TempButton.backgroundColor = [UIColor whiteColor];
     TempButton.layer.cornerRadius = 5;
     [MainScroll addSubview: TempButton];
     
     UILabel *ShowExplore = [[UILabel alloc]init];
-    ShowExplore.frame = CGRectMake(80, 25, screenWidth - 100, 20);
+    ShowExplore.frame = CGRectMake(80, 15, screenWidth - 100, 20);
     ShowExplore.text = @"Explore nearby";
     ShowExplore.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
     ShowExplore.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:18];
     [MainScroll addSubview:ShowExplore];
     
     UILabel *ShowSubExplore = [[UILabel alloc]init];
-    ShowSubExplore.frame = CGRectMake(80, 45, screenWidth - 100, 20);
+    ShowSubExplore.frame = CGRectMake(80, 35, screenWidth - 100, 20);
     ShowSubExplore.text = @"There is always excitement around you.";
     ShowSubExplore.textColor = [UIColor lightGrayColor];
     ShowSubExplore.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:14];
     [MainScroll addSubview:ShowSubExplore];
     
-    heightcheck += 90;
+    heightcheck += 80;
     
+    [self InitContent];
     
-    for ( int i = 0; i < 9; i++) {
+    //    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    //    [defaults setObject:@"Done" forKey:@"TestLocalData"];
+    //    [defaults synchronize];
+    
+    [ShowActivity stopAnimating];
+}
+
+-(void)InitContent{
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    
+    for ( int i = 0 ; i < 9; i++) {
         
         NSString *GetType = [arrType objectAtIndex:i];
         if ([GetType isEqualToString:@"Post"]) {
@@ -234,9 +247,9 @@
                 NSData *data = [[NSData alloc]initWithContentsOfURL:url_NearbySmall];
                 image_ = [[UIImage alloc]initWithData:data];
             }
-//            UIImage *image_;
-//            UIImage *newImage;
-//            image_ = [UIImage imageNamed:@"DemoBackground.jpg"];
+            //            UIImage *image_;
+            //            UIImage *newImage;
+            //            image_ = [UIImage imageNamed:@"DemoBackground.jpg"];
             float oldWidth = image_.size.width;
             float scaleFactor = screenWidth / oldWidth;
             
@@ -248,6 +261,8 @@
             newImage = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
             ShowImage.image = newImage;
+            
+            NSLog(@"Count timer");
             
             
             ShowImage.frame = CGRectMake(10, heightcheck + i, screenWidth - 20, newImage.size.height);
@@ -262,7 +277,7 @@
             ShowUserProfileImage.layer.cornerRadius=20;
             ShowUserProfileImage.layer.borderWidth=3;
             ShowUserProfileImage.layer.masksToBounds = YES;
-            ShowUserProfileImage.layer.borderColor=[[UIColor lightGrayColor] CGColor];
+            ShowUserProfileImage.layer.borderColor=[[UIColor whiteColor] CGColor];
             [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
             [MainScroll addSubview:ShowUserProfileImage];
             
@@ -388,7 +403,7 @@
             TempButton.frame = CGRectMake(10, TempHeight, screenWidth - 20, TempCountWhiteHeight);
             
             heightcheck += 10;
-        
+            
         }else if([GetType isEqualToString:@"User"]){
             int TestWidth = screenWidth - 40;
             //    NSLog(@"TestWidth is %i",TestWidth);
@@ -455,7 +470,7 @@
                 ShowImage.layer.cornerRadius=5;
                 ShowImage.layer.masksToBounds = YES;
                 [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
-
+                
                 [MainScroll addSubview:ShowImage];
             }
             
@@ -483,14 +498,41 @@
         
         
     }
-        
-    [MainScroll setContentSize:CGSizeMake(screenWidth, heightcheck + 169 + 50)];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:@"Done" forKey:@"TestLocalData"];
-    [defaults synchronize];
     
-    [ShowActivity stopAnimating];
+    [MainScroll setContentSize:CGSizeMake(screenWidth, heightcheck + 169 + 50)];
+//    if (TestCheck == 0) {
+//        TestCheck += 3;
+//    }else{
+//        TestCheck += 1;
+//    }
+//    
+//    TotalCount += 1;
+//    
+//    if (TotalCount == 10) {
+//        
+//    }else{
+//      NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.5
+//                                         target:self
+//                                       selector:@selector(InitContent)
+//                                       userInfo:nil
+//                                        repeats:NO];
+//        
+//        [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+////        double delayInSeconds = 1.0;
+////        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+////        
+////        dispatch_after(popTime, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+////            // Your code here
+////            [self InitContent];
+////        });
+//    }
+    
+    
 }
+
+
+
+
 -(void)timerCalled
 {
     NSLog(@"Timer Called");

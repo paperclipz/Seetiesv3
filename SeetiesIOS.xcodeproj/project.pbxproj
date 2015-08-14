@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0BC9B38A1B7DD287008334FF /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC9B3881B7DD287008334FF /* FeedViewController.m */; };
+		0BC9B38B1B7DD288008334FF /* FeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC9B3891B7DD287008334FF /* FeedViewController.xib */; };
 		0BD634FC1B71C9B800D82414 /* LeveyTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD634F91B71C9B800D82414 /* LeveyTabBar.m */; };
 		0BD634FD1B71C9B800D82414 /* LeveyTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD634FB1B71C9B800D82414 /* LeveyTabBarController.m */; };
 		0BD635011B71FF8B00D82414 /* RecommendPopUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD634FF1B71FF8B00D82414 /* RecommendPopUpViewController.m */; };
@@ -185,8 +187,6 @@
 		8AD6C2A81B7072FB0040437E /* TellaStoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6C27B1B7072FB0040437E /* TellaStoryViewController.xib */; };
 		8AD6C2A91B7072FB0040437E /* WhereIsThisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6C27D1B7072FB0040437E /* WhereIsThisViewController.m */; };
 		8AD6C2AA1B7072FB0040437E /* WhereIsThisViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6C27E1B7072FB0040437E /* WhereIsThisViewController.xib */; };
-		8AD6C2AE1B7074110040437E /* TestFeedV2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6C2AC1B7074110040437E /* TestFeedV2ViewController.m */; };
-		8AD6C2AF1B7074110040437E /* TestFeedV2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6C2AD1B7074110040437E /* TestFeedV2ViewController.xib */; };
 		8AD6C2B11B7079AF0040437E /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2B01B7079AF0040437E /* Social.framework */; };
 		8AD6C2B31B7079B40040437E /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2B21B7079B40040437E /* Accounts.framework */; };
 		8AD6C2B51B7079FA0040437E /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2B41B7079FA0040437E /* AssetsLibrary.framework */; };
@@ -868,6 +868,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0BC9B3871B7DD287008334FF /* FeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
+		0BC9B3881B7DD287008334FF /* FeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
+		0BC9B3891B7DD287008334FF /* FeedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedViewController.xib; sourceTree = "<group>"; };
 		0BD634F81B71C9B800D82414 /* LeveyTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeveyTabBar.h; sourceTree = "<group>"; };
 		0BD634F91B71C9B800D82414 /* LeveyTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeveyTabBar.m; sourceTree = "<group>"; };
 		0BD634FA1B71C9B800D82414 /* LeveyTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeveyTabBarController.h; sourceTree = "<group>"; };
@@ -1148,9 +1151,6 @@
 		8AD6C27C1B7072FB0040437E /* WhereIsThisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhereIsThisViewController.h; sourceTree = "<group>"; };
 		8AD6C27D1B7072FB0040437E /* WhereIsThisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhereIsThisViewController.m; sourceTree = "<group>"; };
 		8AD6C27E1B7072FB0040437E /* WhereIsThisViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WhereIsThisViewController.xib; sourceTree = "<group>"; };
-		8AD6C2AB1B7074110040437E /* TestFeedV2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFeedV2ViewController.h; sourceTree = "<group>"; };
-		8AD6C2AC1B7074110040437E /* TestFeedV2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestFeedV2ViewController.m; sourceTree = "<group>"; };
-		8AD6C2AD1B7074110040437E /* TestFeedV2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestFeedV2ViewController.xib; sourceTree = "<group>"; };
 		8AD6C2B01B7079AF0040437E /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		8AD6C2B21B7079B40040437E /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		8AD6C2B41B7079FA0040437E /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -2255,9 +2255,6 @@
 				8AD6BD871B706CF30040437E /* FeedV2DetailViewController.h */,
 				8AD6BD881B706CF30040437E /* FeedV2DetailViewController.m */,
 				8AD6BD891B706CF30040437E /* FeedV2DetailViewController.xib */,
-				8AD6C2AB1B7074110040437E /* TestFeedV2ViewController.h */,
-				8AD6C2AC1B7074110040437E /* TestFeedV2ViewController.m */,
-				8AD6C2AD1B7074110040437E /* TestFeedV2ViewController.xib */,
 				8AD6BD8A1B706CF30040437E /* FeedV2ViewController.h */,
 				8AD6BD8B1B706CF30040437E /* FeedV2ViewController.m */,
 				8AD6BD8C1B706CF30040437E /* FeedV2ViewController.xib */,
@@ -2270,6 +2267,9 @@
 				8AD6BD931B706CF30040437E /* NearByRecommtationViewController.h */,
 				8AD6BD941B706CF30040437E /* NearByRecommtationViewController.m */,
 				8AD6BD951B706CF30040437E /* NearByRecommtationViewController.xib */,
+				0BC9B3871B7DD287008334FF /* FeedViewController.h */,
+				0BC9B3881B7DD287008334FF /* FeedViewController.m */,
+				0BC9B3891B7DD287008334FF /* FeedViewController.xib */,
 			);
 			path = NewsFeed;
 			sourceTree = "<group>";
@@ -3798,7 +3798,6 @@
 				8AD6C6AB1B70934D0040437E /* BtnAddInfo@3x.png in Resources */,
 				8AD6C7CC1B70934D0040437E /* TabDivider@2x.png in Resources */,
 				8AD6C6881B70934D0040437E /* ActionNoComment.png in Resources */,
-				8AD6C2AF1B7074110040437E /* TestFeedV2ViewController.xib in Resources */,
 				8AD6C3481B707D120040437E /* buttonbg@2x.png in Resources */,
 				8AD6C6601B70934D0040437E /* PostShare@2x.png in Resources */,
 				8AD6C62B1B70934D0040437E /* LanguageInd@3x.png in Resources */,
@@ -3835,6 +3834,7 @@
 				8AD6C6801B70934D0040437E /* ActionComment@2x.png in Resources */,
 				8AD6C7F71B70934D0040437E /* iPhone4_Tour.png in Resources */,
 				8AD6C7611B70934D0040437E /* Popover@3x.png in Resources */,
+				0BC9B38B1B7DD288008334FF /* FeedViewController.xib in Resources */,
 				8AD6C62E1B70934D0040437E /* LanguagePh@3x.png in Resources */,
 				8AD6C6251B70934D0040437E /* LanguageChi@3x.png in Resources */,
 				8AD6C66A1B70934D0040437E /* Following@3x.png in Resources */,
@@ -4336,7 +4336,6 @@
 				8AD6C0AF1B706CF30040437E /* ExpertLoginViewController.m in Sources */,
 				8AD6C28F1B7072FB0040437E /* AddLocationViewController.m in Sources */,
 				8AD6BE571B706CF30040437E /* DoAlbumCell.m in Sources */,
-				8AD6C2AE1B7074110040437E /* TestFeedV2ViewController.m in Sources */,
 				8AD6C2951B7072FB0040437E /* DraftsViewController.m in Sources */,
 				8AD6C81D1B73382E0040437E /* Localisator.m in Sources */,
 				8AD6C33C1B707D120040437E /* LLARingSpinnerView.m in Sources */,
@@ -4400,6 +4399,7 @@
 				8AD6BA631B705DF20040437E /* AppDelegate.m in Sources */,
 				8AD6C2911B7072FB0040437E /* ChangeSearchLocationViewController.m in Sources */,
 				8AD6C27F1B7072FB0040437E /* AddContactViewController.m in Sources */,
+				0BC9B38A1B7DD287008334FF /* FeedViewController.m in Sources */,
 				8AD6C10C1B706CF30040437E /* ForgotPasswordViewController.m in Sources */,
 				8AD6C3391B707D120040437E /* FSVenue.m in Sources */,
 				8AD6C1141B706CF30040437E /* FSOAuthNoAppStore.m in Sources */,

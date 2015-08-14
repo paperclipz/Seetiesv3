@@ -24,6 +24,12 @@
 
 #import "FeedV2ViewController.h"
 
+#import "LeveyTabBarController.h"
+#import "RecommendPopUpViewController.h"
+
+#import "FeedViewController.h"
+#import "NewProfileV2ViewController.h"
+
 #import <Parse/Parse.h>
 @interface ExpertLoginViewController ()
 //@property (nonatomic, strong) LLARingSpinnerView *spinnerView;
@@ -44,20 +50,22 @@
     ShowTitle.frame = CGRectMake(0, 30, screenWidth, 44);
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     LoginBackgroundImg.frame = CGRectMake(0, 78, screenWidth, 89);
+    CancelButton.frame = CGRectMake(screenWidth - 70, 20, 70, 44);
+    LogoImg.frame = CGRectMake((screenWidth / 2) - 20, 20, 40, 40);
     
     
-    ShowLoginID.frame = CGRectMake(15, 82, screenWidth - 15, 40);
-    ShowPassword.frame = CGRectMake(15, 124, screenWidth - 15, 40);
+    ShowLoginID.frame = CGRectMake((screenWidth/2) - 130, 82, 260, 40);
+    ShowPassword.frame = CGRectMake((screenWidth/2) - 130, 124, 260, 40);
 
     
     if (screenHeight > 480) {
-        LoginButton.frame = CGRectMake(15, 195, screenWidth - 30, 50);
-        ForgotPasswordButton.frame = CGRectMake(16, 269, 129, 30);
-        NeedHelpButton.frame = CGRectMake(screenWidth - 94 - 15, 269, 94, 30);
+        LoginButton.frame = CGRectMake((screenWidth/2) - 130, 195, 260, 50);
+        ForgotPasswordButton.frame = CGRectMake((screenWidth/2) - 130, 269, 129, 30);
+        NeedHelpButton.frame = CGRectMake((screenWidth/2) + 130 - 94, 269, 94, 30);
     }else{
-        LoginButton.frame = CGRectMake(15, 175, screenWidth - 30, 50);
-        ForgotPasswordButton.frame = CGRectMake(16, 229, 129, 30);
-        NeedHelpButton.frame = CGRectMake(screenWidth - 94 - 15, 229, 94, 30);
+        LoginButton.frame = CGRectMake((screenWidth/2) - 130, 175, 260, 50);
+        ForgotPasswordButton.frame = CGRectMake((screenWidth/2) - 130, 229, 129, 30);
+        NeedHelpButton.frame = CGRectMake((screenWidth/2) + 130 - 94, 229, 94, 30);
     }
 }
 -(void)GetSameEmailData:(NSString *)EmailData{
@@ -400,40 +408,49 @@
             }
             
         }
-        CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
         
-        UITabBarController *tabBarController=[[UITabBarController alloc]init];
-        tabBarController.tabBar.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
-        [tabBarController.tabBar setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
-        //FirstViewController and SecondViewController are the view controller you want on your UITabBarController
-//        UIImage* tabBarBackground = [UIImage imageNamed:@"TabBarBg@2x-1.png"];
-//        [[UITabBar appearance] setShadowImage:tabBarBackground];
-//        [[UITabBar appearance] setBackgroundImage:tabBarBackground];
-        
-        
-        FeedV2ViewController *firstViewController=[[FeedV2ViewController alloc]initWithNibName:@"FeedV2ViewController" bundle:nil];
-        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:firstViewController];
+        FeedViewController *firstViewController=[[FeedViewController alloc]initWithNibName:@"FeedViewController" bundle:nil];
         Explore2ViewController *secondViewController=[[Explore2ViewController alloc]initWithNibName:@"Explore2ViewController" bundle:nil];
-        
-        SelectImageViewController *threeViewController=[[SelectImageViewController alloc]initWithNibName:@"SelectImageViewController" bundle:nil];
-        
+        //SelectImageViewController *threeViewController=[[SelectImageViewController alloc]initWithNibName:@"SelectImageViewController" bundle:nil];
+        RecommendPopUpViewController *threeViewController=[[RecommendPopUpViewController alloc]initWithNibName:@"RecommendPopUpViewController" bundle:nil];
         NotificationViewController *fourViewController=[[NotificationViewController alloc]initWithNibName:@"NotificationViewController" bundle:nil];
+        //ProfileV2ViewController *fiveViewController=[[ProfileV2ViewController alloc]initWithNibName:@"ProfileV2ViewController" bundle:nil];
+        NewProfileV2ViewController *fiveViewController=[[NewProfileV2ViewController alloc]initWithNibName:@"NewProfileV2ViewController" bundle:nil];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:firstViewController];
+        UINavigationController *navController2 = [[UINavigationController alloc] initWithRootViewController:secondViewController];
+        UINavigationController *navController3 = [[UINavigationController alloc] initWithRootViewController:fourViewController];
+        UINavigationController *navController4 = [[UINavigationController alloc] initWithRootViewController:fiveViewController];
         
-        ProfileV2ViewController *fiveViewController=[[ProfileV2ViewController alloc]initWithNibName:@"ProfileV2ViewController" bundle:nil];
+        NSArray *ctrlArr = [NSArray arrayWithObjects:navController,navController2,threeViewController,navController3,navController4,nil];
         
-        //adding view controllers to your tabBarController bundling them in an array
-        tabBarController.viewControllers=[NSArray arrayWithObjects:navController,secondViewController,threeViewController,fourViewController,fiveViewController, nil];
+        NSMutableDictionary *imgDic = [NSMutableDictionary dictionaryWithCapacity:3];
+        [imgDic setObject:[UIImage imageNamed:@"TabBarFeed.png"] forKey:@"Default"];
+        [imgDic setObject:[UIImage imageNamed:@"TabBarFeed_on.png"] forKey:@"Highlighted"];
+        [imgDic setObject:[UIImage imageNamed:@"TabBarFeed_on.png"] forKey:@"Seleted"];
+        NSMutableDictionary *imgDic2 = [NSMutableDictionary dictionaryWithCapacity:3];
+        [imgDic2 setObject:[UIImage imageNamed:@"TabBarExplore.png"] forKey:@"Default"];
+        [imgDic2 setObject:[UIImage imageNamed:@"TabBarExplore_on.png"] forKey:@"Highlighted"];
+        [imgDic2 setObject:[UIImage imageNamed:@"TabBarExplore_on.png"] forKey:@"Seleted"];
+        NSMutableDictionary *imgDic3 = [NSMutableDictionary dictionaryWithCapacity:3];
+        [imgDic3 setObject:[UIImage imageNamed:@"TabBarNew.png"] forKey:@"Default"];
+        [imgDic3 setObject:[UIImage imageNamed:@"FollowDeny.png"] forKey:@"Highlighted"];
+        [imgDic3 setObject:[UIImage imageNamed:@"FollowDeny.png"] forKey:@"Seleted"];
+        NSMutableDictionary *imgDic4 = [NSMutableDictionary dictionaryWithCapacity:3];
+        [imgDic4 setObject:[UIImage imageNamed:@"TabBarActivity.png"] forKey:@"Default"];
+        [imgDic4 setObject:[UIImage imageNamed:@"TabBarActivity_on.png"] forKey:@"Highlighted"];
+        [imgDic4 setObject:[UIImage imageNamed:@"TabBarActivity_on.png"] forKey:@"Seleted"];
+        NSMutableDictionary *imgDic5 = [NSMutableDictionary dictionaryWithCapacity:3];
+        [imgDic5 setObject:[UIImage imageNamed:@"TabBarProfile.png"] forKey:@"Default"];
+        [imgDic5 setObject:[UIImage imageNamed:@"TabBarProfile_on.png"] forKey:@"Highlighted"];
+        [imgDic5 setObject:[UIImage imageNamed:@"TabBarProfile_on.png"] forKey:@"Seleted"];
         
+        NSArray *imgArr = [NSArray arrayWithObjects:imgDic,imgDic2,imgDic3,imgDic4,imgDic5,nil];
         
-        //[self presentModalViewController:tabBarController animated:YES];
-        // [self presentViewController:tabBarController animated:NO completion:nil];
-        [[[[UIApplication sharedApplication] delegate] window] setRootViewController:tabBarController];
-
+        leveyTabBarController = [[LeveyTabBarController alloc] initWithViewControllers:ctrlArr imageArray:imgArr];
+        [leveyTabBarController.tabBar setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
+        [leveyTabBarController setTabBarTransparent:YES];
         
-//        MainViewController *MainView = [[MainViewController alloc]init];
-//        [self presentViewController:MainView animated:YES completion:nil];
-        //create a UITabBarController object
+        [[[[UIApplication sharedApplication] delegate] window] setRootViewController:leveyTabBarController];
         
 
     }

@@ -33,7 +33,7 @@
 #import "LeveyTabBarController.h"
 #import "RecommendPopUpViewController.h"
 
-#import "TestFeedV2ViewController.h"
+#import "FeedViewController.h"
 #import "NewProfileV2ViewController.h"
 @interface LandingV2ViewController ()
 {
@@ -256,7 +256,7 @@
     
   //  [[[[UIApplication sharedApplication] delegate] window] setRootViewController:self.tabBarController];
     
-    TestFeedV2ViewController *firstViewController=[[TestFeedV2ViewController alloc]initWithNibName:@"TestFeedV2ViewController" bundle:nil];
+    FeedViewController *firstViewController=[[FeedViewController alloc]initWithNibName:@"FeedViewController" bundle:nil];
     Explore2ViewController *secondViewController=[[Explore2ViewController alloc]initWithNibName:@"Explore2ViewController" bundle:nil];
     //SelectImageViewController *threeViewController=[[SelectImageViewController alloc]initWithNibName:@"SelectImageViewController" bundle:nil];
     RecommendPopUpViewController *threeViewController=[[RecommendPopUpViewController alloc]initWithNibName:@"RecommendPopUpViewController" bundle:nil];
