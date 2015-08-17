@@ -35,22 +35,27 @@
     Scrollview.delegate = self;
     Scrollview.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     ShowBackgroundImage.frame = CGRectMake(0, 0, screenWidth, screenHeight);
-    LoginBackgroundImg_1.frame = CGRectMake(0, 78, screenWidth, 89);
-    LoginBackgroundImg_2.frame = CGRectMake(0, 165, screenWidth, 89);
+
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     ShowTitle.frame = CGRectMake(0, 30, screenWidth, 44);
-    SignUpButton.frame = CGRectMake(15, 310, screenWidth - 30, 50);
-    ShowTnC.frame = CGRectMake((screenWidth/2) - 122, 262, 244, 40);
-    Line01.frame = CGRectMake((screenWidth/2) - 90, 298, 80, 1);
-    Line02.frame = CGRectMake((screenWidth/2) + 2, 298, 87, 1);
+    SignUpButton.frame = CGRectMake(30, 310, screenWidth - 60, 50);
+    CancelButton.frame = CGRectMake(screenWidth - 70, 20, 70, 44);
+    LogoImg.frame = CGRectMake((screenWidth / 2) - 20, 20, 40, 40);
     
-    EmailField.frame = CGRectMake(15, 80, screenWidth - 15, 40);
-    UsernameField.frame = CGRectMake(15, 122, screenWidth - 15, 40);
-    PasswordField.frame = CGRectMake(15, 169, screenWidth - 15, 40);
-    ConfirmPasswrodField.frame = CGRectMake(15, 212, screenWidth - 15, 40);
+    btnBackground_1.frame = CGRectMake(30, 80, screenWidth - 60, 50);
+    btnBackground_2.frame = CGRectMake(30, 131, screenWidth - 60, 50);
+    btnBackground_3.frame = CGRectMake(30, 182, screenWidth - 60, 50);
+    btnBackground_4.frame = CGRectMake(30, 233, screenWidth - 60, 50);
+    btnBackground_1.layer.cornerRadius = 5;
+    btnBackground_2.layer.cornerRadius = 5;
+    btnBackground_3.layer.cornerRadius = 5;
+    btnBackground_4.layer.cornerRadius = 5;
     
-    TermsButton.frame = CGRectMake((screenWidth/2) - 90, 272, 82, 30);
-    PrivacyButton.frame = CGRectMake((screenWidth/2) + 2, 272, 101, 30);
+    EmailField.frame = CGRectMake(40, 80, screenWidth - 80, 50);
+    UsernameField.frame = CGRectMake(40, 131, screenWidth - 80, 50);
+    PasswordField.frame = CGRectMake(40, 182, screenWidth - 80, 50);
+    ConfirmPasswrodField.frame = CGRectMake(40, 233, screenWidth - 80, 50);
+
     
     RedIcon.frame = CGRectMake(screenWidth - 40, 184, 12, 12);
     
@@ -67,7 +72,6 @@
     UsernameField.placeholder = NSLocalizedString(@"SignUpPage_Username", nil);
     PasswordField.placeholder = NSLocalizedString(@"SignUpPage_Password", nil);
     ShowTitle.text = NSLocalizedString(@"SignUpPage_Title",nil);
-    ShowTnC.text = NSLocalizedString(@"SignUpPage_TnC",nil);
     [SignUpButton setTitle:NSLocalizedString(@"SignUpPage_SignUpButton",nil) forState:UIControlStateNormal];
     
    // [EmailField becomeFirstResponder];
@@ -547,26 +551,5 @@
         
     }
 }
--(IBAction)TermsofUseButton:(id)sender{
-    OpenWebViewController *OpenWebView = [[OpenWebViewController alloc]init];
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromRight;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self presentViewController:OpenWebView animated:NO completion:nil];
-    [OpenWebView GetTitleString:@"TermsofUse"];
-}
--(IBAction)PrivacyPolicyButton:(id)sender{
-    OpenWebViewController *OpenWebView = [[OpenWebViewController alloc]init];
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromRight;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self presentViewController:OpenWebView animated:NO completion:nil];
-    [OpenWebView GetTitleString:@"PrivacyPolicy"];
-}
+
 @end

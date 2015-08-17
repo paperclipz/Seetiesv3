@@ -27,6 +27,10 @@
     NSMutableArray *arrMessage;
     NSMutableArray *arrType;
     NSMutableArray *arrImage;
+    
+    NSDate *methodStart;
+    
+    IBOutlet UILabel *ShowUpdateText;
 }
 -(IBAction)SearchButton:(id)sender;
 

@@ -18,18 +18,16 @@
     IBOutlet UITextField *PasswordField;
     IBOutlet UITextField *ConfirmPasswrodField;
     IBOutlet UILabel *ShowTitle;
-    IBOutlet UILabel *ShowTnC;
     IBOutlet UIButton *SignUpButton;
     IBOutlet UIImageView *RedIcon;
     IBOutlet UIImageView *ShowBackgroundImage;
-    IBOutlet UIImageView *LoginBackgroundImg_1;
-    IBOutlet UIImageView *LoginBackgroundImg_2;
+    IBOutlet UIButton *CancelButton;
+    IBOutlet UIImageView *LogoImg;
     
-    IBOutlet UIButton *Line01;
-    IBOutlet UIButton *Line02;
-    
-    IBOutlet UIButton *TermsButton;
-    IBOutlet UIButton *PrivacyButton;
+    IBOutlet UIButton *btnBackground_1;
+    IBOutlet UIButton *btnBackground_2;
+    IBOutlet UIButton *btnBackground_3;
+    IBOutlet UIButton *btnBackground_4;
     
     NSString *GetEmail;
     NSString *GetUsername;
@@ -47,9 +45,6 @@
 }
 -(IBAction)BackButton:(id)sender;
 -(IBAction)RegisterButton:(id)sender;
-
--(IBAction)TermsofUseButton:(id)sender;
--(IBAction)PrivacyPolicyButton:(id)sender;
 
 -(void)SendLoginDataToServer;
 @end

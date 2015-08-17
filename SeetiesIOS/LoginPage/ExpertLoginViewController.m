@@ -54,18 +54,22 @@
     LogoImg.frame = CGRectMake((screenWidth / 2) - 20, 20, 40, 40);
     
     
-    ShowLoginID.frame = CGRectMake((screenWidth/2) - 130, 82, 260, 40);
-    ShowPassword.frame = CGRectMake((screenWidth/2) - 130, 124, 260, 40);
-
+    ShowLoginID.frame = CGRectMake(40, 82, screenWidth - 80, 50);
+    ShowPassword.frame = CGRectMake(40, 134, screenWidth - 80, 50);
+    
+    btnBackground_1.frame = CGRectMake(30, 82, screenWidth - 60, 50);
+    btnBackground_2.frame = CGRectMake(30, 134, screenWidth - 60, 50);
+    btnBackground_1.layer.cornerRadius = 5;
+    btnBackground_2.layer.cornerRadius = 5;
     
     if (screenHeight > 480) {
-        LoginButton.frame = CGRectMake((screenWidth/2) - 130, 195, 260, 50);
-        ForgotPasswordButton.frame = CGRectMake((screenWidth/2) - 130, 269, 129, 30);
-        NeedHelpButton.frame = CGRectMake((screenWidth/2) + 130 - 94, 269, 94, 30);
+        LoginButton.frame = CGRectMake(30, 195, screenWidth - 60, 50);
+        ForgotPasswordButton.frame = CGRectMake(30, 269, 129, 30);
+        NeedHelpButton.frame = CGRectMake(screenWidth - 30 - 94, 269, 94, 30);
     }else{
-        LoginButton.frame = CGRectMake((screenWidth/2) - 130, 175, 260, 50);
-        ForgotPasswordButton.frame = CGRectMake((screenWidth/2) - 130, 229, 129, 30);
-        NeedHelpButton.frame = CGRectMake((screenWidth/2) + 130 - 94, 229, 94, 30);
+        LoginButton.frame = CGRectMake(30, 175, screenWidth - 60, 50);
+        ForgotPasswordButton.frame = CGRectMake(30, 229, 129, 30);
+        NeedHelpButton.frame = CGRectMake(screenWidth - 30 - 94, 229, 94, 30);
     }
 }
 -(void)GetSameEmailData:(NSString *)EmailData{

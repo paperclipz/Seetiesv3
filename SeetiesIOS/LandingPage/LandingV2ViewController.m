@@ -146,23 +146,39 @@
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"PublishV2_PhotoID_Delete"];
     
     //delete Images
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documentsPath = [paths objectAtIndex:0];
+//    NSFileManager *fileMgr = [[NSFileManager alloc] init];
+//    NSError *error = nil;
+//    NSArray *directoryContents = [fileMgr contentsOfDirectoryAtPath:documentsPath error:&error];
+//    if (error == nil) {
+//        for (NSString *path in directoryContents) {
+//            NSString *fullPath = [documentsPath stringByAppendingPathComponent:path];
+//            BOOL removeSuccess = [fileMgr removeItemAtPath:fullPath error:&error];
+//            if (!removeSuccess) {
+//                // Error handling
+//                
+//            }
+//        }
+//    } else {
+//        // Error handling
+//        
+//    }
+    
+    NSString *extension = @"jpg";
+    NSFileManager *fileManager = [NSFileManager defaultManager];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsPath = [paths objectAtIndex:0];
-    NSFileManager *fileMgr = [[NSFileManager alloc] init];
-    NSError *error = nil;
-    NSArray *directoryContents = [fileMgr contentsOfDirectoryAtPath:documentsPath error:&error];
-    if (error == nil) {
-        for (NSString *path in directoryContents) {
-            NSString *fullPath = [documentsPath stringByAppendingPathComponent:path];
-            BOOL removeSuccess = [fileMgr removeItemAtPath:fullPath error:&error];
-            if (!removeSuccess) {
-                // Error handling
-                
-            }
-        }
-    } else {
-        // Error handling
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    NSArray *contents = [fileManager contentsOfDirectoryAtPath:documentsDirectory error:NULL];
+    NSEnumerator *e = [contents objectEnumerator];
+    NSString *filename;
+    while ((filename = [e nextObject])) {
         
+        if ([[filename pathExtension] isEqualToString:extension]) {
+            
+            [fileManager removeItemAtPath:[documentsDirectory stringByAppendingPathComponent:filename] error:NULL];
+        }
     }
 }
 

@@ -28,6 +28,9 @@
     IBOutlet UIButton *ForgotPasswordButton;
     IBOutlet UIButton *CancelButton;
     
+    IBOutlet UIButton *btnBackground_1;
+    IBOutlet UIButton *btnBackground_2;
+    
     NSString *GetLoginID;
     NSString *GetPassword;
     
