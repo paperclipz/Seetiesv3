@@ -11,7 +11,7 @@
 #import "UrlDataClass.h"
 #import "GAITrackedViewController.h"
 @interface ShowFollowerAndFollowingViewController : GAITrackedViewController<UIScrollViewDelegate>{
-
+    
     IBOutlet UIScrollView *MainScroll;
     IBOutlet UILabel *ShowTitle;
     IBOutlet UIImageView *BarImage;
@@ -30,7 +30,7 @@
     NSMutableArray *User_ProfilePhotoArray;
     NSMutableArray *User_UIDArray;
     NSMutableArray *User_FollowedArray;
-
+    
     
     NSURLConnection *theConnection_GetFollower;
     NSURLConnection *theConnection_GetFollowing;
@@ -39,6 +39,13 @@
     NSInteger DataTest;
     
     NSInteger GetSelectIDN;
+    
+    NSInteger TotalPage;
+    NSInteger CurrentPage;
+    NSInteger DataCount;
+    NSInteger DataTotal;
+    
+    int CheckFirstTimeLoad;
 }
 -(void)GetToken:(NSString *)Token GetUID:(NSString *)uid GetType:(NSString *)Type;
 -(IBAction)BackButton:(id)sender;

@@ -36,6 +36,7 @@
     ShowNoDataText_2.text = CustomLocalisedString(@"NoNotificationDetail", nil);
     
     MainScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight - 104);
+    MainScroll.alwaysBounceVertical = YES;
     TitleLabel.text = CustomLocalisedString(@"Notification", nil);
     ShowNoDataView.hidden = YES;
     ShowNoDataView.frame = CGRectMake(0, 0, screenWidth, screenHeight);
@@ -48,7 +49,7 @@
     self.screenName = @"IOS Notification Page";
     //self.title = CustomLocalisedString(@"MainTab_Feed",nil);
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+//    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
 //    if (screenWidth > 320) {
 //        NSLog(@"iphone 6 / iphone 6 plus");
@@ -112,39 +113,9 @@
     [BackToTopButton addTarget:self action:@selector(BackToTopButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.tabBarController.view addSubview:BackToTopButton];
     
-    UIButton *SelectButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    SelectButton.frame = CGRectMake((screenWidth/2) - 40, screenHeight - 50, 80, 50);
-    [SelectButton setTitle:@"" forState:UIControlStateNormal];
-    //   [SelectButton setImage:[UIImage imageNamed:@"SelectPhotoFrame.png"] forState:UIControlStateSelected];
-    [SelectButton setBackgroundColor:[UIColor clearColor]];
-    [SelectButton addTarget:self action:@selector(ChangeViewButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.tabBarController.view addSubview:SelectButton];
-    
 }
 -(IBAction)BackToTopButton:(id)sender{
     self.tabBarController.selectedIndex = 0;
-}
--(IBAction)ChangeViewButton:(id)sender{
-    NSLog(@"ChangeViewButton Click");
-    //    SelectImageViewController *SelectImageView = [[SelectImageViewController alloc]init];
-    //    [self presentViewController:SelectImageView animated:YES completion:nil];
-    DoImagePickerController *cont = [[DoImagePickerController alloc] initWithNibName:@"DoImagePickerController" bundle:nil];
-    cont.delegate = self;
-    cont.nResultType = DO_PICKER_RESULT_ASSET;//DO_PICKER_RESULT_UIIMAGE
-    cont.nMaxCount = 10;
-    cont.nColumnCount = 3;
-    
-    [self presentViewController:cont animated:YES completion:nil];
-}
-#pragma mark - DoImagePickerControllerDelegate
-- (void)didCancelDoImagePickerController
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)didSelectPhotosFromDoImagePickerController:(DoImagePickerController *)picker result:(NSArray *)aSelected
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (UIStatusBarStyle) preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
@@ -273,6 +244,10 @@
     [ShowActivity stopAnimating];
 }
 -(void)InitView{
+    for (UIView *subview in MainScroll.subviews) {
+        [subview removeFromSuperview];
+    }
+    
    // CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
@@ -522,8 +497,8 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
             [formatter setDateFormat:@"MMM d, h:mm a"];
-            NSString *lastUpdate = [NSString stringWithFormat:@"Last updated on %@", [formatter stringFromDate:[NSDate date]]];
-            refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdate];
+          //  NSString *lastUpdate = [NSString stringWithFormat:@"Last updated on %@", [formatter stringFromDate:[NSDate date]]];
+           // refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdate];
              [self GetNotification];
             [refreshControl endRefreshing];
             NSLog(@"refresh end");

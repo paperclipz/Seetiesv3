@@ -68,7 +68,7 @@
     
     [SearchLocationNameArray addObject:CustomLocalisedString(@"Currentlocation",nil)];
     [SearchPlaceIDArray addObject:@"0"];
-
+    
     SelectCategoryArray = [[NSMutableArray alloc]init];
     SelectBackgroundColorArray = [[NSMutableArray alloc]init];
     SelectCategoryIDArray = [[NSMutableArray alloc]init];
@@ -95,26 +95,26 @@
     Line01.frame = CGRectMake(15, 85, screenWidth - 30, 2);
     ORADDACATEGORYBELOW.frame = CGRectMake(15, 104, screenWidth - 30, 21);
     
-    self.locationManager = [[CLLocationManager alloc]init];
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    self.locationManager.delegate = self;
-    self.locationManager.distanceFilter = 10;
-    if(IS_OS_8_OR_LATER){
-        NSUInteger code = [CLLocationManager authorizationStatus];
-        if (code == kCLAuthorizationStatusNotDetermined && ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)] || [self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])) {
-            // choose one request according to your business.
-            if([[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationAlwaysUsageDescription"]){
-                [self.locationManager requestAlwaysAuthorization];
-                [self.locationManager startUpdatingLocation];
-            } else if([[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationWhenInUseUsageDescription"]) {
-                [self.locationManager  requestWhenInUseAuthorization];
-                [self.locationManager startUpdatingLocation];
-            } else {
-                NSLog(@"Info.plist does not contain NSLocationAlwaysUsageDescription or NSLocationWhenInUseUsageDescription");
-            }
-        }
-    }
-    [self.locationManager startUpdatingLocation];
+    //    self.locationManager = [[CLLocationManager alloc]init];
+    //    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    //    self.locationManager.delegate = self;
+    //    self.locationManager.distanceFilter = 10;
+    //    if(IS_OS_8_OR_LATER){
+    //        NSUInteger code = [CLLocationManager authorizationStatus];
+    //        if (code == kCLAuthorizationStatusNotDetermined && ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)] || [self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])) {
+    //            // choose one request according to your business.
+    //            if([[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationAlwaysUsageDescription"]){
+    //                [self.locationManager requestAlwaysAuthorization];
+    //                [self.locationManager startUpdatingLocation];
+    //            } else if([[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationWhenInUseUsageDescription"]) {
+    //                [self.locationManager  requestWhenInUseAuthorization];
+    //                [self.locationManager startUpdatingLocation];
+    //            } else {
+    //                NSLog(@"Info.plist does not contain NSLocationAlwaysUsageDescription or NSLocationWhenInUseUsageDescription");
+    //            }
+    //        }
+    //    }
+    //    [self.locationManager startUpdatingLocation];
     
     [self InitView];
     
@@ -129,9 +129,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.screenName = @"IOS Search v2 Page";
-   
-
-
+    
+    
+    
 }
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
@@ -196,7 +196,7 @@
 }
 -(void)performSearchLatnLong{
     
-    NSString *FullString = [[NSString alloc]initWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?latlng=%@,%@&key=AIzaSyDOH-6gH-anGu-AEOI3KX7_n5WLkz2gg-c",GetLat,GetLang];
+    NSString *FullString = [[NSString alloc]initWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?latlng=%@,%@&key=AIzaSyCFM5ytVF7QUtRiQm_E12vKVp01sl_f_xM",GetLat,GetLang];
     
     NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
     NSLog(@"check postBack URL ==== %@",postBack);
@@ -282,28 +282,28 @@
                     [LocationLongArray addObject:Getlng];
                 }
                 
-//                if ([LocationNameArray count] < 3) {
-//                    GetLocationName = [LocationNameArray objectAtIndex:0];
-//                    SearchLocation.text = [LocationNameArray objectAtIndex:0];
-
-//                }else{
-//                    
-//                    NSInteger GetCount = [LocationNameArray count];
-//                    
-//                    GetLocationName = [LocationNameArray objectAtIndex:GetCount - 3];
-//                    SearchLocation.text = [LocationNameArray objectAtIndex:GetCount - 3];
-//                    GetLat = [LocationLatArray objectAtIndex:GetCount - 3];
-//                    GetLang = [LocationLongArray objectAtIndex:GetCount - 3];
-//                }
+                //                if ([LocationNameArray count] < 3) {
+                //                    GetLocationName = [LocationNameArray objectAtIndex:0];
+                //                    SearchLocation.text = [LocationNameArray objectAtIndex:0];
+                
+                //                }else{
+                //
+                //                    NSInteger GetCount = [LocationNameArray count];
+                //
+                //                    GetLocationName = [LocationNameArray objectAtIndex:GetCount - 3];
+                //                    SearchLocation.text = [LocationNameArray objectAtIndex:GetCount - 3];
+                //                    GetLat = [LocationLatArray objectAtIndex:GetCount - 3];
+                //                    GetLang = [LocationLongArray objectAtIndex:GetCount - 3];
+                //                }
                 
                 SearchLocation.text = CustomLocalisedString(@"Currentlocation", nil);
                 GetLat = [LocationLatArray objectAtIndex:0];
                 GetLang = [LocationLongArray objectAtIndex:0];
-
+                
             }
         }
         
-       
+        
     }else if(connection == theConnection_SearchLocation){
         [SearchLocationNameArray removeAllObjects];
         [SearchPlaceIDArray removeAllObjects];
@@ -365,7 +365,7 @@
         NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
         NSError *myError = nil;
         NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
-       //  NSLog(@"%@",res);
+        //  NSLog(@"%@",res);
         if ([res count] == 0) {
             NSLog(@"Server Error.");
             UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"Server Error." message:GetData delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -413,11 +413,11 @@
                 [EnterKeywordHere resignFirstResponder];
                 MainScroll.hidden = NO;
                 ShowSearchLocationView.hidden = YES;
-               // [MainSearchButton setTitle:CustomLocalisedString(@"Search", nil) forState:UIControlStateNormal];
+                // [MainSearchButton setTitle:CustomLocalisedString(@"Search", nil) forState:UIControlStateNormal];
             }
         }
         
-
+        
     }else if(connection == theConnection_GetSearchString){
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
         NSLog(@"get data to server   ==== %@",GetData);
@@ -447,13 +447,13 @@
     ShowSearchLocationView.hidden = YES;
     ShowSearchTextOrPPLView.hidden = YES;
     if ([SearchLocation.text length] == 0) {
-        SearchLocation.text = GetLocationName;
+        //  SearchLocation.text = GetLocationName;
     }
-
+    
 }
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     NSLog(@"textFieldShouldBeginEditing");
- 
+    
     if (textField == SearchLocation) {
         MainScroll.hidden = YES;
         ShowSearchLocationView.hidden = NO;
@@ -461,7 +461,7 @@
         [LocationTblView reloadData];
     }else if(textField == EnterKeywordHere){
         ShowSearchTextOrPPLView.hidden = NO;
-       // MainScroll.hidden = YES;
+        // MainScroll.hidden = YES;
     }
     return YES;
 }
@@ -481,13 +481,13 @@
         }
     }else if(textField == EnterKeywordHere){
         SearchString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-      // [ShowSearchPPLText setText:newString];
+        // [ShowSearchPPLText setText:newString];
         if ([SearchString length] > 2) {
             //start search
             [self SearchTextInServer];
         }
     }
-
+    
     
     return YES;
 }
@@ -496,7 +496,7 @@
     if (theTextField == SearchLocation) {
         [SearchLocation resignFirstResponder];
         if ([SearchLocation.text length] == 0) {
-            SearchLocation.text = GetLocationName;
+            //  SearchLocation.text = GetLocationName;
             MainScroll.hidden = NO;
             ShowSearchLocationView.hidden = YES;
         }else{
@@ -508,7 +508,7 @@
                 [self performSearch];
             }
         }
-
+        
     }else if(theTextField == EnterKeywordHere){
         [EnterKeywordHere resignFirstResponder];
         if ([EnterKeywordHere.text length] == 0) {
@@ -526,8 +526,8 @@
             [SearchDetailView GetTitle:@"Results"];
         }
     }
-
-   // [ShowActivity startAnimating];
+    
+    // [ShowActivity startAnimating];
     return YES;
 }
 - (void)didReceiveMemoryWarning {
@@ -543,7 +543,7 @@
 -(void)InitView{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-//use uilabel to load text, button load uilabel width and height
+    //use uilabel to load text, button load uilabel width and height
     for (int i = 0; i < [CategoryArray count]; i++) {
         UIButton *CategoryButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [CategoryButton setTitle:@"" forState:UIControlStateNormal];
@@ -557,7 +557,7 @@
         [CategoryButton setBackgroundColor:color];
         CategoryButton.tag = i;
         [CategoryButton addTarget:self action:@selector(CategoryButtonSelect:) forControlEvents:UIControlEventTouchUpInside];
-
+        
         [MainScroll addSubview:CategoryButton];
         
         UILabel *Showtitle = [[UILabel alloc]init];
@@ -578,15 +578,15 @@
         [MainScroll addSubview:ShowPlus];
     }
     
-
-
+    
+    
     
     [MainScroll setScrollEnabled:YES];
     MainScroll.backgroundColor = [UIColor whiteColor];
     [MainScroll setContentSize:CGSizeMake(screenWidth, 440)];
 }
 -(void)InitSelectDataView{
-     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     for (UIView *subview in MainScroll.subviews) {
         [subview removeFromSuperview];
     }
@@ -640,7 +640,7 @@
     
     Line01.frame = CGRectMake(15, GetHeight + 65, screenWidth - 30, 2);
     ORADDACATEGORYBELOW.frame = CGRectMake(15, GetHeight + 84, screenWidth - 30, 21);
-     CGRect ButtonOther;
+    CGRect ButtonOther;
     for (int i = 0; i < [CategoryArray count]; i++) {
         UIButton *CategoryButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [CategoryButton setTitle:@"" forState:UIControlStateNormal];
@@ -759,7 +759,7 @@
     NSString *originalString = SearchLocation.text;
     NSString *replaced = [originalString stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     NSLog(@"replaced is %@",replaced);
-   // NSString *FullString = [[NSString alloc]initWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?address=%@&components=country:MY&key=AIzaSyDOH-6gH-anGu-AEOI3KX7_n5WLkz2gg-c",replaced];
+    // NSString *FullString = [[NSString alloc]initWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?address=%@&components=country:MY&key=AIzaSyDOH-6gH-anGu-AEOI3KX7_n5WLkz2gg-c",replaced];
     NSString *FullString = [[NSString alloc]initWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?input=%@&radius=500&sensor=false&types=geocode&key=AIzaSyCFM5ytVF7QUtRiQm_E12vKVp01sl_f_xM",replaced];
     NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
     NSLog(@"check postBack URL ==== %@",postBack);
@@ -786,7 +786,7 @@
         return [LocalSuggestionTextArray count];
     }
     
-  //  return 0;
+    //  return 0;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -804,7 +804,7 @@
         ShowName.backgroundColor = [UIColor clearColor];
         ShowName.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:15];
         ShowName.numberOfLines = 5;
-
+        
         [cell addSubview:ShowName];
         
     }
@@ -818,7 +818,7 @@
         ShowName.text = [LocalSuggestionTextArray objectAtIndex:indexPath.row];
     }
     
-
+    
     
     // cell.textLabel.text = [NameArray objectAtIndex:indexPath.row];
     
@@ -858,6 +858,11 @@
             [self GetPlaceDetail];
         }
     }else{
+        if ([SearchLocation.text length] == 0) {
+            GetLat = @"";
+            GetLang = @"";
+        }
+        
         SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]init];
         CATransition *transition = [CATransition animation];
         transition.duration = 0.2;
@@ -868,11 +873,11 @@
         [self presentViewController:SearchDetailView animated:NO completion:nil];
         [SearchDetailView GetSearchKeyword:[LocalSuggestionTextArray objectAtIndex:indexPath.row] Getlat:GetLat GetLong:GetLang];
         [SearchDetailView GetTitle:@"Results"];
-    
+        
     }
     NSLog(@"Click...");
-
-
+    
+    
     
 }
 -(void)GetPlaceDetail{
@@ -904,10 +909,17 @@
     NSLog(@"SelectBackgroundColorArray is %@",SelectBackgroundColorArray);
     NSLog(@"SelectCategoryIDArray is %@",SelectCategoryIDArray);
     
+    if ([SearchLocation.text length] == 0) {
+        GetLat = @"";
+        GetLang = @"";
+    }
+    
+    
+    
     if ([SelectCategoryArray count] == 0 || SelectCategoryArray == nil) {
         NSString *JoinAllCategoryID = [CategoryIDArray componentsJoinedByString:@","];
         NSString *JoinAllCategoryName = [CategoryArray componentsJoinedByString:@","];
-
+        
         SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]init];
         CATransition *transition = [CATransition animation];
         transition.duration = 0.2;
@@ -933,7 +945,7 @@
         [SearchDetailView GetTitle:@"Results"];
     }
     
-
+    
 }
 -(void)SearchTextInServer{
     // NSString *FullString = [[NSString alloc]initWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?address=%@&components=country:MY&key=AIzaSyDOH-6gH-anGu-AEOI3KX7_n5WLkz2gg-c",replaced];
@@ -955,7 +967,7 @@
 //-(IBAction)SearchPPLButton:(id)sender{
 //    NSLog(@"SearchPPLButton click.");
 //    if ([EnterKeywordHere.text length] == 0) {
-//        
+//
 //    }else{
 //        SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]init];
 //        CATransition *transition = [CATransition animation];
