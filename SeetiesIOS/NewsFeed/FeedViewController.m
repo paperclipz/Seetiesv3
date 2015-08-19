@@ -36,7 +36,7 @@
     // Do any additional setup after loading the view from its nib.
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    MainScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight);
+    MainScroll.frame = CGRectMake(0, 54, screenWidth, screenHeight);
     MainScroll.delegate = self;
     // MainScroll.alwaysBounceHorizontal = YES;
     MainScroll.alwaysBounceVertical = YES;
@@ -124,8 +124,8 @@
     
 
         arrImage = [[NSMutableArray alloc]init];
-        [arrImage addObject:@"https://unsplash.it/375/375/?random"];
-        [arrImage addObject:@"https://unsplash.it/375/375/?random"];
+        [arrImage addObject:@"https://unsplash.it/375/400/?random"];
+        [arrImage addObject:@"https://unsplash.it/375/700/?random"];
         [arrImage addObject:@"https://unsplash.it/375/500/?random"];
         [arrImage addObject:@"https://unsplash.it/375/200/?random"];
         [arrImage addObject:@"https://unsplash.it/375/375/?random"];
@@ -237,7 +237,6 @@
             [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
             UIImage *image_;
             UIImage *newImage;
-            
             
             NSString *stringPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"Content_Folder"];
             stringPath  = [stringPath stringByAppendingPathComponent:[TempArray objectAtIndex:i]];

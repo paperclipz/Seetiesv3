@@ -7,7 +7,7 @@
 //
 
 #import "PInterestV2ViewController.h"
-
+#import "AsyncImageView.h"
 @interface PInterestV2ViewController ()
 
 @end
@@ -22,12 +22,12 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
     ShowTitle.frame = CGRectMake(30, 50, screenWidth - 60, 25);
-    ShowSubTitle.frame = CGRectMake(30, 85, screenWidth - 60, 65);
+    ShowSubTitle.frame = CGRectMake(30, 40, screenWidth - 60, 65);
     DoneButton.frame = CGRectMake(30, screenHeight - 70, screenWidth - 60, 50);
     DoneButton.layer.cornerRadius = 5;
     
     MainScroll.delegate = self;
-    MainScroll.frame = CGRectMake(0, 160, screenWidth, screenHeight - 160 - 80);
+    MainScroll.frame = CGRectMake(0, 110, screenWidth, screenHeight - 110 - 80);
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
@@ -76,54 +76,182 @@
 
 -(void)InitView{
     
-    for (int i = 0; i < [GetCategoryIDArray count]; i++) {
-        UIButton *CoverButton = [[UIButton alloc]init];
-        CoverButton.frame = CGRectMake(30 +(i % 5)*160, 210 * (CGFloat)(i /5), 150, 200);
-        [CoverButton setTitle:@"aa" forState:UIControlStateNormal];
-        CoverButton.backgroundColor = [UIColor whiteColor];
-        CoverButton.layer.cornerRadius = 5;
-        CoverButton.layer.borderColor = [[UIColor lightGrayColor] CGColor];
-        CoverButton.layer.borderWidth = 1.0;
-        CoverButton.tag = i + 200;
-        [MainScroll addSubview:CoverButton];
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    
+    int TestWidth = screenWidth - 50;
+    //NSLog(@"TestWidth is %i",TestWidth);
+    int FinalWidth = TestWidth / 3;
+    FinalWidth += 5;
+    // NSLog(@"FinalWidth is %i",FinalWidth);
+    int SpaceWidth = FinalWidth + 5;
+    
+    for (NSInteger i = 0; i < 10; i++) {
+//        AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
+//        ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
+//        ShowImage.frame = CGRectMake(0+(i % 3)*SpaceWidth, 0 + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
+//        ShowImage.contentMode = UIViewContentModeScaleAspectFill;
+//        ShowImage.layer.masksToBounds = YES;
+//        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
+//        NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[ArrLikeImg objectAtIndex:i]];
+//        if ([FullImagesURL_First length] == 0) {
+//            ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
+//        }else{
+//            NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL_First];
+//            ShowImage.imageURL = url_NearbySmall;
+//        }
+//        [LikeView addSubview:ShowImage];
+        if (i == 9) {
+            UIButton *ImageButton = [[UIButton alloc]init];
+            [ImageButton setBackgroundColor:[UIColor lightGrayColor]];
+            [ImageButton setTitle:@"" forState:UIControlStateNormal];
+            ImageButton.frame = CGRectMake(17+(i % 3)*SpaceWidth + FinalWidth, 0 + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
+            ImageButton.tag = i + 200;
+            ImageButton.layer.cornerRadius = 5;
+           // [ImageButton addTarget:self action:@selector(ShowImageButton:) forControlEvents:UIControlEventTouchUpInside];
+            
+            [MainScroll addSubview:ImageButton];
+            
+            CGSize rect = CGSizeMake(50, 50);
+            CGFloat scale = [[UIScreen mainScreen]scale];
+            UIGraphicsBeginImageContextWithOptions(rect, NO, scale);
+            [[GetImageArray objectAtIndex:i] drawInRect:CGRectMake(0,0,rect.width,rect.height)];
+            UIImage *picture1 = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            
+            UIButton *ShowImageButton = [[UIButton alloc]init];
+            ShowImageButton.tag = i;
+            ShowImageButton.frame = CGRectMake(17+(i % 3)*SpaceWidth + FinalWidth, 0 + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth - 40);
+            [ShowImageButton setImage:picture1 forState:UIControlStateNormal];
+            [ShowImageButton setImage:[UIImage imageNamed:@"Testingaaaaaa.png"] forState:UIControlStateSelected];
+            [ShowImageButton setContentMode:UIViewContentModeScaleAspectFit];
+            ShowImageButton.backgroundColor = [UIColor clearColor];
+            //            NSUInteger red, green, blue;
+            //            sscanf([[GetBackgroundColorArray objectAtIndex:i] UTF8String], "#%2lX%2lX%2lX", &red, &green, &blue);
+            //            UIColor *color = [UIColor colorWithRed:red/255.0 green:green/255.0 blue:blue/255.0 alpha:1];
+            //            ShowImageButton.backgroundColor = color;
+            //            ShowImageButton.layer.cornerRadius = 60; // this value vary as per your desire
+            //            ShowImageButton.clipsToBounds = YES;
+            [ShowImageButton addTarget:self action:@selector(ShowImageButton:) forControlEvents:UIControlEventTouchUpInside];
+            [MainScroll addSubview:ShowImageButton];
+            
+            UILabel *ShowTitle_ = [[UILabel alloc]init];
+            ShowTitle_.frame = CGRectMake(22+(i % 3)*SpaceWidth + FinalWidth, (FinalWidth - 40) + (SpaceWidth * (CGFloat)(i /3)), FinalWidth - 10, 40);
+            ShowTitle_.text = [GetNameArray objectAtIndex:i];
+            /// ShowTitle_.font = [UIFont fontWithName:@"HelveticaNeue-regular" size:8];
+            ShowTitle_.font = [UIFont systemFontOfSize:12];
+            ShowTitle_.textColor = [UIColor blackColor];
+            ShowTitle_.textAlignment = NSTextAlignmentCenter;
+            ShowTitle_.backgroundColor = [UIColor clearColor];
+            ShowTitle_.numberOfLines = 3;
+            [ShowTitle_ setTag:i + 500];
+            [MainScroll addSubview:ShowTitle_];
+        }else{
+            UIButton *ImageButton = [[UIButton alloc]init];
+            [ImageButton setBackgroundColor:[UIColor lightGrayColor]];
+            [ImageButton setTitle:@"" forState:UIControlStateNormal];
+            ImageButton.frame = CGRectMake(12+(i % 3)*SpaceWidth, 0 + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
+            ImageButton.tag = i + 200;
+            ImageButton.layer.cornerRadius = 5;
+           // [ImageButton addTarget:self action:@selector(ShowImageButton:) forControlEvents:UIControlEventTouchUpInside];
+            
+            [MainScroll addSubview:ImageButton];
+            
+            
+            CGSize rect = CGSizeMake(50, 50);
+            CGFloat scale = [[UIScreen mainScreen]scale];
+            UIGraphicsBeginImageContextWithOptions(rect, NO, scale);
+            [[GetImageArray objectAtIndex:i] drawInRect:CGRectMake(0,0,rect.width,rect.height)];
+            UIImage *picture1 = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            
+            UIButton *ShowImageButton = [[UIButton alloc]init];
+            ShowImageButton.tag = i;
+            ShowImageButton.frame = CGRectMake(12+(i % 3)*SpaceWidth, 0 + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth - 40);
+            [ShowImageButton setImage:picture1 forState:UIControlStateNormal];
+            [ShowImageButton setImage:[UIImage imageNamed:@"Testingaaaaaa.png"] forState:UIControlStateSelected];
+            [ShowImageButton setContentMode:UIViewContentModeScaleAspectFit];
+            ShowImageButton.backgroundColor = [UIColor clearColor];
+//            NSUInteger red, green, blue;
+//            sscanf([[GetBackgroundColorArray objectAtIndex:i] UTF8String], "#%2lX%2lX%2lX", &red, &green, &blue);
+//            UIColor *color = [UIColor colorWithRed:red/255.0 green:green/255.0 blue:blue/255.0 alpha:1];
+//            ShowImageButton.backgroundColor = color;
+//            ShowImageButton.layer.cornerRadius = 60; // this value vary as per your desire
+//            ShowImageButton.clipsToBounds = YES;
+            [ShowImageButton addTarget:self action:@selector(ShowImageButton:) forControlEvents:UIControlEventTouchUpInside];
+            [MainScroll addSubview:ShowImageButton];
+
+            UILabel *ShowTitle_ = [[UILabel alloc]init];
+            ShowTitle_.frame = CGRectMake(17+(i % 3)*SpaceWidth, (FinalWidth - 40) + (SpaceWidth * (CGFloat)(i /3)), FinalWidth - 10, 40);
+            ShowTitle_.text = [GetNameArray objectAtIndex:i];
+           /// ShowTitle_.font = [UIFont fontWithName:@"HelveticaNeue-regular" size:8];
+            ShowTitle_.font = [UIFont systemFontOfSize:12];
+            ShowTitle_.textColor = [UIColor blackColor];
+            ShowTitle_.textAlignment = NSTextAlignmentCenter;
+            ShowTitle_.backgroundColor = [UIColor clearColor
+                                          ];
+            ShowTitle_.numberOfLines = 3;
+            [ShowTitle_ setTag:i + 500];
+            [MainScroll addSubview:ShowTitle_];
+
+        }
+//        
         
-        CGSize rect = CGSizeMake(80, 80);
-        CGFloat scale = [[UIScreen mainScreen]scale];
-        UIGraphicsBeginImageContextWithOptions(rect, NO, scale);
-        [[GetImageArray objectAtIndex:i] drawInRect:CGRectMake(0,0,rect.width,rect.height)];
-        UIImage *picture1 = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        
-        UIButton *ShowImageButton = [[UIButton alloc]init];
-        ShowImageButton.tag = i;
-        ShowImageButton.frame = CGRectMake(45 +(i % 5)*160, 10 +  (CGFloat)(i /5) * 210, 120, 120);
-        [ShowImageButton setImage:picture1 forState:UIControlStateNormal];
-        [ShowImageButton setImage:[UIImage imageNamed:@"Testingaaaaaa.png"] forState:UIControlStateSelected];
-        [ShowImageButton setContentMode:UIViewContentModeScaleAspectFit];
-        NSUInteger red, green, blue;
-        sscanf([[GetBackgroundColorArray objectAtIndex:i] UTF8String], "#%2lX%2lX%2lX", &red, &green, &blue);
-        UIColor *color = [UIColor colorWithRed:red/255.0 green:green/255.0 blue:blue/255.0 alpha:1];
-        ShowImageButton.backgroundColor = color;
-        ShowImageButton.layer.cornerRadius = 60; // this value vary as per your desire
-        ShowImageButton.clipsToBounds = YES;
-        [ShowImageButton addTarget:self action:@selector(ShowImageButton:) forControlEvents:UIControlEventTouchUpInside];
-        [MainScroll addSubview:ShowImageButton];
-        
-        UILabel *ShowTitle_ = [[UILabel alloc]init];
-        ShowTitle_.frame = CGRectMake(30 +(i % 5)*160, 135 +  (CGFloat)(i /5) * 210, 150, 50);
-        ShowTitle_.text = [GetNameArray objectAtIndex:i];
-        ShowTitle_.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:17];
-        ShowTitle_.textColor = color;
-        ShowTitle_.textAlignment = NSTextAlignmentCenter;
-        ShowTitle_.backgroundColor = [UIColor clearColor];
-        ShowTitle_.numberOfLines = 3;
-        [ShowTitle_ setTag:i + 500];
-        [MainScroll addSubview:ShowTitle_];
-        
-        
+
+        //[MainScroll setContentSize:CGSizeMake(320, GetHeight + 105 + (106 * (CGFloat)(i /3)))];
+        //MainScroll.frame = CGRectMake(0, 110, screenWidth, 0 + FinalWidth + (SpaceWidth * (CGFloat)(i /3)));
     }
     
-    [MainScroll setContentSize:CGSizeMake(850, 200)];
+    
+    [MainScroll setContentSize:CGSizeMake(screenWidth, 600)];
+    
+//    for (int i = 0; i < [GetCategoryIDArray count]; i++) {
+//        UIButton *CoverButton = [[UIButton alloc]init];
+//        CoverButton.frame = CGRectMake(30 +(i % 5)*160, 210 * (CGFloat)(i /5), 150, 200);
+//        [CoverButton setTitle:@"aa" forState:UIControlStateNormal];
+//        CoverButton.backgroundColor = [UIColor whiteColor];
+//        CoverButton.layer.cornerRadius = 5;
+//        CoverButton.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+//        CoverButton.layer.borderWidth = 1.0;
+//        CoverButton.tag = i + 200;
+//        [MainScroll addSubview:CoverButton];
+//        
+//        CGSize rect = CGSizeMake(80, 80);
+//        CGFloat scale = [[UIScreen mainScreen]scale];
+//        UIGraphicsBeginImageContextWithOptions(rect, NO, scale);
+//        [[GetImageArray objectAtIndex:i] drawInRect:CGRectMake(0,0,rect.width,rect.height)];
+//        UIImage *picture1 = UIGraphicsGetImageFromCurrentImageContext();
+//        UIGraphicsEndImageContext();
+//        
+//        UIButton *ShowImageButton = [[UIButton alloc]init];
+//        ShowImageButton.tag = i;
+//        ShowImageButton.frame = CGRectMake(45 +(i % 5)*160, 10 +  (CGFloat)(i /5) * 210, 120, 120);
+//        [ShowImageButton setImage:picture1 forState:UIControlStateNormal];
+//        [ShowImageButton setImage:[UIImage imageNamed:@"Testingaaaaaa.png"] forState:UIControlStateSelected];
+//        [ShowImageButton setContentMode:UIViewContentModeScaleAspectFit];
+//        NSUInteger red, green, blue;
+//        sscanf([[GetBackgroundColorArray objectAtIndex:i] UTF8String], "#%2lX%2lX%2lX", &red, &green, &blue);
+//        UIColor *color = [UIColor colorWithRed:red/255.0 green:green/255.0 blue:blue/255.0 alpha:1];
+//        ShowImageButton.backgroundColor = color;
+//        ShowImageButton.layer.cornerRadius = 60; // this value vary as per your desire
+//        ShowImageButton.clipsToBounds = YES;
+//        [ShowImageButton addTarget:self action:@selector(ShowImageButton:) forControlEvents:UIControlEventTouchUpInside];
+//        [MainScroll addSubview:ShowImageButton];
+//
+//        UILabel *ShowTitle_ = [[UILabel alloc]init];
+//        ShowTitle_.frame = CGRectMake(30 +(i % 5)*160, 135 +  (CGFloat)(i /5) * 210, 150, 50);
+//        ShowTitle_.text = [GetNameArray objectAtIndex:i];
+//        ShowTitle_.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:17];
+//        ShowTitle_.textColor = color;
+//        ShowTitle_.textAlignment = NSTextAlignmentCenter;
+//        ShowTitle_.backgroundColor = [UIColor clearColor];
+//        ShowTitle_.numberOfLines = 3;
+//        [ShowTitle_ setTag:i + 500];
+//        [MainScroll addSubview:ShowTitle_];
+//
+//        
+//    }
+//    
+//    [MainScroll setContentSize:CGSizeMake(850, 200)];
 
 }
 -(IBAction)ShowImageButton:(id)sender{
@@ -155,8 +283,8 @@
 //        if ([CategorySelectIDArray count] == 0) {
 //            ContiuneBtn.enabled = NO;
 //        }
-        BackgroundButton.backgroundColor = [UIColor whiteColor];
-        ShowTitle_.textColor = color;
+        BackgroundButton.backgroundColor = [UIColor lightGrayColor];
+        ShowTitle_.textColor = [UIColor blackColor];
         
         
     }

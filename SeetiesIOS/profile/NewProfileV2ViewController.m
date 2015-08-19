@@ -325,7 +325,7 @@
     
     int heightcheck = 60;
     
-    for (int i = 0; i < 1; i++) {
+    for (int i = 0; i < 5; i++) {
         
         UIButton *TempButton = [[UIButton alloc]init];
         TempButton.frame = CGRectMake(10, heightcheck + i, screenWidth - 20, FinalWidth + 10 + 70);

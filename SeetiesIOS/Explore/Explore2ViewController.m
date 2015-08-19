@@ -102,23 +102,23 @@
 {
     if (connection == theConnection_All) {
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
-        NSLog(@"Explore return get data to server ===== %@",GetData);
+       // NSLog(@"Explore return get data to server ===== %@",GetData);
         
         NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
         NSError *myError = nil;
         NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
-        NSLog(@"Explore Json = %@",res);
+       // NSLog(@"Explore Json = %@",res);
         
         if ([res count] == 0) {
-            NSLog(@"Server Error.");
+        //    NSLog(@"Server Error.");
             UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"Server Error." message:GetData delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             ShowAlert.tag = 1000;
             [ShowAlert show];
         }else{
-            NSLog(@"Server Work.");
+        //    NSLog(@"Server Work.");
             
             NSString *ErrorString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"error"]];
-            NSLog(@"ErrorString is %@",ErrorString);
+        //    NSLog(@"ErrorString is %@",ErrorString);
             NSString *MessageString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"message"]];
             NSLog(@"MessageString is %@",MessageString);
             

@@ -489,8 +489,10 @@
         
 
     }
+    
+    PInterestV2ViewController *SelectInterestNew = [[PInterestV2ViewController alloc]init];
    
-    self.window.rootViewController = self.landingV2ViewController;
+    self.window.rootViewController = SelectInterestNew;//self.landingV2ViewController
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 
