@@ -27,6 +27,8 @@ typedef enum
 @property (nonatomic,assign)SearchType type;
 @property (nonatomic,strong)SearchManager* sManager;
 
+
+@property(nonatomic,strong)SearchModel* searchModel;
 @end
 
 @implementation STSearchViewController
@@ -80,14 +82,14 @@ typedef enum
             
             self.location = currentLocation;
            
-            [self getGoogleSuggestedPlaces];
+            [self getFourSquareSuggestionPlaces];
 
         } errorBlock:^(NSString *status) {
             SLog(@"cannot get Device location");
         }];
     }
     else{
-        [self getGoogleSuggestedPlaces];
+        [self getFourSquareSuggestionPlaces];
         
     }
         
@@ -97,23 +99,44 @@ typedef enum
 -(void)getFourSquareSuggestionPlaces
 {
     SLog(@"getFourSquareSuggestionPlaces");
-
+    self.type = SearchTypeFourSquare;
     [self.sManager getSuggestedLocationFromFoursquare:self.location completionBlock:^(id object) {
-        self.model = [[FourSquareModel alloc]initWithDictionary:object error:nil];
+       FourSquareModel* model = [[FourSquareModel alloc]initWithDictionary:object error:nil];
+        
+        self.model = model;
         [self refreshView];
     }];
     
    
 }
+
+
 -(void)getGoogleSuggestedPlaces
 {
-    
+    SLog(@"lat %f|| long %f",self.location.coordinate.latitude,self.location.coordinate.longitude);
+
     SLog(@"getGoogleSuggestedPlaces");
     [self.sManager getSuggestedLocationFromGoogle:self.location completionBlock:^(id object) {
-        //        [self refreshView];
-        SLog(@"response from google autocomplete : %@",object);
+        
+        SearchModel* model = [[SearchModel alloc] initWithDictionary:object error:nil];
+        self.searchModel = model;
+        [self refreshView];
         
     }];
+}
+
+-(void)getGoogleSearchPlaces
+{
+    self.type = SearchTypeGoogle;
+
+    [self.sManager getSearchLocationFromGoogle:self.location input:@"sea pa" completionBlock:^(id object) {
+        
+        SearchModel* model = [[SearchModel alloc] initWithDictionary:object error:nil];
+        self.searchModel = model;
+        [self refreshView];
+
+    }];
+
 }
 -(void)refreshView
 {
@@ -124,7 +147,17 @@ typedef enum
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return self.model.items.count;
+    
+    switch (self.type) {
+        default:
+        case SearchTypeGoogle:
+            return self.searchModel.predictions.count;
+
+            break;
+        case SearchTypeFourSquare:
+            return self.model.items.count;
+            break;
+    }
 }
 
 // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
@@ -133,12 +166,31 @@ typedef enum
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     STTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([STTableViewCell class])];
-    Venue* venue = self.model.items[indexPath.row];
-    
-    
-    cell.lblTitle.text = [venue name];
-    
-    cell.lblSubTitle.text = [[venue location]address];
+  
+    switch (self.type) {
+        case SearchTypeFourSquare:
+        {
+            VenueModel* model = self.model.items[indexPath.row];
+            
+            
+            cell.lblSubTitle.text = model.address;
+            cell.lblTitle.text = model.name;
+        }
+            break;
+
+        default:
+        case SearchTypeGoogle:
+        {
+            SearchLocationModel* model = self.searchModel.predictions[indexPath.row];
+            
+            NSDictionary* dict = model.terms[0];
+            cell.lblSubTitle.text = [model longDescription];
+            cell.lblTitle.text = dict[@"value"];
+        }
+            
+            break;
+    }
+
     return cell;
 }
 #pragma mark - UITextfield Delegate
@@ -180,6 +232,17 @@ typedef enum
                                                  }
                                                  
                                              }];
+}
+
+-(AddNewPlaceViewController*)addNewPlaceViewController
+{
+    if(!_addNewPlaceViewController)
+    {
+        _addNewPlaceViewController = [AddNewPlaceViewController new];
+    }
+    
+    return _addNewPlaceViewController;
+    
 }
 
 @end

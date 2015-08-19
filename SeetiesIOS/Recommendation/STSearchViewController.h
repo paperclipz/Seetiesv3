@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AddNewPlaceViewController.h"
 
 
 @interface STSearchViewController : CommonViewController<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 -(void)initTableViewDelegate:(id)delegate;
 -(void)initWithLocation:(CLLocation*)location;
+
+@property(nonatomic,strong)AddNewPlaceViewController* addNewPlaceViewController;
 @end

@@ -10,6 +10,7 @@
 #import "ApiVersionModel.h"
 #import "LanguageModel.h"
 #import "ExploreCountryModel.h"
+#import "SearchModel.h"
 
 @interface DataManager : NSObject
 + (id)Instance;

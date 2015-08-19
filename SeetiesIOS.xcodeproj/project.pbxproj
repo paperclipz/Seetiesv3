@@ -25,6 +25,9 @@
 		8A2E2CEC1B81E15B0010895E /* STTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A2E2CEA1B81E15B0010895E /* STTableViewCell.xib */; };
 		8A2E2CEF1B81E2480010895E /* CommonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E2CEE1B81E2480010895E /* CommonTableViewCell.m */; };
 		8A3757B01B842F74009DB7D4 /* SearchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3757AF1B842F74009DB7D4 /* SearchManager.m */; };
+		8A3757B31B846788009DB7D4 /* SearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3757B21B846788009DB7D4 /* SearchModel.m */; };
+		8A3757B71B847C7A009DB7D4 /* AddNewPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3757B51B847C7A009DB7D4 /* AddNewPlaceViewController.m */; };
+		8A3757B81B847C7A009DB7D4 /* AddNewPlaceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3757B61B847C7A009DB7D4 /* AddNewPlaceViewController.xib */; };
 		8A7420E01B82F67F005DA654 /* UIImage+KVNEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7420CC1B82F67F005DA654 /* UIImage+KVNEmpty.m */; };
 		8A7420E11B82F67F005DA654 /* UIImage+KVNImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7420CE1B82F67F005DA654 /* UIImage+KVNImageEffects.m */; };
 		8A7420E21B82F67F005DA654 /* KVNProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7420D11B82F67F005DA654 /* KVNProgress.m */; };
@@ -916,6 +919,11 @@
 		8A2E2CEE1B81E2480010895E /* CommonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonTableViewCell.m; sourceTree = "<group>"; };
 		8A3757AE1B842F74009DB7D4 /* SearchManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchManager.h; sourceTree = "<group>"; };
 		8A3757AF1B842F74009DB7D4 /* SearchManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchManager.m; sourceTree = "<group>"; };
+		8A3757B11B846788009DB7D4 /* SearchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchModel.h; sourceTree = "<group>"; };
+		8A3757B21B846788009DB7D4 /* SearchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchModel.m; sourceTree = "<group>"; };
+		8A3757B41B847C7A009DB7D4 /* AddNewPlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewPlaceViewController.h; sourceTree = "<group>"; };
+		8A3757B51B847C7A009DB7D4 /* AddNewPlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewPlaceViewController.m; sourceTree = "<group>"; };
+		8A3757B61B847C7A009DB7D4 /* AddNewPlaceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddNewPlaceViewController.xib; sourceTree = "<group>"; };
 		8A7420CB1B82F67F005DA654 /* UIImage+KVNEmpty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+KVNEmpty.h"; sourceTree = "<group>"; };
 		8A7420CC1B82F67F005DA654 /* UIImage+KVNEmpty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+KVNEmpty.m"; sourceTree = "<group>"; };
 		8A7420CD1B82F67F005DA654 /* UIImage+KVNImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+KVNImageEffects.h"; sourceTree = "<group>"; };
@@ -2351,6 +2359,8 @@
 				8A2E2C401B7AF3180010895E /* ImageModel.m */,
 				8A2E2C4A1B8184C90010895E /* FourSquareModel.h */,
 				8A2E2C4B1B8184C90010895E /* FourSquareModel.m */,
+				8A3757B11B846788009DB7D4 /* SearchModel.h */,
+				8A3757B21B846788009DB7D4 /* SearchModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -3601,6 +3611,9 @@
 				8A2E2CDF1B81CFE40010895E /* STSearchViewController.h */,
 				8A2E2CE01B81CFE40010895E /* STSearchViewController.m */,
 				8A2E2CE11B81CFE40010895E /* STSearchViewController.xib */,
+				8A3757B41B847C7A009DB7D4 /* AddNewPlaceViewController.h */,
+				8A3757B51B847C7A009DB7D4 /* AddNewPlaceViewController.m */,
+				8A3757B61B847C7A009DB7D4 /* AddNewPlaceViewController.xib */,
 			);
 			name = Recommendation;
 			path = SeetiesIOS/Recommendation;
@@ -3747,6 +3760,7 @@
 				8AD6C7CD1B70934D0040437E /* TabDivider@3x.png in Resources */,
 				8AD6C7A21B70934D0040437E /* SelectedCheck@2x.png in Resources */,
 				8AD6C6121B70934D0040437E /* 640x1136-03.jpg in Resources */,
+				8A3757B81B847C7A009DB7D4 /* AddNewPlaceViewController.xib in Resources */,
 				8AD6C6BC1B70934D0040437E /* BtnLetsgo@2x.png in Resources */,
 				8AD6C7F41B70934D0040437E /* TopBarLogo.png in Resources */,
 				8AD6C5EA1B70934D0040437E /* DemoProfile.jpg in Resources */,
@@ -4462,6 +4476,7 @@
 				8AD6C0D01B706CF30040437E /* PInterestV2ViewController.m in Sources */,
 				8AD6BE591B706CF30040437E /* DoImagePickerController.m in Sources */,
 				8AD6C0BB1B706CF30040437E /* WhyWeUseFBViewController.m in Sources */,
+				8A3757B71B847C7A009DB7D4 /* AddNewPlaceViewController.m in Sources */,
 				8AD6C3431B707D120040437E /* TPKeyboardAvoidingScrollView.m in Sources */,
 				8AD6C8711B7460DB0040437E /* MKNetworkEngine.m in Sources */,
 				8AD6BE4D1B706CF30040437E /* ExploreCountryViewController.m in Sources */,
@@ -4488,6 +4503,7 @@
 				8AD6C2931B7072FB0040437E /* ChooseCategoryViewController.m in Sources */,
 				8AD6C0AD1B706CF30040437E /* LandingV2ViewController.m in Sources */,
 				8AD6BE231B706CF30040437E /* NSMutableArray+MoveArray.m in Sources */,
+				8A3757B31B846788009DB7D4 /* SearchModel.m in Sources */,
 				8A7420E11B82F67F005DA654 /* UIImage+KVNImageEffects.m in Sources */,
 				8AD6C2991B7072FB0040437E /* ExtasViewController.m in Sources */,
 				8AD6C2971B7072FB0040437E /* EditLocationViewController.m in Sources */,

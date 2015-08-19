@@ -21,7 +21,7 @@
         NSMutableArray* array;
         array = [NSMutableArray new];
         for (NSDictionary * tempDict in arrayVenues){
-            Venue* obj = [[Venue alloc] initWithDictionary:tempDict];
+            VenueModel* obj = [[VenueModel alloc] initWithDictionary:tempDict error:nil];
             [array addObject:obj];
 
         }
@@ -37,97 +37,31 @@
 }
 @end
 
-@implementation Venue
+@implementation VenueModel
 
--(id)initWithDictionary:(NSDictionary *)dict{
-    
-    if(self  = [super init])
-    {
-    
-        self.location = [[Location alloc]initWithDictionary:dict[@"location"]];
-        self.contact = [[Contact alloc]initWithDictionary:dict[@"contact"]];
-        self.hours = [[OperateHour alloc]initWithDictionary:dict[@"hours"]];
-        self.price = [[Price alloc]initWithDictionary:dict[@"price"]];
-        self.name = dict[@"name"];
-        self.url =  dict[@"url"];
-
-    }
-    
-    return self;
++(JSONKeyMapper*)keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{
+                                                       @"location.address" :@"address",
+                                                       @"location.city": @"city",
+                                                       @"location.country": @"country",
+                                                       @"location.lat": @"lat",
+                                                       @"location.lng": @"lng",
+                                                       @"location.state": @"state",
+                                                       @"location.postalCode": @"postalCode",
+                                                       @"location.distance": @"distance",
+                                                       
+                                                       @"contact.formattedPhone": @"formattedPhone",
+                                                       @"contact.phone": @"phone",
+                                                       @"contact.facebookName": @"facebookName",
+                                                       
+                                                       @"hours.isOpen": @"isOpenHour",
+                                                       @"hours.status": @"statusHour",
+                                                       
+                                                       @"price.currency": @"currency",
+                                                       @"price.message": @"message",
+                                                       @"price.tier": @"tier"
+                                                       
+                                                       }];
 }
-
-@end
-
-@implementation Location
-
--(id)initWithDictionary:(NSDictionary *)dict{
-    
-    if(self  = [super init])
-    {
-        
-        self.address = dict[@"address"];
-        self.city = dict[@"city"];
-        self.country = dict[@"country"];
-        self.lat = dict[@"lat"];
-        self.lng = dict[@"lng"];
-        self.state = dict[@"state"];
-        self.formattedAddress = dict[@"formattedAddress"];
-        self.postalCode = dict[@"postalCode"];
-        self.distance = dict[@"distance"];
-
-
-    }
-    
-    return self;
-}
-
-@end
-@implementation Contact
-
--(id)initWithDictionary:(NSDictionary *)dict{
-    
-    if(self  = [super init])
-    {
-        self.formattedPhone = dict[@"formattedPhone"];
-        self.phone = dict[@"phone"];
-        self.facebookName = dict[@"facebookName"];
-
-        
-    }
-    
-    return self;
-}
-
-@end
-@implementation OperateHour
--(id)initWithDictionary:(NSDictionary *)dict{
-    
-    if(self  = [super init])
-    {
-       
-        
-        self.isOpen = dict[@"isOpen"];
-        self.status = dict[@"status"];
-        
-    }
-    
-    return self;
-}
-
-@end
-@implementation Price
--(id)initWithDictionary:(NSDictionary *)dict{
-    
-    if(self  = [super init])
-    {
-        self.currency = dict[@"currency"];
-        self.message = dict[@"message"];
-        self.tier = dict[@"tier"];
-
-
-    }
-    
-    return self;
-}
-
 @end
