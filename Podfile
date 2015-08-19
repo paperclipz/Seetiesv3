@@ -13,5 +13,8 @@ platform :ios, '7.0'
 pod 'JSONModel'
 pod 'TSMessages'
 pod 'ADTransitionController'
-
-pod 'LMGeocoder'
+pod 'IQKeyboardManager'
+pod 'SDWebImage', :head
+pod 'GoogleMaps'
+pod 'LPGoogleFunctions'
+pod 'CLLocationManager-blocks'

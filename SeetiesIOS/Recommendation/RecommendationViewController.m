@@ -12,19 +12,16 @@
 @end
 
 @implementation RecommendationViewController
+- (IBAction)btnPickImageClicked:(id)sender {
+    
+    [self presentViewController:self.doImagePickerController animated:YES completion:nil];
+
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    DoImagePickerController *cont = [[DoImagePickerController alloc] initWithNibName:@"DoImagePickerController" bundle:nil];
-    cont.delegate = self;
-    cont.nMaxCount = 10;     // larger than 1
-    cont.nColumnCount = 3;  // 2, 3, or 4
-    
-    cont.nResultType = DO_PICKER_RESULT_UIIMAGE; // get UIImage object array : common case
-    // if you want to get lots photos, you had better use DO_PICKER_RESULT_ASSET.
-    cont.nResultType = 1;
-    [self presentViewController:cont animated:YES completion:nil];
+    [self btnPickImageClicked:nil];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -39,60 +36,102 @@
 
 - (void)didSelectPhotosFromDoImagePickerController:(DoImagePickerController *)picker result:(NSArray *)aSelected
 {
-//    SLog(@"didSelectPhotosFromDoImagePickerController");
-//    ALAsset* asset = aSelected[0];
-//    CLLocation *location = [asset valueForProperty:ALAssetPropertyLocation];
-//    SLog(@"lat :%@",location.coordinate.latitude);
-//    
-//    
-//    NSDictionary *metadata = asset.defaultRepresentation.metadata;
-//    NSLog(@"Image Meta Data: %@",metadata);
-//    
-//    NSDictionary *gpsdata = [metadata objectForKey:@"{GPS}"];
+    if (aSelected.count == 0) {
+        
+        [TSMessage showNotificationInViewController:self.doImagePickerController
+                                              title:LocalisedString(@"Error")
+                                           subtitle:LocalisedString(@"No Image Selected")
+                                              image:nil
+                                               type:TSMessageNotificationTypeError
+                                           duration:2.0
+                                           callback:nil
+                                        buttonTitle:nil
+                                     buttonCallback:nil
+                                         atPosition:TSMessageNotificationPositionBottom
+                               canBeDismissedByUser:YES];
+    }
+    else{
+        CLLocation* tempCurrentLocation;
+        
+        ALAsset* asset = aSelected[0];
+        tempCurrentLocation = [asset valueForProperty:ALAssetPropertyLocation];
+        [self showSearchView:tempCurrentLocation];
+                   
+    }
+   
+    //Remark* check image has tag location, if not get device location. if device dont hace location route to search page with no suggestion
+}
+
+-(void)showSearchView:(CLLocation*)location
+{
     
-//    [[LMGeocoder sharedInstance] reverseGeocodeCoordinate:CLLocationCoordinate2DMake(3.13900303, 101.6868550101)
-//                                                  service:kLMGeocoderGoogleService
-//                                        completionHandler:^(NSArray *results, NSError *error) {
-//                                            if (results.count && !error) {
-//                                                LMAddress *address = [results firstObject];
-//                                                NSLog(@"Address: %@", address.formattedAddress);
-//                                            }
-//                                        }];
-//    
-//    [Foursquare2 venueExploreRecommendedNearByLatitude:@(dlatitude) longitude:@(dlongitude) near:nil accuracyLL:nil altitude:nil accuracyAlt:nil query:nil limit:nil offset:nil radius:@(1000) section:nil novelty:nil sortByDistance:nil openNow:nil venuePhotos:nil price:nil callback:^(BOOL success, id result){
-//        
-//    }];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self pushViewController:self.stSearchViewController animated:YES];
+        [self.stSearchViewController initWithLocation:location];
+
+    }];
+
+    
 }
 
 
-- (NSString *)getIPAddress {
-    
-    NSString *address = @"error";
-    struct ifaddrs *interfaces = NULL;
-    struct ifaddrs *temp_addr = NULL;
-    int success = 0;
-    // retrieve the current interfaces - returns 0 on success
-    success = getifaddrs(&interfaces);
-    if (success == 0) {
-        // Loop through linked list of interfaces
-        temp_addr = interfaces;
-        while(temp_addr != NULL) {
-            if(temp_addr->ifa_addr->sa_family == AF_INET) {
-                // Check if interface is en0 which is the wifi connection on the iPhone
-                if([[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:@"en0"]) {
-                    // Get NSString from C String
-                    address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)];
-                    
-                }
-                
-            }
-            
-            temp_addr = temp_addr->ifa_next;
-        }
+//
+//- (NSString *)getIPAddress {
+//    
+//    NSString *address = @"error";
+//    struct ifaddrs *interfaces = NULL;
+//    struct ifaddrs *temp_addr = NULL;
+//    int success = 0;
+//    // retrieve the current interfaces - returns 0 on success
+//    success = getifaddrs(&interfaces);
+//    if (success == 0) {
+//        // Loop through linked list of interfaces
+//        temp_addr = interfaces;
+//        while(temp_addr != NULL) {
+//            if(temp_addr->ifa_addr->sa_family == AF_INET) {
+//                // Check if interface is en0 which is the wifi connection on the iPhone
+//                if([[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:@"en0"]) {
+//                    // Get NSString from C String
+//                    address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)];
+//                    
+//                }
+//                
+//            }
+//            
+//            temp_addr = temp_addr->ifa_next;
+//        }
+//    }
+//    // Free memory
+//    freeifaddrs(interfaces);
+//    return address;
+//    
+//}
+
+#pragma mark - Declaration
+-(STSearchViewController*)stSearchViewController{
+
+    if(!_stSearchViewController)
+    {
+        _stSearchViewController = [STSearchViewController new];
     }
-    // Free memory
-    freeifaddrs(interfaces);
-    return address;
+    return _stSearchViewController;
+}
+
+-(DoImagePickerController*)doImagePickerController
+{
     
+    if(!_doImagePickerController)
+    {
+        _doImagePickerController = [DoImagePickerController new];
+        _doImagePickerController.delegate = self;
+        _doImagePickerController.nMaxCount = 10;     // larger than 1
+        _doImagePickerController.nColumnCount = 3;  // 2, 3, or 4
+        
+        _doImagePickerController.nResultType = DO_PICKER_RESULT_UIIMAGE; // get UIImage object array : common case
+        // if you want to get lots photos, you had better use DO_PICKER_RESULT_ASSET.
+        _doImagePickerController.nResultType = 1;
+    }
+    
+    return _doImagePickerController;
 }
 @end

@@ -25,9 +25,15 @@
 #import "DataManager.h"
 #import "TSMessage.h"
 #import "BaseViewController.h"
-#import "LMGeocoder.h"
 #import "Foursquare2.h"
+#import "FourSquareModel.h"
+#import "CommonTableViewCell.h"
+#import "IQKeyboardManager.h"
+#import "CommonViewController.h"
 
+#import "LoadingManager.h"
+#import "GoogleMaps.h"
+#import "SearchManager.h"
 #endif
 
 #define IS_IN_DEBUG_MODE

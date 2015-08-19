@@ -11,11 +11,13 @@
 #import "AssetHelper.h"
 #import "DoImagePickerController.h"
 #import "WhereIsThisViewController.h"
-#import <CoreLocation/CoreLocation.h>
-#import <MapKit/MapKit.h>
-#import <AddressBook/AddressBook.h>
 
-@interface RecommendationViewController : BaseViewController<DoImagePickerControllerDelegate,CLLocationManagerDelegate,MKReverseGeocoderDelegate>
+#import "STSearchViewController.h"
+
+@interface RecommendationViewController : BaseViewController<DoImagePickerControllerDelegate>
 
 @property(nonatomic,strong)SelectImageViewController* assetPickerViewController;
+@property(nonatomic,strong)STSearchViewController* stSearchViewController;
+@property(nonatomic,strong)DoImagePickerController* doImagePickerController;
+
 @end

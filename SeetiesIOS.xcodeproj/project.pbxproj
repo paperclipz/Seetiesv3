@@ -16,21 +16,20 @@
 		8A2E2C0A1B79A4110010895E /* UserProfilePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A2E2C091B79A4110010895E /* UserProfilePageViewController.xib */; };
 		8A2E2C141B79E7A30010895E /* RecommendationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E2C121B79E7A30010895E /* RecommendationViewController.m */; };
 		8A2E2C151B79E7A30010895E /* RecommendationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A2E2C131B79E7A30010895E /* RecommendationViewController.xib */; };
-		8A2E2C2E1B79EE310010895E /* ELCAlbumPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E2C181B79EE310010895E /* ELCAlbumPickerController.m */; };
-		8A2E2C2F1B79EE310010895E /* ELCAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E2C1A1B79EE310010895E /* ELCAsset.m */; };
-		8A2E2C301B79EE310010895E /* ELCAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E2C1C1B79EE310010895E /* ELCAssetCell.m */; };
-		8A2E2C311B79EE310010895E /* ELCAssetTablePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E2C201B79EE310010895E /* ELCAssetTablePicker.m */; };
-		8A2E2C321B79EE320010895E /* ELCConsole.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E2C221B79EE310010895E /* ELCConsole.m */; };
-		8A2E2C331B79EE320010895E /* ELCImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E2C241B79EE310010895E /* ELCImagePickerController.m */; };
-		8A2E2C341B79EE320010895E /* ELCOverlayImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E2C271B79EE310010895E /* ELCOverlayImageView.m */; };
-		8A2E2C351B79EE320010895E /* ELCAlbumPickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A2E2C291B79EE310010895E /* ELCAlbumPickerController.xib */; };
-		8A2E2C361B79EE320010895E /* ELCAssetPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A2E2C2A1B79EE310010895E /* ELCAssetPicker.xib */; };
-		8A2E2C371B79EE320010895E /* ELCAssetTablePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A2E2C2B1B79EE310010895E /* ELCAssetTablePicker.xib */; };
-		8A2E2C381B79EE320010895E /* Overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A2E2C2C1B79EE310010895E /* Overlay.png */; };
-		8A2E2C391B79EE320010895E /* Overlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A2E2C2D1B79EE310010895E /* Overlay@2x.png */; };
-		8A2E2C3D1B7AF0D60010895E /* ImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E2C3B1B7AF0D60010895E /* ImagePickerViewController.m */; };
-		8A2E2C3E1B7AF0D60010895E /* ImagePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A2E2C3C1B7AF0D60010895E /* ImagePickerViewController.xib */; };
 		8A2E2C411B7AF3180010895E /* ImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E2C401B7AF3180010895E /* ImageModel.m */; };
+		8A2E2C4C1B8184C90010895E /* FourSquareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E2C4B1B8184C90010895E /* FourSquareModel.m */; };
+		8A2E2CE21B81CFE40010895E /* STSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E2CE01B81CFE40010895E /* STSearchViewController.m */; };
+		8A2E2CE31B81CFE40010895E /* STSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A2E2CE11B81CFE40010895E /* STSearchViewController.xib */; };
+		8A2E2CE61B81DEE60010895E /* CommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E2CE51B81DEE60010895E /* CommonViewController.m */; };
+		8A2E2CEB1B81E15B0010895E /* STTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E2CE91B81E15B0010895E /* STTableViewCell.m */; };
+		8A2E2CEC1B81E15B0010895E /* STTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A2E2CEA1B81E15B0010895E /* STTableViewCell.xib */; };
+		8A2E2CEF1B81E2480010895E /* CommonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E2CEE1B81E2480010895E /* CommonTableViewCell.m */; };
+		8A3757B01B842F74009DB7D4 /* SearchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3757AF1B842F74009DB7D4 /* SearchManager.m */; };
+		8A7420E01B82F67F005DA654 /* UIImage+KVNEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7420CC1B82F67F005DA654 /* UIImage+KVNEmpty.m */; };
+		8A7420E11B82F67F005DA654 /* UIImage+KVNImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7420CE1B82F67F005DA654 /* UIImage+KVNImageEffects.m */; };
+		8A7420E21B82F67F005DA654 /* KVNProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7420D11B82F67F005DA654 /* KVNProgress.m */; };
+		8A7420E91B82F67F005DA654 /* KVNProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A7420DE1B82F67F005DA654 /* KVNProgressView.xib */; };
+		8A7420EC1B82F7D5005DA654 /* LoadingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7420EB1B82F7D5005DA654 /* LoadingManager.m */; };
 		8AD6BA601B705DF20040437E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA5F1B705DF20040437E /* main.m */; };
 		8AD6BA631B705DF20040437E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA621B705DF20040437E /* AppDelegate.m */; };
 		8AD6BA661B705DF20040437E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA651B705DF20040437E /* ViewController.m */; };
@@ -901,33 +900,31 @@
 		8A2E2C111B79E7A30010895E /* RecommendationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendationViewController.h; sourceTree = "<group>"; };
 		8A2E2C121B79E7A30010895E /* RecommendationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendationViewController.m; sourceTree = "<group>"; };
 		8A2E2C131B79E7A30010895E /* RecommendationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendationViewController.xib; sourceTree = "<group>"; };
-		8A2E2C171B79EE310010895E /* ELCAlbumPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAlbumPickerController.h; sourceTree = "<group>"; };
-		8A2E2C181B79EE310010895E /* ELCAlbumPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAlbumPickerController.m; sourceTree = "<group>"; };
-		8A2E2C191B79EE310010895E /* ELCAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAsset.h; sourceTree = "<group>"; };
-		8A2E2C1A1B79EE310010895E /* ELCAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAsset.m; sourceTree = "<group>"; };
-		8A2E2C1B1B79EE310010895E /* ELCAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAssetCell.h; sourceTree = "<group>"; };
-		8A2E2C1C1B79EE310010895E /* ELCAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAssetCell.m; sourceTree = "<group>"; };
-		8A2E2C1D1B79EE310010895E /* ELCAssetPickerFilterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAssetPickerFilterDelegate.h; sourceTree = "<group>"; };
-		8A2E2C1E1B79EE310010895E /* ELCAssetSelectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAssetSelectionDelegate.h; sourceTree = "<group>"; };
-		8A2E2C1F1B79EE310010895E /* ELCAssetTablePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAssetTablePicker.h; sourceTree = "<group>"; };
-		8A2E2C201B79EE310010895E /* ELCAssetTablePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAssetTablePicker.m; sourceTree = "<group>"; };
-		8A2E2C211B79EE310010895E /* ELCConsole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCConsole.h; sourceTree = "<group>"; };
-		8A2E2C221B79EE310010895E /* ELCConsole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCConsole.m; sourceTree = "<group>"; };
-		8A2E2C231B79EE310010895E /* ELCImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCImagePickerController.h; sourceTree = "<group>"; };
-		8A2E2C241B79EE310010895E /* ELCImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCImagePickerController.m; sourceTree = "<group>"; };
-		8A2E2C251B79EE310010895E /* ELCImagePickerHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCImagePickerHeader.h; sourceTree = "<group>"; };
-		8A2E2C261B79EE310010895E /* ELCOverlayImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCOverlayImageView.h; sourceTree = "<group>"; };
-		8A2E2C271B79EE310010895E /* ELCOverlayImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCOverlayImageView.m; sourceTree = "<group>"; };
-		8A2E2C291B79EE310010895E /* ELCAlbumPickerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELCAlbumPickerController.xib; sourceTree = "<group>"; };
-		8A2E2C2A1B79EE310010895E /* ELCAssetPicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELCAssetPicker.xib; sourceTree = "<group>"; };
-		8A2E2C2B1B79EE310010895E /* ELCAssetTablePicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELCAssetTablePicker.xib; sourceTree = "<group>"; };
-		8A2E2C2C1B79EE310010895E /* Overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Overlay.png; sourceTree = "<group>"; };
-		8A2E2C2D1B79EE310010895E /* Overlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Overlay@2x.png"; sourceTree = "<group>"; };
-		8A2E2C3A1B7AF0D60010895E /* ImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePickerViewController.h; sourceTree = "<group>"; };
-		8A2E2C3B1B7AF0D60010895E /* ImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePickerViewController.m; sourceTree = "<group>"; };
-		8A2E2C3C1B7AF0D60010895E /* ImagePickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImagePickerViewController.xib; sourceTree = "<group>"; };
 		8A2E2C3F1B7AF3180010895E /* ImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageModel.h; sourceTree = "<group>"; };
 		8A2E2C401B7AF3180010895E /* ImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageModel.m; sourceTree = "<group>"; };
+		8A2E2C4A1B8184C90010895E /* FourSquareModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourSquareModel.h; sourceTree = "<group>"; };
+		8A2E2C4B1B8184C90010895E /* FourSquareModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourSquareModel.m; sourceTree = "<group>"; };
+		8A2E2CDF1B81CFE40010895E /* STSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STSearchViewController.h; sourceTree = "<group>"; };
+		8A2E2CE01B81CFE40010895E /* STSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STSearchViewController.m; sourceTree = "<group>"; };
+		8A2E2CE11B81CFE40010895E /* STSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STSearchViewController.xib; sourceTree = "<group>"; };
+		8A2E2CE41B81DEE60010895E /* CommonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonViewController.h; sourceTree = "<group>"; };
+		8A2E2CE51B81DEE60010895E /* CommonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonViewController.m; sourceTree = "<group>"; };
+		8A2E2CE81B81E15B0010895E /* STTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STTableViewCell.h; sourceTree = "<group>"; };
+		8A2E2CE91B81E15B0010895E /* STTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STTableViewCell.m; sourceTree = "<group>"; };
+		8A2E2CEA1B81E15B0010895E /* STTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STTableViewCell.xib; sourceTree = "<group>"; };
+		8A2E2CED1B81E2480010895E /* CommonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonTableViewCell.h; sourceTree = "<group>"; };
+		8A2E2CEE1B81E2480010895E /* CommonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonTableViewCell.m; sourceTree = "<group>"; };
+		8A3757AE1B842F74009DB7D4 /* SearchManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchManager.h; sourceTree = "<group>"; };
+		8A3757AF1B842F74009DB7D4 /* SearchManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchManager.m; sourceTree = "<group>"; };
+		8A7420CB1B82F67F005DA654 /* UIImage+KVNEmpty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+KVNEmpty.h"; sourceTree = "<group>"; };
+		8A7420CC1B82F67F005DA654 /* UIImage+KVNEmpty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+KVNEmpty.m"; sourceTree = "<group>"; };
+		8A7420CD1B82F67F005DA654 /* UIImage+KVNImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+KVNImageEffects.h"; sourceTree = "<group>"; };
+		8A7420CE1B82F67F005DA654 /* UIImage+KVNImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+KVNImageEffects.m"; sourceTree = "<group>"; };
+		8A7420D01B82F67F005DA654 /* KVNProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVNProgress.h; sourceTree = "<group>"; };
+		8A7420D11B82F67F005DA654 /* KVNProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KVNProgress.m; sourceTree = "<group>"; };
+		8A7420DE1B82F67F005DA654 /* KVNProgressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KVNProgressView.xib; sourceTree = "<group>"; };
+		8A7420EA1B82F7D5005DA654 /* LoadingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingManager.h; sourceTree = "<group>"; };
+		8A7420EB1B82F7D5005DA654 /* LoadingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingManager.m; sourceTree = "<group>"; };
 		8AD6BA5A1B705DF20040437E /* SeetiesIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeetiesIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AD6BA5E1B705DF20040437E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8AD6BA5F1B705DF20040437E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -2054,39 +2051,51 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		8A2E2C161B79EE310010895E /* ELCImagePicker */ = {
+		8A2E2CE71B81E1360010895E /* Extra */ = {
 			isa = PBXGroup;
 			children = (
-				8A2E2C171B79EE310010895E /* ELCAlbumPickerController.h */,
-				8A2E2C181B79EE310010895E /* ELCAlbumPickerController.m */,
-				8A2E2C191B79EE310010895E /* ELCAsset.h */,
-				8A2E2C1A1B79EE310010895E /* ELCAsset.m */,
-				8A2E2C1B1B79EE310010895E /* ELCAssetCell.h */,
-				8A2E2C1C1B79EE310010895E /* ELCAssetCell.m */,
-				8A2E2C1D1B79EE310010895E /* ELCAssetPickerFilterDelegate.h */,
-				8A2E2C1E1B79EE310010895E /* ELCAssetSelectionDelegate.h */,
-				8A2E2C1F1B79EE310010895E /* ELCAssetTablePicker.h */,
-				8A2E2C201B79EE310010895E /* ELCAssetTablePicker.m */,
-				8A2E2C211B79EE310010895E /* ELCConsole.h */,
-				8A2E2C221B79EE310010895E /* ELCConsole.m */,
-				8A2E2C231B79EE310010895E /* ELCImagePickerController.h */,
-				8A2E2C241B79EE310010895E /* ELCImagePickerController.m */,
-				8A2E2C251B79EE310010895E /* ELCImagePickerHeader.h */,
-				8A2E2C261B79EE310010895E /* ELCOverlayImageView.h */,
-				8A2E2C271B79EE310010895E /* ELCOverlayImageView.m */,
-				8A2E2C281B79EE310010895E /* Resources */,
+				8A2E2CE81B81E15B0010895E /* STTableViewCell.h */,
+				8A2E2CE91B81E15B0010895E /* STTableViewCell.m */,
+				8A2E2CEA1B81E15B0010895E /* STTableViewCell.xib */,
 			);
-			path = ELCImagePicker;
+			name = Extra;
 			sourceTree = "<group>";
 		};
-		8A2E2C281B79EE310010895E /* Resources */ = {
+		8A7420C71B82F67F005DA654 /* KVNProgress */ = {
 			isa = PBXGroup;
 			children = (
-				8A2E2C291B79EE310010895E /* ELCAlbumPickerController.xib */,
-				8A2E2C2A1B79EE310010895E /* ELCAssetPicker.xib */,
-				8A2E2C2B1B79EE310010895E /* ELCAssetTablePicker.xib */,
-				8A2E2C2C1B79EE310010895E /* Overlay.png */,
-				8A2E2C2D1B79EE310010895E /* Overlay@2x.png */,
+				8A7420CA1B82F67F005DA654 /* Categories */,
+				8A7420CF1B82F67F005DA654 /* Classes */,
+				8A7420DD1B82F67F005DA654 /* Resources */,
+			);
+			name = KVNProgress;
+			path = ../KVNProgress;
+			sourceTree = "<group>";
+		};
+		8A7420CA1B82F67F005DA654 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				8A7420CB1B82F67F005DA654 /* UIImage+KVNEmpty.h */,
+				8A7420CC1B82F67F005DA654 /* UIImage+KVNEmpty.m */,
+				8A7420CD1B82F67F005DA654 /* UIImage+KVNImageEffects.h */,
+				8A7420CE1B82F67F005DA654 /* UIImage+KVNImageEffects.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		8A7420CF1B82F67F005DA654 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				8A7420D01B82F67F005DA654 /* KVNProgress.h */,
+				8A7420D11B82F67F005DA654 /* KVNProgress.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		8A7420DD1B82F67F005DA654 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8A7420DE1B82F67F005DA654 /* KVNProgressView.xib */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -2114,7 +2123,6 @@
 		8AD6BA5C1B705DF20040437E /* SeetiesIOS */ = {
 			isa = PBXGroup;
 			children = (
-				8A2E2C161B79EE310010895E /* ELCImagePicker */,
 				8AD6C2D21B707D120040437E /* Common */,
 				8AD6C23B1B7072FA0040437E /* Publish */,
 				8AD6BA961B706CF10040437E /* Category */,
@@ -2298,6 +2306,10 @@
 				8AD6BD731B706CF30040437E /* ConnectionManager.m */,
 				8AD6C8271B736C000040437E /* DataManager.h */,
 				8AD6C8281B736C000040437E /* DataManager.m */,
+				8A7420EA1B82F7D5005DA654 /* LoadingManager.h */,
+				8A7420EB1B82F7D5005DA654 /* LoadingManager.m */,
+				8A3757AE1B842F74009DB7D4 /* SearchManager.h */,
+				8A3757AF1B842F74009DB7D4 /* SearchManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -2337,6 +2349,8 @@
 				8AD6C8861B784BD50040437E /* ExploreCountryModel.m */,
 				8A2E2C3F1B7AF3180010895E /* ImageModel.h */,
 				8A2E2C401B7AF3180010895E /* ImageModel.m */,
+				8A2E2C4A1B8184C90010895E /* FourSquareModel.h */,
+				8A2E2C4B1B8184C90010895E /* FourSquareModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2656,6 +2670,10 @@
 				8AD6C3281B707D120040437E /* Utils.m */,
 				8AD6C8741B7495B60040437E /* BaseViewController.h */,
 				8AD6C8751B7495B60040437E /* BaseViewController.m */,
+				8A2E2CE41B81DEE60010895E /* CommonViewController.h */,
+				8A2E2CE51B81DEE60010895E /* CommonViewController.m */,
+				8A2E2CED1B81E2480010895E /* CommonTableViewCell.h */,
+				8A2E2CEE1B81E2480010895E /* CommonTableViewCell.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -2689,6 +2707,7 @@
 		8AD6C2E51B707D120040437E /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				8A7420C71B82F67F005DA654 /* KVNProgress */,
 				0BD634F71B71C9B800D82414 /* LeveyTabBar */,
 				8AD6C2E61B707D120040437E /* A3ParallaxScrollView */,
 				8AD6C2E91B707D120040437E /* AsyncImageView.h */,
@@ -3572,15 +3591,16 @@
 		8AD6C8771B74A7CD0040437E /* Recommendation */ = {
 			isa = PBXGroup;
 			children = (
+				8A2E2CE71B81E1360010895E /* Extra */,
 				8AD6C8781B74A7CD0040437E /* RecommendPopUpViewController.h */,
 				8AD6C8791B74A7CD0040437E /* RecommendPopUpViewController.m */,
 				8AD6C87A1B74A7CD0040437E /* RecommendPopUpViewController.xib */,
 				8A2E2C111B79E7A30010895E /* RecommendationViewController.h */,
 				8A2E2C121B79E7A30010895E /* RecommendationViewController.m */,
 				8A2E2C131B79E7A30010895E /* RecommendationViewController.xib */,
-				8A2E2C3A1B7AF0D60010895E /* ImagePickerViewController.h */,
-				8A2E2C3B1B7AF0D60010895E /* ImagePickerViewController.m */,
-				8A2E2C3C1B7AF0D60010895E /* ImagePickerViewController.xib */,
+				8A2E2CDF1B81CFE40010895E /* STSearchViewController.h */,
+				8A2E2CE01B81CFE40010895E /* STSearchViewController.m */,
+				8A2E2CE11B81CFE40010895E /* STSearchViewController.xib */,
 			);
 			name = Recommendation;
 			path = SeetiesIOS/Recommendation;
@@ -3637,6 +3657,7 @@
 				TargetAttributes = {
 					8AD6BA591B705DF20040437E = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 22DQJTA32H;
 					};
 					8AD6BA721B705DF30040437E = {
 						CreatedOnToolsVersion = 6.4;
@@ -3744,7 +3765,6 @@
 				8AD6C1181B706CF30040437E /* pin.png in Resources */,
 				8AD6BE581B706CF30040437E /* DoAlbumCell.xib in Resources */,
 				8AD6C10D1B706CF30040437E /* ForgotPasswordViewController.xib in Resources */,
-				8A2E2C351B79EE320010895E /* ELCAlbumPickerController.xib in Resources */,
 				8AD6C75E1B70934D0040437E /* Line@3x.png in Resources */,
 				8AD6C6BA1B70934D0040437E /* BtnFindFriends@3x.png in Resources */,
 				8AD6C73F1B70934D0040437E /* IconWhatsapp@2x.png in Resources */,
@@ -3823,6 +3843,7 @@
 				8AD6C6B91B70934D0040437E /* BtnFindFriends@2x.png in Resources */,
 				8AD6C7DF1B70934D0040437E /* SeeMoreHover.png in Resources */,
 				8AD6C8161B709A450040437E /* SettingsViewController.xib in Resources */,
+				8A2E2CE31B81CFE40010895E /* STSearchViewController.xib in Resources */,
 				8AD6C7F31B70934D0040437E /* TextField.png in Resources */,
 				8AD6C7561B70934D0040437E /* InviteOther.png in Resources */,
 				8AD6C6981B70934D0040437E /* AvatarComment@2x.png in Resources */,
@@ -3892,7 +3913,6 @@
 				8AD6C75B1B70934D0040437E /* InviteOtherSelected@3x.png in Resources */,
 				8AD6C62F1B70934D0040437E /* LanguageTh.png in Resources */,
 				8AD6C7D41B70934D0040437E /* RoundHighlight@3x.png in Resources */,
-				8A2E2C3E1B7AF0D60010895E /* ImagePickerViewController.xib in Resources */,
 				8AD6C6241B70934D0040437E /* LanguageChi@2x.png in Resources */,
 				8AD6C6F31B70934D0040437E /* GoToPhoto@3x.png in Resources */,
 				8AD6C6371B70934D0040437E /* LogoutButton.png in Resources */,
@@ -3950,6 +3970,7 @@
 				8AD6C76D1B70934D0040437E /* LocationPin@3x.png in Resources */,
 				8AD6BE4E1B706CF30040437E /* ExploreCountryViewController.xib in Resources */,
 				8AD6C6801B70934D0040437E /* ActionComment@2x.png in Resources */,
+				8A7420E91B82F67F005DA654 /* KVNProgressView.xib in Resources */,
 				8AD6C7F71B70934D0040437E /* iPhone4_Tour.png in Resources */,
 				8AD6C7611B70934D0040437E /* Popover@3x.png in Resources */,
 				8AD6C62E1B70934D0040437E /* LanguagePh@3x.png in Resources */,
@@ -3978,6 +3999,7 @@
 				8AD6C80A1B7096BA0040437E /* Localizable.strings in Resources */,
 				8AD6C61E1B70934D0040437E /* LandingLogo@2x.png in Resources */,
 				8AD6C7511B70934D0040437E /* InviteIcon.png in Resources */,
+				8A2E2CEC1B81E15B0010895E /* STTableViewCell.xib in Resources */,
 				8AD6C6BE1B70934D0040437E /* BtnRotate.png in Resources */,
 				8AD6C6A01B70934D0040437E /* BannerWord.png in Resources */,
 				8AD6C7AB1B70934D0040437E /* SubMenu@2x.png in Resources */,
@@ -4046,7 +4068,6 @@
 				8AD6C5DC1B70934D0040437E /* ButtonCancelFullImage.png in Resources */,
 				8AD6C7301B70934D0040437E /* FBMessenger@2x.png in Resources */,
 				8AD6C6AA1B70934D0040437E /* BtnAddInfo@2x.png in Resources */,
-				8A2E2C371B79EE320010895E /* ELCAssetTablePicker.xib in Resources */,
 				8AD6C0AE1B706CF30040437E /* LandingV2ViewController.xib in Resources */,
 				8AD6C2921B7072FB0040437E /* ChangeSearchLocationViewController.xib in Resources */,
 				8AD6C7B31B70934D0040437E /* TabBarActivity_on.png in Resources */,
@@ -4101,7 +4122,6 @@
 				8AD6C6931B70934D0040437E /* ArrowDown@3x.png in Resources */,
 				8AD6C7021B70934D0040437E /* IconCrop@3x.png in Resources */,
 				8AD6C6231B70934D0040437E /* LanguageChi.png in Resources */,
-				8A2E2C391B79EE320010895E /* Overlay@2x.png in Resources */,
 				8AD6C7DD1B70934D0040437E /* SearchIcon@2x.png in Resources */,
 				8AD6C7161B70934D0040437E /* IconPlace@2x.png in Resources */,
 				8AD6C6571B70934D0040437E /* PostMore@2x.png in Resources */,
@@ -4149,7 +4169,6 @@
 				8AD6C60C1B70934D0040437E /* InteractLike@2x.png in Resources */,
 				8AD6C6B21B70934D0040437E /* BtnEdit.png in Resources */,
 				8AD6C6541B70934D0040437E /* PostLocation@2x.png in Resources */,
-				8A2E2C381B79EE320010895E /* Overlay.png in Resources */,
 				8AD6C1031B706CF30040437E /* ChangePasswordViewController.xib in Resources */,
 				8AD6C7CB1B70934D0040437E /* TabDivider.png in Resources */,
 				8AD6C5C71B70934D0040437E /* Icon@2x.png in Resources */,
@@ -4174,7 +4193,6 @@
 				8AD6C6CF1B70934D0040437E /* CaptionArrow@3x.png in Resources */,
 				8AD6BE521B706CF30040437E /* Filter2ViewController.xib in Resources */,
 				8AD6C74C1B70934D0040437E /* InviteFacebook@3x.png in Resources */,
-				8A2E2C361B79EE320010895E /* ELCAssetPicker.xib in Resources */,
 				8AD6C7701B70934D0040437E /* NextArrow@3x.png in Resources */,
 				8AD6C60F1B70934D0040437E /* 1242x2208-03.jpg in Resources */,
 				8AD6C7031B70934D0040437E /* IconDarker.png in Resources */,
@@ -4423,8 +4441,8 @@
 				8AD6C0B11B706CF30040437E /* SignupViewController.m in Sources */,
 				8AD6C2A91B7072FB0040437E /* WhereIsThisViewController.m in Sources */,
 				8AD6C3361B707D120040437E /* CRZoomScrollView.m in Sources */,
+				8A7420E21B82F67F005DA654 /* KVNProgress.m in Sources */,
 				8AD6C0BE1B706CF30040437E /* FeedV2DetailViewController.m in Sources */,
-				8A2E2C2F1B79EE310010895E /* ELCAsset.m in Sources */,
 				8AD6BE241B706CF30040437E /* UIIimage+Extra.m in Sources */,
 				8AD6C8201B736B070040437E /* Model.m in Sources */,
 				8AD6C3321B707D120040437E /* AsyncImageView.m in Sources */,
@@ -4437,6 +4455,7 @@
 				8AD6C0CC1B706CF30040437E /* ProfileV2ViewController.m in Sources */,
 				8AD6C10F1B706CF30040437E /* SubmitProfileViewController.m in Sources */,
 				8AD6C32D1B707D120040437E /* PECropViewController.m in Sources */,
+				8A2E2CE21B81CFE40010895E /* STSearchViewController.m in Sources */,
 				8AD6C33D1B707D120040437E /* NSAttributedString+DVSTracking.m in Sources */,
 				8AD6C3501B707D120040437E /* Utils.m in Sources */,
 				8AD6C0F41B706CF30040437E /* SearchChangeLocationViewController.m in Sources */,
@@ -4469,18 +4488,20 @@
 				8AD6C2931B7072FB0040437E /* ChooseCategoryViewController.m in Sources */,
 				8AD6C0AD1B706CF30040437E /* LandingV2ViewController.m in Sources */,
 				8AD6BE231B706CF30040437E /* NSMutableArray+MoveArray.m in Sources */,
+				8A7420E11B82F67F005DA654 /* UIImage+KVNImageEffects.m in Sources */,
 				8AD6C2991B7072FB0040437E /* ExtasViewController.m in Sources */,
 				8AD6C2971B7072FB0040437E /* EditLocationViewController.m in Sources */,
 				8AD6C3301B707D120040437E /* UIImage+PECrop.m in Sources */,
 				8AD6C2A51B7072FB0040437E /* ShowImageViewController.m in Sources */,
+				8A2E2C4C1B8184C90010895E /* FourSquareModel.m in Sources */,
 				8AD6C1111B706CF30040437E /* CHANGELOG.md in Sources */,
 				8AD6C86C1B7460DB0040437E /* NSDate+RFC1123.m in Sources */,
 				8AD6C2891B7072FB0040437E /* ConfirmPlaceViewController.m in Sources */,
 				8AD6C8761B7495B60040437E /* BaseViewController.m in Sources */,
 				8AD6C1041B706CF30040437E /* EditInterestV2ViewController.m in Sources */,
 				8AD6C0BC1B706CF30040437E /* CommentViewController.m in Sources */,
-				8A2E2C311B79EE310010895E /* ELCAssetTablePicker.m in Sources */,
 				8AD6C0CA1B706CF30040437E /* NewProfileV2ViewController.m in Sources */,
+				8A7420EC1B82F7D5005DA654 /* LoadingManager.m in Sources */,
 				8AD6C3441B707D120040437E /* BHExpandingTextView.m in Sources */,
 				8AD6BE491B706CF30040437E /* Explore2ViewController.m in Sources */,
 				0BD634FC1B71C9B800D82414 /* LeveyTabBar.m in Sources */,
@@ -4497,21 +4518,20 @@
 				8AD6C86E1B7460DB0040437E /* NSString+MKNetworkKitAdditions.m in Sources */,
 				8AD6C32B1B707D120040437E /* PECropRectView.m in Sources */,
 				8AD6C28B1B7072FB0040437E /* EditLocationV2ViewController.m in Sources */,
-				8A2E2C331B79EE320010895E /* ELCImagePickerController.m in Sources */,
-				8A2E2C2E1B79EE310010895E /* ELCAlbumPickerController.m in Sources */,
 				8AD6C3291B707D120040437E /* JSONKit.m in Sources */,
 				8AD6C2871B7072FB0040437E /* BrightnessViewController.m in Sources */,
+				8A7420E01B82F67F005DA654 /* UIImage+KVNEmpty.m in Sources */,
 				8AD6C29D1B7072FB0040437E /* PublishViewController.m in Sources */,
 				8AD6C2851B7072FB0040437E /* AddPriceViewController.m in Sources */,
 				8AD6C0D81B706CF30040437E /* PTellUsYourCityViewController.m in Sources */,
 				8AD6C2A31B7072FB0040437E /* SelectImageViewController.m in Sources */,
 				8AD6BA661B705DF20040437E /* ViewController.m in Sources */,
-				8A2E2C341B79EE320010895E /* ELCOverlayImageView.m in Sources */,
 				8AD6C2A71B7072FB0040437E /* TellaStoryViewController.m in Sources */,
 				8AD6C0FA1B706CF30040437E /* SearchViewController.m in Sources */,
 				8AD6C87B1B74A7CD0040437E /* RecommendPopUpViewController.m in Sources */,
 				8AD6C0CE1B706CF30040437E /* UserProfileV2ViewController.m in Sources */,
 				8AD6C0AB1B706CF30040437E /* InviteFrenViewController.m in Sources */,
+				8A2E2CE61B81DEE60010895E /* CommonViewController.m in Sources */,
 				8AD6C33E1B707D120040437E /* NSMutableArray+MoveArray.m in Sources */,
 				8AD6C86D1B7460DB0040437E /* NSDictionary+RequestEncoding.m in Sources */,
 				8AD6C1001B706CF30040437E /* AccountSettingViewController.m in Sources */,
@@ -4523,24 +4543,24 @@
 				8AD6C8291B736C000040437E /* DataManager.m in Sources */,
 				8AD6C0B71B706CF30040437E /* OpenWebViewController.m in Sources */,
 				8AD6C8721B7460DB0040437E /* MKNetworkOperation.m in Sources */,
-				8A2E2C3D1B7AF0D60010895E /* ImagePickerViewController.m in Sources */,
 				8AD6C3371B707D120040437E /* UIScrollView+CRScrollIndicator.m in Sources */,
+				8A2E2CEB1B81E15B0010895E /* STTableViewCell.m in Sources */,
 				8AD6C32A1B707D120040437E /* LanguageManager.m in Sources */,
 				8AD6C0C61B706CF30040437E /* NearByRecommtationViewController.m in Sources */,
 				8AD6C8261B736B870040437E /* ApiVersionModel.m in Sources */,
 				8AD6BA631B705DF20040437E /* AppDelegate.m in Sources */,
 				8AD6C2911B7072FB0040437E /* ChangeSearchLocationViewController.m in Sources */,
-				8A2E2C301B79EE310010895E /* ELCAssetCell.m in Sources */,
 				8AD6C27F1B7072FB0040437E /* AddContactViewController.m in Sources */,
+				8A3757B01B842F74009DB7D4 /* SearchManager.m in Sources */,
 				8AD6C10C1B706CF30040437E /* ForgotPasswordViewController.m in Sources */,
 				8AD6C3391B707D120040437E /* FSVenue.m in Sources */,
 				8AD6C1141B706CF30040437E /* FSOAuthNoAppStore.m in Sources */,
 				8AD6C32E1B707D120040437E /* PEResizeControl.m in Sources */,
 				8AD6C8331B7454290040437E /* UIAlertView+Blocks.m in Sources */,
-				8A2E2C321B79EE320010895E /* ELCConsole.m in Sources */,
 				8AD6C32C1B707D120040437E /* PECropView.m in Sources */,
 				8AD6BA601B705DF20040437E /* main.m in Sources */,
 				8AD6C2291B706FA10040437E /* NSString+ChangeAsciiString.m in Sources */,
+				8A2E2CEF1B81E2480010895E /* CommonTableViewCell.m in Sources */,
 				8AD6C0B51B706CF30040437E /* InstagramLoginWebViewController.m in Sources */,
 				8AD6C8731B7460DB0040437E /* Reachability.m in Sources */,
 				8AD6C0D61B706CF30040437E /* PSelectYourInterestViewController.m in Sources */,
@@ -4698,6 +4718,7 @@
 			baseConfigurationReference = CAB2B54F0EC79309593A3C4C /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library/AviarySDK",
@@ -4721,6 +4742,7 @@
 			baseConfigurationReference = A6BFDB1BE373200E64D8CBE7 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library/AviarySDK",

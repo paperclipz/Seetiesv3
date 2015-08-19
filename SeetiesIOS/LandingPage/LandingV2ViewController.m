@@ -249,21 +249,23 @@
     return UIStatusBarStyleLightContent;
 }
 -(void)changeview{
+    //[self animateImages];
 
+    
     FBLoginButton.hidden = NO;
     LogInButton.hidden = NO;
     WhyWeUseFBButton.hidden = NO;
     SignUpWithEmailButton.hidden = NO;
     InstagramButton.hidden = NO;
 
+    
 }
-
 -(void)ChangeView2{
     
     [[[[UIApplication sharedApplication] delegate] window] setRootViewController:self.leveyTabBarController];
     
 //TODO:Delete this . use for development purpose only
-    [self.leveyTabBarController setSelectedIndex:0];
+    [self.leveyTabBarController setSelectedIndex:2];
 }
 
 - (void)animateImages

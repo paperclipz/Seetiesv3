@@ -36,6 +36,10 @@ extern NSString *const SERVER_PATH_DEV;
 extern NSString *const SERVER_SUBPATH;
 extern NSString *const IP_URL_PATH;
 
+//=============== social media key =================//
+extern NSString *const GOOGLE_API_KEY;
+extern NSString *const GOOGLE_PLACE_AUTOCOMPLETE_API;
+
 
 @end
 
@@ -50,8 +54,10 @@ extern NSString *const IP_URL_PATH;
  */
 #define CustomLocalisedString(key, comment) \
 [[LanguageManager sharedLanguageManager] getTranslationForKey:key]
-
+#define LocalisedString(key) \
+[[LanguageManager sharedLanguageManager] getTranslationForKey:key]
 
 #define ErrorTitle @"Error"
+#define GoodNetwork YES
 #endif
 

@@ -34,7 +34,7 @@
 
     return self;
 }
-
+//Must call this every time enter app to ensure right environment is retrieved
 -(void)requestForDEploymentTarget:(IDBlock)completeBlock errorHandler:(MKNKErrorBlock)errorBlock
 {
     self.hostName = SERVER_PATH_DEV;
@@ -102,6 +102,39 @@
 }
 
 #pragma mark - Service Request
+
+//For append string with api without reqeust type . EXP: get location etc
+- (MKNetworkOperation*)requestServerwithAppendString:(NSString*)url param:(NSDictionary*)dict  completionHandler:(IDBlock)completionBlock errorHandler:(MKNKErrorBlock)errorBlock
+{
+
+    MKNetworkOperation *op = [self operationWithURLString:url params:dict];
+    
+    [op setPostDataEncoding:MKNKPostDataEncodingTypeJSON];
+
+    [op addCompletionHandler:^(MKNetworkOperation *completedOperation) {
+        
+        NSString *jsonString = [completedOperation responseString];
+        
+        NSDictionary *responseDict = [jsonString objectFromJSONString];
+
+    if(completionBlock)
+    {
+        completionBlock(responseDict);
+    }
+
+    } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
+        if(errorBlock)
+        {
+            errorBlock(error);
+        }
+    }];
+    
+    [self enqueueOperation:op];
+
+    return op;
+
+    
+}
 
 - (MKNetworkOperation*)requestServerwithAppendString:(NSDictionary*)dict requestType:(ServerRequestType)serverRequestType  completionHandler:(IDBlock)completionBlock errorHandler:(MKNKErrorBlock)errorBlock
 {

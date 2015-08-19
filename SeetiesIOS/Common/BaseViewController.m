@@ -42,9 +42,15 @@
     if (self = [super init]) {
         self.navController = [[UINavigationController alloc]initWithRootViewController:self];
         [[self navController] setNavigationBarHidden:YES animated:NO];
+
     }
     
     return self;
+}
+
+-(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    [self.navController pushViewController:viewController animated:animated];
 }
 //-(void)pushViewController:(UIViewController*)viewController
 //{
