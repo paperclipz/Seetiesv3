@@ -9,13 +9,21 @@
 #import "AddNewPlaceViewController.h"
 
 @interface AddNewPlaceViewController ()
+@property (weak, nonatomic) IBOutlet MKMapView *ibMapView;
+@property (strong, nonatomic)SearchLocationModel* model;
 
 @end
 
 @implementation AddNewPlaceViewController
 
+- (IBAction)btnBackClicked:(id)sender {
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self requestForGoogleMapDetails];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -24,6 +32,37 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)initData:(SearchLocationModel*)model
+{
+    self.model = model;
+}
+
+-(void)requestForGoogleMapDetails
+{
+
+    NSDictionary* dict = @{@"placeid":@"ChIJ4SAXHPxLzDERqeP4uMrxFXc",@"key":GOOGLE_API_KEY};
+    [[ConnectionManager Instance] requestServerwithAppendString:GOOGLE_PLACE_DETAILS_API param:dict completionHandler:^(id object) {
+     
+        NSDictionary* dict = object;
+        self.model.latitude = dict[@"result"][@"geometry"][@"location"][@"lat"];
+        self.model.longitude = dict[@"result"][@"geometry"][@"location"][@"lat"];
+
+        [self refreshMapView];
+       // SLog(@"%@",object);
+    
+    } errorHandler:^(NSError *error) {
+    }];
+
+}
+
+
+-(void)refreshMapView
+{
+    
+    CLLocationCoordinate2D startCoord = CLLocationCoordinate2DMake([self.model.latitude doubleValue], [self.model.longitude doubleValue]);
+    MKCoordinateRegion adjustedRegion = [self.ibMapView regionThatFits:MKCoordinateRegionMakeWithDistance(startCoord, 200, 200)];
+    [self.ibMapView setRegion:adjustedRegion animated:YES];
+}
 /*
 #pragma mark - Navigation
 

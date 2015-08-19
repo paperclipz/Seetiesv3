@@ -29,6 +29,9 @@ typedef enum
 
 
 @property(nonatomic,strong)SearchModel* searchModel;
+
+@property (nonatomic, strong) LPGoogleFunctions *googleFunctions;
+
 @end
 
 @implementation STSearchViewController
@@ -82,14 +85,14 @@ typedef enum
             
             self.location = currentLocation;
            
-            [self getFourSquareSuggestionPlaces];
+            [self getGoogleSearchPlaces];
 
         } errorBlock:^(NSString *status) {
             SLog(@"cannot get Device location");
         }];
     }
     else{
-        [self getFourSquareSuggestionPlaces];
+        [self getGoogleSearchPlaces];
         
     }
         
@@ -193,46 +196,21 @@ typedef enum
 
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.addNewPlaceViewController initData:self.searchModel.predictions[indexPath.row]];
+    [self.navigationController pushViewController:self.addNewPlaceViewController animated:YES];
+}
+
 #pragma mark - UITextfield Delegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
-    [self placeAutocomplete];
     
     return YES;
 }
-- (void)placeAutocomplete {
-    
-    
-    NSDictionary* dict = @{@"location":@"",@"input":@"",@"radius":@"5000",@"key":@"",@"type":@"address"};
-    MKNetworkOperation *op = [[MKNetworkOperation alloc]initWithURLString:GOOGLE_PLACE_AUTOCOMPLETE_API params:dict httpMethod:@"POST"];
-    [op addCompletionHandler:^(MKNetworkOperation *completedOperation) {
-        
-    }errorHandler:nil];
-    
-    
-    
-    
-    
-    SLog(@"google api key : %@",GOOGLE_API_KEY);
-    GMSAutocompleteFilter *filter = [[GMSAutocompleteFilter alloc] init];
-    
-    filter.type = kGMSPlacesAutocompleteTypeFilterCity;
-    [[GMSPlacesClient sharedClient] autocompleteQuery:@"sky par"
-                                               bounds:nil
-                                               filter:filter
-                                             callback:^(NSArray *results, NSError *error) {
-                                                 if (error != nil) {
-                                                     NSLog(@"Autocomplete error %@", [error localizedDescription]);
-                                                     return;
-                                                 }
-                                                 
-                                                 for (GMSAutocompletePrediction* result in results) {
-                                                     NSLog(@"Result '%@' with placeID %@", result.attributedFullText.string, result.placeID);
-                                                 }
-                                                 
-                                             }];
-}
+
 
 -(AddNewPlaceViewController*)addNewPlaceViewController
 {
@@ -244,5 +222,7 @@ typedef enum
     return _addNewPlaceViewController;
     
 }
+
+//   ========================================= testing ==============================//
 
 @end

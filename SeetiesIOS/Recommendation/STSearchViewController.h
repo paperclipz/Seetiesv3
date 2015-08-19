@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "AddNewPlaceViewController.h"
+#import "UIImageView+AFNetworking.h"
+#import "LPGoogleFunctions.h"
 
-
-@interface STSearchViewController : CommonViewController<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
+@interface STSearchViewController : CommonViewController<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,LPGoogleFunctionsDelegate>
 -(void)initTableViewDelegate:(id)delegate;
 -(void)initWithLocation:(CLLocation*)location;
 

@@ -39,6 +39,7 @@ extern NSString *const IP_URL_PATH;
 //=============== social media key =================//
 extern NSString *const GOOGLE_API_KEY;
 extern NSString *const GOOGLE_PLACE_AUTOCOMPLETE_API;
+extern NSString *const GOOGLE_PLACE_DETAILS_API;
 
 
 @end

@@ -54,30 +54,6 @@
 
         }
     }];
-//    INTULocationManager *locMgr = [INTULocationManager sharedInstance];
-//    [locMgr requestLocationWithDesiredAccuracy:INTULocationAccuracyCity
-//                                       timeout:10.0
-//                          delayUntilAuthorized:YES  // This parameter is optional, defaults to NO if omitted
-//                                         block:^(CLLocation *currentLocation, INTULocationAccuracy achievedAccuracy, INTULocationStatus status) {
-//                                             if (status == INTULocationStatusSuccess) {
-//                                                 // Request succeeded, meaning achievedAccuracy is at least the requested accuracy, and
-//                                                 // currentLocation contains the device's current location.
-//                                                 successBlock(currentLocation);
-//                                                 [LoadingManager hide];
-//
-//                                             }
-//                                             else if (status == INTULocationStatusTimedOut) {
-//                                                 error(@"SESSION TIMEOUT");
-//                                                 [LoadingManager hide];
-//
-//                                             }
-//                                             else {
-//                                                 error(@"SESSION FAIL");
-//                                                 [LoadingManager hide];
-//
-//                                                 // An error occurred, more info is available by looking at the specific status returned.
-//                                             }
-//                                         }];
     
 }
 
@@ -134,4 +110,6 @@
     } errorHandler:^(NSError *error) {
     }];
 }
+
+
 @end

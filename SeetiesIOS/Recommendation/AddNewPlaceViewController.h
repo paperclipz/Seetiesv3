@@ -8,6 +8,7 @@
 
 #import "CommonViewController.h"
 
-@interface AddNewPlaceViewController : CommonViewController
+@interface AddNewPlaceViewController : CommonViewController<MKMapViewDelegate>
+-(void)initData:(SearchLocationModel*)model;
 
 @end
