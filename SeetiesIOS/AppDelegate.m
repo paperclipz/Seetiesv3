@@ -61,12 +61,17 @@
     [Foursquare2 setupFoursquareWithClientId:@"V0RPRPAUHB1ZCFSKOXKNM0JA3Q1RN1QUBK14RZFOUYY15I4R"
                                       secret:@"T5XT0AVNHLLO1NMXRNFCDBYGA453E12CTVN0WOSIHREEZTWA"
                                  callbackURL:@"testapp123://foursquare"];
+    [GMSServices provideAPIKey:GOOGLE_API_KEY];
+
 
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    
+    [[IQKeyboardManager sharedManager] setToolbarManageBehaviour:IQAutoToolbarByPosition];
+
     [self registrationForApi];
     
 //    NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
@@ -94,7 +99,8 @@
         [[UIApplication sharedApplication] registerForRemoteNotificationTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     }
     
-    [self CheckApiVersion];
+    [self requestForApiVersion];
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:API_VERSION forKey:@"APIVersionSet"];
     [defaults synchronize];
@@ -437,7 +443,7 @@
     
 }
 
--(void)CheckApiVersion{
+-(void)requestForApiVersion{
     
     [[ConnectionManager Instance]requestForDEploymentTarget:^(id object) {
        
@@ -466,10 +472,9 @@
 -(void)processAPIVersion
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-
-    ApiVersionModel* model =[[ConnectionManager dataManager] apiVersionModel];
-    NSLog(@"model is %@",model);
-    [defaults setObject:model.version forKey:@"CheckAPI"];
+    
+    ApiVersionModel* model =[[ConnectionManager dataManager] apiVersionModel] ;
+    [defaults setObject:model.production?@"1":@"0" forKey:@"CheckAPI"];
     [defaults synchronize];
     
     //Check version if same then proceed, if not same then promp error and also proceed to landing

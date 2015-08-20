@@ -152,6 +152,8 @@
     DataUrl = [[UrlDataClass alloc]init];
     [self initSelfView];
     
+    
+    return;
     CheckLoad = NO;
     CheckSuggestions = NO;
     CheckFirstTimeUser = NO;
@@ -161,10 +163,7 @@
     [MainScroll setScrollEnabled:YES];
      MainScroll.alwaysBounceVertical = TRUE;
     MainScroll.backgroundColor = [UIColor whiteColor];
-  
-   // [self InitView];
-   // [self GetFeedDataFromServer];
-    
+
     ShowFeedText.text = CustomLocalisedString(@"MainTab_Feed",nil);
     [NearbyButton setTitle:CustomLocalisedString(@"NearBy",nil) forState:UIControlStateNormal];
     [FilterButton setTitle:CustomLocalisedString(@"Filter", nil) forState:UIControlStateNormal];
@@ -199,20 +198,10 @@
         [subview removeFromSuperview];
     }
     
-
-
     //[self GetFeedDataFromServer];
     CheckGoPost = 0;
     heightcheck = 0;
     CountFollowFirstTime = 3;
-    
-    
-    
-    
-    //[self GetExternalIPAddress];
-    
-
-    
 
 
 }
@@ -306,11 +295,6 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-//    if (CheckGoPost == 100) {
-//        CheckGoPost = 0;
-//    }else{
-//      [MainScroll setContentOffset:CGPointZero animated:YES];
-//    }
 
     self.screenName = @"IOS Feed Main View V2";
     
@@ -335,60 +319,6 @@
     //self.title = CustomLocalisedString(@"MainTab_Feed",nil);
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    
-//    if (screenWidth > 320) {
-//        NSLog(@"iphone 6 / iphone 6 plus");
-//        UIImageView *ShowImage_Feed = [[UIImageView alloc]init];
-//        ShowImage_Feed.frame = CGRectMake((screenWidth / 2) - 175 , screenHeight - 50, 50, 50);
-//        ShowImage_Feed.image = [UIImage imageNamed:@"TabBarFeed_on.png"];
-//        [self.tabBarController.view addSubview:ShowImage_Feed];
-//
-//        UIImageView *ShowImage_Explore = [[UIImageView alloc]init];
-//        ShowImage_Explore.frame = CGRectMake((screenWidth / 2) - 100, screenHeight - 50, 50, 50);
-//        ShowImage_Explore.image = [UIImage imageNamed:@"TabBarExplore.png"];
-//        [self.tabBarController.view addSubview:ShowImage_Explore];
-//        
-//        UIImageView *ShowImage = [[UIImageView alloc]init];
-//        ShowImage.frame = CGRectMake((screenWidth / 2) - 25, screenHeight - 50, 50, 50);
-//        ShowImage.image = [UIImage imageNamed:@"TabBarNew.png"];
-//        [self.tabBarController.view addSubview:ShowImage];
-//        
-//        UIImageView *ShowImage_Collecation = [[UIImageView alloc]init];
-//        ShowImage_Collecation.frame = CGRectMake((screenWidth / 2) + 50, screenHeight - 50, 50, 50);
-//        ShowImage_Collecation.image = [UIImage imageNamed:@"TabBarActivity.png"];
-//        [self.tabBarController.view addSubview:ShowImage_Collecation];
-//        
-//        UIImageView *ShowImage_Profile = [[UIImageView alloc]init];
-//        ShowImage_Profile.frame = CGRectMake((screenWidth / 2) + 125, screenHeight - 50, 50, 50);
-//        ShowImage_Profile.image = [UIImage imageNamed:@"TabBarProfile.png"];
-//        [self.tabBarController.view addSubview:ShowImage_Profile];
-//    }else{
-//        NSLog(@"iphone 5 / iphone 5s / iphone 4");
-//        UIImageView *ShowImage_Feed = [[UIImageView alloc]init];
-//        ShowImage_Feed.frame = CGRectMake((screenWidth / 2) - 153 , screenHeight - 50, 50, 50);
-//        ShowImage_Feed.image = [UIImage imageNamed:@"TabBarFeed_on.png"];
-//        [self.tabBarController.view addSubview:ShowImage_Feed];
-//        
-//        UIImageView *ShowImage_Explore = [[UIImageView alloc]init];
-//        ShowImage_Explore.frame = CGRectMake((screenWidth / 2) - 89, screenHeight - 50, 50, 50);
-//        ShowImage_Explore.image = [UIImage imageNamed:@"TabBarExplore.png"];
-//        [self.tabBarController.view addSubview:ShowImage_Explore];
-//        
-//        UIImageView *ShowImage = [[UIImageView alloc]init];
-//        ShowImage.frame = CGRectMake((screenWidth / 2) - 25, screenHeight - 50, 50, 50);
-//        ShowImage.image = [UIImage imageNamed:@"TabBarNew.png"];
-//        [self.tabBarController.view addSubview:ShowImage];
-//        
-//        UIImageView *ShowImage_Collecation = [[UIImageView alloc]init];
-//        ShowImage_Collecation.frame = CGRectMake((screenWidth / 2) + 39, screenHeight - 50, 50, 50);
-//        ShowImage_Collecation.image = [UIImage imageNamed:@"TabBarActivity.png"];
-//        [self.tabBarController.view addSubview:ShowImage_Collecation];
-//        
-//        UIImageView *ShowImage_Profile = [[UIImageView alloc]init];
-//        ShowImage_Profile.frame = CGRectMake((screenWidth / 2) + 106, screenHeight - 50, 50, 50);
-//        ShowImage_Profile.image = [UIImage imageNamed:@"TabBarProfile.png"];
-//        [self.tabBarController.view addSubview:ShowImage_Profile];
-//    }
     
     UIButton *BackToTopButton = [UIButton buttonWithType:UIButtonTypeCustom];
     BackToTopButton.frame = CGRectMake(0, screenHeight - 50, 80, 50);
@@ -428,15 +358,8 @@
     }
     
     if (CheckLoadDone == NO) {
-//        spinnerView = [[LLARingSpinnerView alloc] initWithFrame:CGRectZero];
-//        spinnerView.bounds = CGRectMake(0, 0, 60, 60);
-//        spinnerView.tintColor = [UIColor colorWithRed:51.f/255 green:181.f/255 blue:229.f/255 alpha:1];
-//        spinnerView.center = CGPointMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds));
-//        spinnerView.lineWidth = 1.0f;
-//        [self.view addSubview:spinnerView];
-//        [spinnerView startAnimating];
-        
-        [ShowActivity startAnimating];
+
+      //  [ShowActivity startAnimating];
 
     }
     

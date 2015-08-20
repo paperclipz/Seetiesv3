@@ -17,7 +17,8 @@ typedef enum
     ServerRequestTypeLogin = 1,
     ServerRequestTypeNewsFeed = 2,
     ServerRequestTypeGetLanguage = 3,
-    ServerRequestTypeGetApiVersion = 4
+    ServerRequestTypeGetApiVersion = 4,
+    ServerRequestTypeGetExplore = 5
     
 }ServerRequestType;
 
@@ -35,6 +36,11 @@ extern NSString *const SERVER_PATH_DEV;
 extern NSString *const SERVER_SUBPATH;
 extern NSString *const IP_URL_PATH;
 
+//=============== social media key =================//
+extern NSString *const GOOGLE_API_KEY;
+extern NSString *const GOOGLE_PLACE_AUTOCOMPLETE_API;
+extern NSString *const GOOGLE_PLACE_DETAILS_API;
+
 
 @end
 
@@ -49,6 +55,10 @@ extern NSString *const IP_URL_PATH;
  */
 #define CustomLocalisedString(key, comment) \
 [[LanguageManager sharedLanguageManager] getTranslationForKey:key]
+#define LocalisedString(key) \
+[[LanguageManager sharedLanguageManager] getTranslationForKey:key]
 
+#define ErrorTitle @"Error"
+#define GoodNetwork YES
 #endif
 

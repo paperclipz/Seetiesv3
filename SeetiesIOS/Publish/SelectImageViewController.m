@@ -653,21 +653,6 @@
             
         }
         
-        
-        //                    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-        //
-        //                    [MainScroll setContentSize:CGSizeMake(screenWidth, heightcheck + 50)];
-        //                    // MainScroll.frame = CGRectMake(0, heightcheck, screenWidth, MainScroll.frame.size.height + 20);
-        //                    activityindicator1 = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake((screenWidth/2) - 15, heightcheck + 20, 30, 30)];
-        //                    [activityindicator1 setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        //                    [activityindicator1 setColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f]];
-        //                    [MainScroll addSubview:activityindicator1];
-        //                    [activityindicator1 startAnimating];
-        //                    [MainScroll setContentSize:CGSizeMake(screenWidth, heightcheck + 80)];
-        //                    //[MainScroll setContentSize:CGSizeMake(screenWidth, heightcheck + MainScroll.frame.size.height)];
-        //                    [self GetMoreFeedData];
-        //                    CheckLoad = YES;
-        
     }
     
 }

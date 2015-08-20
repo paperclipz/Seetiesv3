@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "UrlDataClass.h"
-#import "GAITrackedViewController.h"
-@interface NotificationViewController : GAITrackedViewController<UIScrollViewDelegate>{
+
+@interface NotificationViewController : BaseViewController<UIScrollViewDelegate>{
     UrlDataClass *DataUrl;
     NSMutableData *webData;
     

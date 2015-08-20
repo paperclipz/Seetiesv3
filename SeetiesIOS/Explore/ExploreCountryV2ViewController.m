@@ -30,7 +30,7 @@
     
     BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
     SearchButton.frame = CGRectMake(screenWidth - 65 - 15, 20, 65, 44);
-    ShowTItle.frame = CGRectMake(15, 20, screenWidth - 30, 44);
+    lblTitle.frame = CGRectMake(15, 20, screenWidth - 30, 44);
     
     MainScroll.delegate = self;
     UserScroll.delegate = self;
@@ -92,13 +92,7 @@
     
     
     if (CheckLoadDone == NO) {
-//        spinnerView = [[LLARingSpinnerView alloc] initWithFrame:CGRectZero];
-//        spinnerView.bounds = CGRectMake(0, 0, 60, 60);
-//        spinnerView.tintColor = [UIColor colorWithRed:51.f/255 green:181.f/255 blue:229.f/255 alpha:1];
-//        spinnerView.center = CGPointMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds));
-//        spinnerView.lineWidth = 1.0f;
-//        [self.view addSubview:spinnerView];
-//        [spinnerView startAnimating];
+
         [ShowActivity startAnimating];
     }else{
     
@@ -126,17 +120,17 @@
     
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
--(void)GetCountryName:(NSString *)CountryName GetCountryIDN:(NSString *)CountryIDN{
+-(void)initData{
     DataUrl = [[UrlDataClass alloc]init];
-    GetCountryIDN = CountryIDN;
-    GetCountryName = CountryName;
     
-    ShowTItle.text = GetCountryName;
+    
+    lblTitle.text =  self.model.name;
     
    // [self GetDataFromServer];
    // [self InitView];
     [self GetFeaturedUserData];
 }
+
 -(void)InitView{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
@@ -406,7 +400,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
     
-    NSString *FullString = [[NSString alloc]initWithFormat:@"%@/country/%@/users?token=%@&featured=0",DataUrl.Explore_Url,GetCountryIDN,GetExpertToken];
+    NSString *FullString = [[NSString alloc]initWithFormat:@"%@/country/%d/users?token=%@&featured=0",DataUrl.Explore_Url, self.model.countryID,GetExpertToken];
     
     
     NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
@@ -434,7 +428,7 @@
         NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
         NSString *GetSortByString = [defaults objectForKey:@"Filter_Explore_SortBy"];
         NSString *GetCategoryString = [defaults objectForKey:@"Filter_Explore_Category"];
-        NSString *FullString = [[NSString alloc]initWithFormat:@"%@/country/%@/posts?token=%@&featured=0&page=%li",DataUrl.Explore_Url,GetCountryIDN,GetExpertToken,CurrentPage];
+        NSString *FullString = [[NSString alloc]initWithFormat:@"%@/country/%d/posts?token=%@&featured=0&page=%li",DataUrl.Explore_Url, self.model.countryID,GetExpertToken,CurrentPage];
         
         
         if ([GetSortByString length] == 0 || [GetSortByString isEqualToString:@""] || [GetSortByString isEqualToString:@"(null)"] || GetSortByString == nil) {

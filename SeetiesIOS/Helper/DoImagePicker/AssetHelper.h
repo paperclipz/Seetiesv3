@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import <AssetsLibrary/AssetsLibrary.h>
-#import <UIKit/UIKit.h>
+
 #define ASSETHELPER    [AssetHelper sharedAssetHelper]
 
 #define ASSET_PHOTO_THUMBNAIL           0

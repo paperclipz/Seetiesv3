@@ -13,50 +13,28 @@
 #import "FeedV2ViewController.h"
 #import "SelectImageViewController.h"
 #import "NotificationViewController.h"
-#import "ProfileV2ViewController.h"
-@class LeveyTabBarController;
+#import "LeveyTabBarController.h"
+#import "UserProfilePageViewController.h"
+#import "RecommendationViewController.h"
 @interface LandingV2ViewController : GAITrackedViewController <UITabBarControllerDelegate>{
     
-    LeveyTabBarController *leveyTabBarController;
-    
-IBOutlet UIButton *FBLoginButton;
-IBOutlet UIButton *LogInButton;
-IBOutlet UIButton *WhyWeUseFBButton;
-IBOutlet UIButton *SignUpWithEmailButton;
-IBOutlet UIImageView *ShowBackgroundImage;
-IBOutlet UIView *BackgroundView;
-IBOutlet UILabel *MainText;
-IBOutlet UIImageView *MainLogo;
-    
-    IBOutlet UIButton *InstagramButton;
-    IBOutlet UILabel *ShowTnCText;
+    UrlDataClass *DataUrl;
+    NSMutableData *webData;
+    NSString *UserEmail;
+    NSString *UserName;
+    NSString *GetFB_ID;
+    NSString *GetFB_Token;
+    NSString *Name;
+    NSString *Userdob;
+    NSString *UserGender;
+    NSArray *animationImages;
+    int count;
+    NSURLConnection *theConnection_Facebook;
+    NSURLConnection *theConnection_GetLanguages;
+    NSURLConnection *theConnection_GetAllCategory;
 
-UrlDataClass *DataUrl;
-NSMutableData *webData;
 
-NSString *UserEmail;
-NSString *UserName;
-NSString *GetFB_ID;
-NSString *GetFB_Token;
-NSString *Name;
-NSString *Userdob;
-NSString *UserGender;
-
-NSArray *animationImages;
-int count;
-
-NSURLConnection *theConnection_Facebook;
-NSURLConnection *theConnection_GetLanguages;
-NSURLConnection *theConnection_GetAllCategory;
-
-IBOutlet UIActivityIndicatorView *ShowActivity;
 }
-@property (nonatomic, retain) IBOutlet LeveyTabBarController *leveyTabBarController;
--(IBAction)FbButton:(id)sender;
--(IBAction)ExpertLoginButton:(id)sender;
--(IBAction)WhyWeUseFBButton:(id)sender;
--(IBAction)SignUpWithEmailButton:(id)sender;
--(IBAction)InstagramButton:(id)sender;
 
 //@property (nonatomic,strong)
 
@@ -70,19 +48,19 @@ IBOutlet UIActivityIndicatorView *ShowActivity;
 @property(nonatomic,strong)UITabBarController* tabBarController;
 
 @property(nonatomic,strong)FeedV2ViewController* feedV2ViewController;
-@property(nonatomic,strong)UINavigationController* navFeedV2ViewController;
 
 @property(nonatomic,strong)Explore2ViewController* explore2ViewController;
-@property(nonatomic,strong)UINavigationController* navExplore2ViewController;
 
 @property(nonatomic,strong)SelectImageViewController* selectImageViewController;
-@property(nonatomic,strong)UINavigationController* navSelectImageViewController;
+
+@property(nonatomic,strong)RecommendationViewController* recommendationViewController;
 
 @property(nonatomic,strong)NotificationViewController* notificationViewController;
-@property(nonatomic,strong)UINavigationController* navNotificationViewController;
 
-@property(nonatomic,strong)ProfileV2ViewController* profileV2ViewController;
-@property(nonatomic,strong)UINavigationController* navProfileV2ViewController;
+@property(nonatomic,strong)LeveyTabBarController *leveyTabBarController;
+
+@property(nonatomic,strong)UserProfilePageViewController* userProfilePageViewController;
+
 //=========================================== Revamp Changes =======================================//
 
 @end

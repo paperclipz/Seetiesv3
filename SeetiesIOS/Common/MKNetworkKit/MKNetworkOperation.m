@@ -647,6 +647,8 @@ OSStatus extractIdentityAndTrust(CFDataRef inPKCS12Data,
       
       finalURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", aURLString,
                                        [self.fieldsToBePosted urlEncodedKeyValueString]]];
+        
+        SLog(@"%@",finalURL);
     } else {
       finalURL = [NSURL URLWithString:aURLString];
     }

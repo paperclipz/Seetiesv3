@@ -1,0 +1,1 @@
+LPGOOGLEFUNCTIONS_OTHER_LDFLAGS = -framework "AVFoundation" -framework "CoreLocation"

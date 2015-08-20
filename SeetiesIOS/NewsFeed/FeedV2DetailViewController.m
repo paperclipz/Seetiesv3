@@ -34,7 +34,6 @@
     pageControlBeingUsed = NO;
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-
     ShareButton.frame = CGRectMake(screenWidth - 55, 0, 55, 64);
     ShareIcon.frame = CGRectMake(screenWidth - 22 - 15, 31, 22, 22);
     PageControlOn.frame = CGRectMake(15, 300, screenWidth - 30, 37);
@@ -2711,6 +2710,7 @@
     }
     
 }
+
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
   //  NSLog(@"+scrollViewWillBeginDragging");

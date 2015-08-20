@@ -24,8 +24,18 @@
 #import "UIAlertView+Blocks.h"
 #import "DataManager.h"
 #import "TSMessage.h"
-#endif
+#import "BaseViewController.h"
+#import "Foursquare2.h"
+#import "FourSquareModel.h"
+#import "CommonTableViewCell.h"
+#import "IQKeyboardManager.h"
+#import "CommonViewController.h"
 
+#import "LoadingManager.h"
+#import "GoogleMaps.h"
+#import "SearchManager.h"
+#endif
+//===============Model=================
 #define IS_IN_DEBUG_MODE
 
 #ifndef IS_IN_DEBUG_MODE

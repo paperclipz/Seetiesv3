@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecommendationViewController">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hzk-cl-9Nu">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PC7-ms-NL4">
+                            <rect key="frame" x="46" y="29" width="266" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackButton2.png" translatesAutoresizingMaskIntoConstraints="NO" id="z3Z-6h-f4C">
+                            <rect key="frame" x="8" y="29" width="24" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="24" id="HTI-iG-cX6"/>
+                                <constraint firstAttribute="height" constant="20" id="Ime-O7-8nW"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N8o-VV-PJZ">
+                            <rect key="frame" x="0.0" y="0.0" width="44" height="64"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="64" id="GVH-3z-doZ"/>
+                                <constraint firstAttribute="width" constant="44" id="sWa-0I-s6g"/>
+                            </constraints>
+                            <state key="normal">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.14901960784313725" green="0.65098039215686276" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="4UI-DN-uwG"/>
+                        <constraint firstItem="N8o-VV-PJZ" firstAttribute="leading" secondItem="Hzk-cl-9Nu" secondAttribute="leading" id="KWU-cg-YHE"/>
+                        <constraint firstItem="N8o-VV-PJZ" firstAttribute="top" secondItem="Hzk-cl-9Nu" secondAttribute="top" id="Q6L-zM-ZrF"/>
+                        <constraint firstAttribute="trailing" secondItem="PC7-ms-NL4" secondAttribute="trailing" constant="8" id="UHC-wB-uyg"/>
+                        <constraint firstItem="z3Z-6h-f4C" firstAttribute="leading" secondItem="Hzk-cl-9Nu" secondAttribute="leading" constant="8" id="Uyt-xj-9W3"/>
+                        <constraint firstItem="PC7-ms-NL4" firstAttribute="leading" secondItem="z3Z-6h-f4C" secondAttribute="trailing" constant="14" id="t4D-hN-Qwe"/>
+                        <constraint firstAttribute="bottom" secondItem="PC7-ms-NL4" secondAttribute="bottom" constant="14" id="tlQ-0C-2sy"/>
+                        <constraint firstAttribute="bottom" secondItem="z3Z-6h-f4C" secondAttribute="bottom" constant="15" id="xff-J5-K4I"/>
+                        <constraint firstItem="z3Z-6h-f4C" firstAttribute="top" secondItem="N8o-VV-PJZ" secondAttribute="bottom" constant="-35" id="ylB-7j-qSR"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vwh-0b-kuc">
+                    <rect key="frame" x="54" y="117" width="100" height="30"/>
+                    <state key="normal" title="Choose Image">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="btnPickImageClicked:" destination="-1" eventType="touchUpInside" id="T7X-9G-dY7"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Hzk-cl-9Nu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Jqn-GO-nbf"/>
+                <constraint firstAttribute="trailing" secondItem="Hzk-cl-9Nu" secondAttribute="trailing" id="RZP-ha-iAn"/>
+                <constraint firstItem="Hzk-cl-9Nu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="y9Q-nJ-pVC"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="497" y="333"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="BackButton2.png" width="38" height="39"/>
+    </resources>
+</document>

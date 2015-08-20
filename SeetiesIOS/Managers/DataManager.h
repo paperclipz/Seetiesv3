@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "ApiVersionModel.h"
 #import "LanguageModel.h"
+#import "ExploreCountryModel.h"
+#import "SearchModel.h"
 
 @interface DataManager : NSObject
 + (id)Instance;
@@ -16,5 +18,6 @@
 
 @property(nonatomic,strong)ApiVersionModel* apiVersionModel;
 @property(nonatomic,strong)LanguageModels* languageModels;
+@property(nonatomic,strong)ExploreCountryModels* exploreCountryModels;
 
 @end

@@ -11,5 +11,5 @@
 
 @property (weak, nonatomic) IBOutlet UILabel        *lbAlbumName;
 @property (weak, nonatomic) IBOutlet UILabel        *lbCount;
-@property (weak, nonatomic) IBOutlet UIImageView    *ImageShow;
+
 @end

@@ -10,8 +10,8 @@
                 <outlet property="MainScroll" destination="jCT-Na-e6I" id="3og-dM-8Zh"/>
                 <outlet property="SearchButton" destination="L3P-sn-QDr" id="7V3-sI-Nix"/>
                 <outlet property="ShowActivity" destination="yYZ-q8-N9Q" id="Hs7-2F-ThG"/>
-                <outlet property="ShowTItle" destination="C95-bk-5It" id="H8M-Aa-CE1"/>
                 <outlet property="UserScroll" destination="s31-gO-kvr" id="zgB-Be-s1p"/>
+                <outlet property="lblTitle" destination="C95-bk-5It" id="K8g-JS-5qb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

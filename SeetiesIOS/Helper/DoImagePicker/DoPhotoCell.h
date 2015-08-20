@@ -10,7 +10,6 @@
 @interface DoPhotoCell : UICollectionViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView    *ivPhoto;
-@property (weak, nonatomic) IBOutlet UIImageView    *SelectPhoto;
 @property (weak, nonatomic) IBOutlet UIView         *vSelect;
 
 - (void)setSelectMode:(BOOL)bSelect;

@@ -28,12 +28,12 @@
         _lbAlbumName.textColor  = [UIColor whiteColor];
         _lbCount.textColor      = [UIColor whiteColor];
         
-        //self.contentView.backgroundColor = DO_ALBUM_NAME_TEXT_COLOR;
+        self.contentView.backgroundColor = DO_ALBUM_NAME_TEXT_COLOR;
     }
     else
     {
-        _lbAlbumName.textColor  = [UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f blue:51.0f/255.0f alpha:1.0];
-        _lbCount.textColor      = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0];
+        _lbAlbumName.textColor  = DO_ALBUM_NAME_TEXT_COLOR;
+        _lbCount.textColor      = DO_ALBUM_COUNT_TEXT_COLOR;
         
         self.contentView.backgroundColor = [UIColor whiteColor];
     }

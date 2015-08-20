@@ -12,7 +12,7 @@
 #import "LLARingSpinnerView.h"
 #import "GAITrackedViewController.h"
 #import "DoImagePickerController.h"
-@interface ProfileV2ViewController : GAITrackedViewController<UIScrollViewDelegate,UIActionSheetDelegate,DoImagePickerControllerDelegate>{
+@interface ProfileV2ViewController : BaseViewController<UIScrollViewDelegate,UIActionSheetDelegate,DoImagePickerControllerDelegate>{
 
     IBOutlet UIScrollView *MainScroll;
     IBOutlet UIImageView *BackgroundImage;

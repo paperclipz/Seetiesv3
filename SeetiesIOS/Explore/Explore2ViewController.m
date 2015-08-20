@@ -15,6 +15,16 @@
 #import "ExploreCountryV2ViewController.h"
 
 @interface Explore2ViewController ()
+{
+    IBOutlet UIScrollView *ibScrollViewCountry;
+    IBOutlet UIImageView *BarImage;
+    IBOutlet UISearchBar *mySearchBar;
+    IBOutlet UIButton *MainLine;
+    IBOutlet UIActivityIndicatorView *ShowActivity;
+    IBOutlet UITableView *SearchTblView;
+
+}
+@property(nonatomic,strong)ExploreCountryModels* exploreCountryModels;
 
 @end
 
@@ -28,7 +38,14 @@
     
     BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
     
-    CountriesScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight - 114);
+    //CountriesScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight - 114);
+    ibScrollViewCountry.frame = CGRectMake(0, 64, screenWidth, screenHeight - 114);
+    SearchTblView.frame = CGRectMake(0, 64, screenWidth, screenHeight - 114);
+    SearchTblView.hidden = YES;
+    mySearchBar.delegate = self;
+    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setDefaultTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    [mySearchBar setTintColor:[UIColor whiteColor]];
+    [mySearchBar setValue:[UIColor whiteColor] forKeyPath:@"_searchField._placeholderLabel.textColor"];
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
 
 }
@@ -51,111 +68,197 @@
 -(void)viewDidAppear:(BOOL)animated{
     //self.screenName = @"IOS Explore Page";
     //self.title = CustomLocalisedString(@"MainTab_Explore",nil);
+    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
+    UIButton *BackToTopButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    BackToTopButton.frame = CGRectMake(0, screenHeight - 50, 80, 50);
+    [BackToTopButton setTitle:@"" forState:UIControlStateNormal];
+    //   [SelectButton setImage:[UIImage imageNamed:@"SelectPhotoFrame.png"] forState:UIControlStateSelected];
+    [BackToTopButton setBackgroundColor:[UIColor clearColor]];
+    [BackToTopButton addTarget:self action:@selector(BackToTopButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.tabBarController.view addSubview:BackToTopButton];
+    
+    UIButton *SelectButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    SelectButton.frame = CGRectMake((screenWidth/2) - 40, screenHeight - 50, 80, 50);
+    [SelectButton setTitle:@"" forState:UIControlStateNormal];
+    [SelectButton setBackgroundColor:[UIColor clearColor]];
+    [SelectButton addTarget:self action:@selector(ChangeViewButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.tabBarController.view addSubview:SelectButton];
 }
 -(IBAction)BackToTopButton:(id)sender{
     self.tabBarController.selectedIndex = 0;
 }
+-(IBAction)ChangeViewButton:(id)sender{
+    NSLog(@"ChangeViewButton Click");
+    DoImagePickerController *cont = [[DoImagePickerController alloc] initWithNibName:@"DoImagePickerController" bundle:nil];
+    cont.delegate = self;
+    cont.nResultType = DO_PICKER_RESULT_ASSET;//DO_PICKER_RESULT_UIIMAGE
+    cont.nMaxCount = 10;
+    cont.nColumnCount = 3;
+    
+    [self presentViewController:cont animated:YES completion:nil];
+}
+#pragma mark - DoImagePickerControllerDelegate
+- (void)didCancelDoImagePickerController
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)didSelectPhotosFromDoImagePickerController:(DoImagePickerController *)picker result:(NSArray *)aSelected
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [mySearchBar setShowsCancelButton:NO animated:YES];
+    [mySearchBar resignFirstResponder];
+    SearchTblView.hidden = YES;
+}
 -(void)GetExploreDataFromServer{
-    [ShowActivity startAnimating];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
     
-    NSString *FullString = [[NSString alloc]initWithFormat:@"%@?token=%@",[[UrlDataClass sharedManager] Explore_Url],GetExpertToken];
-    
-    
-    NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
-    NSLog(@"check postBack URL ==== %@",postBack);
-    //   NSURL *url = [NSURL URLWithString:[postBack stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSURL *url = [NSURL URLWithString:postBack];
-    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
-    NSLog(@"theRequest === %@",theRequest);
-    [theRequest addValue:@"" forHTTPHeaderField:@"Accept-Encoding"];
-    theConnection_All = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
-    [theConnection_All start];
-    
-    
-    if( theConnection_All ){
-        webData = [NSMutableData data];
-    }
-}
--(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-    [webData setLength: 0];
-    
-}
--(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    [webData appendData:data];
-}
--(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    [ShowActivity stopAnimating];
-    //    [spinnerView stopAnimating];
-    //    [spinnerView removeFromSuperview];
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:CustomLocalisedString(@"ErrorConnection", nil) message:CustomLocalisedString(@"NoData", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-    
-    [alert show];
-}
--(void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    if (connection == theConnection_All) {
-        NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
-       // NSLog(@"Explore return get data to server ===== %@",GetData);
-        
-        NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
-        NSError *myError = nil;
-        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
-       // NSLog(@"Explore Json = %@",res);
-        
-        if ([res count] == 0) {
-        //    NSLog(@"Server Error.");
-            UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"Server Error." message:GetData delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            ShowAlert.tag = 1000;
-            [ShowAlert show];
-        }else{
-        //    NSLog(@"Server Work.");
+    NSDictionary* dict = @{@"token":GetExpertToken};
+    [[ConnectionManager Instance] requestServerwithAppendString:dict requestType:ServerRequestTypeGetExplore completionHandler:^(id object) {
+
+        self.exploreCountryModels  = [[ConnectionManager dataManager] exploreCountryModels];
+        if (!self.exploreCountryModels.error) {
             
-            NSString *ErrorString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"error"]];
-        //    NSLog(@"ErrorString is %@",ErrorString);
-            NSString *MessageString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"message"]];
-            NSLog(@"MessageString is %@",MessageString);
-            
-            if ([ErrorString isEqualToString:@"0"] || [ErrorString isEqualToString:@"401"]) {
-                UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:CustomLocalisedString(@"SomethingError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                ShowAlert.tag = 1000;
-                [ShowAlert show];
-                // send user back login screen.
-            }else{
-                
-                NSArray *GetAllData = (NSArray *)[res valueForKey:@"countries"];
-                
-                CountryIDArray = [[NSMutableArray alloc]initWithCapacity:[GetAllData count]];
-                NameArray = [[NSMutableArray alloc]initWithCapacity:[GetAllData count]];
-                SeqNoArray = [[NSMutableArray alloc]initWithCapacity:[GetAllData count]];
-                ThumbnailArray = [[NSMutableArray alloc]initWithCapacity:[GetAllData count]];
-                for (NSDictionary * dict in GetAllData){
-                    NSString *country_id = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"country_id"]];
-                    [CountryIDArray addObject:country_id];
-                    NSString *name = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"name"]];
-                    [NameArray addObject:name];
-                    NSString *seq_no = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"seq_no"]];
-                    [SeqNoArray addObject:seq_no];
-                    NSString *thumbnail = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"thumbnail"]];
-                    [ThumbnailArray addObject:thumbnail];
-                }
-                //NSLog(@"NameArray is %@",NameArray);
-                
-                [self InitCountriesView];
-            }
+            [self InitCountriesView];
+
         }
-    }}
--(void)InitCountriesView{
-    [CountriesScroll setScrollEnabled:YES];
-    CountriesScroll.backgroundColor = [UIColor whiteColor];
+        else{
+            [TSMessage showNotificationWithTitle:ErrorTitle subtitle:self.exploreCountryModels.message type:TSMessageNotificationTypeError];
+        };
+    } errorHandler:nil];
     
-    //CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+}
+
+//-(void)connectionDidFinishLoading:(NSURLConnection *)connection
+//{
+//<<<<<<< HEAD
+//    if (connection == theConnection_All) {
+//        NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+//       // NSLog(@"Explore return get data to server ===== %@",GetData);
+//=======
+//    
+//    if(connection == theConnection_GetSearchString){
+//        NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+//        NSLog(@"get data to server   ==== %@",GetData);
+//>>>>>>> c661f79624571bbe59debe72589fae3ac992fd4a
+//        
+//        NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
+//        NSError *myError = nil;
+//        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
+//<<<<<<< HEAD
+//       // NSLog(@"Explore Json = %@",res);
+//        
+//        if ([res count] == 0) {
+//        //    NSLog(@"Server Error.");
+//            UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"Server Error." message:GetData delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//            ShowAlert.tag = 1000;
+//            [ShowAlert show];
+//        }else{
+//        //    NSLog(@"Server Work.");
+//            
+//            NSString *ErrorString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"error"]];
+//        //    NSLog(@"ErrorString is %@",ErrorString);
+//            NSString *MessageString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"message"]];
+//            NSLog(@"MessageString is %@",MessageString);
+//            
+//            if ([ErrorString isEqualToString:@"0"] || [ErrorString isEqualToString:@"401"]) {
+//                UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:CustomLocalisedString(@"SomethingError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//                ShowAlert.tag = 1000;
+//                [ShowAlert show];
+//                // send user back login screen.
+//            }else{
+//                
+//                NSArray *GetAllData = (NSArray *)[res valueForKey:@"countries"];
+//                
+//                CountryIDArray = [[NSMutableArray alloc]initWithCapacity:[GetAllData count]];
+//                NameArray = [[NSMutableArray alloc]initWithCapacity:[GetAllData count]];
+//                SeqNoArray = [[NSMutableArray alloc]initWithCapacity:[GetAllData count]];
+//                ThumbnailArray = [[NSMutableArray alloc]initWithCapacity:[GetAllData count]];
+//                for (NSDictionary * dict in GetAllData){
+//                    NSString *country_id = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"country_id"]];
+//                    [CountryIDArray addObject:country_id];
+//                    NSString *name = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"name"]];
+//                    [NameArray addObject:name];
+//                    NSString *seq_no = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"seq_no"]];
+//                    [SeqNoArray addObject:seq_no];
+//                    NSString *thumbnail = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"thumbnail"]];
+//                    [ThumbnailArray addObject:thumbnail];
+//                }
+//                //NSLog(@"NameArray is %@",NameArray);
+//                
+//                [self InitCountriesView];
+//            }
+//        }
+//    }}
+//=======
+//        
+//        NSArray *GetStringData = (NSArray *)[res valueForKey:@"result"];
+//        NSLog(@"GetStringData is %@",GetStringData);
+//        
+//        NSArray *GetcomplexData = (NSArray *)[res valueForKey:@"complex"];
+//        NSLog(@"GetcomplexData is %@",GetcomplexData);
+//        
+//        GetReturnSearchTextArray = [[NSMutableArray alloc]init];
+//        
+//        for (NSDictionary * dict in GetcomplexData){
+//            NSString *tag = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"tag"]];
+//            [GetReturnSearchTextArray addObject:tag];
+//        }
+//        
+//        NSDictionary *locationData = [GetcomplexData valueForKey:@"location"];
+//        NSLog(@"locationData is %@",locationData);
+//        GetReturnSearchAddressArray = [[NSMutableArray alloc]init];
+//        GetReturnSearchLatArray = [[NSMutableArray alloc]init];
+//        GetReturnSearchLngArray = [[NSMutableArray alloc]init];
+//        for (NSDictionary * dict in locationData) {
+//            NSString *formatted_address = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"formatted_address"]];
+//            //NSLog(@"formatted_address is %@",formatted_address);
+//            if ([formatted_address isEqualToString:@"<null>"] || formatted_address == nil) {
+//                [GetReturnSearchAddressArray addObject:@""];
+//            }else{
+//            [GetReturnSearchAddressArray addObject:formatted_address];
+//            }
+//            
+//            NSString *lat = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"lat"]];
+//            //NSLog(@"formatted_address is %@",formatted_address);
+//            if ([lat isEqualToString:@"<null>"] || lat == nil) {
+//                [GetReturnSearchLatArray addObject:@""];
+//            }else{
+//                [GetReturnSearchLatArray addObject:lat];
+//            }
+//            
+//            NSString *lng = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"lng"]];
+//            //NSLog(@"formatted_address is %@",formatted_address);
+//            if ([lng isEqualToString:@"<null>"] || lng == nil) {
+//                [GetReturnSearchLngArray addObject:@""];
+//            }else{
+//                [GetReturnSearchLngArray addObject:lng];
+//            }
+//            
+//        }
+//        NSLog(@"GetReturnSearchTextArray is %@",GetReturnSearchTextArray);
+//        NSLog(@"GetReturnSearchAddressArray is %@",GetReturnSearchAddressArray);
+////        [LocalSuggestionTextArray removeAllObjects];
+////
+////        LocalSuggestionTextArray = [[NSMutableArray alloc]initWithArray:GetStringData];
+////        NSLog(@"LocalSuggestionTextArray is %@",LocalSuggestionTextArray);
+////        [SuggestionTblView reloadData];
+//        
+//        CheckTblview = 1;
+//        [SearchTblView reloadData];
+//    }
+//}
+//>>>>>>> c661f79624571bbe59debe72589fae3ac992fd4a
+-(void)InitCountriesView{
+    [ibScrollViewCountry setScrollEnabled:YES];
+    ibScrollViewCountry.backgroundColor = [UIColor whiteColor];
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
     int GetHeight = 10;
@@ -174,8 +277,8 @@
         imageView.clipsToBounds = YES;
         imageView.tag = 99;
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:imageView];
-        NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[ThumbnailArray objectAtIndex:i]];
-        //        //    //  NSLog(@"FullImagesURL ====== %@",FullImagesURL);
+        NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[self.exploreCountryModels.countries[i] thumbnail]];
+
         NSURL *url = [NSURL URLWithString:FullImagesURL];
         imageView.imageURL = url;
         
@@ -192,13 +295,13 @@
         
         UILabel *ShowUserName = [[UILabel alloc]init];
         ShowUserName.frame = CGRectMake(10+(i % 2)*SpaceWidth, ((FinalWidth/2) - 20 + GetHeight) + (SpaceWidth * (CGFloat)(i /2)), FinalWidth, 40);
-        NSString *uppercase = [[NameArray objectAtIndex:i] uppercaseString];
+        NSString *uppercase = [[self.exploreCountryModels.countries[i] name] uppercaseString];
         ShowUserName.text = uppercase;
         ShowUserName.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
         ShowUserName.textColor = [UIColor whiteColor];
         ShowUserName.backgroundColor = [UIColor clearColor];
         ShowUserName.textAlignment = NSTextAlignmentCenter;
-        [CountriesScroll addSubview:ShowUserName];
+        [ibScrollViewCountry addSubview:ShowUserName];
         
         UIButton *Line02 = [UIButton buttonWithType:UIButtonTypeCustom];
         [Line02 setTitle:@"" forState:UIControlStateNormal];
@@ -212,14 +315,12 @@
         ClickButton.tag = i;
         [ClickButton addTarget:self action:@selector(ClickButton:) forControlEvents:UIControlEventTouchUpInside];
         
-        [CountriesScroll addSubview:imageView];
-        [CountriesScroll addSubview:BackgroundButton];
-        [CountriesScroll addSubview:Line01];
-        [CountriesScroll addSubview:ShowUserName];
-        [CountriesScroll addSubview:Line02];
-        [CountriesScroll addSubview:ClickButton];
-        
-        
+        [ibScrollViewCountry addSubview:imageView];
+        [ibScrollViewCountry addSubview:BackgroundButton];
+        [ibScrollViewCountry addSubview:Line01];
+        [ibScrollViewCountry addSubview:ShowUserName];
+        [ibScrollViewCountry addSubview:Line02];
+        [ibScrollViewCountry addSubview:ClickButton];
         
         heightGet = GetHeight + (SpaceWidth * (CGFloat)(i /2)) + SpaceWidth;
     }
@@ -230,7 +331,7 @@
     imageView.clipsToBounds = YES;
     imageView.tag = 99;
     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:imageView];
-    NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[ThumbnailArray lastObject]];
+    NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[[self.exploreCountryModels.countries lastObject] thumbnail]];
     NSURL *url = [NSURL URLWithString:FullImagesURL];
     imageView.imageURL = url;
     
@@ -247,13 +348,13 @@
     
     UILabel *ShowUserName = [[UILabel alloc]init];
     ShowUserName.frame = CGRectMake(15, heightGet + 50, screenWidth - 30, 40);
-    NSString *uppercase = [[NameArray lastObject] uppercaseString];
+    NSString *uppercase = [[[self.exploreCountryModels.countries lastObject] name] uppercaseString];
     ShowUserName.text = uppercase;
     ShowUserName.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
     ShowUserName.textColor = [UIColor whiteColor];
     ShowUserName.backgroundColor = [UIColor clearColor];
     ShowUserName.textAlignment = NSTextAlignmentCenter;
-    [CountriesScroll addSubview:ShowUserName];
+    [ibScrollViewCountry addSubview:ShowUserName];
     
     UIButton *Line02 = [UIButton buttonWithType:UIButtonTypeCustom];
     [Line02 setTitle:@"" forState:UIControlStateNormal];
@@ -266,12 +367,12 @@
     [ClickButton setBackgroundColor:[UIColor clearColor]];
     [ClickButton addTarget:self action:@selector(ClickButton2:) forControlEvents:UIControlEventTouchUpInside];
     
-    [CountriesScroll addSubview:imageView];
-    [CountriesScroll addSubview:BackgroundButton];
-    [CountriesScroll addSubview:Line01];
-    [CountriesScroll addSubview:ShowUserName];
-    [CountriesScroll addSubview:Line02];
-    [CountriesScroll addSubview:ClickButton];
+    [ibScrollViewCountry addSubview:imageView];
+    [ibScrollViewCountry addSubview:BackgroundButton];
+    [ibScrollViewCountry addSubview:Line01];
+    [ibScrollViewCountry addSubview:ShowUserName];
+    [ibScrollViewCountry addSubview:Line02];
+    [ibScrollViewCountry addSubview:ClickButton];
     
     heightGet += 160;
     
@@ -282,7 +383,7 @@
     UIImageView *FestivalImage = [[UIImageView alloc]init];
     FestivalImage.image = TempImage;
     FestivalImage.frame = CGRectMake(10, heightGet, screenWidth - 20, TempImage.size.height);
-    [CountriesScroll addSubview:FestivalImage];
+    [ibScrollViewCountry addSubview:FestivalImage];
     
     UILabel *ShowBigText = [[UILabel alloc]init];
     ShowBigText.frame = CGRectMake(15, heightGet + 20, screenWidth - 30, 72);
@@ -290,7 +391,7 @@
     ShowBigText.textAlignment = NSTextAlignmentCenter;
     ShowBigText.textColor = [UIColor whiteColor];
     ShowBigText.font = [UIFont fontWithName:@"AdrianeText-BoldItalic" size:36];
-    [CountriesScroll addSubview:ShowBigText];
+    [ibScrollViewCountry addSubview:ShowBigText];
     
     UILabel *ShowSubText = [[UILabel alloc]init];
     ShowSubText.frame = CGRectMake(15, heightGet + 75, screenWidth - 30, 40);
@@ -298,7 +399,7 @@
     ShowSubText.textAlignment = NSTextAlignmentCenter;
     ShowSubText.textColor = [UIColor whiteColor];
     ShowSubText.font = [UIFont fontWithName:@"AdrianeText-BoldItalic" size:18];
-    [CountriesScroll addSubview:ShowSubText];
+    [ibScrollViewCountry addSubview:ShowSubText];
     
     
     UIButton *FestivalButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -309,44 +410,40 @@
     [FestivalButton setBackgroundColor:[UIColor clearColor]];
     [FestivalButton addTarget:self action:@selector(LetsgoButton:) forControlEvents:UIControlEventTouchUpInside];
     [FestivalButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15]];
-    [CountriesScroll addSubview:FestivalButton];
+    [ibScrollViewCountry addSubview:FestivalButton];
     
     
-    [CountriesScroll setContentSize:CGSizeMake(320, heightGet + TempImage.size.height + 10)];
+    [ibScrollViewCountry setContentSize:CGSizeMake(320, heightGet + TempImage.size.height + 10)];
     
     [ShowActivity stopAnimating];
 }
+
+//button trigger from pressing country
 -(IBAction)ClickButton:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);
     
-    ExploreCountryV2ViewController *ExploreCountryView = [[ExploreCountryV2ViewController alloc]init];
-//    CATransition *transition = [CATransition animation];
-//    transition.duration = 0.2;
-//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//    transition.type = kCATransitionPush;
-//    transition.subtype = kCATransitionFromRight;
-//    [self.view.window.layer addAnimation:transition forKey:nil];
-//    [self presentViewController:ExploreCountryView animated:NO completion:nil];
-//    [ExploreCountryView GetCountryName:[NameArray objectAtIndex:getbuttonIDN] GetCountryIDN:[CountryIDArray objectAtIndex:getbuttonIDN]];
-    
-    [self.navigationController pushViewController:ExploreCountryView animated:YES];
-    [ExploreCountryView GetCountryName:[NameArray objectAtIndex:getbuttonIDN] GetCountryIDN:[CountryIDArray objectAtIndex:getbuttonIDN]];
-}
+    ExploreCountryV2ViewController *exploreCountryViewCOntroller = [[ExploreCountryV2ViewController alloc]init];
+    exploreCountryViewCOntroller.model = self.exploreCountryModels.countries[getbuttonIDN];
+
+    [self.navigationController pushViewController:exploreCountryViewCOntroller animated:YES];
+    [exploreCountryViewCOntroller initData];
+  }
+
+//rest of the world click
 -(IBAction)ClickButton2:(id)sender{
-    ExploreCountryV2ViewController *ExploreCountryView = [[ExploreCountryV2ViewController alloc]init];
-//    CATransition *transition = [CATransition animation];
-//    transition.duration = 0.2;
-//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//    transition.type = kCATransitionPush;
-//    transition.subtype = kCATransitionFromRight;
-//    [self.view.window.layer addAnimation:transition forKey:nil];
-//    [self presentViewController:ExploreCountryView animated:NO completion:nil];
-//    [ExploreCountryView GetCountryName:[NameArray lastObject] GetCountryIDN:[CountryIDArray lastObject]];
+    ExploreCountryV2ViewController *exploreCountryViewCOntroller = [[ExploreCountryV2ViewController alloc]init];
     
-    [self.navigationController pushViewController:ExploreCountryView animated:YES];
-    [ExploreCountryView GetCountryName:[NameArray lastObject] GetCountryIDN:[CountryIDArray lastObject]];
+    exploreCountryViewCOntroller.model = [self.exploreCountryModels.countries lastObject];
+    
+    
+    [self.navigationController pushViewController:exploreCountryViewCOntroller animated:YES];
+    [exploreCountryViewCOntroller initData];
+    
+
 }
+
+//festival letes go clicked
 -(IBAction)LetsgoButton:(id)sender{
     OpenWebViewController *OpenWebView = [[OpenWebViewController alloc]init];
     CATransition *transition = [CATransition animation];
@@ -358,4 +455,92 @@
     [self presentViewController:OpenWebView animated:NO completion:nil];
     [OpenWebView GetTitleString:@"Festival"];
 }
+
+#pragma mark - UITableView Delegate
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+
+    
+    if (CheckTblview == 0) {
+        return @"Search History";
+    }else{
+        return @"Suggestions";
+
+    }
+    
+    return 0;
+    
+    
+}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+    
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (CheckTblview == 0) {
+        return [LocalSearchTextArray count];
+    }else{
+        return [GetReturnSearchTextArray count];
+        
+    }
+    return 0;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *simpleTableIdentifier = @"SimpleTableItem";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+        
+            UILabel *ShowName = [[UILabel alloc]init];
+            ShowName.frame = CGRectMake(15, 0, 290, 50);
+            ShowName.textColor = [UIColor darkGrayColor];
+            ShowName.tag = 200;
+            ShowName.backgroundColor = [UIColor clearColor];
+            ShowName.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:15];
+            ShowName.numberOfLines = 5;
+                
+            [cell addSubview:ShowName];
+        
+    }
+    [cell setBackgroundColor:[UIColor clearColor]];
+    
+    if (CheckTblview == 0) {
+        UILabel *ShowName = (UILabel *)[cell viewWithTag:200];
+        ShowName.text = [LocalSearchTextArray objectAtIndex:indexPath.row];
+    }else{
+        UILabel *ShowName = (UILabel *)[cell viewWithTag:200];
+        NSString *GetTempAddress = [[NSString alloc]initWithFormat:@"%@",[GetReturnSearchAddressArray objectAtIndex:indexPath.row]];
+        if ([GetTempAddress isEqualToString:@""]) {
+            ShowName.text = [GetReturnSearchTextArray objectAtIndex:indexPath.row];
+        }else{
+            
+            NSString *TempString = [[NSString alloc]initWithFormat:@"%@ > %@",[GetReturnSearchTextArray objectAtIndex:indexPath.row],GetTempAddress];
+            
+            ShowName.text = TempString;
+        }
+        
+        
+        
+    }
+    
+
+    
+    
+    return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"Click...");
+    SearchResultV2ViewController *SearchResultView = [[SearchResultV2ViewController alloc]init];
+    [self presentViewController:SearchResultView animated:YES completion:nil];
+}
+
+#pragma mark - Declaration
+
+#pragma mark - Request Server 
+
 @end
