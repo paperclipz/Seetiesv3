@@ -200,10 +200,29 @@ typedef enum
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.addNewPlaceViewController initData:self.searchModel.predictions[indexPath.row]];
-    [self.navigationController pushViewController:self.addNewPlaceViewController animated:YES];
+    [self showAddNewPlaceView:indexPath];
 }
 
+-(void)showAddNewPlaceView:(NSIndexPath*)indexPath
+{
+     [self.addNewPlaceViewController initData:self.searchModel.predictions[indexPath.row]];
+    [self.navigationController pushViewController:self.addNewPlaceViewController animated:YES];
+    
+   // [self presentViewController:self.addNewPlaceViewController animated:YES completion:nil];
+
+}
+
+-(UINavigationController*)navAddNewPlaceViewController
+{
+
+    if(!_navAddNewPlaceViewController)
+    {
+        _navAddNewPlaceViewController = [[UINavigationController alloc] initWithRootViewController:self.addNewPlaceViewController];
+        
+    }
+    
+    return _navAddNewPlaceViewController;
+}
 #pragma mark - UITextfield Delegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

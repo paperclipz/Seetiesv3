@@ -285,6 +285,7 @@
 }
 
 #pragma mark - UICollectionViewDelegates for photos
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return [ASSETHELPER getPhotoCountOfCurrentGroup];
@@ -341,12 +342,19 @@
     }
 }
 
+#define CellSpacing 8
+#define ViewLeftiRighPadding 10
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (_nColumnCount == 2)
         return CGSizeMake(158, 158);
     else if (_nColumnCount == 3)
-        return CGSizeMake(104, 104);
+    {
+        CGRect frame = [Utils getDeviceScreenSize];
+        float temp = (frame.size.width-CellSpacing-ViewLeftiRighPadding)/3;
+        CGSize cellSize = CGSizeMake(temp, temp);
+        return cellSize;
+    }
     else if (_nColumnCount == 4)
         return CGSizeMake(77, 77);
 
