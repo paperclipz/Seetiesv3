@@ -29,7 +29,7 @@
 @property(nonatomic,strong)NSArray* terms;
 @property(nonatomic,strong)NSString* place_id;
 @property(nonatomic,strong)NSString* reference;
-@property(nonatomic,strong)NSString<Optional>* latitude;
-@property(nonatomic,strong)NSString<Optional>* longitude;
+@property(nonatomic,strong)NSNumber<Optional>* latitude;
+@property(nonatomic,strong)NSNumber<Optional>* longitude;
 
 @end
