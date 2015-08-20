@@ -14,6 +14,7 @@
 @interface STSearchViewController : CommonViewController<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,LPGoogleFunctionsDelegate>
 -(void)initTableViewDelegate:(id)delegate;
 -(void)initWithLocation:(CLLocation*)location;
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 
 @property(nonatomic,strong)AddNewPlaceViewController* addNewPlaceViewController;
 @end

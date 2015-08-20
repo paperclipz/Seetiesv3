@@ -39,24 +39,25 @@ typedef enum
     
     SLog(@"btnBackClicked");
     [self.navigationController popViewControllerAnimated:YES];
-    //  [self dismissViewControllerAnimated:YES completion:nil];
+      [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
-    // Do any additional setup after loading the view from its nib.
     
     
     
 }
-
 
 -(void)initSelfView
 {
     [self initTableViewDelegate:self];
     self.txtSearch.delegate = self;
     self.txtSearch.keyboardType = UIKeyboardTypeWebSearch;
+    [self.txtSearch addTarget:self
+                       action:@selector(textFieldDidChange:)
+             forControlEvents:UIControlEventEditingChanged];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -132,7 +133,7 @@ typedef enum
 {
     self.type = SearchTypeGoogle;
 
-    [self.sManager getSearchLocationFromGoogle:self.location input:@"sea pa" completionBlock:^(id object) {
+    [self.sManager getSearchLocationFromGoogle:self.location input:self.txtSearch.text completionBlock:^(id object) {
         
         SearchModel* model = [[SearchModel alloc] initWithDictionary:object error:nil];
         self.searchModel = model;
@@ -209,6 +210,13 @@ typedef enum
     
     
     return YES;
+}
+
+- (void)textFieldDidChange:(UITextField *)textField {
+    
+    
+    [self getGoogleSearchPlaces];
+    
 }
 
 

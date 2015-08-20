@@ -45,7 +45,10 @@
     [self.manager startUpdatingLocationWithUpdateBlock:^(CLLocationManager *manager, CLLocation *location, NSError *error, BOOL *stopUpdating) {
         NSLog(@"Our new location: %@", location);
         
-        if(location)
+        if (error && !location) {
+            SLog(@"error : %@",error.description);
+        }
+        else 
         {
             self.location = location;
             *stopUpdating = YES;
