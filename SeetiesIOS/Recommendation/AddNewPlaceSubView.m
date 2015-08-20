@@ -1,14 +1,14 @@
 //
-//  AddNewPlaceView.m
+//  AddNewPlaceSubView.m
 //  SeetiesIOS
 //
 //  Created by Evan Beh on 8/20/15.
 //  Copyright (c) 2015 Stylar Network. All rights reserved.
 //
 
-#import "AddNewPlaceView.h"
+#import "AddNewPlaceSubView.h"
 
-@implementation AddNewPlaceView
+@implementation AddNewPlaceSubView
 
 /*
 // Only override drawRect: if you perform custom drawing.

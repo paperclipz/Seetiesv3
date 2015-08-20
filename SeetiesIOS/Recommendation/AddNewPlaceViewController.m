@@ -11,6 +11,7 @@
 @interface AddNewPlaceViewController ()
 @property (weak, nonatomic) IBOutlet MKMapView *ibMapView;
 @property (strong, nonatomic)SearchLocationModel* model;
+@property (weak, nonatomic) IBOutlet UIScrollView *ibScrollView;
 
 @end
 
@@ -19,10 +20,13 @@
 - (IBAction)btnBackClicked:(id)sender {
     
     [self.navigationController popViewControllerAnimated:YES];
+    
+  //  [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self initSelfView];
     [self requestForGoogleMapDetails];
     // Do any additional setup after loading the view from its nib.
 }
@@ -30,6 +34,15 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)initSelfView
+{
+    self.addNewPlaceSubView = [AddNewPlaceSubView initializeCustomView];
+    [self.ibScrollView addSubview:self.addNewPlaceSubView];
+  //  self.addNewPlaceSubView.frame = CGRectMake(0, 0, self.ibScrollView.frame.size.width, self.addNewPlaceSubView.frame.size.height);
+    
+    self.ibScrollView.contentSize = self.addNewPlaceSubView.frame.size;
 }
 
 -(void)initData:(SearchLocationModel*)model
@@ -40,12 +53,12 @@
 -(void)requestForGoogleMapDetails
 {
 
-    NSDictionary* dict = @{@"placeid":@"ChIJ4SAXHPxLzDERqeP4uMrxFXc",@"key":GOOGLE_API_KEY};
+    NSDictionary* dict = @{@"placeid":self.model.place_id,@"key":GOOGLE_API_KEY};
     [[ConnectionManager Instance] requestServerwithAppendString:GOOGLE_PLACE_DETAILS_API param:dict completionHandler:^(id object) {
      
         NSDictionary* dict = object;
         self.model.latitude = dict[@"result"][@"geometry"][@"location"][@"lat"];
-        self.model.longitude = dict[@"result"][@"geometry"][@"location"][@"lat"];
+        self.model.longitude = dict[@"result"][@"geometry"][@"location"][@"lng"];
 
         [self refreshMapView];
        // SLog(@"%@",object);

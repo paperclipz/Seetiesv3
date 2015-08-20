@@ -23,4 +23,10 @@
     
     return isSuccessLogin;
 }
+
++(CGRect)getDeviceScreenSize
+{
+    return [[UIScreen mainScreen] bounds];
+}
+
 @end

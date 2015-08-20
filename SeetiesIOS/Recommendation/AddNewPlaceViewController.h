@@ -7,8 +7,10 @@
 //
 
 #import "CommonViewController.h"
+#import "AddNewPlaceSubView.h"
 
 @interface AddNewPlaceViewController : CommonViewController<MKMapViewDelegate>
 -(void)initData:(SearchLocationModel*)model;
 
+@property(nonatomic,strong)AddNewPlaceSubView* addNewPlaceSubView;
 @end

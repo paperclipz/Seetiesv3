@@ -17,4 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 
 @property(nonatomic,strong)AddNewPlaceViewController* addNewPlaceViewController;
+@property(nonatomic,strong)UINavigationController* navAddNewPlaceViewController;
+
+
 @end

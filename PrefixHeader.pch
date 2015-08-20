@@ -30,6 +30,7 @@
 #import "CommonTableViewCell.h"
 #import "IQKeyboardManager.h"
 #import "CommonViewController.h"
+#import "CommonView.h"
 
 #import "LoadingManager.h"
 #import "GoogleMaps.h"

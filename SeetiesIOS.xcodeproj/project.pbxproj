@@ -31,6 +31,9 @@
 		8A3757B71B847C7A009DB7D4 /* AddNewPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3757B51B847C7A009DB7D4 /* AddNewPlaceViewController.m */; };
 		8A3757B81B847C7A009DB7D4 /* AddNewPlaceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3757B61B847C7A009DB7D4 /* AddNewPlaceViewController.xib */; };
 		8A3757C61B8583ED009DB7D4 /* UIFont+SystemFontOverride.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3757C51B8583ED009DB7D4 /* UIFont+SystemFontOverride.m */; };
+		8A3757DB1B85B606009DB7D4 /* AddNewPlaceSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3757DA1B85B606009DB7D4 /* AddNewPlaceSubView.m */; };
+		8A3757DD1B85B610009DB7D4 /* AddNewPlaceSubView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3757DC1B85B610009DB7D4 /* AddNewPlaceSubView.xib */; };
+		8A3757E01B85B65A009DB7D4 /* CommonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3757DF1B85B65A009DB7D4 /* CommonView.m */; };
 		8A7420E01B82F67F005DA654 /* UIImage+KVNEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7420CC1B82F67F005DA654 /* UIImage+KVNEmpty.m */; };
 		8A7420E11B82F67F005DA654 /* UIImage+KVNImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7420CE1B82F67F005DA654 /* UIImage+KVNImageEffects.m */; };
 		8A7420E21B82F67F005DA654 /* KVNProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7420D11B82F67F005DA654 /* KVNProgress.m */; };
@@ -930,6 +933,11 @@
 		8A3757B61B847C7A009DB7D4 /* AddNewPlaceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddNewPlaceViewController.xib; sourceTree = "<group>"; };
 		8A3757C41B8583ED009DB7D4 /* UIFont+SystemFontOverride.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+SystemFontOverride.h"; sourceTree = "<group>"; };
 		8A3757C51B8583ED009DB7D4 /* UIFont+SystemFontOverride.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+SystemFontOverride.m"; sourceTree = "<group>"; };
+		8A3757D91B85B606009DB7D4 /* AddNewPlaceSubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewPlaceSubView.h; sourceTree = "<group>"; };
+		8A3757DA1B85B606009DB7D4 /* AddNewPlaceSubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewPlaceSubView.m; sourceTree = "<group>"; };
+		8A3757DC1B85B610009DB7D4 /* AddNewPlaceSubView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddNewPlaceSubView.xib; sourceTree = "<group>"; };
+		8A3757DE1B85B65A009DB7D4 /* CommonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonView.h; sourceTree = "<group>"; };
+		8A3757DF1B85B65A009DB7D4 /* CommonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonView.m; sourceTree = "<group>"; };
 		8A7420CB1B82F67F005DA654 /* UIImage+KVNEmpty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+KVNEmpty.h"; sourceTree = "<group>"; };
 		8A7420CC1B82F67F005DA654 /* UIImage+KVNEmpty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+KVNEmpty.m"; sourceTree = "<group>"; };
 		8A7420CD1B82F67F005DA654 /* UIImage+KVNImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+KVNImageEffects.h"; sourceTree = "<group>"; };
@@ -2068,6 +2076,9 @@
 				8A2E2CE81B81E15B0010895E /* STTableViewCell.h */,
 				8A2E2CE91B81E15B0010895E /* STTableViewCell.m */,
 				8A2E2CEA1B81E15B0010895E /* STTableViewCell.xib */,
+				8A3757D91B85B606009DB7D4 /* AddNewPlaceSubView.h */,
+				8A3757DA1B85B606009DB7D4 /* AddNewPlaceSubView.m */,
+				8A3757DC1B85B610009DB7D4 /* AddNewPlaceSubView.xib */,
 			);
 			name = Extra;
 			sourceTree = "<group>";
@@ -2689,6 +2700,8 @@
 				8A2E2CE51B81DEE60010895E /* CommonViewController.m */,
 				8A2E2CED1B81E2480010895E /* CommonTableViewCell.h */,
 				8A2E2CEE1B81E2480010895E /* CommonTableViewCell.m */,
+				8A3757DE1B85B65A009DB7D4 /* CommonView.h */,
+				8A3757DF1B85B65A009DB7D4 /* CommonView.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -3948,6 +3961,7 @@
 				8AD6C7271B70934D0040437E /* InfoLocation@2x.png in Resources */,
 				8AD6C5FB1B70934D0040437E /* HomeBgShort@2x.png in Resources */,
 				8AD6C7971B70934D0040437E /* RotateWheel@3x.png in Resources */,
+				8A3757DD1B85B610009DB7D4 /* AddNewPlaceSubView.xib in Resources */,
 				8AD6C6BB1B70934D0040437E /* BtnLetsgo.png in Resources */,
 				8AD6C6D41B70934D0040437E /* Distance@2x.png in Resources */,
 				8AD6C7F91B70934D0040437E /* iPhone4_Tour3.png in Resources */,
@@ -4501,6 +4515,7 @@
 				8AD6C81D1B73382E0040437E /* Localisator.m in Sources */,
 				8AD6C33C1B707D120040437E /* LLARingSpinnerView.m in Sources */,
 				8AD6C0C41B706CF30040437E /* LocationFeedDetailViewController.m in Sources */,
+				8A3757E01B85B65A009DB7D4 /* CommonView.m in Sources */,
 				8AD6C0C81B706CF30040437E /* NotificationViewController.m in Sources */,
 				8AD6C2261B706F6A0040437E /* Locale.m in Sources */,
 				8AD6BE5B1B706CF30040437E /* DoPhotoCell.m in Sources */,
@@ -4580,6 +4595,7 @@
 				8AD6C32E1B707D120040437E /* PEResizeControl.m in Sources */,
 				8AD6C8331B7454290040437E /* UIAlertView+Blocks.m in Sources */,
 				8AD6C32C1B707D120040437E /* PECropView.m in Sources */,
+				8A3757DB1B85B606009DB7D4 /* AddNewPlaceSubView.m in Sources */,
 				8AD6BA601B705DF20040437E /* main.m in Sources */,
 				8AD6C2291B706FA10040437E /* NSString+ChangeAsciiString.m in Sources */,
 				8A2E2CEF1B81E2480010895E /* CommonTableViewCell.m in Sources */,
