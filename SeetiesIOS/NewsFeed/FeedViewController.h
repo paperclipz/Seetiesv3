@@ -31,6 +31,14 @@
     NSDate *methodStart;
     
     IBOutlet UILabel *ShowUpdateText;
+    
+    UIScrollView *SuggestedScrollview;
+    UIPageControl *SuggestedpageControl;
+    UILabel *ShowSuggestedCount;
+    
+    UIScrollView *SUserScrollview;
+    UIPageControl *SUserpageControl;
+    UILabel *ShowSUserCount;
 }
 -(IBAction)SearchButton:(id)sender;
 
