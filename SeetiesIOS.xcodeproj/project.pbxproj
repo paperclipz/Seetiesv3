@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0BA1CB2F1B85AEFA009FFD3E /* Explore2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA1CB2E1B85AEFA009FFD3E /* Explore2ViewController.xib */; };
 		0BC9B38A1B7DD287008334FF /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC9B3881B7DD287008334FF /* FeedViewController.m */; };
 		0BC9B38B1B7DD288008334FF /* FeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC9B3891B7DD287008334FF /* FeedViewController.xib */; };
 		0BD634FC1B71C9B800D82414 /* LeveyTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD634F91B71C9B800D82414 /* LeveyTabBar.m */; };
@@ -46,7 +47,6 @@
 		8AD6BE231B706CF30040437E /* NSMutableArray+MoveArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA981B706CF10040437E /* NSMutableArray+MoveArray.m */; };
 		8AD6BE241B706CF30040437E /* UIIimage+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA9A1B706CF10040437E /* UIIimage+Extra.m */; };
 		8AD6BE491B706CF30040437E /* Explore2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BAE21B706CF10040437E /* Explore2ViewController.m */; };
-		8AD6BE4A1B706CF30040437E /* Explore2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BAE31B706CF10040437E /* Explore2ViewController.xib */; };
 		8AD6BE4B1B706CF30040437E /* ExploreCountryV2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BAE51B706CF10040437E /* ExploreCountryV2ViewController.m */; };
 		8AD6BE4C1B706CF30040437E /* ExploreCountryV2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BAE61B706CF10040437E /* ExploreCountryV2ViewController.xib */; };
 		8AD6BE4D1B706CF30040437E /* ExploreCountryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BAE81B706CF10040437E /* ExploreCountryViewController.m */; };
@@ -890,6 +890,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0BA1CB2E1B85AEFA009FFD3E /* Explore2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Explore2ViewController.xib; sourceTree = "<group>"; };
 		0BC9B3871B7DD287008334FF /* FeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
 		0BC9B3881B7DD287008334FF /* FeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
 		0BC9B3891B7DD287008334FF /* FeedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedViewController.xib; sourceTree = "<group>"; };
@@ -959,7 +960,6 @@
 		8AD6BA9A1B706CF10040437E /* UIIimage+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIIimage+Extra.m"; sourceTree = "<group>"; };
 		8AD6BAE11B706CF10040437E /* Explore2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Explore2ViewController.h; sourceTree = "<group>"; };
 		8AD6BAE21B706CF10040437E /* Explore2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Explore2ViewController.m; sourceTree = "<group>"; };
-		8AD6BAE31B706CF10040437E /* Explore2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Explore2ViewController.xib; sourceTree = "<group>"; };
 		8AD6BAE41B706CF10040437E /* ExploreCountryV2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExploreCountryV2ViewController.h; sourceTree = "<group>"; };
 		8AD6BAE51B706CF10040437E /* ExploreCountryV2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExploreCountryV2ViewController.m; sourceTree = "<group>"; };
 		8AD6BAE61B706CF10040437E /* ExploreCountryV2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExploreCountryV2ViewController.xib; sourceTree = "<group>"; };
@@ -2219,7 +2219,7 @@
 			children = (
 				8AD6BAE11B706CF10040437E /* Explore2ViewController.h */,
 				8AD6BAE21B706CF10040437E /* Explore2ViewController.m */,
-				8AD6BAE31B706CF10040437E /* Explore2ViewController.xib */,
+				0BA1CB2E1B85AEFA009FFD3E /* Explore2ViewController.xib */,
 				8AD6BAE41B706CF10040437E /* ExploreCountryV2ViewController.h */,
 				8AD6BAE51B706CF10040437E /* ExploreCountryV2ViewController.m */,
 				8AD6BAE61B706CF10040437E /* ExploreCountryV2ViewController.xib */,
@@ -3981,6 +3981,7 @@
 				8AD6C6DF1B70934D0040437E /* EditPhotoFrame.png in Resources */,
 				8AD6C6011B70934D0040437E /* IconSearchBox@3x.png in Resources */,
 				8AD6C7A41B70934D0040437E /* SelectPhotoFrame.png in Resources */,
+				0BA1CB2F1B85AEFA009FFD3E /* Explore2ViewController.xib in Resources */,
 				8AD6C7D81B70934D0040437E /* SearchBar.png in Resources */,
 				8AD6C5C91B70934D0040437E /* BackButton.png in Resources */,
 				8AD6C5BA1B70934D0040437E /* AllDoneImage.png in Resources */,
@@ -4288,7 +4289,6 @@
 				8AD6C6F91B70934D0040437E /* IconBrighter@3x.png in Resources */,
 				8AD6C7DE1B70934D0040437E /* SearchIcon@3x.png in Resources */,
 				8AD6C6781B70934D0040437E /* ProfileBlank@2x.png in Resources */,
-				8AD6BE4A1B706CF30040437E /* Explore2ViewController.xib in Resources */,
 				8AD6C5B71B70934D0040437E /* AddCollection.png in Resources */,
 				8AD6C7691B70934D0040437E /* Whatsapp@2x.png in Resources */,
 				8AD6BE501B706CF30040437E /* ExploreViewController.xib in Resources */,

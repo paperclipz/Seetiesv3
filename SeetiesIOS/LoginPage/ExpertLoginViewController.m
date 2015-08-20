@@ -144,16 +144,24 @@
 }
 -(IBAction)LoginButton:(id)sender{
     
-    [ShowLoginID resignFirstResponder];
-    [ShowPassword resignFirstResponder];
+    if ([ShowLoginID.text length] == 0 || [ShowPassword.text length] == 0) {
+      //  [TSMessage showNotificationWithTitle:@"" subtitle:@"Opps! Seem like you have forgot to insert username or password :)" type:TSMessageNotificationTypeError];
+        UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:@"Opps! Seem like you have forgot to insert username or password :)" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [ShowAlert show];
+    }else{
+        [ShowLoginID resignFirstResponder];
+        [ShowPassword resignFirstResponder];
+        
+        GetLoginID = ShowLoginID.text;
+        GetPassword = ShowPassword.text;
+        
+        NSLog(@"GetLoginID is %@",GetLoginID);
+        NSLog(@"GetPassword is %@",GetPassword);
+        
+        [self SendLoginDataToServer];
+    }
+    
 
-    GetLoginID = ShowLoginID.text;
-    GetPassword = ShowPassword.text;
-    
-    NSLog(@"GetLoginID is %@",GetLoginID);
-    NSLog(@"GetPassword is %@",GetPassword);
-    
-    [self SendLoginDataToServer];
     
   //  MainViewController *MainView = [[MainViewController alloc]init];
    // [self presentViewController:MainView animated:YES completion:nil];
@@ -271,6 +279,7 @@
     if ([ErrorString isEqualToString:@"0"]) {
         UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:MessageString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [ShowAlert show];
+
     }else{
         [ShowActivity stopAnimating];
         NSLog(@"Got Data.");

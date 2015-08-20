@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FeedViewController : UIViewController<UIScrollViewDelegate>{
+@interface FeedViewController : BaseViewController<UIScrollViewDelegate>{
     
     IBOutlet UIScrollView *MainScroll;
     UIRefreshControl *refreshControl;

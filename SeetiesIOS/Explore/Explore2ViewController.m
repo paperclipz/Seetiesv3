@@ -40,12 +40,6 @@
     
     //CountriesScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight - 114);
     ibScrollViewCountry.frame = CGRectMake(0, 64, screenWidth, screenHeight - 114);
-    SearchTblView.frame = CGRectMake(0, 64, screenWidth, screenHeight - 114);
-    SearchTblView.hidden = YES;
-    mySearchBar.delegate = self;
-    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setDefaultTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
-    [mySearchBar setTintColor:[UIColor whiteColor]];
-    [mySearchBar setValue:[UIColor whiteColor] forKeyPath:@"_searchField._placeholderLabel.textColor"];
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
 
 }
@@ -69,7 +63,7 @@
     //self.screenName = @"IOS Explore Page";
     //self.title = CustomLocalisedString(@"MainTab_Explore",nil);
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    //CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
     UIButton *BackToTopButton = [UIButton buttonWithType:UIButtonTypeCustom];
     BackToTopButton.frame = CGRectMake(0, screenHeight - 50, 80, 50);
@@ -78,37 +72,12 @@
     [BackToTopButton setBackgroundColor:[UIColor clearColor]];
     [BackToTopButton addTarget:self action:@selector(BackToTopButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.tabBarController.view addSubview:BackToTopButton];
-    
-    UIButton *SelectButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    SelectButton.frame = CGRectMake((screenWidth/2) - 40, screenHeight - 50, 80, 50);
-    [SelectButton setTitle:@"" forState:UIControlStateNormal];
-    [SelectButton setBackgroundColor:[UIColor clearColor]];
-    [SelectButton addTarget:self action:@selector(ChangeViewButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.tabBarController.view addSubview:SelectButton];
+
 }
 -(IBAction)BackToTopButton:(id)sender{
     self.tabBarController.selectedIndex = 0;
 }
--(IBAction)ChangeViewButton:(id)sender{
-    NSLog(@"ChangeViewButton Click");
-    DoImagePickerController *cont = [[DoImagePickerController alloc] initWithNibName:@"DoImagePickerController" bundle:nil];
-    cont.delegate = self;
-    cont.nResultType = DO_PICKER_RESULT_ASSET;//DO_PICKER_RESULT_UIIMAGE
-    cont.nMaxCount = 10;
-    cont.nColumnCount = 3;
-    
-    [self presentViewController:cont animated:YES completion:nil];
-}
-#pragma mark - DoImagePickerControllerDelegate
-- (void)didCancelDoImagePickerController
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 
-- (void)didSelectPhotosFromDoImagePickerController:(DoImagePickerController *)picker result:(NSArray *)aSelected
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [mySearchBar setShowsCancelButton:NO animated:YES];
@@ -455,92 +424,5 @@
     [self presentViewController:OpenWebView animated:NO completion:nil];
     [OpenWebView GetTitleString:@"Festival"];
 }
-
-#pragma mark - UITableView Delegate
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-
-    
-    if (CheckTblview == 0) {
-        return @"Search History";
-    }else{
-        return @"Suggestions";
-
-    }
-    
-    return 0;
-    
-    
-}
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-    
-}
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    if (CheckTblview == 0) {
-        return [LocalSearchTextArray count];
-    }else{
-        return [GetReturnSearchTextArray count];
-        
-    }
-    return 0;
-}
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *simpleTableIdentifier = @"SimpleTableItem";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
-        
-            UILabel *ShowName = [[UILabel alloc]init];
-            ShowName.frame = CGRectMake(15, 0, 290, 50);
-            ShowName.textColor = [UIColor darkGrayColor];
-            ShowName.tag = 200;
-            ShowName.backgroundColor = [UIColor clearColor];
-            ShowName.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:15];
-            ShowName.numberOfLines = 5;
-                
-            [cell addSubview:ShowName];
-        
-    }
-    [cell setBackgroundColor:[UIColor clearColor]];
-    
-    if (CheckTblview == 0) {
-        UILabel *ShowName = (UILabel *)[cell viewWithTag:200];
-        ShowName.text = [LocalSearchTextArray objectAtIndex:indexPath.row];
-    }else{
-        UILabel *ShowName = (UILabel *)[cell viewWithTag:200];
-        NSString *GetTempAddress = [[NSString alloc]initWithFormat:@"%@",[GetReturnSearchAddressArray objectAtIndex:indexPath.row]];
-        if ([GetTempAddress isEqualToString:@""]) {
-            ShowName.text = [GetReturnSearchTextArray objectAtIndex:indexPath.row];
-        }else{
-            
-            NSString *TempString = [[NSString alloc]initWithFormat:@"%@ > %@",[GetReturnSearchTextArray objectAtIndex:indexPath.row],GetTempAddress];
-            
-            ShowName.text = TempString;
-        }
-        
-        
-        
-    }
-    
-
-    
-    
-    return cell;
-}
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"Click...");
-    SearchResultV2ViewController *SearchResultView = [[SearchResultV2ViewController alloc]init];
-    [self presentViewController:SearchResultView animated:YES completion:nil];
-}
-
-#pragma mark - Declaration
-
-#pragma mark - Request Server 
 
 @end

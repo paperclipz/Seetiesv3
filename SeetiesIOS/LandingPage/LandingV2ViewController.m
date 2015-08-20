@@ -282,7 +282,7 @@
     
     [[[[UIApplication sharedApplication] delegate] window] setRootViewController:self.leveyTabBarController];
 //TODO:Delete this . use for development purpose only
-    [self.leveyTabBarController setSelectedIndex:2];
+    [self.leveyTabBarController setSelectedIndex:0];
 }
 
 - (void)animateImages
@@ -338,7 +338,7 @@
     
     if(!_leveyTabBarController)
     {
-         NSArray *arrViewControllers  = [NSArray arrayWithObjects:self.feedV2ViewController.navController,self.explore2ViewController.navController,self.recommendationViewController.navController,self.notificationViewController.navController,self.userProfilePageViewController.navController, nil];
+         NSArray *arrViewControllers  = [NSArray arrayWithObjects:self.feedViewController.navController,self.explore2ViewController.navController,self.recommendationViewController.navController,self.notificationViewController.navController,self.userProfilePageViewController.navController, nil];
         
         
         _leveyTabBarController = [[LeveyTabBarController alloc]initWithViewControllers:arrViewControllers imageArray:[self arrTabImages]];
@@ -361,19 +361,19 @@
         _tabBarController = [UITabBarController new];
         _tabBarController.tabBar.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
         [[UITabBar appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
-        self.tabBarController.viewControllers = [NSArray arrayWithObjects:self.feedV2ViewController.navController,self.explore2ViewController.navController,self.recommendationViewController.navController,self.notificationViewController.navController,self.userProfilePageViewController.navController, nil];
+        self.tabBarController.viewControllers = [NSArray arrayWithObjects:self.feedViewController.navController,self.explore2ViewController.navController,self.recommendationViewController.navController,self.notificationViewController.navController,self.userProfilePageViewController.navController, nil];
     }
     
     return _tabBarController;
 }
 
--(FeedV2ViewController*)feedV2ViewController
+-(FeedViewController*)feedViewController
 {
-    if(!_feedV2ViewController){
+    if(!_feedViewController){
         
-        _feedV2ViewController = [FeedV2ViewController new];
+        _feedViewController = [FeedViewController new];
     }
-    return _feedV2ViewController;
+    return _feedViewController;
 }
 
 
@@ -416,11 +416,11 @@
     return _notificationViewController;
 }
 
--(UserProfilePageViewController*)userProfilePageViewController
+-(NewProfileV2ViewController*)userProfilePageViewController
 {
     if(!_userProfilePageViewController){
         
-        _userProfilePageViewController = [UserProfilePageViewController new];
+        _userProfilePageViewController = [NewProfileV2ViewController new];
     }
     return _userProfilePageViewController;
 }

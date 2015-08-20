@@ -10,8 +10,8 @@
 #import "AsyncImageView.h"
 #import "SearchViewV2Controller.h"
 #import "Filter2ViewController.h"
+#import "InviteFrenViewController.h"
 @interface FeedViewController ()
-
 @end
 
 @implementation FeedViewController
@@ -26,6 +26,7 @@
     
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -85,6 +86,7 @@
     [arrAddress addObject:@"Love Hotel, Tapipei City, Taiwan"];
     [arrAddress addObject:@"Love Hotel, Tapipei City, Taiwan"];
     [arrAddress addObject:@""];
+    [arrAddress addObject:@""];
     [arrAddress addObject:@"Setapak, Malaysia"];
     [arrAddress addObject:@"Thailand"];
     [arrAddress addObject:@""];
@@ -98,6 +100,7 @@
     [arrTitle addObject:@"A Good Homestay in Taiwan"];
     [arrTitle addObject:@""];
     [arrTitle addObject:@""];
+    [arrTitle addObject:@""];
     [arrTitle addObject:@"A Good Homestay in Taiwan"];
     [arrTitle addObject:@""];
     [arrTitle addObject:@""];
@@ -106,6 +109,7 @@
     [arrTitle addObject:@"A Good Homestay in Taiwan"];
     
     arrMessage = [[NSMutableArray alloc]init];
+    [arrMessage addObject:@""];
     [arrMessage addObject:@""];
     [arrMessage addObject:@"It's 5 a.m., and although my head hit the pillow, post-nightcap, just a few hours prior, i can't sleep,. As always when i travel, i'm tired to afbhiafnjeafj aefjeajfeaj feajf eajf jnea"];
     [arrMessage addObject:@""];
@@ -119,6 +123,7 @@
     
     arrType = [[NSMutableArray alloc]init];
     [arrType addObject:@"LocalQR"];
+    [arrType addObject:@"InviteFriends"];
     [arrType addObject:@"Post"];
     [arrType addObject:@"Promotion"];
     [arrType addObject:@"Post"];
@@ -131,6 +136,7 @@
     
 
     arrImage = [[NSMutableArray alloc]init];
+    [arrImage addObject:@"https://unsplash.it/375/400/?random"];
     [arrImage addObject:@"https://unsplash.it/375/400/?random"];
     [arrImage addObject:@"https://unsplash.it/375/400/?random"];
     [arrImage addObject:@"https://unsplash.it/375/700/?random"];
@@ -227,7 +233,7 @@
     NSMutableArray *TempArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"FeedLocalImg"]];
     NSLog(@"TempArray is %@",TempArray);
 
-    for ( int i = 0 ; i < 9; i++) {
+    for ( int i = 0 ; i < 11; i++) {
         
         NSString *GetType = [arrType objectAtIndex:i];
         
@@ -903,7 +909,7 @@
         }else if([GetType isEqualToString:@"Promotion"]){
             [TempArray addObject:@""];
             UIImageView *BannerImage = [[UIImageView alloc]init];
-            BannerImage.frame = CGRectMake(10, heightcheck, screenWidth - 20, 85);
+            BannerImage.frame = CGRectMake(0, heightcheck, screenWidth, 180);
             BannerImage.image = [UIImage imageNamed:@"Demoanner.jpg"];
             BannerImage.contentMode = UIViewContentModeScaleToFill;
             BannerImage.backgroundColor = [UIColor blackColor];
@@ -912,13 +918,13 @@
             [MainScroll addSubview:BannerImage];
             
             UIButton *TempButton = [[UIButton alloc]init];
-            TempButton.frame = CGRectMake(10, heightcheck, screenWidth - 20, 85);
-            [TempButton setTitle:@"" forState:UIControlStateNormal];
-            TempButton.backgroundColor = [UIColor clearColor];
-            TempButton.layer.cornerRadius = 5;
+            TempButton.frame = CGRectMake(0, heightcheck, screenWidth, 180);
+            [TempButton setTitle:@"Vouchers Type" forState:UIControlStateNormal];
+            TempButton.backgroundColor = [UIColor yellowColor];
+           // TempButton.layer.cornerRadius = 5;
             [MainScroll addSubview: TempButton];
             
-            heightcheck += 95;
+            heightcheck += 190;
         }else if([GetType isEqualToString:@"LocalQR"]){
         
             SuggestedScrollview = [[UIScrollView alloc]init];
@@ -1041,6 +1047,32 @@
             
             
             
+        }else if([GetType isEqualToString:@"InviteFriends"]){
+        
+            [TempArray addObject:@""];
+            UIImageView *BannerImage = [[UIImageView alloc]init];
+            BannerImage.frame = CGRectMake(0, heightcheck, screenWidth, 150);
+            BannerImage.image = [UIImage imageNamed:@"Demoanner.jpg"];
+            BannerImage.contentMode = UIViewContentModeScaleToFill;
+            BannerImage.backgroundColor = [UIColor blackColor];
+            BannerImage.layer.cornerRadius = 5;
+            BannerImage.layer.masksToBounds = YES;
+            [MainScroll addSubview:BannerImage];
+            
+            UIButton *TempButton = [[UIButton alloc]init];
+            TempButton.frame = CGRectMake(0, heightcheck, screenWidth, 150);
+            [TempButton setTitle:@"Invite Friends" forState:UIControlStateNormal];
+            TempButton.backgroundColor = [UIColor blueColor];
+            [TempButton addTarget:self action:@selector(OpenInviteButton:) forControlEvents:UIControlEventTouchUpInside];
+            [MainScroll addSubview: TempButton];
+            
+            heightcheck += 160;
+            
+            
+            
+            
+            
+            
         }
         
         
@@ -1115,7 +1147,10 @@
 
 }
 
-
+-(IBAction)OpenInviteButton:(id)sender{
+    InviteFrenViewController *InviteFrenView = [[InviteFrenViewController alloc]init];
+    [self presentViewController:InviteFrenView animated:YES completion:nil];
+}
 
 -(void)timerCalled
 {
