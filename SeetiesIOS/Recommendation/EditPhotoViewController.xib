@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditPhotoViewController">
+            <connections>
+                <outlet property="tableView" destination="iFm-Ok-GcI" id="AKc-Gi-1WS"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XDK-8P-uNu">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit photo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMV-lZ-Sfk">
+                            <rect key="frame" x="46" y="29" width="266" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BannerFestival.png" translatesAutoresizingMaskIntoConstraints="NO" id="299-1f-ZwB">
+                            <rect key="frame" x="8" y="29" width="24" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="8ti-to-VKd"/>
+                                <constraint firstAttribute="width" constant="24" id="cLb-MR-yxv"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yjV-Rn-dF0">
+                            <rect key="frame" x="0.0" y="0.0" width="44" height="64"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="44" id="3Dn-h2-8mx"/>
+                                <constraint firstAttribute="height" constant="64" id="4k0-Ng-ati"/>
+                            </constraints>
+                            <state key="normal">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.14901960780000001" green="0.65098039220000004" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="nMV-lZ-Sfk" secondAttribute="bottom" constant="14" id="2st-8e-ayP"/>
+                        <constraint firstItem="299-1f-ZwB" firstAttribute="top" secondItem="yjV-Rn-dF0" secondAttribute="bottom" constant="-35" id="7f2-Yr-Msm"/>
+                        <constraint firstItem="yjV-Rn-dF0" firstAttribute="leading" secondItem="XDK-8P-uNu" secondAttribute="leading" id="SzH-Va-2j9"/>
+                        <constraint firstItem="nMV-lZ-Sfk" firstAttribute="leading" secondItem="299-1f-ZwB" secondAttribute="trailing" constant="14" id="Zqb-FW-6sN"/>
+                        <constraint firstItem="299-1f-ZwB" firstAttribute="leading" secondItem="XDK-8P-uNu" secondAttribute="leading" constant="8" id="hzw-pu-0rf"/>
+                        <constraint firstItem="299-1f-ZwB" firstAttribute="top" secondItem="nMV-lZ-Sfk" secondAttribute="top" id="joB-yN-7TE"/>
+                        <constraint firstAttribute="bottom" secondItem="299-1f-ZwB" secondAttribute="bottom" constant="15" id="o3s-1s-s0j"/>
+                        <constraint firstAttribute="height" constant="64" id="omi-cm-VyD"/>
+                        <constraint firstItem="yjV-Rn-dF0" firstAttribute="top" secondItem="XDK-8P-uNu" secondAttribute="top" id="sZi-Ml-PHY"/>
+                        <constraint firstAttribute="trailing" secondItem="nMV-lZ-Sfk" secondAttribute="trailing" constant="8" id="tC2-OW-KZu"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="114" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="iFm-Ok-GcI">
+                    <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="kPC-MF-nLb"/>
+                        <outlet property="delegate" destination="-1" id="gay-2V-2je"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="iFm-Ok-GcI" secondAttribute="trailing" id="5It-es-apq"/>
+                <constraint firstItem="XDK-8P-uNu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="A0L-QC-Fys"/>
+                <constraint firstItem="iFm-Ok-GcI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Cej-IA-aJT"/>
+                <constraint firstItem="iFm-Ok-GcI" firstAttribute="top" secondItem="XDK-8P-uNu" secondAttribute="bottom" id="XB1-l4-jeO"/>
+                <constraint firstAttribute="trailing" secondItem="XDK-8P-uNu" secondAttribute="trailing" id="fZ3-IC-Nv5"/>
+                <constraint firstItem="XDK-8P-uNu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="kFI-ko-9hA"/>
+                <constraint firstAttribute="bottom" secondItem="iFm-Ok-GcI" secondAttribute="bottom" id="t9L-04-L02"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="BannerFestival.png" width="375" height="200"/>
+    </resources>
+</document>

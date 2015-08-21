@@ -31,6 +31,7 @@ PODS:
   - SDWebImage (HEAD based on 3.7.3):
     - SDWebImage/Core (= HEAD based on 3.7.3)
   - SDWebImage/Core (HEAD based on 3.7.3)
+  - SWTableViewCell (0.3.7)
   - TSMessages (0.9.12):
     - HexColors (~> 2.2.0)
 
@@ -42,6 +43,7 @@ DEPENDENCIES:
   - JSONModel
   - LPGoogleFunctions
   - SDWebImage (HEAD)
+  - SWTableViewCell (~> 0.3.7)
   - TSMessages
 
 SPEC CHECKSUMS:
@@ -54,6 +56,7 @@ SPEC CHECKSUMS:
   JSONModel: ec77e9865236a7a09d9cf7668df6b4b328d9ec1d
   LPGoogleFunctions: c78171de55b164e8e5dbf6b4bba477980771211a
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
+  SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
   TSMessages: c8cc7b80f2a833af533872cd02010cac061532cc
 
 COCOAPODS: 0.38.2

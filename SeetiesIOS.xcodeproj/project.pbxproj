@@ -14,6 +14,8 @@
 		0BE340231B73021B00F49625 /* Adriane Text Bold Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0BE340201B73021B00F49625 /* Adriane Text Bold Italic.otf */; };
 		0BE340241B73021B00F49625 /* ProximaNovaSoft-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BE340211B73021B00F49625 /* ProximaNovaSoft-Bold.ttf */; };
 		0BE340251B73021B00F49625 /* ProximaNovaSoft-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BE340221B73021B00F49625 /* ProximaNovaSoft-Regular.ttf */; };
+		8A00979B1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A00979A1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m */; };
+		8A00979D1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A00979C1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib */; };
 		8A2E2C081B79A3F70010895E /* UserProfilePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E2C071B79A3F70010895E /* UserProfilePageViewController.m */; };
 		8A2E2C0A1B79A4110010895E /* UserProfilePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A2E2C091B79A4110010895E /* UserProfilePageViewController.xib */; };
 		8A2E2C141B79E7A30010895E /* RecommendationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E2C121B79E7A30010895E /* RecommendationViewController.m */; };
@@ -26,6 +28,7 @@
 		8A2E2CEB1B81E15B0010895E /* STTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E2CE91B81E15B0010895E /* STTableViewCell.m */; };
 		8A2E2CEC1B81E15B0010895E /* STTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A2E2CEA1B81E15B0010895E /* STTableViewCell.xib */; };
 		8A2E2CEF1B81E2480010895E /* CommonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E2CEE1B81E2480010895E /* CommonTableViewCell.m */; };
+		8A3408ED1B86EA4B009B66C3 /* UITableView+LongPressReorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3408EC1B86EA4B009B66C3 /* UITableView+LongPressReorder.m */; };
 		8A3757B01B842F74009DB7D4 /* SearchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3757AF1B842F74009DB7D4 /* SearchManager.m */; };
 		8A3757B31B846788009DB7D4 /* SearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3757B21B846788009DB7D4 /* SearchModel.m */; };
 		8A3757B71B847C7A009DB7D4 /* AddNewPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3757B51B847C7A009DB7D4 /* AddNewPlaceViewController.m */; };
@@ -34,9 +37,11 @@
 		8A3757DB1B85B606009DB7D4 /* AddNewPlaceSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3757DA1B85B606009DB7D4 /* AddNewPlaceSubView.m */; };
 		8A3757DD1B85B610009DB7D4 /* AddNewPlaceSubView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3757DC1B85B610009DB7D4 /* AddNewPlaceSubView.xib */; };
 		8A3757E01B85B65A009DB7D4 /* CommonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3757DF1B85B65A009DB7D4 /* CommonView.m */; };
+		8A3757E41B85D635009DB7D4 /* EditPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3757E21B85D635009DB7D4 /* EditPhotoViewController.m */; };
+		8A3757E51B85D635009DB7D4 /* EditPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3757E31B85D635009DB7D4 /* EditPhotoViewController.xib */; };
 		8A7420E01B82F67F005DA654 /* UIImage+KVNEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7420CC1B82F67F005DA654 /* UIImage+KVNEmpty.m */; };
 		8A7420E11B82F67F005DA654 /* UIImage+KVNImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7420CE1B82F67F005DA654 /* UIImage+KVNImageEffects.m */; };
-		8A7420E21B82F67F005DA654 /* KVNProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7420D11B82F67F005DA654 /* KVNProgress.m */; };
+		8A7420E21B82F67F005DA654 /* KVNProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7420D11B82F67F005DA654 /* KVNProgress.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-checker"; }; };
 		8A7420E91B82F67F005DA654 /* KVNProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A7420DE1B82F67F005DA654 /* KVNProgressView.xib */; };
 		8A7420EC1B82F7D5005DA654 /* LoadingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7420EB1B82F7D5005DA654 /* LoadingManager.m */; };
 		8AD6BA601B705DF20040437E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA5F1B705DF20040437E /* main.m */; };
@@ -904,6 +909,9 @@
 		0BE340211B73021B00F49625 /* ProximaNovaSoft-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNovaSoft-Bold.ttf"; sourceTree = "<group>"; };
 		0BE340221B73021B00F49625 /* ProximaNovaSoft-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNovaSoft-Regular.ttf"; sourceTree = "<group>"; };
 		2B526FE01F3F3414439C16DF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A0097991B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomEditPhotoTableViewCell.h; sourceTree = "<group>"; };
+		8A00979A1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomEditPhotoTableViewCell.m; sourceTree = "<group>"; };
+		8A00979C1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomEditPhotoTableViewCell.xib; sourceTree = "<group>"; };
 		8A2E2C061B79A3F70010895E /* UserProfilePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfilePageViewController.h; sourceTree = "<group>"; };
 		8A2E2C071B79A3F70010895E /* UserProfilePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfilePageViewController.m; sourceTree = "<group>"; };
 		8A2E2C091B79A4110010895E /* UserProfilePageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfilePageViewController.xib; sourceTree = "<group>"; };
@@ -924,6 +932,8 @@
 		8A2E2CEA1B81E15B0010895E /* STTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STTableViewCell.xib; sourceTree = "<group>"; };
 		8A2E2CED1B81E2480010895E /* CommonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonTableViewCell.h; sourceTree = "<group>"; };
 		8A2E2CEE1B81E2480010895E /* CommonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonTableViewCell.m; sourceTree = "<group>"; };
+		8A3408EB1B86EA4B009B66C3 /* UITableView+LongPressReorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+LongPressReorder.h"; sourceTree = "<group>"; };
+		8A3408EC1B86EA4B009B66C3 /* UITableView+LongPressReorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+LongPressReorder.m"; sourceTree = "<group>"; };
 		8A3757AE1B842F74009DB7D4 /* SearchManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchManager.h; sourceTree = "<group>"; };
 		8A3757AF1B842F74009DB7D4 /* SearchManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchManager.m; sourceTree = "<group>"; };
 		8A3757B11B846788009DB7D4 /* SearchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchModel.h; sourceTree = "<group>"; };
@@ -938,6 +948,9 @@
 		8A3757DC1B85B610009DB7D4 /* AddNewPlaceSubView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddNewPlaceSubView.xib; sourceTree = "<group>"; };
 		8A3757DE1B85B65A009DB7D4 /* CommonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonView.h; sourceTree = "<group>"; };
 		8A3757DF1B85B65A009DB7D4 /* CommonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonView.m; sourceTree = "<group>"; };
+		8A3757E11B85D635009DB7D4 /* EditPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPhotoViewController.h; sourceTree = "<group>"; };
+		8A3757E21B85D635009DB7D4 /* EditPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPhotoViewController.m; sourceTree = "<group>"; };
+		8A3757E31B85D635009DB7D4 /* EditPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPhotoViewController.xib; sourceTree = "<group>"; };
 		8A7420CB1B82F67F005DA654 /* UIImage+KVNEmpty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+KVNEmpty.h"; sourceTree = "<group>"; };
 		8A7420CC1B82F67F005DA654 /* UIImage+KVNEmpty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+KVNEmpty.m"; sourceTree = "<group>"; };
 		8A7420CD1B82F67F005DA654 /* UIImage+KVNImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+KVNImageEffects.h"; sourceTree = "<group>"; };
@@ -2083,6 +2096,28 @@
 			name = Extra;
 			sourceTree = "<group>";
 		};
+		8A3408EA1B86EA4B009B66C3 /* UITableView+LongPressReorder */ = {
+			isa = PBXGroup;
+			children = (
+				8A3408EB1B86EA4B009B66C3 /* UITableView+LongPressReorder.h */,
+				8A3408EC1B86EA4B009B66C3 /* UITableView+LongPressReorder.m */,
+			);
+			path = "UITableView+LongPressReorder";
+			sourceTree = "<group>";
+		};
+		8A3757ED1B85DA46009DB7D4 /* EditPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				8A3757E11B85D635009DB7D4 /* EditPhotoViewController.h */,
+				8A3757E21B85D635009DB7D4 /* EditPhotoViewController.m */,
+				8A3757E31B85D635009DB7D4 /* EditPhotoViewController.xib */,
+				8A0097991B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.h */,
+				8A00979A1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m */,
+				8A00979C1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib */,
+			);
+			name = EditPhoto;
+			sourceTree = "<group>";
+		};
 		8A7420C71B82F67F005DA654 /* KVNProgress */ = {
 			isa = PBXGroup;
 			children = (
@@ -2211,6 +2246,7 @@
 		8AD6BA961B706CF10040437E /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				8A3408EA1B86EA4B009B66C3 /* UITableView+LongPressReorder */,
 				8AD6C8311B7454290040437E /* UIAlertView+Blocks.h */,
 				8AD6C8321B7454290040437E /* UIAlertView+Blocks.m */,
 				8AD6C2271B706FA10040437E /* NSString+ChangeAsciiString.m */,
@@ -3619,6 +3655,7 @@
 		8AD6C8771B74A7CD0040437E /* Recommendation */ = {
 			isa = PBXGroup;
 			children = (
+				8A3757ED1B85DA46009DB7D4 /* EditPhoto */,
 				8A2E2CE71B81E1360010895E /* Extra */,
 				8AD6C8781B74A7CD0040437E /* RecommendPopUpViewController.h */,
 				8AD6C8791B74A7CD0040437E /* RecommendPopUpViewController.m */,
@@ -4240,6 +4277,7 @@
 				8AD6C68B1B70934D0040437E /* ActionNoLike.png in Resources */,
 				8AD6C2961B7072FB0040437E /* DraftsViewController.xib in Resources */,
 				8AD6C0D91B706CF30040437E /* PTellUsYourCityViewController.xib in Resources */,
+				8A3757E51B85D635009DB7D4 /* EditPhotoViewController.xib in Resources */,
 				8AD6C6741B70934D0040437E /* SeeMore.png in Resources */,
 				8AD6C7DB1B70934D0040437E /* SearchHover@3x.png in Resources */,
 				8AD6C5BC1B70934D0040437E /* Icon-72.png in Resources */,
@@ -4359,6 +4397,7 @@
 				8AD6C6A61B70934D0040437E /* BrightnessButton.png in Resources */,
 				8AD6C6AD1B70934D0040437E /* BtnBlank@2x.png in Resources */,
 				8AD6C6731B70934D0040437E /* ProfileExpert@3x.png in Resources */,
+				8A00979D1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib in Resources */,
 				8AD6C70E1B70934D0040437E /* IconLink@3x.png in Resources */,
 				8AD6C6EB1B70934D0040437E /* FindPeople.png in Resources */,
 				8AD6C7821B70934D0040437E /* PostCommentGreen@3x.png in Resources */,
@@ -4520,6 +4559,7 @@
 				8AD6C2261B706F6A0040437E /* Locale.m in Sources */,
 				8AD6BE5B1B706CF30040437E /* DoPhotoCell.m in Sources */,
 				8AD6C1131B706CF30040437E /* FSKeychain.m in Sources */,
+				8A00979B1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m in Sources */,
 				8AD6C2931B7072FB0040437E /* ChooseCategoryViewController.m in Sources */,
 				8AD6C0AD1B706CF30040437E /* LandingV2ViewController.m in Sources */,
 				8AD6BE231B706CF30040437E /* NSMutableArray+MoveArray.m in Sources */,
@@ -4580,11 +4620,13 @@
 				8AD6C0B71B706CF30040437E /* OpenWebViewController.m in Sources */,
 				8AD6C8721B7460DB0040437E /* MKNetworkOperation.m in Sources */,
 				8AD6C3371B707D120040437E /* UIScrollView+CRScrollIndicator.m in Sources */,
+				8A3757E41B85D635009DB7D4 /* EditPhotoViewController.m in Sources */,
 				8A2E2CEB1B81E15B0010895E /* STTableViewCell.m in Sources */,
 				8AD6C32A1B707D120040437E /* LanguageManager.m in Sources */,
 				8AD6C0C61B706CF30040437E /* NearByRecommtationViewController.m in Sources */,
 				8AD6C8261B736B870040437E /* ApiVersionModel.m in Sources */,
 				8AD6BA631B705DF20040437E /* AppDelegate.m in Sources */,
+				8A3408ED1B86EA4B009B66C3 /* UITableView+LongPressReorder.m in Sources */,
 				8AD6C2911B7072FB0040437E /* ChangeSearchLocationViewController.m in Sources */,
 				8AD6C27F1B7072FB0040437E /* AddContactViewController.m in Sources */,
 				0BC9B38A1B7DD287008334FF /* FeedViewController.m in Sources */,

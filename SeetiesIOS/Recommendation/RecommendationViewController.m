@@ -12,6 +12,10 @@
 @end
 
 @implementation RecommendationViewController
+- (IBAction)btnEditPhotoClicked:(id)sender {
+    
+    [self presentViewController:self.self.editPhotoViewController animated:YES completion:nil];
+}
 - (IBAction)btnPickImageClicked:(id)sender {
     
     [self presentViewController:self.doImagePickerController animated:YES completion:nil];
@@ -21,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self btnPickImageClicked:nil];
+    //[self btnPickImageClicked:nil];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -133,5 +137,15 @@
     }
     
     return _doImagePickerController;
+}
+
+-(EditPhotoViewController*)editPhotoViewController
+{
+    if(!_editPhotoViewController)
+    {
+        _editPhotoViewController = [EditPhotoViewController new];
+        
+    }
+    return _editPhotoViewController;
 }
 @end

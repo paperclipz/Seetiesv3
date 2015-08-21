@@ -14,6 +14,7 @@
 
 @interface DataManager : NSObject
 + (id)Instance;
++(NSArray*)getSampleObject;
 
 
 @property(nonatomic,strong)ApiVersionModel* apiVersionModel;

@@ -11,6 +11,7 @@
 #import "AssetHelper.h"
 #import "DoImagePickerController.h"
 #import "WhereIsThisViewController.h"
+#import "EditPhotoViewController.h"
 
 #import "STSearchViewController.h"
 
@@ -19,5 +20,7 @@
 @property(nonatomic,strong)SelectImageViewController* assetPickerViewController;
 @property(nonatomic,strong)STSearchViewController* stSearchViewController;
 @property(nonatomic,strong)DoImagePickerController* doImagePickerController;
+
+@property(nonatomic,strong)EditPhotoViewController* editPhotoViewController;
 
 @end
