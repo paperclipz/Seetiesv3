@@ -29,6 +29,19 @@
 		8A2E2CEC1B81E15B0010895E /* STTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A2E2CEA1B81E15B0010895E /* STTableViewCell.xib */; };
 		8A2E2CEF1B81E2480010895E /* CommonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E2CEE1B81E2480010895E /* CommonTableViewCell.m */; };
 		8A3408ED1B86EA4B009B66C3 /* UITableView+LongPressReorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3408EC1B86EA4B009B66C3 /* UITableView+LongPressReorder.m */; };
+		8A3408F51B86FC99009B66C3 /* BMXSwipableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3408F01B86FC99009B66C3 /* BMXSwipableCell.m */; };
+		8A3408F61B86FC99009B66C3 /* BMXSwipableCellGestureDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3408F21B86FC99009B66C3 /* BMXSwipableCellGestureDelegate.m */; };
+		8A3408F71B86FC99009B66C3 /* UITableViewController+BMXSwipableCellSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3408F41B86FC99009B66C3 /* UITableViewController+BMXSwipableCellSupport.m */; };
+		8A3408FA1B86FE0E009B66C3 /* BMXSwipableCell+ConfigureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3408F91B86FE0E009B66C3 /* BMXSwipableCell+ConfigureCell.m */; };
+		8A3408FF1B86FE3D009B66C3 /* BMXDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3408FC1B86FE3D009B66C3 /* BMXDataItem.m */; };
+		8A3409001B86FE3D009B66C3 /* UITableViewCell+ConfigureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3408FE1B86FE3D009B66C3 /* UITableViewCell+ConfigureCell.m */; };
+		8A3409031B870F2B009B66C3 /* profile_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A3409021B870F2B009B66C3 /* profile_2.png */; };
+		8A3409051B8714D7009B66C3 /* profile_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A3409041B8714D7009B66C3 /* profile_1.png */; };
+		8A3409081B871CB5009B66C3 /* EditPhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3409071B871CB5009B66C3 /* EditPhotoModel.m */; };
+		8A34090A1B871E64009B66C3 /* profile_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A3409091B871E64009B66C3 /* profile_0.png */; };
+		8A34090F1B872B31009B66C3 /* EditPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A34090D1B872B31009B66C3 /* EditPostViewController.m */; };
+		8A3409101B872B31009B66C3 /* EditPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A34090E1B872B31009B66C3 /* EditPostViewController.xib */; };
+		8A3409251B8737E4009B66C3 /* AUIAutoGrowingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A34091A1B8737E4009B66C3 /* AUIAutoGrowingTextView.m */; };
 		8A3757B01B842F74009DB7D4 /* SearchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3757AF1B842F74009DB7D4 /* SearchManager.m */; };
 		8A3757B31B846788009DB7D4 /* SearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3757B21B846788009DB7D4 /* SearchModel.m */; };
 		8A3757B71B847C7A009DB7D4 /* AddNewPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3757B51B847C7A009DB7D4 /* AddNewPlaceViewController.m */; };
@@ -934,6 +947,28 @@
 		8A2E2CEE1B81E2480010895E /* CommonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonTableViewCell.m; sourceTree = "<group>"; };
 		8A3408EB1B86EA4B009B66C3 /* UITableView+LongPressReorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+LongPressReorder.h"; sourceTree = "<group>"; };
 		8A3408EC1B86EA4B009B66C3 /* UITableView+LongPressReorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+LongPressReorder.m"; sourceTree = "<group>"; };
+		8A3408EF1B86FC99009B66C3 /* BMXSwipableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMXSwipableCell.h; sourceTree = "<group>"; };
+		8A3408F01B86FC99009B66C3 /* BMXSwipableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMXSwipableCell.m; sourceTree = "<group>"; };
+		8A3408F11B86FC99009B66C3 /* BMXSwipableCellGestureDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMXSwipableCellGestureDelegate.h; sourceTree = "<group>"; };
+		8A3408F21B86FC99009B66C3 /* BMXSwipableCellGestureDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMXSwipableCellGestureDelegate.m; sourceTree = "<group>"; };
+		8A3408F31B86FC99009B66C3 /* UITableViewController+BMXSwipableCellSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewController+BMXSwipableCellSupport.h"; sourceTree = "<group>"; };
+		8A3408F41B86FC99009B66C3 /* UITableViewController+BMXSwipableCellSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewController+BMXSwipableCellSupport.m"; sourceTree = "<group>"; };
+		8A3408F81B86FE0E009B66C3 /* BMXSwipableCell+ConfigureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BMXSwipableCell+ConfigureCell.h"; sourceTree = "<group>"; };
+		8A3408F91B86FE0E009B66C3 /* BMXSwipableCell+ConfigureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BMXSwipableCell+ConfigureCell.m"; sourceTree = "<group>"; };
+		8A3408FB1B86FE3D009B66C3 /* BMXDataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMXDataItem.h; sourceTree = "<group>"; };
+		8A3408FC1B86FE3D009B66C3 /* BMXDataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMXDataItem.m; sourceTree = "<group>"; };
+		8A3408FD1B86FE3D009B66C3 /* UITableViewCell+ConfigureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+ConfigureCell.h"; sourceTree = "<group>"; };
+		8A3408FE1B86FE3D009B66C3 /* UITableViewCell+ConfigureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+ConfigureCell.m"; sourceTree = "<group>"; };
+		8A3409021B870F2B009B66C3 /* profile_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_2.png; sourceTree = "<group>"; };
+		8A3409041B8714D7009B66C3 /* profile_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_1.png; sourceTree = "<group>"; };
+		8A3409061B871CB5009B66C3 /* EditPhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPhotoModel.h; sourceTree = "<group>"; };
+		8A3409071B871CB5009B66C3 /* EditPhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPhotoModel.m; sourceTree = "<group>"; };
+		8A3409091B871E64009B66C3 /* profile_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_0.png; sourceTree = "<group>"; };
+		8A34090C1B872B31009B66C3 /* EditPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPostViewController.h; sourceTree = "<group>"; };
+		8A34090D1B872B31009B66C3 /* EditPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPostViewController.m; sourceTree = "<group>"; };
+		8A34090E1B872B31009B66C3 /* EditPostViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPostViewController.xib; sourceTree = "<group>"; };
+		8A3409191B8737E4009B66C3 /* AUIAutoGrowingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUIAutoGrowingTextView.h; sourceTree = "<group>"; };
+		8A34091A1B8737E4009B66C3 /* AUIAutoGrowingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUIAutoGrowingTextView.m; sourceTree = "<group>"; };
 		8A3757AE1B842F74009DB7D4 /* SearchManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchManager.h; sourceTree = "<group>"; };
 		8A3757AF1B842F74009DB7D4 /* SearchManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchManager.m; sourceTree = "<group>"; };
 		8A3757B11B846788009DB7D4 /* SearchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchModel.h; sourceTree = "<group>"; };
@@ -1295,8 +1330,8 @@
 		8AD6C30E1B707D120040437E /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseCrashReporting.framework; sourceTree = "<group>"; };
 		8AD6C30F1B707D120040437E /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
 		8AD6C3101B707D120040437E /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
-		8AD6C3111B707D120040437E /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
-		8AD6C3121B707D120040437E /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
+		8AD6C3111B707D120040437E /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPKeyboardAvoidingScrollView.h; path = Library/TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
+		8AD6C3121B707D120040437E /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TPKeyboardAvoidingScrollView.m; path = Library/TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
 		8AD6C3141B707D120040437E /* BHExpandingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHExpandingTextView.h; sourceTree = "<group>"; };
 		8AD6C3151B707D120040437E /* BHExpandingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHExpandingTextView.m; sourceTree = "<group>"; };
 		8AD6C3161B707D120040437E /* BHExpandingTextViewInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHExpandingTextViewInternal.h; sourceTree = "<group>"; };
@@ -1309,8 +1344,8 @@
 		8AD6C31E1B707D120040437E /* textbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textbg@2x.png"; sourceTree = "<group>"; };
 		8AD6C31F1B707D120040437E /* toolbarbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbarbg.png; sourceTree = "<group>"; };
 		8AD6C3201B707D120040437E /* toolbarbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbarbg@2x.png"; sourceTree = "<group>"; };
-		8AD6C3211B707D120040437E /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
-		8AD6C3221B707D120040437E /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
+		8AD6C3211B707D120040437E /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+TPKeyboardAvoidingAdditions.h"; path = "Library/UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
+		8AD6C3221B707D120040437E /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+TPKeyboardAvoidingAdditions.m"; path = "Library/UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
 		8AD6C3231B707D120040437E /* SConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SConstant.h; sourceTree = "<group>"; };
 		8AD6C3241B707D120040437E /* SConstant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SConstant.m; sourceTree = "<group>"; };
 		8AD6C3251B707D120040437E /* UrlDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlDataClass.h; sourceTree = "<group>"; };
@@ -2105,6 +2140,66 @@
 			path = "UITableView+LongPressReorder";
 			sourceTree = "<group>";
 		};
+		8A3408EE1B86FC99009B66C3 /* BMXSwipableCell */ = {
+			isa = PBXGroup;
+			children = (
+				8A3408FB1B86FE3D009B66C3 /* BMXDataItem.h */,
+				8A3408FC1B86FE3D009B66C3 /* BMXDataItem.m */,
+				8A3408FD1B86FE3D009B66C3 /* UITableViewCell+ConfigureCell.h */,
+				8A3408FE1B86FE3D009B66C3 /* UITableViewCell+ConfigureCell.m */,
+				8A3408F81B86FE0E009B66C3 /* BMXSwipableCell+ConfigureCell.h */,
+				8A3408F91B86FE0E009B66C3 /* BMXSwipableCell+ConfigureCell.m */,
+				8A3408EF1B86FC99009B66C3 /* BMXSwipableCell.h */,
+				8A3408F01B86FC99009B66C3 /* BMXSwipableCell.m */,
+				8A3408F11B86FC99009B66C3 /* BMXSwipableCellGestureDelegate.h */,
+				8A3408F21B86FC99009B66C3 /* BMXSwipableCellGestureDelegate.m */,
+				8A3408F31B86FC99009B66C3 /* UITableViewController+BMXSwipableCellSupport.h */,
+				8A3408F41B86FC99009B66C3 /* UITableViewController+BMXSwipableCellSupport.m */,
+			);
+			path = BMXSwipableCell;
+			sourceTree = "<group>";
+		};
+		8A3409011B870F2B009B66C3 /* EvanFolder */ = {
+			isa = PBXGroup;
+			children = (
+				8A3409091B871E64009B66C3 /* profile_0.png */,
+				8A3409041B8714D7009B66C3 /* profile_1.png */,
+				8A3409021B870F2B009B66C3 /* profile_2.png */,
+			);
+			path = EvanFolder;
+			sourceTree = "<group>";
+		};
+		8A34090B1B872B11009B66C3 /* EditPost */ = {
+			isa = PBXGroup;
+			children = (
+				8A34090C1B872B31009B66C3 /* EditPostViewController.h */,
+				8A34090D1B872B31009B66C3 /* EditPostViewController.m */,
+				8A34090E1B872B31009B66C3 /* EditPostViewController.xib */,
+			);
+			name = EditPost;
+			sourceTree = "<group>";
+		};
+		8A3409121B8731EF009B66C3 /* TPKeyboardAvoiding */ = {
+			isa = PBXGroup;
+			children = (
+				8AD6C3111B707D120040437E /* TPKeyboardAvoidingScrollView.h */,
+				8AD6C3121B707D120040437E /* TPKeyboardAvoidingScrollView.m */,
+				8AD6C3211B707D120040437E /* UIScrollView+TPKeyboardAvoidingAdditions.h */,
+				8AD6C3221B707D120040437E /* UIScrollView+TPKeyboardAvoidingAdditions.m */,
+			);
+			name = TPKeyboardAvoiding;
+			sourceTree = "<group>";
+		};
+		8A3409181B8737E4009B66C3 /* AutoGrowingTextView */ = {
+			isa = PBXGroup;
+			children = (
+				8A3409191B8737E4009B66C3 /* AUIAutoGrowingTextView.h */,
+				8A34091A1B8737E4009B66C3 /* AUIAutoGrowingTextView.m */,
+			);
+			name = AutoGrowingTextView;
+			path = AUIAutoGrowingTextView/AutoGrowingTextView;
+			sourceTree = "<group>";
+		};
 		8A3757ED1B85DA46009DB7D4 /* EditPhoto */ = {
 			isa = PBXGroup;
 			children = (
@@ -2413,6 +2508,8 @@
 				8A2E2C4B1B8184C90010895E /* FourSquareModel.m */,
 				8A3757B11B846788009DB7D4 /* SearchModel.h */,
 				8A3757B21B846788009DB7D4 /* SearchModel.m */,
+				8A3409061B871CB5009B66C3 /* EditPhotoModel.h */,
+				8A3409071B871CB5009B66C3 /* EditPhotoModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2717,6 +2814,9 @@
 		8AD6C2D21B707D120040437E /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				8A3409181B8737E4009B66C3 /* AutoGrowingTextView */,
+				8A3409121B8731EF009B66C3 /* TPKeyboardAvoiding */,
+				8A3408EE1B86FC99009B66C3 /* BMXSwipableCell */,
 				8AD6C8521B7460DB0040437E /* MKNetworkKit */,
 				8AD6C2D41B707D120040437E /* JSONKit.h */,
 				8AD6C2D51B707D120040437E /* JSONKit.m */,
@@ -2792,11 +2892,7 @@
 				8AD6C30E1B707D120040437E /* ParseCrashReporting.framework */,
 				8AD6C30F1B707D120040437E /* ParseFacebookUtils.framework */,
 				8AD6C3101B707D120040437E /* ParseUI.framework */,
-				8AD6C3111B707D120040437E /* TPKeyboardAvoidingScrollView.h */,
-				8AD6C3121B707D120040437E /* TPKeyboardAvoidingScrollView.m */,
 				8AD6C3131B707D120040437E /* UIInputToolbar */,
-				8AD6C3211B707D120040437E /* UIScrollView+TPKeyboardAvoidingAdditions.h */,
-				8AD6C3221B707D120040437E /* UIScrollView+TPKeyboardAvoidingAdditions.m */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -2890,6 +2986,7 @@
 		8AD6C3531B70934C0040437E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				8A3409011B870F2B009B66C3 /* EvanFolder */,
 				8AD6C3541B70934C0040437E /* Accept&ContinueButton.png */,
 				8AD6C3551B70934C0040437E /* AccountSettingBack.png */,
 				8AD6C3561B70934C0040437E /* AddCollection.png */,
@@ -3655,6 +3752,7 @@
 		8AD6C8771B74A7CD0040437E /* Recommendation */ = {
 			isa = PBXGroup;
 			children = (
+				8A34090B1B872B11009B66C3 /* EditPost */,
 				8A3757ED1B85DA46009DB7D4 /* EditPhoto */,
 				8A2E2CE71B81E1360010895E /* Extra */,
 				8AD6C8781B74A7CD0040437E /* RecommendPopUpViewController.h */,
@@ -3896,6 +3994,7 @@
 				8AD6C77A1B70934D0040437E /* Popular.png in Resources */,
 				8AD6C6221B70934D0040437E /* IconTranslate@3x.png in Resources */,
 				8AD6C6441B70934D0040437E /* NoComment@3x_02.png in Resources */,
+				8A3409051B8714D7009B66C3 /* profile_1.png in Resources */,
 				8AD6C7341B70934D0040437E /* IconFBMessenger@3x.png in Resources */,
 				8AD6C6921B70934D0040437E /* ArrowDown@2x.png in Resources */,
 				8AD6C69B1B70934D0040437E /* AvatarLike@2x.png in Resources */,
@@ -4084,6 +4183,7 @@
 				8AD6BE5C1B706CF30040437E /* DoPhotoCell.xib in Resources */,
 				8AD6C6281B70934D0040437E /* LanguageEng@3x.png in Resources */,
 				8AD6C6081B70934D0040437E /* InteractComment.png in Resources */,
+				8A3409031B870F2B009B66C3 /* profile_2.png in Resources */,
 				8AD6C7911B70934D0040437E /* PostTime@3x.png in Resources */,
 				8AD6C7081B70934D0040437E /* IconDelete@3x.png in Resources */,
 				8AD6C0FF1B706CF30040437E /* SearchViewV2Controller.xib in Resources */,
@@ -4432,8 +4532,10 @@
 				8AD6C6AE1B70934D0040437E /* BtnBlank@3x.png in Resources */,
 				8AD6C7241B70934D0040437E /* InfoHours@2x.png in Resources */,
 				8AD6C78A1B70934D0040437E /* PostShade2.png in Resources */,
+				8A34090A1B871E64009B66C3 /* profile_0.png in Resources */,
 				8AD6C7C81B70934D0040437E /* TabBarProfile_on.png in Resources */,
 				8AD6C6CC1B70934D0040437E /* ButtonDivider@3x.png in Resources */,
+				8A3409101B872B31009B66C3 /* EditPostViewController.xib in Resources */,
 				8AD6C7961B70934D0040437E /* RotateWheel@2x.png in Resources */,
 				8AD6C7DC1B70934D0040437E /* SearchIcon.png in Resources */,
 				8AD6C8011B70934D0040437E /* UnSelectContinueButton.png in Resources */,
@@ -4507,10 +4609,12 @@
 			files = (
 				8AD6C29B1B7072FB0040437E /* PublishMainViewController.m in Sources */,
 				8AD6C34D1B707D120040437E /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
+				8A3409251B8737E4009B66C3 /* AUIAutoGrowingTextView.m in Sources */,
 				8AD6BE561B706CF30040437E /* AssetHelper.m in Sources */,
 				8AD6C0B91B706CF30040437E /* ShowFollowerAndFollowingViewController.m in Sources */,
 				0BD634FD1B71C9B800D82414 /* LeveyTabBarController.m in Sources */,
 				8AD6C0B11B706CF30040437E /* SignupViewController.m in Sources */,
+				8A3408F51B86FC99009B66C3 /* BMXSwipableCell.m in Sources */,
 				8AD6C2A91B7072FB0040437E /* WhereIsThisViewController.m in Sources */,
 				8AD6C3361B707D120040437E /* CRZoomScrollView.m in Sources */,
 				8A7420E21B82F67F005DA654 /* KVNProgress.m in Sources */,
@@ -4520,6 +4624,7 @@
 				8AD6C3321B707D120040437E /* AsyncImageView.m in Sources */,
 				8AD6BE4B1B706CF30040437E /* ExploreCountryV2ViewController.m in Sources */,
 				8AD6C10A1B706CF30040437E /* FeedbackViewController.m in Sources */,
+				8A3408FF1B86FE3D009B66C3 /* BMXDataItem.m in Sources */,
 				8AD6C86A1B7460DB0040437E /* NSAlert+MKNetworkKitAdditions.m in Sources */,
 				8AD6C1081B706CF30040437E /* EditProfileViewController.m in Sources */,
 				8AD6C3461B707D120040437E /* BHInputToolbar.m in Sources */,
@@ -4538,6 +4643,7 @@
 				8A3757B71B847C7A009DB7D4 /* AddNewPlaceViewController.m in Sources */,
 				8AD6C3431B707D120040437E /* TPKeyboardAvoidingScrollView.m in Sources */,
 				8AD6C8711B7460DB0040437E /* MKNetworkEngine.m in Sources */,
+				8A34090F1B872B31009B66C3 /* EditPostViewController.m in Sources */,
 				8AD6BE4D1B706CF30040437E /* ExploreCountryViewController.m in Sources */,
 				8AD6C0F81B706CF30040437E /* SearchResultV2ViewController.m in Sources */,
 				8AD6C0D21B706CF30040437E /* PFollowTheExpertsViewController.m in Sources */,
@@ -4572,6 +4678,7 @@
 				8A2E2C4C1B8184C90010895E /* FourSquareModel.m in Sources */,
 				8AD6C1111B706CF30040437E /* CHANGELOG.md in Sources */,
 				8AD6C86C1B7460DB0040437E /* NSDate+RFC1123.m in Sources */,
+				8A3408F71B86FC99009B66C3 /* UITableViewController+BMXSwipableCellSupport.m in Sources */,
 				8AD6C2891B7072FB0040437E /* ConfirmPlaceViewController.m in Sources */,
 				8AD6C8761B7495B60040437E /* BaseViewController.m in Sources */,
 				8AD6C1041B706CF30040437E /* EditInterestV2ViewController.m in Sources */,
@@ -4610,6 +4717,7 @@
 				8A2E2CE61B81DEE60010895E /* CommonViewController.m in Sources */,
 				8AD6C33E1B707D120040437E /* NSMutableArray+MoveArray.m in Sources */,
 				8AD6C86D1B7460DB0040437E /* NSDictionary+RequestEncoding.m in Sources */,
+				8A3409081B871CB5009B66C3 /* EditPhotoModel.m in Sources */,
 				8AD6C1001B706CF30040437E /* AccountSettingViewController.m in Sources */,
 				8A2E2C141B79E7A30010895E /* RecommendationViewController.m in Sources */,
 				8A2E2C081B79A3F70010895E /* UserProfilePageViewController.m in Sources */,
@@ -4627,11 +4735,13 @@
 				8AD6C8261B736B870040437E /* ApiVersionModel.m in Sources */,
 				8AD6BA631B705DF20040437E /* AppDelegate.m in Sources */,
 				8A3408ED1B86EA4B009B66C3 /* UITableView+LongPressReorder.m in Sources */,
+				8A3408F61B86FC99009B66C3 /* BMXSwipableCellGestureDelegate.m in Sources */,
 				8AD6C2911B7072FB0040437E /* ChangeSearchLocationViewController.m in Sources */,
 				8AD6C27F1B7072FB0040437E /* AddContactViewController.m in Sources */,
 				0BC9B38A1B7DD287008334FF /* FeedViewController.m in Sources */,
 				8A3757B01B842F74009DB7D4 /* SearchManager.m in Sources */,
 				8AD6C10C1B706CF30040437E /* ForgotPasswordViewController.m in Sources */,
+				8A3408FA1B86FE0E009B66C3 /* BMXSwipableCell+ConfigureCell.m in Sources */,
 				8AD6C3391B707D120040437E /* FSVenue.m in Sources */,
 				8AD6C1141B706CF30040437E /* FSOAuthNoAppStore.m in Sources */,
 				8AD6C32E1B707D120040437E /* PEResizeControl.m in Sources */,
@@ -4649,6 +4759,7 @@
 				8AD6C8841B7849EF0040437E /* UserDefaultModel.m in Sources */,
 				8AD6BE4F1B706CF30040437E /* ExploreViewController.m in Sources */,
 				8AD6C2811B7072FB0040437E /* AddHourViewController.m in Sources */,
+				8A3409001B86FE3D009B66C3 /* UITableViewCell+ConfigureCell.m in Sources */,
 				8AD6C0C21B706CF30040437E /* FullImageViewController.m in Sources */,
 				8AD6C10E1B706CF30040437E /* SettingsViewController.m in Sources */,
 				8AD6C3381B707D120040437E /* FSConverter.m in Sources */,

@@ -14,7 +14,7 @@
 @implementation RecommendationViewController
 - (IBAction)btnEditPhotoClicked:(id)sender {
     
-    [self presentViewController:self.self.editPhotoViewController animated:YES completion:nil];
+    [self presentViewController:self.self.editPostViewController animated:YES completion:nil];
 }
 - (IBAction)btnPickImageClicked:(id)sender {
     
@@ -147,5 +147,14 @@
         
     }
     return _editPhotoViewController;
+}
+
+-(EditPostViewController*)editPostViewController
+{
+    if(!_editPostViewController)
+    {
+        _editPostViewController = [EditPostViewController new];
+    }
+    return _editPostViewController;
 }
 @end

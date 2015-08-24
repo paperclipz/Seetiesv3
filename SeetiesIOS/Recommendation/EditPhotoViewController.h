@@ -9,7 +9,8 @@
 #import "CommentViewController.h"
 #import "CustomEditPhotoTableViewCell.h"
 #import "UITableView+LongPressReorder.h"
+#import "BMXSwipableCell.h"
 
-@interface EditPhotoViewController : CommentViewController<UITableViewDataSource,UITableViewDelegate>
+@interface EditPhotoViewController : CommentViewController<UITableViewDataSource,UITableViewDelegate,BMXSwipableCellDelegate>
 
 @end

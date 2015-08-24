@@ -12,6 +12,7 @@
 #import "DoImagePickerController.h"
 #import "WhereIsThisViewController.h"
 #import "EditPhotoViewController.h"
+#import "EditPostViewController.h"
 
 #import "STSearchViewController.h"
 
@@ -22,5 +23,6 @@
 @property(nonatomic,strong)DoImagePickerController* doImagePickerController;
 
 @property(nonatomic,strong)EditPhotoViewController* editPhotoViewController;
+@property(nonatomic,strong)EditPostViewController* editPostViewController;
 
 @end

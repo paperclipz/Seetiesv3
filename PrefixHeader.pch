@@ -35,6 +35,9 @@
 #import "LoadingManager.h"
 #import "GoogleMaps.h"
 #import "SearchManager.h"
+#import "TPKeyboardAvoidingScrollView.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+
 #endif
 //===============Model=================
 #define IS_IN_DEBUG_MODE

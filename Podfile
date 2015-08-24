@@ -18,3 +18,5 @@ pod 'SDWebImage', :head
 pod 'GoogleMaps'
 pod 'LPGoogleFunctions'
 pod 'CLLocationManager-blocks'
+pod 'CSGrowingTextView', '~> 1.0'
+pod 'AutoLayoutTextViews', '~> 1.0'

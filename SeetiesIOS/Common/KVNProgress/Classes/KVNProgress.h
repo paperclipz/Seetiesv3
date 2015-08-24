@@ -34,7 +34,7 @@ static NSTimeInterval const KVNMinimumErrorDisplayTime = 1.3;
 @interface KVNProgress : UIView
 
 #pragma mark - Appearance
-
+#pragma GCC diagnostic ignored "-Wwarning-flag"
 /** Color of the background view. Is not used when backgroundType is KVNProgressBackgroundTypeBlurred. */
 @property (nonatomic) UIColor *backgroundFillColor NS_AVAILABLE_IOS(7_0) UI_APPEARANCE_SELECTOR;
 /** Tint color of the background view. Used to tint blurred background only when backgroundType is KVNProgressBackgroundTypeBlurred. */

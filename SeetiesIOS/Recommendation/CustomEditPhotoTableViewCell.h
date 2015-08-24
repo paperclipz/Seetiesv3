@@ -6,18 +6,15 @@
 //  Copyright (c) 2015 Stylar Network. All rights reserved.
 //
 
+#import "BMXSwipableCell.h"
 
-@protocol SwipeableCellDelegate <NSObject>
-- (void)buttonOneActionForItemText:(NSString *)itemText;
-- (void)buttonTwoActionForItemText:(NSString *)itemText;
-- (void)cellDidOpen:(UITableViewCell *)cell;
-- (void)cellDidClose:(UITableViewCell *)cell;
-@end
 
-@interface CustomEditPhotoTableViewCell : UITableViewCell
 
-@property (strong, nonatomic) IBOutlet UILabel *lblTitle;
-@property (nonatomic, strong) NSString *itemText;
-@property (nonatomic, weak) id <SwipeableCellDelegate> delegate;
-- (void)openCell;
+@interface CustomEditPhotoTableViewCell : BMXSwipableCell
+
+-(void)initData:(UIImage*)image description:(NSString*)desc;
+- (void)configureCellForItem:(EditPhotoModel*)item;
+@property(nonatomic,copy)IDBlock deleteBlock;
+@property(nonatomic,copy)IDBlock moreBlock;
+
 @end

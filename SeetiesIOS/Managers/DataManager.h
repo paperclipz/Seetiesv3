@@ -11,6 +11,7 @@
 #import "LanguageModel.h"
 #import "ExploreCountryModel.h"
 #import "SearchModel.h"
+#import "EditPhotoModel.h"
 
 @interface DataManager : NSObject
 + (id)Instance;

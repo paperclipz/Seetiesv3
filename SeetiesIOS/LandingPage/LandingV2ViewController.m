@@ -282,7 +282,7 @@
     
     [[[[UIApplication sharedApplication] delegate] window] setRootViewController:self.leveyTabBarController];
 //TODO:Delete this . use for development purpose only
-    [self.leveyTabBarController setSelectedIndex:2];
+    [self.leveyTabBarController setSelectedIndex:0];
 }
 
 - (void)animateImages

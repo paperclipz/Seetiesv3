@@ -21,7 +21,9 @@ PODS:
   - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - AutoLayoutTextViews (1.2.3)
   - CLLocationManager-blocks (1.3.2)
+  - CSGrowingTextView (1.0.5)
   - GoogleMaps (1.10.1)
   - HexColors (2.2.1)
   - IQKeyboardManager (3.2.4)
@@ -31,32 +33,33 @@ PODS:
   - SDWebImage (HEAD based on 3.7.3):
     - SDWebImage/Core (= HEAD based on 3.7.3)
   - SDWebImage/Core (HEAD based on 3.7.3)
-  - SWTableViewCell (0.3.7)
   - TSMessages (0.9.12):
     - HexColors (~> 2.2.0)
 
 DEPENDENCIES:
   - ADTransitionController
+  - AutoLayoutTextViews (~> 1.0)
   - CLLocationManager-blocks
+  - CSGrowingTextView (~> 1.0)
   - GoogleMaps
   - IQKeyboardManager
   - JSONModel
   - LPGoogleFunctions
   - SDWebImage (HEAD)
-  - SWTableViewCell (~> 0.3.7)
   - TSMessages
 
 SPEC CHECKSUMS:
   ADTransitionController: 72299d31488bcbe59fb87c483a89a637ebc819f8
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
+  AutoLayoutTextViews: 50d76d8938f263794e3344ee6876001f806c7cda
   CLLocationManager-blocks: 3b0af033092491fcd3cd24ffddfeb13f65e52144
+  CSGrowingTextView: 129abe533cc079f2797b8e1dff6d42cf84a31024
   GoogleMaps: ebf08677f181d9c2dcdbd1721d206f02beccc9b1
   HexColors: abfd172e329dab59888614ccba6f216cec59289d
   IQKeyboardManager: 555b1231fefafb21b19278d7cca72986a27b748b
   JSONModel: ec77e9865236a7a09d9cf7668df6b4b328d9ec1d
   LPGoogleFunctions: c78171de55b164e8e5dbf6b4bba477980771211a
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
-  SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
   TSMessages: c8cc7b80f2a833af533872cd02010cac061532cc
 
 COCOAPODS: 0.38.2
