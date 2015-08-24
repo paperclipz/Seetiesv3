@@ -8,10 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UrlDataClass.h"
-#import "DoImagePickerController.h"
-@interface Explore2ViewController : BaseViewController<UIScrollViewDelegate,DoImagePickerControllerDelegate,UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>{
-   // IBOutlet UIImageView *BarImage;
-    //IBOutlet UIButton *MainLine;
+@interface Explore2ViewController : BaseViewController<UIScrollViewDelegate>{
     NSString *GetSearchText;
     
     
@@ -24,20 +21,6 @@
     NSMutableArray *ThumbnailArray;
     
     NSURLConnection *theConnection_All;
-    
-   // IBOutlet UIActivityIndicatorView *ShowActivity;
-
-    NSURLConnection *theConnection_GetSearchString;
-    
-    
-    NSMutableArray *LocalSearchTextArray;
-    
-    NSMutableArray *GetReturnSearchTextArray;
-    NSMutableArray *GetReturnSearchAddressArray;
-    NSMutableArray *GetReturnSearchLatArray;
-    NSMutableArray *GetReturnSearchLngArray;
-    
-    NSInteger CheckTblview;
 
 }
 -(void)GetExploreDataFromServer;

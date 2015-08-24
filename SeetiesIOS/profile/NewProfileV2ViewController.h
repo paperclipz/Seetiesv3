@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "A3ParallaxScrollView.h"
-@interface NewProfileV2ViewController : UIViewController<UIScrollViewDelegate>{
+@interface NewProfileV2ViewController : BaseViewController<UIScrollViewDelegate>{
 
     IBOutlet A3ParallaxScrollView *MainScroll;
     IBOutlet UIImageView *BackgroundImage;

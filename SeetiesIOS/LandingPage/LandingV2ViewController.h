@@ -16,6 +16,8 @@
 #import "LeveyTabBarController.h"
 #import "UserProfilePageViewController.h"
 #import "RecommendationViewController.h"
+#import "FeedViewController.h"
+#import "NewProfileV2ViewController.h"
 @interface LandingV2ViewController : GAITrackedViewController <UITabBarControllerDelegate>{
     
     UrlDataClass *DataUrl;
@@ -47,7 +49,7 @@
 
 @property(nonatomic,strong)UITabBarController* tabBarController;
 
-@property(nonatomic,strong)FeedV2ViewController* feedV2ViewController;
+@property(nonatomic,strong)FeedViewController* feedViewController;
 
 @property(nonatomic,strong)Explore2ViewController* explore2ViewController;
 
@@ -59,7 +61,7 @@
 
 @property(nonatomic,strong)LeveyTabBarController *leveyTabBarController;
 
-@property(nonatomic,strong)UserProfilePageViewController* userProfilePageViewController;
+@property(nonatomic,strong)NewProfileV2ViewController* userProfilePageViewController;
 
 //=========================================== Revamp Changes =======================================//
 
