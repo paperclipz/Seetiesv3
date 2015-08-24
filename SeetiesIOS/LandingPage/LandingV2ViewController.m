@@ -55,6 +55,7 @@
 
 @implementation LandingV2ViewController
 
+
 -(void)initSelfView
 {
 
@@ -283,6 +284,9 @@
     [[[[UIApplication sharedApplication] delegate] window] setRootViewController:self.leveyTabBarController];
 //TODO:Delete this . use for development purpose only
     [self.leveyTabBarController setSelectedIndex:0];
+    NSLog(@"Landing self.leveyTabBarController === %@",self.leveyTabBarController);
+
+
 }
 
 - (void)animateImages
@@ -346,26 +350,27 @@
         _leveyTabBarController = [[LeveyTabBarController alloc] initWithViewControllers:arrViewControllers imageArray:[self arrTabImages]];
         [_leveyTabBarController.tabBar setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
         [_leveyTabBarController setTabBarTransparent:YES];
+
         
     }
     
     return _leveyTabBarController;
 }
--(UITabBarController*)tabBarController
-{
-    if(!_tabBarController)
-    {
-        CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-        
-        _tabBarController = [UITabBarController new];
-        _tabBarController.tabBar.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
-        [[UITabBar appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
-        self.tabBarController.viewControllers = [NSArray arrayWithObjects:self.feedViewController.navController,self.explore2ViewController.navController,self.recommendationViewController.navController,self.notificationViewController.navController,self.userProfilePageViewController.navController, nil];
-    }
-    
-    return _tabBarController;
-}
+//-(UITabBarController*)tabBarController
+//{
+//    if(!_tabBarController)
+//    {
+//        CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+//        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+//        
+//        _tabBarController = [UITabBarController new];
+//        _tabBarController.tabBar.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
+//        [[UITabBar appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
+//        self.tabBarController.viewControllers = [NSArray arrayWithObjects:self.feedViewController.navController,self.explore2ViewController.navController,self.recommendationViewController.navController,self.notificationViewController.navController,self.userProfilePageViewController.navController, nil];
+//    }
+//    
+//    return _tabBarController;
+//}
 
 -(FeedViewController*)feedViewController
 {
@@ -387,11 +392,11 @@
 }
 
 
--(RecommendationViewController*)recommendationViewController
+-(RecommendPopUpViewController*)recommendationViewController
 {
     if(!_recommendationViewController)
     {
-        _recommendationViewController = [RecommendationViewController new];
+        _recommendationViewController = [RecommendPopUpViewController new];
     }
     return _recommendationViewController;
 }
@@ -668,34 +673,35 @@
             UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:CustomLocalisedString(@"SomethingError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [ShowAlert show];
         }else{
+            NSDictionary *GetAllData = [res valueForKey:@"data"];
             NSLog(@"Got Data.");
-            NSMutableArray *categoriesArray = [[NSMutableArray alloc] initWithArray:[res valueForKey:@"categories"]];
+            NSMutableArray *categoriesArray = [[NSMutableArray alloc] initWithArray:[GetAllData valueForKey:@"categories"]];
             NSLog(@"categoriesArray is %@",categoriesArray);
-            NSString *GetCountry = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"country"]];
+            NSString *GetCountry = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"country"]];
             NSLog(@"GetCountry is %@",GetCountry);
-            NSString *Getcrawler = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"crawler"]];
+            NSString *Getcrawler = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"crawler"]];
             NSLog(@"Getcrawler is %@",Getcrawler);
-            NSString *Getcreated_at = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"created_at"]];
+            NSString *Getcreated_at = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"created_at"]];
             NSLog(@"Getcreated_at is %@",Getcreated_at);
-            NSString *Getdescription = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"description"]];
+            NSString *Getdescription = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"description"]];
             NSLog(@"Getdescription is %@",Getdescription);
-            NSString *Getdob = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"dob"]];
+            NSString *Getdob = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"dob"]];
             NSLog(@"Getdob is %@",Getdob);
-            NSString *Getemail = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"email"]];
+            NSString *Getemail = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"email"]];
             NSLog(@"Getemail is %@",Getemail);
-            NSString *Getusername = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"username"]];
+            NSString *Getusername = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"username"]];
             NSLog(@"Getusername is %@",Getusername);
-            NSString *Getprofile_photo = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"profile_photo"]];
+            NSString *Getprofile_photo = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"profile_photo"]];
             NSLog(@"Getprofile_photo is %@",Getprofile_photo);
-            NSString *Gettoken = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"token"]];
+            NSString *Gettoken = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"token"]];
             NSLog(@"Gettoken is %@",Gettoken);
-            NSString *Getuid = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"uid"]];
+            NSString *Getuid = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"uid"]];
             NSLog(@"Getuid is %@",Getuid);
-            NSString *Getprovisioning = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"provisioning"]];
+            NSString *Getprovisioning = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"provisioning"]];
             NSLog(@"Getprovisioning is %@",Getprovisioning);
-            NSString *Getrole = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"role"]];
+            NSString *Getrole = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"role"]];
             NSLog(@"Getrole is %@",Getrole);
-            NSDictionary *SystemLanguage = [res valueForKey:@"system_language"];
+            NSDictionary *SystemLanguage = [GetAllData valueForKey:@"system_language"];
             NSLog(@"SystemLanguage is %@",SystemLanguage);
             NSString *GetCaption;
             if ([SystemLanguage isKindOfClass:[NSNull class]]) {
@@ -706,14 +712,14 @@
             }
             //            NSString *GetCaption = [[NSString alloc]initWithFormat:@"%@",[SystemLanguage objectForKey:@"caption"]];
             //            NSLog(@"GetCaption is %@",GetCaption);
-            NSString *GetPasswordCheck = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"has_password"]];
+            NSString *GetPasswordCheck = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"has_password"]];
             NSLog(@"GetPasswordCheck is %@",GetPasswordCheck);
-            NSString *GetFbExtendedToken = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"fb_extended_token"]];
+            NSString *GetFbExtendedToken = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"fb_extended_token"]];
             NSLog(@"GetFbExtendedToken is %@",GetFbExtendedToken);
             
             NSMutableArray *GetUserSelectLanguagesArray = [[NSMutableArray alloc]init];
             NSMutableArray *TempArray = [[NSMutableArray alloc]init];
-            NSDictionary *NSDictionaryLanguage = [res valueForKey:@"languages"];
+            NSDictionary *NSDictionaryLanguage = [GetAllData valueForKey:@"languages"];
             NSLog(@"NSDictionaryLanguage is %@",NSDictionaryLanguage);
             NSString *GetLanguage_1;
             NSString *GetLanguage_2;

@@ -213,6 +213,19 @@
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+    [UIView animateWithDuration:0.2
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         //   MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight - 114);
+                         // ShowbarView.frame = CGRectMake(0, 0, screenWidth, 64);
+                         ShowDownBarView.frame = CGRectMake(0, screenHeight - 110, screenWidth, 60);
+                         self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
+                     }
+                     completion:^(BOOL finished) {
+                     }];
     
 }
 - (void)dealloc {

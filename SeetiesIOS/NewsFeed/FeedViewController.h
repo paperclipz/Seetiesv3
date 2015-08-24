@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface FeedViewController : BaseViewController<UIScrollViewDelegate>{
+#import "UrlDataClass.h"
+@interface FeedViewController : BaseViewController<UIScrollViewDelegate,CLLocationManagerDelegate>{
     
     IBOutlet UIScrollView *MainScroll;
     UIRefreshControl *refreshControl;
@@ -27,6 +27,9 @@
     NSMutableArray *arrMessage;
     NSMutableArray *arrType;
     NSMutableArray *arrImage;
+    NSMutableArray *arrUserImage;
+    NSMutableArray *arrUserName;
+    NSMutableArray *arrDistance;
     
     NSDate *methodStart;
     
@@ -39,6 +42,15 @@
     UIScrollView *SUserScrollview;
     UIPageControl *SUserpageControl;
     UILabel *ShowSUserCount;
+    
+    UrlDataClass *DataUrl;
+    
+    NSURLConnection *theConnection_All;
+    NSString *latPoint;
+    NSString *lonPoint;
+    NSString *ExternalIPAddress;
+    
+    NSMutableData *webData;
 }
 -(IBAction)SearchButton:(id)sender;
 

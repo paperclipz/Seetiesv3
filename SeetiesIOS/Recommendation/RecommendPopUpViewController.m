@@ -8,6 +8,7 @@
 
 #import "RecommendPopUpViewController.h"
 #import "LeveyTabBarController.h"
+#import "DraftViewController.h"
 @interface RecommendPopUpViewController ()
 
 @end
@@ -33,23 +34,25 @@
     BackgroundButton.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     [BackgroundButton setTitle:@"" forState:UIControlStateNormal];
     BackgroundButton.backgroundColor = [UIColor clearColor];
-    [BackgroundButton addTarget:self action:@selector(BackgroundButton:) forControlEvents:UIControlEventTouchUpInside];
+   // [BackgroundButton addTarget:self action:@selector(BackgroundButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:BackgroundButton];
     
     ShowSelectImageButton = [[UIButton alloc]init];
-    ShowSelectImageButton.frame = CGRectMake(160, 800, 100, 100);
+    ShowSelectImageButton.frame = CGRectMake((screenWidth / 2) - 70, screenHeight - 150, 50, 50);
     [ShowSelectImageButton setTitle:@"Image" forState:UIControlStateNormal];
     ShowSelectImageButton.backgroundColor = [UIColor redColor];
-     [ShowSelectImageButton addTarget:self action:@selector(OpenSelectImgButton:) forControlEvents:UIControlEventTouchUpInside];
+    [ShowSelectImageButton addTarget:self action:@selector(OpenSelectImgButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:ShowSelectImageButton];
     
     ShowSelectDaftButton = [[UIButton alloc]init];
-    ShowSelectDaftButton.frame = CGRectMake(160, 800, 100, 100);
+    ShowSelectDaftButton.frame = CGRectMake((screenWidth / 2) + 20,  screenHeight - 150 , 50, 50);
     [ShowSelectDaftButton setTitle:@"Draft" forState:UIControlStateNormal];
     ShowSelectDaftButton.backgroundColor = [UIColor redColor];
+    [ShowSelectDaftButton addTarget:self action:@selector(OpenDraftButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:ShowSelectDaftButton];
     
     CheckButtonClick = NO;
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -67,37 +70,35 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    NSLog(@"in here????");
-    TempBackground.hidden = NO;
-    ShowSelectImageButton.frame = CGRectMake(160, 800, 100, 100);
-    ShowSelectDaftButton.frame = CGRectMake(160, 800, 100, 100);
-    
-    [UIView animateWithDuration:0.2f
-                          delay:0
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         ShowSelectImageButton.frame = CGRectMake(160, 300, 100, 100);
-                         ShowSelectDaftButton.frame = CGRectMake(160, 300, 100, 100);
-                     }
-                     completion:^(BOOL finished) {
-                         
-                         [UIView animateWithDuration:0.2f
-                                               delay:0
-                                             options:UIViewAnimationOptionCurveEaseOut
-                                          animations:^{
-                                              ShowSelectImageButton.frame = CGRectMake(50, 300, 100, 100);
-                                              ShowSelectDaftButton.frame = CGRectMake(250, 300, 100, 100);
-                                          }
-                                          completion:^(BOOL finished) {
-                                              
-                                          }];
-                     }];
+//    NSLog(@"in here????");
+//    TempBackground.hidden = NO;
+//    ShowSelectImageButton.frame = CGRectMake(160, 800, 100, 100);
+//    ShowSelectDaftButton.frame = CGRectMake(160, 800, 100, 100);
+//    
+//    [UIView animateWithDuration:0.2f
+//                          delay:0
+//                        options:UIViewAnimationOptionCurveEaseOut
+//                     animations:^{
+//                         ShowSelectImageButton.frame = CGRectMake(160, 300, 100, 100);
+//                         ShowSelectDaftButton.frame = CGRectMake(160, 300, 100, 100);
+//                     }
+//                     completion:^(BOOL finished) {
+//                         
+//                         [UIView animateWithDuration:0.2f
+//                                               delay:0
+//                                             options:UIViewAnimationOptionCurveEaseOut
+//                                          animations:^{
+//                                              ShowSelectImageButton.frame = CGRectMake(50, 300, 100, 100);
+//                                              ShowSelectDaftButton.frame = CGRectMake(250, 300, 100, 100);
+//                                          }
+//                                          completion:^(BOOL finished) {
+//                                              
+//                                          }];
+//                     }];
     
 }
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    
-     NSLog(@"out here????");
     
 }
 -(IBAction)OpenSelectImgButton:(id)sender{
@@ -109,6 +110,11 @@
     
     [self presentViewController:cont animated:YES completion:nil];
     //[self.view.window.rootViewController presentViewController:cont animated:YES completion:nil];
+}
+-(IBAction)OpenDraftButton:(id)sender{
+
+    DraftViewController *OpenDraft = [[DraftViewController alloc]init];
+    [self presentViewController:OpenDraft animated:YES completion:nil];
 }
 
 -(IBAction)BackgroundButton:(id)sender{
@@ -130,7 +136,9 @@
                                           }
                                           completion:^(BOOL finished) {
                                               TempBackground.hidden = YES;
-                                              self.leveyTabBarController.selectedIndex = 0;
+                                              [self.leveyTabBarController setSelectedIndex:0];
+                                              NSLog(@"self.leveyTabBarController === %@",self.leveyTabBarController);
+
                                           }];
                      }];
     

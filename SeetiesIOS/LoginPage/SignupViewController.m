@@ -415,33 +415,35 @@
             UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"SomethingError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [ShowAlert show];
         }else{
+            NSDictionary *GetAllData = [res valueForKey:@"data"];
+            
             [ShowActivity stopAnimating];
             NSLog(@"Got Data.");
-            NSMutableArray *categoriesArray = [[NSMutableArray alloc] initWithArray:[res valueForKey:@"categories"]];
+            NSMutableArray *categoriesArray = [[NSMutableArray alloc] initWithArray:[GetAllData valueForKey:@"categories"]];
             NSLog(@"categoriesArray is %@",categoriesArray);
-            NSString *GetCountry = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"country"]];
+            NSString *GetCountry = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"country"]];
             NSLog(@"GetCountry is %@",GetCountry);
-            NSString *Getcrawler = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"crawler"]];
+            NSString *Getcrawler = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"crawler"]];
             NSLog(@"Getcrawler is %@",Getcrawler);
-            NSString *Getcreated_at = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"created_at"]];
+            NSString *Getcreated_at = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"created_at"]];
             NSLog(@"Getcreated_at is %@",Getcreated_at);
-            NSString *Getdescription = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"description"]];
+            NSString *Getdescription = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"description"]];
             NSLog(@"Getdescription is %@",Getdescription);
-            NSString *Getdob = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"dob"]];
+            NSString *Getdob = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"dob"]];
             NSLog(@"Getdob is %@",Getdob);
-            NSString *Getemail = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"email"]];
+            NSString *Getemail = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"email"]];
             NSLog(@"Getemail is %@",Getemail);
-            NSString *Getusername = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"username"]];
+            NSString *Getusername = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"username"]];
             NSLog(@"Getusername is %@",Getusername);
-            NSString *Getprofile_photo = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"profile_photo"]];
+            NSString *Getprofile_photo = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"profile_photo"]];
             NSLog(@"Getprofile_photo is %@",Getprofile_photo);
-            NSString *Gettoken = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"token"]];
+            NSString *Gettoken = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"token"]];
             NSLog(@"Gettoken is %@",Gettoken);
-            NSString *Getuid = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"uid"]];
+            NSString *Getuid = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"uid"]];
             NSLog(@"Getuid is %@",Getuid);
-            NSString *Getrole = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"role"]];
+            NSString *Getrole = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"role"]];
             NSLog(@"Getrole is %@",Getrole);
-            NSString *GetPasswordCheck = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"has_password"]];
+            NSString *GetPasswordCheck = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"has_password"]];
             NSLog(@"GetPasswordCheck is %@",GetPasswordCheck);
             
             //  NSString *CheckLogin = [[NSString alloc]initWithFormat:@"LoginDone"];

@@ -189,6 +189,8 @@
         NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
         NSLog(@"Expert Json = %@",res);
         
+        NSDictionary *GetAllData = [res valueForKey:@"data"];
+        
         PostIDArray = [[NSMutableArray alloc]init];
         TypeArray = [[NSMutableArray alloc]init];
         UserThumbnailArray = [[NSMutableArray alloc]init];
@@ -198,10 +200,10 @@
         MessageArray = [[NSMutableArray alloc]init];
         ActionArray = [[NSMutableArray alloc]init];
         
-        NSDictionary *UserInfoData = [res valueForKey:@"user_thumbnail"];
-        NSDictionary *PostInfoData = [res valueForKey:@"post_thumbnail"];
+        NSDictionary *UserInfoData = [GetAllData valueForKey:@"user_thumbnail"];
+        NSDictionary *PostInfoData = [GetAllData valueForKey:@"post_thumbnail"];
         //NSLog(@"UserInfoData is %@",UserInfoData);
-        for (NSDictionary * dict in res){
+        for (NSDictionary * dict in GetAllData){
             NSString *type =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"type"]];
             [TypeArray addObject:type];
             NSString *post_id =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"post_id"]];

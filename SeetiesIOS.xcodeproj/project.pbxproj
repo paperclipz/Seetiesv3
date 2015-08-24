@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0BA1CB2F1B85AEFA009FFD3E /* Explore2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA1CB2E1B85AEFA009FFD3E /* Explore2ViewController.xib */; };
+		0BA2895B1B8AC440000B7E3D /* DraftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA289591B8AC440000B7E3D /* DraftViewController.m */; };
+		0BA2895C1B8AC440000B7E3D /* DraftViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA2895A1B8AC440000B7E3D /* DraftViewController.xib */; };
 		0BC9B38A1B7DD287008334FF /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC9B3881B7DD287008334FF /* FeedViewController.m */; };
 		0BC9B38B1B7DD288008334FF /* FeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC9B3891B7DD287008334FF /* FeedViewController.xib */; };
 		0BD634FC1B71C9B800D82414 /* LeveyTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD634F91B71C9B800D82414 /* LeveyTabBar.m */; };
@@ -894,6 +896,9 @@
 
 /* Begin PBXFileReference section */
 		0BA1CB2E1B85AEFA009FFD3E /* Explore2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Explore2ViewController.xib; sourceTree = "<group>"; };
+		0BA289581B8AC440000B7E3D /* DraftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DraftViewController.h; sourceTree = "<group>"; };
+		0BA289591B8AC440000B7E3D /* DraftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DraftViewController.m; sourceTree = "<group>"; };
+		0BA2895A1B8AC440000B7E3D /* DraftViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DraftViewController.xib; sourceTree = "<group>"; };
 		0BC9B3871B7DD287008334FF /* FeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
 		0BC9B3881B7DD287008334FF /* FeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
 		0BC9B3891B7DD287008334FF /* FeedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedViewController.xib; sourceTree = "<group>"; };
@@ -2040,6 +2045,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		0BA289571B8AC432000B7E3D /* Draft */ = {
+			isa = PBXGroup;
+			children = (
+				0BA289581B8AC440000B7E3D /* DraftViewController.h */,
+				0BA289591B8AC440000B7E3D /* DraftViewController.m */,
+				0BA2895A1B8AC440000B7E3D /* DraftViewController.xib */,
+			);
+			path = Draft;
+			sourceTree = "<group>";
+		};
 		0BD634F71B71C9B800D82414 /* LeveyTabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -2145,6 +2160,7 @@
 		8AD6BA5C1B705DF20040437E /* SeetiesIOS */ = {
 			isa = PBXGroup;
 			children = (
+				0BA289571B8AC432000B7E3D /* Draft */,
 				8AD6C2D21B707D120040437E /* Common */,
 				8AD6C23B1B7072FA0040437E /* Publish */,
 				8AD6BA961B706CF10040437E /* Category */,
@@ -4113,6 +4129,7 @@
 				8AD6C66F1B70934D0040437E /* FollowMini@2x.png in Resources */,
 				8AD6C5DE1B70934D0040437E /* Caret@2x.png in Resources */,
 				8AD6C78D1B70934D0040437E /* PostShade@2x.png in Resources */,
+				0BA2895C1B8AC440000B7E3D /* DraftViewController.xib in Resources */,
 				8AD6C7861B70934D0040437E /* PostLikeRed.png in Resources */,
 				8AD6C7D61B70934D0040437E /* Search@2x.png in Resources */,
 				8AD6C10B1B706CF30040437E /* FeedbackViewController.xib in Resources */,
@@ -4479,6 +4496,7 @@
 				8AD6BE241B706CF30040437E /* UIIimage+Extra.m in Sources */,
 				8AD6C8201B736B070040437E /* Model.m in Sources */,
 				8AD6C3321B707D120040437E /* AsyncImageView.m in Sources */,
+				0BA2895B1B8AC440000B7E3D /* DraftViewController.m in Sources */,
 				8AD6BE4B1B706CF30040437E /* ExploreCountryV2ViewController.m in Sources */,
 				8AD6C10A1B706CF30040437E /* FeedbackViewController.m in Sources */,
 				8AD6C86A1B7460DB0040437E /* NSAlert+MKNetworkKitAdditions.m in Sources */,

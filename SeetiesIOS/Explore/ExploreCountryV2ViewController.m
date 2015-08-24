@@ -35,7 +35,7 @@
     MainScroll.delegate = self;
     UserScroll.delegate = self;
    
-    MainScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight - 64);
+    MainScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight - 64 - 50);
     UserScroll.frame = CGRectMake(0, 0, screenWidth, 280);
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
    // [SearchButton setTitle:CustomLocalisedString(@"Search", nil) forState:UIControlStateNormal];

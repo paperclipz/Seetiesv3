@@ -18,7 +18,12 @@
 #import "RecommendationViewController.h"
 #import "FeedViewController.h"
 #import "NewProfileV2ViewController.h"
+#import "RecommendPopUpViewController.h"
+
+
 @interface LandingV2ViewController : GAITrackedViewController <UITabBarControllerDelegate>{
+
+
     
     UrlDataClass *DataUrl;
     NSMutableData *webData;
@@ -55,7 +60,7 @@
 
 @property(nonatomic,strong)SelectImageViewController* selectImageViewController;
 
-@property(nonatomic,strong)RecommendationViewController* recommendationViewController;
+@property(nonatomic,strong)RecommendPopUpViewController* recommendationViewController;
 
 @property(nonatomic,strong)NotificationViewController* notificationViewController;
 
