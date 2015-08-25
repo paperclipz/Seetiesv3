@@ -23,6 +23,11 @@
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
+    SearchBarTemp.delegate = self;
+    SearchBarTemp.tintColor = [UIColor redColor];
+    SearchBarTemp.barTintColor = [UIColor clearColor];
+    [SearchBarTemp setBackgroundImage:[[UIImage alloc]init]];
+    
     GetHeight = 0;
     
     MainScroll.delegate = self;
@@ -39,9 +44,12 @@
     BackgroundImage.frame = headerFrame;
     [MainScroll addSubview:BackgroundImage withAcceleration:CGPointMake(0.0f, 0.5f)];
     
+    SettingsButton.frame = CGRectMake(screenWidth - 30 - 35, 72, 19, 19);
+    ShareButton.frame = CGRectMake(screenWidth - 30, 67, 17, 24);
     
+    CheckExpand = YES;
     
-    AllContentView.frame = CGRectMake(0, 100, screenWidth, screenHeight - 100);
+    AllContentView.frame = CGRectMake(0, 100, screenWidth, screenHeight + 50);
 //    CGRect contentFrame = AllContentView.frame;
 //    contentFrame.origin.y += 100.0f;
 //    AllContentView.frame = contentFrame;
@@ -89,13 +97,25 @@
     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
     [AllContentView addSubview:ShowUserProfileImage];
     
+    UILabel *ShowUserName = [[UILabel alloc]init];//getname
+    ShowUserName.frame = CGRectMake(130, 10, screenWidth - 130, 30);
+    ShowUserName.text = @"@lucydiamond";
+    ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:18];
+    ShowUserName.textColor = [UIColor whiteColor];
+    ShowUserName.textAlignment = NSTextAlignmentLeft;
+    ShowUserName.backgroundColor = [UIColor clearColor];
+    [AllContentView addSubview:ShowUserName];
+    
     
     UIButton *EditProfileButton = [[UIButton alloc]init];
-    EditProfileButton.frame = CGRectMake(screenWidth - 80 - 20, 50, 80, 40);
+    EditProfileButton.frame = CGRectMake(screenWidth - 120 - 20, 50, 120, 40);
     [EditProfileButton setTitle:@"Edit profile" forState:UIControlStateNormal];
     EditProfileButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
     [EditProfileButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
-    EditProfileButton.backgroundColor = [UIColor clearColor];
+    EditProfileButton.backgroundColor = [UIColor whiteColor];
+    EditProfileButton.layer.cornerRadius = 20;
+    EditProfileButton.layer.borderWidth = 1;
+    EditProfileButton.layer.borderColor=[[UIColor grayColor] CGColor];
     [AllContentView addSubview:EditProfileButton];
     
     UILabel *ShowName_ = [[UILabel alloc]init];//getname
@@ -110,7 +130,8 @@
     GetHeight = 145;
     
     NSString *TempLocation = @"Petaling Jaya, Malaysia";//Petaling Jaya, Malaysia
-    NSString *TempAbout = @"i love lucy diamond in the sky. the name 'Lucy' stands for bright light in the sky, like the diamond in the sky.";
+    NSString *TempLink = @"www.chongcheeyong.com";
+    NSString *TempAbout = @"i love lucy diamond in the sky. the name 'Lucy' stands for bright light in the sky, like the diamond in the sky.\n\ni love lucy diamond in the sky. the name 'Lucy' stands for bright light in the sky, like the diamond in the sky.\n\ni love lucy diamond in the sky. the name 'Lucy' stands for bright light in the sky, like the diamond in the sky.";
     NSString *TempHashTag = @"#lucy #malaysiablogger #fashion #beach #ilovesunset #iamlucydiamondinthesky";
     
     if ([TempLocation isEqualToString:@""] || [TempLocation isEqualToString:@"(null)"] || [TempLocation length] == 0) {
@@ -134,44 +155,20 @@
         GetHeight += 30;
     }
     
-    if ([TempAbout isEqualToString:@""] || [TempAbout isEqualToString:@"(null)"] || [TempAbout length] == 0) {
-        
-    }else{
-        UILabel *ShowAboutText = [[UILabel alloc]init];
-        ShowAboutText.frame = CGRectMake(30, GetHeight, screenWidth - 60, 30);
-        ShowAboutText.text = TempAbout;
-        ShowAboutText.numberOfLines = 0;
-        ShowAboutText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
-        ShowAboutText.textColor = [UIColor colorWithRed:161.0f/255.0f green:161.0f/255.0f blue:161.0f/255.0f alpha:1.0f];
-        ShowAboutText.textAlignment = NSTextAlignmentLeft;
-        [AllContentView addSubview:ShowAboutText];
-        
-        CGSize size = [ShowAboutText sizeThatFits:CGSizeMake(ShowAboutText.frame.size.width, CGFLOAT_MAX)];
-        CGRect frame = ShowAboutText.frame;
-        frame.size.height = size.height;
-        ShowAboutText.frame = frame;
-        
-        GetHeight += ShowAboutText.frame.size.height + 20;
-    }
     
-    if ([TempHashTag isEqualToString:@""] || [TempHashTag isEqualToString:@"(null)"] || [TempHashTag length] == 0) {
+    if ([TempLink isEqualToString:@""] || [TempLink isEqualToString:@"(null)"] || [TempLink length] == 0) {
         
     }else{
-        UILabel *ShowHashTagText = [[UILabel alloc]init];
-        ShowHashTagText.frame = CGRectMake(30, GetHeight, screenWidth - 60, 30);
-        ShowHashTagText.text = TempHashTag;
-        ShowHashTagText.numberOfLines = 0;
-        ShowHashTagText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-        ShowHashTagText.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
-        ShowHashTagText.textAlignment = NSTextAlignmentLeft;
-        [AllContentView addSubview:ShowHashTagText];
+        UILabel *ShowLink = [[UILabel alloc]init];
+        ShowLink.frame = CGRectMake(50, GetHeight, screenWidth - 120, 20);
+        ShowLink.text = TempLink;
+        ShowLink.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+        ShowLink.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0];
+        ShowLink.textAlignment = NSTextAlignmentLeft;
+        ShowLink.backgroundColor = [UIColor clearColor];
+        [AllContentView addSubview:ShowLink];
         
-        CGSize size = [ShowHashTagText sizeThatFits:CGSizeMake(ShowHashTagText.frame.size.width, CGFLOAT_MAX)];
-        CGRect frame = ShowHashTagText.frame;
-        frame.size.height = size.height;
-        ShowHashTagText.frame = frame;
-        
-        GetHeight += ShowHashTagText.frame.size.height + 20;
+        GetHeight += 30;
     }
     
     // followers and followings count show
@@ -193,16 +190,122 @@
     ShowFollowing.textAlignment = NSTextAlignmentLeft;
     ShowFollowing.backgroundColor = [UIColor clearColor];
     [AllContentView addSubview:ShowFollowing];
-
+    
+    
+    
     GetHeight += 50;
     
+    if ([TempAbout isEqualToString:@""] || [TempAbout isEqualToString:@"(null)"] || [TempAbout length] == 0) {
+        
+    }else{
+        UILabel *ShowAboutText = [[UILabel alloc]init];
+        ShowAboutText.frame = CGRectMake(30, GetHeight, screenWidth - 60, 30);
+        ShowAboutText.text = TempAbout;
+        ShowAboutText.numberOfLines = 0;
+        ShowAboutText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+        ShowAboutText.textColor = [UIColor colorWithRed:161.0f/255.0f green:161.0f/255.0f blue:161.0f/255.0f alpha:1.0f];
+        ShowAboutText.textAlignment = NSTextAlignmentLeft;
+        [AllContentView addSubview:ShowAboutText];
+        
+        CGSize size = [ShowAboutText sizeThatFits:CGSizeMake(ShowAboutText.frame.size.width, CGFLOAT_MAX)];
+        CGRect frame = ShowAboutText.frame;
+        frame.size.height = size.height;
+        ShowAboutText.frame = frame;
+        
+        GetHeight += ShowAboutText.frame.size.height + 20;
+    }
+    
+    NSLog(@"after about us height is ==== %d",GetHeight);
+    if (CheckExpand == YES) {
+        if (GetHeight > 300) {
+            CheckExpand = YES;
+        }else{
+            CheckExpand = NO;
+        }
+    }
+    
+
+    
+    
+    if (CheckExpand == YES) {
+        
+        GetHeight = 310;
+        
+        UIButton *WhiteBack = [[UIButton alloc]init];
+        WhiteBack.frame = CGRectMake(0, GetHeight, screenWidth, 1000);
+        [WhiteBack setTitle:@"" forState:UIControlStateNormal];
+        [WhiteBack setBackgroundColor:[UIColor whiteColor]];
+        [AllContentView addSubview:WhiteBack];
+        
+        UIButton *Line01 = [[UIButton alloc]init];
+        Line01.frame = CGRectMake(0, GetHeight, screenWidth, 1);
+        [Line01 setTitle:@"" forState:UIControlStateNormal];
+        [Line01 setBackgroundColor:[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f]];
+        [AllContentView addSubview:Line01];
+        
+        GetHeight += 1;
+        
+        UIButton *ExpandButton = [[UIButton alloc]init];
+        ExpandButton.frame = CGRectMake(0, GetHeight, screenWidth, 50);
+        [ExpandButton setTitle:@"Expand" forState:UIControlStateNormal];
+        ExpandButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
+        [ExpandButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
+        ExpandButton.backgroundColor = [UIColor whiteColor];
+        [ExpandButton addTarget:self action:@selector(ExpandButton:) forControlEvents:UIControlEventTouchUpInside];
+        [AllContentView addSubview:ExpandButton];
+        
+        GetHeight += 50;
+        
+    }else{
+    
+        if ([TempHashTag isEqualToString:@""] || [TempHashTag isEqualToString:@"(null)"] || [TempHashTag length] == 0) {
+            
+        }else{
+            UILabel *ShowHashTagText = [[UILabel alloc]init];
+            ShowHashTagText.frame = CGRectMake(30, GetHeight, screenWidth - 60, 30);
+            ShowHashTagText.text = TempHashTag;
+            ShowHashTagText.numberOfLines = 0;
+            ShowHashTagText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+            ShowHashTagText.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
+            ShowHashTagText.textAlignment = NSTextAlignmentLeft;
+            [AllContentView addSubview:ShowHashTagText];
+            
+            CGSize size = [ShowHashTagText sizeThatFits:CGSizeMake(ShowHashTagText.frame.size.width, CGFLOAT_MAX)];
+            CGRect frame = ShowHashTagText.frame;
+            frame.size.height = size.height;
+            ShowHashTagText.frame = frame;
+            
+            GetHeight += ShowHashTagText.frame.size.height + 20;
+        }
+        
+        UIButton *Line01 = [[UIButton alloc]init];
+        Line01.frame = CGRectMake(0, GetHeight, screenWidth, 1);
+        [Line01 setTitle:@"" forState:UIControlStateNormal];
+        [Line01 setBackgroundColor:[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f]];
+        [AllContentView addSubview:Line01];
+        
+        GetHeight += 1;
+        
+        UIButton *CollapseButton = [[UIButton alloc]init];
+        CollapseButton.frame = CGRectMake(0, GetHeight, screenWidth, 50);
+        [CollapseButton setTitle:@"Collapse" forState:UIControlStateNormal];
+        CollapseButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
+        [CollapseButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
+        CollapseButton.backgroundColor = [UIColor whiteColor];
+        [CollapseButton addTarget:self action:@selector(CollapseButton:) forControlEvents:UIControlEventTouchUpInside];
+        [AllContentView addSubview:CollapseButton];
+        
+        GetHeight += 50;
+        
+      }
+    
     UIButton *Line01 = [[UIButton alloc]init];
-    Line01.frame = CGRectMake(0, GetHeight, screenWidth, 1);
+    Line01.frame = CGRectMake(0, GetHeight, screenWidth, 20);
     [Line01 setTitle:@"" forState:UIControlStateNormal];
-    [Line01 setBackgroundColor:[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f]];
+    [Line01 setBackgroundColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f]];
     [AllContentView addSubview:Line01];
     
-    GetHeight += 11;
+    GetHeight += 31;
     
     NSString *TempStringPosts = [[NSString alloc]initWithFormat:@"Post"];
     NSString *TempStringCollection = [[NSString alloc]initWithFormat:@"Collection"];
@@ -252,8 +355,6 @@
     MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     MainScroll.contentSize = contentSize;
     
-
-    
 }
 - (void)segmentAction:(UISegmentedControl *)segment
 {
@@ -295,7 +396,23 @@
     
     //[self InitView];
 }
-
+-(IBAction)CollapseButton:(id)sender{
+    CheckExpand = YES;
+    GetHeight = 0;
+    for (UIView *subview in AllContentView.subviews) {
+        [subview removeFromSuperview];
+    }
+    [self InitContentView];
+    
+}
+-(IBAction)ExpandButton:(id)sender{
+    CheckExpand = NO;
+    GetHeight = 0;
+    for (UIView *subview in AllContentView.subviews) {
+        [subview removeFromSuperview];
+    }
+    [self InitContentView];
+}
 
 -(void)InitCollectionView{
     
@@ -438,8 +555,11 @@
         LikeView.frame = CGRectMake(0, GetHeight, screenWidth, 0 + FinalWidth + (SpaceWidth * (CGFloat)(i /3)));
     }
     
-    
-    [MainScroll setContentSize:CGSizeMake(screenWidth, GetHeight + LikeView.frame.size.height + LikeView.frame.origin.y - FinalWidth)];
+    CGSize contentSize = MainScroll.frame.size;
+    contentSize.height = GetHeight + LikeView.frame.size.height + FinalWidth + FinalWidth;
+    MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    MainScroll.contentSize = contentSize;
+    //[MainScroll setContentSize:CGSizeMake(screenWidth, GetHeight + LikeView.frame.size.height + LikeView.frame.origin.y)];
 }
 -(IBAction)SettingsButton:(id)sender{
 

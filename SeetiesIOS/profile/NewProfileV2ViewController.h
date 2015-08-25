@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "A3ParallaxScrollView.h"
-@interface NewProfileV2ViewController : BaseViewController<UIScrollViewDelegate>{
+@interface NewProfileV2ViewController : BaseViewController<UIScrollViewDelegate,UISearchBarDelegate>{
 
     IBOutlet A3ParallaxScrollView *MainScroll;
     IBOutlet UIImageView *BackgroundImage;
@@ -21,6 +21,12 @@
     UIView *PostView;
     UIView *CollectionView;
     UIView *LikeView;
+    
+    IBOutlet UIButton *SettingsButton;
+    IBOutlet UIButton *ShareButton;
+    IBOutlet UISearchBar *SearchBarTemp;
+    
+    BOOL CheckExpand;
 }
 -(IBAction)SettingsButton:(id)sender;
 @end

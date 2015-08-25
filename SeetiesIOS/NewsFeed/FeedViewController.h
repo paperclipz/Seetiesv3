@@ -30,6 +30,7 @@
     NSMutableArray *arrUserImage;
     NSMutableArray *arrUserName;
     NSMutableArray *arrDistance;
+    NSMutableArray *arrDisplayCountryName;
     
     NSDate *methodStart;
     
@@ -51,6 +52,14 @@
     NSString *ExternalIPAddress;
     
     NSMutableData *webData;
+    
+    NSInteger TotalPage;
+    NSInteger CurrentPage;
+    NSInteger DataCount;
+    NSInteger DataTotal;
+    
+    int CheckFirstTimeLoad;
+    BOOL OnLoad;
 }
 -(IBAction)SearchButton:(id)sender;
 

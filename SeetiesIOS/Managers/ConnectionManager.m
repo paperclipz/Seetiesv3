@@ -89,7 +89,7 @@
             str = @"v1.3/system/apiversion?device_type=2";
             break;
         case ServerRequestTypeGetExplore:
-            str = @"v1.3/explore";
+            str = @"v2.0/explore";
             break;
 
         default:
