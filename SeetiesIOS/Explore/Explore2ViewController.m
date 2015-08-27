@@ -95,7 +95,8 @@
         self.exploreCountryModels  = [[ConnectionManager dataManager] exploreCountryModels];
         if (!self.exploreCountryModels.error) {
             
-            [self InitCountriesView];
+           // [self InitCountriesView];
+            [self InitContentView];
 
         }
         else{
@@ -385,6 +386,44 @@
     [ibScrollViewCountry setContentSize:CGSizeMake(320, heightGet + TempImage.size.height + 10)];
     
     [ShowActivity stopAnimating];
+}
+-(void)InitContentView{
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    
+    for (int i = 0 ; i < [self.exploreCountryModels.countries count]; i++) {
+        AsyncImageView *ShowCountryImg = [[AsyncImageView alloc]init];
+        ShowCountryImg.frame = CGRectMake(0, 0 + i * 151, screenWidth, 150);
+        //ShowCountryImg.image = [UIImage imageNamed:@"DemoTest.png"];
+        ShowCountryImg.contentMode = UIViewContentModeScaleAspectFill;
+        ShowCountryImg.clipsToBounds = YES;
+        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowCountryImg];
+        NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[self.exploreCountryModels.countries[i] thumbnail]];
+        NSURL *url = [NSURL URLWithString:FullImagesURL];
+        ShowCountryImg.imageURL = url;
+        [ibScrollViewCountry addSubview:ShowCountryImg];
+        
+        
+        UILabel *ShowUserName = [[UILabel alloc]init];
+        ShowUserName.frame = CGRectMake(20, 100 + i * 151, screenWidth - 40, 50);
+        NSString *uppercase = [self.exploreCountryModels.countries[i] name];
+        ShowUserName.text = uppercase;
+        ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:17];
+        ShowUserName.textColor = [UIColor whiteColor];
+        ShowUserName.backgroundColor = [UIColor clearColor];
+        ShowUserName.textAlignment = NSTextAlignmentLeft;
+        [ibScrollViewCountry addSubview:ShowUserName];
+        
+        UIButton *ClickButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [ClickButton setTitle:@"" forState:UIControlStateNormal];
+        [ClickButton setFrame:CGRectMake(0, 0 + i * 151, screenWidth, 150)];
+        [ClickButton setBackgroundColor:[UIColor clearColor]];
+        [ClickButton addTarget:self action:@selector(ClickButton2:) forControlEvents:UIControlEventTouchUpInside];
+        [ibScrollViewCountry addSubview:ClickButton];
+        
+        [ibScrollViewCountry setContentSize:CGSizeMake(screenWidth, 150 + i * 151)];
+    }
+    
+
 }
 
 //button trigger from pressing country

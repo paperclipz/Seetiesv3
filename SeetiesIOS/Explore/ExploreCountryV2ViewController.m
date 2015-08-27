@@ -498,10 +498,8 @@
         }else{
             NSLog(@"Server Work.");
             
-            NSString *ErrorString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"error"]];
+            NSString *ErrorString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
             NSLog(@"ErrorString is %@",ErrorString);
-            NSString *MessageString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"message"]];
-            NSLog(@"MessageString is %@",MessageString);
             
             if ([ErrorString isEqualToString:@"0"] || [ErrorString isEqualToString:@"401"]) {
                 UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:CustomLocalisedString(@"SomethingError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -509,14 +507,16 @@
                 [ShowAlert show];
                 // send user back login screen.
             }else{
-                NSDictionary *GetAllData = [res valueForKey:@"posts"];
+                NSDictionary *ResData = [res valueForKey:@"data"];
+                
+                NSDictionary *GetAllData = [ResData valueForKey:@"posts"];
          //       NSLog(@"GetAllData ===== %@",GetAllData);
                 
-                NSString *Temppage = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"page"]];
+                NSString *Temppage = [[NSString alloc]initWithFormat:@"%@",[ResData objectForKey:@"page"]];
                 NSLog(@"Temppage is %@",Temppage);
-                NSString *Temptotal_page = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"total_page"]];
+                NSString *Temptotal_page = [[NSString alloc]initWithFormat:@"%@",[ResData objectForKey:@"total_page"]];
                 NSLog(@"Temptotal_page is %@",Temptotal_page);
-                NSString *TempCount = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"list_size"]];
+                NSString *TempCount = [[NSString alloc]initWithFormat:@"%@",[ResData objectForKey:@"list_size"]];
                 NSLog(@"TempCount is %@",TempCount);
                 CurrentPage = [Temppage intValue];
                 TotalPage = [Temptotal_page intValue];
@@ -529,17 +529,13 @@
                 }else{
                     
                 }
-                
-                NSDictionary *GetPostData = [GetAllData valueForKey:@"posts"];
-                // NSLog(@"GetPostData ===== %@",GetPostData);
-                
-              //  PostIDArray = [[NSMutableArray alloc]init];
-                for (NSDictionary * dict in GetPostData) {
+
+                for (NSDictionary * dict in GetAllData) {
                     NSString *PlaceID = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"post_id"]];
                     [PostIDArray addObject:PlaceID];
                 }
       //          NSLog(@"PostIDArray is %@",PostIDArray);
-                NSArray *PhotoData = [GetPostData valueForKey:@"photos"];
+                NSArray *PhotoData = [GetAllData valueForKey:@"photos"];
                 //NSLog(@"PhotoData is %@",PhotoData);
                 
                // PhotoArray = [[NSMutableArray alloc]init];
@@ -595,7 +591,9 @@
                 [ShowAlert show];
                 // send user back login screen.
             }else{
-                NSDictionary *GetAllData = [res valueForKey:@"featured_users"];
+                 NSDictionary *ResData = [res valueForKey:@"data"];
+                
+                NSDictionary *GetAllData = [ResData valueForKey:@"featured_users"];
           //      NSLog(@"GetAllData ===== %@",GetAllData);
                 
                 NSArray *UserData = [GetAllData valueForKey:@"users"];

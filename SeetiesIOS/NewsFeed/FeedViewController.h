@@ -31,6 +31,7 @@
     NSMutableArray *arrUserName;
     NSMutableArray *arrDistance;
     NSMutableArray *arrDisplayCountryName;
+    NSMutableArray *arrPostID;
     
     NSDate *methodStart;
     

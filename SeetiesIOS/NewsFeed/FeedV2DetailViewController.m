@@ -71,8 +71,8 @@
     [MainScroll addSubview:PageControlOn];
     
   //  [self.view addSubview:ShowbarView];
-    ShareButton.hidden = YES;
-    ShareIcon.hidden = YES;
+    //ShareButton.hidden = YES;
+    //ShareIcon.hidden = YES;
     CheckLikeInitView = NO;
     CheckCommentData = 0;
     CountLanguage = 0;
@@ -173,8 +173,8 @@
             [subview removeFromSuperview];
         }
         
-        ShareButton.hidden = YES;
-        ShareIcon.hidden = YES;
+        //ShareButton.hidden = YES;
+       // ShareIcon.hidden = YES;
         CheckLikeInitView = NO;
         CheckCommentData = 0;
         CountLanguage = 0;
@@ -953,14 +953,14 @@
                     //other user
                     // ShareButton.frame = CGRectMake(screenWidth - 55, 0, 55, 64);
                     // ShareIcon.frame = CGRectMake(screenWidth - 22 - 15, 31, 22, 22);
-                    ShareButton.hidden = YES;
-                    ShareIcon.hidden = YES;
-                    LocationButton.frame = CGRectMake(screenWidth - 40 - 15, 20, 60, 44);
-                    LanguageButton.frame = CGRectMake(screenWidth - 85 - 15, 26, 55, 33);
-                    NewLanguageButton.frame = CGRectMake(screenWidth - 85 - 15, 26, 55, 33);
-                    DisplayButton.frame = CGRectMake(screenWidth - 85 - 15, 26, 55, 33);
-                    ShowTranslateOverlay.frame = CGRectMake(screenWidth - 85 - 20, 10, 60, 60);
-                    ShowTranslateOverlay.layer.cornerRadius = 30;
+                  //  ShareButton.hidden = YES;
+                  //  ShareIcon.hidden = YES;
+//                    LocationButton.frame = CGRectMake(screenWidth - 40 - 15, 20, 60, 44);
+//                    LanguageButton.frame = CGRectMake(screenWidth - 85 - 15, 26, 55, 33);
+//                    NewLanguageButton.frame = CGRectMake(screenWidth - 85 - 15, 26, 55, 33);
+//                    DisplayButton.frame = CGRectMake(screenWidth - 85 - 15, 26, 55, 33);
+//                    ShowTranslateOverlay.frame = CGRectMake(screenWidth - 85 - 20, 10, 60, 60);
+//                    ShowTranslateOverlay.layer.cornerRadius = 30;
 
                 }
                 
@@ -1404,7 +1404,7 @@
     [MainScroll addSubview:PageControlOn];
     
     for (int i = 0 ; i < [UrlArray count]; i++) {
-        ImageScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0+ i *screenWidth, 64, screenWidth, 340)];
+        ImageScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0+ i *screenWidth, 0, screenWidth, 340)];
         ImageScroll.delegate = self;
         //  ImageScroll.tag = 50000 + j;
         ImageScroll.minimumZoomScale = 1;
@@ -1437,6 +1437,7 @@
         ImageButton.tag = i;
         [ImageButton addTarget:self action:@selector(ImageButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         [ImageScroll addSubview:ImageButton];
+
         
         NSLog(@"captionArray is %@",captionArray);
         
@@ -1479,6 +1480,20 @@
 
     int GetHeightCheck = 360;
     
+    
+    //tanslate button here
+    UIButton *TanslateButton = [[UIButton alloc]init];
+    TanslateButton.frame = CGRectMake(20, GetHeightCheck, screenWidth - 40, 40);
+    [TanslateButton setTitle:@"Translate" forState:UIControlStateNormal];
+    [TanslateButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    TanslateButton.layer.cornerRadius = 5;
+    TanslateButton.layer.borderWidth=1;
+    TanslateButton.layer.masksToBounds = YES;
+    TanslateButton.layer.borderColor=[[UIColor blackColor] CGColor];
+    [MainScroll addSubview:TanslateButton];
+    
+    GetHeightCheck += 60;
+    
     if ([GetTitle length] == 0 || [GetTitle isEqualToString:@""] || [GetTitle isEqualToString:@"(null)"]) {
         GetHeightCheck -= 10;
     }else{
@@ -1497,6 +1512,25 @@
       //  }
         GetHeightCheck += ShowTitle.frame.size.height + 10;
     }
+    
+    //show location data here.
+    UIImageView *ShowPin = [[UIImageView alloc]init];
+    ShowPin.image = [UIImage imageNamed:@"FeedPin.png"];
+    ShowPin.frame = CGRectMake(20, GetHeightCheck + 5, 8, 11);
+    //ShowPin.frame = CGRectMake(15, 210 + 8 + heightcheck + i, 8, 11);
+    [MainScroll addSubview:ShowPin];
+    
+    UILabel *ShowAddress = [[UILabel alloc]init];
+    ShowAddress.frame = CGRectMake(35, GetHeightCheck, screenWidth - 150, 20);
+    //ShowAddress.frame = CGRectMake(30, 210 + 3 + heightcheck + i, screenWidth - 150, 20);
+    ShowAddress.text = @"Pantai Puteri";
+    ShowAddress.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
+    ShowAddress.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+    ShowAddress.backgroundColor = [UIColor clearColor];
+    [MainScroll addSubview:ShowAddress];
+    
+    GetHeightCheck += 40;
+
 
     GetMessage = [GetMessage stringByDecodingXMLEntities];
     if ([GetMessage length] == 0 || [GetMessage isEqualToString:@""] || [GetMessage isEqualToString:@"(null)"]) {
@@ -1544,6 +1578,41 @@
         
         GetHeightCheck += ShowMessage.frame.size.height;
     }
+    
+    NSMutableArray *ArrHashTag = [[NSMutableArray alloc]init];
+    [ArrHashTag addObject:@"Go to site"];
+    [ArrHashTag addObject:@"homestay"];
+    [ArrHashTag addObject:@"bestfood"];
+    [ArrHashTag addObject:@"sexy"];
+    
+    // Show link and hash tag
+    
+    UIScrollView *HashTagScroll = [[UIScrollView alloc]init];
+    HashTagScroll.delegate = self;
+    HashTagScroll.frame = CGRectMake(0, GetHeightCheck, screenWidth, 50);
+    HashTagScroll.backgroundColor = [UIColor whiteColor];
+    [MainScroll addSubview:HashTagScroll];
+    CGRect frame2;
+    for (int i= 0; i < [ArrHashTag count]; i++) {
+        UILabel *ShowHashTagText = [[UILabel alloc]init];
+        ShowHashTagText.text = [ArrHashTag objectAtIndex:i];
+        ShowHashTagText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+        ShowHashTagText.textAlignment = NSTextAlignmentCenter;
+        ShowHashTagText.backgroundColor = [UIColor whiteColor];
+        ShowHashTagText.layer.cornerRadius = 5;
+        ShowHashTagText.layer.borderWidth = 1;
+        ShowHashTagText.layer.borderColor=[[UIColor grayColor] CGColor];
+        
+        CGSize textSize = [ShowHashTagText.text sizeWithAttributes:@{NSFontAttributeName:[ShowHashTagText font]}];
+        ShowHashTagText.frame = CGRectMake(30 + frame2.size.width, 15, textSize.width + 20, 20);
+        frame2.size.width += textSize.width + 30;
+        [HashTagScroll addSubview:ShowHashTagText];
+        
+        HashTagScroll.contentSize = CGSizeMake(30 + frame2.size.width , 50);
+    }
+    
+    
+    GetHeightCheck += 50;
     
 
     
@@ -1648,9 +1717,9 @@
             
         }else{
         UIButton *Line01 = [[UIButton alloc]init];
-        Line01.frame = CGRectMake(15, GetMessageHeight, screenWidth - 30, 1);
-        [Line01 setTitle:@"" forState:UIControlStateNormal];
-        [Line01 setBackgroundColor:[UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0f]];
+        Line01.frame = CGRectMake(0, GetMessageHeight, screenWidth, 1);
+        [Line01 setTitle:@"" forState:UIControlStateNormal];//238
+        [Line01 setBackgroundColor:[UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f blue:51.0f/255.0f alpha:1.0f]];
         [MainScroll addSubview:Line01];
         
         GetMessageHeight += 10;
@@ -1710,7 +1779,7 @@
         ShowLikeMessage.text = tempString;
         ShowLikeMessage.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
         ShowLikeMessage.backgroundColor = [UIColor clearColor];
-        ShowLikeMessage.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
+        ShowLikeMessage.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
         [MainScroll addSubview:ShowLikeMessage];
         
         UIButton *OpenLikeButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -1721,6 +1790,32 @@
         
          GetMessageHeight += 40;
     }
+    
+    
+    //collected show
+    
+    UIImageView *ShowCollectionIcon = [[UIImageView alloc]init];
+    ShowCollectionIcon.image = [UIImage imageNamed:@"InteractLike.png"];
+    ShowCollectionIcon.frame = CGRectMake(20, GetMessageHeight + 13, 18, 15);
+    [MainScroll addSubview:ShowCollectionIcon];
+    
+    UILabel *ShowCollectionText = [[UILabel alloc]init];
+    ShowCollectionText.frame = CGRectMake(50, GetMessageHeight, screenWidth - 69, 40);
+    ShowCollectionText.text = @"Collected in 21 collections";
+    ShowCollectionText.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+    ShowCollectionText.backgroundColor = [UIColor clearColor];
+    ShowCollectionText.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
+    [MainScroll addSubview:ShowCollectionText];
+    
+//    UIButton *OpenLikeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [OpenLikeButton setFrame:CGRectMake(50, GetMessageHeight, screenWidth - 69, 40)];
+//    [OpenLikeButton setBackgroundColor:[UIColor clearColor]];
+//    [OpenLikeButton addTarget:self action:@selector(SeeLikeButton:) forControlEvents:UIControlEventTouchUpInside];
+//    [MainScroll addSubview:OpenLikeButton];
+    
+    GetMessageHeight += 40;
+    
+    
 
     if ([CommentIDArray count] == 0) {
         GetMessageHeight += 10;
@@ -1833,18 +1928,24 @@
             }
             GetMessageHeight += 15;
             
+            UIButton *Line01 = [[UIButton alloc]init];
+            Line01.frame = CGRectMake(0, GetMessageHeight, screenWidth, 1);
+            [Line01 setTitle:@"" forState:UIControlStateNormal];//238
+            [Line01 setBackgroundColor:[UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f blue:51.0f/255.0f alpha:1.0f]];
+            [MainScroll addSubview:Line01];
+            
             UIButton *SeeAllCommentButton = [[UIButton alloc]init];
-            SeeAllCommentButton.frame = CGRectMake(50, GetMessageHeight, 150, 30);
-            [SeeAllCommentButton setTitle:CustomLocalisedString(@"SeeallComment", nil) forState:UIControlStateNormal];
+            SeeAllCommentButton.frame = CGRectMake(0, GetMessageHeight + 1, screenWidth, 50);
+            [SeeAllCommentButton setTitle:@"Sell all activities" forState:UIControlStateNormal];
             [SeeAllCommentButton setBackgroundColor:[UIColor clearColor]];
             [SeeAllCommentButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15]];
             [SeeAllCommentButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
             [SeeAllCommentButton addTarget:self action:@selector(CommentButton:) forControlEvents:UIControlEventTouchUpInside];
-            SeeAllCommentButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+           // SeeAllCommentButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
 
             [MainScroll addSubview:SeeAllCommentButton];
             
-            GetMessageHeight += 50;
+            GetMessageHeight += 51;
             
             
         }else{
@@ -1946,40 +2047,77 @@
     }
     //NSLog(@"GetMessageHeight ==== %i",GetMessageHeight);
     
-    int TempGetNewHeight = GetMessageHeight;
+    UIButton *Line01 = [[UIButton alloc]init];
+    Line01.frame = CGRectMake(0, GetMessageHeight, screenWidth, 20);
+    [Line01 setTitle:@"" forState:UIControlStateNormal];//238
+    [Line01 setBackgroundColor:[UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f blue:51.0f/255.0f alpha:1.0f]];
+    [MainScroll addSubview:Line01];
     
-    UIButton *DemoBlackButton = [[UIButton alloc]init];
-    DemoBlackButton.frame = CGRectMake(21, GetMessageHeight, screenWidth - 41, 80);
-    [DemoBlackButton setTitle:@"" forState:UIControlStateNormal];
-    [DemoBlackButton setBackgroundColor:[UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0f]];
-    DemoBlackButton.layer.cornerRadius = 10;
-    DemoBlackButton.clipsToBounds = YES;
-    [MainScroll addSubview:DemoBlackButton];
+    GetMessageHeight += 20;
     
-    UIButton *DemoWhiteButton = [[UIButton alloc]init];
-    DemoWhiteButton.frame = CGRectMake(22, GetMessageHeight + 1, screenWidth - 43, 78);
-    [DemoWhiteButton setTitle:@"" forState:UIControlStateNormal];
-    [DemoWhiteButton setBackgroundColor:[UIColor whiteColor]];
-    DemoWhiteButton.layer.cornerRadius = 10;
-    DemoWhiteButton.clipsToBounds = YES;
-    [MainScroll addSubview:DemoWhiteButton];
+    UILabel *ShowPlaceInfoText = [[UILabel alloc]init];
+    ShowPlaceInfoText.frame = CGRectMake(20, GetMessageHeight, screenWidth - 40, 50);
+    ShowPlaceInfoText.text = @"Place Info";
+    ShowPlaceInfoText.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+    ShowPlaceInfoText.backgroundColor = [UIColor clearColor];
+    ShowPlaceInfoText.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
+    [MainScroll addSubview:ShowPlaceInfoText];
+    
+    
+    UIButton *DirectionsButton = [[UIButton alloc]init];
+    DirectionsButton.frame = CGRectMake(screenWidth - 200 - 20, GetMessageHeight, 200, 50);
+    [DirectionsButton setTitle:@"Directions" forState:UIControlStateNormal];
+    [DirectionsButton setBackgroundColor:[UIColor clearColor]];
+    [DirectionsButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15]];
+    [DirectionsButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+//    [DirectionsButton addTarget:self action:@selector(CommentButton:) forControlEvents:UIControlEventTouchUpInside];
+    DirectionsButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+    
+    [MainScroll addSubview:DirectionsButton];
+    
+    
+    GetMessageHeight += 50;
+    
+    UIButton *Line02 = [[UIButton alloc]init];
+    Line02.frame = CGRectMake(0, GetMessageHeight - 1, screenWidth, 1);
+    [Line02 setTitle:@"" forState:UIControlStateNormal];//238
+    [Line02 setBackgroundColor:[UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f blue:51.0f/255.0f alpha:1.0f]];
+    [MainScroll addSubview:Line02];
+    
+//    int TempGetNewHeight = GetMessageHeight;
+    
+//    UIButton *DemoBlackButton = [[UIButton alloc]init];
+//    DemoBlackButton.frame = CGRectMake(21, GetMessageHeight, screenWidth - 41, 80);
+//    [DemoBlackButton setTitle:@"" forState:UIControlStateNormal];
+//    [DemoBlackButton setBackgroundColor:[UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0f]];
+//    DemoBlackButton.layer.cornerRadius = 10;
+//    DemoBlackButton.clipsToBounds = YES;
+//    [MainScroll addSubview:DemoBlackButton];
+//    
+//    UIButton *DemoWhiteButton = [[UIButton alloc]init];
+//    DemoWhiteButton.frame = CGRectMake(22, GetMessageHeight + 1, screenWidth - 43, 78);
+//    [DemoWhiteButton setTitle:@"" forState:UIControlStateNormal];
+//    [DemoWhiteButton setBackgroundColor:[UIColor whiteColor]];
+//    DemoWhiteButton.layer.cornerRadius = 10;
+//    DemoWhiteButton.clipsToBounds = YES;
+//    [MainScroll addSubview:DemoWhiteButton];
     
     UIImageView *ShowLocationIcon = [[UIImageView alloc]init];
-    ShowLocationIcon.frame = CGRectMake(49, GetMessageHeight + 22, 13, 17);
+    ShowLocationIcon.frame = CGRectMake(20, GetMessageHeight + 22, 13, 17);
     ShowLocationIcon.image = [UIImage imageNamed:@"InfoLocation.png"];
     [MainScroll addSubview:ShowLocationIcon];
     
     UILabel *ShowPlaceName = [[UILabel alloc]init];
-    ShowPlaceName.frame = CGRectMake(86, GetMessageHeight + 20, screenWidth - 86 - 61 - 5, 21);
+    ShowPlaceName.frame = CGRectMake(50, GetMessageHeight + 20, screenWidth - 86 - 61 - 5, 21);
     ShowPlaceName.text = GetPlaceName;
     ShowPlaceName.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
     ShowPlaceName.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
     [MainScroll addSubview:ShowPlaceName];
     
-    UIImageView *ShowArrowRight = [[UIImageView alloc]init];
-    ShowArrowRight.frame = CGRectMake(screenWidth - 43 - 8 - 10, GetMessageHeight + 24, 8, 13);
-    ShowArrowRight.image = [UIImage imageNamed:@"Caret.png"];
-    [MainScroll addSubview:ShowArrowRight];
+//    UIImageView *ShowArrowRight = [[UIImageView alloc]init];
+//    ShowArrowRight.frame = CGRectMake(screenWidth - 43 - 8 - 10, GetMessageHeight + 24, 8, 13);
+//    ShowArrowRight.image = [UIImage imageNamed:@"Caret.png"];
+//    [MainScroll addSubview:ShowArrowRight];
     
     GetMessageHeight += 40;
     
@@ -1989,7 +2127,7 @@
     ShowPlaceFormattedAddress.text = GetPlaceFormattedAddress;
     ShowPlaceFormattedAddress.numberOfLines = 0;
     ShowPlaceFormattedAddress.backgroundColor = [UIColor clearColor];
-    ShowPlaceFormattedAddress.frame = CGRectMake(86, GetMessageHeight, screenWidth - 152,[ShowPlaceFormattedAddress sizeThatFits:CGSizeMake(screenWidth - 152, CGFLOAT_MAX)].height);
+    ShowPlaceFormattedAddress.frame = CGRectMake(50, GetMessageHeight, screenWidth - 152,[ShowPlaceFormattedAddress sizeThatFits:CGSizeMake(screenWidth - 152, CGFLOAT_MAX)].height);
     [MainScroll addSubview:ShowPlaceFormattedAddress];
     
     UIButton *OpenAllInformationButton = [[UIButton alloc]init];
@@ -2006,19 +2144,19 @@
     if ([GetPlaceLink length] == 0 || [GetPlaceLink isEqualToString:@"(null)"]) {
     }else{
         UIImageView *ShowLinkIcon = [[UIImageView alloc]init];
-        ShowLinkIcon.frame = CGRectMake(49, GetMessageHeight, 15, 15);
+        ShowLinkIcon.frame = CGRectMake(20, GetMessageHeight, 15, 15);
         ShowLinkIcon.image = [UIImage imageNamed:@"InfoUrlLink.png"];
         [MainScroll addSubview:ShowLinkIcon];
         
         UILabel *ShowPlacelink = [[UILabel alloc]init];
-        ShowPlacelink.frame = CGRectMake(86, GetMessageHeight - 6, screenWidth - 152, 21);
+        ShowPlacelink.frame = CGRectMake(50, GetMessageHeight - 6, screenWidth - 152, 21);
         ShowPlacelink.text = GetPlaceLink;
         ShowPlacelink.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
         ShowPlacelink.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
         [MainScroll addSubview:ShowPlacelink];
         
         UIButton *OpenLinkButton = [[UIButton alloc]init];
-        OpenLinkButton.frame = CGRectMake(86, GetMessageHeight - 6, screenWidth - 152, 21);
+        OpenLinkButton.frame = CGRectMake(50, GetMessageHeight - 6, screenWidth - 152, 21);
         [OpenLinkButton setTitle:@"" forState:UIControlStateNormal];
         [OpenLinkButton addTarget:self action:@selector(OpenLinkButton:) forControlEvents:UIControlEventTouchUpInside];
         [OpenLinkButton setBackgroundColor:[UIColor clearColor]];
@@ -2030,19 +2168,19 @@
         
     }else{
         UIImageView *ShowContactIcon = [[UIImageView alloc]init];
-        ShowContactIcon.frame = CGRectMake(49, GetMessageHeight, 13, 14);
+        ShowContactIcon.frame = CGRectMake(20, GetMessageHeight, 13, 14);
         ShowContactIcon.image = [UIImage imageNamed:@"InfoContact.png"];
         [MainScroll addSubview:ShowContactIcon];
         
         UILabel *ShowContact = [[UILabel alloc]init];
-        ShowContact.frame = CGRectMake(86, GetMessageHeight - 6, screenWidth - 152, 21);
+        ShowContact.frame = CGRectMake(50, GetMessageHeight - 6, screenWidth - 152, 21);
         ShowContact.text = GetContactNo;
         ShowContact.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
         ShowContact.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
         [MainScroll addSubview:ShowContact];
         
         UIButton *OpenContactButton = [[UIButton alloc]init];
-        OpenContactButton.frame = CGRectMake(86, GetMessageHeight - 6, screenWidth - 152, 21);
+        OpenContactButton.frame = CGRectMake(50, GetMessageHeight - 6, screenWidth - 152, 21);
         [OpenContactButton setTitle:@"" forState:UIControlStateNormal];
         [OpenContactButton addTarget:self action:@selector(OpenContactButton:) forControlEvents:UIControlEventTouchUpInside];
         [OpenContactButton setBackgroundColor:[UIColor clearColor]];
@@ -2056,7 +2194,7 @@
         
     }else{
         UIImageView *ShowOpeningIcon = [[UIImageView alloc]init];
-        ShowOpeningIcon.frame = CGRectMake(49, GetMessageHeight, 19, 19);
+        ShowOpeningIcon.frame = CGRectMake(20, GetMessageHeight, 19, 19);
         ShowOpeningIcon.image = [UIImage imageNamed:@"InfoHours.png"];
         [MainScroll addSubview:ShowOpeningIcon];
         
@@ -2068,7 +2206,7 @@
         }
         
         UILabel *ShowOpeningTExt = [[UILabel alloc]init];
-        ShowOpeningTExt.frame = CGRectMake(86, GetMessageHeight - 2, screenWidth - 152, 21);
+        ShowOpeningTExt.frame = CGRectMake(50, GetMessageHeight - 2, screenWidth - 152, 21);
         ShowOpeningTExt.text = GetOpeningHourOpen;
         ShowOpeningTExt.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
         ShowOpeningTExt.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
@@ -2080,12 +2218,12 @@
         
     }else{
         UIImageView *ShowPriceIcon = [[UIImageView alloc]init];
-        ShowPriceIcon.frame = CGRectMake(49, GetMessageHeight, 19, 19);
+        ShowPriceIcon.frame = CGRectMake(20, GetMessageHeight, 19, 19);
         ShowPriceIcon.image = [UIImage imageNamed:@"InfoPrice.png"];
         [MainScroll addSubview:ShowPriceIcon];
         
         UILabel *ShowPriceTExt = [[UILabel alloc]init];
-        ShowPriceTExt.frame = CGRectMake(86, GetMessageHeight - 2, screenWidth - 152, 21);
+        ShowPriceTExt.frame = CGRectMake(50, GetMessageHeight - 2, screenWidth - 152, 21);
         ShowPriceTExt.text = GetExpense;
         ShowPriceTExt.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
         ShowPriceTExt.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
@@ -2094,14 +2232,37 @@
         GetMessageHeight += 50;
     }
 
-    DemoBlackButton.frame = CGRectMake(21, TempGetNewHeight, screenWidth - 41, GetMessageHeight - TempGetNewHeight);
-    DemoWhiteButton.frame = CGRectMake(22, TempGetNewHeight + 1, screenWidth - 43, GetMessageHeight - TempGetNewHeight - 2);
+//    DemoBlackButton.frame = CGRectMake(21, TempGetNewHeight, screenWidth - 41, GetMessageHeight - TempGetNewHeight);
+//    DemoWhiteButton.frame = CGRectMake(22, TempGetNewHeight + 1, screenWidth - 43, GetMessageHeight - TempGetNewHeight - 2);
     
 
+    UIButton *Line03 = [[UIButton alloc]init];
+    Line03.frame = CGRectMake(0, GetMessageHeight, screenWidth, 1);
+    [Line03 setTitle:@"" forState:UIControlStateNormal];//238
+    [Line03 setBackgroundColor:[UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f blue:51.0f/255.0f alpha:1.0f]];
+    [MainScroll addSubview:Line03];
+    
+    UIButton *MoreInfoButton = [[UIButton alloc]init];
+    MoreInfoButton.frame = CGRectMake(0, GetMessageHeight + 1, screenWidth, 50);
+    [MoreInfoButton setTitle:@"More info" forState:UIControlStateNormal];
+    [MoreInfoButton setBackgroundColor:[UIColor clearColor]];
+    [MoreInfoButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15]];
+    [MoreInfoButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+   // [MoreInfoButton addTarget:self action:@selector(CommentButton:) forControlEvents:UIControlEventTouchUpInside];
+    // SeeAllCommentButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    
+    [MainScroll addSubview:MoreInfoButton];
+    GetMessageHeight += 50;
+    
+    UIButton *Line04 = [[UIButton alloc]init];
+    Line04.frame = CGRectMake(0, GetMessageHeight, screenWidth, 20);
+    [Line04 setTitle:@"" forState:UIControlStateNormal];//238
+    [Line04 setBackgroundColor:[UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f blue:51.0f/255.0f alpha:1.0f]];
+    [MainScroll addSubview:Line04];
     
    // OpenAddressButton
     
-    GetMessageHeight += 30;
+    GetMessageHeight += 20;
     
     MainScroll.contentSize = CGSizeMake(screenWidth, GetMessageHeight);
     CheckLoadDone = YES;
@@ -2124,13 +2285,12 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
 
     UILabel *ShowNearbyTitle = [[UILabel alloc]init];
-    ShowNearbyTitle.frame = CGRectMake(20, GetFinalHeight, screenWidth - 120, 20);
+    ShowNearbyTitle.frame = CGRectMake(20, GetFinalHeight, screenWidth - 40, 50);
     ShowNearbyTitle.text = CustomLocalisedString(@"NearbyRecommendations", nil);
     ShowNearbyTitle.backgroundColor = [UIColor clearColor];
     ShowNearbyTitle.textAlignment = NSTextAlignmentLeft;
     ShowNearbyTitle.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
     ShowNearbyTitle.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:15];
-    
     [MainScroll addSubview:ShowNearbyTitle];
     NSLog(@"[PhotoArray_Nearby count] is %lu",(unsigned long)[PhotoArray_Nearby count]);
     
@@ -2141,21 +2301,29 @@
     }else{
         GetCount = [PhotoArray_Nearby count] - 1;
         
-        SeeAllButton_Nearby = [[UIButton alloc]init];
-        SeeAllButton_Nearby.frame = CGRectMake(screenWidth - 120, GetFinalHeight, 100, 20);
-        [SeeAllButton_Nearby setTitle:@"See all" forState:UIControlStateNormal];
-        [SeeAllButton_Nearby setBackgroundColor:[UIColor clearColor]];
-        [SeeAllButton_Nearby.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15]];
-        [SeeAllButton_Nearby setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
-        [SeeAllButton_Nearby addTarget:self action:@selector(NearbySeeAllButton:) forControlEvents:UIControlEventTouchUpInside];
-        SeeAllButton_Nearby.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-        
-        [MainScroll addSubview:SeeAllButton_Nearby];
+//        SeeAllButton_Nearby = [[UIButton alloc]init];
+//        SeeAllButton_Nearby.frame = CGRectMake(screenWidth - 120, GetFinalHeight, 100, 20);
+//        [SeeAllButton_Nearby setTitle:@"See all" forState:UIControlStateNormal];
+//        [SeeAllButton_Nearby setBackgroundColor:[UIColor clearColor]];
+//        [SeeAllButton_Nearby.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15]];
+//        [SeeAllButton_Nearby setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+//        [SeeAllButton_Nearby addTarget:self action:@selector(NearbySeeAllButton:) forControlEvents:UIControlEventTouchUpInside];
+//        SeeAllButton_Nearby.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+//        
+//        [MainScroll addSubview:SeeAllButton_Nearby];
     }
     
+    GetFinalHeight += 50;
+    
+    
+    UIButton *Line01 = [[UIButton alloc]init];
+    Line01.frame = CGRectMake(0, GetFinalHeight, screenWidth, 1);
+    [Line01 setTitle:@"" forState:UIControlStateNormal];//238
+    [Line01 setBackgroundColor:[UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f blue:51.0f/255.0f alpha:1.0f]];
+    [MainScroll addSubview:Line01];
 
     
-    GetFinalHeight += 40;
+    GetFinalHeight += 21;
     
     //int TempHeight = GetFinalHeight;
     
@@ -2165,12 +2333,25 @@
     
     int TitleHeight = 0;
     for (NSInteger i = 0; i < GetCount; i++) {
+        
+        
+        UIButton *Background = [[UIButton alloc]init];
+        Background.frame = CGRectMake(19 + (i % 2) * (FinalWidth + 20), GetFinalHeight - 1, FinalWidth + 2, FinalWidth + 2);
+        [Background setTitle:@"" forState:UIControlStateNormal];//238
+        [Background setBackgroundColor:[UIColor whiteColor]];
+        Background.layer.cornerRadius = 5;
+        Background.layer.borderWidth=1;
+        Background.layer.borderColor=[[UIColor blackColor] CGColor];
+        [MainScroll addSubview:Background];
+        
+        
         NSString *TempImage = [[NSString alloc]initWithFormat:@"%@",[PhotoArray_Nearby objectAtIndex:i]];
         NSArray *SplitArray = [TempImage componentsSeparatedByString:@","];
         AsyncImageView *ShowImage_Nearby = [[AsyncImageView alloc]init];
         ShowImage_Nearby.frame = CGRectMake(20 + (i % 2) * (FinalWidth + 20), GetFinalHeight, FinalWidth, FinalWidth);
         ShowImage_Nearby.contentMode = UIViewContentModeScaleAspectFill;
         ShowImage_Nearby.layer.masksToBounds = YES;
+        ShowImage_Nearby.layer.cornerRadius = 5;
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage_Nearby];
         NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[SplitArray objectAtIndex:0]];
         if ([FullImagesURL_First length] == 0) {
@@ -2181,58 +2362,21 @@
         }
         [MainScroll addSubview:ShowImage_Nearby];
         
-        UIImageView *ShowPin = [[UIImageView alloc]init];
-        ShowPin.image = [UIImage imageNamed:@"FeedPin.png"];
-        ShowPin.frame = CGRectMake(20 + (i % 2) * (FinalWidth + 20), GetFinalHeight + FinalWidth + 15, 8, 11);
-        [MainScroll addSubview:ShowPin];
+//        UIImageView *ShowPin = [[UIImageView alloc]init];
+//        ShowPin.image = [UIImage imageNamed:@"FeedPin.png"];
+//        ShowPin.frame = CGRectMake(20 + (i % 2) * (FinalWidth + 20), GetFinalHeight + FinalWidth + 15, 8, 11);
+//        [MainScroll addSubview:ShowPin];
         
         UILabel *ShowAddress = [[UILabel alloc]init];
-        ShowAddress.frame = CGRectMake(35 + (i % 2) * (FinalWidth + 20), GetFinalHeight + FinalWidth + 10, FinalWidth - 15, 20);
+        ShowAddress.frame = CGRectMake(25 + (i % 2) * (FinalWidth + 20), GetFinalHeight + FinalWidth + 10, FinalWidth - 5, 20);
         ShowAddress.text = [PlaceNameArray_Nearby objectAtIndex:i];
         ShowAddress.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
         ShowAddress.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
         ShowAddress.backgroundColor = [UIColor clearColor];
         [MainScroll addSubview:ShowAddress];
-        
-//        NSString *TempGetStirng = [[NSString alloc]initWithFormat:@"%@",[TitleArray_Nearby objectAtIndex:i]];
-//        if ([TempGetStirng length] == 0 || [TempGetStirng isEqualToString:@""] || [TempGetStirng isEqualToString:@"(null)"]) {
-//          //  GetFinalHeight += 0 + (i % 2) * (FinalWidth + 40);
-//         //   TitleHeight = 0;
-//            if (TitleHeight >= ShowNearbyTitle.frame.size.height) {
-//                // TitleHeight = ShowNearbyTitle.frame.size.height;
-//            }else{
-//                TitleHeight = ShowNearbyTitle.frame.size.height;
-//            }
-//        }else{
-//            UILabel *ShowNearbyTitle = [[UILabel alloc]init];
-//            ShowNearbyTitle.frame = CGRectMake(20 + (i % 2) * (FinalWidth + 20), GetFinalHeight + FinalWidth + 40, FinalWidth, 40);
-//            ShowNearbyTitle.text = TempGetStirng;
-//            ShowNearbyTitle.backgroundColor = [UIColor clearColor];
-//            ShowNearbyTitle.numberOfLines = 0;
-//            ShowNearbyTitle.textAlignment = NSTextAlignmentLeft;
-//            ShowNearbyTitle.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-//            ShowNearbyTitle.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:15];
-//            [MainScroll addSubview:ShowNearbyTitle];
-//            
-//            if([ShowNearbyTitle sizeThatFits:CGSizeMake(FinalWidth, CGFLOAT_MAX)].height!=ShowNearbyTitle.frame.size.height)
-//            {
-//                ShowNearbyTitle.frame = CGRectMake(20 + (i % 2) * (FinalWidth + 20), GetFinalHeight + FinalWidth + 40, FinalWidth,[ShowNearbyTitle sizeThatFits:CGSizeMake(FinalWidth, CGFLOAT_MAX)].height);
-//            }
-//            
-//            NSLog(@"TitleHeight is %d",TitleHeight);
-//            if (TitleHeight >= ShowNearbyTitle.frame.size.height) {
-//               // TitleHeight = ShowNearbyTitle.frame.size.height;
-//            }else{
-//                TitleHeight = ShowNearbyTitle.frame.size.height;
-//            }
-//            
-//            
-//            NSLog(@"after TitleHeight is %d",TitleHeight);
-//           // heightcheck += ShowNearbyTitle.frame.size.height + 10;
-//            
-//        }
+
         AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
-        ShowUserProfileImage.frame = CGRectMake(20 + (i % 2) * (FinalWidth + 20),  GetFinalHeight + FinalWidth + 50 + TitleHeight , 30, 30);
+        ShowUserProfileImage.frame = CGRectMake(25 + (i % 2) * (FinalWidth + 20),  GetFinalHeight + FinalWidth + 50 + TitleHeight , 30, 30);
         ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
         ShowUserProfileImage.image = [UIImage imageNamed:@"avatar.png"];
         ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
@@ -2252,7 +2396,7 @@
         }
         
         
-        UIButton *OpenProfileButton = [[UIButton alloc]initWithFrame:CGRectMake(20 + (i % 2) * (FinalWidth + 20),  GetFinalHeight + FinalWidth + 50 + TitleHeight , FinalWidth, 30)];
+        UIButton *OpenProfileButton = [[UIButton alloc]initWithFrame:CGRectMake(25 + (i % 2) * (FinalWidth + 20),  GetFinalHeight + FinalWidth + 50 + TitleHeight , FinalWidth, 30)];
         [OpenProfileButton setTitle:@"" forState:UIControlStateNormal];
         OpenProfileButton.tag = i;
         OpenProfileButton.backgroundColor = [UIColor clearColor];
@@ -2260,7 +2404,7 @@
         [MainScroll addSubview:OpenProfileButton];
         
         UILabel *ShowUserName = [[UILabel alloc]init];
-        ShowUserName.frame = CGRectMake(60 + (i % 2) * (FinalWidth + 20), GetFinalHeight + FinalWidth + 50+ TitleHeight, FinalWidth - 40, 30);
+        ShowUserName.frame = CGRectMake(65 + (i % 2) * (FinalWidth + 20), GetFinalHeight + FinalWidth + 50+ TitleHeight, FinalWidth - 40, 30);
         ShowUserName.text = [UserInfo_NameArray_Nearby objectAtIndex:i];
         ShowUserName.backgroundColor = [UIColor clearColor];
         ShowUserName.textColor = [UIColor colorWithRed:248.0f/255.0f green:78.0f/255.0f blue:93.0f/255.0f alpha:1.0f];
@@ -2275,6 +2419,10 @@
         [SelectButton setBackgroundColor:[UIColor clearColor]];
         [SelectButton addTarget:self action:@selector(SelectButton:) forControlEvents:UIControlEventTouchUpInside];
         [MainScroll addSubview:SelectButton];
+
+        
+        
+         Background.frame = CGRectMake(19 + (i % 2) * (FinalWidth + 20), GetFinalHeight - 1, FinalWidth + 2, FinalWidth + 50+ TitleHeight + 30 + 10);
         
         
         
@@ -2285,14 +2433,38 @@
             GetFinalHeight += 0 + (i % 2) * (FinalWidth + TitleHeight + 50 + 70);
         }
         
+
         
         //GetFinalHeight += 20;
         
         
     }
+    
+    UIButton *Line02 = [[UIButton alloc]init];
+    Line02.frame = CGRectMake(0, GetFinalHeight, screenWidth, 1);
+    [Line02 setTitle:@"" forState:UIControlStateNormal];//238
+    [Line02 setBackgroundColor:[UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f blue:51.0f/255.0f alpha:1.0f]];
+    [MainScroll addSubview:Line02];
+    
+    if ([PhotoArray_Nearby count] <= 4) {
+    }else{
+        
+        SeeAllButton_Nearby = [[UIButton alloc]init];
+        SeeAllButton_Nearby.frame = CGRectMake(0, GetFinalHeight, screenWidth, 50);
+        [SeeAllButton_Nearby setTitle:@"See all" forState:UIControlStateNormal];
+        [SeeAllButton_Nearby setBackgroundColor:[UIColor clearColor]];
+        [SeeAllButton_Nearby.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15]];
+        [SeeAllButton_Nearby setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+        [SeeAllButton_Nearby addTarget:self action:@selector(NearbySeeAllButton:) forControlEvents:UIControlEventTouchUpInside];
+        //SeeAllButton_Nearby.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+        
+        [MainScroll addSubview:SeeAllButton_Nearby];
+    }
+    
+    GetFinalHeight += 51;
 
     
-    MainScroll.contentSize = CGSizeMake(screenWidth, GetFinalHeight);
+    MainScroll.contentSize = CGSizeMake(screenWidth, GetFinalHeight + 50);
 }
 -(IBAction)SelectButton:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
@@ -2305,8 +2477,8 @@
         [subview removeFromSuperview];
     }
     
-    ShareButton.hidden = YES;
-    ShareIcon.hidden = YES;
+    //ShareButton.hidden = YES;
+    //ShareIcon.hidden = YES;
     CheckLikeInitView = NO;
     CheckCommentData = 0;
     CountLanguage = 0;
@@ -2470,8 +2642,8 @@
         [subview removeFromSuperview];
     }
     
-    ShareButton.hidden = YES;
-    ShareIcon.hidden = YES;
+    //ShareButton.hidden = YES;
+    //ShareIcon.hidden = YES;
     CheckLikeInitView = NO;
     CheckCommentData = 0;
     CountLanguage = 0;

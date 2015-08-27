@@ -7,7 +7,6 @@
 //
 
 #import "NewProfileV2ViewController.h"
-#import "AsyncImageView.h"
 #import "SettingsViewController.h"
 @interface NewProfileV2ViewController ()
 
@@ -17,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    DataUrl = [[UrlDataClass alloc]init];
     // Do any additional setup after loading the view from its nib.
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
     
@@ -37,7 +37,7 @@
     MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     MainScroll.contentSize = contentSize;
     
-    BackgroundImage.image = [UIImage imageNamed:@"UserDemo2.jpg"];
+    //BackgroundImage.image = [UIImage imageNamed:@"UserDemo2.jpg"];
     BackgroundImage.frame = CGRectMake(0, -50, screenWidth, 300);
     CGRect headerFrame = BackgroundImage.frame;
     headerFrame.origin.y -= 50.0f;
@@ -55,7 +55,12 @@
 //    AllContentView.frame = contentFrame;
     [MainScroll addSubview:AllContentView];
     
-    [self InitContentView];
+    
+    
+    [self GetUserData];
+    
+    
+   // [self InitContentView];
 }
 - (UIStatusBarStyle) preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
@@ -85,9 +90,9 @@
     WhiteBackground.backgroundColor = [UIColor whiteColor];
     [AllContentView addSubview:WhiteBackground];
 
-    AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
+    ShowUserProfileImage = [[AsyncImageView alloc]init];
     ShowUserProfileImage.frame = CGRectMake(20, 0, 100, 100);
-    ShowUserProfileImage.image = [UIImage imageNamed:@"DemoProfile.jpg"];
+    ShowUserProfileImage.image = [UIImage imageNamed:@"avatar.png"];
     ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
     ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
     ShowUserProfileImage.layer.cornerRadius = 50;
@@ -95,11 +100,19 @@
     ShowUserProfileImage.layer.masksToBounds = YES;
     ShowUserProfileImage.layer.borderColor=[[UIColor whiteColor] CGColor];
     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
+    if ([GetProfileImg length] == 0 || [GetProfileImg isEqualToString:@"null"] || [GetProfileImg isEqualToString:@"<null>"]) {
+        ShowUserProfileImage.image = [UIImage imageNamed:@"avatar.png"];
+    }else{
+        NSURL *url_UserImage = [NSURL URLWithString:GetProfileImg];
+        ShowUserProfileImage.imageURL = url_UserImage;
+    }
     [AllContentView addSubview:ShowUserProfileImage];
+    
+    NSString *TempUsernameString = [[NSString alloc]initWithFormat:@"@%@",GetUserName];
     
     UILabel *ShowUserName = [[UILabel alloc]init];//getname
     ShowUserName.frame = CGRectMake(130, 10, screenWidth - 130, 30);
-    ShowUserName.text = @"@lucydiamond";
+    ShowUserName.text = TempUsernameString;
     ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:18];
     ShowUserName.textColor = [UIColor whiteColor];
     ShowUserName.textAlignment = NSTextAlignmentLeft;
@@ -120,7 +133,7 @@
     
     UILabel *ShowName_ = [[UILabel alloc]init];//getname
     ShowName_.frame = CGRectMake(30, 110, screenWidth - 60, 30);
-    ShowName_.text = @"Lucy Jin";
+    ShowName_.text = GetName;
     ShowName_.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:22];
     ShowName_.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0];
     ShowName_.textAlignment = NSTextAlignmentLeft;
@@ -128,48 +141,16 @@
     [AllContentView addSubview:ShowName_];
     
     GetHeight = 145;
-    
-    NSString *TempLocation = @"Petaling Jaya, Malaysia";//Petaling Jaya, Malaysia
-    NSString *TempLink = @"www.chongcheeyong.com";
-    NSString *TempAbout = @"i love lucy diamond in the sky. the name 'Lucy' stands for bright light in the sky, like the diamond in the sky.\n\ni love lucy diamond in the sky. the name 'Lucy' stands for bright light in the sky, like the diamond in the sky.\n\ni love lucy diamond in the sky. the name 'Lucy' stands for bright light in the sky, like the diamond in the sky.";
+
     NSString *TempHashTag = @"#lucy #malaysiablogger #fashion #beach #ilovesunset #iamlucydiamondinthesky";
-    
-    if ([TempLocation isEqualToString:@""] || [TempLocation isEqualToString:@"(null)"] || [TempLocation length] == 0) {
-        
-    }else{
-        UIImageView *ShowPin = [[UIImageView alloc]init];
-        ShowPin.image = [UIImage imageNamed:@"FeedPin.png"];
-        ShowPin.frame = CGRectMake(33, 149, 8, 11);
-        //ShowPin.frame = CGRectMake(15, 210 + 8 + heightcheck + i, 8, 11);
-        [AllContentView addSubview:ShowPin];
-        
-        UILabel *ShowLocation = [[UILabel alloc]init];
-        ShowLocation.frame = CGRectMake(50, 145, screenWidth - 120, 20);
-        ShowLocation.text = TempLocation;
-        ShowLocation.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-        ShowLocation.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0];
-        ShowLocation.textAlignment = NSTextAlignmentLeft;
-        ShowLocation.backgroundColor = [UIColor clearColor];
-        [AllContentView addSubview:ShowLocation];
-        
-        GetHeight += 30;
-    }
-    
-    
-    if ([TempLink isEqualToString:@""] || [TempLink isEqualToString:@"(null)"] || [TempLink length] == 0) {
-        
-    }else{
-        UILabel *ShowLink = [[UILabel alloc]init];
-        ShowLink.frame = CGRectMake(50, GetHeight, screenWidth - 120, 20);
-        ShowLink.text = TempLink;
-        ShowLink.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-        ShowLink.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0];
-        ShowLink.textAlignment = NSTextAlignmentLeft;
-        ShowLink.backgroundColor = [UIColor clearColor];
-        [AllContentView addSubview:ShowLink];
-        
-        GetHeight += 30;
-    }
+    NSMutableArray *ArrHashTag = [[NSMutableArray alloc]init];
+    [ArrHashTag addObject:@"#lucy"];
+    [ArrHashTag addObject:@"#malaysiablogger"];
+    [ArrHashTag addObject:@"#fashion"];
+    [ArrHashTag addObject:@"#beach"];
+    [ArrHashTag addObject:@"#ilovesunset"];
+    [ArrHashTag addObject:@"#iamlucydiamondinthesky"];
+    [ArrHashTag addObject:@"#sexy"];
     
     // followers and followings count show
     
@@ -191,16 +172,36 @@
     ShowFollowing.backgroundColor = [UIColor clearColor];
     [AllContentView addSubview:ShowFollowing];
     
+    GetHeight += 30;
     
     
-    GetHeight += 50;
+    if ([GetLocation isEqualToString:@""] || [GetLocation isEqualToString:@"(null)"] || [GetLocation length] == 0) {
+        
+    }else{
+        UIImageView *ShowPin = [[UIImageView alloc]init];
+        ShowPin.image = [UIImage imageNamed:@"FeedPin.png"];
+        ShowPin.frame = CGRectMake(33, GetHeight + 4, 8, 11);
+        //ShowPin.frame = CGRectMake(15, 210 + 8 + heightcheck + i, 8, 11);
+        [AllContentView addSubview:ShowPin];
+        
+        UILabel *ShowLocation = [[UILabel alloc]init];
+        ShowLocation.frame = CGRectMake(50, GetHeight, screenWidth - 120, 20);
+        ShowLocation.text = GetLocation;
+        ShowLocation.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+        ShowLocation.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0];
+        ShowLocation.textAlignment = NSTextAlignmentLeft;
+        ShowLocation.backgroundColor = [UIColor clearColor];
+        [AllContentView addSubview:ShowLocation];
+        
+        GetHeight += 30;
+    }
     
-    if ([TempAbout isEqualToString:@""] || [TempAbout isEqualToString:@"(null)"] || [TempAbout length] == 0) {
+    if ([GetDescription isEqualToString:@""] || [GetDescription isEqualToString:@"(null)"] || [GetDescription length] == 0) {
         
     }else{
         UILabel *ShowAboutText = [[UILabel alloc]init];
         ShowAboutText.frame = CGRectMake(30, GetHeight, screenWidth - 60, 30);
-        ShowAboutText.text = TempAbout;
+        ShowAboutText.text = GetDescription;
         ShowAboutText.numberOfLines = 0;
         ShowAboutText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowAboutText.textColor = [UIColor colorWithRed:161.0f/255.0f green:161.0f/255.0f blue:161.0f/255.0f alpha:1.0f];
@@ -212,12 +213,27 @@
         frame.size.height = size.height;
         ShowAboutText.frame = frame;
         
-        GetHeight += ShowAboutText.frame.size.height + 20;
+        GetHeight += ShowAboutText.frame.size.height + 10;
+    }
+    
+    if ([GetLink isEqualToString:@""] || [GetLink isEqualToString:@"(null)"] || [GetLink length] == 0) {
+        
+    }else{
+        UILabel *ShowLink = [[UILabel alloc]init];
+        ShowLink.frame = CGRectMake(50, GetHeight, screenWidth - 120, 20);
+        ShowLink.text = GetLink;
+        ShowLink.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+        ShowLink.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0];
+        ShowLink.textAlignment = NSTextAlignmentLeft;
+        ShowLink.backgroundColor = [UIColor clearColor];
+        [AllContentView addSubview:ShowLink];
+        
+        GetHeight += 30;
     }
     
     NSLog(@"after about us height is ==== %d",GetHeight);
     if (CheckExpand == YES) {
-        if (GetHeight > 300) {
+        if (GetHeight > 240) {
             CheckExpand = YES;
         }else{
             CheckExpand = NO;
@@ -229,21 +245,22 @@
     
     if (CheckExpand == YES) {
         
-        GetHeight = 310;
+        GetHeight = 220;
+        
+        UIButton *Line01 = [[UIButton alloc]init];
+        Line01.frame = CGRectMake(0, GetHeight, screenWidth, 20);
+        [Line01 setTitle:@"" forState:UIControlStateNormal];
+        [Line01 setBackgroundColor:[UIColor whiteColor]];
+        Line01.alpha = 0.8f;
+        [AllContentView addSubview:Line01];
+        
+        GetHeight += 20;
         
         UIButton *WhiteBack = [[UIButton alloc]init];
         WhiteBack.frame = CGRectMake(0, GetHeight, screenWidth, 1000);
         [WhiteBack setTitle:@"" forState:UIControlStateNormal];
         [WhiteBack setBackgroundColor:[UIColor whiteColor]];
         [AllContentView addSubview:WhiteBack];
-        
-        UIButton *Line01 = [[UIButton alloc]init];
-        Line01.frame = CGRectMake(0, GetHeight, screenWidth, 1);
-        [Line01 setTitle:@"" forState:UIControlStateNormal];
-        [Line01 setBackgroundColor:[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f]];
-        [AllContentView addSubview:Line01];
-        
-        GetHeight += 1;
         
         UIButton *ExpandButton = [[UIButton alloc]init];
         ExpandButton.frame = CGRectMake(0, GetHeight, screenWidth, 50);
@@ -261,21 +278,41 @@
         if ([TempHashTag isEqualToString:@""] || [TempHashTag isEqualToString:@"(null)"] || [TempHashTag length] == 0) {
             
         }else{
-            UILabel *ShowHashTagText = [[UILabel alloc]init];
-            ShowHashTagText.frame = CGRectMake(30, GetHeight, screenWidth - 60, 30);
-            ShowHashTagText.text = TempHashTag;
-            ShowHashTagText.numberOfLines = 0;
-            ShowHashTagText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-            ShowHashTagText.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
-            ShowHashTagText.textAlignment = NSTextAlignmentLeft;
-            [AllContentView addSubview:ShowHashTagText];
             
-            CGSize size = [ShowHashTagText sizeThatFits:CGSizeMake(ShowHashTagText.frame.size.width, CGFLOAT_MAX)];
-            CGRect frame = ShowHashTagText.frame;
-            frame.size.height = size.height;
-            ShowHashTagText.frame = frame;
+            UIScrollView *HashTagScroll = [[UIScrollView alloc]init];
+            HashTagScroll.delegate = self;
+            HashTagScroll.frame = CGRectMake(0, GetHeight, screenWidth, 50);
+            HashTagScroll.backgroundColor = [UIColor whiteColor];
+            [AllContentView addSubview:HashTagScroll];
+            CGRect frame2;
+            for (int i= 0; i < [ArrHashTag count]; i++) {
+                UILabel *ShowHashTagText = [[UILabel alloc]init];
+                ShowHashTagText.text = [ArrHashTag objectAtIndex:i];
+                ShowHashTagText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+                ShowHashTagText.textAlignment = NSTextAlignmentCenter;
+                ShowHashTagText.backgroundColor = [UIColor whiteColor];
+                ShowHashTagText.layer.cornerRadius = 5;
+                ShowHashTagText.layer.borderWidth = 1;
+                ShowHashTagText.layer.borderColor=[[UIColor grayColor] CGColor];
+
+                CGSize textSize = [ShowHashTagText.text sizeWithAttributes:@{NSFontAttributeName:[ShowHashTagText font]}];
+                ShowHashTagText.frame = CGRectMake(30 + frame2.size.width, 15, textSize.width + 20, 20);
+                frame2.size.width += textSize.width + 30;
+                [HashTagScroll addSubview:ShowHashTagText];
+
+                HashTagScroll.contentSize = CGSizeMake(30 + frame2.size.width , 50);
+            }
             
-            GetHeight += ShowHashTagText.frame.size.height + 20;
+            
+            GetHeight += 50;
+
+//
+//            CGSize size = [ShowHashTagText sizeThatFits:CGSizeMake(ShowHashTagText.frame.size.width, CGFLOAT_MAX)];
+//            CGRect frame = ShowHashTagText.frame;
+//            frame.size.height = size.height;
+//            ShowHashTagText.frame = frame;
+//            
+//            GetHeight += ShowHashTagText.frame.size.height + 20;
         }
         
         UIButton *Line01 = [[UIButton alloc]init];
@@ -311,7 +348,7 @@
     NSString *TempStringCollection = [[NSString alloc]initWithFormat:@"Collection"];
     NSString *TempStringLike = [[NSString alloc]initWithFormat:@"Like"];
     
-    NSArray *itemArray = [NSArray arrayWithObjects:TempStringPosts, TempStringCollection,TempStringLike, nil];
+    NSArray *itemArray = [NSArray arrayWithObjects:TempStringCollection, TempStringPosts,TempStringLike, nil];
     ProfileControl = [[UISegmentedControl alloc]initWithItems:itemArray];
     ProfileControl.frame = CGRectMake(15, GetHeight, screenWidth - 30, 29);
     [ProfileControl addTarget:self action:@selector(segmentAction:) forControlEvents: UIControlEventValueChanged];
@@ -347,14 +384,14 @@
     [AllContentView addSubview:LikeView];
     
     LikeView.hidden = YES;
-    CollectionView.hidden = YES;
-    PostView.hidden = NO;
+    CollectionView.hidden = NO;
+    PostView.hidden = YES;
     
-    CGSize contentSize = MainScroll.frame.size;
-    contentSize.height = GetHeight + PostView.frame.size.height + 200;
-    MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    MainScroll.contentSize = contentSize;
-    
+//    CGSize contentSize = MainScroll.frame.size;
+//    contentSize.height = GetHeight + PostView.frame.size.height + 200;
+//    MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+//    MainScroll.contentSize = contentSize;
+    [self InitCollectionView];
 }
 - (void)segmentAction:(UISegmentedControl *)segment
 {
@@ -362,6 +399,14 @@
     
     switch (segment.selectedSegmentIndex) {
         case 0:
+            NSLog(@"Collection click");
+            PostView.hidden = YES;
+            LikeView.hidden = YES;
+            CollectionView.hidden = NO;
+            [self InitCollectionView];
+
+            break;
+        case 1:
             NSLog(@"Posts click");
             LikeView.hidden = YES;
             CollectionView.hidden = YES;
@@ -370,13 +415,6 @@
             contentSize.height = GetHeight + PostView.frame.size.height + 200;
             MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
             MainScroll.contentSize = contentSize;
-            break;
-        case 1:
-            NSLog(@"Collection click");
-            PostView.hidden = YES;
-            LikeView.hidden = YES;
-            CollectionView.hidden = NO;
-            [self InitCollectionView];
 
             break;
         case 2:
@@ -566,6 +604,119 @@
     SettingsViewController *SettingsView = [[SettingsViewController alloc]init];
     [self.view.window.rootViewController presentViewController:SettingsView animated:YES completion:nil];
 }
+-(void)GetUserData{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetUseruid = [defaults objectForKey:@"Useruid"];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@/%@",DataUrl.UserWallpaper_Url,GetUseruid];
+    NSLog(@"urlString is %@",urlString);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
+    
+    NSMutableData *body = [NSMutableData data];
+                           
+    NSString *boundary = @"---------------------------14737809831466499882746641449";
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+    [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+                           
+     //parameter first
+     [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+     //Attaching the key name @"parameter_first" to the post body
+     [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"token\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+     //Attaching the content to be posted ( ParameterFirst )
+     [body appendData:[[NSString stringWithFormat:@"%@",GetExpertToken] dataUsingEncoding:NSUTF8StringEncoding]];
+     [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+     //close form
+     [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+     NSLog(@"Request  = %@",[[NSString alloc] initWithData:body encoding:NSUTF8StringEncoding]);
+    
+    //setting the body of the post to the reqeust
+    [request setHTTPBody:body];
+    
+    theConnection_GetUserData = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    [theConnection_GetUserData start];
+    
+    
+    if( theConnection_GetUserData ){
+        webData = [NSMutableData data];
+    }
+    
+}
+-(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    [webData setLength: 0];
+    
+}
+-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [webData appendData:data];
+}
+-(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+//    [ShowActivity stopAnimating];
+//    //[MainScroll setContentSize:CGSizeMake(320, 100 + i * HeightGet)];
+//    //    [spinnerView stopAnimating];
+//    //    [spinnerView removeFromSuperview];
+//    CheckLoadDone = YES;
+//    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:CustomLocalisedString(@"ErrorConnection", nil) message:CustomLocalisedString(@"NoData", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//    
+//    [alert show];
+}
+-(void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    if (connection == theConnection_GetUserData) {
+        NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+        NSLog(@"GetData is %@",GetData);
+        
+        NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *myError = nil;
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
+        if ([res count] == 0) {
+            NSLog(@"Server Error.");
+            UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:CustomLocalisedString(@"SomethingError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            ShowAlert.tag = 1000;
+            [ShowAlert show];
+        }else{
+            NSString *StatusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
+            if ([StatusString isEqualToString:@"ok"]) {
+                NSDictionary *GetAllData = [res valueForKey:@"data"];
+                
+                NSDictionary *WallpaperData = [GetAllData valueForKey:@"wallpaper"];
+                NSString *GetWallpaper = [[NSString alloc]initWithFormat:@"%@",[WallpaperData objectForKey:@"s"]];
+                
+                NSDictionary *ProfilePhotoData = [GetAllData valueForKey:@"profile_photo_images"];
+                GetProfileImg = [[NSString alloc]initWithFormat:@"%@",[ProfilePhotoData objectForKey:@"l"]];
+                
+                GetName = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"name"]];
+                GetUserName = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"username"]];
+                GetLocation = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"location"]];
+                GetLink = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"personal_link"]];
+                GetDescription = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"description"]];
+                
+                [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:BackgroundImage];
+                NSLog(@"User Wallpaper FullString ====== %@",GetWallpaper);
+                NSURL *url_UserImage = [NSURL URLWithString:GetWallpaper];
+                //NSLog(@"url_NearbyBig is %@",url_NearbyBig);
+                BackgroundImage.imageURL = url_UserImage;
+                
+                
+                [self InitContentView];
+                
+            }else{
+            
+            }
+            
+            
+        }
+        
+        
 
-
+    }
+}
 @end

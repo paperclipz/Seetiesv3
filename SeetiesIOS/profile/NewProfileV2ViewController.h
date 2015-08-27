@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "A3ParallaxScrollView.h"
+#import "AsyncImageView.h"
+#import "UrlDataClass.h"
+
+//https://github.com/freak4pc/SMTagField tag simple
 @interface NewProfileV2ViewController : BaseViewController<UIScrollViewDelegate,UISearchBarDelegate>{
 
     IBOutlet A3ParallaxScrollView *MainScroll;
-    IBOutlet UIImageView *BackgroundImage;
+    IBOutlet AsyncImageView *BackgroundImage;
     IBOutlet UIView *AllContentView;
     
     int GetHeight;
@@ -27,6 +31,22 @@
     IBOutlet UISearchBar *SearchBarTemp;
     
     BOOL CheckExpand;
+    
+    UrlDataClass *DataUrl;
+    NSMutableData *webData;
+    
+    NSURLConnection *theConnection_GetUserData;
+    
+    //content data 
+    AsyncImageView *ShowUserProfileImage;
+    
+    
+    NSString *GetProfileImg;
+    NSString *GetName;
+    NSString *GetUserName;
+    NSString *GetLocation;
+    NSString *GetDescription;
+    NSString *GetLink;
 }
 -(IBAction)SettingsButton:(id)sender;
 @end

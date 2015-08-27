@@ -59,7 +59,7 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <point key="canvasLocation" x="342" y="539"/>
         </view>
-        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DemoBackground.jpg" id="3QS-vy-vDW">
+        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="3QS-vy-vDW" customClass="AsyncImageView">
             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <point key="canvasLocation" x="768" y="477"/>
@@ -73,7 +73,6 @@
         </view>
     </objects>
     <resources>
-        <image name="DemoBackground.jpg" width="505" height="505"/>
         <image name="SettingsButton.png" width="38" height="38"/>
         <image name="TopBarShare.png" width="17" height="24"/>
     </resources>

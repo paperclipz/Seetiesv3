@@ -183,7 +183,7 @@
 
 -(void)GetSearchText{
     
-    NSString *FullString = [[NSString alloc]initWithFormat:@"%@/tags/%@",DataUrl.UserWallpaper_Url,GetSearchText];
+    NSString *FullString = [[NSString alloc]initWithFormat:@"%@tags/%@",DataUrl.UserWallpaper_Url,GetSearchText];
     NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
     NSLog(@"check postBack URL ==== %@",postBack);
     NSURL *url = [NSURL URLWithString:[postBack stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
@@ -227,60 +227,76 @@
         NSError *myError = nil;
         NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
         
-        NSArray *GetStringData = (NSArray *)[res valueForKey:@"result"];
-        NSLog(@"GetStringData is %@",GetStringData);
-        
-        NSArray *GetcomplexData = (NSArray *)[res valueForKey:@"complex"];
-        NSLog(@"GetcomplexData is %@",GetcomplexData);
-        
-        GetReturnSearchTextArray = [[NSMutableArray alloc]init];
-        
-        for (NSDictionary * dict in GetcomplexData){
-            NSString *tag = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"tag"]];
-            [GetReturnSearchTextArray addObject:tag];
+        if ([res count] == 0) {
+            NSLog(@"Server Error.");
+            UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:CustomLocalisedString(@"SomethingError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            ShowAlert.tag = 1000;
+            [ShowAlert show];
+        }else{
+            NSString *StatusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
+            if ([StatusString isEqualToString:@"ok"]) {
+                NSDictionary *GetAllData = [res valueForKey:@"data"];
+                
+                NSArray *GetStringData = (NSArray *)[GetAllData valueForKey:@"simple"];
+                NSLog(@"GetStringData is %@",GetStringData);
+                
+                NSArray *GetcomplexData = (NSArray *)[GetAllData valueForKey:@"complex"];
+                NSLog(@"GetcomplexData is %@",GetcomplexData);
+                
+                GetReturnSearchTextArray = [[NSMutableArray alloc]init];
+                
+                for (NSDictionary * dict in GetcomplexData){
+                    NSString *tag = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"tag"]];
+                    [GetReturnSearchTextArray addObject:tag];
+                }
+                
+                NSDictionary *locationData = [GetcomplexData valueForKey:@"location"];
+                NSLog(@"locationData is %@",locationData);
+                GetReturnSearchAddressArray = [[NSMutableArray alloc]init];
+                GetReturnSearchLatArray = [[NSMutableArray alloc]init];
+                GetReturnSearchLngArray = [[NSMutableArray alloc]init];
+                for (NSDictionary * dict in locationData) {
+                    NSString *formatted_address = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"formatted_address"]];
+                    //NSLog(@"formatted_address is %@",formatted_address);
+                    if ([formatted_address isEqualToString:@"<null>"] || formatted_address == nil) {
+                        [GetReturnSearchAddressArray addObject:@""];
+                    }else{
+                        [GetReturnSearchAddressArray addObject:formatted_address];
+                    }
+                    
+                    NSString *lat = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"lat"]];
+                    //NSLog(@"formatted_address is %@",formatted_address);
+                    if ([lat isEqualToString:@"<null>"] || lat == nil) {
+                        [GetReturnSearchLatArray addObject:@""];
+                    }else{
+                        [GetReturnSearchLatArray addObject:lat];
+                    }
+                    
+                    NSString *lng = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"lng"]];
+                    //NSLog(@"formatted_address is %@",formatted_address);
+                    if ([lng isEqualToString:@"<null>"] || lng == nil) {
+                        [GetReturnSearchLngArray addObject:@""];
+                    }else{
+                        [GetReturnSearchLngArray addObject:lng];
+                    }
+                    
+                }
+                NSLog(@"GetReturnSearchTextArray is %@",GetReturnSearchTextArray);
+                NSLog(@"GetReturnSearchAddressArray is %@",GetReturnSearchAddressArray);
+                //        [LocalSuggestionTextArray removeAllObjects];
+                //
+                //        LocalSuggestionTextArray = [[NSMutableArray alloc]initWithArray:GetStringData];
+                //        NSLog(@"LocalSuggestionTextArray is %@",LocalSuggestionTextArray);
+                //        [SuggestionTblView reloadData];
+                
+                CheckTblview = 1;
+                [Tblview reloadData];
+                
+                
+            }
         }
         
-        NSDictionary *locationData = [GetcomplexData valueForKey:@"location"];
-        NSLog(@"locationData is %@",locationData);
-        GetReturnSearchAddressArray = [[NSMutableArray alloc]init];
-        GetReturnSearchLatArray = [[NSMutableArray alloc]init];
-        GetReturnSearchLngArray = [[NSMutableArray alloc]init];
-        for (NSDictionary * dict in locationData) {
-            NSString *formatted_address = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"formatted_address"]];
-            //NSLog(@"formatted_address is %@",formatted_address);
-            if ([formatted_address isEqualToString:@"<null>"] || formatted_address == nil) {
-                [GetReturnSearchAddressArray addObject:@""];
-            }else{
-                [GetReturnSearchAddressArray addObject:formatted_address];
-            }
-            
-            NSString *lat = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"lat"]];
-            //NSLog(@"formatted_address is %@",formatted_address);
-            if ([lat isEqualToString:@"<null>"] || lat == nil) {
-                [GetReturnSearchLatArray addObject:@""];
-            }else{
-                [GetReturnSearchLatArray addObject:lat];
-            }
-            
-            NSString *lng = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"lng"]];
-            //NSLog(@"formatted_address is %@",formatted_address);
-            if ([lng isEqualToString:@"<null>"] || lng == nil) {
-                [GetReturnSearchLngArray addObject:@""];
-            }else{
-                [GetReturnSearchLngArray addObject:lng];
-            }
-            
-        }
-        NSLog(@"GetReturnSearchTextArray is %@",GetReturnSearchTextArray);
-        NSLog(@"GetReturnSearchAddressArray is %@",GetReturnSearchAddressArray);
-        //        [LocalSuggestionTextArray removeAllObjects];
-        //
-        //        LocalSuggestionTextArray = [[NSMutableArray alloc]initWithArray:GetStringData];
-        //        NSLog(@"LocalSuggestionTextArray is %@",LocalSuggestionTextArray);
-        //        [SuggestionTblView reloadData];
-        
-        CheckTblview = 1;
-        [Tblview reloadData];
+
     }
 }
 @end

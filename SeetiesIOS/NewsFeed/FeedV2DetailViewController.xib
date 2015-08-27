@@ -13,7 +13,6 @@
                 <outlet property="DontShowAgainButton" destination="ZaB-Ze-AUM" id="4KY-8H-0IT"/>
                 <outlet property="DontShowAggainText" destination="hV5-uz-LSw" id="teY-5W-WEM"/>
                 <outlet property="GoogleIcon" destination="8At-x2-cTC" id="cGZ-n9-UuV"/>
-                <outlet property="LanguageButton" destination="TcO-QB-hU9" id="hsg-W7-vU2"/>
                 <outlet property="LanguageText" destination="i5l-ug-V94" id="gjW-Ra-SkM"/>
                 <outlet property="LikeButton" destination="1MG-hw-hrm" id="Iqi-qi-Hs4"/>
                 <outlet property="LikeButtonBackground" destination="vPC-c2-1eD" id="3gt-ak-Vdz"/>
@@ -21,7 +20,6 @@
                 <outlet property="LocationButton" destination="v0e-5Q-vOm" id="YPV-Y8-CfB"/>
                 <outlet property="MImageScroll" destination="KK8-FS-BPN" id="7A3-Hy-s0h"/>
                 <outlet property="MainScroll" destination="VZd-C0-7GE" id="i5H-ZV-RfK"/>
-                <outlet property="NewLanguageButton" destination="5D6-Gp-M47" id="8UE-1v-Wti"/>
                 <outlet property="PageControlOn" destination="usk-ip-vyO" id="AkE-fB-2ZV"/>
                 <outlet property="PowerByText" destination="Jr0-Cz-ZfQ" id="I9k-O9-R1b"/>
                 <outlet property="ShareButton" destination="dxK-vb-C2r" id="74s-PM-B0q"/>
@@ -138,12 +136,12 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hAP-qF-Ykq">
+                        <button opaque="NO" userInteractionEnabled="NO" alpha="0.49999999999999961" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hAP-qF-Ykq">
                             <rect key="frame" x="-160" y="-32" width="640" height="128"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <state key="normal" image="Settingsbar2.png">
+                            <state key="normal">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
@@ -190,27 +188,6 @@
                                 <action selector="OpenAddressButton:" destination="-1" eventType="touchUpInside" id="Zhp-3i-S7z"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="TcO-QB-hU9">
-                            <rect key="frame" x="185" y="26" width="55" height="33"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" image="LanguageEng.png">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="LanguageButton:" destination="-1" eventType="touchUpInside" id="Aky-xq-9AI"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5D6-Gp-M47">
-                            <rect key="frame" x="185" y="26" width="55" height="33"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <state key="normal" image="IconTranslate.png">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="NewLanguageButton:" destination="-1" eventType="touchUpInside" id="yXh-kn-8t6"/>
-                            </connections>
-                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kPo-Ro-Tvu">
                             <rect key="frame" x="0.0" y="0.0" width="53" height="64"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -222,7 +199,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" id="3W6-ih-0HU">
                     <rect key="frame" x="142" y="265" width="37" height="37"/>
@@ -331,7 +308,6 @@
         <image name="BackButton2.png" width="38" height="39"/>
         <image name="IconGoogle.png" width="55" height="19"/>
         <image name="IconTranslate.png" width="22" height="21"/>
-        <image name="LanguageEng.png" width="25" height="16"/>
         <image name="PostComment.png" width="23" height="19"/>
         <image name="PostLike.png" width="23" height="19"/>
         <image name="PostLocation.png" width="17" height="22"/>

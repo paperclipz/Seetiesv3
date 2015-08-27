@@ -11,6 +11,7 @@
 #import "SearchViewV2Controller.h"
 #import "Filter2ViewController.h"
 #import "InviteFrenViewController.h"
+#import "FeedV2DetailViewController.h"
 @interface FeedViewController ()
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;
@@ -187,6 +188,8 @@
         arrUserImage = [[NSMutableArray alloc]initWithArray:arrUserImageTemp];
         NSMutableArray *arrDisplayCountryNameTemp = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"FeedLocalarrDisplayCountryName"]];
         arrDisplayCountryName = [[NSMutableArray alloc]initWithArray:arrDisplayCountryNameTemp];
+        NSMutableArray *arrPostIDTemp = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"FeedLocalarrPostID"]];
+        arrPostID = [[NSMutableArray alloc]initWithArray:arrPostIDTemp];
     }else{
         arrAddress = [[NSMutableArray alloc]init];
         arrTitle = [[NSMutableArray alloc]init];
@@ -197,6 +200,7 @@
         arrUserName = [[NSMutableArray alloc]init];
         arrUserImage = [[NSMutableArray alloc]init];
         arrDisplayCountryName = [[NSMutableArray alloc]init];
+        arrPostID = [[NSMutableArray alloc]init];
     }
 
     TotalPage = 1;
@@ -283,6 +287,14 @@
             ShowImage.frame = CGRectMake(10, heightcheck + i, screenWidth - 20, newImage.size.height);
             // ShowImage.frame = CGRectMake(0, heightcheck + i, screenWidth, 200);
             [MainScroll addSubview:ShowImage];
+            
+            UIButton *ClickToDetailButton = [[UIButton alloc]init];
+            ClickToDetailButton.frame = CGRectMake(10, heightcheck + i, screenWidth - 20, newImage.size.height);
+            [ClickToDetailButton setTitle:@"" forState:UIControlStateNormal];
+            ClickToDetailButton.backgroundColor = [UIColor clearColor];
+            ClickToDetailButton.tag = i;
+            [ClickToDetailButton addTarget:self action:@selector(ClickToDetailButton:) forControlEvents:UIControlEventTouchUpInside];
+            [MainScroll addSubview:ClickToDetailButton];
             
             AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
             ShowUserProfileImage.frame = CGRectMake(20, heightcheck + i + 10, 40, 40);
@@ -571,14 +583,17 @@
                 [TempArray_FeedImage addObject:SaveFileName];
             }else{
             }
-            
-
-            
-            
-            
             ShowImage.frame = CGRectMake(10, heightcheck + i, screenWidth - 20, newImage.size.height);
             // ShowImage.frame = CGRectMake(0, heightcheck + i, screenWidth, 200);
             [MainScroll addSubview:ShowImage];
+            
+            UIButton *ClickToDetailButton = [[UIButton alloc]init];
+            ClickToDetailButton.frame = CGRectMake(10, heightcheck + i, screenWidth - 20, newImage.size.height);
+            [ClickToDetailButton setTitle:@"" forState:UIControlStateNormal];
+            ClickToDetailButton.backgroundColor = [UIColor clearColor];
+            ClickToDetailButton.tag = i;
+            [ClickToDetailButton addTarget:self action:@selector(ClickToDetailButton:) forControlEvents:UIControlEventTouchUpInside];
+            [MainScroll addSubview:ClickToDetailButton];
             
             AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
             ShowUserProfileImage.frame = CGRectMake(20, heightcheck + i + 10, 40, 40);
@@ -1102,6 +1117,7 @@
         [defaults setObject:arrUserName forKey:@"FeedLocalarrUserName"];
         [defaults setObject:TempArray_FeedUserImage forKey:@"FeedLocalarrUserImage"];
         [defaults setObject:arrDisplayCountryName forKey:@"FeedLocalarrDisplayCountryName"];
+        [defaults setObject:arrPostID forKey:@"FeedLocalarrPostID"];
         [defaults setObject:@"Done" forKey:@"TestLocalData"];
         [defaults synchronize];
     }else{
@@ -1345,6 +1361,8 @@
                      [arrType addObject:posttype];
                      NSString *PlaceName = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"place_name"]];
                      [arrAddress addObject:PlaceName];
+                     NSString *PlaceID = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"post_id"]];
+                     [arrPostID addObject:PlaceID];
                  }
                 
                 
@@ -1518,4 +1536,17 @@
     
     
 }
+
+-(IBAction)ClickToDetailButton:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSLog(@"button %li",(long)getbuttonIDN);
+    
+    FeedV2DetailViewController *vc = [[FeedV2DetailViewController alloc] initWithNibName:@"FeedV2DetailViewController" bundle:nil];
+    
+    [self.navigationController pushViewController:vc animated:YES];
+    [vc GetPostID:[arrPostID objectAtIndex:getbuttonIDN]];
+    
+}
+
+
 @end
