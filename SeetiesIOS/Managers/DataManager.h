@@ -12,14 +12,17 @@
 #import "ExploreCountryModel.h"
 #import "SearchModel.h"
 #import "EditPhotoModel.h"
+#import "FourSquareModel.h"
 
 @interface DataManager : NSObject
 + (id)Instance;
 +(NSArray*)getSampleObject;
 
-
 @property(nonatomic,strong)ApiVersionModel* apiVersionModel;
 @property(nonatomic,strong)LanguageModels* languageModels;
 @property(nonatomic,strong)ExploreCountryModels* exploreCountryModels;
+@property(nonatomic,strong)FourSquareModel* fourSquareVenueModel;
+@property(nonatomic,strong)SearchModel* googleSearchModel;
+@property(nonatomic,strong)SearchLocationDetailModel* googleSearchDetailModel;
 
 @end

@@ -65,7 +65,7 @@
     //
     CGRect rect = CGRectMake(0, 0, CGRectGetWidth(self.bounds),  CGRectGetHeight(self.bounds));
     self.selectedBackgroundView = [[UIView alloc] initWithFrame: rect];
-    self.selectedBackgroundView.backgroundColor = BACKGROUND_COLOR_1;
+    self.selectedBackgroundView.backgroundColor = DEVICE_COLOR;
 }
 
 - (void)userPressedMoreButton:(id)sender

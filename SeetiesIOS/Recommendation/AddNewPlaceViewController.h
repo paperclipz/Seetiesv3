@@ -8,9 +8,19 @@
 
 #import "CommonViewController.h"
 #import "AddNewPlaceSubView.h"
+#import "EditHoursViewController.h"
+
+
+
 
 @interface AddNewPlaceViewController : CommonViewController<MKMapViewDelegate>
--(void)initData:(SearchLocationModel*)model;
 
 @property(nonatomic,strong)AddNewPlaceSubView* addNewPlaceSubView;
+@property(nonatomic,assign)SearchType searchType;
+
+@property(nonatomic,strong)EditHoursViewController* editHoursViewController;
+
+-(void)initDataFrom4Square:(VenueModel*)model;
+-(void)initDataFromGogle:(NSString*)placeid;
+
 @end

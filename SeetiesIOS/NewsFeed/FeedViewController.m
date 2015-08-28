@@ -22,7 +22,7 @@
     methodStart = [NSDate date];
     NSLog(@"methodStart is %@",methodStart);
     [self initData];
-    [self initSelfView];
+   // [self initSelfView];
     
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
 }

@@ -282,7 +282,7 @@
     
     [[[[UIApplication sharedApplication] delegate] window] setRootViewController:self.leveyTabBarController];
 //TODO:Delete this . use for development purpose only
-    [self.leveyTabBarController setSelectedIndex:0];
+    [self.leveyTabBarController setSelectedIndex:2];
 }
 
 - (void)animateImages
@@ -339,9 +339,6 @@
     if(!_leveyTabBarController)
     {
          NSArray *arrViewControllers  = [NSArray arrayWithObjects:self.feedViewController.navController,self.explore2ViewController.navController,self.recommendationViewController.navController,self.notificationViewController.navController,self.userProfilePageViewController.navController, nil];
-        
-        
-        _leveyTabBarController = [[LeveyTabBarController alloc]initWithViewControllers:arrViewControllers imageArray:[self arrTabImages]];
         
         _leveyTabBarController = [[LeveyTabBarController alloc] initWithViewControllers:arrViewControllers imageArray:[self arrTabImages]];
         [_leveyTabBarController.tabBar setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];

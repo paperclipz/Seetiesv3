@@ -18,10 +18,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+       // Do any additional setup after loading the view.
+}
+
+-(void)applyTabBarContraint
+{
+
     if (self.bottomConstraint) {
         self.bottomConstraint.constant = TAB_BAR_HEIGHT;
     }
-    // Do any additional setup after loading the view.
+    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -6,11 +6,10 @@
 //  Copyright (c) 2015 Stylar Network. All rights reserved.
 //
 
-#import "CommentViewController.h"
 #import "CustomEditPhotoTableViewCell.h"
 #import "UITableView+LongPressReorder.h"
 #import "BMXSwipableCell.h"
 
-@interface EditPhotoViewController : CommentViewController<UITableViewDataSource,UITableViewDelegate,BMXSwipableCellDelegate>
+@interface EditPhotoViewController : CommonViewController<UITableViewDataSource,UITableViewDelegate,BMXSwipableCellDelegate>
 
 @end

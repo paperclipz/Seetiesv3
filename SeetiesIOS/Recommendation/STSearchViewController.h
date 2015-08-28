@@ -7,17 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AddNewPlaceViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "LPGoogleFunctions.h"
+#import "SearchTableViewController.h"
+#import "CAPSPageMenu.h"
+
+typedef void(^IndexBlock) (NSIndexPath* indexPath,SearchType type);
 
 @interface STSearchViewController : CommonViewController<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,LPGoogleFunctionsDelegate>
--(void)initTableViewDelegate:(id)delegate;
 -(void)initWithLocation:(CLLocation*)location;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 
-@property(nonatomic,strong)AddNewPlaceViewController* addNewPlaceViewController;
-@property(nonatomic,strong)UINavigationController* navAddNewPlaceViewController;
+@property(nonatomic,strong)SearchTableViewController* googleSearchTableViewController;
 
+@property(nonatomic,strong)SearchTableViewController* fourSquareSearchTableViewController;
+
+@property(nonatomic,copy)IndexBlock didSelectRowAtIndexPathBlock;
 
 @end

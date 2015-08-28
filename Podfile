@@ -18,5 +18,9 @@ pod 'SDWebImage', :head
 pod 'GoogleMaps'
 pod 'LPGoogleFunctions'
 pod 'CLLocationManager-blocks'
-pod 'CSGrowingTextView', '~> 1.0'
-pod 'AutoLayoutTextViews', '~> 1.0'
+
+pod 'BkTask'
+pod 'HMSegmentedControl'
+
+
+pod 'ActionSheetPicker-3.0', '~> 1.7.1'

@@ -29,6 +29,15 @@
     NSString *_cellIdentifier;
 
 }
+- (IBAction)btnBackClicked:(id)sender {
+    
+    if (self.navigationController) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+    else{
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+}
 
 -(NSMutableArray*)arrEditPhotoList
 {

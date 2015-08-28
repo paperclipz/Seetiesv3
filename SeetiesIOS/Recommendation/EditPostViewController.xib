@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditPostViewController">
             <connections>
-                <outlet property="ibImageView" destination="F2F-vU-lbQ" id="R2P-q2-dU2"/>
+                <outlet property="ibImageView" destination="F2F-vU-lbQ" id="Dam-Up-llY"/>
                 <outlet property="txtDescription" destination="YsW-1N-wQv" id="jUR-s2-KbS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -42,6 +42,9 @@
                             <state key="normal" title="x">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="btnBackClicked:" destination="-1" eventType="touchUpInside" id="Ru1-Qd-25h"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.14901960780000001" green="0.65098039220000004" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -64,13 +67,6 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j4b-DH-19H">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="F2F-vU-lbQ">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="130" id="Boj-dK-NgT"/>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="130" id="UPM-sk-SYz"/>
-                                    </constraints>
-                                </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R93-Fn-BlV">
                                     <rect key="frame" x="14" y="138" width="291" height="21"/>
                                     <constraints>
@@ -98,11 +94,11 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YsW-1N-wQv" customClass="AUIAutoGrowingTextView">
-                                    <rect key="frame" x="13" y="235" width="292" height="173"/>
+                                    <rect key="frame" x="13" y="235" width="292" height="138"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="261" id="6tk-ho-gtF"/>
-                                        <constraint firstAttribute="height" constant="173" id="gDF-iX-9VF"/>
+                                        <constraint firstAttribute="height" constant="138" id="gDF-iX-9VF"/>
                                     </constraints>
                                     <attributedString key="attributedText">
                                         <fragment content="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut ">
@@ -119,6 +115,22 @@
                                         </mask>
                                     </variation>
                                 </textView>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="F2F-vU-lbQ">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="130" id="Boj-dK-NgT"/>
+                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="130" id="UPM-sk-SYz"/>
+                                    </constraints>
+                                </imageView>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kZ6-4P-VYA">
+                                    <rect key="frame" x="247" y="87" width="46" height="30"/>
+                                    <state key="normal" title="Button">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="btnEditPhotoClicked:" destination="-1" eventType="touchUpInside" id="igV-OQ-jtL"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>

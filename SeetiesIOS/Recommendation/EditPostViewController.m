@@ -8,22 +8,91 @@
 
 #import "EditPostViewController.h"
 #import "AUIAutoGrowingTextView.h"
+#import "UIImageViewModeScaleAspect.h"
+#import "UIImageView+WebCache.h"
+#import "UIImage+FX.h"
+#import "EditPhotoViewController.h"
+#import "AddNewPlaceViewController.h"
+#import "HMSegmentedControl.h"
+
 
 @interface EditPostViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
 @property (weak, nonatomic) IBOutlet AUIAutoGrowingTextView *txtDescription;
 
+@property(nonatomic,strong)EditPhotoViewController* editPhotoViewController;
+@property(nonatomic,strong)AddNewPlaceViewController* addNewPlaceViewController;
+
+@property(nonatomic,strong)HMSegmentedControl* segmentedControl;
+
 @end
 
 @implementation EditPostViewController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [self.ibImageView sd_setImageWithURL:[NSURL URLWithString:@"http://images.boomsbeat.com/data/images/full/2048/scarlett-johansson-jpg.jpg"]];
-    // Do any additional setup after loading the view from its nib.
-    self.txtDescription.maxHeight = 170.0f;//size taken is from iphone 4 , smallest screen size.
+- (IBAction)btnEditPhotoClicked:(id)sender {
+    
+    //[self.navigationController pushViewController:self.editPhotoViewController animated:YES];
+    
+      [self presentViewController:self.editPhotoViewController animated:YES completion:nil];
+}
+- (IBAction)btnBackClicked:(id)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+-(void)initData
+{
+    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+    [manager downloadImageWithURL:[NSURL URLWithString:@"http://cdn3.denofgeek.us/sites/denofgeekus/files/scarlett_johansson.jpg"]
+                          options:0
+                         progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                             // progression tracking code
+                         }
+                        completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                            if (image) {
+
+                                self.ibImageView.image = [image imageCroppedAndScaledToSize:self.ibImageView.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
+                            }
+                        }];
+
+}
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self initSelfView];
+    
+}
+
+
+- (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
+    NSLog(@"Selected index %ld (via UIControlEventValueChanged)", (long)segmentedControl.selectedSegmentIndex);
+    
+    switch ((long)segmentedControl.selectedSegmentIndex) {
+       
+        default:
+        case 0:
+            [self presentViewController:self.editPhotoViewController animated:YES completion:nil];
+            break;
+        case 1:
+            [self presentViewController:self.addNewPlaceViewController animated:YES completion:nil];
+
+            break;
+            
+        case 2:
+            [self presentViewController:self.editPhotoViewController animated:YES completion:nil];
+
+            break;
+    }
+    
+    segmentedControl.selectedSegmentIndex = -1;
+}
+
+
+-(void)initSelfView
+{
+    
+    [self.view addSubview:self.segmentedControl];
+    self.segmentedControl.selectedSegmentIndex = -1;
+
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     
@@ -40,4 +109,46 @@
 }
 */
 
+#pragma mark - Declarations
+-(NSArray*)arrTabImages
+{
+    
+    return @[[UIImage imageNamed:@"addurl_icon@2x.png"],[UIImage imageNamed:@"editplace_icon@2x.png"],[UIImage imageNamed:@"qr_icon@2x.png"],[UIImage imageNamed:@"save_icon@2x.png"]];
+}
+
+-(EditPhotoViewController*)editPhotoViewController
+{
+    if(!_editPhotoViewController)
+    {
+        _editPhotoViewController = [EditPhotoViewController new];
+    }
+    
+    return _editPhotoViewController;
+}
+
+-(HMSegmentedControl*)segmentedControl
+{
+    if(!_segmentedControl)
+    {
+        _segmentedControl = [[HMSegmentedControl alloc] initWithSectionImages:self.arrTabImages sectionSelectedImages:self.arrTabImages];
+        _segmentedControl.frame = CGRectMake(0, [Utils getDeviceScreenSize].size.height-60, [Utils getDeviceScreenSize].size.width,  60);
+        [_segmentedControl addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
+     //   _segmentedControl.selectionIndicatorHeight = 4.0f;
+        _segmentedControl.backgroundColor = [UIColor clearColor];
+        _segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationNone;
+        _segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleTextWidthStripe;
+
+    }
+    
+    return _segmentedControl;
+}
+-(AddNewPlaceViewController*)addNewPlaceViewController
+{
+    
+    if(!_addNewPlaceViewController)
+    {
+        _addNewPlaceViewController = [AddNewPlaceViewController new];
+    }
+    return _addNewPlaceViewController;
+}
 @end

@@ -14,7 +14,9 @@
 @implementation RecommendationViewController
 - (IBAction)btnEditPhotoClicked:(id)sender {
     
-    [self presentViewController:self.self.editPostViewController animated:YES completion:nil];
+    [self presentViewController:self.editPostViewController animated:YES completion:nil];
+    [self.editPostViewController initData];
+    
 }
 - (IBAction)btnPickImageClicked:(id)sender {
     
@@ -27,6 +29,7 @@
 
     //[self btnPickImageClicked:nil];
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -35,6 +38,10 @@
 - (void)didCancelDoImagePickerController
 {
     SLog(@"didCancelDoImagePickerController");
+    
+    if (self.doImagePickerController) {
+        [self.doImagePickerController dismissViewControllerAnimated:YES completion:nil];
+    }
 
 }
 
@@ -69,47 +76,16 @@
 -(void)showSearchView:(CLLocation*)location
 {
     
-    [self dismissViewControllerAnimated:YES completion:^{
-        [self pushViewController:self.stSearchViewController animated:YES];
+    //[self dismissViewControllerAnimated:YES completion:^{
+        [self.navDoImagePickerController pushViewController:self.stSearchViewController animated:YES];
         [self.stSearchViewController initWithLocation:location];
 
-    }];
+  //  }];
 
     
 }
 
 
-//
-//- (NSString *)getIPAddress {
-//    
-//    NSString *address = @"error";
-//    struct ifaddrs *interfaces = NULL;
-//    struct ifaddrs *temp_addr = NULL;
-//    int success = 0;
-//    // retrieve the current interfaces - returns 0 on success
-//    success = getifaddrs(&interfaces);
-//    if (success == 0) {
-//        // Loop through linked list of interfaces
-//        temp_addr = interfaces;
-//        while(temp_addr != NULL) {
-//            if(temp_addr->ifa_addr->sa_family == AF_INET) {
-//                // Check if interface is en0 which is the wifi connection on the iPhone
-//                if([[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:@"en0"]) {
-//                    // Get NSString from C String
-//                    address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)];
-//                    
-//                }
-//                
-//            }
-//            
-//            temp_addr = temp_addr->ifa_next;
-//        }
-//    }
-//    // Free memory
-//    freeifaddrs(interfaces);
-//    return address;
-//    
-//}
 
 #pragma mark - Declaration
 -(STSearchViewController*)stSearchViewController{
@@ -117,6 +93,32 @@
     if(!_stSearchViewController)
     {
         _stSearchViewController = [STSearchViewController new];
+        
+        __block typeof (self)wealSelf = self;
+        _stSearchViewController.didSelectRowAtIndexPathBlock = ^(NSIndexPath* indexPath, SearchType type)
+        {
+            
+            switch (type) {
+                default:
+                case SearchTypeGoogle:
+                {
+                    DataManager* manager = [DataManager Instance];
+                    SearchLocationModel* model = manager.googleSearchModel.predictions[indexPath.row];
+                    [wealSelf.addNewPlaceViewController initDataFromGogle:model.place_id];
+                }
+                    break;
+                case SearchTypeFourSquare:
+                {
+                    DataManager* manager = [DataManager Instance];
+                    VenueModel* model = manager.fourSquareVenueModel.items[indexPath.row];
+                    [wealSelf.addNewPlaceViewController initDataFrom4Square:model];
+                }
+                    break;
+            }
+            
+            [wealSelf.navDoImagePickerController pushViewController:wealSelf.addNewPlaceViewController animated:YES];
+            
+        };
     }
     return _stSearchViewController;
 }
@@ -157,4 +159,38 @@
     }
     return _editPostViewController;
 }
+
+-(UINavigationController*)navEditPostViewController
+{
+    if(!_navEditPostViewController)
+    {
+        _navEditPostViewController = [[UINavigationController alloc]initWithRootViewController:self.editPostViewController];
+        [_navEditPostViewController setNavigationBarHidden:YES];
+    }
+    
+    return _navEditPostViewController;
+}
+
+-(UINavigationController*)navDoImagePickerController
+{
+    if(!_navDoImagePickerController)
+    {
+        _navDoImagePickerController = [[UINavigationController alloc]initWithRootViewController:self.doImagePickerController];
+        [_navDoImagePickerController setNavigationBarHidden:YES];
+    }
+    
+    return _navDoImagePickerController;
+}
+-(AddNewPlaceViewController*)addNewPlaceViewController
+{
+    if(!_addNewPlaceViewController)
+    {
+        _addNewPlaceViewController = [AddNewPlaceViewController new];
+    }
+    
+    return _addNewPlaceViewController;
+    
+}
+//[self.navigationController pushViewController:self.addNewPlaceViewController animated:YES];
+
 @end

@@ -5,11 +5,12 @@
 //  Created by Evan Beh on 8/3/15.
 //  Copyright (c) 2015 Ahyong87. All rights reserved.
 //
-
 #import "Utils.h"
 
 @implementation Utils
-
+{
+    
+}
 +(BOOL)isLogin
 {
     BOOL isSuccessLogin = false;
@@ -29,4 +30,48 @@
     return [[UIScreen mainScreen] bounds];
 }
 
++(void)setButtonWithBorder:(UIButton*)button
+{
+    
+    [[button layer] setBorderWidth:0.3f];
+    [[button layer] setBorderColor:[UIColor lightGrayColor].CGColor];
+    [[button layer] setCornerRadius:5.0f];
+}
+
++(void)setButtonWithBorder:(UIButton*)button color:(UIColor*)color
+{
+    
+    [[button layer] setBorderWidth:0.3f];
+    [[button layer] setBorderColor:color.CGColor];
+    [[button layer] setCornerRadius:5.0f];
+}
+
++(NSString*)getWeekName:(int)integer
+{
+    
+    switch (integer) {
+        default:
+        case 1:
+            return @"Mon";
+            break;
+        case 2:
+            return @"Tue";
+            break;
+        case 3:
+            return @"Wed";
+            break;
+        case 4:
+            return @"Thu";
+            break;
+        case 5:
+            return @"Fri";
+            break;
+        case 6:
+            return @"Sat";
+            break;
+        case 7:
+            return @"Sun";
+            break;
+    }
+}
 @end

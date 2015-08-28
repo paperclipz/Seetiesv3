@@ -12,8 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="STSearchViewController">
             <connections>
-                <outlet property="bottomConstraint" destination="6r1-Sc-i07" id="yiX-Vw-a9r"/>
-                <outlet property="ibTableView" destination="toZ-1p-JbD" id="uz7-y4-OfX"/>
+                <outlet property="ibSearchContentView" destination="UHn-FR-qn6" id="kkC-sf-0v7"/>
                 <outlet property="lblTitle" destination="Afq-RT-Ib1" id="odR-Zr-aaR"/>
                 <outlet property="txtSearch" destination="o6z-UK-rfa" id="NTq-ta-sil"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -51,6 +50,15 @@
                             </state>
                             <connections>
                                 <action selector="btnBackClicked:" destination="-1" eventType="touchUpInside" id="5rr-1N-SNM"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xd7-Kr-Beb">
+                            <rect key="frame" x="181" y="26" width="46" height="30"/>
+                            <state key="normal" title="Button">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="btnAddNewPlaceClicked:" destination="-1" eventType="touchUpInside" id="WKL-HQ-WlP"/>
                             </connections>
                         </button>
                     </subviews>
@@ -125,24 +133,24 @@
                         </mask>
                     </variation>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="58" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="toZ-1p-JbD">
-                    <rect key="frame" x="0.0" y="128" width="320" height="440"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UHn-FR-qn6">
+                    <rect key="frame" x="0.0" y="125" width="320" height="443"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </tableView>
+                </view>
             </subviews>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="UHn-FR-qn6" secondAttribute="bottom" id="2yO-D5-xxr"/>
                 <constraint firstItem="pbP-9h-7UH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="63" id="457-Oh-9di"/>
                 <constraint firstItem="pbP-9h-7UH" firstAttribute="width" secondItem="PX1-Dc-oaa" secondAttribute="height" multiplier="5:1" id="45k-ye-y3U"/>
-                <constraint firstAttribute="bottom" secondItem="toZ-1p-JbD" secondAttribute="bottom" id="6r1-Sc-i07"/>
                 <constraint firstItem="pbP-9h-7UH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="J64-Dy-sxj"/>
-                <constraint firstItem="toZ-1p-JbD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="QTW-PY-67a"/>
+                <constraint firstItem="UHn-FR-qn6" firstAttribute="top" secondItem="pbP-9h-7UH" secondAttribute="bottom" constant="-2" id="K8Y-Ix-3WR"/>
                 <constraint firstItem="pbP-9h-7UH" firstAttribute="width" secondItem="PX1-Dc-oaa" secondAttribute="width" id="UWe-Ac-vzp"/>
-                <constraint firstItem="toZ-1p-JbD" firstAttribute="top" secondItem="pbP-9h-7UH" secondAttribute="bottom" constant="1" id="VRQ-aJ-7J7"/>
-                <constraint firstAttribute="trailing" secondItem="toZ-1p-JbD" secondAttribute="trailing" id="W7M-ds-mfc"/>
                 <constraint firstItem="pbP-9h-7UH" firstAttribute="top" secondItem="PX1-Dc-oaa" secondAttribute="bottom" constant="-1" id="boC-0g-KhH"/>
                 <constraint firstItem="pbP-9h-7UH" firstAttribute="height" secondItem="PX1-Dc-oaa" secondAttribute="height" id="eAH-7J-bgD"/>
+                <constraint firstAttribute="trailing" secondItem="UHn-FR-qn6" secondAttribute="trailing" id="i5f-aQ-BlT"/>
                 <constraint firstItem="PX1-Dc-oaa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="xGj-Q3-LV6"/>
+                <constraint firstItem="UHn-FR-qn6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="xSE-I1-cgs"/>
                 <constraint firstAttribute="trailing" secondItem="PX1-Dc-oaa" secondAttribute="trailing" id="xlP-uq-rgq"/>
                 <constraint firstItem="PX1-Dc-oaa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="zby-QH-hWu"/>
             </constraints>

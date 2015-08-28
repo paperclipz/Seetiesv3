@@ -7,7 +7,11 @@
 //
 
 #import "CommentViewController.h"
-
+#import "NMBottomTabBarController.h"
 @interface EditPostViewController : CommentViewController
+-(void)initData;
+
+@property(nonatomic,strong)NMBottomTabBarController* nmBottomTabBarController;
+
 
 @end

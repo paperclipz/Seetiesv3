@@ -35,6 +35,19 @@
 {
     return YES;
 }
+
+
++ (NSArray *)convertToObjects:(NSArray *)venues {
+    NSMutableArray *objects = [NSMutableArray arrayWithCapacity:venues.count];
+    for (NSDictionary *v  in venues) {
+        FourSquareModel *ann = [[FourSquareModel alloc]initWithDictionary:v error:nil];
+     
+        [objects addObject:ann];
+    }
+    return objects;
+}
+
+
 @end
 
 @implementation VenueModel
@@ -59,7 +72,7 @@
                                                        @"hours.status": @"statusHour",
                                                        
                                                        @"price.currency": @"currency",
-                                                       @"price.message": @"message",
+                                                       @"price.message": @"priceMessage",
                                                        @"price.tier": @"tier"
                                                        
                                                        }];

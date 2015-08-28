@@ -10,6 +10,9 @@
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
 #import "CLLocationManager+blocks.h"
+#import "FSVenue.h"
+#import "FSConverter.h"
+
 typedef void(^SearchManagerSuccessBlock)(CLLocation *currentLocation);
 typedef void(^SearchManagerFailBlock)(NSString *status);
 
@@ -18,10 +21,10 @@ typedef void(^SearchManagerFailBlock)(NSString *status);
 @property(strong,nonatomic)CLLocation* location;
 
 
--(void)getSuggestedLocationFromFoursquare:(CLLocation*)tempCurrentLocation completionBlock:(IDBlock)completionBlock;
+-(void)getSuggestedLocationFromFoursquare:(CLLocation*)tempCurrentLocation input:(NSString*)input completionBlock:(IDBlock)completionBlock;
 
 -(void)getCoordinate:(SearchManagerSuccessBlock)successBlock errorBlock:(SearchManagerFailBlock)error;
--(void)getSuggestedLocationFromGoogle:(CLLocation*)tempCurrentLocation completionBlock:(IDBlock)completionBlock;
+//-(void)getSuggestedLocationFromGoogle:(CLLocation*)tempCurrentLocation completionBlock:(IDBlock)completionBlock;
 -(void)getSearchLocationFromGoogle:(CLLocation*)tempCurrentLocation input:(NSString*)textInput completionBlock:(IDBlock)completionBlock;
 
 @end

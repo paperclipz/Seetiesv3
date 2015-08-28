@@ -24,5 +24,8 @@ typedef void (^IErrorBlock)(id object);
 +(DataManager*)dataManager;
 - (MKNetworkOperation*)requestServerwithAppendString:(NSDictionary*)dict requestType:(ServerRequestType)serverRequestType  completionHandler:(IDBlock)completionBlock errorHandler:(MKNKErrorBlock)errorBlock;
 - (MKNetworkOperation*)requestServerwithAppendString:(NSString*)url param:(NSDictionary*)dict  completionHandler:(IDBlock)completionBlock errorHandler:(MKNKErrorBlock)errorBlock;
+-(void)storeServerData:(id)obj requestType:(ServerRequestType)type;
+
+- (MKNetworkOperation*)requestServerwithAppendString:(NSString*)url requestType:(ServerRequestType)serverRequestType param:(NSDictionary*)dict  completionHandler:(IDBlock)completionBlock errorHandler:(MKNKErrorBlock)errorBlock;
 
 @end

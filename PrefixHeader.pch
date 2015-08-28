@@ -36,7 +36,12 @@
 #import "GoogleMaps.h"
 #import "SearchManager.h"
 #import "TPKeyboardAvoidingScrollView.h"
-#import <SDWebImage/UIImageView+WebCache.h>
+
+#import "ActionSheetPicker.h"
+
+
+//for currency Usage
+#import "BKCurrencyTextField.h"
 
 #endif
 //===============Model=================
