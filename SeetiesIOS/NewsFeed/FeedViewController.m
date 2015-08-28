@@ -12,6 +12,8 @@
 #import "Filter2ViewController.h"
 #import "InviteFrenViewController.h"
 #import "FeedV2DetailViewController.h"
+#import "SearchDetailViewController.h"
+
 @interface FeedViewController ()
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;
@@ -240,8 +242,9 @@
     UIButton *TempButton = [[UIButton alloc]init];
     TempButton.frame = CGRectMake((screenWidth / 2) - 75, 30, 150, 60);
     [TempButton setTitle:@"Nearby" forState:UIControlStateNormal];
-    TempButton.backgroundColor = [UIColor greenColor];
+    TempButton.backgroundColor = [UIColor colorWithRed:156.0f/255.0f green:204.0f/255.0f blue:101.0f/255.0f alpha:1.0f];
     TempButton.layer.cornerRadius = 20;
+    [TempButton addTarget:self action:@selector(NearbyButton:) forControlEvents:UIControlEventTouchUpInside];
     [MainScroll addSubview: TempButton];
     
     
@@ -509,8 +512,9 @@
     UIButton *TempButton = [[UIButton alloc]init];
     TempButton.frame = CGRectMake((screenWidth / 2) - 75, 30, 150, 60);
     [TempButton setTitle:@"Nearby" forState:UIControlStateNormal];
-    TempButton.backgroundColor = [UIColor greenColor];
+    TempButton.backgroundColor = [UIColor colorWithRed:156.0f/255.0f green:204.0f/255.0f blue:101.0f/255.0f alpha:1.0f];
     TempButton.layer.cornerRadius = 20;
+    [TempButton addTarget:self action:@selector(NearbyButton:) forControlEvents:UIControlEventTouchUpInside];
     [MainScroll addSubview: TempButton];
     
     
@@ -1547,6 +1551,49 @@
     [vc GetPostID:[arrPostID objectAtIndex:getbuttonIDN]];
     
 }
-
+-(IBAction)NearbyButton:(id)sender{
+    if ([latPoint length] == 0 || [latPoint isEqualToString:@""] || [latPoint isEqualToString:@"(null)"] || latPoint == nil) {
+        
+        SearchViewV2Controller *SearchView = [[SearchViewV2Controller alloc]initWithNibName:@"SearchViewV2Controller" bundle:nil];
+        //[self presentViewController:SearchView animated:YES completion:nil];
+        [self.view.window.rootViewController presentViewController:SearchView animated:YES completion:nil];
+    }else{
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *GetSystemLanguage = [[NSString alloc]initWithFormat:@"%@",[defaults objectForKey:@"UserData_SystemLanguage"]];
+        NSLog(@"GetSystemLanguage is %@",GetSystemLanguage);
+        NSMutableArray *GetNameArray;
+        if ([GetSystemLanguage isEqualToString:@"English"]) {
+            GetNameArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_Name"]];
+        }else if([GetSystemLanguage isEqualToString:@"繁體中文"] || [GetSystemLanguage isEqualToString:@"Traditional Chinese"]){
+            GetNameArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_Name_Tw"]];
+        }else if([GetSystemLanguage isEqualToString:@"简体中文"] || [GetSystemLanguage isEqualToString:@"Simplified Chinese"] || [GetSystemLanguage isEqualToString:@"中文"]){
+            GetNameArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_Name_Cn"]];
+        }else if([GetSystemLanguage isEqualToString:@"Bahasa Indonesia"]){
+            GetNameArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_Name_In"]];
+        }else if([GetSystemLanguage isEqualToString:@"Filipino"]){
+            GetNameArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_Name_Fn"]];
+        }else if([GetSystemLanguage isEqualToString:@"ภาษาไทย"] || [GetSystemLanguage isEqualToString:@"Thai"]){
+            GetNameArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_Name_Th"]];
+        }else{
+            GetNameArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_Name"]];
+        }
+        
+        NSMutableArray *CategoryIDArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_ID"]];
+        NSString *JoinAllCategoryID = [CategoryIDArray componentsJoinedByString:@","];
+        //NSMutableArray *CategoryNameArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_Name"]];
+        NSString *JoinAllCategoryName = [GetNameArray componentsJoinedByString:@","];
+        
+        SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]init];
+        CATransition *transition = [CATransition animation];
+        transition.duration = 0.2;
+        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        transition.type = kCATransitionPush;
+        transition.subtype = kCATransitionFromRight;
+        [self.view.window.layer addAnimation:transition forKey:nil];
+        [self presentViewController:SearchDetailView animated:NO completion:nil];
+        [SearchDetailView SearchCategory:JoinAllCategoryID Getlat:latPoint GetLong:lonPoint GetCategoryName:JoinAllCategoryName];
+        [SearchDetailView GetTitle:@"All"];
+    }
+}
 
 @end

@@ -141,113 +141,162 @@
     }
     
     int GetHeight = 0;
-    if ([User_IDArray count] == 0) {
-        UserScroll.hidden = YES;
-    }else{
-        UserScroll.hidden = NO;
-        GetHeight = 280;
-        
-        
-        
-        NSString *TempString = [[NSString alloc]initWithFormat:@"%@",CustomLocalisedString(@"FeaturedUserin", nil)];
-        
-        UILabel *ShowFeaturedUserTitle = [[UILabel alloc]init];
-        ShowFeaturedUserTitle.frame = CGRectMake(15, 0, screenWidth - 30, 60);
-        ShowFeaturedUserTitle.text = TempString;
-//        ShowFeaturedUserTitle.attributedText = [NSAttributedString dvs_attributedStringWithString:[TempString uppercaseString]
-//                                                                                 tracking:100
-//                                                                                     font:[UIFont fontWithName:@"HelveticaNeue" size:13]];
-        
-        ShowFeaturedUserTitle.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
-        ShowFeaturedUserTitle.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0];
-        ShowFeaturedUserTitle.textAlignment = NSTextAlignmentCenter;
-       // ShowFeaturedUserTitle.backgroundColor = [UIColor redColor];
-        [MainScroll addSubview:ShowFeaturedUserTitle];
-        
-        UIButton *Line01 = [[UIButton alloc]init];
-        Line01.frame = CGRectMake(0, 279, screenWidth, 1);
-        [Line01 setTitle:@"" forState:UIControlStateNormal];
-        [Line01 setBackgroundColor:[UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0f]];
-        [MainScroll addSubview:Line01];
-        
-        for (int i = 0; i < [User_IDArray count]; i++) {
-            AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
-            ShowUserProfileImage.frame = CGRectMake(25 + i * 105, 60, 60, 60);
-            ShowUserProfileImage.image = [UIImage imageNamed:@"avatar.png"];
-            ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
-            ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
-            ShowUserProfileImage.layer.cornerRadius=30;
-            ShowUserProfileImage.layer.borderWidth=0;
-            ShowUserProfileImage.layer.masksToBounds = YES;
-            ShowUserProfileImage.layer.borderColor=[[UIColor whiteColor] CGColor];
-            [UserScroll addSubview:ShowUserProfileImage];
-            [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
-            NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[User_ProfileImageArray objectAtIndex:i]];
-            if ([FullImagesURL length] == 0) {
-            ShowUserProfileImage.image = [UIImage imageNamed:@"avatar.png"];
-            }else{
-            NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL];
-            ShowUserProfileImage.imageURL = url_NearbySmall;
-            }
-            
-            UILabel *ShowUserName = [[UILabel alloc]init];
-            ShowUserName.frame = CGRectMake(15 + i * 105, 120, 85, 30);
-            ShowUserName.text = [User_UserNameArray objectAtIndex:i];
-            ShowUserName.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
-            ShowUserName.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0];
-            ShowUserName.textAlignment = NSTextAlignmentCenter;
-            [UserScroll addSubview:ShowUserName];
-            
-            UILabel *ShowUserLocation = [[UILabel alloc]init];
-            ShowUserLocation.frame = CGRectMake(15 + i * 105, 140, 85, 40);
-            ShowUserLocation.text = [User_LocationArray objectAtIndex:i];
-            ShowUserLocation.backgroundColor = [UIColor clearColor];
-            ShowUserLocation.textAlignment = NSTextAlignmentCenter;
-            ShowUserLocation.numberOfLines = 2;
-            ShowUserLocation.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:12];
-            [UserScroll addSubview:ShowUserLocation];
-            
-            //follow button
-            ShowFollowButton = [[UIButton alloc]init];
-            ShowFollowButton.frame = CGRectMake(35 + i * 105, 200, 40, 40);
-            ShowFollowButton.tag = i;
-            NSString *GetFollow = [[NSString alloc]initWithFormat:@"%@",[User_FollowArray objectAtIndex:i]];
-            if ([GetFollow isEqualToString:@"0"]) {
-                [ShowFollowButton setImage:[UIImage imageNamed:@"FollowMini.png"] forState:UIControlStateNormal];
-            }else{
-                [ShowFollowButton setImage:[UIImage imageNamed:@"FollowingMini.png"] forState:UIControlStateNormal];
-            }
-            [ShowFollowButton addTarget:self action:@selector(FollowButton:) forControlEvents:UIControlEventTouchUpInside];
-            [UserScroll addSubview:ShowFollowButton];
-            
-            UIButton *OpenProfileButton  = [[UIButton alloc]init];
-            OpenProfileButton.frame = CGRectMake(25 + i * 105, 60, 60, 100);
-            OpenProfileButton.tag = i;
-            [OpenProfileButton setTitle:@"" forState:UIControlStateNormal];
-            [OpenProfileButton setBackgroundColor:[UIColor clearColor]];
-            [OpenProfileButton addTarget:self action:@selector(OpenProfileButton:) forControlEvents:UIControlEventTouchUpInside];
-            [UserScroll addSubview:OpenProfileButton];
-            
-            [UserScroll setContentSize:CGSizeMake(100 + i * 105, 260)];
-        }
-        [UserScroll setContentOffset:CGPointMake((UserScroll.contentSize.width / 2) / 2, 0) animated:NO];
-
-    }
+//    if ([User_IDArray count] == 0) {
+//        UserScroll.hidden = YES;
+//    }else{
+//        UserScroll.hidden = NO;
+//        GetHeight = 280;
+//        
+//        
+//        
+//        NSString *TempString = [[NSString alloc]initWithFormat:@"%@",CustomLocalisedString(@"FeaturedUserin", nil)];
+//        
+//        UILabel *ShowFeaturedUserTitle = [[UILabel alloc]init];
+//        ShowFeaturedUserTitle.frame = CGRectMake(15, 0, screenWidth - 30, 60);
+//        ShowFeaturedUserTitle.text = TempString;
+////        ShowFeaturedUserTitle.attributedText = [NSAttributedString dvs_attributedStringWithString:[TempString uppercaseString]
+////                                                                                 tracking:100
+////                                                                                     font:[UIFont fontWithName:@"HelveticaNeue" size:13]];
+//        
+//        ShowFeaturedUserTitle.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+//        ShowFeaturedUserTitle.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0];
+//        ShowFeaturedUserTitle.textAlignment = NSTextAlignmentCenter;
+//       // ShowFeaturedUserTitle.backgroundColor = [UIColor redColor];
+//        [MainScroll addSubview:ShowFeaturedUserTitle];
+//        
+//        UIButton *Line01 = [[UIButton alloc]init];
+//        Line01.frame = CGRectMake(0, 279, screenWidth, 1);
+//        [Line01 setTitle:@"" forState:UIControlStateNormal];
+//        [Line01 setBackgroundColor:[UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0f]];
+//        [MainScroll addSubview:Line01];
+//        
+//        for (int i = 0; i < [User_IDArray count]; i++) {
+//            AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
+//            ShowUserProfileImage.frame = CGRectMake(25 + i * 105, 60, 60, 60);
+//            ShowUserProfileImage.image = [UIImage imageNamed:@"avatar.png"];
+//            ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
+//            ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
+//            ShowUserProfileImage.layer.cornerRadius=30;
+//            ShowUserProfileImage.layer.borderWidth=0;
+//            ShowUserProfileImage.layer.masksToBounds = YES;
+//            ShowUserProfileImage.layer.borderColor=[[UIColor whiteColor] CGColor];
+//            [UserScroll addSubview:ShowUserProfileImage];
+//            [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
+//            NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[User_ProfileImageArray objectAtIndex:i]];
+//            if ([FullImagesURL length] == 0) {
+//            ShowUserProfileImage.image = [UIImage imageNamed:@"avatar.png"];
+//            }else{
+//            NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL];
+//            ShowUserProfileImage.imageURL = url_NearbySmall;
+//            }
+//            
+//            UILabel *ShowUserName = [[UILabel alloc]init];
+//            ShowUserName.frame = CGRectMake(15 + i * 105, 120, 85, 30);
+//            ShowUserName.text = [User_UserNameArray objectAtIndex:i];
+//            ShowUserName.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+//            ShowUserName.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0];
+//            ShowUserName.textAlignment = NSTextAlignmentCenter;
+//            [UserScroll addSubview:ShowUserName];
+//            
+//            UILabel *ShowUserLocation = [[UILabel alloc]init];
+//            ShowUserLocation.frame = CGRectMake(15 + i * 105, 140, 85, 40);
+//            ShowUserLocation.text = [User_LocationArray objectAtIndex:i];
+//            ShowUserLocation.backgroundColor = [UIColor clearColor];
+//            ShowUserLocation.textAlignment = NSTextAlignmentCenter;
+//            ShowUserLocation.numberOfLines = 2;
+//            ShowUserLocation.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:12];
+//            [UserScroll addSubview:ShowUserLocation];
+//            
+//            //follow button
+//            ShowFollowButton = [[UIButton alloc]init];
+//            ShowFollowButton.frame = CGRectMake(35 + i * 105, 200, 40, 40);
+//            ShowFollowButton.tag = i;
+//            NSString *GetFollow = [[NSString alloc]initWithFormat:@"%@",[User_FollowArray objectAtIndex:i]];
+//            if ([GetFollow isEqualToString:@"0"]) {
+//                [ShowFollowButton setImage:[UIImage imageNamed:@"FollowMini.png"] forState:UIControlStateNormal];
+//            }else{
+//                [ShowFollowButton setImage:[UIImage imageNamed:@"FollowingMini.png"] forState:UIControlStateNormal];
+//            }
+//            [ShowFollowButton addTarget:self action:@selector(FollowButton:) forControlEvents:UIControlEventTouchUpInside];
+//            [UserScroll addSubview:ShowFollowButton];
+//            
+//            UIButton *OpenProfileButton  = [[UIButton alloc]init];
+//            OpenProfileButton.frame = CGRectMake(25 + i * 105, 60, 60, 100);
+//            OpenProfileButton.tag = i;
+//            [OpenProfileButton setTitle:@"" forState:UIControlStateNormal];
+//            [OpenProfileButton setBackgroundColor:[UIColor clearColor]];
+//            [OpenProfileButton addTarget:self action:@selector(OpenProfileButton:) forControlEvents:UIControlEventTouchUpInside];
+//            [UserScroll addSubview:OpenProfileButton];
+//            
+//            [UserScroll setContentSize:CGSizeMake(100 + i * 105, 260)];
+//        }
+//        [UserScroll setContentOffset:CGPointMake((UserScroll.contentSize.width / 2) / 2, 0) animated:NO];
+//
+//    }
+//    
+//    UILabel *ShowTopRecommendationsLabel = [[UILabel alloc]init];
+//    ShowTopRecommendationsLabel.frame = CGRectMake(15, GetHeight, screenWidth - 30, 60);
+//    ShowTopRecommendationsLabel.text = CustomLocalisedString(@"TopRecommendations", nil);
+////    ShowTopRecommendationsLabel.attributedText = [NSAttributedString dvs_attributedStringWithString:CustomLocalisedString(@"TopRecommendations", nil)
+////                                                                                     tracking:100
+////                                                                                         font:[UIFont fontWithName:@"HelveticaNeue" size:13]];
+//    ShowTopRecommendationsLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+//    ShowTopRecommendationsLabel.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0];
+//    ShowTopRecommendationsLabel.textAlignment = NSTextAlignmentCenter;
+//    [MainScroll addSubview:ShowTopRecommendationsLabel];
     
-    UILabel *ShowTopRecommendationsLabel = [[UILabel alloc]init];
-    ShowTopRecommendationsLabel.frame = CGRectMake(15, GetHeight, screenWidth - 30, 60);
-    ShowTopRecommendationsLabel.text = CustomLocalisedString(@"TopRecommendations", nil);
-//    ShowTopRecommendationsLabel.attributedText = [NSAttributedString dvs_attributedStringWithString:CustomLocalisedString(@"TopRecommendations", nil)
-//                                                                                     tracking:100
-//                                                                                         font:[UIFont fontWithName:@"HelveticaNeue" size:13]];
-    ShowTopRecommendationsLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
-    ShowTopRecommendationsLabel.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0];
-    ShowTopRecommendationsLabel.textAlignment = NSTextAlignmentCenter;
-    [MainScroll addSubview:ShowTopRecommendationsLabel];
+   // MainScroll.backgroundColor = [UIColor blackColor];
     
-
+    UIImage *TempImage = [[UIImage alloc]init];
+    TempImage = [UIImage imageNamed:@"BannerFestival.png"];
     
-    GetHeight += 60;
+    UIImageView *FestivalImage = [[UIImageView alloc]init];
+    FestivalImage.image = TempImage;
+    FestivalImage.frame = CGRectMake(0, -10, screenWidth, 180);
+    FestivalImage.contentMode = UIViewContentModeScaleAspectFill;
+    [MainScroll addSubview:FestivalImage];
+    
+    UILabel *ShowBigText = [[UILabel alloc]init];
+    ShowBigText.frame = CGRectMake(15, GetHeight + 10, screenWidth - 30, 72);
+    ShowBigText.text = CustomLocalisedString(@"Festival", nil);
+    ShowBigText.textAlignment = NSTextAlignmentCenter;
+    ShowBigText.textColor = [UIColor whiteColor];
+    ShowBigText.font = [UIFont fontWithName:@"AdrianeText-BoldItalic" size:36];
+    [MainScroll addSubview:ShowBigText];
+    
+    UILabel *ShowSubText = [[UILabel alloc]init];
+    ShowSubText.frame = CGRectMake(15, GetHeight + 65, screenWidth - 30, 40);
+    ShowSubText.text = CustomLocalisedString(@"DiscovertheColors", nil);
+    ShowSubText.textAlignment = NSTextAlignmentCenter;
+    ShowSubText.textColor = [UIColor whiteColor];
+    ShowSubText.font = [UIFont fontWithName:@"AdrianeText-BoldItalic" size:18];
+    [MainScroll addSubview:ShowSubText];
+    
+    UIButton *FestivalButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    // [FestivalButton setImage:[UIImage imageNamed:@"BtnLetsgo.png"] forState:UIControlStateNormal];
+    [FestivalButton setBackgroundImage:[UIImage imageNamed:@"BtnLetsgo.png"] forState:UIControlStateNormal];
+    [FestivalButton setTitle:CustomLocalisedString(@"Letsgo", nil) forState:UIControlStateNormal];
+    [FestivalButton setFrame:CGRectMake((screenWidth/2) - 70, GetHeight + 110, 140, 47)];
+    [FestivalButton setBackgroundColor:[UIColor clearColor]];
+   // [FestivalButton addTarget:self action:@selector(LetsgoButton:) forControlEvents:UIControlEventTouchUpInside];
+    [FestivalButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15]];
+    [MainScroll addSubview:FestivalButton];
+    
+    GetHeight += 200;
+    
+    
+    NSString *TempStringPosts = [[NSString alloc]initWithFormat:@"Trending Posts"];
+    NSString *TempStringPeople = [[NSString alloc]initWithFormat:@"Discover People"];
+    
+    NSArray *itemArray = [NSArray arrayWithObjects:TempStringPosts, TempStringPeople, nil];
+    UISegmentedControl *ProfileControl = [[UISegmentedControl alloc]initWithItems:itemArray];
+    ProfileControl.frame = CGRectMake(15, GetHeight, screenWidth - 30, 29);
+    //[ProfileControl addTarget:self action:@selector(segmentAction:) forControlEvents: UIControlEventValueChanged];
+    ProfileControl.selectedSegmentIndex = 0;
+    [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
+    [MainScroll addSubview:ProfileControl];
+    
+    GetHeight += 29 + 20;
     
     int TestWidth = screenWidth - 2;
     NSLog(@"TestWidth is %i",TestWidth);

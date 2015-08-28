@@ -9,7 +9,7 @@
 #import "SearchViewV2Controller.h"
 #import "LanguageManager.h"
 #import "Locale.h"
-
+#import "SearchDetailViewController.h"
 @interface SearchViewV2Controller ()
 
 @end
@@ -25,9 +25,13 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
     mySearchBar.delegate = self;
-    [mySearchBar setTintColor:[UIColor blackColor]];
+   // [mySearchBar setTintColor:[UIColor blackColor]];
+    mySearchBar.tintColor = [UIColor whiteColor];
+    mySearchBar.barTintColor = [UIColor clearColor];
+    [mySearchBar setBackgroundImage:[[UIImage alloc]init]];
     [mySearchBar becomeFirstResponder];
     
+    BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
     Tblview.frame = CGRectMake(0, 64, screenWidth, screenHeight - 64 - 216);
     
     LocalSearchTextArray = [[NSMutableArray alloc]init];
@@ -42,12 +46,17 @@
     
     [Tblview reloadData];
 }
-
+- (UIStatusBarStyle) preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [mySearchBar becomeFirstResponder];
+}
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
    // SearchTblView.hidden = NO;
@@ -177,6 +186,17 @@
         mySearchBar.text = GetSearchText;
         
     }else{
+        
+        SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]init];
+        CATransition *transition = [CATransition animation];
+        transition.duration = 0.2;
+        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        transition.type = kCATransitionPush;
+        transition.subtype = kCATransitionFromRight;
+        [self.view.window.layer addAnimation:transition forKey:nil];
+        [self presentViewController:SearchDetailView animated:NO completion:nil];
+        [SearchDetailView GetSearchKeyword:GetSearchText Getlat:[GetReturnSearchLngArray objectAtIndex:indexPath.row] GetLong:[GetReturnSearchLatArray objectAtIndex:indexPath.row]];
+        [SearchDetailView GetTitle:GetSearchText];
     
     }
 }

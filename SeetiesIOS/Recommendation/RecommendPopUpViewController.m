@@ -26,8 +26,8 @@
     
     TempBackground = [[UIView alloc]init];
     TempBackground.frame = CGRectMake(0, 0, screenWidth, screenHeight);
-    TempBackground.backgroundColor = [UIColor blackColor];
-    TempBackground.alpha = 0.5f;
+    TempBackground.backgroundColor = [UIColor whiteColor];
+    TempBackground.alpha = 0.8f;
     [self.view addSubview:TempBackground];
 
     BackgroundButton = [[UIButton alloc]init];
@@ -37,19 +37,35 @@
    // [BackgroundButton addTarget:self action:@selector(BackgroundButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:BackgroundButton];
     
+
+    
     ShowSelectImageButton = [[UIButton alloc]init];
-    ShowSelectImageButton.frame = CGRectMake((screenWidth / 2) - 70, screenHeight - 150, 50, 50);
-    [ShowSelectImageButton setTitle:@"Image" forState:UIControlStateNormal];
-    ShowSelectImageButton.backgroundColor = [UIColor redColor];
+    ShowSelectImageButton.frame = CGRectMake(0, screenHeight - 100, screenWidth, 50);
+    [ShowSelectImageButton setTitle:@"Write a Recommendation" forState:UIControlStateNormal];
+    [ShowSelectImageButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    ShowSelectImageButton.backgroundColor = [UIColor whiteColor];
     [ShowSelectImageButton addTarget:self action:@selector(OpenSelectImgButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:ShowSelectImageButton];
     
     ShowSelectDaftButton = [[UIButton alloc]init];
-    ShowSelectDaftButton.frame = CGRectMake((screenWidth / 2) + 20,  screenHeight - 150 , 50, 50);
-    [ShowSelectDaftButton setTitle:@"Draft" forState:UIControlStateNormal];
-    ShowSelectDaftButton.backgroundColor = [UIColor redColor];
+    ShowSelectDaftButton.frame = CGRectMake(0,  screenHeight - 150 , screenWidth, 50);
+    [ShowSelectDaftButton setTitle:@"Saved Drafts" forState:UIControlStateNormal];
+    [ShowSelectDaftButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    ShowSelectDaftButton.backgroundColor = [UIColor whiteColor];
     [ShowSelectDaftButton addTarget:self action:@selector(OpenDraftButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:ShowSelectDaftButton];
+    
+    UIButton *Line01 = [[UIButton alloc]init];
+    Line01.frame = CGRectMake(0, screenHeight - 100, screenWidth, 1);
+    [Line01 setTitle:@"" forState:UIControlStateNormal]; // 238 238 238
+    [Line01 setBackgroundColor:[UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f blue:51.0f/255.0f alpha:1.0f]];
+    [self.view addSubview:Line01];
+    
+    UIButton *Line02 = [[UIButton alloc]init];
+    Line02.frame = CGRectMake(0, screenHeight - 150, screenWidth, 1);
+    [Line02 setTitle:@"" forState:UIControlStateNormal];
+    [Line02 setBackgroundColor:[UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f blue:51.0f/255.0f alpha:1.0f]];
+    [self.view addSubview:Line02];
     
     CheckButtonClick = NO;
 

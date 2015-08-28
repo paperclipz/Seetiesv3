@@ -43,7 +43,7 @@
     ShowbarView.frame = CGRectMake(0, 0, screenWidth, 64);
     ShowBarImg.frame = CGRectMake(0, 0, screenWidth, 64);
     MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight - 62);
-    MImageScroll.frame = CGRectMake(0, 0, screenWidth, 340);
+    MImageScroll.frame = CGRectMake(0, -20, screenWidth, 360);
     ShowLanguageTranslationView.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     ShowLanguageTranslationView.hidden = YES;
     
@@ -1404,7 +1404,7 @@
     [MainScroll addSubview:PageControlOn];
     
     for (int i = 0 ; i < [UrlArray count]; i++) {
-        ImageScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0+ i *screenWidth, 0, screenWidth, 340)];
+        ImageScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0+ i *screenWidth, 0, screenWidth, 360)];
         ImageScroll.delegate = self;
         //  ImageScroll.tag = 50000 + j;
         ImageScroll.minimumZoomScale = 1;
@@ -1418,7 +1418,7 @@
         PostShade.image = [UIImage imageNamed:@"PostShade2.png"];
         [MImageScroll addSubview:PostShade];
         
-        ShowImage = [[AsyncImageView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 340)];
+        ShowImage = [[AsyncImageView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 360)];
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
         NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[UrlArray objectAtIndex:i]];
         NSLog(@"FullImagesURL ====== %@",FullImagesURL);

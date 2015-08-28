@@ -43,16 +43,27 @@
     PrivacyPolicy.text = CustomLocalisedString(@"SettingsPage_PrivacyPolicy",nil);
     Feedback.text = CustomLocalisedString(@"SettingsPage_Feedback",nil);
     
-    [CheckForUpdateButton setTitle:CustomLocalisedString(@"SettingsPage_Checkforupdates",nil) forState:UIControlStateNormal];
-    [LogoutButton setTitle:CustomLocalisedString(@"SettingsPage_LogOut",nil) forState:UIControlStateNormal];
     
-     [EditProfileButton setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:233.0f/255.0f green:233.0f/255.0f blue:233.0f/255.0f alpha:1.0f]] forState:UIControlStateHighlighted];
-     [EditInterestsButton setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:233.0f/255.0f green:233.0f/255.0f blue:233.0f/255.0f alpha:1.0f]] forState:UIControlStateHighlighted];
-     [AccountSettingsButton setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:233.0f/255.0f green:233.0f/255.0f blue:233.0f/255.0f alpha:1.0f]] forState:UIControlStateHighlighted];
-     [AboutsButton setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:233.0f/255.0f green:233.0f/255.0f blue:233.0f/255.0f alpha:1.0f]] forState:UIControlStateHighlighted];
-     [TermOfUseButton setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:233.0f/255.0f green:233.0f/255.0f blue:233.0f/255.0f alpha:1.0f]] forState:UIControlStateHighlighted];
-     [PrivacyButton setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:233.0f/255.0f green:233.0f/255.0f blue:233.0f/255.0f alpha:1.0f]] forState:UIControlStateHighlighted];
-     [FeedBackButton setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:233.0f/255.0f green:233.0f/255.0f blue:233.0f/255.0f alpha:1.0f]] forState:UIControlStateHighlighted];
+    
+    
+    //Initialize the dataArray
+    dataArray = [[NSMutableArray alloc] init];
+    
+    NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:@"Edit Profile", @"Edit Interest",@"Account Settings",@"Notification Settings", nil];
+    NSDictionary *firstItemsArrayDict = [NSDictionary dictionaryWithObject:firstItemsArray forKey:@"data"];
+    [dataArray addObject:firstItemsArrayDict];
+    
+    //Second section data
+    NSArray *secondItemsArray = [[NSArray alloc] initWithObjects:@"About Seeties", @"Terms of Use",@"Privacy Policy",@"Send Feedback", nil];
+    NSDictionary *secondItemsArrayDict = [NSDictionary dictionaryWithObject:secondItemsArray forKey:@"data"];
+    [dataArray addObject:secondItemsArrayDict];
+    
+    //Second section data
+    NSArray *threeItemsArray = [[NSArray alloc] initWithObjects:@"Sign out from Seeties", nil];
+    NSDictionary *threeItemsArrayDict = [NSDictionary dictionaryWithObject:threeItemsArray forKey:@"data"];
+    [dataArray addObject:threeItemsArrayDict];
+    
+    [tblview reloadData];
 }
 - (UIStatusBarStyle) preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
@@ -72,25 +83,8 @@
     MainScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight);
     ShowTitle.frame = CGRectMake(15, 20, screenWidth - 30, 44);
     BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
-    
-    CopyrightText.frame = CGRectMake(15, 475, screenWidth - 30, 21);
-    VersionText.frame = CGRectMake(15, 490, screenWidth - 30, 21);
-    
-    Table1Img_1.frame = CGRectMake(0, 428, screenWidth, 44);
-    Table1Img_2.frame = CGRectMake(0, 41, screenWidth, 133);
-    Table1Img_3.frame = CGRectMake(-1, 83, screenWidth, 44);
-    Table4Img.frame = CGRectMake(0, 228, screenWidth, 176);
-    
-    CaretImg_1.frame = CGRectMake(screenWidth - 30, 58, 8, 13);
-    CaretImg_2.frame = CGRectMake(screenWidth - 30, 101, 8, 13);
-    CaretImg_3.frame = CGRectMake(screenWidth - 30, 145, 8, 13);
-    CaretImg_4.frame = CGRectMake(screenWidth - 30, 242, 8, 13);
-    CaretImg_5.frame = CGRectMake(screenWidth - 30, 285, 8, 13);
-    CaretImg_6.frame = CGRectMake(screenWidth - 30, 330, 8, 13);
-    CaretImg_7.frame = CGRectMake(screenWidth - 30, 374, 8, 13);
-    
-    LogoutButton.frame = CGRectMake(0, 525, screenWidth, 44);
-    CheckForUpdateButton.frame = CGRectMake(0, 428, screenWidth, 44);
+    tblview.frame = CGRectMake(0, 64,screenWidth , screenHeight);
+
 }
 -(IBAction)BackButton:(id)sender{
     CATransition *transition = [CATransition animation];
@@ -360,6 +354,324 @@
         }else{
             //reset clicked
         }
+    }
+    
+}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return [dataArray count];
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    //Number of rows it should expect should be based on the section
+    NSDictionary *dictionary = [dataArray objectAtIndex:section];
+    NSArray *array = [dictionary objectForKey:@"data"];
+    return [array count];
+}
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    
+    if(section == 0)
+        return @"Profile";
+    if(section == 1)
+        return @"Support";
+    if(section == 2)
+        return @"Log Out";
+    return 0;
+}
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) {
+        // 1. The view for the header
+        UIView* headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 10, tableView.frame.size.width, 22)];
+        
+        
+        // 3. Add a label
+        UILabel* headerLabel = [[UILabel alloc] init];
+        headerLabel.frame = CGRectMake(15, 30, tableView.frame.size.width - 5, 22);
+        headerLabel.backgroundColor = [UIColor clearColor];
+        headerLabel.textColor = [UIColor darkGrayColor];
+        headerLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
+        headerLabel.text = @"Profile";
+        headerLabel.textAlignment = NSTextAlignmentLeft;
+        
+        // 4. Add the label to the header view
+        [headerView addSubview:headerLabel];
+        
+        
+        // 5. Finally return
+        return headerView;
+    }
+    
+    if (section == 1) {
+        // 1. The view for the header
+        UIView* headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 10, tableView.frame.size.width, 22)];
+        
+        
+        // 3. Add a label
+        UILabel* headerLabel = [[UILabel alloc] init];
+        headerLabel.frame = CGRectMake(15, 5, tableView.frame.size.width - 5, 30);
+        headerLabel.backgroundColor = [UIColor clearColor];
+        headerLabel.textColor = [UIColor darkGrayColor];
+        headerLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
+        headerLabel.text = @"Support";
+        headerLabel.textAlignment = NSTextAlignmentLeft;
+        
+        // 4. Add the label to the header view
+        [headerView addSubview:headerLabel];
+        
+        
+        // 5. Finally return
+        return headerView;
+    }
+    if (section == 2) {
+        // 1. The view for the header
+        UIView* headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 10, tableView.frame.size.width, 22)];
+        
+        
+        // 3. Add a label
+        UILabel* headerLabel = [[UILabel alloc] init];
+        headerLabel.frame = CGRectMake(15, 5, tableView.frame.size.width - 5, 30);
+        headerLabel.backgroundColor = [UIColor clearColor];
+        headerLabel.textColor = [UIColor darkGrayColor];
+        headerLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
+        headerLabel.text = @"Log Out";
+        headerLabel.textAlignment = NSTextAlignmentLeft;
+        
+        // 4. Add the label to the header view
+        [headerView addSubview:headerLabel];
+        
+        
+        // 5. Finally return
+        return headerView;
+    }
+    
+    return 0;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    //if (cell == nil) {
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    if (indexPath.section == 0) {
+        
+        UILabel *ShowTitle_ = [[UILabel alloc]init];
+        ShowTitle_.frame = CGRectMake(20, 0, 250, 44);
+        ShowTitle_.tag = 50;
+        //   ShowTitle_.text = [CategoryArray objectAtIndex:i];
+        ShowTitle_.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+        ShowTitle_.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0];
+        ShowTitle_.textAlignment = NSTextAlignmentLeft;
+        ShowTitle_.backgroundColor = [UIColor clearColor];
+        [cell addSubview:ShowTitle_];
+        
+        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+        
+        UIImageView *AddArrowImg = [[UIImageView alloc]init];
+        AddArrowImg.frame = CGRectMake(screenWidth - 30, 15, 8, 13);
+        AddArrowImg.image = [UIImage imageNamed:@"Caret.png"];
+        [cell addSubview:AddArrowImg];
+    }else if (indexPath.section == 1) {
+        
+        UILabel *ShowTitle_ = [[UILabel alloc]init];
+        ShowTitle_.frame = CGRectMake(20, 0, 250, 44);
+        ShowTitle_.tag = 100;
+        //   ShowTitle_.text = [CategoryArray objectAtIndex:i];
+        ShowTitle_.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+        ShowTitle_.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0];
+        ShowTitle_.textAlignment = NSTextAlignmentLeft;
+        ShowTitle_.backgroundColor = [UIColor clearColor];
+        [cell addSubview:ShowTitle_];
+        
+        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+        
+        UIImageView *AddArrowImg = [[UIImageView alloc]init];
+        AddArrowImg.frame = CGRectMake(screenWidth - 30, 15, 8, 13);
+        AddArrowImg.image = [UIImage imageNamed:@"Caret.png"];
+        [cell addSubview:AddArrowImg];
+    }else{
+        
+        
+        UILabel *ShowTitle_ = [[UILabel alloc]init];
+        ShowTitle_.frame = CGRectMake(20, 0, 250, 44);
+        ShowTitle_.tag = 150;
+        //   ShowTitle_.text = [CategoryArray objectAtIndex:i];
+        ShowTitle_.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+        ShowTitle_.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0];
+        ShowTitle_.textAlignment = NSTextAlignmentLeft;
+        ShowTitle_.backgroundColor = [UIColor clearColor];
+        [cell addSubview:ShowTitle_];
+        
+        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+        
+        UIImageView *AddArrowImg = [[UIImageView alloc]init];
+        AddArrowImg.frame = CGRectMake(screenWidth - 30, 15, 8, 13);
+        AddArrowImg.image = [UIImage imageNamed:@"Caret.png"];
+        [cell addSubview:AddArrowImg];
+    }
+    
+    if (indexPath.section == 0) {
+        NSDictionary *dictionary = [dataArray objectAtIndex:indexPath.section];
+        NSArray *array = [dictionary objectForKey:@"data"];
+        NSString *cellValue = [array objectAtIndex:indexPath.row];
+        //cell.textLabel.text = cellValue;
+        UILabel *ShowProfileText = (UILabel *)[cell viewWithTag:50];
+        ShowProfileText.text = cellValue;
+    }else if (indexPath.section == 1) {
+        NSDictionary *dictionary = [dataArray objectAtIndex:indexPath.section];
+        NSArray *array = [dictionary objectForKey:@"data"];
+        NSString *cellValue = [array objectAtIndex:indexPath.row];
+        //cell.textLabel.text = cellValue;
+        UILabel *ShowSupportText = (UILabel *)[cell viewWithTag:100];
+        ShowSupportText.text = cellValue;
+    }else{
+        NSDictionary *dictionary = [dataArray objectAtIndex:indexPath.section];
+        NSArray *array = [dictionary objectForKey:@"data"];
+        NSString *cellValue = [array objectAtIndex:indexPath.row];
+        UILabel *ShowLogOutText = (UILabel *)[cell viewWithTag:150];
+        ShowLogOutText.text = cellValue;
+        
+    }
+    
+    
+    
+    
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSLog(@"indexPath.section IS %ld",(long)indexPath.section);
+    
+    if (indexPath.section == 0) {
+        
+        NSString *selectedCell = nil;
+        NSDictionary *dictionary = [dataArray objectAtIndex:indexPath.section];
+        NSArray *array = [dictionary objectForKey:@"data"];
+        selectedCell = [array objectAtIndex:indexPath.row];
+        
+        NSLog(@"Profile By %@", selectedCell);
+        switch (indexPath.row) {
+            case 0:{
+                EditProfileViewController *EditProfileView = [[EditProfileViewController alloc]init];
+                CATransition *transition = [CATransition animation];
+                transition.duration = 0.2;
+                transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+                transition.type = kCATransitionPush;
+                transition.subtype = kCATransitionFromRight;
+                [self.view.window.layer addAnimation:transition forKey:nil];
+                [self presentViewController:EditProfileView animated:NO completion:nil];
+            }
+                break;
+            case 1:{
+                EditInterestV2ViewController *EditInterestView = [[EditInterestV2ViewController alloc]init];
+                CATransition *transition = [CATransition animation];
+                transition.duration = 0.2;
+                transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+                transition.type = kCATransitionPush;
+                transition.subtype = kCATransitionFromRight;
+                [self.view.window.layer addAnimation:transition forKey:nil];
+                [self presentViewController:EditInterestView animated:NO completion:nil];
+            }
+                break;
+            case 2:{
+                AccountSettingViewController *AccountSettingView = [[AccountSettingViewController alloc]init];
+                CATransition *transition = [CATransition animation];
+                transition.duration = 0.2;
+                transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+                transition.type = kCATransitionPush;
+                transition.subtype = kCATransitionFromRight;
+                [self.view.window.layer addAnimation:transition forKey:nil];
+                [self presentViewController:AccountSettingView animated:NO completion:nil];
+            }
+                break;
+            case 3:{
+            }
+                break;
+                
+            default:
+                break;
+        }
+        
+    }else if(indexPath.section == 1){
+        NSString *selectedCell = nil;
+        NSDictionary *dictionary = [dataArray objectAtIndex:indexPath.section];
+        NSArray *array = [dictionary objectForKey:@"data"];
+        selectedCell = [array objectAtIndex:indexPath.row];
+        
+        NSLog(@"Support By %@", selectedCell);
+        switch (indexPath.row) {
+            case 0:{
+                OpenWebViewController *OpenWebView = [[OpenWebViewController alloc]init];
+                CATransition *transition = [CATransition animation];
+                transition.duration = 0.2;
+                transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+                transition.type = kCATransitionPush;
+                transition.subtype = kCATransitionFromRight;
+                [self.view.window.layer addAnimation:transition forKey:nil];
+                [self presentViewController:OpenWebView animated:NO completion:nil];
+                [OpenWebView GetTitleString:@"AboutSeeties"];
+            }
+                break;
+            case 1:{
+                OpenWebViewController *OpenWebView = [[OpenWebViewController alloc]init];
+                CATransition *transition = [CATransition animation];
+                transition.duration = 0.2;
+                transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+                transition.type = kCATransitionPush;
+                transition.subtype = kCATransitionFromRight;
+                [self.view.window.layer addAnimation:transition forKey:nil];
+                [self presentViewController:OpenWebView animated:NO completion:nil];
+                [OpenWebView GetTitleString:@"TermsofUse"];
+            }
+                break;
+            case 2:{
+                OpenWebViewController *OpenWebView = [[OpenWebViewController alloc]init];
+                CATransition *transition = [CATransition animation];
+                transition.duration = 0.2;
+                transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+                transition.type = kCATransitionPush;
+                transition.subtype = kCATransitionFromRight;
+                [self.view.window.layer addAnimation:transition forKey:nil];
+                [self presentViewController:OpenWebView animated:NO completion:nil];
+                [OpenWebView GetTitleString:@"PrivacyPolicy"];
+            }
+                break;
+            case 3:{
+                FeedbackViewController *FeedbackView = [[FeedbackViewController alloc]init];
+                CATransition *transition = [CATransition animation];
+                transition.duration = 0.2;
+                transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+                transition.type = kCATransitionPush;
+                transition.subtype = kCATransitionFromRight;
+                [self.view.window.layer addAnimation:transition forKey:nil];
+                [self presentViewController:FeedbackView animated:NO completion:nil];
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }else{
+        
+        NSString *selectedCell = nil;
+        NSDictionary *dictionary = [dataArray objectAtIndex:indexPath.section];
+        NSArray *array = [dictionary objectForKey:@"data"];
+        selectedCell = [array objectAtIndex:indexPath.row];
+        
+        NSLog(@"Log Out %@", selectedCell);
+        switch (indexPath.row) {
+            case 0:{
+                [self SendUserLogoutToServer];
+            }
+                break;
+                
+            default:
+                break;
+        }
+        
     }
     
 }

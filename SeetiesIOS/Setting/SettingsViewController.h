@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "GAITrackedViewController.h"
 #import "UrlDataClass.h"
-@interface SettingsViewController : GAITrackedViewController<UIScrollViewDelegate>{
+@interface SettingsViewController : GAITrackedViewController<UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate>{
     
     IBOutlet UIScrollView *MainScroll;
     IBOutlet UIImageView *BarImage;
@@ -26,36 +26,14 @@
     IBOutlet UILabel *PrivacyPolicy;
     IBOutlet UILabel *Feedback;
     
-    IBOutlet UIButton *CheckForUpdateButton;
-    IBOutlet UIButton *LogoutButton;
-    
     UrlDataClass *DataUrl;
     NSMutableData *webData;
-    
-    IBOutlet UIButton *EditProfileButton;
-    IBOutlet UIButton *EditInterestsButton;
-    IBOutlet UIButton *AccountSettingsButton;
-    IBOutlet UIButton *AboutsButton;
-    IBOutlet UIButton *TermOfUseButton;
-    IBOutlet UIButton *PrivacyButton;
-    IBOutlet UIButton *FeedBackButton;
     NSURLConnection *theConnection_logout;
     
-    IBOutlet UIImageView *Table4Img;
-    IBOutlet UIImageView *Table1Img_1;
-    IBOutlet UIImageView *Table1Img_2;
-    IBOutlet UIImageView *Table1Img_3;
+    IBOutlet UITableView *tblview;
     
-    IBOutlet UIImageView *CaretImg_1;
-    IBOutlet UIImageView *CaretImg_2;
-    IBOutlet UIImageView *CaretImg_3;
-    IBOutlet UIImageView *CaretImg_4;
-    IBOutlet UIImageView *CaretImg_5;
-    IBOutlet UIImageView *CaretImg_6;
-    IBOutlet UIImageView *CaretImg_7;
+    NSMutableArray *dataArray;
     
-    IBOutlet UILabel *CopyrightText;
-    IBOutlet UILabel *VersionText;
 }
 -(IBAction)BackButton:(id)sender;
 

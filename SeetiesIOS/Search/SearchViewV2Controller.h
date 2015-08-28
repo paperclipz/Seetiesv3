@@ -13,6 +13,7 @@
     IBOutlet UISearchBar *mySearchBar;
     IBOutlet UITableView *Tblview;
     IBOutlet UIActivityIndicatorView *ShowActivity;
+    IBOutlet UIImageView *BarImage;
     
     NSString *GetSearchText;
     

@@ -39,7 +39,7 @@
     BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
     
     //CountriesScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight - 114);
-    ibScrollViewCountry.frame = CGRectMake(0, 64, screenWidth, screenHeight - 114);
+    ibScrollViewCountry.frame = CGRectMake(0, 0, screenWidth, screenHeight - 50);
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
 
 }

@@ -38,7 +38,7 @@
     DataUrl = [[UrlDataClass alloc]init];
     MainScroll.delegate = self;
     UserScroll.delegate = self;
-    MainScroll.frame = CGRectMake(0, 114 , screenWidth, screenHeight - 114);
+    MainScroll.frame = CGRectMake(0, 64 , screenWidth, screenHeight - 64);
     ShowSearchUserView.frame = CGRectMake(0, 114, screenWidth, screenHeight - 114);
     UserScroll.frame = CGRectMake(0, 0 , ShowSearchUserView.frame.size.width, ShowSearchUserView.frame.size.height);
     StringSortby = @"3";
@@ -117,7 +117,8 @@
         SearchText.frame = CGRectMake(43, 74, screenWidth - 103 - 15, 30);
         ShowTitle.text = CustomLocalisedString(@"NearbyResult", nil);
     }else{
-        ShowTitle.text = CustomLocalisedString(@"findPeople", nil);
+        //ShowTitle.text = CustomLocalisedString(@"findPeople", nil);
+        ShowTitle.text = String;
         LineButton.hidden = YES;
         SortByButton.hidden = YES;
         SortbyFullButton.hidden = YES;
@@ -373,7 +374,9 @@
         NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
         NSLog(@"Feed Json = %@",res);
         
-        NSDictionary *recommendationsData = [res valueForKey:@"recommendations"];
+        NSDictionary *ResData = [res valueForKey:@"data"];
+        
+        NSDictionary *recommendationsData = [ResData valueForKey:@"recommendations"];
         
         NSArray *GetAllData = (NSArray *)[recommendationsData valueForKey:@"posts"];
         NSDictionary *locationData = [GetAllData valueForKey:@"location"];
@@ -617,7 +620,9 @@
         NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
         NSLog(@"Feed Json = %@",res);
         
-        NSDictionary *recommendationsData = [res valueForKey:@"recommendations"];
+        NSDictionary *ResData = [res valueForKey:@"data"];
+        
+        NSDictionary *recommendationsData = [ResData valueForKey:@"recommendations"];
         NSLog(@"recommendationsData is %@",recommendationsData);
         NSArray *GetAllData = (NSArray *)[recommendationsData valueForKey:@"posts"];
         NSDictionary *locationData = [GetAllData valueForKey:@"location"];
@@ -1203,6 +1208,23 @@
 //        MainScroll.backgroundColor = [UIColor whiteColor];
 //        [MainScroll setContentSize:CGSizeMake(screenWidth, 158 + i * 158)];
 //    }
+    
+    heightcheck += 20;
+    
+    NSString *TempStringPosts = [[NSString alloc]initWithFormat:@"13 Posts"];
+    NSString *TempStringPeople = [[NSString alloc]initWithFormat:@"3 People"];
+    
+    NSArray *itemArray = [NSArray arrayWithObjects:TempStringPosts, TempStringPeople, nil];
+    UISegmentedControl *ProfileControl = [[UISegmentedControl alloc]initWithItems:itemArray];
+    ProfileControl.frame = CGRectMake(15, heightcheck, screenWidth - 30, 29);
+    //[ProfileControl addTarget:self action:@selector(segmentAction:) forControlEvents: UIControlEventValueChanged];
+    ProfileControl.selectedSegmentIndex = 0;
+    [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
+    [MainScroll addSubview:ProfileControl];
+    
+    
+    heightcheck += 49;
+    
     
     for (NSInteger i = DataCount; i < DataTotal; i++) {
         
