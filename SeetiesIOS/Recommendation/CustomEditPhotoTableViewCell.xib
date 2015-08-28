@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,57 +10,59 @@
             <rect key="frame" x="0.0" y="0.0" width="371" height="120"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jgj-xo-hkj" id="DIr-4a-xiB">
-                <rect key="frame" x="0.0" y="0.0" width="287" height="59"/>
+                <rect key="frame" x="0.0" y="0.0" width="371" height="119.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oMM-IC-ZIi">
-                        <rect key="frame" x="8" y="8" width="50" height="50"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="50" id="9d8-9P-A9f"/>
-                            <constraint firstAttribute="width" constant="50" id="Ub8-oD-Z99"/>
-                        </constraints>
-                    </imageView>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8rz-Oa-pxO">
-                        <rect key="frame" x="66" y="8" width="297" height="104"/>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="8rz-Oa-pxO">
+                        <rect key="frame" x="66" y="13" width="260" height="93"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="104" id="lCa-Cq-VOy"/>
-                        </constraints>
-                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                        <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tzU-9Z-l8w">
-                        <rect key="frame" x="10" y="66" width="46" height="30"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="30" id="fiv-Si-YTY"/>
-                            <constraint firstAttribute="width" constant="46" id="x84-KS-hgA"/>
-                        </constraints>
-                        <state key="normal" title="Button">
-                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                    </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="move_icon.png" id="ERy-fj-ETt">
+                        <rect key="frame" x="332" y="47" width="24" height="26"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
+                    <view contentMode="scaleToFill" id="Sr7-4V-AbW" userLabel="roundWrapperView">
+                        <rect key="frame" x="14" y="21" width="50" height="77"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tzU-9Z-l8w">
+                                <rect key="frame" x="0.0" y="47" width="50" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Edit">
+                                    <color key="titleColor" red="0.14901960780000001" green="0.65098039220000004" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="oMM-IC-ZIi">
+                                <rect key="frame" x="0.0" y="1" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
                 </subviews>
-                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                <constraints>
-                    <constraint firstItem="8rz-Oa-pxO" firstAttribute="top" secondItem="DIr-4a-xiB" secondAttribute="topMargin" id="9VB-L0-Z96"/>
-                    <constraint firstItem="8rz-Oa-pxO" firstAttribute="leading" secondItem="tzU-9Z-l8w" secondAttribute="trailing" constant="10" id="Bz8-pl-Kxb"/>
-                    <constraint firstItem="tzU-9Z-l8w" firstAttribute="leading" secondItem="DIr-4a-xiB" secondAttribute="leadingMargin" constant="2" id="ChV-N9-uu7"/>
-                    <constraint firstItem="oMM-IC-ZIi" firstAttribute="top" secondItem="DIr-4a-xiB" secondAttribute="topMargin" id="DKZ-AW-eur"/>
-                    <constraint firstItem="8rz-Oa-pxO" firstAttribute="trailing" secondItem="DIr-4a-xiB" secondAttribute="trailingMargin" id="PLd-Le-5Jb"/>
-                    <constraint firstItem="oMM-IC-ZIi" firstAttribute="leading" secondItem="DIr-4a-xiB" secondAttribute="leadingMargin" id="X2O-nX-p2F"/>
-                    <constraint firstItem="8rz-Oa-pxO" firstAttribute="bottom" secondItem="DIr-4a-xiB" secondAttribute="bottomMargin" id="p06-0n-wRs"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="tzU-9Z-l8w" secondAttribute="bottom" constant="16" id="sk2-v0-Ewr"/>
-                    <constraint firstItem="8rz-Oa-pxO" firstAttribute="leading" secondItem="oMM-IC-ZIi" secondAttribute="trailing" constant="8" id="yDj-HW-7hD"/>
-                    <constraint firstItem="tzU-9Z-l8w" firstAttribute="top" secondItem="oMM-IC-ZIi" secondAttribute="bottom" constant="8" id="zSz-5q-VPQ"/>
-                </constraints>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </tableViewCellContentView>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
+                <outlet property="btnEdit" destination="tzU-9Z-l8w" id="7q5-Ql-B8g"/>
                 <outlet property="ibImage" destination="oMM-IC-ZIi" id="Ury-Qs-atR"/>
                 <outlet property="txtDescription" destination="8rz-Oa-pxO" id="s3G-Pg-C6C"/>
+                <outlet property="wrapperIconView" destination="Sr7-4V-AbW" id="0cf-OQ-EvP"/>
             </connections>
             <point key="canvasLocation" x="510.5" y="377"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="move_icon.png" width="17" height="13"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

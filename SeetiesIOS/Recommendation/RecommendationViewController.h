@@ -20,12 +20,11 @@
 @interface RecommendationViewController : BaseViewController<DoImagePickerControllerDelegate>
 
 @property(nonatomic,strong)SelectImageViewController* assetPickerViewController;
-@property(nonatomic,strong)UINavigationController* navDoImagePickerController;
+@property(nonatomic,strong)UINavigationController* navViewController;
 
 @property(nonatomic,strong)STSearchViewController* stSearchViewController;
 @property(nonatomic,strong)DoImagePickerController* doImagePickerController;
 
-@property(nonatomic,strong)EditPhotoViewController* editPhotoViewController;
 @property(nonatomic,strong)EditPostViewController* editPostViewController;
 @property(nonatomic,strong)UINavigationController* navEditPostViewController;
 

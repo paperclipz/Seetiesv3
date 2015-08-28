@@ -23,6 +23,11 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *ibImage;
 @property (weak, nonatomic) IBOutlet UITextView *txtDescription;
+@property (weak, nonatomic) IBOutlet UIButton *btnEdit;
+
+@property (weak, nonatomic) IBOutlet UIView *wrapperIconView;
+
+
 @end
 
 
@@ -67,7 +72,9 @@
 
 -(void)initSelfView
 {
-    
+   // [Utils setRoundBorder:self.wrapperContentView color:[UIColor darkGrayColor]borderRadius:10.0];
+    [Utils setRoundBorder:self.wrapperIconView color:[UIColor darkGrayColor]borderRadius:5.0f];
+
 }
 
 -(void)initData:(UIImage*)image description:(NSString*)desc

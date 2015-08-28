@@ -17,9 +17,8 @@
 
 @interface EditPhotoViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
-@property (nonatomic, strong) NSMutableArray *cellsCurrentlyEditing;
 @property (nonatomic, strong) NSMutableArray *arrEditPhotoList;
+@property (nonatomic, strong) RecommendationModel *recModel;
 
 
 @end
@@ -39,26 +38,6 @@
     }
 }
 
--(NSMutableArray*)arrEditPhotoList
-{
-    
-    if(!_arrEditPhotoList)
-    {
-        _arrEditPhotoList = [NSMutableArray new];
-
-        for (int i = 0; i<50; i++) {
-            EditPhotoModel* model = [EditPhotoModel new];
-            model.imageURL = [NSString stringWithFormat:@"profile_%d.png",i%3];
-            model.photoDescription = [NSString stringWithFormat:@"description %d",i];
-
-            [_arrEditPhotoList addObject:model];
-        }
-    
-    }
-    
-    return _arrEditPhotoList;
-}
-
 // hints the user showing the basement for a little time
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -76,17 +55,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self initData];
-    self.cellsCurrentlyEditing = [NSMutableArray array];
+    [self initSelfView];
+  }
+
+-(void)initData:(RecommendationModel*)model
+{
+    self.recModel = model;
+    self.arrEditPhotoList = [self.recModel.arrPostImagesList mutableCopy];
+
+}
+-(void)initSelfView
+{
+    _cellIdentifier = @"SwipeCell";
     [self.tableView registerClass:[CustomEditPhotoTableViewCell class] forCellReuseIdentifier:_cellIdentifier];
     self.tableView.longPressReorderEnabled = YES;
-}
-
--(void)initData
-{
-    
-    _cellIdentifier = @"SwipeCell";
 
 }
 
@@ -101,7 +83,7 @@
     
     CustomEditPhotoTableViewCell *cell = (CustomEditPhotoTableViewCell *)[tableView dequeueReusableCellWithIdentifier: _cellIdentifier
                                                                                forIndexPath: indexPath];
-    
+    //[Utils setRoundBorder:cell color:[UIColor darkGrayColor]borderRadius:10.0f];
     [cell configureCellForItem:nil];
     
     if ([cell isKindOfClass:[BMXSwipableCell class]]) {
@@ -110,7 +92,7 @@
     
     
     EditPhotoModel* model = self.arrEditPhotoList[indexPath.row];
-    [cell initData:[UIImage imageNamed:model.imageURL] description:model.photoDescription];
+    [cell initData:model.image description:model.photoDescription];
 
     
     cell.deleteBlock = ^(id block)

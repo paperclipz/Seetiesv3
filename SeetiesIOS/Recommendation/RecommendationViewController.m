@@ -9,19 +9,20 @@
 #import "RecommendationViewController.h"
 @interface RecommendationViewController ()
 
+@property(nonatomic,strong)RecommendationModel* recommendModel;
+
 @end
 
 @implementation RecommendationViewController
 - (IBAction)btnEditPhotoClicked:(id)sender {
     
-    [self presentViewController:self.editPostViewController animated:YES completion:nil];
-    [self.editPostViewController initData];
+    [self showEditPostView];
+   
     
 }
 - (IBAction)btnPickImageClicked:(id)sender {
     
-    [self presentViewController:self.doImagePickerController animated:YES completion:nil];
-
+    [self presentViewController:self.navViewController animated:YES completion:nil];
 }
 
 - (void)viewDidLoad {
@@ -67,24 +68,40 @@
         ALAsset* asset = aSelected[0];
         tempCurrentLocation = [asset valueForProperty:ALAssetPropertyLocation];
         [self showSearchView:tempCurrentLocation];
-                   
+        [self processModelData:aSelected];
     }
    
     //Remark* check image has tag location, if not get device location. if device dont hace location route to search page with no suggestion
 }
 
+-(void)processModelData:(NSArray*)arrAssets
+{
+
+    for (int i = 0; i<arrAssets.count; i++) {
+        
+        ALAsset* temp = arrAssets[i];
+        EditPhotoModel* model = [EditPhotoModel new];
+        model.image = [UIImage imageWithCGImage:[temp thumbnail]];
+        [self.recommendModel.arrPostImagesList addObject:model];
+    }
+ 
+}
+
 -(void)showSearchView:(CLLocation*)location
 {
     
-    //[self dismissViewControllerAnimated:YES completion:^{
-        [self.navDoImagePickerController pushViewController:self.stSearchViewController animated:YES];
-        [self.stSearchViewController initWithLocation:location];
-
-  //  }];
+    [self.doImagePickerController.navigationController pushViewController:self.stSearchViewController animated:YES];
+    [self.stSearchViewController initWithLocation:location];
 
     
 }
 
+-(void)showEditPostView
+{
+    [self.editPostViewController initData:self.recommendModel];
+    
+    [self presentViewController:self.navEditPostViewController animated:YES completion:nil];
+}
 
 
 #pragma mark - Declaration
@@ -116,8 +133,17 @@
                     break;
             }
             
-            [wealSelf.navDoImagePickerController pushViewController:wealSelf.addNewPlaceViewController animated:YES];
+            [wealSelf.navViewController pushViewController:wealSelf.addNewPlaceViewController animated:YES];
+            wealSelf.addNewPlaceViewController.title = @"Edit Place Info";
+
+        };
+        
+        _stSearchViewController.btnAddNewPlaceBlock = ^(id object)
+        {
             
+            [wealSelf.navViewController pushViewController:wealSelf.addNewPlaceViewController animated:YES];
+          //  wealSelf.addNewPlaceViewController.title
+            wealSelf.addNewPlaceViewController.title = @"New Place Info";
         };
     }
     return _stSearchViewController;
@@ -141,16 +167,6 @@
     return _doImagePickerController;
 }
 
--(EditPhotoViewController*)editPhotoViewController
-{
-    if(!_editPhotoViewController)
-    {
-        _editPhotoViewController = [EditPhotoViewController new];
-        
-    }
-    return _editPhotoViewController;
-}
-
 -(EditPostViewController*)editPostViewController
 {
     if(!_editPostViewController)
@@ -171,26 +187,42 @@
     return _navEditPostViewController;
 }
 
--(UINavigationController*)navDoImagePickerController
+-(UINavigationController*)navViewController
 {
-    if(!_navDoImagePickerController)
+    if(!_navViewController)
     {
-        _navDoImagePickerController = [[UINavigationController alloc]initWithRootViewController:self.doImagePickerController];
-        [_navDoImagePickerController setNavigationBarHidden:YES];
+        _navViewController = [[UINavigationController alloc]initWithRootViewController:self.doImagePickerController];
+        [_navViewController setNavigationBarHidden:YES];
     }
     
-    return _navDoImagePickerController;
+    return _navViewController;
 }
 -(AddNewPlaceViewController*)addNewPlaceViewController
 {
     if(!_addNewPlaceViewController)
     {
+        
+        __weak typeof (self)weakSelf = self;
         _addNewPlaceViewController = [AddNewPlaceViewController new];
+        _addNewPlaceViewController.btnPressDoneBlock = ^(id object)
+        {
+            [weakSelf.navController dismissViewControllerAnimated:YES completion:^{
+                [weakSelf showEditPostView];
+
+            }];
+        };
     }
     
     return _addNewPlaceViewController;
-    
 }
-//[self.navigationController pushViewController:self.addNewPlaceViewController animated:YES];
+
+-(RecommendationModel*)recommendModel
+{
+    if (!_recommendModel) {
+        _recommendModel = [RecommendationModel new];
+    }
+    
+    return _recommendModel;
+}
 
 @end

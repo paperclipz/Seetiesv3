@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface CustomPickerViewController : UIViewController
+-(void)show;
+-(void)hideWithAnimation:(BOOL)isAnimate;
++(id)initializeWithAddURLBlock:(IDBlock)addurl AddLangBlock:(IDBlock)addLang;
 
 @end

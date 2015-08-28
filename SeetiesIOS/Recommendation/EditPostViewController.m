@@ -7,31 +7,72 @@
 //
 
 #import "EditPostViewController.h"
-#import "AUIAutoGrowingTextView.h"
 #import "UIImageViewModeScaleAspect.h"
 #import "UIImageView+WebCache.h"
 #import "UIImage+FX.h"
 #import "EditPhotoViewController.h"
 #import "AddNewPlaceViewController.h"
 #import "HMSegmentedControl.h"
+#import <QuartzCore/QuartzCore.h>
 
+#import "EditPostDetailVIew.h"
 
 @interface EditPostViewController ()
-@property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
-@property (weak, nonatomic) IBOutlet AUIAutoGrowingTextView *txtDescription;
+{
+    NSString* postURL;
+    BOOL isDualLanguge;
 
+}
+
+// =============== model ===============//
+@property(nonatomic,strong)RecommendationModel* recommendationModel;
+
+// =============== model ===============//
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *descViewTopLayoutConstraint;
+@property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
+
+@property (weak, nonatomic) IBOutlet UIView *ibDescContentView;
 @property(nonatomic,strong)EditPhotoViewController* editPhotoViewController;
 @property(nonatomic,strong)AddNewPlaceViewController* addNewPlaceViewController;
 
 @property(nonatomic,strong)HMSegmentedControl* segmentedControl;
+@property(nonatomic,strong)IBOutlet UISegmentedControl* postSegmentedControl;
+
+
+@property(nonatomic,strong)EditPostDetailVIew* editPostView;
+@property(nonatomic,strong)EditPostDetailVIew* editPostViewSecond;
 
 @end
 
 @implementation EditPostViewController
+- (IBAction)segmentedControlClicked:(id)sender {
+    
+    UISegmentedControl* temp = (UISegmentedControl*)sender;
+    BOOL isFirstView = temp.selectedSegmentIndex==1;
+ 
+    [UIView transitionWithView:self.ibDescContentView
+                      duration:1.0
+                       options:isFirstView?UIViewAnimationOptionTransitionFlipFromLeft :UIViewAnimationOptionTransitionFlipFromRight
+                    animations:^{
+
+                        self.editPostViewSecond.hidden = !isFirstView;
+                        self.editPostView.hidden = isFirstView;
+
+                    } completion:^(BOOL finished) {
+                        self.editPostView.hidden = isFirstView;
+                        self.editPostViewSecond.hidden = !isFirstView;
+
+                    }
+     ];
+    
+ }
+
 - (IBAction)btnEditPhotoClicked:(id)sender {
     
     //[self.navigationController pushViewController:self.editPhotoViewController animated:YES];
     
+    [self.editPhotoViewController initData:self.recommendationModel];
       [self presentViewController:self.editPhotoViewController animated:YES completion:nil];
 }
 - (IBAction)btnBackClicked:(id)sender {
@@ -39,8 +80,9 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)initData
+-(void)initData:(RecommendationModel*)model
 {
+    self.recommendationModel = model;
     SDWebImageManager *manager = [SDWebImageManager sharedManager];
     [manager downloadImageWithURL:[NSURL URLWithString:@"http://cdn3.denofgeek.us/sites/denofgeekus/files/scarlett_johansson.jpg"]
                           options:0
@@ -61,7 +103,6 @@
     
 }
 
-
 - (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
     NSLog(@"Selected index %ld (via UIControlEventValueChanged)", (long)segmentedControl.selectedSegmentIndex);
     
@@ -69,7 +110,9 @@
        
         default:
         case 0:
-            [self presentViewController:self.editPhotoViewController animated:YES completion:nil];
+        {
+            [self.customPickerViewController show];
+        }
             break;
         case 1:
             [self presentViewController:self.addNewPlaceViewController animated:YES completion:nil];
@@ -77,6 +120,7 @@
             break;
             
         case 2:
+            [self.editPhotoViewController initData:self.recommendationModel];
             [self presentViewController:self.editPhotoViewController animated:YES completion:nil];
 
             break;
@@ -85,12 +129,32 @@
     segmentedControl.selectedSegmentIndex = -1;
 }
 
+-(CustomPickerViewController*)customPickerViewController
+{
+    
+    if (!_customPickerViewController) {
+        _customPickerViewController = [CustomPickerViewController initializeWithAddURLBlock:^(id object) {
+            [self showAlertView];
+        } AddLangBlock:^(id object) {
+            
+        }];
+        [self.view addSubview:_customPickerViewController.view];
+        [_customPickerViewController hideWithAnimation:NO];
+
+    }
+    return _customPickerViewController;
+}
 
 -(void)initSelfView
 {
     
-    [self.view addSubview:self.segmentedControl];
+    [self setHasDualLanguage:YES];
     self.segmentedControl.selectedSegmentIndex = -1;
+
+    self.editPostView.frame = CGRectMake(0, 0, self.ibDescContentView.frame.size.width, self.ibDescContentView.frame.size.width);
+    self.editPostViewSecond.frame = CGRectMake(0, 0, self.ibDescContentView.frame.size.width, self.ibDescContentView.frame.size.width);
+
+    [self.view addSubview:self.segmentedControl];
 
 }
 - (void)didReceiveMemoryWarning {
@@ -99,6 +163,32 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Alert View
+-(void)showAlertView
+{
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Add URL"
+                                                 message:nil
+                                                delegate:self
+                                       cancelButtonTitle:@"Cancel"
+                                       otherButtonTitles:@"Done", nil];
+    
+    av.alertViewStyle = UIAlertViewStylePlainTextInput;
+    UITextField *textField = [av textFieldAtIndex:0];
+    textField.placeholder = @"www.seeties.me";
+    
+    av.tapBlock = ^(UIAlertView *alertView, NSInteger buttonIndex) {
+        if (buttonIndex == alertView.firstOtherButtonIndex) {
+            postURL =[[alertView textFieldAtIndex:0] text];
+
+            self.recommendationModel.postURL = postURL;
+            NSLog(@"web url Link: %@", postURL);
+        } else if (buttonIndex == alertView.cancelButtonIndex) {
+            NSLog(@"Cancelled.");
+        }
+    };
+    
+    [av show];
+}
 /*
 #pragma mark - Navigation
 
@@ -150,5 +240,52 @@
         _addNewPlaceViewController = [AddNewPlaceViewController new];
     }
     return _addNewPlaceViewController;
+}
+
+-(EditPostDetailVIew*)editPostView
+{
+    
+    if(!_editPostView)
+    {
+        _editPostView = [EditPostDetailVIew initializeCustomView];
+        [self.ibDescContentView addSubview:_editPostView];
+
+    }
+    return _editPostView;
+}
+
+-(EditPostDetailVIew*)editPostViewSecond
+{
+    
+    if(!_editPostViewSecond)
+    {
+        _editPostViewSecond = [EditPostDetailVIew initializeCustomView];
+        [self.ibDescContentView addSubview:_editPostViewSecond];
+        _editPostViewSecond.hidden = YES;
+
+    }
+    return _editPostViewSecond;
+}
+
+-(void)setHasDualLanguage:(BOOL)hasDualLang
+{
+    isDualLanguge = hasDualLang;
+
+    self.descViewTopLayoutConstraint.constant = hasDualLang?33:0;
+
+}
+
+-(RecommendationModel*)recommendationModel
+{
+    if(!_recommendationModel)
+    {
+        _recommendationModel  = [RecommendationModel new];
+        _recommendationModel.postMainDescription = @"main title Desc";
+        _recommendationModel.postMainTitle = @"main title";
+        _recommendationModel.postSecondDescription = @"second title Desc";
+        _recommendationModel.postSecondTitle = @"second title";
+
+    }
+    return _recommendationModel;
 }
 @end

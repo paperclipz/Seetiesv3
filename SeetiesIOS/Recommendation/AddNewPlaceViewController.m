@@ -26,9 +26,16 @@
 
 @property(nonatomic,strong)NSString* placeID;
 
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @end
 
 @implementation AddNewPlaceViewController
+
+- (IBAction)btnDoneClicked:(id)sender {
+    
+    if(self.btnPressDoneBlock)
+        self.btnPressDoneBlock(nil);
+}
 - (IBAction)btnViewLargeMapClicke:(id)sender {
     
     if (self.navigationController) {
@@ -52,6 +59,13 @@
   //  [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.lblTitle.text = self.title;
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];

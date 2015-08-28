@@ -45,6 +45,9 @@
 
 #endif
 //===============Model=================
+#import "RecommendationModel.h"
+
+
 #define IS_IN_DEBUG_MODE
 
 #ifndef IS_IN_DEBUG_MODE

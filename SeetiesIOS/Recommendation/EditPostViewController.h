@@ -8,10 +8,12 @@
 
 #import "CommentViewController.h"
 #import "NMBottomTabBarController.h"
+#import "CustomPickerViewController.h"
+#import "RecommendationModel.h"
 @interface EditPostViewController : CommentViewController
--(void)initData;
+-(void)initData:(RecommendationModel*)model;
 
 @property(nonatomic,strong)NMBottomTabBarController* nmBottomTabBarController;
-
+@property(nonatomic,strong)CustomPickerViewController* customPickerViewController;
 
 @end

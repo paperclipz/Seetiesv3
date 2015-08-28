@@ -30,6 +30,13 @@
 @end
 
 @implementation STSearchViewController
+- (IBAction)btnAddNewPlaceClicked:(id)sender {
+    
+    if(self.btnAddNewPlaceBlock)
+    {
+        self.btnAddNewPlaceBlock(nil);
+    }
+}
 
 - (IBAction)btnBackClicked:(id)sender {
     
@@ -107,7 +114,7 @@
 
             self.location = currentLocation;
            
-            [self getGoogleSearchPlaces];
+           // [self getGoogleSearchPlaces];
 
         } errorBlock:^(NSString *status) {
             SLog(@"cannot get Device location");

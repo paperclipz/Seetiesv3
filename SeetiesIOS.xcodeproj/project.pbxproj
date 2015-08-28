@@ -107,6 +107,10 @@
 		8A9F25D91B8EFD2200BB13BA /* EditHourModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9F25D81B8EFD2200BB13BA /* EditHourModel.m */; };
 		8A9F25DD1B90002B00BB13BA /* CustomPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9F25DB1B90002B00BB13BA /* CustomPickerViewController.m */; };
 		8A9F25DE1B90002B00BB13BA /* CustomPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9F25DC1B90002B00BB13BA /* CustomPickerViewController.xib */; };
+		8A9F25E11B90413700BB13BA /* EditPostDetailVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9F25E01B90413700BB13BA /* EditPostDetailVIew.m */; };
+		8A9F25E31B90414800BB13BA /* EditPostDetailVIew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9F25E21B90414800BB13BA /* EditPostDetailVIew.xib */; };
+		8A9F25E61B904F7600BB13BA /* RecommendationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9F25E51B904F7600BB13BA /* RecommendationModel.m */; };
+		8A9F25E91B9070C000BB13BA /* move_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A9F25E81B9070C000BB13BA /* move_icon@2x.png */; };
 		8AD6BA601B705DF20040437E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA5F1B705DF20040437E /* main.m */; };
 		8AD6BA631B705DF20040437E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA621B705DF20040437E /* AppDelegate.m */; };
 		8AD6BA661B705DF20040437E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA651B705DF20040437E /* ViewController.m */; };
@@ -1130,6 +1134,12 @@
 		8A9F25DA1B90002B00BB13BA /* CustomPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPickerViewController.h; sourceTree = "<group>"; };
 		8A9F25DB1B90002B00BB13BA /* CustomPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPickerViewController.m; sourceTree = "<group>"; };
 		8A9F25DC1B90002B00BB13BA /* CustomPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomPickerViewController.xib; sourceTree = "<group>"; };
+		8A9F25DF1B90413700BB13BA /* EditPostDetailVIew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPostDetailVIew.h; sourceTree = "<group>"; };
+		8A9F25E01B90413700BB13BA /* EditPostDetailVIew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPostDetailVIew.m; sourceTree = "<group>"; };
+		8A9F25E21B90414800BB13BA /* EditPostDetailVIew.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPostDetailVIew.xib; sourceTree = "<group>"; };
+		8A9F25E41B904F7600BB13BA /* RecommendationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendationModel.h; sourceTree = "<group>"; };
+		8A9F25E51B904F7600BB13BA /* RecommendationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendationModel.m; sourceTree = "<group>"; };
+		8A9F25E81B9070C000BB13BA /* move_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "move_icon@2x.png"; sourceTree = "<group>"; };
 		8AD6BA5A1B705DF20040437E /* SeetiesIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeetiesIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AD6BA5E1B705DF20040437E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8AD6BA5F1B705DF20040437E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -2312,6 +2322,9 @@
 				8A34090C1B872B31009B66C3 /* EditPostViewController.h */,
 				8A34090D1B872B31009B66C3 /* EditPostViewController.m */,
 				8A34090E1B872B31009B66C3 /* EditPostViewController.xib */,
+				8A9F25DF1B90413700BB13BA /* EditPostDetailVIew.h */,
+				8A9F25E01B90413700BB13BA /* EditPostDetailVIew.m */,
+				8A9F25E21B90414800BB13BA /* EditPostDetailVIew.xib */,
 			);
 			name = EditPost;
 			sourceTree = "<group>";
@@ -2423,6 +2436,7 @@
 		8A5430121B8C1BE6009EFFF4 /* Recommendation */ = {
 			isa = PBXGroup;
 			children = (
+				8A9F25E71B9070B600BB13BA /* EditPhoto */,
 				8A5430131B8C1C05009EFFF4 /* Navi bar */,
 			);
 			name = Recommendation;
@@ -2561,8 +2575,18 @@
 			children = (
 				8A9F25D71B8EFD2200BB13BA /* EditHourModel.h */,
 				8A9F25D81B8EFD2200BB13BA /* EditHourModel.m */,
+				8A9F25E41B904F7600BB13BA /* RecommendationModel.h */,
+				8A9F25E51B904F7600BB13BA /* RecommendationModel.m */,
 			);
 			path = AppModel;
+			sourceTree = "<group>";
+		};
+		8A9F25E71B9070B600BB13BA /* EditPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				8A9F25E81B9070C000BB13BA /* move_icon@2x.png */,
+			);
+			name = EditPhoto;
 			sourceTree = "<group>";
 		};
 		8AD6BA511B705DF20040437E = {
@@ -4364,6 +4388,7 @@
 				8AD6C7A01B70934D0040437E /* SelectAlbumBg@3x.png in Resources */,
 				8AD6C7AD1B70934D0040437E /* TabArrow.png in Resources */,
 				8AD6C6D81B70934D0040437E /* DropArrow@3x.png in Resources */,
+				8A9F25E91B9070C000BB13BA /* move_icon@2x.png in Resources */,
 				8AD6C6DA1B70934D0040437E /* dropdown@2x.png in Resources */,
 				8AD6C7991B70934D0040437E /* SearchBoxPin@2x.png in Resources */,
 				8AD6C5E01B70934D0040437E /* CategorySelected.png in Resources */,
@@ -4390,6 +4415,7 @@
 				8AD6C3521B707D710040437E /* PEPhotoCropEditor.bundle in Resources */,
 				8AD6C6751B70934D0040437E /* TopBarShare.png in Resources */,
 				8AD6C7451B70934D0040437E /* InviteEmail@2x.png in Resources */,
+				8A9F25E31B90414800BB13BA /* EditPostDetailVIew.xib in Resources */,
 				8AD6C7EF1B70934D0040437E /* TabBarLikes@2x.png in Resources */,
 				8AD6C6F51B70934D0040437E /* GotoPlace@2x.png in Resources */,
 				8AD6C78C1B70934D0040437E /* PostShade2@3x.png in Resources */,
@@ -4972,6 +4998,7 @@
 				8AD6C3321B707D120040437E /* AsyncImageView.m in Sources */,
 				8AD6BE4B1B706CF30040437E /* ExploreCountryV2ViewController.m in Sources */,
 				8AD6C10A1B706CF30040437E /* FeedbackViewController.m in Sources */,
+				8A9F25E61B904F7600BB13BA /* RecommendationModel.m in Sources */,
 				8A3408FF1B86FE3D009B66C3 /* BMXDataItem.m in Sources */,
 				8AD6C86A1B7460DB0040437E /* NSAlert+MKNetworkKitAdditions.m in Sources */,
 				8A9F25DD1B90002B00BB13BA /* CustomPickerViewController.m in Sources */,
@@ -5057,6 +5084,7 @@
 				0BD634FC1B71C9B800D82414 /* LeveyTabBar.m in Sources */,
 				8AD6C0B31B706CF30040437E /* ConnectionManager.m in Sources */,
 				8AD6C29F1B7072FB0040437E /* SelectPhotosViewController.m in Sources */,
+				8A9F25E11B90413700BB13BA /* EditPostDetailVIew.m in Sources */,
 				8AD6C0D41B706CF30040437E /* PSearchLocationViewController.m in Sources */,
 				8AD6C82C1B7376DC0040437E /* LanguageModel.m in Sources */,
 				8A9F25C41B8ED33000BB13BA /* BKCardNumberLabel.m in Sources */,

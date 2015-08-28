@@ -45,5 +45,6 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 +(void)setButtonWithBorder:(UIButton*)button;
 +(NSString*)getWeekName:(int)integer;
 +(void)setButtonWithBorder:(UIButton*)button color:(UIColor*)color;
++(void)setRoundBorder:(UIView*)view color:(UIColor*)color borderRadius:(float)borderRadius;
 
 @end

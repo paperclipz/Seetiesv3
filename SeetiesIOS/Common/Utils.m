@@ -46,6 +46,13 @@
     [[button layer] setCornerRadius:5.0f];
 }
 
++(void)setRoundBorder:(UIView*)view color:(UIColor*)color borderRadius:(float)borderRadius
+{
+    [[view layer] setBorderWidth:0.3f];
+    [[view layer] setBorderColor:color.CGColor];
+    [[view layer] setCornerRadius:borderRadius];
+
+}
 +(NSString*)getWeekName:(int)integer
 {
     

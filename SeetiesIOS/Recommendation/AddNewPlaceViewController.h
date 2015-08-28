@@ -19,6 +19,7 @@
 @property(nonatomic,assign)SearchType searchType;
 
 @property(nonatomic,strong)EditHoursViewController* editHoursViewController;
+@property(nonatomic,copy)IDBlock btnPressDoneBlock;
 
 -(void)initDataFrom4Square:(VenueModel*)model;
 -(void)initDataFromGogle:(NSString*)placeid;

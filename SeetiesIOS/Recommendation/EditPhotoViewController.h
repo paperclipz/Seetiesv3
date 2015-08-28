@@ -11,5 +11,6 @@
 #import "BMXSwipableCell.h"
 
 @interface EditPhotoViewController : CommonViewController<UITableViewDataSource,UITableViewDelegate,BMXSwipableCellDelegate>
+-(void)initData:(RecommendationModel*)model;
 
 @end

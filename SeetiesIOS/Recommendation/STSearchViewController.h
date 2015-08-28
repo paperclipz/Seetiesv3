@@ -24,4 +24,6 @@ typedef void(^IndexBlock) (NSIndexPath* indexPath,SearchType type);
 
 @property(nonatomic,copy)IndexBlock didSelectRowAtIndexPathBlock;
 
+@property(nonatomic,copy)IDBlock btnAddNewPlaceBlock;
+
 @end
