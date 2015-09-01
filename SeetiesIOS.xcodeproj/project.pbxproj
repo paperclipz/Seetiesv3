@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B877C101B9573FA0024AF8B /* EditProfileV2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B877C0E1B9573FA0024AF8B /* EditProfileV2ViewController.m */; };
+		0B877C111B9573FA0024AF8B /* EditProfileV2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B877C0F1B9573FA0024AF8B /* EditProfileV2ViewController.xib */; };
 		0BA1CB2F1B85AEFA009FFD3E /* Explore2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA1CB2E1B85AEFA009FFD3E /* Explore2ViewController.xib */; };
 		0BA2895B1B8AC440000B7E3D /* DraftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA289591B8AC440000B7E3D /* DraftViewController.m */; };
 		0BA2895C1B8AC440000B7E3D /* DraftViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA2895A1B8AC440000B7E3D /* DraftViewController.xib */; };
@@ -897,6 +899,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B877C0D1B9573FA0024AF8B /* EditProfileV2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileV2ViewController.h; sourceTree = "<group>"; };
+		0B877C0E1B9573FA0024AF8B /* EditProfileV2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileV2ViewController.m; sourceTree = "<group>"; };
+		0B877C0F1B9573FA0024AF8B /* EditProfileV2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditProfileV2ViewController.xib; sourceTree = "<group>"; };
 		0BA1CB2E1B85AEFA009FFD3E /* Explore2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Explore2ViewController.xib; sourceTree = "<group>"; };
 		0BA289581B8AC440000B7E3D /* DraftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DraftViewController.h; sourceTree = "<group>"; };
 		0BA289591B8AC440000B7E3D /* DraftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DraftViewController.m; sourceTree = "<group>"; };
@@ -2050,6 +2055,34 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		0B877C0C1B95735D0024AF8B /* Old */ = {
+			isa = PBXGroup;
+			children = (
+				8AD6BDF31B706CF30040437E /* AccountSettingViewController.h */,
+				8AD6BDF41B706CF30040437E /* AccountSettingViewController.m */,
+				8AD6BDF51B706CF30040437E /* AccountSettingViewController.xib */,
+				8AD6BDF61B706CF30040437E /* ChangePasswordViewController.h */,
+				8AD6BDF71B706CF30040437E /* ChangePasswordViewController.m */,
+				8AD6BDF81B706CF30040437E /* ChangePasswordViewController.xib */,
+				8AD6BDFC1B706CF30040437E /* EditInterestViewController.h */,
+				8AD6BDFD1B706CF30040437E /* EditInterestViewController.m */,
+				8AD6BDFE1B706CF30040437E /* EditInterestViewController.xib */,
+				8AD6BDFF1B706CF30040437E /* EditProfileViewController.h */,
+				8AD6BE001B706CF30040437E /* EditProfileViewController.m */,
+				8AD6BE011B706CF30040437E /* EditProfileViewController.xib */,
+				8AD6BE021B706CF30040437E /* FeedbackViewController.h */,
+				8AD6BE031B706CF30040437E /* FeedbackViewController.m */,
+				8AD6BE041B706CF30040437E /* FeedbackViewController.xib */,
+				8AD6BE051B706CF30040437E /* ForgotPasswordViewController.h */,
+				8AD6BE061B706CF30040437E /* ForgotPasswordViewController.m */,
+				8AD6BE071B706CF30040437E /* ForgotPasswordViewController.xib */,
+				8AD6BE0A1B706CF30040437E /* SubmitProfileViewController.h */,
+				8AD6BE0B1B706CF30040437E /* SubmitProfileViewController.m */,
+				8AD6BE0C1B706CF30040437E /* SubmitProfileViewController.xib */,
+			);
+			name = Old;
+			sourceTree = "<group>";
+		};
 		0BA289571B8AC432000B7E3D /* Draft */ = {
 			isa = PBXGroup;
 			children = (
@@ -2539,33 +2572,16 @@
 		8AD6BDF21B706CF30040437E /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				8AD6BDF31B706CF30040437E /* AccountSettingViewController.h */,
-				8AD6BDF41B706CF30040437E /* AccountSettingViewController.m */,
-				8AD6BDF51B706CF30040437E /* AccountSettingViewController.xib */,
-				8AD6BDF61B706CF30040437E /* ChangePasswordViewController.h */,
-				8AD6BDF71B706CF30040437E /* ChangePasswordViewController.m */,
-				8AD6BDF81B706CF30040437E /* ChangePasswordViewController.xib */,
-				8AD6BDF91B706CF30040437E /* EditInterestV2ViewController.h */,
-				8AD6BDFA1B706CF30040437E /* EditInterestV2ViewController.m */,
-				8AD6BDFB1B706CF30040437E /* EditInterestV2ViewController.xib */,
-				8AD6BDFC1B706CF30040437E /* EditInterestViewController.h */,
-				8AD6BDFD1B706CF30040437E /* EditInterestViewController.m */,
-				8AD6BDFE1B706CF30040437E /* EditInterestViewController.xib */,
-				8AD6BDFF1B706CF30040437E /* EditProfileViewController.h */,
-				8AD6BE001B706CF30040437E /* EditProfileViewController.m */,
-				8AD6BE011B706CF30040437E /* EditProfileViewController.xib */,
-				8AD6BE021B706CF30040437E /* FeedbackViewController.h */,
-				8AD6BE031B706CF30040437E /* FeedbackViewController.m */,
-				8AD6BE041B706CF30040437E /* FeedbackViewController.xib */,
-				8AD6BE051B706CF30040437E /* ForgotPasswordViewController.h */,
-				8AD6BE061B706CF30040437E /* ForgotPasswordViewController.m */,
-				8AD6BE071B706CF30040437E /* ForgotPasswordViewController.xib */,
+				0B877C0C1B95735D0024AF8B /* Old */,
 				8AD6BE081B706CF30040437E /* SettingsViewController.h */,
 				8AD6BE091B706CF30040437E /* SettingsViewController.m */,
 				8AD6C8151B709A450040437E /* SettingsViewController.xib */,
-				8AD6BE0A1B706CF30040437E /* SubmitProfileViewController.h */,
-				8AD6BE0B1B706CF30040437E /* SubmitProfileViewController.m */,
-				8AD6BE0C1B706CF30040437E /* SubmitProfileViewController.xib */,
+				8AD6BDF91B706CF30040437E /* EditInterestV2ViewController.h */,
+				8AD6BDFA1B706CF30040437E /* EditInterestV2ViewController.m */,
+				8AD6BDFB1B706CF30040437E /* EditInterestV2ViewController.xib */,
+				0B877C0D1B9573FA0024AF8B /* EditProfileV2ViewController.h */,
+				0B877C0E1B9573FA0024AF8B /* EditProfileV2ViewController.m */,
+				0B877C0F1B9573FA0024AF8B /* EditProfileV2ViewController.xib */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -3963,6 +3979,7 @@
 				8AD6C6521B70934D0040437E /* PostLiked@3x.png in Resources */,
 				8AD6C2901B7072FB0040437E /* AddLocationViewController.xib in Resources */,
 				8AD6C7141B70934D0040437E /* IconPhone@3x.png in Resources */,
+				0B877C111B9573FA0024AF8B /* EditProfileV2ViewController.xib in Resources */,
 				8AD6C77C1B70934D0040437E /* Popular@3x.png in Resources */,
 				8AD6C7EC1B70934D0040437E /* TabBarCancel@2x.png in Resources */,
 				8AD6C6B11B70934D0040437E /* BtnDelete@3x.png in Resources */,
@@ -4566,6 +4583,7 @@
 				8AD6C0CA1B706CF30040437E /* NewProfileV2ViewController.m in Sources */,
 				8A7420EC1B82F7D5005DA654 /* LoadingManager.m in Sources */,
 				8AD6C3441B707D120040437E /* BHExpandingTextView.m in Sources */,
+				0B877C101B9573FA0024AF8B /* EditProfileV2ViewController.m in Sources */,
 				8AD6BE491B706CF30040437E /* Explore2ViewController.m in Sources */,
 				0BD634FC1B71C9B800D82414 /* LeveyTabBar.m in Sources */,
 				8AD6C0B31B706CF30040437E /* ConnectionManager.m in Sources */,

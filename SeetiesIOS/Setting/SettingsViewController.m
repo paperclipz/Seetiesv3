@@ -7,8 +7,8 @@
 //
 
 #import "SettingsViewController.h"
-#import "EditProfileViewController.h"
-#import "EditInterestViewController.h"
+#import "EditProfileV2ViewController.h"
+
 #import "EditInterestV2ViewController.h"
 #import "AccountSettingViewController.h"
 #import "LLARingSpinnerView.h"
@@ -95,83 +95,6 @@
     [self.view.window.layer addAnimation:transition forKey:nil];
     //[self presentViewController:ListingDetail animated:NO completion:nil];
     [self dismissViewControllerAnimated:NO completion:nil];
-}
--(IBAction)EditProfileButton:(id)sender{
-    EditProfileViewController *EditProfileView = [[EditProfileViewController alloc]init];
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromRight;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self presentViewController:EditProfileView animated:NO completion:nil];
-}
--(IBAction)AccountSettingButton:(id)sender{
-    AccountSettingViewController *AccountSettingView = [[AccountSettingViewController alloc]init];
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromRight;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self presentViewController:AccountSettingView animated:NO completion:nil];
-}
--(IBAction)EditInterestButton:(id)sender{
-    EditInterestV2ViewController *EditInterestView = [[EditInterestV2ViewController alloc]init];
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromRight;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self presentViewController:EditInterestView animated:NO completion:nil];
-}
--(IBAction)AboutSeetiesButton:(id)sender{
-    OpenWebViewController *OpenWebView = [[OpenWebViewController alloc]init];
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromRight;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self presentViewController:OpenWebView animated:NO completion:nil];
-    [OpenWebView GetTitleString:@"AboutSeeties"];
-}
--(IBAction)TermsofUseButton:(id)sender{
-    OpenWebViewController *OpenWebView = [[OpenWebViewController alloc]init];
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromRight;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self presentViewController:OpenWebView animated:NO completion:nil];
-    [OpenWebView GetTitleString:@"TermsofUse"];
-}
--(IBAction)PrivacyPolicyButton:(id)sender{
-    OpenWebViewController *OpenWebView = [[OpenWebViewController alloc]init];
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromRight;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self presentViewController:OpenWebView animated:NO completion:nil];
-    [OpenWebView GetTitleString:@"PrivacyPolicy"];
-}
--(IBAction)FeedBackButton:(id)sender{
-    FeedbackViewController *FeedbackView = [[FeedbackViewController alloc]init];
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromRight;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self presentViewController:FeedbackView animated:NO completion:nil];
-}
--(IBAction)LogoutButton:(id)sender{
-
-    [self SendUserLogoutToServer];
 }
 -(void)SendUserLogoutToServer{
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
@@ -555,7 +478,7 @@
         NSLog(@"Profile By %@", selectedCell);
         switch (indexPath.row) {
             case 0:{
-                EditProfileViewController *EditProfileView = [[EditProfileViewController alloc]init];
+                EditProfileV2ViewController *EditProfileView = [[EditProfileV2ViewController alloc]init];
                 CATransition *transition = [CATransition animation];
                 transition.duration = 0.2;
                 transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];

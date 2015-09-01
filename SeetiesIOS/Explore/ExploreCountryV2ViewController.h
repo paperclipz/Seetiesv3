@@ -52,6 +52,9 @@
     BOOL CheckLoad_Explore;
     int CheckFirstTimeLoad;
     
+    UIView *PostView;
+    UIView *PeopleView;
+    int GetHeight;
     
     
    // LLARingSpinnerView *spinnerView;

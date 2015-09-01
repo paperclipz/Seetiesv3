@@ -86,6 +86,9 @@
     int heightcheck;
     
     IBOutlet UIButton *SortbyFullButton;
+    
+    UIView *PostsView;
+    UIView *PeopleView;
 }
 -(void)GetSearchKeyword:(NSString *)Keyword Getlat:(NSString *)lat GetLong:(NSString *)Long;
 -(void)SearchCategory:(NSString *)GetCategory Getlat:(NSString *)lat GetLong:(NSString *)Long GetCategoryName:(NSString *)CategoryName;

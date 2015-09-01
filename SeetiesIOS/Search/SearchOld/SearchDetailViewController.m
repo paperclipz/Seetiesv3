@@ -1071,153 +1071,21 @@
 }
 -(void)InitView{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    MainScroll.backgroundColor = [UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0];
     
 //    for (UIView *subview in MainScroll.subviews) {
 //        // if ([subview isKindOfClass:[UIButton class]])
 //        [subview removeFromSuperview];
 //    }
-    
-//    int TestWidth = screenWidth - 2;
-//    NSLog(@"TestWidth is %i",TestWidth);
-//    int FinalWidth = TestWidth / 3;
-//    FinalWidth += 1;
-//    NSLog(@"FinalWidth is %i",FinalWidth);
-//    int SpaceWidth = FinalWidth + 1;
-//    NSLog(@"init DataCount is %li",(long)DataCount);
-//    NSLog(@"init DataTotal is %li",(long)DataTotal);
-    
-    //girv view
-//    for (NSInteger i = DataCount; i < DataTotal; i++) {
-//        //        NSString *TempImage = [[NSString alloc]initWithFormat:@"%@",[PhotoArray objectAtIndex:i]];
-//        //        NSArray *SplitArray = [TempImage componentsSeparatedByString:@","];
-//        //        AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
-//        //        ShowImage.frame = CGRectMake(0+(i % 3)*SpaceWidth, GetHeight + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
-//        //        ShowImage.contentMode = UIViewContentModeScaleAspectFill;
-//        //        ShowImage.layer.masksToBounds = YES;
-//        //        ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
-//        //        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
-//        //        NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[LPhotoArray objectAtIndex:i]];
-//        //        if ([FullImagesURL_First length] == 0) {
-//        //            ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
-//        //        }else{
-//        //            NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL_First];
-//        //            //NSLog(@"url is %@",url);
-//        //            ShowImage.imageURL = url_NearbySmall;
-//        //        }
-//        //        [MainScroll addSubview:ShowImage];
-//        //
-//        //
-//        //        UIButton *ImageButton = [[UIButton alloc]init];
-//        //        [ImageButton setBackgroundColor:[UIColor clearColor]];
-//        //        [ImageButton setTitle:@"" forState:UIControlStateNormal];
-//        //        ImageButton.frame = CGRectMake(0+(i % 3)*SpaceWidth, GetHeight + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
-//        //        ImageButton.tag = i;
-//        //        [ImageButton addTarget:self action:@selector(ProductButton:) forControlEvents:UIControlEventTouchUpInside];
-//        //        
-//        //        [MainScroll addSubview:ImageButton];
-//        //        [MainScroll setContentSize:CGSizeMake(320, GetHeight + FinalWidth + (SpaceWidth * (CGFloat)(i /3)))];
-//    }
-    
-    
-//    for (NSInteger i = DataCount; i < DataTotal; i++) {
-//        AsyncImageView *ShowNearbySmallImage = [[AsyncImageView alloc]init];
-//        ShowNearbySmallImage.frame = CGRectMake(screenWidth - 100 - 15, 20 + i * 158, 100 , 100);
-//        ShowNearbySmallImage.contentMode = UIViewContentModeScaleAspectFill;
-//        ShowNearbySmallImage.backgroundColor = [UIColor clearColor];
-//        ShowNearbySmallImage.clipsToBounds = YES;
-//        ShowNearbySmallImage.tag = 99;
-//        ShowNearbySmallImage.image = [UIImage imageNamed:@"NoImage.png"];
-//        NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[LPhotoArray objectAtIndex:i]];
-//        if ([FullImagesURL length] == 0) {
-//            ShowNearbySmallImage.image = [UIImage imageNamed:@"NoImage.png"];
-//        }else{
-//            NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL];
-//            //NSLog(@"url is %@",url);
-//            ShowNearbySmallImage.imageURL = url_NearbySmall;
-//        }
-//        
-//        UIImageView *ShowLocationImage = [[UIImageView alloc]init];
-//        ShowLocationImage.frame = CGRectMake(15, 16 + i * 158, 13, 17);
-//        ShowLocationImage.image = [UIImage imageNamed:@"InfoLocation.png"];
-//        
-//        UILabel *ShowLocationLabel = [[UILabel alloc]init];
-//        ShowLocationLabel.frame = CGRectMake(40, 16 + i * 158, 165, 20);
-//        ShowLocationLabel.text = [LocationArray objectAtIndex:i];
-//        ShowLocationLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:13];
-//        ShowLocationLabel.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0];
-//        
-//        UILabel *ShowTitleLabel = [[UILabel alloc]init];
-//        ShowTitleLabel.frame = CGRectMake(15, 48 + i * 158, 170, 50);
-//        ShowTitleLabel.text = [place_nameArray objectAtIndex:i];
-//        ShowTitleLabel.numberOfLines = 2;
-//        ShowTitleLabel.textAlignment = NSTextAlignmentLeft;
-//        ShowTitleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
-//        ShowTitleLabel.textColor = [UIColor blackColor];
-//        ShowTitleLabel.backgroundColor = [UIColor clearColor];
-//        
-//        AsyncImageView *ShowUserImage = [[AsyncImageView alloc]init];
-//        ShowUserImage.frame = CGRectMake(15, 118 + i * 158, 30, 30);
-//        ShowUserImage.contentMode = UIViewContentModeScaleAspectFill;
-//        ShowUserImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
-//        ShowUserImage.layer.cornerRadius=15;
-//        ShowUserImage.layer.borderWidth=1;
-//        ShowUserImage.layer.masksToBounds = YES;
-//        ShowUserImage.layer.borderColor=[[UIColor clearColor] CGColor];
-//        ShowUserImage.image = [UIImage imageNamed:@"avatar.png"];
-//        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserImage];
-//        NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserInfo_UrlArray objectAtIndex:i]];
-//        NSLog(@"FullImagesURL1 ====== %@",FullImagesURL1);
-//        if ([FullImagesURL1 length] == 0) {
-//            ShowUserImage.image = [UIImage imageNamed:@"avatar.png"];
-//        }else{
-//            NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
-//            //NSLog(@"url_NearbyBig is %@",url_NearbyBig);
-//            ShowUserImage.imageURL = url_UserImage;
-//        }
-//        
-//        UILabel *ShowUserName = [[UILabel alloc]init];
-//        ShowUserName.frame = CGRectMake(60, 118 + i * 158, 250, 30);
-//        ShowUserName.text = [UserInfo_NameArray objectAtIndex:i];
-//        ShowUserName.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
-//        ShowUserName.textColor = [UIColor lightGrayColor];
-//        
-//        
-//        UIButton *Line01 = [UIButton buttonWithType:UIButtonTypeCustom];
-//        [Line01 setTitle:@"" forState:UIControlStateNormal];
-//        [Line01 setFrame:CGRectMake(0, 158 + i * 158, screenWidth, 1)];
-//        [Line01 setBackgroundColor:[UIColor colorWithRed:239.0/255.0f green:239.0/255.0f blue:244.0/255.0f alpha:1.0]];
-//        
-//        UIButton *ViewProductButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//        [ViewProductButton setFrame:CGRectMake(15, 20+ i * 158, screenWidth - 30, 150)];
-//        [ViewProductButton setTitle:@"" forState:UIControlStateNormal];
-//        [ViewProductButton setBackgroundColor:[UIColor clearColor]];
-//        ViewProductButton.tag = i;
-//        [ViewProductButton addTarget:self action:@selector(ProductButton:) forControlEvents:UIControlEventTouchUpInside];
-//        
-//        
-//        [MainScroll addSubview:ShowNearbySmallImage];
-//        [MainScroll addSubview:ShowLocationLabel];
-//        [MainScroll addSubview:ShowLocationImage];
-//        [MainScroll addSubview:ShowTitleLabel];
-//        [MainScroll addSubview:ShowUserImage];
-//        [MainScroll addSubview:ShowUserName];
-//        [MainScroll addSubview:Line01];
-//        [MainScroll addSubview:ViewProductButton];
-//        
-//        [MainScroll setScrollEnabled:YES];
-//        MainScroll.backgroundColor = [UIColor whiteColor];
-//        [MainScroll setContentSize:CGSizeMake(screenWidth, 158 + i * 158)];
-//    }
-    
     heightcheck += 20;
     
-    NSString *TempStringPosts = [[NSString alloc]initWithFormat:@"13 Posts"];
+    NSString *TempStringPosts = [[NSString alloc]initWithFormat:@"%lu Posts",(unsigned long)[place_nameArray count]];
     NSString *TempStringPeople = [[NSString alloc]initWithFormat:@"3 People"];
     
     NSArray *itemArray = [NSArray arrayWithObjects:TempStringPosts, TempStringPeople, nil];
     UISegmentedControl *ProfileControl = [[UISegmentedControl alloc]initWithItems:itemArray];
     ProfileControl.frame = CGRectMake(15, heightcheck, screenWidth - 30, 29);
-    //[ProfileControl addTarget:self action:@selector(segmentAction:) forControlEvents: UIControlEventValueChanged];
+    [ProfileControl addTarget:self action:@selector(segmentAction:) forControlEvents: UIControlEventValueChanged];
     ProfileControl.selectedSegmentIndex = 0;
     [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
     [MainScroll addSubview:ProfileControl];
@@ -1225,13 +1093,409 @@
     
     heightcheck += 49;
     
+    PostsView = [[UIView alloc]init];
+    PostsView.frame = CGRectMake(0, heightcheck, screenWidth, 400);
+    PostsView.backgroundColor = [UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0];
+    [MainScroll addSubview:PostsView];
+    
+    PeopleView = [[UIView alloc]init];
+    PeopleView.frame = CGRectMake(0, heightcheck, screenWidth, 600);
+    PeopleView.backgroundColor = [UIColor whiteColor];
+    [MainScroll addSubview:PeopleView];
+    
+    PeopleView.hidden = YES;
+    PostsView.hidden = NO;
+    
+    [self InitPostsDataView];
+    
+    
+//    for (NSInteger i = DataCount; i < DataTotal; i++) {
+//        
+//        AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
+//        ShowImage.frame = CGRectMake(0, heightcheck + i, screenWidth, 245);
+//        ShowImage.contentMode = UIViewContentModeScaleAspectFill;
+//        ShowImage.layer.masksToBounds = YES;
+//        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
+//        NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[LPhotoArray objectAtIndex:i]];
+//        if ([FullImagesURL_First length] == 0) {
+//            ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
+//        }else{
+//            NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL_First];
+//            ShowImage.imageURL = url_NearbySmall;
+//        }
+//        [MainScroll addSubview:ShowImage];
+//        
+//        UIImageView *ImageShade = [[UIImageView alloc]init];
+//        ImageShade.frame = CGRectMake(0, heightcheck + i, screenWidth, 149);
+//        ImageShade.image = [UIImage imageNamed:@"ImageShade.png"];
+//        ImageShade.alpha = 0.5;
+//        [MainScroll addSubview:ImageShade];
+//        
+//        UIButton *SelectButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//        SelectButton.frame = CGRectMake(0, heightcheck + i, screenWidth, 340);
+//        [SelectButton setTitle:@"" forState:UIControlStateNormal];
+//        SelectButton.tag = i;
+//        [SelectButton setBackgroundColor:[UIColor clearColor]];
+//        [SelectButton addTarget:self action:@selector(ProductButton:) forControlEvents:UIControlEventTouchUpInside];
+//        [MainScroll addSubview:SelectButton];
+//        
+//        
+//        UIImageView *ShowPin = [[UIImageView alloc]init];
+//        ShowPin.image = [UIImage imageNamed:@"FeedPin.png"];
+//        ShowPin.frame = CGRectMake(15, 259 + heightcheck + i, 8, 11);
+//        [MainScroll addSubview:ShowPin];
+//        
+//        NSString *TempDistanceString = [[NSString alloc]initWithFormat:@"%@",[DistanceArray objectAtIndex:i]];
+//        if ([TempDistanceString isEqualToString:@"0"]) {
+//            
+//        }else{
+//            CGFloat strFloat = (CGFloat)[TempDistanceString floatValue] / 1000;
+//            int x_Nearby = [TempDistanceString intValue] / 1000;
+//            // NSLog(@"x_Nearby is %i",x_Nearby);
+//            
+//            NSString *FullShowLocatinString;
+//            if (x_Nearby < 100) {
+//                if (x_Nearby <= 1) {
+//                    FullShowLocatinString = [[NSString alloc]initWithFormat:@"within 1km"];
+//                }else{
+//                    FullShowLocatinString = [[NSString alloc]initWithFormat:@"within %.fkm",strFloat];
+//                }
+//                
+//            }else{
+//                FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@",[SearchDisplayNameArray objectAtIndex:i]];
+//                
+//            }
+//            
+//            //  NSLog(@"FullShowLocatinString is %@",FullShowLocatinString);
+//            
+//            UILabel *ShowDistance = [[UILabel alloc]init];
+//            ShowDistance.frame = CGRectMake(screenWidth - 115, 254 + heightcheck + i, 100, 20);
+//            ShowDistance.text = FullShowLocatinString;
+//            ShowDistance.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
+//            ShowDistance.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+//            ShowDistance.textAlignment = NSTextAlignmentRight;
+//            ShowDistance.backgroundColor = [UIColor clearColor];
+//            [MainScroll addSubview:ShowDistance];
+//        }
+//        
+//        
+//        
+//        UILabel *ShowAddress = [[UILabel alloc]init];
+//        ShowAddress.frame = CGRectMake(30, 254 + heightcheck + i, screenWidth - 150, 20);
+//        ShowAddress.text = [place_nameArray objectAtIndex:i];
+//        ShowAddress.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
+//        ShowAddress.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+//        ShowAddress.backgroundColor = [UIColor clearColor];
+//        [MainScroll addSubview:ShowAddress];
+//        
+//        
+//        
+//        heightcheck += 284;
+//        
+//        NSString *TempGetStirng = [[NSString alloc]initWithFormat:@"%@",[TitleArray objectAtIndex:i]];
+//        if ([TempGetStirng length] == 0 || [TempGetStirng isEqualToString:@""] || [TempGetStirng isEqualToString:@"(null)"]) {
+//        }else{
+//            UILabel *TempShowTitle = [[UILabel alloc]init];
+//            TempShowTitle.frame = CGRectMake(15, heightcheck + i, screenWidth - 30, 40);
+//            TempShowTitle.text = TempGetStirng;
+//            TempShowTitle.backgroundColor = [UIColor clearColor];
+//            TempShowTitle.numberOfLines = 2;
+//            TempShowTitle.textAlignment = NSTextAlignmentLeft;
+//            TempShowTitle.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+//            TempShowTitle.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:15];
+//            //            ShowTitle.attributedText = [NSAttributedString dvs_attributedStringWithString:TempGetStirng
+//            //                                                                                               tracking:100
+//            //                                                                                                   font:[UIFont fontWithName:@"HelveticaNeue-Bold" size:15]];
+//            [MainScroll addSubview:TempShowTitle];
+//
+//            if([TempShowTitle sizeThatFits:CGSizeMake(screenWidth - 30, CGFLOAT_MAX)].height!=TempShowTitle.frame.size.height)
+//            {
+//                TempShowTitle.frame = CGRectMake(15, heightcheck + i, screenWidth - 30,[TempShowTitle sizeThatFits:CGSizeMake(screenWidth - 30, CGFLOAT_MAX)].height);
+//            }
+//            heightcheck += TempShowTitle.frame.size.height + 10;
+//            
+//            //   heightcheck += 30;
+//        }
+//        
+//        NSString *TempGetMessage = [[NSString alloc]initWithFormat:@"%@",[MessageArray objectAtIndex:i]];
+//        TempGetMessage = [TempGetMessage stringByDecodingXMLEntities];
+//        if ([TempGetMessage length] == 0 || [TempGetMessage isEqualToString:@""] || [TempGetMessage isEqualToString:@"(null)"]) {
+//        }else{
+//            UILabel *ShowMessage = [[UILabel alloc]init];
+//            ShowMessage.frame = CGRectMake(15, heightcheck + i, screenWidth - 30, 40);
+//            //  ShowMessage.text = TempGetMessage;
+//            NSString *TempGetStirngMessage = [[NSString alloc]initWithFormat:@"%@",TempGetMessage];
+//            NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"[]:"];
+//            TempGetStirngMessage = [[TempGetStirngMessage componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString:@""];
+//            UILabel *ShowCaptionText = [[UILabel alloc]init];
+//            //  ShowCaptionText.frame = CGRectMake(15 + i *screenWidth, 265, screenWidth - 30, 60);
+//            ShowCaptionText.numberOfLines = 0;
+//            ShowCaptionText.textColor = [UIColor whiteColor];
+//            // ShowCaptionText.text = [captionArray objectAtIndex:i];
+//            NSMutableAttributedString * string = [[NSMutableAttributedString alloc]initWithString:TempGetStirngMessage];
+//            NSString *str = TempGetStirngMessage;
+//            NSError *error = nil;
+//            
+//            //I Use regex to detect the pattern I want to change color
+//            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"#(\\w+)" options:0 error:&error];
+//            NSArray *matches = [regex matchesInString:str options:0 range:NSMakeRange(0, str.length)];
+//            for (NSTextCheckingResult *match in matches) {
+//                NSRange wordRange = [match rangeAtIndex:0];
+//                [string addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] range:wordRange];
+//            }
+//            
+//            [ShowMessage setAttributedText:string];
+//            
+//            ShowMessage.backgroundColor = [UIColor clearColor];
+//            ShowMessage.numberOfLines = 3;
+//            ShowMessage.textAlignment = NSTextAlignmentLeft;
+//            ShowMessage.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+//            ShowMessage.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+//            //            ShowMessage.attributedText = [NSAttributedString dvs_attributedStringWithString:TempGetMessage
+//            //                                                                                 tracking:100
+//            //                                                                                     font:[UIFont fontWithName:@"HelveticaNeue-Light" size:15]];
+//            [MainScroll addSubview:ShowMessage];
+//            
+//            if([ShowMessage sizeThatFits:CGSizeMake(screenWidth - 30, CGFLOAT_MAX)].height!=ShowMessage.frame.size.height)
+//            {
+//                ShowMessage.frame = CGRectMake(15, heightcheck + i, screenWidth - 30,[ShowMessage sizeThatFits:CGSizeMake(screenWidth - 30, CGFLOAT_MAX)].height);
+//            }
+//            heightcheck += ShowMessage.frame.size.height + 10;
+//            //   heightcheck += 30;
+//        }
+//        
+//        
+//        
+//        AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
+//        ShowUserProfileImage.frame = CGRectMake(15, heightcheck + i , 30, 30);
+//        ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
+//        ShowUserProfileImage.image = [UIImage imageNamed:@"avatar.png"];
+//        ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
+//        ShowUserProfileImage.layer.cornerRadius = 15;
+//        ShowUserProfileImage.layer.borderWidth=0;
+//        ShowUserProfileImage.layer.masksToBounds = YES;
+//        ShowUserProfileImage.layer.borderColor=[[UIColor whiteColor] CGColor];
+//        [MainScroll addSubview:ShowUserProfileImage];
+//        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
+//        NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[UserInfo_UrlArray objectAtIndex:i]];
+//        if ([FullImagesURL length] == 0) {
+//            ShowUserProfileImage.image = [UIImage imageNamed:@"avatar.png"];
+//        }else{
+//            NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL];
+//            //NSLog(@"url is %@",url);
+//            ShowUserProfileImage.imageURL = url_NearbySmall;
+//        }
+//        
+//        
+//        UIButton *OpenProfileButton = [[UIButton alloc]initWithFrame:CGRectMake(15, heightcheck + i , 200, 30)];
+//        [OpenProfileButton setTitle:@"" forState:UIControlStateNormal];
+//        OpenProfileButton.tag = i;
+//        OpenProfileButton.backgroundColor = [UIColor clearColor];
+//        [OpenProfileButton addTarget:self action:@selector(ExpertsButton2:) forControlEvents:UIControlEventTouchUpInside];
+//        [MainScroll addSubview:OpenProfileButton];
+//        
+//        UILabel *ShowUserName = [[UILabel alloc]init];
+//        ShowUserName.frame = CGRectMake(55, heightcheck + i, 200, 30);
+//        ShowUserName.text = [UserInfo_NameArray objectAtIndex:i];
+//        ShowUserName.backgroundColor = [UIColor clearColor];
+//        ShowUserName.textColor = [UIColor colorWithRed:248.0f/255.0f green:78.0f/255.0f blue:93.0f/255.0f alpha:1.0f];
+//        ShowUserName.textAlignment = NSTextAlignmentLeft;
+//        ShowUserName.font = [UIFont fontWithName:@"AdrianeText-BoldItalic" size:15];
+//        [MainScroll addSubview:ShowUserName];
+//        
+//        NSString *CheckCommentTotal = [[NSString alloc]initWithFormat:@"%@",[TotalCommentArray objectAtIndex:i]];
+//        NSString *CheckLikeTotal = [[NSString alloc]initWithFormat:@"%@",[TotalLikeArray objectAtIndex:i]];
+//        NSString *CheckSelfLike = [[NSString alloc]initWithFormat:@"%@",[SelfCheckLikeArray objectAtIndex:i]];
+//        
+//        
+//        
+//        if ([CheckCommentTotal isEqualToString:@"0"]) {
+//            
+//            UIImageView *ShowCommentIcon = [[UIImageView alloc]init];
+//            ShowCommentIcon.image = [UIImage imageNamed:@"PostComment.png"];
+//            ShowCommentIcon.frame = CGRectMake(screenWidth - 23 - 15, heightcheck + i + 6 ,23, 19);
+//            //    ShowCommentIcon.backgroundColor = [UIColor redColor];
+//            [MainScroll addSubview:ShowCommentIcon];
+//            
+//            if ([CheckLikeTotal isEqualToString:@"0"]) {
+//                
+//                UIImageView *ShowLikesIcon = [[UIImageView alloc]init];
+//                ShowLikesIcon.image = [UIImage imageNamed:@"PostLike.png"];
+//                ShowLikesIcon.frame = CGRectMake(screenWidth - 23 - 15 - 23 - 20 , heightcheck + i + 6 ,23, 19);
+//                //   ShowLikesIcon.backgroundColor = [UIColor purpleColor];
+//                [MainScroll addSubview:ShowLikesIcon];
+//            }else{
+//                
+//                UIImageView *ShowLikesIcon = [[UIImageView alloc]init];
+//                if ([CheckSelfLike isEqualToString:@"0"]) {
+//                    ShowLikesIcon.image = [UIImage imageNamed:@"PostLike.png"];
+//                }else{
+//                    ShowLikesIcon.image = [UIImage imageNamed:@"PostLikeRed.png"];
+//                }
+//                // ShowLikesIcon.image = [UIImage imageNamed:@"PostLike.png"];
+//                //    ShowLikesIcon.backgroundColor = [UIColor purpleColor];
+//                ShowLikesIcon.frame = CGRectMake(screenWidth - 78 - 23, heightcheck + i + 6 ,23, 19);
+//                [MainScroll addSubview:ShowLikesIcon];
+//                
+//                UILabel *ShowLikeCount = [[UILabel alloc]init];
+//                ShowLikeCount.frame = CGRectMake(screenWidth - 78, heightcheck + i, 20, 30);
+//                ShowLikeCount.text = CheckLikeTotal;
+//                ShowLikeCount.textAlignment = NSTextAlignmentRight;
+//                if ([CheckSelfLike isEqualToString:@"0"]) {
+//                    ShowLikeCount.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+//                }else{
+//                    ShowLikeCount.textColor = [UIColor colorWithRed:248.0f/255.0f green:78.0f/255.0f blue:93.0f/255.0f alpha:1.0f];
+//                }
+//                //    ShowLikeCount.backgroundColor = [UIColor purpleColor];
+//                ShowLikeCount.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+//                [MainScroll addSubview:ShowLikeCount];
+//            }
+//        }else{
+//            
+//            UIImageView *ShowCommentIcon = [[UIImageView alloc]init];
+//            ShowCommentIcon.image = [UIImage imageNamed:@"PostComment.png"];
+//            ShowCommentIcon.frame = CGRectMake(screenWidth - 35 - 23 , heightcheck + i + 6 ,23, 19);
+//            //  ShowCommentIcon.backgroundColor = [UIColor redColor];
+//            [MainScroll addSubview:ShowCommentIcon];
+//            
+//            UILabel *ShowCommentCount = [[UILabel alloc]init];
+//            ShowCommentCount.frame = CGRectMake(screenWidth - 20 - 15, heightcheck + i, 20, 30);
+//            ShowCommentCount.text = CheckCommentTotal;
+//            ShowCommentCount.textAlignment = NSTextAlignmentRight;
+//            //   ShowCommentCount.backgroundColor = [UIColor redColor];
+//            ShowCommentCount.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+//            ShowCommentCount.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+//            [MainScroll addSubview:ShowCommentCount];
+//            
+//            if ([CheckLikeTotal isEqualToString:@"0"]) {
+//                
+//                UIImageView *ShowLikesIcon = [[UIImageView alloc]init];
+//                ShowLikesIcon.image = [UIImage imageNamed:@"PostLike.png"];
+//                ShowLikesIcon.frame = CGRectMake(screenWidth - 101, heightcheck + i + 6 ,23, 19);
+//                // ShowLikesIcon.backgroundColor = [UIColor purpleColor];
+//                [MainScroll addSubview:ShowLikesIcon];
+//            }else{
+//                
+//                UIImageView *ShowLikesIcon = [[UIImageView alloc]init];
+//                if ([CheckSelfLike isEqualToString:@"0"]) {
+//                    ShowLikesIcon.image = [UIImage imageNamed:@"PostLike.png"];
+//                }else{
+//                    ShowLikesIcon.image = [UIImage imageNamed:@"PostLikeRed.png"];
+//                }
+//                // ShowLikesIcon.image = [UIImage imageNamed:@"PostLike.png"];
+//                //   ShowLikesIcon.backgroundColor = [UIColor purpleColor];
+//                ShowLikesIcon.frame = CGRectMake(screenWidth - 121, heightcheck + i + 6 ,23, 19);
+//                [MainScroll addSubview:ShowLikesIcon];
+//                
+//                UILabel *ShowLikeCount = [[UILabel alloc]init];
+//                ShowLikeCount.frame = CGRectMake(screenWidth - 98, heightcheck + i, 20, 30);
+//                ShowLikeCount.text = CheckLikeTotal;
+//                ShowLikeCount.textAlignment = NSTextAlignmentRight;
+//                if ([CheckSelfLike isEqualToString:@"0"]) {
+//                    ShowLikeCount.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+//                }else{
+//                    ShowLikeCount.textColor = [UIColor colorWithRed:248.0f/255.0f green:78.0f/255.0f blue:93.0f/255.0f alpha:1.0f];
+//                }
+//                // ShowLikeCount.backgroundColor = [UIColor purpleColor];
+//                ShowLikeCount.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+//                [MainScroll addSubview:ShowLikeCount];
+//            }
+//            
+//            
+//        }
+//        
+//        
+//        heightcheck += 55;
+//        
+//        UIImageView *ShowGradient = [[UIImageView alloc]init];
+//        ShowGradient.frame = CGRectMake(0, heightcheck + i, screenWidth, 25);
+//        ShowGradient.image = [UIImage imageNamed:@"FeedGradient.png"];
+//        [MainScroll addSubview:ShowGradient];
+//        heightcheck += 24;
+//        
+//        [MainScroll setContentSize:CGSizeMake(screenWidth, heightcheck + i)];
+//    }
+
+}
+- (void)segmentAction:(UISegmentedControl *)segment
+{
+    
+    switch (segment.selectedSegmentIndex) {
+        case 0:
+            NSLog(@"PostView click");
+            PostsView.hidden = NO;
+            PeopleView.hidden = YES;
+            [self InitPostsDataView];
+            
+            break;
+        case 1:
+            NSLog(@"PeopleView click");
+            PostsView.hidden = YES;
+            PeopleView.hidden = NO;
+            
+            [self initPeopleDataView];
+            
+            break;
+        default:
+            break;
+    }
+    
+    //[self InitView];
+}
+
+-(void)InitPostsDataView{
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    int PostGetHeight = 0;
+    
     
     for (NSInteger i = DataCount; i < DataTotal; i++) {
         
+        UIButton *TempButton = [[UIButton alloc]init];
+        TempButton.frame = CGRectMake(15, PostGetHeight, screenWidth - 30, 150);
+        [TempButton setTitle:@"" forState:UIControlStateNormal];
+        TempButton.backgroundColor = [UIColor whiteColor];
+        TempButton.layer.cornerRadius = 5;
+        [PostsView addSubview: TempButton];
+        
+        AsyncImageView *UserImage = [[AsyncImageView alloc]init];
+        UserImage.frame = CGRectMake(25, PostGetHeight + 10, 30, 30);
+        UserImage.contentMode = UIViewContentModeScaleAspectFill;
+        UserImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
+        UserImage.layer.cornerRadius=15;
+        UserImage.layer.borderWidth=0;
+         UserImage.layer.masksToBounds = YES;
+        UserImage.layer.borderColor=[[UIColor whiteColor] CGColor];
+        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:UserImage];
+        NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[UserInfo_UrlArray objectAtIndex:i]];
+        if ([FullImagesURL length] == 0) {
+            UserImage.image = [UIImage imageNamed:@"avatar.png"];
+        }else{
+            NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL];
+            UserImage.imageURL = url_NearbySmall;
+        }
+        [PostsView addSubview:UserImage];
+        
+        UILabel *ShowUserName = [[UILabel alloc]init];
+        ShowUserName.frame = CGRectMake(70, PostGetHeight + 10, 200, 30);
+        ShowUserName.text = [UserInfo_NameArray objectAtIndex:i];
+        ShowUserName.backgroundColor = [UIColor clearColor];
+        ShowUserName.textColor = [UIColor blackColor];
+        ShowUserName.textAlignment = NSTextAlignmentLeft;
+        ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+        [PostsView addSubview:ShowUserName];
+        
+        UIButton *Line01 = [[UIButton alloc]init];
+        Line01.frame = CGRectMake(15, PostGetHeight + 50, screenWidth - 30, 1);
+        [Line01 setTitle:@"" forState:UIControlStateNormal];//238
+        [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+        [PostsView addSubview:Line01];
+        
         AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
-        ShowImage.frame = CGRectMake(0, heightcheck + i, screenWidth, 245);
+        ShowImage.frame = CGRectMake(25, PostGetHeight + 60, 80, 80);
         ShowImage.contentMode = UIViewContentModeScaleAspectFill;
         ShowImage.layer.masksToBounds = YES;
+        ShowImage.layer.cornerRadius = 5;
+        ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
         NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[LPhotoArray objectAtIndex:i]];
         if ([FullImagesURL_First length] == 0) {
@@ -1240,300 +1504,107 @@
             NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL_First];
             ShowImage.imageURL = url_NearbySmall;
         }
-        [MainScroll addSubview:ShowImage];
-        
-        UIImageView *ImageShade = [[UIImageView alloc]init];
-        ImageShade.frame = CGRectMake(0, heightcheck + i, screenWidth, 149);
-        ImageShade.image = [UIImage imageNamed:@"ImageShade.png"];
-        ImageShade.alpha = 0.5;
-        [MainScroll addSubview:ImageShade];
-        
-        UIButton *SelectButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        SelectButton.frame = CGRectMake(0, heightcheck + i, screenWidth, 340);
-        [SelectButton setTitle:@"" forState:UIControlStateNormal];
-        SelectButton.tag = i;
-        [SelectButton setBackgroundColor:[UIColor clearColor]];
-        [SelectButton addTarget:self action:@selector(ProductButton:) forControlEvents:UIControlEventTouchUpInside];
-        [MainScroll addSubview:SelectButton];
+
+        [PostsView addSubview:ShowImage];
         
         
+        UILabel *TempShowTitle = [[UILabel alloc]init];
+        TempShowTitle.frame = CGRectMake(120, PostGetHeight + 60, screenWidth - 170, 20);
+        TempShowTitle.text = [TitleArray objectAtIndex:i];
+        TempShowTitle.backgroundColor = [UIColor clearColor];
+        TempShowTitle.textAlignment = NSTextAlignmentLeft;
+        TempShowTitle.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+        TempShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+        [PostsView addSubview:TempShowTitle];
+
         UIImageView *ShowPin = [[UIImageView alloc]init];
         ShowPin.image = [UIImage imageNamed:@"FeedPin.png"];
-        ShowPin.frame = CGRectMake(15, 259 + heightcheck + i, 8, 11);
-        [MainScroll addSubview:ShowPin];
+        ShowPin.frame = CGRectMake(120, PostGetHeight + 82, 8, 11);
+        [PostsView addSubview:ShowPin];
         
-        NSString *TempDistanceString = [[NSString alloc]initWithFormat:@"%@",[DistanceArray objectAtIndex:i]];
-        if ([TempDistanceString isEqualToString:@"0"]) {
-            
-        }else{
-            CGFloat strFloat = (CGFloat)[TempDistanceString floatValue] / 1000;
-            int x_Nearby = [TempDistanceString intValue] / 1000;
-            // NSLog(@"x_Nearby is %i",x_Nearby);
-            
-            NSString *FullShowLocatinString;
-            if (x_Nearby < 100) {
-                if (x_Nearby <= 1) {
-                    FullShowLocatinString = [[NSString alloc]initWithFormat:@"within 1km"];
-                }else{
-                    FullShowLocatinString = [[NSString alloc]initWithFormat:@"within %.fkm",strFloat];
-                }
-                
-            }else{
-                FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@",[SearchDisplayNameArray objectAtIndex:i]];
-                
-            }
-            
-            //  NSLog(@"FullShowLocatinString is %@",FullShowLocatinString);
-            
-            UILabel *ShowDistance = [[UILabel alloc]init];
-            ShowDistance.frame = CGRectMake(screenWidth - 115, 254 + heightcheck + i, 100, 20);
-            ShowDistance.text = FullShowLocatinString;
-            ShowDistance.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
-            ShowDistance.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
-            ShowDistance.textAlignment = NSTextAlignmentRight;
-            ShowDistance.backgroundColor = [UIColor clearColor];
-            [MainScroll addSubview:ShowDistance];
-        }
+        UILabel *ShowPlaceName = [[UILabel alloc]init];
+        ShowPlaceName.frame = CGRectMake(140, PostGetHeight + 80, screenWidth - 190, 20);
+        ShowPlaceName.text = [place_nameArray objectAtIndex:i];
+        ShowPlaceName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+        ShowPlaceName.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0];
+        ShowPlaceName.textAlignment = NSTextAlignmentLeft;
+        ShowPlaceName.backgroundColor = [UIColor clearColor];
+        [PostsView addSubview:ShowPlaceName];
+        
+        UILabel *ShowLocation = [[UILabel alloc]init];
+        ShowLocation.frame = CGRectMake(120, PostGetHeight + 100, screenWidth - 170, 20);
+        ShowLocation.text = @"Kuala Limpur . Open now";
+        ShowLocation.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+        ShowLocation.textColor = [UIColor grayColor];
+        ShowLocation.textAlignment = NSTextAlignmentLeft;
+        ShowLocation.backgroundColor = [UIColor clearColor];
+        [PostsView addSubview:ShowLocation];
         
         
+        PostGetHeight += 160;
         
-        UILabel *ShowAddress = [[UILabel alloc]init];
-        ShowAddress.frame = CGRectMake(30, 254 + heightcheck + i, screenWidth - 150, 20);
-        ShowAddress.text = [place_nameArray objectAtIndex:i];
-        ShowAddress.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
-        ShowAddress.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
-        ShowAddress.backgroundColor = [UIColor clearColor];
-        [MainScroll addSubview:ShowAddress];
+    }
+    PostsView.frame = CGRectMake(0, heightcheck, screenWidth, PostGetHeight);
+    
+    // [MainScroll setContentSize:CGSizeMake(320, PostView.frame.size.height)];
+    CGSize contentSize = MainScroll.frame.size;
+    contentSize.height = heightcheck + PostsView.frame.size.height;
+    MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    MainScroll.contentSize = contentSize;
+}
+-(void)initPeopleDataView{
+    
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    int PeopleHeight = 0;
+
+    for (int i = 0; i < 5; i ++) {
         
-        
-        
-        heightcheck += 284;
-        
-        NSString *TempGetStirng = [[NSString alloc]initWithFormat:@"%@",[TitleArray objectAtIndex:i]];
-        if ([TempGetStirng length] == 0 || [TempGetStirng isEqualToString:@""] || [TempGetStirng isEqualToString:@"(null)"]) {
-        }else{
-            UILabel *TempShowTitle = [[UILabel alloc]init];
-            TempShowTitle.frame = CGRectMake(15, heightcheck + i, screenWidth - 30, 40);
-            TempShowTitle.text = TempGetStirng;
-            TempShowTitle.backgroundColor = [UIColor clearColor];
-            TempShowTitle.numberOfLines = 2;
-            TempShowTitle.textAlignment = NSTextAlignmentLeft;
-            TempShowTitle.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-            TempShowTitle.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:15];
-            //            ShowTitle.attributedText = [NSAttributedString dvs_attributedStringWithString:TempGetStirng
-            //                                                                                               tracking:100
-            //                                                                                                   font:[UIFont fontWithName:@"HelveticaNeue-Bold" size:15]];
-            [MainScroll addSubview:TempShowTitle];
-            
-            if([TempShowTitle sizeThatFits:CGSizeMake(screenWidth - 30, CGFLOAT_MAX)].height!=TempShowTitle.frame.size.height)
-            {
-                TempShowTitle.frame = CGRectMake(15, heightcheck + i, screenWidth - 30,[TempShowTitle sizeThatFits:CGSizeMake(screenWidth - 30, CGFLOAT_MAX)].height);
-            }
-            heightcheck += TempShowTitle.frame.size.height + 10;
-            
-            //   heightcheck += 30;
-        }
-        
-        NSString *TempGetMessage = [[NSString alloc]initWithFormat:@"%@",[MessageArray objectAtIndex:i]];
-        TempGetMessage = [TempGetMessage stringByDecodingXMLEntities];
-        if ([TempGetMessage length] == 0 || [TempGetMessage isEqualToString:@""] || [TempGetMessage isEqualToString:@"(null)"]) {
-        }else{
-            UILabel *ShowMessage = [[UILabel alloc]init];
-            ShowMessage.frame = CGRectMake(15, heightcheck + i, screenWidth - 30, 40);
-            //  ShowMessage.text = TempGetMessage;
-            NSString *TempGetStirngMessage = [[NSString alloc]initWithFormat:@"%@",TempGetMessage];
-            NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"[]:"];
-            TempGetStirngMessage = [[TempGetStirngMessage componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString:@""];
-            UILabel *ShowCaptionText = [[UILabel alloc]init];
-            //  ShowCaptionText.frame = CGRectMake(15 + i *screenWidth, 265, screenWidth - 30, 60);
-            ShowCaptionText.numberOfLines = 0;
-            ShowCaptionText.textColor = [UIColor whiteColor];
-            // ShowCaptionText.text = [captionArray objectAtIndex:i];
-            NSMutableAttributedString * string = [[NSMutableAttributedString alloc]initWithString:TempGetStirngMessage];
-            NSString *str = TempGetStirngMessage;
-            NSError *error = nil;
-            
-            //I Use regex to detect the pattern I want to change color
-            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"#(\\w+)" options:0 error:&error];
-            NSArray *matches = [regex matchesInString:str options:0 range:NSMakeRange(0, str.length)];
-            for (NSTextCheckingResult *match in matches) {
-                NSRange wordRange = [match rangeAtIndex:0];
-                [string addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] range:wordRange];
-            }
-            
-            [ShowMessage setAttributedText:string];
-            
-            ShowMessage.backgroundColor = [UIColor clearColor];
-            ShowMessage.numberOfLines = 3;
-            ShowMessage.textAlignment = NSTextAlignmentLeft;
-            ShowMessage.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-            ShowMessage.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
-            //            ShowMessage.attributedText = [NSAttributedString dvs_attributedStringWithString:TempGetMessage
-            //                                                                                 tracking:100
-            //                                                                                     font:[UIFont fontWithName:@"HelveticaNeue-Light" size:15]];
-            [MainScroll addSubview:ShowMessage];
-            
-            if([ShowMessage sizeThatFits:CGSizeMake(screenWidth - 30, CGFLOAT_MAX)].height!=ShowMessage.frame.size.height)
-            {
-                ShowMessage.frame = CGRectMake(15, heightcheck + i, screenWidth - 30,[ShowMessage sizeThatFits:CGSizeMake(screenWidth - 30, CGFLOAT_MAX)].height);
-            }
-            heightcheck += ShowMessage.frame.size.height + 10;
-            //   heightcheck += 30;
-        }
-        
-        
-        
-        AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
-        ShowUserProfileImage.frame = CGRectMake(15, heightcheck + i , 30, 30);
-        ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
-        ShowUserProfileImage.image = [UIImage imageNamed:@"avatar.png"];
-        ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
-        ShowUserProfileImage.layer.cornerRadius = 15;
-        ShowUserProfileImage.layer.borderWidth=0;
-        ShowUserProfileImage.layer.masksToBounds = YES;
-        ShowUserProfileImage.layer.borderColor=[[UIColor whiteColor] CGColor];
-        [MainScroll addSubview:ShowUserProfileImage];
-        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
-        NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[UserInfo_UrlArray objectAtIndex:i]];
+        AsyncImageView *UserImage = [[AsyncImageView alloc]init];
+        UserImage.frame = CGRectMake(25, PeopleHeight + 10, 60, 60);
+        UserImage.contentMode = UIViewContentModeScaleAspectFill;
+        UserImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
+        UserImage.layer.cornerRadius=30;
+        UserImage.layer.borderWidth=0;
+        UserImage.layer.masksToBounds = YES;
+        UserImage.layer.borderColor=[[UIColor whiteColor] CGColor];
+        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:UserImage];
+        NSString *FullImagesURL = @"";
         if ([FullImagesURL length] == 0) {
-            ShowUserProfileImage.image = [UIImage imageNamed:@"avatar.png"];
+            UserImage.image = [UIImage imageNamed:@"avatar.png"];
         }else{
             NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL];
-            //NSLog(@"url is %@",url);
-            ShowUserProfileImage.imageURL = url_NearbySmall;
+            UserImage.imageURL = url_NearbySmall;
         }
-        
-        
-        UIButton *OpenProfileButton = [[UIButton alloc]initWithFrame:CGRectMake(15, heightcheck + i , 200, 30)];
-        [OpenProfileButton setTitle:@"" forState:UIControlStateNormal];
-        OpenProfileButton.tag = i;
-        OpenProfileButton.backgroundColor = [UIColor clearColor];
-        [OpenProfileButton addTarget:self action:@selector(ExpertsButton2:) forControlEvents:UIControlEventTouchUpInside];
-        [MainScroll addSubview:OpenProfileButton];
+        [PeopleView addSubview:UserImage];
         
         UILabel *ShowUserName = [[UILabel alloc]init];
-        ShowUserName.frame = CGRectMake(55, heightcheck + i, 200, 30);
-        ShowUserName.text = [UserInfo_NameArray objectAtIndex:i];
+        ShowUserName.frame = CGRectMake(100, PeopleHeight + 10, 200, 60);
+        ShowUserName.text = @"ahyongah";
         ShowUserName.backgroundColor = [UIColor clearColor];
-        ShowUserName.textColor = [UIColor colorWithRed:248.0f/255.0f green:78.0f/255.0f blue:93.0f/255.0f alpha:1.0f];
+        ShowUserName.textColor = [UIColor blackColor];
         ShowUserName.textAlignment = NSTextAlignmentLeft;
-        ShowUserName.font = [UIFont fontWithName:@"AdrianeText-BoldItalic" size:15];
-        [MainScroll addSubview:ShowUserName];
+        ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+        [PeopleView addSubview:ShowUserName];
         
-        NSString *CheckCommentTotal = [[NSString alloc]initWithFormat:@"%@",[TotalCommentArray objectAtIndex:i]];
-        NSString *CheckLikeTotal = [[NSString alloc]initWithFormat:@"%@",[TotalLikeArray objectAtIndex:i]];
-        NSString *CheckSelfLike = [[NSString alloc]initWithFormat:@"%@",[SelfCheckLikeArray objectAtIndex:i]];
+        UIButton *Line01 = [[UIButton alloc]init];
+        Line01.frame = CGRectMake(100, PeopleHeight + 80, screenWidth - 30, 1);
+        [Line01 setTitle:@"" forState:UIControlStateNormal];//238
+        [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+        [PeopleView addSubview:Line01];
         
+        PeopleHeight += 80;
         
-        
-        if ([CheckCommentTotal isEqualToString:@"0"]) {
-            
-            UIImageView *ShowCommentIcon = [[UIImageView alloc]init];
-            ShowCommentIcon.image = [UIImage imageNamed:@"PostComment.png"];
-            ShowCommentIcon.frame = CGRectMake(screenWidth - 23 - 15, heightcheck + i + 6 ,23, 19);
-            //    ShowCommentIcon.backgroundColor = [UIColor redColor];
-            [MainScroll addSubview:ShowCommentIcon];
-            
-            if ([CheckLikeTotal isEqualToString:@"0"]) {
-                
-                UIImageView *ShowLikesIcon = [[UIImageView alloc]init];
-                ShowLikesIcon.image = [UIImage imageNamed:@"PostLike.png"];
-                ShowLikesIcon.frame = CGRectMake(screenWidth - 23 - 15 - 23 - 20 , heightcheck + i + 6 ,23, 19);
-                //   ShowLikesIcon.backgroundColor = [UIColor purpleColor];
-                [MainScroll addSubview:ShowLikesIcon];
-            }else{
-                
-                UIImageView *ShowLikesIcon = [[UIImageView alloc]init];
-                if ([CheckSelfLike isEqualToString:@"0"]) {
-                    ShowLikesIcon.image = [UIImage imageNamed:@"PostLike.png"];
-                }else{
-                    ShowLikesIcon.image = [UIImage imageNamed:@"PostLikeRed.png"];
-                }
-                // ShowLikesIcon.image = [UIImage imageNamed:@"PostLike.png"];
-                //    ShowLikesIcon.backgroundColor = [UIColor purpleColor];
-                ShowLikesIcon.frame = CGRectMake(screenWidth - 78 - 23, heightcheck + i + 6 ,23, 19);
-                [MainScroll addSubview:ShowLikesIcon];
-                
-                UILabel *ShowLikeCount = [[UILabel alloc]init];
-                ShowLikeCount.frame = CGRectMake(screenWidth - 78, heightcheck + i, 20, 30);
-                ShowLikeCount.text = CheckLikeTotal;
-                ShowLikeCount.textAlignment = NSTextAlignmentRight;
-                if ([CheckSelfLike isEqualToString:@"0"]) {
-                    ShowLikeCount.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-                }else{
-                    ShowLikeCount.textColor = [UIColor colorWithRed:248.0f/255.0f green:78.0f/255.0f blue:93.0f/255.0f alpha:1.0f];
-                }
-                //    ShowLikeCount.backgroundColor = [UIColor purpleColor];
-                ShowLikeCount.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
-                [MainScroll addSubview:ShowLikeCount];
-            }
-        }else{
-            
-            UIImageView *ShowCommentIcon = [[UIImageView alloc]init];
-            ShowCommentIcon.image = [UIImage imageNamed:@"PostComment.png"];
-            ShowCommentIcon.frame = CGRectMake(screenWidth - 35 - 23 , heightcheck + i + 6 ,23, 19);
-            //  ShowCommentIcon.backgroundColor = [UIColor redColor];
-            [MainScroll addSubview:ShowCommentIcon];
-            
-            UILabel *ShowCommentCount = [[UILabel alloc]init];
-            ShowCommentCount.frame = CGRectMake(screenWidth - 20 - 15, heightcheck + i, 20, 30);
-            ShowCommentCount.text = CheckCommentTotal;
-            ShowCommentCount.textAlignment = NSTextAlignmentRight;
-            //   ShowCommentCount.backgroundColor = [UIColor redColor];
-            ShowCommentCount.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-            ShowCommentCount.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
-            [MainScroll addSubview:ShowCommentCount];
-            
-            if ([CheckLikeTotal isEqualToString:@"0"]) {
-                
-                UIImageView *ShowLikesIcon = [[UIImageView alloc]init];
-                ShowLikesIcon.image = [UIImage imageNamed:@"PostLike.png"];
-                ShowLikesIcon.frame = CGRectMake(screenWidth - 101, heightcheck + i + 6 ,23, 19);
-                // ShowLikesIcon.backgroundColor = [UIColor purpleColor];
-                [MainScroll addSubview:ShowLikesIcon];
-            }else{
-                
-                UIImageView *ShowLikesIcon = [[UIImageView alloc]init];
-                if ([CheckSelfLike isEqualToString:@"0"]) {
-                    ShowLikesIcon.image = [UIImage imageNamed:@"PostLike.png"];
-                }else{
-                    ShowLikesIcon.image = [UIImage imageNamed:@"PostLikeRed.png"];
-                }
-                // ShowLikesIcon.image = [UIImage imageNamed:@"PostLike.png"];
-                //   ShowLikesIcon.backgroundColor = [UIColor purpleColor];
-                ShowLikesIcon.frame = CGRectMake(screenWidth - 121, heightcheck + i + 6 ,23, 19);
-                [MainScroll addSubview:ShowLikesIcon];
-                
-                UILabel *ShowLikeCount = [[UILabel alloc]init];
-                ShowLikeCount.frame = CGRectMake(screenWidth - 98, heightcheck + i, 20, 30);
-                ShowLikeCount.text = CheckLikeTotal;
-                ShowLikeCount.textAlignment = NSTextAlignmentRight;
-                if ([CheckSelfLike isEqualToString:@"0"]) {
-                    ShowLikeCount.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-                }else{
-                    ShowLikeCount.textColor = [UIColor colorWithRed:248.0f/255.0f green:78.0f/255.0f blue:93.0f/255.0f alpha:1.0f];
-                }
-                // ShowLikeCount.backgroundColor = [UIColor purpleColor];
-                ShowLikeCount.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
-                [MainScroll addSubview:ShowLikeCount];
-            }
-            
-            
-        }
-        
-        
-        heightcheck += 55;
-        
-        UIImageView *ShowGradient = [[UIImageView alloc]init];
-        ShowGradient.frame = CGRectMake(0, heightcheck + i, screenWidth, 25);
-        ShowGradient.image = [UIImage imageNamed:@"FeedGradient.png"];
-        [MainScroll addSubview:ShowGradient];
-        heightcheck += 24;
-        
-        [MainScroll setContentSize:CGSizeMake(screenWidth, heightcheck + i)];
     }
-
+    PeopleView.frame = CGRectMake(0, heightcheck, screenWidth, PeopleHeight);
+    
+    // [MainScroll setContentSize:CGSizeMake(320, PostView.frame.size.height)];
+    CGSize contentSize = MainScroll.frame.size;
+    contentSize.height = heightcheck + PeopleView.frame.size.height;
+    MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    MainScroll.contentSize = contentSize;
 }
+
+
 -(IBAction)AllExpertsButton:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);

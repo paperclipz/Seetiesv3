@@ -368,8 +368,8 @@
     
     // start 3 view Post, Collection, Like
     PostView = [[UIView alloc]init];
-    PostView.frame = CGRectMake(0, GetHeight, screenWidth, 400);
-    PostView.backgroundColor = [UIColor lightGrayColor];
+    PostView.frame = CGRectMake(0, GetHeight - 1, screenWidth, 400);
+    PostView.backgroundColor = [UIColor whiteColor];
     [AllContentView addSubview:PostView];
     
     CollectionView = [[UIView alloc]init];
@@ -395,7 +395,7 @@
 }
 - (void)segmentAction:(UISegmentedControl *)segment
 {
-    CGSize contentSize = MainScroll.frame.size;
+  //  CGSize contentSize = MainScroll.frame.size;
     
     switch (segment.selectedSegmentIndex) {
         case 0:
@@ -411,10 +411,11 @@
             LikeView.hidden = YES;
             CollectionView.hidden = YES;
             PostView.hidden = NO;
+            [self InitPostsView];
             
-            contentSize.height = GetHeight + PostView.frame.size.height + 200;
-            MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-            MainScroll.contentSize = contentSize;
+//            contentSize.height = GetHeight + PostView.frame.size.height + 200;
+//            MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+//            MainScroll.contentSize = contentSize;
 
             break;
         case 2:
@@ -599,6 +600,105 @@
     MainScroll.contentSize = contentSize;
     //[MainScroll setContentSize:CGSizeMake(screenWidth, GetHeight + LikeView.frame.size.height + LikeView.frame.origin.y)];
 }
+
+-(void)InitPostsView{
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    
+    UILabel *ShowCollectionCount = [[UILabel alloc]init];
+    ShowCollectionCount.frame = CGRectMake(30, 20, 150, 20);
+    ShowCollectionCount.text = @"3 Posts";
+    ShowCollectionCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+    ShowCollectionCount.textColor = [UIColor blackColor];
+    [PostView addSubview:ShowCollectionCount];
+    
+    UIButton *EditProfileButton = [[UIButton alloc]init];
+    EditProfileButton.frame = CGRectMake(screenWidth - 100 - 20, 20, 100, 20);
+    [EditProfileButton setTitle:@"+" forState:UIControlStateNormal];
+    EditProfileButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
+    [EditProfileButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
+    EditProfileButton.backgroundColor = [UIColor clearColor];
+    [PostView addSubview:EditProfileButton];
+    
+    UIButton *Line01 = [[UIButton alloc]init];
+    Line01.frame = CGRectMake(15, 60, screenWidth - 30, 1);
+    [Line01 setTitle:@"" forState:UIControlStateNormal];//238
+    [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+    [PostView addSubview:Line01];
+    
+    
+    int heightcheck = 61;
+    
+    for (int i = 0; i < 5; i++) {
+        
+        AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
+        ShowImage.frame = CGRectMake(15, heightcheck + 10, 80, 80);
+        ShowImage.contentMode = UIViewContentModeScaleAspectFill;
+        ShowImage.layer.masksToBounds = YES;
+        ShowImage.layer.cornerRadius = 5;
+        ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
+        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
+        NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"https://unsplash.it/200/200/?random"];
+       // NSString *FullImagesURL_First = @"";
+        if ([FullImagesURL_First length] == 0) {
+            ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
+        }else{
+            NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL_First];
+            //NSLog(@"url is %@",url);
+            ShowImage.imageURL = url_NearbySmall;
+        }
+        [PostView addSubview:ShowImage];
+        
+        UILabel *ShowUserName = [[UILabel alloc]init];
+        ShowUserName.frame = CGRectMake(120, heightcheck + 10, 200, 30);
+        ShowUserName.text = @"A nice sandwich in town";
+        ShowUserName.backgroundColor = [UIColor clearColor];
+        ShowUserName.textColor = [UIColor blackColor];
+        ShowUserName.textAlignment = NSTextAlignmentLeft;
+        ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+        [PostView addSubview:ShowUserName];
+        
+        UIImageView *ShowPin = [[UIImageView alloc]init];
+        ShowPin.image = [UIImage imageNamed:@"FeedPin.png"];
+        ShowPin.frame = CGRectMake(120, heightcheck + 42, 8, 11);
+        [PostView addSubview:ShowPin];
+        
+        UILabel *ShowPlaceName = [[UILabel alloc]init];
+        ShowPlaceName.frame = CGRectMake(140, heightcheck + 40, screenWidth - 140, 20);
+        ShowPlaceName.text = @"Sushi Zen";
+        ShowPlaceName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+        ShowPlaceName.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0];
+        ShowPlaceName.textAlignment = NSTextAlignmentLeft;
+        ShowPlaceName.backgroundColor = [UIColor clearColor];
+        [PostView addSubview:ShowPlaceName];
+        
+        UILabel *ShowLocation = [[UILabel alloc]init];
+        ShowLocation.frame = CGRectMake(120, heightcheck + 60, screenWidth - 120, 20);
+        ShowLocation.text = @"Open now";
+        ShowLocation.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+        ShowLocation.textColor = [UIColor grayColor];
+        ShowLocation.textAlignment = NSTextAlignmentLeft;
+        ShowLocation.backgroundColor = [UIColor clearColor];
+        [PostView addSubview:ShowLocation];
+        
+        
+        UIButton *Line01 = [[UIButton alloc]init];
+        Line01.frame = CGRectMake(15, heightcheck + 101, screenWidth - 30, 1);
+        [Line01 setTitle:@"" forState:UIControlStateNormal];//238
+        [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+        [PostView addSubview:Line01];
+        
+        heightcheck += 101;
+        
+        PostView.frame = CGRectMake(0, GetHeight - 1, screenWidth, heightcheck);
+    }
+    CGSize contentSize = MainScroll.frame.size;
+    contentSize.height = GetHeight + PostView.frame.size.height + 251;
+    MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    MainScroll.contentSize = contentSize;
+    
+}
+
+
 -(IBAction)SettingsButton:(id)sender{
 
     SettingsViewController *SettingsView = [[SettingsViewController alloc]init];

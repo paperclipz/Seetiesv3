@@ -417,7 +417,8 @@
         [ClickButton setTitle:@"" forState:UIControlStateNormal];
         [ClickButton setFrame:CGRectMake(0, 0 + i * 151, screenWidth, 150)];
         [ClickButton setBackgroundColor:[UIColor clearColor]];
-        [ClickButton addTarget:self action:@selector(ClickButton2:) forControlEvents:UIControlEventTouchUpInside];
+        ClickButton.tag = i;
+        [ClickButton addTarget:self action:@selector(ClickButton:) forControlEvents:UIControlEventTouchUpInside];
         [ibScrollViewCountry addSubview:ClickButton];
         
         [ibScrollViewCountry setContentSize:CGSizeMake(screenWidth, 150 + i * 151)];

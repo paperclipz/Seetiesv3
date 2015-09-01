@@ -98,7 +98,7 @@
     
     }
 
-    
+    lblTitle.text =  self.model.name;
     [super viewWillAppear:animated];
 }
 - (void)didReceiveMemoryWarning {
@@ -125,7 +125,7 @@
     
     
     lblTitle.text =  self.model.name;
-    
+    NSLog(@"lblTitle is %@",lblTitle);
    // [self GetDataFromServer];
    // [self InitView];
     [self GetFeaturedUserData];
@@ -140,7 +140,7 @@
             [subview removeFromSuperview];
     }
     
-    int GetHeight = 0;
+    GetHeight = 0;
 //    if ([User_IDArray count] == 0) {
 //        UserScroll.hidden = YES;
 //    }else{
@@ -291,27 +291,154 @@
     NSArray *itemArray = [NSArray arrayWithObjects:TempStringPosts, TempStringPeople, nil];
     UISegmentedControl *ProfileControl = [[UISegmentedControl alloc]initWithItems:itemArray];
     ProfileControl.frame = CGRectMake(15, GetHeight, screenWidth - 30, 29);
-    //[ProfileControl addTarget:self action:@selector(segmentAction:) forControlEvents: UIControlEventValueChanged];
+    [ProfileControl addTarget:self action:@selector(segmentAction:) forControlEvents: UIControlEventValueChanged];
     ProfileControl.selectedSegmentIndex = 0;
     [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
     [MainScroll addSubview:ProfileControl];
     
     GetHeight += 29 + 20;
     
-    int TestWidth = screenWidth - 2;
-    NSLog(@"TestWidth is %i",TestWidth);
-    int FinalWidth = TestWidth / 3;
-    FinalWidth += 1;
-    NSLog(@"FinalWidth is %i",FinalWidth);
-    int SpaceWidth = FinalWidth + 1;
+    PostView = [[UIView alloc]init];
+    PostView.frame = CGRectMake(0, GetHeight, screenWidth, 400);
+    PostView.backgroundColor = [UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0];
+    [MainScroll addSubview:PostView];
+    
+    PeopleView = [[UIView alloc]init];
+    PeopleView.frame = CGRectMake(0, GetHeight, screenWidth, 600);
+    PeopleView.backgroundColor = [UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0];
+    [MainScroll addSubview:PeopleView];
+    
+    PeopleView.hidden = YES;
+    PostView.hidden = NO;
+    
+    [self InitPostDataView];
+    
 
+//    int TestWidth = screenWidth - 2;
+//    NSLog(@"TestWidth is %i",TestWidth);
+//    int FinalWidth = TestWidth / 3;
+//    FinalWidth += 1;
+//    NSLog(@"FinalWidth is %i",FinalWidth);
+//    int SpaceWidth = FinalWidth + 1;
+//
+//    for (NSInteger i = DataCount; i < DataTotal; i++) {
+//        NSString *TempImage = [[NSString alloc]initWithFormat:@"%@",[PhotoArray objectAtIndex:i]];
+//        NSArray *SplitArray = [TempImage componentsSeparatedByString:@","];
+//        AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
+//        ShowImage.frame = CGRectMake(0+(i % 3)*SpaceWidth, GetHeight + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
+//        ShowImage.contentMode = UIViewContentModeScaleAspectFill;
+//        ShowImage.layer.masksToBounds = YES;
+//        ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
+//        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
+//        NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[SplitArray objectAtIndex:0]];
+//        if ([FullImagesURL_First length] == 0) {
+//            ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
+//        }else{
+//            NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL_First];
+//            //NSLog(@"url is %@",url);
+//            ShowImage.imageURL = url_NearbySmall;
+//        }
+//        [MainScroll addSubview:ShowImage];
+//
+//        
+//        UIButton *ImageButton = [[UIButton alloc]init];
+//        [ImageButton setBackgroundColor:[UIColor clearColor]];
+//        [ImageButton setTitle:@"" forState:UIControlStateNormal];
+//        ImageButton.frame = CGRectMake(0+(i % 3)*SpaceWidth, GetHeight + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
+//        ImageButton.tag = i;
+//        [ImageButton addTarget:self action:@selector(ImageButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+//        
+//        [MainScroll addSubview:ImageButton];
+//        [MainScroll setContentSize:CGSizeMake(320, GetHeight + FinalWidth + (SpaceWidth * (CGFloat)(i /3)))];
+//    }
+    
+    CheckLoadDone = YES;
+
+    [ShowActivity stopAnimating];
+}
+- (void)segmentAction:(UISegmentedControl *)segment
+{
+    
+    switch (segment.selectedSegmentIndex) {
+        case 0:
+            NSLog(@"PostView click");
+            PostView.hidden = NO;
+            PeopleView.hidden = YES;
+           [self InitPostDataView];
+            
+            break;
+        case 1:
+            NSLog(@"PeopleView click");
+            PostView.hidden = YES;
+            PeopleView.hidden = NO;
+            
+            [self initPeopleDataView];
+            
+            break;
+        default:
+            break;
+    }
+    
+    //[self InitView];
+}
+
+-(void)InitPostDataView{
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    int PostGetHeight = 0;
+    
+    
     for (NSInteger i = DataCount; i < DataTotal; i++) {
+        
+        UIButton *TempButton = [[UIButton alloc]init];
+        TempButton.frame = CGRectMake(15, PostGetHeight, screenWidth - 30, 150);
+        [TempButton setTitle:@"" forState:UIControlStateNormal];
+        TempButton.backgroundColor = [UIColor whiteColor];
+        TempButton.layer.cornerRadius = 5;
+        [PostView addSubview: TempButton];
+        
+        AsyncImageView *UserImage = [[AsyncImageView alloc]init];
+        UserImage.frame = CGRectMake(25, PostGetHeight + 10, 30, 30);
+        UserImage.contentMode = UIViewContentModeScaleAspectFill;
+        UserImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
+        UserImage.layer.cornerRadius=15;
+        UserImage.layer.borderWidth=0;
+        UserImage.layer.masksToBounds = YES;
+        UserImage.layer.borderColor=[[UIColor whiteColor] CGColor];
+        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:UserImage];
+        // NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",GetUserProfileUrl];
+        NSString *FullImagesURL1 = @"";
+        // NSLog(@"FullImagesURL1 ====== %@",FullImagesURL1);
+        if ([FullImagesURL1 length] == 0) {
+            UserImage.image = [UIImage imageNamed:@"avatar.png"];
+        }else{
+            NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
+            //NSLog(@"url_NearbyBig is %@",url_NearbyBig);
+            UserImage.imageURL = url_UserImage;
+        }
+        [PostView addSubview:UserImage];
+        
+        UILabel *ShowUserName = [[UILabel alloc]init];
+        ShowUserName.frame = CGRectMake(70, PostGetHeight + 10, 200, 30);
+        ShowUserName.text = @"ahyongah";
+        ShowUserName.backgroundColor = [UIColor clearColor];
+        ShowUserName.textColor = [UIColor blackColor];
+        ShowUserName.textAlignment = NSTextAlignmentLeft;
+        ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+        [PostView addSubview:ShowUserName];
+        
+        UIButton *Line01 = [[UIButton alloc]init];
+        Line01.frame = CGRectMake(15, PostGetHeight + 50, screenWidth - 30, 1);
+        [Line01 setTitle:@"" forState:UIControlStateNormal];//238
+        [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+        [PostView addSubview:Line01];
+        
         NSString *TempImage = [[NSString alloc]initWithFormat:@"%@",[PhotoArray objectAtIndex:i]];
         NSArray *SplitArray = [TempImage componentsSeparatedByString:@","];
         AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
-        ShowImage.frame = CGRectMake(0+(i % 3)*SpaceWidth, GetHeight + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
+        ShowImage.frame = CGRectMake(25, PostGetHeight + 60, 80, 80);
         ShowImage.contentMode = UIViewContentModeScaleAspectFill;
         ShowImage.layer.masksToBounds = YES;
+        ShowImage.layer.cornerRadius = 5;
         ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
         NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[SplitArray objectAtIndex:0]];
@@ -322,25 +449,136 @@
             //NSLog(@"url is %@",url);
             ShowImage.imageURL = url_NearbySmall;
         }
-        [MainScroll addSubview:ShowImage];
+        [PostView addSubview:ShowImage];
+        
+        UIImageView *ShowPin = [[UIImageView alloc]init];
+        ShowPin.image = [UIImage imageNamed:@"FeedPin.png"];
+        ShowPin.frame = CGRectMake(120, PostGetHeight + 82, 8, 11);
+        [PostView addSubview:ShowPin];
+        
+        UILabel *ShowPlaceName = [[UILabel alloc]init];
+        ShowPlaceName.frame = CGRectMake(140, PostGetHeight + 80, screenWidth - 140, 20);
+        ShowPlaceName.text = @"Sushi Zen";
+        ShowPlaceName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+        ShowPlaceName.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0];
+        ShowPlaceName.textAlignment = NSTextAlignmentLeft;
+        ShowPlaceName.backgroundColor = [UIColor clearColor];
+        [PostView addSubview:ShowPlaceName];
+        
+        UILabel *ShowLocation = [[UILabel alloc]init];
+        ShowLocation.frame = CGRectMake(120, PostGetHeight + 100, screenWidth - 120, 20);
+        ShowLocation.text = @"Kuala Limpur . Open now";
+        ShowLocation.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+        ShowLocation.textColor = [UIColor grayColor];
+        ShowLocation.textAlignment = NSTextAlignmentLeft;
+        ShowLocation.backgroundColor = [UIColor clearColor];
+        [PostView addSubview:ShowLocation];
         
         
-        UIButton *ImageButton = [[UIButton alloc]init];
-        [ImageButton setBackgroundColor:[UIColor clearColor]];
-        [ImageButton setTitle:@"" forState:UIControlStateNormal];
-        ImageButton.frame = CGRectMake(0+(i % 3)*SpaceWidth, GetHeight + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
-        ImageButton.tag = i;
-        [ImageButton addTarget:self action:@selector(ImageButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+        PostGetHeight += 160;
         
-        [MainScroll addSubview:ImageButton];
-        [MainScroll setContentSize:CGSizeMake(320, GetHeight + FinalWidth + (SpaceWidth * (CGFloat)(i /3)))];
     }
+    PostView.frame = CGRectMake(0, GetHeight, screenWidth, PostGetHeight);
     
-    CheckLoadDone = YES;
-//    [spinnerView stopAnimating];
-//    [spinnerView removeFromSuperview];
-    [ShowActivity stopAnimating];
+   // [MainScroll setContentSize:CGSizeMake(320, PostView.frame.size.height)];
+    CGSize contentSize = MainScroll.frame.size;
+    contentSize.height = GetHeight + PostView.frame.size.height;
+    MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    MainScroll.contentSize = contentSize;
 }
+-(void)initPeopleDataView{
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    int PeopleGetHeight = 0;
+    
+    int TestWidth = screenWidth - 70;
+    //    NSLog(@"TestWidth is %i",TestWidth);
+    int FinalWidth = TestWidth / 4;
+    //    NSLog(@"FinalWidth is %i",FinalWidth);
+    int SpaceWidth = FinalWidth + 4;
+    
+    for (int i = 0; i < 3; i++) {
+        UIButton *TempButton = [[UIButton alloc]init];
+        TempButton.frame = CGRectMake(15, PeopleGetHeight, screenWidth - 30, FinalWidth + 10 + 70);
+        [TempButton setTitle:@"" forState:UIControlStateNormal];
+        TempButton.backgroundColor = [UIColor whiteColor];
+        TempButton.layer.cornerRadius = 5;
+       // TempButton.layer.borderWidth=1;
+        TempButton.layer.masksToBounds = YES;
+       // TempButton.layer.borderColor=[[UIColor lightGrayColor] CGColor];
+        [PeopleView addSubview: TempButton];
+        
+        
+        AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
+        ShowUserProfileImage.frame = CGRectMake(30, PeopleGetHeight + 10, 40, 40);
+        ShowUserProfileImage.image = [UIImage imageNamed:@"DemoProfile.jpg"];
+        ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
+        ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
+        ShowUserProfileImage.layer.cornerRadius=20;
+        //ShowUserProfileImage.layer.borderWidth=3;
+        ShowUserProfileImage.layer.masksToBounds = YES;
+        //ShowUserProfileImage.layer.borderColor=[[UIColor lightGrayColor] CGColor];
+        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
+        [PeopleView addSubview:ShowUserProfileImage];
+        
+        
+        UILabel *ShowUserName = [[UILabel alloc]init];
+        ShowUserName.frame = CGRectMake(80, PeopleGetHeight + 10, 200, 20);
+        ShowUserName.text = @"lucydiamond";
+        ShowUserName.backgroundColor = [UIColor clearColor];
+        ShowUserName.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
+        ShowUserName.textAlignment = NSTextAlignmentLeft;
+        ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+        [PeopleView addSubview:ShowUserName];
+        
+        UILabel *ShowMessage = [[UILabel alloc]init];
+        ShowMessage.frame = CGRectMake(80, PeopleGetHeight + 30, 200, 20);
+        ShowMessage.text = @"Kuala Lumpur";
+        ShowMessage.backgroundColor = [UIColor clearColor];
+        ShowMessage.textColor = [UIColor grayColor];
+        ShowMessage.textAlignment = NSTextAlignmentLeft;
+        ShowMessage.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+        [PeopleView addSubview:ShowMessage];
+        
+        UIButton *FollowButton = [[UIButton alloc]init];
+        FollowButton.frame = CGRectMake(screenWidth - 30 - 100, PeopleGetHeight + 10, 100, 40);
+        [FollowButton setTitle:@"Icon" forState:UIControlStateNormal];
+        FollowButton.backgroundColor = [UIColor colorWithRed:255.0f/255.0f green:152.0f/255.0f blue:167.0f/255.0f alpha:1.0f];
+        FollowButton.layer.cornerRadius = 20;
+        [PeopleView addSubview: FollowButton];
+        
+        NSMutableArray *DemoArray = [[NSMutableArray alloc]init];
+        [DemoArray addObject:@"DemoBackground.jpg"];
+        [DemoArray addObject:@"UserDemo1.jpg"];
+        [DemoArray addObject:@"UserDemo2.jpg"];
+        [DemoArray addObject:@"UserDemo3.jpg"];
+        
+        for (int z = 0; z < [DemoArray count]; z++) {
+            AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
+            ShowImage.frame = CGRectMake(30 +(z % 4) * SpaceWidth, PeopleGetHeight + 70, FinalWidth, FinalWidth);
+            ShowImage.image = [UIImage imageNamed:[DemoArray objectAtIndex:z]];
+            ShowImage.contentMode = UIViewContentModeScaleAspectFill;
+            ShowImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
+            ShowImage.layer.cornerRadius=5;
+            ShowImage.layer.masksToBounds = YES;
+            [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
+            
+            [PeopleView addSubview:ShowImage];
+        }
+        
+        PeopleGetHeight += FinalWidth + 10 + 70 + 10;
+        
+    }
+    PeopleView.frame = CGRectMake(0, GetHeight, screenWidth, PeopleGetHeight);
+    
+    // [MainScroll setContentSize:CGSizeMake(320, PostView.frame.size.height)];
+    CGSize contentSize = MainScroll.frame.size;
+    contentSize.height = GetHeight + PeopleView.frame.size.height;
+    MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    MainScroll.contentSize = contentSize;
+
+}
+
+
 -(IBAction)ImageButtonOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);
