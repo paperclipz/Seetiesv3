@@ -8,6 +8,7 @@
 
 #import "PInterestV2ViewController.h"
 #import "AsyncImageView.h"
+#import "PFollowTheExpertsViewController.h"
 @interface PInterestV2ViewController ()
 
 @end
@@ -17,6 +18,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    NSString *CheckStatus = @"3";
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:CheckStatus forKey:@"CheckProvisioningStatus"];
+    [defaults synchronize];
     
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
@@ -25,14 +30,16 @@
     ShowSubTitle.frame = CGRectMake(30, 40, screenWidth - 60, 65);
     DoneButton.frame = CGRectMake(30, screenHeight - 70, screenWidth - 60, 50);
     DoneButton.layer.cornerRadius = 5;
+    DoneButton.enabled = NO;
     
     MainScroll.delegate = self;
     MainScroll.frame = CGRectMake(0, 110, screenWidth, screenHeight - 110 - 80);
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
     
     NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
     NSLog(@"Phone Language is %@",language);
+    
+    CategorySelectIDArray = [[NSMutableArray alloc]init];
     
     GetCategoryIDArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_ID"]];
     if ([language isEqualToString:@"en"]) {
@@ -270,19 +277,19 @@
     UIColor *color = [UIColor colorWithRed:red/255.0 green:green/255.0 blue:blue/255.0 alpha:1];
     
     if (buttonWithTag1.selected) {
-//        NSString *TempIDN = [[NSString alloc]initWithFormat:@"%@",[GetCategoryIDArray objectAtIndex:getbuttonIDN]];
-//        [CategorySelectIDArray addObject:TempIDN];
-//        
-//        ContiuneBtn.enabled = YES;
-      //
+        NSString *TempIDN = [[NSString alloc]initWithFormat:@"%@",[GetCategoryIDArray objectAtIndex:getbuttonIDN]];
+        [CategorySelectIDArray addObject:TempIDN];
+
+        DoneButton.enabled = YES;
+      
         BackgroundButton.backgroundColor = color;
         ShowTitle_.textColor = [UIColor whiteColor];
     }else{
-//        NSString *TempIDN = [[NSString alloc]initWithFormat:@"%@",[GetCategoryIDArray objectAtIndex:getbuttonIDN]];
-//        [CategorySelectIDArray removeObject:TempIDN];
-//        if ([CategorySelectIDArray count] == 0) {
-//            ContiuneBtn.enabled = NO;
-//        }
+        NSString *TempIDN = [[NSString alloc]initWithFormat:@"%@",[GetCategoryIDArray objectAtIndex:getbuttonIDN]];
+        [CategorySelectIDArray removeObject:TempIDN];
+        if ([CategorySelectIDArray count] == 0) {
+            DoneButton.enabled = NO;
+        }
         BackgroundButton.backgroundColor = [UIColor lightGrayColor];
         ShowTitle_.textColor = [UIColor blackColor];
         
@@ -290,5 +297,15 @@
     }
     
    // NSLog(@"CategorySelectIDArray is %@",CategorySelectIDArray);
+}
+-(IBAction)NextButton:(id)sender{
+    NSLog(@"CategorySelectIDArray is %@",CategorySelectIDArray);
+    NSString *GetSelectID = [CategorySelectIDArray componentsJoinedByString:@","];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:GetSelectID forKey:@"Provisioning_Interest"];
+    [defaults synchronize];
+    
+    PFollowTheExpertsViewController *SelectYourInterestView = [[PFollowTheExpertsViewController alloc]init];
+    [self presentViewController:SelectYourInterestView animated:YES completion:nil];
 }
 @end

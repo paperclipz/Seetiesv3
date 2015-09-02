@@ -16,18 +16,26 @@
 #import "ProfileV2ViewController.h"
 
 #import "FeedV2ViewController.h"
+#import "LeveyTabBarController.h"
+#import "RecommendPopUpViewController.h"
 
+#import "FeedViewController.h"
+#import "NewProfileV2ViewController.h"
 #import "LanguageManager.h"
 #import "Locale.h"
 @interface PFollowTheExpertsViewController ()
-
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) CLLocation *location;
 @end
 
 @implementation PFollowTheExpertsViewController
-
+#define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    NSString *CheckStatus = @"5";
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:CheckStatus forKey:@"CheckProvisioningStatus"];
+    [defaults synchronize];
     // Do any additional setup after loading the view from its nib.
     
     DataUrl = [[UrlDataClass alloc]init];
@@ -114,6 +122,75 @@
     Eatwhere_iPH6.text = NSLocalizedString(@"Eatwhere",nil);
     Allofyour_iPH6.text = NSLocalizedString(@"Allofyour",nil);
     Keepyourbestcity_iPH6.text = NSLocalizedString(@"Keepyourbestcity",nil);
+    
+    
+    
+    self.locationManager = [[CLLocationManager alloc]init];
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.locationManager.delegate = self;
+    self.locationManager.distanceFilter = 10;
+    if(IS_OS_8_OR_LATER){
+        NSUInteger code = [CLLocationManager authorizationStatus];
+        if (code == kCLAuthorizationStatusNotDetermined && ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)] || [self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])) {
+            // choose one request according to your business.
+            if([[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationAlwaysUsageDescription"]){
+                [self.locationManager requestAlwaysAuthorization];
+                [self.locationManager startUpdatingLocation];
+            } else if([[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationWhenInUseUsageDescription"]) {
+                [self.locationManager  requestWhenInUseAuthorization];
+                [self.locationManager startUpdatingLocation];
+            } else {
+                NSLog(@"Info.plist does not contain NSLocationAlwaysUsageDescription or NSLocationWhenInUseUsageDescription");
+            }
+        }
+    }
+    [self.locationManager startUpdatingLocation];
+    
+    
+    
+    
+}
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    NSLog(@"didUpdateToLocation: %@", newLocation);
+    CLLocation *location = newLocation;
+    
+    if (location != nil) {
+        latPoint = [NSString stringWithFormat:@"%f", location.coordinate.latitude];
+        lonPoint = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
+        
+        NSLog(@"lat is %@ : lon is %@",latPoint, lonPoint);
+        //Now you know the location has been found, do other things, call others methods here
+        [self.locationManager stopUpdatingLocation];
+        
+        NSLog(@"got location get feed data");
+        
+        [self UpdateUserDataToServer];
+    }else{
+        
+    }
+}
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    
+    NSLog(@"%@",error.userInfo);
+    
+    if([CLLocationManager locationServicesEnabled]){
+        
+        NSLog(@"Location Services Enabled");
+        
+        if([CLLocationManager authorizationStatus]==kCLAuthorizationStatusDenied){
+            UIAlertView    *alert = [[UIAlertView alloc] initWithTitle:@"App Permission Denied"
+                                                               message:@"To re-enable, please go to Settings and turn on Location Service for this app."
+                                                              delegate:nil
+                                                     cancelButtonTitle:@"OK"
+                                                     otherButtonTitles:nil];
+            [alert show];
+            
+        }
+    }else{
+    }
+    NSLog(@"no location get feed data");
+    [manager stopUpdatingLocation];
     
     [self UpdateUserDataToServer];
     
@@ -217,32 +294,36 @@
         NSError *myError = nil;
         NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
         NSLog(@"res is %@",res);
-        NSString *GetName = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"name"]];
+        
+        NSDictionary *GetAllData = [res valueForKey:@"data"];
+        
+        
+        NSString *GetName = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"name"]];
         NSLog(@"GetName is %@",GetName);
-        NSString *Getusername = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"username"]];
+        NSString *Getusername = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"username"]];
         NSLog(@"Getusername is %@",Getusername);
-        NSString *Getemail = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"email"]];
+        NSString *Getemail = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"email"]];
         NSLog(@"Getemail is %@",Getemail);
-        NSString *GetLocation = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"location"]];
+        NSString *GetLocation = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"location"]];
         NSLog(@"GetLocation is %@",GetLocation);
-        NSString *GetAbouts = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"description"]];
+        NSString *GetAbouts = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"description"]];
         NSLog(@"GetAbouts is %@",GetAbouts);
-        NSString *GetUrl = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"personal_link"]];
+        NSString *GetUrl = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"personal_link"]];
         NSLog(@"GetUrl is %@",GetUrl);
-        NSString *GetFollowersCount = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"follower_count"]];
+        NSString *GetFollowersCount = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"follower_count"]];
         NSLog(@"GetFollowersCount is %@",GetFollowersCount);
-        NSString *GetFollowingCount = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"following_count"]];
+        NSString *GetFollowingCount = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"following_count"]];
         NSLog(@"GetFollowingCount is %@",GetFollowingCount);
-        NSString *Getcategories = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"categories"]];
+        NSString *Getcategories = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"categories"]];
         NSLog(@"Getcategories is %@",Getcategories);
-        NSString *Getdob = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"dob"]];
+        NSString *Getdob = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"dob"]];
         NSLog(@"Getdob is %@",Getdob);
-        NSString *GetGender = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"gender"]];
+        NSString *GetGender = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"gender"]];
         NSLog(@"GetGender is %@",GetGender);
-        NSString *GetFbExtendedToken = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"fb_extended_token"]];
+        NSString *GetFbExtendedToken = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"fb_extended_token"]];
         NSLog(@"GetFbExtendedToken is %@",GetFbExtendedToken);
         
-        NSDictionary *SystemLanguage = [res valueForKey:@"system_language"];
+        NSDictionary *SystemLanguage = [GetAllData valueForKey:@"system_language"];
         NSLog(@"SystemLanguage is %@",SystemLanguage);
         NSString *GetCaption;
         if ([SystemLanguage isKindOfClass:[NSNull class]]) {
@@ -254,7 +335,7 @@
         
         NSMutableArray *GetUserSelectLanguagesArray = [[NSMutableArray alloc]init];
         NSMutableArray *TempArray = [[NSMutableArray alloc]init];
-        NSDictionary *NSDictionaryLanguage = [res valueForKey:@"languages"];
+        NSDictionary *NSDictionaryLanguage = [GetAllData valueForKey:@"languages"];
         NSLog(@"NSDictionaryLanguage is %@",NSDictionaryLanguage);
         for (NSDictionary * dict in NSDictionaryLanguage){
             NSString *Getid = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"id"]];
@@ -331,36 +412,49 @@
     [defaults setObject:CheckStatus forKey:@"CheckProvisioningStatus"];
     [defaults setObject:CheckLogin forKey:@"CheckLogin"];
     [defaults synchronize];
-    
-    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    
-    UITabBarController *tabBarController=[[UITabBarController alloc]init];
-    tabBarController.tabBar.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
-    [tabBarController.tabBar setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
-    //FirstViewController and SecondViewController are the view controller you want on your UITabBarController
-//    UIImage* tabBarBackground = [UIImage imageNamed:@"TabBarBg@2x-1.png"];
-//    [[UITabBar appearance] setShadowImage:tabBarBackground];
-//    [[UITabBar appearance] setBackgroundImage:tabBarBackground];
-    
-    
-    FeedV2ViewController *firstViewController=[[FeedV2ViewController alloc]initWithNibName:@"FeedV2ViewController" bundle:nil];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:firstViewController];
+
+    FeedViewController *firstViewController=[[FeedViewController alloc]initWithNibName:@"FeedViewController" bundle:nil];
     Explore2ViewController *secondViewController=[[Explore2ViewController alloc]initWithNibName:@"Explore2ViewController" bundle:nil];
-    
-    SelectImageViewController *threeViewController=[[SelectImageViewController alloc]initWithNibName:@"SelectImageViewController" bundle:nil];
-    
+    //SelectImageViewController *threeViewController=[[SelectImageViewController alloc]initWithNibName:@"SelectImageViewController" bundle:nil];
+    RecommendPopUpViewController *threeViewController=[[RecommendPopUpViewController alloc]initWithNibName:@"RecommendPopUpViewController" bundle:nil];
     NotificationViewController *fourViewController=[[NotificationViewController alloc]initWithNibName:@"NotificationViewController" bundle:nil];
+    //ProfileV2ViewController *fiveViewController=[[ProfileV2ViewController alloc]initWithNibName:@"ProfileV2ViewController" bundle:nil];
+    NewProfileV2ViewController *fiveViewController=[[NewProfileV2ViewController alloc]initWithNibName:@"NewProfileV2ViewController" bundle:nil];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:firstViewController];
+    UINavigationController *navController2 = [[UINavigationController alloc] initWithRootViewController:secondViewController];
+    UINavigationController *navController3 = [[UINavigationController alloc] initWithRootViewController:fourViewController];
+    UINavigationController *navController4 = [[UINavigationController alloc] initWithRootViewController:fiveViewController];
     
-    ProfileV2ViewController *fiveViewController=[[ProfileV2ViewController alloc]initWithNibName:@"ProfileV2ViewController" bundle:nil];
+    NSArray *ctrlArr = [NSArray arrayWithObjects:navController,navController2,threeViewController,navController3,navController4,nil];
     
-    //adding view controllers to your tabBarController bundling them in an array
-    tabBarController.viewControllers=[NSArray arrayWithObjects:navController,secondViewController,threeViewController,fourViewController,fiveViewController, nil];
+    NSMutableDictionary *imgDic = [NSMutableDictionary dictionaryWithCapacity:3];
+    [imgDic setObject:[UIImage imageNamed:@"TabBarFeed.png"] forKey:@"Default"];
+    [imgDic setObject:[UIImage imageNamed:@"TabBarFeed_on.png"] forKey:@"Highlighted"];
+    [imgDic setObject:[UIImage imageNamed:@"TabBarFeed_on.png"] forKey:@"Seleted"];
+    NSMutableDictionary *imgDic2 = [NSMutableDictionary dictionaryWithCapacity:3];
+    [imgDic2 setObject:[UIImage imageNamed:@"TabBarExplore.png"] forKey:@"Default"];
+    [imgDic2 setObject:[UIImage imageNamed:@"TabBarExplore_on.png"] forKey:@"Highlighted"];
+    [imgDic2 setObject:[UIImage imageNamed:@"TabBarExplore_on.png"] forKey:@"Seleted"];
+    NSMutableDictionary *imgDic3 = [NSMutableDictionary dictionaryWithCapacity:3];
+    [imgDic3 setObject:[UIImage imageNamed:@"TabBarNew.png"] forKey:@"Default"];
+    [imgDic3 setObject:[UIImage imageNamed:@"FollowDeny.png"] forKey:@"Highlighted"];
+    [imgDic3 setObject:[UIImage imageNamed:@"FollowDeny.png"] forKey:@"Seleted"];
+    NSMutableDictionary *imgDic4 = [NSMutableDictionary dictionaryWithCapacity:3];
+    [imgDic4 setObject:[UIImage imageNamed:@"TabBarActivity.png"] forKey:@"Default"];
+    [imgDic4 setObject:[UIImage imageNamed:@"TabBarActivity_on.png"] forKey:@"Highlighted"];
+    [imgDic4 setObject:[UIImage imageNamed:@"TabBarActivity_on.png"] forKey:@"Seleted"];
+    NSMutableDictionary *imgDic5 = [NSMutableDictionary dictionaryWithCapacity:3];
+    [imgDic5 setObject:[UIImage imageNamed:@"TabBarProfile.png"] forKey:@"Default"];
+    [imgDic5 setObject:[UIImage imageNamed:@"TabBarProfile_on.png"] forKey:@"Highlighted"];
+    [imgDic5 setObject:[UIImage imageNamed:@"TabBarProfile_on.png"] forKey:@"Seleted"];
     
+    NSArray *imgArr = [NSArray arrayWithObjects:imgDic,imgDic2,imgDic3,imgDic4,imgDic5,nil];
     
-    //[self presentModalViewController:tabBarController animated:YES];
-    // [self presentViewController:tabBarController animated:NO completion:nil];
-    [[[[UIApplication sharedApplication] delegate] window] setRootViewController:tabBarController];
+    leveyTabBarController = [[LeveyTabBarController alloc] initWithViewControllers:ctrlArr imageArray:imgArr];
+    [leveyTabBarController.tabBar setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
+    [leveyTabBarController setTabBarTransparent:YES];
+    
+    [[[[UIApplication sharedApplication] delegate] window] setRootViewController:leveyTabBarController];
 }
 -(void)UpdateUserDataToServer{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -469,6 +563,25 @@
         [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"languages[1]\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
         //Attaching the content to be posted ( ParameterSecond )
         [body appendData:[[NSString stringWithFormat:@"%@",GetLang02] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    }
+    
+    
+    if ([lonPoint length] == 0 || [lonPoint isEqualToString:@"(null)"] || [lonPoint isEqualToString:@"None"]) {
+        
+    }else{
+        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        //Attaching the key name @"parameter_second" to the post body
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"lat\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+        //Attaching the content to be posted ( ParameterSecond )
+        [body appendData:[[NSString stringWithFormat:@"%@",latPoint] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+        
+        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        //Attaching the key name @"parameter_second" to the post body
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"lng\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+        //Attaching the content to be posted ( ParameterSecond )
+        [body appendData:[[NSString stringWithFormat:@"%@",lonPoint] dataUsingEncoding:NSUTF8StringEncoding]];
         [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     }
     

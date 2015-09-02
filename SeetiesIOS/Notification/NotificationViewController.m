@@ -37,7 +37,7 @@
     
     MainScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight - 104);
     MainScroll.alwaysBounceVertical = YES;
-    TitleLabel.text = CustomLocalisedString(@"Notification", nil);
+    TitleLabel.text = @"Activity";
     ShowNoDataView.hidden = YES;
     ShowNoDataView.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     NoDataImg.frame = CGRectMake(0, 0, screenWidth, screenHeight);
@@ -51,59 +51,6 @@
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
 //    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-//    if (screenWidth > 320) {
-//        NSLog(@"iphone 6 / iphone 6 plus");
-//        UIImageView *ShowImage_Feed = [[UIImageView alloc]init];
-//        ShowImage_Feed.frame = CGRectMake((screenWidth / 2) - 175 , screenHeight - 50, 50, 50);
-//        ShowImage_Feed.image = [UIImage imageNamed:@"TabBarFeed.png"];
-//        [self.tabBarController.view addSubview:ShowImage_Feed];
-//        
-//        UIImageView *ShowImage_Explore = [[UIImageView alloc]init];
-//        ShowImage_Explore.frame = CGRectMake((screenWidth / 2) - 100, screenHeight - 50, 50, 50);
-//        ShowImage_Explore.image = [UIImage imageNamed:@"TabBarExplore.png"];
-//        [self.tabBarController.view addSubview:ShowImage_Explore];
-//        
-//        UIImageView *ShowImage = [[UIImageView alloc]init];
-//        ShowImage.frame = CGRectMake((screenWidth / 2) - 25, screenHeight - 50, 50, 50);
-//        ShowImage.image = [UIImage imageNamed:@"TabBarNew.png"];
-//        [self.tabBarController.view addSubview:ShowImage];
-//        
-//        UIImageView *ShowImage_Collecation = [[UIImageView alloc]init];
-//        ShowImage_Collecation.frame = CGRectMake((screenWidth / 2) + 50, screenHeight - 50, 50, 50);
-//        ShowImage_Collecation.image = [UIImage imageNamed:@"TabBarActivity_on.png"];
-//        [self.tabBarController.view addSubview:ShowImage_Collecation];
-//        
-//        UIImageView *ShowImage_Profile = [[UIImageView alloc]init];
-//        ShowImage_Profile.frame = CGRectMake((screenWidth / 2) + 125, screenHeight - 50, 50, 50);
-//        ShowImage_Profile.image = [UIImage imageNamed:@"TabBarProfile.png"];
-//        [self.tabBarController.view addSubview:ShowImage_Profile];
-//    }else{
-//        NSLog(@"iphone 5 / iphone 5s / iphone 4");
-//        UIImageView *ShowImage_Feed = [[UIImageView alloc]init];
-//        ShowImage_Feed.frame = CGRectMake((screenWidth / 2) - 153 , screenHeight - 50, 50, 50);
-//        ShowImage_Feed.image = [UIImage imageNamed:@"TabBarFeed.png"];
-//        [self.tabBarController.view addSubview:ShowImage_Feed];
-//        
-//        UIImageView *ShowImage_Explore = [[UIImageView alloc]init];
-//        ShowImage_Explore.frame = CGRectMake((screenWidth / 2) - 89, screenHeight - 50, 50, 50);
-//        ShowImage_Explore.image = [UIImage imageNamed:@"TabBarExplore.png"];
-//        [self.tabBarController.view addSubview:ShowImage_Explore];
-//        
-//        UIImageView *ShowImage = [[UIImageView alloc]init];
-//        ShowImage.frame = CGRectMake((screenWidth / 2) - 25, screenHeight - 50, 50, 50);
-//        ShowImage.image = [UIImage imageNamed:@"TabBarNew.png"];
-//        [self.tabBarController.view addSubview:ShowImage];
-//        
-//        UIImageView *ShowImage_Collecation = [[UIImageView alloc]init];
-//        ShowImage_Collecation.frame = CGRectMake((screenWidth / 2) + 39, screenHeight - 50, 50, 50);
-//        ShowImage_Collecation.image = [UIImage imageNamed:@"TabBarActivity_on.png"];
-//        [self.tabBarController.view addSubview:ShowImage_Collecation];
-//        
-//        UIImageView *ShowImage_Profile = [[UIImageView alloc]init];
-//        ShowImage_Profile.frame = CGRectMake((screenWidth / 2) + 106, screenHeight - 50, 50, 50);
-//        ShowImage_Profile.image = [UIImage imageNamed:@"TabBarProfile.png"];
-//        [self.tabBarController.view addSubview:ShowImage_Profile];
-//    }
     
     UIButton *BackToTopButton = [UIButton buttonWithType:UIButtonTypeCustom];
     BackToTopButton.frame = CGRectMake(0, screenHeight - 50, 80, 50);
@@ -246,25 +193,229 @@
     [ShowActivity stopAnimating];
 }
 -(void)InitView{
-    for (UIView *subview in MainScroll.subviews) {
-        [subview removeFromSuperview];
-    }
-    
-   // CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    
+//    for (UIView *subview in MainScroll.subviews) {
+//        [subview removeFromSuperview];
+//    }
+//    
+//   // CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+//    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+//    
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@""];
     [refreshControl addTarget:self action:@selector(testRefresh:) forControlEvents:UIControlEventValueChanged];
     [MainScroll addSubview:refreshControl];
+//
+//    for (int i = 0; i < [TypeArray count]; i++) {
+//        UIButton *Line01 = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [Line01 setTitle:@"" forState:UIControlStateNormal];
+//        [Line01 setFrame:CGRectMake(0, 60 + i * 60, screenWidth, 1)];
+//        [Line01 setBackgroundColor:[UIColor colorWithRed:239.0/255.0f green:239.0/255.0f blue:244.0/255.0f alpha:1.0]];
+//        [MainScroll addSubview:Line01];
+//        
+//        AsyncImageView *ShowUserImage = [[AsyncImageView alloc]init];
+//        ShowUserImage.frame = CGRectMake(5, 9 + i * 60, 40 , 40);
+//        ShowUserImage.contentMode = UIViewContentModeScaleAspectFill;
+//        ShowUserImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
+//        ShowUserImage.layer.cornerRadius=20;
+//        ShowUserImage.layer.borderWidth=1;
+//        ShowUserImage.layer.masksToBounds = YES;
+//        ShowUserImage.layer.borderColor=[[UIColor clearColor] CGColor];
+//        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserImage];
+//        
+//        AsyncImageView *ShowPostImage = [[AsyncImageView alloc]init];
+//        ShowPostImage.frame = CGRectMake(screenWidth - 15 - 40, 9 + i * 60, 40 , 40);
+//        ShowPostImage.contentMode = UIViewContentModeScaleAspectFill;
+//        ShowPostImage.backgroundColor = [UIColor clearColor];
+//        ShowPostImage.clipsToBounds = YES;
+//        ShowPostImage.tag = 99;
+//        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowPostImage];
+//
+//        UIButton *ButtonClick = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [ButtonClick setTitle:@"" forState:UIControlStateNormal];
+//        [ButtonClick setFrame:CGRectMake(0, 0 + i * 60, screenWidth, 60)];
+//        [ButtonClick setBackgroundColor:[UIColor clearColor]];
+//        ButtonClick.tag = i;
+//        [ButtonClick addTarget:self action:@selector(ClickButton:) forControlEvents:UIControlEventTouchUpInside];
+//        
+//        NSString *GetType = [[NSString alloc]initWithFormat:@"%@",[TypeArray objectAtIndex:i]];
+//        if ([GetType isEqualToString:@"follow"]) {
+//
+//            NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserThumbnailArray objectAtIndex:i]];
+//            if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
+//                ShowUserImage.image = [UIImage imageNamed:@"avatar.png"];
+//            }else{
+//                NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
+//                //NSLog(@"url_NearbyBig is %@",url_NearbyBig);
+//                ShowUserImage.imageURL = url_UserImage;
+//            }
+//            
+//        }else if ([GetType isEqualToString:@"like"]){
+//          //  ShowUserImage.image = [UIImage imageNamed:@"Like@3x.png"];
+////            NSURL *UrlImageData = [NSURL URLWithString:[PostThumbnailArray objectAtIndex:i]];
+////            ShowPostImage.imageURL = UrlImageData;
+//            NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserThumbnailArray objectAtIndex:i]];
+//            if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
+//                ShowUserImage.image = [UIImage imageNamed:@"avatar.png"];
+//            }else{
+//                NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
+//                //NSLog(@"url_NearbyBig is %@",url_NearbyBig);
+//                ShowUserImage.imageURL = url_UserImage;
+//            }
+//            
+//            NSString *FullImagesURL2 = [[NSString alloc]initWithFormat:@"%@",[PostThumbnailArray objectAtIndex:i]];
+//            if ([FullImagesURL2 length] == 0 || [FullImagesURL2 isEqualToString:@"Null"]) {
+//                ShowPostImage.image = [UIImage imageNamed:@"avatar.png"];
+//            }else{
+//                NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL2];
+//                //NSLog(@"url_NearbyBig is %@",url_NearbyBig);
+//                ShowPostImage.imageURL = url_UserImage;
+//            }
+//            
+//        }else if ([GetType isEqualToString:@"mention"]){
+//    //        ShowUserImage.image = [UIImage imageNamed:@"Comment@3x.png"];
+////            NSURL *UrlImageData = [NSURL URLWithString:[PostThumbnailArray objectAtIndex:i]];
+////            ShowPostImage.imageURL = UrlImageData;
+//            NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserThumbnailArray objectAtIndex:i]];
+//            if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
+//                ShowUserImage.image = [UIImage imageNamed:@"avatar.png"];
+//            }else{
+//                NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
+//                //NSLog(@"url_NearbyBig is %@",url_NearbyBig);
+//                ShowUserImage.imageURL = url_UserImage;
+//            }
+//            
+//            NSString *FullImagesURL2 = [[NSString alloc]initWithFormat:@"%@",[PostThumbnailArray objectAtIndex:i]];
+//            if ([FullImagesURL2 length] == 0 || [FullImagesURL2 isEqualToString:@"Null"]) {
+//                ShowPostImage.image = [UIImage imageNamed:@"avatar.png"];
+//            }else{
+//                NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL2];
+//                //NSLog(@"url_NearbyBig is %@",url_NearbyBig);
+//                ShowPostImage.imageURL = url_UserImage;
+//            }
+//            
+//        }else if ([GetType isEqualToString:@"comment"]){
+//        //    ShowUserImage.image = [UIImage imageNamed:@"Comment@3x.png"];
+////            NSURL *UrlImageData = [NSURL URLWithString:[PostThumbnailArray objectAtIndex:i]];
+////            ShowPostImage.imageURL = UrlImageData;
+//            NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserThumbnailArray objectAtIndex:i]];
+//            if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
+//                ShowUserImage.image = [UIImage imageNamed:@"avatar.png"];
+//            }else{
+//                NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
+//                //NSLog(@"url_NearbyBig is %@",url_NearbyBig);
+//                ShowUserImage.imageURL = url_UserImage;
+//            }
+//            
+//            NSString *FullImagesURL2 = [[NSString alloc]initWithFormat:@"%@",[PostThumbnailArray objectAtIndex:i]];
+//            if ([FullImagesURL2 length] == 0 || [FullImagesURL2 isEqualToString:@"Null"]) {
+//                ShowPostImage.image = [UIImage imageNamed:@"avatar.png"];
+//            }else{
+//                NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL2];
+//                //NSLog(@"url_NearbyBig is %@",url_NearbyBig);
+//                ShowPostImage.imageURL = url_UserImage;
+//            }
+//        }else{ // handle new type
+//            NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserThumbnailArray objectAtIndex:i]];
+//            if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
+//                ShowUserImage.image = [UIImage imageNamed:@"Icon.png"];
+//            }else{
+//                NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
+//                //NSLog(@"url_NearbyBig is %@",url_NearbyBig);
+//                ShowUserImage.imageURL = url_UserImage;
+//            }
+//        }
+//        
+//        
+//        
+//        UILabel *ShowMessage = [[UILabel alloc]init];
+//        ShowMessage.frame = CGRectMake(60, 9 + i * 60, screenWidth - 130, 40);
+//        ShowMessage.numberOfLines = 5;
+//        ShowMessage.textAlignment = NSTextAlignmentLeft;
+//        ShowMessage.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
+//        ShowMessage.textColor = [UIColor blackColor];
+//        ShowMessage.backgroundColor = [UIColor clearColor];
+//        ShowMessage.text = [MessageArray objectAtIndex:i];
+//        
+//        [MainScroll addSubview:ShowUserImage];
+//        [MainScroll addSubview:ShowMessage];
+//        [MainScroll addSubview:ShowPostImage];
+//        [MainScroll addSubview:ButtonClick];
+//        
+//        [MainScroll setScrollEnabled:YES];
+//        MainScroll.backgroundColor = [UIColor whiteColor];
+//        [MainScroll setContentSize:CGSizeMake(screenWidth, 60 + i * 60)];
+//    }
+    
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    MainScroll.backgroundColor = [UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0];
+    
+    GetHeight += 20;
+    
+    NSString *TempStringPosts = [[NSString alloc]initWithFormat:@"Following"];
+    NSString *TempStringPeople = [[NSString alloc]initWithFormat:@"Notifications"];
+    
+    NSArray *itemArray = [NSArray arrayWithObjects:TempStringPosts, TempStringPeople, nil];
+    UISegmentedControl *ProfileControl = [[UISegmentedControl alloc]initWithItems:itemArray];
+    ProfileControl.frame = CGRectMake(15, GetHeight, screenWidth - 30, 29);
+    [ProfileControl addTarget:self action:@selector(segmentAction:) forControlEvents: UIControlEventValueChanged];
+    ProfileControl.selectedSegmentIndex = 0;
+    [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
+    [MainScroll addSubview:ProfileControl];
+    
+    
+    GetHeight += 49;
+    
+    FollowingView = [[UIView alloc]init];
+    FollowingView.frame = CGRectMake(0, GetHeight, screenWidth, 400);
+    FollowingView.backgroundColor = [UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0];
+    [MainScroll addSubview:FollowingView];
+    
+    NotificationsView = [[UIView alloc]init];
+    NotificationsView.frame = CGRectMake(0, GetHeight, screenWidth, 600);
+    NotificationsView.backgroundColor = [UIColor whiteColor];
+    [MainScroll addSubview:NotificationsView];
+    
+    NotificationsView.hidden = YES;
+    FollowingView.hidden = NO;
+}
+- (void)segmentAction:(UISegmentedControl *)segment
+{
+    
+    switch (segment.selectedSegmentIndex) {
+        case 0:
+            NSLog(@"Following view click");
+            FollowingView.hidden = NO;
+            NotificationsView.hidden = YES;
+            //[self InitPostsDataView];
+            
+            break;
+        case 1:
+            NSLog(@"Notifications view click");
+            FollowingView.hidden = YES;
+            NotificationsView.hidden = NO;
+            
+            [self InitNotificationsDataView];
+            
+            break;
+        default:
+            break;
+    }
+    
+    //[self InitView];
+}
+
+
+-(void)InitNotificationsDataView{
+    //CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
     for (int i = 0; i < [TypeArray count]; i++) {
         UIButton *Line01 = [UIButton buttonWithType:UIButtonTypeCustom];
         [Line01 setTitle:@"" forState:UIControlStateNormal];
         [Line01 setFrame:CGRectMake(0, 60 + i * 60, screenWidth, 1)];
         [Line01 setBackgroundColor:[UIColor colorWithRed:239.0/255.0f green:239.0/255.0f blue:244.0/255.0f alpha:1.0]];
-        [MainScroll addSubview:Line01];
-        
+        [NotificationsView addSubview:Line01];
+    
         AsyncImageView *ShowUserImage = [[AsyncImageView alloc]init];
         ShowUserImage.frame = CGRectMake(5, 9 + i * 60, 40 , 40);
         ShowUserImage.contentMode = UIViewContentModeScaleAspectFill;
@@ -274,7 +425,7 @@
         ShowUserImage.layer.masksToBounds = YES;
         ShowUserImage.layer.borderColor=[[UIColor clearColor] CGColor];
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserImage];
-        
+    
         AsyncImageView *ShowPostImage = [[AsyncImageView alloc]init];
         ShowPostImage.frame = CGRectMake(screenWidth - 15 - 40, 9 + i * 60, 40 , 40);
         ShowPostImage.contentMode = UIViewContentModeScaleAspectFill;
@@ -282,89 +433,71 @@
         ShowPostImage.clipsToBounds = YES;
         ShowPostImage.tag = 99;
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowPostImage];
-
+    
         UIButton *ButtonClick = [UIButton buttonWithType:UIButtonTypeCustom];
         [ButtonClick setTitle:@"" forState:UIControlStateNormal];
         [ButtonClick setFrame:CGRectMake(0, 0 + i * 60, screenWidth, 60)];
         [ButtonClick setBackgroundColor:[UIColor clearColor]];
         ButtonClick.tag = i;
         [ButtonClick addTarget:self action:@selector(ClickButton:) forControlEvents:UIControlEventTouchUpInside];
-        
+    
         NSString *GetType = [[NSString alloc]initWithFormat:@"%@",[TypeArray objectAtIndex:i]];
         if ([GetType isEqualToString:@"follow"]) {
-
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
                 ShowUserImage.image = [UIImage imageNamed:@"avatar.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
-                //NSLog(@"url_NearbyBig is %@",url_NearbyBig);
                 ShowUserImage.imageURL = url_UserImage;
             }
-            
+    
         }else if ([GetType isEqualToString:@"like"]){
-          //  ShowUserImage.image = [UIImage imageNamed:@"Like@3x.png"];
-//            NSURL *UrlImageData = [NSURL URLWithString:[PostThumbnailArray objectAtIndex:i]];
-//            ShowPostImage.imageURL = UrlImageData;
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
                 ShowUserImage.image = [UIImage imageNamed:@"avatar.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
-                //NSLog(@"url_NearbyBig is %@",url_NearbyBig);
                 ShowUserImage.imageURL = url_UserImage;
             }
-            
             NSString *FullImagesURL2 = [[NSString alloc]initWithFormat:@"%@",[PostThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL2 length] == 0 || [FullImagesURL2 isEqualToString:@"Null"]) {
                 ShowPostImage.image = [UIImage imageNamed:@"avatar.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL2];
-                //NSLog(@"url_NearbyBig is %@",url_NearbyBig);
                 ShowPostImage.imageURL = url_UserImage;
             }
-            
+    
         }else if ([GetType isEqualToString:@"mention"]){
-    //        ShowUserImage.image = [UIImage imageNamed:@"Comment@3x.png"];
-//            NSURL *UrlImageData = [NSURL URLWithString:[PostThumbnailArray objectAtIndex:i]];
-//            ShowPostImage.imageURL = UrlImageData;
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
                 ShowUserImage.image = [UIImage imageNamed:@"avatar.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
-                //NSLog(@"url_NearbyBig is %@",url_NearbyBig);
                 ShowUserImage.imageURL = url_UserImage;
             }
-            
+    
             NSString *FullImagesURL2 = [[NSString alloc]initWithFormat:@"%@",[PostThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL2 length] == 0 || [FullImagesURL2 isEqualToString:@"Null"]) {
                 ShowPostImage.image = [UIImage imageNamed:@"avatar.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL2];
-                //NSLog(@"url_NearbyBig is %@",url_NearbyBig);
                 ShowPostImage.imageURL = url_UserImage;
             }
-            
+    
         }else if ([GetType isEqualToString:@"comment"]){
-        //    ShowUserImage.image = [UIImage imageNamed:@"Comment@3x.png"];
-//            NSURL *UrlImageData = [NSURL URLWithString:[PostThumbnailArray objectAtIndex:i]];
-//            ShowPostImage.imageURL = UrlImageData;
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
                 ShowUserImage.image = [UIImage imageNamed:@"avatar.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
-                //NSLog(@"url_NearbyBig is %@",url_NearbyBig);
                 ShowUserImage.imageURL = url_UserImage;
             }
-            
+    
             NSString *FullImagesURL2 = [[NSString alloc]initWithFormat:@"%@",[PostThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL2 length] == 0 || [FullImagesURL2 isEqualToString:@"Null"]) {
                 ShowPostImage.image = [UIImage imageNamed:@"avatar.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL2];
-                //NSLog(@"url_NearbyBig is %@",url_NearbyBig);
                 ShowPostImage.imageURL = url_UserImage;
             }
         }else{ // handle new type
@@ -373,13 +506,12 @@
                 ShowUserImage.image = [UIImage imageNamed:@"Icon.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
-                //NSLog(@"url_NearbyBig is %@",url_NearbyBig);
                 ShowUserImage.imageURL = url_UserImage;
+                }
             }
-        }
-        
-        
-        
+    
+    
+    
         UILabel *ShowMessage = [[UILabel alloc]init];
         ShowMessage.frame = CGRectMake(60, 9 + i * 60, screenWidth - 130, 40);
         ShowMessage.numberOfLines = 5;
@@ -388,18 +520,21 @@
         ShowMessage.textColor = [UIColor blackColor];
         ShowMessage.backgroundColor = [UIColor clearColor];
         ShowMessage.text = [MessageArray objectAtIndex:i];
+    
+        [NotificationsView addSubview:ShowUserImage];
+        [NotificationsView addSubview:ShowMessage];
+        [NotificationsView addSubview:ShowPostImage];
+        [NotificationsView addSubview:ButtonClick];
         
-        [MainScroll addSubview:ShowUserImage];
-        [MainScroll addSubview:ShowMessage];
-        [MainScroll addSubview:ShowPostImage];
-        [MainScroll addSubview:ButtonClick];
-        
-        [MainScroll setScrollEnabled:YES];
-        MainScroll.backgroundColor = [UIColor whiteColor];
-        [MainScroll setContentSize:CGSizeMake(screenWidth, 60 + i * 60)];
+        NotificationsView.frame = CGRectMake(0, GetHeight, screenWidth, 60 + i * 60);
     }
+    CGSize contentSize = MainScroll.frame.size;
+    contentSize.height = GetHeight + NotificationsView.frame.size.height;
+    MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    MainScroll.contentSize = contentSize;
 
 }
+
 -(IBAction)ClickButton:(id)sender{
     SLog(@"ClickButton");
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;

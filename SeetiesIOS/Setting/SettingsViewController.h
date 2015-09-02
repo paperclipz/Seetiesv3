@@ -37,15 +37,4 @@
 }
 -(IBAction)BackButton:(id)sender;
 
--(IBAction)EditProfileButton:(id)sender;
--(IBAction)AccountSettingButton:(id)sender;
--(IBAction)EditInterestButton:(id)sender;
--(IBAction)LogoutButton:(id)sender;
-
--(IBAction)AboutSeetiesButton:(id)sender;
--(IBAction)TermsofUseButton:(id)sender;
--(IBAction)PrivacyPolicyButton:(id)sender;
--(IBAction)FeedBackButton:(id)sender;
-
--(IBAction)CheckNewUpdateButton:(id)sender;
 @end

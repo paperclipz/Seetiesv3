@@ -47,8 +47,6 @@
     NSMutableArray *TotalLikeArray;
     NSMutableArray *SelfCheckLikeArray;
     
-    
-    
     NSMutableArray *Experts_Username_Array;
     NSMutableArray *Experts_Name_Array;
     NSMutableArray *Experts_ProfilePhoto_Array;

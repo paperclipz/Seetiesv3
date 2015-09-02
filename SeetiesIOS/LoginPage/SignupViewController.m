@@ -9,7 +9,7 @@
 #import "SignupViewController.h"
 #import "PTnCViewController.h"
 #import "LLARingSpinnerView.h"
-#import "PTellUsYourCityViewController.h"
+#import "PInterestV2ViewController.h"
 #import "OpenWebViewController.h"
 #import "ExpertLoginViewController.h"
 
@@ -96,7 +96,7 @@
        // RedIcon.hidden = NO;
     }else if(textField == PasswordField){
         [UsernameField resignFirstResponder];
-        [ConfirmPasswrodField becomeFirstResponder];
+        //[ConfirmPasswrodField becomeFirstResponder];
       //  [PasswordField resignFirstResponder];
         if([PasswordField.text length] < 8){
            // RedIcon.hidden = NO;
@@ -351,26 +351,14 @@
         NSString *MessageString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"message"]];
         NSLog(@"MessageString is %@",MessageString);
         
-        if ([ErrorString isEqualToString:@"0"]) {
-            if ([MessageString isEqualToString:@"Sorry that email is already taken. Please try another."]) {
-                UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"Email already exists" message:@"You can choose to login or change the email address" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Login", nil];
-                ShowAlert.tag = 500;
-                [ShowAlert show];
-            }else{
-                UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:MessageString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                [ShowAlert show];
-            }
-
-        }else{
-
-            
+        if ([MessageString length] == 0 || [MessageString isEqualToString:@"(null)"] || [MessageString isEqualToString:@"None"]) {
             NSString *statusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
             NSLog(@"statusString is %@",statusString);
             
             if ([statusString isEqualToString:@"ok"]) {
                 //login done.
                 // NSString *CheckLogin = [[NSString alloc]initWithFormat:@"LoginDone"];
-
+                
                 
                 NSString *Getusername = UsernameField.text;
                 NSString *GetUserPassword = PasswordField.text;
@@ -393,7 +381,19 @@
                 //            [self presentViewController:PTnCView animated:NO completion:nil];
                 //            [PTnCView GetFBLogin:@"NO"];
             }
-        }
+
+
+        }else{
+            if ([MessageString isEqualToString:@"Sorry that email is already taken. Please try another"]) {
+                UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"Email already exists" message:@"You can choose to login or change the email address" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Login", nil];
+                ShowAlert.tag = 500;
+                [ShowAlert show];
+            }else{
+                UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:MessageString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [ShowAlert show];
+            }
+            
+                    }
 
     }else{
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
@@ -411,10 +411,7 @@
         NSString *MessageString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"message"]];
         NSLog(@"MessageString is %@",MessageString);
         
-        if ([ErrorString isEqualToString:@"0"]) {
-            UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"SomethingError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [ShowAlert show];
-        }else{
+        if ([MessageString length] == 0 || [MessageString isEqualToString:@"(null)"] || [MessageString isEqualToString:@"None"]) {
             NSDictionary *GetAllData = [res valueForKey:@"data"];
             
             [ShowActivity stopAnimating];
@@ -484,8 +481,12 @@
                 
             }
             
-            PTellUsYourCityViewController *TellUsYourCityView = [[PTellUsYourCityViewController alloc]init];
-            [self presentViewController:TellUsYourCityView animated:YES completion:nil];
+            PInterestV2ViewController *PInterestV2View = [[PInterestV2ViewController alloc]init];
+            [self presentViewController:PInterestV2View animated:YES completion:nil];
+        
+        }else{
+            UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"SomethingError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [ShowAlert show];
         }
     }
 }

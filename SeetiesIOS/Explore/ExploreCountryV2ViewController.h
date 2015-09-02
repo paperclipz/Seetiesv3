@@ -24,6 +24,10 @@
     
     NSMutableArray *PostIDArray;
     NSMutableArray *PhotoArray;
+    NSMutableArray *UserInfo_UrlArray;
+    NSMutableArray *UserInfo_NameArray;
+    NSMutableArray *place_nameArray;
+    NSMutableArray *LocationArray;
     
     NSURLConnection *theConnection_GetCountryData;
     NSURLConnection *theConnection_GetUserData;
@@ -35,6 +39,7 @@
     NSMutableArray *User_LocationArray;
     NSMutableArray *User_FollowArray;
     NSMutableArray *User_UserNameArray;
+    NSMutableArray *User_PhotoArray;
     
     NSString *GetUserID;
     NSString *GetFollowString;

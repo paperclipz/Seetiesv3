@@ -13,7 +13,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignupViewController">
             <connections>
                 <outlet property="CancelButton" destination="1iw-Nw-4Ez" id="xd2-Z3-eLA"/>
-                <outlet property="ConfirmPasswrodField" destination="Vgy-Of-xMn" id="zvQ-2k-mMg"/>
                 <outlet property="EmailField" destination="YuA-aX-yNB" id="Bxi-ql-jSz"/>
                 <outlet property="LogoImg" destination="fCc-H9-75T" id="6TF-qJ-paz"/>
                 <outlet property="PasswordField" destination="6du-rF-LYi" id="AbU-a5-dBg"/>
@@ -24,7 +23,6 @@
                 <outlet property="btnBackground_1" destination="EKr-uh-p4k" id="mjI-yC-nDA"/>
                 <outlet property="btnBackground_2" destination="tGQ-1V-rZZ" id="ZvY-lY-NMw"/>
                 <outlet property="btnBackground_3" destination="juD-xh-rUl" id="0Fc-bM-Od2"/>
-                <outlet property="btnBackground_4" destination="a6p-kZ-N5T" id="LeL-BC-nc3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -65,23 +63,8 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="a6p-kZ-N5T">
-                            <rect key="frame" x="15" y="233" width="297" height="50"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
-                            <state key="normal">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                        </button>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password - 8 characters or more" minimumFontSize="17" clearButtonMode="whileEditing" id="Vgy-Of-xMn">
-                            <rect key="frame" x="15" y="182" width="297" height="50"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
-                            <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done" secureTextEntry="YES"/>
-                        </textField>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password - 8 characters or more" minimumFontSize="17" clearButtonMode="whileEditing" id="6du-rF-LYi">
-                            <rect key="frame" x="15" y="233" width="297" height="50"/>
+                            <rect key="frame" x="15" y="182" width="297" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>

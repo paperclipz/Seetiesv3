@@ -15,10 +15,10 @@
 #import "LandingV2ViewController.h"
 #import "OpenWebViewController.h"
 #import "FeedbackViewController.h"
-
+#import "NotificationSettingsViewController.h"
 #import "LanguageManager.h"
 #import "Locale.h"
-
+#import <Parse/Parse.h>
 @interface SettingsViewController ()
 @property (nonatomic, strong) LLARingSpinnerView *spinnerView;
 @end
@@ -197,6 +197,19 @@
             
             Locale *localeForRow = languageManager.availableLocales[CheckSystemLanguage];
             [languageManager setLanguageWithLocale:localeForRow];
+            
+           // NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSString *GetUserUID = [defaults objectForKey:@"Useruid"];
+            
+             NSString *TempTokenString = [[NSString alloc]initWithFormat:@"seeties_%@",GetUserUID];
+            // When users indicate they are no longer Giants fans, we unsubscribe them.
+            PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+            NSArray *subscribedChannels = [PFInstallation currentInstallation].channels;
+            [currentInstallation removeObjectsInArray:subscribedChannels forKey:TempTokenString];
+            [currentInstallation saveInBackground];
+            
+            
+            
             
 
             //save back
@@ -511,6 +524,14 @@
             }
                 break;
             case 3:{
+                NotificationSettingsViewController *NotificationSettingsView = [[NotificationSettingsViewController alloc]init];
+                CATransition *transition = [CATransition animation];
+                transition.duration = 0.2;
+                transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+                transition.type = kCATransitionPush;
+                transition.subtype = kCATransitionFromRight;
+                [self.view.window.layer addAnimation:transition forKey:nil];
+                [self presentViewController:NotificationSettingsView animated:NO completion:nil];
             }
                 break;
                 

@@ -367,12 +367,12 @@
 {
     if (connection == theConnection_GetSearchKeyword) {
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
-        NSLog(@"Search Keyword return get data to server ===== %@",GetData);
+       // NSLog(@"Search Keyword return get data to server ===== %@",GetData);
         
         NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
         NSError *myError = nil;
         NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
-        NSLog(@"Feed Json = %@",res);
+       // NSLog(@"Feed Json = %@",res);
         
         NSDictionary *ResData = [res valueForKey:@"data"];
         
@@ -598,19 +598,32 @@
             }else{
                 FullString = [[NSString alloc]initWithFormat:@"%@, %@",Locality,Country];
             }
-            
-//            NSLog(@"Locality is %@",Locality);
-//            NSLog(@"Address3 is %@",Address3);
-//            NSLog(@"Address2 is %@",Address2);
-//            NSLog(@"Address1 is %@",Address1);
-//            NSLog(@"Country is %@",Country);
-            
-            //  NSString *FullString = [[NSString alloc]initWithFormat:@"%@, %@",Address1,Country];
             [LocationArray addObject:FullString];
         }
         DataCount = DataTotal;
         DataTotal = [LPhotoArray count];
         CheckLoad = NO;
+        
+        
+        NSDictionary *ResDataUser = [ResData valueForKey:@"experts"];
+        Experts_Username_Array = [[NSMutableArray alloc]init];
+        Experts_Name_Array = [[NSMutableArray alloc]init];
+        Experts_ProfilePhoto_Array = [[NSMutableArray alloc]init];
+        Experts_uid_Array = [[NSMutableArray alloc]init];
+        Experts_Followed_Array = [[NSMutableArray alloc]init];
+        for (NSDictionary * dict in ResDataUser){
+            NSString *uid =  [NSString stringWithFormat:@"%@",[dict objectForKey:@"uid"]];
+            [Experts_uid_Array addObject:uid];
+            NSString *profile_photo =  [NSString stringWithFormat:@"%@",[dict objectForKey:@"profile_photo"]];
+            [Experts_ProfilePhoto_Array addObject:profile_photo];
+            NSString *followed =  [NSString stringWithFormat:@"%@",[dict objectForKey:@"followed"]];
+            [Experts_Followed_Array addObject:followed];
+            NSString *username =  [NSString stringWithFormat:@"%@",[dict objectForKey:@"username"]];
+            [Experts_Username_Array addObject:username];
+            NSString *name =  [NSString stringWithFormat:@"%@",[dict objectForKey:@"name"]];
+            [Experts_Name_Array addObject:name];
+        }
+        
         [self InitView];
     }else if(connection == theConnection_GetSearchCategory){
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
@@ -1080,7 +1093,7 @@
     heightcheck += 20;
     
     NSString *TempStringPosts = [[NSString alloc]initWithFormat:@"%lu Posts",(unsigned long)[place_nameArray count]];
-    NSString *TempStringPeople = [[NSString alloc]initWithFormat:@"3 People"];
+    NSString *TempStringPeople = [[NSString alloc]initWithFormat:@"%lu People",(unsigned long)[Experts_Name_Array count]];
     
     NSArray *itemArray = [NSArray arrayWithObjects:TempStringPosts, TempStringPeople, nil];
     UISegmentedControl *ProfileControl = [[UISegmentedControl alloc]initWithItems:itemArray];
@@ -1557,7 +1570,7 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     int PeopleHeight = 0;
 
-    for (int i = 0; i < 5; i ++) {
+    for (int i = 0; i < [Experts_Name_Array count]; i ++) {
         
         AsyncImageView *UserImage = [[AsyncImageView alloc]init];
         UserImage.frame = CGRectMake(25, PeopleHeight + 10, 60, 60);
@@ -1568,7 +1581,7 @@
         UserImage.layer.masksToBounds = YES;
         UserImage.layer.borderColor=[[UIColor whiteColor] CGColor];
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:UserImage];
-        NSString *FullImagesURL = @"";
+       NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[Experts_ProfilePhoto_Array objectAtIndex:i]];
         if ([FullImagesURL length] == 0) {
             UserImage.image = [UIImage imageNamed:@"avatar.png"];
         }else{
@@ -1579,7 +1592,7 @@
         
         UILabel *ShowUserName = [[UILabel alloc]init];
         ShowUserName.frame = CGRectMake(100, PeopleHeight + 10, 200, 60);
-        ShowUserName.text = @"ahyongah";
+        ShowUserName.text = [Experts_Name_Array objectAtIndex:i];
         ShowUserName.backgroundColor = [UIColor clearColor];
         ShowUserName.textColor = [UIColor blackColor];
         ShowUserName.textAlignment = NSTextAlignmentLeft;
@@ -1753,27 +1766,32 @@
                     
                 }else{
                     CheckLoad = YES;
-                    if (CurrentPage == TotalPage) {
+                    if (PostsView.hidden == YES) {
                         
                     }else{
-                        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-                        
-                        [MainScroll setContentSize:CGSizeMake(screenWidth, MainScroll.contentSize.height + 50)];
-                        // MainScroll.frame = CGRectMake(0, heightcheck, screenWidth, MainScroll.frame.size.height + 20);
-                        UIActivityIndicatorView *  activityindicator1 = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake((screenWidth/2) - 15, MainScroll.contentSize.height + 20, 30, 30)];
-                        [activityindicator1 setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhiteLarge];
-                        [activityindicator1 setColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f]];
-                        [MainScroll addSubview:activityindicator1];
-                        [activityindicator1 startAnimating];
-                        [MainScroll setContentSize:CGSizeMake(screenWidth, MainScroll.contentSize.height + 80)];
-                        
-                        if (CheckInt == 2) {
-                            [self SendCategoryData];
+                        if (CurrentPage == TotalPage) {
+                            
                         }else{
-                           [self SendSearchKeywordData];
+                            CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+                            
+                            [MainScroll setContentSize:CGSizeMake(screenWidth, MainScroll.contentSize.height + 50)];
+                            // MainScroll.frame = CGRectMake(0, heightcheck, screenWidth, MainScroll.frame.size.height + 20);
+                            UIActivityIndicatorView *  activityindicator1 = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake((screenWidth/2) - 15, MainScroll.contentSize.height + 20, 30, 30)];
+                            [activityindicator1 setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhiteLarge];
+                            [activityindicator1 setColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f]];
+                            [MainScroll addSubview:activityindicator1];
+                            [activityindicator1 startAnimating];
+                            [MainScroll setContentSize:CGSizeMake(screenWidth, MainScroll.contentSize.height + 80)];
+                            
+                            if (CheckInt == 2) {
+                                [self SendCategoryData];
+                            }else{
+                                [self SendSearchKeywordData];
+                            }
+                            
                         }
-                       
                     }
+                    
                     
                 }
             

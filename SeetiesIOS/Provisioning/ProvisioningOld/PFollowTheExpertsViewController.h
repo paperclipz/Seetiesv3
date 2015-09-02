@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "GAITrackedViewController.h"
 #import "UrlDataClass.h"
+@class LeveyTabBarController;
 @interface PFollowTheExpertsViewController : GAITrackedViewController<UIScrollViewDelegate>{
+    
+    LeveyTabBarController *leveyTabBarController;
 
     IBOutlet UIScrollView *MainScroll;
     IBOutlet UIScrollView *iPhone4Scroll;
@@ -93,6 +96,9 @@
     IBOutlet UILabel *Keepyourbestcity_iPH6;
     
     IBOutlet UIImageView *TourImage01;
+    
+    NSString *latPoint;
+    NSString *lonPoint;
 }
 -(IBAction)SkipButton01:(id)sender;
 -(IBAction)SkipButton02:(id)sender;

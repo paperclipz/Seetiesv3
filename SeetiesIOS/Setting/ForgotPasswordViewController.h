@@ -17,7 +17,7 @@
     IBOutlet UIButton *ResetButton;
     IBOutlet UILabel *TitleLabel;
     IBOutlet UILabel *DetailLabel;
-    
+    IBOutlet UIImageView *LogoImg;
     IBOutlet UIButton *BackGroundButton;
 }
 -(IBAction)BackButton:(id)sender;

@@ -33,6 +33,11 @@
     
     IBOutlet UILabel *ShowNoDataText_1;
     IBOutlet UILabel *ShowNoDataText_2;
+    
+    UIView *FollowingView;
+    UIView *NotificationsView;
+    
+    int GetHeight;
 }
 -(void)GetNotification;
 @end

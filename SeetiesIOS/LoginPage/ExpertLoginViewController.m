@@ -276,11 +276,7 @@
     NSString *MessageString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"message"]];
     NSLog(@"MessageString is %@",MessageString);
     
-    if ([ErrorString isEqualToString:@"0"]) {
-        UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:MessageString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [ShowAlert show];
-
-    }else{
+    if ([MessageString length] == 0 || [MessageString isEqualToString:@"(null)"] || [MessageString isEqualToString:@"None"]) {
         [ShowActivity stopAnimating];
         
         NSDictionary *GetAllData = [res valueForKey:@"data"];
@@ -326,7 +322,7 @@
             GetCaption = [[NSString alloc]initWithFormat:@"%@",[SystemLanguage objectForKey:@"caption"]];
             NSLog(@"GetCaption is %@",GetCaption);
         }
-
+        
         
         NSMutableArray *GetUserSelectLanguagesArray = [[NSMutableArray alloc]init];
         NSMutableArray *TempArray = [[NSMutableArray alloc]init];
@@ -347,7 +343,7 @@
             }
             NSLog(@"GetUserSelectLanguagesArray is %@",GetUserSelectLanguagesArray);
             
-
+            
             if ([TempArray count] == 1) {
                 GetLanguage_1 = [[NSString alloc]initWithFormat:@"%@",[TempArray objectAtIndex:0]];
             }else{
@@ -355,7 +351,7 @@
                 GetLanguage_2 = [[NSString alloc]initWithFormat:@"%@",[TempArray objectAtIndex:1]];
             }
         }
-
+        
         
         NSInteger CheckSystemLanguage;
         if ([GetCaption isEqualToString:@"English"]) {
@@ -372,7 +368,7 @@
             CheckSystemLanguage = 5;
         }
         
-
+        
         
         LanguageManager *languageManager = [LanguageManager sharedLanguageManager];
         
@@ -399,7 +395,7 @@
         [defaults setObject:GetFbExtendedToken forKey:@"fbextendedtoken"];
         [defaults synchronize];
         
-   //     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        //     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSData *GetDeviceToken = [defaults objectForKey:@"DeviceTokenPush"];
         NSString *GetUserUID = [defaults objectForKey:@"Useruid"];
         NSLog(@"GetDeviceToken is %@",GetDeviceToken);
@@ -467,6 +463,11 @@
         [leveyTabBarController setTabBarTransparent:YES];
         
         [[[[UIApplication sharedApplication] delegate] window] setRootViewController:leveyTabBarController];
+
+    }else{
+        UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:MessageString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [ShowAlert show];
+
         
 
     }

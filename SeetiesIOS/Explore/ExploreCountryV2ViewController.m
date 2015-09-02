@@ -405,9 +405,7 @@
         UserImage.layer.masksToBounds = YES;
         UserImage.layer.borderColor=[[UIColor whiteColor] CGColor];
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:UserImage];
-        // NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",GetUserProfileUrl];
-        NSString *FullImagesURL1 = @"";
-        // NSLog(@"FullImagesURL1 ====== %@",FullImagesURL1);
+        NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserInfo_UrlArray objectAtIndex:i]];
         if ([FullImagesURL1 length] == 0) {
             UserImage.image = [UIImage imageNamed:@"avatar.png"];
         }else{
@@ -419,7 +417,7 @@
         
         UILabel *ShowUserName = [[UILabel alloc]init];
         ShowUserName.frame = CGRectMake(70, PostGetHeight + 10, 200, 30);
-        ShowUserName.text = @"ahyongah";
+        ShowUserName.text = [UserInfo_NameArray objectAtIndex:i];
         ShowUserName.backgroundColor = [UIColor clearColor];
         ShowUserName.textColor = [UIColor blackColor];
         ShowUserName.textAlignment = NSTextAlignmentLeft;
@@ -458,7 +456,7 @@
         
         UILabel *ShowPlaceName = [[UILabel alloc]init];
         ShowPlaceName.frame = CGRectMake(140, PostGetHeight + 80, screenWidth - 140, 20);
-        ShowPlaceName.text = @"Sushi Zen";
+        ShowPlaceName.text = [place_nameArray objectAtIndex:i];
         ShowPlaceName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         ShowPlaceName.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0];
         ShowPlaceName.textAlignment = NSTextAlignmentLeft;
@@ -467,7 +465,7 @@
         
         UILabel *ShowLocation = [[UILabel alloc]init];
         ShowLocation.frame = CGRectMake(120, PostGetHeight + 100, screenWidth - 120, 20);
-        ShowLocation.text = @"Kuala Limpur . Open now";
+        ShowLocation.text = [LocationArray objectAtIndex:i];
         ShowLocation.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowLocation.textColor = [UIColor grayColor];
         ShowLocation.textAlignment = NSTextAlignmentLeft;
@@ -496,7 +494,7 @@
     //    NSLog(@"FinalWidth is %i",FinalWidth);
     int SpaceWidth = FinalWidth + 4;
     
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < [User_NameArray count]; i++) {
         UIButton *TempButton = [[UIButton alloc]init];
         TempButton.frame = CGRectMake(15, PeopleGetHeight, screenWidth - 30, FinalWidth + 10 + 70);
         [TempButton setTitle:@"" forState:UIControlStateNormal];
@@ -514,16 +512,21 @@
         ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
         ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
         ShowUserProfileImage.layer.cornerRadius=20;
-        //ShowUserProfileImage.layer.borderWidth=3;
         ShowUserProfileImage.layer.masksToBounds = YES;
-        //ShowUserProfileImage.layer.borderColor=[[UIColor lightGrayColor] CGColor];
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
+        NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[User_ProfileImageArray objectAtIndex:i]];
+        if ([FullImagesURL1 length] == 0) {
+            ShowUserProfileImage.image = [UIImage imageNamed:@"avatar.png"];
+        }else{
+            NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
+            ShowUserProfileImage.imageURL = url_UserImage;
+        }
         [PeopleView addSubview:ShowUserProfileImage];
         
         
         UILabel *ShowUserName = [[UILabel alloc]init];
         ShowUserName.frame = CGRectMake(80, PeopleGetHeight + 10, 200, 20);
-        ShowUserName.text = @"lucydiamond";
+        ShowUserName.text = [User_NameArray objectAtIndex:i];
         ShowUserName.backgroundColor = [UIColor clearColor];
         ShowUserName.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
         ShowUserName.textAlignment = NSTextAlignmentLeft;
@@ -532,7 +535,7 @@
         
         UILabel *ShowMessage = [[UILabel alloc]init];
         ShowMessage.frame = CGRectMake(80, PeopleGetHeight + 30, 200, 20);
-        ShowMessage.text = @"Kuala Lumpur";
+        ShowMessage.text = [User_LocationArray objectAtIndex:i];
         ShowMessage.backgroundColor = [UIColor clearColor];
         ShowMessage.textColor = [UIColor grayColor];
         ShowMessage.textAlignment = NSTextAlignmentLeft;
@@ -546,22 +549,30 @@
         FollowButton.layer.cornerRadius = 20;
         [PeopleView addSubview: FollowButton];
         
-        NSMutableArray *DemoArray = [[NSMutableArray alloc]init];
-        [DemoArray addObject:@"DemoBackground.jpg"];
-        [DemoArray addObject:@"UserDemo1.jpg"];
-        [DemoArray addObject:@"UserDemo2.jpg"];
-        [DemoArray addObject:@"UserDemo3.jpg"];
+//        NSMutableArray *DemoArray = [[NSMutableArray alloc]init];
+//        [DemoArray addObject:@"DemoBackground.jpg"];
+//        [DemoArray addObject:@"UserDemo1.jpg"];
+//        [DemoArray addObject:@"UserDemo2.jpg"];
+//        [DemoArray addObject:@"UserDemo3.jpg"];
         
-        for (int z = 0; z < [DemoArray count]; z++) {
+        NSString *TempImage = [[NSString alloc]initWithFormat:@"%@",[User_PhotoArray objectAtIndex:i]];
+        NSArray *SplitArray = [TempImage componentsSeparatedByString:@","];
+        for (int z = 0; z < [SplitArray count]; z++) {
             AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
             ShowImage.frame = CGRectMake(30 +(z % 4) * SpaceWidth, PeopleGetHeight + 70, FinalWidth, FinalWidth);
-            ShowImage.image = [UIImage imageNamed:[DemoArray objectAtIndex:z]];
+           // ShowImage.image = [UIImage imageNamed:[SplitArray objectAtIndex:z]];
             ShowImage.contentMode = UIViewContentModeScaleAspectFill;
             ShowImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
             ShowImage.layer.cornerRadius=5;
             ShowImage.layer.masksToBounds = YES;
             [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
-            
+            NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[SplitArray objectAtIndex:z]];
+            if ([FullImagesURL_First length] == 0) {
+                ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
+            }else{
+                NSURL *url = [NSURL URLWithString:FullImagesURL_First];
+                ShowImage.imageURL = url;
+            }
             [PeopleView addSubview:ShowImage];
         }
         
@@ -797,6 +808,10 @@
                 NSDictionary *ResData = [res valueForKey:@"data"];
                 
                 NSDictionary *GetAllData = [ResData valueForKey:@"posts"];
+                NSDictionary *UserInfoData = [GetAllData valueForKey:@"user_info"];
+                NSDictionary *UserInfoData_ProfilePhoto = [UserInfoData valueForKey:@"profile_photo"];
+                NSDictionary *locationData = [GetAllData valueForKey:@"location"];
+                NSDictionary *locationData_Address = [locationData valueForKey:@"address_components"];
          //       NSLog(@"GetAllData ===== %@",GetAllData);
                 
                 NSString *Temppage = [[NSString alloc]initWithFormat:@"%@",[ResData objectForKey:@"page"]];
@@ -811,6 +826,10 @@
                 if (CheckFirstTimeLoad == 0) {
                     PostIDArray = [[NSMutableArray alloc]init];
                     PhotoArray = [[NSMutableArray alloc]init];
+                    UserInfo_UrlArray = [[NSMutableArray alloc]init];
+                    UserInfo_NameArray = [[NSMutableArray alloc]init];
+                    place_nameArray = [[NSMutableArray alloc]init];
+                    LocationArray = [[NSMutableArray alloc]init];
                     DataCount = 0;
                     
                 }else{
@@ -820,13 +839,10 @@
                 for (NSDictionary * dict in GetAllData) {
                     NSString *PlaceID = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"post_id"]];
                     [PostIDArray addObject:PlaceID];
+                    NSString *place_name =  [NSString stringWithFormat:@"%@",[dict objectForKey:@"place_name"]];
+                    [place_nameArray addObject:place_name];
                 }
-      //          NSLog(@"PostIDArray is %@",PostIDArray);
                 NSArray *PhotoData = [GetAllData valueForKey:@"photos"];
-                //NSLog(@"PhotoData is %@",PhotoData);
-                
-               // PhotoArray = [[NSMutableArray alloc]init];
-                
                 for (NSDictionary * dict in PhotoData) {
                     NSMutableArray *UrlArray = [[NSMutableArray alloc]init];
                     for (NSDictionary * dict_ in dict) {
@@ -838,14 +854,44 @@
                     NSString *result2 = [UrlArray componentsJoinedByString:@","];
                     [PhotoArray addObject:result2];
                 }
+                for (NSDictionary * dict in UserInfoData) {
+                    NSString *username = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"username"]];
+                    [UserInfo_NameArray addObject:username];
+                }
+                for (NSDictionary * dict in UserInfoData_ProfilePhoto) {
+                    NSString *url = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"url"]];
+                    [UserInfo_UrlArray addObject:url];
+                }
+                for (NSDictionary * dict in locationData_Address) {
+                    NSString *Locality = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"locality"]];
+                    NSString *Address3 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"administrative_area_level_3"]];
+                    NSString *Address2 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"administrative_area_level_2"]];
+                    NSString *Address1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"administrative_area_level_1"]];
+                    NSString *Country = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"country"]];
+                    NSString *FullString;
+                    if ([Locality length] == 0 || Locality == nil || [Locality isEqualToString:@"(null)"]) {
+                        if([Address3 length] == 0 || Address3 == nil || [Address3 isEqualToString:@"(null)"]){
+                            if ([Address2 length] == 0 || Address2 == nil || [Address2 isEqualToString:@"(null)"]) {
+                                if ([Address1 length] == 0 || Address1 == nil || [Address1 isEqualToString:@"(null)"]) {
+                                    FullString = [[NSString alloc]initWithFormat:@"%@",Country];
+                                }else{
+                                    FullString = [[NSString alloc]initWithFormat:@"%@, %@",Address1,Country];
+                                }
+                            }else{
+                                FullString = [[NSString alloc]initWithFormat:@"%@, %@",Address2,Country];
+                            }
+                        }else{
+                            FullString = [[NSString alloc]initWithFormat:@"%@, %@",Address3,Country];
+                        }
+                    }else{
+                        FullString = [[NSString alloc]initWithFormat:@"%@, %@",Locality,Country];
+                    }
+                    [LocationArray addObject:FullString];
+                }
                 
                 DataCount = DataTotal;
                 DataTotal = [PostIDArray count];
-                
-       //         NSLog(@"DataCount in get server data === %li",(long)DataCount);
-       //         NSLog(@"DataTotal in get server data === %li",(long)DataTotal);
-       //         NSLog(@"CheckFirstTimeLoadLikes === %li",(long)CheckFirstTimeLoad);
-                //[self InitView];
+
                 CheckLoad_Explore = NO;
                 
                 [self InitView];
@@ -880,17 +926,18 @@
             }else{
                  NSDictionary *ResData = [res valueForKey:@"data"];
                 
-                NSDictionary *GetAllData = [ResData valueForKey:@"featured_users"];
+                 NSDictionary *GetAllData = [ResData valueForKey:@"users"];
           //      NSLog(@"GetAllData ===== %@",GetAllData);
                 
-                NSArray *UserData = [GetAllData valueForKey:@"users"];
+               // NSArray *UserData = [GetAllData valueForKey:@"users"];
                 User_LocationArray = [[NSMutableArray alloc]init];
                 User_IDArray = [[NSMutableArray alloc]init];
                 User_NameArray = [[NSMutableArray alloc]init];
                 User_ProfileImageArray = [[NSMutableArray alloc]init];
                 User_FollowArray = [[NSMutableArray alloc]init];
                 User_UserNameArray = [[NSMutableArray alloc]init];
-                for (NSDictionary * dict in UserData) {
+                User_PhotoArray = [[NSMutableArray alloc]init];
+                for (NSDictionary * dict in GetAllData) {
                     NSString *location = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"location"]];
                     [User_LocationArray addObject:location];
                     NSString *uid = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"uid"]];
@@ -903,10 +950,26 @@
                     [User_FollowArray addObject:followed];
                     NSString *username = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"username"]];
                     [User_UserNameArray addObject:username];
+                    
+                    NSDictionary *PostsData = [dict valueForKey:@"posts"];
+                    NSArray *PhotoData = [PostsData valueForKey:@"photos"];
+
+                    for (NSDictionary * dict in PhotoData) {
+                        NSMutableArray *UrlArray = [[NSMutableArray alloc]init];
+                        for (NSDictionary * dict_ in dict) {
+                            NSDictionary *UserInfoData = [dict_ valueForKey:@"s"];
+                            NSString *url = [[NSString alloc]initWithFormat:@"%@",[UserInfoData objectForKey:@"url"]];
+                            [UrlArray addObject:url];
+                        }
+                        NSString *result2 = [UrlArray componentsJoinedByString:@","];
+                        [User_PhotoArray addObject:result2];
+                    }
+                    
+                    
+                    
                 }
-                NSLog(@"User_NameArray is %@",User_NameArray);
+               // NSLog(@"User_PhotoArray is %@",User_PhotoArray);
                 [self GetDataFromServer];
-              //  NSLog(@"User_LocationArray is %@",User_LocationArray);
             }
         }
     }else{

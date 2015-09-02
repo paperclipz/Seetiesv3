@@ -370,40 +370,6 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:deviceToken forKey:@"DeviceTokenPush"];
     [defaults synchronize];
-    
-    
-    //    NSData *GetDeviceToken = [defaults objectForKey:@"DeviceTokenPush"];
-    //    NSString *GetUserUID = [defaults objectForKey:@"Useruid"];
-    //    NSLog(@"GetDeviceToken is %@",GetDeviceToken);
-    //    NSLog(@"GetUserUID is %@",GetUserUID);
-    //    if ([GetDeviceToken length] == 0 || GetDeviceToken == (id)[NSNull null] || GetDeviceToken.length == 0) {
-    //
-    //    }else{
-    //        NSString *Check = [defaults objectForKey:@"CheckGetPushToken"];
-    //        if ([Check isEqualToString:@"Done"]) {
-    //
-    //        }else{
-    //            if ([GetUserUID length] == 0 || GetUserUID == (id)[NSNull null] || GetUserUID.length == 0) {
-    //                PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-    //                [currentInstallation setDeviceTokenFromData:GetDeviceToken];
-    //                currentInstallation.channels = @[@"IOS_FirstLogin"];
-    //                [currentInstallation saveInBackground];
-    //            }else{
-    //                PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-    //                [currentInstallation setDeviceTokenFromData:GetDeviceToken];
-    //                NSString *tempTokenString = [[NSString alloc]initWithFormat:@"seeties_%@",GetUserUID];
-    //                currentInstallation.channels = @[tempTokenString,@"all"];
-    //                [currentInstallation saveInBackground];
-    //            //    NSLog(@"work here?");
-    //                NSString *TempString = @"Done";
-    //                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    //                [defaults setObject:TempString forKey:@"CheckGetPushToken"];
-    //                [defaults synchronize];
-    //            }
-    //
-    //        }
-    //
-    //    }
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
@@ -495,7 +461,7 @@
 
     }
     
-   // PInterestV2ViewController *SelectInterestNew = [[PInterestV2ViewController alloc]init];
+  //  PInterestV2ViewController *SelectInterestNew = [[PInterestV2ViewController alloc]init];
    
     self.window.rootViewController = self.landingV2ViewController;//self.landingV2ViewController
     self.window.backgroundColor = [UIColor whiteColor];

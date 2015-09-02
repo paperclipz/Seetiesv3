@@ -55,7 +55,14 @@
 //    AllContentView.frame = contentFrame;
     [MainScroll addSubview:AllContentView];
     
-    
+    CheckLoad_Post = NO;
+    CheckLoad_Likes = NO;
+    CheckFirstTimeLoadLikes = 0;
+    CheckFirstTimeLoadPost = 0;
+    TotalPage_Like = 1;
+    CurrentPage_Like = 0;
+    TotalPage_Post = 1;
+    CurrentPage_Post = 0;
     
     [self GetUserData];
     
@@ -392,6 +399,7 @@
 //    MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 //    MainScroll.contentSize = contentSize;
     [self InitCollectionView];
+    
 }
 - (void)segmentAction:(UISegmentedControl *)segment
 {
@@ -412,11 +420,6 @@
             CollectionView.hidden = YES;
             PostView.hidden = NO;
             [self InitPostsView];
-            
-//            contentSize.height = GetHeight + PostView.frame.size.height + 200;
-//            MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-//            MainScroll.contentSize = contentSize;
-
             break;
         case 2:
             NSLog(@"Likes click");
@@ -424,10 +427,6 @@
             CollectionView.hidden = YES;
             LikeView.hidden = NO;
             [self InitLikeData];
-            
-//            contentSize.height = GetHeight + LikeView.frame.size.height + 200;
-//            MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-//            MainScroll.contentSize = contentSize;
             break;
         default:
             break;
@@ -543,20 +542,10 @@
     MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     MainScroll.contentSize = contentSize;
     
+    
 }
 -(void)InitLikeData{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    
-    NSMutableArray *ArrLikeImg = [[NSMutableArray alloc]init];
-    [ArrLikeImg addObject:@"https://unsplash.it/200/200/?random"];
-    [ArrLikeImg addObject:@"https://unsplash.it/210/210/?random"];
-    [ArrLikeImg addObject:@"https://unsplash.it/220/220/?random"];
-    [ArrLikeImg addObject:@"https://unsplash.it/230/230/?random"];
-    [ArrLikeImg addObject:@"https://unsplash.it/240/240/?random"];
-    [ArrLikeImg addObject:@"https://unsplash.it/250/250/?random"];
-    [ArrLikeImg addObject:@"https://unsplash.it/260/260/?random"];
-    [ArrLikeImg addObject:@"https://unsplash.it/270/270/?random"];
-    [ArrLikeImg addObject:@"https://unsplash.it/280/280/?random"];
     
     int TestWidth = screenWidth - 2;
     //NSLog(@"TestWidth is %i",TestWidth);
@@ -565,14 +554,14 @@
    // NSLog(@"FinalWidth is %i",FinalWidth);
     int SpaceWidth = FinalWidth + 1;
     
-    for (NSInteger i = 0; i < 9; i++) {
+    for (NSInteger i = DataCount_Like; i < DataTotal_Like; i++) {
         AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
         ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
         ShowImage.frame = CGRectMake(0+(i % 3)*SpaceWidth, 0 + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
         ShowImage.contentMode = UIViewContentModeScaleAspectFill;
         ShowImage.layer.masksToBounds = YES;
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
-        NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[ArrLikeImg objectAtIndex:i]];
+        NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[LikesData_PhotoArray objectAtIndex:i]];
         if ([FullImagesURL_First length] == 0) {
             ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
         }else{
@@ -604,9 +593,11 @@
 -(void)InitPostsView{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
+    NSString *TempString = [[NSString alloc]initWithFormat:@"%@ Posts",GetPostsDataCount];
+    
     UILabel *ShowCollectionCount = [[UILabel alloc]init];
     ShowCollectionCount.frame = CGRectMake(30, 20, 150, 20);
-    ShowCollectionCount.text = @"3 Posts";
+    ShowCollectionCount.text = TempString;
     ShowCollectionCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
     ShowCollectionCount.textColor = [UIColor blackColor];
     [PostView addSubview:ShowCollectionCount];
@@ -628,8 +619,9 @@
     
     int heightcheck = 61;
     
-    for (int i = 0; i < 5; i++) {
-        
+    for (int i = 0; i < [PostsData_IDArray count]; i++) {
+        NSString *TempImage = [[NSString alloc]initWithFormat:@"%@",[PostsData_PhotoArray objectAtIndex:i]];
+        NSArray *SplitArray = [TempImage componentsSeparatedByString:@","];
         AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
         ShowImage.frame = CGRectMake(15, heightcheck + 10, 80, 80);
         ShowImage.contentMode = UIViewContentModeScaleAspectFill;
@@ -637,7 +629,7 @@
         ShowImage.layer.cornerRadius = 5;
         ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
-        NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"https://unsplash.it/200/200/?random"];
+        NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[SplitArray objectAtIndex:0]];
        // NSString *FullImagesURL_First = @"";
         if ([FullImagesURL_First length] == 0) {
             ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
@@ -648,14 +640,14 @@
         }
         [PostView addSubview:ShowImage];
         
-        UILabel *ShowUserName = [[UILabel alloc]init];
-        ShowUserName.frame = CGRectMake(120, heightcheck + 10, 200, 30);
-        ShowUserName.text = @"A nice sandwich in town";
-        ShowUserName.backgroundColor = [UIColor clearColor];
-        ShowUserName.textColor = [UIColor blackColor];
-        ShowUserName.textAlignment = NSTextAlignmentLeft;
-        ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-        [PostView addSubview:ShowUserName];
+        UILabel *ShowTitle = [[UILabel alloc]init];
+        ShowTitle.frame = CGRectMake(120, heightcheck + 10, 200, 30);
+        ShowTitle.text = [PostsData_TitleArray objectAtIndex:i];
+        ShowTitle.backgroundColor = [UIColor clearColor];
+        ShowTitle.textColor = [UIColor blackColor];
+        ShowTitle.textAlignment = NSTextAlignmentLeft;
+        ShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+        [PostView addSubview:ShowTitle];
         
         UIImageView *ShowPin = [[UIImageView alloc]init];
         ShowPin.image = [UIImage imageNamed:@"FeedPin.png"];
@@ -664,16 +656,17 @@
         
         UILabel *ShowPlaceName = [[UILabel alloc]init];
         ShowPlaceName.frame = CGRectMake(140, heightcheck + 40, screenWidth - 140, 20);
-        ShowPlaceName.text = @"Sushi Zen";
+        ShowPlaceName.text = [PostsData_place_nameArray objectAtIndex:i];
         ShowPlaceName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         ShowPlaceName.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0];
         ShowPlaceName.textAlignment = NSTextAlignmentLeft;
         ShowPlaceName.backgroundColor = [UIColor clearColor];
         [PostView addSubview:ShowPlaceName];
         
+        NSString *TempCount = [[NSString alloc]initWithFormat:@"%@ views",[PostsData_TotalCountArray objectAtIndex:i]];
         UILabel *ShowLocation = [[UILabel alloc]init];
         ShowLocation.frame = CGRectMake(120, heightcheck + 60, screenWidth - 120, 20);
-        ShowLocation.text = @"Open now";
+        ShowLocation.text = TempCount;
         ShowLocation.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowLocation.textColor = [UIColor grayColor];
         ShowLocation.textAlignment = NSTextAlignmentLeft;
@@ -748,6 +741,77 @@
     }
     
 }
+-(void)GetPostsData{
+    ShowActivityPosts = [[UIActivityIndicatorView alloc]init];
+    ShowActivityPosts.frame = CGRectMake(ProfileControl.frame.origin.x + 125, ProfileControl.frame.origin.y + 105 , 20, 20);
+    [ShowActivityPosts setColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f]];
+    [MainScroll addSubview:ShowActivityPosts];
+    [ShowActivityPosts startAnimating];
+    
+    if (CurrentPage_Post == TotalPage_Post) {
+        
+    }else{
+        CurrentPage_Post += 1;
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+        NSString *Getuid = [defaults objectForKey:@"Useruid"];
+        NSString *FullString = [[NSString alloc]initWithFormat:@"%@%@/posts?token=%@&page=%li",DataUrl.UserWallpaper_Url,Getuid,GetExpertToken,CurrentPage_Post];
+        
+        
+        NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
+        NSLog(@"check postBack URL ==== %@",postBack);
+        // NSURL *url = [NSURL URLWithString:[postBack stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        NSURL *url = [NSURL URLWithString:postBack];
+        NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
+        NSLog(@"theRequest === %@",theRequest);
+        [theRequest addValue:@"" forHTTPHeaderField:@"Accept-Encoding"];
+        
+        theConnection_GetPostsData = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+        [theConnection_GetPostsData start];
+        
+        
+        if( theConnection_GetPostsData ){
+            webData = [NSMutableData data];
+        }
+    }
+}
+-(void)GetLikesData{
+    
+    ShowActivityLike = [[UIActivityIndicatorView alloc]init];
+    ShowActivityLike.frame = CGRectMake(ProfileControl.frame.size.width - 95, ProfileControl.frame.origin.y + 105 , 20, 20);
+    [ShowActivityLike setColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f]];
+    [MainScroll addSubview:ShowActivityLike];
+    [ShowActivityLike startAnimating];
+    
+    if (CurrentPage_Like == TotalPage_Like) {
+        
+    }else{
+        CurrentPage_Like += 1;
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+        NSString *Getuid = [defaults objectForKey:@"Useruid"];
+        NSString *FullString = [[NSString alloc]initWithFormat:@"%@%@/likes?token=%@&page=%li",DataUrl.UserWallpaper_Url,Getuid,GetExpertToken,CurrentPage_Like];
+        
+        
+        NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
+        NSLog(@"GetLikesData check postBack URL ==== %@",postBack);
+        // NSURL *url = [NSURL URLWithString:[postBack stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        NSURL *url = [NSURL URLWithString:postBack];
+        NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
+        NSLog(@"theRequest === %@",theRequest);
+        [theRequest addValue:@"" forHTTPHeaderField:@"Accept-Encoding"];
+        
+        theConnection_GetLikesData = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+        [theConnection_GetLikesData start];
+        
+        
+        if( theConnection_GetLikesData ){
+            webData = [NSMutableData data];
+        }
+    }
+    
+}
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     [webData setLength: 0];
@@ -807,7 +871,7 @@
                 
                 
                 [self InitContentView];
-                
+                [self GetPostsData];
             }else{
             
             }
@@ -817,6 +881,208 @@
         
         
 
+    }else if(connection == theConnection_GetPostsData){
+        NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+        //     NSLog(@"User Post return get data to server ===== %@",GetData);
+        
+        NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *myError = nil;
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
+        //  NSLog(@"Feed Json = %@",res);
+        
+        NSString *StatusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
+        
+        if ([StatusString isEqualToString:@"0"] || [StatusString isEqualToString:@"401"]) {
+            UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:CustomLocalisedString(@"SomethingError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [ShowAlert show];
+        }else{
+            
+             NSDictionary *GetResData = [res valueForKey:@"data"];
+            
+            GetPostsDataCount = [[NSString alloc]initWithFormat:@"%@",[GetResData objectForKey:@"total_posts"]];
+            if ([GetPostsDataCount isEqualToString:@"0"]) {
+                GetLikesDataCount = @"0";
+//                GetDraftsDataCount = @"0";
+//                KosongView.hidden = NO;
+                [self InitContentView];
+                [self GetLikesData];
+            }else{
+               
+                
+                NSArray *GetAllData = (NSArray *)[GetResData valueForKey:@"posts"];
+                
+                NSString *page = [[NSString alloc]initWithFormat:@"%@",[GetResData objectForKey:@"page"]];
+                NSString *total_page = [[NSString alloc]initWithFormat:@"%@",[GetResData objectForKey:@"total_page"]];
+                CurrentPage_Post = [page intValue];
+                TotalPage_Post = [total_page intValue];
+                
+                if (CheckFirstTimeLoadPost == 0) {
+                    PostsData_IDArray = [[NSMutableArray alloc]init];
+                    PostsData_PhotoArray = [[NSMutableArray alloc]init];
+                    DataCount_Post = 0;
+                    PostsData_TitleArray = [[NSMutableArray alloc]init];
+                    PostsData_place_nameArray = [[NSMutableArray alloc]init];
+                    PostsData_TotalCountArray = [[NSMutableArray alloc]init];
+                }else{
+                    
+                }
+                //  PostsData_IDArray = [[NSMutableArray alloc]init];
+                for (NSDictionary * dict in GetAllData) {
+                    NSString *PlaceID = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"post_id"]];
+                    [PostsData_IDArray addObject:PlaceID];
+                    NSString *PlaceName = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"place_name"]];
+                    [PostsData_place_nameArray addObject:PlaceName];
+                    NSString *viewcount = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"view_count"]];
+                    [PostsData_TotalCountArray addObject:viewcount];
+                }
+                NSArray *PhotoData = [GetAllData valueForKey:@"photos"];
+                
+                for (NSDictionary * dict in PhotoData) {
+                    NSMutableArray *UrlArray = [[NSMutableArray alloc]init];
+                    for (NSDictionary * dict_ in dict) {
+                        NSDictionary *UserInfoData = [dict_ valueForKey:@"m"];
+                        
+                        NSString *url = [[NSString alloc]initWithFormat:@"%@",[UserInfoData objectForKey:@"url"]];
+                        [UrlArray addObject:url];
+                    }
+                    NSString *result2 = [UrlArray componentsJoinedByString:@","];
+                    [PostsData_PhotoArray addObject:result2];
+                }
+                
+                NSDictionary *titleData = [GetAllData valueForKey:@"title"];
+                
+                
+                for (NSDictionary * dict in titleData) {
+                    if ([dict count] == 0 || dict == nil || [dict isKindOfClass:[NSNull class]]) {
+                        [PostsData_TitleArray addObject:@""];
+                    }else{
+                        NSString *Title1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0aa16424400c76000002"]];
+                        NSString *Title2 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0ab26424400c76000003"]];
+                        NSString *ThaiTitle_Nearby = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"544481503efa3ff1588b4567"]];
+                        NSString *IndonesianTitle_Nearby = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"53672e863efa3f857f8b4ed2"]];
+                        NSString *PhilippinesTitle_Nearby = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"539fbb273efa3fde3f8b4567"]];
+                        if ([Title1 length] == 0 || Title1 == nil || [Title1 isEqualToString:@"(null)"]) {
+                            if ([Title2 length] == 0 || Title2 == nil || [Title2 isEqualToString:@"(null)"]) {
+                                if ([ThaiTitle_Nearby length] == 0 || ThaiTitle_Nearby == nil || [ThaiTitle_Nearby isEqualToString:@"(null)"]) {
+                                    if ([IndonesianTitle_Nearby length] == 0 || IndonesianTitle_Nearby == nil || [IndonesianTitle_Nearby isEqualToString:@"(null)"]) {
+                                        if ([PhilippinesTitle_Nearby length] == 0 || PhilippinesTitle_Nearby == nil || [PhilippinesTitle_Nearby isEqualToString:@"(null)"]) {
+                                            [PostsData_TitleArray addObject:@""];
+                                        }else{
+                                            [PostsData_TitleArray addObject:PhilippinesTitle_Nearby];
+                                            
+                                        }
+                                    }else{
+                                        [PostsData_TitleArray addObject:IndonesianTitle_Nearby];
+                                        
+                                    }
+                                }else{
+                                    [PostsData_TitleArray addObject:ThaiTitle_Nearby];
+                                }
+                            }else{
+                                [PostsData_TitleArray addObject:Title2];
+                            }
+                            
+                        }else{
+                            [PostsData_TitleArray addObject:Title1];
+                            
+                        }
+                        
+                    }
+                    
+                }
+                
+                DataCount_Post = DataTotal_Post;
+                DataTotal_Post = [PostsData_IDArray count];
+                
+                CheckLoad_Post = NO;
+                
+                if (CheckFirstTimeLoadPost == 0) {
+                    CheckFirstTimeLoadPost = 1;
+                    [self GetLikesData];
+           
+                }else{
+                    [self InitPostsView];
+                }
+                
+                
+                
+            }
+            
+        }
+        [ShowActivityPosts stopAnimating];
+    }else if(connection == theConnection_GetLikesData){
+        NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+        
+        NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *myError = nil;
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&myError];
+        if (myError) {
+            UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:CustomLocalisedString(@"SomethingError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            ShowAlert.tag = 1000;
+            [ShowAlert show];
+        }else{
+            NSString *ErrorString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"error"]];
+            
+            if ([ErrorString isEqualToString:@"0"] || [ErrorString isEqualToString:@"401"]) {
+                UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:CustomLocalisedString(@"SomethingError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                ShowAlert.tag = 1000;
+                [ShowAlert show];
+            }else{
+                NSDictionary *GetResData = [res valueForKey:@"data"];
+                
+                NSArray *GetAllData = (NSArray *)[GetResData valueForKey:@"posts"];
+                GetLikesDataCount = [[NSString alloc]initWithFormat:@"%@",[GetResData objectForKey:@"total_posts"]];
+                NSString *page = [[NSString alloc]initWithFormat:@"%@",[GetResData objectForKey:@"page"]];
+                NSString *total_page = [[NSString alloc]initWithFormat:@"%@",[GetResData objectForKey:@"total_page"]];
+                CurrentPage_Like = [page intValue];
+                TotalPage_Like = [total_page intValue];
+                if (CheckFirstTimeLoadLikes == 0) {
+                    LikesData_IDArray = [[NSMutableArray alloc]init];
+                    LikesData_PhotoArray = [[NSMutableArray alloc]init];
+                    DataCount_Like = 0;
+                }else{
+                    
+                }
+                
+                
+                for (NSDictionary * dict in GetAllData) {
+                    NSString *PlaceID = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"post_id"]];
+                    [LikesData_IDArray addObject:PlaceID];
+                }
+                NSArray *PhotoData = [GetAllData valueForKey:@"photos"];
+                for (NSDictionary * dict in PhotoData) {
+                    NSMutableArray *UrlArray = [[NSMutableArray alloc]init];
+                    for (NSDictionary * dict_ in dict) {
+                        NSDictionary *UserInfoData = [dict_ valueForKey:@"s"];
+                        
+                        NSString *url = [[NSString alloc]initWithFormat:@"%@",[UserInfoData objectForKey:@"url"]];
+                        [UrlArray addObject:url];
+                    }
+                    NSString *result2 = [UrlArray componentsJoinedByString:@","];
+                    [LikesData_PhotoArray addObject:result2];
+                }
+
+                
+                DataCount_Like = DataTotal_Like;
+                DataTotal_Like = [LikesData_IDArray count];
+
+                //[self InitView];
+//                CheckLoad_Likes = NO;
+//                
+//                if (CheckFirstTimeLoadLikes == 0) {
+//                    CheckFirstTimeLoadLikes = 1;
+//                    [self GetDraftsData];
+//                    
+//                }else{
+//                    [self InitLikeData];
+//                }
+                [self InitLikeData];
+                
+            }
+            
+            [ShowActivityLike stopAnimating];
+            
+        }
     }
 }
 @end

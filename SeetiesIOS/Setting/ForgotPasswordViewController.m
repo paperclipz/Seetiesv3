@@ -31,12 +31,15 @@
     
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-    BackGroundButton.frame = CGRectMake(0, 134, screenWidth, 44);
-    TitleLabel.frame = CGRectMake(15, 20, screenWidth - 30, 44);
-    DetailLabel.frame = CGRectMake(15, 65, screenWidth - 30, 66);
-    ResetButton.frame = CGRectMake((screenWidth/2) - 144, 192, 288, 50);
-    InputText.frame = CGRectMake(15, 141, screenWidth - 30, 30);
+    BackGroundButton.frame = CGRectMake(30, 154, screenWidth - 60, 44);
+   // TitleLabel.frame = CGRectMake(15, 20, screenWidth - 30, 44);
+    DetailLabel.frame = CGRectMake(30, 85, screenWidth - 60, 66);
+    ResetButton.frame = CGRectMake(30, 212, screenWidth - 60, 50);
+    InputText.frame = CGRectMake(35, 161, screenWidth - 70, 30);
+    LogoImg.frame = CGRectMake((screenWidth / 2) - 20, 20, 40, 40);
     
+    ResetButton.layer.cornerRadius = 5;
+    BackGroundButton.layer.cornerRadius = 5;
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];

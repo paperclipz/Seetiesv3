@@ -36,8 +36,10 @@
     NSMutableData *webData;
     
     NSURLConnection *theConnection_GetUserData;
+    NSURLConnection *theConnection_GetPostsData;
+    NSURLConnection *theConnection_GetLikesData;
     
-    //content data 
+    //content data
     AsyncImageView *ShowUserProfileImage;
     
     
@@ -47,6 +49,39 @@
     NSString *GetLocation;
     NSString *GetDescription;
     NSString *GetLink;
+    
+    
+    //like data
+    NSString *GetLikesDataCount;
+    NSMutableArray *LikesData_PhotoArray;
+    NSMutableArray *LikesData_IDArray;
+    
+    //posts data
+    NSString *GetPostsDataCount;
+    NSMutableArray *PostsData_PhotoArray;
+    NSMutableArray *PostsData_IDArray;
+    NSMutableArray *PostsData_place_nameArray;
+    NSMutableArray *PostsData_UserInfo_UrlArray;
+    NSMutableArray *PostsData_TitleArray;
+    NSMutableArray *PostsData_TotalCountArray;
+    
+    UIActivityIndicatorView *ShowActivityLike;
+    UIActivityIndicatorView *ShowActivityPosts;
+    
+    NSInteger TotalPage_Like;
+    NSInteger CurrentPage_Like;
+    NSInteger DataCount_Like;
+    NSInteger DataTotal_Like;
+    
+    NSInteger TotalPage_Post;
+    NSInteger CurrentPage_Post;
+    NSInteger DataCount_Post;
+    NSInteger DataTotal_Post;
+    
+    BOOL CheckLoad_Likes;
+    BOOL CheckLoad_Post;
+    int CheckFirstTimeLoadLikes;
+    int CheckFirstTimeLoadPost;
 }
 -(IBAction)SettingsButton:(id)sender;
 @end

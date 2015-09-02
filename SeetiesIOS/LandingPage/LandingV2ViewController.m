@@ -14,13 +14,11 @@
 #import "WhyWeUseFBViewController.h"
 #import "SignupViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "PTellUsYourCityViewController.h"
 #import "ExploreViewController.h"
 #import "Explore2ViewController.h"
 #import "NotificationViewController.h"
 #import "ProfileV2ViewController.h"
 #import "PublishMainViewController.h"
-#import "PTellUsYourCityViewController.h"
 #import "PSelectYourInterestViewController.h"
 #import "PFollowTheExpertsViewController.h"
 #import "LanguageManager.h"
@@ -30,9 +28,9 @@
 #import "CRMotionView.h"
 #import "LeveyTabBarController.h"
 #import "RecommendPopUpViewController.h"
-
+#import "PInterestV2ViewController.h"
 #import "FeedViewController.h"
-
+#import "PInterestV2ViewController.h"
 #import "NewProfileV2ViewController.h"
 
 @interface LandingV2ViewController ()
@@ -74,11 +72,11 @@
 
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    FBLoginButton.frame = CGRectMake((screenWidth/2) - 130, screenHeight - 256, 260, 50);
-    LogInButton.frame = CGRectMake((screenWidth/2) + 130 - 74, screenHeight - 130, 74, 34);
+    FBLoginButton.frame = CGRectMake((screenWidth/2) - 130, screenHeight - 236, 260, 50);
+    LogInButton.frame = CGRectMake((screenWidth/2) + 130 - 74, screenHeight - 110, 74, 34);
     WhyWeUseFBButton.frame = CGRectMake(0, screenHeight - 128, screenWidth, 34);
-    InstagramButton.frame = CGRectMake((screenWidth/2) - 130, screenHeight - 198, 260, 50);
-    SignUpWithEmailButton.frame = CGRectMake((screenWidth/2) - 130, screenHeight - 130, 125, 34);
+    InstagramButton.frame = CGRectMake((screenWidth/2) - 130, screenHeight - 178, 260, 50);
+    SignUpWithEmailButton.frame = CGRectMake((screenWidth/2) - 130, screenHeight - 110, 125, 34);
     MainText.frame = CGRectMake(30, 150, screenWidth - 60, 65);
     MainLogo.frame = CGRectMake((screenWidth/2) - 104, 70, 208, 82);
     ShowBackgroundImage.frame = CGRectMake(0, 0, screenWidth, screenHeight);
@@ -226,7 +224,7 @@
         CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
         
         CRMotionView *motionView = [[CRMotionView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"DemoTest.png"]];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LandingV2.png"]];
         [motionView setContentView:imageView];
         [BackgroundView addSubview:motionView];
         [motionView setScrollDragEnabled:YES];
@@ -236,11 +234,11 @@
             PTnCViewController *PTnCView = [[PTnCViewController alloc]init];
             [self presentViewController:PTnCView animated:YES completion:nil];
         }else if([CheckProvisioningStatus isEqualToString:@"2"]){
-            PTellUsYourCityViewController *PTellUsYourCityView = [[PTellUsYourCityViewController alloc]init];
-            [self presentViewController:PTellUsYourCityView animated:YES completion:nil];
+//            PTellUsYourCityViewController *PTellUsYourCityView = [[PTellUsYourCityViewController alloc]init];
+//            [self presentViewController:PTellUsYourCityView animated:YES completion:nil];
         }else if([CheckProvisioningStatus isEqualToString:@"3"]){
-            PSelectYourInterestViewController *PSelectYourInterestView = [[PSelectYourInterestViewController alloc]init];
-            [self presentViewController:PSelectYourInterestView animated:YES completion:nil];
+            PInterestV2ViewController *PInterestV2View = [[PInterestV2ViewController alloc]init];
+            [self presentViewController:PInterestV2View animated:YES completion:nil];
         }else if([CheckProvisioningStatus isEqualToString:@"4"]){
             PFollowTheExpertsViewController *PFollowTheExpertsView = [[PFollowTheExpertsViewController alloc]init];
             [self presentViewController:PFollowTheExpertsView animated:YES completion:nil];
@@ -823,8 +821,9 @@
                 
                 
             }else{
-                PTellUsYourCityViewController *TellUsYourCityView = [[PTellUsYourCityViewController alloc]init];
-                [self presentViewController:TellUsYourCityView animated:YES completion:nil];
+                PInterestV2ViewController *PInterestV2View = [[PInterestV2ViewController alloc]init];
+                [self presentViewController:PInterestV2View animated:YES completion:nil];
+                
             }
             
             

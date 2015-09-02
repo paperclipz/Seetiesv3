@@ -20,6 +20,8 @@
     NSMutableArray *GetNameArray;
     NSMutableArray *GetBackgroundColorArray;
     NSMutableArray *GetImageArray;
+    
+    NSMutableArray *CategorySelectIDArray;
 }
-
+-(IBAction)NextButton:(id)sender;
 @end
