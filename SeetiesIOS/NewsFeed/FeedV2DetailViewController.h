@@ -160,6 +160,7 @@
     
     UIColor *color;
     
+    BOOL ShowGoogleTranslate;
     
     //ShowGoogle View
    // IBOutlet UIImageView *ShowTranslateOverlay;

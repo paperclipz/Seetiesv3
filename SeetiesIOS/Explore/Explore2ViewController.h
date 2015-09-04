@@ -21,8 +21,15 @@
     NSMutableArray *ThumbnailArray;
     
     NSURLConnection *theConnection_All;
+    
+    //no connection view
+    IBOutlet UIView *NoConnectionView;
+    IBOutlet UILabel *ShowNoConnectionText;
+    IBOutlet UIImageView *NoConnectionImg;
+    IBOutlet UIButton *TryAgainButton;
 
 }
+-(IBAction)TryAgainButton:(id)sender;
 -(void)GetExploreDataFromServer;
 -(void)InitCountriesView;
 @end

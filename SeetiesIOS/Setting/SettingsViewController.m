@@ -200,16 +200,13 @@
             
            // NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             NSString *GetUserUID = [defaults objectForKey:@"Useruid"];
+            NSString *TempTokenString = [[NSString alloc]initWithFormat:@"seeties_%@",GetUserUID];
             
-             NSString *TempTokenString = [[NSString alloc]initWithFormat:@"seeties_%@",GetUserUID];
             // When users indicate they are no longer Giants fans, we unsubscribe them.
             PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-            NSArray *subscribedChannels = [PFInstallation currentInstallation].channels;
-            [currentInstallation removeObjectsInArray:subscribedChannels forKey:TempTokenString];
+            [currentInstallation removeObject:@"all" forKey:@"channels"];
+            [currentInstallation removeObject:TempTokenString forKey:@"channels"];
             [currentInstallation saveInBackground];
-            
-            
-            
             
 
             //save back

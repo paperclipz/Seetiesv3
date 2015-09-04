@@ -145,9 +145,9 @@
 -(IBAction)LoginButton:(id)sender{
     
     if ([ShowLoginID.text length] == 0 || [ShowPassword.text length] == 0) {
-      //  [TSMessage showNotificationWithTitle:@"" subtitle:@"Opps! Seem like you have forgot to insert username or password :)" type:TSMessageNotificationTypeError];
-        UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:@"Opps! Seem like you have forgot to insert username or password :)" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [ShowAlert show];
+         [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Opps! Seem like you have forgot to insert username or password :)" type:TSMessageNotificationTypeError];
+//        UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:@"Opps! Seem like you have forgot to insert username or password :)" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        [ShowAlert show];
     }else{
         [ShowLoginID resignFirstResponder];
         [ShowPassword resignFirstResponder];
@@ -255,9 +255,10 @@
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     [ShowActivity stopAnimating];
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:CustomLocalisedString(@"ErrorConnection", nil) message:CustomLocalisedString(@"NoData", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-    
-    [alert show];
+//    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:CustomLocalisedString(@"ErrorConnection", nil) message:CustomLocalisedString(@"NoData", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//    
+//    [alert show];
+    [TSMessage showNotificationInViewController:self title:CustomLocalisedString(@"ErrorConnection", nil) subtitle:CustomLocalisedString(@"NoData", nil) type:TSMessageNotificationTypeError];
 }
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
@@ -413,6 +414,10 @@
                 currentInstallation.channels = @[TempTokenString,@"all"];
                 [currentInstallation saveInBackground];
                 NSLog(@"work here?");
+                
+                NSArray *subscribedChannels = [PFInstallation currentInstallation].channels;
+                NSLog(@"subscribedChannels is %@",subscribedChannels);
+                
                 NSString *TempString = @"Done";
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                 [defaults setObject:TempString forKey:@"CheckGetPushToken"];

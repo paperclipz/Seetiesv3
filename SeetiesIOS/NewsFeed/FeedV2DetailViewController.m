@@ -41,7 +41,7 @@
     
     ShowDownBarView.frame = CGRectMake(0, screenHeight - 62 - 50, screenWidth, 62);
     ShowbarView.frame = CGRectMake(0, 0, screenWidth, 64);
-    ShowBarImg.frame = CGRectMake(0, 0, screenWidth, 64);
+    ShowBarImg.frame = CGRectMake(0, -340, screenWidth, 64);
     MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight - 62);
     MImageScroll.frame = CGRectMake(0, -20, screenWidth, 360);
     ShowLanguageTranslationView.frame = CGRectMake(0, 0, screenWidth, screenHeight);
@@ -58,6 +58,9 @@
     
     ShowPlaceNameTop.frame = CGRectMake(44, 21, screenWidth - 155, 24);
     ShowCategoryTop.frame = CGRectMake(44, 38, screenWidth - 155, 21);
+    ShowPlaceNameTop.hidden = YES;
+    ShowCategoryTop.hidden = YES;
+    
     [MImageScroll setScrollEnabled:YES];
     MImageScroll.delegate = self;
     [MImageScroll setBounces:NO];
@@ -110,7 +113,7 @@
     CommentButton.layer.cornerRadius = 19;
     [CommentButton setTitle:CustomLocalisedString(@"CommentsBig", nil) forState:UIControlStateNormal];
 
-
+    ShowGoogleTranslate = NO;
     CheckClickCount = 0;
     
     UISwipeGestureRecognizer *swipeRight =[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeRight:)];
@@ -823,6 +826,8 @@
                                     ShowLanguageTranslationView.hidden = YES;
                                 }else{
                                     NSLog(@"in here 3333");
+                                    ShowGoogleTranslate = YES;
+                                    
                                     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                                     NSString *CheckDontShowAgain = [defaults objectForKey:@"DontShowAgainTranslate"];
                                     if ([CheckDontShowAgain isEqualToString:@"DontShowAgain"]) {
@@ -850,6 +855,7 @@
                                     }else{
                                         ShowLanguageTranslationView.hidden = NO;
                                     }
+                                    ShowGoogleTranslate = YES;
                                     //    ShowTopTitle.frame = CGRectMake(40, 20, 204, 44);
                                     NewLanguageButton.frame = CGRectMake(screenWidth - 124 - 15, 26, 55, 33);
                                     DisplayButton.frame = CGRectMake(screenWidth - 124 - 15, 26, 55, 33);
@@ -1480,19 +1486,22 @@
 
     int GetHeightCheck = 360;
     
-    
-    //tanslate button here
-    UIButton *TanslateButton = [[UIButton alloc]init];
-    TanslateButton.frame = CGRectMake(20, GetHeightCheck, screenWidth - 40, 40);
-    [TanslateButton setTitle:@"Translate" forState:UIControlStateNormal];
-    [TanslateButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    TanslateButton.layer.cornerRadius = 5;
-    TanslateButton.layer.borderWidth=1;
-    TanslateButton.layer.masksToBounds = YES;
-    TanslateButton.layer.borderColor=[[UIColor blackColor] CGColor];
-    [MainScroll addSubview:TanslateButton];
-    
-    GetHeightCheck += 60;
+    if (ShowGoogleTranslate == YES) {
+        //tanslate button here
+        UIButton *TanslateButton = [[UIButton alloc]init];
+        TanslateButton.frame = CGRectMake(20, GetHeightCheck, screenWidth - 40, 40);
+        [TanslateButton setTitle:@"Translate" forState:UIControlStateNormal];
+        [TanslateButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        TanslateButton.layer.cornerRadius = 5;
+        TanslateButton.layer.borderWidth=1;
+        TanslateButton.layer.masksToBounds = YES;
+        TanslateButton.layer.borderColor=[[UIColor blackColor] CGColor];
+        [TanslateButton addTarget:self action:@selector(NewLanguageButton:) forControlEvents:UIControlEventTouchUpInside];
+        [MainScroll addSubview:TanslateButton];
+        
+        GetHeightCheck += 60;
+    }
+
     
     if ([GetTitle length] == 0 || [GetTitle isEqualToString:@""] || [GetTitle isEqualToString:@"(null)"]) {
         GetHeightCheck -= 10;
@@ -2854,46 +2863,26 @@
         int page = floor((MImageScroll.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
         PageControlOn.currentPage = page;
     }else{
-//        CGFloat contentOffSet = MainScroll.contentOffset.y;
-//        if (contentOffSet == 0) {
-//            ShowbarView.hidden = NO;
-//        }else{
-//            CGFloat contentOffSet_ = MainScroll.contentOffset.y;
-//            CGFloat contentHeight = MainScroll.contentSize.height;
-//            
-//            difference1 = contentHeight - contentOffSet_;
-//            
-//            if (difference1 > difference2) {
-//              //  NSLog(@"Up");
-//
-//                [UIView animateWithDuration:0.2
-//                                      delay:0
-//                                    options:UIViewAnimationOptionCurveEaseIn
-//                                 animations:^{
-//                                     ShowbarView.frame = CGRectMake(0, 0, screenWidth, 64);
-//                                    // ShowDownBarView.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
-//                                 }
-//                                 completion:^(BOOL finished) {
-//                                 }];
-//            }else{
-//                //NSLog(@"Down");
-//                [UIView animateWithDuration:0.2
-//                                      delay:0
-//                                    options:UIViewAnimationOptionCurveEaseIn
-//                                 animations:^{
-//                                     ShowbarView.frame = CGRectMake(0, -64, screenWidth, 64);
-//                                   //  ShowDownBarView.frame = CGRectMake(0, screenHeight, screenWidth, 50);
-//                                 }
-//                                 completion:^(BOOL finished) {
-//                                 }];
-//            }
-//            difference2 = contentHeight - contentOffSet_;
-//        }
+        float scrollViewHeight = MainScroll.frame.size.height;
+        float scrollContentSizeHeight = MainScroll.contentSize.height;
+        float scrollOffset = MainScroll.contentOffset.y;
+        
+        if (scrollOffset == 0)
+        {
+            // then we are at the top
+            CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+            ShowBarImg.frame = CGRectMake(0, -340, screenWidth, 64);
+        }
+        else if (scrollOffset + scrollViewHeight == scrollContentSizeHeight)
+        {
+            // then we are at the end
+        }
 
 
 
     }
     
+
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
@@ -2902,12 +2891,12 @@
   //  ShowbarView.hidden = YES;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-    [UIView animateWithDuration:0.2
+    [UIView animateWithDuration:1.0
                           delay:0
                         options:UIViewAnimationOptionCurveEaseIn
                      animations:^{
                        //  MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight - 64);
-                        // ShowbarView.frame = CGRectMake(0, -64, screenWidth, 64);
+                         ShowBarImg.frame = CGRectMake(0, 0, screenWidth, 64);
                          ShowDownBarView.frame = CGRectMake(0, screenHeight - 60, screenWidth, 60);
                          self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight, screenWidth, 50);
                      }
@@ -2952,7 +2941,8 @@
 
 - (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView
 {
-   // NSLog(@"-scrollViewDidScrollToTop");
+    NSLog(@"-scrollViewDidScrollToTop");
+
 }
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView

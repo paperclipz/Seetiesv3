@@ -30,7 +30,6 @@
                 <outlet property="ShowDownBarView" destination="iYu-fw-DMy" id="Q6s-5M-Wsa"/>
                 <outlet property="ShowLanguageTranslationView" destination="Cmk-xj-a2C" id="tUh-0v-D3Q"/>
                 <outlet property="ShowPlaceNameTop" destination="khC-UA-r0Z" id="wo8-fS-KsT"/>
-                <outlet property="ShowTitleBarColor" destination="hAP-qF-Ykq" id="zb2-cP-CzC"/>
                 <outlet property="ShowTranslateOverlay" destination="xeQ-Wm-m1H" id="fOq-Id-qWL"/>
                 <outlet property="ShowbarView" destination="zTc-kp-dGH" id="lzB-T2-zUG"/>
                 <outlet property="SkipButton" destination="zQF-Hf-9Ll" id="22y-d4-6p8"/>
@@ -136,10 +135,10 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <button opaque="NO" userInteractionEnabled="NO" alpha="0.49999999999999961" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hAP-qF-Ykq">
+                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hAP-qF-Ykq">
                             <rect key="frame" x="-160" y="-32" width="640" height="128"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="0.20000000000000001" green="0.70980392160000005" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <state key="normal">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>

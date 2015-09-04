@@ -7,6 +7,8 @@
         <mutableArray key="ProximaNovaSoft-Bold.ttf">
             <string>ProximaNovaSoft-Bold</string>
             <string>ProximaNovaSoft-Bold</string>
+            <string>ProximaNovaSoft-Bold</string>
+            <string>ProximaNovaSoft-Bold</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -15,10 +17,13 @@
                 <outlet property="BarImage" destination="0OV-bR-bCb" id="U6R-rS-kjM"/>
                 <outlet property="FilterButton" destination="ETl-GC-8mi" id="9MF-Nx-khl"/>
                 <outlet property="MainScroll" destination="JEf-BH-llN" id="4J8-Bs-Z3e"/>
+                <outlet property="NoConnectionView" destination="DDV-GU-j5W" id="xku-e4-Owo"/>
                 <outlet property="SearchButton" destination="RXs-o1-uCv" id="QMk-Pf-rv0"/>
                 <outlet property="ShowActivity" destination="a2H-TW-3fN" id="lbW-ey-uaT"/>
                 <outlet property="ShowFeedText" destination="yCM-V9-JLF" id="CMv-Av-1g6"/>
+                <outlet property="ShowNoConnectionText" destination="6UA-TI-fJ1" id="CJM-Ot-0R7"/>
                 <outlet property="ShowUpdateText" destination="BlI-s4-kXG" id="6na-Ml-hh9"/>
+                <outlet property="TryAgainButton" destination="JSg-aE-RO9" id="eru-Ce-pY2"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -84,6 +89,35 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <point key="canvasLocation" x="671" y="204"/>
+        </view>
+        <view contentMode="scaleToFill" id="DDV-GU-j5W">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="JSg-aE-RO9">
+                    <rect key="frame" x="93" y="288" width="135" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" name="ProximaNovaSoft-Bold" family="Proxima Nova Soft" pointSize="18"/>
+                    <state key="normal" title="Try again">
+                        <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="TryAgainButton:" destination="-1" eventType="touchUpInside" id="ANh-Li-unj"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connection is weak, unable to refresh" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6UA-TI-fJ1">
+                    <rect key="frame" x="60" y="215" width="200" height="60"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="ProximaNovaSoft-Bold" family="Proxima Nova Soft" pointSize="17"/>
+                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+            <nil key="simulatedStatusBarMetrics"/>
+            <point key="canvasLocation" x="1097" y="198"/>
         </view>
     </objects>
     <resources>

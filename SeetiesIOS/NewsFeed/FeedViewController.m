@@ -25,6 +25,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     DataUrl = [[UrlDataClass alloc]init];
+    
+    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    //init no connection data
+    NoConnectionView.frame = CGRectMake(0, 64, screenWidth, screenHeight - 64 - 50);
+    ShowNoConnectionText.frame = CGRectMake((screenWidth / 2) - 100, 215, 200, 60);
+    TryAgainButton.frame = CGRectMake((screenWidth / 2) - 67, 288, 135, 40);
+    TryAgainButton.layer.cornerRadius = 5;
+    
 
     [self initData];
     [self initSelfView];
@@ -32,7 +41,28 @@
     
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
 }
-
+-(IBAction)TryAgainButton:(id)sender{
+    self.locationManager = [[CLLocationManager alloc]init];
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.locationManager.delegate = self;
+    self.locationManager.distanceFilter = 10;
+    if(IS_OS_8_OR_LATER){
+        NSUInteger code = [CLLocationManager authorizationStatus];
+        if (code == kCLAuthorizationStatusNotDetermined && ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)] || [self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])) {
+            // choose one request according to your business.
+            if([[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationAlwaysUsageDescription"]){
+                [self.locationManager requestAlwaysAuthorization];
+                [self.locationManager startUpdatingLocation];
+            } else if([[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationWhenInUseUsageDescription"]) {
+                [self.locationManager  requestWhenInUseAuthorization];
+                [self.locationManager startUpdatingLocation];
+            } else {
+                NSLog(@"Info.plist does not contain NSLocationAlwaysUsageDescription or NSLocationWhenInUseUsageDescription");
+            }
+        }
+    }
+    [self.locationManager startUpdatingLocation];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -1098,13 +1128,7 @@
             
             heightcheck += 160;
             
-            
-            
-            
-            
-            
-        }
-        
+         }
         
     }
     
@@ -1170,48 +1194,8 @@
 -(void)timerCalled
 {
     NSLog(@"Timer Called");
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    
-    // Your Code
-    [refreshControl endRefreshing];
-    
-    [UIView animateWithDuration:0.2f
-                          delay:0
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         ShowUpdateText.frame = CGRectMake(0, 0, screenWidth, 20);
-                     }
-                     completion:^(BOOL finished) {
-                         ShowUpdateText.hidden = YES;
-                     }];
-    
-    for (UIView *subview in MainScroll.subviews) {
-        [subview removeFromSuperview];
-    }
-    
-    refreshControl = [[UIRefreshControl alloc] init];
-    refreshControl.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    refreshControl.bounds = CGRectMake(refreshControl.bounds.origin.x - 20,
-                                       0,
-                                       refreshControl.bounds.size.width,
-                                       refreshControl.bounds.size.height);
-    refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@""];
-    [refreshControl addTarget:self action:@selector(testRefresh) forControlEvents:UIControlEventValueChanged];
-    [MainScroll addSubview:refreshControl];
-    
-    heightcheck = 0;
-    [ShowActivity startAnimating];
-    
-    [arrImage removeAllObjects];
-    [arrDisplayCountryName removeAllObjects];
-    [arrDistance removeAllObjects];
-    [arrMessage removeAllObjects];
-    [arrTitle removeAllObjects];
-    [arrType removeAllObjects];
-    [arrImage removeAllObjects];
-    [arrUserImage removeAllObjects];
-    [arrUserName removeAllObjects];
-    
+
+    [self ReinitData];
     [self GetFeedDataFromServer];
 
 }
@@ -1276,9 +1260,9 @@
         
         NSString *FullString;
         if ([latPoint length] == 0 || [latPoint isEqualToString:@""] || [latPoint isEqualToString:@"(null)"] || latPoint == nil) {
-            FullString = [[NSString alloc]initWithFormat:@"%@?token=%@&follow_suggestions=1&ip_address=%@&list_size=9&&page=%li",DataUrl.Feed_Url,GetExpertToken,ExternalIPAddress,CurrentPage];
+            FullString = [[NSString alloc]initWithFormat:@"%@?token=%@&follow_suggestions=1&ip_address=%@&list_size=9&page=%li",DataUrl.Feed_Url,GetExpertToken,ExternalIPAddress,CurrentPage];
         }else{//ip_address=119.92.244.146
-            FullString = [[NSString alloc]initWithFormat:@"%@?token=%@&follow_suggestions=1&lat=%@&lng=%@&ip_address=%@&list_size=9&&page=%li",DataUrl.Feed_Url,GetExpertToken,latPoint,lonPoint,ExternalIPAddress,CurrentPage];
+            FullString = [[NSString alloc]initWithFormat:@"%@?token=%@&follow_suggestions=1&lat=%@&lng=%@&ip_address=%@&list_size=9&page=%li",DataUrl.Feed_Url,GetExpertToken,latPoint,lonPoint,ExternalIPAddress,CurrentPage];
         }
         
         if ([GetSortByString length] == 0 || [GetSortByString isEqualToString:@""] || [GetSortByString isEqualToString:@"(null)"] || GetSortByString == nil) {
@@ -1325,11 +1309,23 @@
 }
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:CustomLocalisedString(@"ErrorConnection", nil) message:CustomLocalisedString(@"NoData", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-    
-    [alert show];
-    [ShowActivity stopAnimating];
+//    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:CustomLocalisedString(@"ErrorConnection", nil) message:CustomLocalisedString(@"NoData", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//    
+//    [alert show];
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *CheckString = [defaults objectForKey:@"TestLocalData"];
+    if ([CheckString isEqualToString:@"Done"]) {
+        ShowUpdateText.frame = CGRectMake(0, 64, screenWidth, 20);
+        ShowUpdateText.text = @"Connection error, try again";
+        [refreshControl beginRefreshing];
+        [self LoadDataView];
+    }else{
+        [self.view addSubview:NoConnectionView];
 
+    }
+
+    [ShowActivity stopAnimating];
 }
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
@@ -1348,6 +1344,9 @@
         }else{
             NSString *StatusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
             if ([StatusString isEqualToString:@"ok"]) {
+                
+                
+
                 NSDictionary *GetAllData = [res valueForKey:@"data"];
                 
                 NSString *Temppage = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"page"]];
@@ -1510,6 +1509,51 @@
         
         }
     }
+}
+-(void)ReinitData{
+    //init again
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    
+    // Your Code
+    [refreshControl endRefreshing];
+    
+    [UIView animateWithDuration:2.0f
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         ShowUpdateText.frame = CGRectMake(0, 0, screenWidth, 20);
+                         ShowUpdateText.text = @"Updating new data...";
+                     }
+                     completion:^(BOOL finished) {
+                         ShowUpdateText.hidden = YES;
+                     }];
+    
+//    for (UIView *subview in MainScroll.subviews) {
+//        [subview removeFromSuperview];
+//    }
+    
+    refreshControl = [[UIRefreshControl alloc] init];
+    refreshControl.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    refreshControl.bounds = CGRectMake(refreshControl.bounds.origin.x - 20,
+                                       0,
+                                       refreshControl.bounds.size.width,
+                                       refreshControl.bounds.size.height);
+    refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@""];
+    [refreshControl addTarget:self action:@selector(testRefresh) forControlEvents:UIControlEventValueChanged];
+    [MainScroll addSubview:refreshControl];
+    
+    heightcheck = 0;
+    //[ShowActivity startAnimating];
+    
+    [arrImage removeAllObjects];
+    [arrDisplayCountryName removeAllObjects];
+    [arrDistance removeAllObjects];
+    [arrMessage removeAllObjects];
+    [arrTitle removeAllObjects];
+    [arrType removeAllObjects];
+    [arrImage removeAllObjects];
+    [arrUserImage removeAllObjects];
+    [arrUserName removeAllObjects];
 }
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {

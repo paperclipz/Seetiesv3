@@ -159,14 +159,17 @@
     
     
     if ([EmailField.text length] == 0 || [emailTest evaluateWithObject:EmailField.text] == NO) {
-        UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"EmailError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [ShowAlert show];
+//        UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"EmailError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        [ShowAlert show];
+        [TSMessage showNotificationInViewController:self title:@"" subtitle:NSLocalizedString(@"EmailError", nil) type:TSMessageNotificationTypeError];
     }else if([UsernameField.text length] == 0){
-        UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"UsernameError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [ShowAlert show];
+//        UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"UsernameError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        [ShowAlert show];
+        [TSMessage showNotificationInViewController:self title:@"" subtitle:NSLocalizedString(@"UsernameError", nil) type:TSMessageNotificationTypeError];
     }else if([PasswordField.text length] < 8){
-        UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"PasswordError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [ShowAlert show];
+//        UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"PasswordError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        [ShowAlert show];
+        [TSMessage showNotificationInViewController:self title:@"" subtitle:NSLocalizedString(@"PasswordError", nil) type:TSMessageNotificationTypeError];
     }else{
         GetEmail = EmailField.text;
         GetUsername = UsernameField.text;

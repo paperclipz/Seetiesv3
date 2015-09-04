@@ -14,7 +14,7 @@
 #import "SearchResultV2ViewController.h"
 #import "ExploreCountryV2ViewController.h"
 
-@interface Explore2ViewController ()
+@interface Explore2ViewController ()<UISearchBarDelegate>
 {
     IBOutlet UIScrollView *ibScrollViewCountry;
     IBOutlet UIImageView *BarImage;
@@ -37,16 +37,32 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
     BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
+    mySearchBar.delegate = self;
+    mySearchBar.tintColor = [UIColor redColor];
+    mySearchBar.barTintColor = [UIColor clearColor];
+    [mySearchBar setBackgroundImage:[[UIImage alloc]init]];
     
     //CountriesScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight - 114);
-    ibScrollViewCountry.frame = CGRectMake(0, 0, screenWidth, screenHeight - 50);
+    ibScrollViewCountry.frame = CGRectMake(0, 64, screenWidth, screenHeight - 114);
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
 
+}
+-(IBAction)TryAgainButton:(id)sender{
+    [self GetExploreDataFromServer];
 }
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    //init no connection data
+    NoConnectionView.frame = CGRectMake(0, 64, screenWidth, screenHeight - 64 - 50);
+    ShowNoConnectionText.frame = CGRectMake((screenWidth / 2) - 100, 215, 200, 60);
+    TryAgainButton.frame = CGRectMake((screenWidth / 2) - 67, 288, 135, 40);
+    TryAgainButton.layer.cornerRadius = 5;
+    
     [self initSelfView];
     [self GetExploreDataFromServer];
     
@@ -100,9 +116,14 @@
 
         }
         else{
-            [TSMessage showNotificationWithTitle:ErrorTitle subtitle:self.exploreCountryModels.message type:TSMessageNotificationTypeError];
+
         };
-    } errorHandler:nil];
+    } errorHandler:^(NSError *error) {
+        [TSMessage showNotificationWithTitle:ErrorTitle subtitle:self.exploreCountryModels.message type:TSMessageNotificationTypeError];
+        [self.view addSubview:NoConnectionView];
+    }];
+    //here init no connection
+    //[self.view addSubview:NoConnectionView];
     
 }
 

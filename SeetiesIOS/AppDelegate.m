@@ -418,9 +418,13 @@
             [self processAPIVersion];
             
         } errorHandler:nil];
-
+        self.window.rootViewController = self.landingV2ViewController;
+        self.window.backgroundColor = [UIColor whiteColor];
+        [self.window makeKeyAndVisible];
     } errorHandler:nil];
-  
+    self.window.rootViewController = self.landingV2ViewController;
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
 
 }
 #pragma mark - Declaration
@@ -466,6 +470,8 @@
     self.window.rootViewController = self.landingV2ViewController;//self.landingV2ViewController
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+
+    
 
 }
 

@@ -10,6 +10,14 @@
 #import "UrlDataClass.h"
 @interface FeedViewController : BaseViewController<UIScrollViewDelegate,CLLocationManagerDelegate>{
     
+    //no connection view
+    IBOutlet UIView *NoConnectionView;
+    IBOutlet UILabel *ShowNoConnectionText;
+    IBOutlet UIImageView *NoConnectionImg;
+    IBOutlet UIButton *TryAgainButton;
+    
+    
+    
     IBOutlet UIScrollView *MainScroll;
     UIRefreshControl *refreshControl;
     IBOutlet UIActivityIndicatorView *ShowActivity;
@@ -62,6 +70,7 @@
     int CheckFirstTimeLoad;
     BOOL OnLoad;
 }
+-(IBAction)TryAgainButton:(id)sender;
 -(IBAction)SearchButton:(id)sender;
 
 @end
