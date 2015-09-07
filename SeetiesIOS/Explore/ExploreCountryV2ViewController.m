@@ -227,7 +227,7 @@
 //            [OpenProfileButton setBackgroundColor:[UIColor clearColor]];
 //            [OpenProfileButton addTarget:self action:@selector(OpenProfileButton:) forControlEvents:UIControlEventTouchUpInside];
 //            [UserScroll addSubview:OpenProfileButton];
-//            
+//
 //            [UserScroll setContentSize:CGSizeMake(100 + i * 105, 260)];
 //        }
 //        [UserScroll setContentOffset:CGPointMake((UserScroll.contentSize.width / 2) / 2, 0) animated:NO];
@@ -347,7 +347,7 @@
 //        ImageButton.frame = CGRectMake(0+(i % 3)*SpaceWidth, GetHeight + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
 //        ImageButton.tag = i;
 //        [ImageButton addTarget:self action:@selector(ImageButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
-//        
+//
 //        [MainScroll addSubview:ImageButton];
 //        [MainScroll setContentSize:CGSizeMake(320, GetHeight + FinalWidth + (SpaceWidth * (CGFloat)(i /3)))];
 //    }
@@ -471,6 +471,14 @@
         ShowLocation.textAlignment = NSTextAlignmentLeft;
         ShowLocation.backgroundColor = [UIColor clearColor];
         [PostView addSubview:ShowLocation];
+        
+        UIButton *ButtonOnClick = [[UIButton alloc]init];
+        [ButtonOnClick setBackgroundColor:[UIColor clearColor]];
+        [ButtonOnClick setTitle:@"" forState:UIControlStateNormal];
+        ButtonOnClick.frame = CGRectMake(15, PostGetHeight, screenWidth - 30, 150);
+        ButtonOnClick.tag = i;
+        [ButtonOnClick addTarget:self action:@selector(ImageButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [PostView addSubview:ButtonOnClick];
         
         
         PostGetHeight += 160;

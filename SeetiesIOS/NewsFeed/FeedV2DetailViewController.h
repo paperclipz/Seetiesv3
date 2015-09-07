@@ -121,10 +121,9 @@
     NSMutableArray *User_Comment_photoArray;
     
     IBOutlet UIButton *LikeButton;
-    IBOutlet UIButton *LikeButtonBackground;
     IBOutlet UIButton *CommentButton;
-    IBOutlet UIButton *CommentButtonBackground;
     IBOutlet UIButton *shareFBButton;
+    IBOutlet UIButton *CollectButton;
     
     BOOL CheckLikeInitView;
     

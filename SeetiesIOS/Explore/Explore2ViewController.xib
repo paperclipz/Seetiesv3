@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="BarImage" destination="CYs-W5-2Sy" id="1Fs-Km-gEp"/>
                 <outlet property="NoConnectionView" destination="fnh-6M-BWh" id="yiM-qV-wzK"/>
+                <outlet property="SearchButton" destination="LH2-de-qWE" id="2ko-jR-ezK"/>
                 <outlet property="ShowActivity" destination="T5f-Kq-Zbf" id="QZ8-ZE-a37"/>
                 <outlet property="ShowNoConnectionText" destination="d0g-hi-QV1" id="vC2-fl-tQL"/>
                 <outlet property="TryAgainButton" destination="uv9-dz-KbE" id="xFT-fV-EaP"/>
@@ -49,6 +50,17 @@
                     <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <textInputTraits key="textInputTraits"/>
                 </searchBar>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LH2-de-qWE">
+                    <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="SearchButton:" destination="-1" eventType="touchUpInside" id="7YJ-4V-Qnr"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

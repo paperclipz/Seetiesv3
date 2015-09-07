@@ -8,6 +8,7 @@
 
 #import "NewProfileV2ViewController.h"
 #import "SettingsViewController.h"
+#import "SearchViewV2Controller.h"
 @interface NewProfileV2ViewController ()
 
 @end
@@ -1084,5 +1085,10 @@
             
         }
     }
+}
+-(IBAction)SearchButton:(id)sender{
+    SearchViewV2Controller *SearchView = [[SearchViewV2Controller alloc]initWithNibName:@"SearchViewV2Controller" bundle:nil];
+    //[self presentViewController:SearchView animated:YES completion:nil];
+    [self.view.window.rootViewController presentViewController:SearchView animated:YES completion:nil];
 }
 @end

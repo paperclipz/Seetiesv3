@@ -27,8 +27,8 @@
     MImageScroll.delegate = self;
     [MImageScroll setBounces:NO];
     MImageScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight);
-    ShowImageCount.frame = CGRectMake(0, screenHeight - 70, screenWidth, 50);
-    BackButton.frame = CGRectMake(screenWidth - 50, 0, 50, 50);
+    ShowImageCount.frame = CGRectMake(15, screenHeight - 70, screenWidth - 30, 50);
+    BackButton.frame = CGRectMake(5, 20, 50, 50);
     
     [self.view addSubview:ShowImageCount];
 }
@@ -96,7 +96,16 @@
         
         NSLog(@"ImageScroll is %@",ImageScroll);
         
-        NSString *TempGetStirngMessage = [[NSString alloc]initWithFormat:@"%@",[GetAllFullCaptionArray objectAtIndex:i]];
+        
+        UIButton *Line01 = [[UIButton alloc]init];
+        Line01.frame = CGRectMake(15 + i *screenWidth, screenHeight - 90, screenWidth - 30, 1);
+        [Line01 setTitle:@"" forState:UIControlStateNormal];
+        [Line01 setBackgroundColor:[UIColor whiteColor]];
+        [MImageScroll addSubview:Line01];
+        
+        
+      //  NSString *TempGetStirngMessage = [[NSString alloc]initWithFormat:@"%@",[GetAllFullCaptionArray objectAtIndex:i]];
+        NSString *TempGetStirngMessage = @"Have a nice trip to Port Dickson with all the amazing people!";
         NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"[]:"];
         TempGetStirngMessage = [[TempGetStirngMessage componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString:@""];
         UILabel *ShowCaptionText = [[UILabel alloc]init];
@@ -118,10 +127,11 @@
         
         [ShowCaptionText setAttributedText:string];
         
-        ShowCaptionText.font = [UIFont fontWithName:@"HelveticaNeue-BoldItalic" size:15];
-        ShowCaptionText.textAlignment = NSTextAlignmentCenter;
+        ShowCaptionText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+        ShowCaptionText.textAlignment = NSTextAlignmentLeft;
         ShowCaptionText.backgroundColor = [UIColor clearColor];
-        ShowCaptionText.frame = CGRectMake(15 + i *screenWidth, screenHeight - 70 - [ShowCaptionText sizeThatFits:CGSizeMake(screenWidth - 30, CGFLOAT_MAX)].height , screenWidth - 30,[ShowCaptionText sizeThatFits:CGSizeMake(screenWidth - 30, CGFLOAT_MAX)].height);
+//        ShowCaptionText.frame = CGRectMake(15 + i *screenWidth, screenHeight - 70 - [ShowCaptionText sizeThatFits:CGSizeMake(screenWidth - 30, CGFLOAT_MAX)].height , screenWidth - 30,[ShowCaptionText sizeThatFits:CGSizeMake(screenWidth - 30, CGFLOAT_MAX)].height);
+        ShowCaptionText.frame = CGRectMake(15 + i *screenWidth, screenHeight - 70, screenWidth - 60 - 30,[ShowCaptionText sizeThatFits:CGSizeMake(screenWidth - 30, CGFLOAT_MAX)].height);
         
         [MImageScroll addSubview:ShowCaptionText];
     }

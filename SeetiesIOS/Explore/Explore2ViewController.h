@@ -27,9 +27,13 @@
     IBOutlet UILabel *ShowNoConnectionText;
     IBOutlet UIImageView *NoConnectionImg;
     IBOutlet UIButton *TryAgainButton;
+    
+    IBOutlet UIButton *SearchButton;
 
 }
 -(IBAction)TryAgainButton:(id)sender;
 -(void)GetExploreDataFromServer;
 -(void)InitCountriesView;
+
+-(IBAction)SearchButton:(id)sender;
 @end

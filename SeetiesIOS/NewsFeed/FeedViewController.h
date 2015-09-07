@@ -19,6 +19,7 @@
     
     
     IBOutlet UIScrollView *MainScroll;
+    IBOutlet UIScrollView *LocalScroll;
     UIRefreshControl *refreshControl;
     IBOutlet UIActivityIndicatorView *ShowActivity;
     IBOutlet UILabel *ShowFeedText;

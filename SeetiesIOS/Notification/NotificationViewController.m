@@ -358,7 +358,7 @@
     UISegmentedControl *ProfileControl = [[UISegmentedControl alloc]initWithItems:itemArray];
     ProfileControl.frame = CGRectMake(15, GetHeight, screenWidth - 30, 29);
     [ProfileControl addTarget:self action:@selector(segmentAction:) forControlEvents: UIControlEventValueChanged];
-    ProfileControl.selectedSegmentIndex = 0;
+    ProfileControl.selectedSegmentIndex = 1;
     [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
     [MainScroll addSubview:ProfileControl];
     
@@ -375,8 +375,10 @@
     NotificationsView.backgroundColor = [UIColor whiteColor];
     [MainScroll addSubview:NotificationsView];
     
-    NotificationsView.hidden = YES;
-    FollowingView.hidden = NO;
+    NotificationsView.hidden = NO;
+    FollowingView.hidden = YES;
+    
+    [self InitNotificationsDataView];
 }
 - (void)segmentAction:(UISegmentedControl *)segment
 {

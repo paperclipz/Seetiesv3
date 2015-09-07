@@ -73,10 +73,18 @@
     // Do any additional setup after loading the view from its nib.
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    MainScroll.frame = CGRectMake(0, 44, screenWidth, screenHeight);
+    MainScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight);
     MainScroll.delegate = self;
     // MainScroll.alwaysBounceHorizontal = YES;
     MainScroll.alwaysBounceVertical = YES;
+    
+    //LocalScroll = [[UIScrollView alloc]init];
+    LocalScroll.frame = CGRectMake(0, 44, screenWidth, screenHeight);
+    LocalScroll.delegate = self;
+    LocalScroll.alwaysBounceVertical = YES;
+    LocalScroll.backgroundColor = [UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f];
+    //[self.view addSubview:LocalScroll];
+    
     
     ShowFeedText.frame = CGRectMake(15, 20, screenWidth - 30, 44);
     BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
@@ -105,8 +113,12 @@
     if ([CheckString isEqualToString:@"Done"]) {
         ShowUpdateText.frame = CGRectMake(0, 64, screenWidth, 20);
         [refreshControl beginRefreshing];
+        MainScroll.hidden = YES;
+        LocalScroll.hidden = NO;
         [self LoadDataView];
     }else{
+        MainScroll.hidden = NO;
+        LocalScroll.hidden = YES;
         [ShowActivity startAnimating];
     }
     
@@ -267,7 +279,7 @@
     UIButton *TempBackground = [[UIButton alloc]init];
     TempBackground.frame = CGRectMake(0, 0, screenWidth, 120);
     TempBackground.backgroundColor = [UIColor grayColor];
-    [MainScroll addSubview:TempBackground];
+    [LocalScroll addSubview:TempBackground];
     
     UIButton *TempButton = [[UIButton alloc]init];
     TempButton.frame = CGRectMake((screenWidth / 2) - 75, 30, 150, 60);
@@ -275,7 +287,7 @@
     TempButton.backgroundColor = [UIColor colorWithRed:156.0f/255.0f green:204.0f/255.0f blue:101.0f/255.0f alpha:1.0f];
     TempButton.layer.cornerRadius = 20;
     [TempButton addTarget:self action:@selector(NearbyButton:) forControlEvents:UIControlEventTouchUpInside];
-    [MainScroll addSubview: TempButton];
+    [LocalScroll addSubview: TempButton];
     
     
     heightcheck += 130;
@@ -292,7 +304,7 @@
             [TempButton setTitle:@"" forState:UIControlStateNormal];
             TempButton.backgroundColor = [UIColor whiteColor];
             TempButton.layer.cornerRadius = 5;
-            [MainScroll addSubview: TempButton];
+            [LocalScroll addSubview: TempButton];
             
             AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
             ShowImage.contentMode = UIViewContentModeScaleAspectFill;
@@ -319,7 +331,7 @@
 
             ShowImage.frame = CGRectMake(10, heightcheck + i, screenWidth - 20, newImage.size.height);
             // ShowImage.frame = CGRectMake(0, heightcheck + i, screenWidth, 200);
-            [MainScroll addSubview:ShowImage];
+            [LocalScroll addSubview:ShowImage];
             
             UIButton *ClickToDetailButton = [[UIButton alloc]init];
             ClickToDetailButton.frame = CGRectMake(10, heightcheck + i, screenWidth - 20, newImage.size.height);
@@ -327,7 +339,7 @@
             ClickToDetailButton.backgroundColor = [UIColor clearColor];
             ClickToDetailButton.tag = i;
             [ClickToDetailButton addTarget:self action:@selector(ClickToDetailButton:) forControlEvents:UIControlEventTouchUpInside];
-            [MainScroll addSubview:ClickToDetailButton];
+            [LocalScroll addSubview:ClickToDetailButton];
             
             AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
             ShowUserProfileImage.frame = CGRectMake(20, heightcheck + i + 10, 40, 40);
@@ -342,7 +354,7 @@
             NSString *stringPath1 = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"Content_Folder"];
             stringPath1  = [stringPath1 stringByAppendingPathComponent:[arrUserImage objectAtIndex:i]];
             ShowUserProfileImage.image = [UIImage imageWithData:[NSData dataWithContentsOfFile:stringPath1]];
-            [MainScroll addSubview:ShowUserProfileImage];
+            [LocalScroll addSubview:ShowUserProfileImage];
         
             
             UILabel *ShowUserName = [[UILabel alloc]init];
@@ -352,7 +364,7 @@
             ShowUserName.textColor = [UIColor whiteColor];
             ShowUserName.textAlignment = NSTextAlignmentLeft;
             ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-            [MainScroll addSubview:ShowUserName];
+            [LocalScroll addSubview:ShowUserName];
             
             NSString *TempDistanceString = [[NSString alloc]initWithFormat:@"%@",[arrDistance objectAtIndex:i]];
             
@@ -383,7 +395,7 @@
                 ShowDistance.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
                 ShowDistance.textAlignment = NSTextAlignmentRight;
                 ShowDistance.backgroundColor = [UIColor clearColor];
-                [MainScroll addSubview:ShowDistance];
+                [LocalScroll addSubview:ShowDistance];
             }
             
             
@@ -395,7 +407,7 @@
             ShowAddress.text = [arrAddress objectAtIndex:i];
             ShowAddress.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
             ShowAddress.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-            [MainScroll addSubview:ShowAddress];
+            [LocalScroll addSubview:ShowAddress];
             
             heightcheck += 25;
             TempCountWhiteHeight = newImage.size.height + 25;
@@ -413,7 +425,7 @@
                 ShowTitle.textAlignment = NSTextAlignmentLeft;
                 ShowTitle.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
                 ShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-                [MainScroll addSubview:ShowTitle];
+                [LocalScroll addSubview:ShowTitle];
                 
                 if([ShowTitle sizeThatFits:CGSizeMake(screenWidth - 30, CGFLOAT_MAX)].height!=ShowTitle.frame.size.height)
                 {
@@ -459,7 +471,7 @@
                 ShowMessage.textAlignment = NSTextAlignmentLeft;
                 ShowMessage.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
                 ShowMessage.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
-                [MainScroll addSubview:ShowMessage];
+                [LocalScroll addSubview:ShowMessage];
                 
                 if([ShowMessage sizeThatFits:CGSizeMake(screenWidth - 40, CGFLOAT_MAX)].height!=ShowMessage.frame.size.height)
                 {
@@ -471,24 +483,32 @@
             }
             
             
-            UIImageView *ShowLikesIcon = [[UIImageView alloc]init];
-            ShowLikesIcon.image = [UIImage imageNamed:@"PostLike.png"];
-            ShowLikesIcon.frame = CGRectMake(40 , heightcheck + i + 20 ,23, 19);
-            //   ShowLikesIcon.backgroundColor = [UIColor purpleColor];
-            [MainScroll addSubview:ShowLikesIcon];
+//            UIImageView *ShowLikesIcon = [[UIImageView alloc]init];
+//            ShowLikesIcon.image = [UIImage imageNamed:@"PostLike.png"];
+//            ShowLikesIcon.frame = CGRectMake(40 , heightcheck + i + 20 ,23, 19);
+//            //   ShowLikesIcon.backgroundColor = [UIColor purpleColor];
+//            [LocalScroll addSubview:ShowLikesIcon];
             
+            UIButton *LikeButton = [[UIButton alloc]init];
+            LikeButton.frame = CGRectMake(40, heightcheck + i + 20, 23, 19);
+            [LikeButton setImage:[UIImage imageNamed:@"PostLike.png"] forState:UIControlStateNormal];
+            [LikeButton setImage:[UIImage imageNamed:@"PostLikeRed.png"] forState:UIControlStateSelected];
+            LikeButton.backgroundColor = [UIColor clearColor];
+            LikeButton.tag = i;
+            [LikeButton addTarget:self action:@selector(LikeButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+            [LocalScroll addSubview:LikeButton];
             
             UIImageView *ShowCommentIcon = [[UIImageView alloc]init];
             ShowCommentIcon.image = [UIImage imageNamed:@"PostComment.png"];
             ShowCommentIcon.frame = CGRectMake(100, heightcheck + i + 20 ,23, 19);
             //    ShowCommentIcon.backgroundColor = [UIColor redColor];
-            [MainScroll addSubview:ShowCommentIcon];
+            [LocalScroll addSubview:ShowCommentIcon];
             
             UIImageView *ShowShareIcon = [[UIImageView alloc]init];
             ShowShareIcon.image = [UIImage imageNamed:@"PostComment.png"];
             ShowShareIcon.frame = CGRectMake(160, heightcheck + i + 20 ,23, 19);
             //    ShowCommentIcon.backgroundColor = [UIColor redColor];
-            [MainScroll addSubview:ShowShareIcon];
+            [LocalScroll addSubview:ShowShareIcon];
             
             
             UIButton *CollectButton = [[UIButton alloc]init];
@@ -500,7 +520,7 @@
             CollectButton.layer.cornerRadius = 20;
             CollectButton.layer.borderWidth= 1;
             CollectButton.layer.borderColor=[[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] CGColor];
-            [MainScroll addSubview:CollectButton];
+            [LocalScroll addSubview:CollectButton];
             
             
             heightcheck += 70;
@@ -514,7 +534,7 @@
         }
     }
     
-    [MainScroll setContentSize:CGSizeMake(screenWidth, heightcheck + 169 + 50)];
+    [LocalScroll setContentSize:CGSizeMake(screenWidth, heightcheck + 169 + 50)];
 
 
     
@@ -531,6 +551,8 @@
 //    for (UIView *subview in MainScroll.subviews) {
 //        [subview removeFromSuperview];
 //    }
+    MainScroll.hidden = NO;
+    LocalScroll.hidden = YES;
     
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
@@ -794,11 +816,14 @@
             }
             
             
-            UIImageView *ShowLikesIcon = [[UIImageView alloc]init];
-            ShowLikesIcon.image = [UIImage imageNamed:@"PostLike.png"];
-            ShowLikesIcon.frame = CGRectMake(40 , heightcheck + i + 20 ,23, 19);
-            //   ShowLikesIcon.backgroundColor = [UIColor purpleColor];
-            [MainScroll addSubview:ShowLikesIcon];
+            UIButton *LikeButton = [[UIButton alloc]init];
+            LikeButton.frame = CGRectMake(40, heightcheck + i + 20, 23, 19);
+            [LikeButton setImage:[UIImage imageNamed:@"PostLike.png"] forState:UIControlStateNormal];
+            [LikeButton setImage:[UIImage imageNamed:@"PostLikeRed.png"] forState:UIControlStateSelected];
+            LikeButton.backgroundColor = [UIColor clearColor];
+            LikeButton.tag = i;
+            [LikeButton addTarget:self action:@selector(LikeButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+            [MainScroll addSubview:LikeButton];
             
             
             UIImageView *ShowCommentIcon = [[UIImageView alloc]init];
@@ -1517,7 +1542,7 @@
     // Your Code
     [refreshControl endRefreshing];
     
-    [UIView animateWithDuration:2.0f
+    [UIView animateWithDuration:5.0f
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
@@ -1637,6 +1662,20 @@
         [self presentViewController:SearchDetailView animated:NO completion:nil];
         [SearchDetailView SearchCategory:JoinAllCategoryID Getlat:latPoint GetLong:lonPoint GetCategoryName:JoinAllCategoryName];
         [SearchDetailView GetTitle:@"All"];
+    }
+}
+-(IBAction)LikeButtonOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSLog(@"button %li",(long)getbuttonIDN);
+
+    UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
+    buttonWithTag1.selected = !buttonWithTag1.selected;
+
+    if (buttonWithTag1.selected) {
+        NSLog(@"send like to server");
+    }else{
+        NSLog(@"send unlike to server");
+        
     }
 }
 

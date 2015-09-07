@@ -41,7 +41,7 @@
     
     ShowDownBarView.frame = CGRectMake(0, screenHeight - 62 - 50, screenWidth, 62);
     ShowbarView.frame = CGRectMake(0, 0, screenWidth, 64);
-    ShowBarImg.frame = CGRectMake(0, -340, screenWidth, 64);
+    ShowBarImg.frame = CGRectMake(0, -100, screenWidth, 64);
     MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight - 62);
     MImageScroll.frame = CGRectMake(0, -20, screenWidth, 360);
     ShowLanguageTranslationView.frame = CGRectMake(0, 0, screenWidth, screenHeight);
@@ -102,16 +102,16 @@
     
     LineButton.frame = CGRectMake(screenWidth - 105 - 15, screenHeight - 23, 105, 1);
 
-    LikeButton.frame = CGRectMake(16, 11, 85, 40);
-    LikeButtonBackground.frame = CGRectMake(15, 10, 87, 42);
-    CommentButton.frame = CGRectMake(118, 11, 123, 40);
-    CommentButtonBackground.frame = CGRectMake(117, 10, 125, 42);
-    shareFBButton.frame = CGRectMake(screenWidth - 60 - 15, 6, 60, 50);
-    LikeButtonBackground.layer.cornerRadius = 20;
-    CommentButtonBackground.layer.cornerRadius = 20;
-    LikeButton.layer.cornerRadius = 19;
-    CommentButton.layer.cornerRadius = 19;
-    [CommentButton setTitle:CustomLocalisedString(@"CommentsBig", nil) forState:UIControlStateNormal];
+    LikeButton.frame = CGRectMake(20, 1, 50, 60);
+    CommentButton.frame = CGRectMake(70, 1, 50, 60);
+    shareFBButton.frame = CGRectMake(120, 1, 50, 60);
+    CollectButton.frame = CGRectMake(screenWidth - 20 - 100, 12, 100, 40);
+    [CollectButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+    [CollectButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
+    CollectButton.backgroundColor = [UIColor colorWithRed:250.0f/255.0f green:221.0f/255.0f blue:96.0f/255.0f alpha:1.0f];
+    CollectButton.layer.cornerRadius = 20;
+    CollectButton.layer.borderWidth= 1;
+    CollectButton.layer.borderColor=[[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] CGColor];
 
     ShowGoogleTranslate = NO;
     CheckClickCount = 0;
@@ -435,15 +435,13 @@
                 
                 if ([GetLikeCheck isEqualToString:@"0"]) {
                     [LikeButton setImage:[UIImage imageNamed:@"PostLike.png"] forState:UIControlStateNormal];
-                    [LikeButton setTitle:CustomLocalisedString(@"Likes", nil) forState:UIControlStateNormal];
+                   // [LikeButton setTitle:CustomLocalisedString(@"Likes", nil) forState:UIControlStateNormal];
                     [LikeButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
-                    LikeButtonBackground.backgroundColor = [UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0];
                 }else{
                     ShowTotalLikeCount.textColor = [UIColor redColor];
                     [LikeButton setImage:[UIImage imageNamed:@"PostLikeRed.png"] forState:UIControlStateNormal];
-                    [LikeButton setTitle:CustomLocalisedString(@"Likes", nil) forState:UIControlStateNormal];
+                   // [LikeButton setTitle:CustomLocalisedString(@"Likes", nil) forState:UIControlStateNormal];
                     [LikeButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-                    LikeButtonBackground.backgroundColor = [UIColor redColor];
                 }
                 
                 NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
@@ -1104,18 +1102,16 @@
                 CheckLikeInitView = YES;
                 ShowTotalLikeCount.textColor = [UIColor redColor];
                 [LikeButton setImage:[UIImage imageNamed:@"PostLikeRed.png"] forState:UIControlStateNormal];
-                [LikeButton setTitle:CustomLocalisedString(@"Likes", nil) forState:UIControlStateNormal];
+               // [LikeButton setTitle:CustomLocalisedString(@"Likes", nil) forState:UIControlStateNormal];
                 [LikeButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-                LikeButtonBackground.backgroundColor = [UIColor redColor];
                 [self GetAllUserLikeData];
                 
             }else{
                 GetLikeCheck = @"0";
                 CheckLikeInitView = YES;
                 [LikeButton setImage:[UIImage imageNamed:@"PostLike.png"] forState:UIControlStateNormal];
-                [LikeButton setTitle:CustomLocalisedString(@"Likes", nil) forState:UIControlStateNormal];
+               // [LikeButton setTitle:CustomLocalisedString(@"Likes", nil) forState:UIControlStateNormal];
                 [LikeButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
-                LikeButtonBackground.backgroundColor = [UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0];
                 [self GetAllUserLikeData];
                 
             }
@@ -1697,7 +1693,7 @@
         UIButton *Line01 = [[UIButton alloc]init];
         Line01.frame = CGRectMake(15, GetMessageHeight, screenWidth - 30, 1);
         [Line01 setTitle:@"" forState:UIControlStateNormal];
-        [Line01 setBackgroundColor:[UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0f]];
+        [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
         [MainScroll addSubview:Line01];
         
         
@@ -1728,7 +1724,7 @@
         UIButton *Line01 = [[UIButton alloc]init];
         Line01.frame = CGRectMake(0, GetMessageHeight, screenWidth, 1);
         [Line01 setTitle:@"" forState:UIControlStateNormal];//238
-        [Line01 setBackgroundColor:[UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f blue:51.0f/255.0f alpha:1.0f]];
+        [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
         [MainScroll addSubview:Line01];
         
         GetMessageHeight += 10;
@@ -1802,6 +1798,12 @@
     
     
     //collected show
+    
+    UIButton *Line10 = [[UIButton alloc]init];
+    Line10.frame = CGRectMake(0, GetMessageHeight, screenWidth, 1);
+    [Line10 setTitle:@"" forState:UIControlStateNormal];//238
+    [Line10 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+    [MainScroll addSubview:Line10];
     
     UIImageView *ShowCollectionIcon = [[UIImageView alloc]init];
     ShowCollectionIcon.image = [UIImage imageNamed:@"InteractLike.png"];
@@ -1940,7 +1942,7 @@
             UIButton *Line01 = [[UIButton alloc]init];
             Line01.frame = CGRectMake(0, GetMessageHeight, screenWidth, 1);
             [Line01 setTitle:@"" forState:UIControlStateNormal];//238
-            [Line01 setBackgroundColor:[UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f blue:51.0f/255.0f alpha:1.0f]];
+            [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
             [MainScroll addSubview:Line01];
             
             UIButton *SeeAllCommentButton = [[UIButton alloc]init];
@@ -2059,7 +2061,7 @@
     UIButton *Line01 = [[UIButton alloc]init];
     Line01.frame = CGRectMake(0, GetMessageHeight, screenWidth, 20);
     [Line01 setTitle:@"" forState:UIControlStateNormal];//238
-    [Line01 setBackgroundColor:[UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f blue:51.0f/255.0f alpha:1.0f]];
+    [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
     [MainScroll addSubview:Line01];
     
     GetMessageHeight += 20;
@@ -2090,7 +2092,7 @@
     UIButton *Line02 = [[UIButton alloc]init];
     Line02.frame = CGRectMake(0, GetMessageHeight - 1, screenWidth, 1);
     [Line02 setTitle:@"" forState:UIControlStateNormal];//238
-    [Line02 setBackgroundColor:[UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f blue:51.0f/255.0f alpha:1.0f]];
+    [Line02 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
     [MainScroll addSubview:Line02];
     
 //    int TempGetNewHeight = GetMessageHeight;
@@ -2248,7 +2250,7 @@
     UIButton *Line03 = [[UIButton alloc]init];
     Line03.frame = CGRectMake(0, GetMessageHeight, screenWidth, 1);
     [Line03 setTitle:@"" forState:UIControlStateNormal];//238
-    [Line03 setBackgroundColor:[UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f blue:51.0f/255.0f alpha:1.0f]];
+    [Line03 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
     [MainScroll addSubview:Line03];
     
     UIButton *MoreInfoButton = [[UIButton alloc]init];
@@ -2266,7 +2268,7 @@
     UIButton *Line04 = [[UIButton alloc]init];
     Line04.frame = CGRectMake(0, GetMessageHeight, screenWidth, 20);
     [Line04 setTitle:@"" forState:UIControlStateNormal];//238
-    [Line04 setBackgroundColor:[UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f blue:51.0f/255.0f alpha:1.0f]];
+    [Line04 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
     [MainScroll addSubview:Line04];
     
    // OpenAddressButton
@@ -2328,7 +2330,7 @@
     UIButton *Line01 = [[UIButton alloc]init];
     Line01.frame = CGRectMake(0, GetFinalHeight, screenWidth, 1);
     [Line01 setTitle:@"" forState:UIControlStateNormal];//238
-    [Line01 setBackgroundColor:[UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f blue:51.0f/255.0f alpha:1.0f]];
+    [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
     [MainScroll addSubview:Line01];
 
     
@@ -2452,7 +2454,7 @@
     UIButton *Line02 = [[UIButton alloc]init];
     Line02.frame = CGRectMake(0, GetFinalHeight, screenWidth, 1);
     [Line02 setTitle:@"" forState:UIControlStateNormal];//238
-    [Line02 setBackgroundColor:[UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f blue:51.0f/255.0f alpha:1.0f]];
+    [Line02 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
     [MainScroll addSubview:Line02];
     
     if ([PhotoArray_Nearby count] <= 4) {
@@ -2866,12 +2868,20 @@
         float scrollViewHeight = MainScroll.frame.size.height;
         float scrollContentSizeHeight = MainScroll.contentSize.height;
         float scrollOffset = MainScroll.contentOffset.y;
-        
-        if (scrollOffset == 0)
+        //NSLog(@"scrollOffset is %f",scrollOffset);
+        if (scrollOffset < 0)
         {
             // then we are at the top
             CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-            ShowBarImg.frame = CGRectMake(0, -340, screenWidth, 64);
+            
+            [UIView animateWithDuration:1.0
+                                  delay:0
+                                options:UIViewAnimationOptionCurveEaseIn
+                             animations:^{
+                               ShowBarImg.frame = CGRectMake(0, -100, screenWidth, 64);
+                             }
+                             completion:^(BOOL finished) {
+                             }];
         }
         else if (scrollOffset + scrollViewHeight == scrollContentSizeHeight)
         {
@@ -2931,7 +2941,7 @@
                         options:UIViewAnimationOptionCurveEaseIn
                      animations:^{
                       //   MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight - 114);
-                        // ShowbarView.frame = CGRectMake(0, 0, screenWidth, 64);
+                         //ShowBarImg.frame = CGRectMake(0, -64, screenWidth, 64);
                          ShowDownBarView.frame = CGRectMake(0, screenHeight - 110, screenWidth, 60);
                          self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
                      }

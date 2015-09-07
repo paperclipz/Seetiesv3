@@ -7,15 +7,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FeedV2DetailViewController">
             <connections>
                 <outlet property="BlueBar" destination="K4p-dC-A3c" id="z4R-f5-TnZ"/>
+                <outlet property="CollectButton" destination="mqO-7T-viU" id="RD5-fi-zDF"/>
                 <outlet property="CommentButton" destination="QIe-qf-Rg0" id="1NV-AW-rsi"/>
-                <outlet property="CommentButtonBackground" destination="kbr-Lf-xEw" id="AP4-2c-pdz"/>
                 <outlet property="DisplayButton" destination="hTr-KW-8FS" id="jqj-ph-GSh"/>
                 <outlet property="DontShowAgainButton" destination="ZaB-Ze-AUM" id="4KY-8H-0IT"/>
                 <outlet property="DontShowAggainText" destination="hV5-uz-LSw" id="teY-5W-WEM"/>
                 <outlet property="GoogleIcon" destination="8At-x2-cTC" id="cGZ-n9-UuV"/>
                 <outlet property="LanguageText" destination="i5l-ug-V94" id="gjW-Ra-SkM"/>
                 <outlet property="LikeButton" destination="1MG-hw-hrm" id="Iqi-qi-Hs4"/>
-                <outlet property="LikeButtonBackground" destination="vPC-c2-1eD" id="3gt-ak-Vdz"/>
                 <outlet property="LineButton" destination="LeG-UD-Qgj" id="DuM-rA-zrg"/>
                 <outlet property="LocationButton" destination="v0e-5Q-vOm" id="YPV-Y8-CfB"/>
                 <outlet property="MImageScroll" destination="KK8-FS-BPN" id="7A3-Hy-s0h"/>
@@ -34,7 +33,7 @@
                 <outlet property="ShowbarView" destination="zTc-kp-dGH" id="lzB-T2-zUG"/>
                 <outlet property="SkipButton" destination="zQF-Hf-9Ll" id="22y-d4-6p8"/>
                 <outlet property="TapTheLangugeText" destination="EJW-kS-fDK" id="A9o-Nr-suq"/>
-                <outlet property="shareFBButton" destination="9To-PR-Pf7" id="E1X-6l-oly"/>
+                <outlet property="shareFBButton" destination="BGJ-1U-7zQ" id="x5I-Up-laN"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -59,6 +58,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </scrollView>
                     </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </scrollView>
                 <view contentMode="scaleToFill" id="iYu-fw-DMy">
                     <rect key="frame" x="0.0" y="506" width="320" height="62"/>
@@ -72,30 +72,13 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vPC-c2-1eD">
-                            <rect key="frame" x="15" y="10" width="87" height="42"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <state key="normal">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kbr-Lf-xEw">
-                            <rect key="frame" x="117" y="10" width="125" height="42"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <state key="normal">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1MG-hw-hrm">
-                            <rect key="frame" x="16" y="11" width="85" height="40"/>
+                            <rect key="frame" x="16" y="11" width="44" height="40"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
                             <inset key="titleEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <inset key="imageEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" title="Like" image="PostLike.png">
+                            <state key="normal" image="PostLike.png">
                                 <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -103,30 +86,42 @@
                                 <action selector="LikeButton:" destination="-1" eventType="touchUpInside" id="Uko-XY-InW"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9To-PR-Pf7">
-                            <rect key="frame" x="245" y="6" width="60" height="50"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" image="PostShare.png">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="ShareButton:" destination="-1" eventType="touchUpInside" id="kWJ-Ue-D4U"/>
-                            </connections>
-                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QIe-qf-Rg0">
-                            <rect key="frame" x="118" y="11" width="123" height="40"/>
+                            <rect key="frame" x="68" y="11" width="45" height="40"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
                             <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <inset key="imageEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" title="Comment" image="PostComment.png">
+                            <state key="normal" image="PostComment.png">
                                 <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
                                 <action selector="CommentButton:" destination="-1" eventType="touchUpInside" id="Cpe-Ec-zyb"/>
                             </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="BGJ-1U-7zQ">
+                            <rect key="frame" x="121" y="11" width="45" height="40"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
+                            <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" image="PostComment.png">
+                                <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="CommentButton:" destination="-1" eventType="touchUpInside" id="kcd-qX-7oz"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mqO-7T-viU">
+                            <rect key="frame" x="214" y="16" width="78" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.98039215690000003" green="0.86666666670000003" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" title="Collect">
+                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -311,7 +306,6 @@
         <image name="PostLike.png" width="23" height="19"/>
         <image name="PostLocation.png" width="17" height="22"/>
         <image name="PostMore.png" width="22" height="22"/>
-        <image name="PostShare.png" width="42" height="42"/>
         <image name="Settingsbar2.png" width="640" height="128"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

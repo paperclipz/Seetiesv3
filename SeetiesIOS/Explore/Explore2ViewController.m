@@ -13,7 +13,7 @@
 #import "OpenWebViewController.h"
 #import "SearchResultV2ViewController.h"
 #import "ExploreCountryV2ViewController.h"
-
+#import "SearchViewV2Controller.h"
 @interface Explore2ViewController ()<UISearchBarDelegate>
 {
     IBOutlet UIScrollView *ibScrollViewCountry;
@@ -41,6 +41,8 @@
     mySearchBar.tintColor = [UIColor redColor];
     mySearchBar.barTintColor = [UIColor clearColor];
     [mySearchBar setBackgroundImage:[[UIImage alloc]init]];
+    
+    SearchButton.frame = CGRectMake(0, 20, screenWidth, 44);
     
     //CountriesScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight - 114);
     ibScrollViewCountry.frame = CGRectMake(0, 64, screenWidth, screenHeight - 114);
@@ -485,5 +487,9 @@
     [self presentViewController:OpenWebView animated:NO completion:nil];
     [OpenWebView GetTitleString:@"Festival"];
 }
-
+-(IBAction)SearchButton:(id)sender{
+    SearchViewV2Controller *SearchView = [[SearchViewV2Controller alloc]initWithNibName:@"SearchViewV2Controller" bundle:nil];
+    //[self presentViewController:SearchView animated:YES completion:nil];
+    [self.view.window.rootViewController presentViewController:SearchView animated:YES completion:nil];
+}
 @end

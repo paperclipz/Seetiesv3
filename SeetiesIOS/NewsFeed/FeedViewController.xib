@@ -16,6 +16,7 @@
             <connections>
                 <outlet property="BarImage" destination="0OV-bR-bCb" id="U6R-rS-kjM"/>
                 <outlet property="FilterButton" destination="ETl-GC-8mi" id="9MF-Nx-khl"/>
+                <outlet property="LocalScroll" destination="Gy1-DO-QEj" id="5HN-vA-hXy"/>
                 <outlet property="MainScroll" destination="JEf-BH-llN" id="4J8-Bs-Z3e"/>
                 <outlet property="NoConnectionView" destination="DDV-GU-j5W" id="xku-e4-Owo"/>
                 <outlet property="SearchButton" destination="RXs-o1-uCv" id="QMk-Pf-rv0"/>
@@ -32,6 +33,10 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Gy1-DO-QEj">
+                    <rect key="frame" x="0.0" y="32" width="320" height="504"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                </scrollView>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="JEf-BH-llN">
                     <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

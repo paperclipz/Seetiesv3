@@ -82,6 +82,9 @@
     BOOL CheckLoad_Post;
     int CheckFirstTimeLoadLikes;
     int CheckFirstTimeLoadPost;
+    
+    IBOutlet UIButton *SearchButton;
 }
 -(IBAction)SettingsButton:(id)sender;
+-(IBAction)SearchButton:(id)sender;
 @end
