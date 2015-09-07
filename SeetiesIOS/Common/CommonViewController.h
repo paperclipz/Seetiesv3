@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface CommonViewController : GAITrackedViewController
+-(void)applyTabBarContraint;
 
 @end

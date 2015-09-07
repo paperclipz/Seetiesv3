@@ -21,3 +21,21 @@
 }
 
 @end
+
+
+
+@implementation SearchLocationDetailModel
++(JSONKeyMapper*)keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{
+                                                       @"geometry.location.lat": @"lat",
+                                                       @"geometry.location.lng": @"lng"
+
+                                                       }];
+}
++(BOOL)propertyIsOptional:(NSString*)propertyName
+{
+    return YES;
+}
+
+@end

@@ -18,3 +18,9 @@ pod 'SDWebImage', :head
 pod 'GoogleMaps'
 pod 'LPGoogleFunctions'
 pod 'CLLocationManager-blocks'
+
+pod 'BkTask'
+pod 'HMSegmentedControl'
+
+
+pod 'ActionSheetPicker-3.0', '~> 1.7.1'

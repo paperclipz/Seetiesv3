@@ -79,24 +79,20 @@
 @property(nonatomic,strong)NSString* lat;
 @property(nonatomic,strong)NSString* lng;
 @property(nonatomic,strong)NSString* state;
-//@property(nonatomic,strong)NSString* formattedAddress;
+@property(nonatomic,strong)NSString<Optional>* formattedAddress;
 @property(nonatomic,strong)NSString* postalCode;
 @property(nonatomic,strong)NSString* distance;
-
 @property(nonatomic,strong)NSString* formattedPhone;
 @property(nonatomic,strong)NSString* phone;
 @property(nonatomic,strong)NSString* facebookName;
-
-
 @property(nonatomic,assign)BOOL isOpenHour;
 @property(nonatomic,strong)NSString* statusHour;
-
 @property(nonatomic,strong)NSString* currency;
-@property(nonatomic,strong)NSString* message;
+@property(nonatomic,strong)NSString* priceMessage;
 @property(nonatomic,strong)NSString* tier;
-
 @property(nonatomic,strong)NSString* name;
 @property(nonatomic,strong)NSString* url;
+@property(nonatomic,assign)int id;
 
 @end
 

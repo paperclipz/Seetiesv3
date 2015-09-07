@@ -8,7 +8,7 @@
 
 #import "RecommendPopUpViewController.h"
 #import "LeveyTabBarController.h"
-#import "DraftViewController.h"
+//#import "DraftViewController.h"
 @interface RecommendPopUpViewController ()
 
 @end
@@ -129,8 +129,8 @@
 }
 -(IBAction)OpenDraftButton:(id)sender{
 
-    DraftViewController *OpenDraft = [[DraftViewController alloc]init];
-    [self presentViewController:OpenDraft animated:YES completion:nil];
+//    DraftViewController *OpenDraft = [[DraftViewController alloc]init];
+//    [self presentViewController:OpenDraft animated:YES completion:nil];
 }
 
 -(IBAction)BackgroundButton:(id)sender{

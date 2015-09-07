@@ -103,6 +103,40 @@
 
 #pragma mark - Service Request
 
+- (MKNetworkOperation*)requestServerwithAppendString:(NSString*)url requestType:(ServerRequestType)serverRequestType param:(NSDictionary*)dict  completionHandler:(IDBlock)completionBlock errorHandler:(MKNKErrorBlock)errorBlock
+{
+    
+    MKNetworkOperation *op = [self operationWithURLString:url params:dict];
+    
+    [op setPostDataEncoding:MKNKPostDataEncodingTypeJSON];
+    
+    [op addCompletionHandler:^(MKNetworkOperation *completedOperation) {
+        
+        NSString *jsonString = [completedOperation responseString];
+        
+        NSDictionary *responseDict = [jsonString objectFromJSONString];
+        
+        [self storeServerData:responseDict requestType:serverRequestType];
+
+        if(completionBlock)
+        {
+            completionBlock(responseDict);
+        }
+        
+    } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
+        if(errorBlock)
+        {
+            errorBlock(error);
+        }
+    }];
+    
+    [self enqueueOperation:op];
+    
+    return op;
+    
+    
+}
+
 //For append string with api without reqeust type . EXP: get location etc
 - (MKNetworkOperation*)requestServerwithAppendString:(NSString*)url param:(NSDictionary*)dict  completionHandler:(IDBlock)completionBlock errorHandler:(MKNKErrorBlock)errorBlock
 {
@@ -213,6 +247,7 @@
             break;
         case ServerRequestTypeGetApiVersion:
             self.dataManager.apiVersionModel = [[ApiVersionModel alloc]initWithDictionary:obj error:nil];
+            
             break;
             
         case ServerRequestTypeGetLanguage:
@@ -221,6 +256,31 @@
             
         case ServerRequestTypeGetExplore:
             self.dataManager.exploreCountryModels = [[ExploreCountryModels alloc]initWithDictionary:obj error:nil];
+            break;
+            
+        case ServerRequestType4SquareSearch:
+        {
+//            NSArray *venues = [obj valueForKeyPath:@"response.venues"];
+//            FSConverter *converter = [[FSConverter alloc]init];
+          //  self.dataManager.fourSquareVenueModel = [converter convertToObjects:venues];
+            
+           // NSArray *venues = [obj valueForKeyPath:@"response.groups.items.venue"];
+            self.dataManager.fourSquareVenueModel = [[FourSquareModel alloc]initWithDictionary:obj error:nil];
+            
+            SLog(@"ggwp");
+        }
+            break;
+            
+        case ServerRequestTypeGoogleSearch:
+            self.dataManager.googleSearchModel = [[SearchModel alloc]initWithDictionary:obj error:nil];
+            
+            break;
+            
+        case ServerRequestTypeGoogleSearchWithDetail:
+        {
+            NSDictionary* dict = obj[@"result"];
+            self.dataManager.googleSearchDetailModel = [[SearchLocationDetailModel alloc]initWithDictionary:dict error:nil];
+        }
             break;
         default:
             break;

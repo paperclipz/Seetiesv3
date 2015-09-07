@@ -14,11 +14,13 @@
 #import "WhyWeUseFBViewController.h"
 #import "SignupViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "PTellUsYourCityViewController.h"
 #import "ExploreViewController.h"
 #import "Explore2ViewController.h"
 #import "NotificationViewController.h"
 #import "ProfileV2ViewController.h"
 #import "PublishMainViewController.h"
+#import "PTellUsYourCityViewController.h"
 #import "PSelectYourInterestViewController.h"
 #import "PFollowTheExpertsViewController.h"
 #import "LanguageManager.h"
@@ -28,9 +30,9 @@
 #import "CRMotionView.h"
 #import "LeveyTabBarController.h"
 #import "RecommendPopUpViewController.h"
-#import "PInterestV2ViewController.h"
+
 #import "FeedViewController.h"
-#import "PInterestV2ViewController.h"
+
 #import "NewProfileV2ViewController.h"
 
 @interface LandingV2ViewController ()
@@ -53,7 +55,6 @@
 
 @implementation LandingV2ViewController
 
-
 -(void)initSelfView
 {
 
@@ -72,11 +73,11 @@
 
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    FBLoginButton.frame = CGRectMake((screenWidth/2) - 130, screenHeight - 236, 260, 50);
-    LogInButton.frame = CGRectMake((screenWidth/2) + 130 - 74, screenHeight - 110, 74, 34);
+    FBLoginButton.frame = CGRectMake((screenWidth/2) - 130, screenHeight - 256, 260, 50);
+    LogInButton.frame = CGRectMake((screenWidth/2) + 130 - 74, screenHeight - 130, 74, 34);
     WhyWeUseFBButton.frame = CGRectMake(0, screenHeight - 128, screenWidth, 34);
-    InstagramButton.frame = CGRectMake((screenWidth/2) - 130, screenHeight - 178, 260, 50);
-    SignUpWithEmailButton.frame = CGRectMake((screenWidth/2) - 130, screenHeight - 110, 125, 34);
+    InstagramButton.frame = CGRectMake((screenWidth/2) - 130, screenHeight - 198, 260, 50);
+    SignUpWithEmailButton.frame = CGRectMake((screenWidth/2) - 130, screenHeight - 130, 125, 34);
     MainText.frame = CGRectMake(30, 150, screenWidth - 60, 65);
     MainLogo.frame = CGRectMake((screenWidth/2) - 104, 70, 208, 82);
     ShowBackgroundImage.frame = CGRectMake(0, 0, screenWidth, screenHeight);
@@ -224,7 +225,7 @@
         CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
         
         CRMotionView *motionView = [[CRMotionView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LandingV2.png"]];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"DemoTest.png"]];
         [motionView setContentView:imageView];
         [BackgroundView addSubview:motionView];
         [motionView setScrollDragEnabled:YES];
@@ -234,11 +235,11 @@
             PTnCViewController *PTnCView = [[PTnCViewController alloc]init];
             [self presentViewController:PTnCView animated:YES completion:nil];
         }else if([CheckProvisioningStatus isEqualToString:@"2"]){
-//            PTellUsYourCityViewController *PTellUsYourCityView = [[PTellUsYourCityViewController alloc]init];
-//            [self presentViewController:PTellUsYourCityView animated:YES completion:nil];
+            PTellUsYourCityViewController *PTellUsYourCityView = [[PTellUsYourCityViewController alloc]init];
+            [self presentViewController:PTellUsYourCityView animated:YES completion:nil];
         }else if([CheckProvisioningStatus isEqualToString:@"3"]){
-            PInterestV2ViewController *PInterestV2View = [[PInterestV2ViewController alloc]init];
-            [self presentViewController:PInterestV2View animated:YES completion:nil];
+            PSelectYourInterestViewController *PSelectYourInterestView = [[PSelectYourInterestViewController alloc]init];
+            [self presentViewController:PSelectYourInterestView animated:YES completion:nil];
         }else if([CheckProvisioningStatus isEqualToString:@"4"]){
             PFollowTheExpertsViewController *PFollowTheExpertsView = [[PFollowTheExpertsViewController alloc]init];
             [self presentViewController:PFollowTheExpertsView animated:YES completion:nil];
@@ -281,10 +282,7 @@
     
     [[[[UIApplication sharedApplication] delegate] window] setRootViewController:self.leveyTabBarController];
 //TODO:Delete this . use for development purpose only
-    [self.leveyTabBarController setSelectedIndex:0];
-    NSLog(@"Landing self.leveyTabBarController === %@",self.leveyTabBarController);
-
-
+    [self.leveyTabBarController setSelectedIndex:2];
 }
 
 - (void)animateImages
@@ -342,33 +340,29 @@
     {
          NSArray *arrViewControllers  = [NSArray arrayWithObjects:self.feedViewController.navController,self.explore2ViewController.navController,self.recommendationViewController.navController,self.notificationViewController.navController,self.userProfilePageViewController.navController, nil];
         
-        
-        _leveyTabBarController = [[LeveyTabBarController alloc]initWithViewControllers:arrViewControllers imageArray:[self arrTabImages]];
-        
         _leveyTabBarController = [[LeveyTabBarController alloc] initWithViewControllers:arrViewControllers imageArray:[self arrTabImages]];
         [_leveyTabBarController.tabBar setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
         [_leveyTabBarController setTabBarTransparent:YES];
-
         
     }
     
     return _leveyTabBarController;
 }
-//-(UITabBarController*)tabBarController
-//{
-//    if(!_tabBarController)
-//    {
-//        CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-//        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-//        
-//        _tabBarController = [UITabBarController new];
-//        _tabBarController.tabBar.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
-//        [[UITabBar appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
-//        self.tabBarController.viewControllers = [NSArray arrayWithObjects:self.feedViewController.navController,self.explore2ViewController.navController,self.recommendationViewController.navController,self.notificationViewController.navController,self.userProfilePageViewController.navController, nil];
-//    }
-//    
-//    return _tabBarController;
-//}
+-(UITabBarController*)tabBarController
+{
+    if(!_tabBarController)
+    {
+        CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+        
+        _tabBarController = [UITabBarController new];
+        _tabBarController.tabBar.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
+        [[UITabBar appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
+        self.tabBarController.viewControllers = [NSArray arrayWithObjects:self.feedViewController.navController,self.explore2ViewController.navController,self.recommendationViewController.navController,self.notificationViewController.navController,self.userProfilePageViewController.navController, nil];
+    }
+    
+    return _tabBarController;
+}
 
 -(FeedViewController*)feedViewController
 {
@@ -390,11 +384,11 @@
 }
 
 
--(RecommendPopUpViewController*)recommendationViewController
+-(RecommendationViewController*)recommendationViewController
 {
     if(!_recommendationViewController)
     {
-        _recommendationViewController = [RecommendPopUpViewController new];
+        _recommendationViewController = [RecommendationViewController new];
     }
     return _recommendationViewController;
 }
@@ -671,35 +665,34 @@
             UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:CustomLocalisedString(@"SomethingError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [ShowAlert show];
         }else{
-            NSDictionary *GetAllData = [res valueForKey:@"data"];
             NSLog(@"Got Data.");
-            NSMutableArray *categoriesArray = [[NSMutableArray alloc] initWithArray:[GetAllData valueForKey:@"categories"]];
+            NSMutableArray *categoriesArray = [[NSMutableArray alloc] initWithArray:[res valueForKey:@"categories"]];
             NSLog(@"categoriesArray is %@",categoriesArray);
-            NSString *GetCountry = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"country"]];
+            NSString *GetCountry = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"country"]];
             NSLog(@"GetCountry is %@",GetCountry);
-            NSString *Getcrawler = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"crawler"]];
+            NSString *Getcrawler = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"crawler"]];
             NSLog(@"Getcrawler is %@",Getcrawler);
-            NSString *Getcreated_at = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"created_at"]];
+            NSString *Getcreated_at = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"created_at"]];
             NSLog(@"Getcreated_at is %@",Getcreated_at);
-            NSString *Getdescription = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"description"]];
+            NSString *Getdescription = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"description"]];
             NSLog(@"Getdescription is %@",Getdescription);
-            NSString *Getdob = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"dob"]];
+            NSString *Getdob = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"dob"]];
             NSLog(@"Getdob is %@",Getdob);
-            NSString *Getemail = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"email"]];
+            NSString *Getemail = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"email"]];
             NSLog(@"Getemail is %@",Getemail);
-            NSString *Getusername = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"username"]];
+            NSString *Getusername = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"username"]];
             NSLog(@"Getusername is %@",Getusername);
-            NSString *Getprofile_photo = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"profile_photo"]];
+            NSString *Getprofile_photo = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"profile_photo"]];
             NSLog(@"Getprofile_photo is %@",Getprofile_photo);
-            NSString *Gettoken = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"token"]];
+            NSString *Gettoken = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"token"]];
             NSLog(@"Gettoken is %@",Gettoken);
-            NSString *Getuid = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"uid"]];
+            NSString *Getuid = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"uid"]];
             NSLog(@"Getuid is %@",Getuid);
-            NSString *Getprovisioning = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"provisioning"]];
+            NSString *Getprovisioning = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"provisioning"]];
             NSLog(@"Getprovisioning is %@",Getprovisioning);
-            NSString *Getrole = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"role"]];
+            NSString *Getrole = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"role"]];
             NSLog(@"Getrole is %@",Getrole);
-            NSDictionary *SystemLanguage = [GetAllData valueForKey:@"system_language"];
+            NSDictionary *SystemLanguage = [res valueForKey:@"system_language"];
             NSLog(@"SystemLanguage is %@",SystemLanguage);
             NSString *GetCaption;
             if ([SystemLanguage isKindOfClass:[NSNull class]]) {
@@ -710,14 +703,14 @@
             }
             //            NSString *GetCaption = [[NSString alloc]initWithFormat:@"%@",[SystemLanguage objectForKey:@"caption"]];
             //            NSLog(@"GetCaption is %@",GetCaption);
-            NSString *GetPasswordCheck = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"has_password"]];
+            NSString *GetPasswordCheck = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"has_password"]];
             NSLog(@"GetPasswordCheck is %@",GetPasswordCheck);
-            NSString *GetFbExtendedToken = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"fb_extended_token"]];
+            NSString *GetFbExtendedToken = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"fb_extended_token"]];
             NSLog(@"GetFbExtendedToken is %@",GetFbExtendedToken);
             
             NSMutableArray *GetUserSelectLanguagesArray = [[NSMutableArray alloc]init];
             NSMutableArray *TempArray = [[NSMutableArray alloc]init];
-            NSDictionary *NSDictionaryLanguage = [GetAllData valueForKey:@"languages"];
+            NSDictionary *NSDictionaryLanguage = [res valueForKey:@"languages"];
             NSLog(@"NSDictionaryLanguage is %@",NSDictionaryLanguage);
             NSString *GetLanguage_1;
             NSString *GetLanguage_2;
@@ -821,9 +814,8 @@
                 
                 
             }else{
-                PInterestV2ViewController *PInterestV2View = [[PInterestV2ViewController alloc]init];
-                [self presentViewController:PInterestV2View animated:YES completion:nil];
-                
+                PTellUsYourCityViewController *TellUsYourCityView = [[PTellUsYourCityViewController alloc]init];
+                [self presentViewController:TellUsYourCityView animated:YES completion:nil];
             }
             
             

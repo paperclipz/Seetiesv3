@@ -18,7 +18,10 @@ typedef enum
     ServerRequestTypeNewsFeed = 2,
     ServerRequestTypeGetLanguage = 3,
     ServerRequestTypeGetApiVersion = 4,
-    ServerRequestTypeGetExplore = 5
+    ServerRequestTypeGetExplore = 5,
+    ServerRequestTypeGoogleSearch,
+    ServerRequestType4SquareSearch,
+    ServerRequestTypeGoogleSearchWithDetail
     
 }ServerRequestType;
 

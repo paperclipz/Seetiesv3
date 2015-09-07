@@ -9,20 +9,28 @@
 #import "RecommendationViewController.h"
 @interface RecommendationViewController ()
 
+@property(nonatomic,strong)RecommendationModel* recommendModel;
+
 @end
 
 @implementation RecommendationViewController
+- (IBAction)btnEditPhotoClicked:(id)sender {
+    
+    [self showEditPostView];
+   
+    
+}
 - (IBAction)btnPickImageClicked:(id)sender {
     
-    [self presentViewController:self.doImagePickerController animated:YES completion:nil];
-
+    [self presentViewController:self.navViewController animated:YES completion:nil];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self btnPickImageClicked:nil];
+    //[self btnPickImageClicked:nil];
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -31,6 +39,10 @@
 - (void)didCancelDoImagePickerController
 {
     SLog(@"didCancelDoImagePickerController");
+    
+    if (self.doImagePickerController) {
+        [self.doImagePickerController dismissViewControllerAnimated:YES completion:nil];
+    }
 
 }
 
@@ -56,56 +68,41 @@
         ALAsset* asset = aSelected[0];
         tempCurrentLocation = [asset valueForProperty:ALAssetPropertyLocation];
         [self showSearchView:tempCurrentLocation];
-                   
+        [self processModelData:aSelected];
     }
    
     //Remark* check image has tag location, if not get device location. if device dont hace location route to search page with no suggestion
 }
 
+-(void)processModelData:(NSArray*)arrAssets
+{
+
+    for (int i = 0; i<arrAssets.count; i++) {
+        
+        ALAsset* temp = arrAssets[i];
+        EditPhotoModel* model = [EditPhotoModel new];
+        model.image = [UIImage imageWithCGImage:[temp thumbnail]];
+        [self.recommendModel.arrPostImagesList addObject:model];
+    }
+ 
+}
+
 -(void)showSearchView:(CLLocation*)location
 {
     
-    [self dismissViewControllerAnimated:YES completion:^{
-        [self pushViewController:self.stSearchViewController animated:YES];
-        [self.stSearchViewController initWithLocation:location];
-
-    }];
+    [self.doImagePickerController.navigationController pushViewController:self.stSearchViewController animated:YES];
+    [self.stSearchViewController initWithLocation:location];
 
     
 }
 
+-(void)showEditPostView
+{
+    [self.editPostViewController initData:self.recommendModel];
+    
+    [self presentViewController:self.navEditPostViewController animated:YES completion:nil];
+}
 
-//
-//- (NSString *)getIPAddress {
-//    
-//    NSString *address = @"error";
-//    struct ifaddrs *interfaces = NULL;
-//    struct ifaddrs *temp_addr = NULL;
-//    int success = 0;
-//    // retrieve the current interfaces - returns 0 on success
-//    success = getifaddrs(&interfaces);
-//    if (success == 0) {
-//        // Loop through linked list of interfaces
-//        temp_addr = interfaces;
-//        while(temp_addr != NULL) {
-//            if(temp_addr->ifa_addr->sa_family == AF_INET) {
-//                // Check if interface is en0 which is the wifi connection on the iPhone
-//                if([[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:@"en0"]) {
-//                    // Get NSString from C String
-//                    address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)];
-//                    
-//                }
-//                
-//            }
-//            
-//            temp_addr = temp_addr->ifa_next;
-//        }
-//    }
-//    // Free memory
-//    freeifaddrs(interfaces);
-//    return address;
-//    
-//}
 
 #pragma mark - Declaration
 -(STSearchViewController*)stSearchViewController{
@@ -113,6 +110,41 @@
     if(!_stSearchViewController)
     {
         _stSearchViewController = [STSearchViewController new];
+        
+        __block typeof (self)wealSelf = self;
+        _stSearchViewController.didSelectRowAtIndexPathBlock = ^(NSIndexPath* indexPath, SearchType type)
+        {
+            
+            switch (type) {
+                default:
+                case SearchTypeGoogle:
+                {
+                    DataManager* manager = [DataManager Instance];
+                    SearchLocationModel* model = manager.googleSearchModel.predictions[indexPath.row];
+                    [wealSelf.addNewPlaceViewController initDataFromGogle:model.place_id];
+                }
+                    break;
+                case SearchTypeFourSquare:
+                {
+                    DataManager* manager = [DataManager Instance];
+                    VenueModel* model = manager.fourSquareVenueModel.items[indexPath.row];
+                    [wealSelf.addNewPlaceViewController initDataFrom4Square:model];
+                }
+                    break;
+            }
+            
+            [wealSelf.navViewController pushViewController:wealSelf.addNewPlaceViewController animated:YES];
+            wealSelf.addNewPlaceViewController.title = @"Edit Place Info";
+
+        };
+        
+        _stSearchViewController.btnAddNewPlaceBlock = ^(id object)
+        {
+            
+            [wealSelf.navViewController pushViewController:wealSelf.addNewPlaceViewController animated:YES];
+          //  wealSelf.addNewPlaceViewController.title
+            wealSelf.addNewPlaceViewController.title = @"New Place Info";
+        };
     }
     return _stSearchViewController;
 }
@@ -134,4 +166,63 @@
     
     return _doImagePickerController;
 }
+
+-(EditPostViewController*)editPostViewController
+{
+    if(!_editPostViewController)
+    {
+        _editPostViewController = [EditPostViewController new];
+    }
+    return _editPostViewController;
+}
+
+-(UINavigationController*)navEditPostViewController
+{
+    if(!_navEditPostViewController)
+    {
+        _navEditPostViewController = [[UINavigationController alloc]initWithRootViewController:self.editPostViewController];
+        [_navEditPostViewController setNavigationBarHidden:YES];
+    }
+    
+    return _navEditPostViewController;
+}
+
+-(UINavigationController*)navViewController
+{
+    if(!_navViewController)
+    {
+        _navViewController = [[UINavigationController alloc]initWithRootViewController:self.doImagePickerController];
+        [_navViewController setNavigationBarHidden:YES];
+    }
+    
+    return _navViewController;
+}
+-(AddNewPlaceViewController*)addNewPlaceViewController
+{
+    if(!_addNewPlaceViewController)
+    {
+        
+        __weak typeof (self)weakSelf = self;
+        _addNewPlaceViewController = [AddNewPlaceViewController new];
+        _addNewPlaceViewController.btnPressDoneBlock = ^(id object)
+        {
+            [weakSelf.navController dismissViewControllerAnimated:YES completion:^{
+                [weakSelf showEditPostView];
+
+            }];
+        };
+    }
+    
+    return _addNewPlaceViewController;
+}
+
+-(RecommendationModel*)recommendModel
+{
+    if (!_recommendModel) {
+        _recommendModel = [RecommendationModel new];
+    }
+    
+    return _recommendModel;
+}
+
 @end

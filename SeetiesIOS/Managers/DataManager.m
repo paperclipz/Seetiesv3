@@ -27,4 +27,11 @@
     return self;
 }
 
++(NSArray*)getSampleObject
+{
+    NSArray* tempArray = @[@"123",@"223",@"333"];
+    
+    return tempArray;
+}
+
 @end
