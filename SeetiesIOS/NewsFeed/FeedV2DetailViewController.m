@@ -1473,6 +1473,7 @@
 
         [MImageScroll addSubview:ShowCaptionText];
     }
+    //NSLog(@"start draw title");
     
     NSInteger productcount = [UrlArray count];
     MImageScroll.contentSize = CGSizeMake(productcount * screenWidth, 340);
@@ -1608,9 +1609,16 @@
         ShowHashTagText.layer.borderWidth = 1;
         ShowHashTagText.layer.borderColor=[[UIColor grayColor] CGColor];
         
-        CGSize textSize = [ShowHashTagText.text sizeWithAttributes:@{NSFontAttributeName:[ShowHashTagText font]}];
-        ShowHashTagText.frame = CGRectMake(30 + frame2.size.width, 15, textSize.width + 20, 20);
-        frame2.size.width += textSize.width + 30;
+        NSString *Text = [ArrHashTag objectAtIndex:i];
+        CGRect r = [Text boundingRectWithSize:CGSizeMake(200, 0)
+                                      options:NSStringDrawingUsesLineFragmentOrigin
+                                   attributes:@{NSFontAttributeName:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]}
+                                      context:nil];
+        
+       // CGSize textSize = [ShowHashTagText.text sizeWithAttributes:@{NSFontAttributeName:[ShowHashTagText font]}];
+       // CGFloat textSize = ShowHashTagText.intrinsicContentSize.width;
+        ShowHashTagText.frame = CGRectMake(30 + frame2.size.width, 15, r.size.width + 20, 20);
+        frame2.size.width += r.size.width + 30;
         [HashTagScroll addSubview:ShowHashTagText];
         
         HashTagScroll.contentSize = CGSizeMake(30 + frame2.size.width , 50);
@@ -2899,19 +2907,24 @@
 {
   //  NSLog(@"+scrollViewWillBeginDragging");
   //  ShowbarView.hidden = YES;
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-    [UIView animateWithDuration:1.0
-                          delay:0
-                        options:UIViewAnimationOptionCurveEaseIn
-                     animations:^{
-                       //  MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight - 64);
-                         ShowBarImg.frame = CGRectMake(0, 0, screenWidth, 64);
-                         ShowDownBarView.frame = CGRectMake(0, screenHeight - 60, screenWidth, 60);
-                         self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight, screenWidth, 50);
-                     }
-                     completion:^(BOOL finished) {
-                     }];
+
+    if (scrollView == MImageScroll) {
+        
+    }else{
+        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+        CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+        [UIView animateWithDuration:1.0
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseIn
+                         animations:^{
+                             //  MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight - 64);
+                             ShowBarImg.frame = CGRectMake(0, 0, screenWidth, 64);
+                             ShowDownBarView.frame = CGRectMake(0, screenHeight - 60, screenWidth, 60);
+                             self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight, screenWidth, 50);
+                         }
+                         completion:^(BOOL finished) {
+                         }];
+    }
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
@@ -2934,19 +2947,25 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     NSLog(@"-scrollViewDidEndDecelerating");
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-    [UIView animateWithDuration:0.2
-                          delay:0
-                        options:UIViewAnimationOptionCurveEaseIn
-                     animations:^{
-                      //   MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight - 114);
-                         //ShowBarImg.frame = CGRectMake(0, -64, screenWidth, 64);
-                         ShowDownBarView.frame = CGRectMake(0, screenHeight - 110, screenWidth, 60);
-                         self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
-                     }
-                     completion:^(BOOL finished) {
-                     }];
+
+    if (scrollView == MImageScroll) {
+        
+    }else{
+        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+        CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+        [UIView animateWithDuration:0.2
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseIn
+                         animations:^{
+                             //   MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight - 114);
+                             //ShowBarImg.frame = CGRectMake(0, -64, screenWidth, 64);
+                             ShowDownBarView.frame = CGRectMake(0, screenHeight - 110, screenWidth, 60);
+                             self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
+                         }
+                         completion:^(BOOL finished) {
+                         }];
+    }
+
 }
 
 - (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView

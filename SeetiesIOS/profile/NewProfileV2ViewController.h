@@ -49,6 +49,9 @@
     NSString *GetLocation;
     NSString *GetDescription;
     NSString *GetLink;
+    NSString *GetFollowersCount;
+    NSString *GetFollowingCount;
+    NSString *GetCategories;
     
     
     //like data

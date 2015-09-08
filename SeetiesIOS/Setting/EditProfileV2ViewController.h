@@ -18,6 +18,9 @@
     
     IBOutlet AsyncImageView *BackgroundImg;
     IBOutlet AsyncImageView *UserImg;
+    
+    NSString *GetWallpaper;
+    NSString *GetProfileImg;
 }
 -(IBAction)BackButton:(id)sender;
 @end

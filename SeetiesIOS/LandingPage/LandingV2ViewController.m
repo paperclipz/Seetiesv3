@@ -225,7 +225,7 @@
         CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
         
         CRMotionView *motionView = [[CRMotionView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"DemoTest.png"]];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LandingV2.png"]];
         [motionView setContentView:imageView];
         [BackgroundView addSubview:motionView];
         [motionView setScrollDragEnabled:YES];
@@ -282,7 +282,7 @@
     
     [[[[UIApplication sharedApplication] delegate] window] setRootViewController:self.leveyTabBarController];
 //TODO:Delete this . use for development purpose only
-    [self.leveyTabBarController setSelectedIndex:2];
+   // [self.leveyTabBarController setSelectedIndex:2];
 }
 
 - (void)animateImages

@@ -46,7 +46,7 @@
     [MainScroll addSubview:BackgroundImage withAcceleration:CGPointMake(0.0f, 0.5f)];
     
     SettingsButton.frame = CGRectMake(screenWidth - 30 - 35, 72, 19, 19);
-    ShareButton.frame = CGRectMake(screenWidth - 30, 67, 17, 24);
+    ShareButton.frame = CGRectMake(screenWidth - 30, 72, 17, 18);
     
     CheckExpand = YES;
     
@@ -129,14 +129,15 @@
     
     
     UIButton *EditProfileButton = [[UIButton alloc]init];
-    EditProfileButton.frame = CGRectMake(screenWidth - 120 - 20, 50, 120, 40);
+    EditProfileButton.frame = CGRectMake(screenWidth - 106 - 20, 50, 106, 34);
     [EditProfileButton setTitle:@"Edit profile" forState:UIControlStateNormal];
+    [EditProfileButton setImage:[UIImage imageNamed:@"edit_profile_btn.png"] forState:UIControlStateNormal];
     EditProfileButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
     [EditProfileButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
-    EditProfileButton.backgroundColor = [UIColor whiteColor];
-    EditProfileButton.layer.cornerRadius = 20;
-    EditProfileButton.layer.borderWidth = 1;
-    EditProfileButton.layer.borderColor=[[UIColor grayColor] CGColor];
+    EditProfileButton.backgroundColor = [UIColor clearColor];
+//    EditProfileButton.layer.cornerRadius = 20;
+//    EditProfileButton.layer.borderWidth = 1;
+//    EditProfileButton.layer.borderColor=[[UIColor grayColor] CGColor];
     [AllContentView addSubview:EditProfileButton];
     
     UILabel *ShowName_ = [[UILabel alloc]init];//getname
@@ -152,30 +153,46 @@
 
     NSString *TempHashTag = @"#lucy #malaysiablogger #fashion #beach #ilovesunset #iamlucydiamondinthesky";
     NSMutableArray *ArrHashTag = [[NSMutableArray alloc]init];
-    [ArrHashTag addObject:@"#lucy"];
-    [ArrHashTag addObject:@"#malaysiablogger"];
-    [ArrHashTag addObject:@"#fashion"];
-    [ArrHashTag addObject:@"#beach"];
-    [ArrHashTag addObject:@"#ilovesunset"];
-    [ArrHashTag addObject:@"#iamlucydiamondinthesky"];
-    [ArrHashTag addObject:@"#sexy"];
+    [ArrHashTag addObject:@"lucy"];
+    [ArrHashTag addObject:@"malaysiablogger"];
+    [ArrHashTag addObject:@"fashion"];
+    [ArrHashTag addObject:@"beach"];
+    [ArrHashTag addObject:@"ilovesunset"];
+    [ArrHashTag addObject:@"iamlucydiamondinthesky"];
+    [ArrHashTag addObject:@"sexy"];
     
     // followers and followings count show
     
+    UIImageView *ShowPin = [[UIImageView alloc]init];
+    ShowPin.image = [UIImage imageNamed:@"follower_icon.png"];
+    ShowPin.frame = CGRectMake(33, GetHeight + 4, 14, 11);
+    //ShowPin.frame = CGRectMake(15, 210 + 8 + heightcheck + i, 8, 11);
+    [AllContentView addSubview:ShowPin];
+    
+    if ([GetFollowingCount isEqualToString:@"(null)"]) {
+        GetFollowingCount = @"0";
+    }
+    if ([GetFollowersCount isEqualToString:@"(null)"]) {
+        GetFollowersCount = @"0";
+    }
+    
+    NSString *tempFollowers = [[NSString alloc]initWithFormat:@"%@ Followers",GetFollowersCount];
+    NSString *tempFollowing = [[NSString alloc]initWithFormat:@"%@ Followings",GetFollowingCount];
+    
     UILabel *ShowFollowers = [[UILabel alloc]init];
-    ShowFollowers.text = @"32 Followers";
-    ShowFollowers.frame = CGRectMake(50, GetHeight, 120, 21);
-    ShowFollowers.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-    ShowFollowers.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
+    ShowFollowers.text = tempFollowers;
+    ShowFollowers.frame = CGRectMake(60, GetHeight, 120, 21);
+    ShowFollowers.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+    ShowFollowers.textColor = [UIColor colorWithRed:161.0f/255.0f green:161.0f/255.0f blue:161.0f/255.0f alpha:1.0f];
     ShowFollowers.textAlignment = NSTextAlignmentLeft;
     ShowFollowers.backgroundColor = [UIColor clearColor];
     [AllContentView addSubview:ShowFollowers];
     
     UILabel *ShowFollowing = [[UILabel alloc]init];
-    ShowFollowing.text = @"3 Followings";
+    ShowFollowing.text = tempFollowing;
     ShowFollowing.frame = CGRectMake(170, GetHeight, 120, 21);
-    ShowFollowing.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-    ShowFollowing.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
+    ShowFollowing.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+    ShowFollowing.textColor = [UIColor colorWithRed:161.0f/255.0f green:161.0f/255.0f blue:161.0f/255.0f alpha:1.0f];
     ShowFollowing.textAlignment = NSTextAlignmentLeft;
     ShowFollowing.backgroundColor = [UIColor clearColor];
     [AllContentView addSubview:ShowFollowing];
@@ -187,16 +204,16 @@
         
     }else{
         UIImageView *ShowPin = [[UIImageView alloc]init];
-        ShowPin.image = [UIImage imageNamed:@"FeedPin.png"];
-        ShowPin.frame = CGRectMake(33, GetHeight + 4, 8, 11);
+        ShowPin.image = [UIImage imageNamed:@"location_icon.png"];
+        ShowPin.frame = CGRectMake(33, GetHeight + 4, 9, 12);
         //ShowPin.frame = CGRectMake(15, 210 + 8 + heightcheck + i, 8, 11);
         [AllContentView addSubview:ShowPin];
         
         UILabel *ShowLocation = [[UILabel alloc]init];
-        ShowLocation.frame = CGRectMake(50, GetHeight, screenWidth - 120, 20);
+        ShowLocation.frame = CGRectMake(60, GetHeight, screenWidth - 120, 20);
         ShowLocation.text = GetLocation;
-        ShowLocation.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-        ShowLocation.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0];
+        ShowLocation.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+        ShowLocation.textColor = [UIColor colorWithRed:161.0f/255.0f green:161.0f/255.0f blue:161.0f/255.0f alpha:1.0f];
         ShowLocation.textAlignment = NSTextAlignmentLeft;
         ShowLocation.backgroundColor = [UIColor clearColor];
         [AllContentView addSubview:ShowLocation];
@@ -228,10 +245,10 @@
         
     }else{
         UILabel *ShowLink = [[UILabel alloc]init];
-        ShowLink.frame = CGRectMake(50, GetHeight, screenWidth - 120, 20);
+        ShowLink.frame = CGRectMake(30, GetHeight, screenWidth - 120, 20);
         ShowLink.text = GetLink;
-        ShowLink.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-        ShowLink.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0];
+        ShowLink.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+        ShowLink.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0];
         ShowLink.textAlignment = NSTextAlignmentLeft;
         ShowLink.backgroundColor = [UIColor clearColor];
         [AllContentView addSubview:ShowLink];
@@ -272,7 +289,8 @@
         
         UIButton *ExpandButton = [[UIButton alloc]init];
         ExpandButton.frame = CGRectMake(0, GetHeight, screenWidth, 50);
-        [ExpandButton setTitle:@"Expand" forState:UIControlStateNormal];
+        //[ExpandButton setTitle:@"Expand" forState:UIControlStateNormal];
+        [ExpandButton setImage:[UIImage imageNamed:@"showmore_btn.png"] forState:UIControlStateNormal];
         ExpandButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
         [ExpandButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
         ExpandButton.backgroundColor = [UIColor whiteColor];
@@ -292,7 +310,7 @@
             HashTagScroll.frame = CGRectMake(0, GetHeight, screenWidth, 50);
             HashTagScroll.backgroundColor = [UIColor whiteColor];
             [AllContentView addSubview:HashTagScroll];
-            CGRect frame2;
+            CGRect frame2 = {0,0};
             for (int i= 0; i < [ArrHashTag count]; i++) {
                 UILabel *ShowHashTagText = [[UILabel alloc]init];
                 ShowHashTagText.text = [ArrHashTag objectAtIndex:i];
@@ -302,10 +320,19 @@
                 ShowHashTagText.layer.cornerRadius = 5;
                 ShowHashTagText.layer.borderWidth = 1;
                 ShowHashTagText.layer.borderColor=[[UIColor grayColor] CGColor];
+                
+                NSString *Text = [ArrHashTag objectAtIndex:i];
+                CGRect r = [Text boundingRectWithSize:CGSizeMake(200, 0)
+                                              options:NSStringDrawingUsesLineFragmentOrigin
+                                           attributes:@{NSFontAttributeName:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]}
+                                              context:nil];
+                
+                //NSLog(@"r ==== %f",r.size.width);
 
-                CGSize textSize = [ShowHashTagText.text sizeWithAttributes:@{NSFontAttributeName:[ShowHashTagText font]}];
-                ShowHashTagText.frame = CGRectMake(30 + frame2.size.width, 15, textSize.width + 20, 20);
-                frame2.size.width += textSize.width + 30;
+                //CGSize textSize = [ShowHashTagText.text sizeWithAttributes:@{NSFontAttributeName:[ShowHashTagText font]}];
+             //   CGFloat textSize = ShowHashTagText.intrinsicContentSize.width;
+                ShowHashTagText.frame = CGRectMake(30 + frame2.size.width, 15, r.size.width + 20, 20);
+                frame2.size.width += r.size.width + 30;
                 [HashTagScroll addSubview:ShowHashTagText];
 
                 HashTagScroll.contentSize = CGSizeMake(30 + frame2.size.width , 50);
@@ -333,7 +360,8 @@
         
         UIButton *CollapseButton = [[UIButton alloc]init];
         CollapseButton.frame = CGRectMake(0, GetHeight, screenWidth, 50);
-        [CollapseButton setTitle:@"Collapse" forState:UIControlStateNormal];
+       // [CollapseButton setTitle:@"Collapse" forState:UIControlStateNormal];
+        [CollapseButton setImage:[UIImage imageNamed:@"showmore_btn.png"] forState:UIControlStateNormal];
         CollapseButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
         [CollapseButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
         CollapseButton.backgroundColor = [UIColor whiteColor];
@@ -347,7 +375,7 @@
     UIButton *Line01 = [[UIButton alloc]init];
     Line01.frame = CGRectMake(0, GetHeight, screenWidth, 20);
     [Line01 setTitle:@"" forState:UIControlStateNormal];
-    [Line01 setBackgroundColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f]];
+    [Line01 setBackgroundColor:[UIColor colorWithRed:232.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
     [AllContentView addSubview:Line01];
     
     GetHeight += 31;
@@ -382,13 +410,13 @@
     
     CollectionView = [[UIView alloc]init];
     CollectionView.frame = CGRectMake(0, GetHeight, screenWidth, 600);
-    CollectionView.backgroundColor = [UIColor lightGrayColor];
+    CollectionView.backgroundColor = [UIColor whiteColor];
     [AllContentView addSubview:CollectionView];
     
     
     LikeView = [[UIView alloc]init];
     LikeView.frame = CGRectMake(0, GetHeight, screenWidth, 800);
-    LikeView.backgroundColor = [UIColor lightGrayColor];
+    LikeView.backgroundColor = [UIColor whiteColor];
     [AllContentView addSubview:LikeView];
     
     LikeView.hidden = YES;
@@ -703,37 +731,15 @@
     NSString *GetUseruid = [defaults objectForKey:@"Useruid"];
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
     
-    NSString *urlString = [NSString stringWithFormat:@"%@/%@",DataUrl.UserWallpaper_Url,GetUseruid];
+    NSString *urlString = [NSString stringWithFormat:@"%@/%@?token=%@",DataUrl.UserWallpaper_Url,GetUseruid,GetExpertToken];
     NSLog(@"urlString is %@",urlString);
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:urlString]];
-    [request setHTTPMethod:@"POST"];
     
-    NSMutableData *body = [NSMutableData data];
-                           
-    NSString *boundary = @"---------------------------14737809831466499882746641449";
-    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
-    [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
-    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-                           
-     //parameter first
-     [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-     //Attaching the key name @"parameter_first" to the post body
-     [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"token\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-     //Attaching the content to be posted ( ParameterFirst )
-     [body appendData:[[NSString stringWithFormat:@"%@",GetExpertToken] dataUsingEncoding:NSUTF8StringEncoding]];
-     [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
+   // NSLog(@"theRequest === %@",theRequest);
+    [theRequest addValue:@"" forHTTPHeaderField:@"Accept-Encoding"];
     
-     //close form
-     [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    
-     NSLog(@"Request  = %@",[[NSString alloc] initWithData:body encoding:NSUTF8StringEncoding]);
-    
-    //setting the body of the post to the reqeust
-    [request setHTTPBody:body];
-    
-    theConnection_GetUserData = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    theConnection_GetUserData = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
     [theConnection_GetUserData start];
     
     
@@ -863,12 +869,21 @@
                 GetLocation = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"location"]];
                 GetLink = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"personal_link"]];
                 GetDescription = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"description"]];
+                GetFollowersCount = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"follower_count"]];
+                GetFollowingCount = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"following_count"]];
+                GetCategories = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"categories"]];
                 
                 [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:BackgroundImage];
                 NSLog(@"User Wallpaper FullString ====== %@",GetWallpaper);
                 NSURL *url_UserImage = [NSURL URLWithString:GetWallpaper];
                 //NSLog(@"url_NearbyBig is %@",url_NearbyBig);
                 BackgroundImage.imageURL = url_UserImage;
+                
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                [defaults setObject:GetCategories forKey:@"UserData_Categories"];
+                [defaults setObject:GetProfileImg forKey:@"UserData_ProfilePhoto"];
+                [defaults setObject:GetWallpaper forKey:@"UserData_Wallpaper"];
+                [defaults synchronize];
                 
                 
                 [self InitContentView];
