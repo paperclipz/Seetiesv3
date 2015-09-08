@@ -25,6 +25,12 @@
 		0BBFE06E1B9D8310004B17E9 /* follower_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BBFE06A1B9D8310004B17E9 /* follower_icon@2x.png */; };
 		0BBFE0701B9D8310004B17E9 /* showmore_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BBFE06C1B9D8310004B17E9 /* showmore_btn@2x.png */; };
 		0BBFE0721B9D8398004B17E9 /* profileshare_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BBFE0711B9D8398004B17E9 /* profileshare_icon@2x.png */; };
+		0BBFE0741B9E9BA9004B17E9 /* add_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BBFE0731B9E9BA9004B17E9 /* add_btn@2x.png */; };
+		0BBFE0781B9EA29A004B17E9 /* NewUserProfileV2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBFE0761B9EA29A004B17E9 /* NewUserProfileV2ViewController.m */; };
+		0BBFE0791B9EA29A004B17E9 /* NewUserProfileV2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBFE0771B9EA29A004B17E9 /* NewUserProfileV2ViewController.xib */; };
+		0BBFE07D1B9ED77E004B17E9 /* collected_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BBFE07A1B9ED77E004B17E9 /* collected_icon@2x.png */; };
+		0BBFE07E1B9ED77E004B17E9 /* follow_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BBFE07B1B9ED77E004B17E9 /* follow_btn@2x.png */; };
+		0BBFE07F1B9ED77E004B17E9 /* more_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BBFE07C1B9ED77E004B17E9 /* more_icon@2x.png */; };
 		0BC9B38A1B7DD287008334FF /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC9B3881B7DD287008334FF /* FeedViewController.m */; };
 		0BC9B38B1B7DD288008334FF /* FeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC9B3891B7DD287008334FF /* FeedViewController.xib */; };
 		0BD634FC1B71C9B800D82414 /* LeveyTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD634F91B71C9B800D82414 /* LeveyTabBar.m */; };
@@ -1000,6 +1006,13 @@
 		0BBFE06A1B9D8310004B17E9 /* follower_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "follower_icon@2x.png"; sourceTree = "<group>"; };
 		0BBFE06C1B9D8310004B17E9 /* showmore_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "showmore_btn@2x.png"; sourceTree = "<group>"; };
 		0BBFE0711B9D8398004B17E9 /* profileshare_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profileshare_icon@2x.png"; sourceTree = "<group>"; };
+		0BBFE0731B9E9BA9004B17E9 /* add_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_btn@2x.png"; sourceTree = "<group>"; };
+		0BBFE0751B9EA29A004B17E9 /* NewUserProfileV2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewUserProfileV2ViewController.h; sourceTree = "<group>"; };
+		0BBFE0761B9EA29A004B17E9 /* NewUserProfileV2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewUserProfileV2ViewController.m; sourceTree = "<group>"; };
+		0BBFE0771B9EA29A004B17E9 /* NewUserProfileV2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewUserProfileV2ViewController.xib; sourceTree = "<group>"; };
+		0BBFE07A1B9ED77E004B17E9 /* collected_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "collected_icon@2x.png"; sourceTree = "<group>"; };
+		0BBFE07B1B9ED77E004B17E9 /* follow_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "follow_btn@2x.png"; sourceTree = "<group>"; };
+		0BBFE07C1B9ED77E004B17E9 /* more_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more_icon@2x.png"; sourceTree = "<group>"; };
 		0BC9B3871B7DD287008334FF /* FeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
 		0BC9B3881B7DD287008334FF /* FeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
 		0BC9B3891B7DD287008334FF /* FeedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedViewController.xib; sourceTree = "<group>"; };
@@ -2948,6 +2961,9 @@
 				8AD6BD9B1B706CF30040437E /* NewProfileV2ViewController.h */,
 				8AD6BD9C1B706CF30040437E /* NewProfileV2ViewController.m */,
 				8AD6BD9D1B706CF30040437E /* NewProfileV2ViewController.xib */,
+				0BBFE0751B9EA29A004B17E9 /* NewUserProfileV2ViewController.h */,
+				0BBFE0761B9EA29A004B17E9 /* NewUserProfileV2ViewController.m */,
+				0BBFE0771B9EA29A004B17E9 /* NewUserProfileV2ViewController.xib */,
 				8AD6BD9E1B706CF30040437E /* OldProfile */,
 				8A2E2C061B79A3F70010895E /* UserProfilePageViewController.h */,
 				8A2E2C071B79A3F70010895E /* UserProfilePageViewController.m */,
@@ -3684,6 +3700,10 @@
 		8AD6C40A1B70934C0040437E /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				0BBFE07A1B9ED77E004B17E9 /* collected_icon@2x.png */,
+				0BBFE07B1B9ED77E004B17E9 /* follow_btn@2x.png */,
+				0BBFE07C1B9ED77E004B17E9 /* more_icon@2x.png */,
+				0BBFE0731B9E9BA9004B17E9 /* add_btn@2x.png */,
 				0BBFE0711B9D8398004B17E9 /* profileshare_icon@2x.png */,
 				0BBFE0691B9D8310004B17E9 /* edit_profile_btn@2x.png */,
 				0BBFE06A1B9D8310004B17E9 /* follower_icon@2x.png */,
@@ -4514,6 +4534,7 @@
 				8AD6C7D41B70934D0040437E /* RoundHighlight@3x.png in Resources */,
 				8AD6C6241B70934D0040437E /* LanguageChi@2x.png in Resources */,
 				8AD6C6F31B70934D0040437E /* GoToPhoto@3x.png in Resources */,
+				0BBFE0791B9EA29A004B17E9 /* NewUserProfileV2ViewController.xib in Resources */,
 				8AD6C6371B70934D0040437E /* LogoutButton.png in Resources */,
 				8AD6C6F71B70934D0040437E /* IconBrighter.png in Resources */,
 				8A54301E1B8C1C05009EFFF4 /* save_icon@2x.png in Resources */,
@@ -4565,6 +4586,7 @@
 				8AD6C7C61B70934D0040437E /* TabBarProfile@2x.png in Resources */,
 				8AD6C6DF1B70934D0040437E /* EditPhotoFrame.png in Resources */,
 				8AD6C6011B70934D0040437E /* IconSearchBox@3x.png in Resources */,
+				0BBFE07E1B9ED77E004B17E9 /* follow_btn@2x.png in Resources */,
 				8AD6C7A41B70934D0040437E /* SelectPhotoFrame.png in Resources */,
 				0BA1CB2F1B85AEFA009FFD3E /* Explore2ViewController.xib in Resources */,
 				8AD6C7D81B70934D0040437E /* SearchBar.png in Resources */,
@@ -4670,6 +4692,7 @@
 				8AD6C7A11B70934D0040437E /* SelectedCheck.png in Resources */,
 				8AD6C1051B706CF30040437E /* EditInterestV2ViewController.xib in Resources */,
 				8AD6C6DD1B70934D0040437E /* EditInfo@2x.png in Resources */,
+				0BBFE07F1B9ED77E004B17E9 /* more_icon@2x.png in Resources */,
 				8AD6C11A1B706CF30040437E /* poweredByFoursquare_gray.png in Resources */,
 				8AD6C7421B70934D0040437E /* InviteButton@2x.png in Resources */,
 				8AD6C5D31B70934D0040437E /* TableThree@2x.png in Resources */,
@@ -4884,6 +4907,7 @@
 				8AD6C7DE1B70934D0040437E /* SearchIcon@3x.png in Resources */,
 				8AD6C6781B70934D0040437E /* ProfileBlank@2x.png in Resources */,
 				8AD6C5B71B70934D0040437E /* AddCollection.png in Resources */,
+				0BBFE07D1B9ED77E004B17E9 /* collected_icon@2x.png in Resources */,
 				8AD6C7691B70934D0040437E /* Whatsapp@2x.png in Resources */,
 				8AD6BE501B706CF30040437E /* ExploreViewController.xib in Resources */,
 				8AD6C79C1B70934D0040437E /* SearchInBox@2x.png in Resources */,
@@ -4923,6 +4947,7 @@
 				8AD6C2801B7072FB0040437E /* AddContactViewController.xib in Resources */,
 				8AD6C6331B70934D0040437E /* Like@2x.png in Resources */,
 				8AD6C7A51B70934D0040437E /* SelectPhotoFrame@2x.png in Resources */,
+				0BBFE0741B9E9BA9004B17E9 /* add_btn@2x.png in Resources */,
 				8AD6C7581B70934D0040437E /* InviteOther@3x.png in Resources */,
 				8AD6C6171B70934D0040437E /* 750x1334-01.jpg in Resources */,
 				8AD6C6CE1B70934D0040437E /* CaptionArrow@2x.png in Resources */,
@@ -5204,6 +5229,7 @@
 				8AD6C3351B707D120040437E /* CRMotionView.m in Sources */,
 				8AD6C0C01B706CF30040437E /* FeedV2ViewController.m in Sources */,
 				8AD6C8291B736C000040437E /* DataManager.m in Sources */,
+				0BBFE0781B9EA29A004B17E9 /* NewUserProfileV2ViewController.m in Sources */,
 				8AD6C0B71B706CF30040437E /* OpenWebViewController.m in Sources */,
 				8AD6C8721B7460DB0040437E /* MKNetworkOperation.m in Sources */,
 				8AD6C3371B707D120040437E /* UIScrollView+CRScrollIndicator.m in Sources */,

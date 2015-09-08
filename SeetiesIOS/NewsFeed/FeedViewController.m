@@ -13,7 +13,7 @@
 #import "InviteFrenViewController.h"
 #import "FeedV2DetailViewController.h"
 #import "SearchDetailViewController.h"
-
+#import "NewUserProfileV2ViewController.h"
 @interface FeedViewController ()
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;
@@ -357,6 +357,14 @@
             stringPath1  = [stringPath1 stringByAppendingPathComponent:[arrUserImage objectAtIndex:i]];
             ShowUserProfileImage.image = [UIImage imageWithData:[NSData dataWithContentsOfFile:stringPath1]];
             [LocalScroll addSubview:ShowUserProfileImage];
+            
+            UIButton *ClicktoOpenUserProfileButton = [[UIButton alloc]init];
+            ClicktoOpenUserProfileButton.frame = CGRectMake(20, heightcheck + i + 10, 40, 40);
+            [ClicktoOpenUserProfileButton setTitle:@"" forState:UIControlStateNormal];
+            ClicktoOpenUserProfileButton.backgroundColor = [UIColor clearColor];
+            ClicktoOpenUserProfileButton.tag = i;
+            [ClicktoOpenUserProfileButton addTarget:self action:@selector(OpenUserProfileOnClick:) forControlEvents:UIControlEventTouchUpInside];
+            [LocalScroll addSubview:ClicktoOpenUserProfileButton];
         
             
             UILabel *ShowUserName = [[UILabel alloc]init];
@@ -687,6 +695,14 @@
             }
             ShowUserProfileImage.image = UserImage;
             [MainScroll addSubview:ShowUserProfileImage];
+            
+            UIButton *ClicktoOpenUserProfileButton = [[UIButton alloc]init];
+            ClicktoOpenUserProfileButton.frame = CGRectMake(20, heightcheck + i + 10, 40, 40);
+            [ClicktoOpenUserProfileButton setTitle:@"" forState:UIControlStateNormal];
+            ClicktoOpenUserProfileButton.backgroundColor = [UIColor clearColor];
+            ClicktoOpenUserProfileButton.tag = i;
+            [ClicktoOpenUserProfileButton addTarget:self action:@selector(OpenUserProfileOnClick:) forControlEvents:UIControlEventTouchUpInside];
+            [MainScroll addSubview:ClicktoOpenUserProfileButton];
             
             if (CheckFirstTimeLoad == 0) {
                 NSData *imageData = UIImageJPEGRepresentation(UserImage, 1);
@@ -1684,6 +1700,14 @@
         [SearchDetailView SearchCategory:JoinAllCategoryID Getlat:latPoint GetLong:lonPoint GetCategoryName:JoinAllCategoryName];
         [SearchDetailView GetTitle:@"All"];
     }
+}
+-(IBAction)OpenUserProfileOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSLog(@"button %li",(long)getbuttonIDN);
+    
+    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+    [NewUserProfileV2View GetUserName:[arrUserName objectAtIndex:getbuttonIDN]];
 }
 -(IBAction)LikeButtonOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
