@@ -17,25 +17,24 @@
     __weak IBOutlet UIButton *ibBtnCancel;
 }
 @property (weak, nonatomic) IBOutlet UIVisualEffectView *ibTransparentView;
-@property (copy, nonatomic) IDBlock cancelBlock;
-@property (copy, nonatomic) IDBlock AddURLBlock;
-@property (copy, nonatomic) IDBlock AddLanguageBlock;
+@property (copy, nonatomic) IDBlock buttonOneBlock;
+@property (copy, nonatomic) IDBlock buttonTwoBlock;
 
 @end
 
 @implementation CustomPickerViewController
 - (IBAction)btnAddURLClicked:(id)sender {
-    if(self.AddURLBlock)
+    if(self.buttonOneBlock)
     {
-        self.AddURLBlock(nil);
+        self.buttonOneBlock(self);
         [self hideWithAnimation:YES];
     }
         
 }
 - (IBAction)btnAddLangClicked:(id)sender {
-    if(self.AddLanguageBlock)
+    if(self.buttonTwoBlock)
     {
-        self.AddLanguageBlock(nil);
+        self.buttonTwoBlock(self);
         [self hideWithAnimation:YES];
 
     }
@@ -43,7 +42,7 @@
 - (IBAction)btnCancelClicked:(id)sender {
     if(self.cancelBlock)
     {
-        self.cancelBlock(nil);
+        self.cancelBlock(self);
         [self hideWithAnimation:YES];
 
     }
@@ -51,7 +50,7 @@
 
 -(void)btnBackClicked:(id)sender
 {
-    [self hideWithAnimation:YES];
+   // [self hideWithAnimation:YES];
 }
 
 - (void)viewDidLoad {
@@ -134,12 +133,12 @@
    
 }
 
-+(id)initializeWithAddURLBlock:(IDBlock)addurl AddLangBlock:(IDBlock)addLang
++(id)initializeWithBlock:(IDBlock)buttonOne buttonTwo:(IDBlock)buttonTwo cancelBlock:(IDBlock)cancelBlock
 {
     CustomPickerViewController* temp = [CustomPickerViewController new];
-    temp.AddLanguageBlock = addLang;
-    temp.AddURLBlock = addurl;
-    
+    temp.buttonOneBlock = buttonOne;
+    temp.buttonTwoBlock = buttonTwo;
+    temp.cancelBlock = cancelBlock;
     return temp;
 }
 

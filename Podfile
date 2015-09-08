@@ -14,13 +14,14 @@ pod 'JSONModel'
 pod 'TSMessages'
 pod 'ADTransitionController'
 pod 'IQKeyboardManager'
-pod 'SDWebImage', :head
+pod 'SDWebImage'
 pod 'GoogleMaps'
 pod 'LPGoogleFunctions'
 pod 'CLLocationManager-blocks'
-
 pod 'BkTask'
 pod 'HMSegmentedControl'
-
-
 pod 'ActionSheetPicker-3.0', '~> 1.7.1'
+pod 'BOString'
+pod 'AviarySDK', '4.2.1'
+pod 'pop', '~> 1.0'
+pod 'AFNetworking', '~> 2.0'

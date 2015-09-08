@@ -26,7 +26,7 @@ It provides:
 - Arm64 support
 
 NOTE: The version 3.0 of SDWebImage isn't fully backward compatible with 2.0 and requires iOS 5.1.1
-minimum deployment version. If you need iOS < 5.0 support, please use the last [2.0 version](https://github.com/rs/SDWebImage/tree/2.0-compat).
+minimum deployement version. If you need iOS < 5.0 support, please use the last [2.0 version](https://github.com/rs/SDWebImage/tree/2.0-compat).
 
 [How is SDWebImage better than X?](https://github.com/rs/SDWebImage/wiki/How-is-SDWebImage-better-than-X%3F)
 
@@ -74,7 +74,7 @@ handled for you, from async downloads to caching management.
 
 ### Using blocks
 
-With blocks, you can be notified about the image download progress and whenever the image retrieval
+With blocks, you can be notified about the image download progress and whenever the image retrival
 has completed with success or not:
 
 ```objective-c
@@ -290,10 +290,6 @@ Alternatively, if this causes compilation problems with frameworks that extend o
 If you're using Cocoa Pods and have any frameworks that extend optional libraries, such as Parsen RestKit or opencv2, instead of the -ObjC flag use:
 ```
 -force_load $(TARGET_BUILD_DIR)/libPods.a
-```
-and this:
-```
-$(inherited)
 ```
 
 ### Import headers in your source files

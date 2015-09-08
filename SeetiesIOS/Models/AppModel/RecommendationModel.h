@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RecommendationVenueModel.h"
 
 @interface RecommendationModel : NSObject
 
@@ -20,5 +21,7 @@
 
 
 @property(nonatomic,strong)NSMutableArray* arrPostImagesList;
+@property(nonatomic,strong)RecommendationVenueModel* reccomendVenueModel;
+
 
 @end

@@ -164,17 +164,15 @@
     
     NSDictionary* param = @{@"input":textInput,@"radius":@"5000",@"key":GOOGLE_API_KEY,@"type":@"address"};
     
-    [[ConnectionManager Instance] requestServerwithAppendString:GOOGLE_PLACE_AUTOCOMPLETE_API param:param completionHandler:^(id object) {
-
-        [self.connManager storeServerData:object requestType:ServerRequestTypeGoogleSearch];
-
+    
+    [[ConnectionManager Instance]requestServerWithPost:NO customURL:GOOGLE_PLACE_AUTOCOMPLETE_API requestType:ServerRequestTypeGoogleSearch param:param completeHandler:^(id object) {
         if(completionBlock)
         {
             completionBlock(object);
         }
-    } errorHandler:^(NSError *error) {
-    }];
-}
+    } errorBlock:^(id object) {
+        
+    } ];}
 
 
 

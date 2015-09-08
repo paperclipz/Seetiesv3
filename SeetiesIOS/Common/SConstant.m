@@ -17,5 +17,7 @@ NSString *const GOOGLE_PLACE_AUTOCOMPLETE_API = @"https://maps.googleapis.com/ma
 NSString *const GOOGLE_PLACE_DETAILS_API = @"https://maps.googleapis.com/maps/api/place/details/json";
 
 
+NSString * const kAFAviaryAPIKey = @"b42bd0c6f4c5104f";
+NSString * const kAFAviarySecret = @"80ee1b7f54c2ed86";
 
 @end

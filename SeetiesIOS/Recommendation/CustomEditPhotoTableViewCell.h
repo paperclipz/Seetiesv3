@@ -6,15 +6,15 @@
 //  Copyright (c) 2015 Stylar Network. All rights reserved.
 //
 
-#import "BMXSwipableCell.h"
 
+@class CustomEditPhotoTableViewCell;
+typedef void (^CellBlock)(CustomEditPhotoTableViewCell* cell);
 
+@interface CustomEditPhotoTableViewCell : UITableViewCell<UITextViewDelegate>
 
-@interface CustomEditPhotoTableViewCell : BMXSwipableCell
-
--(void)initData:(UIImage*)image description:(NSString*)desc;
-- (void)configureCellForItem:(EditPhotoModel*)item;
-@property(nonatomic,copy)IDBlock deleteBlock;
-@property(nonatomic,copy)IDBlock moreBlock;
+-(void)initData:(EditPhotoModel*)model;
+@property(nonatomic,copy)CellBlock deleteBlock;
+@property(nonatomic,copy)CellBlock editBlock;
+@property(nonatomic,strong)EditPhotoModel* model;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "CommonViewController.h"
 
+
 #define TAB_BAR_HEIGHT 50.0f
 @interface CommonViewController ()
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
@@ -18,6 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+   // self.transitioningDelegate = self;
+   // self.modalPresentationStyle = UIModalPresentationCustom;
        // Do any additional setup after loading the view.
 }
 
@@ -50,6 +53,18 @@
     
     return self;
 }
+#pragma mark - UIViewControllerTransitionDelegate -
+
+- (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source
+{
+    
+    return [[PresentingAnimationController alloc] init];
+}
+
+- (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
+{
+    return [[DismissingAnimationController alloc] init];
+}
 
 /*
 #pragma mark - Navigation
@@ -60,5 +75,7 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
 
 @end

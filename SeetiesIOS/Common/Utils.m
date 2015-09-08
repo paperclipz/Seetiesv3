@@ -25,6 +25,19 @@
     return isSuccessLogin;
 }
 
++(void)setIsLogin
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *CheckLogin = [[NSString alloc]initWithFormat:@"LoginDone"];
+    [defaults setObject:CheckLogin forKey:@"CheckLogin"];
+
+}
++(NSString*)getAppToken
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    return [defaults objectForKey:@"ExpertToken"];
+}
+
 +(CGRect)getDeviceScreenSize
 {
     return [[UIScreen mainScreen] bounds];
@@ -53,6 +66,18 @@
     [[view layer] setCornerRadius:borderRadius];
 
 }
+
++(UIFont*)defaultFont
+{
+    
+    return [UIFont fontWithName:CustomFontName size:15];
+}
+
++(UIColor*)defaultTextColor
+{
+    return [UIColor lightGrayColor];
+}
+
 +(NSString*)getWeekName:(int)integer
 {
     

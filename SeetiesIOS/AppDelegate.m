@@ -56,6 +56,7 @@
 
 -(void)registrationForApi
 {
+   
     [Fabric with:@[CrashlyticsKit]];
     [Parse setApplicationId:@"MMpGchSOutbiRC4KpHW47VLBFFQgv2jj5DIM4Qdi" clientKey:@"4kkfBL3btDWxoQN89WRBXVWYEUDZKD38XuzCakK7"];
     [Foursquare2 setupFoursquareWithClientId:@"V0RPRPAUHB1ZCFSKOXKNM0JA3Q1RN1QUBK14RZFOUYY15I4R"
@@ -63,6 +64,18 @@
                                  callbackURL:@"testapp123://foursquare"];
     [GMSServices provideAPIKey:GOOGLE_API_KEY];
 
+
+}
+
+-(void)configureNotificaiton:(UIApplication*)application
+{
+    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    } else {
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    }
 
 }
 
@@ -92,31 +105,18 @@
     //    [application registerUserNotificationSettings:settings];
     //    [application registerForRemoteNotifications];
     
-    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
-        UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
-        [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
-        [[UIApplication sharedApplication] registerForRemoteNotifications];
-    } else {
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
-    }
-    
+    [self configureNotificaiton:application];
     [self requestForApiVersion];
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:API_VERSION forKey:@"APIVersionSet"];
-    [defaults synchronize];
-    
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:API_VERSION forKey:@"APIVersionSet"];
+    [userDefaults synchronize];
+    
     LanguageManager *languageManager = [LanguageManager sharedLanguageManager];
-    NSLog(@"Language: %@", [[[NSBundle mainBundle] preferredLocalizations] objectAtIndex:0]);
-    NSLog(@"Region: %@", [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]);
+    NSLog(@"===========  Language : %@  ===========", [[[NSBundle mainBundle] preferredLocalizations] objectAtIndex:0]);
+    NSLog(@"===========  Region: %@  =========== ", [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]);
     
-    /*
-     * Check the user defaults to find whether a localisation has been set before.
-     * If it hasn't been set, (i.e. first run of the app), select the locale based
-     * on the device locale setting.
-     */
-    
+  
     // Check whether the language code has already been set.
     if (![userDefaults stringForKey:DEFAULTS_KEY_LANGUAGE_CODE]) {
         
@@ -179,7 +179,6 @@
     }
     
     
-    
     // Optional: automatically send uncaught exceptions to Google Analytics.
 //    [GAI sharedInstance].trackUncaughtExceptions = YES;
 //    // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
@@ -190,9 +189,7 @@
 //    [[GAI sharedInstance] trackerWithTrackingId:@"UA-45737845-4"];
     
     
-    //NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *CheckLogin = [defaults objectForKey:@"CheckLogin"];
-    if (![CheckLogin isEqualToString:@"LoginDone"]) {
+    if (![Utils isLogin]) {
       
         NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
         NSLog(@"language is %@",language);
@@ -228,18 +225,18 @@
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-    NSLog(@"applicationWillResignActive");
+   // NSLog(@"applicationWillResignActive");
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    NSLog(@"applicationDidEnterBackground");
+  //  NSLog(@"applicationDidEnterBackground");
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    NSLog(@"applicationWillEnterForeground");
+   // NSLog(@"applicationWillEnterForeground");
     // [self CheckApiVersion];
 }
 
@@ -371,6 +368,40 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:deviceToken forKey:@"DeviceTokenPush"];
     [defaults synchronize];
+    
+    
+    //    NSData *GetDeviceToken = [defaults objectForKey:@"DeviceTokenPush"];
+    //    NSString *GetUserUID = [defaults objectForKey:@"Useruid"];
+    //    NSLog(@"GetDeviceToken is %@",GetDeviceToken);
+    //    NSLog(@"GetUserUID is %@",GetUserUID);
+    //    if ([GetDeviceToken length] == 0 || GetDeviceToken == (id)[NSNull null] || GetDeviceToken.length == 0) {
+    //
+    //    }else{
+    //        NSString *Check = [defaults objectForKey:@"CheckGetPushToken"];
+    //        if ([Check isEqualToString:@"Done"]) {
+    //
+    //        }else{
+    //            if ([GetUserUID length] == 0 || GetUserUID == (id)[NSNull null] || GetUserUID.length == 0) {
+    //                PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    //                [currentInstallation setDeviceTokenFromData:GetDeviceToken];
+    //                currentInstallation.channels = @[@"IOS_FirstLogin"];
+    //                [currentInstallation saveInBackground];
+    //            }else{
+    //                PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    //                [currentInstallation setDeviceTokenFromData:GetDeviceToken];
+    //                NSString *tempTokenString = [[NSString alloc]initWithFormat:@"seeties_%@",GetUserUID];
+    //                currentInstallation.channels = @[tempTokenString,@"all"];
+    //                [currentInstallation saveInBackground];
+    //            //    NSLog(@"work here?");
+    //                NSString *TempString = @"Done";
+    //                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    //                [defaults setObject:TempString forKey:@"CheckGetPushToken"];
+    //                [defaults synchronize];
+    //            }
+    //
+    //        }
+    //
+    //    }
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
@@ -412,20 +443,13 @@
 
 -(void)requestForApiVersion{
     
-    [[ConnectionManager Instance]requestForDEploymentTarget:^(id object) {
-       
-        [[ConnectionManager Instance]requestServerWithPost:NO requestType:ServerRequestTypeGetLanguage param:nil completionHandler:^(id object) {
-            
-            [self processAPIVersion];
-            
-        } errorHandler:nil];
-        self.window.rootViewController = self.landingV2ViewController;
-        self.window.backgroundColor = [UIColor whiteColor];
-        [self.window makeKeyAndVisible];
-    } errorHandler:nil];
-    self.window.rootViewController = self.landingV2ViewController;
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetApiVersion param:nil completeHandler:^(id object) {
+        [self processAPIVersion];
+
+    } errorBlock:^(id object) {
+        
+    }];
+  
 
 }
 #pragma mark - Declaration
@@ -461,18 +485,13 @@
                                   NSString *iTunesLink = @"https://itunes.apple.com/app/seeties-mobile-citypass-for/id956400552?mt=8";
                                   [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
                               }
-                          }];
-        
-
+                          }];        
     }
     
-  //  PInterestV2ViewController *SelectInterestNew = [[PInterestV2ViewController alloc]init];
    
-    self.window.rootViewController = self.landingV2ViewController;//self.landingV2ViewController
+    self.window.rootViewController = self.landingV2ViewController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-
-    
 
 }
 

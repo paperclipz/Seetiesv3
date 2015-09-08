@@ -338,9 +338,8 @@
     
     NSArray *GetCategoryData = (NSArray *)[res valueForKey:@"categories"];
     NSLog(@"GetCategoryData ===== %@",GetCategoryData);
+
     
-//    NSDictionary *StreaminfoData = [GetCategoryData valueForKey:@"single_line"];
-//    NSLog(@"StreaminfoData ===== %@",StreaminfoData);
     NSArray *GetNameEng = (NSArray *)[GetCategoryData valueForKey:@"single_line"];
     NSLog(@"GetNameEng ===== %@",GetNameEng);
     

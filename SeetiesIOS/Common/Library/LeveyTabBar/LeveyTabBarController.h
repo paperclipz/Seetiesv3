@@ -19,12 +19,13 @@
 	id<LeveyTabBarControllerDelegate> delegate;
 	NSMutableArray *_viewControllers;
 	NSUInteger _selectedIndex;
-	
+
 	BOOL _tabBarTransparent;
 	BOOL _tabBarHidden;
     
     NSInteger animateDriect;
 }
+@property(nonatomic) NSUInteger previousIndex;
 
 @property(nonatomic, copy) NSMutableArray *viewControllers;
 
@@ -59,6 +60,8 @@
 @protocol LeveyTabBarControllerDelegate <NSObject>
 @optional
 - (BOOL)tabBarController:(LeveyTabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController;
+- (BOOL)tabBarController:(LeveyTabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController atIndex:(NSInteger)index;
+
 - (void)tabBarController:(LeveyTabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController;
 @end
 

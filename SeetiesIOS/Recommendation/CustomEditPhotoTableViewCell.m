@@ -7,12 +7,14 @@
 //
 
 #import "CustomEditPhotoTableViewCell.h"
+#import "Bostring.h"
 
 
+#define MAX_TEXT_COUNT 100
+#define EXTRA_TEXT_COUNT 20
 @interface CustomEditPhotoTableViewCell()<UIGestureRecognizerDelegate>
 
-@property (nonatomic, weak) IBOutlet UIButton *button1;
-@property (nonatomic, weak) IBOutlet UIButton *button2;
+
 @property (nonatomic, weak) IBOutlet UIView *myContentView;
 @property (nonatomic, weak) IBOutlet UILabel *myTextLabel;
 @property (nonatomic, strong) UIPanGestureRecognizer *panRecognizer;
@@ -27,17 +29,33 @@
 
 @property (weak, nonatomic) IBOutlet UIView *wrapperIconView;
 
+@property (weak, nonatomic) IBOutlet UIView *ibContentWrapperview;
+@property (weak, nonatomic) IBOutlet UILabel *lblWordCount;
 
 @end
 
 
 @implementation CustomEditPhotoTableViewCell
+- (IBAction)btnDeleteClicked:(id)sender {
+    
+    
+    if(_deleteBlock)
+    {
+        self.deleteBlock(self);
+    }
+
+}
+- (IBAction)btnEditClicked:(id)sender {
+    
+    if (_editBlock) {
+        self.editBlock(self);
+    }
+    SLog(@"btnEditClicked");
+}
 
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    
-  
     
 }
 
@@ -72,39 +90,54 @@
 
 -(void)initSelfView
 {
-   // [Utils setRoundBorder:self.wrapperContentView color:[UIColor darkGrayColor]borderRadius:10.0];
     [Utils setRoundBorder:self.wrapperIconView color:[UIColor darkGrayColor]borderRadius:5.0f];
+    [Utils setRoundBorder:self.txtDescription color:[UIColor darkGrayColor]borderRadius:5.0f];
+    [Utils setRoundBorder:self.ibContentWrapperview color:[UIColor darkGrayColor]borderRadius:5.0f];
+    self.txtDescription.delegate = self;
 
 }
 
--(void)initData:(UIImage*)image description:(NSString*)desc
+-(void)initData:(EditPhotoModel*)model
 {
-    self.txtDescription.text = desc;
-    self.ibImage.image = image;
+    
+    self.model = model;
+    self.ibImage.image = self.model.image;
+    self.txtDescription.text = self.model.photoDescription;
+    [self updateString:self.model.photoDescription textView:self.txtDescription];
     
 }
 
-- (void)userPressedMoreButton:(id)sender
-{
-    NSLog(@"child more");
-    if(_moreBlock)
-    {
-        self.moreBlock(nil);
-    }
-}
 
-- (void)userPressedDeleteButton:(id)sender
+-(void)updateString:(NSString*)aText textView:(UITextView*)txtView
 {
     
-    if(_deleteBlock)
+    if(aText)
     {
-        self.deleteBlock(nil);
+        txtView.attributedText = [aText bos_makeString:^(BOStringMaker *make) {
+            make.foregroundColor([UIColor redColor]);
+            make.font([Utils defaultFont]);
+            
+            make.with.range(NSMakeRange(0, txtView.text.length>=MAX_TEXT_COUNT?MAX_TEXT_COUNT:txtView.text.length), ^{
+                make.foregroundColor([Utils defaultTextColor]);
+            });
+            
+        }];
     }
-    NSLog(@"child delete");
+    self.lblWordCount.text = [NSString stringWithFormat:@"%lu",(unsigned long)txtView.text.length];
+
 }
 
+- (void)textViewDidChange:(UITextView *)textView
+{
+    
 
-
+    NSString *currentString = [textView.text substringWithRange:NSMakeRange(0, textView.text.length>=MAX_TEXT_COUNT+EXTRA_TEXT_COUNT?MAX_TEXT_COUNT+EXTRA_TEXT_COUNT:textView.text.length)];
+    
+    [self updateString:currentString textView:textView];
+    
+    self.model.photoDescription = self.txtDescription.text;
+  
+}
 
 
 @end

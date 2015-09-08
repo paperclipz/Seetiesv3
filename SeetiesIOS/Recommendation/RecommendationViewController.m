@@ -10,6 +10,7 @@
 @interface RecommendationViewController ()
 
 @property(nonatomic,strong)RecommendationModel* recommendModel;
+@property(nonatomic,strong)UIViewController* sender;
 
 @end
 
@@ -22,13 +23,37 @@
 }
 - (IBAction)btnPickImageClicked:(id)sender {
     
-    [self presentViewController:self.navViewController animated:YES completion:nil];
+    [self presentViewController:self.navRecommendationViewController animated:YES completion:nil];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    //[self btnPickImageClicked:nil];
+}
+
+-(void)initData:(int)type sender:(id)sender
+{
+    self.sender =sender;
+    switch (type) {
+        case 1:
+        {
+            [self.draftViewController initData];
+            self.navRecommendationViewController = [[UINavigationController alloc]initWithRootViewController:self.draftViewController];
+            [self.navRecommendationViewController setNavigationBarHidden:YES];
+
+
+        }
+            break;
+            
+        default:
+             self.navRecommendationViewController = [[UINavigationController alloc]initWithRootViewController:self.doImagePickerController];
+            
+            break;
+    }
+    
+    [self.navRecommendationViewController setNavigationBarHidden:YES];
+    [sender presentViewController:self.navRecommendationViewController animated:YES completion:nil];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,10 +67,17 @@
     
     if (self.doImagePickerController) {
         [self.doImagePickerController dismissViewControllerAnimated:YES completion:nil];
+        [self dismissView];
     }
 
 }
 
+-(void)dismissView
+{
+    if (self.backBlock) {
+        self.backBlock(self);
+    }
+}
 - (void)didSelectPhotosFromDoImagePickerController:(DoImagePickerController *)picker result:(NSArray *)aSelected
 {
     if (aSelected.count == 0) {
@@ -76,15 +108,13 @@
 
 -(void)processModelData:(NSArray*)arrAssets
 {
-
     for (int i = 0; i<arrAssets.count; i++) {
         
-        ALAsset* temp = arrAssets[i];
         EditPhotoModel* model = [EditPhotoModel new];
-        model.image = [UIImage imageWithCGImage:[temp thumbnail]];
+        model.image = [ASSETHELPER getImageFromAsset:arrAssets[i] type:ASSET_PHOTO_SCREEN_SIZE];
+        model.photoDescription = [NSString stringWithFormat:@"photo : %d",i];
         [self.recommendModel.arrPostImagesList addObject:model];
     }
- 
 }
 
 -(void)showSearchView:(CLLocation*)location
@@ -92,7 +122,6 @@
     
     [self.doImagePickerController.navigationController pushViewController:self.stSearchViewController animated:YES];
     [self.stSearchViewController initWithLocation:location];
-
     
 }
 
@@ -100,11 +129,28 @@
 {
     [self.editPostViewController initData:self.recommendModel];
     
-    [self presentViewController:self.navEditPostViewController animated:YES completion:nil];
+    [self.sender presentViewController:self.navEditPostViewController animated:YES completion:nil];
 }
 
 
 #pragma mark - Declaration
+
+-(DraftViewController*)draftViewController
+{
+    if (!_draftViewController) {
+        _draftViewController = [DraftViewController new];
+        
+        __weak typeof (self)weakSelf = self;
+        _draftViewController.backBlock = ^(id object)
+        {
+            [object dismissViewControllerAnimated:YES completion:^{
+                [weakSelf dismissView];
+            }];
+            
+        };
+    }
+    return _draftViewController;
+}
 -(STSearchViewController*)stSearchViewController{
 
     if(!_stSearchViewController)
@@ -133,7 +179,7 @@
                     break;
             }
             
-            [wealSelf.navViewController pushViewController:wealSelf.addNewPlaceViewController animated:YES];
+            [wealSelf.navRecommendationViewController pushViewController:wealSelf.addNewPlaceViewController animated:YES];
             wealSelf.addNewPlaceViewController.title = @"Edit Place Info";
 
         };
@@ -141,7 +187,7 @@
         _stSearchViewController.btnAddNewPlaceBlock = ^(id object)
         {
             
-            [wealSelf.navViewController pushViewController:wealSelf.addNewPlaceViewController animated:YES];
+            [wealSelf.navRecommendationViewController pushViewController:wealSelf.addNewPlaceViewController animated:YES];
           //  wealSelf.addNewPlaceViewController.title
             wealSelf.addNewPlaceViewController.title = @"New Place Info";
         };
@@ -187,16 +233,6 @@
     return _navEditPostViewController;
 }
 
--(UINavigationController*)navViewController
-{
-    if(!_navViewController)
-    {
-        _navViewController = [[UINavigationController alloc]initWithRootViewController:self.doImagePickerController];
-        [_navViewController setNavigationBarHidden:YES];
-    }
-    
-    return _navViewController;
-}
 -(AddNewPlaceViewController*)addNewPlaceViewController
 {
     if(!_addNewPlaceViewController)
@@ -204,12 +240,39 @@
         
         __weak typeof (self)weakSelf = self;
         _addNewPlaceViewController = [AddNewPlaceViewController new];
-        _addNewPlaceViewController.btnPressDoneBlock = ^(id object)
+        _addNewPlaceViewController.btnPressDoneBlock = ^(SearchType type,id object)
         {
-            [weakSelf.navController dismissViewControllerAnimated:YES completion:^{
+            RecommendationVenueModel* temp = [RecommendationVenueModel new];
+
+            switch (type) {
+                case SearchTypeGoogle:
+                    
+                    
+                    [temp processGoogleModel:(SearchLocationDetailModel*)object];
+
+                    break;
+                case SearchTypeFourSquare:
+                    [temp processFourSquareModel:(VenueModel*)object];
+
+                    break;
+
+                default:
+                    
+                    temp = (RecommendationVenueModel*)object;
+                    break;
+            }
+            
+            weakSelf.recommendModel.reccomendVenueModel = temp;
+
+            [weakSelf.navRecommendationViewController dismissViewControllerAnimated:YES completion:^{
                 [weakSelf showEditPostView];
 
             }];
+        };
+        _addNewPlaceViewController.btnBackBlock = ^(id object)
+        {
+            [((UIViewController*)object).navigationController popViewControllerAnimated:YES];
+            
         };
     }
     

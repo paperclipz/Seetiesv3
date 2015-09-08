@@ -108,22 +108,26 @@
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
     
     NSDictionary* dict = @{@"token":GetExpertToken};
-    [[ConnectionManager Instance] requestServerwithAppendString:dict requestType:ServerRequestTypeGetExplore completionHandler:^(id object) {
-
+    
+    [[ConnectionManager Instance] requestServerWithPost:ServerRequestTypeGetExplore param:dict completeHandler:^(id object) {
         self.exploreCountryModels  = [[ConnectionManager dataManager] exploreCountryModels];
         if (!self.exploreCountryModels.error) {
             
-           // [self InitCountriesView];
+            // [self InitCountriesView];
             [self InitContentView];
-
+            
         }
         else{
-
+            
         };
-    } errorHandler:^(NSError *error) {
+        
+    } errorBlock:^(id object) {
         [TSMessage showNotificationWithTitle:ErrorTitle subtitle:self.exploreCountryModels.message type:TSMessageNotificationTypeError];
         [self.view addSubview:NoConnectionView];
+
     }];
+    
+
     //here init no connection
     //[self.view addSubview:NoConnectionView];
     

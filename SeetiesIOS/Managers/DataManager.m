@@ -34,4 +34,31 @@
     return tempArray;
 }
 
++(RecommendationModel*)getSampleRecommendation
+{
+    
+  
+        RecommendationModel* model = [RecommendationModel new];
+        model.postMainTitle = @"111111";
+        model.postMainDescription = @"222222222";
+        model.arrPostImagesList = [NSMutableArray new];
+
+        for (int j = 0; j<5; j++) {
+            [model.arrPostImagesList addObject:[self getSampleEditPhotoModel]];
+        }
+  
+    
+    return model;
+    
+}
+
++(EditPhotoModel*)getSampleEditPhotoModel
+{
+    
+        EditPhotoModel* model = [EditPhotoModel new];
+        model.photoDescription = @"photos";
+        model.image = [UIImage imageNamed:@"profile_1.png"];
+    
+    return model;
+}
 @end

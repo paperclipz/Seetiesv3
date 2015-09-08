@@ -130,7 +130,7 @@
 
 -(void)getFourSquareSuggestionPlaces
 {
-    SLog(@"getFourSquareSuggestionPlaces");
+  //  SLog(@"getFourSquareSuggestionPlaces");
     self.type = SearchTypeFourSquare;
 
 #warning delete bottom 2 line for real time publish || this is for malaysia coordinate testing only

@@ -14,6 +14,7 @@
 
 @property (strong, nonatomic)SearchLocationDetailModel* gooModel;// google
 @property (strong, nonatomic)VenueModel* fsModel;// 4square
+@property (strong, nonatomic)RecommendationVenueModel* rModel;
 
 
 @property (weak, nonatomic) IBOutlet MKMapView *ibMapView;
@@ -22,7 +23,6 @@
 
 @property(strong,nonatomic)MKPointAnnotation* annotation;
 @property(nonatomic,assign)MKCoordinateRegion region;
-
 
 @property(nonatomic,strong)NSString* placeID;
 
@@ -34,7 +34,24 @@
 - (IBAction)btnDoneClicked:(id)sender {
     
     if(self.btnPressDoneBlock)
-        self.btnPressDoneBlock(nil);
+        
+        switch (self.searchType) {
+            case SearchTypeGoogle:
+            {
+                self.btnPressDoneBlock(self.searchType,self.gooModel);
+            }
+                break;
+                
+            case SearchTypeFourSquare:
+                self.btnPressDoneBlock(self.searchType,self.fsModel);
+
+                break;
+                
+            default:
+                self.btnPressDoneBlock(self.searchType,self.rModel);
+
+                break;
+        }
 }
 - (IBAction)btnViewLargeMapClicke:(id)sender {
     
@@ -46,14 +63,8 @@
 
 - (IBAction)btnBackClicked:(id)sender {
     
-    
-    if (self.navigationController) {
-        [self.navigationController popViewControllerAnimated:YES];
-
-    }
-    else{
-        [self dismissViewControllerAnimated:YES completion:nil];
-
+    if (_btnBackBlock) {
+        self.btnBackBlock(self);
     }
     
   //  [self.navigationController popToRootViewControllerAnimated:YES];
@@ -64,6 +75,7 @@
 {
     [super viewDidAppear:animated];
     self.lblTitle.text = self.title;
+    [self reloadData];
     
 }
 - (void)viewDidLoad {
@@ -95,16 +107,6 @@
     _region.span.longitudeDelta = 0.01;
 
     
-    switch (self.searchType) {
-        default:
-
-        case SearchTypeFourSquare:
-            
-            break;
-        case SearchTypeGoogle:
-
-            break;
-    }
 }
 
 -(AddNewPlaceSubView*)addNewPlaceSubView
@@ -125,7 +127,6 @@
 
 -(MKPointAnnotation*)annotation
 {
-    
     if(!_annotation)
     {
         _annotation = [MKPointAnnotation new];
@@ -159,11 +160,16 @@
 
 }
 
+-(void)initData:(RecommendationVenueModel*)model
+{
+    self.searchType = SearchTypeDefault;
+    self.rModel = model;
+}
+
 -(void)initDataFrom4Square:(VenueModel*)model
 {
     self.searchType = SearchTypeFourSquare;
     self.fsModel = model;
-    [self reloadData];
 }
 
 
@@ -172,6 +178,13 @@
     
     switch (self.searchType) {
         default:
+            self.addNewPlaceSubView.txtPlaceName.text = self.rModel.name;
+            self.addNewPlaceSubView.txtAddress.text = self.rModel.formattedAddress;
+            self.addNewPlaceSubView.txtURL.text = self.rModel.website;
+            self.addNewPlaceSubView.txtPhoneNo.text = self.rModel.formattedPhone;
+
+            
+            break;
         case SearchTypeGoogle:
             self.addNewPlaceSubView.txtPlaceName.text = self.gooModel.name;
             self.addNewPlaceSubView.txtAddress.text = self.gooModel.formatted_address;
@@ -197,12 +210,13 @@
 {
     
     NSDictionary* dict = @{@"placeid":self.placeID,@"key":GOOGLE_API_KEY};
-    [[ConnectionManager Instance] requestServerwithAppendString:GOOGLE_PLACE_DETAILS_API requestType:ServerRequestTypeGoogleSearchWithDetail param:dict completionHandler:^(id object) {
+    
+    [[ConnectionManager Instance] requestServerWithPost:NO customURL:GOOGLE_PLACE_DETAILS_API requestType:ServerRequestTypeGoogleSearchWithDetail param:dict completeHandler:^(id object) {
         
         self.gooModel = [[DataManager Instance] googleSearchDetailModel];
         [self reloadData];
-    } errorHandler:^(NSError *error) {
-    }];
+        
+    } errorBlock:nil];
 
 }
 
