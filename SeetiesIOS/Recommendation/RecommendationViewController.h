@@ -16,11 +16,13 @@
 #import "EditPostViewController.h"
 #import "STSearchViewController.h"
 #import "AddNewPlaceViewController.h"
+#import "DraftViewController.h"
+
 
 @interface RecommendationViewController : BaseViewController<DoImagePickerControllerDelegate>
 
 @property(nonatomic,strong)SelectImageViewController* assetPickerViewController;
-@property(nonatomic,strong)UINavigationController* navViewController;
+@property(nonatomic,strong)UINavigationController* navRecommendationViewController;
 
 @property(nonatomic,strong)STSearchViewController* stSearchViewController;
 @property(nonatomic,strong)DoImagePickerController* doImagePickerController;
@@ -30,5 +32,12 @@
 
 
 @property(nonatomic,strong)AddNewPlaceViewController* addNewPlaceViewController;
+
+
+@property(nonatomic,strong)DraftViewController* draftViewController;
+
+@property(nonatomic,copy)IDBlock backBlock;
+
+-(void)initData:(int)type sender:(id)sender;
 
 @end

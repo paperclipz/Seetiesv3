@@ -21,7 +21,9 @@ typedef enum
     ServerRequestTypeGetExplore = 5,
     ServerRequestTypeGoogleSearch,
     ServerRequestType4SquareSearch,
-    ServerRequestTypeGoogleSearchWithDetail
+    ServerRequestTypeGoogleSearchWithDetail,
+    ServerRequestTypeGetRecommendationDraft,
+    ServerRequestTypePostCreatePost
     
 }ServerRequestType;
 
@@ -44,12 +46,15 @@ extern NSString *const GOOGLE_API_KEY;
 extern NSString *const GOOGLE_PLACE_AUTOCOMPLETE_API;
 extern NSString *const GOOGLE_PLACE_DETAILS_API;
 
+extern NSString *const kAFAviaryAPIKey;
+extern NSString *const kAFAviarySecret;
 
 @end
 
 #ifndef Language_Changer_Constants_h
 #define Language_Changer_Constants_h
 
+#define ENGLISH_CODE @"530b0ab26424400c76000003"
 // NSUserDefaults keys
 #define DEFAULTS_KEY_LANGUAGE_CODE @"LanguageCode" // The key against which to store the selected language code.
 

@@ -31,22 +31,22 @@
 #import "IQKeyboardManager.h"
 #import "CommonViewController.h"
 #import "CommonView.h"
-
 #import "LoadingManager.h"
 #import "GoogleMaps.h"
 #import "SearchManager.h"
 #import "TPKeyboardAvoidingScrollView.h"
-
 #import "ActionSheetPicker.h"
-
 
 //for currency Usage
 #import "BKCurrencyTextField.h"
 
-#endif
+//===============Category Helper=================
+
+#import "NSDictionary+STHelper.h"
 //===============Model=================
 #import "RecommendationModel.h"
 
+#endif
 
 #define IS_IN_DEBUG_MODE
 

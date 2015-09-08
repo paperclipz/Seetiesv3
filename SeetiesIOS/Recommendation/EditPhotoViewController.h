@@ -8,9 +8,16 @@
 
 #import "CustomEditPhotoTableViewCell.h"
 #import "UITableView+LongPressReorder.h"
-#import "BMXSwipableCell.h"
+#import "DoImagePickerController.h"
 
-@interface EditPhotoViewController : CommonViewController<UITableViewDataSource,UITableViewDelegate,BMXSwipableCellDelegate>
+#import "AviarySDK.h"
+typedef void (^ImageBlock)(UIImage* image);
+
+@interface EditPhotoViewController : CommonViewController<UITableViewDataSource,UITableViewDelegate,DoImagePickerControllerDelegate,AFPhotoEditorControllerDelegate>
 -(void)initData:(RecommendationModel*)model;
+
+@property(nonatomic,strong)DoImagePickerController* imagePickerViewController;
+
+@property(nonatomic,copy)IDBlock doneBlock;
 
 @end

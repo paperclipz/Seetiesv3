@@ -14,6 +14,9 @@
 #import "EditPhotoModel.h"
 #import "FourSquareModel.h"
 
+
+
+#import "RecommendationModel.h"
 @interface DataManager : NSObject
 + (id)Instance;
 +(NSArray*)getSampleObject;
@@ -24,5 +27,7 @@
 @property(nonatomic,strong)FourSquareModel* fourSquareVenueModel;
 @property(nonatomic,strong)SearchModel* googleSearchModel;
 @property(nonatomic,strong)SearchLocationDetailModel* googleSearchDetailModel;
++(RecommendationModel*)getSampleRecommendation;
++(EditPhotoModel*)getSampleEditPhotoModel;
 
 @end

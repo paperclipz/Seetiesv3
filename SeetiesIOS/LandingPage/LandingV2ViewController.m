@@ -28,12 +28,13 @@
 #import <Parse/Parse.h>
 #import "InstagramLoginWebViewController.h"
 #import "CRMotionView.h"
-#import "LeveyTabBarController.h"
 #import "RecommendPopUpViewController.h"
 
 #import "FeedViewController.h"
 
 #import "NewProfileV2ViewController.h"
+
+#import "CustomPickerViewController.h"
 
 @interface LandingV2ViewController ()
 {
@@ -51,13 +52,13 @@
     IBOutlet UIActivityIndicatorView *ShowActivity;
 }
 
+@property(nonatomic,strong)CustomPickerViewController* recommendationChooseViewController;
 @end
 
 @implementation LandingV2ViewController
 
 -(void)initSelfView
 {
-
     
     BackgroundView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
     ShowBackgroundImage.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
@@ -158,26 +159,6 @@
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"PublishV2_PhotoPosition"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"PublishV2_PhotoID_Delete"];
     
-    //delete Images
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *documentsPath = [paths objectAtIndex:0];
-//    NSFileManager *fileMgr = [[NSFileManager alloc] init];
-//    NSError *error = nil;
-//    NSArray *directoryContents = [fileMgr contentsOfDirectoryAtPath:documentsPath error:&error];
-//    if (error == nil) {
-//        for (NSString *path in directoryContents) {
-//            NSString *fullPath = [documentsPath stringByAppendingPathComponent:path];
-//            BOOL removeSuccess = [fileMgr removeItemAtPath:fullPath error:&error];
-//            if (!removeSuccess) {
-//                // Error handling
-//                
-//            }
-//        }
-//    } else {
-//        // Error handling
-//        
-//    }
-    
     NSString *extension = @"jpg";
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -225,7 +206,7 @@
         CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
         
         CRMotionView *motionView = [[CRMotionView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LandingV2.png"]];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"DemoTest.png"]];
         [motionView setContentView:imageView];
         [BackgroundView addSubview:motionView];
         [motionView setScrollDragEnabled:YES];
@@ -267,8 +248,6 @@
     return UIStatusBarStyleLightContent;
 }
 -(void)changeview{
-    //[self animateImages];
-
     
     FBLoginButton.hidden = NO;
     LogInButton.hidden = NO;
@@ -280,9 +259,9 @@
 }
 -(void)ChangeView2{
     
-    [[[[UIApplication sharedApplication] delegate] window] setRootViewController:self.leveyTabBarController];
-//TODO:Delete this . use for development purpose only
-   // [self.leveyTabBarController setSelectedIndex:2];
+    [self.view addSubview:self.leveyTabBarController.view];
+    //TODO:Delete this . use for development purpose only
+    [self.leveyTabBarController setSelectedIndex:2];
 }
 
 - (void)animateImages
@@ -338,31 +317,61 @@
     
     if(!_leveyTabBarController)
     {
-         NSArray *arrViewControllers  = [NSArray arrayWithObjects:self.feedViewController.navController,self.explore2ViewController.navController,self.recommendationViewController.navController,self.notificationViewController.navController,self.userProfilePageViewController.navController, nil];
         
+         NSArray *arrViewControllers  = [NSArray arrayWithObjects:self.feedViewController.navController,self.explore2ViewController.navController,self.recommendationViewController.navController,self.notificationViewController.navController,self.userProfilePageViewController.navController, nil];
         _leveyTabBarController = [[LeveyTabBarController alloc] initWithViewControllers:arrViewControllers imageArray:[self arrTabImages]];
         [_leveyTabBarController.tabBar setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
         [_leveyTabBarController setTabBarTransparent:YES];
-        
+        _leveyTabBarController.delegate = self;
+
     }
     
     return _leveyTabBarController;
 }
--(UITabBarController*)tabBarController
+
+- (void)tabBarController:(LeveyTabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
 {
-    if(!_tabBarController)
-    {
-        CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-        
-        _tabBarController = [UITabBarController new];
-        _tabBarController.tabBar.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
-        [[UITabBar appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
-        self.tabBarController.viewControllers = [NSArray arrayWithObjects:self.feedViewController.navController,self.explore2ViewController.navController,self.recommendationViewController.navController,self.notificationViewController.navController,self.userProfilePageViewController.navController, nil];
-    }
-    
-    return _tabBarController;
+
 }
+
+- (BOOL)tabBarController:(LeveyTabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController atIndex:(NSInteger)index
+{
+    if ((int)index == 2)
+    {
+        
+        [self.recommendationChooseViewController show];
+    
+        return NO;
+    }
+
+    return YES;
+}
+
+-(CustomPickerViewController*)recommendationChooseViewController
+{
+    if (!_recommendationChooseViewController) {
+        
+        _recommendationChooseViewController = [CustomPickerViewController initializeWithBlock:^(id object) {
+            [self.recommendationViewController initData:1 sender:self.leveyTabBarController];
+            [self.leveyTabBarController setSelectedIndex:self.leveyTabBarController.previousIndex];
+            // go to draft
+            
+        } buttonTwo:^(id object) {
+            [self.recommendationViewController initData:2 sender:self.leveyTabBarController];
+            [self.leveyTabBarController setSelectedIndex:self.leveyTabBarController.previousIndex];
+
+        }cancelBlock:^(id object) {
+            [self.leveyTabBarController setSelectedIndex:self.leveyTabBarController.previousIndex];
+        }];
+        
+        [self.leveyTabBarController.view addSubview:_recommendationChooseViewController.view];
+        [_recommendationChooseViewController hideWithAnimation:NO];
+
+    }
+        
+        return _recommendationChooseViewController;
+}
+
 
 -(FeedViewController*)feedViewController
 {
@@ -373,7 +382,6 @@
     return _feedViewController;
 }
 
-
 -(Explore2ViewController*)explore2ViewController
 {
     if(!_explore2ViewController){
@@ -383,16 +391,19 @@
     return _explore2ViewController;
 }
 
-
 -(RecommendationViewController*)recommendationViewController
 {
     if(!_recommendationViewController)
     {
         _recommendationViewController = [RecommendationViewController new];
+        __weak typeof (self)weakself = self;
+        _recommendationViewController.backBlock = ^(id object)
+        {
+            [weakself dismissViewControllerAnimated:YES completion:nil];
+        };
     }
     return _recommendationViewController;
 }
-
 
 -(SelectImageViewController*)selectImageViewController
 {
@@ -422,8 +433,6 @@
     return _userProfilePageViewController;
 }
 
-
-
 #pragma mark - IBAction
 -(IBAction)BtnExpertLoginClicked:(id)sender{
     
@@ -435,6 +444,7 @@
     transition.subtype = kCATransitionFromRight;
     [self.view.window.layer addAnimation:transition forKey:nil];
     [self presentViewController:ExpertLoginView animated:NO completion:nil];
+
     
 }
 -(IBAction)btnWhyWeUseFacebookClicked:(id)sender{
@@ -461,19 +471,6 @@
 
 -(IBAction)btnFacebookClicked:(id)sender{
     
-    
-    //    // If the session state is any of the two "open" states when the button is clicked
-    //    if (FBSession.activeSession.state == FBSessionStateOpen
-    //        || FBSession.activeSession.state == FBSessionStateOpenTokenExtended) {
-    //
-    //        // Close the session and remove the access token from the cache
-    //        // The session state handler (in the app delegate) will be called automatically
-    //        [FBSession.activeSession closeAndClearTokenInformation];
-    //
-    //        // If the session state is not any of the two "open" states when the button is clicked
-    //    } else {
-    //        // Open a session showing the user the login UI
-    //        // You must ALWAYS ask for basic_info permissions when opening a session
     [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email", @"user_friends",@"user_birthday"]
                                        allowLoginUI:YES
                                   completionHandler:
@@ -1012,3 +1009,4 @@
     [self presentViewController:WebViewLogin animated:YES completion:nil];
 }
 @end
+

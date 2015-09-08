@@ -41,9 +41,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     DataUrl = [[UrlDataClass alloc]init];
+    [self initSelfView];
+}
+
+-(void)initSelfView
+{
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-
+    
     ShowBackgroundImage.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     Scrollview.delegate = self;
     Scrollview.frame = CGRectMake(0, 0, screenWidth, screenHeight);
@@ -72,6 +77,7 @@
         NeedHelpButton.frame = CGRectMake(screenWidth - 30 - 94, 229, 94, 30);
     }
 }
+
 -(void)GetSameEmailData:(NSString *)EmailData{
     ShowLoginID.text = EmailData;
 }
@@ -99,6 +105,8 @@
 //    ShowPassword.text = @"1234qwer";
     
 }
+
+
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [ShowLoginID becomeFirstResponder];

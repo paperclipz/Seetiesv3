@@ -31,8 +31,6 @@
 
 #import "UIIimage+Extra.h"
 @import AssetsLibrary;
-static NSString * const kAFAviaryAPIKey = @"b42bd0c6f4c5104f";
-static NSString * const kAFAviarySecret = @"80ee1b7f54c2ed86";
 @interface ShowImageViewController ()<PECropViewControllerDelegate,UINavigationControllerDelegate, AFPhotoEditorControllerDelegate, UIPopoverControllerDelegate>{
     BOOL contain;
     CGPoint startPoint;

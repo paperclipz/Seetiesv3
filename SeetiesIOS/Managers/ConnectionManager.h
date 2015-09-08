@@ -9,23 +9,25 @@
 #import <Foundation/Foundation.h>
 #import "MKNetworkEngine.h"
 #import "DataManager.h"
+#import "AFHTTPRequestOperationManager.h"
 
 typedef void (^IDBlock)(id object);
 typedef void (^IErrorBlock)(id object);
-@interface ConnectionManager :MKNetworkEngine
+@interface ConnectionManager :NSObject
 @property(nonatomic,strong)NSString* serverPath;
 @property(nonatomic,strong)NSString* subPath;
 
 +(id)Instance;
-
-
-- (MKNetworkOperation*)requestServerWithPost:(BOOL)isPost requestType:(ServerRequestType)serverRequestType param:(NSDictionary*)dict completionHandler:(IDBlock)completionBlock errorHandler:(MKNKErrorBlock)errorBlock;
--(void)requestForDEploymentTarget:(IDBlock)completeBlock errorHandler:(MKNKErrorBlock)errorBlock;
 +(DataManager*)dataManager;
-- (MKNetworkOperation*)requestServerwithAppendString:(NSDictionary*)dict requestType:(ServerRequestType)serverRequestType  completionHandler:(IDBlock)completionBlock errorHandler:(MKNKErrorBlock)errorBlock;
-- (MKNetworkOperation*)requestServerwithAppendString:(NSString*)url param:(NSDictionary*)dict  completionHandler:(IDBlock)completionBlock errorHandler:(MKNKErrorBlock)errorBlock;
 -(void)storeServerData:(id)obj requestType:(ServerRequestType)type;
 
-- (MKNetworkOperation*)requestServerwithAppendString:(NSString*)url requestType:(ServerRequestType)serverRequestType param:(NSDictionary*)dict  completionHandler:(IDBlock)completionBlock errorHandler:(MKNKErrorBlock)errorBlock;
+
+//-(void)requestServer:(ServerRequestType)type completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error GetMethodAttachString:(NSString*)str;
+
+-(void)requestServerWithPost:(ServerRequestType)type param:(NSDictionary*)dict completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error;
+-(void)requestServerWithGet:(ServerRequestType)type param:(NSDictionary*)dict completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error;
+
+-(void)requestServerWithPost:(bool)isPost customURL:(NSString*)url requestType:(ServerRequestType)type param:(NSDictionary*)dict completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error;
+-(void)requestServerWithPost:(ServerRequestType)type param:(NSDictionary*)dict images:(NSArray*)images completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error;
 
 @end

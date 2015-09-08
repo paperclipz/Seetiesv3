@@ -42,10 +42,7 @@
     
     return nil;
 }
--(void)initSelfView
-{
-    
-}
+
 
 /*
 // Only override drawRect: if you perform custom drawing.

@@ -414,7 +414,7 @@ static const CGFloat kDefaultUITableViewDeleteControlWidth = 47;
         [self.scrollView setContentOffset: CGPointZero
                                  animated: YES];
         
-        _scrollView.userInteractionEnabled = NO;
+        _scrollView.userInteractionEnabled = YES;
         _showingBasement = NO;
         _panGesture.enabled = YES;
         
@@ -606,7 +606,7 @@ static const CGFloat kDefaultUITableViewDeleteControlWidth = 47;
 - (void)showBasement:(BOOL)animated
 {
     [self.scrollView setContentOffset:CGPointMake(self.basementVisibleWidth, 0.f) animated:YES];
-    _scrollView.userInteractionEnabled = YES;
+    _scrollView.userInteractionEnabled = NO;
     _showingBasement = YES;
     _panGesture.enabled = NO;
 }

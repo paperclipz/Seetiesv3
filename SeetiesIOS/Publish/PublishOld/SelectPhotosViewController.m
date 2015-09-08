@@ -18,8 +18,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import <AviarySDK/AviarySDK.h>
 
-static NSString * const kAFAviaryAPIKey = @"b42bd0c6f4c5104f";
-static NSString * const kAFAviarySecret = @"80ee1b7f54c2ed86";
 @interface SelectPhotosViewController ()<UINavigationControllerDelegate, AFPhotoEditorControllerDelegate, UIPopoverControllerDelegate>
 @property (nonatomic, strong) ALAssetsLibrary * assetLibrary;
 @property (nonatomic, strong) NSMutableArray * sessions;

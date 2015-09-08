@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface CommonViewController : GAITrackedViewController
+#import "PresentingAnimationController.h"
+#import "DismissingAnimationController.h"
+@interface CommonViewController : GAITrackedViewController<UIViewControllerTransitioningDelegate>
 -(void)applyTabBarContraint;
 
 @end

@@ -1792,7 +1792,6 @@
 //                [SendCaptionDataArray removeObjectAtIndex:i];
 //            }
 
-        
             for (int i = 0; i < [GetImageArray count]; i++) {
                 NSString *CheckPhotoID = [[NSString alloc]initWithFormat:@"%@",[SplitArray objectAtIndex:i]];
                 if ([CheckPhotoID isEqualToString:@""]) {

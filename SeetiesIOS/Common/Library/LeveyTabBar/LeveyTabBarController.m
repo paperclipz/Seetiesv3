@@ -74,6 +74,8 @@ static LeveyTabBarController *leveyTabBarController;
     [super viewDidLoad];
 	
     self.selectedIndex = 0;
+    _previousIndex = 0;
+
 }
 
 - (void)viewDidUnload
@@ -310,14 +312,26 @@ static LeveyTabBarController *leveyTabBarController;
 #pragma mark - Private methods
 - (void)displayViewAtIndex:(NSUInteger)index
 {
+    
     // Before change index, ask the delegate should change the index.
-    if ([_delegate respondsToSelector:@selector(tabBarController:shouldSelectViewController:)]) 
+    if ([_delegate respondsToSelector:@selector(tabBarController:shouldSelectViewController:)])
     {
         if (![_delegate tabBarController:self shouldSelectViewController:[self.viewControllers objectAtIndex:index]])
         {
             return;
         }
     }
+    
+    // Before change index, ask the delegate should change the index.
+    if ([_delegate respondsToSelector:@selector(tabBarController:shouldSelectViewController:atIndex:)])
+    {
+        if (![_delegate tabBarController:self shouldSelectViewController:[self.viewControllers objectAtIndex:index]atIndex:index])
+        {
+            return;
+        }
+    }
+    
+    
     // If target index if equal to current index, do nothing.
     if (_selectedIndex == index && [[_transitionView subviews] count] != 0) 
     {
@@ -347,11 +361,12 @@ static LeveyTabBarController *leveyTabBarController;
 	}
     
     // Notify the delegate, the viewcontroller has been changed.
-    if ([_delegate respondsToSelector:@selector(tabBarController:didSelectViewController::)]) 
+    if ([_delegate respondsToSelector:@selector(tabBarController:didSelectViewController:)])
     {
         [_delegate tabBarController:self didSelectViewController:selectedVC];
         
     }
+    _previousIndex = index;
 
 }
 

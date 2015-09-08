@@ -16,6 +16,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "EditPostDetailVIew.h"
+#import "CategorySelectionViewController.h"
 
 @interface EditPostViewController ()
 {
@@ -30,22 +31,26 @@
 // =============== model ===============//
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *descViewTopLayoutConstraint;
-@property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
 
-@property (weak, nonatomic) IBOutlet UIView *ibDescContentView;
 @property(nonatomic,strong)EditPhotoViewController* editPhotoViewController;
 @property(nonatomic,strong)AddNewPlaceViewController* addNewPlaceViewController;
-
+@property(nonatomic,strong)UINavigationController* navAddNewPlaceViewController;
+@property(nonatomic,strong)CategorySelectionViewController* categorySelectionViewController;
 @property(nonatomic,strong)HMSegmentedControl* segmentedControl;
 @property(nonatomic,strong)IBOutlet UISegmentedControl* postSegmentedControl;
-
-
+@property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
+@property (weak, nonatomic) IBOutlet UIView *ibDescContentView;
 @property(nonatomic,strong)EditPostDetailVIew* editPostView;
 @property(nonatomic,strong)EditPostDetailVIew* editPostViewSecond;
 
 @end
 
 @implementation EditPostViewController
+- (IBAction)btnPublishClicked:(id)sender {
+    
+    [self requestServerForPublishPost];
+    
+}
 - (IBAction)segmentedControlClicked:(id)sender {
     
     UISegmentedControl* temp = (UISegmentedControl*)sender;
@@ -68,39 +73,68 @@
     
  }
 
-- (IBAction)btnEditPhotoClicked:(id)sender {
-    
-    //[self.navigationController pushViewController:self.editPhotoViewController animated:YES];
-    
-    [self.editPhotoViewController initData:self.recommendationModel];
-      [self presentViewController:self.editPhotoViewController animated:YES completion:nil];
-}
 - (IBAction)btnBackClicked:(id)sender {
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [UIAlertView showWithTitle:@"New Recommendation"
+                       message:@"You are exiting the editor. Save Changes?"
+             cancelButtonTitle:@"Cancel"
+             otherButtonTitles:@[@"Discard", @"Save"]
+                      tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                          if (buttonIndex == [alertView cancelButtonIndex]) {
+                              NSLog(@"Cancelled");
+
+                          } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Discard"]) {
+                              NSLog(@"Discard");
+                              [self dismissViewControllerAnimated:YES completion:nil];
+
+                          } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Save"]) {
+                              NSLog(@"Save");
+                              [self.navigationController popViewControllerAnimated:YES];
+                          }
+                      }];
 }
 
 -(void)initData:(RecommendationModel*)model
 {
     self.recommendationModel = model;
-    SDWebImageManager *manager = [SDWebImageManager sharedManager];
-    [manager downloadImageWithURL:[NSURL URLWithString:@"http://cdn3.denofgeek.us/sites/denofgeekus/files/scarlett_johansson.jpg"]
-                          options:0
-                         progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-                             // progression tracking code
-                         }
-                        completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-                            if (image) {
-
-                                self.ibImageView.image = [image imageCroppedAndScaledToSize:self.ibImageView.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
-                            }
-                        }];
 
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
     
+}
+
+-(void)reloadData
+{
+    EditPhotoModel* edifotoModel = self.recommendationModel.arrPostImagesList[0];
+    
+    
+    if (edifotoModel) {
+        self.ibImageView.image = [edifotoModel.image imageCroppedAndScaledToSize:self.ibImageView.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
+    }
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self reloadData];
+
+    //    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+    //    [manager downloadImageWithURL:[NSURL URLWithString:@"http://cdn3.denofgeek.us/sites/denofgeekus/files/scarlett_johansson.jpg"]
+    //                          options:0
+    //                         progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+    //                             // progression tracking code
+    //                         }
+    //                        completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+    //                            if (image) {
+    //
+    //                                self.ibImageView.image = [image imageCroppedAndScaledToSize:self.ibImageView.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
+    //                            }
+    //                        }];
+
+
 }
 
 - (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
@@ -111,39 +145,43 @@
         default:
         case 0:
         {
-            [self.customPickerViewController show];
+            //[self.customPickerViewController show];
+            
+            [self showAlertView];
+
         }
             break;
         case 1:
-            [self presentViewController:self.addNewPlaceViewController animated:YES completion:nil];
+        {
+            [self.addNewPlaceViewController initData:self.recommendationModel.reccomendVenueModel];
+            [self presentViewController:self.navAddNewPlaceViewController animated:YES completion:nil];
+
+        }
 
             break;
             
         case 2:
-            [self.editPhotoViewController initData:self.recommendationModel];
-            [self presentViewController:self.editPhotoViewController animated:YES completion:nil];
+        {
+                [self.editPhotoViewController initData:self.recommendationModel];
+                [self presentViewController:self.editPhotoViewController animated:YES completion:nil];
+                __weak typeof (self)weakSelf = self;
+                self.editPhotoViewController.doneBlock = ^(NSArray* array)
+                {
+                
+                weakSelf.recommendationModel.arrPostImagesList = nil;
+                weakSelf.recommendationModel.arrPostImagesList = [[NSMutableArray alloc]initWithArray:array];
+                };
 
+        }
+        case 3:
+            [self presentViewController:self.categorySelectionViewController animated:YES completion:nil];
+            
             break;
     }
     
     segmentedControl.selectedSegmentIndex = -1;
 }
 
--(CustomPickerViewController*)customPickerViewController
-{
-    
-    if (!_customPickerViewController) {
-        _customPickerViewController = [CustomPickerViewController initializeWithAddURLBlock:^(id object) {
-            [self showAlertView];
-        } AddLangBlock:^(id object) {
-            
-        }];
-        [self.view addSubview:_customPickerViewController.view];
-        [_customPickerViewController hideWithAnimation:NO];
-
-    }
-    return _customPickerViewController;
-}
 
 -(void)initSelfView
 {
@@ -200,6 +238,15 @@
 */
 
 #pragma mark - Declarations
+-(CategorySelectionViewController*)categorySelectionViewController
+{
+    if(!_categorySelectionViewController)
+    {
+        _categorySelectionViewController = [CategorySelectionViewController new];
+    }
+    return _categorySelectionViewController;
+}
+
 -(NSArray*)arrTabImages
 {
     
@@ -238,8 +285,29 @@
     if(!_addNewPlaceViewController)
     {
         _addNewPlaceViewController = [AddNewPlaceViewController new];
+       
     }
     return _addNewPlaceViewController;
+}
+
+
+-(UINavigationController*)navAddNewPlaceViewController
+{
+    
+    if(!_navAddNewPlaceViewController)
+    {
+        _navAddNewPlaceViewController = [[UINavigationController alloc]initWithRootViewController:self.addNewPlaceViewController];
+        _navAddNewPlaceViewController.navigationBarHidden = YES;
+        
+        
+        __weak typeof (self)weakSelf = self;
+        self.addNewPlaceViewController.btnBackBlock = ^(id object)
+        {
+            [weakSelf.addNewPlaceViewController dismissViewControllerAnimated:YES completion:nil];
+        };
+    }
+    
+    return _navAddNewPlaceViewController;
 }
 
 -(EditPostDetailVIew*)editPostView
@@ -288,4 +356,43 @@
     }
     return _recommendationModel;
 }
+
+#pragma mark - Server Request
+
+-(void)requestServerForPublishPost
+{
+    
+    NSMutableArray* arrImages = [NSMutableArray new];
+    
+    for (int i =0; i<self.recommendationModel.arrPostImagesList.count; i++) {
+        
+        EditPhotoModel* model = self.recommendationModel.arrPostImagesList[i];
+        [arrImages addObject: model.image];
+    }
+    
+    NSDictionary* addressDict = @{@"route":@"setapak",@"locality":@"KL",@"administrative_area_level_1":@"Federal Territory of Kuala Lumpur",@"postalCode":@"123456",@"country":@"malaysia",@"political":@"abc"};
+
+    NSDictionary* sourceDict = @{@"open_now":@"true",@"periods":@"",@"weekday_text":@""};
+    
+    NSDictionary* openingHourDict = @{@"open_now":@"false",@"periods":@""};
+
+    NSDictionary* locationDict  = @{@"address_components":addressDict,@"name":@"setapak",@"formatted_address":@"",@"type":@2,@"reference":@"",@"expense":@"",@"rating":@11,@"contact_no":@"",@"source":sourceDict,@"opening_hours":openingHourDict,@"link":@"",@"lat":@"3.1333",@"lng":@"101.7000"};
+
+    NSDictionary* photo_meta = @{@"photo_id":@"",@"position":@"",@"caption":@""};
+    
+    NSDictionary* dict = @{@"post_id":@"",@"token":@"JDJ5JDEwJDZyamE0MlZKbTNKbHpDSElxR0dpUGVnbkJQMzdzRC40eDJna2M3RlJiVFZVbnJzRVpTQTNt",@"status":@"0",[NSString stringWithFormat:@"title[%@]",ENGLISH_CODE]:@"title1",[NSString stringWithFormat:@"message[%@]",ENGLISH_CODE]:@"msg1",@"category":@[@1,@2],@"device_type":@2,@"location":[locationDict getJsonString],@"link":@"www.google.com",@"photo_meta":@[photo_meta,photo_meta]};
+    
+    
+    
+    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostCreatePost param:dict images:arrImages  completeHandler:^(id object) {
+        
+    } errorBlock:nil];
+    
+   
+
+
+}
+
+
+
 @end

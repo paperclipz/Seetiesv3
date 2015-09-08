@@ -142,10 +142,8 @@ static NSString *const kCompletedCallbackKey = @"completed";
                                                                  callbacksForURL = [sself.URLCallbacks[url] copy];
                                                              });
                                                              for (NSDictionary *callbacks in callbacksForURL) {
-                                                                 dispatch_async(dispatch_get_main_queue(), ^{
-                                                                     SDWebImageDownloaderProgressBlock callback = callbacks[kProgressCallbackKey];
-                                                                     if (callback) callback(receivedSize, expectedSize);
-                                                                 });
+                                                                 SDWebImageDownloaderProgressBlock callback = callbacks[kProgressCallbackKey];
+                                                                 if (callback) callback(receivedSize, expectedSize);
                                                              }
                                                          }
                                                         completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {

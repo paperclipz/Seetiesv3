@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CustomPickerViewController : UIViewController
+
+@interface CustomPickerViewController : CommonViewController
 -(void)show;
 -(void)hideWithAnimation:(BOOL)isAnimate;
-+(id)initializeWithAddURLBlock:(IDBlock)addurl AddLangBlock:(IDBlock)addLang;
++(id)initializeWithBlock:(IDBlock)buttonOne buttonTwo:(IDBlock)buttonTwo cancelBlock:(IDBlock)cancelBlock;
+@property (copy, nonatomic) IDBlock cancelBlock;
 
 @end
