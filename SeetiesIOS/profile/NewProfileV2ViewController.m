@@ -87,6 +87,47 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *CheckEdit = [defaults objectForKey:@"CheckEditUserInformation"];
+    
+    if ([CheckEdit isEqualToString:@"GotEdit"]) {
+        NSString *GetWallpaper_ = [defaults objectForKey:@"UserData_Wallpaper"];
+        NSString *GetProfileImg_ = [defaults objectForKey:@"UserData_ProfilePhoto"];
+        GetUserName = [defaults objectForKey:@"UserData_Username"];
+        GetName = [defaults objectForKey:@"UserData_Name"];
+        GetLink = [defaults objectForKey:@"UserData_Url"];
+        GetDescription = [defaults objectForKey:@"UserData_Abouts"];
+        GetPersonalTags = [defaults objectForKey:@"UserData_PersonalTags"];
+        GetLocation = [defaults objectForKey:@"UserData_Location"];
+        if ([GetPersonalTags length] == 0 || [GetPersonalTags isEqualToString:@""] || [GetPersonalTags isEqualToString:@"(null)"] || GetPersonalTags == nil) {
+        }else{
+            NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"() \n"];
+            GetPersonalTags = [[GetPersonalTags componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString: @""];
+            NSArray *arr = [GetPersonalTags componentsSeparatedByString:@","];
+            [ArrHashTag removeAllObjects];
+            ArrHashTag = [[NSMutableArray alloc]initWithArray:arr];
+        }
+        
+        [self InitCollectionView];
+        
+        NSURL *url_UserImage = [NSURL URLWithString:GetProfileImg_];
+        ShowUserProfileImage.imageURL = url_UserImage;
+        
+        NSURL *url_WallpaperImage = [NSURL URLWithString:GetWallpaper_];
+        BackgroundImage.imageURL = url_WallpaperImage;
+        
+        
+        
+        CheckEdit = @"NoEdit";
+        [defaults setObject:CheckEdit forKey:@"CheckEditUserInformation"];
+        [defaults synchronize];
+    }
+
+}
+
 
 -(void)InitContentView{
     
@@ -119,7 +160,7 @@
     
     NSString *TempUsernameString = [[NSString alloc]initWithFormat:@"@%@",GetUserName];
     
-    UILabel *ShowUserName = [[UILabel alloc]init];//getname
+    ShowUserName = [[UILabel alloc]init];//getname
     ShowUserName.frame = CGRectMake(130, 10, screenWidth - 130, 30);
     ShowUserName.text = TempUsernameString;
     ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:18];
@@ -141,7 +182,7 @@
 //    EditProfileButton.layer.borderColor=[[UIColor grayColor] CGColor];
     [AllContentView addSubview:EditProfileButton];
     
-    UILabel *ShowName_ = [[UILabel alloc]init];//getname
+    ShowName_ = [[UILabel alloc]init];//getname
     ShowName_.frame = CGRectMake(30, 110, screenWidth - 60, 30);
     ShowName_.text = GetName;
     ShowName_.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:22];
@@ -152,15 +193,6 @@
     
     GetHeight = 145;
 
-    NSString *TempHashTag = @"#lucy #malaysiablogger #fashion #beach #ilovesunset #iamlucydiamondinthesky";
-    NSMutableArray *ArrHashTag = [[NSMutableArray alloc]init];
-    [ArrHashTag addObject:@"lucy"];
-    [ArrHashTag addObject:@"malaysiablogger"];
-    [ArrHashTag addObject:@"fashion"];
-    [ArrHashTag addObject:@"beach"];
-    [ArrHashTag addObject:@"ilovesunset"];
-    [ArrHashTag addObject:@"iamlucydiamondinthesky"];
-    [ArrHashTag addObject:@"sexy"];
     
     // followers and followings count show
     
@@ -225,7 +257,7 @@
     if ([GetDescription isEqualToString:@""] || [GetDescription isEqualToString:@"(null)"] || [GetDescription length] == 0) {
         
     }else{
-        UILabel *ShowAboutText = [[UILabel alloc]init];
+        ShowAboutText = [[UILabel alloc]init];
         ShowAboutText.frame = CGRectMake(30, GetHeight, screenWidth - 60, 30);
         ShowAboutText.text = GetDescription;
         ShowAboutText.numberOfLines = 0;
@@ -245,7 +277,7 @@
     if ([GetLink isEqualToString:@""] || [GetLink isEqualToString:@"(null)"] || [GetLink length] == 0) {
         
     }else{
-        UILabel *ShowLink = [[UILabel alloc]init];
+        ShowLink = [[UILabel alloc]init];
         ShowLink.frame = CGRectMake(30, GetHeight, screenWidth - 120, 20);
         ShowLink.text = GetLink;
         ShowLink.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
@@ -302,7 +334,7 @@
         
     }else{
     
-        if ([TempHashTag isEqualToString:@""] || [TempHashTag isEqualToString:@"(null)"] || [TempHashTag length] == 0) {
+        if ([GetPersonalTags isEqualToString:@""] || [GetPersonalTags isEqualToString:@"(null)"] || [GetPersonalTags length] == 0) {
             
         }else{
             
@@ -933,6 +965,20 @@
                 GetFollowersCount = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"follower_count"]];
                 GetFollowingCount = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"following_count"]];
                 GetCategories = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"categories"]];
+                Getdob = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"dob"]];
+                GetGender = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"gender"]];
+                GetPersonalTags = [[NSString alloc]initWithFormat:@"%@",[GetAllData valueForKey:@"personal_tags"]];
+                
+                
+                
+                if ([GetPersonalTags length] == 0 || [GetPersonalTags isEqualToString:@""] || [GetPersonalTags isEqualToString:@"(null)"] || GetPersonalTags == nil) {
+                }else{
+                    NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"() \n"];
+                    GetPersonalTags = [[GetPersonalTags componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString: @""];
+                    NSArray *arr = [GetPersonalTags componentsSeparatedByString:@","];
+                    ArrHashTag = [[NSMutableArray alloc]initWithArray:arr];
+                }
+                
                 
                 [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:BackgroundImage];
                 NSLog(@"User Wallpaper FullString ====== %@",GetWallpaper);
@@ -944,6 +990,20 @@
                 [defaults setObject:GetCategories forKey:@"UserData_Categories"];
                 [defaults setObject:GetProfileImg forKey:@"UserData_ProfilePhoto"];
                 [defaults setObject:GetWallpaper forKey:@"UserData_Wallpaper"];
+                [defaults setObject:GetName forKey:@"UserData_Name"];
+                [defaults setObject:GetUserName forKey:@"UserData_Username"];
+                [defaults setObject:GetDescription forKey:@"UserData_Abouts"];
+                [defaults setObject:GetLink forKey:@"UserData_Url"];
+               // [defaults setObject:GetEmail forKey:@"UserData_Email"];
+                [defaults setObject:GetLocation forKey:@"UserData_Location"];
+                [defaults setObject:Getdob forKey:@"UserData_dob"];
+                [defaults setObject:GetGender forKey:@"UserData_Gender"];
+                [defaults setObject:GetPersonalTags forKey:@"UserData_PersonalTags"];
+//                [defaults setObject:GetSystemLanguage forKey:@"UserData_SystemLanguage"];
+//                [defaults setObject:GetLanguage_1 forKey:@"UserData_Language1"];
+//                [defaults setObject:GetLanguage_2 forKey:@"UserData_Language2"];
+                [defaults setObject:GetFollowersCount forKey:@"UserData_FollowersCount"];
+                [defaults setObject:GetFollowingCount forKey:@"UserData_FollowingCount"];
                 [defaults synchronize];
                 
                 

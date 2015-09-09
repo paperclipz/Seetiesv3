@@ -1256,9 +1256,13 @@
 -(void)timerCalled
 {
     NSLog(@"Timer Called");
-
     [self ReinitData];
     [self GetFeedDataFromServer];
+
+ //   [self performSelectorOnMainThread:@selector(GetFeedDataFromServer) withObject:nil waitUntilDone:NO];
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        [self GetFeedDataFromServer];
+//    });
 
 }
 
