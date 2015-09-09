@@ -70,9 +70,10 @@
 -(void)getSuggestedLocationFromFoursquare:(CLLocation*)tempCurrentLocation input:(NSString*)input completionBlock:(IDBlock)completionBlock
 {
     
-    [Foursquare2 venueExploreRecommendedNearByLatitude:@(tempCurrentLocation.coordinate.latitude) longitude:@(tempCurrentLocation.coordinate.longitude) near:nil accuracyLL:nil altitude:nil accuracyAlt:nil query:nil limit:nil offset:nil radius:@(1000) section:nil novelty:nil sortByDistance:nil openNow:nil venuePhotos:nil price:nil callback:^(BOOL success, id result){
+    [Foursquare2 venueExploreRecommendedNearByLatitude:@(tempCurrentLocation.coordinate.latitude) longitude:@(tempCurrentLocation.coordinate.longitude) near:nil accuracyLL:nil altitude:nil accuracyAlt:nil query:input limit:nil offset:nil radius:@(1000) section:nil novelty:nil sortByDistance:nil openNow:nil venuePhotos:nil price:nil callback:^(BOOL success, id result){
         
     
+        SLog(@"fourSquare response : %@",result);
         [self.connManager storeServerData:result requestType:ServerRequestType4SquareSearch];
 
         if (completionBlock) {
@@ -162,7 +163,7 @@
 -(void)getSearchLocationFromGoogle:(CLLocation*)tempCurrentLocation input:(NSString*)textInput completionBlock:(IDBlock)completionBlock
 {
     
-    NSDictionary* param = @{@"input":textInput,@"radius":@"5000",@"key":GOOGLE_API_KEY,@"type":@"address"};
+    NSDictionary* param = @{@"input":textInput?textInput:@"",@"radius":@"5000",@"key":GOOGLE_API_KEY,@"type":@"address"};
     
     
     [[ConnectionManager Instance]requestServerWithPost:NO customURL:GOOGLE_PLACE_AUTOCOMPLETE_API requestType:ServerRequestTypeGoogleSearch param:param completeHandler:^(id object) {

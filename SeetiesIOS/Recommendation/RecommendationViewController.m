@@ -17,9 +17,7 @@
 @implementation RecommendationViewController
 - (IBAction)btnEditPhotoClicked:(id)sender {
     
-    [self showEditPostView];
-   
-    
+    [self showEditPostView];   
 }
 - (IBAction)btnPickImageClicked:(id)sender {
     
@@ -122,14 +120,14 @@
     
     [self.doImagePickerController.navigationController pushViewController:self.stSearchViewController animated:YES];
     [self.stSearchViewController initWithLocation:location];
-    
 }
 
 -(void)showEditPostView
 {
     [self.editPostViewController initData:self.recommendModel];
-    
-    [self.sender presentViewController:self.navEditPostViewController animated:YES completion:nil];
+    [self.sender presentViewController:self.navEditPostViewController animated:YES completion:^{
+        [self resetView];
+    }];
 }
 
 
@@ -240,27 +238,9 @@
         
         __weak typeof (self)weakSelf = self;
         _addNewPlaceViewController = [AddNewPlaceViewController new];
-        _addNewPlaceViewController.btnPressDoneBlock = ^(SearchType type,id object)
+        _addNewPlaceViewController.btnPressDoneBlock = ^(id object)
         {
-            RecommendationVenueModel* temp = [RecommendationVenueModel new];
-
-            switch (type) {
-                case SearchTypeGoogle:
-                    
-                    
-                    [temp processGoogleModel:(SearchLocationDetailModel*)object];
-
-                    break;
-                case SearchTypeFourSquare:
-                    [temp processFourSquareModel:(VenueModel*)object];
-
-                    break;
-
-                default:
-                    
-                    temp = (RecommendationVenueModel*)object;
-                    break;
-            }
+            RecommendationVenueModel* temp = (RecommendationVenueModel*)object;
             
             weakSelf.recommendModel.reccomendVenueModel = temp;
 
@@ -277,6 +257,15 @@
     }
     
     return _addNewPlaceViewController;
+}
+
+-(void)resetView
+{
+    //Reset view after going into edit post. all remaining data is no longer needed inside
+
+    _doImagePickerController = nil;
+    _addNewPlaceViewController = nil;
+    _stSearchViewController = nil;
 }
 
 -(RecommendationModel*)recommendModel

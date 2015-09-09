@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+
+@interface NSArray (Blocks)
+
+@end
+
 @interface AddNewPlaceSubView : UIView<UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UITextField *txtPlaceName;
 @property (strong, nonatomic) IBOutlet UITextField *txtAddress;

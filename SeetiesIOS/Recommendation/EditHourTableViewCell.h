@@ -20,5 +20,6 @@
 @property(nonatomic,strong)EditHourModel* model;
 
 -(void)initData;
+-(EditHourModel*)saveData;
 
 @end

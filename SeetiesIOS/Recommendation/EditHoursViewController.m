@@ -17,11 +17,17 @@
 @implementation EditHoursViewController
 - (IBAction)btnBackClicked:(id)sender {
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [self dismissViewControllerAnimated:YES completion:^{
+    }];
 }
 - (IBAction)btnDoneClicked:(id)sender {
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if (_backBlock) {
+        self.backBlock([self saveData]);
+        [self dismissViewControllerAnimated:YES completion:nil];
+
+    }
 
 }
 
@@ -34,14 +40,18 @@
 -(void)initSelfView
 {
 
-
     [self initTableViewWithDelegate:self];
     
     
- 
-
 }
 
+-(void)initData:(NSArray*)arrayModel
+{
+    if (arrayModel) {
+        self.arrOpeningTime = [[NSMutableArray alloc]initWithArray:arrayModel];
+
+    }
+}
 
 -(void)initTableViewWithDelegate:(id)delegate
 {
@@ -77,7 +87,6 @@
     return cell;
 }
 
-
 /*
 #pragma mark - Navigation
 
@@ -89,7 +98,6 @@
 */
 -(NSMutableArray*)arrOpeningTime
 {
-    
     if (!_arrOpeningTime) {
         NSMutableArray* arr = [NSMutableArray new];
         
@@ -108,5 +116,17 @@
        return _arrOpeningTime;
 }
 
+#pragma mark - Save Data
+
+-(NSArray*)saveData
+{
+    NSMutableArray* array = [NSMutableArray new];
+    for (int i = 0; i<[self.tableView numberOfRowsInSection:0]; i++) {
+
+        EditHourTableViewCell* cell = (EditHourTableViewCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+        [array addObject:[cell saveData]];
+    }
+    return array;
+}
 
 @end

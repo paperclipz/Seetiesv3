@@ -114,15 +114,17 @@
 
             self.location = currentLocation;
            
-           // [self getGoogleSearchPlaces];
+            [self requestSearch];
 
+            
         } errorBlock:^(NSString *status) {
             SLog(@"cannot get Device location");
+            [self requestSearch];
+
         }];
     }
     else{
-        [self getGoogleSearchPlaces];
-        
+        [self requestSearch];
     }
         
 }
@@ -136,8 +138,7 @@
 #warning delete bottom 2 line for real time publish || this is for malaysia coordinate testing only
     CLLocation *locloc = [[CLLocation alloc] initWithLatitude:3.1333 longitude:101.7000];
     self.location = locloc;
-    
-    
+        
     [self.sManager getSuggestedLocationFromFoursquare:self.location input:self.txtSearch.text completionBlock:^(id object) {
 
         self.nearbyVenues = [[[DataManager Instance]fourSquareVenueModel] items];
@@ -251,15 +252,20 @@
 
 - (void)textFieldDidChange:(UITextField *)textField {
     
+
+    [self requestSearch];
+    
+}
+
+
+-(void)requestSearch
+{
     [self getGoogleSearchPlaces];
     [self getFourSquareSuggestionPlaces];
-
-    
 }
 
 -(SearchTableViewController*)googleSearchTableViewController
 {
-    
     if(!_googleSearchTableViewController)
     {
         _googleSearchTableViewController = [SearchTableViewController new];
