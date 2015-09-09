@@ -1,36 +1,37 @@
 //
-//  NewProfileV2ViewController.m
+//  NewUserProfileV2ViewController.m
 //  SeetiesIOS
 //
-//  Created by Seeties IOS on 7/29/15.
-//  Copyright (c) 2015 Ahyong87. All rights reserved.
+//  Created by Seeties IOS on 9/8/15.
+//  Copyright (c) 2015 Stylar Network. All rights reserved.
 //
 
-#import "NewProfileV2ViewController.h"
-#import "SettingsViewController.h"
-#import "SearchViewV2Controller.h"
-#import "FeedV2DetailViewController.h"
-@interface NewProfileV2ViewController ()
+#import "NewUserProfileV2ViewController.h"
+
+@interface NewUserProfileV2ViewController ()
 
 @end
 
-@implementation NewProfileV2ViewController
+@implementation NewUserProfileV2ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    DataUrl = [[UrlDataClass alloc]init];
     // Do any additional setup after loading the view from its nib.
-    [[self navigationController] setNavigationBarHidden:YES animated:YES];
     
+
+
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    DataUrl = [[UrlDataClass alloc]init];
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    
-    SearchBarTemp.delegate = self;
-    SearchBarTemp.tintColor = [UIColor redColor];
-    SearchBarTemp.barTintColor = [UIColor clearColor];
-    [SearchBarTemp setBackgroundImage:[[UIImage alloc]init]];
-    
-    GetHeight = 0;
+    ShowLoadingActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     
     MainScroll.delegate = self;
     MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight);
@@ -41,21 +42,24 @@
     
     //BackgroundImage.image = [UIImage imageNamed:@"UserDemo2.jpg"];
     BackgroundImage.frame = CGRectMake(0, -50, screenWidth, 300);
+    BackgroundImage.backgroundColor = [UIColor whiteColor];
     CGRect headerFrame = BackgroundImage.frame;
     headerFrame.origin.y -= 50.0f;
     BackgroundImage.frame = headerFrame;
     [MainScroll addSubview:BackgroundImage withAcceleration:CGPointMake(0.0f, 0.5f)];
     
-    SettingsButton.frame = CGRectMake(screenWidth - 30 - 35, 72, 19, 19);
-    ShareButton.frame = CGRectMake(screenWidth - 30, 72, 17, 18);
-    
-    CheckExpand = YES;
-    
     AllContentView.frame = CGRectMake(0, 100, screenWidth, screenHeight + 50);
-//    CGRect contentFrame = AllContentView.frame;
-//    contentFrame.origin.y += 100.0f;
-//    AllContentView.frame = contentFrame;
     [MainScroll addSubview:AllContentView];
+    
+    BackButton.frame = CGRectMake(0, 0, 64, 64);
+    backIcon.frame = CGRectMake(15, 33, 19, 20);
+    [self.view addSubview:backIcon];
+    [self.view addSubview:BackButton];
+    
+    MoreButton.frame = CGRectMake(screenWidth - 20 - 30, 33, 30, 20);
+    ShareButton.frame = CGRectMake(screenWidth - 20 - 30 - 10 - 17, 34, 17, 18);
+    [self.view addSubview:MoreButton];
+    [self.view addSubview:ShareButton];
     
     CheckLoad_Post = NO;
     CheckLoad_Likes = NO;
@@ -65,31 +69,25 @@
     CurrentPage_Like = 0;
     TotalPage_Post = 1;
     CurrentPage_Post = 0;
+    CheckExpand = YES;
     
-    [self GetUserData];
     
-    
-   // [self InitContentView];
-}
-- (UIStatusBarStyle) preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
-}
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    // accelerate header just with half speed down, but with normal speed up
-    if (scrollView.contentOffset.y > 0) {
-        [MainScroll setAcceleration:A3DefaultAcceleration forView:BackgroundImage];
+    if ([GetUserName isEqualToString:@""] || [GetUserName length] == 0) {
+        
     }else{
-        [MainScroll setAcceleration:CGPointMake(0.0f, 0.5f) forView:BackgroundImage];
+    [self GetUserData];
     }
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)GetUserName:(NSString *)username{
+    GetUserName = username;
+    // [self InitView];
+    
+}
+-(IBAction)BackButtonOnClick:(id)sender{
+[self.navigationController popToRootViewControllerAnimated:YES];
 }
 
-
 -(void)InitContentView{
-    
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
@@ -98,7 +96,7 @@
     [WhiteBackground setTitle:@"" forState:UIControlStateNormal];
     WhiteBackground.backgroundColor = [UIColor whiteColor];
     [AllContentView addSubview:WhiteBackground];
-
+    
     ShowUserProfileImage = [[AsyncImageView alloc]init];
     ShowUserProfileImage.frame = CGRectMake(20, 0, 100, 100);
     ShowUserProfileImage.image = [UIImage imageNamed:@"avatar.png"];
@@ -117,7 +115,7 @@
     }
     [AllContentView addSubview:ShowUserProfileImage];
     
-    NSString *TempUsernameString = [[NSString alloc]initWithFormat:@"@%@",GetUserName];
+    NSString *TempUsernameString = [[NSString alloc]initWithFormat:@"@%@",GetReturnUserName];
     
     UILabel *ShowUserName = [[UILabel alloc]init];//getname
     ShowUserName.frame = CGRectMake(130, 10, screenWidth - 130, 30);
@@ -128,17 +126,16 @@
     ShowUserName.backgroundColor = [UIColor clearColor];
     [AllContentView addSubview:ShowUserName];
     
-    
     UIButton *EditProfileButton = [[UIButton alloc]init];
     EditProfileButton.frame = CGRectMake(screenWidth - 106 - 20, 50, 106, 34);
-    [EditProfileButton setTitle:@"Edit profile" forState:UIControlStateNormal];
-    [EditProfileButton setImage:[UIImage imageNamed:@"edit_profile_btn.png"] forState:UIControlStateNormal];
+   // [EditProfileButton setTitle:@"Edit profile" forState:UIControlStateNormal];
+    [EditProfileButton setImage:[UIImage imageNamed:@"follow_btn.png"] forState:UIControlStateNormal];
     EditProfileButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
     [EditProfileButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
     EditProfileButton.backgroundColor = [UIColor clearColor];
-//    EditProfileButton.layer.cornerRadius = 20;
-//    EditProfileButton.layer.borderWidth = 1;
-//    EditProfileButton.layer.borderColor=[[UIColor grayColor] CGColor];
+    //    EditProfileButton.layer.cornerRadius = 20;
+    //    EditProfileButton.layer.borderWidth = 1;
+    //    EditProfileButton.layer.borderColor=[[UIColor grayColor] CGColor];
     [AllContentView addSubview:EditProfileButton];
     
     UILabel *ShowName_ = [[UILabel alloc]init];//getname
@@ -151,7 +148,7 @@
     [AllContentView addSubview:ShowName_];
     
     GetHeight = 145;
-
+    
     NSString *TempHashTag = @"#lucy #malaysiablogger #fashion #beach #ilovesunset #iamlucydiamondinthesky";
     NSMutableArray *ArrHashTag = [[NSMutableArray alloc]init];
     [ArrHashTag addObject:@"lucy"];
@@ -266,7 +263,7 @@
         }
     }
     
-
+    
     
     
     if (CheckExpand == YES) {
@@ -301,7 +298,7 @@
         GetHeight += 50;
         
     }else{
-    
+        
         if ([TempHashTag isEqualToString:@""] || [TempHashTag isEqualToString:@"(null)"] || [TempHashTag length] == 0) {
             
         }else{
@@ -328,27 +325,15 @@
                                            attributes:@{NSFontAttributeName:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]}
                                               context:nil];
                 
-                //NSLog(@"r ==== %f",r.size.width);
-
-                //CGSize textSize = [ShowHashTagText.text sizeWithAttributes:@{NSFontAttributeName:[ShowHashTagText font]}];
-             //   CGFloat textSize = ShowHashTagText.intrinsicContentSize.width;
                 ShowHashTagText.frame = CGRectMake(30 + frame2.size.width, 15, r.size.width + 20, 20);
                 frame2.size.width += r.size.width + 30;
                 [HashTagScroll addSubview:ShowHashTagText];
-
+                
                 HashTagScroll.contentSize = CGSizeMake(30 + frame2.size.width , 50);
             }
             
             
             GetHeight += 50;
-
-//
-//            CGSize size = [ShowHashTagText sizeThatFits:CGSizeMake(ShowHashTagText.frame.size.width, CGFLOAT_MAX)];
-//            CGRect frame = ShowHashTagText.frame;
-//            frame.size.height = size.height;
-//            ShowHashTagText.frame = frame;
-//            
-//            GetHeight += ShowHashTagText.frame.size.height + 20;
         }
         
         UIButton *Line01 = [[UIButton alloc]init];
@@ -361,7 +346,7 @@
         
         UIButton *CollapseButton = [[UIButton alloc]init];
         CollapseButton.frame = CGRectMake(0, GetHeight, screenWidth, 50);
-       // [CollapseButton setTitle:@"Collapse" forState:UIControlStateNormal];
+        // [CollapseButton setTitle:@"Collapse" forState:UIControlStateNormal];
         [CollapseButton setImage:[UIImage imageNamed:@"showmore_btn.png"] forState:UIControlStateNormal];
         CollapseButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
         [CollapseButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
@@ -371,7 +356,7 @@
         
         GetHeight += 50;
         
-      }
+    }
     
     UIButton *Line01 = [[UIButton alloc]init];
     Line01.frame = CGRectMake(0, GetHeight, screenWidth, 20);
@@ -423,17 +408,12 @@
     LikeView.hidden = YES;
     CollectionView.hidden = NO;
     PostView.hidden = YES;
-    
-//    CGSize contentSize = MainScroll.frame.size;
-//    contentSize.height = GetHeight + PostView.frame.size.height + 200;
-//    MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-//    MainScroll.contentSize = contentSize;
+
     [self InitCollectionView];
-    
 }
 - (void)segmentAction:(UISegmentedControl *)segment
 {
-  //  CGSize contentSize = MainScroll.frame.size;
+    //  CGSize contentSize = MainScroll.frame.size;
     
     switch (segment.selectedSegmentIndex) {
         case 0:
@@ -442,7 +422,7 @@
             LikeView.hidden = YES;
             CollectionView.hidden = NO;
             [self InitCollectionView];
-
+            
             break;
         case 1:
             NSLog(@"Posts click");
@@ -464,49 +444,18 @@
     
     //[self InitView];
 }
--(IBAction)CollapseButton:(id)sender{
-    CheckExpand = YES;
-    GetHeight = 0;
-    for (UIView *subview in AllContentView.subviews) {
-        [subview removeFromSuperview];
-    }
-    [self InitContentView];
-    
-}
--(IBAction)ExpandButton:(id)sender{
-    CheckExpand = NO;
-    GetHeight = 0;
-    for (UIView *subview in AllContentView.subviews) {
-        [subview removeFromSuperview];
-    }
-    [self InitContentView];
-}
 
 -(void)InitCollectionView{
     
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-
+    
     UILabel *ShowCollectionCount = [[UILabel alloc]init];
-    ShowCollectionCount.frame = CGRectMake(30, 20, 150, 20);
+    ShowCollectionCount.frame = CGRectMake(30, 20, screenWidth - 60, 20);
     ShowCollectionCount.text = @"3 Collection";
     ShowCollectionCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
     ShowCollectionCount.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+    ShowCollectionCount.textAlignment = NSTextAlignmentCenter;
     [CollectionView addSubview:ShowCollectionCount];
-    
-    UIButton *Line01 = [[UIButton alloc]init];
-    Line01.frame = CGRectMake(screenWidth - 30 - 25, 10, 1, 30);
-    [Line01 setTitle:@"" forState:UIControlStateNormal];
-    [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
-    [CollectionView addSubview:Line01];
-    
-    UIButton *EditProfileButton = [[UIButton alloc]init];
-    EditProfileButton.frame = CGRectMake(screenWidth - 30 - 20, 10, 30, 30);
-    //[EditProfileButton setTitle:@"New collection" forState:UIControlStateNormal];
-    [EditProfileButton setImage:[UIImage imageNamed:@"add_btn.png"] forState:UIControlStateNormal];
-    EditProfileButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
-    [EditProfileButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
-    EditProfileButton.backgroundColor = [UIColor clearColor];
-    [CollectionView addSubview:EditProfileButton];
     
     
     int TestWidth = screenWidth - 40;
@@ -596,31 +545,13 @@
     NSString *TempString = [[NSString alloc]initWithFormat:@"%@ Likes",GetLikesDataCount];
     
     UILabel *ShowLikesCount = [[UILabel alloc]init];
-    ShowLikesCount.frame = CGRectMake(30, 20, 150, 20);
+    ShowLikesCount.frame = CGRectMake(30, 20, screenWidth - 60, 20);
     ShowLikesCount.text = TempString;
     ShowLikesCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
     ShowLikesCount.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+    ShowLikesCount.textAlignment = NSTextAlignmentCenter;
     [LikeView addSubview:ShowLikesCount];
     
-    UIButton *Line011 = [[UIButton alloc]init];
-    Line011.frame = CGRectMake(screenWidth - 30 - 25, 10, 1, 30);
-    [Line011 setTitle:@"" forState:UIControlStateNormal];
-    [Line011 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
-    [LikeView addSubview:Line011];
-    
-    UIButton *EditProfileButton = [[UIButton alloc]init];
-    EditProfileButton.frame = CGRectMake(screenWidth - 30 - 20, 10, 30, 30);
-    [EditProfileButton setImage:[UIImage imageNamed:@"add_btn.png"] forState:UIControlStateNormal];
-    EditProfileButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
-    [EditProfileButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
-    EditProfileButton.backgroundColor = [UIColor clearColor];
-    [LikeView addSubview:EditProfileButton];
-    
-    UIButton *Line01 = [[UIButton alloc]init];
-    Line01.frame = CGRectMake(15, 60, screenWidth - 30, 1);
-    [Line01 setTitle:@"" forState:UIControlStateNormal];//238
-    [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
-    [LikeView addSubview:Line01];
     
     
     int heightcheck = 61;
@@ -629,7 +560,7 @@
     //NSLog(@"TestWidth is %i",TestWidth);
     int FinalWidth = TestWidth / 3;
     FinalWidth += 1;
-   // NSLog(@"FinalWidth is %i",FinalWidth);
+    // NSLog(@"FinalWidth is %i",FinalWidth);
     int SpaceWidth = FinalWidth + 1;
     
     for (NSInteger i = DataCount_Like; i < DataTotal_Like; i++) {
@@ -673,31 +604,12 @@
     NSString *TempString = [[NSString alloc]initWithFormat:@"%@ Posts",GetPostsDataCount];
     
     UILabel *ShowPostsCount = [[UILabel alloc]init];
-    ShowPostsCount.frame = CGRectMake(30, 20, 150, 20);
+    ShowPostsCount.frame = CGRectMake(30, 20, screenWidth - 60, 20);
     ShowPostsCount.text = TempString;
     ShowPostsCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
     ShowPostsCount.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+    ShowPostsCount.textAlignment = NSTextAlignmentCenter;
     [PostView addSubview:ShowPostsCount];
-    
-    UIButton *Line011 = [[UIButton alloc]init];
-    Line011.frame = CGRectMake(screenWidth - 30 - 25, 10, 1, 30);
-    [Line011 setTitle:@"" forState:UIControlStateNormal];
-    [Line011 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
-    [PostView addSubview:Line011];
-    
-    UIButton *EditProfileButton = [[UIButton alloc]init];
-    EditProfileButton.frame = CGRectMake(screenWidth - 30 - 20, 10, 30, 30);
-    [EditProfileButton setImage:[UIImage imageNamed:@"add_btn.png"] forState:UIControlStateNormal];
-    EditProfileButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
-    [EditProfileButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
-    EditProfileButton.backgroundColor = [UIColor clearColor];
-    [PostView addSubview:EditProfileButton];
-    
-    UIButton *Line01 = [[UIButton alloc]init];
-    Line01.frame = CGRectMake(15, 60, screenWidth - 30, 1);
-    [Line01 setTitle:@"" forState:UIControlStateNormal];//238
-    [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
-    [PostView addSubview:Line01];
     
     
     int heightcheck = 61;
@@ -713,7 +625,7 @@
         ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
         NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[SplitArray objectAtIndex:0]];
-       // NSString *FullImagesURL_First = @"";
+        // NSString *FullImagesURL_First = @"";
         if ([FullImagesURL_First length] == 0) {
             ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
         }else{
@@ -746,10 +658,9 @@
         ShowPlaceName.backgroundColor = [UIColor clearColor];
         [PostView addSubview:ShowPlaceName];
         
-        NSString *TempCount = [[NSString alloc]initWithFormat:@"%@ views",[PostsData_TotalCountArray objectAtIndex:i]];
         UILabel *ShowLocation = [[UILabel alloc]init];
         ShowLocation.frame = CGRectMake(120, heightcheck + 60, screenWidth - 120, 20);
-        ShowLocation.text = TempCount;
+        ShowLocation.text = [PostsData_DisplayCountryName objectAtIndex:i];
         ShowLocation.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowLocation.textColor = [UIColor grayColor];
         ShowLocation.textAlignment = NSTextAlignmentLeft;
@@ -770,6 +681,14 @@
         [ImageButton addTarget:self action:@selector(PostsButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
         [PostView addSubview:ImageButton];
         
+        
+        UIButton *CollectButton = [[UIButton alloc]init];
+        [CollectButton setBackgroundColor:[UIColor clearColor]];
+        [CollectButton setImage:[UIImage imageNamed:@"collected_icon"] forState:UIControlStateNormal];
+        CollectButton.frame = CGRectMake(screenWidth - 20 - 25, heightcheck + 37, 25, 32);
+        CollectButton.tag = i;
+        [PostView addSubview:CollectButton];
+        
         heightcheck += 101;
         
         PostView.frame = CGRectMake(0, GetHeight - 1, screenWidth, heightcheck);
@@ -782,22 +701,40 @@
 }
 
 
--(IBAction)SettingsButton:(id)sender{
-
-    SettingsViewController *SettingsView = [[SettingsViewController alloc]init];
-    [self.view.window.rootViewController presentViewController:SettingsView animated:YES completion:nil];
+-(IBAction)CollapseButton:(id)sender{
+    CheckExpand = YES;
+    GetHeight = 0;
+    for (UIView *subview in AllContentView.subviews) {
+        [subview removeFromSuperview];
+    }
+    [self InitContentView];
+    
 }
+-(IBAction)ExpandButton:(id)sender{
+    CheckExpand = NO;
+    GetHeight = 0;
+    for (UIView *subview in AllContentView.subviews) {
+        [subview removeFromSuperview];
+    }
+    [self InitContentView];
+}
+
+
 -(void)GetUserData{
+    [ShowLoadingActivity startAnimating];
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *GetUseruid = [defaults objectForKey:@"Useruid"];
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
     
-    NSString *urlString = [NSString stringWithFormat:@"%@/%@?token=%@",DataUrl.UserWallpaper_Url,GetUseruid,GetExpertToken];
-    NSLog(@"urlString is %@",urlString);
+    NSString *FullString = [[NSString alloc]initWithFormat:@"%@expert/%@?token=%@",DataUrl.UserWallpaper_Url,GetUserName,GetExpertToken];
     
-    NSURL *url = [NSURL URLWithString:urlString];
+    
+    NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
+    NSLog(@"check postBack URL ==== %@",postBack);
+    // NSURL *url = [NSURL URLWithString:[postBack stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSURL *url = [NSURL URLWithString:postBack];
     NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
-   // NSLog(@"theRequest === %@",theRequest);
+    NSLog(@"theRequest === %@",theRequest);
     [theRequest addValue:@"" forHTTPHeaderField:@"Accept-Encoding"];
     
     theConnection_GetUserData = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
@@ -807,13 +744,12 @@
     if( theConnection_GetUserData ){
         webData = [NSMutableData data];
     }
-    
 }
 -(void)GetPostsData{
     ShowActivityPosts = [[UIActivityIndicatorView alloc]init];
-    ShowActivityPosts.frame = CGRectMake(ProfileControl.frame.origin.x + 125, ProfileControl.frame.origin.y + 105 , 20, 20);
+    ShowActivityPosts.frame = CGRectMake(ProfileControl.frame.origin.x + 125, ProfileControl.frame.origin.y + 5 , 20, 20);
     [ShowActivityPosts setColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f]];
-    [MainScroll addSubview:ShowActivityPosts];
+    [AllContentView addSubview:ShowActivityPosts];
     [ShowActivityPosts startAnimating];
     
     if (CurrentPage_Post == TotalPage_Post) {
@@ -822,8 +758,7 @@
         CurrentPage_Post += 1;
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
-        NSString *Getuid = [defaults objectForKey:@"Useruid"];
-        NSString *FullString = [[NSString alloc]initWithFormat:@"%@%@/posts?token=%@&page=%li",DataUrl.UserWallpaper_Url,Getuid,GetExpertToken,CurrentPage_Post];
+        NSString *FullString = [[NSString alloc]initWithFormat:@"%@%@/posts?token=%@&page=%li",DataUrl.UserWallpaper_Url,GetUid,GetExpertToken,CurrentPage_Post];
         
         
         NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
@@ -846,9 +781,10 @@
 -(void)GetLikesData{
     
     ShowActivityLike = [[UIActivityIndicatorView alloc]init];
-    ShowActivityLike.frame = CGRectMake(ProfileControl.frame.size.width - 95, ProfileControl.frame.origin.y + 105 , 20, 20);
+    ShowActivityLike.frame = CGRectMake((ProfileControl.frame.size.width /2) + 80, ProfileControl.frame.origin.y + 5 , 20, 20);
     [ShowActivityLike setColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f]];
-    [MainScroll addSubview:ShowActivityLike];
+    //[ShowActivityLike setColor:[UIColor redColor]];
+    [AllContentView addSubview:ShowActivityLike];
     [ShowActivityLike startAnimating];
     
     if (CurrentPage_Like == TotalPage_Like) {
@@ -858,12 +794,11 @@
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
-        NSString *Getuid = [defaults objectForKey:@"Useruid"];
-        NSString *FullString = [[NSString alloc]initWithFormat:@"%@%@/likes?token=%@&page=%li",DataUrl.UserWallpaper_Url,Getuid,GetExpertToken,CurrentPage_Like];
+        NSString *FullString = [[NSString alloc]initWithFormat:@"%@%@/likes?token=%@&page=%li",DataUrl.UserWallpaper_Url,GetUid,GetExpertToken,CurrentPage_Like];
         
         
         NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
-        NSLog(@"GetLikesData check postBack URL ==== %@",postBack);
+        NSLog(@"check postBack URL ==== %@",postBack);
         // NSURL *url = [NSURL URLWithString:[postBack stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         NSURL *url = [NSURL URLWithString:postBack];
         NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
@@ -891,20 +826,19 @@
 }
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-//    [ShowActivity stopAnimating];
-//    //[MainScroll setContentSize:CGSizeMake(320, 100 + i * HeightGet)];
-//    //    [spinnerView stopAnimating];
-//    //    [spinnerView removeFromSuperview];
-//    CheckLoadDone = YES;
-//    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:CustomLocalisedString(@"ErrorConnection", nil) message:CustomLocalisedString(@"NoData", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//    
-//    [alert show];
+    //    [self.spinnerView stopAnimating];
+    //    [self.spinnerView removeFromSuperview];
+    [ShowLoadingActivity stopAnimating];
+    //CheckLoadDone = YES;
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:CustomLocalisedString(@"ErrorConnection", nil) message:CustomLocalisedString(@"NoData", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    
+    [alert show];
 }
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     if (connection == theConnection_GetUserData) {
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
-        NSLog(@"GetData is %@",GetData);
+        NSLog(@"User Profile Data return get data to server ===== %@",GetData);
         
         NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
         NSError *myError = nil;
@@ -920,47 +854,36 @@
                 NSDictionary *GetAllData = [res valueForKey:@"data"];
                 
                 NSDictionary *WallpaperData = [GetAllData valueForKey:@"wallpaper"];
-                NSString *GetWallpaper = [[NSString alloc]initWithFormat:@"%@",[WallpaperData objectForKey:@"s"]];
+                GetWallpaper = [[NSString alloc]initWithFormat:@"%@",[WallpaperData objectForKey:@"s"]];
                 
                 NSDictionary *ProfilePhotoData = [GetAllData valueForKey:@"profile_photo_images"];
                 GetProfileImg = [[NSString alloc]initWithFormat:@"%@",[ProfilePhotoData objectForKey:@"l"]];
                 
                 GetName = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"name"]];
-                GetUserName = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"username"]];
+                GetReturnUserName = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"username"]];
                 GetLocation = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"location"]];
                 GetLink = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"personal_link"]];
                 GetDescription = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"description"]];
                 GetFollowersCount = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"follower_count"]];
                 GetFollowingCount = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"following_count"]];
-                GetCategories = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"categories"]];
+                GetUid = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"uid"]];
                 
                 [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:BackgroundImage];
-                NSLog(@"User Wallpaper FullString ====== %@",GetWallpaper);
                 NSURL *url_UserImage = [NSURL URLWithString:GetWallpaper];
-                //NSLog(@"url_NearbyBig is %@",url_NearbyBig);
                 BackgroundImage.imageURL = url_UserImage;
                 
-                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                [defaults setObject:GetCategories forKey:@"UserData_Categories"];
-                [defaults setObject:GetProfileImg forKey:@"UserData_ProfilePhoto"];
-                [defaults setObject:GetWallpaper forKey:@"UserData_Wallpaper"];
-                [defaults synchronize];
                 
-                
-                [self InitContentView];
-                [self GetPostsData];
+               [self InitContentView];
+               [self GetPostsData];
             }else{
-            
+                
             }
             
             
         }
-        
-        
-
-    }else if(connection == theConnection_GetPostsData){
+    }else if (connection == theConnection_GetPostsData) {
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
-        //     NSLog(@"User Post return get data to server ===== %@",GetData);
+        NSLog(@"User Profile Posts Data return get data to server ===== %@",GetData);
         
         NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
         NSError *myError = nil;
@@ -974,17 +897,17 @@
             [ShowAlert show];
         }else{
             
-             NSDictionary *GetResData = [res valueForKey:@"data"];
+            NSDictionary *GetResData = [res valueForKey:@"data"];
             
             GetPostsDataCount = [[NSString alloc]initWithFormat:@"%@",[GetResData objectForKey:@"total_posts"]];
             if ([GetPostsDataCount isEqualToString:@"0"]) {
                 GetLikesDataCount = @"0";
-//                GetDraftsDataCount = @"0";
-//                KosongView.hidden = NO;
+                //                GetDraftsDataCount = @"0";
+                //                KosongView.hidden = NO;
                 [self InitContentView];
                 [self GetLikesData];
             }else{
-               
+                
                 
                 NSArray *GetAllData = (NSArray *)[GetResData valueForKey:@"posts"];
                 
@@ -1000,6 +923,7 @@
                     PostsData_TitleArray = [[NSMutableArray alloc]init];
                     PostsData_place_nameArray = [[NSMutableArray alloc]init];
                     PostsData_TotalCountArray = [[NSMutableArray alloc]init];
+                    PostsData_DisplayCountryName = [[NSMutableArray alloc]init];
                 }else{
                     
                 }
@@ -1068,6 +992,13 @@
                     
                 }
                 
+                NSDictionary *locationData = [GetAllData valueForKey:@"location"];
+                for (NSDictionary * dict in locationData) {
+                    NSString *SearchDisplayName = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"search_display_name"]];
+                    [PostsData_DisplayCountryName addObject:SearchDisplayName];
+                }
+                
+                
                 DataCount_Post = DataTotal_Post;
                 DataTotal_Post = [PostsData_IDArray count];
                 
@@ -1076,7 +1007,7 @@
                 if (CheckFirstTimeLoadPost == 0) {
                     CheckFirstTimeLoadPost = 1;
                     [self GetLikesData];
-           
+                    
                 }else{
                     [self InitPostsView];
                 }
@@ -1087,8 +1018,9 @@
             
         }
         [ShowActivityPosts stopAnimating];
-    }else if(connection == theConnection_GetLikesData){
+    }else if (connection == theConnection_GetLikesData) {
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+        NSLog(@"User Profile likes Data return get data to server ===== %@",GetData);
         
         NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
         NSError *myError = nil;
@@ -1138,21 +1070,21 @@
                     NSString *result2 = [UrlArray componentsJoinedByString:@","];
                     [LikesData_PhotoArray addObject:result2];
                 }
-
+                
                 
                 DataCount_Like = DataTotal_Like;
                 DataTotal_Like = [LikesData_IDArray count];
-
+                
                 //[self InitView];
-//                CheckLoad_Likes = NO;
-//                
-//                if (CheckFirstTimeLoadLikes == 0) {
-//                    CheckFirstTimeLoadLikes = 1;
-//                    [self GetDraftsData];
-//                    
-//                }else{
-//                    [self InitLikeData];
-//                }
+                //                CheckLoad_Likes = NO;
+                //
+                //                if (CheckFirstTimeLoadLikes == 0) {
+                //                    CheckFirstTimeLoadLikes = 1;
+                //                    [self GetDraftsData];
+                //
+                //                }else{
+                //                    [self InitLikeData];
+                //                }
                 [self InitLikeData];
                 
             }
@@ -1161,26 +1093,7 @@
             
         }
     }
-}
--(IBAction)SearchButton:(id)sender{
-    SearchViewV2Controller *SearchView = [[SearchViewV2Controller alloc]initWithNibName:@"SearchViewV2Controller" bundle:nil];
-    //[self presentViewController:SearchView animated:YES completion:nil];
-    [self.view.window.rootViewController presentViewController:SearchView animated:YES completion:nil];
-}
--(IBAction)LikesButtonOnClick:(id)sender{
-    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
-    NSLog(@"button %li",(long)getbuttonIDN);
     
-    FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
-    [self.navigationController pushViewController:FeedDetailView animated:YES];
-    [FeedDetailView GetPostID:[LikesData_IDArray objectAtIndex:getbuttonIDN]];
-}
--(IBAction)PostsButtonOnClick:(id)sender{
-    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
-    NSLog(@"button %li",(long)getbuttonIDN);
-    
-    FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
-    [self.navigationController pushViewController:FeedDetailView animated:YES];
-    [FeedDetailView GetPostID:[PostsData_IDArray objectAtIndex:getbuttonIDN]];
+    [ShowLoadingActivity stopAnimating];
 }
 @end

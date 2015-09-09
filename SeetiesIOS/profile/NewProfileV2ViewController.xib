@@ -61,9 +61,9 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="lP7-9x-Ofv">
-                    <rect key="frame" x="290" y="67" width="17" height="24"/>
+                    <rect key="frame" x="290" y="72" width="17" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="TopBarShare.png">
+                    <state key="normal" image="profileshare_icon.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
@@ -86,7 +86,7 @@
     </objects>
     <resources>
         <image name="SettingsButton.png" width="38" height="38"/>
-        <image name="TopBarShare.png" width="17" height="24"/>
+        <image name="profileshare_icon.png" width="16" height="18"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

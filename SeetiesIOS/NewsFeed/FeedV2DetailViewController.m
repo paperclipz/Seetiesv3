@@ -105,13 +105,13 @@
     LikeButton.frame = CGRectMake(20, 1, 50, 60);
     CommentButton.frame = CGRectMake(70, 1, 50, 60);
     shareFBButton.frame = CGRectMake(120, 1, 50, 60);
-    CollectButton.frame = CGRectMake(screenWidth - 20 - 100, 12, 100, 40);
+    
+    
+    [CollectButton setImage:[UIImage imageNamed:@"collect_btn.png"] forState:UIControlStateNormal];
     [CollectButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
     [CollectButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
-    CollectButton.backgroundColor = [UIColor colorWithRed:250.0f/255.0f green:221.0f/255.0f blue:96.0f/255.0f alpha:1.0f];
-    CollectButton.layer.cornerRadius = 20;
-    CollectButton.layer.borderWidth= 1;
-    CollectButton.layer.borderColor=[[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] CGColor];
+    CollectButton.backgroundColor = [UIColor clearColor];
+    CollectButton.frame = CGRectMake(screenWidth - 20 - 113, 14, 113, 37);
 
     ShowGoogleTranslate = NO;
     CheckClickCount = 0;
@@ -431,6 +431,13 @@
                 GetLikeCheck = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"like"]];
                 PhotoCount = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"photos_count"]];
                 ViewCountString = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"view_count"]];
+                TotalCollectionCount = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"collection_count"]];
+                GetTags = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"tags"]];
+                
+                NSLog(@"TotalCollectionCount is %@",TotalCollectionCount);
+                NSLog(@"GetTags is %@",GetTags);
+                
+
                 
                 
                 if ([GetLikeCheck isEqualToString:@"0"]) {
@@ -1473,6 +1480,7 @@
 
         [MImageScroll addSubview:ShowCaptionText];
     }
+    //NSLog(@"start draw title");
     
     NSInteger productcount = [UrlArray count];
     MImageScroll.contentSize = CGSizeMake(productcount * screenWidth, 340);
@@ -1584,40 +1592,56 @@
         GetHeightCheck += ShowMessage.frame.size.height;
     }
     
-    NSMutableArray *ArrHashTag = [[NSMutableArray alloc]init];
-    [ArrHashTag addObject:@"Go to site"];
-    [ArrHashTag addObject:@"homestay"];
-    [ArrHashTag addObject:@"bestfood"];
-    [ArrHashTag addObject:@"sexy"];
-    
-    // Show link and hash tag
-    
-    UIScrollView *HashTagScroll = [[UIScrollView alloc]init];
-    HashTagScroll.delegate = self;
-    HashTagScroll.frame = CGRectMake(0, GetHeightCheck, screenWidth, 50);
-    HashTagScroll.backgroundColor = [UIColor whiteColor];
-    [MainScroll addSubview:HashTagScroll];
-    CGRect frame2;
-    for (int i= 0; i < [ArrHashTag count]; i++) {
-        UILabel *ShowHashTagText = [[UILabel alloc]init];
-        ShowHashTagText.text = [ArrHashTag objectAtIndex:i];
-        ShowHashTagText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-        ShowHashTagText.textAlignment = NSTextAlignmentCenter;
-        ShowHashTagText.backgroundColor = [UIColor whiteColor];
-        ShowHashTagText.layer.cornerRadius = 5;
-        ShowHashTagText.layer.borderWidth = 1;
-        ShowHashTagText.layer.borderColor=[[UIColor grayColor] CGColor];
+    if ([GetTags length] == 0 || [GetTags isEqualToString:@""] || [GetTags isEqualToString:@"(null)"] || [GetTags isEqualToString:@"#[tag:]"]) {
         
-        CGSize textSize = [ShowHashTagText.text sizeWithAttributes:@{NSFontAttributeName:[ShowHashTagText font]}];
-        ShowHashTagText.frame = CGRectMake(30 + frame2.size.width, 15, textSize.width + 20, 20);
-        frame2.size.width += textSize.width + 30;
-        [HashTagScroll addSubview:ShowHashTagText];
+    }else{
+        NSString *CheckString1 = [GetTags stringByReplacingOccurrencesOfString:@"#[tag:" withString:@""];
+        NSLog(@"Tags CheckString1 %@", CheckString1);
+        NSString* CheckString2 = [CheckString1 stringByReplacingOccurrencesOfString:@"]" withString:@""];
+        NSLog(@"Tags CheckString2 %@", CheckString2);
+        NSArray *TempHashTags = [CheckString2 componentsSeparatedByString: @","];
+        NSLog(@"Tags TempHashTags is %@",TempHashTags);
         
-        HashTagScroll.contentSize = CGSizeMake(30 + frame2.size.width , 50);
+        NSMutableArray *ArrHashTag = [[NSMutableArray alloc]initWithArray:TempHashTags];
+        
+        // Show link and hash tag
+        
+        UIScrollView *HashTagScroll = [[UIScrollView alloc]init];
+        HashTagScroll.delegate = self;
+        HashTagScroll.frame = CGRectMake(0, GetHeightCheck, screenWidth, 50);
+        HashTagScroll.backgroundColor = [UIColor whiteColor];
+        [MainScroll addSubview:HashTagScroll];
+        CGRect frame2;
+        for (int i= 0; i < [ArrHashTag count]; i++) {
+            UILabel *ShowHashTagText = [[UILabel alloc]init];
+            ShowHashTagText.text = [ArrHashTag objectAtIndex:i];
+            ShowHashTagText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+            ShowHashTagText.textAlignment = NSTextAlignmentCenter;
+            ShowHashTagText.backgroundColor = [UIColor whiteColor];
+            ShowHashTagText.layer.cornerRadius = 5;
+            ShowHashTagText.layer.borderWidth = 1;
+            ShowHashTagText.layer.borderColor=[[UIColor grayColor] CGColor];
+            
+            NSString *Text = [ArrHashTag objectAtIndex:i];
+            CGRect r = [Text boundingRectWithSize:CGSizeMake(200, 0)
+                                          options:NSStringDrawingUsesLineFragmentOrigin
+                                       attributes:@{NSFontAttributeName:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]}
+                                          context:nil];
+            
+            // CGSize textSize = [ShowHashTagText.text sizeWithAttributes:@{NSFontAttributeName:[ShowHashTagText font]}];
+            // CGFloat textSize = ShowHashTagText.intrinsicContentSize.width;
+            ShowHashTagText.frame = CGRectMake(30 + frame2.size.width, 15, r.size.width + 20, 20);
+            frame2.size.width += r.size.width + 30;
+            [HashTagScroll addSubview:ShowHashTagText];
+            
+            HashTagScroll.contentSize = CGSizeMake(30 + frame2.size.width , 50);
+        }
+        
+        
+        GetHeightCheck += 50;
     }
     
-    
-    GetHeightCheck += 50;
+
     
 
     
@@ -1715,7 +1739,7 @@
         GetMessageHeight += 30;
     }
     
-    if ([Like_UsernameArray count] == 0 && [CommentIDArray count] == 0) {
+    if ([Like_UsernameArray count] == 0 && [CommentIDArray count] == 0 && [TotalCollectionCount length] == 0) {
         //GetMessageHeight += 20;
     }else{
         if ([GetUsername isEqualToString:GetPostName]) {
@@ -1796,35 +1820,29 @@
          GetMessageHeight += 40;
     }
     
+    if ([TotalCollectionCount length] == 0 || [TotalCollectionCount isEqualToString:@""] || [TotalCollectionCount isEqualToString:@"(null)"]) {
+        GetMessageHeight += 10;
+    }else{
+        //collected show
+        UIImageView *ShowCollectionIcon = [[UIImageView alloc]init];
+        ShowCollectionIcon.image = [UIImage imageNamed:@"InteractLike.png"];
+        ShowCollectionIcon.frame = CGRectMake(20, GetMessageHeight + 13, 18, 15);
+        [MainScroll addSubview:ShowCollectionIcon];
+        
+        NSString *TempCountString = [[NSString alloc]initWithFormat:@"Collected in %@ collections",TotalCollectionCount];
+        
+        UILabel *ShowCollectionText = [[UILabel alloc]init];
+        ShowCollectionText.frame = CGRectMake(50, GetMessageHeight, screenWidth - 69, 40);
+        ShowCollectionText.text = TempCountString;
+        ShowCollectionText.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+        ShowCollectionText.backgroundColor = [UIColor clearColor];
+        ShowCollectionText.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
+        [MainScroll addSubview:ShowCollectionText];
+        
+        GetMessageHeight += 40;
+    }
     
-    //collected show
-    
-    UIButton *Line10 = [[UIButton alloc]init];
-    Line10.frame = CGRectMake(0, GetMessageHeight, screenWidth, 1);
-    [Line10 setTitle:@"" forState:UIControlStateNormal];//238
-    [Line10 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
-    [MainScroll addSubview:Line10];
-    
-    UIImageView *ShowCollectionIcon = [[UIImageView alloc]init];
-    ShowCollectionIcon.image = [UIImage imageNamed:@"InteractLike.png"];
-    ShowCollectionIcon.frame = CGRectMake(20, GetMessageHeight + 13, 18, 15);
-    [MainScroll addSubview:ShowCollectionIcon];
-    
-    UILabel *ShowCollectionText = [[UILabel alloc]init];
-    ShowCollectionText.frame = CGRectMake(50, GetMessageHeight, screenWidth - 69, 40);
-    ShowCollectionText.text = @"Collected in 21 collections";
-    ShowCollectionText.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
-    ShowCollectionText.backgroundColor = [UIColor clearColor];
-    ShowCollectionText.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
-    [MainScroll addSubview:ShowCollectionText];
-    
-//    UIButton *OpenLikeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [OpenLikeButton setFrame:CGRectMake(50, GetMessageHeight, screenWidth - 69, 40)];
-//    [OpenLikeButton setBackgroundColor:[UIColor clearColor]];
-//    [OpenLikeButton addTarget:self action:@selector(SeeLikeButton:) forControlEvents:UIControlEventTouchUpInside];
-//    [MainScroll addSubview:OpenLikeButton];
-    
-    GetMessageHeight += 40;
+
     
     
 
@@ -2899,19 +2917,24 @@
 {
   //  NSLog(@"+scrollViewWillBeginDragging");
   //  ShowbarView.hidden = YES;
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-    [UIView animateWithDuration:1.0
-                          delay:0
-                        options:UIViewAnimationOptionCurveEaseIn
-                     animations:^{
-                       //  MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight - 64);
-                         ShowBarImg.frame = CGRectMake(0, 0, screenWidth, 64);
-                         ShowDownBarView.frame = CGRectMake(0, screenHeight - 60, screenWidth, 60);
-                         self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight, screenWidth, 50);
-                     }
-                     completion:^(BOOL finished) {
-                     }];
+
+    if (scrollView == MImageScroll) {
+        
+    }else{
+        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+        CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+        [UIView animateWithDuration:1.0
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseIn
+                         animations:^{
+                             //  MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight - 64);
+                             ShowBarImg.frame = CGRectMake(0, 0, screenWidth, 64);
+                             ShowDownBarView.frame = CGRectMake(0, screenHeight - 60, screenWidth, 60);
+                             self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight, screenWidth, 50);
+                         }
+                         completion:^(BOOL finished) {
+                         }];
+    }
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
@@ -2934,19 +2957,25 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     NSLog(@"-scrollViewDidEndDecelerating");
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-    [UIView animateWithDuration:0.2
-                          delay:0
-                        options:UIViewAnimationOptionCurveEaseIn
-                     animations:^{
-                      //   MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight - 114);
-                         //ShowBarImg.frame = CGRectMake(0, -64, screenWidth, 64);
-                         ShowDownBarView.frame = CGRectMake(0, screenHeight - 110, screenWidth, 60);
-                         self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
-                     }
-                     completion:^(BOOL finished) {
-                     }];
+
+    if (scrollView == MImageScroll) {
+        
+    }else{
+        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+        CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+        [UIView animateWithDuration:0.2
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseIn
+                         animations:^{
+                             //   MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight - 114);
+                             //ShowBarImg.frame = CGRectMake(0, -64, screenWidth, 64);
+                             ShowDownBarView.frame = CGRectMake(0, screenHeight - 110, screenWidth, 60);
+                             self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
+                         }
+                         completion:^(BOOL finished) {
+                         }];
+    }
+
 }
 
 - (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView

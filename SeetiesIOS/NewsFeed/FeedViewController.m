@@ -13,7 +13,7 @@
 #import "InviteFrenViewController.h"
 #import "FeedV2DetailViewController.h"
 #import "SearchDetailViewController.h"
-
+#import "NewUserProfileV2ViewController.h"
 @interface FeedViewController ()
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;
@@ -88,7 +88,7 @@
     
     ShowFeedText.frame = CGRectMake(15, 20, screenWidth - 30, 44);
     BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
-    SearchButton.frame = CGRectMake(screenWidth - 84 - 15, 27, 84, 30);
+    SearchButton.frame = CGRectMake(screenWidth - 34 - 15, 20, 34, 41);
     
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     
@@ -282,10 +282,12 @@
     [LocalScroll addSubview:TempBackground];
     
     UIButton *TempButton = [[UIButton alloc]init];
-    TempButton.frame = CGRectMake((screenWidth / 2) - 75, 30, 150, 60);
-    [TempButton setTitle:@"Nearby" forState:UIControlStateNormal];
-    TempButton.backgroundColor = [UIColor colorWithRed:156.0f/255.0f green:204.0f/255.0f blue:101.0f/255.0f alpha:1.0f];
-    TempButton.layer.cornerRadius = 20;
+    TempButton.frame = CGRectMake((screenWidth / 2) - 60, 41, 120, 37);
+  //  [TempButton setTitle:@"Nearby" forState:UIControlStateNormal];
+    [TempButton setImage:[UIImage imageNamed:@"nearby_btn.png"] forState:UIControlStateNormal];
+    TempButton.backgroundColor = [UIColor clearColor];
+//    TempButton.backgroundColor = [UIColor colorWithRed:156.0f/255.0f green:204.0f/255.0f blue:101.0f/255.0f alpha:1.0f];
+//    TempButton.layer.cornerRadius = 20;
     [TempButton addTarget:self action:@selector(NearbyButton:) forControlEvents:UIControlEventTouchUpInside];
     [LocalScroll addSubview: TempButton];
     
@@ -355,6 +357,14 @@
             stringPath1  = [stringPath1 stringByAppendingPathComponent:[arrUserImage objectAtIndex:i]];
             ShowUserProfileImage.image = [UIImage imageWithData:[NSData dataWithContentsOfFile:stringPath1]];
             [LocalScroll addSubview:ShowUserProfileImage];
+            
+            UIButton *ClicktoOpenUserProfileButton = [[UIButton alloc]init];
+            ClicktoOpenUserProfileButton.frame = CGRectMake(20, heightcheck + i + 10, 40, 40);
+            [ClicktoOpenUserProfileButton setTitle:@"" forState:UIControlStateNormal];
+            ClicktoOpenUserProfileButton.backgroundColor = [UIColor clearColor];
+            ClicktoOpenUserProfileButton.tag = i;
+            [ClicktoOpenUserProfileButton addTarget:self action:@selector(OpenUserProfileOnClick:) forControlEvents:UIControlEventTouchUpInside];
+            [LocalScroll addSubview:ClicktoOpenUserProfileButton];
         
             
             UILabel *ShowUserName = [[UILabel alloc]init];
@@ -402,8 +412,14 @@
             
             heightcheck += newImage.size.height + 5;
             
+            UIImageView *ShowPin = [[UIImageView alloc]init];
+            ShowPin.image = [UIImage imageNamed:@"location_icon.png"];
+            ShowPin.frame = CGRectMake(20, heightcheck + i + 4, 9, 12);
+            //ShowPin.frame = CGRectMake(15, 210 + 8 + heightcheck + i, 8, 11);
+            [LocalScroll addSubview:ShowPin];
+            
             UILabel *ShowAddress = [[UILabel alloc]init];
-            ShowAddress.frame = CGRectMake(20, heightcheck + i, screenWidth - 40, 20);
+            ShowAddress.frame = CGRectMake(40, heightcheck + i, screenWidth - 80, 20);
             ShowAddress.text = [arrAddress objectAtIndex:i];
             ShowAddress.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
             ShowAddress.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
@@ -490,36 +506,39 @@
 //            [LocalScroll addSubview:ShowLikesIcon];
             
             UIButton *LikeButton = [[UIButton alloc]init];
-            LikeButton.frame = CGRectMake(40, heightcheck + i + 20, 23, 19);
-            [LikeButton setImage:[UIImage imageNamed:@"PostLike.png"] forState:UIControlStateNormal];
+            LikeButton.frame = CGRectMake(40, heightcheck + i + 20, 24, 19);
+            [LikeButton setImage:[UIImage imageNamed:@"like_icon.png"] forState:UIControlStateNormal];
             [LikeButton setImage:[UIImage imageNamed:@"PostLikeRed.png"] forState:UIControlStateSelected];
             LikeButton.backgroundColor = [UIColor clearColor];
             LikeButton.tag = i;
             [LikeButton addTarget:self action:@selector(LikeButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
             [LocalScroll addSubview:LikeButton];
             
+            
             UIImageView *ShowCommentIcon = [[UIImageView alloc]init];
-            ShowCommentIcon.image = [UIImage imageNamed:@"PostComment.png"];
+            ShowCommentIcon.image = [UIImage imageNamed:@"comment_icon.png"];
             ShowCommentIcon.frame = CGRectMake(100, heightcheck + i + 20 ,23, 19);
             //    ShowCommentIcon.backgroundColor = [UIColor redColor];
             [LocalScroll addSubview:ShowCommentIcon];
             
             UIImageView *ShowShareIcon = [[UIImageView alloc]init];
-            ShowShareIcon.image = [UIImage imageNamed:@"PostComment.png"];
-            ShowShareIcon.frame = CGRectMake(160, heightcheck + i + 20 ,23, 19);
+            ShowShareIcon.image = [UIImage imageNamed:@"share_icon.png"];
+            ShowShareIcon.frame = CGRectMake(160, heightcheck + i + 20 ,19, 19);
             //    ShowCommentIcon.backgroundColor = [UIColor redColor];
             [LocalScroll addSubview:ShowShareIcon];
             
             
             UIButton *CollectButton = [[UIButton alloc]init];
-            [CollectButton setTitle:@"Collect" forState:UIControlStateNormal];
+            //[CollectButton setTitle:@"Collect" forState:UIControlStateNormal];
+            [CollectButton setImage:[UIImage imageNamed:@"collect_btn.png"] forState:UIControlStateNormal];
             [CollectButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
             [CollectButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
-            CollectButton.backgroundColor = [UIColor colorWithRed:250.0f/255.0f green:221.0f/255.0f blue:96.0f/255.0f alpha:1.0f];
-            CollectButton.frame = CGRectMake(screenWidth - 20 - 120, heightcheck + i + 10, 120, 40);
-            CollectButton.layer.cornerRadius = 20;
-            CollectButton.layer.borderWidth= 1;
-            CollectButton.layer.borderColor=[[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] CGColor];
+            //CollectButton.backgroundColor = [UIColor colorWithRed:250.0f/255.0f green:221.0f/255.0f blue:96.0f/255.0f alpha:1.0f];
+            CollectButton.backgroundColor = [UIColor clearColor];
+            CollectButton.frame = CGRectMake(screenWidth - 20 - 113, heightcheck + i + 10, 113, 37);
+//            CollectButton.layer.cornerRadius = 20;
+//            CollectButton.layer.borderWidth= 1;
+//            CollectButton.layer.borderColor=[[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] CGColor];
             [LocalScroll addSubview:CollectButton];
             
             
@@ -560,12 +579,14 @@
     TempBackground.frame = CGRectMake(0, 0, screenWidth, 120);
     TempBackground.backgroundColor = [UIColor grayColor];
     [MainScroll addSubview:TempBackground];
-    
+
     UIButton *TempButton = [[UIButton alloc]init];
-    TempButton.frame = CGRectMake((screenWidth / 2) - 75, 30, 150, 60);
-    [TempButton setTitle:@"Nearby" forState:UIControlStateNormal];
-    TempButton.backgroundColor = [UIColor colorWithRed:156.0f/255.0f green:204.0f/255.0f blue:101.0f/255.0f alpha:1.0f];
-    TempButton.layer.cornerRadius = 20;
+    TempButton.frame = CGRectMake((screenWidth / 2) - 60, 41, 120, 37);
+    //  [TempButton setTitle:@"Nearby" forState:UIControlStateNormal];
+    [TempButton setImage:[UIImage imageNamed:@"nearby_btn.png"] forState:UIControlStateNormal];
+    TempButton.backgroundColor = [UIColor clearColor];
+    //    TempButton.backgroundColor = [UIColor colorWithRed:156.0f/255.0f green:204.0f/255.0f blue:101.0f/255.0f alpha:1.0f];
+    //    TempButton.layer.cornerRadius = 20;
     [TempButton addTarget:self action:@selector(NearbyButton:) forControlEvents:UIControlEventTouchUpInside];
     [MainScroll addSubview: TempButton];
     
@@ -675,6 +696,14 @@
             ShowUserProfileImage.image = UserImage;
             [MainScroll addSubview:ShowUserProfileImage];
             
+            UIButton *ClicktoOpenUserProfileButton = [[UIButton alloc]init];
+            ClicktoOpenUserProfileButton.frame = CGRectMake(20, heightcheck + i + 10, 40, 40);
+            [ClicktoOpenUserProfileButton setTitle:@"" forState:UIControlStateNormal];
+            ClicktoOpenUserProfileButton.backgroundColor = [UIColor clearColor];
+            ClicktoOpenUserProfileButton.tag = i;
+            [ClicktoOpenUserProfileButton addTarget:self action:@selector(OpenUserProfileOnClick:) forControlEvents:UIControlEventTouchUpInside];
+            [MainScroll addSubview:ClicktoOpenUserProfileButton];
+            
             if (CheckFirstTimeLoad == 0) {
                 NSData *imageData = UIImageJPEGRepresentation(UserImage, 1);
                 NSString *stringPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,   NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"Content_Folder"];
@@ -735,8 +764,14 @@
             
             heightcheck += newImage.size.height + 5;
             
+            UIImageView *ShowPin = [[UIImageView alloc]init];
+            ShowPin.image = [UIImage imageNamed:@"location_icon.png"];
+            ShowPin.frame = CGRectMake(20, heightcheck + i + 4, 9, 12);
+            //ShowPin.frame = CGRectMake(15, 210 + 8 + heightcheck + i, 8, 11);
+            [MainScroll addSubview:ShowPin];
+            
             UILabel *ShowAddress = [[UILabel alloc]init];
-            ShowAddress.frame = CGRectMake(20, heightcheck + i, screenWidth - 40, 20);
+            ShowAddress.frame = CGRectMake(40, heightcheck + i, screenWidth - 80, 20);
             ShowAddress.text = [arrAddress objectAtIndex:i];
             ShowAddress.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
             ShowAddress.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
@@ -817,8 +852,8 @@
             
             
             UIButton *LikeButton = [[UIButton alloc]init];
-            LikeButton.frame = CGRectMake(40, heightcheck + i + 20, 23, 19);
-            [LikeButton setImage:[UIImage imageNamed:@"PostLike.png"] forState:UIControlStateNormal];
+            LikeButton.frame = CGRectMake(40, heightcheck + i + 20, 24, 19);
+            [LikeButton setImage:[UIImage imageNamed:@"like_icon.png"] forState:UIControlStateNormal];
             [LikeButton setImage:[UIImage imageNamed:@"PostLikeRed.png"] forState:UIControlStateSelected];
             LikeButton.backgroundColor = [UIColor clearColor];
             LikeButton.tag = i;
@@ -827,27 +862,29 @@
             
             
             UIImageView *ShowCommentIcon = [[UIImageView alloc]init];
-            ShowCommentIcon.image = [UIImage imageNamed:@"PostComment.png"];
+            ShowCommentIcon.image = [UIImage imageNamed:@"comment_icon.png"];
             ShowCommentIcon.frame = CGRectMake(100, heightcheck + i + 20 ,23, 19);
             //    ShowCommentIcon.backgroundColor = [UIColor redColor];
             [MainScroll addSubview:ShowCommentIcon];
             
             UIImageView *ShowShareIcon = [[UIImageView alloc]init];
-            ShowShareIcon.image = [UIImage imageNamed:@"PostComment.png"];
-            ShowShareIcon.frame = CGRectMake(160, heightcheck + i + 20 ,23, 19);
+            ShowShareIcon.image = [UIImage imageNamed:@"share_icon.png"];
+            ShowShareIcon.frame = CGRectMake(160, heightcheck + i + 20 ,19, 19);
             //    ShowCommentIcon.backgroundColor = [UIColor redColor];
             [MainScroll addSubview:ShowShareIcon];
             
             
             UIButton *CollectButton = [[UIButton alloc]init];
-            [CollectButton setTitle:@"Collect" forState:UIControlStateNormal];
+            //[CollectButton setTitle:@"Collect" forState:UIControlStateNormal];
+            [CollectButton setImage:[UIImage imageNamed:@"collect_btn.png"] forState:UIControlStateNormal];
             [CollectButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
             [CollectButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
-            CollectButton.backgroundColor = [UIColor colorWithRed:250.0f/255.0f green:221.0f/255.0f blue:96.0f/255.0f alpha:1.0f];
-            CollectButton.frame = CGRectMake(screenWidth - 20 - 120, heightcheck + i + 10, 120, 40);
-            CollectButton.layer.cornerRadius = 20;
-            CollectButton.layer.borderWidth= 1;
-            CollectButton.layer.borderColor=[[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] CGColor];
+           // CollectButton.backgroundColor = [UIColor colorWithRed:250.0f/255.0f green:221.0f/255.0f blue:96.0f/255.0f alpha:1.0f];
+            CollectButton.backgroundColor = [UIColor clearColor];
+            CollectButton.frame = CGRectMake(screenWidth - 20 - 113, heightcheck + i + 10, 113, 37);
+//            CollectButton.layer.cornerRadius = 20;
+//            CollectButton.layer.borderWidth= 1;
+//            CollectButton.layer.borderColor=[[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] CGColor];
             [MainScroll addSubview:CollectButton];
             
             
@@ -1663,6 +1700,14 @@
         [SearchDetailView SearchCategory:JoinAllCategoryID Getlat:latPoint GetLong:lonPoint GetCategoryName:JoinAllCategoryName];
         [SearchDetailView GetTitle:@"All"];
     }
+}
+-(IBAction)OpenUserProfileOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSLog(@"button %li",(long)getbuttonIDN);
+    
+    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+    [NewUserProfileV2View GetUserName:[arrUserName objectAtIndex:getbuttonIDN]];
 }
 -(IBAction)LikeButtonOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;

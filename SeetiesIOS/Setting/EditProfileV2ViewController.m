@@ -25,8 +25,17 @@
     MainScroll.delegate = self;
     MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    GetWallpaper = [defaults objectForKey:@"UserData_Wallpaper"];
+    GetProfileImg = [defaults objectForKey:@"UserData_ProfilePhoto"];
+    
     BackgroundImg.frame = CGRectMake(0, 64, screenWidth, 120);
     NSLog(@"BackgroundImg is %@",BackgroundImg);
+    [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:BackgroundImg];
+    //NSLog(@"User Wallpaper FullString ====== %@",GetWallpaper);
+    NSURL *url_WallpaperImage = [NSURL URLWithString:GetWallpaper];
+    BackgroundImg.imageURL = url_WallpaperImage;
     
     UserImg.contentMode = UIViewContentModeScaleAspectFill;
     UserImg.layer.backgroundColor=[[UIColor clearColor] CGColor];
@@ -34,6 +43,13 @@
     UserImg.layer.borderWidth = 5;
     UserImg.layer.masksToBounds = YES;
     UserImg.layer.borderColor=[[UIColor whiteColor] CGColor];
+    [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:UserImg];
+    if ([GetProfileImg length] == 0 || [GetProfileImg isEqualToString:@"null"] || [GetProfileImg isEqualToString:@"<null>"]) {
+        UserImg.image = [UIImage imageNamed:@"avatar.png"];
+    }else{
+        NSURL *url_UserImage = [NSURL URLWithString:GetProfileImg];
+        UserImg.imageURL = url_UserImage;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

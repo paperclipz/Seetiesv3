@@ -66,6 +66,9 @@
     
     NSString *TotalLikeCount;
     NSString *totalCommentCount;
+    NSString *TotalCollectionCount;
+    
+    NSString *GetTags;
     
     NSString *GetTitle;
     NSString *GetMessage;

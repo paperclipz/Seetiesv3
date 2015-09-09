@@ -1,37 +1,30 @@
 //
-//  NewProfileV2ViewController.h
+//  NewUserProfileV2ViewController.h
 //  SeetiesIOS
 //
-//  Created by Seeties IOS on 7/29/15.
-//  Copyright (c) 2015 Ahyong87. All rights reserved.
+//  Created by Seeties IOS on 9/8/15.
+//  Copyright (c) 2015 Stylar Network. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "A3ParallaxScrollView.h"
 #import "AsyncImageView.h"
 #import "UrlDataClass.h"
-
-//https://github.com/freak4pc/SMTagField tag simple
-@interface NewProfileV2ViewController : BaseViewController<UIScrollViewDelegate,UISearchBarDelegate>{
-
+@interface NewUserProfileV2ViewController : UIViewController<UIScrollViewDelegate>{
+    
     IBOutlet A3ParallaxScrollView *MainScroll;
     IBOutlet AsyncImageView *BackgroundImage;
     IBOutlet UIView *AllContentView;
     
-    int GetHeight;
-    
-    UISegmentedControl *ProfileControl;
-    
-    UIView *PostView;
-    UIView *CollectionView;
-    UIView *LikeView;
-    
-    IBOutlet UIButton *SettingsButton;
     IBOutlet UIButton *ShareButton;
-    IBOutlet UISearchBar *SearchBarTemp;
+    IBOutlet UIButton *MoreButton;
     
-    BOOL CheckExpand;
+    IBOutlet UIImageView *backIcon;
+    IBOutlet UIButton *BackButton;
     
+    NSString *GetUserName;
+    IBOutlet UIActivityIndicatorView *ShowLoadingActivity;
+
     UrlDataClass *DataUrl;
     NSMutableData *webData;
     
@@ -39,20 +32,28 @@
     NSURLConnection *theConnection_GetPostsData;
     NSURLConnection *theConnection_GetLikesData;
     
-    //content data
-    AsyncImageView *ShowUserProfileImage;
-    
-    
     NSString *GetProfileImg;
+    NSString *GetWallpaper;
+    NSString *GetReturnUserName;
     NSString *GetName;
-    NSString *GetUserName;
     NSString *GetLocation;
     NSString *GetDescription;
     NSString *GetLink;
     NSString *GetFollowersCount;
     NSString *GetFollowingCount;
-    NSString *GetCategories;
+    NSString *GetUid;
     
+    //content data
+    AsyncImageView *ShowUserProfileImage;
+    
+    int GetHeight;
+    BOOL CheckExpand;
+    
+    UISegmentedControl *ProfileControl;
+    
+    UIView *PostView;
+    UIView *CollectionView;
+    UIView *LikeView;
     
     //like data
     NSString *GetLikesDataCount;
@@ -67,6 +68,7 @@
     NSMutableArray *PostsData_UserInfo_UrlArray;
     NSMutableArray *PostsData_TitleArray;
     NSMutableArray *PostsData_TotalCountArray;
+    NSMutableArray *PostsData_DisplayCountryName;
     
     UIActivityIndicatorView *ShowActivityLike;
     UIActivityIndicatorView *ShowActivityPosts;
@@ -86,8 +88,7 @@
     int CheckFirstTimeLoadLikes;
     int CheckFirstTimeLoadPost;
     
-    IBOutlet UIButton *SearchButton;
 }
--(IBAction)SettingsButton:(id)sender;
--(IBAction)SearchButton:(id)sender;
+-(void)GetUserName:(NSString *)username;
+-(IBAction)BackButtonOnClick:(id)sender;
 @end

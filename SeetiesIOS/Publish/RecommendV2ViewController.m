@@ -1804,7 +1804,7 @@
                     [body appendData:[@"Content-Type: image/jpeg\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
                     [body appendData:[@"Content-Transfer-Encoding: binary\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
                     [body appendData:[NSData dataWithData:imageData]];
-                    // add it to body
+                    // add it to bodyr
                     [body appendData:imageData];
                     [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
                 }else{

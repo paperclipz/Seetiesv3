@@ -1151,7 +1151,7 @@
 //        [SelectButton setBackgroundColor:[UIColor clearColor]];
 //        [SelectButton addTarget:self action:@selector(ProductButton:) forControlEvents:UIControlEventTouchUpInside];
 //        [MainScroll addSubview:SelectButton];
-//        
+//
 //        
 //        UIImageView *ShowPin = [[UIImageView alloc]init];
 //        ShowPin.image = [UIImage imageNamed:@"FeedPin.png"];
@@ -1552,6 +1552,15 @@
         ShowLocation.textAlignment = NSTextAlignmentLeft;
         ShowLocation.backgroundColor = [UIColor clearColor];
         [PostsView addSubview:ShowLocation];
+        
+        UIButton *SelectButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        SelectButton.frame = CGRectMake(15, PostGetHeight, screenWidth - 30, 150);
+        [SelectButton setTitle:@"" forState:UIControlStateNormal];
+        SelectButton.tag = i;
+        [SelectButton setBackgroundColor:[UIColor clearColor]];
+        [SelectButton addTarget:self action:@selector(ProductButton:) forControlEvents:UIControlEventTouchUpInside];
+        [PostsView addSubview:SelectButton];
+
         
         
         PostGetHeight += 160;
