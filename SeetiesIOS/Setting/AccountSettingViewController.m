@@ -33,38 +33,31 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
     MainScroll.delegate = self;
-    [MainScroll setContentSize:CGSizeMake(screenWidth, screenHeight)];
+    [MainScroll setContentSize:CGSizeMake(screenWidth, 600)];
     MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     ShowTitle.frame = CGRectMake(15, 20, screenWidth - 30, 44);
-    SaveButton.frame = CGRectMake(screenWidth - 46 - 15, 29, 46, 30);
+    SaveButton.frame = CGRectMake(screenWidth - 50, 20, 50, 44);
     EditBackImg.frame = CGRectMake(0, 85, screenWidth, 462);
     
-    Emailfield.frame = CGRectMake(screenWidth - 216 - 15, 92, 216, 30);
-    ShowPrimary.frame = CGRectMake(screenWidth - 107 - 30, 186, 107, 21);
-    ShowSecondary.frame = CGRectMake(screenWidth - 107 - 30, 230, 107, 21);
-    ShowSystemlanguage.frame = CGRectMake(screenWidth - 107 - 30, 289, 107, 21);
-    ShowGender.frame = CGRectMake(screenWidth - 107 - 30, 411, 107, 21);
-    ShowBirthday.frame = CGRectMake(screenWidth - 107 - 30, 453, 107, 21);
+    Emailfield.frame = CGRectMake(screenWidth - 216 - 23, 301, 216, 30);
+    ShowPrimary.frame = CGRectMake(screenWidth - 107 - 40, 136, 107, 21);
+    ShowSecondary.frame = CGRectMake(screenWidth - 107 - 40, 180, 107, 21);
+    ShowSystemlanguage.frame = CGRectMake(screenWidth - 107 - 40, 223, 107, 21);
+    
+    CaretPrimaryImg.frame = CGRectMake(screenWidth - 10 - 13, 140, 8, 13);
+    CaretSecondaryImg.frame = CGRectMake(screenWidth - 10 - 13, 184, 8, 13);
+    CaretAppLanguageImg.frame = CGRectMake(screenWidth - 10 - 13, 227, 8, 13);
+    CaretChangePasswordImg.frame = CGRectMake(screenWidth - 10 - 13, 353, 8, 13);
+    CaretDeleteAccountImg.frame = CGRectMake(screenWidth - 10 - 13, 521, 8, 13);
 
-    DeleteButton.frame = CGRectMake(0, 503, screenWidth, 44);
+    DeleteButton.frame = CGRectMake(0, 506, screenWidth, 44);
     
+    FacebookSwitch.frame = CGRectMake(screenWidth - 51 - 10, 390, 51, 31);
+    InstagramSwitch.frame = CGRectMake(screenWidth - 51- 10, 431, 51, 31);
     DataUrl = [[UrlDataClass alloc]init];
-    
-    GenderArray = [[NSMutableArray alloc]init];
-    [GenderArray addObject:CustomLocalisedString(@"Male",nil)];
-    [GenderArray addObject:CustomLocalisedString(@"Female",nil)];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetEmail = [defaults objectForKey:@"UserData_Email"];
-    GetGender = [defaults objectForKey:@"UserData_Gender"];
-    if ([GetGender isEqualToString:@"m"]) {
-        ShowGender.text = CustomLocalisedString(@"Male",nil);
-        GetGender = CustomLocalisedString(@"Male", nil);
-    }else{
-        ShowGender.text = CustomLocalisedString(@"Female",nil);
-        GetGender = CustomLocalisedString(@"Female", nil);
-    }
-    Getdob = [defaults objectForKey:@"UserData_dob"];
     GetSystemLanguage = [defaults objectForKey:@"UserData_SystemLanguage"];
     GetLanguage1 = [defaults objectForKey:@"UserData_Language1"];
     GetLanguage2 = [defaults objectForKey:@"UserData_Language2"];
@@ -80,7 +73,6 @@
     Emailfield.delegate = self;
     Emailfield.text = GetEmail;
    // ShowEmail.text = GetEmail;
-    ShowBirthday.text = Getdob;
     
     ShowSystemlanguage.text = GetSystemLanguage;
     ShowPrimary.text = GetLanguage1;
@@ -146,20 +138,17 @@
     CheckSystemLanguage = 0;
     CheckLangauge1 = 0;
     CheckLanguage2 = 0;
-    Checkdob = 0;
-    CheckGender = 0;
+
     
     
     ShowTitle.text = CustomLocalisedString(@"SettingsPage_AccountSettings",nil);
-    [SaveButton setTitle:CustomLocalisedString(@"EditProfileSave",nil) forState:UIControlStateNormal];
+   // [SaveButton setTitle:CustomLocalisedString(@"EditProfileSave",nil) forState:UIControlStateNormal];
     EmailText.text = CustomLocalisedString(@"SignUpPage_Email", nil);
     PrimaryText.text = CustomLocalisedString(@"Primary", nil);
     SecondaryText.text = CustomLocalisedString(@"Secondary", nil);
-    GenderText.text = CustomLocalisedString(@"Gender", nil);
-    BirthdayText.text = CustomLocalisedString(@"Birthday", nil);
     AppLanguageText.text = CustomLocalisedString(@"AppLangauge", nil);
     ChangePasswordText.text = CustomLocalisedString(@"ChangePassword", nil);
-    [DeleteButton setTitle:CustomLocalisedString(@"Deactivateaccount",nil) forState:UIControlStateNormal];
+   // [DeleteButton setTitle:CustomLocalisedString(@"Deactivateaccount",nil) forState:UIControlStateNormal];
     ShowSubTitle.text = CustomLocalisedString(@"ContentLanguage", nil);
     
 }
@@ -192,9 +181,7 @@
 #pragma mark - UIPicker view Delegate
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    if (pickerView.tag == 100) {
-        return [GenderArray count];
-    }else if(pickerView.tag == 3){
+   if(pickerView.tag == 3){
         return [SystemLanguageNameArray count];
     }else if(pickerView.tag == 1){
     return [LanguageArray count];
@@ -206,10 +193,7 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    if (pickerView.tag == 100) {
-        ShowGender.text = [GenderArray objectAtIndex:row];
-      //  GetGender = [GenderArray objectAtIndex:row];
-    }else if(pickerView.tag == 1){
+    if(pickerView.tag == 1){
         ShowPrimary.text = [LanguageArray objectAtIndex:row];
         GetLanguage1_ID = [LanguageIDArray objectAtIndex:row];
     }else if(pickerView.tag == 2){
@@ -219,21 +203,11 @@
         ShowSystemlanguage.text = [SystemLanguageNameArray objectAtIndex:row];
         GetSystemLanguage_ID = [SystemLanguageIDArray objectAtIndex:row];
     }
-    
-    
-//    if (CheckSelectLang == 1) {
-//        GetSelectLang01 = [LanguageIDArray objectAtIndex:row];
-//        ShowSelectLang01.text = [LanguageArray objectAtIndex:row];
-//    }else{
-//        GetSelectLang02 = [LanguageIDArray objectAtIndex:row];
-//        ShowSelectLang02.text = [LanguageArray objectAtIndex:row];
-//    }
+
 }
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    if (pickerView.tag == 100) {
-         return [GenderArray objectAtIndex:row];
-    }else if(pickerView.tag == 3){
+    if(pickerView.tag == 3){
         return [SystemLanguageNameArray objectAtIndex:row];
     }else if(pickerView.tag == 1){
         return [LanguageArray objectAtIndex:row];
@@ -246,14 +220,13 @@
     
     Language_PickerView.hidden = YES;
     Toolbar.hidden = YES;
-    Birthday_Picker.hidden = YES;
-   // CheckSelectLang = 0;
+
     
 }
 -(IBAction)SelectPrimaryButton:(id)sender{
     Language_PickerView.hidden = YES;
     Toolbar.hidden = YES;
-    Birthday_Picker.hidden = YES;
+
     [Emailfield resignFirstResponder];
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
@@ -275,7 +248,7 @@
 -(IBAction)SelectSecondaryButton:(id)sender{
     Language_PickerView.hidden = YES;
     Toolbar.hidden = YES;
-    Birthday_Picker.hidden = YES;
+
     [Emailfield resignFirstResponder];
     
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
@@ -298,7 +271,7 @@
 -(IBAction)SystemLanguageButton:(id)sender{
     Language_PickerView.hidden = YES;
     Toolbar.hidden = YES;
-    Birthday_Picker.hidden = YES;
+
     [Emailfield resignFirstResponder];
     
      CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
@@ -318,68 +291,9 @@
     [Toolbar setItems:barItems animated:YES];
     Toolbar.hidden = NO;
 }
--(IBAction)GenderButton:(id)sender{
-    Language_PickerView.hidden = YES;
-    Toolbar.hidden = YES;
-    Birthday_Picker.hidden = YES;
-    [Emailfield resignFirstResponder];
-    
-    
-     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-    Language_PickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, screenHeight - 216, screenWidth, 216)];
-    Language_PickerView.tag = 100;
-    [self.view addSubview:Language_PickerView];
-    Language_PickerView.delegate = self;
-    Language_PickerView.backgroundColor = [UIColor whiteColor];
-    Language_PickerView.showsSelectionIndicator = YES;
-    
-    NSMutableArray *barItems = [[NSMutableArray alloc] init];
-    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(DoneSelect:)];
-    UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    [barItems addObject:flexibleSpace];
-    [barItems addObject:doneBtn];
-    [Toolbar setItems:barItems animated:YES];
-    Toolbar.hidden = NO;
-}
--(IBAction)BirthdayButton:(id)sender{
-    Language_PickerView.hidden = YES;
-    Toolbar.hidden = YES;
-    Birthday_Picker.hidden = YES;
-    [Emailfield resignFirstResponder];
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-    Birthday_Picker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, screenHeight - 216, screenWidth, 216)];
-    Birthday_Picker.tag = 100;
-    [self.view addSubview:Birthday_Picker];
-   // Birthday_Picker.delegate = self;
-    Birthday_Picker.datePickerMode = UIDatePickerModeDate;
-    NSLog(@"ShowBirthday.text is %@",ShowBirthday.text);
-    if ([ShowBirthday.text length] == 0 || [ShowBirthday.text isEqualToString:@"0000-00-00"]) {
-        Birthday_Picker.date = [NSDate date];
-    }else{
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"yyyy-MM-dd"];
-        NSDate *date = [dateFormat dateFromString:ShowBirthday.text];
-        [Birthday_Picker setDate:date];
-    }
-    
-    [Birthday_Picker addTarget:self   action:@selector(GetBirthdayChange)forControlEvents:UIControlEventValueChanged];
-    Birthday_Picker.backgroundColor = [UIColor whiteColor];
-   //Birthday_Picker.showsSelectionIndicator = YES;
-    
-    NSMutableArray *barItems = [[NSMutableArray alloc] init];
-    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(DoneSelect:)];
-    UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    [barItems addObject:flexibleSpace];
-    [barItems addObject:doneBtn];
-    [Toolbar setItems:barItems animated:YES];
-    Toolbar.hidden = NO;
-}
 -(IBAction)ChangePasswordButton:(id)sender{
     Language_PickerView.hidden = YES;
     Toolbar.hidden = YES;
-    Birthday_Picker.hidden = YES;
     
     ChangePasswordViewController *ChangePasswordView = [[ChangePasswordViewController alloc]init];
     CATransition *transition = [CATransition animation];
@@ -390,30 +304,8 @@
     [self.view.window.layer addAnimation:transition forKey:nil];
     [self presentViewController:ChangePasswordView animated:NO completion:nil];
 }
--(void)GetBirthdayChange{
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"yyyy-MM-dd"];
-    NSString *date = [dateFormat stringFromDate:Birthday_Picker.date];
-    NSLog(@"date is >>> , %@",date);
-    ShowBirthday.text = date;
-}
 
 -(IBAction)SaveButton:(id)sender{
-
-    if ([ShowBirthday.text isEqualToString:Getdob]) {
-        Checkdob = 0;
-       // NSLog(@"1");
-    }else{
-        Checkdob = 1;
-      //  NSLog(@"2");
-    }
-    if ([ShowGender.text isEqualToString:GetGender]) {
-        CheckGender = 0;
-    }else{
-        CheckGender = 1;
-    }
-    NSLog(@"CheckGender is %i",CheckGender);
-    NSLog(@"GetGender is %@",GetGender);
     if ([ShowSystemlanguage.text isEqualToString:GetSystemLanguage]) {
         CheckSystemLanguage = 0;
     }else{
@@ -523,34 +415,6 @@
     [body appendData:[[NSString stringWithFormat:@"%@",Emailfield.text] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     
-    if (Checkdob == 1) {
-        //parameter second
-        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        //Attaching the key name @"parameter_second" to the post body
-        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"dob\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-        //Attaching the content to be posted ( ParameterSecond )
-        [body appendData:[[NSString stringWithFormat:@"%@",ShowBirthday.text] dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    }
-    
-    if (CheckGender == 1) {
-        NSString *TempGender;
-        if ([ShowGender.text isEqualToString:CustomLocalisedString(@"Male",nil)]) {
-            TempGender = @"m";
-        }else{
-            TempGender = @"f";
-        }
-        
-        
-        //parameter second
-        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        //Attaching the key name @"parameter_second" to the post body
-        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"gender\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-        //Attaching the content to be posted ( ParameterSecond )
-        [body appendData:[[NSString stringWithFormat:@"%@",TempGender] dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    }
-    
     if (CheckSystemLanguage == 1) {
         //parameter second
         [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -653,36 +517,18 @@
                 [ShowAlert show];
                 // send user back login screen.
             }else{
-                NSString *GetName_ = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"name"]];
-                NSLog(@"GetName_ is %@",GetName_);
-                NSString *Getusername = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"username"]];
-                NSLog(@"Getusername is %@",Getusername);
-                NSString *Getemail = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"email"]];
-                NSLog(@"Getemail is %@",Getemail);
-                NSString *GetLocation = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"location"]];
-                NSLog(@"GetLocation is %@",GetLocation);
-                NSString *GetAbouts_ = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"description"]];
-                NSLog(@"GetAbouts_ is %@",GetAbouts_);
-                NSString *GetUrl = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"personal_link"]];
-                NSLog(@"GetUrl is %@",GetUrl);
-                NSString *GetFollowersCount = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"follower_count"]];
-                NSLog(@"GetFollowersCount is %@",GetFollowersCount);
-                NSString *GetFollowingCount = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"following_count"]];
-                NSLog(@"GetFollowingCount is %@",GetFollowingCount);
-                NSString *Getcategories = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"categories"]];
-                NSLog(@"Getcategories is %@",Getcategories);
-                NSString *Getdob_ = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"dob"]];
-                NSLog(@"Getdob_ is %@",Getdob_);
-                NSString *GetGender_ = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"gender"]];
-                NSLog(@"GetGender_ is %@",GetGender_);
+                NSDictionary *GetAllData = [res valueForKey:@"data"];
                 
-                NSDictionary *SystemLanguageData = [res valueForKey:@"system_language"];
+                NSString *Getemail = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"email"]];
+                NSLog(@"Getemail is %@",Getemail);
+                
+                NSDictionary *SystemLanguageData = [GetAllData valueForKey:@"system_language"];
                 NSString *GetSystemLanguage_ = [[NSString alloc]initWithFormat:@"%@",[SystemLanguageData objectForKey:@"origin_caption"]];
                 NSLog(@"GetSystemLanguage_ is %@",GetSystemLanguage_);
                 
                 NSMutableArray *GetUserSelectLanguagesArray = [[NSMutableArray alloc]init];
                 NSMutableArray *TempArray = [[NSMutableArray alloc]init];
-                NSDictionary *NSDictionaryLanguage = [res valueForKey:@"languages"];
+                NSDictionary *NSDictionaryLanguage = [GetAllData valueForKey:@"languages"];
                 NSLog(@"NSDictionaryLanguage is %@",NSDictionaryLanguage);
                 for (NSDictionary * dict in NSDictionaryLanguage){
                     NSString *Getid = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"id"]];
@@ -737,15 +583,7 @@
                 NSLog(@"TempCheckSystemLanguage is %@",TempCheckSystemLanguage);
                 if ([TempCheckSystemLanguage isEqualToString:GetSystemLanguage_]) {
                     [defaults setObject:CheckGetUserProfile forKey:@"UserData_CheckData"];
-                    [defaults setObject:Getcategories forKey:@"UserData_Categories"];
-                    [defaults setObject:GetName_ forKey:@"UserData_Name"];
-                    [defaults setObject:Getusername forKey:@"UserData_Username"];
-                    [defaults setObject:GetAbouts_ forKey:@"UserData_Abouts"];
-                    [defaults setObject:GetUrl forKey:@"UserData_Url"];
                     [defaults setObject:Getemail forKey:@"UserData_Email"];
-                    [defaults setObject:GetLocation forKey:@"UserData_Location"];
-                    [defaults setObject:Getdob_ forKey:@"UserData_dob"];
-                    [defaults setObject:GetGender_ forKey:@"UserData_Gender"];
                     [defaults setObject:GetSystemLanguage_ forKey:@"UserData_SystemLanguage"];
                     [defaults setObject:GetLanguage_1 forKey:@"UserData_Language1"];
                     [defaults setObject:GetLanguage_2 forKey:@"UserData_Language2"];
@@ -762,15 +600,7 @@
                     [self dismissViewControllerAnimated:NO completion:nil];
                 }else{
                     [defaults setObject:CheckGetUserProfile forKey:@"UserData_CheckData"];
-                    [defaults setObject:Getcategories forKey:@"UserData_Categories"];
-                    [defaults setObject:GetName_ forKey:@"UserData_Name"];
-                    [defaults setObject:Getusername forKey:@"UserData_Username"];
-                    [defaults setObject:GetAbouts_ forKey:@"UserData_Abouts"];
-                    [defaults setObject:GetUrl forKey:@"UserData_Url"];
                     [defaults setObject:Getemail forKey:@"UserData_Email"];
-                    [defaults setObject:GetLocation forKey:@"UserData_Location"];
-                    [defaults setObject:Getdob_ forKey:@"UserData_dob"];
-                    [defaults setObject:GetGender_ forKey:@"UserData_Gender"];
                     [defaults setObject:GetSystemLanguage_ forKey:@"UserData_SystemLanguage"];
                     [defaults setObject:GetLanguage_1 forKey:@"UserData_Language1"];
                     [defaults setObject:GetLanguage_2 forKey:@"UserData_Language2"];
@@ -920,7 +750,6 @@
     NSLog(@"textFieldShouldBeginEditing");
     Language_PickerView.hidden = YES;
     Toolbar.hidden = YES;
-    Birthday_Picker.hidden = YES;
     return YES;
 }
 

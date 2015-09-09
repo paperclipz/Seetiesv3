@@ -49,7 +49,7 @@
     DOBField.delegate = self;
     GenderField.delegate = self;
     
-    
+    CaretLocationImg.frame = CGRectMake(screenWidth - 20 - 13, 609, 8, 13);
 
     
     

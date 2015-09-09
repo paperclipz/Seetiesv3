@@ -45,7 +45,6 @@
         _manager.requestSerializer = [AFHTTPRequestSerializer serializer];
         _manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/html",@"text/plain",nil];
         _manager.securityPolicy.allowInvalidCertificates = YES;
-        
 
     }
     

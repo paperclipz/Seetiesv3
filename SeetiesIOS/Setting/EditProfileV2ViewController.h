@@ -57,6 +57,8 @@
     UIPickerView *Gender_PickerView;
     UIDatePicker *Birthday_Picker;
     
+    IBOutlet UIImageView *CaretLocationImg;
+    
 }
 -(IBAction)BackButton:(id)sender;
 -(IBAction)SaveButton:(id)sender;

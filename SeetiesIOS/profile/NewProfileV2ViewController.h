@@ -60,6 +60,10 @@
     NSString *GetGender;
     NSString *GetPersonalTags;
     NSMutableArray *ArrHashTag;
+    NSString *GetEmail;
+    NSString *GetSystemLanguage;
+    NSString *GetPrimaryLanguage;
+    NSString *GetSecondaryLanguage;
     
     //like data
     NSString *GetLikesDataCount;

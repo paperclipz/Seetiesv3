@@ -968,8 +968,28 @@
                 Getdob = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"dob"]];
                 GetGender = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"gender"]];
                 GetPersonalTags = [[NSString alloc]initWithFormat:@"%@",[GetAllData valueForKey:@"personal_tags"]];
+                GetEmail = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"email"]];
                 
+                NSDictionary *SystemLanguageData = [GetAllData valueForKey:@"system_language"];
+                GetSystemLanguage = [[NSString alloc]initWithFormat:@"%@",[SystemLanguageData objectForKey:@"origin_caption"]];
                 
+                NSDictionary *LanguageData = [res valueForKey:@"languages"];
+                NSMutableArray *TempArray = [[NSMutableArray alloc]init];
+                if (LanguageData == NULL || [ LanguageData count ] == 0) {
+                    GetPrimaryLanguage = @"English";
+                    GetSecondaryLanguage = @"";
+                }else{
+                    for (NSDictionary * dict in LanguageData) {
+                        NSString *GetTempLanguage_1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"origin_caption"]];
+                        [TempArray addObject:GetTempLanguage_1];
+                    }
+                    GetPrimaryLanguage = [[NSString alloc]initWithFormat:@"%@",[TempArray objectAtIndex:0]];
+                    if ([TempArray count] == 1) {
+                        GetSecondaryLanguage = @"";
+                    }else{
+                        GetSecondaryLanguage = [[NSString alloc]initWithFormat:@"%@",[TempArray objectAtIndex:1]];
+                    }
+                }
                 
                 if ([GetPersonalTags length] == 0 || [GetPersonalTags isEqualToString:@""] || [GetPersonalTags isEqualToString:@"(null)"] || GetPersonalTags == nil) {
                 }else{
@@ -994,14 +1014,14 @@
                 [defaults setObject:GetUserName forKey:@"UserData_Username"];
                 [defaults setObject:GetDescription forKey:@"UserData_Abouts"];
                 [defaults setObject:GetLink forKey:@"UserData_Url"];
-               // [defaults setObject:GetEmail forKey:@"UserData_Email"];
+                [defaults setObject:GetEmail forKey:@"UserData_Email"];
                 [defaults setObject:GetLocation forKey:@"UserData_Location"];
                 [defaults setObject:Getdob forKey:@"UserData_dob"];
                 [defaults setObject:GetGender forKey:@"UserData_Gender"];
                 [defaults setObject:GetPersonalTags forKey:@"UserData_PersonalTags"];
-//                [defaults setObject:GetSystemLanguage forKey:@"UserData_SystemLanguage"];
-//                [defaults setObject:GetLanguage_1 forKey:@"UserData_Language1"];
-//                [defaults setObject:GetLanguage_2 forKey:@"UserData_Language2"];
+                [defaults setObject:GetSystemLanguage forKey:@"UserData_SystemLanguage"];
+                [defaults setObject:GetPrimaryLanguage forKey:@"UserData_Language1"];
+                [defaults setObject:GetSecondaryLanguage forKey:@"UserData_Language2"];
                 [defaults setObject:GetFollowersCount forKey:@"UserData_FollowersCount"];
                 [defaults setObject:GetFollowingCount forKey:@"UserData_FollowingCount"];
                 [defaults synchronize];
