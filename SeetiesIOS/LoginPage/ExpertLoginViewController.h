@@ -13,6 +13,8 @@
 @class LeveyTabBarController;
 @interface ExpertLoginViewController : GAITrackedViewController<UITextFieldDelegate,UIScrollViewDelegate,UITabBarControllerDelegate>{
     
+    
+    
     LeveyTabBarController *leveyTabBarController;
 
     IBOutlet UIImageView *ShowBackgroundImage;
@@ -39,6 +41,8 @@
     
     IBOutlet UIActivityIndicatorView *ShowActivity;
 }
+
+@property(nonatomic,copy)IDBlock backFromExpertLoginBlock;
 -(void)GetSameEmailData:(NSString *)EmailData;
 -(IBAction)BackButton:(id)sender;
 

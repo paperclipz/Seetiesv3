@@ -998,8 +998,6 @@
 		8AD6C8721B7460DB0040437E /* MKNetworkOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6C8661B7460DB0040437E /* MKNetworkOperation.m */; };
 		8AD6C8731B7460DB0040437E /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6C8691B7460DB0040437E /* Reachability.m */; };
 		8AD6C8761B7495B60040437E /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6C8751B7495B60040437E /* BaseViewController.m */; };
-		8AD6C87B1B74A7CD0040437E /* RecommendPopUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6C8791B74A7CD0040437E /* RecommendPopUpViewController.m */; };
-		8AD6C87C1B74A7CD0040437E /* RecommendPopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6C87A1B74A7CD0040437E /* RecommendPopUpViewController.xib */; };
 		8AD6C87E1B74AAE90040437E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C87D1B74AAE90040437E /* QuartzCore.framework */; };
 		8AD6C8841B7849EF0040437E /* UserDefaultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6C8831B7849EF0040437E /* UserDefaultModel.m */; };
 		8AD6C8871B784BD50040437E /* ExploreCountryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6C8861B784BD50040437E /* ExploreCountryModel.m */; };
@@ -2253,9 +2251,6 @@
 		8AD6C8691B7460DB0040437E /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		8AD6C8741B7495B60040437E /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		8AD6C8751B7495B60040437E /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
-		8AD6C8781B74A7CD0040437E /* RecommendPopUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendPopUpViewController.h; sourceTree = "<group>"; };
-		8AD6C8791B74A7CD0040437E /* RecommendPopUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendPopUpViewController.m; sourceTree = "<group>"; };
-		8AD6C87A1B74A7CD0040437E /* RecommendPopUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendPopUpViewController.xib; sourceTree = "<group>"; };
 		8AD6C87D1B74AAE90040437E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8AD6C8821B7849EF0040437E /* UserDefaultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaultModel.h; sourceTree = "<group>"; };
 		8AD6C8831B7849EF0040437E /* UserDefaultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaultModel.m; sourceTree = "<group>"; };
@@ -4335,9 +4330,6 @@
 				8A34090B1B872B11009B66C3 /* EditPost */,
 				8A3757ED1B85DA46009DB7D4 /* EditPhoto */,
 				8A2E2CE71B81E1360010895E /* Extra */,
-				8AD6C8781B74A7CD0040437E /* RecommendPopUpViewController.h */,
-				8AD6C8791B74A7CD0040437E /* RecommendPopUpViewController.m */,
-				8AD6C87A1B74A7CD0040437E /* RecommendPopUpViewController.xib */,
 				8A2E2C111B79E7A30010895E /* RecommendationViewController.h */,
 				8A2E2C121B79E7A30010895E /* RecommendationViewController.m */,
 				8A2E2C131B79E7A30010895E /* RecommendationViewController.xib */,
@@ -5063,7 +5055,6 @@
 				8AD6C7AE1B70934D0040437E /* TabArrow@2x.png in Resources */,
 				8A6584381B981C0E00BC86B9 /* CategoryCollectionViewCell.xib in Resources */,
 				8AD6C0BF1B706CF30040437E /* FeedV2DetailViewController.xib in Resources */,
-				8AD6C87C1B74A7CD0040437E /* RecommendPopUpViewController.xib in Resources */,
 				8AD6C77D1B70934D0040437E /* PostComment.png in Resources */,
 				8AD6C7731B70934D0040437E /* NextImage@3x.png in Resources */,
 				8AD6C6051B70934D0040437E /* ImageShade.png in Resources */,
@@ -5423,7 +5414,6 @@
 				8A3409D01B8B0DCB009B66C3 /* UIImage+RoundedCorner.m in Sources */,
 				8AD6C2A71B7072FB0040437E /* TellaStoryViewController.m in Sources */,
 				8AD6C0FA1B706CF30040437E /* SearchViewController.m in Sources */,
-				8AD6C87B1B74A7CD0040437E /* RecommendPopUpViewController.m in Sources */,
 				8AD6C0CE1B706CF30040437E /* UserProfileV2ViewController.m in Sources */,
 				8A6584491B99554D00BC86B9 /* DismissingAnimationController.m in Sources */,
 				8AD6C0AB1B706CF30040437E /* InviteFrenViewController.m in Sources */,

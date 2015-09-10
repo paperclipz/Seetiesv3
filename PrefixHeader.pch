@@ -36,6 +36,7 @@
 #import "SearchManager.h"
 #import "TPKeyboardAvoidingScrollView.h"
 #import "ActionSheetPicker.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 //for currency Usage
 #import "BKCurrencyTextField.h"

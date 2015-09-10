@@ -17,7 +17,6 @@
 
 #import "FeedV2ViewController.h"
 #import "LeveyTabBarController.h"
-#import "RecommendPopUpViewController.h"
 
 #import "FeedViewController.h"
 #import "NewProfileV2ViewController.h"
@@ -416,7 +415,6 @@
     FeedViewController *firstViewController=[[FeedViewController alloc]initWithNibName:@"FeedViewController" bundle:nil];
     Explore2ViewController *secondViewController=[[Explore2ViewController alloc]initWithNibName:@"Explore2ViewController" bundle:nil];
     //SelectImageViewController *threeViewController=[[SelectImageViewController alloc]initWithNibName:@"SelectImageViewController" bundle:nil];
-    RecommendPopUpViewController *threeViewController=[[RecommendPopUpViewController alloc]initWithNibName:@"RecommendPopUpViewController" bundle:nil];
     NotificationViewController *fourViewController=[[NotificationViewController alloc]initWithNibName:@"NotificationViewController" bundle:nil];
     //ProfileV2ViewController *fiveViewController=[[ProfileV2ViewController alloc]initWithNibName:@"ProfileV2ViewController" bundle:nil];
     NewProfileV2ViewController *fiveViewController=[[NewProfileV2ViewController alloc]initWithNibName:@"NewProfileV2ViewController" bundle:nil];
@@ -425,7 +423,7 @@
     UINavigationController *navController3 = [[UINavigationController alloc] initWithRootViewController:fourViewController];
     UINavigationController *navController4 = [[UINavigationController alloc] initWithRootViewController:fiveViewController];
     
-    NSArray *ctrlArr = [NSArray arrayWithObjects:navController,navController2,threeViewController,navController3,navController4,nil];
+    NSArray *ctrlArr = [NSArray arrayWithObjects:navController,navController2,navController3,navController4,nil];
     
     NSMutableDictionary *imgDic = [NSMutableDictionary dictionaryWithCapacity:3];
     [imgDic setObject:[UIImage imageNamed:@"TabBarFeed.png"] forKey:@"Default"];

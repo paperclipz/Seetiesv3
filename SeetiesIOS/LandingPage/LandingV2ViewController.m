@@ -28,7 +28,6 @@
 #import <Parse/Parse.h>
 #import "InstagramLoginWebViewController.h"
 #import "CRMotionView.h"
-#import "RecommendPopUpViewController.h"
 
 #import "FeedViewController.h"
 
@@ -444,7 +443,13 @@
     transition.subtype = kCATransitionFromRight;
     [self.view.window.layer addAnimation:transition forKey:nil];
     [self presentViewController:ExpertLoginView animated:NO completion:nil];
-
+    
+    
+    __weak typeof (self)weakSelf = self;
+    ExpertLoginView.backFromExpertLoginBlock = ^(id object)
+    {
+        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+    };
     
 }
 -(IBAction)btnWhyWeUseFacebookClicked:(id)sender{
