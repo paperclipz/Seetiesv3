@@ -26,6 +26,7 @@
     NSMutableArray *uidArray;
     NSMutableArray *MessageArray;
     NSMutableArray *ActionArray;
+    NSMutableArray *DateArray;
     
     IBOutlet UIActivityIndicatorView *ShowActivity;
     
@@ -38,6 +39,20 @@
     UIView *NotificationsView;
     
     int GetHeight;
+    
+    NSURLConnection *theConnection_GetNotification;
+    NSURLConnection *theConnection_GetFollowing;
+    
+    //following data
+    NSMutableArray *Following_PostIDArray;
+    NSMutableArray *Following_TypeArray;
+    NSMutableArray *Following_UserThumbnailArray;
+    NSMutableArray *Following_PostThumbnailArray;
+    NSMutableArray *Following_UserNameArray;
+    NSMutableArray *Following_uidArray;
+    NSMutableArray *Following_MessageArray;
+    NSMutableArray *Following_ActionArray;
+    NSMutableArray *Following_DateArray;
 }
 -(void)GetNotification;
 @end

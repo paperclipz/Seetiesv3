@@ -33,6 +33,7 @@
     
 
     [sendButton setTitle:CustomLocalisedString(@"Send", nil) forState:UIControlStateNormal];
+
     
     //ShowNoDataView.frame = CGRectMake(0, 0, screenWidth, [UIScreen mainScreen].bounds.size.height);
     ShowNoDataView.hidden = YES;
@@ -52,6 +53,7 @@
     ShowMainTitle.frame = CGRectMake(15, 20, screenWidth - 30, 44);
     MainScroll.frame = CGRectMake(0, 120, screenWidth, screenHeight - 164);
     LikeScroll.frame = CGRectMake(0, 120, screenWidth, screenHeight - 164);
+    CollectionsScroll.frame = CGRectMake(0, 120, screenWidth, screenHeight - 164);
     toolBar.frame = CGRectMake(0, screenHeight - 44, screenWidth, 44);
     TextString.frame = CGRectMake(8, 8, screenWidth - 64 - 8 - 10, 30);
     sendButton.frame = CGRectMake(screenWidth - 64, 0, 64, 44);
@@ -62,6 +64,8 @@
     MainScroll.delegate = self;
     LikeScroll.delegate = self;
     LikeScroll.hidden = YES;
+    CollectionsScroll.delegate = self;
+    CollectionsScroll.hidden = YES;
     
     /* Calculate screen size */
   //  CGRect screenFrame = [[UIScreen mainScreen] applicationFrame];
@@ -305,18 +309,19 @@
   //  CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-    NSArray *itemArray = [NSArray arrayWithObjects:@"Comments", @"Likes", nil];
+    NSArray *itemArray = [NSArray arrayWithObjects:@"Comments",@"Collections", @"Likes", nil];
     UISegmentedControl *PostControl = [[UISegmentedControl alloc]initWithItems:itemArray];
     PostControl.frame = CGRectMake(15, 80, screenWidth - 30, 29);
     [PostControl addTarget:self action:@selector(segmentAction:) forControlEvents: UIControlEventValueChanged];
     
     if ([GetWhatView isEqualToString:@"Like"]) {
-        PostControl.selectedSegmentIndex = 1;
-        ShowMainTitle.text = CustomLocalisedString(@"MainTab_Like", nil);
+        PostControl.selectedSegmentIndex = 2;
+      //  ShowMainTitle.text = CustomLocalisedString(@"MainTab_Like", nil);
     }else{
-        ShowMainTitle.text = CustomLocalisedString(@"Comments", nil);
+       // ShowMainTitle.text = CustomLocalisedString(@"Comments", nil);
         PostControl.selectedSegmentIndex = 0;
     }
+    ShowMainTitle.text = @"All activites";
     [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
     [self.view addSubview:PostControl];
     
@@ -857,7 +862,7 @@
 //            }
 //        }
         [self InitLikeView];
-        
+        [self InitCollectionsView];
         [ShowActivity stopAnimating];
         
     }else if(connection == theConnection_SendFollowData){
@@ -953,7 +958,7 @@
             }
             
             [self InitView];
-            
+            [self InitCollectionsView];
             //        CATransition *transition = [CATransition animation];
             //        transition.duration = 0.4;
             //        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
@@ -1147,14 +1152,25 @@
                 [TextString becomeFirstResponder];
             }
             LikeScroll.hidden = YES;
+            CollectionsScroll.hidden = YES;
             break;
         case 1:
+            NSLog(@"Collections click");
+            [TextString resignFirstResponder];
+            MainScroll.hidden = YES;
+            toolBar.hidden = YES;
+            LikeScroll.hidden = YES;
+            ShowNoDataView.hidden = YES;
+            CollectionsScroll.hidden = NO;
+            break;
+        case 2:
             NSLog(@"Likes click");
             [TextString resignFirstResponder];
             MainScroll.hidden = YES;
             toolBar.hidden = YES;
             LikeScroll.hidden = NO;
             ShowNoDataView.hidden = YES;
+            CollectionsScroll.hidden = YES;
             break;
         default:
             break;
@@ -1246,6 +1262,13 @@
         [LikeScroll setContentSize:CGSizeMake(screenWidth, 140 + i * 70)];
     }
 }
+
+-(void)InitCollectionsView{
+    CollectionsScroll.backgroundColor = [UIColor blueColor];
+    [CollectionsScroll setContentSize:CGSizeMake(400, 800)];
+}
+
+
 -(IBAction)FollowButton:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);

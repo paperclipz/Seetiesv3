@@ -282,90 +282,13 @@
             [ShowAlert show];
             // send user back login screen.
         }else{
-            NSString *GetName_ = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"name"]];
-            NSLog(@"GetName_ is %@",GetName_);
-            NSString *Getusername = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"username"]];
-            NSLog(@"Getusername is %@",Getusername);
-            NSString *Getemail = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"email"]];
-            NSLog(@"Getemail is %@",Getemail);
-            NSString *GetLocation = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"location"]];
-            NSLog(@"GetLocation is %@",GetLocation);
-            NSString *GetAbouts_ = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"description"]];
-            NSLog(@"GetAbouts_ is %@",GetAbouts_);
-            NSString *GetUrl = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"personal_link"]];
-            NSLog(@"GetUrl is %@",GetUrl);
-            NSString *GetFollowersCount = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"follower_count"]];
-            NSLog(@"GetFollowersCount is %@",GetFollowersCount);
-            NSString *GetFollowingCount = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"following_count"]];
-            NSLog(@"GetFollowingCount is %@",GetFollowingCount);
-            NSString *Getcategories = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"categories"]];
+            NSDictionary *GetAllData = [res valueForKey:@"data"];
+            
+            NSString *Getcategories = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"categories"]];
             NSLog(@"Getcategories is %@",Getcategories);
-            NSString *Getdob_ = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"dob"]];
-            NSLog(@"Getdob_ is %@",Getdob_);
-            NSString *GetGender_ = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"gender"]];
-            NSLog(@"GetGender_ is %@",GetGender_);
-            
-            NSDictionary *SystemLanguageData = [res valueForKey:@"system_language"];
-            NSString *GetSystemLanguage_ = [[NSString alloc]initWithFormat:@"%@",[SystemLanguageData objectForKey:@"origin_caption"]];
-            NSLog(@"GetSystemLanguage_ is %@",GetSystemLanguage_);
-            
-            NSInteger CheckSystemLanguageData;
-            if ([GetSystemLanguage_ isEqualToString:@"English"]) {
-                CheckSystemLanguageData = 0;
-            }else if([GetSystemLanguage_ isEqualToString:@"Simplified Chinese"]){
-                CheckSystemLanguageData = 1;
-            }else if([GetSystemLanguage_ isEqualToString:@"Traditional Chinese"]){
-                CheckSystemLanguageData = 2;
-            }else if([GetSystemLanguage_ isEqualToString:@"Bahasa Indonesia"]){
-                CheckSystemLanguageData = 3;
-            }else if([GetSystemLanguage_ isEqualToString:@"Thai"] || [GetSystemLanguage_ isEqualToString:@"th"]){
-                CheckSystemLanguageData = 4;
-            }else if([GetSystemLanguage_ isEqualToString:@"Filipino"]){
-                CheckSystemLanguageData = 5;
-            }
-            
-            
-            //  NSLog(@"CheckSystemLanguage is %li",(long)CheckSystemLanguage);
-            LanguageManager *languageManager = [LanguageManager sharedLanguageManager];
-            
-            Locale *localeForRow = languageManager.availableLocales[CheckSystemLanguageData];
-            
-            NSLog(@"Landing Language selected: %@", localeForRow.name);
-            
-            [languageManager setLanguageWithLocale:localeForRow];
-            
-            NSDictionary *LanguageData = [res valueForKey:@"languages"];
-            NSMutableArray *TempArray = [[NSMutableArray alloc]init];
-            for (NSDictionary * dict in LanguageData) {
-                NSString *GetLanguage_1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"origin_caption"]];
-                NSLog(@"GetLanguage_1 is %@",GetLanguage_1);
-                [TempArray addObject:GetLanguage_1];
-            }
-            
-            NSString *GetLanguage_1;
-            NSString *GetLanguage_2;
-            if ([TempArray count] == 1) {
-                GetLanguage_1 = [[NSString alloc]initWithFormat:@"%@",[TempArray objectAtIndex:0]];
-            }else{
-                GetLanguage_1 = [[NSString alloc]initWithFormat:@"%@",[TempArray objectAtIndex:0]];
-                GetLanguage_2 = [[NSString alloc]initWithFormat:@"%@",[TempArray objectAtIndex:1]];
-            }
-            NSString *CheckGetUserProfile = @"false";
             
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            [defaults setObject:CheckGetUserProfile forKey:@"UserData_CheckData"];
             [defaults setObject:Getcategories forKey:@"UserData_Categories"];
-            [defaults setObject:GetName_ forKey:@"UserData_Name"];
-            [defaults setObject:Getusername forKey:@"UserData_Username"];
-            [defaults setObject:GetAbouts_ forKey:@"UserData_Abouts"];
-            [defaults setObject:GetUrl forKey:@"UserData_Url"];
-            [defaults setObject:Getemail forKey:@"UserData_Email"];
-            [defaults setObject:GetLocation forKey:@"UserData_Location"];
-            [defaults setObject:Getdob_ forKey:@"UserData_dob"];
-            [defaults setObject:GetGender_ forKey:@"UserData_Gender"];
-            [defaults setObject:GetSystemLanguage_ forKey:@"UserData_SystemLanguage"];
-            [defaults setObject:GetLanguage_1 forKey:@"UserData_Language1"];
-            [defaults setObject:GetLanguage_2 forKey:@"UserData_Language2"];
             [defaults synchronize];
             
             [spinnerView stopAnimating];

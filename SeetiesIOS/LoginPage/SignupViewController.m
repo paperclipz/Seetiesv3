@@ -39,7 +39,7 @@
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     ShowTitle.frame = CGRectMake(0, 30, screenWidth, 44);
     SignUpButton.frame = CGRectMake(30, 310, screenWidth - 60, 50);
-    CancelButton.frame = CGRectMake(screenWidth - 70, 20, 70, 44);
+    //CancelButton.frame = CGRectMake(screenWidth - 70, 20, 70, 44);
     LogoImg.frame = CGRectMake((screenWidth / 2) - 20, 20, 40, 40);
     
     btnBackground_1.frame = CGRectMake(30, 80, screenWidth - 60, 50);

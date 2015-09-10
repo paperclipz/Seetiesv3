@@ -42,6 +42,10 @@
     //content data
     AsyncImageView *ShowUserProfileImage;
     
+    UILabel *ShowUserName;
+    UILabel *ShowName_;
+    UILabel *ShowAboutText;
+    UILabel *ShowLink;
     
     NSString *GetProfileImg;
     NSString *GetName;
@@ -52,7 +56,14 @@
     NSString *GetFollowersCount;
     NSString *GetFollowingCount;
     NSString *GetCategories;
-    
+    NSString *Getdob;
+    NSString *GetGender;
+    NSString *GetPersonalTags;
+    NSMutableArray *ArrHashTag;
+    NSString *GetEmail;
+    NSString *GetSystemLanguage;
+    NSString *GetPrimaryLanguage;
+    NSString *GetSecondaryLanguage;
     
     //like data
     NSString *GetLikesDataCount;

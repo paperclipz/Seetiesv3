@@ -7,9 +7,10 @@
 //
 
 #import "ConnectionManager.h"
-#import "AFNetworkActivityLogger.h"
+
 @interface ConnectionManager()
 @property (strong, nonatomic) DataManager *dataManager;
+@property(strong,nonatomic)AFHTTPRequestOperationManager* manager;
 
 @end
 @implementation ConnectionManager
@@ -42,9 +43,8 @@
     {
         _manager = [AFHTTPRequestOperationManager manager];
         _manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-        _manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/html",@"text/plain",@"text/json", @"text/javascript",nil];
-     //   _manager.securityPolicy.allowInvalidCertificates = YES;
-        
+        _manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/html",@"text/plain",nil];
+        _manager.securityPolicy.allowInvalidCertificates = YES;
 
     }
     
@@ -81,7 +81,7 @@
 -(void)requestServerWithPost:(bool)isPost customURL:(NSString*)url requestType:(ServerRequestType)type param:(NSDictionary*)dict completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
 {
     
-    NSLog(@"Request Server : %@ \n\n request Json : %@",url,dict);
+    NSLog(@"Request Server : %@ \n\n response Json : %@",url,dict);
     if(isPost)
     {
         [self.manager POST:url parameters:dict
@@ -94,6 +94,7 @@
              
              if (completeBlock) {
                  completeBlock(responseObject);
+                 [self processApiversion];
              }
              
          }
@@ -116,6 +117,7 @@
              
              if (completeBlock) {
                  completeBlock(responseObject);
+                 [self processApiversion];
              }
              
          }
@@ -132,9 +134,8 @@
 
 -(void)requestServerWithPost:(ServerRequestType)type param:(NSDictionary*)dict completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
 {
+    NSLog(@"Request Server : %@ \n\n response Json : %@",[self getFullURLwithType:type],dict);
     
-    NSLog(@"Request Server : %@ \n\n request Json : %@",[self getFullURLwithType:type],dict);
-
     [self.manager POST:[self getFullURLwithType:type] parameters:dict
                success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
@@ -142,6 +143,7 @@
          if (completeBlock) {
              completeBlock(responseObject);
              NSLog(@"Success: %@ ***** %@", operation.responseString, responseObject);
+             [self processApiversion];
          }
      }
                failure:
@@ -156,7 +158,7 @@
 -(void)requestServerWithGet:(ServerRequestType)type param:(NSDictionary*)dict completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
 {
     
-    NSLog(@"Request Server : %@ \n\n request Json : %@",[self getFullURLwithType:type],dict);
+    NSLog(@"Request Server : %@ \n\n response Json : %@",[self getFullURLwithType:type],dict);
     
     [self.manager GET:[self getFullURLwithType:type] parameters:dict
                success:^(AFHTTPRequestOperation *operation, id responseObject)
@@ -167,7 +169,8 @@
          
          if (completeBlock) {
              completeBlock(responseObject);
-             NSLog(@"Success: %@ ***** %@", operation.responseString, [responseObject JSONString]);
+             NSLog(@"Success: %@ ***** %@", operation.responseString, responseObject);
+             [self processApiversion];
          }
          
      }
@@ -179,47 +182,16 @@
     
 }
 
--(void)requestServerWithGet:(ServerRequestType)type withAppendString:(NSString*)appendString param:(NSDictionary*)dict completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
-{
-    NSString* fullURL = [NSString stringWithFormat:@"%@/%@",[self getFullURLwithType:type],appendString];
-    
-    NSLog(@"Request Server : %@ \n\n request Json : %@",fullURL,dict);
-    
-    [self.manager GET:fullURL parameters:dict
-              success:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         
-         [self storeServerData:responseObject requestType:type];
-         
-         
-         if (completeBlock) {
-             completeBlock(responseObject);
-             NSLog(@"Success: %@ ***** %@", operation.responseString, responseObject);
-         }
-         
-     }
-              failure:
-     ^(AFHTTPRequestOperation *operation, NSError *error) {
-         NSLog(@"Error: %@ ***** %@", operation.responseString, error);
-     }];
-    
-    
-}
-
 -(void)requestServerWithPost:(ServerRequestType)type param:(NSDictionary*)dict images:(NSArray*)images completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
 {
     
-    NSLog(@"Request Server : %@ \n\n request Json : %@",[self getFullURLwithType:type],dict);
-
     AFHTTPRequestOperation *op = [self.manager POST:[self getFullURLwithType:type] parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         
         //do not put image inside parameters dictionary BUT append it
-
+        
         for (int i = 0; i<images.count; i++) {
-            NSData *imageData = UIImageJPEGRepresentation([UIImage imageNamed:@"profile_1.png"],0.5);
-            [formData appendPartWithFileData:imageData name:[NSString stringWithFormat:@"photos[%d]",i] fileName:@"photo.jpg" mimeType:@"image/jpeg"];
-            [formData appendPartWithFormData:[@"" dataUsingEncoding:NSUTF8StringEncoding] name:[NSString stringWithFormat:@"photos_meta[%d][position]",i]];
-            [formData appendPartWithFormData:[@"" dataUsingEncoding:NSUTF8StringEncoding] name:[NSString stringWithFormat:@"photos_meta[%d][caption]",i]];
+            NSData *imageData = UIImageJPEGRepresentation(images[i],0.5);
+            [formData appendPartWithFileData:imageData name:@"image" fileName:@"photo.jpg" mimeType:@"image/jpeg"];
         }
         
         } success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -229,7 +201,6 @@
         }];
         [op start];
 }
-
 -(void)processApiversion
 {
     self.serverPath = self.dataManager.apiVersionModel.production?SERVER_PATH_LIVE:SERVER_PATH_DEV;
@@ -255,15 +226,9 @@
             break;
 
         case ServerRequestTypePostCreatePost:
-            str = @"v1.3/post";
+            str = @"v2.0/post";
 
             break;
-            
-        case ServerRequestTypeGetRecommendationDraft:
-            str = @"v1.3/draft";
-
-            break;
-
         default:
             break;
     }
@@ -282,8 +247,7 @@
             break;
         case ServerRequestTypeGetApiVersion:
             self.dataManager.apiVersionModel = [[ApiVersionModel alloc]initWithDictionary:obj error:nil];
-            [self processApiversion];
-
+            
             break;
             
         case ServerRequestTypeGetLanguage:
@@ -315,13 +279,6 @@
         {
             NSDictionary* dict = obj[@"result"];
             self.dataManager.googleSearchDetailModel = [[SearchLocationDetailModel alloc]initWithDictionary:dict error:nil];
-        }
-            break;
-            
-        case ServerRequestTypeGetRecommendationDraft:
-        {
-            NSDictionary* dict = obj[@"data"];
-            self.dataManager.DraftsModel = [[DraftsModel alloc]initWithDictionary:dict error:nil];
         }
             break;
         default:

@@ -114,7 +114,7 @@
             
         }
         else{
-            
+
         };
         
     } errorBlock:^(id object) {
@@ -122,7 +122,6 @@
         [self.view addSubview:NoConnectionView];
 
     }];
-    
 
     //here init no connection
     //[self.view addSubview:NoConnectionView];
