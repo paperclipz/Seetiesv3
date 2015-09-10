@@ -17,7 +17,12 @@
 @implementation CategorySelectionViewController
 - (IBAction)btnDoneClicked:(id)sender {
     
+    if (_doneClickBlock) {
+        self.doneClickBlock(self);
+        
+    }
     [self dismissViewControllerAnimated:YES completion:nil];
+
 }
 
 - (void)viewDidLoad {

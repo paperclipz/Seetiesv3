@@ -51,6 +51,9 @@ extern NSString *const kAFAviarySecret;
 
 @end
 
+#define TOKEN_2_0 @"JDJ5JDEwJDZyamE0MlZKbTNKbHpDSElxR0dpUGVnbkJQMzdzRC40eDJna2M3RlJiVFZVbnJzRVpTQTNt"
+
+
 #ifndef Language_Changer_Constants_h
 #define Language_Changer_Constants_h
 

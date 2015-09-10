@@ -46,6 +46,8 @@
 
 #import "DoImagePickerController.h"
 #import "FeedViewController.h"
+
+#import "AFNetworkActivityLogger.h"
 @interface AppDelegate ()
 
 @property(nonatomic,strong)LandingV2ViewController* landingV2ViewController;
@@ -82,7 +84,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-
+   // [[AFNetworkActivityLogger sharedLogger] startLogging];
+   // [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelDebug];
     
     [[IQKeyboardManager sharedManager] setToolbarManageBehaviour:IQAutoToolbarByPosition];
 

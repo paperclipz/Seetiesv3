@@ -39,6 +39,7 @@
     [self requestServerForDraft];
 
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -82,22 +83,20 @@
 #pragma mark Request Server
 -(void)requestServerForDraft
 {
-//    self.arrDraftList = [NSMutableArray new];
-//    
-//    for (int i = 0; i<10; i++) {
-//        [self.arrDraftList addObject:[DataManager getSampleRecommendation]];
-//    }
-
-   // NSData *imageData = UIImagePNGRepresentation(myImage.image);
-    NSDictionary* dict = @{@"token":[Utils getAppToken],@"status":@"0",@"title":@"Hello",@"message":@"this is the publish message",@"category":@[@1,@2,@3],@"device_type":@2,@"location":@"",@"link":@"www.google.com",@"photos":@""};
+    self.arrDraftList = [NSMutableArray new];
     
-    [[ConnectionManager Instance] requestServerWithPost:ServerRequestTypePostCreatePost param:dict completeHandler:^(id object) {
-        
-    } errorBlock:^(id object) {
-        
-    }];
- 
+    for (int i = 0; i<10; i++) {
+        [self.arrDraftList addObject:[DataManager getSampleRecommendation]];
+    }
+//
+//    NSDictionary* dict = @{@"token":[Utils getAppToken]};
+//    
+//    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetRecommendationDraft param:dict completeHandler:^(id object) {
+//        
+//    } errorBlock:nil];
+// 
 }
+
 -(EditPostViewController*)editPostViewController
 {
     if(!_editPostViewController)

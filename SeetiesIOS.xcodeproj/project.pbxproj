@@ -984,6 +984,8 @@
 		8AD6C8871B784BD50040437E /* ExploreCountryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6C8861B784BD50040437E /* ExploreCountryModel.m */; };
 		8AF2C2791B9EA3B800B0A7F1 /* NSDictionary+STHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF2C2761B9EA3B800B0A7F1 /* NSDictionary+STHelper.m */; };
 		8AF2C27A1B9EA3B800B0A7F1 /* NSMutableDictionary+STHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF2C2781B9EA3B800B0A7F1 /* NSMutableDictionary+STHelper.m */; };
+		8AF2C27E1BA13D1400B0A7F1 /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF2C27D1BA13D1400B0A7F1 /* AFNetworkActivityLogger.m */; };
+		8AF2C2CF1BA1654200B0A7F1 /* DraftModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF2C2CE1BA1654200B0A7F1 /* DraftModel.m */; };
 		D44BD397CA9972010A37D9F6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B526FE01F3F3414439C16DF /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -2222,6 +2224,10 @@
 		8AF2C2761B9EA3B800B0A7F1 /* NSDictionary+STHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+STHelper.m"; sourceTree = "<group>"; };
 		8AF2C2771B9EA3B800B0A7F1 /* NSMutableDictionary+STHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+STHelper.h"; sourceTree = "<group>"; };
 		8AF2C2781B9EA3B800B0A7F1 /* NSMutableDictionary+STHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+STHelper.m"; sourceTree = "<group>"; };
+		8AF2C27C1BA13D1400B0A7F1 /* AFNetworkActivityLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityLogger.h; sourceTree = "<group>"; };
+		8AF2C27D1BA13D1400B0A7F1 /* AFNetworkActivityLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityLogger.m; sourceTree = "<group>"; };
+		8AF2C2CD1BA1654200B0A7F1 /* DraftModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DraftModel.h; sourceTree = "<group>"; };
+		8AF2C2CE1BA1654200B0A7F1 /* DraftModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DraftModel.m; sourceTree = "<group>"; };
 		A6BFDB1BE373200E64D8CBE7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CAB2B54F0EC79309593A3C4C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2984,6 +2990,8 @@
 				8A3757B21B846788009DB7D4 /* SearchModel.m */,
 				8A3409061B871CB5009B66C3 /* EditPhotoModel.h */,
 				8A3409071B871CB5009B66C3 /* EditPhotoModel.m */,
+				8AF2C2CD1BA1654200B0A7F1 /* DraftModel.h */,
+				8AF2C2CE1BA1654200B0A7F1 /* DraftModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -3297,6 +3305,8 @@
 		8AD6C2D21B707D120040437E /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				8AF2C2831BA15A3A00B0A7F1 /* Networking */,
+				8AF2C27B1BA13D1400B0A7F1 /* AFNetworkActivityLogger */,
 				8A9F25AF1B8ED32F00BB13BA /* BKMoneyKit */,
 				8A9F25A41B8EC97400BB13BA /* CAPSPageMenu */,
 				8A959D8F1B8C0CBA00722920 /* NMBottomTabBarController */,
@@ -4281,6 +4291,22 @@
 			path = "NSDictionary+STHelper";
 			sourceTree = "<group>";
 		};
+		8AF2C27B1BA13D1400B0A7F1 /* AFNetworkActivityLogger */ = {
+			isa = PBXGroup;
+			children = (
+				8AF2C27C1BA13D1400B0A7F1 /* AFNetworkActivityLogger.h */,
+				8AF2C27D1BA13D1400B0A7F1 /* AFNetworkActivityLogger.m */,
+			);
+			path = AFNetworkActivityLogger;
+			sourceTree = "<group>";
+		};
+		8AF2C2831BA15A3A00B0A7F1 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -5250,6 +5276,7 @@
 				8AD6C86C1B7460DB0040437E /* NSDate+RFC1123.m in Sources */,
 				8A34094A1B8AD06A009B66C3 /* UIView+Screenshot.m in Sources */,
 				8A3408F71B86FC99009B66C3 /* UITableViewController+BMXSwipableCellSupport.m in Sources */,
+				8AF2C27E1BA13D1400B0A7F1 /* AFNetworkActivityLogger.m in Sources */,
 				8AD6C2891B7072FB0040437E /* ConfirmPlaceViewController.m in Sources */,
 				8A9F25D91B8EFD2200BB13BA /* EditHourModel.m in Sources */,
 				8AD6C8761B7495B60040437E /* BaseViewController.m in Sources */,
@@ -5291,6 +5318,7 @@
 				8A3409CE1B8B0DCB009B66C3 /* UIImage+Alpha.m in Sources */,
 				8AD6C0D81B706CF30040437E /* PTellUsYourCityViewController.m in Sources */,
 				8A9F25C91B8ED33000BB13BA /* BKMoneyUtils.m in Sources */,
+				8AF2C2CF1BA1654200B0A7F1 /* DraftModel.m in Sources */,
 				8AD6C2A31B7072FB0040437E /* SelectImageViewController.m in Sources */,
 				8AD6BA661B705DF20040437E /* ViewController.m in Sources */,
 				8A3409D01B8B0DCB009B66C3 /* UIImage+RoundedCorner.m in Sources */,

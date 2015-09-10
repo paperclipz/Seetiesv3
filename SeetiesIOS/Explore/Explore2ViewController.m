@@ -96,7 +96,6 @@
     self.tabBarController.selectedIndex = 0;
 }
 
-
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [mySearchBar setShowsCancelButton:NO animated:YES];
     [mySearchBar resignFirstResponder];
@@ -104,12 +103,9 @@
 }
 -(void)GetExploreDataFromServer{
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSDictionary* dict = @{@"token":[Utils getAppToken]};
     
-    NSDictionary* dict = @{@"token":GetExpertToken};
-    
-    [[ConnectionManager Instance] requestServerWithPost:ServerRequestTypeGetExplore param:dict completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetExplore param:dict completeHandler:^(id object) {
         self.exploreCountryModels  = [[ConnectionManager dataManager] exploreCountryModels];
         if (!self.exploreCountryModels.error) {
             

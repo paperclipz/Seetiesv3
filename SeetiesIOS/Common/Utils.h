@@ -59,6 +59,9 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 +(UIColor*)defaultTextColor;
 
 
+// ===== Validation ======== //
++ (BOOL) validateUrl: (NSString *) candidat;
+// ===== Validation ======== //
 
 
 

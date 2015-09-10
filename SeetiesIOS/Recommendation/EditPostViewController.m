@@ -259,9 +259,14 @@
 {
     if(!_categorySelectionViewController)
     {
+        
+        __weak typeof(self)weakSelf = self;
         _categorySelectionViewController = [CategorySelectionViewController new];
-        [self requestServerForPublishPost];
-
+        _categorySelectionViewController.doneClickBlock = ^(id object)
+        {
+            [weakSelf requestServerForPublishPost];
+        };
+        
     }
     return _categorySelectionViewController;
 }
@@ -389,13 +394,15 @@
 
 -(void)requestServerForPublishPost
 {
-    
     NSMutableArray* arrImages = [NSMutableArray new];
-    
+    NSMutableArray* arrMeta = [NSMutableArray new];
+    NSDictionary* photo_meta = @{@"photo_id":@"",@"position":@"",@"caption":@""};
+
     for (int i =0; i<self.recommendationModel.arrPostImagesList.count; i++) {
         
         EditPhotoModel* model = self.recommendationModel.arrPostImagesList[i];
         [arrImages addObject: model.image];
+        [arrMeta addObject:photo_meta];
     }
     
     NSDictionary* addressDict = @{@"route":@"setapak",@"locality":@"KL",@"administrative_area_level_1":@"Federal Territory of Kuala Lumpur",@"postalCode":@"123456",@"country":@"malaysia",@"political":@"abc"};
@@ -405,15 +412,14 @@
     NSDictionary* openingHourDict = @{@"open_now":@"false",@"periods":@""};
 
     NSDictionary* locationDict  = @{@"address_components":addressDict,@"name":@"setapak",@"formatted_address":@"",@"type":@2,@"reference":@"",@"expense":@"",@"rating":@11,@"contact_no":@"",@"source":sourceDict,@"opening_hours":openingHourDict,@"link":@"",@"lat":@"3.1333",@"lng":@"101.7000"};
-
-    NSDictionary* photo_meta = @{@"photo_id":@"",@"position":@"",@"caption":@""};
-    
-    NSDictionary* dict = @{@"post_id":@"",@"token":@"JDJ5JDEwJDZyamE0MlZKbTNKbHpDSElxR0dpUGVnbkJQMzdzRC40eDJna2M3RlJiVFZVbnJzRVpTQTNt",@"status":@"0",[NSString stringWithFormat:@"title[%@]",ENGLISH_CODE]:@"title1",[NSString stringWithFormat:@"message[%@]",ENGLISH_CODE]:@"msg1",@"category":@[@1,@2],@"device_type":@2,@"location":[locationDict getJsonString],@"link":@"www.google.com",@"photo_meta":@[photo_meta,photo_meta]};
     
     
+    NSDictionary* dict = @{@"post_id":@"",@"token":[Utils getAppToken],@"status":@"0",[NSString stringWithFormat:@"title[%@]",ENGLISH_CODE]:@"title1",[NSString stringWithFormat:@"message[%@]",ENGLISH_CODE]:@"msg1",@"category":@[@1,@2],@"device_type":@2,@"location":[locationDict getJsonString],@"link":@"www.google.com"};
     
     [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostCreatePost param:dict images:arrImages  completeHandler:^(id object) {
         
+        SLog(@"recommendation response : %@",object);
+    
     } errorBlock:nil];
     
 }

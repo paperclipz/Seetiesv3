@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface CategorySelectionViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate>
+@property(nonatomic,copy)IDBlock doneClickBlock;
 
 @end

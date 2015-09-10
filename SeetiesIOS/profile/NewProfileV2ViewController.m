@@ -1001,7 +1001,6 @@
                     PostsData_place_nameArray = [[NSMutableArray alloc]init];
                     PostsData_TotalCountArray = [[NSMutableArray alloc]init];
                 }else{
-                    
                 }
                 //  PostsData_IDArray = [[NSMutableArray alloc]init];
                 for (NSDictionary * dict in GetAllData) {
