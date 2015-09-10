@@ -10,7 +10,7 @@
 
 @interface ConnectionManager()
 @property (strong, nonatomic) DataManager *dataManager;
-@property(strong,nonatomic)AFHTTPRequestOperationManager* manager;
+
 
 @end
 @implementation ConnectionManager

@@ -17,7 +17,7 @@
 
 #import "FeedV2ViewController.h"
 #import "LeveyTabBarController.h"
-#import "RecommendPopUpViewController.h"
+#import "RecommendationViewController.h"
 
 #import "FeedViewController.h"
 #import "NewProfileV2ViewController.h"
@@ -416,7 +416,7 @@
     FeedViewController *firstViewController=[[FeedViewController alloc]initWithNibName:@"FeedViewController" bundle:nil];
     Explore2ViewController *secondViewController=[[Explore2ViewController alloc]initWithNibName:@"Explore2ViewController" bundle:nil];
     //SelectImageViewController *threeViewController=[[SelectImageViewController alloc]initWithNibName:@"SelectImageViewController" bundle:nil];
-    RecommendPopUpViewController *threeViewController=[[RecommendPopUpViewController alloc]initWithNibName:@"RecommendPopUpViewController" bundle:nil];
+    RecommendationViewController *threeViewController=[[RecommendationViewController alloc]initWithNibName:@"RecommendationViewController" bundle:nil];
     NotificationViewController *fourViewController=[[NotificationViewController alloc]initWithNibName:@"NotificationViewController" bundle:nil];
     //ProfileV2ViewController *fiveViewController=[[ProfileV2ViewController alloc]initWithNibName:@"ProfileV2ViewController" bundle:nil];
     NewProfileV2ViewController *fiveViewController=[[NewProfileV2ViewController alloc]initWithNibName:@"NewProfileV2ViewController" bundle:nil];
