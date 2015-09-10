@@ -109,12 +109,20 @@
 
 -(void)reloadData
 {
+    
+    UIImage *inputImage = [UIImage imageNamed:@"imageName"];
+    CIFilter* filter = [CIFilter filterWithName:@"CIColorInvert"];
+    [filter setDefaults];
+    [filter setValue:inputImage.CIImage forKey:@"inputImage"];
+    UIImage *outputImage = [[UIImage alloc] initWithCIImage:filter.outputImage];
+    
     EditPhotoModel* edifotoModel = self.recommendationModel.arrPostImagesList[0];
     
     
     if (edifotoModel) {
         self.ibImageView.image = [edifotoModel.image imageCroppedAndScaledToSize:self.ibImageView.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
     }
+    [self.ibImageView sd_setImageWithURL:[NSURL URLWithString:@"https://dev-seeties.s3-ap-southeast-1.amazonaws.com/categories/selected_food_n_drink.png"]];
 }
 
 -(void)viewDidAppear:(BOOL)animated

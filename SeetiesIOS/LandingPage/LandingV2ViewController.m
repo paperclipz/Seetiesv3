@@ -193,7 +193,7 @@
     NSLog(@"APIVersionSet is %@",APIVersionSet);
     NSTimer *RandomTimer;
     if ([Utils isLogin]) {
-        ShowBackgroundImage.image = [UIImage imageNamed:@"HomeBg.png"];
+        ShowBackgroundImage.image = [UIImage imageNamed:@"LandingV2.png"];
         MainLogo.hidden = YES;
         MainText.hidden = YES;
         ShowTnCText.hidden = YES;
@@ -444,7 +444,13 @@
     transition.subtype = kCATransitionFromRight;
     [self.view.window.layer addAnimation:transition forKey:nil];
     [self presentViewController:ExpertLoginView animated:NO completion:nil];
-
+    
+    
+    __weak typeof (self)weakSelf = self;
+    ExpertLoginView.backFromExpertLoginBlock = ^(id object)
+    {
+        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+    };
     
 }
 -(IBAction)btnWhyWeUseFacebookClicked:(id)sender{

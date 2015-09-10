@@ -11,7 +11,6 @@
 @interface ConnectionManager()
 @property (strong, nonatomic) DataManager *dataManager;
 
-
 @end
 @implementation ConnectionManager
 + (id)Instance {
