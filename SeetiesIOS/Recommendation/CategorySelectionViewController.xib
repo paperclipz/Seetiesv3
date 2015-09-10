@@ -61,8 +61,8 @@
                             </collectionViewFlowLayout>
                             <variation key="default">
                                 <mask key="constraints">
-                                    <exclude reference="w1e-Aq-Fzc"/>
                                     <exclude reference="pHr-ZN-dIV"/>
+                                    <exclude reference="w1e-Aq-Fzc"/>
                                 </mask>
                             </variation>
                         </collectionView>

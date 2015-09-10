@@ -134,22 +134,17 @@
 
 -(void)requestServerWithPost:(ServerRequestType)type param:(NSDictionary*)dict completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
 {
-    
     NSLog(@"Request Server : %@ \n\n response Json : %@",[self getFullURLwithType:type],dict);
     
     [self.manager POST:[self getFullURLwithType:type] parameters:dict
                success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
-         
          [self storeServerData:responseObject requestType:type];
-
-         
          if (completeBlock) {
              completeBlock(responseObject);
              NSLog(@"Success: %@ ***** %@", operation.responseString, responseObject);
              [self processApiversion];
          }
-         
      }
                failure:
      ^(AFHTTPRequestOperation *operation, NSError *error) {

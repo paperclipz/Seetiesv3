@@ -24,8 +24,10 @@
     }
     if(self.navigationController)
     {
-        
         [self.navigationController popViewControllerAnimated:YES];
+    }
+    else{
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
     
     

@@ -48,7 +48,6 @@
 
 }
 
-
 -(NSInteger)roundTime
 {
     //clamp date
@@ -134,4 +133,17 @@
 
 
 }
+
+#pragma mark - Save Data
+-(EditHourModel*)saveData
+{
+    self.model.fromTime = self.btnFromTime.titleLabel.text;
+    self.model.toTime = self.btnToTime.titleLabel.text;
+    self.model.day = self.lblDay.text;
+    self.model.isOpen = self.ibSwitch.on;
+
+    
+    return self.model;
+}
+
 @end

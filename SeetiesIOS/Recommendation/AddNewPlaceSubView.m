@@ -9,6 +9,26 @@
 #import "AddNewPlaceSubView.h"
 
 #define MAX_LENGTH 12
+
+
+@implementation NSArray (Blocks)
+
+-(int)getIndex:(NSString*)string
+{
+    for (int i = 0; i<self.count; i++) {
+        
+        if([self[i] isEqualToString:string])
+        {
+            return i;
+        }
+        
+    }
+    
+    return 0;
+}
+
+@end
+
 @implementation AddNewPlaceSubView
 - (IBAction)btnEditHourClicked:(id)sender {
     
@@ -28,13 +48,15 @@
     }
     return self;
 }
+
 - (IBAction)btnCurrencyClicked:(id)sender {
     
-    NSArray *colors = [NSArray arrayWithObjects:@"USD", @"MYR", @"THB", @"SGD", nil];
+    
+    NSArray *arrCurrency = [NSArray arrayWithObjects:@"USD", @"MYR", @"THB", @"SGD", nil];
     
     [ActionSheetStringPicker showPickerWithTitle:@"Select A Currency"
-                                            rows:colors
-                                initialSelection:0
+                                            rows:arrCurrency
+                                initialSelection:[arrCurrency getIndex:self.btnCurrency.titleLabel.text]
                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                                            NSLog(@"Picker: %@, Index: %ld, value: %@",
                                                  picker, (long)selectedIndex, selectedValue);

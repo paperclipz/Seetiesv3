@@ -9,7 +9,7 @@
 #import "CommonTableViewCell.h"
 
 @interface DraftTableViewCell : CommonTableViewCell
-@property (strong, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) IBOutlet UIImageView *imgView;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblSubtitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblDateTime;

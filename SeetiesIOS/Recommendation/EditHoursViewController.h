@@ -10,7 +10,12 @@
 #import "EditHourModel.h"
 
 
+typedef void (^BackBlock)(NSArray* array);
+
 @interface EditHoursViewController : CommonViewController<UITableViewDataSource,UITableViewDelegate>
 
 @property(nonatomic,strong)NSMutableArray* arrOpeningTime;
+@property(nonatomic,copy)BackBlock backBlock;
+-(void)initData:(NSArray*)arrayModel;
+
 @end

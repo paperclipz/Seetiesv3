@@ -32,27 +32,37 @@
 @implementation AddNewPlaceViewController
 
 - (IBAction)btnDoneClicked:(id)sender {
-    
-    if(self.btnPressDoneBlock)
         
+    if(self.btnPressDoneBlock)
+    {
+
         switch (self.searchType) {
             case SearchTypeGoogle:
             {
-                self.btnPressDoneBlock(self.searchType,self.gooModel);
+                
+                
+                [self.rModel processGoogleModel:(SearchLocationDetailModel*)self.gooModel];
             }
                 break;
                 
             case SearchTypeFourSquare:
-                self.btnPressDoneBlock(self.searchType,self.fsModel);
+                
+                [self.rModel  processFourSquareModel:(VenueModel*)self.fsModel];
 
                 break;
                 
             default:
-                self.btnPressDoneBlock(self.searchType,self.rModel);
-
+               
                 break;
         }
+        
+        [self saveData];
+        
+        self.btnPressDoneBlock(self.rModel);
+    }
 }
+
+
 - (IBAction)btnViewLargeMapClicke:(id)sender {
     
     if (self.navigationController) {
@@ -67,6 +77,7 @@
         self.btnBackBlock(self);
     }
     
+    
   //  [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
@@ -75,9 +86,8 @@
 {
     [super viewDidAppear:animated];
     self.lblTitle.text = self.title;
-    [self reloadData];
-    
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
@@ -94,17 +104,11 @@
 {
     
     [self.ibScrollView addSubview:self.addNewPlaceSubView];
-
     self.ibScrollView.contentSize = self.addNewPlaceSubView.frame.size;
-    
-    
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     lpgr.minimumPressDuration = 1.0;
     [self.ibMapView addGestureRecognizer:lpgr];
-    
     self.ibMapView.delegate = self;
-    _region.span.latitudeDelta = 0.01;
-    _region.span.longitudeDelta = 0.01;
 
     
 }
@@ -118,7 +122,10 @@
         __weak typeof(self)weakSelf = self;
         _addNewPlaceSubView.btnEditHourClickedBlock = ^(id sender)
         {
-            [weakSelf presentViewController:weakSelf.editHoursViewController animated:YES completion:nil];
+            _editHoursViewController = nil;
+            [weakSelf.editHoursViewController initData:weakSelf.rModel.arrOpeningHours];
+            [weakSelf presentViewController:weakSelf.editHoursViewController animated:YES completion:^{
+            }];
         };
     }
     
@@ -164,32 +171,38 @@
 {
     self.searchType = SearchTypeDefault;
     self.rModel = model;
+    [self reloadData];
+
 }
 
 -(void)initDataFrom4Square:(VenueModel*)model
 {
     self.searchType = SearchTypeFourSquare;
     self.fsModel = model;
+    [self reloadData];
+
 }
 
 
 -(void)reloadData
 {
-    
     switch (self.searchType) {
         default:
             self.addNewPlaceSubView.txtPlaceName.text = self.rModel.name;
             self.addNewPlaceSubView.txtAddress.text = self.rModel.formattedAddress;
             self.addNewPlaceSubView.txtURL.text = self.rModel.website;
             self.addNewPlaceSubView.txtPhoneNo.text = self.rModel.formattedPhone;
+            [self.addNewPlaceSubView.btnCurrency setTitle:self.rModel.currency forState:UIControlStateNormal];
+            self.addNewPlaceSubView.txtPerPax.text = self.rModel.price;
+            [self refreshMapViewWithLatitude:[self.rModel.lat doubleValue] longtitude:[self.rModel.lng doubleValue]];
 
-            
             break;
         case SearchTypeGoogle:
             self.addNewPlaceSubView.txtPlaceName.text = self.gooModel.name;
             self.addNewPlaceSubView.txtAddress.text = self.gooModel.formatted_address;
             self.addNewPlaceSubView.txtURL.text = self.gooModel.website;
             self.addNewPlaceSubView.txtPhoneNo.text = self.gooModel.formatted_phone_number;
+            [self refreshMapViewWithLatitude:[self.gooModel.lat doubleValue] longtitude:[self.gooModel.lng doubleValue]];
 
             break;
         case SearchTypeFourSquare:
@@ -198,6 +211,7 @@
             self.addNewPlaceSubView.txtAddress.text = self.fsModel.address;
             self.addNewPlaceSubView.txtURL.text = @"";
             self.addNewPlaceSubView.txtPhoneNo.text = self.fsModel.phone;
+            [self refreshMapViewWithLatitude:[self.fsModel.lat doubleValue] longtitude:[self.fsModel.lng doubleValue]];
 
         break;
     
@@ -220,15 +234,14 @@
 
 }
 
-
 -(void)refreshMapViewWithLatitude:(double)lat longtitude:(double)lont
 {
-    _region.span.latitudeDelta = 0.01;
-    _region.span.longitudeDelta = 0.01;
+    
     _region.center.longitude = lont;
     _region.center.latitude = lat;
     
-    if (_annotation) {
+    
+    if (lat && lont) {
         [self.annotation setCoordinate:self.region.center];
     }
 
@@ -301,14 +314,40 @@ didChangeDragState:(MKAnnotationViewDragState)newState
     // Pass the selected object to the new view controller.
 }
 */
+
 #pragma  mark - Declaration
+-(RecommendationVenueModel*)rModel
+{
+    if (!_rModel) {
+        _rModel = [RecommendationVenueModel new];
+    }
+    return _rModel;
+}
+
 -(EditHoursViewController*)editHoursViewController
 {
-    
     if(!_editHoursViewController)
     {
+        __weak typeof (self)weakSelf = self;
         _editHoursViewController = [EditHoursViewController new];
+        _editHoursViewController.backBlock = ^(NSArray* arrayOpeningHours)
+        {
+            weakSelf.rModel.arrOpeningHours = arrayOpeningHours;
+        
+        };
     }
     return _editHoursViewController;
 }
+
+#pragma mark - Save Data
+-(void)saveData
+{
+    self.rModel.address =  self.addNewPlaceSubView.txtAddress.text;
+    self.rModel.formattedPhone =  self.addNewPlaceSubView.txtPhoneNo.text;
+    self.rModel.name =  self.addNewPlaceSubView.txtPlaceName.text;
+    self.rModel.website =  self.addNewPlaceSubView.txtURL.text;
+    self.rModel.price =  self.addNewPlaceSubView.txtPerPax.text;
+    self.rModel.currency = self.addNewPlaceSubView.btnCurrency.titleLabel.text;    
+}
+
 @end

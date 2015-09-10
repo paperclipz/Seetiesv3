@@ -11,7 +11,7 @@
 #import "EditHoursViewController.h"
 
 
-typedef void (^LocationBlock)(SearchType type,id object);
+typedef void (^LocationBlock)(id object);
 @interface AddNewPlaceViewController : CommonViewController<MKMapViewDelegate>
 
 @property(nonatomic,strong)AddNewPlaceSubView* addNewPlaceSubView;

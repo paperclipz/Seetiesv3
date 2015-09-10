@@ -43,12 +43,14 @@
 @property(nonatomic,strong)EditPostDetailVIew* editPostView;
 @property(nonatomic,strong)EditPostDetailVIew* editPostViewSecond;
 
+@property(nonatomic,strong)UIAlertView* urlAlertView;
 @end
 
 @implementation EditPostViewController
 - (IBAction)btnPublishClicked:(id)sender {
     
-    [self requestServerForPublishPost];
+    [self presentViewController:self.categorySelectionViewController animated:YES completion:nil];
+
     
 }
 - (IBAction)segmentedControlClicked:(id)sender {
@@ -147,14 +149,15 @@
         {
             //[self.customPickerViewController show];
             
-            [self showAlertView];
+            [self.urlAlertView show];
 
         }
             break;
         case 1:
         {
-            [self.addNewPlaceViewController initData:self.recommendationModel.reccomendVenueModel];
-            [self presentViewController:self.navAddNewPlaceViewController animated:YES completion:nil];
+            [self presentViewController:self.navAddNewPlaceViewController animated:YES completion:^{
+                [self.addNewPlaceViewController initData:self.recommendationModel.reccomendVenueModel];
+            }];
 
         }
 
@@ -162,9 +165,12 @@
             
         case 2:
         {
-                [self.editPhotoViewController initData:self.recommendationModel];
-                [self presentViewController:self.editPhotoViewController animated:YES completion:nil];
-                __weak typeof (self)weakSelf = self;
+            _editPhotoViewController = nil;
+            
+            [self.editPhotoViewController initData:self.recommendationModel];
+
+            [self presentViewController:self.editPhotoViewController animated:YES completion:nil];
+                 __weak typeof (self)weakSelf = self;
                 self.editPhotoViewController.doneBlock = ^(NSArray* array)
                 {
                 
@@ -173,15 +179,15 @@
                 };
 
         }
+            break;
         case 3:
-            [self presentViewController:self.categorySelectionViewController animated:YES completion:nil];
             
+            [self saveData];
             break;
     }
     
     segmentedControl.selectedSegmentIndex = -1;
 }
-
 
 -(void)initSelfView
 {
@@ -202,31 +208,42 @@
 }
 
 #pragma mark - Alert View
--(void)showAlertView
+-(UIAlertView*)urlAlertView
 {
-    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Add URL"
-                                                 message:nil
-                                                delegate:self
-                                       cancelButtonTitle:@"Cancel"
-                                       otherButtonTitles:@"Done", nil];
-    
-    av.alertViewStyle = UIAlertViewStylePlainTextInput;
-    UITextField *textField = [av textFieldAtIndex:0];
-    textField.placeholder = @"www.seeties.me";
-    
-    av.tapBlock = ^(UIAlertView *alertView, NSInteger buttonIndex) {
-        if (buttonIndex == alertView.firstOtherButtonIndex) {
-            postURL =[[alertView textFieldAtIndex:0] text];
+    if (!_urlAlertView) {
+        _urlAlertView = [[UIAlertView alloc] initWithTitle:@"Add URL"
+                                                   message:nil
+                                                  delegate:self
+                                         cancelButtonTitle:@"Cancel"
+                                         otherButtonTitles:@"Done", nil];
+        
+        _urlAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+        UITextField *textField = [_urlAlertView textFieldAtIndex:0];
+        textField.placeholder = @"www.seeties.me";
+        
+        
+        __weak typeof (self)weakSelf = self;
+        _urlAlertView.tapBlock = ^(UIAlertView *alertView, NSInteger buttonIndex) {
+            if (buttonIndex == alertView.firstOtherButtonIndex) {
+                
+                weakSelf.recommendationModel.postURL = [[alertView textFieldAtIndex:0] text];
 
-            self.recommendationModel.postURL = postURL;
-            NSLog(@"web url Link: %@", postURL);
-        } else if (buttonIndex == alertView.cancelButtonIndex) {
-            NSLog(@"Cancelled.");
-        }
-    };
+            } else if (buttonIndex == alertView.cancelButtonIndex) {
+                NSLog(@"Cancelled.");
+            }
+        };
+
+    }
     
-    [av show];
+    _urlAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    UITextField *textField = [_urlAlertView textFieldAtIndex:0];
+    if (self.recommendationModel.postURL) {
+        textField.text = self.recommendationModel.postURL;
+    }
+    
+    return _urlAlertView;
 }
+
 /*
 #pragma mark - Navigation
 
@@ -243,6 +260,8 @@
     if(!_categorySelectionViewController)
     {
         _categorySelectionViewController = [CategorySelectionViewController new];
+        [self requestServerForPublishPost];
+
     }
     return _categorySelectionViewController;
 }
@@ -285,7 +304,22 @@
     if(!_addNewPlaceViewController)
     {
         _addNewPlaceViewController = [AddNewPlaceViewController new];
-       
+        __weak typeof (self)weakSelf = self;
+        _addNewPlaceViewController.btnBackBlock = ^(id object)
+        {
+            [weakSelf.addNewPlaceViewController dismissViewControllerAnimated:YES completion:nil];
+        };
+        
+        
+        _addNewPlaceViewController.btnPressDoneBlock = ^(id object)
+        {
+            RecommendationVenueModel* temp = (RecommendationVenueModel*)object;
+            
+            weakSelf.recommendationModel.reccomendVenueModel = temp;
+            [weakSelf.addNewPlaceViewController dismissViewControllerAnimated:YES completion:nil];
+
+        };
+      
     }
     return _addNewPlaceViewController;
 }
@@ -299,12 +333,6 @@
         _navAddNewPlaceViewController = [[UINavigationController alloc]initWithRootViewController:self.addNewPlaceViewController];
         _navAddNewPlaceViewController.navigationBarHidden = YES;
         
-        
-        __weak typeof (self)weakSelf = self;
-        self.addNewPlaceViewController.btnBackBlock = ^(id object)
-        {
-            [weakSelf.addNewPlaceViewController dismissViewControllerAnimated:YES completion:nil];
-        };
     }
     
     return _navAddNewPlaceViewController;
@@ -388,11 +416,19 @@
         
     } errorBlock:nil];
     
-   
-
-
 }
 
+#pragma mark - Sava Data
 
+-(void)saveData
+{
+    self.recommendationModel.postMainTitle = self.editPostView.txtTitle.text;
+    self.recommendationModel.postMainDescription = self.editPostView.txtDescription.text;
+    self.recommendationModel.postSecondTitle = self.editPostViewSecond.txtTitle.text;
+    self.recommendationModel.postSecondDescription = self.editPostViewSecond.txtDescription.text;
+
+    [TSMessage showNotificationInViewController:self title:@"system" subtitle:@"message" type:TSMessageNotificationTypeSuccess duration:2.0 canBeDismissedByUser:YES];
+   // [TSMessage showNotificationWithTitle:@"System" subtitle:@"Save To Draft" type:TSMessageNotificationTypeSuccess];
+}
 
 @end
