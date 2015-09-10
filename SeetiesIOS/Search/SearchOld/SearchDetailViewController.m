@@ -1561,6 +1561,12 @@
         [SelectButton addTarget:self action:@selector(ProductButton:) forControlEvents:UIControlEventTouchUpInside];
         [PostsView addSubview:SelectButton];
 
+        UIButton *CollectButton = [[UIButton alloc]init];
+        [CollectButton setBackgroundColor:[UIColor clearColor]];
+        [CollectButton setImage:[UIImage imageNamed:@"collected_icon.png"] forState:UIControlStateNormal];
+        CollectButton.frame = CGRectMake(screenWidth - 15 - 25 - 10, PostGetHeight + 87, 25, 32);
+        CollectButton.tag = i;
+        [PostsView addSubview:CollectButton];
         
         
         PostGetHeight += 160;
@@ -1607,6 +1613,14 @@
         ShowUserName.textAlignment = NSTextAlignmentLeft;
         ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         [PeopleView addSubview:ShowUserName];
+        
+        UIButton *FollowButton = [[UIButton alloc]init];
+        FollowButton.frame = CGRectMake(screenWidth - 10 - 53, PeopleHeight + 22, 53, 37);
+        // [FollowButton setTitle:@"Icon" forState:UIControlStateNormal];
+        [FollowButton setImage:[UIImage imageNamed:@"follow_icon.png"] forState:UIControlStateNormal];
+        FollowButton.backgroundColor = [UIColor clearColor];
+        // FollowButton.layer.cornerRadius = 20;
+        [PeopleView addSubview: FollowButton];
         
         UIButton *Line01 = [[UIButton alloc]init];
         Line01.frame = CGRectMake(100, PeopleHeight + 80, screenWidth - 30, 1);

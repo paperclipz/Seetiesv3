@@ -34,6 +34,7 @@
 
     IBOutlet UIScrollView *MainScroll;
     IBOutlet UIScrollView *LikeScroll;
+    IBOutlet UIScrollView *CollectionsScroll;
    // IBOutlet UITextField *textField;
     
     NSMutableArray *GetCommentIDArray;

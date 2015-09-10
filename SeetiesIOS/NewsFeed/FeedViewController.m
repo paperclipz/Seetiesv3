@@ -1727,5 +1727,8 @@
         
     }
 }
-
+-(IBAction)InviteFriendsButton:(id)sender{
+    InviteFrenViewController *InviteFrenView = [[InviteFrenViewController alloc]init];
+    [self presentViewController:InviteFrenView animated:YES completion:nil];
+}
 @end

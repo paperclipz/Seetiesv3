@@ -73,5 +73,5 @@
 }
 -(IBAction)TryAgainButton:(id)sender;
 -(IBAction)SearchButton:(id)sender;
-
+-(IBAction)InviteFriendsButton:(id)sender;
 @end

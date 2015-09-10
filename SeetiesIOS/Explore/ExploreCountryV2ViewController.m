@@ -424,6 +424,13 @@
         ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         [PostView addSubview:ShowUserName];
         
+        UIButton *UserFollowButton = [[UIButton alloc]init];
+        [UserFollowButton setBackgroundColor:[UIColor clearColor]];
+        [UserFollowButton setImage:[UIImage imageNamed:@"explore_follow_icon.png"] forState:UIControlStateNormal];
+        UserFollowButton.frame = CGRectMake(screenWidth - 15 - 40 - 10, PostGetHeight, 40, 50);
+        UserFollowButton.tag = i;
+        [PostView addSubview:UserFollowButton];
+        
         UIButton *Line01 = [[UIButton alloc]init];
         Line01.frame = CGRectMake(15, PostGetHeight + 50, screenWidth - 30, 1);
         [Line01 setTitle:@"" forState:UIControlStateNormal];//238
@@ -455,7 +462,7 @@
         [PostView addSubview:ShowPin];
         
         UILabel *ShowPlaceName = [[UILabel alloc]init];
-        ShowPlaceName.frame = CGRectMake(140, PostGetHeight + 80, screenWidth - 140, 20);
+        ShowPlaceName.frame = CGRectMake(140, PostGetHeight + 80, screenWidth - 140 - 45, 20);
         ShowPlaceName.text = [place_nameArray objectAtIndex:i];
         ShowPlaceName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         ShowPlaceName.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0];
@@ -464,7 +471,7 @@
         [PostView addSubview:ShowPlaceName];
         
         UILabel *ShowLocation = [[UILabel alloc]init];
-        ShowLocation.frame = CGRectMake(120, PostGetHeight + 100, screenWidth - 120, 20);
+        ShowLocation.frame = CGRectMake(120, PostGetHeight + 100, screenWidth - 120 - 45, 20);
         ShowLocation.text = [LocationArray objectAtIndex:i];
         ShowLocation.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowLocation.textColor = [UIColor grayColor];
@@ -479,6 +486,13 @@
         ButtonOnClick.tag = i;
         [ButtonOnClick addTarget:self action:@selector(ImageButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
         [PostView addSubview:ButtonOnClick];
+        
+        UIButton *CollectButton = [[UIButton alloc]init];
+        [CollectButton setBackgroundColor:[UIColor clearColor]];
+        [CollectButton setImage:[UIImage imageNamed:@"collected_icon.png"] forState:UIControlStateNormal];
+        CollectButton.frame = CGRectMake(screenWidth - 15 - 25 - 10, PostGetHeight + 87, 25, 32);
+        CollectButton.tag = i;
+        [PostView addSubview:CollectButton];
         
         
         PostGetHeight += 160;
@@ -551,10 +565,11 @@
         [PeopleView addSubview:ShowMessage];
         
         UIButton *FollowButton = [[UIButton alloc]init];
-        FollowButton.frame = CGRectMake(screenWidth - 30 - 100, PeopleGetHeight + 10, 100, 40);
-        [FollowButton setTitle:@"Icon" forState:UIControlStateNormal];
-        FollowButton.backgroundColor = [UIColor colorWithRed:255.0f/255.0f green:152.0f/255.0f blue:167.0f/255.0f alpha:1.0f];
-        FollowButton.layer.cornerRadius = 20;
+        FollowButton.frame = CGRectMake(screenWidth - 30 - 53, PeopleGetHeight + 12, 53, 37);
+       // [FollowButton setTitle:@"Icon" forState:UIControlStateNormal];
+        [FollowButton setImage:[UIImage imageNamed:@"follow_icon.png"] forState:UIControlStateNormal];
+        FollowButton.backgroundColor = [UIColor clearColor];
+       // FollowButton.layer.cornerRadius = 20;
         [PeopleView addSubview: FollowButton];
         
 //        NSMutableArray *DemoArray = [[NSMutableArray alloc]init];

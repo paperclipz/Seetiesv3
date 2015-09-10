@@ -109,7 +109,7 @@
     
     NSDictionary* dict = @{@"token":GetExpertToken};
     
-    [[ConnectionManager Instance] requestServerWithPost:ServerRequestTypeGetExplore param:dict completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetExplore param:dict completeHandler:^(id object) {
         self.exploreCountryModels  = [[ConnectionManager dataManager] exploreCountryModels];
         if (!self.exploreCountryModels.error) {
             
@@ -118,7 +118,7 @@
             
         }
         else{
-            NSLog(@"afbhafnjamklfqakfeja");
+
         };
         
     } errorBlock:^(id object) {
