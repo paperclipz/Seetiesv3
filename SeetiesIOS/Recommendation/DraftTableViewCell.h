@@ -7,11 +7,13 @@
 //
 
 #import "CommonTableViewCell.h"
+#import "DNSSwipeableCell.h"
 
-@interface DraftTableViewCell : CommonTableViewCell
+@interface DraftTableViewCell : DNSSwipeableCell
 @property (strong, nonatomic) IBOutlet UIImageView *imgView;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblSubtitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblDateTime;
+-(void)initData:(DraftModel*)model;
 
 @end

@@ -9,7 +9,8 @@
 #import "Model.h"
 
 
-@protocol Photo
+
+@protocol PhotoModel
 
 @end
 
@@ -17,6 +18,12 @@
 
 @end
 @protocol DraftModel
+
+@end
+
+@interface Post : NSObject
+@property(nonatomic,strong)NSString* title;
+@property(nonatomic,strong)NSString* message;
 
 @end
 
@@ -32,7 +39,7 @@
 
 @end
 
-@interface Photo : NSObject
+@interface PhotoModel : JSONModel
 
 @property(nonatomic,strong)NSString* tags;
 @property(nonatomic,strong)NSString* photo_id;
@@ -44,11 +51,13 @@
 
 @interface DraftModel : Model
 
-@property(nonatomic,strong)NSString* title;
-@property(nonatomic,strong)NSString* message;
+@property(nonatomic,strong)NSArray* arrPost;
 @property(nonatomic,strong)NSString* place_name;
-@property(nonatomic,strong)NSArray<Photo>* photos;
+@property(nonatomic,strong)NSString* formatted_address;
+@property(nonatomic,strong)NSArray<PhotoModel>* arrPhotos;
 @property(nonatomic,strong)NSString* link;
+
+
 //@property(nonatomic,strong)Location* location;
 
 @end
@@ -56,6 +65,7 @@
 @interface DraftsModel : Model
 
 @property(nonatomic,strong)NSArray<DraftModel>* posts;
+-(void)process;
 
 @end
 

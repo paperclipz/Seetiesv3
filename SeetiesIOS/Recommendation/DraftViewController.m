@@ -7,15 +7,11 @@
 //
 
 #import "DraftViewController.h"
-#import "DraftTableViewCell.h"
 #import "EditPostViewController.h"
 
 @interface DraftViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray* arrDraftList;
-
-
-
 
 @property(nonatomic,strong)EditPostViewController* editPostViewController;
 @end
@@ -64,12 +60,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DraftTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"DraftTableViewCell"];
-    
-    RecommendationModel* model = self.arrDraftList[indexPath.row];
-    EditPhotoModel* editModel = model.arrPostImagesList[0];
-    cell.imageView.image = editModel.image;
-    cell.lblTitle.text =editModel.photoDescription;
-    
+ 
+        DraftModel* model = self.arrDraftList[indexPath.row];
+    [cell initData:model];
+       
     return cell;
 }
 
@@ -77,25 +71,41 @@
 {
     [self.editPostViewController initData:self.arrDraftList[indexPath.row]];
     
-    [self.navigationController pushViewController:self.editPostViewController animated:YES];
+   // [self.navigationController pushViewController:self.editPostViewController animated:YES];
 }
 
 #pragma mark Request Server
+
+-(void)requestServerForDeletePost
+{
+    
+    NSDictionary* dict;
+    [[ConnectionManager Instance]requestServerWithDelete:ServerRequestTypePostDeletePost param:dict completeHandler:^(id object) {
+        
+    } errorBlock:nil];
+}
+
 -(void)requestServerForDraft
 {
-    self.arrDraftList = [NSMutableArray new];
-    
-    for (int i = 0; i<10; i++) {
-        [self.arrDraftList addObject:[DataManager getSampleRecommendation]];
-    }
-//
-//    NSDictionary* dict = @{@"token":[Utils getAppToken]};
+//    self.arrDraftList = [NSMutableArray new];
 //    
-//    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetRecommendationDraft param:dict completeHandler:^(id object) {
-//        
-//    } errorBlock:nil];
-// 
+//    for (int i = 0; i<10; i++) {
+//        [self.arrDraftList addObject:[DataManager getSampleRecommendation]];
+//    }
+
+    NSDictionary* dict = @{@"token":@"JDJ5JDEwJElrb1EvRXNGdUl6VjJQaVY4MXJLQmVsZEc4MXM0eUhJUkNJQTRjRXNWa2RnaUM1Ump5MzR1"};
+    
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetRecommendationDraft param:dict completeHandler:^(id object) {
+        
+        NSArray<DraftModel>* array = [[[ConnectionManager dataManager]draftsModel]posts];
+        self.arrDraftList = [[NSMutableArray alloc]initWithArray:array];
+        [self.tableView reloadData];
+        
+    } errorBlock:nil];
+ 
 }
+
+#pragma mark Declaration
 
 -(EditPostViewController*)editPostViewController
 {
@@ -106,14 +116,5 @@
     return _editPostViewController;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -557,11 +557,11 @@
 
 
     
-    [NSTimer scheduledTimerWithTimeInterval:5.0
-                                     target:self
-                                   selector:@selector(timerCalled)
-                                   userInfo:nil
-                                    repeats:NO];
+//    [NSTimer scheduledTimerWithTimeInterval:5.0
+//                                     target:self
+//                                   selector:@selector(timerCalled)
+//                                   userInfo:nil
+//                                    repeats:NO];
     // [refreshControl endRefreshing];
 }
 

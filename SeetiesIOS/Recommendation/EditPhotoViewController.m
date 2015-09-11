@@ -7,12 +7,6 @@
 //
 
 #import "EditPhotoViewController.h"
-
-
-#import "BMXSwipableCell+ConfigureCell.h"
-#import "UITableViewCell+ConfigureCell.h"
-#import "UITableViewController+BMXSwipableCellSupport.h"
-#import "BMXDataItem.h"
 #import "EditPhotoModel.h"
 #import "AssetHelper.h"
 

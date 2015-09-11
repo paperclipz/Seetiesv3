@@ -8,6 +8,7 @@
 
 
 @class CustomEditPhotoTableViewCell;
+
 typedef void (^CellBlock)(CustomEditPhotoTableViewCell* cell);
 
 @interface CustomEditPhotoTableViewCell : UITableViewCell<UITextViewDelegate>
