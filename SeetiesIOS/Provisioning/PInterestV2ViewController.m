@@ -11,6 +11,7 @@
 #import "PFollowTheExpertsViewController.h"
 @interface PInterestV2ViewController ()
 
+@property(nonatomic,strong)PFollowTheExpertsViewController* pFollowTheExpertsViewController;
 @end
 
 @implementation PInterestV2ViewController
@@ -305,7 +306,15 @@
     [defaults setObject:GetSelectID forKey:@"Provisioning_Interest"];
     [defaults synchronize];
     
-    PFollowTheExpertsViewController *SelectYourInterestView = [[PFollowTheExpertsViewController alloc]init];
-    [self presentViewController:SelectYourInterestView animated:YES completion:nil];
+    [self.navigationController pushViewController:self.pFollowTheExpertsViewController animated:YES];
+}
+
+#pragma mark - Declaration
+-(PFollowTheExpertsViewController*)pFollowTheExpertsViewController
+{
+    if (!_pFollowTheExpertsViewController) {
+        _pFollowTheExpertsViewController = [PFollowTheExpertsViewController new];
+    }
+    return _pFollowTheExpertsViewController;
 }
 @end

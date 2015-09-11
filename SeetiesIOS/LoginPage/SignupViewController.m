@@ -16,6 +16,7 @@
 #import <Parse/Parse.h>
 @interface SignupViewController ()
 //@property (nonatomic, strong) LLARingSpinnerView *spinnerView;
+@property(nonatomic,strong)PInterestV2ViewController* pInterestV2ViewController;
 @end
 
 @implementation SignupViewController
@@ -143,13 +144,7 @@
     // Dispose of any resources that can be recreated.
 }
 -(IBAction)BackButton:(id)sender{
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromLeft;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    //[self presentViewController:ListingDetail animated:NO completion:nil];
+   
     [self dismissViewControllerAnimated:NO completion:nil];
 }
 -(IBAction)RegisterButton:(id)sender{
@@ -484,8 +479,7 @@
                 
             }
             
-            PInterestV2ViewController *PInterestV2View = [[PInterestV2ViewController alloc]init];
-            [self presentViewController:PInterestV2View animated:YES completion:nil];
+            [self.navigationController pushViewController:self.pInterestV2ViewController animated:YES];
         
         }else{
             UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"SomethingError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -493,6 +487,17 @@
         }
     }
 }
+
+-(PInterestV2ViewController*)pInterestV2ViewController
+{
+    if (!_pInterestV2ViewController) {
+        _pInterestV2ViewController = [PInterestV2ViewController new];
+    }
+    
+    return _pInterestV2ViewController;
+}
+
+
 -(void)SendLoginDataToServer2{
     
     [ShowActivity startAnimating];

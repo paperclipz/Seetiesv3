@@ -34,6 +34,7 @@
 #import "NewProfileV2ViewController.h"
 
 #import "CustomPickerViewController.h"
+#import "PInterestV2ViewController.h"
 
 @interface LandingV2ViewController ()
 {
@@ -52,9 +53,20 @@
 }
 
 @property(nonatomic,strong)CustomPickerViewController* recommendationChooseViewController;
+@property(nonatomic,strong)UINavigationController* mainNavigationController;
+@property(nonatomic,strong)SignupViewController* signupViewController;
+
+@property(nonatomic,strong)PTnCViewController* pTnCViewController;
+@property(nonatomic,strong)PTellUsYourCityViewController* pTellUsYourCityViewController;
+@property(nonatomic,strong)PInterestV2ViewController* pInterestV2ViewController;
+@property(nonatomic,strong)PFollowTheExpertsViewController* pFollowTheExpertsViewController;
+
+    
 @end
 
 @implementation LandingV2ViewController
+
+
 
 -(void)initSelfView
 {
@@ -185,19 +197,25 @@
     [super viewDidAppear:animated];
     [self validationBeforeProceed];
     
+    
+    [self GetAlllanguages];
+
+}
+//need to check for all languages before login
+-(void)loginChecking
+{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *CheckProvisioningStatus = [defaults objectForKey:@"CheckProvisioningStatus"];
     NSLog(@"CheckProvisioningStatus is %@",CheckProvisioningStatus);
     NSString *APIVersionSet = [defaults objectForKey:@"APIVersionSet"];
     NSLog(@"APIVersionSet is %@",APIVersionSet);
     NSTimer *RandomTimer;
+
     if ([Utils isLogin]) {
         ShowBackgroundImage.image = [UIImage imageNamed:@"HomeBg.png"];
         MainLogo.hidden = YES;
         MainText.hidden = YES;
         ShowTnCText.hidden = YES;
-
-        [self GetAlllanguages];
         
         RandomTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(ChangeView2) userInfo:nil repeats:NO];
     }else{
@@ -211,28 +229,46 @@
         [motionView setScrollDragEnabled:YES];
         [motionView setScrollBounceEnabled:NO];
         
-        if ([CheckProvisioningStatus isEqualToString:@"1"]) {
-            PTnCViewController *PTnCView = [[PTnCViewController alloc]init];
-            [self presentViewController:PTnCView animated:YES completion:nil];
-        }else if([CheckProvisioningStatus isEqualToString:@"2"]){
-            PTellUsYourCityViewController *PTellUsYourCityView = [[PTellUsYourCityViewController alloc]init];
-            [self presentViewController:PTellUsYourCityView animated:YES completion:nil];
-        }else if([CheckProvisioningStatus isEqualToString:@"3"]){
-            PSelectYourInterestViewController *PSelectYourInterestView = [[PSelectYourInterestViewController alloc]init];
-            [self presentViewController:PSelectYourInterestView animated:YES completion:nil];
-        }else if([CheckProvisioningStatus isEqualToString:@"4"]){
-            PFollowTheExpertsViewController *PFollowTheExpertsView = [[PFollowTheExpertsViewController alloc]init];
-            [self presentViewController:PFollowTheExpertsView animated:YES completion:nil];
-        }else if([CheckProvisioningStatus isEqualToString:@"5"]){
-            RandomTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(changeview) userInfo:nil repeats:NO];
-        }else{
-      
-            [self GetAlllanguages];
-            RandomTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(changeview) userInfo:nil repeats:NO];
+        
+        switch ([CheckProvisioningStatus intValue]) {
+            case 1:
+            {
+                self.mainNavigationController = [[UINavigationController alloc]initWithRootViewController:self.pTnCViewController];
+                
+            }
+                
+                break;
+            case 2:
+                self.mainNavigationController = [[UINavigationController alloc]initWithRootViewController:self.pTellUsYourCityViewController];
+                
+                break;
+                
+            case 3:
+                self.mainNavigationController = [[UINavigationController alloc]initWithRootViewController:self.pInterestV2ViewController];
+                
+                break;
+                
+            case 4:
+                self.mainNavigationController = [[UINavigationController alloc]initWithRootViewController:self.pFollowTheExpertsViewController];
+                
+                break;
+            default:
+                
+                RandomTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(changeview) userInfo:nil repeats:NO];
+                
+                return;
+                break;
         }
+        
+        [_mainNavigationController setNavigationBarHidden:YES];
+        
+        [self presentViewController:self.mainNavigationController animated:YES completion:nil];
+        
+        
         
     }
 }
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.screenName = @"IOS Landing Page";
@@ -283,6 +319,43 @@
 }
 
 #pragma mark - Declaration
+-(PTnCViewController*)pTnCViewController
+{
+    if (!_pTnCViewController) {
+        _pTnCViewController = [PTnCViewController new];
+    }
+    return _pTnCViewController;
+}
+-(PTellUsYourCityViewController*)pTellUsYourCityViewController
+{
+    if (!_pTellUsYourCityViewController) {
+        _pTellUsYourCityViewController = [PTellUsYourCityViewController new];
+    }
+    return _pTellUsYourCityViewController;
+}
+-(PInterestV2ViewController*)pInterestV2ViewController
+{
+    if (!_pInterestV2ViewController) {
+        _pInterestV2ViewController = [PInterestV2ViewController new];
+    }
+    return _pInterestV2ViewController;
+}
+-(PFollowTheExpertsViewController*)pFollowTheExpertsViewController
+{
+    if (!_pFollowTheExpertsViewController) {
+        _pFollowTheExpertsViewController = [PFollowTheExpertsViewController new];
+    }
+    return _pFollowTheExpertsViewController;
+}
+
+-(SignupViewController*)signupViewController
+{
+    if (!_signupViewController) {
+        _signupViewController = [SignupViewController new];
+    }
+    return _signupViewController;
+}
+
 
 -(NSArray*)arrTabImages
 {
@@ -463,15 +536,11 @@
     [self presentViewController:WhyWeUseFBView animated:NO completion:nil];
 }
 -(IBAction)btnSignupWithEmailClicked:(id)sender{
-    SignupViewController *SignupView = [[SignupViewController alloc]init];
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromRight;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self presentViewController:SignupView animated:NO completion:nil];
-    
+   
+    self.mainNavigationController = [[UINavigationController alloc]initWithRootViewController:self.signupViewController];
+    [_mainNavigationController setNavigationBarHidden:YES];
+
+    [self presentViewController:self.mainNavigationController animated:YES completion:nil];
 }
 
 -(IBAction)btnFacebookClicked:(id)sender{
@@ -893,7 +962,7 @@
         [defaults setObject:SystemLanguageName_Array forKey:@"SystemLanguageData_Name"];
         [defaults synchronize];
         
-        
+        [self loginChecking];
         [self GetALlCategory];
     }else if(connection == theConnection_GetAllCategory){
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
