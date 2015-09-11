@@ -17,7 +17,6 @@
 
 #import "FeedV2ViewController.h"
 #import "LeveyTabBarController.h"
-#import "RecommendationViewController.h"
 
 #import "FeedViewController.h"
 #import "NewProfileV2ViewController.h"
@@ -403,8 +402,8 @@
 //        //    //2 sec to show button.
 //        RandomTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(changeview) userInfo:nil repeats:NO];
     }
-    
 }
+
 -(IBAction)DoneButton:(id)sender{
     NSString *CheckStatus = @"0";
     NSString *CheckLogin = [[NSString alloc]initWithFormat:@"LoginDone"];
@@ -413,49 +412,9 @@
     [defaults setObject:CheckLogin forKey:@"CheckLogin"];
     [defaults synchronize];
 
-    FeedViewController *firstViewController=[[FeedViewController alloc]initWithNibName:@"FeedViewController" bundle:nil];
-    Explore2ViewController *secondViewController=[[Explore2ViewController alloc]initWithNibName:@"Explore2ViewController" bundle:nil];
-    //SelectImageViewController *threeViewController=[[SelectImageViewController alloc]initWithNibName:@"SelectImageViewController" bundle:nil];
-    RecommendationViewController *threeViewController=[[RecommendationViewController alloc]initWithNibName:@"RecommendationViewController" bundle:nil];
-    NotificationViewController *fourViewController=[[NotificationViewController alloc]initWithNibName:@"NotificationViewController" bundle:nil];
-    //ProfileV2ViewController *fiveViewController=[[ProfileV2ViewController alloc]initWithNibName:@"ProfileV2ViewController" bundle:nil];
-    NewProfileV2ViewController *fiveViewController=[[NewProfileV2ViewController alloc]initWithNibName:@"NewProfileV2ViewController" bundle:nil];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:firstViewController];
-    UINavigationController *navController2 = [[UINavigationController alloc] initWithRootViewController:secondViewController];
-    UINavigationController *navController3 = [[UINavigationController alloc] initWithRootViewController:fourViewController];
-    UINavigationController *navController4 = [[UINavigationController alloc] initWithRootViewController:fiveViewController];
-    
-    NSArray *ctrlArr = [NSArray arrayWithObjects:navController,navController2,threeViewController,navController3,navController4,nil];
-    
-    NSMutableDictionary *imgDic = [NSMutableDictionary dictionaryWithCapacity:3];
-    [imgDic setObject:[UIImage imageNamed:@"TabBarFeed.png"] forKey:@"Default"];
-    [imgDic setObject:[UIImage imageNamed:@"TabBarFeed_on.png"] forKey:@"Highlighted"];
-    [imgDic setObject:[UIImage imageNamed:@"TabBarFeed_on.png"] forKey:@"Seleted"];
-    NSMutableDictionary *imgDic2 = [NSMutableDictionary dictionaryWithCapacity:3];
-    [imgDic2 setObject:[UIImage imageNamed:@"TabBarExplore.png"] forKey:@"Default"];
-    [imgDic2 setObject:[UIImage imageNamed:@"TabBarExplore_on.png"] forKey:@"Highlighted"];
-    [imgDic2 setObject:[UIImage imageNamed:@"TabBarExplore_on.png"] forKey:@"Seleted"];
-    NSMutableDictionary *imgDic3 = [NSMutableDictionary dictionaryWithCapacity:3];
-    [imgDic3 setObject:[UIImage imageNamed:@"TabBarNew.png"] forKey:@"Default"];
-    [imgDic3 setObject:[UIImage imageNamed:@"FollowDeny.png"] forKey:@"Highlighted"];
-    [imgDic3 setObject:[UIImage imageNamed:@"FollowDeny.png"] forKey:@"Seleted"];
-    NSMutableDictionary *imgDic4 = [NSMutableDictionary dictionaryWithCapacity:3];
-    [imgDic4 setObject:[UIImage imageNamed:@"TabBarActivity.png"] forKey:@"Default"];
-    [imgDic4 setObject:[UIImage imageNamed:@"TabBarActivity_on.png"] forKey:@"Highlighted"];
-    [imgDic4 setObject:[UIImage imageNamed:@"TabBarActivity_on.png"] forKey:@"Seleted"];
-    NSMutableDictionary *imgDic5 = [NSMutableDictionary dictionaryWithCapacity:3];
-    [imgDic5 setObject:[UIImage imageNamed:@"TabBarProfile.png"] forKey:@"Default"];
-    [imgDic5 setObject:[UIImage imageNamed:@"TabBarProfile_on.png"] forKey:@"Highlighted"];
-    [imgDic5 setObject:[UIImage imageNamed:@"TabBarProfile_on.png"] forKey:@"Seleted"];
-    
-    NSArray *imgArr = [NSArray arrayWithObjects:imgDic,imgDic2,imgDic3,imgDic4,imgDic5,nil];
-    
-    leveyTabBarController = [[LeveyTabBarController alloc] initWithViewControllers:ctrlArr imageArray:imgArr];
-    [leveyTabBarController.tabBar setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
-    [leveyTabBarController setTabBarTransparent:YES];
-    
-    [[[[UIApplication sharedApplication] delegate] window] setRootViewController:leveyTabBarController];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
+
 -(void)UpdateUserDataToServer{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
@@ -618,22 +577,16 @@
     [iPhone6PlusScroll setContentOffset:CGPointMake(1656, 0) animated:YES];
 }
 -(IBAction)SkipButton02:(id)sender{
-    [MainScroll setContentOffset:CGPointMake(1280, 0) animated:YES];
-    [iPhone4Scroll setContentOffset:CGPointMake(1280, 0) animated:YES];
-    [iPhone6Scroll setContentOffset:CGPointMake(1500, 0) animated:YES];
-    [iPhone6PlusScroll setContentOffset:CGPointMake(1656, 0) animated:YES];
+    [self SkipButton01:sender];
+
 }
 -(IBAction)SkipButton03:(id)sender{
-    [MainScroll setContentOffset:CGPointMake(1280, 0) animated:YES];
-    [iPhone4Scroll setContentOffset:CGPointMake(1280, 0) animated:YES];
-    [iPhone6Scroll setContentOffset:CGPointMake(1500, 0) animated:YES];
-    [iPhone6PlusScroll setContentOffset:CGPointMake(1656, 0) animated:YES];
+    [self SkipButton01:sender];
+
 }
 -(IBAction)SkipButton04:(id)sender{
-    [MainScroll setContentOffset:CGPointMake(1280, 0) animated:YES];
-    [iPhone4Scroll setContentOffset:CGPointMake(1280, 0) animated:YES];
-    [iPhone6Scroll setContentOffset:CGPointMake(1500, 0) animated:YES];
-    [iPhone6PlusScroll setContentOffset:CGPointMake(1656, 0) animated:YES];
+    [self SkipButton01:sender];
+
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;

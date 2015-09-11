@@ -1005,6 +1005,7 @@
 		8AF2C27A1B9EA3B800B0A7F1 /* NSMutableDictionary+STHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF2C2781B9EA3B800B0A7F1 /* NSMutableDictionary+STHelper.m */; };
 		8AF2C27E1BA13D1400B0A7F1 /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF2C27D1BA13D1400B0A7F1 /* AFNetworkActivityLogger.m */; };
 		8AF2C2CF1BA1654200B0A7F1 /* DraftModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF2C2CE1BA1654200B0A7F1 /* DraftModel.m */; };
+		8AF2C2D21BA27EDE00B0A7F1 /* UIImage+Tint.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF2C2D11BA27EDE00B0A7F1 /* UIImage+Tint.m */; };
 		D44BD397CA9972010A37D9F6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B526FE01F3F3414439C16DF /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -2265,6 +2266,8 @@
 		8AF2C27D1BA13D1400B0A7F1 /* AFNetworkActivityLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityLogger.m; sourceTree = "<group>"; };
 		8AF2C2CD1BA1654200B0A7F1 /* DraftModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DraftModel.h; sourceTree = "<group>"; };
 		8AF2C2CE1BA1654200B0A7F1 /* DraftModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DraftModel.m; sourceTree = "<group>"; };
+		8AF2C2D01BA27EDE00B0A7F1 /* UIImage+Tint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Tint.h"; sourceTree = "<group>"; };
+		8AF2C2D11BA27EDE00B0A7F1 /* UIImage+Tint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tint.m"; sourceTree = "<group>"; };
 		A6BFDB1BE373200E64D8CBE7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CAB2B54F0EC79309593A3C4C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2531,6 +2534,8 @@
 		8A34092C1B8AD06A009B66C3 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				8AF2C2D01BA27EDE00B0A7F1 /* UIImage+Tint.h */,
+				8AF2C2D11BA27EDE00B0A7F1 /* UIImage+Tint.m */,
 				8A34092D1B8AD06A009B66C3 /* UIImage+Blurring.h */,
 				8A34092E1B8AD06A009B66C3 /* UIImage+Blurring.m */,
 				8A34092F1B8AD06A009B66C3 /* UIImage+Enhancing.h */,
@@ -5400,6 +5405,7 @@
 				8AD6C28B1B7072FB0040437E /* EditLocationV2ViewController.m in Sources */,
 				8A6584321B981B4E00BC86B9 /* CategorySelectionViewController.m in Sources */,
 				8AD6C3291B707D120040437E /* JSONKit.m in Sources */,
+				8AF2C2D21BA27EDE00B0A7F1 /* UIImage+Tint.m in Sources */,
 				8AD6C2871B7072FB0040437E /* BrightnessViewController.m in Sources */,
 				8A7420E01B82F67F005DA654 /* UIImage+KVNEmpty.m in Sources */,
 				8A34094F1B8AD267009B66C3 /* NYXImagesHelper.m in Sources */,
