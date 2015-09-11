@@ -193,13 +193,12 @@
     NSLog(@"APIVersionSet is %@",APIVersionSet);
     NSTimer *RandomTimer;
     if ([Utils isLogin]) {
-        ShowBackgroundImage.image = [UIImage imageNamed:@"LandingV2.png"];
+        ShowBackgroundImage.image = [UIImage imageNamed:@"HomeBg.png"];
         MainLogo.hidden = YES;
         MainText.hidden = YES;
         ShowTnCText.hidden = YES;
 
         [self GetAlllanguages];
-        
         RandomTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(ChangeView2) userInfo:nil repeats:NO];
     }else{
         CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;

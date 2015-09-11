@@ -19,7 +19,12 @@
                                                        @"short_name": @"shortName",
                                                        @"photos.cover": @"coverPhoto",
                                                        @"photos.fb": @"facebookPhoto",
-                                                       @"photos.explore": @"explorePhoto"
+                                                       @"photos.explore": @"explorePhoto",
+                                                       @"festival.url" : @"festivalUrl",
+                                                       @"festival.thumbnail" : @"festivalImage",
+                                                       @"thumbnail" : @"thumbnailA"
+
+                                                       
                                                        }];
 }
 

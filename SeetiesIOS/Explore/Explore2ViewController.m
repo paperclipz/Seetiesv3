@@ -269,7 +269,7 @@
         imageView.clipsToBounds = YES;
         imageView.tag = 99;
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:imageView];
-        NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[self.exploreCountryModels.countries[i] thumbnail]];
+        NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[self.exploreCountryModels.countries[i] thumbnailA]];
 
         NSURL *url = [NSURL URLWithString:FullImagesURL];
         imageView.imageURL = url;
@@ -323,7 +323,7 @@
     imageView.clipsToBounds = YES;
     imageView.tag = 99;
     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:imageView];
-    NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[[self.exploreCountryModels.countries lastObject] thumbnail]];
+    NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[[self.exploreCountryModels.countries lastObject] thumbnailA]];
     NSURL *url = [NSURL URLWithString:FullImagesURL];
     imageView.imageURL = url;
     
@@ -412,6 +412,7 @@
 -(void)InitContentView{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
+    
     for (int i = 0 ; i < [self.exploreCountryModels.countries count]; i++) {
         AsyncImageView *ShowCountryImg = [[AsyncImageView alloc]init];
         ShowCountryImg.frame = CGRectMake(0, 0 + i * 151, screenWidth, 150);
@@ -419,10 +420,13 @@
         ShowCountryImg.contentMode = UIViewContentModeScaleAspectFill;
         ShowCountryImg.clipsToBounds = YES;
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowCountryImg];
-        NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[self.exploreCountryModels.countries[i] thumbnail]];
+        NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[self.exploreCountryModels.countries[i] thumbnailA]];
         NSURL *url = [NSURL URLWithString:FullImagesURL];
         ShowCountryImg.imageURL = url;
         [ibScrollViewCountry addSubview:ShowCountryImg];
+        
+        NSLog(@"festivalUrl is %@",[self.exploreCountryModels.countries[i] festivalUrl]);
+       // NSLog(@"festivalImage is %@",[self.exploreCountryModels.countries[i] festivalImage]);
         
         
         UILabel *ShowUserName = [[UILabel alloc]init];

@@ -41,6 +41,8 @@
     NSMutableArray *arrDistance;
     NSMutableArray *arrDisplayCountryName;
     NSMutableArray *arrPostID;
+    NSMutableArray *arrImageWidth;
+    NSMutableArray *arrImageHeight;
     
     NSDate *methodStart;
     

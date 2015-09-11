@@ -25,6 +25,7 @@
     
 }
 -(void)GetTitleString:(NSString *)String;
+-(void)GetTitleString:(NSString *)StringTitle GetFestivalUrl:(NSString *)StringUrl;
 
 -(IBAction)WebBackButton:(id)sender;
 -(IBAction)WebForwardButton:(id)sender;

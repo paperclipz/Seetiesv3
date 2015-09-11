@@ -234,6 +234,10 @@
         arrDisplayCountryName = [[NSMutableArray alloc]initWithArray:arrDisplayCountryNameTemp];
         NSMutableArray *arrPostIDTemp = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"FeedLocalarrPostID"]];
         arrPostID = [[NSMutableArray alloc]initWithArray:arrPostIDTemp];
+        NSMutableArray *arrImageHeightTemp = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"FeedLocalarrImageHeight"]];
+        arrImageHeight = [[NSMutableArray alloc]initWithArray:arrImageHeightTemp];
+        NSMutableArray *arrImageWidthTemp = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"FeedLocalarrImageWidth"]];
+        arrImageWidth = [[NSMutableArray alloc]initWithArray:arrImageWidthTemp];
     }else{
         arrAddress = [[NSMutableArray alloc]init];
         arrTitle = [[NSMutableArray alloc]init];
@@ -245,6 +249,8 @@
         arrUserImage = [[NSMutableArray alloc]init];
         arrDisplayCountryName = [[NSMutableArray alloc]init];
         arrPostID = [[NSMutableArray alloc]init];
+        arrImageWidth = [[NSMutableArray alloc]init];
+        arrImageHeight = [[NSMutableArray alloc]init];
     }
 
     TotalPage = 1;
@@ -315,7 +321,7 @@
             [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
             NSString *stringPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"Content_Folder"];
             stringPath  = [stringPath stringByAppendingPathComponent:[arrImage objectAtIndex:i]];
-            //NSLog(@"stringpath %@",stringPath);
+           // NSLog(@"stringpath %@",stringPath);
             UIImage *image_;
             UIImage *newImage;
             image_ = [UIImage imageWithData:[NSData dataWithContentsOfFile:stringPath]];
@@ -330,7 +336,6 @@
             newImage = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
             ShowImage.image = newImage;
-
             ShowImage.frame = CGRectMake(10, heightcheck + i, screenWidth - 20, newImage.size.height);
             // ShowImage.frame = CGRectMake(0, heightcheck + i, screenWidth, 200);
             [LocalScroll addSubview:ShowImage];
@@ -557,11 +562,16 @@
 
 
     
-    [NSTimer scheduledTimerWithTimeInterval:5.0
-                                     target:self
-                                   selector:@selector(timerCalled)
-                                   userInfo:nil
-                                    repeats:NO];
+//    [NSTimer scheduledTimerWithTimeInterval:5.0
+//                                     target:self
+//                                   selector:@selector(timerCalled)
+//                                   userInfo:nil
+//                                    repeats:NO];
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//            [self timerCalled];
+//    });
+   // [self timerCalled];
+    [self performSelectorOnMainThread:@selector(timerCalled) withObject:nil waitUntilDone:NO];
     // [refreshControl endRefreshing];
 }
 
@@ -640,26 +650,18 @@
             float newHeight = image_.size.height * scaleFactor;
             float newWidth = oldWidth * scaleFactor;
             
+//            float oldWidth = [[arrImageWidth objectAtIndex:i] floatValue];
+//            float scaleFactor = screenWidth / oldWidth;
+//            
+//            float newHeight = [[arrImageHeight objectAtIndex:i] floatValue] * scaleFactor;
+//            float newWidth = oldWidth * scaleFactor;
+            
             UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight));
             [image_ drawInRect:CGRectMake(0, 0, newWidth, newHeight)];
             newImage = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
             ShowImage.image = newImage;
-            
-            if (CheckFirstTimeLoad == 0) {
-                NSData *imageData = UIImageJPEGRepresentation(newImage, 1);
-                NSString *stringPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,   NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"Content_Folder"];
-                // Content_ Folder is your folder name
-                NSError *error = nil;
-                if (![[NSFileManager defaultManager] fileExistsAtPath:stringPath])
-                    [[NSFileManager defaultManager] createDirectoryAtPath:stringPath  withIntermediateDirectories:NO attributes:nil error:&error];
-                //This will create a new folder if content folder is not exist
-                NSString *fileName = [stringPath stringByAppendingFormat:@"/FeedLocalimage_%li.jpg",(long)i];
-                [imageData writeToFile:fileName atomically:YES];
-                NSString *SaveFileName = [[NSString alloc]initWithFormat:@"FeedLocalimage_%li.jpg",(long)i];
-                [TempArray_FeedImage addObject:SaveFileName];
-            }else{
-            }
+
             ShowImage.frame = CGRectMake(10, heightcheck + i, screenWidth - 20, newImage.size.height);
             // ShowImage.frame = CGRectMake(0, heightcheck + i, screenWidth, 200);
             [MainScroll addSubview:ShowImage];
@@ -704,20 +706,7 @@
             [ClicktoOpenUserProfileButton addTarget:self action:@selector(OpenUserProfileOnClick:) forControlEvents:UIControlEventTouchUpInside];
             [MainScroll addSubview:ClicktoOpenUserProfileButton];
             
-            if (CheckFirstTimeLoad == 0) {
-                NSData *imageData = UIImageJPEGRepresentation(UserImage, 1);
-                NSString *stringPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,   NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"Content_Folder"];
-                // Content_ Folder is your folder name
-                NSError *error = nil;
-                if (![[NSFileManager defaultManager] fileExistsAtPath:stringPath])
-                    [[NSFileManager defaultManager] createDirectoryAtPath:stringPath  withIntermediateDirectories:NO attributes:nil error:&error];
-                //This will create a new folder if content folder is not exist
-                NSString *fileName = [stringPath stringByAppendingFormat:@"/FeedLocalUserImg_%li.jpg",(long)i];
-                [imageData writeToFile:fileName atomically:YES];
-                NSString *SaveFileName = [[NSString alloc]initWithFormat:@"FeedLocalUserImg_%li.jpg",(long)i];
-                [TempArray_FeedUserImage addObject:SaveFileName];
-            }else{
-            }
+
             
             UILabel *ShowUserName = [[UILabel alloc]init];
             ShowUserName.frame = CGRectMake(70, heightcheck + i + 10, 200, 40);
@@ -1196,6 +1185,76 @@
     
     
 
+
+    [MainScroll setContentSize:CGSizeMake(screenWidth, heightcheck + 169 + 50)];
+    
+    NSDate *methodFinish = [NSDate date];
+    NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:methodStart];
+    NSLog(@"executionTime = %f", executionTime);
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        if (CheckFirstTimeLoad == 0) {
+        [self SaveDataInLocal];
+        }
+    });
+    
+}
+
+-(void)SaveDataInLocal{
+    NSLog(@"Run Save Data in Local");
+    
+    NSMutableArray *TempArray_FeedImage = [[NSMutableArray alloc]init];
+    NSMutableArray *TempArray_FeedUserImage = [[NSMutableArray alloc]init];
+    for (NSInteger i = DataCount; i < DataTotal; i++) {
+        
+        NSString *TempImage = [[NSString alloc]initWithFormat:@"%@",[arrImage objectAtIndex:i]];
+        NSArray *SplitArray = [TempImage componentsSeparatedByString:@","];
+        NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[SplitArray objectAtIndex:0]];
+        UIImage *newImage;
+        if ([FullImagesURL_First length] == 0) {
+            newImage = [UIImage imageNamed:@"NoImage.png"];
+        }else{
+            NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL_First];
+            NSData *data = [NSData dataWithContentsOfURL:url_NearbySmall];
+            newImage = [UIImage imageWithData:data];
+        }
+        
+        NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[arrUserImage objectAtIndex:i]];
+        UIImage *UserImage;
+        if ([FullImagesURL length] == 0) {
+            UserImage = [UIImage imageNamed:@"avatar.png"];
+        }else{
+            NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL];
+            NSData *data = [NSData dataWithContentsOfURL:url_NearbySmall];
+            UserImage = [UIImage imageWithData:data];
+        }
+        
+    if (CheckFirstTimeLoad == 0) {
+        NSData *imageData = UIImageJPEGRepresentation(newImage, 1);
+        NSString *stringPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,   NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"Content_Folder"];
+        // Content_ Folder is your folder name
+        NSError *error = nil;
+        if (![[NSFileManager defaultManager] fileExistsAtPath:stringPath])
+            [[NSFileManager defaultManager] createDirectoryAtPath:stringPath  withIntermediateDirectories:NO attributes:nil error:&error];
+            //This will create a new folder if content folder is not exist
+            NSString *fileName = [stringPath stringByAppendingFormat:@"/FeedLocalimage_%li.jpg",(long)i];
+            [imageData writeToFile:fileName atomically:YES];
+            NSString *SaveFileName = [[NSString alloc]initWithFormat:@"FeedLocalimage_%li.jpg",(long)i];
+            [TempArray_FeedImage addObject:SaveFileName];
+        
+        NSData *imageData_UserImage = UIImageJPEGRepresentation(UserImage, 1);
+        NSString *stringPath_1 = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,   NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"Content_Folder"];
+        if (![[NSFileManager defaultManager] fileExistsAtPath:stringPath_1])
+            [[NSFileManager defaultManager] createDirectoryAtPath:stringPath_1  withIntermediateDirectories:NO attributes:nil error:&error];
+            //This will create a new folder if content folder is not exist
+            NSString *fileName_1 = [stringPath_1 stringByAppendingFormat:@"/FeedLocalUserImg_%li.jpg",(long)i];
+            [imageData_UserImage writeToFile:fileName_1 atomically:YES];
+            NSString *SaveFileName_1 = [[NSString alloc]initWithFormat:@"FeedLocalUserImg_%li.jpg",(long)i];
+            [TempArray_FeedUserImage addObject:SaveFileName_1];
+    }
+    
+    }
+    
     if (CheckFirstTimeLoad == 0) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:TempArray_FeedImage forKey:@"FeedLocalImg"];// image data
@@ -1208,23 +1267,18 @@
         [defaults setObject:TempArray_FeedUserImage forKey:@"FeedLocalarrUserImage"];
         [defaults setObject:arrDisplayCountryName forKey:@"FeedLocalarrDisplayCountryName"];
         [defaults setObject:arrPostID forKey:@"FeedLocalarrPostID"];
+        [defaults setObject:arrImageHeight forKey:@"FeedLocalarrImageHeight"];
+        [defaults setObject:arrImageWidth forKey:@"FeedLocalarrImageWidth"];
         [defaults setObject:@"Done" forKey:@"TestLocalData"];
         [defaults synchronize];
     }else{
     }
-    [MainScroll setContentSize:CGSizeMake(screenWidth, heightcheck + 169 + 50)];
     
-    
-    
-    
-    NSDate *methodFinish = [NSDate date];
-    NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:methodStart];
-    NSLog(@"executionTime = %f", executionTime);
-    
-    
-    
-    
+    NSLog(@"Done Save Data in Local");
+    CheckFirstTimeLoad = 1;
 }
+
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
     if (scrollView == SuggestedScrollview) {
@@ -1525,12 +1579,24 @@
                             NSDictionary *UserInfoData = [dict_ valueForKey:@"m"];
                             NSString *url = [[NSString alloc]initWithFormat:@"%@",[UserInfoData objectForKey:@"url"]];
                             [UrlArray addObject:url];
+                            
+                            NSDictionary *ImageResolutionData = [UserInfoData valueForKey:@"resolution"];
+                            NSString *GetImageWidth = [[NSString alloc]initWithFormat:@"%@",[ImageResolutionData objectForKey:@"w"]];
+                            NSString *GetImageHeight = [[NSString alloc]initWithFormat:@"%@",[ImageResolutionData objectForKey:@"h"]];
+                            
+                            [arrImageHeight addObject:GetImageHeight];
+                            [arrImageWidth addObject:GetImageWidth];
+//                            NSLog(@"GetImageWidth is %@",GetImageWidth);
+//                            NSLog(@"GetImageHeight is %@",GetImageHeight);
                         }
 //                        NSString *result = [captionArray componentsJoinedByString:@","];
 //                        [PhotoCaptionArray addObject:result];
                         NSString *result2 = [UrlArray componentsJoinedByString:@","];
                         [arrImage addObject:result2];
                     }
+                
+//                NSLog(@"arrImageWidth is %@",arrImageWidth);
+//                NSLog(@"arrImageHeight is %@",arrImageHeight);
                 
                 
                 NSDictionary *locationData = [PostsData valueForKey:@"location"];
@@ -1563,7 +1629,7 @@
     
                 if (CheckFirstTimeLoad == 0) {
                     [self StartInit1stView];
-                    CheckFirstTimeLoad = 1;
+                    
                 }else{
                     [self InitContent];
                 }
@@ -1620,6 +1686,8 @@
     [arrImage removeAllObjects];
     [arrUserImage removeAllObjects];
     [arrUserName removeAllObjects];
+    [arrImageWidth removeAllObjects];
+    [arrImageHeight removeAllObjects];
 }
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
@@ -1634,14 +1702,18 @@
             if (OnLoad == YES) {
                 
             }else{
-                CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-                [MainScroll setContentSize:CGSizeMake(screenWidth, MainScroll.contentSize.height + 150)];
-                UIActivityIndicatorView *  activityindicator1 = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake((screenWidth/2) - 15, heightcheck + 40, 30, 30)];
-                [activityindicator1 setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhiteLarge];
-                [activityindicator1 setColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f]];
-                [MainScroll addSubview:activityindicator1];
-                [activityindicator1 startAnimating];
-                [self GetFeedDataFromServer];
+                if (LocalScroll.hidden == YES) {
+                    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+                    [MainScroll setContentSize:CGSizeMake(screenWidth, MainScroll.contentSize.height + 150)];
+                    UIActivityIndicatorView *  activityindicator1 = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake((screenWidth/2) - 15, heightcheck + 40, 30, 30)];
+                    [activityindicator1 setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhiteLarge];
+                    [activityindicator1 setColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f]];
+                    [MainScroll addSubview:activityindicator1];
+                    [activityindicator1 startAnimating];
+                    [self GetFeedDataFromServer];
+                    [activityindicator1 stopAnimating];
+                }
+
             }
 
             

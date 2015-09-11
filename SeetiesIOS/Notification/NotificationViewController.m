@@ -89,10 +89,9 @@
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
     
     NSString *FullString = [[NSString alloc]initWithFormat:@"%@?token=%@",DataUrl.GetNotification_Url,GetExpertToken];
-    
+    NSLog(@"Get Notification is %@",FullString);
     
     NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
-    NSLog(@"check postBack URL ==== %@",postBack);
     // NSURL *url = [NSURL URLWithString:[postBack stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     NSURL *url = [NSURL URLWithString:postBack];
     NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
@@ -114,7 +113,7 @@
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
     
     NSString *FullString = [[NSString alloc]initWithFormat:@"%@/following?token=%@",DataUrl.GetNotification_Url,GetExpertToken];
-    
+    NSLog(@"Get Following is %@",FullString);
     
     NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
     NSURL *url = [NSURL URLWithString:postBack];
@@ -150,7 +149,7 @@
 {
     if (connection == theConnection_GetNotification) {
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
-        NSLog(@"Notification return get data to server ===== %@",GetData);
+       // NSLog(@"Notification return get data to server ===== %@",GetData);
         if ([GetData length] == 0 || [GetData isEqualToString:@"[]"]) {
             ShowNoDataView.hidden = NO;
         }else{
@@ -159,7 +158,7 @@
             NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
             NSError *myError = nil;
             NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
-            NSLog(@"Expert Json = %@",res);
+          //  NSLog(@"Expert Json = %@",res);
             
             NSDictionary *GetAllData = [res valueForKey:@"data"];
             
@@ -210,11 +209,11 @@
                     [PostThumbnailArray addObject:post_thumbnail];
                 }
             }
-            NSLog(@"TypeArray is %@",TypeArray);
-            NSLog(@"ActionArray is %@",ActionArray);
-            NSLog(@"UserThumbnailArray is %@",UserThumbnailArray);
-            NSLog(@"PostThumbnailArray is %@",PostThumbnailArray);
-            NSLog(@"UserNameArray is %@",UserNameArray);
+//            NSLog(@"TypeArray is %@",TypeArray);
+//            NSLog(@"ActionArray is %@",ActionArray);
+//            NSLog(@"UserThumbnailArray is %@",UserThumbnailArray);
+//            NSLog(@"PostThumbnailArray is %@",PostThumbnailArray);
+//            NSLog(@"UserNameArray is %@",UserNameArray);
             [self InitView];
         }
     }else{

@@ -14,6 +14,7 @@
 #import "Locale.h"
 #import "Filter2ViewController.h"
 #import "NSAttributedString+DVSTracking.h"
+#import "OpenWebViewController.h"
 @interface ExploreCountryV2ViewController ()
 
 @end
@@ -250,10 +251,11 @@
     UIImage *TempImage = [[UIImage alloc]init];
     TempImage = [UIImage imageNamed:@"BannerFestival.png"];
     
-    UIImageView *FestivalImage = [[UIImageView alloc]init];
+    AsyncImageView *FestivalImage = [[AsyncImageView alloc]init];
     FestivalImage.image = TempImage;
     FestivalImage.frame = CGRectMake(0, -10, screenWidth, 180);
     FestivalImage.contentMode = UIViewContentModeScaleAspectFill;
+    [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:FestivalImage];
     [MainScroll addSubview:FestivalImage];
     
     UILabel *ShowBigText = [[UILabel alloc]init];
@@ -278,7 +280,7 @@
     [FestivalButton setTitle:CustomLocalisedString(@"Letsgo", nil) forState:UIControlStateNormal];
     [FestivalButton setFrame:CGRectMake((screenWidth/2) - 70, GetHeight + 110, 140, 47)];
     [FestivalButton setBackgroundColor:[UIColor clearColor]];
-   // [FestivalButton addTarget:self action:@selector(LetsgoButton:) forControlEvents:UIControlEventTouchUpInside];
+    [FestivalButton addTarget:self action:@selector(LetsgoButton:) forControlEvents:UIControlEventTouchUpInside];
     [FestivalButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15]];
     [MainScroll addSubview:FestivalButton];
     
@@ -1042,18 +1044,11 @@
         {
             // we are at the end
             NSLog(@"we are at the end");
-            
-                    CheckLoad_Explore = YES;
-                    if (CurrentPage == TotalPage) {
-                        
-                    }else{
-                        
-                        [self GetDataFromServer];
-                    }
-                    
-            
-            
-            
+            CheckLoad_Explore = YES;
+            if (CurrentPage == TotalPage) {
+            }else{
+                [self GetDataFromServer];
+            }
         }
     }
 }
@@ -1061,5 +1056,17 @@
     Filter2ViewController *FilterView = [[Filter2ViewController alloc]init];
     [self presentViewController:FilterView animated:YES completion:nil];
     [FilterView GetWhatViewComeHere:@"Explore"];
+}
+-(IBAction)LetsgoButton:(id)sender{
+    OpenWebViewController *OpenWebView = [[OpenWebViewController alloc]init];
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.2;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromRight;
+    [self.view.window.layer addAnimation:transition forKey:nil];
+    [self presentViewController:OpenWebView animated:NO completion:nil];
+    //[OpenWebView GetTitleString:@"Festival"];
+    [OpenWebView GetTitleString:@"Festival" GetFestivalUrl:@""];
 }
 @end

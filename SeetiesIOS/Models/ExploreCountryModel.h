@@ -19,8 +19,9 @@
 @property (assign, nonatomic) int status;
 @property (strong, nonatomic) NSDictionary* shortName;
 
-@property (assign, nonatomic) int festival;
-@property (strong, nonatomic) NSString* thumbnail;
+@property (assign, nonatomic) NSString <Optional>*festivalUrl;
+@property (assign, nonatomic) NSString <Optional>*festivalImage;
+@property (strong, nonatomic) NSString* thumbnailA;
 
 @property (strong, nonatomic) NSString* coverPhoto;
 @property (strong, nonatomic) NSString* facebookPhoto;

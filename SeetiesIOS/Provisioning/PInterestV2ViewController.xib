@@ -16,6 +16,7 @@
             <connections>
                 <outlet property="DoneButton" destination="SYa-1H-Cbd" id="gUI-DQ-LZh"/>
                 <outlet property="MainScroll" destination="Ojy-bG-JSj" id="IGI-i1-etL"/>
+                <outlet property="ShowActivity" destination="7J4-79-y6A" id="tch-Zs-Bel"/>
                 <outlet property="ShowSubTitle" destination="lTH-t5-Den" id="YZa-3U-FGU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -49,6 +50,11 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </scrollView>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" id="7J4-79-y6A">
+                    <rect key="frame" x="136" y="173" width="37" height="37"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="color" red="0.20000000000000001" green="0.70980392160000005" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <point key="canvasLocation" x="693" y="460"/>
