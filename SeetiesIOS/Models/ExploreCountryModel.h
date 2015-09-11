@@ -8,7 +8,17 @@
 
 #import "Model.h"
 
+
+@protocol FestivalModel
+@end
+
 @protocol ExploreCountryModel
+@end
+
+
+@interface FestivalModel : JSONModel
+@property (assign, nonatomic) NSString <Optional>*thumbnail;
+@property (assign, nonatomic) NSString <Optional>*url;
 @end
 
 @interface ExploreCountryModel : JSONModel
@@ -19,14 +29,12 @@
 @property (assign, nonatomic) int status;
 @property (strong, nonatomic) NSDictionary* shortName;
 
-@property (assign, nonatomic) NSString <Optional>*festivalUrl;
-@property (assign, nonatomic) NSString <Optional>*festivalImage;
-@property (strong, nonatomic) NSString* thumbnailA;
 
+@property (strong, nonatomic) NSString* thumbnail;
+@property (strong, nonatomic) FestivalModel<Optional>* festival;
 @property (strong, nonatomic) NSString* coverPhoto;
 @property (strong, nonatomic) NSString* facebookPhoto;
 @property (strong, nonatomic) NSString* explorePhoto;
-
 @property (strong, nonatomic) NSString* name_en;
 @end
 

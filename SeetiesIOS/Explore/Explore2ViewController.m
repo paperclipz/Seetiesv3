@@ -110,6 +110,7 @@
         if (!self.exploreCountryModels.error) {
             
             // [self InitCountriesView];
+            FestivalModel* model = [self.exploreCountryModels.countries[0] festival];
             [self InitContentView];
             
         }
@@ -269,7 +270,7 @@
         imageView.clipsToBounds = YES;
         imageView.tag = 99;
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:imageView];
-        NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[self.exploreCountryModels.countries[i] thumbnailA]];
+        NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[self.exploreCountryModels.countries[i] thumbnail]];
 
         NSURL *url = [NSURL URLWithString:FullImagesURL];
         imageView.imageURL = url;
@@ -323,7 +324,7 @@
     imageView.clipsToBounds = YES;
     imageView.tag = 99;
     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:imageView];
-    NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[[self.exploreCountryModels.countries lastObject] thumbnailA]];
+    NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[[self.exploreCountryModels.countries lastObject] thumbnail]];
     NSURL *url = [NSURL URLWithString:FullImagesURL];
     imageView.imageURL = url;
     
@@ -420,12 +421,12 @@
         ShowCountryImg.contentMode = UIViewContentModeScaleAspectFill;
         ShowCountryImg.clipsToBounds = YES;
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowCountryImg];
-        NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[self.exploreCountryModels.countries[i] thumbnailA]];
+        NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[self.exploreCountryModels.countries[i] thumbnail]];
         NSURL *url = [NSURL URLWithString:FullImagesURL];
         ShowCountryImg.imageURL = url;
         [ibScrollViewCountry addSubview:ShowCountryImg];
         
-        NSLog(@"festivalUrl is %@",[self.exploreCountryModels.countries[i] festivalUrl]);
+      //  NSLog(@"festivalUrl is %@",[self.exploreCountryModels.countries[i] festivalUrl]);
        // NSLog(@"festivalImage is %@",[self.exploreCountryModels.countries[i] festivalImage]);
         
         

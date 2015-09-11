@@ -289,6 +289,8 @@
             break;
             
         case ServerRequestTypeGetExplore:
+            
+            SLog(@"response explore : %@",obj);
             self.dataManager.exploreCountryModels = [[ExploreCountryModels alloc]initWithDictionary:obj error:nil];
             break;
             
