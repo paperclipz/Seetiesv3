@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "UrlDataClass.h"
 @interface PInterestV2ViewController : UIViewController<UIScrollViewDelegate>{
 
     
@@ -22,6 +22,11 @@
     NSMutableArray *GetImageArray;
     
     NSMutableArray *CategorySelectIDArray;
+    
+    UrlDataClass *DataUrl;
+    NSMutableData *webData;
+    NSURLConnection *theConnection_GetAllCategory;
+    IBOutlet UIActivityIndicatorView *ShowActivity;
 }
 -(IBAction)NextButton:(id)sender;
 @end

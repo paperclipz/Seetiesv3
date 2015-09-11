@@ -78,6 +78,19 @@
     
     timer = [NSTimer scheduledTimerWithTimeInterval:(1.0/2.0) target:self selector:@selector(timerload) userInfo:nil repeats:YES];
 }
+-(void)GetTitleString:(NSString *)StringTitle GetFestivalUrl:(NSString *)StringUrl{
+
+    GetStringText = StringTitle;
+    url = StringUrl;
+    ShowTitle.text = @"Festivals";
+    
+    
+    [web setBackgroundColor:[UIColor whiteColor]];
+    [web loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
+    
+    
+    timer = [NSTimer scheduledTimerWithTimeInterval:(1.0/2.0) target:self selector:@selector(timerload) userInfo:nil repeats:YES];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

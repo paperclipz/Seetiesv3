@@ -61,6 +61,9 @@
     UIView *PeopleView;
     int GetHeight;
     
+    NSString *GetFestivalsImage;
+    NSString *GetFestivalsUrl;
+    
     
    // LLARingSpinnerView *spinnerView;
 }
