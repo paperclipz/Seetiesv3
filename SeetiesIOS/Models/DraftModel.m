@@ -8,25 +8,30 @@
 
 #import "DraftModel.h"
 
+@implementation Post
+@end
 
 @implementation Location
-+(BOOL)propertyIsOptional:(NSString*)propertyName
-{
-    return YES;
-}
 
 @end
 
 
-@implementation Photo
+@implementation PhotoModel
 
-+(BOOL)propertyIsOptional:(NSString*)propertyName
++(JSONKeyMapper*)keyMapper
 {
-    return YES;
+    return [[JSONKeyMapper alloc] initWithDictionary:@{
+                                                       @"s.url" :@"imageURL"
+                                                       }];
 }
-
 @end
 
+
+@interface DraftModel ()
+@property(nonatomic,strong)NSDictionary* title;
+@property(nonatomic,strong)NSDictionary* message;
+
+@end
 
 @implementation DraftModel
 +(BOOL)propertyIsOptional:(NSString*)propertyName
@@ -37,15 +42,42 @@
 +(JSONKeyMapper*)keyMapper
 {
     return [[JSONKeyMapper alloc] initWithDictionary:@{
-                                                       @"location.address_components" :@"location"                                                       
+                                                       @"location.address_components" :@"location",
+                                                       @"photos" :@"arrPhotos"
+
                                                        }];
 }
+
+-(void)process
+{
+    NSMutableArray* array = [NSMutableArray new];
+    NSArray* key = [self.title allKeys];
+    
+    for (int i = 0; i < key.count; i++) {
+        
+        Post* object = [Post new];
+        object.title = self.title[key[i]];
+        object.message = self.message[key[i]];
+        [array addObject:object];
+    }
+    
+    self.arrPost = [[NSArray alloc]initWithArray:array];
+   // PhotoModel* photoModel = [PhotoModel alloc]init;
+}
+
 @end
 
 @implementation DraftsModel
-+(BOOL)propertyIsOptional:(NSString*)propertyName
+
+-(void)process
 {
-    return YES;
+    
+    for (int i = 0; i<self.posts.count; i++) {
+        DraftModel* model = self.posts[i];
+        [model process];
+        
+    }
+
 }
 
 @end

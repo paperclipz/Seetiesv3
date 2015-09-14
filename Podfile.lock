@@ -1,25 +1,25 @@
 PODS:
   - ActionSheetPicker-3.0 (1.7.1)
   - ADTransitionController (1.1.1)
-  - AFNetworking (2.5.0):
-    - AFNetworking/NSURLConnection (= 2.5.0)
-    - AFNetworking/NSURLSession (= 2.5.0)
-    - AFNetworking/Reachability (= 2.5.0)
-    - AFNetworking/Security (= 2.5.0)
-    - AFNetworking/Serialization (= 2.5.0)
-    - AFNetworking/UIKit (= 2.5.0)
-  - AFNetworking/NSURLConnection (2.5.0):
+  - AFNetworking (2.6.0):
+    - AFNetworking/NSURLConnection (= 2.6.0)
+    - AFNetworking/NSURLSession (= 2.6.0)
+    - AFNetworking/Reachability (= 2.6.0)
+    - AFNetworking/Security (= 2.6.0)
+    - AFNetworking/Serialization (= 2.6.0)
+    - AFNetworking/UIKit (= 2.6.0)
+  - AFNetworking/NSURLConnection (2.6.0):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.5.0):
+  - AFNetworking/NSURLSession (2.6.0):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.5.0)
-  - AFNetworking/Security (2.5.0)
-  - AFNetworking/Serialization (2.5.0)
-  - AFNetworking/UIKit (2.5.0):
+  - AFNetworking/Reachability (2.6.0)
+  - AFNetworking/Security (2.6.0)
+  - AFNetworking/Serialization (2.6.0)
+  - AFNetworking/UIKit (2.6.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - AviarySDK (4.2.1)
@@ -37,13 +37,13 @@ PODS:
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
+  - SWTableViewCell (0.3.7)
   - TSMessages (0.9.12):
     - HexColors (~> 2.2.0)
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0 (~> 1.7.1)
   - ADTransitionController
-  - AFNetworking (= 2.5.0)
   - AviarySDK (= 4.2.1)
   - BkTask
   - BOString
@@ -55,12 +55,13 @@ DEPENDENCIES:
   - LPGoogleFunctions
   - pop (~> 1.0)
   - SDWebImage
+  - SWTableViewCell (~> 0.3.7)
   - TSMessages
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: 28a795c376f9d76850cb56eaf7dd5cf9a9088223
   ADTransitionController: 72299d31488bcbe59fb87c483a89a637ebc819f8
-  AFNetworking: 96ac9bf3eda33582701cb1fcc5b896aa1e20311e
+  AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
   AviarySDK: 23243fa982179c0084670c46cdd23a13c2ec2969
   BkTask: 8dd51efee729f637e4b11337f32dc52c97646a91
   BOString: c896f83b514996bbe874c0a3afd61f4c6764e0ed
@@ -73,6 +74,7 @@ SPEC CHECKSUMS:
   LPGoogleFunctions: c78171de55b164e8e5dbf6b4bba477980771211a
   pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
+  SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
   TSMessages: c8cc7b80f2a833af533872cd02010cac061532cc
 
 COCOAPODS: 0.38.2

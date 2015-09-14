@@ -200,6 +200,34 @@
         }];
         [op start];
 }
+
+-(void)requestServerWithDelete:(ServerRequestType)type param:(NSDictionary*)dict completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
+{
+    
+    NSLog(@"Request Server : %@ \n\n response Json : %@",[self getFullURLwithType:type],dict);
+    
+    [self.manager DELETE:[self getFullURLwithType:type] parameters:dict
+              success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         
+         [self storeServerData:responseObject requestType:type];
+         
+         
+         if (completeBlock) {
+             completeBlock(responseObject);
+             NSLog(@"Success: %@ ***** %@", operation.responseString, responseObject);
+             [self processApiversion];
+         }
+         
+     }
+              failure:
+     ^(AFHTTPRequestOperation *operation, NSError *error) {
+         NSLog(@"Error: %@ ***** %@", operation.responseString, error);
+     }];
+    
+    
+}
+
 -(void)processApiversion
 {
     self.serverPath = self.dataManager.apiVersionModel.production?SERVER_PATH_LIVE:SERVER_PATH_DEV;
@@ -210,7 +238,7 @@
     NSString* str;
     switch (type) {
         case ServerRequestTypeLogin:
- 
+            
             break;
             
         case ServerRequestTypeGetLanguage:
@@ -223,18 +251,24 @@
         case ServerRequestTypeGetExplore:
             str = @"v2.0/explore";
             break;
-
+            
         case ServerRequestTypePostCreatePost:
-            str = @"v2.0/post";
-
+            str = @"v1.3/post";
+            
             break;
+            
+        case ServerRequestTypeGetRecommendationDraft:
+            str = @"v1.3/draft";
+            
+            break;
+            
         default:
             break;
     }
     
     return [NSString stringWithFormat:@"https://%@/%@",self.serverPath,str];
     
-   // return str;
+    // return str;
 }
 
 -(void)storeServerData:(id)obj requestType:(ServerRequestType)type
@@ -246,6 +280,7 @@
             break;
         case ServerRequestTypeGetApiVersion:
             self.dataManager.apiVersionModel = [[ApiVersionModel alloc]initWithDictionary:obj error:nil];
+            [self processApiversion];
             
             break;
             
@@ -254,16 +289,18 @@
             break;
             
         case ServerRequestTypeGetExplore:
+            
+            SLog(@"response explore : %@",obj);
             self.dataManager.exploreCountryModels = [[ExploreCountryModels alloc]initWithDictionary:obj error:nil];
             break;
             
         case ServerRequestType4SquareSearch:
         {
-//            NSArray *venues = [obj valueForKeyPath:@"response.venues"];
-//            FSConverter *converter = [[FSConverter alloc]init];
-          //  self.dataManager.fourSquareVenueModel = [converter convertToObjects:venues];
+            //            NSArray *venues = [obj valueForKeyPath:@"response.venues"];
+            //            FSConverter *converter = [[FSConverter alloc]init];
+            //  self.dataManager.fourSquareVenueModel = [converter convertToObjects:venues];
             
-           // NSArray *venues = [obj valueForKeyPath:@"response.groups.items.venue"];
+            // NSArray *venues = [obj valueForKeyPath:@"response.groups.items.venue"];
             self.dataManager.fourSquareVenueModel = [[FourSquareModel alloc]initWithDictionary:obj error:nil];
             
         }
@@ -278,6 +315,14 @@
         {
             NSDictionary* dict = obj[@"result"];
             self.dataManager.googleSearchDetailModel = [[SearchLocationDetailModel alloc]initWithDictionary:dict error:nil];
+        }
+            break;
+            
+        case ServerRequestTypeGetRecommendationDraft:
+        {
+            NSDictionary* dict = obj[@"data"];
+            self.dataManager.draftsModel = [[DraftsModel alloc]initWithDictionary:dict error:nil];
+            [self.dataManager.draftsModel process];
         }
             break;
         default:

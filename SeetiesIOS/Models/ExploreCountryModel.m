@@ -20,6 +20,8 @@
                                                        @"photos.cover": @"coverPhoto",
                                                        @"photos.fb": @"facebookPhoto",
                                                        @"photos.explore": @"explorePhoto"
+                                                
+                                                       
                                                        }];
 }
 

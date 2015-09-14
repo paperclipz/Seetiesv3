@@ -28,7 +28,7 @@
 @property(nonatomic,strong)SearchModel* googleSearchModel;
 @property(nonatomic,strong)SearchLocationDetailModel* googleSearchDetailModel;
 
-@property(nonatomic,strong)DraftsModel* DraftsModel;
+@property(nonatomic,strong)DraftsModel* draftsModel;
 
 +(RecommendationModel*)getSampleRecommendation;
 +(EditPhotoModel*)getSampleEditPhotoModel;

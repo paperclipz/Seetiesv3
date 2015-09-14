@@ -7,8 +7,10 @@
 //
 
 #import "CommonViewController.h"
+#import "DraftTableViewCell.h"
 
 @interface DraftViewController : CommonViewController <UITableViewDataSource,UITableViewDelegate>
+
 -(void)initData;
 @property(nonatomic,copy)IDBlock backBlock;
 @end
