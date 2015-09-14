@@ -643,7 +643,7 @@
 //    transition.subtype = kCATransitionFromRight;
 //    [self.view.window.layer addAnimation:transition forKey:nil];
     [self presentViewController:SearchDetailView animated:YES completion:nil];
-    [SearchDetailView GetAllUserSuggestions:@"All"];
+   // [SearchDetailView GetAllUserSuggestions:@"All"];
     [SearchDetailView GetTitle:@"Find People"];
 }
 @end

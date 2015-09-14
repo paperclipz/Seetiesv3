@@ -87,19 +87,6 @@
     
     CheckLoadDone = NO;
     
-    //Show Google Translation
-    ShowTranslateOverlay.frame = CGRectMake(screenWidth - 124 - 20, 10, 60, 60);
-    ShowTranslateOverlay.layer.cornerRadius = 30;
-    BlueBar.frame = CGRectMake(0, screenHeight - 120, screenWidth, 120);
-    GoogleIcon.frame = CGRectMake(92, screenHeight - 37, 55, 19);
-    SkipButton.frame = CGRectMake(0, 0, screenWidth, screenHeight);
-    DontShowAgainButton.frame = CGRectMake(screenWidth - 105 - 15, screenHeight - 45, 105, 30);
-    
-    LanguageText.frame = CGRectMake(15, screenHeight - 100, screenWidth - 30, 21);
-    TapTheLangugeText.frame = CGRectMake(15, screenHeight - 80, screenWidth - 30, 21);
-    PowerByText.frame = CGRectMake(15, screenHeight - 45, 152, 30);
-    DontShowAggainText.frame = CGRectMake(screenWidth - 134 - 15, screenHeight - 45, 134, 21);
-    
     LineButton.frame = CGRectMake(screenWidth - 105 - 15, screenHeight - 23, 105, 1);
 
     LikeButton.frame = CGRectMake(20, 1, 50, 60);
@@ -3570,19 +3557,6 @@ NSLog(@"Facebook Button Click");
     ShowTitle.text = GetTitle;
     [self InitView];
     //[self InitNearbyPostView];
-}
-
--(IBAction)DontShowAgainButton:(id)sender{
-    
-    TestingUse = NO;
-    ShowLanguageTranslationView.hidden = YES;
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:@"DontShowAgain" forKey:@"DontShowAgainTranslate"];
-    [defaults synchronize];
-}
--(IBAction)SkipLanguageTranslationButton:(id)sender{
-    TestingUse = NO;
-    ShowLanguageTranslationView.hidden = YES;
 }
 -(IBAction)NewLanguageButton:(id)sender{
     TestingUse = YES;

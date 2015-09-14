@@ -263,13 +263,16 @@
     int SpaceWidth = FinalWidth + 10;
     
     for (int i = 0; i < 6; i++) {
+        
+
+        
         AsyncImageView *imageView = [[AsyncImageView alloc] initWithFrame:CGRectMake(10+(i % 2)*SpaceWidth, GetHeight + (SpaceWidth * (CGFloat)(i /2)), FinalWidth, FinalWidth)];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
         imageView.backgroundColor = [UIColor clearColor];
         imageView.clipsToBounds = YES;
         imageView.tag = 99;
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:imageView];
-        NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[self.exploreCountryModels.countries[i] thumbnailA]];
+        NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[self.exploreCountryModels.countries[i] thumbnail]];
 
         NSURL *url = [NSURL URLWithString:FullImagesURL];
         imageView.imageURL = url;
@@ -323,7 +326,7 @@
     imageView.clipsToBounds = YES;
     imageView.tag = 99;
     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:imageView];
-    NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[[self.exploreCountryModels.countries lastObject] thumbnailA]];
+    NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[[self.exploreCountryModels.countries lastObject] thumbnail]];
     NSURL *url = [NSURL URLWithString:FullImagesURL];
     imageView.imageURL = url;
     
@@ -414,20 +417,18 @@
     
     
     for (int i = 0 ; i < [self.exploreCountryModels.countries count]; i++) {
+//        NSLog(@"festivalUrl %@",[self.exploreCountryModels.countries[i] festivalUrl]);
+//        NSLog(@"festivalImage %@",[self.exploreCountryModels.countries[i] festivalImage]);
         AsyncImageView *ShowCountryImg = [[AsyncImageView alloc]init];
         ShowCountryImg.frame = CGRectMake(0, 0 + i * 151, screenWidth, 150);
         //ShowCountryImg.image = [UIImage imageNamed:@"DemoTest.png"];
         ShowCountryImg.contentMode = UIViewContentModeScaleAspectFill;
         ShowCountryImg.clipsToBounds = YES;
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowCountryImg];
-        NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[self.exploreCountryModels.countries[i] thumbnailA]];
+        NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[self.exploreCountryModels.countries[i] thumbnail]];
         NSURL *url = [NSURL URLWithString:FullImagesURL];
         ShowCountryImg.imageURL = url;
         [ibScrollViewCountry addSubview:ShowCountryImg];
-        
-        NSLog(@"festivalUrl is %@",[self.exploreCountryModels.countries[i] festivalUrl]);
-       // NSLog(@"festivalImage is %@",[self.exploreCountryModels.countries[i] festivalImage]);
-        
         
         UILabel *ShowUserName = [[UILabel alloc]init];
         ShowUserName.frame = CGRectMake(20, 100 + i * 151, screenWidth - 40, 50);

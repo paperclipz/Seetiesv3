@@ -353,7 +353,7 @@
         transition.subtype = kCATransitionFromRight;
         [self.view.window.layer addAnimation:transition forKey:nil];
         [self presentViewController:SearchDetailView animated:NO completion:nil];
-        [SearchDetailView GetSearchKeyword:SearchText.text Getlat:GetLat GetLong:GetLang];
+       // [SearchDetailView GetSearchKeyword:SearchText.text Getlat:GetLat GetLong:GetLang];
         [SearchDetailView GetTitle:@"Results"];
     }
     
@@ -374,7 +374,7 @@
         transition.subtype = kCATransitionFromRight;
         [self.view.window.layer addAnimation:transition forKey:nil];
         [self presentViewController:SearchDetailView animated:NO completion:nil];
-        [SearchDetailView GetExpertsSearchKeyword:SearchText.text];
+       // [SearchDetailView GetExpertsSearchKeyword:SearchText.text];
         [SearchDetailView GetTitle:@"Find People"];
     }
 

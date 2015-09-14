@@ -213,7 +213,7 @@
     NSTimer *RandomTimer;
 
     if ([Utils isLogin]) {
-        ShowBackgroundImage.image = [UIImage imageNamed:@"LandingV2.png"];
+        ShowBackgroundImage.image = [UIImage imageNamed:@"HomeBg.png"];
         MainLogo.hidden = YES;
         MainText.hidden = YES;
         ShowTnCText.hidden = YES;

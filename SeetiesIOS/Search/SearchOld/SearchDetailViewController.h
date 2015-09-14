@@ -9,21 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "UrlDataClass.h"
 #import "GAITrackedViewController.h"
-@interface SearchDetailViewController : GAITrackedViewController<UIScrollViewDelegate,UIActionSheetDelegate,UITextFieldDelegate>{
+@interface SearchDetailViewController : GAITrackedViewController<UIScrollViewDelegate,UITextFieldDelegate>{
     
     IBOutlet UIScrollView *MainScroll;
     IBOutlet UIScrollView *UserScroll;
     IBOutlet UILabel *ShowTitle;
     IBOutlet UIActivityIndicatorView *ShowActivity;
     IBOutlet UIImageView *BarImage;
+    IBOutlet UITextField *SearchTextField;
+    IBOutlet UITextField *SearchAddressField;
     NSString *GetKeywordText;
     NSString *GetLat;
     NSString *GetLong;
     NSString *GetCategoryText;
-    NSString *GetExpertsKeyword;
-    
-    IBOutlet UIButton *LineButton;
-    IBOutlet UIButton *SortByButton;
+    NSString *GetLocationName;
     
     UrlDataClass *DataUrl;
     NSMutableData *webData;
@@ -87,11 +86,18 @@
     
     UIView *PostsView;
     UIView *PeopleView;
+    
+    IBOutlet UIView *ShowSearchLocationView;
+    IBOutlet UITableView *LocationTblView;
+    
+    NSMutableArray *SearchLocationNameArray;
+    NSMutableArray *SearchPlaceIDArray;
+    NSString *GetSearchPlaceID;
+    
+    NSURLConnection *theConnection_SearchLocation;
+    NSURLConnection *theConnection_GetSearchPlace;
 }
--(void)GetSearchKeyword:(NSString *)Keyword Getlat:(NSString *)lat GetLong:(NSString *)Long;
--(void)SearchCategory:(NSString *)GetCategory Getlat:(NSString *)lat GetLong:(NSString *)Long GetCategoryName:(NSString *)CategoryName;
--(void)GetExpertsSearchKeyword:(NSString *)ExpertsKeyword;
--(void)GetAllUserSuggestions:(NSString *)Suggestions;
+-(void)GetSearchKeyword:(NSString *)Keyword Getlat:(NSString *)lat GetLong:(NSString *)Long GetLocationName:(NSString *)LocationName;
 -(void)GetTitle:(NSString *)String;
 
 -(IBAction)SortbyButton:(id)sender;

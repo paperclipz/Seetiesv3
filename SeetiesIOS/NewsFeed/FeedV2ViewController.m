@@ -2667,7 +2667,7 @@
         transition.subtype = kCATransitionFromRight;
         [self.view.window.layer addAnimation:transition forKey:nil];
         [self presentViewController:SearchDetailView animated:NO completion:nil];
-        [SearchDetailView SearchCategory:JoinAllCategoryID Getlat:latPoint GetLong:lonPoint GetCategoryName:JoinAllCategoryName];
+        //[SearchDetailView SearchCategory:JoinAllCategoryID Getlat:latPoint GetLong:lonPoint GetCategoryName:JoinAllCategoryName];
         [SearchDetailView GetTitle:@"All"];
     }
 }

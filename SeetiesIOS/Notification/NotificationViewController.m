@@ -161,6 +161,7 @@
           //  NSLog(@"Expert Json = %@",res);
             
             NSDictionary *GetAllData = [res valueForKey:@"data"];
+            NSDictionary *GetNotificationsData = [GetAllData valueForKey:@"notifications"];
             
             PostIDArray = [[NSMutableArray alloc]init];
             TypeArray = [[NSMutableArray alloc]init];
@@ -172,10 +173,10 @@
             ActionArray = [[NSMutableArray alloc]init];
             DateArray = [[NSMutableArray alloc]init];
             
-            NSDictionary *UserInfoData = [GetAllData valueForKey:@"user_thumbnail"];
-            NSDictionary *PostInfoData = [GetAllData valueForKey:@"post_thumbnail"];
+            NSDictionary *UserInfoData = [GetNotificationsData valueForKey:@"user_thumbnail"];
+            NSDictionary *PostInfoData = [GetNotificationsData valueForKey:@"post_thumbnail"];
             //NSLog(@"UserInfoData is %@",UserInfoData);
-            for (NSDictionary * dict in GetAllData){
+            for (NSDictionary * dict in GetNotificationsData){
                 NSString *type =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"type"]];
                 [TypeArray addObject:type];
                 NSString *post_id =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"post_id"]];
@@ -231,6 +232,7 @@
             //NSLog(@"Expert Json = %@",res);
             
             NSDictionary *GetAllData = [res valueForKey:@"data"];
+            NSDictionary *GetActivitiesData = [GetAllData valueForKey:@"activities"];
             
             Following_PostIDArray = [[NSMutableArray alloc]init];
             Following_TypeArray = [[NSMutableArray alloc]init];
@@ -242,10 +244,10 @@
             Following_ActionArray = [[NSMutableArray alloc]init];
             Following_DateArray = [[NSMutableArray alloc]init];
             
-            NSDictionary *UserInfoData = [GetAllData valueForKey:@"user_thumbnail"];
-            NSDictionary *PostInfoData = [GetAllData valueForKey:@"post_thumbnail"];
+            NSDictionary *UserInfoData = [GetActivitiesData valueForKey:@"user_thumbnail"];
+            NSDictionary *PostInfoData = [GetActivitiesData valueForKey:@"post_thumbnail"];
             //NSLog(@"UserInfoData is %@",UserInfoData);
-            for (NSDictionary * dict in GetAllData){
+            for (NSDictionary * dict in GetActivitiesData){
                 NSString *type =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"type"]];
                 [Following_TypeArray addObject:type];
                 NSString *post_id =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"post_id"]];

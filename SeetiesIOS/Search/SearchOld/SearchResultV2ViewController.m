@@ -21,44 +21,20 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
     BarImage.frame = CGRectMake(0, 0, screenWidth, 95);
-    SearchTextField.frame = CGRectMake(15, 25, screenWidth - 60 - 20, 30);
-    SearchAddressField.frame = CGRectMake(15, 58, screenWidth - 60 - 20, 30);
-    CancelButton.frame = CGRectMake(screenWidth - 60, 25, 60, 30);
-    FilterButton.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
+    SearchTextField.frame = CGRectMake(50, 25, screenWidth - 60 - 20, 30);
+    SearchAddressField.frame = CGRectMake(50, 58, screenWidth - 60 - 20, 30);
+    FilterButton.frame = CGRectMake(screenWidth - 29 , 20, 41, 38);
+    
+    MainScroll.delegate = self;
+    MainScroll.frame = CGRectMake(0, 95 , screenWidth, screenHeight - 95);
+
     
     SearchTextField.delegate = self;
     SearchAddressField.delegate = self;
     
-    [self.view addSubview:CancelButton];
-    [self.view addSubview:SearchTextField];
-    [self.view addSubview:SearchAddressField];
-    
-    NSString *TempStringCountries = [[NSString alloc]initWithFormat:@"Posts"];
-    NSString *TempStringPeople = [[NSString alloc]initWithFormat:@"People"];
-    
-    NSArray *itemArray = [NSArray arrayWithObjects:TempStringCountries, TempStringPeople, nil];
-    PostControl = [[UISegmentedControl alloc]initWithItems:itemArray];
-    PostControl.frame = CGRectMake(15, 105, screenWidth - 30, 29);
-    [PostControl addTarget:self action:@selector(segmentAction:) forControlEvents: UIControlEventValueChanged];
-    PostControl.selectedSegmentIndex = 0;
-    [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
-    [self.view addSubview:PostControl];
-    
-}
-- (void)segmentAction:(UISegmentedControl *)segment
-{
-    switch (segment.selectedSegmentIndex) {
-        case 0:
-            NSLog(@"Posts click");
-            break;
-        case 1:
-            NSLog(@"People click");
-            break;
-        default:
-            break;
-    }
-    
-    //[self InitView];
+    ShowSearchLocationView.frame = CGRectMake(0, 95, screenWidth, screenHeight - 95);
+    ShowSearchLocationView.hidden = YES;
+    [self.view addSubview:ShowSearchLocationView];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -69,5 +45,21 @@
 }
 -(IBAction)CancelButton:(id)sender{
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    NSLog(@"textFieldShouldBeginEditing");
+    
+    if(textField == SearchTextField){
+        NSLog(@"SearchTextField begin");
+     //   MainScroll.hidden = NO;
+     //   ShowSearchLocationView.hidden = YES;
+    }
+    if (textField == SearchAddressField) {
+        NSLog(@"SearchAddressField begin");
+       // MainScroll.hidden = YES;
+       // ShowSearchLocationView.hidden = NO;
+       // [LocationTblView reloadData];
+    }
+    return YES;
 }
 @end

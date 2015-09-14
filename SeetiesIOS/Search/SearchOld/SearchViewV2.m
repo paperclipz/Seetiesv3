@@ -522,7 +522,7 @@
             transition.subtype = kCATransitionFromRight;
             [self.view.window.layer addAnimation:transition forKey:nil];
             [self presentViewController:SearchDetailView animated:NO completion:nil];
-            [SearchDetailView GetSearchKeyword:EnterKeywordHere.text Getlat:GetLat GetLong:GetLang];
+           // [SearchDetailView GetSearchKeyword:EnterKeywordHere.text Getlat:GetLat GetLong:GetLang];
             [SearchDetailView GetTitle:@"Results"];
         }
     }
@@ -871,7 +871,7 @@
         transition.subtype = kCATransitionFromRight;
         [self.view.window.layer addAnimation:transition forKey:nil];
         [self presentViewController:SearchDetailView animated:NO completion:nil];
-        [SearchDetailView GetSearchKeyword:[LocalSuggestionTextArray objectAtIndex:indexPath.row] Getlat:GetLat GetLong:GetLang];
+       // [SearchDetailView GetSearchKeyword:[LocalSuggestionTextArray objectAtIndex:indexPath.row] Getlat:GetLat GetLong:GetLang];
         [SearchDetailView GetTitle:@"Results"];
         
     }
@@ -928,7 +928,7 @@
         transition.subtype = kCATransitionFromRight;
         [self.view.window.layer addAnimation:transition forKey:nil];
         [self presentViewController:SearchDetailView animated:NO completion:nil];
-        [SearchDetailView SearchCategory:JoinAllCategoryID Getlat:GetLat GetLong:GetLang GetCategoryName:JoinAllCategoryName];
+      //  [SearchDetailView SearchCategory:JoinAllCategoryID Getlat:GetLat GetLong:GetLang GetCategoryName:JoinAllCategoryName];
         [SearchDetailView GetTitle:@"Results"];
     }else{
         NSString *JoinAllCategoryID = [SelectCategoryIDArray componentsJoinedByString:@","];
@@ -941,7 +941,7 @@
         transition.subtype = kCATransitionFromRight;
         [self.view.window.layer addAnimation:transition forKey:nil];
         [self presentViewController:SearchDetailView animated:NO completion:nil];
-        [SearchDetailView SearchCategory:JoinAllCategoryID Getlat:GetLat GetLong:GetLang GetCategoryName:JoinAllCategoryName];
+      //  [SearchDetailView SearchCategory:JoinAllCategoryID Getlat:GetLat GetLong:GetLang GetCategoryName:JoinAllCategoryName];
         [SearchDetailView GetTitle:@"Results"];
     }
     

@@ -6,33 +6,21 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FeedV2DetailViewController">
             <connections>
-                <outlet property="BlueBar" destination="K4p-dC-A3c" id="z4R-f5-TnZ"/>
                 <outlet property="CollectButton" destination="mqO-7T-viU" id="RD5-fi-zDF"/>
                 <outlet property="CommentButton" destination="QIe-qf-Rg0" id="1NV-AW-rsi"/>
-                <outlet property="DisplayButton" destination="hTr-KW-8FS" id="jqj-ph-GSh"/>
-                <outlet property="DontShowAgainButton" destination="ZaB-Ze-AUM" id="4KY-8H-0IT"/>
-                <outlet property="DontShowAggainText" destination="hV5-uz-LSw" id="teY-5W-WEM"/>
-                <outlet property="GoogleIcon" destination="8At-x2-cTC" id="cGZ-n9-UuV"/>
-                <outlet property="LanguageText" destination="i5l-ug-V94" id="gjW-Ra-SkM"/>
                 <outlet property="LikeButton" destination="1MG-hw-hrm" id="Iqi-qi-Hs4"/>
-                <outlet property="LineButton" destination="LeG-UD-Qgj" id="DuM-rA-zrg"/>
                 <outlet property="LocationButton" destination="v0e-5Q-vOm" id="YPV-Y8-CfB"/>
                 <outlet property="MImageScroll" destination="KK8-FS-BPN" id="7A3-Hy-s0h"/>
                 <outlet property="MainScroll" destination="VZd-C0-7GE" id="i5H-ZV-RfK"/>
                 <outlet property="PageControlOn" destination="usk-ip-vyO" id="AkE-fB-2ZV"/>
-                <outlet property="PowerByText" destination="Jr0-Cz-ZfQ" id="I9k-O9-R1b"/>
                 <outlet property="ShareButton" destination="dxK-vb-C2r" id="74s-PM-B0q"/>
                 <outlet property="ShareIcon" destination="QGy-yQ-Yhm" id="ujx-GY-wLC"/>
                 <outlet property="ShowActivity" destination="3W6-ih-0HU" id="a3o-r3-EbF"/>
                 <outlet property="ShowBarImg" destination="hAP-qF-Ykq" id="gQG-oV-DGF"/>
                 <outlet property="ShowCategoryTop" destination="Fd3-Jb-hCF" id="SqP-Ht-Cvx"/>
                 <outlet property="ShowDownBarView" destination="iYu-fw-DMy" id="Q6s-5M-Wsa"/>
-                <outlet property="ShowLanguageTranslationView" destination="Cmk-xj-a2C" id="tUh-0v-D3Q"/>
                 <outlet property="ShowPlaceNameTop" destination="khC-UA-r0Z" id="wo8-fS-KsT"/>
-                <outlet property="ShowTranslateOverlay" destination="xeQ-Wm-m1H" id="fOq-Id-qWL"/>
                 <outlet property="ShowbarView" destination="zTc-kp-dGH" id="lzB-T2-zUG"/>
-                <outlet property="SkipButton" destination="zQF-Hf-9Ll" id="22y-d4-6p8"/>
-                <outlet property="TapTheLangugeText" destination="EJW-kS-fDK" id="A9o-Nr-suq"/>
                 <outlet property="shareFBButton" destination="BGJ-1U-7zQ" id="x5I-Up-laN"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -204,109 +192,13 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <point key="canvasLocation" x="691" y="155"/>
         </view>
-        <view contentMode="scaleToFill" id="Cmk-xj-a2C">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <subviews>
-                <button opaque="NO" alpha="0.59999999999999964" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zQF-Hf-9Ll">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="SkipLanguageTranslationButton:" destination="-1" eventType="touchUpInside" id="nAf-d8-jEU"/>
-                    </connections>
-                </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Settingsbar2.png" id="K4p-dC-A3c">
-                    <rect key="frame" x="0.0" y="448" width="320" height="120"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language translation to English is available" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="i5l-ug-V94">
-                    <rect key="frame" x="15" y="459" width="290" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
-                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the language icon to translate." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EJW-kS-fDK">
-                    <rect key="frame" x="15" y="488" width="290" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
-                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Powered by " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Jr0-Cz-ZfQ">
-                    <rect key="frame" x="15" y="529" width="152" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
-                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't show again" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hV5-uz-LSw">
-                    <rect key="frame" x="178" y="529" width="134" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
-                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LeG-UD-Qgj">
-                    <rect key="frame" x="207" y="548" width="105" height="1"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <state key="normal">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZaB-Ze-AUM">
-                    <rect key="frame" x="207" y="527" width="105" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="DontShowAgainButton:" destination="-1" eventType="touchUpInside" id="LDs-6O-onh"/>
-                    </connections>
-                </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconGoogle.png" id="8At-x2-cTC">
-                    <rect key="frame" x="92" y="532" width="55" height="19"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
-                <button opaque="NO" alpha="0.19999999999999968" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xeQ-Wm-m1H">
-                    <rect key="frame" x="177" y="12" width="56" height="56"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <state key="normal">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hTr-KW-8FS">
-                    <rect key="frame" x="178" y="23" width="55" height="33"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" image="IconTranslate.png">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="LanguageButton:" destination="-1" eventType="touchUpInside" id="qyW-UT-LRD"/>
-                    </connections>
-                </button>
-            </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-            <point key="canvasLocation" x="1060" y="185"/>
-        </view>
     </objects>
     <resources>
         <image name="BackButton2.png" width="38" height="39"/>
-        <image name="IconGoogle.png" width="55" height="19"/>
-        <image name="IconTranslate.png" width="22" height="21"/>
         <image name="PostComment.png" width="23" height="19"/>
         <image name="PostLike.png" width="23" height="19"/>
         <image name="PostLocation.png" width="17" height="22"/>
         <image name="PostMore.png" width="22" height="22"/>
-        <image name="Settingsbar2.png" width="640" height="128"/>
         <image name="share_icon.png" width="18" height="19"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -21,7 +21,7 @@
 
 @property (assign, nonatomic) NSString <Optional>*festivalUrl;
 @property (assign, nonatomic) NSString <Optional>*festivalImage;
-@property (strong, nonatomic) NSString* thumbnailA;
+@property (strong, nonatomic) NSString* thumbnail;
 
 @property (strong, nonatomic) NSString* coverPhoto;
 @property (strong, nonatomic) NSString* facebookPhoto;

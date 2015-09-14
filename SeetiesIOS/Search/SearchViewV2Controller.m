@@ -10,6 +10,7 @@
 #import "LanguageManager.h"
 #import "Locale.h"
 #import "SearchDetailViewController.h"
+#import "SearchResultV2ViewController.h"
 @interface SearchViewV2Controller ()
 
 @end
@@ -195,8 +196,9 @@
         transition.subtype = kCATransitionFromRight;
         [self.view.window.layer addAnimation:transition forKey:nil];
         [self presentViewController:SearchDetailView animated:NO completion:nil];
-        [SearchDetailView GetSearchKeyword:GetSearchText Getlat:[GetReturnSearchLngArray objectAtIndex:indexPath.row] GetLong:[GetReturnSearchLatArray objectAtIndex:indexPath.row]];
+        [SearchDetailView GetSearchKeyword:GetSearchText Getlat:[GetReturnSearchLngArray objectAtIndex:indexPath.row] GetLong:[GetReturnSearchLatArray objectAtIndex:indexPath.row] GetLocationName:[GetReturnSearchAddressArray objectAtIndex:indexPath.row]];
         [SearchDetailView GetTitle:GetSearchText];
+        
     
     }
 }

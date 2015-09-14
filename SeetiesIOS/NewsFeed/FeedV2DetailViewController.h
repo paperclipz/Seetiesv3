@@ -163,19 +163,7 @@
     UIColor *color;
     
     BOOL ShowGoogleTranslate;
-    
-    //ShowGoogle View
-   // IBOutlet UIImageView *ShowTranslateOverlay;
-    IBOutlet UIButton *ShowTranslateOverlay;
-    IBOutlet UIImageView *BlueBar;
-    IBOutlet UIImageView *GoogleIcon;
-    IBOutlet UIButton *SkipButton;
-    IBOutlet UIButton *DontShowAgainButton;
-    
-    IBOutlet UILabel *LanguageText;
-    IBOutlet UILabel *TapTheLangugeText;
-    IBOutlet UILabel *PowerByText;
-    IBOutlet UILabel *DontShowAggainText;
+
     
     IBOutlet UIButton *LineButton;
     
@@ -219,8 +207,5 @@
 -(IBAction)LikeButton:(id)sender;
 -(IBAction)CommentButton:(id)sender;
 -(IBAction)FacebookButton:(id)sender;
-
--(IBAction)DontShowAgainButton:(id)sender;
--(IBAction)SkipLanguageTranslationButton:(id)sender;
 -(IBAction)NewLanguageButton:(id)sender;
 @end
