@@ -8,6 +8,12 @@
 
 #import "ExploreCountryModel.h"
 
+
+@implementation FestivalModel
+
+
+
+@end
 @implementation ExploreCountryModel
 
 
@@ -25,10 +31,6 @@
                                                        }];
 }
 
-+(BOOL)propertyIsOptional:(NSString*)propertyName
-{
-    return YES;
-}
 @end
 
 @implementation ExploreCountryModels

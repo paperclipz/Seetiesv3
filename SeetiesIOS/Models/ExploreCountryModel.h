@@ -29,13 +29,12 @@
 @property (assign, nonatomic) int status;
 @property (strong, nonatomic) NSDictionary* shortName;
 
-
 @property (strong, nonatomic) NSString* thumbnail;
 @property (strong, nonatomic) FestivalModel<Optional>* festival;
-@property (strong, nonatomic) NSString* coverPhoto;
-@property (strong, nonatomic) NSString* facebookPhoto;
-@property (strong, nonatomic) NSString* explorePhoto;
-@property (strong, nonatomic) NSString* name_en;
+@property (strong, nonatomic) NSString<Optional>* coverPhoto;
+@property (strong, nonatomic) NSString<Optional>* facebookPhoto;
+@property (strong, nonatomic) NSString<Optional>* explorePhoto;
+@property (strong, nonatomic) NSString<Optional>* name_en;
 @end
 
 

@@ -110,7 +110,6 @@
         if (!self.exploreCountryModels.error) {
             
             // [self InitCountriesView];
-            FestivalModel* model = [self.exploreCountryModels.countries[0] festival];
             [self InitContentView];
             
         }
@@ -414,7 +413,11 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
     
+    
     for (int i = 0 ; i < [self.exploreCountryModels.countries count]; i++) {
+      
+        ExploreCountryModel *model =  self.exploreCountryModels.countries[i];
+
         AsyncImageView *ShowCountryImg = [[AsyncImageView alloc]init];
         ShowCountryImg.frame = CGRectMake(0, 0 + i * 151, screenWidth, 150);
         //ShowCountryImg.image = [UIImage imageNamed:@"DemoTest.png"];
@@ -426,17 +429,15 @@
         ShowCountryImg.imageURL = url;
         [ibScrollViewCountry addSubview:ShowCountryImg];
         
-       // NSLog(@"%@",[self.exploreCountryModels.countries[i]festival]);
+       
+        FestivalModel* fesModel = model.festival;
+        if (fesModel.url) {
+            SLog(@"festival URL : %@",fesModel.url);
+        }
         
-        //ExploreCountryModel *Model =  self.exploreCountryModels.countries[i];
-        if ([[self.exploreCountryModels.countries[i]festival] url]) {
-            NSLog(@"1");
-        }else{
-            NSLog(@"2");
-//            NSString *GetUrl = [[self.exploreCountryModels.countries[i] festival] url];
-//            //NSString *Getthumbnail = [[self.exploreCountryModels.countries[i] festival] thumbnail];
-//            NSLog(@"festival url === %@",GetUrl);
-//            // NSLog(@"festival thumbnail === %@",Getthumbnail);
+        if (fesModel.thumbnail) {
+            SLog(@"festival THUMBNAIL : %@",fesModel.thumbnail);
+
         }
         
         UILabel *ShowUserName = [[UILabel alloc]init];
