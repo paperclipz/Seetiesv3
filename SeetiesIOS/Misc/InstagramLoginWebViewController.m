@@ -24,8 +24,8 @@
     MainWebView.frame = CGRectMake(0, 64, 320, screenHeight - 64);
     MainWebView.delegate = self;
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
-    client_id = @"01ea2d0d23df4c1185ac267a9a4ab528";
-    secret = @"4c15d4aa834c4316a60db61374208014";
+    client_id = @"ab7f100c649f43838358f36abed5033f";
+    secret = @"b3e6ef4fb2094b60b9c44e204d24b476";
     callback = @"https://seeties.me";
     
     
@@ -120,25 +120,30 @@
     NSLog(@"GetAccessToken is %@",GetAccessToken);
     
     NSDictionary *NSDictionaryUserData = [res valueForKey:@"user"];
-    NSLog(@"NSDictionaryUserData is %@",NSDictionaryUserData);
-    
-    NSString *Getbio = [[NSString alloc]initWithFormat:@"%@",[NSDictionaryUserData objectForKey:@"bio"]];
-    NSLog(@"Getbio is %@",Getbio);
-    
-    NSString *Getwebsite = [[NSString alloc]initWithFormat:@"%@",[NSDictionaryUserData objectForKey:@"website"]];
-    NSLog(@"Getwebsite is %@",Getwebsite);
-    
-    NSString *Getfull_name = [[NSString alloc]initWithFormat:@"%@",[NSDictionaryUserData objectForKey:@"full_name"]];
-    NSLog(@"Getfull_name is %@",Getfull_name);
+//    NSLog(@"NSDictionaryUserData is %@",NSDictionaryUserData);
+//    
+//    NSString *Getbio = [[NSString alloc]initWithFormat:@"%@",[NSDictionaryUserData objectForKey:@"bio"]];
+//    NSLog(@"Getbio is %@",Getbio);
+//    
+//    NSString *Getwebsite = [[NSString alloc]initWithFormat:@"%@",[NSDictionaryUserData objectForKey:@"website"]];
+//    NSLog(@"Getwebsite is %@",Getwebsite);
+//    
+//    NSString *Getfull_name = [[NSString alloc]initWithFormat:@"%@",[NSDictionaryUserData objectForKey:@"full_name"]];
+//    NSLog(@"Getfull_name is %@",Getfull_name);
     
     NSString *Getid = [[NSString alloc]initWithFormat:@"%@",[NSDictionaryUserData objectForKey:@"id"]];
     NSLog(@"Getid is %@",Getid);
     
-    NSString *Getprofile_picture = [[NSString alloc]initWithFormat:@"%@",[NSDictionaryUserData objectForKey:@"profile_picture"]];
-    NSLog(@"Getprofile_picture is %@",Getprofile_picture);
+//    NSString *Getprofile_picture = [[NSString alloc]initWithFormat:@"%@",[NSDictionaryUserData objectForKey:@"profile_picture"]];
+//    NSLog(@"Getprofile_picture is %@",Getprofile_picture);
+//    
+//    NSString *Getusername = [[NSString alloc]initWithFormat:@"%@",[NSDictionaryUserData objectForKey:@"username"]];
+//    NSLog(@"Getusername is %@",Getusername);
     
-    NSString *Getusername = [[NSString alloc]initWithFormat:@"%@",[NSDictionaryUserData objectForKey:@"username"]];
-    NSLog(@"Getusername is %@",Getusername);
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:GetAccessToken forKey:@"InstagramToken"];
+    [defaults setObject:Getid forKey:@"InstagramID"];
+    [defaults synchronize];
     
     [ShowActivity stopAnimating];
     [self dismissViewControllerAnimated:YES completion:nil];

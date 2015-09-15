@@ -62,6 +62,9 @@
 		0BC9B38B1B7DD288008334FF /* FeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC9B3891B7DD287008334FF /* FeedViewController.xib */; };
 		0BD634FC1B71C9B800D82414 /* LeveyTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD634F91B71C9B800D82414 /* LeveyTabBar.m */; };
 		0BD634FD1B71C9B800D82414 /* LeveyTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD634FB1B71C9B800D82414 /* LeveyTabBarController.m */; };
+		0BE05F841BA7F4C30093BCA4 /* blue_location_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BE05F811BA7F4C30093BCA4 /* blue_location_icon@2x.png */; };
+		0BE05F851BA7F4C30093BCA4 /* goto_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BE05F821BA7F4C30093BCA4 /* goto_icon@2x.png */; };
+		0BE05F861BA7F4C30093BCA4 /* searchresult_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BE05F831BA7F4C30093BCA4 /* searchresult_icon@2x.png */; };
 		0BE340231B73021B00F49625 /* Adriane Text Bold Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0BE340201B73021B00F49625 /* Adriane Text Bold Italic.otf */; };
 		0BE340241B73021B00F49625 /* ProximaNovaSoft-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BE340211B73021B00F49625 /* ProximaNovaSoft-Bold.ttf */; };
 		0BE340251B73021B00F49625 /* ProximaNovaSoft-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BE340221B73021B00F49625 /* ProximaNovaSoft-Regular.ttf */; };
@@ -1084,6 +1087,9 @@
 		0BD634F91B71C9B800D82414 /* LeveyTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeveyTabBar.m; sourceTree = "<group>"; };
 		0BD634FA1B71C9B800D82414 /* LeveyTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeveyTabBarController.h; sourceTree = "<group>"; };
 		0BD634FB1B71C9B800D82414 /* LeveyTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeveyTabBarController.m; sourceTree = "<group>"; };
+		0BE05F811BA7F4C30093BCA4 /* blue_location_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blue_location_icon@2x.png"; sourceTree = "<group>"; };
+		0BE05F821BA7F4C30093BCA4 /* goto_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "goto_icon@2x.png"; sourceTree = "<group>"; };
+		0BE05F831BA7F4C30093BCA4 /* searchresult_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchresult_icon@2x.png"; sourceTree = "<group>"; };
 		0BE340201B73021B00F49625 /* Adriane Text Bold Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Adriane Text Bold Italic.otf"; sourceTree = "<group>"; };
 		0BE340211B73021B00F49625 /* ProximaNovaSoft-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNovaSoft-Bold.ttf"; sourceTree = "<group>"; };
 		0BE340221B73021B00F49625 /* ProximaNovaSoft-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNovaSoft-Regular.ttf"; sourceTree = "<group>"; };
@@ -3541,6 +3547,9 @@
 		8AD6C3531B70934C0040437E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				0BE05F811BA7F4C30093BCA4 /* blue_location_icon@2x.png */,
+				0BE05F821BA7F4C30093BCA4 /* goto_icon@2x.png */,
+				0BE05F831BA7F4C30093BCA4 /* searchresult_icon@2x.png */,
 				0BBFE0B11BA15DC0004B17E9 /* Mini_collection_icon@2x.png */,
 				0BBFE0B21BA15DC0004B17E9 /* Mini_comment_icon@2x.png */,
 				0BBFE0B31BA15DC0004B17E9 /* Mini_like_icon.png */,
@@ -4547,6 +4556,7 @@
 				8AD6C5EF1B70934D0040437E /* Error@3x.png in Resources */,
 				8AD6C6591B70934D0040437E /* PostNoComment.png in Resources */,
 				8AD6C6631B70934D0040437E /* BarCollection@2x.png in Resources */,
+				0BE05F861BA7F4C30093BCA4 /* searchresult_icon@2x.png in Resources */,
 				8AD6C1181B706CF30040437E /* pin.png in Resources */,
 				8AD6BE581B706CF30040437E /* DoAlbumCell.xib in Resources */,
 				8AD6C10D1B706CF30040437E /* ForgotPasswordViewController.xib in Resources */,
@@ -4792,6 +4802,7 @@
 				8AD6C6DC1B70934D0040437E /* EditInfo.png in Resources */,
 				8AD6C6B61B70934D0040437E /* BtnExploreNow@2x.png in Resources */,
 				8AD6C7E51B70934D0040437E /* Settingsbar2.png in Resources */,
+				0BE05F841BA7F4C30093BCA4 /* blue_location_icon@2x.png in Resources */,
 				8AD6C7631B70934D0040437E /* Sms@2x.png in Resources */,
 				8AD6C6151B70934D0040437E /* 640x960-03.jpg in Resources */,
 				8AD6C6A21B70934D0040437E /* BannerWord@3x.png in Resources */,
@@ -5000,6 +5011,7 @@
 				8AD6C7371B70934D0040437E /* IconLine@3x.png in Resources */,
 				8AD6C6671B70934D0040437E /* BarRecommendation@3x.png in Resources */,
 				8AD6C76B1B70934D0040437E /* LocationPin.png in Resources */,
+				0BE05F851BA7F4C30093BCA4 /* goto_icon@2x.png in Resources */,
 				8AD6C7881B70934D0040437E /* PostLikeRed@3x.png in Resources */,
 				8AD6C7871B70934D0040437E /* PostLikeRed@2x.png in Resources */,
 				8AD6C0BA1B706CF30040437E /* ShowFollowerAndFollowingViewController.xib in Resources */,

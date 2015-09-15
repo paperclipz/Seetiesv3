@@ -9,7 +9,7 @@
 #import "UrlDataClass.h"
 
 @implementation UrlDataClass
-@synthesize ExpertLogin_Url,UserRegister_Url,CategoryIDN_Url,Publish_PostUrl,Feed_Url,Explore_Url,UserWallpaper_Url,Suggestions_Url,GetComment_URl,UserLogout_Url,FacebookRegister_Url,GetAlllangauge_Url,GetNotification_Url,GetDrafts_Url,GetNotificationCount_Url,GetApiVersion_Url,GetAllCategory_Url,GetFestivals_Url,GetNearbyPost_Url;
+@synthesize ExpertLogin_Url,UserRegister_Url,CategoryIDN_Url,Publish_PostUrl,Feed_Url,Explore_Url,UserWallpaper_Url,Suggestions_Url,GetComment_URl,UserLogout_Url,FacebookRegister_Url,GetAlllangauge_Url,GetNotification_Url,GetDrafts_Url,GetNotificationCount_Url,GetApiVersion_Url,GetAllCategory_Url,GetFestivals_Url,GetNearbyPost_Url,InstagramRegister_Url;
 static UrlDataClass *sharedMyManager = nil;
 
 #pragma mark Singleton Methods
@@ -55,6 +55,7 @@ static UrlDataClass *sharedMyManager = nil;
             GetAllCategory_Url = @"https://itcave-api.seeties.me/v2.0/system/update/category";
             GetFestivals_Url = @"https://itcave.seeties.me/festivals?hidden=header";
             GetNearbyPost_Url = @"https://itcave-api.seeties.me/v2.0/post/";//:post_id/nearbyposts?token="
+            InstagramRegister_Url = @"https://itcave-api.seeties.me/v2.0/login/instagram";
 //            ExpertLogin_Url = @"https://ios-api.seeties.me/v1.2/login";
 //            UserRegister_Url = @"https://ios-api.seeties.me/v1.2/register";
 //            FacebookRegister_Url = @"https://ios-api.seeties.me/v1.2/login/facebook";
@@ -92,6 +93,7 @@ static UrlDataClass *sharedMyManager = nil;
             GetAllCategory_Url = @"https://ios-api.seeties.me/v1.3/system/update/category";
             GetFestivals_Url = @"https://seeties.me/festivals?hidden=header";
             GetNearbyPost_Url = @"https://ios-api.seeties.me/v1.3/post/";//:post_id/nearbyposts?token="
+            InstagramRegister_Url = @"https://ios-api.seeties.me/v2.0/login/instagram";
         }
         
         

@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "UrlDataClass.h"
-@interface SearchViewV2Controller : UIViewController<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>{
+@interface SearchViewV2Controller : UIViewController<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate>{
 
     IBOutlet UISearchBar *mySearchBar;
     IBOutlet UITableView *Tblview;
     IBOutlet UIActivityIndicatorView *ShowActivity;
     IBOutlet UIImageView *BarImage;
+    IBOutlet UIScrollView *SearchScroll;
     
     NSString *GetSearchText;
     
@@ -25,6 +26,8 @@
     NSMutableArray *GetReturnSearchAddressArray;
     NSMutableArray *GetReturnSearchLatArray;
     NSMutableArray *GetReturnSearchLngArray;
+    
+    NSMutableArray *GetSearchArray;
     
     NSURLConnection *theConnection_GetSearchString;
     

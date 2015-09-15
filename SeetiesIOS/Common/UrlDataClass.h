@@ -29,6 +29,6 @@
 @property (nonatomic, strong) NSString *GetAllCategory_Url;
 @property (nonatomic, strong) NSString *GetFestivals_Url;
 @property (nonatomic, strong) NSString *GetNearbyPost_Url;
-
+@property (nonatomic, strong) NSString *InstagramRegister_Url;
 + (id)sharedManager;
 @end

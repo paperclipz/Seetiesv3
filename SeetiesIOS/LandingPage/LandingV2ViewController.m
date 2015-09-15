@@ -200,6 +200,22 @@
     
     
     [self GetAlllanguages];
+    
+    if ([InstagramOnClickListen isEqualToString:@"YES"]) {
+        NSLog(@"need send data to instagram login to server.");
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        GetInstagramID = [defaults objectForKey:@"InstagramID"];
+        GetInstagramToken = [defaults objectForKey:@"InstagramToken"];
+        
+        if ([GetInstagramToken length] == 0 || [GetInstagramToken isEqualToString:@""]) {
+            
+        }else{
+            [self UploadINformationToServer_Instagram];
+        }
+    }else{
+    
+    }
 
 }
 //need to check for all languages before login
@@ -622,6 +638,76 @@
     
 }
 
+-(void)UploadINformationToServer_Instagram{
+    [ShowActivity startAnimating];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *ExternalIPAddress = [defaults objectForKey:@"ExternalIPAddress"];
+    if (ExternalIPAddress == nil || [ExternalIPAddress isEqualToString:@""] ||[ExternalIPAddress isEqualToString:@"(null)"]) {
+        ExternalIPAddress = @"";
+    }
+    
+    //Server Address URL
+    NSString *urlString = [NSString stringWithFormat:@"%@",DataUrl.InstagramRegister_Url];
+    NSLog(@"urlString is %@",urlString);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
+    
+    NSMutableData *body = [NSMutableData data];
+    
+    NSString *boundary = @"---------------------------14737809831466499882746641449";
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+    [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    //Attaching the key name @"parameter_second" to the post body
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"insta_id\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    //Attaching the content to be posted ( ParameterSecond )
+    [body appendData:[[NSString stringWithFormat:@"%@",GetInstagramID] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    //Attaching the key name @"parameter_second" to the post body
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"insta_token\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    //Attaching the content to be posted ( ParameterSecond )
+    [body appendData:[[NSString stringWithFormat:@"%@",GetInstagramToken] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    //Attaching the key name @"parameter_second" to the post body
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"ip_address\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    //Attaching the content to be posted ( ParameterSecond )
+    [body appendData:[[NSString stringWithFormat:@"%@",ExternalIPAddress] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    //Attaching the key name @"parameter_second" to the post body
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"device_type\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    //Attaching the content to be posted ( ParameterSecond )
+    [body appendData:[[NSString stringWithFormat:@"2"] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    
+    //close form
+    [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSLog(@"Request  = %@",[[NSString alloc] initWithData:body encoding:NSUTF8StringEncoding]);
+    
+    //setting the body of the post to the reqeust
+    [request setHTTPBody:body];
+    
+    theConnection_Facebook = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    if(theConnection_Facebook) {
+        NSLog(@"Connection Successful");
+        webData = [NSMutableData data];
+    } else {
+        
+    }
+}
+
 #pragma mark - Request Server Api
 -(void)UploadInformationToServer{
     [ShowActivity startAnimating];
@@ -888,8 +974,12 @@
                 
                 
             }else{
-                PInterestV2ViewController *PInterestV2View = [[PInterestV2ViewController alloc]init];
-                [self presentViewController:PInterestV2View animated:YES completion:nil];
+//                PInterestV2ViewController *PInterestV2View = [[PInterestV2ViewController alloc]init];
+//                [self presentViewController:PInterestV2View animated:YES completion:nil];
+                self.mainNavigationController = [[UINavigationController alloc]initWithRootViewController:self.pInterestV2ViewController];
+                [_mainNavigationController setNavigationBarHidden:YES];
+                
+                [self presentViewController:self.mainNavigationController animated:YES completion:nil];
             }
             
             
@@ -1082,6 +1172,7 @@
 }
 -(IBAction)InstagramButton:(id)sender{
     NSLog(@"Instagram Click");
+    InstagramOnClickListen = @"YES";
     InstagramLoginWebViewController *WebViewLogin = [[InstagramLoginWebViewController alloc]init];
     [self presentViewController:WebViewLogin animated:YES completion:nil];
 }

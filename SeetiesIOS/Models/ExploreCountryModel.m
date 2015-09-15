@@ -10,9 +10,6 @@
 
 
 @implementation FestivalModel
-
-
-
 @end
 @implementation ExploreCountryModel
 

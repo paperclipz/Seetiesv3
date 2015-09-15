@@ -29,6 +29,9 @@
     IBOutlet UIButton *TryAgainButton;
     
     IBOutlet UIButton *SearchButton;
+    NSMutableArray *FestivalUrlArray;
+    NSMutableArray *FestivalImageArray;
+    
 
 }
 -(IBAction)TryAgainButton:(id)sender;

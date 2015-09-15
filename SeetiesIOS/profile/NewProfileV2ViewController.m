@@ -817,7 +817,9 @@
 -(IBAction)SettingsButton:(id)sender{
 
     SettingsViewController *SettingsView = [[SettingsViewController alloc]init];
-    [self.view.window.rootViewController presentViewController:SettingsView animated:YES completion:nil];
+    //[self.view.window.rootViewController presentViewController:SettingsView animated:YES completion:nil];
+    [self presentViewController:SettingsView animated:YES completion:nil];
+    
 }
 -(void)GetUserData{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

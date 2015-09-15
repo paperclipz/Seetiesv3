@@ -35,6 +35,9 @@
     NSURLConnection *theConnection_GetLanguages;
     NSURLConnection *theConnection_GetAllCategory;
 
+    NSString *InstagramOnClickListen;
+    NSString *GetInstagramToken;
+    NSString *GetInstagramID;
 
 }
 

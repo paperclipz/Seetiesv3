@@ -412,11 +412,27 @@
 -(void)InitContentView{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-    
-    
+    FestivalUrlArray = [[NSMutableArray alloc]init];
+    FestivalImageArray = [[NSMutableArray alloc]init];
     for (int i = 0 ; i < [self.exploreCountryModels.countries count]; i++) {
       
         ExploreCountryModel *model =  self.exploreCountryModels.countries[i];
+        FestivalModel* fesModel = model.festival;
+        //   [exploreCountryViewCOntroller GetFestivalUrl:fesModel.url GetFestivalImage:fesModel.thumbnail];
+        if (fesModel.url) {
+          //  SLog(@"festival URL : %@",fesModel.url);
+            [FestivalUrlArray addObject:fesModel.url];
+        }else{
+            [FestivalUrlArray addObject:@""];
+        }
+        
+        if (fesModel.thumbnail) {
+          //  SLog(@"festival THUMBNAIL : %@",fesModel.thumbnail);
+            [FestivalImageArray addObject:fesModel.thumbnail];
+        }else{
+            [FestivalImageArray addObject:@""];
+        }
+
 
         AsyncImageView *ShowCountryImg = [[AsyncImageView alloc]init];
         ShowCountryImg.frame = CGRectMake(0, 0 + i * 151, screenWidth, 150);
@@ -430,15 +446,6 @@
         [ibScrollViewCountry addSubview:ShowCountryImg];
         
        
-        FestivalModel* fesModel = model.festival;
-        if (fesModel.url) {
-            SLog(@"festival URL : %@",fesModel.url);
-        }
-        
-        if (fesModel.thumbnail) {
-            SLog(@"festival THUMBNAIL : %@",fesModel.thumbnail);
-
-        }
         
         UILabel *ShowUserName = [[UILabel alloc]init];
         ShowUserName.frame = CGRectMake(20, 100 + i * 151, screenWidth - 40, 50);
@@ -461,6 +468,7 @@
         [ibScrollViewCountry setContentSize:CGSizeMake(screenWidth, 150 + i * 151)];
     }
     
+   // NSLog(@"FestivalUrlArray is %@",FestivalUrlArray);
 
 }
 
@@ -474,7 +482,19 @@
 
     [self.navigationController pushViewController:exploreCountryViewCOntroller animated:YES];
     [exploreCountryViewCOntroller initData];
-  }
+//    ExploreCountryModel *model =  self.exploreCountryModels.countries[getbuttonIDN];
+//    FestivalModel* fesModel = model.festival;
+    [exploreCountryViewCOntroller GetFestivalUrl:[FestivalUrlArray objectAtIndex:getbuttonIDN] GetFestivalImage:[FestivalImageArray objectAtIndex:getbuttonIDN]];
+//    if (fesModel.url) {
+//        SLog(@"festival URL : %@",fesModel.url);
+//    }
+//    
+//    if (fesModel.thumbnail) {
+//        SLog(@"festival THUMBNAIL : %@",fesModel.thumbnail);
+//        
+//    }
+
+}
 
 //rest of the world click
 -(IBAction)ClickButton2:(id)sender{
