@@ -9,7 +9,7 @@
 #import "CommonViewController.h"
 #import "DraftTableViewCell.h"
 
-@interface DraftViewController : CommonViewController <UITableViewDataSource,UITableViewDelegate>
+@interface DraftViewController : CommonViewController <UITableViewDataSource,UITableViewDelegate,MGSwipeTableCellDelegate>
 
 -(void)initData;
 @property(nonatomic,copy)IDBlock backBlock;

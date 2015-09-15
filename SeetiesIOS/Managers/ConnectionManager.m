@@ -80,7 +80,7 @@
 -(void)requestServerWithPost:(bool)isPost customURL:(NSString*)url requestType:(ServerRequestType)type param:(NSDictionary*)dict completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
 {
     
-    NSLog(@"Request Server : %@ \n\n response Json : %@",url,dict);
+    NSLog(@"Request Server : %@ \n\n Request Json : %@",url,dict);
     if(isPost)
     {
         [self.manager POST:url parameters:dict
@@ -133,7 +133,7 @@
 
 -(void)requestServerWithPost:(ServerRequestType)type param:(NSDictionary*)dict completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
 {
-    NSLog(@"Request Server : %@ \n\n response Json : %@",[self getFullURLwithType:type],dict);
+    NSLog(@"Request Server : %@ \n\n Request Json : %@",[self getFullURLwithType:type],dict);
     
     [self.manager POST:[self getFullURLwithType:type] parameters:dict
                success:^(AFHTTPRequestOperation *operation, id responseObject)
@@ -157,7 +157,7 @@
 -(void)requestServerWithGet:(ServerRequestType)type param:(NSDictionary*)dict completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
 {
     
-    NSLog(@"Request Server : %@ \n\n response Json : %@",[self getFullURLwithType:type],dict);
+    NSLog(@"Request Server : %@ \n\n Request Json : %@",[self getFullURLwithType:type],dict);
     
     [self.manager GET:[self getFullURLwithType:type] parameters:dict
                success:^(AFHTTPRequestOperation *operation, id responseObject)
@@ -253,6 +253,8 @@
             break;
             
         case ServerRequestTypePostCreatePost:
+        case ServerRequestTypePostDeletePost:
+
             str = @"v1.3/post";
             
             break;
@@ -262,6 +264,8 @@
             
             break;
             
+            
+          
         default:
             break;
     }
@@ -290,7 +294,7 @@
             
         case ServerRequestTypeGetExplore:
             
-            SLog(@"response explore : %@",obj);
+            SLog(@"response explore : %@",[obj JSONString]);
             self.dataManager.exploreCountryModels = [[ExploreCountryModels alloc]initWithDictionary:obj error:nil];
             break;
             
@@ -323,6 +327,12 @@
             NSDictionary* dict = obj[@"data"];
             self.dataManager.draftsModel = [[DraftsModel alloc]initWithDictionary:dict error:nil];
             [self.dataManager.draftsModel process];
+        }
+            break;
+            
+        case ServerRequestTypePostDeletePost:
+        {
+           
         }
             break;
         default:

@@ -11,6 +11,7 @@
 
 @interface DraftTableViewCell()
 @property(nonatomic,strong)DraftModel* model;
+
 @end
 
 @implementation DraftTableViewCell
@@ -80,11 +81,13 @@
     }
     return self;
 }
+#define BUTTON_THRESHOLD 80
 
 -(void)initSelfView
 {
-    
+   
 }
+
 
 
 

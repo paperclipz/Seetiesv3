@@ -27,7 +27,6 @@
                                                        @"photos.fb": @"facebookPhoto",
                                                        @"photos.explore": @"explorePhoto"
                                                 
-                                                       
                                                        }];
 }
 

@@ -56,6 +56,9 @@
 @property(nonatomic,strong)NSString* formatted_address;
 @property(nonatomic,strong)NSArray<PhotoModel>* arrPhotos;
 @property(nonatomic,strong)NSString* link;
+@property(nonatomic,strong)NSString* post_id;
+
+
 
 
 //@property(nonatomic,strong)Location* location;

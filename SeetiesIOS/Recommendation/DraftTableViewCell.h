@@ -7,9 +7,10 @@
 //
 
 #import "CommonTableViewCell.h"
-#import "DNSSwipeableCell.h"
+#import "MGSwipeTableCell.h"
 
-@interface DraftTableViewCell : DNSSwipeableCell
+
+@interface DraftTableViewCell : MGSwipeTableCell
 @property (strong, nonatomic) IBOutlet UIImageView *imgView;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblSubtitle;
@@ -17,3 +18,4 @@
 -(void)initData:(DraftModel*)model;
 
 @end
+
