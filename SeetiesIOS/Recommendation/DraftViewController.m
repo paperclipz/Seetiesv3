@@ -91,7 +91,7 @@
 -(void)requestServerForDeletePost:(NSString*)postID
 {
     
-    NSDictionary* dict = @{@"post_id":postID,@"token":@"JDJ5JDEwJElrb1EvRXNGdUl6VjJQaVY4MXJLQmVsZEc4MXM0eUhJUkNJQTRjRXNWa2RnaUM1Ump5MzR1"};
+    NSDictionary* dict = @{@"post_id":postID,@"token":[Utils getAppToken]};
     
     [[ConnectionManager Instance]requestServerWithDelete:ServerRequestTypePostDeletePost param:dict completeHandler:^(id object) {
         
@@ -107,7 +107,7 @@
 //        [self.arrDraftList addObject:[DataManager getSampleRecommendation]];
 //    }
 
-    NSDictionary* dict = @{@"token":@"JDJ5JDEwJElrb1EvRXNGdUl6VjJQaVY4MXJLQmVsZEc4MXM0eUhJUkNJQTRjRXNWa2RnaUM1Ump5MzR1"};
+    NSDictionary* dict = @{@"token":[Utils getAppToken]};
     
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetRecommendationDraft param:dict completeHandler:^(id object) {
         

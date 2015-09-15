@@ -44,7 +44,9 @@
         _manager.requestSerializer = [AFHTTPRequestSerializer serializer];
         _manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/html",@"text/plain",nil];
         _manager.securityPolicy.allowInvalidCertificates = YES;
-
+        _manager.securityPolicy.validatesDomainName = NO;
+     
+        
     }
     
     return _manager;
@@ -255,12 +257,12 @@
         case ServerRequestTypePostCreatePost:
         case ServerRequestTypePostDeletePost:
 
-            str = @"v1.3/post";
+            str = @"v2.0/post";
             
             break;
             
         case ServerRequestTypeGetRecommendationDraft:
-            str = @"v1.3/draft";
+            str = @"v2.0/draft";
             
             break;
             

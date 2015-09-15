@@ -8,12 +8,11 @@
 
 #import "ExploreCountryModel.h"
 
-
 @implementation FestivalModel
 
 
-
 @end
+
 @implementation ExploreCountryModel
 
 
@@ -27,9 +26,14 @@
                                                        @"photos.fb": @"facebookPhoto",
                                                        @"photos.explore": @"explorePhoto"
                                                 
+                                                       
                                                        }];
 }
 
++(BOOL)propertyIsOptional:(NSString*)propertyName
+{
+    return YES;
+}
 @end
 
 @implementation ExploreCountryModels
