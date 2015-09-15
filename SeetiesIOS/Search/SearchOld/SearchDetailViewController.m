@@ -1159,7 +1159,7 @@
             
             MainScroll.hidden = NO;
             ShowSearchLocationView.hidden = YES;
-          //  [SearchLocation resignFirstResponder];
+            [SearchAddressField resignFirstResponder];
         }else{
             GetSearchPlaceID = [SearchPlaceIDArray objectAtIndex:indexPath.row];
             NSLog(@"GetSearchPlaceID is %@",GetSearchPlaceID);
@@ -1187,6 +1187,70 @@
     
     if( theConnection_GetSearchPlace ){
         webData = [NSMutableData data];
+    }
+}
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    [manager stopUpdatingLocation];
+    NSLog(@"didFailWithError: %@", error);
+    switch([error code])
+    {
+        case kCLErrorNetwork: // general, network-related error
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"please check your network connection or that you are not in airplane mode" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+            break;
+        case kCLErrorDenied:{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"user has denied to use current Location " delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+            break;
+        default:
+        {
+            UIAlertView    *alert = [[UIAlertView alloc] initWithTitle:@"App Permission Denied"
+                                                               message:@"To re-enable, please go to Settings and turn on Location Service for this app."
+                                                              delegate:nil
+                                                     cancelButtonTitle:@"OK"
+                                                     otherButtonTitles:nil];
+            [alert show];
+        }
+            break;
+    }
+}
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    NSLog(@"didUpdateToLocation: %@", newLocation);
+    CLLocation *location = newLocation;
+    
+    if (location != nil) {
+        GetLat = [NSString stringWithFormat:@"%f", location.coordinate.latitude];
+        GetLong = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
+        
+        NSLog(@"Location Get lat is %@ : lon is %@",GetLat, GetLong);
+        if ([GetLat length] == 0 || [GetLat isEqualToString:@"(null)"]) {
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSString *GetLat_ = [defaults objectForKey:@"GetLat"];
+            NSString *GetLon_ = [defaults objectForKey:@"GetLang"];
+            GetLat = GetLat_;
+            GetLong = GetLon_;
+            
+            SearchAddressField.text = @"Current Location";
+            CheckLoad = NO;
+            TotalPage = 1;
+            CurrentPage = 0;
+            GetHeight = 0;
+            CheckFirstTimeLoad = 0;
+            DataCount = 0;
+            DataTotal = 0;
+            heightcheck = 0;
+            [self SendSearchKeywordData];
+        }
+        
+       // [self performSearchLatnLong];
+        //Now you know the location has been found, do other things, call others methods here
+        [self.locationManager stopUpdatingLocation];
+    }else{
     }
 }
 @end

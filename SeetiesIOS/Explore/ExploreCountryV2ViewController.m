@@ -101,6 +101,12 @@
 
     lblTitle.text =  self.model.name;
     [super viewWillAppear:animated];
+    
+    
+
+    
+    
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
