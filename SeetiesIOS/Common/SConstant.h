@@ -24,7 +24,8 @@ typedef enum
     ServerRequestTypeGoogleSearchWithDetail,
     ServerRequestTypeGetRecommendationDraft,
     ServerRequestTypePostCreatePost,
-    ServerRequestTypePostDeletePost
+    ServerRequestTypePostDeletePost,
+    ServerRequestTypeGetGeoIP
     
 }ServerRequestType;
 

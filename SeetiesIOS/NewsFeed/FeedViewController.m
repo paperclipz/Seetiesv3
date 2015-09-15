@@ -1630,10 +1630,10 @@
 //                    NSLog(@"arrAddress is %@",arrAddress);
     
                 if (CheckFirstTimeLoad == 0) {
-                    [self StartInit1stView];
+                  //  [self StartInit1stView];
                     
                 }else{
-                    [self InitContent];
+                   // [self InitContent];
                 }
                 
                 OnLoad = NO;

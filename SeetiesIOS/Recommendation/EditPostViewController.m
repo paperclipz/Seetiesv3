@@ -40,8 +40,8 @@
 @property(nonatomic,strong)IBOutlet UISegmentedControl* postSegmentedControl;
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
 @property (weak, nonatomic) IBOutlet UIView *ibDescContentView;
-@property(nonatomic,strong)EditPostDetailVIew* editPostView;
-@property(nonatomic,strong)EditPostDetailVIew* editPostViewSecond;
+@property(nonatomic,weak)EditPostDetailVIew* editPostView;
+@property(nonatomic,weak)EditPostDetailVIew* editPostViewSecond;
 
 @property(nonatomic,strong)UIAlertView* urlAlertView;
 @end
@@ -87,7 +87,14 @@
 
                           } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Discard"]) {
                               NSLog(@"Discard");
-                              [self dismissViewControllerAnimated:YES completion:nil];
+                              
+                              if (self.navigationController) {
+                                  [self.navigationController popViewControllerAnimated:YES];
+                              }
+                              else{
+                                  [self dismissViewControllerAnimated:YES completion:nil];
+
+                              }
 
                           } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Save"]) {
                               NSLog(@"Save");
@@ -98,24 +105,58 @@
 
 -(void)initData:(RecommendationModel*)model
 {
+    self.editPostType = EditPostTypeDraftNew;
     self.recommendationModel = model;
 
 }
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [self initSelfView];
+
+-(void)initDataDraft:(DraftModel*)model
+{
+    self.editPostType = EditPostTypeDraft;
+    self.recommendationModel = [[RecommendationModel alloc]initWithDraftModel:model];
     
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self initSelfView];
+    [self loadData];
+}
+
+-(void)loadData
+{
+    self.editPostView.txtTitle.text = self.recommendationModel.postMainTitle;
+    self.editPostView.txtDescription.text = self.recommendationModel.postMainDescription;
+    
+    self.editPostViewSecond.txtTitle.text = self.recommendationModel.postSecondTitle;
+    self.editPostViewSecond.txtDescription.text = self.recommendationModel.postSecondDescription;
+}
 -(void)reloadData
 {
     
-    EditPhotoModel* edifotoModel = self.recommendationModel.arrPostImagesList[0];
+    PhotoModel* edifotoModel = self.recommendationModel.arrPostImagesList[0];
     
-    
-    if (edifotoModel) {
-        self.ibImageView.image = [edifotoModel.image imageCroppedAndScaledToSize:self.ibImageView.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
+        if (edifotoModel) {
+            
+            switch (self.editPostType) {
+                default:
+                case EditPostTypeDraftNew:
+                    self.ibImageView.image = [edifotoModel.image imageCroppedAndScaledToSize:self.ibImageView.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
+
+                    break;
+                    
+                    case EditPostTypeDraft:
+                    
+                    [self.ibImageView sd_setImageWithURL:[NSURL URLWithString:edifotoModel.imageURL] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                        self.ibImageView.image = [image imageCroppedAndScaledToSize:self.ibImageView.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
+
+                    }];
+
+                    break;
+            }
     }
+    
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -156,8 +197,9 @@
             break;
         case 1:
         {
+            [self.addNewPlaceViewController initData:self.recommendationModel.reccomendVenueModel];
+
             [self presentViewController:self.navAddNewPlaceViewController animated:YES completion:^{
-                [self.addNewPlaceViewController initData:self.recommendationModel.reccomendVenueModel];
             }];
 
         }
@@ -183,7 +225,7 @@
             break;
         case 3:
             
-            [self saveData];
+            [self requestForSaveDraft];
             break;
     }
     
@@ -265,7 +307,7 @@
         _categorySelectionViewController = [CategorySelectionViewController new];
         _categorySelectionViewController.doneClickBlock = ^(id object)
         {
-            [weakSelf requestServerForPublishPost];
+            [weakSelf requestForSaveDraft];
         };
         
     }
@@ -391,37 +433,81 @@
     return _recommendationModel;
 }
 
+
 #pragma mark - Server Request
 
--(void)requestServerForPublishPost
+static id ObjectOrNull(id object)
 {
-    NSMutableArray* arrImages = [NSMutableArray new];
+    return object ?: [NSNull null];
+}
+
+
+-(void)requestForSaveDraft
+{
+    [self saveData];
     NSMutableArray* arrMeta = [NSMutableArray new];
-    NSDictionary* photo_meta = @{@"photo_id":@"",@"position":@"",@"caption":@""};
+
+    RecommendationModel* tempModel = self.recommendationModel;
+    RecommendationVenueModel* tempVenueModel = tempModel.reccomendVenueModel;
 
     for (int i =0; i<self.recommendationModel.arrPostImagesList.count; i++) {
         
-        EditPhotoModel* model = self.recommendationModel.arrPostImagesList[i];
-        [arrImages addObject: model.image];
-        [arrMeta addObject:photo_meta];
+        PhotoModel* model = self.recommendationModel.arrPostImagesList[i];
+        [arrMeta addObject:model];
     }
     
-    NSDictionary* addressDict = @{@"route":@"setapak",@"locality":@"KL",@"administrative_area_level_1":@"Federal Territory of Kuala Lumpur",@"postalCode":@"123456",@"country":@"malaysia",@"political":@"abc"};
+    NSDictionary* addressDict = @{@"route":ObjectOrNull(tempVenueModel.route),
+                                  @"locality":ObjectOrNull(tempVenueModel.city),
+                                  @"administrative_area_level_1":ObjectOrNull(tempVenueModel.state),
+                                  @"postalCode":ObjectOrNull(tempVenueModel.postalCode),
+                                  @"country":ObjectOrNull(tempVenueModel.country),
+                                  @"political":@""};
 
-    NSDictionary* sourceDict = @{@"open_now":@"true",@"periods":@"",@"weekday_text":@""};
+//    NSDictionary* sourceDict = @{@"open_now":@"true",
+//                                 @"periods":@"",
+ //                                @"weekday_text":@""};
     
-    NSDictionary* openingHourDict = @{@"open_now":@"false",@"periods":@""};
+    NSDictionary* openingHourDict = @{@"open_now":@"false",
+                                      @"periods":@""};
 
-    NSDictionary* locationDict  = @{@"address_components":addressDict,@"name":@"setapak",@"formatted_address":@"",@"type":@2,@"reference":@"",@"expense":@"",@"rating":@11,@"contact_no":@"",@"source":sourceDict,@"opening_hours":openingHourDict,@"link":@"",@"lat":@"3.1333",@"lng":@"101.7000"};
+    NSDictionary* locationDict  = @{@"address_components":addressDict,
+                                    @"name":ObjectOrNull(tempVenueModel.name),
+                                    @"formatted_address":ObjectOrNull(tempVenueModel.formattedAddress),
+                                    @"type":@2,
+                                    @"reference":ObjectOrNull(tempVenueModel.reference),
+                                    @"expense":ObjectOrNull(tempVenueModel.price),
+                                    @"rating":@11,
+                                    @"contact_no":ObjectOrNull(tempVenueModel.formattedPhone),
+                                    @"source":@"",
+                                    @"opening_hours":openingHourDict,
+                                    @"link":ObjectOrNull(tempVenueModel.url),
+                                    @"lat":ObjectOrNull(tempVenueModel.lat),
+                                    @"lng":ObjectOrNull(tempVenueModel.lng)};
     
     
-    NSDictionary* dict = @{@"post_id":@"",@"token":[Utils getAppToken],@"status":@"0",[NSString stringWithFormat:@"title[%@]",ENGLISH_CODE]:@"title1",[NSString stringWithFormat:@"message[%@]",ENGLISH_CODE]:@"msg1",@"category":@[@1,@2],@"device_type":@2,@"location":[locationDict getJsonString],@"link":@"www.google.com"};
+    NSDictionary* dict = @{@"post_id":@""
+                           ,@"token":[Utils getAppToken],
+                           @"status":@"0",
+                           [NSString stringWithFormat:@"title[%@]",ENGLISH_CODE]:ObjectOrNull(tempModel.postMainTitle),
+                           [NSString stringWithFormat:@"message[%@]",ENGLISH_CODE]:ObjectOrNull(tempModel.postMainDescription),
+                           @"category":@[@1,@2],
+                           @"device_type":@2,
+                           @"location":[locationDict getJsonString],
+                           @"link":ObjectOrNull(tempModel.postURL)};
     
-    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostCreatePost param:dict images:arrImages  completeHandler:^(id object) {
+    
+    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostCreatePost param:dict meta:arrMeta completeHandler:^(id object) {
         
+        
+        [TSMessage showNotificationInViewController:self title:@"system" subtitle:@"Data Successfully posted" type:TSMessageNotificationTypeSuccess duration:2.0 canBeDismissedByUser:YES];
+
         SLog(@"recommendation response : %@",object);
     
-    } errorBlock:nil];
+    } errorBlock:^(id object) {
+
+        [TSMessage showNotificationInViewController:self title:@"system" subtitle:@"Data Fail to be Posted" type:TSMessageNotificationTypeSuccess duration:2.0 canBeDismissedByUser:YES];
+
+    }];
     
 }
 
@@ -434,8 +520,6 @@
     self.recommendationModel.postSecondTitle = self.editPostViewSecond.txtTitle.text;
     self.recommendationModel.postSecondDescription = self.editPostViewSecond.txtDescription.text;
 
-    [TSMessage showNotificationInViewController:self title:@"system" subtitle:@"message" type:TSMessageNotificationTypeSuccess duration:2.0 canBeDismissedByUser:YES];
-   // [TSMessage showNotificationWithTitle:@"System" subtitle:@"Save To Draft" type:TSMessageNotificationTypeSuccess];
 }
 
 @end

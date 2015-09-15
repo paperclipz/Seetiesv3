@@ -108,15 +108,6 @@
 {
     [self configureTableView];
     
-//    self.arrEditPhotoList = [NSMutableArray new];
-//
-//    for (int i = 0; i<2; i++) {
-//        EditPhotoModel* model = [EditPhotoModel new];
-//        model.photoDescription = [NSString stringWithFormat:@"photo : %d",i];
-//        model.image = [UIImage imageNamed:[NSString stringWithFormat:@"profile_%d.png",i%4]];
-//        [self.arrEditPhotoList addObject:model];
-//
-//    }
 
 }
 
@@ -140,7 +131,7 @@
                                                                                forIndexPath: indexPath];
     
     
-    EditPhotoModel* model = self.arrEditPhotoList[indexPath.row];
+    PhotoModel* model = self.arrEditPhotoList[indexPath.row];
     [cell initData:model];
 
     [self configureCell:cell forRowAtIndexPath:indexPath];
@@ -192,7 +183,7 @@
     
     NSMutableArray* tempArray = [NSMutableArray new];
     for (int i = 0; i<aSelected.count; i++) {
-        EditPhotoModel* model = [EditPhotoModel new];
+        PhotoModel* model = [PhotoModel new];
         model.image = [ASSETHELPER getImageFromAsset:aSelected[i] type:ASSET_PHOTO_SCREEN_SIZE];
 
         [tempArray addObject:model];

@@ -97,13 +97,13 @@
 
 }
 
--(void)initData:(EditPhotoModel*)model
+-(void)initData:(PhotoModel*)model
 {
     
     self.model = model;
     self.ibImage.image = self.model.image;
-    self.txtDescription.text = self.model.photoDescription;
-    [self updateString:self.model.photoDescription textView:self.txtDescription];
+    self.txtDescription.text = self.model.caption;
+    [self updateString:self.model.caption textView:self.txtDescription];
     
 }
 
@@ -135,7 +135,7 @@
     
     [self updateString:currentString textView:textView];
     
-    self.model.photoDescription = self.txtDescription.text;
+    self.model.caption = self.txtDescription.text;
   
 }
 

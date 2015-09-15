@@ -16,6 +16,7 @@
 @property(nonatomic,strong)NSString* place_id;
 @property(nonatomic,strong)NSString* lat;
 @property(nonatomic,strong)NSString* lng;
+@property(nonatomic,strong)NSString* route;
 @property(nonatomic,strong)NSString* city;
 @property(nonatomic,strong)NSString* country;
 @property(nonatomic,strong)NSString* state;
@@ -31,7 +32,7 @@
 @property(nonatomic,strong)NSString* tier;
 @property(nonatomic,strong)NSString* name;
 @property(nonatomic,strong)NSString* url;
-@property(nonatomic,strong)NSString* website;
+//@property(nonatomic,strong)NSString* website;
 @property(nonatomic,strong)NSString* vicinity;
 @property(nonatomic,strong)NSString* reference;
 -(void)processFourSquareModel:(VenueModel*)model;

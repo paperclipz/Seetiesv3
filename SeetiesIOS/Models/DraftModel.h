@@ -46,6 +46,7 @@
 @property(nonatomic,strong)NSString* caption;
 @property(nonatomic,assign)int position;
 @property(nonatomic,strong)NSString* imageURL;
+@property(nonatomic,strong)UIImage* image;
 
 @end
 

@@ -86,6 +86,7 @@
 {
     [super viewDidAppear:animated];
     self.lblTitle.text = self.title;
+    [self reloadData];
 }
 
 - (void)viewDidLoad {
@@ -171,7 +172,7 @@
 {
     self.searchType = SearchTypeDefault;
     self.rModel = model;
-    [self reloadData];
+   // [self reloadData];
 
 }
 
@@ -179,7 +180,7 @@
 {
     self.searchType = SearchTypeFourSquare;
     self.fsModel = model;
-    [self reloadData];
+   // [self reloadData];
 
 }
 
@@ -190,7 +191,7 @@
         default:
             self.addNewPlaceSubView.txtPlaceName.text = self.rModel.name;
             self.addNewPlaceSubView.txtAddress.text = self.rModel.formattedAddress;
-            self.addNewPlaceSubView.txtURL.text = self.rModel.website;
+            self.addNewPlaceSubView.txtURL.text = self.rModel.url;
             self.addNewPlaceSubView.txtPhoneNo.text = self.rModel.formattedPhone;
             [self.addNewPlaceSubView.btnCurrency setTitle:self.rModel.currency forState:UIControlStateNormal];
             self.addNewPlaceSubView.txtPerPax.text = self.rModel.price;
@@ -209,7 +210,7 @@
        
             self.addNewPlaceSubView.txtPlaceName.text = self.fsModel.name;
             self.addNewPlaceSubView.txtAddress.text = self.fsModel.address;
-            self.addNewPlaceSubView.txtURL.text = @"";
+            self.addNewPlaceSubView.txtURL.text = self.fsModel.url;
             self.addNewPlaceSubView.txtPhoneNo.text = self.fsModel.phone;
             [self refreshMapViewWithLatitude:[self.fsModel.lat doubleValue] longtitude:[self.fsModel.lng doubleValue]];
 
@@ -228,7 +229,8 @@
     [[ConnectionManager Instance] requestServerWithPost:NO customURL:GOOGLE_PLACE_DETAILS_API requestType:ServerRequestTypeGoogleSearchWithDetail param:dict completeHandler:^(id object) {
         
         self.gooModel = [[DataManager Instance] googleSearchDetailModel];
-        [self reloadData];
+        //[self reloadData];
+        [self viewWillAppear:YES];
         
     } errorBlock:nil];
 
@@ -345,7 +347,7 @@ didChangeDragState:(MKAnnotationViewDragState)newState
     self.rModel.address =  self.addNewPlaceSubView.txtAddress.text;
     self.rModel.formattedPhone =  self.addNewPlaceSubView.txtPhoneNo.text;
     self.rModel.name =  self.addNewPlaceSubView.txtPlaceName.text;
-    self.rModel.website =  self.addNewPlaceSubView.txtURL.text;
+    self.rModel.url =  self.addNewPlaceSubView.txtURL.text;
     self.rModel.price =  self.addNewPlaceSubView.txtPerPax.text;
     self.rModel.currency = self.addNewPlaceSubView.btnCurrency.titleLabel.text;    
 }

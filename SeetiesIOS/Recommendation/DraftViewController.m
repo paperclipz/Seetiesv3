@@ -81,9 +81,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.editPostViewController initData:self.arrDraftList[indexPath.row]];
+    DraftModel* draftModel = self.arrDraftList[indexPath.row];
+    [self.editPostViewController initDataDraft:draftModel];
     
-   // [self.navigationController pushViewController:self.editPostViewController animated:YES];
+    [self.navigationController pushViewController:self.editPostViewController animated:YES];
 }
 
 #pragma mark Request Server
@@ -91,11 +92,11 @@
 -(void)requestServerForDeletePost:(NSString*)postID
 {
     
-    NSDictionary* dict = @{@"post_id":postID,@"token":[Utils getAppToken]};
+    NSDictionary* dict = @{@"token":[Utils getAppToken]};
     
-    [[ConnectionManager Instance]requestServerWithDelete:ServerRequestTypePostDeletePost param:dict completeHandler:^(id object) {
+    [[ConnectionManager Instance]requestServerWithDelete:ServerRequestTypePostDeletePost param:dict appendString:postID completeHandler:^(id object) {
         
-        SLog(@"ServerRequestTypePostDeletePost : %@",object);
+        
     } errorBlock:nil];
 }
 
@@ -156,7 +157,5 @@
     }
     return result;
 }
-
-
 
 @end

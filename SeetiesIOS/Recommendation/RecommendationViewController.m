@@ -17,7 +17,6 @@
 @implementation RecommendationViewController
 - (IBAction)btnEditPhotoClicked:(id)sender {
     
-    [self showEditPostView];   
 }
 - (IBAction)btnPickImageClicked:(id)sender {
     
@@ -31,6 +30,8 @@
 
 -(void)initData:(int)type sender:(id)sender
 {
+    
+    _recommendModel = nil;
     self.sender =sender;
     switch (type) {
         case 1:
@@ -108,9 +109,9 @@
 {
     for (int i = 0; i<arrAssets.count; i++) {
         
-        EditPhotoModel* model = [EditPhotoModel new];
+        PhotoModel* model = [PhotoModel new];
         model.image = [ASSETHELPER getImageFromAsset:arrAssets[i] type:ASSET_PHOTO_SCREEN_SIZE];
-        model.photoDescription = [NSString stringWithFormat:@"photo : %d",i];
+        model.caption = [NSString stringWithFormat:@"photo : %d",i];
         [self.recommendModel.arrPostImagesList addObject:model];
     }
 }
@@ -124,8 +125,9 @@
 
 -(void)showEditPostView
 {
+    _editPostViewController = nil;
     [self.editPostViewController initData:self.recommendModel];
-    [self.sender presentViewController:self.navEditPostViewController animated:YES completion:^{
+    [self.sender presentViewController:self.editPostViewController animated:YES completion:^{
         [self resetView];
     }];
 }
@@ -220,16 +222,16 @@
     return _editPostViewController;
 }
 
--(UINavigationController*)navEditPostViewController
-{
-    if(!_navEditPostViewController)
-    {
-        _navEditPostViewController = [[UINavigationController alloc]initWithRootViewController:self.editPostViewController];
-        [_navEditPostViewController setNavigationBarHidden:YES];
-    }
-    
-    return _navEditPostViewController;
-}
+//-(UINavigationController*)navEditPostViewController
+//{
+//    if(!_navEditPostViewController)
+//    {
+//        _navEditPostViewController = [[UINavigationController alloc]initWithRootViewController:self.editPostViewController];
+//        [_navEditPostViewController setNavigationBarHidden:YES];
+//    }
+//    
+//    return _navEditPostViewController;
+//}
 
 -(AddNewPlaceViewController*)addNewPlaceViewController
 {
@@ -252,6 +254,7 @@
         _addNewPlaceViewController.btnBackBlock = ^(id object)
         {
             [((UIViewController*)object).navigationController popViewControllerAnimated:YES];
+            _addNewPlaceViewController = nil;
             
         };
     }

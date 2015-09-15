@@ -36,7 +36,7 @@
     return self;
 }
 
--(void)getCoordinate:(SearchManagerSuccessBlock)successBlock errorBlock:(SearchManagerFailBlock)error
+-(void)getCoordinate:(SearchManagerSuccessBlock)successBlock errorBlock:(SearchManagerFailBlock)errorBlock
 {
     
     if (self.location) {
@@ -48,12 +48,15 @@
     
     self.manager = [CLLocationManager updateManagerWithAccuracy:50.0 locationAge:15.0 authorizationDesciption:CLLocationUpdateAuthorizationDescriptionAlways];
     [self.manager startUpdatingLocationWithUpdateBlock:^(CLLocationManager *manager, CLLocation *location, NSError *error, BOOL *stopUpdating) {
-        NSLog(@"Our new location: %@", location);
+        NSLog(@"Our new location from GPS: %@", location);
         
         if (error && !location) {
             SLog(@"error : %@",error.description);
             [LoadingManager hide];
-
+            
+            if (errorBlock) {
+                errorBlock(@"no new location from gps");
+            }
         }
         else
         {
@@ -173,8 +176,31 @@
         }
     } errorBlock:^(id object) {
         
-    } ];}
+    } ];
+}
 
 
+-(void)getCoordinateFromWifi:(SearchManagerSuccessBlock)successBlock errorBlock:(SearchManagerFailBlock)errorBlock
+{
+    
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetGeoIP param:nil completeHandler:^(id object) {
+        
+        if (successBlock) {
+            successBlock([self convertToCLLocation:object[@"latitude"] longt:object[@"longitude"]]);
+        }
+        SLog(@"geip response : %@",[object JSONString]);
+    } errorBlock:^(id object) {
+        
+        if (errorBlock) {
+            errorBlock(nil);
+        }
+        
+    }];
 
+}
+
+-(CLLocation*)convertToCLLocation:(NSString*)lat longt:(NSString*)lng
+{
+    return [[CLLocation alloc]initWithLatitude:[lat doubleValue] longitude:[lng doubleValue]];
+}
 @end

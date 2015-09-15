@@ -121,6 +121,8 @@
 		8A3757E01B85B65A009DB7D4 /* CommonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3757DF1B85B65A009DB7D4 /* CommonView.m */; };
 		8A3757E41B85D635009DB7D4 /* EditPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3757E21B85D635009DB7D4 /* EditPhotoViewController.m */; };
 		8A3757E51B85D635009DB7D4 /* EditPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3757E31B85D635009DB7D4 /* EditPhotoViewController.xib */; };
+		8A45096F1BA801D400A868CD /* STAddNewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A45096E1BA801D400A868CD /* STAddNewTableViewCell.m */; };
+		8A4509711BA801E100A868CD /* STAddNewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4509701BA801E100A868CD /* STAddNewTableViewCell.xib */; };
 		8A5430101B8C1646009EFFF4 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A54300E1B8C1646009EFFF4 /* MapViewController.m */; };
 		8A5430111B8C1646009EFFF4 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A54300F1B8C1646009EFFF4 /* MapViewController.xib */; };
 		8A54301A1B8C1C05009EFFF4 /* addurl_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A5430141B8C1C05009EFFF4 /* addurl_icon@2x.png */; };
@@ -1187,6 +1189,9 @@
 		8A3757E11B85D635009DB7D4 /* EditPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPhotoViewController.h; sourceTree = "<group>"; };
 		8A3757E21B85D635009DB7D4 /* EditPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPhotoViewController.m; sourceTree = "<group>"; };
 		8A3757E31B85D635009DB7D4 /* EditPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPhotoViewController.xib; sourceTree = "<group>"; };
+		8A45096D1BA801D400A868CD /* STAddNewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAddNewTableViewCell.h; sourceTree = "<group>"; };
+		8A45096E1BA801D400A868CD /* STAddNewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STAddNewTableViewCell.m; sourceTree = "<group>"; };
+		8A4509701BA801E100A868CD /* STAddNewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STAddNewTableViewCell.xib; sourceTree = "<group>"; };
 		8A54300D1B8C1646009EFFF4 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		8A54300E1B8C1646009EFFF4 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		8A54300F1B8C1646009EFFF4 /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
@@ -2445,6 +2450,9 @@
 				8A3757D91B85B606009DB7D4 /* AddNewPlaceSubView.h */,
 				8A3757DA1B85B606009DB7D4 /* AddNewPlaceSubView.m */,
 				8A3757DC1B85B610009DB7D4 /* AddNewPlaceSubView.xib */,
+				8A45096D1BA801D400A868CD /* STAddNewTableViewCell.h */,
+				8A45096E1BA801D400A868CD /* STAddNewTableViewCell.m */,
+				8A4509701BA801E100A868CD /* STAddNewTableViewCell.xib */,
 			);
 			name = Extra;
 			sourceTree = "<group>";
@@ -5104,6 +5112,7 @@
 				0BBFE0A81BA125F4004B17E9 /* back_btn@2x.png in Resources */,
 				8AD6BE501B706CF30040437E /* ExploreViewController.xib in Resources */,
 				8AD6C79C1B70934D0040437E /* SearchInBox@2x.png in Resources */,
+				8A4509711BA801E100A868CD /* STAddNewTableViewCell.xib in Resources */,
 				0BBFE0A01B9FD386004B17E9 /* gender_icon@2x.png in Resources */,
 				8AD6C74A1B70934D0040437E /* InviteFacebook.png in Resources */,
 				8AD6C6FC1B70934D0040437E /* IconBrightness@3x.png in Resources */,
@@ -5488,6 +5497,7 @@
 				8AD6C8701B7460DB0040437E /* UIImageView+MKNetworkKitAdditions.m in Sources */,
 				8AD6C2A11B7072FB0040437E /* RecommendV2ViewController.m in Sources */,
 				8AD6C3311B707D120040437E /* A3ParallaxScrollView.m in Sources */,
+				8A45096F1BA801D400A868CD /* STAddNewTableViewCell.m in Sources */,
 				8AD6C34F1B707D120040437E /* UrlDataClass.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

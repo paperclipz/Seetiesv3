@@ -82,7 +82,7 @@
 -(void)requestServerWithPost:(bool)isPost customURL:(NSString*)url requestType:(ServerRequestType)type param:(NSDictionary*)dict completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
 {
     
-    NSLog(@"Request Server : %@ \n\n Request Json : %@",url,dict);
+    NSLog(@"Request Server : %@ \n\n Request Json : %@",url,[dict JSONString]);
     if(isPost)
     {
         [self.manager POST:url parameters:dict
@@ -113,7 +113,7 @@
              
              [self storeServerData:responseObject requestType:type];
             
-             NSLog(@"Success: %@ ***** %@", operation.responseString, responseObject);
+             NSLog(@"Success: %@", operation.responseString);
 
              
              if (completeBlock) {
@@ -135,7 +135,7 @@
 
 -(void)requestServerWithPost:(ServerRequestType)type param:(NSDictionary*)dict completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
 {
-    NSLog(@"Request Server : %@ \n\n Request Json : %@",[self getFullURLwithType:type],dict);
+    NSLog(@"Request Server : %@ \n\n Request Json : %@",[self getFullURLwithType:type],[dict JSONString]);
     
     [self.manager POST:[self getFullURLwithType:type] parameters:dict
                success:^(AFHTTPRequestOperation *operation, id responseObject)
@@ -159,7 +159,7 @@
 -(void)requestServerWithGet:(ServerRequestType)type param:(NSDictionary*)dict completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
 {
     
-    NSLog(@"Request Server : %@ \n\n Request Json : %@",[self getFullURLwithType:type],dict);
+    NSLog(@"Request Server : %@ \n\n Request Json : %@",[self getFullURLwithType:type],[dict JSONString]);
     
     [self.manager GET:[self getFullURLwithType:type] parameters:dict
                success:^(AFHTTPRequestOperation *operation, id responseObject)
@@ -183,32 +183,54 @@
     
 }
 
--(void)requestServerWithPost:(ServerRequestType)type param:(NSDictionary*)dict images:(NSArray*)images completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
+-(void)requestServerWithPost:(ServerRequestType)type param:(NSDictionary*)dict meta:(NSArray*)arrMeta completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)errorBlock
 {
+    [LoadingManager show];
+
+    NSLog(@"Request Server : %@ \n\n request Json : %@",[self getFullURLwithType:type],dict);
     
     AFHTTPRequestOperation *op = [self.manager POST:[self getFullURLwithType:type] parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         
         //do not put image inside parameters dictionary BUT append it
         
-        for (int i = 0; i<images.count; i++) {
-            NSData *imageData = UIImageJPEGRepresentation(images[i],0.5);
-            [formData appendPartWithFileData:imageData name:@"image" fileName:@"photo.jpg" mimeType:@"image/jpeg"];
+        for (int i = 0; i<arrMeta.count; i++) {
+            
+            PhotoModel* model = arrMeta[i];
+            NSData *imageData = UIImageJPEGRepresentation(model.image,0.5);
+            [formData appendPartWithFileData:imageData name:[NSString stringWithFormat:@"photos[%d]",i] fileName:@"photo.jpg" mimeType:@"image/jpeg"];
+            [formData appendPartWithFormData:[model.position?[NSString stringWithFormat:@"%d",model.position]:@"0" @"" dataUsingEncoding:NSUTF8StringEncoding] name:[NSString stringWithFormat:@"photos_meta[%d][position]",i]];
+            [formData appendPartWithFormData:[model.caption?model.caption:@"" dataUsingEncoding:NSUTF8StringEncoding] name:[NSString stringWithFormat:@"photos_meta[%d][caption]",i]];
         }
         
-        } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSLog(@"Success: %@ ***** %@", operation.responseString, responseObject);
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"Error: %@ ***** %@", operation.responseString, error);
-        }];
-        [op start];
-}
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        if (completeBlock) {
+            completeBlock(responseObject);
+        }
+        
+        [LoadingManager hide];
 
--(void)requestServerWithDelete:(ServerRequestType)type param:(NSDictionary*)dict completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
+        NSLog(@"Success: %@", operation.responseString);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        if (errorBlock) {
+            errorBlock(error);
+        }
+        
+        [LoadingManager hide];
+
+        NSLog(@"Error: %@ ***** %@", operation.responseString, error);
+    }];
+    [op start];
+}
+-(void)requestServerWithDelete:(ServerRequestType)type param:(NSDictionary*)dict appendString:(NSString*)appendString completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
 {
     
-    NSLog(@"Request Server : %@ \n\n response Json : %@",[self getFullURLwithType:type],dict);
+    NSString* fullString = [NSString stringWithFormat:@"%@/%@",[self getFullURLwithType:type],appendString];
+
+    NSLog(@"Request Server DELETE : %@ \n\n response Json : %@",fullString,dict);
     
-    [self.manager DELETE:[self getFullURLwithType:type] parameters:dict
+    [self.manager DELETE:fullString parameters:dict
               success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          
@@ -266,7 +288,11 @@
             
             break;
             
+            case ServerRequestTypeGetGeoIP:
             
+            return [NSString stringWithFormat:@"https://geoip.seeties.me/geoip/"];
+
+            break;
           
         default:
             break;
@@ -321,6 +347,7 @@
         {
             NSDictionary* dict = obj[@"result"];
             self.dataManager.googleSearchDetailModel = [[SearchLocationDetailModel alloc]initWithDictionary:dict error:nil];
+            [self.dataManager.googleSearchDetailModel process];
         }
             break;
             
@@ -343,5 +370,13 @@
             break;
     }
 }
+
+#pragma mark - Utils
+
+static id ObjectOrNull(id object)
+{
+    return object ?: [NSNull null];
+}
+
 
 @end

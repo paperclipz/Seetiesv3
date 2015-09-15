@@ -19,9 +19,11 @@
 
 @property(nonatomic,strong)NSString* postURL;
 
+@property(nonatomic,strong)NSString* price;
 
-@property(nonatomic,strong)NSMutableArray* arrPostImagesList;
+@property(nonatomic,strong)NSMutableArray* arrPostImagesList;//photoModel
 @property(nonatomic,strong)RecommendationVenueModel* reccomendVenueModel;
 
 
+-(id)initWithDraftModel:(DraftModel*)model;
 @end

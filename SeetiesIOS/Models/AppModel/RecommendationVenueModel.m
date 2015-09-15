@@ -13,7 +13,7 @@
 
 -(void)processFourSquareModel:(VenueModel*)model
 {
-    
+    _route = nil;
     _address = model.address;
     _formattedAddress = model.formattedAddress;
     _place_id = nil;
@@ -33,24 +33,23 @@
     _tier = model.tier;
     _name = model.name;
     _url = model.url;
-    _website = nil;
     _vicinity = nil;
     _reference = nil;
-
 
 }
 
 -(void)processGoogleModel:(SearchLocationDetailModel*)model
 {
+    _route = model.route;
     _address = nil;
     _formattedAddress = model.formatted_address;
     _place_id = model.place_id;
     _lat = model.lat;
     _lng = model.lng;
-    _city = nil;
-    _country = nil;
-    _state =  nil;
-    _postalCode = nil;
+    _city = model.city;
+    _country = model.country;
+    _state =  model.state;
+    _postalCode = model.postal_code;
     _distance =  nil;
     _formattedPhone = model.formatted_phone_number;
     _facebookName = nil;
@@ -60,11 +59,13 @@
     _priceMessage = nil;
     _tier = nil;
     _name = model.name;
-    _url = nil;
-    _website = model.website;
+    _url = model.website;
     _vicinity = model.vicinity;
     _reference = model.reference;
-    
+
 
 }
+
+
+
 @end

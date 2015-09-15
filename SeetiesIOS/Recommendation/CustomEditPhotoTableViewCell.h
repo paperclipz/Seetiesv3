@@ -13,9 +13,9 @@ typedef void (^CellBlock)(CustomEditPhotoTableViewCell* cell);
 
 @interface CustomEditPhotoTableViewCell : UITableViewCell<UITextViewDelegate>
 
--(void)initData:(EditPhotoModel*)model;
+-(void)initData:(PhotoModel*)model;
 @property(nonatomic,copy)CellBlock deleteBlock;
 @property(nonatomic,copy)CellBlock editBlock;
-@property(nonatomic,strong)EditPhotoModel* model;
+@property(nonatomic,strong)PhotoModel* model;
 
 @end
