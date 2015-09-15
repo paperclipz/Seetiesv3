@@ -426,18 +426,18 @@
         ShowCountryImg.imageURL = url;
         [ibScrollViewCountry addSubview:ShowCountryImg];
         
-        NSLog(@"%@",[self.exploreCountryModels.countries[i]festival]);
+       // NSLog(@"%@",[self.exploreCountryModels.countries[i]festival]);
         
-//        ExploreCountryModel *Model =  self.exploreCountryModels.countries[i];
-//        if (Model.festival.url == nil) {
-//            NSLog(@"1");
-//        }else{
-//            NSLog(@"2");
-////            NSString *GetUrl = [[self.exploreCountryModels.countries[i] festival] url];
-////            //NSString *Getthumbnail = [[self.exploreCountryModels.countries[i] festival] thumbnail];
-////            NSLog(@"festival url === %@",GetUrl);
-////            // NSLog(@"festival thumbnail === %@",Getthumbnail);
-//        }
+        //ExploreCountryModel *Model =  self.exploreCountryModels.countries[i];
+        if ([[self.exploreCountryModels.countries[i]festival] url]) {
+            NSLog(@"1");
+        }else{
+            NSLog(@"2");
+//            NSString *GetUrl = [[self.exploreCountryModels.countries[i] festival] url];
+//            //NSString *Getthumbnail = [[self.exploreCountryModels.countries[i] festival] thumbnail];
+//            NSLog(@"festival url === %@",GetUrl);
+//            // NSLog(@"festival thumbnail === %@",Getthumbnail);
+        }
         
         UILabel *ShowUserName = [[UILabel alloc]init];
         ShowUserName.frame = CGRectMake(20, 100 + i * 151, screenWidth - 40, 50);
