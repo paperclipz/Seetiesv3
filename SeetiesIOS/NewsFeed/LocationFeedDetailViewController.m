@@ -30,7 +30,7 @@
     
     MainScroll.delegate = self;
     MainScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight - 64 - 60);
-    
+    MainScroll.alwaysBounceVertical = YES;
 //    if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ){
 //        
 //        CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
@@ -119,7 +119,7 @@
     [annotation setTitle:GetTitle]; //You can set the subtitle too
     [MapView addAnnotation:annotation];
 }
--(void)GetLink:(NSString *)Link GetContact:(NSString *)Contact GetOpeningHour:(NSString *)OpeningHour GetPrice:(NSString *)Price{
+-(void)GetLink:(NSString *)Link GetContact:(NSString *)Contact GetOpeningHour:(NSString *)OpeningHour GetPrice:(NSString *)Price GetPeriods:(NSString *)Periods{
     
      CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
@@ -128,13 +128,15 @@
     GetContact = Contact;
     GetOpeningHour = OpeningHour;
     GetPrice = Price;
+    GetAllPeriods = Periods;
     
     NSLog(@"GetPlaceLink is %@",GetPlaceLink);
     NSLog(@"GetContact is %@",GetContact);
     NSLog(@"GetOpeningHour is %@",GetOpeningHour);
     NSLog(@"GetPrice is %@",GetPrice);
+    NSLog(@"GetAllPeriods is %@",GetAllPeriods);
     
-    if ([GetPlaceLink length] == 0 && [GetContact length] == 0 && [GetOpeningHour length] == 0 && [GetPrice length] == 0) {
+    if ([GetPlaceLink length] == 0 && [GetContact length] == 0 && [GetOpeningHour length] == 0 && [GetPrice length] == 0 && [GetAllPeriods length] == 0) {
         NSLog(@"No more information");
         MapView.frame = CGRectMake(0, 0, screenWidth, screenHeight - 60 - 200);
         
@@ -241,6 +243,23 @@
             
             GetHeight += 50;
         }
+        if ([GetPrice length] == 0) {
+            
+        }else{
+            UIImageView *ShowPriceIcon = [[UIImageView alloc]init];
+            ShowPriceIcon.frame = CGRectMake(25, GetHeight, 19, 19);
+            ShowPriceIcon.image = [UIImage imageNamed:@"InfoPrice.png"];
+            [MainScroll addSubview:ShowPriceIcon];
+            
+            UILabel *ShowPriceTExt = [[UILabel alloc]init];
+            ShowPriceTExt.frame = CGRectMake(55, GetHeight - 1, screenWidth - 152, 21);
+            ShowPriceTExt.text = GetPrice;
+            ShowPriceTExt.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
+            [MainScroll addSubview:ShowPriceTExt];
+            
+            GetHeight += 50;
+        }
+        
         if ([GetOpeningHour length] == 0) {
             
         }else{
@@ -262,24 +281,42 @@
             ShowOpeningTExt.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
             [MainScroll addSubview:ShowOpeningTExt];
             
-            GetHeight += 50;
+            GetHeight += 20;
         }
-        if ([GetPrice length] == 0) {
+        
+        if ([GetAllPeriods length] == 0) {
             
         }else{
-            UIImageView *ShowPriceIcon = [[UIImageView alloc]init];
-            ShowPriceIcon.frame = CGRectMake(25, GetHeight, 19, 19);
-            ShowPriceIcon.image = [UIImage imageNamed:@"InfoPrice.png"];
-            [MainScroll addSubview:ShowPriceIcon];
             
-            UILabel *ShowPriceTExt = [[UILabel alloc]init];
-            ShowPriceTExt.frame = CGRectMake(55, GetHeight - 1, screenWidth - 152, 21);
-            ShowPriceTExt.text = GetPrice;
-            ShowPriceTExt.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
-            [MainScroll addSubview:ShowPriceTExt];
+            GetAllPeriods = [GetAllPeriods stringByReplacingOccurrencesOfString:@"="
+                                                 withString:@" "];
             
-            GetHeight += 50;
+            NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"{};\""];
+            GetAllPeriods = [[GetAllPeriods componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString: @""];
+            
+            UILabel *ShowAllOpeningText = [[UILabel alloc]init];
+            ShowAllOpeningText.frame = CGRectMake(50, GetHeight - 10, screenWidth - 80, 160);
+            ShowAllOpeningText.text = GetAllPeriods;
+            ShowAllOpeningText.numberOfLines = 10;
+            ShowAllOpeningText.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
+            //ShowAllOpeningText.backgroundColor = [UIColor purpleColor];
+            ShowAllOpeningText.textAlignment = NSTextAlignmentLeft;
+            [MainScroll addSubview:ShowAllOpeningText];
+            
+            GetHeight += 160;
+            
+            UILabel *ShowLocalTime = [[UILabel alloc]init];
+            ShowLocalTime.frame = CGRectMake(0, GetHeight - 1, screenWidth, 21);
+            ShowLocalTime.text = @"(All time are based on local time)";
+            ShowLocalTime.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
+            ShowLocalTime.textAlignment = NSTextAlignmentCenter;
+            [MainScroll addSubview:ShowLocalTime];
+            
+            GetHeight += 40;
         }
+        
+        MainScroll.contentSize = CGSizeMake(screenWidth, GetHeight);
+
     }
 
 }

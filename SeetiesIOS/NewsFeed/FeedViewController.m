@@ -238,6 +238,8 @@
         arrImageHeight = [[NSMutableArray alloc]initWithArray:arrImageHeightTemp];
         NSMutableArray *arrImageWidthTemp = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"FeedLocalarrImageWidth"]];
         arrImageWidth = [[NSMutableArray alloc]initWithArray:arrImageWidthTemp];
+        NSMutableArray *arrLikeWidthTemp = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"FeedLocalarrLike"]];
+        arrlike = [[NSMutableArray alloc]initWithArray:arrLikeWidthTemp];
     }else{
         arrAddress = [[NSMutableArray alloc]init];
         arrTitle = [[NSMutableArray alloc]init];
@@ -251,6 +253,7 @@
         arrPostID = [[NSMutableArray alloc]init];
         arrImageWidth = [[NSMutableArray alloc]init];
         arrImageHeight = [[NSMutableArray alloc]init];
+        arrlike = [[NSMutableArray alloc]init];
     }
 
     TotalPage = 1;
@@ -512,8 +515,14 @@
             
             UIButton *LikeButton = [[UIButton alloc]init];
             LikeButton.frame = CGRectMake(40, heightcheck + i + 20, 24, 19);
-            [LikeButton setImage:[UIImage imageNamed:@"like_icon.png"] forState:UIControlStateNormal];
-            [LikeButton setImage:[UIImage imageNamed:@"PostLikeRed.png"] forState:UIControlStateSelected];
+            CheckLike = [[NSString alloc]initWithFormat:@"%@",[arrlike objectAtIndex:i]];
+            if ([CheckLike isEqualToString:@"0"]) {
+                [LikeButton setImage:[UIImage imageNamed:@"like_icon.png"] forState:UIControlStateNormal];
+                [LikeButton setImage:[UIImage imageNamed:@"PostLikeRed.png"] forState:UIControlStateSelected];
+            }else{
+                [LikeButton setImage:[UIImage imageNamed:@"PostLikeRed.png"] forState:UIControlStateNormal];
+                [LikeButton setImage:[UIImage imageNamed:@"like_icon.png"] forState:UIControlStateSelected];
+            }
             LikeButton.backgroundColor = [UIColor clearColor];
             LikeButton.tag = i;
             [LikeButton addTarget:self action:@selector(LikeButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -842,8 +851,14 @@
             
             UIButton *LikeButton = [[UIButton alloc]init];
             LikeButton.frame = CGRectMake(40, heightcheck + i + 20, 24, 19);
-            [LikeButton setImage:[UIImage imageNamed:@"like_icon.png"] forState:UIControlStateNormal];
-            [LikeButton setImage:[UIImage imageNamed:@"PostLikeRed.png"] forState:UIControlStateSelected];
+            CheckLike = [[NSString alloc]initWithFormat:@"%@",[arrlike objectAtIndex:i]];
+            if ([CheckLike isEqualToString:@"0"]) {
+                [LikeButton setImage:[UIImage imageNamed:@"like_icon.png"] forState:UIControlStateNormal];
+                [LikeButton setImage:[UIImage imageNamed:@"PostLikeRed.png"] forState:UIControlStateSelected];
+            }else{
+                [LikeButton setImage:[UIImage imageNamed:@"PostLikeRed.png"] forState:UIControlStateNormal];
+                [LikeButton setImage:[UIImage imageNamed:@"like_icon.png"] forState:UIControlStateSelected];
+            }
             LikeButton.backgroundColor = [UIColor clearColor];
             LikeButton.tag = i;
             [LikeButton addTarget:self action:@selector(LikeButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -1269,6 +1284,7 @@
         [defaults setObject:arrPostID forKey:@"FeedLocalarrPostID"];
         [defaults setObject:arrImageHeight forKey:@"FeedLocalarrImageHeight"];
         [defaults setObject:arrImageWidth forKey:@"FeedLocalarrImageWidth"];
+        [defaults setObject:arrlike forKey:@"FeedLocalarrLike"];
         [defaults setObject:@"Done" forKey:@"TestLocalData"];
         [defaults synchronize];
     }else{
@@ -1325,7 +1341,8 @@
 -(IBAction)SearchButton:(id)sender{
     SearchViewV2Controller *SearchView = [[SearchViewV2Controller alloc]initWithNibName:@"SearchViewV2Controller" bundle:nil];
     //[self presentViewController:SearchView animated:YES completion:nil];
-    [self.view.window.rootViewController presentViewController:SearchView animated:YES completion:nil];
+    [self.navigationController pushViewController:SearchView animated:YES];
+    //[self.view.window.rootViewController presentViewController:SearchView animated:YES completion:nil];
 }
 -(IBAction)FiltersButton:(id)sender{
     NSLog(@"Open Filters Button Click");
@@ -1488,6 +1505,8 @@
                      [arrAddress addObject:PlaceName];
                      NSString *PlaceID = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"post_id"]];
                      [arrPostID addObject:PlaceID];
+                     NSString *Like = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"like"]];
+                     [arrlike addObject:Like];
                  }
                 
                 
@@ -1642,6 +1661,23 @@
             }
         
         }
+    }else if(connection == theConnection_likes){
+        NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+        NSLog(@"Send post like return get data to server ===== %@",GetData);
+        
+        NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *myError = nil;
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
+        NSLog(@"Expert Json = %@",res);
+        
+        NSString *statusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
+        NSLog(@"statusString is %@",statusString);
+        
+        if ([statusString isEqualToString:@"ok"]) {
+            //NSDictionary *GetAllData = [res valueForKey:@"data"];
+           // NSLog(@"GetAllData is %@",GetAllData);
+
+        }
     }
 }
 -(void)ReinitData{
@@ -1690,6 +1726,7 @@
     [arrUserName removeAllObjects];
     [arrImageWidth removeAllObjects];
     [arrImageHeight removeAllObjects];
+    [arrlike removeAllObjects];
 }
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
@@ -1740,7 +1777,8 @@
         
         SearchViewV2Controller *SearchView = [[SearchViewV2Controller alloc]initWithNibName:@"SearchViewV2Controller" bundle:nil];
         //[self presentViewController:SearchView animated:YES completion:nil];
-        [self.view.window.rootViewController presentViewController:SearchView animated:YES completion:nil];
+        [self.navigationController pushViewController:SearchView animated:YES];
+      //  [self.view.window.rootViewController presentViewController:SearchView animated:YES completion:nil];
     }else{
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *GetSystemLanguage = [[NSString alloc]initWithFormat:@"%@",[defaults objectForKey:@"UserData_SystemLanguage"]];
@@ -1762,19 +1800,20 @@
             GetNameArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_Name"]];
         }
         
-        NSMutableArray *CategoryIDArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_ID"]];
-        NSString *JoinAllCategoryID = [CategoryIDArray componentsJoinedByString:@","];
-        //NSMutableArray *CategoryNameArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_Name"]];
-        NSString *JoinAllCategoryName = [GetNameArray componentsJoinedByString:@","];
+//        NSMutableArray *CategoryIDArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_ID"]];
+//        NSString *JoinAllCategoryID = [CategoryIDArray componentsJoinedByString:@","];
+//        //NSMutableArray *CategoryNameArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_Name"]];
+//        NSString *JoinAllCategoryName = [GetNameArray componentsJoinedByString:@","];
         
         SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]init];
-        CATransition *transition = [CATransition animation];
-        transition.duration = 0.2;
-        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-        transition.type = kCATransitionPush;
-        transition.subtype = kCATransitionFromRight;
-        [self.view.window.layer addAnimation:transition forKey:nil];
-        [self presentViewController:SearchDetailView animated:NO completion:nil];
+//        CATransition *transition = [CATransition animation];
+//        transition.duration = 0.2;
+//        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//        transition.type = kCATransitionPush;
+//        transition.subtype = kCATransitionFromRight;
+//        [self.view.window.layer addAnimation:transition forKey:nil];
+//        [self presentViewController:SearchDetailView animated:NO completion:nil];
+         [self.navigationController pushViewController:SearchDetailView animated:YES];
        // [SearchDetailView SearchCategory:JoinAllCategoryID Getlat:latPoint GetLong:lonPoint GetCategoryName:JoinAllCategoryName];
         [SearchDetailView GetSearchKeyword:@"" Getlat:latPoint GetLong:lonPoint GetLocationName:@""];
         [SearchDetailView GetTitle:@"All"];
@@ -1794,16 +1833,91 @@
 
     UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
     buttonWithTag1.selected = !buttonWithTag1.selected;
-
-    if (buttonWithTag1.selected) {
+    
+    CheckLike = [[NSString alloc]initWithFormat:@"%@",[arrlike objectAtIndex:getbuttonIDN]];
+    SendLikePostID = [[NSString alloc]initWithFormat:@"%@",[arrPostID objectAtIndex:getbuttonIDN]];
+    if ([CheckLike isEqualToString:@"0"]) {
         NSLog(@"send like to server");
+        [self SendPostLike];
+        [arrlike replaceObjectAtIndex:getbuttonIDN withObject:@"1"];
     }else{
         NSLog(@"send unlike to server");
-        
+        [self GetUnLikeData];
+        [arrlike replaceObjectAtIndex:getbuttonIDN withObject:@"0"];
     }
+
+//    if (buttonWithTag1.selected) {
+//        NSLog(@"send like to server");
+//    }else{
+//        NSLog(@"send unlike to server");
+//        
+//    }
 }
 -(IBAction)InviteFriendsButton:(id)sender{
     InviteFrenViewController *InviteFrenView = [[InviteFrenViewController alloc]init];
     [self presentViewController:InviteFrenView animated:YES completion:nil];
+}
+-(void)GetUnLikeData{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    
+    //Server Address URL
+    NSString *urlString = [NSString stringWithFormat:@"%@post/%@/like?token=%@",DataUrl.UserWallpaper_Url,SendLikePostID,GetExpertToken];
+    NSLog(@"urlString is %@",urlString);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"DELETE"];
+    
+    theConnection_likes = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    if(theConnection_likes) {
+        //  NSLog(@"Connection Successful");
+        webData = [NSMutableData data];
+    } else {
+        
+    }
+    
+}
+-(void)SendPostLike{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    
+    //Server Address URL
+    NSString *urlString = [NSString stringWithFormat:@"%@post/%@/like",DataUrl.UserWallpaper_Url,SendLikePostID];
+    NSLog(@"urlString is %@",urlString);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
+    
+    NSMutableData *body = [NSMutableData data];
+    
+    NSString *boundary = @"---------------------------14737809831466499882746641449";
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+    [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    //parameter second
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    //Attaching the key name @"parameter_second" to the post body
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"token\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    //Attaching the content to be posted ( ParameterSecond )
+    [body appendData:[[NSString stringWithFormat:@"%@",GetExpertToken] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    
+    //close form
+    [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSLog(@"Request  = %@",[[NSString alloc] initWithData:body encoding:NSUTF8StringEncoding]);
+    
+    //setting the body of the post to the reqeust
+    [request setHTTPBody:body];
+    
+    theConnection_likes = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    if(theConnection_likes) {
+        //  NSLog(@"Connection Successful");
+        webData = [NSMutableData data];
+    } else {
+        
+    }
 }
 @end

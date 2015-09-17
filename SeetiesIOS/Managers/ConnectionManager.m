@@ -43,7 +43,8 @@
         _manager = [AFHTTPRequestOperationManager manager];
         _manager.requestSerializer = [AFHTTPRequestSerializer serializer];
         _manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/html",@"text/plain",nil];
-        _manager.securityPolicy.allowInvalidCertificates = YES;
+        _manager.securityPolicy.allowInvalidCertificates = NO;
+
 
     }
     
@@ -242,7 +243,7 @@
             break;
             
         case ServerRequestTypeGetLanguage:
-            str =  @"/v1.3/system/languages";
+            str =  @"/v2.0/system/languages";
             break;
             
         case ServerRequestTypeGetApiVersion:

@@ -39,7 +39,7 @@
     DataUrl = [[UrlDataClass alloc]init];
     MainScroll.delegate = self;
     UserScroll.delegate = self;
-    MainScroll.frame = CGRectMake(0, 95 , screenWidth, screenHeight - 95);
+    MainScroll.frame = CGRectMake(0, 95 , screenWidth, screenHeight - 95 - 50);
     ShowSearchUserView.frame = CGRectMake(0, 114, screenWidth, screenHeight - 114);
     UserScroll.frame = CGRectMake(0, 0 , ShowSearchUserView.frame.size.width, ShowSearchUserView.frame.size.height);
     StringSortby = @"3";
@@ -74,6 +74,7 @@
     
     [SearchLocationNameArray addObject:CustomLocalisedString(@"Currentlocation",nil)];
     [SearchPlaceIDArray addObject:@"0"];
+
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -82,7 +83,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetCategoryString = [defaults objectForKey:@"Filter_Search_Category"];
     if ([GetCategoryString length] == 0 || [GetCategoryString isEqualToString:@""] || [GetCategoryString isEqualToString:@"(null)"] || GetCategoryString == nil) {
-        
+        [self SendSearchKeywordData];
     }else{
         for (UIView *subview in MainScroll.subviews) {
             [subview removeFromSuperview];
@@ -96,7 +97,12 @@
         DataCount = 0;
         DataTotal = 0;
         heightcheck = 0;
+        
+        [self SendSearchKeywordData];
     }
+    
+    SearchTextField.text = GetKeywordText;
+    SearchAddressField.text = GetLocationName;
 }
 - (UIStatusBarStyle) preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
@@ -117,16 +123,17 @@
     [self.view.window.layer addAnimation:transition forKey:nil];
     //[self presentViewController:ListingDetail animated:NO completion:nil];
     [self dismissViewControllerAnimated:NO completion:nil];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 -(void)GetSearchKeyword:(NSString *)Keyword Getlat:(NSString *)lat GetLong:(NSString *)Long GetLocationName:(NSString *)LocationName{
-
+    
     GetKeywordText = Keyword;
     GetLat = lat;
     GetLong = Long;
     GetLocationName = LocationName;
     [self SendSearchKeywordData];
 
-    SearchTextField.text = Keyword;
+    SearchTextField.text = GetKeywordText;
     SearchAddressField.text = GetLocationName;
 }
 //- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
@@ -288,6 +295,7 @@
     }
 }
 -(void)SendSearchKeywordData{
+    NSLog(@"SendSearchKeywordData");
     CheckWhichOne = 1;
    [ShowActivity startAnimating];
     if (CurrentPage == TotalPage) {
@@ -1035,13 +1043,14 @@
     NSLog(@"button %li",(long)getbuttonIDN);
     
     FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromRight;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self presentViewController:FeedDetailView animated:NO completion:nil];
+//    CATransition *transition = [CATransition animation];
+//    transition.duration = 0.2;
+//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    transition.type = kCATransitionPush;
+//    transition.subtype = kCATransitionFromRight;
+//    [self.view.window.layer addAnimation:transition forKey:nil];
+//    [self presentViewController:FeedDetailView animated:NO completion:nil];
+    [self.navigationController pushViewController:FeedDetailView animated:YES];
     [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
 }
 -(IBAction)SortbyButton:(id)sender{

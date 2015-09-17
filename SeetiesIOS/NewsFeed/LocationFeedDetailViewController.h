@@ -30,9 +30,10 @@
     NSString *GetContact;
     NSString *GetOpeningHour;
     NSString *GetPrice;
+    NSString *GetAllPeriods;
 }
 -(IBAction)BackButton:(id)sender;
 -(void)GetLat:(NSString *)Lat GetLong:(NSString *)Long GetFirstImage:(NSString *)FirstImage GetTitle:(NSString *)Title GetLocation:(NSString *)Location;
--(void)GetLink:(NSString *)Link GetContact:(NSString *)Contact GetOpeningHour:(NSString *)OpeningHour GetPrice:(NSString *)Price;
+-(void)GetLink:(NSString *)Link GetContact:(NSString *)Contact GetOpeningHour:(NSString *)OpeningHour GetPrice:(NSString *)Price GetPeriods:(NSString *)Periods;
 -(IBAction)DirectionsButton:(id)sender;
 @end

@@ -623,8 +623,9 @@
                 
                 NSDictionary *OpeningHourData = [LocationData valueForKey:@"opening_hours"];
                 GetOpenNow = [[NSString alloc]initWithFormat:@"%@",[OpeningHourData objectForKey:@"open_now"]];
-                GetPeriods = [[NSString alloc]initWithFormat:@"%@",[OpeningHourData objectForKey:@"periods"]];
-                
+                GetPeriods = [[NSString alloc]initWithFormat:@"%@",[OpeningHourData objectForKey:@"period_text"]];
+                NSLog(@"GetOpenNow is %@",GetOpenNow);
+                NSLog(@"GetPeriods is %@",GetPeriods);
                 NSDictionary *titleData = [GetAllData valueForKey:@"title"];
                 NSLog(@"titleData is %@",titleData);
                 NSDictionary *messageData = [GetAllData valueForKey:@"message"];
@@ -2086,7 +2087,7 @@
     [DirectionsButton setBackgroundColor:[UIColor clearColor]];
     [DirectionsButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15]];
     [DirectionsButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
-//    [DirectionsButton addTarget:self action:@selector(CommentButton:) forControlEvents:UIControlEventTouchUpInside];
+    [DirectionsButton addTarget:self action:@selector(OpenAddressButton:) forControlEvents:UIControlEventTouchUpInside];
     DirectionsButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     
     [MainScroll addSubview:DirectionsButton];
@@ -2264,7 +2265,7 @@
     [MoreInfoButton setBackgroundColor:[UIColor clearColor]];
     [MoreInfoButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15]];
     [MoreInfoButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
-   // [MoreInfoButton addTarget:self action:@selector(CommentButton:) forControlEvents:UIControlEventTouchUpInside];
+    [MoreInfoButton addTarget:self action:@selector(OpenAddressButton:) forControlEvents:UIControlEventTouchUpInside];
     // SeeAllCommentButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     
     [MainScroll addSubview:MoreInfoButton];
@@ -3450,7 +3451,7 @@ NSLog(@"Facebook Button Click");
     [self.view.window.layer addAnimation:transition forKey:nil];
     [self presentViewController:LocationFeedDetailView animated:NO completion:nil];
     [LocationFeedDetailView GetLat:GetLat GetLong:GetLng GetFirstImage:[UrlArray objectAtIndex:0] GetTitle:GetPlaceName GetLocation:GetPlaceFormattedAddress ];
-    [LocationFeedDetailView GetLink:GetPlaceLink GetContact:GetContactNo GetOpeningHour:GetOpeningHourOpen GetPrice:GetExpense];
+    [LocationFeedDetailView GetLink:GetPlaceLink GetContact:GetContactNo GetOpeningHour:GetOpenNow GetPrice:GetExpense GetPeriods:GetPeriods];
 }
 -(IBAction)OpenLinkButton:(id)sender{
     
