@@ -26,28 +26,44 @@
     if (self = [super init]) {
         
         _arrPostImagesList = [NSMutableArray new];
-                
-        for (int i = 0 ; i<model.arrPost.count; i++) {
+        
+        
+        int counter = (int)model.arrPost.count;
+        for (int i = counter; i>0; i--) {
             
-            if (i == 0) {
-                _postMainTitle = [model.arrPost[0] title];
-                _postMainDescription = [model.arrPost[0] message];
+            if (counter - i == 0) {
+                _postMainTitle = [model.arrPost[i-1] title];
+                _postMainDescription = [model.arrPost[i-1] message];
 
             }
             else
             {
-                _postSecondTitle = [model.arrPost[1] title];
-                _postSecondDescription = [model.arrPost[1] message];
+                _postSecondTitle = [model.arrPost[i-1] title];
+                _postSecondDescription = [model.arrPost[i-1] message];
             }
         }
         
         _postURL  = model.link;
-
+        _post_id = model.post_id;
     }
     
     _arrPostImagesList = [model.arrPhotos mutableCopy];
+    _reccomendVenueModel = [RecommendationVenueModel new];
+    [_reccomendVenueModel processDraftModel:model];
+    
     
     return self;
 }
+
+-(NSMutableArray*)arrDeletedImages
+{
+    if (!_arrDeletedImages) {
+        _arrDeletedImages = [NSMutableArray new];
+    }
+    
+    return _arrDeletedImages;
+
+}
+
 
 @end

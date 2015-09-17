@@ -95,6 +95,9 @@
                                   [self dismissViewControllerAnimated:YES completion:nil];
 
                               }
+                              if (self.editPostBackBlock) {
+                                  self.editPostBackBlock(self);
+                              }
 
                           } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Save"]) {
                               NSLog(@"Save");
@@ -120,7 +123,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
-    [self loadData];
+    [self resetData];
 }
 
 -(void)loadData
@@ -130,30 +133,61 @@
     
     self.editPostViewSecond.txtTitle.text = self.recommendationModel.postSecondTitle;
     self.editPostViewSecond.txtDescription.text = self.recommendationModel.postSecondDescription;
+    
+    [self reloadImage];
 }
--(void)reloadData
+
+-(void)resetData
+{
+    self.editPostView.txtTitle.text = @"";
+    self.editPostView.txtDescription.text = @"";
+    
+    self.editPostViewSecond.txtTitle.text = @"";
+    self.editPostViewSecond.txtDescription.text = @"";
+}
+
+-(void)reloadImage
 {
     
-    PhotoModel* edifotoModel = self.recommendationModel.arrPostImagesList[0];
     
-        if (edifotoModel) {
+        if (self.recommendationModel.arrPostImagesList && self.recommendationModel.arrPostImagesList.count>0) {
             
-            switch (self.editPostType) {
-                default:
-                case EditPostTypeDraftNew:
-                    self.ibImageView.image = [edifotoModel.image imageCroppedAndScaledToSize:self.ibImageView.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
+            PhotoModel* edifotoModel = self.recommendationModel.arrPostImagesList[0];
+            
+            if (edifotoModel.image) {
+                
+                self.ibImageView.image = [edifotoModel.image imageCroppedAndScaledToSize:self.ibImageView.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
 
-                    break;
-                    
-                    case EditPostTypeDraft:
-                    
-                    [self.ibImageView sd_setImageWithURL:[NSURL URLWithString:edifotoModel.imageURL] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                        self.ibImageView.image = [image imageCroppedAndScaledToSize:self.ibImageView.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
-
-                    }];
-
-                    break;
             }
+            else if(edifotoModel.imageURL)
+            {
+                
+                [self.ibImageView sd_setImageWithURL:[NSURL URLWithString:edifotoModel.imageURL] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                    
+                    self.ibImageView.image = [image imageCroppedAndScaledToSize:self.ibImageView.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
+                    
+                }];
+
+            }
+
+//            switch (self.editPostType) {
+//                default:
+//                case EditPostTypeDraftNew:
+//                    self.ibImageView.image = [edifotoModel.image imageCroppedAndScaledToSize:self.ibImageView.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
+//
+//                    break;
+//                    
+//                    case EditPostTypeDraft:
+//                    
+//                    [self.ibImageView sd_setImageWithURL:[NSURL URLWithString:edifotoModel.imageURL] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+//                        self.ibImageView.image = [image imageCroppedAndScaledToSize:self.ibImageView.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
+//
+//                    }];
+//
+//                    break;
+//            }
+            
+            
     }
     
     
@@ -163,7 +197,7 @@
 {
     [super viewDidAppear:animated];
     
-    [self reloadData];
+    [self loadData];
 
     //    SDWebImageManager *manager = [SDWebImageManager sharedManager];
     //    [manager downloadImageWithURL:[NSURL URLWithString:@"http://cdn3.denofgeek.us/sites/denofgeekus/files/scarlett_johansson.jpg"]
@@ -214,18 +248,21 @@
 
             [self presentViewController:self.editPhotoViewController animated:YES completion:nil];
                  __weak typeof (self)weakSelf = self;
-                self.editPhotoViewController.doneBlock = ^(NSArray* array)
+                self.editPhotoViewController.doneBlock = ^(NSArray* arrayImages,NSArray* arrDeleteImages)
                 {
                 
                 weakSelf.recommendationModel.arrPostImagesList = nil;
-                weakSelf.recommendationModel.arrPostImagesList = [[NSMutableArray alloc]initWithArray:array];
+                weakSelf.recommendationModel.arrPostImagesList = [[NSMutableArray alloc]initWithArray:arrayImages];
+                  
+                    [weakSelf.recommendationModel.arrDeletedImages addObjectsFromArray:arrDeleteImages];
+
                 };
 
         }
             break;
         case 3:
             
-            [self requestForSaveDraft];
+            [self requestToSaveDraft];
             break;
     }
     
@@ -307,7 +344,7 @@
         _categorySelectionViewController = [CategorySelectionViewController new];
         _categorySelectionViewController.doneClickBlock = ^(id object)
         {
-            [weakSelf requestForSaveDraft];
+            [weakSelf requestToSaveDraft];
         };
         
     }
@@ -364,7 +401,9 @@
             RecommendationVenueModel* temp = (RecommendationVenueModel*)object;
             
             weakSelf.recommendationModel.reccomendVenueModel = temp;
-            [weakSelf.addNewPlaceViewController dismissViewControllerAnimated:YES completion:nil];
+            [weakSelf.addNewPlaceViewController dismissViewControllerAnimated:YES completion:^{
+                [weakSelf reloadImage];
+            }];
 
         };
       
@@ -442,7 +481,7 @@ static id ObjectOrNull(id object)
 }
 
 
--(void)requestForSaveDraft
+-(void)requestToSaveDraft
 {
     [self saveData];
     NSMutableArray* arrMeta = [NSMutableArray new];
@@ -475,7 +514,7 @@ static id ObjectOrNull(id object)
                                     @"formatted_address":ObjectOrNull(tempVenueModel.formattedAddress),
                                     @"type":@2,
                                     @"reference":ObjectOrNull(tempVenueModel.reference),
-                                    @"expense":ObjectOrNull(tempVenueModel.price),
+                                    @"expense":ObjectOrNull(tempVenueModel.expense),
                                     @"rating":@11,
                                     @"contact_no":ObjectOrNull(tempVenueModel.formattedPhone),
                                     @"source":@"",
@@ -484,9 +523,7 @@ static id ObjectOrNull(id object)
                                     @"lat":ObjectOrNull(tempVenueModel.lat),
                                     @"lng":ObjectOrNull(tempVenueModel.lng)};
     
-    
-    NSDictionary* dict = @{@"post_id":@""
-                           ,@"token":[Utils getAppToken],
+    NSDictionary* dict = @{@"token":[Utils getAppToken],
                            @"status":@"0",
                            [NSString stringWithFormat:@"title[%@]",ENGLISH_CODE]:ObjectOrNull(tempModel.postMainTitle),
                            [NSString stringWithFormat:@"message[%@]",ENGLISH_CODE]:ObjectOrNull(tempModel.postMainDescription),
@@ -496,7 +533,27 @@ static id ObjectOrNull(id object)
                            @"link":ObjectOrNull(tempModel.postURL)};
     
     
-    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostCreatePost param:dict meta:arrMeta completeHandler:^(id object) {
+    NSDictionary* dictSecondDesc = @{[NSString stringWithFormat:@"title[%@]",THAI_CODE]:ObjectOrNull(tempModel.postSecondTitle),
+                                 [NSString stringWithFormat:@"message[%@]",THAI_CODE]:ObjectOrNull(tempModel.postSecondDescription)};
+    
+    
+    
+    NSMutableDictionary* finalDict = [[NSMutableDictionary alloc]initWithDictionary:dict];
+    [finalDict addEntriesFromDictionary:dictSecondDesc];
+    
+    
+    for (int i = 0; i<tempModel.arrDeletedImages.count; i++) {
+        
+        NSDictionary* tempDict = @{[NSString stringWithFormat:@"delete_photos[%d]",i]:tempModel.arrDeletedImages[i]};
+        [finalDict addEntriesFromDictionary:tempDict];
+
+    }
+
+    SLog(@"dict : %@",finalDict);
+    
+    
+    
+    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostCreatePost param:finalDict appendString:tempModel.post_id meta:arrMeta  completeHandler:^(id object) {
         
         
         [TSMessage showNotificationInViewController:self title:@"system" subtitle:@"Data Successfully posted" type:TSMessageNotificationTypeSuccess duration:2.0 canBeDismissedByUser:YES];

@@ -12,6 +12,10 @@
 
 #define MAX_PHOTO_SELECTION 10
 @interface EditPhotoViewController ()
+{
+    NSMutableArray* arrayDeletedImages;
+    
+}
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *arrEditPhotoList;
 @property (nonatomic, strong) RecommendationModel *recModel;
@@ -62,7 +66,7 @@
 - (IBAction)btnDoneClicked:(id)sender {
     
     if (_doneBlock) {
-        self.doneBlock(self.arrEditPhotoList);
+        self.doneBlock(self.arrEditPhotoList,arrayDeletedImages);
     }
     
     [self btnBackClicked:nil];
@@ -96,6 +100,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
+    arrayDeletedImages= [NSMutableArray new];
   }
 
 -(void)initData:(RecommendationModel*)model
@@ -143,14 +148,16 @@
 -(void)configureCell:(CustomEditPhotoTableViewCell*)cell forRowAtIndexPath:(NSIndexPath*)indexPath
 {
 
-    
     cell.deleteBlock = ^(CustomEditPhotoTableViewCell* customCell)
     {
-        
         NSIndexPath* indexPth = [self.tableView indexPathForCell:customCell];
         
         [self.tableView beginUpdates];
-        [self.arrEditPhotoList removeObject:self.arrEditPhotoList[indexPth.row]];
+        PhotoModel* tempModel = self.arrEditPhotoList[indexPth.row];
+        if (tempModel.photo_id) {
+            [arrayDeletedImages addObject:tempModel.photo_id];
+        }
+        [self.arrEditPhotoList removeObject:tempModel];
         [self.tableView deleteRowsAtIndexPaths:@[indexPth] withRowAnimation:UITableViewRowAnimationFade];
         [self.tableView endUpdates];
 
@@ -159,7 +166,6 @@
     cell.editBlock = ^(CustomEditPhotoTableViewCell* customCell)
     {
         
-
         [self launchPhotoEditorWithImage:customCell.model.image highResolutionImage:nil completion:^(UIImage *image) {
             
             NSIndexPath* indexPth = [self.tableView indexPathForCell:customCell];
@@ -169,8 +175,6 @@
             [self.tableView reloadRowsAtIndexPaths:@[indexPth] withRowAnimation:UITableViewRowAnimationFade];
         }];
     };
-    
-
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {

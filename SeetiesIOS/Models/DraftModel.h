@@ -27,15 +27,27 @@
 
 @end
 
-@interface Location : NSObject
-@property(nonatomic,strong)NSString* route;
+@interface Location : JSONModel
 @property(nonatomic,strong)NSString* lat;
 @property(nonatomic,strong)NSString* lng;
 @property(nonatomic,strong)NSString* name;
 @property(nonatomic,strong)NSString* place_id;
-@property(nonatomic,strong)NSString* opening_hours;
+@property(nonatomic,strong)NSDictionary* opening_hours;
 @property(nonatomic,strong)NSString* contact_no;
 @property(nonatomic,strong)NSString* link;
+@property(nonatomic,strong)NSString* distance;
+@property(nonatomic,strong)NSString* reference;
+@property(nonatomic,strong)NSString* formatted_address;
+@property(nonatomic,strong)NSDictionary* expense;
+
+//below here is all inside address_components
+@property(nonatomic,strong)NSString* administrative_area_level_1;
+@property(nonatomic,strong)NSString* country;
+@property(nonatomic,strong)NSString* locality;
+@property(nonatomic,strong)NSString* political;
+@property(nonatomic,strong)NSString* postal_code;
+@property(nonatomic,strong)NSString* route;
+@property(nonatomic,strong)NSString* sublocality;
 
 @end
 
@@ -54,7 +66,7 @@
 
 @property(nonatomic,strong)NSArray* arrPost;
 @property(nonatomic,strong)NSString* place_name;
-@property(nonatomic,strong)NSString* formatted_address;
+//@property(nonatomic,strong)NSString* formatted_address;
 @property(nonatomic,strong)NSArray<PhotoModel>* arrPhotos;
 @property(nonatomic,strong)NSString* link;
 @property(nonatomic,strong)NSString* post_id;
@@ -62,7 +74,7 @@
 
 
 
-//@property(nonatomic,strong)Location* location;
+@property(nonatomic,strong)Location* location;
 
 @end
 

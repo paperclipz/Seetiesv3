@@ -111,7 +111,6 @@
         
         PhotoModel* model = [PhotoModel new];
         model.image = [ASSETHELPER getImageFromAsset:arrAssets[i] type:ASSET_PHOTO_SCREEN_SIZE];
-        model.caption = [NSString stringWithFormat:@"photo : %d",i];
         [self.recommendModel.arrPostImagesList addObject:model];
     }
 }

@@ -183,23 +183,50 @@
     
 }
 
--(void)requestServerWithPost:(ServerRequestType)type param:(NSDictionary*)dict meta:(NSArray*)arrMeta completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)errorBlock
+-(void)requestServerWithPost:(ServerRequestType)type param:(NSDictionary*)dict appendString:(NSString*)appendString meta:(NSArray*)arrMeta completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)errorBlock
 {
     [LoadingManager show];
 
-    NSLog(@"Request Server : %@ \n\n request Json : %@",[self getFullURLwithType:type],dict);
+    NSString* fullURL;
+    if (appendString) {
+        
+        fullURL = [NSString stringWithFormat:@"%@/%@",[self getFullURLwithType:type],appendString];
+
+    }
     
-    AFHTTPRequestOperation *op = [self.manager POST:[self getFullURLwithType:type] parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    else{
+    
+        fullURL = [self getFullURLwithType:type];
+    }
+    
+    
+    NSLog(@"Request Server : %@ \n\n request Json : %@",fullURL,dict);
+    
+    AFHTTPRequestOperation *op = [self.manager POST:fullURL parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         
         //do not put image inside parameters dictionary BUT append it
         
         for (int i = 0; i<arrMeta.count; i++) {
             
             PhotoModel* model = arrMeta[i];
-            NSData *imageData = UIImageJPEGRepresentation(model.image,0.5);
-            [formData appendPartWithFileData:imageData name:[NSString stringWithFormat:@"photos[%d]",i] fileName:@"photo.jpg" mimeType:@"image/jpeg"];
-            [formData appendPartWithFormData:[model.position?[NSString stringWithFormat:@"%d",model.position]:@"0" @"" dataUsingEncoding:NSUTF8StringEncoding] name:[NSString stringWithFormat:@"photos_meta[%d][position]",i]];
+                       [formData appendPartWithFormData:[[@(i)stringValue]  dataUsingEncoding:NSUTF8StringEncoding] name:[NSString stringWithFormat:@"photos_meta[%d][position]",i]];
             [formData appendPartWithFormData:[model.caption?model.caption:@"" dataUsingEncoding:NSUTF8StringEncoding] name:[NSString stringWithFormat:@"photos_meta[%d][caption]",i]];
+            
+            if(model.photo_id)
+            {
+                [formData appendPartWithFormData:[model.photo_id dataUsingEncoding:NSUTF8StringEncoding] name:[NSString stringWithFormat:@"photos_meta[%d][photo_id]",i]];
+
+            }
+            else{
+                
+                NSData *imageData = UIImageJPEGRepresentation(model.image,0.5);
+                if (imageData) {
+                    [formData appendPartWithFileData:imageData name:[NSString stringWithFormat:@"photos[%d]",i] fileName:@"photo.jpg" mimeType:@"image/jpeg"];
+                }
+
+            
+            }
+        
         }
         
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {

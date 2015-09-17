@@ -126,7 +126,16 @@
 {
     if(!_editPostViewController)
     {
+        
+        __weak typeof (self)weakSelf = self;
         _editPostViewController = [EditPostViewController new];
+        _editPostViewController.editPostBackBlock = ^(id object)
+        {
+            EditPostViewController* obj  = (EditPostViewController*)object;
+            obj = nil;
+            [weakSelf requestServerForDraft];
+        
+        };
     }
     return _editPostViewController;
 }

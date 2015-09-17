@@ -53,15 +53,23 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 +(void)setRoundBorder:(UIView*)view color:(UIColor*)color borderRadius:(float)borderRadius;
 
 
-// ============== FONT =========
-
+// ========================  FONT ==========================
 +(UIFont*)defaultFont;
 +(UIColor*)defaultTextColor;
+// ========================  font ==========================
 
 
-// ===== Validation ======== //
+// =====================  VALIDATION =======================
 + (BOOL) validateUrl: (NSString *) candidat;
-// ===== Validation ======== //
+// =====================  Validation =======================
+
+
+
+// =====================  CURRENCY =========================
++(NSString*)currencyCode:(NSString*)currency;
++(NSString*)currencyString:(NSString*)code;
+// =====================  currency =========================
+
 
 
 

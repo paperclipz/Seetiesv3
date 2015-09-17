@@ -203,6 +203,8 @@
             self.addNewPlaceSubView.txtAddress.text = self.gooModel.formatted_address;
             self.addNewPlaceSubView.txtURL.text = self.gooModel.website;
             self.addNewPlaceSubView.txtPhoneNo.text = self.gooModel.formatted_phone_number;
+            [self.addNewPlaceSubView.btnCurrency setTitle:[Utils currencyString:@""] forState:UIControlStateNormal];
+
             [self refreshMapViewWithLatitude:[self.gooModel.lat doubleValue] longtitude:[self.gooModel.lng doubleValue]];
 
             break;
@@ -212,6 +214,8 @@
             self.addNewPlaceSubView.txtAddress.text = self.fsModel.address;
             self.addNewPlaceSubView.txtURL.text = self.fsModel.url;
             self.addNewPlaceSubView.txtPhoneNo.text = self.fsModel.phone;
+            [self.addNewPlaceSubView.btnCurrency setTitle:[Utils currencyString:@""] forState:UIControlStateNormal];
+
             [self refreshMapViewWithLatitude:[self.fsModel.lat doubleValue] longtitude:[self.fsModel.lng doubleValue]];
 
         break;
@@ -242,14 +246,12 @@
     _region.center.longitude = lont;
     _region.center.latitude = lat;
     
-    
     if (lat && lont) {
         [self.annotation setCoordinate:self.region.center];
     }
 
     SLog(@"refreshMapView");
    
-
     //CLLocationCoordinate2D startCoord = CLLocationCoordinate2DMake([self.model.latitude doubleValue], [self.model.longitude doubleValue]);
    // MKCoordinateRegion adjustedRegion = [self.ibMapView regionThatFits:MKCoordinateRegionMakeWithDistance(startCoord, 200, 200)];
     [self.ibMapView setRegion:self.region animated:YES];
@@ -264,7 +266,8 @@
         _mapViewController = [MapViewController new];
         _mapViewController.viewDidDismissBlock = ^(MKCoordinateRegion region)
         {
-            [weakSelf refreshMapViewWithLatitude:region.center.latitude longtitude:region.center.longitude];
+            weakSelf.rModel.lat = [@(region.center.latitude) stringValue];
+            weakSelf.rModel.lng = [@(region.center.longitude) stringValue];
         };
     }
     

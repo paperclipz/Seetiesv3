@@ -27,7 +27,6 @@
 @property(nonatomic,strong)NSString* facebookName;
 @property(nonatomic,assign)BOOL isOpenHour;
 @property(nonatomic,strong)NSString* statusHour;
-@property(nonatomic,strong)NSString* currency;
 @property(nonatomic,strong)NSString* priceMessage;
 @property(nonatomic,strong)NSString* tier;
 @property(nonatomic,strong)NSString* name;
@@ -37,8 +36,12 @@
 @property(nonatomic,strong)NSString* reference;
 -(void)processFourSquareModel:(VenueModel*)model;
 -(void)processGoogleModel:(SearchLocationDetailModel*)model;
+-(void)processDraftModel:(DraftModel*)model;
 
 @property(nonatomic,strong)NSString* price;
+@property(nonatomic,strong)NSString* currency;
+@property(nonatomic,strong)NSDictionary* expense;
+
 @property(nonatomic,strong)NSArray* arrOpeningHours;
 
 @end

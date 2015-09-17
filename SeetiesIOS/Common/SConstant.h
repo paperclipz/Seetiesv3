@@ -60,6 +60,12 @@ extern NSString *const kAFAviarySecret;
 #define Language_Changer_Constants_h
 
 #define ENGLISH_CODE @"530b0ab26424400c76000003"
+#define CHINESE_CODE @"530b0aa16424400c76000002"
+#define TAIWAN_CODE @"530d5e9b642440d128000018"
+#define INDONESIA_CODE @"53672e863efa3f857f8b4ed2"
+#define FILIPINES_CODE @"539fbb273efa3fde3f8b4567"
+#define THAI_CODE @"544481503efa3ff1588b4567"
+
 // NSUserDefaults keys
 #define DEFAULTS_KEY_LANGUAGE_CODE @"LanguageCode" // The key against which to store the selected language code.
 

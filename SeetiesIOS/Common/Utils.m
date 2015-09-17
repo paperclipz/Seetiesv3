@@ -114,4 +114,109 @@
     return [urlTest evaluateWithObject:candidate];
 }
 
+
+// =====================  CURRENCY =========================
+#define CASE(str)                       if ([__s__ isEqualToString:(str)])
+#define SWITCH(s)                       for (NSString *__s__ = (s); ; )
+#define DEFAULT
+
+#define USD @"USD"
+#define THB @"THB"
+#define IDR @"IDR"
+#define SGD @"SGD"
+#define TWD @"TWD"
+#define PHP @"PHP"
+
+
++(NSString*)currencyCode:(NSString*)currency
+{
+    NSString* tempCurrencyCode;
+    
+    SWITCH (currency) {
+       
+        CASE (USD){
+            tempCurrencyCode = @"840";
+            break;
+
+        }
+        CASE (THB){
+            tempCurrencyCode = @"764";
+            break;
+
+        }
+        CASE (IDR){
+            tempCurrencyCode = @"360";
+            break;
+
+        }
+        CASE (SGD){
+            tempCurrencyCode = @"702";
+            break;
+
+        }
+        CASE (TWD){
+            tempCurrencyCode = @"901";
+            break;
+        }
+        CASE (PHP){
+            tempCurrencyCode = @"608";
+            break;
+
+        }
+        DEFAULT
+        {
+            tempCurrencyCode = @"840";
+            break;
+
+        }
+        
+    }
+    
+    return tempCurrencyCode;
+}
+
++(NSString*)currencyString:(NSString*)code
+{
+    
+    SWITCH (code) {
+       
+        CASE (@"840"){
+            return USD;
+            break;
+        }
+        CASE (@"764"){
+            return THB;
+            break;
+
+        }
+        CASE (@"360"){
+            return IDR;
+            break;
+
+        }
+        CASE (@"702"){
+            return SGD;
+            break;
+
+        }
+        CASE (@"901"){
+            return TWD;
+            break;
+
+        }
+        CASE (@"608"){
+            return TWD;
+            break;
+
+        }
+        DEFAULT
+        {
+            return USD;
+            break;
+            
+        }
+    }
+    
+    return nil;
+}
 @end

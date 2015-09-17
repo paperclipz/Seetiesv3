@@ -66,6 +66,73 @@
 
 }
 
+-(void)processDraftModel:(DraftModel*)model
+{
+    _expense = model.location.expense;
+    _route = model.location.route;
+    _formattedAddress = model.location.formatted_address;
+    _place_id = model.location.place_id;
+    _lat = model.location.lat;
+    _lng = model.location.lng;
+    _city = model.location.locality;
+    _country = model.location.country;
+    _state =  model.location.administrative_area_level_1;
+    _postalCode = model.location.postal_code;
+    _distance =  model.location.distance;
+    _formattedPhone = model.location.contact_no;
+    _facebookName = nil;
+    _isOpenHour = nil;
+    _statusHour = nil;
+    _currency = [self processCurrency];
+    _priceMessage = nil;
+    _tier = nil;
+    _name = model.location.name;
+    _url = model.location.link;
+    _reference = model.location.reference;
+    _price = [self processPrice];
+}
 
+-(NSDictionary*)expense
+{
+    if (_price && _currency) {
+        
+        NSDictionary* model = @{[Utils currencyCode:_currency]:_price};
+        
+        return model;
+    }
+    
+    return nil;
+}
+
+-(NSString*)processCurrency
+{
+    if (_expense) {
+
+        NSArray* key = [_expense allKeys];
+        
+        if (key.count>0) {
+            NSString* value = [Utils currencyString:key[0]];
+            return value;
+        }
+        
+    }
+    
+    return _currency;
+}
+
+-(NSString*)processPrice
+{
+    if (_expense) {
+        
+        NSArray* key = [_expense allKeys];
+        
+        if (key.count>0) {
+            NSString* value = _expense[key[0]];
+            return value;
+        }
+    }
+    
+    return _price;
+}
 
 @end
