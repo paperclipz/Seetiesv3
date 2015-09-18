@@ -42,6 +42,7 @@
      IBOutlet UIActivityIndicatorView *ShowActivity;
     
     IBOutlet UIScrollView *MainScroll;
+    IBOutlet UIScrollView *InviteScroll;
     
     NSMutableArray *AllEmailDataArray;
     NSMutableArray *FullNameDataArray;

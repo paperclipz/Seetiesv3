@@ -10,6 +10,7 @@
 #import "SettingsViewController.h"
 #import "SearchViewV2Controller.h"
 #import "FeedV2DetailViewController.h"
+#import "CollectionViewController.h"
 @interface NewProfileV2ViewController ()
 
 @end
@@ -59,12 +60,16 @@
     
     CheckLoad_Post = NO;
     CheckLoad_Likes = NO;
+    CheckLoad_Collection = NO;
     CheckFirstTimeLoadLikes = 0;
     CheckFirstTimeLoadPost = 0;
+    CheckFirstTimeLoadCollection = 0;
     TotalPage_Like = 1;
     CurrentPage_Like = 0;
     TotalPage_Post = 1;
     CurrentPage_Post = 0;
+    TotalPage_Collection = 1;
+    CurrentPage_Collection = 0;
     
     [self GetUserData];
     
@@ -111,7 +116,7 @@
             ArrHashTag = [[NSMutableArray alloc]initWithArray:arr];
         }
         
-        [self InitCollectionView];
+      //  [self InitCollectionView];
         
         NSURL *url_UserImage = [NSURL URLWithString:GetProfileImg_];
         ShowUserProfileImage.imageURL = url_UserImage;
@@ -447,6 +452,7 @@
     [AllContentView addSubview:CollectionView];
     
     
+    
     LikeView = [[UIView alloc]init];
     LikeView.frame = CGRectMake(0, GetHeight, screenWidth, 800);
     LikeView.backgroundColor = [UIColor whiteColor];
@@ -460,7 +466,10 @@
 //    contentSize.height = GetHeight + PostView.frame.size.height + 200;
 //    MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 //    MainScroll.contentSize = contentSize;
-    [self InitCollectionView];
+    if (CheckFirstTimeLoadCollection == 1) {
+         [self InitCollectionView];
+    }
+   
     
 }
 - (void)segmentAction:(UISegmentedControl *)segment
@@ -517,10 +526,12 @@
 -(void)InitCollectionView{
     
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    
+    NSString *TempString = [[NSString alloc]initWithFormat:@"%@ Collection",GetCollectionDataCount];
 
     UILabel *ShowCollectionCount = [[UILabel alloc]init];
     ShowCollectionCount.frame = CGRectMake(30, 20, 150, 20);
-    ShowCollectionCount.text = @"3 Collection";
+    ShowCollectionCount.text = TempString;
     ShowCollectionCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
     ShowCollectionCount.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
     [CollectionView addSubview:ShowCollectionCount];
@@ -549,7 +560,7 @@
     
     int heightcheck = 60;
     
-    for (int i = 0; i < 5; i++) {
+    for (NSInteger i = DataCount_Collection; i < DataTotal_Collection; i++) {
         
         UIButton *TempButton = [[UIButton alloc]init];
         TempButton.frame = CGRectMake(10, heightcheck + i, screenWidth - 20, FinalWidth + 10 + 70);
@@ -564,32 +575,48 @@
         [DemoArray addObject:@"UserDemo2.jpg"];
         [DemoArray addObject:@"UserDemo3.jpg"];
         
-        for (int z = 0; z < [DemoArray count]; z++) {
+        NSString *TempImage = [[NSString alloc]initWithFormat:@"%@",[CollectionData_PhotoArray objectAtIndex:i]];
+        NSArray *SplitArray = [TempImage componentsSeparatedByString:@","];
+        for (int z = 0; z < [SplitArray count]; z++) {
             AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
             ShowImage.frame = CGRectMake(15 +(z % 4) * SpaceWidth, heightcheck + 5 +i, FinalWidth, FinalWidth);
-            ShowImage.image = [UIImage imageNamed:[DemoArray objectAtIndex:z]];
+           // ShowImage.image = [UIImage imageNamed:[DemoArray objectAtIndex:z]];
             ShowImage.contentMode = UIViewContentModeScaleAspectFill;
             ShowImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
             ShowImage.layer.cornerRadius=5;
             ShowImage.layer.masksToBounds = YES;
             [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
-            
+            NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[SplitArray objectAtIndex:z]];
+            if ([FullImagesURL_First length] == 0) {
+                ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
+            }else{
+                NSURL *url = [NSURL URLWithString:FullImagesURL_First];
+                ShowImage.imageURL = url;
+            }
             [CollectionView addSubview:ShowImage];
         }
-        
+    
         UILabel *ShowExplore = [[UILabel alloc]init];
         ShowExplore.frame = CGRectMake(30, heightcheck + 5 + FinalWidth + 20 + i, screenWidth - 100, 20);
-        ShowExplore.text = @"The Good Stuffs";
+        ShowExplore.text = [CollectionData_TitleArray objectAtIndex:i];
         ShowExplore.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
         ShowExplore.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:18];
         [CollectionView addSubview:ShowExplore];
         
         UILabel *ShowSubExplore = [[UILabel alloc]init];
         ShowSubExplore.frame = CGRectMake(30, heightcheck + 5 + FinalWidth + 40 + i, screenWidth - 100, 20);
-        ShowSubExplore.text = @"A collection of products i like.";
+        ShowSubExplore.text = [CollectionData_DescriptionArray objectAtIndex:i];
         ShowSubExplore.textColor = [UIColor lightGrayColor];
         ShowSubExplore.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:14];
         [CollectionView addSubview:ShowSubExplore];
+        
+        UIButton *SelectButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        SelectButton.frame = CGRectMake(10, heightcheck + i, screenWidth - 20, FinalWidth + 10 + 70);
+        [SelectButton setTitle:@"" forState:UIControlStateNormal];
+        SelectButton.tag = i;
+        [SelectButton setBackgroundColor:[UIColor clearColor]];
+        [SelectButton addTarget:self action:@selector(OpenCollectionOnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [CollectionView addSubview:SelectButton];
         
         UIButton *EditButton = [[UIButton alloc]init];
         EditButton.frame = CGRectMake(screenWidth - 80 - 20, heightcheck + 5 + FinalWidth + 20 + i, 80, 40);
@@ -843,6 +870,40 @@
     }
     
 }
+-(void)GetCollectionData{
+    ShowActivityCollection = [[UIActivityIndicatorView alloc]init];
+    ShowActivityCollection.frame = CGRectMake(30, ProfileControl.frame.origin.y + 105 , 20, 20);
+    [ShowActivityCollection setColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f]];
+    [MainScroll addSubview:ShowActivityCollection];
+    [ShowActivityCollection startAnimating];
+    
+    if (CurrentPage_Collection == TotalPage_Collection) {
+        
+    }else{
+        CurrentPage_Collection += 1;
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *Getuid = [defaults objectForKey:@"Useruid"];
+        NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+        NSString *FullString = [[NSString alloc]initWithFormat:@"%@%@/collections?token=%@&page=%li",DataUrl.UserWallpaper_Url,Getuid,GetExpertToken,CurrentPage_Collection];
+        
+        
+        NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
+        NSLog(@"collection list check postBack URL ==== %@",postBack);
+        // NSURL *url = [NSURL URLWithString:[postBack stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        NSURL *url = [NSURL URLWithString:postBack];
+        NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
+        NSLog(@"theRequest === %@",theRequest);
+        [theRequest addValue:@"" forHTTPHeaderField:@"Accept-Encoding"];
+        
+        theConnection_GetCollectionData = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+        [theConnection_GetCollectionData start];
+        
+        
+        if( theConnection_GetCollectionData ){
+            webData = [NSMutableData data];
+        }
+    }
+}
 -(void)GetPostsData{
     ShowActivityPosts = [[UIActivityIndicatorView alloc]init];
     ShowActivityPosts.frame = CGRectMake(ProfileControl.frame.origin.x + 125, ProfileControl.frame.origin.y + 105 , 20, 20);
@@ -1030,7 +1091,7 @@
                 
                 
                 [self InitContentView];
-                [self GetPostsData];
+                [self GetCollectionData];
             }else{
             
             }
@@ -1040,6 +1101,85 @@
         
         
 
+    }else if(connection == theConnection_GetCollectionData){
+        NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+        NSLog(@"GetCollectionData is %@",GetData);
+        
+        NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *myError = nil;
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
+        
+        NSString *StatusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
+        if ([StatusString isEqualToString:@"0"] || [StatusString isEqualToString:@"401"]) {
+            UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:CustomLocalisedString(@"SomethingError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [ShowAlert show];
+        }else{
+            NSLog(@"Get Collection all list data is %@",res);
+            NSDictionary *GetResData = [res valueForKey:@"data"];
+            
+            GetCollectionDataCount = [[NSString alloc]initWithFormat:@"%@",[GetResData objectForKey:@"total_result"]];
+            
+            NSString *page = [[NSString alloc]initWithFormat:@"%@",[GetResData objectForKey:@"page"]];
+            NSString *total_page = [[NSString alloc]initWithFormat:@"%@",[GetResData objectForKey:@"total_page"]];
+            CurrentPage_Collection = [page intValue];
+            TotalPage_Collection = [total_page intValue];
+            if (CheckFirstTimeLoadCollection == 0) {
+                CollectionData_IDArray = [[NSMutableArray alloc]init];
+                CollectionData_PhotoArray = [[NSMutableArray alloc]init];
+                DataCount_Collection = 0;
+                CollectionData_TitleArray = [[NSMutableArray alloc]init];
+                CollectionData_DescriptionArray = [[NSMutableArray alloc]init];
+            }else{
+            }
+            
+            NSArray *GetAllData = (NSArray *)[GetResData valueForKey:@"result"];
+            
+            for (NSDictionary * dict in GetAllData) {
+                NSString *PlaceID = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"collection_id"]];
+                [CollectionData_IDArray addObject:PlaceID];
+                NSString *name = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"name"]];
+                [CollectionData_TitleArray addObject:name];
+                NSString *description = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"description"]];
+                [CollectionData_DescriptionArray addObject:description];
+            }
+            NSDictionary *GetPostsData = [GetAllData valueForKey:@"posts"];
+            NSArray *PhotoData = [GetPostsData valueForKey:@"photos"];
+            for (NSDictionary * dict in PhotoData) {
+                NSMutableArray *UrlArray = [[NSMutableArray alloc]init];
+                for (NSDictionary * dict_ in dict) {
+                    NSDictionary *UserInfoData = [dict_ valueForKey:@"s"];
+                    
+                    NSString *url = [[NSString alloc]initWithFormat:@"%@",[UserInfoData objectForKey:@"url"]];
+                    [UrlArray addObject:url];
+                }
+                NSString *result2 = [UrlArray componentsJoinedByString:@","];
+                [CollectionData_PhotoArray addObject:result2];
+            }
+            
+            NSLog(@"CollectionData_IDArray is %@",CollectionData_IDArray);
+            NSLog(@"CollectionData_TitleArray is %@",CollectionData_TitleArray);
+            NSLog(@"CollectionData_DescriptionArray is %@",CollectionData_DescriptionArray);
+            NSLog(@"CollectionData_PhotoArray is %@",CollectionData_PhotoArray);
+            
+            
+            DataCount_Collection = DataTotal_Collection;
+            DataTotal_Collection = [CollectionData_IDArray count];
+            
+            CheckLoad_Collection = NO;
+            
+            if (CheckFirstTimeLoadCollection == 0) {
+                CheckFirstTimeLoadCollection = 1;
+                [self GetPostsData];
+                [self InitCollectionView];
+            }else{
+                [self InitCollectionView];
+            }
+        }
+        
+        [ShowActivityCollection stopAnimating];
+        
+        
+        
     }else if(connection == theConnection_GetPostsData){
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
         //     NSLog(@"User Post return get data to server ===== %@",GetData);
@@ -1263,5 +1403,13 @@
     FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
     [self.navigationController pushViewController:FeedDetailView animated:YES];
     [FeedDetailView GetPostID:[PostsData_IDArray objectAtIndex:getbuttonIDN]];
+}
+-(IBAction)OpenCollectionOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSLog(@"OpenCollectionOnClick button %li",(long)getbuttonIDN);
+    
+    CollectionViewController *CollectionView = [[CollectionViewController alloc]init];
+    [self.navigationController pushViewController:CollectionView animated:YES];
+    [CollectionView GetCollectionID:[CollectionData_IDArray objectAtIndex:getbuttonIDN]];
 }
 @end

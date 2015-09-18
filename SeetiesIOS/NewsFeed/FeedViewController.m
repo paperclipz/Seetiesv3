@@ -12,8 +12,8 @@
 #import "Filter2ViewController.h"
 #import "InviteFrenViewController.h"
 #import "FeedV2DetailViewController.h"
-#import "SearchDetailViewController.h"
 #import "NewUserProfileV2ViewController.h"
+#import "NearbyViewController.h"
 @interface FeedViewController ()
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;
@@ -543,16 +543,13 @@
             
             
             UIButton *CollectButton = [[UIButton alloc]init];
-            //[CollectButton setTitle:@"Collect" forState:UIControlStateNormal];
             [CollectButton setImage:[UIImage imageNamed:@"collect_btn.png"] forState:UIControlStateNormal];
             [CollectButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
             [CollectButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
-            //CollectButton.backgroundColor = [UIColor colorWithRed:250.0f/255.0f green:221.0f/255.0f blue:96.0f/255.0f alpha:1.0f];
             CollectButton.backgroundColor = [UIColor clearColor];
             CollectButton.frame = CGRectMake(screenWidth - 20 - 113, heightcheck + i + 10, 113, 37);
-//            CollectButton.layer.cornerRadius = 20;
-//            CollectButton.layer.borderWidth= 1;
-//            CollectButton.layer.borderColor=[[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] CGColor];
+            [CollectButton addTarget:self action:@selector(CollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+            CollectButton.tag = i;
             [LocalScroll addSubview:CollectButton];
             
             
@@ -569,6 +566,13 @@
     
     [LocalScroll setContentSize:CGSizeMake(screenWidth, heightcheck + 169 + 50)];
 
+    
+    UIButton *NearbyButton = [[UIButton alloc]init];
+    NearbyButton.frame = CGRectMake((screenWidth / 2) - 60, 105, 120, 37);
+    [NearbyButton setImage:[UIImage imageNamed:@"nearby_btn.png"] forState:UIControlStateNormal];
+    NearbyButton.backgroundColor = [UIColor clearColor];
+    [NearbyButton addTarget:self action:@selector(NearbyButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview: NearbyButton];
 
     
 //    [NSTimer scheduledTimerWithTimeInterval:5.0
@@ -879,16 +883,13 @@
             
             
             UIButton *CollectButton = [[UIButton alloc]init];
-            //[CollectButton setTitle:@"Collect" forState:UIControlStateNormal];
             [CollectButton setImage:[UIImage imageNamed:@"collect_btn.png"] forState:UIControlStateNormal];
             [CollectButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
             [CollectButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
-           // CollectButton.backgroundColor = [UIColor colorWithRed:250.0f/255.0f green:221.0f/255.0f blue:96.0f/255.0f alpha:1.0f];
             CollectButton.backgroundColor = [UIColor clearColor];
             CollectButton.frame = CGRectMake(screenWidth - 20 - 113, heightcheck + i + 10, 113, 37);
-//            CollectButton.layer.cornerRadius = 20;
-//            CollectButton.layer.borderWidth= 1;
-//            CollectButton.layer.borderColor=[[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] CGColor];
+            [CollectButton addTarget:self action:@selector(CollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+            CollectButton.tag = i;
             [MainScroll addSubview:CollectButton];
             
             
@@ -1212,6 +1213,14 @@
         [self SaveDataInLocal];
         }
     });
+    
+    
+    UIButton *NearbyButton = [[UIButton alloc]init];
+    NearbyButton.frame = CGRectMake((screenWidth / 2) - 60, 105, 120, 37);
+    [NearbyButton setImage:[UIImage imageNamed:@"nearby_btn.png"] forState:UIControlStateNormal];
+    NearbyButton.backgroundColor = [UIColor clearColor];
+    [NearbyButton addTarget:self action:@selector(NearbyButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview: NearbyButton];
     
 }
 
@@ -1678,6 +1687,22 @@
            // NSLog(@"GetAllData is %@",GetAllData);
 
         }
+    }else if(connection == theConnection_QuickCollect){
+        NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+        NSLog(@"Quick Collection return get data to server ===== %@",GetData);
+        
+        NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *myError = nil;
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
+        NSLog(@"Expert Json = %@",res);
+        
+        
+        NSString *statusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
+        NSLog(@"statusString is %@",statusString);
+        
+        if ([statusString isEqualToString:@"ok"]) {
+            [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success add to Collections" type:TSMessageNotificationTypeSuccess];
+        }
     }
 }
 -(void)ReinitData{
@@ -1774,49 +1799,16 @@
 }
 -(IBAction)NearbyButton:(id)sender{
     if ([latPoint length] == 0 || [latPoint isEqualToString:@""] || [latPoint isEqualToString:@"(null)"] || latPoint == nil) {
-        
-        SearchViewV2Controller *SearchView = [[SearchViewV2Controller alloc]initWithNibName:@"SearchViewV2Controller" bundle:nil];
-        //[self presentViewController:SearchView animated:YES completion:nil];
-        [self.navigationController pushViewController:SearchView animated:YES];
-      //  [self.view.window.rootViewController presentViewController:SearchView animated:YES completion:nil];
+        UIAlertView    *alert = [[UIAlertView alloc] initWithTitle:@"App Permission Denied"
+                                                           message:@"To re-enable, please go to Settings and turn on Location Service for this app."
+                                                          delegate:nil
+                                                 cancelButtonTitle:@"OK"
+                                                 otherButtonTitles:nil];
+        [alert show];
     }else{
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSString *GetSystemLanguage = [[NSString alloc]initWithFormat:@"%@",[defaults objectForKey:@"UserData_SystemLanguage"]];
-        NSLog(@"GetSystemLanguage is %@",GetSystemLanguage);
-        NSMutableArray *GetNameArray;
-        if ([GetSystemLanguage isEqualToString:@"English"]) {
-            GetNameArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_Name"]];
-        }else if([GetSystemLanguage isEqualToString:@"繁體中文"] || [GetSystemLanguage isEqualToString:@"Traditional Chinese"]){
-            GetNameArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_Name_Tw"]];
-        }else if([GetSystemLanguage isEqualToString:@"简体中文"] || [GetSystemLanguage isEqualToString:@"Simplified Chinese"] || [GetSystemLanguage isEqualToString:@"中文"]){
-            GetNameArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_Name_Cn"]];
-        }else if([GetSystemLanguage isEqualToString:@"Bahasa Indonesia"]){
-            GetNameArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_Name_In"]];
-        }else if([GetSystemLanguage isEqualToString:@"Filipino"]){
-            GetNameArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_Name_Fn"]];
-        }else if([GetSystemLanguage isEqualToString:@"ภาษาไทย"] || [GetSystemLanguage isEqualToString:@"Thai"]){
-            GetNameArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_Name_Th"]];
-        }else{
-            GetNameArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_Name"]];
-        }
-        
-//        NSMutableArray *CategoryIDArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_ID"]];
-//        NSString *JoinAllCategoryID = [CategoryIDArray componentsJoinedByString:@","];
-//        //NSMutableArray *CategoryNameArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_Name"]];
-//        NSString *JoinAllCategoryName = [GetNameArray componentsJoinedByString:@","];
-        
-        SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]init];
-//        CATransition *transition = [CATransition animation];
-//        transition.duration = 0.2;
-//        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//        transition.type = kCATransitionPush;
-//        transition.subtype = kCATransitionFromRight;
-//        [self.view.window.layer addAnimation:transition forKey:nil];
-//        [self presentViewController:SearchDetailView animated:NO completion:nil];
-         [self.navigationController pushViewController:SearchDetailView animated:YES];
-       // [SearchDetailView SearchCategory:JoinAllCategoryID Getlat:latPoint GetLong:lonPoint GetCategoryName:JoinAllCategoryName];
-        [SearchDetailView GetSearchKeyword:@"" Getlat:latPoint GetLong:lonPoint GetLocationName:@""];
-        [SearchDetailView GetTitle:@"All"];
+        NearbyViewController *NearbyView = [[NearbyViewController alloc]init];
+        [self.navigationController pushViewController:NearbyView animated:YES];
+        [NearbyView Getlat:latPoint GetLong:lonPoint];
     }
 }
 -(IBAction)OpenUserProfileOnClick:(id)sender{
@@ -1914,6 +1906,42 @@
     
     theConnection_likes = [[NSURLConnection alloc]initWithRequest:request delegate:self];
     if(theConnection_likes) {
+        //  NSLog(@"Connection Successful");
+        webData = [NSMutableData data];
+    } else {
+        
+    }
+}
+-(IBAction)CollectButtonOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+   // NSLog(@"button %li",(long)getbuttonIDN);
+    NSLog(@"CollectButtonOnClick");
+    GetPostID = [[NSString alloc]initWithFormat:@"%@",[arrPostID objectAtIndex:getbuttonIDN]];
+    [self SendQuickCollect];
+    
+}
+-(void)SendQuickCollect{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *GetUseruid = [defaults objectForKey:@"Useruid"];
+    //Server Address URL
+    NSString *urlString = [NSString stringWithFormat:@"%@%@/collections/0",DataUrl.UserWallpaper_Url,GetUseruid];
+    NSLog(@"Send Quick Collection urlString is %@",urlString);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"PUT"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    
+    
+    NSString *dataString = [[NSString alloc]initWithFormat:@"token=%@&collection_id=0&posts[0][id]=%@",GetExpertToken,GetPostID];
+    
+    NSData *postBodyData = [NSData dataWithBytes: [dataString UTF8String] length:[dataString length]];
+    [request setHTTPBody:postBodyData];
+    
+    theConnection_QuickCollect = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    if(theConnection_QuickCollect) {
         //  NSLog(@"Connection Successful");
         webData = [NSMutableData data];
     } else {
