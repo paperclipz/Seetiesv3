@@ -156,39 +156,24 @@
     {
         _stSearchViewController = [STSearchViewController new];
         
-        __block typeof (self)wealSelf = self;
-        _stSearchViewController.didSelectRowAtIndexPathBlock = ^(NSIndexPath* indexPath, SearchType type)
+        __block typeof (self)weakSelf = self;
+        _stSearchViewController.didSelectOnLocationBlock = ^(RecommendationVenueModel* model)
         {
             
-            switch (type) {
-                default:
-                case SearchTypeGoogle:
-                {
-                    DataManager* manager = [DataManager Instance];
-                    SearchLocationModel* model = manager.googleSearchModel.predictions[indexPath.row];
-                    [wealSelf.addNewPlaceViewController initDataFromGogle:model.place_id];
-                }
-                    break;
-                case SearchTypeFourSquare:
-                {
-                    DataManager* manager = [DataManager Instance];
-                    VenueModel* model = manager.fourSquareVenueModel.items[indexPath.row];
-                    [wealSelf.addNewPlaceViewController initDataFrom4Square:model];
-                }
-                    break;
-            }
-            
-            [wealSelf.navRecommendationViewController pushViewController:wealSelf.addNewPlaceViewController animated:YES];
-            wealSelf.addNewPlaceViewController.title = @"Edit Place Info";
+            weakSelf.recommendModel.reccomendVenueModel = model;
+            [weakSelf.navRecommendationViewController dismissViewControllerAnimated:YES completion:^{
+                [weakSelf showEditPostView];
+                
+            }];
 
         };
         
         _stSearchViewController.btnAddNewPlaceBlock = ^(id object)
         {
             
-            [wealSelf.navRecommendationViewController pushViewController:wealSelf.addNewPlaceViewController animated:YES];
+            [weakSelf.navRecommendationViewController pushViewController:weakSelf.addNewPlaceViewController animated:YES];
           //  wealSelf.addNewPlaceViewController.title
-            wealSelf.addNewPlaceViewController.title = @"New Place Info";
+            weakSelf.addNewPlaceViewController.title = @"New Place Info";
         };
     }
     return _stSearchViewController;
@@ -278,5 +263,6 @@
     
     return _recommendModel;
 }
+
 
 @end

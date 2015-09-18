@@ -46,11 +46,15 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 #define CustomFontName @"ProximaNovaSoft-Regular"
 
+// ========================  Day ==========================
 
-+(void)setButtonWithBorder:(UIButton*)button;
 +(NSString*)getWeekName:(int)integer;
++(int)getWeekInteger:(NSString*)week;
+// ========================  Day ==========================
+
 +(void)setButtonWithBorder:(UIButton*)button color:(UIColor*)color;
 +(void)setRoundBorder:(UIView*)view color:(UIColor*)color borderRadius:(float)borderRadius;
++(void)setButtonWithBorder:(UIButton*)button;
 
 
 // ========================  FONT ==========================
@@ -68,10 +72,17 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 // =====================  CURRENCY =========================
 +(NSString*)currencyCode:(NSString*)currency;
 +(NSString*)currencyString:(NSString*)code;
+
+#define USD @"USD"
+#define THB @"THB"
+#define IDR @"IDR"
+#define SGD @"SGD"
+#define TWD @"TWD"
+#define PHP @"PHP"
+
 // =====================  currency =========================
 
-
-
-
+//easy conversion to jsonstring
++(NSString*)convertToJsonString:(NSDictionary*)dict;
 
 @end

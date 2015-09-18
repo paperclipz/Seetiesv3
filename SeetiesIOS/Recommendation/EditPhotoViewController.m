@@ -193,11 +193,8 @@
         [tempArray addObject:model];
     }
 
- 
-        [self addRow:tempArray];
-        
-     
-
+    [self addRow:tempArray];
+    
     [self.imagePickerViewController dismissViewControllerAnimated:YES completion:^{
         
         _imagePickerViewController = nil;

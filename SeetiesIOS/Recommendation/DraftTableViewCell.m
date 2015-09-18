@@ -38,9 +38,10 @@
     }
     
     self.lblTitle.text = self.model.place_name;
-    self.lblSubtitle.text = self.model.place_name;
+    self.lblSubtitle.text = self.model.location.administrative_area_level_1;
 
     [self.imageView sd_setImageWithURL:[NSURL URLWithString:photoModel.imageURL]placeholderImage:nil options:SDWebImageProgressiveDownload];
+    [Utils setRoundBorder:self.imageView color:[UIColor whiteColor] borderRadius:5.0f];
 
 }
 

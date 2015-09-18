@@ -17,6 +17,7 @@
 
 #import "EditPostDetailVIew.h"
 #import "CategorySelectionViewController.h"
+#import "NSArray+JSON.h"
 
 @interface EditPostViewController ()
 {
@@ -123,7 +124,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
-    [self resetData];
+   // [self resetData];
 }
 
 -(void)loadData
@@ -218,6 +219,8 @@
 - (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
     NSLog(@"Selected index %ld (via UIControlEventValueChanged)", (long)segmentedControl.selectedSegmentIndex);
     
+    
+    [self saveData];
     switch ((long)segmentedControl.selectedSegmentIndex) {
        
         default:
@@ -257,12 +260,11 @@
                     [weakSelf.recommendationModel.arrDeletedImages addObjectsFromArray:arrDeleteImages];
 
                 };
-
         }
             break;
         case 3:
             
-            [self requestToSaveDraft];
+            [self requestToSaveDraftOrPublish:YES];
             break;
     }
     
@@ -344,7 +346,7 @@
         _categorySelectionViewController = [CategorySelectionViewController new];
         _categorySelectionViewController.doneClickBlock = ^(id object)
         {
-            [weakSelf requestToSaveDraft];
+            [weakSelf requestToSaveDraftOrPublish:NO];
         };
         
     }
@@ -481,7 +483,11 @@ static id ObjectOrNull(id object)
 }
 
 
--(void)requestToSaveDraft
+#define POST_DRAFT @"0"
+#define POST_PUBLISH @"1"
+
+
+-(void)requestToSaveDraftOrPublish:(BOOL)isDraft
 {
     [self saveData];
     NSMutableArray* arrMeta = [NSMutableArray new];
@@ -502,13 +508,19 @@ static id ObjectOrNull(id object)
                                   @"country":ObjectOrNull(tempVenueModel.country),
                                   @"political":@""};
 
-//    NSDictionary* sourceDict = @{@"open_now":@"true",
-//                                 @"periods":@"",
- //                                @"weekday_text":@""};
-    
-    NSDictionary* openingHourDict = @{@"open_now":@"false",
-                                      @"periods":@""};
 
+    NSArray* dictPeriods = @[@{@"close":@{@"day":@0,@"time":@"1111"},@"open":@{@"day":@0,@"time":@"1030"}},
+                             @{@"close":@{@"day":@1,@"time":@"1222"},@"open":@{@"day":@1,@"time":@"1030"}},
+                             @{@"close":@{@"day":@2,@"time":@"1333"},@"open":@{@"day":@2,@"time":@"1030"}},
+                             @{@"close":@{@"day":@3,@"time":@"1444"},@"open":@{@"day":@3,@"time":@"1030"}}];
+  
+    
+    
+    //  NSString* tempString = [string stringByReplacingOccurrencesOfString:@"open" withString:@"GG"];
+    NSDictionary* openingHourDict = @{@"open_now":@"false",
+                                      @"periods":dictPeriods};
+
+    
     NSDictionary* locationDict  = @{@"address_components":addressDict,
                                     @"name":ObjectOrNull(tempVenueModel.name),
                                     @"formatted_address":ObjectOrNull(tempVenueModel.formattedAddress),
@@ -524,15 +536,16 @@ static id ObjectOrNull(id object)
                                     @"lng":ObjectOrNull(tempVenueModel.lng)};
     
     NSDictionary* dict = @{@"token":[Utils getAppToken],
-                           @"status":@"0",
+                           @"status":isDraft?POST_DRAFT:POST_PUBLISH,
                            [NSString stringWithFormat:@"title[%@]",ENGLISH_CODE]:ObjectOrNull(tempModel.postMainTitle),
                            [NSString stringWithFormat:@"message[%@]",ENGLISH_CODE]:ObjectOrNull(tempModel.postMainDescription),
                            @"category":@[@1,@2],
                            @"device_type":@2,
-                           @"location":[locationDict getJsonString],
+                           @"location":[Utils convertToJsonString:locationDict],
                            @"link":ObjectOrNull(tempModel.postURL)};
     
     
+
     NSDictionary* dictSecondDesc = @{[NSString stringWithFormat:@"title[%@]",THAI_CODE]:ObjectOrNull(tempModel.postSecondTitle),
                                  [NSString stringWithFormat:@"message[%@]",THAI_CODE]:ObjectOrNull(tempModel.postSecondDescription)};
     
@@ -549,7 +562,7 @@ static id ObjectOrNull(id object)
 
     }
 
-    SLog(@"dict : %@",finalDict);
+   // SLog(@"request for save draft : %@",[finalDict getJsonString]);
     
     
     
@@ -558,7 +571,7 @@ static id ObjectOrNull(id object)
         
         [TSMessage showNotificationInViewController:self title:@"system" subtitle:@"Data Successfully posted" type:TSMessageNotificationTypeSuccess duration:2.0 canBeDismissedByUser:YES];
 
-        SLog(@"recommendation response : %@",object);
+       // SLog(@"recommendation response : %@",object);
     
     } errorBlock:^(id object) {
 

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OpeningPeriodModel.h"
 
 // this model will combine four square and google search api model into one
 @interface RecommendationVenueModel : NSObject
@@ -34,14 +35,15 @@
 //@property(nonatomic,strong)NSString* website;
 @property(nonatomic,strong)NSString* vicinity;
 @property(nonatomic,strong)NSString* reference;
--(void)processFourSquareModel:(VenueModel*)model;
--(void)processGoogleModel:(SearchLocationDetailModel*)model;
--(void)processDraftModel:(DraftModel*)model;
-
 @property(nonatomic,strong)NSString* price;
 @property(nonatomic,strong)NSString* currency;
 @property(nonatomic,strong)NSDictionary* expense;
 
-@property(nonatomic,strong)NSArray* arrOpeningHours;
+@property(nonatomic,strong)NSMutableArray* arrOperatingHours;//OpeningPeriodModel
+
+-(void)processFourSquareModel:(VenueModel*)model;
+-(void)processGoogleModel:(SearchLocationDetailModel*)model;
+-(void)processDraftModel:(DraftModel*)model;
+
 
 @end

@@ -271,17 +271,15 @@
     NSInteger numberOfRows = [tableView numberOfRowsInSection:[indexPath section]];
     if(indexPath.row+1 == numberOfRows)
     {
-        self.btnAddNewPlaceBlock(nil);
-        
-        return;
+        self.btnAddNewPlaceBlock(nil);        
     }
-        
-    if(self.didSelectRowAtIndexPathBlock)
-    {
-        self.didSelectRowAtIndexPathBlock(indexPath,tableView == self.googleSearchTableViewController.tableView?SearchTypeGoogle:SearchTypeFourSquare);
-
+    else if (self.googleSearchTableViewController.tableView==tableView) {
+        [self processDataForGoogleLocation:indexPath];
     }
-
+    else if (tableView == self.fourSquareSearchTableViewController.tableView){
+        [self processDataForFourSquareVenue:indexPath];
+    }
+   
 }
 
 -(void)showAddNewPlaceView:(NSIndexPath*)indexPath
@@ -308,7 +306,7 @@
     
 }
 
-
+#pragma server request
 -(void)requestSearch
 {
     [self getGoogleSearchPlaces];
@@ -340,5 +338,50 @@
     return _fourSquareSearchTableViewController;
 }
 
+#pragma mark - location API
+-(void)processDataForGoogleLocation:(NSIndexPath*)indexPath
+{
+   
+    DataManager* manager = [DataManager Instance];
+    SearchLocationModel* model = manager.googleSearchModel.predictions[indexPath.row];
+    [self requestForGoogleMapDetails:model.place_id];
+    
+}
 
+
+-(void)processDataForFourSquareVenue:(NSIndexPath*)indexPath
+{
+    
+    VenueModel* model = [[DataManager Instance] fourSquareVenueModel].items[indexPath.row];
+    RecommendationVenueModel* recommendationVenueModel = [RecommendationVenueModel new];
+    [recommendationVenueModel processFourSquareModel:model];
+    
+    if (self.didSelectOnLocationBlock) {
+        self.didSelectOnLocationBlock(recommendationVenueModel);
+    }
+}
+
+
+#pragma mark - Request Sever
+-(void)requestForGoogleMapDetails:(NSString*)placeID
+{
+    
+    NSDictionary* dict = @{@"placeid":placeID,@"key":GOOGLE_API_KEY};
+    
+    [[ConnectionManager Instance] requestServerWithPost:NO customURL:GOOGLE_PLACE_DETAILS_API requestType:ServerRequestTypeGoogleSearchWithDetail param:dict completeHandler:^(id object) {
+        
+        
+        SearchLocationDetailModel* googleSearchDetailModel = [[DataManager Instance] googleSearchDetailModel];
+
+        RecommendationVenueModel* recommendationVenueModel  = [RecommendationVenueModel new];
+        
+        [recommendationVenueModel processGoogleModel:googleSearchDetailModel];
+
+        if (self.didSelectOnLocationBlock) {
+            self.didSelectOnLocationBlock(recommendationVenueModel);
+        }
+        
+    } errorBlock:nil];
+    
+}
 @end

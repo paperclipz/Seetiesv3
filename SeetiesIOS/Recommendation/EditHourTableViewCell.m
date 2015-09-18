@@ -38,13 +38,12 @@
 
 -(void)initData
 {
-    [self.btnFromTime setTitle:self.model.fromTime forState:UIControlStateNormal];
-    [self.btnToTime setTitle:self.model.toTime forState:UIControlStateNormal];
-    self.lblDay.text = self.model.day;
+    [self.btnFromTime setTitle: [@(self.model.open.time)stringValue] forState:UIControlStateNormal];
+    [self.btnToTime setTitle: [@(self.model.close.time)stringValue] forState:UIControlStateNormal];
+    self.lblDay.text = [Utils getWeekName:self.model.open.day+1];
     self.ibSwitch.on = self.model.isOpen;
     
     [self setOn:self.model.isOpen];
-
 
 }
 
@@ -135,13 +134,13 @@
 }
 
 #pragma mark - Save Data
--(EditHourModel*)saveData
+-(OperatingHoursModel*)saveData
 {
-    self.model.fromTime = self.btnFromTime.titleLabel.text;
-    self.model.toTime = self.btnToTime.titleLabel.text;
-    self.model.day = self.lblDay.text;
+    self.model.open.time = (int)self.btnFromTime.titleLabel.text;
+    self.model.close.time = (int)self.btnToTime.titleLabel.text;
+    self.model.open.day = [Utils getWeekInteger:self.lblDay.text];
+    self.model.close.day = [Utils getWeekInteger:self.lblDay.text];
     self.model.isOpen = self.ibSwitch.on;
-
     
     return self.model;
 }

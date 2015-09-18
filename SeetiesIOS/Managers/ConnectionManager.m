@@ -7,6 +7,7 @@
 //
 
 #import "ConnectionManager.h"
+#import "NSArray+JSON.h"
 
 @interface ConnectionManager()
 @property (strong, nonatomic) DataManager *dataManager;
@@ -82,6 +83,8 @@
 -(void)requestServerWithPost:(bool)isPost customURL:(NSString*)url requestType:(ServerRequestType)type param:(NSDictionary*)dict completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
 {
     
+    [LoadingManager show];
+
     NSLog(@"Request Server : %@ \n\n Request Json : %@",url,[dict JSONString]);
     if(isPost)
     {
@@ -97,11 +100,15 @@
                  completeBlock(responseObject);
                  [self processApiversion];
              }
+             [LoadingManager hide];
+
              
          }
                    failure:
          ^(AFHTTPRequestOperation *operation, NSError *error) {
              NSLog(@"Error: %@", error);
+             [LoadingManager hide];
+
          }];
         
     }
@@ -120,11 +127,15 @@
                  completeBlock(responseObject);
                  [self processApiversion];
              }
+             [LoadingManager hide];
+
              
          }
                    failure:
          ^(AFHTTPRequestOperation *operation, NSError *error) {
              NSLog(@"Error: %@", error);
+             [LoadingManager hide];
+
          }];
 
     }
@@ -143,13 +154,13 @@
          [self storeServerData:responseObject requestType:type];
          if (completeBlock) {
              completeBlock(responseObject);
-             NSLog(@"Success: %@ ***** %@", operation.responseString, responseObject);
+             NSLog(@"\n\n  Success: %@ ***** %@", operation.responseString, responseObject);
              [self processApiversion];
          }
      }
                failure:
      ^(AFHTTPRequestOperation *operation, NSError *error) {
-         NSLog(@"Error: %@", error);
+         NSLog(@"\n\n  Error: %@", error);
      }];
     
     
@@ -170,14 +181,14 @@
          
          if (completeBlock) {
              completeBlock(responseObject);
-             NSLog(@"Success: %@ ***** %@", operation.responseString, responseObject);
+             NSLog(@"\n\n Success: %@ ***** %@", operation.responseString, responseObject);
              [self processApiversion];
          }
          
      }
                failure:
      ^(AFHTTPRequestOperation *operation, NSError *error) {
-         NSLog(@"Error: %@ ***** %@", operation.responseString, error);
+         NSLog(@"\n\n  Error: %@ ***** %@", operation.responseString, error);
      }];
     
     
@@ -200,7 +211,7 @@
     }
     
     
-    NSLog(@"Request Server : %@ \n\n request Json : %@",fullURL,dict);
+    SLog(@"Request Server : %@ \n\n request Json : %@",fullURL,[dict bv_jsonStringWithPrettyPrint:YES]);
     
     AFHTTPRequestOperation *op = [self.manager POST:fullURL parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         
@@ -237,7 +248,7 @@
         
         [LoadingManager hide];
 
-        NSLog(@"Success: %@", operation.responseString);
+        NSLog(@"\n\n Success: %@", [responseObject bv_jsonStringWithPrettyPrint:YES]);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
         if (errorBlock) {
@@ -246,7 +257,7 @@
         
         [LoadingManager hide];
 
-        NSLog(@"Error: %@ ***** %@", operation.responseString, error);
+        NSLog(@"\n\n  Error: %@ ***** %@", operation.responseString, error);
     }];
     [op start];
 }
@@ -255,7 +266,7 @@
     
     NSString* fullString = [NSString stringWithFormat:@"%@/%@",[self getFullURLwithType:type],appendString];
 
-    NSLog(@"Request Server DELETE : %@ \n\n response Json : %@",fullString,dict);
+    NSLog(@"Request Server DELETE : %@ \n\n Request Json : %@",fullString,dict);
     
     [self.manager DELETE:fullString parameters:dict
               success:^(AFHTTPRequestOperation *operation, id responseObject)

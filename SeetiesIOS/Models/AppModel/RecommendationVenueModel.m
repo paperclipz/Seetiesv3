@@ -90,6 +90,10 @@
     _url = model.location.link;
     _reference = model.location.reference;
     _price = [self processPrice];
+    
+    if (model.location.opening_hours.periods) {
+        [self processOperatingHours:model.location.opening_hours.periods];
+    }
 }
 
 -(NSDictionary*)expense
@@ -135,4 +139,29 @@
     return _price;
 }
 
+-(void)processOperatingHours:(NSArray<OperatingHoursModel>*)array
+{
+    
+    for (int i = 0; i<array.count; i++) {
+        OperatingHoursModel* model = array[i];
+        int day = model.open.day;
+        [self.arrOperatingHours replaceObjectAtIndex:day withObject:model];
+    }
+}
+
+-(NSMutableArray*)arrOperatingHours
+{
+    if (!_arrOperatingHours) {
+        
+        _arrOperatingHours = [NSMutableArray new];
+        
+        for (int i = 0; i< 7; i++) {
+            OperatingHoursModel* model = [OperatingHoursModel new];
+            model.isOpen = true;
+            [_arrOperatingHours addObject:model];
+        }
+        
+    }
+    return _arrOperatingHours;
+}
 @end

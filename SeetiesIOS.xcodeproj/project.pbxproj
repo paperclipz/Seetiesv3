@@ -123,6 +123,9 @@
 		8A3757E51B85D635009DB7D4 /* EditPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3757E31B85D635009DB7D4 /* EditPhotoViewController.xib */; };
 		8A45096F1BA801D400A868CD /* STAddNewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A45096E1BA801D400A868CD /* STAddNewTableViewCell.m */; };
 		8A4509711BA801E100A868CD /* STAddNewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4509701BA801E100A868CD /* STAddNewTableViewCell.xib */; };
+		8A4509771BABC07F00A868CD /* OpeningPeriodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4509761BABC07F00A868CD /* OpeningPeriodModel.m */; };
+		8A45097A1BAC012600A868CD /* NSArray+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4509791BAC012600A868CD /* NSArray+JSON.m */; };
+		8A45098B1BAC17F200A868CD /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A45098A1BAC17F200A868CD /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8A5430101B8C1646009EFFF4 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A54300E1B8C1646009EFFF4 /* MapViewController.m */; };
 		8A5430111B8C1646009EFFF4 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A54300F1B8C1646009EFFF4 /* MapViewController.xib */; };
 		8A54301A1B8C1C05009EFFF4 /* addurl_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A5430141B8C1C05009EFFF4 /* addurl_icon@2x.png */; };
@@ -352,7 +355,6 @@
 		8AD6C2CD1B707ACB0040437E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2CC1B707ACB0040437E /* MapKit.framework */; };
 		8AD6C2CF1B707B1E0040437E /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2CE1B707B1E0040437E /* libz.1.2.5.dylib */; };
 		8AD6C2D11B707B270040437E /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2D01B707B270040437E /* libicucore.dylib */; };
-		8AD6C3291B707D120040437E /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6C2D51B707D120040437E /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8AD6C32A1B707D120040437E /* LanguageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6C2D71B707D120040437E /* LanguageManager.m */; };
 		8AD6C32B1B707D120040437E /* PECropRectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6C2DA1B707D120040437E /* PECropRectView.m */; };
 		8AD6C32C1B707D120040437E /* PECropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6C2DC1B707D120040437E /* PECropView.m */; };
@@ -1192,6 +1194,12 @@
 		8A45096D1BA801D400A868CD /* STAddNewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAddNewTableViewCell.h; sourceTree = "<group>"; };
 		8A45096E1BA801D400A868CD /* STAddNewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STAddNewTableViewCell.m; sourceTree = "<group>"; };
 		8A4509701BA801E100A868CD /* STAddNewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STAddNewTableViewCell.xib; sourceTree = "<group>"; };
+		8A4509751BABC07F00A868CD /* OpeningPeriodModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpeningPeriodModel.h; path = AppModel/OpeningPeriodModel.h; sourceTree = "<group>"; };
+		8A4509761BABC07F00A868CD /* OpeningPeriodModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OpeningPeriodModel.m; path = AppModel/OpeningPeriodModel.m; sourceTree = "<group>"; };
+		8A4509781BAC012600A868CD /* NSArray+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+JSON.h"; path = "UITableView+LongPressReorder/NSArray+JSON.h"; sourceTree = "<group>"; };
+		8A4509791BAC012600A868CD /* NSArray+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+JSON.m"; path = "UITableView+LongPressReorder/NSArray+JSON.m"; sourceTree = "<group>"; };
+		8A4509891BAC17F200A868CD /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		8A45098A1BAC17F200A868CD /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		8A54300D1B8C1646009EFFF4 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		8A54300E1B8C1646009EFFF4 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		8A54300F1B8C1646009EFFF4 /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
@@ -1548,8 +1556,6 @@
 		8AD6C2CC1B707ACB0040437E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		8AD6C2CE1B707B1E0040437E /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		8AD6C2D01B707B270040437E /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
-		8AD6C2D41B707D120040437E /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
-		8AD6C2D51B707D120040437E /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		8AD6C2D61B707D120040437E /* LanguageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageManager.h; sourceTree = "<group>"; };
 		8AD6C2D71B707D120040437E /* LanguageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageManager.m; sourceTree = "<group>"; };
 		8AD6C2D91B707D120040437E /* PECropRectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PECropRectView.h; sourceTree = "<group>"; };
@@ -2900,6 +2906,8 @@
 		8AD6BA961B706CF10040437E /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				8A4509781BAC012600A868CD /* NSArray+JSON.h */,
+				8A4509791BAC012600A868CD /* NSArray+JSON.m */,
 				8AF2C2731B9EA3B800B0A7F1 /* NSDictionary+STHelper */,
 				8A34092B1B8AD061009B66C3 /* Image */,
 				8A3408EA1B86EA4B009B66C3 /* UITableView+LongPressReorder */,
@@ -3076,6 +3084,8 @@
 				8A3409071B871CB5009B66C3 /* EditPhotoModel.m */,
 				8AF2C2CD1BA1654200B0A7F1 /* DraftModel.h */,
 				8AF2C2CE1BA1654200B0A7F1 /* DraftModel.m */,
+				8A4509751BABC07F00A868CD /* OpeningPeriodModel.h */,
+				8A4509761BABC07F00A868CD /* OpeningPeriodModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -3381,6 +3391,8 @@
 		8AD6C2D21B707D120040437E /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				8A4509891BAC17F200A868CD /* JSONKit.h */,
+				8A45098A1BAC17F200A868CD /* JSONKit.m */,
 				8AF2C2831BA15A3A00B0A7F1 /* Networking */,
 				8AF2C27B1BA13D1400B0A7F1 /* AFNetworkActivityLogger */,
 				8A9F25AF1B8ED32F00BB13BA /* BKMoneyKit */,
@@ -3392,8 +3404,6 @@
 				8A3409121B8731EF009B66C3 /* TPKeyboardAvoiding */,
 				8A3408EE1B86FC99009B66C3 /* BMXSwipableCell */,
 				8AD6C8521B7460DB0040437E /* MKNetworkKit */,
-				8AD6C2D41B707D120040437E /* JSONKit.h */,
-				8AD6C2D51B707D120040437E /* JSONKit.m */,
 				8AD6C2D61B707D120040437E /* LanguageManager.h */,
 				8AD6C2D71B707D120040437E /* LanguageManager.m */,
 				8AD6C2D81B707D120040437E /* Lib */,
@@ -5413,8 +5423,8 @@
 				8AD6C32B1B707D120040437E /* PECropRectView.m in Sources */,
 				8AD6C28B1B7072FB0040437E /* EditLocationV2ViewController.m in Sources */,
 				8A6584321B981B4E00BC86B9 /* CategorySelectionViewController.m in Sources */,
-				8AD6C3291B707D120040437E /* JSONKit.m in Sources */,
 				8AF2C2D21BA27EDE00B0A7F1 /* UIImage+Tint.m in Sources */,
+				8A4509771BABC07F00A868CD /* OpeningPeriodModel.m in Sources */,
 				8AD6C2871B7072FB0040437E /* BrightnessViewController.m in Sources */,
 				8A7420E01B82F67F005DA654 /* UIImage+KVNEmpty.m in Sources */,
 				8A34094F1B8AD267009B66C3 /* NYXImagesHelper.m in Sources */,
@@ -5441,7 +5451,9 @@
 				8A2E2C081B79A3F70010895E /* UserProfilePageViewController.m in Sources */,
 				8AD6C0FE1B706CF30040437E /* SearchViewV2Controller.m in Sources */,
 				8AD6C3351B707D120040437E /* CRMotionView.m in Sources */,
+				8A45097A1BAC012600A868CD /* NSArray+JSON.m in Sources */,
 				8AD6C0C01B706CF30040437E /* FeedV2ViewController.m in Sources */,
+				8A45098B1BAC17F200A868CD /* JSONKit.m in Sources */,
 				8AD6C8291B736C000040437E /* DataManager.m in Sources */,
 				0BBFE0781B9EA29A004B17E9 /* NewUserProfileV2ViewController.m in Sources */,
 				8AD6C0B71B706CF30040437E /* OpenWebViewController.m in Sources */,
