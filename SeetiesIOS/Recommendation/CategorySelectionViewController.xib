@@ -37,6 +37,15 @@
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9zR-qN-JhW">
+                                    <rect key="frame" x="8" y="6" width="35" height="30"/>
+                                    <state key="normal" title="Back">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="btnBackClicked:" destination="-1" eventType="touchUpInside" id="2a7-7N-Gob"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" red="0.93688841543737367" green="0.93688841543737367" blue="0.93688841543737367" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
@@ -53,8 +62,8 @@
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="400" id="pHr-ZN-dIV"/>
                                 <constraint firstAttribute="height" constant="400" id="w1e-Aq-Fzc"/>
                             </constraints>
-                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="5" id="Pm0-xd-ztm">
-                                <size key="itemSize" width="30" height="30"/>
+                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Pm0-xd-ztm">
+                                <size key="itemSize" width="86" height="110"/>
                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                 <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>

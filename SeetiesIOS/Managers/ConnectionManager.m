@@ -331,6 +331,10 @@
             return [NSString stringWithFormat:@"https://geoip.seeties.me/geoip/"];
 
             break;
+            
+        case ServerRequestTypeGetCategories:
+            str = @"v2.0/system/update/category";
+            break;
           
         default:
             break;
@@ -402,6 +406,12 @@
            
         }
             break;
+        case ServerRequestTypeGetCategories:
+        
+            self.dataManager.categoriesModel = [[CategoriesModel alloc]initWithDictionary:obj error:nil];
+           
+            break;
+            
         default:
             
             SLog(@"the return result is :%@",obj);

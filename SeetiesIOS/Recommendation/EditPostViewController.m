@@ -28,6 +28,7 @@
 
 // =============== model ===============//
 @property(nonatomic,strong)RecommendationModel* recommendationModel;
+@property(nonatomic,strong)CategoriesModel* categoriesModel;
 
 // =============== model ===============//
 
@@ -50,9 +51,14 @@
 @implementation EditPostViewController
 - (IBAction)btnPublishClicked:(id)sender {
     
-    [self presentViewController:self.categorySelectionViewController animated:YES completion:nil];
-
     
+    
+    [self requestServerForCategories:^(id object) {
+        self.categoriesModel = [[DataManager Instance] categoriesModel];
+        self.categorySelectionViewController.arrCategories = self.categoriesModel.categories;
+        [self presentViewController:self.categorySelectionViewController animated:YES completion:nil];
+    }];
+
 }
 - (IBAction)segmentedControlClicked:(id)sender {
     
@@ -344,8 +350,10 @@
         
         __weak typeof(self)weakSelf = self;
         _categorySelectionViewController = [CategorySelectionViewController new];
-        _categorySelectionViewController.doneClickBlock = ^(id object)
+        _categorySelectionViewController.doneClickBlock = ^(NSArray* arrCat)
         {
+            
+            weakSelf.categoriesModel.categories = [arrCat mutableCopy];
             [weakSelf requestToSaveDraftOrPublish:NO];
         };
         
@@ -507,19 +515,27 @@ static id ObjectOrNull(id object)
                                   @"postalCode":ObjectOrNull(tempVenueModel.postalCode),
                                   @"country":ObjectOrNull(tempVenueModel.country),
                                   @"political":@""};
-
-
-    NSArray* dictPeriods = @[@{@"close":@{@"day":@0,@"time":@"1111"},@"open":@{@"day":@0,@"time":@"1030"}},
-                             @{@"close":@{@"day":@1,@"time":@"1222"},@"open":@{@"day":@1,@"time":@"1030"}},
-                             @{@"close":@{@"day":@2,@"time":@"1333"},@"open":@{@"day":@2,@"time":@"1030"}},
-                             @{@"close":@{@"day":@3,@"time":@"1444"},@"open":@{@"day":@3,@"time":@"1030"}}];
-  
     
+    NSMutableArray* dictPeriods = [NSMutableArray new];
+
+    for (int i = 0; i<tempVenueModel.arrOperatingHours.count; i++) {
+        
+        OperatingHoursModel* hourModel = tempVenueModel.arrOperatingHours[i];
+        if (hourModel.isOpen)
+            [dictPeriods addObject:[hourModel toDictionary]];
+    }
+
+//    NSArray* dictPeriods = @[@{@"close":@{@"day":@0,@"time":@"1111"},@"open":@{@"day":@0,@"time":@"1030"}},
+//                             @{@"close":@{@"day":@1,@"time":@"1222"},@"open":@{@"day":@1,@"time":@"1030"}},
+//                             @{@"close":@{@"day":@2,@"time":@"1333"},@"open":@{@"day":@2,@"time":@"1030"}},
+//                             @{@"close":@{@"day":@3,@"time":@"1444"},@"open":@{@"day":@3,@"time":@"1030"}}];
+//  
+//    SLog(@"compiled dict 2222 : %@",dictPeriods);
+
     
     //  NSString* tempString = [string stringByReplacingOccurrencesOfString:@"open" withString:@"GG"];
     NSDictionary* openingHourDict = @{@"open_now":@"false",
-                                      @"periods":dictPeriods};
-
+                                      @"periods":ObjectOrNull(dictPeriods)};
     
     NSDictionary* locationDict  = @{@"address_components":addressDict,
                                     @"name":ObjectOrNull(tempVenueModel.name),
@@ -535,11 +551,26 @@ static id ObjectOrNull(id object)
                                     @"lat":ObjectOrNull(tempVenueModel.lat),
                                     @"lng":ObjectOrNull(tempVenueModel.lng)};
     
+    
+    
+    
+    
+    NSMutableArray* categoriesSelected = [NSMutableArray new];
+    
+    for (int i = 0; i < self.categoriesModel.categories.count; i++) {
+    
+        CategoryModel* model = self.categoriesModel.categories[i];
+        if (model.isSelected) {
+            [categoriesSelected addObject:@(model.id)];
+
+        }
+    }
+    
     NSDictionary* dict = @{@"token":[Utils getAppToken],
                            @"status":isDraft?POST_DRAFT:POST_PUBLISH,
                            [NSString stringWithFormat:@"title[%@]",ENGLISH_CODE]:ObjectOrNull(tempModel.postMainTitle),
                            [NSString stringWithFormat:@"message[%@]",ENGLISH_CODE]:ObjectOrNull(tempModel.postMainDescription),
-                           @"category":@[@1,@2],
+                           @"category":@"",
                            @"device_type":@2,
                            @"location":[Utils convertToJsonString:locationDict],
                            @"link":ObjectOrNull(tempModel.postURL)};
@@ -548,7 +579,6 @@ static id ObjectOrNull(id object)
 
     NSDictionary* dictSecondDesc = @{[NSString stringWithFormat:@"title[%@]",THAI_CODE]:ObjectOrNull(tempModel.postSecondTitle),
                                  [NSString stringWithFormat:@"message[%@]",THAI_CODE]:ObjectOrNull(tempModel.postSecondDescription)};
-    
     
     
     NSMutableDictionary* finalDict = [[NSMutableDictionary alloc]initWithDictionary:dict];
@@ -561,17 +591,11 @@ static id ObjectOrNull(id object)
         [finalDict addEntriesFromDictionary:tempDict];
 
     }
-
-   // SLog(@"request for save draft : %@",[finalDict getJsonString]);
-    
-    
     
     [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostCreatePost param:finalDict appendString:tempModel.post_id meta:arrMeta  completeHandler:^(id object) {
         
         
         [TSMessage showNotificationInViewController:self title:@"system" subtitle:@"Data Successfully posted" type:TSMessageNotificationTypeSuccess duration:2.0 canBeDismissedByUser:YES];
-
-       // SLog(@"recommendation response : %@",object);
     
     } errorBlock:^(id object) {
 
@@ -590,6 +614,19 @@ static id ObjectOrNull(id object)
     self.recommendationModel.postSecondTitle = self.editPostViewSecond.txtTitle.text;
     self.recommendationModel.postSecondDescription = self.editPostViewSecond.txtDescription.text;
 
+}
+
+-(void)requestServerForCategories:(IDBlock)sucessRequestBlock
+{
+    
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetCategories param:nil completeHandler:^(id object) {
+        
+        if (sucessRequestBlock) {
+            sucessRequestBlock(nil);
+        }
+    } errorBlock:^(id object) {
+        
+    }];
 }
 
 @end

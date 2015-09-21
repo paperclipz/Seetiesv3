@@ -8,6 +8,14 @@
 
 #import "EditHourTableViewCell.h"
 
+
+@interface EditHourTableViewCell()
+{
+    BOOL isToTimeEdited;
+    BOOL isFromTimeEdited;
+
+}
+@end
 #define MINUTE_INTERVAL  5
 @implementation EditHourTableViewCell
 
@@ -38,9 +46,16 @@
 
 -(void)initData
 {
-    [self.btnFromTime setTitle: [@(self.model.open.time)stringValue] forState:UIControlStateNormal];
-    [self.btnToTime setTitle: [@(self.model.close.time)stringValue] forState:UIControlStateNormal];
-    self.lblDay.text = [Utils getWeekName:self.model.open.day+1];
+    
+    isToTimeEdited = false;
+    isFromTimeEdited = false;
+    
+    NSString* openTime =  [self formatTime:[@(self.model.open.time)stringValue]];
+    NSString* closeTime =  [self formatTime:[@(self.model.close.time)stringValue]];
+
+    [self.btnFromTime setTitle:openTime forState:UIControlStateNormal];
+    [self.btnToTime setTitle: closeTime forState:UIControlStateNormal];
+    self.lblDay.text = [Utils getWeekName:self.model.open.day];
     self.ibSwitch.on = self.model.isOpen;
     
     [self setOn:self.model.isOpen];
@@ -56,7 +71,6 @@
     if (remainingSeconds > ((MINUTE_INTERVAL * 60) / 2)) {/// round up
         timeRoundedTo5Minutes = referenceTimeInterval + ((MINUTE_INTERVAL * 60) - remainingSeconds);
     }
-
     
     return timeRoundedTo5Minutes;
 }
@@ -74,7 +88,6 @@
 }
 - (IBAction)btnToTimeClicked:(id)sender {
     
-    
     self.toTime = [NSDate dateWithTimeIntervalSinceReferenceDate:(NSTimeInterval) [self roundTime]];
     
     ActionSheetDatePicker *datePicker = [[ActionSheetDatePicker alloc] initWithTitle:self.lblDay.text datePickerMode:UIDatePickerModeTime selectedDate:self.toTime target:self action:@selector(toTimeWasSelected:element:) origin:sender];
@@ -87,7 +100,7 @@
 - (IBAction)btnFromTimeClicked:(id)sender {
 
     
-    
+
     self.fromTime = [NSDate dateWithTimeIntervalSinceReferenceDate:(NSTimeInterval) [self roundTime]];
     
     ActionSheetDatePicker *datePicker = [[ActionSheetDatePicker alloc] initWithTitle:self.lblDay.text datePickerMode:UIDatePickerModeTime selectedDate:self.fromTime target:self action:@selector(fromTimeWasSelected:element:) origin:sender];
@@ -99,6 +112,8 @@
 
 - (void)toTimeWasSelected:(NSDate *)selectedTime element:(id)element {
     
+    isToTimeEdited = YES;
+
     self.toTime = selectedTime;
 
     UIButton* sender = (UIButton*)element;
@@ -111,7 +126,8 @@
 
 - (void)fromTimeWasSelected:(NSDate *)selectedTime element:(id)element {
 
-    
+    isFromTimeEdited = YES;
+
     self.fromTime = selectedTime;
 
     UIButton* sender = (UIButton*)element;
@@ -136,13 +152,47 @@
 #pragma mark - Save Data
 -(OperatingHoursModel*)saveData
 {
-    self.model.open.time = (int)self.btnFromTime.titleLabel.text;
-    self.model.close.time = (int)self.btnToTime.titleLabel.text;
-    self.model.open.day = [Utils getWeekInteger:self.lblDay.text];
-    self.model.close.day = [Utils getWeekInteger:self.lblDay.text];
-    self.model.isOpen = self.ibSwitch.on;
     
+    if (isFromTimeEdited) {
+        self.model.open.time = [[self simplifyTime:self.fromTime] intValue];
+
+    }
+    if (isToTimeEdited) {
+        self.model.close.time = [[self simplifyTime:self.toTime] intValue];
+        
+    }
+
+    self.model.isOpen = self.ibSwitch.on;
     return self.model;
 }
+#define TIME_ZONE 1200
+#define AM @"AM"
+#define PM @"PM"
+
+-(NSString*)formatTime:(NSString*)dateTime
+{
+    NSString* dayFormat = AM;
+    double integerTime = [dateTime intValue];
+    
+    
+    if (integerTime  >  TIME_ZONE) {
+        dayFormat = PM;
+        
+        if(integerTime>= 1300)
+        integerTime = integerTime - TIME_ZONE;
+    }
+    
+    return [NSString stringWithFormat:@"%.2f%@",integerTime/100,dayFormat];
+}
+
+-(NSString*)simplifyTime:(NSDate*)dateTime
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"Hmm"];
+    
+    
+    return [dateFormatter stringFromDate:dateTime];
+}
+
 
 @end

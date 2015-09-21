@@ -121,37 +121,37 @@
     SWITCH (week) {
         
         CASE (@"Mon"){
-            returnWeekInteger = 0;
-            break;
-            
-        }
-        CASE (@"Tue"){
             returnWeekInteger = 1;
             break;
             
         }
-        CASE (@"Wed"){
+        CASE (@"Tue"){
             returnWeekInteger = 2;
             break;
             
         }
-        CASE (@"Thu"){
+        CASE (@"Wed"){
             returnWeekInteger = 3;
             break;
             
         }
-        CASE (@"Fri"){
+        CASE (@"Thu"){
             returnWeekInteger = 4;
+            break;
+            
+        }
+        CASE (@"Fri"){
+            returnWeekInteger = 5;
             break;
         }
         CASE (@"Sat"){
-            returnWeekInteger = 5;
+            returnWeekInteger = 6;
             break;
             
         }
         DEFAULT
         {
-            returnWeekInteger = 6;
+            returnWeekInteger = 0;
             break;
             
         }

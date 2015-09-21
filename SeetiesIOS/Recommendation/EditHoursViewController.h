@@ -16,6 +16,6 @@ typedef void (^BackBlock)(NSArray* array);
 
 @property(nonatomic,strong)NSMutableArray* arrOpeningTime;
 @property(nonatomic,copy)BackBlock backBlock;
--(void)initData:(NSArray*)arrayModel;
+-(void)initData:(NSMutableArray*)arrayModel;
 
 @end

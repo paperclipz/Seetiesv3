@@ -45,10 +45,27 @@
     
 }
 
--(void)initData:(NSArray*)arrayModel
+-(void)initData:(NSMutableArray*)arrayModel
 {
+
     if (arrayModel) {
-        self.arrOpeningTime = [[NSMutableArray alloc]initWithArray:arrayModel];
+        NSArray* tempArray = [arrayModel sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            
+            
+            
+            OperatingHoursModel* first = (OperatingHoursModel*)obj1;
+            OperatingHoursModel* second = (OperatingHoursModel*)obj2;
+            
+            if (first.open.day < second.open.day)
+                return NSOrderedAscending;
+            else if (first.open.day > second.open.day)
+                return NSOrderedDescending;
+            else
+                return NSOrderedSame;
+
+        }];
+        
+        self.arrOpeningTime = [[NSMutableArray alloc]initWithArray:tempArray];
 
     }
 }
@@ -85,36 +102,6 @@
    
     [cell initData];
     return cell;
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
--(NSMutableArray*)arrOpeningTime
-{
-    if (!_arrOpeningTime) {
-        NSMutableArray* arr = [NSMutableArray new];
-        
-        for (int i = 0; i<7; i++) {
-            EditHourModel* model = [EditHourModel new];
-            model.fromTime = @"7:00 AM";
-            model.toTime = @"5:00 PM";
-            model.day = [Utils getWeekName:i+1];
-            [arr addObject:model];
-            
-        }
-        
-        _arrOpeningTime = arr;
-
-    }
-       return _arrOpeningTime;
 }
 
 #pragma mark - Save Data

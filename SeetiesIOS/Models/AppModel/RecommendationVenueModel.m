@@ -145,6 +145,7 @@
     for (int i = 0; i<array.count; i++) {
         OperatingHoursModel* model = array[i];
         int day = model.open.day;
+        model.isOpen =YES;
         [self.arrOperatingHours replaceObjectAtIndex:day withObject:model];
     }
 }
@@ -157,11 +158,22 @@
         
         for (int i = 0; i< 7; i++) {
             OperatingHoursModel* model = [OperatingHoursModel new];
-            model.isOpen = true;
+            model.open = [self getDayTimeModel:i];
+            model.close = [self getDayTimeModel:i];
+            model.isOpen = NO;
             [_arrOperatingHours addObject:model];
         }
         
     }
     return _arrOperatingHours;
+}
+
+-(DayTimeModel*)getDayTimeModel:(int)day
+{
+    DayTimeModel* model = [DayTimeModel new];
+    model.day = day;
+    model.time = 1200;
+    
+    return model;
 }
 @end

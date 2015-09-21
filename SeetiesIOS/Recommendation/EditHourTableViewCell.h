@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnFromTime;
 @property (weak, nonatomic) IBOutlet UISwitch *ibSwitch;
 @property (weak, nonatomic) IBOutlet UIButton *btnToTime;
+
+
 @property (nonatomic, strong) NSDate *fromTime;
 @property (nonatomic, strong) NSDate *toTime;
 

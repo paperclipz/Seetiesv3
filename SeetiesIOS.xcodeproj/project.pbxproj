@@ -126,6 +126,9 @@
 		8A4509771BABC07F00A868CD /* OpeningPeriodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4509761BABC07F00A868CD /* OpeningPeriodModel.m */; };
 		8A45097A1BAC012600A868CD /* NSArray+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4509791BAC012600A868CD /* NSArray+JSON.m */; };
 		8A45098B1BAC17F200A868CD /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A45098A1BAC17F200A868CD /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8A45098E1BAFEEBF00A868CD /* CategoriesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A45098D1BAFEEBF00A868CD /* CategoriesModel.m */; };
+		8A4509921BAFF7C000A868CD /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4509911BAFF7C000A868CD /* UIColor+Extension.m */; };
+		8A4509951BB0026300A868CD /* tick_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A4509941BB0026300A868CD /* tick_icon@2x.png */; };
 		8A5430101B8C1646009EFFF4 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A54300E1B8C1646009EFFF4 /* MapViewController.m */; };
 		8A5430111B8C1646009EFFF4 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A54300F1B8C1646009EFFF4 /* MapViewController.xib */; };
 		8A54301A1B8C1C05009EFFF4 /* addurl_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A5430141B8C1C05009EFFF4 /* addurl_icon@2x.png */; };
@@ -1200,6 +1203,11 @@
 		8A4509791BAC012600A868CD /* NSArray+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+JSON.m"; path = "UITableView+LongPressReorder/NSArray+JSON.m"; sourceTree = "<group>"; };
 		8A4509891BAC17F200A868CD /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		8A45098A1BAC17F200A868CD /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		8A45098C1BAFEEBF00A868CD /* CategoriesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoriesModel.h; sourceTree = "<group>"; };
+		8A45098D1BAFEEBF00A868CD /* CategoriesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoriesModel.m; sourceTree = "<group>"; };
+		8A4509901BAFF7C000A868CD /* UIColor+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extension.h"; sourceTree = "<group>"; };
+		8A4509911BAFF7C000A868CD /* UIColor+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extension.m"; sourceTree = "<group>"; };
+		8A4509941BB0026300A868CD /* tick_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tick_icon@2x.png"; sourceTree = "<group>"; };
 		8A54300D1B8C1646009EFFF4 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		8A54300E1B8C1646009EFFF4 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		8A54300F1B8C1646009EFFF4 /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
@@ -2539,6 +2547,7 @@
 		8A34092B1B8AD061009B66C3 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				8A45098F1BAFF79900A868CD /* Color */,
 				8A3409BD1B8B0DCA009B66C3 /* UIImage+Resize */,
 				8A34092C1B8AD06A009B66C3 /* Categories */,
 			);
@@ -2619,6 +2628,23 @@
 				8A00979C1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib */,
 			);
 			name = EditPhoto;
+			sourceTree = "<group>";
+		};
+		8A45098F1BAFF79900A868CD /* Color */ = {
+			isa = PBXGroup;
+			children = (
+				8A4509901BAFF7C000A868CD /* UIColor+Extension.h */,
+				8A4509911BAFF7C000A868CD /* UIColor+Extension.m */,
+			);
+			name = Color;
+			sourceTree = "<group>";
+		};
+		8A4509931BB0026300A868CD /* Recommendation */ = {
+			isa = PBXGroup;
+			children = (
+				8A4509941BB0026300A868CD /* tick_icon@2x.png */,
+			);
+			path = Recommendation;
 			sourceTree = "<group>";
 		};
 		8A5430121B8C1BE6009EFFF4 /* Recommendation */ = {
@@ -3086,6 +3112,8 @@
 				8AF2C2CE1BA1654200B0A7F1 /* DraftModel.m */,
 				8A4509751BABC07F00A868CD /* OpeningPeriodModel.h */,
 				8A4509761BABC07F00A868CD /* OpeningPeriodModel.m */,
+				8A45098C1BAFEEBF00A868CD /* CategoriesModel.h */,
+				8A45098D1BAFEEBF00A868CD /* CategoriesModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -3559,6 +3587,7 @@
 		8AD6C3531B70934C0040437E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				8A4509931BB0026300A868CD /* Recommendation */,
 				0BBFE0B11BA15DC0004B17E9 /* Mini_collection_icon@2x.png */,
 				0BBFE0B21BA15DC0004B17E9 /* Mini_comment_icon@2x.png */,
 				0BBFE0B31BA15DC0004B17E9 /* Mini_like_icon.png */,
@@ -4949,6 +4978,7 @@
 				8AD6C6FB1B70934D0040437E /* IconBrightness@2x.png in Resources */,
 				8AD6C5BD1B70934D0040437E /* Icon-72@2x.png in Resources */,
 				8AD6C60D1B70934D0040437E /* InteractLike@3x.png in Resources */,
+				8A4509951BB0026300A868CD /* tick_icon@2x.png in Resources */,
 				8AD6C0D51B706CF30040437E /* PSearchLocationViewController.xib in Resources */,
 				8AD6C7231B70934D0040437E /* InfoHours.png in Resources */,
 				8AD6C7E91B70934D0040437E /* Old_TabBarPublish@2x.png in Resources */,
@@ -5401,6 +5431,7 @@
 				8A7420EC1B82F7D5005DA654 /* LoadingManager.m in Sources */,
 				8AD6C3441B707D120040437E /* BHExpandingTextView.m in Sources */,
 				8A3409431B8AD06A009B66C3 /* UIImage+Filtering.m in Sources */,
+				8A45098E1BAFEEBF00A868CD /* CategoriesModel.m in Sources */,
 				8AD6BE491B706CF30040437E /* Explore2ViewController.m in Sources */,
 				0BD634FC1B71C9B800D82414 /* LeveyTabBar.m in Sources */,
 				8AD6C0B31B706CF30040437E /* ConnectionManager.m in Sources */,
@@ -5504,6 +5535,7 @@
 				8A2E2C411B7AF3180010895E /* ImageModel.m in Sources */,
 				8A3409CF1B8B0DCB009B66C3 /* UIImage+Resize.m in Sources */,
 				0BBFE0541B9D6260004B17E9 /* NotificationSettingsViewController.m in Sources */,
+				8A4509921BAFF7C000A868CD /* UIColor+Extension.m in Sources */,
 				0BBFE08A1B9FCC00004B17E9 /* EditInterestViewController.m in Sources */,
 				8AD6C3451B707D120040437E /* BHExpandingTextViewInternal.m in Sources */,
 				8AD6C8701B7460DB0040437E /* UIImageView+MKNetworkKitAdditions.m in Sources */,

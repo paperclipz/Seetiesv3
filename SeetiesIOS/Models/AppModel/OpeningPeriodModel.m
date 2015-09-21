@@ -20,6 +20,17 @@
 {
     return YES;
 }
+
++ (BOOL)propertyIsIgnored:(NSString *)propertyName
+{
+
+    if ([propertyName isEqualToString:@"isOpen"]) {
+        return YES;
+    }
+    return NO;
+
+}
+
 @end
 
 @implementation OpeningPeriodModels
