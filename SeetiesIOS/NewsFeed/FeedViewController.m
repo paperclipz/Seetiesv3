@@ -14,6 +14,7 @@
 #import "FeedV2DetailViewController.h"
 #import "NewUserProfileV2ViewController.h"
 #import "NearbyViewController.h"
+#import "AddCollectionDataViewController.h"
 @interface FeedViewController ()
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;
@@ -542,13 +543,21 @@
             [LocalScroll addSubview:ShowShareIcon];
             
             
+            UIButton *QuickCollectButton = [[UIButton alloc]init];
+            [QuickCollectButton setImage:[UIImage imageNamed:@"collect_btn.png"] forState:UIControlStateNormal];
+            [QuickCollectButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+            [QuickCollectButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
+            QuickCollectButton.backgroundColor = [UIColor clearColor];
+            QuickCollectButton.frame = CGRectMake(screenWidth - 20 - 113, heightcheck + i + 10, 113, 37);
+            [QuickCollectButton addTarget:self action:@selector(CollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+            QuickCollectButton.tag = i;
+            [LocalScroll addSubview:QuickCollectButton];
+            
             UIButton *CollectButton = [[UIButton alloc]init];
-            [CollectButton setImage:[UIImage imageNamed:@"collect_btn.png"] forState:UIControlStateNormal];
-            [CollectButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
-            [CollectButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
+            [CollectButton setTitle:@"" forState:UIControlStateNormal];
             CollectButton.backgroundColor = [UIColor clearColor];
-            CollectButton.frame = CGRectMake(screenWidth - 20 - 113, heightcheck + i + 10, 113, 37);
-            [CollectButton addTarget:self action:@selector(CollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+            CollectButton.frame = CGRectMake(screenWidth - 20 - 60, heightcheck + i + 10, 60, 37);
+            [CollectButton addTarget:self action:@selector(AddCollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
             CollectButton.tag = i;
             [LocalScroll addSubview:CollectButton];
             
@@ -753,7 +762,6 @@
                 }
                 UILabel *ShowDistance = [[UILabel alloc]init];
                 ShowDistance.frame = CGRectMake(screenWidth - 135, heightcheck + i + 10, 100, 40);
-                // ShowDistance.frame = CGRectMake(screenWidth - 115, 210 + heightcheck + i, 100, 20);
                 ShowDistance.text = FullShowLocatinString;
                 ShowDistance.textColor = [UIColor whiteColor];
                 ShowDistance.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
@@ -882,13 +890,21 @@
             [MainScroll addSubview:ShowShareIcon];
             
             
+            UIButton *QuickCollectButton = [[UIButton alloc]init];
+            [QuickCollectButton setImage:[UIImage imageNamed:@"collect_btn.png"] forState:UIControlStateNormal];
+            [QuickCollectButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+            [QuickCollectButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
+            QuickCollectButton.backgroundColor = [UIColor clearColor];
+            QuickCollectButton.frame = CGRectMake(screenWidth - 20 - 113, heightcheck + i + 10, 113, 37);
+            [QuickCollectButton addTarget:self action:@selector(CollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+            QuickCollectButton.tag = i;
+            [MainScroll addSubview:QuickCollectButton];
+            
             UIButton *CollectButton = [[UIButton alloc]init];
-            [CollectButton setImage:[UIImage imageNamed:@"collect_btn.png"] forState:UIControlStateNormal];
-            [CollectButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
-            [CollectButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
+            [CollectButton setTitle:@"" forState:UIControlStateNormal];
             CollectButton.backgroundColor = [UIColor clearColor];
-            CollectButton.frame = CGRectMake(screenWidth - 20 - 113, heightcheck + i + 10, 113, 37);
-            [CollectButton addTarget:self action:@selector(CollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+            CollectButton.frame = CGRectMake(screenWidth - 20 - 60, heightcheck + i + 10, 60, 37);
+            [CollectButton addTarget:self action:@selector(AddCollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
             CollectButton.tag = i;
             [MainScroll addSubview:CollectButton];
             
@@ -1915,7 +1931,7 @@
 -(IBAction)CollectButtonOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
    // NSLog(@"button %li",(long)getbuttonIDN);
-    NSLog(@"CollectButtonOnClick");
+    NSLog(@"Quick CollectButtonOnClick");
     GetPostID = [[NSString alloc]initWithFormat:@"%@",[arrPostID objectAtIndex:getbuttonIDN]];
     [self SendQuickCollect];
     
@@ -1925,7 +1941,7 @@
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
     NSString *GetUseruid = [defaults objectForKey:@"Useruid"];
     //Server Address URL
-    NSString *urlString = [NSString stringWithFormat:@"%@%@/collections/0",DataUrl.UserWallpaper_Url,GetUseruid];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@/collections/0/collect",DataUrl.UserWallpaper_Url,GetUseruid];
     NSLog(@"Send Quick Collection urlString is %@",urlString);
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:urlString]];
@@ -1935,7 +1951,7 @@
     
     
     
-    NSString *dataString = [[NSString alloc]initWithFormat:@"token=%@&collection_id=0&posts[0][id]=%@",GetExpertToken,GetPostID];
+    NSString *dataString = [[NSString alloc]initWithFormat:@"token=%@&posts[0][id]=%@",GetExpertToken,GetPostID];
     
     NSData *postBodyData = [NSData dataWithBytes: [dataString UTF8String] length:[dataString length]];
     [request setHTTPBody:postBodyData];
@@ -1947,5 +1963,13 @@
     } else {
         
     }
+}
+-(IBAction)AddCollectButtonOnClick:(id)sender{
+    NSLog(@"Add Collection Button On Click");
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    AddCollectionDataViewController *AddCollectionDataView = [[AddCollectionDataViewController alloc]init];
+    //[self presentViewController:AddCollectionDataView animated:YES completion:nil];
+    [self.view.window.rootViewController presentViewController:AddCollectionDataView animated:YES completion:nil];
+    [AddCollectionDataView GetPostID:[arrPostID objectAtIndex:getbuttonIDN] GetImageData:[arrImage objectAtIndex:getbuttonIDN]];
 }
 @end

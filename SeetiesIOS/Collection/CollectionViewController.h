@@ -42,6 +42,12 @@
     
     //Content Data
     NSMutableArray *Content_arrImage;
+    NSMutableArray *Content_arrTitle;
+    NSMutableArray *Content_arrPlaceName;
+    NSMutableArray *Content_arrNote;
+    NSMutableArray *Content_arrID;
+    NSMutableArray *Content_arrID_arrDistance;
+    NSMutableArray *Content_arrID_arrDisplayCountryName;
     
     UIButton *ListButton;
     UIButton *GridButton;

@@ -146,9 +146,89 @@
             
             if (CheckFirstTimeLoad == 0) {
                 Content_arrImage = [[NSMutableArray alloc]init];
+                Content_arrID = [[NSMutableArray alloc]init];
+                Content_arrTitle = [[NSMutableArray alloc]init];
+                Content_arrPlaceName = [[NSMutableArray alloc]init];
+                Content_arrNote = [[NSMutableArray alloc]init];
+                Content_arrID_arrDistance = [[NSMutableArray alloc]init];
+                Content_arrID_arrDisplayCountryName = [[NSMutableArray alloc]init];
             }else{
             }
+            
+            
             NSDictionary *GetData = [PostsData valueForKey:@"data"];
+            
+            
+            for (NSDictionary * dict in GetData) {
+                NSString *PlaceName = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"place_name"]];
+                [Content_arrPlaceName addObject:PlaceName];
+                NSString *PlaceID = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"post_id"]];
+                [Content_arrID addObject:PlaceID];
+            }
+            
+            NSDictionary *titleData = [GetData valueForKey:@"title"];
+            for (NSDictionary * dict in titleData) {
+                if ([dict count] == 0 || dict == nil || [dict isKindOfClass:[NSNull class]]) {
+                    [Content_arrTitle addObject:@""];
+                }else{
+                    NSString *Title1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0aa16424400c76000002"]];
+                    NSString *Title2 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0ab26424400c76000003"]];
+                    NSString *ThaiTitle = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"544481503efa3ff1588b4567"]];
+                    NSString *IndonesianTitle = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"53672e863efa3f857f8b4ed2"]];
+                    NSString *PhilippinesTitle = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"539fbb273efa3fde3f8b4567"]];
+                    if ([Title1 length] == 0 || Title1 == nil || [Title1 isEqualToString:@"(null)"]) {
+                        if ([Title2 length] == 0 || Title2 == nil || [Title2 isEqualToString:@"(null)"]) {
+                            if ([ThaiTitle length] == 0 || ThaiTitle == nil || [ThaiTitle isEqualToString:@"(null)"]) {
+                                if ([IndonesianTitle length] == 0 || IndonesianTitle == nil || [IndonesianTitle isEqualToString:@"(null)"]) {
+                                    if ([PhilippinesTitle length] == 0 || PhilippinesTitle == nil || [PhilippinesTitle isEqualToString:@"(null)"]) {
+                                        [Content_arrTitle addObject:@""];
+                                    }else{
+                                        [Content_arrTitle addObject:PhilippinesTitle];
+                                        
+                                    }
+                                }else{
+                                    [Content_arrTitle addObject:IndonesianTitle];
+                                    
+                                }
+                            }else{
+                                [Content_arrTitle addObject:ThaiTitle];
+                            }
+                        }else{
+                            [Content_arrTitle addObject:Title2];
+                        }
+                        
+                    }else{
+                        [Content_arrTitle addObject:Title1];
+                        
+                    }
+                    
+                }
+            }
+
+            NSDictionary *locationData = [GetData valueForKey:@"location"];
+            for (NSDictionary * dict in locationData) {
+                NSString *formatted_address = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"distance"]];
+                [Content_arrID_arrDistance addObject:formatted_address];
+                NSString *SearchDisplayName = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"search_display_name"]];
+                [Content_arrID_arrDisplayCountryName addObject:SearchDisplayName];
+            }
+            
+            
+            NSDictionary *CollectionsData = [GetData valueForKey:@"collections"];
+            for (NSDictionary * dict in CollectionsData) {
+                for (NSDictionary * dict_ in dict) {
+                    NSDictionary *GetPostsData = [dict_ valueForKey:@"posts"];
+                  //  NSLog(@"GetPostsData note is %@",GetPostsData);
+                    for (NSDictionary * dict in GetPostsData) {
+                        NSString *url = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"note"]];
+                        [Content_arrNote addObject:url];
+
+                    }
+                }
+            }
+            
+            
+            
             NSArray *PhotoData = [GetData valueForKey:@"photos"];
             for (NSDictionary * dict in PhotoData) {
                 NSMutableArray *captionArray = [[NSMutableArray alloc]init];
@@ -163,7 +243,13 @@
                 NSString *result2 = [UrlArray componentsJoinedByString:@","];
                 [Content_arrImage addObject:result2];
             }
-            NSLog(@"Content_arrImage is %@",Content_arrImage);
+//            NSLog(@"Content_arrImage is %@",Content_arrImage);
+//            NSLog(@"Content_arrNote is %@",Content_arrNote);
+//            NSLog(@"Content_arrTitle is %@",Content_arrTitle);
+//            NSLog(@"Content_arrID_arrDistance is %@",Content_arrID_arrDistance);
+//            NSLog(@"Content_arrID_arrDisplayCountryName is %@",Content_arrID_arrDisplayCountryName);
+//            NSLog(@"Content_arrID is %@",Content_arrID);
+//            NSLog(@"Content_arrPlaceName is %@",Content_arrPlaceName);
             
             DataCount = DataTotal;
             DataTotal = [Content_arrImage count];
@@ -189,11 +275,27 @@
     WhiteBackground.backgroundColor = [UIColor whiteColor];
     [MainScroll addSubview:WhiteBackground];
     
+    
+
+    NSString *ImageData;
+    if ([Content_arrImage count] > 0){
+        int randomIndex = arc4random()%[Content_arrImage count];
+        ImageData = [Content_arrImage objectAtIndex:randomIndex];
+    }
+    NSArray *SplitArray = [ImageData componentsSeparatedByString:@","];
+    NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[SplitArray objectAtIndex:0]];
     AsyncImageView *BackgroundImg = [[AsyncImageView alloc]init];
     BackgroundImg.frame = CGRectMake(0, -20, screenWidth, 140);
     BackgroundImg.image = [UIImage imageNamed:@"NoImage.png"];
     BackgroundImg.contentMode = UIViewContentModeScaleAspectFill;
     BackgroundImg.layer.masksToBounds = YES;
+    [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:BackgroundImg];
+    if ([FullImagesURL_First length] == 0) {
+        BackgroundImg.image = [UIImage imageNamed:@"NoImage.png"];
+    }else{
+        NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL_First];
+        BackgroundImg.imageURL = url_NearbySmall;
+    }
     [MainScroll addSubview:BackgroundImg];
     
     AsyncImageView *UserImage = [[AsyncImageView alloc]init];
@@ -369,7 +471,7 @@
 
     for (NSInteger i = DataCount; i < DataTotal; i++) {
         AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
-        ShowImage.frame = CGRectMake(20, TempHeight, screenWidth - 40, 100);
+        ShowImage.frame = CGRectMake(20, TempHeight, screenWidth - 40, 180);
         ShowImage.contentMode = UIViewContentModeScaleAspectFill;
         ShowImage.layer.masksToBounds = YES;
         ShowImage.layer.cornerRadius = 5;
@@ -386,10 +488,88 @@
         }
         [ListView addSubview:ShowImage];
         
-        TempHeight += 120;
+        NSString *TempGetStirng = [[NSString alloc]initWithFormat:@"%@",[Content_arrTitle objectAtIndex:i]];
+        if ([TempGetStirng length] == 0 || [TempGetStirng isEqualToString:@""] || [TempGetStirng isEqualToString:@"(null)"]) {
+            
+        }else{
+            UILabel *ShowTitle = [[UILabel alloc]init];
+            ShowTitle.frame = CGRectMake(30, TempHeight, screenWidth - 60, 20);
+            ShowTitle.text = TempGetStirng;
+            ShowTitle.backgroundColor = [UIColor clearColor];
+            ShowTitle.textAlignment = NSTextAlignmentLeft;
+            ShowTitle.textColor = [UIColor whiteColor];
+            ShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+            [ListView addSubview:ShowTitle];
+
+          //  TempHeight += ShowTitle.frame.size.height;
+
+        }
+        
+        UIImageView *ShowPin = [[UIImageView alloc]init];
+        ShowPin.image = [UIImage imageNamed:@"location_icon.png"];
+        ShowPin.frame = CGRectMake(30, TempHeight + 24, 9, 12);
+        [ListView addSubview:ShowPin];
+        
+        NSString *TempDistanceString = [[NSString alloc]initWithFormat:@"%@",[Content_arrID_arrDistance objectAtIndex:i]];
+        NSString *FullShowLocatinString;
+        if ([TempDistanceString isEqualToString:@"0"]) {
+            FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@ • %@",[Content_arrPlaceName objectAtIndex:i],[Content_arrID_arrDisplayCountryName objectAtIndex:i]];
+        }else{
+            CGFloat strFloat = (CGFloat)[TempDistanceString floatValue] / 1000;
+            int x_Nearby = [TempDistanceString intValue] / 1000;
+            if (x_Nearby < 100) {
+                if (x_Nearby <= 1) {
+                    FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@ • 1km",[Content_arrPlaceName objectAtIndex:i]];//within
+                }else{
+                    FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@ • %.fkm",[Content_arrPlaceName objectAtIndex:i],strFloat];
+                }
+                
+            }else{
+                FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@ • %@",[Content_arrPlaceName objectAtIndex:i],[Content_arrID_arrDisplayCountryName objectAtIndex:i]];
+                
+            }
+
+        }
+        UILabel *ShowDistance = [[UILabel alloc]init];
+        ShowDistance.frame = CGRectMake(50, TempHeight + 20, screenWidth - 100, 20);
+        ShowDistance.text = FullShowLocatinString;
+        ShowDistance.textColor = [UIColor whiteColor];
+        ShowDistance.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+        ShowDistance.textAlignment = NSTextAlignmentLeft;
+        ShowDistance.backgroundColor = [UIColor clearColor];
+        [ListView addSubview:ShowDistance];
+        
+         TempHeight += 190;
+        
+        NSString *TempGetNote = [[NSString alloc]initWithFormat:@"%@",[Content_arrNote objectAtIndex:i]];
+        if ([TempGetNote length] == 0 || [TempGetNote isEqualToString:@""] || [TempGetNote isEqualToString:@"(null)"]) {
+           
+            TempHeight += 20;
+        }else{
+            UILabel *ShowNoteData = [[UILabel alloc]init];
+            ShowNoteData.frame = CGRectMake(20, TempHeight, screenWidth - 40, 40);
+            ShowNoteData.text = TempGetNote;
+            ShowNoteData.backgroundColor = [UIColor clearColor];
+            ShowNoteData.numberOfLines = 2;
+            ShowNoteData.textAlignment = NSTextAlignmentLeft;
+            ShowNoteData.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+            ShowNoteData.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+            [ListView addSubview:ShowNoteData];
+            
+            if([ShowNoteData sizeThatFits:CGSizeMake(screenWidth - 30, CGFLOAT_MAX)].height!=ShowNoteData.frame.size.height)
+            {
+                ShowNoteData.frame = CGRectMake(20, TempHeight, screenWidth - 40,[ShowNoteData sizeThatFits:CGSizeMake(screenWidth - 40, CGFLOAT_MAX)].height);
+            }
+            
+            TempHeight += ShowNoteData.frame.size.height + 20;
+
+        }
+        
+        
+        
     }
     
-    ListView.frame = CGRectMake(0, GetHeight + 10, screenWidth, TempHeight + 120);
+    ListView.frame = CGRectMake(0, GetHeight + 10, screenWidth, TempHeight + 170);
     
     CGSize contentSize = MainScroll.frame.size;
     contentSize.height = GetHeight + ListView.frame.size.height + 50;
