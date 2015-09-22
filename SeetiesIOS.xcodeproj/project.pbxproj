@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B3FF1051BB131620014AF2E /* AddCollectionDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3FF0FD1BB131620014AF2E /* AddCollectionDataViewController.m */; settings = {ASSET_TAGS = (); }; };
+		0B3FF1061BB131620014AF2E /* AddCollectionDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B3FF0FE1BB131620014AF2E /* AddCollectionDataViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		0B3FF1071BB131620014AF2E /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3FF1001BB131620014AF2E /* CollectionViewController.m */; settings = {ASSET_TAGS = (); }; };
+		0B3FF1081BB131620014AF2E /* CollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B3FF1011BB131620014AF2E /* CollectionViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		0B3FF1091BB131620014AF2E /* NewCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3FF1031BB131620014AF2E /* NewCollectionViewController.m */; settings = {ASSET_TAGS = (); }; };
+		0B3FF10A1BB131620014AF2E /* NewCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B3FF1041BB131620014AF2E /* NewCollectionViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		0B3FF10F1BB131A20014AF2E /* NearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3FF10D1BB131A20014AF2E /* NearbyViewController.m */; settings = {ASSET_TAGS = (); }; };
+		0B3FF1101BB131A20014AF2E /* NearbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B3FF10E1BB131A20014AF2E /* NearbyViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		0BA1CB2F1B85AEFA009FFD3E /* Explore2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA1CB2E1B85AEFA009FFD3E /* Explore2ViewController.xib */; };
 		0BBFE04F1B9D624C004B17E9 /* EditProfileV2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBFE04D1B9D624C004B17E9 /* EditProfileV2ViewController.m */; };
 		0BBFE0501B9D624C004B17E9 /* EditProfileV2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBFE04E1B9D624C004B17E9 /* EditProfileV2ViewController.xib */; };
@@ -1027,6 +1035,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B3FF0FC1BB131620014AF2E /* AddCollectionDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCollectionDataViewController.h; sourceTree = "<group>"; };
+		0B3FF0FD1BB131620014AF2E /* AddCollectionDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCollectionDataViewController.m; sourceTree = "<group>"; };
+		0B3FF0FE1BB131620014AF2E /* AddCollectionDataViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddCollectionDataViewController.xib; sourceTree = "<group>"; };
+		0B3FF0FF1BB131620014AF2E /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
+		0B3FF1001BB131620014AF2E /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
+		0B3FF1011BB131620014AF2E /* CollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewController.xib; sourceTree = "<group>"; };
+		0B3FF1021BB131620014AF2E /* NewCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewCollectionViewController.h; sourceTree = "<group>"; };
+		0B3FF1031BB131620014AF2E /* NewCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewCollectionViewController.m; sourceTree = "<group>"; };
+		0B3FF1041BB131620014AF2E /* NewCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewCollectionViewController.xib; sourceTree = "<group>"; };
+		0B3FF10C1BB131A20014AF2E /* NearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyViewController.h; sourceTree = "<group>"; };
+		0B3FF10D1BB131A20014AF2E /* NearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyViewController.m; sourceTree = "<group>"; };
+		0B3FF10E1BB131A20014AF2E /* NearbyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NearbyViewController.xib; sourceTree = "<group>"; };
 		0BA1CB2E1B85AEFA009FFD3E /* Explore2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Explore2ViewController.xib; sourceTree = "<group>"; };
 		0BBFE04C1B9D624C004B17E9 /* EditProfileV2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileV2ViewController.h; sourceTree = "<group>"; };
 		0BBFE04D1B9D624C004B17E9 /* EditProfileV2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileV2ViewController.m; sourceTree = "<group>"; };
@@ -2376,6 +2396,32 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		0B3FF0FB1BB131620014AF2E /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				0B3FF0FC1BB131620014AF2E /* AddCollectionDataViewController.h */,
+				0B3FF0FD1BB131620014AF2E /* AddCollectionDataViewController.m */,
+				0B3FF0FE1BB131620014AF2E /* AddCollectionDataViewController.xib */,
+				0B3FF0FF1BB131620014AF2E /* CollectionViewController.h */,
+				0B3FF1001BB131620014AF2E /* CollectionViewController.m */,
+				0B3FF1011BB131620014AF2E /* CollectionViewController.xib */,
+				0B3FF1021BB131620014AF2E /* NewCollectionViewController.h */,
+				0B3FF1031BB131620014AF2E /* NewCollectionViewController.m */,
+				0B3FF1041BB131620014AF2E /* NewCollectionViewController.xib */,
+			);
+			path = Collection;
+			sourceTree = "<group>";
+		};
+		0B3FF10B1BB131A20014AF2E /* Nearby */ = {
+			isa = PBXGroup;
+			children = (
+				0B3FF10C1BB131A20014AF2E /* NearbyViewController.h */,
+				0B3FF10D1BB131A20014AF2E /* NearbyViewController.m */,
+				0B3FF10E1BB131A20014AF2E /* NearbyViewController.xib */,
+			);
+			path = Nearby;
+			sourceTree = "<group>";
+		};
 		0BBFE0561B9D6454004B17E9 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
@@ -2865,6 +2911,8 @@
 		8AD6BA5C1B705DF20040437E /* SeetiesIOS */ = {
 			isa = PBXGroup;
 			children = (
+				0B3FF10B1BB131A20014AF2E /* Nearby */,
+				0B3FF0FB1BB131620014AF2E /* Collection */,
 				8A6584441B99553F00BC86B9 /* Animation */,
 				8AD6C2D21B707D120040437E /* Common */,
 				8AD6C23B1B7072FA0040437E /* Publish */,
@@ -4747,6 +4795,7 @@
 				8AD6C2981B7072FB0040437E /* EditLocationViewController.xib in Resources */,
 				8AD6C0FD1B706CF30040437E /* SearchViewV2.xib in Resources */,
 				8AD6C6101B70934D0040437E /* 1242x2208-04.jpg in Resources */,
+				0B3FF10A1BB131620014AF2E /* NewCollectionViewController.xib in Resources */,
 				8AD6C7E11B70934D0040437E /* SeeMoreHover@3x.png in Resources */,
 				8AD6C0C31B706CF30040437E /* FullImageViewController.xib in Resources */,
 				8AD6C64E1B70934D0040437E /* PinSearchBox@2x.png in Resources */,
@@ -4762,6 +4811,7 @@
 				8AD6C6461B70934D0040437E /* NoLike@2x_02.png in Resources */,
 				8AD6C75B1B70934D0040437E /* InviteOtherSelected@3x.png in Resources */,
 				8AD6C62F1B70934D0040437E /* LanguageTh.png in Resources */,
+				0B3FF1081BB131620014AF2E /* CollectionViewController.xib in Resources */,
 				8AD6C7D41B70934D0040437E /* RoundHighlight@3x.png in Resources */,
 				8AD6C6241B70934D0040437E /* LanguageChi@2x.png in Resources */,
 				8AD6C6F31B70934D0040437E /* GoToPhoto@3x.png in Resources */,
@@ -4933,6 +4983,7 @@
 				8AD6C5D31B70934D0040437E /* TableThree@2x.png in Resources */,
 				8AD6C78B1B70934D0040437E /* PostShade2@2x.png in Resources */,
 				8AD6C5DC1B70934D0040437E /* ButtonCancelFullImage.png in Resources */,
+				0B3FF1101BB131A20014AF2E /* NearbyViewController.xib in Resources */,
 				8AD6C7301B70934D0040437E /* FBMessenger@2x.png in Resources */,
 				8AD6C6AA1B70934D0040437E /* BtnAddInfo@2x.png in Resources */,
 				8AD6C0AE1B706CF30040437E /* LandingV2ViewController.xib in Resources */,
@@ -5191,6 +5242,7 @@
 				0BBFE09F1B9FD386004B17E9 /* done_btn@2x.png in Resources */,
 				8AD6C7A51B70934D0040437E /* SelectPhotoFrame@2x.png in Resources */,
 				0BBFE0741B9E9BA9004B17E9 /* add_btn@2x.png in Resources */,
+				0B3FF1061BB131620014AF2E /* AddCollectionDataViewController.xib in Resources */,
 				8AD6C7581B70934D0040437E /* InviteOther@3x.png in Resources */,
 				8AD6C6171B70934D0040437E /* 750x1334-01.jpg in Resources */,
 				8AD6C6CE1B70934D0040437E /* CaptionArrow@2x.png in Resources */,
@@ -5346,6 +5398,8 @@
 				8AD6C10A1B706CF30040437E /* FeedbackViewController.m in Sources */,
 				8A9F25E61B904F7600BB13BA /* RecommendationModel.m in Sources */,
 				8A3408FF1B86FE3D009B66C3 /* BMXDataItem.m in Sources */,
+				0B3FF10F1BB131A20014AF2E /* NearbyViewController.m in Sources */,
+				0B3FF1051BB131620014AF2E /* AddCollectionDataViewController.m in Sources */,
 				8AD6C86A1B7460DB0040437E /* NSAlert+MKNetworkKitAdditions.m in Sources */,
 				8A9F25DD1B90002B00BB13BA /* CustomPickerViewController.m in Sources */,
 				8AD6C3461B707D120040437E /* BHInputToolbar.m in Sources */,
@@ -5358,6 +5412,7 @@
 				8A3757C61B8583ED009DB7D4 /* UIFont+SystemFontOverride.m in Sources */,
 				8AD6C3501B707D120040437E /* Utils.m in Sources */,
 				8A3409D11B8B0DCB009B66C3 /* UIImage+Scaling.m in Sources */,
+				0B3FF1091BB131620014AF2E /* NewCollectionViewController.m in Sources */,
 				8AD6C0F41B706CF30040437E /* SearchChangeLocationViewController.m in Sources */,
 				8AD6C0D01B706CF30040437E /* PInterestV2ViewController.m in Sources */,
 				8A9F25CE1B8ED8BC00BB13BA /* EditHoursViewController.m in Sources */,
@@ -5437,6 +5492,7 @@
 				8AD6C0B31B706CF30040437E /* ConnectionManager.m in Sources */,
 				8A65843D1B9850CE00BC86B9 /* DraftViewController.m in Sources */,
 				8AD6C29F1B7072FB0040437E /* SelectPhotosViewController.m in Sources */,
+				0B3FF1071BB131620014AF2E /* CollectionViewController.m in Sources */,
 				8A65844A1B99554D00BC86B9 /* PresentingAnimationController.m in Sources */,
 				8A9F25E11B90413700BB13BA /* EditPostDetailVIew.m in Sources */,
 				8AD6C0D41B706CF30040437E /* PSearchLocationViewController.m in Sources */,

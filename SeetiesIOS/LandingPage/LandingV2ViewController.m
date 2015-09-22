@@ -313,7 +313,7 @@
     
     [self.view addSubview:self.leveyTabBarController.view];
     //TODO:Delete this . use for development purpose only
-    [self.leveyTabBarController setSelectedIndex:2];
+    //[self.leveyTabBarController setSelectedIndex:2];
 }
 
 - (void)animateImages

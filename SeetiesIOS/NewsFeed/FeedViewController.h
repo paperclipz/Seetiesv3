@@ -45,6 +45,18 @@
     NSMutableArray *arrImageHeight;
     NSMutableArray *arrlike;
     
+    
+    NSMutableArray *User_IDArray;
+    NSMutableArray *User_ProfileImageArray;
+    NSMutableArray *User_NameArray;
+    NSMutableArray *User_LocationArray;
+    NSMutableArray *User_FollowArray;
+    NSMutableArray *User_UserNameArray;
+    NSMutableArray *User_PhotoArray;
+    
+    
+    
+    
     NSDate *methodStart;
     
     IBOutlet UILabel *ShowUpdateText;
