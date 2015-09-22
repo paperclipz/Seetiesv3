@@ -29,5 +29,6 @@ typedef enum
 @property(nonatomic,assign)EditPostType editPostType;
 
 @property(nonatomic,copy)IDBlock editPostBackBlock;
+@property(nonatomic,copy)IDBlock editPostDoneBlock;
 
 @end

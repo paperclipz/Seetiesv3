@@ -14,11 +14,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="369" height="93"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dataran Merdeka" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Rx-eg-xhH">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Untitled" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Rx-eg-xhH">
                         <rect key="frame" x="66" y="8" width="295" height="21"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="21" id="MDL-mY-unh"/>
+                            <constraint firstAttribute="height" constant="21" id="4xs-Ru-WlM"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.14901960780000001" green="0.65098039220000004" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -27,16 +27,15 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zb6-Re-Dcs">
                         <rect key="frame" x="13" y="13" width="44" height="44"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="44" id="ppV-gm-4Nn"/>
-                            <constraint firstAttribute="height" constant="44" id="r8W-mO-w2M"/>
+                            <constraint firstAttribute="height" constant="44" id="9E7-Qy-z2k"/>
+                            <constraint firstAttribute="width" constant="44" id="AcQ-nl-Oke"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kuala Lumpur" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rKR-wn-d0u">
                         <rect key="frame" x="66" y="30" width="295" height="21"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="21" id="8Xy-y1-Lws"/>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="p63-Cf-uQH"/>
+                            <constraint firstAttribute="height" constant="21" id="jdo-k1-ewK"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -44,15 +43,14 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="rKR-wn-d0u" firstAttribute="top" secondItem="7Rx-eg-xhH" secondAttribute="bottom" constant="1" id="05e-mm-EmE"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="rKR-wn-d0u" secondAttribute="bottom" constant="33.5" id="25d-yE-Eig"/>
-                    <constraint firstItem="Zb6-Re-Dcs" firstAttribute="leading" secondItem="iKy-sv-TxA" secondAttribute="leadingMargin" constant="5" id="Hth-44-g08"/>
-                    <constraint firstItem="Zb6-Re-Dcs" firstAttribute="top" secondItem="iKy-sv-TxA" secondAttribute="topMargin" constant="5" id="PeL-ua-orQ"/>
-                    <constraint firstItem="rKR-wn-d0u" firstAttribute="leading" secondItem="Zb6-Re-Dcs" secondAttribute="trailing" constant="9" id="SRa-tx-HIo"/>
-                    <constraint firstItem="7Rx-eg-xhH" firstAttribute="trailing" secondItem="iKy-sv-TxA" secondAttribute="trailingMargin" id="WQ5-3L-rc0"/>
-                    <constraint firstItem="rKR-wn-d0u" firstAttribute="trailing" secondItem="7Rx-eg-xhH" secondAttribute="trailing" id="eUI-c3-y3s"/>
-                    <constraint firstItem="7Rx-eg-xhH" firstAttribute="top" secondItem="iKy-sv-TxA" secondAttribute="topMargin" id="gxd-iL-OUJ"/>
-                    <constraint firstItem="7Rx-eg-xhH" firstAttribute="leading" secondItem="Zb6-Re-Dcs" secondAttribute="trailing" constant="9" id="hp8-J8-vMK"/>
+                    <constraint firstItem="rKR-wn-d0u" firstAttribute="top" secondItem="7Rx-eg-xhH" secondAttribute="bottom" constant="1" id="8PK-se-xqM"/>
+                    <constraint firstItem="rKR-wn-d0u" firstAttribute="leading" secondItem="Zb6-Re-Dcs" secondAttribute="trailing" constant="9" id="E7B-am-cX9"/>
+                    <constraint firstItem="7Rx-eg-xhH" firstAttribute="trailing" secondItem="iKy-sv-TxA" secondAttribute="trailingMargin" id="OIg-Rt-738"/>
+                    <constraint firstItem="rKR-wn-d0u" firstAttribute="trailing" secondItem="iKy-sv-TxA" secondAttribute="trailingMargin" id="RRn-FR-BJI"/>
+                    <constraint firstItem="Zb6-Re-Dcs" firstAttribute="leading" secondItem="iKy-sv-TxA" secondAttribute="leadingMargin" constant="5" id="TXe-0h-dLt"/>
+                    <constraint firstItem="7Rx-eg-xhH" firstAttribute="leading" secondItem="Zb6-Re-Dcs" secondAttribute="trailing" constant="9" id="Tat-mw-j8V"/>
+                    <constraint firstItem="7Rx-eg-xhH" firstAttribute="top" secondItem="iKy-sv-TxA" secondAttribute="topMargin" id="iiT-uc-Igp"/>
+                    <constraint firstItem="Zb6-Re-Dcs" firstAttribute="top" secondItem="iKy-sv-TxA" secondAttribute="topMargin" constant="5" id="rAY-Qu-zWC"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

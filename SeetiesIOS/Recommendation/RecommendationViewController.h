@@ -37,6 +37,7 @@
 @property(nonatomic,strong)DraftViewController* draftViewController;
 
 @property(nonatomic,copy)IDBlock backBlock;
+@property(nonatomic,copy)IDBlock donePostBlock;
 
 -(void)initData:(int)type sender:(id)sender;
 

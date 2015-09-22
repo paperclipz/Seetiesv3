@@ -173,7 +173,7 @@
             
             [weakSelf.navRecommendationViewController pushViewController:weakSelf.addNewPlaceViewController animated:YES];
           //  wealSelf.addNewPlaceViewController.title
-            weakSelf.addNewPlaceViewController.title = @"New Place Info";
+            weakSelf.addNewPlaceViewController.title = @"Add New Place";
         };
     }
     return _stSearchViewController;
@@ -202,6 +202,9 @@
     if(!_editPostViewController)
     {
         _editPostViewController = [EditPostViewController new];
+        
+        _editPostViewController.editPostDoneBlock = self.donePostBlock;
+       
     }
     return _editPostViewController;
 }

@@ -31,13 +31,6 @@
 @end
 
 @implementation STSearchViewController
-- (IBAction)btnAddNewPlaceClicked:(id)sender {
-    
-    if(self.btnAddNewPlaceBlock)
-    {
-        self.btnAddNewPlaceBlock(nil);
-    }
-}
 
 - (IBAction)btnBackClicked:(id)sender {
     

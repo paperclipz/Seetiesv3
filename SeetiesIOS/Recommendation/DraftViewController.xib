@@ -24,11 +24,11 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="laB-V3-voD">
-                            <rect key="frame" x="8" y="29" width="24" height="20"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ButtonClose@3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="laB-V3-voD">
+                            <rect key="frame" x="15" y="29" width="17" height="17"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="20" id="Tnh-9x-RSE"/>
-                                <constraint firstAttribute="width" constant="24" id="na7-W5-i6D"/>
+                                <constraint firstAttribute="height" constant="17" id="Tnh-9x-RSE"/>
+                                <constraint firstAttribute="width" constant="17" id="na7-W5-i6D"/>
                             </constraints>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YoW-RX-9NH">
@@ -37,7 +37,7 @@
                                 <constraint firstAttribute="width" constant="44" id="JRq-nc-JEV"/>
                                 <constraint firstAttribute="height" constant="64" id="TZM-Dg-EuS"/>
                             </constraints>
-                            <state key="normal" title="x">
+                            <state key="normal">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -47,11 +47,11 @@
                     </subviews>
                     <color key="backgroundColor" red="0.14901960780000001" green="0.65098039220000004" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstItem="laB-V3-voD" firstAttribute="leading" secondItem="Re1-a0-mFK" secondAttribute="leading" constant="8" id="Cke-1G-7Wm"/>
+                        <constraint firstItem="laB-V3-voD" firstAttribute="leading" secondItem="Re1-a0-mFK" secondAttribute="leading" constant="15" id="Cke-1G-7Wm"/>
                         <constraint firstItem="YoW-RX-9NH" firstAttribute="top" secondItem="Re1-a0-mFK" secondAttribute="top" id="Wk3-4b-4E2"/>
                         <constraint firstAttribute="bottom" secondItem="18F-7n-ysR" secondAttribute="bottom" constant="14" id="agw-mg-wo7"/>
                         <constraint firstItem="18F-7n-ysR" firstAttribute="leading" secondItem="laB-V3-voD" secondAttribute="trailing" constant="14" id="ff6-4N-zTL"/>
-                        <constraint firstAttribute="bottom" secondItem="laB-V3-voD" secondAttribute="bottom" constant="15" id="h5L-Bk-b9q"/>
+                        <constraint firstAttribute="bottom" secondItem="laB-V3-voD" secondAttribute="bottom" constant="18" id="h5L-Bk-b9q"/>
                         <constraint firstItem="YoW-RX-9NH" firstAttribute="leading" secondItem="Re1-a0-mFK" secondAttribute="leading" id="hb5-P7-0zW"/>
                         <constraint firstAttribute="height" constant="64" id="mIc-2M-esH"/>
                         <constraint firstItem="laB-V3-voD" firstAttribute="top" secondItem="YoW-RX-9NH" secondAttribute="bottom" constant="-35" id="qJu-Z7-eUF"/>
@@ -77,4 +77,7 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
+    <resources>
+        <image name="ButtonClose@3x.png" width="51" height="51"/>
+    </resources>
 </document>

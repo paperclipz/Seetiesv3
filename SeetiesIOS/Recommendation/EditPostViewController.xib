@@ -27,7 +27,7 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hHC-Pt-ibH">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackButton2.png" translatesAutoresizingMaskIntoConstraints="NO" id="hHC-Pt-ibH">
                             <rect key="frame" x="8" y="29" width="24" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="RBT-8h-irK"/>
@@ -40,7 +40,7 @@
                                 <constraint firstAttribute="width" constant="44" id="AlX-RX-HCd"/>
                                 <constraint firstAttribute="height" constant="64" id="w4t-td-Qpr"/>
                             </constraints>
-                            <state key="normal" title="x">
+                            <state key="normal">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -140,4 +140,7 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
+    <resources>
+        <image name="BackButton2.png" width="38" height="39"/>
+    </resources>
 </document>

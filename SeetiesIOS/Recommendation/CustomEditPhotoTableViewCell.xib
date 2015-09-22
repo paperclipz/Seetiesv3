@@ -22,8 +22,8 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q3w-bD-N2N">
                         <rect key="frame" x="0.0" y="5" width="320" height="115"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="123123" translatesAutoresizingMaskIntoConstraints="NO" id="geD-an-6L6">
-                                <rect key="frame" x="60" y="5" width="206" height="105"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="123123" translatesAutoresizingMaskIntoConstraints="NO" id="geD-an-6L6">
+                                <rect key="frame" x="60" y="5" width="147" height="105"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="104" id="D9r-Wn-fgW"/>
@@ -74,13 +74,13 @@
                                     <constraint firstAttribute="height" constant="77" id="tst-Me-zLM"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3pm-8u-Mgz">
-                                <rect key="frame" x="268" y="0.0" width="44" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3pm-8u-Mgz">
+                                <rect key="frame" x="296" y="0.0" width="16" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="5tD-WY-aT4"/>
                                     <constraint firstAttribute="height" constant="30" id="ktN-nL-R4y"/>
                                 </constraints>
-                                <state key="normal" title="Delete">
+                                <state key="normal" image="ButtonClose@3x.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -94,8 +94,8 @@
                                     <constraint firstAttribute="height" constant="26" id="Z3o-bA-dqt"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9LE-5L-FHq">
-                                <rect key="frame" x="268" y="89" width="43" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9LE-5L-FHq">
+                                <rect key="frame" x="209" y="89" width="43" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="43" id="fSE-wv-TmK"/>
                                     <constraint firstAttribute="width" constant="43" id="nBd-pk-iij"/>
@@ -169,6 +169,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="ButtonClose@3x.png" width="51" height="51"/>
         <image name="move_icon.png" width="17" height="13"/>
     </resources>
 </document>

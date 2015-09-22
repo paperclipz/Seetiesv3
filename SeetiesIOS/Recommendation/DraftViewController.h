@@ -8,6 +8,7 @@
 
 #import "CommonViewController.h"
 #import "DraftTableViewCell.h"
+#import "UIScrollView+SVPullToRefresh.h"
 
 @interface DraftViewController : CommonViewController <UITableViewDataSource,UITableViewDelegate,MGSwipeTableCellDelegate>
 
