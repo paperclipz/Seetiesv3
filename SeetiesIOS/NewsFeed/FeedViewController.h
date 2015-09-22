@@ -43,6 +43,7 @@
     NSMutableArray *arrPostID;
     NSMutableArray *arrImageWidth;
     NSMutableArray *arrImageHeight;
+    NSMutableArray *arrlike;
     
     NSDate *methodStart;
     
@@ -59,6 +60,9 @@
     UrlDataClass *DataUrl;
     
     NSURLConnection *theConnection_All;
+    NSURLConnection *theConnection_likes;
+    NSURLConnection *theConnection_QuickCollect;
+    
     NSString *latPoint;
     NSString *lonPoint;
     NSString *ExternalIPAddress;
@@ -72,6 +76,11 @@
     
     int CheckFirstTimeLoad;
     BOOL OnLoad;
+    
+    //send like data
+    NSString *SendLikePostID;
+    NSString *CheckLike;
+    NSString *GetPostID;
 }
 -(IBAction)TryAgainButton:(id)sender;
 -(IBAction)SearchButton:(id)sender;

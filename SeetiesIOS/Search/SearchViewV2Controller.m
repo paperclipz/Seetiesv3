@@ -34,6 +34,8 @@
     
     BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
     Tblview.frame = CGRectMake(0, 64, screenWidth, screenHeight - 64 - 216);
+    SearchScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight - 64 - 216);
+    SearchScroll.hidden = YES;
     
     LocalSearchTextArray = [[NSMutableArray alloc]init];
     [LocalSearchTextArray addObject:@"Coffee"];
@@ -75,6 +77,7 @@
     //remaining Code'll go here
     
     [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
@@ -82,6 +85,13 @@
         NSLog(@"Click clear button");
         CheckTblview = 0;
         [Tblview reloadData];
+        SearchScroll.hidden = YES;
+    }else{
+        NSLog(@"auto key in ???");
+        if ([searchText length] > 2) {
+            GetSearchText = searchText;
+            [self GetSearchText];
+        }
     }
 }
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
@@ -188,17 +198,18 @@
         
     }else{
         
-        SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]init];
-        CATransition *transition = [CATransition animation];
-        transition.duration = 0.2;
-        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-        transition.type = kCATransitionPush;
-        transition.subtype = kCATransitionFromRight;
-        [self.view.window.layer addAnimation:transition forKey:nil];
-        [self presentViewController:SearchDetailView animated:NO completion:nil];
-        [SearchDetailView GetSearchKeyword:GetSearchText Getlat:[GetReturnSearchLngArray objectAtIndex:indexPath.row] GetLong:[GetReturnSearchLatArray objectAtIndex:indexPath.row] GetLocationName:[GetReturnSearchAddressArray objectAtIndex:indexPath.row]];
-        [SearchDetailView GetTitle:GetSearchText];
+        SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
+        //    CATransition *transition = [CATransition animation];
+        //    transition.duration = 0.2;
+        //    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        //    transition.type = kCATransitionPush;
+        //    transition.subtype = kCATransitionFromRight;
+        //    [self.view.window.layer addAnimation:transition forKey:nil];
+        //    [self presentViewController:SearchDetailView animated:NO completion:nil];
         
+        [SearchDetailView GetSearchKeyword:[GetReturnSearchTextArray objectAtIndex:indexPath.row] Getlat:[GetReturnSearchLngArray objectAtIndex:indexPath.row] GetLong:[GetReturnSearchLatArray objectAtIndex:indexPath.row] GetLocationName:[GetReturnSearchAddressArray objectAtIndex:indexPath.row]];
+        //[SearchDetailView GetTitle:GetSearchText];
+        [self.navigationController pushViewController:SearchDetailView animated:YES];
     
     }
 }
@@ -304,21 +315,170 @@
                     
                 }
                 NSLog(@"GetReturnSearchTextArray is %@",GetReturnSearchTextArray);
+                
                 NSLog(@"GetReturnSearchAddressArray is %@",GetReturnSearchAddressArray);
+                
+                GetSearchArray = [[NSMutableArray alloc]initWithArray:GetStringData];
                 //        [LocalSuggestionTextArray removeAllObjects];
                 //
                 //        LocalSuggestionTextArray = [[NSMutableArray alloc]initWithArray:GetStringData];
                 //        NSLog(@"LocalSuggestionTextArray is %@",LocalSuggestionTextArray);
                 //        [SuggestionTblView reloadData];
                 
-                CheckTblview = 1;
-                [Tblview reloadData];
+//                CheckTblview = 1;
+//                [Tblview reloadData];
                 
-                
+                SearchScroll.hidden = NO;
+                SearchScroll.alwaysBounceVertical = YES;
+                SearchScroll.backgroundColor = [UIColor whiteColor];
+                [self InitSearchReturnView];
             }
         }
         
 
     }
+}
+-(void)InitSearchReturnView{
+   // CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    
+    int height = 0;
+    
+    for (UIView *subview in SearchScroll.subviews) {
+        [subview removeFromSuperview];
+    }
+    
+    UILabel *ShowSuggestedPlaces = [[UILabel alloc]init];
+    ShowSuggestedPlaces.frame = CGRectMake(20, 10, screenWidth - 40, 20);
+    ShowSuggestedPlaces.text = @"Suggested places";
+    ShowSuggestedPlaces.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+    ShowSuggestedPlaces.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+    [SearchScroll addSubview:ShowSuggestedPlaces];
+    
+    height += 40;
+    
+    
+    for (int i = 0; i < [GetReturnSearchTextArray count]; i++) {
+        
+        UIImageView *ShowLocationIcon = [[UIImageView alloc]init];
+        ShowLocationIcon.frame = CGRectMake(20, height + 6, 15, 19);
+        ShowLocationIcon.image = [UIImage imageNamed:@"blue_location_icon.png"];
+        [SearchScroll addSubview:ShowLocationIcon];
+        
+        UIButton *TextButton = [[UIButton alloc]init];
+        NSString *GetTempAddress = [[NSString alloc]initWithFormat:@"%@",[GetReturnSearchAddressArray objectAtIndex:i]];
+        if ([GetTempAddress isEqualToString:@""]) {
+            [TextButton setTitle:[GetReturnSearchTextArray objectAtIndex:i] forState:UIControlStateNormal];
+        }else{
+            NSString *TempString = [[NSString alloc]initWithFormat:@"%@ > %@",[GetReturnSearchTextArray objectAtIndex:i],GetTempAddress];
+            [TextButton setTitle:TempString forState:UIControlStateNormal];
+        }
+        TextButton.frame = CGRectMake(50, height, screenWidth - 70, 30);
+        TextButton.backgroundColor = [UIColor clearColor];
+        [TextButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+        TextButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        TextButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+        TextButton.tag = i;
+        [TextButton addTarget:self action:@selector(SearchWithLocationButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [SearchScroll addSubview:TextButton];
+        
+        height += 40;
+    }
+    
+    UIButton *Line01 = [[UIButton alloc]init];
+    Line01.frame = CGRectMake(0, height, screenWidth, 1);
+    [Line01 setTitle:@"" forState:UIControlStateNormal];//238
+    [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+    [SearchScroll addSubview:Line01];
+    
+    height += 11;
+    
+    UILabel *ShowSuggestedSearch = [[UILabel alloc]init];
+    ShowSuggestedSearch.frame = CGRectMake(20, height, screenWidth - 40, 20);
+    ShowSuggestedSearch.text = @"Suggested search";
+    ShowSuggestedSearch.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+    ShowSuggestedSearch.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+    [SearchScroll addSubview:ShowSuggestedSearch];
+    
+    height += 30;
+    
+    for (int i = 0; i < [GetSearchArray count]; i++) {
+        UIImageView *ShowSearchIcon = [[UIImageView alloc]init];
+        ShowSearchIcon.frame = CGRectMake(20, height + 7, 17, 17);
+        ShowSearchIcon.image = [UIImage imageNamed:@"searchresult_icon.png"];
+        [SearchScroll addSubview:ShowSearchIcon];
+        
+        UIButton *TextButton = [[UIButton alloc]init];
+        [TextButton setTitle:[GetSearchArray objectAtIndex:i] forState:UIControlStateNormal];
+        TextButton.frame = CGRectMake(50, height, screenWidth - 50, 30);
+        TextButton.backgroundColor = [UIColor clearColor];
+        [TextButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+        TextButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        TextButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+        TextButton.tag = i;
+        [TextButton addTarget:self action:@selector(SearchTextOnlyButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [SearchScroll addSubview:TextButton];
+        
+        UIButton *GotoButton = [[UIButton alloc]init];
+        [GotoButton setImage:[UIImage imageNamed:@"goto_icon.png"] forState:UIControlStateNormal];
+        GotoButton.frame = CGRectMake(screenWidth - 20 - 14, height + 8, 14, 14);
+        GotoButton.tag = i;
+        [GotoButton addTarget:self action:@selector(SearchGetLocationButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [SearchScroll addSubview:GotoButton];
+        
+        height += 40;
+    }
+    
+    
+    
+    CGSize contentSize = SearchScroll.frame.size;
+    contentSize.height = height + 20;
+    SearchScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    SearchScroll.contentSize = contentSize;
+
+}
+-(IBAction)SearchWithLocationButtonOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSLog(@"SearchWithLocationButtonOnClick button %li",(long)getbuttonIDN);
+    GetSearchText = [GetReturnSearchTextArray objectAtIndex:getbuttonIDN];
+    
+    SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
+//        CATransition *transition = [CATransition animation];
+//        transition.duration = 0.2;
+//        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//        transition.type = kCATransitionPush;
+//        transition.subtype = kCATransitionFromRight;
+//        [self.view.window.layer addAnimation:transition forKey:nil];
+//        [self presentViewController:SearchDetailView animated:NO completion:nil];
+    [self.navigationController pushViewController:SearchDetailView animated:YES];
+    [SearchDetailView GetSearchKeyword:[GetReturnSearchTextArray objectAtIndex:getbuttonIDN] Getlat:[GetReturnSearchLatArray objectAtIndex:getbuttonIDN] GetLong:[GetReturnSearchLngArray objectAtIndex:getbuttonIDN] GetLocationName:[GetReturnSearchAddressArray objectAtIndex:getbuttonIDN]];
+    //[SearchDetailView GetTitle:GetSearchText];
+    mySearchBar.text = GetSearchText;
+}
+-(IBAction)SearchTextOnlyButtonOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSLog(@"SearchTextOnlyButtonOnClick button %li",(long)getbuttonIDN);
+    GetSearchText = [GetReturnSearchTextArray objectAtIndex:getbuttonIDN];
+    
+    SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
+//    CATransition *transition = [CATransition animation];
+//    transition.duration = 0.2;
+//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    transition.type = kCATransitionPush;
+//    transition.subtype = kCATransitionFromRight;
+//    [self.view.window.layer addAnimation:transition forKey:nil];
+//    [self presentViewController:SearchDetailView animated:NO completion:nil];
+    [self.navigationController pushViewController:SearchDetailView animated:YES];
+    [SearchDetailView GetSearchKeyword:[GetReturnSearchTextArray objectAtIndex:getbuttonIDN] Getlat:@"" GetLong:@"" GetLocationName:@""];
+   // [SearchDetailView GetTitle:GetSearchText];
+    mySearchBar.text = GetSearchText;
+}
+-(IBAction)SearchGetLocationButtonOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSLog(@"SearchGetLocationButtonOnClick button %li",(long)getbuttonIDN);
+    GetSearchText = [GetSearchArray objectAtIndex:getbuttonIDN];
+    [self GetSearchText];
+    mySearchBar.text = GetSearchText;
+    
 }
 @end

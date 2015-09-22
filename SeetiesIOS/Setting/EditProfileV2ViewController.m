@@ -339,7 +339,7 @@
         [body appendData:[[NSString stringWithFormat:@"%@",LinkField.text] dataUsingEncoding:NSUTF8StringEncoding]];
         [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     }
-    if ([GetDescription isEqualToString:DescriptionField.text]) {
+    if ([GetDescription isEqualToString:DescriptionField.text] || [DescriptionField.text isEqualToString:@"write something"]) {
         
     }else{
         [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -473,6 +473,7 @@
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:CustomLocalisedString(@"ErrorConnection", nil) message:CustomLocalisedString(@"NoData", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     
     [alert show];
+    SaveButton.enabled = YES;
 }
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {

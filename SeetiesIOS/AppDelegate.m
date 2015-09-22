@@ -446,11 +446,11 @@
 
 -(void)requestForApiVersion{
     
-    self.window.rootViewController = self.landingV2ViewController;
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
-
-    return;
+//    self.window.rootViewController = self.landingV2ViewController;
+//    self.window.backgroundColor = [UIColor whiteColor];
+//    [self.window makeKeyAndVisible];
+//
+//    return;
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetApiVersion param:nil completeHandler:^(id object) {
         [self processAPIVersion];
 

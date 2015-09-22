@@ -26,16 +26,19 @@
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-    BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
+    BarImage.frame = CGRectMake(0, 0, screenWidth, 114);
     TitleLabel.frame = CGRectMake(15, 20, screenWidth - 30, 44);
     TitleLabel.text = CustomLocalisedString(@"FindFriends", nil);
     
     ShowEmailView.frame = CGRectMake(0, 120, screenWidth, screenHeight - 120);
     EmailTblView.frame = CGRectMake(0, 50, screenWidth, screenHeight - 170);
-    ShowInviteView.frame = CGRectMake(0, 120, screenWidth, screenHeight - 120);
+    ShowInviteView.frame = CGRectMake(0, 114, screenWidth, screenHeight - 114);
     ShowFBView.frame = CGRectMake(0, 120, screenWidth, screenHeight - 120);
     MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight - 120);
     MainScroll.delegate = self;
+    InviteScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight - 114);
+    InviteScroll.delegate = self;
+    InviteScroll.alwaysBounceVertical = YES;
     
     LoadingButton.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     LoadingButton.hidden = YES;
@@ -43,13 +46,13 @@
 
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     
-    int GetHeight_ = screenWidth / 2 ;
-    TabButton_1.frame = CGRectMake(0, 74, GetHeight_, 40);
-    //TabButton_2.frame = CGRectMake((screenWidth / 2) - (GetHeight / 2), 64, GetHeight, 40);
-    TabButton_2.hidden = YES;
-    TabButton_3.frame = CGRectMake(screenWidth - GetHeight_, 74, GetHeight_, 40);
+    int GetHeight_ = screenWidth / 3 ;
+    TabButton_1.frame = CGRectMake((screenWidth / 2) - (GetHeight_ / 2), 64, GetHeight_, 40);//button 2
+    TabButton_2.frame = CGRectMake(screenWidth - GetHeight_, 64, GetHeight_, 40);//button 3
+    //TabButton_2.hidden = YES;
+    TabButton_3.frame = CGRectMake(0, 64, GetHeight_, 40);//button 1
     
-    LineButton.frame = CGRectMake(0, 120, screenWidth, 1);
+    //LineButton.frame = CGRectMake(0, 120, screenWidth, 1);
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *Getfbextendedtoken = [defaults objectForKey:@"fbextendedtoken"];
@@ -85,66 +88,16 @@
         [self GetContactsAllUserData];
     }
     
+    [self initInviteFriendView];
+
     
 
     
-    ShowOtherText_1.frame = CGRectMake((screenWidth / 2) - 140, 25, 280, 60);
-    ShowOtherText_1.text = CustomLocalisedString(@"EasilySendaLink", nil);
-    
-    SMSButton.frame = CGRectMake(20, 145, screenWidth - 40, 55);
-    [SMSButton setTitle:CustomLocalisedString(@"InViaSMS", nil) forState:UIControlStateNormal];
-    FbMessagerButton.frame = CGRectMake(20, 215, screenWidth - 40, 55);
-    [FbMessagerButton setTitle:CustomLocalisedString(@"InViaFacebook", nil) forState:UIControlStateNormal];
-    WhatsappButton.frame = CGRectMake(20, 285, screenWidth - 40, 55);
-    [WhatsappButton setTitle:CustomLocalisedString(@"InViaWhatsapp", nil) forState:UIControlStateNormal];
-    TrueLineButton.frame = CGRectMake(20, 355, screenWidth - 40, 55);
-    [TrueLineButton setTitle:CustomLocalisedString(@"InViaLine", nil) forState:UIControlStateNormal];
-    
-    UIImageView *ShowSMSIcon = [[UIImageView alloc]init];
-    ShowSMSIcon.frame = CGRectMake(40, 162, 21, 19);
-    ShowSMSIcon.image = [UIImage imageNamed:@"IconSms.png"];
-    [ShowInviteView addSubview:ShowSMSIcon];
-    
-    UIImageView *ShowSMSLine = [[UIImageView alloc]init];
-    ShowSMSLine.frame = CGRectMake(85, 155, 1, 35);
-    ShowSMSLine.image = [UIImage imageNamed:@"ButtonDivider.png"];
-    [ShowInviteView addSubview:ShowSMSLine];
-    
-    UIImageView *ShowFBMessagerIcon = [[UIImageView alloc]init];
-    ShowFBMessagerIcon.frame = CGRectMake(40, 230, 24, 24);
-    ShowFBMessagerIcon.image = [UIImage imageNamed:@"IconFBMessenger.png"];
-    [ShowInviteView addSubview:ShowFBMessagerIcon];
-    
-    UIImageView *ShowFBMessagerLine = [[UIImageView alloc]init];
-    ShowFBMessagerLine.frame = CGRectMake(85, 225, 1, 35);
-    ShowFBMessagerLine.image = [UIImage imageNamed:@"ButtonDivider.png"];
-    [ShowInviteView addSubview:ShowFBMessagerLine];
-    
-    UIImageView *ShowWhatsappIcon = [[UIImageView alloc]init];
-    ShowWhatsappIcon.frame = CGRectMake(40, 300, 24, 24);
-    ShowWhatsappIcon.image = [UIImage imageNamed:@"IconWhatsapp.png"];
-    [ShowInviteView addSubview:ShowWhatsappIcon];
-    
-    UIImageView *ShowWhatsappLine = [[UIImageView alloc]init];
-    ShowWhatsappLine.frame = CGRectMake(85, 295, 1, 35);
-    ShowWhatsappLine.image = [UIImage imageNamed:@"ButtonDivider.png"];
-    [ShowInviteView addSubview:ShowWhatsappLine];
-    
-    UIImageView *ShowlineIcon = [[UIImageView alloc]init];
-    ShowlineIcon.frame = CGRectMake(40, 368, 28, 27);
-    ShowlineIcon.image = [UIImage imageNamed:@"IconLine.png"];
-    [ShowInviteView addSubview:ShowlineIcon];
-    
-    UIImageView *ShowlineLine = [[UIImageView alloc]init];
-    ShowlineLine.frame = CGRectMake(85, 365, 1, 35);
-    ShowlineLine.image = [UIImage imageNamed:@"ButtonDivider.png"];
-    [ShowInviteView addSubview:ShowlineLine];
-    
-    UIButton *LineCenter_1 = [[UIButton alloc]init];
-    LineCenter_1.frame = CGRectMake((screenWidth / 2), 74, 1, 30);
-    [LineCenter_1 setTitle:@"" forState:UIControlStateNormal];
-    [LineCenter_1 setBackgroundColor:[UIColor colorWithRed:232.0f/255.0f green:232.0f/255.0f blue:232.0f/255.0f alpha:1.0f]];
-    [self.view addSubview:LineCenter_1];
+//    UIButton *LineCenter_1 = [[UIButton alloc]init];
+//    LineCenter_1.frame = CGRectMake((screenWidth / 2), 74, 1, 30);
+//    [LineCenter_1 setTitle:@"" forState:UIControlStateNormal];
+//    [LineCenter_1 setBackgroundColor:[UIColor colorWithRed:232.0f/255.0f green:232.0f/255.0f blue:232.0f/255.0f alpha:1.0f]];
+//    [self.view addSubview:LineCenter_1];
     
 //    UIButton *LineCenter_2 = [[UIButton alloc]init];
 //    LineCenter_2.frame = CGRectMake((screenWidth / 2) + (GetHeight / 2), 74, 1, 30);
@@ -181,11 +134,9 @@
     
     //[self loadPhoneContacts];
     
-    NSLog(@"AllEmailDataArray is %@",AllEmailDataArray);
-    NSLog(@"FullNameDataArray is %@",FullNameDataArray);
-    
     ShowEmailView.hidden = YES;
-    ShowInviteView.hidden = YES;
+    ShowInviteView.hidden = NO;
+    ShowFBView.hidden = YES;
     
     FBSDKShareLinkContent *content = [[FBSDKShareLinkContent alloc] init];
     content.contentURL = [NSURL URLWithString:@"https://seeties.me"];
@@ -214,6 +165,87 @@
 
     
 }
+-(void)initInviteFriendView{
+    //CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    
+    UIButton *Background = [[UIButton alloc]init];
+    Background.frame = CGRectMake(0, 0, screenWidth, 200);
+    [Background setTitle:@"" forState:UIControlStateNormal];
+    Background.backgroundColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
+    [InviteScroll addSubview:Background];
+    
+    ShowOtherText_1.frame = CGRectMake((screenWidth / 2) - 140, 10, 280, 40);
+    ShowOtherText_1.text = @"More friends, more fun!";
+    ShowOtherText_1.backgroundColor = [UIColor clearColor];
+    ShowOtherText_1.textColor = [UIColor whiteColor];
+    [InviteScroll addSubview:ShowOtherText_1];
+    
+    UIButton *WhiteBackground = [[UIButton alloc]init];
+    WhiteBackground.frame = CGRectMake(30, 150, screenWidth - 60, 500);
+    [WhiteBackground setTitle:@"" forState:UIControlStateNormal];
+    WhiteBackground.backgroundColor = [UIColor whiteColor];
+    WhiteBackground.layer.cornerRadius = 5;
+    [InviteScroll addSubview:WhiteBackground];
+    
+    UIImageView *ShowBigIcon = [[UIImageView alloc]init];
+    ShowBigIcon.frame = CGRectMake((screenWidth /2) - 55, 60, 110, 105);
+    ShowBigIcon.image = [UIImage imageNamed:@"vector.png"];
+    ShowBigIcon.backgroundColor = [UIColor clearColor];
+    [InviteScroll addSubview:ShowBigIcon];
+    
+    
+    UIImageView *ShowWhatsappIcon = [[UIImageView alloc]init];
+    ShowWhatsappIcon.frame = CGRectMake(60, 170 + 9, 38, 38);
+    ShowWhatsappIcon.image = [UIImage imageNamed:@"whastapp_icon.png"];
+    [InviteScroll addSubview:ShowWhatsappIcon];
+    
+    WhatsappButton.frame = CGRectMake(118 , 170, screenWidth - 158, 55);
+    [WhatsappButton setTitle:@"via Whatsapp" forState:UIControlStateNormal];
+    [InviteScroll addSubview:WhatsappButton];
+    
+    UIButton *Line01 = [[UIButton alloc]init];
+    Line01.frame = CGRectMake(138, 225, screenWidth - 178, 1);
+    [Line01 setTitle:@"" forState:UIControlStateNormal];
+    Line01.backgroundColor = [UIColor colorWithRed:232.0f/255.0f green:232.0f/255.0f blue:232.0f/255.0f alpha:1.0f];
+    [InviteScroll addSubview:Line01];
+    
+    UIImageView *ShowFBMessagerIcon = [[UIImageView alloc]init];
+    ShowFBMessagerIcon.frame = CGRectMake(60, 225 + 9, 38, 38);
+    ShowFBMessagerIcon.image = [UIImage imageNamed:@"messenger_icon.png"];
+    [InviteScroll addSubview:ShowFBMessagerIcon];
+
+    FbMessagerButton.frame = CGRectMake(118, 225, screenWidth - 158, 55);
+    [FbMessagerButton setTitle:@"via Messenger" forState:UIControlStateNormal];
+    [InviteScroll addSubview:FbMessagerButton];
+    
+    UIButton *Line02 = [[UIButton alloc]init];
+    Line02.frame = CGRectMake(138, 280, screenWidth - 178, 1);
+    [Line02 setTitle:@"" forState:UIControlStateNormal];
+    Line02.backgroundColor = [UIColor colorWithRed:232.0f/255.0f green:232.0f/255.0f blue:232.0f/255.0f alpha:1.0f];
+    [InviteScroll addSubview:Line02];
+    
+    UIImageView *ShowlineIcon = [[UIImageView alloc]init];
+    ShowlineIcon.frame = CGRectMake(60, 280 + 9, 38, 38);
+    ShowlineIcon.image = [UIImage imageNamed:@"line_icon.png"];
+    [InviteScroll addSubview:ShowlineIcon];
+    
+    TrueLineButton.frame = CGRectMake(118, 280, screenWidth - 158, 55);
+    [TrueLineButton setTitle:@"via LINE" forState:UIControlStateNormal];
+    [InviteScroll addSubview:TrueLineButton];
+
+    UIButton *Line03 = [[UIButton alloc]init];
+    Line03.frame = CGRectMake(60, 350, screenWidth - 120, 1);
+    [Line03 setTitle:@"" forState:UIControlStateNormal];
+    Line03.backgroundColor = [UIColor colorWithRed:232.0f/255.0f green:232.0f/255.0f blue:232.0f/255.0f alpha:1.0f];
+    [InviteScroll addSubview:Line03];
+    
+    
+    SMSButton.frame = CGRectMake(60, 350, screenWidth - 120, 55);
+    [SMSButton setTitle:@"Send SMS" forState:UIControlStateNormal];
+    [InviteScroll addSubview:SMSButton];
+
+}
 -(IBAction)InviteAllButton:(id)sender{
     NSLog(@"Invite all to email button click");
     
@@ -225,27 +257,27 @@
     ShowInviteView.hidden = YES;
     ShowFBView.hidden = NO;
     
-    [TabButton_1 setImage:[UIImage imageNamed:@"InviteFBSelected.png"] forState:UIControlStateNormal];
-    [TabButton_2 setImage:[UIImage imageNamed:@"InviteEmail.png"] forState:UIControlStateNormal];
-    [TabButton_3 setImage:[UIImage imageNamed:@"InviteOther.png"] forState:UIControlStateNormal];
+    [TabButton_1 setImage:[UIImage imageNamed:@"fb_selected.png"] forState:UIControlStateNormal];
+    [TabButton_2 setImage:[UIImage imageNamed:@"ig_unselect.png"] forState:UIControlStateNormal];
+    [TabButton_3 setImage:[UIImage imageNamed:@"msg_unselect.png"] forState:UIControlStateNormal];
 }
 -(IBAction)TabButton_2:(id)sender{
     ShowEmailView.hidden = NO;
     ShowInviteView.hidden = YES;
     ShowFBView.hidden = YES;
     
-    [TabButton_1 setImage:[UIImage imageNamed:@"InviteFacebook.png"] forState:UIControlStateNormal];
-    [TabButton_2 setImage:[UIImage imageNamed:@"InviteEmailSelected.png"] forState:UIControlStateNormal];
-    [TabButton_3 setImage:[UIImage imageNamed:@"InviteOther.png"] forState:UIControlStateNormal];
+    [TabButton_1 setImage:[UIImage imageNamed:@"fb_deselect.png"] forState:UIControlStateNormal];
+    [TabButton_2 setImage:[UIImage imageNamed:@"ig_selected.png"] forState:UIControlStateNormal];
+    [TabButton_3 setImage:[UIImage imageNamed:@"msg_unselect.png"] forState:UIControlStateNormal];
 }
 -(IBAction)TabButton_3:(id)sender{
     ShowEmailView.hidden = YES;
     ShowInviteView.hidden = NO;
     ShowFBView.hidden = YES;
     
-    [TabButton_1 setImage:[UIImage imageNamed:@"InviteFacebook.png"] forState:UIControlStateNormal];
-    [TabButton_2 setImage:[UIImage imageNamed:@"InviteEmail.png"] forState:UIControlStateNormal];
-    [TabButton_3 setImage:[UIImage imageNamed:@"InviteOtherSelected.png"] forState:UIControlStateNormal];
+    [TabButton_1 setImage:[UIImage imageNamed:@"fb_deselect.png"] forState:UIControlStateNormal];
+    [TabButton_2 setImage:[UIImage imageNamed:@"ig_unselect.png"] forState:UIControlStateNormal];
+    [TabButton_3 setImage:[UIImage imageNamed:@"msg_selected.png"] forState:UIControlStateNormal];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -345,8 +377,8 @@
         NSError *myError = nil;
         NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
        // NSLog(@"Experts Json = %@",res);
-        
-        NSDictionary *UserInfoData = [res valueForKey:@"random_users"];
+        NSDictionary *GetAllData = [res valueForKey:@"data"];
+        NSDictionary *UserInfoData = [GetAllData valueForKey:@"random_users"];
         All_Experts_Username_Array = [[NSMutableArray alloc]initWithCapacity:[UserInfoData count]];
         All_Experts_Location_Array = [[NSMutableArray alloc]initWithCapacity:[UserInfoData count]];
         All_Experts_ProfilePhoto_Array = [[NSMutableArray alloc]initWithCapacity:[UserInfoData count]];
@@ -730,7 +762,7 @@
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[All_Experts_ProfilePhoto_Array objectAtIndex:i]];
             
             //NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserInfo_UrlArray objectAtIndex:i]];
-            NSLog(@"FullImagesURL1 ====== %@",FullImagesURL1);
+          //  NSLog(@"FullImagesURL1 ====== %@",FullImagesURL1);
             if ([FullImagesURL1 length] == 0) {
                 ShowExpertProfilePhoto.image = [UIImage imageNamed:@"avatar.png"];
             }else{

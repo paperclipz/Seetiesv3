@@ -38,6 +38,7 @@
     NSURLConnection *theConnection_GetUserData;
     NSURLConnection *theConnection_GetPostsData;
     NSURLConnection *theConnection_GetLikesData;
+    NSURLConnection *theConnection_GetCollectionData;
     
     //content data
     AsyncImageView *ShowUserProfileImage;
@@ -79,8 +80,16 @@
     NSMutableArray *PostsData_TitleArray;
     NSMutableArray *PostsData_TotalCountArray;
     
+    //collection data
+    NSString *GetCollectionDataCount;
+    NSMutableArray *CollectionData_IDArray;
+    NSMutableArray *CollectionData_TitleArray;
+    NSMutableArray *CollectionData_DescriptionArray;
+    NSMutableArray *CollectionData_PhotoArray;
+    
     UIActivityIndicatorView *ShowActivityLike;
     UIActivityIndicatorView *ShowActivityPosts;
+    UIActivityIndicatorView *ShowActivityCollection;
     
     NSInteger TotalPage_Like;
     NSInteger CurrentPage_Like;
@@ -92,10 +101,17 @@
     NSInteger DataCount_Post;
     NSInteger DataTotal_Post;
     
+    NSInteger TotalPage_Collection;
+    NSInteger CurrentPage_Collection;
+    NSInteger DataCount_Collection;
+    NSInteger DataTotal_Collection;
+    
     BOOL CheckLoad_Likes;
     BOOL CheckLoad_Post;
+    BOOL CheckLoad_Collection;
     int CheckFirstTimeLoadLikes;
     int CheckFirstTimeLoadPost;
+    int CheckFirstTimeLoadCollection;
     
     IBOutlet UIButton *SearchButton;
 }

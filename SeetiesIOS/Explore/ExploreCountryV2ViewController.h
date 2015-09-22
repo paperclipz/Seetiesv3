@@ -71,6 +71,7 @@
 -(IBAction)SearchButton:(id)sender;
 -(IBAction)FilterButton:(id)sender;
 -(void)initData;
+-(void)GetFestivalUrl:(NSString *)UrlStirng GetFestivalImage:(NSString *)ImageString;
 @property(nonatomic,strong)ExploreCountryModel* model;
 
 @end
