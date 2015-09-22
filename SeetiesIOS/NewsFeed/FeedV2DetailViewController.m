@@ -903,8 +903,7 @@
                 GetPostName = [[NSString alloc]initWithFormat:@"%@",[UserInfoData objectForKey:@"username"]];
                 GetUserUid = [[NSString alloc]initWithFormat:@"%@",[UserInfoData objectForKey:@"uid"]];
                 GetFollowing = [[NSString alloc]initWithFormat:@"%@",[UserInfoData objectForKey:@"following"]];
-                NSDictionary *ProfileImageData = [UserInfoData valueForKey:@"profile_photo"];
-                GetUserProfileUrl = [[NSString alloc]initWithFormat:@"%@",[ProfileImageData objectForKey:@"url"]];
+                GetUserProfileUrl = [[NSString alloc]initWithFormat:@"%@",[UserInfoData objectForKey:@"profile_photo"]];
                 
                 NSLog(@"GetPostUserName is %@",GetPostUserName);
                 NSLog(@"GetUserUid is %@",GetUserUid);
@@ -1294,18 +1293,16 @@
                 }
                 
                 NSDictionary *UserInfoData = [GetAllData valueForKey:@"user_info"];
-                NSDictionary *UserInfoData_ProfilePhoto = [UserInfoData valueForKey:@"profile_photo"];
+             //   NSDictionary *UserInfoData_ProfilePhoto = [UserInfoData valueForKey:@"profile_photo"];
                 
                 UserInfo_NameArray_Nearby = [[NSMutableArray alloc] initWithCapacity:[UserInfoData count]];
                 for (NSDictionary * dict in UserInfoData) {
                     NSString *username = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"username"]];
                     [UserInfo_NameArray_Nearby addObject:username];
-                }
-                UserInfo_UrlArray_Nearby = [[NSMutableArray alloc]initWithCapacity:[UserInfoData_ProfilePhoto count]];
-                for (NSDictionary * dict in UserInfoData_ProfilePhoto) {
-                    NSString *url = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"url"]];
+                    NSString *url = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"profile_photo"]];
                     [UserInfo_UrlArray_Nearby addObject:url];
                 }
+
                 
                 NSArray *PhotoData = [GetAllData valueForKey:@"photos"];
                 PhotoArray_Nearby = [[NSMutableArray alloc]init];

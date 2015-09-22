@@ -456,6 +456,11 @@
     
     GridView.hidden = YES;
     ListView.hidden = NO;
+    
+    CGSize contentSize = MainScroll.frame.size;
+    contentSize.height = GetHeight + ListView.frame.size.height + 50;
+    MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    MainScroll.contentSize = contentSize;
 }
 -(IBAction)GridButtonOnClick:(id)sender{
     [ListButton setImage:[UIImage imageNamed:@"listview_unselect.png"] forState:UIControlStateNormal];
@@ -463,6 +468,11 @@
     
     GridView.hidden = NO;
     ListView.hidden = YES;
+    
+    CGSize contentSize = MainScroll.frame.size;
+    contentSize.height = GetHeight + GridView.frame.size.height + 50;
+    MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    MainScroll.contentSize = contentSize;
 }
 -(void)InitContentListView{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
@@ -573,6 +583,55 @@
     
     CGSize contentSize = MainScroll.frame.size;
     contentSize.height = GetHeight + ListView.frame.size.height + 50;
+    MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    MainScroll.contentSize = contentSize;
+    
+    [self InitGridViewData];
+}
+-(void)InitGridViewData{
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+
+    int heightcheck = 10;
+    
+    int TestWidth = screenWidth - 2;
+    //NSLog(@"TestWidth is %i",TestWidth);
+    int FinalWidth = TestWidth / 3;
+    FinalWidth += 1;
+    // NSLog(@"FinalWidth is %i",FinalWidth);
+    int SpaceWidth = FinalWidth + 1;
+    
+    for (NSInteger i = DataCount; i < DataTotal; i++) {
+        AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
+        ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
+        ShowImage.frame = CGRectMake(0+(i % 3)*SpaceWidth, heightcheck + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
+        ShowImage.contentMode = UIViewContentModeScaleAspectFill;
+        ShowImage.layer.masksToBounds = YES;
+        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
+        NSString *ImageData = [[NSString alloc]initWithFormat:@"%@",[Content_arrImage objectAtIndex:i]];
+        NSArray *SplitArray = [ImageData componentsSeparatedByString:@","];
+        NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[SplitArray objectAtIndex:0]];
+        if ([FullImagesURL_First length] == 0) {
+            ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
+        }else{
+            NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL_First];
+            ShowImage.imageURL = url_NearbySmall;
+        }
+        [GridView addSubview:ShowImage];
+        
+        
+        UIButton *ImageButton = [[UIButton alloc]init];
+        [ImageButton setBackgroundColor:[UIColor clearColor]];
+        [ImageButton setTitle:@"" forState:UIControlStateNormal];
+        ImageButton.frame = CGRectMake(0+(i % 3)*SpaceWidth, heightcheck + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
+        ImageButton.tag = i;
+       // [ImageButton addTarget:self action:@selector(LikesButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [GridView addSubview:ImageButton];
+        //[MainScroll setContentSize:CGSizeMake(320, GetHeight + 105 + (106 * (CGFloat)(i /3)))];
+        GridView.frame = CGRectMake(0, GetHeight, screenWidth, heightcheck + FinalWidth + (SpaceWidth * (CGFloat)(i /3)));
+    }
+    
+    CGSize contentSize = MainScroll.frame.size;
+    contentSize.height = GetHeight + GridView.frame.size.height + FinalWidth + FinalWidth;
     MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     MainScroll.contentSize = contentSize;
 }

@@ -742,7 +742,7 @@
                 
                 NSDictionary *GetAllData = [ResData valueForKey:@"posts"];
                 NSDictionary *UserInfoData = [GetAllData valueForKey:@"user_info"];
-                NSDictionary *UserInfoData_ProfilePhoto = [UserInfoData valueForKey:@"profile_photo"];
+              //  NSDictionary *UserInfoData_ProfilePhoto = [UserInfoData valueForKey:@"profile_photo"];
                 NSDictionary *locationData = [GetAllData valueForKey:@"location"];
                 NSDictionary *locationData_Address = [locationData valueForKey:@"address_components"];
          //       NSLog(@"GetAllData ===== %@",GetAllData);
@@ -768,7 +768,6 @@
                 }else{
                     
                 }
-
                 for (NSDictionary * dict in GetAllData) {
                     NSString *PlaceID = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"post_id"]];
                     [PostIDArray addObject:PlaceID];
@@ -790,17 +789,16 @@
                 for (NSDictionary * dict in UserInfoData) {
                     NSString *username = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"username"]];
                     [UserInfo_NameArray addObject:username];
-                }
-                for (NSDictionary * dict in UserInfoData_ProfilePhoto) {
-                    NSString *url = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"url"]];
+                    NSString *url = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"profile_photo"]];
                     [UserInfo_UrlArray addObject:url];
                 }
                 for (NSDictionary * dict in locationData_Address) {
-                    NSString *Locality = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"locality"]];
-                    NSString *Address3 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"administrative_area_level_3"]];
-                    NSString *Address2 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"administrative_area_level_2"]];
-                    NSString *Address1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"administrative_area_level_1"]];
-                    NSString *Country = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"country"]];
+                    NSString *Locality = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"locality"]];
+                    NSString *Address3 = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"administrative_area_level_3"]];
+                    NSString *Address2 = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"administrative_area_level_2"]];
+                    NSString *Address1 = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"administrative_area_level_1"]];
+                    NSString *Country = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"country"]];
+                    
                     NSString *FullString;
                     if ([Locality length] == 0 || Locality == nil || [Locality isEqualToString:@"(null)"]) {
                         if([Address3 length] == 0 || Address3 == nil || [Address3 isEqualToString:@"(null)"]){
@@ -821,7 +819,6 @@
                     }
                     [LocationArray addObject:FullString];
                 }
-                
                 DataCount = DataTotal;
                 DataTotal = [PostIDArray count];
 

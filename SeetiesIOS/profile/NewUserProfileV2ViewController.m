@@ -7,7 +7,8 @@
 //
 
 #import "NewUserProfileV2ViewController.h"
-
+#import "CollectionViewController.h"
+#import "ShowFollowerAndFollowingViewController.h"
 @interface NewUserProfileV2ViewController ()
 
 @end
@@ -63,16 +64,20 @@
     
     CheckLoad_Post = NO;
     CheckLoad_Likes = NO;
+    CheckLoad_Collection = NO;
     CheckFirstTimeLoadLikes = 0;
     CheckFirstTimeLoadPost = 0;
+    CheckFirstTimeLoadCollection = 0;
     TotalPage_Like = 1;
     CurrentPage_Like = 0;
     TotalPage_Post = 1;
     CurrentPage_Post = 0;
+    TotalPage_Collection = 1;
+    CurrentPage_Collection = 0;
     CheckExpand = YES;
     
     
-    if ([GetUserName isEqualToString:@""] || [GetUserName length] == 0) {
+    if ([GetUserName isEqualToString:@""] || [GetUserName length] == 0 || [GetUid isEqualToString:@""] || [GetUid length] == 0) {
         
     }else{
     [self GetUserData];
@@ -82,6 +87,9 @@
     GetUserName = username;
     // [self InitView];
     
+}
+-(void)GetUid:(NSString *)uid{
+    GetUid = uid;
 }
 -(IBAction)BackButtonOnClick:(id)sender{
 [self.navigationController popToRootViewControllerAnimated:YES];
@@ -126,17 +134,18 @@
     ShowUserName.backgroundColor = [UIColor clearColor];
     [AllContentView addSubview:ShowUserName];
     
-    UIButton *EditProfileButton = [[UIButton alloc]init];
-    EditProfileButton.frame = CGRectMake(screenWidth - 106 - 20, 50, 106, 34);
+    UIButton *FollowUserButton = [[UIButton alloc]init];
+    FollowUserButton.frame = CGRectMake(screenWidth - 106 - 20, 50, 106, 34);
    // [EditProfileButton setTitle:@"Edit profile" forState:UIControlStateNormal];
-    [EditProfileButton setImage:[UIImage imageNamed:@"follow_btn.png"] forState:UIControlStateNormal];
-    EditProfileButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
-    [EditProfileButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
-    EditProfileButton.backgroundColor = [UIColor clearColor];
+    [FollowUserButton setImage:[UIImage imageNamed:@"follow_btn.png"] forState:UIControlStateNormal];
+    FollowUserButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
+    [FollowUserButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
+    FollowUserButton.backgroundColor = [UIColor clearColor];
+    [FollowUserButton addTarget:self action:@selector(FollowButton:) forControlEvents:UIControlEventTouchUpInside];
     //    EditProfileButton.layer.cornerRadius = 20;
     //    EditProfileButton.layer.borderWidth = 1;
     //    EditProfileButton.layer.borderColor=[[UIColor grayColor] CGColor];
-    [AllContentView addSubview:EditProfileButton];
+    [AllContentView addSubview:FollowUserButton];
     
     UILabel *ShowName_ = [[UILabel alloc]init];//getname
     ShowName_.frame = CGRectMake(30, 110, screenWidth - 60, 30);
@@ -186,6 +195,12 @@
     ShowFollowers.backgroundColor = [UIColor clearColor];
     [AllContentView addSubview:ShowFollowers];
     
+    UIButton *OpenFollowersButton = [[UIButton alloc]init];
+    OpenFollowersButton.frame = CGRectMake(60, GetHeight, 120, 21);
+    [OpenFollowersButton setTitle:@"" forState:UIControlStateNormal];
+    [OpenFollowersButton addTarget:self action:@selector(ShowAll_FollowerButton:) forControlEvents:UIControlEventTouchUpInside];
+    [AllContentView addSubview:OpenFollowersButton];
+    
     UILabel *ShowFollowing = [[UILabel alloc]init];
     ShowFollowing.text = tempFollowing;
     ShowFollowing.frame = CGRectMake(170, GetHeight, 120, 21);
@@ -194,6 +209,12 @@
     ShowFollowing.textAlignment = NSTextAlignmentLeft;
     ShowFollowing.backgroundColor = [UIColor clearColor];
     [AllContentView addSubview:ShowFollowing];
+    
+    UIButton *OpenFollowingButton = [[UIButton alloc]init];
+    OpenFollowingButton.frame = CGRectMake(170, GetHeight, 120, 21);
+    [OpenFollowingButton setTitle:@"" forState:UIControlStateNormal];
+    [OpenFollowingButton addTarget:self action:@selector(ShowAll_FollowingButton:) forControlEvents:UIControlEventTouchUpInside];
+    [AllContentView addSubview:OpenFollowingButton];
     
     GetHeight += 30;
     
@@ -408,8 +429,12 @@
     LikeView.hidden = YES;
     CollectionView.hidden = NO;
     PostView.hidden = YES;
+    
+    if (CheckFirstTimeLoadCollection == 1) {
+        [self InitCollectionView];
+    }
 
-    [self InitCollectionView];
+   // [self InitCollectionView];
 }
 - (void)segmentAction:(UISegmentedControl *)segment
 {
@@ -449,13 +474,29 @@
     
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
+    NSString *TempString = [[NSString alloc]initWithFormat:@"%@ Collection",GetCollectionDataCount];
+    
     UILabel *ShowCollectionCount = [[UILabel alloc]init];
-    ShowCollectionCount.frame = CGRectMake(30, 20, screenWidth - 60, 20);
-    ShowCollectionCount.text = @"3 Collection";
+    ShowCollectionCount.frame = CGRectMake(30, 20, 150, 20);
+    ShowCollectionCount.text = TempString;
     ShowCollectionCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
     ShowCollectionCount.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
-    ShowCollectionCount.textAlignment = NSTextAlignmentCenter;
     [CollectionView addSubview:ShowCollectionCount];
+    
+    UIButton *Line01 = [[UIButton alloc]init];
+    Line01.frame = CGRectMake(screenWidth - 30 - 25, 10, 1, 30);
+    [Line01 setTitle:@"" forState:UIControlStateNormal];
+    [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+    [CollectionView addSubview:Line01];
+    
+    UIButton *EditProfileButton = [[UIButton alloc]init];
+    EditProfileButton.frame = CGRectMake(screenWidth - 30 - 20, 10, 30, 30);
+    //[EditProfileButton setTitle:@"New collection" forState:UIControlStateNormal];
+    [EditProfileButton setImage:[UIImage imageNamed:@"add_btn.png"] forState:UIControlStateNormal];
+    EditProfileButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
+    [EditProfileButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
+    EditProfileButton.backgroundColor = [UIColor clearColor];
+    [CollectionView addSubview:EditProfileButton];
     
     
     int TestWidth = screenWidth - 40;
@@ -466,7 +507,7 @@
     
     int heightcheck = 60;
     
-    for (int i = 0; i < 5; i++) {
+    for (NSInteger i = DataCount_Collection; i < DataTotal_Collection; i++) {
         
         UIButton *TempButton = [[UIButton alloc]init];
         TempButton.frame = CGRectMake(10, heightcheck + i, screenWidth - 20, FinalWidth + 10 + 70);
@@ -475,49 +516,62 @@
         TempButton.layer.cornerRadius = 5;
         [CollectionView addSubview: TempButton];
         
-        NSMutableArray *DemoArray = [[NSMutableArray alloc]init];
-        [DemoArray addObject:@"DemoBackground.jpg"];
-        [DemoArray addObject:@"UserDemo1.jpg"];
-        [DemoArray addObject:@"UserDemo2.jpg"];
-        [DemoArray addObject:@"UserDemo3.jpg"];
-        
-        for (int z = 0; z < [DemoArray count]; z++) {
+        NSString *TempImage = [[NSString alloc]initWithFormat:@"%@",[CollectionData_PhotoArray objectAtIndex:i]];
+        NSArray *SplitArray = [TempImage componentsSeparatedByString:@","];
+        for (int z = 0; z < [SplitArray count]; z++) {
             AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
             ShowImage.frame = CGRectMake(15 +(z % 4) * SpaceWidth, heightcheck + 5 +i, FinalWidth, FinalWidth);
-            ShowImage.image = [UIImage imageNamed:[DemoArray objectAtIndex:z]];
+            // ShowImage.image = [UIImage imageNamed:[DemoArray objectAtIndex:z]];
             ShowImage.contentMode = UIViewContentModeScaleAspectFill;
             ShowImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
             ShowImage.layer.cornerRadius=5;
             ShowImage.layer.masksToBounds = YES;
             [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
-            
+            NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[SplitArray objectAtIndex:z]];
+            if ([FullImagesURL_First length] == 0) {
+                ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
+            }else{
+                NSURL *url = [NSURL URLWithString:FullImagesURL_First];
+                ShowImage.imageURL = url;
+            }
             [CollectionView addSubview:ShowImage];
         }
         
         UILabel *ShowExplore = [[UILabel alloc]init];
         ShowExplore.frame = CGRectMake(30, heightcheck + 5 + FinalWidth + 20 + i, screenWidth - 100, 20);
-        ShowExplore.text = @"The Good Stuffs";
+        ShowExplore.text = [CollectionData_TitleArray objectAtIndex:i];
         ShowExplore.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
         ShowExplore.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:18];
         [CollectionView addSubview:ShowExplore];
         
         UILabel *ShowSubExplore = [[UILabel alloc]init];
         ShowSubExplore.frame = CGRectMake(30, heightcheck + 5 + FinalWidth + 40 + i, screenWidth - 100, 20);
-        ShowSubExplore.text = @"A collection of products i like.";
+        ShowSubExplore.text = [CollectionData_DescriptionArray objectAtIndex:i];
         ShowSubExplore.textColor = [UIColor lightGrayColor];
         ShowSubExplore.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:14];
         [CollectionView addSubview:ShowSubExplore];
         
-        UIButton *EditButton = [[UIButton alloc]init];
-        EditButton.frame = CGRectMake(screenWidth - 80 - 20, heightcheck + 5 + FinalWidth + 20 + i, 80, 40);
-        [EditButton setTitle:@"Edit" forState:UIControlStateNormal];
-        EditButton.layer.cornerRadius= 10;
-        EditButton.layer.masksToBounds = YES;
-        EditButton.layer.borderColor=[[UIColor grayColor] CGColor];
-        EditButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
-        [EditButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
-        EditButton.backgroundColor = [UIColor whiteColor];
-        [CollectionView addSubview:EditButton];
+        UIButton *SelectButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        SelectButton.frame = CGRectMake(10, heightcheck + i, screenWidth - 20, FinalWidth + 10 + 70);
+        [SelectButton setTitle:@"" forState:UIControlStateNormal];
+        SelectButton.tag = i;
+        [SelectButton setBackgroundColor:[UIColor clearColor]];
+        [SelectButton addTarget:self action:@selector(OpenCollectionOnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [CollectionView addSubview:SelectButton];
+        
+//        UIButton *EditButton = [[UIButton alloc]init];
+//        EditButton.frame = CGRectMake(screenWidth - 80 - 20, heightcheck + 5 + FinalWidth + 20 + i, 80, 40);
+//        [EditButton setTitle:@"Edit" forState:UIControlStateNormal];
+//        EditButton.layer.cornerRadius= 10;
+//        EditButton.layer.masksToBounds = YES;
+//        EditButton.layer.borderColor=[[UIColor grayColor] CGColor];
+//        EditButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
+//        [EditButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
+//        EditButton.backgroundColor = [UIColor whiteColor];
+//        EditButton.tag = i;
+//        [EditButton addTarget:self action:@selector(CollectionEditButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+//        [CollectionView addSubview:EditButton];
+        
         
         UIButton *Line01 = [[UIButton alloc]init];
         Line01.frame = CGRectMake(15, heightcheck + 5 + FinalWidth + 70 + i, screenWidth - 30, 1);
@@ -726,7 +780,15 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
     
-    NSString *FullString = [[NSString alloc]initWithFormat:@"%@expert/%@?token=%@",DataUrl.UserWallpaper_Url,GetUserName,GetExpertToken];
+    NSString *FullString;
+    
+    if ([GetUserName length] == 0) {
+        FullString = [[NSString alloc]initWithFormat:@"%@/%@?token=%@",DataUrl.UserWallpaper_Url,GetUid,GetExpertToken];
+    }else{
+        FullString = [[NSString alloc]initWithFormat:@"%@expert/%@?token=%@",DataUrl.UserWallpaper_Url,GetUserName,GetExpertToken];
+    }
+    
+    FullString = [[NSString alloc]initWithFormat:@"%@expert/%@?token=%@",DataUrl.UserWallpaper_Url,GetUserName,GetExpertToken];
     
     
     NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
@@ -743,6 +805,40 @@
     
     if( theConnection_GetUserData ){
         webData = [NSMutableData data];
+    }
+}
+-(void)GetCollectionData{
+    ShowActivityCollection = [[UIActivityIndicatorView alloc]init];
+    ShowActivityCollection.frame = CGRectMake(30, ProfileControl.frame.origin.y + 105 , 20, 20);
+    [ShowActivityCollection setColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f]];
+    [MainScroll addSubview:ShowActivityCollection];
+    [ShowActivityCollection startAnimating];
+    
+    if (CurrentPage_Collection == TotalPage_Collection) {
+        
+    }else{
+        CurrentPage_Collection += 1;
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *Getuid = [defaults objectForKey:@"Useruid"];
+        NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+        NSString *FullString = [[NSString alloc]initWithFormat:@"%@%@/collections?token=%@&page=%li",DataUrl.UserWallpaper_Url,Getuid,GetExpertToken,CurrentPage_Collection];
+        
+        
+        NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
+        NSLog(@"collection list check postBack URL ==== %@",postBack);
+        // NSURL *url = [NSURL URLWithString:[postBack stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        NSURL *url = [NSURL URLWithString:postBack];
+        NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
+        NSLog(@"theRequest === %@",theRequest);
+        [theRequest addValue:@"" forHTTPHeaderField:@"Accept-Encoding"];
+        
+        theConnection_GetCollectionData = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+        [theConnection_GetCollectionData start];
+        
+        
+        if( theConnection_GetCollectionData ){
+            webData = [NSMutableData data];
+        }
     }
 }
 -(void)GetPostsData{
@@ -867,6 +963,7 @@
                 GetFollowersCount = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"follower_count"]];
                 GetFollowingCount = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"following_count"]];
                 GetUid = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"uid"]];
+                GetUserFollowing = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"followed"]];
                 
                 [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:BackgroundImage];
                 NSURL *url_UserImage = [NSURL URLWithString:GetWallpaper];
@@ -881,6 +978,85 @@
             
             
         }
+    }else if(connection == theConnection_GetCollectionData){
+        NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+        NSLog(@"GetCollectionData is %@",GetData);
+        
+        NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *myError = nil;
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
+        
+        NSString *StatusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
+        if ([StatusString isEqualToString:@"0"] || [StatusString isEqualToString:@"401"]) {
+            UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:CustomLocalisedString(@"SomethingError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [ShowAlert show];
+        }else{
+            NSLog(@"Get Collection all list data is %@",res);
+            NSDictionary *GetResData = [res valueForKey:@"data"];
+            
+            GetCollectionDataCount = [[NSString alloc]initWithFormat:@"%@",[GetResData objectForKey:@"total_result"]];
+            
+            NSString *page = [[NSString alloc]initWithFormat:@"%@",[GetResData objectForKey:@"page"]];
+            NSString *total_page = [[NSString alloc]initWithFormat:@"%@",[GetResData objectForKey:@"total_page"]];
+            CurrentPage_Collection = [page intValue];
+            TotalPage_Collection = [total_page intValue];
+            if (CheckFirstTimeLoadCollection == 0) {
+                CollectionData_IDArray = [[NSMutableArray alloc]init];
+                CollectionData_PhotoArray = [[NSMutableArray alloc]init];
+                DataCount_Collection = 0;
+                CollectionData_TitleArray = [[NSMutableArray alloc]init];
+                CollectionData_DescriptionArray = [[NSMutableArray alloc]init];
+            }else{
+            }
+            
+            NSArray *GetAllData = (NSArray *)[GetResData valueForKey:@"result"];
+            
+            for (NSDictionary * dict in GetAllData) {
+                NSString *PlaceID = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"collection_id"]];
+                [CollectionData_IDArray addObject:PlaceID];
+                NSString *name = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"name"]];
+                [CollectionData_TitleArray addObject:name];
+                NSString *description = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"description"]];
+                [CollectionData_DescriptionArray addObject:description];
+            }
+            NSDictionary *GetPostsData = [GetAllData valueForKey:@"posts"];
+            NSArray *PhotoData = [GetPostsData valueForKey:@"photos"];
+            for (NSDictionary * dict in PhotoData) {
+                NSMutableArray *UrlArray = [[NSMutableArray alloc]init];
+                for (NSDictionary * dict_ in dict) {
+                    NSDictionary *UserInfoData = [dict_ valueForKey:@"s"];
+                    
+                    NSString *url = [[NSString alloc]initWithFormat:@"%@",[UserInfoData objectForKey:@"url"]];
+                    [UrlArray addObject:url];
+                }
+                NSString *result2 = [UrlArray componentsJoinedByString:@","];
+                [CollectionData_PhotoArray addObject:result2];
+            }
+            
+            NSLog(@"CollectionData_IDArray is %@",CollectionData_IDArray);
+            NSLog(@"CollectionData_TitleArray is %@",CollectionData_TitleArray);
+            NSLog(@"CollectionData_DescriptionArray is %@",CollectionData_DescriptionArray);
+            NSLog(@"CollectionData_PhotoArray is %@",CollectionData_PhotoArray);
+            
+            
+            DataCount_Collection = DataTotal_Collection;
+            DataTotal_Collection = [CollectionData_IDArray count];
+            
+            CheckLoad_Collection = NO;
+            
+            if (CheckFirstTimeLoadCollection == 0) {
+                CheckFirstTimeLoadCollection = 1;
+                [self GetPostsData];
+                [self InitCollectionView];
+            }else{
+                [self InitCollectionView];
+            }
+        }
+        
+        [ShowActivityCollection stopAnimating];
+        
+        
+        
     }else if (connection == theConnection_GetPostsData) {
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
         NSLog(@"User Profile Posts Data return get data to server ===== %@",GetData);
@@ -1092,8 +1268,125 @@
             [ShowActivityLike stopAnimating];
             
         }
+    }else if(connection == theConnection_SendFollow){
+        
+        NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+        NSLog(@"Get Following return get data to server ===== %@",GetData);
+        
+        NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *myError = nil;
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
+        NSLog(@"Expert Json = %@",res);
+        
+        NSString *ResultString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
+        NSLog(@"ResultString is %@",ResultString);
+        
+        if ([ResultString isEqualToString:@"ok"]) {
+            if ([GetUserFollowing isEqualToString:@"0"]) {
+                GetUserFollowing = @"1";
+                
+            }else{
+                GetUserFollowing = @"0";
+            }
+            
+        }
     }
     
     [ShowLoadingActivity stopAnimating];
+}
+-(IBAction)OpenCollectionOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSLog(@"OpenCollectionOnClick button %li",(long)getbuttonIDN);
+    
+    CollectionViewController *OpenCollectionView = [[CollectionViewController alloc]init];
+    [self.navigationController pushViewController:OpenCollectionView animated:YES];
+    [OpenCollectionView GetCollectionID:[CollectionData_IDArray objectAtIndex:getbuttonIDN]];
+}
+-(IBAction)ShowAll_FollowerButton:(id)sender{
+    ShowFollowerAndFollowingViewController *ShowFollowerAndFollowingView = [[ShowFollowerAndFollowingViewController alloc]init];
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.2;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromRight;
+    [self.view.window.layer addAnimation:transition forKey:nil];
+    [self presentViewController:ShowFollowerAndFollowingView animated:NO completion:nil];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    [ShowFollowerAndFollowingView GetToken:GetExpertToken GetUID:GetUid GetType:@"Follower"];
+}
+-(IBAction)ShowAll_FollowingButton:(id)sender{
+    ShowFollowerAndFollowingViewController *ShowFollowerAndFollowingView = [[ShowFollowerAndFollowingViewController alloc]init];
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.2;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromRight;
+    [self.view.window.layer addAnimation:transition forKey:nil];
+    [self presentViewController:ShowFollowerAndFollowingView animated:NO completion:nil];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    [ShowFollowerAndFollowingView GetToken:GetExpertToken GetUID:GetUid GetType:@"Following"];
+}
+-(IBAction)FollowButton:(id)sender{
+    NSLog(@"FollowingButton Click.");
+  //  FollowButton.userInteractionEnabled = NO;
+    
+    if ([GetUserFollowing isEqualToString:@"1"]) {
+        
+        //  NSString *tempStirng = [[NSString alloc]initWithFormat:@"Unfollow %@ ?",GetUserName];
+        NSString *tempStirng = [[NSString alloc]initWithFormat:@"%@ %@ ?",CustomLocalisedString(@"StopFollowing", nil),GetUserName];
+        
+        UIAlertView *ShowAlertView = [[UIAlertView alloc]initWithTitle:@"" message:tempStirng delegate:self cancelButtonTitle:CustomLocalisedString(@"SettingsPage_Cancel", nil) otherButtonTitles:CustomLocalisedString(@"Unfollow", nil), nil];
+        ShowAlertView.tag = 1200;
+        [ShowAlertView show];
+    }else{
+        [self SendFollowingData];
+    }
+}
+-(void)SendFollowingData{
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    
+    //Server Address URL
+    NSString *urlString = [NSString stringWithFormat:@"%@%@/follow?token=%@",DataUrl.UserWallpaper_Url,GetUid,GetExpertToken];
+    NSLog(@"urlString is %@",urlString);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    if ([GetUserFollowing isEqualToString:@"1"]) {
+        [request setHTTPMethod:@"DELETE"];
+    }else{
+        [request setHTTPMethod:@"POST"];
+    }
+    
+    
+    NSMutableData *body = [NSMutableData data];
+    
+    NSString *boundary = @"---------------------------14737809831466499882746641449";
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+    [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    
+    
+    //close form
+    [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSLog(@"Request  = %@",[[NSString alloc] initWithData:body encoding:NSUTF8StringEncoding]);
+    
+    //setting the body of the post to the reqeust
+    [request setHTTPBody:body];
+    
+    theConnection_SendFollow = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    if(theConnection_SendFollow) {
+        //  NSLog(@"Connection Successful");
+        webData = [NSMutableData data];
+    } else {
+        
+    }
+    
 }
 @end

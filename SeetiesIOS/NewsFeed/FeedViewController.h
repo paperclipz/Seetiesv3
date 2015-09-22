@@ -45,7 +45,6 @@
     NSMutableArray *arrImageHeight;
     NSMutableArray *arrlike;
     
-    
     NSMutableArray *User_IDArray;
     NSMutableArray *User_ProfileImageArray;
     NSMutableArray *User_NameArray;
@@ -54,7 +53,10 @@
     NSMutableArray *User_UserNameArray;
     NSMutableArray *User_PhotoArray;
     
+    NSMutableArray *arrType_Announcement;
+    NSMutableArray *arrID_Announcement;
     
+    NSString *GetNextPaging;
     
     
     NSDate *methodStart;
@@ -81,10 +83,10 @@
     
     NSMutableData *webData;
     
-    NSInteger TotalPage;
-    NSInteger CurrentPage;
+   // NSInteger TotalPage;
+   // NSInteger CurrentPage;
     NSInteger DataCount;
-    NSInteger DataTotal;
+    NSInteger Offset;
     
     int CheckFirstTimeLoad;
     BOOL OnLoad;

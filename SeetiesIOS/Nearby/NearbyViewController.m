@@ -263,9 +263,7 @@
             for (NSDictionary * dict in UserInfoData) {
                 NSString *username = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"username"]];
                 [UserInfo_NameArray addObject:username];
-            }
-            for (NSDictionary * dict in UserInfoData_ProfilePhoto) {
-                NSString *url = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"url"]];
+                NSString *url = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"profile_photo"]];
                 [UserInfo_UrlArray addObject:url];
             }
             NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"\n(){};\"\" "];

@@ -15,6 +15,17 @@
 		0B3FF10A1BB131620014AF2E /* NewCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B3FF1041BB131620014AF2E /* NewCollectionViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		0B3FF10F1BB131A20014AF2E /* NearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3FF10D1BB131A20014AF2E /* NearbyViewController.m */; settings = {ASSET_TAGS = (); }; };
 		0B3FF1101BB131A20014AF2E /* NearbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B3FF10E1BB131A20014AF2E /* NearbyViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		0B3FF11D1BB159980014AF2E /* blue_checkbox_tick.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B3FF1121BB159980014AF2E /* blue_checkbox_tick.png */; settings = {ASSET_TAGS = (); }; };
+		0B3FF11E1BB159980014AF2E /* blue_checkbox_untick.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B3FF1131BB159980014AF2E /* blue_checkbox_untick.png */; settings = {ASSET_TAGS = (); }; };
+		0B3FF11F1BB159980014AF2E /* close_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B3FF1141BB159980014AF2E /* close_btn@2x.png */; settings = {ASSET_TAGS = (); }; };
+		0B3FF1201BB159980014AF2E /* collectionfolder_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B3FF1151BB159980014AF2E /* collectionfolder_icon@2x.png */; settings = {ASSET_TAGS = (); }; };
+		0B3FF1211BB159980014AF2E /* createnewcollection_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B3FF1161BB159980014AF2E /* createnewcollection_icon@2x.png */; settings = {ASSET_TAGS = (); }; };
+		0B3FF1221BB159980014AF2E /* gridview_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B3FF1171BB159980014AF2E /* gridview_selected@2x.png */; settings = {ASSET_TAGS = (); }; };
+		0B3FF1231BB159980014AF2E /* gridview_unselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B3FF1181BB159980014AF2E /* gridview_unselect@2x.png */; settings = {ASSET_TAGS = (); }; };
+		0B3FF1241BB159980014AF2E /* listview_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B3FF1191BB159980014AF2E /* listview_selected@2x.png */; settings = {ASSET_TAGS = (); }; };
+		0B3FF1251BB159980014AF2E /* listview_unselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B3FF11A1BB159980014AF2E /* listview_unselect@2x.png */; settings = {ASSET_TAGS = (); }; };
+		0B3FF1261BB159980014AF2E /* map_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B3FF11B1BB159980014AF2E /* map_icon@2x.png */; settings = {ASSET_TAGS = (); }; };
+		0B3FF1271BB159980014AF2E /* more_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B3FF11C1BB159980014AF2E /* more_icon@2x.png */; settings = {ASSET_TAGS = (); }; };
 		0BA1CB2F1B85AEFA009FFD3E /* Explore2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA1CB2E1B85AEFA009FFD3E /* Explore2ViewController.xib */; };
 		0BBFE04F1B9D624C004B17E9 /* EditProfileV2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBFE04D1B9D624C004B17E9 /* EditProfileV2ViewController.m */; };
 		0BBFE0501B9D624C004B17E9 /* EditProfileV2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBFE04E1B9D624C004B17E9 /* EditProfileV2ViewController.xib */; };
@@ -1047,6 +1058,17 @@
 		0B3FF10C1BB131A20014AF2E /* NearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyViewController.h; sourceTree = "<group>"; };
 		0B3FF10D1BB131A20014AF2E /* NearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyViewController.m; sourceTree = "<group>"; };
 		0B3FF10E1BB131A20014AF2E /* NearbyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NearbyViewController.xib; sourceTree = "<group>"; };
+		0B3FF1121BB159980014AF2E /* blue_checkbox_tick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_checkbox_tick.png; sourceTree = "<group>"; };
+		0B3FF1131BB159980014AF2E /* blue_checkbox_untick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_checkbox_untick.png; sourceTree = "<group>"; };
+		0B3FF1141BB159980014AF2E /* close_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close_btn@2x.png"; sourceTree = "<group>"; };
+		0B3FF1151BB159980014AF2E /* collectionfolder_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "collectionfolder_icon@2x.png"; sourceTree = "<group>"; };
+		0B3FF1161BB159980014AF2E /* createnewcollection_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "createnewcollection_icon@2x.png"; sourceTree = "<group>"; };
+		0B3FF1171BB159980014AF2E /* gridview_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gridview_selected@2x.png"; sourceTree = "<group>"; };
+		0B3FF1181BB159980014AF2E /* gridview_unselect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gridview_unselect@2x.png"; sourceTree = "<group>"; };
+		0B3FF1191BB159980014AF2E /* listview_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "listview_selected@2x.png"; sourceTree = "<group>"; };
+		0B3FF11A1BB159980014AF2E /* listview_unselect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "listview_unselect@2x.png"; sourceTree = "<group>"; };
+		0B3FF11B1BB159980014AF2E /* map_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_icon@2x.png"; sourceTree = "<group>"; };
+		0B3FF11C1BB159980014AF2E /* more_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more_icon@2x.png"; sourceTree = "<group>"; };
 		0BA1CB2E1B85AEFA009FFD3E /* Explore2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Explore2ViewController.xib; sourceTree = "<group>"; };
 		0BBFE04C1B9D624C004B17E9 /* EditProfileV2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileV2ViewController.h; sourceTree = "<group>"; };
 		0BBFE04D1B9D624C004B17E9 /* EditProfileV2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileV2ViewController.m; sourceTree = "<group>"; };
@@ -2422,6 +2444,24 @@
 			path = Nearby;
 			sourceTree = "<group>";
 		};
+		0B3FF1111BB159980014AF2E /* CollectionImg */ = {
+			isa = PBXGroup;
+			children = (
+				0B3FF1121BB159980014AF2E /* blue_checkbox_tick.png */,
+				0B3FF1131BB159980014AF2E /* blue_checkbox_untick.png */,
+				0B3FF1141BB159980014AF2E /* close_btn@2x.png */,
+				0B3FF1151BB159980014AF2E /* collectionfolder_icon@2x.png */,
+				0B3FF1161BB159980014AF2E /* createnewcollection_icon@2x.png */,
+				0B3FF1171BB159980014AF2E /* gridview_selected@2x.png */,
+				0B3FF1181BB159980014AF2E /* gridview_unselect@2x.png */,
+				0B3FF1191BB159980014AF2E /* listview_selected@2x.png */,
+				0B3FF11A1BB159980014AF2E /* listview_unselect@2x.png */,
+				0B3FF11B1BB159980014AF2E /* map_icon@2x.png */,
+				0B3FF11C1BB159980014AF2E /* more_icon@2x.png */,
+			);
+			path = CollectionImg;
+			sourceTree = "<group>";
+		};
 		0BBFE0561B9D6454004B17E9 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
@@ -3636,6 +3676,7 @@
 		8AD6C3531B70934C0040437E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				0B3FF1111BB159980014AF2E /* CollectionImg */,
 				8A4509931BB0026300A868CD /* Recommendation */,
 				0BBFE0B11BA15DC0004B17E9 /* Mini_collection_icon@2x.png */,
 				0BBFE0B21BA15DC0004B17E9 /* Mini_comment_icon@2x.png */,
@@ -4572,6 +4613,7 @@
 				8AD6C6321B70934D0040437E /* Like.png in Resources */,
 				8AD6C61C1B70934D0040437E /* LandingBackground2.jpg in Resources */,
 				8AD6C6031B70934D0040437E /* IconSearchNew@2x.png in Resources */,
+				0B3FF11F1BB159980014AF2E /* close_btn@2x.png in Resources */,
 				8AD6C6DE1B70934D0040437E /* EditInfo@3x.png in Resources */,
 				8AD6C7B71B70934D0040437E /* TabBarExplore@2x.png in Resources */,
 				8AD6C60A1B70934D0040437E /* InteractComment@3x.png in Resources */,
@@ -4586,6 +4628,7 @@
 				8AD6C7BC1B70934D0040437E /* TabBarFeed.png in Resources */,
 				8A2E2C0A1B79A4110010895E /* UserProfilePageViewController.xib in Resources */,
 				8AD6C5DD1B70934D0040437E /* Caret.png in Resources */,
+				0B3FF1201BB159980014AF2E /* collectionfolder_icon@2x.png in Resources */,
 				8AD6C6511B70934D0040437E /* PostLiked@2x.png in Resources */,
 				8AD6C7361B70934D0040437E /* IconLine@2x.png in Resources */,
 				8AD6C7761B70934D0040437E /* PhotoAddTile@3x.png in Resources */,
@@ -4692,6 +4735,7 @@
 				8AD6C0C11B706CF30040437E /* FeedV2ViewController.xib in Resources */,
 				8AD6C5DB1B70934D0040437E /* ButtonBlank.png in Resources */,
 				8AD6C2A61B7072FB0040437E /* ShowImageViewController.xib in Resources */,
+				0B3FF11E1BB159980014AF2E /* blue_checkbox_untick.png in Resources */,
 				8AD6C60E1B70934D0040437E /* 1242x2208-01.jpg in Resources */,
 				8AD6C8031B70934D0040437E /* UserDemo2.jpg in Resources */,
 				8AD6C5B51B70934D0040437E /* Accept&ContinueButton.png in Resources */,
@@ -4757,6 +4801,7 @@
 				8A9F25E91B9070C000BB13BA /* move_icon@2x.png in Resources */,
 				8AD6C6DA1B70934D0040437E /* dropdown@2x.png in Resources */,
 				8AD6C7991B70934D0040437E /* SearchBoxPin@2x.png in Resources */,
+				0B3FF11D1BB159980014AF2E /* blue_checkbox_tick.png in Resources */,
 				8AD6C5E01B70934D0040437E /* CategorySelected.png in Resources */,
 				8AD6C6851B70934D0040437E /* ActionLike.png in Resources */,
 				8AD6C6F21B70934D0040437E /* GoToPhoto@2x.png in Resources */,
@@ -4929,6 +4974,7 @@
 				8AD6C7911B70934D0040437E /* PostTime@3x.png in Resources */,
 				8AD6C7081B70934D0040437E /* IconDelete@3x.png in Resources */,
 				8AD6C0FF1B706CF30040437E /* SearchViewV2Controller.xib in Resources */,
+				0B3FF1251BB159980014AF2E /* listview_unselect@2x.png in Resources */,
 				8AD6C6C81B70934D0040437E /* ButtonClose@2x.png in Resources */,
 				8AD6C6431B70934D0040437E /* NoComment@2x.png in Resources */,
 				8AD6C6A71B70934D0040437E /* BrightnessButton@2x.png in Resources */,
@@ -4966,6 +5012,7 @@
 				8AD6C6491B70934D0040437E /* NoNotification@3x_02.png in Resources */,
 				8AD6C7CF1B70934D0040437E /* TakePhoto@2x.png in Resources */,
 				8AD6C7DA1B70934D0040437E /* SearchHover@2x.png in Resources */,
+				0B3FF1241BB159980014AF2E /* listview_selected@2x.png in Resources */,
 				8AD6C69F1B70934D0040437E /* BannerFestival@3x.png in Resources */,
 				8AD6C6651B70934D0040437E /* BarRecommendation.png in Resources */,
 				8AD6C2A41B7072FB0040437E /* SelectImageViewController.xib in Resources */,
@@ -5060,7 +5107,9 @@
 				8AD6C6EF1B70934D0040437E /* FollowDeny@2x.png in Resources */,
 				8AD6C6641B70934D0040437E /* BarCollection@3x.png in Resources */,
 				8AD6C72F1B70934D0040437E /* FBMessenger.png in Resources */,
+				0B3FF1221BB159980014AF2E /* gridview_selected@2x.png in Resources */,
 				8AD6C68F1B70934D0040437E /* ArrowAction@2x.png in Resources */,
+				0B3FF1271BB159980014AF2E /* more_icon@2x.png in Resources */,
 				8AD6C6361B70934D0040437E /* LoginButton.png in Resources */,
 				8AD6C66C1B70934D0040437E /* FollowingMini@2x.png in Resources */,
 				8AD6BA6E1B705DF20040437E /* LaunchScreen.xib in Resources */,
@@ -5141,6 +5190,7 @@
 				8AD6C6381B70934D0040437E /* MapButton.png in Resources */,
 				8AD6C63B1B70934D0040437E /* MiniMapPin.png in Resources */,
 				8AD6C5ED1B70934D0040437E /* EditProfileBack.png in Resources */,
+				0B3FF1211BB159980014AF2E /* createnewcollection_icon@2x.png in Resources */,
 				8AD6C69E1B70934D0040437E /* BannerFestival@2x.png in Resources */,
 				8AD6C67A1B70934D0040437E /* Publish_Back4.png in Resources */,
 				8AD6C7F61B70934D0040437E /* TopBarLogo@3x.png in Resources */,
@@ -5214,6 +5264,7 @@
 				8AD6C28E1B7072FB0040437E /* LocationOnMapViewController.xib in Resources */,
 				8AD6C0F71B706CF30040437E /* SearchDetailViewController.xib in Resources */,
 				8AD6C6271B70934D0040437E /* LanguageEng@2x.png in Resources */,
+				0B3FF1231BB159980014AF2E /* gridview_unselect@2x.png in Resources */,
 				8AD6C73D1B70934D0040437E /* IconWechat@3x.png in Resources */,
 				8AD6C7261B70934D0040437E /* InfoLocation.png in Resources */,
 				8AD6C34A1B707D120040437E /* textbg@2x.png in Resources */,
@@ -5247,6 +5298,7 @@
 				8AD6C6171B70934D0040437E /* 750x1334-01.jpg in Resources */,
 				8AD6C6CE1B70934D0040437E /* CaptionArrow@2x.png in Resources */,
 				8AD6C5FE1B70934D0040437E /* IconGoogle@3x.png in Resources */,
+				0B3FF1261BB159980014AF2E /* map_icon@2x.png in Resources */,
 				8AD6C69A1B70934D0040437E /* AvatarLike.png in Resources */,
 				8AD6C5FD1B70934D0040437E /* IconGoogle@2x.png in Resources */,
 				8AD6C7321B70934D0040437E /* IconFBMessenger.png in Resources */,
