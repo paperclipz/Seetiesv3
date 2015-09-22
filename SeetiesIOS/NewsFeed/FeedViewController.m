@@ -114,7 +114,7 @@
         [refreshControl beginRefreshing];
         MainScroll.hidden = YES;
         LocalScroll.hidden = NO;
-        [self LoadDataView];
+      //  [self LoadDataView];
     }else{
         MainScroll.hidden = NO;
         LocalScroll.hidden = YES;
@@ -122,7 +122,7 @@
     }
     
     
-    //[self LoadInitView];
+    [self GetFeedDataFromServer];
 
     
     self.locationManager = [[CLLocationManager alloc]init];
@@ -280,6 +280,7 @@
 }
 -(void)LoadDataView{
 
+    
     NSLog(@"Load Local Data");
     
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
@@ -2842,10 +2843,10 @@
 //                    NSLog(@"arrAddress count is %lu",(unsigned long)[arrAddress count]);
     
                 if (CheckFirstTimeLoad == 0) {
-                  //  [self StartInit1stView];
+                    [self StartInit1stView];
                     
                 }else{
-                   // [self InitContent];
+                    [self InitContent];
                 }
                 
                 OnLoad = NO;

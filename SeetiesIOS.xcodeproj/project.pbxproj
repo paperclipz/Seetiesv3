@@ -129,6 +129,14 @@
 		8A45098E1BAFEEBF00A868CD /* CategoriesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A45098D1BAFEEBF00A868CD /* CategoriesModel.m */; };
 		8A4509921BAFF7C000A868CD /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4509911BAFF7C000A868CD /* UIColor+Extension.m */; };
 		8A4509951BB0026300A868CD /* tick_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A4509941BB0026300A868CD /* tick_icon@2x.png */; };
+		8A45099A1BB133F600A868CD /* NearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4509981BB133F600A868CD /* NearbyViewController.m */; };
+		8A45099B1BB133F600A868CD /* NearbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4509991BB133F600A868CD /* NearbyViewController.xib */; };
+		8A4509A61BB1342C00A868CD /* AddCollectionDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A45099E1BB1342C00A868CD /* AddCollectionDataViewController.m */; };
+		8A4509A71BB1342C00A868CD /* AddCollectionDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A45099F1BB1342C00A868CD /* AddCollectionDataViewController.xib */; };
+		8A4509A81BB1342C00A868CD /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4509A11BB1342C00A868CD /* CollectionViewController.m */; };
+		8A4509A91BB1342C00A868CD /* CollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4509A21BB1342C00A868CD /* CollectionViewController.xib */; };
+		8A4509AA1BB1342C00A868CD /* NewCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4509A41BB1342C00A868CD /* NewCollectionViewController.m */; };
+		8A4509AB1BB1342C00A868CD /* NewCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4509A51BB1342C00A868CD /* NewCollectionViewController.xib */; };
 		8A5430101B8C1646009EFFF4 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A54300E1B8C1646009EFFF4 /* MapViewController.m */; };
 		8A5430111B8C1646009EFFF4 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A54300F1B8C1646009EFFF4 /* MapViewController.xib */; };
 		8A54301A1B8C1C05009EFFF4 /* addurl_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A5430141B8C1C05009EFFF4 /* addurl_icon@2x.png */; };
@@ -1208,6 +1216,18 @@
 		8A4509901BAFF7C000A868CD /* UIColor+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extension.h"; sourceTree = "<group>"; };
 		8A4509911BAFF7C000A868CD /* UIColor+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extension.m"; sourceTree = "<group>"; };
 		8A4509941BB0026300A868CD /* tick_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tick_icon@2x.png"; sourceTree = "<group>"; };
+		8A4509971BB133F600A868CD /* NearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyViewController.h; sourceTree = "<group>"; };
+		8A4509981BB133F600A868CD /* NearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyViewController.m; sourceTree = "<group>"; };
+		8A4509991BB133F600A868CD /* NearbyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NearbyViewController.xib; sourceTree = "<group>"; };
+		8A45099D1BB1342C00A868CD /* AddCollectionDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCollectionDataViewController.h; sourceTree = "<group>"; };
+		8A45099E1BB1342C00A868CD /* AddCollectionDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCollectionDataViewController.m; sourceTree = "<group>"; };
+		8A45099F1BB1342C00A868CD /* AddCollectionDataViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddCollectionDataViewController.xib; sourceTree = "<group>"; };
+		8A4509A01BB1342C00A868CD /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
+		8A4509A11BB1342C00A868CD /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
+		8A4509A21BB1342C00A868CD /* CollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewController.xib; sourceTree = "<group>"; };
+		8A4509A31BB1342C00A868CD /* NewCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewCollectionViewController.h; sourceTree = "<group>"; };
+		8A4509A41BB1342C00A868CD /* NewCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewCollectionViewController.m; sourceTree = "<group>"; };
+		8A4509A51BB1342C00A868CD /* NewCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewCollectionViewController.xib; sourceTree = "<group>"; };
 		8A54300D1B8C1646009EFFF4 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		8A54300E1B8C1646009EFFF4 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		8A54300F1B8C1646009EFFF4 /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
@@ -2648,6 +2668,33 @@
 			path = Recommendation;
 			sourceTree = "<group>";
 		};
+		8A4509961BB133F600A868CD /* Nearby */ = {
+			isa = PBXGroup;
+			children = (
+				8A4509971BB133F600A868CD /* NearbyViewController.h */,
+				8A4509981BB133F600A868CD /* NearbyViewController.m */,
+				8A4509991BB133F600A868CD /* NearbyViewController.xib */,
+			);
+			path = Nearby;
+			sourceTree = "<group>";
+		};
+		8A45099C1BB1342C00A868CD /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				8A45099D1BB1342C00A868CD /* AddCollectionDataViewController.h */,
+				8A45099E1BB1342C00A868CD /* AddCollectionDataViewController.m */,
+				8A45099F1BB1342C00A868CD /* AddCollectionDataViewController.xib */,
+				8A4509A01BB1342C00A868CD /* CollectionViewController.h */,
+				8A4509A11BB1342C00A868CD /* CollectionViewController.m */,
+				8A4509A21BB1342C00A868CD /* CollectionViewController.xib */,
+				8A4509A31BB1342C00A868CD /* NewCollectionViewController.h */,
+				8A4509A41BB1342C00A868CD /* NewCollectionViewController.m */,
+				8A4509A51BB1342C00A868CD /* NewCollectionViewController.xib */,
+			);
+			name = Collection;
+			path = Common/Collection;
+			sourceTree = "<group>";
+		};
 		8A5430121B8C1BE6009EFFF4 /* Recommendation */ = {
 			isa = PBXGroup;
 			children = (
@@ -2866,19 +2913,21 @@
 		8AD6BA5C1B705DF20040437E /* SeetiesIOS */ = {
 			isa = PBXGroup;
 			children = (
+				8AD6BD661B706CF30040437E /* LandingPage */,
+				8AD6BAE01B706CF10040437E /* Explore */,
+				8AD6C8771B74A7CD0040437E /* Recommendation */,
+				8A45099C1BB1342C00A868CD /* Collection */,
 				8A6584441B99553F00BC86B9 /* Animation */,
 				8AD6C2D21B707D120040437E /* Common */,
 				8AD6C23B1B7072FA0040437E /* Publish */,
 				8AD6BA961B706CF10040437E /* Category */,
-				8AD6BAE01B706CF10040437E /* Explore */,
 				8AD6BAED1B706CF10040437E /* FilterSorting */,
 				8AD6BAF41B706CF10040437E /* framework */,
 				8AD6BAF61B706CF10040437E /* Helper */,
 				8AD6BD621B706CF30040437E /* InviteFriends */,
-				8AD6BD661B706CF30040437E /* LandingPage */,
 				8AD6BD6A1B706CF30040437E /* LoginPage */,
 				8AD6BD711B706CF30040437E /* Managers */,
-				8AD6C8771B74A7CD0040437E /* Recommendation */,
+				8A4509961BB133F600A868CD /* Nearby */,
 				8AD6BD761B706CF30040437E /* Misc */,
 				8AD6BD821B706CF30040437E /* Models */,
 				8AD6BD831B706CF30040437E /* NewsFeed */,
@@ -4542,6 +4591,7 @@
 				8AD6C7361B70934D0040437E /* IconLine@2x.png in Resources */,
 				8AD6C7761B70934D0040437E /* PhotoAddTile@3x.png in Resources */,
 				8AD6C6721B70934D0040437E /* ProfileExpert@2x.png in Resources */,
+				8A4509A71BB1342C00A868CD /* AddCollectionDataViewController.xib in Resources */,
 				8AD6C7E71B70934D0040437E /* ShowImgCount.png in Resources */,
 				8AD6C2861B7072FB0040437E /* AddPriceViewController.xib in Resources */,
 				8AD6C64A1B70934D0040437E /* Notification.png in Resources */,
@@ -4613,6 +4663,7 @@
 				8AD6C6BD1B70934D0040437E /* BtnLetsgo@3x.png in Resources */,
 				8AD6C5F01B70934D0040437E /* ExploreMoreHover.png in Resources */,
 				8AD6C64C1B70934D0040437E /* Notification@3x.png in Resources */,
+				8A45099B1BB133F600A868CD /* NearbyViewController.xib in Resources */,
 				8AD6C7901B70934D0040437E /* PostTime@2x.png in Resources */,
 				8AD6C7641B70934D0040437E /* Sms@3x.png in Resources */,
 				8AD6C2A21B7072FB0040437E /* RecommendV2ViewController.xib in Resources */,
@@ -5071,6 +5122,7 @@
 				8AD6C73C1B70934D0040437E /* IconWechat@2x.png in Resources */,
 				8AD6C7001B70934D0040437E /* IconCrop.png in Resources */,
 				8AD6C7091B70934D0040437E /* IconHours.png in Resources */,
+				8A4509A91BB1342C00A868CD /* CollectionViewController.xib in Resources */,
 				8AD6C7061B70934D0040437E /* IconDelete.png in Resources */,
 				8AD6C7041B70934D0040437E /* IconDarker@2x.png in Resources */,
 				8AD6C6E31B70934D0040437E /* FeedGradient@2x.png in Resources */,
@@ -5200,6 +5252,7 @@
 				8AD6C7321B70934D0040437E /* IconFBMessenger.png in Resources */,
 				8AD6C6411B70934D0040437E /* MoreRecommendationHover@3x.png in Resources */,
 				8AD6C6B31B70934D0040437E /* BtnEdit@2x.png in Resources */,
+				8A4509AB1BB1342C00A868CD /* NewCollectionViewController.xib in Resources */,
 				8AD6C7111B70934D0040437E /* IconLocation@3x.png in Resources */,
 				8AD6C7B51B70934D0040437E /* TabBarActivity_on@3x.png in Resources */,
 				8AD6C65C1B70934D0040437E /* PostNoLike.png in Resources */,
@@ -5325,9 +5378,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8AD6C29B1B7072FB0040437E /* PublishMainViewController.m in Sources */,
+				8A45099A1BB133F600A868CD /* NearbyViewController.m in Sources */,
 				8A9F25C21B8ED33000BB13BA /* BKCardNumberField.m in Sources */,
 				8AD6C34D1B707D120040437E /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
+				8A4509A61BB1342C00A868CD /* AddCollectionDataViewController.m in Sources */,
 				8A3409441B8AD06A009B66C3 /* UIImage+Masking.m in Sources */,
+				8A4509AA1BB1342C00A868CD /* NewCollectionViewController.m in Sources */,
 				8A3409251B8737E4009B66C3 /* AUIAutoGrowingTextView.m in Sources */,
 				8AD6BE561B706CF30040437E /* AssetHelper.m in Sources */,
 				8AD6C0B91B706CF30040437E /* ShowFollowerAndFollowingViewController.m in Sources */,
@@ -5450,6 +5506,7 @@
 				8AD6C1161B706CF30040437E /* FSWebLogin.m in Sources */,
 				8AD6BE511B706CF30040437E /* Filter2ViewController.m in Sources */,
 				8AD6C8871B784BD50040437E /* ExploreCountryModel.m in Sources */,
+				8A4509A81BB1342C00A868CD /* CollectionViewController.m in Sources */,
 				8AD6C86E1B7460DB0040437E /* NSString+MKNetworkKitAdditions.m in Sources */,
 				8AD6C32B1B707D120040437E /* PECropRectView.m in Sources */,
 				8AD6C28B1B7072FB0040437E /* EditLocationV2ViewController.m in Sources */,
