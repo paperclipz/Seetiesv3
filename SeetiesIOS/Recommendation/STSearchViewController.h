@@ -12,7 +12,7 @@
 #import "SearchTableViewController.h"
 #import "CAPSPageMenu.h"
 
-typedef void(^IndexBlock) (NSIndexPath* indexPath,SearchType type);
+typedef void(^SearchResultBlock) (RecommendationVenueModel* venueModel);
 
 @interface STSearchViewController : CommonViewController<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,LPGoogleFunctionsDelegate>
 -(void)initWithLocation:(CLLocation*)location;
@@ -22,8 +22,10 @@ typedef void(^IndexBlock) (NSIndexPath* indexPath,SearchType type);
 
 @property(nonatomic,strong)SearchTableViewController* fourSquareSearchTableViewController;
 
-@property(nonatomic,copy)IndexBlock didSelectRowAtIndexPathBlock;
+@property(nonatomic,copy)SearchResultBlock didSelectOnLocationBlock;
 
 @property(nonatomic,copy)IDBlock btnAddNewPlaceBlock;
+
+@property(nonatomic,assign)SearchType searchType;
 
 @end

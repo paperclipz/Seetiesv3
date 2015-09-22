@@ -17,6 +17,7 @@
 
 #import "EditPostDetailVIew.h"
 #import "CategorySelectionViewController.h"
+#import "NSArray+JSON.h"
 
 @interface EditPostViewController ()
 {
@@ -27,6 +28,7 @@
 
 // =============== model ===============//
 @property(nonatomic,strong)RecommendationModel* recommendationModel;
+@property(nonatomic,strong)CategoriesModel* categoriesModel;
 
 // =============== model ===============//
 
@@ -40,8 +42,8 @@
 @property(nonatomic,strong)IBOutlet UISegmentedControl* postSegmentedControl;
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
 @property (weak, nonatomic) IBOutlet UIView *ibDescContentView;
-@property(nonatomic,strong)EditPostDetailVIew* editPostView;
-@property(nonatomic,strong)EditPostDetailVIew* editPostViewSecond;
+@property(nonatomic,weak)EditPostDetailVIew* editPostView;
+@property(nonatomic,weak)EditPostDetailVIew* editPostViewSecond;
 
 @property(nonatomic,strong)UIAlertView* urlAlertView;
 @end
@@ -49,9 +51,14 @@
 @implementation EditPostViewController
 - (IBAction)btnPublishClicked:(id)sender {
     
-    [self presentViewController:self.categorySelectionViewController animated:YES completion:nil];
-
     
+    
+    [self requestServerForCategories:^(id object) {
+        self.categoriesModel = [[DataManager Instance] categoriesModel];
+        self.categorySelectionViewController.arrCategories = self.categoriesModel.categories;
+        [self presentViewController:self.categorySelectionViewController animated:YES completion:nil];
+    }];
+
 }
 - (IBAction)segmentedControlClicked:(id)sender {
     
@@ -87,7 +94,17 @@
 
                           } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Discard"]) {
                               NSLog(@"Discard");
-                              [self dismissViewControllerAnimated:YES completion:nil];
+                              
+                              if (self.navigationController) {
+                                  [self.navigationController popViewControllerAnimated:YES];
+                              }
+                              else{
+                                  [self dismissViewControllerAnimated:YES completion:nil];
+
+                              }
+                              if (self.editPostBackBlock) {
+                                  self.editPostBackBlock(self);
+                              }
 
                           } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Save"]) {
                               NSLog(@"Save");
@@ -98,31 +115,96 @@
 
 -(void)initData:(RecommendationModel*)model
 {
+    self.editPostType = EditPostTypeDraftNew;
     self.recommendationModel = model;
 
 }
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [self initSelfView];
+
+-(void)initDataDraft:(DraftModel*)model
+{
+    self.editPostType = EditPostTypeDraft;
+    self.recommendationModel = [[RecommendationModel alloc]initWithDraftModel:model];
     
 }
 
--(void)reloadData
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self initSelfView];
+   // [self resetData];
+}
+
+-(void)loadData
+{
+    self.editPostView.txtTitle.text = self.recommendationModel.postMainTitle;
+    self.editPostView.txtDescription.text = self.recommendationModel.postMainDescription;
+    
+    self.editPostViewSecond.txtTitle.text = self.recommendationModel.postSecondTitle;
+    self.editPostViewSecond.txtDescription.text = self.recommendationModel.postSecondDescription;
+    
+    [self reloadImage];
+}
+
+-(void)resetData
+{
+    self.editPostView.txtTitle.text = @"";
+    self.editPostView.txtDescription.text = @"";
+    
+    self.editPostViewSecond.txtTitle.text = @"";
+    self.editPostViewSecond.txtDescription.text = @"";
+}
+
+-(void)reloadImage
 {
     
-    EditPhotoModel* edifotoModel = self.recommendationModel.arrPostImagesList[0];
     
-    
-    if (edifotoModel) {
-        self.ibImageView.image = [edifotoModel.image imageCroppedAndScaledToSize:self.ibImageView.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
+        if (self.recommendationModel.arrPostImagesList && self.recommendationModel.arrPostImagesList.count>0) {
+            
+            PhotoModel* edifotoModel = self.recommendationModel.arrPostImagesList[0];
+            
+            if (edifotoModel.image) {
+                
+                self.ibImageView.image = [edifotoModel.image imageCroppedAndScaledToSize:self.ibImageView.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
+
+            }
+            else if(edifotoModel.imageURL)
+            {
+                
+                [self.ibImageView sd_setImageWithURL:[NSURL URLWithString:edifotoModel.imageURL] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                    
+                    self.ibImageView.image = [image imageCroppedAndScaledToSize:self.ibImageView.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
+                    
+                }];
+
+            }
+
+//            switch (self.editPostType) {
+//                default:
+//                case EditPostTypeDraftNew:
+//                    self.ibImageView.image = [edifotoModel.image imageCroppedAndScaledToSize:self.ibImageView.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
+//
+//                    break;
+//                    
+//                    case EditPostTypeDraft:
+//                    
+//                    [self.ibImageView sd_setImageWithURL:[NSURL URLWithString:edifotoModel.imageURL] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+//                        self.ibImageView.image = [image imageCroppedAndScaledToSize:self.ibImageView.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
+//
+//                    }];
+//
+//                    break;
+//            }
+            
+            
     }
+    
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
-    [self reloadData];
+    [self loadData];
 
     //    SDWebImageManager *manager = [SDWebImageManager sharedManager];
     //    [manager downloadImageWithURL:[NSURL URLWithString:@"http://cdn3.denofgeek.us/sites/denofgeekus/files/scarlett_johansson.jpg"]
@@ -143,6 +225,8 @@
 - (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
     NSLog(@"Selected index %ld (via UIControlEventValueChanged)", (long)segmentedControl.selectedSegmentIndex);
     
+    
+    [self saveData];
     switch ((long)segmentedControl.selectedSegmentIndex) {
        
         default:
@@ -156,8 +240,9 @@
             break;
         case 1:
         {
+            [self.addNewPlaceViewController initData:self.recommendationModel.reccomendVenueModel];
+
             [self presentViewController:self.navAddNewPlaceViewController animated:YES completion:^{
-                [self.addNewPlaceViewController initData:self.recommendationModel.reccomendVenueModel];
             }];
 
         }
@@ -172,18 +257,20 @@
 
             [self presentViewController:self.editPhotoViewController animated:YES completion:nil];
                  __weak typeof (self)weakSelf = self;
-                self.editPhotoViewController.doneBlock = ^(NSArray* array)
+                self.editPhotoViewController.doneBlock = ^(NSArray* arrayImages,NSArray* arrDeleteImages)
                 {
                 
                 weakSelf.recommendationModel.arrPostImagesList = nil;
-                weakSelf.recommendationModel.arrPostImagesList = [[NSMutableArray alloc]initWithArray:array];
-                };
+                weakSelf.recommendationModel.arrPostImagesList = [[NSMutableArray alloc]initWithArray:arrayImages];
+                  
+                    [weakSelf.recommendationModel.arrDeletedImages addObjectsFromArray:arrDeleteImages];
 
+                };
         }
             break;
         case 3:
             
-            [self saveData];
+            [self requestToSaveDraftOrPublish:YES];
             break;
     }
     
@@ -263,9 +350,11 @@
         
         __weak typeof(self)weakSelf = self;
         _categorySelectionViewController = [CategorySelectionViewController new];
-        _categorySelectionViewController.doneClickBlock = ^(id object)
+        _categorySelectionViewController.doneClickBlock = ^(NSArray* arrCat)
         {
-            [weakSelf requestServerForPublishPost];
+            
+            weakSelf.categoriesModel.categories = [arrCat mutableCopy];
+            [weakSelf requestToSaveDraftOrPublish:NO];
         };
         
     }
@@ -322,7 +411,9 @@
             RecommendationVenueModel* temp = (RecommendationVenueModel*)object;
             
             weakSelf.recommendationModel.reccomendVenueModel = temp;
-            [weakSelf.addNewPlaceViewController dismissViewControllerAnimated:YES completion:nil];
+            [weakSelf.addNewPlaceViewController dismissViewControllerAnimated:YES completion:^{
+                [weakSelf reloadImage];
+            }];
 
         };
       
@@ -391,37 +482,126 @@
     return _recommendationModel;
 }
 
+
 #pragma mark - Server Request
 
--(void)requestServerForPublishPost
+static id ObjectOrNull(id object)
 {
-    NSMutableArray* arrImages = [NSMutableArray new];
+    return object ?: [NSNull null];
+}
+
+
+#define POST_DRAFT @"0"
+#define POST_PUBLISH @"1"
+
+
+-(void)requestToSaveDraftOrPublish:(BOOL)isDraft
+{
+    [self saveData];
     NSMutableArray* arrMeta = [NSMutableArray new];
-    NSDictionary* photo_meta = @{@"photo_id":@"",@"position":@"",@"caption":@""};
+
+    RecommendationModel* tempModel = self.recommendationModel;
+    RecommendationVenueModel* tempVenueModel = tempModel.reccomendVenueModel;
 
     for (int i =0; i<self.recommendationModel.arrPostImagesList.count; i++) {
         
-        EditPhotoModel* model = self.recommendationModel.arrPostImagesList[i];
-        [arrImages addObject: model.image];
-        [arrMeta addObject:photo_meta];
+        PhotoModel* model = self.recommendationModel.arrPostImagesList[i];
+        [arrMeta addObject:model];
     }
     
-    NSDictionary* addressDict = @{@"route":@"setapak",@"locality":@"KL",@"administrative_area_level_1":@"Federal Territory of Kuala Lumpur",@"postalCode":@"123456",@"country":@"malaysia",@"political":@"abc"};
+    NSDictionary* addressDict = @{@"route":ObjectOrNull(tempVenueModel.route),
+                                  @"locality":ObjectOrNull(tempVenueModel.city),
+                                  @"administrative_area_level_1":ObjectOrNull(tempVenueModel.state),
+                                  @"postalCode":ObjectOrNull(tempVenueModel.postalCode),
+                                  @"country":ObjectOrNull(tempVenueModel.country),
+                                  @"political":@""};
+    
+    NSMutableArray* dictPeriods = [NSMutableArray new];
 
-    NSDictionary* sourceDict = @{@"open_now":@"true",@"periods":@"",@"weekday_text":@""};
-    
-    NSDictionary* openingHourDict = @{@"open_now":@"false",@"periods":@""};
-
-    NSDictionary* locationDict  = @{@"address_components":addressDict,@"name":@"setapak",@"formatted_address":@"",@"type":@2,@"reference":@"",@"expense":@"",@"rating":@11,@"contact_no":@"",@"source":sourceDict,@"opening_hours":openingHourDict,@"link":@"",@"lat":@"3.1333",@"lng":@"101.7000"};
-    
-    
-    NSDictionary* dict = @{@"post_id":@"",@"token":[Utils getAppToken],@"status":@"0",[NSString stringWithFormat:@"title[%@]",ENGLISH_CODE]:@"title1",[NSString stringWithFormat:@"message[%@]",ENGLISH_CODE]:@"msg1",@"category":@[@1,@2],@"device_type":@2,@"location":[locationDict getJsonString],@"link":@"www.google.com"};
-    
-    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostCreatePost param:dict images:arrImages  completeHandler:^(id object) {
+    for (int i = 0; i<tempVenueModel.arrOperatingHours.count; i++) {
         
-        SLog(@"recommendation response : %@",object);
+        OperatingHoursModel* hourModel = tempVenueModel.arrOperatingHours[i];
+        if (hourModel.isOpen)
+            [dictPeriods addObject:[hourModel toDictionary]];
+    }
+
+//    NSArray* dictPeriods = @[@{@"close":@{@"day":@0,@"time":@"1111"},@"open":@{@"day":@0,@"time":@"1030"}},
+//                             @{@"close":@{@"day":@1,@"time":@"1222"},@"open":@{@"day":@1,@"time":@"1030"}},
+//                             @{@"close":@{@"day":@2,@"time":@"1333"},@"open":@{@"day":@2,@"time":@"1030"}},
+//                             @{@"close":@{@"day":@3,@"time":@"1444"},@"open":@{@"day":@3,@"time":@"1030"}}];
+//  
+//    SLog(@"compiled dict 2222 : %@",dictPeriods);
+
     
-    } errorBlock:nil];
+    //  NSString* tempString = [string stringByReplacingOccurrencesOfString:@"open" withString:@"GG"];
+    NSDictionary* openingHourDict = @{@"open_now":@"false",
+                                      @"periods":ObjectOrNull(dictPeriods)};
+    
+    NSDictionary* locationDict  = @{@"address_components":addressDict,
+                                    @"name":ObjectOrNull(tempVenueModel.name),
+                                    @"formatted_address":ObjectOrNull(tempVenueModel.formattedAddress),
+                                    @"type":@2,
+                                    @"reference":ObjectOrNull(tempVenueModel.reference),
+                                    @"expense":ObjectOrNull(tempVenueModel.expense),
+                                    @"rating":@11,
+                                    @"contact_no":ObjectOrNull(tempVenueModel.formattedPhone),
+                                    @"source":@"",
+                                    @"opening_hours":openingHourDict,
+                                    @"link":ObjectOrNull(tempVenueModel.url),
+                                    @"lat":ObjectOrNull(tempVenueModel.lat),
+                                    @"lng":ObjectOrNull(tempVenueModel.lng)};
+    
+    
+    
+    
+    
+    NSMutableArray* categoriesSelected = [NSMutableArray new];
+    
+    for (int i = 0; i < self.categoriesModel.categories.count; i++) {
+    
+        CategoryModel* model = self.categoriesModel.categories[i];
+        if (model.isSelected) {
+            [categoriesSelected addObject:@(model.id)];
+
+        }
+    }
+    
+    NSDictionary* dict = @{@"token":[Utils getAppToken],
+                           @"status":isDraft?POST_DRAFT:POST_PUBLISH,
+                           [NSString stringWithFormat:@"title[%@]",ENGLISH_CODE]:ObjectOrNull(tempModel.postMainTitle),
+                           [NSString stringWithFormat:@"message[%@]",ENGLISH_CODE]:ObjectOrNull(tempModel.postMainDescription),
+                           @"category":@"",
+                           @"device_type":@2,
+                           @"location":[Utils convertToJsonString:locationDict],
+                           @"link":ObjectOrNull(tempModel.postURL)};
+    
+    
+
+    NSDictionary* dictSecondDesc = @{[NSString stringWithFormat:@"title[%@]",THAI_CODE]:ObjectOrNull(tempModel.postSecondTitle),
+                                 [NSString stringWithFormat:@"message[%@]",THAI_CODE]:ObjectOrNull(tempModel.postSecondDescription)};
+    
+    
+    NSMutableDictionary* finalDict = [[NSMutableDictionary alloc]initWithDictionary:dict];
+    [finalDict addEntriesFromDictionary:dictSecondDesc];
+    
+    
+    for (int i = 0; i<tempModel.arrDeletedImages.count; i++) {
+        
+        NSDictionary* tempDict = @{[NSString stringWithFormat:@"delete_photos[%d]",i]:tempModel.arrDeletedImages[i]};
+        [finalDict addEntriesFromDictionary:tempDict];
+
+    }
+    
+    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostCreatePost param:finalDict appendString:tempModel.post_id meta:arrMeta  completeHandler:^(id object) {
+        
+        
+        [TSMessage showNotificationInViewController:self title:@"system" subtitle:@"Data Successfully posted" type:TSMessageNotificationTypeSuccess duration:2.0 canBeDismissedByUser:YES];
+    
+    } errorBlock:^(id object) {
+
+        [TSMessage showNotificationInViewController:self title:@"system" subtitle:@"Data Fail to be Posted" type:TSMessageNotificationTypeSuccess duration:2.0 canBeDismissedByUser:YES];
+
+    }];
     
 }
 
@@ -434,8 +614,19 @@
     self.recommendationModel.postSecondTitle = self.editPostViewSecond.txtTitle.text;
     self.recommendationModel.postSecondDescription = self.editPostViewSecond.txtDescription.text;
 
-    [TSMessage showNotificationInViewController:self title:@"system" subtitle:@"message" type:TSMessageNotificationTypeSuccess duration:2.0 canBeDismissedByUser:YES];
-   // [TSMessage showNotificationWithTitle:@"System" subtitle:@"Save To Draft" type:TSMessageNotificationTypeSuccess];
+}
+
+-(void)requestServerForCategories:(IDBlock)sucessRequestBlock
+{
+    
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetCategories param:nil completeHandler:^(id object) {
+        
+        if (sucessRequestBlock) {
+            sucessRequestBlock(nil);
+        }
+    } errorBlock:^(id object) {
+        
+    }];
 }
 
 @end

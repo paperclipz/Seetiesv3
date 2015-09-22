@@ -26,3 +26,5 @@ pod 'AviarySDK', '4.2.1'
 pod 'pop', '~> 1.0'
 pod 'MGSwipeTableCell'
 pod 'SVPullToRefresh'
+pod 'UITextView+Placeholder'
+

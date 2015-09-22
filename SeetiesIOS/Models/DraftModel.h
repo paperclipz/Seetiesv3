@@ -7,35 +7,44 @@
 //
 
 #import "Model.h"
+#import "OpeningPeriodModel.h"
+
 
 
 
 @protocol PhotoModel
-
 @end
-
 @protocol Location
-
 @end
 @protocol DraftModel
-
 @end
 
 @interface Post : NSObject
 @property(nonatomic,strong)NSString* title;
 @property(nonatomic,strong)NSString* message;
-
 @end
 
-@interface Location : NSObject
-@property(nonatomic,strong)NSString* route;
+@interface Location : JSONModel
 @property(nonatomic,strong)NSString* lat;
 @property(nonatomic,strong)NSString* lng;
 @property(nonatomic,strong)NSString* name;
 @property(nonatomic,strong)NSString* place_id;
-@property(nonatomic,strong)NSString* opening_hours;
+@property(nonatomic,strong)OpeningPeriodModels* opening_hours;
 @property(nonatomic,strong)NSString* contact_no;
 @property(nonatomic,strong)NSString* link;
+@property(nonatomic,strong)NSString* distance;
+@property(nonatomic,strong)NSString* reference;
+@property(nonatomic,strong)NSString* formatted_address;
+@property(nonatomic,strong)NSDictionary* expense;
+
+//below here is all inside address_components
+@property(nonatomic,strong)NSString* administrative_area_level_1;
+@property(nonatomic,strong)NSString* country;
+@property(nonatomic,strong)NSString* locality;
+@property(nonatomic,strong)NSString* political;
+@property(nonatomic,strong)NSString* postal_code;
+@property(nonatomic,strong)NSString* route;
+@property(nonatomic,strong)NSString* sublocality;
 
 @end
 
@@ -46,6 +55,7 @@
 @property(nonatomic,strong)NSString* caption;
 @property(nonatomic,assign)int position;
 @property(nonatomic,strong)NSString* imageURL;
+@property(nonatomic,strong)UIImage* image;
 
 @end
 
@@ -53,15 +63,11 @@
 
 @property(nonatomic,strong)NSArray* arrPost;
 @property(nonatomic,strong)NSString* place_name;
-@property(nonatomic,strong)NSString* formatted_address;
+//@property(nonatomic,strong)NSString* formatted_address;
 @property(nonatomic,strong)NSArray<PhotoModel>* arrPhotos;
 @property(nonatomic,strong)NSString* link;
 @property(nonatomic,strong)NSString* post_id;
-
-
-
-
-//@property(nonatomic,strong)Location* location;
+@property(nonatomic,strong)Location* location;
 
 @end
 

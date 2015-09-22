@@ -13,15 +13,18 @@
 
 @property(nonatomic,strong)NSString* postMainTitle;
 @property(nonatomic,strong)NSString* postMainDescription;
-
 @property(nonatomic,strong)NSString* postSecondTitle;
 @property(nonatomic,strong)NSString* postSecondDescription;
-
 @property(nonatomic,strong)NSString* postURL;
+@property(nonatomic,strong)NSString* price;
+@property(nonatomic,strong)NSString* post_id;
 
 
-@property(nonatomic,strong)NSMutableArray* arrPostImagesList;
+@property(nonatomic,strong)NSMutableArray* arrDeletedImages;
+
+@property(nonatomic,strong)NSMutableArray* arrPostImagesList;//photoModel
 @property(nonatomic,strong)RecommendationVenueModel* reccomendVenueModel;
 
 
+-(id)initWithDraftModel:(DraftModel*)model;
 @end

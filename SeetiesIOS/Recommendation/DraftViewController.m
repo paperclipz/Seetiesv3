@@ -81,9 +81,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.editPostViewController initData:self.arrDraftList[indexPath.row]];
+    DraftModel* draftModel = self.arrDraftList[indexPath.row];
+    [self.editPostViewController initDataDraft:draftModel];
     
-   // [self.navigationController pushViewController:self.editPostViewController animated:YES];
+    [self.navigationController pushViewController:self.editPostViewController animated:YES];
 }
 
 #pragma mark Request Server
@@ -91,11 +92,11 @@
 -(void)requestServerForDeletePost:(NSString*)postID
 {
     
-    NSDictionary* dict = @{@"post_id":postID,@"token":@"JDJ5JDEwJElrb1EvRXNGdUl6VjJQaVY4MXJLQmVsZEc4MXM0eUhJUkNJQTRjRXNWa2RnaUM1Ump5MzR1"};
+    NSDictionary* dict = @{@"token":[Utils getAppToken]};
     
-    [[ConnectionManager Instance]requestServerWithDelete:ServerRequestTypePostDeletePost param:dict completeHandler:^(id object) {
+    [[ConnectionManager Instance]requestServerWithDelete:ServerRequestTypePostDeletePost param:dict appendString:postID completeHandler:^(id object) {
         
-        SLog(@"ServerRequestTypePostDeletePost : %@",object);
+        
     } errorBlock:nil];
 }
 
@@ -107,7 +108,7 @@
 //        [self.arrDraftList addObject:[DataManager getSampleRecommendation]];
 //    }
 
-    NSDictionary* dict = @{@"token":@"JDJ5JDEwJElrb1EvRXNGdUl6VjJQaVY4MXJLQmVsZEc4MXM0eUhJUkNJQTRjRXNWa2RnaUM1Ump5MzR1"};
+    NSDictionary* dict = @{@"token":[Utils getAppToken]};
     
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetRecommendationDraft param:dict completeHandler:^(id object) {
         
@@ -125,7 +126,16 @@
 {
     if(!_editPostViewController)
     {
+        
+        __weak typeof (self)weakSelf = self;
         _editPostViewController = [EditPostViewController new];
+        _editPostViewController.editPostBackBlock = ^(id object)
+        {
+            EditPostViewController* obj  = (EditPostViewController*)object;
+            obj = nil;
+            [weakSelf requestServerForDraft];
+        
+        };
     }
     return _editPostViewController;
 }
@@ -156,7 +166,5 @@
     }
     return result;
 }
-
-
 
 @end

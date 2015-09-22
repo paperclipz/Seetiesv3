@@ -11,13 +11,41 @@
 @implementation Post
 @end
 
+
+
+
+
 @implementation Location
++(BOOL)propertyIsOptional:(NSString*)propertyName
+{
+    return YES;
+}
++(JSONKeyMapper*)keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{
+                                                       @"address_components.administrative_area_level_1" : @"administrative_area_level_1",
+                                                       @"address_components.country" : @"country",
+                                                       @"address_components.locality" : @"locality",
+                                                       @"address_components.political" : @"political",
+                                                       @"address_components.postal_code" : @"postal_code",
+                                                       @"address_components.route" : @"route",
+                                                       @"address_components.sublocality" : @"sublocality"
+
+                                                       }];
+}
 
 @end
 
 
+
+
+
 @implementation PhotoModel
 
++(BOOL)propertyIsOptional:(NSString*)propertyName
+{
+    return YES;
+}
 +(JSONKeyMapper*)keyMapper
 {
     return [[JSONKeyMapper alloc] initWithDictionary:@{
@@ -25,6 +53,10 @@
                                                        }];
 }
 @end
+
+
+
+
 
 
 @interface DraftModel ()
@@ -42,7 +74,6 @@
 +(JSONKeyMapper*)keyMapper
 {
     return [[JSONKeyMapper alloc] initWithDictionary:@{
-                                                       @"location.address_components" :@"location",
                                                        @"photos" :@"arrPhotos"
 
                                                        }];
@@ -66,6 +97,12 @@
 }
 
 @end
+
+
+
+
+
+
 
 @implementation DraftsModel
 

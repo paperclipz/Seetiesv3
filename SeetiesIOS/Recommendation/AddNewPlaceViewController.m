@@ -23,9 +23,6 @@
 
 @property(strong,nonatomic)MKPointAnnotation* annotation;
 @property(nonatomic,assign)MKCoordinateRegion region;
-
-@property(nonatomic,strong)NSString* placeID;
-
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @end
 
@@ -35,27 +32,6 @@
         
     if(self.btnPressDoneBlock)
     {
-
-        switch (self.searchType) {
-            case SearchTypeGoogle:
-            {
-                
-                
-                [self.rModel processGoogleModel:(SearchLocationDetailModel*)self.gooModel];
-            }
-                break;
-                
-            case SearchTypeFourSquare:
-                
-                [self.rModel  processFourSquareModel:(VenueModel*)self.fsModel];
-
-                break;
-                
-            default:
-               
-                break;
-        }
-        
         [self saveData];
         
         self.btnPressDoneBlock(self.rModel);
@@ -78,7 +54,6 @@
     }
     
     
-  //  [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 
@@ -86,12 +61,12 @@
 {
     [super viewDidAppear:animated];
     self.lblTitle.text = self.title;
+    [self reloadData];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
-    //[self requestForGoogleMapDetails];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -123,7 +98,7 @@
         _addNewPlaceSubView.btnEditHourClickedBlock = ^(id sender)
         {
             _editHoursViewController = nil;
-            [weakSelf.editHoursViewController initData:weakSelf.rModel.arrOpeningHours];
+            [weakSelf.editHoursViewController initData:weakSelf.rModel.arrOperatingHours];
             [weakSelf presentViewController:weakSelf.editHoursViewController animated:YES completion:^{
             }];
         };
@@ -158,81 +133,25 @@
 
 }
 
--(void)initDataFromGogle:(NSString*)placeid
-{
-    self.searchType = SearchTypeGoogle;
-    self.placeID = placeid;
-    [self requestForGoogleMapDetails];
-
-
-}
-
 -(void)initData:(RecommendationVenueModel*)model
 {
-    self.searchType = SearchTypeDefault;
     self.rModel = model;
-    [self reloadData];
+   // [self reloadData];
 
 }
-
--(void)initDataFrom4Square:(VenueModel*)model
-{
-    self.searchType = SearchTypeFourSquare;
-    self.fsModel = model;
-    [self reloadData];
-
-}
-
 
 -(void)reloadData
 {
-    switch (self.searchType) {
-        default:
-            self.addNewPlaceSubView.txtPlaceName.text = self.rModel.name;
-            self.addNewPlaceSubView.txtAddress.text = self.rModel.formattedAddress;
-            self.addNewPlaceSubView.txtURL.text = self.rModel.website;
-            self.addNewPlaceSubView.txtPhoneNo.text = self.rModel.formattedPhone;
-            [self.addNewPlaceSubView.btnCurrency setTitle:self.rModel.currency forState:UIControlStateNormal];
-            self.addNewPlaceSubView.txtPerPax.text = self.rModel.price;
-            [self refreshMapViewWithLatitude:[self.rModel.lat doubleValue] longtitude:[self.rModel.lng doubleValue]];
-
-            break;
-        case SearchTypeGoogle:
-            self.addNewPlaceSubView.txtPlaceName.text = self.gooModel.name;
-            self.addNewPlaceSubView.txtAddress.text = self.gooModel.formatted_address;
-            self.addNewPlaceSubView.txtURL.text = self.gooModel.website;
-            self.addNewPlaceSubView.txtPhoneNo.text = self.gooModel.formatted_phone_number;
-            [self refreshMapViewWithLatitude:[self.gooModel.lat doubleValue] longtitude:[self.gooModel.lng doubleValue]];
-
-            break;
-        case SearchTypeFourSquare:
-       
-            self.addNewPlaceSubView.txtPlaceName.text = self.fsModel.name;
-            self.addNewPlaceSubView.txtAddress.text = self.fsModel.address;
-            self.addNewPlaceSubView.txtURL.text = @"";
-            self.addNewPlaceSubView.txtPhoneNo.text = self.fsModel.phone;
-            [self refreshMapViewWithLatitude:[self.fsModel.lat doubleValue] longtitude:[self.fsModel.lng doubleValue]];
-
-        break;
-    
-    }
-  
-}
-
-#pragma mark - Request Sever
--(void)requestForGoogleMapDetails
-{
-    
-    NSDictionary* dict = @{@"placeid":self.placeID,@"key":GOOGLE_API_KEY};
-    
-    [[ConnectionManager Instance] requestServerWithPost:NO customURL:GOOGLE_PLACE_DETAILS_API requestType:ServerRequestTypeGoogleSearchWithDetail param:dict completeHandler:^(id object) {
-        
-        self.gooModel = [[DataManager Instance] googleSearchDetailModel];
-        [self reloadData];
-        
-    } errorBlock:nil];
+    self.addNewPlaceSubView.txtPlaceName.text = self.rModel.name;
+    self.addNewPlaceSubView.txtAddress.text = self.rModel.formattedAddress;
+    self.addNewPlaceSubView.txtURL.text = self.rModel.url;
+    self.addNewPlaceSubView.txtPhoneNo.text = self.rModel.formattedPhone;
+    [self.addNewPlaceSubView.btnCurrency setTitle:self.rModel.currency?self.rModel.currency:USD forState:UIControlStateNormal];
+    self.addNewPlaceSubView.txtPerPax.text = self.rModel.price;
+    [self refreshMapViewWithLatitude:[self.rModel.lat doubleValue] longtitude:[self.rModel.lng doubleValue]];
 
 }
+
 
 -(void)refreshMapViewWithLatitude:(double)lat longtitude:(double)lont
 {
@@ -240,14 +159,12 @@
     _region.center.longitude = lont;
     _region.center.latitude = lat;
     
-    
     if (lat && lont) {
         [self.annotation setCoordinate:self.region.center];
     }
 
     SLog(@"refreshMapView");
    
-
     //CLLocationCoordinate2D startCoord = CLLocationCoordinate2DMake([self.model.latitude doubleValue], [self.model.longitude doubleValue]);
    // MKCoordinateRegion adjustedRegion = [self.ibMapView regionThatFits:MKCoordinateRegionMakeWithDistance(startCoord, 200, 200)];
     [self.ibMapView setRegion:self.region animated:YES];
@@ -262,7 +179,8 @@
         _mapViewController = [MapViewController new];
         _mapViewController.viewDidDismissBlock = ^(MKCoordinateRegion region)
         {
-            [weakSelf refreshMapViewWithLatitude:region.center.latitude longtitude:region.center.longitude];
+            weakSelf.rModel.lat = [@(region.center.latitude) stringValue];
+            weakSelf.rModel.lng = [@(region.center.longitude) stringValue];
         };
     }
     
@@ -332,7 +250,7 @@ didChangeDragState:(MKAnnotationViewDragState)newState
         _editHoursViewController = [EditHoursViewController new];
         _editHoursViewController.backBlock = ^(NSArray* arrayOpeningHours)
         {
-            weakSelf.rModel.arrOpeningHours = arrayOpeningHours;
+            weakSelf.rModel.arrOperatingHours = [arrayOpeningHours mutableCopy];
         
         };
     }
@@ -342,10 +260,10 @@ didChangeDragState:(MKAnnotationViewDragState)newState
 #pragma mark - Save Data
 -(void)saveData
 {
-    self.rModel.address =  self.addNewPlaceSubView.txtAddress.text;
+    self.rModel.formattedAddress =  self.addNewPlaceSubView.txtAddress.text;
     self.rModel.formattedPhone =  self.addNewPlaceSubView.txtPhoneNo.text;
     self.rModel.name =  self.addNewPlaceSubView.txtPlaceName.text;
-    self.rModel.website =  self.addNewPlaceSubView.txtURL.text;
+    self.rModel.url =  self.addNewPlaceSubView.txtURL.text;
     self.rModel.price =  self.addNewPlaceSubView.txtPerPax.text;
     self.rModel.currency = self.addNewPlaceSubView.btnCurrency.titleLabel.text;    
 }

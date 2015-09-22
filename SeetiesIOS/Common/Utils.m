@@ -6,6 +6,10 @@
 //  Copyright (c) 2015 Ahyong87. All rights reserved.
 //
 #import "Utils.h"
+// =====================  CURRENCY =========================
+#define CASE(str)                       if ([__s__ isEqualToString:(str)])
+#define SWITCH(s)                       for (NSString *__s__ = (s); ; )
+#define DEFAULT
 
 @implementation Utils
 {
@@ -61,9 +65,11 @@
 
 +(void)setRoundBorder:(UIView*)view color:(UIColor*)color borderRadius:(float)borderRadius
 {
+
     [[view layer] setBorderWidth:0.3f];
     [[view layer] setBorderColor:color.CGColor];
     [[view layer] setCornerRadius:borderRadius];
+    [[view layer] setMasksToBounds:YES];
 
 }
 
@@ -101,11 +107,61 @@
         case 6:
             return @"Sat";
             break;
-        case 7:
+        case 0:
             return @"Sun";
             break;
     }
 }
+
++(int)getWeekInteger:(NSString*)week
+{
+    
+    int returnWeekInteger;
+    
+    SWITCH (week) {
+        
+        CASE (@"Mon"){
+            returnWeekInteger = 1;
+            break;
+            
+        }
+        CASE (@"Tue"){
+            returnWeekInteger = 2;
+            break;
+            
+        }
+        CASE (@"Wed"){
+            returnWeekInteger = 3;
+            break;
+            
+        }
+        CASE (@"Thu"){
+            returnWeekInteger = 4;
+            break;
+            
+        }
+        CASE (@"Fri"){
+            returnWeekInteger = 5;
+            break;
+        }
+        CASE (@"Sat"){
+            returnWeekInteger = 6;
+            break;
+            
+        }
+        DEFAULT
+        {
+            returnWeekInteger = 0;
+            break;
+            
+        }
+        
+    }
+    
+    return returnWeekInteger;
+
+}
+
 
 + (BOOL) validateUrl: (NSString *) candidate {
     NSString *urlRegEx =
@@ -113,4 +169,120 @@
     NSPredicate *urlTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", urlRegEx];
     return [urlTest evaluateWithObject:candidate];
 }
+
+
++(NSString*)currencyCode:(NSString*)currency
+{
+    NSString* tempCurrencyCode;
+    
+    SWITCH (currency) {
+       
+        CASE (USD){
+            tempCurrencyCode = @"840";
+            break;
+
+        }
+        CASE (THB){
+            tempCurrencyCode = @"764";
+            break;
+
+        }
+        CASE (IDR){
+            tempCurrencyCode = @"360";
+            break;
+
+        }
+        CASE (SGD){
+            tempCurrencyCode = @"702";
+            break;
+
+        }
+        CASE (TWD){
+            tempCurrencyCode = @"901";
+            break;
+        }
+        CASE (PHP){
+            tempCurrencyCode = @"608";
+            break;
+
+        }
+        DEFAULT
+        {
+            tempCurrencyCode = @"840";
+            break;
+
+        }
+        
+    }
+    
+    return tempCurrencyCode;
+}
+
++(NSString*)currencyString:(NSString*)code
+{
+    
+    SWITCH (code) {
+       
+        CASE (@"840"){
+            return USD;
+            break;
+        }
+        CASE (@"764"){
+            return THB;
+            break;
+
+        }
+        CASE (@"360"){
+            return IDR;
+            break;
+
+        }
+        CASE (@"702"){
+            return SGD;
+            break;
+
+        }
+        CASE (@"901"){
+            return TWD;
+            break;
+
+        }
+        CASE (@"608"){
+            return TWD;
+            break;
+
+        }
+        DEFAULT
+        {
+            return USD;
+            break;
+            
+        }
+    }
+    
+    return nil;
+}
+
++(NSString*)convertToJsonString:(NSDictionary*)dict
+{
+    NSError *error = nil;
+    NSData *json;
+    NSString *jsonString;
+    if ([NSJSONSerialization isValidJSONObject:dict])
+    {
+        // Serialize the dictionary
+        json = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:&error];
+        
+        // If no errors, let's view the JSON
+        if (json != nil && error == nil)
+        {
+            jsonString = [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
+            
+            NSLog(@"JSON: %@", jsonString);
+        }
+    }
+    
+    return jsonString;
+}
+
 @end

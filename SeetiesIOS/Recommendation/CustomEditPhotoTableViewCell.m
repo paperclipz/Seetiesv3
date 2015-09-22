@@ -8,7 +8,7 @@
 
 #import "CustomEditPhotoTableViewCell.h"
 #import "Bostring.h"
-
+#import "UITextView+Placeholder.h"
 
 #define MAX_TEXT_COUNT 100
 #define EXTRA_TEXT_COUNT 20
@@ -65,6 +65,12 @@
     // Configure the view for the selected state
 }
 
+
+-(void)layoutSubviews
+{
+    [self reloadData];
+}
+
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -94,17 +100,29 @@
     [Utils setRoundBorder:self.txtDescription color:[UIColor darkGrayColor]borderRadius:5.0f];
     [Utils setRoundBorder:self.ibContentWrapperview color:[UIColor darkGrayColor]borderRadius:5.0f];
     self.txtDescription.delegate = self;
+    self.txtDescription.placeholder = LocalisedString(@"Write A Comment");
 
 }
 
--(void)initData:(EditPhotoModel*)model
+-(void)initData:(PhotoModel*)model
 {
-    
     self.model = model;
-    self.ibImage.image = self.model.image;
-    self.txtDescription.text = self.model.photoDescription;
-    [self updateString:self.model.photoDescription textView:self.txtDescription];
     
+    
+}
+
+-(void)reloadData
+{
+    if (self.model.image) {
+        self.ibImage.image = self.model.image;
+    }
+    else if(self.model.imageURL){
+        
+        [self.ibImage sd_setImageWithURL:[NSURL URLWithString:self.model.imageURL]];
+    }
+    self.txtDescription.text = self.model.caption;
+    [self updateString:self.model.caption textView:self.txtDescription];
+
 }
 
 
@@ -135,7 +153,7 @@
     
     [self updateString:currentString textView:textView];
     
-    self.model.photoDescription = self.txtDescription.text;
+    self.model.caption = self.txtDescription.text;
   
 }
 

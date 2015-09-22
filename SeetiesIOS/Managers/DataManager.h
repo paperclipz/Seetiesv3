@@ -14,6 +14,7 @@
 #import "EditPhotoModel.h"
 #import "FourSquareModel.h"
 #import "DraftModel.h"
+#import "CategoriesModel.h"
 
 
 #import "RecommendationModel.h"
@@ -29,6 +30,7 @@
 @property(nonatomic,strong)SearchLocationDetailModel* googleSearchDetailModel;
 
 @property(nonatomic,strong)DraftsModel* draftsModel;
+@property(nonatomic,strong)CategoriesModel* categoriesModel;
 
 +(RecommendationModel*)getSampleRecommendation;
 +(EditPhotoModel*)getSampleEditPhotoModel;

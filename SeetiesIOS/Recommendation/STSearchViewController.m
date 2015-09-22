@@ -8,6 +8,7 @@
 
 #import "STSearchViewController.h"
 #import "STTableViewCell.h"
+#import "STAddNewTableViewCell.h"
 
 
 @interface STSearchViewController ()
@@ -110,16 +111,19 @@
 
         [self.sManager getCoordinate:^(CLLocation *currentLocation) {
             
-            SLog(@"NO COORDINATE FOUND FOR DEVICE");
-
             self.location = currentLocation;
-           
             [self requestSearch];
 
             
         } errorBlock:^(NSString *status) {
-            SLog(@"cannot get Device location");
-            [self requestSearch];
+            SLog(@"NO COORDINATE FOUND FOR DEVICE GPS");
+            
+            [self.sManager getCoordinateFromWifi:^(CLLocation *currentLocation) {
+                self.location = currentLocation;
+                [self requestSearch];
+            } errorBlock:^(NSString *status) {
+                [self requestSearch];
+            }];
 
         }];
     }
@@ -181,11 +185,11 @@
 {
     if(tableView == self.googleSearchTableViewController.tableView)
     {
-        return self.searchModel.predictions.count;
+        return self.searchModel.predictions.count+1;
 
     }
     else{
-        return self.nearbyVenues.count;
+        return self.nearbyVenues.count+1;
 
     }
   }
@@ -195,29 +199,68 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    
     if(tableView == self.googleSearchTableViewController.tableView) //==== GOOGLE ====
     {
-        STTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([STTableViewCell class])];
-
-        SearchLocationModel* model = self.searchModel.predictions[indexPath.row];
         
-        NSDictionary* dict = model.terms[0];
-        cell.lblSubTitle.text = [model longDescription];
-        cell.lblTitle.text = dict[@"value"];
-        return cell;
 
+        if (indexPath.row == self.searchModel.predictions.count) {
+            
+            STAddNewTableViewCell *cell = (STAddNewTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"STAddNewTableViewCell"];
+            
+            if (cell == nil) {
+                cell = [[STAddNewTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"STAddNewTableViewCell"];
+            
+            }
+            
+            return cell;
+        }
+
+        else
+        {
+            STTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([STTableViewCell class])];
+            
+            SearchLocationModel* model = self.searchModel.predictions[indexPath.row];
+            
+            NSDictionary* dict = model.terms[0];
+            cell.lblSubTitle.text = [model longDescription];
+            cell.lblTitle.text = dict[@"value"];
+            return cell;
+
+        }
+        
+        
+       
     }
     else{  //==== FOUR SQUARE ====
         
         STTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([STTableViewCell class])];
 
-        VenueModel* model = self.nearbyVenues[indexPath.row];
         
-        cell.lblSubTitle.text = model.address;
-        cell.lblTitle.text = model.name;
-        return cell;
+        if (indexPath.row == self.nearbyVenues.count) {
+            
+            STAddNewTableViewCell *cell = (STAddNewTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"STAddNewTableViewCell"];
+            
+            if (cell == nil) {
+                cell = [[STAddNewTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"STAddNewTableViewCell"];
+                
+            }
+            
+            return cell;
+        }
+        else{
+        
+            VenueModel* model = self.nearbyVenues[indexPath.row];
+            
+            cell.lblSubTitle.text = model.address;
+            cell.lblTitle.text = model.name;
+            return cell;
 
+            
+        }
+
+        
+       
     }
     
 }
@@ -225,12 +268,18 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if(self.didSelectRowAtIndexPathBlock)
+    NSInteger numberOfRows = [tableView numberOfRowsInSection:[indexPath section]];
+    if(indexPath.row+1 == numberOfRows)
     {
-        self.didSelectRowAtIndexPathBlock(indexPath,tableView == self.googleSearchTableViewController.tableView?SearchTypeGoogle:SearchTypeFourSquare);
-
+        self.btnAddNewPlaceBlock(nil);        
     }
-
+    else if (self.googleSearchTableViewController.tableView==tableView) {
+        [self processDataForGoogleLocation:indexPath];
+    }
+    else if (tableView == self.fourSquareSearchTableViewController.tableView){
+        [self processDataForFourSquareVenue:indexPath];
+    }
+   
 }
 
 -(void)showAddNewPlaceView:(NSIndexPath*)indexPath
@@ -257,7 +306,7 @@
     
 }
 
-
+#pragma server request
 -(void)requestSearch
 {
     [self getGoogleSearchPlaces];
@@ -289,5 +338,50 @@
     return _fourSquareSearchTableViewController;
 }
 
+#pragma mark - location API
+-(void)processDataForGoogleLocation:(NSIndexPath*)indexPath
+{
+   
+    DataManager* manager = [DataManager Instance];
+    SearchLocationModel* model = manager.googleSearchModel.predictions[indexPath.row];
+    [self requestForGoogleMapDetails:model.place_id];
+    
+}
 
+
+-(void)processDataForFourSquareVenue:(NSIndexPath*)indexPath
+{
+    
+    VenueModel* model = [[DataManager Instance] fourSquareVenueModel].items[indexPath.row];
+    RecommendationVenueModel* recommendationVenueModel = [RecommendationVenueModel new];
+    [recommendationVenueModel processFourSquareModel:model];
+    
+    if (self.didSelectOnLocationBlock) {
+        self.didSelectOnLocationBlock(recommendationVenueModel);
+    }
+}
+
+
+#pragma mark - Request Sever
+-(void)requestForGoogleMapDetails:(NSString*)placeID
+{
+    
+    NSDictionary* dict = @{@"placeid":placeID,@"key":GOOGLE_API_KEY};
+    
+    [[ConnectionManager Instance] requestServerWithPost:NO customURL:GOOGLE_PLACE_DETAILS_API requestType:ServerRequestTypeGoogleSearchWithDetail param:dict completeHandler:^(id object) {
+        
+        
+        SearchLocationDetailModel* googleSearchDetailModel = [[DataManager Instance] googleSearchDetailModel];
+
+        RecommendationVenueModel* recommendationVenueModel  = [RecommendationVenueModel new];
+        
+        [recommendationVenueModel processGoogleModel:googleSearchDetailModel];
+
+        if (self.didSelectOnLocationBlock) {
+            self.didSelectOnLocationBlock(recommendationVenueModel);
+        }
+        
+    } errorBlock:nil];
+    
+}
 @end

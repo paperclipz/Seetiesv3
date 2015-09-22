@@ -17,7 +17,6 @@
 @implementation RecommendationViewController
 - (IBAction)btnEditPhotoClicked:(id)sender {
     
-    [self showEditPostView];   
 }
 - (IBAction)btnPickImageClicked:(id)sender {
     
@@ -31,6 +30,8 @@
 
 -(void)initData:(int)type sender:(id)sender
 {
+    
+    _recommendModel = nil;
     self.sender =sender;
     switch (type) {
         case 1:
@@ -108,9 +109,8 @@
 {
     for (int i = 0; i<arrAssets.count; i++) {
         
-        EditPhotoModel* model = [EditPhotoModel new];
+        PhotoModel* model = [PhotoModel new];
         model.image = [ASSETHELPER getImageFromAsset:arrAssets[i] type:ASSET_PHOTO_SCREEN_SIZE];
-        model.photoDescription = [NSString stringWithFormat:@"photo : %d",i];
         [self.recommendModel.arrPostImagesList addObject:model];
     }
 }
@@ -124,8 +124,9 @@
 
 -(void)showEditPostView
 {
+    _editPostViewController = nil;
     [self.editPostViewController initData:self.recommendModel];
-    [self.sender presentViewController:self.navEditPostViewController animated:YES completion:^{
+    [self.sender presentViewController:self.editPostViewController animated:YES completion:^{
         [self resetView];
     }];
 }
@@ -155,39 +156,24 @@
     {
         _stSearchViewController = [STSearchViewController new];
         
-        __block typeof (self)wealSelf = self;
-        _stSearchViewController.didSelectRowAtIndexPathBlock = ^(NSIndexPath* indexPath, SearchType type)
+        __block typeof (self)weakSelf = self;
+        _stSearchViewController.didSelectOnLocationBlock = ^(RecommendationVenueModel* model)
         {
             
-            switch (type) {
-                default:
-                case SearchTypeGoogle:
-                {
-                    DataManager* manager = [DataManager Instance];
-                    SearchLocationModel* model = manager.googleSearchModel.predictions[indexPath.row];
-                    [wealSelf.addNewPlaceViewController initDataFromGogle:model.place_id];
-                }
-                    break;
-                case SearchTypeFourSquare:
-                {
-                    DataManager* manager = [DataManager Instance];
-                    VenueModel* model = manager.fourSquareVenueModel.items[indexPath.row];
-                    [wealSelf.addNewPlaceViewController initDataFrom4Square:model];
-                }
-                    break;
-            }
-            
-            [wealSelf.navRecommendationViewController pushViewController:wealSelf.addNewPlaceViewController animated:YES];
-            wealSelf.addNewPlaceViewController.title = @"Edit Place Info";
+            weakSelf.recommendModel.reccomendVenueModel = model;
+            [weakSelf.navRecommendationViewController dismissViewControllerAnimated:YES completion:^{
+                [weakSelf showEditPostView];
+                
+            }];
 
         };
         
         _stSearchViewController.btnAddNewPlaceBlock = ^(id object)
         {
             
-            [wealSelf.navRecommendationViewController pushViewController:wealSelf.addNewPlaceViewController animated:YES];
+            [weakSelf.navRecommendationViewController pushViewController:weakSelf.addNewPlaceViewController animated:YES];
           //  wealSelf.addNewPlaceViewController.title
-            wealSelf.addNewPlaceViewController.title = @"New Place Info";
+            weakSelf.addNewPlaceViewController.title = @"New Place Info";
         };
     }
     return _stSearchViewController;
@@ -220,16 +206,16 @@
     return _editPostViewController;
 }
 
--(UINavigationController*)navEditPostViewController
-{
-    if(!_navEditPostViewController)
-    {
-        _navEditPostViewController = [[UINavigationController alloc]initWithRootViewController:self.editPostViewController];
-        [_navEditPostViewController setNavigationBarHidden:YES];
-    }
-    
-    return _navEditPostViewController;
-}
+//-(UINavigationController*)navEditPostViewController
+//{
+//    if(!_navEditPostViewController)
+//    {
+//        _navEditPostViewController = [[UINavigationController alloc]initWithRootViewController:self.editPostViewController];
+//        [_navEditPostViewController setNavigationBarHidden:YES];
+//    }
+//    
+//    return _navEditPostViewController;
+//}
 
 -(AddNewPlaceViewController*)addNewPlaceViewController
 {
@@ -252,6 +238,7 @@
         _addNewPlaceViewController.btnBackBlock = ^(id object)
         {
             [((UIViewController*)object).navigationController popViewControllerAnimated:YES];
+            _addNewPlaceViewController = nil;
             
         };
     }
@@ -276,5 +263,6 @@
     
     return _recommendModel;
 }
+
 
 @end

@@ -46,6 +46,15 @@
 //@property(nonatomic,strong)NSString* long_name;
 @property(nonatomic,strong)NSString* lat;
 @property(nonatomic,strong)NSString* lng;
+
+@property(nonatomic,strong)NSString<Optional>* state;
+@property(nonatomic,strong)NSString<Optional>* city;
+@property(nonatomic,strong)NSString<Optional>* route;
+@property(nonatomic,strong)NSString<Optional>* country;
+@property(nonatomic,strong)NSString<Optional>* postal_code;
+
+@property(nonatomic,strong)NSDictionary<Optional>* address_components;
+
 //@property(nonatomic,strong)NSString* opening_hours;
 //@property(nonatomic,strong)NSString* weekday_text;
 //@property(nonatomic,strong)NSString* periods;
@@ -53,6 +62,7 @@
 //@property(nonatomic,strong)NSString* close;
 //@property(nonatomic,strong)NSString* open;
 
+-(void)process;
 
 @end
 

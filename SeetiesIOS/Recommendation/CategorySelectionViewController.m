@@ -15,13 +15,24 @@
 @end
 
 @implementation CategorySelectionViewController
+- (IBAction)btnBackClicked:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+
+}
 - (IBAction)btnDoneClicked:(id)sender {
     
     if (_doneClickBlock) {
-        self.doneClickBlock(self);
+        
+        for (CategoryModel* model in self.arrCategories) {
+            if (model.isSelected) {
+                self.doneClickBlock(self.arrCategories);
+                break;
+            }
+        }
         
     }
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [self btnBackClicked:sender];
 
 }
 
@@ -53,41 +64,44 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 12;
+    return self.arrCategories.count;
 
 }
+
 #define CellSpacing 2.5
 #define ViewLeftiRighPadding (20+ 20 + 2)
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    CGRect frame = [Utils getDeviceScreenSize];
-    float temp = (frame.size.width-CellSpacing-ViewLeftiRighPadding-20)/3;
-    CGSize cellSize = CGSizeMake(temp, temp);
-    return cellSize;
-    
-    return CGSizeZero;
-}
+//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    CGRect frame = [Utils getDeviceScreenSize];
+//    float temp = (frame.size.width-CellSpacing-ViewLeftiRighPadding-20)/3;
+//    CGSize cellSize = CGSizeMake(temp, temp);
+//    return cellSize;
+//    
+//    return CGSizeZero;
+//}
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CategoryCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CategoryCollectionViewCell" forIndexPath:indexPath];
-    
+    CategoryModel* model = [[[DataManager Instance]categoriesModel] categories][indexPath.row];
+    cell.lblTitle.text = model.multiple_line[CHINESE_CODE];
+    [cell.ibImageView sd_setImageWithURL:[NSURL URLWithString:model.defaultImageUrl] placeholderImage:nil];
+    cell.ibContentView.backgroundColor = [UIColor colorWithHexValue:model.background_color];
+    [cell initData:model];
     return cell;
 }
 
-
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CategoryModel* model = [[[DataManager Instance]categoriesModel] categories][indexPath.row];
+    model.isSelected = !model.isSelected;
+    
+    CategoryCollectionViewCell* cell = (CategoryCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
+    cell.ibTickImageView.hidden = !model.isSelected;
+    
 }
-*/
+
 
 @end

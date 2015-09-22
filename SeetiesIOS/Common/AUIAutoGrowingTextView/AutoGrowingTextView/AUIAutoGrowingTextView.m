@@ -38,7 +38,7 @@
             self.heightConstraint = constraint;
             break;
         }
-    }    
+    }
     if (!self.heightConstraint) {
         // TODO: We might use auto layouts but set the height of the textView by using a top + bottom constraints. In this case we would want to manually create a height constraint    
     }

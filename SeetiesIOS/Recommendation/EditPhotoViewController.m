@@ -12,6 +12,10 @@
 
 #define MAX_PHOTO_SELECTION 10
 @interface EditPhotoViewController ()
+{
+    NSMutableArray* arrayDeletedImages;
+    
+}
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *arrEditPhotoList;
 @property (nonatomic, strong) RecommendationModel *recModel;
@@ -62,7 +66,7 @@
 - (IBAction)btnDoneClicked:(id)sender {
     
     if (_doneBlock) {
-        self.doneBlock(self.arrEditPhotoList);
+        self.doneBlock(self.arrEditPhotoList,arrayDeletedImages);
     }
     
     [self btnBackClicked:nil];
@@ -96,6 +100,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
+    arrayDeletedImages= [NSMutableArray new];
   }
 
 -(void)initData:(RecommendationModel*)model
@@ -108,15 +113,6 @@
 {
     [self configureTableView];
     
-//    self.arrEditPhotoList = [NSMutableArray new];
-//
-//    for (int i = 0; i<2; i++) {
-//        EditPhotoModel* model = [EditPhotoModel new];
-//        model.photoDescription = [NSString stringWithFormat:@"photo : %d",i];
-//        model.image = [UIImage imageNamed:[NSString stringWithFormat:@"profile_%d.png",i%4]];
-//        [self.arrEditPhotoList addObject:model];
-//
-//    }
 
 }
 
@@ -140,7 +136,7 @@
                                                                                forIndexPath: indexPath];
     
     
-    EditPhotoModel* model = self.arrEditPhotoList[indexPath.row];
+    PhotoModel* model = self.arrEditPhotoList[indexPath.row];
     [cell initData:model];
 
     [self configureCell:cell forRowAtIndexPath:indexPath];
@@ -152,14 +148,16 @@
 -(void)configureCell:(CustomEditPhotoTableViewCell*)cell forRowAtIndexPath:(NSIndexPath*)indexPath
 {
 
-    
     cell.deleteBlock = ^(CustomEditPhotoTableViewCell* customCell)
     {
-        
         NSIndexPath* indexPth = [self.tableView indexPathForCell:customCell];
         
         [self.tableView beginUpdates];
-        [self.arrEditPhotoList removeObject:self.arrEditPhotoList[indexPth.row]];
+        PhotoModel* tempModel = self.arrEditPhotoList[indexPth.row];
+        if (tempModel.photo_id) {
+            [arrayDeletedImages addObject:tempModel.photo_id];
+        }
+        [self.arrEditPhotoList removeObject:tempModel];
         [self.tableView deleteRowsAtIndexPaths:@[indexPth] withRowAnimation:UITableViewRowAnimationFade];
         [self.tableView endUpdates];
 
@@ -168,7 +166,6 @@
     cell.editBlock = ^(CustomEditPhotoTableViewCell* customCell)
     {
         
-
         [self launchPhotoEditorWithImage:customCell.model.image highResolutionImage:nil completion:^(UIImage *image) {
             
             NSIndexPath* indexPth = [self.tableView indexPathForCell:customCell];
@@ -178,8 +175,6 @@
             [self.tableView reloadRowsAtIndexPaths:@[indexPth] withRowAnimation:UITableViewRowAnimationFade];
         }];
     };
-    
-
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
@@ -192,17 +187,14 @@
     
     NSMutableArray* tempArray = [NSMutableArray new];
     for (int i = 0; i<aSelected.count; i++) {
-        EditPhotoModel* model = [EditPhotoModel new];
+        PhotoModel* model = [PhotoModel new];
         model.image = [ASSETHELPER getImageFromAsset:aSelected[i] type:ASSET_PHOTO_SCREEN_SIZE];
 
         [tempArray addObject:model];
     }
 
- 
-        [self addRow:tempArray];
-        
-     
-
+    [self addRow:tempArray];
+    
     [self.imagePickerViewController dismissViewControllerAnimated:YES completion:^{
         
         _imagePickerViewController = nil;

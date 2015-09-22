@@ -2842,10 +2842,10 @@
 //                    NSLog(@"arrAddress count is %lu",(unsigned long)[arrAddress count]);
     
                 if (CheckFirstTimeLoad == 0) {
-                    [self StartInit1stView];
+                  //  [self StartInit1stView];
                     
                 }else{
-                    [self InitContent];
+                   // [self InitContent];
                 }
                 
                 OnLoad = NO;
