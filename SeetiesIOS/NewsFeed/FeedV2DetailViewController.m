@@ -13,7 +13,7 @@
 #import "CommentViewController.h"
 #import "LanguageManager.h"
 #import "Locale.h"
-#import "UserProfileV2ViewController.h"
+#import "NewUserProfileV2ViewController.h"
 #import "LocationFeedDetailViewController.h"
 #import "NearByRecommtationViewController.h"
 
@@ -2690,15 +2690,18 @@
     if ([GetUsername isEqualToString:GetPostName]) {
         NSLog(@"user is self. open profile");
     }else{
-        UserProfileV2ViewController *ExpertsUserProfileView = [[UserProfileV2ViewController alloc]init];
-        CATransition *transition = [CATransition animation];
-        transition.duration = 0.2;
-        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-        transition.type = kCATransitionPush;
-        transition.subtype = kCATransitionFromRight;
-        [self.view.window.layer addAnimation:transition forKey:nil];
-        [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
-        [ExpertsUserProfileView GetUsername:GetPostName];
+//        UserProfileV2ViewController *ExpertsUserProfileView = [[UserProfileV2ViewController alloc]init];
+//        CATransition *transition = [CATransition animation];
+//        transition.duration = 0.2;
+//        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//        transition.type = kCATransitionPush;
+//        transition.subtype = kCATransitionFromRight;
+//        [self.view.window.layer addAnimation:transition forKey:nil];
+//        [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
+//        [ExpertsUserProfileView GetUsername:GetPostName];
+        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+        [NewUserProfileV2View GetUserName:GetPostName];
     }
 
 }
@@ -2706,45 +2709,54 @@
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);
     
-    UserProfileV2ViewController *ExpertsUserProfileView = [[UserProfileV2ViewController alloc]init];
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromRight;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
-    [ExpertsUserProfileView GetUsername:[User_Comment_usernameArray objectAtIndex:getbuttonIDN]];
+//    UserProfileV2ViewController *ExpertsUserProfileView = [[UserProfileV2ViewController alloc]init];
+//    CATransition *transition = [CATransition animation];
+//    transition.duration = 0.2;
+//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    transition.type = kCATransitionPush;
+//    transition.subtype = kCATransitionFromRight;
+//    [self.view.window.layer addAnimation:transition forKey:nil];
+//    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
+//    [ExpertsUserProfileView GetUsername:[User_Comment_usernameArray objectAtIndex:getbuttonIDN]];
+    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+    [NewUserProfileV2View GetUserName:[User_Comment_usernameArray objectAtIndex:getbuttonIDN]];
     
 }
 -(IBAction)OpenProfileButton3:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);
     
-    UserProfileV2ViewController *ExpertsUserProfileView = [[UserProfileV2ViewController alloc]init];
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromRight;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
-    [ExpertsUserProfileView GetUsername:[UserInfo_NameArray_Nearby objectAtIndex:getbuttonIDN]];
+//    UserProfileV2ViewController *ExpertsUserProfileView = [[UserProfileV2ViewController alloc]init];
+//    CATransition *transition = [CATransition animation];
+//    transition.duration = 0.2;
+//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    transition.type = kCATransitionPush;
+//    transition.subtype = kCATransitionFromRight;
+//    [self.view.window.layer addAnimation:transition forKey:nil];
+//    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
+//    [ExpertsUserProfileView GetUsername:[UserInfo_NameArray_Nearby objectAtIndex:getbuttonIDN]];
+    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+    [NewUserProfileV2View GetUserName:[UserInfo_NameArray_Nearby objectAtIndex:getbuttonIDN]];
     
 }
 -(IBAction)OpenProfileButton4:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);
     
-    UserProfileV2ViewController *ExpertsUserProfileView = [[UserProfileV2ViewController alloc]init];
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromRight;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
-    [ExpertsUserProfileView GetUsername:[UserInfo_NameArray_Nearby lastObject]];
+//    UserProfileV2ViewController *ExpertsUserProfileView = [[UserProfileV2ViewController alloc]init];
+//    CATransition *transition = [CATransition animation];
+//    transition.duration = 0.2;
+//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    transition.type = kCATransitionPush;
+//    transition.subtype = kCATransitionFromRight;
+//    [self.view.window.layer addAnimation:transition forKey:nil];
+//    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
+//    [ExpertsUserProfileView GetUsername:[UserInfo_NameArray_Nearby lastObject]];
+    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+    [NewUserProfileV2View GetUserName:[UserInfo_NameArray_Nearby lastObject]];
     
 }
 -(IBAction)FollowButton:(id)sender{
@@ -3660,29 +3672,39 @@ NSLog(@"Facebook Button Click");
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);
     
-    UserProfileV2ViewController *ExpertsUserProfileView = [[UserProfileV2ViewController alloc]init];
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromRight;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
-    [ExpertsUserProfileView GetUsername:[Like_UsernameArray objectAtIndex:getbuttonIDN]];
+//    UserProfileV2ViewController *ExpertsUserProfileView = [[UserProfileV2ViewController alloc]init];
+//    CATransition *transition = [CATransition animation];
+//    transition.duration = 0.2;
+//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    transition.type = kCATransitionPush;
+//    transition.subtype = kCATransitionFromRight;
+//    [self.view.window.layer addAnimation:transition forKey:nil];
+//    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
+//    [ExpertsUserProfileView GetUsername:[Like_UsernameArray objectAtIndex:getbuttonIDN]];
+    
+    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+    [NewUserProfileV2View GetUserName:[Like_UsernameArray objectAtIndex:getbuttonIDN]];
+    
+    
 }
 -(IBAction)OpenCommentProfileButton:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);
     
-    UserProfileV2ViewController *ExpertsUserProfileView = [[UserProfileV2ViewController alloc]init];
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromRight;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
-    [ExpertsUserProfileView GetUsername:[User_Comment_usernameArray objectAtIndex:getbuttonIDN]];
+//    UserProfileV2ViewController *ExpertsUserProfileView = [[UserProfileV2ViewController alloc]init];
+//    CATransition *transition = [CATransition animation];
+//    transition.duration = 0.2;
+//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    transition.type = kCATransitionPush;
+//    transition.subtype = kCATransitionFromRight;
+//    [self.view.window.layer addAnimation:transition forKey:nil];
+//    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
+//    [ExpertsUserProfileView GetUsername:[User_Comment_usernameArray objectAtIndex:getbuttonIDN]];
+    
+    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+    [NewUserProfileV2View GetUserName:[User_Comment_usernameArray objectAtIndex:getbuttonIDN]];
 }
 -(void)DeletePost{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

@@ -488,6 +488,7 @@
         }
         [FollowButton setImage:[UIImage imageNamed:@"follow_icon.png"] forState:UIControlStateNormal];
         FollowButton.backgroundColor = [UIColor clearColor];
+        FollowButton.tag = i;
        // FollowButton.layer.cornerRadius = 20;
         [FollowButton addTarget:self action:@selector(FollowButton:) forControlEvents:UIControlEventTouchUpInside];
         [PeopleView addSubview: FollowButton];

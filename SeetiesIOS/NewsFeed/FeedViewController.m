@@ -1529,7 +1529,7 @@
               //  NSArray *SplitArray_Follow = [TempUserFollow componentsSeparatedByString:@"$"];
                 NSArray *SplitArray_Username = [TempUseName componentsSeparatedByString:@"$"];
                 NSArray *SplitArray_PostsImg = [TempUserPhoto componentsSeparatedByString:@"$"];
-                
+                arrfeaturedUserName = [[NSMutableArray alloc]initWithArray:SplitArray_Username];
                 int TestWidth = screenWidth - 40;
                 //    NSLog(@"TestWidth is %i",TestWidth);
                 int FinalWidth = TestWidth / 4;
@@ -1661,6 +1661,13 @@
                         [SUserScrollview addSubview:ShowImage];
                     }
                     
+                    UIButton *OpenUserProfileButton = [[UIButton alloc]init];
+                    [OpenUserProfileButton setTitle:@"" forState:UIControlStateNormal];
+                    OpenUserProfileButton.backgroundColor = [UIColor clearColor];
+                    OpenUserProfileButton.frame = CGRectMake(10 + i * screenWidth, 50, screenWidth - 20, FinalWidth + 10 + 70);
+                    [OpenUserProfileButton addTarget:self action:@selector(FeaturedOpenUserProfile:) forControlEvents:UIControlEventTouchUpInside];
+                    OpenUserProfileButton.tag = i;
+                    [SUserScrollview addSubview:OpenUserProfileButton];
                     
                     
                     SUserScrollview.contentSize = CGSizeMake(10 + i * screenWidth + screenWidth, 100);
@@ -1680,13 +1687,14 @@
                 NSString *TempUserPhoto = [[NSString alloc]initWithFormat:@"%@",[User_PhotoArray objectAtIndex:i]];
                 
                 NSArray *SplitArray_Id = [TempUserID componentsSeparatedByString:@"$"];
+                
                 NSArray *SplitArray_ProfileImg = [TempUserProfileImg componentsSeparatedByString:@"$"];
                 //   NSArray *SplitArray_name = [TempUser_Name componentsSeparatedByString:@"$"];
                 //  NSArray *SplitArray_Location = [TempUserLocation componentsSeparatedByString:@"$"];
                 //  NSArray *SplitArray_Follow = [TempUserFollow componentsSeparatedByString:@"$"];
                 NSArray *SplitArray_Username = [TempUseName componentsSeparatedByString:@"$"];
                 NSArray *SplitArray_PostsImg = [TempUserPhoto componentsSeparatedByString:@"$"];
-                
+                arrFriendUserName = [[NSMutableArray alloc]initWithArray:SplitArray_Username];
                 int TestWidth = screenWidth - 40;
                 //    NSLog(@"TestWidth is %i",TestWidth);
                 int FinalWidth = TestWidth / 4;
@@ -1809,7 +1817,13 @@
                         [SUserScrollview addSubview:ShowImage];
                     }
                     
-                    
+                    UIButton *OpenUserProfileButton = [[UIButton alloc]init];
+                    [OpenUserProfileButton setTitle:@"" forState:UIControlStateNormal];
+                    OpenUserProfileButton.backgroundColor = [UIColor clearColor];
+                    OpenUserProfileButton.frame = CGRectMake(10 + i * screenWidth, 50, screenWidth - 20, FinalWidth + 10 + 70);
+                    [OpenUserProfileButton addTarget:self action:@selector(FriendsOpenUserProfile:) forControlEvents:UIControlEventTouchUpInside];
+                    OpenUserProfileButton.tag = i;
+                    [SUserScrollview addSubview:OpenUserProfileButton];
                     
                     SUserScrollview.contentSize = CGSizeMake(10 + i * screenWidth + screenWidth, 100);
                 }
@@ -1865,6 +1879,13 @@
                 NSString *TempTitle = [[NSString alloc]initWithFormat:@"%@",[arrTitle objectAtIndex:i]];
                 NSArray *SplitArray_Title = [TempTitle componentsSeparatedByString:@","];
                 
+                NSString *TempAddress = [[NSString alloc]initWithFormat:@"%@",[arrAddress objectAtIndex:i]];
+                NSArray *SplitArray_Address = [TempAddress componentsSeparatedByString:@","];
+                
+                NSString *TempId = [[NSString alloc]initWithFormat:@"%@",[arrPostID objectAtIndex:i]];
+                NSArray *SplitArray_Id = [TempId componentsSeparatedByString:@","];
+                arrDealID = [[NSMutableArray alloc]initWithArray:SplitArray_Id];
+                
                 for (int i = 0; i < [SplitArray_username count]; i++) {
                     UIButton *TempButton = [[UIButton alloc]init];
                     TempButton.frame = CGRectMake(10 + i * screenWidth, 50 , screenWidth - 20 ,320);
@@ -1916,6 +1937,7 @@
                     
                     NSString *usernameTemp = [[NSString alloc]initWithFormat:@"%@",[SplitArray_username objectAtIndex:i]];
                     NSString *Distance = [[NSString alloc]initWithFormat:@"%@",[SplitArray_Location objectAtIndex:i]];
+                    NSString *Address = [[NSString alloc]initWithFormat:@"%@",[SplitArray_Address objectAtIndex:i]];
                     
                     UILabel *ShowUserName = [[UILabel alloc]init];
                     ShowUserName.frame = CGRectMake(81 + i * screenWidth, 51 + 10, 200, 40);
@@ -1936,6 +1958,19 @@
                     ShowDistance.backgroundColor = [UIColor clearColor];
                     [SuggestedScrollview addSubview:ShowDistance];
                     
+                    UIImageView *ShowPinLocalQR = [[UIImageView alloc]init];
+                    ShowPinLocalQR.image = [UIImage imageNamed:@"location_icon.png"];
+                    ShowPinLocalQR.frame = CGRectMake(20 + i * screenWidth, 51 + 198 + 10 + 4, 9, 12);
+                    //ShowPin.frame = CGRectMake(15, 210 + 8 + heightcheck + i, 8, 11);
+                    [SuggestedScrollview addSubview:ShowPinLocalQR];
+                    
+                    UILabel *ShowAddressLocalQR = [[UILabel alloc]init];
+                    ShowAddressLocalQR.frame = CGRectMake(40 + i * screenWidth, 51 + 198 + 10, screenWidth - 80, 20);
+                    ShowAddressLocalQR.text = Address;
+                    ShowAddressLocalQR.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
+                    ShowAddressLocalQR.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+                    [SuggestedScrollview addSubview:ShowAddressLocalQR];
+                    
                     //  int TempCountWhiteHeight = 51 + 198 + 10;
                     
                     NSString *TempGetStirng = [[NSString alloc]initWithFormat:@"%@",[SplitArray_Title objectAtIndex:i]];
@@ -1943,7 +1978,7 @@
                         
                     }else{
                         UILabel *ShowTitle = [[UILabel alloc]init];
-                        ShowTitle.frame = CGRectMake(25 + i * screenWidth, 51 + 198 + 10, screenWidth - 50, 40);
+                        ShowTitle.frame = CGRectMake(25 + i * screenWidth, 51 + 198 + 10 + 30, screenWidth - 50, 40);
                         ShowTitle.text = TempGetStirng;
                         ShowTitle.backgroundColor = [UIColor clearColor];
                         ShowTitle.numberOfLines = 2;
@@ -1953,7 +1988,13 @@
                         [SuggestedScrollview addSubview:ShowTitle];
                     }
                     
-                    
+                    UIButton *OpenPostsButton = [[UIButton alloc]init];
+                    [OpenPostsButton setTitle:@"" forState:UIControlStateNormal];
+                    OpenPostsButton.backgroundColor = [UIColor clearColor];
+                    OpenPostsButton.frame = CGRectMake(10 + i * screenWidth, 50 , screenWidth - 20 ,320);
+                    [OpenPostsButton addTarget:self action:@selector(DealOpenPostsOnClick:) forControlEvents:UIControlEventTouchUpInside];
+                    OpenPostsButton.tag = i;
+                    [SuggestedScrollview addSubview:OpenPostsButton];
                     
                     
                     SuggestedScrollview.contentSize = CGSizeMake(10 + i * screenWidth + screenWidth, 300);
@@ -3303,5 +3344,32 @@
     FeedV2DetailViewController *vc = [[FeedV2DetailViewController alloc] initWithNibName:@"FeedV2DetailViewController" bundle:nil];
     [self.navigationController pushViewController:vc animated:YES];
     [vc GetPostID:GetID];
+}
+-(IBAction)DealOpenPostsOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSString *GetID = [[NSString alloc]initWithFormat:@"%@",[arrDealID objectAtIndex:getbuttonIDN]];
+    NSLog(@"DealOpenPostsOnClick GetID is %@",GetID);
+    
+    FeedV2DetailViewController *vc = [[FeedV2DetailViewController alloc] initWithNibName:@"FeedV2DetailViewController" bundle:nil];
+    [self.navigationController pushViewController:vc animated:YES];
+    [vc GetPostID:GetID];
+}
+-(IBAction)FeaturedOpenUserProfile:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSString *Getname = [[NSString alloc]initWithFormat:@"%@",[arrfeaturedUserName objectAtIndex:getbuttonIDN]];
+    NSLog(@"FeaturedOpenUserProfile Getname is %@",Getname);
+    
+    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+    [NewUserProfileV2View GetUserName:Getname];
+}
+-(IBAction)FriendsOpenUserProfile:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSString *Getname = [[NSString alloc]initWithFormat:@"%@",[arrFriendUserName objectAtIndex:getbuttonIDN]];
+    NSLog(@"FriendsOpenUserProfile Getname is %@",Getname);
+    
+    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+    [NewUserProfileV2View GetUserName:Getname];
 }
 @end

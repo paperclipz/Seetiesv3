@@ -9,6 +9,7 @@
 #import "NewUserProfileV2ViewController.h"
 #import "CollectionViewController.h"
 #import "ShowFollowerAndFollowingViewController.h"
+#import "FeedV2DetailViewController.h"
 @interface NewUserProfileV2ViewController ()
 
 @end
@@ -49,7 +50,7 @@
     BackgroundImage.frame = headerFrame;
     [MainScroll addSubview:BackgroundImage withAcceleration:CGPointMake(0.0f, 0.5f)];
     
-    AllContentView.frame = CGRectMake(0, 100, screenWidth, screenHeight + 50);
+    AllContentView.frame = CGRectMake(0, 100, screenWidth, 5000);
     [MainScroll addSubview:AllContentView];
     
     BackButton.frame = CGRectMake(0, 0, 64, 64);
@@ -77,7 +78,7 @@
     CheckExpand = YES;
     
     
-    if ([GetUserName isEqualToString:@""] || [GetUserName length] == 0 || [GetUid isEqualToString:@""] || [GetUid length] == 0) {
+    if ([GetUserName isEqualToString:@""] && [GetUid isEqualToString:@""] ) {
         
     }else{
     [self GetUserData];
@@ -86,10 +87,14 @@
 -(void)GetUserName:(NSString *)username{
     GetUserName = username;
     // [self InitView];
-    
+    NSLog(@"GetUserName is %@",GetUserName);
+ //   [self GetUserData];
+    GetUid = @"";
 }
 -(void)GetUid:(NSString *)uid{
     GetUid = uid;
+    NSLog(@"GetUid is %@",GetUid);
+    GetUserName = @"";
 }
 -(IBAction)BackButtonOnClick:(id)sender{
 [self.navigationController popToRootViewControllerAnimated:YES];
@@ -775,6 +780,7 @@
 
 
 -(void)GetUserData{
+    NSLog(@"afaeefaeafefa");
     [ShowLoadingActivity startAnimating];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -788,7 +794,7 @@
         FullString = [[NSString alloc]initWithFormat:@"%@expert/%@?token=%@",DataUrl.UserWallpaper_Url,GetUserName,GetExpertToken];
     }
     
-    FullString = [[NSString alloc]initWithFormat:@"%@expert/%@?token=%@",DataUrl.UserWallpaper_Url,GetUserName,GetExpertToken];
+   // FullString = [[NSString alloc]initWithFormat:@"%@expert/%@?token=%@",DataUrl.UserWallpaper_Url,GetUserName,GetExpertToken];
     
     
     NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
@@ -1389,4 +1395,22 @@
     }
     
 }
+-(IBAction)LikesButtonOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSLog(@"button %li",(long)getbuttonIDN);
+    
+    FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
+    [self.navigationController pushViewController:FeedDetailView animated:YES];
+    [FeedDetailView GetPostID:[LikesData_IDArray objectAtIndex:getbuttonIDN]];
+}
+-(IBAction)PostsButtonOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSLog(@"button %li",(long)getbuttonIDN);
+    
+    FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
+    [self.navigationController pushViewController:FeedDetailView animated:YES];
+    [FeedDetailView GetPostID:[PostsData_IDArray objectAtIndex:getbuttonIDN]];
+}
+
+
 @end

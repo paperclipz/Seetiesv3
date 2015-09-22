@@ -31,6 +31,7 @@
     NSURLConnection *theConnection_GetSearchCategory;
     NSURLConnection *theConnection_GetExpertsSearch;
     NSURLConnection *theConnection_GetAllUserData;
+    NSURLConnection *theConnection_Following;
     
     NSMutableArray *LPhotoArray;
     NSMutableArray *PostIDArray;
@@ -96,6 +97,8 @@
     
     NSURLConnection *theConnection_SearchLocation;
     NSURLConnection *theConnection_GetSearchPlace;
+    NSString *GetUserID;
+    NSString *GetFollowString;
 }
 -(void)GetSearchKeyword:(NSString *)Keyword Getlat:(NSString *)lat GetLong:(NSString *)Long GetLocationName:(NSString *)LocationName;
 -(void)GetTitle:(NSString *)String;

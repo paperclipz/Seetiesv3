@@ -54,6 +54,9 @@
     NSMutableArray *arrID_Announcement;
     
     NSMutableArray *arrAboadID;
+    NSMutableArray *arrfeaturedUserName;
+    NSMutableArray *arrFriendUserName;
+    NSMutableArray *arrDealID;
     
     NSString *GetNextPaging;
     
