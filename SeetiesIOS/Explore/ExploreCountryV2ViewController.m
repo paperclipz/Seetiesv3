@@ -474,12 +474,22 @@
         ShowMessage.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         [PeopleView addSubview:ShowMessage];
         
+        NSString *CheckFollow = [[NSString alloc]initWithFormat:@"%@",[User_FollowArray objectAtIndex:i]];
+        
         UIButton *FollowButton = [[UIButton alloc]init];
-        FollowButton.frame = CGRectMake(screenWidth - 30 - 53, PeopleGetHeight + 12, 53, 37);
+        FollowButton.frame = CGRectMake(screenWidth - 30 - 70, PeopleGetHeight + 12, 70, 48);
        // [FollowButton setTitle:@"Icon" forState:UIControlStateNormal];
+        if ([CheckFollow isEqualToString:@"0"]) {
+            [FollowButton setImage:[UIImage imageNamed:@"ExploreFollow.png"] forState:UIControlStateNormal];
+            [FollowButton setImage:[UIImage imageNamed:@"ExploreFollowing.png"] forState:UIControlStateSelected];
+        }else{
+            [FollowButton setImage:[UIImage imageNamed:@"ExploreFollowing.png"] forState:UIControlStateNormal];
+            [FollowButton setImage:[UIImage imageNamed:@"ExploreFollow.png"] forState:UIControlStateSelected];
+        }
         [FollowButton setImage:[UIImage imageNamed:@"follow_icon.png"] forState:UIControlStateNormal];
         FollowButton.backgroundColor = [UIColor clearColor];
        // FollowButton.layer.cornerRadius = 20;
+        [FollowButton addTarget:self action:@selector(FollowButton:) forControlEvents:UIControlEventTouchUpInside];
         [PeopleView addSubview: FollowButton];
         
 //        NSMutableArray *DemoArray = [[NSMutableArray alloc]init];
@@ -543,9 +553,11 @@
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);
     
+    UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
+    buttonWithTag1.selected = !buttonWithTag1.selected;
+    
     GetUserID = [User_IDArray objectAtIndex:getbuttonIDN];
     GetFollowString = [User_FollowArray objectAtIndex:getbuttonIDN];
-    
     
     if ([GetFollowString isEqualToString:@"0"]) {
         [User_FollowArray replaceObjectAtIndex:getbuttonIDN withObject:@"1"];
@@ -917,7 +929,7 @@
         
         if ([ResultString isEqualToString:@"ok"]) {
             
-           [self InitView];
+        //   [self InitView];
             
         }
     }

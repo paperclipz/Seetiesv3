@@ -73,7 +73,7 @@
         
         
         NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
-        NSLog(@"check postBack URL ==== %@",postBack);
+        NSLog(@"GetCollectionData check postBack URL ==== %@",postBack);
         NSURL *url = [NSURL URLWithString:[postBack stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         // NSURL *url = [NSURL URLWithString:postBack];
         NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
@@ -164,6 +164,8 @@
                 [Content_arrPlaceName addObject:PlaceName];
                 NSString *PlaceID = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"post_id"]];
                 [Content_arrID addObject:PlaceID];
+                NSString *notedate = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"note"]];
+                [Content_arrNote addObject:notedate];
             }
             
             NSDictionary *titleData = [GetData valueForKey:@"title"];
@@ -214,18 +216,18 @@
             }
             
             
-            NSDictionary *CollectionsData = [GetData valueForKey:@"collections"];
-            for (NSDictionary * dict in CollectionsData) {
-                for (NSDictionary * dict_ in dict) {
-                    NSDictionary *GetPostsData = [dict_ valueForKey:@"posts"];
-                  //  NSLog(@"GetPostsData note is %@",GetPostsData);
-                    for (NSDictionary * dict in GetPostsData) {
-                        NSString *url = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"note"]];
-                        [Content_arrNote addObject:url];
-
-                    }
-                }
-            }
+//            NSDictionary *CollectionsData = [GetData valueForKey:@"collections"];
+//            for (NSDictionary * dict in CollectionsData) {
+//                for (NSDictionary * dict_ in dict) {
+//                    NSDictionary *GetPostsData = [dict_ valueForKey:@"posts"];
+//                  //  NSLog(@"GetPostsData note is %@",GetPostsData);
+//                    for (NSDictionary * dict in GetPostsData) {
+//                        NSString *url = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"note"]];
+//                        [Content_arrNote addObject:url];
+//
+//                    }
+//                }
+//            }
             
             
             

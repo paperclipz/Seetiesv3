@@ -586,12 +586,12 @@
     [LocalScroll setContentSize:CGSizeMake(screenWidth, heightcheck + 169 + 50)];
 
     
-    UIButton *NearbyButton = [[UIButton alloc]init];
-    NearbyButton.frame = CGRectMake((screenWidth / 2) - 60, 105, 120, 37);
-    [NearbyButton setImage:[UIImage imageNamed:@"nearby_btn.png"] forState:UIControlStateNormal];
-    NearbyButton.backgroundColor = [UIColor clearColor];
-    [NearbyButton addTarget:self action:@selector(NearbyButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview: NearbyButton];
+//    UIButton *NearbyButton = [[UIButton alloc]init];
+//    NearbyButton.frame = CGRectMake((screenWidth / 2) - 60, 105, 120, 37);
+//    [NearbyButton setImage:[UIImage imageNamed:@"nearby_btn.png"] forState:UIControlStateNormal];
+//    NearbyButton.backgroundColor = [UIColor clearColor];
+//    [NearbyButton addTarget:self action:@selector(NearbyButton:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview: NearbyButton];
 
     
 //    [NSTimer scheduledTimerWithTimeInterval:5.0
@@ -1198,6 +1198,9 @@
             }
                 break;
             case 2:{
+//                NSInteger TempHeightAbroad = heightcheck;
+//                int TempCountWhiteHeightAbroad = 0;
+                
                // NSLog(@"in abroad_quality_post");
                 SuggestedScrollview = [[UIScrollView alloc]init];
                 SuggestedScrollview.delegate = self;
@@ -1245,6 +1248,14 @@
                 NSArray *SplitArray_Location = [TempLocation componentsSeparatedByString:@","];
                 NSString *TempTitle = [[NSString alloc]initWithFormat:@"%@",[arrTitle objectAtIndex:i]];
                 NSArray *SplitArray_Title = [TempTitle componentsSeparatedByString:@","];
+                
+                NSString *TempAddress = [[NSString alloc]initWithFormat:@"%@",[arrAddress objectAtIndex:i]];
+                NSArray *SplitArray_Address = [TempAddress componentsSeparatedByString:@","];
+                
+                NSString *TempId = [[NSString alloc]initWithFormat:@"%@",[arrPostID objectAtIndex:i]];
+                NSArray *SplitArray_Id = [TempId componentsSeparatedByString:@","];
+                arrAboadID = [[NSMutableArray alloc]initWithArray:SplitArray_Id];
+
 
                 for (int i = 0; i < [SplitArray_username count]; i++) {
                     UIButton *TempButton = [[UIButton alloc]init];
@@ -1254,7 +1265,7 @@
                     TempButton.layer.cornerRadius = 5;
                     TempButton.layer.borderWidth=1;
                     TempButton.layer.masksToBounds = YES;
-                    TempButton.layer.borderColor=[[UIColor lightGrayColor] CGColor];
+                    TempButton.layer.borderColor=[[UIColor colorWithRed:232.0f/255.0f green:232.0f/255.0f blue:232.0f/255.0f alpha:1.0f] CGColor];
                     [SuggestedScrollview addSubview: TempButton];
                     
                     AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
@@ -1297,6 +1308,7 @@
                     
                     NSString *usernameTemp = [[NSString alloc]initWithFormat:@"%@",[SplitArray_username objectAtIndex:i]];
                     NSString *Distance = [[NSString alloc]initWithFormat:@"%@",[SplitArray_Location objectAtIndex:i]];
+                    NSString *Address = [[NSString alloc]initWithFormat:@"%@",[SplitArray_Address objectAtIndex:i]];
                     
                     UILabel *ShowUserName = [[UILabel alloc]init];
                     ShowUserName.frame = CGRectMake(81 + i * screenWidth, 51 + 10, 200, 40);
@@ -1317,6 +1329,20 @@
                     ShowDistance.backgroundColor = [UIColor clearColor];
                     [SuggestedScrollview addSubview:ShowDistance];
                     
+                    
+                    UIImageView *ShowPinLocalQR = [[UIImageView alloc]init];
+                    ShowPinLocalQR.image = [UIImage imageNamed:@"location_icon.png"];
+                    ShowPinLocalQR.frame = CGRectMake(20 + i * screenWidth, 51 + 198 + 10 + 4, 9, 12);
+                    //ShowPin.frame = CGRectMake(15, 210 + 8 + heightcheck + i, 8, 11);
+                    [SuggestedScrollview addSubview:ShowPinLocalQR];
+                    
+                    UILabel *ShowAddressLocalQR = [[UILabel alloc]init];
+                    ShowAddressLocalQR.frame = CGRectMake(40 + i * screenWidth, 51 + 198 + 10, screenWidth - 80, 20);
+                    ShowAddressLocalQR.text = Address;
+                    ShowAddressLocalQR.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
+                    ShowAddressLocalQR.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+                    [SuggestedScrollview addSubview:ShowAddressLocalQR];
+                    
                     //  int TempCountWhiteHeight = 51 + 198 + 10;
                     
                     NSString *TempGetStirng = [[NSString alloc]initWithFormat:@"%@",[SplitArray_Title objectAtIndex:i]];
@@ -1324,7 +1350,7 @@
                         
                     }else{
                         UILabel *ShowTitle = [[UILabel alloc]init];
-                        ShowTitle.frame = CGRectMake(25 + i * screenWidth, 51 + 198 + 10, screenWidth - 50, 40);
+                        ShowTitle.frame = CGRectMake(25 + i * screenWidth, 51 + 198 + 10 + 30, screenWidth - 50, 40);
                         ShowTitle.text = TempGetStirng;
                         ShowTitle.backgroundColor = [UIColor clearColor];
                         ShowTitle.numberOfLines = 2;
@@ -1334,7 +1360,13 @@
                         [SuggestedScrollview addSubview:ShowTitle];
                     }
                     
-                    
+                    UIButton *OpenPostsButton = [[UIButton alloc]init];
+                    [OpenPostsButton setTitle:@"" forState:UIControlStateNormal];
+                    OpenPostsButton.backgroundColor = [UIColor clearColor];
+                    OpenPostsButton.frame = CGRectMake(10 + i * screenWidth, 50 , screenWidth - 20 ,320);
+                    [OpenPostsButton addTarget:self action:@selector(AboadOpenPostsOnClick:) forControlEvents:UIControlEventTouchUpInside];
+                    OpenPostsButton.tag = i;
+                    [SuggestedScrollview addSubview:OpenPostsButton];
                     
                     
                     SuggestedScrollview.contentSize = CGSizeMake(10 + i * screenWidth + screenWidth, 300);
@@ -1549,7 +1581,7 @@
                     TempButton.layer.cornerRadius = 5;
                     TempButton.layer.borderWidth=1;
                     TempButton.layer.masksToBounds = YES;
-                    TempButton.layer.borderColor=[[UIColor lightGrayColor] CGColor];
+                    TempButton.layer.borderColor=[[UIColor colorWithRed:232.0f/255.0f green:232.0f/255.0f blue:232.0f/255.0f alpha:1.0f] CGColor];
                     [SUserScrollview addSubview: TempButton];
                     
                     
@@ -1592,11 +1624,20 @@
                     [SUserScrollview addSubview:ShowMessage];
                     
                     UIButton *FollowButton = [[UIButton alloc]init];
-                    FollowButton.frame = CGRectMake(screenWidth - 20 - 100 + i * screenWidth, 60, 100, 40);
-                    [FollowButton setTitle:@"Follow" forState:UIControlStateNormal];
-                    FollowButton.backgroundColor = [UIColor colorWithRed:255.0f/255.0f green:152.0f/255.0f blue:167.0f/255.0f alpha:1.0f];
-                    FollowButton.layer.cornerRadius = 20;
+                    FollowButton.frame = CGRectMake(screenWidth - 20 - 70 + i * screenWidth, 52,70, 48);
+                    // [FollowButton setTitle:@"Icon" forState:UIControlStateNormal];
+                    [FollowButton setImage:[UIImage imageNamed:@"ExploreFollow.png"] forState:UIControlStateNormal];
+                    [FollowButton setImage:[UIImage imageNamed:@"ExploreFollowing.png"] forState:UIControlStateSelected];
+                    FollowButton.backgroundColor = [UIColor clearColor];
+                    //[FollowButton addTarget:self action:@selector(FollowButton:) forControlEvents:UIControlEventTouchUpInside];
                     [SUserScrollview addSubview: FollowButton];
+                    
+//                    UIButton *FollowButton = [[UIButton alloc]init];
+//                    FollowButton.frame = CGRectMake(screenWidth - 20 - 100 + i * screenWidth, 60, 100, 40);
+//                    [FollowButton setTitle:@"Follow" forState:UIControlStateNormal];
+//                    FollowButton.backgroundColor = [UIColor colorWithRed:255.0f/255.0f green:152.0f/255.0f blue:167.0f/255.0f alpha:1.0f];
+//                    FollowButton.layer.cornerRadius = 20;
+//                    [SUserScrollview addSubview: FollowButton];
                     
                     NSString *GetImg = [[NSString alloc]initWithFormat:@"%@",[SplitArray_PostsImg objectAtIndex:i]];
                     NSArray *PostsImg = [GetImg componentsSeparatedByString:@","];
@@ -1697,7 +1738,7 @@
                     TempButton.layer.cornerRadius = 5;
                     TempButton.layer.borderWidth=1;
                     TempButton.layer.masksToBounds = YES;
-                    TempButton.layer.borderColor=[[UIColor lightGrayColor] CGColor];
+                    TempButton.layer.borderColor=[[UIColor colorWithRed:232.0f/255.0f green:232.0f/255.0f blue:232.0f/255.0f alpha:1.0f] CGColor];
                     [SUserScrollview addSubview: TempButton];
                     
                     
@@ -1971,12 +2012,12 @@
     });
     
     
-    UIButton *NearbyButton = [[UIButton alloc]init];
-    NearbyButton.frame = CGRectMake((screenWidth / 2) - 60, 105, 120, 37);
-    [NearbyButton setImage:[UIImage imageNamed:@"nearby_btn.png"] forState:UIControlStateNormal];
-    NearbyButton.backgroundColor = [UIColor clearColor];
-    [NearbyButton addTarget:self action:@selector(NearbyButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview: NearbyButton];
+//    UIButton *NearbyButton = [[UIButton alloc]init];
+//    NearbyButton.frame = CGRectMake((screenWidth / 2) - 60, 105, 120, 37);
+//    [NearbyButton setImage:[UIImage imageNamed:@"nearby_btn.png"] forState:UIControlStateNormal];
+//    NearbyButton.backgroundColor = [UIColor clearColor];
+//    [NearbyButton addTarget:self action:@selector(NearbyButton:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview: NearbyButton];
     
 }
 
@@ -2394,11 +2435,11 @@
                                  NSString *ThaiTitle = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"544481503efa3ff1588b4567"]];
                                  NSString *IndonesianTitle = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"53672e863efa3f857f8b4ed2"]];
                                  NSString *PhilippinesTitle = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"539fbb273efa3fde3f8b4567"]];
-                                 if ([Title1 length] == 0 || Title1 == nil || [Title1 isEqualToString:@"(null)"] || [Title1 isEqualToString:@"()"]) {
-                                     if ([Title2 length] == 0 || Title2 == nil || [Title2 isEqualToString:@"(null)"] || [Title2 isEqualToString:@"()"]) {
-                                         if ([ThaiTitle length] == 0 || ThaiTitle == nil || [ThaiTitle isEqualToString:@"(null)"] || [ThaiTitle isEqualToString:@"()"]) {
-                                             if ([IndonesianTitle length] == 0 || IndonesianTitle == nil || [IndonesianTitle isEqualToString:@"(null)"] || [IndonesianTitle isEqualToString:@"()"]) {
-                                                 if ([PhilippinesTitle length] == 0 || PhilippinesTitle == nil || [PhilippinesTitle isEqualToString:@"(null)"] || [PhilippinesTitle isEqualToString:@"()"]) {
+                                 if ([Title1 length] == 0 || Title1 == nil || [Title1 isEqualToString:@"(null)"] || [Title1 isEqualToString:@"{}"]) {
+                                     if ([Title2 length] == 0 || Title2 == nil || [Title2 isEqualToString:@"(null)"] || [Title2 isEqualToString:@"{}"]) {
+                                         if ([ThaiTitle length] == 0 || ThaiTitle == nil || [ThaiTitle isEqualToString:@"(null)"] || [ThaiTitle isEqualToString:@"{}"]) {
+                                             if ([IndonesianTitle length] == 0 || IndonesianTitle == nil || [IndonesianTitle isEqualToString:@"(null)"] || [IndonesianTitle isEqualToString:@"{}"]) {
+                                                 if ([PhilippinesTitle length] == 0 || PhilippinesTitle == nil || [PhilippinesTitle isEqualToString:@"(null)"] || [PhilippinesTitle isEqualToString:@"{}"]) {
                                                      [TempTitleArray addObject:@""];
                                                  }else{
                                                      [TempTitleArray addObject:PhilippinesTitle];
@@ -2430,11 +2471,11 @@
                              IndonesianTitle = [[NSString alloc]initWithFormat:@"%@",[titleData valueForKey:@"53672e863efa3f857f8b4ed2"]];
                              PhilippinesTitle = [[NSString alloc]initWithFormat:@"%@",[titleData valueForKey:@"539fbb273efa3fde3f8b4567"]];
 
-                             if ([Title1 length] == 0 || Title1 == nil || [Title1 isEqualToString:@"(null)"] || [Title1 isEqualToString:@"()"]) {
-                                 if ([Title2 length] == 0 || Title2 == nil || [Title2 isEqualToString:@"(null)"] || [Title2 isEqualToString:@"()"]) {
-                                     if ([ThaiTitle length] == 0 || ThaiTitle == nil || [ThaiTitle isEqualToString:@"(null)"] || [ThaiTitle isEqualToString:@"()"]) {
-                                         if ([IndonesianTitle length] == 0 || IndonesianTitle == nil || [IndonesianTitle isEqualToString:@"(null)"] || [IndonesianTitle isEqualToString:@"()"]) {
-                                             if ([PhilippinesTitle length] == 0 || PhilippinesTitle == nil || [PhilippinesTitle isEqualToString:@"(null)"] || [PhilippinesTitle isEqualToString:@"()"]) {
+                             if ([Title1 length] == 0 || Title1 == nil || [Title1 isEqualToString:@"(null)"] || [Title1 isEqualToString:@"{}"]) {
+                                 if ([Title2 length] == 0 || Title2 == nil || [Title2 isEqualToString:@"(null)"] || [Title2 isEqualToString:@"{}"]) {
+                                     if ([ThaiTitle length] == 0 || ThaiTitle == nil || [ThaiTitle isEqualToString:@"(null)"] || [ThaiTitle isEqualToString:@"{}"]) {
+                                         if ([IndonesianTitle length] == 0 || IndonesianTitle == nil || [IndonesianTitle isEqualToString:@"(null)"] || [IndonesianTitle isEqualToString:@"{}"]) {
+                                             if ([PhilippinesTitle length] == 0 || PhilippinesTitle == nil || [PhilippinesTitle isEqualToString:@"(null)"] || [PhilippinesTitle isEqualToString:@"{}"]) {
                                                  [arrTitle addObject:@""];
                                              }else{
                                                  [arrTitle addObject:PhilippinesTitle];
@@ -2483,11 +2524,11 @@
                                  NSString *ThaiTitle = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"544481503efa3ff1588b4567"]];
                                  NSString *IndonesianTitle = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"53672e863efa3f857f8b4ed2"]];
                                  NSString *PhilippinesTitle = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"539fbb273efa3fde3f8b4567"]];
-                                 if ([Title1 length] == 0 || Title1 == nil || [Title1 isEqualToString:@"(null)"] || [Title1 isEqualToString:@"()"]) {
-                                     if ([Title2 length] == 0 || Title2 == nil || [Title2 isEqualToString:@"(null)"] || [Title2 isEqualToString:@"()"]) {
-                                         if ([ThaiTitle length] == 0 || ThaiTitle == nil || [ThaiTitle isEqualToString:@"(null)"] || [ThaiTitle isEqualToString:@"()"]) {
-                                             if ([IndonesianTitle length] == 0 || IndonesianTitle == nil || [IndonesianTitle isEqualToString:@"(null)"] || [IndonesianTitle isEqualToString:@"()"]) {
-                                                 if ([PhilippinesTitle length] == 0 || PhilippinesTitle == nil || [PhilippinesTitle isEqualToString:@"(null)"] || [PhilippinesTitle isEqualToString:@"()"]) {
+                                 if ([Title1 length] == 0 || Title1 == nil || [Title1 isEqualToString:@"(null)"] || [Title1 isEqualToString:@"{}"]) {
+                                     if ([Title2 length] == 0 || Title2 == nil || [Title2 isEqualToString:@"(null)"] || [Title2 isEqualToString:@"{}"]) {
+                                         if ([ThaiTitle length] == 0 || ThaiTitle == nil || [ThaiTitle isEqualToString:@"(null)"] || [ThaiTitle isEqualToString:@"{}"]) {
+                                             if ([IndonesianTitle length] == 0 || IndonesianTitle == nil || [IndonesianTitle isEqualToString:@"(null)"] || [IndonesianTitle isEqualToString:@"{}"]) {
+                                                 if ([PhilippinesTitle length] == 0 || PhilippinesTitle == nil || [PhilippinesTitle isEqualToString:@"(null)"] || [PhilippinesTitle isEqualToString:@"{}"]) {
                                                      [TempTitleArray addObject:@""];
                                                  }else{
                                                      [TempTitleArray addObject:PhilippinesTitle];
@@ -2519,11 +2560,11 @@
                              IndonesianTitle_message = [[NSString alloc]initWithFormat:@"%@",[messageData valueForKey:@"53672e863efa3f857f8b4ed2"]];
                              PhilippinesTitle_message = [[NSString alloc]initWithFormat:@"%@",[messageData valueForKey:@"539fbb273efa3fde3f8b4567"]];
                              
-                             if ([Title1_message length] == 0 || Title1_message == nil || [Title1_message isEqualToString:@"(null)"] || [Title1_message isEqualToString:@"()"]) {
-                                 if ([Title2_message length] == 0 || Title2_message == nil || [Title2_message isEqualToString:@"(null)"] || [Title2_message isEqualToString:@"()"]) {
-                                     if ([ThaiTitle_message length] == 0 || ThaiTitle_message == nil || [ThaiTitle_message isEqualToString:@"(null)"] || [ThaiTitle_message isEqualToString:@"()"]) {
-                                         if ([IndonesianTitle_message length] == 0 || IndonesianTitle_message == nil || [IndonesianTitle_message isEqualToString:@"(null)"] || [IndonesianTitle_message isEqualToString:@"()"]) {
-                                             if ([PhilippinesTitle_message length] == 0 || PhilippinesTitle_message == nil || [PhilippinesTitle_message isEqualToString:@"(null)"] || [PhilippinesTitle_message isEqualToString:@"()"]) {
+                             if ([Title1_message length] == 0 || Title1_message == nil || [Title1_message isEqualToString:@"(null)"] || [Title1_message isEqualToString:@"{}"]) {
+                                 if ([Title2_message length] == 0 || Title2_message == nil || [Title2_message isEqualToString:@"(null)"] || [Title2_message isEqualToString:@"{}"]) {
+                                     if ([ThaiTitle_message length] == 0 || ThaiTitle_message == nil || [ThaiTitle_message isEqualToString:@"(null)"] || [ThaiTitle_message isEqualToString:@"{}"]) {
+                                         if ([IndonesianTitle_message length] == 0 || IndonesianTitle_message == nil || [IndonesianTitle_message isEqualToString:@"(null)"] || [IndonesianTitle_message isEqualToString:@"{}"]) {
+                                             if ([PhilippinesTitle_message length] == 0 || PhilippinesTitle_message == nil || [PhilippinesTitle_message isEqualToString:@"(null)"] || [PhilippinesTitle_message isEqualToString:@"{}"]) {
                                                  [arrMessage addObject:@""];
                                              }else{
                                                  [arrMessage addObject:PhilippinesTitle_message];
@@ -3253,5 +3294,14 @@
     }
     
     
+}
+-(IBAction)AboadOpenPostsOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSString *GetID = [[NSString alloc]initWithFormat:@"%@",[arrAboadID objectAtIndex:getbuttonIDN]];
+    NSLog(@"AboadOpenPostsOnClick GetID is %@",GetID);
+    
+    FeedV2DetailViewController *vc = [[FeedV2DetailViewController alloc] initWithNibName:@"FeedV2DetailViewController" bundle:nil];
+    [self.navigationController pushViewController:vc animated:YES];
+    [vc GetPostID:GetID];
 }
 @end

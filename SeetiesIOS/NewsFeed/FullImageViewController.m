@@ -104,8 +104,8 @@
         [MImageScroll addSubview:Line01];
         
         
-      //  NSString *TempGetStirngMessage = [[NSString alloc]initWithFormat:@"%@",[GetAllFullCaptionArray objectAtIndex:i]];
-        NSString *TempGetStirngMessage = @"Have a nice trip to Port Dickson with all the amazing people!";
+        NSString *TempGetStirngMessage = [[NSString alloc]initWithFormat:@"%@",[GetAllFullCaptionArray objectAtIndex:i]];
+     //   NSString *TempGetStirngMessage = @"Have a nice trip to Port Dickson with all the amazing people!";
         NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"[]:"];
         TempGetStirngMessage = [[TempGetStirngMessage componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString:@""];
         UILabel *ShowCaptionText = [[UILabel alloc]init];

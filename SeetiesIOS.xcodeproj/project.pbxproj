@@ -81,6 +81,23 @@
 		0BC9B38B1B7DD288008334FF /* FeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC9B3891B7DD287008334FF /* FeedViewController.xib */; };
 		0BD634FC1B71C9B800D82414 /* LeveyTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD634F91B71C9B800D82414 /* LeveyTabBar.m */; };
 		0BD634FD1B71C9B800D82414 /* LeveyTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD634FB1B71C9B800D82414 /* LeveyTabBarController.m */; };
+		0BDFD6201BB1758800F412A8 /* blue_location_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BDFD61F1BB1758800F412A8 /* blue_location_icon@2x.png */; settings = {ASSET_TAGS = (); }; };
+		0BDFD6221BB1759A00F412A8 /* goto_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BDFD6211BB1759A00F412A8 /* goto_icon@2x.png */; settings = {ASSET_TAGS = (); }; };
+		0BDFD6241BB175A500F412A8 /* searchresult_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BDFD6231BB175A500F412A8 /* searchresult_icon@2x.png */; settings = {ASSET_TAGS = (); }; };
+		0BDFD6321BB175BE00F412A8 /* fb_deselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BDFD6261BB175BE00F412A8 /* fb_deselect@2x.png */; settings = {ASSET_TAGS = (); }; };
+		0BDFD6331BB175BE00F412A8 /* fb_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BDFD6271BB175BE00F412A8 /* fb_icon@2x.png */; settings = {ASSET_TAGS = (); }; };
+		0BDFD6341BB175BE00F412A8 /* fb_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BDFD6281BB175BE00F412A8 /* fb_selected@2x.png */; settings = {ASSET_TAGS = (); }; };
+		0BDFD6351BB175BE00F412A8 /* ig_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BDFD6291BB175BE00F412A8 /* ig_selected@2x.png */; settings = {ASSET_TAGS = (); }; };
+		0BDFD6361BB175BE00F412A8 /* ig_unselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BDFD62A1BB175BE00F412A8 /* ig_unselect@2x.png */; settings = {ASSET_TAGS = (); }; };
+		0BDFD6371BB175BE00F412A8 /* line_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BDFD62B1BB175BE00F412A8 /* line_icon@2x.png */; settings = {ASSET_TAGS = (); }; };
+		0BDFD6381BB175BE00F412A8 /* messenger_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BDFD62C1BB175BE00F412A8 /* messenger_icon@2x.png */; settings = {ASSET_TAGS = (); }; };
+		0BDFD6391BB175BE00F412A8 /* msg_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BDFD62D1BB175BE00F412A8 /* msg_selected@2x.png */; settings = {ASSET_TAGS = (); }; };
+		0BDFD63A1BB175BE00F412A8 /* msg_unselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BDFD62E1BB175BE00F412A8 /* msg_unselect@2x.png */; settings = {ASSET_TAGS = (); }; };
+		0BDFD63B1BB175BE00F412A8 /* vector@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BDFD62F1BB175BE00F412A8 /* vector@2x.png */; settings = {ASSET_TAGS = (); }; };
+		0BDFD63C1BB175BE00F412A8 /* wechat_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BDFD6301BB175BE00F412A8 /* wechat_icon@2x.png */; settings = {ASSET_TAGS = (); }; };
+		0BDFD63D1BB175BE00F412A8 /* whastapp_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BDFD6311BB175BE00F412A8 /* whastapp_icon@2x.png */; settings = {ASSET_TAGS = (); }; };
+		0BDFD6411BB1764B00F412A8 /* ExploreFollow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BDFD63F1BB1764B00F412A8 /* ExploreFollow@2x.png */; settings = {ASSET_TAGS = (); }; };
+		0BDFD6421BB1764B00F412A8 /* ExploreFollowing@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BDFD6401BB1764B00F412A8 /* ExploreFollowing@2x.png */; settings = {ASSET_TAGS = (); }; };
 		0BE340231B73021B00F49625 /* Adriane Text Bold Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0BE340201B73021B00F49625 /* Adriane Text Bold Italic.otf */; };
 		0BE340241B73021B00F49625 /* ProximaNovaSoft-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BE340211B73021B00F49625 /* ProximaNovaSoft-Bold.ttf */; };
 		0BE340251B73021B00F49625 /* ProximaNovaSoft-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BE340221B73021B00F49625 /* ProximaNovaSoft-Regular.ttf */; };
@@ -1133,6 +1150,23 @@
 		0BD634F91B71C9B800D82414 /* LeveyTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeveyTabBar.m; sourceTree = "<group>"; };
 		0BD634FA1B71C9B800D82414 /* LeveyTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeveyTabBarController.h; sourceTree = "<group>"; };
 		0BD634FB1B71C9B800D82414 /* LeveyTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeveyTabBarController.m; sourceTree = "<group>"; };
+		0BDFD61F1BB1758800F412A8 /* blue_location_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blue_location_icon@2x.png"; sourceTree = "<group>"; };
+		0BDFD6211BB1759A00F412A8 /* goto_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "goto_icon@2x.png"; sourceTree = "<group>"; };
+		0BDFD6231BB175A500F412A8 /* searchresult_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchresult_icon@2x.png"; sourceTree = "<group>"; };
+		0BDFD6261BB175BE00F412A8 /* fb_deselect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fb_deselect@2x.png"; sourceTree = "<group>"; };
+		0BDFD6271BB175BE00F412A8 /* fb_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fb_icon@2x.png"; sourceTree = "<group>"; };
+		0BDFD6281BB175BE00F412A8 /* fb_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fb_selected@2x.png"; sourceTree = "<group>"; };
+		0BDFD6291BB175BE00F412A8 /* ig_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ig_selected@2x.png"; sourceTree = "<group>"; };
+		0BDFD62A1BB175BE00F412A8 /* ig_unselect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ig_unselect@2x.png"; sourceTree = "<group>"; };
+		0BDFD62B1BB175BE00F412A8 /* line_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line_icon@2x.png"; sourceTree = "<group>"; };
+		0BDFD62C1BB175BE00F412A8 /* messenger_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "messenger_icon@2x.png"; sourceTree = "<group>"; };
+		0BDFD62D1BB175BE00F412A8 /* msg_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "msg_selected@2x.png"; sourceTree = "<group>"; };
+		0BDFD62E1BB175BE00F412A8 /* msg_unselect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "msg_unselect@2x.png"; sourceTree = "<group>"; };
+		0BDFD62F1BB175BE00F412A8 /* vector@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vector@2x.png"; sourceTree = "<group>"; };
+		0BDFD6301BB175BE00F412A8 /* wechat_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wechat_icon@2x.png"; sourceTree = "<group>"; };
+		0BDFD6311BB175BE00F412A8 /* whastapp_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whastapp_icon@2x.png"; sourceTree = "<group>"; };
+		0BDFD63F1BB1764B00F412A8 /* ExploreFollow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ExploreFollow@2x.png"; sourceTree = "<group>"; };
+		0BDFD6401BB1764B00F412A8 /* ExploreFollowing@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ExploreFollowing@2x.png"; sourceTree = "<group>"; };
 		0BE340201B73021B00F49625 /* Adriane Text Bold Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Adriane Text Bold Italic.otf"; sourceTree = "<group>"; };
 		0BE340211B73021B00F49625 /* ProximaNovaSoft-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNovaSoft-Bold.ttf"; sourceTree = "<group>"; };
 		0BE340221B73021B00F49625 /* ProximaNovaSoft-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNovaSoft-Regular.ttf"; sourceTree = "<group>"; };
@@ -2521,6 +2555,34 @@
 			path = LeveyTabBar;
 			sourceTree = "<group>";
 		};
+		0BDFD6251BB175BE00F412A8 /* InviteFriends */ = {
+			isa = PBXGroup;
+			children = (
+				0BDFD6261BB175BE00F412A8 /* fb_deselect@2x.png */,
+				0BDFD6271BB175BE00F412A8 /* fb_icon@2x.png */,
+				0BDFD6281BB175BE00F412A8 /* fb_selected@2x.png */,
+				0BDFD6291BB175BE00F412A8 /* ig_selected@2x.png */,
+				0BDFD62A1BB175BE00F412A8 /* ig_unselect@2x.png */,
+				0BDFD62B1BB175BE00F412A8 /* line_icon@2x.png */,
+				0BDFD62C1BB175BE00F412A8 /* messenger_icon@2x.png */,
+				0BDFD62D1BB175BE00F412A8 /* msg_selected@2x.png */,
+				0BDFD62E1BB175BE00F412A8 /* msg_unselect@2x.png */,
+				0BDFD62F1BB175BE00F412A8 /* vector@2x.png */,
+				0BDFD6301BB175BE00F412A8 /* wechat_icon@2x.png */,
+				0BDFD6311BB175BE00F412A8 /* whastapp_icon@2x.png */,
+			);
+			path = InviteFriends;
+			sourceTree = "<group>";
+		};
+		0BDFD63E1BB1764B00F412A8 /* Explore */ = {
+			isa = PBXGroup;
+			children = (
+				0BDFD63F1BB1764B00F412A8 /* ExploreFollow@2x.png */,
+				0BDFD6401BB1764B00F412A8 /* ExploreFollowing@2x.png */,
+			);
+			path = Explore;
+			sourceTree = "<group>";
+		};
 		0BE3401F1B73021B00F49625 /* Font */ = {
 			isa = PBXGroup;
 			children = (
@@ -3676,6 +3738,11 @@
 		8AD6C3531B70934C0040437E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				0BDFD63E1BB1764B00F412A8 /* Explore */,
+				0BDFD6251BB175BE00F412A8 /* InviteFriends */,
+				0BDFD6231BB175A500F412A8 /* searchresult_icon@2x.png */,
+				0BDFD6211BB1759A00F412A8 /* goto_icon@2x.png */,
+				0BDFD61F1BB1758800F412A8 /* blue_location_icon@2x.png */,
 				0B3FF1111BB159980014AF2E /* CollectionImg */,
 				8A4509931BB0026300A868CD /* Recommendation */,
 				0BBFE0B11BA15DC0004B17E9 /* Mini_collection_icon@2x.png */,
@@ -4652,6 +4719,7 @@
 				8AD6C7411B70934D0040437E /* InviteButton.png in Resources */,
 				8AD6C75F1B70934D0040437E /* Popover.png in Resources */,
 				8AD6C77B1B70934D0040437E /* Popular@2x.png in Resources */,
+				0BDFD63B1BB175BE00F412A8 /* vector@2x.png in Resources */,
 				8AD6C66E1B70934D0040437E /* FollowMini.png in Resources */,
 				8AD6C6F41B70934D0040437E /* GotoPlace.png in Resources */,
 				8AD6C64B1B70934D0040437E /* Notification@2x.png in Resources */,
@@ -4727,6 +4795,7 @@
 				8AD6C32F1B707D120040437E /* PEPhotoCropEditor.bundle in Resources */,
 				8AD6C7F51B70934D0040437E /* TopBarLogo@2x.png in Resources */,
 				8AD6C68D1B70934D0040437E /* ActionNoLike@3x.png in Resources */,
+				0BDFD6221BB1759A00F412A8 /* goto_icon@2x.png in Resources */,
 				8AD6C7491B70934D0040437E /* InviteEmailSelected@3x.png in Resources */,
 				8AD6C7211B70934D0040437E /* InfoContact@2x.png in Resources */,
 				8AD6C68A1B70934D0040437E /* ActionNoComment@3x.png in Resources */,
@@ -4745,6 +4814,7 @@
 				8AD6C7811B70934D0040437E /* PostCommentGreen@2x.png in Resources */,
 				8AD6C0C71B706CF30040437E /* NearByRecommtationViewController.xib in Resources */,
 				8AD6C6681B70934D0040437E /* Following.png in Resources */,
+				0BDFD6201BB1758800F412A8 /* blue_location_icon@2x.png in Resources */,
 				0BBFE06E1B9D8310004B17E9 /* follower_icon@2x.png in Resources */,
 				8AD6C7CE1B70934D0040437E /* TakePhoto.png in Resources */,
 				8AD6C5EC1B70934D0040437E /* EditLocationBack.png in Resources */,
@@ -4755,6 +4825,7 @@
 				8AD6C6221B70934D0040437E /* IconTranslate@3x.png in Resources */,
 				8AD6C6441B70934D0040437E /* NoComment@3x_02.png in Resources */,
 				8A3409051B8714D7009B66C3 /* profile_1.png in Resources */,
+				0BDFD63D1BB175BE00F412A8 /* whastapp_icon@2x.png in Resources */,
 				8AD6C7341B70934D0040437E /* IconFBMessenger@3x.png in Resources */,
 				8AD6C6921B70934D0040437E /* ArrowDown@2x.png in Resources */,
 				8AD6C69B1B70934D0040437E /* AvatarLike@2x.png in Resources */,
@@ -4772,6 +4843,7 @@
 				8AD6C1171B706CF30040437E /* FSWebLogin.xib in Resources */,
 				8AD6C5F61B70934D0040437E /* Follow@2x.png in Resources */,
 				8AD6C6B91B70934D0040437E /* BtnFindFriends@2x.png in Resources */,
+				0BDFD6381BB175BE00F412A8 /* messenger_icon@2x.png in Resources */,
 				8A54301B1B8C1C05009EFFF4 /* editplace_icon@2x.png in Resources */,
 				8AD6C7DF1B70934D0040437E /* SeeMoreHover.png in Resources */,
 				8AD6C8161B709A450040437E /* SettingsViewController.xib in Resources */,
@@ -4802,6 +4874,7 @@
 				8AD6C6DA1B70934D0040437E /* dropdown@2x.png in Resources */,
 				8AD6C7991B70934D0040437E /* SearchBoxPin@2x.png in Resources */,
 				0B3FF11D1BB159980014AF2E /* blue_checkbox_tick.png in Resources */,
+				0BDFD6351BB175BE00F412A8 /* ig_selected@2x.png in Resources */,
 				8AD6C5E01B70934D0040437E /* CategorySelected.png in Resources */,
 				8AD6C6851B70934D0040437E /* ActionLike.png in Resources */,
 				8AD6C6F21B70934D0040437E /* GoToPhoto@2x.png in Resources */,
@@ -4838,6 +4911,7 @@
 				8AD6C7E21B70934D0040437E /* SelectLangArrow.png in Resources */,
 				8A9F25D51B8EF61900BB13BA /* EditHourTableViewCell.xib in Resources */,
 				8AD6C2981B7072FB0040437E /* EditLocationViewController.xib in Resources */,
+				0BDFD6321BB175BE00F412A8 /* fb_deselect@2x.png in Resources */,
 				8AD6C0FD1B706CF30040437E /* SearchViewV2.xib in Resources */,
 				8AD6C6101B70934D0040437E /* 1242x2208-04.jpg in Resources */,
 				0B3FF10A1BB131620014AF2E /* NewCollectionViewController.xib in Resources */,
@@ -4927,6 +5001,7 @@
 				8AD6C7611B70934D0040437E /* Popover@3x.png in Resources */,
 				0BBFE06D1B9D8310004B17E9 /* edit_profile_btn@2x.png in Resources */,
 				0BC9B38B1B7DD288008334FF /* FeedViewController.xib in Resources */,
+				0BDFD6331BB175BE00F412A8 /* fb_icon@2x.png in Resources */,
 				8AD6C62E1B70934D0040437E /* LanguagePh@3x.png in Resources */,
 				8AD6C6251B70934D0040437E /* LanguageChi@3x.png in Resources */,
 				8AD6C66A1B70934D0040437E /* Following@3x.png in Resources */,
@@ -4971,6 +5046,8 @@
 				8AD6C6281B70934D0040437E /* LanguageEng@3x.png in Resources */,
 				8AD6C6081B70934D0040437E /* InteractComment.png in Resources */,
 				8A3409031B870F2B009B66C3 /* profile_2.png in Resources */,
+				0BDFD6421BB1764B00F412A8 /* ExploreFollowing@2x.png in Resources */,
+				0BDFD6371BB175BE00F412A8 /* line_icon@2x.png in Resources */,
 				8AD6C7911B70934D0040437E /* PostTime@3x.png in Resources */,
 				8AD6C7081B70934D0040437E /* IconDelete@3x.png in Resources */,
 				8AD6C0FF1B706CF30040437E /* SearchViewV2Controller.xib in Resources */,
@@ -5045,6 +5122,7 @@
 				8AD6C66F1B70934D0040437E /* FollowMini@2x.png in Resources */,
 				8AD6C5DE1B70934D0040437E /* Caret@2x.png in Resources */,
 				8AD6C78D1B70934D0040437E /* PostShade@2x.png in Resources */,
+				0BDFD63C1BB175BE00F412A8 /* wechat_icon@2x.png in Resources */,
 				8AD6C7861B70934D0040437E /* PostLikeRed.png in Resources */,
 				8AD6C7D61B70934D0040437E /* Search@2x.png in Resources */,
 				8AD6C10B1B706CF30040437E /* FeedbackViewController.xib in Resources */,
@@ -5067,7 +5145,9 @@
 				8AD6C7F81B70934D0040437E /* iPhone4_Tour2.png in Resources */,
 				8AD6C7AC1B70934D0040437E /* SubMenu@3x.png in Resources */,
 				8AD6C0F91B706CF30040437E /* SearchResultV2ViewController.xib in Resources */,
+				0BDFD6341BB175BE00F412A8 /* fb_selected@2x.png in Resources */,
 				8AD6C5D71B70934D0040437E /* TableTwo@3x.png in Resources */,
+				0BDFD6411BB1764B00F412A8 /* ExploreFollow@2x.png in Resources */,
 				8AD6C5C51B70934D0040437E /* Icon-Spotlight-iOS7@2x.png in Resources */,
 				8AD6C7891B70934D0040437E /* PostShade.png in Resources */,
 				8AD6C7471B70934D0040437E /* InviteEmailSelected.png in Resources */,
@@ -5137,6 +5217,7 @@
 				8AD6C2A81B7072FB0040437E /* TellaStoryViewController.xib in Resources */,
 				8AD6C63C1B70934D0040437E /* MoreRecommendation.png in Resources */,
 				8AD6C60C1B70934D0040437E /* InteractLike@2x.png in Resources */,
+				0BDFD6241BB175A500F412A8 /* searchresult_icon@2x.png in Resources */,
 				8AD6C6B21B70934D0040437E /* BtnEdit.png in Resources */,
 				8AD6C6541B70934D0040437E /* PostLocation@2x.png in Resources */,
 				8AD6C1031B706CF30040437E /* ChangePasswordViewController.xib in Resources */,
@@ -5233,6 +5314,7 @@
 				8AD6C6501B70934D0040437E /* PostLiked.png in Resources */,
 				8AD6C6891B70934D0040437E /* ActionNoComment@2x.png in Resources */,
 				8AD6C5E11B70934D0040437E /* CheckForUpdate.png in Resources */,
+				0BDFD6391BB175BE00F412A8 /* msg_selected@2x.png in Resources */,
 				8AD6C6C21B70934D0040437E /* BtnShowLess@2x.png in Resources */,
 				8AD6C7201B70934D0040437E /* InfoContact.png in Resources */,
 				8AD6C6D21B70934D0040437E /* ClearIcon@3x.png in Resources */,
@@ -5323,6 +5405,7 @@
 				8AD6C63E1B70934D0040437E /* MoreRecommendation@3x.png in Resources */,
 				8AD6C6E41B70934D0040437E /* FeedGradient@3x.png in Resources */,
 				8AD6C5E61B70934D0040437E /* CurrentLocationBack.png in Resources */,
+				0BDFD63A1BB175BE00F412A8 /* msg_unselect@2x.png in Resources */,
 				0BBFE0631B9D6454004B17E9 /* search_icon@2x.png in Resources */,
 				8AD6C5D91B70934D0040437E /* ButtonArrow@2x.png in Resources */,
 				8AD6C64F1B70934D0040437E /* PinSearchBox@3x.png in Resources */,
@@ -5342,6 +5425,7 @@
 				8AD6C6141B70934D0040437E /* 640x960-01.jpg in Resources */,
 				8AD6C71C1B70934D0040437E /* InfoBoxLower.png in Resources */,
 				8AD6C61F1B70934D0040437E /* LandingLogo@3x.png in Resources */,
+				0BDFD6361BB175BE00F412A8 /* ig_unselect@2x.png in Resources */,
 				8AD6C5B61B70934D0040437E /* AccountSettingBack.png in Resources */,
 				8AD6C5BE1B70934D0040437E /* Icon-76.png in Resources */,
 				8A9F25DE1B90002B00BB13BA /* CustomPickerViewController.xib in Resources */,

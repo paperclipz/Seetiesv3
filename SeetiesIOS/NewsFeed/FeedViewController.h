@@ -15,9 +15,6 @@
     IBOutlet UILabel *ShowNoConnectionText;
     IBOutlet UIImageView *NoConnectionImg;
     IBOutlet UIButton *TryAgainButton;
-    
-    
-    
     IBOutlet UIScrollView *MainScroll;
     IBOutlet UIScrollView *LocalScroll;
     UIRefreshControl *refreshControl;
@@ -55,6 +52,8 @@
     
     NSMutableArray *arrType_Announcement;
     NSMutableArray *arrID_Announcement;
+    
+    NSMutableArray *arrAboadID;
     
     NSString *GetNextPaging;
     
