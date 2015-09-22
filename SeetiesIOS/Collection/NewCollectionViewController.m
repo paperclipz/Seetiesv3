@@ -253,7 +253,7 @@
     if ([TagsField.text length] == 0) {
         
     }else{
-        NSArray *TempTagsArray = [TagsField.text componentsSeparatedByString:@" "];
+        NSArray *TempTagsArray = [TagsField.text componentsSeparatedByString:@","];
         for (int i = 0; i < [TempTagsArray count]; i++) {
             [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
             //Attaching the key name @"parameter_second" to the post body

@@ -569,12 +569,6 @@
         TempButton.layer.cornerRadius = 5;
         [CollectionView addSubview: TempButton];
         
-        NSMutableArray *DemoArray = [[NSMutableArray alloc]init];
-        [DemoArray addObject:@"DemoBackground.jpg"];
-        [DemoArray addObject:@"UserDemo1.jpg"];
-        [DemoArray addObject:@"UserDemo2.jpg"];
-        [DemoArray addObject:@"UserDemo3.jpg"];
-        
         NSString *TempImage = [[NSString alloc]initWithFormat:@"%@",[CollectionData_PhotoArray objectAtIndex:i]];
         NSArray *SplitArray = [TempImage componentsSeparatedByString:@","];
         for (int z = 0; z < [SplitArray count]; z++) {
@@ -627,7 +621,10 @@
         EditButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
         [EditButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
         EditButton.backgroundColor = [UIColor whiteColor];
+        EditButton.tag = i;
+        [EditButton addTarget:self action:@selector(CollectionEditButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
         [CollectionView addSubview:EditButton];
+        
         
         UIButton *Line01 = [[UIButton alloc]init];
         Line01.frame = CGRectMake(15, heightcheck + 5 + FinalWidth + 70 + i, screenWidth - 30, 1);
@@ -1408,8 +1405,12 @@
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"OpenCollectionOnClick button %li",(long)getbuttonIDN);
     
-    CollectionViewController *CollectionView = [[CollectionViewController alloc]init];
-    [self.navigationController pushViewController:CollectionView animated:YES];
-    [CollectionView GetCollectionID:[CollectionData_IDArray objectAtIndex:getbuttonIDN]];
+    CollectionViewController *OpenCollectionView = [[CollectionViewController alloc]init];
+    [self.navigationController pushViewController:OpenCollectionView animated:YES];
+    [OpenCollectionView GetCollectionID:[CollectionData_IDArray objectAtIndex:getbuttonIDN]];
+}
+-(IBAction)CollectionEditButtonOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSLog(@"CollectionEditButtonOnClick button %li",(long)getbuttonIDN);
 }
 @end
