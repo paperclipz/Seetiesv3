@@ -67,6 +67,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
+    self.lblTitle.text = @"";
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -81,7 +82,7 @@
     [self.ibScrollView addSubview:self.addNewPlaceSubView];
     self.ibScrollView.contentSize = self.addNewPlaceSubView.frame.size;
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
-    lpgr.minimumPressDuration = 1.0;
+    lpgr.minimumPressDuration = 0.3f;
     [self.ibMapView addGestureRecognizer:lpgr];
     self.ibMapView.delegate = self;
 
@@ -197,8 +198,11 @@
     if (pav == nil)
     {
         pav = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseId];
-        pav.draggable = YES;
+      //  pav.draggable = YES;
         pav.canShowCallout = YES;
+        pav.image = [UIImage imageNamed:@"MapPin.png"];
+       
+
     }
     else
     {

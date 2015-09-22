@@ -297,7 +297,7 @@
     
     [self.view addSubview:self.leveyTabBarController.view];
     //TODO:Delete this . use for development purpose only
-    [self.leveyTabBarController setSelectedIndex:2];
+   // [self.leveyTabBarController setSelectedIndex:2];
 }
 
 - (void)animateImages
@@ -473,6 +473,12 @@
         _recommendationViewController.backBlock = ^(id object)
         {
             [weakself dismissViewControllerAnimated:YES completion:nil];
+        };
+        _recommendationViewController.donePostBlock = ^(id object)
+        {
+            
+            [TSMessage showNotificationInViewController:weakself title:@"system" subtitle:@"Data Successfully posted" type:TSMessageNotificationTypeSuccess duration:2.0 canBeDismissedByUser:YES];
+            
         };
     }
     return _recommendationViewController;

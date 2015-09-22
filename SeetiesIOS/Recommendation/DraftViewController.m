@@ -29,7 +29,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
-    // Do any additional setup after loading the view from its nib.
+    
+     // Do any additional setup after loading the view from its nib.
 }
 
 -(void)initData
@@ -48,7 +49,12 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerClass:[DraftTableViewCell class] forCellReuseIdentifier:@"DraftTableViewCell"];
-    
+    [self.tableView addPullToRefreshWithActionHandler:^{
+        [self requestServerForDraft];
+        
+        
+    }];
+
  
 }
 
@@ -115,8 +121,11 @@
         NSArray<DraftModel>* array = [[[ConnectionManager dataManager]draftsModel]posts];
         self.arrDraftList = [[NSMutableArray alloc]initWithArray:array];
         [self.tableView reloadData];
-        
-    } errorBlock:nil];
+        [self.tableView.pullToRefreshView stopAnimating];
+    } errorBlock:^(id object) {
+        [self.tableView.pullToRefreshView stopAnimating];
+
+    }];
  
 }
 

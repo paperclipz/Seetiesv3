@@ -42,7 +42,15 @@
 -(void)initSelfView
 {
     
+    
+    UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+    lpgr.minimumPressDuration = 0.3f;
+    [self.ibMapView addGestureRecognizer:lpgr];
     self.ibMapView.delegate = self;
+
+    self.ibMapView.delegate = self;
+    [self.ibMapView addAnnotation:self.annotation];
+
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -61,8 +69,7 @@
         _annotation = [MKPointAnnotation new];
         [_annotation setCoordinate:self.region.center];
         [_annotation setTitle:@"is This the Location?"]; //You can set the subtitle too
-        [self.ibMapView addAnnotation:_annotation];
-
+      
 
     }
     return _annotation;
@@ -99,11 +106,15 @@
         return nil;
     
     static NSString *reuseId = @"pin";
-    MKPinAnnotationView *pav = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseId];
+
+    MKAnnotationView *pav = [mapView dequeueReusableAnnotationViewWithIdentifier:reuseId];
     if (pav == nil)
     {
-        pav = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseId];
+        pav = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseId];
         pav.draggable = YES;
+        pav.canShowCallout = YES;
+        pav.image = [UIImage imageNamed:@"MapPin.png"];
+        pav.calloutOffset = CGPointMake(0, 0);
         pav.canShowCallout = YES;
     }
     else
@@ -127,5 +138,18 @@ didChangeDragState:(MKAnnotationViewDragState)newState
     }
     
   }
+
+//The event handling method
+- (void)handleLongPress:(UIGestureRecognizer *)gestureRecognizer{
+    if (gestureRecognizer.state != UIGestureRecognizerStateBegan)return;
+    CGPoint touchPoint = [gestureRecognizer locationInView:self.ibMapView];
+    CLLocationCoordinate2D touchCoordinate =
+    [self.ibMapView convertPoint:touchPoint toCoordinateFromView:self.ibMapView];
+    NSLog(@"%f, %f", touchCoordinate.latitude, touchCoordinate.longitude);
+    _region.center.latitude = touchCoordinate.latitude;
+    _region.center.longitude = touchCoordinate.longitude;
+    [self.annotation setCoordinate:self.region.center];
+    
+}
 
 @end

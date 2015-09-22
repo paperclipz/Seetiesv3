@@ -28,6 +28,9 @@
 
 // =============== model ===============//
 @property(nonatomic,strong)RecommendationModel* recommendationModel;
+
+@property(nonatomic,strong)RecommendationModel* tempSavedRecommendationModel;
+
 @property(nonatomic,strong)CategoriesModel* categoriesModel;
 
 // =============== model ===============//
@@ -55,11 +58,13 @@
     
     [self requestServerForCategories:^(id object) {
         self.categoriesModel = [[DataManager Instance] categoriesModel];
+        _categorySelectionViewController = nil;
         self.categorySelectionViewController.arrCategories = self.categoriesModel.categories;
         [self presentViewController:self.categorySelectionViewController animated:YES completion:nil];
     }];
 
 }
+
 - (IBAction)segmentedControlClicked:(id)sender {
     
     UISegmentedControl* temp = (UISegmentedControl*)sender;
@@ -84,7 +89,8 @@
 
 - (IBAction)btnBackClicked:(id)sender {
     
-    [UIAlertView showWithTitle:@"New Recommendation"
+    
+        [UIAlertView showWithTitle:@"New Recommendation"
                        message:@"You are exiting the editor. Save Changes?"
              cancelButtonTitle:@"Cancel"
              otherButtonTitles:@[@"Discard", @"Save"]
@@ -108,7 +114,8 @@
 
                           } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Save"]) {
                               NSLog(@"Save");
-                              [self.navigationController popViewControllerAnimated:YES];
+                              [self requestToSaveDraftOrPublish:YES];
+                             // [self.navigationController popViewControllerAnimated:YES];
                           }
                       }];
 }
@@ -240,6 +247,7 @@
             break;
         case 1:
         {
+            
             [self.addNewPlaceViewController initData:self.recommendationModel.reccomendVenueModel];
 
             [self presentViewController:self.navAddNewPlaceViewController animated:YES completion:^{
@@ -399,6 +407,7 @@
     if(!_addNewPlaceViewController)
     {
         _addNewPlaceViewController = [AddNewPlaceViewController new];
+        _addNewPlaceViewController.title = LocalisedString(@"Edit Place Info");
         __weak typeof (self)weakSelf = self;
         _addNewPlaceViewController.btnBackBlock = ^(id object)
         {
@@ -552,9 +561,6 @@ static id ObjectOrNull(id object)
                                     @"lng":ObjectOrNull(tempVenueModel.lng)};
     
     
-    
-    
-    
     NSMutableArray* categoriesSelected = [NSMutableArray new];
     
     for (int i = 0; i < self.categoriesModel.categories.count; i++) {
@@ -570,11 +576,10 @@ static id ObjectOrNull(id object)
                            @"status":isDraft?POST_DRAFT:POST_PUBLISH,
                            [NSString stringWithFormat:@"title[%@]",ENGLISH_CODE]:ObjectOrNull(tempModel.postMainTitle),
                            [NSString stringWithFormat:@"message[%@]",ENGLISH_CODE]:ObjectOrNull(tempModel.postMainDescription),
-                           @"category":@"",
+                           @"category":categoriesSelected.count==0?@[@0]:categoriesSelected,
                            @"device_type":@2,
                            @"location":[Utils convertToJsonString:locationDict],
                            @"link":ObjectOrNull(tempModel.postURL)};
-    
     
 
     NSDictionary* dictSecondDesc = @{[NSString stringWithFormat:@"title[%@]",THAI_CODE]:ObjectOrNull(tempModel.postSecondTitle),
@@ -583,7 +588,6 @@ static id ObjectOrNull(id object)
     
     NSMutableDictionary* finalDict = [[NSMutableDictionary alloc]initWithDictionary:dict];
     [finalDict addEntriesFromDictionary:dictSecondDesc];
-    
     
     for (int i = 0; i<tempModel.arrDeletedImages.count; i++) {
         
@@ -595,7 +599,17 @@ static id ObjectOrNull(id object)
     [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostCreatePost param:finalDict appendString:tempModel.post_id meta:arrMeta  completeHandler:^(id object) {
         
         
-        [TSMessage showNotificationInViewController:self title:@"system" subtitle:@"Data Successfully posted" type:TSMessageNotificationTypeSuccess duration:2.0 canBeDismissedByUser:YES];
+        self.tempSavedRecommendationModel = self.recommendationModel;
+        if (!isDraft) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+        else{
+            [TSMessage showNotificationInViewController:self title:@"system" subtitle:@"Data Successfully Saved to Draft" type:TSMessageNotificationTypeSuccess duration:2.0 canBeDismissedByUser:YES];
+
+        }
+        if (_editPostDoneBlock) {
+            self.editPostDoneBlock(nil);
+        }
     
     } errorBlock:^(id object) {
 

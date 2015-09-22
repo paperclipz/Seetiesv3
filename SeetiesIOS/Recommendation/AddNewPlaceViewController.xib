@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddNewPlaceViewController">
@@ -46,9 +47,13 @@
                                 <action selector="btnBackClicked:" destination="-1" eventType="touchUpInside" id="U5p-6i-pxI"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="unv-wv-jDS">
-                            <rect key="frame" x="252" y="25" width="37" height="30"/>
-                            <state key="normal" title="Done">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="unv-wv-jDS">
+                            <rect key="frame" x="291" y="26" width="21" height="22"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="21" id="4wM-UM-vfh"/>
+                                <constraint firstAttribute="height" constant="22" id="8NZ-ec-xHF"/>
+                            </constraints>
+                            <state key="normal" image="done_btn.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -65,8 +70,10 @@
                         <constraint firstItem="iGC-uq-moM" firstAttribute="leading" secondItem="vJ5-lJ-w6a" secondAttribute="leading" constant="8" id="Qqy-2Z-cUh"/>
                         <constraint firstAttribute="trailing" secondItem="key-Ts-FqN" secondAttribute="trailing" constant="8" id="Ujq-z5-8Jb"/>
                         <constraint firstAttribute="bottom" secondItem="key-Ts-FqN" secondAttribute="bottom" constant="14" id="XYs-Wi-bUM"/>
+                        <constraint firstAttribute="trailing" secondItem="unv-wv-jDS" secondAttribute="trailing" constant="8" id="YFr-RO-jPk"/>
                         <constraint firstItem="iGC-uq-moM" firstAttribute="top" secondItem="V7t-8u-g3s" secondAttribute="bottom" constant="-35" id="bRS-e4-wX0"/>
                         <constraint firstItem="key-Ts-FqN" firstAttribute="leading" secondItem="iGC-uq-moM" secondAttribute="trailing" constant="14" id="dKW-2r-DqH"/>
+                        <constraint firstItem="unv-wv-jDS" firstAttribute="top" secondItem="vJ5-lJ-w6a" secondAttribute="top" constant="26" id="fHj-yt-kxW"/>
                         <constraint firstItem="V7t-8u-g3s" firstAttribute="top" secondItem="vJ5-lJ-w6a" secondAttribute="top" id="fea-WW-H2O"/>
                     </constraints>
                 </view>
@@ -79,9 +86,9 @@
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AaS-Jt-w0J">
                     <rect key="frame" x="0.0" y="189" width="320" height="379"/>
                 </scrollView>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mdI-gN-mIL">
-                    <rect key="frame" x="257" y="151" width="46" height="30"/>
-                    <state key="normal" title="Button">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mdI-gN-mIL">
+                    <rect key="frame" x="0.0" y="64" width="320" height="117"/>
+                    <state key="normal">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -93,12 +100,16 @@
             <constraints>
                 <constraint firstItem="vJ5-lJ-w6a" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="0pE-qu-V9x"/>
                 <constraint firstAttribute="trailing" secondItem="vJ5-lJ-w6a" secondAttribute="trailing" id="BCz-oN-jkj"/>
+                <constraint firstItem="mdI-gN-mIL" firstAttribute="width" secondItem="dTw-XL-CGa" secondAttribute="height" multiplier="160:63" id="Dhk-XD-aqP"/>
                 <constraint firstItem="dTw-XL-CGa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="OYj-VA-sTI"/>
+                <constraint firstItem="mdI-gN-mIL" firstAttribute="leading" secondItem="dTw-XL-CGa" secondAttribute="leading" id="RxV-05-KOC"/>
+                <constraint firstItem="AaS-Jt-w0J" firstAttribute="top" secondItem="mdI-gN-mIL" secondAttribute="bottom" constant="8" symbolic="YES" id="UDx-mP-hd6"/>
                 <constraint firstAttribute="trailing" secondItem="dTw-XL-CGa" secondAttribute="trailing" id="axo-7p-qGI"/>
                 <constraint firstAttribute="trailing" secondItem="AaS-Jt-w0J" secondAttribute="trailing" id="bKa-KM-2w0"/>
                 <constraint firstItem="dTw-XL-CGa" firstAttribute="top" secondItem="vJ5-lJ-w6a" secondAttribute="bottom" id="cIV-r7-mPo"/>
                 <constraint firstItem="AaS-Jt-w0J" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="fcY-6s-8ID"/>
                 <constraint firstItem="vJ5-lJ-w6a" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="mWx-Jr-VWe"/>
+                <constraint firstItem="mdI-gN-mIL" firstAttribute="top" secondItem="dTw-XL-CGa" secondAttribute="top" id="rO0-ap-pk1"/>
                 <constraint firstItem="AaS-Jt-w0J" firstAttribute="top" secondItem="dTw-XL-CGa" secondAttribute="bottom" constant="-1" id="vcB-u4-dRQ"/>
                 <constraint firstAttribute="bottom" secondItem="AaS-Jt-w0J" secondAttribute="bottom" id="vrt-4b-Omj"/>
             </constraints>
@@ -107,5 +118,6 @@
     </objects>
     <resources>
         <image name="BackButton2.png" width="38" height="39"/>
+        <image name="done_btn.png" width="21" height="15"/>
     </resources>
 </document>

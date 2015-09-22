@@ -8,6 +8,7 @@
 
 #import "CustomPickerViewController.h"
 
+#define ANIMATION_DURATION 0.3f
 @interface CustomPickerViewController ()
 {
     __weak IBOutlet UIView *contentView;
@@ -103,7 +104,7 @@
     if (!isShow) {
         self.view.frame = hideFrame;
         
-        [UIView animateWithDuration:0.5f delay:0 options:UIViewAnimationOptionTransitionCurlUp animations:^{
+        [UIView animateWithDuration:ANIMATION_DURATION delay:0 options:UIViewAnimationOptionTransitionCurlUp animations:^{
             self.view.frame = showFrame;
             isShow = true;
 
@@ -117,12 +118,10 @@
 
 -(void)hideWithAnimation:(BOOL)isAnimate
 {
-    
-
     if (isShow) {
         self.view.frame = showFrame;
         
-        [UIView animateWithDuration:isAnimate?0.5f:0 delay:0 options:UIViewAnimationOptionTransitionCurlUp animations:^{
+        [UIView animateWithDuration:isAnimate?ANIMATION_DURATION:0 delay:0 options:UIViewAnimationOptionTransitionCurlUp animations:^{
             self.view.frame = hideFrame;
             isShow = false;
 
