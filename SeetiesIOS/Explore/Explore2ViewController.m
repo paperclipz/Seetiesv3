@@ -105,7 +105,7 @@
     
     NSDictionary* dict = @{@"token":[Utils getAppToken]};
     
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetExplore param:dict completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetExplore param:dict appendString:nil completeHandler:^(id object) {
         self.exploreCountryModels  = [[ConnectionManager dataManager] exploreCountryModels];
         if (!self.exploreCountryModels.error) {
             

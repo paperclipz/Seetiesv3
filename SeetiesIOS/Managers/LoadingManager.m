@@ -38,8 +38,8 @@
     [KVNProgress appearance].backgroundTintColor = [UIColor whiteColor];
     [KVNProgress appearance].successColor = [UIColor darkGrayColor];
     [KVNProgress appearance].errorColor = [UIColor darkGrayColor];
-    [KVNProgress appearance].circleSize = 75.0f;
-    [KVNProgress appearance].lineWidth = 2.0f;
+    [KVNProgress appearance].circleSize = 50.0f;
+    [KVNProgress appearance].lineWidth = 1.0f;
 }
 
 + (void)show

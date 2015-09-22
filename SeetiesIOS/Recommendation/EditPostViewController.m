@@ -633,7 +633,7 @@ static id ObjectOrNull(id object)
 -(void)requestServerForCategories:(IDBlock)sucessRequestBlock
 {
     
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetCategories param:nil completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetCategories param:nil appendString:nil  completeHandler:^(id object) {
         
         if (sucessRequestBlock) {
             sucessRequestBlock(nil);

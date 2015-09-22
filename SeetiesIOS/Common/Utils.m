@@ -41,6 +41,11 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     return [defaults objectForKey:@"ExpertToken"];
 }
++(NSString*)getUserID
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    return [defaults objectForKey:@"Useruid"];
+}
 
 +(CGRect)getDeviceScreenSize
 {
@@ -72,6 +77,7 @@
     [[view layer] setMasksToBounds:YES];
 
 }
+
 
 +(UIFont*)defaultFont
 {
