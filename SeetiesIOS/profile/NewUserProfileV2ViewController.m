@@ -982,7 +982,7 @@
                 GetFollowersCount = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"follower_count"]];
                 GetFollowingCount = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"following_count"]];
                 GetUid = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"uid"]];
-                GetUserFollowing = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"followed"]];
+                GetUserFollowing = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"following"]];
                 
                 [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:BackgroundImage];
                 NSURL *url_UserImage = [NSURL URLWithString:GetWallpaper];

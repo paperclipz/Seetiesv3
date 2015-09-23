@@ -116,15 +116,12 @@
         [refreshControl beginRefreshing];
         MainScroll.hidden = YES;
         LocalScroll.hidden = NO;
-      //  [self LoadDataView];
+        [self LoadDataView];
     }else{
         MainScroll.hidden = NO;
         LocalScroll.hidden = YES;
         [ShowActivity startAnimating];
     }
-    
-    
-    [self GetFeedDataFromServer];
 
     
     self.locationManager = [[CLLocationManager alloc]init];
@@ -290,11 +287,37 @@
     
     NSLog(@"testRefresh");
     
+    [self ReinitData];
+    
+    [User_LocationArray removeAllObjects];
+    [User_IDArray removeAllObjects];
+    [User_NameArray removeAllObjects];
+    [User_ProfileImageArray removeAllObjects];
+    [User_FollowArray removeAllObjects];
+    [User_UserNameArray removeAllObjects];
+    [User_PhotoArray removeAllObjects];
+    
+    [arrType_Announcement removeAllObjects];
+    [arrID_Announcement removeAllObjects];
+    
+    arrType_Announcement = [[NSMutableArray alloc]init];
+    arrID_Announcement = [[NSMutableArray alloc]init];
+    
+    DataCount = 0;
+    Offset = 1;
+    CheckFirstTimeLoad = 0;
+    OnLoad = NO;
+    
+    for (UIView *subview in MainScroll.subviews) {
+        [subview removeFromSuperview];
+    }
+    
+    GetNextPaging = @"";
+    [self GetFeedDataFromServer];
+    
     [refreshControl endRefreshing];
 }
 -(void)LoadDataView{
-
-    return;
     NSLog(@"Load Local Data");
     
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
@@ -655,9 +678,6 @@
     [ShowActivity stopAnimating];
 }
 -(void)InitContent{
-
-    
-    return;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
 //    FEED TYPES:
