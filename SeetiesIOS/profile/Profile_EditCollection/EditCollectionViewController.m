@@ -12,12 +12,19 @@
 @interface EditCollectionViewController ()
 @property (strong, nonatomic) NSMutableArray *arrList;
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
-
 @property (weak, nonatomic) IBOutlet UIButton *ibBtnEdit;
+
+@property (strong, nonatomic)CollectionModels* collectionModel;
+
 @end
 
 @implementation EditCollectionViewController
 - (IBAction)btnEditClicked:(id)sender {
+    
+    if(self.btnEditClickBlock)
+    {
+        self.btnEditClickBlock(self);
+    }
 }
 - (IBAction)btnBackClicked:(id)sender {
     
@@ -29,16 +36,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
-    self.arrList = [NSMutableArray new];
-    
-    for (int i = 0; i<10; i++) {
-        CollectionModel* model = [CollectionModel new];
-        [self.arrList addObject:model];
-    }
     
     
     
     // Do any additional setup after loading the view from its nib.
+}
+
+-(void)initData:(CollectionModels*)model
+{
+    self.collectionModel = model;
+    self.arrList = (NSMutableArray*)self.collectionModel.arrayPost;
+    
+    
+
 }
 
 -(void)initSelfView
@@ -71,7 +81,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     EditCollectionTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"EditCollectionTableViewCell"];
-    
+    [cell initData:self.arrList[indexPath.row]];
     return cell;
 }
 
@@ -85,15 +95,17 @@
 -(void)requestServerForCollectionDetails:(NSString*)collectionID successBlock:(IDBlock)successBlock failBlock:(IDBlock)failBlock{
     
     NSDictionary* dict = @{@"collection_id":collectionID,
-                           @"list_size":@1,
-                           @"page":@2
+                           @"list_size":@0,
+                           @"page":@0
                            };
     
     NSString* appendString = [NSString stringWithFormat:@"%@/collections/%@",[Utils getUserID],collectionID];
     
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetCollectionInfo param:dict appendString:appendString completeHandler:^(id object) {
         
-        
+        if (successBlock) {
+            successBlock(nil);
+        }
     } errorBlock:nil];
     
 }

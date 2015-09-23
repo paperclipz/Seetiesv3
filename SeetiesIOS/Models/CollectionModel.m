@@ -9,5 +9,24 @@
 #import "CollectionModel.h"
 
 @implementation CollectionModel
++(BOOL)propertyIsOptional:(NSString*)propertyName
+{
+    return YES;
+}
+
+@end
+
+@implementation CollectionModels
++(BOOL)propertyIsOptional:(NSString*)propertyName
+{
+    return YES;
+}
+
++(JSONKeyMapper*)keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{
+                                                       @"data": @"arrayPost"
+                                                       }];
+}
 
 @end

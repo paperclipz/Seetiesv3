@@ -78,6 +78,17 @@
 
 }
 
++(void)setRoundBorder:(UIView*)view color:(UIColor*)color borderRadius:(float)borderRadius borderWidth:(float)borderWidth
+{
+    
+    [[view layer] setBorderWidth:borderWidth];
+    [[view layer] setBorderColor:color.CGColor];
+    [[view layer] setCornerRadius:borderRadius];
+    [[view layer] setMasksToBounds:YES];
+    
+}
+
+
 
 +(UIFont*)defaultFont
 {

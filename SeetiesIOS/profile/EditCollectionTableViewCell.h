@@ -9,5 +9,6 @@
 #import "CommonTableViewCell.h"
 
 @interface EditCollectionTableViewCell : CommonTableViewCell
+-(void)initData:(CollectionModel*)model;
 
 @end

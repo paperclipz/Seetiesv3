@@ -427,8 +427,13 @@
             break;
             
         case ServerRequestTypeGetCollectionInfo:
+        {
             
-          //  self.dataManager.categoriesModel = [[CategoriesModel alloc]initWithDictionary:obj error:nil];
+            NSDictionary* dict = obj[@"data"][@"posts"];
+
+            self.dataManager.collectionModels = [[CollectionModels alloc]initWithDictionary:dict error:nil];
+
+        }
             
             break;
 

@@ -11,4 +11,7 @@
 
 @interface EditCollectionViewController : CommonViewController <UITableViewDataSource,UITableViewDelegate>
 -(void)requestServerForCollectionDetails:(NSString*)collectionID successBlock:(IDBlock)successBlock failBlock:(IDBlock)failBlock;
+-(void)initData:(CollectionModels*)model;
+
+@property(nonatomic,copy)IDBlock btnEditClickBlock;
 @end

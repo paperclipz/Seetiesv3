@@ -1418,6 +1418,7 @@
     
     [self.editCollectionViewController requestServerForCollectionDetails:collectionID successBlock:^(id object) {
         
+        [self.editCollectionViewController initData:[[ConnectionManager dataManager] collectionModels]];
         [self.navigationController pushViewController:self.editCollectionViewController animated:YES];
 
     } failBlock:^(id object) {
@@ -1432,7 +1433,24 @@
     if (!_editCollectionViewController) {
         
         _editCollectionViewController = [EditCollectionViewController new];
+        _editCollectionViewController.btnEditClickBlock = ^(id object)
+        {
+            
+            
+        };
     }
     return _editCollectionViewController;
 }
+
+-(EditCollectionDetailViewController*)editCollectionDetailViewController
+{
+    
+    if (!_editCollectionDetailViewController) {
+        
+        _editCollectionDetailViewController = [EditCollectionDetailViewController new];
+    }
+    return _editCollectionDetailViewController;
+}
+
+
 @end

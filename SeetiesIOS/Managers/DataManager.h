@@ -31,6 +31,8 @@
 
 @property(nonatomic,strong)DraftsModel* draftsModel;
 @property(nonatomic,strong)CategoriesModel* categoriesModel;
+@property(nonatomic,strong)CollectionModels* collectionModels;
+
 
 +(RecommendationModel*)getSampleRecommendation;
 +(EditPhotoModel*)getSampleEditPhotoModel;
