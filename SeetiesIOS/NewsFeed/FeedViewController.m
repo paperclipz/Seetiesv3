@@ -116,15 +116,12 @@
         [refreshControl beginRefreshing];
         MainScroll.hidden = YES;
         LocalScroll.hidden = NO;
-      //  [self LoadDataView];
+        [self LoadDataView];
     }else{
         MainScroll.hidden = NO;
         LocalScroll.hidden = YES;
         [ShowActivity startAnimating];
     }
-    
-    
-    [self GetFeedDataFromServer];
 
     
     self.locationManager = [[CLLocationManager alloc]init];
@@ -293,8 +290,6 @@
     [refreshControl endRefreshing];
 }
 -(void)LoadDataView{
-
-    return;
     NSLog(@"Load Local Data");
     
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
@@ -655,9 +650,6 @@
     [ShowActivity stopAnimating];
 }
 -(void)InitContent{
-
-    
-    return;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
 //    FEED TYPES:
