@@ -9,7 +9,7 @@
 #import "ExploreCountryV2ViewController.h"
 #import "FeedV2DetailViewController.h"
 #import "SearchViewV2.h"
-#import "UserProfileV2ViewController.h"
+#import "NewUserProfileV2ViewController.h"
 #import "LanguageManager.h"
 #import "Locale.h"
 #import "Filter2ViewController.h"
@@ -944,7 +944,7 @@
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);
     
-    UserProfileV2ViewController *ExpertsUserProfileView = [[UserProfileV2ViewController alloc]init];
+    NewUserProfileV2ViewController *ExpertsUserProfileView = [[NewUserProfileV2ViewController alloc]init];
     CATransition *transition = [CATransition animation];
     transition.duration = 0.2;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
@@ -952,7 +952,7 @@
     transition.subtype = kCATransitionFromRight;
     [self.view.window.layer addAnimation:transition forKey:nil];
     [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
-    [ExpertsUserProfileView GetUsername:[User_UserNameArray objectAtIndex:getbuttonIDN]];
+    [ExpertsUserProfileView GetUserName:[User_UserNameArray objectAtIndex:getbuttonIDN]];
 }
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {

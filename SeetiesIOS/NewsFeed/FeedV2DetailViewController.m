@@ -2355,7 +2355,7 @@
         [Background setBackgroundColor:[UIColor whiteColor]];
         Background.layer.cornerRadius = 5;
         Background.layer.borderWidth=1;
-        Background.layer.borderColor=[[UIColor blackColor] CGColor];
+        Background.layer.borderColor=[[UIColor colorWithRed:232.0f/255.0f green:232.0f/255.0f blue:232.0f/255.0f alpha:1.0f] CGColor];
         [MainScroll addSubview:Background];
         
         
@@ -2920,7 +2920,7 @@
     }else{
         CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
         CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-        [UIView animateWithDuration:1.0
+        [UIView animateWithDuration:0.5
                               delay:0
                             options:UIViewAnimationOptionCurveEaseIn
                          animations:^{
@@ -2960,7 +2960,7 @@
     }else{
         CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
         CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-        [UIView animateWithDuration:0.2
+        [UIView animateWithDuration:0.5
                               delay:0
                             options:UIViewAnimationOptionCurveEaseIn
                          animations:^{

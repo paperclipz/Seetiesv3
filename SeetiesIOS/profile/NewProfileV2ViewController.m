@@ -39,6 +39,7 @@
     contentSize.height = 800;
     MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     MainScroll.contentSize = contentSize;
+    MainScroll.alwaysBounceVertical = YES;
     
     //BackgroundImage.image = [UIImage imageNamed:@"UserDemo2.jpg"];
     BackgroundImage.frame = CGRectMake(0, -50, screenWidth, 300);

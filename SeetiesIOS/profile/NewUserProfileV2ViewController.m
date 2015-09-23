@@ -41,6 +41,7 @@
     contentSize.height = 800;
     MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     MainScroll.contentSize = contentSize;
+    MainScroll.alwaysBounceVertical = YES;
     
     //BackgroundImage.image = [UIImage imageNamed:@"UserDemo2.jpg"];
     BackgroundImage.frame = CGRectMake(0, -50, screenWidth, 300);
@@ -97,7 +98,16 @@
     GetUserName = @"";
 }
 -(IBAction)BackButtonOnClick:(id)sender{
-[self.navigationController popToRootViewControllerAnimated:YES];
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.2;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromLeft;
+    [self.view.window.layer addAnimation:transition forKey:nil];
+    //[self presentViewController:ListingDetail animated:NO completion:nil];
+    [self dismissViewControllerAnimated:NO completion:nil];
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 -(void)InitContentView{
@@ -140,16 +150,19 @@
     [AllContentView addSubview:ShowUserName];
     
     UIButton *FollowUserButton = [[UIButton alloc]init];
-    FollowUserButton.frame = CGRectMake(screenWidth - 106 - 20, 50, 106, 34);
-   // [EditProfileButton setTitle:@"Edit profile" forState:UIControlStateNormal];
-    [FollowUserButton setImage:[UIImage imageNamed:@"follow_btn.png"] forState:UIControlStateNormal];
+    FollowUserButton.frame = CGRectMake(screenWidth - 70 - 20, 50, 70, 48);
+    if ([GetUserFollowing isEqualToString:@"0"]) {
+        [FollowUserButton setImage:[UIImage imageNamed:@"ExploreFollow.png"] forState:UIControlStateNormal];
+        [FollowUserButton setImage:[UIImage imageNamed:@"ExploreFollowing.png"] forState:UIControlStateSelected];
+    }else{
+        [FollowUserButton setImage:[UIImage imageNamed:@"ExploreFollowing.png"] forState:UIControlStateNormal];
+        [FollowUserButton setImage:[UIImage imageNamed:@"ExploreFollow.png"] forState:UIControlStateSelected];
+    }
     FollowUserButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
     [FollowUserButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
     FollowUserButton.backgroundColor = [UIColor clearColor];
     [FollowUserButton addTarget:self action:@selector(FollowButton:) forControlEvents:UIControlEventTouchUpInside];
-    //    EditProfileButton.layer.cornerRadius = 20;
-    //    EditProfileButton.layer.borderWidth = 1;
-    //    EditProfileButton.layer.borderColor=[[UIColor grayColor] CGColor];
+    FollowUserButton.tag = 100;
     [AllContentView addSubview:FollowUserButton];
     
     UILabel *ShowName_ = [[UILabel alloc]init];//getname
@@ -1338,6 +1351,11 @@
 -(IBAction)FollowButton:(id)sender{
     NSLog(@"FollowingButton Click.");
   //  FollowButton.userInteractionEnabled = NO;
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSLog(@"button %li",(long)getbuttonIDN);
+    
+    UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
+    buttonWithTag1.selected = !buttonWithTag1.selected;
     
     if ([GetUserFollowing isEqualToString:@"1"]) {
         

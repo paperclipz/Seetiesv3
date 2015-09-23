@@ -15,6 +15,8 @@
 #import "NewUserProfileV2ViewController.h"
 #import "NearbyViewController.h"
 #import "AddCollectionDataViewController.h"
+#import "ShareViewController.h"
+#import "CommentViewController.h"
 @interface FeedViewController ()
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;
@@ -540,17 +542,27 @@
             [LocalScroll addSubview:LikeButton];
             
             
-            UIImageView *ShowCommentIcon = [[UIImageView alloc]init];
-            ShowCommentIcon.image = [UIImage imageNamed:@"comment_icon.png"];
-            ShowCommentIcon.frame = CGRectMake(100, heightcheck + i + 20 ,23, 19);
-            //    ShowCommentIcon.backgroundColor = [UIColor redColor];
-            [LocalScroll addSubview:ShowCommentIcon];
+            UIButton *CommentButton = [[UIButton alloc]init];
+            CommentButton.frame = CGRectMake(100, heightcheck + 20 ,23, 19);
+            [CommentButton setImage:[UIImage imageNamed:@"comment_icon.png"] forState:UIControlStateNormal];
+            CommentButton.backgroundColor = [UIColor clearColor];
+            CommentButton.tag = i;
+            [CommentButton addTarget:self action:@selector(CommentButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+            [LocalScroll addSubview:CommentButton];
             
-            UIImageView *ShowShareIcon = [[UIImageView alloc]init];
-            ShowShareIcon.image = [UIImage imageNamed:@"share_icon.png"];
-            ShowShareIcon.frame = CGRectMake(160, heightcheck + i + 20 ,19, 19);
-            //    ShowCommentIcon.backgroundColor = [UIColor redColor];
-            [LocalScroll addSubview:ShowShareIcon];
+//            UIImageView *ShowShareIcon = [[UIImageView alloc]init];
+//            ShowShareIcon.image = [UIImage imageNamed:@"share_icon.png"];
+//            ShowShareIcon.frame = CGRectMake(160, heightcheck + i + 20 ,19, 19);
+//            //    ShowCommentIcon.backgroundColor = [UIColor redColor];
+//            [LocalScroll addSubview:ShowShareIcon];
+            
+            UIButton *ShareButton = [[UIButton alloc]init];
+            ShareButton.frame = CGRectMake(160, heightcheck + i + 20 ,19, 19);
+            [ShareButton setImage:[UIImage imageNamed:@"share_icon.png"] forState:UIControlStateNormal];
+            ShareButton.backgroundColor = [UIColor clearColor];
+            ShareButton.tag = i;
+            [ShareButton addTarget:self action:@selector(ShareButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+            [LocalScroll addSubview:ShareButton];
             
             
             UIButton *QuickCollectButton = [[UIButton alloc]init];
@@ -881,17 +893,21 @@
                 [MainScroll addSubview:LikeButton];
                 
                 
-                UIImageView *ShowCommentIcon = [[UIImageView alloc]init];
-                ShowCommentIcon.image = [UIImage imageNamed:@"comment_icon.png"];
-                ShowCommentIcon.frame = CGRectMake(100, heightcheck + 20 ,23, 19);
-                //    ShowCommentIcon.backgroundColor = [UIColor redColor];
-                [MainScroll addSubview:ShowCommentIcon];
+                UIButton *CommentButton = [[UIButton alloc]init];
+                CommentButton.frame = CGRectMake(100, heightcheck + 20 ,23, 19);
+                [CommentButton setImage:[UIImage imageNamed:@"comment_icon.png"] forState:UIControlStateNormal];
+                CommentButton.backgroundColor = [UIColor clearColor];
+                CommentButton.tag = i;
+                [CommentButton addTarget:self action:@selector(CommentButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+                [MainScroll addSubview:CommentButton];
                 
-                UIImageView *ShowShareIcon = [[UIImageView alloc]init];
-                ShowShareIcon.image = [UIImage imageNamed:@"share_icon.png"];
-                ShowShareIcon.frame = CGRectMake(160, heightcheck + 20 ,19, 19);
-                //    ShowCommentIcon.backgroundColor = [UIColor redColor];
-                [MainScroll addSubview:ShowShareIcon];
+                UIButton *ShareButton = [[UIButton alloc]init];
+                ShareButton.frame = CGRectMake(160, heightcheck + i + 20 ,19, 19);
+                [ShareButton setImage:[UIImage imageNamed:@"share_icon.png"] forState:UIControlStateNormal];
+                ShareButton.backgroundColor = [UIColor clearColor];
+                ShareButton.tag = i;
+                [ShareButton addTarget:self action:@selector(ShareButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+                [MainScroll addSubview:ShareButton];
                 
                 
                 UIButton *QuickCollectButton = [[UIButton alloc]init];
@@ -1138,17 +1154,26 @@
                 [MainScroll addSubview:LikeButtonLocalQR];
                 
                 
-                UIImageView *ShowCommentIconLocalQR = [[UIImageView alloc]init];
-                ShowCommentIconLocalQR.image = [UIImage imageNamed:@"comment_icon.png"];
-                ShowCommentIconLocalQR.frame = CGRectMake(100, heightcheck + 20 ,23, 19);
-                //    ShowCommentIcon.backgroundColor = [UIColor redColor];
-                [MainScroll addSubview:ShowCommentIconLocalQR];
+//                UIImageView *ShowCommentIconLocalQR = [[UIImageView alloc]init];
+//                ShowCommentIconLocalQR.image = [UIImage imageNamed:@"comment_icon.png"];
+//                ShowCommentIconLocalQR.frame = CGRectMake(100, heightcheck + 20 ,23, 19);
+//                //    ShowCommentIcon.backgroundColor = [UIColor redColor];
+//                [MainScroll addSubview:ShowCommentIconLocalQR];
+                UIButton *CommentButton = [[UIButton alloc]init];
+                CommentButton.frame = CGRectMake(100, heightcheck + 20 ,23, 19);
+                [CommentButton setImage:[UIImage imageNamed:@"comment_icon.png"] forState:UIControlStateNormal];
+                CommentButton.backgroundColor = [UIColor clearColor];
+                CommentButton.tag = i;
+                [CommentButton addTarget:self action:@selector(CommentButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+                [MainScroll addSubview:CommentButton];
                 
-                UIImageView *ShowShareIconLocalQR = [[UIImageView alloc]init];
-                ShowShareIconLocalQR.image = [UIImage imageNamed:@"share_icon.png"];
-                ShowShareIconLocalQR.frame = CGRectMake(160, heightcheck + 20 ,19, 19);
-                //    ShowCommentIcon.backgroundColor = [UIColor redColor];
-                [MainScroll addSubview:ShowShareIconLocalQR];
+                UIButton *ShareButton = [[UIButton alloc]init];
+                ShareButton.frame = CGRectMake(160, heightcheck + i + 20 ,19, 19);
+                [ShareButton setImage:[UIImage imageNamed:@"share_icon.png"] forState:UIControlStateNormal];
+                ShareButton.backgroundColor = [UIColor clearColor];
+                ShareButton.tag = i;
+                [ShareButton addTarget:self action:@selector(ShareButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+                [MainScroll addSubview:ShareButton];
                 
                 
                 UIButton *QuickCollectButtonLocalQR = [[UIButton alloc]init];
@@ -2232,6 +2257,17 @@
     // [ShowActivity startAnimating];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *CheckNewUser = [defaults objectForKey:@"CheckNewUser"];
+    
+    if ([CheckNewUser isEqualToString:@"NewUser"]) {
+        CheckNewUser = @"&welcome=1";
+        NSString *CheckNewUser = @"NewUser";
+        [defaults setObject:CheckNewUser forKey:@"CheckNewUser"];
+        [defaults synchronize];
+    }else{
+        CheckNewUser = @"";
+    }
+
    // NSString *GetSortByString = [defaults objectForKey:@"Filter_Feed_SortBy"];
     //NSString *GetCategoryString = [defaults objectForKey:@"Filter_Feed_Category"];'
     
@@ -2245,10 +2281,10 @@
     
     if ([GetNextPaging isEqualToString:@""]|| [GetNextPaging length] == 0) {
         if ([latPoint length] == 0 || [latPoint isEqualToString:@""] || [latPoint isEqualToString:@"(null)"] || latPoint == nil) {
-            FullString = [[NSString alloc]initWithFormat:@"%@/v2?token=%@&ip_address=%@&offset=%ld&limit=10&welcome=1",DataUrl.Feed_Url,GetExpertToken,ExternalIPAddress,(long)Offset];
+            FullString = [[NSString alloc]initWithFormat:@"%@/v2?token=%@&ip_address=%@&offset=%ld&limit=10%@",DataUrl.Feed_Url,GetExpertToken,ExternalIPAddress,(long)Offset,CheckNewUser];
         }else{//ip_address=119.92.244.146
             
-            FullString = [[NSString alloc]initWithFormat:@"%@/v2?token=%@&lat=%@&lng=%@&ip_address=%@&offset=%ld&limit=10&welcome=1",DataUrl.Feed_Url,GetExpertToken,latPoint,lonPoint,ExternalIPAddress,(long)Offset];
+            FullString = [[NSString alloc]initWithFormat:@"%@/v2?token=%@&lat=%@&lng=%@&ip_address=%@&offset=%ld&limit=10%@",DataUrl.Feed_Url,GetExpertToken,latPoint,lonPoint,ExternalIPAddress,(long)Offset,CheckNewUser];
         }
     }else{
         Offset += 10;
@@ -3371,5 +3407,27 @@
     NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
     [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
     [NewUserProfileV2View GetUserName:Getname];
+}
+-(IBAction)ShareButtonOnClick:(id)sender{
+    NSLog(@"ShareButtonOnClick");
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    ShareViewController *ShareView = [[ShareViewController alloc]init];
+    //[self presentViewController:AddCollectionDataView animated:YES completion:nil];
+    [self.view.window.rootViewController presentViewController:ShareView animated:YES completion:nil];
+    [ShareView GetPostID:[arrPostID objectAtIndex:getbuttonIDN] GetMessage:[arrMessage objectAtIndex:getbuttonIDN] GetTitle:[arrTitle objectAtIndex:getbuttonIDN] GetImageData:[arrImage objectAtIndex:getbuttonIDN]];
+}
+-(IBAction)CommentButtonOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    
+    CommentViewController *CommentView = [[CommentViewController alloc]init];
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.2;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromRight;
+    [self.view.window.layer addAnimation:transition forKey:nil];
+    [self.view.window.rootViewController presentViewController:CommentView animated:YES completion:nil];
+    [CommentView GetRealPostIDAndAllComment:[arrPostID objectAtIndex:getbuttonIDN]];
+    [CommentView GetWhatView:@"Comment"];
 }
 @end

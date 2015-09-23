@@ -347,7 +347,7 @@
         
         NSString *GetLanguage_1;
         NSString *GetLanguage_2;
-        if ([TempArray count] == 1) {
+        if ([TempArray count] < 1) {
             GetLanguage_1 = [[NSString alloc]initWithFormat:@"%@",[TempArray objectAtIndex:0]];
         }else{
             GetLanguage_1 = [[NSString alloc]initWithFormat:@"%@",[TempArray objectAtIndex:0]];
@@ -407,9 +407,11 @@
 -(IBAction)DoneButton:(id)sender{
     NSString *CheckStatus = @"0";
     NSString *CheckLogin = [[NSString alloc]initWithFormat:@"LoginDone"];
+    NSString *CheckNewUser = @"NewUser";
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:CheckStatus forKey:@"CheckProvisioningStatus"];
     [defaults setObject:CheckLogin forKey:@"CheckLogin"];
+    [defaults setObject:CheckNewUser forKey:@"CheckNewUser"];
     [defaults synchronize];
 
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
