@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="ProximaNovaSoft-Regular.ttf">
+            <string>ProximaNovaSoft-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditCollectionViewController">
+            <connections>
+                <outlet property="ibBtnEdit" destination="xEX-3U-me2" id="KSW-ew-uan"/>
+                <outlet property="ibTableView" destination="kQ5-xQ-m0t" id="2gB-tr-Bqm"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TY1-cM-rx7">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackButton2.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hgh-Mo-OSQ">
+                            <rect key="frame" x="8" y="29" width="24" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="24" id="uRM-ov-uTp"/>
+                                <constraint firstAttribute="height" constant="20" id="zMl-RL-BIL"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aRb-J1-9cK" userLabel="Button_Back">
+                            <rect key="frame" x="0.0" y="0.0" width="44" height="64"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="44" id="3SE-58-wPV"/>
+                                <constraint firstAttribute="height" constant="64" id="H1M-1p-pEF"/>
+                            </constraints>
+                            <state key="normal">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="btnBackClicked:" destination="-1" eventType="touchUpInside" id="r46-M3-bN0"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QqW-aZ-t34">
+                            <rect key="frame" x="291" y="27" width="21" height="22"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="21" id="0SU-Z7-ao2"/>
+                                <constraint firstAttribute="height" constant="22" id="yE4-Bs-pSl"/>
+                            </constraints>
+                            <state key="normal" image="done_btn.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Collection" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yTF-k4-TMk">
+                            <rect key="frame" x="50" y="29" width="220" height="21"/>
+                            <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.14901960780000001" green="0.65098039220000004" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="Hgh-Mo-OSQ" firstAttribute="top" secondItem="aRb-J1-9cK" secondAttribute="bottom" constant="-35" id="3p1-Dr-jMZ"/>
+                        <constraint firstItem="aRb-J1-9cK" firstAttribute="leading" secondItem="TY1-cM-rx7" secondAttribute="leading" id="41m-Db-Iwf"/>
+                        <constraint firstItem="yTF-k4-TMk" firstAttribute="top" secondItem="Hgh-Mo-OSQ" secondAttribute="top" id="MPX-Ud-r7s"/>
+                        <constraint firstItem="yTF-k4-TMk" firstAttribute="leading" secondItem="Hgh-Mo-OSQ" secondAttribute="trailing" constant="50" id="Mqr-dH-Lg7"/>
+                        <constraint firstAttribute="trailing" secondItem="yTF-k4-TMk" secondAttribute="trailing" constant="50" id="POe-Rn-4pc"/>
+                        <constraint firstAttribute="bottom" secondItem="yTF-k4-TMk" secondAttribute="bottom" constant="14" id="PPT-9H-ouS"/>
+                        <constraint firstItem="QqW-aZ-t34" firstAttribute="top" secondItem="TY1-cM-rx7" secondAttribute="top" constant="27" id="T3e-wG-gvh"/>
+                        <constraint firstAttribute="trailing" secondItem="QqW-aZ-t34" secondAttribute="trailing" constant="8" id="YeZ-Qp-elW"/>
+                        <constraint firstItem="Hgh-Mo-OSQ" firstAttribute="leading" secondItem="TY1-cM-rx7" secondAttribute="leading" constant="8" id="azm-3j-Cce"/>
+                        <constraint firstItem="yTF-k4-TMk" firstAttribute="leading" secondItem="TY1-cM-rx7" secondAttribute="leading" constant="50" id="f5Y-ym-73V"/>
+                        <constraint firstItem="aRb-J1-9cK" firstAttribute="top" secondItem="TY1-cM-rx7" secondAttribute="top" id="fIR-0z-5CY"/>
+                        <constraint firstAttribute="bottom" secondItem="Hgh-Mo-OSQ" secondAttribute="bottom" constant="15" id="k6n-rp-uOh"/>
+                        <constraint firstAttribute="height" constant="64" id="p1v-er-FR6"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="Mqr-dH-Lg7"/>
+                        </mask>
+                    </variation>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C1b-4G-swU">
+                    <rect key="frame" x="0.0" y="63" width="320" height="177"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="7 must visit places in Portdickson" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g9g-zm-puu">
+                            <rect key="frame" x="18" y="25" width="288" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="7 recommendations" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SdY-Do-FGt">
+                            <rect key="frame" x="16" y="132" width="217" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="The best places to visit for a road trip in portdickson" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0y9-3j-M1f">
+                            <rect key="frame" x="18" y="46" width="288" height="54"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xEX-3U-me2">
+                            <rect key="frame" x="235" y="139" width="77" height="30"/>
+                            <state key="normal" title="Edit">
+                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="btnEditClicked:" destination="-1" eventType="touchUpInside" id="JDk-TF-bdc"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="177" id="kZ9-nv-HEV"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="kQ5-xQ-m0t">
+                    <rect key="frame" x="0.0" y="240" width="320" height="334"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="C1b-4G-swU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="6qA-Fu-cjH"/>
+                <constraint firstAttribute="bottom" secondItem="kQ5-xQ-m0t" secondAttribute="bottom" constant="-6" id="9bI-Os-eMr"/>
+                <constraint firstAttribute="trailing" secondItem="C1b-4G-swU" secondAttribute="trailing" id="CeX-Xd-cWc"/>
+                <constraint firstItem="kQ5-xQ-m0t" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="GCy-zc-0CE"/>
+                <constraint firstAttribute="trailing" secondItem="TY1-cM-rx7" secondAttribute="trailing" id="S5G-Ur-9ri"/>
+                <constraint firstItem="TY1-cM-rx7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Uh6-KM-KSQ"/>
+                <constraint firstAttribute="trailing" secondItem="kQ5-xQ-m0t" secondAttribute="trailing" id="jPp-wF-oWq"/>
+                <constraint firstItem="C1b-4G-swU" firstAttribute="top" secondItem="TY1-cM-rx7" secondAttribute="bottom" constant="-1" id="kfq-c3-EDw"/>
+                <constraint firstItem="TY1-cM-rx7" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="lVp-hy-FaA"/>
+                <constraint firstItem="kQ5-xQ-m0t" firstAttribute="top" secondItem="C1b-4G-swU" secondAttribute="bottom" id="tgt-wm-zF0"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="BackButton2.png" width="38" height="39"/>
+        <image name="done_btn.png" width="21" height="15"/>
+    </resources>
+</document>

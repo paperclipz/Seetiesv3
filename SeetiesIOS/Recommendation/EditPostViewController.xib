@@ -3,6 +3,11 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="ProximaNovaSoft-Regular.ttf">
+            <string>ProximaNovaSoft-Regular</string>
+        </mutableArray>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditPostViewController">
             <connections>
@@ -22,13 +27,13 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit post" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8c4-cB-zlq">
-                            <rect key="frame" x="46" y="29" width="266" height="21"/>
+                            <rect key="frame" x="53" y="29" width="259" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackButton2.png" translatesAutoresizingMaskIntoConstraints="NO" id="hHC-Pt-ibH">
-                            <rect key="frame" x="8" y="29" width="24" height="20"/>
+                            <rect key="frame" x="15" y="29" width="24" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="RBT-8h-irK"/>
                                 <constraint firstAttribute="width" constant="24" id="yaY-1V-dZh"/>
@@ -47,9 +52,15 @@
                                 <action selector="btnBackClicked:" destination="-1" eventType="touchUpInside" id="Ru1-Qd-25h"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FMf-XD-Lbr">
-                            <rect key="frame" x="253" y="19" width="50" height="30"/>
-                            <state key="normal" title="publish">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FMf-XD-Lbr">
+                            <rect key="frame" x="242" y="25" width="63" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="68I-rC-7zn"/>
+                                <constraint firstAttribute="width" constant="63" id="XAX-TK-Jg9"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="17"/>
+                            <state key="normal" title="Publish">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -60,12 +71,14 @@
                     <color key="backgroundColor" red="0.14901960780000001" green="0.65098039220000004" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="18D-ZJ-dBb" firstAttribute="leading" secondItem="dlf-lJ-xcQ" secondAttribute="leading" id="5M6-cv-1iF"/>
-                        <constraint firstItem="hHC-Pt-ibH" firstAttribute="leading" secondItem="dlf-lJ-xcQ" secondAttribute="leading" constant="8" id="Bd9-QP-hqT"/>
+                        <constraint firstItem="FMf-XD-Lbr" firstAttribute="top" secondItem="dlf-lJ-xcQ" secondAttribute="top" constant="25" id="AnZ-jO-XDq"/>
+                        <constraint firstItem="hHC-Pt-ibH" firstAttribute="leading" secondItem="dlf-lJ-xcQ" secondAttribute="leading" constant="15" id="Bd9-QP-hqT"/>
                         <constraint firstAttribute="bottom" secondItem="8c4-cB-zlq" secondAttribute="bottom" constant="14" id="DuU-Jg-BBf"/>
                         <constraint firstAttribute="trailing" secondItem="8c4-cB-zlq" secondAttribute="trailing" constant="8" id="Mfd-9O-WFU"/>
                         <constraint firstItem="8c4-cB-zlq" firstAttribute="leading" secondItem="hHC-Pt-ibH" secondAttribute="trailing" constant="14" id="Wc8-KI-a8w"/>
                         <constraint firstAttribute="height" constant="64" id="Wdl-kU-98y"/>
                         <constraint firstItem="hHC-Pt-ibH" firstAttribute="top" secondItem="18D-ZJ-dBb" secondAttribute="bottom" constant="-35" id="egC-tF-KwH"/>
+                        <constraint firstAttribute="trailing" secondItem="FMf-XD-Lbr" secondAttribute="trailing" constant="15" id="hvu-sv-4zM"/>
                         <constraint firstItem="18D-ZJ-dBb" firstAttribute="top" secondItem="dlf-lJ-xcQ" secondAttribute="top" id="qWt-la-BeD"/>
                         <constraint firstItem="hHC-Pt-ibH" firstAttribute="top" secondItem="8c4-cB-zlq" secondAttribute="top" id="tLb-mt-VKH"/>
                         <constraint firstAttribute="bottom" secondItem="hHC-Pt-ibH" secondAttribute="bottom" constant="15" id="yo9-8h-Sv9"/>

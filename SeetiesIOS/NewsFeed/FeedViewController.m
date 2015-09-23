@@ -116,7 +116,7 @@
         [refreshControl beginRefreshing];
         MainScroll.hidden = YES;
         LocalScroll.hidden = NO;
-        [self LoadDataView];
+      //  [self LoadDataView];
     }else{
         MainScroll.hidden = NO;
         LocalScroll.hidden = YES;
@@ -124,7 +124,7 @@
     }
     
     
-    //[self LoadInitView];
+    [self GetFeedDataFromServer];
 
     
     self.locationManager = [[CLLocationManager alloc]init];
@@ -294,6 +294,7 @@
 }
 -(void)LoadDataView{
 
+    return;
     NSLog(@"Load Local Data");
     
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
@@ -655,6 +656,8 @@
 }
 -(void)InitContent{
 
+    
+    return;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
 //    FEED TYPES:
@@ -785,7 +788,6 @@
                     ShowDistance.backgroundColor = [UIColor clearColor];
                     [MainScroll addSubview:ShowDistance];
                 }
-                
                 
                 
                 heightcheck += resultHeight + 5;

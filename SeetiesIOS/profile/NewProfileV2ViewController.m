@@ -1412,5 +1412,27 @@
 -(IBAction)CollectionEditButtonOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"CollectionEditButtonOnClick button %li",(long)getbuttonIDN);
+    
+    
+    NSString* collectionID = CollectionData_IDArray[getbuttonIDN];
+    
+    [self.editCollectionViewController requestServerForCollectionDetails:collectionID successBlock:^(id object) {
+        
+        [self.navigationController pushViewController:self.editCollectionViewController animated:YES];
+
+    } failBlock:^(id object) {
+        [TSMessage showNotificationInViewController:self title:@"System" subtitle:@"Error" type:TSMessageNotificationTypeError duration:1.0f canBeDismissedByUser:YES];
+    }];
+}
+
+#pragma mark - Declaration
+-(EditCollectionViewController*)editCollectionViewController
+{
+    
+    if (!_editCollectionViewController) {
+        
+        _editCollectionViewController = [EditCollectionViewController new];
+    }
+    return _editCollectionViewController;
 }
 @end

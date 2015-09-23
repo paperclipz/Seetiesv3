@@ -27,13 +27,13 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello over there" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Afq-RT-Ib1">
-                            <rect key="frame" x="46" y="29" width="266" height="21"/>
+                            <rect key="frame" x="53" y="29" width="259" height="21"/>
                             <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackButton2.png" translatesAutoresizingMaskIntoConstraints="NO" id="mat-c0-Eej">
-                            <rect key="frame" x="8" y="29" width="24" height="20"/>
+                            <rect key="frame" x="15" y="29" width="24" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="24" id="GFk-nB-Fk4"/>
                                 <constraint firstAttribute="height" constant="20" id="ZyY-I7-s0b"/>
@@ -62,7 +62,7 @@
                         <constraint firstItem="UgD-Tr-Gxj" firstAttribute="top" secondItem="PX1-Dc-oaa" secondAttribute="top" id="mAI-F5-UW8"/>
                         <constraint firstItem="Afq-RT-Ib1" firstAttribute="top" secondItem="mat-c0-Eej" secondAttribute="top" id="mk4-HB-Z5F"/>
                         <constraint firstItem="Afq-RT-Ib1" firstAttribute="leading" secondItem="mat-c0-Eej" secondAttribute="trailing" constant="14" id="mvL-VZ-tCo"/>
-                        <constraint firstItem="mat-c0-Eej" firstAttribute="leading" secondItem="PX1-Dc-oaa" secondAttribute="leading" constant="8" id="nBo-iJ-kb7"/>
+                        <constraint firstItem="mat-c0-Eej" firstAttribute="leading" secondItem="PX1-Dc-oaa" secondAttribute="leading" constant="15" id="nBo-iJ-kb7"/>
                         <constraint firstItem="UgD-Tr-Gxj" firstAttribute="leading" secondItem="PX1-Dc-oaa" secondAttribute="leading" id="v9i-Qd-aPn"/>
                         <constraint firstAttribute="bottom" secondItem="Afq-RT-Ib1" secondAttribute="bottom" constant="14" id="yXd-qP-xRJ"/>
                     </constraints>

@@ -15,7 +15,7 @@
 #import "FourSquareModel.h"
 #import "DraftModel.h"
 #import "CategoriesModel.h"
-
+#import "CollectionModel.h"
 
 #import "RecommendationModel.h"
 @interface DataManager : NSObject

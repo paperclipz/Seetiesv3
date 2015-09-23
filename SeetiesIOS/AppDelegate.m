@@ -451,7 +451,7 @@
 //    [self.window makeKeyAndVisible];
 //
 //    return;
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetApiVersion param:nil completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetApiVersion param:nil  appendString:nil completeHandler:^(id object) {
         [self processAPIVersion];
 
     } errorBlock:^(id object) {

@@ -11,6 +11,7 @@
 #import "AsyncImageView.h"
 #import "UrlDataClass.h"
 
+#import "EditCollectionViewController.h"
 //https://github.com/freak4pc/SMTagField tag simple
 @interface NewProfileV2ViewController : BaseViewController<UIScrollViewDelegate,UISearchBarDelegate>{
 
@@ -117,4 +118,9 @@
 }
 -(IBAction)SettingsButton:(id)sender;
 -(IBAction)SearchButton:(id)sender;
+
+
+
+
+@property(nonatomic,strong)EditCollectionViewController* editCollectionViewController;
 @end

@@ -36,6 +36,7 @@ typedef enum
 +(BOOL)isLogin;
 +(void)setIsLogin;
 +(NSString*)getAppToken;
++(NSString*)getUserID;
 
 #define UIColorFromRGB(rgbValue) [UIColor \
 colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \

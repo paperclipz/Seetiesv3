@@ -43,6 +43,7 @@
     {
         _manager = [AFHTTPRequestOperationManager manager];
         _manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+        
         _manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/html",@"text/plain",nil];
         _manager.securityPolicy.allowInvalidCertificates = YES;
         _manager.securityPolicy.validatesDomainName = NO;
@@ -167,12 +168,24 @@
 }
 
 
--(void)requestServerWithGet:(ServerRequestType)type param:(NSDictionary*)dict completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
+-(void)requestServerWithGet:(ServerRequestType)type param:(NSDictionary*)dict appendString:(NSString*)appendString completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
 {
     
-    NSLog(@"Request Server : %@ \n\n Request Json : %@",[self getFullURLwithType:type],[dict JSONString]);
+    NSString* fullURL;
+
+    if (appendString) {
+        fullURL = [NSString stringWithFormat:@"%@/%@",[self getFullURLwithType:type],appendString];
+        
+    }
+    else
+    {
+        fullURL = [self getFullURLwithType:type];
+    }
     
-    [self.manager GET:[self getFullURLwithType:type] parameters:dict
+    SLog(@"Request Server : %@ \n\n request Json : %@",fullURL,[dict bv_jsonStringWithPrettyPrint:YES]);
+    
+
+    [self.manager GET:fullURL parameters:dict
                success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          
@@ -181,16 +194,17 @@
          
          if (completeBlock) {
              completeBlock(responseObject);
-             NSLog(@"\n\n Success: %@ ***** %@", operation.responseString, responseObject);
+             NSLog(@"\n\n Success: %@", [responseObject bv_jsonStringWithPrettyPrint:YES]);
              [self processApiversion];
          }
          
      }
                failure:
      ^(AFHTTPRequestOperation *operation, NSError *error) {
-         NSLog(@"\n\n  Error: %@ ***** %@", operation.responseString, error);
+         
+         NSLog(@"\n\n Error: %@", error);
+
      }];
-    
     
 }
 
@@ -334,8 +348,9 @@
         case ServerRequestTypeGetCategories:
             str = @"v2.0/system/update/category";
             break;
-          
+        case ServerRequestTypeGetCollectionInfo:
         default:
+             str = @"v2.0";
             break;
     }
     
@@ -411,18 +426,18 @@
            
             break;
             
+        case ServerRequestTypeGetCollectionInfo:
+            
+          //  self.dataManager.categoriesModel = [[CategoriesModel alloc]initWithDictionary:obj error:nil];
+            
+            break;
+
+            
         default:
             
             SLog(@"the return result is :%@",obj);
             break;
     }
-}
-
-#pragma mark - Utils
-
-static id ObjectOrNull(id object)
-{
-    return object ?: [NSNull null];
 }
 
 

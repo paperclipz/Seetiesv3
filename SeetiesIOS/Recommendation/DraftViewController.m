@@ -116,7 +116,7 @@
 
     NSDictionary* dict = @{@"token":[Utils getAppToken]};
     
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetRecommendationDraft param:dict completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetRecommendationDraft param:dict appendString:nil completeHandler:^(id object) {
         
         NSArray<DraftModel>* array = [[[ConnectionManager dataManager]draftsModel]posts];
         self.arrDraftList = [[NSMutableArray alloc]initWithArray:array];

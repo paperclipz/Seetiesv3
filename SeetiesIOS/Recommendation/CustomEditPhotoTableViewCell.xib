@@ -22,21 +22,6 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q3w-bD-N2N">
                         <rect key="frame" x="0.0" y="5" width="320" height="115"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="123123" translatesAutoresizingMaskIntoConstraints="NO" id="geD-an-6L6">
-                                <rect key="frame" x="60" y="5" width="147" height="105"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="104" id="D9r-Wn-fgW"/>
-                                </constraints>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="15"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="D9r-Wn-fgW"/>
-                                    </mask>
-                                </variation>
-                            </textView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FLa-DA-ldW" userLabel="roundWrapperView">
                                 <rect key="frame" x="5" y="5" width="50" height="77"/>
                                 <subviews>
@@ -74,30 +59,30 @@
                                     <constraint firstAttribute="height" constant="77" id="tst-Me-zLM"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3pm-8u-Mgz">
-                                <rect key="frame" x="296" y="0.0" width="16" height="17"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3pm-8u-Mgz">
+                                <rect key="frame" x="278" y="0.0" width="27" height="29"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="44" id="5tD-WY-aT4"/>
-                                    <constraint firstAttribute="height" constant="30" id="ktN-nL-R4y"/>
+                                    <constraint firstAttribute="width" constant="27" id="5tD-WY-aT4"/>
+                                    <constraint firstAttribute="height" constant="29" id="ktN-nL-R4y"/>
                                 </constraints>
-                                <state key="normal" image="ButtonClose@3x.png">
+                                <state key="normal" image="DeleteIcon@3x.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="btnDeleteClicked:" destination="28t-rP-J1E" eventType="touchUpInside" id="YQM-N0-L5G"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="move_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="ERy-fj-ETt">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RearrangeIcon@3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="ERy-fj-ETt">
                                 <rect key="frame" x="278" y="45" width="24" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="7cj-kS-tG1"/>
                                     <constraint firstAttribute="height" constant="26" id="Z3o-bA-dqt"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9LE-5L-FHq">
-                                <rect key="frame" x="209" y="89" width="43" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9LE-5L-FHq">
+                                <rect key="frame" x="267" y="89" width="38" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="43" id="fSE-wv-TmK"/>
+                                    <constraint firstAttribute="width" constant="38" id="fSE-wv-TmK"/>
                                     <constraint firstAttribute="width" constant="43" id="nBd-pk-iij"/>
                                     <constraint firstAttribute="height" constant="21" id="sw5-yU-IDL"/>
                                     <constraint firstAttribute="height" constant="21" id="u9Q-HT-kUM"/>
@@ -112,17 +97,33 @@
                                     </mask>
                                 </variation>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="123123" translatesAutoresizingMaskIntoConstraints="NO" id="geD-an-6L6">
+                                <rect key="frame" x="60" y="5" width="194" height="105"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="104" id="D9r-Wn-fgW"/>
+                                </constraints>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="D9r-Wn-fgW"/>
+                                    </mask>
+                                </variation>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="FLa-DA-ldW" firstAttribute="top" secondItem="q3w-bD-N2N" secondAttribute="top" constant="5" id="1Oc-dv-rQs"/>
-                            <constraint firstItem="9LE-5L-FHq" firstAttribute="leading" secondItem="geD-an-6L6" secondAttribute="trailing" constant="2" id="4Pz-VT-R5T"/>
+                            <constraint firstItem="9LE-5L-FHq" firstAttribute="leading" secondItem="geD-an-6L6" secondAttribute="trailing" constant="8" id="4Pz-VT-R5T"/>
                             <constraint firstItem="geD-an-6L6" firstAttribute="leading" secondItem="FLa-DA-ldW" secondAttribute="trailing" constant="5" id="7BY-qS-vwT"/>
                             <constraint firstAttribute="centerY" secondItem="ERy-fj-ETt" secondAttribute="centerY" constant="-0.5" id="CiS-Um-vWd"/>
                             <constraint firstAttribute="bottom" secondItem="geD-an-6L6" secondAttribute="bottom" id="F5L-M7-xPG"/>
                             <constraint firstAttribute="trailing" secondItem="geD-an-6L6" secondAttribute="trailing" constant="56" id="FVn-EN-CI3"/>
                             <constraint firstItem="9LE-5L-FHq" firstAttribute="bottom" secondItem="geD-an-6L6" secondAttribute="bottom" id="HGn-u4-v30"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="9LE-5L-FHq" secondAttribute="trailing" constant="5" id="Izb-qx-swF"/>
+                            <constraint firstAttribute="trailing" secondItem="9LE-5L-FHq" secondAttribute="trailing" constant="15" id="LGU-IA-nvF"/>
                             <constraint firstItem="geD-an-6L6" firstAttribute="leading" secondItem="q3w-bD-N2N" secondAttribute="leading" constant="56" id="NuL-V0-U8D"/>
                             <constraint firstAttribute="bottom" secondItem="geD-an-6L6" secondAttribute="bottom" constant="5" id="Qh7-IC-c5r"/>
                             <constraint firstAttribute="trailing" secondItem="9LE-5L-FHq" secondAttribute="trailing" constant="9" id="TaP-D8-ZSk"/>
@@ -131,8 +132,8 @@
                             <constraint firstItem="geD-an-6L6" firstAttribute="leading" secondItem="q3w-bD-N2N" secondAttribute="leading" constant="56" id="XkK-T8-zVo"/>
                             <constraint firstItem="geD-an-6L6" firstAttribute="top" secondItem="q3w-bD-N2N" secondAttribute="top" constant="5" id="ay7-7E-INz"/>
                             <constraint firstAttribute="trailing" secondItem="ERy-fj-ETt" secondAttribute="trailing" constant="18" id="egm-dA-hKG"/>
-                            <constraint firstAttribute="trailing" secondItem="3pm-8u-Mgz" secondAttribute="trailing" constant="8" id="fsm-hM-my6"/>
-                            <constraint firstItem="3pm-8u-Mgz" firstAttribute="leading" secondItem="geD-an-6L6" secondAttribute="trailing" constant="2" id="uXR-ww-HdM"/>
+                            <constraint firstAttribute="trailing" secondItem="3pm-8u-Mgz" secondAttribute="trailing" constant="15" id="fsm-hM-my6"/>
+                            <constraint firstItem="3pm-8u-Mgz" firstAttribute="leading" secondItem="geD-an-6L6" secondAttribute="trailing" constant="24" id="uXR-ww-HdM"/>
                             <constraint firstAttribute="bottom" secondItem="9LE-5L-FHq" secondAttribute="bottom" constant="5" id="vlg-xA-zsz"/>
                         </constraints>
                         <variation key="default">
@@ -141,6 +142,7 @@
                                 <exclude reference="FVn-EN-CI3"/>
                                 <exclude reference="NuL-V0-U8D"/>
                                 <exclude reference="XkK-T8-zVo"/>
+                                <exclude reference="4Pz-VT-R5T"/>
                                 <exclude reference="Izb-qx-swF"/>
                                 <exclude reference="TaP-D8-ZSk"/>
                                 <exclude reference="vlg-xA-zsz"/>
@@ -169,7 +171,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="ButtonClose@3x.png" width="51" height="51"/>
-        <image name="move_icon.png" width="17" height="13"/>
+        <image name="DeleteIcon@3x.png" width="90" height="90"/>
+        <image name="RearrangeIcon@3x.png" width="90" height="90"/>
     </resources>
 </document>

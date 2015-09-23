@@ -183,7 +183,7 @@
 -(void)getCoordinateFromWifi:(SearchManagerSuccessBlock)successBlock errorBlock:(SearchManagerFailBlock)errorBlock
 {
     
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetGeoIP param:nil completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetGeoIP param:nil appendString:nil completeHandler:^(id object) {
         
         if (successBlock) {
             successBlock([self convertToCLLocation:object[@"latitude"] longt:object[@"longitude"]]);

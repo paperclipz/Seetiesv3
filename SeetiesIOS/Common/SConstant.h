@@ -26,7 +26,15 @@ typedef enum
     ServerRequestTypePostCreatePost,
     ServerRequestTypePostDeletePost,
     ServerRequestTypeGetGeoIP,
-    ServerRequestTypeGetCategories
+    ServerRequestTypeGetCategories,
+    
+    // ========== Collection ========== //
+    ServerRequestTypeGetCollectionInfo,
+    ServerRequestTypePostCreateCollection
+
+    // ========== Collection ========== //
+
+    
     
 }ServerRequestType;
 
