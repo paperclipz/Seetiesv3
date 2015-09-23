@@ -287,6 +287,34 @@
     
     NSLog(@"testRefresh");
     
+    [self ReinitData];
+    
+    [User_LocationArray removeAllObjects];
+    [User_IDArray removeAllObjects];
+    [User_NameArray removeAllObjects];
+    [User_ProfileImageArray removeAllObjects];
+    [User_FollowArray removeAllObjects];
+    [User_UserNameArray removeAllObjects];
+    [User_PhotoArray removeAllObjects];
+    
+    [arrType_Announcement removeAllObjects];
+    [arrID_Announcement removeAllObjects];
+    
+    arrType_Announcement = [[NSMutableArray alloc]init];
+    arrID_Announcement = [[NSMutableArray alloc]init];
+    
+    DataCount = 0;
+    Offset = 1;
+    CheckFirstTimeLoad = 0;
+    OnLoad = NO;
+    
+    for (UIView *subview in MainScroll.subviews) {
+        [subview removeFromSuperview];
+    }
+    
+    GetNextPaging = @"";
+    [self GetFeedDataFromServer];
+    
     [refreshControl endRefreshing];
 }
 -(void)LoadDataView{
