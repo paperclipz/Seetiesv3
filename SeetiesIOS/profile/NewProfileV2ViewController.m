@@ -1409,10 +1409,10 @@
     [self.navigationController pushViewController:OpenCollectionView animated:YES];
     [OpenCollectionView GetCollectionID:[CollectionData_IDArray objectAtIndex:getbuttonIDN]];
 }
+
 -(IBAction)CollectionEditButtonOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"CollectionEditButtonOnClick button %li",(long)getbuttonIDN);
-    
     
     NSString* collectionID = CollectionData_IDArray[getbuttonIDN];
     
@@ -1433,10 +1433,11 @@
     if (!_editCollectionViewController) {
         
         _editCollectionViewController = [EditCollectionViewController new];
+        
+        __weak typeof (self)weakSelf = self;
         _editCollectionViewController.btnEditClickBlock = ^(id object)
         {
-            
-            
+            [weakSelf.navigationController pushViewController:weakSelf.editCollectionDetailViewController animated:YES];
         };
     }
     return _editCollectionViewController;
