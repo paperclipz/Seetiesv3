@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="ProximaNovaSoft-Bold.ttf">
@@ -26,7 +27,6 @@
                 <outlet property="SaveButton" destination="jPW-Wi-R3M" id="cN4-yD-JKr"/>
                 <outlet property="SetPublicView" destination="FLm-3d-4FV" id="tFo-fx-94K"/>
                 <outlet property="SetTagsView" destination="Iw2-NA-abZ" id="MsY-D7-NmL"/>
-                <outlet property="ShowActivity" destination="0Qs-6Z-82O" id="OyO-86-kiS"/>
                 <outlet property="ShowDescriptionCount" destination="BsQ-z8-hWZ" id="5yp-Jv-YP5"/>
                 <outlet property="ShowNameCount" destination="MgJ-sO-PFA" id="YP5-6f-lGf"/>
                 <outlet property="ShowTitle" destination="Iab-85-yrp" id="C3f-RH-gfT"/>
@@ -124,11 +124,6 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </scrollView>
-                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" id="0Qs-6Z-82O">
-                    <rect key="frame" x="239" y="27" width="37" height="37"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="color" red="0.20000000000000001" green="0.70980392160000005" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
-                </activityIndicatorView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Settingsbar2.png" id="MrV-xO-ImG">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -196,9 +191,4 @@
         <image name="BackButton2.png" width="38" height="39"/>
         <image name="Settingsbar2.png" width="640" height="128"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

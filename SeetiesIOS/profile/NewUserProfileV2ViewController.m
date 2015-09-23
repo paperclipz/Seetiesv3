@@ -51,7 +51,7 @@
     BackgroundImage.frame = headerFrame;
     [MainScroll addSubview:BackgroundImage withAcceleration:CGPointMake(0.0f, 0.5f)];
     
-    AllContentView.frame = CGRectMake(0, 100, screenWidth, 5000);
+    AllContentView.frame = CGRectMake(0, 100, screenWidth, 100);
     [MainScroll addSubview:AllContentView];
     
     BackButton.frame = CGRectMake(0, 0, 64, 64);
@@ -429,24 +429,26 @@
     
     // start 3 view Post, Collection, Like
     PostView = [[UIView alloc]init];
-    PostView.frame = CGRectMake(0, GetHeight - 1, screenWidth, 400);
+    PostView.frame = CGRectMake(0, GetHeight - 1, screenWidth, 100);
     PostView.backgroundColor = [UIColor whiteColor];
     [AllContentView addSubview:PostView];
     
     CollectionView = [[UIView alloc]init];
-    CollectionView.frame = CGRectMake(0, GetHeight, screenWidth, 600);
+    CollectionView.frame = CGRectMake(0, GetHeight, screenWidth, 100);
     CollectionView.backgroundColor = [UIColor whiteColor];
     [AllContentView addSubview:CollectionView];
     
     
     LikeView = [[UIView alloc]init];
-    LikeView.frame = CGRectMake(0, GetHeight, screenWidth, 800);
+    LikeView.frame = CGRectMake(0, GetHeight, screenWidth, 100);
     LikeView.backgroundColor = [UIColor whiteColor];
     [AllContentView addSubview:LikeView];
     
     LikeView.hidden = YES;
     CollectionView.hidden = NO;
     PostView.hidden = YES;
+    
+    AllContentView.frame = CGRectMake(0, 100, screenWidth, GetHeight + 100);
     
     if (CheckFirstTimeLoadCollection == 1) {
         [self InitCollectionView];
@@ -599,6 +601,7 @@
         
         heightcheck += FinalWidth + 10 + 70 + 10 + i ;
     }
+    AllContentView.frame = CGRectMake(0, 100, screenWidth, GetHeight + heightcheck + FinalWidth + 120);
     CollectionView.frame = CGRectMake(0, GetHeight, screenWidth, heightcheck + FinalWidth + 120);
     
     NSLog(@"GetHeight = %d",GetHeight);
@@ -662,7 +665,8 @@
         //[MainScroll setContentSize:CGSizeMake(320, GetHeight + 105 + (106 * (CGFloat)(i /3)))];
         LikeView.frame = CGRectMake(0, GetHeight, screenWidth, heightcheck + FinalWidth + (SpaceWidth * (CGFloat)(i /3)));
     }
-    
+    AllContentView.frame = CGRectMake(0, 100, screenWidth, GetHeight + LikeView.frame.size.height + FinalWidth + FinalWidth);
+
     CGSize contentSize = MainScroll.frame.size;
     contentSize.height = GetHeight + LikeView.frame.size.height + FinalWidth + FinalWidth;
     MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
@@ -765,6 +769,7 @@
         
         PostView.frame = CGRectMake(0, GetHeight - 1, screenWidth, heightcheck);
     }
+    AllContentView.frame = CGRectMake(0, 100, screenWidth, GetHeight + PostView.frame.size.height + 251);
     CGSize contentSize = MainScroll.frame.size;
     contentSize.height = GetHeight + PostView.frame.size.height + 251;
     MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
@@ -1319,6 +1324,7 @@
     
     CollectionViewController *OpenCollectionView = [[CollectionViewController alloc]init];
     [self.navigationController pushViewController:OpenCollectionView animated:YES];
+    //[self.view.window.rootViewController presentViewController:OpenCollectionView animated:YES completion:nil];
     [OpenCollectionView GetCollectionID:[CollectionData_IDArray objectAtIndex:getbuttonIDN]];
 }
 -(IBAction)ShowAll_FollowerButton:(id)sender{

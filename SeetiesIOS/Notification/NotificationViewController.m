@@ -345,7 +345,7 @@
             NSLog(@"Following view click");
             FollowingView.hidden = NO;
             NotificationsView.hidden = YES;
-            [self InitFollowingDataView];
+          //  [self InitFollowingDataView];
             
             break;
         case 1:
@@ -353,7 +353,7 @@
             FollowingView.hidden = YES;
             NotificationsView.hidden = NO;
             
-            [self InitNotificationsDataView];
+          //  [self InitNotificationsDataView];
             
             break;
         default:

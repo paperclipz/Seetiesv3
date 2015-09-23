@@ -581,7 +581,7 @@
 //            [LocalScroll addSubview:ShowShareIcon];
             
             UIButton *ShareButton = [[UIButton alloc]init];
-            ShareButton.frame = CGRectMake(160, heightcheck + i + 20 ,19, 19);
+            ShareButton.frame = CGRectMake(160, heightcheck + 20 ,19, 19);
             [ShareButton setImage:[UIImage imageNamed:@"share_icon.png"] forState:UIControlStateNormal];
             ShareButton.backgroundColor = [UIColor clearColor];
             ShareButton.tag = i;
@@ -924,7 +924,7 @@
                 [MainScroll addSubview:CommentButton];
                 
                 UIButton *ShareButton = [[UIButton alloc]init];
-                ShareButton.frame = CGRectMake(160, heightcheck + i + 20 ,19, 19);
+                ShareButton.frame = CGRectMake(160, heightcheck + 20 ,19, 19);
                 [ShareButton setImage:[UIImage imageNamed:@"share_icon.png"] forState:UIControlStateNormal];
                 ShareButton.backgroundColor = [UIColor clearColor];
                 ShareButton.tag = i;
@@ -1190,7 +1190,7 @@
                 [MainScroll addSubview:CommentButton];
                 
                 UIButton *ShareButton = [[UIButton alloc]init];
-                ShareButton.frame = CGRectMake(160, heightcheck + i + 20 ,19, 19);
+                ShareButton.frame = CGRectMake(160, heightcheck + 20 ,19, 19);
                 [ShareButton setImage:[UIImage imageNamed:@"share_icon.png"] forState:UIControlStateNormal];
                 ShareButton.backgroundColor = [UIColor clearColor];
                 ShareButton.tag = i;
@@ -3188,6 +3188,7 @@
                         [activityindicator1 startAnimating];
                         [self GetFeedDataFromServer];
                         [activityindicator1 stopAnimating];
+                        
                     }
                     
                 }

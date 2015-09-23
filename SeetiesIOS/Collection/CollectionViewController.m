@@ -29,6 +29,9 @@
     MoreButton.frame = CGRectMake(screenWidth - 40, 20, 40, 44);
     MapButton.frame = CGRectMake(screenWidth - 80, 20, 40, 44);
     
+    DownBarView.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
+    ShareButton.frame = CGRectMake(screenWidth - 130, 0, 120, 50);
+    
     CheckLoad = NO;
     TotalPage = 1;
     CurrentPage = 0;
@@ -52,6 +55,15 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight, screenWidth, 50);
+}
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
 }
 -(IBAction)BackButton:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
@@ -581,10 +593,10 @@
         
     }
     
-    ListView.frame = CGRectMake(0, GetHeight + 10, screenWidth, TempHeight + 170);
+    ListView.frame = CGRectMake(0, GetHeight + 10, screenWidth, TempHeight + 10);
     
     CGSize contentSize = MainScroll.frame.size;
-    contentSize.height = GetHeight + ListView.frame.size.height + 50;
+    contentSize.height = GetHeight + ListView.frame.size.height;
     MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     MainScroll.contentSize = contentSize;
     
@@ -592,7 +604,7 @@
 }
 -(void)InitGridViewData{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-
+    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     int heightcheck = 10;
     
     int TestWidth = screenWidth - 2;
@@ -631,9 +643,13 @@
         //[MainScroll setContentSize:CGSizeMake(320, GetHeight + 105 + (106 * (CGFloat)(i /3)))];
         GridView.frame = CGRectMake(0, GetHeight, screenWidth, heightcheck + FinalWidth + (SpaceWidth * (CGFloat)(i /3)));
     }
+    if (GridView.frame.size.height < screenHeight) {
+        
+        GridView.frame = CGRectMake(0, GetHeight, screenWidth, screenHeight);
+    }
     
     CGSize contentSize = MainScroll.frame.size;
-    contentSize.height = GetHeight + GridView.frame.size.height + FinalWidth + FinalWidth;
+    contentSize.height = GetHeight + GridView.frame.size.height + FinalWidth;
     MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     MainScroll.contentSize = contentSize;
 }

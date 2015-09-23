@@ -14,6 +14,8 @@
     IBOutlet UIScrollView *MainScroll;
     IBOutlet UIButton *MapButton;
     IBOutlet UIButton *MoreButton;
+    IBOutlet UIView *DownBarView;
+    IBOutlet UIButton *ShareButton;
     
     NSString *GetID;
     
