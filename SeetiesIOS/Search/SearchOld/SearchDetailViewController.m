@@ -8,7 +8,7 @@
 
 #import "SearchDetailViewController.h"
 #import "AsyncImageView.h"
-#import "UserProfileV2ViewController.h"
+#import "NewUserProfileV2ViewController.h"
 #import "FeedV2DetailViewController.h"
 #import "Filter2ViewController.h"
 #import "LanguageManager.h"
@@ -372,7 +372,6 @@
         NSDictionary *locationData = [GetAllData valueForKey:@"location"];
         NSDictionary *locationData_Address = [locationData valueForKey:@"address_components"];
         NSDictionary *UserInfoData = [GetAllData valueForKey:@"user_info"];
-        NSDictionary *UserInfoData_ProfilePhoto = [UserInfoData valueForKey:@"profile_photo"];
         if ([GetAllData count] == 0) {
             ShowNoDataView.hidden = NO;
         }else{
@@ -512,11 +511,10 @@
         for (NSDictionary * dict in UserInfoData) {
             NSString *username = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"username"]];
             [UserInfo_NameArray addObject:username];
-        }
-        for (NSDictionary * dict in UserInfoData_ProfilePhoto) {
-            NSString *url = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"url"]];
+            NSString *url = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"profile_photo"]];
             [UserInfo_UrlArray addObject:url];
         }
+
         NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"\n(){};\"\" "];
         for (NSDictionary * dict in GetAllData){
             NSString *post_id =  [NSString stringWithFormat:@"%@",[dict objectForKey:@"post_id"]];
@@ -606,7 +604,7 @@
             [Experts_uid_Array addObject:uid];
             NSString *profile_photo =  [NSString stringWithFormat:@"%@",[dict objectForKey:@"profile_photo"]];
             [Experts_ProfilePhoto_Array addObject:profile_photo];
-            NSString *followed =  [NSString stringWithFormat:@"%@",[dict objectForKey:@"followed"]];
+            NSString *followed =  [NSString stringWithFormat:@"%@",[dict objectForKey:@"following"]];
             [Experts_Followed_Array addObject:followed];
             NSString *username =  [NSString stringWithFormat:@"%@",[dict objectForKey:@"username"]];
             [Experts_Username_Array addObject:username];
@@ -738,7 +736,26 @@
         }
         
         
-    }
+    }else{
+            //follow data
+            NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+            //     NSLog(@"Get Following return get data to server ===== %@",GetData);
+            
+            NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
+            NSError *myError = nil;
+            NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
+            //    NSLog(@"Expert Json = %@",res);
+            
+            NSString *ResultString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
+            //    NSLog(@"ResultString is %@",ResultString);
+            
+            if ([ResultString isEqualToString:@"ok"]) {
+                
+                //   [self InitView];
+                
+            }
+        }
+    
     [ShowActivity stopAnimating];
 
 }
@@ -969,12 +986,21 @@
         ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         [PeopleView addSubview:ShowUserName];
         
+        NSString *CheckFollow = [[NSString alloc]initWithFormat:@"%@",[Experts_Followed_Array objectAtIndex:i]];
+
         UIButton *FollowButton = [[UIButton alloc]init];
-        FollowButton.frame = CGRectMake(screenWidth - 10 - 53, PeopleHeight + 22, 53, 37);
-        // [FollowButton setTitle:@"Icon" forState:UIControlStateNormal];
+        FollowButton.frame = CGRectMake(screenWidth - 10 - 70, PeopleHeight + 12, 70, 48);
+        if ([CheckFollow isEqualToString:@"0"]) {
+            [FollowButton setImage:[UIImage imageNamed:@"ExploreFollow.png"] forState:UIControlStateNormal];
+            [FollowButton setImage:[UIImage imageNamed:@"ExploreFollowing.png"] forState:UIControlStateSelected];
+        }else{
+            [FollowButton setImage:[UIImage imageNamed:@"ExploreFollowing.png"] forState:UIControlStateNormal];
+            [FollowButton setImage:[UIImage imageNamed:@"ExploreFollow.png"] forState:UIControlStateSelected];
+        }
         [FollowButton setImage:[UIImage imageNamed:@"follow_icon.png"] forState:UIControlStateNormal];
         FollowButton.backgroundColor = [UIColor clearColor];
-        // FollowButton.layer.cornerRadius = 20;
+        FollowButton.tag = i;
+        [FollowButton addTarget:self action:@selector(FollowButton:) forControlEvents:UIControlEventTouchUpInside];
         [PeopleView addSubview: FollowButton];
         
         UIButton *Line01 = [[UIButton alloc]init];
@@ -1000,7 +1026,7 @@
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);
     
-    UserProfileV2ViewController *ExpertsUserProfileView = [[UserProfileV2ViewController alloc]init];
+    NewUserProfileV2ViewController *ExpertsUserProfileView = [[NewUserProfileV2ViewController alloc]init];
     CATransition *transition = [CATransition animation];
     transition.duration = 0.2;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
@@ -1008,13 +1034,13 @@
     transition.subtype = kCATransitionFromRight;
     [self.view.window.layer addAnimation:transition forKey:nil];
     [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
-    [ExpertsUserProfileView GetUsername:[All_Experts_Username_Array objectAtIndex:getbuttonIDN]];
+    [ExpertsUserProfileView GetUserName:[All_Experts_Username_Array objectAtIndex:getbuttonIDN]];
 }
 -(IBAction)ExpertsButton:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"ExpertsButton button %li",(long)getbuttonIDN);
     
-    UserProfileV2ViewController *ExpertsUserProfileView = [[UserProfileV2ViewController alloc]init];
+    NewUserProfileV2ViewController *ExpertsUserProfileView = [[NewUserProfileV2ViewController alloc]init];
     CATransition *transition = [CATransition animation];
     transition.duration = 0.2;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
@@ -1022,13 +1048,13 @@
     transition.subtype = kCATransitionFromRight;
     [self.view.window.layer addAnimation:transition forKey:nil];
     [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
-    [ExpertsUserProfileView GetUsername:[Experts_Username_Array objectAtIndex:getbuttonIDN]];
+    [ExpertsUserProfileView GetUserName:[Experts_Username_Array objectAtIndex:getbuttonIDN]];
 }
 -(IBAction)ExpertsButton2:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"ExpertsButton2 button %li",(long)getbuttonIDN);
     
-    UserProfileV2ViewController *ExpertsUserProfileView = [[UserProfileV2ViewController alloc]init];
+    NewUserProfileV2ViewController *ExpertsUserProfileView = [[NewUserProfileV2ViewController alloc]init];
     CATransition *transition = [CATransition animation];
     transition.duration = 0.2;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
@@ -1036,7 +1062,7 @@
     transition.subtype = kCATransitionFromRight;
     [self.view.window.layer addAnimation:transition forKey:nil];
     [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
-    [ExpertsUserProfileView GetUsername:[UserInfo_NameArray objectAtIndex:getbuttonIDN]];
+    [ExpertsUserProfileView GetUserName:[UserInfo_NameArray objectAtIndex:getbuttonIDN]];
 }
 -(IBAction)ProductButton:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
@@ -1260,6 +1286,81 @@
         //Now you know the location has been found, do other things, call others methods here
         [self.locationManager stopUpdatingLocation];
     }else{
+    }
+}
+-(IBAction)FollowButton:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSLog(@"button %li",(long)getbuttonIDN);
+    
+    UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
+    buttonWithTag1.selected = !buttonWithTag1.selected;
+    
+    GetUserID = [Experts_uid_Array objectAtIndex:getbuttonIDN];
+    GetFollowString = [Experts_Followed_Array objectAtIndex:getbuttonIDN];
+    
+    if ([GetFollowString isEqualToString:@"0"]) {
+        [Experts_Followed_Array replaceObjectAtIndex:getbuttonIDN withObject:@"1"];
+        [self SendFollowingData];
+    }else{
+        NSString *tempStirng = [[NSString alloc]initWithFormat:@"%@ %@ ?",CustomLocalisedString(@"StopFollowing", nil),[Experts_Username_Array objectAtIndex:getbuttonIDN]];
+        
+        UIAlertView *ShowAlertView = [[UIAlertView alloc]initWithTitle:@"" message:tempStirng delegate:self cancelButtonTitle:CustomLocalisedString(@"SettingsPage_Cancel", nil) otherButtonTitles:CustomLocalisedString(@"Unfollow", nil), nil];
+        ShowAlertView.tag = 1200;
+        [ShowAlertView show];
+        [Experts_Followed_Array replaceObjectAtIndex:getbuttonIDN withObject:@"0"];
+    }
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(alertView.tag == 1200){
+        if (buttonIndex == [alertView cancelButtonIndex]){
+            NSLog(@"Cancel");
+        }else{
+            //send delete data.
+            [self SendFollowingData];
+        }
+    }
+    
+}
+-(void)SendFollowingData{
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    
+    //Server Address URL
+    NSString *urlString = [NSString stringWithFormat:@"%@%@/follow?token=%@",DataUrl.UserWallpaper_Url,GetUserID,GetExpertToken];
+    NSLog(@"urlString is %@",urlString);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    NSLog(@"GetFollowString is %@",GetFollowString);
+    if ([GetFollowString isEqualToString:@"1"]) {
+        [request setHTTPMethod:@"DELETE"];
+    }else{
+        [request setHTTPMethod:@"POST"];
+    }
+    NSLog(@"request is %@",request);
+    NSMutableData *body = [NSMutableData data];
+    
+    NSString *boundary = @"---------------------------14737809831466499882746641449";
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+    [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    
+    //close form
+    [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSLog(@"Request  = %@",[[NSString alloc] initWithData:body encoding:NSUTF8StringEncoding]);
+    
+    //setting the body of the post to the reqeust
+    [request setHTTPBody:body];
+    
+    theConnection_Following = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    if(theConnection_Following) {
+        //  NSLog(@"Connection Successful");
+        webData = [NSMutableData data];
+    } else {
+        
     }
 }
 @end

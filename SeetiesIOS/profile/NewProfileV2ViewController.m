@@ -39,6 +39,7 @@
     contentSize.height = 800;
     MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     MainScroll.contentSize = contentSize;
+    MainScroll.alwaysBounceVertical = YES;
     
     //BackgroundImage.image = [UIImage imageNamed:@"UserDemo2.jpg"];
     BackgroundImage.frame = CGRectMake(0, -50, screenWidth, 300);
@@ -52,7 +53,7 @@
     
     CheckExpand = YES;
     
-    AllContentView.frame = CGRectMake(0, 100, screenWidth, screenHeight + 50);
+    AllContentView.frame = CGRectMake(0, 100, screenWidth, 5000);
 //    CGRect contentFrame = AllContentView.frame;
 //    contentFrame.origin.y += 100.0f;
 //    AllContentView.frame = contentFrame;
@@ -447,7 +448,7 @@
     [AllContentView addSubview:PostView];
     
     CollectionView = [[UIView alloc]init];
-    CollectionView.frame = CGRectMake(0, GetHeight, screenWidth, 600);
+    CollectionView.frame = CGRectMake(0, GetHeight, screenWidth, 400);
     CollectionView.backgroundColor = [UIColor whiteColor];
     [AllContentView addSubview:CollectionView];
     
@@ -635,13 +636,12 @@
         heightcheck += FinalWidth + 10 + 70 + 10 + i ;
     }
     CollectionView.frame = CGRectMake(0, GetHeight, screenWidth, heightcheck + FinalWidth + 120);
-    
     NSLog(@"GetHeight = %d",GetHeight);
     NSLog(@"heightcheck = %d",heightcheck);
     
     CGSize contentSize = MainScroll.frame.size;
     contentSize.height = GetHeight + CollectionView.frame.size.height + 50;
-    MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    //MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     MainScroll.contentSize = contentSize;
     
     

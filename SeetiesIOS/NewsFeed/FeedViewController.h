@@ -15,9 +15,6 @@
     IBOutlet UILabel *ShowNoConnectionText;
     IBOutlet UIImageView *NoConnectionImg;
     IBOutlet UIButton *TryAgainButton;
-    
-    
-    
     IBOutlet UIScrollView *MainScroll;
     IBOutlet UIScrollView *LocalScroll;
     UIRefreshControl *refreshControl;
@@ -45,7 +42,6 @@
     NSMutableArray *arrImageHeight;
     NSMutableArray *arrlike;
     
-    
     NSMutableArray *User_IDArray;
     NSMutableArray *User_ProfileImageArray;
     NSMutableArray *User_NameArray;
@@ -54,7 +50,15 @@
     NSMutableArray *User_UserNameArray;
     NSMutableArray *User_PhotoArray;
     
+    NSMutableArray *arrType_Announcement;
+    NSMutableArray *arrID_Announcement;
     
+    NSMutableArray *arrAboadID;
+    NSMutableArray *arrfeaturedUserName;
+    NSMutableArray *arrFriendUserName;
+    NSMutableArray *arrDealID;
+    
+    NSString *GetNextPaging;
     
     
     NSDate *methodStart;
@@ -81,10 +85,10 @@
     
     NSMutableData *webData;
     
-    NSInteger TotalPage;
-    NSInteger CurrentPage;
+   // NSInteger TotalPage;
+   // NSInteger CurrentPage;
     NSInteger DataCount;
-    NSInteger DataTotal;
+    NSInteger Offset;
     
     int CheckFirstTimeLoad;
     BOOL OnLoad;

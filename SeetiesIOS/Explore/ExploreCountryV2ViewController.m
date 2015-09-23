@@ -9,7 +9,7 @@
 #import "ExploreCountryV2ViewController.h"
 #import "FeedV2DetailViewController.h"
 #import "SearchViewV2.h"
-#import "UserProfileV2ViewController.h"
+#import "NewUserProfileV2ViewController.h"
 #import "LanguageManager.h"
 #import "Locale.h"
 #import "Filter2ViewController.h"
@@ -474,12 +474,23 @@
         ShowMessage.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         [PeopleView addSubview:ShowMessage];
         
+        NSString *CheckFollow = [[NSString alloc]initWithFormat:@"%@",[User_FollowArray objectAtIndex:i]];
+        
         UIButton *FollowButton = [[UIButton alloc]init];
-        FollowButton.frame = CGRectMake(screenWidth - 30 - 53, PeopleGetHeight + 12, 53, 37);
+        FollowButton.frame = CGRectMake(screenWidth - 30 - 70, PeopleGetHeight + 12, 70, 48);
        // [FollowButton setTitle:@"Icon" forState:UIControlStateNormal];
+        if ([CheckFollow isEqualToString:@"0"]) {
+            [FollowButton setImage:[UIImage imageNamed:@"ExploreFollow.png"] forState:UIControlStateNormal];
+            [FollowButton setImage:[UIImage imageNamed:@"ExploreFollowing.png"] forState:UIControlStateSelected];
+        }else{
+            [FollowButton setImage:[UIImage imageNamed:@"ExploreFollowing.png"] forState:UIControlStateNormal];
+            [FollowButton setImage:[UIImage imageNamed:@"ExploreFollow.png"] forState:UIControlStateSelected];
+        }
         [FollowButton setImage:[UIImage imageNamed:@"follow_icon.png"] forState:UIControlStateNormal];
         FollowButton.backgroundColor = [UIColor clearColor];
+        FollowButton.tag = i;
        // FollowButton.layer.cornerRadius = 20;
+        [FollowButton addTarget:self action:@selector(FollowButton:) forControlEvents:UIControlEventTouchUpInside];
         [PeopleView addSubview: FollowButton];
         
 //        NSMutableArray *DemoArray = [[NSMutableArray alloc]init];
@@ -543,9 +554,11 @@
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);
     
+    UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
+    buttonWithTag1.selected = !buttonWithTag1.selected;
+    
     GetUserID = [User_IDArray objectAtIndex:getbuttonIDN];
     GetFollowString = [User_FollowArray objectAtIndex:getbuttonIDN];
-    
     
     if ([GetFollowString isEqualToString:@"0"]) {
         [User_FollowArray replaceObjectAtIndex:getbuttonIDN withObject:@"1"];
@@ -742,7 +755,7 @@
                 
                 NSDictionary *GetAllData = [ResData valueForKey:@"posts"];
                 NSDictionary *UserInfoData = [GetAllData valueForKey:@"user_info"];
-                NSDictionary *UserInfoData_ProfilePhoto = [UserInfoData valueForKey:@"profile_photo"];
+              //  NSDictionary *UserInfoData_ProfilePhoto = [UserInfoData valueForKey:@"profile_photo"];
                 NSDictionary *locationData = [GetAllData valueForKey:@"location"];
                 NSDictionary *locationData_Address = [locationData valueForKey:@"address_components"];
          //       NSLog(@"GetAllData ===== %@",GetAllData);
@@ -768,7 +781,6 @@
                 }else{
                     
                 }
-
                 for (NSDictionary * dict in GetAllData) {
                     NSString *PlaceID = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"post_id"]];
                     [PostIDArray addObject:PlaceID];
@@ -790,17 +802,16 @@
                 for (NSDictionary * dict in UserInfoData) {
                     NSString *username = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"username"]];
                     [UserInfo_NameArray addObject:username];
-                }
-                for (NSDictionary * dict in UserInfoData_ProfilePhoto) {
-                    NSString *url = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"url"]];
+                    NSString *url = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"profile_photo"]];
                     [UserInfo_UrlArray addObject:url];
                 }
                 for (NSDictionary * dict in locationData_Address) {
-                    NSString *Locality = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"locality"]];
-                    NSString *Address3 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"administrative_area_level_3"]];
-                    NSString *Address2 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"administrative_area_level_2"]];
-                    NSString *Address1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"administrative_area_level_1"]];
-                    NSString *Country = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"country"]];
+                    NSString *Locality = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"locality"]];
+                    NSString *Address3 = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"administrative_area_level_3"]];
+                    NSString *Address2 = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"administrative_area_level_2"]];
+                    NSString *Address1 = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"administrative_area_level_1"]];
+                    NSString *Country = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"country"]];
+                    
                     NSString *FullString;
                     if ([Locality length] == 0 || Locality == nil || [Locality isEqualToString:@"(null)"]) {
                         if([Address3 length] == 0 || Address3 == nil || [Address3 isEqualToString:@"(null)"]){
@@ -821,7 +832,6 @@
                     }
                     [LocationArray addObject:FullString];
                 }
-                
                 DataCount = DataTotal;
                 DataTotal = [PostIDArray count];
 
@@ -920,7 +930,7 @@
         
         if ([ResultString isEqualToString:@"ok"]) {
             
-           [self InitView];
+        //   [self InitView];
             
         }
     }
@@ -934,7 +944,7 @@
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);
     
-    UserProfileV2ViewController *ExpertsUserProfileView = [[UserProfileV2ViewController alloc]init];
+    NewUserProfileV2ViewController *ExpertsUserProfileView = [[NewUserProfileV2ViewController alloc]init];
     CATransition *transition = [CATransition animation];
     transition.duration = 0.2;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
@@ -942,7 +952,7 @@
     transition.subtype = kCATransitionFromRight;
     [self.view.window.layer addAnimation:transition forKey:nil];
     [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
-    [ExpertsUserProfileView GetUsername:[User_UserNameArray objectAtIndex:getbuttonIDN]];
+    [ExpertsUserProfileView GetUserName:[User_UserNameArray objectAtIndex:getbuttonIDN]];
 }
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {

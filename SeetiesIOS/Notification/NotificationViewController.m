@@ -8,7 +8,7 @@
 
 #import "NotificationViewController.h"
 #import "AsyncImageView.h"
-#import "UserProfileV2ViewController.h"
+#import "NewUserProfileV2ViewController.h"
 #import "FeedV2DetailViewController.h"
 #import "SelectImageViewController.h"
 #import "LanguageManager.h"
@@ -491,9 +491,8 @@
         ShowMessage.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
         ShowMessage.textColor = [UIColor blackColor];
         ShowMessage.backgroundColor = [UIColor clearColor];
-        ShowMessage.text = [Following_MessageArray objectAtIndex:i];
-        
-        
+        NSString *GetString = [[NSString alloc]initWithFormat:@"%@",[Following_MessageArray objectAtIndex:i]];
+        ShowMessage.text = [self convertHtmlPlainText:GetString];
         NSString *start = [[NSString alloc]initWithFormat:@"%@",[Following_DateArray objectAtIndex:i]];
         NSDateFormatter *f = [[NSDateFormatter alloc] init];
         [f setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
@@ -548,7 +547,13 @@
     MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     MainScroll.contentSize = contentSize;
 }
-
+-(NSString*)convertHtmlPlainText:(NSString*)HTMLString{
+    
+    NSData *HTMLData = [HTMLString dataUsingEncoding:NSUTF8StringEncoding];
+    NSAttributedString *attrString = [[NSAttributedString alloc] initWithData:HTMLData options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:NULL error:NULL];
+    NSString *plainString = attrString.string;
+    return plainString;
+}
 
 -(void)InitNotificationsDataView{
     //CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
@@ -679,8 +684,9 @@
         ShowMessage.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
         ShowMessage.textColor = [UIColor blackColor];
         ShowMessage.backgroundColor = [UIColor clearColor];
-        ShowMessage.text = [MessageArray objectAtIndex:i];
-        
+
+        NSString *GetString = [[NSString alloc]initWithFormat:@"%@",[MessageArray objectAtIndex:i]];
+        ShowMessage.text = [self convertHtmlPlainText:GetString];
         NSString *start = [[NSString alloc]initWithFormat:@"%@",[DateArray objectAtIndex:i]];
         NSDateFormatter *f = [[NSDateFormatter alloc] init];
         [f setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
@@ -753,15 +759,17 @@
     
     NSString *GetType = [[NSString alloc]initWithFormat:@"%@",[TypeArray objectAtIndex:getbuttonIDN]];
     if ([GetType isEqualToString:@"follow"]) {
-        UserProfileV2ViewController *ExpertsUserProfileView = [[UserProfileV2ViewController alloc]init];
-        CATransition *transition = [CATransition animation];
-        transition.duration = 0.2;
-        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-        transition.type = kCATransitionPush;
-        transition.subtype = kCATransitionFromRight;
-        [self.view.window.layer addAnimation:transition forKey:nil];
-        [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
-        [ExpertsUserProfileView GetUsername:[UserNameArray objectAtIndex:getbuttonIDN]];
+//        NewUserProfileV2ViewController *ExpertsUserProfileView = [[NewUserProfileV2ViewController alloc]init];
+//        CATransition *transition = [CATransition animation];
+//        transition.duration = 0.2;
+//        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//        transition.type = kCATransitionPush;
+//        transition.subtype = kCATransitionFromRight;
+//        [self.view.window.layer addAnimation:transition forKey:nil];
+//        [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
+        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+        [NewUserProfileV2View GetUserName:[UserNameArray objectAtIndex:getbuttonIDN]];
         NSLog(@"UserNameArray is %@",[UserNameArray objectAtIndex:getbuttonIDN]);
     }else if ([GetType isEqualToString:@"like"]){
         FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
@@ -821,15 +829,9 @@
         }else if([GetAction isEqualToString:@"none"]){
         
         }else if([GetAction isEqualToString:@"user"]){
-            UserProfileV2ViewController *ExpertsUserProfileView = [[UserProfileV2ViewController alloc]init];
-            CATransition *transition = [CATransition animation];
-            transition.duration = 0.2;
-            transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-            transition.type = kCATransitionPush;
-            transition.subtype = kCATransitionFromRight;
-            [self.view.window.layer addAnimation:transition forKey:nil];
-            [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
-            [ExpertsUserProfileView GetUsername:[UserNameArray objectAtIndex:getbuttonIDN]];
+            NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+            [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+            [NewUserProfileV2View GetUserName:[UserNameArray objectAtIndex:getbuttonIDN]];
         }else{
         
         }

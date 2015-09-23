@@ -386,8 +386,8 @@
     [imgDic2 setObject:[UIImage imageNamed:@"TabBarExplore_on.png"] forKey:@"Seleted"];
     NSMutableDictionary *imgDic3 = [NSMutableDictionary dictionaryWithCapacity:3];
     [imgDic3 setObject:[UIImage imageNamed:@"TabBarNew.png"] forKey:@"Default"];
-    [imgDic3 setObject:[UIImage imageNamed:@"FollowDeny.png"] forKey:@"Highlighted"];
-    [imgDic3 setObject:[UIImage imageNamed:@"FollowDeny.png"] forKey:@"Seleted"];
+    [imgDic3 setObject:[UIImage imageNamed:@"TabBarNewClose.png"] forKey:@"Highlighted"];
+    [imgDic3 setObject:[UIImage imageNamed:@"TabBarNewClose.png"] forKey:@"Seleted"];
     NSMutableDictionary *imgDic4 = [NSMutableDictionary dictionaryWithCapacity:3];
     [imgDic4 setObject:[UIImage imageNamed:@"TabBarActivity.png"] forKey:@"Default"];
     [imgDic4 setObject:[UIImage imageNamed:@"TabBarActivity_on.png"] forKey:@"Highlighted"];
