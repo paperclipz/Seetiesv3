@@ -14,6 +14,7 @@
 #import "EditProfileV2ViewController.h"
 
 #import <FacebookSDK/FacebookSDK.h>
+#import "LandingV2ViewController.h"
 @interface NewProfileV2ViewController ()
 
 @end
@@ -1094,10 +1095,54 @@
                 [self GetCollectionData];
             }else{
             
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                NSString *GetBackCheckAPI = [defaults objectForKey:@"CheckAPI"];
+                NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+                [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+                
+                NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
+                NSLog(@"language is %@",language);
+                // zh-Hans - Simplified Chinese
+                // zh-Hant - Traditional Chinese
+                // en - English
+                // th - Thai
+                // id - Bahasa Indonesia
+                NSInteger CheckSystemLanguage;
+                if ([language isEqualToString:@"en"]) {
+                    CheckSystemLanguage = 0;
+                }else if([language isEqualToString:@"zh-Hans"]){
+                    CheckSystemLanguage = 1;
+                }else if([language isEqualToString:@"zh-Hant"]){
+                    CheckSystemLanguage = 2;
+                }else if([language isEqualToString:@"id"]){
+                    CheckSystemLanguage = 3;
+                }else if([language isEqualToString:@"th"]){
+                    CheckSystemLanguage = 4;
+                }else if([language isEqualToString:@"tl-PH"]){
+                    CheckSystemLanguage = 5;
+                }
+                LanguageManager *languageManager = [LanguageManager sharedLanguageManager];
+                
+                Locale *localeForRow = languageManager.availableLocales[CheckSystemLanguage];
+                [languageManager setLanguageWithLocale:localeForRow];
+                
+                
+                //save back
+                [defaults setObject:GetBackCheckAPI forKey:@"CheckAPI"];
+                //[defaults setObject:GetBackAPIVersion forKey:@"APIVersionSet"];
+                [defaults synchronize];
+                
+                
+                LandingV2ViewController *LandingView = [[LandingV2ViewController alloc]init];
+                [self presentViewController:LandingView animated:YES completion:nil];
+                
+            }
+                
+                
             }
             
             
-        }
+        
         
         
 

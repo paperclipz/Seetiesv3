@@ -22,6 +22,7 @@
 #import "NSString+ChangeAsciiString.h"
 #import "AddCollectionDataViewController.h"
 #import "LeveyTabBarController.h"
+#import "ReportViewController.h"
 @interface FeedV2DetailViewController ()
 @end
 
@@ -3224,15 +3225,33 @@
 }
 -(IBAction)SettingButton:(id)sender{
     NSLog(@"Setting Button Click.");
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                             delegate:self
-                                                    cancelButtonTitle:CustomLocalisedString(@"SettingsPage_Cancel", nil)
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:CustomLocalisedString(@"Edit", nil),CustomLocalisedString(@"Delete", nil), nil];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetUsername = [defaults objectForKey:@"UserName"];
+    if ([GetUsername isEqualToString:GetPostName]) {
+        //self
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                                 delegate:self
+                                                        cancelButtonTitle:CustomLocalisedString(@"SettingsPage_Cancel", nil)
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:CustomLocalisedString(@"Edit", nil),CustomLocalisedString(@"Delete", nil), nil];
+        
+        [actionSheet showInView:self.view];
+        
+        actionSheet.tag = 300;
+    }else{
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                                 delegate:self
+                                                        cancelButtonTitle:CustomLocalisedString(@"SettingsPage_Cancel", nil)
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:@"Report", nil];
+        
+        [actionSheet showInView:self.view];
+        
+        actionSheet.tag = 400;
+    }
     
-    [actionSheet showInView:self.view];
     
-    actionSheet.tag = 300;
+
 }
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(actionSheet.tag == 200){
@@ -3338,6 +3357,16 @@
             
         }
        
+    }else if(actionSheet.tag == 400){
+        NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
+        if ([buttonTitle isEqualToString:CustomLocalisedString(@"SettingsPage_Cancel", nil)]) {
+            NSLog(@"Cancel Button");
+        }
+        if ([buttonTitle isEqualToString:@"Report"]) {
+            NSLog(@"Report Click");
+            [actionSheet dismissWithClickedButtonIndex:0 animated:YES];
+            [self OpenReport];
+        }
     }
 }
 // A function for parsing URL parameters returned by the Feed Dialog.
@@ -3351,6 +3380,11 @@
         params[kv[0]] = val;
     }
     return params;
+}
+-(void)OpenReport{
+    ReportViewController *ReportView = [[ReportViewController alloc]init];
+    [self.view.window.rootViewController presentViewController:ReportView animated:YES completion:nil];
+    [ReportView GetPostID:GetPostID];
 }
 -(void)OpenEdit{
     
