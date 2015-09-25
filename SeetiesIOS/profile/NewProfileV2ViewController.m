@@ -12,6 +12,7 @@
 #import "FeedV2DetailViewController.h"
 #import "CollectionViewController.h"
 #import "EditProfileV2ViewController.h"
+#import "ShowFollowerAndFollowingViewController.h"
 
 #import <FacebookSDK/FacebookSDK.h>
 #import "LandingV2ViewController.h"
@@ -229,6 +230,12 @@
     ShowFollowers.backgroundColor = [UIColor clearColor];
     [AllContentView addSubview:ShowFollowers];
     
+    UIButton *OpenFollowersButton = [[UIButton alloc]init];
+    OpenFollowersButton.frame = CGRectMake(60, GetHeight, 120, 21);
+    [OpenFollowersButton setTitle:@"" forState:UIControlStateNormal];
+    [OpenFollowersButton addTarget:self action:@selector(ShowAll_FollowerButton:) forControlEvents:UIControlEventTouchUpInside];
+    [AllContentView addSubview:OpenFollowersButton];
+    
     UILabel *ShowFollowing = [[UILabel alloc]init];
     ShowFollowing.text = tempFollowing;
     ShowFollowing.frame = CGRectMake(170, GetHeight, 120, 21);
@@ -237,6 +244,12 @@
     ShowFollowing.textAlignment = NSTextAlignmentLeft;
     ShowFollowing.backgroundColor = [UIColor clearColor];
     [AllContentView addSubview:ShowFollowing];
+    
+    UIButton *OpenFollowingButton = [[UIButton alloc]init];
+    OpenFollowingButton.frame = CGRectMake(170, GetHeight, 120, 21);
+    [OpenFollowingButton setTitle:@"" forState:UIControlStateNormal];
+    [OpenFollowingButton addTarget:self action:@selector(ShowAll_FollowingButton:) forControlEvents:UIControlEventTouchUpInside];
+    [AllContentView addSubview:OpenFollowingButton];
     
     GetHeight += 30;
     
@@ -1502,13 +1515,6 @@
 }
 -(IBAction)EditProfileButtonOnClick:(id)sender{
     EditProfileV2ViewController *EditProfileView = [[EditProfileV2ViewController alloc]init];
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromRight;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    //[self presentViewController:EditProfileView animated:NO completion:nil];
     [self.view.window.rootViewController presentViewController:EditProfileView animated:YES completion:nil];
 }
 -(IBAction)ShareButton:(id)sender{
@@ -1620,5 +1626,22 @@ if(actionSheet.tag == 200){
         params[kv[0]] = val;
     }
     return params;
+}
+-(IBAction)ShowAll_FollowerButton:(id)sender{
+   
+    ShowFollowerAndFollowingViewController *ShowFollowerAndFollowingView = [[ShowFollowerAndFollowingViewController alloc]init];
+    [self.view.window.rootViewController presentViewController:ShowFollowerAndFollowingView animated:YES completion:nil];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+     NSString *Getuid = [defaults objectForKey:@"Useruid"];
+    [ShowFollowerAndFollowingView GetToken:GetExpertToken GetUID:Getuid GetType:@"Follower"];
+}
+-(IBAction)ShowAll_FollowingButton:(id)sender{
+    ShowFollowerAndFollowingViewController *ShowFollowerAndFollowingView = [[ShowFollowerAndFollowingViewController alloc]init];
+    [self.view.window.rootViewController presentViewController:ShowFollowerAndFollowingView animated:YES completion:nil];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *Getuid = [defaults objectForKey:@"Useruid"];
+    [ShowFollowerAndFollowingView GetToken:GetExpertToken GetUID:Getuid GetType:@"Follower"];
 }
 @end
