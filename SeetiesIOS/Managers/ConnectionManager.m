@@ -274,6 +274,8 @@
     }];
     [op start];
 }
+
+
 -(void)requestServerWithDelete:(ServerRequestType)type param:(NSDictionary*)dict appendString:(NSString*)appendString completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
 {
     
@@ -300,6 +302,45 @@
          NSLog(@"Error: %@ ***** %@", operation.responseString, error);
      }];
     
+    
+}
+-(void)requestServerWithPut:(ServerRequestType)type param:(NSDictionary*)dict appendString:(NSString*)appendString completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
+{
+    
+    NSString* fullURL;
+    
+    if (appendString) {
+        fullURL = [NSString stringWithFormat:@"%@/%@",[self getFullURLwithType:type],appendString];
+        
+    }
+    else
+    {
+        fullURL = [self getFullURLwithType:type];
+    }
+    
+    SLog(@"Request Server : %@ \n\n request Json : %@",fullURL,[dict bv_jsonStringWithPrettyPrint:YES]);
+    
+    
+    [self.manager PUT:fullURL parameters:dict
+              success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         
+         [self storeServerData:responseObject requestType:type];
+         
+         
+         if (completeBlock) {
+             completeBlock(responseObject);
+             NSLog(@"\n\n Success: %@", [responseObject bv_jsonStringWithPrettyPrint:YES]);
+             [self processApiversion];
+         }
+         
+     }
+              failure:
+     ^(AFHTTPRequestOperation *operation, NSError *error) {
+         
+         NSLog(@"\n\n Error: %@", error);
+         
+     }];
     
 }
 
@@ -429,9 +470,9 @@
         case ServerRequestTypeGetCollectionInfo:
         {
             
-            NSDictionary* dict = obj[@"data"][@"posts"];
+            NSDictionary* dict = obj[@"data"];
 
-            self.dataManager.collectionModels = [[CollectionModels alloc]initWithDictionary:dict error:nil];
+            self.dataManager.collectionModels = [[CollectionModel alloc]initWithDictionary:dict error:nil];
 
         }
             

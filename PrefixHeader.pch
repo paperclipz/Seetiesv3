@@ -45,11 +45,18 @@
 
 #import "NSDictionary+STHelper.h"
 #import "UIColor+Extension.h"
+#import "iOSBlocks.h"
+#import "UITextView+Placeholder.h"
 
 //===============Model=================
 #import "RecommendationModel.h"
 
 #endif
+
+
+
+
+
 
 #define IS_IN_DEBUG_MODE
 

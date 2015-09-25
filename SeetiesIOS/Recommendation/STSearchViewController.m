@@ -22,6 +22,7 @@
 @property (nonatomic,strong)SearchManager* sManager;
 
 @property (weak, nonatomic) IBOutlet UIView *ibSearchContentView;
+@property (weak, nonatomic) IBOutlet UIImageView *ibContentSearchView;
 
 
 @property (nonatomic, strong) LPGoogleFunctions *googleFunctions;
@@ -56,7 +57,7 @@
              forControlEvents:UIControlEventEditingChanged];
     
     
-    
+    [Utils setRoundBorder:self.ibContentSearchView color:[UIColor grayColor] borderRadius:5.0f];
     [self.ibSearchContentView addSubview:self.cAPSPageMenu.view];
 
 
@@ -70,15 +71,17 @@
         
         NSArray *controllerArray = @[self.googleSearchTableViewController, self.fourSquareSearchTableViewController];
         NSDictionary *parameters = @{
-                                     CAPSPageMenuOptionScrollMenuBackgroundColor: [UIColor colorWithRed:30.0/255.0 green:30.0/255.0 blue:30.0/255.0 alpha:1.0],
+                                     CAPSPageMenuOptionScrollMenuBackgroundColor: [UIColor lightGrayColor],
                                      CAPSPageMenuOptionViewBackgroundColor: [UIColor colorWithRed:20.0/255.0 green:20.0/255.0 blue:20.0/255.0 alpha:1.0],
-                                     CAPSPageMenuOptionSelectionIndicatorColor: [UIColor orangeColor],
+                                     CAPSPageMenuOptionSelectionIndicatorColor: DEVICE_COLOR,
                                      CAPSPageMenuOptionBottomMenuHairlineColor: [UIColor colorWithRed:70.0/255.0 green:70.0/255.0 blue:70.0/255.0 alpha:1.0],
                                      CAPSPageMenuOptionMenuItemFont: [UIFont fontWithName:@"HelveticaNeue" size:13.0],
                                      CAPSPageMenuOptionMenuHeight: @(40.0),
                                      CAPSPageMenuOptionMenuItemWidth: @(deviceFrame.size.width/2),
-                                     CAPSPageMenuOptionCenterMenuItems: @(YES)
-                                     };
+                                     CAPSPageMenuOptionCenterMenuItems: @(YES),
+                                     CAPSPageMenuOptionUnselectedMenuItemLabelColor:[UIColor darkGrayColor],
+                                         
+                                         };
 
         _cAPSPageMenu = [[CAPSPageMenu alloc] initWithViewControllers:controllerArray frame:CGRectMake(0.0, 0.0, self.ibSearchContentView.frame.size.width, self.ibSearchContentView.frame.size.height) options:parameters];
 

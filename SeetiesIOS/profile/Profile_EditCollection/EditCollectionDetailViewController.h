@@ -9,5 +9,9 @@
 #import "CommonViewController.h"
 
 @interface EditCollectionDetailViewController : CommonViewController
+-(void)initData:(CollectionModel*)model;
+
+@property(nonatomic,copy)IDBlock btnDoneBlock;
+@property(nonatomic,copy)VoidBlock btnCancelBlock;
 
 @end

@@ -1474,13 +1474,15 @@
     [self.navigationController pushViewController:OpenCollectionView animated:YES];
     [OpenCollectionView GetCollectionID:[CollectionData_IDArray objectAtIndex:getbuttonIDN]];
 }
+
 -(IBAction)CollectionEditButtonOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"CollectionEditButtonOnClick button %li",(long)getbuttonIDN);
     
-    
     NSString* collectionID = CollectionData_IDArray[getbuttonIDN];
     
+    
+    _editCollectionViewController = nil;// for the view controller to reinitialize
     [self.editCollectionViewController requestServerForCollectionDetails:collectionID successBlock:^(id object) {
         
         [self.editCollectionViewController initData:[[ConnectionManager dataManager] collectionModels]];
@@ -1498,23 +1500,9 @@
     if (!_editCollectionViewController) {
         
         _editCollectionViewController = [EditCollectionViewController new];
-        _editCollectionViewController.btnEditClickBlock = ^(id object)
-        {
-            
-            
-        };
+    
     }
     return _editCollectionViewController;
-}
-
--(EditCollectionDetailViewController*)editCollectionDetailViewController
-{
-    
-    if (!_editCollectionDetailViewController) {
-        
-        _editCollectionDetailViewController = [EditCollectionDetailViewController new];
-    }
-    return _editCollectionDetailViewController;
 }
 -(IBAction)EditProfileButtonOnClick:(id)sender{
     EditProfileV2ViewController *EditProfileView = [[EditProfileV2ViewController alloc]init];

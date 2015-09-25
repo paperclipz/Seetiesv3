@@ -12,7 +12,6 @@
 #import "UrlDataClass.h"
 
 #import "EditCollectionViewController.h"
-#import "EditCollectionDetailViewController.h"
 
 //https://github.com/freak4pc/SMTagField tag simple
 @interface NewProfileV2ViewController : BaseViewController<UIScrollViewDelegate,UISearchBarDelegate,UIActionSheetDelegate>{
@@ -122,9 +121,6 @@
 -(IBAction)SearchButton:(id)sender;
 
 
-
-
 @property(nonatomic,strong)EditCollectionViewController* editCollectionViewController;
-@property(nonatomic,strong)EditCollectionDetailViewController* editCollectionDetailViewController;
 
 @end

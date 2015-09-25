@@ -15,7 +15,7 @@
 #import "FourSquareModel.h"
 #import "DraftModel.h"
 #import "CategoriesModel.h"
-#import "CollectionModel.h"
+#import "PostModel.h"
 
 #import "RecommendationModel.h"
 @interface DataManager : NSObject
@@ -31,7 +31,7 @@
 
 @property(nonatomic,strong)DraftsModel* draftsModel;
 @property(nonatomic,strong)CategoriesModel* categoriesModel;
-@property(nonatomic,strong)CollectionModels* collectionModels;
+@property(nonatomic,strong)CollectionModel* collectionModels;
 
 
 +(RecommendationModel*)getSampleRecommendation;

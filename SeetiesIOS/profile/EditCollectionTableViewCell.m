@@ -7,16 +7,22 @@
 //
 
 #import "EditCollectionTableViewCell.h"
+#import "UIImage+Tint.h"
 @interface EditCollectionTableViewCell()
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
-@property (strong, nonatomic) CollectionModel* collectionModel;
+@property (strong, nonatomic) PostModel* postModel;
 @property (weak, nonatomic) IBOutlet UILabel *lblLocation;
 @property (weak, nonatomic) IBOutlet UITextView *txtDescription;
 @property (weak, nonatomic) IBOutlet UIView *ibContentView;
+@property (weak, nonatomic) IBOutlet UIImageView *ibPhotoPin;
 
 @end
 @implementation EditCollectionTableViewCell
 - (IBAction)btnDeleteClicked:(id)sender {
+    
+    if (self.deleteCellBlock) {
+        self.deleteCellBlock(self);
+    }
 }
 
 /*
@@ -27,24 +33,38 @@
 }
 */
 
--(void)initData:(CollectionModel*)model
+-(void)initData:(PostModel*)model
 {
-    self.collectionModel = model;
+    self.postModel = model;
 }
 
 -(void)layoutSubviews
 {
-    
     [Utils setRoundBorder:self.ibContentView color:[UIColor grayColor] borderRadius:5.0f borderWidth:0.5f];
     [Utils setRoundBorder:self.ibImageView color:[UIColor grayColor] borderRadius:5.0f borderWidth:.5f];
     [Utils setRoundBorder:self.txtDescription color:[UIColor grayColor] borderRadius:5.0f borderWidth:.5f];
 
-    PhotoModel* pModel = self.collectionModel.photos[0];
+    PhotoModel* pModel = self.postModel.photos[0];
     
     [self.ibImageView sd_setImageWithURL:[NSURL URLWithString:pModel.imageURL]];
-    self.lblLocation.text = self.collectionModel.location.name;
-    self.txtDescription.text = self.collectionModel.collection_note;
+    self.lblLocation.text = self.postModel.location.name;
+    self.txtDescription.text = self.postModel.collection_note;
 
 }
 
+-(void)initSelfView
+{
+    
+    [super initSelfView];
+    self.ibPhotoPin.image = [self.ibPhotoPin.image imageTintedWithColor:DEVICE_COLOR];
+
+    self.txtDescription.placeholder = LOCALIZATION(@"Add a note");
+}
+
+-(void)saveData
+{
+
+    self.postModel.collection_note = self.txtDescription.text;
+    
+}
 @end
