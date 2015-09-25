@@ -58,6 +58,7 @@
     NSURLConnection *theConnection_GetAllUserlikes;
     NSURLConnection *theConnection_SendFollowData;
     NSURLConnection *theConnection_DeleteCommentData;
+    NSURLConnection *theConnection_GetCollections;
     
     IBOutlet UILabel *ShowNoDataText_1;
     IBOutlet UILabel *ShowNoDataText_2;
@@ -97,6 +98,14 @@
     
     NSString *GetDeletePostID;
     NSString *GetDeleteCommentID;
+    
+    
+    //Collection data
+    NSMutableArray *CollectionNameArray;
+    NSMutableArray *CollectionUserNameArray;
+    NSMutableArray *CollectionIDArray;
+    NSMutableArray *CollectionUserIDArray;
+    NSMutableArray *CollectionUserProfileArray;
 }
 @property (nonatomic, strong) BHInputToolbar *inputToolbar;
 -(IBAction)BackButton:(id)sender;

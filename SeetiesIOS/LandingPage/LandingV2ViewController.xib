@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="ProximaNovaSoft-Bold.ttf">
@@ -22,7 +23,9 @@
                 <outlet property="InstagramButton" destination="iNb-UJ-Hby" id="BCa-wj-4dT"/>
                 <outlet property="LogInButton" destination="9yi-4u-it3" id="5QJ-W8-8Zw"/>
                 <outlet property="MainLogo" destination="fYu-yM-GJg" id="QB8-8O-mlb"/>
+                <outlet property="MainScroll" destination="6xp-dr-6rI" id="noT-Ht-CSI"/>
                 <outlet property="MainText" destination="66n-uP-iqU" id="b53-nI-3Ox"/>
+                <outlet property="PageControlOn" destination="iwv-AY-v7b" id="I47-E6-H2U"/>
                 <outlet property="ShowActivity" destination="QK4-sP-fnj" id="n7d-zZ-cEP"/>
                 <outlet property="ShowBackgroundImage" destination="XBP-T8-mFl" id="F9L-YG-GX9"/>
                 <outlet property="ShowTnCText" destination="2kw-qq-sfA" id="x9a-fx-1wZ"/>
@@ -44,6 +47,14 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.20000000000000001" green="0.70980392160000005" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </imageView>
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="6xp-dr-6rI">
+                            <rect key="frame" x="40" y="220" width="240" height="128"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </scrollView>
+                        <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" id="iwv-AY-v7b">
+                            <rect key="frame" x="140" y="266" width="39" height="37"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </pageControl>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
@@ -103,11 +114,11 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="iNb-UJ-Hby">
-                    <rect key="frame" x="30" y="473" width="260" height="50"/>
+                    <rect key="frame" x="142" y="473" width="150" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.30588235294117649" green="0.2627450980392157" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" name="ProximaNovaSoft-Bold" family="Proxima Nova Soft" pointSize="15"/>
-                    <state key="normal" title="Continue with Instagram">
+                    <state key="normal" title="Instagram">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -158,9 +169,4 @@
         <image name="LandingBackground.jpg" width="640" height="1136"/>
         <image name="LandingLogo.png" width="208" height="82"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

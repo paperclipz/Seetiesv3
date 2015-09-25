@@ -49,7 +49,7 @@
     //Initialize the dataArray
     dataArray = [[NSMutableArray alloc] init];
     
-    NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:@"Edit Profile", @"Edit Interest",@"Account Settings",@"Notification Settings", nil];
+    NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:@"Edit Profile", @"Edit Interest",@"Account Settings", nil];//@"Notification Settings"
     NSDictionary *firstItemsArrayDict = [NSDictionary dictionaryWithObject:firstItemsArray forKey:@"data"];
     [dataArray addObject:firstItemsArrayDict];
     
@@ -521,14 +521,14 @@
             }
                 break;
             case 3:{
-                NotificationSettingsViewController *NotificationSettingsView = [[NotificationSettingsViewController alloc]init];
-                CATransition *transition = [CATransition animation];
-                transition.duration = 0.2;
-                transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-                transition.type = kCATransitionPush;
-                transition.subtype = kCATransitionFromRight;
-                [self.view.window.layer addAnimation:transition forKey:nil];
-                [self presentViewController:NotificationSettingsView animated:NO completion:nil];
+//                NotificationSettingsViewController *NotificationSettingsView = [[NotificationSettingsViewController alloc]init];
+//                CATransition *transition = [CATransition animation];
+//                transition.duration = 0.2;
+//                transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//                transition.type = kCATransitionPush;
+//                transition.subtype = kCATransitionFromRight;
+//                [self.view.window.layer addAnimation:transition forKey:nil];
+//                [self presentViewController:NotificationSettingsView animated:NO completion:nil];
             }
                 break;
                 

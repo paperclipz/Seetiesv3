@@ -11,6 +11,9 @@
 #import "SearchViewV2Controller.h"
 #import "FeedV2DetailViewController.h"
 #import "CollectionViewController.h"
+#import "EditProfileV2ViewController.h"
+
+#import <FacebookSDK/FacebookSDK.h>
 @interface NewProfileV2ViewController ()
 
 @end
@@ -183,9 +186,7 @@
     EditProfileButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
     [EditProfileButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
     EditProfileButton.backgroundColor = [UIColor clearColor];
-//    EditProfileButton.layer.cornerRadius = 20;
-//    EditProfileButton.layer.borderWidth = 1;
-//    EditProfileButton.layer.borderColor=[[UIColor grayColor] CGColor];
+    [EditProfileButton addTarget:self action:@selector(EditProfileButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
     [AllContentView addSubview:EditProfileButton];
     
     ShowName_ = [[UILabel alloc]init];//getname
@@ -1454,6 +1455,125 @@
     }
     return _editCollectionDetailViewController;
 }
-
-
+-(IBAction)EditProfileButtonOnClick:(id)sender{
+    EditProfileV2ViewController *EditProfileView = [[EditProfileV2ViewController alloc]init];
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.2;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromRight;
+    [self.view.window.layer addAnimation:transition forKey:nil];
+    //[self presentViewController:EditProfileView animated:NO completion:nil];
+    [self.view.window.rootViewController presentViewController:EditProfileView animated:YES completion:nil];
+}
+-(IBAction)ShareButton:(id)sender{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:CustomLocalisedString(@"SettingsPage_Cancel", nil)
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:CustomLocalisedString(@"ShareToFacebook", nil),CustomLocalisedString(@"CopyLink", nil), nil];
+    
+    [actionSheet showInView:self.view];
+    
+    actionSheet.tag = 200;
+    
+}
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+if(actionSheet.tag == 200){
+        NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
+        if ([buttonTitle isEqualToString:CustomLocalisedString(@"ShareToFacebook", nil)]) {
+            NSLog(@"Share to Facebook");
+            [actionSheet dismissWithClickedButtonIndex:0 animated:YES];
+            NSString *message = [NSString stringWithFormat:@"https://seeties.me/%@",GetUserName];
+            NSLog(@"message is %@",message);
+            // Check if the Facebook app is installed and we can present the share dialog
+            FBLinkShareParams *params = [[FBLinkShareParams alloc] init];
+            params.link = [NSURL URLWithString:message];
+            
+            // If the Facebook app is installed and we can present the share dialog
+            if ([FBDialogs canPresentShareDialogWithParams:params]) {
+                
+                // Present share dialog
+                [FBDialogs presentShareDialogWithLink:params.link
+                                              handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
+                                                  if(error) {
+                                                      // An error occurred, we need to handle the error
+                                                      // See: https://developers.facebook.com/docs/ios/errors
+                                                      NSLog(@"Error publishing story: %@", error.description);
+                                                  } else {
+                                                      // Success
+                                                      NSLog(@"result %@", results);
+                                                  }
+                                              }];
+                
+                // If the Facebook app is NOT installed and we can't present the share dialog
+            } else {
+                // FALLBACK: publish just a link using the Feed dialog
+                
+                // Put together the dialog parameters
+                NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                               @"", @"name",
+                                               @"", @"caption",
+                                               @"", @"description",
+                                               message, @"link",
+                                               @"", @"picture",
+                                               nil];
+                
+                // Show the feed dialog
+                [FBWebDialogs presentFeedDialogModallyWithSession:nil
+                                                       parameters:params
+                                                          handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
+                                                              if (error) {
+                                                                  // An error occurred, we need to handle the error
+                                                                  // See: https://developers.facebook.com/docs/ios/errors
+                                                                  NSLog(@"Error publishing story: %@", error.description);
+                                                              } else {
+                                                                  if (result == FBWebDialogResultDialogNotCompleted) {
+                                                                      // User canceled.
+                                                                      NSLog(@"User cancelled.");
+                                                                  } else {
+                                                                      // Handle the publish feed callback
+                                                                      NSDictionary *urlParams = [self parseURLParams:[resultURL query]];
+                                                                      
+                                                                      if (![urlParams valueForKey:@"post_id"]) {
+                                                                          // User canceled.
+                                                                          NSLog(@"User cancelled.");
+                                                                          
+                                                                      } else {
+                                                                          // User clicked the Share button
+                                                                          NSString *result = [NSString stringWithFormat: @"Posted story, id: %@", [urlParams valueForKey:@"post_id"]];
+                                                                          NSLog(@"result %@", result);
+                                                                      }
+                                                                  }
+                                                              }
+                                                          }];
+            }
+            
+        }
+        if ([buttonTitle isEqualToString:CustomLocalisedString(@"CopyLink", nil)]) {
+            NSLog(@"Copy Link");
+            NSString *message = [NSString stringWithFormat:@"Check out my profile on Seeties!\n\nhttps://seeties.me/%@",GetUserName];
+            UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+            pasteboard.string = message;
+            [actionSheet dismissWithClickedButtonIndex:0 animated:YES];
+            NSLog(@"message is %@",message);
+        }
+        
+        if ([buttonTitle isEqualToString:@"Cancel Button"]) {
+            NSLog(@"Cancel Button");
+        }
+    }
+    
+}
+- (NSDictionary*)parseURLParams:(NSString *)query {
+    NSArray *pairs = [query componentsSeparatedByString:@"&"];
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    for (NSString *pair in pairs) {
+        NSArray *kv = [pair componentsSeparatedByString:@"="];
+        NSString *val =
+        [kv[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        params[kv[0]] = val;
+    }
+    return params;
+}
 @end

@@ -862,7 +862,7 @@
 //            }
 //        }
         [self InitLikeView];
-        [self InitCollectionsView];
+        [self GetCollectionData];
         [ShowActivity stopAnimating];
         
     }else if(connection == theConnection_SendFollowData){
@@ -900,6 +900,42 @@
             [self GetCommentData];
         }
     
+    }else if(connection == theConnection_GetCollections){
+        NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+        NSLog(@"Get Collections Data return get data to server ===== %@",GetData);
+        
+        NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *myError = nil;
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
+        NSLog(@"Collections Expert Json = %@",res);
+        
+        CollectionNameArray = [[NSMutableArray alloc]init];
+        CollectionUserNameArray = [[NSMutableArray alloc]init];
+        CollectionIDArray = [[NSMutableArray alloc]init];
+        CollectionUserIDArray = [[NSMutableArray alloc]init];
+        CollectionUserProfileArray = [[NSMutableArray alloc]init];
+        
+        
+        NSArray *GetAllData = (NSArray *)[res valueForKey:@"data"];
+        NSDictionary *collectionData = [GetAllData valueForKey:@"collections"];
+        for (NSDictionary * dict in collectionData) {
+            NSDictionary *collectionData = [dict valueForKey:@"collection"];
+            NSString *CollectionName = [[NSString alloc]initWithFormat:@"%@",[collectionData objectForKey:@"name"]];
+            NSString *Collectionid = [[NSString alloc]initWithFormat:@"%@",[collectionData objectForKey:@"id"]];
+            [CollectionNameArray addObject:CollectionName];
+            [CollectionIDArray addObject:Collectionid];
+            NSDictionary *userInfo = [dict valueForKey:@"author_info"];
+            NSString *username = [[NSString alloc]initWithFormat:@"%@",[userInfo objectForKey:@"username"]];
+            NSString *userid = [[NSString alloc]initWithFormat:@"%@",[userInfo objectForKey:@"uid"]];
+            NSString *profilephoto = [[NSString alloc]initWithFormat:@"%@",[userInfo objectForKey:@"profile_photi"]];
+            [CollectionUserNameArray addObject:username];
+            [CollectionUserIDArray addObject:userid];
+            [CollectionUserProfileArray addObject:profilephoto];
+        }
+        
+        [self InitCollectionsView];
+        
+        
     }else{
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
         NSLog(@"Get Comment return get data to server ===== %@",GetData);
@@ -958,7 +994,7 @@
             }
             
             [self InitView];
-            [self InitCollectionsView];
+            [self GetCollectionData];
             //        CATransition *transition = [CATransition animation];
             //        transition.duration = 0.4;
             //        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
@@ -1265,7 +1301,79 @@
 
 -(void)InitCollectionsView{
     CollectionsScroll.backgroundColor = [UIColor whiteColor];
-    [CollectionsScroll setContentSize:CGSizeMake(400, 800)];
+  //  [CollectionsScroll setContentSize:CGSizeMake(400, 800)];
+    
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    int PeopleHeight = 0;
+    
+    for (int i = 0; i < [CollectionIDArray count]; i ++) {
+        
+        AsyncImageView *UserImage = [[AsyncImageView alloc]init];
+        UserImage.frame = CGRectMake(25, PeopleHeight + 10, 60, 60);
+        UserImage.contentMode = UIViewContentModeScaleAspectFill;
+        UserImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
+        UserImage.layer.cornerRadius=30;
+        UserImage.layer.borderWidth=0;
+        UserImage.layer.masksToBounds = YES;
+        UserImage.layer.borderColor=[[UIColor whiteColor] CGColor];
+        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:UserImage];
+        NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[CollectionUserProfileArray objectAtIndex:i]];
+        if ([FullImagesURL length] == 0 || [FullImagesURL isEqualToString:@"\"\""]) {
+            UserImage.image = [UIImage imageNamed:@"avatar.png"];
+        }else{
+            NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL];
+            UserImage.imageURL = url_NearbySmall;
+        }
+        [CollectionsScroll addSubview:UserImage];
+        
+        NSString *TempString = [[NSString alloc]initWithFormat:@"%@ collected this into %@",[CollectionUserNameArray objectAtIndex:i],[CollectionNameArray objectAtIndex:i]];;
+        
+        UILabel *ShowUserName = [[UILabel alloc]init];
+        ShowUserName.frame = CGRectMake(100, PeopleHeight + 10, screenWidth - 120, 60);
+        ShowUserName.text = TempString;
+        ShowUserName.backgroundColor = [UIColor clearColor];
+        ShowUserName.textColor = [UIColor blackColor];
+        ShowUserName.textAlignment = NSTextAlignmentLeft;
+        ShowUserName.numberOfLines = 5;
+        ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+        [CollectionsScroll addSubview:ShowUserName];
+
+        
+        UIButton *Line01 = [[UIButton alloc]init];
+        Line01.frame = CGRectMake(100, PeopleHeight + 80, screenWidth - 30, 1);
+        [Line01 setTitle:@"" forState:UIControlStateNormal];//238
+        [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+        [CollectionsScroll addSubview:Line01];
+        
+        PeopleHeight += 80;
+        
+    }
+   
+    
+    [CollectionsScroll setContentSize:CGSizeMake(screenWidth, PeopleHeight)];
+}
+-(void)GetCollectionData{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    
+    NSString *FullString = [[NSString alloc]initWithFormat:@"%@post/%@/collections?token=%@",DataUrl.UserWallpaper_Url,GetPostIDN,GetExpertToken];
+    
+    
+    NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
+    NSLog(@"check postBack URL ==== %@",postBack);
+    // NSURL *url = [NSURL URLWithString:[postBack stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSURL *url = [NSURL URLWithString:postBack];
+    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
+    NSLog(@"theRequest === %@",theRequest);
+    [theRequest addValue:@"" forHTTPHeaderField:@"Accept-Encoding"];
+    
+    theConnection_GetCollections = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+    [theConnection_GetCollections start];
+    
+    
+    if( theConnection_GetCollections ){
+        webData = [NSMutableData data];
+    }
 }
 
 
