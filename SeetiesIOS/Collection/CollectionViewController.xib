@@ -48,18 +48,27 @@
                             <rect key="frame" x="61" y="3" width="43" height="43"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" image="CollectionLink.png"/>
+                            <connections>
+                                <action selector="ShareLinkButtonOnClick:" destination="-1" eventType="touchUpInside" id="V5O-tl-aQq"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="37c-rl-oNM">
                             <rect key="frame" x="192" y="0.0" width="120" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="ProximaNovaSoft-Bold" family="Proxima Nova Soft" pointSize="15"/>
                             <state key="normal" title="Share" backgroundImage="ShareBase.png"/>
+                            <connections>
+                                <action selector="ShareButtonOnClick:" destination="-1" eventType="touchUpInside" id="5NY-16-Vj1"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Pz2-Na-2Wk">
                             <rect key="frame" x="10" y="3" width="43" height="43"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <state key="normal" image="TranslateIcon.png"/>
+                            <connections>
+                                <action selector="TranslateButtonOnClick:" destination="-1" eventType="touchUpInside" id="6mY-qh-KxW"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

@@ -67,15 +67,13 @@
         }else{
             GetNameArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_Name"]];
         }
-        // NSMutableArray *GetNameArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_Name"]];
-        NSMutableArray *GetTempImageArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_Image"]];
+
         GetBackgroundColorArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_Background"]];
         
-        GetImageArray = [[NSMutableArray alloc]init];
-        for (int i = 0; i < [GetTempImageArray count]; i++) {
-            
-            [GetImageArray addObject:[self decodeBase64ToImage:[GetTempImageArray objectAtIndex:i]]];
-        }
+        NSMutableArray *GetTempImageArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_Image_Default"]];
+        GetImageDefaultArray = [[NSMutableArray alloc]initWithArray:GetTempImageArray];
+        NSMutableArray *GetTempImageArray1 = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_Image_Selected"]];
+        GetImageSelectedArray = [[NSMutableArray alloc]initWithArray:GetTempImageArray1];
         
         [self InitView];
     
@@ -107,20 +105,6 @@
     int SpaceWidth = FinalWidth + 5;
     
     for (NSInteger i = 0; i < 10; i++) {
-//        AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
-//        ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
-//        ShowImage.frame = CGRectMake(0+(i % 3)*SpaceWidth, 0 + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
-//        ShowImage.contentMode = UIViewContentModeScaleAspectFill;
-//        ShowImage.layer.masksToBounds = YES;
-//        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
-//        NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[ArrLikeImg objectAtIndex:i]];
-//        if ([FullImagesURL_First length] == 0) {
-//            ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
-//        }else{
-//            NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL_First];
-//            ShowImage.imageURL = url_NearbySmall;
-//        }
-//        [LikeView addSubview:ShowImage];
         if (i == 9) {
             UIButton *ImageButton = [[UIButton alloc]init];
             [ImageButton setBackgroundColor:[UIColor colorWithRed:232.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
@@ -132,30 +116,47 @@
             
             [MainScroll addSubview:ImageButton];
             
-            CGSize rect = CGSizeMake(50, 50);
-            CGFloat scale = [[UIScreen mainScreen]scale];
-            UIGraphicsBeginImageContextWithOptions(rect, NO, scale);
-            [[GetImageArray objectAtIndex:i] drawInRect:CGRectMake(0,0,rect.width,rect.height)];
-            UIImage *IconSelected = UIGraphicsGetImageFromCurrentImageContext();
-            UIImage *CategoryIcon = [IconSelected imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            UIGraphicsEndImageContext();
             
-            UIButton *ShowImageButton = [[UIButton alloc]init];
-            ShowImageButton.tag = i;
-            ShowImageButton.frame = CGRectMake(17+(i % 3)*SpaceWidth + FinalWidth, 0 + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth - 40);
-            [ShowImageButton setImage:CategoryIcon forState:UIControlStateNormal];
-            [ShowImageButton setImage:IconSelected forState:UIControlStateSelected];
-            [ShowImageButton setContentMode:UIViewContentModeScaleAspectFit];
-            ShowImageButton.backgroundColor = [UIColor clearColor];
-            ShowImageButton.tintColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
-            //            NSUInteger red, green, blue;
-            //            sscanf([[GetBackgroundColorArray objectAtIndex:i] UTF8String], "#%2lX%2lX%2lX", &red, &green, &blue);
-            //            UIColor *color = [UIColor colorWithRed:red/255.0 green:green/255.0 blue:blue/255.0 alpha:1];
-            //            ShowImageButton.backgroundColor = color;
-            //            ShowImageButton.layer.cornerRadius = 60; // this value vary as per your desire
-            //            ShowImageButton.clipsToBounds = YES;
-            [ShowImageButton addTarget:self action:@selector(ShowImageButton:) forControlEvents:UIControlEventTouchUpInside];
-            [MainScroll addSubview:ShowImageButton];
+            
+            NSURL *imageURL_Default = [NSURL URLWithString:[GetImageDefaultArray objectAtIndex:i]];
+            NSURL *imageURL_Selected = [NSURL URLWithString:[GetImageSelectedArray objectAtIndex:i]];
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+                NSData *imageData_Default = [NSData dataWithContentsOfURL:imageURL_Default];
+                NSData *imageData_Selected = [NSData dataWithContentsOfURL:imageURL_Selected];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // Update the UI
+                    UIImage *newImage_Default = [UIImage imageWithData:imageData_Default];
+                    CGSize rect = CGSizeMake(50, 50);
+                    CGFloat scale = [[UIScreen mainScreen]scale];
+                    UIGraphicsBeginImageContextWithOptions(rect, NO, scale);
+                    [newImage_Default drawInRect:CGRectMake(0,0,rect.width,rect.height)];
+                    UIImage *IconDefault = UIGraphicsGetImageFromCurrentImageContext();
+                    UIGraphicsEndImageContext();
+                    
+                    UIImage *newImage_Selected = [UIImage imageWithData:imageData_Selected];
+                    CGSize rect_Selected = CGSizeMake(50, 50);
+                    CGFloat scale_Selected = [[UIScreen mainScreen]scale];
+                    UIGraphicsBeginImageContextWithOptions(rect_Selected, NO, scale_Selected);
+                    [newImage_Selected drawInRect:CGRectMake(0,0,rect_Selected.width,rect_Selected.height)];
+                    UIImage *IconSelected = UIGraphicsGetImageFromCurrentImageContext();
+                    UIGraphicsEndImageContext();
+                    
+                    UIButton *ShowImageButton = [[UIButton alloc]init];
+                    ShowImageButton.tag = i;
+                    ShowImageButton.frame = CGRectMake(17+(i % 3)*SpaceWidth + FinalWidth, 0 + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth - 40);
+                    [ShowImageButton setImage:IconDefault forState:UIControlStateNormal];
+                    [ShowImageButton setImage:IconSelected forState:UIControlStateSelected];
+                    [ShowImageButton setContentMode:UIViewContentModeScaleAspectFit];
+                    ShowImageButton.backgroundColor = [UIColor clearColor];
+                    ShowImageButton.tintColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+                    [ShowImageButton addTarget:self action:@selector(ShowImageButton:) forControlEvents:UIControlEventTouchUpInside];
+                    [MainScroll addSubview:ShowImageButton];
+                });
+            });
+            
+
             
             UILabel *ShowTitle_ = [[UILabel alloc]init];
             ShowTitle_.frame = CGRectMake(22+(i % 3)*SpaceWidth + FinalWidth, (FinalWidth - 40) + (SpaceWidth * (CGFloat)(i /3)), FinalWidth - 10, 40);
@@ -180,30 +181,44 @@
             [MainScroll addSubview:ImageButton];
             
             
-            CGSize rect = CGSizeMake(50, 50);
-            CGFloat scale = [[UIScreen mainScreen]scale];
-            UIGraphicsBeginImageContextWithOptions(rect, NO, scale);
-            [[GetImageArray objectAtIndex:i] drawInRect:CGRectMake(0,0,rect.width,rect.height)];
-            UIImage *IconSelected = UIGraphicsGetImageFromCurrentImageContext();
-            UIImage *CategoryIcon = [IconSelected imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            UIGraphicsEndImageContext();
             
-            UIButton *ShowImageButton = [[UIButton alloc]init];
-            ShowImageButton.tag = i;
-            ShowImageButton.frame = CGRectMake(12+(i % 3)*SpaceWidth, 0 + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth - 40);
-            [ShowImageButton setImage:CategoryIcon forState:UIControlStateNormal];
-            [ShowImageButton setImage:IconSelected forState:UIControlStateSelected];
-            [ShowImageButton setContentMode:UIViewContentModeScaleAspectFit];
-            ShowImageButton.backgroundColor = [UIColor clearColor];
-            ShowImageButton.tintColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
-//            NSUInteger red, green, blue;
-//            sscanf([[GetBackgroundColorArray objectAtIndex:i] UTF8String], "#%2lX%2lX%2lX", &red, &green, &blue);
-//            UIColor *color = [UIColor colorWithRed:red/255.0 green:green/255.0 blue:blue/255.0 alpha:1];
-//            ShowImageButton.backgroundColor = color;
-//            ShowImageButton.layer.cornerRadius = 60; // this value vary as per your desire
-//            ShowImageButton.clipsToBounds = YES;
-            [ShowImageButton addTarget:self action:@selector(ShowImageButton:) forControlEvents:UIControlEventTouchUpInside];
-            [MainScroll addSubview:ShowImageButton];
+            NSURL *imageURL_Default = [NSURL URLWithString:[GetImageDefaultArray objectAtIndex:i]];
+            NSURL *imageURL_Selected = [NSURL URLWithString:[GetImageSelectedArray objectAtIndex:i]];
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+                NSData *imageData_Default = [NSData dataWithContentsOfURL:imageURL_Default];
+                NSData *imageData_Selected = [NSData dataWithContentsOfURL:imageURL_Selected];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // Update the UI
+                    UIImage *newImage_Default = [UIImage imageWithData:imageData_Default];
+                    CGSize rect = CGSizeMake(50, 50);
+                    CGFloat scale = [[UIScreen mainScreen]scale];
+                    UIGraphicsBeginImageContextWithOptions(rect, NO, scale);
+                    [newImage_Default drawInRect:CGRectMake(0,0,rect.width,rect.height)];
+                    UIImage *IconDefault = UIGraphicsGetImageFromCurrentImageContext();
+                    UIGraphicsEndImageContext();
+                    
+                    UIImage *newImage_Selected = [UIImage imageWithData:imageData_Selected];
+                    CGSize rect_Selected = CGSizeMake(50, 50);
+                    CGFloat scale_Selected = [[UIScreen mainScreen]scale];
+                    UIGraphicsBeginImageContextWithOptions(rect_Selected, NO, scale_Selected);
+                    [newImage_Selected drawInRect:CGRectMake(0,0,rect_Selected.width,rect_Selected.height)];
+                    UIImage *IconSelected = UIGraphicsGetImageFromCurrentImageContext();
+                    UIGraphicsEndImageContext();
+                    
+                    UIButton *ShowImageButton = [[UIButton alloc]init];
+                    ShowImageButton.tag = i;
+                    ShowImageButton.frame = CGRectMake(12+(i % 3)*SpaceWidth, 0 + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth - 40);
+                    [ShowImageButton setImage:IconDefault forState:UIControlStateNormal];
+                    [ShowImageButton setImage:IconSelected forState:UIControlStateSelected];
+                    [ShowImageButton setContentMode:UIViewContentModeScaleAspectFit];
+                    ShowImageButton.backgroundColor = [UIColor clearColor];
+                    ShowImageButton.tintColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+                    [ShowImageButton addTarget:self action:@selector(ShowImageButton:) forControlEvents:UIControlEventTouchUpInside];
+                    [MainScroll addSubview:ShowImageButton];
+                });
+            });
 
             UILabel *ShowTitle_ = [[UILabel alloc]init];
             ShowTitle_.frame = CGRectMake(17+(i % 3)*SpaceWidth, (FinalWidth - 40) + (SpaceWidth * (CGFloat)(i /3)), FinalWidth - 10, 40);
@@ -386,7 +401,8 @@
         
         NSMutableArray *Category_IDArray = [[NSMutableArray alloc]initWithCapacity:[GetAllData count]];
         NSMutableArray *Category_NameArray = [[NSMutableArray alloc]initWithCapacity:[GetAllData count]];
-        NSMutableArray *Category_ImageArray = [[NSMutableArray alloc]initWithCapacity:[GetAllData count]];
+        NSMutableArray *Category_ImageDefaultArray = [[NSMutableArray alloc]initWithCapacity:[GetAllData count]];
+        NSMutableArray *Category_ImageSelectedArray = [[NSMutableArray alloc]initWithCapacity:[GetAllData count]];
         NSMutableArray *Category_BackgroundImageArray = [[NSMutableArray alloc]initWithCapacity:[GetAllData count]];
         
         NSMutableArray *Category_NameArray_CN = [[NSMutableArray alloc]initWithCapacity:[GetAllData count]];
@@ -397,9 +413,14 @@
         for (NSDictionary * dict in GetAllData) {
             NSString *id_ = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"id"]];
             [Category_IDArray addObject:id_];
-            NSString *imagedata = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"image"]];
-            NSString *stringWithoutSpaces = [imagedata stringByReplacingOccurrencesOfString:@"data:image/png;base64," withString:@""];
-            [Category_ImageArray addObject:stringWithoutSpaces];
+            
+            NSDictionary *GetImageData = [dict valueForKey:@"images"];
+            
+            NSString *DefaultImg = [[NSString alloc]initWithFormat:@"%@",[GetImageData objectForKey:@"default"]];
+            NSString *SelectImg = [[NSString alloc]initWithFormat:@"%@",[GetImageData objectForKey:@"selected"]];
+            [Category_ImageDefaultArray addObject:DefaultImg];
+            [Category_ImageSelectedArray addObject:SelectImg];
+            
             NSString *background_color = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"background_color"]];
             [Category_BackgroundImageArray addObject:background_color];
             NSDictionary *NameData = [dict valueForKey:@"single_line"];
@@ -419,7 +440,8 @@
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:Category_IDArray forKey:@"Category_All_ID"];
         [defaults setObject:Category_NameArray forKey:@"Category_All_Name"];
-        [defaults setObject:Category_ImageArray forKey:@"Category_All_Image"];
+        [defaults setObject:Category_ImageDefaultArray forKey:@"Category_All_Image_Default"];
+        [defaults setObject:Category_ImageSelectedArray forKey:@"Category_All_Image_Selected"];
         [defaults setObject:Category_BackgroundImageArray forKey:@"Category_All_Background"];
         
         [defaults setObject:Category_NameArray_CN forKey:@"Category_All_Name_Cn"];
@@ -447,15 +469,13 @@
             }else{
                 GetNameArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_Name"]];
             }
-            // NSMutableArray *GetNameArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_Name"]];
-            NSMutableArray *GetTempImageArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_Image"]];
+
             GetBackgroundColorArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_Background"]];
             
-            GetImageArray = [[NSMutableArray alloc]init];
-            for (int i = 0; i < [GetTempImageArray count]; i++) {
-                
-                [GetImageArray addObject:[self decodeBase64ToImage:[GetTempImageArray objectAtIndex:i]]];
-            }
+        NSMutableArray *GetTempImageArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_Image_Default"]];
+        GetImageDefaultArray = [[NSMutableArray alloc]initWithArray:GetTempImageArray];
+        NSMutableArray *GetTempImageArray1 = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_Image_Selected"]];
+        GetImageSelectedArray = [[NSMutableArray alloc]initWithArray:GetTempImageArray1];
             
             [self InitView];
         

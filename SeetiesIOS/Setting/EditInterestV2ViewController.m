@@ -59,14 +59,10 @@
     BackgroundColorArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_Background"]];
     
     
-    NSMutableArray *GetTempImageArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_Image"]];
-    
-    GetImageArray1 = [[NSMutableArray alloc]init];
-    for (int i = 0; i < [GetTempImageArray count]; i++) {
-        
-        [GetImageArray1 addObject:[self decodeBase64ToImage:[GetTempImageArray objectAtIndex:i]]];
-    }
-    
+    NSMutableArray *GetTempImageArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_Image_Default"]];
+    GetImageDefaultArray = [[NSMutableArray alloc]initWithArray:GetTempImageArray];
+    NSMutableArray *GetTempImageArray1 = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"Category_All_Image_Selected"]];
+    GetImageSelectedArray = [[NSMutableArray alloc]initWithArray:GetTempImageArray1];
     
     
     if ([GetCategoryString length] == 0 || [GetCategoryString isEqualToString:@""] || [GetCategoryString isEqualToString:@"(null)"] || GetCategoryString == nil) {
@@ -136,6 +132,7 @@
     
     return [CategoryIDArray count];
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"Cell";
@@ -145,26 +142,41 @@
 
     //if (cell == nil) {
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        CGSize rect = CGSizeMake(20, 20);
-        CGFloat scale = [[UIScreen mainScreen]scale];
-        UIGraphicsBeginImageContextWithOptions(rect, NO, scale);
-        [[GetImageArray1 objectAtIndex:indexPath.row] drawInRect:CGRectMake(0,0,rect.width,rect.height)];
-        UIImage *picture1 = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
+
+    
+    NSURL *imageURL = [NSURL URLWithString:[GetImageDefaultArray objectAtIndex:indexPath.row]];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
         
-        UIButton *ShowImageButton = [[UIButton alloc]init];
-        //ShowImageButton.tag = i;
-        ShowImageButton.frame = CGRectMake(15, 7, 29, 29);
-        [ShowImageButton setImage:picture1 forState:UIControlStateNormal];
-        [ShowImageButton setContentMode:UIViewContentModeScaleAspectFit];
-        NSUInteger red, green, blue;
-        sscanf([[BackgroundColorArray objectAtIndex:indexPath.row] UTF8String], "#%2lX%2lX%2lX", &red, &green, &blue);
-        UIColor *color = [UIColor colorWithRed:red/255.0 green:green/255.0 blue:blue/255.0 alpha:1];
-        ShowImageButton.backgroundColor = color;
-        ShowImageButton.layer.cornerRadius = 15; // this value vary as per your desire
-        ShowImageButton.clipsToBounds = YES;
-        // [ShowImageButton addTarget:self action:@selector(SelectCategoryButton:) forControlEvents:UIControlEventTouchUpInside];
-        [cell addSubview:ShowImageButton];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // Update the UI
+            UIImage *newImage = [UIImage imageWithData:imageData];
+            CGSize rect = CGSizeMake(20, 20);
+            CGFloat scale = [[UIScreen mainScreen]scale];
+            UIGraphicsBeginImageContextWithOptions(rect, NO, scale);
+            [newImage drawInRect:CGRectMake(0,0,rect.width,rect.height)];
+            UIImage *picture1 = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            
+            UIButton *ShowImageButton = [[UIButton alloc]init];
+            //ShowImageButton.tag = i;
+            ShowImageButton.frame = CGRectMake(15, 7, 29, 29);
+            [ShowImageButton setImage:picture1 forState:UIControlStateNormal];
+            [ShowImageButton setContentMode:UIViewContentModeScaleAspectFit];
+            NSUInteger red, green, blue;
+            sscanf([[BackgroundColorArray objectAtIndex:indexPath.row] UTF8String], "#%2lX%2lX%2lX", &red, &green, &blue);
+            UIColor *color = [UIColor colorWithRed:red/255.0 green:green/255.0 blue:blue/255.0 alpha:1];
+            ShowImageButton.backgroundColor = color;
+            ShowImageButton.layer.cornerRadius = 15; // this value vary as per your desire
+            ShowImageButton.clipsToBounds = YES;
+            // [ShowImageButton addTarget:self action:@selector(SelectCategoryButton:) forControlEvents:UIControlEventTouchUpInside];
+            [cell addSubview:ShowImageButton];
+        });
+    });
+    
+    
+
         
         
         UILabel *ShowTitle_ = [[UILabel alloc]init];

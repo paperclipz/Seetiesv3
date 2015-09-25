@@ -20,7 +20,7 @@
 #import "LandingV2ViewController.h"
 #import "RecommendV2ViewController.h"
 #import "NSString+ChangeAsciiString.h"
-
+#import "AddCollectionDataViewController.h"
 #import "LeveyTabBarController.h"
 @interface FeedV2DetailViewController ()
 @end
@@ -94,11 +94,13 @@
     shareFBButton.frame = CGRectMake(120, 1, 50, 60);
     
     
-    [CollectButton setImage:[UIImage imageNamed:@"collect_btn.png"] forState:UIControlStateNormal];
-    [CollectButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
-    [CollectButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
-    CollectButton.backgroundColor = [UIColor clearColor];
-    CollectButton.frame = CGRectMake(screenWidth - 20 - 113, 14, 113, 37);
+    [AllCollectButton setImage:[UIImage imageNamed:@"collect_btn.png"] forState:UIControlStateNormal];
+    [AllCollectButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+    [AllCollectButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
+    AllCollectButton.backgroundColor = [UIColor clearColor];
+    AllCollectButton.frame = CGRectMake(screenWidth - 20 - 113, 14, 113, 37);
+    
+    QuickCollectButton.frame = CGRectMake(screenWidth - 20 - 60, 14, 60, 37);
 
     ShowGoogleTranslate = NO;
     CheckClickCount = 0;
@@ -1179,6 +1181,22 @@
             [self.view.window.layer addAnimation:transition forKey:nil];
             //[self presentViewController:ListingDetail animated:NO completion:nil];
             [self dismissViewControllerAnimated:NO completion:nil];
+        }
+    }else if(connection == theConnection_QuickCollect){
+        NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+        NSLog(@"Quick Collection return get data to server ===== %@",GetData);
+        
+        NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *myError = nil;
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
+        NSLog(@"Expert Json = %@",res);
+        
+        
+        NSString *statusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
+        NSLog(@"statusString is %@",statusString);
+        
+        if ([statusString isEqualToString:@"ok"]) {
+            [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success add to Collections" type:TSMessageNotificationTypeSuccess];
         }
     }else if(connection == theConnection_NearbyPost){
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
@@ -3026,7 +3044,7 @@
     [CommentView GetWhatView:@"Like"];
 }
 -(IBAction)FacebookButton:(id)sender{
-NSLog(@"Facebook Button Click");
+    NSLog(@"Facebook Button Click");
     NSString *message = [NSString stringWithFormat:@"https://seeties.me/post/%@",GetPostID];
     NSString *Description = [NSString stringWithFormat:@"%@",GetMessage];
     NSString *caption = [NSString stringWithFormat:@"SEETIES.ME"];
@@ -3767,5 +3785,45 @@ NSLog(@"Facebook Button Click");
         }
     }
     
+}
+-(IBAction)CollectButtonOnClick:(id)sender{
+    NSLog(@"Quick CollectButtonOnClick");
+    [self SendQuickCollect];
+    
+}
+-(void)SendQuickCollect{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *GetUseruid = [defaults objectForKey:@"Useruid"];
+    //Server Address URL
+    NSString *urlString = [NSString stringWithFormat:@"%@%@/collections/0/collect",DataUrl.UserWallpaper_Url,GetUseruid];
+    NSLog(@"Send Quick Collection urlString is %@",urlString);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"PUT"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    
+    
+    NSString *dataString = [[NSString alloc]initWithFormat:@"token=%@&posts[0][id]=%@",GetExpertToken,GetPostID];
+    
+    NSData *postBodyData = [NSData dataWithBytes: [dataString UTF8String] length:[dataString length]];
+    [request setHTTPBody:postBodyData];
+    
+    theConnection_QuickCollect = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    if(theConnection_QuickCollect) {
+        //  NSLog(@"Connection Successful");
+        webData = [NSMutableData data];
+    } else {
+        
+    }
+}
+-(IBAction)AddCollectButtonOnClick:(id)sender{
+    NSLog(@"Add Collection Button On Click");
+    AddCollectionDataViewController *AddCollectionDataView = [[AddCollectionDataViewController alloc]init];
+    //[self presentViewController:AddCollectionDataView animated:YES completion:nil];
+    [self.view.window.rootViewController presentViewController:AddCollectionDataView animated:YES completion:nil];
+    [AddCollectionDataView GetPostID:GetPostID GetImageData:[UrlArray objectAtIndex:0]];
 }
 @end

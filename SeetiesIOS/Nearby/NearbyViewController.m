@@ -127,7 +127,7 @@
             NSDictionary *locationData = [GetAllData valueForKey:@"location"];
             NSDictionary *locationData_Address = [locationData valueForKey:@"address_components"];
             NSDictionary *UserInfoData = [GetAllData valueForKey:@"user_info"];
-            NSDictionary *UserInfoData_ProfilePhoto = [UserInfoData valueForKey:@"profile_photo"];
+
             
             NSString *page = [[NSString alloc]initWithFormat:@"%@",[recommendationsData objectForKey:@"page"]];
             NSLog(@"page is %@",page);

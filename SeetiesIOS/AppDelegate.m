@@ -496,6 +496,9 @@
                           }];        
     }
    
+    
+   // PInterestV2ViewController *SeeView = [[PInterestV2ViewController alloc]init];
+    
     self.window.rootViewController = self.landingV2ViewController;//self.landingV2ViewController
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

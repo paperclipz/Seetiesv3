@@ -126,7 +126,8 @@
     IBOutlet UIButton *LikeButton;
     IBOutlet UIButton *CommentButton;
     IBOutlet UIButton *shareFBButton;
-    IBOutlet UIButton *CollectButton;
+    IBOutlet UIButton *AllCollectButton;
+    IBOutlet UIButton *QuickCollectButton;
     
     BOOL CheckLikeInitView;
     
@@ -199,6 +200,8 @@
     UIButton *SeeAllButton_Nearby;
     
     NSString *ViewCountString;
+    
+    NSURLConnection *theConnection_QuickCollect;
 }
 -(void)GetPostID:(NSString *)PostID;
 

@@ -7,7 +7,7 @@
 //
 
 #import "CollectionViewController.h"
-
+#import "FeedV2DetailViewController.h"
 @interface CollectionViewController ()
 
 @end
@@ -529,6 +529,17 @@
 
         }
         
+        
+        UIButton *ClickToDetailButton = [[UIButton alloc]init];
+        ClickToDetailButton.frame = CGRectMake(20, TempHeight, screenWidth - 40, 180);
+        [ClickToDetailButton setTitle:@"" forState:UIControlStateNormal];
+        ClickToDetailButton.backgroundColor = [UIColor clearColor];
+        ClickToDetailButton.tag = i;
+        [ClickToDetailButton addTarget:self action:@selector(ClickToDetailButton:) forControlEvents:UIControlEventTouchUpInside];
+        [ListView addSubview:ClickToDetailButton];
+        
+        
+        
         UIImageView *ShowPin = [[UIImageView alloc]init];
         ShowPin.image = [UIImage imageNamed:@"location_icon.png"];
         ShowPin.frame = CGRectMake(30, TempHeight + 24, 9, 12);
@@ -638,9 +649,9 @@
         [ImageButton setTitle:@"" forState:UIControlStateNormal];
         ImageButton.frame = CGRectMake(0+(i % 3)*SpaceWidth, heightcheck + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
         ImageButton.tag = i;
-       // [ImageButton addTarget:self action:@selector(LikesButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [ImageButton addTarget:self action:@selector(ClickToDetailButton:) forControlEvents:UIControlEventTouchUpInside];
         [GridView addSubview:ImageButton];
-        //[MainScroll setContentSize:CGSizeMake(320, GetHeight + 105 + (106 * (CGFloat)(i /3)))];
+        
         GridView.frame = CGRectMake(0, GetHeight, screenWidth, heightcheck + FinalWidth + (SpaceWidth * (CGFloat)(i /3)));
     }
     if (GridView.frame.size.height < screenHeight) {
@@ -652,5 +663,22 @@
     contentSize.height = GetHeight + GridView.frame.size.height + FinalWidth;
     MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     MainScroll.contentSize = contentSize;
+}
+
+-(IBAction)ClickToDetailButton:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSLog(@"button %li",(long)getbuttonIDN);
+    
+    FeedV2DetailViewController *vc = [[FeedV2DetailViewController alloc] initWithNibName:@"FeedV2DetailViewController" bundle:nil];
+    
+    [self.navigationController pushViewController:vc animated:YES];
+    [vc GetPostID:[Content_arrID objectAtIndex:getbuttonIDN]];
+    
+}
+-(IBAction)ShareButtonOnClick:(id)sender{
+}
+-(IBAction)ShareLinkButtonOnClick:(id)sender{
+}
+-(IBAction)TranslateButtonOnClick:(id)sender{
 }
 @end

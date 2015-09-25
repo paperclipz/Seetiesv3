@@ -1071,11 +1071,12 @@
         NSError *myError = nil;
         NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
         NSArray *GetAllData = (NSArray *)[res valueForKey:@"categories"];
-        //   NSLog(@"GetAllData Json = %@",GetAllData);
+      //  NSLog(@"GetAllData Json = %@",GetAllData);
         
         NSMutableArray *Category_IDArray = [[NSMutableArray alloc]initWithCapacity:[GetAllData count]];
         NSMutableArray *Category_NameArray = [[NSMutableArray alloc]initWithCapacity:[GetAllData count]];
-        NSMutableArray *Category_ImageArray = [[NSMutableArray alloc]initWithCapacity:[GetAllData count]];
+        NSMutableArray *Category_ImageDefaultArray = [[NSMutableArray alloc]initWithCapacity:[GetAllData count]];
+        NSMutableArray *Category_ImageSelectedArray = [[NSMutableArray alloc]initWithCapacity:[GetAllData count]];
         NSMutableArray *Category_BackgroundImageArray = [[NSMutableArray alloc]initWithCapacity:[GetAllData count]];
         
         NSMutableArray *Category_NameArray_CN = [[NSMutableArray alloc]initWithCapacity:[GetAllData count]];
@@ -1086,9 +1087,15 @@
         for (NSDictionary * dict in GetAllData) {
             NSString *id_ = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"id"]];
             [Category_IDArray addObject:id_];
-            NSString *imagedata = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"image"]];
-            NSString *stringWithoutSpaces = [imagedata stringByReplacingOccurrencesOfString:@"data:image/png;base64," withString:@""];
-            [Category_ImageArray addObject:stringWithoutSpaces];
+            
+            NSDictionary *GetImageData = [dict valueForKey:@"images"];
+            
+            NSString *DefaultImg = [[NSString alloc]initWithFormat:@"%@",[GetImageData objectForKey:@"default"]];
+            NSString *SelectImg = [[NSString alloc]initWithFormat:@"%@",[GetImageData objectForKey:@"selected"]];
+            [Category_ImageDefaultArray addObject:DefaultImg];
+            [Category_ImageSelectedArray addObject:SelectImg];
+            
+            
             NSString *background_color = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"background_color"]];
             [Category_BackgroundImageArray addObject:background_color];
             NSDictionary *NameData = [dict valueForKey:@"single_line"];
@@ -1106,15 +1113,16 @@
             [Category_NameArray_TH addObject:ThData];
         }
         
-        //        NSLog(@"Category_IDArray is %@",Category_IDArray);
-        //        NSLog(@"Category_NameArray is %@",Category_NameArray);
+           // NSLog(@"Category_ImageDefaultArray is %@",Category_ImageDefaultArray);
+          //  NSLog(@"Category_ImageSelectedArray is %@",Category_ImageSelectedArray);
         //        NSLog(@"Category_ImageArray is %@",Category_ImageArray);
         
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:Category_IDArray forKey:@"Category_All_ID"];
         [defaults setObject:Category_NameArray forKey:@"Category_All_Name"];
-        [defaults setObject:Category_ImageArray forKey:@"Category_All_Image"];
+        [defaults setObject:Category_ImageDefaultArray forKey:@"Category_All_Image_Default"];
+        [defaults setObject:Category_ImageSelectedArray forKey:@"Category_All_Image_Selected"];
         [defaults setObject:Category_BackgroundImageArray forKey:@"Category_All_Background"];
         
         [defaults setObject:Category_NameArray_CN forKey:@"Category_All_Name_Cn"];
