@@ -543,6 +543,9 @@
     
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
+    if ([GetCollectionDataCount length] == 0) {
+        GetCollectionDataCount = @"";
+    }
     NSString *TempString = [[NSString alloc]initWithFormat:@"%@ Collection",GetCollectionDataCount];
 
     UILabel *ShowCollectionCount = [[UILabel alloc]init];

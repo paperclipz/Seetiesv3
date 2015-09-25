@@ -7,38 +7,17 @@
 //
 
 #import "NewCollectionViewController.h"
-#import "UITextView+Placeholder.h"
-
-#define TITLE_MAX_COUNT 70
-#define DESC_MAX_COUNT 150
 
 @interface NewCollectionViewController ()
-{
-    IBOutlet TPKeyboardAvoidingScrollView *MainScroll;
-    IBOutlet UIImageView *BarImage;
-    IBOutlet UILabel *ShowTitle;
-    
-    IBOutlet UITextView *txtNameView;
-    IBOutlet UITextView *txtDescriptionView;
-    IBOutlet UITextField *TagsField;
-    IBOutlet UILabel *ShowNameCount;
-    IBOutlet UILabel *ShowDescriptionCount;
-    
-    IBOutlet UIView *SetPublicView;
-    IBOutlet UIView *SetTagsView;
-    
-    IBOutlet UIButton *SaveButton;
-    IBOutlet UIButton *TagsLine;
-
-}
-@property (weak, nonatomic) IBOutlet UISwitch *ibSwitch;
 
 @end
 
 @implementation NewCollectionViewController
 
--(void)initSelfView
-{
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+    DataUrl = [[UrlDataClass alloc]init];
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     MainScroll.delegate = self;
@@ -47,22 +26,27 @@
     SetPublicView.frame = CGRectMake(0, screenHeight - 61, screenWidth, 61);
     ShowTitle.frame = CGRectMake(15, 20, screenWidth - 30, 44);
     BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
+    ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     
-    txtNameView.frame = CGRectMake(20, 37, screenWidth - 40, 67);
+    NameTextView.frame = CGRectMake(20, 37, screenWidth - 40, 67);
     ShowNameCount.frame = CGRectMake(screenWidth - 20 - 80, 104, 80, 21);
     
-    txtDescriptionView.frame = CGRectMake(20, 146, screenWidth - 40, 100);
+    DescriptionTextView.frame = CGRectMake(20, 146, screenWidth - 40, 100);
     ShowDescriptionCount.frame = CGRectMake(screenWidth - 20 - 80, 247, 80, 21);
     
     TagsField.frame = CGRectMake(15, 13, screenWidth - 70, 30);
     
-    txtNameView.delegate = self;
-    [Utils setRoundBorder:txtNameView color:[UIColor grayColor] borderRadius:5.0f];
+    NameTextView.delegate = self;
+    NameTextView.layer.cornerRadius = 5;
+    NameTextView.layer.borderWidth=1;
+    NameTextView.layer.borderColor=[[UIColor grayColor] CGColor];
     
-    txtDescriptionView.delegate = self;
-    [Utils setRoundBorder:txtDescriptionView color:[UIColor grayColor] borderRadius:5.0f];
-
+    DescriptionTextView.delegate = self;
+    DescriptionTextView.layer.cornerRadius = 5;
+    DescriptionTextView.layer.borderWidth=1;
+    DescriptionTextView.layer.borderColor=[[UIColor grayColor] CGColor];
     
+    TickButton.frame = CGRectMake(screenWidth - 25 - 10, 18, 25, 25);
     SaveButton.frame = CGRectMake(screenWidth - 60, 20, 60, 44);
     
     SetTagsView.frame = CGRectMake(20, 300, screenWidth - 40, 200);
@@ -71,14 +55,8 @@
     SetTagsView.layer.borderColor=[[UIColor colorWithRed:232.0f/255.0f green:232.0f/255.0f blue:232.0f/255.0f alpha:1.0f] CGColor];
     
     TagsLine.frame = CGRectMake(0, 50, screenWidth - 40 , 1);
-  
-    self.ibSwitch.on = false;
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [self initSelfView];
     
+    SetPublic = @"1";
 }
 - (UIStatusBarStyle) preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
@@ -92,28 +70,47 @@
 }
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     // [self.view endEditing:YES];// this will do the trick
-    [txtNameView resignFirstResponder];
-    [txtDescriptionView resignFirstResponder];
+    [NameTextView resignFirstResponder];
+    [DescriptionTextView resignFirstResponder];
     [TagsField resignFirstResponder];
     
 }
-
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    NSLog(@"did begin editing");
+    if (textView == NameTextView) {
+        if ([NameTextView.text isEqualToString:@"Type something..."]) {
+            NameTextView.text = @"";
+        }
+    }else{
+        if ([DescriptionTextView.text isEqualToString:@"Type something..."]) {
+            DescriptionTextView.text = @"";
+        }
+    }
+    
+    
+    
+}
+-(void)textViewDidEndEditing:(UITextView *)textView
+{
+    
+}
 -(void)textViewDidChange:(UITextView *)textView
 {
-    if (textView == txtNameView) {
+    if (textView == NameTextView) {
         NSUInteger len = textView.text.length;
-        ShowNameCount.text = [NSString stringWithFormat:@"%lu / %d",TITLE_MAX_COUNT - len,TITLE_MAX_COUNT];
+        ShowNameCount.text = [NSString stringWithFormat:@"%lu / 70",70 - len];
     }else{
         NSUInteger len = textView.text.length;
-        ShowDescriptionCount.text = [NSString stringWithFormat:@"%lu / %d",150 - len,DESC_MAX_COUNT];
+        ShowDescriptionCount.text = [NSString stringWithFormat:@"%lu / 150",150 - len];
     }
-
+    
     
     
 }
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
-    if (textView == txtNameView) {
+    if (textView == NameTextView) {
         if ([text isEqualToString:@"\n"]) {
             // Be sure to test for equality using the "isEqualToString" message
             [textView resignFirstResponder];
@@ -129,7 +126,7 @@
             }
             else if([[textView text] length] >= 30)
             {
-                ShowNameCount.text = [NSString stringWithFormat:@"%d / %d",0,TITLE_MAX_COUNT];
+                ShowNameCount.text = @"0 / 70";
                 ShowNameCount.textColor = [UIColor redColor];
                 return NO;
             }
@@ -148,74 +145,178 @@
                     return YES;
                 }
             }
-            
             else if([[textView text] length] >= 30)
             {
-                ShowDescriptionCount.text = [NSString stringWithFormat:@"%d / %d",0,DESC_MAX_COUNT];
+                ShowDescriptionCount.text = @"0 / 150";
                 ShowDescriptionCount.textColor = [UIColor redColor];
                 return NO;
             }
         }
     }
     
+    
+    
     return YES;
 }
 -(IBAction)SaveButton:(id)sender{
+    NSLog(@"Save Button On Click");
     
-    if ([txtNameView.text isEqualToString:@""]) {
-         [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Collection name must be at least 6 characters" type:TSMessageNotificationTypeError];
+    NSLog(@"NameTextView === %@",NameTextView.text);
+    NSLog(@"DescriptionTextView === %@",DescriptionTextView.text);
+    NSLog(@"TagsField === %@",TagsField.text);
+    NSLog(@"SetPublic === %@",SetPublic);
+    
+    if ([NameTextView.text isEqualToString:@"Type something..."] || [NameTextView.text isEqualToString:@""] || [NameTextView.text length] == 0) {
+        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Collection name must be at least 6 characters" type:TSMessageNotificationTypeError];
     }else{
-        [self requestServerForCreateCollection];
+        [self CreateNewCollection];
     }
     
-
+    
 }
-
--(void)requestServerForCreateCollection{
-
-    if ([TagsField.text isEqualToString:@""]) {
-        TagsField.text = @"";
+-(IBAction)TickButton:(id)sender{
+    NSLog(@"Tick Button On Click");
+    TickButton.selected=!TickButton.selected;
+    if (TickButton.selected) {
+        SetPublic = @"0";
+    }else{
+        SetPublic = @"1";
     }
-    
-    NSDictionary* dict = @{@"token":[Utils getAppToken],
-                           @"name":txtNameView.text,
-                           @"access":self.ibSwitch.on?@0:@1,
-                           @"description":txtDescriptionView.text,
-                           @"tags":@""};
-    
-    NSString* appendString = [NSString stringWithFormat:@"%@/Collections",[Utils getUserID]];
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypePostCreateCollection param:dict appendString:appendString completeHandler:^(id object) {
-        
-        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success Create New Collections" type:TSMessageNotificationTypeSuccess];
-
-    } errorBlock:nil];
-    
 }
-
-
--(void)requestServerForUpdateCollection{
+-(void)CreateNewCollection{
+    [ShowActivity startAnimating];
+    
+    if ([NameTextView.text isEqualToString:@"Type something..."]) {
+        NameTextView.text = @"";
+    }
+    if ([DescriptionTextView.text isEqualToString:@"Type something..."]) {
+        DescriptionTextView.text = @"";
+    }
     
     if ([TagsField.text isEqualToString:@""]) {
         TagsField.text = @"";
     }
     
-    NSDictionary* dict = @{@"token":[Utils getAppToken],
-                           @"collection_id":@"",
-                           @"name":txtNameView.text,
-                           @"access":self.ibSwitch.on?@0:@1,
-                           @"description":txtDescriptionView.text,
-                           @"tags":@""
-                           };
     
-    NSString* appendString = [NSString stringWithFormat:@"%@/Collections",[Utils getUserID]];
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypePostCreateCollection param:dict appendString:appendString completeHandler:^(id object) {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *GetUseruid = [defaults objectForKey:@"Useruid"];
+    
+    //Server Address URL
+    NSString *urlString = [NSString stringWithFormat:@"%@%@/collections",DataUrl.UserWallpaper_Url,GetUseruid];
+    NSLog(@"urlString is %@",urlString);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
+    
+    NSMutableData *body = [NSMutableData data];
+    
+    NSString *boundary = @"---------------------------14737809831466499882746641449";
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+    [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //parameter first
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    //Attaching the key name @"parameter_first" to the post body
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"token\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    //Attaching the content to be posted ( ParameterFirst )
+    [body appendData:[[NSString stringWithFormat:@"%@",GetExpertToken] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    //Attaching the key name @"parameter_second" to the post body
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"name\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    //Attaching the content to be posted ( ParameterSecond )
+    [body appendData:[[NSString stringWithFormat:@"%@",NameTextView.text] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    //Attaching the key name @"parameter_second" to the post body
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"access\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    //Attaching the content to be posted ( ParameterSecond )
+    [body appendData:[[NSString stringWithFormat:@"%@",SetPublic] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    if ([DescriptionTextView.text length] == 0) {
         
-        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success Create New Collections" type:TSMessageNotificationTypeSuccess];
+    }else{
+        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        //Attaching the key name @"parameter_second" to the post body
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"description\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+        //Attaching the content to be posted ( ParameterSecond )
+        [body appendData:[[NSString stringWithFormat:@"%@",DescriptionTextView.text] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    }
+    
+    if ([TagsField.text length] == 0) {
         
-    } errorBlock:nil];
+    }else{
+        NSArray *TempTagsArray = [TagsField.text componentsSeparatedByString:@" "];
+        for (int i = 0; i < [TempTagsArray count]; i++) {
+            [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+            //Attaching the key name @"parameter_second" to the post body
+            [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"tags[%i]\"\r\n\r\n",i] dataUsingEncoding:NSUTF8StringEncoding]];
+            //Attaching the content to be posted ( ParameterSecond )
+            [body appendData:[[NSString stringWithFormat:@"%@",[TempTagsArray objectAtIndex:i]] dataUsingEncoding:NSUTF8StringEncoding]];
+            [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+        }
+    }
+    
+    
+    //close form
+    [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    // NSLog(@"Request  = %@",[[NSString alloc] initWithData:body encoding:NSUTF8StringEncoding]);
+    
+    //setting the body of the post to the reqeust
+    [request setHTTPBody:body];
+    
+    theConnection_CreateCollection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    if(theConnection_CreateCollection) {
+        //  NSLog(@"Connection Successful");
+        webData = [NSMutableData data];
+    } else {
+        
+    }
     
 }
-
-
-
+-(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    [webData setLength: 0];
+    
+}
+-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [webData appendData:data];
+}
+-(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:CustomLocalisedString(@"ErrorConnection", nil) message:CustomLocalisedString(@"NoData", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    
+    [alert show];
+    SaveButton.enabled = YES;
+}
+-(void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    if (connection == theConnection_CreateCollection) {
+        NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+        // NSLog(@"Edit Profile return get data to server ===== %@",GetData);
+        NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *myError = nil;
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
+        NSLog(@"Create new collection return data ===== %@",res);
+        
+        NSString *statusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
+        NSLog(@"statusString is %@",statusString);
+        
+        if ([statusString isEqualToString:@"ok"]) {
+            [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success Create New Collections" type:TSMessageNotificationTypeSuccess];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+        
+        [ShowActivity stopAnimating];
+    }
+}
 @end

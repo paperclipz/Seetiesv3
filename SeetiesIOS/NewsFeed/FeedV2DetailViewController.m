@@ -1416,6 +1416,14 @@
     [MainScroll addSubview:MImageScroll];
     [MainScroll addSubview:PageControlOn];
     
+    UIImageView *ShowOverlayImg = [[UIImageView alloc]init];
+    ShowOverlayImg.image = [UIImage imageNamed:@"FeedOverlay.png"];
+    ShowOverlayImg.frame = CGRectMake(0, -20, screenWidth , 360);
+    ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
+    ShowOverlayImg.layer.masksToBounds = YES;
+    //ShowOverlayImg.layer.cornerRadius = 5;
+    [MainScroll addSubview:ShowOverlayImg];
+    
     for (int i = 0 ; i < [UrlArray count]; i++) {
         ImageScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0+ i *screenWidth, 0, screenWidth, 360)];
         ImageScroll.delegate = self;
@@ -1442,6 +1450,11 @@
         ShowImage.backgroundColor = [UIColor clearColor];
         ShowImage.tag = 6000000;
         [ImageScroll addSubview:ShowImage];
+        
+        UIImageView *ShowMoveIcon = [[UIImageView alloc]init];
+        ShowMoveIcon.image = [UIImage imageNamed:@"MoveIcon.png"];
+        ShowMoveIcon.frame = CGRectMake(screenWidth - 40, 300, 30, 30);
+        [MainScroll addSubview:ShowMoveIcon];
         
         UIButton *ImageButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [ImageButton setTitle:@"" forState:UIControlStateNormal];

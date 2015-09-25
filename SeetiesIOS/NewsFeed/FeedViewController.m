@@ -37,9 +37,62 @@
     TryAgainButton.frame = CGRectMake((screenWidth / 2) - 67, 288, 135, 40);
     TryAgainButton.layer.cornerRadius = 5;
     
+    MainScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight);
+    MainScroll.delegate = self;
+    MainScroll.alwaysBounceVertical = YES;
+    
+    LocalScroll.frame = CGRectMake(0, 44, screenWidth, screenHeight);
+    LocalScroll.delegate = self;
+    LocalScroll.alwaysBounceVertical = YES;
+    LocalScroll.backgroundColor = [UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f];
+    
+    
+    
+    ShowFeedText.frame = CGRectMake(15, 20, screenWidth - 30, 44);
+    BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
+    SearchButton.frame = CGRectMake(screenWidth - 34 - 15, 20, 34, 41);
+    
+    ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
+    
+    //    ShowFeedText.text = CustomLocalisedString(@"MainTab_Feed",nil);
+    //    [NearbyButton setTitle:CustomLocalisedString(@"NearBy",nil) forState:UIControlStateNormal];
+    //    [FilterButton setTitle:CustomLocalisedString(@"Filter", nil) forState:UIControlStateNormal];
+    
+    heightcheck = 0;
+    refreshControl = [[UIRefreshControl alloc] init];
+    refreshControl.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    refreshControl.bounds = CGRectMake(refreshControl.bounds.origin.x - 20,
+                                       0,
+                                       refreshControl.bounds.size.width,
+                                       refreshControl.bounds.size.height);
+    // refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Loading..."];
+    [refreshControl addTarget:self action:@selector(testRefresh) forControlEvents:UIControlEventValueChanged];
+    [MainScroll addSubview:refreshControl];
+    
+    
+    
+    self.locationManager = [[CLLocationManager alloc]init];
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.locationManager.delegate = self;
+    self.locationManager.distanceFilter = 10;
+    if(IS_OS_8_OR_LATER){
+        NSUInteger code = [CLLocationManager authorizationStatus];
+        if (code == kCLAuthorizationStatusNotDetermined && ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)] || [self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])) {
+            // choose one request according to your business.
+            if([[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationAlwaysUsageDescription"]){
+                [self.locationManager requestAlwaysAuthorization];
+                [self.locationManager startUpdatingLocation];
+            } else if([[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationWhenInUseUsageDescription"]) {
+                [self.locationManager  requestWhenInUseAuthorization];
+                [self.locationManager startUpdatingLocation];
+            } else {
+                NSLog(@"Info.plist does not contain NSLocationAlwaysUsageDescription or NSLocationWhenInUseUsageDescription");
+            }
+        }
+    }
+    [self.locationManager startUpdatingLocation];
+    
 
-    [self initData];
-    [self initSelfView];
 
     
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
@@ -73,42 +126,7 @@
 }
 -(void)initSelfView
 {
-    // Do any additional setup after loading the view from its nib.
-    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    MainScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight);
-    MainScroll.delegate = self;
-    MainScroll.alwaysBounceVertical = YES;
-    
-    LocalScroll.frame = CGRectMake(0, 44, screenWidth, screenHeight);
-    LocalScroll.delegate = self;
-    LocalScroll.alwaysBounceVertical = YES;
-    LocalScroll.backgroundColor = [UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f];
-
-    
-    
-    ShowFeedText.frame = CGRectMake(15, 20, screenWidth - 30, 44);
-    BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
-    SearchButton.frame = CGRectMake(screenWidth - 34 - 15, 20, 34, 41);
-    
-    ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
-    
-    //    ShowFeedText.text = CustomLocalisedString(@"MainTab_Feed",nil);
-    //    [NearbyButton setTitle:CustomLocalisedString(@"NearBy",nil) forState:UIControlStateNormal];
-    //    [FilterButton setTitle:CustomLocalisedString(@"Filter", nil) forState:UIControlStateNormal];
-    
-    heightcheck = 0;
-    refreshControl = [[UIRefreshControl alloc] init];
-    refreshControl.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    refreshControl.bounds = CGRectMake(refreshControl.bounds.origin.x - 20,
-                                       0,
-                                       refreshControl.bounds.size.width,
-                                       refreshControl.bounds.size.height);
-    // refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Loading..."];
-    [refreshControl addTarget:self action:@selector(testRefresh) forControlEvents:UIControlEventValueChanged];
-    [MainScroll addSubview:refreshControl];
-    
-
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *CheckString = [defaults objectForKey:@"TestLocalData"];
     if ([CheckString isEqualToString:@"Done"]) {
@@ -121,29 +139,11 @@
         MainScroll.hidden = NO;
         LocalScroll.hidden = YES;
         [ShowActivity startAnimating];
+        [self GetFeedDataFromServer];
     }
 
     
-    self.locationManager = [[CLLocationManager alloc]init];
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    self.locationManager.delegate = self;
-    self.locationManager.distanceFilter = 10;
-    if(IS_OS_8_OR_LATER){
-        NSUInteger code = [CLLocationManager authorizationStatus];
-        if (code == kCLAuthorizationStatusNotDetermined && ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)] || [self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])) {
-            // choose one request according to your business.
-            if([[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationAlwaysUsageDescription"]){
-                [self.locationManager requestAlwaysAuthorization];
-                [self.locationManager startUpdatingLocation];
-            } else if([[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationWhenInUseUsageDescription"]) {
-                [self.locationManager  requestWhenInUseAuthorization];
-                [self.locationManager startUpdatingLocation];
-            } else {
-                NSLog(@"Info.plist does not contain NSLocationAlwaysUsageDescription or NSLocationWhenInUseUsageDescription");
-            }
-        }
-    }
-    [self.locationManager startUpdatingLocation];
+
 }
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
@@ -160,13 +160,17 @@
         
         NSLog(@"got location get feed data");
 
-        [self GetExternalIPAddress];
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSString *CheckString = [defaults objectForKey:@"TestLocalData"];
-        if ([CheckString isEqualToString:@"Done"]) {
-        }else{
-            [self GetFeedDataFromServer];
-        }
+//        [self GetExternalIPAddress];
+//        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//        NSString *CheckString = [defaults objectForKey:@"TestLocalData"];
+//        if ([CheckString isEqualToString:@"Done"]) {
+//        }else{
+//            [self GetFeedDataFromServer];
+//        }
+        
+        
+        [self initData];
+        [self initSelfView];
         
     }else{
         
@@ -195,13 +199,15 @@
     [manager stopUpdatingLocation];
 
     [self GetExternalIPAddress];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *CheckString = [defaults objectForKey:@"TestLocalData"];
-    if ([CheckString isEqualToString:@"Done"]) {
-    }else{
-        [self GetFeedDataFromServer];
-    }
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    NSString *CheckString = [defaults objectForKey:@"TestLocalData"];
+//    if ([CheckString isEqualToString:@"Done"]) {
+//    }else{
+//        [self GetFeedDataFromServer];
+//    }
     
+    [self initData];
+    [self initSelfView];
 }
 -(void)initData
 {
@@ -329,11 +335,15 @@
     
     UIButton *TempButton = [[UIButton alloc]init];
     TempButton.frame = CGRectMake((screenWidth / 2) - 60, 41, 120, 37);
-  //  [TempButton setTitle:@"Nearby" forState:UIControlStateNormal];
-    [TempButton setImage:[UIImage imageNamed:@"nearby_btn.png"] forState:UIControlStateNormal];
+    [TempButton setTitle:@"Nearby" forState:UIControlStateNormal];
+    [TempButton setImage:[UIImage imageNamed:@"NearbyIcon.png"] forState:UIControlStateNormal];
     TempButton.backgroundColor = [UIColor clearColor];
-//    TempButton.backgroundColor = [UIColor colorWithRed:156.0f/255.0f green:204.0f/255.0f blue:101.0f/255.0f alpha:1.0f];
-//    TempButton.layer.cornerRadius = 20;
+    TempButton.backgroundColor = [UIColor colorWithRed:156.0f/255.0f green:204.0f/255.0f blue:101.0f/255.0f alpha:1.0f];
+    TempButton.layer.cornerRadius = 20;
+    TempButton.imageEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+    TempButton.titleEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
+    TempButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [TempButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
     [TempButton addTarget:self action:@selector(NearbyButton:) forControlEvents:UIControlEventTouchUpInside];
     [LocalScroll addSubview: TempButton];
     
@@ -376,9 +386,19 @@
             newImage = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
             ShowImage.image = newImage;
-            ShowImage.frame = CGRectMake(10, heightcheck + i, screenWidth - 20, newImage.size.height);
+            ShowImage.frame = CGRectMake(10, heightcheck  + i, screenWidth - 20, newImage.size.height);
             // ShowImage.frame = CGRectMake(0, heightcheck + i, screenWidth, 200);
             [LocalScroll addSubview:ShowImage];
+            
+            
+            UIImageView *ShowOverlayImg = [[UIImageView alloc]init];
+            ShowOverlayImg.image = [UIImage imageNamed:@"FeedOverlay.png"];
+            ShowOverlayImg.frame = CGRectMake(10, heightcheck  + i, screenWidth - 20, newImage.size.height);
+            ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
+            ShowOverlayImg.layer.masksToBounds = YES;
+            ShowOverlayImg.layer.cornerRadius = 5;
+            [LocalScroll addSubview:ShowOverlayImg];
+            
             
             UIButton *ClickToDetailButton = [[UIButton alloc]init];
             ClickToDetailButton.frame = CGRectMake(10, heightcheck + i, screenWidth - 20, newImage.size.height);
@@ -430,20 +450,30 @@
                 int x_Nearby = [TempDistanceString intValue] / 1000;
                 // NSLog(@"x_Nearby is %i",x_Nearby);
                 
+                UIImageView *ShowDistanceIcon = [[UIImageView alloc]init];
                 NSString *FullShowLocatinString;
-                if (x_Nearby < 100) {
+                if (x_Nearby < 10) {
                     if (x_Nearby <= 1) {
+                        ShowDistanceIcon.image = [UIImage imageNamed:@"Distance2Icon.png"];
                         FullShowLocatinString = [[NSString alloc]initWithFormat:@"1km"];//within
                     }else{
                         FullShowLocatinString = [[NSString alloc]initWithFormat:@"%.fkm",strFloat];
+                        ShowDistanceIcon.image = [UIImage imageNamed:@"Distance1Icon.png"];
                     }
                     
+                }else if(x_Nearby > 10 && x_Nearby < 30){
+                    ShowDistanceIcon.image = [UIImage imageNamed:@"Distance3Icon.png"];
+                    FullShowLocatinString = [[NSString alloc]initWithFormat:@"%.fkm",strFloat];
                 }else{
+                    ShowDistanceIcon.image = [UIImage imageNamed:@"Distance4Icon.png"];
                     FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@",[arrDisplayCountryName objectAtIndex:i]];
                     
                 }
+                ShowDistanceIcon.frame = CGRectMake(screenWidth - 60, heightcheck + 12, 40, 36);
+                [LocalScroll addSubview:ShowDistanceIcon];
+
                 UILabel *ShowDistance = [[UILabel alloc]init];
-                ShowDistance.frame = CGRectMake(screenWidth - 135, heightcheck + i + 10, 100, 40);
+                ShowDistance.frame = CGRectMake(screenWidth - 165, heightcheck + 10, 100, 40);
                 // ShowDistance.frame = CGRectMake(screenWidth - 115, 210 + heightcheck + i, 100, 20);
                 ShowDistance.text = FullShowLocatinString;
                 ShowDistance.textColor = [UIColor whiteColor];
@@ -451,6 +481,11 @@
                 ShowDistance.textAlignment = NSTextAlignmentRight;
                 ShowDistance.backgroundColor = [UIColor clearColor];
                 [LocalScroll addSubview:ShowDistance];
+                
+                
+                
+                
+                
             }
             
             
@@ -590,11 +625,11 @@
             
             
             UIButton *QuickCollectButton = [[UIButton alloc]init];
-            [QuickCollectButton setImage:[UIImage imageNamed:@"collect_btn.png"] forState:UIControlStateNormal];
+            [QuickCollectButton setImage:[UIImage imageNamed:@"CollectBtn.png"] forState:UIControlStateNormal];
             [QuickCollectButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
             [QuickCollectButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
             QuickCollectButton.backgroundColor = [UIColor clearColor];
-            QuickCollectButton.frame = CGRectMake(screenWidth - 20 - 113, heightcheck + i + 10, 113, 37);
+            QuickCollectButton.frame = CGRectMake(screenWidth - 20 - 140, heightcheck + i + 4, 140, 50);
             [QuickCollectButton addTarget:self action:@selector(CollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
             QuickCollectButton.tag = i;
             [LocalScroll addSubview:QuickCollectButton];
@@ -629,18 +664,8 @@
 //    [NearbyButton addTarget:self action:@selector(NearbyButton:) forControlEvents:UIControlEventTouchUpInside];
 //    [self.view addSubview: NearbyButton];
 
-    
-//    [NSTimer scheduledTimerWithTimeInterval:5.0
-//                                     target:self
-//                                   selector:@selector(timerCalled)
-//                                   userInfo:nil
-//                                    repeats:NO];
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//            [self timerCalled];
-//    });
-   // [self timerCalled];
-    [self performSelectorOnMainThread:@selector(timerCalled) withObject:nil waitUntilDone:NO];
-    // [refreshControl endRefreshing];
+     [self performSelectorOnMainThread:@selector(timerCalled) withObject:nil waitUntilDone:NO];
+
 }
 
 -(void)StartInit1stView{
@@ -660,11 +685,15 @@
 
     UIButton *TempButton = [[UIButton alloc]init];
     TempButton.frame = CGRectMake((screenWidth / 2) - 60, 41, 120, 37);
-    //  [TempButton setTitle:@"Nearby" forState:UIControlStateNormal];
-    [TempButton setImage:[UIImage imageNamed:@"nearby_btn.png"] forState:UIControlStateNormal];
+    [TempButton setTitle:@"Nearby" forState:UIControlStateNormal];
+    [TempButton setImage:[UIImage imageNamed:@"NearbyIcon.png"] forState:UIControlStateNormal];
     TempButton.backgroundColor = [UIColor clearColor];
-    //    TempButton.backgroundColor = [UIColor colorWithRed:156.0f/255.0f green:204.0f/255.0f blue:101.0f/255.0f alpha:1.0f];
-    //    TempButton.layer.cornerRadius = 20;
+    TempButton.backgroundColor = [UIColor colorWithRed:156.0f/255.0f green:204.0f/255.0f blue:101.0f/255.0f alpha:1.0f];
+    TempButton.layer.cornerRadius = 20;
+    TempButton.imageEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+    TempButton.titleEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
+    TempButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [TempButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
     [TempButton addTarget:self action:@selector(NearbyButton:) forControlEvents:UIControlEventTouchUpInside];
     [MainScroll addSubview: TempButton];
     
@@ -732,6 +761,15 @@
                 }
                 [MainScroll addSubview: ShowImage];
                 
+                
+                UIImageView *ShowOverlayImg = [[UIImageView alloc]init];
+                ShowOverlayImg.image = [UIImage imageNamed:@"FeedOverlay.png"];
+                ShowOverlayImg.frame = CGRectMake(10, heightcheck, screenWidth - 20, resultHeight);
+                ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
+                ShowOverlayImg.layer.masksToBounds = YES;
+                ShowOverlayImg.layer.cornerRadius = 5;
+                [MainScroll addSubview:ShowOverlayImg];
+                
                 UIButton *ClickToDetailButton = [[UIButton alloc]init];
                 ClickToDetailButton.frame = CGRectMake(10, heightcheck, screenWidth - 20, resultHeight);
                 [ClickToDetailButton setTitle:@"" forState:UIControlStateNormal];
@@ -787,20 +825,30 @@
                     int x_Nearby = [TempDistanceString intValue] / 1000;
                     // NSLog(@"x_Nearby is %i",x_Nearby);
                     
+                    UIImageView *ShowDistanceIcon = [[UIImageView alloc]init];
                     NSString *FullShowLocatinString;
-                    if (x_Nearby < 100) {
+                    if (x_Nearby < 10) {
                         if (x_Nearby <= 1) {
+                            ShowDistanceIcon.image = [UIImage imageNamed:@"Distance2Icon.png"];
                             FullShowLocatinString = [[NSString alloc]initWithFormat:@"1km"];//within
                         }else{
                             FullShowLocatinString = [[NSString alloc]initWithFormat:@"%.fkm",strFloat];
+                            ShowDistanceIcon.image = [UIImage imageNamed:@"Distance1Icon.png"];
                         }
                         
+                    }else if(x_Nearby > 10 && x_Nearby < 30){
+                        ShowDistanceIcon.image = [UIImage imageNamed:@"Distance3Icon.png"];
+                        FullShowLocatinString = [[NSString alloc]initWithFormat:@"%.fkm",strFloat];
                     }else{
+                        ShowDistanceIcon.image = [UIImage imageNamed:@"Distance4Icon.png"];
                         FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@",[arrDisplayCountryName objectAtIndex:i]];
                         
                     }
+                    ShowDistanceIcon.frame = CGRectMake(screenWidth - 60, heightcheck + 12, 40, 36);
+                    [MainScroll addSubview:ShowDistanceIcon];
+                    
                     UILabel *ShowDistance = [[UILabel alloc]init];
-                    ShowDistance.frame = CGRectMake(screenWidth - 135, heightcheck + 10, 100, 40);
+                    ShowDistance.frame = CGRectMake(screenWidth - 165, heightcheck + 10, 100, 40);
                     ShowDistance.text = FullShowLocatinString;
                     ShowDistance.textColor = [UIColor whiteColor];
                     ShowDistance.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
@@ -933,11 +981,11 @@
                 
                 
                 UIButton *QuickCollectButton = [[UIButton alloc]init];
-                [QuickCollectButton setImage:[UIImage imageNamed:@"collect_btn.png"] forState:UIControlStateNormal];
+                [QuickCollectButton setImage:[UIImage imageNamed:@"CollectBtn.png"] forState:UIControlStateNormal];
                 [QuickCollectButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
                 [QuickCollectButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
                 QuickCollectButton.backgroundColor = [UIColor clearColor];
-                QuickCollectButton.frame = CGRectMake(screenWidth - 20 - 113, heightcheck + 10, 113, 37);
+                QuickCollectButton.frame = CGRectMake(screenWidth - 20 - 140, heightcheck + 4, 140, 50);
                 [QuickCollectButton addTarget:self action:@selector(CollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
                 QuickCollectButton.tag = i;
                 [MainScroll addSubview:QuickCollectButton];
@@ -991,6 +1039,14 @@
                     ShowImageLocalQR.imageURL = url_NearbySmallLocalQR;
                 }
                 [MainScroll addSubview: ShowImageLocalQR];
+                
+                UIImageView *ShowOverlayImg = [[UIImageView alloc]init];
+                ShowOverlayImg.image = [UIImage imageNamed:@"FeedOverlay.png"];
+                ShowOverlayImg.frame = CGRectMake(10, heightcheck, screenWidth - 20, resultHeightLocalQR);
+                ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
+                ShowOverlayImg.layer.masksToBounds = YES;
+                ShowOverlayImg.layer.cornerRadius = 5;
+                [MainScroll addSubview:ShowOverlayImg];
 
                 UIButton *ClickToDetailButtonLocalQR = [[UIButton alloc]init];
                 ClickToDetailButtonLocalQR.frame = CGRectMake(10, heightcheck, screenWidth - 20, resultHeightLocalQR);
@@ -1047,20 +1103,31 @@
                     int x_NearbyLocalQR = [TempDistanceStringLocalQR intValue] / 1000;
                     // NSLog(@"x_Nearby is %i",x_Nearby);
                     
+                    UIImageView *ShowDistanceIcon = [[UIImageView alloc]init];
                     NSString *FullShowLocatinStringLocalQR;
-                    if (x_NearbyLocalQR < 100) {
+                    if (x_NearbyLocalQR < 10) {
                         if (x_NearbyLocalQR <= 1) {
+                            ShowDistanceIcon.image = [UIImage imageNamed:@"Distance2Icon.png"];
                             FullShowLocatinStringLocalQR = [[NSString alloc]initWithFormat:@"1km"];//within
                         }else{
                             FullShowLocatinStringLocalQR = [[NSString alloc]initWithFormat:@"%.fkm",strFloatLocalQR];
+                            ShowDistanceIcon.image = [UIImage imageNamed:@"Distance1Icon.png"];
                         }
                         
+                    }else if(x_NearbyLocalQR > 10 && x_NearbyLocalQR < 30){
+                        ShowDistanceIcon.image = [UIImage imageNamed:@"Distance3Icon.png"];
+                        FullShowLocatinStringLocalQR = [[NSString alloc]initWithFormat:@"%.fkm",strFloatLocalQR];
                     }else{
+                        ShowDistanceIcon.image = [UIImage imageNamed:@"Distance4Icon.png"];
                         FullShowLocatinStringLocalQR = [[NSString alloc]initWithFormat:@"%@",[arrDisplayCountryName objectAtIndex:i]];
                         
                     }
+                    
+                    ShowDistanceIcon.frame = CGRectMake(screenWidth - 60, heightcheck + 12, 40, 36);
+                    [MainScroll addSubview:ShowDistanceIcon];
+                    
                     UILabel *ShowDistanceLocalQR = [[UILabel alloc]init];
-                    ShowDistanceLocalQR.frame = CGRectMake(screenWidth - 135, heightcheck + 10, 100, 40);
+                    ShowDistanceLocalQR.frame = CGRectMake(screenWidth - 165, heightcheck + 10, 100, 40);
                     ShowDistanceLocalQR.text = FullShowLocatinStringLocalQR;
                     ShowDistanceLocalQR.textColor = [UIColor whiteColor];
                     ShowDistanceLocalQR.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
@@ -1199,11 +1266,11 @@
                 
                 
                 UIButton *QuickCollectButtonLocalQR = [[UIButton alloc]init];
-                [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:@"collect_btn.png"] forState:UIControlStateNormal];
+                [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:@"CollectBtn.png"] forState:UIControlStateNormal];
                 [QuickCollectButtonLocalQR setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
                 [QuickCollectButtonLocalQR.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
                 QuickCollectButtonLocalQR.backgroundColor = [UIColor clearColor];
-                QuickCollectButtonLocalQR.frame = CGRectMake(screenWidth - 20 - 113, heightcheck + 10, 113, 37);
+                QuickCollectButtonLocalQR.frame = CGRectMake(screenWidth - 20 - 140, heightcheck + 4, 140, 50);
                 [QuickCollectButtonLocalQR addTarget:self action:@selector(CollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
                 QuickCollectButtonLocalQR.tag = i;
                 [MainScroll addSubview:QuickCollectButtonLocalQR];

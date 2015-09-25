@@ -51,6 +51,7 @@
     IBOutlet UIButton *InstagramButton;
     IBOutlet UILabel *ShowTnCText;
     IBOutlet UIActivityIndicatorView *ShowActivity;
+    IBOutlet UILabel *ContinueText;
     
     IBOutlet UIScrollView *MainScroll;
     IBOutlet UIPageControl *PageControlOn;
@@ -90,26 +91,28 @@
     WhyWeUseFBButton.hidden = YES;
     SignUpWithEmailButton.hidden = YES;
     InstagramButton.hidden = YES;
+    ContinueText.hidden = YES;
     InstagramButton.layer.cornerRadius = 5;
 
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    FBLoginButton.frame = CGRectMake((screenWidth/2) - 155, screenHeight - 178, 150, 50);
-    LogInButton.frame = CGRectMake((screenWidth/2) + 130 - 74, screenHeight - 110, 74, 34);
+    FBLoginButton.frame = CGRectMake((screenWidth/2) - 155, screenHeight - 158, 150, 50);
+    LogInButton.frame = CGRectMake((screenWidth/2) + 155 - 74, screenHeight - 90, 74, 34);
     WhyWeUseFBButton.frame = CGRectMake(0, screenHeight - 128, screenWidth, 34);
-    InstagramButton.frame = CGRectMake((screenWidth/2) + 5, screenHeight - 178, 150, 50);
-    SignUpWithEmailButton.frame = CGRectMake((screenWidth/2) - 130, screenHeight - 110, 125, 34);
-    MainText.frame = CGRectMake(30, 150, screenWidth - 60, 65);
+    InstagramButton.frame = CGRectMake((screenWidth/2) + 5, screenHeight - 158, 150, 50);
+    SignUpWithEmailButton.frame = CGRectMake((screenWidth/2) - 155, screenHeight - 90, 125, 34);
+    MainText.frame = CGRectMake(30, 150, screenWidth - 60, 40);
     MainLogo.frame = CGRectMake((screenWidth/2) - 104, 70, 208, 82);
     ShowBackgroundImage.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
-    ShowTnCText.frame = CGRectMake(30, screenHeight - 70, screenWidth - 60, 50);
+    ShowTnCText.frame = CGRectMake(30, screenHeight - 40, screenWidth - 60, 30);
+    ContinueText.frame = CGRectMake(0, screenHeight - 210, screenWidth, 30);
     MainText.hidden = YES;
     
     pageControlBeingUsed = NO;
     
     MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight);
-    PageControlOn.frame = CGRectMake((screenWidth / 2) - 20, screenHeight - 250, 39, 37);
+    PageControlOn.frame = CGRectMake((screenWidth / 2) - 20, 220, 39, 37);
     [MainScroll setScrollEnabled:YES];
     MainScroll.delegate = self;
     [MainScroll setBounces:NO];
@@ -120,9 +123,9 @@
     [ImageArray addObject:@"1242x2208-04.jpg"];
     
     NSMutableArray *TextArray = [[NSMutableArray alloc]init];
-    [TextArray addObject:@"1242x2208-01.jpg"];
-    [TextArray addObject:@"1242x2208-03.jpg"];
-    [TextArray addObject:@"1242x2208-04.jpg"];
+    [TextArray addObject:@"Discover the city's best places to eat, play & shop"];
+    [TextArray addObject:@"Create personal collections for your favourite finds"];
+    [TextArray addObject:@"Recommend your favourite places & best experiences"];
 
     
     for (int i = 0 ; i < [ImageArray count]; i++) {
@@ -133,7 +136,7 @@
         [MainScroll addSubview:ShowImage];
         
         UILabel *ShowUserNameLocalQR = [[UILabel alloc]init];
-        ShowUserNameLocalQR.frame = CGRectMake(0+ i *screenWidth, 200, screenWidth, 65);
+        ShowUserNameLocalQR.frame = CGRectMake(30+ i *screenWidth, 170, screenWidth - 60, 40);
         ShowUserNameLocalQR.text = [TextArray objectAtIndex:i];
         ShowUserNameLocalQR.backgroundColor = [UIColor clearColor];
         ShowUserNameLocalQR.textColor = [UIColor whiteColor];
@@ -403,8 +406,7 @@
     WhyWeUseFBButton.hidden = NO;
     SignUpWithEmailButton.hidden = NO;
     InstagramButton.hidden = NO;
-
-    
+    ContinueText.hidden = NO;
 }
 -(void)ChangeView2{
     
