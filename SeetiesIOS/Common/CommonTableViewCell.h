@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface CommonTableViewCell : UITableViewCell
+-(void)initSelfView;
 
 @end

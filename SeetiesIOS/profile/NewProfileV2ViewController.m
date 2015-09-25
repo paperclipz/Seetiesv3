@@ -1416,6 +1416,8 @@
     
     NSString* collectionID = CollectionData_IDArray[getbuttonIDN];
     
+    
+    _editCollectionViewController = nil;// for the view controller to reinitialize
     [self.editCollectionViewController requestServerForCollectionDetails:collectionID successBlock:^(id object) {
         
         [self.editCollectionViewController initData:[[ConnectionManager dataManager] collectionModels]];
@@ -1433,24 +1435,9 @@
     if (!_editCollectionViewController) {
         
         _editCollectionViewController = [EditCollectionViewController new];
-        
-        __weak typeof (self)weakSelf = self;
-        _editCollectionViewController.btnEditClickBlock = ^(id object)
-        {
-            [weakSelf.navigationController pushViewController:weakSelf.editCollectionDetailViewController animated:YES];
-        };
+    
     }
     return _editCollectionViewController;
-}
-
--(EditCollectionDetailViewController*)editCollectionDetailViewController
-{
-    
-    if (!_editCollectionDetailViewController) {
-        
-        _editCollectionDetailViewController = [EditCollectionDetailViewController new];
-    }
-    return _editCollectionDetailViewController;
 }
 
 

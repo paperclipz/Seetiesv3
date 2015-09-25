@@ -8,10 +8,12 @@
 
 #import "CommonViewController.h"
 #import "UITableView+LongPressReorder.h"
+#import "EditCollectionDetailViewController.h"
 
 @interface EditCollectionViewController : CommonViewController <UITableViewDataSource,UITableViewDelegate>
 -(void)requestServerForCollectionDetails:(NSString*)collectionID successBlock:(IDBlock)successBlock failBlock:(IDBlock)failBlock;
--(void)initData:(CollectionModels*)model;
+-(void)initData:(CollectionModel*)model;
+@property(nonatomic,strong)EditCollectionDetailViewController* editCollectionDetailViewController;
 
 @property(nonatomic,copy)IDBlock btnEditClickBlock;
 @end

@@ -9,6 +9,7 @@
 #import "CommonTableViewCell.h"
 
 @interface EditCollectionTableViewCell : CommonTableViewCell
--(void)initData:(CollectionModel*)model;
-
+-(void)initData:(PostModel*)model;
+@property(nonatomic,copy)IDBlock deleteCellBlock;
+-(void)saveData;
 @end

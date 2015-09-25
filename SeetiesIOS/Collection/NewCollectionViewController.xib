@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="ProximaNovaSoft-Bold.ttf">
             <string>ProximaNovaSoft-Bold</string>
-            <string>ProximaNovaSoft-Bold</string>
         </mutableArray>
         <mutableArray key="ProximaNovaSoft-Regular.ttf">
+            <string>ProximaNovaSoft-Regular</string>
             <string>ProximaNovaSoft-Regular</string>
             <string>ProximaNovaSoft-Regular</string>
             <string>ProximaNovaSoft-Regular</string>
@@ -21,15 +21,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewCollectionViewController">
             <connections>
-                <outlet property="BarImage" destination="MrV-xO-ImG" id="mGx-Ad-qdV"/>
                 <outlet property="MainScroll" destination="8J7-nD-K7f" id="ROD-PF-fUs"/>
-                <outlet property="SaveButton" destination="jPW-Wi-R3M" id="cN4-yD-JKr"/>
                 <outlet property="SetPublicView" destination="FLm-3d-4FV" id="tFo-fx-94K"/>
                 <outlet property="SetTagsView" destination="Iw2-NA-abZ" id="MsY-D7-NmL"/>
-                <outlet property="ShowActivity" destination="0Qs-6Z-82O" id="OyO-86-kiS"/>
                 <outlet property="ShowDescriptionCount" destination="BsQ-z8-hWZ" id="5yp-Jv-YP5"/>
                 <outlet property="ShowNameCount" destination="MgJ-sO-PFA" id="YP5-6f-lGf"/>
-                <outlet property="ShowTitle" destination="Iab-85-yrp" id="C3f-RH-gfT"/>
                 <outlet property="TagsField" destination="ftZ-ak-OE8" id="Gdq-Ak-YUA"/>
                 <outlet property="TagsLine" destination="H7g-pt-sf2" id="4eG-U9-uoi"/>
                 <outlet property="ibSwitch" destination="joh-zf-2TS" id="dMb-Kv-6sf"/>
@@ -43,110 +39,80 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="8J7-nD-K7f" customClass="TPKeyboardAvoidingScrollView">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8J7-nD-K7f" customClass="TPKeyboardAvoidingScrollView">
                     <rect key="frame" x="0.0" y="64" width="320" height="444"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collection name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="o4Y-dg-PQD">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Collection name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o4Y-dg-PQD">
                             <rect key="frame" x="20" y="13" width="168" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="15"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DuL-QE-iiX">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DuL-QE-iiX">
                             <rect key="frame" x="20" y="122" width="168" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="15"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tags" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TPh-fc-H2b">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tags" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TPh-fc-H2b">
                             <rect key="frame" x="20" y="276" width="168" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="15"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Type something..." textAlignment="natural" id="eoW-5U-PhY">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Type something..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eoW-5U-PhY">
                             <rect key="frame" x="20" y="146" width="280" height="100"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 / 70" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MgJ-sO-PFA">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0 / 70" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MgJ-sO-PFA">
                             <rect key="frame" x="219" y="104" width="80" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="15"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <view contentMode="scaleToFill" id="Iw2-NA-abZ">
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iw2-NA-abZ">
                             <rect key="frame" x="20" y="300" width="280" height="178"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap suggestions to add into your tags" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tN1-Zn-Rcn">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tap suggestions to add into your tags" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tN1-Zn-Rcn">
                                     <rect key="frame" x="8" y="58" width="272" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="12"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type something or select from below..." textAlignment="center" minimumFontSize="17" id="ftZ-ak-OE8">
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type something or select from below..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ftZ-ak-OE8">
                                     <rect key="frame" x="15" y="13" width="251" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="H7g-pt-sf2">
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H7g-pt-sf2">
                                     <rect key="frame" x="0.0" y="50" width="800" height="1"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" red="0.90980392160000001" green="0.90980392160000001" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Type something..." textAlignment="natural" id="NbG-Ni-Wbp">
-                            <rect key="frame" x="20" y="37" width="280" height="67"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                        </textView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 / 150" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BsQ-z8-hWZ">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0 / 150" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BsQ-z8-hWZ">
                             <rect key="frame" x="220" y="247" width="80" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="15"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Type something..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="NbG-Ni-Wbp">
+                            <rect key="frame" x="20" y="37" width="280" height="67"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </scrollView>
-                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" id="0Qs-6Z-82O">
-                    <rect key="frame" x="239" y="27" width="37" height="37"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="color" red="0.20000000000000001" green="0.70980392160000005" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
-                </activityIndicatorView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Settingsbar2.png" id="MrV-xO-ImG">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Collection" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Iab-85-yrp">
-                    <rect key="frame" x="15" y="20" width="290" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="ProximaNovaSoft-Bold" family="Proxima Nova Soft" pointSize="20"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackButton2.png" id="9ms-dv-C1j">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="BackButton2.png" translatesAutoresizingMaskIntoConstraints="NO" id="9ms-dv-C1j">
                     <rect key="frame" x="13" y="33" width="20" height="20"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="HF3-wp-RwO">
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HF3-wp-RwO">
                     <rect key="frame" x="0.0" y="0.0" width="53" height="64"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -154,47 +120,109 @@
                         <action selector="BackButton:" destination="-1" eventType="touchUpInside" id="Asf-dp-W8K"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jPW-Wi-R3M">
-                    <rect key="frame" x="270" y="27" width="45" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Save"/>
-                    <connections>
-                        <action selector="SaveButton:" destination="-1" eventType="touchUpInside" id="x78-d6-qx1"/>
-                    </connections>
-                </button>
-                <view contentMode="scaleToFill" id="FLm-3d-4FV">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FLm-3d-4FV">
                     <rect key="frame" x="0.0" y="507" width="320" height="61"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set as public" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DQO-39-IcY">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Set as public" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DQO-39-IcY">
                             <rect key="frame" x="20" y="4" width="135" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="ProximaNovaSoft-Bold" family="Proxima Nova Soft" pointSize="18"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cannot change to private once you decide to set as public." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Z69-5g-rcc">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cannot change to private once you decide to set as public." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z69-5g-rcc">
                             <rect key="frame" x="20" y="21" width="233" height="37"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="15"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="joh-zf-2TS">
+                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="joh-zf-2TS">
                             <rect key="frame" x="263" y="15" width="51" height="31"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </switch>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aP2-Ek-BeN">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackButton2.png" translatesAutoresizingMaskIntoConstraints="NO" id="C2A-M8-4zz">
+                            <rect key="frame" x="8" y="29" width="24" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="94c-aJ-TQV"/>
+                                <constraint firstAttribute="width" constant="24" id="9iH-xV-8EH"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="krq-9K-Whq" userLabel="Button_Back">
+                            <rect key="frame" x="0.0" y="0.0" width="44" height="64"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="64" id="HoL-07-d0J"/>
+                                <constraint firstAttribute="width" constant="44" id="eo1-2v-3q9"/>
+                            </constraints>
+                            <state key="normal">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R9R-3a-05m">
+                            <rect key="frame" x="291" y="27" width="21" height="22"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="22" id="YV5-SL-x4d"/>
+                                <constraint firstAttribute="width" constant="21" id="sY8-xp-FOW"/>
+                            </constraints>
+                            <state key="normal" image="done_btn.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Collection" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uyp-by-8uD">
+                            <rect key="frame" x="50" y="29" width="220" height="21"/>
+                            <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.14901960780000001" green="0.65098039220000004" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="R9R-3a-05m" secondAttribute="trailing" constant="8" id="5FZ-0p-gp6"/>
+                        <constraint firstItem="C2A-M8-4zz" firstAttribute="top" secondItem="krq-9K-Whq" secondAttribute="bottom" constant="-35" id="All-7E-Jzm"/>
+                        <constraint firstAttribute="height" constant="64" id="KUZ-32-XZs"/>
+                        <constraint firstItem="R9R-3a-05m" firstAttribute="top" secondItem="aP2-Ek-BeN" secondAttribute="top" constant="27" id="Kki-ZS-WZC"/>
+                        <constraint firstItem="Uyp-by-8uD" firstAttribute="leading" secondItem="C2A-M8-4zz" secondAttribute="trailing" constant="50" id="M3X-5v-ZRd"/>
+                        <constraint firstItem="Uyp-by-8uD" firstAttribute="leading" secondItem="aP2-Ek-BeN" secondAttribute="leading" constant="50" id="NRJ-gm-fsh"/>
+                        <constraint firstAttribute="trailing" secondItem="Uyp-by-8uD" secondAttribute="trailing" constant="50" id="Spd-r4-D6g"/>
+                        <constraint firstItem="Uyp-by-8uD" firstAttribute="top" secondItem="C2A-M8-4zz" secondAttribute="top" id="ZH7-wj-wzC"/>
+                        <constraint firstItem="C2A-M8-4zz" firstAttribute="leading" secondItem="aP2-Ek-BeN" secondAttribute="leading" constant="8" id="iAm-WY-nJf"/>
+                        <constraint firstAttribute="bottom" secondItem="Uyp-by-8uD" secondAttribute="bottom" constant="14" id="lJT-oF-5Bf"/>
+                        <constraint firstItem="krq-9K-Whq" firstAttribute="leading" secondItem="aP2-Ek-BeN" secondAttribute="leading" id="pWq-wW-QrV"/>
+                        <constraint firstAttribute="bottom" secondItem="C2A-M8-4zz" secondAttribute="bottom" constant="15" id="qfE-qZ-TTF"/>
+                        <constraint firstItem="krq-9K-Whq" firstAttribute="top" secondItem="aP2-Ek-BeN" secondAttribute="top" id="zfN-FT-U2A"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="M3X-5v-ZRd"/>
+                        </mask>
+                    </variation>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="aP2-Ek-BeN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="2ET-ZV-nUc"/>
+                <constraint firstItem="aP2-Ek-BeN" firstAttribute="trailing" secondItem="8J7-nD-K7f" secondAttribute="trailing" id="4lY-9T-PNV"/>
+                <constraint firstItem="aP2-Ek-BeN" firstAttribute="trailing" secondItem="FLm-3d-4FV" secondAttribute="trailing" id="7i8-ig-SoF"/>
+                <constraint firstItem="aP2-Ek-BeN" firstAttribute="top" secondItem="HF3-wp-RwO" secondAttribute="top" id="Bg4-nJ-MMd"/>
+                <constraint firstItem="aP2-Ek-BeN" firstAttribute="bottom" secondItem="HF3-wp-RwO" secondAttribute="bottom" id="Fft-G8-Oe8"/>
+                <constraint firstAttribute="trailing" secondItem="aP2-Ek-BeN" secondAttribute="trailing" id="IY7-5T-ks4"/>
+                <constraint firstItem="aP2-Ek-BeN" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="RV0-KJ-Mk5"/>
+                <constraint firstItem="aP2-Ek-BeN" firstAttribute="leading" secondItem="HF3-wp-RwO" secondAttribute="leading" id="UTY-5v-lP7"/>
+                <constraint firstItem="aP2-Ek-BeN" firstAttribute="leading" secondItem="8J7-nD-K7f" secondAttribute="leading" id="Xjf-ba-osr"/>
+                <constraint firstAttribute="bottom" secondItem="FLm-3d-4FV" secondAttribute="bottom" id="ZA8-Mi-tzb"/>
+                <constraint firstItem="aP2-Ek-BeN" firstAttribute="leading" secondItem="FLm-3d-4FV" secondAttribute="leading" id="oMK-rO-OA3"/>
+                <constraint firstItem="FLm-3d-4FV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="507" id="pIE-G2-ScC"/>
+                <constraint firstItem="8J7-nD-K7f" firstAttribute="top" secondItem="aP2-Ek-BeN" secondAttribute="bottom" id="plQ-YW-9TZ"/>
+            </constraints>
             <point key="canvasLocation" x="356" y="-22"/>
         </view>
     </objects>
     <resources>
         <image name="BackButton2.png" width="38" height="39"/>
-        <image name="Settingsbar2.png" width="640" height="128"/>
+        <image name="done_btn.png" width="21" height="15"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

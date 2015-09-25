@@ -126,7 +126,7 @@
         </view>
     </objects>
     <resources>
-        <image name="close_btn.png" width="38" height="38"/>
+        <image name="close_btn.png" width="11" height="11"/>
         <image name="createnewcollection_icon.png" width="25" height="25"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

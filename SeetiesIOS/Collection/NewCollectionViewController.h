@@ -9,11 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "TPKeyboardAvoidingScrollView.h"
 #import "UrlDataClass.h"
-@interface NewCollectionViewController : UIViewController<UIScrollViewDelegate,UITextViewDelegate,UITextFieldDelegate>{
-    
+@interface NewCollectionViewController : UIViewController<UIScrollViewDelegate,UITextViewDelegate,UITextFieldDelegate>
 
-    
-    
-}
+-(void)initData:(PostModel*)model;
+
 
 @end

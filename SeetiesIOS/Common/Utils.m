@@ -295,7 +295,6 @@
         {
             jsonString = [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
             
-            NSLog(@"JSON: %@", jsonString);
         }
     }
     

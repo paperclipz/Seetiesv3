@@ -62,7 +62,7 @@
     <resources>
         <image name="BackButton2.png" width="38" height="39"/>
         <image name="map_icon.png" width="17" height="17"/>
-        <image name="more_icon.png" width="24" height="6"/>
+        <image name="more_icon.png" width="26" height="6"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

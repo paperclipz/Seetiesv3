@@ -32,6 +32,7 @@
 
 }
 @property (weak, nonatomic) IBOutlet UISwitch *ibSwitch;
+@property (strong, nonatomic)CollectionModel* collectionsModel;
 
 @end
 
@@ -80,6 +81,13 @@
     [self initSelfView];
     
 }
+
+-(void)initData:(CollectionModel*)model
+{
+    self.collectionsModel = model;
+    
+}
+
 - (UIStatusBarStyle) preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
@@ -192,7 +200,6 @@
     
 }
 
-
 -(void)requestServerForUpdateCollection{
     
     if ([TagsField.text isEqualToString:@""]) {
@@ -215,7 +222,5 @@
     } errorBlock:nil];
     
 }
-
-
 
 @end

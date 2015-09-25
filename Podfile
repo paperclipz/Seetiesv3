@@ -28,3 +28,4 @@ pod 'MGSwipeTableCell'
 pod 'SVPullToRefresh'
 pod 'UITextView+Placeholder'
 
+pod 'iOSBlocks/Cocoa'
