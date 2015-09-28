@@ -48,7 +48,7 @@
         
         self.manager = [CLLocationManager updateManagerWithAccuracy:50.0 locationAge:15.0 authorizationDesciption:CLLocationUpdateAuthorizationDescriptionAlways];
         
-        [self performSelector:@selector(stopLocationSearch) withObject:@"TimedOut" afterDelay:20];
+        [self performSelector:@selector(stopLocationSearch) withObject:@"TimedOut" afterDelay:5];
         [self.manager startUpdatingLocationWithUpdateBlock:^(CLLocationManager *manager, CLLocation *location, NSError *error, BOOL *stopUpdating) {
             NSLog(@"Our new location from GPS: %@", location);
             

@@ -340,16 +340,16 @@
     {
 		DoPhotoCell *cell = (DoPhotoCell *)[collectionView cellForItemAtIndexPath:indexPath];
         
-		if ((_dSelected[@(indexPath.row)] == nil) && (_nMaxCount > _dSelected.count))
+		if ((_dSelected[@(indexPath.row-1)] == nil) && (_nMaxCount > _dSelected.count))
 		{
 			// select
-			_dSelected[@(indexPath.row)] = @(_dSelected.count);
+			_dSelected[@(indexPath.row-1)] = @(_dSelected.count+1);
 			[cell setSelectMode:YES];
 		}
 		else
 		{
 			// unselect
-			[_dSelected removeObjectForKey:@(indexPath.row)];
+			[_dSelected removeObjectForKey:@(indexPath.row-1)];
 			[cell setSelectMode:NO];
 		}
         

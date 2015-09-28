@@ -438,7 +438,6 @@
     } errorBlock:^(id object) {
     }];
   
-
 }
 #pragma mark - Declaration
 -(LandingV2ViewController*)landingV2ViewController
