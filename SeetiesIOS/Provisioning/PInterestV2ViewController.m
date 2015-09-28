@@ -322,6 +322,7 @@
         [CategorySelectIDArray removeObject:TempIDN];
         if ([CategorySelectIDArray count] == 0) {
             DoneButton.enabled = NO;
+            [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Please select one category." type:TSMessageNotificationTypeError];
         }
         [BackgroundButton setBackgroundColor:[UIColor colorWithRed:232.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
         ShowTitle_.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];

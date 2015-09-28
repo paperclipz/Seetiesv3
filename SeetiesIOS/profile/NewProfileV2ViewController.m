@@ -13,7 +13,7 @@
 #import "CollectionViewController.h"
 #import "EditProfileV2ViewController.h"
 #import "ShowFollowerAndFollowingViewController.h"
-
+#import "FullImageViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "LandingV2ViewController.h"
 @interface NewProfileV2ViewController ()
@@ -52,6 +52,11 @@
     headerFrame.origin.y -= 50.0f;
     BackgroundImage.frame = headerFrame;
     [MainScroll addSubview:BackgroundImage withAcceleration:CGPointMake(0.0f, 0.5f)];
+    
+    ShowOverlayImg.image = [UIImage imageNamed:@"FeedOverlay.png"];
+    ShowOverlayImg.frame = CGRectMake(0, 0, screenWidth, 200);
+    ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
+    ShowOverlayImg.layer.masksToBounds = YES;
     
     SettingsButton.frame = CGRectMake(screenWidth - 30 - 35, 72, 19, 19);
     ShareButton.frame = CGRectMake(screenWidth - 30, 72, 17, 18);
@@ -168,6 +173,13 @@
         ShowUserProfileImage.imageURL = url_UserImage;
     }
     [AllContentView addSubview:ShowUserProfileImage];
+    
+    UIButton *ClicktoOpenUserProfileButton = [[UIButton alloc]init];
+    ClicktoOpenUserProfileButton.frame = CGRectMake(20, 0, 100, 100);
+    [ClicktoOpenUserProfileButton setTitle:@"" forState:UIControlStateNormal];
+    ClicktoOpenUserProfileButton.backgroundColor = [UIColor clearColor];
+    [ClicktoOpenUserProfileButton addTarget:self action:@selector(OpenUserProfileOnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [AllContentView addSubview:ClicktoOpenUserProfileButton];
     
     NSString *TempUsernameString = [[NSString alloc]initWithFormat:@"@%@",GetUserName];
     
@@ -307,15 +319,24 @@
         ShowLink.backgroundColor = [UIColor clearColor];
         [AllContentView addSubview:ShowLink];
         
+        UIButton *OpenLinkButton = [[UIButton alloc]init];
+        OpenLinkButton.frame = CGRectMake(30, GetHeight, screenWidth - 120, 20);
+        [OpenLinkButton setTitle:@"" forState:UIControlStateNormal];
+        [OpenLinkButton addTarget:self action:@selector(OpenUrlButton:) forControlEvents:UIControlEventTouchUpInside];
+        [AllContentView addSubview:OpenLinkButton];
+        
         GetHeight += 30;
     }
     
     NSLog(@"after about us height is ==== %d",GetHeight);
+
+    BOOL CheckShowExpand = false;
     if (CheckExpand == YES) {
         if (GetHeight > 240) {
             CheckExpand = YES;
         }else{
             CheckExpand = NO;
+            CheckShowExpand = YES;
         }
     }
     
@@ -412,17 +433,23 @@
         
         GetHeight += 1;
         
-        UIButton *CollapseButton = [[UIButton alloc]init];
-        CollapseButton.frame = CGRectMake(0, GetHeight, screenWidth, 50);
-       // [CollapseButton setTitle:@"Collapse" forState:UIControlStateNormal];
-        [CollapseButton setImage:[UIImage imageNamed:@"showmore_btn.png"] forState:UIControlStateNormal];
-        CollapseButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
-        [CollapseButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
-        CollapseButton.backgroundColor = [UIColor whiteColor];
-        [CollapseButton addTarget:self action:@selector(CollapseButton:) forControlEvents:UIControlEventTouchUpInside];
-        [AllContentView addSubview:CollapseButton];
+        if (CheckShowExpand == YES) {
+            
+        }else{
+            UIButton *CollapseButton = [[UIButton alloc]init];
+            CollapseButton.frame = CGRectMake(0, GetHeight, screenWidth, 50);
+            // [CollapseButton setTitle:@"Collapse" forState:UIControlStateNormal];
+            [CollapseButton setImage:[UIImage imageNamed:@"showmore_btn.png"] forState:UIControlStateNormal];
+            CollapseButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
+            [CollapseButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
+            CollapseButton.backgroundColor = [UIColor whiteColor];
+            [CollapseButton addTarget:self action:@selector(CollapseButton:) forControlEvents:UIControlEventTouchUpInside];
+            [AllContentView addSubview:CollapseButton];
+            
+            GetHeight += 50;
+        }
         
-        GetHeight += 50;
+
         
       }
     
@@ -1634,5 +1661,32 @@ if(actionSheet.tag == 200){
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
     NSString *Getuid = [defaults objectForKey:@"Useruid"];
     [ShowFollowerAndFollowingView GetToken:GetExpertToken GetUID:Getuid GetType:@"Follower"];
+}
+-(IBAction)OpenUserProfileOnClick:(id)sender{
+    NSLog(@"Click Full Image Button Click");
+    NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",GetProfileImg];
+    if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"null"] || [FullImagesURL1 isEqualToString:@"<null>"]) {
+    }else{
+        FullImageViewController *FullImageView = [[FullImageViewController alloc]init];
+        CATransition *transition = [CATransition animation];
+        transition.duration = 0.2;
+        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        transition.type = kCATransitionPush;
+        transition.subtype = kCATransitionFromRight;
+        [self.view.window.layer addAnimation:transition forKey:nil];
+       // [self presentViewController:FullImageView animated:NO completion:nil];
+        [self.view.window.rootViewController presentViewController:FullImageView animated:YES completion:nil];
+        [FullImageView GetImageString:GetProfileImg];
+    }
+}
+-(IBAction)OpenUrlButton:(id)sender{
+    NSLog(@"OpenUrlButton Click.");
+    if ([GetLink hasPrefix:@"http://"]) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:GetLink]];
+    } else {
+        NSString *TempString = [[NSString alloc]initWithFormat:@"http://%@",GetLink];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:TempString]];
+    }
+    
 }
 @end

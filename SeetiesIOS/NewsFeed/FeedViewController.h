@@ -41,6 +41,7 @@
     NSMutableArray *arrImageWidth;
     NSMutableArray *arrImageHeight;
     NSMutableArray *arrlike;
+    NSMutableArray *arrCollect;
     
     NSMutableArray *User_IDArray;
     NSMutableArray *User_ProfileImageArray;
@@ -96,6 +97,7 @@
     //send like data
     NSString *SendLikePostID;
     NSString *CheckLike;
+    NSString *CheckCollect;
     NSString *GetPostID;
 }
 -(IBAction)TryAgainButton:(id)sender;

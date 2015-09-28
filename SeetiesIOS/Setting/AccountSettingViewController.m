@@ -226,6 +226,20 @@
 -(IBAction)SelectPrimaryButton:(id)sender{
     Language_PickerView.hidden = YES;
     Toolbar.hidden = YES;
+    
+    [LanguageIDArray removeAllObjects];
+    [LanguageArray removeAllObjects];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *LanguageID_Array = [defaults objectForKey:@"LanguageData_ID"];
+    NSMutableArray *LanguageName_Array = [defaults objectForKey:@"LanguageData_Name"];
+    
+    LanguageIDArray = [[NSMutableArray alloc]initWithArray:LanguageID_Array];
+    LanguageArray = [[NSMutableArray alloc]initWithArray:LanguageName_Array];
+    
+    [LanguageArray removeObject:ShowSecondary.text];
+    [LanguageIDArray removeObject:GetLanguage2_ID];
+    [Language_PickerView reloadAllComponents];
 
     [Emailfield resignFirstResponder];
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
@@ -248,6 +262,20 @@
 -(IBAction)SelectSecondaryButton:(id)sender{
     Language_PickerView.hidden = YES;
     Toolbar.hidden = YES;
+    
+    [LanguageID2Array removeAllObjects];
+    [Language2Array removeAllObjects];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *LanguageID_Array = [defaults objectForKey:@"LanguageData_ID"];
+    NSMutableArray *LanguageName_Array = [defaults objectForKey:@"LanguageData_Name"];
+    
+    LanguageID2Array = [[NSMutableArray alloc]initWithArray:LanguageID_Array];
+    Language2Array = [[NSMutableArray alloc]initWithArray:LanguageName_Array];
+    
+    [Language2Array removeObject:ShowPrimary.text];
+    [LanguageID2Array removeObject:GetLanguage1_ID];
+    [Language_PickerView reloadAllComponents];
 
     [Emailfield resignFirstResponder];
     

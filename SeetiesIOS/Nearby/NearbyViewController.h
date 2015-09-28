@@ -24,6 +24,7 @@
     NSString *GetLongData;
     
     NSURLConnection *theConnection_Nearby;
+    NSURLConnection *theConnection_QuickCollect;
     
     NSInteger TotalPage;
     NSInteger CurrentPage;
@@ -46,6 +47,10 @@
     NSMutableArray *TotalCommentArray;
     NSMutableArray *TotalLikeArray;
     NSMutableArray *SelfCheckLikeArray;
+    NSMutableArray *arrCollect;
+    
+    NSString *CheckCollect;
+    NSString *GetPostID;
 }
 -(void)Getlat:(NSString *)lat GetLong:(NSString *)Long;
 @end

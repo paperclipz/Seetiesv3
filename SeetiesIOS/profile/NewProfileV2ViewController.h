@@ -18,6 +18,7 @@
 
     IBOutlet A3ParallaxScrollView *MainScroll;
     IBOutlet AsyncImageView *BackgroundImage;
+    IBOutlet UIImageView *ShowOverlayImg;
     IBOutlet UIView *AllContentView;
     
     int GetHeight;

@@ -31,6 +31,25 @@
     BackButton.frame = CGRectMake(5, 20, 50, 50);
     
     [self.view addSubview:ShowImageCount];
+    
+    
+    UISwipeGestureRecognizer *swipeRight =[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeRight:)];
+    swipeRight.direction=UISwipeGestureRecognizerDirectionDown;
+    [MImageScroll addGestureRecognizer:swipeRight];
+}
+-(void)swipeRight:(UISwipeGestureRecognizer*)gestureRecognizer
+{
+    //    //Do what you want here
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.2;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromLeft;
+    [self.view.window.layer addAnimation:transition forKey:nil];
+    //[self presentViewController:ListingDetail animated:NO completion:nil];
+    [self dismissViewControllerAnimated:NO completion:nil];
+    
+   // [self.navigationController popToRootViewControllerAnimated:YES];
 }
 - (void)viewWillAppear:(BOOL)animated
 {

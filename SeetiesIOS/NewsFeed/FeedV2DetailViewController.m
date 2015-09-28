@@ -95,11 +95,11 @@
     shareFBButton.frame = CGRectMake(120, 1, 50, 60);
     
     
-    [AllCollectButton setImage:[UIImage imageNamed:@"collect_btn.png"] forState:UIControlStateNormal];
+    [AllCollectButton setImage:[UIImage imageNamed:@"CollectBtn.png"] forState:UIControlStateNormal];
     [AllCollectButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
     [AllCollectButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
     AllCollectButton.backgroundColor = [UIColor clearColor];
-    AllCollectButton.frame = CGRectMake(screenWidth - 20 - 113, 14, 113, 37);
+    AllCollectButton.frame = CGRectMake(screenWidth - 20 - 113, 8, 140, 50);
     
     QuickCollectButton.frame = CGRectMake(screenWidth - 20 - 60, 14, 60, 37);
 
@@ -144,16 +144,6 @@
         }
         
         if (CheckLoadDone == NO) {
-//            CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-//            CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-            
-//            spinnerView = [[LLARingSpinnerView alloc] initWithFrame:CGRectZero];
-//            spinnerView.frame = CGRectMake((screenWidth/2) - 30, (screenHeight/2) - 30, 60, 60);
-//            spinnerView.tintColor = [UIColor colorWithRed:51.f/255 green:181.f/255 blue:229.f/255 alpha:1];
-//            // self.spinnerView.center = CGPointMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds));
-//            spinnerView.lineWidth = 1.0f;
-//            [self.view addSubview:spinnerView];
-//            [spinnerView startAnimating];
             [ShowActivity startAnimating];
         }
         
@@ -178,16 +168,6 @@
         CheckClickCount = 0;
         
         if (CheckLoadDone == NO) {
-//            CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-//            CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-//            
-//            spinnerView = [[LLARingSpinnerView alloc] initWithFrame:CGRectZero];
-//            spinnerView.frame = CGRectMake((screenWidth/2) - 30, (screenHeight/2) - 30, 60, 60);
-//            spinnerView.tintColor = [UIColor colorWithRed:51.f/255 green:181.f/255 blue:229.f/255 alpha:1];
-//            // self.spinnerView.center = CGPointMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds));
-//            spinnerView.lineWidth = 1.0f;
-//            [self.view addSubview:spinnerView];
-//            [spinnerView startAnimating];
             [ShowActivity startAnimating];
         }
         
@@ -419,6 +399,7 @@
                 TotalLikeCount = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"total_like"]];
                 GetPostTime = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"updated_at"]];
                 GetLikeCheck = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"like"]];
+                GetCollectCheck = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"like"]];
                 PhotoCount = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"photos_count"]];
                 ViewCountString = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"view_count"]];
                 TotalCollectionCount = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"collection_count"]];
@@ -439,6 +420,13 @@
                     [LikeButton setImage:[UIImage imageNamed:@"PostLikeRed.png"] forState:UIControlStateNormal];
                    // [LikeButton setTitle:CustomLocalisedString(@"Likes", nil) forState:UIControlStateNormal];
                     [LikeButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+                }
+                
+                if ([GetCollectCheck isEqualToString:@"0"]) {
+                    [AllCollectButton setImage:[UIImage imageNamed:@"CollectBtn.png"] forState:UIControlStateNormal];
+                    [AllCollectButton setImage:[UIImage imageNamed:@"CollectedBtn.png"] forState:UIControlStateSelected];
+                }else{
+                    [AllCollectButton setImage:[UIImage imageNamed:@"CollectedBtn.png"] forState:UIControlStateNormal];
                 }
                 
                 NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
@@ -1182,6 +1170,9 @@
             [self.view.window.layer addAnimation:transition forKey:nil];
             //[self presentViewController:ListingDetail animated:NO completion:nil];
             [self dismissViewControllerAnimated:NO completion:nil];
+            
+            [self.navigationController popToRootViewControllerAnimated:YES];
+
         }
     }else if(connection == theConnection_QuickCollect){
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
@@ -1553,7 +1544,7 @@
     UILabel *ShowAddress = [[UILabel alloc]init];
     ShowAddress.frame = CGRectMake(35, GetHeightCheck, screenWidth - 150, 20);
     //ShowAddress.frame = CGRectMake(30, 210 + 3 + heightcheck + i, screenWidth - 150, 20);
-    ShowAddress.text = @"Pantai Puteri";
+    ShowAddress.text = GetPlaceName;
     ShowAddress.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
     ShowAddress.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
     ShowAddress.backgroundColor = [UIColor clearColor];
@@ -2533,18 +2524,16 @@
     TestingUse = NO;
     CheckLoadDone = NO;
     CheckClickCount = 0;
-    
+    [CommentIDArray removeAllObjects];
+    [MessageArray removeAllObjects];
+    [PostIDArray removeAllObjects];
+    [User_Comment_uidArray removeAllObjects];
+    [User_Comment_nameArray removeAllObjects];
+    [User_Comment_usernameArray removeAllObjects];
+    [User_Comment_photoArray removeAllObjects];
+
+
     if (CheckLoadDone == NO) {
-//        CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-//        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-//        
-//        spinnerView = [[LLARingSpinnerView alloc] initWithFrame:CGRectZero];
-//        spinnerView.frame = CGRectMake((screenWidth/2) - 30, (screenHeight/2) - 30, 60, 60);
-//        spinnerView.tintColor = [UIColor colorWithRed:51.f/255 green:181.f/255 blue:229.f/255 alpha:1];
-//        // self.spinnerView.center = CGPointMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds));
-//        spinnerView.lineWidth = 1.0f;
-//        [self.view addSubview:spinnerView];
-//        [spinnerView startAnimating];
         [ShowActivity startAnimating];
     }
     
@@ -2557,123 +2546,7 @@
     NearByRecommtationViewController *NearByRecommtationView = [[NearByRecommtationViewController alloc]init];
     [self presentViewController:NearByRecommtationView animated:YES completion:nil];
     [NearByRecommtationView GetLPhoto:PhotoArray_Nearby GetPostID:PostIDArray_Nearby GetPlaceName:PlaceNameArray_Nearby GetUserInfoUrl:UserInfo_UrlArray_Nearby GetUserInfoName:UserInfo_NameArray_Nearby GetTitle:TitleArray_Nearby GetMessage:MessageArray_Nearby GetDistance:DistanceArray_Nearby GetSearchDisplayName:SearchDisplayNameArray_Nearby GetTotalComment:TotalCommentArray_Nearby GetTotalLike:TotalLikeArray_Nearby GetSelfCheckLike:SelfCheckLikeArray_Nearby];
-    
-    
-//    SeeAllButton_Nearby.hidden = YES;
-//    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-//    
-//    int TestWidth = screenWidth - 60;
-//    //    NSLog(@"TestWidth is %i",TestWidth);
-//    int FinalWidth = TestWidth / 2;
-//    
-//    int TitleHeight = 0;
-//    
-//    NSString *TempImage = [[NSString alloc]initWithFormat:@"%@",[PhotoArray_Nearby lastObject]];
-//    NSArray *SplitArray = [TempImage componentsSeparatedByString:@","];
-//    AsyncImageView *ShowImage_Nearby = [[AsyncImageView alloc]init];
-//    ShowImage_Nearby.frame = CGRectMake(20, GetFinalHeight, FinalWidth, FinalWidth);
-//    ShowImage_Nearby.contentMode = UIViewContentModeScaleAspectFill;
-//    ShowImage_Nearby.layer.masksToBounds = YES;
-//    [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage_Nearby];
-//    NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[SplitArray objectAtIndex:0]];
-//    if ([FullImagesURL_First length] == 0) {
-//        ShowImage_Nearby.image = [UIImage imageNamed:@"NoImage.png"];
-//    }else{
-//        NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL_First];
-//        ShowImage_Nearby.imageURL = url_NearbySmall;
-//    }
-//    [MainScroll addSubview:ShowImage_Nearby];
-//    
-//    UIImageView *ShowPin = [[UIImageView alloc]init];
-//    ShowPin.image = [UIImage imageNamed:@"FeedPin.png"];
-//    ShowPin.frame = CGRectMake(20, GetFinalHeight + FinalWidth + 15, 8, 11);
-//    [MainScroll addSubview:ShowPin];
-//    
-//    UILabel *ShowAddress = [[UILabel alloc]init];
-//    ShowAddress.frame = CGRectMake(35, GetFinalHeight + FinalWidth + 10, FinalWidth - 15, 20);
-//    ShowAddress.text = [PlaceNameArray_Nearby lastObject];
-//    ShowAddress.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
-//    ShowAddress.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
-//    ShowAddress.backgroundColor = [UIColor clearColor];
-//    [MainScroll addSubview:ShowAddress];
-//    
-//    NSString *TempGetStirng = [[NSString alloc]initWithFormat:@"%@",[TitleArray_Nearby lastObject]];
-//    if ([TempGetStirng length] == 0 || [TempGetStirng isEqualToString:@""] || [TempGetStirng isEqualToString:@"(null)"]) {
-//        //  GetFinalHeight += 0 + (i % 2) * (FinalWidth + 40);
-//        TitleHeight = 0;
-//    }else{
-//        UILabel *ShowNearbyTitle = [[UILabel alloc]init];
-//        ShowNearbyTitle.frame = CGRectMake(20, GetFinalHeight + FinalWidth + 30, FinalWidth, 40);
-//        ShowNearbyTitle.text = TempGetStirng;
-//        ShowNearbyTitle.backgroundColor = [UIColor clearColor];
-//        ShowNearbyTitle.numberOfLines = 0;
-//        ShowNearbyTitle.textAlignment = NSTextAlignmentLeft;
-//        ShowNearbyTitle.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-//        ShowNearbyTitle.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:15];
-//        [MainScroll addSubview:ShowNearbyTitle];
-//        
-//        if([ShowNearbyTitle sizeThatFits:CGSizeMake(FinalWidth, CGFLOAT_MAX)].height!=ShowNearbyTitle.frame.size.height)
-//        {
-//            ShowNearbyTitle.frame = CGRectMake(20, GetFinalHeight + FinalWidth + 30, FinalWidth,[ShowNearbyTitle sizeThatFits:CGSizeMake(FinalWidth, CGFLOAT_MAX)].height);
-//        }
-//        if (TitleHeight > ShowNearbyTitle.frame.size.height) {
-//            TitleHeight = ShowNearbyTitle.frame.size.height;
-//        }else{
-//            TitleHeight = ShowNearbyTitle.frame.size.height;
-//        }
-//        // heightcheck += ShowNearbyTitle.frame.size.height + 10;
-//        
-//    }
-//    
-//    AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
-//    ShowUserProfileImage.frame = CGRectMake(20,  GetFinalHeight + FinalWidth + 40 + TitleHeight , 30, 30);
-//    ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
-//    ShowUserProfileImage.image = [UIImage imageNamed:@"avatar.png"];
-//    ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
-//    ShowUserProfileImage.layer.cornerRadius = 15;
-//    ShowUserProfileImage.layer.borderWidth=0;
-//    ShowUserProfileImage.layer.masksToBounds = YES;
-//    ShowUserProfileImage.layer.borderColor=[[UIColor whiteColor] CGColor];
-//    [MainScroll addSubview:ShowUserProfileImage];
-//    [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
-//    NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[UserInfo_UrlArray_Nearby lastObject]];
-//    if ([FullImagesURL length] == 0) {
-//        ShowUserProfileImage.image = [UIImage imageNamed:@"avatar.png"];
-//    }else{
-//        NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL];
-//        //NSLog(@"url is %@",url);
-//        ShowUserProfileImage.imageURL = url_NearbySmall;
-//    }
-//    
-//    
-//    UIButton *OpenProfileButton = [[UIButton alloc]initWithFrame:CGRectMake(20,  GetFinalHeight + FinalWidth + 40 + TitleHeight , FinalWidth, 30)];
-//    [OpenProfileButton setTitle:@"" forState:UIControlStateNormal];
-//    OpenProfileButton.backgroundColor = [UIColor clearColor];
-//    [OpenProfileButton addTarget:self action:@selector(OpenProfileButton4:) forControlEvents:UIControlEventTouchUpInside];
-//    [MainScroll addSubview:OpenProfileButton];
-//    
-//    UILabel *ShowUserName = [[UILabel alloc]init];
-//    ShowUserName.frame = CGRectMake(60, GetFinalHeight + FinalWidth + 40 + TitleHeight, FinalWidth - 40, 30);
-//    ShowUserName.text = [UserInfo_NameArray_Nearby lastObject];
-//    ShowUserName.backgroundColor = [UIColor clearColor];
-//    ShowUserName.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-//    ShowUserName.textAlignment = NSTextAlignmentLeft;
-//    ShowUserName.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:15];
-//    [MainScroll addSubview:ShowUserName];
-//    
-//    UIButton *SelectButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    SelectButton.frame = CGRectMake(20, GetFinalHeight, FinalWidth, FinalWidth + 20 + TitleHeight);
-//    [SelectButton setTitle:@"" forState:UIControlStateNormal];
-//   // SelectButton.tag = i;
-//    [SelectButton setBackgroundColor:[UIColor clearColor]];
-//    [SelectButton addTarget:self action:@selector(SelectButton2:) forControlEvents:UIControlEventTouchUpInside];
-//    [MainScroll addSubview:SelectButton];
-//    
-//    
-//    GetFinalHeight += FinalWidth + TitleHeight + 50 + 40;
-//    
-//    
-//    MainScroll.contentSize = CGSizeMake(screenWidth, GetFinalHeight);
+
 }
 -(IBAction)SelectButton2:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
@@ -2699,17 +2572,16 @@
     CheckLoadDone = NO;
     CheckClickCount = 0;
     
+    [CommentIDArray removeAllObjects];
+    [MessageArray removeAllObjects];
+    [PostIDArray removeAllObjects];
+    [User_Comment_uidArray removeAllObjects];
+    [User_Comment_nameArray removeAllObjects];
+    [User_Comment_usernameArray removeAllObjects];
+    [User_Comment_photoArray removeAllObjects];
+    
     if (CheckLoadDone == NO) {
-//        CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-//        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-//        
-//        spinnerView = [[LLARingSpinnerView alloc] initWithFrame:CGRectZero];
-//        spinnerView.frame = CGRectMake((screenWidth/2) - 30, (screenHeight/2) - 30, 60, 60);
-//        spinnerView.tintColor = [UIColor colorWithRed:51.f/255 green:181.f/255 blue:229.f/255 alpha:1];
-//        // self.spinnerView.center = CGPointMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds));
-//        spinnerView.lineWidth = 1.0f;
-//        [self.view addSubview:spinnerView];
-//        [spinnerView startAnimating];
+
         [ShowActivity startAnimating];
     }
     
@@ -2722,15 +2594,6 @@
     if ([GetUsername isEqualToString:GetPostName]) {
         NSLog(@"user is self. open profile");
     }else{
-//        UserProfileV2ViewController *ExpertsUserProfileView = [[UserProfileV2ViewController alloc]init];
-//        CATransition *transition = [CATransition animation];
-//        transition.duration = 0.2;
-//        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//        transition.type = kCATransitionPush;
-//        transition.subtype = kCATransitionFromRight;
-//        [self.view.window.layer addAnimation:transition forKey:nil];
-//        [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
-//        [ExpertsUserProfileView GetUsername:GetPostName];
         NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
         [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
         [NewUserProfileV2View GetUserName:GetPostName];
@@ -3835,7 +3698,17 @@
 }
 -(IBAction)CollectButtonOnClick:(id)sender{
     NSLog(@"Quick CollectButtonOnClick");
-    [self SendQuickCollect];
+    
+    
+    if ([GetCollectCheck isEqualToString:@"0"]) {
+        AllCollectButton.selected = !AllCollectButton.selected;
+        GetCollectCheck = @"1";
+        [self SendQuickCollect];
+    }else{
+        AddCollectionDataViewController *AddCollectionDataView = [[AddCollectionDataViewController alloc]init];
+        [self.view.window.rootViewController presentViewController:AddCollectionDataView animated:YES completion:nil];
+        [AddCollectionDataView GetPostID:GetPostID GetImageData:[UrlArray objectAtIndex:0]];
+    }
     
 }
 -(void)SendQuickCollect{

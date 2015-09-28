@@ -14,6 +14,7 @@
 #import "LanguageManager.h"
 #import "Locale.h"
 #import "NSString+ChangeAsciiString.h"
+#import "Filter2ViewController.h"
 @interface SearchDetailViewController ()<CLLocationManagerDelegate>
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;
@@ -115,14 +116,14 @@
    // ShowTitle.text = String;
 }
 -(IBAction)BackButton:(id)sender{
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromLeft;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    //[self presentViewController:ListingDetail animated:NO completion:nil];
-    [self dismissViewControllerAnimated:NO completion:nil];
+//    CATransition *transition = [CATransition animation];
+//    transition.duration = 0.2;
+//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    transition.type = kCATransitionPush;
+//    transition.subtype = kCATransitionFromLeft;
+//    [self.view.window.layer addAnimation:transition forKey:nil];
+//    //[self presentViewController:ListingDetail animated:NO completion:nil];
+//    [self dismissViewControllerAnimated:NO completion:nil];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 -(void)GetSearchKeyword:(NSString *)Keyword Getlat:(NSString *)lat GetLong:(NSString *)Long GetLocationName:(NSString *)LocationName{
@@ -1362,5 +1363,10 @@
     } else {
         
     }
+}
+-(IBAction)FilterButtonOnClick:(id)sender{
+    Filter2ViewController *FilterView = [[Filter2ViewController alloc]init];
+    [self.view.window.rootViewController presentViewController:FilterView animated:YES completion:nil];
+    [FilterView GetWhatViewComeHere:@"Search"];
 }
 @end

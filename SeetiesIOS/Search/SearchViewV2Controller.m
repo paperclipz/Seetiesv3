@@ -88,7 +88,7 @@
         SearchScroll.hidden = YES;
     }else{
         NSLog(@"auto key in ???");
-        if ([searchText length] > 2) {
+        if ([searchText length] > 1) {
             GetSearchText = searchText;
             [self GetSearchText];
         }
@@ -319,6 +319,9 @@
                 NSLog(@"GetReturnSearchAddressArray is %@",GetReturnSearchAddressArray);
                 
                 GetSearchArray = [[NSMutableArray alloc]initWithArray:GetStringData];
+                if ([GetSearchArray count] == 0) {
+                    [GetSearchArray addObject:GetSearchText];
+                }
                 //        [LocalSuggestionTextArray removeAllObjects];
                 //
                 //        LocalSuggestionTextArray = [[NSMutableArray alloc]initWithArray:GetStringData];
@@ -458,7 +461,7 @@
 -(IBAction)SearchTextOnlyButtonOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"SearchTextOnlyButtonOnClick button %li",(long)getbuttonIDN);
-    GetSearchText = [GetReturnSearchTextArray objectAtIndex:getbuttonIDN];
+    GetSearchText = [GetSearchArray objectAtIndex:getbuttonIDN];
     
     SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
 //    CATransition *transition = [CATransition animation];
@@ -469,7 +472,7 @@
 //    [self.view.window.layer addAnimation:transition forKey:nil];
 //    [self presentViewController:SearchDetailView animated:NO completion:nil];
     [self.navigationController pushViewController:SearchDetailView animated:YES];
-    [SearchDetailView GetSearchKeyword:[GetReturnSearchTextArray objectAtIndex:getbuttonIDN] Getlat:@"" GetLong:@"" GetLocationName:@""];
+    [SearchDetailView GetSearchKeyword:[GetSearchArray objectAtIndex:getbuttonIDN] Getlat:@"" GetLong:@"" GetLocationName:@""];
    // [SearchDetailView GetTitle:GetSearchText];
     mySearchBar.text = GetSearchText;
 }
