@@ -182,7 +182,7 @@
         fullURL = [self getFullURLwithType:type];
     }
     
-    SLog(@"Request Server : %@ \n\n request Json : %@",fullURL,[dict bv_jsonStringWithPrettyPrint:YES]);
+    //SLog(@"Request Server : %@ \n\n request Json : %@",fullURL,[dict bv_jsonStringWithPrettyPrint:YES]);
     
 
     [self.manager GET:fullURL parameters:dict
@@ -358,11 +358,11 @@
             break;
             
         case ServerRequestTypeGetLanguage:
-            str =  @"/v1.3/system/languages";
+            str =  @"/v2.0/system/languages";
             break;
             
         case ServerRequestTypeGetApiVersion:
-            str = @"v1.3/system/apiversion?device_type=2";
+            str = @"v2.0/system/apiversion?device_type=2";
             break;
         case ServerRequestTypeGetExplore:
             str = @"v2.0/explore";
@@ -418,8 +418,7 @@
             break;
             
         case ServerRequestTypeGetExplore:
-            
-            SLog(@"response explore : %@",[obj JSONString]);
+        
             self.dataManager.exploreCountryModels = [[ExploreCountryModels alloc]initWithDictionary:obj error:nil];
             break;
             

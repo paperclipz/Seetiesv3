@@ -1421,7 +1421,7 @@
                 SuggestedScrollview.pagingEnabled = YES;
                 [SuggestedScrollview setShowsHorizontalScrollIndicator:NO];
                 [SuggestedScrollview setShowsVerticalScrollIndicator:NO];
-                SuggestedScrollview.tag = 1000 + i;
+                SuggestedScrollview.tag = 1000;
                 [MainScroll addSubview:SuggestedScrollview];
                 
                 UILabel *ShowSuggestedText = [[UILabel alloc]init];
@@ -1446,7 +1446,7 @@
                 
                 SuggestedpageControl = [[UIPageControl alloc] init];
                 SuggestedpageControl.frame = CGRectMake(0,heightcheck + 390,screenWidth,30);
-                SuggestedpageControl.numberOfPages = 3;
+                SuggestedpageControl.numberOfPages = [SplitArray_Title count];
                 SuggestedpageControl.currentPage = 0;
                 SuggestedpageControl.pageIndicatorTintColor = [UIColor darkGrayColor];
                 SuggestedpageControl.currentPageIndicatorTintColor = [UIColor orangeColor];
@@ -1741,7 +1741,7 @@
                 SUserScrollview.pagingEnabled = YES;
                 [SUserScrollview setShowsHorizontalScrollIndicator:NO];
                 [SUserScrollview setShowsVerticalScrollIndicator:NO];
-                SUserScrollview.tag = 100 + i;
+                SUserScrollview.tag = 2000;
                 [MainScroll addSubview:SUserScrollview];
                 
                 UILabel *ShowSuggestedText = [[UILabel alloc]init];
@@ -1909,7 +1909,7 @@
                 SUserScrollview.pagingEnabled = YES;
                 [SUserScrollview setShowsHorizontalScrollIndicator:NO];
                 [SUserScrollview setShowsVerticalScrollIndicator:NO];
-                SUserScrollview.tag = 5000 + i;
+                SUserScrollview.tag = 2100;
                 [MainScroll addSubview:SUserScrollview];
                 
                 UILabel *ShowSuggestedText = [[UILabel alloc]init];
@@ -2043,33 +2043,9 @@
                 SuggestedScrollview.pagingEnabled = YES;
                 [SuggestedScrollview setShowsHorizontalScrollIndicator:NO];
                 [SuggestedScrollview setShowsVerticalScrollIndicator:NO];
+                SuggestedScrollview.tag = 1100;
                 [MainScroll addSubview:SuggestedScrollview];
                 
-                UILabel *ShowSuggestedText = [[UILabel alloc]init];
-                ShowSuggestedText.frame = CGRectMake(20, heightcheck, 200, 50);
-                ShowSuggestedText.text = @"Local Deals";
-                ShowSuggestedText.backgroundColor = [UIColor clearColor];
-                ShowSuggestedText.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
-                ShowSuggestedText.textAlignment = NSTextAlignmentLeft;
-                ShowSuggestedText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-                [MainScroll addSubview:ShowSuggestedText];
-                
-                ShowSuggestedCount = [[UILabel alloc]init];
-                ShowSuggestedCount.frame = CGRectMake(screenWidth - 220, heightcheck, 200, 50);
-                ShowSuggestedCount.text = @"1/3";
-                ShowSuggestedCount.backgroundColor = [UIColor clearColor];
-                ShowSuggestedCount.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
-                ShowSuggestedCount.textAlignment = NSTextAlignmentRight;
-                ShowSuggestedCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-                [MainScroll addSubview:ShowSuggestedCount];
-                
-                SuggestedpageControl = [[UIPageControl alloc] init];
-                SuggestedpageControl.frame = CGRectMake(0,heightcheck + 390,screenWidth,30);
-                SuggestedpageControl.numberOfPages = 3;
-                SuggestedpageControl.currentPage = 0;
-                SuggestedpageControl.pageIndicatorTintColor = [UIColor darkGrayColor];
-                SuggestedpageControl.currentPageIndicatorTintColor = [UIColor orangeColor];
-                [MainScroll addSubview:SuggestedpageControl];
                 
                 NSString *TempUsername = [[NSString alloc]initWithFormat:@"%@",[arrUserName objectAtIndex:i]];
                 NSArray *SplitArray_username = [TempUsername componentsSeparatedByString:@","];
@@ -2089,6 +2065,36 @@
                 NSString *TempId = [[NSString alloc]initWithFormat:@"%@",[arrPostID objectAtIndex:i]];
                 NSArray *SplitArray_Id = [TempId componentsSeparatedByString:@","];
                 arrDealID = [[NSMutableArray alloc]initWithArray:SplitArray_Id];
+                
+                UILabel *ShowSuggestedText = [[UILabel alloc]init];
+                ShowSuggestedText.frame = CGRectMake(20, heightcheck, 200, 50);
+                ShowSuggestedText.text = @"Local Deals";
+                ShowSuggestedText.backgroundColor = [UIColor clearColor];
+                ShowSuggestedText.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
+                ShowSuggestedText.textAlignment = NSTextAlignmentLeft;
+                ShowSuggestedText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+                [MainScroll addSubview:ShowSuggestedText];
+                
+                NSString *TempString = [[NSString alloc]initWithFormat:@"1/%lu",(unsigned long)[SplitArray_Id count]];
+                
+                ShowSuggestedCount = [[UILabel alloc]init];
+                ShowSuggestedCount.frame = CGRectMake(screenWidth - 220, heightcheck, 200, 50);
+                ShowSuggestedCount.text = TempString;
+                ShowSuggestedCount.backgroundColor = [UIColor clearColor];
+                ShowSuggestedCount.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
+                ShowSuggestedCount.textAlignment = NSTextAlignmentRight;
+                ShowSuggestedCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+                [MainScroll addSubview:ShowSuggestedCount];
+                
+                SuggestedpageControl = [[UIPageControl alloc] init];
+                SuggestedpageControl.frame = CGRectMake(0,heightcheck + 390,screenWidth,30);
+                SuggestedpageControl.numberOfPages = [SplitArray_Id count];
+                SuggestedpageControl.currentPage = 0;
+                SuggestedpageControl.pageIndicatorTintColor = [UIColor darkGrayColor];
+                SuggestedpageControl.currentPageIndicatorTintColor = [UIColor orangeColor];
+                [MainScroll addSubview:SuggestedpageControl];
+                
+
                 
                 for (int i = 0; i < [SplitArray_username count]; i++) {
                     UIButton *TempButton = [[UIButton alloc]init];
@@ -2352,21 +2358,45 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
     if (scrollView == SuggestedScrollview) {
-        CGFloat pageWidth = SuggestedScrollview.frame.size.width; // you need to have a **iVar** with getter for scrollView
-        float fractionalPage = SuggestedScrollview.contentOffset.x / pageWidth;
-        NSInteger page = lround(fractionalPage);
-        SuggestedpageControl.currentPage = page; // you need to have a **iVar** with getter for pageControl
         
-        NSString *TempCount = [[NSString alloc]initWithFormat:@"%li/3",page + 1];
-        ShowSuggestedCount.text = TempCount;
+        if (SuggestedScrollview.tag == 1000) {
+            CGFloat pageWidth = SuggestedScrollview.frame.size.width; // you need to have a **iVar** with getter for scrollView
+            float fractionalPage = SuggestedScrollview.contentOffset.x / pageWidth;
+            NSInteger page = lround(fractionalPage);
+            SuggestedpageControl.currentPage = page; // you need to have a **iVar** with getter for pageControl
+            
+            NSString *TempCount = [[NSString alloc]initWithFormat:@"%li/%lu",page + 1,(unsigned long)[arrAboadID count]];
+            ShowSuggestedCount.text = TempCount;
+        }else{
+            CGFloat pageWidth = SuggestedScrollview.frame.size.width; // you need to have a **iVar** with getter for scrollView
+            float fractionalPage = SuggestedScrollview.contentOffset.x / pageWidth;
+            NSInteger page = lround(fractionalPage);
+            SuggestedpageControl.currentPage = page; // you need to have a **iVar** with getter for pageControl
+            
+            NSString *TempCount = [[NSString alloc]initWithFormat:@"%li/%lu",page + 1,(unsigned long)[arrDealID count]];
+            ShowSuggestedCount.text = TempCount;
+        }
+        
+
     }else{
-        CGFloat pageWidth = SUserScrollview.frame.size.width; // you need to have a **iVar** with getter for scrollView
-        float fractionalPage = SUserScrollview.contentOffset.x / pageWidth;
-        NSInteger page = lround(fractionalPage);
-        SUserpageControl.currentPage = page; // you need to have a **iVar** with getter for pageControl
-        
-        NSString *TempCount = [[NSString alloc]initWithFormat:@"%li/3",page + 1];
-        ShowSUserCount.text = TempCount;
+        if (SUserScrollview.tag == 2000) {
+            CGFloat pageWidth = SUserScrollview.frame.size.width; // you need to have a **iVar** with getter for scrollView
+            float fractionalPage = SUserScrollview.contentOffset.x / pageWidth;
+            NSInteger page = lround(fractionalPage);
+            SUserpageControl.currentPage = page; // you need to have a **iVar** with getter for pageControl
+            
+            NSString *TempCount = [[NSString alloc]initWithFormat:@"%li/%lu",page + 1,(unsigned long)[arrfeaturedUserName count]];
+            ShowSUserCount.text = TempCount;
+        }else{
+            CGFloat pageWidth = SUserScrollview.frame.size.width; // you need to have a **iVar** with getter for scrollView
+            float fractionalPage = SUserScrollview.contentOffset.x / pageWidth;
+            NSInteger page = lround(fractionalPage);
+            SUserpageControl.currentPage = page; // you need to have a **iVar** with getter for pageControl
+            
+            NSString *TempCount = [[NSString alloc]initWithFormat:@"%li/%lu",page + 1,(unsigned long)[arrFriendUserName count]];
+            ShowSUserCount.text = TempCount;
+        }
+
     }
     
 
