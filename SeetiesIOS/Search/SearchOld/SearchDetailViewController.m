@@ -15,6 +15,7 @@
 #import "Locale.h"
 #import "NSString+ChangeAsciiString.h"
 #import "Filter2ViewController.h"
+#import "AddCollectionDataViewController.h"
 @interface SearchDetailViewController ()<CLLocationManagerDelegate>
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;
@@ -75,6 +76,8 @@
     
     [SearchLocationNameArray addObject:CustomLocalisedString(@"Currentlocation",nil)];
     [SearchPlaceIDArray addObject:@"0"];
+    
+    [self SendSearchKeywordData];
 
 }
 - (void)viewWillAppear:(BOOL)animated {
@@ -84,7 +87,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetCategoryString = [defaults objectForKey:@"Filter_Search_Category"];
     if ([GetCategoryString length] == 0 || [GetCategoryString isEqualToString:@""] || [GetCategoryString isEqualToString:@"(null)"] || GetCategoryString == nil) {
-        [self SendSearchKeywordData];
+       // [self SendSearchKeywordData];
     }else{
         for (UIView *subview in MainScroll.subviews) {
             [subview removeFromSuperview];
@@ -149,7 +152,7 @@
         NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
         NSLog(@"newString is %@",newString);
         NSLog(@"found");
-        if ([newString length] > 2) {
+        if ([newString length] > 1) {
             NSLog(@"Check server");
             [self performSearch];
             //  [ShowActivity startAnimating];
@@ -402,6 +405,9 @@
             TotalCommentArray = [[NSMutableArray alloc]init];
             DataCount = 0;
             CheckFirstTimeLoad = 1;
+            UserInfo_FollowArray = [[NSMutableArray alloc]init];
+            CollectArray = [[NSMutableArray alloc]init];
+            UserInfo_IDArray = [[NSMutableArray alloc]init];
         }else{
             
         }
@@ -514,6 +520,10 @@
             [UserInfo_NameArray addObject:username];
             NSString *url = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"profile_photo"]];
             [UserInfo_UrlArray addObject:url];
+            NSString *following = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"following"]];
+            [UserInfo_FollowArray addObject:following];
+            NSString *ID_ = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"uid"]];
+            [UserInfo_IDArray addObject:ID_];
         }
 
         NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"\n(){};\"\" "];
@@ -528,6 +538,8 @@
             [TotalLikeArray addObject:total_like];
             NSString *total_comments = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"total_comments"]];
             [TotalCommentArray addObject:total_comments];
+            NSString *collect =  [NSString stringWithFormat:@"%@",[dict objectForKey:@"collect"]];
+            [CollectArray addObject:collect];
             
             NSString *photos =  [NSString stringWithFormat:@"%@",[dict objectForKey:@"photos"]];
             //  NSLog(@"photos is %@",photos);
@@ -737,6 +749,22 @@
         }
         
         
+    }else if(connection == theConnection_QuickCollect){
+        NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+        NSLog(@"Quick Collection return get data to server ===== %@",GetData);
+        
+        NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *myError = nil;
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
+        NSLog(@"Expert Json = %@",res);
+        
+        
+        NSString *statusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
+        NSLog(@"statusString is %@",statusString);
+        
+        if ([statusString isEqualToString:@"ok"]) {
+            [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success add to Collections" type:TSMessageNotificationTypeSuccess];
+        }
     }else{
             //follow data
             NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
@@ -895,7 +923,7 @@
         
         
         UILabel *TempShowTitle = [[UILabel alloc]init];
-        TempShowTitle.frame = CGRectMake(120, PostGetHeight + 60, screenWidth - 170, 20);
+        TempShowTitle.frame = CGRectMake(120, PostGetHeight + 60, screenWidth - 200, 20);
         TempShowTitle.text = [TitleArray objectAtIndex:i];
         TempShowTitle.backgroundColor = [UIColor clearColor];
         TempShowTitle.textAlignment = NSTextAlignmentLeft;
@@ -909,7 +937,7 @@
         [PostsView addSubview:ShowPin];
         
         UILabel *ShowPlaceName = [[UILabel alloc]init];
-        ShowPlaceName.frame = CGRectMake(140, PostGetHeight + 80, screenWidth - 190, 20);
+        ShowPlaceName.frame = CGRectMake(140, PostGetHeight + 80, screenWidth - 200, 20);
         ShowPlaceName.text = [place_nameArray objectAtIndex:i];
         ShowPlaceName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         ShowPlaceName.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0];
@@ -918,8 +946,8 @@
         [PostsView addSubview:ShowPlaceName];
         
         UILabel *ShowLocation = [[UILabel alloc]init];
-        ShowLocation.frame = CGRectMake(120, PostGetHeight + 100, screenWidth - 170, 20);
-        ShowLocation.text = @"Kuala Limpur . Open now";
+        ShowLocation.frame = CGRectMake(120, PostGetHeight + 100, screenWidth - 200, 20);
+        ShowLocation.text = [LocationArray objectAtIndex:i];
         ShowLocation.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowLocation.textColor = [UIColor grayColor];
         ShowLocation.textAlignment = NSTextAlignmentLeft;
@@ -933,13 +961,43 @@
         [SelectButton setBackgroundColor:[UIColor clearColor]];
         [SelectButton addTarget:self action:@selector(ProductButton:) forControlEvents:UIControlEventTouchUpInside];
         [PostsView addSubview:SelectButton];
+        
+        
+        GetPostsFollow = [[NSString alloc]initWithFormat:@"%@",[UserInfo_FollowArray objectAtIndex:i]];
+        UIButton *UserFollowButton = [[UIButton alloc]init];
+        if ([GetPostsFollow isEqualToString:@"0"]) {
+            [UserFollowButton setImage:[UIImage imageNamed:@"FollowIcon.png"] forState:UIControlStateNormal];
+            [UserFollowButton setImage:[UIImage imageNamed:@"FollowingIcon.png"] forState:UIControlStateSelected];
+        }else{
+            [UserFollowButton setImage:[UIImage imageNamed:@"FollowingIcon.png"] forState:UIControlStateNormal];
+            [UserFollowButton setImage:[UIImage imageNamed:@"FollowIcon.png"] forState:UIControlStateSelected];
+        }
+        [UserFollowButton setBackgroundColor:[UIColor clearColor]];
+        // [UserFollowButton setImage:[UIImage imageNamed:@"FollowIcon.png"] forState:UIControlStateNormal];
+        UserFollowButton.frame = CGRectMake(screenWidth - 15 - 47 - 10, PostGetHeight - 1, 47, 47);
+        UserFollowButton.tag = i;
+        [UserFollowButton addTarget:self action:@selector(PostsUserOnCLick:) forControlEvents:UIControlEventTouchUpInside];
+        [PostsView addSubview:UserFollowButton];
+        
+        
+        GetCollect = [[NSString alloc]initWithFormat:@"%@",[CollectArray objectAtIndex:i]];
 
         UIButton *CollectButton = [[UIButton alloc]init];
         [CollectButton setBackgroundColor:[UIColor clearColor]];
-        [CollectButton setImage:[UIImage imageNamed:@"collected_icon.png"] forState:UIControlStateNormal];
-        CollectButton.frame = CGRectMake(screenWidth - 15 - 25 - 10, PostGetHeight + 87, 25, 32);
+        if ([GetCollect isEqualToString:@"0"]) {
+            [CollectButton setImage:[UIImage imageNamed:@"YellowCollect.png"] forState:UIControlStateNormal];
+            [CollectButton setImage:[UIImage imageNamed:@"YellowCollected.png"] forState:UIControlStateSelected];
+        }else{
+            [CollectButton setImage:[UIImage imageNamed:@"YellowCollected.png"] forState:UIControlStateNormal];
+        }
+        [CollectButton setBackgroundColor:[UIColor clearColor]];
+        // [CollectButton setImage:[UIImage imageNamed:@"collected_icon.png"] forState:UIControlStateNormal];
+        CollectButton.frame = CGRectMake(screenWidth - 15 - 57 - 10, PostGetHeight + 67, 57, 57);
         CollectButton.tag = i;
+        [CollectButton addTarget:self action:@selector(CollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
         [PostsView addSubview:CollectButton];
+        
+        
         
         
         PostGetHeight += 160;
@@ -1311,6 +1369,29 @@
         [Experts_Followed_Array replaceObjectAtIndex:getbuttonIDN withObject:@"0"];
     }
 }
+-(IBAction)PostsUserOnCLick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSLog(@"button %li",(long)getbuttonIDN);
+    
+    UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
+    buttonWithTag1.selected = !buttonWithTag1.selected;
+    
+    GetUserID = [UserInfo_IDArray objectAtIndex:getbuttonIDN];
+    GetFollowString = [UserInfo_FollowArray objectAtIndex:getbuttonIDN];
+    
+    if ([GetFollowString isEqualToString:@"0"]) {
+        [UserInfo_FollowArray replaceObjectAtIndex:getbuttonIDN withObject:@"1"];
+        [self SendFollowingData];
+    }else{
+        NSString *tempStirng = [[NSString alloc]initWithFormat:@"%@ %@ ?",CustomLocalisedString(@"StopFollowing", nil),[UserInfo_NameArray objectAtIndex:getbuttonIDN]];
+        
+        UIAlertView *ShowAlertView = [[UIAlertView alloc]initWithTitle:@"" message:tempStirng delegate:self cancelButtonTitle:CustomLocalisedString(@"SettingsPage_Cancel", nil) otherButtonTitles:CustomLocalisedString(@"Unfollow", nil), nil];
+        ShowAlertView.tag = 1200;
+        [ShowAlertView show];
+        [UserInfo_FollowArray replaceObjectAtIndex:getbuttonIDN withObject:@"0"];
+    }
+    
+}
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(alertView.tag == 1200){
         if (buttonIndex == [alertView cancelButtonIndex]){
@@ -1368,5 +1449,54 @@
     Filter2ViewController *FilterView = [[Filter2ViewController alloc]init];
     [self.view.window.rootViewController presentViewController:FilterView animated:YES completion:nil];
     [FilterView GetWhatViewComeHere:@"Search"];
+}
+-(IBAction)CollectButtonOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    // NSLog(@"button %li",(long)getbuttonIDN);
+    NSLog(@"Quick CollectButtonOnClick");
+    GetPostsUserID = [[NSString alloc]initWithFormat:@"%@",[PostIDArray objectAtIndex:getbuttonIDN]];
+    GetCollect = [[NSString alloc]initWithFormat:@"%@",[CollectArray objectAtIndex:getbuttonIDN]];
+    
+    if ([GetCollect isEqualToString:@"0"]) {
+        [CollectArray replaceObjectAtIndex:getbuttonIDN withObject:@"1"];
+        UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
+        buttonWithTag1.selected = !buttonWithTag1.selected;
+        
+        [self SendQuickCollect];
+    }else{
+        
+        AddCollectionDataViewController *AddCollectionDataView = [[AddCollectionDataViewController alloc]init];
+        //[self presentViewController:AddCollectionDataView animated:YES completion:nil];
+        [self.view.window.rootViewController presentViewController:AddCollectionDataView animated:YES completion:nil];
+        [AddCollectionDataView GetPostID:[CollectArray objectAtIndex:getbuttonIDN] GetImageData:[LPhotoArray objectAtIndex:getbuttonIDN]];
+    }
+}
+-(void)SendQuickCollect{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *GetUseruid = [defaults objectForKey:@"Useruid"];
+    //Server Address URL
+    NSString *urlString = [NSString stringWithFormat:@"%@%@/collections/0/collect",DataUrl.UserWallpaper_Url,GetUseruid];
+    NSLog(@"Send Quick Collection urlString is %@",urlString);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"PUT"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    
+    
+    NSString *dataString = [[NSString alloc]initWithFormat:@"token=%@&posts[0][id]=%@",GetExpertToken,GetPostsUserID];
+    
+    NSData *postBodyData = [NSData dataWithBytes: [dataString UTF8String] length:[dataString length]];
+    [request setHTTPBody:postBodyData];
+    
+    theConnection_QuickCollect = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    if(theConnection_QuickCollect) {
+        //  NSLog(@"Connection Successful");
+        webData = [NSMutableData data];
+    } else {
+        
+    }
 }
 @end

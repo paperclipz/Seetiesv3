@@ -28,10 +28,14 @@
     NSMutableArray *UserInfo_NameArray;
     NSMutableArray *place_nameArray;
     NSMutableArray *LocationArray;
+    NSMutableArray *UserInfo_FollowArray;
+    NSMutableArray *UserInfo_IDArray;
+    NSMutableArray *CollectArray;
     
     NSURLConnection *theConnection_GetCountryData;
     NSURLConnection *theConnection_GetUserData;
     NSURLConnection *theConnection_Following;
+    NSURLConnection *theConnection_QuickCollect;
     
     NSMutableArray *User_IDArray;
     NSMutableArray *User_ProfileImageArray;
@@ -43,6 +47,10 @@
     
     NSString *GetUserID;
     NSString *GetFollowString;
+    
+    NSString *GetPostsFollow;
+    NSString *GetCollect;
+    NSString *GetPostsUserID;
     
     UIButton *ShowFollowButton;
     IBOutlet UIButton *SearchButton;
