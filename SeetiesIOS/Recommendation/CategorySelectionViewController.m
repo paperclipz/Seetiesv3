@@ -96,12 +96,48 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CategoryModel* model = [[[DataManager Instance]categoriesModel] categories][indexPath.row];
-    model.isSelected = !model.isSelected;
+
+    if (model.isSelected) {
+        model.isSelected = !model.isSelected;
+        
+        CategoryCollectionViewCell* cell = (CategoryCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
+        cell.ibTickImageView.hidden = !model.isSelected;
+    }
+    else{
+        if ( ![self checkExceedLimitOfSelection]) {
+            model.isSelected = !model.isSelected;
+            
+            CategoryCollectionViewCell* cell = (CategoryCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
+            cell.ibTickImageView.hidden = !model.isSelected;
+            
+        }
+        else
+        {
+            [TSMessage showNotificationInViewController:self title:@"System" subtitle:@"Exceed Number Of Categories" type:TSMessageNotificationTypeWarning duration:1.0f];
+        }
+
+    }
     
-    CategoryCollectionViewCell* cell = (CategoryCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
-    cell.ibTickImageView.hidden = !model.isSelected;
-    
+   
 }
 
+
+-(BOOL)checkExceedLimitOfSelection
+{
+    int maxCategoriesLimit = 2;
+    int counter = 0;
+    for (int i = 0; i< self.arrCategories.count; i++) {
+        CategoryModel* model = self.arrCategories[i];
+        if (model.isSelected) {
+            counter +=1;
+        }
+        
+        if (counter>=maxCategoriesLimit) {
+            return YES;
+        }
+    }
+    return false;
+
+}
 
 @end

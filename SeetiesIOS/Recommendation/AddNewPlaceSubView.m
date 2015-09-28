@@ -93,9 +93,10 @@
 -(void)initSelfView
 {
     self.txtPerPax.delegate = self;
-    
+    self.txtPerPax.text = @"0.00";
     [Utils setButtonWithBorder:self.btnCurrency];
     [Utils setButtonWithBorder:self.btnEditHours];
+    [self.txtPhoneNo setKeyboardType:UIKeyboardTypePhonePad];
 
     
 }

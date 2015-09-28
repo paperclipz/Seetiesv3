@@ -8,7 +8,8 @@
 
 #import "CommonViewController.h"
 
-@interface EditCollectionDetailViewController : CommonViewController
+
+@interface EditCollectionDetailViewController : CommonViewController<UICollectionViewDataSource,UICollectionViewDelegate>
 -(void)initData:(CollectionModel*)model;
 
 @property(nonatomic,copy)IDBlock btnDoneBlock;

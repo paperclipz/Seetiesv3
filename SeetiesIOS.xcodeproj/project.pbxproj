@@ -875,8 +875,26 @@
 		8AB76C7D1BB4FA74007DB972 /* WhiteCollect@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB76C5F1BB4FA74007DB972 /* WhiteCollect@3x.png */; };
 		8AB76C7E1BB4FA74007DB972 /* WhiteCollected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB76C601BB4FA74007DB972 /* WhiteCollected@2x.png */; };
 		8AB76C7F1BB4FA74007DB972 /* WhiteCollected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB76C611BB4FA74007DB972 /* WhiteCollected@3x.png */; };
-		8AB76C831BB50C43007DB972 /* ZFTokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB76C821BB50C43007DB972 /* ZFTokenField.m */; };
-		8AB76C851BB50E11007DB972 /* TokenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AB76C841BB50E11007DB972 /* TokenView.xib */; };
+		8AB76C891BB529BB007DB972 /* EditTagCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB76C871BB529BB007DB972 /* EditTagCollectionViewCell.m */; };
+		8AB76C8A1BB529BB007DB972 /* EditTagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AB76C881BB529BB007DB972 /* EditTagCollectionViewCell.xib */; };
+		8AB76CF41BB54A10007DB972 /* ZFTokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB76CF31BB54A10007DB972 /* ZFTokenField.m */; };
+		8AB76CF91BB8ED55007DB972 /* ArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB76CF71BB8ED55007DB972 /* ArticleViewController.m */; };
+		8AB76CFA1BB8ED55007DB972 /* ArticleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AB76CF81BB8ED55007DB972 /* ArticleViewController.xib */; };
+		8AB76D0A1BB8EE6D007DB972 /* AddLanguageBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB76CFC1BB8EE6D007DB972 /* AddLanguageBtn@2x.png */; };
+		8AB76D0B1BB8EE6D007DB972 /* AddLanguageBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB76CFD1BB8EE6D007DB972 /* AddLanguageBtn@3x.png */; };
+		8AB76D0C1BB8EE6D007DB972 /* BrushIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB76CFE1BB8EE6D007DB972 /* BrushIcon@2x.png */; };
+		8AB76D0D1BB8EE6D007DB972 /* BrushIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB76CFF1BB8EE6D007DB972 /* BrushIcon@3x.png */; };
+		8AB76D0E1BB8EE6D007DB972 /* CloseIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB76D001BB8EE6D007DB972 /* CloseIcon@2x.png */; };
+		8AB76D0F1BB8EE6D007DB972 /* CloseIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB76D011BB8EE6D007DB972 /* CloseIcon@3x.png */; };
+		8AB76D101BB8EE6D007DB972 /* EditPostOverlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB76D021BB8EE6D007DB972 /* EditPostOverlay@2x.png */; };
+		8AB76D111BB8EE6D007DB972 /* EditPostOverlay@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB76D031BB8EE6D007DB972 /* EditPostOverlay@3x.png */; };
+		8AB76D121BB8EE6D007DB972 /* LocationBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB76D041BB8EE6D007DB972 /* LocationBtn@2x.png */; };
+		8AB76D131BB8EE6D007DB972 /* LocationBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB76D051BB8EE6D007DB972 /* LocationBtn@3x.png */; };
+		8AB76D141BB8EE6D007DB972 /* SaveDraftBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB76D061BB8EE6D007DB972 /* SaveDraftBtn@2x.png */; };
+		8AB76D151BB8EE6D007DB972 /* SaveDraftBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB76D071BB8EE6D007DB972 /* SaveDraftBtn@3x.png */; };
+		8AB76D161BB8EE6D007DB972 /* StarRecommendationBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB76D081BB8EE6D007DB972 /* StarRecommendationBtn@2x.png */; };
+		8AB76D171BB8EE6D007DB972 /* StarRecommendationBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB76D091BB8EE6D007DB972 /* StarRecommendationBtn@3x.png */; };
+		8AB76D1B1BB8F5A3007DB972 /* QR.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AB76D1A1BB8F5A3007DB972 /* QR.png */; };
 		8AD6BA601B705DF20040437E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA5F1B705DF20040437E /* main.m */; };
 		8AD6BA631B705DF20040437E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA621B705DF20040437E /* AppDelegate.m */; };
 		8AD6BA661B705DF20040437E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA651B705DF20040437E /* ViewController.m */; };
@@ -2100,9 +2118,29 @@
 		8AB76C5F1BB4FA74007DB972 /* WhiteCollect@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhiteCollect@3x.png"; sourceTree = "<group>"; };
 		8AB76C601BB4FA74007DB972 /* WhiteCollected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhiteCollected@2x.png"; sourceTree = "<group>"; };
 		8AB76C611BB4FA74007DB972 /* WhiteCollected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhiteCollected@3x.png"; sourceTree = "<group>"; };
-		8AB76C811BB50C43007DB972 /* ZFTokenField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFTokenField.h; sourceTree = "<group>"; };
-		8AB76C821BB50C43007DB972 /* ZFTokenField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFTokenField.m; sourceTree = "<group>"; };
-		8AB76C841BB50E11007DB972 /* TokenView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TokenView.xib; sourceTree = "<group>"; };
+		8AB76C861BB529BB007DB972 /* EditTagCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditTagCollectionViewCell.h; path = Profile_EditCollection/EditTagCollectionViewCell.h; sourceTree = "<group>"; };
+		8AB76C871BB529BB007DB972 /* EditTagCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditTagCollectionViewCell.m; path = Profile_EditCollection/EditTagCollectionViewCell.m; sourceTree = "<group>"; };
+		8AB76C881BB529BB007DB972 /* EditTagCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EditTagCollectionViewCell.xib; path = Profile_EditCollection/EditTagCollectionViewCell.xib; sourceTree = "<group>"; };
+		8AB76CF21BB54A10007DB972 /* ZFTokenField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFTokenField.h; sourceTree = "<group>"; };
+		8AB76CF31BB54A10007DB972 /* ZFTokenField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFTokenField.m; sourceTree = "<group>"; };
+		8AB76CF61BB8ED55007DB972 /* ArticleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleViewController.h; sourceTree = "<group>"; };
+		8AB76CF71BB8ED55007DB972 /* ArticleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleViewController.m; sourceTree = "<group>"; };
+		8AB76CF81BB8ED55007DB972 /* ArticleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleViewController.xib; sourceTree = "<group>"; };
+		8AB76CFC1BB8EE6D007DB972 /* AddLanguageBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AddLanguageBtn@2x.png"; sourceTree = "<group>"; };
+		8AB76CFD1BB8EE6D007DB972 /* AddLanguageBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AddLanguageBtn@3x.png"; sourceTree = "<group>"; };
+		8AB76CFE1BB8EE6D007DB972 /* BrushIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BrushIcon@2x.png"; sourceTree = "<group>"; };
+		8AB76CFF1BB8EE6D007DB972 /* BrushIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BrushIcon@3x.png"; sourceTree = "<group>"; };
+		8AB76D001BB8EE6D007DB972 /* CloseIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CloseIcon@2x.png"; sourceTree = "<group>"; };
+		8AB76D011BB8EE6D007DB972 /* CloseIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CloseIcon@3x.png"; sourceTree = "<group>"; };
+		8AB76D021BB8EE6D007DB972 /* EditPostOverlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EditPostOverlay@2x.png"; sourceTree = "<group>"; };
+		8AB76D031BB8EE6D007DB972 /* EditPostOverlay@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EditPostOverlay@3x.png"; sourceTree = "<group>"; };
+		8AB76D041BB8EE6D007DB972 /* LocationBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LocationBtn@2x.png"; sourceTree = "<group>"; };
+		8AB76D051BB8EE6D007DB972 /* LocationBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LocationBtn@3x.png"; sourceTree = "<group>"; };
+		8AB76D061BB8EE6D007DB972 /* SaveDraftBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SaveDraftBtn@2x.png"; sourceTree = "<group>"; };
+		8AB76D071BB8EE6D007DB972 /* SaveDraftBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SaveDraftBtn@3x.png"; sourceTree = "<group>"; };
+		8AB76D081BB8EE6D007DB972 /* StarRecommendationBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StarRecommendationBtn@2x.png"; sourceTree = "<group>"; };
+		8AB76D091BB8EE6D007DB972 /* StarRecommendationBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StarRecommendationBtn@3x.png"; sourceTree = "<group>"; };
+		8AB76D1A1BB8F5A3007DB972 /* QR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QR.png; sourceTree = "<group>"; };
 		8AD6BA5A1B705DF20040437E /* SeetiesIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeetiesIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AD6BA5E1B705DF20040437E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8AD6BA5F1B705DF20040437E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -2637,6 +2675,7 @@
 		0BCF0B601BB290BD0017B614 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				8AB76CFB1BB8EE6D007DB972 /* Edit Post */,
 				8AB76C431BB4FA74007DB972 /* Collection */,
 				0BCF0B611BB290BD0017B614 /* Accept&ContinueButton.png */,
 				0BCF0B621BB290BD0017B614 /* AccountSettingBack.png */,
@@ -3789,6 +3828,9 @@
 				8A4509E61BB1568200A868CD /* EditCollectionTableViewCell.h */,
 				8A4509E71BB1568200A868CD /* EditCollectionTableViewCell.m */,
 				8A4509E91BB1568D00A868CD /* EditCollectionTableViewCell.xib */,
+				8AB76C861BB529BB007DB972 /* EditTagCollectionViewCell.h */,
+				8AB76C871BB529BB007DB972 /* EditTagCollectionViewCell.m */,
+				8AB76C881BB529BB007DB972 /* EditTagCollectionViewCell.xib */,
 			);
 			name = extra;
 			sourceTree = "<group>";
@@ -3995,14 +4037,36 @@
 			path = Collection;
 			sourceTree = "<group>";
 		};
-		8AB76C801BB50C2C007DB972 /* ZFTokenField */ = {
+		8AB76CF51BB8ECCE007DB972 /* RecommendationArticle */ = {
 			isa = PBXGroup;
 			children = (
-				8AB76C811BB50C43007DB972 /* ZFTokenField.h */,
-				8AB76C821BB50C43007DB972 /* ZFTokenField.m */,
-				8AB76C841BB50E11007DB972 /* TokenView.xib */,
+				8AB76CF61BB8ED55007DB972 /* ArticleViewController.h */,
+				8AB76CF71BB8ED55007DB972 /* ArticleViewController.m */,
+				8AB76CF81BB8ED55007DB972 /* ArticleViewController.xib */,
 			);
-			name = ZFTokenField;
+			name = RecommendationArticle;
+			sourceTree = "<group>";
+		};
+		8AB76CFB1BB8EE6D007DB972 /* Edit Post */ = {
+			isa = PBXGroup;
+			children = (
+				8AB76D1A1BB8F5A3007DB972 /* QR.png */,
+				8AB76CFC1BB8EE6D007DB972 /* AddLanguageBtn@2x.png */,
+				8AB76CFD1BB8EE6D007DB972 /* AddLanguageBtn@3x.png */,
+				8AB76CFE1BB8EE6D007DB972 /* BrushIcon@2x.png */,
+				8AB76CFF1BB8EE6D007DB972 /* BrushIcon@3x.png */,
+				8AB76D001BB8EE6D007DB972 /* CloseIcon@2x.png */,
+				8AB76D011BB8EE6D007DB972 /* CloseIcon@3x.png */,
+				8AB76D021BB8EE6D007DB972 /* EditPostOverlay@2x.png */,
+				8AB76D031BB8EE6D007DB972 /* EditPostOverlay@3x.png */,
+				8AB76D041BB8EE6D007DB972 /* LocationBtn@2x.png */,
+				8AB76D051BB8EE6D007DB972 /* LocationBtn@3x.png */,
+				8AB76D061BB8EE6D007DB972 /* SaveDraftBtn@2x.png */,
+				8AB76D071BB8EE6D007DB972 /* SaveDraftBtn@3x.png */,
+				8AB76D081BB8EE6D007DB972 /* StarRecommendationBtn@2x.png */,
+				8AB76D091BB8EE6D007DB972 /* StarRecommendationBtn@3x.png */,
+			);
+			path = "Edit Post";
 			sourceTree = "<group>";
 		};
 		8AD6BA511B705DF20040437E = {
@@ -4588,7 +4652,8 @@
 		8AD6C2D21B707D120040437E /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				8AB76C801BB50C2C007DB972 /* ZFTokenField */,
+				8AB76CF21BB54A10007DB972 /* ZFTokenField.h */,
+				8AB76CF31BB54A10007DB972 /* ZFTokenField.m */,
 				8A4509891BAC17F200A868CD /* JSONKit.h */,
 				8A45098A1BAC17F200A868CD /* JSONKit.m */,
 				8AF2C2831BA15A3A00B0A7F1 /* Networking */,
@@ -4801,6 +4866,7 @@
 		8AD6C8771B74A7CD0040437E /* Recommendation */ = {
 			isa = PBXGroup;
 			children = (
+				8AB76CF51BB8ECCE007DB972 /* RecommendationArticle */,
 				8A6584391B98509100BC86B9 /* RecommendationDraft */,
 				8A65842E1B981B1E00BC86B9 /* CategorySelection */,
 				8A9F25CA1B8ED89300BB13BA /* EditHours */,
@@ -4906,10 +4972,11 @@
 				TargetAttributes = {
 					8AD6BA591B705DF20040437E = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = YWL936B5LC;
+						DevelopmentTeam = 22DQJTA32H;
 					};
 					8AD6BA721B705DF30040437E = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 22DQJTA32H;
 						TestTargetID = 8AD6BA591B705DF20040437E;
 					};
 				};
@@ -4974,7 +5041,9 @@
 				0BCF0E821BB290BE0017B614 /* username_icon@2x.png in Resources */,
 				0BCF0FA81BB290BE0017B614 /* EditInfo@3x.png in Resources */,
 				8AD6C0FB1B706CF30040437E /* SearchViewController.xib in Resources */,
+				8AB76D0E1BB8EE6D007DB972 /* CloseIcon@2x.png in Resources */,
 				0BCF0E761BB290BE0017B614 /* Demoanner.jpg in Resources */,
+				8AB76D121BB8EE6D007DB972 /* LocationBtn@2x.png in Resources */,
 				0BCF0EA11BB290BE0017B614 /* goto_icon@2x.png in Resources */,
 				8AD6C1181B706CF30040437E /* pin.png in Resources */,
 				8AB76C681BB4FA74007DB972 /* CreateCollection@2x.png in Resources */,
@@ -4982,6 +5051,7 @@
 				0BCF0F761BB290BE0017B614 /* BtnBlank.png in Resources */,
 				0BCF0EE81BB290BE0017B614 /* Like.png in Resources */,
 				8AB76C671BB4FA74007DB972 /* CollectionLink@3x.png in Resources */,
+				8AB76D161BB8EE6D007DB972 /* StarRecommendationBtn@2x.png in Resources */,
 				0BCF10271BB290BE0017B614 /* Line@2x.png in Resources */,
 				0BCF0F601BB290BE0017B614 /* ArrowUp@3x.png in Resources */,
 				8AD6BE581B706CF30040437E /* DoAlbumCell.xib in Resources */,
@@ -5084,7 +5154,6 @@
 				0BCF10451BB290BE0017B614 /* Popular@2x.png in Resources */,
 				0BCF105F1BB290BE0017B614 /* RotateWheel.png in Resources */,
 				0BCF10691BB290BE0017B614 /* SelectAlbumBg@2x.png in Resources */,
-				8AB76C851BB50E11007DB972 /* TokenView.xib in Resources */,
 				0BCF0EBB1BB290BE0017B614 /* ig_unselect@2x.png in Resources */,
 				0BCF0E3F1BB290BE0017B614 /* Icon-76.png in Resources */,
 				0BCF0E5B1BB290BE0017B614 /* ButtonArrow.png in Resources */,
@@ -5147,6 +5216,7 @@
 				8AD6C0D11B706CF30040437E /* PInterestV2ViewController.xib in Resources */,
 				0BCF0F831BB290BE0017B614 /* BtnFindFriends@2x.png in Resources */,
 				0BCF108D1BB290BE0017B614 /* TabBarProfile_on@2x.png in Resources */,
+				8AB76D0C1BB8EE6D007DB972 /* BrushIcon@2x.png in Resources */,
 				0BCF10231BB290BE0017B614 /* InviteOtherSelected.png in Resources */,
 				0BCF10561BB290BE0017B614 /* PostShade2@3x.png in Resources */,
 				0BCF107F1BB290BE0017B614 /* TabBarExplore@3x.png in Resources */,
@@ -5160,6 +5230,7 @@
 				0BCF0F341BB290BE0017B614 /* FollowingMini@3x.png in Resources */,
 				0BCF10391BB290BE0017B614 /* NextArrow@2x.png in Resources */,
 				0BCF0ED31BB290BE0017B614 /* LandingLogo@2x.png in Resources */,
+				8AB76C8A1BB529BB007DB972 /* EditTagCollectionViewCell.xib in Resources */,
 				0BCF10101BB290BE0017B614 /* InviteEmail@3x.png in Resources */,
 				0BCF0EF61BB290BE0017B614 /* MiniMapPin.png in Resources */,
 				0BCF0F941BB290BE0017B614 /* ButtonDivider.png in Resources */,
@@ -5231,6 +5302,7 @@
 				0BCF0F061BB290BE0017B614 /* NoComment@3x_02.png in Resources */,
 				0BCF0E591BB290BE0017B614 /* TableTwo@3x.png in Resources */,
 				0BCF108F1BB290BE0017B614 /* TabDivider.png in Resources */,
+				8AB76D0D1BB8EE6D007DB972 /* BrushIcon@3x.png in Resources */,
 				8AD6C28C1B7072FB0040437E /* EditLocationV2ViewController.xib in Resources */,
 				0BCF10341BB290BE0017B614 /* Whatsapp@3x.png in Resources */,
 				0BCF0EE91BB290BE0017B614 /* Like@2x.png in Resources */,
@@ -5267,6 +5339,7 @@
 				0BCF10EB1BB290BE0017B614 /* iPhone5_Tour5@2x.png in Resources */,
 				0BCF0FD01BB290BE0017B614 /* IconDelete.png in Resources */,
 				0BCF0EE11BB290BE0017B614 /* LanguageInd@3x.png in Resources */,
+				8AB76D0B1BB8EE6D007DB972 /* AddLanguageBtn@3x.png in Resources */,
 				0BCF0FF01BB290BE0017B614 /* InfoLocation.png in Resources */,
 				0BCF10D11BB290BE0017B614 /* ShareWhatsappIcon@2x.png in Resources */,
 				0BCF0E9D1BB290BE0017B614 /* Follow@3x.png in Resources */,
@@ -5327,12 +5400,15 @@
 				0BCF0E781BB290BE0017B614 /* bio_icon@2x.png in Resources */,
 				0BCF0E6E1BB290BE0017B614 /* map_icon@2x.png in Resources */,
 				0BCF0FC81BB290BE0017B614 /* IconCover@2x.png in Resources */,
+				8AB76D1B1BB8F5A3007DB972 /* QR.png in Resources */,
 				0BCF0E861BB290BE0017B614 /* profile_0.png in Resources */,
+				8AB76D0F1BB8EE6D007DB972 /* CloseIcon@3x.png in Resources */,
 				0BCF0EFA1BB290BE0017B614 /* MoreRecommendationHover.png in Resources */,
 				0BCF10A01BB290BE0017B614 /* RearrangeIcon@3x.png in Resources */,
 				0BCF0EC01BB290BE0017B614 /* vector@2x.png in Resources */,
 				0BCF0F1C1BB290BE0017B614 /* PostNoComment@2x.png in Resources */,
 				8A2E2CEC1B81E15B0010895E /* STTableViewCell.xib in Resources */,
+				8AB76D171BB8EE6D007DB972 /* StarRecommendationBtn@3x.png in Resources */,
 				0BCF10EE1BB290BE0017B614 /* warning-flat-icon.png in Resources */,
 				0BCF10EA1BB290BE0017B614 /* iPhone5_Tour4@2x.png in Resources */,
 				8AB76C791BB4FA74007DB972 /* ShareBase@3x.png in Resources */,
@@ -5340,6 +5416,7 @@
 				8AD6BE5C1B706CF30040437E /* DoPhotoCell.xib in Resources */,
 				0BCF0F181BB290BE0017B614 /* PostMore.png in Resources */,
 				8AB76C6E1BB4FA74007DB972 /* ListViewActive@2x.png in Resources */,
+				8AB76CFA1BB8ED55007DB972 /* ArticleViewController.xib in Resources */,
 				0BCF101B1BB290BE0017B614 /* InviteIcon.png in Resources */,
 				0BCF0EED1BB290BE0017B614 /* LogoutButton.png in Resources */,
 				0BCF0FC31BB290BE0017B614 /* IconBrighter@3x.png in Resources */,
@@ -5516,6 +5593,7 @@
 				0BCF10771BB290BE0017B614 /* TabArrow.png in Resources */,
 				8AD6BA691B705DF20040437E /* Main.storyboard in Resources */,
 				0BCF0F381BB290BE0017B614 /* more_icon@2x.png in Resources */,
+				8AB76D101BB8EE6D007DB972 /* EditPostOverlay@2x.png in Resources */,
 				0BCF0E691BB290BE0017B614 /* createnewcollection_icon@2x.png in Resources */,
 				0BCF0F541BB290BE0017B614 /* ActionNoComment@3x.png in Resources */,
 				0BCF10141BB290BE0017B614 /* InviteFacebook.png in Resources */,
@@ -5570,6 +5648,7 @@
 				0BCF10D61BB290BE0017B614 /* Old_TabBarPublish@3x.png in Resources */,
 				8AD6C0BA1B706CF30040437E /* ShowFollowerAndFollowingViewController.xib in Resources */,
 				0BCF10CF1BB290BE0017B614 /* ShareMessangerIcon@2x.png in Resources */,
+				8AB76D111BB8EE6D007DB972 /* EditPostOverlay@3x.png in Resources */,
 				0BCF10581BB290BE0017B614 /* PostShade@3x.png in Resources */,
 				0BCF0EC11BB290BE0017B614 /* wechat_icon@2x.png in Resources */,
 				0BCF10B21BB290BE0017B614 /* Search.png in Resources */,
@@ -5643,6 +5722,7 @@
 				8A9F258B1B8D69E100BB13BA /* SearchTableViewController.xib in Resources */,
 				0BCF0FBB1BB290BE0017B614 /* GoToPhoto.png in Resources */,
 				8AD6C0B61B706CF30040437E /* InstagramLoginWebViewController.xib in Resources */,
+				8AB76D141BB8EE6D007DB972 /* SaveDraftBtn@2x.png in Resources */,
 				8AD6BE501B706CF30040437E /* ExploreViewController.xib in Resources */,
 				0BCF0EA91BB290BE0017B614 /* IconSearchBox@2x.png in Resources */,
 				0BCF0F9C1BB290BE0017B614 /* ClearIcon@3x.png in Resources */,
@@ -5695,6 +5775,7 @@
 				0BCF0F5A1BB290BE0017B614 /* ArrowAction@3x.png in Resources */,
 				8AD6C2801B7072FB0040437E /* AddContactViewController.xib in Resources */,
 				0B3FF1061BB131620014AF2E /* AddCollectionDataViewController.xib in Resources */,
+				8AB76D131BB8EE6D007DB972 /* LocationBtn@3x.png in Resources */,
 				8A00979D1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib in Resources */,
 				0BCF104C1BB290BE0017B614 /* PostCommentGreen@3x.png in Resources */,
 				0BCF10C61BB290BE0017B614 /* ShareCopyLinkIcon@3x.png in Resources */,
@@ -5750,6 +5831,7 @@
 				8A3409101B872B31009B66C3 /* EditPostViewController.xib in Resources */,
 				0BCF0E5A1BB290BE0017B614 /* blue_location_icon@2x.png in Resources */,
 				0BCF103F1BB290BE0017B614 /* PhotoAddTile@2x.png in Resources */,
+				8AB76D0A1BB8EE6D007DB972 /* AddLanguageBtn@2x.png in Resources */,
 				0BCF0FAA1BB290BE0017B614 /* EditPhotoFrame@2x.png in Resources */,
 				0BCF0EDB1BB290BE0017B614 /* LanguageChi@3x.png in Resources */,
 				0BCF10DE1BB290BE0017B614 /* Testingaaaaaa.png in Resources */,
@@ -5778,6 +5860,7 @@
 				0BCF0F4F1BB290BE0017B614 /* ActionLike.png in Resources */,
 				0BCF0F111BB290BE0017B614 /* PinSearchBox@3x.png in Resources */,
 				0BCF103A1BB290BE0017B614 /* NextArrow@3x.png in Resources */,
+				8AB76D151BB8EE6D007DB972 /* SaveDraftBtn@3x.png in Resources */,
 				8AD6C0F51B706CF30040437E /* SearchChangeLocationViewController.xib in Resources */,
 				0BCF0FE41BB290BE0017B614 /* IconPrice@3x.png in Resources */,
 				0BCF0F771BB290BE0017B614 /* BtnBlank@2x.png in Resources */,
@@ -5915,7 +5998,6 @@
 				8A6584371B981C0E00BC86B9 /* CategoryCollectionViewCell.m in Sources */,
 				8A3409421B8AD06A009B66C3 /* UIImage+Enhancing.m in Sources */,
 				8AD6C0C41B706CF30040437E /* LocationFeedDetailViewController.m in Sources */,
-				8AB76C831BB50C43007DB972 /* ZFTokenField.m in Sources */,
 				0BBFE08E1B9FCC00004B17E9 /* SubmitProfileViewController.m in Sources */,
 				8A3757E01B85B65A009DB7D4 /* CommonView.m in Sources */,
 				8AD6C0C81B706CF30040437E /* NotificationViewController.m in Sources */,
@@ -5923,6 +6005,7 @@
 				8AD6BE5B1B706CF30040437E /* DoPhotoCell.m in Sources */,
 				8A65842D1B97079900BC86B9 /* RecommendationVenueModel.m in Sources */,
 				8A3409451B8AD06A009B66C3 /* UIImage+Reflection.m in Sources */,
+				8AB76CF91BB8ED55007DB972 /* ArticleViewController.m in Sources */,
 				8A5430101B8C1646009EFFF4 /* MapViewController.m in Sources */,
 				8AD6C1131B706CF30040437E /* FSKeychain.m in Sources */,
 				8A00979B1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m in Sources */,
@@ -5943,6 +6026,7 @@
 				8AD6C86C1B7460DB0040437E /* NSDate+RFC1123.m in Sources */,
 				0BBFE08C1B9FCC00004B17E9 /* EditProfileViewController.m in Sources */,
 				8A34094A1B8AD06A009B66C3 /* UIView+Screenshot.m in Sources */,
+				8AB76C891BB529BB007DB972 /* EditTagCollectionViewCell.m in Sources */,
 				8A3408F71B86FC99009B66C3 /* UITableViewController+BMXSwipableCellSupport.m in Sources */,
 				8AF2C27E1BA13D1400B0A7F1 /* AFNetworkActivityLogger.m in Sources */,
 				8AD6C2891B7072FB0040437E /* ConfirmPlaceViewController.m in Sources */,
@@ -6018,6 +6102,7 @@
 				8AD6C8721B7460DB0040437E /* MKNetworkOperation.m in Sources */,
 				8AD6C3371B707D120040437E /* UIScrollView+CRScrollIndicator.m in Sources */,
 				8A3757E41B85D635009DB7D4 /* EditPhotoViewController.m in Sources */,
+				8AB76CF41BB54A10007DB972 /* ZFTokenField.m in Sources */,
 				8A2E2CEB1B81E15B0010895E /* STTableViewCell.m in Sources */,
 				8A959D941B8C0CBA00722920 /* NMBottomTabBar.m in Sources */,
 				8AD6C32A1B707D120040437E /* LanguageManager.m in Sources */,
@@ -6217,7 +6302,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6244,7 +6329,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6269,6 +6354,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -6280,6 +6367,7 @@
 				INFOPLIST_FILE = SeetiesIOSTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SeetiesIOS.app/SeetiesIOS";
 			};
 			name = Debug;
@@ -6288,6 +6376,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -6295,6 +6385,7 @@
 				INFOPLIST_FILE = SeetiesIOSTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SeetiesIOS.app/SeetiesIOS";
 			};
 			name = Release;

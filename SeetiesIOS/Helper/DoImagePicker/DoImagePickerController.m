@@ -11,6 +11,9 @@
 #import "DoAlbumCell.h"
 #import "DoPhotoCell.h"
 
+
+
+
 @implementation DoImagePickerController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -288,20 +291,33 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [ASSETHELPER getPhotoCountOfCurrentGroup];
+    
+    int numberOfRows = (int)[ASSETHELPER getPhotoCountOfCurrentGroup] +1;
+    return numberOfRows;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     DoPhotoCell *cell = (DoPhotoCell *)[_cvPhotoList dequeueReusableCellWithReuseIdentifier:@"DoPhotoCell" forIndexPath:indexPath];
 
+    
+    if (indexPath.row == 0) {
+        
+        CGRect frame = cell.frame;
+        cell.ivPhoto.image = [UIImage imageNamed:@"coverphoto_camera.png"];
+        cell.ivPhoto.backgroundColor = [UIColor blackColor];
+        cell.frame = CGRectMake(0, 0, frame.size.width-20,frame.size.height-20);
+
+        return cell;
+    }
     if (_nColumnCount == 4)
-        cell.ivPhoto.image = [ASSETHELPER getImageAtIndex:indexPath.row type:ASSET_PHOTO_THUMBNAIL];
+        
+        cell.ivPhoto.image = [ASSETHELPER getImageAtIndex:indexPath.row-1 type:ASSET_PHOTO_THUMBNAIL];
     else
-        cell.ivPhoto.image = [ASSETHELPER getImageAtIndex:indexPath.row type:ASSET_PHOTO_ASPECT_THUMBNAIL];
+        cell.ivPhoto.image = [ASSETHELPER getImageAtIndex:indexPath.row-1 type:ASSET_PHOTO_ASPECT_THUMBNAIL];
     
 
-	if (_dSelected[@(indexPath.row)] == nil)
+	if (_dSelected[@(indexPath.row-1)] == nil)
 		[cell setSelectMode:NO];
     else
 		[cell setSelectMode:YES];
@@ -311,6 +327,12 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    if (indexPath.row == 0) {
+        [self openCamera];
+        
+        return;
+    }
     if (_nMaxCount > 1 || _nMaxCount == DO_NO_LIMIT_SELECT)
     {
 		DoPhotoCell *cell = (DoPhotoCell *)[collectionView cellForItemAtIndexPath:indexPath];
@@ -336,9 +358,9 @@
     else
     {
         if (_nResultType == DO_PICKER_RESULT_UIIMAGE)
-            [_delegate didSelectPhotosFromDoImagePickerController:self result:@[[ASSETHELPER getImageAtIndex:indexPath.row type:ASSET_PHOTO_SCREEN_SIZE]]];
+            [_delegate didSelectPhotosFromDoImagePickerController:self result:@[[ASSETHELPER getImageAtIndex:indexPath.row-1 type:ASSET_PHOTO_SCREEN_SIZE]]];
         else
-            [_delegate didSelectPhotosFromDoImagePickerController:self result:@[[ASSETHELPER getAssetAtIndex:indexPath.row]]];
+            [_delegate didSelectPhotosFromDoImagePickerController:self result:@[[ASSETHELPER getAssetAtIndex:indexPath.row-1]]];
     }
 }
 
@@ -510,7 +532,7 @@
     _ivPreview.autoresizingMask = _vDimmed.autoresizingMask;
     [_vDimmed addSubview:_ivPreview];
     
-    _ivPreview.image = [ASSETHELPER getImageAtIndex:nIndex type:ASSET_PHOTO_SCREEN_SIZE];
+    _ivPreview.image = [ASSETHELPER getImageAtIndex:nIndex-1 type:ASSET_PHOTO_SCREEN_SIZE];
     
     // add gesture for close preview
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onPanToClosePreview:)];
@@ -615,4 +637,33 @@
     return YES;
 }
 
+#pragma mark - Open Camera
+- (void) openCamera
+{
+    DBCameraContainerViewController *cameraContainer = [[DBCameraContainerViewController alloc] initWithDelegate:self];
+    [cameraContainer setFullScreenMode];
+    
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:cameraContainer];
+    [nav setNavigationBarHidden:YES];
+    [self presentViewController:nav animated:YES completion:nil];
+}
+
+
+#pragma mark - DBCameraViewControllerDelegate
+
+- (void) camera:(id)cameraViewController didFinishWithImage:(UIImage *)image withMetadata:(NSDictionary *)metadata
+{
+//    DetailViewController *detail = [[DetailViewController alloc] init];
+//    [detail setDetailImage:image];
+//    [self.navigationController pushViewController:detail animated:NO];
+//    [cameraViewController restoreFullScreenMode];
+    [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
+    [self.cvPhotoList reloadData];
+
+}
+
+- (void) dismissCamera:(id)cameraViewController{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [cameraViewController restoreFullScreenMode];
+}
 @end

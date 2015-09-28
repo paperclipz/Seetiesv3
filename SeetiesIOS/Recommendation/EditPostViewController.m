@@ -27,6 +27,8 @@
 }
 
 // =============== model ===============//
+@property (weak, nonatomic) IBOutlet UILabel *lblNumberOfPhotos;
+
 @property(nonatomic,strong)RecommendationModel* recommendationModel;
 
 @property(nonatomic,strong)RecommendationModel* tempSavedRecommendationModel;
@@ -52,9 +54,26 @@
 @end
 
 @implementation EditPostViewController
+- (IBAction)btnEditPhotoClicked:(id)sender {
+    
+    _editPhotoViewController = nil;
+    
+    [self.editPhotoViewController initData:self.recommendationModel];
+    
+    [self presentViewController:self.editPhotoViewController animated:YES completion:nil];
+    __weak typeof (self)weakSelf = self;
+    self.editPhotoViewController.doneBlock = ^(NSArray* arrayImages,NSArray* arrDeleteImages)
+    {
+        
+        weakSelf.recommendationModel.arrPostImagesList = nil;
+        weakSelf.recommendationModel.arrPostImagesList = [[NSMutableArray alloc]initWithArray:arrayImages];
+        
+        [weakSelf.recommendationModel.arrDeletedImages addObjectsFromArray:arrDeleteImages];
+        
+    };
+
+}
 - (IBAction)btnPublishClicked:(id)sender {
-    
-    
     
     [self requestServerForCategories:^(id object) {
         self.categoriesModel = [[DataManager Instance] categoriesModel];
@@ -162,9 +181,9 @@
 
 -(void)reloadImage
 {
-    
-    
-        if (self.recommendationModel.arrPostImagesList && self.recommendationModel.arrPostImagesList.count>0) {
+    int photoCount = (int)self.recommendationModel.arrPostImagesList.count;
+    self.lblNumberOfPhotos.text = [NSString stringWithFormat:@"%d %@",photoCount,LOCALIZATION(@"Photos")];
+        if (self.recommendationModel.arrPostImagesList && photoCount>0) {
             
             PhotoModel* edifotoModel = self.recommendationModel.arrPostImagesList[0];
             
@@ -239,7 +258,6 @@
         default:
         case 0:
         {
-            //[self.customPickerViewController show];
             
             [self.urlAlertView show];
 
@@ -247,33 +265,23 @@
             break;
         case 1:
         {
-            
-            [self.addNewPlaceViewController initData:self.recommendationModel.reccomendVenueModel];
-
-            [self presentViewController:self.navAddNewPlaceViewController animated:YES completion:^{
-            }];
-
+         
+            [self showQrRecommendationView];
+         
         }
 
             break;
             
         case 2:
         {
-            _editPhotoViewController = nil;
             
-            [self.editPhotoViewController initData:self.recommendationModel];
-
-            [self presentViewController:self.editPhotoViewController animated:YES completion:nil];
-                 __weak typeof (self)weakSelf = self;
-                self.editPhotoViewController.doneBlock = ^(NSArray* arrayImages,NSArray* arrDeleteImages)
-                {
+            [self presentViewController:self.navAddNewPlaceViewController animated:YES completion:^{
                 
-                weakSelf.recommendationModel.arrPostImagesList = nil;
-                weakSelf.recommendationModel.arrPostImagesList = [[NSMutableArray alloc]initWithArray:arrayImages];
-                  
-                    [weakSelf.recommendationModel.arrDeletedImages addObjectsFromArray:arrDeleteImages];
+                [self.addNewPlaceViewController initData:self.recommendationModel.reccomendVenueModel];
+                
+            }];
 
-                };
+            
         }
             break;
         case 3:
@@ -350,6 +358,18 @@
 }
 */
 
+-(void)showQrRecommendationView
+{
+    
+    if(![self.articleViewController.view isDescendantOfView:self.view])
+    {
+        [self.view addSubview:self.articleViewController.view];
+
+    }
+    
+    [self.articleViewController show];
+}
+
 #pragma mark - Declarations
 -(CategorySelectionViewController*)categorySelectionViewController
 {
@@ -372,7 +392,7 @@
 -(NSArray*)arrTabImages
 {
     
-    return @[[UIImage imageNamed:@"addurl_icon@2x.png"],[UIImage imageNamed:@"editplace_icon@2x.png"],[UIImage imageNamed:@"qr_icon@2x.png"],[UIImage imageNamed:@"save_icon@2x.png"]];
+    return @[[UIImage imageNamed:@"addurl_icon@2x.png"],[UIImage imageNamed:@"qr_icon@2x.png"],[UIImage imageNamed:@"editplace_icon@2x.png"],[UIImage imageNamed:@"save_icon@2x.png"]];
 }
 
 -(EditPhotoViewController*)editPhotoViewController
@@ -467,6 +487,16 @@
 
     }
     return _editPostViewSecond;
+}
+
+
+-(ArticleViewController*)articleViewController
+{
+    if (!_articleViewController) {
+        _articleViewController = [ArticleViewController new];
+    }
+    
+    return _articleViewController;
 }
 
 -(void)setHasDualLanguage:(BOOL)hasDualLang
@@ -605,7 +635,11 @@ static id ObjectOrNull(id object)
         }
         else{
             [TSMessage showNotificationInViewController:self title:@"system" subtitle:@"Data Successfully Saved to Draft" type:TSMessageNotificationTypeSuccess duration:2.0 canBeDismissedByUser:YES];
-
+            
+            if (object) {
+                NSDictionary* dict = [[NSDictionary alloc]initWithDictionary:object];
+                self.recommendationModel.post_id = dict[@"data"][@"post_id"];
+            }
         }
         if (_editPostDoneBlock) {
             self.editPostDoneBlock(nil);

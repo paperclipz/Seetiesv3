@@ -17,7 +17,7 @@
             <connections>
                 <outlet property="ibContentView" destination="Eyb-u3-IAv" id="8ud-SE-A6I"/>
                 <outlet property="ibScrollView" destination="9Fa-RN-9zv" id="U45-zM-i29"/>
-                <outlet property="ibTokenField" destination="L1c-IX-2Fb" id="ZgQ-OH-K7x"/>
+                <outlet property="ibTokenField" destination="L1c-IX-2Fb" id="Sfi-qz-h9m"/>
                 <outlet property="lblWordCountDesc" destination="7lp-7u-eAw" id="tfC-lH-teB"/>
                 <outlet property="lblWordCountTitle" destination="QWV-i3-3Mk" id="8WQ-l9-8A9"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -204,19 +204,9 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L1c-IX-2Fb" customClass="ZFTokenField">
-                    <rect key="frame" x="15" y="351" width="290" height="120"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="120" id="nzx-U3-mb0"/>
-                    </constraints>
+                    <rect key="frame" x="15" y="351" width="290" height="50"/>
+                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="13J-9Y-Ieo">
-                    <rect key="frame" x="15" y="481" width="290" height="236"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="236" id="DtF-gn-2eH"/>
-                    </constraints>
-                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
@@ -226,13 +216,12 @@
                 <constraint firstItem="Rwy-B2-60G" firstAttribute="top" secondItem="QWV-i3-3Mk" secondAttribute="bottom" constant="10" id="7cE-TI-j3Q"/>
                 <constraint firstItem="u8V-MS-Lj8" firstAttribute="leading" secondItem="Eyb-u3-IAv" secondAttribute="leading" constant="15" id="9GT-oa-dn5"/>
                 <constraint firstItem="7lp-7u-eAw" firstAttribute="top" secondItem="u8V-MS-Lj8" secondAttribute="bottom" constant="13" id="BLi-wH-DhG"/>
-                <constraint firstAttribute="trailing" secondItem="13J-9Y-Ieo" secondAttribute="trailing" constant="15" id="EUQ-qo-4XY"/>
                 <constraint firstAttribute="trailing" secondItem="Rwy-B2-60G" secondAttribute="trailing" constant="15" id="G4k-Gp-8qF"/>
                 <constraint firstItem="u8V-MS-Lj8" firstAttribute="top" secondItem="Rwy-B2-60G" secondAttribute="bottom" constant="10" id="Gpj-sf-9Kp"/>
                 <constraint firstAttribute="trailing" secondItem="WyF-zC-ina" secondAttribute="trailing" constant="15" id="Hbe-VN-WvH"/>
                 <constraint firstItem="EB0-sL-Qyq" firstAttribute="top" secondItem="WyF-zC-ina" secondAttribute="bottom" constant="10" id="JWL-dO-Jwh"/>
                 <constraint firstItem="Rwy-B2-60G" firstAttribute="leading" secondItem="Eyb-u3-IAv" secondAttribute="leading" constant="15" id="Sv5-TM-sZt"/>
-                <constraint firstItem="13J-9Y-Ieo" firstAttribute="leading" secondItem="Eyb-u3-IAv" secondAttribute="leading" constant="15" id="a6M-Tl-fNs"/>
+                <constraint firstAttribute="bottom" secondItem="L1c-IX-2Fb" secondAttribute="bottom" constant="322" id="XXi-uj-nzr"/>
                 <constraint firstAttribute="trailing" secondItem="Ayq-bj-EST" secondAttribute="trailing" constant="15" id="bla-Oh-p30"/>
                 <constraint firstItem="7lp-7u-eAw" firstAttribute="leading" secondItem="Eyb-u3-IAv" secondAttribute="leading" constant="15" id="c5O-l0-9WS"/>
                 <constraint firstAttribute="trailing" secondItem="EB0-sL-Qyq" secondAttribute="trailing" constant="15" id="cQP-PB-rY3"/>
@@ -243,7 +232,6 @@
                 <constraint firstItem="L1c-IX-2Fb" firstAttribute="top" secondItem="Ayq-bj-EST" secondAttribute="bottom" constant="14" id="og4-dp-WAk"/>
                 <constraint firstAttribute="trailing" secondItem="L1c-IX-2Fb" secondAttribute="trailing" constant="15" id="r6l-0k-nuk"/>
                 <constraint firstItem="QWV-i3-3Mk" firstAttribute="leading" secondItem="Eyb-u3-IAv" secondAttribute="leading" constant="15" id="vqg-0U-2pb"/>
-                <constraint firstItem="13J-9Y-Ieo" firstAttribute="top" secondItem="L1c-IX-2Fb" secondAttribute="bottom" constant="10" id="w8I-jA-2gh"/>
                 <constraint firstAttribute="trailing" secondItem="QWV-i3-3Mk" secondAttribute="trailing" constant="15" id="wBJ-lL-UvV"/>
                 <constraint firstItem="EB0-sL-Qyq" firstAttribute="leading" secondItem="Eyb-u3-IAv" secondAttribute="leading" constant="15" id="wST-Sz-uV9"/>
                 <constraint firstItem="QWV-i3-3Mk" firstAttribute="top" secondItem="EB0-sL-Qyq" secondAttribute="bottom" constant="6" id="z8v-px-gDv"/>

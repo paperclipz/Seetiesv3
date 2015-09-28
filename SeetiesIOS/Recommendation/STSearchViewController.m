@@ -60,8 +60,43 @@
     [Utils setRoundBorder:self.ibContentSearchView color:[UIColor grayColor] borderRadius:5.0f];
     [self.ibSearchContentView addSubview:self.cAPSPageMenu.view];
 
+    
 
 }
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    self.fourSquareSearchTableViewController.view.frame = CGRectMake(0, self.fourSquareSearchTableViewController.view.frame.origin.y, self.cAPSPageMenu.view.frame.size.width, self.cAPSPageMenu.view.frame.size.height- self.cAPSPageMenu.menuHeight);
+
+    [self setPageShowSingleView:YES];
+}
+
+
+-(void)setPageShowSingleView:(BOOL)isSingleView
+{
+    if (isSingleView) {
+        self.cAPSPageMenu.controllerScrollView.scrollEnabled = NO;
+        [self.cAPSPageMenu moveToPage:0];
+
+        [UIView animateWithDuration:.3 animations:^{
+            self.cAPSPageMenu.view.frame = CGRectMake(0, 0-self.cAPSPageMenu.menuHeight,  self.cAPSPageMenu.view.frame.size.width,  self.cAPSPageMenu.view.frame.size.height);
+
+        }];
+        
+
+    }
+    else{
+        self.cAPSPageMenu.controllerScrollView.scrollEnabled = YES;
+        
+        [UIView animateWithDuration:.3 animations:^{
+            self.cAPSPageMenu.view.frame = CGRectMake(0, 0,  self.cAPSPageMenu.view.frame.size.width,  self.cAPSPageMenu.view.frame.size.height);
+            
+        }];
+        
+
+    
+    }
+  }
 
 -(CAPSPageMenu*)cAPSPageMenu
 {
@@ -69,7 +104,7 @@
     {
         CGRect deviceFrame = [Utils getDeviceScreenSize];
         
-        NSArray *controllerArray = @[self.googleSearchTableViewController, self.fourSquareSearchTableViewController];
+        NSArray *controllerArray = @[self.fourSquareSearchTableViewController, self.googleSearchTableViewController];
         NSDictionary *parameters = @{
                                      CAPSPageMenuOptionScrollMenuBackgroundColor: [UIColor lightGrayColor],
                                      CAPSPageMenuOptionViewBackgroundColor: [UIColor colorWithRed:20.0/255.0 green:20.0/255.0 blue:20.0/255.0 alpha:1.0],
@@ -80,14 +115,16 @@
                                      CAPSPageMenuOptionMenuItemWidth: @(deviceFrame.size.width/2),
                                      CAPSPageMenuOptionCenterMenuItems: @(YES),
                                      CAPSPageMenuOptionUnselectedMenuItemLabelColor:[UIColor darkGrayColor],
-                                         
                                          };
 
         _cAPSPageMenu = [[CAPSPageMenu alloc] initWithViewControllers:controllerArray frame:CGRectMake(0.0, 0.0, self.ibSearchContentView.frame.size.width, self.ibSearchContentView.frame.size.height) options:parameters];
+        _cAPSPageMenu.view.backgroundColor = [UIColor whiteColor];
 
     }
+    
     return _cAPSPageMenu;
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -135,9 +172,8 @@
   //  SLog(@"getFourSquareSuggestionPlaces");
     self.type = SearchTypeFourSquare;
 
-#warning delete bottom 2 line for real time publish || this is for malaysia coordinate testing only
-    CLLocation *locloc = [[CLLocation alloc] initWithLatitude:3.1333 longitude:101.7000];
-    self.location = locloc;
+//#warning delete bottom 2 line for real time publish || this is for malaysia coordinate testing only
+   // CLLocation *locloc = [[CLLocation alloc] initWithLatitude:3.1333 longitude:101.7000];
         
     [self.sManager getSuggestedLocationFromFoursquare:self.location input:self.txtSearch.text completionBlock:^(id object) {
 
@@ -291,13 +327,23 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
-    
+    _cAPSPageMenu.controllerScrollView.scrollEnabled = false;
+//    if (textField.text.length>0) {
+//        _cAPSPageMenu.menuScrollView.hidden = NO;
+//        _cAPSPageMenu.controllerScrollView.scrollEnabled = YES;
+//    }
+//    else{
+//        _cAPSPageMenu.menuScrollView.hidden = YES;
+//        _cAPSPageMenu.controllerScrollView.scrollEnabled = false;
+//    }
     return YES;
 }
 
 - (void)textFieldDidChange:(UITextField *)textField {
     
-
+    
+    [self setPageShowSingleView:textField.text.length>0?NO:YES];
+    
     [self requestSearch];
     
 }

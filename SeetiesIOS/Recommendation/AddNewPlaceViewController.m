@@ -137,11 +137,11 @@
 -(void)initData:(RecommendationVenueModel*)model
 {
     self.rModel = model;
-   // [self reloadData];
+   [self loadData];
 
 }
 
--(void)reloadData
+-(void)loadData
 {
     self.addNewPlaceSubView.txtPlaceName.text = self.rModel.name;
     self.addNewPlaceSubView.txtAddress.text = self.rModel.formattedAddress;
@@ -149,6 +149,11 @@
     self.addNewPlaceSubView.txtPhoneNo.text = self.rModel.formattedPhone;
     [self.addNewPlaceSubView.btnCurrency setTitle:self.rModel.currency?self.rModel.currency:USD forState:UIControlStateNormal];
     self.addNewPlaceSubView.txtPerPax.text = self.rModel.price;
+}
+
+-(void)reloadData
+{
+   
     [self refreshMapViewWithLatitude:[self.rModel.lat doubleValue] longtitude:[self.rModel.lng doubleValue]];
 
 }

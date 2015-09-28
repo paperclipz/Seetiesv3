@@ -45,8 +45,10 @@
             break;
             
         default:
+        {
+            _doImagePickerController = nil;
              self.navRecommendationViewController = [[UINavigationController alloc]initWithRootViewController:self.doImagePickerController];
-            
+        }
             break;
     }
     
@@ -117,7 +119,7 @@
 
 -(void)showSearchView:(CLLocation*)location
 {
-    
+    _stSearchViewController = nil;
     [self.doImagePickerController.navigationController pushViewController:self.stSearchViewController animated:YES];
     [self.stSearchViewController initWithLocation:location];
 }

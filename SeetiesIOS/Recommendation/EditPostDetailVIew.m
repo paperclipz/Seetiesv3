@@ -14,7 +14,7 @@
 @end
 @implementation EditPostDetailVIew
 #define TITLE_MAX_COUNT 70
-#define DESC_MAX_COUNT 140
+#define DESC_MAX_COUNT 800
 
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -54,7 +54,7 @@
 
 -(void)getCounterText:(UILabel*)label  maxCount:(int)maxCount textInputCount:(int)txtCount
 {
-    if (txtCount>=maxCount) {
+    if (txtCount>maxCount) {
         
         label.textColor = [UIColor redColor];
     }

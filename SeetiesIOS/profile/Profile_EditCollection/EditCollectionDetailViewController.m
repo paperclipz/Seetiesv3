@@ -8,27 +8,29 @@
 
 #import "EditCollectionDetailViewController.h"
 #import "Bostring.h"
+#import "EditTagCollectionViewCell.h"
+
 #import "ZFTokenField.h"
 
 #define TITLE_MAX_COUNT 70
 #define DESC_MAX_COUNT 150
 
 
-@interface EditCollectionDetailViewController ()<ZFTokenFieldDataSource, ZFTokenFieldDelegate>
+@interface EditCollectionDetailViewController () <ZFTokenFieldDataSource, ZFTokenFieldDelegate>
+
 @property (weak, nonatomic) IBOutlet UILabel *lblWordCountTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblWordCountDesc;
-
 @property (weak, nonatomic) IBOutlet UITextField *txtName;
 @property (weak, nonatomic) IBOutlet UITextView *txtDesc;
-
 @property (strong, nonatomic)CollectionModel* collectionModel;
 @property (weak, nonatomic) IBOutlet UIScrollView *ibScrollView;
 @property (strong, nonatomic) IBOutlet UIView *ibContentView;
+@property (weak, nonatomic) IBOutlet UICollectionView *ibCollectionTagView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *consTagHeight;
+
+
 @property (weak, nonatomic) IBOutlet ZFTokenField *ibTokenField;
-
-
 @property (nonatomic, strong) NSMutableArray *tokens;
-
 
 @end
 
@@ -59,7 +61,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tokens = [NSMutableArray array];
 
     
     [self initSelfView];
@@ -80,19 +81,28 @@
     self.ibContentView.frame = CGRectMake(0, 0, frame.size.width, self.ibContentView.frame.size.height);
     self.ibScrollView.contentSize = self.ibContentView.frame.size;
     
+      [self initCollectionViewWithDelegate:self];
+
+    
+    self.tokens = [NSMutableArray array];
+    
     self.ibTokenField.dataSource = self;
     self.ibTokenField.delegate = self;
     self.ibTokenField.textField.placeholder = @"Enter here";
     [self.ibTokenField reloadData];
+    
     [self.ibTokenField.textField becomeFirstResponder];
 
-
 }
--(void)viewDidAppear:(BOOL)animated
+
+-(void)initCollectionViewWithDelegate:(id)sender
 {
-   
 
+    self.ibCollectionTagView.delegate = self;
+    self.ibCollectionTagView.dataSource = self;
+    [self.ibCollectionTagView registerClass:[EditTagCollectionViewCell class] forCellWithReuseIdentifier:@"EditTagCollectionViewCell"];
 }
+
 
 -(void)initData:(CollectionModel*)model
 {
@@ -146,6 +156,44 @@
 
 
 
+
+
+
+#pragma mark - UICollectionView data source
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return 10;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    EditTagCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"EditTagCollectionViewCell" forIndexPath:indexPath];
+    
+    return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+   // [self.toRecipients addObject:@"apple"];
+    
+  
+    
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView
+                  layout:(UICollectionViewLayout *)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+   
+    
+    CGRect frame = collectionView.frame;
+    
+    float width = frame.size.width/2 -10;
+    return CGSizeMake(width, 35);
+}
+#pragma mark - UICollectionView Delegate
 #pragma mark - ZFTokenField DataSource
 
 - (CGFloat)lineHeightForTokenInField:(ZFTokenField *)tokenField
@@ -170,6 +218,10 @@
     label.text = self.tokens[index];
     CGSize size = [label sizeThatFits:CGSizeMake(1000, 40)];
     view.frame = CGRectMake(0, 0, size.width + 97, 40);
+    
+    
+    
+    
     return view;
 }
 
@@ -195,6 +247,7 @@
 {
     return NO;
 }
+
 
 - (void)tokenDeleteButtonPressed:(UIButton *)tokenButton
 {
