@@ -634,6 +634,7 @@
                     [defaults setObject:GetLanguage_2 forKey:@"UserData_Language2"];
                     [defaults setObject:GetUserSelectLanguagesArray forKey:@"GetUserSelectLanguagesArray"];
                     [defaults synchronize];
+                    
 //                    NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
 //                    NSLog(@"language is %@",language);
 //                    // zh-Hans - Simplified Chinese
@@ -660,36 +661,9 @@
 //                    Locale *localeForRow = languageManager.availableLocales[CheckSystemLanguageIDN];
 //                    [languageManager setLanguageWithLocale:localeForRow];
                     
-                    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-                    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-                    
-                    UITabBarController *tabBarController=[[UITabBarController alloc]init];
-                    tabBarController.tabBar.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
-                    //  [tabBarController.tabBar setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
-                    //FirstViewController and SecondViewController are the view controller you want on your UITabBarController
-                    // UIImage* tabBarBackground = [UIImage imageNamed:@"TabBarBg@2x-1.png"];
-                    //   [[UITabBar appearance] setShadowImage:tabBarBackground];
-                    //   [[UITabBar appearance] setBackgroundImage:tabBarBackground];
-                   // [[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
-                    [[UITabBar appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
-                    
-                    FeedV2ViewController *firstViewController=[[FeedV2ViewController alloc]initWithNibName:@"FeedV2ViewController" bundle:nil];
-                    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:firstViewController];
-                    Explore2ViewController *secondViewController=[[Explore2ViewController alloc]initWithNibName:@"Explore2ViewController" bundle:nil];
-                    
-                    SelectImageViewController *threeViewController=[[SelectImageViewController alloc]initWithNibName:@"SelectImageViewController" bundle:nil];
-                    
-                    NotificationViewController *fourViewController=[[NotificationViewController alloc]initWithNibName:@"NotificationViewController" bundle:nil];
+                    LandingV2ViewController *LandingView = [[LandingV2ViewController alloc]init];
+                    [self presentViewController:LandingView animated:YES completion:nil];
 
-                    ProfileV2ViewController *fiveViewController=[[ProfileV2ViewController alloc]initWithNibName:@"ProfileV2ViewController" bundle:nil];
-                    
-                    //adding view controllers to your tabBarController bundling them in an array
-                    tabBarController.viewControllers=[NSArray arrayWithObjects:navController,secondViewController,threeViewController,fourViewController,fiveViewController, nil];
-                    
-                    
-                    //[self presentModalViewController:tabBarController animated:YES];
-                    // [self presentViewController:tabBarController animated:NO completion:nil];
-                    [[[[UIApplication sharedApplication] delegate] window] setRootViewController:tabBarController];
                 }
                                                  
 
