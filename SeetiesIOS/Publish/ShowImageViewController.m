@@ -1082,7 +1082,7 @@
         
         
 //        NSMutableArray *TempArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"selectedIndexArr_Thumbs_Data"]];
-        NSMutableArray *TempArray = [[NSMutableArray alloc]init];
+//        NSMutableArray *TempArray = [[NSMutableArray alloc]init];
 //        SelectImageViewController *SelectImageView = [[SelectImageViewController alloc]init];
 //        [self presentViewController:SelectImageView animated:YES completion:nil];
 //        if ([GetUpdatePost isEqualToString:@"YES"]) {

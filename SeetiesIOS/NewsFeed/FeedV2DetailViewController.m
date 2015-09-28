@@ -20,8 +20,9 @@
 #import "LandingV2ViewController.h"
 #import "RecommendV2ViewController.h"
 #import "NSString+ChangeAsciiString.h"
-
+#import "AddCollectionDataViewController.h"
 #import "LeveyTabBarController.h"
+#import "ReportViewController.h"
 @interface FeedV2DetailViewController ()
 @end
 
@@ -94,11 +95,13 @@
     shareFBButton.frame = CGRectMake(120, 1, 50, 60);
     
     
-    [CollectButton setImage:[UIImage imageNamed:@"collect_btn.png"] forState:UIControlStateNormal];
-    [CollectButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
-    [CollectButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
-    CollectButton.backgroundColor = [UIColor clearColor];
-    CollectButton.frame = CGRectMake(screenWidth - 20 - 113, 14, 113, 37);
+    [AllCollectButton setImage:[UIImage imageNamed:@"collect_btn.png"] forState:UIControlStateNormal];
+    [AllCollectButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+    [AllCollectButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
+    AllCollectButton.backgroundColor = [UIColor clearColor];
+    AllCollectButton.frame = CGRectMake(screenWidth - 20 - 113, 14, 113, 37);
+    
+    QuickCollectButton.frame = CGRectMake(screenWidth - 20 - 60, 14, 60, 37);
 
     ShowGoogleTranslate = NO;
     CheckClickCount = 0;
@@ -1180,6 +1183,22 @@
             //[self presentViewController:ListingDetail animated:NO completion:nil];
             [self dismissViewControllerAnimated:NO completion:nil];
         }
+    }else if(connection == theConnection_QuickCollect){
+        NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+        NSLog(@"Quick Collection return get data to server ===== %@",GetData);
+        
+        NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *myError = nil;
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
+        NSLog(@"Expert Json = %@",res);
+        
+        
+        NSString *statusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
+        NSLog(@"statusString is %@",statusString);
+        
+        if ([statusString isEqualToString:@"ok"]) {
+            [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success add to Collections" type:TSMessageNotificationTypeSuccess];
+        }
     }else if(connection == theConnection_NearbyPost){
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
         NSLog(@"Get Nearby Post return get data to server ===== %@",GetData);
@@ -1397,6 +1416,14 @@
     [MainScroll addSubview:MImageScroll];
     [MainScroll addSubview:PageControlOn];
     
+    UIImageView *ShowOverlayImg = [[UIImageView alloc]init];
+    ShowOverlayImg.image = [UIImage imageNamed:@"FeedOverlay.png"];
+    ShowOverlayImg.frame = CGRectMake(0, -20, screenWidth , 360);
+    ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
+    ShowOverlayImg.layer.masksToBounds = YES;
+    //ShowOverlayImg.layer.cornerRadius = 5;
+    [MainScroll addSubview:ShowOverlayImg];
+    
     for (int i = 0 ; i < [UrlArray count]; i++) {
         ImageScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0+ i *screenWidth, 0, screenWidth, 360)];
         ImageScroll.delegate = self;
@@ -1423,6 +1450,11 @@
         ShowImage.backgroundColor = [UIColor clearColor];
         ShowImage.tag = 6000000;
         [ImageScroll addSubview:ShowImage];
+        
+        UIImageView *ShowMoveIcon = [[UIImageView alloc]init];
+        ShowMoveIcon.image = [UIImage imageNamed:@"MoveIcon.png"];
+        ShowMoveIcon.frame = CGRectMake(screenWidth - 40, 300, 30, 30);
+        [MainScroll addSubview:ShowMoveIcon];
         
         UIButton *ImageButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [ImageButton setTitle:@"" forState:UIControlStateNormal];
@@ -3026,7 +3058,7 @@
     [CommentView GetWhatView:@"Like"];
 }
 -(IBAction)FacebookButton:(id)sender{
-NSLog(@"Facebook Button Click");
+    NSLog(@"Facebook Button Click");
     NSString *message = [NSString stringWithFormat:@"https://seeties.me/post/%@",GetPostID];
     NSString *Description = [NSString stringWithFormat:@"%@",GetMessage];
     NSString *caption = [NSString stringWithFormat:@"SEETIES.ME"];
@@ -3206,15 +3238,33 @@ NSLog(@"Facebook Button Click");
 }
 -(IBAction)SettingButton:(id)sender{
     NSLog(@"Setting Button Click.");
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                             delegate:self
-                                                    cancelButtonTitle:CustomLocalisedString(@"SettingsPage_Cancel", nil)
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:CustomLocalisedString(@"Edit", nil),CustomLocalisedString(@"Delete", nil), nil];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetUsername = [defaults objectForKey:@"UserName"];
+    if ([GetUsername isEqualToString:GetPostName]) {
+        //self
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                                 delegate:self
+                                                        cancelButtonTitle:CustomLocalisedString(@"SettingsPage_Cancel", nil)
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:CustomLocalisedString(@"Edit", nil),CustomLocalisedString(@"Delete", nil), nil];
+        
+        [actionSheet showInView:self.view];
+        
+        actionSheet.tag = 300;
+    }else{
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                                 delegate:self
+                                                        cancelButtonTitle:CustomLocalisedString(@"SettingsPage_Cancel", nil)
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:@"Report", nil];
+        
+        [actionSheet showInView:self.view];
+        
+        actionSheet.tag = 400;
+    }
     
-    [actionSheet showInView:self.view];
     
-    actionSheet.tag = 300;
+
 }
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(actionSheet.tag == 200){
@@ -3320,6 +3370,16 @@ NSLog(@"Facebook Button Click");
             
         }
        
+    }else if(actionSheet.tag == 400){
+        NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
+        if ([buttonTitle isEqualToString:CustomLocalisedString(@"SettingsPage_Cancel", nil)]) {
+            NSLog(@"Cancel Button");
+        }
+        if ([buttonTitle isEqualToString:@"Report"]) {
+            NSLog(@"Report Click");
+            [actionSheet dismissWithClickedButtonIndex:0 animated:YES];
+            [self OpenReport];
+        }
     }
 }
 // A function for parsing URL parameters returned by the Feed Dialog.
@@ -3333,6 +3393,11 @@ NSLog(@"Facebook Button Click");
         params[kv[0]] = val;
     }
     return params;
+}
+-(void)OpenReport{
+    ReportViewController *ReportView = [[ReportViewController alloc]init];
+    [self.view.window.rootViewController presentViewController:ReportView animated:YES completion:nil];
+    [ReportView GetPostID:GetPostID];
 }
 -(void)OpenEdit{
     
@@ -3767,5 +3832,45 @@ NSLog(@"Facebook Button Click");
         }
     }
     
+}
+-(IBAction)CollectButtonOnClick:(id)sender{
+    NSLog(@"Quick CollectButtonOnClick");
+    [self SendQuickCollect];
+    
+}
+-(void)SendQuickCollect{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *GetUseruid = [defaults objectForKey:@"Useruid"];
+    //Server Address URL
+    NSString *urlString = [NSString stringWithFormat:@"%@%@/collections/0/collect",DataUrl.UserWallpaper_Url,GetUseruid];
+    NSLog(@"Send Quick Collection urlString is %@",urlString);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"PUT"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    
+    
+    NSString *dataString = [[NSString alloc]initWithFormat:@"token=%@&posts[0][id]=%@",GetExpertToken,GetPostID];
+    
+    NSData *postBodyData = [NSData dataWithBytes: [dataString UTF8String] length:[dataString length]];
+    [request setHTTPBody:postBodyData];
+    
+    theConnection_QuickCollect = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    if(theConnection_QuickCollect) {
+        //  NSLog(@"Connection Successful");
+        webData = [NSMutableData data];
+    } else {
+        
+    }
+}
+-(IBAction)AddCollectButtonOnClick:(id)sender{
+    NSLog(@"Add Collection Button On Click");
+    AddCollectionDataViewController *AddCollectionDataView = [[AddCollectionDataViewController alloc]init];
+    //[self presentViewController:AddCollectionDataView animated:YES completion:nil];
+    [self.view.window.rootViewController presentViewController:AddCollectionDataView animated:YES completion:nil];
+    [AddCollectionDataView GetPostID:GetPostID GetImageData:[UrlArray objectAtIndex:0]];
 }
 @end

@@ -19,7 +19,8 @@
     NSMutableArray *GetCategoryIDArray;
     NSMutableArray *GetNameArray;
     NSMutableArray *GetBackgroundColorArray;
-    NSMutableArray *GetImageArray;
+    NSMutableArray *GetImageDefaultArray;
+    NSMutableArray *GetImageSelectedArray;
     
     NSMutableArray *CategorySelectIDArray;
     

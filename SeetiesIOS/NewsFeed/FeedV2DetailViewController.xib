@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FeedV2DetailViewController">
             <connections>
-                <outlet property="CollectButton" destination="mqO-7T-viU" id="RD5-fi-zDF"/>
+                <outlet property="AllCollectButton" destination="mqO-7T-viU" id="wXT-aC-wK2"/>
                 <outlet property="CommentButton" destination="QIe-qf-Rg0" id="1NV-AW-rsi"/>
                 <outlet property="LikeButton" destination="1MG-hw-hrm" id="Iqi-qi-Hs4"/>
                 <outlet property="LocationButton" destination="v0e-5Q-vOm" id="YPV-Y8-CfB"/>
                 <outlet property="MImageScroll" destination="KK8-FS-BPN" id="7A3-Hy-s0h"/>
                 <outlet property="MainScroll" destination="VZd-C0-7GE" id="i5H-ZV-RfK"/>
                 <outlet property="PageControlOn" destination="usk-ip-vyO" id="AkE-fB-2ZV"/>
+                <outlet property="QuickCollectButton" destination="m4J-dM-w1m" id="eAs-dq-tPe"/>
                 <outlet property="ShareButton" destination="dxK-vb-C2r" id="74s-PM-B0q"/>
                 <outlet property="ShareIcon" destination="QGy-yQ-Yhm" id="ujx-GY-wLC"/>
                 <outlet property="ShowActivity" destination="3W6-ih-0HU" id="a3o-r3-EbF"/>
@@ -88,6 +90,26 @@
                                 <action selector="CommentButton:" destination="-1" eventType="touchUpInside" id="Cpe-Ec-zyb"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mqO-7T-viU">
+                            <rect key="frame" x="214" y="16" width="78" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.98039215690000003" green="0.86666666670000003" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" title="Collect">
+                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="CollectButtonOnClick:" destination="-1" eventType="touchUpInside" id="s5k-iJ-nD7"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="m4J-dM-w1m">
+                            <rect key="frame" x="266" y="16" width="46" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="AddCollectButtonOnClick:" destination="-1" eventType="touchUpInside" id="BQ3-Im-oHQ"/>
+                            </connections>
+                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="BGJ-1U-7zQ">
                             <rect key="frame" x="121" y="11" width="45" height="40"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -99,17 +121,8 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="CommentButton:" destination="-1" eventType="touchUpInside" id="kcd-qX-7oz"/>
+                                <action selector="ShareButton:" destination="-1" eventType="touchUpInside" id="omg-yh-43Y"/>
                             </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mqO-7T-viU">
-                            <rect key="frame" x="214" y="16" width="78" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.98039215690000003" green="0.86666666670000003" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
-                            <state key="normal" title="Collect">
-                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -201,9 +214,4 @@
         <image name="PostMore.png" width="22" height="22"/>
         <image name="share_icon.png" width="18" height="19"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

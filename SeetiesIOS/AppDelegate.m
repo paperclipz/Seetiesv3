@@ -419,28 +419,28 @@
     [PFPush handlePush:userInfo];
     
     
-    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    
-    UITabBarController *tabBarController=[[UITabBarController alloc]init];
-    tabBarController.tabBar.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
-    [tabBarController.tabBar setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
-    
-    
-    FeedV2ViewController *firstViewController=[[FeedV2ViewController alloc]initWithNibName:@"FeedV2ViewController" bundle:nil];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:firstViewController];
-    Explore2ViewController *secondViewController=[[Explore2ViewController alloc]initWithNibName:@"Explore2ViewController" bundle:nil];
-    
-    SelectImageViewController *threeViewController=[[SelectImageViewController alloc]initWithNibName:@"SelectImageViewController" bundle:nil];
-    
-    NotificationViewController *fourViewController=[[NotificationViewController alloc]initWithNibName:@"NotificationViewController" bundle:nil];
-    
-    ProfileV2ViewController *fiveViewController=[[ProfileV2ViewController alloc]initWithNibName:@"ProfileV2ViewController" bundle:nil];
-    
-    //adding view controllers to your tabBarController bundling them in an array
-    tabBarController.viewControllers=[NSArray arrayWithObjects:navController,secondViewController,threeViewController,fourViewController,fiveViewController, nil];
-    tabBarController.selectedIndex = 3;
-    [[[[UIApplication sharedApplication] delegate] window] setRootViewController:tabBarController];
+//    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+//    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+//    
+//    UITabBarController *tabBarController=[[UITabBarController alloc]init];
+//    tabBarController.tabBar.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
+//    [tabBarController.tabBar setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
+//    
+//    
+//    FeedV2ViewController *firstViewController=[[FeedV2ViewController alloc]initWithNibName:@"FeedV2ViewController" bundle:nil];
+//    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:firstViewController];
+//    Explore2ViewController *secondViewController=[[Explore2ViewController alloc]initWithNibName:@"Explore2ViewController" bundle:nil];
+//    
+//    SelectImageViewController *threeViewController=[[SelectImageViewController alloc]initWithNibName:@"SelectImageViewController" bundle:nil];
+//    
+//    NotificationViewController *fourViewController=[[NotificationViewController alloc]initWithNibName:@"NotificationViewController" bundle:nil];
+//    
+//    ProfileV2ViewController *fiveViewController=[[ProfileV2ViewController alloc]initWithNibName:@"ProfileV2ViewController" bundle:nil];
+//    
+//    //adding view controllers to your tabBarController bundling them in an array
+//    tabBarController.viewControllers=[NSArray arrayWithObjects:navController,secondViewController,threeViewController,fourViewController,fiveViewController, nil];
+//    tabBarController.selectedIndex = 3;
+//    [[[[UIApplication sharedApplication] delegate] window] setRootViewController:tabBarController];
     
 }
 
@@ -455,7 +455,6 @@
         [self processAPIVersion];
 
     } errorBlock:^(id object) {
-        
     }];
   
 
@@ -496,6 +495,9 @@
                           }];        
     }
    
+    
+   // PInterestV2ViewController *SeeView = [[PInterestV2ViewController alloc]init];
+    
     self.window.rootViewController = self.landingV2ViewController;//self.landingV2ViewController
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

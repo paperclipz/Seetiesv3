@@ -22,7 +22,7 @@
 #import "NewProfileV2ViewController.h"
 #import "LanguageManager.h"
 #import "Locale.h"
-@interface PFollowTheExpertsViewController ()
+@interface PFollowTheExpertsViewController ()<CLLocationManagerDelegate>
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;
 @end
@@ -347,12 +347,19 @@
         
         NSString *GetLanguage_1;
         NSString *GetLanguage_2;
-        if ([TempArray count] < 1) {
+//        if ([TempArray count] < 1) {
             GetLanguage_1 = [[NSString alloc]initWithFormat:@"%@",[TempArray objectAtIndex:0]];
-        }else{
-            GetLanguage_1 = [[NSString alloc]initWithFormat:@"%@",[TempArray objectAtIndex:0]];
-            GetLanguage_2 = [[NSString alloc]initWithFormat:@"%@",[TempArray objectAtIndex:1]];
+//        }else{
+//            GetLanguage_1 = [[NSString alloc]initWithFormat:@"%@",[TempArray objectAtIndex:0]];
+//            GetLanguage_2 = [[NSString alloc]initWithFormat:@"%@",[TempArray objectAtIndex:1]];
+//        }
+        GetLanguage_2 = @"";
+        if ([GetLanguage_1 isEqualToString:@""] || [GetLanguage_1 length] == 0 || [GetLanguage_1 isEqualToString:@"(null)"]) {
+            GetLanguage_1 = @"";
+           // GetLanguage_2 = @"";
         }
+        
+        
         
         NSInteger CheckSystemLanguage;
         if ([GetCaption isEqualToString:@"English"]) {

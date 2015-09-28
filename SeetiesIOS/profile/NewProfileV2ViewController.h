@@ -14,7 +14,7 @@
 #import "EditCollectionViewController.h"
 
 //https://github.com/freak4pc/SMTagField tag simple
-@interface NewProfileV2ViewController : BaseViewController<UIScrollViewDelegate,UISearchBarDelegate>{
+@interface NewProfileV2ViewController : BaseViewController<UIScrollViewDelegate,UISearchBarDelegate,UIActionSheetDelegate>{
 
     IBOutlet A3ParallaxScrollView *MainScroll;
     IBOutlet AsyncImageView *BackgroundImage;

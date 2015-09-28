@@ -11,6 +11,11 @@
 #import "SearchViewV2Controller.h"
 #import "FeedV2DetailViewController.h"
 #import "CollectionViewController.h"
+#import "EditProfileV2ViewController.h"
+#import "ShowFollowerAndFollowingViewController.h"
+
+#import <FacebookSDK/FacebookSDK.h>
+#import "LandingV2ViewController.h"
 @interface NewProfileV2ViewController ()
 
 @end
@@ -53,7 +58,7 @@
     
     CheckExpand = YES;
     
-    AllContentView.frame = CGRectMake(0, 100, screenWidth, 5000);
+    AllContentView.frame = CGRectMake(0, 100, screenWidth, 100);
 //    CGRect contentFrame = AllContentView.frame;
 //    contentFrame.origin.y += 100.0f;
 //    AllContentView.frame = contentFrame;
@@ -183,9 +188,7 @@
     EditProfileButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
     [EditProfileButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
     EditProfileButton.backgroundColor = [UIColor clearColor];
-//    EditProfileButton.layer.cornerRadius = 20;
-//    EditProfileButton.layer.borderWidth = 1;
-//    EditProfileButton.layer.borderColor=[[UIColor grayColor] CGColor];
+    [EditProfileButton addTarget:self action:@selector(EditProfileButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
     [AllContentView addSubview:EditProfileButton];
     
     ShowName_ = [[UILabel alloc]init];//getname
@@ -227,6 +230,12 @@
     ShowFollowers.backgroundColor = [UIColor clearColor];
     [AllContentView addSubview:ShowFollowers];
     
+    UIButton *OpenFollowersButton = [[UIButton alloc]init];
+    OpenFollowersButton.frame = CGRectMake(60, GetHeight, 120, 21);
+    [OpenFollowersButton setTitle:@"" forState:UIControlStateNormal];
+    [OpenFollowersButton addTarget:self action:@selector(ShowAll_FollowerButton:) forControlEvents:UIControlEventTouchUpInside];
+    [AllContentView addSubview:OpenFollowersButton];
+    
     UILabel *ShowFollowing = [[UILabel alloc]init];
     ShowFollowing.text = tempFollowing;
     ShowFollowing.frame = CGRectMake(170, GetHeight, 120, 21);
@@ -235,6 +244,12 @@
     ShowFollowing.textAlignment = NSTextAlignmentLeft;
     ShowFollowing.backgroundColor = [UIColor clearColor];
     [AllContentView addSubview:ShowFollowing];
+    
+    UIButton *OpenFollowingButton = [[UIButton alloc]init];
+    OpenFollowingButton.frame = CGRectMake(170, GetHeight, 120, 21);
+    [OpenFollowingButton setTitle:@"" forState:UIControlStateNormal];
+    [OpenFollowingButton addTarget:self action:@selector(ShowAll_FollowingButton:) forControlEvents:UIControlEventTouchUpInside];
+    [AllContentView addSubview:OpenFollowingButton];
     
     GetHeight += 30;
     
@@ -443,21 +458,21 @@
     
     // start 3 view Post, Collection, Like
     PostView = [[UIView alloc]init];
-    PostView.frame = CGRectMake(0, GetHeight - 1, screenWidth, 400);
+    PostView.frame = CGRectMake(0, GetHeight - 1, screenWidth, 100);
     PostView.backgroundColor = [UIColor whiteColor];
     [AllContentView addSubview:PostView];
     
     CollectionView = [[UIView alloc]init];
-    CollectionView.frame = CGRectMake(0, GetHeight, screenWidth, 400);
+    CollectionView.frame = CGRectMake(0, GetHeight, screenWidth, 100);
     CollectionView.backgroundColor = [UIColor whiteColor];
     [AllContentView addSubview:CollectionView];
     
-    
-    
     LikeView = [[UIView alloc]init];
-    LikeView.frame = CGRectMake(0, GetHeight, screenWidth, 800);
+    LikeView.frame = CGRectMake(0, GetHeight, screenWidth, 100);
     LikeView.backgroundColor = [UIColor whiteColor];
     [AllContentView addSubview:LikeView];
+    
+    AllContentView.frame = CGRectMake(0, 100 , screenWidth, GetHeight + 100);
     
     LikeView.hidden = YES;
     CollectionView.hidden = NO;
@@ -528,6 +543,9 @@
     
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
+    if ([GetCollectionDataCount length] == 0) {
+        GetCollectionDataCount = @"";
+    }
     NSString *TempString = [[NSString alloc]initWithFormat:@"%@ Collection",GetCollectionDataCount];
 
     UILabel *ShowCollectionCount = [[UILabel alloc]init];
@@ -635,6 +653,7 @@
         
         heightcheck += FinalWidth + 10 + 70 + 10 + i ;
     }
+    AllContentView.frame = CGRectMake(0, 100 , screenWidth, GetHeight + heightcheck + FinalWidth + 120);
     CollectionView.frame = CGRectMake(0, GetHeight, screenWidth, heightcheck + FinalWidth + 120);
     NSLog(@"GetHeight = %d",GetHeight);
     NSLog(@"heightcheck = %d",heightcheck);
@@ -715,7 +734,7 @@
         //[MainScroll setContentSize:CGSizeMake(320, GetHeight + 105 + (106 * (CGFloat)(i /3)))];
         LikeView.frame = CGRectMake(0, GetHeight, screenWidth, heightcheck + FinalWidth + (SpaceWidth * (CGFloat)(i /3)));
     }
-    
+     AllContentView.frame = CGRectMake(0, 100 , screenWidth, GetHeight + LikeView.frame.size.height + FinalWidth + FinalWidth);
     CGSize contentSize = MainScroll.frame.size;
     contentSize.height = GetHeight + LikeView.frame.size.height + FinalWidth + FinalWidth;
     MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
@@ -830,6 +849,7 @@
         
         PostView.frame = CGRectMake(0, GetHeight - 1, screenWidth, heightcheck);
     }
+         AllContentView.frame = CGRectMake(0, 100 , screenWidth,GetHeight + PostView.frame.size.height + 251);
     CGSize contentSize = MainScroll.frame.size;
     contentSize.height = GetHeight + PostView.frame.size.height + 251;
     MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
@@ -841,8 +861,8 @@
 -(IBAction)SettingsButton:(id)sender{
 
     SettingsViewController *SettingsView = [[SettingsViewController alloc]init];
-    //[self.view.window.rootViewController presentViewController:SettingsView animated:YES completion:nil];
-    [self presentViewController:SettingsView animated:YES completion:nil];
+    [self.view.window.rootViewController presentViewController:SettingsView animated:YES completion:nil];
+    //[self presentViewController:SettingsView animated:YES completion:nil];
     
 }
 -(void)GetUserData{
@@ -1091,10 +1111,54 @@
                 [self GetCollectionData];
             }else{
             
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                NSString *GetBackCheckAPI = [defaults objectForKey:@"CheckAPI"];
+                NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+                [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+                
+                NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
+                NSLog(@"language is %@",language);
+                // zh-Hans - Simplified Chinese
+                // zh-Hant - Traditional Chinese
+                // en - English
+                // th - Thai
+                // id - Bahasa Indonesia
+                NSInteger CheckSystemLanguage;
+                if ([language isEqualToString:@"en"]) {
+                    CheckSystemLanguage = 0;
+                }else if([language isEqualToString:@"zh-Hans"]){
+                    CheckSystemLanguage = 1;
+                }else if([language isEqualToString:@"zh-Hant"]){
+                    CheckSystemLanguage = 2;
+                }else if([language isEqualToString:@"id"]){
+                    CheckSystemLanguage = 3;
+                }else if([language isEqualToString:@"th"]){
+                    CheckSystemLanguage = 4;
+                }else if([language isEqualToString:@"tl-PH"]){
+                    CheckSystemLanguage = 5;
+                }
+                LanguageManager *languageManager = [LanguageManager sharedLanguageManager];
+                
+                Locale *localeForRow = languageManager.availableLocales[CheckSystemLanguage];
+                [languageManager setLanguageWithLocale:localeForRow];
+                
+                
+                //save back
+                [defaults setObject:GetBackCheckAPI forKey:@"CheckAPI"];
+                //[defaults setObject:GetBackAPIVersion forKey:@"APIVersionSet"];
+                [defaults synchronize];
+                
+                
+                LandingV2ViewController *LandingView = [[LandingV2ViewController alloc]init];
+                [self presentViewController:LandingView animated:YES completion:nil];
+                
+            }
+                
+                
             }
             
             
-        }
+        
         
         
 
@@ -1406,6 +1470,7 @@
     NSLog(@"OpenCollectionOnClick button %li",(long)getbuttonIDN);
     
     CollectionViewController *OpenCollectionView = [[CollectionViewController alloc]init];
+   // [self.view.window.rootViewController presentViewController:OpenCollectionView animated:YES completion:nil];
     [self.navigationController pushViewController:OpenCollectionView animated:YES];
     [OpenCollectionView GetCollectionID:[CollectionData_IDArray objectAtIndex:getbuttonIDN]];
 }
@@ -1439,6 +1504,135 @@
     }
     return _editCollectionViewController;
 }
-
-
+-(IBAction)EditProfileButtonOnClick:(id)sender{
+    EditProfileV2ViewController *EditProfileView = [[EditProfileV2ViewController alloc]init];
+    [self.view.window.rootViewController presentViewController:EditProfileView animated:YES completion:nil];
+}
+-(IBAction)ShareButton:(id)sender{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:CustomLocalisedString(@"SettingsPage_Cancel", nil)
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:CustomLocalisedString(@"ShareToFacebook", nil),CustomLocalisedString(@"CopyLink", nil), nil];
+    
+    [actionSheet showInView:self.view];
+    
+    actionSheet.tag = 200;
+    
+}
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+if(actionSheet.tag == 200){
+        NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
+        if ([buttonTitle isEqualToString:CustomLocalisedString(@"ShareToFacebook", nil)]) {
+            NSLog(@"Share to Facebook");
+            [actionSheet dismissWithClickedButtonIndex:0 animated:YES];
+            NSString *message = [NSString stringWithFormat:@"https://seeties.me/%@",GetUserName];
+            NSLog(@"message is %@",message);
+            // Check if the Facebook app is installed and we can present the share dialog
+            FBLinkShareParams *params = [[FBLinkShareParams alloc] init];
+            params.link = [NSURL URLWithString:message];
+            
+            // If the Facebook app is installed and we can present the share dialog
+            if ([FBDialogs canPresentShareDialogWithParams:params]) {
+                
+                // Present share dialog
+                [FBDialogs presentShareDialogWithLink:params.link
+                                              handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
+                                                  if(error) {
+                                                      // An error occurred, we need to handle the error
+                                                      // See: https://developers.facebook.com/docs/ios/errors
+                                                      NSLog(@"Error publishing story: %@", error.description);
+                                                  } else {
+                                                      // Success
+                                                      NSLog(@"result %@", results);
+                                                  }
+                                              }];
+                
+                // If the Facebook app is NOT installed and we can't present the share dialog
+            } else {
+                // FALLBACK: publish just a link using the Feed dialog
+                
+                // Put together the dialog parameters
+                NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                               @"", @"name",
+                                               @"", @"caption",
+                                               @"", @"description",
+                                               message, @"link",
+                                               @"", @"picture",
+                                               nil];
+                
+                // Show the feed dialog
+                [FBWebDialogs presentFeedDialogModallyWithSession:nil
+                                                       parameters:params
+                                                          handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
+                                                              if (error) {
+                                                                  // An error occurred, we need to handle the error
+                                                                  // See: https://developers.facebook.com/docs/ios/errors
+                                                                  NSLog(@"Error publishing story: %@", error.description);
+                                                              } else {
+                                                                  if (result == FBWebDialogResultDialogNotCompleted) {
+                                                                      // User canceled.
+                                                                      NSLog(@"User cancelled.");
+                                                                  } else {
+                                                                      // Handle the publish feed callback
+                                                                      NSDictionary *urlParams = [self parseURLParams:[resultURL query]];
+                                                                      
+                                                                      if (![urlParams valueForKey:@"post_id"]) {
+                                                                          // User canceled.
+                                                                          NSLog(@"User cancelled.");
+                                                                          
+                                                                      } else {
+                                                                          // User clicked the Share button
+                                                                          NSString *result = [NSString stringWithFormat: @"Posted story, id: %@", [urlParams valueForKey:@"post_id"]];
+                                                                          NSLog(@"result %@", result);
+                                                                      }
+                                                                  }
+                                                              }
+                                                          }];
+            }
+            
+        }
+        if ([buttonTitle isEqualToString:CustomLocalisedString(@"CopyLink", nil)]) {
+            NSLog(@"Copy Link");
+            NSString *message = [NSString stringWithFormat:@"Check out my profile on Seeties!\n\nhttps://seeties.me/%@",GetUserName];
+            UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+            pasteboard.string = message;
+            [actionSheet dismissWithClickedButtonIndex:0 animated:YES];
+            NSLog(@"message is %@",message);
+        }
+        
+        if ([buttonTitle isEqualToString:@"Cancel Button"]) {
+            NSLog(@"Cancel Button");
+        }
+    }
+    
+}
+- (NSDictionary*)parseURLParams:(NSString *)query {
+    NSArray *pairs = [query componentsSeparatedByString:@"&"];
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    for (NSString *pair in pairs) {
+        NSArray *kv = [pair componentsSeparatedByString:@"="];
+        NSString *val =
+        [kv[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        params[kv[0]] = val;
+    }
+    return params;
+}
+-(IBAction)ShowAll_FollowerButton:(id)sender{
+   
+    ShowFollowerAndFollowingViewController *ShowFollowerAndFollowingView = [[ShowFollowerAndFollowingViewController alloc]init];
+    [self.view.window.rootViewController presentViewController:ShowFollowerAndFollowingView animated:YES completion:nil];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+     NSString *Getuid = [defaults objectForKey:@"Useruid"];
+    [ShowFollowerAndFollowingView GetToken:GetExpertToken GetUID:Getuid GetType:@"Follower"];
+}
+-(IBAction)ShowAll_FollowingButton:(id)sender{
+    ShowFollowerAndFollowingViewController *ShowFollowerAndFollowingView = [[ShowFollowerAndFollowingViewController alloc]init];
+    [self.view.window.rootViewController presentViewController:ShowFollowerAndFollowingView animated:YES completion:nil];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *Getuid = [defaults objectForKey:@"Useruid"];
+    [ShowFollowerAndFollowingView GetToken:GetExpertToken GetUID:Getuid GetType:@"Follower"];
+}
 @end

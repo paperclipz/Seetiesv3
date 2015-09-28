@@ -37,7 +37,7 @@
 #import "CustomPickerViewController.h"
 #import "PInterestV2ViewController.h"
 
-@interface LandingV2ViewController ()
+@interface LandingV2ViewController ()<UIScrollViewDelegate>
 {
     
     IBOutlet UIButton *FBLoginButton;
@@ -51,6 +51,15 @@
     IBOutlet UIButton *InstagramButton;
     IBOutlet UILabel *ShowTnCText;
     IBOutlet UIActivityIndicatorView *ShowActivity;
+    IBOutlet UILabel *ContinueText;
+    
+    IBOutlet UIScrollView *MainScroll;
+    IBOutlet UIPageControl *PageControlOn;
+    
+    NSMutableArray *ImageArray;
+    
+    BOOL pageControlBeingUsed;
+    int checkauto;
 }
 
 @property(nonatomic,strong)CustomPickerViewController* recommendationChooseViewController;
@@ -82,26 +91,74 @@
     WhyWeUseFBButton.hidden = YES;
     SignUpWithEmailButton.hidden = YES;
     InstagramButton.hidden = YES;
+    ContinueText.hidden = YES;
     InstagramButton.layer.cornerRadius = 5;
 
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    FBLoginButton.frame = CGRectMake((screenWidth/2) - 130, screenHeight - 256, 260, 50);
-    LogInButton.frame = CGRectMake((screenWidth/2) + 130 - 74, screenHeight - 130, 74, 34);
+    FBLoginButton.frame = CGRectMake((screenWidth/2) - 155, screenHeight - 158, 150, 50);
+    LogInButton.frame = CGRectMake((screenWidth/2) + 155 - 74, screenHeight - 90, 74, 34);
     WhyWeUseFBButton.frame = CGRectMake(0, screenHeight - 128, screenWidth, 34);
-    InstagramButton.frame = CGRectMake((screenWidth/2) - 130, screenHeight - 198, 260, 50);
-    SignUpWithEmailButton.frame = CGRectMake((screenWidth/2) - 130, screenHeight - 130, 125, 34);
-    MainText.frame = CGRectMake(30, 150, screenWidth - 60, 65);
+    InstagramButton.frame = CGRectMake((screenWidth/2) + 5, screenHeight - 158, 150, 50);
+    SignUpWithEmailButton.frame = CGRectMake((screenWidth/2) - 155, screenHeight - 90, 125, 34);
+    MainText.frame = CGRectMake(30, 150, screenWidth - 60, 40);
     MainLogo.frame = CGRectMake((screenWidth/2) - 104, 70, 208, 82);
     ShowBackgroundImage.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
-    ShowTnCText.frame = CGRectMake(30, screenHeight - 70, screenWidth - 60, 50);
+    ShowTnCText.frame = CGRectMake(30, screenHeight - 40, screenWidth - 60, 30);
+    ContinueText.frame = CGRectMake(0, screenHeight - 210, screenWidth, 30);
+    MainText.hidden = YES;
+    
+    pageControlBeingUsed = NO;
+    
+    MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight);
+    PageControlOn.frame = CGRectMake((screenWidth / 2) - 20, 220, 39, 37);
+    [MainScroll setScrollEnabled:YES];
+    MainScroll.delegate = self;
+    [MainScroll setBounces:NO];
+    
+    ImageArray = [[NSMutableArray alloc] init];
+    [ImageArray addObject:@"1242x2208-01.jpg"];
+    [ImageArray addObject:@"1242x2208-03.jpg"];
+    [ImageArray addObject:@"1242x2208-04.jpg"];
+    
+    NSMutableArray *TextArray = [[NSMutableArray alloc]init];
+    [TextArray addObject:@"Discover the city's best places to eat, play & shop"];
+    [TextArray addObject:@"Create personal collections for your favourite finds"];
+    [TextArray addObject:@"Recommend your favourite places & best experiences"];
+
+    
+    for (int i = 0 ; i < [ImageArray count]; i++) {
+        UIImageView *ShowImage = [[UIImageView alloc]initWithFrame:CGRectMake( 0+ i *screenWidth, 0, screenWidth, MainScroll.bounds.size.height)];
+        ShowImage.contentMode = UIViewContentModeScaleAspectFit;
+        ShowImage.backgroundColor = [UIColor clearColor];
+        ShowImage.image = [UIImage imageNamed:[ImageArray objectAtIndex:i]];
+        [MainScroll addSubview:ShowImage];
+        
+        UILabel *ShowUserNameLocalQR = [[UILabel alloc]init];
+        ShowUserNameLocalQR.frame = CGRectMake(30+ i *screenWidth, 170, screenWidth - 60, 40);
+        ShowUserNameLocalQR.text = [TextArray objectAtIndex:i];
+        ShowUserNameLocalQR.backgroundColor = [UIColor clearColor];
+        ShowUserNameLocalQR.textColor = [UIColor whiteColor];
+        ShowUserNameLocalQR.textAlignment = NSTextAlignmentCenter;
+        ShowUserNameLocalQR.numberOfLines = 10;
+        ShowUserNameLocalQR.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:20];
+        [MainScroll addSubview:ShowUserNameLocalQR];
+    }
+    NSInteger productcount = [ImageArray count];
+    MainScroll.contentSize = CGSizeMake(productcount * screenWidth, [UIScreen mainScreen].bounds.size.height);
+    
+    PageControlOn.currentPage = 0;
+    PageControlOn.numberOfPages = productcount;
+    //checkauto = productcount;
+    checkauto = 0;
 }
 
 -(void)changeLanguage
 {
     MainText.text = NSLocalizedString(@"LandingPage_MainText", nil);
-    [FBLoginButton setTitle:NSLocalizedString(@"LandingPage_ContinueFacebook",nil) forState:UIControlStateNormal];
+    [FBLoginButton setTitle:@"Facebook" forState:UIControlStateNormal];
+    [InstagramButton setTitle:@"Instagram" forState:UIControlStateNormal];
     [LogInButton setTitle:NSLocalizedString(@"LandingPage_Login",nil) forState:UIControlStateNormal];
     [WhyWeUseFBButton setTitle:NSLocalizedString(@"LandingPage_WhyUseFacebook",nil) forState:UIControlStateNormal];
     [SignUpWithEmailButton setTitle:@"Sign up" forState:UIControlStateNormal];
@@ -229,6 +286,8 @@
     NSTimer *RandomTimer;
 
     if ([Utils isLogin]) {
+        MainScroll.hidden = YES;
+        PageControlOn.hidden = YES;
         ShowBackgroundImage.image = [UIImage imageNamed:@"HomeBg.png"];
         MainLogo.hidden = YES;
         MainText.hidden = YES;
@@ -236,15 +295,20 @@
         
         RandomTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(ChangeView2) userInfo:nil repeats:NO];
     }else{
-        CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+      //  CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+      //  CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+        MainScroll.hidden = NO;
+        PageControlOn.hidden = NO;
+        ShowBackgroundImage.hidden = YES;
         
-        CRMotionView *motionView = [[CRMotionView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LandingV2.png"]];
-        [motionView setContentView:imageView];
-        [BackgroundView addSubview:motionView];
-        [motionView setScrollDragEnabled:YES];
-        [motionView setScrollBounceEnabled:NO];
+        [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(scrollView) userInfo:nil repeats:YES];
+        
+//        CRMotionView *motionView = [[CRMotionView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
+//        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LandingV2.png"]];
+//        [motionView setContentView:imageView];
+//        [BackgroundView addSubview:motionView];
+//        [motionView setScrollDragEnabled:YES];
+//        [motionView setScrollBounceEnabled:NO];
         
         
         switch ([CheckProvisioningStatus intValue]) {
@@ -285,7 +349,43 @@
         
     }
 }
+- (void) scrollView {
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    checkauto++;
+    if (checkauto >= PageControlOn.numberOfPages) {
+        PageControlOn.currentPage = 0;
+        checkauto = 0;
+        [MainScroll setContentOffset:CGPointMake(0,0.0) animated:YES];
+    }else{
+        CGFloat currentOffset = MainScroll.contentOffset.x;
+        CGFloat newOffset = currentOffset + screenWidth;
+        [MainScroll setContentOffset:CGPointMake(newOffset,0.0) animated:YES];
+    }
+    
+}
+- (void)scrollViewDidScroll:(UIScrollView *)sender {
+    // Update the page when more than 50% of the previous/next page is visible
+    CGFloat pageWidth = MainScroll.frame.size.width;
+    int page = floor((MainScroll.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    PageControlOn.currentPage = page;
+}
+- (IBAction)changePage {
+    // update the scroll view to the appropriate page
+    CGRect frame;
+    frame.origin.x = MainScroll.frame.size.width * PageControlOn.currentPage;
+    frame.origin.y = 0;
+    frame.size = MainScroll.frame.size;
+    [MainScroll scrollRectToVisible:frame animated:YES];
+    
+    pageControlBeingUsed = YES;
+}
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    pageControlBeingUsed = NO;
+}
 
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    pageControlBeingUsed = NO;
+}
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.screenName = @"IOS Landing Page";
@@ -306,8 +406,7 @@
     WhyWeUseFBButton.hidden = NO;
     SignUpWithEmailButton.hidden = NO;
     InstagramButton.hidden = NO;
-
-    
+    ContinueText.hidden = NO;
 }
 -(void)ChangeView2{
     
@@ -1071,11 +1170,12 @@
         NSError *myError = nil;
         NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
         NSArray *GetAllData = (NSArray *)[res valueForKey:@"categories"];
-        //   NSLog(@"GetAllData Json = %@",GetAllData);
+      //  NSLog(@"GetAllData Json = %@",GetAllData);
         
         NSMutableArray *Category_IDArray = [[NSMutableArray alloc]initWithCapacity:[GetAllData count]];
         NSMutableArray *Category_NameArray = [[NSMutableArray alloc]initWithCapacity:[GetAllData count]];
-        NSMutableArray *Category_ImageArray = [[NSMutableArray alloc]initWithCapacity:[GetAllData count]];
+        NSMutableArray *Category_ImageDefaultArray = [[NSMutableArray alloc]initWithCapacity:[GetAllData count]];
+        NSMutableArray *Category_ImageSelectedArray = [[NSMutableArray alloc]initWithCapacity:[GetAllData count]];
         NSMutableArray *Category_BackgroundImageArray = [[NSMutableArray alloc]initWithCapacity:[GetAllData count]];
         
         NSMutableArray *Category_NameArray_CN = [[NSMutableArray alloc]initWithCapacity:[GetAllData count]];
@@ -1086,9 +1186,15 @@
         for (NSDictionary * dict in GetAllData) {
             NSString *id_ = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"id"]];
             [Category_IDArray addObject:id_];
-            NSString *imagedata = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"image"]];
-            NSString *stringWithoutSpaces = [imagedata stringByReplacingOccurrencesOfString:@"data:image/png;base64," withString:@""];
-            [Category_ImageArray addObject:stringWithoutSpaces];
+            
+            NSDictionary *GetImageData = [dict valueForKey:@"images"];
+            
+            NSString *DefaultImg = [[NSString alloc]initWithFormat:@"%@",[GetImageData objectForKey:@"default"]];
+            NSString *SelectImg = [[NSString alloc]initWithFormat:@"%@",[GetImageData objectForKey:@"selected"]];
+            [Category_ImageDefaultArray addObject:DefaultImg];
+            [Category_ImageSelectedArray addObject:SelectImg];
+            
+            
             NSString *background_color = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"background_color"]];
             [Category_BackgroundImageArray addObject:background_color];
             NSDictionary *NameData = [dict valueForKey:@"single_line"];
@@ -1106,15 +1212,16 @@
             [Category_NameArray_TH addObject:ThData];
         }
         
-        //        NSLog(@"Category_IDArray is %@",Category_IDArray);
-        //        NSLog(@"Category_NameArray is %@",Category_NameArray);
+           // NSLog(@"Category_ImageDefaultArray is %@",Category_ImageDefaultArray);
+          //  NSLog(@"Category_ImageSelectedArray is %@",Category_ImageSelectedArray);
         //        NSLog(@"Category_ImageArray is %@",Category_ImageArray);
         
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:Category_IDArray forKey:@"Category_All_ID"];
         [defaults setObject:Category_NameArray forKey:@"Category_All_Name"];
-        [defaults setObject:Category_ImageArray forKey:@"Category_All_Image"];
+        [defaults setObject:Category_ImageDefaultArray forKey:@"Category_All_Image_Default"];
+        [defaults setObject:Category_ImageSelectedArray forKey:@"Category_All_Image_Selected"];
         [defaults setObject:Category_BackgroundImageArray forKey:@"Category_All_Background"];
         
         [defaults setObject:Category_NameArray_CN forKey:@"Category_All_Name_Cn"];

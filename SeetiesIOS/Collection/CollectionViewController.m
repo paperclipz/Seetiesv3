@@ -7,7 +7,7 @@
 //
 
 #import "CollectionViewController.h"
-
+#import "FeedV2DetailViewController.h"
 @interface CollectionViewController ()
 
 @end
@@ -28,6 +28,9 @@
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     MoreButton.frame = CGRectMake(screenWidth - 40, 20, 40, 44);
     MapButton.frame = CGRectMake(screenWidth - 80, 20, 40, 44);
+    
+    DownBarView.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
+    ShareButton.frame = CGRectMake(screenWidth - 130, 0, 120, 50);
     
     CheckLoad = NO;
     TotalPage = 1;
@@ -52,6 +55,15 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight, screenWidth, 50);
+}
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
 }
 -(IBAction)BackButton:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
@@ -517,6 +529,17 @@
 
         }
         
+        
+        UIButton *ClickToDetailButton = [[UIButton alloc]init];
+        ClickToDetailButton.frame = CGRectMake(20, TempHeight, screenWidth - 40, 180);
+        [ClickToDetailButton setTitle:@"" forState:UIControlStateNormal];
+        ClickToDetailButton.backgroundColor = [UIColor clearColor];
+        ClickToDetailButton.tag = i;
+        [ClickToDetailButton addTarget:self action:@selector(ClickToDetailButton:) forControlEvents:UIControlEventTouchUpInside];
+        [ListView addSubview:ClickToDetailButton];
+        
+        
+        
         UIImageView *ShowPin = [[UIImageView alloc]init];
         ShowPin.image = [UIImage imageNamed:@"location_icon.png"];
         ShowPin.frame = CGRectMake(30, TempHeight + 24, 9, 12);
@@ -581,10 +604,10 @@
         
     }
     
-    ListView.frame = CGRectMake(0, GetHeight + 10, screenWidth, TempHeight + 170);
+    ListView.frame = CGRectMake(0, GetHeight + 10, screenWidth, TempHeight + 10);
     
     CGSize contentSize = MainScroll.frame.size;
-    contentSize.height = GetHeight + ListView.frame.size.height + 50;
+    contentSize.height = GetHeight + ListView.frame.size.height;
     MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     MainScroll.contentSize = contentSize;
     
@@ -592,7 +615,7 @@
 }
 -(void)InitGridViewData{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-
+    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     int heightcheck = 10;
     
     int TestWidth = screenWidth - 2;
@@ -626,15 +649,36 @@
         [ImageButton setTitle:@"" forState:UIControlStateNormal];
         ImageButton.frame = CGRectMake(0+(i % 3)*SpaceWidth, heightcheck + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
         ImageButton.tag = i;
-       // [ImageButton addTarget:self action:@selector(LikesButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [ImageButton addTarget:self action:@selector(ClickToDetailButton:) forControlEvents:UIControlEventTouchUpInside];
         [GridView addSubview:ImageButton];
-        //[MainScroll setContentSize:CGSizeMake(320, GetHeight + 105 + (106 * (CGFloat)(i /3)))];
+        
         GridView.frame = CGRectMake(0, GetHeight, screenWidth, heightcheck + FinalWidth + (SpaceWidth * (CGFloat)(i /3)));
+    }
+    if (GridView.frame.size.height < screenHeight) {
+        
+        GridView.frame = CGRectMake(0, GetHeight, screenWidth, screenHeight);
     }
     
     CGSize contentSize = MainScroll.frame.size;
-    contentSize.height = GetHeight + GridView.frame.size.height + FinalWidth + FinalWidth;
+    contentSize.height = GetHeight + GridView.frame.size.height + FinalWidth;
     MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     MainScroll.contentSize = contentSize;
+}
+
+-(IBAction)ClickToDetailButton:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSLog(@"button %li",(long)getbuttonIDN);
+    
+    FeedV2DetailViewController *vc = [[FeedV2DetailViewController alloc] initWithNibName:@"FeedV2DetailViewController" bundle:nil];
+    
+    [self.navigationController pushViewController:vc animated:YES];
+    [vc GetPostID:[Content_arrID objectAtIndex:getbuttonIDN]];
+    
+}
+-(IBAction)ShareButtonOnClick:(id)sender{
+}
+-(IBAction)ShareLinkButtonOnClick:(id)sender{
+}
+-(IBAction)TranslateButtonOnClick:(id)sender{
 }
 @end

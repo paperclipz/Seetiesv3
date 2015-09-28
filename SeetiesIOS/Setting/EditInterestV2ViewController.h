@@ -20,7 +20,8 @@
     NSMutableArray *BackgroundColorArray;
     NSMutableArray *CategoryIDArray;
     NSMutableArray *SelectCategoryIDArray;
-    NSMutableArray *GetImageArray1;
+    NSMutableArray *GetImageDefaultArray;
+    NSMutableArray *GetImageSelectedArray;
     
     NSMutableArray *selectedIndexes;
     
