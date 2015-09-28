@@ -337,7 +337,8 @@
     NSLog(@"GetStatus is %@",GetStatus);
     
     if ([GetStatus isEqualToString:@"ok"]) {
-        NSString *GetToken = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"token"]];
+        NSDictionary *GetAllData = [res valueForKey:@"data"];
+        NSString *GetToken = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"token"]];
         NSLog(@"GetToken is %@",GetToken);
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

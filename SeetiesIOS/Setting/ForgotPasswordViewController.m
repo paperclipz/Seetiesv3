@@ -66,8 +66,12 @@
 }
 -(IBAction)resetButton:(id)sender{
     NSLog(@"Get inputtext is %@",InputText.text);
-    if ([InputText.text length] == 0) {
-        
+    
+    NSString *emailRegEx = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,10}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegEx];
+    
+    if ([InputText.text length] == 0 || [emailTest evaluateWithObject:InputText.text] == NO) {
+        [TSMessage showNotificationInViewController:self title:@"" subtitle:NSLocalizedString(@"EmailError", nil) type:TSMessageNotificationTypeError];
     }else{
         [self sendDataToServer];
     }

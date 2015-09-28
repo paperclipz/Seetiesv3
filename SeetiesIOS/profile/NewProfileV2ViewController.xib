@@ -31,6 +31,10 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </scrollView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FeedOverlay.png" id="hWm-8m-lkS">
+                    <rect key="frame" x="0.0" y="0.0" width="800" height="200"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
                 <searchBar alpha="0.69999999999999973" contentMode="redraw" placeholder="search" translucent="NO" id="gYI-aC-AkV">
                     <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -76,9 +80,9 @@
             <point key="canvasLocation" x="342" y="539"/>
         </view>
         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="3QS-vy-vDW" customClass="AsyncImageView">
-            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+            <rect key="frame" x="0.0" y="0.0" width="240" height="155"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <point key="canvasLocation" x="768" y="477"/>
+            <point key="canvasLocation" x="655" y="332.5"/>
         </imageView>
         <view contentMode="scaleToFill" id="X8R-JL-9au">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -89,6 +93,7 @@
         </view>
     </objects>
     <resources>
+        <image name="FeedOverlay.png" width="300" height="250"/>
         <image name="SettingsButton.png" width="38" height="38"/>
         <image name="profileshare_icon.png" width="16" height="18"/>
     </resources>

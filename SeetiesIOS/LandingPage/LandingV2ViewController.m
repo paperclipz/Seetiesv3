@@ -31,7 +31,7 @@
 #import "RecommendationViewController.h"
 #import "PInterestV2ViewController.h"
 #import "FeedViewController.h"
-
+#import "OpenWebViewController.h"
 #import "NewProfileV2ViewController.h"
 
 #import "CustomPickerViewController.h"
@@ -105,9 +105,13 @@
     MainLogo.frame = CGRectMake((screenWidth/2) - 104, 70, 208, 82);
     ShowBackgroundImage.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
-    ShowTnCText.frame = CGRectMake(30, screenHeight - 40, screenWidth - 60, 30);
+    
     ContinueText.frame = CGRectMake(0, screenHeight - 210, screenWidth, 30);
     MainText.hidden = YES;
+    
+    ShowTnCText.frame = CGRectMake(30, screenHeight - 40, screenWidth - 60, 30);
+    TnCButton.frame = CGRectMake(0, screenHeight - 40, (screenWidth / 2), 30);
+    PrivacyButton.frame = CGRectMake((screenWidth / 2), screenHeight - 40,  (screenWidth / 2), 30);
     
     pageControlBeingUsed = NO;
     
@@ -1288,6 +1292,28 @@
     InstagramOnClickListen = @"YES";
     InstagramLoginWebViewController *WebViewLogin = [[InstagramLoginWebViewController alloc]init];
     [self presentViewController:WebViewLogin animated:YES completion:nil];
+}
+-(IBAction)TnCButtonOnClick:(id)sender{
+    OpenWebViewController *OpenWebView = [[OpenWebViewController alloc]init];
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.2;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromRight;
+    [self.view.window.layer addAnimation:transition forKey:nil];
+    [self presentViewController:OpenWebView animated:NO completion:nil];
+    [OpenWebView GetTitleString:@"TermsofUse"];
+}
+-(IBAction)PrivacyButtonOnClick:(id)sender{
+    OpenWebViewController *OpenWebView = [[OpenWebViewController alloc]init];
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.2;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromRight;
+    [self.view.window.layer addAnimation:transition forKey:nil];
+    [self presentViewController:OpenWebView animated:NO completion:nil];
+    [OpenWebView GetTitleString:@"PrivacyPolicy"];
 }
 @end
 

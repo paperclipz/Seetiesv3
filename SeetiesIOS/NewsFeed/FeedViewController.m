@@ -244,6 +244,8 @@
         arrImageWidth = [[NSMutableArray alloc]initWithArray:arrImageWidthTemp];
         NSMutableArray *arrLikeWidthTemp = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"FeedLocalarrLike"]];
         arrlike = [[NSMutableArray alloc]initWithArray:arrLikeWidthTemp];
+        NSMutableArray *arrCollectWidthTemp = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"FeedLocalarrCollect"]];
+        arrCollect = [[NSMutableArray alloc]initWithArray:arrCollectWidthTemp];
     }else{
         arrAddress = [[NSMutableArray alloc]init];
         arrTitle = [[NSMutableArray alloc]init];
@@ -258,6 +260,7 @@
         arrImageWidth = [[NSMutableArray alloc]init];
         arrImageHeight = [[NSMutableArray alloc]init];
         arrlike = [[NSMutableArray alloc]init];
+        arrCollect = [[NSMutableArray alloc]init];
     }
 
     User_LocationArray = [[NSMutableArray alloc]init];
@@ -288,6 +291,52 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *CheckSelfDelete = [defaults objectForKey:@"SelfDeletePost"];
+    if ([CheckSelfDelete isEqualToString:@"YES"]) {
+        [self ReinitData];
+        
+        [User_LocationArray removeAllObjects];
+        [User_IDArray removeAllObjects];
+        [User_NameArray removeAllObjects];
+        [User_ProfileImageArray removeAllObjects];
+        [User_FollowArray removeAllObjects];
+        [User_UserNameArray removeAllObjects];
+        [User_PhotoArray removeAllObjects];
+        
+        [arrType_Announcement removeAllObjects];
+        [arrID_Announcement removeAllObjects];
+        
+        arrType_Announcement = [[NSMutableArray alloc]init];
+        arrID_Announcement = [[NSMutableArray alloc]init];
+        
+        DataCount = 0;
+        Offset = 1;
+        CheckFirstTimeLoad = 0;
+        OnLoad = NO;
+        
+        for (UIView *subview in MainScroll.subviews) {
+            [subview removeFromSuperview];
+        }
+        
+        refreshControl = [[UIRefreshControl alloc] init];
+        refreshControl.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+        refreshControl.bounds = CGRectMake(refreshControl.bounds.origin.x - 20,
+                                           0,
+                                           refreshControl.bounds.size.width,
+                                           refreshControl.bounds.size.height);
+        // refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Loading..."];
+        [refreshControl addTarget:self action:@selector(testRefresh) forControlEvents:UIControlEventValueChanged];
+        [MainScroll addSubview:refreshControl];
+        
+        GetNextPaging = @"";
+        [self GetFeedDataFromServer];
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:@"NO" forKey:@"SelfDeletePost"];
+        [defaults synchronize];
+    }
+    
 }
 -(void)testRefresh{
     
@@ -317,6 +366,16 @@
     for (UIView *subview in MainScroll.subviews) {
         [subview removeFromSuperview];
     }
+    
+    refreshControl = [[UIRefreshControl alloc] init];
+    refreshControl.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    refreshControl.bounds = CGRectMake(refreshControl.bounds.origin.x - 20,
+                                       0,
+                                       refreshControl.bounds.size.width,
+                                       refreshControl.bounds.size.height);
+    // refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Loading..."];
+    [refreshControl addTarget:self action:@selector(testRefresh) forControlEvents:UIControlEventValueChanged];
+    [MainScroll addSubview:refreshControl];
     
     GetNextPaging = @"";
     [self GetFeedDataFromServer];
@@ -624,7 +683,14 @@
             [LocalScroll addSubview:ShareButton];
             
             
+            CheckCollect = [[NSString alloc]initWithFormat:@"%@",[arrCollect objectAtIndex:i]];;
             UIButton *QuickCollectButton = [[UIButton alloc]init];
+            if ([CheckCollect isEqualToString:@"0"]) {
+                [QuickCollectButton setImage:[UIImage imageNamed:@"CollectBtn.png"] forState:UIControlStateNormal];
+                [QuickCollectButton setImage:[UIImage imageNamed:@"CollectedBtn.png"] forState:UIControlStateSelected];
+            }else{
+                [QuickCollectButton setImage:[UIImage imageNamed:@"CollectedBtn.png"] forState:UIControlStateNormal];
+            }
             [QuickCollectButton setImage:[UIImage imageNamed:@"CollectBtn.png"] forState:UIControlStateNormal];
             [QuickCollectButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
             [QuickCollectButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
@@ -790,7 +856,7 @@
                 [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
                 NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[arrUserImage objectAtIndex:i]];
                 if ([FullImagesURL length] == 0) {
-                    ShowUserProfileImage.image = [UIImage imageNamed:@"NoImage.png"];
+                    ShowUserProfileImage.image = [UIImage imageNamed:@"avatar.png"];
                 }else{
                     NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL];
                     ShowUserProfileImage.imageURL = url_NearbySmall;
@@ -979,12 +1045,19 @@
                 [ShareButton addTarget:self action:@selector(ShareButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
                 [MainScroll addSubview:ShareButton];
                 
-                
+                CheckCollect = [[NSString alloc]initWithFormat:@"%@",[arrCollect objectAtIndex:i]];;
                 UIButton *QuickCollectButton = [[UIButton alloc]init];
-                [QuickCollectButton setImage:[UIImage imageNamed:@"CollectBtn.png"] forState:UIControlStateNormal];
+                if ([CheckCollect isEqualToString:@"0"]) {
+                    [QuickCollectButton setImage:[UIImage imageNamed:@"CollectBtn.png"] forState:UIControlStateNormal];
+                    [QuickCollectButton setImage:[UIImage imageNamed:@"CollectedBtn.png"] forState:UIControlStateSelected];
+                }else{
+                    [QuickCollectButton setImage:[UIImage imageNamed:@"CollectedBtn.png"] forState:UIControlStateNormal];
+                    //[QuickCollectButton setImage:[UIImage imageNamed:@"CollectBtn.png"] forState:UIControlStateSelected];
+                }
                 [QuickCollectButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
                 [QuickCollectButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
                 QuickCollectButton.backgroundColor = [UIColor clearColor];
+                QuickCollectButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
                 QuickCollectButton.frame = CGRectMake(screenWidth - 20 - 140, heightcheck + 4, 140, 50);
                 [QuickCollectButton addTarget:self action:@selector(CollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
                 QuickCollectButton.tag = i;
@@ -1068,7 +1141,7 @@
                 [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImageLocalQR];
                 NSString *FullImagesURLLocalQR = [[NSString alloc]initWithFormat:@"%@",[arrUserImage objectAtIndex:i]];
                 if ([FullImagesURLLocalQR length] == 0) {
-                    ShowUserProfileImageLocalQR.image = [UIImage imageNamed:@"NoImage.png"];
+                    ShowUserProfileImageLocalQR.image = [UIImage imageNamed:@"avatar.png"];
                 }else{
                     NSURL *url_NearbySmallLocalQR = [NSURL URLWithString:FullImagesURLLocalQR];
                     ShowUserProfileImageLocalQR.imageURL = url_NearbySmallLocalQR;
@@ -1265,8 +1338,14 @@
                 [MainScroll addSubview:ShareButton];
                 
                 
+                CheckCollect = [[NSString alloc]initWithFormat:@"%@",[arrCollect objectAtIndex:i]];;
                 UIButton *QuickCollectButtonLocalQR = [[UIButton alloc]init];
-                [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:@"CollectBtn.png"] forState:UIControlStateNormal];
+                if ([CheckCollect isEqualToString:@"0"]) {
+                    [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:@"CollectBtn.png"] forState:UIControlStateNormal];
+                    [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:@"CollectedBtn.png"] forState:UIControlStateSelected];
+                }else{
+                    [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:@"CollectedBtn.png"] forState:UIControlStateNormal];
+                }
                 [QuickCollectButtonLocalQR setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
                 [QuickCollectButtonLocalQR.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
                 QuickCollectButtonLocalQR.backgroundColor = [UIColor clearColor];
@@ -1315,42 +1394,6 @@
 //                NSInteger TempHeightAbroad = heightcheck;
 //                int TempCountWhiteHeightAbroad = 0;
                 
-               // NSLog(@"in abroad_quality_post");
-                SuggestedScrollview = [[UIScrollView alloc]init];
-                SuggestedScrollview.delegate = self;
-                SuggestedScrollview.frame = CGRectMake(0, heightcheck, screenWidth, 420);
-                SuggestedScrollview.backgroundColor = [UIColor whiteColor];
-                SuggestedScrollview.pagingEnabled = YES;
-                [SuggestedScrollview setShowsHorizontalScrollIndicator:NO];
-                [SuggestedScrollview setShowsVerticalScrollIndicator:NO];
-                [MainScroll addSubview:SuggestedScrollview];
-                
-                UILabel *ShowSuggestedText = [[UILabel alloc]init];
-                ShowSuggestedText.frame = CGRectMake(20, heightcheck, 200, 50);
-                ShowSuggestedText.text = @"Suggested Abroad QR";
-                ShowSuggestedText.backgroundColor = [UIColor clearColor];
-                ShowSuggestedText.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
-                ShowSuggestedText.textAlignment = NSTextAlignmentLeft;
-                ShowSuggestedText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-                [MainScroll addSubview:ShowSuggestedText];
-                
-                ShowSuggestedCount = [[UILabel alloc]init];
-                ShowSuggestedCount.frame = CGRectMake(screenWidth - 220, heightcheck, 200, 50);
-                ShowSuggestedCount.text = @"1/3";
-                ShowSuggestedCount.backgroundColor = [UIColor clearColor];
-                ShowSuggestedCount.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
-                ShowSuggestedCount.textAlignment = NSTextAlignmentRight;
-                ShowSuggestedCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-                [MainScroll addSubview:ShowSuggestedCount];
-                
-                SuggestedpageControl = [[UIPageControl alloc] init];
-                SuggestedpageControl.frame = CGRectMake(0,heightcheck + 390,screenWidth,30);
-                SuggestedpageControl.numberOfPages = 3;
-                SuggestedpageControl.currentPage = 0;
-                SuggestedpageControl.pageIndicatorTintColor = [UIColor darkGrayColor];
-                SuggestedpageControl.currentPageIndicatorTintColor = [UIColor orangeColor];
-                [MainScroll addSubview:SuggestedpageControl];
-                
                 NSString *TempUsername = [[NSString alloc]initWithFormat:@"%@",[arrUserName objectAtIndex:i]];
                 NSArray *SplitArray_username = [TempUsername componentsSeparatedByString:@","];
                 NSString *TempUserImage = [[NSString alloc]initWithFormat:@"%@",[arrUserImage objectAtIndex:i]];
@@ -1369,6 +1412,47 @@
                 NSString *TempId = [[NSString alloc]initWithFormat:@"%@",[arrPostID objectAtIndex:i]];
                 NSArray *SplitArray_Id = [TempId componentsSeparatedByString:@","];
                 arrAboadID = [[NSMutableArray alloc]initWithArray:SplitArray_Id];
+                
+               // NSLog(@"in abroad_quality_post");
+                SuggestedScrollview = [[UIScrollView alloc]init];
+                SuggestedScrollview.delegate = self;
+                SuggestedScrollview.frame = CGRectMake(0, heightcheck, screenWidth, 420);
+                SuggestedScrollview.backgroundColor = [UIColor whiteColor];
+                SuggestedScrollview.pagingEnabled = YES;
+                [SuggestedScrollview setShowsHorizontalScrollIndicator:NO];
+                [SuggestedScrollview setShowsVerticalScrollIndicator:NO];
+                SuggestedScrollview.tag = 1000 + i;
+                [MainScroll addSubview:SuggestedScrollview];
+                
+                UILabel *ShowSuggestedText = [[UILabel alloc]init];
+                ShowSuggestedText.frame = CGRectMake(20, heightcheck, 200, 50);
+                ShowSuggestedText.text = @"Suggested Abroad QR";
+                ShowSuggestedText.backgroundColor = [UIColor clearColor];
+                ShowSuggestedText.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
+                ShowSuggestedText.textAlignment = NSTextAlignmentLeft;
+                ShowSuggestedText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+                [MainScroll addSubview:ShowSuggestedText];
+                
+                NSString *TempCount = [[NSString alloc]initWithFormat:@"1/%lu",(unsigned long)[SplitArray_Title count]];
+                
+                ShowSuggestedCount = [[UILabel alloc]init];
+                ShowSuggestedCount.frame = CGRectMake(screenWidth - 220, heightcheck, 200, 50);
+                ShowSuggestedCount.text = TempCount;
+                ShowSuggestedCount.backgroundColor = [UIColor clearColor];
+                ShowSuggestedCount.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
+                ShowSuggestedCount.textAlignment = NSTextAlignmentRight;
+                ShowSuggestedCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+                [MainScroll addSubview:ShowSuggestedCount];
+                
+                SuggestedpageControl = [[UIPageControl alloc] init];
+                SuggestedpageControl.frame = CGRectMake(0,heightcheck + 390,screenWidth,30);
+                SuggestedpageControl.numberOfPages = 3;
+                SuggestedpageControl.currentPage = 0;
+                SuggestedpageControl.pageIndicatorTintColor = [UIColor darkGrayColor];
+                SuggestedpageControl.currentPageIndicatorTintColor = [UIColor orangeColor];
+                [MainScroll addSubview:SuggestedpageControl];
+                
+
 
 
                 for (int i = 0; i < [SplitArray_username count]; i++) {
@@ -1413,7 +1497,7 @@
                     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
                     NSString *ImageData1 = [[NSString alloc]initWithFormat:@"%@",[SplitArray_UserImage objectAtIndex:i]];
                     if ([ImageData1 length] == 0) {
-                        ShowUserProfileImage.image = [UIImage imageNamed:@"NoImage.png"];
+                        ShowUserProfileImage.image = [UIImage imageNamed:@"avatar.png"];
                     }else{
                         NSURL *url_NearbySmall = [NSURL URLWithString:ImageData1];
                         ShowUserProfileImage.imageURL = url_NearbySmall;
@@ -1657,6 +1741,7 @@
                 SUserScrollview.pagingEnabled = YES;
                 [SUserScrollview setShowsHorizontalScrollIndicator:NO];
                 [SUserScrollview setShowsVerticalScrollIndicator:NO];
+                SUserScrollview.tag = 100 + i;
                 [MainScroll addSubview:SUserScrollview];
                 
                 UILabel *ShowSuggestedText = [[UILabel alloc]init];
@@ -1668,9 +1753,11 @@
                 ShowSuggestedText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
                 [MainScroll addSubview:ShowSuggestedText];
                 
+                NSString *TempCount = [[NSString alloc]initWithFormat:@"1/%lu",(unsigned long)[SplitArray_Id count]];
+                
                 ShowSUserCount = [[UILabel alloc]init];
                 ShowSUserCount.frame = CGRectMake(screenWidth - 220, heightcheck, 200, 50);
-                ShowSUserCount.text = @"1/3";
+                ShowSUserCount.text = TempCount;
                 ShowSUserCount.backgroundColor = [UIColor clearColor];
                 ShowSUserCount.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
                 ShowSUserCount.textAlignment = NSTextAlignmentRight;
@@ -1711,7 +1798,7 @@
                     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
                     NSString *ImageData = [[NSString alloc]initWithFormat:@"%@",[SplitArray_ProfileImg objectAtIndex:i]];
                     if ([ImageData length] == 0) {
-                        ShowUserProfileImage.image = [UIImage imageNamed:@"NoImage.png"];
+                        ShowUserProfileImage.image = [UIImage imageNamed:@"avatar.png"];
                     }else{
                         NSURL *url_NearbySmall = [NSURL URLWithString:ImageData];
                         ShowUserProfileImage.imageURL = url_NearbySmall;
@@ -1822,6 +1909,7 @@
                 SUserScrollview.pagingEnabled = YES;
                 [SUserScrollview setShowsHorizontalScrollIndicator:NO];
                 [SUserScrollview setShowsVerticalScrollIndicator:NO];
+                SUserScrollview.tag = 5000 + i;
                 [MainScroll addSubview:SUserScrollview];
                 
                 UILabel *ShowSuggestedText = [[UILabel alloc]init];
@@ -1833,9 +1921,11 @@
                 ShowSuggestedText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
                 [MainScroll addSubview:ShowSuggestedText];
                 
+                NSString *TempCount = [[NSString alloc]initWithFormat:@"1/%lu",(unsigned long)[SplitArray_Id count]];
+                
                 ShowSUserCount = [[UILabel alloc]init];
                 ShowSUserCount.frame = CGRectMake(screenWidth - 220, heightcheck, 200, 50);
-                ShowSUserCount.text = @"1/3";
+                ShowSUserCount.text = TempCount;
                 ShowSUserCount.backgroundColor = [UIColor clearColor];
                 ShowSUserCount.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
                 ShowSUserCount.textAlignment = NSTextAlignmentRight;
@@ -1876,7 +1966,7 @@
                     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
                     NSString *ImageData = [[NSString alloc]initWithFormat:@"%@",[SplitArray_ProfileImg objectAtIndex:i]];
                     if ([ImageData length] == 0) {
-                        ShowUserProfileImage.image = [UIImage imageNamed:@"NoImage.png"];
+                        ShowUserProfileImage.image = [UIImage imageNamed:@"avatar.png"];
                     }else{
                         NSURL *url_NearbySmall = [NSURL URLWithString:ImageData];
                         ShowUserProfileImage.imageURL = url_NearbySmall;
@@ -2042,7 +2132,7 @@
                     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
                     NSString *ImageData1 = [[NSString alloc]initWithFormat:@"%@",[SplitArray_UserImage objectAtIndex:i]];
                     if ([ImageData1 length] == 0) {
-                        ShowUserProfileImage.image = [UIImage imageNamed:@"NoImage.png"];
+                        ShowUserProfileImage.image = [UIImage imageNamed:@"avatar.png"];
                     }else{
                         NSURL *url_NearbySmall = [NSURL URLWithString:ImageData1];
                         ShowUserProfileImage.imageURL = url_NearbySmall;
@@ -2244,6 +2334,7 @@
                 [defaults setObject:arrImageHeight forKey:@"FeedLocalarrImageHeight"];
                 [defaults setObject:arrImageWidth forKey:@"FeedLocalarrImageWidth"];
                 [defaults setObject:arrlike forKey:@"FeedLocalarrLike"];
+                [defaults setObject:arrCollect forKey:@"FeedLocalarrCollect"];
                 [defaults setObject:@"Done" forKey:@"TestLocalData"];
                 [defaults synchronize];
             }
@@ -2511,30 +2602,37 @@
                       NSString *PlaceID = [[NSString alloc]initWithFormat:@"%@",[GetItemsData valueForKey:@"post_id"]];
                       NSString *PlaceName = [[NSString alloc]initWithFormat:@"%@",[GetItemsData valueForKey:@"place_name"]];
                       NSString *Like = [[NSString alloc]initWithFormat:@"%@",[GetItemsData valueForKey:@"like"]];
+                      NSString *Collect = [[NSString alloc]initWithFormat:@"%@",[GetItemsData valueForKey:@"collect"]];
                      if ([posttype isEqualToString:@"announcement"]) {
                          PlaceID = @"";
                          PlaceName = @"";
                          Like = @"";
+                         Collect = @"";
                      }else if ([posttype isEqualToString:@"announcement_welcome"]) {
                          PlaceID = @"";
                          PlaceName = @"";
                          Like = @"";
+                         Collect = @"";
                      }else if ([posttype isEqualToString:@"announcement_campaign"]) {
                          PlaceID = @"";
                          PlaceName = @"";
                          Like = @"";
+                         Collect = @"";
                      }else if ([posttype isEqualToString:@"follow_suggestion_featured"]) {
                          PlaceID = @"";
                          PlaceName = @"";
                          Like = @"";
+                         Collect = @"";
                      }else if ([posttype isEqualToString:@"follow_suggestion_friend"]) {
                          PlaceID = @"";
                          PlaceName = @"";
                          Like = @"";
+                         Collect = @"";
                      }else if ([posttype isEqualToString:@"deal"]) {
                          NSMutableArray *TempArrayID = [[NSMutableArray alloc]init];
                          NSMutableArray *TempArrayPlaceName = [[NSMutableArray alloc]init];
                          NSMutableArray *TempArrayLike = [[NSMutableArray alloc]init];
+                         NSMutableArray *TempArrayCollect = [[NSMutableArray alloc]init];
                          for (NSDictionary * dict in GetItemsData) {
                              NSString *PlaceID = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"post_id"]];
                              [TempArrayID addObject:PlaceID];
@@ -2542,20 +2640,24 @@
                              [TempArrayPlaceName addObject:PlaceName];
                              NSString *Like = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"like"]];
                              [TempArrayLike addObject:Like];
-                             
+                             NSString *collect = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"collect"]];
+                             [TempArrayCollect addObject:collect];
                              
                          }
                          PlaceID = [TempArrayID componentsJoinedByString:@","];
                          PlaceName = [TempArrayPlaceName componentsJoinedByString:@","];
                          Like = [TempArrayLike componentsJoinedByString:@","];
+                         Collect = [TempArrayCollect componentsJoinedByString:@","];
                      }else if ([posttype isEqualToString:@"invite_friend"]) {
                          PlaceID = @"";
                          PlaceName = @"";
                          Like = @"";
+                         Collect = @"";
                      }else if ([posttype isEqualToString:@"abroad_quality_post"]) {
                          NSMutableArray *TempArrayID = [[NSMutableArray alloc]init];
                          NSMutableArray *TempArrayPlaceName = [[NSMutableArray alloc]init];
                          NSMutableArray *TempArrayLike = [[NSMutableArray alloc]init];
+                         NSMutableArray *TempArrayCollect = [[NSMutableArray alloc]init];
                          for (NSDictionary * dict in GetItemsData) {
                              NSString *PlaceID = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"post_id"]];
                              [TempArrayID addObject:PlaceID];
@@ -2563,12 +2665,15 @@
                              [TempArrayPlaceName addObject:PlaceName];
                              NSString *Like = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"like"]];
                              [TempArrayLike addObject:Like];
+                             NSString *collect = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"collect"]];
+                             [TempArrayCollect addObject:collect];
 
 
                          }
                          PlaceID = [TempArrayID componentsJoinedByString:@","];
                          PlaceName = [TempArrayPlaceName componentsJoinedByString:@","];
                          Like = [TempArrayLike componentsJoinedByString:@","];
+                         Collect = [TempArrayCollect componentsJoinedByString:@","];
                      }else{
                      
                      }
@@ -2576,6 +2681,7 @@
                      [arrPostID addObject:PlaceID];
                      [arrAddress addObject:PlaceName];
                      [arrlike addObject:Like];
+                     [arrCollect addObject:Collect];
                      
                      
                      NSDictionary *titleData = [GetItemsData valueForKey:@"title"];
@@ -3224,7 +3330,7 @@
     [arrlike removeAllObjects];
     [arrAddress removeAllObjects];
     [arrPostID removeAllObjects];
-
+    [arrCollect removeAllObjects];
 
 
 }
@@ -3254,7 +3360,7 @@
                         [MainScroll addSubview:activityindicator1];
                         [activityindicator1 startAnimating];
                         [self GetFeedDataFromServer];
-                        [activityindicator1 stopAnimating];
+                        //[activityindicator1 stopAnimating];
                         
                     }
                     
@@ -3399,7 +3505,25 @@
    // NSLog(@"button %li",(long)getbuttonIDN);
     NSLog(@"Quick CollectButtonOnClick");
     GetPostID = [[NSString alloc]initWithFormat:@"%@",[arrPostID objectAtIndex:getbuttonIDN]];
-    [self SendQuickCollect];
+    CheckCollect = [[NSString alloc]initWithFormat:@"%@",[arrCollect objectAtIndex:getbuttonIDN]];
+    
+    if ([CheckCollect isEqualToString:@"0"]) {
+        [arrCollect replaceObjectAtIndex:getbuttonIDN withObject:@"1"];
+        UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
+        buttonWithTag1.selected = !buttonWithTag1.selected;
+        
+        [self SendQuickCollect];
+    }else{
+        AddCollectionDataViewController *AddCollectionDataView = [[AddCollectionDataViewController alloc]init];
+        //[self presentViewController:AddCollectionDataView animated:YES completion:nil];
+        [self.view.window.rootViewController presentViewController:AddCollectionDataView animated:YES completion:nil];
+        [AddCollectionDataView GetPostID:[arrPostID objectAtIndex:getbuttonIDN] GetImageData:[arrImage objectAtIndex:getbuttonIDN]];
+    }
+    
+    
+    
+    
+    
     
 }
 -(void)SendQuickCollect{

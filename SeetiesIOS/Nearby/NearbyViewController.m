@@ -8,6 +8,7 @@
 
 #import "NearbyViewController.h"
 #import "FeedV2DetailViewController.h"
+#import "AddCollectionDataViewController.h"
 @interface NearbyViewController ()
 
 @end
@@ -153,6 +154,7 @@
                 TotalCommentArray = [[NSMutableArray alloc]init];
                 DataCount = 0;
                 CheckFirstTimeLoad = 1;
+                arrCollect = [[NSMutableArray alloc]init];
             }else{
                 
             }
@@ -278,6 +280,8 @@
                 [TotalLikeArray addObject:total_like];
                 NSString *total_comments = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"total_comments"]];
                 [TotalCommentArray addObject:total_comments];
+                NSString *collect = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"collect"]];
+                [arrCollect addObject:collect];
                 
                 NSString *photos =  [NSString stringWithFormat:@"%@",[dict objectForKey:@"photos"]];
                 //  NSLog(@"photos is %@",photos);
@@ -348,6 +352,22 @@
         }
         
         
+    }else if(connection == theConnection_QuickCollect){
+        NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+        NSLog(@"Quick Collection return get data to server ===== %@",GetData);
+        
+        NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *myError = nil;
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
+        NSLog(@"Expert Json = %@",res);
+        
+        
+        NSString *statusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
+        NSLog(@"statusString is %@",statusString);
+        
+        if ([statusString isEqualToString:@"ok"]) {
+            [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success add to Collections" type:TSMessageNotificationTypeSuccess];
+        }
     }
 }
 
@@ -462,12 +482,24 @@
         [SelectButton addTarget:self action:@selector(ProductButton:) forControlEvents:UIControlEventTouchUpInside];
         [MainScroll addSubview:SelectButton];
         
+        CheckCollect = [[NSString alloc]initWithFormat:@"%@",[arrCollect objectAtIndex:i]];
+        
         UIButton *CollectButton = [[UIButton alloc]init];
         [CollectButton setBackgroundColor:[UIColor clearColor]];
-        [CollectButton setImage:[UIImage imageNamed:@"collected_icon.png"] forState:UIControlStateNormal];
-        CollectButton.frame = CGRectMake(screenWidth - 15 - 25 - 10, GetHeight + 27, 25, 32);
+        if ([CheckCollect isEqualToString:@"0"]) {
+            [CollectButton setImage:[UIImage imageNamed:@"YellowCollect.png"] forState:UIControlStateNormal];
+            [CollectButton setImage:[UIImage imageNamed:@"YellowCollected.png"] forState:UIControlStateSelected];
+        }else{
+            [CollectButton setImage:[UIImage imageNamed:@"YellowCollected.png"] forState:UIControlStateNormal];
+        }
+        CollectButton.frame = CGRectMake(screenWidth - 15 - 57 - 10, GetHeight + 21, 57, 57);
         CollectButton.tag = i;
+        [CollectButton addTarget:self action:@selector(CollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
         [MainScroll addSubview:CollectButton];
+        
+        
+        
+
         
         
         GetHeight += 100;
@@ -513,4 +545,59 @@
     [self.navigationController pushViewController:FeedDetailView animated:YES];
     [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
 }
+-(IBAction)CollectButtonOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    // NSLog(@"button %li",(long)getbuttonIDN);
+    NSLog(@"Quick CollectButtonOnClick");
+    GetPostID = [[NSString alloc]initWithFormat:@"%@",[PostIDArray objectAtIndex:getbuttonIDN]];
+    CheckCollect = [[NSString alloc]initWithFormat:@"%@",[arrCollect objectAtIndex:getbuttonIDN]];
+    
+    if ([CheckCollect isEqualToString:@"0"]) {
+        [arrCollect replaceObjectAtIndex:getbuttonIDN withObject:@"1"];
+        UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
+        buttonWithTag1.selected = !buttonWithTag1.selected;
+        
+        [self SendQuickCollect];
+    }else{
+        AddCollectionDataViewController *AddCollectionDataView = [[AddCollectionDataViewController alloc]init];
+        //[self presentViewController:AddCollectionDataView animated:YES completion:nil];
+        [self.view.window.rootViewController presentViewController:AddCollectionDataView animated:YES completion:nil];
+        [AddCollectionDataView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN] GetImageData:[LPhotoArray objectAtIndex:getbuttonIDN]];
+    }
+    
+    
+    
+    
+    
+    
+}
+-(void)SendQuickCollect{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *GetUseruid = [defaults objectForKey:@"Useruid"];
+    //Server Address URL
+    NSString *urlString = [NSString stringWithFormat:@"%@%@/collections/0/collect",DataUrl.UserWallpaper_Url,GetUseruid];
+    NSLog(@"Send Quick Collection urlString is %@",urlString);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"PUT"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    
+    
+    NSString *dataString = [[NSString alloc]initWithFormat:@"token=%@&posts[0][id]=%@",GetExpertToken,GetPostID];
+    
+    NSData *postBodyData = [NSData dataWithBytes: [dataString UTF8String] length:[dataString length]];
+    [request setHTTPBody:postBodyData];
+    
+    theConnection_QuickCollect = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    if(theConnection_QuickCollect) {
+        //  NSLog(@"Connection Successful");
+        webData = [NSMutableData data];
+    } else {
+        
+    }
+}
+
 @end

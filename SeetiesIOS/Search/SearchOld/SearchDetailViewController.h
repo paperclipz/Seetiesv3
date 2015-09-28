@@ -32,6 +32,7 @@
     NSURLConnection *theConnection_GetExpertsSearch;
     NSURLConnection *theConnection_GetAllUserData;
     NSURLConnection *theConnection_Following;
+    NSURLConnection *theConnection_QuickCollect;
     
     NSMutableArray *LPhotoArray;
     NSMutableArray *PostIDArray;
@@ -46,6 +47,9 @@
     NSMutableArray *TotalCommentArray;
     NSMutableArray *TotalLikeArray;
     NSMutableArray *SelfCheckLikeArray;
+    NSMutableArray *UserInfo_FollowArray;
+    NSMutableArray *UserInfo_IDArray;
+    NSMutableArray *CollectArray;
     
     NSMutableArray *Experts_Username_Array;
     NSMutableArray *Experts_Name_Array;
@@ -99,6 +103,10 @@
     NSURLConnection *theConnection_GetSearchPlace;
     NSString *GetUserID;
     NSString *GetFollowString;
+    
+    NSString *GetPostsFollow;
+    NSString *GetCollect;
+    NSString *GetPostsUserID;
 }
 -(void)GetSearchKeyword:(NSString *)Keyword Getlat:(NSString *)lat GetLong:(NSString *)Long GetLocationName:(NSString *)LocationName;
 -(void)GetTitle:(NSString *)String;

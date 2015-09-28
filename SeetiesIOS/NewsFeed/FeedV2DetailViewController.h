@@ -60,6 +60,7 @@
     NSString *GetPlaceLink;
     NSString *GetOpeningHourOpen;
     NSString *GetLikeCheck;
+    NSString *GetCollectCheck;
     
     NSString *GetPeriods;
     NSString *GetOpenNow;

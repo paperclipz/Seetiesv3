@@ -55,7 +55,7 @@
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     LoginBackgroundImg.frame = CGRectMake(0, 78, screenWidth, 89);
    // CancelButton.frame = CGRectMake(screenWidth - 70, 20, 70, 44);
-    LogoImg.frame = CGRectMake((screenWidth / 2) - 20, 20, 40, 40);
+    LogoImg.frame = CGRectMake((screenWidth / 2) - 27, 20, 55, 50);
     
     
     ShowLoginID.frame = CGRectMake(40, 82, screenWidth - 80, 50);

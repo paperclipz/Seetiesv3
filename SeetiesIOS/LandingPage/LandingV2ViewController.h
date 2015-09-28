@@ -38,8 +38,13 @@
     NSString *InstagramOnClickListen;
     NSString *GetInstagramToken;
     NSString *GetInstagramID;
+    
+    IBOutlet UIButton *TnCButton;
+    IBOutlet UIButton *PrivacyButton;
 
 }
+-(IBAction)TnCButtonOnClick:(id)sender;
+-(IBAction)PrivacyButtonOnClick:(id)sender;
 
 //@property (nonatomic,strong)
 

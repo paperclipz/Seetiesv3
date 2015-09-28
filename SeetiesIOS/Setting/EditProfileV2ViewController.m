@@ -51,14 +51,6 @@
     
     CaretLocationImg.frame = CGRectMake(screenWidth - 20 - 13, 609, 8, 13);
 
-    
-    
-}
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     GetWallpaper = [defaults objectForKey:@"UserData_Wallpaper"];
     GetProfileImg = [defaults objectForKey:@"UserData_ProfilePhoto"];
@@ -145,6 +137,30 @@
         NSArray *arr = [GetPersonalTags componentsSeparatedByString:@","];
         NSString *result = [arr componentsJoinedByString:@" "];
         TagasField.text = result;
+    }
+    
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+   // CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    GetLocation = [defaults objectForKey:@"UserData_Location"];
+    NSString *CheckFullLocation = [defaults objectForKey:@"Provisioning_LocationName"];
+    
+    if ([GetLocation length] == 0) {
+        if ([CheckFullLocation length] == 0) {
+        }else{
+            LocationField.text = CheckFullLocation;
+        }
+    }else{
+        if ([CheckFullLocation length] == 0) {
+            LocationField.text = GetLocation;
+        }else{
+            LocationField.text = CheckFullLocation;
+        }
+        
     }
 
 }
@@ -257,8 +273,7 @@
       didFinishPickingImage : (UIImage *)image
                  editingInfo:(NSDictionary *)editingInfo
 {
-    // imageSelect.image = image;
-    
+    NSLog(@"Get select image is %@",image);
     if (ButtonOnClick == 0) {
         BackgroundImg.image = image;
         GetWallpaper = @"NEW";

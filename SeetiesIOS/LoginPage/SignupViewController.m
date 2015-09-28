@@ -383,12 +383,16 @@
 
         }else{
             if ([MessageString isEqualToString:@"Sorry that email is already taken. Please try another"]) {
-                UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"Email already exists" message:@"You can choose to login or change the email address" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Login", nil];
-                ShowAlert.tag = 500;
-                [ShowAlert show];
+//                UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"Email already exists" message:@"You can choose to login or change the email address" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Login", nil];
+//                ShowAlert.tag = 500;
+//                [ShowAlert show];
+                
+                [TSMessage showNotificationInViewController:self title:@"Email already exists" subtitle:@"You can choose to login or change the email address" type:TSMessageNotificationTypeError];
             }else{
-                UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:MessageString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                [ShowAlert show];
+//                UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:MessageString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//                [ShowAlert show];
+                
+                [TSMessage showNotificationInViewController:self title:@"" subtitle:MessageString type:TSMessageNotificationTypeError];
             }
             
                     }
@@ -482,8 +486,10 @@
             [self.navigationController pushViewController:self.pInterestV2ViewController animated:YES];
         
         }else{
-            UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"SomethingError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [ShowAlert show];
+//            UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"SomethingError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//            [ShowAlert show];
+            
+            [TSMessage showNotificationInViewController:self title:@"" subtitle:NSLocalizedString(@"SomethingError", nil) type:TSMessageNotificationTypeError];
         }
     }
 }

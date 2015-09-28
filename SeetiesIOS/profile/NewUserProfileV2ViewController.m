@@ -10,6 +10,7 @@
 #import "CollectionViewController.h"
 #import "ShowFollowerAndFollowingViewController.h"
 #import "FeedV2DetailViewController.h"
+#import "FullImageViewController.h"
 @interface NewUserProfileV2ViewController ()
 
 @end
@@ -137,6 +138,13 @@
         ShowUserProfileImage.imageURL = url_UserImage;
     }
     [AllContentView addSubview:ShowUserProfileImage];
+    
+    UIButton *ClicktoOpenUserProfileButton = [[UIButton alloc]init];
+    ClicktoOpenUserProfileButton.frame = CGRectMake(20, 0, 100, 100);
+    [ClicktoOpenUserProfileButton setTitle:@"" forState:UIControlStateNormal];
+    ClicktoOpenUserProfileButton.backgroundColor = [UIColor clearColor];
+    [ClicktoOpenUserProfileButton addTarget:self action:@selector(OpenUserProfileOnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [AllContentView addSubview:ClicktoOpenUserProfileButton];
     
     NSString *TempUsernameString = [[NSString alloc]initWithFormat:@"@%@",GetReturnUserName];
     
@@ -289,6 +297,12 @@
         ShowLink.textAlignment = NSTextAlignmentLeft;
         ShowLink.backgroundColor = [UIColor clearColor];
         [AllContentView addSubview:ShowLink];
+        
+        UIButton *OpenLinkButton = [[UIButton alloc]init];
+        OpenLinkButton.frame = CGRectMake(30, GetHeight, screenWidth - 120, 20);
+        [OpenLinkButton setTitle:@"" forState:UIControlStateNormal];
+        [OpenLinkButton addTarget:self action:@selector(OpenUrlButton:) forControlEvents:UIControlEventTouchUpInside];
+        [AllContentView addSubview:OpenLinkButton];
         
         GetHeight += 30;
     }
@@ -1441,5 +1455,31 @@
     [FeedDetailView GetPostID:[PostsData_IDArray objectAtIndex:getbuttonIDN]];
 }
 
-
+-(IBAction)OpenUserProfileOnClick:(id)sender{
+    NSLog(@"Click Full Image Button Click");
+    NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",GetProfileImg];
+    if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"null"] || [FullImagesURL1 isEqualToString:@"<null>"]) {
+    }else{
+        FullImageViewController *FullImageView = [[FullImageViewController alloc]init];
+        CATransition *transition = [CATransition animation];
+        transition.duration = 0.2;
+        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        transition.type = kCATransitionPush;
+        transition.subtype = kCATransitionFromRight;
+        [self.view.window.layer addAnimation:transition forKey:nil];
+        // [self presentViewController:FullImageView animated:NO completion:nil];
+        [self.view.window.rootViewController presentViewController:FullImageView animated:YES completion:nil];
+        [FullImageView GetImageString:GetProfileImg];
+    }
+}
+-(IBAction)OpenUrlButton:(id)sender{
+    NSLog(@"OpenUrlButton Click.");
+    if ([GetLink hasPrefix:@"http://"]) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:GetLink]];
+    } else {
+        NSString *TempString = [[NSString alloc]initWithFormat:@"http://%@",GetLink];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:TempString]];
+    }
+    
+}
 @end

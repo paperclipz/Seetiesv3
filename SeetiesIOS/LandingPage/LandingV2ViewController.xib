@@ -29,10 +29,12 @@
                 <outlet property="MainScroll" destination="6xp-dr-6rI" id="noT-Ht-CSI"/>
                 <outlet property="MainText" destination="66n-uP-iqU" id="b53-nI-3Ox"/>
                 <outlet property="PageControlOn" destination="iwv-AY-v7b" id="I47-E6-H2U"/>
+                <outlet property="PrivacyButton" destination="Vod-VX-kTV" id="qMP-Bs-eAG"/>
                 <outlet property="ShowActivity" destination="QK4-sP-fnj" id="n7d-zZ-cEP"/>
                 <outlet property="ShowBackgroundImage" destination="XBP-T8-mFl" id="F9L-YG-GX9"/>
                 <outlet property="ShowTnCText" destination="2kw-qq-sfA" id="x9a-fx-1wZ"/>
                 <outlet property="SignUpWithEmailButton" destination="U1r-uK-jyc" id="dHl-tZ-S7Q"/>
+                <outlet property="TnCButton" destination="3Iu-eM-QN1" id="xav-yt-CPr"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -142,6 +144,22 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3Iu-eM-QN1">
+                    <rect key="frame" x="137" y="269" width="46" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <action selector="TnCButtonOnClick:" destination="-1" eventType="touchUpInside" id="oVJ-9z-r6a"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Vod-VX-kTV">
+                    <rect key="frame" x="137" y="269" width="46" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <action selector="PrivacyButtonOnClick:" destination="-1" eventType="touchUpInside" id="YPO-pF-nKI"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <point key="canvasLocation" x="691" y="460"/>
