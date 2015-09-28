@@ -18,4 +18,8 @@
 }
 */
 
+-(void)initSelfView
+{
+    self.lblTitle.text = LOCALIZATION(@"Add New Places");
+}
 @end

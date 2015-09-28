@@ -27,5 +27,5 @@ pod 'pop', '~> 1.0'
 pod 'MGSwipeTableCell'
 pod 'SVPullToRefresh'
 pod 'UITextView+Placeholder'
-
 pod 'iOSBlocks/Cocoa'
+pod 'DBCamera', '~> 2.4'

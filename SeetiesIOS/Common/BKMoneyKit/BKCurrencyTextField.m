@@ -27,8 +27,8 @@
     //self.textAlignment = NSTextAlignmentRight;
     
     _numberFormatter = [[NSNumberFormatter alloc] init];
-    _numberFormatter.numberStyle = NSNumberFormatterCurrencyStyle;
-
+    _numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
+    [_numberFormatter setMaximumFractionDigits:2];
     _nonNumericRegularExpression = [BKMoneyUtils nonNumericRegularExpression];
     _numberCharacterSet = [BKMoneyUtils numberCharacterSet];
     
@@ -116,6 +116,7 @@
         self.text = nil;
     } else {
         self.text = [_numberFormatter stringFromNumber:numberValue];
+        SLog(@"$@",self.text);
     }
 }
 

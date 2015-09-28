@@ -44,13 +44,13 @@
                                 <action selector="btnBackClicked:" destination="-1" eventType="touchUpInside" id="DaY-Kb-c5z"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZTD-Cr-jLR">
-                            <rect key="frame" x="264" y="0.0" width="56" height="64"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZTD-Cr-jLR">
+                            <rect key="frame" x="280" y="19" width="40" height="40"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="64" id="HBW-vI-Ipn"/>
-                                <constraint firstAttribute="width" constant="56" id="bqw-fQ-pgJ"/>
+                                <constraint firstAttribute="height" constant="40" id="HBW-vI-Ipn"/>
+                                <constraint firstAttribute="width" constant="40" id="bqw-fQ-pgJ"/>
                             </constraints>
-                            <state key="normal" title="Done">
+                            <state key="normal" image="TickIcon.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -69,7 +69,7 @@
                         <constraint firstItem="tDB-FO-VBA" firstAttribute="leading" secondItem="DBh-YO-GJb" secondAttribute="trailing" constant="-32" id="Zn7-X3-xQR"/>
                         <constraint firstAttribute="trailing" secondItem="tDB-FO-VBA" secondAttribute="trailing" id="fH8-ae-c3T"/>
                         <constraint firstAttribute="height" constant="64" id="kBE-fh-fx8"/>
-                        <constraint firstItem="ZTD-Cr-jLR" firstAttribute="top" secondItem="Mx0-ss-NUH" secondAttribute="top" id="nPQ-QG-QlK"/>
+                        <constraint firstItem="ZTD-Cr-jLR" firstAttribute="top" secondItem="Mx0-ss-NUH" secondAttribute="top" constant="19" id="nPQ-QG-QlK"/>
                         <constraint firstAttribute="trailing" secondItem="ZTD-Cr-jLR" secondAttribute="trailing" id="w6t-T3-zdG"/>
                         <constraint firstItem="ikE-iV-lJh" firstAttribute="top" secondItem="Mx0-ss-NUH" secondAttribute="top" id="y5N-K0-2Ro"/>
                     </constraints>
@@ -94,5 +94,6 @@
     </objects>
     <resources>
         <image name="BackButton2.png" width="38" height="39"/>
+        <image name="TickIcon.png" width="40" height="40"/>
     </resources>
 </document>

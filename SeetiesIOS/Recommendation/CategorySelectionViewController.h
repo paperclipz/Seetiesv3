@@ -12,5 +12,7 @@
 @interface CategorySelectionViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate>
 @property(nonatomic,copy)IDBlock doneClickBlock;
 @property (strong, nonatomic)NSArray* arrCategories;
+-(void)show;
+-(void)hide;
 
 @end

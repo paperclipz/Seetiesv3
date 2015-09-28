@@ -25,8 +25,12 @@
     BOOL isDualLanguge;
 
 }
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+@property (weak, nonatomic) IBOutlet UIButton *btnPublish;
 
 // =============== model ===============//
+@property (weak, nonatomic) IBOutlet UILabel *lblNumberOfPhotos;
+
 @property(nonatomic,strong)RecommendationModel* recommendationModel;
 
 @property(nonatomic,strong)RecommendationModel* tempSavedRecommendationModel;
@@ -52,15 +56,38 @@
 @end
 
 @implementation EditPostViewController
+- (IBAction)btnEditPhotoClicked:(id)sender {
+    
+    _editPhotoViewController = nil;
+    
+    [self.editPhotoViewController initData:self.recommendationModel];
+    
+    [self presentViewController:self.editPhotoViewController animated:YES completion:nil];
+    __weak typeof (self)weakSelf = self;
+    self.editPhotoViewController.doneBlock = ^(NSArray* arrayImages,NSArray* arrDeleteImages)
+    {
+        
+        weakSelf.recommendationModel.arrPostImagesList = nil;
+        weakSelf.recommendationModel.arrPostImagesList = [[NSMutableArray alloc]initWithArray:arrayImages];
+        
+        [weakSelf.recommendationModel.arrDeletedImages addObjectsFromArray:arrDeleteImages];
+        
+    };
+
+}
 - (IBAction)btnPublishClicked:(id)sender {
-    
-    
     
     [self requestServerForCategories:^(id object) {
         self.categoriesModel = [[DataManager Instance] categoriesModel];
         _categorySelectionViewController = nil;
         self.categorySelectionViewController.arrCategories = self.categoriesModel.categories;
-        [self presentViewController:self.categorySelectionViewController animated:YES completion:nil];
+        
+        if(![self.categorySelectionViewController.view isDescendantOfView:self.view])
+        {
+            [self.view addSubview:self.categorySelectionViewController.view];
+        }
+        
+        [self.categorySelectionViewController show];
     }];
 
 }
@@ -122,6 +149,8 @@
 
 -(void)initData:(RecommendationModel*)model
 {
+    
+    
     self.editPostType = EditPostTypeDraftNew;
     self.recommendationModel = model;
 
@@ -129,15 +158,27 @@
 
 -(void)initDataDraft:(DraftModel*)model
 {
+    
     self.editPostType = EditPostTypeDraft;
     self.recommendationModel = [[RecommendationModel alloc]initWithDraftModel:model];
     
+   
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
+    
+    [self changeLanguage];
+
    // [self resetData];
+}
+
+-(void)changeLanguage
+{
+    self.lblTitle.text = LOCALIZATION(@"Edit Post");
+    [self.btnPublish setTitle:LOCALIZATION(@"PUBLISH") forState:UIControlStateNormal];
+
 }
 
 -(void)loadData
@@ -149,6 +190,45 @@
     self.editPostViewSecond.txtDescription.text = self.recommendationModel.postSecondDescription;
     
     [self reloadImage];
+    [self setHasDualLanguage:YES];
+    
+    switch (self.editPostType) {
+        case EditPostTypeDraft:
+        {
+            [self.postSegmentedControl setTitle:[Utils getLanguageName:self.recommendationModel.postMainLanguage] forSegmentAtIndex:0];
+            
+            if (!self.recommendationModel.postSecondTitle) {
+                [self setHasDualLanguage:NO];
+                
+            }
+            else{
+                [self.postSegmentedControl setTitle:[Utils getLanguageName:self.recommendationModel.postSeconLanguage] forSegmentAtIndex:1];
+
+            }
+        }
+            break;
+            
+        default:
+        {
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSString* langOne = [defaults objectForKey:@"UserData_Language1"];
+            NSString* langTwo = [defaults objectForKey:@"UserData_Language2"];
+            
+            self.recommendationModel.postMainLanguage = [Utils getLanguageCode:langOne];
+            [self.postSegmentedControl setTitle:langOne forSegmentAtIndex:0];
+            
+            if (!langTwo || [langTwo isEqualToString:@""]) {
+                [self setHasDualLanguage:NO];
+            }
+            else{
+                [self.postSegmentedControl setTitle:langTwo forSegmentAtIndex:1];
+                self.recommendationModel.postSeconLanguage = [Utils getLanguageCode:langTwo];
+
+            }
+            
+        }
+            break;
+    }
 }
 
 -(void)resetData
@@ -162,9 +242,9 @@
 
 -(void)reloadImage
 {
-    
-    
-        if (self.recommendationModel.arrPostImagesList && self.recommendationModel.arrPostImagesList.count>0) {
+    int photoCount = (int)self.recommendationModel.arrPostImagesList.count;
+    self.lblNumberOfPhotos.text = [NSString stringWithFormat:@"%d %@",photoCount,LOCALIZATION(@"Photos")];
+        if (self.recommendationModel.arrPostImagesList && photoCount>0) {
             
             PhotoModel* edifotoModel = self.recommendationModel.arrPostImagesList[0];
             
@@ -239,7 +319,6 @@
         default:
         case 0:
         {
-            //[self.customPickerViewController show];
             
             [self.urlAlertView show];
 
@@ -247,33 +326,23 @@
             break;
         case 1:
         {
-            
-            [self.addNewPlaceViewController initData:self.recommendationModel.reccomendVenueModel];
-
-            [self presentViewController:self.navAddNewPlaceViewController animated:YES completion:^{
-            }];
-
+         
+            [self showQrRecommendationView];
+         
         }
 
             break;
             
         case 2:
         {
-            _editPhotoViewController = nil;
             
-            [self.editPhotoViewController initData:self.recommendationModel];
-
-            [self presentViewController:self.editPhotoViewController animated:YES completion:nil];
-                 __weak typeof (self)weakSelf = self;
-                self.editPhotoViewController.doneBlock = ^(NSArray* arrayImages,NSArray* arrDeleteImages)
-                {
+            [self presentViewController:self.navAddNewPlaceViewController animated:YES completion:^{
                 
-                weakSelf.recommendationModel.arrPostImagesList = nil;
-                weakSelf.recommendationModel.arrPostImagesList = [[NSMutableArray alloc]initWithArray:arrayImages];
-                  
-                    [weakSelf.recommendationModel.arrDeletedImages addObjectsFromArray:arrDeleteImages];
+                [self.addNewPlaceViewController initData:self.recommendationModel.reccomendVenueModel];
+                
+            }];
 
-                };
+            
         }
             break;
         case 3:
@@ -288,7 +357,6 @@
 -(void)initSelfView
 {
     
-    [self setHasDualLanguage:YES];
     self.segmentedControl.selectedSegmentIndex = -1;
 
     self.editPostView.frame = CGRectMake(0, 0, self.ibDescContentView.frame.size.width, self.ibDescContentView.frame.size.width);
@@ -307,11 +375,11 @@
 -(UIAlertView*)urlAlertView
 {
     if (!_urlAlertView) {
-        _urlAlertView = [[UIAlertView alloc] initWithTitle:@"Add URL"
+        _urlAlertView = [[UIAlertView alloc] initWithTitle:LOCALIZATION(@"Add URL")
                                                    message:nil
                                                   delegate:self
-                                         cancelButtonTitle:@"Cancel"
-                                         otherButtonTitles:@"Done", nil];
+                                         cancelButtonTitle:LOCALIZATION(@"CANCEL")
+                                         otherButtonTitles:LOCALIZATION(@"Done"), nil];
         
         _urlAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
         UITextField *textField = [_urlAlertView textFieldAtIndex:0];
@@ -350,6 +418,18 @@
 }
 */
 
+-(void)showQrRecommendationView
+{
+    
+    if(![self.articleViewController.view isDescendantOfView:self.view])
+    {
+        [self.view addSubview:self.articleViewController.view];
+
+    }
+    
+    [self.articleViewController show];
+}
+
 #pragma mark - Declarations
 -(CategorySelectionViewController*)categorySelectionViewController
 {
@@ -372,7 +452,7 @@
 -(NSArray*)arrTabImages
 {
     
-    return @[[UIImage imageNamed:@"addurl_icon@2x.png"],[UIImage imageNamed:@"editplace_icon@2x.png"],[UIImage imageNamed:@"qr_icon@2x.png"],[UIImage imageNamed:@"save_icon@2x.png"]];
+    return @[[UIImage imageNamed:@"addurl_icon@2x.png"],[UIImage imageNamed:@"qr_icon@2x.png"],[UIImage imageNamed:@"editplace_icon@2x.png"],[UIImage imageNamed:@"save_icon@2x.png"]];
 }
 
 -(EditPhotoViewController*)editPhotoViewController
@@ -467,6 +547,16 @@
 
     }
     return _editPostViewSecond;
+}
+
+
+-(ArticleViewController*)articleViewController
+{
+    if (!_articleViewController) {
+        _articleViewController = [ArticleViewController new];
+    }
+    
+    return _articleViewController;
 }
 
 -(void)setHasDualLanguage:(BOOL)hasDualLang
@@ -574,20 +664,23 @@ static id ObjectOrNull(id object)
     
     NSDictionary* dict = @{@"token":[Utils getAppToken],
                            @"status":isDraft?POST_DRAFT:POST_PUBLISH,
-                           [NSString stringWithFormat:@"title[%@]",ENGLISH_CODE]:ObjectOrNull(tempModel.postMainTitle),
-                           [NSString stringWithFormat:@"message[%@]",ENGLISH_CODE]:ObjectOrNull(tempModel.postMainDescription),
+                           [NSString stringWithFormat:@"title[%@]",self.recommendationModel.postMainLanguage]:ObjectOrNull(tempModel.postMainTitle),
+                           [NSString stringWithFormat:@"message[%@]",self.recommendationModel.postMainLanguage]:ObjectOrNull(tempModel.postMainDescription),
                            @"category":categoriesSelected.count==0?@[@0]:categoriesSelected,
                            @"device_type":@2,
                            @"location":[Utils convertToJsonString:locationDict],
                            @"link":ObjectOrNull(tempModel.postURL)};
     
 
-    NSDictionary* dictSecondDesc = @{[NSString stringWithFormat:@"title[%@]",THAI_CODE]:ObjectOrNull(tempModel.postSecondTitle),
-                                 [NSString stringWithFormat:@"message[%@]",THAI_CODE]:ObjectOrNull(tempModel.postSecondDescription)};
+    NSDictionary* dictSecondDesc = @{[NSString stringWithFormat:@"title[%@]",self.recommendationModel.postSeconLanguage]:ObjectOrNull(tempModel.postSecondTitle),
+                                 [NSString stringWithFormat:@"message[%@]",self.recommendationModel.postSeconLanguage]:ObjectOrNull(tempModel.postSecondDescription)};
     
     
     NSMutableDictionary* finalDict = [[NSMutableDictionary alloc]initWithDictionary:dict];
-    [finalDict addEntriesFromDictionary:dictSecondDesc];
+    
+    if (isDualLanguge) {
+        [finalDict addEntriesFromDictionary:dictSecondDesc];
+    }
     
     for (int i = 0; i<tempModel.arrDeletedImages.count; i++) {
         
@@ -605,7 +698,11 @@ static id ObjectOrNull(id object)
         }
         else{
             [TSMessage showNotificationInViewController:self title:@"system" subtitle:@"Data Successfully Saved to Draft" type:TSMessageNotificationTypeSuccess duration:2.0 canBeDismissedByUser:YES];
-
+            
+            if (object) {
+                NSDictionary* dict = [[NSDictionary alloc]initWithDictionary:object];
+                self.recommendationModel.post_id = dict[@"data"][@"post_id"];
+            }
         }
         if (_editPostDoneBlock) {
             self.editPostDoneBlock(nil);

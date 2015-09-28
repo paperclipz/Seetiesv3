@@ -6,6 +6,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DBCameraViewController.h"
+#import "DBCameraContainerViewController.h"
 
 #define DO_RGB(r, g, b)     [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
 #define DO_RGBA(r, g, b, a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
@@ -26,7 +28,7 @@
 // if you don't want to save selected album, remove this.
 #define DO_SAVE_SELECTED_ALBUM
 
-@interface DoImagePickerController : UIViewController
+@interface DoImagePickerController : UIViewController<DBCameraViewControllerDelegate>
 
 @property (assign, nonatomic) id            delegate;
 

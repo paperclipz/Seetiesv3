@@ -9,7 +9,16 @@
 #import "AddNewPlaceSubView.h"
 
 #define MAX_LENGTH 12
+@interface AddNewPlaceSubView()
+@property (weak, nonatomic) IBOutlet UILabel *lblPlaceName;
+@property (weak, nonatomic) IBOutlet UILabel *lblAddress;
+@property (weak, nonatomic) IBOutlet UILabel *lblURL;
+@property (weak, nonatomic) IBOutlet UILabel *lblPhoneNumber;
+@property (weak, nonatomic) IBOutlet UILabel *lblPrice;
+@property (weak, nonatomic) IBOutlet UILabel *lblPerpax;
+@property (weak, nonatomic) IBOutlet UILabel *lblEditHour;
 
+@end
 
 @implementation NSArray (Blocks)
 
@@ -93,12 +102,26 @@
 -(void)initSelfView
 {
     self.txtPerPax.delegate = self;
-    
+    self.txtPerPax.text = @"0.00";
     [Utils setButtonWithBorder:self.btnCurrency];
     [Utils setButtonWithBorder:self.btnEditHours];
-
+    [self.txtPhoneNo setKeyboardType:UIKeyboardTypePhonePad];
+    [self changeLanguage];
     
 }
+
+-(void)changeLanguage
+{
+    self.lblPlaceName.text = LOCALIZATION(@"Place Name");
+    self.lblAddress.text = LOCALIZATION(@"Address");
+    self.lblURL.text = LOCALIZATION(@"URL/Facebook Page");
+    self.lblPhoneNumber.text = LOCALIZATION(@"Phone No.");
+    self.lblPrice.text = LOCALIZATION(@"Price");
+    self.lblPerpax.text = LOCALIZATION(@"Per Pax");
+    self.lblEditHour.text = LOCALIZATION(@"Edit Hours");
+    [self.btnEditHours setTitle:LOCALIZATION(@"Edit Hours") forState:UIControlStateNormal];
+  }
+
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     if (textField.text.length >= MAX_LENGTH && range.length == 0)

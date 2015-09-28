@@ -1,4 +1,4 @@
-//
+
 //  Utils.m
 //  SeetiesIOS
 //
@@ -304,6 +304,46 @@
 +(BOOL)stringIsNilOrEmpty:(NSString*)aString {
     return !(aString && aString.length);
 }
+#define ENGLISH_CODE @"530b0ab26424400c76000003"
+#define CHINESE_CODE @"530b0aa16424400c76000002"
+#define TAIWAN_CODE @"530d5e9b642440d128000018"
+#define INDONESIA_CODE @"53672e863efa3f857f8b4ed2"
+#define FILIPINES_CODE @"539fbb273efa3fde3f8b4567"
+#define THAI_CODE @"544481503efa3ff1588b4567"
 
 
++(NSString*)getLanguageName:(NSString*)code
+{
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *LanguageID_Array = [defaults objectForKey:@"LanguageData_ID"];
+    NSMutableArray *LanguageName_Array = [defaults objectForKey:@"LanguageData_Name"];
+    
+    for (int i = 0; i< LanguageName_Array.count; i++) {
+        if ([code isEqualToString:LanguageID_Array[i]]) {
+            
+            return LanguageName_Array[i];
+        }
+    }
+    return nil;
+}
+
+
++(NSString*)getLanguageCode:(NSString*)name
+{
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *LanguageID_Array = [defaults objectForKey:@"LanguageData_ID"];
+    NSMutableArray *LanguageName_Array = [defaults objectForKey:@"LanguageData_Name"];
+    
+    for (int i = 0; i< LanguageName_Array.count; i++) {
+        if ([name isEqualToString:LanguageName_Array[i]]) {
+            
+            return LanguageID_Array[i];
+        }
+    }
+    
+    return nil;
+    
+}
 @end

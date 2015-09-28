@@ -9,15 +9,23 @@
 #import "CategorySelectionViewController.h"
 #import "CategoryCollectionViewCell.h"
 @interface CategorySelectionViewController ()
+{
+    BOOL isShow;
+
+}
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
+@property (weak, nonatomic) IBOutlet UIButton *btnBack;
+@property (weak, nonatomic) IBOutlet UIButton *btnDone;
 
 @end
 
 @implementation CategorySelectionViewController
 - (IBAction)btnBackClicked:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    //[self dismissViewControllerAnimated:YES completion:nil];
 
+    [self hide];
 }
 - (IBAction)btnDoneClicked:(id)sender {
     
@@ -26,13 +34,15 @@
         for (CategoryModel* model in self.arrCategories) {
             if (model.isSelected) {
                 self.doneClickBlock(self.arrCategories);
+                [self btnBackClicked:sender];
                 break;
             }
         }
         
+        [TSMessage showNotificationInViewController:self title:@"System" subtitle:LOCALIZATION(@"No Categories Selected") type:TSMessageNotificationTypeWarning];
+        
     }
     
-    [self btnBackClicked:sender];
 
 }
 
@@ -42,9 +52,19 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+-(void)changeLanguage
+{
+    self.lblTitle.text = LOCALIZATION(@"Select up to 2 categories");
+    [self.btnBack setTitle:LOCALIZATION(@"Back") forState:UIControlStateNormal];
+    [self.btnDone setTitle:LOCALIZATION(@"Done") forState:UIControlStateNormal];
+
+}
+
 -(void)initSelfView
 {
-    
+    isShow =false;
+    CGRect frame = [Utils getDeviceScreenSize];
+    self.view.frame = CGRectMake(0, frame.size.height,  frame.size.width,  frame.size.height);
     [self initTableViewWithDelegate:self];
     [Utils setRoundBorder:self.contentView color:[Utils defaultTextColor] borderRadius:8.0f];
 }
@@ -96,10 +116,76 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CategoryModel* model = [[[DataManager Instance]categoriesModel] categories][indexPath.row];
-    model.isSelected = !model.isSelected;
+
+    if (model.isSelected) {
+        model.isSelected = !model.isSelected;
+        
+        CategoryCollectionViewCell* cell = (CategoryCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
+        cell.ibTickImageView.hidden = !model.isSelected;
+    }
+    else{
+        if ( ![self checkExceedLimitOfSelection]) {
+            model.isSelected = !model.isSelected;
+            
+            CategoryCollectionViewCell* cell = (CategoryCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
+            cell.ibTickImageView.hidden = !model.isSelected;
+            
+        }
+        else
+        {
+            [TSMessage showNotificationInViewController:self title:@"System" subtitle:@"Exceed Number Of Categories" type:TSMessageNotificationTypeWarning duration:1.0f];
+        }
+
+    }
     
-    CategoryCollectionViewCell* cell = (CategoryCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
-    cell.ibTickImageView.hidden = !model.isSelected;
+   
+}
+
+
+-(BOOL)checkExceedLimitOfSelection
+{
+    int maxCategoriesLimit = 2;
+    int counter = 0;
+    for (int i = 0; i< self.arrCategories.count; i++) {
+        CategoryModel* model = self.arrCategories[i];
+        if (model.isSelected) {
+            counter +=1;
+        }
+        
+        if (counter>=maxCategoriesLimit) {
+            return YES;
+        }
+    }
+    return false;
+
+}
+
+
+-(void)show
+{
+    
+    if (!isShow) {
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            self.view.frame = CGRectMake(0, 0,  self.view.frame.size.width,  self.view.frame.size.height);
+            
+        }];
+        isShow = true;
+    }
+    
+}
+
+-(void)hide
+{
+    if (isShow) {
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            self.view.frame = CGRectMake(0, self.view.frame.size.height,  self.view.frame.size.width,  self.view.frame.size.height);
+            isShow = false;
+            
+        }];
+    }
+    
     
 }
 

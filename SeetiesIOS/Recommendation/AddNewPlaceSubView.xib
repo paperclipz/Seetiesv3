@@ -126,6 +126,13 @@
             <connections>
                 <outlet property="btnCurrency" destination="UYs-1x-lUl" id="UN2-D0-eHw"/>
                 <outlet property="btnEditHours" destination="nYs-af-sor" id="ox1-gv-GRB"/>
+                <outlet property="lblAddress" destination="tvk-Fn-aJs" id="08A-dx-3jH"/>
+                <outlet property="lblEditHour" destination="y5C-KJ-pU1" id="kk4-TS-G1m"/>
+                <outlet property="lblPerpax" destination="TDQ-RV-eCu" id="J57-bM-VVI"/>
+                <outlet property="lblPhoneNumber" destination="B4A-Xa-JUB" id="JNz-Vt-buw"/>
+                <outlet property="lblPlaceName" destination="aeb-pw-bIS" id="atg-SQ-HdE"/>
+                <outlet property="lblPrice" destination="eUp-m9-7vQ" id="apU-Bw-MZP"/>
+                <outlet property="lblURL" destination="fdc-79-chp" id="AuU-iH-RGu"/>
                 <outlet property="txtAddress" destination="zq6-U5-QLb" id="GP1-sk-fjy"/>
                 <outlet property="txtPerPax" destination="oaU-Se-ZcO" id="ATy-cf-lwi"/>
                 <outlet property="txtPhoneNo" destination="UoE-U0-tqc" id="JeI-Vo-gZ6"/>

@@ -14,7 +14,7 @@
 @end
 @implementation EditPostDetailVIew
 #define TITLE_MAX_COUNT 70
-#define DESC_MAX_COUNT 140
+#define DESC_MAX_COUNT 800
 
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -33,6 +33,9 @@
     [self getCounterText:self.lblTitleIndicator maxCount:TITLE_MAX_COUNT textInputCount:(int)self.txtTitle.text.length];
     [self getCounterText:self.lblDescIndicator maxCount:DESC_MAX_COUNT textInputCount:(int)self.txtDescription.text.length];
 
+    
+    self.labelTitle.text = LOCALIZATION(@"Title");
+    self.labelDescription.text = LOCALIZATION(@"Write your experience");
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
@@ -54,7 +57,7 @@
 
 -(void)getCounterText:(UILabel*)label  maxCount:(int)maxCount textInputCount:(int)txtCount
 {
-    if (txtCount>=maxCount) {
+    if (txtCount>maxCount) {
         
         label.textColor = [UIColor redColor];
     }

@@ -22,6 +22,8 @@
 @interface Post : NSObject
 @property(nonatomic,strong)NSString* title;
 @property(nonatomic,strong)NSString* message;
+@property(nonatomic,strong)NSString* language;
+
 @end
 
 @interface Location : JSONModel

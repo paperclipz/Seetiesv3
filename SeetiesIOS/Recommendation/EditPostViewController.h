@@ -10,6 +10,7 @@
 #import "NMBottomTabBarController.h"
 #import "CustomPickerViewController.h"
 #import "RecommendationModel.h"
+#import "ArticleViewController.h"
 
 
 typedef enum
@@ -26,6 +27,8 @@ typedef enum
 
 @property(nonatomic,strong)NMBottomTabBarController* nmBottomTabBarController;
 @property(nonatomic,strong)CustomPickerViewController* customPickerViewController;
+@property(nonatomic,strong)ArticleViewController* articleViewController;
+
 @property(nonatomic,assign)EditPostType editPostType;
 
 @property(nonatomic,copy)IDBlock editPostBackBlock;
