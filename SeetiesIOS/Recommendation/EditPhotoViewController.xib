@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8173.3" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8142"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditPhotoViewController">
@@ -58,7 +59,7 @@
                                 <action selector="btnDoneClicked:" destination="-1" eventType="touchUpInside" id="RAx-Rw-fBw"/>
                             </connections>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AddIcon@3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="Rih-JJ-9Tr">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AddIcon@3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="Rih-JJ-9Tr">
                             <rect key="frame" x="201" y="-1" width="79" height="79"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="79" id="0lU-aU-vUI"/>
@@ -80,11 +81,11 @@
                                 <action selector="btnAddNewClicked:" destination="-1" eventType="touchUpInside" id="MIR-RR-i74"/>
                             </connections>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ButtonArrow@3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="OFa-HN-cUk">
-                            <rect key="frame" x="281" y="31" width="20" height="20"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ButtonArrow@3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="OFa-HN-cUk">
+                            <rect key="frame" x="281" y="27" width="24" height="24"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="20" id="0sz-94-dUj"/>
-                                <constraint firstAttribute="width" constant="20" id="dvt-im-Yrq"/>
+                                <constraint firstAttribute="height" constant="24" id="0sz-94-dUj"/>
+                                <constraint firstAttribute="width" constant="24" id="dvt-im-Yrq"/>
                             </constraints>
                         </imageView>
                     </subviews>
@@ -94,7 +95,7 @@
                         <constraint firstItem="299-1f-ZwB" firstAttribute="top" secondItem="yjV-Rn-dF0" secondAttribute="bottom" constant="-32" id="7f2-Yr-Msm"/>
                         <constraint firstItem="OFa-HN-cUk" firstAttribute="leading" secondItem="Rih-JJ-9Tr" secondAttribute="trailing" constant="1" id="MRQ-3h-5K4"/>
                         <constraint firstItem="yjV-Rn-dF0" firstAttribute="leading" secondItem="XDK-8P-uNu" secondAttribute="leading" id="SzH-Va-2j9"/>
-                        <constraint firstAttribute="trailing" secondItem="OFa-HN-cUk" secondAttribute="trailing" constant="19" id="URZ-x2-tWZ"/>
+                        <constraint firstAttribute="trailing" secondItem="OFa-HN-cUk" secondAttribute="trailing" constant="15" id="URZ-x2-tWZ"/>
                         <constraint firstItem="nMV-lZ-Sfk" firstAttribute="leading" secondItem="299-1f-ZwB" secondAttribute="trailing" constant="18" id="Zqb-FW-6sN"/>
                         <constraint firstItem="Rih-JJ-9Tr" firstAttribute="top" secondItem="XDK-8P-uNu" secondAttribute="top" constant="-1" id="fgx-5T-wgH"/>
                         <constraint firstItem="299-1f-ZwB" firstAttribute="leading" secondItem="XDK-8P-uNu" secondAttribute="leading" constant="11" id="hzw-pu-0rf"/>
@@ -107,7 +108,7 @@
                         <constraint firstItem="yjV-Rn-dF0" firstAttribute="top" secondItem="XDK-8P-uNu" secondAttribute="top" id="sZi-Ml-PHY"/>
                         <constraint firstAttribute="trailing" secondItem="nMV-lZ-Sfk" secondAttribute="trailing" constant="8" id="tC2-OW-KZu"/>
                         <constraint firstItem="Fse-RL-rlN" firstAttribute="top" secondItem="XDK-8P-uNu" secondAttribute="top" id="vLc-nB-SYO"/>
-                        <constraint firstItem="OFa-HN-cUk" firstAttribute="top" secondItem="XDK-8P-uNu" secondAttribute="top" constant="31" id="vbx-zK-pKn"/>
+                        <constraint firstItem="OFa-HN-cUk" firstAttribute="top" secondItem="XDK-8P-uNu" secondAttribute="top" constant="27" id="vbx-zK-pKn"/>
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="120" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="iFm-Ok-GcI">

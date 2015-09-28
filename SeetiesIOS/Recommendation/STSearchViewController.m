@@ -357,7 +357,7 @@
 -(void)requestSearch
 {
     [self getGoogleSearchPlaces];
-    [self getFourSquareSuggestionPlaces];
+  //  [self getFourSquareSuggestionPlaces];
 }
 
 -(SearchTableViewController*)googleSearchTableViewController
@@ -395,7 +395,6 @@
     
 }
 
-
 -(void)processDataForFourSquareVenue:(NSIndexPath*)indexPath
 {
     
@@ -416,7 +415,6 @@
     NSDictionary* dict = @{@"placeid":placeID,@"key":GOOGLE_API_KEY};
     
     [[ConnectionManager Instance] requestServerWithPost:NO customURL:GOOGLE_PLACE_DETAILS_API requestType:ServerRequestTypeGoogleSearchWithDetail param:dict completeHandler:^(id object) {
-        
         
         SearchLocationDetailModel* googleSearchDetailModel = [[DataManager Instance] googleSearchDetailModel];
 
