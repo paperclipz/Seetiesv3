@@ -33,6 +33,9 @@
     [self getCounterText:self.lblTitleIndicator maxCount:TITLE_MAX_COUNT textInputCount:(int)self.txtTitle.text.length];
     [self getCounterText:self.lblDescIndicator maxCount:DESC_MAX_COUNT textInputCount:(int)self.txtDescription.text.length];
 
+    
+    self.labelTitle.text = LOCALIZATION(@"Title");
+    self.labelDescription.text = LOCALIZATION(@"Write your experience");
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string

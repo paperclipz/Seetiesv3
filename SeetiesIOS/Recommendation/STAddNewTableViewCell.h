@@ -9,5 +9,6 @@
 #import "CommonTableViewCell.h"
 
 @interface STAddNewTableViewCell : CommonTableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 
 @end

@@ -89,6 +89,7 @@
         Post* object = [Post new];
         object.title = self.title[key[i]];
         object.message = self.message[key[i]];
+        object.language = key[i];
         [array addObject:object];
     }
     

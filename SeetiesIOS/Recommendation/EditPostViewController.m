@@ -25,6 +25,8 @@
     BOOL isDualLanguge;
 
 }
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+@property (weak, nonatomic) IBOutlet UIButton *btnPublish;
 
 // =============== model ===============//
 @property (weak, nonatomic) IBOutlet UILabel *lblNumberOfPhotos;
@@ -79,7 +81,13 @@
         self.categoriesModel = [[DataManager Instance] categoriesModel];
         _categorySelectionViewController = nil;
         self.categorySelectionViewController.arrCategories = self.categoriesModel.categories;
-        [self presentViewController:self.categorySelectionViewController animated:YES completion:nil];
+        
+        if(![self.categorySelectionViewController.view isDescendantOfView:self.view])
+        {
+            [self.view addSubview:self.categorySelectionViewController.view];
+        }
+        
+        [self.categorySelectionViewController show];
     }];
 
 }
@@ -141,6 +149,8 @@
 
 -(void)initData:(RecommendationModel*)model
 {
+    
+    
     self.editPostType = EditPostTypeDraftNew;
     self.recommendationModel = model;
 
@@ -148,15 +158,27 @@
 
 -(void)initDataDraft:(DraftModel*)model
 {
+    
     self.editPostType = EditPostTypeDraft;
     self.recommendationModel = [[RecommendationModel alloc]initWithDraftModel:model];
     
+   
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
+    
+    [self changeLanguage];
+
    // [self resetData];
+}
+
+-(void)changeLanguage
+{
+    self.lblTitle.text = LOCALIZATION(@"Edit Post");
+    [self.btnPublish setTitle:LOCALIZATION(@"PUBLISH") forState:UIControlStateNormal];
+
 }
 
 -(void)loadData
@@ -168,6 +190,45 @@
     self.editPostViewSecond.txtDescription.text = self.recommendationModel.postSecondDescription;
     
     [self reloadImage];
+    [self setHasDualLanguage:YES];
+    
+    switch (self.editPostType) {
+        case EditPostTypeDraft:
+        {
+            [self.postSegmentedControl setTitle:[Utils getLanguageName:self.recommendationModel.postMainLanguage] forSegmentAtIndex:0];
+            
+            if (!self.recommendationModel.postSecondTitle) {
+                [self setHasDualLanguage:NO];
+                
+            }
+            else{
+                [self.postSegmentedControl setTitle:[Utils getLanguageName:self.recommendationModel.postSeconLanguage] forSegmentAtIndex:1];
+
+            }
+        }
+            break;
+            
+        default:
+        {
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSString* langOne = [defaults objectForKey:@"UserData_Language1"];
+            NSString* langTwo = [defaults objectForKey:@"UserData_Language2"];
+            
+            self.recommendationModel.postMainLanguage = [Utils getLanguageCode:langOne];
+            [self.postSegmentedControl setTitle:langOne forSegmentAtIndex:0];
+            
+            if (!langTwo || [langTwo isEqualToString:@""]) {
+                [self setHasDualLanguage:NO];
+            }
+            else{
+                [self.postSegmentedControl setTitle:langTwo forSegmentAtIndex:1];
+                self.recommendationModel.postSeconLanguage = [Utils getLanguageCode:langTwo];
+
+            }
+            
+        }
+            break;
+    }
 }
 
 -(void)resetData
@@ -296,7 +357,6 @@
 -(void)initSelfView
 {
     
-    [self setHasDualLanguage:YES];
     self.segmentedControl.selectedSegmentIndex = -1;
 
     self.editPostView.frame = CGRectMake(0, 0, self.ibDescContentView.frame.size.width, self.ibDescContentView.frame.size.width);
@@ -315,11 +375,11 @@
 -(UIAlertView*)urlAlertView
 {
     if (!_urlAlertView) {
-        _urlAlertView = [[UIAlertView alloc] initWithTitle:@"Add URL"
+        _urlAlertView = [[UIAlertView alloc] initWithTitle:LOCALIZATION(@"Add URL")
                                                    message:nil
                                                   delegate:self
-                                         cancelButtonTitle:@"Cancel"
-                                         otherButtonTitles:@"Done", nil];
+                                         cancelButtonTitle:LOCALIZATION(@"CANCEL")
+                                         otherButtonTitles:LOCALIZATION(@"Done"), nil];
         
         _urlAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
         UITextField *textField = [_urlAlertView textFieldAtIndex:0];
@@ -604,20 +664,23 @@ static id ObjectOrNull(id object)
     
     NSDictionary* dict = @{@"token":[Utils getAppToken],
                            @"status":isDraft?POST_DRAFT:POST_PUBLISH,
-                           [NSString stringWithFormat:@"title[%@]",ENGLISH_CODE]:ObjectOrNull(tempModel.postMainTitle),
-                           [NSString stringWithFormat:@"message[%@]",ENGLISH_CODE]:ObjectOrNull(tempModel.postMainDescription),
+                           [NSString stringWithFormat:@"title[%@]",self.recommendationModel.postMainLanguage]:ObjectOrNull(tempModel.postMainTitle),
+                           [NSString stringWithFormat:@"message[%@]",self.recommendationModel.postMainLanguage]:ObjectOrNull(tempModel.postMainDescription),
                            @"category":categoriesSelected.count==0?@[@0]:categoriesSelected,
                            @"device_type":@2,
                            @"location":[Utils convertToJsonString:locationDict],
                            @"link":ObjectOrNull(tempModel.postURL)};
     
 
-    NSDictionary* dictSecondDesc = @{[NSString stringWithFormat:@"title[%@]",THAI_CODE]:ObjectOrNull(tempModel.postSecondTitle),
-                                 [NSString stringWithFormat:@"message[%@]",THAI_CODE]:ObjectOrNull(tempModel.postSecondDescription)};
+    NSDictionary* dictSecondDesc = @{[NSString stringWithFormat:@"title[%@]",self.recommendationModel.postSeconLanguage]:ObjectOrNull(tempModel.postSecondTitle),
+                                 [NSString stringWithFormat:@"message[%@]",self.recommendationModel.postSeconLanguage]:ObjectOrNull(tempModel.postSecondDescription)};
     
     
     NSMutableDictionary* finalDict = [[NSMutableDictionary alloc]initWithDictionary:dict];
-    [finalDict addEntriesFromDictionary:dictSecondDesc];
+    
+    if (isDualLanguge) {
+        [finalDict addEntriesFromDictionary:dictSecondDesc];
+    }
     
     for (int i = 0; i<tempModel.arrDeletedImages.count; i++) {
         

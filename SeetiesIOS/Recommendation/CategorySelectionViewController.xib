@@ -7,8 +7,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CategorySelectionViewController">
             <connections>
+                <outlet property="btnBack" destination="9zR-qN-JhW" id="Pcg-nt-gla"/>
+                <outlet property="btnDone" destination="coh-iY-kvS" id="JBr-7q-3pG"/>
                 <outlet property="collectionView" destination="1Bt-35-hgP" id="fhs-Zr-RaK"/>
                 <outlet property="contentView" destination="VOJ-R2-kyy" id="Dfr-oi-g3Y"/>
+                <outlet property="lblTitle" destination="vEV-sg-dNg" id="QRU-FE-yfo"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

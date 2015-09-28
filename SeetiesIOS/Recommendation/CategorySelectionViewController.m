@@ -9,15 +9,23 @@
 #import "CategorySelectionViewController.h"
 #import "CategoryCollectionViewCell.h"
 @interface CategorySelectionViewController ()
+{
+    BOOL isShow;
+
+}
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
+@property (weak, nonatomic) IBOutlet UIButton *btnBack;
+@property (weak, nonatomic) IBOutlet UIButton *btnDone;
 
 @end
 
 @implementation CategorySelectionViewController
 - (IBAction)btnBackClicked:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    //[self dismissViewControllerAnimated:YES completion:nil];
 
+    [self hide];
 }
 - (IBAction)btnDoneClicked:(id)sender {
     
@@ -26,13 +34,15 @@
         for (CategoryModel* model in self.arrCategories) {
             if (model.isSelected) {
                 self.doneClickBlock(self.arrCategories);
+                [self btnBackClicked:sender];
                 break;
             }
         }
         
+        [TSMessage showNotificationInViewController:self title:@"System" subtitle:LOCALIZATION(@"No Categories Selected") type:TSMessageNotificationTypeWarning];
+        
     }
     
-    [self btnBackClicked:sender];
 
 }
 
@@ -42,9 +52,19 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+-(void)changeLanguage
+{
+    self.lblTitle.text = LOCALIZATION(@"Select up to 2 categories");
+    [self.btnBack setTitle:LOCALIZATION(@"Back") forState:UIControlStateNormal];
+    [self.btnDone setTitle:LOCALIZATION(@"Done") forState:UIControlStateNormal];
+
+}
+
 -(void)initSelfView
 {
-    
+    isShow =false;
+    CGRect frame = [Utils getDeviceScreenSize];
+    self.view.frame = CGRectMake(0, frame.size.height,  frame.size.width,  frame.size.height);
     [self initTableViewWithDelegate:self];
     [Utils setRoundBorder:self.contentView color:[Utils defaultTextColor] borderRadius:8.0f];
 }
@@ -139,5 +159,35 @@
     return false;
 
 }
+
+
+-(void)show
+{
+    
+    if (!isShow) {
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            self.view.frame = CGRectMake(0, 0,  self.view.frame.size.width,  self.view.frame.size.height);
+            
+        }];
+        isShow = true;
+    }
+    
+}
+
+-(void)hide
+{
+    if (isShow) {
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            self.view.frame = CGRectMake(0, self.view.frame.size.height,  self.view.frame.size.width,  self.view.frame.size.height);
+            isShow = false;
+            
+        }];
+    }
+    
+    
+}
+
 
 @end

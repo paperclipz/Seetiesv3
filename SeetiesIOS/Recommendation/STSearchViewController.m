@@ -60,8 +60,14 @@
     [Utils setRoundBorder:self.ibContentSearchView color:[UIColor grayColor] borderRadius:5.0f];
     [self.ibSearchContentView addSubview:self.cAPSPageMenu.view];
 
-    
+    [self changeLanguage];
 
+}
+
+-(void)changeLanguage
+{
+    self.lblTitle.text = LOCALIZATION(@"Where is this place");
+    self.txtSearch.placeholder = LOCALIZATION(@"Type to search places");
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -70,7 +76,6 @@
 
     [self setPageShowSingleView:YES];
 }
-
 
 -(void)setPageShowSingleView:(BOOL)isSingleView
 {

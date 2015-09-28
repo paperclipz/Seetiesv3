@@ -79,6 +79,7 @@
 #pragma mark - for init
 - (void)initControls
 {
+    
     // side buttons
     _btUp.backgroundColor = DO_SIDE_BUTTON_COLOR;
     _btDown.backgroundColor = DO_SIDE_BUTTON_COLOR;

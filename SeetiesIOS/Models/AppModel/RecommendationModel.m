@@ -34,12 +34,16 @@
             if (counter - i == 0) {
                 _postMainTitle = [model.arrPost[i-1] title];
                 _postMainDescription = [model.arrPost[i-1] message];
+                _postMainLanguage = [model.arrPost[i-1] language];
+
 
             }
             else
             {
                 _postSecondTitle = [model.arrPost[i-1] title];
                 _postSecondDescription = [model.arrPost[i-1] message];
+                _postSeconLanguage = [model.arrPost[i-1] language];
+
             }
         }
         

@@ -15,5 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitleIndicator;
 @property (weak, nonatomic) IBOutlet UILabel *lblDescIndicator;
+@property (weak, nonatomic) IBOutlet UILabel *labelTitle;
+@property (weak, nonatomic) IBOutlet UILabel *labelDescription;
 
 @end

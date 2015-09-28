@@ -61,6 +61,8 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="labelDescription" destination="fsg-Rd-LB5" id="Vky-Hu-uNx"/>
+                <outlet property="labelTitle" destination="S4H-Pb-JBn" id="2wd-OS-X1y"/>
                 <outlet property="lblDescIndicator" destination="wXK-Vv-XVH" id="ico-PJ-WZe"/>
                 <outlet property="lblTitleIndicator" destination="9O8-XB-nLZ" id="Jfv-bV-7TG"/>
                 <outlet property="txtDescription" destination="q09-Uf-D5s" id="uoa-4H-jI7"/>
