@@ -86,13 +86,23 @@
     
     DataUrl = [[UrlDataClass alloc]init];
     FBLoginButton.hidden = YES;
-    FBLoginButton.layer.cornerRadius = 5;
+    
     LogInButton.hidden = YES;
     WhyWeUseFBButton.hidden = YES;
     SignUpWithEmailButton.hidden = YES;
     InstagramButton.hidden = YES;
     ContinueText.hidden = YES;
+    
+    
     InstagramButton.layer.cornerRadius = 5;
+    FBLoginButton.layer.cornerRadius = 5;
+    InstagramButton.layer.borderWidth = 5;
+    InstagramButton.layer.masksToBounds = YES;
+    InstagramButton.layer.borderColor=[[UIColor whiteColor] CGColor];
+    
+    FBLoginButton.layer.borderWidth = 5;
+    FBLoginButton.layer.masksToBounds = YES;
+    FBLoginButton.layer.borderColor=[[UIColor whiteColor] CGColor];
 
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
@@ -305,7 +315,7 @@
         PageControlOn.hidden = NO;
         ShowBackgroundImage.hidden = YES;
         
-        [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(scrollView) userInfo:nil repeats:YES];
+        [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(scrollView) userInfo:nil repeats:YES];
         
 //        CRMotionView *motionView = [[CRMotionView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
 //        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LandingV2.png"]];

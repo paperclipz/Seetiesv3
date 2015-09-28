@@ -107,7 +107,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0gQ-u0-EIL">
                     <rect key="frame" x="30" y="410" width="260" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.23137254901960785" green="0.34901960784313724" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" name="ProximaNovaSoft-Bold" family="Proxima Nova Soft" pointSize="15"/>
                     <inset key="contentEdgeInsets" minX="-32" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -121,7 +121,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="iNb-UJ-Hby">
                     <rect key="frame" x="142" y="473" width="150" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.30588235294117649" green="0.2627450980392157" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" name="ProximaNovaSoft-Bold" family="Proxima Nova Soft" pointSize="15"/>
                     <state key="normal" title="Instagram">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
