@@ -23,6 +23,8 @@
     IBOutlet UIButton *BackgroundImgButton;
     IBOutlet UIButton *UserImgButton;
     
+    IBOutlet UIActivityIndicatorView *spinnerView;
+    
     NSString *GetWallpaper;
     NSString *GetProfileImg;
     NSString *GetUserName;

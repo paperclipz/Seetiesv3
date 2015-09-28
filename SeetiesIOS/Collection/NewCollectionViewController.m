@@ -124,7 +124,7 @@
                     return YES;
                 }
             }
-            else if([[textView text] length] >= 30)
+            else if([[textView text] length] >= 70)
             {
                 ShowNameCount.text = @"0 / 70";
                 ShowNameCount.textColor = [UIColor redColor];
@@ -145,7 +145,7 @@
                     return YES;
                 }
             }
-            else if([[textView text] length] >= 30)
+            else if([[textView text] length] >= 150)
             {
                 ShowDescriptionCount.text = @"0 / 150";
                 ShowDescriptionCount.textColor = [UIColor redColor];

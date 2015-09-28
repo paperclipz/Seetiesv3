@@ -96,11 +96,11 @@
     
     InstagramButton.layer.cornerRadius = 5;
     FBLoginButton.layer.cornerRadius = 5;
-    InstagramButton.layer.borderWidth = 5;
+    InstagramButton.layer.borderWidth = 1;
     InstagramButton.layer.masksToBounds = YES;
     InstagramButton.layer.borderColor=[[UIColor whiteColor] CGColor];
     
-    FBLoginButton.layer.borderWidth = 5;
+    FBLoginButton.layer.borderWidth = 1;
     FBLoginButton.layer.masksToBounds = YES;
     FBLoginButton.layer.borderColor=[[UIColor whiteColor] CGColor];
 

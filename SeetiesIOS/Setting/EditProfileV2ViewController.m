@@ -28,6 +28,8 @@
     MainScroll.alwaysBounceVertical = YES;
     [MainScroll setContentSize:CGSizeMake(screenWidth, 700)];
     
+    spinnerView.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
+    
     Toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0,screenHeight - 260,screenWidth, 44)];
     Toolbar.translucent=NO;
     Toolbar.barTintColor=[UIColor whiteColor];
@@ -295,6 +297,8 @@
     [self UpdateUserInformation];
 }
 -(void)UpdateUserInformation{
+    [spinnerView startAnimating];
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
     NSString *Getuid = [defaults objectForKey:@"Useruid"];
@@ -558,6 +562,8 @@
             
         }
     }
+    
+    [spinnerView stopAnimating];
 
 }
 // tell the picker how many components it will have

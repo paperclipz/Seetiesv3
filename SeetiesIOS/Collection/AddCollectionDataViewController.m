@@ -165,6 +165,10 @@
         if ([statusString isEqualToString:@"ok"]) {
             [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success add to Collections" type:TSMessageNotificationTypeSuccess];
             [self dismissViewControllerAnimated:YES completion:nil];
+        }else{
+            
+            NSString *MessageString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"message"]];
+            [TSMessage showNotificationInViewController:self title:@"" subtitle:MessageString type:TSMessageNotificationTypeError];
         }
     }
 }

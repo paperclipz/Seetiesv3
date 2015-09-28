@@ -661,7 +661,8 @@
         UIButton *EditButton = [[UIButton alloc]init];
         EditButton.frame = CGRectMake(screenWidth - 80 - 20, heightcheck + 5 + FinalWidth + 20 + i, 80, 40);
         [EditButton setTitle:@"Edit" forState:UIControlStateNormal];
-        EditButton.layer.cornerRadius= 10;
+        EditButton.layer.cornerRadius= 15;
+        EditButton.layer.borderWidth = 1;
         EditButton.layer.masksToBounds = YES;
         EditButton.layer.borderColor=[[UIColor grayColor] CGColor];
         EditButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
@@ -1660,7 +1661,7 @@ if(actionSheet.tag == 200){
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
     NSString *Getuid = [defaults objectForKey:@"Useruid"];
-    [ShowFollowerAndFollowingView GetToken:GetExpertToken GetUID:Getuid GetType:@"Follower"];
+    [ShowFollowerAndFollowingView GetToken:GetExpertToken GetUID:Getuid GetType:@"Following"];
 }
 -(IBAction)OpenUserProfileOnClick:(id)sender{
     NSLog(@"Click Full Image Button Click");
