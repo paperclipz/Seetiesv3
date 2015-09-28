@@ -417,7 +417,6 @@
     
     [[ConnectionManager Instance] requestServerWithPost:NO customURL:GOOGLE_PLACE_DETAILS_API requestType:ServerRequestTypeGoogleSearchWithDetail param:dict completeHandler:^(id object) {
         
-        
         SearchLocationDetailModel* googleSearchDetailModel = [[DataManager Instance] googleSearchDetailModel];
 
         RecommendationVenueModel* recommendationVenueModel  = [RecommendationVenueModel new];

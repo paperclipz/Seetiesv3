@@ -198,6 +198,7 @@
 
 - (IBAction)onSelectAlbum:(id)sender
 {
+    SLog(@"onSelectAlbum");
     if (_tvAlbumList.frame.origin.y == _vBottomMenu.frame.origin.y)
     {
         SLog(@"onSelectAlbum");
@@ -299,15 +300,16 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     DoPhotoCell *cell = (DoPhotoCell *)[_cvPhotoList dequeueReusableCellWithReuseIdentifier:@"DoPhotoCell" forIndexPath:indexPath];
 
     
     if (indexPath.row == 0) {
         
         CGRect frame = cell.frame;
-        cell.ivPhoto.image = [UIImage imageNamed:@"coverphoto_camera.png"];
+        cell.ivPhoto.image = [UIImage imageNamed:@"camera-ios-7.png"];
         cell.ivPhoto.backgroundColor = [UIColor blackColor];
-        cell.frame = CGRectMake(0, 0, frame.size.width-20,frame.size.height-20);
+        cell.frame = CGRectMake(0, 0, frame.size.width,frame.size.height);
 
         return cell;
     }
@@ -641,14 +643,60 @@
 #pragma mark - Open Camera
 - (void) openCamera
 {
-    DBCameraContainerViewController *cameraContainer = [[DBCameraContainerViewController alloc] initWithDelegate:self];
-    [cameraContainer setFullScreenMode];
+//    DBCameraContainerViewController *cameraContainer = [[DBCameraContainerViewController alloc] initWithDelegate:self];
+//    [cameraContainer setFullScreenMode];
+//    
+//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:cameraContainer];
+//    [nav setNavigationBarHidden:YES];
+//    [self presentViewController:nav animated:YES completion:nil];
     
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:cameraContainer];
-    [nav setNavigationBarHidden:YES];
-    [self presentViewController:nav animated:YES completion:nil];
+    
+    
+
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = YES;
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        [self presentViewController:picker animated:YES completion:NULL];
+
+    }
+    
+    else{
+        [TSMessage showNotificationInViewController:self title:@"SYSTEM" subtitle:@"NO Camera Found" type:TSMessageNotificationTypeError];
+    }
 }
 
+#pragma mark - Image Picker Controller delegate methods
+
+-(void)imagePickerController:(UIImagePickerController *)picker
+      didFinishPickingImage : (UIImage *)image
+                 editingInfo:(NSDictionary *)editingInfo
+{
+    //  UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+  
+    
+    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+    
+    [library writeImageToSavedPhotosAlbum:[image CGImage] orientation:(ALAssetOrientation)[image imageOrientation] completionBlock:^(NSURL *assetURL, NSError *error){
+        if (error) {
+            // TODO: error handling
+        } else {
+            // TODO: success handling
+            [self readAlbumList:YES];
+        }
+    }];
+    
+    
+    
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
 
 #pragma mark - DBCameraViewControllerDelegate
 
@@ -659,7 +707,7 @@
 //    [self.navigationController pushViewController:detail animated:NO];
 //    [cameraViewController restoreFullScreenMode];
     [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
-    [self.cvPhotoList reloadData];
+
 
 }
 

@@ -28,7 +28,7 @@
 // if you don't want to save selected album, remove this.
 #define DO_SAVE_SELECTED_ALBUM
 
-@interface DoImagePickerController : UIViewController<DBCameraViewControllerDelegate>
+@interface DoImagePickerController : UIViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate,DBCameraViewControllerDelegate>
 
 @property (assign, nonatomic) id            delegate;
 

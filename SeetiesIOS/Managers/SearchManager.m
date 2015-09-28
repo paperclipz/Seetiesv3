@@ -73,15 +73,26 @@
 -(void)getSuggestedLocationFromFoursquare:(CLLocation*)tempCurrentLocation input:(NSString*)input completionBlock:(IDBlock)completionBlock
 {
     
-    [Foursquare2 venueExploreRecommendedNearByLatitude:@(tempCurrentLocation.coordinate.latitude) longitude:@(tempCurrentLocation.coordinate.longitude) near:nil accuracyLL:nil altitude:nil accuracyAlt:nil query:input limit:nil offset:nil radius:@(1000) section:nil novelty:nil sortByDistance:nil openNow:nil venuePhotos:nil price:nil callback:^(BOOL success, id result){
+    [LoadingManager show];
+    SLog(@"long : %f  || lat: %f",tempCurrentLocation.coordinate.longitude,tempCurrentLocation.coordinate.latitude);
+    [Foursquare2 venueExploreRecommendedNearByLatitude:@(tempCurrentLocation.coordinate.latitude) longitude:@(tempCurrentLocation.coordinate.longitude) near:nil accuracyLL:nil altitude:nil accuracyAlt:nil query:input limit:nil offset:nil radius:@(10000) section:nil novelty:nil sortByDistance:nil openNow:nil venuePhotos:nil price:nil callback:^(BOOL success, id result){
         
-    
-        SLog(@"fourSquare response : %@",result);
+    if(success)
+    {
         [self.connManager storeServerData:result requestType:ServerRequestType4SquareSearch];
-
+        
         if (completionBlock) {
             completionBlock(result);
         }
+
+    }
+    else{
+    
+        SLog(@"NO Result FOUND");
+    }
+        SLog(@"fourSquare response : %@",result);
+               [LoadingManager hide];
+
     }];
  //   tempCurrentLocation.coordinate.latitude = [NSNumber numberWithDouble:3.1333] ;
  //   tempCurrentLocation.coordinate.longitude = [NSNumber numberWithFloat:101.7000];
@@ -166,9 +177,9 @@
 -(void)getSearchLocationFromGoogle:(CLLocation*)tempCurrentLocation input:(NSString*)textInput completionBlock:(IDBlock)completionBlock
 {
     
-    NSString *FullString = [[NSString alloc]initWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?location=%f,%f&input=%@&radius=50000&key=AIzaSyCFM5ytVF7QUtRiQm_E12vKVp01sl_f_xM&type=address",tempCurrentLocation.coordinate.latitude,tempCurrentLocation.coordinate.longitude,textInput];
+   // NSString *FullString = [[NSString alloc]initWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?location=%f,%f&input=%@&radius=50000&key=AIzaSyCFM5ytVF7QUtRiQm_E12vKVp01sl_f_xM&type=address",tempCurrentLocation.coordinate.latitude,tempCurrentLocation.coordinate.longitude,textInput];
 
-    SLog(@"%@",FullString);
+    //SLog(@"%@",FullString);
     
     NSDictionary* param = @{@"input":textInput?textInput:@"",@"radius":@"5000",@"key":GOOGLE_API_KEY,@"type":@"address",@"location":[NSString stringWithFormat:@"%f,%f",tempCurrentLocation.coordinate.latitude,tempCurrentLocation.coordinate.longitude]};
 

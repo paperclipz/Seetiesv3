@@ -86,7 +86,7 @@
     
     [LoadingManager show];
 
-    NSLog(@"Request Server : %@ \n\n Request Json : %@",url,[dict JSONString]);
+    NSLog(@"Request Server : %@ \n\n Request Json : %@",url,[dict bv_jsonStringWithPrettyPrint:YES]);
     if(isPost)
     {
         [self.manager POST:url parameters:dict
