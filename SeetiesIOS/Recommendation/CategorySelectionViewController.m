@@ -107,7 +107,7 @@
     CategoryCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CategoryCollectionViewCell" forIndexPath:indexPath];
     CategoryModel* model = [[[DataManager Instance]categoriesModel] categories][indexPath.row];
     cell.lblTitle.text = model.multiple_line[CHINESE_CODE];
-    [cell.ibImageView sd_setImageWithURL:[NSURL URLWithString:model.defaultImageUrl] placeholderImage:nil];
+    [cell.ibImageView sd_setImageWithURL:[NSURL URLWithString:model.selectedImageUrl] placeholderImage:nil];
     cell.ibContentView.backgroundColor = [UIColor colorWithHexValue:model.background_color];
     [cell initData:model];
     return cell;

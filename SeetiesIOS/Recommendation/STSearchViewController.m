@@ -357,7 +357,7 @@
 -(void)requestSearch
 {
     [self getGoogleSearchPlaces];
-  //  [self getFourSquareSuggestionPlaces];
+    [self getFourSquareSuggestionPlaces];
 }
 
 -(SearchTableViewController*)googleSearchTableViewController

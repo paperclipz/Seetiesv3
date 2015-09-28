@@ -43,32 +43,39 @@
         successBlock(self.location);
         return;
     }
-    [LoadingManager show];
-    
-    self.manager = [CLLocationManager updateManagerWithAccuracy:50.0 locationAge:15.0 authorizationDesciption:CLLocationUpdateAuthorizationDescriptionAlways];
-    
-    [self performSelector:@selector(stopLocationSearch) withObject:@"TimedOut" afterDelay:20];
-    [self.manager startUpdatingLocationWithUpdateBlock:^(CLLocationManager *manager, CLLocation *location, NSError *error, BOOL *stopUpdating) {
-        NSLog(@"Our new location from GPS: %@", location);
+    if ([CLLocationManager isLocationUpdatesAvailable]) {
+        [LoadingManager show];
         
-        if (error && !location) {
-            SLog(@"error : %@",error.description);
-            [LoadingManager hide];
+        self.manager = [CLLocationManager updateManagerWithAccuracy:50.0 locationAge:15.0 authorizationDesciption:CLLocationUpdateAuthorizationDescriptionAlways];
+        
+        [self performSelector:@selector(stopLocationSearch) withObject:@"TimedOut" afterDelay:20];
+        [self.manager startUpdatingLocationWithUpdateBlock:^(CLLocationManager *manager, CLLocation *location, NSError *error, BOOL *stopUpdating) {
+            NSLog(@"Our new location from GPS: %@", location);
             
-            if (errorBlock) {
-                errorBlock(@"no new location from gps");
+            if (error && !location) {
+                SLog(@"error : %@",error.description);
+                [LoadingManager hide];
+                
+                
+                if (errorBlock) {
+                    errorBlock(@"no new location from gps");
+                }
             }
-        }
-        else
-        {
-            self.location = location;
-            *stopUpdating = YES;
-            [LoadingManager hide];
-            successBlock(location);
+            else
+            {
+                self.location = location;
+                *stopUpdating = YES;
+                [LoadingManager hide];
+                successBlock(location);
+                
+            }
+            
+        }];
 
-        }
-
-    }];
+    }
+    else{
+        SLog(@"location not available");
+    }
     
 }
 
