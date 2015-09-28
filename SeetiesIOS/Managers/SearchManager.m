@@ -45,8 +45,9 @@
     }
     [LoadingManager show];
     
-    
     self.manager = [CLLocationManager updateManagerWithAccuracy:50.0 locationAge:15.0 authorizationDesciption:CLLocationUpdateAuthorizationDescriptionAlways];
+    
+    [self performSelector:@selector(stopLocationSearch) withObject:@"TimedOut" afterDelay:20];
     [self.manager startUpdatingLocationWithUpdateBlock:^(CLLocationManager *manager, CLLocation *location, NSError *error, BOOL *stopUpdating) {
         NSLog(@"Our new location from GPS: %@", location);
         
@@ -66,8 +67,17 @@
             successBlock(location);
 
         }
+
     }];
     
+}
+
+-(void)stopLocationSearch
+{
+    SLog(@"stopLocationSearch");
+    [self.manager stopUpdatingLocation];
+    [LoadingManager hide];
+
 }
 
 -(void)getSuggestedLocationFromFoursquare:(CLLocation*)tempCurrentLocation input:(NSString*)input completionBlock:(IDBlock)completionBlock
@@ -91,7 +101,7 @@
         SLog(@"NO Result FOUND");
     }
         SLog(@"fourSquare response : %@",result);
-               [LoadingManager hide];
+        //       [LoadingManager hide];
 
     }];
  //   tempCurrentLocation.coordinate.latitude = [NSNumber numberWithDouble:3.1333] ;
@@ -181,6 +191,7 @@
 
     //SLog(@"%@",FullString);
     
+   // [LoadingManager show];
     NSDictionary* param = @{@"input":textInput?textInput:@"",@"radius":@"5000",@"key":GOOGLE_API_KEY,@"type":@"address",@"location":[NSString stringWithFormat:@"%f,%f",tempCurrentLocation.coordinate.latitude,tempCurrentLocation.coordinate.longitude]};
 
     [[ConnectionManager Instance]requestServerWithPost:NO customURL:GOOGLE_PLACE_AUTOCOMPLETE_API requestType:ServerRequestTypeGoogleSearch param:param completeHandler:^(id object) {
@@ -188,8 +199,12 @@
         {
             completionBlock(object);
         }
-    } errorBlock:^(id object) {
         
+        [LoadingManager hide];
+
+    } errorBlock:^(id object) {
+        [LoadingManager hide];
+
     } ];
 }
 

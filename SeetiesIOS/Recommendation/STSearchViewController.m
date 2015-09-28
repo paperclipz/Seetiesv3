@@ -357,7 +357,7 @@
 -(void)requestSearch
 {
     [self getGoogleSearchPlaces];
-    [self getFourSquareSuggestionPlaces];
+  //  [self getFourSquareSuggestionPlaces];
 }
 
 -(SearchTableViewController*)googleSearchTableViewController
@@ -394,7 +394,6 @@
     [self requestForGoogleMapDetails:model.place_id];
     
 }
-
 
 -(void)processDataForFourSquareVenue:(NSIndexPath*)indexPath
 {

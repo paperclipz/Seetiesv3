@@ -1398,7 +1398,7 @@ static NSMutableDictionary *attributes;
         _operationQueue = [[NSOperationQueue alloc] init];
         _operationQueue.maxConcurrentOperationCount = 7;
         _callbackQueue = dispatch_get_main_queue();
-        _timeoutInterval = 60.0;
+        _timeoutInterval = 20.0;
     }
     return self;
 }
