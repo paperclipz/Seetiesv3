@@ -62,6 +62,9 @@
     GetLanguage1 = [defaults objectForKey:@"UserData_Language1"];
     GetLanguage2 = [defaults objectForKey:@"UserData_Language2"];
     
+    NSLog(@"Init GetLanguage1 == %@",GetLanguage1);
+     NSLog(@"Init GetLanguage2 == %@",GetLanguage2);
+    
     if ([GetLanguage1 isEqualToString:@"简体中文"] || [GetLanguage1 isEqualToString:@"繁體中文"]) {
         GetLanguage1 = @"中文";
     }
@@ -82,6 +85,8 @@
         ShowSecondary.text = GetLanguage2;
     }
     
+    NSLog(@"Init ShowPrimary == %@",ShowPrimary.text);
+    NSLog(@"Init ShowSecondary == %@",ShowSecondary.text);
     
     Toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0,screenHeight - 260,screenWidth, 44)];
     Toolbar.translucent=NO;
@@ -272,6 +277,9 @@
     
     LanguageID2Array = [[NSMutableArray alloc]initWithArray:LanguageID_Array];
     Language2Array = [[NSMutableArray alloc]initWithArray:LanguageName_Array];
+    
+    [Language2Array addObject:@"None"];
+    [LanguageID2Array addObject:@""];
     
     [Language2Array removeObject:ShowPrimary.text];
     [LanguageID2Array removeObject:GetLanguage1_ID];
@@ -563,7 +571,7 @@
                     [GetUserSelectLanguagesArray addObject:Getid];
                     
                     NSString *GetLanguage_1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"origin_caption"]];
-                    NSLog(@"GetLanguage_1 is %@",GetLanguage_1);
+                    //NSLog(@"GetLanguage_1 is %@",GetLanguage_1);
                     [TempArray addObject:GetLanguage_1];
                 }
                 NSLog(@"GetUserSelectLanguagesArray is %@",GetUserSelectLanguagesArray);
@@ -576,6 +584,10 @@
                     GetLanguage_1 = [[NSString alloc]initWithFormat:@"%@",[TempArray objectAtIndex:0]];
                     GetLanguage_2 = [[NSString alloc]initWithFormat:@"%@",[TempArray objectAtIndex:1]];
                 }
+                
+                NSLog(@"GetLanguage_1 is %@",GetLanguage_1);
+                NSLog(@"GetLanguage_2 is %@",GetLanguage_2);
+                
                 
                 NSInteger CheckSystemLanguageData;
                 if ([GetSystemLanguage_ isEqualToString:@"English"]) {

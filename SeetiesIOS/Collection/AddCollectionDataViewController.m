@@ -171,6 +171,9 @@
             [TSMessage showNotificationInViewController:self title:@"" subtitle:MessageString type:TSMessageNotificationTypeError];
         }
     }
+    
+    
+    [ShowActivity stopAnimating];
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -271,6 +274,9 @@
     return YES;
 }
 -(void)SendQuickCollect{
+    
+    [ShowActivity startAnimating];
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
     NSString *GetUseruid = [defaults objectForKey:@"Useruid"];

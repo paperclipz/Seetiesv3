@@ -943,7 +943,7 @@
                     [User_NameArray addObject:name];
                     NSString *profile_photo = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"profile_photo"]];
                     [User_ProfileImageArray addObject:profile_photo];
-                    NSString *followed = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"followed"]];
+                    NSString *followed = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"following"]];
                     [User_FollowArray addObject:followed];
                     NSString *username = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"username"]];
                     [User_UserNameArray addObject:username];

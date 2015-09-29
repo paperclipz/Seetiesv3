@@ -114,15 +114,15 @@
 }
 -(void)swipeRight:(UISwipeGestureRecognizer*)gestureRecognizer
 {
-//    //Do what you want here
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromLeft;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    //[self presentViewController:ListingDetail animated:NO completion:nil];
-    [self dismissViewControllerAnimated:NO completion:nil];
+////    //Do what you want here
+//    CATransition *transition = [CATransition animation];
+//    transition.duration = 0.2;
+//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    transition.type = kCATransitionPush;
+//    transition.subtype = kCATransitionFromLeft;
+//    [self.view.window.layer addAnimation:transition forKey:nil];
+//    //[self presentViewController:ListingDetail animated:NO completion:nil];
+//    [self dismissViewControllerAnimated:NO completion:nil];
     
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
@@ -212,14 +212,14 @@
     return UIStatusBarStyleLightContent;
 }
 -(IBAction)BackButton:(id)sender{
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromLeft;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    //[self presentViewController:ListingDetail animated:NO completion:nil];
-    [self dismissViewControllerAnimated:NO completion:nil];
+//    CATransition *transition = [CATransition animation];
+//    transition.duration = 0.2;
+//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    transition.type = kCATransitionPush;
+//    transition.subtype = kCATransitionFromLeft;
+//    [self.view.window.layer addAnimation:transition forKey:nil];
+//    //[self presentViewController:ListingDetail animated:NO completion:nil];
+//    [self dismissViewControllerAnimated:NO completion:nil];
     
     //[self.navigationController popToRootViewControllerAnimated:YES];
     [self.navigationController popViewControllerAnimated:YES];
@@ -1622,7 +1622,7 @@
         HashTagScroll.frame = CGRectMake(0, GetHeightCheck, screenWidth, 50);
         HashTagScroll.backgroundColor = [UIColor whiteColor];
         [MainScroll addSubview:HashTagScroll];
-        CGRect frame2;
+        CGRect frame2 = {0,0};
         for (int i= 0; i < [ArrHashTag count]; i++) {
             UILabel *ShowHashTagText = [[UILabel alloc]init];
             ShowHashTagText.text = [ArrHashTag objectAtIndex:i];
@@ -1651,8 +1651,6 @@
         
         GetHeightCheck += 50;
     }
-    
-
     
 
     
@@ -1737,7 +1735,7 @@
         ShowViewIcon.frame = CGRectMake(20, GetMessageHeight + 15, 19, 13);
         [MainScroll addSubview:ShowViewIcon];
         
-        NSString *GetFullString = [[NSString alloc]initWithFormat:@"%@ %@",ViewCountString,CustomLocalisedString(@"SeeTotalView", nil)];
+        NSString *GetFullString = [[NSString alloc]initWithFormat:@"%@ views",ViewCountString];
         
         UILabel *ShowTotalView = [[UILabel alloc]init];
         ShowTotalView.frame = CGRectMake(50, GetMessageHeight + 10, 200, 20);

@@ -143,9 +143,31 @@
     }
 
 }
-
+- (void)testRefresh:(UIRefreshControl *)refreshControl
+{
+    refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@""];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        //  [NSThread sleepForTimeInterval:1];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"MMM d, h:mm a"];
+            NSString *lastUpdate = [NSString stringWithFormat:@"Last updated on %@", [formatter stringFromDate:[NSDate date]]];
+            refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdate];
+            [refreshControl endRefreshing];
+            NSLog(@"refresh end");
+            
+        });
+    });
+}
 
 -(void)InitContentView{
+    
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@""];
+    [refreshControl addTarget:self action:@selector(testRefresh:) forControlEvents:UIControlEventValueChanged];
+    [MainScroll addSubview:refreshControl];
     
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
@@ -1081,23 +1103,52 @@
                 NSDictionary *SystemLanguageData = [GetAllData valueForKey:@"system_language"];
                 GetSystemLanguage = [[NSString alloc]initWithFormat:@"%@",[SystemLanguageData objectForKey:@"origin_caption"]];
                 
-                NSDictionary *LanguageData = [res valueForKey:@"languages"];
+//                NSDictionary *LanguageData = [res valueForKey:@"languages"];
+//                NSMutableArray *TempArray = [[NSMutableArray alloc]init];
+//               
+//                if (LanguageData == NULL || [ LanguageData count ] == 0) {
+//                    GetPrimaryLanguage = @"English";
+//                    GetSecondaryLanguage = @"";
+//                }else{
+//                    for (NSDictionary * dict in LanguageData) {
+//                        NSString *GetTempLanguage_1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"origin_caption"]];
+//                        [TempArray addObject:GetTempLanguage_1];
+//                    }
+//                     NSLog(@"Profile Get TempArray is %@",TempArray);
+//                    GetPrimaryLanguage = [[NSString alloc]initWithFormat:@"%@",[TempArray objectAtIndex:0]];
+//                    if ([TempArray count] == 1) {
+//                        GetSecondaryLanguage = @"";
+//                    }else{
+//                        GetSecondaryLanguage = [[NSString alloc]initWithFormat:@"%@",[TempArray objectAtIndex:1]];
+//                    }
+//                }
+                
+                NSMutableArray *GetUserSelectLanguagesArray = [[NSMutableArray alloc]init];
                 NSMutableArray *TempArray = [[NSMutableArray alloc]init];
-                if (LanguageData == NULL || [ LanguageData count ] == 0) {
-                    GetPrimaryLanguage = @"English";
+                NSDictionary *NSDictionaryLanguage = [GetAllData valueForKey:@"languages"];
+               // NSLog(@"NSDictionaryLanguage is %@",NSDictionaryLanguage);
+                for (NSDictionary * dict in NSDictionaryLanguage){
+                    NSString *Getid = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"id"]];
+                    [GetUserSelectLanguagesArray addObject:Getid];
+                    
+                    NSString *GetLanguage_1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"origin_caption"]];
+                    //NSLog(@"GetLanguage_1 is %@",GetLanguage_1);
+                    [TempArray addObject:GetLanguage_1];
+                }
+               // NSLog(@"GetUserSelectLanguagesArray is %@",GetUserSelectLanguagesArray);
+                
+//                NSString *GetLanguage_1;
+//                NSString *GetLanguage_2;
+                if ([TempArray count] == 1) {
+                    GetPrimaryLanguage = [[NSString alloc]initWithFormat:@"%@",[TempArray objectAtIndex:0]];
                     GetSecondaryLanguage = @"";
                 }else{
-                    for (NSDictionary * dict in LanguageData) {
-                        NSString *GetTempLanguage_1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"origin_caption"]];
-                        [TempArray addObject:GetTempLanguage_1];
-                    }
                     GetPrimaryLanguage = [[NSString alloc]initWithFormat:@"%@",[TempArray objectAtIndex:0]];
-                    if ([TempArray count] == 1) {
-                        GetSecondaryLanguage = @"";
-                    }else{
-                        GetSecondaryLanguage = [[NSString alloc]initWithFormat:@"%@",[TempArray objectAtIndex:1]];
-                    }
+                    GetSecondaryLanguage = [[NSString alloc]initWithFormat:@"%@",[TempArray objectAtIndex:1]];
                 }
+                
+                
+                
                 
                 if ([GetPersonalTags length] == 0 || [GetPersonalTags isEqualToString:@""] || [GetPersonalTags isEqualToString:@"(null)"] || GetPersonalTags == nil) {
                 }else{
@@ -1134,6 +1185,8 @@
                 [defaults setObject:GetFollowingCount forKey:@"UserData_FollowingCount"];
                 [defaults synchronize];
                 
+                NSLog(@"Profile GetPrimaryLanguage is %@",GetPrimaryLanguage);
+                NSLog(@"Profile GetSecondaryLanguage is %@",GetSecondaryLanguage);
                 
                 [self InitContentView];
                 [self GetCollectionData];

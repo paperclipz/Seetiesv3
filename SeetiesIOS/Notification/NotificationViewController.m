@@ -850,6 +850,10 @@
             [formatter setDateFormat:@"MMM d, h:mm a"];
           //  NSString *lastUpdate = [NSString stringWithFormat:@"Last updated on %@", [formatter stringFromDate:[NSDate date]]];
            // refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdate];
+            for (UIView *subview in MainScroll.subviews) {
+                [subview removeFromSuperview];
+            }
+            
              [self GetNotification];
             [refreshControl endRefreshing];
             NSLog(@"refresh end");
