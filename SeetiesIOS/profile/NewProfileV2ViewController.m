@@ -889,8 +889,8 @@
 -(IBAction)SettingsButton:(id)sender{
 
     SettingsViewController *SettingsView = [[SettingsViewController alloc]init];
-    [self.view.window.rootViewController presentViewController:SettingsView animated:YES completion:nil];
-    //[self presentViewController:SettingsView animated:YES completion:nil];
+    //[self.view.window.rootViewController presentViewController:SettingsView animated:YES completion:nil];
+    [self presentViewController:SettingsView animated:YES completion:nil];
     
 }
 -(void)GetUserData{
@@ -1474,8 +1474,9 @@
 }
 -(IBAction)SearchButton:(id)sender{
     SearchViewV2Controller *SearchView = [[SearchViewV2Controller alloc]initWithNibName:@"SearchViewV2Controller" bundle:nil];
+    [self.navigationController pushViewController:SearchView animated:YES];
     //[self presentViewController:SearchView animated:YES completion:nil];
-    [self.view.window.rootViewController presentViewController:SearchView animated:YES completion:nil];
+   // [self.view.window.rootViewController presentViewController:SearchView animated:YES completion:nil];
 }
 -(IBAction)LikesButtonOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
@@ -1534,7 +1535,8 @@
 }
 -(IBAction)EditProfileButtonOnClick:(id)sender{
     EditProfileV2ViewController *EditProfileView = [[EditProfileV2ViewController alloc]init];
-    [self.view.window.rootViewController presentViewController:EditProfileView animated:YES completion:nil];
+    [self presentViewController:EditProfileView animated:YES completion:nil];
+   // [self.view.window.rootViewController presentViewController:EditProfileView animated:YES completion:nil];
 }
 -(IBAction)ShareButton:(id)sender{
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
@@ -1649,7 +1651,8 @@ if(actionSheet.tag == 200){
 -(IBAction)ShowAll_FollowerButton:(id)sender{
    
     ShowFollowerAndFollowingViewController *ShowFollowerAndFollowingView = [[ShowFollowerAndFollowingViewController alloc]init];
-    [self.view.window.rootViewController presentViewController:ShowFollowerAndFollowingView animated:YES completion:nil];
+    [self presentViewController:ShowFollowerAndFollowingView animated:YES completion:nil];
+   // [self.view.window.rootViewController presentViewController:ShowFollowerAndFollowingView animated:YES completion:nil];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
      NSString *Getuid = [defaults objectForKey:@"Useruid"];
@@ -1657,7 +1660,8 @@ if(actionSheet.tag == 200){
 }
 -(IBAction)ShowAll_FollowingButton:(id)sender{
     ShowFollowerAndFollowingViewController *ShowFollowerAndFollowingView = [[ShowFollowerAndFollowingViewController alloc]init];
-    [self.view.window.rootViewController presentViewController:ShowFollowerAndFollowingView animated:YES completion:nil];
+    [self presentViewController:ShowFollowerAndFollowingView animated:YES completion:nil];
+   // [self.view.window.rootViewController presentViewController:ShowFollowerAndFollowingView animated:YES completion:nil];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
     NSString *Getuid = [defaults objectForKey:@"Useruid"];
@@ -1675,8 +1679,8 @@ if(actionSheet.tag == 200){
         transition.type = kCATransitionPush;
         transition.subtype = kCATransitionFromRight;
         [self.view.window.layer addAnimation:transition forKey:nil];
-       // [self presentViewController:FullImageView animated:NO completion:nil];
-        [self.view.window.rootViewController presentViewController:FullImageView animated:YES completion:nil];
+        [self presentViewController:FullImageView animated:NO completion:nil];
+       // [self.view.window.rootViewController presentViewController:FullImageView animated:YES completion:nil];
         [FullImageView GetImageString:GetProfileImg];
     }
 }

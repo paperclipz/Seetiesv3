@@ -1467,8 +1467,8 @@
         transition.type = kCATransitionPush;
         transition.subtype = kCATransitionFromRight;
         [self.view.window.layer addAnimation:transition forKey:nil];
-        // [self presentViewController:FullImageView animated:NO completion:nil];
-        [self.view.window.rootViewController presentViewController:FullImageView animated:YES completion:nil];
+         [self presentViewController:FullImageView animated:NO completion:nil];
+       // [self.view.window.rootViewController presentViewController:FullImageView animated:YES completion:nil];
         [FullImageView GetImageString:GetProfileImg];
     }
 }

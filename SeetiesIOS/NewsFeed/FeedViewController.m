@@ -3545,8 +3545,8 @@
         [self SendQuickCollect];
     }else{
         AddCollectionDataViewController *AddCollectionDataView = [[AddCollectionDataViewController alloc]init];
-        //[self presentViewController:AddCollectionDataView animated:YES completion:nil];
-        [self.view.window.rootViewController presentViewController:AddCollectionDataView animated:YES completion:nil];
+        [self presentViewController:AddCollectionDataView animated:YES completion:nil];
+       // [self.view.window.rootViewController presentViewController:AddCollectionDataView animated:YES completion:nil];
         [AddCollectionDataView GetPostID:[arrPostID objectAtIndex:getbuttonIDN] GetImageData:[arrImage objectAtIndex:getbuttonIDN]];
     }
     
@@ -3588,8 +3588,8 @@
     NSLog(@"Add Collection Button On Click");
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     AddCollectionDataViewController *AddCollectionDataView = [[AddCollectionDataViewController alloc]init];
-    //[self presentViewController:AddCollectionDataView animated:YES completion:nil];
-    [self.view.window.rootViewController presentViewController:AddCollectionDataView animated:YES completion:nil];
+    [self presentViewController:AddCollectionDataView animated:YES completion:nil];
+    //[self.view.window.rootViewController presentViewController:AddCollectionDataView animated:YES completion:nil];
     [AddCollectionDataView GetPostID:[arrPostID objectAtIndex:getbuttonIDN] GetImageData:[arrImage objectAtIndex:getbuttonIDN]];
 }
 
@@ -3656,8 +3656,8 @@
     NSLog(@"ShareButtonOnClick");
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     ShareViewController *ShareView = [[ShareViewController alloc]init];
-    //[self presentViewController:AddCollectionDataView animated:YES completion:nil];
-    [self.view.window.rootViewController presentViewController:ShareView animated:YES completion:nil];
+    [self presentViewController:ShareView animated:YES completion:nil];
+    //[self.view.window.rootViewController presentViewController:ShareView animated:YES completion:nil];
     [ShareView GetPostID:[arrPostID objectAtIndex:getbuttonIDN] GetMessage:[arrMessage objectAtIndex:getbuttonIDN] GetTitle:[arrTitle objectAtIndex:getbuttonIDN] GetImageData:[arrImage objectAtIndex:getbuttonIDN]];
 }
 -(IBAction)CommentButtonOnClick:(id)sender{
@@ -3670,7 +3670,8 @@
     transition.type = kCATransitionPush;
     transition.subtype = kCATransitionFromRight;
     [self.view.window.layer addAnimation:transition forKey:nil];
-    [self.view.window.rootViewController presentViewController:CommentView animated:YES completion:nil];
+    [self presentViewController:CommentView animated:YES completion:nil];
+    //[self.view.window.rootViewController presentViewController:CommentView animated:YES completion:nil];
     [CommentView GetRealPostIDAndAllComment:[arrPostID objectAtIndex:getbuttonIDN]];
     [CommentView GetWhatView:@"Comment"];
 }

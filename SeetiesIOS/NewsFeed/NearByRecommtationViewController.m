@@ -60,7 +60,18 @@
     SelfCheckLikeArray = [[NSMutableArray alloc]initWithArray:SelfCheckLike];
     
     
-    NSLog(@"LPhotoArray is %@",LPhotoArray);
+//    NSLog(@"LPhotoArray is %@",LPhotoArray);
+//    NSLog(@"PostIDArray is %@",PostIDArray);
+//    NSLog(@"place_nameArray is %@",place_nameArray);
+//    NSLog(@"UserInfo_UrlArray is %@",UserInfo_UrlArray);
+//    NSLog(@"UserInfo_NameArray is %@",UserInfo_NameArray);
+//    NSLog(@"TitleArray is %@",TitleArray);
+//    NSLog(@"MessageArray is %@",MessageArray);
+//    NSLog(@"DistanceArray is %@",DistanceArray);
+//    NSLog(@"SearchDisplayNameArray is %@",SearchDisplayNameArray);
+//    NSLog(@"TotalCommentArray is %@",TotalCommentArray);
+//    NSLog(@"TotalLikeArray is %@",TotalLikeArray);
+//    NSLog(@"SelfCheckLikeArray is %@",SelfCheckLikeArray);
     
     [self InitView];
 }
@@ -98,7 +109,6 @@
         [SelectButton setBackgroundColor:[UIColor clearColor]];
         [SelectButton addTarget:self action:@selector(ProductButton:) forControlEvents:UIControlEventTouchUpInside];
         [MainScroll addSubview:SelectButton];
-        
         
         UIImageView *ShowPin = [[UIImageView alloc]init];
         ShowPin.image = [UIImage imageNamed:@"FeedPin.png"];
@@ -138,8 +148,6 @@
             [MainScroll addSubview:ShowDistance];
         }
         
-        
-        
         UILabel *ShowAddress = [[UILabel alloc]init];
         ShowAddress.frame = CGRectMake(30, 254 + heightcheck + i, screenWidth - 150, 20);
         ShowAddress.text = [place_nameArray objectAtIndex:i];
@@ -147,8 +155,6 @@
         ShowAddress.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
         ShowAddress.backgroundColor = [UIColor clearColor];
         [MainScroll addSubview:ShowAddress];
-        
-        
         
         heightcheck += 284;
         

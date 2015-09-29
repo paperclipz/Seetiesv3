@@ -1306,6 +1306,7 @@
              //   NSDictionary *UserInfoData_ProfilePhoto = [UserInfoData valueForKey:@"profile_photo"];
                 
                 UserInfo_NameArray_Nearby = [[NSMutableArray alloc] initWithCapacity:[UserInfoData count]];
+                UserInfo_UrlArray_Nearby = [[NSMutableArray alloc] initWithCapacity:[UserInfoData count]];
                 for (NSDictionary * dict in UserInfoData) {
                     NSString *username = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"username"]];
                     [UserInfo_NameArray_Nearby addObject:username];
@@ -1408,7 +1409,7 @@
     [MainScroll addSubview:PageControlOn];
     
     UIImageView *ShowOverlayImg = [[UIImageView alloc]init];
-    ShowOverlayImg.image = [UIImage imageNamed:@"FeedOverlay.png"];
+    ShowOverlayImg.image = [UIImage imageNamed:@"PostOverlay.png"];
     ShowOverlayImg.frame = CGRectMake(0, -20, screenWidth , 360);
     ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
     ShowOverlayImg.layer.masksToBounds = YES;
@@ -1442,10 +1443,7 @@
         ShowImage.tag = 6000000;
         [ImageScroll addSubview:ShowImage];
         
-        UIImageView *ShowMoveIcon = [[UIImageView alloc]init];
-        ShowMoveIcon.image = [UIImage imageNamed:@"MoveIcon.png"];
-        ShowMoveIcon.frame = CGRectMake(screenWidth - 40, 300, 30, 30);
-        [MainScroll addSubview:ShowMoveIcon];
+
         
         UIButton *ImageButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [ImageButton setTitle:@"" forState:UIControlStateNormal];
@@ -1489,6 +1487,11 @@
         [MImageScroll addSubview:ShowCaptionText];
     }
     //NSLog(@"start draw title");
+    
+    UIImageView *ShowMoveIcon = [[UIImageView alloc]init];
+    ShowMoveIcon.image = [UIImage imageNamed:@"FullScreenIcon.png"];
+    ShowMoveIcon.frame = CGRectMake(screenWidth - 40, 300, 30, 30);
+    [MainScroll addSubview:ShowMoveIcon];
     
     NSInteger productcount = [UrlArray count];
     MImageScroll.contentSize = CGSizeMake(productcount * screenWidth, 340);
@@ -1833,8 +1836,8 @@
     }else{
         //collected show
         UIImageView *ShowCollectionIcon = [[UIImageView alloc]init];
-        ShowCollectionIcon.image = [UIImage imageNamed:@"InteractLike.png"];
-        ShowCollectionIcon.frame = CGRectMake(20, GetMessageHeight + 13, 18, 15);
+        ShowCollectionIcon.image = [UIImage imageNamed:@"PostCollectedIcon.png"];
+        ShowCollectionIcon.frame = CGRectMake(10, GetMessageHeight + 2, 35, 35);
         [MainScroll addSubview:ShowCollectionIcon];
         
         NSString *TempCountString = [[NSString alloc]initWithFormat:@"Collected in %@ collections",TotalCollectionCount];
@@ -3259,7 +3262,8 @@
 }
 -(void)OpenReport{
     ReportViewController *ReportView = [[ReportViewController alloc]init];
-    [self.view.window.rootViewController presentViewController:ReportView animated:YES completion:nil];
+    [self presentViewController:ReportView animated:YES completion:nil];
+    //[self.view.window.rootViewController presentViewController:ReportView animated:YES completion:nil];
     [ReportView GetPostID:GetPostID];
 }
 -(void)OpenEdit{
@@ -3706,7 +3710,8 @@
         [self SendQuickCollect];
     }else{
         AddCollectionDataViewController *AddCollectionDataView = [[AddCollectionDataViewController alloc]init];
-        [self.view.window.rootViewController presentViewController:AddCollectionDataView animated:YES completion:nil];
+        [self presentViewController:AddCollectionDataView animated:YES completion:nil];
+       // [self.view.window.rootViewController presentViewController:AddCollectionDataView animated:YES completion:nil];
         [AddCollectionDataView GetPostID:GetPostID GetImageData:[UrlArray objectAtIndex:0]];
     }
     
@@ -3742,8 +3747,8 @@
 -(IBAction)AddCollectButtonOnClick:(id)sender{
     NSLog(@"Add Collection Button On Click");
     AddCollectionDataViewController *AddCollectionDataView = [[AddCollectionDataViewController alloc]init];
-    //[self presentViewController:AddCollectionDataView animated:YES completion:nil];
-    [self.view.window.rootViewController presentViewController:AddCollectionDataView animated:YES completion:nil];
+    [self presentViewController:AddCollectionDataView animated:YES completion:nil];
+    //[self.view.window.rootViewController presentViewController:AddCollectionDataView animated:YES completion:nil];
     [AddCollectionDataView GetPostID:GetPostID GetImageData:[UrlArray objectAtIndex:0]];
 }
 @end

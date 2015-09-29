@@ -1447,7 +1447,8 @@
 }
 -(IBAction)FilterButtonOnClick:(id)sender{
     Filter2ViewController *FilterView = [[Filter2ViewController alloc]init];
-    [self.view.window.rootViewController presentViewController:FilterView animated:YES completion:nil];
+    [self presentViewController:FilterView animated:YES completion:nil];
+   // [self.view.window.rootViewController presentViewController:FilterView animated:YES completion:nil];
     [FilterView GetWhatViewComeHere:@"Search"];
 }
 -(IBAction)CollectButtonOnClick:(id)sender{
@@ -1466,8 +1467,8 @@
     }else{
         
         AddCollectionDataViewController *AddCollectionDataView = [[AddCollectionDataViewController alloc]init];
-        //[self presentViewController:AddCollectionDataView animated:YES completion:nil];
-        [self.view.window.rootViewController presentViewController:AddCollectionDataView animated:YES completion:nil];
+        [self presentViewController:AddCollectionDataView animated:YES completion:nil];
+        //[self.view.window.rootViewController presentViewController:AddCollectionDataView animated:YES completion:nil];
         [AddCollectionDataView GetPostID:[CollectArray objectAtIndex:getbuttonIDN] GetImageData:[LPhotoArray objectAtIndex:getbuttonIDN]];
     }
 }

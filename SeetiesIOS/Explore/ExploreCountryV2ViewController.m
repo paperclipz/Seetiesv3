@@ -1075,8 +1075,8 @@
         NSArray *SplitArray = [TempImage componentsSeparatedByString:@","];
         
         AddCollectionDataViewController *AddCollectionDataView = [[AddCollectionDataViewController alloc]init];
-        //[self presentViewController:AddCollectionDataView animated:YES completion:nil];
-        [self.view.window.rootViewController presentViewController:AddCollectionDataView animated:YES completion:nil];
+        [self presentViewController:AddCollectionDataView animated:YES completion:nil];
+        //[self.view.window.rootViewController presentViewController:AddCollectionDataView animated:YES completion:nil];
         [AddCollectionDataView GetPostID:[CollectArray objectAtIndex:getbuttonIDN] GetImageData:[SplitArray objectAtIndex:0]];
     }
 }
