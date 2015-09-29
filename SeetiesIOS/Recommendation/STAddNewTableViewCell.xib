@@ -2,10 +2,11 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="HelveticaNeue.ttc">
-            <string>HelveticaNeue</string>
+            <string>HelveticaNeue-Bold</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -18,15 +19,37 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="57.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add New Places" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gmk-qA-pZY">
-                        <rect key="frame" x="8" y="29" width="304" height="21"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
-                        <color key="textColor" red="0.14901960780000001" green="0.65098039220000004" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add New Place?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gmk-qA-pZY">
+                        <rect key="frame" x="32" y="37" width="256" height="31"/>
+                        <color key="backgroundColor" red="0.20000000000000001" green="0.70980392160000005" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="31" id="KVG-3d-i8q"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="13"/>
+                        <color key="textColor" red="0.93378899360000001" green="0.95215517979999997" blue="0.9814312892" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a new place on the map" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LpN-rJ-Z0r">
+                        <rect key="frame" x="8" y="8" width="294" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="bNl-hU-QUb"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="gmk-qA-pZY" firstAttribute="leading" secondItem="gkY-f5-U0v" secondAttribute="leadingMargin" constant="24" id="1SZ-Ke-oew"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="gmk-qA-pZY" secondAttribute="bottom" constant="3.5" id="Qf1-Wx-U7d"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="LpN-rJ-Z0r" secondAttribute="trailing" constant="10" id="ax5-Nm-w3j"/>
+                    <constraint firstItem="LpN-rJ-Z0r" firstAttribute="leading" secondItem="gkY-f5-U0v" secondAttribute="leadingMargin" id="lgf-ln-zsz"/>
+                    <constraint firstItem="LpN-rJ-Z0r" firstAttribute="top" secondItem="gkY-f5-U0v" secondAttribute="topMargin" id="nUl-PX-ibd"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="gmk-qA-pZY" secondAttribute="trailing" constant="24" id="zTt-ri-Gt4"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="lblCreteMapTitle" destination="LpN-rJ-Z0r" id="ytq-PG-2l8"/>
                 <outlet property="lblTitle" destination="gmk-qA-pZY" id="zlg-hi-dDc"/>
             </connections>
             <point key="canvasLocation" x="485" y="326"/>

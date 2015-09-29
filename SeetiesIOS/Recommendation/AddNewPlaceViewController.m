@@ -221,8 +221,7 @@
         pav = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseId];
       //  pav.draggable = YES;
         pav.canShowCallout = YES;
-        pav.image = [UIImage imageNamed:@"MapPin.png"];
-       
+        pav.image = [UIImage imageNamed:@"PinInMap.png"];
 
     }
     else
