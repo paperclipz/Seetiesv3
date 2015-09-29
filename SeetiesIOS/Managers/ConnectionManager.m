@@ -370,7 +370,7 @@
             
         case ServerRequestTypePostCreatePost:
         case ServerRequestTypePostDeletePost:
-
+        case ServerRequestTypeGetPostInfo:
             str = @"v2.0/post";
             
             break;
@@ -393,6 +393,7 @@
         default:
              str = @"v2.0";
             break;
+            
     }
     
     return [NSString stringWithFormat:@"https://%@/%@",self.serverPath,str];
@@ -474,9 +475,18 @@
             self.dataManager.collectionModels = [[CollectionModel alloc]initWithDictionary:dict error:nil];
 
         }
+            break;
+            
+        case ServerRequestTypeGetPostInfo:
+        {
+            
+            NSDictionary* dict = obj[@"data"];
+            
+            self.dataManager.editPostModel = [[DraftModel alloc]initWithDictionary:dict error:nil];
+            [self.dataManager.editPostModel process];
+        }
             
             break;
-
             
         default:
             

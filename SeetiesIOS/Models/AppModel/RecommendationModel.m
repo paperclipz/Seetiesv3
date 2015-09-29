@@ -54,6 +54,7 @@
     _arrPostImagesList = [model.arrPhotos mutableCopy];
     _reccomendVenueModel = [RecommendationVenueModel new];
     [_reccomendVenueModel processDraftModel:model];
+    _selectedCategories = model.category;
     
     
     return self;

@@ -12,7 +12,10 @@
 
 
 @interface STSearchViewController ()
+{
+    CGRect searchViewFrame;
 
+}
 @property(nonatomic,strong)NSArray* nearbyVenues;
 @property(nonatomic,strong)SearchModel* searchModel;
 @property (weak, nonatomic) IBOutlet UITextField *txtSearch;
@@ -44,8 +47,6 @@
     [super viewDidLoad];
     [self initSelfView];
     
-    
-    
 }
 
 -(void)initSelfView
@@ -62,6 +63,7 @@
 
     [self changeLanguage];
 
+    searchViewFrame = self.cAPSPageMenu.view.frame;
 }
 
 -(void)changeLanguage
@@ -84,18 +86,18 @@
         [self.cAPSPageMenu moveToPage:0];
 
         [UIView animateWithDuration:.3 animations:^{
-            self.cAPSPageMenu.view.frame = CGRectMake(0, 0-self.cAPSPageMenu.menuHeight,  self.cAPSPageMenu.view.frame.size.width,  self.cAPSPageMenu.view.frame.size.height);
+            self.cAPSPageMenu.view.frame = CGRectMake(0, 0-self.cAPSPageMenu.menuHeight,  self.cAPSPageMenu.view.frame.size.width,  searchViewFrame.size.height + self.cAPSPageMenu.menuHeight);
 
+        }completion:^(BOOL finished) {
         }];
-        
-
     }
     else{
         self.cAPSPageMenu.controllerScrollView.scrollEnabled = YES;
         
         [UIView animateWithDuration:.3 animations:^{
-            self.cAPSPageMenu.view.frame = CGRectMake(0, 0,  self.cAPSPageMenu.view.frame.size.width,  self.cAPSPageMenu.view.frame.size.height);
+            self.cAPSPageMenu.view.frame = CGRectMake(0, 0,  self.cAPSPageMenu.view.frame.size.width,  searchViewFrame.size.height);
             
+        }completion:^(BOOL finished) {
         }];
         
 
@@ -158,6 +160,8 @@
             
             [self.sManager getCoordinateFromWifi:^(CLLocation *currentLocation) {
                 self.location = currentLocation;
+                
+             //   SLog(@"long : %f || lat : %f",self.location.coordinate.longitude,self.location.coordinate.latitude);
                 [self requestSearch];
             } errorBlock:^(NSString *status) {
                 [self requestSearch];

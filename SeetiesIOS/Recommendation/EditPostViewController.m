@@ -77,18 +77,38 @@
 }
 - (IBAction)btnPublishClicked:(id)sender {
     
-    [self requestServerForCategories:^(id object) {
-        self.categoriesModel = [[DataManager Instance] categoriesModel];
-        _categorySelectionViewController = nil;
-        self.categorySelectionViewController.arrCategories = self.categoriesModel.categories;
+    
+    if (!self.categoriesModel) {
         
-        if(![self.categorySelectionViewController.view isDescendantOfView:self.view])
-        {
-            [self.view addSubview:self.categorySelectionViewController.view];
-        }
+        [self requestServerForCategories:^(id object) {
+            [self showCategory];
+        }];
         
-        [self.categorySelectionViewController show];
-    }];
+    }
+    else{
+        [self showCategory];
+    }
+
+}
+
+-(void)showCategory
+{
+    _categorySelectionViewController = nil;
+
+    self.categoriesModel = [[DataManager Instance] categoriesModel];
+    self.categorySelectionViewController.arrCategories = [self.categoriesModel.categories mutableCopy];
+    
+    //check for selected category for existing post. draft and new post no need to check for it
+    if (self.recommendationModel.selectedCategories && self.editPostType == EditPostTypePostEdit) {
+        [self.categorySelectionViewController setPreSelectedCategories:self.recommendationModel.selectedCategories];
+    }
+    
+    if(![self.categorySelectionViewController.view isDescendantOfView:self.view])
+    {
+        [self.view addSubview:self.categorySelectionViewController.view];
+    }
+    
+    [self.categorySelectionViewController show];
 
 }
 
@@ -163,6 +183,14 @@
     self.recommendationModel = [[RecommendationModel alloc]initWithDraftModel:model];
     
    
+}
+
+
+-(void)initDataPostEdit:(DraftModel*)model
+{
+
+    self.editPostType = EditPostTypePostEdit;
+    self.recommendationModel = [[RecommendationModel alloc]initWithDraftModel:model];
 }
 
 - (void)viewDidLoad {
@@ -452,7 +480,14 @@
 -(NSArray*)arrTabImages
 {
     
-    return @[[UIImage imageNamed:@"addurl_icon@2x.png"],[UIImage imageNamed:@"qr_icon@2x.png"],[UIImage imageNamed:@"editplace_icon@2x.png"],[UIImage imageNamed:@"save_icon@2x.png"]];
+    if ( self.editPostType == EditPostTypePostEdit) {
+        return @[[UIImage imageNamed:@"addurl_icon@2x.png"],[UIImage imageNamed:@"qr_icon@2x.png"],[UIImage imageNamed:@"editplace_icon@2x.png"]];
+
+    }
+    else{
+        return @[[UIImage imageNamed:@"addurl_icon@2x.png"],[UIImage imageNamed:@"qr_icon@2x.png"],[UIImage imageNamed:@"editplace_icon@2x.png"],[UIImage imageNamed:@"save_icon@2x.png"]];
+
+    }
 }
 
 -(EditPhotoViewController*)editPhotoViewController
@@ -563,7 +598,7 @@
 {
     isDualLanguge = hasDualLang;
 
-    self.descViewTopLayoutConstraint.constant = hasDualLang?33:0;
+    self.descViewTopLayoutConstraint.constant = hasDualLang?43:0;
 
 }
 
@@ -704,8 +739,11 @@ static id ObjectOrNull(id object)
                 self.recommendationModel.post_id = dict[@"data"][@"post_id"];
             }
         }
+        
         if (_editPostDoneBlock) {
-            self.editPostDoneBlock(nil);
+            
+            [self performSelector:@selector(editPostDoneBlock) withObject:nil afterDelay:2.0f];
+           // self.editPostDoneBlock(nil);
         }
     
     } errorBlock:^(id object) {
@@ -729,15 +767,32 @@ static id ObjectOrNull(id object)
 
 -(void)requestServerForCategories:(IDBlock)sucessRequestBlock
 {
+    [LoadingManager show];
     
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetCategories param:nil appendString:nil  completeHandler:^(id object) {
         
         if (sucessRequestBlock) {
             sucessRequestBlock(nil);
         }
+        [LoadingManager hide];
+
     } errorBlock:^(id object) {
-        
+        [LoadingManager hide];
+
     }];
 }
 
+-(void)requestServerForPostInfo:(NSString*)postID completionBLock:(VoidBlock)completionBlock
+{
+    SLog(@"requestServerForPostInfo");
+    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetPostInfo param:nil appendString:postID completeHandler:^(id object) {
+        
+        if (completionBlock) {
+            completionBlock();
+        }
+    } errorBlock:^(id object) {
+        
+        
+    }];
+}
 @end

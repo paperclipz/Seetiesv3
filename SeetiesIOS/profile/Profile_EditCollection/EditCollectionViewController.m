@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *ibBtnEdit;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblDesc;
+@property (weak, nonatomic) IBOutlet UILabel *lblNumberOfRecommendation;
 
 @property (strong, nonatomic)CollectionModel* collectionModel;
 
@@ -29,6 +30,7 @@
 - (IBAction)btnEditClicked:(id)sender {
     
     
+   // _editCollectionDetailViewController = nil;
     [self.editCollectionDetailViewController initData:self.collectionModel];
     [self.navigationController pushViewController:self.editCollectionDetailViewController animated:YES];
     
@@ -55,15 +57,15 @@
     
     self.lblTitle.text = self.collectionModel.name;
     self.lblDesc.text = self.collectionModel.postDesc;
+    self.lblNumberOfRecommendation.text = [NSString stringWithFormat:@"%lu %@",(unsigned long)self.arrList.count,LOCALIZATION(@"Recommendations")];
 }
 
 -(void)initData:(CollectionModel*)model
 {
     self.collectionModel = model;
-    self.arrList = (NSMutableArray*)self.collectionModel.arrayPost;
     
     
-
+    self.arrList = [[NSMutableArray alloc]initWithArray:self.collectionModel.arrayPost];
 }
 
 -(void)initSelfView
@@ -77,7 +79,7 @@
     self.ibTableView.delegate = sender;
     self.ibTableView.dataSource = sender;
     [self.ibTableView registerClass:[EditCollectionTableViewCell class] forCellReuseIdentifier:@"EditCollectionTableViewCell"];
-    self.ibTableView.longPressReorderEnabled = YES;
+    //self.ibTableView.longPressReorderEnabled = YES;
 
 }
 
@@ -152,13 +154,13 @@
         __weak typeof (self)weakSelf = self;
         _editCollectionDetailViewController.btnDoneBlock = ^(id block)
         {
-            weakSelf.editCollectionDetailViewController = nil;
+         //   weakSelf.editCollectionDetailViewController = nil;
         };
         
         _editCollectionDetailViewController.btnCancelBlock = ^()
         {
         
-            weakSelf.editCollectionDetailViewController = nil;
+        //    weakSelf.editCollectionDetailViewController = nil;
 
             
         };

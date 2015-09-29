@@ -40,9 +40,13 @@
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9zR-qN-JhW">
-                                    <rect key="frame" x="8" y="6" width="35" height="30"/>
-                                    <state key="normal" title="Back">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9zR-qN-JhW">
+                                    <rect key="frame" x="273" y="10" width="23" height="22"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="23" id="baR-CR-IJk"/>
+                                        <constraint firstAttribute="height" constant="22" id="p5Q-ga-Ly3"/>
+                                    </constraints>
+                                    <state key="normal" image="ButtonClose.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
@@ -54,6 +58,9 @@
                             <constraints>
                                 <constraint firstAttribute="centerX" secondItem="vEV-sg-dNg" secondAttribute="centerX" id="ASw-uG-nw7"/>
                                 <constraint firstAttribute="centerY" secondItem="vEV-sg-dNg" secondAttribute="centerY" constant="-2.5" id="DKF-wc-Mx6"/>
+                                <constraint firstItem="9zR-qN-JhW" firstAttribute="top" secondItem="nNf-Lk-QOe" secondAttribute="top" constant="10" id="JGg-Pn-vcU"/>
+                                <constraint firstAttribute="bottom" secondItem="9zR-qN-JhW" secondAttribute="bottom" constant="10" id="Mo5-Xh-zce"/>
+                                <constraint firstAttribute="trailing" secondItem="9zR-qN-JhW" secondAttribute="trailing" constant="8" id="NLX-XX-c5F"/>
                                 <constraint firstItem="vEV-sg-dNg" firstAttribute="leading" secondItem="nNf-Lk-QOe" secondAttribute="leading" id="Uwo-X0-HVk"/>
                                 <constraint firstItem="vEV-sg-dNg" firstAttribute="bottom" secondItem="nNf-Lk-QOe" secondAttribute="bottomMargin" id="cga-tf-cBv"/>
                                 <constraint firstAttribute="height" constant="42" id="iyQ-pi-PPQ"/>
@@ -80,10 +87,12 @@
                         </collectionView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="coh-iY-kvS">
                             <rect key="frame" x="0.0" y="414" width="304" height="36"/>
+                            <color key="backgroundColor" red="0.14901960780000001" green="0.65098039220000004" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="36" id="Cft-PA-d3c"/>
                             </constraints>
                             <state key="normal" title="Done">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -132,4 +141,7 @@
             </variation>
         </view>
     </objects>
+    <resources>
+        <image name="ButtonClose.png" width="17" height="17"/>
+    </resources>
 </document>

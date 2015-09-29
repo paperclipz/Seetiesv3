@@ -11,6 +11,8 @@
 #import "UrlDataClass.h"
 #import "GAITrackedViewController.h"
 #import "LLARingSpinnerView.h"
+#import "EditPostViewController.h"
+
 @interface FeedV2DetailViewController : GAITrackedViewController<UIScrollViewDelegate,UIActionSheetDelegate>{
     
     IBOutlet UIScrollView *MainScroll;
@@ -204,6 +206,9 @@
     
     NSURLConnection *theConnection_QuickCollect;
 }
+
+@property(nonatomic,strong)EditPostViewController* editPostViewController;
+
 -(void)GetPostID:(NSString *)PostID;
 
 -(IBAction)ShareButton:(id)sender;

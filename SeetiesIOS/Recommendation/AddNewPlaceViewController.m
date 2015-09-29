@@ -138,6 +138,8 @@
 {
     self.rModel = model;
    [self loadData];
+    [self reloadData];
+
 
 }
 
@@ -161,19 +163,33 @@
 
 -(void)refreshMapViewWithLatitude:(double)lat longtitude:(double)lont
 {
-    
-    _region.center.longitude = lont;
-    _region.center.latitude = lat;
-    
-    if (lat && lont) {
-        [self.annotation setCoordinate:self.region.center];
+    if ( lat == 0) {
+        
+        [[SearchManager Instance]getCoordinateFromWifi:^(CLLocation *currentLocation) {
+            _region.center.longitude = currentLocation.coordinate.longitude;
+            _region.center.latitude = currentLocation.coordinate.latitude;
+            
+            if (lat && lont) {
+                [self.annotation setCoordinate:self.region.center];
+            }
+            
+            [self.ibMapView setRegion:self.region animated:YES];
+            
+        } errorBlock:^(NSString *status) {
+            
+        }];
     }
-
-    SLog(@"refreshMapView");
-   
-    //CLLocationCoordinate2D startCoord = CLLocationCoordinate2DMake([self.model.latitude doubleValue], [self.model.longitude doubleValue]);
-   // MKCoordinateRegion adjustedRegion = [self.ibMapView regionThatFits:MKCoordinateRegionMakeWithDistance(startCoord, 200, 200)];
-    [self.ibMapView setRegion:self.region animated:YES];
+    else{
+        _region.center.longitude = lont;
+        _region.center.latitude = lat;
+        if (lat && lont) {
+            [self.annotation setCoordinate:self.region.center];
+        }
+        
+        
+        [self.ibMapView setRegion:self.region animated:YES];
+        
+    }
 }
 
 #pragma mark - Map

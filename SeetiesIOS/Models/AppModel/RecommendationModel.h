@@ -20,6 +20,7 @@
 @property(nonatomic,strong)NSString* post_id;
 @property(nonatomic,strong)NSString* postMainLanguage;
 @property(nonatomic,strong)NSString* postSeconLanguage;
+@property(nonatomic,strong)NSArray* selectedCategories;
 
 
 @property(nonatomic,strong)NSMutableArray* arrDeletedImages;

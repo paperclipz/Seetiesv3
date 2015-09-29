@@ -16,7 +16,8 @@
 typedef enum
 {
     EditPostTypeDraft = 0,
-    EditPostTypeDraftNew = 1
+    EditPostTypeDraftNew = 1,
+    EditPostTypePostEdit
 } EditPostType;
 
 
@@ -24,6 +25,7 @@ typedef enum
 -(void)initData:(RecommendationModel*)model;
 -(void)initDataDraft:(DraftModel*)model;
 -(void)loadData;
+-(void)initDataPostEdit:(DraftModel*)model;
 
 @property(nonatomic,strong)NMBottomTabBarController* nmBottomTabBarController;
 @property(nonatomic,strong)CustomPickerViewController* customPickerViewController;
@@ -33,5 +35,8 @@ typedef enum
 
 @property(nonatomic,copy)IDBlock editPostBackBlock;
 @property(nonatomic,copy)IDBlock editPostDoneBlock;
+
+
+-(void)requestServerForPostInfo:(NSString*)postID completionBLock:(VoidBlock)completionBlock;
 
 @end

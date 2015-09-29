@@ -8,7 +8,7 @@
 
 #import "CommonTableViewCell.h"
 
-@interface EditCollectionTableViewCell : CommonTableViewCell
+@interface EditCollectionTableViewCell : CommonTableViewCell<UITextViewDelegate>
 -(void)initData:(PostModel*)model;
 @property(nonatomic,copy)IDBlock deleteCellBlock;
 -(void)saveData;

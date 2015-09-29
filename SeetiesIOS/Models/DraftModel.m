@@ -60,6 +60,7 @@
 
 
 @interface DraftModel ()
+
 @property(nonatomic,strong)NSDictionary* title;
 @property(nonatomic,strong)NSDictionary* message;
 

@@ -61,8 +61,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-
-    
     [self initSelfView];
     self.txtName.enabled = !self.collectionModel.is_default;
     self.txtName.text = self.collectionModel.name;
@@ -76,22 +74,20 @@
 
 -(void)initSelfView
 {
+    
+    [Utils setRoundBorder:self.txtDesc color:[UIColor lightGrayColor] borderRadius:5.0f borderWidth:0.5f];
     [self.ibScrollView addSubview:self.ibContentView];
     CGRect frame = [Utils getDeviceScreenSize];
     self.ibContentView.frame = CGRectMake(0, 0, frame.size.width, self.ibContentView.frame.size.height);
     self.ibScrollView.contentSize = self.ibContentView.frame.size;
-    
-      [self initCollectionViewWithDelegate:self];
+    [self initCollectionViewWithDelegate:self];
+//    self.tokens = [NSMutableArray array];
+//    self.ibTokenField.dataSource = self;
+//    self.ibTokenField.delegate = self;
+//    self.ibTokenField.textField.placeholder = @"Enter here";
+    //[self.ibTokenField reloadData];
 
-    
-    self.tokens = [NSMutableArray array];
-    
-    self.ibTokenField.dataSource = self;
-    self.ibTokenField.delegate = self;
-    self.ibTokenField.textField.placeholder = @"Enter here";
-    [self.ibTokenField reloadData];
-    
-    [self.ibTokenField.textField becomeFirstResponder];
+  //  [self.ibTokenField.textField becomeFirstResponder];
 
 }
 
@@ -177,8 +173,6 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
    // [self.toRecipients addObject:@"apple"];
-    
-  
     
 }
 

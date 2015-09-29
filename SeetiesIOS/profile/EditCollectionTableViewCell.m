@@ -42,13 +42,14 @@
 {
     [Utils setRoundBorder:self.ibContentView color:[UIColor grayColor] borderRadius:5.0f borderWidth:0.5f];
     [Utils setRoundBorder:self.ibImageView color:[UIColor grayColor] borderRadius:5.0f borderWidth:.5f];
-    [Utils setRoundBorder:self.txtDescription color:[UIColor grayColor] borderRadius:5.0f borderWidth:.5f];
+   // [Utils setRoundBorder:self.txtDescription color:[UIColor grayColor] borderRadius:5.0f borderWidth:.5f];
 
     PhotoModel* pModel = self.postModel.photos[0];
     
     [self.ibImageView sd_setImageWithURL:[NSURL URLWithString:pModel.imageURL]];
     self.lblLocation.text = self.postModel.location.name;
     self.txtDescription.text = self.postModel.collection_note;
+    [self.txtDescription setEditable:YES];
 
 }
 
@@ -59,6 +60,7 @@
     self.ibPhotoPin.image = [self.ibPhotoPin.image imageTintedWithColor:DEVICE_COLOR];
 
     self.txtDescription.placeholder = LOCALIZATION(@"Add a note");
+    self.txtDescription.delegate = self;
 }
 
 -(void)saveData
@@ -67,4 +69,10 @@
     self.postModel.collection_note = self.txtDescription.text;
     
 }
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+    self.postModel.collection_note = self.txtDescription.text;
+}
+
 @end
