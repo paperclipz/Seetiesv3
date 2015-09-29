@@ -70,7 +70,8 @@
 @property(nonatomic,strong)NSString* link;
 @property(nonatomic,strong)NSString* post_id;
 @property(nonatomic,strong)Location* location;
-
+@property(nonatomic,strong)NSArray* category;
+-(void)process;
 @end
 
 @interface DraftsModel : Model

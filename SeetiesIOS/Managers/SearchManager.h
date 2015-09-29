@@ -19,6 +19,7 @@ typedef void(^SearchManagerFailBlock)(NSString *status);
 @interface SearchManager : NSObject<CLLocationManagerDelegate>
 + (id)Instance;
 @property(strong,nonatomic)CLLocation* location;
+@property(strong,nonatomic)CLLocation* wifiLocation;
 
 
 -(void)getSuggestedLocationFromFoursquare:(CLLocation*)tempCurrentLocation input:(NSString*)input completionBlock:(IDBlock)completionBlock;

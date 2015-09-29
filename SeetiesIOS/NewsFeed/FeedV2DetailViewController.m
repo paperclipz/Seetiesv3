@@ -3257,113 +3257,38 @@
     }
     return params;
 }
+
 -(void)OpenReport{
     ReportViewController *ReportView = [[ReportViewController alloc]init];
     [self.view.window.rootViewController presentViewController:ReportView animated:YES completion:nil];
     [ReportView GetPostID:GetPostID];
 }
+
 -(void)OpenEdit{
     
-    NSLog(@"GetPlaceName is %@",GetPlaceName);
-    NSLog(@"GetPlaceFormattedAddress is %@",GetPlaceFormattedAddress);
-    NSLog(@"GetLink is %@",GetLink);
-    
-    NSLog(@"GetLat is %@",GetLat);
-    NSLog(@"GetLng is %@",GetLng);
-    NSLog(@"GetContactNo is %@",GetContactNo);
-    NSLog(@"GetExpense is %@",GetExpense);
-    NSLog(@"GetPlaceLink is %@",GetPlaceLink);
-    NSLog(@"GetOpeningHourOpen is %@",GetOpeningHourOpen);
-    NSLog(@"GetLikeCheck is %@",GetLikeCheck);
-    
-    NSLog(@"GetlocationType is %@",GetlocationType);
-    
-    NSLog(@"GetTitle is %@",GetTitle);
-    NSLog(@"GetMessage is %@",GetMessage);
+    [self.editPostViewController requestServerForPostInfo:GetPostID completionBLock:^{
+        
+       DraftModel* editPost = [[ConnectionManager dataManager] editPostModel];
+        
+        [self.editPostViewController initDataPostEdit:editPost];
+        
+        [self presentViewController:self.editPostViewController animated:YES completion:nil];
 
-    NSLog(@"UrlArray is %@",UrlArray);
-    NSLog(@"captionArray is %@",captionArray);
-    NSLog(@"PhotoIDArray is %@",PhotoIDArray);
-    
-    NSString *GetPhotoString = [PhotoIDArray componentsJoinedByString:@","];
-    NSLog(@"GetPhotoString is %@",GetPhotoString);
-    
-    NSString *GetCategoryID = [GetCategoryIDArray componentsJoinedByString:@","];
-    NSLog(@"GetCategoryID is %@",GetCategoryID);
-    
-    NSLog(@"GetExpense_RealData is %@",GetExpense_RealData);
-    NSLog(@"GetExpense_Show is %@",GetExpense_Show);
-    NSLog(@"GetExpense_Code is %@",GetExpense_Code);
-    
-    NSLog(@"GetPeriods is %@",GetPeriods);
-    NSLog(@"GetOpenNow is %@",GetOpenNow);
-    NSLog(@"PhotoCount is %@",PhotoCount);
-    
-    NSLog(@"GetLocationRoute is %@",GetLocationRoute);
-    NSLog(@"GetLocationLocality is %@",GetLocationLocality);
-    NSLog(@"GetLocationCountry is %@",GetLocationCountry);
-    NSLog(@"GetLocationAdministrative_Area_Level_1 is %@",GetLocationAdministrative_Area_Level_1);
-    NSLog(@"GetLocationPostalCode is %@",GetLocationPostalCode);
-    NSLog(@"GetLocationReference is %@",GetLocationReference);
-    NSLog(@"GetlocationType is %@",GetlocationType);
-    NSLog(@"GetLocationPlaceId is %@",GetLocationPlaceId);
-    
-    NSMutableArray *FullPhotoStringArray = [[NSMutableArray alloc]init];
-    for (int i = 0; i < [UrlArray count]; i++) {
-        UIImage *DownloadImage = [[UIImage alloc]init];
-        NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[UrlArray objectAtIndex:i]]];
-        DownloadImage = [UIImage imageWithData:data];
-        NSData *imageData = UIImageJPEGRepresentation(DownloadImage, 1);
-        NSString *imagePath = [self documentsPathForFileName:[NSString stringWithFormat:@"image_%f.jpg", [NSDate timeIntervalSinceReferenceDate]]];
-        [imageData writeToFile:imagePath atomically:YES];
-        [FullPhotoStringArray addObject:imagePath];
-//        NSString *base64 = [self encodeToBase64String:DownloadImage];;
-//        [FullPhotoStringArray addObject:base64];
-    }
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:GetPlaceFormattedAddress forKey:@"PublishV2_Address"];
-    [defaults setObject:GetPlaceName forKey:@"PublishV2_Name"];
-    [defaults setObject:FullPhotoStringArray forKey:@"selectedIndexArr_Thumbs"];
-    [defaults setObject:captionArray forKey:@"PublishV2_CaptionArray"];
-    [defaults setObject:GetLat forKey:@"PublishV2_Lat"];
-    [defaults setObject:GetLng forKey:@"PublishV2_Lng"];
-    [defaults setObject:GetPlaceLink forKey:@"PublishV2_Link"];
-    [defaults setObject:GetContactNo forKey:@"PublishV2_Contact"];
-    [defaults setObject:GetLink forKey:@"PublishV2_BlogLink"];
-    [defaults setObject:GetExpense_RealData forKey:@"PublishV2_Price"];
-    [defaults setObject:GetExpense_Show forKey:@"PublishV2_Price_Show"];
-    [defaults setObject:GetExpense_Code forKey:@"PublishV2_Price_NumCode"];
-    
-    [defaults setObject:GetLocationRoute forKey:@"PublishV2_Location_Address"];
-    [defaults setObject:GetLocationLocality forKey:@"PublishV2_Location_City"];
-    [defaults setObject:GetLocationCountry forKey:@"PublishV2_Location_Country"];
-    [defaults setObject:GetLocationAdministrative_Area_Level_1 forKey:@"PublishV2_Location_State"];
-    [defaults setObject:GetLocationPostalCode forKey:@"PublishV2_Location_PostalCode"];
-    [defaults setObject:GetLocationReference forKey:@"PublishV2_Location_ReferralId"];
-    [defaults setObject:GetlocationType forKey:@"PublishV2_type"];
-    [defaults setObject:GetLocationPlaceId forKey:@"PublishV2_Location_PlaceId"];
-
-    
-    [defaults setObject:GetPeriods forKey:@"PublishV2_Period"];
-    [defaults setObject:GetOpenNow forKey:@"PublishV2_OpenNow"];
-
-    [defaults setObject:PhotoCount forKey:@"PublishV2_PhotoCount"];
-    [defaults setObject:GetPhotoString forKey:@"PublishV2_PhotoID"];
-    
-    [defaults setObject:GetTitle forKey:@"PublishV2_Title"];
-    [defaults setObject:GetMessage forKey:@"PublishV2_Message"];
-    
-    [defaults setObject:GetCategoryID forKey:@"PublishV2_Category"];
-    [defaults synchronize];
-    
-    RecommendV2ViewController *ShowImageView = [[RecommendV2ViewController alloc]init];
-    [self presentViewController:ShowImageView animated:YES completion:nil];
-    [ShowImageView GetIsupdatePost:@"YES" GetPostID:GetPostID];
-    [ShowImageView EditPost:@"100"];
+    }];
     
 
 }
+
+#pragma mark - declaration
+-(EditPostViewController*)editPostViewController
+{
+    if (!_editPostViewController) {
+        _editPostViewController = [EditPostViewController new];
+    }
+    
+    return _editPostViewController;
+}
+
 - (NSString *)documentsPathForFileName:(NSString *)name {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsPath = [paths objectAtIndex:0];

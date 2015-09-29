@@ -39,11 +39,34 @@
             }
         }
         
-        [TSMessage showNotificationInViewController:self title:@"System" subtitle:LOCALIZATION(@"No Categories Selected") type:TSMessageNotificationTypeWarning];
+       // [TSMessage showNotificationInViewController:self title:@"System" subtitle:LOCALIZATION(@"No Categories Selected") type:TSMessageNotificationTypeWarning];
         
     }
     
 
+}
+
+-(void)setPreSelectedCategories:(NSArray*)selectedArray
+{
+    for (int i = 0; i<self.arrCategories.count; i++) {
+        CategoryModel* model = self.arrCategories[i];
+        int selected;
+        int categories = model.id;
+
+        for (int j= 0; j<selectedArray.count; j++) {
+            selected = [selectedArray[j] intValue];
+            SLog(@"array : %d || categories : %d",selected,categories);
+            model.isSelected = NO;
+
+            if (selected == categories) {
+                
+                model.isSelected = YES;
+                [self.arrCategories replaceObjectAtIndex:i withObject:model];
+                break;
+            }
+            
+        }
+    }
 }
 
 - (void)viewDidLoad {
@@ -105,17 +128,19 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CategoryCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CategoryCollectionViewCell" forIndexPath:indexPath];
-    CategoryModel* model = [[[DataManager Instance]categoriesModel] categories][indexPath.row];
+    CategoryModel* model = self.arrCategories[indexPath.row];
     cell.lblTitle.text = model.multiple_line[CHINESE_CODE];
     [cell.ibImageView sd_setImageWithURL:[NSURL URLWithString:model.selectedImageUrl] placeholderImage:nil];
     cell.ibContentView.backgroundColor = [UIColor colorWithHexValue:model.background_color];
     [cell initData:model];
+    cell.ibTickImageView.hidden = !model.isSelected;
+
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CategoryModel* model = [[[DataManager Instance]categoriesModel] categories][indexPath.row];
+    CategoryModel* model = self.arrCategories[indexPath.row];
 
     if (model.isSelected) {
         model.isSelected = !model.isSelected;

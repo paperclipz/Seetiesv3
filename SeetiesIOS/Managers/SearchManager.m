@@ -218,7 +218,13 @@
 
 -(void)getCoordinateFromWifi:(SearchManagerSuccessBlock)successBlock errorBlock:(SearchManagerFailBlock)errorBlock
 {
-    
+    if(self.wifiLocation)
+    {
+        if (successBlock) {
+            successBlock(self.wifiLocation);
+        }
+        
+    }
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetGeoIP param:nil appendString:nil completeHandler:^(id object) {
         
         if (successBlock) {

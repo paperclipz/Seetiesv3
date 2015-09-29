@@ -1510,7 +1510,7 @@
     NSString* collectionID = CollectionData_IDArray[getbuttonIDN];
     
     
-    _editCollectionViewController = nil;// for the view controller to reinitialize
+   // _editCollectionViewController = nil;// for the view controller to reinitialize
     [self.editCollectionViewController requestServerForCollectionDetails:collectionID successBlock:^(id object) {
         
         [self.editCollectionViewController initData:[[ConnectionManager dataManager] collectionModels]];
