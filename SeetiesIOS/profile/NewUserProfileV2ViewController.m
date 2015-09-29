@@ -365,17 +365,18 @@
             for (int i= 0; i < [ArrHashTag count]; i++) {
                 UILabel *ShowHashTagText = [[UILabel alloc]init];
                 ShowHashTagText.text = [ArrHashTag objectAtIndex:i];
-                ShowHashTagText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+                ShowHashTagText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:12];
                 ShowHashTagText.textAlignment = NSTextAlignmentCenter;
                 ShowHashTagText.backgroundColor = [UIColor whiteColor];
                 ShowHashTagText.layer.cornerRadius = 5;
                 ShowHashTagText.layer.borderWidth = 1;
-                ShowHashTagText.layer.borderColor=[[UIColor grayColor] CGColor];
+                ShowHashTagText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+                ShowHashTagText.layer.borderColor=[[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f] CGColor];
                 
                 NSString *Text = [ArrHashTag objectAtIndex:i];
                 CGRect r = [Text boundingRectWithSize:CGSizeMake(200, 0)
                                               options:NSStringDrawingUsesLineFragmentOrigin
-                                           attributes:@{NSFontAttributeName:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]}
+                                           attributes:@{NSFontAttributeName:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:12]}
                                               context:nil];
                 
                 ShowHashTagText.frame = CGRectMake(30 + frame2.size.width, 15, r.size.width + 20, 20);

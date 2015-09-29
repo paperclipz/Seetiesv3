@@ -144,7 +144,7 @@
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
 
     
-    NSURL *imageURL = [NSURL URLWithString:[GetImageDefaultArray objectAtIndex:indexPath.row]];
+    NSURL *imageURL = [NSURL URLWithString:[GetImageSelectedArray objectAtIndex:indexPath.row]];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         NSData *imageData = [NSData dataWithContentsOfURL:imageURL];

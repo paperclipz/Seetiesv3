@@ -39,8 +39,8 @@
 
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     ShowTitle.frame = CGRectMake(0, 30, screenWidth, 44);
-    SignUpButton.frame = CGRectMake(30, 310, screenWidth - 60, 50);
-    //CancelButton.frame = CGRectMake(screenWidth - 70, 20, 70, 44);
+    SignUpButton.frame = CGRectMake(30, 250, screenWidth - 60, 50);
+    CancelButton.frame = CGRectMake(30, 40, 55, 50);
     LogoImg.frame = CGRectMake((screenWidth / 2) - 27, 20, 55, 50);
     
     btnBackground_1.frame = CGRectMake(30, 80, screenWidth - 60, 50);
@@ -51,6 +51,7 @@
     btnBackground_2.layer.cornerRadius = 5;
     btnBackground_3.layer.cornerRadius = 5;
     btnBackground_4.layer.cornerRadius = 5;
+    SignUpButton.layer.cornerRadius = 5;
     
     EmailField.frame = CGRectMake(40, 80, screenWidth - 80, 50);
     UsernameField.frame = CGRectMake(40, 131, screenWidth - 80, 50);

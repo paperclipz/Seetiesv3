@@ -106,17 +106,17 @@
 
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    FBLoginButton.frame = CGRectMake((screenWidth/2) - 155, screenHeight - 158, 150, 50);
-    LogInButton.frame = CGRectMake((screenWidth/2) + 155 - 74, screenHeight - 90, 74, 34);
+    FBLoginButton.frame = CGRectMake((screenWidth/2) - 155, screenHeight - 138, 150, 50);
+    LogInButton.frame = CGRectMake((screenWidth/2) + 155 - 74, screenHeight - 85, 74, 34);
     WhyWeUseFBButton.frame = CGRectMake(0, screenHeight - 128, screenWidth, 34);
-    InstagramButton.frame = CGRectMake((screenWidth/2) + 5, screenHeight - 158, 150, 50);
-    SignUpWithEmailButton.frame = CGRectMake((screenWidth/2) - 155, screenHeight - 90, 125, 34);
+    InstagramButton.frame = CGRectMake((screenWidth/2) + 5, screenHeight - 138, 150, 50);
+    SignUpWithEmailButton.frame = CGRectMake((screenWidth/2) - 155, screenHeight - 85, 125, 34);
     MainText.frame = CGRectMake(30, 150, screenWidth - 60, 40);
     MainLogo.frame = CGRectMake((screenWidth/2) - 104, 70, 208, 82);
     ShowBackgroundImage.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     
-    ContinueText.frame = CGRectMake(0, screenHeight - 210, screenWidth, 30);
+    ContinueText.frame = CGRectMake(0, screenHeight - 180, screenWidth, 30);
     MainText.hidden = YES;
     
     ShowTnCText.frame = CGRectMake(30, screenHeight - 40, screenWidth - 60, 30);

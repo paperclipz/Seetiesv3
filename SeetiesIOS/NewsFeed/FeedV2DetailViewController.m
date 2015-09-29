@@ -43,7 +43,7 @@
     ShowDownBarView.frame = CGRectMake(0, screenHeight - 62 - 50, screenWidth, 62);
     ShowbarView.frame = CGRectMake(0, 0, screenWidth, 64);
     ShowBarImg.frame = CGRectMake(0, -100, screenWidth, 64);
-    MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight - 62);
+    MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     MImageScroll.frame = CGRectMake(0, -20, screenWidth, 360);
     ShowLanguageTranslationView.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     ShowLanguageTranslationView.hidden = YES;
@@ -99,7 +99,7 @@
     [AllCollectButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
     [AllCollectButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
     AllCollectButton.backgroundColor = [UIColor clearColor];
-    AllCollectButton.frame = CGRectMake(screenWidth - 20 - 113, 8, 140, 50);
+    AllCollectButton.frame = CGRectMake(screenWidth - 20 - 140, 5, 140, 50);
     
     QuickCollectButton.frame = CGRectMake(screenWidth - 20 - 60, 14, 60, 37);
 
@@ -133,7 +133,10 @@
     
    // self.screenName = @"IOS Feed Detail Page";
     self.screenName = @"IOS Feed Detail View V2";
-    
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+    ShowDownBarView.frame = CGRectMake(0, screenHeight - 60, screenWidth, 60);
+    self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight, screenWidth, 50);
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetNearbyIDNString = [defaults objectForKey:@"NearbyRecommendationsIDN"];
@@ -1499,22 +1502,23 @@
     PageControlOn.currentPage = 0;
     PageControlOn.numberOfPages = productcount;
 
-    int GetHeightCheck = 360;
+    int GetHeightCheck = 363;
     
     if (ShowGoogleTranslate == YES) {
         //tanslate button here
         UIButton *TanslateButton = [[UIButton alloc]init];
         TanslateButton.frame = CGRectMake(20, GetHeightCheck, screenWidth - 40, 40);
         [TanslateButton setTitle:@"Translate" forState:UIControlStateNormal];
-        [TanslateButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        TanslateButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+        [TanslateButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f  blue:153.0f/255.0f  alpha:1.0f] forState:UIControlStateNormal];
         TanslateButton.layer.cornerRadius = 5;
         TanslateButton.layer.borderWidth=1;
         TanslateButton.layer.masksToBounds = YES;
-        TanslateButton.layer.borderColor=[[UIColor blackColor] CGColor];
+        TanslateButton.layer.borderColor=[[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0f] CGColor];
         [TanslateButton addTarget:self action:@selector(NewLanguageButton:) forControlEvents:UIControlEventTouchUpInside];
         [MainScroll addSubview:TanslateButton];
         
-        GetHeightCheck += 60;
+        GetHeightCheck += 63;
     }
 
     
@@ -1525,8 +1529,8 @@
       //  ShowTitle.frame = CGRectMake(20, GetHeightCheck, screenWidth - 40, 40);
         ShowTitle.text = GetTitle;
         ShowTitle.numberOfLines = 0;
-        ShowTitle.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
-        ShowTitle.textAlignment = NSTextAlignmentCenter;
+        ShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:17];
+        ShowTitle.textAlignment = NSTextAlignmentLeft;
         ShowTitle.textColor = [UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f  blue:51.0f/255.0f  alpha:1.0f];
         [MainScroll addSubview:ShowTitle];
         
@@ -1549,7 +1553,7 @@
     //ShowAddress.frame = CGRectMake(30, 210 + 3 + heightcheck + i, screenWidth - 150, 20);
     ShowAddress.text = GetPlaceName;
     ShowAddress.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
-    ShowAddress.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+    ShowAddress.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
     ShowAddress.backgroundColor = [UIColor clearColor];
     [MainScroll addSubview:ShowAddress];
     
@@ -1587,8 +1591,8 @@
        // ShowMessage.text = GetMessage;
         ShowMessage.scrollEnabled = NO;
         ShowMessage.editable = NO;
-        ShowMessage.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
-        ShowMessage.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f  blue:102.0f/255.0f  alpha:1.0f];
+        ShowMessage.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+        ShowMessage.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f  blue:153.0f/255.0f  alpha:1.0f];
         [MainScroll addSubview:ShowMessage];
       //  if([ShowMessage sizeThatFits:CGSizeMake(screenWidth - 30, CGFLOAT_MAX)].height!=ShowMessage.frame.size.height)
      //   {
@@ -1626,30 +1630,31 @@
         for (int i= 0; i < [ArrHashTag count]; i++) {
             UILabel *ShowHashTagText = [[UILabel alloc]init];
             ShowHashTagText.text = [ArrHashTag objectAtIndex:i];
-            ShowHashTagText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+            ShowHashTagText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+            ShowHashTagText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:12];
             ShowHashTagText.textAlignment = NSTextAlignmentCenter;
             ShowHashTagText.backgroundColor = [UIColor whiteColor];
             ShowHashTagText.layer.cornerRadius = 5;
             ShowHashTagText.layer.borderWidth = 1;
-            ShowHashTagText.layer.borderColor=[[UIColor grayColor] CGColor];
+            ShowHashTagText.layer.borderColor=[[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0 blue:221.0f/255.0 alpha:1.0f] CGColor];
             
             NSString *Text = [ArrHashTag objectAtIndex:i];
             CGRect r = [Text boundingRectWithSize:CGSizeMake(200, 0)
                                           options:NSStringDrawingUsesLineFragmentOrigin
-                                       attributes:@{NSFontAttributeName:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]}
+                                       attributes:@{NSFontAttributeName:[UIFont fontWithName:@"ProximaNovaSoft-Regular" size:12]}
                                           context:nil];
             
             // CGSize textSize = [ShowHashTagText.text sizeWithAttributes:@{NSFontAttributeName:[ShowHashTagText font]}];
             // CGFloat textSize = ShowHashTagText.intrinsicContentSize.width;
-            ShowHashTagText.frame = CGRectMake(30 + frame2.size.width, 15, r.size.width + 20, 20);
+            ShowHashTagText.frame = CGRectMake(20 + frame2.size.width, 15, r.size.width + 20, 20);
             frame2.size.width += r.size.width + 30;
             [HashTagScroll addSubview:ShowHashTagText];
             
-            HashTagScroll.contentSize = CGSizeMake(30 + frame2.size.width , 50);
+            HashTagScroll.contentSize = CGSizeMake(20 + frame2.size.width , 50);
         }
         
         
-        GetHeightCheck += 50;
+        GetHeightCheck += 60;
     }
     
 
@@ -1686,9 +1691,9 @@
     UILabel *ShowUserName = [[UILabel alloc]init];
     ShowUserName.frame = CGRectMake(85, GetMessageHeight + 10, 200, 50);
     ShowUserName.text = GetPostName;
-    ShowUserName.font = [UIFont fontWithName:@"AdrianeText-BoldItalic" size:16];
+    ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
    // ShowUserName.textColor = color;
-    ShowUserName.textColor = [UIColor colorWithRed:248.0f/255.0f green:78.0f/255.0f blue:93.0f/255.0f alpha:1.0f];
+    ShowUserName.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
     [MainScroll addSubview:ShowUserName];
     
 //    NSString *TempTimeString = [[NSString alloc]initWithFormat:@"Posted on %@",GetPostTime];
@@ -1740,9 +1745,9 @@
         UILabel *ShowTotalView = [[UILabel alloc]init];
         ShowTotalView.frame = CGRectMake(50, GetMessageHeight + 10, 200, 20);
         ShowTotalView.text = GetFullString;
-        ShowTotalView.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+        ShowTotalView.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         // ShowUserName.textColor = color;
-        ShowTotalView.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
+        ShowTotalView.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
         [MainScroll addSubview:ShowTotalView];
         
         GetMessageHeight += 30;
@@ -1815,9 +1820,9 @@
         UILabel *ShowLikeMessage = [[UILabel alloc]init];
         ShowLikeMessage.frame = CGRectMake(50, GetMessageHeight, screenWidth - 69, 40);
         ShowLikeMessage.text = tempString;
-        ShowLikeMessage.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+        ShowLikeMessage.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         ShowLikeMessage.backgroundColor = [UIColor clearColor];
-        ShowLikeMessage.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
+        ShowLikeMessage.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
         [MainScroll addSubview:ShowLikeMessage];
         
         UIButton *OpenLikeButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -1843,9 +1848,9 @@
         UILabel *ShowCollectionText = [[UILabel alloc]init];
         ShowCollectionText.frame = CGRectMake(50, GetMessageHeight, screenWidth - 69, 40);
         ShowCollectionText.text = TempCountString;
-        ShowCollectionText.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+        ShowCollectionText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         ShowCollectionText.backgroundColor = [UIColor clearColor];
-        ShowCollectionText.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
+        ShowCollectionText.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
         [MainScroll addSubview:ShowCollectionText];
         
         GetMessageHeight += 40;
@@ -1891,7 +1896,7 @@
                 UILabel *ShowUserName = [[UILabel alloc]init];
                 ShowUserName.frame = CGRectMake(50, GetMessageHeight + i, 100, 25);
                 ShowUserName.text = [TempUser_Comment_usernameArray objectAtIndex:i];
-                ShowUserName.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+                ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
                 ShowUserName.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
                 ShowUserName.backgroundColor = [UIColor clearColor];
                 ShowUserName.frame = CGRectMake(50, GetMessageHeight + i, [ShowUserName sizeThatFits:CGSizeMake(CGFLOAT_MAX, 25)].width,25);
@@ -1909,7 +1914,7 @@
                 UILabel *Showcomment = [[UILabel alloc]init];
                 Showcomment.frame = CGRectMake(TempWidth, GetMessageHeight + i, screenWidth - TempWidth - 15, 25);
                 //  Showcomment.text = [MessageArray objectAtIndex:i];
-                Showcomment.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+                Showcomment.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
                 Showcomment.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
                 Showcomment.backgroundColor = [UIColor clearColor];
                 [MainScroll addSubview:Showcomment];
@@ -1947,7 +1952,7 @@
                     
                     
                     NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:FinalResultFullString];
-                    [mutableAttributedString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"HelveticaNeue-Light" size:14] range:NSMakeRange(0, FinalResultFullString.length)];
+                    [mutableAttributedString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"ProximaNovaSoft-Regular" size:14] range:NSMakeRange(0, FinalResultFullString.length)];
                     [mutableAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] range:NSMakeRange(0, FinalResultFullString.length)];
                     NSLog(@"mutableAttributedString is %@",mutableAttributedString);
                     NSLog(@"FinalString is %@",FinalString);
@@ -1976,7 +1981,7 @@
             SeeAllCommentButton.frame = CGRectMake(0, GetMessageHeight + 1, screenWidth, 50);
             [SeeAllCommentButton setTitle:@"Sell all activities" forState:UIControlStateNormal];
             [SeeAllCommentButton setBackgroundColor:[UIColor clearColor]];
-            [SeeAllCommentButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15]];
+            [SeeAllCommentButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
             [SeeAllCommentButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
             [SeeAllCommentButton addTarget:self action:@selector(CommentButton:) forControlEvents:UIControlEventTouchUpInside];
            // SeeAllCommentButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
@@ -1997,7 +2002,7 @@
                 UILabel *ShowUserName = [[UILabel alloc]init];
                 ShowUserName.frame = CGRectMake(50, GetMessageHeight + i, 100, 20);
                 ShowUserName.text = [TempUser_Comment_usernameArray objectAtIndex:i];
-                ShowUserName.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+                ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
                 ShowUserName.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
                 ShowUserName.backgroundColor = [UIColor clearColor];
                 ShowUserName.frame = CGRectMake(50, GetMessageHeight + i, [ShowUserName sizeThatFits:CGSizeMake(CGFLOAT_MAX, 20)].width,20);
@@ -2015,7 +2020,7 @@
                 UILabel *Showcomment = [[UILabel alloc]init];
                 Showcomment.frame = CGRectMake(TempWidth, GetMessageHeight + i, screenWidth - TempWidth - 15, 25);
                 //  Showcomment.text = [MessageArray objectAtIndex:i];
-                Showcomment.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
+                Showcomment.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:14];
                 Showcomment.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
                 Showcomment.backgroundColor = [UIColor clearColor];
                 Showcomment.numberOfLines = 0;
@@ -2054,7 +2059,7 @@
                     
                     
                     NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:FinalResultFullString];
-                    [mutableAttributedString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"HelveticaNeue-Light" size:14] range:NSMakeRange(0, FinalResultFullString.length)];
+                    [mutableAttributedString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"ProximaNovaSoft-Regular" size:14] range:NSMakeRange(0, FinalResultFullString.length)];
                     [mutableAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] range:NSMakeRange(0, FinalResultFullString.length)];
                     NSLog(@"mutableAttributedString is %@",mutableAttributedString);
                     NSLog(@"FinalString is %@",FinalString);
@@ -2096,9 +2101,9 @@
     UILabel *ShowPlaceInfoText = [[UILabel alloc]init];
     ShowPlaceInfoText.frame = CGRectMake(20, GetMessageHeight, screenWidth - 40, 50);
     ShowPlaceInfoText.text = @"Place Info";
-    ShowPlaceInfoText.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+    ShowPlaceInfoText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
     ShowPlaceInfoText.backgroundColor = [UIColor clearColor];
-    ShowPlaceInfoText.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
+    ShowPlaceInfoText.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
     [MainScroll addSubview:ShowPlaceInfoText];
     
     
@@ -2106,7 +2111,7 @@
     DirectionsButton.frame = CGRectMake(screenWidth - 200 - 20, GetMessageHeight, 200, 50);
     [DirectionsButton setTitle:@"Directions" forState:UIControlStateNormal];
     [DirectionsButton setBackgroundColor:[UIColor clearColor]];
-    [DirectionsButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15]];
+    [DirectionsButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
     [DirectionsButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
     [DirectionsButton addTarget:self action:@selector(OpenAddressButton:) forControlEvents:UIControlEventTouchUpInside];
     DirectionsButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
@@ -2148,7 +2153,7 @@
     UILabel *ShowPlaceName = [[UILabel alloc]init];
     ShowPlaceName.frame = CGRectMake(50, GetMessageHeight + 20, screenWidth - 86 - 61 - 5, 21);
     ShowPlaceName.text = GetPlaceName;
-    ShowPlaceName.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+    ShowPlaceName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
     ShowPlaceName.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
     [MainScroll addSubview:ShowPlaceName];
     
@@ -2160,7 +2165,7 @@
     GetMessageHeight += 40;
     
     UILabel *ShowPlaceFormattedAddress = [[UILabel alloc]init];
-    ShowPlaceFormattedAddress.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+    ShowPlaceFormattedAddress.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
     ShowPlaceFormattedAddress.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
     ShowPlaceFormattedAddress.text = GetPlaceFormattedAddress;
     ShowPlaceFormattedAddress.numberOfLines = 0;
@@ -2189,7 +2194,7 @@
         UILabel *ShowPlacelink = [[UILabel alloc]init];
         ShowPlacelink.frame = CGRectMake(50, GetMessageHeight - 6, screenWidth - 152, 21);
         ShowPlacelink.text = GetPlaceLink;
-        ShowPlacelink.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+        ShowPlacelink.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowPlacelink.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
         [MainScroll addSubview:ShowPlacelink];
         
@@ -2213,7 +2218,7 @@
         UILabel *ShowContact = [[UILabel alloc]init];
         ShowContact.frame = CGRectMake(50, GetMessageHeight - 6, screenWidth - 152, 21);
         ShowContact.text = GetContactNo;
-        ShowContact.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+        ShowContact.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowContact.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
         [MainScroll addSubview:ShowContact];
         
@@ -2246,7 +2251,7 @@
         UILabel *ShowOpeningTExt = [[UILabel alloc]init];
         ShowOpeningTExt.frame = CGRectMake(50, GetMessageHeight - 2, screenWidth - 152, 21);
         ShowOpeningTExt.text = GetOpeningHourOpen;
-        ShowOpeningTExt.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+        ShowOpeningTExt.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowOpeningTExt.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
         [MainScroll addSubview:ShowOpeningTExt];
         
@@ -2263,7 +2268,7 @@
         UILabel *ShowPriceTExt = [[UILabel alloc]init];
         ShowPriceTExt.frame = CGRectMake(50, GetMessageHeight - 2, screenWidth - 152, 21);
         ShowPriceTExt.text = GetExpense;
-        ShowPriceTExt.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+        ShowPriceTExt.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowPriceTExt.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
         [MainScroll addSubview:ShowPriceTExt];
         
@@ -2284,7 +2289,7 @@
     MoreInfoButton.frame = CGRectMake(0, GetMessageHeight + 1, screenWidth, 50);
     [MoreInfoButton setTitle:@"More info" forState:UIControlStateNormal];
     [MoreInfoButton setBackgroundColor:[UIColor clearColor]];
-    [MoreInfoButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15]];
+    [MoreInfoButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
     [MoreInfoButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
     [MoreInfoButton addTarget:self action:@selector(OpenAddressButton:) forControlEvents:UIControlEventTouchUpInside];
     // SeeAllCommentButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
@@ -2328,7 +2333,7 @@
     ShowNearbyTitle.backgroundColor = [UIColor clearColor];
     ShowNearbyTitle.textAlignment = NSTextAlignmentLeft;
     ShowNearbyTitle.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-    ShowNearbyTitle.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:15];
+    ShowNearbyTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
     [MainScroll addSubview:ShowNearbyTitle];
     NSLog(@"[PhotoArray_Nearby count] is %lu",(unsigned long)[PhotoArray_Nearby count]);
     
@@ -2379,7 +2384,7 @@
         [Background setBackgroundColor:[UIColor whiteColor]];
         Background.layer.cornerRadius = 5;
         Background.layer.borderWidth=1;
-        Background.layer.borderColor=[[UIColor colorWithRed:232.0f/255.0f green:232.0f/255.0f blue:232.0f/255.0f alpha:1.0f] CGColor];
+        Background.layer.borderColor=[[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f] CGColor];
         [MainScroll addSubview:Background];
         
         
@@ -2409,7 +2414,7 @@
         ShowAddress.frame = CGRectMake(25 + (i % 2) * (FinalWidth + 20), GetFinalHeight + FinalWidth + 10, FinalWidth - 5, 20);
         ShowAddress.text = [PlaceNameArray_Nearby objectAtIndex:i];
         ShowAddress.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
-        ShowAddress.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+        ShowAddress.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         ShowAddress.backgroundColor = [UIColor clearColor];
         [MainScroll addSubview:ShowAddress];
 
@@ -2445,9 +2450,9 @@
         ShowUserName.frame = CGRectMake(65 + (i % 2) * (FinalWidth + 20), GetFinalHeight + FinalWidth + 50+ TitleHeight, FinalWidth - 40, 30);
         ShowUserName.text = [UserInfo_NameArray_Nearby objectAtIndex:i];
         ShowUserName.backgroundColor = [UIColor clearColor];
-        ShowUserName.textColor = [UIColor colorWithRed:248.0f/255.0f green:78.0f/255.0f blue:93.0f/255.0f alpha:1.0f];
+        ShowUserName.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
         ShowUserName.textAlignment = NSTextAlignmentLeft;
-        ShowUserName.font = [UIFont fontWithName:@"AdrianeText-BoldItalic" size:15];
+        ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         [MainScroll addSubview:ShowUserName];
         
         UIButton *SelectButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -2466,9 +2471,9 @@
         
 
         if ([UserInfo_NameArray_Nearby count] < 2) {
-            GetFinalHeight += 280;
+            GetFinalHeight += 267;
         }else{
-            GetFinalHeight += 0 + (i % 2) * (FinalWidth + TitleHeight + 50 + 70);
+            GetFinalHeight += 0 + (i % 2) * (FinalWidth + TitleHeight + 50 + 57);
         }
         
 
@@ -2491,7 +2496,7 @@
         SeeAllButton_Nearby.frame = CGRectMake(0, GetFinalHeight, screenWidth, 50);
         [SeeAllButton_Nearby setTitle:@"See all" forState:UIControlStateNormal];
         [SeeAllButton_Nearby setBackgroundColor:[UIColor clearColor]];
-        [SeeAllButton_Nearby.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15]];
+        [SeeAllButton_Nearby.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
         [SeeAllButton_Nearby setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
         [SeeAllButton_Nearby addTarget:self action:@selector(NearbySeeAllButton:) forControlEvents:UIControlEventTouchUpInside];
         //SeeAllButton_Nearby.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
@@ -2815,15 +2820,15 @@
         
     }else{
         CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-        CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+       // CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
         [UIView animateWithDuration:0.5
                               delay:0
                             options:UIViewAnimationOptionCurveEaseIn
                          animations:^{
                              //  MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight - 64);
                              ShowBarImg.frame = CGRectMake(0, 0, screenWidth, 64);
-                             ShowDownBarView.frame = CGRectMake(0, screenHeight - 60, screenWidth, 60);
-                             self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight, screenWidth, 50);
+//                             ShowDownBarView.frame = CGRectMake(0, screenHeight - 60, screenWidth, 60);
+//                             self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight, screenWidth, 50);
                          }
                          completion:^(BOOL finished) {
                          }];
@@ -2854,16 +2859,16 @@
     if (scrollView == MImageScroll) {
         
     }else{
-        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-        CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+//        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+//        CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
         [UIView animateWithDuration:0.5
                               delay:0
                             options:UIViewAnimationOptionCurveEaseIn
                          animations:^{
                              //   MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight - 114);
                              //ShowBarImg.frame = CGRectMake(0, -64, screenWidth, 64);
-                             ShowDownBarView.frame = CGRectMake(0, screenHeight - 110, screenWidth, 60);
-                             self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
+//                             ShowDownBarView.frame = CGRectMake(0, screenHeight - 110, screenWidth, 60);
+//                             self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
                          }
                          completion:^(BOOL finished) {
                          }];
