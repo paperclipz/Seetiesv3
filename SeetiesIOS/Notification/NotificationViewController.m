@@ -403,9 +403,6 @@
        // MiniIcon.contentMode = UIViewContentModeScaleAspectFit;
         MiniIcon.image = [UIImage imageNamed:@"Mini_collection_icon.png"];
         
-        
-        
-        
         NSString *GetType = [[NSString alloc]initWithFormat:@"%@",[Following_TypeArray objectAtIndex:i]];
         if ([GetType isEqualToString:@"follow"]) {
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[Following_UserThumbnailArray objectAtIndex:i]];
@@ -850,10 +847,15 @@
             [formatter setDateFormat:@"MMM d, h:mm a"];
           //  NSString *lastUpdate = [NSString stringWithFormat:@"Last updated on %@", [formatter stringFromDate:[NSDate date]]];
            // refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdate];
+            CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+            CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+            MainScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight - 104);
+            MainScroll.alwaysBounceVertical = YES;
             for (UIView *subview in MainScroll.subviews) {
                 [subview removeFromSuperview];
             }
             
+            GetHeight = 0;
              [self GetNotification];
             [refreshControl endRefreshing];
             NSLog(@"refresh end");
