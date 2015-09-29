@@ -54,7 +54,7 @@
     ShowTitle.frame = CGRectMake(0, 30, screenWidth, 44);
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     LoginBackgroundImg.frame = CGRectMake(0, 78, screenWidth, 89);
-   // CancelButton.frame = CGRectMake(screenWidth - 70, 20, 70, 44);
+    CancelButton.frame = CGRectMake(30, 20, 55, 50);
     LogoImg.frame = CGRectMake((screenWidth / 2) - 27, 20, 55, 50);
     
     
@@ -65,6 +65,7 @@
     btnBackground_2.frame = CGRectMake(30, 134, screenWidth - 60, 50);
     btnBackground_1.layer.cornerRadius = 5;
     btnBackground_2.layer.cornerRadius = 5;
+    LoginButton.layer.cornerRadius = 5;
     
     if (screenHeight > 480) {
         LoginButton.frame = CGRectMake(30, 195, screenWidth - 60, 50);

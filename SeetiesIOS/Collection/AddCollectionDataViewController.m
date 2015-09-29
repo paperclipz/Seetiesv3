@@ -32,7 +32,7 @@
     NoteTextView.frame = CGRectMake(108, 59, screenWidth - 108 - 20, 80);
     NoteTextView.layer.cornerRadius = 5;
     NoteTextView.layer.borderWidth=1;
-    NoteTextView.layer.borderColor=[[UIColor grayColor] CGColor];
+    NoteTextView.layer.borderColor=[[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0f] CGColor];
     
     ShowNoteTextCount.frame = CGRectMake(screenWidth - 20 - 42, 119, 42, 20);
     
@@ -171,6 +171,9 @@
             [TSMessage showNotificationInViewController:self title:@"" subtitle:MessageString type:TSMessageNotificationTypeError];
         }
     }
+    
+    
+    [ShowActivity stopAnimating];
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -271,6 +274,9 @@
     return YES;
 }
 -(void)SendQuickCollect{
+    
+    [ShowActivity startAnimating];
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
     NSString *GetUseruid = [defaults objectForKey:@"Useruid"];

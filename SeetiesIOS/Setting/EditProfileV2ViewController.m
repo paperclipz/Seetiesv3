@@ -166,6 +166,36 @@
     }
 
 }
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if (textView == DescriptionField) {
+        if ([text isEqualToString:@"\n"]) {
+            // Be sure to test for equality using the "isEqualToString" message
+            [textView resignFirstResponder];
+            // Return FALSE so that the final '\n' character doesn't get added
+            return FALSE;
+        }else{
+            if([text length] == 0)
+            {
+                if([textView.text length] != 0)
+                {
+                    return YES;
+                }
+            }
+            else if([[textView text] length] >= 150)
+            {
+               // ShowDescriptionCount.text = @"0 / 150";
+               // ShowDescriptionCount.textColor = [UIColor redColor];
+                return NO;
+            }
+        }
+    }
+    
+    
+    
+    return YES;
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     if (textField == UserNameField) {
@@ -527,6 +557,12 @@
                 NSString *GetGender_ = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"gender"]];
                 NSString *GetPersonalTags_ = [[NSString alloc]initWithFormat:@"%@",[GetAllData valueForKey:@"personal_tags"]];
                 
+                NSLog(@"before GetPersonalTags_ is %@",GetPersonalTags_);
+                NSLog(@"GetPersonalTags_ length is %lu",(unsigned long)[GetPersonalTags_ length]);
+                if ([GetPersonalTags_ length] == 10) {
+                    GetPersonalTags_ = @"";
+                }
+                NSLog(@"after GetPersonalTags_ is %@",GetPersonalTags_);
                 NSString *EditDone = @"GotEdit";
                 
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

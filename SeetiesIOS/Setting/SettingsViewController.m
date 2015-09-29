@@ -87,12 +87,12 @@
 
 }
 -(IBAction)BackButton:(id)sender{
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromLeft;
-    [self.view.window.layer addAnimation:transition forKey:nil];
+//    CATransition *transition = [CATransition animation];
+//    transition.duration = 0.2;
+//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    transition.type = kCATransitionPush;
+//    transition.subtype = kCATransitionFromLeft;
+//    [self.view.window.layer addAnimation:transition forKey:nil];
     //[self presentViewController:ListingDetail animated:NO completion:nil];
     [self dismissViewControllerAnimated:NO completion:nil];
 }
@@ -199,14 +199,14 @@
             [languageManager setLanguageWithLocale:localeForRow];
             
            // NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            NSString *GetUserUID = [defaults objectForKey:@"Useruid"];
-            NSString *TempTokenString = [[NSString alloc]initWithFormat:@"seeties_%@",GetUserUID];
-            
-            // When users indicate they are no longer Giants fans, we unsubscribe them.
-            PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-            [currentInstallation removeObject:@"all" forKey:@"channels"];
-            [currentInstallation removeObject:TempTokenString forKey:@"channels"];
-            [currentInstallation saveInBackground];
+//            NSString *GetUserUID = [defaults objectForKey:@"Useruid"];
+//            NSString *TempTokenString = [[NSString alloc]initWithFormat:@"seeties_%@",GetUserUID];
+//            
+//            // When users indicate they are no longer Giants fans, we unsubscribe them.
+//            PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+//            [currentInstallation removeObject:@"all" forKey:@"channels"];
+//            [currentInstallation removeObject:TempTokenString forKey:@"channels"];
+//            [currentInstallation saveInBackground];
             
 
             //save back
@@ -496,6 +496,8 @@
                 transition.subtype = kCATransitionFromRight;
                 [self.view.window.layer addAnimation:transition forKey:nil];
                 [self presentViewController:EditProfileView animated:NO completion:nil];
+               // [self.view.window.rootViewController presentViewController:EditProfileView animated:YES completion:nil];
+                //[self.parentViewController presentViewController:EditProfileView animated:YES completion:nil];
             }
                 break;
             case 1:{

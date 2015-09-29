@@ -36,7 +36,7 @@
     DetailLabel.frame = CGRectMake(30, 85, screenWidth - 60, 66);
     ResetButton.frame = CGRectMake(30, 212, screenWidth - 60, 50);
     InputText.frame = CGRectMake(35, 161, screenWidth - 70, 30);
-    LogoImg.frame = CGRectMake((screenWidth / 2) - 20, 20, 40, 40);
+    LogoImg.frame = CGRectMake((screenWidth / 2) - 27, 20, 55, 50);
     
     ResetButton.layer.cornerRadius = 5;
     BackGroundButton.layer.cornerRadius = 5;
@@ -67,11 +67,9 @@
 -(IBAction)resetButton:(id)sender{
     NSLog(@"Get inputtext is %@",InputText.text);
     
-    NSString *emailRegEx = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,10}";
-    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegEx];
     
-    if ([InputText.text length] == 0 || [emailTest evaluateWithObject:InputText.text] == NO) {
-        [TSMessage showNotificationInViewController:self title:@"" subtitle:NSLocalizedString(@"EmailError", nil) type:TSMessageNotificationTypeError];
+    if ([InputText.text length] == 0) {
+        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Username / email cannot be nil" type:TSMessageNotificationTypeError];
     }else{
         [self sendDataToServer];
     }

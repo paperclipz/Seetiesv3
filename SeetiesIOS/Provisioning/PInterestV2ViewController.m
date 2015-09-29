@@ -313,7 +313,7 @@
         NSString *TempIDN = [[NSString alloc]initWithFormat:@"%@",[GetCategoryIDArray objectAtIndex:getbuttonIDN]];
         [CategorySelectIDArray addObject:TempIDN];
 
-        DoneButton.enabled = YES;
+     //   DoneButton.enabled = YES;
       
         BackgroundButton.backgroundColor = color;
         ShowTitle_.textColor = [UIColor whiteColor];
@@ -321,8 +321,8 @@
         NSString *TempIDN = [[NSString alloc]initWithFormat:@"%@",[GetCategoryIDArray objectAtIndex:getbuttonIDN]];
         [CategorySelectIDArray removeObject:TempIDN];
         if ([CategorySelectIDArray count] == 0) {
-            DoneButton.enabled = NO;
-            [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Please select one category." type:TSMessageNotificationTypeError];
+          //  DoneButton.enabled = NO;
+            
         }
         [BackgroundButton setBackgroundColor:[UIColor colorWithRed:232.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
         ShowTitle_.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
@@ -334,12 +334,20 @@
 }
 -(IBAction)NextButton:(id)sender{
     NSLog(@"CategorySelectIDArray is %@",CategorySelectIDArray);
-    NSString *GetSelectID = [CategorySelectIDArray componentsJoinedByString:@","];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:GetSelectID forKey:@"Provisioning_Interest"];
-    [defaults synchronize];
     
-    [self.navigationController pushViewController:self.pFollowTheExpertsViewController animated:YES];
+    if ([CategorySelectIDArray count] == 0) {
+        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Please select one category." type:TSMessageNotificationTypeError];
+    }else{
+        NSString *GetSelectID = [CategorySelectIDArray componentsJoinedByString:@","];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:GetSelectID forKey:@"Provisioning_Interest"];
+        [defaults synchronize];
+        
+        [self.navigationController pushViewController:self.pFollowTheExpertsViewController animated:YES];
+    }
+    
+    
+
 }
 
 #pragma mark - Declaration

@@ -118,7 +118,7 @@
         GetDescription = [defaults objectForKey:@"UserData_Abouts"];
         GetPersonalTags = [defaults objectForKey:@"UserData_PersonalTags"];
         GetLocation = [defaults objectForKey:@"UserData_Location"];
-        if ([GetPersonalTags length] == 0 || [GetPersonalTags isEqualToString:@""] || [GetPersonalTags isEqualToString:@"(null)"] || GetPersonalTags == nil) {
+        if ([GetPersonalTags length] == 10 || [GetPersonalTags isEqualToString:@""] || [GetPersonalTags isEqualToString:@"(null)"] || GetPersonalTags == nil) {
         }else{
             NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"() \n"];
             GetPersonalTags = [[GetPersonalTags componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString: @""];
@@ -143,9 +143,31 @@
     }
 
 }
-
+- (void)testRefresh:(UIRefreshControl *)refreshControl
+{
+    refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@""];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        //  [NSThread sleepForTimeInterval:1];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"MMM d, h:mm a"];
+            NSString *lastUpdate = [NSString stringWithFormat:@"Last updated on %@", [formatter stringFromDate:[NSDate date]]];
+            refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdate];
+            [refreshControl endRefreshing];
+            NSLog(@"refresh end");
+            
+        });
+    });
+}
 
 -(void)InitContentView{
+    
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@""];
+    [refreshControl addTarget:self action:@selector(testRefresh:) forControlEvents:UIControlEventValueChanged];
+    [MainScroll addSubview:refreshControl];
     
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
@@ -329,6 +351,56 @@
     }
     
     NSLog(@"after about us height is ==== %d",GetHeight);
+    
+    if ([GetPersonalTags isEqualToString:@""] || [GetPersonalTags isEqualToString:@"(null)"] || [GetPersonalTags length] == 0) {
+        
+    }else{
+        
+        UIScrollView *HashTagScroll = [[UIScrollView alloc]init];
+        HashTagScroll.delegate = self;
+        HashTagScroll.frame = CGRectMake(0, GetHeight, screenWidth, 50);
+        HashTagScroll.backgroundColor = [UIColor whiteColor];
+        [AllContentView addSubview:HashTagScroll];
+        CGRect frame2 = {0,0};
+        for (int i= 0; i < [ArrHashTag count]; i++) {
+            UILabel *ShowHashTagText = [[UILabel alloc]init];
+            ShowHashTagText.text = [ArrHashTag objectAtIndex:i];
+            ShowHashTagText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:12];
+            ShowHashTagText.textAlignment = NSTextAlignmentCenter;
+            ShowHashTagText.backgroundColor = [UIColor whiteColor];
+            ShowHashTagText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+            ShowHashTagText.layer.cornerRadius = 5;
+            ShowHashTagText.layer.borderWidth = 1;
+            ShowHashTagText.layer.borderColor=[[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f] CGColor];
+            
+            NSString *Text = [ArrHashTag objectAtIndex:i];
+            CGRect r = [Text boundingRectWithSize:CGSizeMake(200, 0)
+                                          options:NSStringDrawingUsesLineFragmentOrigin
+                                       attributes:@{NSFontAttributeName:[UIFont fontWithName:@"ProximaNovaSoft-Regular" size:12]}
+                                          context:nil];
+            
+            //NSLog(@"r ==== %f",r.size.width);
+            
+            //CGSize textSize = [ShowHashTagText.text sizeWithAttributes:@{NSFontAttributeName:[ShowHashTagText font]}];
+            //   CGFloat textSize = ShowHashTagText.intrinsicContentSize.width;
+            ShowHashTagText.frame = CGRectMake(30 + frame2.size.width, 15, r.size.width + 20, 20);
+            frame2.size.width += r.size.width + 30;
+            [HashTagScroll addSubview:ShowHashTagText];
+            
+            HashTagScroll.contentSize = CGSizeMake(30 + frame2.size.width , 50);
+        }
+        
+        
+        GetHeight += 50;
+    }
+    
+    UIButton *Line01 = [[UIButton alloc]init];
+    Line01.frame = CGRectMake(0, GetHeight, screenWidth, 1);
+    [Line01 setTitle:@"" forState:UIControlStateNormal];
+    [Line01 setBackgroundColor:[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f]];
+    [AllContentView addSubview:Line01];
+    
+    GetHeight += 1;
 
     BOOL CheckShowExpand = false;
     if (CheckExpand == YES) {
@@ -376,62 +448,7 @@
         
     }else{
     
-        if ([GetPersonalTags isEqualToString:@""] || [GetPersonalTags isEqualToString:@"(null)"] || [GetPersonalTags length] == 0) {
-            
-        }else{
-            
-            UIScrollView *HashTagScroll = [[UIScrollView alloc]init];
-            HashTagScroll.delegate = self;
-            HashTagScroll.frame = CGRectMake(0, GetHeight, screenWidth, 50);
-            HashTagScroll.backgroundColor = [UIColor whiteColor];
-            [AllContentView addSubview:HashTagScroll];
-            CGRect frame2 = {0,0};
-            for (int i= 0; i < [ArrHashTag count]; i++) {
-                UILabel *ShowHashTagText = [[UILabel alloc]init];
-                ShowHashTagText.text = [ArrHashTag objectAtIndex:i];
-                ShowHashTagText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-                ShowHashTagText.textAlignment = NSTextAlignmentCenter;
-                ShowHashTagText.backgroundColor = [UIColor whiteColor];
-                ShowHashTagText.layer.cornerRadius = 5;
-                ShowHashTagText.layer.borderWidth = 1;
-                ShowHashTagText.layer.borderColor=[[UIColor grayColor] CGColor];
-                
-                NSString *Text = [ArrHashTag objectAtIndex:i];
-                CGRect r = [Text boundingRectWithSize:CGSizeMake(200, 0)
-                                              options:NSStringDrawingUsesLineFragmentOrigin
-                                           attributes:@{NSFontAttributeName:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]}
-                                              context:nil];
-                
-                //NSLog(@"r ==== %f",r.size.width);
 
-                //CGSize textSize = [ShowHashTagText.text sizeWithAttributes:@{NSFontAttributeName:[ShowHashTagText font]}];
-             //   CGFloat textSize = ShowHashTagText.intrinsicContentSize.width;
-                ShowHashTagText.frame = CGRectMake(30 + frame2.size.width, 15, r.size.width + 20, 20);
-                frame2.size.width += r.size.width + 30;
-                [HashTagScroll addSubview:ShowHashTagText];
-
-                HashTagScroll.contentSize = CGSizeMake(30 + frame2.size.width , 50);
-            }
-            
-            
-            GetHeight += 50;
-
-//
-//            CGSize size = [ShowHashTagText sizeThatFits:CGSizeMake(ShowHashTagText.frame.size.width, CGFLOAT_MAX)];
-//            CGRect frame = ShowHashTagText.frame;
-//            frame.size.height = size.height;
-//            ShowHashTagText.frame = frame;
-//            
-//            GetHeight += ShowHashTagText.frame.size.height + 20;
-        }
-        
-        UIButton *Line01 = [[UIButton alloc]init];
-        Line01.frame = CGRectMake(0, GetHeight, screenWidth, 1);
-        [Line01 setTitle:@"" forState:UIControlStateNormal];
-        [Line01 setBackgroundColor:[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f]];
-        [AllContentView addSubview:Line01];
-        
-        GetHeight += 1;
         
         if (CheckShowExpand == YES) {
             
@@ -453,11 +470,11 @@
         
       }
     
-    UIButton *Line01 = [[UIButton alloc]init];
-    Line01.frame = CGRectMake(0, GetHeight, screenWidth, 20);
-    [Line01 setTitle:@"" forState:UIControlStateNormal];
-    [Line01 setBackgroundColor:[UIColor colorWithRed:232.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
-    [AllContentView addSubview:Line01];
+    UIButton *FinalLine01 = [[UIButton alloc]init];
+    FinalLine01.frame = CGRectMake(0, GetHeight, screenWidth, 20);
+    [FinalLine01 setTitle:@"" forState:UIControlStateNormal];
+    [FinalLine01 setBackgroundColor:[UIColor colorWithRed:232.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+    [AllContentView addSubview:FinalLine01];
     
     GetHeight += 31;
     
@@ -578,8 +595,8 @@
     UILabel *ShowCollectionCount = [[UILabel alloc]init];
     ShowCollectionCount.frame = CGRectMake(30, 20, 150, 20);
     ShowCollectionCount.text = TempString;
-    ShowCollectionCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-    ShowCollectionCount.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+    ShowCollectionCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+    ShowCollectionCount.textColor = [UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0f];
     [CollectionView addSubview:ShowCollectionCount];
     
     UIButton *Line01 = [[UIButton alloc]init];
@@ -889,8 +906,8 @@
 -(IBAction)SettingsButton:(id)sender{
 
     SettingsViewController *SettingsView = [[SettingsViewController alloc]init];
-    [self.view.window.rootViewController presentViewController:SettingsView animated:YES completion:nil];
-    //[self presentViewController:SettingsView animated:YES completion:nil];
+    //[self.view.window.rootViewController presentViewController:SettingsView animated:YES completion:nil];
+    [self presentViewController:SettingsView animated:YES completion:nil];
     
 }
 -(void)GetUserData{
@@ -1081,23 +1098,52 @@
                 NSDictionary *SystemLanguageData = [GetAllData valueForKey:@"system_language"];
                 GetSystemLanguage = [[NSString alloc]initWithFormat:@"%@",[SystemLanguageData objectForKey:@"origin_caption"]];
                 
-                NSDictionary *LanguageData = [res valueForKey:@"languages"];
+//                NSDictionary *LanguageData = [res valueForKey:@"languages"];
+//                NSMutableArray *TempArray = [[NSMutableArray alloc]init];
+//               
+//                if (LanguageData == NULL || [ LanguageData count ] == 0) {
+//                    GetPrimaryLanguage = @"English";
+//                    GetSecondaryLanguage = @"";
+//                }else{
+//                    for (NSDictionary * dict in LanguageData) {
+//                        NSString *GetTempLanguage_1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"origin_caption"]];
+//                        [TempArray addObject:GetTempLanguage_1];
+//                    }
+//                     NSLog(@"Profile Get TempArray is %@",TempArray);
+//                    GetPrimaryLanguage = [[NSString alloc]initWithFormat:@"%@",[TempArray objectAtIndex:0]];
+//                    if ([TempArray count] == 1) {
+//                        GetSecondaryLanguage = @"";
+//                    }else{
+//                        GetSecondaryLanguage = [[NSString alloc]initWithFormat:@"%@",[TempArray objectAtIndex:1]];
+//                    }
+//                }
+                
+                NSMutableArray *GetUserSelectLanguagesArray = [[NSMutableArray alloc]init];
                 NSMutableArray *TempArray = [[NSMutableArray alloc]init];
-                if (LanguageData == NULL || [ LanguageData count ] == 0) {
-                    GetPrimaryLanguage = @"English";
+                NSDictionary *NSDictionaryLanguage = [GetAllData valueForKey:@"languages"];
+               // NSLog(@"NSDictionaryLanguage is %@",NSDictionaryLanguage);
+                for (NSDictionary * dict in NSDictionaryLanguage){
+                    NSString *Getid = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"id"]];
+                    [GetUserSelectLanguagesArray addObject:Getid];
+                    
+                    NSString *GetLanguage_1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"origin_caption"]];
+                    //NSLog(@"GetLanguage_1 is %@",GetLanguage_1);
+                    [TempArray addObject:GetLanguage_1];
+                }
+               // NSLog(@"GetUserSelectLanguagesArray is %@",GetUserSelectLanguagesArray);
+                
+//                NSString *GetLanguage_1;
+//                NSString *GetLanguage_2;
+                if ([TempArray count] == 1) {
+                    GetPrimaryLanguage = [[NSString alloc]initWithFormat:@"%@",[TempArray objectAtIndex:0]];
                     GetSecondaryLanguage = @"";
                 }else{
-                    for (NSDictionary * dict in LanguageData) {
-                        NSString *GetTempLanguage_1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"origin_caption"]];
-                        [TempArray addObject:GetTempLanguage_1];
-                    }
                     GetPrimaryLanguage = [[NSString alloc]initWithFormat:@"%@",[TempArray objectAtIndex:0]];
-                    if ([TempArray count] == 1) {
-                        GetSecondaryLanguage = @"";
-                    }else{
-                        GetSecondaryLanguage = [[NSString alloc]initWithFormat:@"%@",[TempArray objectAtIndex:1]];
-                    }
+                    GetSecondaryLanguage = [[NSString alloc]initWithFormat:@"%@",[TempArray objectAtIndex:1]];
                 }
+                
+                
+                
                 
                 if ([GetPersonalTags length] == 0 || [GetPersonalTags isEqualToString:@""] || [GetPersonalTags isEqualToString:@"(null)"] || GetPersonalTags == nil) {
                 }else{
@@ -1134,6 +1180,8 @@
                 [defaults setObject:GetFollowingCount forKey:@"UserData_FollowingCount"];
                 [defaults synchronize];
                 
+                NSLog(@"Profile GetPrimaryLanguage is %@",GetPrimaryLanguage);
+                NSLog(@"Profile GetSecondaryLanguage is %@",GetSecondaryLanguage);
                 
                 [self InitContentView];
                 [self GetCollectionData];
@@ -1474,8 +1522,9 @@
 }
 -(IBAction)SearchButton:(id)sender{
     SearchViewV2Controller *SearchView = [[SearchViewV2Controller alloc]initWithNibName:@"SearchViewV2Controller" bundle:nil];
+    [self.navigationController pushViewController:SearchView animated:YES];
     //[self presentViewController:SearchView animated:YES completion:nil];
-    [self.view.window.rootViewController presentViewController:SearchView animated:YES completion:nil];
+   // [self.view.window.rootViewController presentViewController:SearchView animated:YES completion:nil];
 }
 -(IBAction)LikesButtonOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
@@ -1534,7 +1583,8 @@
 }
 -(IBAction)EditProfileButtonOnClick:(id)sender{
     EditProfileV2ViewController *EditProfileView = [[EditProfileV2ViewController alloc]init];
-    [self.view.window.rootViewController presentViewController:EditProfileView animated:YES completion:nil];
+    [self presentViewController:EditProfileView animated:YES completion:nil];
+   // [self.view.window.rootViewController presentViewController:EditProfileView animated:YES completion:nil];
 }
 -(IBAction)ShareButton:(id)sender{
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
@@ -1649,7 +1699,8 @@ if(actionSheet.tag == 200){
 -(IBAction)ShowAll_FollowerButton:(id)sender{
    
     ShowFollowerAndFollowingViewController *ShowFollowerAndFollowingView = [[ShowFollowerAndFollowingViewController alloc]init];
-    [self.view.window.rootViewController presentViewController:ShowFollowerAndFollowingView animated:YES completion:nil];
+    [self presentViewController:ShowFollowerAndFollowingView animated:YES completion:nil];
+   // [self.view.window.rootViewController presentViewController:ShowFollowerAndFollowingView animated:YES completion:nil];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
      NSString *Getuid = [defaults objectForKey:@"Useruid"];
@@ -1657,7 +1708,8 @@ if(actionSheet.tag == 200){
 }
 -(IBAction)ShowAll_FollowingButton:(id)sender{
     ShowFollowerAndFollowingViewController *ShowFollowerAndFollowingView = [[ShowFollowerAndFollowingViewController alloc]init];
-    [self.view.window.rootViewController presentViewController:ShowFollowerAndFollowingView animated:YES completion:nil];
+    [self presentViewController:ShowFollowerAndFollowingView animated:YES completion:nil];
+   // [self.view.window.rootViewController presentViewController:ShowFollowerAndFollowingView animated:YES completion:nil];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
     NSString *Getuid = [defaults objectForKey:@"Useruid"];
@@ -1675,8 +1727,8 @@ if(actionSheet.tag == 200){
         transition.type = kCATransitionPush;
         transition.subtype = kCATransitionFromRight;
         [self.view.window.layer addAnimation:transition forKey:nil];
-       // [self presentViewController:FullImageView animated:NO completion:nil];
-        [self.view.window.rootViewController presentViewController:FullImageView animated:YES completion:nil];
+        [self presentViewController:FullImageView animated:NO completion:nil];
+       // [self.view.window.rootViewController presentViewController:FullImageView animated:YES completion:nil];
         [FullImageView GetImageString:GetProfileImg];
     }
 }

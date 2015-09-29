@@ -44,7 +44,7 @@
     transition.duration = 0.2;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromLeft;
+    transition.subtype = kCATransitionFromBottom;
     [self.view.window.layer addAnimation:transition forKey:nil];
     //[self presentViewController:ListingDetail animated:NO completion:nil];
     [self dismissViewControllerAnimated:NO completion:nil];
@@ -119,7 +119,7 @@
         UIButton *Line01 = [[UIButton alloc]init];
         Line01.frame = CGRectMake(15 + i *screenWidth, screenHeight - 90, screenWidth - 30, 1);
         [Line01 setTitle:@"" forState:UIControlStateNormal];
-        [Line01 setBackgroundColor:[UIColor whiteColor]];
+        [Line01 setBackgroundColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f]];
         [MImageScroll addSubview:Line01];
         
         
@@ -149,6 +149,7 @@
         ShowCaptionText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowCaptionText.textAlignment = NSTextAlignmentLeft;
         ShowCaptionText.backgroundColor = [UIColor clearColor];
+        ShowCaptionText.textColor = [UIColor whiteColor];
 //        ShowCaptionText.frame = CGRectMake(15 + i *screenWidth, screenHeight - 70 - [ShowCaptionText sizeThatFits:CGSizeMake(screenWidth - 30, CGFLOAT_MAX)].height , screenWidth - 30,[ShowCaptionText sizeThatFits:CGSizeMake(screenWidth - 30, CGFLOAT_MAX)].height);
         ShowCaptionText.frame = CGRectMake(15 + i *screenWidth, screenHeight - 70, screenWidth - 60 - 30,[ShowCaptionText sizeThatFits:CGSizeMake(screenWidth - 30, CGFLOAT_MAX)].height);
         

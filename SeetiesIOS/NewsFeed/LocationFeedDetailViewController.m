@@ -18,7 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    ShowMainTitle.text = CustomLocalisedString(@"EditProfileLocation", nil);
+    //ShowMainTitle.text = CustomLocalisedString(@"EditProfileLocation", nil);
+    ShowMainTitle.text = @"Place Info";
     [DirectionsButton setTitle:CustomLocalisedString(@"Directions", nil) forState:UIControlStateNormal];
     
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
@@ -148,12 +149,13 @@
         UILabel *ShowPlaceName = [[UILabel alloc]init];
         ShowPlaceName.frame = CGRectMake(55, MapView.frame.size.height + 20, screenWidth - 55 - 25, 21);
         ShowPlaceName.text = GetTitle;
-        ShowPlaceName.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
+        ShowPlaceName.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+        ShowPlaceName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         [MainScroll addSubview:ShowPlaceName];
         
         UILabel *ShowPlaceFormattedAddress = [[UILabel alloc]init];
-        ShowPlaceFormattedAddress.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:15];
-        ShowPlaceFormattedAddress.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+        ShowPlaceFormattedAddress.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+        ShowPlaceFormattedAddress.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
         ShowPlaceFormattedAddress.text = GetLocation;
         ShowPlaceFormattedAddress.numberOfLines = 0;
         ShowPlaceFormattedAddress.backgroundColor = [UIColor clearColor];
@@ -172,11 +174,12 @@
         UILabel *ShowPlaceName = [[UILabel alloc]init];
         ShowPlaceName.frame = CGRectMake(55, 200 + 20, screenWidth - 55 - 25, 21);
         ShowPlaceName.text = GetTitle;
-        ShowPlaceName.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
+        ShowPlaceName.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+        ShowPlaceName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         [MainScroll addSubview:ShowPlaceName];
         
         UILabel *ShowPlaceFormattedAddress = [[UILabel alloc]init];
-        ShowPlaceFormattedAddress.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:15];
+        ShowPlaceFormattedAddress.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowPlaceFormattedAddress.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
         ShowPlaceFormattedAddress.text = GetLocation;
         ShowPlaceFormattedAddress.numberOfLines = 0;
@@ -203,8 +206,9 @@
           //  ShowPlacelink.frame = CGRectMake(55, GetHeight - 3, screenWidth - 80, 21);
             ShowPlacelink.text = GetPlaceLink;
             ShowPlacelink.numberOfLines = 0;
-            ShowPlacelink.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
+            ShowPlacelink.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
             ShowPlacelink.backgroundColor = [UIColor clearColor];
+            ShowPlacelink.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
             ShowPlacelink.frame = CGRectMake(55, GetHeight - 3, screenWidth - 80,[ShowPlacelink sizeThatFits:CGSizeMake(screenWidth - 80, CGFLOAT_MAX)].height);
             [MainScroll addSubview:ShowPlacelink];
             
@@ -229,7 +233,8 @@
             UILabel *ShowContact = [[UILabel alloc]init];
             ShowContact.frame = CGRectMake(55, GetHeight - 3, screenWidth - 80, 21);
             ShowContact.text = GetContact;
-            ShowContact.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
+            ShowContact.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+            ShowContact.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
             [MainScroll addSubview:ShowContact];
             
             UIButton *OpenContactButton = [[UIButton alloc]init];
@@ -254,7 +259,8 @@
             UILabel *ShowPriceTExt = [[UILabel alloc]init];
             ShowPriceTExt.frame = CGRectMake(55, GetHeight - 1, screenWidth - 152, 21);
             ShowPriceTExt.text = GetPrice;
-            ShowPriceTExt.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
+            ShowPriceTExt.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+            ShowPriceTExt.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
             [MainScroll addSubview:ShowPriceTExt];
             
             GetHeight += 50;
@@ -278,7 +284,8 @@
             UILabel *ShowOpeningTExt = [[UILabel alloc]init];
             ShowOpeningTExt.frame = CGRectMake(55, GetHeight - 1, screenWidth - 80, 21);
             ShowOpeningTExt.text = GetOpeningHour;
-            ShowOpeningTExt.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
+            ShowOpeningTExt.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+            ShowOpeningTExt.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
             [MainScroll addSubview:ShowOpeningTExt];
             
             GetHeight += 20;
@@ -298,9 +305,10 @@
             ShowAllOpeningText.frame = CGRectMake(50, GetHeight - 10, screenWidth - 80, 160);
             ShowAllOpeningText.text = GetAllPeriods;
             ShowAllOpeningText.numberOfLines = 10;
-            ShowAllOpeningText.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
+            ShowAllOpeningText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
             //ShowAllOpeningText.backgroundColor = [UIColor purpleColor];
             ShowAllOpeningText.textAlignment = NSTextAlignmentLeft;
+            ShowAllOpeningText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
             [MainScroll addSubview:ShowAllOpeningText];
             
             GetHeight += 160;
@@ -308,7 +316,8 @@
             UILabel *ShowLocalTime = [[UILabel alloc]init];
             ShowLocalTime.frame = CGRectMake(0, GetHeight - 1, screenWidth, 21);
             ShowLocalTime.text = @"(All time are based on local time)";
-            ShowLocalTime.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
+             ShowLocalTime.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+            ShowLocalTime.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:13];
             ShowLocalTime.textAlignment = NSTextAlignmentCenter;
             [MainScroll addSubview:ShowLocalTime];
             
