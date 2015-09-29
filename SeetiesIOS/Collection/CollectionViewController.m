@@ -23,13 +23,14 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     MainScroll.delegate = self;
     [MainScroll setContentSize:CGSizeMake(screenWidth, 700)];
-    MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight - 50);
+    MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     MainScroll.alwaysBounceVertical = YES;
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     MoreButton.frame = CGRectMake(screenWidth - 40, 20, 40, 44);
     MapButton.frame = CGRectMake(screenWidth - 80, 20, 40, 44);
     
     DownBarView.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
+    DownBarView.hidden = YES;
     ShareButton.frame = CGRectMake(screenWidth - 130, 0, 120, 50);
     
     CheckLoad = NO;

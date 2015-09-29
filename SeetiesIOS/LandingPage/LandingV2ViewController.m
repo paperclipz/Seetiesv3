@@ -132,19 +132,22 @@
     [MainScroll setBounces:NO];
     
     ImageArray = [[NSMutableArray alloc] init];
-    [ImageArray addObject:@"1242x2208-01.jpg"];
-    [ImageArray addObject:@"1242x2208-03.jpg"];
-    [ImageArray addObject:@"1242x2208-04.jpg"];
+    [ImageArray addObject:@"Walkthrough1.png"];
+    [ImageArray addObject:@"Walkthrough2.png"];
+    [ImageArray addObject:@"Walkthrough3.png"];
+    [ImageArray addObject:@"Walkthrough4.png"];
     
     NSMutableArray *TextArray = [[NSMutableArray alloc]init];
     [TextArray addObject:@"Discover the city's best places to eat, play & shop"];
     [TextArray addObject:@"Create personal collections for your favourite finds"];
     [TextArray addObject:@"Recommend your favourite places & best experiences"];
+    [TextArray addObject:@"Share your collections with your buddies."];
 
     
     for (int i = 0 ; i < [ImageArray count]; i++) {
         UIImageView *ShowImage = [[UIImageView alloc]initWithFrame:CGRectMake( 0+ i *screenWidth, 0, screenWidth, MainScroll.bounds.size.height)];
-        ShowImage.contentMode = UIViewContentModeScaleAspectFit;
+        ShowImage.contentMode = UIViewContentModeScaleAspectFill;
+        ShowImage.layer.masksToBounds = YES;
         ShowImage.backgroundColor = [UIColor clearColor];
         ShowImage.image = [UIImage imageNamed:[ImageArray objectAtIndex:i]];
         [MainScroll addSubview:ShowImage];
