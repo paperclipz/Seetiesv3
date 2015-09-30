@@ -2431,7 +2431,7 @@
 -(IBAction)SearchButton:(id)sender{
     SearchViewV2Controller *SearchView = [[SearchViewV2Controller alloc]initWithNibName:@"SearchViewV2Controller" bundle:nil];
     //[self presentViewController:SearchView animated:YES completion:nil];
-    [self.navigationController pushViewController:SearchView animated:YES];
+    [self.navigationController pushViewController:SearchView animated:NO];
     //[self.view.window.rootViewController presentViewController:SearchView animated:YES completion:nil];
 }
 -(IBAction)FiltersButton:(id)sender{

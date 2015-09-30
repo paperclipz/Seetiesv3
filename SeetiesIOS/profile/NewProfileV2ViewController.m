@@ -127,18 +127,48 @@
             ArrHashTag = [[NSMutableArray alloc]initWithArray:arr];
         }
         
-      //  [self InitCollectionView];
-        
         NSURL *url_UserImage = [NSURL URLWithString:GetProfileImg_];
         ShowUserProfileImage.imageURL = url_UserImage;
         
         NSURL *url_WallpaperImage = [NSURL URLWithString:GetWallpaper_];
         BackgroundImage.imageURL = url_WallpaperImage;
         
-        
-        
         CheckEdit = @"NoEdit";
         [defaults setObject:CheckEdit forKey:@"CheckEditUserInformation"];
+        [defaults synchronize];
+        
+        GetHeight = 0;
+        for (UIView *subview in AllContentView.subviews) {
+            [subview removeFromSuperview];
+        }
+        [self InitContentView];
+    }
+    
+    NSString *CheckSelfDelete = [defaults objectForKey:@"SelfDeletePost_Profile"];
+    if ([CheckSelfDelete isEqualToString:@"YES"]) {
+        CheckExpand = YES;
+        CheckLoad_Post = NO;
+        CheckLoad_Likes = NO;
+        CheckLoad_Collection = NO;
+        CheckFirstTimeLoadLikes = 0;
+        CheckFirstTimeLoadPost = 0;
+        CheckFirstTimeLoadCollection = 0;
+        TotalPage_Like = 1;
+        CurrentPage_Like = 0;
+        TotalPage_Post = 1;
+        CurrentPage_Post = 0;
+        TotalPage_Collection = 1;
+        CurrentPage_Collection = 0;
+        
+        GetHeight = 0;
+        for (UIView *subview in AllContentView.subviews) {
+            [subview removeFromSuperview];
+        }
+        
+        [self GetUserData];
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:@"NO" forKey:@"SelfDeletePost_Profile"];
         [defaults synchronize];
     }
 
@@ -1522,7 +1552,7 @@
 }
 -(IBAction)SearchButton:(id)sender{
     SearchViewV2Controller *SearchView = [[SearchViewV2Controller alloc]initWithNibName:@"SearchViewV2Controller" bundle:nil];
-    [self.navigationController pushViewController:SearchView animated:YES];
+    [self.navigationController pushViewController:SearchView animated:NO];
     //[self presentViewController:SearchView animated:YES completion:nil];
    // [self.view.window.rootViewController presentViewController:SearchView animated:YES completion:nil];
 }
