@@ -31,10 +31,7 @@
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-    SearchBarTemp.delegate = self;
-    SearchBarTemp.tintColor = [UIColor redColor];
-    SearchBarTemp.barTintColor = [UIColor clearColor];
-    [SearchBarTemp setBackgroundImage:[[UIImage alloc]init]];
+    SearchButton.frame = CGRectMake(0, 20, screenWidth, 44);
     
     GetHeight = 0;
     
@@ -246,14 +243,14 @@
     
     
     UIButton *EditProfileButton = [[UIButton alloc]init];
-    EditProfileButton.frame = CGRectMake(screenWidth - 106 - 20, 50, 106, 34);
+    EditProfileButton.frame = CGRectMake(screenWidth - 106 - 20, 60, 106, 34);
     [EditProfileButton setTitle:@"Edit profile" forState:UIControlStateNormal];
     EditProfileButton.layer.cornerRadius= 15;
     EditProfileButton.layer.borderWidth = 1;
     EditProfileButton.layer.masksToBounds = YES;
-    EditProfileButton.layer.borderColor=[[UIColor grayColor] CGColor];
+    EditProfileButton.layer.borderColor=[[UIColor  colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0] CGColor];
     EditProfileButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
-    [EditProfileButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
+    [EditProfileButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
     EditProfileButton.backgroundColor = [UIColor clearColor];
     [EditProfileButton addTarget:self action:@selector(EditProfileButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
     [AllContentView addSubview:EditProfileButton];
@@ -261,8 +258,8 @@
     ShowName_ = [[UILabel alloc]init];//getname
     ShowName_.frame = CGRectMake(30, 110, screenWidth - 60, 30);
     ShowName_.text = GetName;
-    ShowName_.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:22];
-    ShowName_.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0];
+    ShowName_.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:17];
+    ShowName_.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0];
     ShowName_.textAlignment = NSTextAlignmentLeft;
     ShowName_.backgroundColor = [UIColor clearColor];
     [AllContentView addSubview:ShowName_];
@@ -427,11 +424,11 @@
         GetHeight += 50;
     }
     
-    UIButton *Line01 = [[UIButton alloc]init];
-    Line01.frame = CGRectMake(0, GetHeight, screenWidth, 1);
-    [Line01 setTitle:@"" forState:UIControlStateNormal];
-    [Line01 setBackgroundColor:[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f]];
-    [AllContentView addSubview:Line01];
+//    UIButton *Line01 = [[UIButton alloc]init];
+//    Line01.frame = CGRectMake(0, GetHeight, screenWidth, 1);
+//    [Line01 setTitle:@"" forState:UIControlStateNormal];
+//    [Line01 setBackgroundColor:[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f]];
+//    [AllContentView addSubview:Line01];
     
     GetHeight += 1;
 
@@ -470,7 +467,7 @@
         UIButton *ExpandButton = [[UIButton alloc]init];
         ExpandButton.frame = CGRectMake(0, GetHeight, screenWidth, 50);
         //[ExpandButton setTitle:@"Expand" forState:UIControlStateNormal];
-        [ExpandButton setImage:[UIImage imageNamed:@"MoreIcon.png"] forState:UIControlStateNormal];
+        [ExpandButton setImage:[UIImage imageNamed:@"ProfileExpand.png"] forState:UIControlStateNormal];
         ExpandButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
         [ExpandButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
         ExpandButton.backgroundColor = [UIColor whiteColor];
@@ -489,7 +486,7 @@
             UIButton *CollapseButton = [[UIButton alloc]init];
             CollapseButton.frame = CGRectMake(0, GetHeight, screenWidth, 50);
             // [CollapseButton setTitle:@"Collapse" forState:UIControlStateNormal];
-            [CollapseButton setImage:[UIImage imageNamed:@"MoreIcon.png"] forState:UIControlStateNormal];
+            [CollapseButton setImage:[UIImage imageNamed:@"ProfileExpand.png"] forState:UIControlStateNormal];
             CollapseButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
             [CollapseButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
             CollapseButton.backgroundColor = [UIColor whiteColor];
@@ -709,14 +706,14 @@
         [CollectionView addSubview:SelectButton];
         
         UIButton *EditButton = [[UIButton alloc]init];
-        EditButton.frame = CGRectMake(screenWidth - 80 - 20, heightcheck + 5 + FinalWidth + 20 + i, 80, 40);
+        EditButton.frame = CGRectMake(screenWidth - 52 - 20, heightcheck + 5 + FinalWidth + 23 + i, 52, 34);
         [EditButton setTitle:@"Edit" forState:UIControlStateNormal];
-        EditButton.layer.cornerRadius= 15;
+        EditButton.layer.cornerRadius= 17;
         EditButton.layer.borderWidth = 1;
         EditButton.layer.masksToBounds = YES;
-        EditButton.layer.borderColor=[[UIColor grayColor] CGColor];
+        EditButton.layer.borderColor=[[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0] CGColor];
         EditButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
-        [EditButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
+        [EditButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
         EditButton.backgroundColor = [UIColor whiteColor];
         EditButton.tag = i;
         [EditButton addTarget:self action:@selector(CollectionEditButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -724,12 +721,12 @@
         
         
         UIButton *Line01 = [[UIButton alloc]init];
-        Line01.frame = CGRectMake(15, heightcheck + 5 + FinalWidth + 70 + i, screenWidth - 30, 1);
+        Line01.frame = CGRectMake(15, heightcheck + 10 + FinalWidth + 70 + i, screenWidth - 30, 1);
         [Line01 setTitle:@"" forState:UIControlStateNormal];//238
         [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
         [CollectionView addSubview:Line01];
         
-        heightcheck += FinalWidth + 10 + 70 + 10 + i ;
+        heightcheck += FinalWidth + 15 + 70 + 10 + i ;
     }
     AllContentView.frame = CGRectMake(0, 100 , screenWidth, GetHeight + heightcheck + FinalWidth + 120);
     CollectionView.frame = CGRectMake(0, GetHeight, screenWidth, heightcheck + FinalWidth + 120);

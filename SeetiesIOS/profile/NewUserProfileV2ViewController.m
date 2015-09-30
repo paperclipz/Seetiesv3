@@ -327,12 +327,12 @@
         
         GetHeight = 220;
         
-        UIButton *Line01 = [[UIButton alloc]init];
-        Line01.frame = CGRectMake(0, GetHeight, screenWidth, 20);
-        [Line01 setTitle:@"" forState:UIControlStateNormal];
-        [Line01 setBackgroundColor:[UIColor whiteColor]];
-        Line01.alpha = 0.8f;
-        [AllContentView addSubview:Line01];
+//        UIButton *Line01 = [[UIButton alloc]init];
+//        Line01.frame = CGRectMake(0, GetHeight, screenWidth, 20);
+//        [Line01 setTitle:@"" forState:UIControlStateNormal];
+//        [Line01 setBackgroundColor:[UIColor whiteColor]];
+//        Line01.alpha = 0.8f;
+//        [AllContentView addSubview:Line01];
         
         GetHeight += 20;
         
@@ -345,7 +345,7 @@
         UIButton *ExpandButton = [[UIButton alloc]init];
         ExpandButton.frame = CGRectMake(0, GetHeight, screenWidth, 50);
         //[ExpandButton setTitle:@"Expand" forState:UIControlStateNormal];
-        [ExpandButton setImage:[UIImage imageNamed:@"MoreIcon.png"] forState:UIControlStateNormal];
+        [ExpandButton setImage:[UIImage imageNamed:@"ProfileExpand.png"] forState:UIControlStateNormal];
         ExpandButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
         [ExpandButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
         ExpandButton.backgroundColor = [UIColor whiteColor];
@@ -394,18 +394,18 @@
             GetHeight += 50;
         }
         
-        UIButton *Line01 = [[UIButton alloc]init];
-        Line01.frame = CGRectMake(0, GetHeight, screenWidth, 1);
-        [Line01 setTitle:@"" forState:UIControlStateNormal];
-        [Line01 setBackgroundColor:[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f]];
-        [AllContentView addSubview:Line01];
+//        UIButton *Line01 = [[UIButton alloc]init];
+//        Line01.frame = CGRectMake(0, GetHeight, screenWidth, 1);
+//        [Line01 setTitle:@"" forState:UIControlStateNormal];
+//        [Line01 setBackgroundColor:[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f]];
+//        [AllContentView addSubview:Line01];
         
         GetHeight += 1;
         
         UIButton *CollapseButton = [[UIButton alloc]init];
         CollapseButton.frame = CGRectMake(0, GetHeight, screenWidth, 50);
         // [CollapseButton setTitle:@"Collapse" forState:UIControlStateNormal];
-        [CollapseButton setImage:[UIImage imageNamed:@"MoreIcon.png"] forState:UIControlStateNormal];
+        [CollapseButton setImage:[UIImage imageNamed:@"ProfileExpand.png"] forState:UIControlStateNormal];
         CollapseButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
         [CollapseButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
         CollapseButton.backgroundColor = [UIColor whiteColor];

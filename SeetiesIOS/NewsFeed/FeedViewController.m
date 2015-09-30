@@ -394,6 +394,15 @@
     TempBackground.backgroundColor = [UIColor grayColor];
     [LocalScroll addSubview:TempBackground];
     
+    UIImageView *NearbyImg = [[UIImageView alloc]init];
+    NearbyImg.image = [UIImage imageNamed:@"Nearbyimage.png"];
+    NearbyImg.frame = CGRectMake(0, 0, screenWidth, 120);
+    NearbyImg.contentMode = UIViewContentModeScaleAspectFill;
+    NearbyImg.layer.masksToBounds = YES;
+    [LocalScroll addSubview:NearbyImg];
+    
+    
+    
     UIButton *TempButton = [[UIButton alloc]init];
     TempButton.frame = CGRectMake((screenWidth / 2) - 60, 41, 120, 37);
     [TempButton setTitle:@"Nearby" forState:UIControlStateNormal];
@@ -751,6 +760,20 @@
     TempBackground.frame = CGRectMake(0, 0, screenWidth, 120);
     TempBackground.backgroundColor = [UIColor grayColor];
     [MainScroll addSubview:TempBackground];
+    
+    UIImageView *NearbyImg = [[UIImageView alloc]init];
+    NearbyImg.image = [UIImage imageNamed:@"Nearbyimage.png"];
+    NearbyImg.frame = CGRectMake(0, 0, screenWidth, 120);
+    NearbyImg.contentMode = UIViewContentModeScaleAspectFill;
+    NearbyImg.layer.masksToBounds = YES;
+    [MainScroll addSubview:NearbyImg];
+    
+    UIButton *Line01 = [[UIButton alloc]init];
+    Line01.frame = CGRectMake(0, 120, screenWidth, 1);
+    [Line01 setTitle:@"" forState:UIControlStateNormal];
+    [Line01 setBackgroundColor:[UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0f]];
+    [MainScroll addSubview:Line01];
+    
 
     UIButton *TempButton = [[UIButton alloc]init];
     TempButton.frame = CGRectMake((screenWidth / 2) - 60, 41, 120, 37);

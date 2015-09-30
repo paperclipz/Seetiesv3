@@ -323,8 +323,18 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 -(IBAction)SaveButton:(id)sender{
-    SaveButton.enabled = NO;
-    [self UpdateUserInformation];
+    
+    NSString *emailRegEx = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,10}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegEx];
+    
+    if ([emailTest evaluateWithObject:TagasField.text] == NO) {
+        TagasField.text = @"";
+    }else{
+        SaveButton.enabled = NO;
+        [self UpdateUserInformation];
+    }
+    
+
 }
 -(void)UpdateUserInformation{
     [spinnerView startAnimating];

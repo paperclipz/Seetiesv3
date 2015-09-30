@@ -7,6 +7,7 @@
     <customFonts key="customFonts">
         <mutableArray key="ProximaNovaSoft-Regular.ttf">
             <string>ProximaNovaSoft-Regular</string>
+            <string>ProximaNovaSoft-Regular</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -15,7 +16,6 @@
                 <outlet property="AllContentView" destination="X8R-JL-9au" id="EoP-bx-Eu2"/>
                 <outlet property="BackgroundImage" destination="3QS-vy-vDW" id="DQg-bW-6vY"/>
                 <outlet property="MainScroll" destination="lM5-TP-ZeO" id="TdB-RU-Bh7"/>
-                <outlet property="SearchBarTemp" destination="gYI-aC-AkV" id="nMg-9g-jTw"/>
                 <outlet property="SearchButton" destination="GXO-0f-3de" id="VZB-HR-DKB"/>
                 <outlet property="SettingsButton" destination="t2G-Fp-j2i" id="SVT-Yo-rsO"/>
                 <outlet property="ShareButton" destination="lP7-9x-Ofv" id="cqe-5k-JkR"/>
@@ -35,24 +35,6 @@
                     <rect key="frame" x="0.0" y="0.0" width="800" height="200"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <searchBar alpha="0.69999999999999973" contentMode="redraw" placeholder="search" translucent="NO" id="gYI-aC-AkV">
-                    <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <textInputTraits key="textInputTraits"/>
-                </searchBar>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="GXO-0f-3de">
-                    <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="SearchButton:" destination="-1" eventType="touchUpInside" id="vdD-Bf-9mg"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="t2G-Fp-j2i">
                     <rect key="frame" x="220" y="64" width="50" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -75,6 +57,21 @@
                         <action selector="ShareButton:" destination="-1" eventType="touchUpInside" id="U3H-cs-4Ih"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="GXO-0f-3de">
+                    <rect key="frame" x="0.0" y="15" width="320" height="53"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="15"/>
+                    <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="search" image="SearchBarIcon.png" backgroundImage="ProfileSearchBar.png">
+                        <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="SearchButton:" destination="-1" eventType="touchUpInside" id="vdD-Bf-9mg"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <point key="canvasLocation" x="342" y="539"/>
@@ -94,7 +91,9 @@
     </objects>
     <resources>
         <image name="FeedOverlay.png" width="300" height="250"/>
+        <image name="ProfileSearchBar.png" width="320" height="53"/>
         <image name="ProfileSettingsIcon.png" width="40" height="40"/>
         <image name="ProfileShareIcon.png" width="40" height="40"/>
+        <image name="SearchBarIcon.png" width="30" height="30"/>
     </resources>
 </document>
