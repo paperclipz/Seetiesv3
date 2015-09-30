@@ -16,6 +16,8 @@
     if (self = [super init]) {
         
         _arrPostImagesList = [NSMutableArray new];
+        _postMainLanguage = ENGLISH_CODE;
+        _postSeconLanguage = ENGLISH_CODE;
     }
     
     return self;
@@ -26,7 +28,8 @@
     if (self = [super init]) {
         
         _arrPostImagesList = [NSMutableArray new];
-        
+        _postMainLanguage = ENGLISH_CODE;
+        _postSeconLanguage = ENGLISH_CODE;
         
         int counter = (int)model.arrPost.count;
         for (int i = counter; i>0; i--) {

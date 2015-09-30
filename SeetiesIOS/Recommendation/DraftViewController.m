@@ -94,9 +94,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DraftModel* draftModel = self.arrDraftList[indexPath.row];
+
+    _editPostViewController = nil;
     [self.editPostViewController initDataDraft:draftModel];
-    
-    [self.navigationController pushViewController:self.editPostViewController animated:YES];
+
+    [self.navigationController pushViewController:self.editPostViewController animated:YES onCompletion:^{
+    }];
 }
 
 #pragma mark Request Server
