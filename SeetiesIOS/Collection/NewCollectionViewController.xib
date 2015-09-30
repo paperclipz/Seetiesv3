@@ -5,6 +5,9 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <customFonts key="customFonts">
+        <mutableArray key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+        </mutableArray>
         <mutableArray key="ProximaNovaSoft-Bold.ttf">
             <string>ProximaNovaSoft-Bold</string>
             <string>ProximaNovaSoft-Bold</string>
@@ -130,7 +133,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="color" red="0.20000000000000001" green="0.70980392160000005" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
                 </activityIndicatorView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Settingsbar2.png" id="MrV-xO-ImG">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TitleBar.png" id="MrV-xO-ImG">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
@@ -141,8 +144,8 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackButton2.png" id="9ms-dv-C1j">
-                    <rect key="frame" x="13" y="33" width="20" height="20"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackIcon.png" id="9ms-dv-C1j">
+                    <rect key="frame" x="0.0" y="22" width="40" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="HF3-wp-RwO">
@@ -182,12 +185,12 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ye1-ge-WQd">
-                            <rect key="frame" x="287" y="18" width="25" height="25"/>
+                            <rect key="frame" x="287" y="18" width="50" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
-                            <state key="normal" image="blue_checkbox_untick.png"/>
-                            <state key="selected" image="blue_checkbox_tick.png"/>
+                            <state key="normal" image="Uncheck.png"/>
+                            <state key="selected" image="Check.png"/>
                             <connections>
                                 <action selector="TickButton:" destination="-1" eventType="touchUpInside" id="eJe-Up-Az8"/>
                             </connections>
@@ -201,9 +204,9 @@
         </view>
     </objects>
     <resources>
-        <image name="BackButton2.png" width="38" height="39"/>
-        <image name="Settingsbar2.png" width="640" height="128"/>
-        <image name="blue_checkbox_tick.png" width="50" height="50"/>
-        <image name="blue_checkbox_untick.png" width="50" height="50"/>
+        <image name="BackIcon.png" width="40" height="40"/>
+        <image name="Check.png" width="70" height="70"/>
+        <image name="TitleBar.png" width="310" height="64"/>
+        <image name="Uncheck.png" width="70" height="70"/>
     </resources>
 </document>

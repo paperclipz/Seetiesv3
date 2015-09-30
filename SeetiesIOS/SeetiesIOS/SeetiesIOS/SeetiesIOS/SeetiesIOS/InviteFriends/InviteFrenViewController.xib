@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="ProximaNovaSoft-Bold.ttf">
+            <string>ProximaNovaSoft-Bold</string>
+            <string>ProximaNovaSoft-Bold</string>
+        </mutableArray>
+        <mutableArray key="ProximaNovaSoft-Regular.ttf">
+            <string>ProximaNovaSoft-Regular</string>
+            <string>ProximaNovaSoft-Regular</string>
+            <string>ProximaNovaSoft-Regular</string>
+            <string>ProximaNovaSoft-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InviteFrenViewController">
+            <connections>
+                <outlet property="BarImage" destination="jqz-l2-2nE" id="Bv3-hE-WzR"/>
+                <outlet property="EmailTblView" destination="aXw-eN-uNz" id="5iQ-AW-RlL"/>
+                <outlet property="FbButton" destination="vnQ-7w-VZI" id="Dou-LR-1RF"/>
+                <outlet property="FbMessagerButton" destination="zC9-OW-XSF" id="Umk-VT-cgn"/>
+                <outlet property="InviteScroll" destination="TPQ-LI-Xgg" id="oPI-fE-OSa"/>
+                <outlet property="LoadingButton" destination="WMR-ci-2ar" id="ceZ-gH-NPL"/>
+                <outlet property="MainScroll" destination="JC0-wN-Su4" id="ohk-ln-DoR"/>
+                <outlet property="SMSButton" destination="NVT-VJ-Vip" id="GrV-lM-Heq"/>
+                <outlet property="ShowActivity" destination="jeK-Lt-NI6" id="rj5-dY-USc"/>
+                <outlet property="ShowEmailView" destination="hXC-yT-8pU" id="ogN-Wc-Itx"/>
+                <outlet property="ShowFBText_1" destination="tJ7-MR-OPY" id="EhC-59-2Ht"/>
+                <outlet property="ShowFBView" destination="EPD-9X-U6S" id="eRf-VQ-3xO"/>
+                <outlet property="ShowInviteView" destination="2ak-ii-2TF" id="6sJ-In-Jdd"/>
+                <outlet property="ShowOtherText_1" destination="p7T-ZI-YCD" id="CKB-me-M70"/>
+                <outlet property="TabButton_1" destination="40R-oL-43e" id="DEb-nT-4Id"/>
+                <outlet property="TabButton_2" destination="bYV-Fk-PVN" id="oX7-uC-tWT"/>
+                <outlet property="TabButton_3" destination="Tiu-8i-ifw" id="eLV-9S-EgY"/>
+                <outlet property="TitleLabel" destination="j4w-oH-VNy" id="7xO-ut-lUS"/>
+                <outlet property="TrueLineButton" destination="Lpj-V4-L3r" id="aZs-t4-AE1"/>
+                <outlet property="WhatsappButton" destination="hNe-UZ-ZJh" id="GXr-Fy-lX2"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" id="hXC-yT-8pU">
+                    <rect key="frame" x="0.0" y="120" width="320" height="568"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="aXw-eN-uNz">
+                            <rect key="frame" x="0.0" y="60" width="320" height="448"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="Zi6-Al-xA6"/>
+                                <outlet property="delegate" destination="-1" id="02p-9i-yXs"/>
+                            </connections>
+                        </tableView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" id="EPD-9X-U6S">
+                    <rect key="frame" x="0.0" y="120" width="320" height="568"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="JC0-wN-Su4">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="450"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vnQ-7w-VZI">
+                                    <rect key="frame" x="20" y="111" width="280" height="55"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                                    <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <state key="normal" title="Invite Facebook Friends to Seeties" backgroundImage="InviteButton.png">
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="FBInvitesButton:" destination="-1" eventType="touchUpInside" id="e0M-jL-3Li"/>
+                                    </connections>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feeling lonely on Seeties? Now it's time to invite Some friends!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tJ7-MR-OPY">
+                                    <rect key="frame" x="12" y="8" width="300" height="90"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="22"/>
+                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </scrollView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" id="2ak-ii-2TF">
+                    <rect key="frame" x="0.0" y="120" width="320" height="448"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="TPQ-LI-Xgg">
+                            <rect key="frame" x="40" y="160" width="240" height="128"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Lpj-V4-L3r">
+                                    <rect key="frame" x="-20" y="37" width="280" height="55"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="18"/>
+                                    <inset key="titleEdgeInsets" minX="45" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <state key="normal" title="Invite via LINE">
+                                        <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="LineButton:" destination="-1" eventType="touchUpInside" id="KhG-Qm-woj"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hNe-UZ-ZJh">
+                                    <rect key="frame" x="-20" y="37" width="280" height="55"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="18"/>
+                                    <inset key="titleEdgeInsets" minX="45" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <state key="normal" title="Invite via Whatsapp">
+                                        <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="WhatsAppButton:" destination="-1" eventType="touchUpInside" id="kxw-Du-IfN"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zC9-OW-XSF">
+                                    <rect key="frame" x="-20" y="37" width="280" height="55"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="18"/>
+                                    <inset key="titleEdgeInsets" minX="45" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <state key="normal" title="Invite via Facebook Messager">
+                                        <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="FBMessageButton:" destination="-1" eventType="touchUpInside" id="G1g-eH-UL7"/>
+                                    </connections>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More friends, more fun!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="p7T-ZI-YCD">
+                                    <rect key="frame" x="-20" y="44" width="280" height="40"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="ProximaNovaSoft-Bold" family="Proxima Nova Soft" pointSize="22"/>
+                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="NVT-VJ-Vip">
+                                    <rect key="frame" x="-20" y="37" width="280" height="55"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="15"/>
+                                    <state key="normal" title="Invite via SMS">
+                                        <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="SMSButton:" destination="-1" eventType="touchUpInside" id="d4q-06-ck9"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="0.91372549020000005" green="0.92941176469999998" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
+                        </scrollView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <button opaque="NO" alpha="0.89999999999999991" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="WMR-ci-2ar">
+                    <rect key="frame" x="0.0" y="-1" width="320" height="570"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Settingsbar2.png" id="jqz-l2-2nE">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackButton2.png" id="4a4-NV-VJX">
+                    <rect key="frame" x="13" y="33" width="20" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="40R-oL-43e">
+                    <rect key="frame" x="0.0" y="64" width="105" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="fb_deselect.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="TabButton_1:" destination="-1" eventType="touchUpInside" id="qgy-Ab-BtQ"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="bYV-Fk-PVN">
+                    <rect key="frame" x="108" y="64" width="105" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="ig_unselect.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="TabButton_2:" destination="-1" eventType="touchUpInside" id="JyB-qw-uxz"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Tiu-8i-ifw">
+                    <rect key="frame" x="215" y="64" width="105" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="msg_selected.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="TabButton_3:" destination="-1" eventType="touchUpInside" id="xiy-JU-H4z"/>
+                    </connections>
+                </button>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" id="jeK-Lt-NI6">
+                    <rect key="frame" x="141" y="266" width="37" height="37"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="color" red="0.20000000000000001" green="0.70980392160000005" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </activityIndicatorView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eIs-5V-irU">
+                    <rect key="frame" x="0.0" y="0.0" width="53" height="64"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="BackButton:" destination="-1" eventType="touchUpInside" id="Ozw-a1-gCb"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Find Friends" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="j4w-oH-VNy">
+                    <rect key="frame" x="15" y="20" width="290" height="44"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="ProximaNovaSoft-Bold" family="Proxima Nova Soft" pointSize="20"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <point key="canvasLocation" x="563" y="289"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="BackButton2.png" width="38" height="39"/>
+        <image name="InviteButton.png" width="326" height="55"/>
+        <image name="Settingsbar2.png" width="640" height="128"/>
+        <image name="fb_deselect.png" width="24" height="24"/>
+        <image name="ig_unselect.png" width="24" height="24"/>
+        <image name="msg_selected.png" width="24" height="24"/>
+    </resources>
+</document>

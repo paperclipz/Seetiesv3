@@ -37,6 +37,7 @@
     
     MainScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight - 104);
     MainScroll.alwaysBounceVertical = YES;
+    MainScroll.backgroundColor = [UIColor whiteColor];
     TitleLabel.text = @"Activity";
     ShowNoDataView.hidden = YES;
     ShowNoDataView.frame = CGRectMake(0, 0, screenWidth, screenHeight);
@@ -303,7 +304,7 @@
     [MainScroll addSubview:refreshControl];
     
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    MainScroll.backgroundColor = [UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0];
+    //MainScroll.backgroundColor = [UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0];
     
     GetHeight += 20;
     
@@ -318,8 +319,15 @@
     [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
     [MainScroll addSubview:ProfileControl];
     
-    
     GetHeight += 49;
+    
+    UIButton *Line01 = [[UIButton alloc]init];
+    Line01.frame = CGRectMake(0, GetHeight, screenWidth, 1);
+    [Line01 setTitle:@"" forState:UIControlStateNormal];
+    [Line01 setBackgroundColor:[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f]];
+    [MainScroll addSubview:Line01];
+
+    GetHeight += 1;
     
     FollowingView = [[UIView alloc]init];
     FollowingView.frame = CGRectMake(0, GetHeight, screenWidth, 400);
@@ -374,7 +382,7 @@
         [FollowingView addSubview:Line01];
         
         AsyncImageView *ShowUserImage = [[AsyncImageView alloc]init];
-        ShowUserImage.frame = CGRectMake(5, 9 + i * 80, 40 , 40);
+        ShowUserImage.frame = CGRectMake(13, 9 + i * 80, 40 , 40);
         ShowUserImage.contentMode = UIViewContentModeScaleAspectFill;
         ShowUserImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
         ShowUserImage.layer.cornerRadius=20;
@@ -384,7 +392,7 @@
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserImage];
         
         AsyncImageView *ShowPostImage = [[AsyncImageView alloc]init];
-        ShowPostImage.frame = CGRectMake(screenWidth - 15 - 40, 9 + i * 80, 40 , 40);
+        ShowPostImage.frame = CGRectMake(screenWidth - 13 - 40, 9 + i * 80, 40 , 40);
         ShowPostImage.contentMode = UIViewContentModeScaleAspectFill;
         ShowPostImage.backgroundColor = [UIColor clearColor];
         ShowPostImage.clipsToBounds = YES;
@@ -396,45 +404,45 @@
         [ButtonClick setFrame:CGRectMake(0, 0 + i * 80, screenWidth, 80)];
         [ButtonClick setBackgroundColor:[UIColor clearColor]];
         ButtonClick.tag = i;
-        [ButtonClick addTarget:self action:@selector(ClickButton:) forControlEvents:UIControlEventTouchUpInside];
+        //[ButtonClick addTarget:self action:@selector(ClickButton:) forControlEvents:UIControlEventTouchUpInside];
         
         UIImageView *MiniIcon = [[UIImageView alloc]init];
-        MiniIcon.frame = CGRectMake(60, 53 + i * 80, 15, 14);
+        MiniIcon.frame = CGRectMake(66, 50 + i * 80, 23, 28);
        // MiniIcon.contentMode = UIViewContentModeScaleAspectFit;
-        MiniIcon.image = [UIImage imageNamed:@"Mini_collection_icon.png"];
+        MiniIcon.image = [UIImage imageNamed:@"NotificationCollect.png"];
         
         NSString *GetType = [[NSString alloc]initWithFormat:@"%@",[Following_TypeArray objectAtIndex:i]];
         if ([GetType isEqualToString:@"follow"]) {
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[Following_UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
-                ShowUserImage.image = [UIImage imageNamed:@"avatar.png"];
+                ShowUserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
                 ShowUserImage.imageURL = url_UserImage;
             }
-            MiniIcon.frame = CGRectMake(60, 53 + i * 80, 11, 14);
-            MiniIcon.image = [UIImage imageNamed:@"Mini_people_icon.png"];
+            MiniIcon.frame = CGRectMake(66, 50 + i * 80, 23, 28);
+            MiniIcon.image = [UIImage imageNamed:@"NotificationFollow.png"];
         }else if ([GetType isEqualToString:@"like"]){
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[Following_UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
-                ShowUserImage.image = [UIImage imageNamed:@"avatar.png"];
+                ShowUserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
                 ShowUserImage.imageURL = url_UserImage;
             }
             NSString *FullImagesURL2 = [[NSString alloc]initWithFormat:@"%@",[Following_PostThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL2 length] == 0 || [FullImagesURL2 isEqualToString:@"Null"]) {
-                ShowPostImage.image = [UIImage imageNamed:@"avatar.png"];
+                ShowPostImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL2];
                 ShowPostImage.imageURL = url_UserImage;
             }
-            MiniIcon.frame = CGRectMake(60, 54 + i * 80, 15, 12);
-            MiniIcon.image = [UIImage imageNamed:@"Mini_like_icon.png"];
+            MiniIcon.frame = CGRectMake(66, 50 + i * 80, 23, 28);
+            MiniIcon.image = [UIImage imageNamed:@"NotificationLike.png"];
         }else if ([GetType isEqualToString:@"mention"]){
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[Following_UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
-                ShowUserImage.image = [UIImage imageNamed:@"avatar.png"];
+                ShowUserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
                 ShowUserImage.imageURL = url_UserImage;
@@ -442,17 +450,17 @@
             
             NSString *FullImagesURL2 = [[NSString alloc]initWithFormat:@"%@",[Following_PostThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL2 length] == 0 || [FullImagesURL2 isEqualToString:@"Null"]) {
-                ShowPostImage.image = [UIImage imageNamed:@"avatar.png"];
+                ShowPostImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL2];
                 ShowPostImage.imageURL = url_UserImage;
             }
-            MiniIcon.frame = CGRectMake(60, 54 + i * 80, 15, 12);
-            MiniIcon.image = [UIImage imageNamed:@"Mini_comment_icon.png"];
+            MiniIcon.frame = CGRectMake(66, 50 + i * 80, 23, 28);
+            MiniIcon.image = [UIImage imageNamed:@"NoticationComment.png"];
         }else if ([GetType isEqualToString:@"comment"]){
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[Following_UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
-                ShowUserImage.image = [UIImage imageNamed:@"avatar.png"];
+                ShowUserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
                 ShowUserImage.imageURL = url_UserImage;
@@ -460,13 +468,13 @@
             
             NSString *FullImagesURL2 = [[NSString alloc]initWithFormat:@"%@",[Following_PostThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL2 length] == 0 || [FullImagesURL2 isEqualToString:@"Null"]) {
-                ShowPostImage.image = [UIImage imageNamed:@"avatar.png"];
+                ShowPostImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL2];
                 ShowPostImage.imageURL = url_UserImage;
             }
-            MiniIcon.frame = CGRectMake(60, 55 + i * 80, 14, 11);
-            MiniIcon.image = [UIImage imageNamed:@"Mini_comment_icon.png"];
+            MiniIcon.frame = CGRectMake(66, 50 + i * 80, 23, 28);
+            MiniIcon.image = [UIImage imageNamed:@"NoticationComment.png"];
         }else{ // handle new type
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[Following_UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
@@ -475,14 +483,14 @@
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
                 ShowUserImage.imageURL = url_UserImage;
             }
-            MiniIcon.frame = CGRectMake(60, 53 + i * 80, 12, 15);
-            MiniIcon.image = [UIImage imageNamed:@"Mini_seeties_icon.png"];
+            MiniIcon.frame = CGRectMake(66, 50 + i * 80, 23, 28);
+            MiniIcon.image = [UIImage imageNamed:@"NotificationBySeeties.png"];
         }
         
         
         
         UILabel *ShowMessage = [[UILabel alloc]init];
-        ShowMessage.frame = CGRectMake(60, 9 + i * 80, screenWidth - 130, 40);
+        ShowMessage.frame = CGRectMake(66, 9 + i * 80, screenWidth - 132, 40);
         ShowMessage.numberOfLines = 5;
         ShowMessage.textAlignment = NSTextAlignmentLeft;
         ShowMessage.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
@@ -524,9 +532,9 @@
         }
         
         UILabel *ShowDate = [[UILabel alloc]init];
-        ShowDate.frame = CGRectMake(80, 50 + i * 80, screenWidth - 130, 20);
+        ShowDate.frame = CGRectMake(95, 50 + i * 80, screenWidth - 130, 28);
         ShowDate.text = TempShowDate;
-        ShowDate.textColor = [UIColor blackColor];
+        ShowDate.textColor = [UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0f];
         ShowDate.backgroundColor = [UIColor clearColor];
         ShowDate.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:12];
         
@@ -564,7 +572,7 @@
         [NotificationsView addSubview:Line01];
     
         AsyncImageView *ShowUserImage = [[AsyncImageView alloc]init];
-        ShowUserImage.frame = CGRectMake(5, 9 + i * 80, 40 , 40);
+        ShowUserImage.frame = CGRectMake(13, 9 + i * 80, 40 , 40);
         ShowUserImage.contentMode = UIViewContentModeScaleAspectFill;
         ShowUserImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
         ShowUserImage.layer.cornerRadius=20;
@@ -574,7 +582,7 @@
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserImage];
     
         AsyncImageView *ShowPostImage = [[AsyncImageView alloc]init];
-        ShowPostImage.frame = CGRectMake(screenWidth - 15 - 40, 9 + i * 80, 40 , 40);
+        ShowPostImage.frame = CGRectMake(screenWidth - 13 - 40, 9 + i * 80, 40 , 40);
         ShowPostImage.contentMode = UIViewContentModeScaleAspectFill;
         ShowPostImage.backgroundColor = [UIColor clearColor];
         ShowPostImage.clipsToBounds = YES;
@@ -589,9 +597,9 @@
         [ButtonClick addTarget:self action:@selector(ClickButton:) forControlEvents:UIControlEventTouchUpInside];
     
         UIImageView *MiniIcon = [[UIImageView alloc]init];
-        MiniIcon.frame = CGRectMake(60, 53 + i * 80, 15, 14);
+        MiniIcon.frame = CGRectMake(66, 50 + i * 80, 23, 28);
         // MiniIcon.contentMode = UIViewContentModeScaleAspectFit;
-        MiniIcon.image = [UIImage imageNamed:@"Mini_collection_icon.png"];
+        MiniIcon.image = [UIImage imageNamed:@"NotificationCollect.png"];
         
         
         
@@ -600,34 +608,34 @@
         if ([GetType isEqualToString:@"follow"]) {
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
-                ShowUserImage.image = [UIImage imageNamed:@"avatar.png"];
+                ShowUserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
                 ShowUserImage.imageURL = url_UserImage;
             }
-            MiniIcon.frame = CGRectMake(60, 53 + i * 80, 11, 14);
-            MiniIcon.image = [UIImage imageNamed:@"Mini_people_icon.png"];
+            MiniIcon.frame = CGRectMake(66, 50 + i * 80, 23, 28);
+            MiniIcon.image = [UIImage imageNamed:@"NotificationFollow.png"];
         }else if ([GetType isEqualToString:@"like"]){
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
-                ShowUserImage.image = [UIImage imageNamed:@"avatar.png"];
+                ShowUserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
                 ShowUserImage.imageURL = url_UserImage;
             }
             NSString *FullImagesURL2 = [[NSString alloc]initWithFormat:@"%@",[PostThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL2 length] == 0 || [FullImagesURL2 isEqualToString:@"Null"]) {
-                ShowPostImage.image = [UIImage imageNamed:@"avatar.png"];
+                ShowPostImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL2];
                 ShowPostImage.imageURL = url_UserImage;
             }
-            MiniIcon.frame = CGRectMake(60, 54 + i * 80, 15, 12);
-            MiniIcon.image = [UIImage imageNamed:@"Mini_like_icon.png"];
+            MiniIcon.frame = CGRectMake(66, 50 + i * 80, 23, 28);
+            MiniIcon.image = [UIImage imageNamed:@"NotificationLike.png"];
         }else if ([GetType isEqualToString:@"mention"]){
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
-                ShowUserImage.image = [UIImage imageNamed:@"avatar.png"];
+                ShowUserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
                 ShowUserImage.imageURL = url_UserImage;
@@ -635,17 +643,17 @@
             
             NSString *FullImagesURL2 = [[NSString alloc]initWithFormat:@"%@",[PostThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL2 length] == 0 || [FullImagesURL2 isEqualToString:@"Null"]) {
-                ShowPostImage.image = [UIImage imageNamed:@"avatar.png"];
+                ShowPostImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL2];
                 ShowPostImage.imageURL = url_UserImage;
             }
-            MiniIcon.frame = CGRectMake(60, 54 + i * 80, 15, 12);
-            MiniIcon.image = [UIImage imageNamed:@"Mini_comment_icon.png"];
+            MiniIcon.frame = CGRectMake(66, 50 + i * 80, 23, 28);
+            MiniIcon.image = [UIImage imageNamed:@"NotificationComment.png"];
         }else if ([GetType isEqualToString:@"comment"]){
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
-                ShowUserImage.image = [UIImage imageNamed:@"avatar.png"];
+                ShowUserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
                 ShowUserImage.imageURL = url_UserImage;
@@ -653,13 +661,13 @@
             
             NSString *FullImagesURL2 = [[NSString alloc]initWithFormat:@"%@",[PostThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL2 length] == 0 || [FullImagesURL2 isEqualToString:@"Null"]) {
-                ShowPostImage.image = [UIImage imageNamed:@"avatar.png"];
+                ShowPostImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL2];
                 ShowPostImage.imageURL = url_UserImage;
             }
-            MiniIcon.frame = CGRectMake(60, 55 + i * 80, 14, 11);
-            MiniIcon.image = [UIImage imageNamed:@"Mini_comment_icon.png"];
+            MiniIcon.frame = CGRectMake(66, 50 + i * 80, 23, 28);
+            MiniIcon.image = [UIImage imageNamed:@"NotificationComment.png"];
         }else{ // handle new type
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
@@ -668,14 +676,14 @@
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
                 ShowUserImage.imageURL = url_UserImage;
             }
-            MiniIcon.frame = CGRectMake(60, 53 + i * 80, 12, 15);
-            MiniIcon.image = [UIImage imageNamed:@"Mini_seeties_icon.png"];
+            MiniIcon.frame = CGRectMake(66, 50 + i * 80, 23, 28);
+            MiniIcon.image = [UIImage imageNamed:@"NotificationBySeeties.png"];
         }
     
     
     
         UILabel *ShowMessage = [[UILabel alloc]init];
-        ShowMessage.frame = CGRectMake(60, 9 + i * 80, screenWidth - 130, 40);
+        ShowMessage.frame = CGRectMake(66, 9 + i * 80, screenWidth - 132, 40);
         ShowMessage.numberOfLines = 5;
         ShowMessage.textAlignment = NSTextAlignmentLeft;
         ShowMessage.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
@@ -726,9 +734,9 @@
         }
         
         UILabel *ShowDate = [[UILabel alloc]init];
-        ShowDate.frame = CGRectMake(80, 50 + i * 80, screenWidth - 130, 20);
+        ShowDate.frame = CGRectMake(95, 50 + i * 80, screenWidth - 130, 28);
         ShowDate.text = TempShowDate;
-        ShowDate.textColor = [UIColor blackColor];
+        ShowDate.textColor = [UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0f];
         ShowDate.backgroundColor = [UIColor clearColor];
         ShowDate.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:12];
     

@@ -112,7 +112,7 @@
     InstagramButton.frame = CGRectMake((screenWidth/2) + 5, screenHeight - 138, 150, 50);
     SignUpWithEmailButton.frame = CGRectMake((screenWidth/2) - 155, screenHeight - 85, 125, 34);
     MainText.frame = CGRectMake(30, 150, screenWidth - 60, 40);
-    MainLogo.frame = CGRectMake((screenWidth/2) - 104, 70, 208, 82);
+    MainLogo.frame = CGRectMake((screenWidth/2) - 112, 70, 225, 105);
     ShowBackgroundImage.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     
@@ -493,25 +493,25 @@
 -(NSArray*)arrTabImages
 {
     NSMutableDictionary *imgDic = [NSMutableDictionary dictionaryWithCapacity:3];
-    [imgDic setObject:[UIImage imageNamed:@"TabBarFeed.png"] forKey:@"Default"];
-    [imgDic setObject:[UIImage imageNamed:@"TabBarFeed_on.png"] forKey:@"Highlighted"];
-    [imgDic setObject:[UIImage imageNamed:@"TabBarFeed_on.png"] forKey:@"Seleted"];
+    [imgDic setObject:[UIImage imageNamed:@"FeedIcon.png"] forKey:@"Default"];
+    [imgDic setObject:[UIImage imageNamed:@"FeedIconActive.png"] forKey:@"Highlighted"];
+    [imgDic setObject:[UIImage imageNamed:@"FeedIconActive.png"] forKey:@"Seleted"];
     NSMutableDictionary *imgDic2 = [NSMutableDictionary dictionaryWithCapacity:3];
-    [imgDic2 setObject:[UIImage imageNamed:@"TabBarExplore.png"] forKey:@"Default"];
-    [imgDic2 setObject:[UIImage imageNamed:@"TabBarExplore_on.png"] forKey:@"Highlighted"];
-    [imgDic2 setObject:[UIImage imageNamed:@"TabBarExplore_on.png"] forKey:@"Seleted"];
+    [imgDic2 setObject:[UIImage imageNamed:@"ExploreIcon.png"] forKey:@"Default"];
+    [imgDic2 setObject:[UIImage imageNamed:@"ExploreIconActive.png"] forKey:@"Highlighted"];
+    [imgDic2 setObject:[UIImage imageNamed:@"ExploreIconActive.png"] forKey:@"Seleted"];
     NSMutableDictionary *imgDic3 = [NSMutableDictionary dictionaryWithCapacity:3];
-    [imgDic3 setObject:[UIImage imageNamed:@"TabBarNew.png"] forKey:@"Default"];
-    [imgDic3 setObject:[UIImage imageNamed:@"TabBarNewClose.png"] forKey:@"Highlighted"];
-    [imgDic3 setObject:[UIImage imageNamed:@"TabBarNewClose.png"] forKey:@"Seleted"];
+    [imgDic3 setObject:[UIImage imageNamed:@"RecommendBtn.png"] forKey:@"Default"];
+    [imgDic3 setObject:[UIImage imageNamed:@"CloseBtn.png"] forKey:@"Highlighted"];
+    [imgDic3 setObject:[UIImage imageNamed:@"CloseBtn.png"] forKey:@"Seleted"];
     NSMutableDictionary *imgDic4 = [NSMutableDictionary dictionaryWithCapacity:3];
-    [imgDic4 setObject:[UIImage imageNamed:@"TabBarActivity.png"] forKey:@"Default"];
-    [imgDic4 setObject:[UIImage imageNamed:@"TabBarActivity_on.png"] forKey:@"Highlighted"];
-    [imgDic4 setObject:[UIImage imageNamed:@"TabBarActivity_on.png"] forKey:@"Seleted"];
+    [imgDic4 setObject:[UIImage imageNamed:@"NotificationIcon.png"] forKey:@"Default"];
+    [imgDic4 setObject:[UIImage imageNamed:@"NotificationIconActive.png"] forKey:@"Highlighted"];
+    [imgDic4 setObject:[UIImage imageNamed:@"NotificationIconActive.png"] forKey:@"Seleted"];
     NSMutableDictionary *imgDic5 = [NSMutableDictionary dictionaryWithCapacity:3];
-    [imgDic5 setObject:[UIImage imageNamed:@"TabBarProfile.png"] forKey:@"Default"];
-    [imgDic5 setObject:[UIImage imageNamed:@"TabBarProfile_on.png"] forKey:@"Highlighted"];
-    [imgDic5 setObject:[UIImage imageNamed:@"TabBarProfile_on.png"] forKey:@"Seleted"];
+    [imgDic5 setObject:[UIImage imageNamed:@"ProfileIcon.png"] forKey:@"Default"];
+    [imgDic5 setObject:[UIImage imageNamed:@"ProfileIconActive.png"] forKey:@"Highlighted"];
+    [imgDic5 setObject:[UIImage imageNamed:@"ProfileIconActive.png"] forKey:@"Seleted"];
     
     NSArray *imgArr = [NSArray arrayWithObjects:imgDic,imgDic2,imgDic3,imgDic4,imgDic5,nil];
 
@@ -1247,6 +1247,7 @@
         [defaults setObject:Category_NameArray_FN forKey:@"Category_All_Name_Fn"];
         [defaults setObject:Category_NameArray_TH forKey:@"Category_All_Name_Th"];
         [defaults synchronize];
+        
         
         [ShowActivity stopAnimating];
     }

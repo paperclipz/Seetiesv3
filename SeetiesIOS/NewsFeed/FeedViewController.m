@@ -50,7 +50,7 @@
     
     ShowFeedText.frame = CGRectMake(15, 20, screenWidth - 30, 44);
     BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
-    SearchButton.frame = CGRectMake(screenWidth - 34 - 15, 20, 34, 41);
+    SearchButton.frame = CGRectMake(screenWidth - 40, 20, 40, 44);
     
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     
@@ -291,6 +291,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+   // NSLog(@"FeedViewController viewWillAppear");
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *CheckSelfDelete = [defaults objectForKey:@"SelfDeletePost"];
     if ([CheckSelfDelete isEqualToString:@"YES"]) {
@@ -391,6 +393,15 @@
     TempBackground.frame = CGRectMake(0, 0, screenWidth, 120);
     TempBackground.backgroundColor = [UIColor grayColor];
     [LocalScroll addSubview:TempBackground];
+    
+    UIImageView *NearbyImg = [[UIImageView alloc]init];
+    NearbyImg.image = [UIImage imageNamed:@"Nearbyimage.png"];
+    NearbyImg.frame = CGRectMake(0, 0, screenWidth, 120);
+    NearbyImg.contentMode = UIViewContentModeScaleAspectFill;
+    NearbyImg.layer.masksToBounds = YES;
+    [LocalScroll addSubview:NearbyImg];
+    
+    
     
     UIButton *TempButton = [[UIButton alloc]init];
     TempButton.frame = CGRectMake((screenWidth / 2) - 60, 41, 120, 37);
@@ -577,8 +588,8 @@
             
             
             UIImageView *ShowPin = [[UIImageView alloc]init];
-            ShowPin.image = [UIImage imageNamed:@"location_icon.png"];
-            ShowPin.frame = CGRectMake(25, heightcheck + 2, 9, 12);
+            ShowPin.image = [UIImage imageNamed:@"LocationpinIcon.png"];
+            ShowPin.frame = CGRectMake(20, heightcheck, 18, 18);
             //ShowPin.frame = CGRectMake(15, 210 + 8 + heightcheck + i, 8, 11);
             [LocalScroll addSubview:ShowPin];
             
@@ -646,14 +657,14 @@
 //            [LocalScroll addSubview:ShowLikesIcon];
             
             UIButton *LikeButton = [[UIButton alloc]init];
-            LikeButton.frame = CGRectMake(25, heightcheck + 10, 24, 19);
+            LikeButton.frame = CGRectMake(25, heightcheck + 4, 37, 37);
             CheckLike = [[NSString alloc]initWithFormat:@"%@",[arrlike objectAtIndex:i]];
             if ([CheckLike isEqualToString:@"0"]) {
-                [LikeButton setImage:[UIImage imageNamed:@"like_icon.png"] forState:UIControlStateNormal];
-                [LikeButton setImage:[UIImage imageNamed:@"PostLikeRed.png"] forState:UIControlStateSelected];
+                [LikeButton setImage:[UIImage imageNamed:@"LikeIcon.png"] forState:UIControlStateNormal];
+                [LikeButton setImage:[UIImage imageNamed:@"LikedIcon.png"] forState:UIControlStateSelected];
             }else{
-                [LikeButton setImage:[UIImage imageNamed:@"PostLikeRed.png"] forState:UIControlStateNormal];
-                [LikeButton setImage:[UIImage imageNamed:@"like_icon.png"] forState:UIControlStateSelected];
+                [LikeButton setImage:[UIImage imageNamed:@"LikedIcon.png"] forState:UIControlStateNormal];
+                [LikeButton setImage:[UIImage imageNamed:@"LikeIcon.png"] forState:UIControlStateSelected];
             }
             LikeButton.backgroundColor = [UIColor clearColor];
             LikeButton.tag = i;
@@ -662,8 +673,8 @@
             
             
             UIButton *CommentButton = [[UIButton alloc]init];
-            CommentButton.frame = CGRectMake(75, heightcheck + 10 ,23, 19);
-            [CommentButton setImage:[UIImage imageNamed:@"comment_icon.png"] forState:UIControlStateNormal];
+            CommentButton.frame = CGRectMake(75, heightcheck + 4 ,37, 37);
+            [CommentButton setImage:[UIImage imageNamed:@"CommentIcon.png"] forState:UIControlStateNormal];
             CommentButton.backgroundColor = [UIColor clearColor];
             CommentButton.tag = i;
             [CommentButton addTarget:self action:@selector(CommentButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -676,8 +687,8 @@
 //            [LocalScroll addSubview:ShowShareIcon];
             
             UIButton *ShareButton = [[UIButton alloc]init];
-            ShareButton.frame = CGRectMake(127, heightcheck + 10 ,19, 19);
-            [ShareButton setImage:[UIImage imageNamed:@"share_icon.png"] forState:UIControlStateNormal];
+            ShareButton.frame = CGRectMake(127, heightcheck + 4 ,37, 37);
+            [ShareButton setImage:[UIImage imageNamed:@"ShareToIcon.png"] forState:UIControlStateNormal];
             ShareButton.backgroundColor = [UIColor clearColor];
             ShareButton.tag = i;
             [ShareButton addTarget:self action:@selector(ShareButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -749,6 +760,20 @@
     TempBackground.frame = CGRectMake(0, 0, screenWidth, 120);
     TempBackground.backgroundColor = [UIColor grayColor];
     [MainScroll addSubview:TempBackground];
+    
+    UIImageView *NearbyImg = [[UIImageView alloc]init];
+    NearbyImg.image = [UIImage imageNamed:@"Nearbyimage.png"];
+    NearbyImg.frame = CGRectMake(0, 0, screenWidth, 120);
+    NearbyImg.contentMode = UIViewContentModeScaleAspectFill;
+    NearbyImg.layer.masksToBounds = YES;
+    [MainScroll addSubview:NearbyImg];
+    
+    UIButton *Line01 = [[UIButton alloc]init];
+    Line01.frame = CGRectMake(0, 120, screenWidth, 1);
+    [Line01 setTitle:@"" forState:UIControlStateNormal];
+    [Line01 setBackgroundColor:[UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0f]];
+    [MainScroll addSubview:Line01];
+    
 
     UIButton *TempButton = [[UIButton alloc]init];
     TempButton.frame = CGRectMake((screenWidth / 2) - 60, 41, 120, 37);
@@ -857,7 +882,7 @@
                 [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
                 NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[arrUserImage objectAtIndex:i]];
                 if ([FullImagesURL length] == 0) {
-                    ShowUserProfileImage.image = [UIImage imageNamed:@"avatar.png"];
+                    ShowUserProfileImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
                 }else{
                     NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL];
                     ShowUserProfileImage.imageURL = url_NearbySmall;
@@ -952,8 +977,8 @@
                 }
                 
                 UIImageView *ShowPin = [[UIImageView alloc]init];
-                ShowPin.image = [UIImage imageNamed:@"location_icon.png"];
-                ShowPin.frame = CGRectMake(25, heightcheck + 2, 9, 12);
+                ShowPin.image = [UIImage imageNamed:@"LocationpinIcon.png"];
+                ShowPin.frame = CGRectMake(20, heightcheck, 18, 18);
                 //ShowPin.frame = CGRectMake(15, 210 + 8 + heightcheck + i, 8, 11);
                 [MainScroll addSubview:ShowPin];
                 
@@ -1015,14 +1040,14 @@
                 
                 
                 UIButton *LikeButton = [[UIButton alloc]init];
-                LikeButton.frame = CGRectMake(25, heightcheck + 10, 24, 19);
+                LikeButton.frame = CGRectMake(25, heightcheck + 4, 37, 37);
                 CheckLike = [[NSString alloc]initWithFormat:@"%@",[arrlike objectAtIndex:i]];
                 if ([CheckLike isEqualToString:@"0"]) {
-                    [LikeButton setImage:[UIImage imageNamed:@"like_icon.png"] forState:UIControlStateNormal];
-                    [LikeButton setImage:[UIImage imageNamed:@"PostLikeRed.png"] forState:UIControlStateSelected];
+                    [LikeButton setImage:[UIImage imageNamed:@"LikeIcon.png"] forState:UIControlStateNormal];
+                    [LikeButton setImage:[UIImage imageNamed:@"LikedIcon.png"] forState:UIControlStateSelected];
                 }else{
-                    [LikeButton setImage:[UIImage imageNamed:@"PostLikeRed.png"] forState:UIControlStateNormal];
-                    [LikeButton setImage:[UIImage imageNamed:@"like_icon.png"] forState:UIControlStateSelected];
+                    [LikeButton setImage:[UIImage imageNamed:@"LikedIcon.png"] forState:UIControlStateNormal];
+                    [LikeButton setImage:[UIImage imageNamed:@"LikeIcon.png"] forState:UIControlStateSelected];
                 }
                 LikeButton.backgroundColor = [UIColor clearColor];
                 LikeButton.tag = i;
@@ -1031,16 +1056,16 @@
                 
                 
                 UIButton *CommentButton = [[UIButton alloc]init];
-                CommentButton.frame = CGRectMake(75, heightcheck + 10 ,23, 19);
-                [CommentButton setImage:[UIImage imageNamed:@"comment_icon.png"] forState:UIControlStateNormal];
+                CommentButton.frame = CGRectMake(75, heightcheck + 4 ,37, 37);
+                [CommentButton setImage:[UIImage imageNamed:@"CommentIcon.png"] forState:UIControlStateNormal];
                 CommentButton.backgroundColor = [UIColor clearColor];
                 CommentButton.tag = i;
                 [CommentButton addTarget:self action:@selector(CommentButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
                 [MainScroll addSubview:CommentButton];
                 
                 UIButton *ShareButton = [[UIButton alloc]init];
-                ShareButton.frame = CGRectMake(127, heightcheck + 10 ,19, 19);
-                [ShareButton setImage:[UIImage imageNamed:@"share_icon.png"] forState:UIControlStateNormal];
+                ShareButton.frame = CGRectMake(127, heightcheck + 4 ,37, 37);
+                [ShareButton setImage:[UIImage imageNamed:@"ShareToIcon.png"] forState:UIControlStateNormal];
                 ShareButton.backgroundColor = [UIColor clearColor];
                 ShareButton.tag = i;
                 [ShareButton addTarget:self action:@selector(ShareButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -1142,7 +1167,7 @@
                 [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImageLocalQR];
                 NSString *FullImagesURLLocalQR = [[NSString alloc]initWithFormat:@"%@",[arrUserImage objectAtIndex:i]];
                 if ([FullImagesURLLocalQR length] == 0) {
-                    ShowUserProfileImageLocalQR.image = [UIImage imageNamed:@"avatar.png"];
+                    ShowUserProfileImageLocalQR.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
                 }else{
                     NSURL *url_NearbySmallLocalQR = [NSURL URLWithString:FullImagesURLLocalQR];
                     ShowUserProfileImageLocalQR.imageURL = url_NearbySmallLocalQR;
@@ -1239,8 +1264,8 @@
                 }
                 
                 UIImageView *ShowPinLocalQR = [[UIImageView alloc]init];
-                ShowPinLocalQR.image = [UIImage imageNamed:@"location_icon.png"];
-                ShowPinLocalQR.frame = CGRectMake(25, heightcheck + 2, 9, 12);
+                ShowPinLocalQR.image = [UIImage imageNamed:@"LocationpinIcon.png"];
+                ShowPinLocalQR.frame = CGRectMake(20, heightcheck, 18, 18);
                 //ShowPin.frame = CGRectMake(15, 210 + 8 + heightcheck + i, 8, 11);
                 [MainScroll addSubview:ShowPinLocalQR];
                 
@@ -1302,14 +1327,14 @@
                 
                 
                 UIButton *LikeButtonLocalQR = [[UIButton alloc]init];
-                LikeButtonLocalQR.frame = CGRectMake(25, heightcheck + 10, 24, 19);
+                LikeButtonLocalQR.frame = CGRectMake(25, heightcheck + 4, 37, 37);
                 CheckLike = [[NSString alloc]initWithFormat:@"%@",[arrlike objectAtIndex:i]];
                 if ([CheckLike isEqualToString:@"0"]) {
-                    [LikeButtonLocalQR setImage:[UIImage imageNamed:@"like_icon.png"] forState:UIControlStateNormal];
-                    [LikeButtonLocalQR setImage:[UIImage imageNamed:@"PostLikeRed.png"] forState:UIControlStateSelected];
+                    [LikeButtonLocalQR setImage:[UIImage imageNamed:@"LikeIcon.png"] forState:UIControlStateNormal];
+                    [LikeButtonLocalQR setImage:[UIImage imageNamed:@"LikedIcon.png"] forState:UIControlStateSelected];
                 }else{
-                    [LikeButtonLocalQR setImage:[UIImage imageNamed:@"PostLikeRed.png"] forState:UIControlStateNormal];
-                    [LikeButtonLocalQR setImage:[UIImage imageNamed:@"like_icon.png"] forState:UIControlStateSelected];
+                    [LikeButtonLocalQR setImage:[UIImage imageNamed:@"LikedIcon.png"] forState:UIControlStateNormal];
+                    [LikeButtonLocalQR setImage:[UIImage imageNamed:@"LikeIcon.png"] forState:UIControlStateSelected];
                 }
                 LikeButtonLocalQR.backgroundColor = [UIColor clearColor];
                 LikeButtonLocalQR.tag = i;
@@ -1323,16 +1348,16 @@
 //                //    ShowCommentIcon.backgroundColor = [UIColor redColor];
 //                [MainScroll addSubview:ShowCommentIconLocalQR];
                 UIButton *CommentButton = [[UIButton alloc]init];
-                CommentButton.frame = CGRectMake(75, heightcheck + 10 ,23, 19);
-                [CommentButton setImage:[UIImage imageNamed:@"comment_icon.png"] forState:UIControlStateNormal];
+                CommentButton.frame = CGRectMake(75, heightcheck + 4 ,37, 37);
+                [CommentButton setImage:[UIImage imageNamed:@"CommentIcon.png"] forState:UIControlStateNormal];
                 CommentButton.backgroundColor = [UIColor clearColor];
                 CommentButton.tag = i;
                 [CommentButton addTarget:self action:@selector(CommentButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
                 [MainScroll addSubview:CommentButton];
                 
                 UIButton *ShareButton = [[UIButton alloc]init];
-                ShareButton.frame = CGRectMake(127, heightcheck + 10 ,19, 19);
-                [ShareButton setImage:[UIImage imageNamed:@"share_icon.png"] forState:UIControlStateNormal];
+                ShareButton.frame = CGRectMake(127, heightcheck + 4 ,37, 37);
+                [ShareButton setImage:[UIImage imageNamed:@"ShareToIcon.png"] forState:UIControlStateNormal];
                 ShareButton.backgroundColor = [UIColor clearColor];
                 ShareButton.tag = i;
                 [ShareButton addTarget:self action:@selector(ShareButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -1498,7 +1523,7 @@
                     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
                     NSString *ImageData1 = [[NSString alloc]initWithFormat:@"%@",[SplitArray_UserImage objectAtIndex:i]];
                     if ([ImageData1 length] == 0) {
-                        ShowUserProfileImage.image = [UIImage imageNamed:@"avatar.png"];
+                        ShowUserProfileImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
                     }else{
                         NSURL *url_NearbySmall = [NSURL URLWithString:ImageData1];
                         ShowUserProfileImage.imageURL = url_NearbySmall;
@@ -1530,8 +1555,8 @@
                     
                     
                     UIImageView *ShowPinLocalQR = [[UIImageView alloc]init];
-                    ShowPinLocalQR.image = [UIImage imageNamed:@"location_icon.png"];
-                    ShowPinLocalQR.frame = CGRectMake(20 + i * screenWidth, 51 + 198 + 10 + 4, 9, 12);
+                    ShowPinLocalQR.image = [UIImage imageNamed:@"LocationpinIcon.png"];
+                    ShowPinLocalQR.frame = CGRectMake(20 + i * screenWidth, 51 + 198 + 10, 18, 18);
                     //ShowPin.frame = CGRectMake(15, 210 + 8 + heightcheck + i, 8, 11);
                     [SuggestedScrollview addSubview:ShowPinLocalQR];
                     
@@ -1799,7 +1824,7 @@
                     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
                     NSString *ImageData = [[NSString alloc]initWithFormat:@"%@",[SplitArray_ProfileImg objectAtIndex:i]];
                     if ([ImageData length] == 0) {
-                        ShowUserProfileImage.image = [UIImage imageNamed:@"avatar.png"];
+                        ShowUserProfileImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
                     }else{
                         NSURL *url_NearbySmall = [NSURL URLWithString:ImageData];
                         ShowUserProfileImage.imageURL = url_NearbySmall;
@@ -1967,7 +1992,7 @@
                     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
                     NSString *ImageData = [[NSString alloc]initWithFormat:@"%@",[SplitArray_ProfileImg objectAtIndex:i]];
                     if ([ImageData length] == 0) {
-                        ShowUserProfileImage.image = [UIImage imageNamed:@"avatar.png"];
+                        ShowUserProfileImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
                     }else{
                         NSURL *url_NearbySmall = [NSURL URLWithString:ImageData];
                         ShowUserProfileImage.imageURL = url_NearbySmall;
@@ -2139,7 +2164,7 @@
                     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
                     NSString *ImageData1 = [[NSString alloc]initWithFormat:@"%@",[SplitArray_UserImage objectAtIndex:i]];
                     if ([ImageData1 length] == 0) {
-                        ShowUserProfileImage.image = [UIImage imageNamed:@"avatar.png"];
+                        ShowUserProfileImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
                     }else{
                         NSURL *url_NearbySmall = [NSURL URLWithString:ImageData1];
                         ShowUserProfileImage.imageURL = url_NearbySmall;
@@ -2191,8 +2216,8 @@
                     }
                     
                     UIImageView *ShowPinLocalQR = [[UIImageView alloc]init];
-                    ShowPinLocalQR.image = [UIImage imageNamed:@"location_icon.png"];
-                    ShowPinLocalQR.frame = CGRectMake(25 + i * screenWidth, 51 + 198 + ShowTitle.frame.size.height + 29, 9, 12);
+                    ShowPinLocalQR.image = [UIImage imageNamed:@"LocationpinIcon.png"];
+                    ShowPinLocalQR.frame = CGRectMake(25 + i * screenWidth, 51 + 198 + ShowTitle.frame.size.height + 25, 18, 18);
                     //ShowPin.frame = CGRectMake(15, 210 + 8 + heightcheck + i, 8, 11);
                     [SuggestedScrollview addSubview:ShowPinLocalQR];
                     
@@ -2298,7 +2323,7 @@
             NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[arrUserImage objectAtIndex:i]];
             UIImage *UserImage;
             if ([FullImagesURL length] == 0) {
-                UserImage = [UIImage imageNamed:@"avatar.png"];
+                UserImage = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
                 NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL];
                 NSData *data = [NSData dataWithContentsOfURL:url_NearbySmall];

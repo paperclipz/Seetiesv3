@@ -318,7 +318,7 @@
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:UserImage];
         NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserInfo_UrlArray objectAtIndex:i]];
         if ([FullImagesURL1 length] == 0) {
-            UserImage.image = [UIImage imageNamed:@"avatar.png"];
+            UserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
         }else{
             NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
             //NSLog(@"url_NearbyBig is %@",url_NearbyBig);
@@ -471,7 +471,7 @@
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
         NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[User_ProfileImageArray objectAtIndex:i]];
         if ([FullImagesURL1 length] == 0) {
-            ShowUserProfileImage.image = [UIImage imageNamed:@"avatar.png"];
+            ShowUserProfileImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
         }else{
             NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
             ShowUserProfileImage.imageURL = url_UserImage;
@@ -509,7 +509,7 @@
             [FollowButton setImage:[UIImage imageNamed:@"ExploreFollowing.png"] forState:UIControlStateNormal];
             [FollowButton setImage:[UIImage imageNamed:@"ExploreFollow.png"] forState:UIControlStateSelected];
         }
-        [FollowButton setImage:[UIImage imageNamed:@"follow_icon.png"] forState:UIControlStateNormal];
+      //  [FollowButton setImage:[UIImage imageNamed:@"follow_icon.png"] forState:UIControlStateNormal];
         FollowButton.backgroundColor = [UIColor clearColor];
         FollowButton.tag = i;
        // FollowButton.layer.cornerRadius = 20;

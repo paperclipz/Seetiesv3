@@ -155,6 +155,17 @@
         
         [MImageScroll addSubview:ShowCaptionText];
     }
+    
+    
+    UIImageView *ShowOverlayImg = [[UIImageView alloc]init];
+    ShowOverlayImg.image = [UIImage imageNamed:@"PreviewPhotoBlackOverlay.png"];
+    ShowOverlayImg.frame = CGRectMake(0, 0, screenWidth , screenHeight);
+    ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
+    ShowOverlayImg.layer.masksToBounds = YES;
+    //ShowOverlayImg.layer.cornerRadius = 5;
+    [MImageScroll addSubview:ShowOverlayImg];
+    
+    
     NSInteger productcount = [GetAllFullImageArray count];
     MImageScroll.contentSize = CGSizeMake(productcount * screenWidth, 170);
     

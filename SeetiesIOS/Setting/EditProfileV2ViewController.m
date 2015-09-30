@@ -51,7 +51,7 @@
     DOBField.delegate = self;
     GenderField.delegate = self;
     
-    CaretLocationImg.frame = CGRectMake(screenWidth - 20 - 13, 609, 8, 13);
+    CaretLocationImg.frame = CGRectMake(screenWidth - 30, 598, 30, 30);
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     GetWallpaper = [defaults objectForKey:@"UserData_Wallpaper"];
@@ -87,7 +87,7 @@
     UserImg.layer.borderColor=[[UIColor whiteColor] CGColor];
     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:UserImg];
     if ([GetProfileImg length] == 0 || [GetProfileImg isEqualToString:@"null"] || [GetProfileImg isEqualToString:@"<null>"]) {
-        UserImg.image = [UIImage imageNamed:@"avatar.png"];
+        UserImg.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
     }else{
         NSURL *url_UserImage = [NSURL URLWithString:GetProfileImg];
         UserImg.imageURL = url_UserImage;
@@ -323,8 +323,18 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 -(IBAction)SaveButton:(id)sender{
-    SaveButton.enabled = NO;
-    [self UpdateUserInformation];
+    
+    NSString *emailRegEx = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,10}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegEx];
+    
+    if ([emailTest evaluateWithObject:TagasField.text] == NO) {
+        TagasField.text = @"";
+    }else{
+        SaveButton.enabled = NO;
+        [self UpdateUserInformation];
+    }
+    
+
 }
 -(void)UpdateUserInformation{
     [spinnerView startAnimating];

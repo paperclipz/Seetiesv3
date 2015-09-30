@@ -757,14 +757,14 @@
             ShowExpertProfilePhoto.layer.borderWidth=1;
             ShowExpertProfilePhoto.layer.masksToBounds = YES;
             ShowExpertProfilePhoto.layer.borderColor=[[UIColor clearColor] CGColor];
-            ShowExpertProfilePhoto.image = [UIImage imageNamed:@"avatar.png"];
+            ShowExpertProfilePhoto.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowExpertProfilePhoto];
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[All_Experts_ProfilePhoto_Array objectAtIndex:i]];
             
             //NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserInfo_UrlArray objectAtIndex:i]];
           //  NSLog(@"FullImagesURL1 ====== %@",FullImagesURL1);
             if ([FullImagesURL1 length] == 0) {
-                ShowExpertProfilePhoto.image = [UIImage imageNamed:@"avatar.png"];
+                ShowExpertProfilePhoto.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
                 ShowExpertProfilePhoto.imageURL = url_UserImage;
@@ -867,14 +867,14 @@
                 ShowExpertProfilePhoto.layer.borderWidth=1;
                 ShowExpertProfilePhoto.layer.masksToBounds = YES;
                 ShowExpertProfilePhoto.layer.borderColor=[[UIColor clearColor] CGColor];
-                ShowExpertProfilePhoto.image = [UIImage imageNamed:@"avatar.png"];
+                ShowExpertProfilePhoto.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
                 [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowExpertProfilePhoto];
                 NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[FB_Experts_ProfilePhoto_Array objectAtIndex:i]];
                 
                 //NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserInfo_UrlArray objectAtIndex:i]];
                 NSLog(@"FullImagesURL1 ====== %@",FullImagesURL1);
                 if ([FullImagesURL1 length] == 0) {
-                    ShowExpertProfilePhoto.image = [UIImage imageNamed:@"avatar.png"];
+                    ShowExpertProfilePhoto.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
                 }else{
                     NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
                     ShowExpertProfilePhoto.imageURL = url_UserImage;
@@ -978,14 +978,14 @@
                 ShowExpertProfilePhoto.layer.borderWidth=1;
                 ShowExpertProfilePhoto.layer.masksToBounds = YES;
                 ShowExpertProfilePhoto.layer.borderColor=[[UIColor clearColor] CGColor];
-                ShowExpertProfilePhoto.image = [UIImage imageNamed:@"avatar.png"];
+                ShowExpertProfilePhoto.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
                 [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowExpertProfilePhoto];
                 NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[All_Experts_ProfilePhoto_Array objectAtIndex:i]];
                 
                 //NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserInfo_UrlArray objectAtIndex:i]];
                 NSLog(@"FullImagesURL1 ====== %@",FullImagesURL1);
                 if ([FullImagesURL1 length] == 0) {
-                    ShowExpertProfilePhoto.image = [UIImage imageNamed:@"avatar.png"];
+                    ShowExpertProfilePhoto.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
                 }else{
                     NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
                     ShowExpertProfilePhoto.imageURL = url_UserImage;
@@ -1190,7 +1190,7 @@
         
         UIImageView *ShowImage = [[UIImageView alloc]init];
         ShowImage.frame = CGRectMake(15, 10, 40, 40);
-        ShowImage.image = [UIImage imageNamed:@"avatar.png"];
+        ShowImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
         ShowImage.contentMode = UIViewContentModeScaleAspectFill;
         ShowImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
         ShowImage.layer.cornerRadius=20;

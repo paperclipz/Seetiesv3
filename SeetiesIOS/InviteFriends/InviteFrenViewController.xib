@@ -180,12 +180,12 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Settingsbar2.png" id="jqz-l2-2nE">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TitleBar.png" id="jqz-l2-2nE">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackButton2.png" id="4a4-NV-VJX">
-                    <rect key="frame" x="13" y="33" width="20" height="20"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackIcon.png" id="4a4-NV-VJX">
+                    <rect key="frame" x="0.0" y="22" width="40" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="40R-oL-43e">
@@ -246,9 +246,9 @@
         </view>
     </objects>
     <resources>
-        <image name="BackButton2.png" width="38" height="39"/>
+        <image name="BackIcon.png" width="40" height="40"/>
         <image name="InviteButton.png" width="326" height="55"/>
-        <image name="Settingsbar2.png" width="640" height="128"/>
+        <image name="TitleBar.png" width="310" height="64"/>
         <image name="fb_deselect.png" width="24" height="24"/>
         <image name="ig_unselect.png" width="24" height="24"/>
         <image name="msg_selected.png" width="24" height="24"/>

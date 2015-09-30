@@ -106,6 +106,15 @@
        // [mySearchBar resignFirstResponder];
        // [mySearchBar setShowsCancelButton:NO animated:YES];
         [self GetSearchText];
+//        if ([GetSearchArray count] > 2) {
+//            SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
+//            [self.navigationController pushViewController:SearchDetailView animated:YES];
+//            [SearchDetailView GetSearchKeyword:searchBar.text Getlat:@"" GetLong:@"" GetLocationName:@""];
+//            // [SearchDetailView GetTitle:GetSearchText];
+//            mySearchBar.text = GetSearchText;
+//        }else{
+//        [self GetSearchText];
+//        }
     }
     
 }
@@ -149,10 +158,10 @@
         
         UILabel *ShowName = [[UILabel alloc]init];
         ShowName.frame = CGRectMake(15, 0, 290, 50);
-        ShowName.textColor = [UIColor darkGrayColor];
+        ShowName.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
         ShowName.tag = 200;
         ShowName.backgroundColor = [UIColor clearColor];
-        ShowName.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:15];
+        ShowName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
         ShowName.numberOfLines = 5;
         
         [cell addSubview:ShowName];
@@ -364,8 +373,8 @@
     for (int i = 0; i < [GetReturnSearchTextArray count]; i++) {
         
         UIImageView *ShowLocationIcon = [[UIImageView alloc]init];
-        ShowLocationIcon.frame = CGRectMake(20, height + 6, 15, 19);
-        ShowLocationIcon.image = [UIImage imageNamed:@"blue_location_icon.png"];
+        ShowLocationIcon.frame = CGRectMake(20, height, 30, 30);
+        ShowLocationIcon.image = [UIImage imageNamed:@"SearchLocationIcon.png"];
         [SearchScroll addSubview:ShowLocationIcon];
         
         UIButton *TextButton = [[UIButton alloc]init];
@@ -376,7 +385,7 @@
             NSString *TempString = [[NSString alloc]initWithFormat:@"%@ > %@",[GetReturnSearchTextArray objectAtIndex:i],GetTempAddress];
             [TextButton setTitle:TempString forState:UIControlStateNormal];
         }
-        TextButton.frame = CGRectMake(50, height, screenWidth - 70, 30);
+        TextButton.frame = CGRectMake(76, height, screenWidth - 155, 30);
         TextButton.backgroundColor = [UIColor clearColor];
         [TextButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
         TextButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
@@ -407,13 +416,13 @@
     
     for (int i = 0; i < [GetSearchArray count]; i++) {
         UIImageView *ShowSearchIcon = [[UIImageView alloc]init];
-        ShowSearchIcon.frame = CGRectMake(20, height + 7, 17, 17);
-        ShowSearchIcon.image = [UIImage imageNamed:@"searchresult_icon.png"];
+        ShowSearchIcon.frame = CGRectMake(20, height, 30, 30);
+        ShowSearchIcon.image = [UIImage imageNamed:@"SuggestionSearchIcon.png"];
         [SearchScroll addSubview:ShowSearchIcon];
         
         UIButton *TextButton = [[UIButton alloc]init];
         [TextButton setTitle:[GetSearchArray objectAtIndex:i] forState:UIControlStateNormal];
-        TextButton.frame = CGRectMake(50, height, screenWidth - 50, 30);
+        TextButton.frame = CGRectMake(76, height, screenWidth - 155, 30);
         TextButton.backgroundColor = [UIColor clearColor];
         [TextButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
         TextButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
@@ -423,8 +432,8 @@
         [SearchScroll addSubview:TextButton];
         
         UIButton *GotoButton = [[UIButton alloc]init];
-        [GotoButton setImage:[UIImage imageNamed:@"goto_icon.png"] forState:UIControlStateNormal];
-        GotoButton.frame = CGRectMake(screenWidth - 20 - 14, height + 8, 14, 14);
+        [GotoButton setImage:[UIImage imageNamed:@"AutoComplete.png"] forState:UIControlStateNormal];
+        GotoButton.frame = CGRectMake(screenWidth - 20 - 30, height, 30, 30);
         GotoButton.tag = i;
         [GotoButton addTarget:self action:@selector(SearchGetLocationButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
         [SearchScroll addSubview:GotoButton];

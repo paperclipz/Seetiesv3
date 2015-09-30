@@ -14,7 +14,7 @@
 #import "EditCollectionViewController.h"
 
 //https://github.com/freak4pc/SMTagField tag simple
-@interface NewProfileV2ViewController : BaseViewController<UIScrollViewDelegate,UISearchBarDelegate,UIActionSheetDelegate>{
+@interface NewProfileV2ViewController : BaseViewController<UIScrollViewDelegate,UIActionSheetDelegate>{
 
     IBOutlet A3ParallaxScrollView *MainScroll;
     IBOutlet AsyncImageView *BackgroundImage;
@@ -31,7 +31,6 @@
     
     IBOutlet UIButton *SettingsButton;
     IBOutlet UIButton *ShareButton;
-    IBOutlet UISearchBar *SearchBarTemp;
     
     BOOL CheckExpand;
     

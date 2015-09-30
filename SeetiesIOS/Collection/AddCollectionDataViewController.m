@@ -193,8 +193,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         
         UIImageView *ShowIcon = [[UIImageView alloc]init];
-        ShowIcon.image = [UIImage imageNamed:@"collectionfolder_icon.png"];
-        ShowIcon.frame = CGRectMake(20, 13, 23, 17);
+        ShowIcon.image = [UIImage imageNamed:@"CollectionFolderIcon.png"];
+        ShowIcon.frame = CGRectMake(10, 4, 35, 35);
         [cell addSubview:ShowIcon];
         
         UILabel *ShowTitle = [[UILabel alloc]init];

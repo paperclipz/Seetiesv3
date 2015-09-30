@@ -32,7 +32,7 @@
     ShowSubTitle.frame = CGRectMake(30, 40, screenWidth - 60, 65);
     DoneButton.frame = CGRectMake(30, screenHeight - 70, screenWidth - 60, 50);
     DoneButton.layer.cornerRadius = 5;
-    DoneButton.enabled = NO;
+    //DoneButton.enabled = NO;
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     MainScroll.delegate = self;
     MainScroll.frame = CGRectMake(0, 110, screenWidth, screenHeight - 110 - 80);

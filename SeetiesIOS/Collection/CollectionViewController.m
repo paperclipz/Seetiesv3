@@ -324,7 +324,7 @@
     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:UserImage];
     NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",GetUserProfile];
     if ([FullImagesURL length] == 0) {
-        UserImage.image = [UIImage imageNamed:@"avatar.png"];
+        UserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
     }else{
         NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL];
         UserImage.imageURL = url_NearbySmall;

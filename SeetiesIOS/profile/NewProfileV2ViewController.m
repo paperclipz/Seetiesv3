@@ -31,10 +31,7 @@
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-    SearchBarTemp.delegate = self;
-    SearchBarTemp.tintColor = [UIColor redColor];
-    SearchBarTemp.barTintColor = [UIColor clearColor];
-    [SearchBarTemp setBackgroundImage:[[UIImage alloc]init]];
+    SearchButton.frame = CGRectMake(0, 20, screenWidth, 44);
     
     GetHeight = 0;
     
@@ -58,8 +55,8 @@
     ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
     ShowOverlayImg.layer.masksToBounds = YES;
     
-    SettingsButton.frame = CGRectMake(screenWidth - 30 - 35, 72, 19, 19);
-    ShareButton.frame = CGRectMake(screenWidth - 30, 72, 17, 18);
+    SettingsButton.frame = CGRectMake(screenWidth - 50 - 55, 64, 50, 40);
+    ShareButton.frame = CGRectMake(screenWidth - 50, 64, 50, 40);
     
     CheckExpand = YES;
     
@@ -194,10 +191,10 @@
 
 -(void)InitContentView{
     
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@""];
-    [refreshControl addTarget:self action:@selector(testRefresh:) forControlEvents:UIControlEventValueChanged];
-    [MainScroll addSubview:refreshControl];
+//    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+//    refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@""];
+//    [refreshControl addTarget:self action:@selector(testRefresh:) forControlEvents:UIControlEventValueChanged];
+//    [MainScroll addSubview:refreshControl];
     
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
@@ -210,7 +207,7 @@
 
     ShowUserProfileImage = [[AsyncImageView alloc]init];
     ShowUserProfileImage.frame = CGRectMake(20, 0, 100, 100);
-    ShowUserProfileImage.image = [UIImage imageNamed:@"avatar.png"];
+    ShowUserProfileImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
     ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
     ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
     ShowUserProfileImage.layer.cornerRadius = 50;
@@ -219,7 +216,7 @@
     ShowUserProfileImage.layer.borderColor=[[UIColor whiteColor] CGColor];
     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
     if ([GetProfileImg length] == 0 || [GetProfileImg isEqualToString:@"null"] || [GetProfileImg isEqualToString:@"<null>"]) {
-        ShowUserProfileImage.image = [UIImage imageNamed:@"avatar.png"];
+        ShowUserProfileImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
     }else{
         NSURL *url_UserImage = [NSURL URLWithString:GetProfileImg];
         ShowUserProfileImage.imageURL = url_UserImage;
@@ -246,11 +243,14 @@
     
     
     UIButton *EditProfileButton = [[UIButton alloc]init];
-    EditProfileButton.frame = CGRectMake(screenWidth - 106 - 20, 50, 106, 34);
+    EditProfileButton.frame = CGRectMake(screenWidth - 106 - 20, 60, 106, 34);
     [EditProfileButton setTitle:@"Edit profile" forState:UIControlStateNormal];
-    [EditProfileButton setImage:[UIImage imageNamed:@"edit_profile_btn.png"] forState:UIControlStateNormal];
+    EditProfileButton.layer.cornerRadius= 15;
+    EditProfileButton.layer.borderWidth = 1;
+    EditProfileButton.layer.masksToBounds = YES;
+    EditProfileButton.layer.borderColor=[[UIColor  colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0] CGColor];
     EditProfileButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
-    [EditProfileButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
+    [EditProfileButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
     EditProfileButton.backgroundColor = [UIColor clearColor];
     [EditProfileButton addTarget:self action:@selector(EditProfileButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
     [AllContentView addSubview:EditProfileButton];
@@ -258,8 +258,8 @@
     ShowName_ = [[UILabel alloc]init];//getname
     ShowName_.frame = CGRectMake(30, 110, screenWidth - 60, 30);
     ShowName_.text = GetName;
-    ShowName_.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:22];
-    ShowName_.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0];
+    ShowName_.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:17];
+    ShowName_.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0];
     ShowName_.textAlignment = NSTextAlignmentLeft;
     ShowName_.backgroundColor = [UIColor clearColor];
     [AllContentView addSubview:ShowName_];
@@ -270,8 +270,8 @@
     // followers and followings count show
     
     UIImageView *ShowPin = [[UIImageView alloc]init];
-    ShowPin.image = [UIImage imageNamed:@"follower_icon.png"];
-    ShowPin.frame = CGRectMake(33, GetHeight + 4, 14, 11);
+    ShowPin.image = [UIImage imageNamed:@"FollowerNumber.png"];
+    ShowPin.frame = CGRectMake(25, GetHeight, 25, 25);
     //ShowPin.frame = CGRectMake(15, 210 + 8 + heightcheck + i, 8, 11);
     [AllContentView addSubview:ShowPin];
     
@@ -287,7 +287,7 @@
     
     UILabel *ShowFollowers = [[UILabel alloc]init];
     ShowFollowers.text = tempFollowers;
-    ShowFollowers.frame = CGRectMake(60, GetHeight, 120, 21);
+    ShowFollowers.frame = CGRectMake(60, GetHeight, 120, 25);
     ShowFollowers.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
     ShowFollowers.textColor = [UIColor colorWithRed:161.0f/255.0f green:161.0f/255.0f blue:161.0f/255.0f alpha:1.0f];
     ShowFollowers.textAlignment = NSTextAlignmentLeft;
@@ -295,14 +295,14 @@
     [AllContentView addSubview:ShowFollowers];
     
     UIButton *OpenFollowersButton = [[UIButton alloc]init];
-    OpenFollowersButton.frame = CGRectMake(60, GetHeight, 120, 21);
+    OpenFollowersButton.frame = CGRectMake(60, GetHeight, 120, 25);
     [OpenFollowersButton setTitle:@"" forState:UIControlStateNormal];
     [OpenFollowersButton addTarget:self action:@selector(ShowAll_FollowerButton:) forControlEvents:UIControlEventTouchUpInside];
     [AllContentView addSubview:OpenFollowersButton];
     
     UILabel *ShowFollowing = [[UILabel alloc]init];
     ShowFollowing.text = tempFollowing;
-    ShowFollowing.frame = CGRectMake(170, GetHeight, 120, 21);
+    ShowFollowing.frame = CGRectMake(170, GetHeight, 120, 25);
     ShowFollowing.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
     ShowFollowing.textColor = [UIColor colorWithRed:161.0f/255.0f green:161.0f/255.0f blue:161.0f/255.0f alpha:1.0f];
     ShowFollowing.textAlignment = NSTextAlignmentLeft;
@@ -310,7 +310,7 @@
     [AllContentView addSubview:ShowFollowing];
     
     UIButton *OpenFollowingButton = [[UIButton alloc]init];
-    OpenFollowingButton.frame = CGRectMake(170, GetHeight, 120, 21);
+    OpenFollowingButton.frame = CGRectMake(170, GetHeight, 120, 25);
     [OpenFollowingButton setTitle:@"" forState:UIControlStateNormal];
     [OpenFollowingButton addTarget:self action:@selector(ShowAll_FollowingButton:) forControlEvents:UIControlEventTouchUpInside];
     [AllContentView addSubview:OpenFollowingButton];
@@ -322,8 +322,8 @@
         
     }else{
         UIImageView *ShowPin = [[UIImageView alloc]init];
-        ShowPin.image = [UIImage imageNamed:@"location_icon.png"];
-        ShowPin.frame = CGRectMake(33, GetHeight + 4, 9, 12);
+        ShowPin.image = [UIImage imageNamed:@"PostSmallPin.png"];
+        ShowPin.frame = CGRectMake(30, GetHeight + 2, 15, 15);
         //ShowPin.frame = CGRectMake(15, 210 + 8 + heightcheck + i, 8, 11);
         [AllContentView addSubview:ShowPin];
         
@@ -424,11 +424,11 @@
         GetHeight += 50;
     }
     
-    UIButton *Line01 = [[UIButton alloc]init];
-    Line01.frame = CGRectMake(0, GetHeight, screenWidth, 1);
-    [Line01 setTitle:@"" forState:UIControlStateNormal];
-    [Line01 setBackgroundColor:[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f]];
-    [AllContentView addSubview:Line01];
+//    UIButton *Line01 = [[UIButton alloc]init];
+//    Line01.frame = CGRectMake(0, GetHeight, screenWidth, 1);
+//    [Line01 setTitle:@"" forState:UIControlStateNormal];
+//    [Line01 setBackgroundColor:[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f]];
+//    [AllContentView addSubview:Line01];
     
     GetHeight += 1;
 
@@ -467,7 +467,7 @@
         UIButton *ExpandButton = [[UIButton alloc]init];
         ExpandButton.frame = CGRectMake(0, GetHeight, screenWidth, 50);
         //[ExpandButton setTitle:@"Expand" forState:UIControlStateNormal];
-        [ExpandButton setImage:[UIImage imageNamed:@"showmore_btn.png"] forState:UIControlStateNormal];
+        [ExpandButton setImage:[UIImage imageNamed:@"ProfileExpand.png"] forState:UIControlStateNormal];
         ExpandButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
         [ExpandButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
         ExpandButton.backgroundColor = [UIColor whiteColor];
@@ -486,7 +486,7 @@
             UIButton *CollapseButton = [[UIButton alloc]init];
             CollapseButton.frame = CGRectMake(0, GetHeight, screenWidth, 50);
             // [CollapseButton setTitle:@"Collapse" forState:UIControlStateNormal];
-            [CollapseButton setImage:[UIImage imageNamed:@"showmore_btn.png"] forState:UIControlStateNormal];
+            [CollapseButton setImage:[UIImage imageNamed:@"ProfileExpand.png"] forState:UIControlStateNormal];
             CollapseButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
             [CollapseButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
             CollapseButton.backgroundColor = [UIColor whiteColor];
@@ -636,9 +636,9 @@
     [CollectionView addSubview:Line01];
     
     UIButton *EditProfileButton = [[UIButton alloc]init];
-    EditProfileButton.frame = CGRectMake(screenWidth - 30 - 20, 10, 30, 30);
+    EditProfileButton.frame = CGRectMake(screenWidth - 30 - 20, 10, 25, 25);
     //[EditProfileButton setTitle:@"New collection" forState:UIControlStateNormal];
-    [EditProfileButton setImage:[UIImage imageNamed:@"add_btn.png"] forState:UIControlStateNormal];
+    [EditProfileButton setImage:[UIImage imageNamed:@"AddPostBtn.png"] forState:UIControlStateNormal];
     EditProfileButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
     [EditProfileButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
     EditProfileButton.backgroundColor = [UIColor clearColor];
@@ -706,14 +706,14 @@
         [CollectionView addSubview:SelectButton];
         
         UIButton *EditButton = [[UIButton alloc]init];
-        EditButton.frame = CGRectMake(screenWidth - 80 - 20, heightcheck + 5 + FinalWidth + 20 + i, 80, 40);
+        EditButton.frame = CGRectMake(screenWidth - 52 - 20, heightcheck + 5 + FinalWidth + 23 + i, 52, 34);
         [EditButton setTitle:@"Edit" forState:UIControlStateNormal];
-        EditButton.layer.cornerRadius= 15;
+        EditButton.layer.cornerRadius= 17;
         EditButton.layer.borderWidth = 1;
         EditButton.layer.masksToBounds = YES;
-        EditButton.layer.borderColor=[[UIColor grayColor] CGColor];
+        EditButton.layer.borderColor=[[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0] CGColor];
         EditButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
-        [EditButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
+        [EditButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
         EditButton.backgroundColor = [UIColor whiteColor];
         EditButton.tag = i;
         [EditButton addTarget:self action:@selector(CollectionEditButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -721,12 +721,12 @@
         
         
         UIButton *Line01 = [[UIButton alloc]init];
-        Line01.frame = CGRectMake(15, heightcheck + 5 + FinalWidth + 70 + i, screenWidth - 30, 1);
+        Line01.frame = CGRectMake(15, heightcheck + 10 + FinalWidth + 70 + i, screenWidth - 30, 1);
         [Line01 setTitle:@"" forState:UIControlStateNormal];//238
         [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
         [CollectionView addSubview:Line01];
         
-        heightcheck += FinalWidth + 10 + 70 + 10 + i ;
+        heightcheck += FinalWidth + 15 + 70 + 10 + i ;
     }
     AllContentView.frame = CGRectMake(0, 100 , screenWidth, GetHeight + heightcheck + FinalWidth + 120);
     CollectionView.frame = CGRectMake(0, GetHeight, screenWidth, heightcheck + FinalWidth + 120);
@@ -759,8 +759,8 @@
     [LikeView addSubview:Line011];
     
     UIButton *EditProfileButton = [[UIButton alloc]init];
-    EditProfileButton.frame = CGRectMake(screenWidth - 30 - 20, 10, 30, 30);
-    [EditProfileButton setImage:[UIImage imageNamed:@"add_btn.png"] forState:UIControlStateNormal];
+    EditProfileButton.frame = CGRectMake(screenWidth - 30 - 20, 10, 25, 25);
+    [EditProfileButton setImage:[UIImage imageNamed:@"AddPostBtn.png"] forState:UIControlStateNormal];
     EditProfileButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
     [EditProfileButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
     EditProfileButton.backgroundColor = [UIColor clearColor];
@@ -836,8 +836,8 @@
     [PostView addSubview:Line011];
     
     UIButton *EditProfileButton = [[UIButton alloc]init];
-    EditProfileButton.frame = CGRectMake(screenWidth - 30 - 20, 10, 30, 30);
-    [EditProfileButton setImage:[UIImage imageNamed:@"add_btn.png"] forState:UIControlStateNormal];
+    EditProfileButton.frame = CGRectMake(screenWidth - 30 - 20, 10, 25, 25);
+    [EditProfileButton setImage:[UIImage imageNamed:@"AddPostBtn.png"] forState:UIControlStateNormal];
     EditProfileButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
     [EditProfileButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
     EditProfileButton.backgroundColor = [UIColor clearColor];
@@ -883,8 +883,8 @@
         [PostView addSubview:ShowTitle];
         
         UIImageView *ShowPin = [[UIImageView alloc]init];
-        ShowPin.image = [UIImage imageNamed:@"FeedPin.png"];
-        ShowPin.frame = CGRectMake(120, heightcheck + 42, 8, 11);
+        ShowPin.image = [UIImage imageNamed:@"PostSmallPin.png"];
+        ShowPin.frame = CGRectMake(120, heightcheck + 40, 15, 15);
         [PostView addSubview:ShowPin];
         
         UILabel *ShowPlaceName = [[UILabel alloc]init];

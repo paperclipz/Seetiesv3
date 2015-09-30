@@ -36,9 +36,9 @@
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     ShareButton.frame = CGRectMake(screenWidth - 55, 0, 55, 64);
-    ShareIcon.frame = CGRectMake(screenWidth - 22 - 15, 31, 22, 22);
+    ShareIcon.frame = CGRectMake(screenWidth - 38 - 15, 22, 38, 38);
     PageControlOn.frame = CGRectMake(15, 300, screenWidth - 30, 37);
-    LocationButton.frame = CGRectMake(screenWidth - 74 - 15, 20, 60, 44);
+    LocationButton.frame = CGRectMake(screenWidth - 85 - 15, 20, 60, 44);
     
     ShowDownBarView.frame = CGRectMake(0, screenHeight - 62 - 50, screenWidth, 62);
     ShowbarView.frame = CGRectMake(0, 0, screenWidth, 64);
@@ -402,7 +402,7 @@
                 TotalLikeCount = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"total_like"]];
                 GetPostTime = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"updated_at"]];
                 GetLikeCheck = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"like"]];
-                GetCollectCheck = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"like"]];
+                GetCollectCheck = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"collect"]];
                 PhotoCount = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"photos_count"]];
                 ViewCountString = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"view_count"]];
                 TotalCollectionCount = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"collection_count"]];
@@ -415,12 +415,12 @@
                 
                 
                 if ([GetLikeCheck isEqualToString:@"0"]) {
-                    [LikeButton setImage:[UIImage imageNamed:@"PostLike.png"] forState:UIControlStateNormal];
+                    [LikeButton setImage:[UIImage imageNamed:@"LikeIcon.png"] forState:UIControlStateNormal];
                    // [LikeButton setTitle:CustomLocalisedString(@"Likes", nil) forState:UIControlStateNormal];
                     [LikeButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
                 }else{
                     ShowTotalLikeCount.textColor = [UIColor redColor];
-                    [LikeButton setImage:[UIImage imageNamed:@"PostLikeRed.png"] forState:UIControlStateNormal];
+                    [LikeButton setImage:[UIImage imageNamed:@"LikedIcon.png"] forState:UIControlStateNormal];
                    // [LikeButton setTitle:CustomLocalisedString(@"Likes", nil) forState:UIControlStateNormal];
                     [LikeButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
                 }
@@ -1089,7 +1089,7 @@
                 GetLikeCheck = @"1";
                 CheckLikeInitView = YES;
                 ShowTotalLikeCount.textColor = [UIColor redColor];
-                [LikeButton setImage:[UIImage imageNamed:@"PostLikeRed.png"] forState:UIControlStateNormal];
+                [LikeButton setImage:[UIImage imageNamed:@"LikedIcon.png"] forState:UIControlStateNormal];
                // [LikeButton setTitle:CustomLocalisedString(@"Likes", nil) forState:UIControlStateNormal];
                 [LikeButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
                 [self GetAllUserLikeData];
@@ -1097,7 +1097,7 @@
             }else{
                 GetLikeCheck = @"0";
                 CheckLikeInitView = YES;
-                [LikeButton setImage:[UIImage imageNamed:@"PostLike.png"] forState:UIControlStateNormal];
+                [LikeButton setImage:[UIImage imageNamed:@"LikeIcon.png"] forState:UIControlStateNormal];
                // [LikeButton setTitle:CustomLocalisedString(@"Likes", nil) forState:UIControlStateNormal];
                 [LikeButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
                 [self GetAllUserLikeData];
@@ -1429,10 +1429,10 @@
         [ImageScroll setNeedsDisplay];
         [MImageScroll addSubview:ImageScroll];
         
-        UIImageView *PostShade = [[UIImageView alloc]init];
-        PostShade.frame = CGRectMake(0+ i *screenWidth, 308, screenWidth, 96);
-        PostShade.image = [UIImage imageNamed:@"PostShade2.png"];
-        [MImageScroll addSubview:PostShade];
+//        UIImageView *PostShade = [[UIImageView alloc]init];
+//        PostShade.frame = CGRectMake(0+ i *screenWidth, 308, screenWidth, 96);
+//        PostShade.image = [UIImage imageNamed:@"PostShade2.png"];
+//        [MImageScroll addSubview:PostShade];
         
         ShowImage = [[AsyncImageView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 360)];
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
@@ -1509,6 +1509,7 @@
         UIButton *TanslateButton = [[UIButton alloc]init];
         TanslateButton.frame = CGRectMake(20, GetHeightCheck, screenWidth - 40, 40);
         [TanslateButton setTitle:@"Translate" forState:UIControlStateNormal];
+        [TanslateButton setImage:[UIImage imageNamed:@"TranslateArrow.png"] forState:UIControlStateNormal];
         TanslateButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         [TanslateButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f  blue:153.0f/255.0f  alpha:1.0f] forState:UIControlStateNormal];
         TanslateButton.layer.cornerRadius = 5;
@@ -1543,8 +1544,8 @@
     
     //show location data here.
     UIImageView *ShowPin = [[UIImageView alloc]init];
-    ShowPin.image = [UIImage imageNamed:@"FeedPin.png"];
-    ShowPin.frame = CGRectMake(20, GetHeightCheck + 5, 8, 11);
+    ShowPin.image = [UIImage imageNamed:@"LocationpinIcon.png"];
+    ShowPin.frame = CGRectMake(10, GetHeightCheck, 18, 18);
     //ShowPin.frame = CGRectMake(15, 210 + 8 + heightcheck + i, 8, 11);
     [MainScroll addSubview:ShowPin];
     
@@ -1673,7 +1674,7 @@
     NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",GetUserProfileUrl];
     NSLog(@"FullImagesURL1 ====== %@",FullImagesURL1);
     if ([FullImagesURL1 length] == 0) {
-        UserImage.image = [UIImage imageNamed:@"avatar.png"];
+        UserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
     }else{
         NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
         //NSLog(@"url_NearbyBig is %@",url_NearbyBig);
@@ -1714,12 +1715,20 @@
 
     }else{
         ShowFollowButton = [[UIButton alloc]init];
-        ShowFollowButton.frame = CGRectMake(screenWidth - 40 - 20, GetMessageHeight + 15, 40, 40);
+        ShowFollowButton.frame = CGRectMake(screenWidth - 115 - 20, GetMessageHeight + 15, 115, 40);
         if ([GetFollowing isEqualToString:@"0"]) {
-            [ShowFollowButton setImage:[UIImage imageNamed:@"FollowMini.png"] forState:UIControlStateNormal];
+            [ShowFollowButton setTitle:@"Follow" forState:UIControlStateNormal];
+            [ShowFollowButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [ShowFollowButton setImage:[UIImage imageNamed:@"ProfileFollowIcon.png"] forState:UIControlStateNormal];
+            [ShowFollowButton setBackgroundImage:[UIImage imageNamed:@"FollowBtn.png"] forState:UIControlStateNormal];
         }else{
-            [ShowFollowButton setImage:[UIImage imageNamed:@"FollowingMini.png"] forState:UIControlStateNormal];
+            [ShowFollowButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [ShowFollowButton setTitle:@"Following" forState:UIControlStateNormal];
+            [ShowFollowButton setImage:[UIImage imageNamed:@"ProfileFollowingIcon.png"] forState:UIControlStateNormal];
+            [ShowFollowButton setBackgroundImage:[UIImage imageNamed:@"FollowingBtn.png"] forState:UIControlStateNormal];
         }
+        ShowFollowButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
+        ShowFollowButton.backgroundColor = [UIColor clearColor];
         [ShowFollowButton addTarget:self action:@selector(FollowButton:) forControlEvents:UIControlEventTouchUpInside];
         [MainScroll addSubview:ShowFollowButton];
     }
@@ -1736,8 +1745,8 @@
         
         
         UIImageView *ShowViewIcon = [[UIImageView alloc]init];
-        ShowViewIcon.image = [UIImage imageNamed:@"view.png"];
-        ShowViewIcon.frame = CGRectMake(20, GetMessageHeight + 15, 19, 13);
+        ShowViewIcon.image = [UIImage imageNamed:@"PostViewIcon.png"];
+        ShowViewIcon.frame = CGRectMake(10, GetMessageHeight, 35, 35);
         [MainScroll addSubview:ShowViewIcon];
         
         NSString *GetFullString = [[NSString alloc]initWithFormat:@"%@ views",ViewCountString];
@@ -1781,8 +1790,8 @@
       //  (name) and (number) others like this
         
         UIImageView *ShowLikesIcon = [[UIImageView alloc]init];
-        ShowLikesIcon.image = [UIImage imageNamed:@"InteractLike.png"];
-        ShowLikesIcon.frame = CGRectMake(20, GetMessageHeight + 13, 18, 15);
+        ShowLikesIcon.image = [UIImage imageNamed:@"PostLikeIcon.png"];
+        ShowLikesIcon.frame = CGRectMake(10, GetMessageHeight + 2, 35, 35);
         [MainScroll addSubview:ShowLikesIcon];
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -1864,8 +1873,8 @@
         GetMessageHeight += 10;
     }else{
         UIImageView *ShowCommentIcon = [[UIImageView alloc]init];
-        ShowCommentIcon.image = [UIImage imageNamed:@"InteractComment.png"];
-        ShowCommentIcon.frame = CGRectMake(20, GetMessageHeight + 6, 17, 14);
+        ShowCommentIcon.image = [UIImage imageNamed:@"PostCommentIcon.png"];
+        ShowCommentIcon.frame = CGRectMake(10, GetMessageHeight + 2, 35, 35);
         [MainScroll addSubview:ShowCommentIcon];
         
         if ([CommentIDArray count] > 4) {
@@ -2146,8 +2155,8 @@
 //    [MainScroll addSubview:DemoWhiteButton];
     
     UIImageView *ShowLocationIcon = [[UIImageView alloc]init];
-    ShowLocationIcon.frame = CGRectMake(20, GetMessageHeight + 22, 13, 17);
-    ShowLocationIcon.image = [UIImage imageNamed:@"InfoLocation.png"];
+    ShowLocationIcon.frame = CGRectMake(10, GetMessageHeight + 18, 25, 25);
+    ShowLocationIcon.image = [UIImage imageNamed:@"BluePin.png"];
     [MainScroll addSubview:ShowLocationIcon];
     
     UILabel *ShowPlaceName = [[UILabel alloc]init];
@@ -2187,12 +2196,12 @@
     if ([GetPlaceLink length] == 0 || [GetPlaceLink isEqualToString:@"(null)"]) {
     }else{
         UIImageView *ShowLinkIcon = [[UIImageView alloc]init];
-        ShowLinkIcon.frame = CGRectMake(20, GetMessageHeight, 15, 15);
-        ShowLinkIcon.image = [UIImage imageNamed:@"InfoUrlLink.png"];
+        ShowLinkIcon.frame = CGRectMake(20, GetMessageHeight, 25, 25);
+        ShowLinkIcon.image = [UIImage imageNamed:@"BlueLink.png"];
         [MainScroll addSubview:ShowLinkIcon];
         
         UILabel *ShowPlacelink = [[UILabel alloc]init];
-        ShowPlacelink.frame = CGRectMake(50, GetMessageHeight - 6, screenWidth - 152, 21);
+        ShowPlacelink.frame = CGRectMake(50, GetMessageHeight, screenWidth - 152, 25);
         ShowPlacelink.text = GetPlaceLink;
         ShowPlacelink.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowPlacelink.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
@@ -2211,12 +2220,12 @@
         
     }else{
         UIImageView *ShowContactIcon = [[UIImageView alloc]init];
-        ShowContactIcon.frame = CGRectMake(20, GetMessageHeight, 13, 14);
-        ShowContactIcon.image = [UIImage imageNamed:@"InfoContact.png"];
+        ShowContactIcon.frame = CGRectMake(20, GetMessageHeight, 25, 25);
+        ShowContactIcon.image = [UIImage imageNamed:@"BluePhone.png"];
         [MainScroll addSubview:ShowContactIcon];
         
         UILabel *ShowContact = [[UILabel alloc]init];
-        ShowContact.frame = CGRectMake(50, GetMessageHeight - 6, screenWidth - 152, 21);
+        ShowContact.frame = CGRectMake(50, GetMessageHeight, screenWidth - 152, 25);
         ShowContact.text = GetContactNo;
         ShowContact.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowContact.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
@@ -2237,8 +2246,8 @@
         
     }else{
         UIImageView *ShowOpeningIcon = [[UIImageView alloc]init];
-        ShowOpeningIcon.frame = CGRectMake(20, GetMessageHeight, 19, 19);
-        ShowOpeningIcon.image = [UIImage imageNamed:@"InfoHours.png"];
+        ShowOpeningIcon.frame = CGRectMake(20, GetMessageHeight, 25, 25);
+        ShowOpeningIcon.image = [UIImage imageNamed:@"BlueTime.png"];
         [MainScroll addSubview:ShowOpeningIcon];
         
         if ([GetOpeningHourOpen isEqualToString:@"0"]) {
@@ -2249,7 +2258,7 @@
         }
         
         UILabel *ShowOpeningTExt = [[UILabel alloc]init];
-        ShowOpeningTExt.frame = CGRectMake(50, GetMessageHeight - 2, screenWidth - 152, 21);
+        ShowOpeningTExt.frame = CGRectMake(50, GetMessageHeight, screenWidth - 152, 25);
         ShowOpeningTExt.text = GetOpeningHourOpen;
         ShowOpeningTExt.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowOpeningTExt.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
@@ -2261,12 +2270,12 @@
         
     }else{
         UIImageView *ShowPriceIcon = [[UIImageView alloc]init];
-        ShowPriceIcon.frame = CGRectMake(20, GetMessageHeight, 19, 19);
-        ShowPriceIcon.image = [UIImage imageNamed:@"InfoPrice.png"];
+        ShowPriceIcon.frame = CGRectMake(20, GetMessageHeight, 25, 25);
+        ShowPriceIcon.image = [UIImage imageNamed:@"BluePrice.png"];
         [MainScroll addSubview:ShowPriceIcon];
         
         UILabel *ShowPriceTExt = [[UILabel alloc]init];
-        ShowPriceTExt.frame = CGRectMake(50, GetMessageHeight - 2, screenWidth - 152, 21);
+        ShowPriceTExt.frame = CGRectMake(50, GetMessageHeight, screenWidth - 152, 25);
         ShowPriceTExt.text = GetExpense;
         ShowPriceTExt.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowPriceTExt.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
@@ -2421,7 +2430,7 @@
         AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
         ShowUserProfileImage.frame = CGRectMake(25 + (i % 2) * (FinalWidth + 20),  GetFinalHeight + FinalWidth + 50 + TitleHeight , 30, 30);
         ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
-        ShowUserProfileImage.image = [UIImage imageNamed:@"avatar.png"];
+        ShowUserProfileImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
         ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
         ShowUserProfileImage.layer.cornerRadius = 15;
         ShowUserProfileImage.layer.borderWidth=0;
@@ -2431,7 +2440,7 @@
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
         NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[UserInfo_UrlArray_Nearby objectAtIndex:i]];
         if ([FullImagesURL length] == 0) {
-            ShowUserProfileImage.image = [UIImage imageNamed:@"avatar.png"];
+            ShowUserProfileImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
         }else{
             NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL];
             //NSLog(@"url is %@",url);
@@ -2775,6 +2784,7 @@
  //   CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
    // CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
 //    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     if (sender == MImageScroll) {
         // Update the page when more than 50% of the previous/next page is visible
         CGFloat pageWidth = MImageScroll.frame.size.width;
@@ -2788,20 +2798,21 @@
         if (scrollOffset < 0)
         {
             // then we are at the top
-            CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
             
-            [UIView animateWithDuration:1.0
-                                  delay:0
-                                options:UIViewAnimationOptionCurveEaseIn
-                             animations:^{
-                               ShowBarImg.frame = CGRectMake(0, -100, screenWidth, 64);
-                             }
-                             completion:^(BOOL finished) {
-                             }];
+            ShowBarImg.frame = CGRectMake(0, -100, screenWidth, 64);
+            //            [UIView animateWithDuration:1.0
+//                                  delay:0
+//                                options:UIViewAnimationOptionCurveEaseIn
+//                             animations:^{
+//                               ShowBarImg.frame = CGRectMake(0, -100, screenWidth, 64);
+//                             }
+//                             completion:^(BOOL finished) {
+//                             }];
         }
         else if (scrollOffset + scrollViewHeight == scrollContentSizeHeight)
         {
             // then we are at the end
+            ShowBarImg.frame = CGRectMake(0, 0, screenWidth, 64);
         }
 
 
@@ -2821,17 +2832,19 @@
     }else{
         CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
        // CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-        [UIView animateWithDuration:0.5
-                              delay:0
-                            options:UIViewAnimationOptionCurveEaseIn
-                         animations:^{
-                             //  MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight - 64);
-                             ShowBarImg.frame = CGRectMake(0, 0, screenWidth, 64);
-//                             ShowDownBarView.frame = CGRectMake(0, screenHeight - 60, screenWidth, 60);
-//                             self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight, screenWidth, 50);
-                         }
-                         completion:^(BOOL finished) {
-                         }];
+//        [UIView animateWithDuration:0.5
+//                              delay:0
+//                            options:UIViewAnimationOptionCurveEaseIn
+//                         animations:^{
+//                             //  MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight - 64);
+//                             ShowBarImg.frame = CGRectMake(0, 0, screenWidth, 64);
+////                             ShowDownBarView.frame = CGRectMake(0, screenHeight - 60, screenWidth, 60);
+////                             self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight, screenWidth, 50);
+//                         }
+//                         completion:^(BOOL finished) {
+//                         }];
+        
+ //        ShowBarImg.frame = CGRectMake(0, 0, screenWidth, 64);
     }
 }
 
@@ -2879,7 +2892,8 @@
 - (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView
 {
     NSLog(@"-scrollViewDidScrollToTop");
-
+    // CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+   // ShowBarImg.frame = CGRectMake(0, -64, screenWidth, 64);
 }
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView

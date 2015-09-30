@@ -717,7 +717,7 @@
         AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
         ShowUserProfileImage.frame = CGRectMake(15, GetHeight_ + i , 30, 30);
         ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
-        ShowUserProfileImage.image = [UIImage imageNamed:@"avatar.png"];
+        ShowUserProfileImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
         ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
         ShowUserProfileImage.layer.cornerRadius = 15;
         ShowUserProfileImage.layer.borderWidth=0;
@@ -727,7 +727,7 @@
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
         NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[PostsData_UserInfo_UrlArray objectAtIndex:i]];
         if ([FullImagesURL length] == 0) {
-            ShowUserProfileImage.image = [UIImage imageNamed:@"avatar.png"];
+            ShowUserProfileImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
         }else{
             NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL];
             //NSLog(@"url is %@",url);
@@ -1167,7 +1167,7 @@
             ShowUserProfile.layer.borderColor=[[UIColor whiteColor] CGColor];
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",Getprofile_photo];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"null"] || [FullImagesURL1 isEqualToString:@"<null>"]) {
-                ShowUserProfile.image = [UIImage imageNamed:@"avatar.png"];
+                ShowUserProfile.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
                 ShowUserProfile.imageURL = url_UserImage;
