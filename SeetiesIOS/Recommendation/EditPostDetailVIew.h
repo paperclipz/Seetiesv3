@@ -11,7 +11,7 @@
 
 
 @interface EditPostDetailVIew : CommonView <UITextFieldDelegate,UITextViewDelegate>
-@property (weak, nonatomic) IBOutlet AUIAutoGrowingTextView *txtDescription;
+@property (weak, nonatomic) IBOutlet UITextView *txtDescription;
 @property (weak, nonatomic) IBOutlet UITextField *txtTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitleIndicator;
 @property (weak, nonatomic) IBOutlet UILabel *lblDescIndicator;

@@ -36,6 +36,12 @@
     
     self.labelTitle.text = LOCALIZATION(@"Title");
     self.labelDescription.text = LOCALIZATION(@"Write your experience");
+    
+    CGFloat yourSelectedFontSize = 15.0 ;
+    UIFont *yourNewSameStyleFont = [self.txtTitle.font fontWithSize:yourSelectedFontSize];
+    self.txtTitle.font = yourNewSameStyleFont ;
+    [self.txtDescription setFont:yourNewSameStyleFont];
+    
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
