@@ -7,7 +7,8 @@
 //
 
 #import "STAddNewTableViewCell.h"
-
+@interface STAddNewTableViewCell()
+@end
 @implementation STAddNewTableViewCell
 
 /*
@@ -21,5 +22,6 @@
 -(void)initSelfView
 {
     self.lblTitle.text = LOCALIZATION(@"Add New Places");
+    [Utils setRoundBorder:self.lblTitle color:[UIColor lightGrayColor] borderRadius:5.0f];
 }
 @end

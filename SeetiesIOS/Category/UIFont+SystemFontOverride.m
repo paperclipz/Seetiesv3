@@ -15,7 +15,7 @@
 #pragma clang diagnostic ignored "-Wobjc-protocol-method-implementation"
 
 + (UIFont *)boldSystemFontOfSize:(CGFloat)fontSize {
-    return [UIFont fontWithName:CustomFontName size:fontSize];
+    return [UIFont fontWithName:CustomFontNameBold size:fontSize];
 }
 
 + (UIFont *)systemFontOfSize:(CGFloat)fontSize {

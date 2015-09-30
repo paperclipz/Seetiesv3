@@ -16,6 +16,7 @@
 @property (strong, nonatomic) NSMutableArray* arrDraftList;
 
 @property(nonatomic,strong)EditPostViewController* editPostViewController;
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @end
 
 @implementation DraftViewController
@@ -55,7 +56,12 @@
         
     }];
 
- 
+    [self changeLanguage];
+}
+
+-(void)changeLanguage
+{
+    self.lblTitle.text = LOCALIZATION(@"Drafts");
 }
 
 #pragma mark - UITableView DataSource

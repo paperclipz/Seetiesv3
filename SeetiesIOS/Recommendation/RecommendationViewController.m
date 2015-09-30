@@ -109,10 +109,14 @@
 
 -(void)processModelData:(NSArray*)arrAssets
 {
+    
+    self.recommendModel.arrPostImagesList = nil;
+    self.recommendModel.arrPostImagesList  = [NSMutableArray new];
     for (int i = 0; i<arrAssets.count; i++) {
         
         PhotoModel* model = [PhotoModel new];
         model.image = [ASSETHELPER getImageFromAsset:arrAssets[i] type:ASSET_PHOTO_SCREEN_SIZE];
+        
         [self.recommendModel.arrPostImagesList addObject:model];
     }
 }

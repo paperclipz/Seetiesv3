@@ -104,11 +104,16 @@
     self.txtPerPax.delegate = self;
     self.txtPerPax.text = @"0.00";
     [Utils setButtonWithBorder:self.btnCurrency];
-    [Utils setButtonWithBorder:self.btnEditHours];
+    [Utils setRoundBorder:self.btnEditHours color:[UIColor grayColor] borderRadius:self.btnEditHours.frame.size.height/2];
     [self.txtPhoneNo setKeyboardType:UIKeyboardTypePhonePad];
+    
+    CGRect frame = [Utils getDeviceScreenSize];
+    self.btnEditHours.frame = CGRectMake((frame.size.width - self.btnEditHours.frame.size.width)/2, self.btnEditHours.frame.origin.y, self.btnEditHours.frame.size.width, self.btnEditHours.frame.size.height);
     [self changeLanguage];
     
 }
+
+
 
 -(void)changeLanguage
 {
@@ -118,7 +123,7 @@
     self.lblPhoneNumber.text = LOCALIZATION(@"Phone No.");
     self.lblPrice.text = LOCALIZATION(@"Price");
     self.lblPerpax.text = LOCALIZATION(@"Per Pax");
-    self.lblEditHour.text = LOCALIZATION(@"Edit Hours");
+    self.lblEditHour.text = LOCALIZATION(@"Hours");
     [self.btnEditHours setTitle:LOCALIZATION(@"Edit Hours") forState:UIControlStateNormal];
   }
 

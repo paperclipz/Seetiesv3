@@ -119,7 +119,7 @@
  
     [UIView transitionWithView:self.ibDescContentView
                       duration:1.0
-                       options:isFirstView?UIViewAnimationOptionTransitionFlipFromLeft :UIViewAnimationOptionTransitionFlipFromRight
+                       options:isFirstView?UIViewAnimationOptionCurveEaseIn :UIViewAnimationOptionCurveEaseOut
                     animations:^{
 
                         self.editPostViewSecond.hidden = !isFirstView;
@@ -162,7 +162,7 @@
                           } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Save"]) {
                               NSLog(@"Save");
                               [self requestToSaveDraftOrPublish:YES];
-                             // [self.navigationController popViewControllerAnimated:YES];
+                           //   [self.navigationController popViewControllerAnimated:YES];
                           }
                       }];
 }
@@ -340,7 +340,6 @@
 - (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
     NSLog(@"Selected index %ld (via UIControlEventValueChanged)", (long)segmentedControl.selectedSegmentIndex);
     
-    
     [self saveData];
     switch ((long)segmentedControl.selectedSegmentIndex) {
        
@@ -479,13 +478,12 @@
 
 -(NSArray*)arrTabImages
 {
-    
     if ( self.editPostType == EditPostTypePostEdit) {
         return @[[UIImage imageNamed:@"addurl_icon@2x.png"],[UIImage imageNamed:@"qr_icon@2x.png"],[UIImage imageNamed:@"editplace_icon@2x.png"]];
 
     }
     else{
-        return @[[UIImage imageNamed:@"addurl_icon@2x.png"],[UIImage imageNamed:@"qr_icon@2x.png"],[UIImage imageNamed:@"editplace_icon@2x.png"],[UIImage imageNamed:@"save_icon@2x.png"]];
+        return @[[UIImage imageNamed:@"addurl_icon@2x.png"],[UIImage imageNamed:@"qr_icon@2x.png"],[UIImage imageNamed:@"editplace_icon@2x.png"],[UIImage imageNamed:@"SaveDraftBtn.png"]];
 
     }
 }
@@ -511,9 +509,14 @@
         _segmentedControl.backgroundColor = [UIColor clearColor];
         _segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationNone;
         _segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleTextWidthStripe;
-
+        _segmentedControl.verticalDividerColor = [UIColor grayColor];
+        _segmentedControl.verticalDividerEnabled = YES;
+        _segmentedControl.verticalDividerColor = TEXT_GRAY_COLOR;
+        _segmentedControl.verticalDividerWidth = .5f;
+        //_segmentedControl.selectionIndicatorHeight = 10.0f;
     }
-    
+
+
     return _segmentedControl;
 }
 -(AddNewPlaceViewController*)addNewPlaceViewController
@@ -740,11 +743,9 @@ static id ObjectOrNull(id object)
             }
         }
         
-        if (_editPostDoneBlock) {
-            
-            [self performSelector:@selector(editPostDoneBlock) withObject:nil afterDelay:2.0f];
-           // self.editPostDoneBlock(nil);
-        }
+        
+        
+        [self performSelector:@selector(buttonDoneAction) withObject:nil afterDelay:2.0f];
     
     } errorBlock:^(id object) {
 
@@ -754,6 +755,16 @@ static id ObjectOrNull(id object)
     
 }
 
+-(void)buttonDoneAction
+{
+    
+    SLog(@"buttonDoneAction");
+    [self dismissViewControllerAnimated:YES completion:nil];
+
+//    if (self.editPostBackBlock) {
+//        self.editPostBackBlock(nil);
+//    }
+}
 #pragma mark - Sava Data
 
 -(void)saveData

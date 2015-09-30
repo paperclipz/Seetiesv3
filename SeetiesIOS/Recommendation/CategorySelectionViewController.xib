@@ -34,19 +34,19 @@
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nNf-Lk-QOe">
                             <rect key="frame" x="0.0" y="0.0" width="304" height="42"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select up to 2 categories" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vEV-sg-dNg">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select 2 categories" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vEV-sg-dNg">
                                     <rect key="frame" x="0.0" y="13" width="304" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9zR-qN-JhW">
-                                    <rect key="frame" x="273" y="10" width="23" height="22"/>
+                                    <rect key="frame" x="273" y="13" width="23" height="22"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="23" id="baR-CR-IJk"/>
                                         <constraint firstAttribute="height" constant="22" id="p5Q-ga-Ly3"/>
                                     </constraints>
-                                    <state key="normal" image="ButtonClose.png">
+                                    <state key="normal" image="CollectionCrossBtn.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
@@ -54,12 +54,12 @@
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" red="0.93688841543737367" green="0.93688841543737367" blue="0.93688841543737367" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="centerX" secondItem="vEV-sg-dNg" secondAttribute="centerX" id="ASw-uG-nw7"/>
                                 <constraint firstAttribute="centerY" secondItem="vEV-sg-dNg" secondAttribute="centerY" constant="-2.5" id="DKF-wc-Mx6"/>
-                                <constraint firstItem="9zR-qN-JhW" firstAttribute="top" secondItem="nNf-Lk-QOe" secondAttribute="top" constant="10" id="JGg-Pn-vcU"/>
-                                <constraint firstAttribute="bottom" secondItem="9zR-qN-JhW" secondAttribute="bottom" constant="10" id="Mo5-Xh-zce"/>
+                                <constraint firstItem="9zR-qN-JhW" firstAttribute="top" secondItem="nNf-Lk-QOe" secondAttribute="top" constant="13" id="JGg-Pn-vcU"/>
+                                <constraint firstAttribute="bottom" secondItem="9zR-qN-JhW" secondAttribute="bottom" constant="7" id="Mo5-Xh-zce"/>
                                 <constraint firstAttribute="trailing" secondItem="9zR-qN-JhW" secondAttribute="trailing" constant="8" id="NLX-XX-c5F"/>
                                 <constraint firstItem="vEV-sg-dNg" firstAttribute="leading" secondItem="nNf-Lk-QOe" secondAttribute="leading" id="Uwo-X0-HVk"/>
                                 <constraint firstItem="vEV-sg-dNg" firstAttribute="bottom" secondItem="nNf-Lk-QOe" secondAttribute="bottomMargin" id="cga-tf-cBv"/>
@@ -73,7 +73,7 @@
                                 <constraint firstAttribute="height" constant="400" id="w1e-Aq-Fzc"/>
                             </constraints>
                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Pm0-xd-ztm">
-                                <size key="itemSize" width="86" height="110"/>
+                                <size key="itemSize" width="86" height="115"/>
                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                 <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
@@ -91,7 +91,8 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="36" id="Cft-PA-d3c"/>
                             </constraints>
-                            <state key="normal" title="Done">
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <state key="normal" title="Publish Now">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -142,6 +143,6 @@
         </view>
     </objects>
     <resources>
-        <image name="ButtonClose.png" width="17" height="17"/>
+        <image name="CollectionCrossBtn.png" width="25" height="25"/>
     </resources>
 </document>

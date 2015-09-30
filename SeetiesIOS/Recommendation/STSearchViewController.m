@@ -76,7 +76,7 @@
 {
     self.fourSquareSearchTableViewController.view.frame = CGRectMake(0, self.fourSquareSearchTableViewController.view.frame.origin.y, self.cAPSPageMenu.view.frame.size.width, self.cAPSPageMenu.view.frame.size.height- self.cAPSPageMenu.menuHeight);
 
-    [self setPageShowSingleView:YES];
+    //[self setPageShowSingleView:YES];
 }
 
 -(void)setPageShowSingleView:(BOOL)isSingleView
@@ -104,7 +104,6 @@
     
     }
   }
-
 -(CAPSPageMenu*)cAPSPageMenu
 {
     if(!_cAPSPageMenu)
@@ -113,22 +112,21 @@
         
         NSArray *controllerArray = @[self.fourSquareSearchTableViewController, self.googleSearchTableViewController];
         NSDictionary *parameters = @{
-                                     CAPSPageMenuOptionScrollMenuBackgroundColor: [UIColor lightGrayColor],
-                                     CAPSPageMenuOptionViewBackgroundColor: [UIColor colorWithRed:20.0/255.0 green:20.0/255.0 blue:20.0/255.0 alpha:1.0],
+                                     CAPSPageMenuOptionScrollMenuBackgroundColor: [UIColor colorWithRed:246.0/255.0 green:246.0/255.0 blue:246.0/255.0 alpha:1.0],
+                                     CAPSPageMenuOptionViewBackgroundColor: [UIColor colorWithRed:246.0/255.0 green:246.0/255.0 blue:246.0/255.0 alpha:1.0],
                                      CAPSPageMenuOptionSelectionIndicatorColor: DEVICE_COLOR,
                                      CAPSPageMenuOptionBottomMenuHairlineColor: [UIColor colorWithRed:70.0/255.0 green:70.0/255.0 blue:70.0/255.0 alpha:1.0],
                                      CAPSPageMenuOptionMenuItemFont: [UIFont fontWithName:@"HelveticaNeue" size:13.0],
                                      CAPSPageMenuOptionMenuHeight: @(40.0),
                                      CAPSPageMenuOptionMenuItemWidth: @(deviceFrame.size.width/2),
                                      CAPSPageMenuOptionCenterMenuItems: @(YES),
-                                     CAPSPageMenuOptionUnselectedMenuItemLabelColor:[UIColor darkGrayColor],
+                                     CAPSPageMenuOptionUnselectedMenuItemLabelColor:TEXT_GRAY_COLOR,
+                                     CAPSPageMenuOptionSelectedMenuItemLabelColor:DEVICE_COLOR,
                                          };
 
         _cAPSPageMenu = [[CAPSPageMenu alloc] initWithViewControllers:controllerArray frame:CGRectMake(0.0, 0.0, self.ibSearchContentView.frame.size.width, self.ibSearchContentView.frame.size.height) options:parameters];
         _cAPSPageMenu.view.backgroundColor = [UIColor whiteColor];
-
     }
-    
     return _cAPSPageMenu;
 }
 
@@ -333,6 +331,10 @@
 }
 
 #pragma mark - UITextfield Delegate
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    //self.cAPSPageMenu.view.frame = searchViewFrame;
+}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
@@ -351,7 +353,7 @@
 - (void)textFieldDidChange:(UITextField *)textField {
     
     
-    [self setPageShowSingleView:textField.text.length>0?NO:YES];
+   //3 [self setPageShowSingleView:textField.text.length>0?NO:YES];
     
     [self requestSearch];
     
@@ -382,7 +384,7 @@
     {
         _fourSquareSearchTableViewController = [SearchTableViewController new];
         [_fourSquareSearchTableViewController initTableViewWithDelegate:self];
-        _fourSquareSearchTableViewController.title = @"Four Square";
+        _fourSquareSearchTableViewController.title = @"FourSquare";
         _fourSquareSearchTableViewController.type = SearchTypeFourSquare;
 
     }

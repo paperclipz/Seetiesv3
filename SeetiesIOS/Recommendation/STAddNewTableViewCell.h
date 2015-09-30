@@ -10,5 +10,6 @@
 
 @interface STAddNewTableViewCell : CommonTableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+@property (weak, nonatomic) IBOutlet UILabel *lblCreteMapTitle;
 
 @end

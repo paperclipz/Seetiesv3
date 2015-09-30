@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DraftViewController">
             <connections>
+                <outlet property="lblTitle" destination="18F-7n-ysR" id="gbm-y6-vJJ"/>
                 <outlet property="tableView" destination="at8-9G-hT0" id="kNP-lT-W3H"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -18,9 +19,9 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Re1-a0-mFK">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Draft" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="18F-7n-ysR">
-                            <rect key="frame" x="46" y="29" width="266" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Draft" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="18F-7n-ysR">
+                            <rect key="frame" x="46" y="29" width="222" height="21"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -55,12 +56,12 @@
                         <constraint firstItem="YoW-RX-9NH" firstAttribute="leading" secondItem="Re1-a0-mFK" secondAttribute="leading" id="hb5-P7-0zW"/>
                         <constraint firstAttribute="height" constant="64" id="mIc-2M-esH"/>
                         <constraint firstItem="laB-V3-voD" firstAttribute="top" secondItem="YoW-RX-9NH" secondAttribute="bottom" constant="-35" id="qJu-Z7-eUF"/>
-                        <constraint firstAttribute="trailing" secondItem="18F-7n-ysR" secondAttribute="trailing" constant="8" id="tdv-G6-r7D"/>
+                        <constraint firstAttribute="trailing" secondItem="18F-7n-ysR" secondAttribute="trailing" constant="52" id="tdv-G6-r7D"/>
                         <constraint firstItem="laB-V3-voD" firstAttribute="top" secondItem="18F-7n-ysR" secondAttribute="top" id="vbT-Ja-afD"/>
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="at8-9G-hT0">
-                    <rect key="frame" x="0.0" y="63" width="320" height="505"/>
+                    <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
             </subviews>
@@ -68,7 +69,7 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Re1-a0-mFK" secondAttribute="trailing" id="6Lq-ax-tPE"/>
                 <constraint firstItem="at8-9G-hT0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7GE-rF-8TS"/>
-                <constraint firstItem="at8-9G-hT0" firstAttribute="top" secondItem="Re1-a0-mFK" secondAttribute="bottom" constant="-1" id="CCz-gX-DXl"/>
+                <constraint firstItem="at8-9G-hT0" firstAttribute="top" secondItem="Re1-a0-mFK" secondAttribute="bottom" id="CCz-gX-DXl"/>
                 <constraint firstItem="Re1-a0-mFK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="SNi-LL-rhE"/>
                 <constraint firstAttribute="bottom" secondItem="at8-9G-hT0" secondAttribute="bottom" id="cjY-DU-mKs"/>
                 <constraint firstAttribute="trailing" secondItem="at8-9G-hT0" secondAttribute="trailing" id="nDA-s8-HEI"/>
