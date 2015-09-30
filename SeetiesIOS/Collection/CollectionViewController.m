@@ -313,6 +313,13 @@
     }
     [MainScroll addSubview:BackgroundImg];
     
+    UIImageView *ShowOverlayImg = [[UIImageView alloc]init];
+    ShowOverlayImg.image = [UIImage imageNamed:@"FeedOverlay.png"];
+    ShowOverlayImg.frame = CGRectMake(0, -20, screenWidth, 140);
+    ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
+    ShowOverlayImg.layer.masksToBounds = YES;
+    [MainScroll addSubview:ShowOverlayImg];
+    
     AsyncImageView *UserImage = [[AsyncImageView alloc]init];
     UserImage.frame = CGRectMake((screenWidth /2) - 30, 90, 60, 60);
     UserImage.contentMode = UIViewContentModeScaleAspectFill;
@@ -427,14 +434,14 @@
     
     ListButton = [[UIButton alloc]init];
     ListButton.frame = CGRectMake(0, GetHeight, (screenWidth / 2), 50);
-    [ListButton setImage:[UIImage imageNamed:@"listview_selected.png"] forState:UIControlStateNormal];
+    [ListButton setImage:[UIImage imageNamed:@"ListViewActive.png"] forState:UIControlStateNormal];
     ListButton.backgroundColor = [UIColor clearColor];
     [ListButton addTarget:self action:@selector(ListButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
     [MainScroll addSubview:ListButton];
     
     GridButton = [[UIButton alloc]init];
     GridButton.frame = CGRectMake((screenWidth / 2), GetHeight, (screenWidth / 2), 50);
-    [GridButton setImage:[UIImage imageNamed:@"gridview_unselect.png"] forState:UIControlStateNormal];
+    [GridButton setImage:[UIImage imageNamed:@"GridViewInactive.png"] forState:UIControlStateNormal];
     GridButton.backgroundColor = [UIColor clearColor];
     [GridButton addTarget:self action:@selector(GridButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
     [MainScroll addSubview:GridButton];
@@ -466,8 +473,8 @@
     
 }
 -(IBAction)ListButtonOnClick:(id)sender{
-    [ListButton setImage:[UIImage imageNamed:@"listview_selected.png"] forState:UIControlStateNormal];
-    [GridButton setImage:[UIImage imageNamed:@"gridview_unselect.png"] forState:UIControlStateNormal];
+    [ListButton setImage:[UIImage imageNamed:@"ListViewActive.png"] forState:UIControlStateNormal];
+    [GridButton setImage:[UIImage imageNamed:@"GridViewInactive.png"] forState:UIControlStateNormal];
     
     GridView.hidden = YES;
     ListView.hidden = NO;
@@ -478,8 +485,8 @@
     MainScroll.contentSize = contentSize;
 }
 -(IBAction)GridButtonOnClick:(id)sender{
-    [ListButton setImage:[UIImage imageNamed:@"listview_unselect.png"] forState:UIControlStateNormal];
-    [GridButton setImage:[UIImage imageNamed:@"gridview_selected.png"] forState:UIControlStateNormal];
+    [ListButton setImage:[UIImage imageNamed:@"ListViewInactive.png"] forState:UIControlStateNormal];
+    [GridButton setImage:[UIImage imageNamed:@"GridViewActive.png"] forState:UIControlStateNormal];
     
     GridView.hidden = NO;
     ListView.hidden = YES;
@@ -542,8 +549,8 @@
         
         
         UIImageView *ShowPin = [[UIImageView alloc]init];
-        ShowPin.image = [UIImage imageNamed:@"location_icon.png"];
-        ShowPin.frame = CGRectMake(30, TempHeight + 24, 9, 12);
+        ShowPin.image = [UIImage imageNamed:@"LocationpinIcon.png"];
+        ShowPin.frame = CGRectMake(25, TempHeight + 20, 18, 18);
         [ListView addSubview:ShowPin];
         
         NSString *TempDistanceString = [[NSString alloc]initWithFormat:@"%@",[Content_arrID_arrDistance objectAtIndex:i]];
