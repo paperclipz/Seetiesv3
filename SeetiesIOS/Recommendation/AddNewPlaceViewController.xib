@@ -4,11 +4,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <mutableArray key="HelveticaNeue.ttc">
-            <string>HelveticaNeue</string>
-        </mutableArray>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddNewPlaceViewController">
             <connections>
@@ -26,9 +21,9 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vJ5-lJ-w6a">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="key-Ts-FqN">
-                            <rect key="frame" x="53" y="29" width="259" height="21"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="key-Ts-FqN">
+                            <rect key="frame" x="53" y="29" width="215" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -73,7 +68,7 @@
                         <constraint firstItem="key-Ts-FqN" firstAttribute="top" secondItem="iGC-uq-moM" secondAttribute="top" constant="9" id="GFi-hf-tGL"/>
                         <constraint firstAttribute="bottom" secondItem="iGC-uq-moM" secondAttribute="bottom" constant="4" id="OeO-wO-apg"/>
                         <constraint firstItem="iGC-uq-moM" firstAttribute="leading" secondItem="vJ5-lJ-w6a" secondAttribute="leading" constant="-5" id="Qqy-2Z-cUh"/>
-                        <constraint firstAttribute="trailing" secondItem="key-Ts-FqN" secondAttribute="trailing" constant="8" id="Ujq-z5-8Jb"/>
+                        <constraint firstAttribute="trailing" secondItem="key-Ts-FqN" secondAttribute="trailing" constant="52" id="Ujq-z5-8Jb"/>
                         <constraint firstAttribute="bottom" secondItem="key-Ts-FqN" secondAttribute="bottom" constant="14" id="XYs-Wi-bUM"/>
                         <constraint firstAttribute="trailing" secondItem="unv-wv-jDS" secondAttribute="trailing" constant="8" id="YFr-RO-jPk"/>
                         <constraint firstItem="iGC-uq-moM" firstAttribute="top" secondItem="V7t-8u-g3s" secondAttribute="bottom" constant="-44" id="bRS-e4-wX0"/>

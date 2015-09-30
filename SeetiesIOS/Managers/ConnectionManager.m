@@ -233,7 +233,7 @@
         for (int i = 0; i<arrMeta.count; i++) {
             
             PhotoModel* model = arrMeta[i];
-                       [formData appendPartWithFormData:[[@(i)stringValue]  dataUsingEncoding:NSUTF8StringEncoding] name:[NSString stringWithFormat:@"photos_meta[%d][position]",i]];
+                       [formData appendPartWithFormData:[[@(i+1)stringValue]  dataUsingEncoding:NSUTF8StringEncoding] name:[NSString stringWithFormat:@"photos_meta[%d][position]",i]];
             [formData appendPartWithFormData:[model.caption?model.caption:@"" dataUsingEncoding:NSUTF8StringEncoding] name:[NSString stringWithFormat:@"photos_meta[%d][caption]",i]];
             
             if(model.photo_id)
@@ -255,6 +255,16 @@
         
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
+        NSDictionary* resDict = [[NSDictionary alloc]initWithDictionary:responseObject];
+        
+        if (resDict[@"error"]) {
+            if (errorBlock) {
+                errorBlock(resDict[@"error"]);
+            }
+        }
+        
+        [self storeServerData:responseObject requestType:type];
+
         if (completeBlock) {
             completeBlock(responseObject);
         }
@@ -371,6 +381,7 @@
         case ServerRequestTypePostCreatePost:
         case ServerRequestTypePostDeletePost:
         case ServerRequestTypeGetPostInfo:
+        case ServerRequestTypePostSaveDraft:
             str = @"v2.0/post";
             
             break;
@@ -488,6 +499,14 @@
             
             break;
             
+        case ServerRequestTypePostSaveDraft:
+        {
+            NSDictionary* dict = obj[@"data"];
+            self.dataManager.savedDraftModel = [[DraftModel alloc]initWithDictionary:dict error:nil];
+            [self.dataManager.savedDraftModel process];
+        }
+            
+            break;
         default:
             
             SLog(@"the return result is :%@",obj);

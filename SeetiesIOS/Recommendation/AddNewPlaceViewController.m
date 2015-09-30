@@ -169,9 +169,8 @@
             _region.center.longitude = currentLocation.coordinate.longitude;
             _region.center.latitude = currentLocation.coordinate.latitude;
             
-            if (lat && lont) {
-                [self.annotation setCoordinate:self.region.center];
-            }
+            
+            [self.annotation setCoordinate:self.region.center];
             
             [self.ibMapView setRegion:self.region animated:YES];
             
@@ -182,9 +181,8 @@
     else{
         _region.center.longitude = lont;
         _region.center.latitude = lat;
-        if (lat && lont) {
-            [self.annotation setCoordinate:self.region.center];
-        }
+        
+        [self.annotation setCoordinate:self.region.center];
         
         
         [self.ibMapView setRegion:self.region animated:YES];

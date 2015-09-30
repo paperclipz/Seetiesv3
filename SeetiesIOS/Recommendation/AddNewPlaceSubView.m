@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblPrice;
 @property (weak, nonatomic) IBOutlet UILabel *lblPerpax;
 @property (weak, nonatomic) IBOutlet UILabel *lblEditHour;
+@property (weak, nonatomic) IBOutlet UIImageView *ibImgArrow;
 
 @end
 
@@ -113,7 +114,11 @@
     
 }
 
+-(void)layoutSubviews
+{
+    self.ibImgArrow.frame = CGRectMake(self.btnCurrency.frame.origin.x + self.btnCurrency.frame.size.width - self.ibImgArrow.frame.size.width - 10, self.ibImgArrow.frame.origin.y, self.ibImgArrow.frame.size.width,self.ibImgArrow.frame.size.height);
 
+}
 
 -(void)changeLanguage
 {

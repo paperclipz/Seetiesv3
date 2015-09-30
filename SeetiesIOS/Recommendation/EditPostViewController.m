@@ -56,8 +56,11 @@
 @end
 
 @implementation EditPostViewController
+
+#pragma mark - IBACTION
 - (IBAction)btnEditPhotoClicked:(id)sender {
     
+    [self saveData];
     _editPhotoViewController = nil;
     
     [self.editPhotoViewController initData:self.recommendationModel];
@@ -117,9 +120,11 @@
     UISegmentedControl* temp = (UISegmentedControl*)sender;
     BOOL isFirstView = temp.selectedSegmentIndex==1;
  
+    
+    
     [UIView transitionWithView:self.ibDescContentView
                       duration:1.0
-                       options:isFirstView?UIViewAnimationOptionCurveEaseIn :UIViewAnimationOptionCurveEaseOut
+                       options:isFirstView?UIViewAnimationOptionTransitionCrossDissolve :UIViewAnimationOptionTransitionCrossDissolve
                     animations:^{
 
                         self.editPostViewSecond.hidden = !isFirstView;
@@ -131,7 +136,6 @@
 
                     }
      ];
-    
  }
 
 - (IBAction)btnBackClicked:(id)sender {
@@ -167,9 +171,9 @@
                       }];
 }
 
+#pragma mark - INITIALIZATION
 -(void)initData:(RecommendationModel*)model
 {
-    
     
     self.editPostType = EditPostTypeDraftNew;
     self.recommendationModel = model;
@@ -196,8 +200,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
-    
     [self changeLanguage];
+    [self setViewWithNumberOfLanguage];
 
    // [self resetData];
 }
@@ -211,15 +215,18 @@
 
 -(void)loadData
 {
-    self.editPostView.txtTitle.text = self.recommendationModel.postMainTitle;
-    self.editPostView.txtDescription.text = self.recommendationModel.postMainDescription;
-    
-    self.editPostViewSecond.txtTitle.text = self.recommendationModel.postSecondTitle;
-    self.editPostViewSecond.txtDescription.text = self.recommendationModel.postSecondDescription;
-    
-    [self reloadImage];
-    [self setHasDualLanguage:YES];
-    
+    [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+        
+        [self.editPostView initData:self.recommendationModel viewNo:1];
+        [self.editPostViewSecond initData:self.recommendationModel viewNo:2];
+        [self reloadImage];
+
+    } completion:nil];
+   
+}
+
+-(void)setViewWithNumberOfLanguage
+{
     switch (self.editPostType) {
         case EditPostTypeDraft:
         {
@@ -231,6 +238,7 @@
             }
             else{
                 [self.postSegmentedControl setTitle:[Utils getLanguageName:self.recommendationModel.postSeconLanguage] forSegmentAtIndex:1];
+                [self setHasDualLanguage:YES];
 
             }
         }
@@ -251,6 +259,7 @@
             else{
                 [self.postSegmentedControl setTitle:langTwo forSegmentAtIndex:1];
                 self.recommendationModel.postSeconLanguage = [Utils getLanguageCode:langTwo];
+                [self setHasDualLanguage:YES];
 
             }
             
@@ -320,19 +329,6 @@
     [super viewDidAppear:animated];
     
     [self loadData];
-
-    //    SDWebImageManager *manager = [SDWebImageManager sharedManager];
-    //    [manager downloadImageWithURL:[NSURL URLWithString:@"http://cdn3.denofgeek.us/sites/denofgeekus/files/scarlett_johansson.jpg"]
-    //                          options:0
-    //                         progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-    //                             // progression tracking code
-    //                         }
-    //                        completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-    //                            if (image) {
-    //
-    //                                self.ibImageView.image = [image imageCroppedAndScaledToSize:self.ibImageView.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
-    //                            }
-    //                        }];
 
 
 }
@@ -727,29 +723,24 @@ static id ObjectOrNull(id object)
 
     }
     
-    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostCreatePost param:finalDict appendString:tempModel.post_id meta:arrMeta  completeHandler:^(id object) {
+    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostSaveDraft param:finalDict appendString:tempModel.post_id meta:arrMeta  completeHandler:^(id object) {
         
         
         self.tempSavedRecommendationModel = self.recommendationModel;
         if (!isDraft) {
-            [self dismissViewControllerAnimated:YES completion:nil];
+            
+            [self performSelector:@selector(buttonDoneAction) withObject:nil afterDelay:2.0f];
         }
         else{
             [TSMessage showNotificationInViewController:self title:@"system" subtitle:@"Data Successfully Saved to Draft" type:TSMessageNotificationTypeSuccess duration:2.0 canBeDismissedByUser:YES];
             
-            if (object) {
-                NSDictionary* dict = [[NSDictionary alloc]initWithDictionary:object];
-                self.recommendationModel.post_id = dict[@"data"][@"post_id"];
-            }
+            RecommendationModel* model = [[RecommendationModel alloc]initWithDraftModel:[ConnectionManager dataManager].savedDraftModel];
+            self.recommendationModel = model;
         }
-        
-        
-        
-        [self performSelector:@selector(buttonDoneAction) withObject:nil afterDelay:2.0f];
     
     } errorBlock:^(id object) {
 
-        [TSMessage showNotificationInViewController:self title:@"system" subtitle:@"Data Fail to be Posted" type:TSMessageNotificationTypeSuccess duration:2.0 canBeDismissedByUser:YES];
+        [TSMessage showNotificationInViewController:self title:@"system" subtitle:object?object:@"Data Fail to be Posted" type:TSMessageNotificationTypeError duration:2.0 canBeDismissedByUser:YES];
 
     }];
     
@@ -769,6 +760,7 @@ static id ObjectOrNull(id object)
 
 -(void)saveData
 {
+    
     self.recommendationModel.postMainTitle = self.editPostView.txtTitle.text;
     self.recommendationModel.postMainDescription = self.editPostView.txtDescription.text;
     self.recommendationModel.postSecondTitle = self.editPostViewSecond.txtTitle.text;

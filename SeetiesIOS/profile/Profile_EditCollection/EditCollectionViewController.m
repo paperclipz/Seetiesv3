@@ -30,7 +30,7 @@
 - (IBAction)btnEditClicked:(id)sender {
     
     
-   // _editCollectionDetailViewController = nil;
+    _editCollectionDetailViewController = nil;
     [self.editCollectionDetailViewController initData:self.collectionModel];
     [self.navigationController pushViewController:self.editCollectionDetailViewController animated:YES];
     
@@ -79,7 +79,7 @@
     self.ibTableView.delegate = sender;
     self.ibTableView.dataSource = sender;
     [self.ibTableView registerClass:[EditCollectionTableViewCell class] forCellReuseIdentifier:@"EditCollectionTableViewCell"];
-    //self.ibTableView.longPressReorderEnabled = YES;
+    self.ibTableView.longPressReorderEnabled = YES;
 
 }
 

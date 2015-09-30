@@ -10,7 +10,7 @@
 #import "Bostring.h"
 
 @interface EditPostDetailVIew()
-
+@property(nonatomic,strong)RecommendationModel* recModel;
 @end
 @implementation EditPostDetailVIew
 #define TITLE_MAX_COUNT 70
@@ -42,6 +42,18 @@
     self.txtTitle.font = yourNewSameStyleFont ;
     [self.txtDescription setFont:yourNewSameStyleFont];
     
+}
+
+-(void)initData:(RecommendationModel*)model viewNo:(int)counter
+{
+    self.recModel = model;
+    
+    self.txtTitle.text = counter==1?self.recModel.postMainTitle:self.recModel.postSecondTitle;
+    self.txtDescription.text = counter==1?self.recModel.postMainDescription:self.recModel.postSecondDescription;
+    
+    [self getCounterText:self.lblTitleIndicator maxCount:TITLE_MAX_COUNT textInputCount:(int)self.txtTitle.text.length];
+    [self getCounterText:self.lblDescIndicator maxCount:DESC_MAX_COUNT textInputCount:(int)self.txtDescription.text.length];
+
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string

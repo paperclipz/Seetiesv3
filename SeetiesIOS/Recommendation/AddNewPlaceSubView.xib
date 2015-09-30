@@ -12,7 +12,6 @@
             <string>HelveticaNeue</string>
             <string>HelveticaNeue</string>
             <string>HelveticaNeue</string>
-            <string>HelveticaNeue</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -99,13 +98,13 @@
                     <color key="textColor" red="0.56315104169999997" green="0.56315104169999997" blue="0.56315104169999997" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="UYs-1x-lUl">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="UYs-1x-lUl">
                     <rect key="frame" x="8" y="359" width="157" height="30"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="tintColor" red="0.56315104169999997" green="0.56315104169999997" blue="0.56315104169999997" alpha="1" colorSpace="calibratedRGB"/>
                     <inset key="imageEdgeInsets" minX="100" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    <state key="normal" title="Currency" image="CurrencyArrow.png">
+                    <state key="normal" title="Currency">
                         <color key="titleColor" red="0.56315104169999997" green="0.56315104169999997" blue="0.56315104169999997" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
@@ -132,6 +131,10 @@
                         <action selector="btnEditHourClicked:" destination="ppk-fm-q1o" eventType="touchUpInside" id="xFf-hT-qgi"/>
                     </connections>
                 </button>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="CurrencyArrow.png" id="t8q-Ii-FQ1">
+                    <rect key="frame" x="132" y="357" width="33" height="33"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <nil key="simulatedStatusBarMetrics"/>
@@ -140,6 +143,7 @@
             <connections>
                 <outlet property="btnCurrency" destination="UYs-1x-lUl" id="UN2-D0-eHw"/>
                 <outlet property="btnEditHours" destination="nYs-af-sor" id="ox1-gv-GRB"/>
+                <outlet property="ibImgArrow" destination="t8q-Ii-FQ1" id="W5e-NY-Kp4"/>
                 <outlet property="lblAddress" destination="tvk-Fn-aJs" id="08A-dx-3jH"/>
                 <outlet property="lblEditHour" destination="y5C-KJ-pU1" id="kk4-TS-G1m"/>
                 <outlet property="lblPerpax" destination="TDQ-RV-eCu" id="J57-bM-VVI"/>
