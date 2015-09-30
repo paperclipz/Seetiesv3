@@ -57,7 +57,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="sQe-ai-cDF">
                             <rect key="frame" x="270" y="1" width="50" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" image="close_btn.png">
+                            <state key="normal" image="CollectionCrossBtn.png">
                                 <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
@@ -204,6 +204,7 @@
         </view>
     </objects>
     <resources>
+        <image name="CollectionCrossBtn.png" width="25" height="25"/>
         <image name="ShareCopyLinkIcon.png" width="82" height="82"/>
         <image name="ShareEmailIcon.png" width="82" height="82"/>
         <image name="ShareFBIcon.png" width="82" height="82"/>
@@ -211,6 +212,5 @@
         <image name="ShareLineIcon.png" width="82" height="82"/>
         <image name="ShareMessangerIcon.png" width="82" height="82"/>
         <image name="ShareWhatsappIcon.png" width="82" height="82"/>
-        <image name="close_btn.png" width="11" height="11"/>
     </resources>
 </document>

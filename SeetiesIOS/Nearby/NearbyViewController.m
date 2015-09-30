@@ -402,7 +402,7 @@
 //        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:UserImage];
 //        NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[UserInfo_UrlArray objectAtIndex:i]];
 //        if ([FullImagesURL length] == 0) {
-//            UserImage.image = [UIImage imageNamed:@"avatar.png"];
+//            UserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
 //        }else{
 //            NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL];
 //            UserImage.imageURL = url_NearbySmall;
@@ -452,8 +452,8 @@
         [MainScroll addSubview:TempShowTitle];
         
         UIImageView *ShowPin = [[UIImageView alloc]init];
-        ShowPin.image = [UIImage imageNamed:@"FeedPin.png"];
-        ShowPin.frame = CGRectMake(120, GetHeight + 27, 8, 11);
+        ShowPin.image = [UIImage imageNamed:@"LocationpinIcon.png"];
+        ShowPin.frame = CGRectMake(120, GetHeight + 23, 18, 18);
         [MainScroll addSubview:ShowPin];
         
         UILabel *ShowPlaceName = [[UILabel alloc]init];

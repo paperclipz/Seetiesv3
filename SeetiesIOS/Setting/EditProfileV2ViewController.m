@@ -51,7 +51,7 @@
     DOBField.delegate = self;
     GenderField.delegate = self;
     
-    CaretLocationImg.frame = CGRectMake(screenWidth - 20 - 13, 609, 8, 13);
+    CaretLocationImg.frame = CGRectMake(screenWidth - 30, 598, 30, 30);
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     GetWallpaper = [defaults objectForKey:@"UserData_Wallpaper"];
@@ -87,7 +87,7 @@
     UserImg.layer.borderColor=[[UIColor whiteColor] CGColor];
     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:UserImg];
     if ([GetProfileImg length] == 0 || [GetProfileImg isEqualToString:@"null"] || [GetProfileImg isEqualToString:@"<null>"]) {
-        UserImg.image = [UIImage imageNamed:@"avatar.png"];
+        UserImg.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
     }else{
         NSURL *url_UserImage = [NSURL URLWithString:GetProfileImg];
         UserImg.imageURL = url_UserImage;

@@ -364,8 +364,8 @@
     for (int i = 0; i < [GetReturnSearchTextArray count]; i++) {
         
         UIImageView *ShowLocationIcon = [[UIImageView alloc]init];
-        ShowLocationIcon.frame = CGRectMake(20, height + 6, 15, 19);
-        ShowLocationIcon.image = [UIImage imageNamed:@"blue_location_icon.png"];
+        ShowLocationIcon.frame = CGRectMake(20, height, 30, 30);
+        ShowLocationIcon.image = [UIImage imageNamed:@"SearchLocationIcon.png"];
         [SearchScroll addSubview:ShowLocationIcon];
         
         UIButton *TextButton = [[UIButton alloc]init];
@@ -408,7 +408,7 @@
     for (int i = 0; i < [GetSearchArray count]; i++) {
         UIImageView *ShowSearchIcon = [[UIImageView alloc]init];
         ShowSearchIcon.frame = CGRectMake(20, height + 7, 17, 17);
-        ShowSearchIcon.image = [UIImage imageNamed:@"searchresult_icon.png"];
+        ShowSearchIcon.image = [UIImage imageNamed:@"SearchLocationIcon.png"];
         [SearchScroll addSubview:ShowSearchIcon];
         
         UIButton *TextButton = [[UIButton alloc]init];
@@ -423,7 +423,7 @@
         [SearchScroll addSubview:TextButton];
         
         UIButton *GotoButton = [[UIButton alloc]init];
-        [GotoButton setImage:[UIImage imageNamed:@"goto_icon.png"] forState:UIControlStateNormal];
+        [GotoButton setImage:[UIImage imageNamed:@"AutoComplete.png"] forState:UIControlStateNormal];
         GotoButton.frame = CGRectMake(screenWidth - 20 - 14, height + 8, 14, 14);
         GotoButton.tag = i;
         [GotoButton addTarget:self action:@selector(SearchGetLocationButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];

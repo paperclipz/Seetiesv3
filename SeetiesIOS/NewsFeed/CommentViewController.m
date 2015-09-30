@@ -400,7 +400,7 @@
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowLikeUserImage];
         NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[GetUser_Comment_photoArray objectAtIndex:i]];
         if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"null"] || [FullImagesURL1 isEqualToString:@"<null>"]) {
-            ShowLikeUserImage.image = [UIImage imageNamed:@"avatar.png"];
+            ShowLikeUserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
         }else{
             NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
             //NSLog(@"url_NearbyBig is %@",url_NearbyBig);
@@ -1230,12 +1230,12 @@
         ShowLikeUserImage.layer.cornerRadius=25;
         ShowLikeUserImage.layer.borderWidth=1;
         ShowLikeUserImage.layer.masksToBounds = YES;
-        ShowLikeUserImage.image = [UIImage imageNamed:@"avatar.png"];
+        ShowLikeUserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
         ShowLikeUserImage.layer.borderColor=[[UIColor whiteColor] CGColor];
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowLikeUserImage];
         NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[Like_UserProfilePhotoArray objectAtIndex:i]];
         if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"null"] || [FullImagesURL1 isEqualToString:@"<null>"]) {
-            ShowLikeUserImage.image = [UIImage imageNamed:@"avatar.png"];
+            ShowLikeUserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
         }else{
             NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
             //NSLog(@"url_NearbyBig is %@",url_NearbyBig);
@@ -1319,7 +1319,7 @@
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:UserImage];
         NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[CollectionUserProfileArray objectAtIndex:i]];
         if ([FullImagesURL length] == 0 || [FullImagesURL isEqualToString:@"\"\""]) {
-            UserImage.image = [UIImage imageNamed:@"avatar.png"];
+            UserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
         }else{
             NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL];
             UserImage.imageURL = url_NearbySmall;

@@ -274,6 +274,9 @@
         NSURL *url = [NSURL URLWithString:FullImagesURL];
         imageView.imageURL = url;
         
+
+        
+        
         UIButton *BackgroundButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [BackgroundButton setTitle:@"" forState:UIControlStateNormal];
         [BackgroundButton setFrame:CGRectMake(10+(i % 2)*SpaceWidth, GetHeight + (SpaceWidth * (CGFloat)(i /2)), FinalWidth, FinalWidth)];
@@ -308,6 +311,7 @@
         [ClickButton addTarget:self action:@selector(ClickButton:) forControlEvents:UIControlEventTouchUpInside];
         
         [ibScrollViewCountry addSubview:imageView];
+       // [ibScrollViewCountry addSubview:ShowOverlayImg];
         [ibScrollViewCountry addSubview:BackgroundButton];
         [ibScrollViewCountry addSubview:Line01];
         [ibScrollViewCountry addSubview:ShowUserName];
@@ -445,6 +449,13 @@
         ShowCountryImg.imageURL = url;
         [ibScrollViewCountry addSubview:ShowCountryImg];
         
+        UIImageView *ShowOverlayImg = [[UIImageView alloc]init];
+        ShowOverlayImg.image = [UIImage imageNamed:@"ExploreOverlay.png"];
+        ShowOverlayImg.frame = CGRectMake(0, 0 + i * 151, screenWidth, 150);
+        ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
+        ShowOverlayImg.layer.masksToBounds = YES;
+        // ShowOverlayImg.layer.cornerRadius = 5;
+        [ibScrollViewCountry addSubview:ShowCountryImg];
        
         
         UILabel *ShowUserName = [[UILabel alloc]init];

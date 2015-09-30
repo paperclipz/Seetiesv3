@@ -381,7 +381,7 @@
         NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[User_ProfilePhotoArray objectAtIndex:i]];
         //NSLog(@"FullImagesURL1 ====== %@",FullImagesURL1);
         if ([FullImagesURL1 length] == 0) {
-            ShowUserImage.image = [UIImage imageNamed:@"avatar.png"];
+            ShowUserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
         }else{
             NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
             //NSLog(@"url_NearbyBig is %@",url_NearbyBig);
@@ -412,11 +412,11 @@
         
         NSString *CheckFollower = [[NSString alloc]initWithFormat:@"%@",[User_FollowedArray objectAtIndex:i]];
         if ([CheckFollower isEqualToString:@"0"]) {
-            [ShowFollowerButton setImage:[UIImage imageNamed:@"FollowMini.png"] forState:UIControlStateNormal];
-            [ShowFollowerButton setImage:[UIImage imageNamed:@"FollowingMini.png"] forState:UIControlStateSelected];
+            [ShowFollowerButton setImage:[UIImage imageNamed:@"FollowIcon.png"] forState:UIControlStateNormal];
+            [ShowFollowerButton setImage:[UIImage imageNamed:@"FollowingIcon.png"] forState:UIControlStateSelected];
         }else{
-            [ShowFollowerButton setImage:[UIImage imageNamed:@"FollowingMini.png"] forState:UIControlStateNormal];
-            [ShowFollowerButton setImage:[UIImage imageNamed:@"FollowMini.png"] forState:UIControlStateSelected];
+            [ShowFollowerButton setImage:[UIImage imageNamed:@"FollowingIcon.png"] forState:UIControlStateNormal];
+            [ShowFollowerButton setImage:[UIImage imageNamed:@"FollowIcon.png"] forState:UIControlStateSelected];
         }
         
         UIButton *Line01 = [UIButton buttonWithType:UIButtonTypeCustom];

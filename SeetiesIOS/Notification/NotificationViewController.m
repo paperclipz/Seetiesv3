@@ -396,45 +396,45 @@
         [ButtonClick setFrame:CGRectMake(0, 0 + i * 80, screenWidth, 80)];
         [ButtonClick setBackgroundColor:[UIColor clearColor]];
         ButtonClick.tag = i;
-        [ButtonClick addTarget:self action:@selector(ClickButton:) forControlEvents:UIControlEventTouchUpInside];
+        //[ButtonClick addTarget:self action:@selector(ClickButton:) forControlEvents:UIControlEventTouchUpInside];
         
         UIImageView *MiniIcon = [[UIImageView alloc]init];
         MiniIcon.frame = CGRectMake(60, 53 + i * 80, 15, 14);
        // MiniIcon.contentMode = UIViewContentModeScaleAspectFit;
-        MiniIcon.image = [UIImage imageNamed:@"Mini_collection_icon.png"];
+        MiniIcon.image = [UIImage imageNamed:@"NotificationCollect.png"];
         
         NSString *GetType = [[NSString alloc]initWithFormat:@"%@",[Following_TypeArray objectAtIndex:i]];
         if ([GetType isEqualToString:@"follow"]) {
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[Following_UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
-                ShowUserImage.image = [UIImage imageNamed:@"avatar.png"];
+                ShowUserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
                 ShowUserImage.imageURL = url_UserImage;
             }
             MiniIcon.frame = CGRectMake(60, 53 + i * 80, 11, 14);
-            MiniIcon.image = [UIImage imageNamed:@"Mini_people_icon.png"];
+            MiniIcon.image = [UIImage imageNamed:@"NotificationFollow.png"];
         }else if ([GetType isEqualToString:@"like"]){
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[Following_UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
-                ShowUserImage.image = [UIImage imageNamed:@"avatar.png"];
+                ShowUserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
                 ShowUserImage.imageURL = url_UserImage;
             }
             NSString *FullImagesURL2 = [[NSString alloc]initWithFormat:@"%@",[Following_PostThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL2 length] == 0 || [FullImagesURL2 isEqualToString:@"Null"]) {
-                ShowPostImage.image = [UIImage imageNamed:@"avatar.png"];
+                ShowPostImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL2];
                 ShowPostImage.imageURL = url_UserImage;
             }
             MiniIcon.frame = CGRectMake(60, 54 + i * 80, 15, 12);
-            MiniIcon.image = [UIImage imageNamed:@"Mini_like_icon.png"];
+            MiniIcon.image = [UIImage imageNamed:@"NotificationLike.png"];
         }else if ([GetType isEqualToString:@"mention"]){
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[Following_UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
-                ShowUserImage.image = [UIImage imageNamed:@"avatar.png"];
+                ShowUserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
                 ShowUserImage.imageURL = url_UserImage;
@@ -442,17 +442,17 @@
             
             NSString *FullImagesURL2 = [[NSString alloc]initWithFormat:@"%@",[Following_PostThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL2 length] == 0 || [FullImagesURL2 isEqualToString:@"Null"]) {
-                ShowPostImage.image = [UIImage imageNamed:@"avatar.png"];
+                ShowPostImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL2];
                 ShowPostImage.imageURL = url_UserImage;
             }
             MiniIcon.frame = CGRectMake(60, 54 + i * 80, 15, 12);
-            MiniIcon.image = [UIImage imageNamed:@"Mini_comment_icon.png"];
+            MiniIcon.image = [UIImage imageNamed:@"NoticationComment.png"];
         }else if ([GetType isEqualToString:@"comment"]){
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[Following_UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
-                ShowUserImage.image = [UIImage imageNamed:@"avatar.png"];
+                ShowUserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
                 ShowUserImage.imageURL = url_UserImage;
@@ -460,13 +460,13 @@
             
             NSString *FullImagesURL2 = [[NSString alloc]initWithFormat:@"%@",[Following_PostThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL2 length] == 0 || [FullImagesURL2 isEqualToString:@"Null"]) {
-                ShowPostImage.image = [UIImage imageNamed:@"avatar.png"];
+                ShowPostImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL2];
                 ShowPostImage.imageURL = url_UserImage;
             }
             MiniIcon.frame = CGRectMake(60, 55 + i * 80, 14, 11);
-            MiniIcon.image = [UIImage imageNamed:@"Mini_comment_icon.png"];
+            MiniIcon.image = [UIImage imageNamed:@"NoticationComment.png"];
         }else{ // handle new type
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[Following_UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
@@ -476,7 +476,7 @@
                 ShowUserImage.imageURL = url_UserImage;
             }
             MiniIcon.frame = CGRectMake(60, 53 + i * 80, 12, 15);
-            MiniIcon.image = [UIImage imageNamed:@"Mini_seeties_icon.png"];
+            MiniIcon.image = [UIImage imageNamed:@"NotificationBySeeties.png"];
         }
         
         
@@ -591,7 +591,7 @@
         UIImageView *MiniIcon = [[UIImageView alloc]init];
         MiniIcon.frame = CGRectMake(60, 53 + i * 80, 15, 14);
         // MiniIcon.contentMode = UIViewContentModeScaleAspectFit;
-        MiniIcon.image = [UIImage imageNamed:@"Mini_collection_icon.png"];
+        MiniIcon.image = [UIImage imageNamed:@"NotificationCollect.png"];
         
         
         
@@ -600,34 +600,34 @@
         if ([GetType isEqualToString:@"follow"]) {
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
-                ShowUserImage.image = [UIImage imageNamed:@"avatar.png"];
+                ShowUserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
                 ShowUserImage.imageURL = url_UserImage;
             }
             MiniIcon.frame = CGRectMake(60, 53 + i * 80, 11, 14);
-            MiniIcon.image = [UIImage imageNamed:@"Mini_people_icon.png"];
+            MiniIcon.image = [UIImage imageNamed:@"NotificationFollow.png"];
         }else if ([GetType isEqualToString:@"like"]){
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
-                ShowUserImage.image = [UIImage imageNamed:@"avatar.png"];
+                ShowUserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
                 ShowUserImage.imageURL = url_UserImage;
             }
             NSString *FullImagesURL2 = [[NSString alloc]initWithFormat:@"%@",[PostThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL2 length] == 0 || [FullImagesURL2 isEqualToString:@"Null"]) {
-                ShowPostImage.image = [UIImage imageNamed:@"avatar.png"];
+                ShowPostImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL2];
                 ShowPostImage.imageURL = url_UserImage;
             }
             MiniIcon.frame = CGRectMake(60, 54 + i * 80, 15, 12);
-            MiniIcon.image = [UIImage imageNamed:@"Mini_like_icon.png"];
+            MiniIcon.image = [UIImage imageNamed:@"NotificationLike.png"];
         }else if ([GetType isEqualToString:@"mention"]){
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
-                ShowUserImage.image = [UIImage imageNamed:@"avatar.png"];
+                ShowUserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
                 ShowUserImage.imageURL = url_UserImage;
@@ -635,17 +635,17 @@
             
             NSString *FullImagesURL2 = [[NSString alloc]initWithFormat:@"%@",[PostThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL2 length] == 0 || [FullImagesURL2 isEqualToString:@"Null"]) {
-                ShowPostImage.image = [UIImage imageNamed:@"avatar.png"];
+                ShowPostImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL2];
                 ShowPostImage.imageURL = url_UserImage;
             }
             MiniIcon.frame = CGRectMake(60, 54 + i * 80, 15, 12);
-            MiniIcon.image = [UIImage imageNamed:@"Mini_comment_icon.png"];
+            MiniIcon.image = [UIImage imageNamed:@"NotificationComment.png"];
         }else if ([GetType isEqualToString:@"comment"]){
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
-                ShowUserImage.image = [UIImage imageNamed:@"avatar.png"];
+                ShowUserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
                 ShowUserImage.imageURL = url_UserImage;
@@ -653,13 +653,13 @@
             
             NSString *FullImagesURL2 = [[NSString alloc]initWithFormat:@"%@",[PostThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL2 length] == 0 || [FullImagesURL2 isEqualToString:@"Null"]) {
-                ShowPostImage.image = [UIImage imageNamed:@"avatar.png"];
+                ShowPostImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL2];
                 ShowPostImage.imageURL = url_UserImage;
             }
             MiniIcon.frame = CGRectMake(60, 55 + i * 80, 14, 11);
-            MiniIcon.image = [UIImage imageNamed:@"Mini_comment_icon.png"];
+            MiniIcon.image = [UIImage imageNamed:@"NotificationComment.png"];
         }else{ // handle new type
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
@@ -669,7 +669,7 @@
                 ShowUserImage.imageURL = url_UserImage;
             }
             MiniIcon.frame = CGRectMake(60, 53 + i * 80, 12, 15);
-            MiniIcon.image = [UIImage imageNamed:@"Mini_seeties_icon.png"];
+            MiniIcon.image = [UIImage imageNamed:@"NotificationBySeeties.png"];
         }
     
     

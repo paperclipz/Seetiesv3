@@ -4,11 +4,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <mutableArray key="ProximaNovaSoft-Regular.ttf">
-            <string>ProximaNovaSoft-Regular</string>
-        </mutableArray>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewUserProfileV2ViewController">
             <connections>
@@ -16,7 +11,6 @@
                 <outlet property="BackButton" destination="U3I-aX-d1F" id="H9D-lJ-i1X"/>
                 <outlet property="BackgroundImage" destination="yKh-wC-tCm" id="FQS-E6-1a9"/>
                 <outlet property="MainScroll" destination="2Bp-R6-26E" id="yhK-MI-qMA"/>
-                <outlet property="MoreButton" destination="Wmk-AX-p3G" id="XqT-8X-KzL"/>
                 <outlet property="ShareButton" destination="5nP-NU-OmU" id="Mp7-ia-gJu"/>
                 <outlet property="ShowLoadingActivity" destination="kAb-F6-mkW" id="NeR-4J-rUe"/>
                 <outlet property="backIcon" destination="bLs-mV-Vcw" id="A90-26-BVK"/>
@@ -33,8 +27,8 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </scrollView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackButton2.png" id="bLs-mV-Vcw">
-                    <rect key="frame" x="15" y="33" width="19" height="20"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackIcon.png" id="bLs-mV-Vcw">
+                    <rect key="frame" x="0.0" y="22" width="40" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="U3I-aX-d1F">
@@ -52,19 +46,10 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="color" red="0.20000000000000001" green="0.70980392160000005" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
                 </activityIndicatorView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Wmk-AX-p3G">
-                    <rect key="frame" x="251" y="32" width="30" height="20"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="18"/>
-                    <state key="normal" image="more_icon.png">
-                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5nP-NU-OmU">
-                    <rect key="frame" x="295" y="33" width="17" height="18"/>
+                    <rect key="frame" x="270" y="22" width="50" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="profileshare_icon.png">
+                    <state key="normal" image="ProfileShareIcon.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
@@ -86,8 +71,7 @@
         </view>
     </objects>
     <resources>
-        <image name="BackButton2.png" width="38" height="39"/>
-        <image name="more_icon.png" width="26" height="6"/>
-        <image name="profileshare_icon.png" width="16" height="18"/>
+        <image name="BackIcon.png" width="40" height="40"/>
+        <image name="ProfileShareIcon.png" width="40" height="40"/>
     </resources>
 </document>

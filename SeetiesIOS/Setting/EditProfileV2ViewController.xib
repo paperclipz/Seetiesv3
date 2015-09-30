@@ -51,14 +51,14 @@
                             <rect key="frame" x="0.0" y="64" width="320" height="120"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <state key="normal" image="coverphoto_camera.png">
+                            <state key="normal" image="EditCoverPhoto.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
                                 <action selector="BackgroundImgOnClick:" destination="-1" eventType="touchUpInside" id="Ynz-92-yZt"/>
                             </connections>
                         </button>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar.png" id="L5i-az-YKE" customClass="AsyncImageView">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultProfilePic.png" id="L5i-az-YKE" customClass="AsyncImageView">
                             <rect key="frame" x="20" y="138" width="90" height="90"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
@@ -66,7 +66,7 @@
                             <rect key="frame" x="20" y="138" width="90" height="90"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <state key="normal" image="photo_camera.png">
+                            <state key="normal" image="EditDisplayPhoto.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -81,20 +81,20 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="name_icon.png" id="G0K-Vv-lY0">
-                            <rect key="frame" x="20" y="293" width="18" height="16"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NamaIcon.png" id="G0K-Vv-lY0">
+                            <rect key="frame" x="8" y="286" width="30" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="username_icon.png" id="vug-Go-ilu">
-                            <rect key="frame" x="20" y="256" width="15" height="15"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UsernameIcon.png" id="vug-Go-ilu">
+                            <rect key="frame" x="8" y="245" width="30" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tags_icon.png" id="Uo0-Ij-L4w">
-                            <rect key="frame" x="20" y="383" width="15" height="15"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TagsIcon.png" id="Uo0-Ij-L4w">
+                            <rect key="frame" x="8" y="376" width="30" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bio_icon.png" id="9qj-5T-uJC">
-                            <rect key="frame" x="20" y="425" width="18" height="18"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AboutIcon.png" id="9qj-5T-uJC">
+                            <rect key="frame" x="8" y="420" width="30" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="website/blog link" minimumFontSize="17" id="tbT-AE-LNv">
@@ -157,8 +157,8 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="link_icon.png" id="6KK-hf-N3G">
-                            <rect key="frame" x="20" y="333" width="15" height="15"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WebsiteLinkIcon.png" id="6KK-hf-N3G">
+                            <rect key="frame" x="8" y="330" width="30" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="username" minimumFontSize="17" id="wnz-an-AzG">
@@ -195,16 +195,16 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="birthday_icon.png" id="cNn-nD-TRg">
-                            <rect key="frame" x="20" y="562" width="18" height="19"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BrithdayIcon.png" id="cNn-nD-TRg">
+                            <rect key="frame" x="8" y="557" width="30" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location_icon.png" id="g0l-xc-iPu">
-                            <rect key="frame" x="23" y="606" width="13" height="16"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LocationIcon.png" id="g0l-xc-iPu">
+                            <rect key="frame" x="8" y="598" width="30" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gender_icon.png" id="hcV-v2-gbA">
-                            <rect key="frame" x="20" y="650" width="17" height="14"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GenderIcon.png" id="hcV-v2-gbA">
+                            <rect key="frame" x="8" y="645" width="30" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Yy0-4m-nZQ">
@@ -290,24 +290,24 @@
                                 <action selector="GenderButtonOnClick:" destination="-1" eventType="touchUpInside" id="KAo-po-Rfp"/>
                             </connections>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Caret.png" id="hch-Xk-943">
-                            <rect key="frame" x="296" y="609" width="8" height="13"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </imageView>
                         <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" id="0MP-K9-drE">
                             <rect key="frame" x="165" y="199" width="37" height="37"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="color" red="0.20000000000000001" green="0.70980392160000005" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
                         </activityIndicatorView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ArrowBtn.png" id="hch-Xk-943">
+                            <rect key="frame" x="282" y="598" width="30" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" red="0.91372549020000005" green="0.92941176469999998" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                 </scrollView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Settingsbar2.png" id="Rwi-Wt-0mC">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TitleBar.png" id="Rwi-Wt-0mC">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackButton2.png" id="pQn-bP-JKu">
-                    <rect key="frame" x="13" y="33" width="20" height="20"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackIcon.png" id="pQn-bP-JKu">
+                    <rect key="frame" x="0.0" y="22" width="40" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zux-0i-1o4">
@@ -331,7 +331,7 @@
                     <rect key="frame" x="270" y="20" width="50" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
-                    <state key="normal" image="done_btn.png">
+                    <state key="normal" image="TickIcon.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -344,21 +344,21 @@
         </view>
     </objects>
     <resources>
-        <image name="BackButton2.png" width="38" height="39"/>
-        <image name="Caret.png" width="8" height="13"/>
+        <image name="AboutIcon.png" width="30" height="30"/>
+        <image name="ArrowBtn.png" width="30" height="30"/>
+        <image name="BackIcon.png" width="40" height="40"/>
+        <image name="BrithdayIcon.png" width="30" height="30"/>
+        <image name="DefaultProfilePic.png" width="100" height="100"/>
+        <image name="EditCoverPhoto.png" width="70" height="70"/>
+        <image name="EditDisplayPhoto.png" width="47" height="47"/>
+        <image name="GenderIcon.png" width="30" height="30"/>
+        <image name="LocationIcon.png" width="30" height="30"/>
+        <image name="NamaIcon.png" width="45" height="45"/>
         <image name="NoImage.png" width="800" height="800"/>
-        <image name="Settingsbar2.png" width="640" height="128"/>
-        <image name="avatar.png" width="256" height="256"/>
-        <image name="bio_icon.png" width="18" height="18"/>
-        <image name="birthday_icon.png" width="18" height="19"/>
-        <image name="coverphoto_camera.png" width="47" height="31"/>
-        <image name="done_btn.png" width="21" height="15"/>
-        <image name="gender_icon.png" width="17" height="13"/>
-        <image name="link_icon.png" width="15" height="15"/>
-        <image name="location_icon.png" width="13" height="16"/>
-        <image name="name_icon.png" width="18" height="16"/>
-        <image name="photo_camera.png" width="33" height="22"/>
-        <image name="tags_icon.png" width="15" height="16"/>
-        <image name="username_icon.png" width="14" height="14"/>
+        <image name="TagsIcon.png" width="30" height="30"/>
+        <image name="TickIcon.png" width="40" height="40"/>
+        <image name="TitleBar.png" width="310" height="64"/>
+        <image name="UsernameIcon.png" width="30" height="30"/>
+        <image name="WebsiteLinkIcon.png" width="30" height="30"/>
     </resources>
 </document>

@@ -142,8 +142,8 @@
         MapView.frame = CGRectMake(0, 0, screenWidth, screenHeight - 60 - 200);
         
         UIImageView *ShowLocationIcon = [[UIImageView alloc]init];
-        ShowLocationIcon.frame = CGRectMake(25, MapView.frame.size.height + 22, 13, 17);
-        ShowLocationIcon.image = [UIImage imageNamed:@"InfoLocation.png"];
+        ShowLocationIcon.frame = CGRectMake(25, MapView.frame.size.height + 18, 25, 25);
+        ShowLocationIcon.image = [UIImage imageNamed:@"BluePin.png"];
         [MainScroll addSubview:ShowLocationIcon];
         
         UILabel *ShowPlaceName = [[UILabel alloc]init];
@@ -167,8 +167,8 @@
         MapView.frame = CGRectMake(0, 0, screenWidth, 200);
         
         UIImageView *ShowLocationIcon = [[UIImageView alloc]init];
-        ShowLocationIcon.frame = CGRectMake(25, 200 + 22, 13, 17);
-        ShowLocationIcon.image = [UIImage imageNamed:@"InfoLocation.png"];
+        ShowLocationIcon.frame = CGRectMake(25, 200 + 18, 25, 25);
+        ShowLocationIcon.image = [UIImage imageNamed:@"BluePin.png"];
         [MainScroll addSubview:ShowLocationIcon];
         
         UILabel *ShowPlaceName = [[UILabel alloc]init];
@@ -198,8 +198,8 @@
         if ([GetPlaceLink length] == 0) {
         }else{
             UIImageView *ShowLinkIcon = [[UIImageView alloc]init];
-            ShowLinkIcon.frame = CGRectMake(25, GetHeight, 15, 15);
-            ShowLinkIcon.image = [UIImage imageNamed:@"InfoUrlLink.png"];
+            ShowLinkIcon.frame = CGRectMake(25, GetHeight, 25, 25);
+            ShowLinkIcon.image = [UIImage imageNamed:@"BlueLink.png"];
             [MainScroll addSubview:ShowLinkIcon];
             
             UILabel *ShowPlacelink = [[UILabel alloc]init];
@@ -226,12 +226,12 @@
             
         }else{
             UIImageView *ShowContactIcon = [[UIImageView alloc]init];
-            ShowContactIcon.frame = CGRectMake(25, GetHeight, 13, 14);
-            ShowContactIcon.image = [UIImage imageNamed:@"InfoContact.png"];
+            ShowContactIcon.frame = CGRectMake(25, GetHeight, 25, 25);
+            ShowContactIcon.image = [UIImage imageNamed:@"BluePhone.png"];
             [MainScroll addSubview:ShowContactIcon];
             
             UILabel *ShowContact = [[UILabel alloc]init];
-            ShowContact.frame = CGRectMake(55, GetHeight - 3, screenWidth - 80, 21);
+            ShowContact.frame = CGRectMake(55, GetHeight , screenWidth - 80, 25);
             ShowContact.text = GetContact;
             ShowContact.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
             ShowContact.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
@@ -252,12 +252,12 @@
             
         }else{
             UIImageView *ShowPriceIcon = [[UIImageView alloc]init];
-            ShowPriceIcon.frame = CGRectMake(25, GetHeight, 19, 19);
-            ShowPriceIcon.image = [UIImage imageNamed:@"InfoPrice.png"];
+            ShowPriceIcon.frame = CGRectMake(25, GetHeight, 25, 25);
+            ShowPriceIcon.image = [UIImage imageNamed:@"BluePrice.png"];
             [MainScroll addSubview:ShowPriceIcon];
             
             UILabel *ShowPriceTExt = [[UILabel alloc]init];
-            ShowPriceTExt.frame = CGRectMake(55, GetHeight - 1, screenWidth - 152, 21);
+            ShowPriceTExt.frame = CGRectMake(55, GetHeight, screenWidth - 152, 25);
             ShowPriceTExt.text = GetPrice;
             ShowPriceTExt.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
             ShowPriceTExt.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
@@ -270,8 +270,8 @@
             
         }else{
             UIImageView *ShowOpeningIcon = [[UIImageView alloc]init];
-            ShowOpeningIcon.frame = CGRectMake(25, GetHeight, 19, 19);
-            ShowOpeningIcon.image = [UIImage imageNamed:@"InfoHours.png"];
+            ShowOpeningIcon.frame = CGRectMake(25, GetHeight, 25, 25);
+            ShowOpeningIcon.image = [UIImage imageNamed:@"BlueTime.png"];
             [MainScroll addSubview:ShowOpeningIcon];
             
             if ([GetOpeningHour isEqualToString:@"0"]) {
@@ -282,7 +282,7 @@
             }
             
             UILabel *ShowOpeningTExt = [[UILabel alloc]init];
-            ShowOpeningTExt.frame = CGRectMake(55, GetHeight - 1, screenWidth - 80, 21);
+            ShowOpeningTExt.frame = CGRectMake(55, GetHeight - 1, screenWidth - 80, 25);
             ShowOpeningTExt.text = GetOpeningHour;
             ShowOpeningTExt.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
             ShowOpeningTExt.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];

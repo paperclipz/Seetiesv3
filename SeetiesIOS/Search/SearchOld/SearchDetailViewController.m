@@ -33,7 +33,7 @@
     SearchTextField.frame = CGRectMake(50, 25, screenWidth - 50 - 39, 30);
     SearchAddressField.frame = CGRectMake(50, 58, screenWidth - 50 - 39, 30);
     ShowTitle.frame = CGRectMake(15, 20, screenWidth - 30, 44);
-    SortbyFullButton.frame = CGRectMake(screenWidth - 29 , 20, 41, 38);
+    SortbyFullButton.frame = CGRectMake(screenWidth - 41 , 20, 41, 38);
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     Background_Search.frame = CGRectMake(0, 64, screenWidth, 50);
     Background_Search.hidden = YES;
@@ -882,7 +882,7 @@
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:UserImage];
         NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[UserInfo_UrlArray objectAtIndex:i]];
         if ([FullImagesURL length] == 0) {
-            UserImage.image = [UIImage imageNamed:@"avatar.png"];
+            UserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
         }else{
             NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL];
             UserImage.imageURL = url_NearbySmall;
@@ -932,8 +932,8 @@
         [PostsView addSubview:TempShowTitle];
 
         UIImageView *ShowPin = [[UIImageView alloc]init];
-        ShowPin.image = [UIImage imageNamed:@"FeedPin.png"];
-        ShowPin.frame = CGRectMake(120, PostGetHeight + 82, 8, 11);
+        ShowPin.image = [UIImage imageNamed:@"LocationpinIcon"];
+        ShowPin.frame = CGRectMake(120, PostGetHeight + 80, 18, 18);
         [PostsView addSubview:ShowPin];
         
         UILabel *ShowPlaceName = [[UILabel alloc]init];
@@ -1029,7 +1029,7 @@
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:UserImage];
        NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[Experts_ProfilePhoto_Array objectAtIndex:i]];
         if ([FullImagesURL length] == 0) {
-            UserImage.image = [UIImage imageNamed:@"avatar.png"];
+            UserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
         }else{
             NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL];
             UserImage.imageURL = url_NearbySmall;
@@ -1056,7 +1056,7 @@
             [FollowButton setImage:[UIImage imageNamed:@"ExploreFollowing.png"] forState:UIControlStateNormal];
             [FollowButton setImage:[UIImage imageNamed:@"ExploreFollow.png"] forState:UIControlStateSelected];
         }
-        [FollowButton setImage:[UIImage imageNamed:@"follow_icon.png"] forState:UIControlStateNormal];
+        //[FollowButton setImage:[UIImage imageNamed:@"follow_icon.png"] forState:UIControlStateNormal];
         FollowButton.backgroundColor = [UIColor clearColor];
         FollowButton.tag = i;
         [FollowButton addTarget:self action:@selector(FollowButton:) forControlEvents:UIControlEventTouchUpInside];

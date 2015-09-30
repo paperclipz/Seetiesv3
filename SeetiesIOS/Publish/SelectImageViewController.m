@@ -36,8 +36,8 @@
         selectedIndexArr_Location = [[NSMutableArray alloc] init];
         selectedIndexArr_Date = [[NSMutableArray alloc] init];
         
-        //  [thumbsArr addObject:@"avatar.png"];
-        //  [FullArr addObject:@"avatar.png"];
+        //  [thumbsArr addObject:@"DefaultProfilePic.png"];
+        //  [FullArr addObject:@"DefaultProfilePic.png"];
     }
     return self;
 }
@@ -229,7 +229,7 @@
     ALAssetsFilter *onlyPhotosFilter = [ALAssetsFilter allPhotos];
     [self.assetsGroup setAssetsFilter:onlyPhotosFilter];
     [self.assetsGroup enumerateAssetsUsingBlock:assetsEnumerationBlock];
-    //    [thumbsArr addObject:@"avatar.png"];
+    //    [thumbsArr addObject:@"DefaultProfilePic.png"];
     NSArray* reversedArray = [[self.assets reverseObjectEnumerator] allObjects];
     self.assets = nil;
     self.assets = [[NSMutableArray alloc]initWithArray:reversedArray];
@@ -280,7 +280,7 @@
             
             AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
             ShowImage.frame = CGRectMake(3 +((i + 1) % 3)* SpaceWidth, 5 + (SpaceWidth * (CGFloat)((i + 1) /3)), FinalWidth, FinalWidth);
-            ShowImage.image = [UIImage imageNamed:@"avatar.png"];
+            ShowImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             //   if (i == 0) {
             //      ShowImage.image = [UIImage imageNamed:[thumbsArr objectAtIndex:i]];
             //   }else{
