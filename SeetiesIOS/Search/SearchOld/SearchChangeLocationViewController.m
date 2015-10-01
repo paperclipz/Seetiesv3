@@ -30,6 +30,7 @@
     SubTitle.text = CustomLocalisedString(@"SEARCHHISTORY", nil);
     SearchLocationField.placeholder = CustomLocalisedString(@"searchlocation", nil);
 }
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.screenName = @"IOS Search Change Location Page";

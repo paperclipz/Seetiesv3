@@ -14,7 +14,7 @@
 @interface EditPhotoViewController ()
 {
     NSMutableArray* arrayDeletedImages;
-    
+    __weak IBOutlet UILabel *lbltitle;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *arrEditPhotoList;
@@ -341,6 +341,12 @@
         NSArray * supportedOrientations = @[@(UIInterfaceOrientationPortrait), @(UIInterfaceOrientationPortraitUpsideDown), @(UIInterfaceOrientationLandscapeLeft), @(UIInterfaceOrientationLandscapeRight)];
         [AFPhotoEditorCustomization setSupportedIpadOrientations:supportedOrientations];
     }
+}
+
+#pragma mark - change language
+-(void)changeLanguage
+{
+    lbltitle.text = LocalisedString(@"Edit Photos");
 }
 
 @end

@@ -189,6 +189,10 @@
     [self initSelfView];
     [self changeLanguage];
     [self DeleteAllSaveData];
+    
+    LanguageManager *languageManager = [LanguageManager sharedLanguageManager];
+    Locale *localeForRow = languageManager.availableLocales[1];
+    [languageManager setLanguageWithLocale:localeForRow];
 
     count = 0;
 }

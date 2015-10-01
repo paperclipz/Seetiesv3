@@ -44,7 +44,7 @@
 
 + (void)show
 {
-    [KVNProgress showWithParameters:@{KVNProgressViewParameterStatus: @"Loading...",
+    [KVNProgress showWithParameters:@{KVNProgressViewParameterStatus: LocalisedString(@"Hang on. It's loading!"),
                                       KVNProgressViewParameterBackgroundType: @(KVNProgressBackgroundTypeSolid),
                                       KVNProgressViewParameterFullScreen: @([[LoadingManager Instance] isFullScreen])}];
     
@@ -55,7 +55,7 @@
 
 + (void)showWithTitle:(NSString*)title
 {
-    [KVNProgress showWithParameters:@{KVNProgressViewParameterStatus: [NSString stringWithFormat:@"Searching %@",title],
+    [KVNProgress showWithParameters:@{KVNProgressViewParameterStatus: [NSString stringWithFormat:@"%@ %@",LocalisedString(@"Searching"),title],
                                       KVNProgressViewParameterBackgroundType: @(KVNProgressBackgroundTypeSolid),
                                       KVNProgressViewParameterFullScreen: @([[LoadingManager Instance] isFullScreen])}];
     
@@ -65,7 +65,7 @@
 }
 - (void)showWithSolidBackground
 {
-    [KVNProgress showWithParameters:@{KVNProgressViewParameterStatus: @"Loading...",
+    [KVNProgress showWithParameters:@{KVNProgressViewParameterStatus: LocalisedString(@"Hang on. It's loading!"),
                                       KVNProgressViewParameterBackgroundType: @(KVNProgressBackgroundTypeSolid),
                                       KVNProgressViewParameterFullScreen: @([self isFullScreen])}];
     
@@ -75,10 +75,10 @@
 - (void)showWithStatus
 {
     if ([self isFullScreen]) {
-        [KVNProgress showWithParameters:@{KVNProgressViewParameterStatus: @"Loading...",
+        [KVNProgress showWithParameters:@{KVNProgressViewParameterStatus: LocalisedString(@"Hang on. It's loading!"),
                                           KVNProgressViewParameterFullScreen: @(YES)}];
     } else {
-        [KVNProgress showWithStatus:@"Loading..."];
+        [KVNProgress showWithStatus:LocalisedString(@"Hang on. It's loading!")];
     }
     
    

@@ -100,7 +100,7 @@
     [Utils setRoundBorder:self.txtDescription color:[UIColor darkGrayColor]borderRadius:5.0f];
     [Utils setRoundBorder:self.ibContentWrapperview color:[UIColor darkGrayColor]borderRadius:5.0f];
     self.txtDescription.delegate = self;
-    self.txtDescription.placeholder = LocalisedString(@"Write A Comment");
+    [self changeLanguage];
 
 }
 
@@ -155,6 +155,13 @@
     
     self.model.caption = self.txtDescription.text;
   
+}
+
+-(void)changeLanguage
+{
+    self.txtDescription.placeholder = LocalisedString(@"Add caption");
+    [self.btnEdit setTitle:LocalisedString(@"Edit") forState:UIControlStateNormal];
+    
 }
 
 

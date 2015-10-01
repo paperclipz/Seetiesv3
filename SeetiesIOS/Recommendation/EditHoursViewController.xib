@@ -7,8 +7,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditHoursViewController">
             <connections>
+                <outlet property="lblFrom" destination="pvY-aH-ulQ" id="sz8-bO-EuM"/>
                 <outlet property="lblTime" destination="0l0-yf-f0N" id="40m-6E-wI1"/>
                 <outlet property="lblTitle" destination="tDB-FO-VBA" id="x8V-cE-QfT"/>
+                <outlet property="lblTo" destination="4aa-py-ex3" id="wOy-QF-0Uw"/>
                 <outlet property="tableView" destination="N2b-6A-quP" id="luU-3z-7Y0"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -122,9 +124,9 @@
                             <nil key="highlightedColor"/>
                             <variation key="default">
                                 <mask key="constraints">
-                                    <exclude reference="mTm-N9-5wV"/>
-                                    <exclude reference="cBK-lG-NHG"/>
                                     <exclude reference="DFT-Tc-SXb"/>
+                                    <exclude reference="cBK-lG-NHG"/>
+                                    <exclude reference="mTm-N9-5wV"/>
                                 </mask>
                             </variation>
                         </label>

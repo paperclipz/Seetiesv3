@@ -290,4 +290,10 @@ didChangeDragState:(MKAnnotationViewDragState)newState
     self.rModel.currency = self.addNewPlaceSubView.btnCurrency.titleLabel.text;    
 }
 
+
+#pragma mark - change Language
+-(void)changeLanguage
+{
+    self.lblTitle.text = LocalisedString(@"Add a new place");
+}
 @end

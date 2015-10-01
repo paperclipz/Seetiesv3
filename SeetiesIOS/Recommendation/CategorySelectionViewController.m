@@ -73,14 +73,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
+    [self changeLanguage];
     // Do any additional setup after loading the view from its nib.
 }
 
 -(void)changeLanguage
 {
-    self.lblTitle.text = LOCALIZATION(@"Select up to 2 categories");
-    [self.btnBack setTitle:LOCALIZATION(@"Back") forState:UIControlStateNormal];
-    [self.btnDone setTitle:LOCALIZATION(@"Done") forState:UIControlStateNormal];
+    self.lblTitle.text = LocalisedString(@"Select 2 categories");
+    [self.btnDone setTitle:LocalisedString(@"Publish Now") forState:UIControlStateNormal];
 
 }
 

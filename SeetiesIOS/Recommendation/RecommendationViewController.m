@@ -25,8 +25,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+   
 
-}
+  }
 
 -(void)initData:(int)type sender:(id)sender
 {

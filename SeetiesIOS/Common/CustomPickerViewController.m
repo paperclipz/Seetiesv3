@@ -15,13 +15,13 @@
     CGRect showFrame;
     CGRect hideFrame;
     BOOL isShow;
+    __weak IBOutlet UIButton *btnDraft;
     __weak IBOutlet UIButton *ibBtnCancel;
+    __weak IBOutlet UIButton *btnRecommendation;
 }
 @property (copy, nonatomic) IDBlock buttonOneBlock;
 @property (copy, nonatomic) IDBlock buttonTwoBlock;
 @property (weak, nonatomic) IBOutlet UIImageView *ibTransparentView;
-@property (weak, nonatomic) IBOutlet UIButton *btnDraft;
-@property (weak, nonatomic) IBOutlet UIButton *btnREcommendation;
 
 @end
 
@@ -63,6 +63,7 @@
     // Do any additional setup after loading the view from its nib.
     
     [self initSelfView];
+    [self changeLanguage];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -150,9 +151,10 @@
 #pragma mark -Change Lanugage
 -(void)changeLanguage
 {
-    [self.btnDraft setTitle:LocalisedString(@"Saved Draft") forState:UIControlStateNormal];
-    [self.btnREcommendation setTitle:LocalisedString(@"Write a Recommendation") forState:UIControlStateNormal];
-
+    
+    [btnDraft setTitle:LocalisedString(@"Saved drafts") forState:UIControlStateNormal];
+    [btnRecommendation setTitle:LocalisedString(@"Write a recommendation") forState:UIControlStateNormal];
+    [ibBtnCancel setTitle:LocalisedString(@"Cancel") forState:UIControlStateNormal];
 }
 /*
 #pragma mark - Navigation

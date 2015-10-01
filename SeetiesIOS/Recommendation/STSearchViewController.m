@@ -68,8 +68,8 @@
 
 -(void)changeLanguage
 {
-    self.lblTitle.text = LocalisedString(@"Where is it?");
-    self.txtSearch.placeholder = LocalisedString(@"search places");
+    self.lblTitle.text = LocalisedString(@"Where is this?");
+    self.txtSearch.placeholder = LocalisedString(@"Search for a place");
 }
 
 -(void)viewDidAppear:(BOOL)animated

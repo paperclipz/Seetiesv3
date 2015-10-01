@@ -151,15 +151,15 @@
         }
     }
     else{
-        [UIAlertView showWithTitle:@"New Post"
-                       message:@"You are exiting the editor. Save Changes?"
-             cancelButtonTitle:@"Cancel"
-             otherButtonTitles:@[@"Discard", @"Save"]
+        [UIAlertView showWithTitle:LocalisedString(@"New Recommendation")
+                       message:LocalisedString(@"You are quiting the editor. Save changes?")
+             cancelButtonTitle:LocalisedString(@"Cancel")
+             otherButtonTitles:@[LocalisedString(@"Discard"), LocalisedString(@"Save")]
                       tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                           if (buttonIndex == [alertView cancelButtonIndex]) {
                               NSLog(@"Cancelled");
 
-                          } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Discard"]) {
+                          } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:LocalisedString(@"Discard")]) {
                               NSLog(@"Discard");
                               
                               if (self.navigationController) {
@@ -220,7 +220,7 @@
 -(void)changeLanguage
 {
     self.lblTitle.text = LocalisedString(@"Edit Post");
-    [self.btnPublish setTitle:LocalisedString(@"PUBLISH") forState:UIControlStateNormal];
+    [self.btnPublish setTitle:LocalisedString(@"Publish") forState:UIControlStateNormal];
 
 }
 
@@ -411,11 +411,11 @@
 -(UIAlertView*)urlAlertView
 {
     if (!_urlAlertView) {
-        _urlAlertView = [[UIAlertView alloc] initWithTitle:LOCALIZATION(@"Add URL")
+        _urlAlertView = [[UIAlertView alloc] initWithTitle:LocalisedString(@"Add URL")
                                                    message:nil
                                                   delegate:self
-                                         cancelButtonTitle:LOCALIZATION(@"CANCEL")
-                                         otherButtonTitles:LOCALIZATION(@"Done"), nil];
+                                         cancelButtonTitle:LocalisedString(@"No thanks!")
+                                         otherButtonTitles:LocalisedString(@"Done!"), nil];
         
         _urlAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
         UITextField *textField = [_urlAlertView textFieldAtIndex:0];
@@ -736,8 +736,9 @@ static id ObjectOrNull(id object)
 
     }
     
+    [LoadingManager showWithTitle:LocalisedString(@"Posting...")];
+
     [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostSaveDraft param:finalDict appendString:tempModel.post_id meta:arrMeta  completeHandler:^(id object) {
-        
         
         self.tempSavedRecommendationModel = self.recommendationModel;
         if (!isDraft) {
@@ -754,7 +755,7 @@ static id ObjectOrNull(id object)
     } errorBlock:^(id object) {
 
         
-        [TSMessage showNotificationInViewController:self title:@"system" subtitle:object?object:isDraft?@"Data Fail to be Saved to Draft":@"Data Fail to be Posted" type:TSMessageNotificationTypeError duration:2.0 canBeDismissedByUser:YES];
+        [TSMessage showNotificationInViewController:self title:@"system" subtitle:object?object:LocalisedString(@"Uh-oh. Something went wrong. Tap to retry.") type:TSMessageNotificationTypeError duration:2.0 canBeDismissedByUser:YES];
 
     }];
     

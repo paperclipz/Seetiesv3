@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblDesc;
 @property (weak, nonatomic) IBOutlet UILabel *lblNumberOfRecommendation;
+@property (weak, nonatomic) IBOutlet UILabel *lblPostTitle;
 
 @property (strong, nonatomic)CollectionModel* collectionModel;
 
@@ -45,10 +46,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
-    
-    
-    
-    // Do any additional setup after loading the view from its nib.
+    [self changeLanguage];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -58,9 +56,9 @@
     
     [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
         
-        self.lblTitle.text = self.collectionModel.name;
+        self.lblPostTitle.text = self.collectionModel.name;
         self.lblDesc.text = self.collectionModel.postDesc;
-        self.lblNumberOfRecommendation.text = [NSString stringWithFormat:@"%lu %@",(unsigned long)self.arrList.count,LOCALIZATION(@"Recommendations")];
+        self.lblNumberOfRecommendation.text = [NSString stringWithFormat:@"%lu %@",(unsigned long)self.arrList.count,LocalisedString(@"Recommendations")];
 
         
     } completion:nil];
@@ -248,6 +246,14 @@
         
     } errorBlock:nil];
     
+}
+
+#pragma mark - change language
+
+-(void)changeLanguage
+{
+    self.lblTitle.text = LocalisedString(@"Edit Collection");
+    [self.ibBtnEdit setTitle:LocalisedString(@"Edit") forState:UIControlStateNormal];
 }
 
 @end

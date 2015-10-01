@@ -16,9 +16,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditCollectionDetailViewController">
             <connections>
+                <outlet property="btnPrivate" destination="6EB-ao-zyD" id="3Oq-0X-gNT"/>
                 <outlet property="ibContentView" destination="Eyb-u3-IAv" id="8ud-SE-A6I"/>
                 <outlet property="ibScrollView" destination="9Fa-RN-9zv" id="U45-zM-i29"/>
                 <outlet property="ibTokenField" destination="L1c-IX-2Fb" id="Sfi-qz-h9m"/>
+                <outlet property="lblCollectionDesc" destination="Rwy-B2-60G" id="FH8-ku-ohr"/>
+                <outlet property="lblCollectionName" destination="WyF-zC-ina" id="Vmj-cr-sAf"/>
+                <outlet property="lblSetAsPublic" destination="WwL-k3-pQd" id="pn6-Rg-5Qb"/>
+                <outlet property="lblSetAsPublicDesc" destination="BKN-Ro-Vab" id="cQj-zj-Oi4"/>
+                <outlet property="lblTitle" destination="bS7-E7-Eha" id="Ka5-Bw-hHx"/>
                 <outlet property="lblWordCountDesc" destination="7lp-7u-eAw" id="tfC-lH-teB"/>
                 <outlet property="lblWordCountTitle" destination="QWV-i3-3Mk" id="8WQ-l9-8A9"/>
                 <outlet property="txtDesc" destination="u8V-MS-Lj8" id="r9X-HY-OXk"/>
@@ -103,6 +109,9 @@
                         </label>
                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6EB-ao-zyD">
                             <rect key="frame" x="263" y="15" width="51" height="31"/>
+                            <connections>
+                                <action selector="btnPrivateClicked:" destination="-1" eventType="valueChanged" id="aJC-xg-W15"/>
+                            </connections>
                         </switch>
                     </subviews>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
