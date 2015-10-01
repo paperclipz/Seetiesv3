@@ -501,7 +501,7 @@
         }else{
             [CollectButton setImage:[UIImage imageNamed:@"YellowCollected.png"] forState:UIControlStateNormal];
         }
-        CollectButton.frame = CGRectMake(screenWidth - 15 - 57 - 10, GetHeight + 21, 57, 57);
+        CollectButton.frame = CGRectMake(screenWidth - 15 - 57 - 10, GetHeight, 57, 57);
         CollectButton.tag = i;
         [CollectButton addTarget:self action:@selector(CollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
         [MainScroll addSubview:CollectButton];

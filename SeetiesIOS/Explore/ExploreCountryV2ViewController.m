@@ -170,6 +170,14 @@
         FestivalImage.imageURL = url_UserImage;
         [MainScroll addSubview:FestivalImage];
         
+        UIImageView *ShowOverlayImg = [[UIImageView alloc]init];
+        ShowOverlayImg.image = [UIImage imageNamed:@"ExploreImgOverlay.png"];
+        ShowOverlayImg.frame = CGRectMake(0, GetHeight -20, screenWidth, 200);
+        ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
+        ShowOverlayImg.layer.masksToBounds = YES;
+        // ShowOverlayImg.layer.cornerRadius = 5;
+        [MainScroll addSubview:ShowOverlayImg];
+        
         UILabel *ShowBigText = [[UILabel alloc]init];
         ShowBigText.frame = CGRectMake(15, GetHeight + 10, screenWidth - 30, 72);
         ShowBigText.text = CustomLocalisedString(@"Festival", nil);
@@ -301,7 +309,13 @@
         ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         [PostView addSubview:ShowUserName];
         
-        
+        UIButton *ButtonClick = [UIButton buttonWithType:UIButtonTypeCustom];
+        [ButtonClick setTitle:@"" forState:UIControlStateNormal];
+        [ButtonClick setFrame:CGRectMake(25, PostGetHeight + 10, 250, 30)];
+        [ButtonClick setBackgroundColor:[UIColor clearColor]];
+        ButtonClick.tag = i;
+        [ButtonClick addTarget:self action:@selector(PostsExpertsButton:) forControlEvents:UIControlEventTouchUpInside];
+        [PostView addSubview:ButtonClick];
 
         UIButton *Line01 = [[UIButton alloc]init];
         Line01.frame = CGRectMake(15, PostGetHeight + 50, screenWidth - 30, 1);
@@ -354,7 +368,7 @@
         UIButton *ButtonOnClick = [[UIButton alloc]init];
         [ButtonOnClick setBackgroundColor:[UIColor clearColor]];
         [ButtonOnClick setTitle:@"" forState:UIControlStateNormal];
-        ButtonOnClick.frame = CGRectMake(15, PostGetHeight, screenWidth - 30, 150);
+        ButtonOnClick.frame = CGRectMake(15, PostGetHeight + 60, screenWidth - 30, 90);
         ButtonOnClick.tag = i;
         [ButtonOnClick addTarget:self action:@selector(ImageButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
         [PostView addSubview:ButtonOnClick];
@@ -453,6 +467,14 @@
         ShowUserName.textAlignment = NSTextAlignmentLeft;
         ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         [PeopleView addSubview:ShowUserName];
+        
+        UIButton *ButtonClick = [UIButton buttonWithType:UIButtonTypeCustom];
+        [ButtonClick setTitle:@"" forState:UIControlStateNormal];
+        [ButtonClick setFrame:CGRectMake(25, PeopleGetHeight + 10, 250, 60)];
+        [ButtonClick setBackgroundColor:[UIColor clearColor]];
+        ButtonClick.tag = i;
+        [ButtonClick addTarget:self action:@selector(PPLExpertsButton2:) forControlEvents:UIControlEventTouchUpInside];
+        [PeopleView addSubview:ButtonClick];
         
         UILabel *ShowMessage = [[UILabel alloc]init];
         ShowMessage.frame = CGRectMake(80, PeopleGetHeight + 30, 200, 20);
@@ -1073,5 +1095,33 @@
     } else {
         
     }
+}
+-(IBAction)PostsExpertsButton:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSLog(@"ExpertsButton button %li",(long)getbuttonIDN);
+    
+    NewUserProfileV2ViewController *ExpertsUserProfileView = [[NewUserProfileV2ViewController alloc]init];
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.2;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromRight;
+    [self.view.window.layer addAnimation:transition forKey:nil];
+    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
+    [ExpertsUserProfileView GetUserName:[UserInfo_NameArray objectAtIndex:getbuttonIDN]];
+}
+-(IBAction)PPLExpertsButton2:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSLog(@"ExpertsButton2 button %li",(long)getbuttonIDN);
+    
+    NewUserProfileV2ViewController *ExpertsUserProfileView = [[NewUserProfileV2ViewController alloc]init];
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.2;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromRight;
+    [self.view.window.layer addAnimation:transition forKey:nil];
+    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
+    [ExpertsUserProfileView GetUserName:[User_UserNameArray objectAtIndex:getbuttonIDN]];
 }
 @end

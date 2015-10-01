@@ -1062,6 +1062,7 @@
         [ButtonClick setBackgroundColor:[UIColor clearColor]];
         ButtonClick.tag = i;
         [ButtonClick addTarget:self action:@selector(ExpertsButton:) forControlEvents:UIControlEventTouchUpInside];
+        [PeopleView addSubview:ButtonClick];
         
         NSString *CheckFollow = [[NSString alloc]initWithFormat:@"%@",[Experts_Followed_Array objectAtIndex:i]];
 

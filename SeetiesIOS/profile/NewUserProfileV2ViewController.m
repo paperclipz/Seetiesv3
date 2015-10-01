@@ -157,7 +157,7 @@
     ShowUserName.backgroundColor = [UIColor clearColor];
     [AllContentView addSubview:ShowUserName];
     
-    UIButton *FollowUserButton = [[UIButton alloc]init];
+    FollowUserButton = [[UIButton alloc]init];
     FollowUserButton.frame = CGRectMake(screenWidth - 120 - 20, 50, 120, 48);
     if ([GetUserFollowing isEqualToString:@"0"]) {
         [FollowUserButton setTitle:@"Follow" forState:UIControlStateNormal];
@@ -1333,11 +1333,19 @@
         NSLog(@"ResultString is %@",ResultString);
         
         if ([ResultString isEqualToString:@"ok"]) {
+            
             if ([GetUserFollowing isEqualToString:@"0"]) {
                 GetUserFollowing = @"1";
-                
+                [FollowUserButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                [FollowUserButton setTitle:@"Following" forState:UIControlStateNormal];
+                [FollowUserButton setImage:[UIImage imageNamed:@"ProfileFollowingIcon.png"] forState:UIControlStateNormal];
+                [FollowUserButton setBackgroundImage:[UIImage imageNamed:@"FollowingBtn.png"] forState:UIControlStateNormal];
             }else{
                 GetUserFollowing = @"0";
+                [FollowUserButton setTitle:@"Follow" forState:UIControlStateNormal];
+                [FollowUserButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                [FollowUserButton setImage:[UIImage imageNamed:@"ProfileFollowIcon.png"] forState:UIControlStateNormal];
+                [FollowUserButton setBackgroundImage:[UIImage imageNamed:@"FollowBtn.png"] forState:UIControlStateNormal];
             }
             
         }

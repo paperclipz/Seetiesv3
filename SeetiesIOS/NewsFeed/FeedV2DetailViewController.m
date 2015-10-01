@@ -1378,10 +1378,16 @@
         if ([ResultString isEqualToString:@"ok"]) {
             if ([GetFollowing isEqualToString:@"0"]) {
                 GetFollowing = @"1";
-                //[ShowFollowButton setImage:[UIImage imageNamed:@"FollowingMini.png"] forState:UIControlStateNormal];
+                [ShowFollowButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                [ShowFollowButton setTitle:@"Following" forState:UIControlStateNormal];
+                [ShowFollowButton setImage:[UIImage imageNamed:@"ProfileFollowingIcon.png"] forState:UIControlStateNormal];
+                [ShowFollowButton setBackgroundImage:[UIImage imageNamed:@"FollowingBtn.png"] forState:UIControlStateNormal];
             }else{
                 GetFollowing = @"0";
-              //  [ShowFollowButton setImage:[UIImage imageNamed:@"FollowMini.png"] forState:UIControlStateNormal];
+                [ShowFollowButton setTitle:@"Follow" forState:UIControlStateNormal];
+                [ShowFollowButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                [ShowFollowButton setImage:[UIImage imageNamed:@"ProfileFollowIcon.png"] forState:UIControlStateNormal];
+                [ShowFollowButton setBackgroundImage:[UIImage imageNamed:@"FollowBtn.png"] forState:UIControlStateNormal];
             }
             
         }
@@ -1778,7 +1784,7 @@
         }
     }
     
-
+    NSLog(@"Like_UsernameArray is %@",Like_UsernameArray);
     
     if ([Like_UsernameArray count] == 0) {
         GetMessageHeight += 10;
@@ -2791,29 +2797,29 @@
         int page = floor((MImageScroll.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
         PageControlOn.currentPage = page;
     }else{
-        float scrollViewHeight = MainScroll.frame.size.height;
-        float scrollContentSizeHeight = MainScroll.contentSize.height;
-        float scrollOffset = MainScroll.contentOffset.y;
-        //NSLog(@"scrollOffset is %f",scrollOffset);
-        if (scrollOffset < 0)
-        {
-            // then we are at the top
-            
-            ShowBarImg.frame = CGRectMake(0, -100, screenWidth, 64);
-            //            [UIView animateWithDuration:1.0
-//                                  delay:0
-//                                options:UIViewAnimationOptionCurveEaseIn
-//                             animations:^{
-//                               ShowBarImg.frame = CGRectMake(0, -100, screenWidth, 64);
-//                             }
-//                             completion:^(BOOL finished) {
-//                             }];
-        }
-        else if (scrollOffset + scrollViewHeight == scrollContentSizeHeight)
-        {
-            // then we are at the end
-            ShowBarImg.frame = CGRectMake(0, 0, screenWidth, 64);
-        }
+//        float scrollViewHeight = MainScroll.frame.size.height;
+//        float scrollContentSizeHeight = MainScroll.contentSize.height;
+//        float scrollOffset = MainScroll.contentOffset.y;
+//        //NSLog(@"scrollOffset is %f",scrollOffset);
+//        if (scrollOffset < 0)
+//        {
+//            // then we are at the top
+//            
+//            ShowBarImg.frame = CGRectMake(0, -100, screenWidth, 64);
+//            //            [UIView animateWithDuration:1.0
+////                                  delay:0
+////                                options:UIViewAnimationOptionCurveEaseIn
+////                             animations:^{
+////                               ShowBarImg.frame = CGRectMake(0, -100, screenWidth, 64);
+////                             }
+////                             completion:^(BOOL finished) {
+////                             }];
+//        }
+//        else if (scrollOffset + scrollViewHeight == scrollContentSizeHeight)
+//        {
+//            // then we are at the end
+//            ShowBarImg.frame = CGRectMake(0, 0, screenWidth, 64);
+//        }
 
 
 
@@ -2824,7 +2830,7 @@
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-  //  NSLog(@"+scrollViewWillBeginDragging");
+    NSLog(@"+scrollViewWillBeginDragging");
   //  ShowbarView.hidden = YES;
 
     if (scrollView == MImageScroll) {
@@ -2844,26 +2850,37 @@
 //                         completion:^(BOOL finished) {
 //                         }];
         
- //        ShowBarImg.frame = CGRectMake(0, 0, screenWidth, 64);
+         ShowBarImg.frame = CGRectMake(0, 0, screenWidth, 64);
     }
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
+     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     NSLog(@"scrollViewDidEndDragging");
-//    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-//    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-//    [UIView animateWithDuration:0.2
-//                          delay:0
-//                        options:UIViewAnimationOptionCurveEaseIn
-//                     animations:^{
-//                         //   MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight - 114);
-//                         // ShowbarView.frame = CGRectMake(0, 0, screenWidth, 64);
-//                         ShowDownBarView.frame = CGRectMake(0, screenHeight - 110, screenWidth, 60);
-//                         self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
-//                     }
-//                     completion:^(BOOL finished) {
-//                     }];
+    float scrollViewHeight = MainScroll.frame.size.height;
+    float scrollContentSizeHeight = MainScroll.contentSize.height;
+    float scrollOffset = MainScroll.contentOffset.y;
+    //NSLog(@"scrollOffset is %f",scrollOffset);
+    if (scrollOffset < 0)
+    {
+        // then we are at the top
+        
+        ShowBarImg.frame = CGRectMake(0, -100, screenWidth, 64);
+        //            [UIView animateWithDuration:1.0
+        //                                  delay:0
+        //                                options:UIViewAnimationOptionCurveEaseIn
+        //                             animations:^{
+        //                               ShowBarImg.frame = CGRectMake(0, -100, screenWidth, 64);
+        //                             }
+        //                             completion:^(BOOL finished) {
+        //                             }];
+    }
+    else if (scrollOffset + scrollViewHeight == scrollContentSizeHeight)
+    {
+        // then we are at the end
+        ShowBarImg.frame = CGRectMake(0, 0, screenWidth, 64);
+    }
 }
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {

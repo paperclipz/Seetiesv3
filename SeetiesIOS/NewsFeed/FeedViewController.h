@@ -66,13 +66,21 @@
     
     IBOutlet UILabel *ShowUpdateText;
     
-    UIScrollView *SuggestedScrollview;
-    UIPageControl *SuggestedpageControl;
-    UILabel *ShowSuggestedCount;
+    UIScrollView *SuggestedScrollview_Deal;
+    UIPageControl *SuggestedpageControl_Deal;
+    UILabel *ShowSuggestedCount_Deal;
     
-    UIScrollView *SUserScrollview;
-    UIPageControl *SUserpageControl;
-    UILabel *ShowSUserCount;
+    UIScrollView *SuggestedScrollview_Aboad;
+    UIPageControl *SuggestedpageControl_Aboad;
+    UILabel *ShowSuggestedCount_Aboad;
+    
+    UIScrollView *SUserScrollview_Friend;
+    UIPageControl *SUserpageControl_Friend;
+    UILabel *ShowSUserCount_Friend;
+    
+    UIScrollView *SUserScrollview_Featured;
+    UIPageControl *SUserpageControl_Featured;
+    UILabel *ShowSUserCount_Featured;
     
     UrlDataClass *DataUrl;
     
@@ -103,4 +111,6 @@
 -(IBAction)TryAgainButton:(id)sender;
 -(IBAction)SearchButton:(id)sender;
 -(IBAction)InviteFriendsButton:(id)sender;
+
+-(IBAction)ScrollTotopButton:(id)sender;
 @end
