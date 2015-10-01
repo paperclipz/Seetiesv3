@@ -11,6 +11,10 @@
 @interface EditHoursViewController ()
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UILabel *lblFrom;
+@property (weak, nonatomic) IBOutlet UILabel *lblTo;
+@property (weak, nonatomic) IBOutlet UILabel *lblTime;
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 
 @end
 
@@ -43,7 +47,7 @@
 
     [self initTableViewWithDelegate:self];
     
-    
+   
 }
 
 -(void)initData:(NSMutableArray*)arrayModel
@@ -121,6 +125,11 @@
 #pragma mark - change language
 -(void)changeLanguage
 {
-    self.title = LocalisedString(@"Edit Hours");
+    self.title = LocalisedString(@"Edit Business Hours");
+    self.lblTime.text = LocalisedString(@"Business hours as per local time");
+    self.lblFrom.text = LocalisedString(@"From");
+    self.lblTo.text = LocalisedString(@"To");
+
 }
+
 @end
