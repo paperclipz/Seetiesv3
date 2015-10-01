@@ -52,6 +52,17 @@
 //        [KVNProgress dismiss];
 //    });
 }
+
++ (void)showWithTitle:(NSString*)title
+{
+    [KVNProgress showWithParameters:@{KVNProgressViewParameterStatus: [NSString stringWithFormat:@"Searching %@",title],
+                                      KVNProgressViewParameterBackgroundType: @(KVNProgressBackgroundTypeSolid),
+                                      KVNProgressViewParameterFullScreen: @([[LoadingManager Instance] isFullScreen])}];
+    
+    //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    //        [KVNProgress dismiss];
+    //    });
+}
 - (void)showWithSolidBackground
 {
     [KVNProgress showWithParameters:@{KVNProgressViewParameterStatus: @"Loading...",

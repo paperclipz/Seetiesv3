@@ -14,5 +14,6 @@
 @property(nonatomic,assign)BOOL isFullScreen;
 + (void)show;
 +(void)hide;
++ (void)showWithTitle:(NSString*)title;
 
 @end

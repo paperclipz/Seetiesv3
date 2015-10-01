@@ -23,5 +23,7 @@
 {
     self.lblTitle.text = LOCALIZATION(@"Add New Places");
     [Utils setRoundBorder:self.lblTitle color:[UIColor lightGrayColor] borderRadius:5.0f];
+    [self  setSelectionStyle:UITableViewCellEditingStyleNone];
+
 }
 @end

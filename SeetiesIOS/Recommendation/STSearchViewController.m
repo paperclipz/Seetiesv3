@@ -204,8 +204,6 @@
             self.searchModel = [[DataManager Instance]googleSearchModel];
             [self refreshViewGoogle];
         }
-       
-
     }];
 
 }
@@ -362,7 +360,9 @@
 #pragma server request
 -(void)requestSearch
 {
-    [self getGoogleSearchPlaces];
+    if (![self.txtSearch.text isEqualToString:@""]) {
+        [self getGoogleSearchPlaces];
+    }
     [self getFourSquareSuggestionPlaces];
 }
 

@@ -99,7 +99,7 @@
              
              if (completeBlock) {
                  completeBlock(responseObject);
-                 [self processApiversion];
+
              }
              [LoadingManager hide];
 
@@ -126,7 +126,7 @@
              
              if (completeBlock) {
                  completeBlock(responseObject);
-                 [self processApiversion];
+
              }
              [LoadingManager hide];
 
@@ -156,7 +156,7 @@
          if (completeBlock) {
              completeBlock(responseObject);
              NSLog(@"\n\n  Success: %@ ***** %@", operation.responseString, responseObject);
-             [self processApiversion];
+
          }
      }
                failure:
@@ -195,7 +195,7 @@
          if (completeBlock) {
              completeBlock(responseObject);
              NSLog(@"\n\n Success: %@", [responseObject bv_jsonStringWithPrettyPrint:YES]);
-             [self processApiversion];
+
          }
          
      }
@@ -303,7 +303,7 @@
          if (completeBlock) {
              completeBlock(responseObject);
              NSLog(@"Success: %@ ***** %@", operation.responseString, responseObject);
-             [self processApiversion];
+
          }
          
      }
@@ -341,7 +341,7 @@
          if (completeBlock) {
              completeBlock(responseObject);
              NSLog(@"\n\n Success: %@", [responseObject bv_jsonStringWithPrettyPrint:YES]);
-             [self processApiversion];
+
          }
          
      }

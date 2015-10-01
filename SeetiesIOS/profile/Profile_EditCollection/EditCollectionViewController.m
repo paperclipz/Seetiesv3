@@ -55,10 +55,17 @@
 {
     [super viewDidAppear:NO];
     
-    self.lblTitle.text = self.collectionModel.name;
-    self.lblDesc.text = self.collectionModel.postDesc;
-    self.lblNumberOfRecommendation.text = [NSString stringWithFormat:@"%lu %@",(unsigned long)self.arrList.count,LOCALIZATION(@"Recommendations")];
-}
+    
+    [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+        
+        self.lblTitle.text = self.collectionModel.name;
+        self.lblDesc.text = self.collectionModel.postDesc;
+        self.lblNumberOfRecommendation.text = [NSString stringWithFormat:@"%lu %@",(unsigned long)self.arrList.count,LOCALIZATION(@"Recommendations")];
+
+        
+    } completion:nil];
+    
+  }
 
 -(void)initData:(CollectionModel*)model
 {
