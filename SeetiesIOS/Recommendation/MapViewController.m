@@ -69,7 +69,6 @@
         _annotation = [MKPointAnnotation new];
         [_annotation setCoordinate:self.region.center];
         [_annotation setTitle:@"is This the Location?"]; //You can set the subtitle too
-      
 
     }
     return _annotation;
@@ -113,7 +112,6 @@
         pav = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseId];
         pav.draggable = YES;
         pav.canShowCallout = YES;
-        pav.image = [UIImage imageNamed:@"PinInMap.png"];
         pav.calloutOffset = CGPointMake(0, 0);
         pav.canShowCallout = YES;
     }
@@ -121,7 +119,8 @@
     {
         pav.annotation = annotation;
     }
-    
+    pav.image = [UIImage imageNamed:@"PinInMap.png"];
+
     return pav;
 }
 

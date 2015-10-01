@@ -369,10 +369,12 @@
         case 2:
         {
             
+            
+            [self.addNewPlaceViewController initData:self.recommendationModel.reccomendVenueModel];
+
             [self presentViewController:self.navAddNewPlaceViewController animated:YES completion:^{
                 
-                [self.addNewPlaceViewController initData:self.recommendationModel.reccomendVenueModel];
-                
+
             }];
 
             

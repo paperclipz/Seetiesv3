@@ -61,6 +61,7 @@
 {
     [super viewDidAppear:animated];
     self.lblTitle.text = self.title;
+    [self loadData];
     [self reloadData];
 }
 
@@ -137,9 +138,6 @@
 -(void)initData:(RecommendationVenueModel*)model
 {
     self.rModel = model;
-   [self loadData];
-    [self reloadData];
-
 
 }
 
@@ -213,22 +211,24 @@
         return nil;
     
     static NSString *reuseId = @"pin";
-    MKPinAnnotationView *pav = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseId];
+    
+    MKAnnotationView *pav = [mapView dequeueReusableAnnotationViewWithIdentifier:reuseId];
     if (pav == nil)
     {
-        pav = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseId];
-      //  pav.draggable = YES;
+        pav = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseId];
+        pav.draggable = YES;
         pav.canShowCallout = YES;
-        pav.image = [UIImage imageNamed:@"PinInMap.png"];
-
+        pav.calloutOffset = CGPointMake(0, 0);
     }
     else
     {
         pav.annotation = annotation;
     }
+    pav.image = [UIImage imageNamed:@"PinInMap.png"];
     
     return pav;
 }
+
 
 - (void)mapView:(MKMapView *)mapView
  annotationView:(MKAnnotationView *)annotationView
