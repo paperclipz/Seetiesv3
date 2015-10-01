@@ -273,23 +273,7 @@
     }
     return NO;
 }
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (alertView.tag == 100) {
-        if (buttonIndex == [alertView cancelButtonIndex]){
-            exit(0);
-        }else{
-            //reset clicked
-        }
-    }else{
-        if (buttonIndex == [alertView cancelButtonIndex]){//https://itunes.apple.com/app/seeties-mobile-citypass-for/id956400552?mt=8
-            NSString *iTunesLink = @"https://itunes.apple.com/app/seeties-mobile-citypass-for/id956400552?mt=8";
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
-        }else{
-            //reset clicked
-        }
-    }
-    
-}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return [dataArray count];
 }
@@ -607,7 +591,10 @@
         NSLog(@"Log Out %@", selectedCell);
         switch (indexPath.row) {
             case 0:{
-                [self SendUserLogoutToServer];
+                UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"Confirm Log Out?" message:@"Are you sure you want to log out?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+                ShowAlert.tag = 1000;
+                [ShowAlert show];
+              //  [self SendUserLogoutToServer];
             }
                 break;
                 
@@ -615,6 +602,32 @@
                 break;
         }
         
+    }
+    
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (alertView.tag == 100) {
+        if (buttonIndex == [alertView cancelButtonIndex]){
+            exit(0);
+        }else{
+            //reset clicked
+        }
+    }else if(alertView.tag == 1000){
+        if (buttonIndex == [alertView cancelButtonIndex]){
+            //cancel clicked ...do your action
+            NSLog(@"Cancel");
+        }else{
+            //reset clicked
+            // [self SendLoginDataToServer];
+            [self SendUserLogoutToServer];
+        }
+    }else{
+        if (buttonIndex == [alertView cancelButtonIndex]){//https://itunes.apple.com/app/seeties-mobile-citypass-for/id956400552?mt=8
+            NSString *iTunesLink = @"https://itunes.apple.com/app/seeties-mobile-citypass-for/id956400552?mt=8";
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
+        }else{
+            //reset clicked
+        }
     }
     
 }

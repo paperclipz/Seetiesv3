@@ -866,10 +866,7 @@
         
     }else{
         CurrentPage_Collection += 1;
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSString *Getuid = [defaults objectForKey:@"Useruid"];
-        NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
-        NSString *FullString = [[NSString alloc]initWithFormat:@"%@%@/collections?token=%@&page=%li",DataUrl.UserWallpaper_Url,Getuid,GetExpertToken,CurrentPage_Collection];
+        NSString *FullString = [[NSString alloc]initWithFormat:@"%@%@/collections?page=%li",DataUrl.UserWallpaper_Url,GetUid,CurrentPage_Collection];
         
         
         NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
@@ -1022,7 +1019,7 @@
                 
                 
                [self InitContentView];
-               [self GetPostsData];
+               [self GetCollectionData];
             }else{
                 
             }
