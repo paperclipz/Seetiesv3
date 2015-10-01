@@ -29,8 +29,8 @@
     MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     MainScroll.alwaysBounceVertical = YES;
 
-    SelectedInappropriate.frame = CGRectMake(screenWidth - 35, 102, 25, 25);
-    SelectedCopyright.frame = CGRectMake(screenWidth - 35, 194, 25, 25);
+    SelectedInappropriate.frame = CGRectMake(screenWidth - 5, 102, 50, 50);
+    SelectedCopyright.frame = CGRectMake(screenWidth - 5, 194, 50, 50);
     
     SelectedCopyright.hidden = YES;
     SelectedInappropriate.hidden = YES;

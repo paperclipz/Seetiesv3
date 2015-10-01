@@ -898,6 +898,15 @@
         ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         [PostsView addSubview:ShowUserName];
         
+        
+        UIButton *ButtonClick = [UIButton buttonWithType:UIButtonTypeCustom];
+        [ButtonClick setTitle:@"" forState:UIControlStateNormal];
+        [ButtonClick setFrame:CGRectMake(25, PostGetHeight + 10, 250, 30)];
+        [ButtonClick setBackgroundColor:[UIColor clearColor]];
+        ButtonClick.tag = i;
+        [ButtonClick addTarget:self action:@selector(ExpertsButton2:) forControlEvents:UIControlEventTouchUpInside];
+        [PostsView addSubview:ButtonClick];
+        
         UIButton *Line01 = [[UIButton alloc]init];
         Line01.frame = CGRectMake(15, PostGetHeight + 50, screenWidth - 30, 1);
         [Line01 setTitle:@"" forState:UIControlStateNormal];//238
@@ -955,7 +964,7 @@
         [PostsView addSubview:ShowLocation];
         
         UIButton *SelectButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        SelectButton.frame = CGRectMake(15, PostGetHeight, screenWidth - 30, 150);
+        SelectButton.frame = CGRectMake(15, PostGetHeight + 60, screenWidth - 30, 90);
         [SelectButton setTitle:@"" forState:UIControlStateNormal];
         SelectButton.tag = i;
         [SelectButton setBackgroundColor:[UIColor clearColor]];
@@ -979,6 +988,8 @@
         [UserFollowButton addTarget:self action:@selector(PostsUserOnCLick:) forControlEvents:UIControlEventTouchUpInside];
         [PostsView addSubview:UserFollowButton];
         
+        
+
         
         GetCollect = [[NSString alloc]initWithFormat:@"%@",[CollectArray objectAtIndex:i]];
 
@@ -1044,6 +1055,13 @@
         ShowUserName.textAlignment = NSTextAlignmentLeft;
         ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         [PeopleView addSubview:ShowUserName];
+        
+        UIButton *ButtonClick = [UIButton buttonWithType:UIButtonTypeCustom];
+        [ButtonClick setTitle:@"" forState:UIControlStateNormal];
+        [ButtonClick setFrame:CGRectMake(25, PeopleHeight + 10, 60, 60)];
+        [ButtonClick setBackgroundColor:[UIColor clearColor]];
+        ButtonClick.tag = i;
+        [ButtonClick addTarget:self action:@selector(ExpertsButton:) forControlEvents:UIControlEventTouchUpInside];
         
         NSString *CheckFollow = [[NSString alloc]initWithFormat:@"%@",[Experts_Followed_Array objectAtIndex:i]];
 

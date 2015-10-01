@@ -482,10 +482,10 @@
 //        [[[[UIApplication sharedApplication] delegate] window] setRootViewController:leveyTabBarController];
 
     }else{
-        UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:MessageString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [ShowAlert show];
+//        UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:MessageString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        [ShowAlert show];
 
-        
+        [TSMessage showNotificationInViewController:self title:@"" subtitle:MessageString type:TSMessageNotificationTypeError];
 
     }
 }

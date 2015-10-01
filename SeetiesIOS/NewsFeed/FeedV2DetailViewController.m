@@ -1378,10 +1378,10 @@
         if ([ResultString isEqualToString:@"ok"]) {
             if ([GetFollowing isEqualToString:@"0"]) {
                 GetFollowing = @"1";
-                [ShowFollowButton setImage:[UIImage imageNamed:@"FollowingMini.png"] forState:UIControlStateNormal];
+                //[ShowFollowButton setImage:[UIImage imageNamed:@"FollowingMini.png"] forState:UIControlStateNormal];
             }else{
                 GetFollowing = @"0";
-                [ShowFollowButton setImage:[UIImage imageNamed:@"FollowMini.png"] forState:UIControlStateNormal];
+              //  [ShowFollowButton setImage:[UIImage imageNamed:@"FollowMini.png"] forState:UIControlStateNormal];
             }
             
         }
@@ -1715,7 +1715,7 @@
 
     }else{
         ShowFollowButton = [[UIButton alloc]init];
-        ShowFollowButton.frame = CGRectMake(screenWidth - 115 - 20, GetMessageHeight + 15, 115, 40);
+        ShowFollowButton.frame = CGRectMake(screenWidth - 120 - 20, GetMessageHeight + 15, 120, 40);
         if ([GetFollowing isEqualToString:@"0"]) {
             [ShowFollowButton setTitle:@"Follow" forState:UIControlStateNormal];
             [ShowFollowButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

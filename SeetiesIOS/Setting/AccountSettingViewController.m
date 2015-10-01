@@ -352,7 +352,7 @@
     }else{
         CheckLangauge1 = 1;
     }
-    if ([ShowSecondary.text isEqualToString:GetLanguage2] || [ShowSecondary.text isEqualToString:@"(Choose one)"] || [ShowSecondary.text isEqualToString:@"None"]) {
+    if ([ShowSecondary.text isEqualToString:@"(Choose one)"] || [ShowSecondary.text isEqualToString:@"None"]) {
         CheckLanguage2 = 0;
     }else{
         CheckLanguage2 = 1;
@@ -362,31 +362,24 @@
     if ([Emailfield.text length] == 0) {
         
     }else{
-        BOOL eb=[self validateEmail:Emailfield.text];
         
-        if(!eb)
-        {
+        NSString *emailRegEx = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,10}";
+        NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegEx];
+        
+        
+        if ([emailTest evaluateWithObject:Emailfield.text] == NO) {
             UIAlertView *alertsuccess = [[UIAlertView alloc] initWithTitle:@"" message:@"Please enter correct email id"
                                                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             
             [alertsuccess show];
-
         }else{
             SaveButton.enabled = NO;
-        [self updateUserInformation];
+            [self updateUserInformation];
         }
     
     }
     
     
-}
--(BOOL)validateEmail:(NSString *)email
-{
-    NSString *emailRegex = @"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
-    
-    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
-    
-    return [emailTest evaluateWithObject:email];
 }
 -(void)updateUserInformation{
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;

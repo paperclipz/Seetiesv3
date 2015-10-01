@@ -166,16 +166,18 @@
     NSString *GetStatus = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
     NSLog(@"GetStatus is %@",GetStatus);
     if ([GetError isEqualToString:@"0"]) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Please try again" message:GetMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        [alert show];
+//        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Please try again" message:GetMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        
+//        [alert show];
+        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Please try again" type:TSMessageNotificationTypeError];
     }else{
         if ([GetStatus isEqualToString:@"ok"]) {
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Success!" message:@"You should get an email soon." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            
-            [alert show];
+//            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Success!" message:@"You should get an email soon." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//            
+//            [alert show];
+            [TSMessage showNotificationInViewController:self title:@"" subtitle:@"You should get an email soon."  type:TSMessageNotificationTypeSuccess];
         }else{
-        
+        [TSMessage showNotificationInViewController:self title:@"" subtitle:GetMessage  type:TSMessageNotificationTypeError];
         }
         
     }

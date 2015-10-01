@@ -245,7 +245,7 @@
     UIButton *EditProfileButton = [[UIButton alloc]init];
     EditProfileButton.frame = CGRectMake(screenWidth - 106 - 20, 60, 106, 34);
     [EditProfileButton setTitle:@"Edit profile" forState:UIControlStateNormal];
-    EditProfileButton.layer.cornerRadius= 15;
+    EditProfileButton.layer.cornerRadius= 17;
     EditProfileButton.layer.borderWidth = 1;
     EditProfileButton.layer.masksToBounds = YES;
     EditProfileButton.layer.borderColor=[[UIColor  colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0] CGColor];

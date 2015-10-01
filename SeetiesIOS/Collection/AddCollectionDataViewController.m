@@ -289,11 +289,14 @@
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     
+    NSString *dataString;
     if ([NoteTextView.text isEqualToString:@"Leave a note"]) {
         NoteTextView.text = @"";
+        dataString = [[NSString alloc]initWithFormat:@"token=%@&posts[0][id]=%@&posts[0]",GetExpertToken,GetPostID];
+    }else{
+        dataString = [[NSString alloc]initWithFormat:@"token=%@&posts[0][id]=%@&posts[0][note]=%@",GetExpertToken,GetPostID,NoteTextView.text];
     }
-    
-    NSString *dataString = [[NSString alloc]initWithFormat:@"token=%@&posts[0][id]=%@&posts[0][note]=%@",GetExpertToken,GetPostID,NoteTextView.text];
+
     
     NSData *postBodyData = [NSData dataWithBytes: [dataString UTF8String] length:[dataString length]];
     [request setHTTPBody:postBodyData];

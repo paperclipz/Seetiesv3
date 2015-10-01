@@ -441,23 +441,32 @@
         
         [MainScroll addSubview:ShowImage];
         
+        NSString *TempGetStirng = [[NSString alloc]initWithFormat:@"%@",[TitleArray objectAtIndex:i]];
+        if ([TempGetStirng length] == 0 || [TempGetStirng isEqualToString:@""] || [TempGetStirng isEqualToString:@"(null)"]) {
+            GetHeight += 10;
+        }else{
+            UILabel *TempShowTitle = [[UILabel alloc]init];
+            TempShowTitle.frame = CGRectMake(120, GetHeight + 5, screenWidth - 210, 20);
+            TempShowTitle.text = [TitleArray objectAtIndex:i];
+            TempShowTitle.backgroundColor = [UIColor clearColor];
+            TempShowTitle.textAlignment = NSTextAlignmentLeft;
+            TempShowTitle.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+            TempShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+            [MainScroll addSubview:TempShowTitle];
+            
+            GetHeight += 25;
+        }
         
-        UILabel *TempShowTitle = [[UILabel alloc]init];
-        TempShowTitle.frame = CGRectMake(120, GetHeight + 5, screenWidth - 210, 20);
-        TempShowTitle.text = [TitleArray objectAtIndex:i];
-        TempShowTitle.backgroundColor = [UIColor clearColor];
-        TempShowTitle.textAlignment = NSTextAlignmentLeft;
-        TempShowTitle.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-        TempShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-        [MainScroll addSubview:TempShowTitle];
+        
+
         
         UIImageView *ShowPin = [[UIImageView alloc]init];
         ShowPin.image = [UIImage imageNamed:@"LocationpinIcon.png"];
-        ShowPin.frame = CGRectMake(120, GetHeight + 23, 18, 18);
+        ShowPin.frame = CGRectMake(120, GetHeight, 18, 18);
         [MainScroll addSubview:ShowPin];
         
         UILabel *ShowPlaceName = [[UILabel alloc]init];
-        ShowPlaceName.frame = CGRectMake(140, GetHeight + 25, screenWidth - 210, 20);
+        ShowPlaceName.frame = CGRectMake(140, GetHeight, screenWidth - 210, 20);
         ShowPlaceName.text = [place_nameArray objectAtIndex:i];
         ShowPlaceName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         ShowPlaceName.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0];
@@ -466,7 +475,7 @@
         [MainScroll addSubview:ShowPlaceName];
         
         UILabel *ShowLocation = [[UILabel alloc]init];
-        ShowLocation.frame = CGRectMake(120, GetHeight + 50, screenWidth - 210, 20);
+        ShowLocation.frame = CGRectMake(120, GetHeight + 25, screenWidth - 210, 20);
         ShowLocation.text = [LocationArray objectAtIndex:i];
         ShowLocation.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowLocation.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];

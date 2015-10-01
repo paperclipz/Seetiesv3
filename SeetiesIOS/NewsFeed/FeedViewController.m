@@ -703,13 +703,14 @@
             }else{
                 [QuickCollectButton setImage:[UIImage imageNamed:@"CollectedBtn.png"] forState:UIControlStateNormal];
             }
-            [QuickCollectButton setImage:[UIImage imageNamed:@"CollectBtn.png"] forState:UIControlStateNormal];
+           // [QuickCollectButton setImage:[UIImage imageNamed:@"CollectBtn.png"] forState:UIControlStateNormal];
             [QuickCollectButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
             [QuickCollectButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
             QuickCollectButton.backgroundColor = [UIColor clearColor];
             QuickCollectButton.frame = CGRectMake(screenWidth - 20 - 140, heightcheck -5, 140, 50);
             [QuickCollectButton addTarget:self action:@selector(CollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
             QuickCollectButton.tag = i;
+            QuickCollectButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
             [LocalScroll addSubview:QuickCollectButton];
             
             UIButton *CollectButton = [[UIButton alloc]init];
@@ -1489,7 +1490,7 @@
                     TempButton.layer.cornerRadius = 5;
                     TempButton.layer.borderWidth=1;
                     TempButton.layer.masksToBounds = YES;
-                    TempButton.layer.borderColor=[[UIColor colorWithRed:232.0f/255.0f green:232.0f/255.0f blue:232.0f/255.0f alpha:1.0f] CGColor];
+                    TempButton.layer.borderColor=[[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f] CGColor];
                     [SuggestedScrollview addSubview: TempButton];
                     
                     AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
@@ -1808,7 +1809,7 @@
                     TempButton.layer.cornerRadius = 5;
                     TempButton.layer.borderWidth=1;
                     TempButton.layer.masksToBounds = YES;
-                    TempButton.layer.borderColor=[[UIColor colorWithRed:232.0f/255.0f green:232.0f/255.0f blue:232.0f/255.0f alpha:1.0f] CGColor];
+                    TempButton.layer.borderColor=[[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f] CGColor];
                     [SUserScrollview addSubview: TempButton];
                     
                     
@@ -1976,7 +1977,7 @@
                     TempButton.layer.cornerRadius = 5;
                     TempButton.layer.borderWidth=1;
                     TempButton.layer.masksToBounds = YES;
-                    TempButton.layer.borderColor=[[UIColor colorWithRed:232.0f/255.0f green:232.0f/255.0f blue:232.0f/255.0f alpha:1.0f] CGColor];
+                    TempButton.layer.borderColor=[[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f] CGColor];
                     [SUserScrollview addSubview: TempButton];
                     
                     
@@ -2019,10 +2020,12 @@
                     [SUserScrollview addSubview:ShowMessage];
                     
                     UIButton *FollowButton = [[UIButton alloc]init];
-                    FollowButton.frame = CGRectMake(screenWidth - 20 - 100 + i * screenWidth, 60, 100, 40);
-                    [FollowButton setTitle:@"Follow" forState:UIControlStateNormal];
-                    FollowButton.backgroundColor = [UIColor colorWithRed:255.0f/255.0f green:152.0f/255.0f blue:167.0f/255.0f alpha:1.0f];
-                    FollowButton.layer.cornerRadius = 20;
+                    FollowButton.frame = CGRectMake(screenWidth - 20 - 70 + i * screenWidth, 52,70, 48);
+                    // [FollowButton setTitle:@"Icon" forState:UIControlStateNormal];
+                    [FollowButton setImage:[UIImage imageNamed:@"ExploreFollow.png"] forState:UIControlStateNormal];
+                    [FollowButton setImage:[UIImage imageNamed:@"ExploreFollowing.png"] forState:UIControlStateSelected];
+                    FollowButton.backgroundColor = [UIColor clearColor];
+                    //[FollowButton addTarget:self action:@selector(FollowButton:) forControlEvents:UIControlEventTouchUpInside];
                     [SUserScrollview addSubview: FollowButton];
                     
                     NSString *GetImg = [[NSString alloc]initWithFormat:@"%@",[SplitArray_PostsImg objectAtIndex:i]];
@@ -2130,7 +2133,7 @@
                     TempButton.layer.cornerRadius = 5;
                     TempButton.layer.borderWidth=1;
                     TempButton.layer.masksToBounds = YES;
-                    TempButton.layer.borderColor=[[UIColor lightGrayColor] CGColor];
+                    TempButton.layer.borderColor=[[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f] CGColor];
                     [SuggestedScrollview addSubview: TempButton];
                     
                     AsyncImageView *ShowImage = [[AsyncImageView alloc]init];

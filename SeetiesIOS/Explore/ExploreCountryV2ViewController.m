@@ -152,11 +152,17 @@
     
     GetHeight = 0;
     
+    UIButton *TempButton = [[UIButton alloc]init];
+    TempButton.frame = CGRectMake(0, GetHeight, screenWidth, 240);
+    [TempButton setTitle:@"" forState:UIControlStateNormal];
+    TempButton.backgroundColor = [UIColor whiteColor];
+    [MainScroll addSubview: TempButton];
+    
     if ([GetFestivalsUrl isEqualToString:@""] || [GetFestivalsUrl length] == 0) {
         
     }else{
         AsyncImageView *FestivalImage = [[AsyncImageView alloc]init];
-        FestivalImage.frame = CGRectMake(0, GetHeight -20, screenWidth, 180);
+        FestivalImage.frame = CGRectMake(0, GetHeight -20, screenWidth, 200);
         FestivalImage.contentMode = UIViewContentModeScaleAspectFill;
         FestivalImage.layer.masksToBounds = YES;
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:FestivalImage];
@@ -192,7 +198,6 @@
         
         GetHeight += 200;
     }
-    
 
     
     
@@ -201,7 +206,7 @@
     
     NSArray *itemArray = [NSArray arrayWithObjects:TempStringPosts, TempStringPeople, nil];
     UISegmentedControl *ProfileControl = [[UISegmentedControl alloc]initWithItems:itemArray];
-    ProfileControl.frame = CGRectMake(15, GetHeight, screenWidth - 30, 29);
+    ProfileControl.frame = CGRectMake(15, GetHeight - 5, screenWidth - 30, 29);
     [ProfileControl addTarget:self action:@selector(segmentAction:) forControlEvents: UIControlEventValueChanged];
     ProfileControl.selectedSegmentIndex = 0;
     [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
@@ -223,45 +228,6 @@
     PostView.hidden = NO;
     
     [self InitPostDataView];
-    
-
-//    int TestWidth = screenWidth - 2;
-//    NSLog(@"TestWidth is %i",TestWidth);
-//    int FinalWidth = TestWidth / 3;
-//    FinalWidth += 1;
-//    NSLog(@"FinalWidth is %i",FinalWidth);
-//    int SpaceWidth = FinalWidth + 1;
-//
-//    for (NSInteger i = DataCount; i < DataTotal; i++) {
-//        NSString *TempImage = [[NSString alloc]initWithFormat:@"%@",[PhotoArray objectAtIndex:i]];
-//        NSArray *SplitArray = [TempImage componentsSeparatedByString:@","];
-//        AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
-//        ShowImage.frame = CGRectMake(0+(i % 3)*SpaceWidth, GetHeight + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
-//        ShowImage.contentMode = UIViewContentModeScaleAspectFill;
-//        ShowImage.layer.masksToBounds = YES;
-//        ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
-//        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
-//        NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[SplitArray objectAtIndex:0]];
-//        if ([FullImagesURL_First length] == 0) {
-//            ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
-//        }else{
-//            NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL_First];
-//            //NSLog(@"url is %@",url);
-//            ShowImage.imageURL = url_NearbySmall;
-//        }
-//        [MainScroll addSubview:ShowImage];
-//
-//        
-//        UIButton *ImageButton = [[UIButton alloc]init];
-//        [ImageButton setBackgroundColor:[UIColor clearColor]];
-//        [ImageButton setTitle:@"" forState:UIControlStateNormal];
-//        ImageButton.frame = CGRectMake(0+(i % 3)*SpaceWidth, GetHeight + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
-//        ImageButton.tag = i;
-//        [ImageButton addTarget:self action:@selector(ImageButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
-//
-//        [MainScroll addSubview:ImageButton];
-//        [MainScroll setContentSize:CGSizeMake(320, GetHeight + FinalWidth + (SpaceWidth * (CGFloat)(i /3)))];
-//    }
     
     CheckLoadDone = YES;
 
@@ -363,12 +329,12 @@
         [PostView addSubview:ShowImage];
         
         UIImageView *ShowPin = [[UIImageView alloc]init];
-        ShowPin.image = [UIImage imageNamed:@"FeedPin.png"];
-        ShowPin.frame = CGRectMake(120, PostGetHeight + 82, 8, 11);
+        ShowPin.image = [UIImage imageNamed:@"LocationpinIcon.png"];
+        ShowPin.frame = CGRectMake(115, PostGetHeight + 62 ,18,18);
         [PostView addSubview:ShowPin];
         
         UILabel *ShowPlaceName = [[UILabel alloc]init];
-        ShowPlaceName.frame = CGRectMake(140, PostGetHeight + 80, screenWidth - 140 - 60, 20);
+        ShowPlaceName.frame = CGRectMake(140, PostGetHeight + 62, screenWidth - 140 - 60, 20);
         ShowPlaceName.text = [place_nameArray objectAtIndex:i];
         ShowPlaceName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         ShowPlaceName.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0];
@@ -377,7 +343,7 @@
         [PostView addSubview:ShowPlaceName];
         
         UILabel *ShowLocation = [[UILabel alloc]init];
-        ShowLocation.frame = CGRectMake(120, PostGetHeight + 100, screenWidth - 120 - 45, 20);
+        ShowLocation.frame = CGRectMake(120, PostGetHeight + 82, screenWidth - 120 - 45, 20);
         ShowLocation.text = [LocationArray objectAtIndex:i];
         ShowLocation.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowLocation.textColor = [UIColor grayColor];
@@ -404,7 +370,7 @@
         }
         [UserFollowButton setBackgroundColor:[UIColor clearColor]];
         // [UserFollowButton setImage:[UIImage imageNamed:@"FollowIcon.png"] forState:UIControlStateNormal];
-        UserFollowButton.frame = CGRectMake(screenWidth - 15 - 47 - 10, PostGetHeight - 1, 47, 47);
+        UserFollowButton.frame = CGRectMake(screenWidth - 15 - 47, PostGetHeight - 1, 47, 47);
         UserFollowButton.tag = i;
         [UserFollowButton addTarget:self action:@selector(PostsUserOnCLick:) forControlEvents:UIControlEventTouchUpInside];
         [PostView addSubview:UserFollowButton];
@@ -422,7 +388,7 @@
         }
         [CollectButton setBackgroundColor:[UIColor clearColor]];
        // [CollectButton setImage:[UIImage imageNamed:@"collected_icon.png"] forState:UIControlStateNormal];
-        CollectButton.frame = CGRectMake(screenWidth - 15 - 57 - 10, PostGetHeight + 67, 57, 57);
+        CollectButton.frame = CGRectMake(screenWidth - 15 - 57, PostGetHeight + 67, 57, 57);
         CollectButton.tag = i;
         [CollectButton addTarget:self action:@selector(CollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
         [PostView addSubview:CollectButton];
@@ -500,7 +466,7 @@
         NSString *CheckFollow = [[NSString alloc]initWithFormat:@"%@",[User_FollowArray objectAtIndex:i]];
         
         UIButton *FollowButton = [[UIButton alloc]init];
-        FollowButton.frame = CGRectMake(screenWidth - 30 - 70, PeopleGetHeight + 12, 70, 48);
+        FollowButton.frame = CGRectMake(screenWidth - 20 - 70, PeopleGetHeight + 12, 70, 48);
        // [FollowButton setTitle:@"Icon" forState:UIControlStateNormal];
         if ([CheckFollow isEqualToString:@"0"]) {
             [FollowButton setImage:[UIImage imageNamed:@"ExploreFollow.png"] forState:UIControlStateNormal];

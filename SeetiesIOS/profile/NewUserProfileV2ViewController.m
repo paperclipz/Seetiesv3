@@ -56,7 +56,7 @@
     [MainScroll addSubview:AllContentView];
     
     BackButton.frame = CGRectMake(0, 0, 64, 64);
-    backIcon.frame = CGRectMake(15, 33, 19, 20);
+    backIcon.frame = CGRectMake(0, 22, 40, 40);
     [self.view addSubview:backIcon];
     [self.view addSubview:BackButton];
     
@@ -158,7 +158,7 @@
     [AllContentView addSubview:ShowUserName];
     
     UIButton *FollowUserButton = [[UIButton alloc]init];
-    FollowUserButton.frame = CGRectMake(screenWidth - 70 - 20, 50, 70, 48);
+    FollowUserButton.frame = CGRectMake(screenWidth - 120 - 20, 50, 120, 48);
     if ([GetUserFollowing isEqualToString:@"0"]) {
         [FollowUserButton setTitle:@"Follow" forState:UIControlStateNormal];
         [FollowUserButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -1011,7 +1011,10 @@
                 GetFollowersCount = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"follower_count"]];
                 GetFollowingCount = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"following_count"]];
                 GetUid = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"uid"]];
-                GetUserFollowing = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"following"]];
+                GetUserFollowing = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"following"]];
+                
+                
+                
                 
                 [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:BackgroundImage];
                 NSURL *url_UserImage = [NSURL URLWithString:GetWallpaper];
@@ -1486,5 +1489,14 @@
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:TempString]];
     }
     
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (alertView.tag == 1200) {
+        if (buttonIndex == [alertView cancelButtonIndex]){
+        }else{
+            //reset clicked
+            [self SendFollowingData];
+        }
+    }
 }
 @end
