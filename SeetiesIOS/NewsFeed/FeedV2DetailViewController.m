@@ -3305,6 +3305,10 @@
 {
     if (!_editPostViewController) {
         _editPostViewController = [EditPostViewController new];
+        _editPostViewController.editPostDoneBlock = ^(id object)
+        {
+                //FIXME: To Do write a refresh page for new feed details
+        };
     }
     
     return _editPostViewController;

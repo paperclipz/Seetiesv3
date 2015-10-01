@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -11,6 +12,7 @@
                 <outlet property="btnDone" destination="coh-iY-kvS" id="JBr-7q-3pG"/>
                 <outlet property="collectionView" destination="1Bt-35-hgP" id="fhs-Zr-RaK"/>
                 <outlet property="contentView" destination="VOJ-R2-kyy" id="Dfr-oi-g3Y"/>
+                <outlet property="ibBackgroundView" destination="JKp-MW-Hps" id="epC-3F-Aod"/>
                 <outlet property="lblTitle" destination="vEV-sg-dNg" id="QRU-FE-yfo"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -20,14 +22,10 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iio-bZ-ra6">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JKp-MW-Hps">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="hPQ-GI-CML">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    </view>
-                    <blurEffect style="light"/>
-                </visualEffectView>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                </imageView>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VOJ-R2-kyy" userLabel="ContentView">
                     <rect key="frame" x="8" y="59" width="304" height="450"/>
                     <subviews>
@@ -125,14 +123,14 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="VOJ-R2-kyy" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="7fC-b9-gO2"/>
-                <constraint firstItem="Iio-bZ-ra6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="8r9-Lx-ndX"/>
                 <constraint firstItem="VOJ-R2-kyy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" id="BTM-Zu-jYh"/>
-                <constraint firstAttribute="trailing" secondItem="Iio-bZ-ra6" secondAttribute="trailing" id="CCb-kr-vRx"/>
+                <constraint firstItem="JKp-MW-Hps" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Bhd-ZI-8iz"/>
                 <constraint firstAttribute="bottom" secondItem="VOJ-R2-kyy" secondAttribute="bottom" constant="59" id="CRn-6K-uWT"/>
-                <constraint firstAttribute="bottom" secondItem="Iio-bZ-ra6" secondAttribute="bottom" id="SDf-QS-GS7"/>
                 <constraint firstItem="VOJ-R2-kyy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="59" id="Tnp-Ol-Cov"/>
                 <constraint firstItem="VOJ-R2-kyy" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailingMargin" id="U8r-mG-OD1"/>
-                <constraint firstItem="Iio-bZ-ra6" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="lHq-TF-koA"/>
+                <constraint firstItem="JKp-MW-Hps" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="dZq-HX-BkO"/>
+                <constraint firstAttribute="bottom" secondItem="JKp-MW-Hps" secondAttribute="bottom" id="nwr-Qe-bHh"/>
+                <constraint firstAttribute="trailing" secondItem="JKp-MW-Hps" secondAttribute="trailing" id="sMN-kt-q5C"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <variation key="default">
@@ -140,6 +138,7 @@
                     <exclude reference="Tnp-Ol-Cov"/>
                 </mask>
             </variation>
+            <point key="canvasLocation" x="495" y="268"/>
         </view>
     </objects>
     <resources>

@@ -138,7 +138,20 @@
 - (IBAction)btnBackClicked:(id)sender {
     
     
-        [UIAlertView showWithTitle:@"New Recommendation"
+    if (self.editPostType == EditPostTypePostEdit) {
+        if (self.navigationController) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        else{
+            [self dismissViewControllerAnimated:YES completion:nil];
+            
+        }
+        if (self.editPostBackBlock) {
+            self.editPostBackBlock(self);
+        }
+    }
+    else{
+        [UIAlertView showWithTitle:@"New Post"
                        message:@"You are exiting the editor. Save Changes?"
              cancelButtonTitle:@"Cancel"
              otherButtonTitles:@[@"Discard", @"Save"]
@@ -163,9 +176,9 @@
                           } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Save"]) {
                               NSLog(@"Save");
                               [self requestToSaveDraftOrPublish:YES];
-                           //   [self.navigationController popViewControllerAnimated:YES];
                           }
                       }];
+    }
 }
 
 #pragma mark - INITIALIZATION
@@ -737,22 +750,25 @@ static id ObjectOrNull(id object)
     
     } errorBlock:^(id object) {
 
-        [TSMessage showNotificationInViewController:self title:@"system" subtitle:object?object:@"Data Fail to be Posted" type:TSMessageNotificationTypeError duration:2.0 canBeDismissedByUser:YES];
+        
+        [TSMessage showNotificationInViewController:self title:@"system" subtitle:object?object:isDraft?@"Data Fail to be Saved to Draft":@"Data Fail to be Posted" type:TSMessageNotificationTypeError duration:2.0 canBeDismissedByUser:YES];
 
     }];
     
 }
 
+//button done
 -(void)buttonDoneAction
 {
     
     SLog(@"buttonDoneAction");
     [self dismissViewControllerAnimated:YES completion:nil];
 
-//    if (self.editPostBackBlock) {
-//        self.editPostBackBlock(nil);
-//    }
+    if (_editPostDoneBlock) {
+        self.editPostDoneBlock(nil);
+    }
 }
+
 #pragma mark - Sava Data
 
 -(void)saveData
