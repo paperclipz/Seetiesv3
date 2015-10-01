@@ -33,8 +33,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Xt-N2-smT" userLabel="headerView">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="BackButton2.png" translatesAutoresizingMaskIntoConstraints="NO" id="zCk-Y9-etI">
-                            <rect key="frame" x="15" y="29" width="24" height="20"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="BackIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="zCk-Y9-etI">
+                            <rect key="frame" x="-5" y="20" width="40" height="40"/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BOG-Qo-rBN" userLabel="Button_Back">
                             <rect key="frame" x="0.0" y="0.0" width="44" height="64"/>
@@ -50,12 +50,12 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ExM-S8-B5w">
-                            <rect key="frame" x="279" y="27" width="21" height="22"/>
+                            <rect key="frame" x="270" y="20" width="40" height="40"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="22" id="kCY-rk-Anr"/>
-                                <constraint firstAttribute="width" constant="21" id="w5Y-Nh-itd"/>
+                                <constraint firstAttribute="height" constant="40" id="kCY-rk-Anr"/>
+                                <constraint firstAttribute="width" constant="40" id="w5Y-Nh-itd"/>
                             </constraints>
-                            <state key="normal" image="done_btn.png">
+                            <state key="normal" image="TickIcon.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -74,12 +74,12 @@
                     </subviews>
                     <color key="backgroundColor" red="0.14901960780000001" green="0.65098039220000004" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="ExM-S8-B5w" secondAttribute="trailing" constant="20" id="AmG-Kc-j5r"/>
+                        <constraint firstAttribute="trailing" secondItem="ExM-S8-B5w" secondAttribute="trailing" constant="10" id="AmG-Kc-j5r"/>
                         <constraint firstItem="bS7-E7-Eha" firstAttribute="top" secondItem="7Xt-N2-smT" secondAttribute="top" constant="29" id="AwA-nU-AX7"/>
                         <constraint firstAttribute="height" constant="64" id="Bgi-4y-Ira"/>
-                        <constraint firstItem="ExM-S8-B5w" firstAttribute="leading" secondItem="bS7-E7-Eha" secondAttribute="trailing" constant="9" id="E6G-D2-nYg"/>
+                        <constraint firstItem="ExM-S8-B5w" firstAttribute="leading" secondItem="bS7-E7-Eha" secondAttribute="trailing" id="E6G-D2-nYg"/>
                         <constraint firstItem="bS7-E7-Eha" firstAttribute="leading" secondItem="BOG-Qo-rBN" secondAttribute="trailing" constant="6" id="Niq-he-DBT"/>
-                        <constraint firstItem="ExM-S8-B5w" firstAttribute="top" secondItem="7Xt-N2-smT" secondAttribute="top" constant="27" id="Woi-98-ae9"/>
+                        <constraint firstItem="ExM-S8-B5w" firstAttribute="top" secondItem="7Xt-N2-smT" secondAttribute="top" constant="20" id="Woi-98-ae9"/>
                         <constraint firstItem="BOG-Qo-rBN" firstAttribute="leading" secondItem="7Xt-N2-smT" secondAttribute="leading" id="jfM-xV-UWX"/>
                         <constraint firstAttribute="centerX" secondItem="bS7-E7-Eha" secondAttribute="centerX" id="oBy-sb-zpV"/>
                         <constraint firstItem="BOG-Qo-rBN" firstAttribute="top" secondItem="7Xt-N2-smT" secondAttribute="top" id="uQl-ls-WgY"/>
@@ -246,8 +246,8 @@
         </view>
     </objects>
     <resources>
-        <image name="BackButton2.png" width="38" height="39"/>
-        <image name="done_btn.png" width="21" height="15"/>
+        <image name="BackIcon.png" width="40" height="40"/>
+        <image name="TickIcon.png" width="40" height="40"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

@@ -60,7 +60,7 @@
                         <constraint firstItem="laB-V3-voD" firstAttribute="top" secondItem="18F-7n-ysR" secondAttribute="top" id="vbT-Ja-afD"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="at8-9G-hT0">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="at8-9G-hT0">
                     <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>

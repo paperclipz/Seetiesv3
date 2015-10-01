@@ -45,6 +45,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 +(CGRect)getDeviceScreenSize;
 #define DEVICE_COLOR [UIColor colorWithRed: 51.0 / 255 green: 181.0 / 255 blue: 229.0 / 255 alpha: 1.0]
 #define TEXT_GRAY_COLOR [UIColor colorWithRed:153.0/255.0 green:153.0/255.0 blue:153.0/255.0 alpha:1.0]
+#define TWO_ZERO_FOUR_COLOR [UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1.0]
 
 #define CustomFontName @"ProximaNovaSoft-Regular"
 #define CustomFontNameBold @"ProximaNovaSoft-Bold"
