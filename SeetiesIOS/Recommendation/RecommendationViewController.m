@@ -171,12 +171,10 @@
                 [weakSelf showEditPostView];
                 
             }];
-
         };
         
         _stSearchViewController.btnAddNewPlaceBlock = ^(id object)
         {
-            
             [weakSelf.navRecommendationViewController pushViewController:weakSelf.addNewPlaceViewController animated:YES];
           //  wealSelf.addNewPlaceViewController.title
             weakSelf.addNewPlaceViewController.title = @"Add New Place";

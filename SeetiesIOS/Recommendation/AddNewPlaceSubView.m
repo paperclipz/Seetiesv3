@@ -111,7 +111,7 @@
     CGRect frame = [Utils getDeviceScreenSize];
     self.btnEditHours.frame = CGRectMake((frame.size.width - self.btnEditHours.frame.size.width)/2, self.btnEditHours.frame.origin.y, self.btnEditHours.frame.size.width, self.btnEditHours.frame.size.height);
     [self changeLanguage];
-    
+    [self changeLanguage];
 }
 
 -(void)layoutSubviews
@@ -119,17 +119,18 @@
     self.ibImgArrow.frame = CGRectMake(self.btnCurrency.frame.origin.x + self.btnCurrency.frame.size.width - self.ibImgArrow.frame.size.width - 10, self.ibImgArrow.frame.origin.y, self.ibImgArrow.frame.size.width,self.ibImgArrow.frame.size.height);
 
 }
+#pragma mark - Change Language
 
 -(void)changeLanguage
 {
-    self.lblPlaceName.text = LOCALIZATION(@"Place Name");
-    self.lblAddress.text = LOCALIZATION(@"Address");
-    self.lblURL.text = LOCALIZATION(@"URL/Facebook Page");
-    self.lblPhoneNumber.text = LOCALIZATION(@"Phone No.");
-    self.lblPrice.text = LOCALIZATION(@"Price");
-    self.lblPerpax.text = LOCALIZATION(@"Per Pax");
-    self.lblEditHour.text = LOCALIZATION(@"Hours");
-    [self.btnEditHours setTitle:LOCALIZATION(@"Edit Hours") forState:UIControlStateNormal];
+    self.lblPlaceName.text = LocalisedString(@"Place Name");
+    self.lblAddress.text = LocalisedString(@"Address");
+    self.lblURL.text = LocalisedString(@"URL / Facebook Page");
+    self.lblPhoneNumber.text = LocalisedString(@"Phone No.");
+    self.lblPrice.text = LocalisedString(@"Price");
+    self.lblPerpax.text = LocalisedString(@"Per pax");
+    self.lblEditHour.text = LocalisedString(@"Hours");
+    [self.btnEditHours setTitle:LocalisedString(@"Edit Hours") forState:UIControlStateNormal];
   }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
@@ -141,4 +142,5 @@
     else
     {return YES;}
 }
+
 @end

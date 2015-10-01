@@ -34,6 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
+    [self changeLanguage];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -117,4 +118,9 @@
     return array;
 }
 
+#pragma mark - change language
+-(void)changeLanguage
+{
+    self.title = LocalisedString(@"Edit Hours");
+}
 @end

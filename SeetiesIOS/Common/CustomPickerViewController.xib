@@ -14,6 +14,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomPickerViewController">
             <connections>
+                <outlet property="btnDraft" destination="7Tu-Y1-LKK" id="ybt-kN-Z40"/>
+                <outlet property="btnREcommendation" destination="Q7W-Ag-lv5" id="Ap4-B7-ZeY"/>
                 <outlet property="contentView" destination="Lt7-7K-hnk" id="tvS-ml-jkH"/>
                 <outlet property="ibBtnCancel" destination="3oG-TS-Cib" id="B9d-kT-8rE"/>
                 <outlet property="ibTransparentView" destination="biX-0j-Hti" id="BqR-kH-ZP1"/>
@@ -61,7 +63,7 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
-                                        <action selector="btnAddLangClicked:" destination="-1" eventType="touchUpInside" id="kb5-vv-ywR"/>
+                                        <action selector="btnAddLangClicked:" destination="-1" eventType="touchUpInside" id="rGh-eN-cn5"/>
                                     </connections>
                                 </button>
                                 <view alpha="0.20000000298023224" contentMode="scaleToFill" id="syO-WG-oLj">

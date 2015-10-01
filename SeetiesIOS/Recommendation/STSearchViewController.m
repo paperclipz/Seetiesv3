@@ -68,8 +68,8 @@
 
 -(void)changeLanguage
 {
-    self.lblTitle.text = LOCALIZATION(@"Where is this place");
-    self.txtSearch.placeholder = LOCALIZATION(@"Type to search places");
+    self.lblTitle.text = LocalisedString(@"Where is it?");
+    self.txtSearch.placeholder = LocalisedString(@"search places");
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -151,10 +151,11 @@
             
             self.location = currentLocation;
             [self requestSearch];
+            SLog(@"Coordinate Found for GPS");
 
             
         } errorBlock:^(NSString *status) {
-            SLog(@"NO COORDINATE FOUND FOR DEVICE GPS");
+            SLog(@"NO COORDINATE FOUND FOR GPS");
             
             [self.sManager getCoordinateFromWifi:^(CLLocation *currentLocation) {
                 self.location = currentLocation;
@@ -162,7 +163,9 @@
              //   SLog(@"long : %f || lat : %f",self.location.coordinate.longitude,self.location.coordinate.latitude);
                 [self requestSearch];
             } errorBlock:^(NSString *status) {
-                [self requestSearch];
+                
+                [LoadingManager hide];
+                //[self requestSearch];
             }];
 
         }];
@@ -384,7 +387,7 @@
     {
         _fourSquareSearchTableViewController = [SearchTableViewController new];
         [_fourSquareSearchTableViewController initTableViewWithDelegate:self];
-        _fourSquareSearchTableViewController.title = @"FourSquare";
+        _fourSquareSearchTableViewController.title = @"Foursquare";
         _fourSquareSearchTableViewController.type = SearchTypeFourSquare;
 
     }
