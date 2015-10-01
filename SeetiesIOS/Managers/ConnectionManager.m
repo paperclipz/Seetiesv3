@@ -317,7 +317,8 @@
 -(void)requestServerWithPut:(ServerRequestType)type param:(NSDictionary*)dict appendString:(NSString*)appendString completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
 {
     
-    NSString* fullURL;
+    
+        NSString* fullURL;
     
     if (appendString) {
         fullURL = [NSString stringWithFormat:@"%@/%@",[self getFullURLwithType:type],appendString];
@@ -343,13 +344,14 @@
              NSLog(@"\n\n Success: %@", [responseObject bv_jsonStringWithPrettyPrint:YES]);
 
          }
-         
+
      }
               failure:
      ^(AFHTTPRequestOperation *operation, NSError *error) {
          
          NSLog(@"\n\n Error: %@", error);
-         
+         [LoadingManager hide];
+
      }];
     
 }
@@ -496,7 +498,6 @@
             self.dataManager.editPostModel = [[DraftModel alloc]initWithDictionary:dict error:nil];
             [self.dataManager.editPostModel process];
         }
-            
             break;
             
         case ServerRequestTypePostSaveDraft:
@@ -505,7 +506,6 @@
             self.dataManager.savedDraftModel = [[DraftModel alloc]initWithDictionary:dict error:nil];
             [self.dataManager.savedDraftModel process];
         }
-            
             break;
         default:
             

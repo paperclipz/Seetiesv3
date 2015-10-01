@@ -24,12 +24,13 @@
 
 @implementation EditCollectionViewController
 - (IBAction)btnDoneClicked:(id)sender {
-    
+
+
     [self saveData];
     [self requestServerForUpdateCollection];
 }
 - (IBAction)btnEditClicked:(id)sender {
-    
+
     
     _editCollectionDetailViewController = nil;
     [self.editCollectionDetailViewController initData:self.collectionModel];
@@ -52,7 +53,6 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:NO];
-    
     
     [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
         
@@ -138,12 +138,18 @@
     
     NSString* appendString = [NSString stringWithFormat:@"%@/collections/%@",[Utils getUserID],collectionID];
     
+    [LoadingManager show];
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetCollectionInfo param:dict appendString:appendString completeHandler:^(id object) {
         
         if (successBlock) {
             successBlock(nil);
         }
-    } errorBlock:nil];
+        [LoadingManager hide];
+
+    } errorBlock:^(id object) {
+        [LoadingManager hide];
+
+    }];
     
 }
 
@@ -200,18 +206,23 @@
                            @"tags":@""};
     
     NSString* appendString = [NSString stringWithFormat:@"%@/Collections",[Utils getUserID]];
-    
+    [LoadingManager showWithTitle:@"updating"];
+
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypePostCreateCollection param:dict appendString:appendString completeHandler:^(id object) {
-        
+        [LoadingManager hide];
+
         [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success Create New Collections" type:TSMessageNotificationTypeSuccess];
         
-    } errorBlock:nil];
+    } errorBlock:^(id object) {
+        [LoadingManager hide];
+
+    }];
     
 }
 
 -(void)requestServerForUpdateCollection
 {
-    
+
     NSDictionary* dict = @{@"token":[Utils getAppToken],
                            @"collection_id":self.collectionModel.collection_id,
                            @"name":self.collectionModel.name,
@@ -234,18 +245,24 @@
         [finalDict addEntriesFromDictionary:dictPost];
     }
 
+    
+    SLog(@" collection request : %@",finalDict);
     //NSDictionary* dictSecondDesc = @{[NSString stringWithFormat:@"title[%@]",THAI_CODE]:ObjectOrNull(tempModel.postSecondTitle),
       //                               [NSString stringWithFormat:@"message[%@]",THAI_CODE]:ObjectOrNull(tempModel.postSecondDescription)};
     
     
     NSString* appendString = [NSString stringWithFormat:@"%@/collections/%@",[Utils getUserID],self.collectionModel.collection_id];
-    
+    [LoadingManager show];
+
     [[ConnectionManager Instance] requestServerWithPut:ServerRequestTypePostCreateCollection param:finalDict appendString:appendString completeHandler:^(id object) {
         
-        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success Create New Collections" type:TSMessageNotificationTypeSuccess];
-        
-    } errorBlock:nil];
-    
+        [TSMessage showNotificationInViewController:self title:@"system" subtitle:@"Success Saved Collections" type:TSMessageNotificationTypeSuccess];
+        [LoadingManager hide];
+
+    } errorBlock:^(id object) {
+        [LoadingManager hide];
+
+    }];
 }
 
 #pragma mark - change language

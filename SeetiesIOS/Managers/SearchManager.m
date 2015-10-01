@@ -76,6 +76,10 @@
 
     }
     else{
+        
+        if (errorBlock) {
+            errorBlock(@"no new location from gps");
+        }
         SLog(@"location not available");
     }
 }
