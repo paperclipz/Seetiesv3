@@ -1451,12 +1451,12 @@
                // NSLog(@"in abroad_quality_post");
                 SuggestedScrollview_Aboad = [[UIScrollView alloc]init];
                 SuggestedScrollview_Aboad.delegate = self;
-                SuggestedScrollview_Aboad.frame = CGRectMake(0, heightcheck, screenWidth, 420);
+                SuggestedScrollview_Aboad.frame = CGRectMake(0, heightcheck, screenWidth, 360);
                 SuggestedScrollview_Aboad.backgroundColor = [UIColor whiteColor];
                 SuggestedScrollview_Aboad.pagingEnabled = YES;
                 [SuggestedScrollview_Aboad setShowsHorizontalScrollIndicator:NO];
                 [SuggestedScrollview_Aboad setShowsVerticalScrollIndicator:NO];
-                SuggestedpageControl_Aboad.tag = 1000;
+                SuggestedScrollview_Aboad.tag = 1000;
                 [MainScroll addSubview:SuggestedScrollview_Aboad];
                 
                 UILabel *ShowSuggestedText = [[UILabel alloc]init];
@@ -1468,7 +1468,7 @@
                 ShowSuggestedText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
                 [MainScroll addSubview:ShowSuggestedText];
                 
-                NSString *TempCount = [[NSString alloc]initWithFormat:@"1/%lu",(unsigned long)[SplitArray_Title count]];
+                NSString *TempCount = [[NSString alloc]initWithFormat:@"1/%lu",(unsigned long)[arrAboadID count]];
                 
                 ShowSuggestedCount_Aboad = [[UILabel alloc]init];
                 ShowSuggestedCount_Aboad.frame = CGRectMake(screenWidth - 220, heightcheck, 200, 50);
@@ -1480,8 +1480,8 @@
                 [MainScroll addSubview:ShowSuggestedCount_Aboad];
                 
                 SuggestedpageControl_Aboad = [[UIPageControl alloc] init];
-                SuggestedpageControl_Aboad.frame = CGRectMake(0,heightcheck + 390,screenWidth,30);
-                SuggestedpageControl_Aboad.numberOfPages = [SplitArray_Title count];
+                SuggestedpageControl_Aboad.frame = CGRectMake(0,heightcheck + 330,screenWidth,30);
+                SuggestedpageControl_Aboad.numberOfPages = 3;
                 SuggestedpageControl_Aboad.currentPage = 0;
                 SuggestedpageControl_Aboad.pageIndicatorTintColor = [UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f];
                 SuggestedpageControl_Aboad.currentPageIndicatorTintColor = [UIColor colorWithRed:187.0f/255.0f green:187.0f/255.0f blue:187.0f/255.0f alpha:1.0f];
@@ -1492,7 +1492,7 @@
 
                 for (int i = 0; i < [SplitArray_username count]; i++) {
                     UIButton *TempButton = [[UIButton alloc]init];
-                    TempButton.frame = CGRectMake(10 + i * screenWidth, 50 , screenWidth - 20 ,320);
+                    TempButton.frame = CGRectMake(10 + i * screenWidth, 50 , screenWidth - 20 ,280);
                     [TempButton setTitle:@"" forState:UIControlStateNormal];
                     TempButton.backgroundColor = [UIColor whiteColor];
                     TempButton.layer.cornerRadius = 5;
@@ -1607,7 +1607,7 @@
                 
                 
                 
-                heightcheck += 430;
+                heightcheck += 370;
 
                 
             }
@@ -1804,8 +1804,8 @@
                 SUserpageControl_Featured.frame = CGRectMake(0,heightcheck + FinalWidth + 10 + 70 + 50,screenWidth,30);
                 SUserpageControl_Featured.numberOfPages = 3;
                 SUserpageControl_Featured.currentPage = 0;
-                SUserpageControl_Featured.pageIndicatorTintColor = [UIColor darkGrayColor];
-                SUserpageControl_Featured.currentPageIndicatorTintColor = [UIColor orangeColor];
+                SUserpageControl_Featured.pageIndicatorTintColor = [UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f];
+                SUserpageControl_Featured.currentPageIndicatorTintColor = [UIColor colorWithRed:187.0f/255.0f green:187.0f/255.0f blue:187.0f/255.0f alpha:1.0f];
                 [MainScroll addSubview:SUserpageControl_Featured];
                 
                 
@@ -1972,8 +1972,8 @@
                 SUserpageControl_Friend.frame = CGRectMake(0,heightcheck + FinalWidth + 10 + 70 + 50,screenWidth,30);
                 SUserpageControl_Friend.numberOfPages = 3;
                 SUserpageControl_Friend.currentPage = 0;
-                SUserpageControl_Friend.pageIndicatorTintColor = [UIColor darkGrayColor];
-                SUserpageControl_Friend.currentPageIndicatorTintColor = [UIColor orangeColor];
+                SUserpageControl_Friend.pageIndicatorTintColor = [UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f];
+                SUserpageControl_Friend.currentPageIndicatorTintColor = [UIColor colorWithRed:187.0f/255.0f green:187.0f/255.0f blue:187.0f/255.0f alpha:1.0f];
                 [MainScroll addSubview:SUserpageControl_Friend];
                 
                 
@@ -2431,11 +2431,7 @@
         NSString *TempCount = [[NSString alloc]initWithFormat:@"%li/%lu",page + 1,(unsigned long)[arrfeaturedUserName count]];
         ShowSUserCount_Featured.text = TempCount;
     }else if(scrollView == MainScroll){
-        if ((scrollView.contentOffset.y + scrollView.frame.size.height) >=    scrollView.contentSize.height)
-        {
-            // Refresh from here
-            NSLog(@"scrollView Refresh from here");
-        }
+
     }
 
 

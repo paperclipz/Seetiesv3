@@ -1696,7 +1696,7 @@
     [MainScroll addSubview:OpenProfileButton];
     
     UILabel *ShowUserName = [[UILabel alloc]init];
-    ShowUserName.frame = CGRectMake(85, GetMessageHeight + 10, 200, 50);
+    ShowUserName.frame = CGRectMake(85, GetMessageHeight + 10, 190, 50);
     ShowUserName.text = GetPostName;
     ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
    // ShowUserName.textColor = color;

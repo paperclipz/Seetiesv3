@@ -171,7 +171,7 @@
         [FollowUserButton setBackgroundImage:[UIImage imageNamed:@"FollowingBtn.png"] forState:UIControlStateNormal];
     }
     FollowUserButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
-    [FollowUserButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
+  //  [FollowUserButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
     FollowUserButton.backgroundColor = [UIColor clearColor];
     [FollowUserButton addTarget:self action:@selector(FollowButton:) forControlEvents:UIControlEventTouchUpInside];
     FollowUserButton.tag = 100;
@@ -866,10 +866,7 @@
         
     }else{
         CurrentPage_Collection += 1;
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSString *Getuid = [defaults objectForKey:@"Useruid"];
-        NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
-        NSString *FullString = [[NSString alloc]initWithFormat:@"%@%@/collections?token=%@&page=%li",DataUrl.UserWallpaper_Url,Getuid,GetExpertToken,CurrentPage_Collection];
+        NSString *FullString = [[NSString alloc]initWithFormat:@"%@%@/collections?page=%li",DataUrl.UserWallpaper_Url,GetUid,CurrentPage_Collection];
         
         
         NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
@@ -1022,7 +1019,7 @@
                 
                 
                [self InitContentView];
-               [self GetPostsData];
+               [self GetCollectionData];
             }else{
                 
             }
