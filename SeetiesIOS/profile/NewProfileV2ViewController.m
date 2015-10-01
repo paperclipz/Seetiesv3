@@ -1587,13 +1587,19 @@
     
     
     _editCollectionViewController = nil;// for the view controller to reinitialize
+    
+    
+    [LoadingManager show];
     [self.editCollectionViewController requestServerForCollectionDetails:collectionID successBlock:^(id object) {
         
         [self.editCollectionViewController initData:[[ConnectionManager dataManager] collectionModels]];
         [self.navigationController pushViewController:self.editCollectionViewController animated:YES];
+        [LoadingManager hide];
 
     } failBlock:^(id object) {
         [TSMessage showNotificationInViewController:self title:@"System" subtitle:@"Error" type:TSMessageNotificationTypeError duration:1.0f canBeDismissedByUser:YES];
+        [LoadingManager hide];
+
     }];
 }
 
