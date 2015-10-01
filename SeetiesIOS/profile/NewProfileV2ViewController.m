@@ -238,7 +238,7 @@
     
     UIButton *EditProfileButton = [[UIButton alloc]init];
     EditProfileButton.frame = CGRectMake(screenWidth - 106 - 20, 60, 106, 34);
-    [EditProfileButton setTitle:@"Edit profile" forState:UIControlStateNormal];
+    [EditProfileButton setTitle:LocalisedString(@"Edit Profile") forState:UIControlStateNormal];
     EditProfileButton.layer.cornerRadius= 17;
     EditProfileButton.layer.borderWidth = 1;
     EditProfileButton.layer.masksToBounds = YES;
@@ -276,8 +276,8 @@
         GetFollowersCount = @"0";
     }
     
-    NSString *tempFollowers = [[NSString alloc]initWithFormat:@"%@ Followers",GetFollowersCount];
-    NSString *tempFollowing = [[NSString alloc]initWithFormat:@"%@ Followings",GetFollowingCount];
+    NSString *tempFollowers = [[NSString alloc]initWithFormat:@"%@ %@",GetFollowersCount,LocalisedString(@"Followers")];
+    NSString *tempFollowing = [[NSString alloc]initWithFormat:@"%@ %@",GetFollowingCount,LocalisedString(@"Followings")];
     
     UILabel *ShowFollowers = [[UILabel alloc]init];
     ShowFollowers.text = tempFollowers;
@@ -502,9 +502,9 @@
     
     GetHeight += 31;
     
-    NSString *TempStringPosts = [[NSString alloc]initWithFormat:@"Post"];
-    NSString *TempStringCollection = [[NSString alloc]initWithFormat:@"Collection"];
-    NSString *TempStringLike = [[NSString alloc]initWithFormat:@"Like"];
+    NSString *TempStringPosts = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Posts")];
+    NSString *TempStringCollection = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Collections")];
+    NSString *TempStringLike = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Likes")];
     
     NSArray *itemArray = [NSArray arrayWithObjects:TempStringCollection, TempStringPosts,TempStringLike, nil];
     ProfileControl = [[UISegmentedControl alloc]initWithItems:itemArray];
@@ -613,7 +613,7 @@
     if ([GetCollectionDataCount length] == 0) {
         GetCollectionDataCount = @"";
     }
-    NSString *TempString = [[NSString alloc]initWithFormat:@"%@ Collection",GetCollectionDataCount];
+    NSString *TempString = [[NSString alloc]initWithFormat:@"%@ %@",GetCollectionDataCount,LocalisedString(@"Collections")];
 
     UILabel *ShowCollectionCount = [[UILabel alloc]init];
     ShowCollectionCount.frame = CGRectMake(30, 20, 150, 20);
@@ -736,7 +736,7 @@
 -(void)InitLikeData{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-    NSString *TempString = [[NSString alloc]initWithFormat:@"%@ Likes",GetLikesDataCount];
+    NSString *TempString = [[NSString alloc]initWithFormat:@"%@ %@",GetLikesDataCount,LocalisedString(@"Likes")];
     
     UILabel *ShowLikesCount = [[UILabel alloc]init];
     ShowLikesCount.frame = CGRectMake(30, 20, 150, 20);
@@ -813,7 +813,7 @@
 -(void)InitPostsView{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-    NSString *TempString = [[NSString alloc]initWithFormat:@"%@ Posts",GetPostsDataCount];
+    NSString *TempString = [[NSString alloc]initWithFormat:@"%@ %@",GetPostsDataCount,LocalisedString(@"Posts")];
     
     UILabel *ShowPostsCount = [[UILabel alloc]init];
     ShowPostsCount.frame = CGRectMake(30, 20, 150, 20);
@@ -889,7 +889,7 @@
         ShowPlaceName.backgroundColor = [UIColor clearColor];
         [PostView addSubview:ShowPlaceName];
         
-        NSString *TempCount = [[NSString alloc]initWithFormat:@"%@ views",[PostsData_TotalCountArray objectAtIndex:i]];
+        NSString *TempCount = [[NSString alloc]initWithFormat:@"%@ %@",[PostsData_TotalCountArray objectAtIndex:i],LocalisedString(@"views")];
         UILabel *ShowLocation = [[UILabel alloc]init];
         ShowLocation.frame = CGRectMake(120, heightcheck + 60, screenWidth - 120, 20);
         ShowLocation.text = TempCount;

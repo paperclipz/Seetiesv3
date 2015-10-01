@@ -31,6 +31,10 @@
     NSURLConnection *theConnection_Report;
     
     NSString *GetPostID;
+    
+    IBOutlet UILabel *ShowInappropriate;
+    IBOutlet UILabel *ShowCopyright;
+    IBOutlet UILabel *ShowOther;
 }
 -(void)GetPostID:(NSString *)PostID;
 @end

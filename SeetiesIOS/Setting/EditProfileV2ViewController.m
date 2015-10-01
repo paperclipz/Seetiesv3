@@ -23,6 +23,7 @@
     BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
     SaveButton.frame = CGRectMake(screenWidth - 50, 20, 50, 44);
     ShowTitle.frame = CGRectMake(15, 20, screenWidth - 30, 44);
+    ShowTitle.text = LocalisedString(@"Edit Profile");
     MainScroll.delegate = self;
     MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     MainScroll.alwaysBounceVertical = YES;
@@ -38,18 +39,28 @@
     Gender_PickerView.hidden = YES;
     Toolbar.hidden = YES;
     
+    ShowPersonalInformation.text = LocalisedString(@"Personal Information");
+    
     GenderArray = [[NSMutableArray alloc]init];
     [GenderArray addObject:CustomLocalisedString(@"Male",nil)];
     [GenderArray addObject:CustomLocalisedString(@"Female",nil)];
     
     UserNameField.delegate = self;
+    UserNameField.placeholder = LocalisedString(@"Username");
     NameField.delegate = self;
+    NameField.placeholder = LocalisedString(@"Name");
     LinkField.delegate = self;
+    LinkField.placeholder = LocalisedString(@"Website");
     TagasField.delegate = self;
+    TagasField.placeholder = LocalisedString(@"Separate tags with space. Eg. Foodie, photographer, gym buff etc.");
     DescriptionField.delegate = self;
+    DescriptionField.text = LocalisedString(@"About me");
     LocationField.delegate = self;
+    LocationField.placeholder = LocalisedString(@"Location");
     DOBField.delegate = self;
+    DOBField.placeholder = LocalisedString(@"ddmmyyyy");
     GenderField.delegate = self;
+    GenderField.placeholder = LocalisedString(@"Gender");
     
     CaretLocationImg.frame = CGRectMake(screenWidth - 30, 598, 30, 30);
 
@@ -398,7 +409,7 @@
         [body appendData:[[NSString stringWithFormat:@"%@",LinkField.text] dataUsingEncoding:NSUTF8StringEncoding]];
         [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     }
-    if ([GetDescription isEqualToString:DescriptionField.text] || [DescriptionField.text isEqualToString:@"write something"]) {
+    if ([GetDescription isEqualToString:DescriptionField.text] || [DescriptionField.text isEqualToString:LocalisedString(@"About me")]) {
         
     }else{
         [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];

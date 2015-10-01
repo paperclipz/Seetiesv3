@@ -49,17 +49,17 @@
     //Initialize the dataArray
     dataArray = [[NSMutableArray alloc] init];
     
-    NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:@"Edit Profile", @"Edit Interest",@"Account Settings", nil];//@"Notification Settings"
+    NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:LocalisedString(@"Edit Profile"), LocalisedString(@"Edit Interest"),LocalisedString(@"Account Settings"), nil];//@"Notification Settings"
     NSDictionary *firstItemsArrayDict = [NSDictionary dictionaryWithObject:firstItemsArray forKey:@"data"];
     [dataArray addObject:firstItemsArrayDict];
     
     //Second section data
-    NSArray *secondItemsArray = [[NSArray alloc] initWithObjects:@"About Seeties", @"Terms of Use",@"Privacy Policy",@"Send Feedback", nil];
+    NSArray *secondItemsArray = [[NSArray alloc] initWithObjects:LocalisedString(@"About Seeties"), LocalisedString(@"Terms of Use"),LocalisedString(@"Privacy Policy"),LocalisedString(@"Send Feedback"), nil];
     NSDictionary *secondItemsArrayDict = [NSDictionary dictionaryWithObject:secondItemsArray forKey:@"data"];
     [dataArray addObject:secondItemsArrayDict];
     
     //Second section data
-    NSArray *threeItemsArray = [[NSArray alloc] initWithObjects:@"Sign out from Seeties", nil];
+    NSArray *threeItemsArray = [[NSArray alloc] initWithObjects:LocalisedString(@"Sign out of Seeties"), nil];
     NSDictionary *threeItemsArrayDict = [NSDictionary dictionaryWithObject:threeItemsArray forKey:@"data"];
     [dataArray addObject:threeItemsArrayDict];
     
@@ -287,11 +287,11 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     
     if(section == 0)
-        return @"Profile";
+        return LocalisedString(@"Profile");
     if(section == 1)
-        return @"Support";
+        return LocalisedString(@"Support");
     if(section == 2)
-        return @"Log Out";
+        return LocalisedString(@"Log out");
     return 0;
 }
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -591,7 +591,7 @@
         NSLog(@"Log Out %@", selectedCell);
         switch (indexPath.row) {
             case 0:{
-                UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"Confirm Log Out?" message:@"Are you sure you want to log out?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+                UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:LocalisedString(@"Log out") message:LocalisedString(@"Are you sure you want to sign out of Seeties?") delegate:self cancelButtonTitle:LocalisedString(@"Maybe not.") otherButtonTitles:LocalisedString(@"Yeah!"), nil];
                 ShowAlert.tag = 1000;
                 [ShowAlert show];
               //  [self SendUserLogoutToServer];

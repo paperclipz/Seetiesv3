@@ -70,11 +70,11 @@
    // self.screenName = @"IOS Expert Login Page";
     self.screenName = @"IOS Sign Up Page";
     
-    EmailField.placeholder = NSLocalizedString(@"SignUpPage_Email",nil);
-    UsernameField.placeholder = NSLocalizedString(@"SignUpPage_Username", nil);
-    PasswordField.placeholder = NSLocalizedString(@"SignUpPage_Password", nil);
+    EmailField.placeholder = NSLocalizedString(@"Email Address",nil);
+    UsernameField.placeholder = NSLocalizedString(@"Create your username", nil);
+    PasswordField.placeholder = NSLocalizedString(@"Password", nil);
     ShowTitle.text = NSLocalizedString(@"SignUpPage_Title",nil);
-    [SignUpButton setTitle:NSLocalizedString(@"SignUpPage_SignUpButton",nil) forState:UIControlStateNormal];
+    [SignUpButton setTitle:NSLocalizedString(@"Create",nil) forState:UIControlStateNormal];
     
    // [EmailField becomeFirstResponder];
     
@@ -165,7 +165,7 @@
     }else if([PasswordField.text length] < 8){
 //        UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"PasswordError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
 //        [ShowAlert show];
-        [TSMessage showNotificationInViewController:self title:@"" subtitle:NSLocalizedString(@"PasswordError", nil) type:TSMessageNotificationTypeError];
+        [TSMessage showNotificationInViewController:self title:@"" subtitle:NSLocalizedString(@"Yikes. Your password must be at least 8 characters.", nil) type:TSMessageNotificationTypeError];
     }else{
         GetEmail = EmailField.text;
         GetUsername = UsernameField.text;

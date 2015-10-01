@@ -36,8 +36,16 @@
     SelectedInappropriate.hidden = YES;
     
     DescriptionText.delegate = self;
-    
+    DescriptionText.text = LocalisedString(@"Please specify");
     CheckStatus = 0;
+    
+    ShowTitle.text = LocalisedString(@"Report this");
+    ShowInappropriate.text = LocalisedString(@"Inappropriate content");
+    ShowCopyright.text = LocalisedString(@"Copywriting infringement");
+    ShowOther.text = LocalisedString(@"Others");
+    
+    [InappropriateButton setTitle:LocalisedString(@"This post has content that violates terms & conditions in Seeties.") forState:UIControlStateNormal];
+    [CopyrightButton setTitle:LocalisedString(@"This post uses copyrighted works without permission.") forState:UIControlStateNormal];
 }
 -(void)GetPostID:(NSString *)PostID{
 
@@ -82,13 +90,13 @@
 -(void)textViewDidEndEditing:(UITextView *)textView
 {
 if ([DescriptionText.text length] == 0) {
-    DescriptionText.text = @"Please provide a description.";
+    DescriptionText.text = LocalisedString(@"Please specify");
 }
     
 }
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
-    if ([DescriptionText.text isEqualToString:@"Please provide a description."]) {
+    if ([DescriptionText.text isEqualToString:LocalisedString(@"Please specify")]) {
         DescriptionText.text = @"";
     }else{
         

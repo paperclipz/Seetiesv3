@@ -25,6 +25,7 @@
                 <outlet property="MainScroll" destination="ORh-Sw-cHQ" id="euH-h1-9tr"/>
                 <outlet property="NameField" destination="uON-zY-LJG" id="s18-Lo-huG"/>
                 <outlet property="SaveButton" destination="l8T-Lh-z5b" id="u0Y-bK-Wfp"/>
+                <outlet property="ShowPersonalInformation" destination="0Hh-yz-cy9" id="Tgn-e7-rox"/>
                 <outlet property="ShowTitle" destination="hNF-8b-6eO" id="ZDH-Ru-m7v"/>
                 <outlet property="TagasField" destination="2IC-uo-Bnx" id="mpm-Me-1kj"/>
                 <outlet property="UserImg" destination="L5i-az-YKE" id="EeK-X8-x4f"/>
@@ -181,7 +182,7 @@
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Private Information" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0Hh-yz-cy9">
-                            <rect key="frame" x="20" y="519" width="145" height="21"/>
+                            <rect key="frame" x="20" y="519" width="285" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="ProximaNovaSoft-Bold" family="Proxima Nova Soft" pointSize="15"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -348,7 +349,7 @@
         <image name="ArrowBtn.png" width="30" height="30"/>
         <image name="BackIcon.png" width="40" height="40"/>
         <image name="BrithdayIcon.png" width="30" height="30"/>
-        <image name="DefaultProfilePic.png" width="100" height="100"/>
+        <image name="DefaultProfilePic.png" width="83" height="83"/>
         <image name="EditCoverPhoto.png" width="70" height="70"/>
         <image name="EditDisplayPhoto.png" width="47" height="47"/>
         <image name="GenderIcon.png" width="30" height="30"/>

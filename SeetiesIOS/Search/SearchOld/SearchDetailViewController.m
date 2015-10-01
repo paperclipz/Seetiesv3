@@ -48,14 +48,16 @@
     CheckInt = 0;
     
     SearchTextField.delegate = self;
+    SearchTextField.placeholder = LocalisedString(@"Search");
     SearchAddressField.delegate = self;
+    SearchAddressField.placeholder = LocalisedString(@"Add a location?");
     
     ShowNoDataView.hidden = YES;
     ShowNoDataView.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     ShowNoText_1.frame = CGRectMake(15, 169, screenWidth - 30, 40);
     ShowNoText_2.frame = CGRectMake(15, 204, screenWidth - 30, 100);
     ShowNoText_1.text = CustomLocalisedString(@"NoResultFound", nil);
-    ShowNoText_2.text = CustomLocalisedString(@"Pleasetryadiffrentsearch", nil);
+    ShowNoText_2.text = LocalisedString(@"Sorry, we couldn't figure out {!keyword}");
     
     ShowSearchUserView.hidden = YES;
     [self.view addSubview:ShowSearchUserView];
@@ -800,8 +802,8 @@
     }
     heightcheck += 20;
     
-    NSString *TempStringPosts = [[NSString alloc]initWithFormat:@"%lu Posts",(unsigned long)[place_nameArray count]];
-    NSString *TempStringPeople = [[NSString alloc]initWithFormat:@"%lu People",(unsigned long)[Experts_Name_Array count]];
+    NSString *TempStringPosts = [[NSString alloc]initWithFormat:@"%lu %@",(unsigned long)[place_nameArray count],LocalisedString(@"Posts")];
+    NSString *TempStringPeople = [[NSString alloc]initWithFormat:@"%lu %@",(unsigned long)[Experts_Name_Array count],LocalisedString(@"Seetizens")];
     
     NSArray *itemArray = [NSArray arrayWithObjects:TempStringPosts, TempStringPeople, nil];
     UISegmentedControl *ProfileControl = [[UISegmentedControl alloc]initWithItems:itemArray];
@@ -1380,9 +1382,10 @@
         [Experts_Followed_Array replaceObjectAtIndex:getbuttonIDN withObject:@"1"];
         [self SendFollowingData];
     }else{
-        NSString *tempStirng = [[NSString alloc]initWithFormat:@"%@ %@ ?",CustomLocalisedString(@"StopFollowing", nil),[Experts_Username_Array objectAtIndex:getbuttonIDN]];
         
-        UIAlertView *ShowAlertView = [[UIAlertView alloc]initWithTitle:@"" message:tempStirng delegate:self cancelButtonTitle:CustomLocalisedString(@"SettingsPage_Cancel", nil) otherButtonTitles:CustomLocalisedString(@"Unfollow", nil), nil];
+        NSString *tempStirng = [[NSString alloc]initWithFormat:@"%@ %@ ?",LocalisedString(@"Are you sure you want to quit following"),[Experts_Username_Array objectAtIndex:getbuttonIDN]];
+        
+        UIAlertView *ShowAlertView = [[UIAlertView alloc]initWithTitle:LocalisedString(@"Unfollow user") message:tempStirng delegate:self cancelButtonTitle:LocalisedString(@"Maybe not.") otherButtonTitles:LocalisedString(@"Yeah!"), nil];
         ShowAlertView.tag = 1200;
         [ShowAlertView show];
         [Experts_Followed_Array replaceObjectAtIndex:getbuttonIDN withObject:@"0"];
@@ -1402,9 +1405,10 @@
         [UserInfo_FollowArray replaceObjectAtIndex:getbuttonIDN withObject:@"1"];
         [self SendFollowingData];
     }else{
-        NSString *tempStirng = [[NSString alloc]initWithFormat:@"%@ %@ ?",CustomLocalisedString(@"StopFollowing", nil),[UserInfo_NameArray objectAtIndex:getbuttonIDN]];
         
-        UIAlertView *ShowAlertView = [[UIAlertView alloc]initWithTitle:@"" message:tempStirng delegate:self cancelButtonTitle:CustomLocalisedString(@"SettingsPage_Cancel", nil) otherButtonTitles:CustomLocalisedString(@"Unfollow", nil), nil];
+        NSString *tempStirng = [[NSString alloc]initWithFormat:@"%@ %@ ?",LocalisedString(@"Are you sure you want to quit following"),[UserInfo_NameArray objectAtIndex:getbuttonIDN]];
+        
+        UIAlertView *ShowAlertView = [[UIAlertView alloc]initWithTitle:LocalisedString(@"Unfollow user") message:tempStirng delegate:self cancelButtonTitle:LocalisedString(@"Maybe not.") otherButtonTitles:LocalisedString(@"Yeah!"), nil];
         ShowAlertView.tag = 1200;
         [ShowAlertView show];
         [UserInfo_FollowArray replaceObjectAtIndex:getbuttonIDN withObject:@"0"];

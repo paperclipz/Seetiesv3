@@ -30,6 +30,7 @@
     mySearchBar.tintColor = [UIColor whiteColor];
     mySearchBar.barTintColor = [UIColor clearColor];
     [mySearchBar setBackgroundImage:[[UIImage alloc]init]];
+    mySearchBar.placeholder = LocalisedString(@"Search");
     [mySearchBar becomeFirstResponder];
     
     BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
@@ -123,9 +124,9 @@
     
     
     if (CheckTblview == 0) {
-        return @"Search History";
+        return LocalisedString(@"Search History");
     }else{
-        return @"Suggestions";
+        return LocalisedString(@"Suggested search");
         
     }
     
@@ -362,7 +363,7 @@
     
     UILabel *ShowSuggestedPlaces = [[UILabel alloc]init];
     ShowSuggestedPlaces.frame = CGRectMake(20, 10, screenWidth - 40, 20);
-    ShowSuggestedPlaces.text = @"Suggested places";
+    ShowSuggestedPlaces.text = LocalisedString(@"Suggested places");
     ShowSuggestedPlaces.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
     ShowSuggestedPlaces.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
     [SearchScroll addSubview:ShowSuggestedPlaces];
@@ -407,7 +408,7 @@
     
     UILabel *ShowSuggestedSearch = [[UILabel alloc]init];
     ShowSuggestedSearch.frame = CGRectMake(20, height, screenWidth - 40, 20);
-    ShowSuggestedSearch.text = @"Suggested search";
+    ShowSuggestedSearch.text = LocalisedString(@"Suggested search");
     ShowSuggestedSearch.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
     ShowSuggestedSearch.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
     [SearchScroll addSubview:ShowSuggestedSearch];

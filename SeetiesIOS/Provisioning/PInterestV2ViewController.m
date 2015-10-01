@@ -30,8 +30,10 @@
     
     ShowTitle.frame = CGRectMake(30, 50, screenWidth - 60, 25);
     ShowSubTitle.frame = CGRectMake(30, 40, screenWidth - 60, 65);
+    ShowSubTitle.text = NSLocalizedString(@"What are you interested in?",nil);
     DoneButton.frame = CGRectMake(30, screenHeight - 70, screenWidth - 60, 50);
     DoneButton.layer.cornerRadius = 5;
+    [DoneButton setTitle:NSLocalizedString(@"Let's go!",nil) forState:UIControlStateNormal];
     //DoneButton.enabled = NO;
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     MainScroll.delegate = self;

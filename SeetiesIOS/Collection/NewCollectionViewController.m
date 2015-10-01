@@ -57,6 +57,8 @@
     TagsLine.frame = CGRectMake(0, 50, screenWidth - 40 , 1);
     
     SetPublic = @"1";
+    
+    ShowTitle.text = LocalisedString(@"New Collection");
 }
 - (UIStatusBarStyle) preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;

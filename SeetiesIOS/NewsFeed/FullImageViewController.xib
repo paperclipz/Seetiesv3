@@ -16,6 +16,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FullImageViewController">
             <connections>
                 <outlet property="BackButton" destination="t5R-wu-RYh" id="d1l-AL-j0r"/>
+                <outlet property="ExitText" destination="pDW-dh-Die" id="Q27-12-reS"/>
                 <outlet property="MImageScroll" destination="5DZ-m3-vwi" id="bbp-vo-ImC"/>
                 <outlet property="ShowImageCount" destination="NdO-hX-4eW" id="mhd-Ls-5P5"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

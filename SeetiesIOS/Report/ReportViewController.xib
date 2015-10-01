@@ -29,6 +29,9 @@
                 <outlet property="SelectedCopyright" destination="a24-OE-gz6" id="aQA-xv-VQr"/>
                 <outlet property="SelectedInappropriate" destination="v0E-d6-ZvJ" id="Ycq-aL-Tby"/>
                 <outlet property="ShowActivity" destination="2N3-aM-hsA" id="PQz-pC-RR2"/>
+                <outlet property="ShowCopyright" destination="DB6-DJ-2FB" id="L3p-zj-f3x"/>
+                <outlet property="ShowInappropriate" destination="O33-cE-Fcn" id="xjV-LN-ARi"/>
+                <outlet property="ShowOther" destination="1sf-fW-F53" id="Yc6-Mn-Syj"/>
                 <outlet property="ShowTitle" destination="RVm-dv-MAe" id="32x-Yi-r1L"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

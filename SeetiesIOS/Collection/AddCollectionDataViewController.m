@@ -33,6 +33,7 @@
     NoteTextView.layer.cornerRadius = 5;
     NoteTextView.layer.borderWidth=1;
     NoteTextView.layer.borderColor=[[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0f] CGColor];
+    NoteTextView.text = LocalisedString(@"Leave a note");
     
     ShowNoteTextCount.frame = CGRectMake(screenWidth - 20 - 42, 119, 42, 20);
     
@@ -231,7 +232,7 @@
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
     NSLog(@"did begin editing");
-    if ([NoteTextView.text isEqualToString:@"Leave a note"]) {
+    if ([NoteTextView.text isEqualToString:LocalisedString(@"Leave a note")]) {
         NoteTextView.text = @"";
     }
     

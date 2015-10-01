@@ -160,13 +160,13 @@
     FollowUserButton = [[UIButton alloc]init];
     FollowUserButton.frame = CGRectMake(screenWidth - 120 - 20, 50, 120, 48);
     if ([GetUserFollowing isEqualToString:@"0"]) {
-        [FollowUserButton setTitle:@"Follow" forState:UIControlStateNormal];
+        [FollowUserButton setTitle:LocalisedString(@"Follow") forState:UIControlStateNormal];
         [FollowUserButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [FollowUserButton setImage:[UIImage imageNamed:@"ProfileFollowIcon.png"] forState:UIControlStateNormal];
         [FollowUserButton setBackgroundImage:[UIImage imageNamed:@"FollowBtn.png"] forState:UIControlStateNormal];
     }else{
         [FollowUserButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [FollowUserButton setTitle:@"Following" forState:UIControlStateNormal];
+        [FollowUserButton setTitle:LocalisedString(@"Following") forState:UIControlStateNormal];
         [FollowUserButton setImage:[UIImage imageNamed:@"ProfileFollowingIcon.png"] forState:UIControlStateNormal];
         [FollowUserButton setBackgroundImage:[UIImage imageNamed:@"FollowingBtn.png"] forState:UIControlStateNormal];
     }
@@ -213,8 +213,8 @@
         GetFollowersCount = @"0";
     }
     
-    NSString *tempFollowers = [[NSString alloc]initWithFormat:@"%@ Followers",GetFollowersCount];
-    NSString *tempFollowing = [[NSString alloc]initWithFormat:@"%@ Followings",GetFollowingCount];
+    NSString *tempFollowers = [[NSString alloc]initWithFormat:@"%@ %@",GetFollowersCount,LocalisedString(@"Followers")];
+    NSString *tempFollowing = [[NSString alloc]initWithFormat:@"%@ %@",GetFollowingCount,LocalisedString(@"Followings")];
     
     UILabel *ShowFollowers = [[UILabel alloc]init];
     ShowFollowers.text = tempFollowers;
@@ -424,9 +424,9 @@
     
     GetHeight += 31;
     
-    NSString *TempStringPosts = [[NSString alloc]initWithFormat:@"Post"];
-    NSString *TempStringCollection = [[NSString alloc]initWithFormat:@"Collection"];
-    NSString *TempStringLike = [[NSString alloc]initWithFormat:@"Like"];
+    NSString *TempStringPosts = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Posts")];
+    NSString *TempStringCollection = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Collections")];
+    NSString *TempStringLike = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Likes")];
     
     NSArray *itemArray = [NSArray arrayWithObjects:TempStringCollection, TempStringPosts,TempStringLike, nil];
     ProfileControl = [[UISegmentedControl alloc]initWithItems:itemArray];
@@ -518,7 +518,7 @@
         GetCollectionDataCount = @"";
     }
     
-    NSString *TempString = [[NSString alloc]initWithFormat:@"%@ Collection",GetCollectionDataCount];
+     NSString *TempString = [[NSString alloc]initWithFormat:@"%@ %@",GetCollectionDataCount,LocalisedString(@"Collections")];
     
     UILabel *ShowCollectionCount = [[UILabel alloc]init];
     ShowCollectionCount.frame = CGRectMake(30, 20, 150, 20);
@@ -641,7 +641,7 @@
 -(void)InitLikeData{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-    NSString *TempString = [[NSString alloc]initWithFormat:@"%@ Likes",GetLikesDataCount];
+    NSString *TempString = [[NSString alloc]initWithFormat:@"%@ %@",GetLikesDataCount,LocalisedString(@"Likes")];
     
     UILabel *ShowLikesCount = [[UILabel alloc]init];
     ShowLikesCount.frame = CGRectMake(30, 20, screenWidth - 60, 20);
@@ -701,7 +701,7 @@
 -(void)InitPostsView{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-    NSString *TempString = [[NSString alloc]initWithFormat:@"%@ Posts",GetPostsDataCount];
+    NSString *TempString = [[NSString alloc]initWithFormat:@"%@ %@",GetPostsDataCount,LocalisedString(@"Posts")];
     
     UILabel *ShowPostsCount = [[UILabel alloc]init];
     ShowPostsCount.frame = CGRectMake(30, 20, screenWidth - 60, 20);
@@ -1334,12 +1334,12 @@
             if ([GetUserFollowing isEqualToString:@"0"]) {
                 GetUserFollowing = @"1";
                 [FollowUserButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-                [FollowUserButton setTitle:@"Following" forState:UIControlStateNormal];
+                [FollowUserButton setTitle:LocalisedString(@"Following") forState:UIControlStateNormal];
                 [FollowUserButton setImage:[UIImage imageNamed:@"ProfileFollowingIcon.png"] forState:UIControlStateNormal];
                 [FollowUserButton setBackgroundImage:[UIImage imageNamed:@"FollowingBtn.png"] forState:UIControlStateNormal];
             }else{
                 GetUserFollowing = @"0";
-                [FollowUserButton setTitle:@"Follow" forState:UIControlStateNormal];
+                [FollowUserButton setTitle:LocalisedString(@"Follow") forState:UIControlStateNormal];
                 [FollowUserButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
                 [FollowUserButton setImage:[UIImage imageNamed:@"ProfileFollowIcon.png"] forState:UIControlStateNormal];
                 [FollowUserButton setBackgroundImage:[UIImage imageNamed:@"FollowBtn.png"] forState:UIControlStateNormal];
@@ -1398,9 +1398,9 @@
     if ([GetUserFollowing isEqualToString:@"1"]) {
         
         //  NSString *tempStirng = [[NSString alloc]initWithFormat:@"Unfollow %@ ?",GetUserName];
-        NSString *tempStirng = [[NSString alloc]initWithFormat:@"%@ %@ ?",CustomLocalisedString(@"StopFollowing", nil),GetUserName];
+        NSString *tempStirng = [[NSString alloc]initWithFormat:@"%@ %@ ?",LocalisedString(@"Are you sure you want to quit following"),GetUserName];
         
-        UIAlertView *ShowAlertView = [[UIAlertView alloc]initWithTitle:@"" message:tempStirng delegate:self cancelButtonTitle:CustomLocalisedString(@"SettingsPage_Cancel", nil) otherButtonTitles:CustomLocalisedString(@"Unfollow", nil), nil];
+        UIAlertView *ShowAlertView = [[UIAlertView alloc]initWithTitle:LocalisedString(@"Unfollow user") message:tempStirng delegate:self cancelButtonTitle:LocalisedString(@"Maybe not.") otherButtonTitles:LocalisedString(@"Yeah!"), nil];
         ShowAlertView.tag = 1200;
         [ShowAlertView show];
     }else{

@@ -1514,7 +1514,7 @@
         //tanslate button here
         UIButton *TanslateButton = [[UIButton alloc]init];
         TanslateButton.frame = CGRectMake(20, GetHeightCheck, screenWidth - 40, 40);
-        [TanslateButton setTitle:@"Translate" forState:UIControlStateNormal];
+        [TanslateButton setTitle:LocalisedString(@"Translate") forState:UIControlStateNormal];
         [TanslateButton setImage:[UIImage imageNamed:@"TranslateArrow.png"] forState:UIControlStateNormal];
         TanslateButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         [TanslateButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f  blue:153.0f/255.0f  alpha:1.0f] forState:UIControlStateNormal];
@@ -1723,13 +1723,13 @@
         ShowFollowButton = [[UIButton alloc]init];
         ShowFollowButton.frame = CGRectMake(screenWidth - 120 - 20, GetMessageHeight + 15, 120, 40);
         if ([GetFollowing isEqualToString:@"0"]) {
-            [ShowFollowButton setTitle:@"Follow" forState:UIControlStateNormal];
+            [ShowFollowButton setTitle:LocalisedString(@"Follow") forState:UIControlStateNormal];
             [ShowFollowButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             [ShowFollowButton setImage:[UIImage imageNamed:@"ProfileFollowIcon.png"] forState:UIControlStateNormal];
             [ShowFollowButton setBackgroundImage:[UIImage imageNamed:@"FollowBtn.png"] forState:UIControlStateNormal];
         }else{
             [ShowFollowButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [ShowFollowButton setTitle:@"Following" forState:UIControlStateNormal];
+            [ShowFollowButton setTitle:LocalisedString(@"Following") forState:UIControlStateNormal];
             [ShowFollowButton setImage:[UIImage imageNamed:@"ProfileFollowingIcon.png"] forState:UIControlStateNormal];
             [ShowFollowButton setBackgroundImage:[UIImage imageNamed:@"FollowingBtn.png"] forState:UIControlStateNormal];
         }
@@ -1816,7 +1816,7 @@
             if ([GetUsername isEqualToString:[Like_UsernameArray objectAtIndex:0]]) {
                 tempString = [[NSString alloc]initWithFormat:@"You %@ %@ %@",[Like_UsernameArray objectAtIndex:1],CustomLocalisedString(@"likeText_and", nil),CustomLocalisedString(@"likeText_1", nil)];
             }else{
-                tempString = [[NSString alloc]initWithFormat:@"%@ %@ %@ %@",[Like_UsernameArray objectAtIndex:0],CustomLocalisedString(@"likeText_and", nil),[Like_UsernameArray objectAtIndex:1],CustomLocalisedString(@"likeText_1", nil)];
+                tempString = [[NSString alloc]initWithFormat:@"%@ ,%@ %@ %@",[Like_UsernameArray objectAtIndex:0],CustomLocalisedString(@"likeText_and", nil),[Like_UsernameArray objectAtIndex:1],CustomLocalisedString(@"likeText_1", nil)];
             }
         }else{
             int intTotal = [TotalLikeCount intValue];
@@ -1858,7 +1858,7 @@
         ShowCollectionIcon.frame = CGRectMake(10, GetMessageHeight + 2, 35, 35);
         [MainScroll addSubview:ShowCollectionIcon];
         
-        NSString *TempCountString = [[NSString alloc]initWithFormat:@"Collected in %@ collections",TotalCollectionCount];
+        NSString *TempCountString = [[NSString alloc]initWithFormat:@"Collected in %@ %@",TotalCollectionCount,LocalisedString(@"Collections")];
         
         UILabel *ShowCollectionText = [[UILabel alloc]init];
         ShowCollectionText.frame = CGRectMake(50, GetMessageHeight, screenWidth - 69, 40);
@@ -1994,7 +1994,7 @@
             
             UIButton *SeeAllCommentButton = [[UIButton alloc]init];
             SeeAllCommentButton.frame = CGRectMake(0, GetMessageHeight + 1, screenWidth, 50);
-            [SeeAllCommentButton setTitle:@"Sell all activities" forState:UIControlStateNormal];
+            [SeeAllCommentButton setTitle:LocalisedString(@"See all activities") forState:UIControlStateNormal];
             [SeeAllCommentButton setBackgroundColor:[UIColor clearColor]];
             [SeeAllCommentButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
             [SeeAllCommentButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
@@ -2115,7 +2115,7 @@
     
     UILabel *ShowPlaceInfoText = [[UILabel alloc]init];
     ShowPlaceInfoText.frame = CGRectMake(20, GetMessageHeight, screenWidth - 40, 50);
-    ShowPlaceInfoText.text = @"Place Info";
+    ShowPlaceInfoText.text = LocalisedString(@"About the place");
     ShowPlaceInfoText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
     ShowPlaceInfoText.backgroundColor = [UIColor clearColor];
     ShowPlaceInfoText.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
@@ -2124,7 +2124,7 @@
     
     UIButton *DirectionsButton = [[UIButton alloc]init];
     DirectionsButton.frame = CGRectMake(screenWidth - 200 - 20, GetMessageHeight, 200, 50);
-    [DirectionsButton setTitle:@"Directions" forState:UIControlStateNormal];
+    [DirectionsButton setTitle:LocalisedString(@"Getting here") forState:UIControlStateNormal];
     [DirectionsButton setBackgroundColor:[UIColor clearColor]];
     [DirectionsButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
     [DirectionsButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
@@ -2302,7 +2302,7 @@
     
     UIButton *MoreInfoButton = [[UIButton alloc]init];
     MoreInfoButton.frame = CGRectMake(0, GetMessageHeight + 1, screenWidth, 50);
-    [MoreInfoButton setTitle:@"More info" forState:UIControlStateNormal];
+    [MoreInfoButton setTitle:LocalisedString(@"Read more") forState:UIControlStateNormal];
     [MoreInfoButton setBackgroundColor:[UIColor clearColor]];
     [MoreInfoButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
     [MoreInfoButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
@@ -2344,7 +2344,7 @@
 
     UILabel *ShowNearbyTitle = [[UILabel alloc]init];
     ShowNearbyTitle.frame = CGRectMake(20, GetFinalHeight, screenWidth - 40, 50);
-    ShowNearbyTitle.text = CustomLocalisedString(@"NearbyRecommendations", nil);
+    ShowNearbyTitle.text = LocalisedString(@"Nearby recommendations");
     ShowNearbyTitle.backgroundColor = [UIColor clearColor];
     ShowNearbyTitle.textAlignment = NSTextAlignmentLeft;
     ShowNearbyTitle.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
@@ -2509,7 +2509,7 @@
         
         SeeAllButton_Nearby = [[UIButton alloc]init];
         SeeAllButton_Nearby.frame = CGRectMake(0, GetFinalHeight, screenWidth, 50);
-        [SeeAllButton_Nearby setTitle:@"See all" forState:UIControlStateNormal];
+        [SeeAllButton_Nearby setTitle:LocalisedString(@"See it all!") forState:UIControlStateNormal];
         [SeeAllButton_Nearby setBackgroundColor:[UIColor clearColor]];
         [SeeAllButton_Nearby.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
         [SeeAllButton_Nearby setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
@@ -2683,9 +2683,9 @@
     }else{
         if ([GetFollowing isEqualToString:@"1"]) {
             
-            NSString *tempStirng = [[NSString alloc]initWithFormat:@"%@ %@ ?",CustomLocalisedString(@"StopFollowing", nil),GetPostName];
+            NSString *tempStirng = [[NSString alloc]initWithFormat:@"%@ %@ ?",LocalisedString(@"Are you sure you want to quit following"),GetPostName];
             
-        UIAlertView *ShowAlertView = [[UIAlertView alloc]initWithTitle:@"" message:tempStirng delegate:self cancelButtonTitle:CustomLocalisedString(@"SettingsPage_Cancel", nil) otherButtonTitles:CustomLocalisedString(@"Unfollow", nil), nil];
+            UIAlertView *ShowAlertView = [[UIAlertView alloc]initWithTitle:LocalisedString(@"Unfollow user") message:tempStirng delegate:self cancelButtonTitle:LocalisedString(@"Maybe not.") otherButtonTitles:LocalisedString(@"Yeah!"), nil];
             ShowAlertView.tag = 1200;
             [ShowAlertView show];
         }else{

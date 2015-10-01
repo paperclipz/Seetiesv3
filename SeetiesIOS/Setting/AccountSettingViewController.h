@@ -65,6 +65,12 @@
     IBOutlet UILabel *AppLanguageText;
     IBOutlet UILabel *ChangePasswordText;
     IBOutlet UIButton *DeleteButton;
+    IBOutlet UILabel *ConnectFBText;
+    IBOutlet UILabel *ConnectInstagramText;
+    
+    IBOutlet UILabel *MainLanguage;
+    IBOutlet UILabel *MainAccount;
+    IBOutlet UILabel *MainOther;
     
     LLARingSpinnerView *spinnerView;
     UIButton *LoadingBlackBackground;

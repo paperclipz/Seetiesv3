@@ -26,6 +26,8 @@
     NSString *GetImageString;
     
     IBOutlet UIButton *BackButton;
+    
+    IBOutlet UILabel *ExitText;
 }
 -(IBAction)BackButton:(id)sender;
 -(void)GetAllImageArray:(NSMutableArray *)AllImageArray GetIDN:(NSInteger)ImageIdn GetAllCaptionArray:(NSMutableArray *)AllCaptionArray;

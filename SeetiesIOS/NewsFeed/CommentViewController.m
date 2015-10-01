@@ -32,7 +32,7 @@
     BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
     
 
-    [sendButton setTitle:CustomLocalisedString(@"Send", nil) forState:UIControlStateNormal];
+    [sendButton setTitle:LocalisedString(@"Done!") forState:UIControlStateNormal];
 
     
     //ShowNoDataView.frame = CGRectMake(0, 0, screenWidth, [UIScreen mainScreen].bounds.size.height);
@@ -41,8 +41,8 @@
     
     ShowNoDataText_1.frame = CGRectMake(15, (screenHeight / 2) - 141, screenWidth - 30, 21);
     ShowNoDataText_2.frame = CGRectMake((screenWidth/2) - 126, (screenHeight / 2) - 120, 253, 62);
-    ShowNoDataText_1.text = CustomLocalisedString(@"NoComment", nil);
-    ShowNoDataText_2.text = CustomLocalisedString(@"FristComment", nil);
+    ShowNoDataText_1.text = LocalisedString(@"There are no comments yet.");
+    ShowNoDataText_2.text = LocalisedString(@"Be the first to comment");
     
     BlackgroundButton.clipsToBounds = YES;
     BlackgroundButton.layer.cornerRadius = 10;//half of the width
@@ -309,7 +309,7 @@
   //  CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-    NSArray *itemArray = [NSArray arrayWithObjects:@"Comments",@"Collections", @"Likes", nil];
+    NSArray *itemArray = [NSArray arrayWithObjects:LocalisedString(@"Comments"),LocalisedString(@"Collections"), LocalisedString(@"Likes"), nil];
     UISegmentedControl *PostControl = [[UISegmentedControl alloc]initWithItems:itemArray];
     PostControl.frame = CGRectMake(15, 80, screenWidth - 30, 29);
     [PostControl addTarget:self action:@selector(segmentAction:) forControlEvents: UIControlEventValueChanged];
@@ -1326,7 +1326,7 @@
         }
         [CollectionsScroll addSubview:UserImage];
         
-        NSString *TempString = [[NSString alloc]initWithFormat:@"%@ collected this into %@",[CollectionUserNameArray objectAtIndex:i],[CollectionNameArray objectAtIndex:i]];;
+        NSString *TempString = [[NSString alloc]initWithFormat:@"%@ %@ %@",[CollectionUserNameArray objectAtIndex:i],LocalisedString(@"collected this into"),[CollectionNameArray objectAtIndex:i]];;
         
         UILabel *ShowUserName = [[UILabel alloc]init];
         ShowUserName.frame = CGRectMake(100, PeopleHeight + 10, screenWidth - 120, 60);
