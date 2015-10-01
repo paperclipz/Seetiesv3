@@ -29,8 +29,8 @@
     MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     MainScroll.alwaysBounceVertical = YES;
 
-    SelectedInappropriate.frame = CGRectMake(screenWidth - 5, 102, 50, 50);
-    SelectedCopyright.frame = CGRectMake(screenWidth - 5, 194, 50, 50);
+    SelectedInappropriate.frame = CGRectMake(screenWidth - 50, 102, 50, 50);
+    SelectedCopyright.frame = CGRectMake(screenWidth - 50, 194, 50, 50);
     
     SelectedCopyright.hidden = YES;
     SelectedInappropriate.hidden = YES;
@@ -57,9 +57,10 @@
 
 -(IBAction)InappropriateButtonOnClick:(id)sender{
     InappropriateButton.selected = !InappropriateButton.selected;
-    
+    SelectedCopyright.hidden = YES;
     if (InappropriateButton.selected) {
         SelectedInappropriate.hidden = NO;
+        
         CheckStatus = 1;
     }else{
         SelectedInappropriate.hidden = YES;
@@ -69,7 +70,7 @@
 }
 -(IBAction)CopyrightButtonOnClick:(id)sender{
     CopyrightButton.selected = !CopyrightButton.selected;
-    
+    SelectedInappropriate.hidden = YES;
     if (CopyrightButton.selected) {
         SelectedCopyright.hidden = NO;
         CheckStatus = 2;

@@ -106,6 +106,7 @@
     int CheckFirstTimeLoadPost;
     int CheckFirstTimeLoadCollection;
     
+    UIButton *FollowUserButton;
 }
 -(void)GetUserName:(NSString *)username;
 -(void)GetUid:(NSString *)uid;
