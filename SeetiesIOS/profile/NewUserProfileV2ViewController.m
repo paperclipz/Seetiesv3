@@ -171,7 +171,7 @@
         [FollowUserButton setBackgroundImage:[UIImage imageNamed:@"FollowingBtn.png"] forState:UIControlStateNormal];
     }
     FollowUserButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
-    [FollowUserButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
+  //  [FollowUserButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
     FollowUserButton.backgroundColor = [UIColor clearColor];
     [FollowUserButton addTarget:self action:@selector(FollowButton:) forControlEvents:UIControlEventTouchUpInside];
     FollowUserButton.tag = 100;
