@@ -128,9 +128,9 @@
     self.lblURL.text = LocalisedString(@"URL / Facebook Page");
     self.lblPhoneNumber.text = LocalisedString(@"Phone No.");
     self.lblPrice.text = LocalisedString(@"Price");
-    self.lblPerpax.text = LocalisedString(@"Per pax");
-    self.lblEditHour.text = LocalisedString(@"Hours");
-    [self.btnEditHours setTitle:LocalisedString(@"Edit Hours") forState:UIControlStateNormal];
+    self.lblPerpax.text = LocalisedString(@"Per person");
+    self.lblEditHour.text = LocalisedString(@"Business Hours");
+    [self.btnEditHours setTitle:LocalisedString(@"Edit Business Hours") forState:UIControlStateNormal];
   }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
