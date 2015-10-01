@@ -472,11 +472,11 @@
 -(NSArray*)arrTabImages
 {
     if ( self.editPostType == EditPostTypePostEdit) {
-        return @[[UIImage imageNamed:@"addurl_icon@2x.png"],[UIImage imageNamed:@"qr_icon@2x.png"],[UIImage imageNamed:@"editplace_icon@2x.png"]];
+        return @[[UIImage imageNamed:@"AddLanguageBtn.png"],[UIImage imageNamed:@"StarRecommendationBtn.png"],[UIImage imageNamed:@"LocationBtn.png"]];
 
     }
     else{
-        return @[[UIImage imageNamed:@"addurl_icon@2x.png"],[UIImage imageNamed:@"qr_icon@2x.png"],[UIImage imageNamed:@"editplace_icon@2x.png"],[UIImage imageNamed:@"SaveDraftBtn.png"]];
+        return @[[UIImage imageNamed:@"AddLanguageBtn.png"],[UIImage imageNamed:@"StarRecommendationBtn.png"],[UIImage imageNamed:@"LocationBtn.png"],[UIImage imageNamed:@"SaveDraftBtn.png"]];
 
     }
 }

@@ -44,7 +44,7 @@
         return;
     }
     if ([CLLocationManager isLocationUpdatesAvailable]) {
-        [LoadingManager show];
+        [LoadingManager showWithTitle:@"GPS"];
         
         self.manager = [CLLocationManager updateManagerWithAccuracy:50.0 locationAge:15.0 authorizationDesciption:CLLocationUpdateAuthorizationDescriptionAlways];
         
@@ -76,7 +76,6 @@
     else{
         SLog(@"location not available");
     }
-    
 }
 
 -(void)stopLocationSearch
@@ -90,7 +89,7 @@
 -(void)getSuggestedLocationFromFoursquare:(CLLocation*)tempCurrentLocation input:(NSString*)input completionBlock:(IDBlock)completionBlock
 {
     
-    [LoadingManager show];
+    [LoadingManager showWithTitle:@"FOURSQUARE"];
     SLog(@"long : %f  || lat: %f",tempCurrentLocation.coordinate.longitude,tempCurrentLocation.coordinate.latitude);
     [Foursquare2 venueExploreRecommendedNearByLatitude:@(tempCurrentLocation.coordinate.latitude) longitude:@(tempCurrentLocation.coordinate.longitude) near:nil accuracyLL:nil altitude:nil accuracyAlt:nil query:input limit:nil offset:nil radius:@(10000) section:nil novelty:nil sortByDistance:nil openNow:nil venuePhotos:nil price:nil callback:^(BOOL success, id result){
         
@@ -190,7 +189,6 @@
 //    }];
 //}
 
-
 -(void)getSearchLocationFromGoogle:(CLLocation*)tempCurrentLocation input:(NSString*)textInput completionBlock:(IDBlock)completionBlock
 {
     
@@ -198,7 +196,7 @@
 
     //SLog(@"%@",FullString);
     
-   // [LoadingManager show];
+    [LoadingManager showWithTitle:@"GOOGLE"];
     NSDictionary* param = @{@"input":textInput?textInput:@"",@"radius":@"5000",@"key":GOOGLE_API_KEY,@"type":@"address",@"location":[NSString stringWithFormat:@"%f,%f",tempCurrentLocation.coordinate.latitude,tempCurrentLocation.coordinate.longitude]};
 
     [[ConnectionManager Instance]requestServerWithPost:NO customURL:GOOGLE_PLACE_AUTOCOMPLETE_API requestType:ServerRequestTypeGoogleSearch param:param completeHandler:^(id object) {
@@ -230,12 +228,40 @@
         if (successBlock) {
             successBlock([self convertToCLLocation:object[@"latitude"] longt:object[@"longitude"]]);
         }
-        SLog(@"geip response : %@",[object JSONString]);
     } errorBlock:^(id object) {
         
         if (errorBlock) {
             errorBlock(nil);
         }
+        
+    }];
+
+}
+
+-(void)getCoordinateFromGPSThenWifi:(SearchManagerSuccessBlock)successBlock errorBlock:(SearchManagerFailBlock)errorBlock
+{
+    [self getCoordinate:^(CLLocation *currentLocation) {
+        if (currentLocation) {
+            if (successBlock) {
+                successBlock(currentLocation);
+            }
+        }
+    } errorBlock:^(NSString *status) {
+        
+        SLog(@"NO GPS LOCATION ");
+
+        [self getCoordinateFromWifi:^(CLLocation *currentLocation) {
+            
+            if (successBlock) {
+                successBlock(currentLocation);
+            }
+        } errorBlock:^(NSString *status) {
+            if (errorBlock) {
+                errorBlock(status);
+            }
+            SLog(@"NO WIFI LOCATION ");
+        }];
+
         
     }];
 

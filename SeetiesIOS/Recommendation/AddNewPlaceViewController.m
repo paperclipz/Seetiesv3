@@ -165,7 +165,7 @@
 {
     if ( lat == 0) {
         
-        [[SearchManager Instance]getCoordinateFromWifi:^(CLLocation *currentLocation) {
+        [[SearchManager Instance]getCoordinateFromGPSThenWifi:^(CLLocation *currentLocation) {
             _region.center.longitude = currentLocation.coordinate.longitude;
             _region.center.latitude = currentLocation.coordinate.latitude;
             
