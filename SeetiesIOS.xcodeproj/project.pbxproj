@@ -39,6 +39,11 @@
 		0BE340251B73021B00F49625 /* ProximaNovaSoft-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BE340221B73021B00F49625 /* ProximaNovaSoft-Regular.ttf */; };
 		8A00979B1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A00979A1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m */; };
 		8A00979D1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A00979C1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib */; };
+		8A19542A1BBD586D00AF5C02 /* BahasaIndonesia.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A1954251BBD586D00AF5C02 /* BahasaIndonesia.png */; settings = {ASSET_TAGS = (); }; };
+		8A19542B1BBD586D00AF5C02 /* English.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A1954261BBD586D00AF5C02 /* English.png */; settings = {ASSET_TAGS = (); }; };
+		8A19542C1BBD586D00AF5C02 /* SimplifiedChinese.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A1954271BBD586D00AF5C02 /* SimplifiedChinese.png */; settings = {ASSET_TAGS = (); }; };
+		8A19542D1BBD586D00AF5C02 /* Thai.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A1954281BBD586D00AF5C02 /* Thai.png */; settings = {ASSET_TAGS = (); }; };
+		8A19542E1BBD586D00AF5C02 /* TraditionalChinese.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A1954291BBD586D00AF5C02 /* TraditionalChinese.png */; settings = {ASSET_TAGS = (); }; };
 		8A2E2C141B79E7A30010895E /* RecommendationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E2C121B79E7A30010895E /* RecommendationViewController.m */; };
 		8A2E2C151B79E7A30010895E /* RecommendationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A2E2C131B79E7A30010895E /* RecommendationViewController.xib */; };
 		8A2E2C411B7AF3180010895E /* ImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E2C401B7AF3180010895E /* ImageModel.m */; };
@@ -867,6 +872,11 @@
 		8A0097991B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomEditPhotoTableViewCell.h; sourceTree = "<group>"; };
 		8A00979A1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomEditPhotoTableViewCell.m; sourceTree = "<group>"; };
 		8A00979C1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomEditPhotoTableViewCell.xib; sourceTree = "<group>"; };
+		8A1954251BBD586D00AF5C02 /* BahasaIndonesia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BahasaIndonesia.png; sourceTree = "<group>"; };
+		8A1954261BBD586D00AF5C02 /* English.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = English.png; sourceTree = "<group>"; };
+		8A1954271BBD586D00AF5C02 /* SimplifiedChinese.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SimplifiedChinese.png; sourceTree = "<group>"; };
+		8A1954281BBD586D00AF5C02 /* Thai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Thai.png; sourceTree = "<group>"; };
+		8A1954291BBD586D00AF5C02 /* TraditionalChinese.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TraditionalChinese.png; sourceTree = "<group>"; };
 		8A2E2C111B79E7A30010895E /* RecommendationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendationViewController.h; sourceTree = "<group>"; };
 		8A2E2C121B79E7A30010895E /* RecommendationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendationViewController.m; sourceTree = "<group>"; };
 		8A2E2C131B79E7A30010895E /* RecommendationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendationViewController.xib; sourceTree = "<group>"; };
@@ -2068,6 +2078,18 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8A1954241BBD586D00AF5C02 /* SR img */ = {
+			isa = PBXGroup;
+			children = (
+				8A1954251BBD586D00AF5C02 /* BahasaIndonesia.png */,
+				8A1954261BBD586D00AF5C02 /* English.png */,
+				8A1954271BBD586D00AF5C02 /* SimplifiedChinese.png */,
+				8A1954281BBD586D00AF5C02 /* Thai.png */,
+				8A1954291BBD586D00AF5C02 /* TraditionalChinese.png */,
+			);
+			path = "SR img";
+			sourceTree = "<group>";
+		};
 		8A2E2CE71B81E1360010895E /* Extra */ = {
 			isa = PBXGroup;
 			children = (
@@ -2320,6 +2342,7 @@
 		8A7B9CE21BBD389B00D7F604 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				8A1954241BBD586D00AF5C02 /* SR img */,
 				8A7B9CE31BBD389B00D7F604 /* Add New Place */,
 				8A7B9CEE1BBD389B00D7F604 /* AppIcon */,
 				8A7B9CFC1BBD389B00D7F604 /* Backgrounds */,
@@ -4276,6 +4299,7 @@
 				8A7BA0161BBD389C00D7F604 /* ShareEmailIcon@2x.png in Resources */,
 				8A7B9EEE1BBD389C00D7F604 /* WriteRecommendationIcon@2x.png in Resources */,
 				8A7BA0391BBD389C00D7F604 /* WriteRecommendationIcon@3x.png in Resources */,
+				8A19542A1BBD586D00AF5C02 /* BahasaIndonesia.png in Resources */,
 				8A7B9EB01BBD389C00D7F604 /* EditHoursIcon@3x.png in Resources */,
 				8A7B9FF71BBD389C00D7F604 /* ProfileFollowingIcon@3x.png in Resources */,
 				8AD6C8161B709A450040437E /* SettingsViewController.xib in Resources */,
@@ -4329,6 +4353,7 @@
 				8AD6C29E1B7072FB0040437E /* PublishViewController.xib in Resources */,
 				8A7BA0351BBD389C00D7F604 /* ProfileIconActive@3x.png in Resources */,
 				8A65843E1B9850CE00BC86B9 /* DraftViewController.xib in Resources */,
+				8A19542D1BBD586D00AF5C02 /* Thai.png in Resources */,
 				8A7B9ED71BBD389C00D7F604 /* MoreBtn@3x.png in Resources */,
 				8A7B9FC11BBD389C00D7F604 /* NotificationCollect@3x.png in Resources */,
 				8A7B9FF81BBD389C00D7F604 /* ProfileLocationIcon@2x.png in Resources */,
@@ -4420,6 +4445,7 @@
 				8AD6C3481B707D120040437E /* buttonbg@2x.png in Resources */,
 				8A7BA02F1BBD389C00D7F604 /* NotificationIcon@3x.png in Resources */,
 				8AD6C0C51B706CF30040437E /* LocationFeedDetailViewController.xib in Resources */,
+				8A19542C1BBD586D00AF5C02 /* SimplifiedChinese.png in Resources */,
 				8A7B9FB71BBD389C00D7F604 /* NearbyImg.png in Resources */,
 				8A7B9EC21BBD389C00D7F604 /* Check@2x.png in Resources */,
 				8AD6C1011B706CF30040437E /* AccountSettingViewController.xib in Resources */,
@@ -4431,6 +4457,7 @@
 				8A7BA03A1BBD389C00D7F604 /* iPhone4_Tour.png in Resources */,
 				8AD6BE4E1B706CF30040437E /* ExploreCountryViewController.xib in Resources */,
 				8A7B9ECB1BBD389C00D7F604 /* CreateCollection@3x.png in Resources */,
+				8A19542E1BBD586D00AF5C02 /* TraditionalChinese.png in Resources */,
 				8A7B9F051BBD389C00D7F604 /* StarRecommendationBtn@2x.png in Resources */,
 				8A7B9ED11BBD389C00D7F604 /* ListViewActive@3x.png in Resources */,
 				8A7420E91B82F67F005DA654 /* KVNProgressView.xib in Resources */,
@@ -4680,6 +4707,7 @@
 				8A7B9F1A1BBD389C00D7F604 /* WebsiteLinkIcon@2x.png in Resources */,
 				8A2E2C151B79E7A30010895E /* RecommendationViewController.xib in Resources */,
 				8A7BA01E1BBD389C00D7F604 /* ShareMessangerIcon@2x.png in Resources */,
+				8A19542B1BBD586D00AF5C02 /* English.png in Resources */,
 				8AD6BA6B1B705DF20040437E /* Images.xcassets in Resources */,
 				8A7B9F261BBD389C00D7F604 /* BtnLetsgo@2x.png in Resources */,
 				8A7B9F411BBD389C00D7F604 /* CommentIcon@3x.png in Resources */,

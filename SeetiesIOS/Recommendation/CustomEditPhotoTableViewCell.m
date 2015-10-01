@@ -10,7 +10,7 @@
 #import "Bostring.h"
 #import "UITextView+Placeholder.h"
 
-#define MAX_TEXT_COUNT 100
+#define MAX_TEXT_COUNT 140
 #define EXTRA_TEXT_COUNT 20
 @interface CustomEditPhotoTableViewCell()<UIGestureRecognizerDelegate>
 
