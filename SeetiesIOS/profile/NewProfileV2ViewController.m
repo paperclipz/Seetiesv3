@@ -133,12 +133,6 @@
         CheckEdit = @"NoEdit";
         [defaults setObject:CheckEdit forKey:@"CheckEditUserInformation"];
         [defaults synchronize];
-        
-        GetHeight = 0;
-        for (UIView *subview in AllContentView.subviews) {
-            [subview removeFromSuperview];
-        }
-        [self InitContentView];
     }
     
     NSString *CheckSelfDelete = [defaults objectForKey:@"SelfDeletePost_Profile"];
@@ -158,7 +152,7 @@
         CurrentPage_Collection = 0;
         
         GetHeight = 0;
-        for (UIView *subview in AllContentView.subviews) {
+        for (UIView *subview in MainScroll.subviews) {
             [subview removeFromSuperview];
         }
         
@@ -573,7 +567,6 @@
             LikeView.hidden = YES;
             CollectionView.hidden = NO;
             [self InitCollectionView];
-
             break;
         case 1:
             NSLog(@"Posts click");
@@ -728,7 +721,7 @@
         
         heightcheck += FinalWidth + 15 + 70 + 10 + i ;
     }
-    AllContentView.frame = CGRectMake(0, 100 , screenWidth, GetHeight + heightcheck + FinalWidth + 120);
+    AllContentView.frame = CGRectMake(0, 100 , screenWidth, GetHeight + heightcheck + FinalWidth);
     CollectionView.frame = CGRectMake(0, GetHeight, screenWidth, heightcheck + FinalWidth + 120);
     NSLog(@"GetHeight = %d",GetHeight);
     NSLog(@"heightcheck = %d",heightcheck);

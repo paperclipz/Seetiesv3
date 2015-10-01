@@ -56,6 +56,8 @@
     
     UIView *ListView;
     UIView *GridView;
+    
+    int CheckClick;
 }
 -(void)GetCollectionID:(NSString *)ID_;
 @end

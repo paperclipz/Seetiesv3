@@ -142,7 +142,7 @@
         MapView.frame = CGRectMake(0, 0, screenWidth, screenHeight - 60 - 200);
         
         UIImageView *ShowLocationIcon = [[UIImageView alloc]init];
-        ShowLocationIcon.frame = CGRectMake(25, MapView.frame.size.height + 18, 25, 25);
+        ShowLocationIcon.frame = CGRectMake(25, MapView.frame.size.height + 16, 25, 25);
         ShowLocationIcon.image = [UIImage imageNamed:@"BluePin.png"];
         [MainScroll addSubview:ShowLocationIcon];
         
@@ -167,7 +167,7 @@
         MapView.frame = CGRectMake(0, 0, screenWidth, 200);
         
         UIImageView *ShowLocationIcon = [[UIImageView alloc]init];
-        ShowLocationIcon.frame = CGRectMake(25, 200 + 18, 25, 25);
+        ShowLocationIcon.frame = CGRectMake(25, 200 + 16, 25, 25);
         ShowLocationIcon.image = [UIImage imageNamed:@"BluePin.png"];
         [MainScroll addSubview:ShowLocationIcon];
         
@@ -203,17 +203,17 @@
             [MainScroll addSubview:ShowLinkIcon];
             
             UILabel *ShowPlacelink = [[UILabel alloc]init];
-          //  ShowPlacelink.frame = CGRectMake(55, GetHeight - 3, screenWidth - 80, 21);
+            ShowPlacelink.frame = CGRectMake(55, GetHeight, screenWidth - 80, 25);
             ShowPlacelink.text = GetPlaceLink;
             ShowPlacelink.numberOfLines = 0;
             ShowPlacelink.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
             ShowPlacelink.backgroundColor = [UIColor clearColor];
             ShowPlacelink.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
-            ShowPlacelink.frame = CGRectMake(55, GetHeight - 3, screenWidth - 80,[ShowPlacelink sizeThatFits:CGSizeMake(screenWidth - 80, CGFLOAT_MAX)].height);
+           // ShowPlacelink.frame = CGRectMake(55, GetHeight, screenWidth - 80,[ShowPlacelink sizeThatFits:CGSizeMake(screenWidth - 80, CGFLOAT_MAX)].height);
             [MainScroll addSubview:ShowPlacelink];
             
             UIButton *OpenLinkButton = [[UIButton alloc]init];
-            OpenLinkButton.frame = CGRectMake(55, GetHeight - 3, screenWidth - 80, [ShowPlacelink sizeThatFits:CGSizeMake(screenWidth - 80, CGFLOAT_MAX)].height);
+            OpenLinkButton.frame = CGRectMake(55, GetHeight, screenWidth - 80, 25);
             [OpenLinkButton setTitle:@"" forState:UIControlStateNormal];
             [OpenLinkButton addTarget:self action:@selector(OpenLinkButton:) forControlEvents:UIControlEventTouchUpInside];
             [OpenLinkButton setBackgroundColor:[UIColor clearColor]];
@@ -238,7 +238,7 @@
             [MainScroll addSubview:ShowContact];
             
             UIButton *OpenContactButton = [[UIButton alloc]init];
-            OpenContactButton.frame = CGRectMake(55, GetHeight - 3, screenWidth - 80, 21);
+            OpenContactButton.frame = CGRectMake(55, GetHeight, screenWidth - 80, 21);
             [OpenContactButton setTitle:@"" forState:UIControlStateNormal];
             [OpenContactButton addTarget:self action:@selector(OpenContactButton:) forControlEvents:UIControlEventTouchUpInside];
             [OpenContactButton setBackgroundColor:[UIColor clearColor]];
@@ -282,7 +282,7 @@
             }
             
             UILabel *ShowOpeningTExt = [[UILabel alloc]init];
-            ShowOpeningTExt.frame = CGRectMake(55, GetHeight - 1, screenWidth - 80, 25);
+            ShowOpeningTExt.frame = CGRectMake(55, GetHeight, screenWidth - 80, 25);
             ShowOpeningTExt.text = GetOpeningHour;
             ShowOpeningTExt.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
             ShowOpeningTExt.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
@@ -291,7 +291,7 @@
             GetHeight += 20;
         }
         
-        if ([GetAllPeriods length] == 0) {
+        if ([GetAllPeriods length] == 0 || [GetAllPeriods length] == 10) {
             
         }else{
             
@@ -338,7 +338,7 @@
     if (!pin) {
         pin = [[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:s];
         pin.canShowCallout = YES;
-        pin.image = [UIImage imageNamed:@"MapPin.png"];
+        pin.image = [UIImage imageNamed:@"PinInMap.png"];
         pin.calloutOffset = CGPointMake(0, 0);
         UIButton *button = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         //        [button addTarget:self

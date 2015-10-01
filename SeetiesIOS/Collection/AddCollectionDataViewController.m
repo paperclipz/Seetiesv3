@@ -292,7 +292,7 @@
     NSString *dataString;
     if ([NoteTextView.text isEqualToString:@"Leave a note"]) {
         NoteTextView.text = @"";
-        dataString = [[NSString alloc]initWithFormat:@"token=%@&posts[0][id]=%@&posts[0]",GetExpertToken,GetPostID];
+        dataString = [[NSString alloc]initWithFormat:@"token=%@&posts[0][id]=%@",GetExpertToken,GetPostID];
     }else{
         dataString = [[NSString alloc]initWithFormat:@"token=%@&posts[0][id]=%@&posts[0][note]=%@",GetExpertToken,GetPostID,NoteTextView.text];
     }
