@@ -927,7 +927,7 @@
             NSDictionary *userInfo = [dict valueForKey:@"author_info"];
             NSString *username = [[NSString alloc]initWithFormat:@"%@",[userInfo objectForKey:@"username"]];
             NSString *userid = [[NSString alloc]initWithFormat:@"%@",[userInfo objectForKey:@"uid"]];
-            NSString *profilephoto = [[NSString alloc]initWithFormat:@"%@",[userInfo objectForKey:@"profile_photi"]];
+            NSString *profilephoto = [[NSString alloc]initWithFormat:@"%@",[userInfo objectForKey:@"profile_photo"]];
             [CollectionUserNameArray addObject:username];
             [CollectionUserIDArray addObject:userid];
             [CollectionUserProfileArray addObject:profilephoto];

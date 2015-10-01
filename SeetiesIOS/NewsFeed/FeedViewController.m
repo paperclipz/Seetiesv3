@@ -60,15 +60,15 @@
     //    [FilterButton setTitle:CustomLocalisedString(@"Filter", nil) forState:UIControlStateNormal];
     
     heightcheck = 0;
-    refreshControl = [[UIRefreshControl alloc] init];
-    refreshControl.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    refreshControl.bounds = CGRectMake(refreshControl.bounds.origin.x - 20,
-                                       0,
-                                       refreshControl.bounds.size.width,
-                                       refreshControl.bounds.size.height);
-    // refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Loading..."];
-    [refreshControl addTarget:self action:@selector(testRefresh) forControlEvents:UIControlEventValueChanged];
-    [MainScroll addSubview:refreshControl];
+//    refreshControl = [[UIRefreshControl alloc] init];
+//    refreshControl.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+//    refreshControl.bounds = CGRectMake(refreshControl.bounds.origin.x - 20,
+//                                       0,
+//                                       refreshControl.bounds.size.width,
+//                                       refreshControl.bounds.size.height);
+//    // refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Loading..."];
+//    [refreshControl addTarget:self action:@selector(testRefresh) forControlEvents:UIControlEventValueChanged];
+//    [MainScroll addSubview:refreshControl];
     
     
     
@@ -324,15 +324,15 @@
             [subview removeFromSuperview];
         }
         
-        refreshControl = [[UIRefreshControl alloc] init];
-        refreshControl.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-        refreshControl.bounds = CGRectMake(refreshControl.bounds.origin.x - 20,
-                                           0,
-                                           refreshControl.bounds.size.width,
-                                           refreshControl.bounds.size.height);
-        // refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Loading..."];
-        [refreshControl addTarget:self action:@selector(testRefresh) forControlEvents:UIControlEventValueChanged];
-        [MainScroll addSubview:refreshControl];
+//        refreshControl = [[UIRefreshControl alloc] init];
+////        refreshControl.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+////        refreshControl.bounds = CGRectMake(refreshControl.bounds.origin.x - 20,
+////                                           0,
+////                                           refreshControl.bounds.size.width,
+////                                           refreshControl.bounds.size.height);
+//        // refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Loading..."];
+//        [refreshControl addTarget:self action:@selector(testRefresh) forControlEvents:UIControlEventValueChanged];
+//        [MainScroll addSubview:refreshControl];
         
         GetNextPaging = @"";
         [self GetFeedDataFromServer];
@@ -2430,6 +2430,12 @@
         
         NSString *TempCount = [[NSString alloc]initWithFormat:@"%li/%lu",page + 1,(unsigned long)[arrfeaturedUserName count]];
         ShowSUserCount_Featured.text = TempCount;
+    }else if(scrollView == MainScroll){
+        if ((scrollView.contentOffset.y + scrollView.frame.size.height) >=    scrollView.contentSize.height)
+        {
+            // Refresh from here
+            NSLog(@"scrollView Refresh from here");
+        }
     }
 
 

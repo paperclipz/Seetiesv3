@@ -1493,7 +1493,7 @@
         ShowCaptionText.frame = CGRectMake(15 + i *screenWidth, 301 - [ShowCaptionText sizeThatFits:CGSizeMake(screenWidth - 30, CGFLOAT_MAX)].height , screenWidth - 30,[ShowCaptionText sizeThatFits:CGSizeMake(screenWidth - 30, CGFLOAT_MAX)].height);
         
 
-        [MImageScroll addSubview:ShowCaptionText];
+       // [MImageScroll addSubview:ShowCaptionText];
     }
     //NSLog(@"start draw title");
     
@@ -1909,16 +1909,16 @@
             
             for (int i = 0; i < 4; i++) {
                 UILabel *ShowUserName = [[UILabel alloc]init];
-                ShowUserName.frame = CGRectMake(50, GetMessageHeight + i, 100, 25);
+                ShowUserName.frame = CGRectMake(50, GetMessageHeight + 5 + i, 100, 25);
                 ShowUserName.text = [TempUser_Comment_usernameArray objectAtIndex:i];
                 ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
                 ShowUserName.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
                 ShowUserName.backgroundColor = [UIColor clearColor];
-                ShowUserName.frame = CGRectMake(50, GetMessageHeight + i, [ShowUserName sizeThatFits:CGSizeMake(CGFLOAT_MAX, 25)].width,25);
+                ShowUserName.frame = CGRectMake(50, GetMessageHeight + 5+ i, [ShowUserName sizeThatFits:CGSizeMake(CGFLOAT_MAX, 25)].width,25);
                 [MainScroll addSubview:ShowUserName];
                 
                 UIButton *OpenExpertsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-                [OpenExpertsButton setFrame:CGRectMake(50, GetMessageHeight + i, 100, 25)];
+                [OpenExpertsButton setFrame:CGRectMake(50, GetMessageHeight + 5+ i, 100, 25)];
                 [OpenExpertsButton setBackgroundColor:[UIColor clearColor]];
                 OpenExpertsButton.tag = i;
                 [OpenExpertsButton addTarget:self action:@selector(OpenProfileButton2:) forControlEvents:UIControlEventTouchUpInside];
@@ -1927,7 +1927,7 @@
                 int TempWidth = 50 + ShowUserName.frame.size.width + 10;
                 
                 UILabel *Showcomment = [[UILabel alloc]init];
-                Showcomment.frame = CGRectMake(TempWidth, GetMessageHeight + i, screenWidth - TempWidth - 15, 25);
+                Showcomment.frame = CGRectMake(TempWidth, GetMessageHeight + 10+ i, screenWidth - TempWidth - 15, 25);
                 //  Showcomment.text = [MessageArray objectAtIndex:i];
                 Showcomment.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
                 Showcomment.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
@@ -2015,16 +2015,16 @@
            // GetMessageHeight += 7;
             for (int i = 0; i < [TempCommentIDArray count]; i++) {
                 UILabel *ShowUserName = [[UILabel alloc]init];
-                ShowUserName.frame = CGRectMake(50, GetMessageHeight + i, 100, 20);
+                ShowUserName.frame = CGRectMake(50, GetMessageHeight + 5 + i, 100, 25);
                 ShowUserName.text = [TempUser_Comment_usernameArray objectAtIndex:i];
                 ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
                 ShowUserName.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
                 ShowUserName.backgroundColor = [UIColor clearColor];
-                ShowUserName.frame = CGRectMake(50, GetMessageHeight + i, [ShowUserName sizeThatFits:CGSizeMake(CGFLOAT_MAX, 20)].width,20);
+                ShowUserName.frame = CGRectMake(50, GetMessageHeight + 5 + i, [ShowUserName sizeThatFits:CGSizeMake(CGFLOAT_MAX, 20)].width,20);
                 [MainScroll addSubview:ShowUserName];
                 
                 UIButton *OpenExpertsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-                [OpenExpertsButton setFrame:CGRectMake(50, GetMessageHeight + i, 100, 25)];
+                [OpenExpertsButton setFrame:CGRectMake(50, GetMessageHeight + 5 + i, 100, 25)];
                 [OpenExpertsButton setBackgroundColor:[UIColor clearColor]];
                 OpenExpertsButton.tag = i;
                 [OpenExpertsButton addTarget:self action:@selector(OpenProfileButton2:) forControlEvents:UIControlEventTouchUpInside];
@@ -2033,7 +2033,7 @@
                 int TempWidth = 50 + ShowUserName.frame.size.width + 10;
                 
                 UILabel *Showcomment = [[UILabel alloc]init];
-                Showcomment.frame = CGRectMake(TempWidth, GetMessageHeight + i, screenWidth - TempWidth - 15, 25);
+                Showcomment.frame = CGRectMake(TempWidth, GetMessageHeight + 8 + i, screenWidth - TempWidth - 15, 25);
                 //  Showcomment.text = [MessageArray objectAtIndex:i];
                 Showcomment.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:14];
                 Showcomment.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
@@ -2089,7 +2089,7 @@
                 }
                 if([Showcomment sizeThatFits:CGSizeMake(screenWidth - TempWidth - 15, CGFLOAT_MAX)].height!=Showcomment.frame.size.height)
                 {
-                Showcomment.frame = CGRectMake(TempWidth, GetMessageHeight + i, screenWidth - TempWidth - 15,[Showcomment sizeThatFits:CGSizeMake(screenWidth - TempWidth - 15, CGFLOAT_MAX)].height);
+                Showcomment.frame = CGRectMake(TempWidth, GetMessageHeight+ 8+ i, screenWidth - TempWidth - 15,[Showcomment sizeThatFits:CGSizeMake(screenWidth - TempWidth - 15, CGFLOAT_MAX)].height);
                 GetMessageHeight += [Showcomment sizeThatFits:CGSizeMake(screenWidth - TempWidth - 15, CGFLOAT_MAX)].height + 10;
                 }else{
                 GetMessageHeight += 20;
@@ -2462,7 +2462,7 @@
         [MainScroll addSubview:OpenProfileButton];
         
         UILabel *ShowUserName = [[UILabel alloc]init];
-        ShowUserName.frame = CGRectMake(65 + (i % 2) * (FinalWidth + 20), GetFinalHeight + FinalWidth + 50+ TitleHeight, FinalWidth - 40, 30);
+        ShowUserName.frame = CGRectMake(65 + (i % 2) * (FinalWidth + 20), GetFinalHeight + FinalWidth + 50+ TitleHeight, FinalWidth - 50, 30);
         ShowUserName.text = [UserInfo_NameArray_Nearby objectAtIndex:i];
         ShowUserName.backgroundColor = [UIColor clearColor];
         ShowUserName.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];

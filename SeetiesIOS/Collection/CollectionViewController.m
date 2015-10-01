@@ -467,7 +467,7 @@
     [MainScroll addSubview:GridView];
     
     GridView.hidden = YES;
-    
+    CheckClick = 0;
     
     [self InitContentListView];
     
@@ -478,7 +478,7 @@
     
     GridView.hidden = YES;
     ListView.hidden = NO;
-    
+
     CGSize contentSize = MainScroll.frame.size;
     contentSize.height = GetHeight + ListView.frame.size.height + 50;
     MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
@@ -488,13 +488,21 @@
     [ListButton setImage:[UIImage imageNamed:@"ListViewInactive.png"] forState:UIControlStateNormal];
     [GridButton setImage:[UIImage imageNamed:@"GridViewActive.png"] forState:UIControlStateNormal];
     
-    GridView.hidden = NO;
     ListView.hidden = YES;
     
-    CGSize contentSize = MainScroll.frame.size;
-    contentSize.height = GetHeight + GridView.frame.size.height + 50;
-    MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    MainScroll.contentSize = contentSize;
+    if (CheckClick == 0) {
+        CheckClick = 1;
+        [self InitGridViewData];
+    }else{
+        GridView.hidden = NO;
+        CGSize contentSize = MainScroll.frame.size;
+        contentSize.height = GetHeight + GridView.frame.size.height + 50;
+        MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        MainScroll.contentSize = contentSize;
+
+    }
+    
+    
 }
 -(void)InitContentListView{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
@@ -612,14 +620,15 @@
         
     }
     
-    ListView.frame = CGRectMake(0, GetHeight + 10, screenWidth, TempHeight + 10);
+    ListView.frame = CGRectMake(0, GetHeight + 10, screenWidth, TempHeight + 20);
     
     CGSize contentSize = MainScroll.frame.size;
     contentSize.height = GetHeight + ListView.frame.size.height;
     MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     MainScroll.contentSize = contentSize;
     
-    [self InitGridViewData];
+    
+   // [self InitGridViewData];
 }
 -(void)InitGridViewData{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
