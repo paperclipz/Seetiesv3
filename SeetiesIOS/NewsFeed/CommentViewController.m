@@ -271,6 +271,8 @@
     [self.view.window.layer addAnimation:transition forKey:nil];
     //[self presentViewController:ListingDetail animated:NO completion:nil];
     [self dismissViewControllerAnimated:NO completion:nil];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 -(void)GetRealPostID:(NSString *)PostID{
 

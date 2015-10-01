@@ -16,6 +16,7 @@
 #import "FullImageViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "LandingV2ViewController.h"
+#import "NewCollectionViewController.h"
 @interface NewProfileV2ViewController ()
 
 @end
@@ -115,6 +116,7 @@
         GetDescription = [defaults objectForKey:@"UserData_Abouts"];
         GetPersonalTags = [defaults objectForKey:@"UserData_PersonalTags"];
         GetLocation = [defaults objectForKey:@"UserData_Location"];
+        GetProfileImg = GetProfileImg_;
         if ([GetPersonalTags length] == 10 || [GetPersonalTags isEqualToString:@""] || [GetPersonalTags isEqualToString:@"(null)"] || GetPersonalTags == nil) {
         }else{
             NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"() \n"];
@@ -635,6 +637,7 @@
     EditProfileButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
     [EditProfileButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
     EditProfileButton.backgroundColor = [UIColor clearColor];
+    [EditProfileButton addTarget:self action:@selector(AddCollectionButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
     [CollectionView addSubview:EditProfileButton];
     
     
@@ -783,10 +786,11 @@
         ShowImage.layer.masksToBounds = YES;
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
         NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[LikesData_PhotoArray objectAtIndex:i]];
+        NSArray *SplitArray = [FullImagesURL_First componentsSeparatedByString:@","];
         if ([FullImagesURL_First length] == 0) {
             ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
         }else{
-            NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL_First];
+            NSURL *url_NearbySmall = [NSURL URLWithString:[SplitArray objectAtIndex:0]];
             ShowImage.imageURL = url_NearbySmall;
         }
         [LikeView addSubview:ShowImage];
@@ -834,6 +838,7 @@
     EditProfileButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
     [EditProfileButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
     EditProfileButton.backgroundColor = [UIColor clearColor];
+   // [EditProfileButton addTarget:self action:@selector(AddCollectionButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
     [PostView addSubview:EditProfileButton];
     
     UIButton *Line01 = [[UIButton alloc]init];
@@ -1520,7 +1525,6 @@
                     [LikesData_PhotoArray addObject:result2];
                 }
 
-                
                 DataCount_Like = DataTotal_Like;
                 DataTotal_Like = [LikesData_IDArray count];
 
@@ -1764,5 +1768,10 @@ if(actionSheet.tag == 200){
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:TempString]];
     }
     
+}
+-(IBAction)AddCollectionButtonOnClick:(id)sender{
+    NSLog(@"AddCollectionButtonOnClick");
+    NewCollectionViewController *NewCollectionView = [[NewCollectionViewController alloc]init];
+    [self presentViewController:NewCollectionView animated:YES completion:nil];
 }
 @end

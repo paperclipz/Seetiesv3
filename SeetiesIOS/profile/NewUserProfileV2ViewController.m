@@ -21,16 +21,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-
-
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
     DataUrl = [[UrlDataClass alloc]init];
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
@@ -60,7 +50,7 @@
     [self.view addSubview:backIcon];
     [self.view addSubview:BackButton];
     
-   // MoreButton.frame = CGRectMake(screenWidth - 20 - 30, 33, 30, 20);
+    // MoreButton.frame = CGRectMake(screenWidth - 20 - 30, 33, 30, 20);
     ShareButton.frame = CGRectMake(screenWidth - 50, 22, 50, 40);
     [self.view addSubview:MoreButton];
     [self.view addSubview:ShareButton];
@@ -83,8 +73,18 @@
     if ([GetUserName isEqualToString:@""] && [GetUid isEqualToString:@""] ) {
         
     }else{
-    [self GetUserData];
+        [self GetUserData];
     }
+
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+
 }
 -(void)GetUserName:(NSString *)username{
     GetUserName = username;
@@ -533,14 +533,6 @@
     [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
     [CollectionView addSubview:Line01];
     
-    UIButton *EditProfileButton = [[UIButton alloc]init];
-    EditProfileButton.frame = CGRectMake(screenWidth - 30 - 20, 10, 25, 25);
-    //[EditProfileButton setTitle:@"New collection" forState:UIControlStateNormal];
-    [EditProfileButton setImage:[UIImage imageNamed:@"AddPostBtn.png"] forState:UIControlStateNormal];
-    EditProfileButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
-    [EditProfileButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
-    EditProfileButton.backgroundColor = [UIColor clearColor];
-    [CollectionView addSubview:EditProfileButton];
     
     
     int TestWidth = screenWidth - 40;
@@ -670,10 +662,11 @@
         ShowImage.layer.masksToBounds = YES;
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
         NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[LikesData_PhotoArray objectAtIndex:i]];
+        NSArray *SplitArray = [FullImagesURL_First componentsSeparatedByString:@","];
         if ([FullImagesURL_First length] == 0) {
             ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
         }else{
-            NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL_First];
+            NSURL *url_NearbySmall = [NSURL URLWithString:[SplitArray objectAtIndex:0]];
             ShowImage.imageURL = url_NearbySmall;
         }
         [LikeView addSubview:ShowImage];

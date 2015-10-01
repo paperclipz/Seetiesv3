@@ -1588,9 +1588,9 @@
 		8AD6BDAA1B706CF30040437E /* PFollowTheExpertsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFollowTheExpertsViewController.h; sourceTree = "<group>"; };
 		8AD6BDAB1B706CF30040437E /* PFollowTheExpertsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFollowTheExpertsViewController.m; sourceTree = "<group>"; };
 		8AD6BDAC1B706CF30040437E /* PFollowTheExpertsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PFollowTheExpertsViewController.xib; sourceTree = "<group>"; };
-		8AD6BDAD1B706CF30040437E /* PSearchLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSearchLocationViewController.h; sourceTree = "<group>"; };
-		8AD6BDAE1B706CF30040437E /* PSearchLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSearchLocationViewController.m; sourceTree = "<group>"; };
-		8AD6BDAF1B706CF30040437E /* PSearchLocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PSearchLocationViewController.xib; sourceTree = "<group>"; };
+		8AD6BDAD1B706CF30040437E /* PSearchLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PSearchLocationViewController.h; path = ProvisioningOld/PSearchLocationViewController.h; sourceTree = "<group>"; };
+		8AD6BDAE1B706CF30040437E /* PSearchLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PSearchLocationViewController.m; path = ProvisioningOld/PSearchLocationViewController.m; sourceTree = "<group>"; };
+		8AD6BDAF1B706CF30040437E /* PSearchLocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PSearchLocationViewController.xib; path = ProvisioningOld/PSearchLocationViewController.xib; sourceTree = "<group>"; };
 		8AD6BDB01B706CF30040437E /* PSelectYourInterestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSelectYourInterestViewController.h; sourceTree = "<group>"; };
 		8AD6BDB11B706CF30040437E /* PSelectYourInterestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSelectYourInterestViewController.m; sourceTree = "<group>"; };
 		8AD6BDB21B706CF30040437E /* PSelectYourInterestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PSelectYourInterestViewController.xib; sourceTree = "<group>"; };
@@ -3440,6 +3440,9 @@
 				8AD6BDA61B706CF30040437E /* PInterestV2ViewController.h */,
 				8AD6BDA71B706CF30040437E /* PInterestV2ViewController.m */,
 				8AD6BDA81B706CF30040437E /* PInterestV2ViewController.xib */,
+				8AD6BDAD1B706CF30040437E /* PSearchLocationViewController.h */,
+				8AD6BDAE1B706CF30040437E /* PSearchLocationViewController.m */,
+				8AD6BDAF1B706CF30040437E /* PSearchLocationViewController.xib */,
 				8AD6BDA91B706CF30040437E /* ProvisioningOld */,
 			);
 			path = Provisioning;
@@ -3451,9 +3454,6 @@
 				8AD6BDAA1B706CF30040437E /* PFollowTheExpertsViewController.h */,
 				8AD6BDAB1B706CF30040437E /* PFollowTheExpertsViewController.m */,
 				8AD6BDAC1B706CF30040437E /* PFollowTheExpertsViewController.xib */,
-				8AD6BDAD1B706CF30040437E /* PSearchLocationViewController.h */,
-				8AD6BDAE1B706CF30040437E /* PSearchLocationViewController.m */,
-				8AD6BDAF1B706CF30040437E /* PSearchLocationViewController.xib */,
 				8AD6BDB01B706CF30040437E /* PSelectYourInterestViewController.h */,
 				8AD6BDB11B706CF30040437E /* PSelectYourInterestViewController.m */,
 				8AD6BDB21B706CF30040437E /* PSelectYourInterestViewController.xib */,

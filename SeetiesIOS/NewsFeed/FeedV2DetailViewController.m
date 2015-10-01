@@ -2521,8 +2521,12 @@
     
     GetFinalHeight += 51;
 
+    if ([PhotoArray_Nearby count] == 0) {
+        MainScroll.contentSize = CGSizeMake(screenWidth, GetFinalHeight + 100);
+    }else{
+        MainScroll.contentSize = CGSizeMake(screenWidth, GetFinalHeight + 50);
+    }
     
-    MainScroll.contentSize = CGSizeMake(screenWidth, GetFinalHeight + 50);
 }
 -(IBAction)SelectButton:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
@@ -3275,7 +3279,7 @@
         if ([buttonTitle isEqualToString:CustomLocalisedString(@"SettingsPage_Cancel", nil)]) {
             NSLog(@"Cancel Button");
         }
-        if ([buttonTitle isEqualToString:@"Report"]) {
+        if ([buttonTitle isEqualToString:LocalisedString(@"Report")]) {
             NSLog(@"Report Click");
             [actionSheet dismissWithClickedButtonIndex:0 animated:YES];
             [self OpenReport];

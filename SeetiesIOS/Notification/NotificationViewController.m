@@ -35,10 +35,15 @@
     ShowNoDataText_1.text = CustomLocalisedString(@"NoNotification", nil);
     ShowNoDataText_2.text = CustomLocalisedString(@"NoNotificationDetail", nil);
     
+    refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(testRefresh:) forControlEvents:UIControlEventValueChanged];
+    [MainScroll addSubview:refreshControl];
+    
+    
     MainScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight - 104);
     MainScroll.alwaysBounceVertical = YES;
     MainScroll.backgroundColor = [UIColor whiteColor];
-    TitleLabel.text = @"Activity";
+    TitleLabel.text = LocalisedString(@"Activity");
     ShowNoDataView.hidden = YES;
     ShowNoDataView.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     NoDataImg.frame = CGRectMake(0, 0, screenWidth, screenHeight);
@@ -298,18 +303,15 @@
     [ShowActivity stopAnimating];
 }
 -(void)InitView{
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@""];
-    [refreshControl addTarget:self action:@selector(testRefresh:) forControlEvents:UIControlEventValueChanged];
-    [MainScroll addSubview:refreshControl];
+
     
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     //MainScroll.backgroundColor = [UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0];
     
     GetHeight += 20;
     
-    NSString *TempStringPosts = [[NSString alloc]initWithFormat:@"Following"];
-    NSString *TempStringPeople = [[NSString alloc]initWithFormat:@"Notifications"];
+    NSString *TempStringPosts = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Following")];
+    NSString *TempStringPeople = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Notifications")];
     
     NSArray *itemArray = [NSArray arrayWithObjects:TempStringPosts, TempStringPeople, nil];
     UISegmentedControl *ProfileControl = [[UISegmentedControl alloc]initWithItems:itemArray];
@@ -852,7 +854,7 @@
         }
     }
 }
-- (void)testRefresh:(UIRefreshControl *)refreshControl
+- (void)testRefresh:(UIRefreshControl *)refreshControl_
 {
     refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@""];
     
@@ -872,7 +874,8 @@
             for (UIView *subview in MainScroll.subviews) {
                 [subview removeFromSuperview];
             }
-            
+            [refreshControl addTarget:self action:@selector(testRefresh:) forControlEvents:UIControlEventValueChanged];
+            [MainScroll addSubview:refreshControl];
             GetHeight = 0;
              [self GetNotification];
             [refreshControl endRefreshing];
