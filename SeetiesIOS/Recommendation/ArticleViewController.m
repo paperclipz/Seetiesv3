@@ -12,6 +12,7 @@
 {
     BOOL isShow;
 }
+@property (weak, nonatomic) IBOutlet UIImageView *ibBackgroundView;
 @end
 
 @implementation ArticleViewController
@@ -37,9 +38,10 @@
 {
 
     if (!isShow) {
-        
+        self.ibBackgroundView.alpha = 0;
         [UIView animateWithDuration:0.5 animations:^{
             self.view.frame = CGRectMake(0, 0,  self.view.frame.size.width,  self.view.frame.size.height);
+            self.ibBackgroundView.alpha = 1.0f;
 
         }];
         isShow = true;
@@ -50,11 +52,12 @@
 -(void)hide
 {
     if (isShow) {
-        
+        self.ibBackgroundView.alpha = 1.0f;
+
         [UIView animateWithDuration:0.5 animations:^{
             self.view.frame = CGRectMake(0, self.view.frame.size.height,  self.view.frame.size.width,  self.view.frame.size.height);
             isShow = false;
-
+            self.ibBackgroundView.alpha = 0;
         }];
     }
 

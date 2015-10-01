@@ -8,7 +8,7 @@
 
 #import "CustomPickerViewController.h"
 
-#define ANIMATION_DURATION 0.3f
+#define ANIMATION_DURATION 0.5f
 @interface CustomPickerViewController ()
 {
     __weak IBOutlet UIView *contentView;
@@ -17,9 +17,9 @@
     BOOL isShow;
     __weak IBOutlet UIButton *ibBtnCancel;
 }
-@property (weak, nonatomic) IBOutlet UIVisualEffectView *ibTransparentView;
 @property (copy, nonatomic) IDBlock buttonOneBlock;
 @property (copy, nonatomic) IDBlock buttonTwoBlock;
+@property (weak, nonatomic) IBOutlet UIImageView *ibTransparentView;
 
 @end
 
@@ -51,7 +51,7 @@
 
 -(void)btnBackClicked:(id)sender
 {
-   // [self hideWithAnimation:YES];
+    [self hideWithAnimation:YES];
 }
 
 - (void)viewDidLoad {
@@ -103,10 +103,11 @@
     
     if (!isShow) {
         self.view.frame = hideFrame;
-        
+        self.ibTransparentView.alpha = 0;
         [UIView animateWithDuration:ANIMATION_DURATION delay:0 options:UIViewAnimationOptionTransitionCurlUp animations:^{
             self.view.frame = showFrame;
             isShow = true;
+            self.ibTransparentView.alpha = 1.0f;
 
             
         } completion:^(BOOL finished) {
@@ -120,10 +121,12 @@
 {
     if (isShow) {
         self.view.frame = showFrame;
-        
+        self.ibTransparentView.alpha = 1.0f;
+
         [UIView animateWithDuration:isAnimate?ANIMATION_DURATION:0 delay:0 options:UIViewAnimationOptionTransitionCurlUp animations:^{
             self.view.frame = hideFrame;
             isShow = false;
+            self.ibTransparentView.alpha = 0;
 
         } completion:^(BOOL finished) {
             
