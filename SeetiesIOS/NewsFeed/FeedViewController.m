@@ -1410,7 +1410,7 @@
                 
                 UILabel *ShowSuggestedLocalQR = [[UILabel alloc]init];
                 ShowSuggestedLocalQR.frame = CGRectMake(20, heightcheck, screenWidth - 80, 50);
-                ShowSuggestedLocalQR.text = LocalisedString(@"Suggested foreign recommendations");
+                ShowSuggestedLocalQR.text = LocalisedString(@"Suggested local recommendations");
                 ShowSuggestedLocalQR.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
                 ShowSuggestedLocalQR.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
                 [MainScroll addSubview:ShowSuggestedLocalQR];

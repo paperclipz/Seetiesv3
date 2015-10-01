@@ -291,38 +291,45 @@
             GetHeight += 20;
         }
         
-        if ([GetAllPeriods length] == 0 || [GetAllPeriods length] == 10) {
-            
-        }else{
-            
-            GetAllPeriods = [GetAllPeriods stringByReplacingOccurrencesOfString:@"="
-                                                 withString:@" "];
-            
-            NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"{};\""];
-            GetAllPeriods = [[GetAllPeriods componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString: @""];
-            
-            UILabel *ShowAllOpeningText = [[UILabel alloc]init];
-            ShowAllOpeningText.frame = CGRectMake(50, GetHeight - 10, screenWidth - 80, 160);
-            ShowAllOpeningText.text = GetAllPeriods;
-            ShowAllOpeningText.numberOfLines = 10;
-            ShowAllOpeningText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
-            //ShowAllOpeningText.backgroundColor = [UIColor purpleColor];
-            ShowAllOpeningText.textAlignment = NSTextAlignmentLeft;
-            ShowAllOpeningText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
-            [MainScroll addSubview:ShowAllOpeningText];
-            
-            GetHeight += 160;
-            
-            UILabel *ShowLocalTime = [[UILabel alloc]init];
-            ShowLocalTime.frame = CGRectMake(0, GetHeight - 1, screenWidth, 21);
-            ShowLocalTime.text = @"(All time are based on local time)";
-             ShowLocalTime.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-            ShowLocalTime.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:13];
-            ShowLocalTime.textAlignment = NSTextAlignmentCenter;
-            [MainScroll addSubview:ShowLocalTime];
-            
-            GetHeight += 40;
+        if ([GetAllPeriods rangeOfString:@"("].location == NSNotFound) {
+          //  NSLog(@"string does not contain bla");
+            if ([GetAllPeriods length] == 0 || [GetAllPeriods length] == 10) {
+                
+            }else{
+                
+                GetAllPeriods = [GetAllPeriods stringByReplacingOccurrencesOfString:@"="
+                                                                         withString:@" "];
+                
+                NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"{};\""];
+                GetAllPeriods = [[GetAllPeriods componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString: @""];
+                
+                UILabel *ShowAllOpeningText = [[UILabel alloc]init];
+                ShowAllOpeningText.frame = CGRectMake(50, GetHeight - 10, screenWidth - 80, 160);
+                ShowAllOpeningText.text = GetAllPeriods;
+                ShowAllOpeningText.numberOfLines = 10;
+                ShowAllOpeningText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+                //ShowAllOpeningText.backgroundColor = [UIColor purpleColor];
+                ShowAllOpeningText.textAlignment = NSTextAlignmentLeft;
+                ShowAllOpeningText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+                [MainScroll addSubview:ShowAllOpeningText];
+                
+                GetHeight += 160;
+                
+                UILabel *ShowLocalTime = [[UILabel alloc]init];
+                ShowLocalTime.frame = CGRectMake(0, GetHeight - 1, screenWidth, 21);
+                ShowLocalTime.text = @"(All time are based on local time)";
+                ShowLocalTime.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+                ShowLocalTime.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:13];
+                ShowLocalTime.textAlignment = NSTextAlignmentCenter;
+                [MainScroll addSubview:ShowLocalTime];
+                
+                GetHeight += 40;
+            }
+        } else {
+          //  NSLog(@"string contains bla!");
         }
+        
+
         
         MainScroll.contentSize = CGSizeMake(screenWidth, GetHeight);
 

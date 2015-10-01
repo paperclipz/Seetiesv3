@@ -1210,6 +1210,8 @@
             
             NSDictionary *GetAllData = [res valueForKey:@"data"];
             if ([GetAllData count] == 0) {
+                
+                MainScroll.contentSize = CGSizeMake(320, GetFinalHeight + 50);
             }else{
                 DistanceArray_Nearby = [[NSMutableArray alloc]init];
                 SearchDisplayNameArray_Nearby = [[NSMutableArray alloc]init];
@@ -1359,7 +1361,7 @@
             
             
         }else{
-            
+
         }
         
     }else{
@@ -2333,11 +2335,7 @@
     
     [self GetNearbyPostData];
    // [self InitNearbyPostView];
-    
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//        [self GetNearbyPostData];
-//    });
-   // [NSThread detachNewThreadSelector:@selector(GetNearbyPostData) toTarget:self withObject:nil];
+
 }
 -(void)InitNearbyPostView{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
@@ -2358,17 +2356,6 @@
         GetCount = [PhotoArray_Nearby count];
     }else{
         GetCount = [PhotoArray_Nearby count] - 1;
-        
-//        SeeAllButton_Nearby = [[UIButton alloc]init];
-//        SeeAllButton_Nearby.frame = CGRectMake(screenWidth - 120, GetFinalHeight, 100, 20);
-//        [SeeAllButton_Nearby setTitle:@"See all" forState:UIControlStateNormal];
-//        [SeeAllButton_Nearby setBackgroundColor:[UIColor clearColor]];
-//        [SeeAllButton_Nearby.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15]];
-//        [SeeAllButton_Nearby setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
-//        [SeeAllButton_Nearby addTarget:self action:@selector(NearbySeeAllButton:) forControlEvents:UIControlEventTouchUpInside];
-//        SeeAllButton_Nearby.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-//        
-//        [MainScroll addSubview:SeeAllButton_Nearby];
     }
     
     GetFinalHeight += 50;
@@ -2521,11 +2508,7 @@
     
     GetFinalHeight += 51;
 
-    if ([PhotoArray_Nearby count] == 0) {
-        MainScroll.contentSize = CGSizeMake(screenWidth, GetFinalHeight + 100);
-    }else{
-        MainScroll.contentSize = CGSizeMake(screenWidth, GetFinalHeight + 50);
-    }
+    MainScroll.contentSize = CGSizeMake(screenWidth, GetFinalHeight + 50);
     
 }
 -(IBAction)SelectButton:(id)sender{
@@ -2791,10 +2774,8 @@
 
 }
 - (void)scrollViewDidScroll:(UIScrollView *)sender {
- //   CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-   // CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-//    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+
+  //  CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     if (sender == MImageScroll) {
         // Update the page when more than 50% of the previous/next page is visible
         CGFloat pageWidth = MImageScroll.frame.size.width;
