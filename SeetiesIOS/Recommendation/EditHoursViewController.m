@@ -125,7 +125,7 @@
 #pragma mark - change language
 -(void)changeLanguage
 {
-    self.title = LocalisedString(@"Edit Business Hours");
+    self.lblTitle.text = LocalisedString(@"Edit Business Hours");
     self.lblTime.text = LocalisedString(@"Business hours as per local time");
     self.lblFrom.text = LocalisedString(@"From");
     self.lblTo.text = LocalisedString(@"To");

@@ -16,7 +16,8 @@
                 <outlet property="ibTableView" destination="kQ5-xQ-m0t" id="2gB-tr-Bqm"/>
                 <outlet property="lblDesc" destination="0y9-3j-M1f" id="UUp-lO-TVP"/>
                 <outlet property="lblNumberOfRecommendation" destination="SdY-Do-FGt" id="6xt-oD-YPa"/>
-                <outlet property="lblTitle" destination="g9g-zm-puu" id="wsp-eN-1Gs"/>
+                <outlet property="lblPostTitle" destination="g9g-zm-puu" id="ffa-yS-ilD"/>
+                <outlet property="lblTitle" destination="yTF-k4-TMk" id="yb1-Yu-Hry"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -62,7 +63,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Collection" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yTF-k4-TMk">
-                            <rect key="frame" x="50" y="29" width="220" height="21"/>
+                            <rect key="frame" x="0.0" y="29" width="320" height="21"/>
                             <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -74,12 +75,12 @@
                         <constraint firstItem="aRb-J1-9cK" firstAttribute="leading" secondItem="TY1-cM-rx7" secondAttribute="leading" id="41m-Db-Iwf"/>
                         <constraint firstItem="yTF-k4-TMk" firstAttribute="top" secondItem="Hgh-Mo-OSQ" secondAttribute="top" constant="9" id="MPX-Ud-r7s"/>
                         <constraint firstItem="yTF-k4-TMk" firstAttribute="leading" secondItem="Hgh-Mo-OSQ" secondAttribute="trailing" constant="50" id="Mqr-dH-Lg7"/>
-                        <constraint firstAttribute="trailing" secondItem="yTF-k4-TMk" secondAttribute="trailing" constant="50" id="POe-Rn-4pc"/>
+                        <constraint firstAttribute="trailing" secondItem="yTF-k4-TMk" secondAttribute="trailing" id="POe-Rn-4pc"/>
                         <constraint firstAttribute="bottom" secondItem="yTF-k4-TMk" secondAttribute="bottom" constant="14" id="PPT-9H-ouS"/>
                         <constraint firstItem="QqW-aZ-t34" firstAttribute="top" secondItem="TY1-cM-rx7" secondAttribute="top" constant="20" id="T3e-wG-gvh"/>
                         <constraint firstAttribute="trailing" secondItem="QqW-aZ-t34" secondAttribute="trailing" constant="10" id="YeZ-Qp-elW"/>
                         <constraint firstItem="Hgh-Mo-OSQ" firstAttribute="leading" secondItem="TY1-cM-rx7" secondAttribute="leading" constant="-5" id="azm-3j-Cce"/>
-                        <constraint firstItem="yTF-k4-TMk" firstAttribute="leading" secondItem="TY1-cM-rx7" secondAttribute="leading" constant="50" id="f5Y-ym-73V"/>
+                        <constraint firstItem="yTF-k4-TMk" firstAttribute="leading" secondItem="TY1-cM-rx7" secondAttribute="leading" id="f5Y-ym-73V"/>
                         <constraint firstItem="aRb-J1-9cK" firstAttribute="top" secondItem="TY1-cM-rx7" secondAttribute="top" id="fIR-0z-5CY"/>
                         <constraint firstAttribute="bottom" secondItem="Hgh-Mo-OSQ" secondAttribute="bottom" constant="4" id="k6n-rp-uOh"/>
                         <constraint firstAttribute="height" constant="64" id="p1v-er-FR6"/>

@@ -30,6 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
+    [self changeLanguage];
     
      // Do any additional setup after loading the view from its nib.
 }
@@ -61,7 +62,7 @@
 
 -(void)changeLanguage
 {
-    self.lblTitle.text = LOCALIZATION(@"Drafts");
+    self.lblTitle.text = LocalisedString(@"Draft");
 }
 
 #pragma mark - UITableView DataSource

@@ -107,25 +107,25 @@
     switch (integer) {
         default:
         case 1:
-            return @"Mon";
+            return LocalisedString(@"Mon");
             break;
         case 2:
-            return @"Tue";
+            return LocalisedString(@"Tue");
             break;
         case 3:
-            return @"Wed";
+            return LocalisedString(@"Wed");
             break;
         case 4:
-            return @"Thu";
+            return LocalisedString(@"Thu");
             break;
         case 5:
-            return @"Fri";
+            return LocalisedString(@"Fri");
             break;
         case 6:
-            return @"Sat";
+            return LocalisedString(@"Sat");
             break;
         case 0:
-            return @"Sun";
+            return LocalisedString(@"Sun");
             break;
     }
 }

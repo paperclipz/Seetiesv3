@@ -32,16 +32,18 @@
     [Utils setRoundBorder:self.txtDescription color:[Utils defaultTextColor] borderRadius:5.0f];
     [self getCounterText:self.lblTitleIndicator maxCount:TITLE_MAX_COUNT textInputCount:(int)self.txtTitle.text.length];
     [self getCounterText:self.lblDescIndicator maxCount:DESC_MAX_COUNT textInputCount:(int)self.txtDescription.text.length];
-
-    
-    self.labelTitle.text = LOCALIZATION(@"Title");
-    self.labelDescription.text = LOCALIZATION(@"Write your experience");
-    
     CGFloat yourSelectedFontSize = 15.0 ;
     UIFont *yourNewSameStyleFont = [self.txtTitle.font fontWithSize:yourSelectedFontSize];
     self.txtTitle.font = yourNewSameStyleFont ;
     [self.txtDescription setFont:yourNewSameStyleFont];
     
+    [self changeLanguage];
+}
+
+-(void)changeLanguage
+{
+    self.labelTitle.text = LocalisedString(@"Title (Optional)");
+    self.labelDescription.text = LocalisedString(@"Share your thoughts");
 }
 
 -(void)initData:(RecommendationModel*)model viewNo:(int)counter

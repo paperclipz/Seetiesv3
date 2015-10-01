@@ -17,7 +17,13 @@
 
 
 @interface EditCollectionDetailViewController () <ZFTokenFieldDataSource, ZFTokenFieldDelegate>
+{
 
+    __weak IBOutlet UISwitch *btnPrivate;
+    __weak IBOutlet UILabel *lblSetAsPublic;
+
+    __weak IBOutlet UILabel *lblSetAsPublicDesc;
+}
 @property (weak, nonatomic) IBOutlet UILabel *lblWordCountTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblWordCountDesc;
 @property (weak, nonatomic) IBOutlet UITextField *txtName;
@@ -28,10 +34,12 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *ibCollectionTagView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *consTagHeight;
 
-
 @property (weak, nonatomic) IBOutlet ZFTokenField *ibTokenField;
 @property (nonatomic, strong) NSMutableArray *tokens;
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 
+@property (weak, nonatomic) IBOutlet UILabel *lblCollectionName;
+@property (weak, nonatomic) IBOutlet UILabel *lblCollectionDesc;
 @end
 
 @implementation EditCollectionDetailViewController
@@ -57,6 +65,8 @@
     }
     [self.navigationController popViewControllerAnimated:YES];
 }
+- (IBAction)btnPrivateClicked:(id)sender {
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -69,6 +79,7 @@
     [self getCounterText:self.lblWordCountTitle maxCount:TITLE_MAX_COUNT textInputCount:(int)self.txtName.text.length];
     [self getCounterText:self.lblWordCountDesc maxCount:DESC_MAX_COUNT textInputCount:(int)self.txtDesc.text.length];
     
+    [self changeLanguage];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -251,6 +262,15 @@
         [self.ibTokenField reloadData];
     }
 }
+#pragma mark - change language
+-(void)changeLanguage
+{
+    self.lblTitle.text = LocalisedString(@"Edit Collection");
+    self.lblCollectionName.text = LocalisedString(@"Collection title");
+    self.lblCollectionDesc.text = LocalisedString(@"Collection description");
+    self.txtDesc.placeholder = LocalisedString(@"eg: Top 10 coffee hideouts in KL, Best spas in Bangkok");
+    lblSetAsPublic.text = LocalisedString(@"Set as public");
+    lblSetAsPublicDesc.text = LocalisedString(@"You will not be able to change your privacy settings for this collection once it goes public.");
 
-
+}
 @end

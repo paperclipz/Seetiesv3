@@ -29,8 +29,8 @@
 
 -(void)changeLanguage
 {
-    self.lblCreteMapTitle.text = LocalisedString(@"Create a new place on the map");
-    self.lblTitle.text = LocalisedString(@"Add new place");
+    self.lblCreteMapTitle.text = LocalisedString(@"Drop a new pin!");
+    self.lblTitle.text = LocalisedString(@"Add a new place");
 
 }
 

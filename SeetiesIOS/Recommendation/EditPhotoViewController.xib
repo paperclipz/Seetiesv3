@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8173.3" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8142"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditPhotoViewController">
             <connections>
+                <outlet property="lbltitle" destination="nMV-lZ-Sfk" id="hee-Xu-eMQ"/>
                 <outlet property="tableView" destination="iFm-Ok-GcI" id="AKc-Gi-1WS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -19,8 +20,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XDK-8P-uNu">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit photo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMV-lZ-Sfk">
-                            <rect key="frame" x="46" y="29" width="266" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit photo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMV-lZ-Sfk">
+                            <rect key="frame" x="0.0" y="29" width="320" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -96,7 +97,7 @@
                         <constraint firstItem="OFa-HN-cUk" firstAttribute="leading" secondItem="Rih-JJ-9Tr" secondAttribute="trailing" constant="-10" id="MRQ-3h-5K4"/>
                         <constraint firstItem="yjV-Rn-dF0" firstAttribute="leading" secondItem="XDK-8P-uNu" secondAttribute="leading" id="SzH-Va-2j9"/>
                         <constraint firstAttribute="trailing" secondItem="OFa-HN-cUk" secondAttribute="trailing" constant="10" id="URZ-x2-tWZ"/>
-                        <constraint firstItem="nMV-lZ-Sfk" firstAttribute="leading" secondItem="299-1f-ZwB" secondAttribute="trailing" constant="11" id="Zqb-FW-6sN"/>
+                        <constraint firstItem="nMV-lZ-Sfk" firstAttribute="leading" secondItem="299-1f-ZwB" secondAttribute="trailing" constant="-35" id="Zqb-FW-6sN"/>
                         <constraint firstItem="Rih-JJ-9Tr" firstAttribute="top" secondItem="XDK-8P-uNu" secondAttribute="top" constant="-1" id="fgx-5T-wgH"/>
                         <constraint firstItem="299-1f-ZwB" firstAttribute="leading" secondItem="XDK-8P-uNu" secondAttribute="leading" constant="-5" id="hzw-pu-0rf"/>
                         <constraint firstItem="Fse-RL-rlN" firstAttribute="leading" secondItem="ojr-cE-RWi" secondAttribute="trailing" constant="2" id="izr-bM-zQI"/>
@@ -106,7 +107,7 @@
                         <constraint firstAttribute="bottom" secondItem="299-1f-ZwB" secondAttribute="bottom" constant="4" id="o3s-1s-s0j"/>
                         <constraint firstAttribute="height" constant="64" id="omi-cm-VyD"/>
                         <constraint firstItem="yjV-Rn-dF0" firstAttribute="top" secondItem="XDK-8P-uNu" secondAttribute="top" id="sZi-Ml-PHY"/>
-                        <constraint firstAttribute="trailing" secondItem="nMV-lZ-Sfk" secondAttribute="trailing" constant="8" id="tC2-OW-KZu"/>
+                        <constraint firstAttribute="trailing" secondItem="nMV-lZ-Sfk" secondAttribute="trailing" id="tC2-OW-KZu"/>
                         <constraint firstItem="Fse-RL-rlN" firstAttribute="top" secondItem="XDK-8P-uNu" secondAttribute="top" id="vLc-nB-SYO"/>
                         <constraint firstItem="OFa-HN-cUk" firstAttribute="top" secondItem="XDK-8P-uNu" secondAttribute="top" constant="20" id="vbx-zK-pKn"/>
                     </constraints>
