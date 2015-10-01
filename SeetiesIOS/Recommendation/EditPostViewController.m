@@ -119,9 +119,6 @@
     
     UISegmentedControl* temp = (UISegmentedControl*)sender;
     BOOL isFirstView = temp.selectedSegmentIndex==1;
- 
-    
-    
     [UIView transitionWithView:self.ibDescContentView
                       duration:1.0
                        options:isFirstView?UIViewAnimationOptionTransitionCrossDissolve :UIViewAnimationOptionTransitionCrossDissolve

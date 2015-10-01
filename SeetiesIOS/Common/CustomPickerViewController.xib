@@ -67,11 +67,11 @@
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WriteRecommendationIcon.png" id="jqF-zi-dIb">
-                                        <rect key="frame" x="14" y="68" width="44" height="40"/>
+                                        <rect key="frame" x="8" y="68" width="44" height="40"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DraftsIcon.png" id="Zu6-uC-QnG">
-                                        <rect key="frame" x="14" y="11" width="44" height="41"/>
+                                        <rect key="frame" x="8" y="11" width="44" height="41"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
