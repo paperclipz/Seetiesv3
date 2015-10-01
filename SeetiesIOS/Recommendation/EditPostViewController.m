@@ -216,10 +216,11 @@
    // [self resetData];
 }
 
+#pragma mark - Change Language
 -(void)changeLanguage
 {
-    self.lblTitle.text = LOCALIZATION(@"Edit Post");
-    [self.btnPublish setTitle:LOCALIZATION(@"PUBLISH") forState:UIControlStateNormal];
+    self.lblTitle.text = LocalisedString(@"Edit Post");
+    [self.btnPublish setTitle:LocalisedString(@"PUBLISH") forState:UIControlStateNormal];
 
 }
 

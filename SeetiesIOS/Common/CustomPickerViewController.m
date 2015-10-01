@@ -20,9 +20,12 @@
 @property (copy, nonatomic) IDBlock buttonOneBlock;
 @property (copy, nonatomic) IDBlock buttonTwoBlock;
 @property (weak, nonatomic) IBOutlet UIImageView *ibTransparentView;
+@property (weak, nonatomic) IBOutlet UIButton *btnDraft;
+@property (weak, nonatomic) IBOutlet UIButton *btnREcommendation;
 
 @end
 
+#pragma mark - IBACTION
 @implementation CustomPickerViewController
 - (IBAction)btnAddURLClicked:(id)sender {
     if(self.buttonOneBlock)
@@ -144,6 +147,13 @@
     return temp;
 }
 
+#pragma mark -Change Lanugage
+-(void)changeLanguage
+{
+    [self.btnDraft setTitle:LocalisedString(@"Saved Draft") forState:UIControlStateNormal];
+    [self.btnREcommendation setTitle:LocalisedString(@"Write a Recommendation") forState:UIControlStateNormal];
+
+}
 /*
 #pragma mark - Navigation
 

@@ -12,6 +12,7 @@
 @property(nonatomic,strong)CLLocationManager* manager;
 @property(nonatomic,strong)DataManager* dataManager;
 @property(nonatomic,strong)ConnectionManager* connManager;
+@property(nonatomic,copy)SearchManagerFailBlock searchManagerFailBlock;
 
 @end
 @implementation SearchManager
@@ -46,9 +47,10 @@
     if ([CLLocationManager isLocationUpdatesAvailable]) {
         [LoadingManager showWithTitle:@"GPS"];
         
-        self.manager = [CLLocationManager updateManagerWithAccuracy:50.0 locationAge:15.0 authorizationDesciption:CLLocationUpdateAuthorizationDescriptionAlways];
         
+        self.manager = [CLLocationManager updateManagerWithAccuracy:50.0 locationAge:15.0 authorizationDesciption:CLLocationUpdateAuthorizationDescriptionAlways];
         [self performSelector:@selector(stopLocationSearch) withObject:@"TimedOut" afterDelay:3];
+        self.searchManagerFailBlock = errorBlock;
         [self.manager startUpdatingLocationWithUpdateBlock:^(CLLocationManager *manager, CLLocation *location, NSError *error, BOOL *stopUpdating) {
             NSLog(@"Our new location from GPS: %@", location);
             
@@ -83,6 +85,10 @@
     SLog(@"stopLocationSearch");
     [self.manager stopUpdatingLocation];
     [LoadingManager hide];
+    
+    if (self.searchManagerFailBlock) {
+        self.searchManagerFailBlock(@"No GPS FROM DEVICE");
+    }
 
 }
 
@@ -91,25 +97,64 @@
     
     [LoadingManager showWithTitle:@"FOURSQUARE"];
     SLog(@"long : %f  || lat: %f",tempCurrentLocation.coordinate.longitude,tempCurrentLocation.coordinate.latitude);
-    [Foursquare2 venueExploreRecommendedNearByLatitude:@(tempCurrentLocation.coordinate.latitude) longitude:@(tempCurrentLocation.coordinate.longitude) near:nil accuracyLL:nil altitude:nil accuracyAlt:nil query:input limit:nil offset:nil radius:@(10000) section:nil novelty:nil sortByDistance:nil openNow:nil venuePhotos:nil price:nil callback:^(BOOL success, id result){
+
+    if (tempCurrentLocation) {
         
-    if(success)
-    {
-        [self.connManager storeServerData:result requestType:ServerRequestType4SquareSearch];
-        
-        if (completionBlock) {
-            completionBlock(result);
-        }
+        [Foursquare2 venueExploreRecommendedNearByLatitude:@(tempCurrentLocation.coordinate.latitude) longitude:@(tempCurrentLocation.coordinate.longitude) near:nil accuracyLL:nil altitude:nil accuracyAlt:nil query:input limit:nil offset:nil radius:@(10000) section:nil novelty:nil sortByDistance:nil openNow:nil venuePhotos:nil price:nil callback:^(BOOL success, id result){
+            
+            if(success)
+            {
+                [self.connManager storeServerData:result requestType:ServerRequestType4SquareSearch];
+                
+                if (completionBlock) {
+                    completionBlock(result);
+                }
+            }
+            else{
+                
+                SLog(@"NO Result FOUND");
+            }
+            SLog(@"fourSquare response : %@",result);
+            
+            [LoadingManager hide];
+            
+        }];
 
     }
     else{
-    
-        SLog(@"NO Result FOUND");
-    }
-        SLog(@"fourSquare response : %@",result);
-        //       [LoadingManager hide];
+   
+        [self getCoordinateFromGPSThenWifi:^(CLLocation *currentLocation) {
+        
+        [Foursquare2 venueExploreRecommendedNearByLatitude:@(tempCurrentLocation.coordinate.latitude) longitude:@(tempCurrentLocation.coordinate.longitude) near:nil accuracyLL:nil altitude:nil accuracyAlt:nil query:input limit:nil offset:nil radius:@(10000) section:nil novelty:nil sortByDistance:nil openNow:nil venuePhotos:nil price:nil callback:^(BOOL success, id result){
+            
+            if(success)
+            {
+                [self.connManager storeServerData:result requestType:ServerRequestType4SquareSearch];
+                
+                if (completionBlock) {
+                    completionBlock(result);
+                }
+                
+            }
+            else{
+                
+                SLog(@"NO Result FOUND");
+            }
+            SLog(@"fourSquare response : %@",result);
+            //       [LoadingManager hide];
+            [LoadingManager hide];
 
+        }];
+        
+        
+    } errorBlock:^(NSString *status) {
+        [LoadingManager hide];
+
+        SLog(@"ERROR");
     }];
+    }
+    
+   
  //   tempCurrentLocation.coordinate.latitude = [NSNumber numberWithDouble:3.1333] ;
  //   tempCurrentLocation.coordinate.longitude = [NSNumber numberWithFloat:101.7000];
     

@@ -21,9 +21,17 @@
 
 -(void)initSelfView
 {
-    self.lblTitle.text = LOCALIZATION(@"Add New Places");
+    [self changeLanguage];
     [Utils setRoundBorder:self.lblTitle color:[UIColor lightGrayColor] borderRadius:5.0f];
-    [self  setSelectionStyle:UITableViewCellEditingStyleNone];
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 
 }
+
+-(void)changeLanguage
+{
+    self.lblCreteMapTitle.text = LocalisedString(@"Create a new place on the map");
+    self.lblTitle.text = LocalisedString(@"Add new place");
+
+}
+
 @end
