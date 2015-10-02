@@ -55,7 +55,7 @@
 
 + (void)showWithTitle:(NSString*)title
 {
-    [KVNProgress showWithParameters:@{KVNProgressViewParameterStatus: [NSString stringWithFormat:@"%@ %@",LocalisedString(@"Searching"),title],
+    [KVNProgress showWithParameters:@{KVNProgressViewParameterStatus: title,
                                       KVNProgressViewParameterBackgroundType: @(KVNProgressBackgroundTypeSolid),
                                       KVNProgressViewParameterFullScreen: @([[LoadingManager Instance] isFullScreen])}];
     

@@ -759,7 +759,7 @@ static id ObjectOrNull(id object)
             [self performSelector:@selector(buttonDoneAction) withObject:nil afterDelay:2.0f];
         }
         else{ // This is draft
-            [TSMessage showNotificationInViewController:self title:@"system" subtitle:@"Data Successfully Saved to Draft" type:TSMessageNotificationTypeSuccess duration:2.0 canBeDismissedByUser:YES];
+            [TSMessage showNotificationInViewController:self title:@"system" subtitle:LocalisedString(@"Data Successfully Saved to Draft") type:TSMessageNotificationTypeSuccess duration:2.0 canBeDismissedByUser:YES];
             
             RecommendationModel* model = [[RecommendationModel alloc]initWithDraftModel:[ConnectionManager dataManager].savedDraftModel];
             self.recommendationModel = model;

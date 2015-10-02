@@ -89,7 +89,7 @@ extern NSString *const kAFAviarySecret;
 #define LocalisedString(key) \
 [[LanguageManager sharedLanguageManager] getTranslationForKey:key]
 
-#define ErrorTitle @"Error"
+#define ErrorTitle @"error"
 #define GoodNetwork YES
 
 #define BORDER_WIDTH 1.0f
