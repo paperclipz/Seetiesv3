@@ -33,6 +33,7 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
     SearchButton.frame = CGRectMake(0, 20, screenWidth, 44);
+    [SearchButton setTitle:LocalisedString(@"Search") forState:UIControlStateNormal];
     
     GetHeight = 0;
     
@@ -56,15 +57,12 @@
     ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
     ShowOverlayImg.layer.masksToBounds = YES;
     
-    SettingsButton.frame = CGRectMake(screenWidth - 50 - 55, 64, 50, 40);
+    SettingsButton.frame = CGRectMake(screenWidth - 50 - 50, 64, 50, 40);
     ShareButton.frame = CGRectMake(screenWidth - 50, 64, 50, 40);
     
     CheckExpand = YES;
     
     AllContentView.frame = CGRectMake(0, 100, screenWidth, 100);
-//    CGRect contentFrame = AllContentView.frame;
-//    contentFrame.origin.y += 100.0f;
-//    AllContentView.frame = contentFrame;
     [MainScroll addSubview:AllContentView];
     
     CheckLoad_Post = NO;
@@ -79,8 +77,18 @@
     CurrentPage_Post = 0;
     TotalPage_Collection = 1;
     CurrentPage_Collection = 0;
+    CheckClick_Posts = 0;
+    CheckClick_Likes = 0;
+    
+    
+    refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(testRefresh:) forControlEvents:UIControlEventValueChanged];
+    [MainScroll addSubview:refreshControl];
     
     [self GetUserData];
+    
+    
+    
     
     
    // [self InitContentView];
@@ -108,38 +116,61 @@
     NSString *CheckEdit = [defaults objectForKey:@"CheckEditUserInformation"];
     
     if ([CheckEdit isEqualToString:@"GotEdit"]) {
-        NSString *GetWallpaper_ = [defaults objectForKey:@"UserData_Wallpaper"];
-        NSString *GetProfileImg_ = [defaults objectForKey:@"UserData_ProfilePhoto"];
-        GetUserName = [defaults objectForKey:@"UserData_Username"];
-        GetName = [defaults objectForKey:@"UserData_Name"];
-        GetLink = [defaults objectForKey:@"UserData_Url"];
-        GetDescription = [defaults objectForKey:@"UserData_Abouts"];
-        GetPersonalTags = [defaults objectForKey:@"UserData_PersonalTags"];
-        GetLocation = [defaults objectForKey:@"UserData_Location"];
-        GetProfileImg = GetProfileImg_;
-        if ([GetPersonalTags length] == 10 || [GetPersonalTags isEqualToString:@""] || [GetPersonalTags isEqualToString:@"(null)"] || GetPersonalTags == nil) {
-        }else{
-            NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"() \n"];
-            GetPersonalTags = [[GetPersonalTags componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString: @""];
-            NSArray *arr = [GetPersonalTags componentsSeparatedByString:@","];
-            [ArrHashTag removeAllObjects];
-            ArrHashTag = [[NSMutableArray alloc]initWithArray:arr];
+//        NSString *GetWallpaper_ = [defaults objectForKey:@"UserData_Wallpaper"];
+//        NSString *GetProfileImg_ = [defaults objectForKey:@"UserData_ProfilePhoto"];
+//        GetUserName = [defaults objectForKey:@"UserData_Username"];
+//        GetName = [defaults objectForKey:@"UserData_Name"];
+//        GetLink = [defaults objectForKey:@"UserData_Url"];
+//        GetDescription = [defaults objectForKey:@"UserData_Abouts"];
+//        GetPersonalTags = [defaults objectForKey:@"UserData_PersonalTags"];
+//        GetLocation = [defaults objectForKey:@"UserData_Location"];
+//        GetProfileImg = GetProfileImg_;
+//        if ([GetPersonalTags length] == 10 || [GetPersonalTags isEqualToString:@""] || [GetPersonalTags isEqualToString:@"(null)"] || GetPersonalTags == nil) {
+//        }else{
+//            NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"() \n"];
+//            GetPersonalTags = [[GetPersonalTags componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString: @""];
+//            NSArray *arr = [GetPersonalTags componentsSeparatedByString:@","];
+//            [ArrHashTag removeAllObjects];
+//            ArrHashTag = [[NSMutableArray alloc]initWithArray:arr];
+//        }
+//        
+//        NSURL *url_UserImage = [NSURL URLWithString:GetProfileImg_];
+//        ShowUserProfileImage.imageURL = url_UserImage;
+//        
+//        NSURL *url_WallpaperImage = [NSURL URLWithString:GetWallpaper_];
+//        BackgroundImage.imageURL = url_WallpaperImage;
+        
+        CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+        
+        MainScroll.delegate = self;
+        MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight);
+        CGSize contentSize = MainScroll.frame.size;
+        contentSize.height = 800;
+        MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        MainScroll.contentSize = contentSize;
+        MainScroll.alwaysBounceVertical = YES;
+        for (UIView *subview in MainScroll.subviews) {
+            [subview removeFromSuperview];
+        }
+        for (UIView *subview in AllContentView.subviews) {
+            [subview removeFromSuperview];
         }
         
-        NSURL *url_UserImage = [NSURL URLWithString:GetProfileImg_];
-        ShowUserProfileImage.imageURL = url_UserImage;
+        [refreshControl addTarget:self action:@selector(testRefresh:) forControlEvents:UIControlEventValueChanged];
+        [MainScroll addSubview:refreshControl];
         
-        NSURL *url_WallpaperImage = [NSURL URLWithString:GetWallpaper_];
-        BackgroundImage.imageURL = url_WallpaperImage;
+        BackgroundImage.frame = CGRectMake(0, -50, screenWidth, 300);
+        CGRect headerFrame = BackgroundImage.frame;
+        headerFrame.origin.y -= 50.0f;
+        BackgroundImage.frame = headerFrame;
+        [MainScroll addSubview:BackgroundImage withAcceleration:CGPointMake(0.0f, 0.5f)];
         
-        CheckEdit = @"NoEdit";
-        [defaults setObject:CheckEdit forKey:@"CheckEditUserInformation"];
-        [defaults synchronize];
-    }
-    
-    NSString *CheckSelfDelete = [defaults objectForKey:@"SelfDeletePost_Profile"];
-    if ([CheckSelfDelete isEqualToString:@"YES"]) {
         CheckExpand = YES;
+        
+        AllContentView.frame = CGRectMake(0, 100, screenWidth, 100);
+        [MainScroll addSubview:AllContentView];
+        
         CheckLoad_Post = NO;
         CheckLoad_Likes = NO;
         CheckLoad_Collection = NO;
@@ -152,11 +183,85 @@
         CurrentPage_Post = 0;
         TotalPage_Collection = 1;
         CurrentPage_Collection = 0;
-        
+        DataCount_Like= 0;
+        DataTotal_Like= 0;
+        DataCount_Post= 0;
+        DataTotal_Post= 0;
+        DataCount_Collection= 0;
+        DataTotal_Collection= 0;
+        CheckClick_Posts = 0;
+        CheckClick_Likes = 0;
         GetHeight = 0;
+        
+        refreshControl = [[UIRefreshControl alloc] init];
+        [refreshControl addTarget:self action:@selector(testRefresh:) forControlEvents:UIControlEventValueChanged];
+        [MainScroll addSubview:refreshControl];
+        
+        [self GetUserData];
+        
+        CheckEdit = @"NoEdit";
+        [defaults setObject:CheckEdit forKey:@"CheckEditUserInformation"];
+        [defaults synchronize];
+    }
+    
+    NSString *CheckSelfDelete = [defaults objectForKey:@"SelfDeletePost_Profile"];
+    if ([CheckSelfDelete isEqualToString:@"YES"]) {
+        CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+        
+        MainScroll.delegate = self;
+        MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight);
+        CGSize contentSize = MainScroll.frame.size;
+        contentSize.height = 800;
+        MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        MainScroll.contentSize = contentSize;
+        MainScroll.alwaysBounceVertical = YES;
         for (UIView *subview in MainScroll.subviews) {
             [subview removeFromSuperview];
         }
+        for (UIView *subview in AllContentView.subviews) {
+            [subview removeFromSuperview];
+        }
+        
+        [refreshControl addTarget:self action:@selector(testRefresh:) forControlEvents:UIControlEventValueChanged];
+        [MainScroll addSubview:refreshControl];
+        
+        BackgroundImage.frame = CGRectMake(0, -50, screenWidth, 300);
+        CGRect headerFrame = BackgroundImage.frame;
+        headerFrame.origin.y -= 50.0f;
+        BackgroundImage.frame = headerFrame;
+        [MainScroll addSubview:BackgroundImage withAcceleration:CGPointMake(0.0f, 0.5f)];
+        
+        CheckExpand = YES;
+        
+        AllContentView.frame = CGRectMake(0, 100, screenWidth, 100);
+        [MainScroll addSubview:AllContentView];
+        
+        CheckLoad_Post = NO;
+        CheckLoad_Likes = NO;
+        CheckLoad_Collection = NO;
+        CheckFirstTimeLoadLikes = 0;
+        CheckFirstTimeLoadPost = 0;
+        CheckFirstTimeLoadCollection = 0;
+        TotalPage_Like = 1;
+        CurrentPage_Like = 0;
+        TotalPage_Post = 1;
+        CurrentPage_Post = 0;
+        TotalPage_Collection = 1;
+        CurrentPage_Collection = 0;
+        DataCount_Like= 0;
+        DataTotal_Like= 0;
+        DataCount_Post= 0;
+        DataTotal_Post= 0;
+        DataCount_Collection= 0;
+        DataTotal_Collection= 0;
+        CheckClick_Posts = 0;
+        CheckClick_Likes = 0;
+        GetHeight = 0;
+        
+        refreshControl = [[UIRefreshControl alloc] init];
+        [refreshControl addTarget:self action:@selector(testRefresh:) forControlEvents:UIControlEventValueChanged];
+        [MainScroll addSubview:refreshControl];
         
         [self GetUserData];
         
@@ -166,31 +271,80 @@
     }
 
 }
-- (void)testRefresh:(UIRefreshControl *)refreshControl
+- (void)testRefresh:(UIRefreshControl *)refreshControl_
 {
     refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@""];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        //  [NSThread sleepForTimeInterval:1];
+        // [NSThread sleepForTimeInterval:3];
+        
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-            [formatter setDateFormat:@"MMM d, h:mm a"];
-            NSString *lastUpdate = [NSString stringWithFormat:@"Last updated on %@", [formatter stringFromDate:[NSDate date]]];
-            refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdate];
+            CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+            CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+            
+            MainScroll.delegate = self;
+            MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight);
+            CGSize contentSize = MainScroll.frame.size;
+            contentSize.height = 800;
+            MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+            MainScroll.contentSize = contentSize;
+            MainScroll.alwaysBounceVertical = YES;
+            for (UIView *subview in MainScroll.subviews) {
+                [subview removeFromSuperview];
+            }
+            for (UIView *subview in AllContentView.subviews) {
+                [subview removeFromSuperview];
+            }
+            
+            [refreshControl addTarget:self action:@selector(testRefresh:) forControlEvents:UIControlEventValueChanged];
+            [MainScroll addSubview:refreshControl];
+            
+            BackgroundImage.frame = CGRectMake(0, -50, screenWidth, 300);
+            CGRect headerFrame = BackgroundImage.frame;
+            headerFrame.origin.y -= 50.0f;
+            BackgroundImage.frame = headerFrame;
+            [MainScroll addSubview:BackgroundImage withAcceleration:CGPointMake(0.0f, 0.5f)];
+            
+            CheckExpand = YES;
+            
+            AllContentView.frame = CGRectMake(0, 100, screenWidth, 100);
+            [MainScroll addSubview:AllContentView];
+            
+            CheckLoad_Post = NO;
+            CheckLoad_Likes = NO;
+            CheckLoad_Collection = NO;
+            CheckFirstTimeLoadLikes = 0;
+            CheckFirstTimeLoadPost = 0;
+            CheckFirstTimeLoadCollection = 0;
+            TotalPage_Like = 1;
+            CurrentPage_Like = 0;
+            TotalPage_Post = 1;
+            CurrentPage_Post = 0;
+            TotalPage_Collection = 1;
+            CurrentPage_Collection = 0;
+            DataCount_Like= 0;
+            DataTotal_Like= 0;
+            DataCount_Post= 0;
+            DataTotal_Post= 0;
+            DataCount_Collection= 0;
+            DataTotal_Collection= 0;
+            
+            GetHeight = 0;
+            
+            refreshControl = [[UIRefreshControl alloc] init];
+            [refreshControl addTarget:self action:@selector(testRefresh:) forControlEvents:UIControlEventValueChanged];
+            [MainScroll addSubview:refreshControl];
+            
+            [self GetUserData];
+            
             [refreshControl endRefreshing];
             NSLog(@"refresh end");
-            
         });
     });
 }
 
 -(void)InitContentView{
-    
-//    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-//    refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@""];
-//    [refreshControl addTarget:self action:@selector(testRefresh:) forControlEvents:UIControlEventValueChanged];
-//    [MainScroll addSubview:refreshControl];
     
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
@@ -239,16 +393,19 @@
     
     
     UIButton *EditProfileButton = [[UIButton alloc]init];
-    EditProfileButton.frame = CGRectMake(screenWidth - 106 - 20, 60, 106, 34);
+    EditProfileButton.frame = CGRectMake(screenWidth - 122 - 20, 60, 122, 34);
     [EditProfileButton setTitle:LocalisedString(@"Edit Profile") forState:UIControlStateNormal];
+    [EditProfileButton setImage:[UIImage imageNamed:@"EditProfileSmiley.png"] forState:UIControlStateNormal];
     EditProfileButton.layer.cornerRadius= 17;
     EditProfileButton.layer.borderWidth = 1;
     EditProfileButton.layer.masksToBounds = YES;
     EditProfileButton.layer.borderColor=[[UIColor  colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0] CGColor];
-    EditProfileButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
+    EditProfileButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:13];
     [EditProfileButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
     EditProfileButton.backgroundColor = [UIColor clearColor];
     [EditProfileButton addTarget:self action:@selector(EditProfileButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+    EditProfileButton.imageEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);
+    EditProfileButton.titleEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);
     [AllContentView addSubview:EditProfileButton];
     
     ShowName_ = [[UILabel alloc]init];//getname
@@ -324,7 +481,7 @@
         [AllContentView addSubview:ShowPin];
         
         UILabel *ShowLocation = [[UILabel alloc]init];
-        ShowLocation.frame = CGRectMake(60, GetHeight, screenWidth - 120, 20);
+        ShowLocation.frame = CGRectMake(60, GetHeight, screenWidth - 80, 20);
         ShowLocation.text = GetLocation;
         ShowLocation.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowLocation.textColor = [UIColor colorWithRed:161.0f/255.0f green:161.0f/255.0f blue:161.0f/255.0f alpha:1.0f];
@@ -518,13 +675,13 @@
     
     GetHeight += 40;
     
-    UIButton *Line02 = [[UIButton alloc]init];
-    Line02.frame = CGRectMake(0, GetHeight, screenWidth, 1);
-    [Line02 setTitle:@"" forState:UIControlStateNormal];
-    [Line02 setBackgroundColor:[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f]];
-    [AllContentView addSubview:Line02];
-    
-    GetHeight += 1;
+//    UIButton *Line02 = [[UIButton alloc]init];
+//    Line02.frame = CGRectMake(0, GetHeight, screenWidth, 1);
+//    [Line02 setTitle:@"" forState:UIControlStateNormal];
+//    [Line02 setBackgroundColor:[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f]];
+//    [AllContentView addSubview:Line02];
+//    
+//    GetHeight += 1;
     
     // start 3 view Post, Collection, Like
     PostView = [[UIView alloc]init];
@@ -561,28 +718,51 @@
 - (void)segmentAction:(UISegmentedControl *)segment
 {
   //  CGSize contentSize = MainScroll.frame.size;
-    
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     switch (segment.selectedSegmentIndex) {
         case 0:
             NSLog(@"Collection click");
             PostView.hidden = YES;
             LikeView.hidden = YES;
             CollectionView.hidden = NO;
-            [self InitCollectionView];
+          //  [self InitCollectionView];
             break;
         case 1:
             NSLog(@"Posts click");
             LikeView.hidden = YES;
             CollectionView.hidden = YES;
             PostView.hidden = NO;
-            [self InitPostsView];
+          //  [self InitPostsView];
+            if (CheckClick_Posts == 0) {
+                CheckClick_Posts = 1;
+                [self InitPostsView];
+            }else{
+                AllContentView.frame = CGRectMake(0, 100 , screenWidth,GetHeight + PostView.frame.size.height + 50);
+                CGSize contentSize = MainScroll.frame.size;
+                contentSize.height = GetHeight + PostView.frame.size.height + 50;
+                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+                MainScroll.contentSize = contentSize;
+                
+            }
             break;
         case 2:
             NSLog(@"Likes click");
             PostView.hidden = YES;
             CollectionView.hidden = YES;
             LikeView.hidden = NO;
-            [self InitLikeData];
+           // [self InitLikeData];
+            
+            if (CheckClick_Likes == 0) {
+                CheckClick_Likes = 1;
+                [self InitLikeData];
+            }else{
+                AllContentView.frame = CGRectMake(0, 100 , screenWidth, GetHeight + LikeView.frame.size.height + 50);
+                CGSize contentSize = MainScroll.frame.size;
+                contentSize.height = GetHeight + LikeView.frame.size.height + 50;
+                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+                MainScroll.contentSize = contentSize;
+                
+            }
             break;
         default:
             break;
@@ -618,20 +798,20 @@
     NSString *TempString = [[NSString alloc]initWithFormat:@"%@ %@",GetCollectionDataCount,LocalisedString(@"Collections")];
 
     UILabel *ShowCollectionCount = [[UILabel alloc]init];
-    ShowCollectionCount.frame = CGRectMake(30, 20, 150, 20);
+    ShowCollectionCount.frame = CGRectMake(30, 15, 150, 20);
     ShowCollectionCount.text = TempString;
     ShowCollectionCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
-    ShowCollectionCount.textColor = [UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0f];
+    ShowCollectionCount.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
     [CollectionView addSubview:ShowCollectionCount];
     
     UIButton *Line01 = [[UIButton alloc]init];
-    Line01.frame = CGRectMake(screenWidth - 30 - 25, 10, 1, 30);
+    Line01.frame = CGRectMake(screenWidth - 30 - 35, 10, 1, 30);
     [Line01 setTitle:@"" forState:UIControlStateNormal];
     [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
     [CollectionView addSubview:Line01];
     
     UIButton *EditProfileButton = [[UIButton alloc]init];
-    EditProfileButton.frame = CGRectMake(screenWidth - 30 - 20, 10, 25, 25);
+    EditProfileButton.frame = CGRectMake(screenWidth - 30 - 20, 15, 25, 25);
     //[EditProfileButton setTitle:@"New collection" forState:UIControlStateNormal];
     [EditProfileButton setImage:[UIImage imageNamed:@"AddPostBtn.png"] forState:UIControlStateNormal];
     EditProfileButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
@@ -724,13 +904,13 @@
         
         heightcheck += FinalWidth + 15 + 70 + 10 + i ;
     }
-    AllContentView.frame = CGRectMake(0, 100 , screenWidth, GetHeight + heightcheck + FinalWidth);
-    CollectionView.frame = CGRectMake(0, GetHeight, screenWidth, heightcheck + FinalWidth + 120);
+    AllContentView.frame = CGRectMake(0, 100 , screenWidth, GetHeight + heightcheck);
+    CollectionView.frame = CGRectMake(0, GetHeight, screenWidth, heightcheck);
     NSLog(@"GetHeight = %d",GetHeight);
     NSLog(@"heightcheck = %d",heightcheck);
     
     CGSize contentSize = MainScroll.frame.size;
-    contentSize.height = GetHeight + CollectionView.frame.size.height + 50;
+    contentSize.height = GetHeight + CollectionView.frame.size.height;
     //MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     MainScroll.contentSize = contentSize;
     
@@ -744,23 +924,23 @@
     UILabel *ShowLikesCount = [[UILabel alloc]init];
     ShowLikesCount.frame = CGRectMake(30, 20, 150, 20);
     ShowLikesCount.text = TempString;
-    ShowLikesCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+    ShowLikesCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
     ShowLikesCount.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
     [LikeView addSubview:ShowLikesCount];
     
-    UIButton *Line011 = [[UIButton alloc]init];
-    Line011.frame = CGRectMake(screenWidth - 30 - 25, 10, 1, 30);
-    [Line011 setTitle:@"" forState:UIControlStateNormal];
-    [Line011 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
-    [LikeView addSubview:Line011];
+//    UIButton *Line011 = [[UIButton alloc]init];
+//    Line011.frame = CGRectMake(screenWidth - 30 - 25, 10, 1, 30);
+//    [Line011 setTitle:@"" forState:UIControlStateNormal];
+//    [Line011 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+//    [LikeView addSubview:Line011];
     
-    UIButton *EditProfileButton = [[UIButton alloc]init];
-    EditProfileButton.frame = CGRectMake(screenWidth - 30 - 20, 10, 25, 25);
-    [EditProfileButton setImage:[UIImage imageNamed:@"AddPostBtn.png"] forState:UIControlStateNormal];
-    EditProfileButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
-    [EditProfileButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
-    EditProfileButton.backgroundColor = [UIColor clearColor];
-    [LikeView addSubview:EditProfileButton];
+//    UIButton *EditProfileButton = [[UIButton alloc]init];
+//    EditProfileButton.frame = CGRectMake(screenWidth - 30 - 20, 10, 25, 25);
+//    [EditProfileButton setImage:[UIImage imageNamed:@"AddPostBtn.png"] forState:UIControlStateNormal];
+//    EditProfileButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
+//    [EditProfileButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
+//    EditProfileButton.backgroundColor = [UIColor clearColor];
+//    [LikeView addSubview:EditProfileButton];
     
     UIButton *Line01 = [[UIButton alloc]init];
     Line01.frame = CGRectMake(15, 60, screenWidth - 30, 1);
@@ -784,6 +964,7 @@
         ShowImage.frame = CGRectMake(0+(i % 3)*SpaceWidth, heightcheck + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
         ShowImage.contentMode = UIViewContentModeScaleAspectFill;
         ShowImage.layer.masksToBounds = YES;
+        ShowImage.layer.cornerRadius = 5;
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
         NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[LikesData_PhotoArray objectAtIndex:i]];
         NSArray *SplitArray = [FullImagesURL_First componentsSeparatedByString:@","];
@@ -822,18 +1003,18 @@
     UILabel *ShowPostsCount = [[UILabel alloc]init];
     ShowPostsCount.frame = CGRectMake(30, 20, 150, 20);
     ShowPostsCount.text = TempString;
-    ShowPostsCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+    ShowPostsCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
     ShowPostsCount.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
     [PostView addSubview:ShowPostsCount];
     
     UIButton *Line011 = [[UIButton alloc]init];
-    Line011.frame = CGRectMake(screenWidth - 30 - 25, 10, 1, 30);
+    Line011.frame = CGRectMake(screenWidth - 30 - 35, 10, 1, 30);
     [Line011 setTitle:@"" forState:UIControlStateNormal];
     [Line011 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
     [PostView addSubview:Line011];
     
     UIButton *EditProfileButton = [[UIButton alloc]init];
-    EditProfileButton.frame = CGRectMake(screenWidth - 30 - 20, 10, 25, 25);
+    EditProfileButton.frame = CGRectMake(screenWidth - 30 - 20, 15, 25, 25);
     [EditProfileButton setImage:[UIImage imageNamed:@"AddPostBtn.png"] forState:UIControlStateNormal];
     EditProfileButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
     [EditProfileButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];

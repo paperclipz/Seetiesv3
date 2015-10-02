@@ -61,15 +61,15 @@
     //    [FilterButton setTitle:CustomLocalisedString(@"Filter", nil) forState:UIControlStateNormal];
     
     heightcheck = 0;
-//    refreshControl = [[UIRefreshControl alloc] init];
-//    refreshControl.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-//    refreshControl.bounds = CGRectMake(refreshControl.bounds.origin.x - 20,
-//                                       0,
-//                                       refreshControl.bounds.size.width,
-//                                       refreshControl.bounds.size.height);
-//    // refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Loading..."];
-//    [refreshControl addTarget:self action:@selector(testRefresh) forControlEvents:UIControlEventValueChanged];
-//    [MainScroll addSubview:refreshControl];
+    refreshControl = [[UIRefreshControl alloc] init];
+    refreshControl.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    refreshControl.bounds = CGRectMake(refreshControl.bounds.origin.x - 20,
+                                       0,
+                                       refreshControl.bounds.size.width,
+                                       refreshControl.bounds.size.height);
+    // refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Loading..."];
+    [refreshControl addTarget:self action:@selector(testRefresh) forControlEvents:UIControlEventValueChanged];
+    [MainScroll addSubview:refreshControl];
     
     
     
@@ -493,9 +493,9 @@
             ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
             ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
             ShowUserProfileImage.layer.cornerRadius=20;
-            ShowUserProfileImage.layer.borderWidth=3;
+            ShowUserProfileImage.layer.borderWidth=1;
             ShowUserProfileImage.layer.masksToBounds = YES;
-            ShowUserProfileImage.layer.borderColor=[[UIColor whiteColor] CGColor];
+            ShowUserProfileImage.layer.borderColor=[[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] CGColor];
             [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
             NSString *stringPath1 = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"Content_Folder"];
             stringPath1  = [stringPath1 stringByAppendingPathComponent:[arrUserImage objectAtIndex:i]];
@@ -886,9 +886,9 @@
                 ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
                 ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
                 ShowUserProfileImage.layer.cornerRadius=20;
-                ShowUserProfileImage.layer.borderWidth=3;
+                ShowUserProfileImage.layer.borderWidth=1;
                 ShowUserProfileImage.layer.masksToBounds = YES;
-                ShowUserProfileImage.layer.borderColor=[[UIColor whiteColor] CGColor];
+                ShowUserProfileImage.layer.borderColor=[[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] CGColor];
                 [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
                 NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[arrUserImage objectAtIndex:i]];
                 if ([FullImagesURL length] == 0) {
@@ -1171,9 +1171,9 @@
                 ShowUserProfileImageLocalQR.contentMode = UIViewContentModeScaleAspectFill;
                 ShowUserProfileImageLocalQR.layer.backgroundColor=[[UIColor clearColor] CGColor];
                 ShowUserProfileImageLocalQR.layer.cornerRadius=20;
-                ShowUserProfileImageLocalQR.layer.borderWidth=3;
+                ShowUserProfileImageLocalQR.layer.borderWidth=1;
                 ShowUserProfileImageLocalQR.layer.masksToBounds = YES;
-                ShowUserProfileImageLocalQR.layer.borderColor=[[UIColor whiteColor] CGColor];
+                ShowUserProfileImageLocalQR.layer.borderColor=[[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] CGColor];
                 [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImageLocalQR];
                 NSString *FullImagesURLLocalQR = [[NSString alloc]initWithFormat:@"%@",[arrUserImage objectAtIndex:i]];
                 if ([FullImagesURLLocalQR length] == 0) {
@@ -1461,10 +1461,10 @@
                 [MainScroll addSubview:SuggestedScrollview_Aboad];
                 
                 UILabel *ShowSuggestedText = [[UILabel alloc]init];
-                ShowSuggestedText.frame = CGRectMake(20, heightcheck, 200, 50);
+                ShowSuggestedText.frame = CGRectMake(20, heightcheck, screenWidth - 70, 50);
                 ShowSuggestedText.text = LocalisedString(@"Suggested foreign recommendations");
                 ShowSuggestedText.backgroundColor = [UIColor clearColor];
-                ShowSuggestedText.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
+                ShowSuggestedText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
                 ShowSuggestedText.textAlignment = NSTextAlignmentLeft;
                 ShowSuggestedText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
                 [MainScroll addSubview:ShowSuggestedText];
@@ -1527,9 +1527,9 @@
                     ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
                     ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
                     ShowUserProfileImage.layer.cornerRadius=20;
-                    ShowUserProfileImage.layer.borderWidth=3;
+                    ShowUserProfileImage.layer.borderWidth=1;
                     ShowUserProfileImage.layer.masksToBounds = YES;
-                    ShowUserProfileImage.layer.borderColor=[[UIColor whiteColor] CGColor];
+                    ShowUserProfileImage.layer.borderColor=[[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] CGColor];
                     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
                     NSString *ImageData1 = [[NSString alloc]initWithFormat:@"%@",[SplitArray_UserImage objectAtIndex:i]];
                     if ([ImageData1 length] == 0) {
@@ -1545,7 +1545,7 @@
                     NSString *Address = [[NSString alloc]initWithFormat:@"%@",[SplitArray_Address objectAtIndex:i]];
                     
                     UILabel *ShowUserName = [[UILabel alloc]init];
-                    ShowUserName.frame = CGRectMake(81 + i * screenWidth, 51 + 10, 200, 40);
+                    ShowUserName.frame = CGRectMake(81 + i * screenWidth, 51 + 10, 180, 40);
                     ShowUserName.text = usernameTemp;
                     ShowUserName.backgroundColor = [UIColor clearColor];
                     ShowUserName.textColor = [UIColor whiteColor];
@@ -1784,7 +1784,7 @@
                 ShowSuggestedText.frame = CGRectMake(20, heightcheck, 200, 50);
                 ShowSuggestedText.text = LocalisedString(@"Meet & greet other Seetizens");
                 ShowSuggestedText.backgroundColor = [UIColor clearColor];
-                ShowSuggestedText.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
+                ShowSuggestedText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
                 ShowSuggestedText.textAlignment = NSTextAlignmentLeft;
                 ShowSuggestedText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
                 [MainScroll addSubview:ShowSuggestedText];
@@ -1828,9 +1828,9 @@
                     ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
                     ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
                     ShowUserProfileImage.layer.cornerRadius=20;
-                    ShowUserProfileImage.layer.borderWidth=3;
+                    ShowUserProfileImage.layer.borderWidth=1;
                     ShowUserProfileImage.layer.masksToBounds = YES;
-                    ShowUserProfileImage.layer.borderColor=[[UIColor lightGrayColor] CGColor];
+                    ShowUserProfileImage.layer.borderColor=[[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] CGColor];
                     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
                     NSString *ImageData = [[NSString alloc]initWithFormat:@"%@",[SplitArray_ProfileImg objectAtIndex:i]];
                     if ([ImageData length] == 0) {
@@ -1952,7 +1952,7 @@
                 ShowSuggestedText.frame = CGRectMake(20, heightcheck, 200, 50);
                 ShowSuggestedText.text = LocalisedString(@"Your fellow Facebook Seetizen");
                 ShowSuggestedText.backgroundColor = [UIColor clearColor];
-                ShowSuggestedText.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
+                ShowSuggestedText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
                 ShowSuggestedText.textAlignment = NSTextAlignmentLeft;
                 ShowSuggestedText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
                 [MainScroll addSubview:ShowSuggestedText];
@@ -1996,9 +1996,9 @@
                     ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
                     ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
                     ShowUserProfileImage.layer.cornerRadius=20;
-                    ShowUserProfileImage.layer.borderWidth=3;
+                    ShowUserProfileImage.layer.borderWidth=1;
                     ShowUserProfileImage.layer.masksToBounds = YES;
-                    ShowUserProfileImage.layer.borderColor=[[UIColor lightGrayColor] CGColor];
+                    ShowUserProfileImage.layer.borderColor=[[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] CGColor];
                     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
                     NSString *ImageData = [[NSString alloc]initWithFormat:@"%@",[SplitArray_ProfileImg objectAtIndex:i]];
                     if ([ImageData length] == 0) {
@@ -2105,10 +2105,10 @@
                 arrDealID = [[NSMutableArray alloc]initWithArray:SplitArray_Id];
                 
                 UILabel *ShowSuggestedText = [[UILabel alloc]init];
-                ShowSuggestedText.frame = CGRectMake(20, heightcheck, 200, 50);
+                ShowSuggestedText.frame = CGRectMake(20, heightcheck, screenWidth - 70, 50);
                 ShowSuggestedText.text = LocalisedString(@"Deals near you");
                 ShowSuggestedText.backgroundColor = [UIColor clearColor];
-                ShowSuggestedText.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
+                ShowSuggestedText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
                 ShowSuggestedText.textAlignment = NSTextAlignmentLeft;
                 ShowSuggestedText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
                 [MainScroll addSubview:ShowSuggestedText];
@@ -2170,9 +2170,9 @@
                     ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
                     ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
                     ShowUserProfileImage.layer.cornerRadius=20;
-                    ShowUserProfileImage.layer.borderWidth=3;
+                    ShowUserProfileImage.layer.borderWidth=1;
                     ShowUserProfileImage.layer.masksToBounds = YES;
-                    ShowUserProfileImage.layer.borderColor=[[UIColor whiteColor] CGColor];
+                    ShowUserProfileImage.layer.borderColor=[[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] CGColor];
                     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
                     NSString *ImageData1 = [[NSString alloc]initWithFormat:@"%@",[SplitArray_UserImage objectAtIndex:i]];
                     if ([ImageData1 length] == 0) {
@@ -2188,7 +2188,7 @@
                     NSString *Address = [[NSString alloc]initWithFormat:@"%@",[SplitArray_Address objectAtIndex:i]];
                     
                     UILabel *ShowUserName = [[UILabel alloc]init];
-                    ShowUserName.frame = CGRectMake(75 + i * screenWidth, 51 + 10, 200, 40);
+                    ShowUserName.frame = CGRectMake(75 + i * screenWidth, 51 + 10, 180, 40);
                     ShowUserName.text = usernameTemp;
                     ShowUserName.backgroundColor = [UIColor clearColor];
                     ShowUserName.textColor = [UIColor whiteColor];
@@ -2208,7 +2208,7 @@
                     
                     UILabel *ShowTitle = [[UILabel alloc]init];
                     NSString *TempGetStirng = [[NSString alloc]initWithFormat:@"%@",[SplitArray_Title objectAtIndex:i]];
-                    if ([TempGetStirng length] == 0 || [TempGetStirng isEqualToString:@""] || [TempGetStirng isEqualToString:@"(null)"]) {
+                    if ([TempGetStirng length] == 0 || [TempGetStirng isEqualToString:@""] || [TempGetStirng isEqualToString:@"(null)"] || [TempGetStirng containsString:@"("]) {
                         
                     }else{
                         
@@ -3374,16 +3374,6 @@
 //        [subview removeFromSuperview];
 //    }
     
-    refreshControl = [[UIRefreshControl alloc] init];
-    refreshControl.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    refreshControl.bounds = CGRectMake(refreshControl.bounds.origin.x - 20,
-                                       0,
-                                       refreshControl.bounds.size.width,
-                                       refreshControl.bounds.size.height);
-    refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@""];
-    [refreshControl addTarget:self action:@selector(testRefresh) forControlEvents:UIControlEventValueChanged];
-    [MainScroll addSubview:refreshControl];
-    
     heightcheck = 0;
     //[ShowActivity startAnimating];
     [arrDisplayCountryName removeAllObjects];
@@ -3474,10 +3464,18 @@
 -(IBAction)OpenUserProfileOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-    [NewUserProfileV2View GetUserName:[arrUserName objectAtIndex:getbuttonIDN]];
+    NSString *CheckUsername = [[NSString alloc]initWithFormat:@"%@",[arrUserName objectAtIndex:getbuttonIDN]];
+    NSString *GetUsername = [defaults objectForKey:@"UserName"];
+    if ([GetUsername isEqualToString:CheckUsername]) {
+    }else{
+        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+        [NewUserProfileV2View GetUserName:[arrUserName objectAtIndex:getbuttonIDN]];
+    }
+    
+
 }
 -(IBAction)LikeButtonOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;

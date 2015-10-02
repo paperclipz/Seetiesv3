@@ -280,15 +280,15 @@
     //if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         if (indexPath.section == 0) {
-            UIImageView *ShowImage = [[UIImageView alloc]init];
-            ShowImage.frame = CGRectMake(15, 7, 29, 29);
-            //ShowImage.image = [UIImage imageNamed:[SortImageArray objectAtIndex:indexPath.row]];
-            ShowImage.contentMode = UIViewContentModeScaleAspectFit;
-            ShowImage.tag = 500;
-            [cell addSubview:ShowImage];
+//            UIImageView *ShowImage = [[UIImageView alloc]init];
+//            ShowImage.frame = CGRectMake(15, 7, 29, 29);
+//            //ShowImage.image = [UIImage imageNamed:[SortImageArray objectAtIndex:indexPath.row]];
+//            ShowImage.contentMode = UIViewContentModeScaleAspectFit;
+//            ShowImage.tag = 500;
+//            [cell addSubview:ShowImage];
             
             UILabel *ShowTitle_ = [[UILabel alloc]init];
-            ShowTitle_.frame = CGRectMake(70, 0, 250, 44);
+            ShowTitle_.frame = CGRectMake(15, 0, 250, 44);
             ShowTitle_.tag = 200;
             //   ShowTitle_.text = [CategoryArray objectAtIndex:i];
             ShowTitle_.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
@@ -297,7 +297,7 @@
             ShowTitle_.backgroundColor = [UIColor clearColor];
             [cell addSubview:ShowTitle_];
         }else{
-            NSURL *imageURL = [NSURL URLWithString:[GetImageDefaultArray objectAtIndex:indexPath.row]];
+            NSURL *imageURL = [NSURL URLWithString:[GetImageSelectedArray objectAtIndex:indexPath.row]];
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
                 NSData *imageData = [NSData dataWithContentsOfURL:imageURL];

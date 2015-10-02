@@ -180,7 +180,7 @@
     //[WhyWeUseFBButton setTitle:NSLocalizedString(@"LandingPage_WhyUseFacebook",nil) forState:UIControlStateNormal];
     [SignUpWithEmailButton setTitle:NSLocalizedString(@"Sign up",nil) forState:UIControlStateNormal];
     ShowTnCText.text = NSLocalizedString(@"Terms of Use & Privacy Notice.", nil);
-
+    ContinueText.text = NSLocalizedString(@"Continue with",nil);
 }
 
 - (void)viewDidLoad {

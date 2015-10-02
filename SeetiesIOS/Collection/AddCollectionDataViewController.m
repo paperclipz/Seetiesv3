@@ -43,6 +43,10 @@
     PostImg.layer.masksToBounds = YES;
     
     tblview.frame = CGRectMake(0, 193, screenWidth, 207);
+    
+    CollectThisTitle.text = LocalisedString(@"Collect this");
+    PickaCollectionTitle.text = LocalisedString(@"Pick a collection");
+    [CreateCollectionButton setTitle:LocalisedString(@"Create a new collection") forState:UIControlStateNormal];
 
 }
 

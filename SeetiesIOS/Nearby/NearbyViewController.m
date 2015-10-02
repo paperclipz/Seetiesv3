@@ -391,39 +391,6 @@
         TempButton.layer.cornerRadius = 5;
         [MainScroll addSubview: TempButton];
         
-//        AsyncImageView *UserImage = [[AsyncImageView alloc]init];
-//        UserImage.frame = CGRectMake(25, GetHeight + 10, 30, 30);
-//        UserImage.contentMode = UIViewContentModeScaleAspectFill;
-//        UserImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
-//        UserImage.layer.cornerRadius=15;
-//        UserImage.layer.borderWidth=0;
-//        UserImage.layer.masksToBounds = YES;
-//        UserImage.layer.borderColor=[[UIColor whiteColor] CGColor];
-//        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:UserImage];
-//        NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[UserInfo_UrlArray objectAtIndex:i]];
-//        if ([FullImagesURL length] == 0) {
-//            UserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
-//        }else{
-//            NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL];
-//            UserImage.imageURL = url_NearbySmall;
-//        }
-//        [MainScroll addSubview:UserImage];
-//
-//        UILabel *ShowUserName = [[UILabel alloc]init];
-//        ShowUserName.frame = CGRectMake(70, GetHeight + 10, 200, 30);
-//        ShowUserName.text = [UserInfo_NameArray objectAtIndex:i];
-//        ShowUserName.backgroundColor = [UIColor clearColor];
-//        ShowUserName.textColor = [UIColor blackColor];
-//        ShowUserName.textAlignment = NSTextAlignmentLeft;
-//        ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-//        [MainScroll addSubview:ShowUserName];
-//        
-//        UIButton *Line01 = [[UIButton alloc]init];
-//        Line01.frame = CGRectMake(15, GetHeight + 50, screenWidth - 30, 1);
-//        [Line01 setTitle:@"" forState:UIControlStateNormal];//238
-//        [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
-//        [MainScroll addSubview:Line01];
-        
         AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
         ShowImage.frame = CGRectMake(25, GetHeight + 5, 80, 80);
         ShowImage.contentMode = UIViewContentModeScaleAspectFill;
@@ -441,9 +408,11 @@
         
         [MainScroll addSubview:ShowImage];
         
+        int TempHeight = 0;
+        
         NSString *TempGetStirng = [[NSString alloc]initWithFormat:@"%@",[TitleArray objectAtIndex:i]];
         if ([TempGetStirng length] == 0 || [TempGetStirng isEqualToString:@""] || [TempGetStirng isEqualToString:@"(null)"]) {
-            GetHeight += 10;
+            TempHeight += 10;
         }else{
             UILabel *TempShowTitle = [[UILabel alloc]init];
             TempShowTitle.frame = CGRectMake(120, GetHeight + 5, screenWidth - 210, 20);
@@ -454,19 +423,16 @@
             TempShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
             [MainScroll addSubview:TempShowTitle];
             
-            GetHeight += 25;
+            TempHeight += 25;
         }
-        
-        
-
         
         UIImageView *ShowPin = [[UIImageView alloc]init];
         ShowPin.image = [UIImage imageNamed:@"LocationpinIcon.png"];
-        ShowPin.frame = CGRectMake(120, GetHeight, 18, 18);
+        ShowPin.frame = CGRectMake(120, GetHeight + TempHeight, 18, 18);
         [MainScroll addSubview:ShowPin];
         
         UILabel *ShowPlaceName = [[UILabel alloc]init];
-        ShowPlaceName.frame = CGRectMake(140, GetHeight, screenWidth - 210, 20);
+        ShowPlaceName.frame = CGRectMake(140, GetHeight + TempHeight, screenWidth - 210, 20);
         ShowPlaceName.text = [place_nameArray objectAtIndex:i];
         ShowPlaceName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         ShowPlaceName.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0];
@@ -474,17 +440,50 @@
         ShowPlaceName.backgroundColor = [UIColor clearColor];
         [MainScroll addSubview:ShowPlaceName];
         
-        UILabel *ShowLocation = [[UILabel alloc]init];
-        ShowLocation.frame = CGRectMake(120, GetHeight + 25, screenWidth - 210, 20);
-        ShowLocation.text = [LocationArray objectAtIndex:i];
-        ShowLocation.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
-        ShowLocation.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
-        ShowLocation.textAlignment = NSTextAlignmentLeft;
-        ShowLocation.backgroundColor = [UIColor clearColor];
-        [MainScroll addSubview:ShowLocation];
         
+        NSString *TempDistanceString = [[NSString alloc]initWithFormat:@"%@",[DistanceArray objectAtIndex:i]];
+        
+        if ([TempDistanceString isEqualToString:@"0"]) {
+            UILabel *ShowLocation = [[UILabel alloc]init];
+            ShowLocation.frame = CGRectMake(120, GetHeight + TempHeight + 25, screenWidth - 210, 20);
+            ShowLocation.text = [LocationArray objectAtIndex:i];
+            ShowLocation.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+            ShowLocation.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+            ShowLocation.textAlignment = NSTextAlignmentLeft;
+            ShowLocation.backgroundColor = [UIColor clearColor];
+            [MainScroll addSubview:ShowLocation];
+        }else{
+            CGFloat strFloat = (CGFloat)[TempDistanceString floatValue] / 1000;
+            int x_Nearby = [TempDistanceString intValue] / 1000;
+            NSString *FullShowLocatinString;
+            if (x_Nearby < 10) {
+                if (x_Nearby <= 1) {
+                    FullShowLocatinString = [[NSString alloc]initWithFormat:@"1km • %@",[LocationArray objectAtIndex:i]];//within
+                }else{
+                    FullShowLocatinString = [[NSString alloc]initWithFormat:@"%.fkm • %@",strFloat,[LocationArray objectAtIndex:i]];
+                }
+                
+            }else if(x_Nearby > 10 && x_Nearby < 30){
+
+                FullShowLocatinString = [[NSString alloc]initWithFormat:@"%.fkm • %@",strFloat,[LocationArray objectAtIndex:i]];
+            }else{
+
+                FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@",[SearchDisplayNameArray objectAtIndex:i]];
+                
+            }
+            
+            UILabel *ShowLocation = [[UILabel alloc]init];
+            ShowLocation.frame = CGRectMake(120, GetHeight + TempHeight + 25, screenWidth - 210, 20);
+            ShowLocation.text = FullShowLocatinString;
+            ShowLocation.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+            ShowLocation.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+            ShowLocation.textAlignment = NSTextAlignmentLeft;
+            ShowLocation.backgroundColor = [UIColor clearColor];
+            [MainScroll addSubview:ShowLocation];
+            
+       }
         UIButton *SelectButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        SelectButton.frame = CGRectMake(15, GetHeight, screenWidth - 30, 150);
+        SelectButton.frame = CGRectMake(15, GetHeight, screenWidth - 30, 100);
         [SelectButton setTitle:@"" forState:UIControlStateNormal];
         SelectButton.tag = i;
         [SelectButton setBackgroundColor:[UIColor clearColor]];
@@ -501,15 +500,10 @@
         }else{
             [CollectButton setImage:[UIImage imageNamed:@"YellowCollected.png"] forState:UIControlStateNormal];
         }
-        CollectButton.frame = CGRectMake(screenWidth - 15 - 57 - 10, GetHeight, 57, 57);
+        CollectButton.frame = CGRectMake(screenWidth - 15 - 57 - 10, GetHeight + 16, 57, 57);
         CollectButton.tag = i;
         [CollectButton addTarget:self action:@selector(CollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
         [MainScroll addSubview:CollectButton];
-        
-        
-        
-
-        
         
         GetHeight += 100;
         

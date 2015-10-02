@@ -36,6 +36,13 @@
     NSMutableData *webData;
     NSURLConnection *theConnection_CreateCollection;
     
+    IBOutlet UILabel *CollectionTitle;
+    IBOutlet UILabel *DescriptionTitle;
+    IBOutlet UILabel *TagTitle;
+    IBOutlet UILabel *SetasPublicTitle;
+    IBOutlet UILabel *SubTitleSetasPublic;
+    
+    
 }
 
 @end

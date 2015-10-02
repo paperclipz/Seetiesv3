@@ -31,7 +31,7 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
     BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
-    SearchButton.frame = CGRectMake(screenWidth - 65 - 15, 20, 65, 44);
+    SearchButton.frame = CGRectMake(screenWidth - 50, 20, 50, 44);
     lblTitle.frame = CGRectMake(15, 20, screenWidth - 30, 44);
     
     MainScroll.delegate = self;
@@ -41,7 +41,7 @@
     UserScroll.frame = CGRectMake(0, 0, screenWidth, 280);
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
    // [SearchButton setTitle:CustomLocalisedString(@"Search", nil) forState:UIControlStateNormal];
-    [SearchButton setTitle:CustomLocalisedString(@"Filter", nil) forState:UIControlStateNormal];
+    //[SearchButton setTitle:CustomLocalisedString(@"Filter", nil) forState:UIControlStateNormal];
     
     CheckLoad_Explore = NO;
     CheckFirstTimeLoad = 0;
@@ -216,7 +216,7 @@
     
     NSArray *itemArray = [NSArray arrayWithObjects:TempStringPosts, TempStringPeople, nil];
     UISegmentedControl *ProfileControl = [[UISegmentedControl alloc]initWithItems:itemArray];
-    ProfileControl.frame = CGRectMake(15, GetHeight - 5, screenWidth - 30, 29);
+    ProfileControl.frame = CGRectMake(10, GetHeight - 5, screenWidth - 20, 29);
     [ProfileControl addTarget:self action:@selector(segmentAction:) forControlEvents: UIControlEventValueChanged];
     ProfileControl.selectedSegmentIndex = 0;
     [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
@@ -277,14 +277,14 @@
     for (NSInteger i = DataCount; i < DataTotal; i++) {
         
         UIButton *TempButton = [[UIButton alloc]init];
-        TempButton.frame = CGRectMake(15, PostGetHeight, screenWidth - 30, 150);
+        TempButton.frame = CGRectMake(10, PostGetHeight, screenWidth - 20, 150);
         [TempButton setTitle:@"" forState:UIControlStateNormal];
         TempButton.backgroundColor = [UIColor whiteColor];
         TempButton.layer.cornerRadius = 5;
         [PostView addSubview: TempButton];
         
         AsyncImageView *UserImage = [[AsyncImageView alloc]init];
-        UserImage.frame = CGRectMake(25, PostGetHeight + 10, 30, 30);
+        UserImage.frame = CGRectMake(20, PostGetHeight + 10, 30, 30);
         UserImage.contentMode = UIViewContentModeScaleAspectFill;
         UserImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
         UserImage.layer.cornerRadius=15;
@@ -303,7 +303,7 @@
         [PostView addSubview:UserImage];
         
         UILabel *ShowUserName = [[UILabel alloc]init];
-        ShowUserName.frame = CGRectMake(70, PostGetHeight + 10, screenWidth - 70, 30);
+        ShowUserName.frame = CGRectMake(65, PostGetHeight + 10, screenWidth - 70, 30);
         ShowUserName.text = [UserInfo_NameArray objectAtIndex:i];
         ShowUserName.backgroundColor = [UIColor clearColor];
         ShowUserName.textColor = [UIColor blackColor];
@@ -313,14 +313,14 @@
         
         UIButton *ButtonClick = [UIButton buttonWithType:UIButtonTypeCustom];
         [ButtonClick setTitle:@"" forState:UIControlStateNormal];
-        [ButtonClick setFrame:CGRectMake(25, PostGetHeight + 10, 250, 30)];
+        [ButtonClick setFrame:CGRectMake(20, PostGetHeight + 10, 250, 30)];
         [ButtonClick setBackgroundColor:[UIColor clearColor]];
         ButtonClick.tag = i;
         [ButtonClick addTarget:self action:@selector(PostsExpertsButton:) forControlEvents:UIControlEventTouchUpInside];
         [PostView addSubview:ButtonClick];
 
         UIButton *Line01 = [[UIButton alloc]init];
-        Line01.frame = CGRectMake(15, PostGetHeight + 50, screenWidth - 30, 1);
+        Line01.frame = CGRectMake(10, PostGetHeight + 50, screenWidth - 30, 1);
         [Line01 setTitle:@"" forState:UIControlStateNormal];//238
         [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
         [PostView addSubview:Line01];
@@ -328,7 +328,7 @@
         NSString *TempImage = [[NSString alloc]initWithFormat:@"%@",[PhotoArray objectAtIndex:i]];
         NSArray *SplitArray = [TempImage componentsSeparatedByString:@","];
         AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
-        ShowImage.frame = CGRectMake(25, PostGetHeight + 60, 80, 80);
+        ShowImage.frame = CGRectMake(20, PostGetHeight + 60, 80, 80);
         ShowImage.contentMode = UIViewContentModeScaleAspectFill;
         ShowImage.layer.masksToBounds = YES;
         ShowImage.layer.cornerRadius = 5;
@@ -346,11 +346,11 @@
         
         UIImageView *ShowPin = [[UIImageView alloc]init];
         ShowPin.image = [UIImage imageNamed:@"LocationpinIcon.png"];
-        ShowPin.frame = CGRectMake(115, PostGetHeight + 62 ,18,18);
+        ShowPin.frame = CGRectMake(110, PostGetHeight + 62 ,18,18);
         [PostView addSubview:ShowPin];
         
         UILabel *ShowPlaceName = [[UILabel alloc]init];
-        ShowPlaceName.frame = CGRectMake(140, PostGetHeight + 62, screenWidth - 140 - 60, 20);
+        ShowPlaceName.frame = CGRectMake(135, PostGetHeight + 62, screenWidth - 140 - 60, 20);
         ShowPlaceName.text = [place_nameArray objectAtIndex:i];
         ShowPlaceName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         ShowPlaceName.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0];
@@ -359,7 +359,7 @@
         [PostView addSubview:ShowPlaceName];
         
         UILabel *ShowLocation = [[UILabel alloc]init];
-        ShowLocation.frame = CGRectMake(120, PostGetHeight + 82, screenWidth - 120 - 45, 20);
+        ShowLocation.frame = CGRectMake(115, PostGetHeight + 82, screenWidth - 120 - 45, 20);
         ShowLocation.text = [LocationArray objectAtIndex:i];
         ShowLocation.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowLocation.textColor = [UIColor grayColor];
@@ -370,7 +370,7 @@
         UIButton *ButtonOnClick = [[UIButton alloc]init];
         [ButtonOnClick setBackgroundColor:[UIColor clearColor]];
         [ButtonOnClick setTitle:@"" forState:UIControlStateNormal];
-        ButtonOnClick.frame = CGRectMake(15, PostGetHeight + 60, screenWidth - 30, 90);
+        ButtonOnClick.frame = CGRectMake(10, PostGetHeight + 60, screenWidth - 30, 90);
         ButtonOnClick.tag = i;
         [ButtonOnClick addTarget:self action:@selector(ImageButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
         [PostView addSubview:ButtonOnClick];
@@ -386,7 +386,7 @@
         }
         [UserFollowButton setBackgroundColor:[UIColor clearColor]];
         // [UserFollowButton setImage:[UIImage imageNamed:@"FollowIcon.png"] forState:UIControlStateNormal];
-        UserFollowButton.frame = CGRectMake(screenWidth - 15 - 47, PostGetHeight - 1, 47, 47);
+        UserFollowButton.frame = CGRectMake(screenWidth - 10 - 47, PostGetHeight - 1, 47, 47);
         UserFollowButton.tag = i;
         [UserFollowButton addTarget:self action:@selector(PostsUserOnCLick:) forControlEvents:UIControlEventTouchUpInside];
         [PostView addSubview:UserFollowButton];
@@ -404,7 +404,7 @@
         }
         [CollectButton setBackgroundColor:[UIColor clearColor]];
        // [CollectButton setImage:[UIImage imageNamed:@"collected_icon.png"] forState:UIControlStateNormal];
-        CollectButton.frame = CGRectMake(screenWidth - 15 - 57, PostGetHeight + 67, 57, 57);
+        CollectButton.frame = CGRectMake(screenWidth - 10 - 57, PostGetHeight + 67, 57, 57);
         CollectButton.tag = i;
         [CollectButton addTarget:self action:@selector(CollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
         [PostView addSubview:CollectButton];

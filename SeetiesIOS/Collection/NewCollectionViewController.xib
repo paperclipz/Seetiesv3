@@ -26,16 +26,21 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewCollectionViewController">
             <connections>
                 <outlet property="BarImage" destination="MrV-xO-ImG" id="mGx-Ad-qdV"/>
+                <outlet property="CollectionTitle" destination="o4Y-dg-PQD" id="LC0-f2-dSK"/>
                 <outlet property="DescriptionTextView" destination="eoW-5U-PhY" id="wDI-z0-UGq"/>
+                <outlet property="DescriptionTitle" destination="DuL-QE-iiX" id="e4Q-UB-fmh"/>
                 <outlet property="MainScroll" destination="8J7-nD-K7f" id="ROD-PF-fUs"/>
                 <outlet property="NameTextView" destination="NbG-Ni-Wbp" id="an4-R6-mGz"/>
                 <outlet property="SaveButton" destination="jPW-Wi-R3M" id="cN4-yD-JKr"/>
                 <outlet property="SetPublicView" destination="FLm-3d-4FV" id="tFo-fx-94K"/>
                 <outlet property="SetTagsView" destination="Iw2-NA-abZ" id="MsY-D7-NmL"/>
+                <outlet property="SetasPublicTitle" destination="DQO-39-IcY" id="pPc-v7-i2e"/>
                 <outlet property="ShowActivity" destination="0Qs-6Z-82O" id="OyO-86-kiS"/>
                 <outlet property="ShowDescriptionCount" destination="BsQ-z8-hWZ" id="5yp-Jv-YP5"/>
                 <outlet property="ShowNameCount" destination="MgJ-sO-PFA" id="YP5-6f-lGf"/>
                 <outlet property="ShowTitle" destination="Iab-85-yrp" id="C3f-RH-gfT"/>
+                <outlet property="SubTitleSetasPublic" destination="Z69-5g-rcc" id="Yla-vn-i5b"/>
+                <outlet property="TagTitle" destination="TPh-fc-H2b" id="xoj-3J-Jwd"/>
                 <outlet property="TagsField" destination="ftZ-ak-OE8" id="Gdq-Ak-YUA"/>
                 <outlet property="TagsLine" destination="H7g-pt-sf2" id="4eG-U9-uoi"/>
                 <outlet property="TickButton" destination="Ye1-ge-WQd" id="eUn-yq-RRJ"/>
@@ -51,13 +56,6 @@
                     <rect key="frame" x="0.0" y="64" width="320" height="444"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collection name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="o4Y-dg-PQD">
-                            <rect key="frame" x="20" y="13" width="168" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="15"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DuL-QE-iiX">
                             <rect key="frame" x="20" y="122" width="168" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -90,7 +88,7 @@
                             <rect key="frame" x="20" y="300" width="280" height="178"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap suggestions to add into your tags" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tN1-Zn-Rcn">
+                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap suggestions to add into your tags" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tN1-Zn-Rcn">
                                     <rect key="frame" x="8" y="58" width="272" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="12"/>
@@ -120,6 +118,13 @@
                         </textView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 / 150" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BsQ-z8-hWZ">
                             <rect key="frame" x="220" y="247" width="80" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="15"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collection name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="o4Y-dg-PQD">
+                            <rect key="frame" x="20" y="13" width="168" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="15"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>

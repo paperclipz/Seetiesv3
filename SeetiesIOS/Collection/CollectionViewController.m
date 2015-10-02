@@ -374,7 +374,7 @@
         ShowAboutText.numberOfLines = 0;
         ShowAboutText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowAboutText.textColor = [UIColor colorWithRed:161.0f/255.0f green:161.0f/255.0f blue:161.0f/255.0f alpha:1.0f];
-        ShowAboutText.textAlignment = NSTextAlignmentLeft;
+        ShowAboutText.textAlignment = NSTextAlignmentCenter;
         [MainScroll addSubview:ShowAboutText];
         
         CGSize size = [ShowAboutText sizeThatFits:CGSizeMake(ShowAboutText.frame.size.width, CGFLOAT_MAX)];
@@ -492,6 +492,7 @@
     
     if (CheckClick == 0) {
         CheckClick = 1;
+        GridView.hidden = NO;
         [self InitGridViewData];
     }else{
         GridView.hidden = NO;

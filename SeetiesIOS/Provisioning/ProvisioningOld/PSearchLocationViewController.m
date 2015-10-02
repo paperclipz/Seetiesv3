@@ -24,7 +24,7 @@
     BarImage.frame = CGRectMake(0, 0, screenWidth, 121);
     tblview.frame = CGRectMake(0, 154, screenWidth, screenHeight - 154);
     ShowTitle.frame = CGRectMake(15, 20, screenWidth - 30, 44);
-    SearchBar.frame = CGRectMake(15, 66, screenWidth - 30, 44);
+    SearchBar.frame = CGRectMake(0, 61, screenWidth, 53);
     SearchLocationField.frame = CGRectMake(49, 66, screenWidth - 49 - 25, 44);
     LineButton.frame = CGRectMake(0, 153, screenWidth, 1);
     SearchLocationField.delegate = self;
@@ -481,15 +481,15 @@
         CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
         
         UIImageView *ShowMapPin = [[UIImageView alloc]init];
-        ShowMapPin.frame = CGRectMake(15, 17, 11, 15);
-        ShowMapPin.image = [UIImage imageNamed:@"SearchBoxPin.png"];
+        ShowMapPin.frame = CGRectMake(10, 17, 25, 25);
+        ShowMapPin.image = [UIImage imageNamed:@"BluePin.png"];
         
         UILabel *ShowName = [[UILabel alloc]init];
-        ShowName.frame = CGRectMake(40, 0, screenWidth - 60, 50);
-        ShowName.textColor = [UIColor darkGrayColor];
+        ShowName.frame = CGRectMake(45, 0, screenWidth - 60, 60);
+        ShowName.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
         ShowName.tag = 100;
         ShowName.backgroundColor = [UIColor clearColor];
-        ShowName.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
+        ShowName.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowName.numberOfLines = 5;
         [cell addSubview:ShowMapPin];
         [cell addSubview:ShowName];

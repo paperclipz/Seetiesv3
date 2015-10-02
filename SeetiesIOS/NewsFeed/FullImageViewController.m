@@ -43,7 +43,7 @@
 {
     //    //Do what you want here
     CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
+    transition.duration = 1.0;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     transition.type = kCATransitionPush;
     transition.subtype = kCATransitionFromBottom;
@@ -91,6 +91,14 @@
     
     NSLog(@"GetAllFullImageArray is %@",GetAllFullImageArray);
     NSLog(@"GetCurrentIdn is %li",(long)GetCurrentIdn);
+    
+    UIImageView *ShowOverlayImg = [[UIImageView alloc]init];
+    ShowOverlayImg.image = [UIImage imageNamed:@"PreviewPhotoBlackOverlay.png"];
+    ShowOverlayImg.frame = CGRectMake(0, 0, screenWidth , screenHeight);
+    ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
+    ShowOverlayImg.layer.masksToBounds = YES;
+    //ShowOverlayImg.layer.cornerRadius = 5;
+    [MImageScroll addSubview:ShowOverlayImg];
     
     for (int i = 0 ; i < [GetAllFullImageArray count]; i++) {
         ImageScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0 + i * screenWidth, 0, screenWidth, screenHeight)];
@@ -159,13 +167,7 @@
     }
     
     
-    UIImageView *ShowOverlayImg = [[UIImageView alloc]init];
-    ShowOverlayImg.image = [UIImage imageNamed:@"PreviewPhotoBlackOverlay.png"];
-    ShowOverlayImg.frame = CGRectMake(0, 0, screenWidth , screenHeight);
-    ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
-    ShowOverlayImg.layer.masksToBounds = YES;
-    //ShowOverlayImg.layer.cornerRadius = 5;
-    [MImageScroll addSubview:ShowOverlayImg];
+
     
     
     NSInteger productcount = [GetAllFullImageArray count];

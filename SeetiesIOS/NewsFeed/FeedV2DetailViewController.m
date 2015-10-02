@@ -36,7 +36,7 @@
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     ShareButton.frame = CGRectMake(screenWidth - 55, 0, 55, 64);
-    ShareIcon.frame = CGRectMake(screenWidth - 38 - 15, 22, 38, 38);
+    ShareIcon.frame = CGRectMake(screenWidth - 38 - 5, 22, 38, 38);
     PageControlOn.frame = CGRectMake(15, 300, screenWidth - 30, 37);
     LocationButton.frame = CGRectMake(screenWidth - 85 - 15, 20, 60, 44);
     
@@ -90,9 +90,9 @@
     
     LineButton.frame = CGRectMake(screenWidth - 105 - 15, screenHeight - 23, 105, 1);
 
-    LikeButton.frame = CGRectMake(20, 1, 50, 60);
-    CommentButton.frame = CGRectMake(70, 1, 50, 60);
-    shareFBButton.frame = CGRectMake(120, 1, 50, 60);
+    LikeButton.frame = CGRectMake(20, 14, 37, 37);
+    CommentButton.frame = CGRectMake(70, 14, 37, 37);
+    shareFBButton.frame = CGRectMake(120, 14, 37, 37);
     
     
     [AllCollectButton setImage:[UIImage imageNamed:@"CollectBtn.png"] forState:UIControlStateNormal];
@@ -1380,7 +1380,7 @@
         if ([ResultString isEqualToString:@"ok"]) {
             if ([GetFollowing isEqualToString:@"0"]) {
                 GetFollowing = @"1";
-                [ShowFollowButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                [ShowFollowButton setTitleColor:[UIColor colorWithRed:156.0f/255.0f green:204.0f/255.0f blue:101.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
                 [ShowFollowButton setTitle:@"Following" forState:UIControlStateNormal];
                 [ShowFollowButton setImage:[UIImage imageNamed:@"ProfileFollowingIcon.png"] forState:UIControlStateNormal];
                 [ShowFollowButton setBackgroundImage:[UIImage imageNamed:@"FollowingBtn.png"] forState:UIControlStateNormal];
@@ -1671,10 +1671,10 @@
     int GetMessageHeight = GetHeightCheck;
 
     AsyncImageView *UserImage = [[AsyncImageView alloc]init];
-    UserImage.frame = CGRectMake(20, GetMessageHeight + 10, 50, 50);
+    UserImage.frame = CGRectMake(20, GetMessageHeight + 15, 38, 38);
     UserImage.contentMode = UIViewContentModeScaleAspectFill;
     UserImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
-    UserImage.layer.cornerRadius=25;
+    UserImage.layer.cornerRadius= 19;
     UserImage.layer.borderWidth=0;
     UserImage.layer.masksToBounds = YES;
     UserImage.layer.borderColor=[[UIColor whiteColor] CGColor];
@@ -1690,51 +1690,42 @@
     }
     [MainScroll addSubview:UserImage];
     
-    UIButton *OpenProfileButton = [[UIButton alloc]init];
-    OpenProfileButton.frame = CGRectMake(20, GetMessageHeight + 10, 250, 50);
-    [OpenProfileButton setTitle:@"" forState:UIControlStateNormal];
-    [OpenProfileButton setBackgroundColor:[UIColor clearColor]];
-    [OpenProfileButton addTarget:self action:@selector(OpenProfileButton:) forControlEvents:UIControlEventTouchUpInside];
-    [MainScroll addSubview:OpenProfileButton];
-    
     UILabel *ShowUserName = [[UILabel alloc]init];
-    ShowUserName.frame = CGRectMake(85, GetMessageHeight + 10, 190, 50);
+    ShowUserName.frame = CGRectMake(72, GetMessageHeight + 10, screenWidth - 140 - 72, 50);
     ShowUserName.text = GetPostName;
     ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
    // ShowUserName.textColor = color;
     ShowUserName.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
     [MainScroll addSubview:ShowUserName];
     
-//    NSString *TempTimeString = [[NSString alloc]initWithFormat:@"Posted on %@",GetPostTime];
-//    
-//    UILabel *ShowPostDate = [[UILabel alloc]init];
-//    ShowPostDate.frame = CGRectMake(101, GetMessageHeight + 50, 170, 20);
-//    ShowPostDate.text = TempTimeString;
-//    ShowPostDate.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:12];
-//    ShowPostDate.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
-//    [MainScroll addSubview:ShowPostDate];
-    
-
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetUsername = [defaults objectForKey:@"UserName"];
     if ([GetUsername isEqualToString:GetPostName]) {
         //follow button
 
     }else{
+        UIButton *OpenProfileButton = [[UIButton alloc]init];
+        OpenProfileButton.frame = CGRectMake(20, GetMessageHeight + 10, 250, 50);
+        [OpenProfileButton setTitle:@"" forState:UIControlStateNormal];
+        [OpenProfileButton setBackgroundColor:[UIColor clearColor]];
+        [OpenProfileButton addTarget:self action:@selector(OpenProfileButton:) forControlEvents:UIControlEventTouchUpInside];
+        [MainScroll addSubview:OpenProfileButton];
+        
         ShowFollowButton = [[UIButton alloc]init];
-        ShowFollowButton.frame = CGRectMake(screenWidth - 120 - 20, GetMessageHeight + 15, 120, 40);
+        ShowFollowButton.frame = CGRectMake(screenWidth - 120 - 15, GetMessageHeight + 15, 120, 40);
         if ([GetFollowing isEqualToString:@"0"]) {
             [ShowFollowButton setTitle:LocalisedString(@"Follow") forState:UIControlStateNormal];
             [ShowFollowButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             [ShowFollowButton setImage:[UIImage imageNamed:@"ProfileFollowIcon.png"] forState:UIControlStateNormal];
             [ShowFollowButton setBackgroundImage:[UIImage imageNamed:@"FollowBtn.png"] forState:UIControlStateNormal];
         }else{
-            [ShowFollowButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [ShowFollowButton setTitleColor:[UIColor colorWithRed:156.0f/255.0f green:204.0f/255.0f blue:101.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
             [ShowFollowButton setTitle:LocalisedString(@"Following") forState:UIControlStateNormal];
             [ShowFollowButton setImage:[UIImage imageNamed:@"ProfileFollowingIcon.png"] forState:UIControlStateNormal];
             [ShowFollowButton setBackgroundImage:[UIImage imageNamed:@"FollowingBtn.png"] forState:UIControlStateNormal];
         }
+        ShowFollowButton.imageEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);
+        ShowFollowButton.titleEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);
         ShowFollowButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
         ShowFollowButton.backgroundColor = [UIColor clearColor];
         [ShowFollowButton addTarget:self action:@selector(FollowButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -1929,7 +1920,7 @@
                 int TempWidth = 50 + ShowUserName.frame.size.width + 10;
                 
                 UILabel *Showcomment = [[UILabel alloc]init];
-                Showcomment.frame = CGRectMake(TempWidth, GetMessageHeight + 10+ i, screenWidth - TempWidth - 15, 25);
+                Showcomment.frame = CGRectMake(TempWidth, GetMessageHeight + 5+ i, screenWidth - TempWidth - 15, 25);
                 //  Showcomment.text = [MessageArray objectAtIndex:i];
                 Showcomment.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
                 Showcomment.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
@@ -1984,28 +1975,28 @@
                 }
                 
                 
-                GetMessageHeight += 20;
+                GetMessageHeight += 23;
             }
-            GetMessageHeight += 15;
+            GetMessageHeight += 20;
             
-            UIButton *Line01 = [[UIButton alloc]init];
-            Line01.frame = CGRectMake(0, GetMessageHeight, screenWidth, 1);
-            [Line01 setTitle:@"" forState:UIControlStateNormal];//238
-            [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
-            [MainScroll addSubview:Line01];
-            
-            UIButton *SeeAllCommentButton = [[UIButton alloc]init];
-            SeeAllCommentButton.frame = CGRectMake(0, GetMessageHeight + 1, screenWidth, 50);
-            [SeeAllCommentButton setTitle:LocalisedString(@"See all activities") forState:UIControlStateNormal];
-            [SeeAllCommentButton setBackgroundColor:[UIColor clearColor]];
-            [SeeAllCommentButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
-            [SeeAllCommentButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
-            [SeeAllCommentButton addTarget:self action:@selector(CommentButton:) forControlEvents:UIControlEventTouchUpInside];
-           // SeeAllCommentButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-
-            [MainScroll addSubview:SeeAllCommentButton];
-            
-            GetMessageHeight += 51;
+//            UIButton *Line01 = [[UIButton alloc]init];
+//            Line01.frame = CGRectMake(0, GetMessageHeight, screenWidth, 1);
+//            [Line01 setTitle:@"" forState:UIControlStateNormal];//238
+//            [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+//            [MainScroll addSubview:Line01];
+//            
+//            UIButton *SeeAllCommentButton = [[UIButton alloc]init];
+//            SeeAllCommentButton.frame = CGRectMake(0, GetMessageHeight + 1, screenWidth, 50);
+//            [SeeAllCommentButton setTitle:LocalisedString(@"See all activities") forState:UIControlStateNormal];
+//            [SeeAllCommentButton setBackgroundColor:[UIColor clearColor]];
+//            [SeeAllCommentButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
+//            [SeeAllCommentButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+//            [SeeAllCommentButton addTarget:self action:@selector(CommentButton:) forControlEvents:UIControlEventTouchUpInside];
+//           // SeeAllCommentButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+//
+//            [MainScroll addSubview:SeeAllCommentButton];
+//            
+//            GetMessageHeight += 51;
             
             
         }else{
@@ -2092,9 +2083,9 @@
                 if([Showcomment sizeThatFits:CGSizeMake(screenWidth - TempWidth - 15, CGFLOAT_MAX)].height!=Showcomment.frame.size.height)
                 {
                 Showcomment.frame = CGRectMake(TempWidth, GetMessageHeight+ 8+ i, screenWidth - TempWidth - 15,[Showcomment sizeThatFits:CGSizeMake(screenWidth - TempWidth - 15, CGFLOAT_MAX)].height);
-                GetMessageHeight += [Showcomment sizeThatFits:CGSizeMake(screenWidth - TempWidth - 15, CGFLOAT_MAX)].height + 10;
+                GetMessageHeight += [Showcomment sizeThatFits:CGSizeMake(screenWidth - TempWidth - 15, CGFLOAT_MAX)].height + 13;
                 }else{
-                GetMessageHeight += 20;
+                GetMessageHeight += 23;
                 }
 
 //                NSLog(@"ShowUserName height === %f",ShowUserName.frame.origin.y);
@@ -2106,6 +2097,25 @@
         }
     }
     //NSLog(@"GetMessageHeight ==== %i",GetMessageHeight);
+    
+    UIButton *LineFinalAcrivities = [[UIButton alloc]init];
+    LineFinalAcrivities.frame = CGRectMake(0, GetMessageHeight, screenWidth, 1);
+    [LineFinalAcrivities setTitle:@"" forState:UIControlStateNormal];//238
+    [LineFinalAcrivities setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+    [MainScroll addSubview:LineFinalAcrivities];
+    
+    UIButton *SeeAllCommentButton = [[UIButton alloc]init];
+    SeeAllCommentButton.frame = CGRectMake(0, GetMessageHeight + 1, screenWidth, 50);
+    [SeeAllCommentButton setTitle:LocalisedString(@"See all activities") forState:UIControlStateNormal];
+    [SeeAllCommentButton setBackgroundColor:[UIColor clearColor]];
+    [SeeAllCommentButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
+    [SeeAllCommentButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+    [SeeAllCommentButton addTarget:self action:@selector(CommentButton:) forControlEvents:UIControlEventTouchUpInside];
+    // SeeAllCommentButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    
+    [MainScroll addSubview:SeeAllCommentButton];
+    
+    GetMessageHeight += 51;
     
     UIButton *Line01 = [[UIButton alloc]init];
     Line01.frame = CGRectMake(0, GetMessageHeight, screenWidth, 20);
@@ -2163,7 +2173,7 @@
 //    [MainScroll addSubview:DemoWhiteButton];
     
     UIImageView *ShowLocationIcon = [[UIImageView alloc]init];
-    ShowLocationIcon.frame = CGRectMake(10, GetMessageHeight + 18, 25, 25);
+    ShowLocationIcon.frame = CGRectMake(20, GetMessageHeight + 18, 25, 25);
     ShowLocationIcon.image = [UIImage imageNamed:@"BluePin.png"];
     [MainScroll addSubview:ShowLocationIcon];
     
@@ -2180,6 +2190,10 @@
 //    [MainScroll addSubview:ShowArrowRight];
     
     GetMessageHeight += 40;
+    
+    if ([GetPlaceFormattedAddress length] == 0 || [GetPlaceFormattedAddress isEqualToString:@"<null>"]) {
+        GetPlaceFormattedAddress = @"";
+    }
     
     UILabel *ShowPlaceFormattedAddress = [[UILabel alloc]init];
     ShowPlaceFormattedAddress.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
@@ -3141,7 +3155,7 @@
                                                                  delegate:self
                                                         cancelButtonTitle:CustomLocalisedString(@"SettingsPage_Cancel", nil)
                                                    destructiveButtonTitle:nil
-                                                        otherButtonTitles:@"Report", nil];
+                                                        otherButtonTitles:LocalisedString(@"Report"), nil];
         
         [actionSheet showInView:self.view];
         

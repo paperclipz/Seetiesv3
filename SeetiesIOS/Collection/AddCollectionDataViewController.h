@@ -34,6 +34,10 @@
     IBOutlet UIActivityIndicatorView *ShowActivity;
     
     BOOL CheckReflash;
+    
+    IBOutlet UILabel *CollectThisTitle;
+    IBOutlet UILabel *PickaCollectionTitle;
+    IBOutlet UIButton *CreateCollectionButton;
 }
 -(void)GetPostID:(NSString *)PostID GetImageData:(NSString *)ImageData;
 -(IBAction)CreateCollectionButton:(id)sender;
