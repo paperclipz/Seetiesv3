@@ -113,7 +113,7 @@
     </objects>
     <resources>
         <image name="BluePin.png" width="25" height="25"/>
-        <image name="CollectionCrossBtn@3x.png" width="33" height="33"/>
+        <image name="CollectionCrossBtn@3x.png" width="40" height="40"/>
         <image name="RearrangeIcon.png" width="30" height="30"/>
     </resources>
 </document>

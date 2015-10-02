@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ArticleViewController">
             <connections>
                 <outlet property="ibBackgroundView" destination="tcq-be-GNt" id="WLm-SX-lCc"/>
+                <outlet property="ibImageView" destination="uj4-Co-5Ii" id="Cpj-w5-6BO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

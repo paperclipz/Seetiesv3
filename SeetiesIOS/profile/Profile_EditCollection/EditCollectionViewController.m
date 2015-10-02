@@ -10,7 +10,7 @@
 #import "EditCollectionTableViewCell.h"
 
 @interface EditCollectionViewController ()
-@property (strong, nonatomic) NSMutableArray *arrList;
+@property (strong, nonatomic) NSMutableArray *arrList; // use this to update collection
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 @property (weak, nonatomic) IBOutlet UIButton *ibBtnEdit;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
@@ -96,6 +96,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
+    
     return self.arrList.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -114,6 +115,9 @@
         [self.arrList removeObjectAtIndex:indexPath.row];
         
         [self.ibTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:YES];
+        
+        self.lblNumberOfRecommendation.text = [NSString stringWithFormat:@"%lu %@",(unsigned long)self.arrList.count,LocalisedString(@"Recommendations")];
+
         [self.ibTableView endUpdates];
     
     };
@@ -231,9 +235,9 @@
     
     NSMutableDictionary* finalDict = [[NSMutableDictionary alloc]initWithDictionary:dict];
     
-    for (int i = 0; i<self.collectionModel.arrayPost.count; i++) {
+    for (int i = 0; i<self.arrList.count; i++) {
         
-        PostModel* model = self.collectionModel.arrayPost[i];
+        PostModel* model = self.arrList[i];
         NSDictionary* tempDict = @{@"id":model.post_id,
                                    @"note":model.collection_note
                                    //@"section":@"1"

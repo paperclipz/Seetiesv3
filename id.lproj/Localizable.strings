@@ -401,8 +401,7 @@
 ////////////////////////////////////////////////////////////////////// NEW as of OCtober 2015 /////////////////////////////////////////////////////////////////
 
 
-
-
+"qrimage"="BahasaIndonesia.png";
 
 "Discover the best places to eat, play, and shop."= "Temukan tempat makan, bermain dan belanja yang seru di kotamu";
 "Create your personal collections."= "Kumpulin rekomendasi favorit kamu di Koleksi pribadi";
@@ -966,3 +965,11 @@
 "Collect this"= "Koleksi ini";
 "Pick a collection"= "Pilih koleksi";
 "Create a new collection"= "Buat koleksi baru";
+
+"Oops!"= "Opps eror!";
+"Data Successfully Saved to Draft"= "Data kamu berhasih di simpan ke draf";
+"Camera Roll"= "Foto Album";
+"Searching..."= "Mencari..";
+"Seeties"= "Seeties";
+
+

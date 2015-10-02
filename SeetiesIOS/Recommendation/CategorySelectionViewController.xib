@@ -85,7 +85,7 @@
                         </collectionView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="coh-iY-kvS">
                             <rect key="frame" x="0.0" y="414" width="304" height="36"/>
-                            <color key="backgroundColor" red="0.14901960780000001" green="0.65098039220000004" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="36" id="Cft-PA-d3c"/>
                             </constraints>

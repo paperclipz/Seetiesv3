@@ -402,6 +402,8 @@
 
 ////////////////////////////////////////////////////////////////////// NEW as of OCtober 2015 /////////////////////////////////////////////////////////////////
 
+"qrimage"="Thai.png";
+
 "Discover the best places to eat, play, and shop."= "ค้นหาร้านกิน เที่ยว ช็อปที่เด็ดที่สุดในเมือง";
 "Create your personal collections."= "สร้างคอลเลคชันส่วนตัว รวบรวมภาพและข้อมูลโปรด";
 ""= "";
@@ -964,4 +966,13 @@
 "Collect this"= "เก็บรีวิว";
 "Pick a collection"= "เลือกคอลเลคชัน";
 "Create a new collection"= "สร้างคอลเลคชันใหม่";
+
+
+
+"Oops!"= "อุปส์!";
+"Data Successfully Saved to Draft"= "เซฟดราฟท์แล้ว ";
+"Camera Roll"= "อัลบั้ม";
+"Searching..."= "ค้นหา...";
+"Seeties"= "Seeties";
+
 

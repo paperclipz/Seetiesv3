@@ -409,6 +409,8 @@
 
 ////////////////////////////////////////////////////////////////////// NEW as of OCtober 2015 /////////////////////////////////////////////////////////////////
 
+"qrimage"="TraditionalChinese.png";
+
 
 "Discover the best places to eat, play, and shop."= "發現最夯最道地的吃喝玩樂好去處";
 "Create your personal collections."= "收藏好康，不再錯過\n";
@@ -972,3 +974,10 @@
 "Collect this"= "收藏";
 "Pick a collection"= "挑選收藏集";
 "Create a new collection"= "創建收藏集?";
+
+"Oops!"= "哎呀！系統有誤";
+"Data Successfully Saved to Draft"= "成功儲存草稿";
+"Camera Roll"= "相機膠卷";
+"Searching..."= "搜尋中...";
+"Seeties"= "Seeties";
+

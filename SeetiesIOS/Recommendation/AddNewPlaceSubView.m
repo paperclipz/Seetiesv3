@@ -105,7 +105,7 @@
     self.txtPerPax.delegate = self;
     self.txtPerPax.text = @"0.00";
     [Utils setButtonWithBorder:self.btnCurrency];
-    [Utils setRoundBorder:self.btnEditHours color:[UIColor grayColor] borderRadius:self.btnEditHours.frame.size.height/2];
+    [Utils setRoundBorder:self.btnEditHours color:TWO_ZERO_FOUR_COLOR borderRadius:self.btnEditHours.frame.size.height/2];
     [self.txtPhoneNo setKeyboardType:UIKeyboardTypePhonePad];
     
     CGRect frame = [Utils getDeviceScreenSize];

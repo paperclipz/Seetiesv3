@@ -957,6 +957,8 @@
 ////////////////////////////////////////////////////////////////////// NEW as of OCtober 2015 /////////////////////////////////////////////////////////////////
 
 
+"qrimage"="SimplifiedChinese.png";
+
 "Discover the best places to eat, play, and shop."= "发现最夯最道地的吃喝玩乐好去处";
 "Create your personal collections."= "收藏好康，不再错过\n";
 ""= "";
@@ -1519,4 +1521,12 @@
 "Collect this"= "收藏";
 "Pick a collection"= "挑选收藏集";
 "Create a new collection"= "创建收藏集?";
+
+
+"Oops!"= "哎呀！系统有误";
+"Data Successfully Saved to Draft"= "成功储存草稿";
+"Camera Roll"= "相机胶卷";
+"Searching..."= "搜寻中...";
+"Seeties"= "Seeties";
+
 

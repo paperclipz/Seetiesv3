@@ -45,7 +45,7 @@
         return;
     }
     if ([CLLocationManager isLocationUpdatesAvailable]) {
-        [LoadingManager showWithTitle:@"GPS"];
+        [LoadingManager showWithTitle:[NSString stringWithFormat:@"%@ GPS",LocalisedString(@"Searching...")]];
         
         
         self.manager = [CLLocationManager updateManagerWithAccuracy:50.0 locationAge:15.0 authorizationDesciption:CLLocationUpdateAuthorizationDescriptionAlways];
@@ -98,8 +98,8 @@
 
 -(void)getSuggestedLocationFromFoursquare:(CLLocation*)tempCurrentLocation input:(NSString*)input completionBlock:(IDBlock)completionBlock
 {
-    
-    [LoadingManager showWithTitle:@"FOURSQUARE"];
+    [LoadingManager showWithTitle:[NSString stringWithFormat:@"%@ foursquare",LocalisedString(@"Searching...")]];
+
     SLog(@"long : %f  || lat: %f",tempCurrentLocation.coordinate.longitude,tempCurrentLocation.coordinate.latitude);
 
     if (tempCurrentLocation) {

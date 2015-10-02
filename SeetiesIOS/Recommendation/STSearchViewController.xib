@@ -55,7 +55,7 @@
                             </constraints>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" red="0.14901960780000001" green="0.65098039220000004" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="mat-c0-Eej" firstAttribute="top" secondItem="UgD-Tr-Gxj" secondAttribute="bottom" constant="-44" id="3L5-EX-hGO"/>
                         <constraint firstAttribute="height" constant="64" id="H2Y-qK-fmI"/>
@@ -93,7 +93,7 @@
                             </constraints>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" red="0.14901960780000001" green="0.65098039220000004" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="centerY" secondItem="o6z-UK-rfa" secondAttribute="centerY" constant="2" id="4Kw-HZ-eiD"/>
                         <constraint firstItem="qaW-Pd-Qxk" firstAttribute="leading" secondItem="pbP-9h-7UH" secondAttribute="leading" constant="8" id="6qe-aR-Md0"/>

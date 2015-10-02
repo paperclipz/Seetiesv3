@@ -85,7 +85,7 @@
     if (aSelected.count == 0) {
         
         [TSMessage showNotificationInViewController:self.doImagePickerController
-                                              title:LocalisedString(@"Error")
+                                              title:LocalisedString(@"error")
                                            subtitle:LocalisedString(@"No Image Selected")
                                               image:nil
                                                type:TSMessageNotificationTypeError

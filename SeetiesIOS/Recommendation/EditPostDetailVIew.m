@@ -29,7 +29,11 @@
     self.txtDescription.delegate = self;
     self.txtTitle.delegate = self;
     
-    [Utils setRoundBorder:self.txtDescription color:[Utils defaultTextColor] borderRadius:5.0f];
+    [self.txtTitle addTarget:self
+                  action:@selector(textFieldDidChange:)
+        forControlEvents:UIControlEventEditingChanged];
+    
+    [Utils setRoundBorder:self.txtDescription color:TWO_ZERO_FOUR_COLOR borderRadius:5.0f];
     [self getCounterText:self.lblTitleIndicator maxCount:TITLE_MAX_COUNT textInputCount:(int)self.txtTitle.text.length];
     [self getCounterText:self.lblDescIndicator maxCount:DESC_MAX_COUNT textInputCount:(int)self.txtDescription.text.length];
     CGFloat yourSelectedFontSize = 15.0 ;
@@ -58,17 +62,27 @@
 
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+//{
+//    
+//    SLog(@"count = %lu",textField.text.length);
+//    NSString *currentString = [textField.text substringWithRange:NSMakeRange(0, textField.text.length>=TITLE_MAX_COUNT?TITLE_MAX_COUNT:textField.text.length)];
+//
+//    textField.text = currentString;
+//    [self getCounterText:self.lblTitleIndicator maxCount:TITLE_MAX_COUNT textInputCount:(int)textField.text.length];
+//
+//    return YES;
+//}
+
+- (void)textFieldDidChange:(UITextField *)textField
 {
     NSString *currentString = [textField.text substringWithRange:NSMakeRange(0, textField.text.length>=TITLE_MAX_COUNT?TITLE_MAX_COUNT:textField.text.length)];
-
+    
     textField.text = currentString;
+    
     [self getCounterText:self.lblTitleIndicator maxCount:TITLE_MAX_COUNT textInputCount:(int)textField.text.length];
-
-    return YES;
+    
 }
-
-
 - (void)textViewDidChange:(UITextView *)textView
 {
     NSString *currentString = [textView.text substringWithRange:NSMakeRange(0, textView.text.length>=DESC_MAX_COUNT?TITLE_MAX_COUNT:textView.text.length)];
