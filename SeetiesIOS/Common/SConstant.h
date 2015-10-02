@@ -91,5 +91,8 @@ extern NSString *const kAFAviarySecret;
 
 #define ErrorTitle @"Error"
 #define GoodNetwork YES
+
+#define BORDER_WIDTH 1.0f
+
 #endif
 

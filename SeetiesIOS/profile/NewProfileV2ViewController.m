@@ -1585,20 +1585,23 @@
     
     NSString* collectionID = CollectionData_IDArray[getbuttonIDN];
     
-    
+    _navEditCollectionViewController = nil;
     _editCollectionViewController = nil;// for the view controller to reinitialize
     
-    
     [LoadingManager show];
+    
     [self.editCollectionViewController requestServerForCollectionDetails:collectionID successBlock:^(id object) {
         
         [self.editCollectionViewController initData:[[ConnectionManager dataManager] collectionModels]];
-        [self.navigationController pushViewController:self.editCollectionViewController animated:YES];
-        [LoadingManager hide];
+        
+        [self presentViewController:self.navEditCollectionViewController animated:YES completion:^{
+            
+        }];
+       // [LoadingManager hide];
 
     } failBlock:^(id object) {
         [TSMessage showNotificationInViewController:self title:@"System" subtitle:@"Error" type:TSMessageNotificationTypeError duration:1.0f canBeDismissedByUser:YES];
-        [LoadingManager hide];
+      //  [LoadingManager hide];
 
     }];
 }
@@ -1613,6 +1616,19 @@
     
     }
     return _editCollectionViewController;
+}
+
+-(UINavigationController*)navEditCollectionViewController
+{
+    
+    if (!_navEditCollectionViewController) {
+        
+        _navEditCollectionViewController = [[UINavigationController alloc]initWithRootViewController:self.editCollectionViewController];
+        [_navEditCollectionViewController setNavigationBarHidden:YES animated:NO];
+
+        
+    }
+    return _navEditCollectionViewController;
 }
 -(IBAction)EditProfileButtonOnClick:(id)sender{
     EditProfileV2ViewController *EditProfileView = [[EditProfileV2ViewController alloc]init];

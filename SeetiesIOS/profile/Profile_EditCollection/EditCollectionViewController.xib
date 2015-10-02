@@ -4,11 +4,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <mutableArray key="ProximaNovaSoft-Regular.ttf">
-            <string>ProximaNovaSoft-Regular</string>
-        </mutableArray>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditCollectionViewController">
             <connections>
@@ -29,6 +24,12 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TY1-cM-rx7">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                     <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Collection" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yTF-k4-TMk">
+                            <rect key="frame" x="0.0" y="29" width="320" height="21"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hgh-Mo-OSQ">
                             <rect key="frame" x="-5" y="20" width="40" height="40"/>
                             <constraints>
@@ -62,12 +63,6 @@
                                 <action selector="btnDoneClicked:" destination="-1" eventType="touchUpInside" id="nRL-bh-QhA"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Collection" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yTF-k4-TMk">
-                            <rect key="frame" x="0.0" y="29" width="320" height="21"/>
-                            <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="17"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                     </subviews>
                     <color key="backgroundColor" red="0.14901960780000001" green="0.65098039220000004" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -146,7 +141,7 @@
                                 <constraint firstAttribute="height" constant="21" id="ieG-xc-dcq"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
@@ -170,21 +165,21 @@
                         <constraint firstItem="g4W-BL-qK1" firstAttribute="leading" secondItem="C1b-4G-swU" secondAttribute="leading" id="ziD-5l-DCY"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="120" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="kQ5-xQ-m0t">
-                    <rect key="frame" x="0.0" y="221" width="320" height="297"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="120" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="kQ5-xQ-m0t">
+                    <rect key="frame" x="5" y="221" width="310" height="347"/>
                     <color key="backgroundColor" red="0.89411764705882357" green="0.90980392156862744" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" red="0.89411764709999997" green="0.90980392160000001" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="C1b-4G-swU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="6qA-Fu-cjH"/>
-                <constraint firstAttribute="bottom" secondItem="kQ5-xQ-m0t" secondAttribute="bottom" constant="50" id="9bI-Os-eMr"/>
+                <constraint firstAttribute="bottom" secondItem="kQ5-xQ-m0t" secondAttribute="bottom" id="9bI-Os-eMr"/>
                 <constraint firstAttribute="trailing" secondItem="C1b-4G-swU" secondAttribute="trailing" id="CeX-Xd-cWc"/>
-                <constraint firstItem="kQ5-xQ-m0t" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="GCy-zc-0CE"/>
+                <constraint firstItem="kQ5-xQ-m0t" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="5" id="GCy-zc-0CE"/>
                 <constraint firstAttribute="trailing" secondItem="TY1-cM-rx7" secondAttribute="trailing" id="S5G-Ur-9ri"/>
                 <constraint firstItem="TY1-cM-rx7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Uh6-KM-KSQ"/>
                 <constraint firstItem="g9g-zm-puu" firstAttribute="top" secondItem="TY1-cM-rx7" secondAttribute="bottom" constant="24" id="Z2c-hJ-k9i"/>
-                <constraint firstAttribute="trailing" secondItem="kQ5-xQ-m0t" secondAttribute="trailing" id="jPp-wF-oWq"/>
+                <constraint firstAttribute="trailing" secondItem="kQ5-xQ-m0t" secondAttribute="trailing" constant="5" id="jPp-wF-oWq"/>
                 <constraint firstItem="kQ5-xQ-m0t" firstAttribute="top" secondItem="SdY-Do-FGt" secondAttribute="bottom" constant="20" id="jzm-tR-MkZ"/>
                 <constraint firstItem="C1b-4G-swU" firstAttribute="top" secondItem="TY1-cM-rx7" secondAttribute="bottom" constant="-1" id="kfq-c3-EDw"/>
                 <constraint firstItem="TY1-cM-rx7" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="lVp-hy-FaA"/>

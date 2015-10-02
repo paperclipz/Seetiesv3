@@ -531,6 +531,8 @@
 		8A8850641BBE2D960096E0D0 /* DeleteIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A88505C1BBE2D960096E0D0 /* DeleteIcon@3x.png */; settings = {ASSET_TAGS = (); }; };
 		8A8850651BBE2D960096E0D0 /* RearrangeIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A88505D1BBE2D960096E0D0 /* RearrangeIcon@2x.png */; settings = {ASSET_TAGS = (); }; };
 		8A8850661BBE2D960096E0D0 /* RearrangeIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A88505E1BBE2D960096E0D0 /* RearrangeIcon@3x.png */; settings = {ASSET_TAGS = (); }; };
+		8A8850691BBE3F250096E0D0 /* CheckGrey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A8850671BBE3F250096E0D0 /* CheckGrey@2x.png */; settings = {ASSET_TAGS = (); }; };
+		8A88506A1BBE3F250096E0D0 /* CheckGrey@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A8850681BBE3F250096E0D0 /* CheckGrey@3x.png */; settings = {ASSET_TAGS = (); }; };
 		8A959D631B8B252700722920 /* FXImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A959D601B8B252700722920 /* FXImageView.m */; };
 		8A959D641B8B252700722920 /* UIImage+FX.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A959D621B8B252700722920 /* UIImage+FX.m */; };
 		8A959D941B8C0CBA00722920 /* NMBottomTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A959D911B8C0CBA00722920 /* NMBottomTabBar.m */; };
@@ -1427,6 +1429,8 @@
 		8A88505C1BBE2D960096E0D0 /* DeleteIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DeleteIcon@3x.png"; sourceTree = "<group>"; };
 		8A88505D1BBE2D960096E0D0 /* RearrangeIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RearrangeIcon@2x.png"; sourceTree = "<group>"; };
 		8A88505E1BBE2D960096E0D0 /* RearrangeIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RearrangeIcon@3x.png"; sourceTree = "<group>"; };
+		8A8850671BBE3F250096E0D0 /* CheckGrey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CheckGrey@2x.png"; sourceTree = "<group>"; };
+		8A8850681BBE3F250096E0D0 /* CheckGrey@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CheckGrey@3x.png"; sourceTree = "<group>"; };
 		8A959D5F1B8B252700722920 /* FXImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXImageView.h; sourceTree = "<group>"; };
 		8A959D601B8B252700722920 /* FXImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXImageView.m; sourceTree = "<group>"; };
 		8A959D611B8B252700722920 /* UIImage+FX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FX.h"; sourceTree = "<group>"; };
@@ -2438,6 +2442,8 @@
 		8A7B9CFD1BBD389B00D7F604 /* Collection */ = {
 			isa = PBXGroup;
 			children = (
+				8A8850671BBE3F250096E0D0 /* CheckGrey@2x.png */,
+				8A8850681BBE3F250096E0D0 /* CheckGrey@3x.png */,
 				8A7B9CFE1BBD389B00D7F604 /* Check@2x.png */,
 				8A7B9CFF1BBD389B00D7F604 /* Check@3x.png */,
 				8A7B9D001BBD389B00D7F604 /* CollectionCrossBtn@2x.png */,
@@ -4312,6 +4318,7 @@
 				8A7B9F5A1BBD389C00D7F604 /* LocationpinIcon@2x.png in Resources */,
 				8A7B9F611BBD389C00D7F604 /* ShareToIcon@3x.png in Resources */,
 				8A7BA00D1BBD389C00D7F604 /* TimeIcon@3x.png in Resources */,
+				8A8850691BBE3F250096E0D0 /* CheckGrey@2x.png in Resources */,
 				8A7B9F481BBD389C00D7F604 /* Distance4Icon@2x.png in Resources */,
 				8A7B9FC21BBD389C00D7F604 /* NotificationComment@2x.png in Resources */,
 				8A7B9FC91BBD389C00D7F604 /* BlueLink@3x.png in Resources */,
@@ -4474,6 +4481,7 @@
 				8A7B9F131BBD389C00D7F604 /* LocationIcon@2x.png in Resources */,
 				8A8850621BBE2D960096E0D0 /* BigAddIcon@3x-1.png in Resources */,
 				8A7BA0091BBD389C00D7F604 /* SearchLocationIcon@3x.png in Resources */,
+				8A88506A1BBE3F250096E0D0 /* CheckGrey@3x.png in Resources */,
 				8A9F25C81B8ED33000BB13BA /* BKMoneyKit.bundle in Resources */,
 				8A7B9F591BBD389C00D7F604 /* LikeIcon@3x.png in Resources */,
 				8A7BA0111BBD389C00D7F604 /* YellowCollected@3x.png in Resources */,
@@ -5168,7 +5176,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Reiner Lee (EFSLZ63588)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5211,7 +5219,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Reiner Lee (EFSLZ63588)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

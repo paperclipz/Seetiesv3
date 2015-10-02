@@ -19,9 +19,9 @@
 @interface EditCollectionDetailViewController () <ZFTokenFieldDataSource, ZFTokenFieldDelegate>
 {
 
-    __weak IBOutlet UISwitch *btnPrivate;
+    __weak IBOutlet UIButton *btnSetPrivate;
     __weak IBOutlet UILabel *lblSetAsPublic;
-
+    __weak IBOutlet UIView *ibPrivacyView;
     __weak IBOutlet UILabel *lblSetAsPublicDesc;
 }
 @property (weak, nonatomic) IBOutlet UILabel *lblWordCountTitle;
@@ -43,6 +43,11 @@
 @end
 
 @implementation EditCollectionDetailViewController
+- (IBAction)btnPrivateClicked:(id)sender {
+    
+    UIButton* button = (UIButton*)sender;
+    button.selected = !button.selected;
+}
 - (IBAction)btnDoneClicked:(id)sender {
     
     if ([self.txtName.text isEqualToString:@""]) {
@@ -65,8 +70,6 @@
     }
     [self.navigationController popViewControllerAnimated:YES];
 }
-- (IBAction)btnPrivateClicked:(id)sender {
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -76,8 +79,17 @@
     self.txtName.text = self.collectionModel.name;
     self.txtDesc.text = self.collectionModel.postDesc;
     
+    if (self.collectionModel.isPrivate) {
+        btnSetPrivate.selected = !self.collectionModel.isPrivate;
+        btnSetPrivate.enabled = YES;
+    }
+    else{
+        btnSetPrivate.enabled = false;
+    }
+    
     [self getCounterText:self.lblWordCountTitle maxCount:TITLE_MAX_COUNT textInputCount:(int)self.txtName.text.length];
     [self getCounterText:self.lblWordCountDesc maxCount:DESC_MAX_COUNT textInputCount:(int)self.txtDesc.text.length];
+    [Utils setRoundBorder:ibPrivacyView color:TWO_ZERO_FOUR_COLOR borderRadius:0];
     
     [self changeLanguage];
     // Do any additional setup after loading the view from its nib.
@@ -159,11 +171,9 @@
 {
     self.collectionModel.name = self.txtName.text;
     self.collectionModel.postDesc = self.txtDesc.text;
+   
+    self.collectionModel.isPrivate = !btnSetPrivate.enabled;
 }
-
-
-
-
 
 
 #pragma mark - UICollectionView data source

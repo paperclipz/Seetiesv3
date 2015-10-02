@@ -5,6 +5,9 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <customFonts key="customFonts">
+        <mutableArray key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+        </mutableArray>
         <mutableArray key="ProximaNovaSoft-Bold.ttf">
             <string>ProximaNovaSoft-Bold</string>
         </mutableArray>
@@ -16,8 +19,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditCollectionDetailViewController">
             <connections>
-                <outlet property="btnPrivate" destination="6EB-ao-zyD" id="3Oq-0X-gNT"/>
+                <outlet property="btnSetPrivate" destination="LYD-Jh-D3m" id="MWh-Jb-Kmq"/>
                 <outlet property="ibContentView" destination="Eyb-u3-IAv" id="8ud-SE-A6I"/>
+                <outlet property="ibPrivacyView" destination="kdt-Lq-dv9" id="sIw-um-sOF"/>
                 <outlet property="ibScrollView" destination="9Fa-RN-9zv" id="U45-zM-i29"/>
                 <outlet property="ibTokenField" destination="L1c-IX-2Fb" id="Sfi-qz-h9m"/>
                 <outlet property="lblCollectionDesc" destination="Rwy-B2-60G" id="FH8-ku-ohr"/>
@@ -93,40 +97,63 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kdt-Lq-dv9" userLabel="bottomView">
-                    <rect key="frame" x="0.0" y="457" width="320" height="61"/>
+                    <rect key="frame" x="0.0" y="498" width="320" height="70"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Set as public" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WwL-k3-pQd">
-                            <rect key="frame" x="20" y="4" width="135" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set as public" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WwL-k3-pQd">
+                            <rect key="frame" x="20" y="12" width="222" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="2zU-ze-7o1"/>
+                            </constraints>
                             <fontDescription key="fontDescription" name="ProximaNovaSoft-Bold" family="Proxima Nova Soft" pointSize="18"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cannot change to private once you decide to set as public." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKN-Ro-Vab">
-                            <rect key="frame" x="20" y="21" width="233" height="37"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cannot change to private once you decide to set as public." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKN-Ro-Vab">
+                            <rect key="frame" x="20" y="29" width="233" height="37"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="37" id="i4H-oL-CmG"/>
+                            </constraints>
                             <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="15"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6EB-ao-zyD">
-                            <rect key="frame" x="263" y="15" width="51" height="31"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LYD-Jh-D3m">
+                            <rect key="frame" x="262" y="12" width="50" height="50"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="NLS-MV-Vxl"/>
+                                <constraint firstAttribute="height" constant="50" id="mQK-lD-2nI"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                            <state key="normal" image="Uncheck.png"/>
+                            <state key="disabled" image="CheckGrey.png"/>
+                            <state key="selected" image="Check.png"/>
                             <connections>
-                                <action selector="btnPrivateClicked:" destination="-1" eventType="valueChanged" id="aJC-xg-W15"/>
+                                <action selector="btnPrivateClicked:" destination="-1" eventType="touchUpInside" id="3BP-fB-fsX"/>
                             </connections>
-                        </switch>
+                        </button>
                     </subviews>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="61" id="YGb-Lr-KNl"/>
+                        <constraint firstItem="LYD-Jh-D3m" firstAttribute="leading" secondItem="BKN-Ro-Vab" secondAttribute="trailing" constant="9" id="0hc-cQ-BNu"/>
+                        <constraint firstItem="LYD-Jh-D3m" firstAttribute="top" secondItem="kdt-Lq-dv9" secondAttribute="top" constant="12" id="4ZP-US-xf1"/>
+                        <constraint firstItem="WwL-k3-pQd" firstAttribute="top" secondItem="kdt-Lq-dv9" secondAttribute="top" constant="12" id="7fV-Lf-i4h"/>
+                        <constraint firstItem="BKN-Ro-Vab" firstAttribute="leading" secondItem="kdt-Lq-dv9" secondAttribute="leading" constant="20" id="Lk3-Fr-6Vv"/>
+                        <constraint firstAttribute="height" constant="70" id="YGb-Lr-KNl"/>
+                        <constraint firstAttribute="trailing" secondItem="LYD-Jh-D3m" secondAttribute="trailing" constant="8" id="emt-no-kyz"/>
+                        <constraint firstItem="WwL-k3-pQd" firstAttribute="leading" secondItem="kdt-Lq-dv9" secondAttribute="leading" constant="20" id="gWC-Tc-Ybj"/>
+                        <constraint firstItem="LYD-Jh-D3m" firstAttribute="leading" secondItem="WwL-k3-pQd" secondAttribute="trailing" constant="20" id="n7o-XK-77W"/>
+                        <constraint firstItem="BKN-Ro-Vab" firstAttribute="top" secondItem="kdt-Lq-dv9" secondAttribute="top" constant="29" id="vh0-9k-8PY"/>
                     </constraints>
                 </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Fa-RN-9zv">
-                    <rect key="frame" x="0.0" y="64" width="320" height="391"/>
+                    <rect key="frame" x="0.0" y="64" width="320" height="434"/>
                 </scrollView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="kdt-Lq-dv9" secondAttribute="bottom" constant="50" id="0Tb-ne-n2V"/>
-                <constraint firstItem="kdt-Lq-dv9" firstAttribute="top" secondItem="9Fa-RN-9zv" secondAttribute="bottom" constant="2" id="0za-nO-CLi"/>
+                <constraint firstAttribute="bottom" secondItem="kdt-Lq-dv9" secondAttribute="bottom" id="0Tb-ne-n2V"/>
+                <constraint firstItem="kdt-Lq-dv9" firstAttribute="top" secondItem="9Fa-RN-9zv" secondAttribute="bottom" id="0za-nO-CLi"/>
                 <constraint firstItem="9Fa-RN-9zv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4D9-tJ-SwD"/>
                 <constraint firstItem="kdt-Lq-dv9" firstAttribute="trailing" secondItem="9Fa-RN-9zv" secondAttribute="trailing" id="4MJ-93-519"/>
                 <constraint firstAttribute="trailing" secondItem="9Fa-RN-9zv" secondAttribute="trailing" id="5jR-Z5-zgm"/>
@@ -257,6 +284,9 @@
     </objects>
     <resources>
         <image name="BackIcon.png" width="40" height="40"/>
+        <image name="Check.png" width="70" height="70"/>
+        <image name="CheckGrey.png" width="70" height="70"/>
         <image name="TickIcon.png" width="40" height="40"/>
+        <image name="Uncheck.png" width="70" height="70"/>
     </resources>
 </document>

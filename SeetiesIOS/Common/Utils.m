@@ -55,7 +55,7 @@
 +(void)setButtonWithBorder:(UIButton*)button
 {
     
-    [[button layer] setBorderWidth:0.3f];
+    [[button layer] setBorderWidth:BORDER_WIDTH];
     [[button layer] setBorderColor:[UIColor lightGrayColor].CGColor];
     [[button layer] setCornerRadius:5.0f];
 }
@@ -63,7 +63,7 @@
 +(void)setButtonWithBorder:(UIButton*)button color:(UIColor*)color
 {
     
-    [[button layer] setBorderWidth:0.3f];
+    [[button layer] setBorderWidth:BORDER_WIDTH];
     [[button layer] setBorderColor:color.CGColor];
     [[button layer] setCornerRadius:5.0f];
 }
@@ -71,7 +71,7 @@
 +(void)setRoundBorder:(UIView*)view color:(UIColor*)color borderRadius:(float)borderRadius
 {
 
-    [[view layer] setBorderWidth:0.3f];
+    [[view layer] setBorderWidth:BORDER_WIDTH];
     [[view layer] setBorderColor:color.CGColor];
     [[view layer] setCornerRadius:borderRadius];
     [[view layer] setMasksToBounds:YES];
