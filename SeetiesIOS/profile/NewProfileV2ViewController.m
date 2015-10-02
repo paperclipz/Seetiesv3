@@ -96,6 +96,7 @@
 - (UIStatusBarStyle) preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     // accelerate header just with half speed down, but with normal speed up
     if (scrollView.contentOffset.y > 0) {
@@ -1038,7 +1039,7 @@
 -(void)InitPostsView{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-<<<<<<< HEAD
+
     NSString *TempString = [[NSString alloc]initWithFormat:@"%@ %@",GetPostsDataCount,LocalisedString(@"Posts")];
     
     UILabel *ShowPostsCount = [[UILabel alloc]init];
@@ -1092,10 +1093,9 @@
             ShowImage.imageURL = url_NearbySmall;
         }
         [PostView addSubview:ShowImage];
-=======
+
     if ([GetPostsDataCount length] == 0 || [GetPostsDataCount isEqualToString:@"0"]) {
         GetPostsDataCount = @"";
->>>>>>> 0b7de18a24d3eea86f05ea10a86242f79be9007b
         
         UIImageView *ShowNoDataImg = [[UIImageView alloc]init];
         ShowNoDataImg.frame = CGRectMake((screenWidth / 2) - 45, 20, 90, 90);
@@ -1237,8 +1237,9 @@
     
 
     
-}
+    }
 
+}
 
 -(IBAction)SettingsButton:(id)sender{
 
@@ -1247,6 +1248,7 @@
     [self presentViewController:SettingsView animated:YES completion:nil];
     
 }
+
 -(void)GetUserData{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetUseruid = [defaults objectForKey:@"Useruid"];
@@ -1944,7 +1946,6 @@
         _navEditCollectionViewController = [[UINavigationController alloc]initWithRootViewController:self.editCollectionViewController];
         [_navEditCollectionViewController setNavigationBarHidden:YES animated:NO];
 
-        
     }
     return _navEditCollectionViewController;
 }
