@@ -138,10 +138,10 @@
     [ImageArray addObject:@"Walkthrough4.png"];
     
     NSMutableArray *TextArray = [[NSMutableArray alloc]init];
-    [TextArray addObject:@"Discover the city's best places to eat, play & shop"];
-    [TextArray addObject:@"Create personal collections for your favourite finds"];
-    [TextArray addObject:@"Recommend your favourite places & best experiences"];
-    [TextArray addObject:@"Share your collections with your buddies."];
+    [TextArray addObject:NSLocalizedString(@"Discover the city's best places to eat, play & shop", nil)];//Discover the city's best places to eat, play & shop
+    [TextArray addObject:NSLocalizedString(@"Create your personal collections.", nil)];//Create personal collections for your favourite finds
+    [TextArray addObject:NSLocalizedString(@"Recommend your favourite places and best experiences.", nil)];//Recommend your favourite places & best experiences
+    [TextArray addObject:NSLocalizedString(@"Share your collections with your buddies.", nil)];//Share your collections with your buddies.
 
     
     for (int i = 0 ; i < [ImageArray count]; i++) {
@@ -176,9 +176,10 @@
     MainText.text = NSLocalizedString(@"LandingPage_MainText", nil);
     [FBLoginButton setTitle:@"Facebook" forState:UIControlStateNormal];
     [InstagramButton setTitle:@"Instagram" forState:UIControlStateNormal];
-    [LogInButton setTitle:NSLocalizedString(@"LandingPage_Login",nil) forState:UIControlStateNormal];
-    [WhyWeUseFBButton setTitle:NSLocalizedString(@"LandingPage_WhyUseFacebook",nil) forState:UIControlStateNormal];
-    [SignUpWithEmailButton setTitle:@"Sign up" forState:UIControlStateNormal];
+    [LogInButton setTitle:NSLocalizedString(@"Log in",nil) forState:UIControlStateNormal];
+    //[WhyWeUseFBButton setTitle:NSLocalizedString(@"LandingPage_WhyUseFacebook",nil) forState:UIControlStateNormal];
+    [SignUpWithEmailButton setTitle:NSLocalizedString(@"Sign up",nil) forState:UIControlStateNormal];
+    ShowTnCText.text = NSLocalizedString(@"Terms of Use & Privacy Notice.", nil);
 
 }
 
@@ -326,8 +327,6 @@
 //        [BackgroundView addSubview:motionView];
 //        [motionView setScrollDragEnabled:YES];
 //        [motionView setScrollBounceEnabled:NO];
-        
-        
         switch ([CheckProvisioningStatus intValue]) {
             case 1:
             {
@@ -351,7 +350,6 @@
                 
                 break;
             default:
-                
                 RandomTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(changeview) userInfo:nil repeats:NO];
                 
                 return;

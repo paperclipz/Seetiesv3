@@ -94,11 +94,11 @@
     ShowPassword.delegate = self;
     
     
-    ShowLoginID.placeholder = NSLocalizedString(@"ExpertLogin_Username",nil);
-    ShowPassword.placeholder = NSLocalizedString(@"ExpertLogin_Password", nil);
+    ShowLoginID.placeholder = NSLocalizedString(@"Username / Email Address",nil);
+    ShowPassword.placeholder = NSLocalizedString(@"Password", nil);
     ShowTitle.text = NSLocalizedString(@"ExpertLogin_Title",nil);
-    [LoginButton setTitle:NSLocalizedString(@"ExpertLogin_LoginButton",nil) forState:UIControlStateNormal];
-    [ForgotPasswordButton setTitle:NSLocalizedString(@"ExpertLogin_ForgotPassword",nil) forState:UIControlStateNormal];
+    [LoginButton setTitle:NSLocalizedString(@"Log in",nil) forState:UIControlStateNormal];
+    [ForgotPasswordButton setTitle:NSLocalizedString(@"Forgot password?",nil) forState:UIControlStateNormal];
     [NeedHelpButton setTitle:NSLocalizedString(@"ExpertLogin_NeedHelp",nil) forState:UIControlStateNormal];
     
 //    ShowLoginID.text = @"reinerlee";
@@ -153,7 +153,7 @@
 -(IBAction)LoginButton:(id)sender{
     
     if ([ShowLoginID.text length] == 0 || [ShowPassword.text length] == 0) {
-         [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Opps! Seem like you have forgot to insert username or password :)" type:TSMessageNotificationTypeError];
+         [TSMessage showNotificationInViewController:self title:@"" subtitle:NSLocalizedString(@"Oops! It seems like you've missed out your username / password.", nil) type:TSMessageNotificationTypeError];
 //        UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:@"Opps! Seem like you have forgot to insert username or password :)" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
 //        [ShowAlert show];
     }else{
@@ -266,7 +266,7 @@
 //    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:CustomLocalisedString(@"ErrorConnection", nil) message:CustomLocalisedString(@"NoData", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
 //    
 //    [alert show];
-    [TSMessage showNotificationInViewController:self title:CustomLocalisedString(@"ErrorConnection", nil) subtitle:CustomLocalisedString(@"NoData", nil) type:TSMessageNotificationTypeError];
+    [TSMessage showNotificationInViewController:self title:NSLocalizedString(@"ErrorConnection", nil) subtitle:NSLocalizedString(@"NoData", nil) type:TSMessageNotificationTypeError];
 }
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {

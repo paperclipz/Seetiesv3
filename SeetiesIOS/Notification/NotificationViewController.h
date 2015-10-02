@@ -53,6 +53,8 @@
     NSMutableArray *Following_MessageArray;
     NSMutableArray *Following_ActionArray;
     NSMutableArray *Following_DateArray;
+    
+    UIRefreshControl *refreshControl;
 }
 -(void)GetNotification;
 @end

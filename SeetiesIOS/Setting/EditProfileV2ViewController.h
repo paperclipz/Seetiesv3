@@ -60,6 +60,7 @@
     UIDatePicker *Birthday_Picker;
     
     IBOutlet UIImageView *CaretLocationImg;
+    IBOutlet UILabel *ShowPersonalInformation;
     
 }
 -(IBAction)BackButton:(id)sender;

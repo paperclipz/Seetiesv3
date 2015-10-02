@@ -176,7 +176,7 @@
     [InviteScroll addSubview:Background];
     
     ShowOtherText_1.frame = CGRectMake((screenWidth / 2) - 140, 10, 280, 40);
-    ShowOtherText_1.text = @"More friends, more fun!";
+    ShowOtherText_1.text = LocalisedString(@"The more, the merrier!");
     ShowOtherText_1.backgroundColor = [UIColor clearColor];
     ShowOtherText_1.textColor = [UIColor whiteColor];
     [InviteScroll addSubview:ShowOtherText_1];
@@ -201,7 +201,7 @@
     [InviteScroll addSubview:ShowWhatsappIcon];
     
     WhatsappButton.frame = CGRectMake(118 , 170, screenWidth - 158, 55);
-    [WhatsappButton setTitle:@"via Whatsapp" forState:UIControlStateNormal];
+    [WhatsappButton setTitle:LocalisedString(@"via Whatsapp") forState:UIControlStateNormal];
     [InviteScroll addSubview:WhatsappButton];
     
     UIButton *Line01 = [[UIButton alloc]init];
@@ -216,7 +216,7 @@
     [InviteScroll addSubview:ShowFBMessagerIcon];
 
     FbMessagerButton.frame = CGRectMake(118, 225, screenWidth - 158, 55);
-    [FbMessagerButton setTitle:@"via Messenger" forState:UIControlStateNormal];
+    [FbMessagerButton setTitle:LocalisedString(@"via Messenger") forState:UIControlStateNormal];
     [InviteScroll addSubview:FbMessagerButton];
     
     UIButton *Line02 = [[UIButton alloc]init];
@@ -231,7 +231,7 @@
     [InviteScroll addSubview:ShowlineIcon];
     
     TrueLineButton.frame = CGRectMake(118, 280, screenWidth - 158, 55);
-    [TrueLineButton setTitle:@"via LINE" forState:UIControlStateNormal];
+    [TrueLineButton setTitle:LocalisedString(@"via LINE") forState:UIControlStateNormal];
     [InviteScroll addSubview:TrueLineButton];
 
     UIButton *Line03 = [[UIButton alloc]init];
@@ -242,7 +242,7 @@
     
     
     SMSButton.frame = CGRectMake(60, 350, screenWidth - 120, 55);
-    [SMSButton setTitle:@"Send SMS" forState:UIControlStateNormal];
+    [SMSButton setTitle:LocalisedString(@"Send SMS") forState:UIControlStateNormal];
     [InviteScroll addSubview:SMSButton];
 
 }
@@ -1514,10 +1514,10 @@
     
     if ([GetFollowData isEqualToString:@"1"]) {
         
-        //  NSString *tempStirng = [[NSString alloc]initWithFormat:@"Unfollow %@ ?",[User_UserNameArray objectAtIndex:getbuttonIDN]];
-        NSString *tempStirng = [[NSString alloc]initWithFormat:@"%@ %@ ?",CustomLocalisedString(@"StopFollowing", nil),[All_Experts_Username_Array objectAtIndex:getbuttonIDN]];
         
-        UIAlertView *ShowAlertView = [[UIAlertView alloc]initWithTitle:@"" message:tempStirng delegate:self cancelButtonTitle:CustomLocalisedString(@"SettingsPage_Cancel", nil) otherButtonTitles:CustomLocalisedString(@"Unfollow", nil), nil];
+        NSString *tempStirng = [[NSString alloc]initWithFormat:@"%@ %@ ?",LocalisedString(@"Are you sure you want to quit following"),[All_Experts_Username_Array objectAtIndex:getbuttonIDN]];
+        
+        UIAlertView *ShowAlertView = [[UIAlertView alloc]initWithTitle:LocalisedString(@"Unfollow user") message:tempStirng delegate:self cancelButtonTitle:LocalisedString(@"Maybe not.") otherButtonTitles:LocalisedString(@"Yeah!"), nil];
         ShowAlertView.tag = 1200;
         [ShowAlertView show];
     }else{
@@ -1536,10 +1536,9 @@
     
     if ([GetFollowData isEqualToString:@"1"]) {
         
-        //  NSString *tempStirng = [[NSString alloc]initWithFormat:@"Unfollow %@ ?",[User_UserNameArray objectAtIndex:getbuttonIDN]];
-        NSString *tempStirng = [[NSString alloc]initWithFormat:@"%@ %@ ?",CustomLocalisedString(@"StopFollowing", nil),[FB_Experts_Username_Array objectAtIndex:getbuttonIDN]];
+        NSString *tempStirng = [[NSString alloc]initWithFormat:@"%@ %@ ?",LocalisedString(@"Are you sure you want to quit following"),[FB_Experts_Username_Array objectAtIndex:getbuttonIDN]];
         
-        UIAlertView *ShowAlertView = [[UIAlertView alloc]initWithTitle:@"" message:tempStirng delegate:self cancelButtonTitle:CustomLocalisedString(@"SettingsPage_Cancel", nil) otherButtonTitles:CustomLocalisedString(@"Unfollow", nil), nil];
+        UIAlertView *ShowAlertView = [[UIAlertView alloc]initWithTitle:LocalisedString(@"Unfollow user") message:tempStirng delegate:self cancelButtonTitle:LocalisedString(@"Maybe not.") otherButtonTitles:LocalisedString(@"Yeah!"), nil];
         ShowAlertView.tag = 1200;
         [ShowAlertView show];
     }else{

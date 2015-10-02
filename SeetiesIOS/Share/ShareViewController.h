@@ -22,6 +22,9 @@
     NSString *GetImgData;
     
     AsyncImageView *imageMain;
+    
+    IBOutlet UILabel *ShowTitle;
+    IBOutlet UILabel *ShowSubTitle;
 }
  @property (nonatomic, strong) UIDocumentInteractionController *documentController;
 -(void)GetPostID:(NSString *)ID GetMessage:(NSString *)Msg GetTitle:(NSString *)Title GetImageData:(NSString *)ImgData;

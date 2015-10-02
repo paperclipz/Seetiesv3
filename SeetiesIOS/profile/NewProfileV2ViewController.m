@@ -16,6 +16,7 @@
 #import "FullImageViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "LandingV2ViewController.h"
+#import "NewCollectionViewController.h"
 @interface NewProfileV2ViewController ()
 
 @end
@@ -115,6 +116,7 @@
         GetDescription = [defaults objectForKey:@"UserData_Abouts"];
         GetPersonalTags = [defaults objectForKey:@"UserData_PersonalTags"];
         GetLocation = [defaults objectForKey:@"UserData_Location"];
+        GetProfileImg = GetProfileImg_;
         if ([GetPersonalTags length] == 10 || [GetPersonalTags isEqualToString:@""] || [GetPersonalTags isEqualToString:@"(null)"] || GetPersonalTags == nil) {
         }else{
             NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"() \n"];
@@ -238,7 +240,7 @@
     
     UIButton *EditProfileButton = [[UIButton alloc]init];
     EditProfileButton.frame = CGRectMake(screenWidth - 106 - 20, 60, 106, 34);
-    [EditProfileButton setTitle:@"Edit profile" forState:UIControlStateNormal];
+    [EditProfileButton setTitle:LocalisedString(@"Edit Profile") forState:UIControlStateNormal];
     EditProfileButton.layer.cornerRadius= 17;
     EditProfileButton.layer.borderWidth = 1;
     EditProfileButton.layer.masksToBounds = YES;
@@ -276,8 +278,8 @@
         GetFollowersCount = @"0";
     }
     
-    NSString *tempFollowers = [[NSString alloc]initWithFormat:@"%@ Followers",GetFollowersCount];
-    NSString *tempFollowing = [[NSString alloc]initWithFormat:@"%@ Followings",GetFollowingCount];
+    NSString *tempFollowers = [[NSString alloc]initWithFormat:@"%@ %@",GetFollowersCount,LocalisedString(@"Followers")];
+    NSString *tempFollowing = [[NSString alloc]initWithFormat:@"%@ %@",GetFollowingCount,LocalisedString(@"Followings")];
     
     UILabel *ShowFollowers = [[UILabel alloc]init];
     ShowFollowers.text = tempFollowers;
@@ -502,9 +504,9 @@
     
     GetHeight += 31;
     
-    NSString *TempStringPosts = [[NSString alloc]initWithFormat:@"Post"];
-    NSString *TempStringCollection = [[NSString alloc]initWithFormat:@"Collection"];
-    NSString *TempStringLike = [[NSString alloc]initWithFormat:@"Like"];
+    NSString *TempStringPosts = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Posts")];
+    NSString *TempStringCollection = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Collections")];
+    NSString *TempStringLike = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Likes")];
     
     NSArray *itemArray = [NSArray arrayWithObjects:TempStringCollection, TempStringPosts,TempStringLike, nil];
     ProfileControl = [[UISegmentedControl alloc]initWithItems:itemArray];
@@ -613,7 +615,7 @@
     if ([GetCollectionDataCount length] == 0) {
         GetCollectionDataCount = @"";
     }
-    NSString *TempString = [[NSString alloc]initWithFormat:@"%@ Collection",GetCollectionDataCount];
+    NSString *TempString = [[NSString alloc]initWithFormat:@"%@ %@",GetCollectionDataCount,LocalisedString(@"Collections")];
 
     UILabel *ShowCollectionCount = [[UILabel alloc]init];
     ShowCollectionCount.frame = CGRectMake(30, 20, 150, 20);
@@ -635,6 +637,7 @@
     EditProfileButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
     [EditProfileButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
     EditProfileButton.backgroundColor = [UIColor clearColor];
+    [EditProfileButton addTarget:self action:@selector(AddCollectionButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
     [CollectionView addSubview:EditProfileButton];
     
     
@@ -736,7 +739,7 @@
 -(void)InitLikeData{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-    NSString *TempString = [[NSString alloc]initWithFormat:@"%@ Likes",GetLikesDataCount];
+    NSString *TempString = [[NSString alloc]initWithFormat:@"%@ %@",GetLikesDataCount,LocalisedString(@"Likes")];
     
     UILabel *ShowLikesCount = [[UILabel alloc]init];
     ShowLikesCount.frame = CGRectMake(30, 20, 150, 20);
@@ -783,10 +786,11 @@
         ShowImage.layer.masksToBounds = YES;
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
         NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[LikesData_PhotoArray objectAtIndex:i]];
+        NSArray *SplitArray = [FullImagesURL_First componentsSeparatedByString:@","];
         if ([FullImagesURL_First length] == 0) {
             ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
         }else{
-            NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL_First];
+            NSURL *url_NearbySmall = [NSURL URLWithString:[SplitArray objectAtIndex:0]];
             ShowImage.imageURL = url_NearbySmall;
         }
         [LikeView addSubview:ShowImage];
@@ -813,7 +817,7 @@
 -(void)InitPostsView{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-    NSString *TempString = [[NSString alloc]initWithFormat:@"%@ Posts",GetPostsDataCount];
+    NSString *TempString = [[NSString alloc]initWithFormat:@"%@ %@",GetPostsDataCount,LocalisedString(@"Posts")];
     
     UILabel *ShowPostsCount = [[UILabel alloc]init];
     ShowPostsCount.frame = CGRectMake(30, 20, 150, 20);
@@ -834,6 +838,7 @@
     EditProfileButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
     [EditProfileButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
     EditProfileButton.backgroundColor = [UIColor clearColor];
+   // [EditProfileButton addTarget:self action:@selector(AddCollectionButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
     [PostView addSubview:EditProfileButton];
     
     UIButton *Line01 = [[UIButton alloc]init];
@@ -889,7 +894,7 @@
         ShowPlaceName.backgroundColor = [UIColor clearColor];
         [PostView addSubview:ShowPlaceName];
         
-        NSString *TempCount = [[NSString alloc]initWithFormat:@"%@ views",[PostsData_TotalCountArray objectAtIndex:i]];
+        NSString *TempCount = [[NSString alloc]initWithFormat:@"%@ %@",[PostsData_TotalCountArray objectAtIndex:i],LocalisedString(@"views")];
         UILabel *ShowLocation = [[UILabel alloc]init];
         ShowLocation.frame = CGRectMake(120, heightcheck + 60, screenWidth - 120, 20);
         ShowLocation.text = TempCount;
@@ -1520,7 +1525,6 @@
                     [LikesData_PhotoArray addObject:result2];
                 }
 
-                
                 DataCount_Like = DataTotal_Like;
                 DataTotal_Like = [LikesData_IDArray count];
 
@@ -1770,5 +1774,10 @@ if(actionSheet.tag == 200){
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:TempString]];
     }
     
+}
+-(IBAction)AddCollectionButtonOnClick:(id)sender{
+    NSLog(@"AddCollectionButtonOnClick");
+    NewCollectionViewController *NewCollectionView = [[NewCollectionViewController alloc]init];
+    [self presentViewController:NewCollectionView animated:YES completion:nil];
 }
 @end

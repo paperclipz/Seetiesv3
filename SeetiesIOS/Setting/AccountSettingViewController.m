@@ -36,6 +36,7 @@
     [MainScroll setContentSize:CGSizeMake(screenWidth, 600)];
     MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     ShowTitle.frame = CGRectMake(15, 20, screenWidth - 30, 44);
+    ShowTitle.text = LocalisedString(@"Account Settings");
     SaveButton.frame = CGRectMake(screenWidth - 50, 20, 50, 44);
     EditBackImg.frame = CGRectMake(0, 85, screenWidth, 462);
     
@@ -51,6 +52,7 @@
     CaretDeleteAccountImg.frame = CGRectMake(screenWidth - 10 - 13, 521, 8, 13);
 
     DeleteButton.frame = CGRectMake(0, 506, screenWidth, 44);
+    [DeleteButton setTitle:LocalisedString(@"Delete Account") forState:UIControlStateNormal];
     
     FacebookSwitch.frame = CGRectMake(screenWidth - 51 - 10, 390, 51, 31);
     InstagramSwitch.frame = CGRectMake(screenWidth - 51- 10, 431, 51, 31);
@@ -155,6 +157,12 @@
     ChangePasswordText.text = CustomLocalisedString(@"ChangePassword", nil);
    // [DeleteButton setTitle:CustomLocalisedString(@"Deactivateaccount",nil) forState:UIControlStateNormal];
     ShowSubTitle.text = CustomLocalisedString(@"ContentLanguage", nil);
+    ConnectFBText.text = LocalisedString(@"Connect to Facebook");
+    ConnectInstagramText.text = LocalisedString(@"Connect to Instagram");
+    
+    MainLanguage.text = LocalisedString(@"Language");
+    MainAccount.text = LocalisedString(@"Account");
+    MainOther.text = LocalisedString(@"Others");
     
 }
 - (UIStatusBarStyle) preferredStatusBarStyle {

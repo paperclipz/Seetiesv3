@@ -549,10 +549,9 @@
     
     if ([GetFollowData isEqualToString:@"1"]) {
         
-        //  NSString *tempStirng = [[NSString alloc]initWithFormat:@"Unfollow %@ ?",[User_UserNameArray objectAtIndex:getbuttonIDN]];
-        NSString *tempStirng = [[NSString alloc]initWithFormat:@"%@ %@ ?",CustomLocalisedString(@"StopFollowing", nil),[User_UserNameArray objectAtIndex:getbuttonIDN]];
+        NSString *tempStirng = [[NSString alloc]initWithFormat:@"%@ %@ ?",LocalisedString(@"Are you sure you want to quit following"),[User_UserNameArray objectAtIndex:getbuttonIDN]];
         
-        UIAlertView *ShowAlertView = [[UIAlertView alloc]initWithTitle:@"" message:tempStirng delegate:self cancelButtonTitle:CustomLocalisedString(@"SettingsPage_Cancel", nil) otherButtonTitles:CustomLocalisedString(@"Unfollow", nil), nil];
+        UIAlertView *ShowAlertView = [[UIAlertView alloc]initWithTitle:LocalisedString(@"Unfollow user") message:tempStirng delegate:self cancelButtonTitle:LocalisedString(@"Maybe not.") otherButtonTitles:LocalisedString(@"Yeah!"), nil];
         ShowAlertView.tag = 1200;
         [ShowAlertView show];
     }else{

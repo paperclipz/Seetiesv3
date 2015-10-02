@@ -30,6 +30,8 @@
     ShowImageCount.frame = CGRectMake(15, screenHeight - 70, screenWidth - 30, 50);
     BackButton.frame = CGRectMake(5, 20, 50, 50);
     
+    ExitText.text = LocalisedString(@"Slide down to exit preview");
+    
     [self.view addSubview:ShowImageCount];
     
     

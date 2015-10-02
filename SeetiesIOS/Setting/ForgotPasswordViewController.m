@@ -25,9 +25,9 @@
     InputText.delegate = self;
     
     TitleLabel.text = CustomLocalisedString(@"ForgotPassword", nil);
-    DetailLabel.text = CustomLocalisedString(@"ForgotPasswordDetail", nil);
-    [ResetButton setTitle:CustomLocalisedString(@"ResetPassword",nil) forState:UIControlStateNormal];
-    InputText.placeholder = CustomLocalisedString(@"ExpertLogin_Username", nil);
+    DetailLabel.text = CustomLocalisedString(@"You'll receive instructions to reset your password in your mailbox as soon as we're done here!", nil);
+    [ResetButton setTitle:CustomLocalisedString(@"Reset my password",nil) forState:UIControlStateNormal];
+    InputText.placeholder = CustomLocalisedString(@"Username / Email Address", nil);
     
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     

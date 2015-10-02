@@ -180,15 +180,17 @@
         
         UILabel *ShowBigText = [[UILabel alloc]init];
         ShowBigText.frame = CGRectMake(15, GetHeight + 10, screenWidth - 30, 72);
-        ShowBigText.text = CustomLocalisedString(@"Festival", nil);
+        ShowBigText.text = LocalisedString(@"Festivals");
         ShowBigText.textAlignment = NSTextAlignmentCenter;
         ShowBigText.textColor = [UIColor whiteColor];
         ShowBigText.font = [UIFont fontWithName:@"AdrianeText-BoldItalic" size:36];
         [MainScroll addSubview:ShowBigText];
         
+        NSString *TempString = [[NSString alloc]initWithFormat:@"%@ %@",LocalisedString(@"Discover the colours of"),self.model.name];
+        
         UILabel *ShowSubText = [[UILabel alloc]init];
         ShowSubText.frame = CGRectMake(15, GetHeight + 65, screenWidth - 30, 40);
-        ShowSubText.text = CustomLocalisedString(@"DiscovertheColors", nil);
+        ShowSubText.text = TempString;
         ShowSubText.textAlignment = NSTextAlignmentCenter;
         ShowSubText.textColor = [UIColor whiteColor];
         ShowSubText.font = [UIFont fontWithName:@"AdrianeText-BoldItalic" size:18];
@@ -197,7 +199,7 @@
         UIButton *FestivalButton = [UIButton buttonWithType:UIButtonTypeCustom];
         // [FestivalButton setImage:[UIImage imageNamed:@"BtnLetsgo.png"] forState:UIControlStateNormal];
         [FestivalButton setBackgroundImage:[UIImage imageNamed:@"BtnLetsgo.png"] forState:UIControlStateNormal];
-        [FestivalButton setTitle:CustomLocalisedString(@"Letsgo", nil) forState:UIControlStateNormal];
+        [FestivalButton setTitle:LocalisedString(@"Check it out") forState:UIControlStateNormal];
         [FestivalButton setFrame:CGRectMake((screenWidth/2) - 70, GetHeight + 110, 140, 47)];
         [FestivalButton setBackgroundColor:[UIColor clearColor]];
         [FestivalButton addTarget:self action:@selector(LetsgoButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -209,8 +211,8 @@
 
     
     
-    NSString *TempStringPosts = [[NSString alloc]initWithFormat:@"Trending Posts"];
-    NSString *TempStringPeople = [[NSString alloc]initWithFormat:@"Discover People"];
+    NSString *TempStringPosts = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Trending")];
+    NSString *TempStringPeople = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Discover People")];
     
     NSArray *itemArray = [NSArray arrayWithObjects:TempStringPosts, TempStringPeople, nil];
     UISegmentedControl *ProfileControl = [[UISegmentedControl alloc]initWithItems:itemArray];
@@ -575,11 +577,13 @@
         [User_FollowArray replaceObjectAtIndex:getbuttonIDN withObject:@"1"];
         [self SendFollowingData];
     }else{
-        NSString *tempStirng = [[NSString alloc]initWithFormat:@"%@ %@ ?",CustomLocalisedString(@"StopFollowing", nil),[User_UserNameArray objectAtIndex:getbuttonIDN]];
         
-        UIAlertView *ShowAlertView = [[UIAlertView alloc]initWithTitle:@"" message:tempStirng delegate:self cancelButtonTitle:CustomLocalisedString(@"SettingsPage_Cancel", nil) otherButtonTitles:CustomLocalisedString(@"Unfollow", nil), nil];
+        NSString *tempStirng = [[NSString alloc]initWithFormat:@"%@ %@ ?",LocalisedString(@"Are you sure you want to quit following"),[User_UserNameArray objectAtIndex:getbuttonIDN]];
+        
+        UIAlertView *ShowAlertView = [[UIAlertView alloc]initWithTitle:LocalisedString(@"Unfollow user") message:tempStirng delegate:self cancelButtonTitle:LocalisedString(@"Maybe not.") otherButtonTitles:LocalisedString(@"Yeah!"), nil];
         ShowAlertView.tag = 1200;
         [ShowAlertView show];
+        
         [User_FollowArray replaceObjectAtIndex:getbuttonIDN withObject:@"0"];
     }
 }
@@ -597,9 +601,10 @@
         [UserInfo_FollowArray replaceObjectAtIndex:getbuttonIDN withObject:@"1"];
         [self SendFollowingData];
     }else{
-        NSString *tempStirng = [[NSString alloc]initWithFormat:@"%@ %@ ?",CustomLocalisedString(@"StopFollowing", nil),[UserInfo_NameArray objectAtIndex:getbuttonIDN]];
         
-        UIAlertView *ShowAlertView = [[UIAlertView alloc]initWithTitle:@"" message:tempStirng delegate:self cancelButtonTitle:CustomLocalisedString(@"SettingsPage_Cancel", nil) otherButtonTitles:CustomLocalisedString(@"Unfollow", nil), nil];
+        NSString *tempStirng = [[NSString alloc]initWithFormat:@"%@ %@ ?",LocalisedString(@"Are you sure you want to quit following"),[UserInfo_NameArray objectAtIndex:getbuttonIDN]];
+        
+        UIAlertView *ShowAlertView = [[UIAlertView alloc]initWithTitle:LocalisedString(@"Unfollow user") message:tempStirng delegate:self cancelButtonTitle:LocalisedString(@"Maybe not.") otherButtonTitles:LocalisedString(@"Yeah!"), nil];
         ShowAlertView.tag = 1200;
         [ShowAlertView show];
         [UserInfo_FollowArray replaceObjectAtIndex:getbuttonIDN withObject:@"0"];

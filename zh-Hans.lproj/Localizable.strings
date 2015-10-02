@@ -404,7 +404,12 @@
 
 
 ////////////// new /////////////
-
+"Discover the city's best places to eat, play & shop" = "发现最夯最道地的吃喝玩乐好去处";
+"Create your personal collections." = "收藏好康，不再错过";
+"Recommend your favourite places and best experiences." = "留下足迹，好评推荐";
+"Share your collections with your buddies." = "分享懒人包，应有尽有.";
+"Let's rock n' roll!" = "立即启动！";
+"Terms of Use & Privacy Notice." = "服务条款与隐私权政策";
 "Password"= "密码";
 "Log in"= "登入";
 "Forgot password?"= "忘记密码";
@@ -487,7 +492,7 @@
 "Be the first to comment"= "快来抢头香吧！";
 "Write a comment"= "发表留言";
 "Collections"= "已收藏";
-"{!username} collected this into {!collection name}"= "{!username} 已收藏此文到 {!collection name}";
+"collected this into"= "已收藏此文到";
 "Aww. No one's collected this."= "还没有人收藏此文呢。";
 "Likes"= "他们都点赞";
 "Be the first to like"= "快来抢头香点赞吧！";

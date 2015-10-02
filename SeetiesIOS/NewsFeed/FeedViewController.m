@@ -50,6 +50,7 @@
     
     
     ShowFeedText.frame = CGRectMake(15, 20, screenWidth - 30, 44);
+    ShowFeedText.text = CustomLocalisedString(@"Feed", nil);
     BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
     SearchButton.frame = CGRectMake(screenWidth - 40, 20, 40, 44);
     
@@ -413,7 +414,7 @@
     
     UIButton *TempButton = [[UIButton alloc]init];
     TempButton.frame = CGRectMake((screenWidth / 2) - 60, 41, 120, 37);
-    [TempButton setTitle:@"Nearby" forState:UIControlStateNormal];
+    [TempButton setTitle:LocalisedString(@"Nearby") forState:UIControlStateNormal];
     [TempButton setImage:[UIImage imageNamed:@"NearbyIcon.png"] forState:UIControlStateNormal];
     TempButton.backgroundColor = [UIColor clearColor];
     TempButton.backgroundColor = [UIColor colorWithRed:114.0f/255.0f green:190.0f/255.0f blue:68.0f/255.0f alpha:1.0f];
@@ -786,7 +787,7 @@
 
     UIButton *TempButton = [[UIButton alloc]init];
     TempButton.frame = CGRectMake((screenWidth / 2) - 60, 41, 120, 37);
-    [TempButton setTitle:@"Nearby" forState:UIControlStateNormal];
+    [TempButton setTitle:LocalisedString(@"Nearby")  forState:UIControlStateNormal];
     [TempButton setImage:[UIImage imageNamed:@"NearbyIcon.png"] forState:UIControlStateNormal];
     TempButton.backgroundColor = [UIColor clearColor];
     TempButton.backgroundColor = [UIColor colorWithRed:114.0f/255.0f green:190.0f/255.0f blue:68.0f/255.0f alpha:1.0f];
@@ -1409,7 +1410,7 @@
                 
                 UILabel *ShowSuggestedLocalQR = [[UILabel alloc]init];
                 ShowSuggestedLocalQR.frame = CGRectMake(20, heightcheck, screenWidth - 80, 50);
-                ShowSuggestedLocalQR.text = @"Suggested local QR";
+                ShowSuggestedLocalQR.text = LocalisedString(@"Suggested local recommendations");
                 ShowSuggestedLocalQR.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
                 ShowSuggestedLocalQR.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
                 [MainScroll addSubview:ShowSuggestedLocalQR];
@@ -1461,7 +1462,7 @@
                 
                 UILabel *ShowSuggestedText = [[UILabel alloc]init];
                 ShowSuggestedText.frame = CGRectMake(20, heightcheck, 200, 50);
-                ShowSuggestedText.text = @"Suggested Abroad QR";
+                ShowSuggestedText.text = LocalisedString(@"Suggested foreign recommendations");
                 ShowSuggestedText.backgroundColor = [UIColor clearColor];
                 ShowSuggestedText.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
                 ShowSuggestedText.textAlignment = NSTextAlignmentLeft;
@@ -1781,7 +1782,7 @@
                 
                 UILabel *ShowSuggestedText = [[UILabel alloc]init];
                 ShowSuggestedText.frame = CGRectMake(20, heightcheck, 200, 50);
-                ShowSuggestedText.text = @"Your friends are on Seeties";
+                ShowSuggestedText.text = LocalisedString(@"Meet & greet other Seetizens");
                 ShowSuggestedText.backgroundColor = [UIColor clearColor];
                 ShowSuggestedText.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
                 ShowSuggestedText.textAlignment = NSTextAlignmentLeft;
@@ -1852,7 +1853,7 @@
                     
                     UILabel *ShowMessage = [[UILabel alloc]init];
                     ShowMessage.frame = CGRectMake(70 + i * screenWidth, 50 + 30, 200, 20);
-                    ShowMessage.text = @"Based on your interest";
+                    ShowMessage.text = LocalisedString(@"Follow this Seetizen for more");
                     ShowMessage.backgroundColor = [UIColor clearColor];
                     ShowMessage.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
                     ShowMessage.textAlignment = NSTextAlignmentLeft;
@@ -1949,7 +1950,7 @@
                 
                 UILabel *ShowSuggestedText = [[UILabel alloc]init];
                 ShowSuggestedText.frame = CGRectMake(20, heightcheck, 200, 50);
-                ShowSuggestedText.text = @"Your friends are on Seeties";
+                ShowSuggestedText.text = LocalisedString(@"Your fellow Facebook Seetizen");
                 ShowSuggestedText.backgroundColor = [UIColor clearColor];
                 ShowSuggestedText.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
                 ShowSuggestedText.textAlignment = NSTextAlignmentLeft;
@@ -2020,7 +2021,7 @@
                     
                     UILabel *ShowMessage = [[UILabel alloc]init];
                     ShowMessage.frame = CGRectMake(70 + i * screenWidth, 50 + 30, 200, 20);
-                    ShowMessage.text = @"Based on your interest";
+                    ShowMessage.text = LocalisedString(@"Follow this Seetizen for more");
                     ShowMessage.backgroundColor = [UIColor clearColor];
                     ShowMessage.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
                     ShowMessage.textAlignment = NSTextAlignmentLeft;
@@ -2105,7 +2106,7 @@
                 
                 UILabel *ShowSuggestedText = [[UILabel alloc]init];
                 ShowSuggestedText.frame = CGRectMake(20, heightcheck, 200, 50);
-                ShowSuggestedText.text = @"Local Deals";
+                ShowSuggestedText.text = LocalisedString(@"Deals near you");
                 ShowSuggestedText.backgroundColor = [UIColor clearColor];
                 ShowSuggestedText.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
                 ShowSuggestedText.textAlignment = NSTextAlignmentLeft;
@@ -3705,12 +3706,6 @@
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     
     CommentViewController *CommentView = [[CommentViewController alloc]init];
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromRight;
-    [self.view.window.layer addAnimation:transition forKey:nil];
     [self presentViewController:CommentView animated:YES completion:nil];
     //[self.view.window.rootViewController presentViewController:CommentView animated:YES completion:nil];
     [CommentView GetRealPostIDAndAllComment:[arrPostID objectAtIndex:getbuttonIDN]];

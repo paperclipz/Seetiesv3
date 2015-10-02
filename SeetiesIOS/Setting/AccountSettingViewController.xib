@@ -29,18 +29,28 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AccountSettingViewController">
             <connections>
+                <outlet property="AppLanguageText" destination="OPe-1C-fNz" id="OC4-y3-WwD"/>
                 <outlet property="BarImage" destination="aiU-uz-eAQ" id="8YP-Bb-fsg"/>
                 <outlet property="CaretAppLanguageImg" destination="3aI-Ix-5TC" id="by2-6r-D9Z"/>
                 <outlet property="CaretChangePasswordImg" destination="4RN-aM-cJB" id="4Uh-cc-iO6"/>
                 <outlet property="CaretDeleteAccountImg" destination="uzP-9f-lIY" id="nri-d1-dIk"/>
                 <outlet property="CaretPrimaryImg" destination="wUJ-4l-NWN" id="Fxr-HD-X12"/>
                 <outlet property="CaretSecondaryImg" destination="JbA-Sn-uQC" id="ZN9-xz-1YX"/>
+                <outlet property="ChangePasswordText" destination="JAh-bu-We0" id="L5t-8Z-CZY"/>
+                <outlet property="ConnectFBText" destination="mcg-M4-Xc5" id="c9m-OT-XR5"/>
+                <outlet property="ConnectInstagramText" destination="qlb-oN-QEZ" id="TAI-xo-rsc"/>
                 <outlet property="DeleteButton" destination="7DN-fe-3MA" id="Ij6-2L-oa0"/>
+                <outlet property="EmailText" destination="ppE-fr-2bb" id="2xr-oD-gem"/>
                 <outlet property="Emailfield" destination="4MA-cl-qZc" id="Fru-Cm-rIP"/>
                 <outlet property="FacebookSwitch" destination="W0N-TU-bp4" id="yeM-gz-uEc"/>
                 <outlet property="InstagramSwitch" destination="Vgr-nt-oLB" id="qs1-Ea-Axi"/>
+                <outlet property="MainAccount" destination="rwd-Ul-BJf" id="9wq-b7-BpH"/>
+                <outlet property="MainLanguage" destination="DOj-Qf-TC3" id="hbe-oa-Vvi"/>
+                <outlet property="MainOther" destination="PuH-Hs-Wpt" id="vmS-wo-AJS"/>
                 <outlet property="MainScroll" destination="pR7-pk-2kn" id="Jlz-xK-gRm"/>
+                <outlet property="PrimaryText" destination="jjq-Zq-Kn8" id="ZAG-w9-Q9f"/>
                 <outlet property="SaveButton" destination="8fw-Rc-rbt" id="yXz-1H-vAb"/>
+                <outlet property="SecondaryText" destination="8e9-Ph-1ek" id="fVG-HS-y1C"/>
                 <outlet property="ShowPrimary" destination="XLz-NE-rjm" id="3i7-et-53x"/>
                 <outlet property="ShowSecondary" destination="mFt-pJ-SBA" id="oCo-yN-EBr"/>
                 <outlet property="ShowSystemlanguage" destination="Eif-wG-huN" id="06d-Dq-6R6"/>
@@ -195,13 +205,6 @@
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DOj-Qf-TC3">
-                            <rect key="frame" x="20" y="95" width="76" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" name="ProximaNovaSoft-Bold" family="Proxima Nova Soft" pointSize="15"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ayz-5q-3mu">
                             <rect key="frame" x="20" y="212" width="500" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -297,6 +300,13 @@
                             <rect key="frame" x="257" y="431" width="51" height="31"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </switch>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DOj-Qf-TC3">
+                            <rect key="frame" x="20" y="95" width="286" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="ProximaNovaSoft-Bold" family="Proxima Nova Soft" pointSize="15"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" red="0.91372549020000005" green="0.92941176469999998" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                 </scrollView>
