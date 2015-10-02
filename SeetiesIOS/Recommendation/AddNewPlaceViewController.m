@@ -29,12 +29,16 @@
 @implementation AddNewPlaceViewController
 
 - (IBAction)btnDoneClicked:(id)sender {
+    
+    
+    if ([self validation]) {
         
-    if(self.btnPressDoneBlock)
-    {
-        [self saveData];
-        
-        self.btnPressDoneBlock(self.rModel);
+        if(self.btnPressDoneBlock)
+        {
+            [self saveData];
+            
+            self.btnPressDoneBlock(self.rModel);
+        }
     }
 }
 
@@ -43,6 +47,7 @@
     BOOL isPass = true;
     if (self.addNewPlaceSubView.txtPlaceName.text.length <=3) {
         isPass = false;
+        [TSMessage showNotificationInViewController:self title:@"system" subtitle:@"Place Name Need to be more than 3 characters" type:TSMessageNotificationTypeWarning];
     }
     
     return isPass;

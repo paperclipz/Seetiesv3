@@ -23,6 +23,7 @@
 {
     NSString* postURL;
     BOOL isDualLanguge;
+    BOOL isSaved;
 
 }
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
@@ -80,6 +81,7 @@
 }
 - (IBAction)btnPublishClicked:(id)sender {
     
+    [[IQKeyboardManager sharedManager]resignFirstResponder];
     
     if (!self.categoriesModel) {
         
@@ -135,20 +137,30 @@
      ];
  }
 
+
+-(void)dismissView
+{
+    
+    if (self.navigationController) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else{
+        [self dismissViewControllerAnimated:YES completion:nil];
+        
+    }
+    if (self.editPostBackBlock) {
+        self.editPostBackBlock(self);
+    }
+
+}
+
 - (IBAction)btnBackClicked:(id)sender {
     
     
     if (self.editPostType == EditPostTypePostEdit) {
-        if (self.navigationController) {
-            [self.navigationController popViewControllerAnimated:YES];
-        }
-        else{
-            [self dismissViewControllerAnimated:YES completion:nil];
-            
-        }
-        if (self.editPostBackBlock) {
-            self.editPostBackBlock(self);
-        }
+        
+        [self dismissView];
+    
     }
     else{
         [UIAlertView showWithTitle:LocalisedString(@"New Recommendation")
@@ -175,6 +187,7 @@
 
                           } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Save"]) {
                               NSLog(@"Save");
+                              isSaved = true;
                               [self requestToSaveDraftOrPublish:YES];
                           }
                       }];
@@ -338,7 +351,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
+    isSaved = false;
     [self loadData];
 
 
@@ -745,11 +758,15 @@ static id ObjectOrNull(id object)
             
             [self performSelector:@selector(buttonDoneAction) withObject:nil afterDelay:2.0f];
         }
-        else{
+        else{ // This is draft
             [TSMessage showNotificationInViewController:self title:@"system" subtitle:@"Data Successfully Saved to Draft" type:TSMessageNotificationTypeSuccess duration:2.0 canBeDismissedByUser:YES];
             
             RecommendationModel* model = [[RecommendationModel alloc]initWithDraftModel:[ConnectionManager dataManager].savedDraftModel];
             self.recommendationModel = model;
+            
+            if (isSaved) {
+                [self dismissView];
+            }
         }
     
     } errorBlock:^(id object) {

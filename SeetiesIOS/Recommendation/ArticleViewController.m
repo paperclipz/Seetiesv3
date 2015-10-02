@@ -12,6 +12,7 @@
 {
     BOOL isShow;
 }
+@property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *ibBackgroundView;
 @end
 
@@ -26,6 +27,7 @@
     CGRect frame = [Utils getDeviceScreenSize];
     self.view.frame = CGRectMake(0, frame.size.height,  frame.size.width,  frame.size.height);
 
+    self.ibImageView.image = [UIImage imageNamed:LocalisedString(@"qrimage")];
     // Do any additional setup after loading the view from its nib.
 }
 

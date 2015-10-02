@@ -5,11 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <mutableArray key="ProximaNovaSoft-Regular.ttf">
-            <string>ProximaNovaSoft-Regular</string>
-        </mutableArray>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -81,12 +76,12 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9LE-5L-FHq">
-                                <rect key="frame" x="267" y="89" width="38" height="21"/>
+                                <rect key="frame" x="255" y="86" width="50" height="24"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="38" id="fSE-wv-TmK"/>
+                                    <constraint firstAttribute="width" constant="50" id="fSE-wv-TmK"/>
                                     <constraint firstAttribute="width" constant="43" id="nBd-pk-iij"/>
                                     <constraint firstAttribute="height" constant="21" id="sw5-yU-IDL"/>
-                                    <constraint firstAttribute="height" constant="21" id="u9Q-HT-kUM"/>
+                                    <constraint firstAttribute="height" constant="24" id="u9Q-HT-kUM"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -105,7 +100,7 @@
                                     <constraint firstAttribute="height" constant="104" id="D9r-Wn-fgW"/>
                                 </constraints>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <variation key="default">
                                     <mask key="constraints">
