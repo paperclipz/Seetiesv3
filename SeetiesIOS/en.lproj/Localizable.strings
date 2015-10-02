@@ -404,12 +404,21 @@
 
 
 
+////////////////////////////////////////////////////////////////////// NEW as of OCtober 2015 /////////////////////////////////////////////////////////////////
 
 
-////////////////////////////////////// NEW //////////////////////////////////////
-
-
-
+"Discover the best places to eat, play, and shop."= "Discover the best places to eat, play, and shop.";
+"Create your personal collections."= "Create your personal collections.";
+""= "";
+"Recommend your favourite places and best experiences."= "Recommend your favourite places and best experiences.";
+""= "";
+"Share your collections with your buddies."= "Share your collections with your buddies.";
+"Let's rock n' roll!"= "Let's rock n' roll!";
+""= "";
+"Terms of Use & Privacy Notice."= "Terms of Use & Privacy Notice.";
+""= "";
+""= "";
+"Username / Email Address"= "Username / Email Address";
 "Password"= "Password";
 "Log in"= "Log in";
 "Forgot password?"= "Forgot password?";
@@ -952,12 +961,14 @@
 "Wanna say something?"= "Wanna say something?";
 "Send to…"= "Send to…";
 "Username / name"= "Username / name";
-
-
-
-////////////////////////////////////// NEW //////////////////////////////////////
-
-
+""= "";
+""= "";
+""= "";
+"Continue with"= "Continue with";
+"Not now"= "Not now";
+"Collect this"= "Collect this";
+"Pick a collection"= "Pick a collection";
+"Create a new collection"= "Create a new collection"
 
 
 
