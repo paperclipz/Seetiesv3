@@ -84,8 +84,6 @@
 -(void)requestServerWithPost:(bool)isPost customURL:(NSString*)url requestType:(ServerRequestType)type param:(NSDictionary*)dict completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
 {
     
-    [LoadingManager show];
-
     NSLog(@"Request Server : %@ \n\n Request Json : %@",url,[dict bv_jsonStringWithPrettyPrint:YES]);
     if(isPost)
     {
@@ -210,7 +208,7 @@
 
 -(void)requestServerWithPost:(ServerRequestType)type param:(NSDictionary*)dict appendString:(NSString*)appendString meta:(NSArray*)arrMeta completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)errorBlock
 {
-    [LoadingManager show];
+        [LoadingManager show];
 
     NSString* fullURL;
     if (appendString) {

@@ -1,10 +1,10 @@
-/* 
-  Localizable.strings
-  SeetiesIOS
-
-  Created by Chong Chee Yong on 10/20/14.
-  Copyright (c) 2014 Ahyong87. All rights reserved.
-*/
+/*
+ Localizable.strings
+ SeetiesIOS
+ 
+ Created by Chong Chee Yong on 10/20/14.
+ Copyright (c) 2014 Ahyong87. All rights reserved.
+ */
 
 
 "ExpertLogin_Username" = "Username / Email Address";
@@ -404,6 +404,8 @@
 
 "qrimage"="Thai.png";
 
+
+
 "Discover the best places to eat, play, and shop."= "ค้นหาร้านกิน เที่ยว ช็อปที่เด็ดที่สุดในเมือง";
 "Create your personal collections."= "สร้างคอลเลคชันส่วนตัว รวบรวมภาพและข้อมูลโปรด";
 ""= "";
@@ -456,6 +458,7 @@
 "Want a deal? Browse vouchers"= "หาดีลส่วนลดอยู่หรือ? ";
 "Check it out!"= "ดูนี่สิ!";
 "Meet & greet other Seetizens"= "ทักทายและทำความรู้จัก Seetizen คนอื่นๆ";
+"Follow this Seetizen for more"= "ติดตาม Seetizen คนนี้เลย";
 "Your fellow Facebook Seetizen"= "Seetizen ที่เป็นเพื่อน Facebook กับคุณ";
 "Hang on. It's loading!"= "รอแป๊บ กำลังโหลดอยู่!";
 ""= "";
@@ -961,18 +964,17 @@
 ""= "";
 ""= "";
 ""= "";
-"Continue with"= "";
+"Continue with"= "ทำต่อ";
 "Not now"= "เอาไว้ก่อน";
 "Collect this"= "เก็บรีวิว";
 "Pick a collection"= "เลือกคอลเลคชัน";
 "Create a new collection"= "สร้างคอลเลคชันใหม่";
-
-
-
+""= "";
+"No Image Selected"= "ไม่ได้เลือกรูปภาพ";
 "Oops!"= "อุปส์!";
 "Data Successfully Saved to Draft"= "เซฟดราฟท์แล้ว ";
 "Camera Roll"= "อัลบั้ม";
 "Searching..."= "ค้นหา...";
-"Seeties"= "Seeties";
+"system"= "Seeties";
 
 

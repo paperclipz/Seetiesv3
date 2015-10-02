@@ -185,7 +185,7 @@
                                   self.editPostBackBlock(self);
                               }
 
-                          } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Save"]) {
+                          } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:LocalisedString(@"Save")]) {
                               NSLog(@"Save");
                               isSaved = true;
                               [self requestToSaveDraftOrPublish:YES];

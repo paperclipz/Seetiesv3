@@ -58,7 +58,7 @@
              forControlEvents:UIControlEventEditingChanged];
     
     
-    [Utils setRoundBorder:self.ibContentSearchView color:[UIColor grayColor] borderRadius:5.0f];
+    [Utils setRoundBorder:self.ibContentSearchView color:[UIColor clearColor] borderRadius:5.0f];
     [self.ibSearchContentView addSubview:self.cAPSPageMenu.view];
 
     [self changeLanguage];
@@ -137,7 +137,7 @@
 
 -(void)initWithLocation:(CLLocation*)location
 {
-    
+    [LoadingManager show];
     // must go throught this mark inorder to have location.
     self.sManager = [SearchManager Instance];
     self.location = location;

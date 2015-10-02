@@ -113,6 +113,8 @@
         __weak typeof(self)weakSelf = self;
         _addNewPlaceSubView.btnEditHourClickedBlock = ^(id sender)
         {
+            
+            [weakSelf saveData];
             _editHoursViewController = nil;
             [weakSelf.editHoursViewController initData:weakSelf.rModel.arrOperatingHours];
             [weakSelf presentViewController:weakSelf.editHoursViewController animated:YES completion:^{
@@ -301,7 +303,15 @@ didChangeDragState:(MKAnnotationViewDragState)newState
     self.rModel.name =  self.addNewPlaceSubView.txtPlaceName.text;
     self.rModel.url =  self.addNewPlaceSubView.txtURL.text;
     self.rModel.price =  self.addNewPlaceSubView.txtPerPax.text;
-    self.rModel.currency = self.addNewPlaceSubView.btnCurrency.titleLabel.text;    
+    
+    if ([self.addNewPlaceSubView.btnCurrency.titleLabel.text isEqualToString:@"$"]) {
+        self.rModel.currency = @"Currency";
+
+    }
+    else{
+        self.rModel.currency = self.addNewPlaceSubView.btnCurrency.titleLabel.text;
+
+    }
 }
 
 

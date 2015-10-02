@@ -1,10 +1,10 @@
-/* 
-  Localizable.strings
-  SeetiesIOS
-
-  Created by Chong Chee Yong on 10/20/14.
-  Copyright (c) 2014 Ahyong87. All rights reserved.
-*/
+/*
+ Localizable.strings
+ SeetiesIOS
+ 
+ Created by Chong Chee Yong on 10/20/14.
+ Copyright (c) 2014 Ahyong87. All rights reserved.
+ */
 
 
 "ExpertLogin_Username" = "Username / Email Address";
@@ -459,6 +459,7 @@
 "Want a deal? Browse vouchers"= "Want a deal? Browse vouchers";
 "Check it out!"= "Check it out!";
 "Meet & greet other Seetizens"= "Meet & greet other Seetizens";
+"Follow this Seetizen for more"= "Follow this Seetizen for more";
 "Your fellow Facebook Seetizen"= "Your fellow Facebook Seetizen";
 "Hang on. It's loading!"= "Hang on. It's loading!";
 ""= "";
@@ -601,7 +602,8 @@
 "Per person"= "Per person";
 "Business Hours"= "Business Hours";
 "Edit Business Hours"= "Edit Business Hours";
-"Edit Business Hours Button"= "Edit";
+""= "";
+"Edit Business Hours"= "Edit Business Hours";
 "Business hours as per local time"= "Business hours as per local time";
 "From"= "From";
 "To"= "To";
@@ -968,7 +970,13 @@
 "Collect this"= "Collect this";
 "Pick a collection"= "Pick a collection";
 "Create a new collection"= "Create a new collection";
-
+""= "";
+"No Image Selected"= "No Image Selected";
+"Oops!"= "Oops!";
+"Data Successfully Saved to Draft"= "Data Successfully Saved to Draft";
+"Camera Roll"= "Camera Roll";
+"Searching..."= "Searching...";
+"system"= "Seeties";
 
 
 

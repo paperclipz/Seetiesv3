@@ -130,7 +130,11 @@
 {
     CategoryCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CategoryCollectionViewCell" forIndexPath:indexPath];
     CategoryModel* model = self.arrCategories[indexPath.row];
-    cell.lblTitle.text = model.multiple_line[CHINESE_CODE];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString* langOne = [defaults objectForKey:@"UserData_Language1"];
+    cell.lblTitle.text = model.multiple_line[[Utils getLanguageCode:langOne]];
+    
     [cell.ibImageView sd_setImageWithURL:[NSURL URLWithString:model.selectedImageUrl] placeholderImage:nil];
     cell.ibContentView.backgroundColor = [UIColor colorWithHexValue:model.background_color];
     [cell initData:model];

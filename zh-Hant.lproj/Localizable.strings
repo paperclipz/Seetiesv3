@@ -1,4 +1,4 @@
-/* 
+/*
   Localizable.strings
   SeetiesIOS
 
@@ -413,11 +413,11 @@
 
 
 "Discover the best places to eat, play, and shop."= "發現最夯最道地的吃喝玩樂好去處";
-"Create your personal collections."= "收藏好康，不再錯過\n";
+"Create your personal collections."= "收藏好康，創造時下最酷收藏集";
 ""= "";
-"Recommend your favourite places and best experiences."= "留下足跡，好评推薦\n";
+"Recommend your favourite places and best experiences."= "好評推薦，讓美好時刻留下";
 ""= "";
-"Share your collections with your buddies."= "分享懶人包，應有盡有";
+"Share your collections with your buddies."= "分享收藏，勝過獨自擁有";
 "Let's rock n' roll!"= "立即啟動！";
 ""= "";
 "Terms of Use & Privacy Notice."= "服務條款與隱私權政策";
@@ -464,6 +464,7 @@
 "Want a deal? Browse vouchers"= "熱門優惠任你挑！";
 "Check it out!"= "查看";
 "Meet & greet other Seetizens"= "認識新朋友";
+"Follow this Seetizen for more"= "快點來關注這個用戶";
 "Your fellow Facebook Seetizen"= "你的臉書好友";
 "Hang on. It's loading!"= "連結中…";
 ""= "";
@@ -974,10 +975,12 @@
 "Collect this"= "收藏";
 "Pick a collection"= "挑選收藏集";
 "Create a new collection"= "創建收藏集?";
-
+""= "";
+"No Image Selected"= "請選擇相片";
 "Oops!"= "哎呀！系統有誤";
 "Data Successfully Saved to Draft"= "成功儲存草稿";
 "Camera Roll"= "相機膠卷";
 "Searching..."= "搜尋中...";
-"Seeties"= "Seeties";
+"system"= "Seeties";
+
 

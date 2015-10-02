@@ -85,7 +85,7 @@
 }
 - (void)textViewDidChange:(UITextView *)textView
 {
-    NSString *currentString = [textView.text substringWithRange:NSMakeRange(0, textView.text.length>=DESC_MAX_COUNT?TITLE_MAX_COUNT:textView.text.length)];
+    NSString *currentString = [textView.text substringWithRange:NSMakeRange(0, textView.text.length>=DESC_MAX_COUNT?DESC_MAX_COUNT:textView.text.length)];
 
     textView.text = currentString;
 

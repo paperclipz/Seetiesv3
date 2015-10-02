@@ -22,7 +22,7 @@
 -(void)initSelfView
 {
     [self changeLanguage];
-    [Utils setRoundBorder:self.lblTitle color:[UIColor lightGrayColor] borderRadius:5.0f];
+    [Utils setRoundBorder:self.lblTitle color:[UIColor clearColor] borderRadius:5.0f];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 
 }

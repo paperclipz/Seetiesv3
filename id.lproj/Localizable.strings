@@ -1,10 +1,10 @@
-/* 
-  Localizable.strings
-  SeetiesIOS
-
-  Created by Chong Chee Yong on 10/20/14.
-  Copyright (c) 2014 Ahyong87. All rights reserved.
-*/
+/*
+ Localizable.strings
+ SeetiesIOS
+ 
+ Created by Chong Chee Yong on 10/20/14.
+ Copyright (c) 2014 Ahyong87. All rights reserved.
+ */
 
 
 "ExpertLogin_Username" = "Username / Email Address";
@@ -403,6 +403,7 @@
 
 "qrimage"="BahasaIndonesia.png";
 
+
 "Discover the best places to eat, play, and shop."= "Temukan tempat makan, bermain dan belanja yang seru di kotamu";
 "Create your personal collections."= "Kumpulin rekomendasi favorit kamu di Koleksi pribadi";
 ""= "";
@@ -441,9 +442,9 @@
 ""= "";
 "Hello good looking. Welcome to Seetiessss! 💩"= "Haii, Selamat bergabung di Seeties!";
 ""= "";
-"Feed"= "";
+"Feed"= "Feed";
 "Nearby"= "Sekitarmu";
-"Collect"= "koleksi";
+"Collect"= "Collect";
 "Get more buddies"= "Cari temanmu di sini!";
 "Invite my buddies!"= "Undang temanmu!";
 "Suggested local recommendations"= "Rekomendasi lokal untukmu";
@@ -455,6 +456,7 @@
 "Want a deal? Browse vouchers"= "Suka promosi? dapatkan vouchernya disini";
 "Check it out!"= "Coba lihat!";
 "Meet & greet other Seetizens"= "Berjumpa dan sapa Seetizen lainya";
+"Follow this Seetizen for more"= "Ikutin Seetizen ini untuk lebih detail";
 "Your fellow Facebook Seetizen"= "Teman Seetizen kamu di Facebook";
 "Hang on. It's loading!"= "Tunggu yaa... Sedang mengunduh!";
 ""= "";
@@ -912,9 +914,9 @@
 "You'll be notified when someone's liked, commented on or collected your post. (="= "Kami akan memberitahumu jika seseorang menyukai, berkomentar dan mengoleksi post kamu";
 ""= "";
 ""= "";
-"Collect this"= "Koleksi ini";
+"Collect this"= "Collect ini";
 "Leave a note"= "Buat Catatan";
-"Collect to…"= "Koleksi ke...";
+"Collect to…"= "Collect ke...";
 "New Collection"= "Koleksi baru";
 "Psst! Looks like you already collected this."= "Hei.. Sepertinya kamu sudah mengoleksi ini.";
 ""= "";
@@ -962,14 +964,13 @@
 ""= "";
 "Continue with"= "Lanjutkan dengan";
 "Not now"= "Jangan sekarang";
-"Collect this"= "Koleksi ini";
+"Collect this"= "Collect ini";
 "Pick a collection"= "Pilih koleksi";
 "Create a new collection"= "Buat koleksi baru";
-
+""= "";
+"No Image Selected"= "Tidak ada gambar yang di pilih";
 "Oops!"= "Opps eror!";
 "Data Successfully Saved to Draft"= "Data kamu berhasih di simpan ke draf";
 "Camera Roll"= "Foto Album";
 "Searching..."= "Mencari..";
-"Seeties"= "Seeties";
-
-
+"system"= "Seeties";

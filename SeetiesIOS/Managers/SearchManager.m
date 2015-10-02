@@ -45,7 +45,7 @@
         return;
     }
     if ([CLLocationManager isLocationUpdatesAvailable]) {
-        [LoadingManager showWithTitle:[NSString stringWithFormat:@"%@ GPS",LocalisedString(@"Searching...")]];
+      //  [LoadingManager showWithTitle:[NSString stringWithFormat:@"%@ GPS",LocalisedString(@"Searching...")]];
         
         
         self.manager = [CLLocationManager updateManagerWithAccuracy:50.0 locationAge:15.0 authorizationDesciption:CLLocationUpdateAuthorizationDescriptionAlways];
@@ -98,7 +98,7 @@
 
 -(void)getSuggestedLocationFromFoursquare:(CLLocation*)tempCurrentLocation input:(NSString*)input completionBlock:(IDBlock)completionBlock
 {
-    [LoadingManager showWithTitle:[NSString stringWithFormat:@"%@ foursquare",LocalisedString(@"Searching...")]];
+   // [LoadingManager showWithTitle:[NSString stringWithFormat:@"%@ foursquare",LocalisedString(@"Searching...")]];
 
     SLog(@"long : %f  || lat: %f",tempCurrentLocation.coordinate.longitude,tempCurrentLocation.coordinate.latitude);
 
@@ -245,7 +245,7 @@
 
     //SLog(@"%@",FullString);
     
-    [LoadingManager showWithTitle:@"GOOGLE"];
+   // [LoadingManager showWithTitle:@"GOOGLE"];
     NSDictionary* param = @{@"input":textInput?textInput:@"",@"radius":@"5000",@"key":GOOGLE_API_KEY,@"type":@"address",@"location":[NSString stringWithFormat:@"%f,%f",tempCurrentLocation.coordinate.latitude,tempCurrentLocation.coordinate.longitude]};
 
     [[ConnectionManager Instance]requestServerWithPost:NO customURL:GOOGLE_PLACE_AUTOCOMPLETE_API requestType:ServerRequestTypeGoogleSearch param:param completeHandler:^(id object) {
