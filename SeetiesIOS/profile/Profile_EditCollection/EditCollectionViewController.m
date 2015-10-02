@@ -38,10 +38,8 @@
     
 }
 - (IBAction)btnBackClicked:(id)sender {
-    
-    if (self.navigationController) {
-        [self.navigationController popToRootViewControllerAnimated:YES];
-    }
+   
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)viewDidLoad {
@@ -69,13 +67,13 @@
 {
     self.collectionModel = model;
     
-    
     self.arrList = [[NSMutableArray alloc]initWithArray:self.collectionModel.arrayPost];
 }
 
 -(void)initSelfView
 {
-    [Utils setRoundBorder:self.ibBtnEdit color:[UIColor darkGrayColor] borderRadius:self.ibBtnEdit.frame.size.height/2];
+    [Utils setRoundBorder:self.ibBtnEdit color:TWO_ZERO_FOUR_COLOR borderRadius:self.ibBtnEdit.frame.size.height/2 borderWidth:BORDER_WIDTH];
+
     [self initTableViewWithDelegate:self];
 }
 
@@ -226,7 +224,7 @@
     NSDictionary* dict = @{@"token":[Utils getAppToken],
                            @"collection_id":self.collectionModel.collection_id,
                            @"name":self.collectionModel.name,
-                           @"access":self.collectionModel.isPrivate?@0:@1,
+                           @"access":self.collectionModel.isPrivate?@1:@0,
                            @"description":self.collectionModel.postDesc
                           // @"tags":@""
                            };

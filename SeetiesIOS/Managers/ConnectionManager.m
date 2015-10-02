@@ -182,7 +182,7 @@
         fullURL = [self getFullURLwithType:type];
     }
     
-    //SLog(@"Request Server : %@ \n\n request Json : %@",fullURL,[dict bv_jsonStringWithPrettyPrint:YES]);
+    SLog(@"Request Server : %@ \n\n request Json : %@",fullURL,[dict bv_jsonStringWithPrettyPrint:YES]);
     
 
     [self.manager GET:fullURL parameters:dict

@@ -38,6 +38,15 @@
     }
 }
 
+-(BOOL)validation
+{
+    BOOL isPass = true;
+    if (self.addNewPlaceSubView.txtPlaceName.text.length <=3) {
+        isPass = false;
+    }
+    
+    return isPass;
+}
 
 - (IBAction)btnViewLargeMapClicke:(id)sender {
     

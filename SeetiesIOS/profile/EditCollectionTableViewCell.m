@@ -40,11 +40,9 @@
 
 -(void)layoutSubviews
 {
-    [Utils setRoundBorder:self.ibContentView color:TEXT_GRAY_COLOR borderRadius:5.0f borderWidth:0.5f];
-    [Utils setRoundBorder:self.ibImageView color:TEXT_GRAY_COLOR borderRadius:5.0f borderWidth:.5f];
-    [Utils setRoundBorder:self.txtDescription color:TEXT_GRAY_COLOR borderRadius:5.0f borderWidth:.5f];
-
-   // [Utils setRoundBorder:self.txtDescription color:[UIColor grayColor] borderRadius:5.0f borderWidth:.5f];
+    [Utils setRoundBorder:self.ibContentView color:TWO_ZERO_FOUR_COLOR borderRadius:5.0f borderWidth:BORDER_WIDTH];
+    [Utils setRoundBorder:self.ibImageView color:TWO_ZERO_FOUR_COLOR borderRadius:5.0f borderWidth:BORDER_WIDTH];
+    [Utils setRoundBorder:self.txtDescription color:TWO_ZERO_FOUR_COLOR borderRadius:5.0f borderWidth:BORDER_WIDTH];
 
     PhotoModel* pModel = self.postModel.photos[0];
     

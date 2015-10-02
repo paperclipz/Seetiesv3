@@ -26,8 +26,8 @@
 {
     return [[JSONKeyMapper alloc] initWithDictionary:@{
                                                        @"posts.data": @"arrayPost",
-                                                       @"description": @"postDesc"
-
+                                                       @"description": @"postDesc",
+                                                       @"is_private": @"isPrivate"
                                                        
                                                        }];
 }

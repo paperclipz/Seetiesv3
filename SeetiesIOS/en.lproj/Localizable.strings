@@ -404,17 +404,21 @@
 
 
 
+////////////////////////////////////////////////////////////////////// NEW as of OCtober 2015 /////////////////////////////////////////////////////////////////
 
 
-////////////////////////////////////// NEW //////////////////////////////////////
-
-
-"Discover the city's best places to eat, play & shop" = "Discover the city's best places to eat, play & shop";
-"Create your personal collections." = "Create your personal collections.";
-"Recommend your favourite places and best experiences." = "Recommend your favourite places and best experiences.";
-"Share your collections with your buddies." = "Share your collections with your buddies.";
-"Let's rock n' roll!" = "Let's rock n' roll!";
-"Terms of Use & Privacy Notice." = "Terms of Use & Privacy Notice.";
+"Discover the best places to eat, play, and shop."= "Discover the best places to eat, play, and shop.";
+"Create your personal collections."= "Create your personal collections.";
+""= "";
+"Recommend your favourite places and best experiences."= "Recommend your favourite places and best experiences.";
+""= "";
+"Share your collections with your buddies."= "Share your collections with your buddies.";
+"Let's rock n' roll!"= "Let's rock n' roll!";
+""= "";
+"Terms of Use & Privacy Notice."= "Terms of Use & Privacy Notice.";
+""= "";
+""= "";
+"Username / Email Address"= "Username / Email Address";
 "Password"= "Password";
 "Log in"= "Log in";
 "Forgot password?"= "Forgot password?";
@@ -497,7 +501,7 @@
 "Be the first to comment"= "Be the first to comment";
 "Write a comment"= "Write a comment";
 "Collections"= "Collections";
-"collected this into"= "collected this into";
+"{!username} collected this into {!collection name}"= "{!username} collected this into {!collection name}";
 "Aww. No one's collected this."= "Aww. No one's collected this.";
 "Likes"= "Likes";
 "Be the first to like"= "Be the first to like";
@@ -657,8 +661,8 @@
 ""= "";
 ""= "";
 "Edit Profile"= "Edit Profile";
-"Followers"= "Followers";
-"Followings"= "Followings";
+"{!number} Followers"= "{!number} Followers";
+"{!number} Followings"= "{!number} Followings";
 "Add home location"= "Add home location";
 "How would you describe yourself?"= "How would you describe yourself?";
 "Tag it"= "Tag it";
@@ -672,7 +676,7 @@
 ""= "";
 "Posts"= "Posts";
 "{!number} Posts"= "{!number} Posts";
-"views"= "views";
+"{!number} views"= "{!number} views";
 "There's nothing 'ere, yet."= "There's nothing 'ere, yet.";
 "Would you like to start a post? (="= "Would you like to start a post? (=";
 "New Post"= "New Post";
@@ -686,7 +690,7 @@
 "Following"= "Following";
 ""= "";
 "Unfollow user"= "Unfollow user";
-"Are you sure you want to quit following"= "Are you sure you want to quit following";
+"Are you sure you want to quit following {!username}?"= "Are you sure you want to quit following {!username}?";
 "Maybe not."= "Maybe not.";
 "Yeah!"= "Yeah!";
 ""= "";
@@ -702,7 +706,7 @@
 "{!number} Posts"= "{!number} Posts";
 "Open"= "Open";
 "Closed"= "Closed";
-"Seetizens"= "Seetizens";
+"{!number} Seetizens"= "{!number} Seetizens";
 ""= "";
 "Add a location?"= "Add a location?";
 ""= "";
@@ -726,7 +730,7 @@
 ""= "";
 ""= "";
 "Festivals"= "Festivals";
-"Discover the colours of"= "Discover the colours of";
+"Discover the colours of {!country}"= "Discover the colours of {!country}";
 "Check it out"= "Check it out";
 ""= "";
 "Trending"= "Trending";
@@ -965,9 +969,6 @@
 "Collect this"= "Collect this";
 "Pick a collection"= "Pick a collection";
 "Create a new collection"= "Create a new collection";
-////////////////////////////////////// NEW //////////////////////////////////////
-
-
 
 
 

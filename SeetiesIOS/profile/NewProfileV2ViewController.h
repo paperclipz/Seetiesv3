@@ -127,5 +127,6 @@
 
 
 @property(nonatomic,strong)EditCollectionViewController* editCollectionViewController;
+@property(nonatomic,strong)UINavigationController* navEditCollectionViewController;
 
 @end
