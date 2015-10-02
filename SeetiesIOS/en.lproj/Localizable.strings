@@ -601,8 +601,7 @@
 "Per person"= "Per person";
 "Business Hours"= "Business Hours";
 "Edit Business Hours"= "Edit Business Hours";
-""= "";
-"Edit Business Hours"= "Edit Business Hours";
+"Edit Business Hours Button"= "Edit";
 "Business hours as per local time"= "Business hours as per local time";
 "From"= "From";
 "To"= "To";

@@ -1019,7 +1019,7 @@
     EditProfileButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
     [EditProfileButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
     EditProfileButton.backgroundColor = [UIColor clearColor];
-   // [EditProfileButton addTarget:self action:@selector(AddCollectionButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [EditProfileButton addTarget:self action:@selector(btnAddRecommendaionClicked:) forControlEvents:UIControlEventTouchUpInside];
     [PostView addSubview:EditProfileButton];
     
     UIButton *Line01 = [[UIButton alloc]init];
@@ -1785,6 +1785,15 @@
       //  [LoadingManager hide];
 
     }];
+}
+
+#pragma mark - IBACTION
+-(IBAction)btnAddRecommendaionClicked:(id)sender
+{
+    if(self.btnRecommendationClickBlock)
+    {
+        self.btnRecommendationClickBlock(nil);
+    }
 }
 
 #pragma mark - Declaration

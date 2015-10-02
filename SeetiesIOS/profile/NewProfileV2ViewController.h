@@ -128,5 +128,6 @@
 
 @property(nonatomic,strong)EditCollectionViewController* editCollectionViewController;
 @property(nonatomic,strong)UINavigationController* navEditCollectionViewController;
+@property(nonatomic,copy)IDBlock btnRecommendationClickBlock;
 
 @end

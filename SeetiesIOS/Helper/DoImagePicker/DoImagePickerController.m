@@ -651,17 +651,13 @@
 //    [self presentViewController:nav animated:YES completion:nil];
     
     
-    
-
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
-        picker.allowsEditing = YES;
+        picker.allowsEditing = NO;
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
         [self presentViewController:picker animated:YES completion:NULL];
-
     }
-    
     else{
         [TSMessage showNotificationInViewController:self title:@"SYSTEM" subtitle:@"NO Camera Found" type:TSMessageNotificationTypeError];
     }
@@ -675,21 +671,29 @@
 {
     //  UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
   
-    
-    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-    
-    [library writeImageToSavedPhotosAlbum:[image CGImage] orientation:(ALAssetOrientation)[image imageOrientation] completionBlock:^(NSURL *assetURL, NSError *error){
-        if (error) {
-            // TODO: error handling
-        } else {
-            // TODO: success handling
-            [self readAlbumList:YES];
-        }
-    }];
-    
-    
-    
     [picker dismissViewControllerAnimated:YES completion:nil];
+    PECropViewController *controller = [[PECropViewController alloc] init];
+    controller.delegate = self;
+    controller.image = image;
+    
+    UIImage *tempImage = image;
+    CGFloat width = image.size.width;
+    CGFloat height = image.size.height;
+    CGFloat length = MIN(width, height);
+    controller.imageCropRect = CGRectMake((width - length) / 2,
+                                          (height - length) / 2,
+                                          length,
+                                          length);
+    
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
+    }
+    
+    [self presentViewController:navigationController animated:YES completion:NULL];
+    
+   // [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
@@ -698,21 +702,48 @@
     
 }
 
-#pragma mark - DBCameraViewControllerDelegate
-
-- (void) camera:(id)cameraViewController didFinishWithImage:(UIImage *)image withMetadata:(NSDictionary *)metadata
-{
-//    DetailViewController *detail = [[DetailViewController alloc] init];
-//    [detail setDetailImage:image];
-//    [self.navigationController pushViewController:detail animated:NO];
+//#pragma mark - DBCameraViewControllerDelegate
+//
+//- (void) camera:(id)cameraViewController didFinishWithImage:(UIImage *)image withMetadata:(NSDictionary *)metadata
+//{
+////    DetailViewController *detail = [[DetailViewController alloc] init];
+////    [detail setDetailImage:image];
+////    [self.navigationController pushViewController:detail animated:NO];
+////    [cameraViewController restoreFullScreenMode];
+//    [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
+//
+//
+//}
+//
+//- (void) dismissCamera:(id)cameraViewController{
+//    [self dismissViewControllerAnimated:YES completion:nil];
 //    [cameraViewController restoreFullScreenMode];
-    [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
+//}
 
+#pragma mark - PECropViewController delegate
+- (void)cropViewController:(PECropViewController *)controller didFinishCroppingImage:(UIImage *)croppedImage
+{
+    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+    
+    [library writeImageToSavedPhotosAlbum:[croppedImage CGImage] orientation:(ALAssetOrientation)[croppedImage imageOrientation] completionBlock:^(NSURL *assetURL, NSError *error){
+        if (error) {
+            // TODO: error handling
+            [controller dismissViewControllerAnimated:YES completion:NULL];
+
+        } else {
+            // TODO: success handling
+            [self readAlbumList:YES];
+            [controller dismissViewControllerAnimated:YES completion:NULL];
+
+        }
+    }];
 
 }
 
-- (void) dismissCamera:(id)cameraViewController{
-    [self dismissViewControllerAnimated:YES completion:nil];
-    [cameraViewController restoreFullScreenMode];
+- (void)cropViewControllerDidCancel:(PECropViewController *)controller
+{
+    [controller dismissViewControllerAnimated:YES completion:NULL];
+
 }
+
 @end

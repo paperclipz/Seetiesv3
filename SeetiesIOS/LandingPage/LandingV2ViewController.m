@@ -554,6 +554,8 @@
 {
     if (!_recommendationChooseViewController) {
         
+        
+        // type 1 is draft , default is image picker
         _recommendationChooseViewController = [CustomPickerViewController initializeWithBlock:^(id object) {
             [self.recommendationViewController initData:1 sender:self.leveyTabBarController];
             [self.leveyTabBarController setSelectedIndex:self.leveyTabBarController.previousIndex];
@@ -638,6 +640,15 @@
     if(!_userProfilePageViewController){
         
         _userProfilePageViewController = [NewProfileV2ViewController new];
+        
+        __weak typeof (self)weakSelf = self;
+        _userProfilePageViewController.btnRecommendationClickBlock = ^(id object)
+        {
+            [weakSelf.recommendationViewController initData:2 sender:weakSelf.leveyTabBarController];
+            [weakSelf.leveyTabBarController setSelectedIndex:weakSelf.leveyTabBarController.previousIndex];
+
+            
+        };
     }
     return _userProfilePageViewController;
 }

@@ -533,6 +533,8 @@
 		8A8850661BBE2D960096E0D0 /* RearrangeIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A88505E1BBE2D960096E0D0 /* RearrangeIcon@3x.png */; settings = {ASSET_TAGS = (); }; };
 		8A8850691BBE3F250096E0D0 /* CheckGrey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A8850671BBE3F250096E0D0 /* CheckGrey@2x.png */; settings = {ASSET_TAGS = (); }; };
 		8A88506A1BBE3F250096E0D0 /* CheckGrey@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A8850681BBE3F250096E0D0 /* CheckGrey@3x.png */; settings = {ASSET_TAGS = (); }; };
+		8A8850701BBE83BB0096E0D0 /* error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A88506D1BBE83BB0096E0D0 /* error@2x.png */; settings = {ASSET_TAGS = (); }; };
+		8A8850711BBE83BB0096E0D0 /* TextFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A88506F1BBE83BB0096E0D0 /* TextFieldValidator.m */; settings = {ASSET_TAGS = (); }; };
 		8A959D631B8B252700722920 /* FXImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A959D601B8B252700722920 /* FXImageView.m */; };
 		8A959D641B8B252700722920 /* UIImage+FX.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A959D621B8B252700722920 /* UIImage+FX.m */; };
 		8A959D941B8C0CBA00722920 /* NMBottomTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A959D911B8C0CBA00722920 /* NMBottomTabBar.m */; };
@@ -581,6 +583,20 @@
 		8AB76E071BB8FDC8007DB972 /* EditTagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AB76DF41BB8FDC8007DB972 /* EditTagCollectionViewCell.xib */; };
 		8AB76E081BB8FDC8007DB972 /* UserProfilePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB76DF61BB8FDC8007DB972 /* UserProfilePageViewController.m */; };
 		8AB76E091BB8FDC8007DB972 /* UserProfilePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AB76DF71BB8FDC8007DB972 /* UserProfilePageViewController.xib */; };
+		8AD1F9521BBE98A0008670F2 /* CameraSessionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1F9391BBE98A0008670F2 /* CameraSessionView.m */; settings = {ASSET_TAGS = (); }; };
+		8AD1F9531BBE98A0008670F2 /* CameraDismissButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1F93D1BBE98A0008670F2 /* CameraDismissButton.m */; settings = {ASSET_TAGS = (); }; };
+		8AD1F9541BBE98A0008670F2 /* CameraFlashButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1F93F1BBE98A0008670F2 /* CameraFlashButton.m */; settings = {ASSET_TAGS = (); }; };
+		8AD1F9551BBE98A0008670F2 /* CameraFocalReticule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1F9411BBE98A0008670F2 /* CameraFocalReticule.m */; settings = {ASSET_TAGS = (); }; };
+		8AD1F9561BBE98A0008670F2 /* CameraShutterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1F9431BBE98A0008670F2 /* CameraShutterButton.m */; settings = {ASSET_TAGS = (); }; };
+		8AD1F9571BBE98A0008670F2 /* CameraToggleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1F9451BBE98A0008670F2 /* CameraToggleButton.m */; settings = {ASSET_TAGS = (); }; };
+		8AD1F9581BBE98A0008670F2 /* LaunchCameraButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1F9471BBE98A0008670F2 /* LaunchCameraButton.m */; settings = {ASSET_TAGS = (); }; };
+		8AD1F9591BBE98A0008670F2 /* Cool Camera Mockup.sketch in Resources */ = {isa = PBXBuildFile; fileRef = 8AD1F9481BBE98A0008670F2 /* Cool Camera Mockup.sketch */; settings = {ASSET_TAGS = (); }; };
+		8AD1F95A1BBE98A0008670F2 /* PaintCodeFile.pcvd in Resources */ = {isa = PBXBuildFile; fileRef = 8AD1F9491BBE98A0008670F2 /* PaintCodeFile.pcvd */; settings = {ASSET_TAGS = (); }; };
+		8AD1F95B1BBE98A0008670F2 /* CameraStyleKitClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1F94C1BBE98A0008670F2 /* CameraStyleKitClass.m */; settings = {ASSET_TAGS = (); }; };
+		8AD1F95C1BBE98A0008670F2 /* CaptureSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1F94F1BBE98A0008670F2 /* CaptureSessionManager.m */; settings = {ASSET_TAGS = (); }; };
+		8AD1F95D1BBE98A0008670F2 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1F9511BBE98A0008670F2 /* Constants.m */; settings = {ASSET_TAGS = (); }; };
+		8AD1F9601BBE9951008670F2 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1F95F1BBE9951008670F2 /* CameraViewController.m */; settings = {ASSET_TAGS = (); }; };
+		8AD1F9621BBE9969008670F2 /* CameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD1F9611BBE9969008670F2 /* CameraViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		8AD6BA601B705DF20040437E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA5F1B705DF20040437E /* main.m */; };
 		8AD6BA631B705DF20040437E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA621B705DF20040437E /* AppDelegate.m */; };
 		8AD6BA661B705DF20040437E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA651B705DF20040437E /* ViewController.m */; };
@@ -1431,6 +1447,9 @@
 		8A88505E1BBE2D960096E0D0 /* RearrangeIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RearrangeIcon@3x.png"; sourceTree = "<group>"; };
 		8A8850671BBE3F250096E0D0 /* CheckGrey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CheckGrey@2x.png"; sourceTree = "<group>"; };
 		8A8850681BBE3F250096E0D0 /* CheckGrey@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CheckGrey@3x.png"; sourceTree = "<group>"; };
+		8A88506D1BBE83BB0096E0D0 /* error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "error@2x.png"; sourceTree = "<group>"; };
+		8A88506E1BBE83BB0096E0D0 /* TextFieldValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldValidator.h; sourceTree = "<group>"; };
+		8A88506F1BBE83BB0096E0D0 /* TextFieldValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldValidator.m; sourceTree = "<group>"; };
 		8A959D5F1B8B252700722920 /* FXImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXImageView.h; sourceTree = "<group>"; };
 		8A959D601B8B252700722920 /* FXImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXImageView.m; sourceTree = "<group>"; };
 		8A959D611B8B252700722920 /* UIImage+FX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FX.h"; sourceTree = "<group>"; };
@@ -1511,6 +1530,31 @@
 		8AB76DF51BB8FDC8007DB972 /* UserProfilePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfilePageViewController.h; sourceTree = "<group>"; };
 		8AB76DF61BB8FDC8007DB972 /* UserProfilePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfilePageViewController.m; sourceTree = "<group>"; };
 		8AB76DF71BB8FDC8007DB972 /* UserProfilePageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfilePageViewController.xib; sourceTree = "<group>"; };
+		8AD1F9381BBE98A0008670F2 /* CameraSessionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraSessionView.h; sourceTree = "<group>"; };
+		8AD1F9391BBE98A0008670F2 /* CameraSessionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraSessionView.m; sourceTree = "<group>"; };
+		8AD1F93C1BBE98A0008670F2 /* CameraDismissButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraDismissButton.h; sourceTree = "<group>"; };
+		8AD1F93D1BBE98A0008670F2 /* CameraDismissButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraDismissButton.m; sourceTree = "<group>"; };
+		8AD1F93E1BBE98A0008670F2 /* CameraFlashButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraFlashButton.h; sourceTree = "<group>"; };
+		8AD1F93F1BBE98A0008670F2 /* CameraFlashButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraFlashButton.m; sourceTree = "<group>"; };
+		8AD1F9401BBE98A0008670F2 /* CameraFocalReticule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraFocalReticule.h; sourceTree = "<group>"; };
+		8AD1F9411BBE98A0008670F2 /* CameraFocalReticule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraFocalReticule.m; sourceTree = "<group>"; };
+		8AD1F9421BBE98A0008670F2 /* CameraShutterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraShutterButton.h; sourceTree = "<group>"; };
+		8AD1F9431BBE98A0008670F2 /* CameraShutterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraShutterButton.m; sourceTree = "<group>"; };
+		8AD1F9441BBE98A0008670F2 /* CameraToggleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraToggleButton.h; sourceTree = "<group>"; };
+		8AD1F9451BBE98A0008670F2 /* CameraToggleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraToggleButton.m; sourceTree = "<group>"; };
+		8AD1F9461BBE98A0008670F2 /* LaunchCameraButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchCameraButton.h; sourceTree = "<group>"; };
+		8AD1F9471BBE98A0008670F2 /* LaunchCameraButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchCameraButton.m; sourceTree = "<group>"; };
+		8AD1F9481BBE98A0008670F2 /* Cool Camera Mockup.sketch */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cool Camera Mockup.sketch"; sourceTree = "<group>"; };
+		8AD1F9491BBE98A0008670F2 /* PaintCodeFile.pcvd */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = PaintCodeFile.pcvd; sourceTree = "<group>"; };
+		8AD1F94B1BBE98A0008670F2 /* CameraStyleKitClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraStyleKitClass.h; sourceTree = "<group>"; };
+		8AD1F94C1BBE98A0008670F2 /* CameraStyleKitClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraStyleKitClass.m; sourceTree = "<group>"; };
+		8AD1F94E1BBE98A0008670F2 /* CaptureSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptureSessionManager.h; sourceTree = "<group>"; };
+		8AD1F94F1BBE98A0008670F2 /* CaptureSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptureSessionManager.m; sourceTree = "<group>"; };
+		8AD1F9501BBE98A0008670F2 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		8AD1F9511BBE98A0008670F2 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		8AD1F95E1BBE9951008670F2 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
+		8AD1F95F1BBE9951008670F2 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
+		8AD1F9611BBE9969008670F2 /* CameraViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraViewController.xib; sourceTree = "<group>"; };
 		8AD6BA5A1B705DF20040437E /* SeetiesIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeetiesIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AD6BA5E1B705DF20040437E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8AD6BA5F1B705DF20040437E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -3144,6 +3188,16 @@
 			path = "Edit Photos";
 			sourceTree = "<group>";
 		};
+		8A88506C1BBE83BB0096E0D0 /* TextFieldValidator */ = {
+			isa = PBXGroup;
+			children = (
+				8A88506D1BBE83BB0096E0D0 /* error@2x.png */,
+				8A88506E1BBE83BB0096E0D0 /* TextFieldValidator.h */,
+				8A88506F1BBE83BB0096E0D0 /* TextFieldValidator.m */,
+			);
+			path = TextFieldValidator;
+			sourceTree = "<group>";
+		};
 		8A959D5E1B8B252700722920 /* FXImageView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3291,6 +3345,78 @@
 				8AB76DF41BB8FDC8007DB972 /* EditTagCollectionViewCell.xib */,
 			);
 			path = Profile_EditCollection;
+			sourceTree = "<group>";
+		};
+		8AD1F9361BBE98A0008670F2 /* CustomizableCamera */ = {
+			isa = PBXGroup;
+			children = (
+				8AD1F9371BBE98A0008670F2 /* Camera View */,
+				8AD1F93A1BBE98A0008670F2 /* Graphical Assets */,
+				8AD1F94D1BBE98A0008670F2 /* Model Classes */,
+			);
+			path = CustomizableCamera;
+			sourceTree = "<group>";
+		};
+		8AD1F9371BBE98A0008670F2 /* Camera View */ = {
+			isa = PBXGroup;
+			children = (
+				8AD1F95E1BBE9951008670F2 /* CameraViewController.h */,
+				8AD1F95F1BBE9951008670F2 /* CameraViewController.m */,
+				8AD1F9381BBE98A0008670F2 /* CameraSessionView.h */,
+				8AD1F9391BBE98A0008670F2 /* CameraSessionView.m */,
+				8AD1F9611BBE9969008670F2 /* CameraViewController.xib */,
+			);
+			path = "Camera View";
+			sourceTree = "<group>";
+		};
+		8AD1F93A1BBE98A0008670F2 /* Graphical Assets */ = {
+			isa = PBXGroup;
+			children = (
+				8AD1F93B1BBE98A0008670F2 /* CameraViewComponents */,
+				8AD1F9481BBE98A0008670F2 /* Cool Camera Mockup.sketch */,
+				8AD1F9491BBE98A0008670F2 /* PaintCodeFile.pcvd */,
+				8AD1F94A1BBE98A0008670F2 /* UI Assets */,
+			);
+			path = "Graphical Assets";
+			sourceTree = "<group>";
+		};
+		8AD1F93B1BBE98A0008670F2 /* CameraViewComponents */ = {
+			isa = PBXGroup;
+			children = (
+				8AD1F93C1BBE98A0008670F2 /* CameraDismissButton.h */,
+				8AD1F93D1BBE98A0008670F2 /* CameraDismissButton.m */,
+				8AD1F93E1BBE98A0008670F2 /* CameraFlashButton.h */,
+				8AD1F93F1BBE98A0008670F2 /* CameraFlashButton.m */,
+				8AD1F9401BBE98A0008670F2 /* CameraFocalReticule.h */,
+				8AD1F9411BBE98A0008670F2 /* CameraFocalReticule.m */,
+				8AD1F9421BBE98A0008670F2 /* CameraShutterButton.h */,
+				8AD1F9431BBE98A0008670F2 /* CameraShutterButton.m */,
+				8AD1F9441BBE98A0008670F2 /* CameraToggleButton.h */,
+				8AD1F9451BBE98A0008670F2 /* CameraToggleButton.m */,
+				8AD1F9461BBE98A0008670F2 /* LaunchCameraButton.h */,
+				8AD1F9471BBE98A0008670F2 /* LaunchCameraButton.m */,
+			);
+			path = CameraViewComponents;
+			sourceTree = "<group>";
+		};
+		8AD1F94A1BBE98A0008670F2 /* UI Assets */ = {
+			isa = PBXGroup;
+			children = (
+				8AD1F94B1BBE98A0008670F2 /* CameraStyleKitClass.h */,
+				8AD1F94C1BBE98A0008670F2 /* CameraStyleKitClass.m */,
+			);
+			path = "UI Assets";
+			sourceTree = "<group>";
+		};
+		8AD1F94D1BBE98A0008670F2 /* Model Classes */ = {
+			isa = PBXGroup;
+			children = (
+				8AD1F94E1BBE98A0008670F2 /* CaptureSessionManager.h */,
+				8AD1F94F1BBE98A0008670F2 /* CaptureSessionManager.m */,
+				8AD1F9501BBE98A0008670F2 /* Constants.h */,
+				8AD1F9511BBE98A0008670F2 /* Constants.m */,
+			);
+			path = "Model Classes";
 			sourceTree = "<group>";
 		};
 		8AD6BA511B705DF20040437E = {
@@ -3846,6 +3972,8 @@
 		8AD6C2D21B707D120040437E /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				8AD1F9361BBE98A0008670F2 /* CustomizableCamera */,
+				8A88506C1BBE83BB0096E0D0 /* TextFieldValidator */,
 				8AB76DD71BB8FD78007DB972 /* ZFTokenField.h */,
 				8AB76DD81BB8FD78007DB972 /* ZFTokenField.m */,
 				8A4509891BAC17F200A868CD /* JSONKit.h */,
@@ -4351,6 +4479,7 @@
 				8AD6BE4C1B706CF30040437E /* ExploreCountryV2ViewController.xib in Resources */,
 				8A7B9F0E1BBD389C00D7F604 /* EditCoverPhoto@3x.png in Resources */,
 				8A7B9F8F1BBD389C00D7F604 /* FacebookBtnActive@3x.png in Resources */,
+				8A8850701BBE83BB0096E0D0 /* error@2x.png in Resources */,
 				8A7B9FE71BBD389C00D7F604 /* AddPostBtn@3x.png in Resources */,
 				8A7B9FB81BBD389C00D7F604 /* NoImage.png in Resources */,
 				8A7B9EFB1BBD389C00D7F604 /* CategoriesCheck@2x.png in Resources */,
@@ -4471,6 +4600,7 @@
 				0B6A54E11BB51F84005B9D6B /* ReportViewController.xib in Resources */,
 				8A7B9F2F1BBD389C00D7F604 /* ExploreImgOverlay@3x.png in Resources */,
 				8A7BA03A1BBD389C00D7F604 /* iPhone4_Tour.png in Resources */,
+				8AD1F9621BBE9969008670F2 /* CameraViewController.xib in Resources */,
 				8AD6BE4E1B706CF30040437E /* ExploreCountryViewController.xib in Resources */,
 				8A7B9ECB1BBD389C00D7F604 /* CreateCollection@3x.png in Resources */,
 				8A19542E1BBD586D00AF5C02 /* TraditionalChinese.png in Resources */,
@@ -4646,6 +4776,7 @@
 				8A9F258B1B8D69E100BB13BA /* SearchTableViewController.xib in Resources */,
 				8A7B9FFC1BBD389C00D7F604 /* ProfileSearchBar@2x.png in Resources */,
 				8A7B9EFD1BBD389C00D7F604 /* CloseIcon@2x.png in Resources */,
+				8AD1F9591BBE98A0008670F2 /* Cool Camera Mockup.sketch in Resources */,
 				8A7B9FDD1BBD389C00D7F604 /* PostLocationIcon@3x.png in Resources */,
 				8A7B9F641BBD389C00D7F604 /* CampaignLogo@2x.png in Resources */,
 				8AD6C0B61B706CF30040437E /* InstagramLoginWebViewController.xib in Resources */,
@@ -4730,6 +4861,7 @@
 				8A7B9F261BBD389C00D7F604 /* BtnLetsgo@2x.png in Resources */,
 				8A7B9F411BBD389C00D7F604 /* CommentIcon@3x.png in Resources */,
 				8A7B9FAF1BBD389C00D7F604 /* SeetiesLogo@3x.png in Resources */,
+				8AD1F95A1BBE98A0008670F2 /* PaintCodeFile.pcvd in Resources */,
 				8A7B9F161BBD389C00D7F604 /* TagsIcon@2x.png in Resources */,
 				8A7BA0361BBD389C00D7F604 /* RecommendBtn@2x.png in Resources */,
 				8A7B9F841BBD389C00D7F604 /* SportIcon@2x.png in Resources */,
@@ -4843,6 +4975,7 @@
 				8AB76E061BB8FDC8007DB972 /* EditTagCollectionViewCell.m in Sources */,
 				8A3757B71B847C7A009DB7D4 /* AddNewPlaceViewController.m in Sources */,
 				8AD6C3431B707D120040437E /* TPKeyboardAvoidingScrollView.m in Sources */,
+				8AD1F9521BBE98A0008670F2 /* CameraSessionView.m in Sources */,
 				8A3409461B8AD06A009B66C3 /* UIImage+Resizing.m in Sources */,
 				8AB76DF81BB8FDC8007DB972 /* EditCollectionTableViewCell.m in Sources */,
 				8AD6C8711B7460DB0040437E /* MKNetworkEngine.m in Sources */,
@@ -4850,6 +4983,7 @@
 				0BBFE04F1B9D624C004B17E9 /* EditProfileV2ViewController.m in Sources */,
 				8AD6BE4D1B706CF30040437E /* ExploreCountryViewController.m in Sources */,
 				8A9F25D31B8EF60C00BB13BA /* EditHourTableViewCell.m in Sources */,
+				8AD1F9571BBE98A0008670F2 /* CameraToggleButton.m in Sources */,
 				8AD6C0F81B706CF30040437E /* SearchResultV2ViewController.m in Sources */,
 				8AB76DD91BB8FD78007DB972 /* ZFTokenField.m in Sources */,
 				8AD6C0D21B706CF30040437E /* PFollowTheExpertsViewController.m in Sources */,
@@ -4863,6 +4997,8 @@
 				8A9F258A1B8D69E100BB13BA /* SearchTableViewController.m in Sources */,
 				8AD6C86B1B7460DB0040437E /* NSData+MKBase64.m in Sources */,
 				8AD6C0AF1B706CF30040437E /* ExpertLoginViewController.m in Sources */,
+				8AD1F95C1BBE98A0008670F2 /* CaptureSessionManager.m in Sources */,
+				8AD1F9551BBE98A0008670F2 /* CameraFocalReticule.m in Sources */,
 				8AD6C28F1B7072FB0040437E /* AddLocationViewController.m in Sources */,
 				8AD6BE571B706CF30040437E /* DoAlbumCell.m in Sources */,
 				8AD6C2951B7072FB0040437E /* DraftsViewController.m in Sources */,
@@ -4903,6 +5039,7 @@
 				8A3408F71B86FC99009B66C3 /* UITableViewController+BMXSwipableCellSupport.m in Sources */,
 				8AF2C27E1BA13D1400B0A7F1 /* AFNetworkActivityLogger.m in Sources */,
 				8AD6C2891B7072FB0040437E /* ConfirmPlaceViewController.m in Sources */,
+				8AD1F9601BBE9951008670F2 /* CameraViewController.m in Sources */,
 				8A9F25D91B8EFD2200BB13BA /* EditHourModel.m in Sources */,
 				8AD6C8761B7495B60040437E /* BaseViewController.m in Sources */,
 				8AD6C1041B706CF30040437E /* EditInterestV2ViewController.m in Sources */,
@@ -4952,11 +5089,13 @@
 				8AD6C2A31B7072FB0040437E /* SelectImageViewController.m in Sources */,
 				8AD6BA661B705DF20040437E /* ViewController.m in Sources */,
 				8A3409D01B8B0DCB009B66C3 /* UIImage+RoundedCorner.m in Sources */,
+				8AD1F95D1BBE98A0008670F2 /* Constants.m in Sources */,
 				8AD6C2A71B7072FB0040437E /* TellaStoryViewController.m in Sources */,
 				8AD6C0FA1B706CF30040437E /* SearchViewController.m in Sources */,
 				8A6584491B99554D00BC86B9 /* DismissingAnimationController.m in Sources */,
 				0B6A54E01BB51F84005B9D6B /* ReportViewController.m in Sources */,
 				8AD6C0AB1B706CF30040437E /* InviteFrenViewController.m in Sources */,
+				8A8850711BBE83BB0096E0D0 /* TextFieldValidator.m in Sources */,
 				8A2E2CE61B81DEE60010895E /* CommonViewController.m in Sources */,
 				8AD6C33E1B707D120040437E /* NSMutableArray+MoveArray.m in Sources */,
 				8AD6C86D1B7460DB0040437E /* NSDictionary+RequestEncoding.m in Sources */,
@@ -4979,12 +5118,14 @@
 				8AD6C32A1B707D120040437E /* LanguageManager.m in Sources */,
 				8AD6C0C61B706CF30040437E /* NearByRecommtationViewController.m in Sources */,
 				8AD6C8261B736B870040437E /* ApiVersionModel.m in Sources */,
+				8AD1F95B1BBE98A0008670F2 /* CameraStyleKitClass.m in Sources */,
 				8AD6BA631B705DF20040437E /* AppDelegate.m in Sources */,
 				8A3408ED1B86EA4B009B66C3 /* UITableView+LongPressReorder.m in Sources */,
 				8A3408F61B86FC99009B66C3 /* BMXSwipableCellGestureDelegate.m in Sources */,
 				8AD6C2911B7072FB0040437E /* ChangeSearchLocationViewController.m in Sources */,
 				8AD6C27F1B7072FB0040437E /* AddContactViewController.m in Sources */,
 				0BC9B38A1B7DD287008334FF /* FeedViewController.m in Sources */,
+				8AD1F9561BBE98A0008670F2 /* CameraShutterButton.m in Sources */,
 				8AF2C27A1B9EA3B800B0A7F1 /* NSMutableDictionary+STHelper.m in Sources */,
 				8A959D951B8C0CBA00722920 /* NMBottomTabBarController.m in Sources */,
 				8A3757B01B842F74009DB7D4 /* SearchManager.m in Sources */,
@@ -5001,9 +5142,11 @@
 				8A3757DB1B85B606009DB7D4 /* AddNewPlaceSubView.m in Sources */,
 				8AD6BA601B705DF20040437E /* main.m in Sources */,
 				8A3409481B8AD06A009B66C3 /* UIImage+Saving.m in Sources */,
+				8AD1F9581BBE98A0008670F2 /* LaunchCameraButton.m in Sources */,
 				8A9F258E1B8D702500BB13BA /* CAPSPageMenu.m in Sources */,
 				8AD6C2291B706FA10040437E /* NSString+ChangeAsciiString.m in Sources */,
 				8A2E2CEF1B81E2480010895E /* CommonTableViewCell.m in Sources */,
+				8AD1F9531BBE98A0008670F2 /* CameraDismissButton.m in Sources */,
 				8AD6C0B51B706CF30040437E /* InstagramLoginWebViewController.m in Sources */,
 				8AD6C8731B7460DB0040437E /* Reachability.m in Sources */,
 				8A9F25C11B8ED33000BB13BA /* BKCardExpiryField.m in Sources */,
@@ -5016,6 +5159,7 @@
 				8AD6BE4F1B706CF30040437E /* ExploreViewController.m in Sources */,
 				8AD6C2811B7072FB0040437E /* AddHourViewController.m in Sources */,
 				8A3409001B86FE3D009B66C3 /* UITableViewCell+ConfigureCell.m in Sources */,
+				8AD1F9541BBE98A0008670F2 /* CameraFlashButton.m in Sources */,
 				8AD6C0C21B706CF30040437E /* FullImageViewController.m in Sources */,
 				8AD6C10E1B706CF30040437E /* SettingsViewController.m in Sources */,
 				8AD6C3381B707D120040437E /* FSConverter.m in Sources */,
@@ -5176,7 +5320,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5209,7 +5353,7 @@
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b384f4c6-d74f-484d-ad13-a68f30676c55";
+				PROVISIONING_PROFILE = "7019fa0d-9f6e-41e5-955e-d97da8a6a364";
 			};
 			name = Debug;
 		};
@@ -5219,7 +5363,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5252,7 +5396,7 @@
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b384f4c6-d74f-484d-ad13-a68f30676c55";
+				PROVISIONING_PROFILE = "7019fa0d-9f6e-41e5-955e-d97da8a6a364";
 			};
 			name = Release;
 		};

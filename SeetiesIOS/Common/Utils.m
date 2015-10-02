@@ -311,6 +311,9 @@
 #define FILIPINES_CODE @"539fbb273efa3fde3f8b4567"
 #define THAI_CODE @"544481503efa3ff1588b4567"
 
+#define TAIWAN_STR @"简体中文"
+#define CHINESE_STR @"繁體中文 "
+#define CHINESE_CENTRAL @"中文 "
 
 +(NSString*)getLanguageName:(NSString*)code
 {
@@ -328,22 +331,25 @@
     return nil;
 }
 
-
 +(NSString*)getLanguageCode:(NSString*)name
 {
-    
+    NSString* tempName = name;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *LanguageID_Array = [defaults objectForKey:@"LanguageData_ID"];
     NSMutableArray *LanguageName_Array = [defaults objectForKey:@"LanguageData_Name"];
     
+    if ([tempName isEqualToString:TAIWAN_STR] || [tempName isEqualToString:CHINESE_STR]) {
+        tempName = CHINESE_CENTRAL;
+    }
+    
     for (int i = 0; i< LanguageName_Array.count; i++) {
-        if ([name isEqualToString:LanguageName_Array[i]]) {
+        if ([tempName isEqualToString:LanguageName_Array[i]]) {
             
             return LanguageID_Array[i];
         }
     }
     
-    return nil;
+    return LanguageID_Array[0];
     
 }
 

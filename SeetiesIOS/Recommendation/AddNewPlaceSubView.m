@@ -130,7 +130,7 @@
     self.lblPrice.text = LocalisedString(@"Price");
     self.lblPerpax.text = LocalisedString(@"Per person");
     self.lblEditHour.text = LocalisedString(@"Business Hours");
-    [self.btnEditHours setTitle:LocalisedString(@"Edit Business Hours") forState:UIControlStateNormal];
+    [self.btnEditHours setTitle:LocalisedString(@"Edit") forState:UIControlStateNormal];
   }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
