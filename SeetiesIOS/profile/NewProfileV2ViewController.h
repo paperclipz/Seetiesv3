@@ -116,6 +116,11 @@
     int CheckFirstTimeLoadCollection;
     
     IBOutlet UIButton *SearchButton;
+    
+    UIRefreshControl *refreshControl;
+    
+    int CheckClick_Posts;
+    int CheckClick_Likes;
 }
 -(IBAction)SettingsButton:(id)sender;
 -(IBAction)SearchButton:(id)sender;

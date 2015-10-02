@@ -59,6 +59,11 @@
     SetPublic = @"1";
     
     ShowTitle.text = LocalisedString(@"New Collection");
+    CollectionTitle.text = LocalisedString(@"Collection title");
+    DescriptionTitle.text = LocalisedString(@"Collection description");
+    TagTitle.text = LocalisedString(@"Tag it");
+    SetasPublicTitle.text = LocalisedString(@"Set as public");
+    SubTitleSetasPublic.text = LocalisedString(@"You will not be able to change your privacy settings for this collection once it goes public.");
 }
 - (UIStatusBarStyle) preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
@@ -81,11 +86,11 @@
 {
     NSLog(@"did begin editing");
     if (textView == NameTextView) {
-        if ([NameTextView.text isEqualToString:@"Type something..."]) {
+        if ([NameTextView.text isEqualToString:LocalisedString(@"eg: Top 10 coffee hideouts in KL, Best spas in Bangkok")]) {
             NameTextView.text = @"";
         }
     }else{
-        if ([DescriptionTextView.text isEqualToString:@"Type something..."]) {
+        if ([DescriptionTextView.text isEqualToString:LocalisedString(@"Write a description")]) {
             DescriptionTextView.text = @"";
         }
     }
@@ -168,7 +173,7 @@
     NSLog(@"TagsField === %@",TagsField.text);
     NSLog(@"SetPublic === %@",SetPublic);
     
-    if ([NameTextView.text isEqualToString:@"Type something..."] || [NameTextView.text isEqualToString:@""] || [NameTextView.text length] == 0) {
+    if ([NameTextView.text isEqualToString:LocalisedString(@"eg: Top 10 coffee hideouts in KL, Best spas in Bangkok")] || [NameTextView.text isEqualToString:@""] || [NameTextView.text length] == 0) {
         [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Collection name must be at least 6 characters" type:TSMessageNotificationTypeError];
     }else{
         [self CreateNewCollection];
@@ -188,10 +193,10 @@
 -(void)CreateNewCollection{
     [ShowActivity startAnimating];
     
-    if ([NameTextView.text isEqualToString:@"Type something..."]) {
+    if ([NameTextView.text isEqualToString:LocalisedString(@"eg: Top 10 coffee hideouts in KL, Best spas in Bangkok")]) {
         NameTextView.text = @"";
     }
-    if ([DescriptionTextView.text isEqualToString:@"Type something..."]) {
+    if ([DescriptionTextView.text isEqualToString:LocalisedString(@"Write a description")]) {
         DescriptionTextView.text = @"";
     }
     

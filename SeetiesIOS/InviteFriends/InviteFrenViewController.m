@@ -46,11 +46,11 @@
 
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     
-    int GetHeight_ = screenWidth / 3 ;
-    TabButton_1.frame = CGRectMake((screenWidth / 2) - (GetHeight_ / 2), 64, GetHeight_, 40);//button 2
-    TabButton_2.frame = CGRectMake(screenWidth - GetHeight_, 64, GetHeight_, 40);//button 3
-    //TabButton_2.hidden = YES;
-    TabButton_3.frame = CGRectMake(0, 64, GetHeight_, 40);//button 1
+    int GetHeight_ = screenWidth / 2;
+    TabButton_1.frame = CGRectMake(screenWidth - GetHeight_, 74, GetHeight_, 40);//button 2
+    //TabButton_2.frame = CGRectMake(screenWidth - GetHeight_, 64, GetHeight_, 40);//button 3
+    TabButton_2.hidden = YES;
+    TabButton_3.frame = CGRectMake(0, 74, GetHeight_, 40);//button 1
     
     //LineButton.frame = CGRectMake(0, 120, screenWidth, 1);
     
@@ -175,10 +175,11 @@
     Background.backgroundColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
     [InviteScroll addSubview:Background];
     
-    ShowOtherText_1.frame = CGRectMake((screenWidth / 2) - 140, 10, 280, 40);
+    ShowOtherText_1.frame = CGRectMake((screenWidth / 2) - 150, 10, 300, 40);
     ShowOtherText_1.text = LocalisedString(@"The more, the merrier!");
     ShowOtherText_1.backgroundColor = [UIColor clearColor];
     ShowOtherText_1.textColor = [UIColor whiteColor];
+    ShowOtherText_1.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
     [InviteScroll addSubview:ShowOtherText_1];
     
     UIButton *WhiteBackground = [[UIButton alloc]init];
@@ -189,15 +190,15 @@
     [InviteScroll addSubview:WhiteBackground];
     
     UIImageView *ShowBigIcon = [[UIImageView alloc]init];
-    ShowBigIcon.frame = CGRectMake((screenWidth /2) - 55, 60, 110, 105);
-    ShowBigIcon.image = [UIImage imageNamed:@"vector.png"];
+    ShowBigIcon.frame = CGRectMake((screenWidth /2) - 63, 60, 125, 125);
+    ShowBigIcon.image = [UIImage imageNamed:@"InviteGraphic.png"];
     ShowBigIcon.backgroundColor = [UIColor clearColor];
     [InviteScroll addSubview:ShowBigIcon];
     
     
     UIImageView *ShowWhatsappIcon = [[UIImageView alloc]init];
-    ShowWhatsappIcon.frame = CGRectMake(60, 170 + 9, 38, 38);
-    ShowWhatsappIcon.image = [UIImage imageNamed:@"whastapp_icon.png"];
+    ShowWhatsappIcon.frame = CGRectMake(60, 170 + 2, 50, 50);
+    ShowWhatsappIcon.image = [UIImage imageNamed:@"InviteWhatsappIcon.png"];
     [InviteScroll addSubview:ShowWhatsappIcon];
     
     WhatsappButton.frame = CGRectMake(118 , 170, screenWidth - 158, 55);
@@ -211,8 +212,8 @@
     [InviteScroll addSubview:Line01];
     
     UIImageView *ShowFBMessagerIcon = [[UIImageView alloc]init];
-    ShowFBMessagerIcon.frame = CGRectMake(60, 225 + 9, 38, 38);
-    ShowFBMessagerIcon.image = [UIImage imageNamed:@"messenger_icon.png"];
+    ShowFBMessagerIcon.frame = CGRectMake(60, 225 + 2, 50, 50);
+    ShowFBMessagerIcon.image = [UIImage imageNamed:@"InviteMessengarIcon.png"];
     [InviteScroll addSubview:ShowFBMessagerIcon];
 
     FbMessagerButton.frame = CGRectMake(118, 225, screenWidth - 158, 55);
@@ -226,8 +227,8 @@
     [InviteScroll addSubview:Line02];
     
     UIImageView *ShowlineIcon = [[UIImageView alloc]init];
-    ShowlineIcon.frame = CGRectMake(60, 280 + 9, 38, 38);
-    ShowlineIcon.image = [UIImage imageNamed:@"line_icon.png"];
+    ShowlineIcon.frame = CGRectMake(60, 280 + 2, 50, 50);
+    ShowlineIcon.image = [UIImage imageNamed:@"InviteLineIcon.png"];
     [InviteScroll addSubview:ShowlineIcon];
     
     TrueLineButton.frame = CGRectMake(118, 280, screenWidth - 158, 55);
@@ -257,27 +258,27 @@
     ShowInviteView.hidden = YES;
     ShowFBView.hidden = NO;
     
-    [TabButton_1 setImage:[UIImage imageNamed:@"fb_selected.png"] forState:UIControlStateNormal];
-    [TabButton_2 setImage:[UIImage imageNamed:@"ig_unselect.png"] forState:UIControlStateNormal];
-    [TabButton_3 setImage:[UIImage imageNamed:@"msg_unselect.png"] forState:UIControlStateNormal];
+    [TabButton_1 setImage:[UIImage imageNamed:@"FacebookBtnActive.png"] forState:UIControlStateNormal];
+    [TabButton_2 setImage:[UIImage imageNamed:@"InstagramBtnInactive.png"] forState:UIControlStateNormal];
+    [TabButton_3 setImage:[UIImage imageNamed:@"InviteBtnInactive.png"] forState:UIControlStateNormal];
 }
 -(IBAction)TabButton_2:(id)sender{
     ShowEmailView.hidden = NO;
     ShowInviteView.hidden = YES;
     ShowFBView.hidden = YES;
     
-    [TabButton_1 setImage:[UIImage imageNamed:@"fb_deselect.png"] forState:UIControlStateNormal];
-    [TabButton_2 setImage:[UIImage imageNamed:@"ig_selected.png"] forState:UIControlStateNormal];
-    [TabButton_3 setImage:[UIImage imageNamed:@"msg_unselect.png"] forState:UIControlStateNormal];
+    [TabButton_1 setImage:[UIImage imageNamed:@"FacebookBtnInactive.png"] forState:UIControlStateNormal];
+    [TabButton_2 setImage:[UIImage imageNamed:@"InstagramBtnActive.png"] forState:UIControlStateNormal];
+    [TabButton_3 setImage:[UIImage imageNamed:@"InviteBtnInactive.png"] forState:UIControlStateNormal];
 }
 -(IBAction)TabButton_3:(id)sender{
     ShowEmailView.hidden = YES;
     ShowInviteView.hidden = NO;
     ShowFBView.hidden = YES;
     
-    [TabButton_1 setImage:[UIImage imageNamed:@"fb_deselect.png"] forState:UIControlStateNormal];
-    [TabButton_2 setImage:[UIImage imageNamed:@"ig_unselect.png"] forState:UIControlStateNormal];
-    [TabButton_3 setImage:[UIImage imageNamed:@"msg_selected.png"] forState:UIControlStateNormal];
+    [TabButton_1 setImage:[UIImage imageNamed:@"FacebookBtnInactive.png"] forState:UIControlStateNormal];
+    [TabButton_2 setImage:[UIImage imageNamed:@"InstagramBtnInactive.png"] forState:UIControlStateNormal];
+    [TabButton_3 setImage:[UIImage imageNamed:@"InviteBtnActive.png"] forState:UIControlStateNormal];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -390,7 +391,7 @@
             [All_Experts_uid_Array addObject:uid];
             NSString *profile_photo =  [NSString stringWithFormat:@"%@",[dict objectForKey:@"profile_photo"]];
             [All_Experts_ProfilePhoto_Array addObject:profile_photo];
-            NSString *followed =  [NSString stringWithFormat:@"%@",[dict objectForKey:@"followed"]];
+            NSString *followed =  [NSString stringWithFormat:@"%@",[dict objectForKey:@"following"]];
             [All_Experts_Followed_Array addObject:followed];
             NSString *username =  [NSString stringWithFormat:@"%@",[dict objectForKey:@"username"]];
             [All_Experts_Username_Array addObject:username];
@@ -803,12 +804,13 @@
             [ShowFollowerButton addTarget:self action:@selector(FollowerButton:) forControlEvents:UIControlEventTouchUpInside];
             NSString *CheckFollower = [[NSString alloc]initWithFormat:@"%@",[All_Experts_Followed_Array objectAtIndex:i]];
             if ([CheckFollower isEqualToString:@"0"]) {
-                [ShowFollowerButton setImage:[UIImage imageNamed:@"FollowMini.png"] forState:UIControlStateNormal];
-                [ShowFollowerButton setImage:[UIImage imageNamed:@"FollowingMini.png"] forState:UIControlStateSelected];
+                [ShowFollowerButton setImage:[UIImage imageNamed:@"FollowIcon.png"] forState:UIControlStateNormal];
+                [ShowFollowerButton setImage:[UIImage imageNamed:@"FollowingIcon.png"] forState:UIControlStateSelected];
             }else{
-                [ShowFollowerButton setImage:[UIImage imageNamed:@"FollowingMini.png"] forState:UIControlStateNormal];
-                [ShowFollowerButton setImage:[UIImage imageNamed:@"FollowMini.png"] forState:UIControlStateSelected];
+                [ShowFollowerButton setImage:[UIImage imageNamed:@"FollowingIcon.png"] forState:UIControlStateNormal];
+                [ShowFollowerButton setImage:[UIImage imageNamed:@"FollowIcon.png"] forState:UIControlStateSelected];
             }
+            
             
             [MainScroll addSubview:ShowExpertProfilePhoto];
             [MainScroll addSubview:ShowName];
@@ -914,12 +916,13 @@
                 [ShowFollowerButton addTarget:self action:@selector(FollowerButton2:) forControlEvents:UIControlEventTouchUpInside];
                 NSString *CheckFollower = [[NSString alloc]initWithFormat:@"%@",[FB_Experts_Followed_Array objectAtIndex:i]];
                 if ([CheckFollower isEqualToString:@"0"]) {
-                    [ShowFollowerButton setImage:[UIImage imageNamed:@"FollowMini.png"] forState:UIControlStateNormal];
-                    [ShowFollowerButton setImage:[UIImage imageNamed:@"FollowingMini.png"] forState:UIControlStateSelected];
+                    [ShowFollowerButton setImage:[UIImage imageNamed:@"FollowIcon.png"] forState:UIControlStateNormal];
+                    [ShowFollowerButton setImage:[UIImage imageNamed:@"FollowingIcon.png"] forState:UIControlStateSelected];
                 }else{
-                    [ShowFollowerButton setImage:[UIImage imageNamed:@"FollowingMini.png"] forState:UIControlStateNormal];
-                    [ShowFollowerButton setImage:[UIImage imageNamed:@"FollowMini.png"] forState:UIControlStateSelected];
+                    [ShowFollowerButton setImage:[UIImage imageNamed:@"FollowingIcon.png"] forState:UIControlStateNormal];
+                    [ShowFollowerButton setImage:[UIImage imageNamed:@"FollowIcon.png"] forState:UIControlStateSelected];
                 }
+                
                 
                 [MainScroll addSubview:ShowExpertProfilePhoto];
                 [MainScroll addSubview:ShowName];
@@ -1024,11 +1027,11 @@
                 [ShowFollowerButton addTarget:self action:@selector(FollowerButton:) forControlEvents:UIControlEventTouchUpInside];
                 NSString *CheckFollower = [[NSString alloc]initWithFormat:@"%@",[All_Experts_Followed_Array objectAtIndex:i]];
                 if ([CheckFollower isEqualToString:@"0"]) {
-                    [ShowFollowerButton setImage:[UIImage imageNamed:@"FollowMini.png"] forState:UIControlStateNormal];
-                    [ShowFollowerButton setImage:[UIImage imageNamed:@"FollowingMini.png"] forState:UIControlStateSelected];
+                    [ShowFollowerButton setImage:[UIImage imageNamed:@"FollowIcon.png"] forState:UIControlStateNormal];
+                    [ShowFollowerButton setImage:[UIImage imageNamed:@"FollowingIcon.png"] forState:UIControlStateSelected];
                 }else{
-                    [ShowFollowerButton setImage:[UIImage imageNamed:@"FollowingMini.png"] forState:UIControlStateNormal];
-                    [ShowFollowerButton setImage:[UIImage imageNamed:@"FollowMini.png"] forState:UIControlStateSelected];
+                    [ShowFollowerButton setImage:[UIImage imageNamed:@"FollowingIcon.png"] forState:UIControlStateNormal];
+                    [ShowFollowerButton setImage:[UIImage imageNamed:@"FollowIcon.png"] forState:UIControlStateSelected];
                 }
                 
                 [MainScroll addSubview:ShowExpertProfilePhoto];

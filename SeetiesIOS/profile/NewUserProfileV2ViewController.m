@@ -11,6 +11,7 @@
 #import "ShowFollowerAndFollowingViewController.h"
 #import "FeedV2DetailViewController.h"
 #import "FullImageViewController.h"
+#import <FacebookSDK/FacebookSDK.h>
 @interface NewUserProfileV2ViewController ()
 
 @end
@@ -42,6 +43,11 @@
     BackgroundImage.frame = headerFrame;
     [MainScroll addSubview:BackgroundImage withAcceleration:CGPointMake(0.0f, 0.5f)];
     
+    ShowOverlayImg.image = [UIImage imageNamed:@"FeedOverlay.png"];
+    ShowOverlayImg.frame = CGRectMake(0, 0, screenWidth, 200);
+    ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
+    ShowOverlayImg.layer.masksToBounds = YES;
+    
     AllContentView.frame = CGRectMake(0, 100, screenWidth, 100);
     [MainScroll addSubview:AllContentView];
     
@@ -68,7 +74,8 @@
     TotalPage_Collection = 1;
     CurrentPage_Collection = 0;
     CheckExpand = YES;
-    
+    CheckClick_Posts = 0;
+    CheckClick_Likes = 0;
     
     if ([GetUserName isEqualToString:@""] && [GetUid isEqualToString:@""] ) {
         
@@ -92,11 +99,13 @@
     NSLog(@"GetUserName is %@",GetUserName);
  //   [self GetUserData];
     GetUid = @"";
+    [self GetUserData];
 }
 -(void)GetUid:(NSString *)uid{
     GetUid = uid;
     NSLog(@"GetUid is %@",GetUid);
     GetUserName = @"";
+    [self GetUserData];
 }
 -(IBAction)BackButtonOnClick:(id)sender{
     CATransition *transition = [CATransition animation];
@@ -478,14 +487,14 @@
 - (void)segmentAction:(UISegmentedControl *)segment
 {
     //  CGSize contentSize = MainScroll.frame.size;
-    
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     switch (segment.selectedSegmentIndex) {
         case 0:
             NSLog(@"Collection click");
             PostView.hidden = YES;
             LikeView.hidden = YES;
             CollectionView.hidden = NO;
-            [self InitCollectionView];
+          //  [self InitCollectionView];
             
             break;
         case 1:
@@ -493,14 +502,36 @@
             LikeView.hidden = YES;
             CollectionView.hidden = YES;
             PostView.hidden = NO;
-            [self InitPostsView];
+          //  [self InitPostsView];
+            if (CheckClick_Posts == 0) {
+                CheckClick_Posts = 1;
+                [self InitPostsView];
+            }else{
+                AllContentView.frame = CGRectMake(0, 100 , screenWidth,GetHeight + PostView.frame.size.height + 50);
+                CGSize contentSize = MainScroll.frame.size;
+                contentSize.height = GetHeight + PostView.frame.size.height + 50;
+                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+                MainScroll.contentSize = contentSize;
+                
+            }
             break;
         case 2:
             NSLog(@"Likes click");
             PostView.hidden = YES;
             CollectionView.hidden = YES;
             LikeView.hidden = NO;
-            [self InitLikeData];
+          //  [self InitLikeData];
+            if (CheckClick_Likes == 0) {
+                CheckClick_Likes = 1;
+                [self InitLikeData];
+            }else{
+                AllContentView.frame = CGRectMake(0, 100 , screenWidth, GetHeight + LikeView.frame.size.height + 50);
+                CGSize contentSize = MainScroll.frame.size;
+                contentSize.height = GetHeight + LikeView.frame.size.height + 50;
+                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+                MainScroll.contentSize = contentSize;
+                
+            }
             break;
         default:
             break;
@@ -521,17 +552,12 @@
      NSString *TempString = [[NSString alloc]initWithFormat:@"%@ %@",GetCollectionDataCount,LocalisedString(@"Collections")];
     
     UILabel *ShowCollectionCount = [[UILabel alloc]init];
-    ShowCollectionCount.frame = CGRectMake(30, 20, 150, 20);
+    ShowCollectionCount.frame = CGRectMake(30, 20, screenWidth - 60, 20);
     ShowCollectionCount.text = TempString;
-    ShowCollectionCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+    ShowCollectionCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
     ShowCollectionCount.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+    ShowCollectionCount.textAlignment = NSTextAlignmentCenter;
     [CollectionView addSubview:ShowCollectionCount];
-    
-    UIButton *Line01 = [[UIButton alloc]init];
-    Line01.frame = CGRectMake(screenWidth - 30 - 25, 10, 1, 30);
-    [Line01 setTitle:@"" forState:UIControlStateNormal];
-    [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
-    [CollectionView addSubview:Line01];
     
     
     
@@ -617,14 +643,14 @@
         
         heightcheck += FinalWidth + 10 + 70 + 10 + i ;
     }
-    AllContentView.frame = CGRectMake(0, 100, screenWidth, GetHeight + heightcheck + FinalWidth + 120);
-    CollectionView.frame = CGRectMake(0, GetHeight, screenWidth, heightcheck + FinalWidth + 120);
+    AllContentView.frame = CGRectMake(0, 100, screenWidth, GetHeight + heightcheck + FinalWidth);
+    CollectionView.frame = CGRectMake(0, GetHeight, screenWidth, heightcheck + FinalWidth);
     
     NSLog(@"GetHeight = %d",GetHeight);
     NSLog(@"heightcheck = %d",heightcheck);
     
     CGSize contentSize = MainScroll.frame.size;
-    contentSize.height = GetHeight + CollectionView.frame.size.height + 50;
+    contentSize.height = GetHeight + CollectionView.frame.size.height;
     MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     MainScroll.contentSize = contentSize;
     
@@ -638,7 +664,7 @@
     UILabel *ShowLikesCount = [[UILabel alloc]init];
     ShowLikesCount.frame = CGRectMake(30, 20, screenWidth - 60, 20);
     ShowLikesCount.text = TempString;
-    ShowLikesCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+    ShowLikesCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
     ShowLikesCount.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
     ShowLikesCount.textAlignment = NSTextAlignmentCenter;
     [LikeView addSubview:ShowLikesCount];
@@ -699,7 +725,7 @@
     UILabel *ShowPostsCount = [[UILabel alloc]init];
     ShowPostsCount.frame = CGRectMake(30, 20, screenWidth - 60, 20);
     ShowPostsCount.text = TempString;
-    ShowPostsCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+    ShowPostsCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
     ShowPostsCount.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
     ShowPostsCount.textAlignment = NSTextAlignmentCenter;
     [PostView addSubview:ShowPostsCount];
@@ -964,9 +990,9 @@
     //    [self.spinnerView removeFromSuperview];
     [ShowLoadingActivity stopAnimating];
     //CheckLoadDone = YES;
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:CustomLocalisedString(@"ErrorConnection", nil) message:CustomLocalisedString(@"NoData", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-    
-    [alert show];
+//    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:CustomLocalisedString(@"ErrorConnection", nil) message:CustomLocalisedString(@"NoData", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//    
+//    [alert show];
 }
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
@@ -1496,5 +1522,115 @@
             [self SendFollowingData];
         }
     }
+}
+-(IBAction)ShareButton:(id)sender{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:CustomLocalisedString(@"SettingsPage_Cancel", nil)
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:CustomLocalisedString(@"ShareToFacebook", nil),CustomLocalisedString(@"CopyLink", nil), nil];
+    
+    [actionSheet showInView:self.view];
+    
+    actionSheet.tag = 200;
+    
+}
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(actionSheet.tag == 200){
+        NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
+        if ([buttonTitle isEqualToString:@"Share to Facebook"]) {
+            NSLog(@"Share to Facebook");
+            [actionSheet dismissWithClickedButtonIndex:0 animated:YES];
+            NSString *message = [NSString stringWithFormat:@"https://seeties.me/%@",GetUserName];
+            
+            // Check if the Facebook app is installed and we can present the share dialog
+            FBLinkShareParams *params = [[FBLinkShareParams alloc] init];
+            params.link = [NSURL URLWithString:message];
+            
+            // If the Facebook app is installed and we can present the share dialog
+            if ([FBDialogs canPresentShareDialogWithParams:params]) {
+                
+                // Present share dialog
+                [FBDialogs presentShareDialogWithLink:params.link
+                                              handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
+                                                  if(error) {
+                                                      // An error occurred, we need to handle the error
+                                                      // See: https://developers.facebook.com/docs/ios/errors
+                                                      NSLog(@"Error publishing story: %@", error.description);
+                                                  } else {
+                                                      // Success
+                                                      NSLog(@"result %@", results);
+                                                  }
+                                              }];
+                
+                // If the Facebook app is NOT installed and we can't present the share dialog
+            } else {
+                // FALLBACK: publish just a link using the Feed dialog
+                
+                // Put together the dialog parameters
+                NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                               @"", @"name",
+                                               @"", @"caption",
+                                               @"", @"description",
+                                               message, @"link",
+                                               @"", @"picture",
+                                               nil];
+                
+                // Show the feed dialog
+                [FBWebDialogs presentFeedDialogModallyWithSession:nil
+                                                       parameters:params
+                                                          handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
+                                                              if (error) {
+                                                                  // An error occurred, we need to handle the error
+                                                                  // See: https://developers.facebook.com/docs/ios/errors
+                                                                  NSLog(@"Error publishing story: %@", error.description);
+                                                              } else {
+                                                                  if (result == FBWebDialogResultDialogNotCompleted) {
+                                                                      // User canceled.
+                                                                      NSLog(@"User cancelled.");
+                                                                  } else {
+                                                                      // Handle the publish feed callback
+                                                                      NSDictionary *urlParams = [self parseURLParams:[resultURL query]];
+                                                                      
+                                                                      if (![urlParams valueForKey:@"post_id"]) {
+                                                                          // User canceled.
+                                                                          NSLog(@"User cancelled.");
+                                                                          
+                                                                      } else {
+                                                                          // User clicked the Share button
+                                                                          NSString *result = [NSString stringWithFormat: @"Posted story, id: %@", [urlParams valueForKey:@"post_id"]];
+                                                                          NSLog(@"result %@", result);
+                                                                      }
+                                                                  }
+                                                              }
+                                                          }];
+            }
+            
+        }
+        if ([buttonTitle isEqualToString:CustomLocalisedString(@"CopyLink", nil)]) {
+            NSLog(@"Copy Link");
+            
+            NSString *message = [NSString stringWithFormat:@"I found this awesome profile on Seeties - check it out! \n\nhttps://seeties.me/%@",GetUserName];
+            UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+            pasteboard.string = message;
+            [actionSheet dismissWithClickedButtonIndex:0 animated:YES];
+        }
+        
+        if ([buttonTitle isEqualToString:@"Cancel Button"]) {
+            NSLog(@"Cancel Button");
+        }
+    }
+    
+}
+- (NSDictionary*)parseURLParams:(NSString *)query {
+    NSArray *pairs = [query componentsSeparatedByString:@"&"];
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    for (NSString *pair in pairs) {
+        NSArray *kv = [pair componentsSeparatedByString:@"="];
+        NSString *val =
+        [kv[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        params[kv[0]] = val;
+    }
+    return params;
 }
 @end

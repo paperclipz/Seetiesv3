@@ -76,7 +76,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
                                     <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" title="Invite Facebook Friends to Seeties" backgroundImage="InviteButton.png">
+                                    <state key="normal" title="Invite Facebook Friends to Seeties" backgroundImage="ConnectWithFacebook.png">
                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
@@ -191,7 +191,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="40R-oL-43e">
                     <rect key="frame" x="0.0" y="64" width="105" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="fb_deselect.png">
+                    <state key="normal" image="FacebookBtnInactive.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -201,7 +201,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="bYV-Fk-PVN">
                     <rect key="frame" x="108" y="64" width="105" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="ig_unselect.png">
+                    <state key="normal" image="InstagramBtnInactive.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -211,7 +211,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Tiu-8i-ifw">
                     <rect key="frame" x="215" y="64" width="105" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="msg_selected.png">
+                    <state key="normal" image="InviteBtnActive.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -247,10 +247,10 @@
     </objects>
     <resources>
         <image name="BackIcon.png" width="40" height="40"/>
-        <image name="InviteButton.png" width="326" height="55"/>
+        <image name="ConnectWithFacebook.png" width="247" height="50"/>
+        <image name="FacebookBtnInactive.png" width="40" height="40"/>
+        <image name="InstagramBtnInactive.png" width="40" height="40"/>
+        <image name="InviteBtnActive.png" width="40" height="40"/>
         <image name="TitleBar.png" width="310" height="64"/>
-        <image name="fb_deselect.png" width="24" height="24"/>
-        <image name="ig_unselect.png" width="24" height="24"/>
-        <image name="msg_selected.png" width="24" height="24"/>
     </resources>
 </document>

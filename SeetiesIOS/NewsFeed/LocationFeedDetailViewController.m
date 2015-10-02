@@ -131,6 +131,11 @@
     GetPrice = Price;
     GetAllPeriods = Periods;
     
+    if ([GetLocation length] == 0 || [GetLocation isEqualToString:@"<null>"]) {
+        GetLocation = @"";
+    }
+    
+    
     NSLog(@"GetPlaceLink is %@",GetPlaceLink);
     NSLog(@"GetContact is %@",GetContact);
     NSLog(@"GetOpeningHour is %@",GetOpeningHour);
@@ -159,7 +164,7 @@
         ShowPlaceFormattedAddress.text = GetLocation;
         ShowPlaceFormattedAddress.numberOfLines = 0;
         ShowPlaceFormattedAddress.backgroundColor = [UIColor clearColor];
-        ShowPlaceFormattedAddress.frame = CGRectMake(55, MapView.frame.size.height + 45, screenWidth - 80,[ShowPlaceFormattedAddress sizeThatFits:CGSizeMake(screenWidth - 80, CGFLOAT_MAX)].height);
+        ShowPlaceFormattedAddress.frame = CGRectMake(70, MapView.frame.size.height + 45, screenWidth - 95,[ShowPlaceFormattedAddress sizeThatFits:CGSizeMake(screenWidth - 95, CGFLOAT_MAX)].height);
         [MainScroll addSubview:ShowPlaceFormattedAddress];
     }else{
         NSLog(@"Got information");
@@ -172,7 +177,7 @@
         [MainScroll addSubview:ShowLocationIcon];
         
         UILabel *ShowPlaceName = [[UILabel alloc]init];
-        ShowPlaceName.frame = CGRectMake(55, 200 + 20, screenWidth - 55 - 25, 21);
+        ShowPlaceName.frame = CGRectMake(70, 200 + 20, screenWidth - 70 - 25, 21);
         ShowPlaceName.text = GetTitle;
         ShowPlaceName.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
         ShowPlaceName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
@@ -180,20 +185,20 @@
         
         UILabel *ShowPlaceFormattedAddress = [[UILabel alloc]init];
         ShowPlaceFormattedAddress.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
-        ShowPlaceFormattedAddress.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+        ShowPlaceFormattedAddress.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
         ShowPlaceFormattedAddress.text = GetLocation;
         ShowPlaceFormattedAddress.numberOfLines = 0;
         ShowPlaceFormattedAddress.backgroundColor = [UIColor clearColor];
-        ShowPlaceFormattedAddress.frame = CGRectMake(55, 200 + 45, screenWidth - 80,[ShowPlaceFormattedAddress sizeThatFits:CGSizeMake(screenWidth - 80, CGFLOAT_MAX)].height);
+        ShowPlaceFormattedAddress.frame = CGRectMake(70, 200 + 45, screenWidth - 95,[ShowPlaceFormattedAddress sizeThatFits:CGSizeMake(screenWidth - 95, CGFLOAT_MAX)].height);
         [MainScroll addSubview:ShowPlaceFormattedAddress];
         
-        UIButton *Line01 = [[UIButton alloc]init];
-        Line01.frame = CGRectMake(25, 200 + 45 + ShowPlaceFormattedAddress.frame.size.height + 20, screenWidth, 1);
-        [Line01 setTitle:@"" forState:UIControlStateNormal];
-        [Line01 setBackgroundColor:[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0f]];
-        [MainScroll addSubview:Line01];
+//        UIButton *Line01 = [[UIButton alloc]init];
+//        Line01.frame = CGRectMake(25, 200 + 45 + ShowPlaceFormattedAddress.frame.size.height + 20, screenWidth, 1);
+//        [Line01 setTitle:@"" forState:UIControlStateNormal];
+//        [Line01 setBackgroundColor:[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0f]];
+//        [MainScroll addSubview:Line01];
         
-        int GetHeight = 200 + 45 + ShowPlaceFormattedAddress.frame.size.height + 40;
+        int GetHeight = 200 + 45 + ShowPlaceFormattedAddress.frame.size.height + 30;
         
         if ([GetPlaceLink length] == 0) {
         }else{
@@ -203,7 +208,7 @@
             [MainScroll addSubview:ShowLinkIcon];
             
             UILabel *ShowPlacelink = [[UILabel alloc]init];
-            ShowPlacelink.frame = CGRectMake(55, GetHeight, screenWidth - 80, 25);
+            ShowPlacelink.frame = CGRectMake(70, GetHeight, screenWidth - 95, 25);
             ShowPlacelink.text = GetPlaceLink;
             ShowPlacelink.numberOfLines = 0;
             ShowPlacelink.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
@@ -213,7 +218,7 @@
             [MainScroll addSubview:ShowPlacelink];
             
             UIButton *OpenLinkButton = [[UIButton alloc]init];
-            OpenLinkButton.frame = CGRectMake(55, GetHeight, screenWidth - 80, 25);
+            OpenLinkButton.frame = CGRectMake(70, GetHeight, screenWidth - 95, 25);
             [OpenLinkButton setTitle:@"" forState:UIControlStateNormal];
             [OpenLinkButton addTarget:self action:@selector(OpenLinkButton:) forControlEvents:UIControlEventTouchUpInside];
             [OpenLinkButton setBackgroundColor:[UIColor clearColor]];
@@ -231,7 +236,7 @@
             [MainScroll addSubview:ShowContactIcon];
             
             UILabel *ShowContact = [[UILabel alloc]init];
-            ShowContact.frame = CGRectMake(55, GetHeight , screenWidth - 80, 25);
+            ShowContact.frame = CGRectMake(70, GetHeight , screenWidth - 95, 25);
             ShowContact.text = GetContact;
             ShowContact.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
             ShowContact.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
@@ -257,7 +262,7 @@
             [MainScroll addSubview:ShowPriceIcon];
             
             UILabel *ShowPriceTExt = [[UILabel alloc]init];
-            ShowPriceTExt.frame = CGRectMake(55, GetHeight, screenWidth - 152, 25);
+            ShowPriceTExt.frame = CGRectMake(70, GetHeight, screenWidth - 95, 25);
             ShowPriceTExt.text = GetPrice;
             ShowPriceTExt.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
             ShowPriceTExt.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
@@ -282,7 +287,7 @@
             }
             
             UILabel *ShowOpeningTExt = [[UILabel alloc]init];
-            ShowOpeningTExt.frame = CGRectMake(55, GetHeight, screenWidth - 80, 25);
+            ShowOpeningTExt.frame = CGRectMake(70, GetHeight, screenWidth - 95, 25);
             ShowOpeningTExt.text = GetOpeningHour;
             ShowOpeningTExt.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
             ShowOpeningTExt.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
@@ -304,11 +309,11 @@
                 GetAllPeriods = [[GetAllPeriods componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString: @""];
                 
                 UILabel *ShowAllOpeningText = [[UILabel alloc]init];
-                ShowAllOpeningText.frame = CGRectMake(50, GetHeight - 10, screenWidth - 80, 160);
+                ShowAllOpeningText.frame = CGRectMake(60, GetHeight, screenWidth - 60 - 25, 140);
                 ShowAllOpeningText.text = GetAllPeriods;
                 ShowAllOpeningText.numberOfLines = 10;
                 ShowAllOpeningText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
-                //ShowAllOpeningText.backgroundColor = [UIColor purpleColor];
+                ShowAllOpeningText.backgroundColor = [UIColor clearColor];
                 ShowAllOpeningText.textAlignment = NSTextAlignmentLeft;
                 ShowAllOpeningText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
                 [MainScroll addSubview:ShowAllOpeningText];

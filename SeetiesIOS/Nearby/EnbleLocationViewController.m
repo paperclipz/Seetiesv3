@@ -40,6 +40,7 @@
     ShowSettingText.text = LocalisedString(@"You can change this setting in your Location Service");
     ShowText.text = LocalisedString(@"Hey there! Do enable location to give & receive the best recommendations and deals near you.");
     [AllowButton setTitle:LocalisedString(@"Allow location access") forState:UIControlStateNormal];
+    [NotNowButton setTitle:LocalisedString(@"Not now") forState:UIControlStateNormal];
     
 }
 

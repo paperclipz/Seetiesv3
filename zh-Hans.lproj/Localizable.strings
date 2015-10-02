@@ -652,8 +652,8 @@
 ""= "";
 ""= "";
 "Edit Profile"= "编辑个人资料";
-"{!number} Followers"= "{!number} 粉丝";
-"{!number} Followings"= "{!number} 关注";
+"Followers"= "粉丝";
+"Followings"= "关注";
 "Add home location"= "添加所在位置";
 "How would you describe yourself?"= "添加标签描述你个人的兴趣与喜好，好让更多人能搜寻到你。";
 "Tag it"= "我要标签！";
@@ -952,4 +952,11 @@
 "Wanna say something?"= "在发送前添加留言？";
 "Send to…"= "发送到";
 "Username / name"= "用户名 / 昵称";
-
+""= "";
+""= "";
+""= "";
+"Continue with"= "快捷登入";
+"Not now"= "再想想";
+"Collect this"= "收藏";
+"Pick a collection"= "挑选收藏集";
+"Create a new collection"= "创建收藏集?";

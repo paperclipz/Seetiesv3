@@ -543,17 +543,16 @@
         }else{
             NSLog(@"Server Work.");
             
+            NSString *StatusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
+            NSLog(@"StatusString is %@",StatusString);
             NSString *ErrorString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"error"]];
             NSLog(@"ErrorString is %@",ErrorString);
             NSString *MessageString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"message"]];
             NSLog(@"MessageString is %@",MessageString);
             
-            if ([ErrorString isEqualToString:@"0"] || [ErrorString isEqualToString:@"401"]) {
-                UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:CustomLocalisedString(@"SomethingError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                ShowAlert.tag = 1000;
-                [ShowAlert show];
+            if ([StatusString isEqualToString:@"ok"]) {
                 // send user back login screen.
-            }else{
+                
                 NSDictionary *GetAllData = [res valueForKey:@"data"];
                 
                 NSString *Getemail = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"email"]];
@@ -648,40 +647,14 @@
                     [defaults setObject:GetUserSelectLanguagesArray forKey:@"GetUserSelectLanguagesArray"];
                     [defaults synchronize];
                     
-//                    NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
-//                    NSLog(@"language is %@",language);
-//                    // zh-Hans - Simplified Chinese
-//                    // zh-Hant - Traditional Chinese
-//                    // en - English
-//                    // th - Thai
-//                    // id - Bahasa Indonesia
-//                    NSInteger CheckSystemLanguageIDN;
-//                    if ([language isEqualToString:@"en"]) {
-//                        CheckSystemLanguageIDN = 0;
-//                    }else if([language isEqualToString:@"zh-Hans"]){
-//                        CheckSystemLanguageIDN = 1;
-//                    }else if([language isEqualToString:@"zh-Hant"]){
-//                        CheckSystemLanguageIDN = 2;
-//                    }else if([language isEqualToString:@"id"]){
-//                        CheckSystemLanguageIDN = 3;
-//                    }else if([language isEqualToString:@"th"]){
-//                        CheckSystemLanguageIDN = 4;
-//                    }else if([language isEqualToString:@"tl-PH"]){
-//                        CheckSystemLanguageIDN = 5;
-//                    }
-//                    LanguageManager *languageManager = [LanguageManager sharedLanguageManager];
-//                    
-//                    Locale *localeForRow = languageManager.availableLocales[CheckSystemLanguageIDN];
-//                    [languageManager setLanguageWithLocale:localeForRow];
-                    
                     LandingV2ViewController *LandingView = [[LandingV2ViewController alloc]init];
                     [self presentViewController:LandingView animated:YES completion:nil];
-
+                    
                 }
-                                                 
-
+            }else{
                 
-                // [ProgressHUD showSuccess:@""];
+                       [TSMessage showNotificationInViewController:self title:@"" subtitle:MessageString type:TSMessageNotificationTypeError];
+
                
                 
 

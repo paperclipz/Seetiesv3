@@ -10,11 +10,12 @@
 #import "A3ParallaxScrollView.h"
 #import "AsyncImageView.h"
 #import "UrlDataClass.h"
-@interface NewUserProfileV2ViewController : UIViewController<UIScrollViewDelegate>{
+@interface NewUserProfileV2ViewController : UIViewController<UIScrollViewDelegate,UIActionSheetDelegate>{
     
     IBOutlet A3ParallaxScrollView *MainScroll;
     IBOutlet AsyncImageView *BackgroundImage;
     IBOutlet UIView *AllContentView;
+    IBOutlet UIImageView *ShowOverlayImg;
     
     IBOutlet UIButton *ShareButton;
     IBOutlet UIButton *MoreButton;
@@ -107,8 +108,12 @@
     int CheckFirstTimeLoadCollection;
     
     UIButton *FollowUserButton;
+    
+    int CheckClick_Posts;
+    int CheckClick_Likes;
 }
 -(void)GetUserName:(NSString *)username;
 -(void)GetUid:(NSString *)uid;
 -(IBAction)BackButtonOnClick:(id)sender;
+-(IBAction)ShareButton:(id)sender;
 @end

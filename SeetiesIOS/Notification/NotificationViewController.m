@@ -250,8 +250,8 @@
             Following_ActionArray = [[NSMutableArray alloc]init];
             Following_DateArray = [[NSMutableArray alloc]init];
             
-            NSDictionary *UserInfoData = [GetActivitiesData valueForKey:@"user_thumbnail"];
-            NSDictionary *PostInfoData = [GetActivitiesData valueForKey:@"post_thumbnail"];
+            NSDictionary *UserData = [GetActivitiesData valueForKey:@"user"];
+            NSDictionary *PostData = [GetActivitiesData valueForKey:@"post"];
             //NSLog(@"UserInfoData is %@",UserInfoData);
             for (NSDictionary * dict in GetActivitiesData){
                 NSString *type =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"type"]];
@@ -269,23 +269,28 @@
                 NSString *Date =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"date"]];
                 [Following_DateArray addObject:Date];
             }
-            for (NSDictionary * dict in UserInfoData){
-                if( [dict valueForKey:@"url"] == nil ||
-                   [[dict valueForKey:@"url"] isEqual:[NSNull null]] || [[dict valueForKey:@"url"] isEqualToString:@"<null>"]){
-                    [Following_UserThumbnailArray addObject:@"Null"];
-                }else{
+            for (NSDictionary * dict in UserData){
+                
+                NSDictionary *UserInfoData = [dict valueForKey:@"user_info"];
+                for (NSDictionary * dict in UserInfoData){
                     NSString *user_thumbnail =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"url"]];
                     [Following_UserThumbnailArray addObject:user_thumbnail];
                 }
+                
+
             }
-            for (NSDictionary * dict in PostInfoData){
-                if( [dict valueForKey:@"url"] == nil ||
-                   [[dict valueForKey:@"url"] isEqual:[NSNull null]] || [[dict valueForKey:@"url"] isEqualToString:@"<null>"]){
-                    [Following_PostThumbnailArray addObject:@"Null"];
-                }else{
+            for (NSDictionary * dict in PostData){
+                
+                NSDictionary *PostInfoData = [dict valueForKey:@"post_info"];
+                NSMutableArray *TempArray = [[NSMutableArray alloc]init];
+                for (NSDictionary * dict in PostInfoData){
                     NSString *post_thumbnail =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"url"]];
-                    [Following_PostThumbnailArray addObject:post_thumbnail];
+                    [TempArray addObject:post_thumbnail];
+                    
                 }
+                NSString * result = [TempArray componentsJoinedByString:@","];
+                [Following_PostThumbnailArray addObject:result];
+            
             }
 
 //            NSLog(@"Following_UserThumbnailArray is %@",Following_UserThumbnailArray);
@@ -433,10 +438,11 @@
                 ShowUserImage.imageURL = url_UserImage;
             }
             NSString *FullImagesURL2 = [[NSString alloc]initWithFormat:@"%@",[Following_PostThumbnailArray objectAtIndex:i]];
+            NSArray *FirstImgarr = [FullImagesURL2 componentsSeparatedByString:@","];
             if ([FullImagesURL2 length] == 0 || [FullImagesURL2 isEqualToString:@"Null"]) {
                 ShowPostImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
-                NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL2];
+                NSURL *url_UserImage = [NSURL URLWithString:[FirstImgarr objectAtIndex:0]];
                 ShowPostImage.imageURL = url_UserImage;
             }
             MiniIcon.frame = CGRectMake(66, 50 + i * 80, 23, 28);

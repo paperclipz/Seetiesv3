@@ -18,7 +18,6 @@
 {
     IBOutlet UIScrollView *ibScrollViewCountry;
     IBOutlet UIImageView *BarImage;
-    IBOutlet UISearchBar *mySearchBar;
     IBOutlet UIButton *MainLine;
     IBOutlet UIActivityIndicatorView *ShowActivity;
     IBOutlet UITableView *SearchTblView;
@@ -37,16 +36,14 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
     BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
-    mySearchBar.delegate = self;
-    mySearchBar.tintColor = [UIColor redColor];
-    mySearchBar.barTintColor = [UIColor clearColor];
-    [mySearchBar setBackgroundImage:[[UIImage alloc]init]];
     
-    SearchButton.frame = CGRectMake(0, 20, screenWidth, 44);
     
     //CountriesScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight - 114);
     ibScrollViewCountry.frame = CGRectMake(0, 64, screenWidth, screenHeight - 114);
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
+    
+    SearchButton.frame = CGRectMake(0, 20, screenWidth, 44);
+    [SearchButton setTitle:LocalisedString(@"Search") forState:UIControlStateNormal];
 
 }
 -(IBAction)TryAgainButton:(id)sender{
@@ -96,11 +93,11 @@
     self.tabBarController.selectedIndex = 0;
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [mySearchBar setShowsCancelButton:NO animated:YES];
-    [mySearchBar resignFirstResponder];
-    SearchTblView.hidden = YES;
-}
+//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+//    [mySearchBar setShowsCancelButton:NO animated:YES];
+//    [mySearchBar resignFirstResponder];
+//    SearchTblView.hidden = YES;
+//}
 -(void)GetExploreDataFromServer{
     
     NSDictionary* dict = @{@"token":[Utils getAppToken]};

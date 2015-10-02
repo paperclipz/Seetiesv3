@@ -27,7 +27,7 @@
     MainScroll.delegate = self;
     MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     MainScroll.alwaysBounceVertical = YES;
-    [MainScroll setContentSize:CGSizeMake(screenWidth, 700)];
+    [MainScroll setContentSize:CGSizeMake(screenWidth, 744)];
     
     spinnerView.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     
@@ -53,6 +53,7 @@
     LinkField.placeholder = LocalisedString(@"Website");
     TagasField.delegate = self;
     TagasField.placeholder = LocalisedString(@"Separate tags with space. Eg. Foodie, photographer, gym buff etc.");
+    DescriptionField.frame = CGRectMake(45, 414, screenWidth - 45 - 20, 95);
     DescriptionField.delegate = self;
     DescriptionField.text = LocalisedString(@"About me");
     LocationField.delegate = self;
@@ -62,7 +63,7 @@
     GenderField.delegate = self;
     GenderField.placeholder = LocalisedString(@"Gender");
     
-    CaretLocationImg.frame = CGRectMake(screenWidth - 30, 598, 30, 30);
+    CaretLocationImg.frame = CGRectMake(screenWidth - 30, 641, 30, 30);
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     GetWallpaper = [defaults objectForKey:@"UserData_Wallpaper"];

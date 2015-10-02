@@ -18,8 +18,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddCollectionDataViewController">
             <connections>
                 <outlet property="BackButton" destination="j1A-sp-Ikd" id="92L-Np-BJx"/>
+                <outlet property="CollectThisTitle" destination="Nnp-4w-sl1" id="49e-cz-eyV"/>
+                <outlet property="CreateCollectionButton" destination="uDt-kR-7Nz" id="i4i-eq-9xZ"/>
                 <outlet property="MainScroll" destination="QOZ-Xq-gKV" id="Gbh-io-hvp"/>
                 <outlet property="NoteTextView" destination="OF2-4j-xdf" id="Cek-Cs-d2s"/>
+                <outlet property="PickaCollectionTitle" destination="EMP-UT-Mx6" id="gki-at-pTT"/>
                 <outlet property="PostImg" destination="edm-VE-BHO" id="ivY-F3-TQK"/>
                 <outlet property="ShowActivity" destination="gbi-lN-uT6" id="OlL-Ju-gGp"/>
                 <outlet property="ShowNoteTextCount" destination="fEu-1Q-VtD" id="qYB-pS-ptU"/>
