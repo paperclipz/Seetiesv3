@@ -661,8 +661,8 @@
 ""= "";
 ""= "";
 "Edit Profile"= "แก้ไขโปรไฟล์";
-"{!number} Followers"= "{!number} ติดตามคุณ";
-"{!number} Followings"= "{!number} คุณตามติด";
+"Followers"= "ติดตามคุณ";
+"Followings"= "คุณตามติด";
 "Add home location"= "เพิ่มจังหวัดที่คุณอยู่";
 "How would you describe yourself?"= "คุณจะอธิบายถึงตัวเองว่ายังไง?";
 "Tag it"= "แท็ก";
@@ -675,8 +675,8 @@
 "New Collection"= "คอลเลคชันใหม่";
 ""= "";
 "Posts"= "รีวิว";
-"{!number} Posts"= "{!number} รีวิว";
-"{!number} views"= "{!number} วิว";
+"Posts"= "รีวิว";
+"views"= "วิว";
 "There's nothing 'ere, yet."= "ตอนนี้ยังไม่มีอะไรให้ดูเลย";
 "Would you like to start a post? (="= "อยากจะเริ่มเขียนรีวิวใช่มั้ย =)";
 "New Post"= "รีวิวใหม่";
@@ -690,7 +690,7 @@
 "Following"= "ตามติด";
 ""= "";
 "Unfollow user"= "เลิกตาม";
-"Are you sure you want to quit following {!username}?"= "ต้องการเลิกตาม xxx?";
+"Are you sure you want to quit following"= "ต้องการเลิกตาม";
 "Maybe not."= "ยกเลิก";
 "Yeah!"= "ใช่";
 ""= "";
@@ -706,7 +706,7 @@
 "{!number} Posts"= "{!number} รีวิว";
 "Open"= "เปิด";
 "Closed"= "ปิด";
-"{!number} Seetizens"= "{!number} Seetizen";
+"Seetizens"= "Seetizen";
 ""= "";
 "Add a location?"= "เพิ่มที่อยู่?";
 ""= "";

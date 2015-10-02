@@ -783,6 +783,26 @@
             if ([ResultString isEqualToString:@"ok"]) {
                 
                 //   [self InitView];
+                if (CheckFollowView == 0) {
+                    NSString *GetFollowData = [[NSString alloc]initWithFormat:@"%@",[UserInfo_FollowArray objectAtIndex:MainGetButtonIDN]];
+                    if ([GetFollowData isEqualToString:@"1"]) {
+                        [UserInfo_FollowArray replaceObjectAtIndex:MainGetButtonIDN withObject:@"0"];
+                        
+                    }else{
+                        [UserInfo_FollowArray replaceObjectAtIndex:MainGetButtonIDN withObject:@"1"];
+                    }
+                    [self InitPostsDataView];
+                }else{
+                    NSString *GetFollowData = [[NSString alloc]initWithFormat:@"%@",[Experts_Followed_Array objectAtIndex:MainGetButtonIDN]];
+                    if ([GetFollowData isEqualToString:@"1"]) {
+                        [Experts_Followed_Array replaceObjectAtIndex:MainGetButtonIDN withObject:@"0"];
+                        
+                    }else{
+                        [Experts_Followed_Array replaceObjectAtIndex:MainGetButtonIDN withObject:@"1"];
+                    }
+                    
+                    [self initPeopleDataView];
+                }
                 
             }
         }
@@ -978,10 +998,10 @@
         UIButton *UserFollowButton = [[UIButton alloc]init];
         if ([GetPostsFollow isEqualToString:@"0"]) {
             [UserFollowButton setImage:[UIImage imageNamed:@"FollowIcon.png"] forState:UIControlStateNormal];
-            [UserFollowButton setImage:[UIImage imageNamed:@"FollowingIcon.png"] forState:UIControlStateSelected];
+          //  [UserFollowButton setImage:[UIImage imageNamed:@"FollowingIcon.png"] forState:UIControlStateSelected];
         }else{
             [UserFollowButton setImage:[UIImage imageNamed:@"FollowingIcon.png"] forState:UIControlStateNormal];
-            [UserFollowButton setImage:[UIImage imageNamed:@"FollowIcon.png"] forState:UIControlStateSelected];
+          //  [UserFollowButton setImage:[UIImage imageNamed:@"FollowIcon.png"] forState:UIControlStateSelected];
         }
         [UserFollowButton setBackgroundColor:[UIColor clearColor]];
         // [UserFollowButton setImage:[UIImage imageNamed:@"FollowIcon.png"] forState:UIControlStateNormal];
@@ -1072,10 +1092,10 @@
         FollowButton.frame = CGRectMake(screenWidth - 10 - 70, PeopleHeight + 12, 70, 48);
         if ([CheckFollow isEqualToString:@"0"]) {
             [FollowButton setImage:[UIImage imageNamed:@"ExploreFollow.png"] forState:UIControlStateNormal];
-            [FollowButton setImage:[UIImage imageNamed:@"ExploreFollowing.png"] forState:UIControlStateSelected];
+         //   [FollowButton setImage:[UIImage imageNamed:@"ExploreFollowing.png"] forState:UIControlStateSelected];
         }else{
             [FollowButton setImage:[UIImage imageNamed:@"ExploreFollowing.png"] forState:UIControlStateNormal];
-            [FollowButton setImage:[UIImage imageNamed:@"ExploreFollow.png"] forState:UIControlStateSelected];
+         //   [FollowButton setImage:[UIImage imageNamed:@"ExploreFollow.png"] forState:UIControlStateSelected];
         }
         //[FollowButton setImage:[UIImage imageNamed:@"follow_icon.png"] forState:UIControlStateNormal];
         FollowButton.backgroundColor = [UIColor clearColor];
@@ -1369,17 +1389,16 @@
     }
 }
 -(IBAction)FollowButton:(id)sender{
+    CheckFollowView = 1;
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);
     
-    UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
-    buttonWithTag1.selected = !buttonWithTag1.selected;
+    MainGetButtonIDN = getbuttonIDN;
     
     GetUserID = [Experts_uid_Array objectAtIndex:getbuttonIDN];
     GetFollowString = [Experts_Followed_Array objectAtIndex:getbuttonIDN];
     
     if ([GetFollowString isEqualToString:@"0"]) {
-        [Experts_Followed_Array replaceObjectAtIndex:getbuttonIDN withObject:@"1"];
         [self SendFollowingData];
     }else{
         
@@ -1388,21 +1407,19 @@
         UIAlertView *ShowAlertView = [[UIAlertView alloc]initWithTitle:LocalisedString(@"Unfollow user") message:tempStirng delegate:self cancelButtonTitle:LocalisedString(@"Maybe not.") otherButtonTitles:LocalisedString(@"Yeah!"), nil];
         ShowAlertView.tag = 1200;
         [ShowAlertView show];
-        [Experts_Followed_Array replaceObjectAtIndex:getbuttonIDN withObject:@"0"];
     }
 }
 -(IBAction)PostsUserOnCLick:(id)sender{
+    CheckFollowView = 0;
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);
     
-    UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
-    buttonWithTag1.selected = !buttonWithTag1.selected;
+    MainGetButtonIDN = getbuttonIDN;
     
     GetUserID = [UserInfo_IDArray objectAtIndex:getbuttonIDN];
     GetFollowString = [UserInfo_FollowArray objectAtIndex:getbuttonIDN];
     
     if ([GetFollowString isEqualToString:@"0"]) {
-        [UserInfo_FollowArray replaceObjectAtIndex:getbuttonIDN withObject:@"1"];
         [self SendFollowingData];
     }else{
         
@@ -1411,7 +1428,6 @@
         UIAlertView *ShowAlertView = [[UIAlertView alloc]initWithTitle:LocalisedString(@"Unfollow user") message:tempStirng delegate:self cancelButtonTitle:LocalisedString(@"Maybe not.") otherButtonTitles:LocalisedString(@"Yeah!"), nil];
         ShowAlertView.tag = 1200;
         [ShowAlertView show];
-        [UserInfo_FollowArray replaceObjectAtIndex:getbuttonIDN withObject:@"0"];
     }
     
 }

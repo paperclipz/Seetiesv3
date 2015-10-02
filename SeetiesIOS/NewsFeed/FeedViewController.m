@@ -95,7 +95,20 @@
     [self.locationManager startUpdatingLocation];
     
 
-
+    MainNearbyButton= [[UIButton alloc]init];
+    MainNearbyButton.frame = CGRectMake((screenWidth / 2) - 60, 74, 120, 37);
+    [MainNearbyButton setTitle:LocalisedString(@"Nearby") forState:UIControlStateNormal];
+    [MainNearbyButton setImage:[UIImage imageNamed:@"NearbyIcon.png"] forState:UIControlStateNormal];
+    MainNearbyButton.backgroundColor = [UIColor clearColor];
+    MainNearbyButton.backgroundColor = [UIColor colorWithRed:114.0f/255.0f green:190.0f/255.0f blue:68.0f/255.0f alpha:1.0f];
+    MainNearbyButton.layer.cornerRadius = 20;
+    MainNearbyButton.imageEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
+    MainNearbyButton.titleEdgeInsets = UIEdgeInsetsMake(0, 20, 0, 0);
+    MainNearbyButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [MainNearbyButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
+    [MainNearbyButton addTarget:self action:@selector(NearbyButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview: MainNearbyButton];
+    MainNearbyButton.hidden = YES;
     
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
 }
@@ -397,11 +410,6 @@
     NSLog(@"Load Local Data");
     
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    
-    UIButton *TempBackground = [[UIButton alloc]init];
-    TempBackground.frame = CGRectMake(0, 0, screenWidth, 120);
-    TempBackground.backgroundColor = [UIColor grayColor];
-    [LocalScroll addSubview:TempBackground];
     
     UIImageView *NearbyImg = [[UIImageView alloc]init];
     NearbyImg.image = [UIImage imageNamed:@"Nearbyimage.png"];
@@ -766,11 +774,6 @@
     
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-//    UIButton *TempBackground = [[UIButton alloc]init];
-//    TempBackground.frame = CGRectMake(0, 0, screenWidth, 120);
-//    TempBackground.backgroundColor = [UIColor grayColor];
-//    [MainScroll addSubview:TempBackground];
-    
     UIImageView *NearbyImg = [[UIImageView alloc]init];
     NearbyImg.image = [UIImage imageNamed:@"Nearbyimage.png"];
     NearbyImg.frame = CGRectMake(0, 0, screenWidth, 120);
@@ -976,7 +979,7 @@
                     ShowTitle.numberOfLines = 2;
                     ShowTitle.textAlignment = NSTextAlignmentLeft;
                     ShowTitle.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-                    ShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+                    ShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:17];
                     [MainScroll addSubview:ShowTitle];
                     
                     if([ShowTitle sizeThatFits:CGSizeMake(screenWidth - 50, CGFLOAT_MAX)].height!=ShowTitle.frame.size.height)
@@ -1263,7 +1266,7 @@
                     ShowTitleLocalQR.numberOfLines = 2;
                     ShowTitleLocalQR.textAlignment = NSTextAlignmentLeft;
                     ShowTitleLocalQR.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-                    ShowTitleLocalQR.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+                    ShowTitleLocalQR.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:17];
                     [MainScroll addSubview:ShowTitleLocalQR];
                     
                     if([ShowTitleLocalQR sizeThatFits:CGSizeMake(screenWidth - 50, CGFLOAT_MAX)].height!=ShowTitleLocalQR.frame.size.height)
@@ -1413,7 +1416,7 @@
                 UILabel *ShowSuggestedLocalQR = [[UILabel alloc]init];
                 ShowSuggestedLocalQR.frame = CGRectMake(20, heightcheck, screenWidth - 80, 50);
                 ShowSuggestedLocalQR.text = LocalisedString(@"Suggested local recommendations");
-                ShowSuggestedLocalQR.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+                ShowSuggestedLocalQR.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
                 ShowSuggestedLocalQR.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
                 [MainScroll addSubview:ShowSuggestedLocalQR];
                 
@@ -1593,7 +1596,7 @@
                         ShowTitle.numberOfLines = 2;
                         ShowTitle.textAlignment = NSTextAlignmentLeft;
                         ShowTitle.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-                        ShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+                        ShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:17];
                         [SuggestedScrollview_Aboad addSubview:ShowTitle];
                     }
                     
@@ -1760,7 +1763,9 @@
                 NSArray *SplitArray_ProfileImg = [TempUserProfileImg componentsSeparatedByString:@"$"];
                 NSArray *SplitArray_Username = [TempUseName componentsSeparatedByString:@"$"];
                 NSArray *SplitArray_PostsImg = [TempUserPhoto componentsSeparatedByString:@"$"];
-                
+                if ([SplitArray_PostsImg count] < 2) {
+                    SplitArray_PostsImg = [[NSArray alloc]initWithObjects:@"",@"",@"",@"",@"", nil];
+                }
 //                NSLog(@"SplitArray_Id is %@",SplitArray_Id);
 //                NSLog(@"SplitArray_ProfileImg is %@",SplitArray_ProfileImg);
 //                NSLog(@"SplitArray_Username is %@",SplitArray_Username);
@@ -1929,7 +1934,7 @@
                 NSArray *SplitArray_Username = [TempUseName componentsSeparatedByString:@"$"];
                 NSArray *SplitArray_PostsImg = [TempUserPhoto componentsSeparatedByString:@"$"];
                 if ([SplitArray_PostsImg count] < 2) {
-                    SplitArray_PostsImg = [[NSArray alloc]initWithObjects:@"",@"",@"", nil];
+                    SplitArray_PostsImg = [[NSArray alloc]initWithObjects:@"",@"",@"",@"",@"", nil];
                 }
                 
                 NSLog(@"SplitArray_Id is %@",SplitArray_Id);
@@ -2194,7 +2199,7 @@
                     NSString *Address = [[NSString alloc]initWithFormat:@"%@",[SplitArray_Address objectAtIndex:i]];
                     
                     UILabel *ShowUserName = [[UILabel alloc]init];
-                    ShowUserName.frame = CGRectMake(75 + i * screenWidth, 51 + 10, 180, 40);
+                    ShowUserName.frame = CGRectMake(75 + i * screenWidth, 51 + 10, screenWidth - 75 - 100, 40);
                     ShowUserName.text = usernameTemp;
                     ShowUserName.backgroundColor = [UIColor clearColor];
                     ShowUserName.textColor = [UIColor whiteColor];
@@ -2224,7 +2229,7 @@
                         ShowTitle.numberOfLines = 2;
                         ShowTitle.textAlignment = NSTextAlignmentLeft;
                         ShowTitle.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-                        ShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+                        ShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:17];
                         [SuggestedScrollview_Deal addSubview:ShowTitle];
                         
                         if([ShowTitle sizeThatFits:CGSizeMake(screenWidth - 50, CGFLOAT_MAX)].height!=ShowTitle.frame.size.height)
@@ -2438,7 +2443,20 @@
         NSString *TempCount = [[NSString alloc]initWithFormat:@"%li/%lu",page + 1,(unsigned long)[arrfeaturedUserName count]];
         ShowSUserCount_Featured.text = TempCount;
     }else if(scrollView == MainScroll){
-
+        NSLog(@"scrollview run here");
+        
+        float heightcheck_ = MainScroll.contentOffset.y;
+        
+        if (heightcheck_ > 111) {
+            //NSLog(@"Show nearby button top");
+            MainNearbyButton.hidden = NO;
+        }else{
+           // NSLog(@"hide nearby button");
+            MainNearbyButton.hidden = YES;
+        }
+        
+        
+        
     }
 
 
@@ -3708,4 +3726,9 @@
     [CommentView GetRealPostIDAndAllComment:[arrPostID objectAtIndex:getbuttonIDN]];
     [CommentView GetWhatView:@"Comment"];
 }
+
+
+
+
+
 @end

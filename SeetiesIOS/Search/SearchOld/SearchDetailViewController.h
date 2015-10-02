@@ -107,6 +107,9 @@
     NSString *GetPostsFollow;
     NSString *GetCollect;
     NSString *GetPostsUserID;
+    
+    NSInteger MainGetButtonIDN;
+    NSInteger CheckFollowView;
 }
 -(void)GetSearchKeyword:(NSString *)Keyword Getlat:(NSString *)lat GetLong:(NSString *)Long GetLocationName:(NSString *)LocationName;
 -(void)GetTitle:(NSString *)String;

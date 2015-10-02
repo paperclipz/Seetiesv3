@@ -659,8 +659,8 @@
 ""= "";
 ""= "";
 "Edit Profile"= "Sunting Profil";
-"{!number} Followers"= "{!number} Pengikut";
-"{!number} Followings"= "{!number} Mengikuti";
+"Followers"= "Pengikut";
+"Followings"= "Mengikuti";
 "Add home location"= "Tambah Alamat Rumah";
 "How would you describe yourself?"= "Bagaimana Anda menggambarkan diri Anda?";
 "Tag it"= "Tambahkan tag";
@@ -673,8 +673,8 @@
 "New Collection"= "Koleksi baru";
 ""= "";
 "Posts"= "Rekomendasi";
-"{!number} Posts"= "{!number} Rekomendasi";
-"{!number} views"= "Ulasan";
+"Posts"= "Rekomendasi";
+"views"= "Ulasan";
 "There's nothing 'ere, yet."= "Sorry... ini kosong";
 "Would you like to start a post? (="= "apakah kamu mau memulai dari awal?";
 "New Post"= "Rekomendasi Baru";
@@ -688,7 +688,7 @@
 "Following"= "Mengikuti";
 ""= "";
 "Unfollow user"= "Berhenti Ikuti";
-"Are you sure you want to quit following {!username}?"= "Berhenti mengikuti xxx?";
+"Are you sure you want to quit following"= "Berhenti mengikuti";
 "Maybe not."= "Batal";
 "Yeah!"= "Ya";
 ""= "";
@@ -704,7 +704,7 @@
 "{!number} Posts"= "{!number} Rekomendasi";
 "Open"= "Buka";
 "Closed"= "Tutup";
-"{!number} Seetizens"= "{!number} Seetizen";
+"Seetizens"= "Seetizen";
 ""= "";
 "Add a location?"= "Tambah Lokasi?";
 ""= "";

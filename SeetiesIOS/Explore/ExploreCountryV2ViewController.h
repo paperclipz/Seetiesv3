@@ -72,7 +72,8 @@
     NSString *GetFestivalsImage;
     NSString *GetFestivalsUrl;
     
-    
+    NSInteger MainGetButtonIDN;
+    NSInteger CheckFollowView;
    // LLARingSpinnerView *spinnerView;
 }
 -(IBAction)BackButton:(id)sender;

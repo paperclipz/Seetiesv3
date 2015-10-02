@@ -530,7 +530,7 @@
     
     NSLog(@"after about us height is ==== %d",GetHeight);
     
-    if ([GetPersonalTags isEqualToString:@""] || [GetPersonalTags isEqualToString:@"(null)"] || [GetPersonalTags length] == 0) {
+    if ([GetPersonalTags isEqualToString:@""] || [GetPersonalTags isEqualToString:@"(null)"] || [GetPersonalTags length] == 0 || [GetPersonalTags isEqualToString:@"\"\""]) {
         
     }else{
         
@@ -799,7 +799,7 @@
         
         UILabel *ShowNoDataText = [[UILabel alloc]init];
         ShowNoDataText.frame = CGRectMake(30, 100, screenWidth - 60, 20);
-        ShowNoDataText.text = @"No Collection yet.";
+        ShowNoDataText.text = LocalisedString(@"Aww. No one's collected this.");
         ShowNoDataText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowNoDataText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
         ShowNoDataText.textAlignment = NSTextAlignmentCenter;
@@ -898,7 +898,7 @@
             
             UIButton *EditButton = [[UIButton alloc]init];
             EditButton.frame = CGRectMake(screenWidth - 52 - 20, heightcheck + 5 + FinalWidth + 23 + i, 52, 34);
-            [EditButton setTitle:@"Edit" forState:UIControlStateNormal];
+            [EditButton setTitle:LocalisedString(@"Edit") forState:UIControlStateNormal];
             EditButton.layer.cornerRadius= 17;
             EditButton.layer.borderWidth = 1;
             EditButton.layer.masksToBounds = YES;
@@ -948,7 +948,7 @@
         
         UILabel *ShowNoDataText = [[UILabel alloc]init];
         ShowNoDataText.frame = CGRectMake(30, 100, screenWidth - 60, 20);
-        ShowNoDataText.text = @"No Likes yet.";
+        ShowNoDataText.text = LocalisedString(@"Be the first to like");
         ShowNoDataText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowNoDataText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
         ShowNoDataText.textAlignment = NSTextAlignmentCenter;
@@ -1038,8 +1038,10 @@
 
 -(void)InitPostsView{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    if ([GetPostsDataCount length] == 0 || [GetPostsDataCount isEqualToString:@"0"]) {
+        GetPostsDataCount = @"";
+    }
     
-
     NSString *TempString = [[NSString alloc]initWithFormat:@"%@ %@",GetPostsDataCount,LocalisedString(@"Posts")];
     
     UILabel *ShowPostsCount = [[UILabel alloc]init];

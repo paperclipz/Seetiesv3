@@ -107,6 +107,8 @@
     NSString *CheckLike;
     NSString *CheckCollect;
     NSString *GetPostID;
+    
+    UIButton *MainNearbyButton;
 }
 -(IBAction)TryAgainButton:(id)sender;
 -(IBAction)SearchButton:(id)sender;

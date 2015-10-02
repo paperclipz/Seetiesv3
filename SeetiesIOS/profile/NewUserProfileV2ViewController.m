@@ -437,7 +437,7 @@
     NSString *TempStringCollection = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Collections")];
     NSString *TempStringLike = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Likes")];
     
-    NSArray *itemArray = [NSArray arrayWithObjects:TempStringCollection, TempStringPosts,TempStringLike, nil];
+    NSArray *itemArray = [NSArray arrayWithObjects:TempStringCollection, TempStringPosts, nil];
     ProfileControl = [[UISegmentedControl alloc]initWithItems:itemArray];
     ProfileControl.frame = CGRectMake(15, GetHeight, screenWidth - 30, 29);
     [ProfileControl addTarget:self action:@selector(segmentAction:) forControlEvents: UIControlEventValueChanged];
@@ -532,7 +532,7 @@
         
         UILabel *ShowNoDataText = [[UILabel alloc]init];
         ShowNoDataText.frame = CGRectMake(30, 100, screenWidth - 60, 20);
-        ShowNoDataText.text = @"No Collection yet.";
+        ShowNoDataText.text = LocalisedString(@"Aww. No one's collected this.");
         ShowNoDataText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowNoDataText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
         ShowNoDataText.textAlignment = NSTextAlignmentCenter;
@@ -668,7 +668,7 @@
         
         UILabel *ShowNoDataText = [[UILabel alloc]init];
         ShowNoDataText.frame = CGRectMake(30, 100, screenWidth - 60, 20);
-        ShowNoDataText.text = @"No Likes yet.";
+        ShowNoDataText.text = LocalisedString(@"Be the first to like");
         ShowNoDataText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowNoDataText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
         ShowNoDataText.textAlignment = NSTextAlignmentCenter;
@@ -762,7 +762,7 @@
         
         UILabel *ShowNoDataText = [[UILabel alloc]init];
         ShowNoDataText.frame = CGRectMake(30, 100, screenWidth - 60, 20);
-        ShowNoDataText.text = @"No Posts yet.";
+        ShowNoDataText.text = LocalisedString(@"Let's get going!");
         ShowNoDataText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowNoDataText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
         ShowNoDataText.textAlignment = NSTextAlignmentCenter;
@@ -881,7 +881,10 @@
     
     
 
-    
+    if (CheckClick_Posts == 0) {
+        CheckClick_Posts = 1;
+        [self InitCollectionView];
+    }
 }
 
 
@@ -1313,8 +1316,8 @@
                 
                 if (CheckFirstTimeLoadPost == 0) {
                     CheckFirstTimeLoadPost = 1;
-                    [self GetLikesData];
-                    
+                   // [self GetLikesData];
+                    [self InitPostsView];
                 }else{
                     [self InitPostsView];
                 }

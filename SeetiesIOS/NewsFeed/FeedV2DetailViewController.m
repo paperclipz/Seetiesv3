@@ -1125,11 +1125,18 @@
             NSDictionary *GetAllENData = [GetAlltranslation valueForKey:@"530b0ab26424400c76000003"];
             NSLog(@"GetAllENData is %@",GetAllENData);
             
-            GetENMessageString = [[NSString alloc]initWithFormat:@"%@",[GetAllENData objectForKey:@"message"]];
-            NSLog(@"GetENMessageString is %@",GetENMessageString);
+            if ([GetAllENData count] == 0) {
+                GetENMessageString = GetMessage;
+                GetENTItleStirng = GetTitle;
+            }else{
+                GetENMessageString = [[NSString alloc]initWithFormat:@"%@",[GetAllENData objectForKey:@"message"]];
+                NSLog(@"GetENMessageString is %@",GetENMessageString);
+                
+                GetENTItleStirng = [[NSString alloc]initWithFormat:@"%@",[GetAllENData objectForKey:@"title"]];
+                NSLog(@"GetENTItleStirng is %@",GetENTItleStirng);
+            }
             
-            GetENTItleStirng = [[NSString alloc]initWithFormat:@"%@",[GetAllENData objectForKey:@"title"]];
-            NSLog(@"GetENTItleStirng is %@",GetENTItleStirng);
+
             
             CheckENTranslation = @"1";
             
@@ -1790,7 +1797,7 @@
         
         UIImageView *ShowLikesIcon = [[UIImageView alloc]init];
         ShowLikesIcon.image = [UIImage imageNamed:@"PostLikeIcon.png"];
-        ShowLikesIcon.frame = CGRectMake(10, GetMessageHeight + 2, 35, 35);
+        ShowLikesIcon.frame = CGRectMake(10, GetMessageHeight + 5, 35, 35);
         [MainScroll addSubview:ShowLikesIcon];
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -2789,132 +2796,43 @@
 }
 - (void)scrollViewDidScroll:(UIScrollView *)sender {
 
-  //  CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     if (sender == MImageScroll) {
         // Update the page when more than 50% of the previous/next page is visible
         CGFloat pageWidth = MImageScroll.frame.size.width;
         int page = floor((MImageScroll.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
         PageControlOn.currentPage = page;
     }else{
-//        float scrollViewHeight = MainScroll.frame.size.height;
-//        float scrollContentSizeHeight = MainScroll.contentSize.height;
-//        float scrollOffset = MainScroll.contentOffset.y;
-//        //NSLog(@"scrollOffset is %f",scrollOffset);
-//        if (scrollOffset < 0)
-//        {
-//            // then we are at the top
-//            
-//            ShowBarImg.frame = CGRectMake(0, -100, screenWidth, 64);
-//            //            [UIView animateWithDuration:1.0
-////                                  delay:0
-////                                options:UIViewAnimationOptionCurveEaseIn
-////                             animations:^{
-////                               ShowBarImg.frame = CGRectMake(0, -100, screenWidth, 64);
-////                             }
-////                             completion:^(BOOL finished) {
-////                             }];
-//        }
-//        else if (scrollOffset + scrollViewHeight == scrollContentSizeHeight)
-//        {
-//            // then we are at the end
-//            ShowBarImg.frame = CGRectMake(0, 0, screenWidth, 64);
-//        }
+        
+        float HeightCheck = MainScroll.contentOffset.y;
+        
+        if (HeightCheck > 64) {
+            [UIView animateWithDuration:0.2
+                                  delay:0
+                                options:UIViewAnimationOptionCurveEaseIn
+                             animations:^{
+                                  ShowBarImg.frame = CGRectMake(0, 0, screenWidth, 64);
+                             }
+                             completion:^(BOOL finished) {
+                             }];
+           
+        }else{
+            [UIView animateWithDuration:0.2
+                                  delay:0
+                                options:UIViewAnimationOptionCurveEaseIn
+                             animations:^{
+                                 ShowBarImg.frame = CGRectMake(0, -64, screenWidth, 64);
+                             }
+                             completion:^(BOOL finished) {
+                             }];
+        }
+
 
 
 
     }
     
 
-}
-
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
-    NSLog(@"+scrollViewWillBeginDragging");
-  //  ShowbarView.hidden = YES;
-
-    if (scrollView == MImageScroll) {
-        
-    }else{
-        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-       // CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-//        [UIView animateWithDuration:0.5
-//                              delay:0
-//                            options:UIViewAnimationOptionCurveEaseIn
-//                         animations:^{
-//                             //  MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight - 64);
-//                             ShowBarImg.frame = CGRectMake(0, 0, screenWidth, 64);
-////                             ShowDownBarView.frame = CGRectMake(0, screenHeight - 60, screenWidth, 60);
-////                             self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight, screenWidth, 50);
-//                         }
-//                         completion:^(BOOL finished) {
-//                         }];
-        
-         ShowBarImg.frame = CGRectMake(0, 0, screenWidth, 64);
-    }
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    NSLog(@"scrollViewDidEndDragging");
-    float scrollViewHeight = MainScroll.frame.size.height;
-    float scrollContentSizeHeight = MainScroll.contentSize.height;
-    float scrollOffset = MainScroll.contentOffset.y;
-    //NSLog(@"scrollOffset is %f",scrollOffset);
-    if (scrollOffset < 0)
-    {
-        // then we are at the top
-        
-        ShowBarImg.frame = CGRectMake(0, -100, screenWidth, 64);
-        //            [UIView animateWithDuration:1.0
-        //                                  delay:0
-        //                                options:UIViewAnimationOptionCurveEaseIn
-        //                             animations:^{
-        //                               ShowBarImg.frame = CGRectMake(0, -100, screenWidth, 64);
-        //                             }
-        //                             completion:^(BOOL finished) {
-        //                             }];
-    }
-    else if (scrollOffset + scrollViewHeight == scrollContentSizeHeight)
-    {
-        // then we are at the end
-        ShowBarImg.frame = CGRectMake(0, 0, screenWidth, 64);
-    }
-}
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    NSLog(@"-scrollViewDidEndDecelerating");
-
-    if (scrollView == MImageScroll) {
-        
-    }else{
-//        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-//        CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-        [UIView animateWithDuration:0.5
-                              delay:0
-                            options:UIViewAnimationOptionCurveEaseIn
-                         animations:^{
-                             //   MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight - 114);
-                             //ShowBarImg.frame = CGRectMake(0, -64, screenWidth, 64);
-//                             ShowDownBarView.frame = CGRectMake(0, screenHeight - 110, screenWidth, 60);
-//                             self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
-                         }
-                         completion:^(BOOL finished) {
-                         }];
-    }
-
-}
-
-- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView
-{
-    NSLog(@"-scrollViewDidScrollToTop");
-    // CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-   // ShowBarImg.frame = CGRectMake(0, -64, screenWidth, 64);
-}
-
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
-{
-    //NSLog(@"-scrollViewDidEndScrollingAnimation");
 }
 -(IBAction)LikeButton:(id)sender{
     NSLog(@"Like Button Click");

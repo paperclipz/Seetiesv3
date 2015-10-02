@@ -152,15 +152,19 @@
     
     GetHeight = 0;
     
-    UIButton *TempButton = [[UIButton alloc]init];
-    TempButton.frame = CGRectMake(0, GetHeight, screenWidth, 240);
-    [TempButton setTitle:@"" forState:UIControlStateNormal];
-    TempButton.backgroundColor = [UIColor whiteColor];
-    [MainScroll addSubview: TempButton];
-    
     if ([GetFestivalsUrl isEqualToString:@""] || [GetFestivalsUrl length] == 0) {
-        
+        UIButton *TempButton = [[UIButton alloc]init];
+        TempButton.frame = CGRectMake(0, GetHeight - 20, screenWidth, 55);
+        [TempButton setTitle:@"" forState:UIControlStateNormal];
+        TempButton.backgroundColor = [UIColor whiteColor];
+        [MainScroll addSubview: TempButton];
     }else{
+        UIButton *TempButton = [[UIButton alloc]init];
+        TempButton.frame = CGRectMake(0, GetHeight, screenWidth, 240);
+        [TempButton setTitle:@"" forState:UIControlStateNormal];
+        TempButton.backgroundColor = [UIColor whiteColor];
+        [MainScroll addSubview: TempButton];
+        
         AsyncImageView *FestivalImage = [[AsyncImageView alloc]init];
         FestivalImage.frame = CGRectMake(0, GetHeight -20, screenWidth, 200);
         FestivalImage.contentMode = UIViewContentModeScaleAspectFill;
@@ -350,7 +354,7 @@
         [PostView addSubview:ShowPin];
         
         UILabel *ShowPlaceName = [[UILabel alloc]init];
-        ShowPlaceName.frame = CGRectMake(135, PostGetHeight + 62, screenWidth - 140 - 60, 20);
+        ShowPlaceName.frame = CGRectMake(135, PostGetHeight + 62, screenWidth - 140 - 70, 20);
         ShowPlaceName.text = [place_nameArray objectAtIndex:i];
         ShowPlaceName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         ShowPlaceName.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0];
@@ -359,7 +363,7 @@
         [PostView addSubview:ShowPlaceName];
         
         UILabel *ShowLocation = [[UILabel alloc]init];
-        ShowLocation.frame = CGRectMake(115, PostGetHeight + 82, screenWidth - 120 - 45, 20);
+        ShowLocation.frame = CGRectMake(115, PostGetHeight + 82, screenWidth - 140 - 70, 20);
         ShowLocation.text = [LocationArray objectAtIndex:i];
         ShowLocation.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowLocation.textColor = [UIColor grayColor];
@@ -379,10 +383,10 @@
         UIButton *UserFollowButton = [[UIButton alloc]init];
         if ([GetPostsFollow isEqualToString:@"0"]) {
             [UserFollowButton setImage:[UIImage imageNamed:@"FollowIcon.png"] forState:UIControlStateNormal];
-            [UserFollowButton setImage:[UIImage imageNamed:@"FollowingIcon.png"] forState:UIControlStateSelected];
+            //[UserFollowButton setImage:[UIImage imageNamed:@"FollowingIcon.png"] forState:UIControlStateSelected];
         }else{
             [UserFollowButton setImage:[UIImage imageNamed:@"FollowingIcon.png"] forState:UIControlStateNormal];
-            [UserFollowButton setImage:[UIImage imageNamed:@"FollowIcon.png"] forState:UIControlStateSelected];
+            //[UserFollowButton setImage:[UIImage imageNamed:@"FollowIcon.png"] forState:UIControlStateSelected];
         }
         [UserFollowButton setBackgroundColor:[UIColor clearColor]];
         // [UserFollowButton setImage:[UIImage imageNamed:@"FollowIcon.png"] forState:UIControlStateNormal];
@@ -494,10 +498,10 @@
        // [FollowButton setTitle:@"Icon" forState:UIControlStateNormal];
         if ([CheckFollow isEqualToString:@"0"]) {
             [FollowButton setImage:[UIImage imageNamed:@"ExploreFollow.png"] forState:UIControlStateNormal];
-            [FollowButton setImage:[UIImage imageNamed:@"ExploreFollowing.png"] forState:UIControlStateSelected];
+          //  [FollowButton setImage:[UIImage imageNamed:@"ExploreFollowing.png"] forState:UIControlStateSelected];
         }else{
             [FollowButton setImage:[UIImage imageNamed:@"ExploreFollowing.png"] forState:UIControlStateNormal];
-            [FollowButton setImage:[UIImage imageNamed:@"ExploreFollow.png"] forState:UIControlStateSelected];
+           // [FollowButton setImage:[UIImage imageNamed:@"ExploreFollow.png"] forState:UIControlStateSelected];
         }
       //  [FollowButton setImage:[UIImage imageNamed:@"follow_icon.png"] forState:UIControlStateNormal];
         FollowButton.backgroundColor = [UIColor clearColor];
@@ -564,18 +568,21 @@
     [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
 }
 -(IBAction)FollowButton:(id)sender{
+    CheckFollowView = 1;
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);
     
-    UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
-    buttonWithTag1.selected = !buttonWithTag1.selected;
+    MainGetButtonIDN = getbuttonIDN;
     
     GetUserID = [User_IDArray objectAtIndex:getbuttonIDN];
     GetFollowString = [User_FollowArray objectAtIndex:getbuttonIDN];
     
     if ([GetFollowString isEqualToString:@"0"]) {
-        [User_FollowArray replaceObjectAtIndex:getbuttonIDN withObject:@"1"];
+//        [User_FollowArray replaceObjectAtIndex:getbuttonIDN withObject:@"1"];
         [self SendFollowingData];
+        
+//        UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
+//        buttonWithTag1.selected = !buttonWithTag1.selected;
     }else{
         
         NSString *tempStirng = [[NSString alloc]initWithFormat:@"%@ %@ ?",LocalisedString(@"Are you sure you want to quit following"),[User_UserNameArray objectAtIndex:getbuttonIDN]];
@@ -584,21 +591,20 @@
         ShowAlertView.tag = 1200;
         [ShowAlertView show];
         
-        [User_FollowArray replaceObjectAtIndex:getbuttonIDN withObject:@"0"];
+//        [User_FollowArray replaceObjectAtIndex:getbuttonIDN withObject:@"0"];
     }
 }
 -(IBAction)PostsUserOnCLick:(id)sender{
+    CheckFollowView = 0;
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);
     
-    UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
-    buttonWithTag1.selected = !buttonWithTag1.selected;
+    MainGetButtonIDN = getbuttonIDN;
     
     GetUserID = [UserInfo_IDArray objectAtIndex:getbuttonIDN];
     GetFollowString = [UserInfo_FollowArray objectAtIndex:getbuttonIDN];
     
     if ([GetFollowString isEqualToString:@"0"]) {
-        [UserInfo_FollowArray replaceObjectAtIndex:getbuttonIDN withObject:@"1"];
         [self SendFollowingData];
     }else{
         
@@ -607,7 +613,6 @@
         UIAlertView *ShowAlertView = [[UIAlertView alloc]initWithTitle:LocalisedString(@"Unfollow user") message:tempStirng delegate:self cancelButtonTitle:LocalisedString(@"Maybe not.") otherButtonTitles:LocalisedString(@"Yeah!"), nil];
         ShowAlertView.tag = 1200;
         [ShowAlertView show];
-        [UserInfo_FollowArray replaceObjectAtIndex:getbuttonIDN withObject:@"0"];
     }
     
 }
@@ -994,6 +999,29 @@
         if ([ResultString isEqualToString:@"ok"]) {
             
         //   [self InitView];
+
+            if (CheckFollowView == 0) {
+                NSString *GetFollowData = [[NSString alloc]initWithFormat:@"%@",[UserInfo_FollowArray objectAtIndex:MainGetButtonIDN]];
+                if ([GetFollowData isEqualToString:@"1"]) {
+                    [UserInfo_FollowArray replaceObjectAtIndex:MainGetButtonIDN withObject:@"0"];
+                    
+                }else{
+                    [UserInfo_FollowArray replaceObjectAtIndex:MainGetButtonIDN withObject:@"1"];
+                }
+                 [self InitPostDataView];
+            }else{
+                NSString *GetFollowData = [[NSString alloc]initWithFormat:@"%@",[User_FollowArray objectAtIndex:MainGetButtonIDN]];
+                if ([GetFollowData isEqualToString:@"1"]) {
+                    [User_FollowArray replaceObjectAtIndex:MainGetButtonIDN withObject:@"0"];
+                    
+                }else{
+                    [User_FollowArray replaceObjectAtIndex:MainGetButtonIDN withObject:@"1"];
+                }
+                
+                [self initPeopleDataView];
+            }
+            
+           
             
         }
     }

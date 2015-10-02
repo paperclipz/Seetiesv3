@@ -307,7 +307,7 @@
         headerLabel.backgroundColor = [UIColor clearColor];
         headerLabel.textColor = [UIColor darkGrayColor];
         headerLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
-        headerLabel.text = @"Profile";
+        headerLabel.text = LocalisedString(@"Profile");
         headerLabel.textAlignment = NSTextAlignmentLeft;
         
         // 4. Add the label to the header view
@@ -329,7 +329,7 @@
         headerLabel.backgroundColor = [UIColor clearColor];
         headerLabel.textColor = [UIColor darkGrayColor];
         headerLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
-        headerLabel.text = @"Support";
+        headerLabel.text = LocalisedString(@"Support");
         headerLabel.textAlignment = NSTextAlignmentLeft;
         
         // 4. Add the label to the header view
@@ -350,7 +350,7 @@
         headerLabel.backgroundColor = [UIColor clearColor];
         headerLabel.textColor = [UIColor darkGrayColor];
         headerLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
-        headerLabel.text = @"Log Out";
+        headerLabel.text = LocalisedString(@"Log out");
         headerLabel.textAlignment = NSTextAlignmentLeft;
         
         // 4. Add the label to the header view

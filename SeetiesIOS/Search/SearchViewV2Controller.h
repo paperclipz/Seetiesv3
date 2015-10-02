@@ -33,6 +33,10 @@
     
     UrlDataClass *DataUrl;
     NSMutableData *webData;
+    
+    int ButtonOnClickCheck;
+    
+
 }
 
 @end

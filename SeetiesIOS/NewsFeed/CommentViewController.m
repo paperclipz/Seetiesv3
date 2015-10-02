@@ -39,8 +39,8 @@
     ShowNoDataView.hidden = YES;
     DataUrl = [[UrlDataClass alloc]init];
     
-    ShowNoDataText_1.frame = CGRectMake(15, (screenHeight / 2) - 141, screenWidth - 30, 21);
-    ShowNoDataText_2.frame = CGRectMake((screenWidth/2) - 126, (screenHeight / 2) - 120, 253, 62);
+    ShowNoDataText_1.frame = CGRectMake(15, (screenHeight / 2) - 220, screenWidth - 30, 21);
+    ShowNoDataText_2.frame = CGRectMake(15, (screenHeight / 2) - 170, screenWidth - 30, 62);
     ShowNoDataText_1.text = LocalisedString(@"There are no comments yet.");
     ShowNoDataText_2.text = LocalisedString(@"Be the first to comment");
     
@@ -324,7 +324,7 @@
        // ShowMainTitle.text = CustomLocalisedString(@"Comments", nil);
         PostControl.selectedSegmentIndex = 0;
     }
-    ShowMainTitle.text = @"All activites";
+   // ShowMainTitle.text = @"All activites";
     [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
     [self.view addSubview:PostControl];
     
@@ -1280,9 +1280,9 @@
             ShowFollowButton.frame = CGRectMake(screenWidth - 40 - 15, 30 + i * 70, 40, 40);
             if ([GetFollowing isEqualToString:@"1"]) {
                 
-                [ShowFollowButton setImage:[UIImage imageNamed:@"FollowingMini.png"] forState:UIControlStateNormal];
+                [ShowFollowButton setImage:[UIImage imageNamed:@"FollowingIcon.png"] forState:UIControlStateNormal];
             }else{
-                [ShowFollowButton setImage:[UIImage imageNamed:@"FollowMini.png"] forState:UIControlStateNormal];
+                [ShowFollowButton setImage:[UIImage imageNamed:@"FollowIcon.png"] forState:UIControlStateNormal];
             }
             ShowFollowButton.tag = i;
             [ShowFollowButton addTarget:self action:@selector(FollowButton:) forControlEvents:UIControlEventTouchUpInside];

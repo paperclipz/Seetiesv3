@@ -19,7 +19,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     //ShowMainTitle.text = CustomLocalisedString(@"EditProfileLocation", nil);
-    ShowMainTitle.text = @"Place Info";
+    ShowMainTitle.text = LocalisedString(@"About the place");
     //[DirectionsButton setTitle:CustomLocalisedString(@"Directions", nil) forState:UIControlStateNormal];
     
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;

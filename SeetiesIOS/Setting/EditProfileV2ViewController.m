@@ -144,7 +144,7 @@
             GenderField.text = CustomLocalisedString(@"Female",nil);
         }
     }
-    if ([GetPersonalTags length] == 0) {
+    if ([GetPersonalTags length] == 0 || [GetPersonalTags isEqualToString:@"\"\""]) {
     }else{
         NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"() \n"];
         GetPersonalTags = [[GetPersonalTags componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString: @""];

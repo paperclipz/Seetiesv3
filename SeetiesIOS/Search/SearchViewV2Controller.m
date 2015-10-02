@@ -47,6 +47,7 @@
     [LocalSearchTextArray addObject:@"Hiking"];
 
     CheckTblview = 0;
+    ButtonOnClickCheck = 0;
     
     [Tblview reloadData];
 }
@@ -89,7 +90,7 @@
         SearchScroll.hidden = YES;
     }else{
         NSLog(@"auto key in ???");
-        if ([searchText length] > 1) {
+        if ([searchText length] >= 1) {
             GetSearchText = searchText;
             [self GetSearchText];
         }
@@ -106,16 +107,29 @@
         NSLog(@"got search data need save.");
        // [mySearchBar resignFirstResponder];
        // [mySearchBar setShowsCancelButton:NO animated:YES];
-        [self GetSearchText];
-//        if ([GetSearchArray count] > 2) {
-//            SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
-//            [self.navigationController pushViewController:SearchDetailView animated:YES];
-//            [SearchDetailView GetSearchKeyword:searchBar.text Getlat:@"" GetLong:@"" GetLocationName:@""];
-//            // [SearchDetailView GetTitle:GetSearchText];
-//            mySearchBar.text = GetSearchText;
+//        if (ButtonOnClickCheck == 0) {
+//            [self GetSearchText];
+//            ButtonOnClickCheck = 1;
 //        }else{
-//        [self GetSearchText];
+//            if ([GetSearchText isEqualToString:searchBar.text]) {
+//                SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
+//                [self.navigationController pushViewController:SearchDetailView animated:YES];
+//                [SearchDetailView GetSearchKeyword:searchBar.text Getlat:@"" GetLong:@"" GetLocationName:@""];
+//                mySearchBar.text = GetSearchText;
+//                ButtonOnClickCheck = 0;
+//            }else{
+//                [self GetSearchText];
+//               // ButtonOnClickCheck = 1;
+//            }
+//
+//            
 //        }
+        
+        SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
+        [self.navigationController pushViewController:SearchDetailView animated:YES];
+        [SearchDetailView GetSearchKeyword:searchBar.text Getlat:@"" GetLong:@"" GetLocationName:@""];
+        mySearchBar.text = GetSearchText;
+        
     }
     
 }

@@ -667,8 +667,8 @@
 ""= "";
 ""= "";
 "Edit Profile"= "編輯個人資料";
-"{!number} Followers"= "{!number} 粉絲";
-"{!number} Followings"= "{!number} 關注";
+"Followers"= "粉絲";
+"Followings"= "關注";
 "Add home location"= "添加所在位置";
 "How would you describe yourself?"= "添加標籤描述你個人的興趣與喜好，好讓更多人能搜尋到你。";
 "Tag it"= "我要標籤！";
@@ -681,8 +681,8 @@
 "New Collection"= "創建收藏集";
 ""= "";
 "Posts"= "貼文";
-"{!number} Posts"= "{!number} 貼文";
-"{!number} views"= "{!number} 點閱";
+"Posts"= "貼文";
+"views"= "點閱";
 "There's nothing 'ere, yet."= "這裡有點空蕩蕩的呢!";
 "Would you like to start a post? (="= "你的貼文將會為此增添色彩";
 "New Post"= "發表新貼文";
@@ -696,7 +696,7 @@
 "Following"= "關注";
 ""= "";
 "Unfollow user"= "取消關注";
-"Are you sure you want to quit following {!username}?"= "你確定要取消關注 {!username} ?";
+"Are you sure you want to quit following"= "你確定要取消關注";
 "Maybe not."= "呃，算了";
 "Yeah!"= "對，拜拜";
 ""= "";
@@ -712,7 +712,7 @@
 "{!number} Posts"= "{!number} 貼文";
 "Open"= "營業中";
 "Closed"= "休息";
-"{!number} Seetizens"= "{!number} 用戶";
+"Seetizens"= "用戶";
 ""= "";
 "Add a location?"= "添加位置";
 ""= "";

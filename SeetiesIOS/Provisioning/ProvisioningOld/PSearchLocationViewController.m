@@ -86,7 +86,7 @@
     NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
     NSLog(@"newString is %@",newString);
         NSLog(@"found");
-        if ([newString length] > 1) {
+        if ([newString length] >= 1) {
             NSLog(@"Check server");
             [self performSearch];
             [ShowActivity startAnimating];

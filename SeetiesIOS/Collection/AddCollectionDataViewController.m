@@ -243,7 +243,9 @@
 }
 -(void)textViewDidEndEditing:(UITextView *)textView
 {
-    
+    if ([NoteTextView.text length] == 0) {
+        NoteTextView.text = LocalisedString(@"Leave a note");
+    }
 }
 -(void)textViewDidChange:(UITextView *)textView
 {
@@ -295,7 +297,7 @@
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     
     NSString *dataString;
-    if ([NoteTextView.text isEqualToString:@"Leave a note"]) {
+    if ([NoteTextView.text isEqualToString:LocalisedString(@"Leave a note")]) {
         NoteTextView.text = @"";
         dataString = [[NSString alloc]initWithFormat:@"token=%@&posts[0][id]=%@",GetExpertToken,GetPostID];
     }else{
