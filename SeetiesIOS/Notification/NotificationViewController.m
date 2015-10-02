@@ -404,6 +404,7 @@
         ShowPostImage.backgroundColor = [UIColor clearColor];
         ShowPostImage.clipsToBounds = YES;
         ShowPostImage.tag = 99;
+        ShowPostImage.layer.cornerRadius = 5;
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowPostImage];
         
         UIButton *ButtonClick = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -595,6 +596,7 @@
         ShowPostImage.backgroundColor = [UIColor clearColor];
         ShowPostImage.clipsToBounds = YES;
         ShowPostImage.tag = 99;
+        ShowPostImage.layer.cornerRadius = 5;
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowPostImage];
     
         UIButton *ButtonClick = [UIButton buttonWithType:UIButtonTypeCustom];

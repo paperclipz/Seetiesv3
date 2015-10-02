@@ -157,12 +157,16 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
         
+        UIImageView *ShowMapPin = [[UIImageView alloc]init];
+        ShowMapPin.frame = CGRectMake(10, 10, 30, 30);
+        ShowMapPin.image = [UIImage imageNamed:@"TimeIcon.png"];
+        [cell addSubview:ShowMapPin];
         UILabel *ShowName = [[UILabel alloc]init];
-        ShowName.frame = CGRectMake(15, 0, 290, 50);
+        ShowName.frame = CGRectMake(50, 0, 290, 50);
         ShowName.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
         ShowName.tag = 200;
         ShowName.backgroundColor = [UIColor clearColor];
-        ShowName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
+        ShowName.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowName.numberOfLines = 5;
         
         [cell addSubview:ShowName];

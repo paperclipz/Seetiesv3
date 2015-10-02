@@ -766,10 +766,10 @@
     
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-    UIButton *TempBackground = [[UIButton alloc]init];
-    TempBackground.frame = CGRectMake(0, 0, screenWidth, 120);
-    TempBackground.backgroundColor = [UIColor grayColor];
-    [MainScroll addSubview:TempBackground];
+//    UIButton *TempBackground = [[UIButton alloc]init];
+//    TempBackground.frame = CGRectMake(0, 0, screenWidth, 120);
+//    TempBackground.backgroundColor = [UIColor grayColor];
+//    [MainScroll addSubview:TempBackground];
     
     UIImageView *NearbyImg = [[UIImageView alloc]init];
     NearbyImg.image = [UIImage imageNamed:@"Nearbyimage.png"];
@@ -811,6 +811,8 @@
 -(void)InitContent{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
+    NSLog(@"Init Content");
+    
 //    FEED TYPES:
 //    'following_post';
 //    'local_quality_post';
@@ -832,7 +834,7 @@
         NSInteger item = [items indexOfObject:GetType];
         switch (item) {
             case 0:{
-           //     NSLog(@"in following_post");
+                NSLog(@"in following_post");
                 NSInteger TempHeight = heightcheck;
                 int TempCountWhiteHeight = 0;
                 UIButton *TempButton = [[UIButton alloc]init];
@@ -1118,7 +1120,7 @@
 
                 break;
             case 1:{
-              //  NSLog(@"in local_quality_post");
+                NSLog(@"in local_quality_post");
                 NSInteger TempHeightLocalQR = heightcheck;
                 int TempCountWhiteHeightLocalQR = 0;
                 UIButton *TempButtonLocalQR = [[UIButton alloc]init];
@@ -1427,6 +1429,7 @@
             }
                 break;
             case 2:{
+                NSLog(@"in abroad");
 //                NSInteger TempHeightAbroad = heightcheck;
 //                int TempCountWhiteHeightAbroad = 0;
                 
@@ -1614,7 +1617,7 @@
             }
                 break;
             case 3:{
-               // NSLog(@"in announcement");
+                NSLog(@"in announcement");
                 UIButton *TempButton = [[UIButton alloc]init];
                 TempButton.frame = CGRectMake(10, heightcheck, screenWidth - 20, 300);
                 [TempButton setTitle:@"" forState:UIControlStateNormal];
@@ -1658,7 +1661,7 @@
             }
                 break;
             case 4:{
-               // NSLog(@"in announcement_welcome");
+                NSLog(@"in announcement_welcome");
                 UIButton *TempButton = [[UIButton alloc]init];
                 TempButton.frame = CGRectMake(10, heightcheck, screenWidth - 20, 300);
                 [TempButton setTitle:@"" forState:UIControlStateNormal];
@@ -1702,7 +1705,7 @@
             }
                 break;
             case 5:{
-                //NSLog(@"in announcement_campaign");
+                NSLog(@"in announcement_campaign");
                 UIButton *TempButton = [[UIButton alloc]init];
                 TempButton.frame = CGRectMake(10, heightcheck, screenWidth - 20, 300);
                 [TempButton setTitle:@"" forState:UIControlStateNormal];
@@ -1746,23 +1749,23 @@
             }
                 break;
             case 6:{
-            //    NSLog(@"in follow_suggestion_featured");
+                NSLog(@"in follow_suggestion_featured");
                 
                 NSString *TempUserID = [[NSString alloc]initWithFormat:@"%@",[User_IDArray objectAtIndex:i]];
                 NSString *TempUserProfileImg = [[NSString alloc]initWithFormat:@"%@",[User_ProfileImageArray objectAtIndex:i]];
-             //   NSString *TempUser_Name = [[NSString alloc]initWithFormat:@"%@",[User_NameArray objectAtIndex:i]];
-           //     NSString *TempUserLocation = [[NSString alloc]initWithFormat:@"%@",[User_LocationArray objectAtIndex:i]];
-              //  NSString *TempUserFollow = [[NSString alloc]initWithFormat:@"%@",[User_FollowArray objectAtIndex:i]];
                 NSString *TempUseName = [[NSString alloc]initWithFormat:@"%@",[User_UserNameArray objectAtIndex:i]];
                 NSString *TempUserPhoto = [[NSString alloc]initWithFormat:@"%@",[User_PhotoArray objectAtIndex:i]];
                 
                 NSArray *SplitArray_Id = [TempUserID componentsSeparatedByString:@"$"];
                 NSArray *SplitArray_ProfileImg = [TempUserProfileImg componentsSeparatedByString:@"$"];
-             //   NSArray *SplitArray_name = [TempUser_Name componentsSeparatedByString:@"$"];
-              //  NSArray *SplitArray_Location = [TempUserLocation componentsSeparatedByString:@"$"];
-              //  NSArray *SplitArray_Follow = [TempUserFollow componentsSeparatedByString:@"$"];
                 NSArray *SplitArray_Username = [TempUseName componentsSeparatedByString:@"$"];
                 NSArray *SplitArray_PostsImg = [TempUserPhoto componentsSeparatedByString:@"$"];
+                
+//                NSLog(@"SplitArray_Id is %@",SplitArray_Id);
+//                NSLog(@"SplitArray_ProfileImg is %@",SplitArray_ProfileImg);
+//                NSLog(@"SplitArray_Username is %@",SplitArray_Username);
+//                NSLog(@"SplitArray_PostsImg is %@",SplitArray_PostsImg);
+                
                 arrfeaturedUserName = [[NSMutableArray alloc]initWithArray:SplitArray_Username];
                 int TestWidth = screenWidth - 40;
                 //    NSLog(@"TestWidth is %i",TestWidth);
@@ -1781,7 +1784,7 @@
                 [MainScroll addSubview:SUserScrollview_Featured];
                 
                 UILabel *ShowSuggestedText = [[UILabel alloc]init];
-                ShowSuggestedText.frame = CGRectMake(20, heightcheck, 200, 50);
+                ShowSuggestedText.frame = CGRectMake(20, heightcheck, screenWidth - 70, 50);
                 ShowSuggestedText.text = LocalisedString(@"Meet & greet other Seetizens");
                 ShowSuggestedText.backgroundColor = [UIColor clearColor];
                 ShowSuggestedText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
@@ -1852,7 +1855,7 @@
                     [SUserScrollview_Featured addSubview:ShowUserName];
                     
                     UILabel *ShowMessage = [[UILabel alloc]init];
-                    ShowMessage.frame = CGRectMake(70 + i * screenWidth, 50 + 30, 200, 20);
+                    ShowMessage.frame = CGRectMake(70 + i * screenWidth, 50 + 30, screenWidth - 140 - 10, 20);
                     ShowMessage.text = LocalisedString(@"Follow this Seetizen for more");
                     ShowMessage.backgroundColor = [UIColor clearColor];
                     ShowMessage.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
@@ -1914,23 +1917,26 @@
 
             }break;
             case 7:{
-               // NSLog(@"in follow_suggestion_friend");
+                NSLog(@"in follow_suggestion_friend");
                 NSString *TempUserID = [[NSString alloc]initWithFormat:@"%@",[User_IDArray objectAtIndex:i]];
                 NSString *TempUserProfileImg = [[NSString alloc]initWithFormat:@"%@",[User_ProfileImageArray objectAtIndex:i]];
-                //   NSString *TempUser_Name = [[NSString alloc]initWithFormat:@"%@",[User_NameArray objectAtIndex:i]];
-                //     NSString *TempUserLocation = [[NSString alloc]initWithFormat:@"%@",[User_LocationArray objectAtIndex:i]];
-                //  NSString *TempUserFollow = [[NSString alloc]initWithFormat:@"%@",[User_FollowArray objectAtIndex:i]];
                 NSString *TempUseName = [[NSString alloc]initWithFormat:@"%@",[User_UserNameArray objectAtIndex:i]];
                 NSString *TempUserPhoto = [[NSString alloc]initWithFormat:@"%@",[User_PhotoArray objectAtIndex:i]];
                 
                 NSArray *SplitArray_Id = [TempUserID componentsSeparatedByString:@"$"];
                 
                 NSArray *SplitArray_ProfileImg = [TempUserProfileImg componentsSeparatedByString:@"$"];
-                //   NSArray *SplitArray_name = [TempUser_Name componentsSeparatedByString:@"$"];
-                //  NSArray *SplitArray_Location = [TempUserLocation componentsSeparatedByString:@"$"];
-                //  NSArray *SplitArray_Follow = [TempUserFollow componentsSeparatedByString:@"$"];
                 NSArray *SplitArray_Username = [TempUseName componentsSeparatedByString:@"$"];
                 NSArray *SplitArray_PostsImg = [TempUserPhoto componentsSeparatedByString:@"$"];
+                if ([SplitArray_PostsImg count] < 2) {
+                    SplitArray_PostsImg = [[NSArray alloc]initWithObjects:@"",@"",@"", nil];
+                }
+                
+                NSLog(@"SplitArray_Id is %@",SplitArray_Id);
+                NSLog(@"SplitArray_ProfileImg is %@",SplitArray_ProfileImg);
+                NSLog(@"SplitArray_Username is %@",SplitArray_Username);
+                NSLog(@"SplitArray_PostsImg is %@",SplitArray_PostsImg);
+                
                 arrFriendUserName = [[NSMutableArray alloc]initWithArray:SplitArray_Username];
                 int TestWidth = screenWidth - 40;
                 //    NSLog(@"TestWidth is %i",TestWidth);
@@ -1949,7 +1955,7 @@
                 [MainScroll addSubview:SUserScrollview_Friend];
                 
                 UILabel *ShowSuggestedText = [[UILabel alloc]init];
-                ShowSuggestedText.frame = CGRectMake(20, heightcheck, 200, 50);
+                ShowSuggestedText.frame = CGRectMake(20, heightcheck, screenWidth - 70, 50);
                 ShowSuggestedText.text = LocalisedString(@"Your fellow Facebook Seetizen");
                 ShowSuggestedText.backgroundColor = [UIColor clearColor];
                 ShowSuggestedText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
@@ -2020,7 +2026,7 @@
                     [SUserScrollview_Friend addSubview:ShowUserName];
                     
                     UILabel *ShowMessage = [[UILabel alloc]init];
-                    ShowMessage.frame = CGRectMake(70 + i * screenWidth, 50 + 30, 200, 20);
+                    ShowMessage.frame = CGRectMake(70 + i * screenWidth, 50 + 30, screenWidth - 140 - 10, 20);
                     ShowMessage.text = LocalisedString(@"Follow this Seetizen for more");
                     ShowMessage.backgroundColor = [UIColor clearColor];
                     ShowMessage.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
@@ -2073,7 +2079,7 @@
                 heightcheck += FinalWidth + 10 + 70 + 50 + 30 + 10;
             }break;
             case 8:{
-               // NSLog(@"in deal");
+                NSLog(@"in deal");
                 SuggestedScrollview_Deal = [[UIScrollView alloc]init];
                 SuggestedScrollview_Deal.delegate = self;
                 SuggestedScrollview_Deal.frame = CGRectMake(0, heightcheck, screenWidth, 360);
@@ -2256,7 +2262,7 @@
                 heightcheck += 370;
             }break;
             case 9:{
-                //NSLog(@"in invite_friend");
+                NSLog(@"in invite_friend");
                 AsyncImageView *BannerImage = [[AsyncImageView alloc]init];
                 BannerImage.frame = CGRectMake(0, heightcheck, screenWidth, 250);
               //  BannerImage.image = [UIImage imageNamed:@"Demoanner.jpg"];
@@ -2752,7 +2758,6 @@
                      [arrlike addObject:Like];
                      [arrCollect addObject:Collect];
                      
-                     
                      NSDictionary *titleData = [GetItemsData valueForKey:@"title"];
                      NSString *Title1;
                      NSString *Title2;
@@ -2839,8 +2844,7 @@
                              }
                          }
                      }
-                     
-                     
+
                      
                      NSDictionary *messageData = [GetItemsData valueForKey:@"message"];
                      NSString *Title1_message;
@@ -2939,6 +2943,7 @@
                          [arrID_Announcement addObject:@""];
                          [arrType_Announcement addObject:@""];
                      }
+                     
                      
                      NSArray *PhotoData = [GetItemsData valueForKey:@"photos"];
                      
@@ -3061,7 +3066,6 @@
                          }
                          
                      }
-                     
                     // NSLog(@"arrImage is %@",arrImage);
                      
                      NSDictionary *locationData = [GetItemsData valueForKey:@"location"];
@@ -3096,8 +3100,6 @@
                      }
                      [arrDistance addObject:formatted_address];
                      [arrDisplayCountryName addObject:SearchDisplayName];
-                     
-                     
                      
                      
                      NSDictionary *UserInfoData = [GetItemsData valueForKey:@"user_info"];
@@ -3152,7 +3154,7 @@
                      
                     [arrUserName addObject:username];
                     [arrUserImage addObject:url];
-                     
+
                      
                      if ([posttype isEqualToString:@"follow_suggestion_featured"]) {
                          NSMutableArray *User_LocationArrayTemp = [[NSMutableArray alloc]init];
@@ -3269,13 +3271,10 @@
                          [User_PhotoArray addObject:@""];
                      }
                      
-
-                
-
                 
                 
                 
-                
+                     
 
                      
                      
@@ -3291,8 +3290,7 @@
 //                         
 //                     }
             }
-            
-
+                
                 
 //                NSLog(@"arrType is %@",arrType);
 //                NSLog(@"arrAddress is %@",arrAddress);
@@ -3317,6 +3315,7 @@
             }
         
         }
+        
     }else if(connection == theConnection_likes){
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
         NSLog(@"Send post like return get data to server ===== %@",GetData);

@@ -9,7 +9,7 @@
 #import "CommentViewController.h"
 #import "NewUserProfileV2ViewController.h"
 #import "AsyncImageView.h"
-
+#import "CollectionViewController.h"
 #import "LanguageManager.h"
 #import "Locale.h"
 
@@ -51,6 +51,7 @@
     BlackgroundWhiteButton.layer.cornerRadius = 10;
 
     ShowMainTitle.frame = CGRectMake(15, 20, screenWidth - 30, 44);
+    ShowMainTitle.text = LocalisedString(@"All Activities");
     MainScroll.frame = CGRectMake(0, 120, screenWidth, screenHeight - 164);
     LikeScroll.frame = CGRectMake(0, 120, screenWidth, screenHeight - 164);
     CollectionsScroll.frame = CGRectMake(0, 120, screenWidth, screenHeight - 164);
@@ -1311,7 +1312,7 @@
     for (int i = 0; i < [CollectionIDArray count]; i ++) {
         
         AsyncImageView *UserImage = [[AsyncImageView alloc]init];
-        UserImage.frame = CGRectMake(25, PeopleHeight + 10, 60, 60);
+        UserImage.frame = CGRectMake(25, PeopleHeight + 15, 50, 50);
         UserImage.contentMode = UIViewContentModeScaleAspectFill;
         UserImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
         UserImage.layer.cornerRadius=30;
@@ -1339,6 +1340,13 @@
         ShowUserName.numberOfLines = 5;
         ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         [CollectionsScroll addSubview:ShowUserName];
+        
+        UIButton *OpenExpertsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [OpenExpertsButton setFrame:CGRectMake(25, PeopleHeight, 50, 110)];
+        [OpenExpertsButton setBackgroundColor:[UIColor clearColor]];
+        OpenExpertsButton.tag = i;
+        [OpenExpertsButton addTarget:self action:@selector(OpenCollectionOnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [LikeScroll addSubview:OpenExpertsButton];
 
         
         UIButton *Line01 = [[UIButton alloc]init];
@@ -1455,5 +1463,14 @@
     } else {
         
     }
+}
+-(IBAction)OpenCollectionOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSLog(@"OpenCollectionOnClick button %li",(long)getbuttonIDN);
+    
+    CollectionViewController *OpenCollectionView = [[CollectionViewController alloc]init];
+    // [self.view.window.rootViewController presentViewController:OpenCollectionView animated:YES completion:nil];
+    [self.navigationController pushViewController:OpenCollectionView animated:YES];
+    [OpenCollectionView GetCollectionID:[CollectionIDArray objectAtIndex:getbuttonIDN]];
 }
 @end

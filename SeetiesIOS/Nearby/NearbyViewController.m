@@ -521,11 +521,18 @@
 -(void)InitView{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-    UIButton *BackgroundImg = [[UIButton alloc]init];
-    [BackgroundImg setTitle:@"" forState:UIControlStateNormal];
-    BackgroundImg.frame = CGRectMake(0, 0, screenWidth, 150);
-    BackgroundImg.backgroundColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
-    [MainScroll addSubview:BackgroundImg];
+//    UIButton *BackgroundImg = [[UIButton alloc]init];
+//    [BackgroundImg setTitle:@"" forState:UIControlStateNormal];
+//    BackgroundImg.frame = CGRectMake(0, 0, screenWidth, 150);
+//    BackgroundImg.backgroundColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+//    [MainScroll addSubview:BackgroundImg];
+    
+    UIImageView *NearbyImg = [[UIImageView alloc]init];
+    NearbyImg.image = [UIImage imageNamed:@"Nearbyimage.png"];
+    NearbyImg.frame = CGRectMake(0, 0, screenWidth, 150);
+    NearbyImg.contentMode = UIViewContentModeScaleAspectFill;
+    NearbyImg.layer.masksToBounds = YES;
+    [MainScroll addSubview:NearbyImg];
     
     UIButton *ShowNearbyLocationText = [[UIButton alloc]init];
     [ShowNearbyLocationText setTitle:[LocationArray objectAtIndex:0] forState:UIControlStateNormal];
