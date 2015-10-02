@@ -1558,7 +1558,7 @@
     [MainScroll addSubview:ShowPin];
     
     UILabel *ShowAddress = [[UILabel alloc]init];
-    ShowAddress.frame = CGRectMake(35, GetHeightCheck, screenWidth - 150, 20);
+    ShowAddress.frame = CGRectMake(35, GetHeightCheck, screenWidth - 90, 20);
     //ShowAddress.frame = CGRectMake(30, 210 + 3 + heightcheck + i, screenWidth - 150, 20);
     ShowAddress.text = GetPlaceName;
     ShowAddress.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];

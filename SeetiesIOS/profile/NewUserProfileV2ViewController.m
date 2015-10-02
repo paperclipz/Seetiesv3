@@ -486,15 +486,13 @@
 }
 - (void)segmentAction:(UISegmentedControl *)segment
 {
-    //  CGSize contentSize = MainScroll.frame.size;
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     switch (segment.selectedSegmentIndex) {
         case 0:
             NSLog(@"Collection click");
             PostView.hidden = YES;
             LikeView.hidden = YES;
             CollectionView.hidden = NO;
-          //  [self InitCollectionView];
+            [self InitCollectionView];
             
             break;
         case 1:
@@ -502,36 +500,14 @@
             LikeView.hidden = YES;
             CollectionView.hidden = YES;
             PostView.hidden = NO;
-          //  [self InitPostsView];
-            if (CheckClick_Posts == 0) {
-                CheckClick_Posts = 1;
-                [self InitPostsView];
-            }else{
-                AllContentView.frame = CGRectMake(0, 100 , screenWidth,GetHeight + PostView.frame.size.height + 50);
-                CGSize contentSize = MainScroll.frame.size;
-                contentSize.height = GetHeight + PostView.frame.size.height + 50;
-                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-                MainScroll.contentSize = contentSize;
-                
-            }
+            [self InitPostsView];
             break;
         case 2:
             NSLog(@"Likes click");
             PostView.hidden = YES;
             CollectionView.hidden = YES;
             LikeView.hidden = NO;
-          //  [self InitLikeData];
-            if (CheckClick_Likes == 0) {
-                CheckClick_Likes = 1;
-                [self InitLikeData];
-            }else{
-                AllContentView.frame = CGRectMake(0, 100 , screenWidth, GetHeight + LikeView.frame.size.height + 50);
-                CGSize contentSize = MainScroll.frame.size;
-                contentSize.height = GetHeight + LikeView.frame.size.height + 50;
-                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-                MainScroll.contentSize = contentSize;
-                
-            }
+            [self InitLikeData];
             break;
         default:
             break;
@@ -661,8 +637,8 @@
             
             heightcheck += FinalWidth + 10 + 70 + 10 + i ;
         }
-        AllContentView.frame = CGRectMake(0, 100, screenWidth, GetHeight + heightcheck + FinalWidth);
-        CollectionView.frame = CGRectMake(0, GetHeight, screenWidth, heightcheck + FinalWidth);
+        AllContentView.frame = CGRectMake(0, 100, screenWidth, GetHeight + heightcheck + FinalWidth + FinalWidth + 60);
+        CollectionView.frame = CGRectMake(0, GetHeight, screenWidth, heightcheck + FinalWidth + FinalWidth + 60);
     }
     
 
@@ -764,7 +740,10 @@
     }
     
 
-
+    if (CheckClick_Likes == 0) {
+        CheckClick_Likes = 1;
+        [self InitCollectionView];
+    }
 
     //[MainScroll setContentSize:CGSizeMake(screenWidth, GetHeight + LikeView.frame.size.height + LikeView.frame.origin.y)];
 }

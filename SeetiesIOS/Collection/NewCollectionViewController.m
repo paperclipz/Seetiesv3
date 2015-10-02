@@ -40,11 +40,13 @@
     NameTextView.layer.cornerRadius = 5;
     NameTextView.layer.borderWidth=1;
     NameTextView.layer.borderColor=[[UIColor grayColor] CGColor];
+    NameTextView.text = LocalisedString(@"eg: Top 10 coffee hideouts in KL, Best spas in Bangkok");
     
     DescriptionTextView.delegate = self;
     DescriptionTextView.layer.cornerRadius = 5;
     DescriptionTextView.layer.borderWidth=1;
     DescriptionTextView.layer.borderColor=[[UIColor grayColor] CGColor];
+    DescriptionTextView.text = LocalisedString(@"Write a description");
     
     TickButton.frame = CGRectMake(screenWidth - 61, 0, 61, 61);
     SaveButton.frame = CGRectMake(screenWidth - 60, 20, 60, 44);

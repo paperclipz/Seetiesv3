@@ -718,51 +718,51 @@
 - (void)segmentAction:(UISegmentedControl *)segment
 {
   //  CGSize contentSize = MainScroll.frame.size;
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+   //CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     switch (segment.selectedSegmentIndex) {
         case 0:
             NSLog(@"Collection click");
             PostView.hidden = YES;
             LikeView.hidden = YES;
             CollectionView.hidden = NO;
-          //  [self InitCollectionView];
+            [self InitCollectionView];
             break;
         case 1:
             NSLog(@"Posts click");
             LikeView.hidden = YES;
             CollectionView.hidden = YES;
             PostView.hidden = NO;
-          //  [self InitPostsView];
-            if (CheckClick_Posts == 0) {
-                CheckClick_Posts = 1;
-                [self InitPostsView];
-            }else{
-                AllContentView.frame = CGRectMake(0, 100 , screenWidth,GetHeight + PostView.frame.size.height + 50);
-                CGSize contentSize = MainScroll.frame.size;
-                contentSize.height = GetHeight + PostView.frame.size.height + 50;
-                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-                MainScroll.contentSize = contentSize;
-                
-            }
+            [self InitPostsView];
+//            if (CheckClick_Posts == 0) {
+//                CheckClick_Posts = 1;
+//                [self InitPostsView];
+//            }else{
+//                AllContentView.frame = CGRectMake(0, 100 , screenWidth,GetHeight + PostView.frame.size.height + 50);
+//                CGSize contentSize = MainScroll.frame.size;
+//                contentSize.height = GetHeight + PostView.frame.size.height + 50;
+//                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+//                MainScroll.contentSize = contentSize;
+//                
+//            }
             break;
         case 2:
             NSLog(@"Likes click");
             PostView.hidden = YES;
             CollectionView.hidden = YES;
             LikeView.hidden = NO;
-           // [self InitLikeData];
+            [self InitLikeData];
             
-            if (CheckClick_Likes == 0) {
-                CheckClick_Likes = 1;
-                [self InitLikeData];
-            }else{
-                AllContentView.frame = CGRectMake(0, 100 , screenWidth, GetHeight + LikeView.frame.size.height + 50);
-                CGSize contentSize = MainScroll.frame.size;
-                contentSize.height = GetHeight + LikeView.frame.size.height + 50;
-                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-                MainScroll.contentSize = contentSize;
-                
-            }
+//            if (CheckClick_Likes == 0) {
+//                CheckClick_Likes = 1;
+//                [self InitLikeData];
+//            }else{
+//                AllContentView.frame = CGRectMake(0, 100 , screenWidth, GetHeight + LikeView.frame.size.height + 50);
+//                CGSize contentSize = MainScroll.frame.size;
+//                contentSize.height = GetHeight + LikeView.frame.size.height + 50;
+//                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+//                MainScroll.contentSize = contentSize;
+//                
+//            }
             break;
         default:
             break;
@@ -773,6 +773,7 @@
 -(IBAction)CollapseButton:(id)sender{
     CheckExpand = YES;
     GetHeight = 0;
+    //CheckClick_Likes = 0;
     for (UIView *subview in AllContentView.subviews) {
         [subview removeFromSuperview];
     }
@@ -923,8 +924,8 @@
             
             heightcheck += FinalWidth + 15 + 70 + 10 + i ;
         }
-        AllContentView.frame = CGRectMake(0, 100 , screenWidth, GetHeight + heightcheck);
-        CollectionView.frame = CGRectMake(0, GetHeight, screenWidth, heightcheck);
+        AllContentView.frame = CGRectMake(0, 100 , screenWidth, GetHeight + heightcheck + FinalWidth + FinalWidth + 60);
+        CollectionView.frame = CGRectMake(0, GetHeight, screenWidth, heightcheck + FinalWidth + FinalWidth + 60);
     }
     
 //    NSLog(@"GetHeight = %d",GetHeight);
@@ -1031,6 +1032,12 @@
     }
     
 
+    
+    if (CheckClick_Likes == 0) {
+        CheckClick_Likes = 1;
+        [self InitCollectionView];
+    }
+    
 
 }
 
