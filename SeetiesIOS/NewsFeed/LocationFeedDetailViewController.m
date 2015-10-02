@@ -20,17 +20,17 @@
     // Do any additional setup after loading the view from its nib.
     //ShowMainTitle.text = CustomLocalisedString(@"EditProfileLocation", nil);
     ShowMainTitle.text = @"Place Info";
-    [DirectionsButton setTitle:CustomLocalisedString(@"Directions", nil) forState:UIControlStateNormal];
+    //[DirectionsButton setTitle:CustomLocalisedString(@"Directions", nil) forState:UIControlStateNormal];
     
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
     BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
-    DirectionsButton.frame = CGRectMake(0, screenHeight - 60, screenWidth, 60);
+    DirectionsButton.frame = CGRectMake(screenWidth - 50, 22, 50, 40);
     ShowMainTitle.frame = CGRectMake(15, 20, screenWidth - 30, 44);
     
     MainScroll.delegate = self;
-    MainScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight - 64 - 60);
+    MainScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight - 64);
     MainScroll.alwaysBounceVertical = YES;
 //    if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ){
 //        

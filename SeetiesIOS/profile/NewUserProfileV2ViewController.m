@@ -174,7 +174,7 @@
         [FollowUserButton setImage:[UIImage imageNamed:@"ProfileFollowIcon.png"] forState:UIControlStateNormal];
         [FollowUserButton setBackgroundImage:[UIImage imageNamed:@"FollowBtn.png"] forState:UIControlStateNormal];
     }else{
-        [FollowUserButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [FollowUserButton setTitleColor:[UIColor colorWithRed:156.0f/255.0f green:204.0f/255.0f blue:101.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
         [FollowUserButton setTitle:LocalisedString(@"Following") forState:UIControlStateNormal];
         [FollowUserButton setImage:[UIImage imageNamed:@"ProfileFollowingIcon.png"] forState:UIControlStateNormal];
         [FollowUserButton setBackgroundImage:[UIImage imageNamed:@"FollowingBtn.png"] forState:UIControlStateNormal];
@@ -544,110 +544,131 @@
     
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-    
-    if ([GetCollectionDataCount length] == 0) {
+    if ([GetCollectionDataCount length] == 0 || [GetCollectionDataCount isEqualToString:@"0"]) {
         GetCollectionDataCount = @"";
-    }
-    
-     NSString *TempString = [[NSString alloc]initWithFormat:@"%@ %@",GetCollectionDataCount,LocalisedString(@"Collections")];
-    
-    UILabel *ShowCollectionCount = [[UILabel alloc]init];
-    ShowCollectionCount.frame = CGRectMake(30, 20, screenWidth - 60, 20);
-    ShowCollectionCount.text = TempString;
-    ShowCollectionCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
-    ShowCollectionCount.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
-    ShowCollectionCount.textAlignment = NSTextAlignmentCenter;
-    [CollectionView addSubview:ShowCollectionCount];
-    
-    
-    
-    int TestWidth = screenWidth - 40;
-    //    NSLog(@"TestWidth is %i",TestWidth);
-    int FinalWidth = TestWidth / 4;
-    //    NSLog(@"FinalWidth is %i",FinalWidth);
-    int SpaceWidth = FinalWidth + 4;
-    
-    int heightcheck = 60;
-    
-    for (NSInteger i = DataCount_Collection; i < DataTotal_Collection; i++) {
+        //NSLog(@"no collection data here.");
         
-        UIButton *TempButton = [[UIButton alloc]init];
-        TempButton.frame = CGRectMake(10, heightcheck + i, screenWidth - 20, FinalWidth + 10 + 70);
-        [TempButton setTitle:@"" forState:UIControlStateNormal];
-        TempButton.backgroundColor = [UIColor whiteColor];
-        TempButton.layer.cornerRadius = 5;
-        [CollectionView addSubview: TempButton];
+        UIImageView *ShowNoDataImg = [[UIImageView alloc]init];
+        ShowNoDataImg.frame = CGRectMake((screenWidth / 2) - 45, 20, 90, 90);
+        ShowNoDataImg.image = [UIImage imageNamed:@"NoActivity.png"];
+        [CollectionView addSubview:ShowNoDataImg];
+    
         
-        NSString *TempImage = [[NSString alloc]initWithFormat:@"%@",[CollectionData_PhotoArray objectAtIndex:i]];
-        NSArray *SplitArray = [TempImage componentsSeparatedByString:@","];
-        for (int z = 0; z < [SplitArray count]; z++) {
-            AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
-            ShowImage.frame = CGRectMake(15 +(z % 4) * SpaceWidth, heightcheck + 5 +i, FinalWidth, FinalWidth);
-            // ShowImage.image = [UIImage imageNamed:[DemoArray objectAtIndex:z]];
-            ShowImage.contentMode = UIViewContentModeScaleAspectFill;
-            ShowImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
-            ShowImage.layer.cornerRadius=5;
-            ShowImage.layer.masksToBounds = YES;
-            [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
-            NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[SplitArray objectAtIndex:z]];
-            if ([FullImagesURL_First length] == 0) {
-                ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
-            }else{
-                NSURL *url = [NSURL URLWithString:FullImagesURL_First];
-                ShowImage.imageURL = url;
+        UILabel *ShowNoDataText = [[UILabel alloc]init];
+        ShowNoDataText.frame = CGRectMake(30, 100, screenWidth - 60, 20);
+        ShowNoDataText.text = @"No Collection yet.";
+        ShowNoDataText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+        ShowNoDataText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+        ShowNoDataText.textAlignment = NSTextAlignmentCenter;
+        [CollectionView addSubview:ShowNoDataText];
+        
+        
+        
+        AllContentView.frame = CGRectMake(0, 100, screenWidth, GetHeight + 150);
+        CollectionView.frame = CGRectMake(0, GetHeight, screenWidth, 150);
+    }else{
+        NSString *TempString = [[NSString alloc]initWithFormat:@"%@ %@",GetCollectionDataCount,LocalisedString(@"Collections")];
+        
+        UILabel *ShowCollectionCount = [[UILabel alloc]init];
+        ShowCollectionCount.frame = CGRectMake(30, 20, screenWidth - 60, 20);
+        ShowCollectionCount.text = TempString;
+        ShowCollectionCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+        ShowCollectionCount.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+        ShowCollectionCount.textAlignment = NSTextAlignmentCenter;
+        [CollectionView addSubview:ShowCollectionCount];
+        
+        
+        
+        int TestWidth = screenWidth - 40;
+        //    NSLog(@"TestWidth is %i",TestWidth);
+        int FinalWidth = TestWidth / 4;
+        //    NSLog(@"FinalWidth is %i",FinalWidth);
+        int SpaceWidth = FinalWidth + 4;
+        
+        int heightcheck = 60;
+        
+        for (NSInteger i = DataCount_Collection; i < DataTotal_Collection; i++) {
+            
+            UIButton *TempButton = [[UIButton alloc]init];
+            TempButton.frame = CGRectMake(10, heightcheck + i, screenWidth - 20, FinalWidth + 10 + 70);
+            [TempButton setTitle:@"" forState:UIControlStateNormal];
+            TempButton.backgroundColor = [UIColor whiteColor];
+            TempButton.layer.cornerRadius = 5;
+            [CollectionView addSubview: TempButton];
+            
+            NSString *TempImage = [[NSString alloc]initWithFormat:@"%@",[CollectionData_PhotoArray objectAtIndex:i]];
+            NSArray *SplitArray = [TempImage componentsSeparatedByString:@","];
+            for (int z = 0; z < [SplitArray count]; z++) {
+                AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
+                ShowImage.frame = CGRectMake(15 +(z % 4) * SpaceWidth, heightcheck + 5 +i, FinalWidth, FinalWidth);
+                // ShowImage.image = [UIImage imageNamed:[DemoArray objectAtIndex:z]];
+                ShowImage.contentMode = UIViewContentModeScaleAspectFill;
+                ShowImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
+                ShowImage.layer.cornerRadius=5;
+                ShowImage.layer.masksToBounds = YES;
+                [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
+                NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[SplitArray objectAtIndex:z]];
+                if ([FullImagesURL_First length] == 0) {
+                    ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
+                }else{
+                    NSURL *url = [NSURL URLWithString:FullImagesURL_First];
+                    ShowImage.imageURL = url;
+                }
+                [CollectionView addSubview:ShowImage];
             }
-            [CollectionView addSubview:ShowImage];
+            
+            UILabel *ShowExplore = [[UILabel alloc]init];
+            ShowExplore.frame = CGRectMake(30, heightcheck + 5 + FinalWidth + 20 + i, screenWidth - 100, 20);
+            ShowExplore.text = [CollectionData_TitleArray objectAtIndex:i];
+            ShowExplore.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
+            ShowExplore.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:18];
+            [CollectionView addSubview:ShowExplore];
+            
+            UILabel *ShowSubExplore = [[UILabel alloc]init];
+            ShowSubExplore.frame = CGRectMake(30, heightcheck + 5 + FinalWidth + 40 + i, screenWidth - 100, 20);
+            ShowSubExplore.text = [CollectionData_DescriptionArray objectAtIndex:i];
+            ShowSubExplore.textColor = [UIColor lightGrayColor];
+            ShowSubExplore.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:14];
+            [CollectionView addSubview:ShowSubExplore];
+            
+            UIButton *SelectButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            SelectButton.frame = CGRectMake(10, heightcheck + i, screenWidth - 20, FinalWidth + 10 + 70);
+            [SelectButton setTitle:@"" forState:UIControlStateNormal];
+            SelectButton.tag = i;
+            [SelectButton setBackgroundColor:[UIColor clearColor]];
+            [SelectButton addTarget:self action:@selector(OpenCollectionOnClick:) forControlEvents:UIControlEventTouchUpInside];
+            [CollectionView addSubview:SelectButton];
+            
+            //        UIButton *EditButton = [[UIButton alloc]init];
+            //        EditButton.frame = CGRectMake(screenWidth - 80 - 20, heightcheck + 5 + FinalWidth + 20 + i, 80, 40);
+            //        [EditButton setTitle:@"Edit" forState:UIControlStateNormal];
+            //        EditButton.layer.cornerRadius= 10;
+            //        EditButton.layer.masksToBounds = YES;
+            //        EditButton.layer.borderColor=[[UIColor grayColor] CGColor];
+            //        EditButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
+            //        [EditButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
+            //        EditButton.backgroundColor = [UIColor whiteColor];
+            //        EditButton.tag = i;
+            //        [EditButton addTarget:self action:@selector(CollectionEditButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+            //        [CollectionView addSubview:EditButton];
+            
+            
+            UIButton *Line01 = [[UIButton alloc]init];
+            Line01.frame = CGRectMake(15, heightcheck + 5 + FinalWidth + 70 + i, screenWidth - 30, 1);
+            [Line01 setTitle:@"" forState:UIControlStateNormal];//238
+            [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+            [CollectionView addSubview:Line01];
+            
+            heightcheck += FinalWidth + 10 + 70 + 10 + i ;
         }
-        
-        UILabel *ShowExplore = [[UILabel alloc]init];
-        ShowExplore.frame = CGRectMake(30, heightcheck + 5 + FinalWidth + 20 + i, screenWidth - 100, 20);
-        ShowExplore.text = [CollectionData_TitleArray objectAtIndex:i];
-        ShowExplore.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
-        ShowExplore.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:18];
-        [CollectionView addSubview:ShowExplore];
-        
-        UILabel *ShowSubExplore = [[UILabel alloc]init];
-        ShowSubExplore.frame = CGRectMake(30, heightcheck + 5 + FinalWidth + 40 + i, screenWidth - 100, 20);
-        ShowSubExplore.text = [CollectionData_DescriptionArray objectAtIndex:i];
-        ShowSubExplore.textColor = [UIColor lightGrayColor];
-        ShowSubExplore.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:14];
-        [CollectionView addSubview:ShowSubExplore];
-        
-        UIButton *SelectButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        SelectButton.frame = CGRectMake(10, heightcheck + i, screenWidth - 20, FinalWidth + 10 + 70);
-        [SelectButton setTitle:@"" forState:UIControlStateNormal];
-        SelectButton.tag = i;
-        [SelectButton setBackgroundColor:[UIColor clearColor]];
-        [SelectButton addTarget:self action:@selector(OpenCollectionOnClick:) forControlEvents:UIControlEventTouchUpInside];
-        [CollectionView addSubview:SelectButton];
-        
-//        UIButton *EditButton = [[UIButton alloc]init];
-//        EditButton.frame = CGRectMake(screenWidth - 80 - 20, heightcheck + 5 + FinalWidth + 20 + i, 80, 40);
-//        [EditButton setTitle:@"Edit" forState:UIControlStateNormal];
-//        EditButton.layer.cornerRadius= 10;
-//        EditButton.layer.masksToBounds = YES;
-//        EditButton.layer.borderColor=[[UIColor grayColor] CGColor];
-//        EditButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
-//        [EditButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
-//        EditButton.backgroundColor = [UIColor whiteColor];
-//        EditButton.tag = i;
-//        [EditButton addTarget:self action:@selector(CollectionEditButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
-//        [CollectionView addSubview:EditButton];
-        
-        
-        UIButton *Line01 = [[UIButton alloc]init];
-        Line01.frame = CGRectMake(15, heightcheck + 5 + FinalWidth + 70 + i, screenWidth - 30, 1);
-        [Line01 setTitle:@"" forState:UIControlStateNormal];//238
-        [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
-        [CollectionView addSubview:Line01];
-        
-        heightcheck += FinalWidth + 10 + 70 + 10 + i ;
+        AllContentView.frame = CGRectMake(0, 100, screenWidth, GetHeight + heightcheck + FinalWidth);
+        CollectionView.frame = CGRectMake(0, GetHeight, screenWidth, heightcheck + FinalWidth);
     }
-    AllContentView.frame = CGRectMake(0, 100, screenWidth, GetHeight + heightcheck + FinalWidth);
-    CollectionView.frame = CGRectMake(0, GetHeight, screenWidth, heightcheck + FinalWidth);
     
-    NSLog(@"GetHeight = %d",GetHeight);
-    NSLog(@"heightcheck = %d",heightcheck);
+
+    
+   // NSLog(@"GetHeight = %d",GetHeight);
+  //  NSLog(@"heightcheck = %d",heightcheck);
     
     CGSize contentSize = MainScroll.frame.size;
     contentSize.height = GetHeight + CollectionView.frame.size.height;
@@ -659,164 +680,228 @@
 -(void)InitLikeData{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-    NSString *TempString = [[NSString alloc]initWithFormat:@"%@ %@",GetLikesDataCount,LocalisedString(@"Likes")];
-    
-    UILabel *ShowLikesCount = [[UILabel alloc]init];
-    ShowLikesCount.frame = CGRectMake(30, 20, screenWidth - 60, 20);
-    ShowLikesCount.text = TempString;
-    ShowLikesCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
-    ShowLikesCount.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
-    ShowLikesCount.textAlignment = NSTextAlignmentCenter;
-    [LikeView addSubview:ShowLikesCount];
-    
-    
-    
-    int heightcheck = 61;
-    
-    int TestWidth = screenWidth - 2;
-    //NSLog(@"TestWidth is %i",TestWidth);
-    int FinalWidth = TestWidth / 3;
-    FinalWidth += 1;
-    // NSLog(@"FinalWidth is %i",FinalWidth);
-    int SpaceWidth = FinalWidth + 1;
-    
-    for (NSInteger i = DataCount_Like; i < DataTotal_Like; i++) {
-        AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
-        ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
-        ShowImage.frame = CGRectMake(0+(i % 3)*SpaceWidth, heightcheck + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
-        ShowImage.contentMode = UIViewContentModeScaleAspectFill;
-        ShowImage.layer.masksToBounds = YES;
-        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
-        NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[LikesData_PhotoArray objectAtIndex:i]];
-        NSArray *SplitArray = [FullImagesURL_First componentsSeparatedByString:@","];
-        if ([FullImagesURL_First length] == 0) {
+    if ([GetLikesDataCount length] == 0 || [GetLikesDataCount isEqualToString:@"0"]) {
+        GetLikesDataCount = @"";
+       // NSLog(@"no collection data here.");
+        
+        UIImageView *ShowNoDataImg = [[UIImageView alloc]init];
+        ShowNoDataImg.frame = CGRectMake((screenWidth / 2) - 45, 20, 90, 90);
+        ShowNoDataImg.image = [UIImage imageNamed:@"NoActivity.png"];
+        [LikeView addSubview:ShowNoDataImg];
+        
+        
+        UILabel *ShowNoDataText = [[UILabel alloc]init];
+        ShowNoDataText.frame = CGRectMake(30, 100, screenWidth - 60, 20);
+        ShowNoDataText.text = @"No Likes yet.";
+        ShowNoDataText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+        ShowNoDataText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+        ShowNoDataText.textAlignment = NSTextAlignmentCenter;
+        [LikeView addSubview:ShowNoDataText];
+        
+        
+        
+        AllContentView.frame = CGRectMake(0, 100, screenWidth, GetHeight + 150);
+        LikeView.frame = CGRectMake(0, GetHeight, screenWidth, 150);
+        
+        CGSize contentSize = MainScroll.frame.size;
+        contentSize.height = GetHeight + LikeView.frame.size.height ;
+        MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        MainScroll.contentSize = contentSize;
+    }else{
+        NSString *TempString = [[NSString alloc]initWithFormat:@"%@ %@",GetLikesDataCount,LocalisedString(@"Likes")];
+        
+        UILabel *ShowLikesCount = [[UILabel alloc]init];
+        ShowLikesCount.frame = CGRectMake(30, 20, screenWidth - 60, 20);
+        ShowLikesCount.text = TempString;
+        ShowLikesCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+        ShowLikesCount.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+        ShowLikesCount.textAlignment = NSTextAlignmentCenter;
+        [LikeView addSubview:ShowLikesCount];
+        
+        int heightcheck = 61;
+        
+        int TestWidth = screenWidth - 2;
+        //NSLog(@"TestWidth is %i",TestWidth);
+        int FinalWidth = TestWidth / 3;
+        FinalWidth += 1;
+        // NSLog(@"FinalWidth is %i",FinalWidth);
+        int SpaceWidth = FinalWidth + 1;
+        
+        for (NSInteger i = DataCount_Like; i < DataTotal_Like; i++) {
+            AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
             ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
-        }else{
-            NSURL *url_NearbySmall = [NSURL URLWithString:[SplitArray objectAtIndex:0]];
-            ShowImage.imageURL = url_NearbySmall;
+            ShowImage.frame = CGRectMake(0+(i % 3)*SpaceWidth, heightcheck + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
+            ShowImage.contentMode = UIViewContentModeScaleAspectFill;
+            ShowImage.layer.masksToBounds = YES;
+            [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
+            NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[LikesData_PhotoArray objectAtIndex:i]];
+            NSArray *SplitArray = [FullImagesURL_First componentsSeparatedByString:@","];
+            if ([FullImagesURL_First length] == 0) {
+                ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
+            }else{
+                NSURL *url_NearbySmall = [NSURL URLWithString:[SplitArray objectAtIndex:0]];
+                ShowImage.imageURL = url_NearbySmall;
+            }
+            [LikeView addSubview:ShowImage];
+            
+            
+            UIButton *ImageButton = [[UIButton alloc]init];
+            [ImageButton setBackgroundColor:[UIColor clearColor]];
+            [ImageButton setTitle:@"" forState:UIControlStateNormal];
+            ImageButton.frame = CGRectMake(0+(i % 3)*SpaceWidth, heightcheck + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
+            ImageButton.tag = i;
+            [ImageButton addTarget:self action:@selector(LikesButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+            [LikeView addSubview:ImageButton];
+            //[MainScroll setContentSize:CGSizeMake(320, GetHeight + 105 + (106 * (CGFloat)(i /3)))];
+            LikeView.frame = CGRectMake(0, GetHeight, screenWidth, heightcheck + FinalWidth + (SpaceWidth * (CGFloat)(i /3)));
         }
-        [LikeView addSubview:ShowImage];
+        AllContentView.frame = CGRectMake(0, 100, screenWidth, GetHeight + LikeView.frame.size.height + FinalWidth + FinalWidth);
         
-        
-        UIButton *ImageButton = [[UIButton alloc]init];
-        [ImageButton setBackgroundColor:[UIColor clearColor]];
-        [ImageButton setTitle:@"" forState:UIControlStateNormal];
-        ImageButton.frame = CGRectMake(0+(i % 3)*SpaceWidth, heightcheck + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
-        ImageButton.tag = i;
-        [ImageButton addTarget:self action:@selector(LikesButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
-        [LikeView addSubview:ImageButton];
-        //[MainScroll setContentSize:CGSizeMake(320, GetHeight + 105 + (106 * (CGFloat)(i /3)))];
-        LikeView.frame = CGRectMake(0, GetHeight, screenWidth, heightcheck + FinalWidth + (SpaceWidth * (CGFloat)(i /3)));
+        CGSize contentSize = MainScroll.frame.size;
+        contentSize.height = GetHeight + LikeView.frame.size.height + FinalWidth + FinalWidth;
+        MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        MainScroll.contentSize = contentSize;
     }
-    AllContentView.frame = CGRectMake(0, 100, screenWidth, GetHeight + LikeView.frame.size.height + FinalWidth + FinalWidth);
+    
 
-    CGSize contentSize = MainScroll.frame.size;
-    contentSize.height = GetHeight + LikeView.frame.size.height + FinalWidth + FinalWidth;
-    MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    MainScroll.contentSize = contentSize;
+
+
     //[MainScroll setContentSize:CGSizeMake(screenWidth, GetHeight + LikeView.frame.size.height + LikeView.frame.origin.y)];
 }
 
 -(void)InitPostsView{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-    NSString *TempString = [[NSString alloc]initWithFormat:@"%@ %@",GetPostsDataCount,LocalisedString(@"Posts")];
-    
-    UILabel *ShowPostsCount = [[UILabel alloc]init];
-    ShowPostsCount.frame = CGRectMake(30, 20, screenWidth - 60, 20);
-    ShowPostsCount.text = TempString;
-    ShowPostsCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
-    ShowPostsCount.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
-    ShowPostsCount.textAlignment = NSTextAlignmentCenter;
-    [PostView addSubview:ShowPostsCount];
-    
-    
-    int heightcheck = 61;
-    
-    for (int i = 0; i < [PostsData_IDArray count]; i++) {
-        NSString *TempImage = [[NSString alloc]initWithFormat:@"%@",[PostsData_PhotoArray objectAtIndex:i]];
-        NSArray *SplitArray = [TempImage componentsSeparatedByString:@","];
-        AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
-        ShowImage.frame = CGRectMake(15, heightcheck + 10, 80, 80);
-        ShowImage.contentMode = UIViewContentModeScaleAspectFill;
-        ShowImage.layer.masksToBounds = YES;
-        ShowImage.layer.cornerRadius = 5;
-        ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
-        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
-        NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[SplitArray objectAtIndex:0]];
-        // NSString *FullImagesURL_First = @"";
-        if ([FullImagesURL_First length] == 0) {
+    if ([GetPostsDataCount length] == 0 || [GetPostsDataCount isEqualToString:@"0"]) {
+        GetPostsDataCount = @"";
+        
+        UIImageView *ShowNoDataImg = [[UIImageView alloc]init];
+        ShowNoDataImg.frame = CGRectMake((screenWidth / 2) - 45, 20, 90, 90);
+        ShowNoDataImg.image = [UIImage imageNamed:@"NoActivity.png"];
+        [PostView addSubview:ShowNoDataImg];
+        
+        
+        UILabel *ShowNoDataText = [[UILabel alloc]init];
+        ShowNoDataText.frame = CGRectMake(30, 100, screenWidth - 60, 20);
+        ShowNoDataText.text = @"No Posts yet.";
+        ShowNoDataText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+        ShowNoDataText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+        ShowNoDataText.textAlignment = NSTextAlignmentCenter;
+        [PostView addSubview:ShowNoDataText];
+        
+        
+        
+        AllContentView.frame = CGRectMake(0, 100, screenWidth, GetHeight + 150);
+        PostView.frame = CGRectMake(0, GetHeight, screenWidth, 150);
+        
+        CGSize contentSize = MainScroll.frame.size;
+        contentSize.height = GetHeight + PostView.frame.size.height;
+        MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        MainScroll.contentSize = contentSize;
+        
+    }else{
+        NSString *TempString = [[NSString alloc]initWithFormat:@"%@ %@",GetPostsDataCount,LocalisedString(@"Posts")];
+        
+        UILabel *ShowPostsCount = [[UILabel alloc]init];
+        ShowPostsCount.frame = CGRectMake(30, 20, screenWidth - 60, 20);
+        ShowPostsCount.text = TempString;
+        ShowPostsCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+        ShowPostsCount.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+        ShowPostsCount.textAlignment = NSTextAlignmentCenter;
+        [PostView addSubview:ShowPostsCount];
+        
+        
+        int heightcheck = 61;
+        
+        for (int i = 0; i < [PostsData_IDArray count]; i++) {
+            NSString *TempImage = [[NSString alloc]initWithFormat:@"%@",[PostsData_PhotoArray objectAtIndex:i]];
+            NSArray *SplitArray = [TempImage componentsSeparatedByString:@","];
+            AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
+            ShowImage.frame = CGRectMake(15, heightcheck + 10, 80, 80);
+            ShowImage.contentMode = UIViewContentModeScaleAspectFill;
+            ShowImage.layer.masksToBounds = YES;
+            ShowImage.layer.cornerRadius = 5;
             ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
-        }else{
-            NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL_First];
-            //NSLog(@"url is %@",url);
-            ShowImage.imageURL = url_NearbySmall;
+            [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
+            NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[SplitArray objectAtIndex:0]];
+            // NSString *FullImagesURL_First = @"";
+            if ([FullImagesURL_First length] == 0) {
+                ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
+            }else{
+                NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL_First];
+                //NSLog(@"url is %@",url);
+                ShowImage.imageURL = url_NearbySmall;
+            }
+            [PostView addSubview:ShowImage];
+            
+            UILabel *ShowTitle = [[UILabel alloc]init];
+            ShowTitle.frame = CGRectMake(120, heightcheck + 10, 200, 30);
+            ShowTitle.text = [PostsData_TitleArray objectAtIndex:i];
+            ShowTitle.backgroundColor = [UIColor clearColor];
+            ShowTitle.textColor = [UIColor blackColor];
+            ShowTitle.textAlignment = NSTextAlignmentLeft;
+            ShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+            [PostView addSubview:ShowTitle];
+            
+            UIImageView *ShowPin = [[UIImageView alloc]init];
+            ShowPin.image = [UIImage imageNamed:@"PostSmallPin.png"];
+            ShowPin.frame = CGRectMake(120, heightcheck + 40, 15, 15);
+            [PostView addSubview:ShowPin];
+            
+            UILabel *ShowPlaceName = [[UILabel alloc]init];
+            ShowPlaceName.frame = CGRectMake(140, heightcheck + 40, screenWidth - 140, 20);
+            ShowPlaceName.text = [PostsData_place_nameArray objectAtIndex:i];
+            ShowPlaceName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+            ShowPlaceName.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0];
+            ShowPlaceName.textAlignment = NSTextAlignmentLeft;
+            ShowPlaceName.backgroundColor = [UIColor clearColor];
+            [PostView addSubview:ShowPlaceName];
+            
+            UILabel *ShowLocation = [[UILabel alloc]init];
+            ShowLocation.frame = CGRectMake(120, heightcheck + 60, screenWidth - 120, 20);
+            ShowLocation.text = [PostsData_DisplayCountryName objectAtIndex:i];
+            ShowLocation.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+            ShowLocation.textColor = [UIColor grayColor];
+            ShowLocation.textAlignment = NSTextAlignmentLeft;
+            ShowLocation.backgroundColor = [UIColor clearColor];
+            [PostView addSubview:ShowLocation];
+            
+            UIButton *Line01 = [[UIButton alloc]init];
+            Line01.frame = CGRectMake(15, heightcheck + 101, screenWidth - 30, 1);
+            [Line01 setTitle:@"" forState:UIControlStateNormal];//238
+            [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+            [PostView addSubview:Line01];
+            
+            UIButton *ImageButton = [[UIButton alloc]init];
+            [ImageButton setBackgroundColor:[UIColor clearColor]];
+            [ImageButton setTitle:@"" forState:UIControlStateNormal];
+            ImageButton.frame = CGRectMake(15, heightcheck, screenWidth - 30, 101);
+            ImageButton.tag = i;
+            [ImageButton addTarget:self action:@selector(PostsButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+            [PostView addSubview:ImageButton];
+            
+            
+            UIButton *CollectButton = [[UIButton alloc]init];
+            [CollectButton setBackgroundColor:[UIColor clearColor]];
+            [CollectButton setImage:[UIImage imageNamed:@"collected_icon"] forState:UIControlStateNormal];
+            CollectButton.frame = CGRectMake(screenWidth - 20 - 25, heightcheck + 37, 25, 32);
+            CollectButton.tag = i;
+            [PostView addSubview:CollectButton];
+            
+            heightcheck += 101;
+            
+            PostView.frame = CGRectMake(0, GetHeight - 1, screenWidth, heightcheck);
         }
-        [PostView addSubview:ShowImage];
+        AllContentView.frame = CGRectMake(0, 100, screenWidth, GetHeight + PostView.frame.size.height + 251);
         
-        UILabel *ShowTitle = [[UILabel alloc]init];
-        ShowTitle.frame = CGRectMake(120, heightcheck + 10, 200, 30);
-        ShowTitle.text = [PostsData_TitleArray objectAtIndex:i];
-        ShowTitle.backgroundColor = [UIColor clearColor];
-        ShowTitle.textColor = [UIColor blackColor];
-        ShowTitle.textAlignment = NSTextAlignmentLeft;
-        ShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-        [PostView addSubview:ShowTitle];
-        
-        UIImageView *ShowPin = [[UIImageView alloc]init];
-        ShowPin.image = [UIImage imageNamed:@"PostSmallPin.png"];
-        ShowPin.frame = CGRectMake(120, heightcheck + 40, 15, 15);
-        [PostView addSubview:ShowPin];
-        
-        UILabel *ShowPlaceName = [[UILabel alloc]init];
-        ShowPlaceName.frame = CGRectMake(140, heightcheck + 40, screenWidth - 140, 20);
-        ShowPlaceName.text = [PostsData_place_nameArray objectAtIndex:i];
-        ShowPlaceName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-        ShowPlaceName.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0];
-        ShowPlaceName.textAlignment = NSTextAlignmentLeft;
-        ShowPlaceName.backgroundColor = [UIColor clearColor];
-        [PostView addSubview:ShowPlaceName];
-        
-        UILabel *ShowLocation = [[UILabel alloc]init];
-        ShowLocation.frame = CGRectMake(120, heightcheck + 60, screenWidth - 120, 20);
-        ShowLocation.text = [PostsData_DisplayCountryName objectAtIndex:i];
-        ShowLocation.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
-        ShowLocation.textColor = [UIColor grayColor];
-        ShowLocation.textAlignment = NSTextAlignmentLeft;
-        ShowLocation.backgroundColor = [UIColor clearColor];
-        [PostView addSubview:ShowLocation];
-        
-        UIButton *Line01 = [[UIButton alloc]init];
-        Line01.frame = CGRectMake(15, heightcheck + 101, screenWidth - 30, 1);
-        [Line01 setTitle:@"" forState:UIControlStateNormal];//238
-        [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
-        [PostView addSubview:Line01];
-        
-        UIButton *ImageButton = [[UIButton alloc]init];
-        [ImageButton setBackgroundColor:[UIColor clearColor]];
-        [ImageButton setTitle:@"" forState:UIControlStateNormal];
-        ImageButton.frame = CGRectMake(15, heightcheck, screenWidth - 30, 101);
-        ImageButton.tag = i;
-        [ImageButton addTarget:self action:@selector(PostsButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
-        [PostView addSubview:ImageButton];
-        
-        
-        UIButton *CollectButton = [[UIButton alloc]init];
-        [CollectButton setBackgroundColor:[UIColor clearColor]];
-        [CollectButton setImage:[UIImage imageNamed:@"collected_icon"] forState:UIControlStateNormal];
-        CollectButton.frame = CGRectMake(screenWidth - 20 - 25, heightcheck + 37, 25, 32);
-        CollectButton.tag = i;
-        [PostView addSubview:CollectButton];
-        
-        heightcheck += 101;
-        
-        PostView.frame = CGRectMake(0, GetHeight - 1, screenWidth, heightcheck);
+        CGSize contentSize = MainScroll.frame.size;
+        contentSize.height = GetHeight + PostView.frame.size.height + 251;
+        MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        MainScroll.contentSize = contentSize;
     }
-    AllContentView.frame = CGRectMake(0, 100, screenWidth, GetHeight + PostView.frame.size.height + 251);
-    CGSize contentSize = MainScroll.frame.size;
-    contentSize.height = GetHeight + PostView.frame.size.height + 251;
-    MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    MainScroll.contentSize = contentSize;
+    
+    
+
     
 }
 
@@ -1352,7 +1437,7 @@
             
             if ([GetUserFollowing isEqualToString:@"0"]) {
                 GetUserFollowing = @"1";
-                [FollowUserButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                [FollowUserButton setTitleColor:[UIColor colorWithRed:156.0f/255.0f green:204.0f/255.0f blue:101.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
                 [FollowUserButton setTitle:LocalisedString(@"Following") forState:UIControlStateNormal];
                 [FollowUserButton setImage:[UIImage imageNamed:@"ProfileFollowingIcon.png"] forState:UIControlStateNormal];
                 [FollowUserButton setBackgroundImage:[UIImage imageNamed:@"FollowingBtn.png"] forState:UIControlStateNormal];

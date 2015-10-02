@@ -21,13 +21,13 @@
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-    tblview.frame = CGRectMake(0, 64, screenWidth, screenHeight - 124);
+    tblview.frame = CGRectMake(0, 64, screenWidth, screenHeight - 64);
     TitleLabel.frame = CGRectMake(15, 20, screenWidth - 30, 44);
     BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
     
-    ApplyFilterButton.frame = CGRectMake(0, screenHeight - 60, screenWidth, 60);
+    ApplyFilterButton.frame = CGRectMake(screenWidth - 50, 22, 50, 40);
     TitleLabel.text = CustomLocalisedString(@"Filter", nil);
-    [ApplyFilterButton setTitle:CustomLocalisedString(@"ApplyFilter", nil) forState:UIControlStateNormal];
+   // [ApplyFilterButton setTitle:CustomLocalisedString(@"ApplyFilter", nil) forState:UIControlStateNormal];
 
 
 }
