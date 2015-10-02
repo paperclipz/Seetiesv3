@@ -193,7 +193,6 @@
         CheckClick_Likes = 0;
         GetHeight = 0;
         
-        refreshControl = [[UIRefreshControl alloc] init];
         [refreshControl addTarget:self action:@selector(testRefresh:) forControlEvents:UIControlEventValueChanged];
         [MainScroll addSubview:refreshControl];
         
@@ -259,7 +258,6 @@
         CheckClick_Likes = 0;
         GetHeight = 0;
         
-        refreshControl = [[UIRefreshControl alloc] init];
         [refreshControl addTarget:self action:@selector(testRefresh:) forControlEvents:UIControlEventValueChanged];
         [MainScroll addSubview:refreshControl];
         
@@ -297,9 +295,6 @@
                 [subview removeFromSuperview];
             }
             
-            [refreshControl addTarget:self action:@selector(testRefresh:) forControlEvents:UIControlEventValueChanged];
-            [MainScroll addSubview:refreshControl];
-            
             BackgroundImage.frame = CGRectMake(0, -50, screenWidth, 300);
             CGRect headerFrame = BackgroundImage.frame;
             headerFrame.origin.y -= 50.0f;
@@ -332,7 +327,6 @@
             
             GetHeight = 0;
             
-            refreshControl = [[UIRefreshControl alloc] init];
             [refreshControl addTarget:self action:@selector(testRefresh:) forControlEvents:UIControlEventValueChanged];
             [MainScroll addSubview:refreshControl];
             
