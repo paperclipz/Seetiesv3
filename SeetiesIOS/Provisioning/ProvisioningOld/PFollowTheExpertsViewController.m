@@ -39,90 +39,51 @@
     
     DataUrl = [[UrlDataClass alloc]init];
     MainScroll.delegate = self;
-    iPhone4Scroll.delegate = self;
-    iPhone6Scroll.delegate = self;
-    iPhone6Scroll.clipsToBounds = NO;
-    iPhone6PlusScroll.delegate = self;
-    iPhone6Scroll.translatesAutoresizingMaskIntoConstraints  = NO;
     
-    iPhone4Scroll.frame  = CGRectMake(0, 0, 320, 480);
-    MainScroll.frame  = CGRectMake(0, 0, 320, 568);
-    iPhone6Scroll.frame = CGRectMake(0, 0, 375, 667);
-    iPhone6PlusScroll.frame = CGRectMake(0, 0, 414, 736);
+    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight);
+    [MainScroll setContentSize:CGSizeMake(screenWidth * 2, screenHeight)];
     
-    [SkipButton_01_568 setTitle:NSLocalizedString(@"SkipButton",nil) forState:UIControlStateNormal];
-    [SkipButton_01_480 setTitle:NSLocalizedString(@"SkipButton",nil) forState:UIControlStateNormal];
-    [SkipButton_02_568 setTitle:NSLocalizedString(@"SkipButton",nil) forState:UIControlStateNormal];
-    [SkipButton_02_480 setTitle:NSLocalizedString(@"SkipButton",nil) forState:UIControlStateNormal];
-    [SkipButton_03_568 setTitle:NSLocalizedString(@"SkipButton",nil) forState:UIControlStateNormal];
-    [SkipButton_03_480 setTitle:NSLocalizedString(@"SkipButton",nil) forState:UIControlStateNormal];
-    [SkipButton_04_568 setTitle:NSLocalizedString(@"SkipButton",nil) forState:UIControlStateNormal];
-    [SkipButton_04_480 setTitle:NSLocalizedString(@"SkipButton",nil) forState:UIControlStateNormal];
-    [DoneButton_568 setTitle:NSLocalizedString(@"DoneButton",nil) forState:UIControlStateNormal];
-    [DoneButton_480 setTitle:NSLocalizedString(@"DoneButton",nil) forState:UIControlStateNormal];
+    Feed1View.frame = CGRectMake(0, 0, screenWidth, screenHeight);
+    Feed1Img.frame = CGRectMake(0, 0, screenWidth, screenHeight);
+    Feed1DoneButton.frame = CGRectMake(screenWidth - 70, 22, 70, 40);
+    Feed1_nearby.frame = CGRectMake(0, 40, screenWidth, 25);
+    Feed1_nearbySub.frame = CGRectMake(0, 65, screenWidth, 25);
+    Feed1_Recommend.frame = CGRectMake(0, screenHeight - 100, screenWidth, 25);
+    Feed1_RecommendSub.frame = CGRectMake(0, screenHeight - 75, screenWidth, 25);
+
+    Feed2View.frame = CGRectMake(screenWidth, 0, screenWidth, screenHeight);
+    Feed2Img.frame = CGRectMake(0, 0, screenWidth, screenHeight);
+    Feed2DoneButton.frame = CGRectMake(screenWidth - 70, 22, 70, 40);
+    Feed2_CollectIn.frame = CGRectMake(40, 60, 180, 25);
+    Feed2_CollectInSub.frame = CGRectMake(5, 85, 250, 25);
+    Feed2_Collect.frame = CGRectMake(screenWidth - 125, 170, 100, 25);
+    Feed2_CollectSub.frame = CGRectMake(screenWidth - 125, 195, 100, 50);
+    Feed2_Follow.frame = CGRectMake(screenWidth - 125, screenHeight - 100, 100, 25);
+    Feed2_FollowSub.frame = CGRectMake(screenWidth - 155, screenHeight - 75, 150, 50);
     
-    WelcometoSeeties_568.text = NSLocalizedString(@"WelcometoSeeties",nil);
-    WelcometoSeeties_480.text = NSLocalizedString(@"WelcometoSeeties",nil);
-    Seewhypeopleloveus_568.text = NSLocalizedString(@"Seewhypeopleloveus",nil);
-    Seewhypeopleloveus_480.text = NSLocalizedString(@"Seewhypeopleloveus",nil);
-    Slideformore_568.text = NSLocalizedString(@"Slideformore",nil);
-    Slideformore_480.text = NSLocalizedString(@"Slideformore",nil);
+    ProfileView.frame = CGRectMake(screenWidth * 2, 0, screenWidth, screenHeight);
+    ProfileImg.frame = CGRectMake(0, 0, screenWidth, screenHeight);
+    ProfileDoneButton.frame = CGRectMake(screenWidth - 70, 22, 70, 40);
+    Profile_EditProfile.frame = CGRectMake((screenWidth / 2) - 75, 60, 150, 25);
+    Profile_EditProfileSub.frame = CGRectMake((screenWidth / 2) - 75, 85, 150, 50);
+    Profile_Collections.frame = CGRectMake(0, screenHeight - 100, screenWidth, 25);
+    Profile_CollectionsSub.frame = CGRectMake(0, screenHeight - 75, screenWidth, 25);
+
+    EditPostView.frame = CGRectMake(screenWidth * 3, 0, screenWidth, screenHeight);
+    EditPostImg.frame = CGRectMake(0, 0, screenWidth, screenHeight);
+    EditPostDoneButton.frame = CGRectMake(screenWidth - 70, 22, 70, 40);
+    EditPost_Addurl.frame = CGRectMake(0, screenHeight - 100, 150, 25);
+    EditPost_AddurlSub.frame = CGRectMake(0, screenHeight - 75, 150, 50);
+    EditPost_Save.frame = CGRectMake(screenWidth - 150, screenHeight - 100, 150, 25);
+    EditPost_SaveSub.frame = CGRectMake(screenWidth - 150, screenHeight - 75, 150, 25);
     
-    Recommend_480.text = NSLocalizedString(@"Recommend",nil);
-    Shareyourstories_480.text = NSLocalizedString(@"Shareyourstories",nil);
-    Friends_480.text = NSLocalizedString(@"Friends",nil);
-    Seewhatyourfriends_480.text = NSLocalizedString(@"Seewhatyourfriends",nil);
-    AnewWay_480.text = NSLocalizedString(@"AnewWay",nil);
-    Eatwhere_480.text = NSLocalizedString(@"Eatwhere",nil);
-    Allofyour_480.text = NSLocalizedString(@"Allofyour",nil);
-    Keepyourbestcity_480.text = NSLocalizedString(@"Keepyourbestcity",nil);
-    
-    Recommend_568.text = NSLocalizedString(@"Recommend",nil);
-    Shareyourstories_568.text = NSLocalizedString(@"Shareyourstories",nil);
-    Friends_568.text = NSLocalizedString(@"Friends",nil);
-    Seewhatyourfriends_568.text = NSLocalizedString(@"Seewhatyourfriends",nil);
-    AnewWay_568.text = NSLocalizedString(@"AnewWay",nil);
-    Eatwhere_568.text = NSLocalizedString(@"Eatwhere",nil);
-    Allofyour_568.text = NSLocalizedString(@"Allofyour",nil);
-    Keepyourbestcity_568.text = NSLocalizedString(@"Keepyourbestcity",nil);
-    
-    [SkipButton_01_iPH6 setTitle:NSLocalizedString(@"SkipButton",nil) forState:UIControlStateNormal];
-    [SkipButton_01_iPH6Plus setTitle:NSLocalizedString(@"SkipButton",nil) forState:UIControlStateNormal];
-    [SkipButton_02_iPH6 setTitle:NSLocalizedString(@"SkipButton",nil) forState:UIControlStateNormal];
-    [SkipButton_02_iPH6Plus setTitle:NSLocalizedString(@"SkipButton",nil) forState:UIControlStateNormal];
-    [SkipButton_03_iPH6 setTitle:NSLocalizedString(@"SkipButton",nil) forState:UIControlStateNormal];
-    [SkipButton_03_iPH6Plus setTitle:NSLocalizedString(@"SkipButton",nil) forState:UIControlStateNormal];
-    [SkipButton_04_iPH6 setTitle:NSLocalizedString(@"SkipButton",nil) forState:UIControlStateNormal];
-    [SkipButton_04_iPH6Plus setTitle:NSLocalizedString(@"SkipButton",nil) forState:UIControlStateNormal];
-    [DoneButton_iPH6 setTitle:NSLocalizedString(@"DoneButton",nil) forState:UIControlStateNormal];
-    [DoneButton_iPH6Plus setTitle:NSLocalizedString(@"DoneButton",nil) forState:UIControlStateNormal];
-    
-    WelcometoSeeties_iPH6.text = NSLocalizedString(@"WelcometoSeeties",nil);
-    WelcometoSeeties_iPH6Plus.text = NSLocalizedString(@"WelcometoSeeties",nil);
-    Seewhypeopleloveus_iPH6.text = NSLocalizedString(@"Seewhypeopleloveus",nil);
-    Seewhypeopleloveus_iPH6Plus.text = NSLocalizedString(@"Seewhypeopleloveus",nil);
-    Slideformore_iPH6.text = NSLocalizedString(@"Slideformore",nil);
-    Slideformore_iPH6Plus.text = NSLocalizedString(@"Slideformore",nil);
-    
-    Recommend_iPH6Plus.text = NSLocalizedString(@"Recommend",nil);
-    Shareyourstories_iPH6Plus.text = NSLocalizedString(@"Shareyourstories",nil);
-    Friends_iPH6Plus.text = NSLocalizedString(@"Friends",nil);
-    Seewhatyourfriends_iPH6Plus.text = NSLocalizedString(@"Seewhatyourfriends",nil);
-    AnewWay_iPH6Plus.text = NSLocalizedString(@"AnewWay",nil);
-    Eatwhere_iPH6Plus.text = NSLocalizedString(@"Eatwhere",nil);
-    Allofyour_iPH6Plus.text = NSLocalizedString(@"Allofyour",nil);
-    Keepyourbestcity_iPH6Plus.text = NSLocalizedString(@"Keepyourbestcity",nil);
-    
-    Recommend_iPH6.text = NSLocalizedString(@"Recommend",nil);
-    Shareyourstories_iPH6.text = NSLocalizedString(@"Shareyourstories",nil);
-    Friends_iPH6.text = NSLocalizedString(@"Friends",nil);
-    Seewhatyourfriends_iPH6.text = NSLocalizedString(@"Seewhatyourfriends",nil);
-    AnewWay_iPH6.text = NSLocalizedString(@"AnewWay",nil);
-    Eatwhere_iPH6.text = NSLocalizedString(@"Eatwhere",nil);
-    Allofyour_iPH6.text = NSLocalizedString(@"Allofyour",nil);
-    Keepyourbestcity_iPH6.text = NSLocalizedString(@"Keepyourbestcity",nil);
-    
-    
+    TranslateView.frame = CGRectMake(screenWidth * 4, 0, screenWidth, screenHeight);
+    TranslateImg.frame = CGRectMake(0, 0, screenWidth, screenHeight);
+    TranslateDoneButton.frame = CGRectMake(screenWidth - 70, 22, 70, 40);
+    Translate_Title.frame = CGRectMake(0, screenHeight - 100, screenWidth, 25);
+    Translate_Sub.frame = CGRectMake(0, screenHeight - 75, screenWidth, 25);
     
     self.locationManager = [[CLLocationManager alloc]init];
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -196,62 +157,6 @@
 }
 - (BOOL)prefersStatusBarHidden {
     return YES;
-}
--(void)viewDidLayoutSubviews{
-    if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ){
-        
-        CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-        if( screenHeight > 480 && screenHeight < 667 ){
-            NSLog(@"iPhone 5/5s");
-            
-            MainScroll.hidden = NO;
-            iPhone4Scroll.hidden = YES;
-            iPhone6PlusScroll.hidden = YES;
-            iPhone6Scroll.hidden = YES;
-            [MainScroll setContentSize:CGSizeMake(1600, 568)];
-        }else if ( screenHeight > 480 && screenHeight < 736 ){
-            NSLog(@"use iPhone 6 ?????? ");
-            
-            MainScroll.hidden = YES;
-            iPhone4Scroll.hidden = YES;
-            iPhone6PlusScroll.hidden = YES;
-            iPhone6Scroll.hidden = NO;
-            //  [iPhone6Scroll setContentSize:CGSizeMake(1875, 667)];
-            [iPhone6Scroll setContentSize:CGSizeMake(1875, 667)];
-        } else if ( screenHeight > 480 ){
-            NSLog(@"iPhone 6 Plus");
-            
-            MainScroll.hidden = YES;
-            iPhone4Scroll.hidden = YES;
-            iPhone6PlusScroll.hidden = NO;
-            iPhone6Scroll.hidden = YES;
-            [iPhone6PlusScroll setContentSize:CGSizeMake(2070, 736)];
-        }else {
-            NSLog(@"iPhone 4/4s");
-            
-            MainScroll.hidden = YES;
-            iPhone4Scroll.hidden = NO;
-            iPhone6PlusScroll.hidden = YES;
-            iPhone6Scroll.hidden = YES;
-            [iPhone4Scroll setContentSize:CGSizeMake(1600, 300)];
-        }
-        
-    }
-    NSLog(@"MainScroll is %@",MainScroll);
-    NSLog(@"iPhone4Scroll is %@",iPhone4Scroll);
-    NSLog(@"iPhone6Scroll is %@",iPhone6Scroll);
-    NSLog(@"iPhone6PlusScroll is %@",iPhone6PlusScroll);
-    
-    [self.view addSubview:iPhone6Scroll];
-    [self.view addSubview:iPhone4Scroll];
-    [self.view addSubview:iPhone6PlusScroll];
-    
-    
-    
-    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    pageControl.frame = CGRectMake(0, screenHeight - 50, screenWidth, 37);
-    [self.view addSubview:pageControl];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -579,48 +484,41 @@
     }
 
 }
--(IBAction)SkipButton01:(id)sender{
-    [MainScroll setContentOffset:CGPointMake(1280, 0) animated:YES];
-    [iPhone4Scroll setContentOffset:CGPointMake(1280, 0) animated:YES];
-    [iPhone6Scroll setContentOffset:CGPointMake(1500, 0) animated:YES];
-    [iPhone6PlusScroll setContentOffset:CGPointMake(1656, 0) animated:YES];
-}
--(IBAction)SkipButton02:(id)sender{
-    [self SkipButton01:sender];
-
-}
--(IBAction)SkipButton03:(id)sender{
-    [self SkipButton01:sender];
-
-}
--(IBAction)SkipButton04:(id)sender{
-    [self SkipButton01:sender];
-
-}
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+//    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     if (scrollView == MainScroll) {
-        CGFloat pageWidth = MainScroll.frame.size.width; // you need to have a **iVar** with getter for scrollView
-        float fractionalPage = MainScroll.contentOffset.x / pageWidth;
-        NSInteger page = lround(fractionalPage);
-        pageControl.currentPage = page; // you need to have a **iVar** with getter for pageControl
-    }else if (scrollView == iPhone4Scroll){
-        CGFloat pageWidth = iPhone4Scroll.frame.size.width; // you need to have a **iVar** with getter for scrollView
-        float fractionalPage = iPhone4Scroll.contentOffset.x / pageWidth;
-        NSInteger page = lround(fractionalPage);
-        pageControl.currentPage = page; // you need to have a **iVar** with getter for pageControl
-    }else if (scrollView == iPhone6Scroll){
-        CGFloat pageWidth = screenWidth; // you need to have a **iVar** with getter for scrollView
-        float fractionalPage = iPhone6Scroll.contentOffset.x / pageWidth;
-        NSInteger page = lround(fractionalPage);
-        pageControl.currentPage = page; // you need to have a **iVar** with getter for pageControl
-    }else if (scrollView == iPhone6PlusScroll){
-        CGFloat pageWidth = screenWidth; // you need to have a **iVar** with getter for scrollView
-        float fractionalPage = iPhone6PlusScroll.contentOffset.x / pageWidth;
-        NSInteger page = lround(fractionalPage);
-        pageControl.currentPage = page; // you need to have a **iVar** with getter for pageControl
+//        CGFloat pageWidth = MainScroll.frame.size.width; // you need to have a **iVar** with getter for scrollView
+//        float fractionalPage = MainScroll.contentOffset.x / pageWidth;
+//        NSInteger page = lround(fractionalPage);
+//        pageControl.currentPage = page; // you need to have a **iVar** with getter for pageControl
     }
+}
+-(IBAction)Feed1DoneButtonOnClick:(id)sender{
+     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+     [MainScroll setContentOffset:CGPointMake(screenWidth, 0) animated:YES];
+}
+-(IBAction)Feed2DoneButtonOnClick:(id)sender{
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    [MainScroll setContentOffset:CGPointMake(screenWidth * 2, 0) animated:YES];
+}
+-(IBAction)ProfileDoneButtonOnClick:(id)sender{
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    [MainScroll setContentOffset:CGPointMake(screenWidth * 3, 0) animated:YES];}
+-(IBAction)EditPostDoneButtonOnClick:(id)sender{
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    [MainScroll setContentOffset:CGPointMake(screenWidth * 4, 0) animated:YES];
+}
+-(IBAction)TranslateDoneButtonOnClick:(id)sender{
+    NSLog(@"Done tour");
+    NSString *CheckStatus = @"0";
+    NSString *CheckLogin = [[NSString alloc]initWithFormat:@"LoginDone"];
+    NSString *CheckNewUser = @"NewUser";
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:CheckStatus forKey:@"CheckProvisioningStatus"];
+    [defaults setObject:CheckLogin forKey:@"CheckLogin"];
+    [defaults setObject:CheckNewUser forKey:@"CheckNewUser"];
+    [defaults synchronize];
     
-
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 @end

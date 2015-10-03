@@ -1835,7 +1835,7 @@
             
         }else if([Like_UsernameArray count] == 2){
             if ([GetUsername isEqualToString:[Like_UsernameArray objectAtIndex:0]]) {
-                tempString = [[NSString alloc]initWithFormat:@"You %@ %@ %@",[Like_UsernameArray objectAtIndex:1],CustomLocalisedString(@"likeText_and", nil),CustomLocalisedString(@"likeText_1", nil)];
+                tempString = [[NSString alloc]initWithFormat:@"You ,%@ %@ %@",[Like_UsernameArray objectAtIndex:1],CustomLocalisedString(@"likeText_and", nil),CustomLocalisedString(@"likeText_1", nil)];
             }else{
                 tempString = [[NSString alloc]initWithFormat:@"%@ ,%@ %@ %@",[Like_UsernameArray objectAtIndex:0],CustomLocalisedString(@"likeText_and", nil),[Like_UsernameArray objectAtIndex:1],CustomLocalisedString(@"likeText_1", nil)];
             }

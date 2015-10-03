@@ -715,7 +715,7 @@
             CheckCollect = [[NSString alloc]initWithFormat:@"%@",[arrCollect objectAtIndex:i]];;
             UIButton *QuickCollectButton = [[UIButton alloc]init];
             if ([CheckCollect isEqualToString:@"0"]) {
-                [QuickCollectButton setImage:[UIImage imageNamed:@"CollectBtn.png"] forState:UIControlStateNormal];
+                [QuickCollectButton setImage:[UIImage imageNamed:LocalisedString(@"CollectBtn.png")] forState:UIControlStateNormal];
                 [QuickCollectButton setImage:[UIImage imageNamed:@"CollectedBtn.png"] forState:UIControlStateSelected];
             }else{
                 [QuickCollectButton setImage:[UIImage imageNamed:@"CollectedBtn.png"] forState:UIControlStateNormal];
@@ -1089,7 +1089,7 @@
                 CheckCollect = [[NSString alloc]initWithFormat:@"%@",[arrCollect objectAtIndex:i]];;
                 UIButton *QuickCollectButton = [[UIButton alloc]init];
                 if ([CheckCollect isEqualToString:@"0"]) {
-                    [QuickCollectButton setImage:[UIImage imageNamed:@"CollectBtn.png"] forState:UIControlStateNormal];
+                    [QuickCollectButton setImage:[UIImage imageNamed:LocalisedString(@"CollectBtn.png")] forState:UIControlStateNormal];
                     [QuickCollectButton setImage:[UIImage imageNamed:@"CollectedBtn.png"] forState:UIControlStateSelected];
                 }else{
                     [QuickCollectButton setImage:[UIImage imageNamed:@"CollectedBtn.png"] forState:UIControlStateNormal];
@@ -1382,7 +1382,7 @@
                 CheckCollect = [[NSString alloc]initWithFormat:@"%@",[arrCollect objectAtIndex:i]];;
                 UIButton *QuickCollectButtonLocalQR = [[UIButton alloc]init];
                 if ([CheckCollect isEqualToString:@"0"]) {
-                    [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:@"CollectBtn.png"] forState:UIControlStateNormal];
+                    [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:LocalisedString(@"CollectBtn.png")] forState:UIControlStateNormal];
                     [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:@"CollectedBtn.png"] forState:UIControlStateSelected];
                 }else{
                     [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:@"CollectedBtn.png"] forState:UIControlStateNormal];
