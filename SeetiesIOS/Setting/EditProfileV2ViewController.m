@@ -178,6 +178,18 @@
     }
 
 }
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    NSLog(@"did begin editing");
+    if (textView == DescriptionField) {
+        if ([DescriptionField.text isEqualToString:LocalisedString(@"About me")]) {
+            DescriptionField.text = @"";
+        }
+    }
+    
+    
+    
+}
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
     if (textView == DescriptionField) {

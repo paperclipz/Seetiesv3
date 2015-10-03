@@ -25,6 +25,7 @@
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     MainScroll.frame = CGRectMake(0, screenHeight - 450, screenWidth, 450);
     MainScroll.delegate = self;
+    BackgroundBlackButton.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     
     BackButton.frame = CGRectMake(screenWidth - 50, 0, 50, 50);
     

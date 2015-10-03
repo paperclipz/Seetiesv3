@@ -8,12 +8,13 @@
 
 #import "EnbleLocationViewController.h"
 
-@interface EnbleLocationViewController ()
-
+@interface EnbleLocationViewController ()<CLLocationManagerDelegate>
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) CLLocation *location;
 @end
 
 @implementation EnbleLocationViewController
-
+#define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -54,5 +55,61 @@
 -(IBAction)NotNowButtonOnLCilck:(id)sender{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
--(IBAction)AllowButtonOnClick:(id)sender{}
+-(IBAction)AllowButtonOnClick:(id)sender{
+    self.locationManager = [[CLLocationManager alloc]init];
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.locationManager.delegate = self;
+    self.locationManager.distanceFilter = 10;
+    if(IS_OS_8_OR_LATER){
+        NSUInteger code = [CLLocationManager authorizationStatus];
+        if (code == kCLAuthorizationStatusNotDetermined && ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)] || [self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])) {
+            // choose one request according to your business.
+            if([[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationAlwaysUsageDescription"]){
+                [self.locationManager requestAlwaysAuthorization];
+                [self.locationManager startUpdatingLocation];
+            } else if([[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationWhenInUseUsageDescription"]) {
+                [self.locationManager  requestWhenInUseAuthorization];
+                [self.locationManager startUpdatingLocation];
+            } else {
+                NSLog(@"Info.plist does not contain NSLocationAlwaysUsageDescription or NSLocationWhenInUseUsageDescription");
+            }
+        }
+    }
+    [self.locationManager startUpdatingLocation];
+}
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    NSLog(@"didUpdateToLocation: %@", newLocation);
+    CLLocation *location = newLocation;
+    
+    if (location != nil) {
+        //Now you know the location has been found, do other things, call others methods here
+        [self.locationManager stopUpdatingLocation];
+        
+    }else{
+        
+    }
+}
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    
+    NSLog(@"%@",error.userInfo);
+    
+    if([CLLocationManager locationServicesEnabled]){
+        
+        NSLog(@"Location Services Enabled");
+        
+        if([CLLocationManager authorizationStatus]==kCLAuthorizationStatusDenied){
+            UIAlertView    *alert = [[UIAlertView alloc] initWithTitle:@"App Permission Denied"
+                                                               message:@"To re-enable, please go to Settings and turn on Location Service for this app."
+                                                              delegate:nil
+                                                     cancelButtonTitle:@"OK"
+                                                     otherButtonTitles:nil];
+            [alert show];
+            
+        }
+    }else{
+    }
+    NSLog(@"no location get feed data");
+    [manager stopUpdatingLocation];
+}
 @end

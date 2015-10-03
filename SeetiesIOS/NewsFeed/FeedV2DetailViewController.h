@@ -205,6 +205,8 @@
     NSString *ViewCountString;
     
     NSURLConnection *theConnection_QuickCollect;
+    
+    int CheckLanguagedata;
 }
 
 @property(nonatomic,strong)EditPostViewController* editPostViewController;

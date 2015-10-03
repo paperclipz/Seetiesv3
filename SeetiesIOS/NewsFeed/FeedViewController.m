@@ -412,7 +412,7 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
     UIImageView *NearbyImg = [[UIImageView alloc]init];
-    NearbyImg.image = [UIImage imageNamed:@"Nearbyimage.png"];
+    NearbyImg.image = [UIImage imageNamed:@"NearbyImg.png"];
     NearbyImg.frame = CGRectMake(0, 0, screenWidth, 120);
     NearbyImg.contentMode = UIViewContentModeScaleAspectFill;
     NearbyImg.layer.masksToBounds = YES;
@@ -775,7 +775,7 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
     UIImageView *NearbyImg = [[UIImageView alloc]init];
-    NearbyImg.image = [UIImage imageNamed:@"Nearbyimage.png"];
+    NearbyImg.image = [UIImage imageNamed:@"NearbyImg.png"];
     NearbyImg.frame = CGRectMake(0, 0, screenWidth, 120);
     NearbyImg.contentMode = UIViewContentModeScaleAspectFill;
     NearbyImg.layer.masksToBounds = YES;

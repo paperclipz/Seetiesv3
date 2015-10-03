@@ -18,6 +18,7 @@
     IBOutlet UITextView *NoteTextView;
     IBOutlet UITableView *tblview;
     IBOutlet UILabel *ShowNoteTextCount;
+    IBOutlet UIButton *BackgroundBlackButton;
     
     NSString *GetPostID;
     NSString *GetImageData;

@@ -720,6 +720,9 @@
             PostView.hidden = YES;
             LikeView.hidden = YES;
             CollectionView.hidden = NO;
+            for (UIView *subview in CollectionView.subviews) {
+                [subview removeFromSuperview];
+            }
             [self InitCollectionView];
             break;
         case 1:
@@ -727,6 +730,9 @@
             LikeView.hidden = YES;
             CollectionView.hidden = YES;
             PostView.hidden = NO;
+            for (UIView *subview in PostView.subviews) {
+                [subview removeFromSuperview];
+            }
             [self InitPostsView];
 //            if (CheckClick_Posts == 0) {
 //                CheckClick_Posts = 1;
@@ -745,6 +751,9 @@
             PostView.hidden = YES;
             CollectionView.hidden = YES;
             LikeView.hidden = NO;
+            for (UIView *subview in LikeView.subviews) {
+                [subview removeFromSuperview];
+            }
             [self InitLikeData];
             
 //            if (CheckClick_Likes == 0) {

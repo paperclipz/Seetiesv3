@@ -105,6 +105,7 @@
 
     ShowGoogleTranslate = NO;
     CheckClickCount = 0;
+    CheckLanguagedata = 0;
     
     UISwipeGestureRecognizer *swipeRight =[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeRight:)];
     swipeRight.direction=UISwipeGestureRecognizerDirectionRight;
@@ -169,7 +170,7 @@
         TestingUse = NO;
         CheckLoadDone = NO;
         CheckClickCount = 0;
-        
+        CheckLanguagedata = 0;
         if (CheckLoadDone == NO) {
             [ShowActivity startAnimating];
         }
@@ -774,9 +775,11 @@
                 }else{
                     if (CountLanguage == 1) {
                         LanguageButton.hidden = YES;
+                        CheckLanguagedata = 1;
                     }else{
                         LanguageButton.hidden = NO;
                         ClickCount = 0;
+                        CheckLanguagedata = 0;
                     }
                 }
                 
@@ -827,6 +830,7 @@
                                     DisplayButton.frame = CGRectMake(screenWidth - 124 - 15, 26, 55, 33);
                                     NewLanguageButton.hidden = NO;
                                     [ShowbarView addSubview:NewLanguageButton];
+                                    CheckLanguagedata = 2;
                                 }
                                 
                             }else{
@@ -848,6 +852,7 @@
                                     DisplayButton.frame = CGRectMake(screenWidth - 124 - 15, 26, 55, 33);
                                     NewLanguageButton.hidden = NO;
                                     [ShowbarView addSubview:NewLanguageButton];
+                                    CheckLanguagedata = 2;
                                 }
                             }
                         }
@@ -1388,12 +1393,12 @@
             if ([GetFollowing isEqualToString:@"0"]) {
                 GetFollowing = @"1";
                 [ShowFollowButton setTitleColor:[UIColor colorWithRed:156.0f/255.0f green:204.0f/255.0f blue:101.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
-                [ShowFollowButton setTitle:@"Following" forState:UIControlStateNormal];
+                [ShowFollowButton setTitle:LocalisedString(@"Following")  forState:UIControlStateNormal];
                 [ShowFollowButton setImage:[UIImage imageNamed:@"ProfileFollowingIcon.png"] forState:UIControlStateNormal];
                 [ShowFollowButton setBackgroundImage:[UIImage imageNamed:@"FollowingBtn.png"] forState:UIControlStateNormal];
             }else{
                 GetFollowing = @"0";
-                [ShowFollowButton setTitle:@"Follow" forState:UIControlStateNormal];
+                [ShowFollowButton setTitle:LocalisedString(@"Follow") forState:UIControlStateNormal];
                 [ShowFollowButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
                 [ShowFollowButton setImage:[UIImage imageNamed:@"ProfileFollowIcon.png"] forState:UIControlStateNormal];
                 [ShowFollowButton setBackgroundImage:[UIImage imageNamed:@"FollowBtn.png"] forState:UIControlStateNormal];
@@ -1519,7 +1524,7 @@
 
     int GetHeightCheck = 363;
     
-    if (ShowGoogleTranslate == YES) {
+    if (CheckLanguagedata == 2) {
         //tanslate button here
         UIButton *TanslateButton = [[UIButton alloc]init];
         TanslateButton.frame = CGRectMake(20, GetHeightCheck, screenWidth - 40, 40);
@@ -1532,6 +1537,22 @@
         TanslateButton.layer.masksToBounds = YES;
         TanslateButton.layer.borderColor=[[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0f] CGColor];
         [TanslateButton addTarget:self action:@selector(NewLanguageButton:) forControlEvents:UIControlEventTouchUpInside];
+        [MainScroll addSubview:TanslateButton];
+        
+        GetHeightCheck += 63;
+    }else if(CheckLanguagedata == 1){
+        //tanslate button here
+        UIButton *TanslateButton = [[UIButton alloc]init];
+        TanslateButton.frame = CGRectMake(20, GetHeightCheck, screenWidth - 40, 40);
+        [TanslateButton setTitle:LocalisedString(@"Translate") forState:UIControlStateNormal];
+        [TanslateButton setImage:[UIImage imageNamed:@"TranslateArrow.png"] forState:UIControlStateNormal];
+        TanslateButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+        [TanslateButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f  blue:153.0f/255.0f  alpha:1.0f] forState:UIControlStateNormal];
+        TanslateButton.layer.cornerRadius = 5;
+        TanslateButton.layer.borderWidth=1;
+        TanslateButton.layer.masksToBounds = YES;
+        TanslateButton.layer.borderColor=[[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0f] CGColor];
+        [TanslateButton addTarget:self action:@selector(LanguageButton:) forControlEvents:UIControlEventTouchUpInside];
         [MainScroll addSubview:TanslateButton];
         
         GetHeightCheck += 63;

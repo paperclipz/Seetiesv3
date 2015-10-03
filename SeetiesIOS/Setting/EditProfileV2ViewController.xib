@@ -172,7 +172,7 @@
                             <rect key="frame" x="50" y="376" width="267" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="next"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="next"/>
                         </textField>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="write something" id="phy-CM-iN2">
                             <rect key="frame" x="45" y="414" width="267" height="95"/>

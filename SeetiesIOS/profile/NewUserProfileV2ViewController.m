@@ -492,6 +492,9 @@
             PostView.hidden = YES;
             LikeView.hidden = YES;
             CollectionView.hidden = NO;
+            for (UIView *subview in CollectionView.subviews) {
+                [subview removeFromSuperview];
+            }
             [self InitCollectionView];
             
             break;
@@ -500,6 +503,9 @@
             LikeView.hidden = YES;
             CollectionView.hidden = YES;
             PostView.hidden = NO;
+            for (UIView *subview in PostView.subviews) {
+                [subview removeFromSuperview];
+            }
             [self InitPostsView];
             break;
         case 2:
@@ -507,6 +513,9 @@
             PostView.hidden = YES;
             CollectionView.hidden = YES;
             LikeView.hidden = NO;
+            for (UIView *subview in LikeView.subviews) {
+                [subview removeFromSuperview];
+            }
             [self InitLikeData];
             break;
         default:
