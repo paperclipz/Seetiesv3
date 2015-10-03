@@ -338,7 +338,8 @@
     NSLog(@"CategorySelectIDArray is %@",CategorySelectIDArray);
     
     if ([CategorySelectIDArray count] == 0) {
-        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Please select one category." type:TSMessageNotificationTypeError];
+        [TSMessage showNotificationInViewController:self title:@"" subtitle:NSLocalizedString(@"PleaseSelectatleast1category", nil
+                                                                                              ) type:TSMessageNotificationTypeError];
     }else{
         NSString *GetSelectID = [CategorySelectIDArray componentsJoinedByString:@","];
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

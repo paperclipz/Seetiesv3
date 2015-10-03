@@ -1099,7 +1099,7 @@
         AddCollectionDataViewController *AddCollectionDataView = [[AddCollectionDataViewController alloc]init];
         [self presentViewController:AddCollectionDataView animated:YES completion:nil];
         //[self.view.window.rootViewController presentViewController:AddCollectionDataView animated:YES completion:nil];
-        [AddCollectionDataView GetPostID:[CollectArray objectAtIndex:getbuttonIDN] GetImageData:[SplitArray objectAtIndex:0]];
+        [AddCollectionDataView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN] GetImageData:[SplitArray objectAtIndex:0]];
     }
 }
 -(void)SendQuickCollect{

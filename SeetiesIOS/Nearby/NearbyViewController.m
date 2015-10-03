@@ -528,7 +528,7 @@
 //    [MainScroll addSubview:BackgroundImg];
     
     UIImageView *NearbyImg = [[UIImageView alloc]init];
-    NearbyImg.image = [UIImage imageNamed:@"Nearbyimage.png"];
+    NearbyImg.image = [UIImage imageNamed:@"NearbyBackground.png"];
     NearbyImg.frame = CGRectMake(0, 0, screenWidth, 150);
     NearbyImg.contentMode = UIViewContentModeScaleAspectFill;
     NearbyImg.layer.masksToBounds = YES;

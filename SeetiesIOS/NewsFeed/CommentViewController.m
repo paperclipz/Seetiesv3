@@ -754,7 +754,7 @@
         NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
         NSLog(@"Feed Json = %@",res);
         
-        NSArray *GetAllData = (NSArray *)[res valueForKey:@"result"];
+        NSArray *GetAllData = (NSArray *)[res valueForKey:@"data"];
 
         Mentions_UsernameArray = [[NSMutableArray alloc]init];
         Mentions_NameArray = [[NSMutableArray alloc]init];

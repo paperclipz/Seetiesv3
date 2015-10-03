@@ -43,7 +43,7 @@
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight);
-    [MainScroll setContentSize:CGSizeMake(screenWidth * 2, screenHeight)];
+    [MainScroll setContentSize:CGSizeMake(screenWidth * 5, screenHeight)];
     
     Feed1View.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     Feed1Img.frame = CGRectMake(0, 0, screenWidth, screenHeight);
@@ -84,6 +84,15 @@
     TranslateDoneButton.frame = CGRectMake(screenWidth - 70, 22, 70, 40);
     Translate_Title.frame = CGRectMake(0, screenHeight - 100, screenWidth, 25);
     Translate_Sub.frame = CGRectMake(0, screenHeight - 75, screenWidth, 25);
+    
+    [Feed1DoneButton setTitle:@"Skip" forState:UIControlStateNormal];
+    [Feed2DoneButton setTitle:@"Skip" forState:UIControlStateNormal];
+    [ProfileDoneButton setTitle:@"Skip" forState:UIControlStateNormal];
+    [EditPostDoneButton setTitle:@"Skip" forState:UIControlStateNormal];
+    
+    pageControl.frame = CGRectMake(0, screenHeight - 50, screenWidth, 37);
+    [self.view addSubview:pageControl];
+
     
     self.locationManager = [[CLLocationManager alloc]init];
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -485,12 +494,13 @@
 
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     if (scrollView == MainScroll) {
-//        CGFloat pageWidth = MainScroll.frame.size.width; // you need to have a **iVar** with getter for scrollView
-//        float fractionalPage = MainScroll.contentOffset.x / pageWidth;
-//        NSInteger page = lround(fractionalPage);
-//        pageControl.currentPage = page; // you need to have a **iVar** with getter for pageControl
+        CGFloat pageWidth = MainScroll.frame.size.width; // you need to have a **iVar** with getter for scrollView
+        float fractionalPage = MainScroll.contentOffset.x / pageWidth;
+        NSInteger page = lround(fractionalPage);
+        pageControl.currentPage = page; // you need to have a **iVar** with getter for pageControl
+
     }
 }
 -(IBAction)Feed1DoneButtonOnClick:(id)sender{

@@ -74,6 +74,7 @@
                 <outlet property="TranslateView" destination="6HG-GB-eKw" id="54I-wR-JaC"/>
                 <outlet property="Translate_Sub" destination="xgr-yq-x61" id="Arz-Nh-FkV"/>
                 <outlet property="Translate_Title" destination="7Ba-3r-33D" id="ztR-AT-iZe"/>
+                <outlet property="pageControl" destination="Cs6-ts-mDI" id="pcm-sc-UID"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -82,7 +83,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="bWs-MU-cwx">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="bWs-MU-cwx">
                     <rect key="frame" x="-1280" y="0.0" width="1600" height="568"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
@@ -328,6 +329,10 @@
                         </view>
                     </subviews>
                 </scrollView>
+                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" id="Cs6-ts-mDI">
+                    <rect key="frame" x="0.0" y="520" width="320" height="37"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </pageControl>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <point key="canvasLocation" x="-635" y="358"/>

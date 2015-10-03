@@ -138,7 +138,7 @@
     [ImageArray addObject:@"Walkthrough4.png"];
     
     NSMutableArray *TextArray = [[NSMutableArray alloc]init];
-    [TextArray addObject:NSLocalizedString(@"Discover the city's best places to eat, play & shop", nil)];//Discover the city's best places to eat, play & shop
+    [TextArray addObject:NSLocalizedString(@"Discover the best places to eat, play, and shop.", nil)];//Discover the city's best places to eat, play & shop
     [TextArray addObject:NSLocalizedString(@"Create your personal collections.", nil)];//Create personal collections for your favourite finds
     [TextArray addObject:NSLocalizedString(@"Recommend your favourite places and best experiences.", nil)];//Recommend your favourite places & best experiences
     [TextArray addObject:NSLocalizedString(@"Share your collections with your buddies.", nil)];//Share your collections with your buddies.

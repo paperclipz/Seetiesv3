@@ -15,6 +15,8 @@
     LeveyTabBarController *leveyTabBarController;
 
     IBOutlet UIScrollView *MainScroll;
+    IBOutlet UIPageControl *pageControl;
+
     UrlDataClass *DataUrl;
     NSMutableData *webData;
     NSURLConnection *theConnection_UpdateData;

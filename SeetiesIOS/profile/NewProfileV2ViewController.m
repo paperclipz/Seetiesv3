@@ -713,16 +713,16 @@
 - (void)segmentAction:(UISegmentedControl *)segment
 {
   //  CGSize contentSize = MainScroll.frame.size;
-   //CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+   CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     switch (segment.selectedSegmentIndex) {
         case 0:
             NSLog(@"Collection click");
             PostView.hidden = YES;
             LikeView.hidden = YES;
             CollectionView.hidden = NO;
-            for (UIView *subview in CollectionView.subviews) {
-                [subview removeFromSuperview];
-            }
+//            for (UIView *subview in CollectionView.subviews) {
+//                [subview removeFromSuperview];
+//            }
             [self InitCollectionView];
             break;
         case 1:
@@ -730,30 +730,30 @@
             LikeView.hidden = YES;
             CollectionView.hidden = YES;
             PostView.hidden = NO;
-            for (UIView *subview in PostView.subviews) {
-                [subview removeFromSuperview];
-            }
-            [self InitPostsView];
-//            if (CheckClick_Posts == 0) {
-//                CheckClick_Posts = 1;
-//                [self InitPostsView];
-//            }else{
-//                AllContentView.frame = CGRectMake(0, 100 , screenWidth,GetHeight + PostView.frame.size.height + 50);
-//                CGSize contentSize = MainScroll.frame.size;
-//                contentSize.height = GetHeight + PostView.frame.size.height + 50;
-//                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-//                MainScroll.contentSize = contentSize;
-//                
+//            for (UIView *subview in PostView.subviews) {
+//                [subview removeFromSuperview];
 //            }
+//            [self InitPostsView];
+            if (CheckClick_Posts == 0) {
+                CheckClick_Posts = 1;
+                [self InitPostsView];
+            }else{
+                AllContentView.frame = CGRectMake(0, 100 , screenWidth,GetHeight + PostView.frame.size.height + 50);
+                CGSize contentSize = MainScroll.frame.size;
+                contentSize.height = GetHeight + PostView.frame.size.height + 50;
+                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+                MainScroll.contentSize = contentSize;
+//
+            }
             break;
         case 2:
             NSLog(@"Likes click");
             PostView.hidden = YES;
             CollectionView.hidden = YES;
             LikeView.hidden = NO;
-            for (UIView *subview in LikeView.subviews) {
-                [subview removeFromSuperview];
-            }
+//            for (UIView *subview in LikeView.subviews) {
+//                [subview removeFromSuperview];
+//            }
             [self InitLikeData];
             
 //            if (CheckClick_Likes == 0) {
@@ -777,6 +777,7 @@
 -(IBAction)CollapseButton:(id)sender{
     CheckExpand = YES;
     GetHeight = 0;
+    CheckClick_Posts = 0;
     //CheckClick_Likes = 0;
     for (UIView *subview in AllContentView.subviews) {
         [subview removeFromSuperview];
@@ -787,6 +788,7 @@
 -(IBAction)ExpandButton:(id)sender{
     CheckExpand = NO;
     GetHeight = 0;
+    CheckClick_Posts = 0;
     for (UIView *subview in AllContentView.subviews) {
         [subview removeFromSuperview];
     }
@@ -808,7 +810,7 @@
         
         UILabel *ShowNoDataText = [[UILabel alloc]init];
         ShowNoDataText.frame = CGRectMake(30, 100, screenWidth - 60, 20);
-        ShowNoDataText.text = LocalisedString(@"Aww. No one's collected this.");
+        ShowNoDataText.text = LocalisedString(@"There's nothing 'ere, yet.");
         ShowNoDataText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowNoDataText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
         ShowNoDataText.textAlignment = NSTextAlignmentCenter;

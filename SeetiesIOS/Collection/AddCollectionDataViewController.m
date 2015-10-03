@@ -69,6 +69,8 @@
     GetPostID = PostID;
     GetImageData = ImageData;
     
+    NSLog(@"AddCollectionDataViewController GetPostID is %@",GetPostID);
+    
     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:PostImg];
     NSArray *SplitArray = [GetImageData componentsSeparatedByString:@","];
     NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[SplitArray objectAtIndex:0]];
@@ -123,7 +125,7 @@
 {
     if (connection == theConnection_CollectionData) {
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
-        NSLog(@"GetCollectionData is %@",GetData);
+      //  NSLog(@"GetCollectionData is %@",GetData);
         
         NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
         NSError *myError = nil;
@@ -134,7 +136,7 @@
             UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:CustomLocalisedString(@"SomethingError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [ShowAlert show];
         }else{
-            NSLog(@"Get Collection all list data is %@",res);
+          //  NSLog(@"Get Collection all list data is %@",res);
             NSDictionary *GetResData = [res valueForKey:@"data"];
 
             CollectionData_IDArray = [[NSMutableArray alloc]init];
@@ -298,7 +300,7 @@
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     
     NSString *dataString;
-    if ([NoteTextView.text isEqualToString:LocalisedString(@"Leave a note")]) {
+    if ([NoteTextView.text isEqualToString:LocalisedString(@"Leave a note")] || [NoteTextView.text length] == 0) {
         NoteTextView.text = @"";
         dataString = [[NSString alloc]initWithFormat:@"token=%@&posts[0][id]=%@",GetExpertToken,GetPostID];
     }else{

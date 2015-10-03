@@ -34,12 +34,7 @@
     ShowNoDataText_2.frame = CGRectMake((screenWidth/2) - 126, (screenHeight / 2) - 31, 253, 62);
     ShowNoDataText_1.text = CustomLocalisedString(@"NoNotification", nil);
     ShowNoDataText_2.text = CustomLocalisedString(@"NoNotificationDetail", nil);
-    
-    refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(testRefresh:) forControlEvents:UIControlEventValueChanged];
-    [MainScroll addSubview:refreshControl];
-    
-    
+
     MainScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight - 104);
     MainScroll.alwaysBounceVertical = YES;
     MainScroll.backgroundColor = [UIColor whiteColor];
@@ -48,6 +43,12 @@
     ShowNoDataView.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     NoDataImg.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     DataUrl = [[UrlDataClass alloc]init];
+    
+    
+    refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(testRefresh:) forControlEvents:UIControlEventValueChanged];
+    [MainScroll addSubview:refreshControl];
+    
     [self GetNotification];
 }
 - (void)viewWillAppear:(BOOL)animated {

@@ -1529,7 +1529,7 @@
         UIButton *TanslateButton = [[UIButton alloc]init];
         TanslateButton.frame = CGRectMake(20, GetHeightCheck, screenWidth - 40, 40);
         [TanslateButton setTitle:LocalisedString(@"Translate") forState:UIControlStateNormal];
-        [TanslateButton setImage:[UIImage imageNamed:@"TranslateArrow.png"] forState:UIControlStateNormal];
+      //  [TanslateButton setImage:[UIImage imageNamed:@"TranslateArrow.png"] forState:UIControlStateNormal];
         TanslateButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         [TanslateButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f  blue:153.0f/255.0f  alpha:1.0f] forState:UIControlStateNormal];
         TanslateButton.layer.cornerRadius = 5;
@@ -1545,7 +1545,7 @@
         UIButton *TanslateButton = [[UIButton alloc]init];
         TanslateButton.frame = CGRectMake(20, GetHeightCheck, screenWidth - 40, 40);
         [TanslateButton setTitle:LocalisedString(@"Translate") forState:UIControlStateNormal];
-        [TanslateButton setImage:[UIImage imageNamed:@"TranslateArrow.png"] forState:UIControlStateNormal];
+        //[TanslateButton setImage:[UIImage imageNamed:@"TranslateArrow.png"] forState:UIControlStateNormal];
         TanslateButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         [TanslateButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f  blue:153.0f/255.0f  alpha:1.0f] forState:UIControlStateNormal];
         TanslateButton.layer.cornerRadius = 5;
