@@ -325,7 +325,8 @@
             DataTotal_Post= 0;
             DataCount_Collection= 0;
             DataTotal_Collection= 0;
-            
+            CheckClick_Posts = 0;
+            CheckClick_Likes = 0;
             GetHeight = 0;
             
             [refreshControl addTarget:self action:@selector(testRefresh:) forControlEvents:UIControlEventValueChanged];
@@ -540,9 +541,10 @@
         HashTagScroll.backgroundColor = [UIColor whiteColor];
         [AllContentView addSubview:HashTagScroll];
         CGRect frame2 = {0,0};
+
         for (int i= 0; i < [ArrHashTag count]; i++) {
             UILabel *ShowHashTagText = [[UILabel alloc]init];
-            ShowHashTagText.text = [ArrHashTag objectAtIndex:i];
+            ShowHashTagText.text = [NSString stringWithCString:[[ArrHashTag objectAtIndex:i]UTF8String] encoding:NSUTF8StringEncoding];
             ShowHashTagText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:12];
             ShowHashTagText.textAlignment = NSTextAlignmentCenter;
             ShowHashTagText.backgroundColor = [UIColor whiteColor];
@@ -551,7 +553,7 @@
             ShowHashTagText.layer.borderWidth = 1;
             ShowHashTagText.layer.borderColor=[[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f] CGColor];
             
-            NSString *Text = [ArrHashTag objectAtIndex:i];
+            NSString *Text = [NSString stringWithCString:[[ArrHashTag objectAtIndex:i]UTF8String] encoding:NSUTF8StringEncoding];
             CGRect r = [Text boundingRectWithSize:CGSizeMake(200, 0)
                                           options:NSStringDrawingUsesLineFragmentOrigin
                                        attributes:@{NSFontAttributeName:[UIFont fontWithName:@"ProximaNovaSoft-Regular" size:12]}
@@ -738,9 +740,9 @@
                 CheckClick_Posts = 1;
                 [self InitPostsView];
             }else{
-                AllContentView.frame = CGRectMake(0, 100 , screenWidth,GetHeight + PostView.frame.size.height + 50);
+                AllContentView.frame = CGRectMake(0, 100 , screenWidth,GetHeight + PostView.frame.size.height + 251);
                 CGSize contentSize = MainScroll.frame.size;
-                contentSize.height = GetHeight + PostView.frame.size.height + 50;
+                contentSize.height = GetHeight + PostView.frame.size.height + 251;
                 MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
                 MainScroll.contentSize = contentSize;
 //
@@ -1083,30 +1085,6 @@
     [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
     [PostView addSubview:Line01];
     
-    
-    int heightcheck = 61;
-    
-    for (int i = 0; i < [PostsData_IDArray count]; i++) {
-        NSString *TempImage = [[NSString alloc]initWithFormat:@"%@",[PostsData_PhotoArray objectAtIndex:i]];
-        NSArray *SplitArray = [TempImage componentsSeparatedByString:@","];
-        AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
-        ShowImage.frame = CGRectMake(15, heightcheck + 10, 80, 80);
-        ShowImage.contentMode = UIViewContentModeScaleAspectFill;
-        ShowImage.layer.masksToBounds = YES;
-        ShowImage.layer.cornerRadius = 5;
-        ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
-        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
-        NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[SplitArray objectAtIndex:0]];
-       // NSString *FullImagesURL_First = @"";
-        if ([FullImagesURL_First length] == 0) {
-            ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
-        }else{
-            NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL_First];
-            //NSLog(@"url is %@",url);
-            ShowImage.imageURL = url_NearbySmall;
-        }
-        [PostView addSubview:ShowImage];
-
     if ([GetPostsDataCount length] == 0 || [GetPostsDataCount isEqualToString:@"0"]) {
         GetPostsDataCount = @"";
         
@@ -1118,13 +1096,11 @@
         
         UILabel *ShowNoDataText = [[UILabel alloc]init];
         ShowNoDataText.frame = CGRectMake(30, 100, screenWidth - 60, 20);
-        ShowNoDataText.text = @"No Posts yet.";
+        ShowNoDataText.text = LocalisedString(@"Let's get going!");
         ShowNoDataText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowNoDataText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
         ShowNoDataText.textAlignment = NSTextAlignmentCenter;
         [PostView addSubview:ShowNoDataText];
-        
-        
         
         AllContentView.frame = CGRectMake(0, 100, screenWidth, GetHeight + 150);
         PostView.frame = CGRectMake(0, GetHeight, screenWidth, 150);
@@ -1135,38 +1111,6 @@
         MainScroll.contentSize = contentSize;
         
     }else{
-        
-        NSString *TempString = [[NSString alloc]initWithFormat:@"%@ %@",GetPostsDataCount,LocalisedString(@"Posts")];
-        
-        UILabel *ShowPostsCount = [[UILabel alloc]init];
-        ShowPostsCount.frame = CGRectMake(30, 20, 150, 20);
-        ShowPostsCount.text = TempString;
-        ShowPostsCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
-        ShowPostsCount.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
-        [PostView addSubview:ShowPostsCount];
-        
-        UIButton *Line011 = [[UIButton alloc]init];
-        Line011.frame = CGRectMake(screenWidth - 30 - 35, 10, 1, 30);
-        [Line011 setTitle:@"" forState:UIControlStateNormal];
-        [Line011 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
-        [PostView addSubview:Line011];
-        
-        UIButton *EditProfileButton = [[UIButton alloc]init];
-        EditProfileButton.frame = CGRectMake(screenWidth - 30 - 20, 15, 25, 25);
-        [EditProfileButton setImage:[UIImage imageNamed:@"AddPostBtn.png"] forState:UIControlStateNormal];
-        EditProfileButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
-        [EditProfileButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
-        EditProfileButton.backgroundColor = [UIColor clearColor];
-         [EditProfileButton addTarget:self action:@selector(CreateRecommendationButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
-        [PostView addSubview:EditProfileButton];
-        
-        UIButton *Line01 = [[UIButton alloc]init];
-        Line01.frame = CGRectMake(15, 60, screenWidth - 30, 1);
-        [Line01 setTitle:@"" forState:UIControlStateNormal];//238
-        [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
-        [PostView addSubview:Line01];
-        
-        
         int heightcheck = 61;
         
         for (int i = 0; i < [PostsData_IDArray count]; i++) {
@@ -1246,10 +1190,6 @@
         contentSize.height = GetHeight + PostView.frame.size.height + 251;
         MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         MainScroll.contentSize = contentSize;
-    }
-    
-
-    
     }
 
 }
@@ -1447,6 +1387,8 @@
                 GetPersonalTags = [[NSString alloc]initWithFormat:@"%@",[GetAllData valueForKey:@"personal_tags"]];
                 GetEmail = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"email"]];
                 
+                GetPersonalTags = [GetPersonalTags stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                
                 NSDictionary *SystemLanguageData = [GetAllData valueForKey:@"system_language"];
                 GetSystemLanguage = [[NSString alloc]initWithFormat:@"%@",[SystemLanguageData objectForKey:@"origin_caption"]];
                 
@@ -1592,7 +1534,7 @@
 
     }else if(connection == theConnection_GetCollectionData){
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
-        NSLog(@"GetCollectionData is %@",GetData);
+        //NSLog(@"GetCollectionData is %@",GetData);
         
         NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
         NSError *myError = nil;
@@ -1603,7 +1545,7 @@
             UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:CustomLocalisedString(@"SomethingError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [ShowAlert show];
         }else{
-            NSLog(@"Get Collection all list data is %@",res);
+           // NSLog(@"Get Collection all list data is %@",res);
             NSDictionary *GetResData = [res valueForKey:@"data"];
             
             GetCollectionDataCount = [[NSString alloc]initWithFormat:@"%@",[GetResData objectForKey:@"total_result"]];
