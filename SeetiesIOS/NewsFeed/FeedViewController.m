@@ -585,7 +585,7 @@
                 
             }else{
                 UILabel *ShowTitle = [[UILabel alloc]init];
-                ShowTitle.frame = CGRectMake(25, heightcheck, screenWidth - 50, 40);
+                ShowTitle.frame = CGRectMake(25, heightcheck, screenWidth - 50, 40 +5);
                 ShowTitle.text = TempGetStirng;
                 ShowTitle.backgroundColor = [UIColor clearColor];
                 ShowTitle.numberOfLines = 2;
@@ -596,7 +596,7 @@
                 
                 if([ShowTitle sizeThatFits:CGSizeMake(screenWidth - 50, CGFLOAT_MAX)].height!=ShowTitle.frame.size.height)
                 {
-                    ShowTitle.frame = CGRectMake(25, heightcheck + i, screenWidth - 50,[ShowTitle sizeThatFits:CGSizeMake(screenWidth - 50, CGFLOAT_MAX)].height);
+                    ShowTitle.frame = CGRectMake(25, heightcheck, screenWidth - 50, 40 +20);
                 }
                 heightcheck += ShowTitle.frame.size.height + 5;
                 
@@ -911,7 +911,6 @@
                 ClicktoOpenUserProfileButton.tag = i;
                 [ClicktoOpenUserProfileButton addTarget:self action:@selector(OpenUserProfileOnClick:) forControlEvents:UIControlEventTouchUpInside];
                 [MainScroll addSubview:ClicktoOpenUserProfileButton];
-                
                 
                 
                 UILabel *ShowUserName = [[UILabel alloc]init];
@@ -2651,6 +2650,8 @@
         NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
         NSError *myError = nil;
         NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
+        
+        SLog(@"GG : %@",res);
         if ([res count] == 0) {
             NSLog(@"Server Error.");
             UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:CustomLocalisedString(@"SomethingError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -3474,8 +3475,10 @@
         [self presentViewController:EnbleLocationView animated:YES completion:nil];
     }else{
         NearbyViewController *NearbyView = [[NearbyViewController alloc]init];
-        [self.navigationController pushViewController:NearbyView animated:YES];
-        [NearbyView Getlat:latPoint GetLong:lonPoint];
+        [self.navigationController pushViewController:NearbyView animated:YES onCompletion:^{
+            [NearbyView Getlat:latPoint GetLong:lonPoint];
+
+        }];
     }
 }
 -(IBAction)OpenUserProfileOnClick:(id)sender{

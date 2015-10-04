@@ -339,7 +339,8 @@
     NSMutableArray *LanguageName_Array = [defaults objectForKey:@"LanguageData_Name"];
     
     if ([tempName isEqualToString:TAIWAN_STR] || [tempName isEqualToString:CHINESE_STR]) {
-        tempName = CHINESE_CENTRAL;
+        return CHINESE_CODE;
+        
     }
     
     for (int i = 0; i< LanguageName_Array.count; i++) {
