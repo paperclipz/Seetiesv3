@@ -53,7 +53,7 @@
                     <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="15"/>
                     <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <inset key="imageEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    <state key="normal" title="search" image="SearchBarIcon.png" backgroundImage="ExploreSearchBar.png">
+                    <state key="normal" title="search" image="SearchBarIcon.png" backgroundImage="ProfileSearchBar.png">
                         <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -97,7 +97,7 @@
         </view>
     </objects>
     <resources>
-        <image name="ExploreSearchBar.png" width="320" height="45"/>
+        <image name="ProfileSearchBar.png" width="320" height="53"/>
         <image name="SearchBarIcon.png" width="30" height="30"/>
         <image name="TitleBar.png" width="310" height="64"/>
     </resources>

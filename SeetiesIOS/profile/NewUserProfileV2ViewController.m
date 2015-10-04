@@ -562,8 +562,8 @@
         
         
         
-        AllContentView.frame = CGRectMake(0, 100, screenWidth, GetHeight + 150);
-        CollectionView.frame = CGRectMake(0, GetHeight, screenWidth, 150);
+        AllContentView.frame = CGRectMake(0, 100, screenWidth, GetHeight + 500);
+        CollectionView.frame = CGRectMake(0, GetHeight, screenWidth, 500);
     }else{
         NSString *TempString = [[NSString alloc]initWithFormat:@"%@ %@",GetCollectionDataCount,LocalisedString(@"Collections")];
         
@@ -669,7 +669,7 @@
   //  NSLog(@"heightcheck = %d",heightcheck);
     
     CGSize contentSize = MainScroll.frame.size;
-    contentSize.height = GetHeight + CollectionView.frame.size.height;
+    contentSize.height = GetHeight + CollectionView.frame.size.height + 50;
     MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     MainScroll.contentSize = contentSize;
     
@@ -932,7 +932,6 @@
 
 
 -(void)GetUserData{
-    NSLog(@"afaeefaeafefa");
     [ShowLoadingActivity startAnimating];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -1087,6 +1086,7 @@
 }
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
+    [ShowLoadingActivity stopAnimating];
     if (connection == theConnection_GetUserData) {
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
         NSLog(@"User Profile Data return get data to server ===== %@",GetData);
@@ -1723,5 +1723,61 @@
         params[kv[0]] = val;
     }
     return params;
+}
+//start scroll end reflash data
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    if (scrollView == MainScroll) {
+        float bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
+        if (bottomEdge >= scrollView.contentSize.height)
+        {
+            // we are at the end
+            NSLog(@"we are at the end");
+            
+            if (PostView.hidden == NO) {
+                NSLog(@"Post View scroll end");
+                if (CheckLoad_Post == YES) {
+                    
+                }else{
+                    CheckLoad_Post = YES;
+                    if (CurrentPage_Post == TotalPage_Post) {
+                        
+                    }else{
+                        
+                        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+                        [MainScroll setContentSize:CGSizeMake(screenWidth, MainScroll.contentSize.height + 150)];
+                        UIActivityIndicatorView *  activityindicator1 = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake((screenWidth/2) - 15, GetHeight + 40, 30, 30)];
+                        [activityindicator1 setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhiteLarge];
+                        [activityindicator1 setColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f]];
+                        [MainScroll addSubview:activityindicator1];
+                        [activityindicator1 startAnimating];
+                        [self GetPostsData];
+                    }
+                    
+                }
+            }else if (CollectionView.hidden == NO) {
+                NSLog(@"collection View scroll end");
+                if (CheckLoad_Collection == YES) {
+                    
+                }else{
+                    CheckLoad_Collection = YES;
+                    if (CurrentPage_Collection == TotalPage_Collection) {
+                        
+                    }else{
+                        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+                        [MainScroll setContentSize:CGSizeMake(screenWidth, MainScroll.contentSize.height + 150)];
+                        UIActivityIndicatorView *  activityindicator1 = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake((screenWidth/2) - 15, GetHeight + 40, 30, 30)];
+                        [activityindicator1 setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhiteLarge];
+                        [activityindicator1 setColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f]];
+                        [MainScroll addSubview:activityindicator1];
+                        [activityindicator1 startAnimating];
+                        [self GetCollectionData];
+                    }
+                    
+                }
+            }
+            
+        }
+    }
 }
 @end

@@ -1189,52 +1189,48 @@
     [FilterView GetWhatViewComeHere:@"Search"];
 }
 
-////start scroll end reflash data
-//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-//{
-//    if (scrollView == MainScroll) {
-//        float bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
-//        if (bottomEdge >= scrollView.contentSize.height)
-//        {
-//            // we are at the end
-//            NSLog(@"we are at the end");
-//                if (CheckLoad == YES) {
-//                    
-//                }else{
-//                    CheckLoad = YES;
-//                    if (PostsView.hidden == YES) {
-//                        
-//                    }else{
-//                        if (CurrentPage == TotalPage) {
-//                            
-//                        }else{
-//                            CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-//                            
-//                            [MainScroll setContentSize:CGSizeMake(screenWidth, MainScroll.contentSize.height + 50)];
-//                            // MainScroll.frame = CGRectMake(0, heightcheck, screenWidth, MainScroll.frame.size.height + 20);
-//                            UIActivityIndicatorView *  activityindicator1 = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake((screenWidth/2) - 15, MainScroll.contentSize.height + 20, 30, 30)];
-//                            [activityindicator1 setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhiteLarge];
-//                            [activityindicator1 setColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f]];
-//                            [MainScroll addSubview:activityindicator1];
-//                            [activityindicator1 startAnimating];
-//                            [MainScroll setContentSize:CGSizeMake(screenWidth, MainScroll.contentSize.height + 80)];
-//                            
-//                            if (CheckInt == 2) {
-//                                [self SendCategoryData];
-//                            }else{
-//                                [self SendSearchKeywordData];
-//                            }
-//                            
-//                        }
-//                    }
-//                    
-//                    
-//                }
-//            
-//        }
-//    }
-//    
-//}
+//start scroll end reflash data
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    if (scrollView == MainScroll) {
+        float bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
+        if (bottomEdge >= scrollView.contentSize.height)
+        {
+            // we are at the end
+            NSLog(@"we are at the end");
+                if (CheckLoad == YES) {
+                    
+                }else{
+                    CheckLoad = YES;
+                    if (PostsView.hidden == YES) {
+                        
+                    }else{
+                        if (CurrentPage == TotalPage) {
+                            
+                        }else{
+                            CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+                            
+                            [MainScroll setContentSize:CGSizeMake(screenWidth, MainScroll.contentSize.height + 50)];
+                            // MainScroll.frame = CGRectMake(0, heightcheck, screenWidth, MainScroll.frame.size.height + 20);
+                            UIActivityIndicatorView *  activityindicator1 = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake((screenWidth/2) - 15, MainScroll.contentSize.height + 20, 30, 30)];
+                            [activityindicator1 setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhiteLarge];
+                            [activityindicator1 setColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f]];
+                            [MainScroll addSubview:activityindicator1];
+                            [activityindicator1 startAnimating];
+                            [MainScroll setContentSize:CGSizeMake(screenWidth, MainScroll.contentSize.height + 80)];
+
+                            [self SendSearchKeywordData];
+                            
+                        }
+                    }
+                    
+                    
+                }
+            
+        }
+    }
+    
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
