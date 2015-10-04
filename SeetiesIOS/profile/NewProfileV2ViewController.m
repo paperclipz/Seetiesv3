@@ -1050,6 +1050,8 @@
 }
 
 -(void)InitPostsView{
+    
+    SLog(@"InitPostsView");
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     if ([GetPostsDataCount length] == 0 || [GetPostsDataCount isEqualToString:@"0"]) {
         GetPostsDataCount = @"";
@@ -1259,6 +1261,8 @@
     }
 }
 -(void)GetPostsData{
+    
+    SLog(@"GetPostsData");
     ShowActivityPosts = [[UIActivityIndicatorView alloc]init];
     ShowActivityPosts.frame = CGRectMake(ProfileControl.frame.origin.x + 125, ProfileControl.frame.origin.y + 105 , 20, 20);
     [ShowActivityPosts setColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f]];
@@ -1273,7 +1277,8 @@
         NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
         NSString *Getuid = [defaults objectForKey:@"Useruid"];
         NSString *FullString = [[NSString alloc]initWithFormat:@"%@%@/posts?token=%@&page=%li",DataUrl.UserWallpaper_Url,Getuid,GetExpertToken,CurrentPage_Post];
-        
+       // NSString *FullString = [[NSString alloc]initWithFormat:@"%@%@/posts?token=%@",DataUrl.UserWallpaper_Url,Getuid,GetExpertToken];
+
         
         NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
         NSLog(@"check postBack URL ==== %@",postBack);
@@ -1340,6 +1345,8 @@
 }
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
+    
+    SLog(@"error : %",error);
 //    [ShowActivity stopAnimating];
 //    //[MainScroll setContentSize:CGSizeMake(320, 100 + i * HeightGet)];
 //    //    [spinnerView stopAnimating];
@@ -1612,10 +1619,20 @@
         
         
     }else if(connection == theConnection_GetPostsData){
+        
+        CurrentPage_Post+=1;
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
         //     NSLog(@"User Post return get data to server ===== %@",GetData);
         
         NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
+        
+        NSError* error;
+        NSDictionary* json = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                             options:kNilOptions
+                                                               error:&error];
+        
+        NSLog(@"jsonData: %@", json);
+        
         NSError *myError = nil;
         NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
         //  NSLog(@"Feed Json = %@",res);
@@ -1738,7 +1755,11 @@
             }
             
         }
+        
+       
         [ShowActivityPosts stopAnimating];
+        
+        [self GetPostsData];
     }else if(connection == theConnection_GetLikesData){
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
         

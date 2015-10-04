@@ -35,11 +35,11 @@
     GetHeight = 0;
     CheckFirstTimeLoad = 0;
     
-    if ([GetLatdata length] ==0) {
-        
-    }else{
-        [self SendDataToServer];
-    }
+//    if ([GetLatdata length] ==0) {
+//        
+//    }else{
+//        [self SendDataToServer];
+//    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -66,6 +66,7 @@
 }
 -(void)SendDataToServer{
     [ShowActivity startAnimating];
+    CurrentPage = -1;
     if (CurrentPage == TotalPage) {
     }else{
         CurrentPage += 1;
@@ -114,7 +115,7 @@
         NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
         NSError *myError = nil;
         NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
-        // NSLog(@"Feed Json = %@",res);
+         NSLog(@"Feed Json = %@",res);
         
         NSString *statusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
         NSLog(@"statusString is %@",statusString);
@@ -456,7 +457,7 @@
             CGFloat strFloat = (CGFloat)[TempDistanceString floatValue] / 1000;
             int x_Nearby = [TempDistanceString intValue] / 1000;
             NSString *FullShowLocatinString;
-            if (x_Nearby < 10) {
+            if (x_Nearby < 1) {
                 if (x_Nearby <= 1) {
                     FullShowLocatinString = [[NSString alloc]initWithFormat:@"1km • %@",[LocationArray objectAtIndex:i]];//within
                 }else{
