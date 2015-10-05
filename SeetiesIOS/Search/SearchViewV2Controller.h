@@ -36,6 +36,8 @@
     
     int ButtonOnClickCheck;
     
+    NSString *latPoint;
+    NSString *lonPoint;
 
 }
 

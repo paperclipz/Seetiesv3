@@ -360,7 +360,7 @@
     }else{
         CheckLangauge1 = 1;
     }
-    if ([ShowSecondary.text isEqualToString:@"(Choose one)"] || [ShowSecondary.text isEqualToString:@"None"]) {
+    if ([ShowSecondary.text isEqualToString:@"(Choose one)"] || [ShowSecondary.text isEqualToString:@"None"] || [ShowSecondary.text isEqualToString:@"<null>"] || [ShowSecondary.text length] == 0) {
         CheckLanguage2 = 0;
     }else{
         CheckLanguage2 = 1;
