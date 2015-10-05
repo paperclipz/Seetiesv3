@@ -43,7 +43,7 @@
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight);
-    [MainScroll setContentSize:CGSizeMake(screenWidth * 5, screenHeight)];
+    [MainScroll setContentSize:CGSizeMake(screenWidth * 5, 480)];
     
     Feed1View.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     Feed1Img.frame = CGRectMake(0, 0, screenWidth, screenHeight);
@@ -85,10 +85,37 @@
     Translate_Title.frame = CGRectMake(0, screenHeight - 100, screenWidth, 25);
     Translate_Sub.frame = CGRectMake(0, screenHeight - 75, screenWidth, 25);
     
-    [Feed1DoneButton setTitle:@"Skip" forState:UIControlStateNormal];
-    [Feed2DoneButton setTitle:@"Skip" forState:UIControlStateNormal];
-    [ProfileDoneButton setTitle:@"Skip" forState:UIControlStateNormal];
-    [EditPostDoneButton setTitle:@"Skip" forState:UIControlStateNormal];
+    
+    Feed1_nearby.text = NSLocalizedString(@"PNearby", nil);
+    Feed1_nearbySub.text = NSLocalizedString(@"PExplore goodies around you.", nil);
+    Feed1_Recommend.text = NSLocalizedString(@"PRecommend", nil);
+    Feed1_RecommendSub.text = NSLocalizedString(@"PShare your thoughts with friends.", nil);
+    
+    Feed2_CollectIn.text = NSLocalizedString(@"PCollect In", nil);
+    Feed2_CollectInSub.text = NSLocalizedString(@"PPersonalize your collection.", nil);
+    Feed2_Collect.text = NSLocalizedString(@"PCollect", nil);
+    Feed2_CollectSub.text = NSLocalizedString(@"PCollect post here!", nil);
+    Feed2_Follow.text = NSLocalizedString(@"PFollow", nil);
+    Feed2_FollowSub.text = NSLocalizedString(@"PSee more from your favourite Seetizens.", nil);
+    
+    Profile_EditProfile.text = NSLocalizedString(@"PEdit Profile", nil);
+    Profile_EditProfileSub.text = NSLocalizedString(@"PPeople know you and find you better.", nil);
+    Profile_Collections.text = NSLocalizedString(@"PCollections", nil);
+    Profile_CollectionsSub.text = NSLocalizedString(@"PView your collections here.", nil);
+    
+    EditPost_Addurl.text = NSLocalizedString(@"PAdd URL", nil);
+    EditPost_AddurlSub.text = NSLocalizedString(@"PDrive traffic to your page or blog.", nil);
+    EditPost_Save.text = NSLocalizedString(@"PSave", nil);
+    EditPost_SaveSub.text = NSLocalizedString(@"PFinish it later.", nil);
+    
+    Translate_Title.text = NSLocalizedString(@"PTranslate", nil);
+    Translate_Sub.text = NSLocalizedString(@"PNo more language barrier", nil);
+    
+    [Feed1DoneButton setTitle:NSLocalizedString(@"PSkip", nil) forState:UIControlStateNormal];
+    [Feed2DoneButton setTitle:NSLocalizedString(@"PSkip", nil) forState:UIControlStateNormal];
+    [ProfileDoneButton setTitle:NSLocalizedString(@"PSkip", nil) forState:UIControlStateNormal];
+    [EditPostDoneButton setTitle:NSLocalizedString(@"PSkip", nil) forState:UIControlStateNormal];
+    [TranslateDoneButton setTitle:NSLocalizedString(@"PDone", nil) forState:UIControlStateNormal];
     
     pageControl.frame = CGRectMake(0, screenHeight - 50, screenWidth, 37);
     [self.view addSubview:pageControl];

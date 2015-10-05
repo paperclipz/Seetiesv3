@@ -90,18 +90,18 @@
     
     LineButton.frame = CGRectMake(screenWidth - 105 - 15, screenHeight - 23, 105, 1);
 
-    LikeButton.frame = CGRectMake(20, 14, 37, 37);
-    CommentButton.frame = CGRectMake(70, 14, 37, 37);
-    shareFBButton.frame = CGRectMake(120, 14, 37, 37);
+    LikeButton.frame = CGRectMake(10, 14, 37, 37);
+    CommentButton.frame = CGRectMake(60, 14, 37, 37);
+    shareFBButton.frame = CGRectMake(110, 14, 37, 37);
     
     
     [AllCollectButton setImage:[UIImage imageNamed:@"CollectBtn.png"] forState:UIControlStateNormal];
     [AllCollectButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
     [AllCollectButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
     AllCollectButton.backgroundColor = [UIColor clearColor];
-    AllCollectButton.frame = CGRectMake(screenWidth - 20 - 140, 5, 140, 50);
+    AllCollectButton.frame = CGRectMake(screenWidth - 10 - 140, 5, 140, 50);
     
-    QuickCollectButton.frame = CGRectMake(screenWidth - 20 - 60, 14, 60, 37);
+    QuickCollectButton.frame = CGRectMake(screenWidth - 10 - 60, 14, 60, 37);
 
     ShowGoogleTranslate = NO;
     CheckClickCount = 0;

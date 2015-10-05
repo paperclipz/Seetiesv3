@@ -826,7 +826,7 @@
         NSString *TempString = [[NSString alloc]initWithFormat:@"%@ %@",GetCollectionDataCount,LocalisedString(@"Collections")];
         
         UILabel *ShowCollectionCount = [[UILabel alloc]init];
-        ShowCollectionCount.frame = CGRectMake(30, 15, 150, 20);
+        ShowCollectionCount.frame = CGRectMake(25, 15, 150, 20);
         ShowCollectionCount.text = TempString;
         ShowCollectionCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowCollectionCount.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
@@ -888,14 +888,14 @@
             }
             
             UILabel *ShowExplore = [[UILabel alloc]init];
-            ShowExplore.frame = CGRectMake(30, heightcheck + 5 + FinalWidth + 20 + i, screenWidth - 100, 20);
+            ShowExplore.frame = CGRectMake(25, heightcheck + 5 + FinalWidth + 20 + i, screenWidth - 100, 20);
             ShowExplore.text = [CollectionData_TitleArray objectAtIndex:i];
             ShowExplore.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
             ShowExplore.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:18];
             [CollectionView addSubview:ShowExplore];
             
             UILabel *ShowSubExplore = [[UILabel alloc]init];
-            ShowSubExplore.frame = CGRectMake(30, heightcheck + 5 + FinalWidth + 40 + i, screenWidth - 100, 20);
+            ShowSubExplore.frame = CGRectMake(25, heightcheck + 5 + FinalWidth + 40 + i, screenWidth - 100, 20);
             ShowSubExplore.text = [CollectionData_DescriptionArray objectAtIndex:i];
             ShowSubExplore.textColor = [UIColor lightGrayColor];
             ShowSubExplore.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:14];
@@ -951,6 +951,7 @@
     
     if ([GetLikesDataCount length] == 0 || [GetLikesDataCount isEqualToString:@"0"]) {
         GetLikesDataCount = @"";
+        TotalPage_Like = 1;
         // NSLog(@"no collection data here.");
         
         UIImageView *ShowNoDataImg = [[UIImageView alloc]init];
@@ -1054,7 +1055,7 @@
     SLog(@"InitPostsView");
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     if ([GetPostsDataCount length] == 0 || [GetPostsDataCount isEqualToString:@"0"]) {
-        GetPostsDataCount = @"";
+        GetPostsDataCount = @"0";
     }
     
     NSString *TempString = [[NSString alloc]initWithFormat:@"%@ %@",GetPostsDataCount,LocalisedString(@"Posts")];
@@ -1227,11 +1228,14 @@
     
 }
 -(void)GetCollectionData{
-    ShowActivityCollection = [[UIActivityIndicatorView alloc]init];
-    ShowActivityCollection.frame = CGRectMake(30, ProfileControl.frame.origin.y + 105 , 20, 20);
-    [ShowActivityCollection setColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f]];
-    [MainScroll addSubview:ShowActivityCollection];
-    [ShowActivityCollection startAnimating];
+
+    if (CheckFirstTimeLoadCollection == 0) {
+        ShowActivityCollection = [[UIActivityIndicatorView alloc]init];
+        ShowActivityCollection.frame = CGRectMake(30, ProfileControl.frame.origin.y + 105 , 20, 20);
+        [ShowActivityCollection setColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f]];
+        [MainScroll addSubview:ShowActivityCollection];
+        [ShowActivityCollection startAnimating];
+    }
     
     if (CurrentPage_Collection == TotalPage_Collection) {
         
@@ -1263,11 +1267,14 @@
 -(void)GetPostsData{
     
     SLog(@"GetPostsData");
-    ShowActivityPosts = [[UIActivityIndicatorView alloc]init];
-    ShowActivityPosts.frame = CGRectMake(ProfileControl.frame.origin.x + 125, ProfileControl.frame.origin.y + 105 , 20, 20);
-    [ShowActivityPosts setColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f]];
-    [MainScroll addSubview:ShowActivityPosts];
-    [ShowActivityPosts startAnimating];
+
+    if (CheckFirstTimeLoadPost == 0) {
+        ShowActivityPosts = [[UIActivityIndicatorView alloc]init];
+        ShowActivityPosts.frame = CGRectMake(ProfileControl.frame.origin.x + 125, ProfileControl.frame.origin.y + 105 , 20, 20);
+        [ShowActivityPosts setColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f]];
+        [MainScroll addSubview:ShowActivityPosts];
+        [ShowActivityPosts startAnimating];
+    }
     
     if (CurrentPage_Post == TotalPage_Post) {
         

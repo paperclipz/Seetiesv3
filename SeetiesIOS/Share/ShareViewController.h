@@ -25,9 +25,14 @@
     
     IBOutlet UILabel *ShowTitle;
     IBOutlet UILabel *ShowSubTitle;
+    
+    NSString *GetCollectionID;
+    
+    int CheckShareStatus;
 }
  @property (nonatomic, strong) UIDocumentInteractionController *documentController;
 -(void)GetPostID:(NSString *)ID GetMessage:(NSString *)Msg GetTitle:(NSString *)Title GetImageData:(NSString *)ImgData;
+-(void)GetCollectionID:(NSString *)Collectionid;
 -(IBAction)FacebookButtonOnClick:(id)sender;
 -(IBAction)InstagramButtonOnClick:(id)sender;
 -(IBAction)LINEButtonOnClick:(id)sender;

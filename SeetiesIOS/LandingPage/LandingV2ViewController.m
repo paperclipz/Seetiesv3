@@ -106,13 +106,36 @@
 
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    FBLoginButton.frame = CGRectMake((screenWidth/2) - 155, screenHeight - 138, 150, 50);
-    LogInButton.frame = CGRectMake((screenWidth/2) + 155 - 74, screenHeight - 85, 74, 34);
+    
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        CGSize result = [[UIScreen mainScreen] bounds].size;
+        if(result.height == 480 || result.height == 568)
+        {
+            FBLoginButton.frame = CGRectMake((screenWidth/2) - 135, screenHeight - 138, 130, 50);
+            InstagramButton.frame = CGRectMake((screenWidth/2) + 5, screenHeight - 138, 130, 50);
+            
+            LogInButton.frame = CGRectMake((screenWidth/2) + 135 - 74, screenHeight - 85, 74, 34);
+            SignUpWithEmailButton.frame = CGRectMake((screenWidth/2) - 135, screenHeight - 85, 125, 34);
+            
+            MainText.frame = CGRectMake(30, 120, screenWidth - 60, 40);
+            MainLogo.frame = CGRectMake((screenWidth/2) - 112, 50, 225, 105);
+            PageControlOn.frame = CGRectMake((screenWidth / 2) - 20, 200, 39, 37);
+        }else
+        {
+            FBLoginButton.frame = CGRectMake((screenWidth/2) - 155, screenHeight - 138, 150, 50);
+            InstagramButton.frame = CGRectMake((screenWidth/2) + 5, screenHeight - 138, 150, 50);
+            
+            LogInButton.frame = CGRectMake((screenWidth/2) + 155 - 74, screenHeight - 85, 74, 34);
+            SignUpWithEmailButton.frame = CGRectMake((screenWidth/2) - 155, screenHeight - 85, 125, 34);
+            
+            MainText.frame = CGRectMake(30, 150, screenWidth - 60, 40);
+            MainLogo.frame = CGRectMake((screenWidth/2) - 112, 70, 225, 105);
+            PageControlOn.frame = CGRectMake((screenWidth / 2) - 20, 220, 39, 37);
+        }
+    }
     WhyWeUseFBButton.frame = CGRectMake(0, screenHeight - 128, screenWidth, 34);
-    InstagramButton.frame = CGRectMake((screenWidth/2) + 5, screenHeight - 138, 150, 50);
-    SignUpWithEmailButton.frame = CGRectMake((screenWidth/2) - 155, screenHeight - 85, 125, 34);
-    MainText.frame = CGRectMake(30, 150, screenWidth - 60, 40);
-    MainLogo.frame = CGRectMake((screenWidth/2) - 112, 70, 225, 105);
+
     ShowBackgroundImage.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     
@@ -126,7 +149,7 @@
     pageControlBeingUsed = NO;
     
     MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight);
-    PageControlOn.frame = CGRectMake((screenWidth / 2) - 20, 220, 39, 37);
+    
     [MainScroll setScrollEnabled:YES];
     MainScroll.delegate = self;
     [MainScroll setBounces:NO];
@@ -152,15 +175,35 @@
         ShowImage.image = [UIImage imageNamed:[ImageArray objectAtIndex:i]];
         [MainScroll addSubview:ShowImage];
         
-        UILabel *ShowUserNameLocalQR = [[UILabel alloc]init];
-        ShowUserNameLocalQR.frame = CGRectMake(30+ i *screenWidth, 170, screenWidth - 60, 40);
-        ShowUserNameLocalQR.text = [TextArray objectAtIndex:i];
-        ShowUserNameLocalQR.backgroundColor = [UIColor clearColor];
-        ShowUserNameLocalQR.textColor = [UIColor whiteColor];
-        ShowUserNameLocalQR.textAlignment = NSTextAlignmentCenter;
-        ShowUserNameLocalQR.numberOfLines = 10;
-        ShowUserNameLocalQR.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:20];
-        [MainScroll addSubview:ShowUserNameLocalQR];
+        if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+        {
+            CGSize result = [[UIScreen mainScreen] bounds].size;
+            if(result.height == 480 || result.height == 568)
+            {
+                UILabel *ShowUserNameLocalQR = [[UILabel alloc]init];
+                ShowUserNameLocalQR.frame = CGRectMake(30+ i *screenWidth, 150, screenWidth - 60, 40);
+                ShowUserNameLocalQR.text = [TextArray objectAtIndex:i];
+                ShowUserNameLocalQR.backgroundColor = [UIColor clearColor];
+                ShowUserNameLocalQR.textColor = [UIColor whiteColor];
+                ShowUserNameLocalQR.textAlignment = NSTextAlignmentCenter;
+                ShowUserNameLocalQR.numberOfLines = 10;
+                ShowUserNameLocalQR.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:20];
+                [MainScroll addSubview:ShowUserNameLocalQR];
+            }else
+            {
+                UILabel *ShowUserNameLocalQR = [[UILabel alloc]init];
+                ShowUserNameLocalQR.frame = CGRectMake(30+ i *screenWidth, 170, screenWidth - 60, 40);
+                ShowUserNameLocalQR.text = [TextArray objectAtIndex:i];
+                ShowUserNameLocalQR.backgroundColor = [UIColor clearColor];
+                ShowUserNameLocalQR.textColor = [UIColor whiteColor];
+                ShowUserNameLocalQR.textAlignment = NSTextAlignmentCenter;
+                ShowUserNameLocalQR.numberOfLines = 10;
+                ShowUserNameLocalQR.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:20];
+                [MainScroll addSubview:ShowUserNameLocalQR];
+            }
+        }
+        
+
     }
     NSInteger productcount = [ImageArray count];
     MainScroll.contentSize = CGSizeMake(productcount * screenWidth, [UIScreen mainScreen].bounds.size.height);
@@ -319,7 +362,7 @@
         PageControlOn.hidden = NO;
         ShowBackgroundImage.hidden = YES;
         
-        [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(scrollView) userInfo:nil repeats:YES];
+        SilderImgMove = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(scrollView) userInfo:nil repeats:YES];
         
 //        CRMotionView *motionView = [[CRMotionView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
 //        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LandingV2.png"]];
@@ -410,6 +453,7 @@
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [ShowActivity stopAnimating];
+    [SilderImgMove invalidate];
 }
 - (UIStatusBarStyle) preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;

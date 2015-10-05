@@ -28,9 +28,16 @@
     CenterView.frame = CGRectMake((screenWidth / 2) - 160, 56, 320, screenHeight);
     
     BackButton.frame = CGRectMake(screenWidth - 50, 0, 50, 50);
+    
+    CheckShareStatus = 0;
+}
+-(void)GetCollectionID:(NSString *)Collectionid{
+
+    GetCollectionID = Collectionid;
+    CheckShareStatus = 1;
 }
 -(void)GetPostID:(NSString *)ID GetMessage:(NSString *)Msg GetTitle:(NSString *)Title GetImageData:(NSString *)ImgData{
-
+    CheckShareStatus = 0;
     GetPostID = ID;
     GetMessage = Msg;
     GetTitle = Title;
@@ -65,9 +72,18 @@
 }
 -(IBAction)FacebookButtonOnClick:(id)sender{
     NSLog(@"FacebookButtonOnClick");
-    NSString *message = [NSString stringWithFormat:@"https://seeties.me/post/%@",GetPostID];
-    NSString *Description = [NSString stringWithFormat:@"%@",GetMessage];
-    NSString *caption = [NSString stringWithFormat:@"SEETIES.ME"];
+    NSString *message;
+    NSString *Description;
+    NSString *caption;
+    if (CheckShareStatus == 0) {
+        message = [NSString stringWithFormat:@"https://seeties.me/post/%@",GetPostID];
+        Description = [NSString stringWithFormat:@"%@",GetMessage];
+        caption = [NSString stringWithFormat:@"SEETIES.ME"];
+    }else{
+        message = [NSString stringWithFormat:@"https://seeties.me/collections/%@",GetCollectionID];
+        Description = @"";
+        caption = [NSString stringWithFormat:@"SEETIES.ME"];
+    }
     
     // Check if the Facebook app is installed and we can present the share dialog
     FBLinkShareParams *params = [[FBLinkShareParams alloc] init];
@@ -173,7 +189,14 @@
 }
 
 -(IBAction)LINEButtonOnClick:(id)sender{
-    NSString *message = [NSString stringWithFormat:@"I found %@ on Seeties. Let's try it together.\n\nhttps://seeties.me/post/%@",GetTitle,GetPostID];
+    NSString *message;
+    
+    if (CheckShareStatus == 0) {
+        message = [NSString stringWithFormat:@"I found %@ on Seeties. Let's try it together.\n\nhttps://seeties.me/post/%@",GetTitle,GetPostID];
+    }else{
+        message = [NSString stringWithFormat:@"https://seeties.me/collections/%@",GetCollectionID];
+    }
+    
     NSString *ShareText = message;
     ShareText = [ShareText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
@@ -187,9 +210,17 @@
     }
 }
 -(IBAction)MessengerButtonOnClick:(id)sender{
+    NSString *message;
+    NSString *Description;
+    if (CheckShareStatus == 0) {
+        message = [NSString stringWithFormat:@"https://seeties.me/post/%@",GetPostID];
+        Description = [NSString stringWithFormat:@"%@",GetMessage];
+    }else{
+        message = [NSString stringWithFormat:@"https://seeties.me/collections/%@",GetCollectionID];
+        Description = @"";
+    }
     
-    NSString *message = [NSString stringWithFormat:@"https://seeties.me/post/%@",GetPostID];
-    NSString *Description = [NSString stringWithFormat:@"%@",GetMessage];
+
     //NSString *caption = [NSString stringWithFormat:@"SEETIES.ME"];
     
     FBSDKShareLinkContent *content = [[FBSDKShareLinkContent alloc] init];
@@ -200,7 +231,13 @@
     [FBSDKMessageDialog showWithContent:content delegate:nil];
 }
 -(IBAction)WhatsappButtonOnClick:(id)sender{
-    NSString *message = [NSString stringWithFormat:@"I found %@ on Seeties. Let's try it together.\n\nhttps://seeties.me/post/%@",GetTitle,GetPostID];
+     NSString *message;
+    if (CheckShareStatus == 0) {
+        message = [NSString stringWithFormat:@"I found %@ on Seeties. Let's try it together.\n\nhttps://seeties.me/post/%@",GetTitle,GetPostID];
+    }else{
+        message = [NSString stringWithFormat:@"https://seeties.me/collections/%@",GetCollectionID];
+    }
+   
     NSString *ShareText = message;
     ShareText = [ShareText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
@@ -214,7 +251,14 @@
     }
 }
 -(IBAction)CopyLinkButtonOnClick:(id)sender{
-    NSString *message = [NSString stringWithFormat:@"I found %@ on Seeties. Let's try it together.\n\nhttps://seeties.me/post/%@",GetTitle,GetPostID];
+    
+    NSString *message;
+    if (CheckShareStatus == 0) {
+        message = [NSString stringWithFormat:@"I found %@ on Seeties. Let's try it together.\n\nhttps://seeties.me/post/%@",GetTitle,GetPostID];
+    }else{
+        message = [NSString stringWithFormat:@"https://seeties.me/collections/%@",GetCollectionID];
+    }
+    
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = message;
     [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success Copy Link" type:TSMessageNotificationTypeSuccess];
@@ -225,11 +269,26 @@
         MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc] init];
         
         mailer.mailComposeDelegate = self;
-        NSString *MessageSubject = [NSString stringWithFormat:@"I found %@ on Seeties. Let's try it together.\n\nhttps://seeties.me/post/%@",GetTitle,GetPostID];
+        
+        NSString *MessageSubject;
+        if (CheckShareStatus == 0) {
+            MessageSubject = [NSString stringWithFormat:@"I found %@ on Seeties. Let's try it together.\n\nhttps://seeties.me/post/%@",GetTitle,GetPostID];
+        }else{
+            MessageSubject = [NSString stringWithFormat:@"https://seeties.me/collections/%@",GetCollectionID];
+        }
+       
         [mailer setSubject:MessageSubject];
         
-        NSString *message = [NSString stringWithFormat:@"https://seeties.me/post/%@",GetPostID];
-        NSString *Description = [NSString stringWithFormat:@"%@",GetMessage];
+        NSString *message;
+        NSString *Description;
+        
+        if (CheckShareStatus == 0) {
+            message = [NSString stringWithFormat:@"https://seeties.me/post/%@",GetPostID];
+            Description = [NSString stringWithFormat:@"%@",GetMessage];
+        }else{
+            message = [NSString stringWithFormat:@"https://seeties.me/collections/%@",GetCollectionID];
+            Description = @"";
+        }
         
         NSString *emailBody = [[NSString alloc]initWithFormat:@"%@ %@",Description,message];
         [mailer setMessageBody:emailBody isHTML:NO];

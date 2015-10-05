@@ -979,3 +979,31 @@
 "system"= "Seeties";
 
 "CollectBtn.png" = "CollectSimplifiedChineseBtn.png";
+
+"PNearby" = "附近";
+"PExplore goodies around you." = "发现附近热门好康事物。";
+"PRecommend" = "发表贴文";
+"PShare your thoughts with friends." = "凡走过必留下痕迹，为你所爱的事物编写贴文！";
+
+"PCollect In" = "收藏到";
+"PPersonalize your collection." = "创造最酷收藏集。";
+"PCollect" = "收藏";
+"PCollect post here!" = "轻点便可立即收藏好康！";
+"PFollow" = "关注";
+"PSee more from your favourite Seetizens." = "关注各国用户让你视野更丰富。";
+
+"PEdit Profile" = "编辑个人资料";
+"PPeople know you and find you better." = "完善的个人资料让大家更容易了解你唷！";
+"PCollections" = "收藏集";
+"PView your collections here." = "你可在个人主页内查看收藏集喔！";
+
+"PAdd URL" = "添加网址";
+"PDrive traffic to your page or blog." = "为你的个人网页添加曝光率！";
+"PSave" = "储存";
+"PFinish it later." = "先储存，容后再续。";
+
+"PTranslate" = "翻译内容";
+"PNo more language barrier" = "让你不再有语言上的隔阂！";
+
+"PSkip" = "跳过";
+"PDone" = "了解！";

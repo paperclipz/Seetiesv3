@@ -503,7 +503,7 @@
         ShowMessage.frame = CGRectMake(66, 9 + i * 80, screenWidth - 132, 40);
         ShowMessage.numberOfLines = 5;
         ShowMessage.textAlignment = NSTextAlignmentLeft;
-        ShowMessage.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
+        ShowMessage.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:14];
         ShowMessage.textColor = [UIColor blackColor];
         ShowMessage.backgroundColor = [UIColor clearColor];
         NSString *GetString = [[NSString alloc]initWithFormat:@"%@",[Following_MessageArray objectAtIndex:i]];
@@ -546,7 +546,7 @@
         ShowDate.text = TempShowDate;
         ShowDate.textColor = [UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0f];
         ShowDate.backgroundColor = [UIColor clearColor];
-        ShowDate.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:12];
+        ShowDate.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:12];
         
         [FollowingView addSubview:ShowUserImage];
         [FollowingView addSubview:ShowMessage];
@@ -707,7 +707,7 @@
         ShowMessage.frame = CGRectMake(66, 9 + i * 80, screenWidth - 132, 40);
         ShowMessage.numberOfLines = 5;
         ShowMessage.textAlignment = NSTextAlignmentLeft;
-        ShowMessage.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
+        ShowMessage.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:14];
         ShowMessage.textColor = [UIColor blackColor];
         ShowMessage.backgroundColor = [UIColor clearColor];
 
@@ -759,7 +759,7 @@
         ShowDate.text = TempShowDate;
         ShowDate.textColor = [UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0f];
         ShowDate.backgroundColor = [UIColor clearColor];
-        ShowDate.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:12];
+        ShowDate.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:12];
     
         [NotificationsView addSubview:ShowUserImage];
         [NotificationsView addSubview:ShowMessage];

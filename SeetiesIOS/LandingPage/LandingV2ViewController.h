@@ -42,6 +42,7 @@
     IBOutlet UIButton *TnCButton;
     IBOutlet UIButton *PrivacyButton;
 
+    NSTimer *SilderImgMove;
 }
 -(IBAction)TnCButtonOnClick:(id)sender;
 -(IBAction)PrivacyButtonOnClick:(id)sender;
