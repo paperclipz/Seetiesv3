@@ -55,6 +55,7 @@
 
 - (IBAction)btnViewLargeMapClicke:(id)sender {
     
+    [self saveData];
     if (self.navigationController) {
         [self.mapViewController initData:self.region];
         [self.navigationController pushViewController:self.mapViewController animated:YES];
