@@ -352,7 +352,7 @@
     [AllContentView addSubview:WhiteBackground];
 
     ShowUserProfileImage = [[AsyncImageView alloc]init];
-    ShowUserProfileImage.frame = CGRectMake(20, 0, 100, 100);
+    ShowUserProfileImage.frame = CGRectMake(15, 0, 100, 100);
     ShowUserProfileImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
     ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
     ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
@@ -370,7 +370,7 @@
     [AllContentView addSubview:ShowUserProfileImage];
     
     UIButton *ClicktoOpenUserProfileButton = [[UIButton alloc]init];
-    ClicktoOpenUserProfileButton.frame = CGRectMake(20, 0, 100, 100);
+    ClicktoOpenUserProfileButton.frame = CGRectMake(15, 0, 100, 100);
     [ClicktoOpenUserProfileButton setTitle:@"" forState:UIControlStateNormal];
     ClicktoOpenUserProfileButton.backgroundColor = [UIColor clearColor];
     [ClicktoOpenUserProfileButton addTarget:self action:@selector(OpenUserProfileOnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -379,7 +379,7 @@
     NSString *TempUsernameString = [[NSString alloc]initWithFormat:@"@%@",GetUserName];
     
     ShowUserName = [[UILabel alloc]init];//getname
-    ShowUserName.frame = CGRectMake(130, 10, screenWidth - 130, 30);
+    ShowUserName.frame = CGRectMake(125, 10, screenWidth - 130, 30);
     ShowUserName.text = TempUsernameString;
     ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:18];
     ShowUserName.textColor = [UIColor whiteColor];
@@ -389,7 +389,7 @@
     
     
     UIButton *EditProfileButton = [[UIButton alloc]init];
-    EditProfileButton.frame = CGRectMake(screenWidth - 122 - 20, 60, 122, 34);
+    EditProfileButton.frame = CGRectMake(screenWidth - 122 - 15, 60, 122, 34);
     [EditProfileButton setTitle:LocalisedString(@"Edit Profile") forState:UIControlStateNormal];
     [EditProfileButton setImage:[UIImage imageNamed:@"EditProfileSmiley.png"] forState:UIControlStateNormal];
     EditProfileButton.layer.cornerRadius= 17;
@@ -405,7 +405,7 @@
     [AllContentView addSubview:EditProfileButton];
     
     ShowName_ = [[UILabel alloc]init];//getname
-    ShowName_.frame = CGRectMake(30, 110, screenWidth - 60, 30);
+    ShowName_.frame = CGRectMake(25, 110, screenWidth - 60, 30);
     ShowName_.text = GetName;
     ShowName_.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:17];
     ShowName_.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0];
@@ -420,7 +420,7 @@
     
     UIImageView *ShowPin = [[UIImageView alloc]init];
     ShowPin.image = [UIImage imageNamed:@"FollowerNumber.png"];
-    ShowPin.frame = CGRectMake(25, GetHeight, 25, 25);
+    ShowPin.frame = CGRectMake(20, GetHeight, 25, 25);
     //ShowPin.frame = CGRectMake(15, 210 + 8 + heightcheck + i, 8, 11);
     [AllContentView addSubview:ShowPin];
     
@@ -436,7 +436,7 @@
     
     UILabel *ShowFollowers = [[UILabel alloc]init];
     ShowFollowers.text = tempFollowers;
-    ShowFollowers.frame = CGRectMake(60, GetHeight, 120, 25);
+    ShowFollowers.frame = CGRectMake(55, GetHeight, 120, 25);
     ShowFollowers.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
     ShowFollowers.textColor = [UIColor colorWithRed:161.0f/255.0f green:161.0f/255.0f blue:161.0f/255.0f alpha:1.0f];
     ShowFollowers.textAlignment = NSTextAlignmentLeft;
@@ -444,14 +444,14 @@
     [AllContentView addSubview:ShowFollowers];
     
     UIButton *OpenFollowersButton = [[UIButton alloc]init];
-    OpenFollowersButton.frame = CGRectMake(60, GetHeight, 120, 25);
+    OpenFollowersButton.frame = CGRectMake(55, GetHeight, 120, 25);
     [OpenFollowersButton setTitle:@"" forState:UIControlStateNormal];
     [OpenFollowersButton addTarget:self action:@selector(ShowAll_FollowerButton:) forControlEvents:UIControlEventTouchUpInside];
     [AllContentView addSubview:OpenFollowersButton];
     
     UILabel *ShowFollowing = [[UILabel alloc]init];
     ShowFollowing.text = tempFollowing;
-    ShowFollowing.frame = CGRectMake(170, GetHeight, 120, 25);
+    ShowFollowing.frame = CGRectMake(165, GetHeight, 120, 25);
     ShowFollowing.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
     ShowFollowing.textColor = [UIColor colorWithRed:161.0f/255.0f green:161.0f/255.0f blue:161.0f/255.0f alpha:1.0f];
     ShowFollowing.textAlignment = NSTextAlignmentLeft;
@@ -459,7 +459,7 @@
     [AllContentView addSubview:ShowFollowing];
     
     UIButton *OpenFollowingButton = [[UIButton alloc]init];
-    OpenFollowingButton.frame = CGRectMake(170, GetHeight, 120, 25);
+    OpenFollowingButton.frame = CGRectMake(165, GetHeight, 120, 25);
     [OpenFollowingButton setTitle:@"" forState:UIControlStateNormal];
     [OpenFollowingButton addTarget:self action:@selector(ShowAll_FollowingButton:) forControlEvents:UIControlEventTouchUpInside];
     [AllContentView addSubview:OpenFollowingButton];
@@ -472,12 +472,12 @@
     }else{
         UIImageView *ShowPin = [[UIImageView alloc]init];
         ShowPin.image = [UIImage imageNamed:@"PostSmallPin.png"];
-        ShowPin.frame = CGRectMake(30, GetHeight + 2, 15, 15);
+        ShowPin.frame = CGRectMake(25, GetHeight + 2, 15, 15);
         //ShowPin.frame = CGRectMake(15, 210 + 8 + heightcheck + i, 8, 11);
         [AllContentView addSubview:ShowPin];
         
         UILabel *ShowLocation = [[UILabel alloc]init];
-        ShowLocation.frame = CGRectMake(60, GetHeight, screenWidth - 80, 20);
+        ShowLocation.frame = CGRectMake(55, GetHeight, screenWidth - 80, 20);
         ShowLocation.text = GetLocation;
         ShowLocation.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowLocation.textColor = [UIColor colorWithRed:161.0f/255.0f green:161.0f/255.0f blue:161.0f/255.0f alpha:1.0f];
@@ -492,7 +492,7 @@
         
     }else{
         ShowAboutText = [[UILabel alloc]init];
-        ShowAboutText.frame = CGRectMake(30, GetHeight, screenWidth - 60, 30);
+        ShowAboutText.frame = CGRectMake(25, GetHeight, screenWidth - 60, 30);
         ShowAboutText.text = GetDescription;
         ShowAboutText.numberOfLines = 0;
         ShowAboutText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
@@ -512,7 +512,7 @@
         
     }else{
         ShowLink = [[UILabel alloc]init];
-        ShowLink.frame = CGRectMake(30, GetHeight, screenWidth - 120, 20);
+        ShowLink.frame = CGRectMake(25, GetHeight, screenWidth - 120, 20);
         ShowLink.text = GetLink;
         ShowLink.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowLink.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0];
@@ -521,7 +521,7 @@
         [AllContentView addSubview:ShowLink];
         
         UIButton *OpenLinkButton = [[UIButton alloc]init];
-        OpenLinkButton.frame = CGRectMake(30, GetHeight, screenWidth - 120, 20);
+        OpenLinkButton.frame = CGRectMake(25, GetHeight, screenWidth - 120, 20);
         [OpenLinkButton setTitle:@"" forState:UIControlStateNormal];
         [OpenLinkButton addTarget:self action:@selector(OpenUrlButton:) forControlEvents:UIControlEventTouchUpInside];
         [AllContentView addSubview:OpenLinkButton];
@@ -563,7 +563,7 @@
             
             //CGSize textSize = [ShowHashTagText.text sizeWithAttributes:@{NSFontAttributeName:[ShowHashTagText font]}];
             //   CGFloat textSize = ShowHashTagText.intrinsicContentSize.width;
-            ShowHashTagText.frame = CGRectMake(30 + frame2.size.width, 15, r.size.width + 20, 20);
+            ShowHashTagText.frame = CGRectMake(25 + frame2.size.width, 15, r.size.width + 20, 20);
             frame2.size.width += r.size.width + 30;
             [HashTagScroll addSubview:ShowHashTagText];
             
@@ -1091,21 +1091,21 @@
         GetPostsDataCount = @"";
         
         UIImageView *ShowNoDataImg = [[UIImageView alloc]init];
-        ShowNoDataImg.frame = CGRectMake((screenWidth / 2) - 45, 20, 90, 90);
+        ShowNoDataImg.frame = CGRectMake((screenWidth / 2) - 45, 70, 90, 90);
         ShowNoDataImg.image = [UIImage imageNamed:@"NoActivity.png"];
         [PostView addSubview:ShowNoDataImg];
         
         
         UILabel *ShowNoDataText = [[UILabel alloc]init];
-        ShowNoDataText.frame = CGRectMake(30, 100, screenWidth - 60, 20);
+        ShowNoDataText.frame = CGRectMake(30, 170, screenWidth - 60, 20);
         ShowNoDataText.text = LocalisedString(@"Let's get going!");
         ShowNoDataText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowNoDataText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
         ShowNoDataText.textAlignment = NSTextAlignmentCenter;
         [PostView addSubview:ShowNoDataText];
         
-        AllContentView.frame = CGRectMake(0, 100, screenWidth, GetHeight + 150);
-        PostView.frame = CGRectMake(0, GetHeight, screenWidth, 150);
+        AllContentView.frame = CGRectMake(0, 100, screenWidth, GetHeight + 450);
+        PostView.frame = CGRectMake(0, GetHeight, screenWidth, 450);
         
         CGSize contentSize = MainScroll.frame.size;
         contentSize.height = GetHeight + PostView.frame.size.height;
@@ -1298,12 +1298,14 @@
     }
 }
 -(void)GetLikesData{
-    
-    ShowActivityLike = [[UIActivityIndicatorView alloc]init];
-    ShowActivityLike.frame = CGRectMake(ProfileControl.frame.size.width - 95, ProfileControl.frame.origin.y + 105 , 20, 20);
-    [ShowActivityLike setColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f]];
-    [MainScroll addSubview:ShowActivityLike];
-    [ShowActivityLike startAnimating];
+    if (CheckFirstTimeLoadLikes == 0) {
+        ShowActivityLike = [[UIActivityIndicatorView alloc]init];
+        ShowActivityLike.frame = CGRectMake(ProfileControl.frame.size.width - 95, ProfileControl.frame.origin.y + 105 , 20, 20);
+        [ShowActivityLike setColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f]];
+        [MainScroll addSubview:ShowActivityLike];
+        [ShowActivityLike startAnimating];
+    }
+
     
     if (CurrentPage_Like == TotalPage_Like) {
         
@@ -1620,7 +1622,7 @@
         
     }else if(connection == theConnection_GetPostsData){
         
-        CurrentPage_Post+=1;
+      //  CurrentPage_Post+=1;
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
         //     NSLog(@"User Post return get data to server ===== %@",GetData);
         
@@ -1653,6 +1655,8 @@
 //                KosongView.hidden = NO;
                 [self InitContentView];
                 [self GetLikesData];
+                
+                [ShowActivityPosts stopAnimating];
             }else{
                
                 
@@ -1759,7 +1763,7 @@
        
         [ShowActivityPosts stopAnimating];
         
-        [self GetPostsData];
+       // [self GetPostsData];
     }else if(connection == theConnection_GetLikesData){
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
         

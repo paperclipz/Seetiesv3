@@ -1363,12 +1363,8 @@
         
         NSLog(@"Location Get lat is %@ : lon is %@",GetLat, GetLong);
         if ([GetLat length] == 0 || [GetLat isEqualToString:@"(null)"]) {
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            NSString *GetLat_ = [defaults objectForKey:@"GetLat"];
-            NSString *GetLon_ = [defaults objectForKey:@"GetLang"];
-            GetLat = GetLat_;
-            GetLong = GetLon_;
-            
+
+        }else{
             SearchAddressField.text = @"Current Location";
             CheckLoad = NO;
             TotalPage = 1;

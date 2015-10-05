@@ -51,6 +51,8 @@
     
     NSString *CheckCollect;
     NSString *GetPostID;
+    
+    UIButton *CenterLine;
 }
 -(void)Getlat:(NSString *)lat GetLong:(NSString *)Long;
 @end

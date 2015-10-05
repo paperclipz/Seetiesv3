@@ -65,8 +65,13 @@
     [self SendDataToServer];
 }
 -(void)SendDataToServer{
-    [ShowActivity startAnimating];
-    CurrentPage = -1;
+    
+    if (CheckFirstTimeLoad == 0) {
+        [ShowActivity startAnimating];
+    }
+    
+
+    // CurrentPage = -1;
     if (CurrentPage == TotalPage) {
     }else{
         CurrentPage += 1;
@@ -154,7 +159,7 @@
                 TotalLikeArray = [[NSMutableArray alloc]init];
                 TotalCommentArray = [[NSMutableArray alloc]init];
                 DataCount = 0;
-                CheckFirstTimeLoad = 1;
+                
                 arrCollect = [[NSMutableArray alloc]init];
             }else{
                 
@@ -348,7 +353,13 @@
             DataTotal = [LPhotoArray count];
             CheckLoad = NO;
          
-            [self InitView];
+            if (CheckFirstTimeLoad == 0) {
+               [self InitView];
+                CheckFirstTimeLoad = 1;
+            }else{
+                [self InitContentView];
+            }
+            
             [ShowActivity stopAnimating];
         }
         
@@ -375,13 +386,19 @@
 -(void)InitContentView{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-    UIButton *CenterLine = [[UIButton alloc]init];
-    CenterLine.frame = CGRectMake((screenWidth / 2), 170, 1, 100);
-    [CenterLine setTitle:@"" forState:UIControlStateNormal];//238
-    [CenterLine setBackgroundColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f]];
-    [MainScroll addSubview:CenterLine];
+    if (CheckFirstTimeLoad == 0) {
+        CenterLine = [[UIButton alloc]init];
+        CenterLine.frame = CGRectMake((screenWidth / 2), 170, 1, 100);
+        [CenterLine setTitle:@"" forState:UIControlStateNormal];//238
+        [CenterLine setBackgroundColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f]];
+        [MainScroll addSubview:CenterLine];
+        
+        GetHeight += 20;
+    }else{
+        
+    }
     
-    GetHeight += 20;
+
     
     for (NSInteger i = DataCount; i < DataTotal; i++) {
         
@@ -459,7 +476,8 @@
             NSString *FullShowLocatinString;
             if (x_Nearby < 1) {
                 if (x_Nearby <= 1) {
-                    FullShowLocatinString = [[NSString alloc]initWithFormat:@"1km • %@",[LocationArray objectAtIndex:i]];//within
+                  //  FullShowLocatinString = [[NSString alloc]initWithFormat:@"1km • %@",[LocationArray objectAtIndex:i]];//within
+                    FullShowLocatinString = [[NSString alloc]initWithFormat:@"%.fM • %@",[TempDistanceString floatValue],[LocationArray objectAtIndex:i]];
                 }else{
                     FullShowLocatinString = [[NSString alloc]initWithFormat:@"%.fkm • %@",strFloat,[LocationArray objectAtIndex:i]];
                 }
@@ -610,5 +628,34 @@
         
     }
 }
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    if (scrollView == MainScroll) {
+        float bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
+        if (bottomEdge >= scrollView.contentSize.height)
+        {
+            // we are at the end
+            if (CheckLoad == YES) {
+                
+            }else{
+                CheckLoad = YES;
+                if (CurrentPage == TotalPage) {
+                    
+                }else{
+                    
+                    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+                    [MainScroll setContentSize:CGSizeMake(screenWidth, MainScroll.contentSize.height + 150)];
+                    UIActivityIndicatorView *  activityindicator1 = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake((screenWidth/2) - 15, GetHeight + 40, 30, 30)];
+                    [activityindicator1 setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhiteLarge];
+                    [activityindicator1 setColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f]];
+                    [MainScroll addSubview:activityindicator1];
+                    [activityindicator1 startAnimating];
+                    [self SendDataToServer];
+                }
+                
+            }
+        }
 
+    }
+}
 @end

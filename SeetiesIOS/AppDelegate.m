@@ -191,7 +191,6 @@
 //    // Initialize tracker. Replace with your tracking ID.
 //    [[GAI sharedInstance] trackerWithTrackingId:@"UA-45737845-4"];
     
-    
     if (![Utils isLogin]) {
       
         NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
@@ -201,7 +200,6 @@
         [defaults synchronize];
 
     }
-   
     application.applicationIconBadgeNumber = 0;
     
     // Whenever a person opens the app, check for a cached session

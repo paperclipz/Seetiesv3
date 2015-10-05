@@ -346,20 +346,45 @@
     NSString *Getuid = [defaults objectForKey:@"Useruid"];
     NSString *GetLang01 = [defaults objectForKey:@"Provisioning_SelectLanguage01"];
     NSString *GetLang02 = [defaults objectForKey:@"Provisioning_SelectLanguage02"];
-    NSString *GetSystemLanguage = [defaults objectForKey:@"SystemLanguage"];
-    NSMutableArray *GetlanguageCodeArray = [defaults objectForKey:@"LanguageData_Code"];
-    NSMutableArray *GetlanguageIDArray = [defaults objectForKey:@"LanguageData_ID"];
-    NSString *GetSystemLanguageData;
-    for (int i = 0; i < [GetlanguageCodeArray count]; i++) {
-        NSString *GetLanguageCode = [[NSString alloc]initWithFormat:@"%@",[GetlanguageCodeArray objectAtIndex:i]];
-        
-        if ([GetLanguageCode isEqualToString:GetSystemLanguage]) {
-            GetSystemLanguageData = [[NSString alloc]initWithFormat:@"%@",[GetlanguageIDArray objectAtIndex:i]];
-            break;
-        }else{
-        GetSystemLanguageData = @"530b0ab26424400c76000003";
-        }
+    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    NSLog(@"PFollow language is %@",language);
+    NSString *GetSystemLanguage;
+    if ([GetLang01 length] == 0 || [GetLang01 isEqualToString:@"(null)"]) {
+        GetLang01 = @"530b0ab26424400c76000003";
     }
+    if ([language isEqualToString:@"en"]) {
+        GetSystemLanguage = @"530b0ab26424400c76000003";
+        GetLang01 = @"530b0ab26424400c76000003";
+    }else if([language isEqualToString:@"zh-Hans"]){
+        GetSystemLanguage = @"530b0aa16424400c76000002";
+        GetLang01 = @"530b0aa16424400c76000002";
+    }else if([language isEqualToString:@"zh-Hant"]){
+        GetSystemLanguage = @"530d5e9b642440d128000018";
+        GetLang01 = @"530b0aa16424400c76000002";
+    }else if([language isEqualToString:@"id"]){
+        GetSystemLanguage = @"53672e863efa3f857f8b4ed2";
+        GetLang01 = @"53672e863efa3f857f8b4ed2";
+    }else if([language isEqualToString:@"th"]){
+        GetSystemLanguage = @"544481503efa3ff1588b4567";
+        GetLang01 = @"544481503efa3ff1588b4567";
+    }else{
+        GetSystemLanguage = @"530b0ab26424400c76000003";
+        GetLang01 = @"530b0ab26424400c76000003";
+    }
+   
+//    NSMutableArray *GetlanguageCodeArray = [defaults objectForKey:@"LanguageData_Code"];
+//    NSMutableArray *GetlanguageIDArray = [defaults objectForKey:@"LanguageData_ID"];
+//    NSString *GetSystemLanguageData;
+//    for (int i = 0; i < [GetlanguageCodeArray count]; i++) {
+//        NSString *GetLanguageCode = [[NSString alloc]initWithFormat:@"%@",[GetlanguageCodeArray objectAtIndex:i]];
+//        
+//        if ([GetLanguageCode isEqualToString:language]) {
+//            GetSystemLanguageData = [[NSString alloc]initWithFormat:@"%@",[GetlanguageIDArray objectAtIndex:i]];
+//            break;
+//        }else{
+//        GetSystemLanguageData = @"530b0ab26424400c76000003";
+//        }
+//    }
     
     NSLog(@"GetExpertToken is %@",GetExpertToken);
     NSLog(@"GetProvisioning_Interest_ID is %@",GetProvisioning_Interest_ID);
@@ -371,9 +396,7 @@
     if ([GetLocationJson length] == 0 || [GetLocationJson isEqualToString:@"(null)"]) {
         GetLocationJson = @"";
     }
-    if ([GetLang01 length] == 0 || [GetLang01 isEqualToString:@"(null)"]) {
-        GetLang01 = @"530b0ab26424400c76000003";
-    }
+
 
     
     //Server Address URL
@@ -419,7 +442,7 @@
     //Attaching the key name @"parameter_second" to the post body
     [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"system_language\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
     //Attaching the content to be posted ( ParameterSecond )
-    [body appendData:[[NSString stringWithFormat:@"%@",GetSystemLanguageData] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"%@",GetSystemLanguage] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     
     //parameter second
@@ -437,16 +460,16 @@
     [body appendData:[[NSString stringWithFormat:@"%@",GetLang01] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     
-    if ([GetLang02 length] == 0 || [GetLang02 isEqualToString:@"(null)"] || [GetLang02 isEqualToString:@"None"]) {
-        GetLang02 = @"530b0ab26424400c76000003";
-    }else{
-        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        //Attaching the key name @"parameter_second" to the post body
-        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"languages[1]\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-        //Attaching the content to be posted ( ParameterSecond )
-        [body appendData:[[NSString stringWithFormat:@"%@",GetLang02] dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    }
+//    if ([GetLang02 length] == 0 || [GetLang02 isEqualToString:@"(null)"] || [GetLang02 isEqualToString:@"None"]) {
+//        GetLang02 = @"530b0ab26424400c76000003";
+//    }else{
+//        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+//        //Attaching the key name @"parameter_second" to the post body
+//        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"languages[1]\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+//        //Attaching the content to be posted ( ParameterSecond )
+//        [body appendData:[[NSString stringWithFormat:@"%@",GetLang02] dataUsingEncoding:NSUTF8StringEncoding]];
+//        [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+//    }
     
     
     if ([lonPoint length] == 0 || [lonPoint isEqualToString:@"(null)"] || [lonPoint isEqualToString:@"None"]) {
@@ -494,7 +517,7 @@
 
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+   // CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     if (scrollView == MainScroll) {
         CGFloat pageWidth = MainScroll.frame.size.width; // you need to have a **iVar** with getter for scrollView
         float fractionalPage = MainScroll.contentOffset.x / pageWidth;

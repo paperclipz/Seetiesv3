@@ -423,7 +423,7 @@
         UILabel *ShowUserName1 = [[UILabel alloc]init];
         ShowUserName1.frame = CGRectMake(80, GetFinalHeight + i, screenWidth - 95, 20);
         ShowUserName1.text = [GetUser_Comment_usernameArray objectAtIndex:i];
-        ShowUserName1.font = [UIFont fontWithName:@"AdrianeText-BoldItalic" size:14];
+        ShowUserName1.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         ShowUserName1.backgroundColor = [UIColor clearColor];
         ShowUserName1.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
         
@@ -433,7 +433,7 @@
         //ShowCommentLabel.frame = CGRectMake(80, 35 + i * 120, screenWidth - 95, 70);
         ShowCommentLabel.scrollEnabled = NO;
         ShowCommentLabel.editable = NO;
-        ShowCommentLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
+        ShowCommentLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:14];
         ShowCommentLabel.textColor = [UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f blue:51.0f/255.0f alpha:1.0f];
         ShowCommentLabel.backgroundColor = [UIColor clearColor];
         ShowCommentLabel.tag = i;
@@ -474,7 +474,7 @@
             
             
             NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:FinalResultFullString];
-            [mutableAttributedString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"HelveticaNeue-Light" size:14] range:NSMakeRange(0, FinalResultFullString.length)];
+            [mutableAttributedString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"ProximaNovaSoft-Regular" size:14] range:NSMakeRange(0, FinalResultFullString.length)];
             [mutableAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f blue:51.0f/255.0f alpha:1.0f] range:NSMakeRange(0, FinalResultFullString.length)];
             NSLog(@"mutableAttributedString is %@",mutableAttributedString);
             NSLog(@"FinalString is %@",FinalString);
