@@ -24,7 +24,6 @@
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *contentViewLeftConstraint;
 
 @property (weak, nonatomic) IBOutlet UIImageView *ibImage;
-@property (weak, nonatomic) IBOutlet UITextView *txtDescription;
 @property (weak, nonatomic) IBOutlet UIButton *btnEdit;
 
 @property (weak, nonatomic) IBOutlet UIView *wrapperIconView;
@@ -173,6 +172,7 @@
         
     }
     [self getCounterText:self.lblWordCount maxCount:MAX_TEXT_COUNT textInputCount:(int)textView.text.length];
+    self.model.caption = textView.text;
     
 }
 

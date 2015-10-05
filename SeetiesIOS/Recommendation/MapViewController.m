@@ -37,6 +37,7 @@
     [super viewDidLoad];
     [self initSelfView];
       // Do any additional setup after loading the view from its nib.
+    self.lblTitle.text = LocalisedString(@"Pin Location");
 }
 
 -(void)initSelfView

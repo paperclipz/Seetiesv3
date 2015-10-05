@@ -8,22 +8,39 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="EditTagCollectionViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="169" height="35"/>
+            <rect key="frame" x="0.0" y="0.0" width="169" height="40"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="169" height="35"/>
+                <rect key="frame" x="0.0" y="0.0" width="169" height="40"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8nN-DA-Fsf">
-                        <rect key="frame" x="0.0" y="0.0" width="169" height="35"/>
+                        <rect key="frame" x="0.0" y="0.0" width="169" height="40"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mun-Li-hNB">
-                                <rect key="frame" x="8" y="8" width="153" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Bn-A5-BsW">
+                                <rect key="frame" x="8" y="10" width="125" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="l3I-xT-Quj"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="BigAddIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="XdM-dI-NoP">
+                                <rect key="frame" x="136" y="8" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="AWI-Ha-bcP"/>
+                                    <constraint firstAttribute="width" constant="25" id="bvG-4K-Z1l"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="0Bn-A5-BsW" firstAttribute="leading" secondItem="8nN-DA-Fsf" secondAttribute="leading" constant="8" id="HCt-Yr-wYR"/>
+                            <constraint firstAttribute="trailing" secondItem="XdM-dI-NoP" secondAttribute="trailing" constant="8" id="Kcp-aE-Tb6"/>
+                            <constraint firstItem="XdM-dI-NoP" firstAttribute="top" secondItem="8nN-DA-Fsf" secondAttribute="top" constant="8" id="Oxq-5c-spx"/>
+                            <constraint firstItem="XdM-dI-NoP" firstAttribute="leading" secondItem="0Bn-A5-BsW" secondAttribute="trailing" constant="3" id="Q0M-ln-ccG"/>
+                            <constraint firstItem="0Bn-A5-BsW" firstAttribute="centerY" secondItem="XdM-dI-NoP" secondAttribute="centerY" id="TaN-MK-a6j"/>
+                        </constraints>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -35,11 +52,16 @@
                 <constraint firstAttribute="bottom" secondItem="8nN-DA-Fsf" secondAttribute="bottom" id="K1J-CD-jli"/>
                 <constraint firstAttribute="trailing" secondItem="8nN-DA-Fsf" secondAttribute="trailing" id="gZ6-HA-8vr"/>
             </constraints>
-            <size key="customSize" width="169" height="36"/>
+            <size key="customSize" width="169" height="50"/>
             <connections>
                 <outlet property="ibContentView" destination="8nN-DA-Fsf" id="c1p-63-2xC"/>
+                <outlet property="ibImagePlusView" destination="XdM-dI-NoP" id="Cnc-sS-Mxh"/>
+                <outlet property="lblTitle" destination="0Bn-A5-BsW" id="3pA-Fw-MnA"/>
             </connections>
-            <point key="canvasLocation" x="551.5" y="283.5"/>
+            <point key="canvasLocation" x="654.5" y="300"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="BigAddIcon.png" width="60" height="60"/>
+    </resources>
 </document>

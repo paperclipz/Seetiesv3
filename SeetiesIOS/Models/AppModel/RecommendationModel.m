@@ -72,6 +72,26 @@
     return _arrDeletedImages;
 
 }
-
-
+//@property(nonatomic,strong)NSString* postMainTitle;
+//@property(nonatomic,strong)NSString* postMainDescription;
+//@property(nonatomic,strong)NSString* postSecondTitle;
+//@property(nonatomic,strong)NSString* postSecondDescription;
+//@property(nonatomic,strong)NSString* postURL;
+//@property(nonatomic,strong)NSString* price;
+//@property(nonatomic,strong)NSString* post_id;
+//@property(nonatomic,strong)NSString* postMainLanguage;
+//@property(nonatomic,strong)NSString* postSeconLanguage;
+//@property(nonatomic,strong)NSArray* selectedCategories;
+//
+//
+//@property(nonatomic,strong)NSMutableArray* arrDeletedImages;
+//
+//@property(nonatomic,strong)NSMutableArray* arrPostImagesList;//photoModel
+//@property(nonatomic,strong)RecommendationVenueModel* reccomendVenueModel;
+-(id) mutableCopyWithZone: (NSZone *) zone
+{
+    RecommendationModel *modelCopy = [[RecommendationModel allocWithZone: zone] init];
+    modelCopy.arrPostImagesList = [_arrPostImagesList copy];
+    return modelCopy;
+}
 @end

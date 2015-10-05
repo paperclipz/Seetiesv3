@@ -17,5 +17,6 @@ typedef void (^CellBlock)(CustomEditPhotoTableViewCell* cell);
 @property(nonatomic,copy)CellBlock deleteBlock;
 @property(nonatomic,copy)CellBlock editBlock;
 @property(nonatomic,strong)PhotoModel* model;
+@property (weak, nonatomic) IBOutlet UITextView *txtDescription;
 
 @end

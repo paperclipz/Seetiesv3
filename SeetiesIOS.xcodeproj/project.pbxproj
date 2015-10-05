@@ -551,6 +551,7 @@
 		8A4509921BAFF7C000A868CD /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4509911BAFF7C000A868CD /* UIColor+Extension.m */; };
 		8A5430101B8C1646009EFFF4 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A54300E1B8C1646009EFFF4 /* MapViewController.m */; };
 		8A5430111B8C1646009EFFF4 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A54300F1B8C1646009EFFF4 /* MapViewController.xib */; };
+		8A58F7A41BC260B600DED466 /* TLTagsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A58F7A31BC260B600DED466 /* TLTagsControl.m */; settings = {ASSET_TAGS = (); }; };
 		8A65842A1B96ED7300BC86B9 /* EditPhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6584291B96ED7300BC86B9 /* EditPhotoManager.m */; };
 		8A65842D1B97079900BC86B9 /* RecommendationVenueModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A65842C1B97079900BC86B9 /* RecommendationVenueModel.m */; };
 		8A6584321B981B4E00BC86B9 /* CategorySelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6584301B981B4E00BC86B9 /* CategorySelectionViewController.m */; };
@@ -1476,6 +1477,8 @@
 		8A54300D1B8C1646009EFFF4 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		8A54300E1B8C1646009EFFF4 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		8A54300F1B8C1646009EFFF4 /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		8A58F7A21BC260B600DED466 /* TLTagsControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTagsControl.h; sourceTree = "<group>"; };
+		8A58F7A31BC260B600DED466 /* TLTagsControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTagsControl.m; sourceTree = "<group>"; };
 		8A6584281B96ED7300BC86B9 /* EditPhotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPhotoManager.h; sourceTree = "<group>"; };
 		8A6584291B96ED7300BC86B9 /* EditPhotoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPhotoManager.m; sourceTree = "<group>"; };
 		8A65842B1B97079900BC86B9 /* RecommendationVenueModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendationVenueModel.h; sourceTree = "<group>"; };
@@ -3221,6 +3224,15 @@
 			name = Color;
 			sourceTree = "<group>";
 		};
+		8A58F7A11BC260B600DED466 /* TLTagsContol */ = {
+			isa = PBXGroup;
+			children = (
+				8A58F7A21BC260B600DED466 /* TLTagsControl.h */,
+				8A58F7A31BC260B600DED466 /* TLTagsControl.m */,
+			);
+			path = TLTagsContol;
+			sourceTree = "<group>";
+		};
 		8A65842E1B981B1E00BC86B9 /* CategorySelection */ = {
 			isa = PBXGroup;
 			children = (
@@ -4011,6 +4023,7 @@
 		8AD6C2D21B707D120040437E /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				8A58F7A11BC260B600DED466 /* TLTagsContol */,
 				8A2AC21D1BC2279E0009C36B /* View */,
 				8A2AC21C1BC2277A0009C36B /* Basic */,
 				8A88506C1BBE83BB0096E0D0 /* TextFieldValidator */,
@@ -5162,6 +5175,7 @@
 				8AD6C0C01B706CF30040437E /* FeedV2ViewController.m in Sources */,
 				8A45098B1BAC17F200A868CD /* JSONKit.m in Sources */,
 				8AD6C8291B736C000040437E /* DataManager.m in Sources */,
+				8A58F7A41BC260B600DED466 /* TLTagsControl.m in Sources */,
 				8AD6C0B71B706CF30040437E /* OpenWebViewController.m in Sources */,
 				8AD6C8721B7460DB0040437E /* MKNetworkOperation.m in Sources */,
 				8AD6C3371B707D120040437E /* UIScrollView+CRScrollIndicator.m in Sources */,

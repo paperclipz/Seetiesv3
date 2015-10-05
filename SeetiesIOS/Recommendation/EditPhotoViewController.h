@@ -20,5 +20,6 @@ typedef void (^DoneBlock)(NSArray* arrayImages,NSArray* arrDeleteImages);
 @property(nonatomic,strong)DoImagePickerController* imagePickerViewController;
 
 @property(nonatomic,copy)DoneBlock doneBlock;
+@property(nonatomic,copy)IDBlock editPhotoBackClickedBlock;
 
 @end

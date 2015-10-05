@@ -7,8 +7,12 @@
 //
 
 #import "EditTagCollectionViewCell.h"
+#import "UIImage+Tint.h"
+
 @interface EditTagCollectionViewCell()
 @property (weak, nonatomic) IBOutlet UIView *ibContentView;
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+@property (weak, nonatomic) IBOutlet UIImageView *ibImagePlusView;
 @end
 @implementation EditTagCollectionViewCell
 
@@ -36,5 +40,8 @@
 -(void)initSelfView
 {
     [Utils setRoundBorder:self.ibContentView color:[UIColor orangeColor] borderRadius:5.0f borderWidth:0.5f];
+    
+    self.ibImagePlusView.image = [self.ibImagePlusView.image imageTintedWithColor:[UIColor orangeColor]];
+    [Utils setRoundBorder:self.ibContentView color:[UIColor orangeColor] borderRadius:5.0f borderWidth:2.0f];
 }
 @end

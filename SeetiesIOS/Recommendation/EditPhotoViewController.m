@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *arrEditPhotoList;
 @property (nonatomic, strong) RecommendationModel *recModel;
+@property (nonatomic, strong) RecommendationModel *tempRecModel;
 
 @property(nonatomic,strong)NSMutableArray* sessions;
 @property (nonatomic, copy) ImageBlock processImageBlock;
@@ -80,6 +81,10 @@
 
 - (IBAction)btnBackClicked:(id)sender {
     
+    
+    if (self.editPhotoBackClickedBlock) {
+        self.editPhotoBackClickedBlock(nil);
+    }
     if (self.navigationController) {
         [self.navigationController popToRootViewControllerAnimated:YES];
     }

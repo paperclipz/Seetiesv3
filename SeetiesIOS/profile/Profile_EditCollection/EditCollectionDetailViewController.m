@@ -7,16 +7,14 @@
 //
 
 #import "EditCollectionDetailViewController.h"
-#import "Bostring.h"
 #import "EditTagCollectionViewCell.h"
-
-#import "ZFTokenField.h"
+#import "TLTagsControl.h"
 
 #define TITLE_MAX_COUNT 70
 #define DESC_MAX_COUNT 150
 
 
-@interface EditCollectionDetailViewController () <ZFTokenFieldDataSource, ZFTokenFieldDelegate>
+@interface EditCollectionDetailViewController ()<TLTagsControlDelegate>
 {
 
     __weak IBOutlet UIButton *btnSetPrivate;
@@ -28,21 +26,27 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblWordCountDesc;
 @property (weak, nonatomic) IBOutlet UITextField *txtName;
 @property (weak, nonatomic) IBOutlet UITextView *txtDesc;
-@property (strong, nonatomic)CollectionModel* collectionModel;
 @property (weak, nonatomic) IBOutlet UIScrollView *ibScrollView;
 @property (strong, nonatomic) IBOutlet UIView *ibContentView;
 @property (weak, nonatomic) IBOutlet UICollectionView *ibCollectionTagView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *consTagHeight;
-
-@property (weak, nonatomic) IBOutlet ZFTokenField *ibTokenField;
-@property (nonatomic, strong) NSMutableArray *tokens;
+@property (nonatomic, strong) IBOutlet TLTagsControl *blueEditingTagControl;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
-
 @property (weak, nonatomic) IBOutlet UILabel *lblCollectionName;
 @property (weak, nonatomic) IBOutlet UILabel *lblCollectionDesc;
+@property (strong, nonatomic)CollectionModel* collectionModel;
+@property (nonatomic, strong) NSMutableArray *tagList;
+
 @end
 
 @implementation EditCollectionDetailViewController
+- (IBAction)btnTestClicked:(id)sender {
+    for (int i = 0; i<40; i++) {
+        [self.tagList addObject:[NSString stringWithFormat:@"number %d tag",i]];
+    }
+    [self adjustView];
+    [self.ibCollectionTagView reloadData];
+}
 - (IBAction)btnPrivateClicked:(id)sender {
     
     UIButton* button = (UIButton*)sender;
@@ -74,6 +78,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tagList = [NSMutableArray new];
+    for (int i = 0; i<5; i++) {
+        [self.tagList addObject:[NSString stringWithFormat:@"number %d tag",i]];
+    }
     [self initSelfView];
     self.txtName.enabled = !self.collectionModel.is_default;
     self.txtName.text = self.collectionModel.name;
@@ -92,26 +100,64 @@
     [Utils setRoundBorder:ibPrivacyView color:TWO_ZERO_FOUR_COLOR borderRadius:0];
     
     [self changeLanguage];
-    // Do any additional setup after loading the view from its nib.
-}
 
+  
+    
+}
+#define CELL_HEIGHT 40
+#define CELL_PADDING 10
 -(void)initSelfView
 {
     
+    
     [Utils setRoundBorder:self.txtDesc color:[UIColor lightGrayColor] borderRadius:5.0f borderWidth:0.5f];
     [self.ibScrollView addSubview:self.ibContentView];
+       [self initCollectionViewWithDelegate:self];
+
+    
+   // [self initTagView];
+    
+
+    [self adjustView];
+    
+
+}
+
+-(void)adjustView
+{
+    
+//    float count = (self.tagList.count%2 != 0)?(self.tagList.count+1)/2:self.tagList.count/2;
+//    float collectionheight = (CELL_HEIGHT+CELL_PADDING)* count;
+//    
+//    self.ibContentView.frame = CGRectMake( self.ibContentView.frame.origin.x,  self.ibContentView.frame.origin.y,  self.ibContentView.frame.size.width,  self.blueEditingTagControl.frame.size.height+ self.blueEditingTagControl.frame.origin.y+30 + collectionheight);
     CGRect frame = [Utils getDeviceScreenSize];
     self.ibContentView.frame = CGRectMake(0, 0, frame.size.width, self.ibContentView.frame.size.height);
     self.ibScrollView.contentSize = self.ibContentView.frame.size;
-    [self initCollectionViewWithDelegate:self];
-//    self.tokens = [NSMutableArray array];
-//    self.ibTokenField.dataSource = self;
-//    self.ibTokenField.delegate = self;
-//    self.ibTokenField.textField.placeholder = @"Enter here";
-    //[self.ibTokenField reloadData];
 
-  //  [self.ibTokenField.textField becomeFirstResponder];
+    [self.ibScrollView needsUpdateConstraints];
+}
 
+-(void)initTagView
+{
+    NSMutableArray *tags = [NSMutableArray arrayWithArray:@[@"A", @"Tag", @"One", @"More", @"Tag", @"And", @"Yet", @"Another", @"One"]];
+    _blueEditingTagControl.tags = [tags mutableCopy];
+    _blueEditingTagControl.tagPlaceholder = @"Placeholder";
+    
+    _blueEditingTagControl.delegate  = self;
+       UIColor *whiteTextColor = [UIColor whiteColor];
+    
+    _blueEditingTagControl.tagsBackgroundColor = DEVICE_COLOR;
+    _blueEditingTagControl.tagsDeleteButtonColor = whiteTextColor;
+    _blueEditingTagControl.tagsTextColor = whiteTextColor;
+    
+    
+    [_blueEditingTagControl reloadTagSubviews];
+   
+    _blueEditingTagControl.tagBlock = ^(NSString* string)
+    {
+        
+    };
+    
 }
 
 -(void)initCollectionViewWithDelegate:(id)sender
@@ -180,7 +226,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 10;
+    return self.tagList.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -203,75 +249,20 @@
 {
    
     
-    CGRect frame = collectionView.frame;
+    CGRect frame = [Utils getDeviceScreenSize];
     
-    float width = frame.size.width/2 -10;
-    return CGSizeMake(width, 35);
-}
-#pragma mark - UICollectionView Delegate
-#pragma mark - ZFTokenField DataSource
-
-- (CGFloat)lineHeightForTokenInField:(ZFTokenField *)tokenField
-{
-    return 40;
-}
-
-- (NSUInteger)numberOfTokenInField:(ZFTokenField *)tokenField
-{
-    return self.tokens.count;
-}
-
-- (UIView *)tokenField:(ZFTokenField *)tokenField viewForTokenAtIndex:(NSUInteger)index
-{
-    NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:@"TokenView" owner:nil options:nil];
-    UIView *view = nibContents[0];
-    UILabel *label = (UILabel *)[view viewWithTag:2];
-    UIButton *button = (UIButton *)[view viewWithTag:3];
+    float width = frame.size.width/2 -20;
     
-    [button addTarget:self action:@selector(tokenDeleteButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    return CGSizeMake(width, 40);
+}
+
+#pragma mark - TLTagsControlDelegate
+- (void)tagsControl:(TLTagsControl *)tagsControl tappedAtIndex:(NSInteger)index {
+    NSLog(@"Tag \"%@\" was tapped", tagsControl.tags[index]);
     
-    label.text = self.tokens[index];
-    CGSize size = [label sizeThatFits:CGSizeMake(1000, 40)];
-    view.frame = CGRectMake(0, 0, size.width + 97, 40);
-    
-    
-    
-    
-    return view;
+   
 }
 
-#pragma mark - ZFTokenField Delegate
-
-- (CGFloat)tokenMarginInTokenInField:(ZFTokenField *)tokenField
-{
-    return 5;
-}
-
-- (void)tokenField:(ZFTokenField *)tokenField didReturnWithText:(NSString *)text
-{
-    [self.tokens addObject:text];
-    [tokenField reloadData];
-}
-
-- (void)tokenField:(ZFTokenField *)tokenField didRemoveTokenAtIndex:(NSUInteger)index
-{
-    [self.tokens removeObjectAtIndex:index];
-}
-
-- (BOOL)tokenFieldShouldEndEditing:(ZFTokenField *)textField
-{
-    return NO;
-}
-
-
-- (void)tokenDeleteButtonPressed:(UIButton *)tokenButton
-{
-    NSUInteger index = [self.ibTokenField indexOfTokenView:tokenButton.superview];
-    if (index != NSNotFound) {
-        [self.tokens removeObjectAtIndex:index];
-        [self.ibTokenField reloadData];
-    }
-}
 #pragma mark - change language
 -(void)changeLanguage
 {
@@ -283,4 +274,12 @@
     lblSetAsPublicDesc.text = LocalisedString(@"You will not be able to change your privacy settings for this collection once it goes public.");
 
 }
+
+
+#pragma mark - Request Server
+-(void)requestServerForTag
+{
+
+}
+
 @end
