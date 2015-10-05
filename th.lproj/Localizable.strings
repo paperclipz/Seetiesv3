@@ -979,3 +979,31 @@
 
 "CollectBtn.png" = "CollectThaiBtn.png";
 
+"PNearby" = "รีวิวใกล้คุณ";
+"PExplore goodies around you." = "ดูรีวิวแนะนำใกล้คุณ";
+"PRecommend" = "รีวิว";
+"PShare your thoughts with friends." = "แชร์ประสบการณ์กับเพื่อน ";
+
+"PCollect In" = "เก็บใน";
+"PPersonalize your collection." = "สร้างคอลเลคชันเฉพาะคุณ";
+"PCollect" = "เก็บ";
+"PCollect post here!" = "เก็บโพสต์ที่นี่!";
+"PFollow" = "ติดตาม";
+"PSee more from your favourite Seetizens." = "ดูรีวิวเพิ่มจาก Seetizen คนโปรด";
+
+"PEdit Profile" = "แก้ไขโปรไฟล์";
+"PPeople know you and find you better." = "ให้ใครรู้จักและเจอคุณง่ายขึ้น ";
+"PCollections" = "คอลเลคชัน ";
+"PView your collections here." = "ดูคอลเลคชันที่นี่";
+
+"PAdd URL" = "เพิ่ม URL";
+"PDrive traffic to your page or blog." = "เพิ่มทราฟฟิคไปที่เพจหรือ URL";
+"PSave" = "เซฟ";
+"PFinish it later." = "ทำต่อภายหลัง";
+
+"PTranslate" = "แปล";
+"PNo more language barrier" = "หมดปัญหาเรื่องภาษาต่างชาติ";
+
+"PSkip" = "ข้าม";
+"PDone" = "เรียบร้อย";
+

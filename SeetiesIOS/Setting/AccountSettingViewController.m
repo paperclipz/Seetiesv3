@@ -145,7 +145,7 @@
     CheckSystemLanguage = 0;
     CheckLangauge1 = 0;
     CheckLanguage2 = 0;
-
+    CheckEmail = 0;
     
     
     ShowTitle.text = CustomLocalisedString(@"SettingsPage_AccountSettings",nil);
@@ -368,9 +368,11 @@
     NSLog(@"ShowSecondary.text is %@",ShowSecondary.text);
     NSLog(@"GetLanguage2 is %@",GetLanguage2);
     if ([Emailfield.text length] == 0) {
-        
+
+        CheckEmail = 0;
+         [self updateUserInformation];
     }else{
-        
+        CheckEmail = 1;
         NSString *emailRegEx = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,10}";
         NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegEx];
         
@@ -444,13 +446,16 @@
     [body appendData:[[NSString stringWithFormat:@"%@",GetExpertToken] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     
-    //parameter first
-    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    //Attaching the key name @"parameter_first" to the post body
-    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"email\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-    //Attaching the content to be posted ( ParameterFirst )
-    [body appendData:[[NSString stringWithFormat:@"%@",Emailfield.text] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    if (CheckEmail == 1) {
+        //parameter first
+        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        //Attaching the key name @"parameter_first" to the post body
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"email\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+        //Attaching the content to be posted ( ParameterFirst )
+        [body appendData:[[NSString stringWithFormat:@"%@",Emailfield.text] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    }
+
     
     if (CheckSystemLanguage == 1) {
         //parameter second

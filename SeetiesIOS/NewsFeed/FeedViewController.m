@@ -326,6 +326,11 @@
         [arrType_Announcement removeAllObjects];
         [arrID_Announcement removeAllObjects];
         
+        [arrAboadID removeAllObjects];
+        [arrfeaturedUserName removeAllObjects];
+        [arrFriendUserName removeAllObjects];
+        [arrDealID removeAllObjects];
+        
         arrType_Announcement = [[NSMutableArray alloc]init];
         arrID_Announcement = [[NSMutableArray alloc]init];
         
@@ -337,16 +342,9 @@
         for (UIView *subview in MainScroll.subviews) {
             [subview removeFromSuperview];
         }
-        
-//        refreshControl = [[UIRefreshControl alloc] init];
-////        refreshControl.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-////        refreshControl.bounds = CGRectMake(refreshControl.bounds.origin.x - 20,
-////                                           0,
-////                                           refreshControl.bounds.size.width,
-////                                           refreshControl.bounds.size.height);
-//        // refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Loading..."];
-//        [refreshControl addTarget:self action:@selector(testRefresh) forControlEvents:UIControlEventValueChanged];
-//        [MainScroll addSubview:refreshControl];
+
+        [refreshControl addTarget:self action:@selector(testRefresh) forControlEvents:UIControlEventValueChanged];
+        [MainScroll addSubview:refreshControl];
         
         GetNextPaging = @"";
         [self GetFeedDataFromServer];
@@ -674,7 +672,7 @@
 //            [LocalScroll addSubview:ShowLikesIcon];
             
             UIButton *LikeButton = [[UIButton alloc]init];
-            LikeButton.frame = CGRectMake(25, heightcheck + 4, 37, 37);
+            LikeButton.frame = CGRectMake(20, heightcheck + 4, 37, 37);
             CheckLike = [[NSString alloc]initWithFormat:@"%@",[arrlike objectAtIndex:i]];
             if ([CheckLike isEqualToString:@"0"]) {
                 [LikeButton setImage:[UIImage imageNamed:@"LikeIcon.png"] forState:UIControlStateNormal];
@@ -690,7 +688,7 @@
             
             
             UIButton *CommentButton = [[UIButton alloc]init];
-            CommentButton.frame = CGRectMake(75, heightcheck + 4 ,37, 37);
+            CommentButton.frame = CGRectMake(70, heightcheck + 4 ,37, 37);
             [CommentButton setImage:[UIImage imageNamed:@"CommentIcon.png"] forState:UIControlStateNormal];
             CommentButton.backgroundColor = [UIColor clearColor];
             CommentButton.tag = i;
@@ -704,7 +702,7 @@
 //            [LocalScroll addSubview:ShowShareIcon];
             
             UIButton *ShareButton = [[UIButton alloc]init];
-            ShareButton.frame = CGRectMake(127, heightcheck + 4 ,37, 37);
+            ShareButton.frame = CGRectMake(122, heightcheck + 4 ,37, 37);
             [ShareButton setImage:[UIImage imageNamed:@"ShareToIcon.png"] forState:UIControlStateNormal];
             ShareButton.backgroundColor = [UIColor clearColor];
             ShareButton.tag = i;
@@ -1054,7 +1052,7 @@
                 
                 
                 UIButton *LikeButton = [[UIButton alloc]init];
-                LikeButton.frame = CGRectMake(25, heightcheck + 4, 37, 37);
+                LikeButton.frame = CGRectMake(20, heightcheck + 4, 37, 37);
                 CheckLike = [[NSString alloc]initWithFormat:@"%@",[arrlike objectAtIndex:i]];
                 if ([CheckLike isEqualToString:@"0"]) {
                     [LikeButton setImage:[UIImage imageNamed:@"LikeIcon.png"] forState:UIControlStateNormal];
@@ -1070,7 +1068,7 @@
                 
                 
                 UIButton *CommentButton = [[UIButton alloc]init];
-                CommentButton.frame = CGRectMake(75, heightcheck + 4 ,37, 37);
+                CommentButton.frame = CGRectMake(70, heightcheck + 4 ,37, 37);
                 [CommentButton setImage:[UIImage imageNamed:@"CommentIcon.png"] forState:UIControlStateNormal];
                 CommentButton.backgroundColor = [UIColor clearColor];
                 CommentButton.tag = i;
@@ -1078,7 +1076,7 @@
                 [MainScroll addSubview:CommentButton];
                 
                 UIButton *ShareButton = [[UIButton alloc]init];
-                ShareButton.frame = CGRectMake(127, heightcheck + 4 ,37, 37);
+                ShareButton.frame = CGRectMake(122, heightcheck + 4 ,37, 37);
                 [ShareButton setImage:[UIImage imageNamed:@"ShareToIcon.png"] forState:UIControlStateNormal];
                 ShareButton.backgroundColor = [UIColor clearColor];
                 ShareButton.tag = i;
@@ -1341,7 +1339,7 @@
                 
                 
                 UIButton *LikeButtonLocalQR = [[UIButton alloc]init];
-                LikeButtonLocalQR.frame = CGRectMake(25, heightcheck + 4, 37, 37);
+                LikeButtonLocalQR.frame = CGRectMake(20, heightcheck + 4, 37, 37);
                 CheckLike = [[NSString alloc]initWithFormat:@"%@",[arrlike objectAtIndex:i]];
                 if ([CheckLike isEqualToString:@"0"]) {
                     [LikeButtonLocalQR setImage:[UIImage imageNamed:@"LikeIcon.png"] forState:UIControlStateNormal];
@@ -1362,7 +1360,7 @@
 //                //    ShowCommentIcon.backgroundColor = [UIColor redColor];
 //                [MainScroll addSubview:ShowCommentIconLocalQR];
                 UIButton *CommentButton = [[UIButton alloc]init];
-                CommentButton.frame = CGRectMake(75, heightcheck + 4 ,37, 37);
+                CommentButton.frame = CGRectMake(70, heightcheck + 4 ,37, 37);
                 [CommentButton setImage:[UIImage imageNamed:@"CommentIcon.png"] forState:UIControlStateNormal];
                 CommentButton.backgroundColor = [UIColor clearColor];
                 CommentButton.tag = i;
@@ -1370,7 +1368,7 @@
                 [MainScroll addSubview:CommentButton];
                 
                 UIButton *ShareButton = [[UIButton alloc]init];
-                ShareButton.frame = CGRectMake(127, heightcheck + 4 ,37, 37);
+                ShareButton.frame = CGRectMake(122, heightcheck + 4 ,37, 37);
                 [ShareButton setImage:[UIImage imageNamed:@"ShareToIcon.png"] forState:UIControlStateNormal];
                 ShareButton.backgroundColor = [UIColor clearColor];
                 ShareButton.tag = i;
@@ -1527,7 +1525,7 @@
                     
                     
                     AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
-                    ShowUserProfileImage.frame = CGRectMake(31 + i * screenWidth, 51 + 10, 40, 40);
+                    ShowUserProfileImage.frame = CGRectMake(25 + i * screenWidth, 51 + 10, 40, 40);
                    // ShowUserProfileImage.image = [UIImage imageNamed:@"DemoProfile.jpg"];
                     ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
                     ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
@@ -1550,7 +1548,7 @@
                     NSString *Address = [[NSString alloc]initWithFormat:@"%@",[SplitArray_Address objectAtIndex:i]];
                     
                     UILabel *ShowUserName = [[UILabel alloc]init];
-                    ShowUserName.frame = CGRectMake(81 + i * screenWidth, 51 + 10, 180, 40);
+                    ShowUserName.frame = CGRectMake(75 + i * screenWidth, 51 + 10, 180, 40);
                     ShowUserName.text = usernameTemp;
                     ShowUserName.backgroundColor = [UIColor clearColor];
                     ShowUserName.textColor = [UIColor whiteColor];
@@ -2442,7 +2440,7 @@
         NSString *TempCount = [[NSString alloc]initWithFormat:@"%li/%lu",page + 1,(unsigned long)[arrfeaturedUserName count]];
         ShowSUserCount_Featured.text = TempCount;
     }else if(scrollView == MainScroll){
-        NSLog(@"scrollview run here");
+        //NSLog(@"scrollview run here");
         
         float heightcheck_ = MainScroll.contentOffset.y;
         
@@ -3457,19 +3455,13 @@
     NSLog(@"button %li",(long)getbuttonIDN);
     
     FeedV2DetailViewController *vc = [[FeedV2DetailViewController alloc] initWithNibName:@"FeedV2DetailViewController" bundle:nil];
-    
     [self.navigationController pushViewController:vc animated:YES];
     [vc GetPostID:[arrPostID objectAtIndex:getbuttonIDN]];
     
 }
 -(IBAction)NearbyButton:(id)sender{
     if ([latPoint length] == 0 || [latPoint isEqualToString:@""] || [latPoint isEqualToString:@"(null)"] || latPoint == nil) {
-//        UIAlertView    *alert = [[UIAlertView alloc] initWithTitle:@"App Permission Denied"
-//                                                           message:@"To re-enable, please go to Settings and turn on Location Service for this app."
-//                                                          delegate:nil
-//                                                 cancelButtonTitle:@"OK"
-//                                                 otherButtonTitles:nil];
-//        [alert show];
+
         
         EnbleLocationViewController *EnbleLocationView = [[EnbleLocationViewController alloc]init];
         [self presentViewController:EnbleLocationView animated:YES completion:nil];
@@ -3724,7 +3716,13 @@
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     
     CommentViewController *CommentView = [[CommentViewController alloc]init];
-    [self presentViewController:CommentView animated:YES completion:nil];
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.2;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromRight;
+    [self.view.window.layer addAnimation:transition forKey:nil];
+    [self presentViewController:CommentView animated:NO completion:nil];
     //[self.view.window.rootViewController presentViewController:CommentView animated:YES completion:nil];
     [CommentView GetRealPostIDAndAllComment:[arrPostID objectAtIndex:getbuttonIDN]];
     [CommentView GetWhatView:@"Comment"];

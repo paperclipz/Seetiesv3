@@ -187,7 +187,7 @@
         ShowBigText.text = LocalisedString(@"Festivals");
         ShowBigText.textAlignment = NSTextAlignmentCenter;
         ShowBigText.textColor = [UIColor whiteColor];
-        ShowBigText.font = [UIFont fontWithName:@"AdrianeText-BoldItalic" size:36];
+        ShowBigText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:36];
         [MainScroll addSubview:ShowBigText];
         
         NSString *TempString = [[NSString alloc]initWithFormat:@"%@ %@",LocalisedString(@"Discover the colours of"),self.model.name];
@@ -197,7 +197,7 @@
         ShowSubText.text = TempString;
         ShowSubText.textAlignment = NSTextAlignmentCenter;
         ShowSubText.textColor = [UIColor whiteColor];
-        ShowSubText.font = [UIFont fontWithName:@"AdrianeText-BoldItalic" size:18];
+        ShowSubText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:18];
         [MainScroll addSubview:ShowSubText];
         
         UIButton *FestivalButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -207,7 +207,7 @@
         [FestivalButton setFrame:CGRectMake((screenWidth/2) - 70, GetHeight + 110, 140, 47)];
         [FestivalButton setBackgroundColor:[UIColor clearColor]];
         [FestivalButton addTarget:self action:@selector(LetsgoButton:) forControlEvents:UIControlEventTouchUpInside];
-        [FestivalButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15]];
+        [FestivalButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
         [MainScroll addSubview:FestivalButton];
         
         GetHeight += 200;
@@ -307,7 +307,7 @@
         [PostView addSubview:UserImage];
         
         UILabel *ShowUserName = [[UILabel alloc]init];
-        ShowUserName.frame = CGRectMake(65, PostGetHeight + 10, screenWidth - 70, 30);
+        ShowUserName.frame = CGRectMake(65, PostGetHeight + 10, screenWidth - 70 - 57, 30);
         ShowUserName.text = [UserInfo_NameArray objectAtIndex:i];
         ShowUserName.backgroundColor = [UIColor clearColor];
         ShowUserName.textColor = [UIColor blackColor];

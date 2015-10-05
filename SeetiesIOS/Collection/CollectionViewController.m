@@ -507,8 +507,18 @@
 }
 -(void)InitContentListView{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    int TempHeight = 0;
+    if (CheckFirstTimeLoad == 0) {
+        TempHeight = 10;
+        
+    }else{
+    }
     
-    int TempHeight = 10;
+    if (TotalPage == 0) {
+        TotalPage = 1;
+    }
+    
+    
 
     for (NSInteger i = DataCount; i < DataTotal; i++) {
         AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
@@ -692,6 +702,36 @@
     [self.navigationController pushViewController:vc animated:YES];
     [vc GetPostID:[Content_arrID objectAtIndex:getbuttonIDN]];
     
+}
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    if (scrollView == MainScroll) {
+        float bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
+        if (bottomEdge >= scrollView.contentSize.height)
+        {
+            // we are at the end
+            if (CheckLoad == YES) {
+                
+            }else{
+                CheckLoad = YES;
+                if (CurrentPage == TotalPage) {
+                    
+                }else{
+                    
+                    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+                    [MainScroll setContentSize:CGSizeMake(screenWidth, MainScroll.contentSize.height + 150)];
+                    UIActivityIndicatorView *  activityindicator1 = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake((screenWidth/2) - 15, GetHeight + 40, 30, 30)];
+                    [activityindicator1 setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhiteLarge];
+                    [activityindicator1 setColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f]];
+                    [MainScroll addSubview:activityindicator1];
+                    [activityindicator1 startAnimating];
+                    [self GetCollectionData];
+                }
+                
+            }
+        }
+        
+    }
 }
 -(IBAction)ShareButtonOnClick:(id)sender{
 }

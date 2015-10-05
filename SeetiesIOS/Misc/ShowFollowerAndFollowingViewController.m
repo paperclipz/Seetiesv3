@@ -161,7 +161,7 @@
         NSString *total_followerString = [[NSString alloc]initWithFormat:@"%@",[resultData valueForKey:@"total_follower"]];
         NSLog(@"total_followerString is %@",total_followerString);
         
-        if ([total_followerString isEqualToString:0] || [total_followerString length] == 0) {
+        if ([total_followerString isEqualToString:@"0"] || [total_followerString length] == 0) {
             
         }else{
             
@@ -246,7 +246,7 @@
         NSString *total_followingString = [[NSString alloc]initWithFormat:@"%@",[resultData objectForKey:@"total_following"]];
         NSLog(@"total_followingString is %@",total_followingString);
         
-        if ([total_followingString isEqualToString:0] || [total_followingString length] == 0) {
+        if ([total_followingString isEqualToString:@"0"] || [total_followingString length] == 0) {
             
         }else{
             NSString *page = [[NSString alloc]initWithFormat:@"%@",[resultData objectForKey:@"page"]];

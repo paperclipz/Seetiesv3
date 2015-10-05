@@ -49,6 +49,7 @@
     int CheckSystemLanguage;
     int CheckLangauge1;
     int CheckLanguage2;
+    int CheckEmail;
     
     UrlDataClass *DataUrl;
     NSMutableData *webData;
