@@ -641,6 +641,29 @@
     return _recommendationModel;
 }
 
+//button done
+-(void)buttonDoneAction
+{
+    
+    SLog(@"buttonDoneAction");
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    if (_editPostDoneBlock) {
+        self.editPostDoneBlock(nil);
+    }
+}
+
+#pragma mark - Sava Data
+
+-(void)saveData
+{
+    
+    self.recommendationModel.postMainTitle = self.editPostView.txtTitle.text;
+    self.recommendationModel.postMainDescription = self.editPostView.txtDescription.text;
+    self.recommendationModel.postSecondTitle = self.editPostViewSecond.txtTitle.text;
+    self.recommendationModel.postSecondDescription = self.editPostViewSecond.txtDescription.text;
+    
+}
 
 #pragma mark - Server Request
 
@@ -776,30 +799,6 @@ static id ObjectOrNull(id object)
 
     }];
     
-}
-
-//button done
--(void)buttonDoneAction
-{
-    
-    SLog(@"buttonDoneAction");
-    [self dismissViewControllerAnimated:YES completion:nil];
-
-    if (_editPostDoneBlock) {
-        self.editPostDoneBlock(nil);
-    }
-}
-
-#pragma mark - Sava Data
-
--(void)saveData
-{
-    
-    self.recommendationModel.postMainTitle = self.editPostView.txtTitle.text;
-    self.recommendationModel.postMainDescription = self.editPostView.txtDescription.text;
-    self.recommendationModel.postSecondTitle = self.editPostViewSecond.txtTitle.text;
-    self.recommendationModel.postSecondDescription = self.editPostViewSecond.txtDescription.text;
-
 }
 
 -(void)requestServerForCategories:(IDBlock)sucessRequestBlock

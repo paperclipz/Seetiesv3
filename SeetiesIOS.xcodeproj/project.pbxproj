@@ -620,6 +620,9 @@
 		8AB76E071BB8FDC8007DB972 /* EditTagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AB76DF41BB8FDC8007DB972 /* EditTagCollectionViewCell.xib */; };
 		8AB76E081BB8FDC8007DB972 /* UserProfilePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB76DF61BB8FDC8007DB972 /* UserProfilePageViewController.m */; };
 		8AB76E091BB8FDC8007DB972 /* UserProfilePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AB76DF71BB8FDC8007DB972 /* UserProfilePageViewController.xib */; };
+		8AB813BE1BC234C0002F5F06 /* FloatingIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB813BD1BC234C0002F5F06 /* FloatingIndicatorView.m */; settings = {ASSET_TAGS = (); }; };
+		8AB813C01BC234CE002F5F06 /* FloatingIndicatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AB813BF1BC234CE002F5F06 /* FloatingIndicatorView.xib */; settings = {ASSET_TAGS = (); }; };
+		8AB813C31BC23ECE002F5F06 /* UploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB813C21BC23ECE002F5F06 /* UploadManager.m */; settings = {ASSET_TAGS = (); }; };
 		8AD6BA601B705DF20040437E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA5F1B705DF20040437E /* main.m */; };
 		8AD6BA631B705DF20040437E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA621B705DF20040437E /* AppDelegate.m */; };
 		8AD6BA661B705DF20040437E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA651B705DF20040437E /* ViewController.m */; };
@@ -1588,6 +1591,11 @@
 		8AB76DF51BB8FDC8007DB972 /* UserProfilePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfilePageViewController.h; sourceTree = "<group>"; };
 		8AB76DF61BB8FDC8007DB972 /* UserProfilePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfilePageViewController.m; sourceTree = "<group>"; };
 		8AB76DF71BB8FDC8007DB972 /* UserProfilePageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfilePageViewController.xib; sourceTree = "<group>"; };
+		8AB813BC1BC234C0002F5F06 /* FloatingIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatingIndicatorView.h; sourceTree = "<group>"; };
+		8AB813BD1BC234C0002F5F06 /* FloatingIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatingIndicatorView.m; sourceTree = "<group>"; };
+		8AB813BF1BC234CE002F5F06 /* FloatingIndicatorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FloatingIndicatorView.xib; sourceTree = "<group>"; };
+		8AB813C11BC23ECE002F5F06 /* UploadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadManager.h; sourceTree = "<group>"; };
+		8AB813C21BC23ECE002F5F06 /* UploadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadManager.m; sourceTree = "<group>"; };
 		8AD6BA5A1B705DF20040437E /* SeetiesIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeetiesIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AD6BA5E1B705DF20040437E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8AD6BA5F1B705DF20040437E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -3009,6 +3017,37 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8A2AC21C1BC2277A0009C36B /* Basic */ = {
+			isa = PBXGroup;
+			children = (
+				8AD6C3231B707D120040437E /* SConstant.h */,
+				8AD6C3241B707D120040437E /* SConstant.m */,
+				8AD6C3251B707D120040437E /* UrlDataClass.h */,
+				8AD6C3261B707D120040437E /* UrlDataClass.m */,
+				8AD6C3271B707D120040437E /* Utils.h */,
+				8AD6C3281B707D120040437E /* Utils.m */,
+			);
+			name = Basic;
+			sourceTree = "<group>";
+		};
+		8A2AC21D1BC2279E0009C36B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8AD6C8741B7495B60040437E /* BaseViewController.h */,
+				8AD6C8751B7495B60040437E /* BaseViewController.m */,
+				8A2E2CE41B81DEE60010895E /* CommonViewController.h */,
+				8A2E2CE51B81DEE60010895E /* CommonViewController.m */,
+				8A2E2CED1B81E2480010895E /* CommonTableViewCell.h */,
+				8A2E2CEE1B81E2480010895E /* CommonTableViewCell.m */,
+				8A3757DE1B85B65A009DB7D4 /* CommonView.h */,
+				8A3757DF1B85B65A009DB7D4 /* CommonView.m */,
+				8AB813BC1BC234C0002F5F06 /* FloatingIndicatorView.h */,
+				8AB813BD1BC234C0002F5F06 /* FloatingIndicatorView.m */,
+				8AB813BF1BC234CE002F5F06 /* FloatingIndicatorView.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		8A2E2CE71B81E1360010895E /* Extra */ = {
 			isa = PBXGroup;
 			children = (
@@ -3641,6 +3680,8 @@
 				8A3757AF1B842F74009DB7D4 /* SearchManager.m */,
 				8A6584281B96ED7300BC86B9 /* EditPhotoManager.h */,
 				8A6584291B96ED7300BC86B9 /* EditPhotoManager.m */,
+				8AB813C11BC23ECE002F5F06 /* UploadManager.h */,
+				8AB813C21BC23ECE002F5F06 /* UploadManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -3970,6 +4011,8 @@
 		8AD6C2D21B707D120040437E /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				8A2AC21D1BC2279E0009C36B /* View */,
+				8A2AC21C1BC2277A0009C36B /* Basic */,
 				8A88506C1BBE83BB0096E0D0 /* TextFieldValidator */,
 				8AB76DD71BB8FD78007DB972 /* ZFTokenField.h */,
 				8AB76DD81BB8FD78007DB972 /* ZFTokenField.m */,
@@ -3990,20 +4033,6 @@
 				8AD6C2D71B707D120040437E /* LanguageManager.m */,
 				8AD6C2D81B707D120040437E /* Lib */,
 				8AD6C2E51B707D120040437E /* Library */,
-				8AD6C3231B707D120040437E /* SConstant.h */,
-				8AD6C3241B707D120040437E /* SConstant.m */,
-				8AD6C3251B707D120040437E /* UrlDataClass.h */,
-				8AD6C3261B707D120040437E /* UrlDataClass.m */,
-				8AD6C3271B707D120040437E /* Utils.h */,
-				8AD6C3281B707D120040437E /* Utils.m */,
-				8AD6C8741B7495B60040437E /* BaseViewController.h */,
-				8AD6C8751B7495B60040437E /* BaseViewController.m */,
-				8A2E2CE41B81DEE60010895E /* CommonViewController.h */,
-				8A2E2CE51B81DEE60010895E /* CommonViewController.m */,
-				8A2E2CED1B81E2480010895E /* CommonTableViewCell.h */,
-				8A2E2CEE1B81E2480010895E /* CommonTableViewCell.m */,
-				8A3757DE1B85B65A009DB7D4 /* CommonView.h */,
-				8A3757DF1B85B65A009DB7D4 /* CommonView.m */,
 				8A9F25DA1B90002B00BB13BA /* CustomPickerViewController.h */,
 				8A9F25DB1B90002B00BB13BA /* CustomPickerViewController.m */,
 				8A9F25DC1B90002B00BB13BA /* CustomPickerViewController.xib */,
@@ -4527,6 +4556,7 @@
 				8A3757DD1B85B610009DB7D4 /* AddNewPlaceSubView.xib in Resources */,
 				0BE725AE1BBFD61F0090D6A3 /* ProfileIcon@2x.png in Resources */,
 				0BE724E71BBFD61F0090D6A3 /* StaycationIcon@2x.png in Resources */,
+				8AB813C01BC234CE002F5F06 /* FloatingIndicatorView.xib in Resources */,
 				8AB76E071BB8FDC8007DB972 /* EditTagCollectionViewCell.xib in Resources */,
 				0BE725B41BBFD61F0090D6A3 /* WriteRecommendationIcon@2x.png in Resources */,
 				0BE7241B1BBFD61F0090D6A3 /* CollectionFolderIcon@2x.png in Resources */,
@@ -5157,8 +5187,10 @@
 				8AD6C1141B706CF30040437E /* FSOAuthNoAppStore.m in Sources */,
 				8AD6C32E1B707D120040437E /* PEResizeControl.m in Sources */,
 				8AD6C8331B7454290040437E /* UIAlertView+Blocks.m in Sources */,
+				8AB813BE1BC234C0002F5F06 /* FloatingIndicatorView.m in Sources */,
 				8AB76E001BB8FDC8007DB972 /* UserProfileV2ViewController.m in Sources */,
 				8AD6C32C1B707D120040437E /* PECropView.m in Sources */,
+				8AB813C31BC23ECE002F5F06 /* UploadManager.m in Sources */,
 				8A7B9CE01BBD387000D7F604 /* EnbleLocationViewController.m in Sources */,
 				8A3757DB1B85B606009DB7D4 /* AddNewPlaceSubView.m in Sources */,
 				8AD6BA601B705DF20040437E /* main.m in Sources */,
@@ -5338,8 +5370,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Reiner Lee (EFSLZ63588)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library/AviarySDK",
@@ -5371,7 +5403,7 @@
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b384f4c6-d74f-484d-ad13-a68f30676c55";
+				PROVISIONING_PROFILE = "7019fa0d-9f6e-41e5-955e-d97da8a6a364";
 			};
 			name = Debug;
 		};
@@ -5381,8 +5413,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Reiner Lee (EFSLZ63588)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library/AviarySDK",
@@ -5414,7 +5446,7 @@
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b384f4c6-d74f-484d-ad13-a68f30676c55";
+				PROVISIONING_PROFILE = "7019fa0d-9f6e-41e5-955e-d97da8a6a364";
 			};
 			name = Release;
 		};

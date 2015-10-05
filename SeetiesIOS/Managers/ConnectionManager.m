@@ -280,6 +280,14 @@
 
         NSLog(@"\n\n  Error: %@ ***** %@", operation.responseString, error);
     }];
+    
+   
+    
+    [op setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
+        NSLog(@"Wrote %lld/%lld", totalBytesWritten, totalBytesExpectedToWrite);
+
+    }];
+    
     [op start];
 }
 
