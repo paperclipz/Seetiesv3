@@ -585,6 +585,7 @@
                 NSString *GetLanguage_2;
                 if ([TempArray count] == 1) {
                     GetLanguage_1 = [[NSString alloc]initWithFormat:@"%@",[TempArray objectAtIndex:0]];
+                    ShowSecondary.text = @"(Choose one)";
                 }else{
                     GetLanguage_1 = [[NSString alloc]initWithFormat:@"%@",[TempArray objectAtIndex:0]];
                     GetLanguage_2 = [[NSString alloc]initWithFormat:@"%@",[TempArray objectAtIndex:1]];

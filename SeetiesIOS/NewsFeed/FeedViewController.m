@@ -445,330 +445,336 @@
     
     heightcheck += 130;
     
-    for (NSInteger i = 0; i < [arrImage count]; i++) {
-        
-        NSString *GetType = [arrType objectAtIndex:i];
-        
-        if ([GetType isEqualToString:@"following_post"]) {
-            NSInteger TempHeight = heightcheck + i;
-            int TempCountWhiteHeight = 0;
-            UIButton *TempButton = [[UIButton alloc]init];
-            TempButton.frame = CGRectMake(10, heightcheck, screenWidth - 20, 200);
-            [TempButton setTitle:@"" forState:UIControlStateNormal];
-            TempButton.backgroundColor = [UIColor whiteColor];
-            TempButton.layer.cornerRadius = 5;
-            [LocalScroll addSubview: TempButton];
+    if ([arrImage count] && [arrType count] && [arrTitle count] && [arrUserName count] && [arrDistance count] && [arrDisplayCountryName count] && [arrAddress count] && [arrMessage count] && [arrlike count] && [arrCollect count]) {
+        for (NSInteger i = 0; i < [arrImage count]; i++) {
             
-            AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
-            ShowImage.contentMode = UIViewContentModeScaleAspectFill;
-            ShowImage.layer.masksToBounds = YES;
-            ShowImage.layer.cornerRadius = 5;
-            [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
-            NSString *stringPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"Content_Folder"];
-            stringPath  = [stringPath stringByAppendingPathComponent:[arrImage objectAtIndex:i]];
-           // NSLog(@"stringpath %@",stringPath);
-            UIImage *image_;
-            UIImage *newImage;
-            image_ = [UIImage imageWithData:[NSData dataWithContentsOfFile:stringPath]];
-            float oldWidth = image_.size.width;
-            float scaleFactor = screenWidth / oldWidth;
+            NSString *GetType = [arrType objectAtIndex:i];
             
-            float newHeight = image_.size.height * scaleFactor;
-            float newWidth = oldWidth * scaleFactor;
-            
-            UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight));
-            [image_ drawInRect:CGRectMake(0, 0, newWidth, newHeight)];
-            newImage = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
-            ShowImage.image = newImage;
-            ShowImage.frame = CGRectMake(10, heightcheck  + i, screenWidth - 20, newImage.size.height);
-            // ShowImage.frame = CGRectMake(0, heightcheck + i, screenWidth, 200);
-            [LocalScroll addSubview:ShowImage];
-            
-            
-            UIImageView *ShowOverlayImg = [[UIImageView alloc]init];
-            ShowOverlayImg.image = [UIImage imageNamed:@"FeedOverlay.png"];
-            ShowOverlayImg.frame = CGRectMake(10, heightcheck, screenWidth - 20, newImage.size.height);
-            ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
-            ShowOverlayImg.layer.masksToBounds = YES;
-            ShowOverlayImg.layer.cornerRadius = 5;
-            [LocalScroll addSubview:ShowOverlayImg];
-            
-            
-            UIButton *ClickToDetailButton = [[UIButton alloc]init];
-            ClickToDetailButton.frame = CGRectMake(10, heightcheck + i, screenWidth - 20, newImage.size.height);
-            [ClickToDetailButton setTitle:@"" forState:UIControlStateNormal];
-            ClickToDetailButton.backgroundColor = [UIColor clearColor];
-            ClickToDetailButton.tag = i;
-            [ClickToDetailButton addTarget:self action:@selector(ClickToDetailButton:) forControlEvents:UIControlEventTouchUpInside];
-            [LocalScroll addSubview:ClickToDetailButton];
-            
-            AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
-            ShowUserProfileImage.frame = CGRectMake(25, heightcheck + 10, 40, 40);
-            // ShowUserProfileImage.image = [UIImage imageNamed:@"DemoProfile.jpg"];
-            ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
-            ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
-            ShowUserProfileImage.layer.cornerRadius=20;
-            ShowUserProfileImage.layer.borderWidth=1;
-            ShowUserProfileImage.layer.masksToBounds = YES;
-            ShowUserProfileImage.layer.borderColor=[[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] CGColor];
-            [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
-            NSString *stringPath1 = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"Content_Folder"];
-            stringPath1  = [stringPath1 stringByAppendingPathComponent:[arrUserImage objectAtIndex:i]];
-            ShowUserProfileImage.image = [UIImage imageWithData:[NSData dataWithContentsOfFile:stringPath1]];
-            [LocalScroll addSubview:ShowUserProfileImage];
-            
-            UIButton *ClicktoOpenUserProfileButton = [[UIButton alloc]init];
-            ClicktoOpenUserProfileButton.frame = CGRectMake(20, heightcheck + 10, 40, 40);
-            [ClicktoOpenUserProfileButton setTitle:@"" forState:UIControlStateNormal];
-            ClicktoOpenUserProfileButton.backgroundColor = [UIColor clearColor];
-            ClicktoOpenUserProfileButton.tag = i;
-            [ClicktoOpenUserProfileButton addTarget:self action:@selector(OpenUserProfileOnClick:) forControlEvents:UIControlEventTouchUpInside];
-            [LocalScroll addSubview:ClicktoOpenUserProfileButton];
-        
-            
-            UILabel *ShowUserName = [[UILabel alloc]init];
-            ShowUserName.frame = CGRectMake(75, heightcheck + 10, 200, 40);
-            ShowUserName.text = [arrUserName objectAtIndex:i];
-            ShowUserName.backgroundColor = [UIColor clearColor];
-            ShowUserName.textColor = [UIColor whiteColor];
-            ShowUserName.textAlignment = NSTextAlignmentLeft;
-            ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-            [LocalScroll addSubview:ShowUserName];
-            
-            NSString *TempDistanceString = [[NSString alloc]initWithFormat:@"%@",[arrDistance objectAtIndex:i]];
-            
-            if ([TempDistanceString isEqualToString:@"0"]) {
+            if ([GetType isEqualToString:@"following_post"]) {
+                NSInteger TempHeight = heightcheck + i;
+                int TempCountWhiteHeight = 0;
+                UIButton *TempButton = [[UIButton alloc]init];
+                TempButton.frame = CGRectMake(10, heightcheck, screenWidth - 20, 200);
+                [TempButton setTitle:@"" forState:UIControlStateNormal];
+                TempButton.backgroundColor = [UIColor whiteColor];
+                TempButton.layer.cornerRadius = 5;
+                [LocalScroll addSubview: TempButton];
                 
-            }else{
-                CGFloat strFloat = (CGFloat)[TempDistanceString floatValue] / 1000;
-                int x_Nearby = [TempDistanceString intValue] / 1000;
-                // NSLog(@"x_Nearby is %i",x_Nearby);
+                AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
+                ShowImage.contentMode = UIViewContentModeScaleAspectFill;
+                ShowImage.layer.masksToBounds = YES;
+                ShowImage.layer.cornerRadius = 5;
+                [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
+                NSString *stringPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"Content_Folder"];
+                stringPath  = [stringPath stringByAppendingPathComponent:[arrImage objectAtIndex:i]];
+                // NSLog(@"stringpath %@",stringPath);
+                UIImage *image_;
+                UIImage *newImage;
+                image_ = [UIImage imageWithData:[NSData dataWithContentsOfFile:stringPath]];
+                float oldWidth = image_.size.width;
+                float scaleFactor = screenWidth / oldWidth;
                 
-                UIImageView *ShowDistanceIcon = [[UIImageView alloc]init];
-                NSString *FullShowLocatinString;
-                if (x_Nearby < 10) {
-                    if (x_Nearby <= 1) {
-                        ShowDistanceIcon.image = [UIImage imageNamed:@"Distance2Icon.png"];
-                        FullShowLocatinString = [[NSString alloc]initWithFormat:@"1km"];//within
-                    }else{
+                float newHeight = image_.size.height * scaleFactor;
+                float newWidth = oldWidth * scaleFactor;
+                
+                UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight));
+                [image_ drawInRect:CGRectMake(0, 0, newWidth, newHeight)];
+                newImage = UIGraphicsGetImageFromCurrentImageContext();
+                UIGraphicsEndImageContext();
+                ShowImage.image = newImage;
+                ShowImage.frame = CGRectMake(10, heightcheck  + i, screenWidth - 20, newImage.size.height);
+                // ShowImage.frame = CGRectMake(0, heightcheck + i, screenWidth, 200);
+                [LocalScroll addSubview:ShowImage];
+                
+                
+                UIImageView *ShowOverlayImg = [[UIImageView alloc]init];
+                ShowOverlayImg.image = [UIImage imageNamed:@"FeedOverlay.png"];
+                ShowOverlayImg.frame = CGRectMake(10, heightcheck, screenWidth - 20, newImage.size.height);
+                ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
+                ShowOverlayImg.layer.masksToBounds = YES;
+                ShowOverlayImg.layer.cornerRadius = 5;
+                [LocalScroll addSubview:ShowOverlayImg];
+                
+                
+                UIButton *ClickToDetailButton = [[UIButton alloc]init];
+                ClickToDetailButton.frame = CGRectMake(10, heightcheck + i, screenWidth - 20, newImage.size.height);
+                [ClickToDetailButton setTitle:@"" forState:UIControlStateNormal];
+                ClickToDetailButton.backgroundColor = [UIColor clearColor];
+                ClickToDetailButton.tag = i;
+                [ClickToDetailButton addTarget:self action:@selector(ClickToDetailButton:) forControlEvents:UIControlEventTouchUpInside];
+                [LocalScroll addSubview:ClickToDetailButton];
+                
+                AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
+                ShowUserProfileImage.frame = CGRectMake(25, heightcheck + 10, 40, 40);
+                // ShowUserProfileImage.image = [UIImage imageNamed:@"DemoProfile.jpg"];
+                ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
+                ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
+                ShowUserProfileImage.layer.cornerRadius=20;
+                ShowUserProfileImage.layer.borderWidth=1;
+                ShowUserProfileImage.layer.masksToBounds = YES;
+                ShowUserProfileImage.layer.borderColor=[[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] CGColor];
+                [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
+                NSString *stringPath1 = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"Content_Folder"];
+                stringPath1  = [stringPath1 stringByAppendingPathComponent:[arrUserImage objectAtIndex:i]];
+                ShowUserProfileImage.image = [UIImage imageWithData:[NSData dataWithContentsOfFile:stringPath1]];
+                [LocalScroll addSubview:ShowUserProfileImage];
+                
+                UIButton *ClicktoOpenUserProfileButton = [[UIButton alloc]init];
+                ClicktoOpenUserProfileButton.frame = CGRectMake(20, heightcheck + 10, 40, 40);
+                [ClicktoOpenUserProfileButton setTitle:@"" forState:UIControlStateNormal];
+                ClicktoOpenUserProfileButton.backgroundColor = [UIColor clearColor];
+                ClicktoOpenUserProfileButton.tag = i;
+                [ClicktoOpenUserProfileButton addTarget:self action:@selector(OpenUserProfileOnClick:) forControlEvents:UIControlEventTouchUpInside];
+                [LocalScroll addSubview:ClicktoOpenUserProfileButton];
+                
+                
+                UILabel *ShowUserName = [[UILabel alloc]init];
+                ShowUserName.frame = CGRectMake(75, heightcheck + 10, 200, 40);
+                ShowUserName.text = [arrUserName objectAtIndex:i];
+                ShowUserName.backgroundColor = [UIColor clearColor];
+                ShowUserName.textColor = [UIColor whiteColor];
+                ShowUserName.textAlignment = NSTextAlignmentLeft;
+                ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+                [LocalScroll addSubview:ShowUserName];
+                
+                NSString *TempDistanceString = [[NSString alloc]initWithFormat:@"%@",[arrDistance objectAtIndex:i]];
+                
+                if ([TempDistanceString isEqualToString:@"0"]) {
+                    
+                }else{
+                    CGFloat strFloat = (CGFloat)[TempDistanceString floatValue] / 1000;
+                    int x_Nearby = [TempDistanceString intValue] / 1000;
+                    // NSLog(@"x_Nearby is %i",x_Nearby);
+                    
+                    UIImageView *ShowDistanceIcon = [[UIImageView alloc]init];
+                    NSString *FullShowLocatinString;
+                    if (x_Nearby < 10) {
+                        if (x_Nearby <= 1) {
+                            ShowDistanceIcon.image = [UIImage imageNamed:@"Distance2Icon.png"];
+                            FullShowLocatinString = [[NSString alloc]initWithFormat:@"1km"];//within
+                        }else{
+                            FullShowLocatinString = [[NSString alloc]initWithFormat:@"%.fkm",strFloat];
+                            ShowDistanceIcon.image = [UIImage imageNamed:@"Distance1Icon.png"];
+                        }
+                        
+                    }else if(x_Nearby > 10 && x_Nearby < 30){
+                        ShowDistanceIcon.image = [UIImage imageNamed:@"Distance3Icon.png"];
                         FullShowLocatinString = [[NSString alloc]initWithFormat:@"%.fkm",strFloat];
-                        ShowDistanceIcon.image = [UIImage imageNamed:@"Distance1Icon.png"];
+                    }else{
+                        ShowDistanceIcon.image = [UIImage imageNamed:@"Distance4Icon.png"];
+                        FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@",[arrDisplayCountryName objectAtIndex:i]];
+                        
+                    }
+                    ShowDistanceIcon.frame = CGRectMake(screenWidth - 60, heightcheck + 12, 40, 36);
+                    [LocalScroll addSubview:ShowDistanceIcon];
+                    
+                    UILabel *ShowDistance = [[UILabel alloc]init];
+                    ShowDistance.frame = CGRectMake(screenWidth - 165, heightcheck + 10, 100, 40);
+                    // ShowDistance.frame = CGRectMake(screenWidth - 115, 210 + heightcheck + i, 100, 20);
+                    ShowDistance.text = FullShowLocatinString;
+                    ShowDistance.textColor = [UIColor whiteColor];
+                    ShowDistance.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+                    ShowDistance.textAlignment = NSTextAlignmentRight;
+                    ShowDistance.backgroundColor = [UIColor clearColor];
+                    [LocalScroll addSubview:ShowDistance];
+                    
+                    
+                    
+                    
+                    
+                }
+                
+                
+                
+                heightcheck += newImage.size.height + 20;
+                TempCountWhiteHeight += newImage.size.height + 20;
+                
+                NSString *TempGetStirng = [[NSString alloc]initWithFormat:@"%@",[arrTitle objectAtIndex:i]];
+                if ([TempGetStirng length] == 0 || [TempGetStirng isEqualToString:@""] || [TempGetStirng isEqualToString:@"(null)"]) {
+                    
+                }else{
+                    UILabel *ShowTitle = [[UILabel alloc]init];
+                    ShowTitle.frame = CGRectMake(25, heightcheck, screenWidth - 50, 40 +5);
+                    ShowTitle.text = TempGetStirng;
+                    ShowTitle.backgroundColor = [UIColor clearColor];
+                    ShowTitle.numberOfLines = 2;
+                    ShowTitle.textAlignment = NSTextAlignmentLeft;
+                    ShowTitle.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+                    ShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:17];
+                    [LocalScroll addSubview:ShowTitle];
+                    
+                    if([ShowTitle sizeThatFits:CGSizeMake(screenWidth - 50, CGFLOAT_MAX)].height!=ShowTitle.frame.size.height)
+                    {
+                        ShowTitle.frame = CGRectMake(25, heightcheck, screenWidth - 50, 40 +20);
+                    }
+                    heightcheck += ShowTitle.frame.size.height + 5;
+                    
+                    TempCountWhiteHeight += ShowTitle.frame.size.height + 5;
+                }
+                
+                
+                UIImageView *ShowPin = [[UIImageView alloc]init];
+                ShowPin.image = [UIImage imageNamed:@"LocationpinIcon.png"];
+                ShowPin.frame = CGRectMake(20, heightcheck, 18, 18);
+                //ShowPin.frame = CGRectMake(15, 210 + 8 + heightcheck + i, 8, 11);
+                [LocalScroll addSubview:ShowPin];
+                
+                UILabel *ShowAddress = [[UILabel alloc]init];
+                ShowAddress.frame = CGRectMake(40, heightcheck , screenWidth - 80, 20);
+                ShowAddress.text = [arrAddress objectAtIndex:i];
+                ShowAddress.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
+                ShowAddress.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+                [LocalScroll addSubview:ShowAddress];
+                
+                heightcheck += 30;
+                TempCountWhiteHeight += 30;
+                
+                NSString *TempGetMessage = [[NSString alloc]initWithFormat:@"%@",[arrMessage objectAtIndex:i]];
+                //TempGetMessage = [TempGetMessage stringByDecodingXMLEntities];
+                if ([TempGetMessage length] == 0 || [TempGetMessage isEqualToString:@""] || [TempGetMessage isEqualToString:@"(null)"]) {
+                    
+                }else{
+                    UILabel *ShowMessage = [[UILabel alloc]init];
+                    ShowMessage.frame = CGRectMake(25, heightcheck + i, screenWidth - 40, 40);
+                    //  ShowMessage.text = TempGetMessage;
+                    NSString *TempGetStirngMessage = [[NSString alloc]initWithFormat:@"%@",TempGetMessage];
+                    NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"[]:"];
+                    TempGetStirngMessage = [[TempGetStirngMessage componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString:@""];
+                    UILabel *ShowCaptionText = [[UILabel alloc]init];
+                    //  ShowCaptionText.frame = CGRectMake(15 + i *screenWidth, 265, screenWidth - 30, 60);
+                    ShowCaptionText.numberOfLines = 0;
+                    ShowCaptionText.textColor = [UIColor whiteColor];
+                    // ShowCaptionText.text = [captionArray objectAtIndex:i];
+                    NSMutableAttributedString * string = [[NSMutableAttributedString alloc]initWithString:TempGetStirngMessage];
+                    NSString *str = TempGetStirngMessage;
+                    NSError *error = nil;
+                    
+                    //I Use regex to detect the pattern I want to change color
+                    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"#(\\w+)" options:0 error:&error];
+                    NSArray *matches = [regex matchesInString:str options:0 range:NSMakeRange(0, str.length)];
+                    for (NSTextCheckingResult *match in matches) {
+                        NSRange wordRange = [match rangeAtIndex:0];
+                        [string addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] range:wordRange];
                     }
                     
-                }else if(x_Nearby > 10 && x_Nearby < 30){
-                    ShowDistanceIcon.image = [UIImage imageNamed:@"Distance3Icon.png"];
-                    FullShowLocatinString = [[NSString alloc]initWithFormat:@"%.fkm",strFloat];
-                }else{
-                    ShowDistanceIcon.image = [UIImage imageNamed:@"Distance4Icon.png"];
-                    FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@",[arrDisplayCountryName objectAtIndex:i]];
+                    [ShowMessage setAttributedText:string];
                     
-                }
-                ShowDistanceIcon.frame = CGRectMake(screenWidth - 60, heightcheck + 12, 40, 36);
-                [LocalScroll addSubview:ShowDistanceIcon];
-
-                UILabel *ShowDistance = [[UILabel alloc]init];
-                ShowDistance.frame = CGRectMake(screenWidth - 165, heightcheck + 10, 100, 40);
-                // ShowDistance.frame = CGRectMake(screenWidth - 115, 210 + heightcheck + i, 100, 20);
-                ShowDistance.text = FullShowLocatinString;
-                ShowDistance.textColor = [UIColor whiteColor];
-                ShowDistance.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-                ShowDistance.textAlignment = NSTextAlignmentRight;
-                ShowDistance.backgroundColor = [UIColor clearColor];
-                [LocalScroll addSubview:ShowDistance];
-                
-                
-                
-                
-                
-            }
-            
-            
-            
-            heightcheck += newImage.size.height + 20;
-            TempCountWhiteHeight += newImage.size.height + 20;
-            
-            NSString *TempGetStirng = [[NSString alloc]initWithFormat:@"%@",[arrTitle objectAtIndex:i]];
-            if ([TempGetStirng length] == 0 || [TempGetStirng isEqualToString:@""] || [TempGetStirng isEqualToString:@"(null)"]) {
-                
-            }else{
-                UILabel *ShowTitle = [[UILabel alloc]init];
-                ShowTitle.frame = CGRectMake(25, heightcheck, screenWidth - 50, 40 +5);
-                ShowTitle.text = TempGetStirng;
-                ShowTitle.backgroundColor = [UIColor clearColor];
-                ShowTitle.numberOfLines = 2;
-                ShowTitle.textAlignment = NSTextAlignmentLeft;
-                ShowTitle.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-                ShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:17];
-                [LocalScroll addSubview:ShowTitle];
-                
-                if([ShowTitle sizeThatFits:CGSizeMake(screenWidth - 50, CGFLOAT_MAX)].height!=ShowTitle.frame.size.height)
-                {
-                    ShowTitle.frame = CGRectMake(25, heightcheck, screenWidth - 50, 40 +20);
-                }
-                heightcheck += ShowTitle.frame.size.height + 5;
-                
-                TempCountWhiteHeight += ShowTitle.frame.size.height + 5;
-            }
-            
-            
-            UIImageView *ShowPin = [[UIImageView alloc]init];
-            ShowPin.image = [UIImage imageNamed:@"LocationpinIcon.png"];
-            ShowPin.frame = CGRectMake(20, heightcheck, 18, 18);
-            //ShowPin.frame = CGRectMake(15, 210 + 8 + heightcheck + i, 8, 11);
-            [LocalScroll addSubview:ShowPin];
-            
-            UILabel *ShowAddress = [[UILabel alloc]init];
-            ShowAddress.frame = CGRectMake(40, heightcheck , screenWidth - 80, 20);
-            ShowAddress.text = [arrAddress objectAtIndex:i];
-            ShowAddress.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
-            ShowAddress.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-            [LocalScroll addSubview:ShowAddress];
-            
-            heightcheck += 30;
-            TempCountWhiteHeight += 30;
-            
-            NSString *TempGetMessage = [[NSString alloc]initWithFormat:@"%@",[arrMessage objectAtIndex:i]];
-            //TempGetMessage = [TempGetMessage stringByDecodingXMLEntities];
-            if ([TempGetMessage length] == 0 || [TempGetMessage isEqualToString:@""] || [TempGetMessage isEqualToString:@"(null)"]) {
-                
-            }else{
-                UILabel *ShowMessage = [[UILabel alloc]init];
-                ShowMessage.frame = CGRectMake(25, heightcheck + i, screenWidth - 40, 40);
-                //  ShowMessage.text = TempGetMessage;
-                NSString *TempGetStirngMessage = [[NSString alloc]initWithFormat:@"%@",TempGetMessage];
-                NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"[]:"];
-                TempGetStirngMessage = [[TempGetStirngMessage componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString:@""];
-                UILabel *ShowCaptionText = [[UILabel alloc]init];
-                //  ShowCaptionText.frame = CGRectMake(15 + i *screenWidth, 265, screenWidth - 30, 60);
-                ShowCaptionText.numberOfLines = 0;
-                ShowCaptionText.textColor = [UIColor whiteColor];
-                // ShowCaptionText.text = [captionArray objectAtIndex:i];
-                NSMutableAttributedString * string = [[NSMutableAttributedString alloc]initWithString:TempGetStirngMessage];
-                NSString *str = TempGetStirngMessage;
-                NSError *error = nil;
-                
-                //I Use regex to detect the pattern I want to change color
-                NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"#(\\w+)" options:0 error:&error];
-                NSArray *matches = [regex matchesInString:str options:0 range:NSMakeRange(0, str.length)];
-                for (NSTextCheckingResult *match in matches) {
-                    NSRange wordRange = [match rangeAtIndex:0];
-                    [string addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] range:wordRange];
+                    ShowMessage.backgroundColor = [UIColor clearColor];
+                    ShowMessage.numberOfLines = 3;
+                    ShowMessage.textAlignment = NSTextAlignmentLeft;
+                    ShowMessage.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+                    ShowMessage.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+                    [LocalScroll addSubview:ShowMessage];
+                    
+                    if([ShowMessage sizeThatFits:CGSizeMake(screenWidth - 50, CGFLOAT_MAX)].height!=ShowMessage.frame.size.height)
+                    {
+                        ShowMessage.frame = CGRectMake(25, heightcheck + i, screenWidth - 50,[ShowMessage sizeThatFits:CGSizeMake(screenWidth - 50, CGFLOAT_MAX)].height);
+                    }
+                    heightcheck += ShowMessage.frame.size.height + 5;
+                    TempCountWhiteHeight += ShowMessage.frame.size.height + 5;
+                    //   heightcheck += 30;
                 }
                 
-                [ShowMessage setAttributedText:string];
                 
-                ShowMessage.backgroundColor = [UIColor clearColor];
-                ShowMessage.numberOfLines = 3;
-                ShowMessage.textAlignment = NSTextAlignmentLeft;
-                ShowMessage.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
-                ShowMessage.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
-                [LocalScroll addSubview:ShowMessage];
+                //            UIImageView *ShowLikesIcon = [[UIImageView alloc]init];
+                //            ShowLikesIcon.image = [UIImage imageNamed:@"PostLike.png"];
+                //            ShowLikesIcon.frame = CGRectMake(40 , heightcheck + i + 20 ,23, 19);
+                //            //   ShowLikesIcon.backgroundColor = [UIColor purpleColor];
+                //            [LocalScroll addSubview:ShowLikesIcon];
                 
-                if([ShowMessage sizeThatFits:CGSizeMake(screenWidth - 50, CGFLOAT_MAX)].height!=ShowMessage.frame.size.height)
-                {
-                    ShowMessage.frame = CGRectMake(25, heightcheck + i, screenWidth - 50,[ShowMessage sizeThatFits:CGSizeMake(screenWidth - 50, CGFLOAT_MAX)].height);
+                UIButton *LikeButton = [[UIButton alloc]init];
+                LikeButton.frame = CGRectMake(20, heightcheck + 4, 37, 37);
+                CheckLike = [[NSString alloc]initWithFormat:@"%@",[arrlike objectAtIndex:i]];
+                if ([CheckLike isEqualToString:@"0"]) {
+                    [LikeButton setImage:[UIImage imageNamed:@"LikeIcon.png"] forState:UIControlStateNormal];
+                    [LikeButton setImage:[UIImage imageNamed:@"LikedIcon.png"] forState:UIControlStateSelected];
+                }else{
+                    [LikeButton setImage:[UIImage imageNamed:@"LikedIcon.png"] forState:UIControlStateNormal];
+                    [LikeButton setImage:[UIImage imageNamed:@"LikeIcon.png"] forState:UIControlStateSelected];
                 }
-                heightcheck += ShowMessage.frame.size.height + 5;
-                TempCountWhiteHeight += ShowMessage.frame.size.height + 5;
-                //   heightcheck += 30;
+                LikeButton.backgroundColor = [UIColor clearColor];
+                LikeButton.tag = i;
+                [LikeButton addTarget:self action:@selector(LikeButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+                [LocalScroll addSubview:LikeButton];
+                
+                
+                UIButton *CommentButton = [[UIButton alloc]init];
+                CommentButton.frame = CGRectMake(70, heightcheck + 4 ,37, 37);
+                [CommentButton setImage:[UIImage imageNamed:@"CommentIcon.png"] forState:UIControlStateNormal];
+                CommentButton.backgroundColor = [UIColor clearColor];
+                CommentButton.tag = i;
+                [CommentButton addTarget:self action:@selector(CommentButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+                [LocalScroll addSubview:CommentButton];
+                
+                //            UIImageView *ShowShareIcon = [[UIImageView alloc]init];
+                //            ShowShareIcon.image = [UIImage imageNamed:@"share_icon.png"];
+                //            ShowShareIcon.frame = CGRectMake(160, heightcheck + i + 20 ,19, 19);
+                //            //    ShowCommentIcon.backgroundColor = [UIColor redColor];
+                //            [LocalScroll addSubview:ShowShareIcon];
+                
+                UIButton *ShareButton = [[UIButton alloc]init];
+                ShareButton.frame = CGRectMake(122, heightcheck + 4 ,37, 37);
+                [ShareButton setImage:[UIImage imageNamed:@"ShareToIcon.png"] forState:UIControlStateNormal];
+                ShareButton.backgroundColor = [UIColor clearColor];
+                ShareButton.tag = i;
+                [ShareButton addTarget:self action:@selector(ShareButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+                [LocalScroll addSubview:ShareButton];
+                
+                
+                CheckCollect = [[NSString alloc]initWithFormat:@"%@",[arrCollect objectAtIndex:i]];;
+                UIButton *QuickCollectButton = [[UIButton alloc]init];
+                if ([CheckCollect isEqualToString:@"0"]) {
+                    [QuickCollectButton setImage:[UIImage imageNamed:LocalisedString(@"CollectBtn.png")] forState:UIControlStateNormal];
+                    [QuickCollectButton setImage:[UIImage imageNamed:@"CollectedBtn.png"] forState:UIControlStateSelected];
+                }else{
+                    [QuickCollectButton setImage:[UIImage imageNamed:@"CollectedBtn.png"] forState:UIControlStateNormal];
+                }
+                // [QuickCollectButton setImage:[UIImage imageNamed:@"CollectBtn.png"] forState:UIControlStateNormal];
+                [QuickCollectButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+                [QuickCollectButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
+                QuickCollectButton.backgroundColor = [UIColor clearColor];
+                QuickCollectButton.frame = CGRectMake(screenWidth - 20 - 140, heightcheck -5, 140, 50);
+                [QuickCollectButton addTarget:self action:@selector(CollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+                QuickCollectButton.tag = i;
+                QuickCollectButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+                [LocalScroll addSubview:QuickCollectButton];
+                
+                UIButton *CollectButton = [[UIButton alloc]init];
+                [CollectButton setTitle:@"" forState:UIControlStateNormal];
+                CollectButton.backgroundColor = [UIColor clearColor];
+                CollectButton.frame = CGRectMake(screenWidth - 20 - 60, heightcheck - 5, 60, 37);
+                [CollectButton addTarget:self action:@selector(AddCollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+                CollectButton.tag = i;
+                [LocalScroll addSubview:CollectButton];
+                
+                
+                heightcheck += 55;
+                TempCountWhiteHeight += 55;
+                
+                
+                TempButton.frame = CGRectMake(10, TempHeight, screenWidth - 20, TempCountWhiteHeight);
+                
+                heightcheck += 10;
+                
             }
-            
-            
-//            UIImageView *ShowLikesIcon = [[UIImageView alloc]init];
-//            ShowLikesIcon.image = [UIImage imageNamed:@"PostLike.png"];
-//            ShowLikesIcon.frame = CGRectMake(40 , heightcheck + i + 20 ,23, 19);
-//            //   ShowLikesIcon.backgroundColor = [UIColor purpleColor];
-//            [LocalScroll addSubview:ShowLikesIcon];
-            
-            UIButton *LikeButton = [[UIButton alloc]init];
-            LikeButton.frame = CGRectMake(20, heightcheck + 4, 37, 37);
-            CheckLike = [[NSString alloc]initWithFormat:@"%@",[arrlike objectAtIndex:i]];
-            if ([CheckLike isEqualToString:@"0"]) {
-                [LikeButton setImage:[UIImage imageNamed:@"LikeIcon.png"] forState:UIControlStateNormal];
-                [LikeButton setImage:[UIImage imageNamed:@"LikedIcon.png"] forState:UIControlStateSelected];
-            }else{
-                [LikeButton setImage:[UIImage imageNamed:@"LikedIcon.png"] forState:UIControlStateNormal];
-                [LikeButton setImage:[UIImage imageNamed:@"LikeIcon.png"] forState:UIControlStateSelected];
-            }
-            LikeButton.backgroundColor = [UIColor clearColor];
-            LikeButton.tag = i;
-            [LikeButton addTarget:self action:@selector(LikeButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
-            [LocalScroll addSubview:LikeButton];
-            
-            
-            UIButton *CommentButton = [[UIButton alloc]init];
-            CommentButton.frame = CGRectMake(70, heightcheck + 4 ,37, 37);
-            [CommentButton setImage:[UIImage imageNamed:@"CommentIcon.png"] forState:UIControlStateNormal];
-            CommentButton.backgroundColor = [UIColor clearColor];
-            CommentButton.tag = i;
-            [CommentButton addTarget:self action:@selector(CommentButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
-            [LocalScroll addSubview:CommentButton];
-            
-//            UIImageView *ShowShareIcon = [[UIImageView alloc]init];
-//            ShowShareIcon.image = [UIImage imageNamed:@"share_icon.png"];
-//            ShowShareIcon.frame = CGRectMake(160, heightcheck + i + 20 ,19, 19);
-//            //    ShowCommentIcon.backgroundColor = [UIColor redColor];
-//            [LocalScroll addSubview:ShowShareIcon];
-            
-            UIButton *ShareButton = [[UIButton alloc]init];
-            ShareButton.frame = CGRectMake(122, heightcheck + 4 ,37, 37);
-            [ShareButton setImage:[UIImage imageNamed:@"ShareToIcon.png"] forState:UIControlStateNormal];
-            ShareButton.backgroundColor = [UIColor clearColor];
-            ShareButton.tag = i;
-            [ShareButton addTarget:self action:@selector(ShareButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
-            [LocalScroll addSubview:ShareButton];
-            
-            
-            CheckCollect = [[NSString alloc]initWithFormat:@"%@",[arrCollect objectAtIndex:i]];;
-            UIButton *QuickCollectButton = [[UIButton alloc]init];
-            if ([CheckCollect isEqualToString:@"0"]) {
-                [QuickCollectButton setImage:[UIImage imageNamed:LocalisedString(@"CollectBtn.png")] forState:UIControlStateNormal];
-                [QuickCollectButton setImage:[UIImage imageNamed:@"CollectedBtn.png"] forState:UIControlStateSelected];
-            }else{
-                [QuickCollectButton setImage:[UIImage imageNamed:@"CollectedBtn.png"] forState:UIControlStateNormal];
-            }
-           // [QuickCollectButton setImage:[UIImage imageNamed:@"CollectBtn.png"] forState:UIControlStateNormal];
-            [QuickCollectButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
-            [QuickCollectButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
-            QuickCollectButton.backgroundColor = [UIColor clearColor];
-            QuickCollectButton.frame = CGRectMake(screenWidth - 20 - 140, heightcheck -5, 140, 50);
-            [QuickCollectButton addTarget:self action:@selector(CollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
-            QuickCollectButton.tag = i;
-            QuickCollectButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-            [LocalScroll addSubview:QuickCollectButton];
-            
-            UIButton *CollectButton = [[UIButton alloc]init];
-            [CollectButton setTitle:@"" forState:UIControlStateNormal];
-            CollectButton.backgroundColor = [UIColor clearColor];
-            CollectButton.frame = CGRectMake(screenWidth - 20 - 60, heightcheck - 5, 60, 37);
-            [CollectButton addTarget:self action:@selector(AddCollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
-            CollectButton.tag = i;
-            [LocalScroll addSubview:CollectButton];
-            
-            
-            heightcheck += 55;
-            TempCountWhiteHeight += 55;
-            
-            
-            TempButton.frame = CGRectMake(10, TempHeight, screenWidth - 20, TempCountWhiteHeight);
-            
-            heightcheck += 10;
-            
         }
+        
+        [LocalScroll setContentSize:CGSizeMake(screenWidth, heightcheck + 169 + 50)];
+        
+        
+        //    UIButton *NearbyButton = [[UIButton alloc]init];
+        //    NearbyButton.frame = CGRectMake((screenWidth / 2) - 60, 105, 120, 37);
+        //    [NearbyButton setImage:[UIImage imageNamed:@"nearby_btn.png"] forState:UIControlStateNormal];
+        //    NearbyButton.backgroundColor = [UIColor clearColor];
+        //    [NearbyButton addTarget:self action:@selector(NearbyButton:) forControlEvents:UIControlEventTouchUpInside];
+        //    [self.view addSubview: NearbyButton];
+        
+        [self performSelectorOnMainThread:@selector(timerCalled) withObject:nil waitUntilDone:NO];
+    }else{
+    [self performSelectorOnMainThread:@selector(timerCalled) withObject:nil waitUntilDone:NO];
     }
     
-    [LocalScroll setContentSize:CGSizeMake(screenWidth, heightcheck + 169 + 50)];
-
     
-//    UIButton *NearbyButton = [[UIButton alloc]init];
-//    NearbyButton.frame = CGRectMake((screenWidth / 2) - 60, 105, 120, 37);
-//    [NearbyButton setImage:[UIImage imageNamed:@"nearby_btn.png"] forState:UIControlStateNormal];
-//    NearbyButton.backgroundColor = [UIColor clearColor];
-//    [NearbyButton addTarget:self action:@selector(NearbyButton:) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview: NearbyButton];
-
-     [self performSelectorOnMainThread:@selector(timerCalled) withObject:nil waitUntilDone:NO];
 
 }
 
