@@ -122,39 +122,75 @@
         [self.ibImage sd_setImageWithURL:[NSURL URLWithString:self.model.imageURL]];
     }
     self.txtDescription.text = self.model.caption;
-    [self updateString:self.model.caption textView:self.txtDescription];
+    [self getCounterText:self.lblWordCount maxCount:MAX_TEXT_COUNT textInputCount:(int)self.self.txtDescription.text.length];
 
 }
 
--(void)updateString:(NSString*)aText textView:(UITextView*)txtView
-{
-    
-    if(aText)
-    {
-        txtView.attributedText = [aText bos_makeString:^(BOStringMaker *make) {
-            make.foregroundColor([UIColor redColor]);
-            make.font([Utils defaultFont]);
-            
-            make.with.range(NSMakeRange(0, txtView.text.length>=MAX_TEXT_COUNT?MAX_TEXT_COUNT:txtView.text.length), ^{
-                make.foregroundColor([Utils defaultTextColor]);
-            });
-            
-        }];
-    }
-    self.lblWordCount.text = [NSString stringWithFormat:@"%lu",(unsigned long)txtView.text.length];
+//-(void)updateString:(NSString*)aText textView:(UITextView*)txtView
+//{
+//    
+//    if(aText)
+//    {
+//        txtView.attributedText = [aText bos_makeString:^(BOStringMaker *make) {
+//            make.foregroundColor([UIColor redColor]);
+//            make.font([Utils defaultFont]);
+//            
+//            make.with.range(NSMakeRange(0, txtView.text.length>=MAX_TEXT_COUNT?MAX_TEXT_COUNT:txtView.text.length), ^{
+//                make.foregroundColor([Utils defaultTextColor]);
+//            });
+//            
+//        }];
+//    }
+//    self.lblWordCount.text = [NSString stringWithFormat:@"%lu",(unsigned long)txtView.text.length];
+//
+//}
 
+
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if (textView.text.length >= MAX_TEXT_COUNT) {
+        
+        if ([text isEqualToString:@""]) {
+            return YES;
+            
+        }
+        return NO;
+        
+    }
+    else{
+        return YES;
+    }
 }
 
 - (void)textViewDidChange:(UITextView *)textView
 {
     
+    if (textView.text.length >= MAX_TEXT_COUNT) {
+        NSString *currentString = [textView.text substringWithRange:NSMakeRange(0, textView.text.length>=MAX_TEXT_COUNT?MAX_TEXT_COUNT:textView.text.length)];
+        
+        textView.text = currentString;
+        
+    }
+    [self getCounterText:self.lblWordCount maxCount:MAX_TEXT_COUNT textInputCount:(int)textView.text.length];
+    
+}
 
-    NSString *currentString = [textView.text substringWithRange:NSMakeRange(0, textView.text.length>=MAX_TEXT_COUNT+EXTRA_TEXT_COUNT?MAX_TEXT_COUNT+EXTRA_TEXT_COUNT:textView.text.length)];
+
+-(void)getCounterText:(UILabel*)label  maxCount:(int)maxCount textInputCount:(int)txtCount
+{
+    if (txtCount>maxCount) {
+        
+        label.textColor = [UIColor redColor];
+    }
+    else{
+        
+        label.textColor = [Utils defaultTextColor];
+        
+    }
     
-    [self updateString:currentString textView:textView];
+    label.text = [NSString stringWithFormat:@"%d/%d",txtCount,maxCount];
     
-    self.model.caption = self.txtDescription.text;
-  
 }
 
 -(void)changeLanguage

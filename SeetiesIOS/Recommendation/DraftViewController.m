@@ -10,7 +10,6 @@
 #import "EditPostViewController.h"
 #import "MGSwipeButton.h"
 
-
 @interface DraftViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray* arrDraftList;
@@ -20,6 +19,7 @@
 @end
 
 @implementation DraftViewController
+
 - (IBAction)btnBackClicked:(id)sender {
     
     if (_backBlock) {
