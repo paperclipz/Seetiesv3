@@ -170,7 +170,7 @@
         GetEmail = EmailField.text;
         GetUsername = UsernameField.text;
         GetPassword = PasswordField.text;
-        UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"Terms & Conditions" message:@"I agree to Seeties' Terms of Use & Privacy Notice" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Agree", nil];
+        UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Provisioning_PTnC_5", nil) message:NSLocalizedString(@"Provisioning_PTnC_6", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"Agree", nil), nil];
         ShowAlert.tag = 1000;
         [ShowAlert show];
     }
