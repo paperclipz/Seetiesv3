@@ -43,7 +43,7 @@
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight);
-    [MainScroll setContentSize:CGSizeMake(screenWidth * 5, screenHeight)];
+    [MainScroll setContentSize:CGSizeMake(screenWidth * 5, 480)];
     
     Feed1View.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     Feed1Img.frame = CGRectMake(0, 0, screenWidth, screenHeight);
@@ -121,26 +121,26 @@
     [self.view addSubview:pageControl];
 
     
-//    self.locationManager = [[CLLocationManager alloc]init];
-//    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-//    self.locationManager.delegate = self;
-//    self.locationManager.distanceFilter = 10;
-//    if(IS_OS_8_OR_LATER){
-//        NSUInteger code = [CLLocationManager authorizationStatus];
-//        if (code == kCLAuthorizationStatusNotDetermined && ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)] || [self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])) {
-//            // choose one request according to your business.
-//            if([[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationAlwaysUsageDescription"]){
-//                [self.locationManager requestAlwaysAuthorization];
-//                [self.locationManager startUpdatingLocation];
-//            } else if([[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationWhenInUseUsageDescription"]) {
-//                [self.locationManager  requestWhenInUseAuthorization];
-//                [self.locationManager startUpdatingLocation];
-//            } else {
-//                NSLog(@"Info.plist does not contain NSLocationAlwaysUsageDescription or NSLocationWhenInUseUsageDescription");
-//            }
-//        }
-//    }
-//    [self.locationManager startUpdatingLocation];
+    self.locationManager = [[CLLocationManager alloc]init];
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.locationManager.delegate = self;
+    self.locationManager.distanceFilter = 10;
+    if(IS_OS_8_OR_LATER){
+        NSUInteger code = [CLLocationManager authorizationStatus];
+        if (code == kCLAuthorizationStatusNotDetermined && ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)] || [self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])) {
+            // choose one request according to your business.
+            if([[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationAlwaysUsageDescription"]){
+                [self.locationManager requestAlwaysAuthorization];
+                [self.locationManager startUpdatingLocation];
+            } else if([[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationWhenInUseUsageDescription"]) {
+                [self.locationManager  requestWhenInUseAuthorization];
+                [self.locationManager startUpdatingLocation];
+            } else {
+                NSLog(@"Info.plist does not contain NSLocationAlwaysUsageDescription or NSLocationWhenInUseUsageDescription");
+            }
+        }
+    }
+    [self.locationManager startUpdatingLocation];
     
     
     

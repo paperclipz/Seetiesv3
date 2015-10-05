@@ -1228,11 +1228,14 @@
     
 }
 -(void)GetCollectionData{
-    ShowActivityCollection = [[UIActivityIndicatorView alloc]init];
-    ShowActivityCollection.frame = CGRectMake(30, ProfileControl.frame.origin.y + 105 , 20, 20);
-    [ShowActivityCollection setColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f]];
-    [MainScroll addSubview:ShowActivityCollection];
-    [ShowActivityCollection startAnimating];
+
+    if (CheckFirstTimeLoadCollection == 0) {
+        ShowActivityCollection = [[UIActivityIndicatorView alloc]init];
+        ShowActivityCollection.frame = CGRectMake(30, ProfileControl.frame.origin.y + 105 , 20, 20);
+        [ShowActivityCollection setColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f]];
+        [MainScroll addSubview:ShowActivityCollection];
+        [ShowActivityCollection startAnimating];
+    }
     
     if (CurrentPage_Collection == TotalPage_Collection) {
         
@@ -1264,11 +1267,14 @@
 -(void)GetPostsData{
     
     SLog(@"GetPostsData");
-    ShowActivityPosts = [[UIActivityIndicatorView alloc]init];
-    ShowActivityPosts.frame = CGRectMake(ProfileControl.frame.origin.x + 125, ProfileControl.frame.origin.y + 105 , 20, 20);
-    [ShowActivityPosts setColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f]];
-    [MainScroll addSubview:ShowActivityPosts];
-    [ShowActivityPosts startAnimating];
+
+    if (CheckFirstTimeLoadPost == 0) {
+        ShowActivityPosts = [[UIActivityIndicatorView alloc]init];
+        ShowActivityPosts.frame = CGRectMake(ProfileControl.frame.origin.x + 125, ProfileControl.frame.origin.y + 105 , 20, 20);
+        [ShowActivityPosts setColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f]];
+        [MainScroll addSubview:ShowActivityPosts];
+        [ShowActivityPosts startAnimating];
+    }
     
     if (CurrentPage_Post == TotalPage_Post) {
         

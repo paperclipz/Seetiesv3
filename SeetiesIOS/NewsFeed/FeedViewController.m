@@ -407,6 +407,16 @@
 -(void)LoadDataView{
     NSLog(@"Load Local Data");
     
+    UIRefreshControl *refreshControl_ = [[UIRefreshControl alloc] init];
+    refreshControl_.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    refreshControl_.bounds = CGRectMake(refreshControl_.bounds.origin.x - 20,
+                                       0,
+                                       refreshControl_.bounds.size.width,
+                                       refreshControl_.bounds.size.height);
+    // refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Loading..."];
+    [refreshControl_ addTarget:self action:@selector(testRefresh) forControlEvents:UIControlEventValueChanged];
+    [LocalScroll addSubview:refreshControl_];
+    
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
     UIImageView *NearbyImg = [[UIImageView alloc]init];

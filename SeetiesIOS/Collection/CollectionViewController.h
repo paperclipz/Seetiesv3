@@ -16,6 +16,7 @@
     IBOutlet UIButton *MoreButton;
     IBOutlet UIView *DownBarView;
     IBOutlet UIButton *ShareButton;
+    IBOutlet UIImageView *ShowBar;
     
     NSString *GetID;
     

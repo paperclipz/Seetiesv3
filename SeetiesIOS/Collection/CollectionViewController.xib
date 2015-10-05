@@ -14,8 +14,9 @@
             <connections>
                 <outlet property="DownBarView" destination="soE-9o-KtM" id="Lt8-8r-Ndj"/>
                 <outlet property="MainScroll" destination="aNQ-3B-AGM" id="Vb3-MW-KCS"/>
-                <outlet property="ShareButton" destination="37c-rl-oNM" id="YR9-WS-WFo"/>
+                <outlet property="ShareButton" destination="XlD-zj-Vk9" id="8wx-mS-HA6"/>
                 <outlet property="ShowActivity" destination="HQ3-Of-TfP" id="p7A-R5-5lQ"/>
+                <outlet property="ShowBar" destination="rHX-T1-dQx" id="hNt-Wt-UBn"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -29,10 +30,24 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.91372549020000005" green="0.92941176469999998" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                 </scrollView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TitleBar.png" id="rHX-T1-dQx">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackIcon.png" id="kdZ-Yd-1EK">
                     <rect key="frame" x="0.0" y="22" width="40" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="XlD-zj-Vk9">
+                    <rect key="frame" x="270" y="22" width="50" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="ProfileShareIcon.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="ShareButtonOnClick:" destination="-1" eventType="touchUpInside" id="5Wj-Pu-wFS"/>
+                    </connections>
+                </button>
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" id="HQ3-Of-TfP">
                     <rect key="frame" x="219" y="149" width="37" height="37"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -78,9 +93,6 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="ProximaNovaSoft-Bold" family="Proxima Nova Soft" pointSize="15"/>
                     <state key="normal" title="Share" backgroundImage="ShareBase.png"/>
-                    <connections>
-                        <action selector="ShareButtonOnClick:" destination="-1" eventType="touchUpInside" id="5NY-16-Vj1"/>
-                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -89,7 +101,9 @@
     <resources>
         <image name="BackIcon.png" width="40" height="40"/>
         <image name="CollectionLink.png" width="42" height="42"/>
+        <image name="ProfileShareIcon.png" width="40" height="40"/>
         <image name="ShareBase.png" width="120" height="50"/>
+        <image name="TitleBar.png" width="310" height="64"/>
         <image name="TranslateIcon.png" width="42" height="42"/>
     </resources>
 </document>

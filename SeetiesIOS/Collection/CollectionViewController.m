@@ -8,6 +8,7 @@
 
 #import "CollectionViewController.h"
 #import "FeedV2DetailViewController.h"
+#import "ShareViewController.h"
 @interface CollectionViewController ()
 
 @end
@@ -31,7 +32,9 @@
     
     DownBarView.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
     DownBarView.hidden = YES;
-    ShareButton.frame = CGRectMake(screenWidth - 130, 0, 120, 50);
+    ShareButton.frame = CGRectMake(screenWidth - 50, 22, 50, 40);
+    
+    ShowBar.frame = CGRectMake(0, -64, screenWidth, 64);
     
     CheckLoad = NO;
     TotalPage = 1;
@@ -539,6 +542,14 @@
         }
         [ListView addSubview:ShowImage];
         
+        UIImageView *ShowOverlayImg = [[UIImageView alloc]init];
+        ShowOverlayImg.image = [UIImage imageNamed:@"FeedOverlay.png"];
+        ShowOverlayImg.frame = CGRectMake(20, TempHeight, screenWidth - 40, 180);
+        ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
+        ShowOverlayImg.layer.masksToBounds = YES;
+        ShowOverlayImg.layer.cornerRadius = 5;
+        [ListView addSubview:ShowOverlayImg];
+        
         NSString *TempGetStirng = [[NSString alloc]initWithFormat:@"%@",[Content_arrTitle objectAtIndex:i]];
         if ([TempGetStirng length] == 0 || [TempGetStirng isEqualToString:@""] || [TempGetStirng isEqualToString:@"(null)"]) {
             
@@ -697,6 +708,10 @@
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);
     
+    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight, screenWidth, 50);
+    
     FeedV2DetailViewController *vc = [[FeedV2DetailViewController alloc] initWithNibName:@"FeedV2DetailViewController" bundle:nil];
     
     [self.navigationController pushViewController:vc animated:YES];
@@ -733,7 +748,46 @@
         
     }
 }
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    if(scrollView == MainScroll){
+        //NSLog(@"scrollview run here");
+        
+        float heightcheck_ = MainScroll.contentOffset.y;
+        
+        if (heightcheck_ > 64) {
+            [UIView animateWithDuration:0.2
+                                  delay:0
+                                options:UIViewAnimationOptionCurveEaseIn
+                             animations:^{
+                                 ShowBar.frame = CGRectMake(0, 0, screenWidth, 64);
+                             }
+                             completion:^(BOOL finished) {
+                             }];
+        }else{
+            [UIView animateWithDuration:0.2
+                                  delay:0
+                                options:UIViewAnimationOptionCurveEaseIn
+                             animations:^{
+                                 ShowBar.frame = CGRectMake(0, -64, screenWidth, 64);
+                             }
+                             completion:^(BOOL finished) {
+                             }];
+        }
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+}
 -(IBAction)ShareButtonOnClick:(id)sender{
+    ShareViewController *ShareView = [[ShareViewController alloc]init];
+    [self presentViewController:ShareView animated:YES completion:nil];
+    [ShareView GetCollectionID:GetID];
 }
 -(IBAction)ShareLinkButtonOnClick:(id)sender{
 }
