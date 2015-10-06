@@ -109,6 +109,9 @@
 -(void)initSelfView
 {
     
+    [self.txtName addTarget:self
+                      action:@selector(textFieldDidChange:)
+            forControlEvents:UIControlEventEditingChanged];
     
     [Utils setRoundBorder:self.txtDesc color:[UIColor lightGrayColor] borderRadius:5.0f borderWidth:0.5f];
     [self.ibScrollView addSubview:self.ibContentView];
@@ -181,18 +184,62 @@
 }
 
 #pragma mark - UITextfield delegate
+
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     
-    [self getCounterText:self.lblWordCountTitle maxCount:TITLE_MAX_COUNT textInputCount:(int)textField.text.length];
-    
-    return YES;
+    if (textField.text.length >= TITLE_MAX_COUNT) {
+        if ([string isEqualToString:@""]) {
+            return YES;
+            
+        }
+        return NO;
+    }
+    else{
+        return YES;
+    }
 }
 
+- (void)textFieldDidChange:(UITextField *)textField
+{
+    
+    if (textField.text.length>=TITLE_MAX_COUNT) {
+        
+        NSString *currentString = [textField.text substringWithRange:NSMakeRange(0, textField.text.length>=TITLE_MAX_COUNT?TITLE_MAX_COUNT:textField.text.length)];
+        
+        textField.text = currentString;
+    }
+    
+    
+    [self getCounterText:self.lblWordCountTitle maxCount:TITLE_MAX_COUNT textInputCount:(int)textField.text.length];
+    
+}
+#pragma mark - UITextView Delegate
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if (textView.text.length >= DESC_MAX_COUNT) {
+        
+        if ([text isEqualToString:@""]) {
+            return YES;
+            
+        }
+        return NO;
+        
+    }
+    else{
+        return YES;
+    }
+}
 
 - (void)textViewDidChange:(UITextView *)textView
 {
     
+    if (textView.text.length >= DESC_MAX_COUNT) {
+        NSString *currentString = [textView.text substringWithRange:NSMakeRange(0, textView.text.length>=DESC_MAX_COUNT?DESC_MAX_COUNT:textView.text.length)];
+        
+        textView.text = currentString;
+        
+    }
     [self getCounterText:self.lblWordCountDesc maxCount:DESC_MAX_COUNT textInputCount:(int)textView.text.length];
     
 }
