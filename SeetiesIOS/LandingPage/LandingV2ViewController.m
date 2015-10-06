@@ -595,8 +595,11 @@
     ShowNotificationCount.textAlignment = NSTextAlignmentCenter;
     ShowNotificationCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:14];
     
+  
     [_leveyTabBarController.view addSubview:ShowNotificationCount];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(UpdateNotificationData) name:@"CHANGE_NOTIFICATION_COUNT" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(HideNotification) name:@"CHANGE_NOTIFICATION_HIDE" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(HideNotification) name:@"CHANGE_NOTIFICATION_SHOW" object:nil];
     
 }
 -(void)UpdateNotificationData{
@@ -605,6 +608,12 @@
     ShowNotificationCount.hidden = YES;
     [ShowNotificationCount removeFromSuperview];
     [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(GetNotificationData) userInfo:nil repeats:YES];
+}
+-(void)HideNotification{
+     ShowNotificationCount.hidden = YES;
+}
+-(void)ShowNotification{
+     ShowNotificationCount.hidden = NO;
 }
 
 -(void)GetNotificationData{

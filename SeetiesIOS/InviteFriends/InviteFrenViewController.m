@@ -169,11 +169,18 @@
     //CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-    UIButton *Background = [[UIButton alloc]init];
-    Background.frame = CGRectMake(0, 0, screenWidth, 200);
-    [Background setTitle:@"" forState:UIControlStateNormal];
-    Background.backgroundColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
-    [InviteScroll addSubview:Background];
+//    UIButton *Background = [[UIButton alloc]init];
+//    Background.frame = CGRectMake(0, 0, screenWidth, 200);
+//    [Background setTitle:@"" forState:UIControlStateNormal];
+//    Background.backgroundColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
+//    [InviteScroll addSubview:Background];
+    
+    UIImageView *ImgBackground = [[UIImageView alloc]init];
+    ImgBackground.frame = CGRectMake(0, 0, screenWidth, 200);
+    ImgBackground.image = [UIImage imageNamed:@"InviteFriendsBgImg.png"];
+    ImgBackground.backgroundColor = [UIColor clearColor];
+    ImgBackground.clipsToBounds = YES;
+    [InviteScroll addSubview:ImgBackground];
     
     ShowOtherText_1.frame = CGRectMake((screenWidth / 2) - 150, 10, 300, 40);
     ShowOtherText_1.text = LocalisedString(@"The more, the merrier!");
@@ -183,66 +190,66 @@
     [InviteScroll addSubview:ShowOtherText_1];
     
     UIButton *WhiteBackground = [[UIButton alloc]init];
-    WhiteBackground.frame = CGRectMake(30, 150, screenWidth - 60, 500);
+    WhiteBackground.frame = CGRectMake(30, 170, screenWidth - 60, 500);
     [WhiteBackground setTitle:@"" forState:UIControlStateNormal];
     WhiteBackground.backgroundColor = [UIColor whiteColor];
     WhiteBackground.layer.cornerRadius = 5;
     [InviteScroll addSubview:WhiteBackground];
     
     UIImageView *ShowBigIcon = [[UIImageView alloc]init];
-    ShowBigIcon.frame = CGRectMake((screenWidth /2) - 63, 60, 125, 125);
-    ShowBigIcon.image = [UIImage imageNamed:@"InviteGraphic.png"];
+    ShowBigIcon.frame = CGRectMake((screenWidth /2) - 89, 60, 178, 123);
+    ShowBigIcon.image = [UIImage imageNamed:@"InviteFriendsGraphic.png"];
     ShowBigIcon.backgroundColor = [UIColor clearColor];
     [InviteScroll addSubview:ShowBigIcon];
     
     
     UIImageView *ShowWhatsappIcon = [[UIImageView alloc]init];
-    ShowWhatsappIcon.frame = CGRectMake(60, 170 + 2, 50, 50);
+    ShowWhatsappIcon.frame = CGRectMake(60, 190 + 2, 50, 50);
     ShowWhatsappIcon.image = [UIImage imageNamed:@"InviteWhatsappIcon.png"];
     [InviteScroll addSubview:ShowWhatsappIcon];
     
-    WhatsappButton.frame = CGRectMake(118 , 170, screenWidth - 158, 55);
+    WhatsappButton.frame = CGRectMake(118 , 190, screenWidth - 158, 55);
     [WhatsappButton setTitle:LocalisedString(@"via Whatsapp") forState:UIControlStateNormal];
     [InviteScroll addSubview:WhatsappButton];
     
     UIButton *Line01 = [[UIButton alloc]init];
-    Line01.frame = CGRectMake(138, 225, screenWidth - 178, 1);
+    Line01.frame = CGRectMake(138, 245, screenWidth - 178, 1);
     [Line01 setTitle:@"" forState:UIControlStateNormal];
     Line01.backgroundColor = [UIColor colorWithRed:232.0f/255.0f green:232.0f/255.0f blue:232.0f/255.0f alpha:1.0f];
     [InviteScroll addSubview:Line01];
     
     UIImageView *ShowFBMessagerIcon = [[UIImageView alloc]init];
-    ShowFBMessagerIcon.frame = CGRectMake(60, 225 + 2, 50, 50);
+    ShowFBMessagerIcon.frame = CGRectMake(60, 245 + 2, 50, 50);
     ShowFBMessagerIcon.image = [UIImage imageNamed:@"InviteMessengarIcon.png"];
     [InviteScroll addSubview:ShowFBMessagerIcon];
 
-    FbMessagerButton.frame = CGRectMake(118, 225, screenWidth - 158, 55);
+    FbMessagerButton.frame = CGRectMake(118, 245, screenWidth - 158, 55);
     [FbMessagerButton setTitle:LocalisedString(@"via Messenger") forState:UIControlStateNormal];
     [InviteScroll addSubview:FbMessagerButton];
     
     UIButton *Line02 = [[UIButton alloc]init];
-    Line02.frame = CGRectMake(138, 280, screenWidth - 178, 1);
+    Line02.frame = CGRectMake(138, 300, screenWidth - 178, 1);
     [Line02 setTitle:@"" forState:UIControlStateNormal];
     Line02.backgroundColor = [UIColor colorWithRed:232.0f/255.0f green:232.0f/255.0f blue:232.0f/255.0f alpha:1.0f];
     [InviteScroll addSubview:Line02];
     
     UIImageView *ShowlineIcon = [[UIImageView alloc]init];
-    ShowlineIcon.frame = CGRectMake(60, 280 + 2, 50, 50);
+    ShowlineIcon.frame = CGRectMake(60, 300 + 2, 50, 50);
     ShowlineIcon.image = [UIImage imageNamed:@"InviteLineIcon.png"];
     [InviteScroll addSubview:ShowlineIcon];
     
-    TrueLineButton.frame = CGRectMake(118, 280, screenWidth - 158, 55);
+    TrueLineButton.frame = CGRectMake(118, 300, screenWidth - 158, 55);
     [TrueLineButton setTitle:LocalisedString(@"via LINE") forState:UIControlStateNormal];
     [InviteScroll addSubview:TrueLineButton];
 
     UIButton *Line03 = [[UIButton alloc]init];
-    Line03.frame = CGRectMake(60, 350, screenWidth - 120, 1);
+    Line03.frame = CGRectMake(60, 370, screenWidth - 120, 1);
     [Line03 setTitle:@"" forState:UIControlStateNormal];
     Line03.backgroundColor = [UIColor colorWithRed:232.0f/255.0f green:232.0f/255.0f blue:232.0f/255.0f alpha:1.0f];
     [InviteScroll addSubview:Line03];
     
     
-    SMSButton.frame = CGRectMake(60, 350, screenWidth - 120, 55);
+    SMSButton.frame = CGRectMake(60, 370, screenWidth - 120, 55);
     [SMSButton setTitle:LocalisedString(@"Send SMS") forState:UIControlStateNormal];
     [InviteScroll addSubview:SMSButton];
 

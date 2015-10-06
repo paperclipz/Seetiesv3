@@ -46,6 +46,9 @@
     NSString *GetLanguage2;
     NSString *GetLanguage2_ID;
     
+    NSString *GetFBID;
+    NSString *GetInstaID;
+    
     int CheckSystemLanguage;
     int CheckLangauge1;
     int CheckLanguage2;
