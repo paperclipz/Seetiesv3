@@ -112,6 +112,7 @@
     MainNearbyButton.hidden = YES;
     
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
+    
 }
 -(IBAction)TryAgainButton:(id)sender{
     self.locationManager = [[CLLocationManager alloc]init];
@@ -2666,7 +2667,7 @@
         NSError *myError = nil;
         NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
         
-        SLog(@"GG : %@",res);
+        //SLog(@"GG : %@",res);
         if ([res count] == 0) {
             NSLog(@"Server Error.");
             UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:CustomLocalisedString(@"SomethingError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];

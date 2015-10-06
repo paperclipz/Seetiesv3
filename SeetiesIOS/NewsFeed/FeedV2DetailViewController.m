@@ -1351,6 +1351,7 @@
                 SelfCheckLikeArray_Nearby = [[NSMutableArray alloc]init];
                 TotalLikeArray_Nearby = [[NSMutableArray alloc]init];
                 TotalCommentArray_Nearby = [[NSMutableArray alloc]init];
+                SelfCheckCollectArray_Nearby = [[NSMutableArray alloc]init];
                 for (NSDictionary * dict in GetAllData) {
                     NSString *PlaceID = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"post_id"]];
                     [PostIDArray_Nearby addObject:PlaceID];
@@ -1362,7 +1363,8 @@
                     [TotalLikeArray_Nearby addObject:total_like];
                     NSString *total_comments = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"total_comments"]];
                     [TotalCommentArray_Nearby addObject:total_comments];
-                    
+                    NSString *SelfCollect = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"collect"]];
+                    [SelfCheckCollectArray_Nearby addObject:SelfCollect];
                 }
                 
                 NSLog(@"PlaceNameArray_Nearby is %@",PlaceNameArray_Nearby);
@@ -2595,7 +2597,7 @@
     
     NearByRecommtationViewController *NearByRecommtationView = [[NearByRecommtationViewController alloc]init];
     [self presentViewController:NearByRecommtationView animated:YES completion:nil];
-    [NearByRecommtationView GetLPhoto:PhotoArray_Nearby GetPostID:PostIDArray_Nearby GetPlaceName:PlaceNameArray_Nearby GetUserInfoUrl:UserInfo_UrlArray_Nearby GetUserInfoName:UserInfo_NameArray_Nearby GetTitle:TitleArray_Nearby GetMessage:MessageArray_Nearby GetDistance:DistanceArray_Nearby GetSearchDisplayName:SearchDisplayNameArray_Nearby GetTotalComment:TotalCommentArray_Nearby GetTotalLike:TotalLikeArray_Nearby GetSelfCheckLike:SelfCheckLikeArray_Nearby];
+    [NearByRecommtationView GetLPhoto:PhotoArray_Nearby GetPostID:PostIDArray_Nearby GetPlaceName:PlaceNameArray_Nearby GetUserInfoUrl:UserInfo_UrlArray_Nearby GetUserInfoName:UserInfo_NameArray_Nearby GetTitle:TitleArray_Nearby GetMessage:MessageArray_Nearby GetDistance:DistanceArray_Nearby GetSearchDisplayName:SearchDisplayNameArray_Nearby GetTotalComment:TotalCommentArray_Nearby GetTotalLike:TotalLikeArray_Nearby GetSelfCheckLike:SelfCheckLikeArray_Nearby GetSelfCheckCollect:SelfCheckCollectArray_Nearby];
 
 }
 -(IBAction)SelectButton2:(id)sender{

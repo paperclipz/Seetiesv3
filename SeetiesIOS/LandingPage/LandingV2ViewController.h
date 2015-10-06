@@ -34,6 +34,7 @@
     NSURLConnection *theConnection_Facebook;
     NSURLConnection *theConnection_GetLanguages;
     NSURLConnection *theConnection_GetAllCategory;
+    NSURLConnection *theConnection_GetNotificationCount;
 
     NSString *InstagramOnClickListen;
     NSString *GetInstagramToken;
@@ -43,6 +44,10 @@
     IBOutlet UIButton *PrivacyButton;
 
     NSTimer *SilderImgMove;
+    
+    NSInteger CheckNotication;
+    
+    UILabel *ShowNotificationCount;
 }
 -(IBAction)TnCButtonOnClick:(id)sender;
 -(IBAction)PrivacyButtonOnClick:(id)sender;
@@ -71,6 +76,8 @@
 @property(nonatomic,strong)LeveyTabBarController *leveyTabBarController;
 
 @property(nonatomic,strong)NewProfileV2ViewController* userProfilePageViewController;
+
+@property(nonatomic,strong)UILabel* ShowNotificationCount;
 
 //=========================================== Revamp Changes =======================================//
 

@@ -1369,7 +1369,7 @@
 {
     if (connection == theConnection_GetUserData) {
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
-        NSLog(@"GetData is %@",GetData);
+       // NSLog(@"GetData is %@",GetData);
         
         NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
         NSError *myError = nil;
@@ -1634,13 +1634,6 @@
         //     NSLog(@"User Post return get data to server ===== %@",GetData);
         
         NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
-        
-        NSError* error;
-        NSDictionary* json = [NSJSONSerialization JSONObjectWithData:jsonData
-                                                             options:kNilOptions
-                                                               error:&error];
-        
-        NSLog(@"jsonData: %@", json);
         
         NSError *myError = nil;
         NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];

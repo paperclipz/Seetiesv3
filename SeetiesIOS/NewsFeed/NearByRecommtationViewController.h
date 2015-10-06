@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "UrlDataClass.h"
 @interface NearByRecommtationViewController : UIViewController<UIScrollViewDelegate>{
 
     IBOutlet UILabel *TitleLabel;
@@ -27,11 +27,20 @@
     NSMutableArray *TotalCommentArray;
     NSMutableArray *TotalLikeArray;
     NSMutableArray *SelfCheckLikeArray;
-    
+    NSMutableArray *SelfCheckCollectArray;
     
     int heightcheck;
     
     NSString *CheckLike;
+    NSString *SendLikePostID;
+    NSString *CheckCollect;
+    
+    NSURLConnection *theConnection_likes;
+    NSURLConnection *theConnection_QuickCollect;
+    
+    NSMutableData *webData;
+    
+    UrlDataClass *DataUrl;
 }
--(void)GetLPhoto:(NSMutableArray *)Photo GetPostID:(NSMutableArray *)PostID GetPlaceName:(NSMutableArray *)PlaceName GetUserInfoUrl:(NSMutableArray *)UserInfoUrl GetUserInfoName:(NSMutableArray *)UserInfoName GetTitle:(NSMutableArray *)Title GetMessage:(NSMutableArray *)Message GetDistance:(NSMutableArray *)Distance GetSearchDisplayName:(NSMutableArray *)SearchDisplayName GetTotalComment:(NSMutableArray *)TotalComment GetTotalLike:(NSMutableArray *)TotalLike GetSelfCheckLike:(NSMutableArray *)SelfCheckLike;
+-(void)GetLPhoto:(NSMutableArray *)Photo GetPostID:(NSMutableArray *)PostID GetPlaceName:(NSMutableArray *)PlaceName GetUserInfoUrl:(NSMutableArray *)UserInfoUrl GetUserInfoName:(NSMutableArray *)UserInfoName GetTitle:(NSMutableArray *)Title GetMessage:(NSMutableArray *)Message GetDistance:(NSMutableArray *)Distance GetSearchDisplayName:(NSMutableArray *)SearchDisplayName GetTotalComment:(NSMutableArray *)TotalComment GetTotalLike:(NSMutableArray *)TotalLike GetSelfCheckLike:(NSMutableArray *)SelfCheckLike GetSelfCheckCollect:(NSMutableArray *)SelfCheckCollect;
 @end
