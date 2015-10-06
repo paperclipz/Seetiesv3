@@ -32,8 +32,8 @@
 // =============== model ===============//
 @property (weak, nonatomic) IBOutlet UILabel *lblNumberOfPhotos;
 
-@property(nonatomic,strong)RecommendationModel* recommendationModel;
-@property(nonatomic,strong)RecommendationModel* tempSavedRecommendationModel;
+@property(nonatomic,strong)RecommendationModel* recommendationModel;//pass in model
+@property(nonatomic,strong)RecommendationModel* tempSavedRecommendationModel;//backup model
 
 @property(nonatomic,strong)CategoriesModel* categoriesModel;
 
@@ -63,7 +63,6 @@
     [self saveData];
     
     
-    self.tempSavedRecommendationModel = [self.recommendationModel mutableCopy];
     _editPhotoViewController = nil;
     
     [self.editPhotoViewController initData:self.recommendationModel];
@@ -521,7 +520,7 @@
         __weak typeof (self)weakSelf = self;
         _editPhotoViewController.editPhotoBackClickedBlock = ^(id block)
         {
-            weakSelf.recommendationModel = weakSelf.tempSavedRecommendationModel;
+          //  weakSelf.recommendationModel = weakSelf.tempSavedRecommendationModel;
             
         };
     }

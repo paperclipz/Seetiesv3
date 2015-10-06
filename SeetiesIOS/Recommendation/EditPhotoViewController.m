@@ -69,8 +69,8 @@
     if (_doneBlock) {
         self.doneBlock(self.arrEditPhotoList,arrayDeletedImages);
     }
-    
-    [self btnBackClicked:nil];
+    [self dismissView];
+
 }
 - (IBAction)btnAddNewClicked:(id)sender {
     
@@ -79,18 +79,23 @@
     }];
 }
 
-- (IBAction)btnBackClicked:(id)sender {
-    
-    
-    if (self.editPhotoBackClickedBlock) {
-        self.editPhotoBackClickedBlock(nil);
-    }
+-(void)dismissView
+{
     if (self.navigationController) {
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
     else{
         [self dismissViewControllerAnimated:YES completion:nil];
     }
+
+}
+- (IBAction)btnBackClicked:(id)sender {
+    
+    
+    if (self.editPhotoBackClickedBlock) {
+        self.editPhotoBackClickedBlock(nil);
+    }
+    [self dismissView];
 }
 
 
@@ -110,7 +115,9 @@
 
 -(void)initData:(RecommendationModel*)model
 {
-    self.recModel = model;
+    self.recModel = [model copy];
+    
+    NSString* apple = [self.recModel.arrPostImagesList[0] photo_id];
     self.arrEditPhotoList = [self.recModel.arrPostImagesList mutableCopy];
 
 }

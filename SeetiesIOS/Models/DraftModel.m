@@ -52,6 +52,22 @@
                                                        @"s.url" :@"imageURL"
                                                        }];
 }
+
+
+-(id) copyWithZone: (NSZone *) zone
+{
+    PhotoModel *modelCopy = [[PhotoModel allocWithZone: zone] init];
+    modelCopy.tags = [_tags mutableCopy];
+    modelCopy.photo_id = [_photo_id mutableCopy];
+    modelCopy.caption = [_caption mutableCopy];
+    modelCopy.position = _position;
+    modelCopy.imageURL = [_imageURL mutableCopy];
+    modelCopy.image = _image;
+    
+    return modelCopy;
+
+}
+
 @end
 
 

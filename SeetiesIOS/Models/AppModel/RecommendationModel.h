@@ -30,6 +30,6 @@
 
 
 -(id)initWithDraftModel:(DraftModel*)model;
--(id) mutableCopyWithZone: (NSZone *) zone;
+-(id) copyWithZone: (NSZone *) zone;
 
 @end
