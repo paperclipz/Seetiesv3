@@ -35,6 +35,8 @@
     SearchButton.frame = CGRectMake(0, 20, screenWidth, 44);
     [SearchButton setTitle:LocalisedString(@"Search") forState:UIControlStateNormal];
     
+    ShowBar.frame = CGRectMake(0, -64, screenWidth, 64);
+    
     GetHeight = 0;
     
     MainScroll.delegate = self;
@@ -52,7 +54,7 @@
     BackgroundImage.frame = headerFrame;
     [MainScroll addSubview:BackgroundImage withAcceleration:CGPointMake(0.0f, 0.5f)];
     
-    ShowOverlayImg.image = [UIImage imageNamed:@"FeedOverlay.png"];
+    ShowOverlayImg.image = [UIImage imageNamed:@"ProfileOverlay.png"];
     ShowOverlayImg.frame = CGRectMake(0, 0, screenWidth, 200);
     ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
     ShowOverlayImg.layer.masksToBounds = YES;
@@ -103,6 +105,36 @@
         [MainScroll setAcceleration:A3DefaultAcceleration forView:BackgroundImage];
     }else{
         [MainScroll setAcceleration:CGPointMake(0.0f, 0.5f) forView:BackgroundImage];
+    }
+    
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    if(scrollView == MainScroll){
+        //NSLog(@"scrollview run here");
+        
+        float heightcheck_ = MainScroll.contentOffset.y;
+        
+        if (heightcheck_ > 64) {
+            [UIView animateWithDuration:0.2
+                                  delay:0
+                                options:UIViewAnimationOptionCurveEaseIn
+                             animations:^{
+                                 ShowBar.frame = CGRectMake(0, 0, screenWidth, 64);
+                             }
+                             completion:^(BOOL finished) {
+                             }];
+        }else{
+            [UIView animateWithDuration:0.2
+                                  delay:0
+                                options:UIViewAnimationOptionCurveEaseIn
+                             animations:^{
+                                 ShowBar.frame = CGRectMake(0, -64, screenWidth, 64);
+                             }
+                             completion:^(BOOL finished) {
+                             }];
+        }
+        
+        
+        
     }
 }
 - (void)didReceiveMemoryWarning {
@@ -970,8 +1002,8 @@
         
         
         
-        AllContentView.frame = CGRectMake(0, 100, screenWidth, GetHeight + 150);
-        LikeView.frame = CGRectMake(0, GetHeight, screenWidth, 150);
+        AllContentView.frame = CGRectMake(0, 100, screenWidth, GetHeight + 350);
+        LikeView.frame = CGRectMake(0, GetHeight, screenWidth, 350);
         
         CGSize contentSize = MainScroll.frame.size;
         contentSize.height = GetHeight + LikeView.frame.size.height ;
@@ -1402,7 +1434,8 @@
                 GetGender = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"gender"]];
                 GetPersonalTags = [[NSString alloc]initWithFormat:@"%@",[GetAllData valueForKey:@"personal_tags"]];
                 GetEmail = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"email"]];
-                
+                GetFbID = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"fb_id"]];
+                GetInstaID = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"insta_id"]];
                 GetPersonalTags = [GetPersonalTags stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
                 
                 NSDictionary *SystemLanguageData = [GetAllData valueForKey:@"system_language"];
@@ -1488,6 +1521,8 @@
                 [defaults setObject:GetSecondaryLanguage forKey:@"UserData_Language2"];
                 [defaults setObject:GetFollowersCount forKey:@"UserData_FollowersCount"];
                 [defaults setObject:GetFollowingCount forKey:@"UserData_FollowingCount"];
+                [defaults setObject:GetFbID forKey:@"UserData_FbID"];
+                [defaults setObject:GetInstaID forKey:@"UserData_instaID"];
                 [defaults synchronize];
                 
                 NSLog(@"Profile GetPrimaryLanguage is %@",GetPrimaryLanguage);
@@ -2173,4 +2208,5 @@ if(actionSheet.tag == 200){
         }
     }
 }
+
 @end

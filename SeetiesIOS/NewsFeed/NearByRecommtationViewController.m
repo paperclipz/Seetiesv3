@@ -415,13 +415,13 @@
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     
     CommentViewController *CommentView = [[CommentViewController alloc]init];
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromRight;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self presentViewController:CommentView animated:NO completion:nil];
+//    CATransition *transition = [CATransition animation];
+//    transition.duration = 0.2;
+//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    transition.type = kCATransitionPush;
+//    transition.subtype = kCATransitionFromRight;
+//    [self.view.window.layer addAnimation:transition forKey:nil];
+    [self presentViewController:CommentView animated:YES completion:nil];
     //[self.view.window.rootViewController presentViewController:CommentView animated:YES completion:nil];
     [CommentView GetRealPostIDAndAllComment:[PostIDArray objectAtIndex:getbuttonIDN]];
     [CommentView GetWhatView:@"Comment"];

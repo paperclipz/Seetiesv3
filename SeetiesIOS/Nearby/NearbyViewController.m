@@ -390,7 +390,7 @@
         CenterLine = [[UIButton alloc]init];
         CenterLine.frame = CGRectMake((screenWidth / 2), 170, 1, 100);
         [CenterLine setTitle:@"" forState:UIControlStateNormal];//238
-        [CenterLine setBackgroundColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f]];
+        [CenterLine setBackgroundColor:[UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0f]];
         [MainScroll addSubview:CenterLine];
         
         GetHeight += 20;

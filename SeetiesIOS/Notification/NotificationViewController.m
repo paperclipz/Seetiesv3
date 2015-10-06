@@ -52,7 +52,7 @@
     CheckClick_Following = 0;
     [self GetNotification];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"CHANGE_NOTIFICATION_COUNT" object:nil];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -63,6 +63,7 @@
 //    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
     
+    
     UIButton *BackToTopButton = [UIButton buttonWithType:UIButtonTypeCustom];
     BackToTopButton.frame = CGRectMake(0, screenHeight - 50, 80, 50);
     [BackToTopButton setTitle:@"" forState:UIControlStateNormal];
@@ -70,8 +71,10 @@
     [BackToTopButton setBackgroundColor:[UIColor clearColor]];
     [BackToTopButton addTarget:self action:@selector(BackToTopButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.tabBarController.view addSubview:BackToTopButton];
-
-
+}
+-(void)viewDidAppear:(BOOL)animated{
+    NSLog(@"Notification viewDidAppear");
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"CHANGE_NOTIFICATION_COUNT" object:nil];
 }
 -(IBAction)BackToTopButton:(id)sender{
     self.tabBarController.selectedIndex = 0;
@@ -226,7 +229,8 @@
 //            NSLog(@"UserThumbnailArray is %@",UserThumbnailArray);
 //            NSLog(@"PostThumbnailArray is %@",PostThumbnailArray);
 //            NSLog(@"UserNameArray is %@",UserNameArray);
-            [self InitView];
+             [self InitView];
+             [self GetFollowing];
         }
     }else{
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
@@ -355,7 +359,7 @@
     FollowingView.hidden = YES;
     
     [self InitNotificationsDataView];
-    [self GetFollowing];
+   
 }
 - (void)segmentAction:(UISegmentedControl *)segment
 {
@@ -495,6 +499,16 @@
             }
             MiniIcon.frame = CGRectMake(66, 50 + i * 80, 23, 28);
             MiniIcon.image = [UIImage imageNamed:@"NoticationComment.png"];
+        }else if([GetType isEqualToString:@"collect"]){
+            NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserThumbnailArray objectAtIndex:i]];
+            if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
+                ShowUserImage.image = [UIImage imageNamed:@"Icon.png"];
+            }else{
+                NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
+                ShowUserImage.imageURL = url_UserImage;
+            }
+            MiniIcon.frame = CGRectMake(66, 50 + i * 80, 23, 28);
+            MiniIcon.image = [UIImage imageNamed:@"NotificationCollect.png"];
         }else{ // handle new type
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[Following_UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
@@ -901,6 +915,7 @@
             for (UIView *subview in MainScroll.subviews) {
                 [subview removeFromSuperview];
             }
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"CHANGE_NOTIFICATION_COUNT" object:nil];
             [refreshControl addTarget:self action:@selector(testRefresh:) forControlEvents:UIControlEventValueChanged];
             [MainScroll addSubview:refreshControl];
             GetHeight = 0;

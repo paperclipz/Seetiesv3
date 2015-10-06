@@ -23,6 +23,7 @@
 #import "AddCollectionDataViewController.h"
 #import "LeveyTabBarController.h"
 #import "ReportViewController.h"
+#import "ShareViewController.h"
 @interface FeedV2DetailViewController ()
 @end
 
@@ -138,7 +139,9 @@
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     ShowDownBarView.frame = CGRectMake(0, screenHeight - 60, screenWidth, 60);
     self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight, screenWidth, 50);
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"CHANGE_NOTIFICATION_HIDE" object:nil];
+
+
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetNearbyIDNString = [defaults objectForKey:@"NearbyRecommendationsIDN"];
     if ([GetNearbyIDNString length] == 0 || [GetNearbyIDNString isEqualToString:@""] || [GetNearbyIDNString isEqualToString:@"(null)"] || GetNearbyIDNString == nil) {
@@ -192,6 +195,7 @@
     [super viewWillDisappear:animated];
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"CHANGE_NOTIFICATION_SHOW" object:nil];
     [UIView animateWithDuration:0.2
                           delay:0
                         options:UIViewAnimationOptionCurveEaseIn
@@ -2871,13 +2875,13 @@
     NSLog(@"Comment Button Click");
     CheckCommentData = 1;
     CommentViewController *CommentView = [[CommentViewController alloc]init];
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromRight;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self presentViewController:CommentView animated:NO completion:nil];
+//    CATransition *transition = [CATransition animation];
+//    transition.duration = 0.2;
+//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    transition.type = kCATransitionPush;
+//    transition.subtype = kCATransitionFromRight;
+//    [self.view.window.layer addAnimation:transition forKey:nil];
+    [self presentViewController:CommentView animated:YES completion:nil];
     [CommentView GetCommentIDArray:CommentIDArray GetPostIDArray:PostIDArray GetMessageArray:MessageArray GetUser_Comment_uidArray:User_Comment_uidArray GetUser_Comment_nameArray:User_Comment_nameArray GetUser_Comment_usernameArray:User_Comment_usernameArray GetUser_Comment_photoArray:User_Comment_photoArray];
     [CommentView GetRealPostID:GetPostID];
     [CommentView GetWhatView:@"Comment"];
@@ -2886,13 +2890,13 @@
 -(IBAction)SeeLikeButton:(id)sender{
     CheckCommentData = 1;
     CommentViewController *CommentView = [[CommentViewController alloc]init];
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromRight;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self presentViewController:CommentView animated:NO completion:nil];
+//    CATransition *transition = [CATransition animation];
+//    transition.duration = 0.2;
+//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    transition.type = kCATransitionPush;
+//    transition.subtype = kCATransitionFromRight;
+//    [self.view.window.layer addAnimation:transition forKey:nil];
+    [self presentViewController:CommentView animated:YES completion:nil];
     [CommentView GetCommentIDArray:CommentIDArray GetPostIDArray:PostIDArray GetMessageArray:MessageArray GetUser_Comment_uidArray:User_Comment_uidArray GetUser_Comment_nameArray:User_Comment_nameArray GetUser_Comment_usernameArray:User_Comment_usernameArray GetUser_Comment_photoArray:User_Comment_photoArray];
     [CommentView GetRealPostID:GetPostID];
     [CommentView GetWhatView:@"Like"];
@@ -3048,32 +3052,38 @@
 }
 -(IBAction)ShareButton:(id)sender{
     NSLog(@"ShareButton Click.");
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                             delegate:self
-                                                    cancelButtonTitle:CustomLocalisedString(@"SettingsPage_Cancel", nil)
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:CustomLocalisedString(@"ShareToFacebook", nil),CustomLocalisedString(@"CopyLink", nil), nil];
     
-    [actionSheet showInView:self.view];
+    ShareViewController *ShareView = [[ShareViewController alloc]init];
+    [self presentViewController:ShareView animated:YES completion:nil];
+    //[self.view.window.rootViewController presentViewController:ShareView animated:YES completion:nil];
+    [ShareView GetPostID:GetPostID GetMessage:GetMessage GetTitle:GetTitle GetImageData:[UrlArray objectAtIndex:0]];
     
-    actionSheet.tag = 200;
-    
-//    NSString *text = @"How to add Facebook and Twitter sharing to an iOS app";
-//    NSURL *url = [NSURL URLWithString:@"http://roadfiresoftware.com/2014/02/how-to-add-facebook-and-twitter-sharing-to-an-ios-app/"];
-//    UIImage *image = [UIImage imageNamed:@"Icon-120.png"];
+//    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+//                                                             delegate:self
+//                                                    cancelButtonTitle:CustomLocalisedString(@"SettingsPage_Cancel", nil)
+//                                               destructiveButtonTitle:nil
+//                                                    otherButtonTitles:CustomLocalisedString(@"ShareToFacebook", nil),CustomLocalisedString(@"CopyLink", nil), nil];
 //    
-//    UIActivityViewController *controller =
-//    [[UIActivityViewController alloc]
-//     initWithActivityItems:@[text, url, image]
-//     applicationActivities:nil];
+//    [actionSheet showInView:self.view];
 //    
-//    controller.excludedActivityTypes = @[UIActivityTypeMessage,
-//                                         UIActivityTypeMail,
-//                                         UIActivityTypePrint,
-//                                         UIActivityTypeCopyToPasteboard,
-//                                         UIActivityTypeAirDrop];
+//    actionSheet.tag = 200;
 //    
-//    [self presentViewController:controller animated:YES completion:nil];
+////    NSString *text = @"How to add Facebook and Twitter sharing to an iOS app";
+////    NSURL *url = [NSURL URLWithString:@"http://roadfiresoftware.com/2014/02/how-to-add-facebook-and-twitter-sharing-to-an-ios-app/"];
+////    UIImage *image = [UIImage imageNamed:@"Icon-120.png"];
+////    
+////    UIActivityViewController *controller =
+////    [[UIActivityViewController alloc]
+////     initWithActivityItems:@[text, url, image]
+////     applicationActivities:nil];
+////    
+////    controller.excludedActivityTypes = @[UIActivityTypeMessage,
+////                                         UIActivityTypeMail,
+////                                         UIActivityTypePrint,
+////                                         UIActivityTypeCopyToPasteboard,
+////                                         UIActivityTypeAirDrop];
+////    
+////    [self presentViewController:controller animated:YES completion:nil];
 
 }
 -(IBAction)SettingButton:(id)sender{

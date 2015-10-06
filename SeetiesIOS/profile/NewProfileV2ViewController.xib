@@ -19,6 +19,7 @@
                 <outlet property="SearchButton" destination="GXO-0f-3de" id="VZB-HR-DKB"/>
                 <outlet property="SettingsButton" destination="t2G-Fp-j2i" id="SVT-Yo-rsO"/>
                 <outlet property="ShareButton" destination="lP7-9x-Ofv" id="cqe-5k-JkR"/>
+                <outlet property="ShowBar" destination="wBc-hs-aHr" id="ssv-d0-cnu"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -33,6 +34,10 @@
                 </scrollView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FeedOverlay.png" id="hWm-8m-lkS">
                     <rect key="frame" x="0.0" y="0.0" width="800" height="200"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TitleBar.png" id="wBc-hs-aHr">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="t2G-Fp-j2i">
@@ -95,5 +100,6 @@
         <image name="ProfileSettingsIcon.png" width="40" height="40"/>
         <image name="ProfileShareIcon.png" width="40" height="40"/>
         <image name="SearchBarIcon.png" width="30" height="30"/>
+        <image name="TitleBar.png" width="310" height="64"/>
     </resources>
 </document>

@@ -64,6 +64,17 @@
     GetLanguage1 = [defaults objectForKey:@"UserData_Language1"];
     GetLanguage2 = [defaults objectForKey:@"UserData_Language2"];
     
+    GetFBID = [defaults objectForKey:@"UserData_FbID"];
+    GetInstaID = [defaults objectForKey:@"UserData_instaID"];
+    
+    if ([GetFBID isEqualToString:@""] || [GetFBID length] == 0 || [GetFBID isEqualToString:@"<null>"]) {
+        [FacebookSwitch setOn:NO];
+    }
+    
+    if ([GetInstaID isEqualToString:@""] || [GetInstaID length] == 0 || [GetInstaID isEqualToString:@"<null>"]) {
+        [InstagramSwitch setOn:NO];
+    }
+    
     NSLog(@"Init GetLanguage1 == %@",GetLanguage1);
      NSLog(@"Init GetLanguage2 == %@",GetLanguage2);
     
@@ -81,7 +92,7 @@
     
     ShowSystemlanguage.text = GetSystemLanguage;
     ShowPrimary.text = GetLanguage1;
-    if ([GetLanguage2 isEqualToString:@""]) {
+    if ([GetLanguage2 isEqualToString:@""] || [GetLanguage2 length] == 0 || [GetLanguage2 isEqualToString:@"<null>"]) {
         ShowSecondary.text = @"(Choose one)";
     }else{
         ShowSecondary.text = GetLanguage2;

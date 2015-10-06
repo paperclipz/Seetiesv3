@@ -41,12 +41,16 @@
     SearchScroll.hidden = YES;
     
     LocalSearchTextArray = [[NSMutableArray alloc]init];
-    [LocalSearchTextArray addObject:@"Coffee"];
-    [LocalSearchTextArray addObject:@"Pizza"];
-    [LocalSearchTextArray addObject:@"Night Club"];
-    [LocalSearchTextArray addObject:@"Sushi"];
-    [LocalSearchTextArray addObject:@"Museum"];
     [LocalSearchTextArray addObject:@"Hiking"];
+    [LocalSearchTextArray addObject:@"Museum"];
+    [LocalSearchTextArray addObject:@"Sushi"];
+    [LocalSearchTextArray addObject:@"Night Club"];
+    [LocalSearchTextArray addObject:@"Pizza"];
+    [LocalSearchTextArray addObject:@"Coffee"];
+    
+    NSArray *ReveresdArray = [[LocalSearchTextArray reverseObjectEnumerator] allObjects];
+    [LocalSearchTextArray removeAllObjects];
+    [LocalSearchTextArray addObjectsFromArray:ReveresdArray];
 
     CheckTblview = 0;
     ButtonOnClickCheck = 0;

@@ -471,6 +471,7 @@
     [self.view addSubview:self.leveyTabBarController.view];
     //TODO:Delete this . use for development purpose only
    // [self.leveyTabBarController setSelectedIndex:2];
+     [self performSelectorOnMainThread:@selector(GetNotificationData) withObject:nil waitUntilDone:NO];
 }
 
 - (void)animateImages
@@ -572,39 +573,45 @@
         
         CheckNotication = 0;
 //        [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(CheckNotificationData) userInfo:nil repeats:YES];
+        CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+        int GetWidth = screenWidth / 5;
+        ShowNotificationCount = [[UILabel alloc]init];
+        ShowNotificationCount.frame = CGRectMake(screenWidth - GetWidth - 28, screenHeight - 45, 18, 18);
+        ShowNotificationCount.text = [NSString stringWithFormat:@"%li",(long)CheckNotication];
+        ShowNotificationCount.backgroundColor = [UIColor clearColor];
+        ShowNotificationCount.textColor = [UIColor clearColor];
+        ShowNotificationCount.layer.cornerRadius = 9;
+        ShowNotificationCount.clipsToBounds = YES;
+        ShowNotificationCount.textAlignment = NSTextAlignmentCenter;
+        ShowNotificationCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
+        [_leveyTabBarController.view addSubview:ShowNotificationCount];
         
-        [self performSelectorOnMainThread:@selector(GetNotificationData) withObject:nil waitUntilDone:NO];
-
     }
     
     return _leveyTabBarController;
 }
 -(void)DrawNotificationData{
-    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-    int GetWidth = screenWidth / 5;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(UpdateNotificationData) name:@"CHANGE_NOTIFICATION_COUNT" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(HideNotification) name:@"CHANGE_NOTIFICATION_HIDE" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(HideNotification) name:@"CHANGE_NOTIFICATION_SHOW" object:nil];
     
-    ShowNotificationCount = [[UILabel alloc]init];
-    ShowNotificationCount.frame = CGRectMake(screenWidth - GetWidth - 28, screenHeight - 45, 18, 18);
     ShowNotificationCount.text = [NSString stringWithFormat:@"%li",(long)CheckNotication];
     ShowNotificationCount.backgroundColor = [UIColor redColor];
     ShowNotificationCount.textColor = [UIColor whiteColor];
-    ShowNotificationCount.layer.cornerRadius = 9;
-    ShowNotificationCount.clipsToBounds = YES;
-    ShowNotificationCount.textAlignment = NSTextAlignmentCenter;
-    ShowNotificationCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:14];
-    
-    [_leveyTabBarController.view addSubview:ShowNotificationCount];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(UpdateNotificationData) name:@"CHANGE_NOTIFICATION_COUNT" object:nil];
-    
 }
 -(void)UpdateNotificationData{
     CheckNotication = 0;
-    ShowNotificationCount.text = @"0";
-    ShowNotificationCount.hidden = YES;
-    [ShowNotificationCount removeFromSuperview];
-    [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(GetNotificationData) userInfo:nil repeats:YES];
+    ShowNotificationCount.text = @"";
+    ShowNotificationCount.backgroundColor = [UIColor clearColor];
+    ShowNotificationCount.textColor = [UIColor clearColor];
+}
+-(void)HideNotification{
+     ShowNotificationCount.hidden = YES;
+}
+-(void)ShowNotification{
+     ShowNotificationCount.hidden = NO;
 }
 
 -(void)GetNotificationData{
@@ -1374,11 +1381,13 @@
         CheckNotication = [GetTotalNewCount integerValue];
         
         if (CheckNotication == 0) {
-            [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(GetNotificationData) userInfo:nil repeats:YES];
+            ShowNotificationCount.text = @"";
+            ShowNotificationCount.backgroundColor = [UIColor clearColor];
+            ShowNotificationCount.textColor = [UIColor clearColor];
         }else{
             [self DrawNotificationData];
-           // [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(DrawNotificationData) userInfo:nil repeats:YES];
         }
+        [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(GetNotificationData) userInfo:nil repeats:NO];
         
     }
     

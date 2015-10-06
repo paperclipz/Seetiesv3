@@ -20,6 +20,7 @@
     IBOutlet AsyncImageView *BackgroundImage;
     IBOutlet UIImageView *ShowOverlayImg;
     IBOutlet UIView *AllContentView;
+    IBOutlet UIImageView *ShowBar;
     
     int GetHeight;
     
@@ -67,6 +68,8 @@
     NSString *GetSystemLanguage;
     NSString *GetPrimaryLanguage;
     NSString *GetSecondaryLanguage;
+    NSString *GetFbID;
+    NSString *GetInstaID;
     
     //like data
     NSString *GetLikesDataCount;
