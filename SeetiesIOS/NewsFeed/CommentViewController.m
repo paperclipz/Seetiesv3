@@ -1315,7 +1315,7 @@
         UserImage.frame = CGRectMake(25, PeopleHeight + 15, 50, 50);
         UserImage.contentMode = UIViewContentModeScaleAspectFill;
         UserImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
-        UserImage.layer.cornerRadius=30;
+        UserImage.layer.cornerRadius=25;
         UserImage.layer.borderWidth=0;
         UserImage.layer.masksToBounds = YES;
         UserImage.layer.borderColor=[[UIColor whiteColor] CGColor];

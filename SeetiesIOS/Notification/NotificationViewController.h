@@ -55,6 +55,10 @@
     NSMutableArray *Following_DateArray;
     
     UIRefreshControl *refreshControl;
+    
+     int CheckClick_Following;
+    
+    UILabel *UpdateNotificationLabel;
 }
 -(void)GetNotification;
 @end

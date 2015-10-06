@@ -196,6 +196,7 @@
     NSMutableArray *TotalCommentArray_Nearby;
     NSMutableArray *TotalLikeArray_Nearby;
     NSMutableArray *SelfCheckLikeArray_Nearby;
+    NSMutableArray *SelfCheckCollectArray_Nearby;
 
     //LLARingSpinnerView *spinnerView;
     UIButton *LoadingBlackBackground;

@@ -13,6 +13,7 @@
 #import "SelectImageViewController.h"
 #import "LanguageManager.h"
 #import "Locale.h"
+
 @interface NotificationViewController ()
 
 @end
@@ -48,9 +49,12 @@
     refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(testRefresh:) forControlEvents:UIControlEventValueChanged];
     [MainScroll addSubview:refreshControl];
-    
+    CheckClick_Following = 0;
     [self GetNotification];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"CHANGE_NOTIFICATION_COUNT" object:nil];
 }
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.screenName = @"IOS Notification Page";
@@ -66,7 +70,7 @@
     [BackToTopButton setBackgroundColor:[UIColor clearColor]];
     [BackToTopButton addTarget:self action:@selector(BackToTopButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.tabBarController.view addSubview:BackToTopButton];
-    
+
 
 }
 -(IBAction)BackToTopButton:(id)sender{
@@ -362,13 +366,19 @@
             FollowingView.hidden = NO;
             NotificationsView.hidden = YES;
           //  [self InitFollowingDataView];
-            
+            CGSize contentSize = MainScroll.frame.size;
+            contentSize.height = GetHeight + FollowingView.frame.size.height;
+            MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+            MainScroll.contentSize = contentSize;
             break;
         case 1:
             NSLog(@"Notifications view click");
             FollowingView.hidden = YES;
             NotificationsView.hidden = NO;
-            
+            CGSize contentSize1 = MainScroll.frame.size;
+            contentSize1.height = GetHeight + NotificationsView.frame.size.height;
+            MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+            MainScroll.contentSize = contentSize1;
           //  [self InitNotificationsDataView];
             
             break;
@@ -561,6 +571,14 @@
     contentSize.height = GetHeight + FollowingView.frame.size.height;
     MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     MainScroll.contentSize = contentSize;
+    
+    if (CheckClick_Following == 0) {
+        [self InitNotificationsDataView];
+        CheckClick_Following = 1;
+    }
+    
+    
+    
 }
 -(NSString*)convertHtmlPlainText:(NSString*)HTMLString{
     
@@ -886,6 +904,7 @@
             [refreshControl addTarget:self action:@selector(testRefresh:) forControlEvents:UIControlEventValueChanged];
             [MainScroll addSubview:refreshControl];
             GetHeight = 0;
+            CheckClick_Following = 0;
              [self GetNotification];
             [refreshControl endRefreshing];
             NSLog(@"refresh end");

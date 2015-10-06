@@ -71,11 +71,10 @@
 @property(nonatomic,strong)PInterestV2ViewController* pInterestV2ViewController;
 @property(nonatomic,strong)PFollowTheExpertsViewController* pFollowTheExpertsViewController;
 
-    
 @end
 
 @implementation LandingV2ViewController
-
+@synthesize ShowNotificationCount;
 
 
 -(void)initSelfView
@@ -570,10 +569,67 @@
         [_leveyTabBarController.tabBar setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
         [_leveyTabBarController setTabBarTransparent:YES];
         _leveyTabBarController.delegate = self;
+        
+        CheckNotication = 0;
+//        [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(CheckNotificationData) userInfo:nil repeats:YES];
+        
+        [self performSelectorOnMainThread:@selector(GetNotificationData) withObject:nil waitUntilDone:NO];
 
     }
     
     return _leveyTabBarController;
+}
+-(void)DrawNotificationData{
+    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    
+    int GetWidth = screenWidth / 5;
+    
+    ShowNotificationCount = [[UILabel alloc]init];
+    ShowNotificationCount.frame = CGRectMake(screenWidth - GetWidth - 28, screenHeight - 45, 18, 18);
+    ShowNotificationCount.text = [NSString stringWithFormat:@"%li",(long)CheckNotication];
+    ShowNotificationCount.backgroundColor = [UIColor redColor];
+    ShowNotificationCount.textColor = [UIColor whiteColor];
+    ShowNotificationCount.layer.cornerRadius = 9;
+    ShowNotificationCount.clipsToBounds = YES;
+    ShowNotificationCount.textAlignment = NSTextAlignmentCenter;
+    ShowNotificationCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:14];
+    
+    [_leveyTabBarController.view addSubview:ShowNotificationCount];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(UpdateNotificationData) name:@"CHANGE_NOTIFICATION_COUNT" object:nil];
+    
+}
+-(void)UpdateNotificationData{
+    CheckNotication = 0;
+    ShowNotificationCount.text = @"0";
+    ShowNotificationCount.hidden = YES;
+    [ShowNotificationCount removeFromSuperview];
+    [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(GetNotificationData) userInfo:nil repeats:YES];
+}
+
+-(void)GetNotificationData{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    
+    
+    NSString *FullString = [[NSString alloc]initWithFormat:@"%@notifications/count?token=%@",DataUrl.UserWallpaper_Url,GetExpertToken];
+    
+    
+    NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
+    NSLog(@"GetNotificationData check postBack URL ==== %@",postBack);
+    // NSURL *url = [NSURL URLWithString:[postBack stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSURL *url = [NSURL URLWithString:postBack];
+    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
+    //NSLog(@"theRequest === %@",theRequest);
+    [theRequest addValue:@"" forHTTPHeaderField:@"Accept-Encoding"];
+    
+    theConnection_GetNotificationCount = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+    [theConnection_GetNotificationCount start];
+    
+    
+    if( theConnection_GetNotificationCount ){
+        webData = [NSMutableData data];
+    }
 }
 
 - (void)tabBarController:(LeveyTabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
@@ -1303,6 +1359,27 @@
         
         
         [ShowActivity stopAnimating];
+    }else if (connection == theConnection_GetNotificationCount){
+        NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+        NSLog(@"Get Notification Count return get data to server ===== %@",GetData);
+        
+        NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *myError = nil;
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
+        NSDictionary *GetAllData = [res valueForKey:@"data"];
+        
+        NSString *GetTotalNewCount = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"total_new_notifications"]];
+        NSLog(@"GetTotalNewCount is %@",GetTotalNewCount);
+        
+        CheckNotication = [GetTotalNewCount integerValue];
+        
+        if (CheckNotication == 0) {
+            [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(GetNotificationData) userInfo:nil repeats:YES];
+        }else{
+            [self DrawNotificationData];
+           // [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(DrawNotificationData) userInfo:nil repeats:YES];
+        }
+        
     }
     
 }
