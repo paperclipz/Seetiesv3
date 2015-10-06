@@ -576,7 +576,7 @@
 
         for (int i= 0; i < [ArrHashTag count]; i++) {
             UILabel *ShowHashTagText = [[UILabel alloc]init];
-            ShowHashTagText.text = [NSString stringWithCString:[[ArrHashTag objectAtIndex:i]UTF8String] encoding:NSUTF8StringEncoding];
+            ShowHashTagText.text = [NSString stringWithCString:[[ArrHashTag objectAtIndex:i] UTF8String] encoding:NSUTF8StringEncoding];
             ShowHashTagText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:12];
             ShowHashTagText.textAlignment = NSTextAlignmentCenter;
             ShowHashTagText.backgroundColor = [UIColor whiteColor];
@@ -585,7 +585,7 @@
             ShowHashTagText.layer.borderWidth = 1;
             ShowHashTagText.layer.borderColor=[[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f] CGColor];
             
-            NSString *Text = [NSString stringWithCString:[[ArrHashTag objectAtIndex:i]UTF8String] encoding:NSUTF8StringEncoding];
+            NSString *Text = [NSString stringWithCString:[[ArrHashTag objectAtIndex:i] UTF8String] encoding:NSUTF8StringEncoding];
             CGRect r = [Text boundingRectWithSize:CGSizeMake(200, 0)
                                           options:NSStringDrawingUsesLineFragmentOrigin
                                        attributes:@{NSFontAttributeName:[UIFont fontWithName:@"ProximaNovaSoft-Regular" size:12]}
@@ -1432,11 +1432,17 @@
                 GetCategories = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"categories"]];
                 Getdob = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"dob"]];
                 GetGender = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"gender"]];
-                GetPersonalTags = [[NSString alloc]initWithFormat:@"%@",[GetAllData valueForKey:@"personal_tags"]];
+                //GetPersonalTags = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"personal_tags"]];
                 GetEmail = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"email"]];
                 GetFbID = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"fb_id"]];
                 GetInstaID = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"insta_id"]];
-                GetPersonalTags = [GetPersonalTags stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                //GetPersonalTags = [GetPersonalTags stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                
+                NSLog(@"GetPersonalTags is %@",GetPersonalTags);
+                
+                NSArray *TempGetTags = [GetAllData objectForKey:@"personal_tags"];
+                NSLog(@"TempGetTags is %@",TempGetTags);
+                GetPersonalTags = [TempGetTags componentsJoinedByString:@","];
                 
                 NSDictionary *SystemLanguageData = [GetAllData valueForKey:@"system_language"];
                 GetSystemLanguage = [[NSString alloc]initWithFormat:@"%@",[SystemLanguageData objectForKey:@"origin_caption"]];
@@ -1490,11 +1496,15 @@
                 
                 if ([GetPersonalTags length] == 0 || [GetPersonalTags isEqualToString:@""] || [GetPersonalTags isEqualToString:@"(null)"] || GetPersonalTags == nil) {
                 }else{
-                    NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"() \n"];
-                    GetPersonalTags = [[GetPersonalTags componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString: @""];
+//                    NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"() \n \""];
+//                    GetPersonalTags = [[GetPersonalTags componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString: @""];
+//                    //GetPersonalTags = [GetPersonalTags stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//                    NSLog(@"inprocess GetPersonalTags is %@",GetPersonalTags);
                     NSArray *arr = [GetPersonalTags componentsSeparatedByString:@","];
+                    NSLog(@"arr is %@",arr);
                     ArrHashTag = [[NSMutableArray alloc]initWithArray:arr];
                 }
+                NSLog(@"ArrHashTag is %@",ArrHashTag);
                 
                 
                 [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:BackgroundImage];

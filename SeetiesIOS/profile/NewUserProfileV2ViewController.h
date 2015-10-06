@@ -46,6 +46,8 @@
     NSString *GetFollowingCount;
     NSString *GetUid;
     NSString *GetUserFollowing;
+    NSString *GetPersonalTags;
+    NSMutableArray *ArrHashTag;
     
     //content data
     AsyncImageView *ShowUserProfileImage;

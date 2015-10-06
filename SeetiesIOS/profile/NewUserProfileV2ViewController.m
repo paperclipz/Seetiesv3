@@ -197,15 +197,15 @@
     
     GetHeight = 145;
     
-    NSString *TempHashTag = @"#lucy #malaysiablogger #fashion #beach #ilovesunset #iamlucydiamondinthesky";
-    NSMutableArray *ArrHashTag = [[NSMutableArray alloc]init];
-    [ArrHashTag addObject:@"lucy"];
-    [ArrHashTag addObject:@"malaysiablogger"];
-    [ArrHashTag addObject:@"fashion"];
-    [ArrHashTag addObject:@"beach"];
-    [ArrHashTag addObject:@"ilovesunset"];
-    [ArrHashTag addObject:@"iamlucydiamondinthesky"];
-    [ArrHashTag addObject:@"sexy"];
+//    NSString *TempHashTag = @"#lucy #malaysiablogger #fashion #beach #ilovesunset #iamlucydiamondinthesky";
+//    NSMutableArray *ArrHashTag = [[NSMutableArray alloc]init];
+//    [ArrHashTag addObject:@"lucy"];
+//    [ArrHashTag addObject:@"malaysiablogger"];
+//    [ArrHashTag addObject:@"fashion"];
+//    [ArrHashTag addObject:@"beach"];
+//    [ArrHashTag addObject:@"ilovesunset"];
+//    [ArrHashTag addObject:@"iamlucydiamondinthesky"];
+//    [ArrHashTag addObject:@"sexy"];
     
     // followers and followings count show
     
@@ -365,7 +365,7 @@
         
     }else{
         
-        if ([TempHashTag isEqualToString:@""] || [TempHashTag isEqualToString:@"(null)"] || [TempHashTag length] == 0) {
+        if ([GetPersonalTags isEqualToString:@""] || [GetPersonalTags isEqualToString:@"(null)"] || [GetPersonalTags length] == 0) {
             
         }else{
             
@@ -435,7 +435,7 @@
     
     NSString *TempStringPosts = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Posts")];
     NSString *TempStringCollection = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Collections")];
-    NSString *TempStringLike = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Likes")];
+   // NSString *TempStringLike = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Likes")];
     
     NSArray *itemArray = [NSArray arrayWithObjects:TempStringCollection, TempStringPosts, nil];
     ProfileControl = [[UISegmentedControl alloc]initWithItems:itemArray];
@@ -1130,8 +1130,16 @@
                 GetUid = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"uid"]];
                 GetUserFollowing = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"following"]];
                 
+                NSArray *TempGetTags = [GetAllData objectForKey:@"personal_tags"];
+                NSLog(@"TempGetTags is %@",TempGetTags);
+                GetPersonalTags = [TempGetTags componentsJoinedByString:@","];
                 
-                
+                if ([GetPersonalTags length] == 0 || [GetPersonalTags isEqualToString:@""] || [GetPersonalTags isEqualToString:@"(null)"] || GetPersonalTags == nil) {
+                }else{
+                    NSArray *arr = [GetPersonalTags componentsSeparatedByString:@","];
+                    NSLog(@"arr is %@",arr);
+                    ArrHashTag = [[NSMutableArray alloc]initWithArray:arr];
+                }
                 
                 [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:BackgroundImage];
                 NSURL *url_UserImage = [NSURL URLWithString:GetWallpaper];
