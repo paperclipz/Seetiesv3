@@ -499,6 +499,16 @@
             }
             MiniIcon.frame = CGRectMake(66, 50 + i * 80, 23, 28);
             MiniIcon.image = [UIImage imageNamed:@"NoticationComment.png"];
+        }else if([GetType isEqualToString:@"collect"]){
+            NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserThumbnailArray objectAtIndex:i]];
+            if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
+                ShowUserImage.image = [UIImage imageNamed:@"Icon.png"];
+            }else{
+                NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
+                ShowUserImage.imageURL = url_UserImage;
+            }
+            MiniIcon.frame = CGRectMake(66, 50 + i * 80, 23, 28);
+            MiniIcon.image = [UIImage imageNamed:@"NotificationCollect.png"];
         }else{ // handle new type
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[Following_UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
