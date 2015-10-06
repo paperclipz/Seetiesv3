@@ -195,13 +195,15 @@
              NSLog(@"\n\n Success: %@", [responseObject bv_jsonStringWithPrettyPrint:YES]);
 
          }
+         [LoadingManager hide];
+
          
      }
                failure:
      ^(AFHTTPRequestOperation *operation, NSError *error) {
          
          NSLog(@"\n\n Error: %@", error);
-
+         [LoadingManager hide];
      }];
     
 }
@@ -408,6 +410,12 @@
         case ServerRequestTypeGetCategories:
             str = @"v2.0/system/update/category";
             break;
+        case ServerRequestTypeGetTagsSuggestion:
+            str = @"v2.0/tags";
+
+            
+            break;
+            
         case ServerRequestTypeGetCollectionInfo:
         default:
              str = @"v2.0";
@@ -422,7 +430,8 @@
 
 -(void)storeServerData:(id)obj requestType:(ServerRequestType)type
 {
-    
+    [LoadingManager hide];
+
     //make checking for status fail or success here
     switch (type) {
         case ServerRequestTypeLogin:
@@ -513,6 +522,15 @@
             [self.dataManager.savedDraftModel process];
         }
             break;
+            
+        case ServerRequestTypeGetTagsSuggestion:
+        {
+            NSDictionary* dict = obj[@"data"];
+            self.dataManager.tagModel = [[TagModel alloc]initWithDictionary:dict error:nil];
+        }
+            break;
+            
+            
         default:
             
             SLog(@"the return result is :%@",obj);

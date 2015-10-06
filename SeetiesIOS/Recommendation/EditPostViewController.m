@@ -726,13 +726,14 @@ static id ObjectOrNull(id object)
     //  NSString* tempString = [string stringByReplacingOccurrencesOfString:@"open" withString:@"GG"];
     NSDictionary* openingHourDict = @{@"open_now":@"false",
                                       @"periods":ObjectOrNull(dictPeriods)};
+   
     
+    // ========================   location =============================
     NSDictionary* locationDict  = @{@"address_components":addressDict,
                                     @"name":ObjectOrNull(tempVenueModel.name),
                                     @"formatted_address":ObjectOrNull(tempVenueModel.formattedAddress),
                                     @"type":@2,
                                     @"reference":ObjectOrNull(tempVenueModel.reference),
-                                    @"expense":ObjectOrNull(tempVenueModel.expense),
                                     @"rating":@11,
                                     @"contact_no":ObjectOrNull(tempVenueModel.formattedPhone),
                                     @"source":@"",
@@ -742,6 +743,17 @@ static id ObjectOrNull(id object)
                                     @"lng":ObjectOrNull(tempVenueModel.lng)};
     
     
+    NSMutableDictionary* finalLocationDict = [[NSMutableDictionary alloc]initWithDictionary:locationDict];
+    NSDictionary* expensesDict = @{ @"expense":@{[Utils currencyCode:tempVenueModel.currency]:tempVenueModel.expense}};
+  
+    
+    if (tempVenueModel.price) {
+        [finalLocationDict addEntriesFromDictionary:expensesDict];
+    }
+    
+    // ========================   location =============================
+
+
     NSMutableArray* categoriesSelected = [NSMutableArray new];
     
     for (int i = 0; i < self.categoriesModel.categories.count; i++) {
@@ -759,7 +771,7 @@ static id ObjectOrNull(id object)
                            [NSString stringWithFormat:@"message[%@]",self.recommendationModel.postMainLanguage]:ObjectOrNull(tempModel.postMainDescription),
                            @"category":categoriesSelected.count==0?@[@0]:categoriesSelected,
                            @"device_type":@2,
-                           @"location":[Utils convertToJsonString:locationDict],
+                           @"location":[Utils convertToJsonString:finalLocationDict],
                            @"link":ObjectOrNull(tempModel.postURL)};
     
 

@@ -83,7 +83,9 @@
     // side buttons
     _btUp.backgroundColor = DO_SIDE_BUTTON_COLOR;
     _btDown.backgroundColor = DO_SIDE_BUTTON_COLOR;
-    
+  //  [_btUp setImage:[UIImage imageNamed:@"Default-568h.png"] forState:UIControlStateNormal];
+  //  [_btDown setImage:[UIImage imageNamed:@"Default-568h.png"] forState:UIControlStateNormal];
+
     CALayer *layer1 = [_btDown layer];
 	[layer1 setMasksToBounds:YES];
 	[layer1 setCornerRadius:_btDown.frame.size.height / 2.0 - 1];

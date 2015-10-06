@@ -27,9 +27,25 @@
     return [[JSONKeyMapper alloc] initWithDictionary:@{
                                                        @"posts.data": @"arrayPost",
                                                        @"description": @"postDesc",
-                                                       @"is_private": @"isPrivate"
-                                                       
+                                                       @"is_private": @"isPrivate",
+                                                       @"tags":@"tagList"
                                                        }];
+}
+
+
+-(id) copyWithZone: (NSZone *) zone
+{
+    CollectionModel *modelCopy = [[CollectionModel allocWithZone: zone] init];
+    modelCopy.name = [_name mutableCopy];
+    modelCopy.postDesc = [_postDesc mutableCopy];
+    modelCopy.collection_id = [_collection_id mutableCopy];
+    modelCopy.isPrivate = _isPrivate;
+    modelCopy.is_default = _is_default;
+
+
+    modelCopy.tagList = [[NSMutableArray alloc]initWithArray:_tagList copyItems:YES];
+    
+    return modelCopy;
 }
 
 @end

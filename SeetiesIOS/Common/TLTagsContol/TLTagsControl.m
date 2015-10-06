@@ -51,6 +51,12 @@
     return self;
 }
 
+
+-(UITextField*)getCurrentTextField
+{
+    return tagInputField_;
+}
+
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     

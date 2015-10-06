@@ -15,7 +15,7 @@
 {
     _route = nil;
     _address = model.address;
-    _formattedAddress = model.formattedAddress;
+    _formattedAddress = model.address;
     _place_id = nil;
     _lat = model.lat;
     _lng = model.lng;
@@ -114,8 +114,9 @@
 
         NSArray* key = [_expense allKeys];
         
-        if (key.count>0) {
-            NSString* value = [Utils currencyString:key[0]];
+        if (key.count > 0) {
+            
+            NSString* value = key[0];
             return value;
         }
         
@@ -130,8 +131,13 @@
         
         NSArray* key = [_expense allKeys];
         
-        if (key.count>0) {
-            NSString* value = _expense[key[0]];
+        if (key.count > 0) {
+            
+            NSDictionary* tempCurrency = _expense[key[0]];
+            
+            NSArray* currencyCodeKey = [tempCurrency allKeys];
+
+            NSString* value = tempCurrency[currencyCodeKey[0]];
             return value;
         }
     }

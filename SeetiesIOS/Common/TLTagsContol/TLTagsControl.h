@@ -39,6 +39,7 @@ typedef NS_ENUM(NSUInteger, TLTagsControlMode) {
 
 - (void)addTag:(NSString *)tag;
 - (void)reloadTagSubviews;
+-(UITextField*)getCurrentTextField;
 
 @end// Copyright belongs to original author
 // http://code4app.net (en) http://code4app.com (cn)

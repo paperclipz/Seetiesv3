@@ -40,13 +40,7 @@
 @end
 
 @implementation EditCollectionDetailViewController
-- (IBAction)btnTestClicked:(id)sender {
-    for (int i = 0; i<40; i++) {
-        [self.tagList addObject:[NSString stringWithFormat:@"number %d tag",i]];
-    }
-    [self adjustView];
-    [self.ibCollectionTagView reloadData];
-}
+
 - (IBAction)btnPrivateClicked:(id)sender {
     
     UIButton* button = (UIButton*)sender;
@@ -60,7 +54,7 @@
         
         if (self.btnDoneBlock) {
             [self saveData];
-            self.btnDoneBlock(nil);
+            self.btnDoneBlock(self.collectionModel);
             [self.navigationController popViewControllerAnimated:YES];
         }
     }
@@ -78,10 +72,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tagList = [NSMutableArray new];
-    for (int i = 0; i<5; i++) {
-        [self.tagList addObject:[NSString stringWithFormat:@"number %d tag",i]];
-    }
     [self initSelfView];
     self.txtName.enabled = !self.collectionModel.is_default;
     self.txtName.text = self.collectionModel.name;
@@ -118,7 +108,7 @@
        [self initCollectionViewWithDelegate:self];
 
     
-   // [self initTagView];
+    [self initTagView];
     
 
     [self adjustView];
@@ -128,11 +118,14 @@
 
 -(void)adjustView
 {
-    
+//    // ====== for tag adjust ment ======
 //    float count = (self.tagList.count%2 != 0)?(self.tagList.count+1)/2:self.tagList.count/2;
 //    float collectionheight = (CELL_HEIGHT+CELL_PADDING)* count;
 //    
 //    self.ibContentView.frame = CGRectMake( self.ibContentView.frame.origin.x,  self.ibContentView.frame.origin.y,  self.ibContentView.frame.size.width,  self.blueEditingTagControl.frame.size.height+ self.blueEditingTagControl.frame.origin.y+30 + collectionheight);
+    
+    // ====== for tag adjust ment ======
+
     CGRect frame = [Utils getDeviceScreenSize];
     self.ibContentView.frame = CGRectMake(0, 0, frame.size.width, self.ibContentView.frame.size.height);
     self.ibScrollView.contentSize = self.ibContentView.frame.size;
@@ -142,9 +135,8 @@
 
 -(void)initTagView
 {
-    NSMutableArray *tags = [NSMutableArray arrayWithArray:@[@"A", @"Tag", @"One", @"More", @"Tag", @"And", @"Yet", @"Another", @"One"]];
-    _blueEditingTagControl.tags = [tags mutableCopy];
-    _blueEditingTagControl.tagPlaceholder = @"Placeholder";
+    _blueEditingTagControl.tags = [self.collectionModel.tagList mutableCopy];
+    _blueEditingTagControl.tagPlaceholder = @"Tag";
     
     _blueEditingTagControl.delegate  = self;
        UIColor *whiteTextColor = [UIColor whiteColor];
@@ -156,9 +148,11 @@
     
     [_blueEditingTagControl reloadTagSubviews];
    
+    __weak typeof (self)weakSelf = self;
+    
     _blueEditingTagControl.tagBlock = ^(NSString* string)
     {
-        
+        [weakSelf requestServerForTag:string];
     };
     
 }
@@ -174,8 +168,9 @@
 
 -(void)initData:(CollectionModel*)model
 {
-    self.collectionModel = model;
-    
+    self.collectionModel = [model copy];
+   // self.tagList = self.collectionModel.tagList;
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -202,7 +197,6 @@
 
 - (void)textFieldDidChange:(UITextField *)textField
 {
-    
     if (textField.text.length>=TITLE_MAX_COUNT) {
         
         NSString *currentString = [textField.text substringWithRange:NSMakeRange(0, textField.text.length>=TITLE_MAX_COUNT?TITLE_MAX_COUNT:textField.text.length)];
@@ -266,8 +260,8 @@
     self.collectionModel.postDesc = self.txtDesc.text;
    
     self.collectionModel.isPrivate = !btnSetPrivate.enabled;
+    self.collectionModel.tagList = self.blueEditingTagControl.tags;
 }
-
 
 #pragma mark - UICollectionView data source
 
@@ -281,15 +275,40 @@
     
     EditTagCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"EditTagCollectionViewCell" forIndexPath:indexPath];
     
+    cell.lblTitle.text = self.tagList[indexPath.row];
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
    // [self.toRecipients addObject:@"apple"];
+    [self.blueEditingTagControl addTag:self.tagList[indexPath.row]];
     
+    [self.blueEditingTagControl getCurrentTextField].text = @"";
 }
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
+   
+    
+//    CATransform3D rotation = CATransform3DMakeRotation( (90.0*M_PI)/180, .0, 0.5, 0.5);
+//    cell.contentView.alpha = 0.8;
+//    cell.contentView.layer.transform = rotation;
+//    cell.contentView.layer.anchorPoint = CGPointMake(0, 0.5);
+//    
+//    [UIView animateWithDuration:.5
+//                     animations:^{
+//                         cell.contentView.layer.transform = CATransform3DIdentity;
+//                         cell.contentView.alpha = 1;
+//                         cell.contentView.layer.shadowOffset = CGSizeMake(0, 0);
+//                     } completion:^(BOOL finished) {
+//                     }];
+    
+    cell.alpha = 0;
+    [UIView animateWithDuration:0.5 animations:^{
+        cell.alpha = 1;
 
+    }];
+
+}
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -324,9 +343,19 @@
 
 
 #pragma mark - Request Server
--(void)requestServerForTag
+-(void)requestServerForTag:(NSString*)tag
 {
-
+    
+    NSString* tagStr = tag;
+    //[LoadingManager show];
+    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetTagsSuggestion  param:nil appendString:tagStr completeHandler:^(id object) {
+        
+        self.tagList =[[NSMutableArray alloc]initWithArray:[[[ConnectionManager dataManager] tagModel] arrayTag] ];
+        [self.ibCollectionTagView reloadData];
+        
+    } errorBlock:^(id object) {
+        
+    }];
 }
 
 @end
