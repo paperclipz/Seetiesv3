@@ -32,23 +32,27 @@
         _postSeconLanguage = ENGLISH_CODE;
         
         int counter = (int)model.arrPost.count;
-        for (int i = counter; i>0; i--) {
-            
-            if (counter - i == 0) {
-                _postMainTitle = [model.arrPost[i-1] title];
-                _postMainDescription = [model.arrPost[i-1] message];
-                _postMainLanguage = [model.arrPost[i-1] language];
-
-
-            }
-            else
-            {
-                _postSecondTitle = [model.arrPost[i-1] title];
-                _postSecondDescription = [model.arrPost[i-1] message];
-                _postSeconLanguage = [model.arrPost[i-1] language];
-
-            }
+        
+        if(counter == 1)
+        {
+            _postMainTitle = [model.arrPost[0] title];
+            _postMainDescription = [model.arrPost[0] message];
+            _postMainLanguage = [model.arrPost[0] language];
         }
+        else if(counter == 2)
+        {
+            _postMainTitle = [model.arrPost[0] title];
+            _postMainDescription = [model.arrPost[0] message];
+            _postMainLanguage = [model.arrPost[0] language];
+
+            
+            _postSecondTitle = [model.arrPost[1] title];
+            _postSecondDescription = [model.arrPost[1] message];
+            _postSeconLanguage = [model.arrPost[1] language];
+            
+
+        }
+    
         
         _postURL  = model.link;
         _post_id = model.post_id;
@@ -88,10 +92,12 @@
 //
 //@property(nonatomic,strong)NSMutableArray* arrPostImagesList;//photoModel
 //@property(nonatomic,strong)RecommendationVenueModel* reccomendVenueModel;
--(id) mutableCopyWithZone: (NSZone *) zone
+-(id) copyWithZone: (NSZone *) zone
 {
     RecommendationModel *modelCopy = [[RecommendationModel allocWithZone: zone] init];
-    modelCopy.arrPostImagesList = [_arrPostImagesList copy];
+    
+    modelCopy.arrPostImagesList = [[NSMutableArray alloc]initWithArray:_arrPostImagesList copyItems:YES];
+    
     return modelCopy;
 }
 @end

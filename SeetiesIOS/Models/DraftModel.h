@@ -58,6 +58,7 @@
 @property(nonatomic,assign)int position;
 @property(nonatomic,strong)NSString* imageURL;
 @property(nonatomic,strong)UIImage* image;
+-(id) copyWithZone: (NSZone *) zone;
 
 @end
 

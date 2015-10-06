@@ -74,25 +74,25 @@ static UrlDataClass *sharedMyManager = nil;
 //            GetApiVersion_Url = @"https://ios-api.seeties.me/v1.2/system/apiversion";
         }else{
           //  NSLog(@"CheckAPI is 1");
-            ExpertLogin_Url = @"https://ios-api.seeties.me/v1.3/login";
-            UserRegister_Url = @"https://ios-api.seeties.me/v1.3/register";
-            FacebookRegister_Url = @"https://ios-api.seeties.me/v1.3/login/facebook";
-            Publish_PostUrl = @"https://ios-api.seeties.me/v1.3/post";
-            CategoryIDN_Url = @"https://ios-api.seeties.me/v1.3/system/update/category";
-            Feed_Url = @"https://ios-api.seeties.me/v1.3/feed";
-            Explore_Url = @"https://ios-api.seeties.me/v1.3/explore";
-            UserWallpaper_Url = @"https://ios-api.seeties.me/v1.3/";
-            Suggestions_Url = @"https://ios-api.seeties.me/v1.3/user/suggestions";
-            GetComment_URl = @"https://ios-api.seeties.me/v1.3/post";
-            UserLogout_Url = @"https://ios-api.seeties.me/v1.3/logout";
-            GetAlllangauge_Url = @"https://ios-api.seeties.me/v1.3/system/languages";
-            GetNotification_Url = @"https://ios-api.seeties.me/v1.3/notifications";
-            GetDrafts_Url = @"https://ios-api.seeties.me/v1.3/draft";
-            GetNotificationCount_Url = @"https://ios-api.seeties.me/v1.3/notifications/count";
-            GetApiVersion_Url = @"https://ios-api.seeties.me/v1.3/system/apiversion";
-            GetAllCategory_Url = @"https://ios-api.seeties.me/v1.3/system/update/category";
+            ExpertLogin_Url = @"https://ios-api.seeties.me/v2.0/login";
+            UserRegister_Url = @"https://ios-api.seeties.me/v2.0/register";
+            FacebookRegister_Url = @"https://ios-api.seeties.me/v2.0/login/facebook";
+            Publish_PostUrl = @"https://ios-api.seeties.me/v2.0/post";
+            CategoryIDN_Url = @"https://ios-api.seeties.me/v2.0/system/update/category";
+            Feed_Url = @"https://ios-api.seeties.me/v2.0/feed";
+            Explore_Url = @"https://ios-api.seeties.me/v2.0/explore";
+            UserWallpaper_Url = @"https://ios-api.seeties.me/v2.0/";
+            Suggestions_Url = @"https://ios-api.seeties.me/v2.0/user/suggestions";
+            GetComment_URl = @"https://ios-api.seeties.me/v2.0/post";
+            UserLogout_Url = @"https://ios-api.seeties.me/v2.0/logout";
+            GetAlllangauge_Url = @"https://ios-api.seeties.me/v2.0/system/languages";
+            GetNotification_Url = @"https://ios-api.seeties.me/v2.0/notifications";
+            GetDrafts_Url = @"https://ios-api.seeties.me/v2.0/draft";
+            GetNotificationCount_Url = @"https://ios-api.seeties.me/v2.0/notifications/count";
+            GetApiVersion_Url = @"https://ios-api.seeties.me/v2.0/system/apiversion";
+            GetAllCategory_Url = @"https://ios-api.seeties.me/v2.0/system/update/category";
             GetFestivals_Url = @"https://seeties.me/festivals?hidden=header";
-            GetNearbyPost_Url = @"https://ios-api.seeties.me/v1.3/post/";//:post_id/nearbyposts?token="
+            GetNearbyPost_Url = @"https://ios-api.seeties.me/v2.0/post/";//:post_id/nearbyposts?token="
             InstagramRegister_Url = @"https://ios-api.seeties.me/v2.0/login/instagram";
         }
         

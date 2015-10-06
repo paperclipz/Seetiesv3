@@ -23,7 +23,7 @@
 		<string>Icon-Spotlight-iOS7@2x.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.Seeties.SeetiesIOS.Dev</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleLocalizations</key>
