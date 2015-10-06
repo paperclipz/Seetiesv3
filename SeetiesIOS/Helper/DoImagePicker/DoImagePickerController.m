@@ -83,8 +83,8 @@
     // side buttons
     _btUp.backgroundColor = DO_SIDE_BUTTON_COLOR;
     _btDown.backgroundColor = DO_SIDE_BUTTON_COLOR;
-  //  [_btUp setImage:[UIImage imageNamed:@"Default-568h.png"] forState:UIControlStateNormal];
-  //  [_btDown setImage:[UIImage imageNamed:@"Default-568h.png"] forState:UIControlStateNormal];
+    [_btUp setImage:[UIImage imageNamed:@"BackToTop.png"] forState:UIControlStateNormal];
+    [_btDown setImage:[UIImage imageNamed:@"GoToEnd.png"] forState:UIControlStateNormal];
 
     CALayer *layer1 = [_btDown layer];
 	[layer1 setMasksToBounds:YES];
@@ -393,15 +393,27 @@
     if (scrollView == _cvPhotoList)
     {
         [UIView animateWithDuration:0.2 animations:^(void) {
+            
             if (scrollView.contentOffset.y <= 50)
+            {
                 _btUp.alpha = 0.0;
+            }
             else
+            {
                 _btUp.alpha = 1.0;
+            }
+
             
             if (scrollView.contentOffset.y + scrollView.frame.size.height >= scrollView.contentSize.height)
+            {
                 _btDown.alpha = 0.0;
+
+            }
             else
+            {
                 _btDown.alpha = 1.0;
+
+            }
         }];
     }
 }
