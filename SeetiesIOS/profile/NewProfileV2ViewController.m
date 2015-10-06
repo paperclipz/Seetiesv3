@@ -54,7 +54,7 @@
     BackgroundImage.frame = headerFrame;
     [MainScroll addSubview:BackgroundImage withAcceleration:CGPointMake(0.0f, 0.5f)];
     
-    ShowOverlayImg.image = [UIImage imageNamed:@"FeedOverlay.png"];
+    ShowOverlayImg.image = [UIImage imageNamed:@"ProfileOverlay.png"];
     ShowOverlayImg.frame = CGRectMake(0, 0, screenWidth, 200);
     ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
     ShowOverlayImg.layer.masksToBounds = YES;
