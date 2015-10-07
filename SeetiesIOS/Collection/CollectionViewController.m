@@ -180,7 +180,7 @@
                 [Content_arrPlaceName addObject:PlaceName];
                 NSString *PlaceID = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"post_id"]];
                 [Content_arrID addObject:PlaceID];
-                NSString *notedate = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"note"]];
+                NSString *notedate = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"collection_note"]];
                 [Content_arrNote addObject:notedate];
             }
             
@@ -555,12 +555,12 @@
             
         }else{
             UILabel *ShowTitle = [[UILabel alloc]init];
-            ShowTitle.frame = CGRectMake(30, TempHeight, screenWidth - 60, 20);
+            ShowTitle.frame = CGRectMake(30, TempHeight + 5, screenWidth - 60, 20);
             ShowTitle.text = TempGetStirng;
             ShowTitle.backgroundColor = [UIColor clearColor];
             ShowTitle.textAlignment = NSTextAlignmentLeft;
             ShowTitle.textColor = [UIColor whiteColor];
-            ShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+            ShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
             [ListView addSubview:ShowTitle];
 
           //  TempHeight += ShowTitle.frame.size.height;
@@ -579,8 +579,8 @@
         
         
         UIImageView *ShowPin = [[UIImageView alloc]init];
-        ShowPin.image = [UIImage imageNamed:@"LocationpinIcon.png"];
-        ShowPin.frame = CGRectMake(25, TempHeight + 20, 18, 18);
+        ShowPin.image = [UIImage imageNamed:@"PhotoPin.png"];
+        ShowPin.frame = CGRectMake(25, TempHeight + 27, 15, 15);
         [ListView addSubview:ShowPin];
         
         NSString *TempDistanceString = [[NSString alloc]initWithFormat:@"%@",[Content_arrID_arrDistance objectAtIndex:i]];
@@ -604,7 +604,7 @@
 
         }
         UILabel *ShowDistance = [[UILabel alloc]init];
-        ShowDistance.frame = CGRectMake(50, TempHeight + 20, screenWidth - 100, 20);
+        ShowDistance.frame = CGRectMake(50, TempHeight + 25, screenWidth - 100, 20);
         ShowDistance.text = FullShowLocatinString;
         ShowDistance.textColor = [UIColor whiteColor];
         ShowDistance.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];

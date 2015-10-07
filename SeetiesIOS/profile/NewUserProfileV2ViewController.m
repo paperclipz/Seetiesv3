@@ -12,6 +12,7 @@
 #import "FeedV2DetailViewController.h"
 #import "FullImageViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "SearchDetailViewController.h"
 @interface NewUserProfileV2ViewController ()
 
 @end
@@ -388,13 +389,21 @@
                 
                 NSString *Text = [ArrHashTag objectAtIndex:i];
                 CGRect r = [Text boundingRectWithSize:CGSizeMake(200, 0)
-                                              options:NSStringDrawingUsesLineFragmentOrigin
+                                              options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
                                            attributes:@{NSFontAttributeName:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:12]}
                                               context:nil];
+                
+                UIButton *TagsButton = [[UIButton alloc]init];
+                [TagsButton setTitle:@"" forState:UIControlStateNormal];
+                TagsButton.backgroundColor = [UIColor clearColor];
+                TagsButton.tag = i;
+                TagsButton.frame = CGRectMake(25 + frame2.size.width, 15, r.size.width + 20, 20);
+                [TagsButton addTarget:self action:@selector(PersonalTagsButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
                 
                 ShowHashTagText.frame = CGRectMake(25 + frame2.size.width, 15, r.size.width + 20, 20);
                 frame2.size.width += r.size.width + 30;
                 [HashTagScroll addSubview:ShowHashTagText];
+                [HashTagScroll addSubview:TagsButton];
                 
                 HashTagScroll.contentSize = CGSizeMake(30 + frame2.size.width , 50);
             }
@@ -439,7 +448,7 @@
     
     NSArray *itemArray = [NSArray arrayWithObjects:TempStringCollection, TempStringPosts, nil];
     ProfileControl = [[UISegmentedControl alloc]initWithItems:itemArray];
-    ProfileControl.frame = CGRectMake(15, GetHeight, screenWidth - 30, 29);
+    ProfileControl.frame = CGRectMake(15, GetHeight, screenWidth - 30, 33);
     [ProfileControl addTarget:self action:@selector(segmentAction:) forControlEvents: UIControlEventValueChanged];
     ProfileControl.selectedSegmentIndex = 0;
     [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
@@ -1797,5 +1806,14 @@
             
         }
     }
+}
+-(IBAction)PersonalTagsButtonOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSString *GetTagsString = [[NSString alloc]initWithFormat:@"%@",[ArrHashTag objectAtIndex:getbuttonIDN]];
+    NSLog(@"ArrHashTag is %@",GetTagsString);
+    
+    SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
+    [self.navigationController pushViewController:SearchDetailView animated:YES];
+    [SearchDetailView GetSearchKeyword:GetTagsString Getlat:@"" GetLong:@"" GetLocationName:@""];
 }
 @end

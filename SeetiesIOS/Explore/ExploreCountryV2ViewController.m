@@ -220,7 +220,7 @@
     
     NSArray *itemArray = [NSArray arrayWithObjects:TempStringPosts, TempStringPeople, nil];
     UISegmentedControl *ProfileControl = [[UISegmentedControl alloc]initWithItems:itemArray];
-    ProfileControl.frame = CGRectMake(10, GetHeight - 5, screenWidth - 20, 29);
+    ProfileControl.frame = CGRectMake(10, GetHeight - 5, screenWidth - 20, 33);
     [ProfileControl addTarget:self action:@selector(segmentAction:) forControlEvents: UIControlEventValueChanged];
     ProfileControl.selectedSegmentIndex = 0;
     [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
@@ -356,8 +356,8 @@
         UILabel *ShowPlaceName = [[UILabel alloc]init];
         ShowPlaceName.frame = CGRectMake(135, PostGetHeight + 62, screenWidth - 140 - 70, 20);
         ShowPlaceName.text = [place_nameArray objectAtIndex:i];
-        ShowPlaceName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-        ShowPlaceName.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0];
+        ShowPlaceName.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+        ShowPlaceName.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowPlaceName.textAlignment = NSTextAlignmentLeft;
         ShowPlaceName.backgroundColor = [UIColor clearColor];
         [PostView addSubview:ShowPlaceName];

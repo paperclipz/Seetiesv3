@@ -278,6 +278,14 @@
                 NSString *Date =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"date"]];
                 [Following_DateArray addObject:Date];
             }
+//            NSLog(@"Following_TypeArray is %lu",(unsigned long)[Following_TypeArray count]);
+//            NSLog(@"Following_PostIDArray is %lu",(unsigned long)[Following_PostIDArray count]);
+//            NSLog(@"Following_UserNameArray is %lu",(unsigned long)[Following_UserNameArray count]);
+//            NSLog(@"Following_uidArray is %lu",(unsigned long)[Following_uidArray count]);
+//            NSLog(@"Following_MessageArray is %lu",(unsigned long)[Following_MessageArray count]);
+//            NSLog(@"Following_ActionArray is %lu",(unsigned long)[Following_ActionArray count]);
+//            NSLog(@"Following_DateArray is %lu",(unsigned long)[Following_DateArray count]);
+
             for (NSDictionary * dict in UserData){
                 
                 NSDictionary *UserInfoData = [dict valueForKey:@"user_info"];
@@ -288,6 +296,7 @@
                 
 
             }
+//            NSLog(@"Following_UserThumbnailArray is %lu",(unsigned long)[Following_UserThumbnailArray count]);
             for (NSDictionary * dict in PostData){
                 
                 NSDictionary *PostInfoData = [dict valueForKey:@"post_info"];
@@ -301,6 +310,8 @@
                 [Following_PostThumbnailArray addObject:result];
             
             }
+//            NSLog(@"Following_PostThumbnailArray is %lu",(unsigned long)[Following_PostThumbnailArray count]);
+
 
 //            NSLog(@"Following_UserThumbnailArray is %@",Following_UserThumbnailArray);
 //            NSLog(@"Following_PostThumbnailArray is %@",Following_PostThumbnailArray);
@@ -329,7 +340,7 @@
     
     NSArray *itemArray = [NSArray arrayWithObjects:TempStringPosts, TempStringPeople, nil];
     UISegmentedControl *ProfileControl = [[UISegmentedControl alloc]initWithItems:itemArray];
-    ProfileControl.frame = CGRectMake(15, GetHeight, screenWidth - 30, 29);
+    ProfileControl.frame = CGRectMake(15, GetHeight, screenWidth - 30, 33);
     [ProfileControl addTarget:self action:@selector(segmentAction:) forControlEvents: UIControlEventValueChanged];
     ProfileControl.selectedSegmentIndex = 1;
     [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
@@ -500,7 +511,7 @@
             MiniIcon.frame = CGRectMake(66, 50 + i * 80, 23, 28);
             MiniIcon.image = [UIImage imageNamed:@"NoticationComment.png"];
         }else if([GetType isEqualToString:@"collect"]){
-            NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserThumbnailArray objectAtIndex:i]];
+            NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[Following_UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
                 ShowUserImage.image = [UIImage imageNamed:@"Icon.png"];
             }else{

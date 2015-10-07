@@ -457,9 +457,11 @@
 //    NSLog(@"[arrMessage count] is %lu",(unsigned long)[arrMessage count]);
 //    NSLog(@"[arrlike count] is %lu",(unsigned long)[arrlike count]);
 //    NSLog(@"[arrCollect count] is %lu",(unsigned long)[arrCollect count]);
+//    NSLog(@"[arrUserImage count] is %lu",(unsigned long)[arrUserImage count]);
 
     
-    if ([arrImage count] == [arrType count] == [arrTitle count] == [arrUserName count] == [arrDistance count] == [arrDisplayCountryName count] == [arrAddress count] == [arrMessage count] == [arrlike count] == [arrCollect count]) {
+    if ([arrImage count] == [arrType count]) {
+       // NSLog(@"load local data...");
         for (NSInteger i = 0; i < [arrImage count]; i++) {
             
             NSString *GetType = [arrType objectAtIndex:i];
@@ -519,7 +521,7 @@
                 [LocalScroll addSubview:ClickToDetailButton];
                 
                 AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
-                ShowUserProfileImage.frame = CGRectMake(25, heightcheck + 10, 40, 40);
+                ShowUserProfileImage.frame = CGRectMake(25, heightcheck + 15, 40, 40);
                 // ShowUserProfileImage.image = [UIImage imageNamed:@"DemoProfile.jpg"];
                 ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
                 ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
@@ -534,7 +536,7 @@
                 [LocalScroll addSubview:ShowUserProfileImage];
                 
                 UIButton *ClicktoOpenUserProfileButton = [[UIButton alloc]init];
-                ClicktoOpenUserProfileButton.frame = CGRectMake(20, heightcheck + 10, 40, 40);
+                ClicktoOpenUserProfileButton.frame = CGRectMake(20, heightcheck + 15, 40, 40);
                 [ClicktoOpenUserProfileButton setTitle:@"" forState:UIControlStateNormal];
                 ClicktoOpenUserProfileButton.backgroundColor = [UIColor clearColor];
                 ClicktoOpenUserProfileButton.tag = i;
@@ -543,7 +545,7 @@
                 
                 
                 UILabel *ShowUserName = [[UILabel alloc]init];
-                ShowUserName.frame = CGRectMake(75, heightcheck + 10, 200, 40);
+                ShowUserName.frame = CGRectMake(75, heightcheck + 15, 200, 40);
                 ShowUserName.text = [arrUserName objectAtIndex:i];
                 ShowUserName.backgroundColor = [UIColor clearColor];
                 ShowUserName.textColor = [UIColor whiteColor];
@@ -579,11 +581,11 @@
                         FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@",[arrDisplayCountryName objectAtIndex:i]];
                         
                     }
-                    ShowDistanceIcon.frame = CGRectMake(screenWidth - 60, heightcheck + 12, 40, 36);
+                    ShowDistanceIcon.frame = CGRectMake(screenWidth - 60, heightcheck + 17, 40, 36);
                     [LocalScroll addSubview:ShowDistanceIcon];
                     
                     UILabel *ShowDistance = [[UILabel alloc]init];
-                    ShowDistance.frame = CGRectMake(screenWidth - 165, heightcheck + 10, 100, 40);
+                    ShowDistance.frame = CGRectMake(screenWidth - 165, heightcheck + 15, 100, 40);
                     // ShowDistance.frame = CGRectMake(screenWidth - 115, 210 + heightcheck + i, 100, 20);
                     ShowDistance.text = FullShowLocatinString;
                     ShowDistance.textColor = [UIColor whiteColor];
@@ -636,8 +638,8 @@
                 UILabel *ShowAddress = [[UILabel alloc]init];
                 ShowAddress.frame = CGRectMake(40, heightcheck , screenWidth - 80, 20);
                 ShowAddress.text = [arrAddress objectAtIndex:i];
-                ShowAddress.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
-                ShowAddress.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+                ShowAddress.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+                ShowAddress.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
                 [LocalScroll addSubview:ShowAddress];
                 
                 heightcheck += 30;
@@ -914,7 +916,7 @@
                 [MainScroll addSubview:ClickToDetailButton];
                 
                 AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
-                ShowUserProfileImage.frame = CGRectMake(25, heightcheck + 10, 40, 40);
+                ShowUserProfileImage.frame = CGRectMake(25, heightcheck + 15, 40, 40);
                 // ShowUserProfileImage.image = [UIImage imageNamed:@"DemoProfile.jpg"];
                 ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
                 ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
@@ -933,7 +935,7 @@
                 [MainScroll addSubview:ShowUserProfileImage];
                 
                 UIButton *ClicktoOpenUserProfileButton = [[UIButton alloc]init];
-                ClicktoOpenUserProfileButton.frame = CGRectMake(20, heightcheck + 10, 40, 40);
+                ClicktoOpenUserProfileButton.frame = CGRectMake(20, heightcheck + 15, 40, 40);
                 [ClicktoOpenUserProfileButton setTitle:@"" forState:UIControlStateNormal];
                 ClicktoOpenUserProfileButton.backgroundColor = [UIColor clearColor];
                 ClicktoOpenUserProfileButton.tag = i;
@@ -942,7 +944,7 @@
                 
                 
                 UILabel *ShowUserName = [[UILabel alloc]init];
-                ShowUserName.frame = CGRectMake(75, heightcheck + 10, 200, 40);
+                ShowUserName.frame = CGRectMake(75, heightcheck + 15, 200, 40);
                 ShowUserName.text = [arrUserName objectAtIndex:i];
                 ShowUserName.backgroundColor = [UIColor clearColor];
                 ShowUserName.textColor = [UIColor whiteColor];
@@ -978,11 +980,11 @@
                         FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@",[arrDisplayCountryName objectAtIndex:i]];
                         
                     }
-                    ShowDistanceIcon.frame = CGRectMake(screenWidth - 60, heightcheck + 12, 40, 36);
+                    ShowDistanceIcon.frame = CGRectMake(screenWidth - 60, heightcheck + 17, 40, 36);
                     [MainScroll addSubview:ShowDistanceIcon];
                     
                     UILabel *ShowDistance = [[UILabel alloc]init];
-                    ShowDistance.frame = CGRectMake(screenWidth - 165, heightcheck + 10, 100, 40);
+                    ShowDistance.frame = CGRectMake(screenWidth - 165, heightcheck + 15, 100, 40);
                     ShowDistance.text = FullShowLocatinString;
                     ShowDistance.textColor = [UIColor whiteColor];
                     ShowDistance.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
@@ -1027,8 +1029,8 @@
                 UILabel *ShowAddress = [[UILabel alloc]init];
                 ShowAddress.frame = CGRectMake(40, heightcheck, screenWidth - 80, 20);
                 ShowAddress.text = [arrAddress objectAtIndex:i];
-                ShowAddress.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
-                ShowAddress.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+                ShowAddress.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+                ShowAddress.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
                 [MainScroll addSubview:ShowAddress];
                 
                 heightcheck += 30;
@@ -1198,7 +1200,7 @@
                 [MainScroll addSubview:ClickToDetailButtonLocalQR];
                 
                 AsyncImageView *ShowUserProfileImageLocalQR = [[AsyncImageView alloc]init];
-                ShowUserProfileImageLocalQR.frame = CGRectMake(25, heightcheck + 10, 40, 40);
+                ShowUserProfileImageLocalQR.frame = CGRectMake(25, heightcheck + 15, 40, 40);
                 // ShowUserProfileImage.image = [UIImage imageNamed:@"DemoProfile.jpg"];
                 ShowUserProfileImageLocalQR.contentMode = UIViewContentModeScaleAspectFill;
                 ShowUserProfileImageLocalQR.layer.backgroundColor=[[UIColor clearColor] CGColor];
@@ -1217,7 +1219,7 @@
                 [MainScroll addSubview:ShowUserProfileImageLocalQR];
                 
                 UIButton *ClicktoOpenUserProfileButtonLocalQR = [[UIButton alloc]init];
-                ClicktoOpenUserProfileButtonLocalQR.frame = CGRectMake(20, heightcheck + 10, 40, 40);
+                ClicktoOpenUserProfileButtonLocalQR.frame = CGRectMake(20, heightcheck + 15, 40, 40);
                 [ClicktoOpenUserProfileButtonLocalQR setTitle:@"" forState:UIControlStateNormal];
                 ClicktoOpenUserProfileButtonLocalQR.backgroundColor = [UIColor clearColor];
                 ClicktoOpenUserProfileButtonLocalQR.tag = i;
@@ -1227,7 +1229,7 @@
                 
                 
                 UILabel *ShowUserNameLocalQR = [[UILabel alloc]init];
-                ShowUserNameLocalQR.frame = CGRectMake(75, heightcheck + 10, 200, 40);
+                ShowUserNameLocalQR.frame = CGRectMake(75, heightcheck + 15, 200, 40);
                 ShowUserNameLocalQR.text = [arrUserName objectAtIndex:i];
                 ShowUserNameLocalQR.backgroundColor = [UIColor clearColor];
                 ShowUserNameLocalQR.textColor = [UIColor whiteColor];
@@ -1264,11 +1266,11 @@
                         
                     }
                     
-                    ShowDistanceIcon.frame = CGRectMake(screenWidth - 60, heightcheck + 12, 40, 36);
+                    ShowDistanceIcon.frame = CGRectMake(screenWidth - 60, heightcheck + 17, 40, 36);
                     [MainScroll addSubview:ShowDistanceIcon];
                     
                     UILabel *ShowDistanceLocalQR = [[UILabel alloc]init];
-                    ShowDistanceLocalQR.frame = CGRectMake(screenWidth - 165, heightcheck + 10, 100, 40);
+                    ShowDistanceLocalQR.frame = CGRectMake(screenWidth - 165, heightcheck + 15, 100, 40);
                     ShowDistanceLocalQR.text = FullShowLocatinStringLocalQR;
                     ShowDistanceLocalQR.textColor = [UIColor whiteColor];
                     ShowDistanceLocalQR.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
@@ -1314,8 +1316,8 @@
                 UILabel *ShowAddressLocalQR = [[UILabel alloc]init];
                 ShowAddressLocalQR.frame = CGRectMake(40, heightcheck, screenWidth - 80, 20);
                 ShowAddressLocalQR.text = [arrAddress objectAtIndex:i];
-                ShowAddressLocalQR.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
-                ShowAddressLocalQR.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+                ShowAddressLocalQR.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+                ShowAddressLocalQR.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
                 [MainScroll addSubview:ShowAddressLocalQR];
                 
                 heightcheck += 30;
@@ -1441,7 +1443,7 @@
                 [MainScroll addSubview:Line01];
                 
                 UILabel *ShowSuggestedLocalQR = [[UILabel alloc]init];
-                ShowSuggestedLocalQR.frame = CGRectMake(20, heightcheck, screenWidth - 80, 50);
+                ShowSuggestedLocalQR.frame = CGRectMake(25, heightcheck, screenWidth - 80, 50);
                 ShowSuggestedLocalQR.text = LocalisedString(@"Suggested local recommendations");
                 ShowSuggestedLocalQR.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
                 ShowSuggestedLocalQR.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
@@ -1508,7 +1510,7 @@
                 ShowSuggestedCount_Aboad.frame = CGRectMake(screenWidth - 220, heightcheck, 200, 50);
                 ShowSuggestedCount_Aboad.text = TempCount;
                 ShowSuggestedCount_Aboad.backgroundColor = [UIColor clearColor];
-                ShowSuggestedCount_Aboad.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
+                ShowSuggestedCount_Aboad.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
                 ShowSuggestedCount_Aboad.textAlignment = NSTextAlignmentRight;
                 ShowSuggestedCount_Aboad.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
                 [MainScroll addSubview:ShowSuggestedCount_Aboad];
@@ -1606,8 +1608,8 @@
                     UILabel *ShowAddressLocalQR = [[UILabel alloc]init];
                     ShowAddressLocalQR.frame = CGRectMake(40 + i * screenWidth, 51 + 198 + 10, screenWidth - 80, 20);
                     ShowAddressLocalQR.text = Address;
-                    ShowAddressLocalQR.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
-                    ShowAddressLocalQR.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+                    ShowAddressLocalQR.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+                    ShowAddressLocalQR.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
                     [SuggestedScrollview_Aboad addSubview:ShowAddressLocalQR];
                     
                     //  int TempCountWhiteHeight = 51 + 198 + 10;
@@ -1830,7 +1832,7 @@
                 ShowSUserCount_Featured.frame = CGRectMake(screenWidth - 220, heightcheck, 200, 50);
                 ShowSUserCount_Featured.text = TempCount;
                 ShowSUserCount_Featured.backgroundColor = [UIColor clearColor];
-                ShowSUserCount_Featured.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
+                ShowSUserCount_Featured.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
                 ShowSUserCount_Featured.textAlignment = NSTextAlignmentRight;
                 ShowSUserCount_Featured.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
                 [MainScroll addSubview:ShowSUserCount_Featured];
@@ -2001,7 +2003,7 @@
                 ShowSUserCount_Friend.frame = CGRectMake(screenWidth - 220, heightcheck, 200, 50);
                 ShowSUserCount_Friend.text = TempCount;
                 ShowSUserCount_Friend.backgroundColor = [UIColor clearColor];
-                ShowSUserCount_Friend.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
+                ShowSUserCount_Friend.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
                 ShowSUserCount_Friend.textAlignment = NSTextAlignmentRight;
                 ShowSUserCount_Friend.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
                 [MainScroll addSubview:ShowSUserCount_Friend];
@@ -2157,7 +2159,7 @@
                 ShowSuggestedCount_Deal.frame = CGRectMake(screenWidth - 220, heightcheck, 200, 50);
                 ShowSuggestedCount_Deal.text = TempString;
                 ShowSuggestedCount_Deal.backgroundColor = [UIColor clearColor];
-                ShowSuggestedCount_Deal.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
+                ShowSuggestedCount_Deal.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
                 ShowSuggestedCount_Deal.textAlignment = NSTextAlignmentRight;
                 ShowSuggestedCount_Deal.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
                 [MainScroll addSubview:ShowSuggestedCount_Deal];
@@ -2274,8 +2276,8 @@
                     UILabel *ShowAddressLocalQR = [[UILabel alloc]init];
                     ShowAddressLocalQR.frame = CGRectMake(40 + i * screenWidth, 51 + 198 + ShowTitle.frame.size.height + 25, screenWidth - 80, 20);
                     ShowAddressLocalQR.text = Address;
-                    ShowAddressLocalQR.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
-                    ShowAddressLocalQR.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+                    ShowAddressLocalQR.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+                    ShowAddressLocalQR.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
                     [SuggestedScrollview_Deal addSubview:ShowAddressLocalQR];
                     
                     //  int TempCountWhiteHeight = 51 + 198 + 10;
@@ -2353,9 +2355,10 @@
 
 -(void)SaveDataInLocal{
     NSLog(@"Run Save Data in Local");
-    
-    NSMutableArray *TempArray_FeedImage = [[NSMutableArray alloc]init];
-    NSMutableArray *TempArray_FeedUserImage = [[NSMutableArray alloc]init];
+     if (CheckFirstTimeLoad == 0) {
+        NSError *error = nil;
+        NSMutableArray *TempArray_FeedImage = [[NSMutableArray alloc]init];
+        NSMutableArray *TempArray_FeedUserImage = [[NSMutableArray alloc]init];
     for (NSInteger i = DataCount; i < [arrPostID count]; i++) {
         
         NSString *GetType = [[NSString alloc]initWithFormat:@"%@",[arrType objectAtIndex:i]];
@@ -2364,35 +2367,35 @@
             UIImage *newImage;
             if ([TempImage length] == 0) {
                 newImage = [UIImage imageNamed:@"NoImage.png"];
+                [TempArray_FeedImage addObject:@""];
             }else{
                 NSURL *url_NearbySmall = [NSURL URLWithString:TempImage];
                 NSData *data = [NSData dataWithContentsOfURL:url_NearbySmall];
                 newImage = [UIImage imageWithData:data];
+                
+                NSData *imageData = UIImageJPEGRepresentation(newImage, 1);
+                NSString *stringPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,   NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"Content_Folder"];
+                // Content_ Folder is your folder name
+
+                if (![[NSFileManager defaultManager] fileExistsAtPath:stringPath])
+                    [[NSFileManager defaultManager] createDirectoryAtPath:stringPath  withIntermediateDirectories:NO attributes:nil error:&error];
+                //This will create a new folder if content folder is not exist
+                NSString *fileName = [stringPath stringByAppendingFormat:@"/FeedLocalimage_%li.jpg",(long)i];
+                [imageData writeToFile:fileName atomically:YES];
+                // NSLog(@"fileName is %@",fileName);
+                NSString *SaveFileName = [[NSString alloc]initWithFormat:@"FeedLocalimage_%li.jpg",(long)i];
+                [TempArray_FeedImage addObject:SaveFileName];
             }
             
             NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[arrUserImage objectAtIndex:i]];
             UIImage *UserImage;
             if ([FullImagesURL length] == 0) {
                 UserImage = [UIImage imageNamed:@"DefaultProfilePic.png"];
+                [TempArray_FeedUserImage addObject:@""];
             }else{
                 NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL];
                 NSData *data = [NSData dataWithContentsOfURL:url_NearbySmall];
                 UserImage = [UIImage imageWithData:data];
-            }
-            
-            if (CheckFirstTimeLoad == 0) {
-                NSData *imageData = UIImageJPEGRepresentation(newImage, 1);
-                NSString *stringPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,   NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"Content_Folder"];
-                // Content_ Folder is your folder name
-                NSError *error = nil;
-                if (![[NSFileManager defaultManager] fileExistsAtPath:stringPath])
-                    [[NSFileManager defaultManager] createDirectoryAtPath:stringPath  withIntermediateDirectories:NO attributes:nil error:&error];
-                //This will create a new folder if content folder is not exist
-                NSString *fileName = [stringPath stringByAppendingFormat:@"/FeedLocalimage_%li.jpg",(long)i];
-                [imageData writeToFile:fileName atomically:YES];
-               // NSLog(@"fileName is %@",fileName);
-                NSString *SaveFileName = [[NSString alloc]initWithFormat:@"FeedLocalimage_%li.jpg",(long)i];
-                [TempArray_FeedImage addObject:SaveFileName];
                 
                 NSData *imageData_UserImage = UIImageJPEGRepresentation(UserImage, 1);
                 NSString *stringPath_1 = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,   NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"Content_Folder"];
@@ -2404,27 +2407,28 @@
                 NSString *SaveFileName_1 = [[NSString alloc]initWithFormat:@"FeedLocalUserImg_%li.jpg",(long)i];
                 [TempArray_FeedUserImage addObject:SaveFileName_1];
             }
-            if (CheckFirstTimeLoad == 0) {
-                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                [defaults setObject:TempArray_FeedImage forKey:@"FeedLocalImg"];// image data
-                [defaults setObject:arrAddress forKey:@"FeedLocalarrAddress"];
-                [defaults setObject:arrTitle forKey:@"FeedLocalarrTitle"];
-                [defaults setObject:arrMessage forKey:@"FeedLocalarrMessage"];
-                [defaults setObject:arrType forKey:@"FeedLocalarrType"];
-                [defaults setObject:arrDistance forKey:@"FeedLocalarrDistance"];
-                [defaults setObject:arrUserName forKey:@"FeedLocalarrUserName"];
-                [defaults setObject:TempArray_FeedUserImage forKey:@"FeedLocalarrUserImage"];
-                [defaults setObject:arrDisplayCountryName forKey:@"FeedLocalarrDisplayCountryName"];
-                [defaults setObject:arrPostID forKey:@"FeedLocalarrPostID"];
-                [defaults setObject:arrImageHeight forKey:@"FeedLocalarrImageHeight"];
-                [defaults setObject:arrImageWidth forKey:@"FeedLocalarrImageWidth"];
-                [defaults setObject:arrlike forKey:@"FeedLocalarrLike"];
-                [defaults setObject:arrCollect forKey:@"FeedLocalarrCollect"];
-                [defaults setObject:@"Done" forKey:@"TestLocalData"];
-                [defaults synchronize];
-            }
-            
+        }else{
+            [TempArray_FeedImage addObject:@""];
+            [TempArray_FeedUserImage addObject:@""];
         }
+    }
+         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+         [defaults setObject:TempArray_FeedImage forKey:@"FeedLocalImg"];// image data
+         [defaults setObject:arrAddress forKey:@"FeedLocalarrAddress"];
+         [defaults setObject:arrTitle forKey:@"FeedLocalarrTitle"];
+         [defaults setObject:arrMessage forKey:@"FeedLocalarrMessage"];
+         [defaults setObject:arrType forKey:@"FeedLocalarrType"];
+         [defaults setObject:arrDistance forKey:@"FeedLocalarrDistance"];
+         [defaults setObject:arrUserName forKey:@"FeedLocalarrUserName"];
+         [defaults setObject:TempArray_FeedUserImage forKey:@"FeedLocalarrUserImage"];
+         [defaults setObject:arrDisplayCountryName forKey:@"FeedLocalarrDisplayCountryName"];
+         [defaults setObject:arrPostID forKey:@"FeedLocalarrPostID"];
+         [defaults setObject:arrImageHeight forKey:@"FeedLocalarrImageHeight"];
+         [defaults setObject:arrImageWidth forKey:@"FeedLocalarrImageWidth"];
+         [defaults setObject:arrlike forKey:@"FeedLocalarrLike"];
+         [defaults setObject:arrCollect forKey:@"FeedLocalarrCollect"];
+         [defaults setObject:@"Done" forKey:@"TestLocalData"];
+         [defaults synchronize];
     
 }
 
