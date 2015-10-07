@@ -18,6 +18,9 @@
 #import "RecommendationViewController.h"
 #import "FeedViewController.h"
 #import "NewProfileV2ViewController.h"
+
+#import "NewsFeedViewController.h"
+
 @interface LandingV2ViewController : GAITrackedViewController <UITabBarControllerDelegate,LeveyTabBarControllerDelegate>{
     
     UrlDataClass *DataUrl;
@@ -78,6 +81,8 @@
 @property(nonatomic,strong)NewProfileV2ViewController* userProfilePageViewController;
 
 @property(nonatomic,strong)UILabel* ShowNotificationCount;
+
+@property(nonatomic,strong)NewsFeedViewController* newsFeedViewController;
 
 //=========================================== Revamp Changes =======================================//
 

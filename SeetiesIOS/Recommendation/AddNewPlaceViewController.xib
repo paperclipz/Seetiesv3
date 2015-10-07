@@ -62,6 +62,13 @@
                                 <action selector="btnDoneClicked:" destination="-1" eventType="touchUpInside" id="iba-pD-rUf"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wcf-Rk-9Yr">
+                            <rect key="frame" x="204" y="25" width="46" height="30"/>
+                            <state key="normal" title="Button"/>
+                            <connections>
+                                <action selector="btnEditLocationClicked:" destination="-1" eventType="touchUpInside" id="5fd-j4-NhJ"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>

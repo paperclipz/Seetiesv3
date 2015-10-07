@@ -494,6 +494,15 @@
 }
 
 #pragma mark - Declaration
+
+-(NewsFeedViewController*)newsFeedViewController
+{
+    if (!_newsFeedViewController) {
+        _newsFeedViewController = [NewsFeedViewController new];
+    }
+    
+    return _newsFeedViewController;
+}
 -(PTnCViewController*)pTnCViewController
 {
     if (!_pTnCViewController) {

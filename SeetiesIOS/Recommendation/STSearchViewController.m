@@ -46,7 +46,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
-    
+     self.sManager = [SearchManager Instance];
+    [self performSearch];
 }
 
 -(void)initSelfView
@@ -139,52 +140,41 @@
 {
     [LoadingManager show];
     // must go throught this mark inorder to have location.
-    self.sManager = [SearchManager Instance];
+   
     self.location = location;
     
+}
+
+-(void)performSearch
+{
     if(!self.location)
     {
-        
-        SLog(@"NO COORDINATE FOUND FOR IMAGE");
-
-        [self.sManager getCoordinate:^(CLLocation *currentLocation) {
+                
+        [self.sManager getCoordinateFromGPSThenWifi:^(CLLocation *currentLocation) {
             
             self.location = currentLocation;
             [self requestSearch];
-            SLog(@"Coordinate Found for GPS");
-
+            
             
         } errorBlock:^(NSString *status) {
-            SLog(@"NO COORDINATE FOUND FOR GPS");
-            
-            [self.sManager getCoordinateFromWifi:^(CLLocation *currentLocation) {
-                self.location = currentLocation;
-                
-             //   SLog(@"long : %f || lat : %f",self.location.coordinate.longitude,self.location.coordinate.latitude);
-                [self requestSearch];
-            } errorBlock:^(NSString *status) {
-                
-                [LoadingManager hide];
-                //[self requestSearch];
-            }];
-
+           
+            [TSMessage showNotificationInViewController:self title:@"system" subtitle:@"No Internet Connection" type:TSMessageNotificationTypeWarning];
+            [LoadingManager hide];
         }];
     }
     else{
         [self requestSearch];
-    }
-        
-}
+        [LoadingManager hide];
 
+    }
+
+}
 
 -(void)getFourSquareSuggestionPlaces
 {
-  //  SLog(@"getFourSquareSuggestionPlaces");
     self.type = SearchTypeFourSquare;
 
-//#warning delete bottom 2 line for real time publish || this is for malaysia coordinate testing only
-   // CLLocation *locloc = [[CLLocation alloc] initWithLatitude:3.1333 longitude:101.7000];
-        
+    
     [self.sManager getSuggestedLocationFromFoursquare:self.location input:self.txtSearch.text completionBlock:^(id object) {
 
         self.nearbyVenues = [[[DataManager Instance]fourSquareVenueModel] items];
