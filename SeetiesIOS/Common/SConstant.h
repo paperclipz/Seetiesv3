@@ -32,7 +32,8 @@ typedef enum
     
     // ========== Collection ========== //
     ServerRequestTypeGetCollectionInfo,
-    ServerRequestTypePostCreateCollection
+    ServerRequestTypePostCreateCollection,
+    ServerRequestTypeGetTagsSuggestion
 
     // ========== Collection ========== //
 

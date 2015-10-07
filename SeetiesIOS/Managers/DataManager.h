@@ -18,6 +18,9 @@
 #import "PostModel.h"
 
 #import "RecommendationModel.h"
+
+#import "TagModel.h"
+
 @interface DataManager : NSObject
 + (id)Instance;
 +(NSArray*)getSampleObject;
@@ -34,6 +37,9 @@
 @property(nonatomic,strong)CollectionModel* collectionModels;
 @property(nonatomic,strong)DraftModel* editPostModel;
 @property(nonatomic,strong)DraftModel* savedDraftModel;
+
+
+@property(nonatomic,strong)TagModel* tagModel;
 
 
 +(RecommendationModel*)getSampleRecommendation;

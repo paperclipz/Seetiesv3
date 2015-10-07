@@ -167,6 +167,7 @@
         __weak typeof (self)weakSelf = self;
         _editCollectionDetailViewController.btnDoneBlock = ^(id block)
         {
+            weakSelf.collectionModel = (CollectionModel*)block;
          //   weakSelf.editCollectionDetailViewController = nil;
         };
         
@@ -191,7 +192,6 @@
     for (int i = 0; i<[self.ibTableView numberOfRowsInSection:0]; i++) {
         
         EditCollectionTableViewCell* cell = (EditCollectionTableViewCell*)[self.ibTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
-        
         [cell saveData];
     }
 
@@ -204,7 +204,7 @@
     NSDictionary* dict = @{@"token":[Utils getAppToken],
                            @"name":self.collectionModel.name,
                            @"access":self.collectionModel.isPrivate?@0:@1,
-                           @"description":self.collectionModel.description,
+                           @"description":self.collectionModel.postDesc,
                            @"tags":@""};
     
     NSString* appendString = [NSString stringWithFormat:@"%@/Collections",[Utils getUserID]];
@@ -224,13 +224,16 @@
 
 -(void)requestServerForUpdateCollection
 {
+    
+    
 
-    NSDictionary* dict = @{@"token":[Utils getAppToken],
-                           @"collection_id":self.collectionModel.collection_id,
-                           @"name":self.collectionModel.name,
+    NSDictionary* dict = @{@"token":ObjectOrNull([Utils getAppToken]),
+                           @"collection_id":ObjectOrNull(self.collectionModel.collection_id),
+                           @"name":ObjectOrNull(self.collectionModel.name),
                            @"access":self.collectionModel.isPrivate?@1:@0,
-                           @"description":self.collectionModel.postDesc
-                          // @"tags":@""
+                           @"tags":ObjectOrNull(self.collectionModel.tagList),
+                           @"description":ObjectOrNull(self.collectionModel.postDesc)
+
                            };
     
     NSMutableDictionary* finalDict = [[NSMutableDictionary alloc]initWithDictionary:dict];
@@ -266,6 +269,11 @@
 
     }];
 }
+static id ObjectOrNull(id object)
+{
+    return object ?: [NSNull null];
+}
+
 
 #pragma mark - change language
 

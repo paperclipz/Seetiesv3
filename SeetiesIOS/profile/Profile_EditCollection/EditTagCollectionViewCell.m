@@ -11,7 +11,6 @@
 
 @interface EditTagCollectionViewCell()
 @property (weak, nonatomic) IBOutlet UIView *ibContentView;
-@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *ibImagePlusView;
 @end
 @implementation EditTagCollectionViewCell

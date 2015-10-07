@@ -223,9 +223,15 @@
             break;
 
         }
+        CASE (MYR){
+            tempCurrencyCode = @"458";
+            break;
+            
+        }
+
         DEFAULT
         {
-            tempCurrencyCode = @"840";
+            tempCurrencyCode = nil;
             break;
 
         }
@@ -268,6 +274,12 @@
             return TWD;
             break;
 
+        }
+        
+        CASE (@"458"){
+            return MYR;
+            break;
+            
         }
         DEFAULT
         {

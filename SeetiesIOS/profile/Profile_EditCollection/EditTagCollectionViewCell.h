@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface EditTagCollectionViewCell : UICollectionViewCell
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 
 @end

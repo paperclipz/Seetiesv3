@@ -22,7 +22,7 @@
                                     <constraint firstAttribute="height" constant="21" id="l3I-xT-Quj"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="BigAddIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="XdM-dI-NoP">
@@ -33,7 +33,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="0Bn-A5-BsW" firstAttribute="leading" secondItem="8nN-DA-Fsf" secondAttribute="leading" constant="8" id="HCt-Yr-wYR"/>
                             <constraint firstAttribute="trailing" secondItem="XdM-dI-NoP" secondAttribute="trailing" constant="8" id="Kcp-aE-Tb6"/>
