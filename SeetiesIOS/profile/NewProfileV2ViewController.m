@@ -17,6 +17,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "LandingV2ViewController.h"
 #import "NewCollectionViewController.h"
+#import "SearchDetailViewController.h"
 @interface NewProfileV2ViewController ()
 
 @end
@@ -587,17 +588,27 @@
             
             NSString *Text = [NSString stringWithCString:[[ArrHashTag objectAtIndex:i] UTF8String] encoding:NSUTF8StringEncoding];
             CGRect r = [Text boundingRectWithSize:CGSizeMake(200, 0)
-                                          options:NSStringDrawingUsesLineFragmentOrigin
+                                          options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
                                        attributes:@{NSFontAttributeName:[UIFont fontWithName:@"ProximaNovaSoft-Regular" size:12]}
                                           context:nil];
             
             //NSLog(@"r ==== %f",r.size.width);
+            
+            UIButton *TagsButton = [[UIButton alloc]init];
+            [TagsButton setTitle:@"" forState:UIControlStateNormal];
+            TagsButton.backgroundColor = [UIColor clearColor];
+            TagsButton.tag = i;
+            TagsButton.frame = CGRectMake(25 + frame2.size.width, 15, r.size.width + 20, 20);
+            [TagsButton addTarget:self action:@selector(PersonalTagsButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+            
+            
             
             //CGSize textSize = [ShowHashTagText.text sizeWithAttributes:@{NSFontAttributeName:[ShowHashTagText font]}];
             //   CGFloat textSize = ShowHashTagText.intrinsicContentSize.width;
             ShowHashTagText.frame = CGRectMake(25 + frame2.size.width, 15, r.size.width + 20, 20);
             frame2.size.width += r.size.width + 30;
             [HashTagScroll addSubview:ShowHashTagText];
+            [HashTagScroll addSubview:TagsButton];
             
             HashTagScroll.contentSize = CGSizeMake(30 + frame2.size.width , 50);
         }
@@ -696,7 +707,7 @@
     
     NSArray *itemArray = [NSArray arrayWithObjects:TempStringCollection, TempStringPosts,TempStringLike, nil];
     ProfileControl = [[UISegmentedControl alloc]initWithItems:itemArray];
-    ProfileControl.frame = CGRectMake(15, GetHeight, screenWidth - 30, 29);
+    ProfileControl.frame = CGRectMake(15, GetHeight, screenWidth - 30, 33);
     [ProfileControl addTarget:self action:@selector(segmentAction:) forControlEvents: UIControlEventValueChanged];
     ProfileControl.selectedSegmentIndex = 0;
     [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
@@ -744,6 +755,17 @@
    
     
 }
+
+-(IBAction)PersonalTagsButtonOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSString *GetTagsString = [[NSString alloc]initWithFormat:@"%@",[ArrHashTag objectAtIndex:getbuttonIDN]];
+    NSLog(@"ArrHashTag is %@",GetTagsString);
+    
+    SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
+    [self.navigationController pushViewController:SearchDetailView animated:YES];
+    [SearchDetailView GetSearchKeyword:GetTagsString Getlat:@"" GetLong:@"" GetLocationName:@""];
+}
+
 - (void)segmentAction:(UISegmentedControl *)segment
 {
   //  CGSize contentSize = MainScroll.frame.size;
@@ -1020,14 +1042,14 @@
         ShowLikesCount.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
         [LikeView addSubview:ShowLikesCount];
         
-        UIButton *Line01 = [[UIButton alloc]init];
-        Line01.frame = CGRectMake(15, 60, screenWidth - 30, 1);
-        [Line01 setTitle:@"" forState:UIControlStateNormal];//238
-        [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
-        [LikeView addSubview:Line01];
+//        UIButton *Line01 = [[UIButton alloc]init];
+//        Line01.frame = CGRectMake(15, 60, screenWidth - 30, 1);
+//        [Line01 setTitle:@"" forState:UIControlStateNormal];//238
+//        [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+//        [LikeView addSubview:Line01];
         
         
-        int heightcheck = 61;
+        int heightcheck = 60;
         
         int TestWidth = screenWidth - 2;
         //NSLog(@"TestWidth is %i",TestWidth);

@@ -1387,16 +1387,24 @@
         NSString *GetTotalNewCount = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"total_new_notifications"]];
         NSLog(@"GetTotalNewCount is %@",GetTotalNewCount);
         
-        CheckNotication = [GetTotalNewCount integerValue];
+        NSString *ErrorString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"error"]];
         
-        if (CheckNotication == 0) {
-            ShowNotificationCount.text = @"";
-            ShowNotificationCount.backgroundColor = [UIColor clearColor];
-            ShowNotificationCount.textColor = [UIColor clearColor];
+        if ([ErrorString length] == 0 || [ErrorString isEqualToString:@""] || [ErrorString isEqualToString:@"(null)"] || [ErrorString isEqualToString:@"<null>"]) {
+            
         }else{
-            [self DrawNotificationData];
+            CheckNotication = [GetTotalNewCount integerValue];
+            
+            if (CheckNotication == 0) {
+                ShowNotificationCount.text = @"";
+                ShowNotificationCount.backgroundColor = [UIColor clearColor];
+                ShowNotificationCount.textColor = [UIColor clearColor];
+            }else{
+                [self DrawNotificationData];
+            }
+            [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(GetNotificationData) userInfo:nil repeats:NO];
         }
-        [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(GetNotificationData) userInfo:nil repeats:NO];
+        
+
         
     }
     

@@ -24,6 +24,7 @@
 #import "LeveyTabBarController.h"
 #import "ReportViewController.h"
 #import "ShareViewController.h"
+#import "SearchDetailViewController.h"
 @interface FeedV2DetailViewController ()
 @end
 
@@ -1546,7 +1547,7 @@
         [MainScroll addSubview:TanslateButton];
         
         GetHeightCheck += 63;
-    }else if(CheckLanguagedata == 1){
+    }else if(CheckLanguagedata == 0){
         //tanslate button here
         UIButton *TanslateButton = [[UIButton alloc]init];
         TanslateButton.frame = CGRectMake(20, GetHeightCheck, screenWidth - 40, 40);
@@ -1595,8 +1596,8 @@
     ShowAddress.frame = CGRectMake(35, GetHeightCheck, screenWidth - 90, 20);
     //ShowAddress.frame = CGRectMake(30, 210 + 3 + heightcheck + i, screenWidth - 150, 20);
     ShowAddress.text = GetPlaceName;
-    ShowAddress.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
-    ShowAddress.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+    ShowAddress.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+    ShowAddress.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
     ShowAddress.backgroundColor = [UIColor clearColor];
     [MainScroll addSubview:ShowAddress];
     
@@ -1660,7 +1661,7 @@
         NSArray *TempHashTags = [CheckString2 componentsSeparatedByString: @","];
         NSLog(@"Tags TempHashTags is %@",TempHashTags);
         
-        NSMutableArray *ArrHashTag = [[NSMutableArray alloc]initWithArray:TempHashTags];
+        ArrHashTag = [[NSMutableArray alloc]initWithArray:TempHashTags];
         
         // Show link and hash tag
         
@@ -1683,15 +1684,23 @@
             
             NSString *Text = [ArrHashTag objectAtIndex:i];
             CGRect r = [Text boundingRectWithSize:CGSizeMake(200, 0)
-                                          options:NSStringDrawingUsesLineFragmentOrigin
+                                          options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
                                        attributes:@{NSFontAttributeName:[UIFont fontWithName:@"ProximaNovaSoft-Regular" size:12]}
                                           context:nil];
+            
+            UIButton *TagsButton = [[UIButton alloc]init];
+            [TagsButton setTitle:@"" forState:UIControlStateNormal];
+            TagsButton.backgroundColor = [UIColor clearColor];
+            TagsButton.tag = i;
+            TagsButton.frame = CGRectMake(25 + frame2.size.width, 15, r.size.width + 20, 20);
+            [TagsButton addTarget:self action:@selector(PersonalTagsButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
             
             // CGSize textSize = [ShowHashTagText.text sizeWithAttributes:@{NSFontAttributeName:[ShowHashTagText font]}];
             // CGFloat textSize = ShowHashTagText.intrinsicContentSize.width;
             ShowHashTagText.frame = CGRectMake(20 + frame2.size.width, 15, r.size.width + 20, 20);
             frame2.size.width += r.size.width + 30;
             [HashTagScroll addSubview:ShowHashTagText];
+            [HashTagScroll addSubview:TagsButton];
             
             HashTagScroll.contentSize = CGSizeMake(20 + frame2.size.width , 50);
         }
@@ -2162,7 +2171,7 @@
     UILabel *ShowPlaceInfoText = [[UILabel alloc]init];
     ShowPlaceInfoText.frame = CGRectMake(20, GetMessageHeight, screenWidth - 40, 50);
     ShowPlaceInfoText.text = LocalisedString(@"About the place");
-    ShowPlaceInfoText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+    ShowPlaceInfoText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:17];
     ShowPlaceInfoText.backgroundColor = [UIColor clearColor];
     ShowPlaceInfoText.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
     [MainScroll addSubview:ShowPlaceInfoText];
@@ -3334,6 +3343,7 @@
     }
 }
 -(IBAction)LanguageButton:(id)sender{
+    NSLog(@"two language button on click.");
     ClickCount++;
     NSLog(@"ClickCount is %i",ClickCount);
     NSLog(@"[CountLanguageArray count] is %lu",(unsigned long)[CountLanguageArray count]);
@@ -3663,5 +3673,14 @@
     [self presentViewController:AddCollectionDataView animated:YES completion:nil];
     //[self.view.window.rootViewController presentViewController:AddCollectionDataView animated:YES completion:nil];
     [AddCollectionDataView GetPostID:GetPostID GetImageData:[UrlArray objectAtIndex:0]];
+}
+-(IBAction)PersonalTagsButtonOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSString *GetTagsString = [[NSString alloc]initWithFormat:@"%@",[ArrHashTag objectAtIndex:getbuttonIDN]];
+    NSLog(@"ArrHashTag is %@",GetTagsString);
+    
+    SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
+    [self.navigationController pushViewController:SearchDetailView animated:YES];
+    [SearchDetailView GetSearchKeyword:GetTagsString Getlat:@"" GetLong:@"" GetLocationName:@""];
 }
 @end

@@ -112,6 +112,8 @@
     NSString *GetExpense_Code;
     NSString *GetExpense_RealData;
     
+    NSMutableArray *ArrHashTag;
+    
     NSString *PhotoCount;
     
     NSMutableArray *Like_UseruidArray;

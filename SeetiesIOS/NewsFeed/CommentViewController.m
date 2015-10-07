@@ -314,7 +314,7 @@
     
     NSArray *itemArray = [NSArray arrayWithObjects:LocalisedString(@"Comments"),LocalisedString(@"Collections"), LocalisedString(@"Likes"), nil];
     UISegmentedControl *PostControl = [[UISegmentedControl alloc]initWithItems:itemArray];
-    PostControl.frame = CGRectMake(15, 80, screenWidth - 30, 29);
+    PostControl.frame = CGRectMake(15, 80, screenWidth - 30, 33);
     [PostControl addTarget:self action:@selector(segmentAction:) forControlEvents: UIControlEventValueChanged];
     
     if ([GetWhatView isEqualToString:@"Like"]) {
