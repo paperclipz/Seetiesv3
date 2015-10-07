@@ -311,7 +311,7 @@
         CGRect frame = cell.frame;
         cell.ivPhoto.image = [UIImage imageNamed:@"CameraIcon.png"];
         cell.ivPhoto.backgroundColor = [UIColor blackColor];
-        cell.frame = CGRectMake(0, 0, frame.size.width,frame.size.height);
+        cell.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width,frame.size.height);
 
         return cell;
     }

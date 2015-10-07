@@ -13,6 +13,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapViewController">
             <connections>
                 <outlet property="ibMapView" destination="YGZ-ol-gUV" id="c1l-Da-Abd"/>
+                <outlet property="lblIndicatorOne" destination="L5C-J9-YNc" id="fad-pe-UsL"/>
+                <outlet property="lblIndicatorTwo" destination="aP5-Zs-YJK" id="rtz-qh-DU0"/>
                 <outlet property="lblTitle" destination="Ntf-HD-y3T" id="4Lf-DR-bp8"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -69,16 +71,64 @@
                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="YGZ-ol-gUV">
                     <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                 </mapView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WbO-ys-HcZ" userLabel="indicatorView">
+                    <rect key="frame" x="0.0" y="64" width="320" height="55"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the map to drop a pin at the correct location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L5C-J9-YNc">
+                            <rect key="frame" x="8" y="7" width="312" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="uCR-tv-2C1"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can zoom in to get really pricise" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aP5-Zs-YJK">
+                            <rect key="frame" x="8" y="26" width="312" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="ALe-lc-In4"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="L5C-J9-YNc" firstAttribute="leading" secondItem="WbO-ys-HcZ" secondAttribute="leading" id="51j-Zk-QrP"/>
+                        <constraint firstAttribute="trailing" secondItem="aP5-Zs-YJK" secondAttribute="trailing" id="6iJ-OX-Y8z"/>
+                        <constraint firstAttribute="trailing" secondItem="L5C-J9-YNc" secondAttribute="trailing" id="Gf5-zp-TrL"/>
+                        <constraint firstAttribute="trailing" secondItem="L5C-J9-YNc" secondAttribute="trailing" id="J0P-db-3cD"/>
+                        <constraint firstItem="L5C-J9-YNc" firstAttribute="top" secondItem="WbO-ys-HcZ" secondAttribute="top" constant="6" id="L02-Sn-4Ib"/>
+                        <constraint firstItem="aP5-Zs-YJK" firstAttribute="leading" secondItem="WbO-ys-HcZ" secondAttribute="leading" constant="8" id="MHq-R1-reJ"/>
+                        <constraint firstItem="aP5-Zs-YJK" firstAttribute="top" secondItem="L5C-J9-YNc" secondAttribute="bottom" constant="-2" id="NIV-m1-h4y"/>
+                        <constraint firstAttribute="height" constant="55" id="iJX-zj-KcA"/>
+                        <constraint firstItem="L5C-J9-YNc" firstAttribute="leading" secondItem="WbO-ys-HcZ" secondAttribute="leading" constant="8" id="jFy-Nl-NdT"/>
+                        <constraint firstItem="L5C-J9-YNc" firstAttribute="centerY" secondItem="WbO-ys-HcZ" secondAttribute="centerY" id="lYF-Wb-hV2"/>
+                        <constraint firstItem="L5C-J9-YNc" firstAttribute="top" secondItem="WbO-ys-HcZ" secondAttribute="top" constant="7" id="xsj-Wp-eYf"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="51j-Zk-QrP"/>
+                            <exclude reference="J0P-db-3cD"/>
+                            <exclude reference="L02-Sn-4Ib"/>
+                            <exclude reference="lYF-Wb-hV2"/>
+                        </mask>
+                    </variation>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="WbO-ys-HcZ" firstAttribute="top" secondItem="tTl-dZ-IeZ" secondAttribute="bottom" id="73I-HN-ySC"/>
                 <constraint firstItem="tTl-dZ-IeZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="7TL-um-cpI"/>
+                <constraint firstAttribute="trailing" secondItem="WbO-ys-HcZ" secondAttribute="trailing" id="A1e-9p-zXl"/>
                 <constraint firstAttribute="bottom" secondItem="YGZ-ol-gUV" secondAttribute="bottom" id="EJC-bV-x1k"/>
                 <constraint firstItem="tTl-dZ-IeZ" firstAttribute="trailing" secondItem="YGZ-ol-gUV" secondAttribute="trailing" id="Gss-Zd-1MV"/>
                 <constraint firstItem="YGZ-ol-gUV" firstAttribute="top" secondItem="tTl-dZ-IeZ" secondAttribute="bottom" id="HOa-Vp-RIN"/>
                 <constraint firstItem="tTl-dZ-IeZ" firstAttribute="leading" secondItem="YGZ-ol-gUV" secondAttribute="leading" id="aAB-kX-oTM"/>
                 <constraint firstItem="tTl-dZ-IeZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="mqo-6r-aga"/>
                 <constraint firstAttribute="trailing" secondItem="tTl-dZ-IeZ" secondAttribute="trailing" id="tB9-nv-9KT"/>
+                <constraint firstItem="WbO-ys-HcZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="wzq-ZL-bZ8"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>

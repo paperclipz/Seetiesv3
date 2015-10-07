@@ -57,13 +57,12 @@
 {
     
     [super initSelfView];
-    self.ibPhotoPin.image = [self.ibPhotoPin.image imageTintedWithColor:DEVICE_COLOR];
+    self.ibPhotoPin.image = [self.ibPhotoPin.image imageTintedWithColor:UIColorFromRGB(153.0, 153.0, 153.0, 0.4)];
 
     self.txtDescription.placeholder = LOCALIZATION(@"Add a note");
     self.txtDescription.delegate = self;
 }
-
--(void)saveData
+ -(void)saveData
 {
 
     self.postModel.collection_note = self.txtDescription.text;

@@ -742,17 +742,14 @@ static id ObjectOrNull(id object)
                                     @"lat":ObjectOrNull(tempVenueModel.lat),
                                     @"lng":ObjectOrNull(tempVenueModel.lng)};
     
-    
     NSMutableDictionary* finalLocationDict = [[NSMutableDictionary alloc]initWithDictionary:locationDict];
-    NSDictionary* expensesDict = @{ @"expense":@{[Utils currencyCode:tempVenueModel.currency]:tempVenueModel.expense}};
-  
-    
+    NSDictionary* expensesDict = @{@"expense":@""};
     if (tempVenueModel.price) {
-        [finalLocationDict addEntriesFromDictionary:expensesDict];
+        expensesDict = @{ @"expense":@{[Utils currencyCode:tempVenueModel.currency]:tempVenueModel.expense}};
     }
-    
-    // ========================   location =============================
+    [finalLocationDict addEntriesFromDictionary:expensesDict];
 
+    // ========================   location =============================
 
     NSMutableArray* categoriesSelected = [NSMutableArray new];
     
@@ -808,7 +805,7 @@ static id ObjectOrNull(id object)
             self.recommendationModel = model;
             
             if (isSaved) {
-                [self dismissView];
+                [self performSelector:@selector(dismissView) withObject:nil afterDelay:2.0f];
             }
         }
     

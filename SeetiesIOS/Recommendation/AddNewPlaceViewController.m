@@ -8,10 +8,12 @@
 
 #import "AddNewPlaceViewController.h"
 #import "MapViewController.h"
+#import "STSearchViewController.h"
 
 @interface AddNewPlaceViewController ()
 
 
+@property (weak, nonatomic) IBOutlet UILabel *lblIndicator;
 @property (strong, nonatomic)SearchLocationDetailModel* gooModel;// google
 @property (strong, nonatomic)VenueModel* fsModel;// 4square
 @property (strong, nonatomic)RecommendationVenueModel* rModel;
@@ -24,9 +26,20 @@
 @property(strong,nonatomic)MKPointAnnotation* annotation;
 @property(nonatomic,assign)MKCoordinateRegion region;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+
+
+@property(strong,nonatomic)STSearchViewController* stSearchViewController;
+
 @end
 
 @implementation AddNewPlaceViewController
+- (IBAction)btnEditLocationClicked:(id)sender {
+    
+    
+    _stSearchViewController = nil;
+    [self presentViewController:self.stSearchViewController animated:YES completion:nil];
+    
+}
 
 - (IBAction)btnDoneClicked:(id)sender {
     
@@ -175,7 +188,6 @@
 
 }
 
-
 -(void)refreshMapViewWithLatitude:(double)lat longtitude:(double)lont
 {
     if ( lat == 0) {
@@ -296,6 +308,22 @@ didChangeDragState:(MKAnnotationViewDragState)newState
     return _editHoursViewController;
 }
 
+-(STSearchViewController*)stSearchViewController
+{
+    if (!_stSearchViewController) {
+        _stSearchViewController = [STSearchViewController new];
+        
+        __weak typeof (self)weakSelf = self;
+        _stSearchViewController.didSelectOnLocationBlock = ^(RecommendationVenueModel* model)
+        {
+            weakSelf.rModel = model;
+            [weakSelf dismissViewControllerAnimated:YES completion:nil];
+
+        };
+    }
+    
+    return _stSearchViewController;
+}
 #pragma mark - Save Data
 -(void)saveData
 {
@@ -320,5 +348,6 @@ didChangeDragState:(MKAnnotationViewDragState)newState
 -(void)changeLanguage
 {
     self.lblTitle.text = LocalisedString(@"Add a new place");
+    self.lblIndicator.text = LOCALIZATION(@"Tap the map to drop a pin");
 }
 @end

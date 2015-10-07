@@ -9,6 +9,8 @@
 #import "MapViewController.h"
 
 @interface MapViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *lblIndicatorOne;
+@property (weak, nonatomic) IBOutlet UILabel *lblIndicatorTwo;
 @property(nonatomic,assign)MKCoordinateRegion region;
 @property(nonatomic,strong)MKPointAnnotation* annotation;
 
@@ -51,7 +53,15 @@
 
     self.ibMapView.delegate = self;
     [self.ibMapView addAnnotation:self.annotation];
+    [self changeLanguage];
 
+}
+
+-(void)changeLanguage
+{
+
+    self.lblIndicatorOne.text = LOCALIZATION(@"Tap the map to drop a pin at the correct location");
+    self.lblIndicatorTwo.text = LOCALIZATION(@"You can zoom in to get really pricise");
 }
 
 -(void)viewDidAppear:(BOOL)animated
