@@ -331,18 +331,6 @@
 		0BB3A80C1BC38FEC002EAE77 /* NotificationFollow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB3A6331BC38FEC002EAE77 /* NotificationFollow@3x.png */; settings = {ASSET_TAGS = (); }; };
 		0BB3A80D1BC38FEC002EAE77 /* NotificationLike@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB3A6341BC38FEC002EAE77 /* NotificationLike@2x.png */; settings = {ASSET_TAGS = (); }; };
 		0BB3A80E1BC38FEC002EAE77 /* NotificationLike@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB3A6351BC38FEC002EAE77 /* NotificationLike@3x.png */; settings = {ASSET_TAGS = (); }; };
-		0BB3A80F1BC38FEC002EAE77 /* BlueLink@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB3A6371BC38FEC002EAE77 /* BlueLink@2x.png */; settings = {ASSET_TAGS = (); }; };
-		0BB3A8101BC38FEC002EAE77 /* BlueLink@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB3A6381BC38FEC002EAE77 /* BlueLink@3x.png */; settings = {ASSET_TAGS = (); }; };
-		0BB3A8111BC38FEC002EAE77 /* BluePhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB3A6391BC38FEC002EAE77 /* BluePhone@2x.png */; settings = {ASSET_TAGS = (); }; };
-		0BB3A8121BC38FEC002EAE77 /* BluePhone@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB3A63A1BC38FEC002EAE77 /* BluePhone@3x.png */; settings = {ASSET_TAGS = (); }; };
-		0BB3A8131BC38FEC002EAE77 /* BluePin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB3A63B1BC38FEC002EAE77 /* BluePin@2x.png */; settings = {ASSET_TAGS = (); }; };
-		0BB3A8141BC38FEC002EAE77 /* BluePin@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB3A63C1BC38FEC002EAE77 /* BluePin@3x.png */; settings = {ASSET_TAGS = (); }; };
-		0BB3A8151BC38FEC002EAE77 /* BluePrice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB3A63D1BC38FEC002EAE77 /* BluePrice@2x.png */; settings = {ASSET_TAGS = (); }; };
-		0BB3A8161BC38FEC002EAE77 /* BluePrice@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB3A63E1BC38FEC002EAE77 /* BluePrice@3x.png */; settings = {ASSET_TAGS = (); }; };
-		0BB3A8171BC38FEC002EAE77 /* BlueTime@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB3A63F1BC38FEC002EAE77 /* BlueTime@2x.png */; settings = {ASSET_TAGS = (); }; };
-		0BB3A8181BC38FEC002EAE77 /* BlueTime@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB3A6401BC38FEC002EAE77 /* BlueTime@3x.png */; settings = {ASSET_TAGS = (); }; };
-		0BB3A8191BC38FEC002EAE77 /* DirectionIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB3A6411BC38FEC002EAE77 /* DirectionIcon@2x.png */; settings = {ASSET_TAGS = (); }; };
-		0BB3A81A1BC38FEC002EAE77 /* DirectionIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB3A6421BC38FEC002EAE77 /* DirectionIcon@3x.png */; settings = {ASSET_TAGS = (); }; };
 		0BB3A81B1BC38FEC002EAE77 /* FullScreenIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB3A6441BC38FEC002EAE77 /* FullScreenIcon@2x.png */; settings = {ASSET_TAGS = (); }; };
 		0BB3A81C1BC38FEC002EAE77 /* FullScreenIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB3A6451BC38FEC002EAE77 /* FullScreenIcon@3x.png */; settings = {ASSET_TAGS = (); }; };
 		0BB3A81D1BC38FEC002EAE77 /* MoreIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB3A6461BC38FEC002EAE77 /* MoreIcon@2x.png */; settings = {ASSET_TAGS = (); }; };
@@ -580,6 +568,20 @@
 		8A84752B1BC52C0B006DD614 /* UITextField+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A84752A1BC52C0B006DD614 /* UITextField+Extra.m */; settings = {ASSET_TAGS = (); }; };
 		8A84752E1BC52C50006DD614 /* UIButton+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A84752D1BC52C50006DD614 /* UIButton+Extra.m */; settings = {ASSET_TAGS = (); }; };
 		8A8475311BC52CCF006DD614 /* UITextView+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A8475301BC52CCF006DD614 /* UITextView+Extra.m */; settings = {ASSET_TAGS = (); }; };
+		8A8475431BC53229006DD614 /* BlueLink@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A8475351BC53229006DD614 /* BlueLink@2x.png */; settings = {ASSET_TAGS = (); }; };
+		8A8475441BC53229006DD614 /* BlueLink@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A8475361BC53229006DD614 /* BlueLink@3x.png */; settings = {ASSET_TAGS = (); }; };
+		8A8475451BC53229006DD614 /* BluePhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A8475371BC53229006DD614 /* BluePhone@2x.png */; settings = {ASSET_TAGS = (); }; };
+		8A8475461BC53229006DD614 /* BluePhone@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A8475381BC53229006DD614 /* BluePhone@3x.png */; settings = {ASSET_TAGS = (); }; };
+		8A8475471BC53229006DD614 /* BluePin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A8475391BC53229006DD614 /* BluePin@2x.png */; settings = {ASSET_TAGS = (); }; };
+		8A8475481BC53229006DD614 /* BluePin@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84753A1BC53229006DD614 /* BluePin@3x.png */; settings = {ASSET_TAGS = (); }; };
+		8A8475491BC53229006DD614 /* BluePrice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84753B1BC53229006DD614 /* BluePrice@2x.png */; settings = {ASSET_TAGS = (); }; };
+		8A84754A1BC53229006DD614 /* BluePrice@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84753C1BC53229006DD614 /* BluePrice@3x.png */; settings = {ASSET_TAGS = (); }; };
+		8A84754B1BC53229006DD614 /* BlueTime@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84753D1BC53229006DD614 /* BlueTime@2x.png */; settings = {ASSET_TAGS = (); }; };
+		8A84754C1BC53229006DD614 /* BlueTime@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84753E1BC53229006DD614 /* BlueTime@3x.png */; settings = {ASSET_TAGS = (); }; };
+		8A84754D1BC53229006DD614 /* ChangePlaceIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84753F1BC53229006DD614 /* ChangePlaceIcon@2x.png */; settings = {ASSET_TAGS = (); }; };
+		8A84754E1BC53229006DD614 /* ChangePlaceIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A8475401BC53229006DD614 /* ChangePlaceIcon@3x.png */; settings = {ASSET_TAGS = (); }; };
+		8A84754F1BC53229006DD614 /* DirectionIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A8475411BC53229006DD614 /* DirectionIcon@2x.png */; settings = {ASSET_TAGS = (); }; };
+		8A8475501BC53229006DD614 /* DirectionIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A8475421BC53229006DD614 /* DirectionIcon@3x.png */; settings = {ASSET_TAGS = (); }; };
 		8A8850701BBE83BB0096E0D0 /* error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A88506D1BBE83BB0096E0D0 /* error@2x.png */; settings = {ASSET_TAGS = (); }; };
 		8A8850711BBE83BB0096E0D0 /* TextFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A88506F1BBE83BB0096E0D0 /* TextFieldValidator.m */; settings = {ASSET_TAGS = (); }; };
 		8A959D631B8B252700722920 /* FXImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A959D601B8B252700722920 /* FXImageView.m */; };
@@ -1214,18 +1216,6 @@
 		0BB3A6331BC38FEC002EAE77 /* NotificationFollow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NotificationFollow@3x.png"; sourceTree = "<group>"; };
 		0BB3A6341BC38FEC002EAE77 /* NotificationLike@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NotificationLike@2x.png"; sourceTree = "<group>"; };
 		0BB3A6351BC38FEC002EAE77 /* NotificationLike@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NotificationLike@3x.png"; sourceTree = "<group>"; };
-		0BB3A6371BC38FEC002EAE77 /* BlueLink@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BlueLink@2x.png"; sourceTree = "<group>"; };
-		0BB3A6381BC38FEC002EAE77 /* BlueLink@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BlueLink@3x.png"; sourceTree = "<group>"; };
-		0BB3A6391BC38FEC002EAE77 /* BluePhone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BluePhone@2x.png"; sourceTree = "<group>"; };
-		0BB3A63A1BC38FEC002EAE77 /* BluePhone@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BluePhone@3x.png"; sourceTree = "<group>"; };
-		0BB3A63B1BC38FEC002EAE77 /* BluePin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BluePin@2x.png"; sourceTree = "<group>"; };
-		0BB3A63C1BC38FEC002EAE77 /* BluePin@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BluePin@3x.png"; sourceTree = "<group>"; };
-		0BB3A63D1BC38FEC002EAE77 /* BluePrice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BluePrice@2x.png"; sourceTree = "<group>"; };
-		0BB3A63E1BC38FEC002EAE77 /* BluePrice@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BluePrice@3x.png"; sourceTree = "<group>"; };
-		0BB3A63F1BC38FEC002EAE77 /* BlueTime@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BlueTime@2x.png"; sourceTree = "<group>"; };
-		0BB3A6401BC38FEC002EAE77 /* BlueTime@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BlueTime@3x.png"; sourceTree = "<group>"; };
-		0BB3A6411BC38FEC002EAE77 /* DirectionIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DirectionIcon@2x.png"; sourceTree = "<group>"; };
-		0BB3A6421BC38FEC002EAE77 /* DirectionIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DirectionIcon@3x.png"; sourceTree = "<group>"; };
 		0BB3A6441BC38FEC002EAE77 /* FullScreenIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FullScreenIcon@2x.png"; sourceTree = "<group>"; };
 		0BB3A6451BC38FEC002EAE77 /* FullScreenIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FullScreenIcon@3x.png"; sourceTree = "<group>"; };
 		0BB3A6461BC38FEC002EAE77 /* MoreIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MoreIcon@2x.png"; sourceTree = "<group>"; };
@@ -1544,6 +1534,20 @@
 		8A84752F1BC52CCF006DD614 /* UITextView+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Extra.h"; sourceTree = "<group>"; };
 		8A8475301BC52CCF006DD614 /* UITextView+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Extra.m"; sourceTree = "<group>"; };
 		8A8475331BC52D27006DD614 /* CustomFont.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomFont.h; sourceTree = "<group>"; };
+		8A8475351BC53229006DD614 /* BlueLink@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BlueLink@2x.png"; sourceTree = "<group>"; };
+		8A8475361BC53229006DD614 /* BlueLink@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BlueLink@3x.png"; sourceTree = "<group>"; };
+		8A8475371BC53229006DD614 /* BluePhone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BluePhone@2x.png"; sourceTree = "<group>"; };
+		8A8475381BC53229006DD614 /* BluePhone@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BluePhone@3x.png"; sourceTree = "<group>"; };
+		8A8475391BC53229006DD614 /* BluePin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BluePin@2x.png"; sourceTree = "<group>"; };
+		8A84753A1BC53229006DD614 /* BluePin@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BluePin@3x.png"; sourceTree = "<group>"; };
+		8A84753B1BC53229006DD614 /* BluePrice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BluePrice@2x.png"; sourceTree = "<group>"; };
+		8A84753C1BC53229006DD614 /* BluePrice@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BluePrice@3x.png"; sourceTree = "<group>"; };
+		8A84753D1BC53229006DD614 /* BlueTime@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BlueTime@2x.png"; sourceTree = "<group>"; };
+		8A84753E1BC53229006DD614 /* BlueTime@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BlueTime@3x.png"; sourceTree = "<group>"; };
+		8A84753F1BC53229006DD614 /* ChangePlaceIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ChangePlaceIcon@2x.png"; sourceTree = "<group>"; };
+		8A8475401BC53229006DD614 /* ChangePlaceIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ChangePlaceIcon@3x.png"; sourceTree = "<group>"; };
+		8A8475411BC53229006DD614 /* DirectionIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DirectionIcon@2x.png"; sourceTree = "<group>"; };
+		8A8475421BC53229006DD614 /* DirectionIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DirectionIcon@3x.png"; sourceTree = "<group>"; };
 		8A88506D1BBE83BB0096E0D0 /* error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "error@2x.png"; sourceTree = "<group>"; };
 		8A88506E1BBE83BB0096E0D0 /* TextFieldValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldValidator.h; sourceTree = "<group>"; };
 		8A88506F1BBE83BB0096E0D0 /* TextFieldValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldValidator.m; sourceTree = "<group>"; };
@@ -2189,7 +2193,7 @@
 				0BB3A6291BC38FEC002EAE77 /* Navi bar */,
 				0BB3A62A1BC38FEC002EAE77 /* NearBy */,
 				0BB3A62B1BC38FEC002EAE77 /* Notifications */,
-				0BB3A6361BC38FEC002EAE77 /* Place Info */,
+				8A8475341BC53229006DD614 /* Place Info */,
 				0BB3A6431BC38FEC002EAE77 /* Post Details */,
 				0BB3A6581BC38FEC002EAE77 /* PostsDetail */,
 				0BB3A6591BC38FEC002EAE77 /* Profile */,
@@ -2731,25 +2735,6 @@
 				0BB3A6351BC38FEC002EAE77 /* NotificationLike@3x.png */,
 			);
 			path = Notifications;
-			sourceTree = "<group>";
-		};
-		0BB3A6361BC38FEC002EAE77 /* Place Info */ = {
-			isa = PBXGroup;
-			children = (
-				0BB3A6371BC38FEC002EAE77 /* BlueLink@2x.png */,
-				0BB3A6381BC38FEC002EAE77 /* BlueLink@3x.png */,
-				0BB3A6391BC38FEC002EAE77 /* BluePhone@2x.png */,
-				0BB3A63A1BC38FEC002EAE77 /* BluePhone@3x.png */,
-				0BB3A63B1BC38FEC002EAE77 /* BluePin@2x.png */,
-				0BB3A63C1BC38FEC002EAE77 /* BluePin@3x.png */,
-				0BB3A63D1BC38FEC002EAE77 /* BluePrice@2x.png */,
-				0BB3A63E1BC38FEC002EAE77 /* BluePrice@3x.png */,
-				0BB3A63F1BC38FEC002EAE77 /* BlueTime@2x.png */,
-				0BB3A6401BC38FEC002EAE77 /* BlueTime@3x.png */,
-				0BB3A6411BC38FEC002EAE77 /* DirectionIcon@2x.png */,
-				0BB3A6421BC38FEC002EAE77 /* DirectionIcon@3x.png */,
-			);
-			path = "Place Info";
 			sourceTree = "<group>";
 		};
 		0BB3A6431BC38FEC002EAE77 /* Post Details */ = {
@@ -3400,6 +3385,27 @@
 				8A8475331BC52D27006DD614 /* CustomFont.h */,
 			);
 			name = SystemOverride;
+			sourceTree = "<group>";
+		};
+		8A8475341BC53229006DD614 /* Place Info */ = {
+			isa = PBXGroup;
+			children = (
+				8A8475351BC53229006DD614 /* BlueLink@2x.png */,
+				8A8475361BC53229006DD614 /* BlueLink@3x.png */,
+				8A8475371BC53229006DD614 /* BluePhone@2x.png */,
+				8A8475381BC53229006DD614 /* BluePhone@3x.png */,
+				8A8475391BC53229006DD614 /* BluePin@2x.png */,
+				8A84753A1BC53229006DD614 /* BluePin@3x.png */,
+				8A84753B1BC53229006DD614 /* BluePrice@2x.png */,
+				8A84753C1BC53229006DD614 /* BluePrice@3x.png */,
+				8A84753D1BC53229006DD614 /* BlueTime@2x.png */,
+				8A84753E1BC53229006DD614 /* BlueTime@3x.png */,
+				8A84753F1BC53229006DD614 /* ChangePlaceIcon@2x.png */,
+				8A8475401BC53229006DD614 /* ChangePlaceIcon@3x.png */,
+				8A8475411BC53229006DD614 /* DirectionIcon@2x.png */,
+				8A8475421BC53229006DD614 /* DirectionIcon@3x.png */,
+			);
+			path = "Place Info";
 			sourceTree = "<group>";
 		};
 		8A88506C1BBE83BB0096E0D0 /* TextFieldValidator */ = {
@@ -4500,7 +4506,6 @@
 				8AD6C0B81B706CF30040437E /* OpenWebViewController.xib in Resources */,
 				8A3757B81B847C7A009DB7D4 /* AddNewPlaceViewController.xib in Resources */,
 				0BB3A7F21BC38FEC002EAE77 /* LoginFacebookIcon@3x.png in Resources */,
-				0BB3A8101BC38FEC002EAE77 /* BlueLink@3x.png in Resources */,
 				0BBFE0501B9D624C004B17E9 /* EditProfileV2ViewController.xib in Resources */,
 				0BB3A7A91BC38FEC002EAE77 /* BlueTick@2x.png in Resources */,
 				0BB3A7B31BC38FEC002EAE77 /* LandmarkCultureIcon@2x.png in Resources */,
@@ -4543,6 +4548,7 @@
 				0BB3A74E1BC38FEC002EAE77 /* NoActivity@3x.png in Resources */,
 				0BB3A6D71BC38FEC002EAE77 /* BackIcon@3x.png in Resources */,
 				0BB3A7321BC38FEC002EAE77 /* SaveDraftBtn@2x.png in Resources */,
+				8A8475431BC53229006DD614 /* BlueLink@2x.png in Resources */,
 				8A7B9CE11BBD387000D7F604 /* EnbleLocationViewController.xib in Resources */,
 				0BB3A8451BC38FEC002EAE77 /* ProfileOverlay@2x.png in Resources */,
 				0BB3A8631BC38FEC002EAE77 /* ShareCopyLinkIcon@2x.png in Resources */,
@@ -4566,7 +4572,9 @@
 				0BB3A7F41BC38FEC002EAE77 /* LoginInstagramIcon@3x.png in Resources */,
 				0BB3A7D91BC38FEC002EAE77 /* InviteLineIcon@2x.png in Resources */,
 				0BB3A76C1BC38FEC002EAE77 /* UserLikeIcon@3x.png in Resources */,
+				8A84754A1BC53229006DD614 /* BluePrice@3x.png in Resources */,
 				0BB3A7BE1BC38FEC002EAE77 /* SportIcon@3x.png in Resources */,
+				8A8475451BC53229006DD614 /* BluePhone@2x.png in Resources */,
 				0BB3A7DF1BC38FEC002EAE77 /* InviteWhatsappIcon@2x.png in Resources */,
 				0BB3A6F11BC38FEC002EAE77 /* CollectionCrossBtn@2x.png in Resources */,
 				8AD6C0D31B706CF30040437E /* PFollowTheExpertsViewController.xib in Resources */,
@@ -4599,6 +4607,7 @@
 				8A2E2CE31B81CFE40010895E /* STSearchViewController.xib in Resources */,
 				0BB3A6F61BC38FEC002EAE77 /* CollectionLink@3x.png in Resources */,
 				8A6584331B981B4E00BC86B9 /* CategorySelectionViewController.xib in Resources */,
+				8A84754E1BC53229006DD614 /* ChangePlaceIcon@3x.png in Resources */,
 				0BB3A80E1BC38FEC002EAE77 /* NotificationLike@3x.png in Resources */,
 				0BB3A6EC1BC38FEC002EAE77 /* Icon@2x.png in Resources */,
 				0BB3A72D1BC38FEC002EAE77 /* CloseIcon@3x.png in Resources */,
@@ -4619,25 +4628,23 @@
 				0BB3A8931BC38FEC002EAE77 /* iPhone5_Tour2@2x.png in Resources */,
 				0BB3A78B1BC38FEC002EAE77 /* FollowIcon@2x.png in Resources */,
 				0BB3A7F51BC38FEC002EAE77 /* SeetiesLogo@2x.png in Resources */,
-				0BB3A8191BC38FEC002EAE77 /* DirectionIcon@2x.png in Resources */,
 				0BB3A87F1BC38FEC002EAE77 /* FeedIcon@3x.png in Resources */,
 				0BB3A8021BC38FEC002EAE77 /* TitleBar@2x.png in Resources */,
-				0BB3A8131BC38FEC002EAE77 /* BluePin@2x.png in Resources */,
 				0BB3A7431BC38FEC002EAE77 /* LocationIcon@3x.png in Resources */,
-				0BB3A8151BC38FEC002EAE77 /* BluePrice@2x.png in Resources */,
 				0BB3A8621BC38FEC002EAE77 /* CameraIcon@3x.png in Resources */,
 				0BB3A8581BC38FEC002EAE77 /* SearchLocationIcon@3x.png in Resources */,
 				0BB3A70C1BC38FEC002EAE77 /* Uncheck@3x.png in Resources */,
 				0BB3A7711BC38FEC002EAE77 /* CollectIndoBtn@2x.png in Resources */,
-				0BB3A80F1BC38FEC002EAE77 /* BlueLink@2x.png in Resources */,
 				8AD6BE4C1B706CF30040437E /* ExploreCountryV2ViewController.xib in Resources */,
 				0BB3A7691BC38FEC002EAE77 /* UserCommentIcon@2x.png in Resources */,
 				0BB3A84D1BC38FEC002EAE77 /* ViewIcon@2x.png in Resources */,
 				0BB3A7FD1BC38FEC002EAE77 /* NearbyBackground.png in Resources */,
 				0BB3A8421BC38FEC002EAE77 /* ProfileFollowingIcon@3x.png in Resources */,
+				8A8475481BC53229006DD614 /* BluePin@3x.png in Resources */,
 				8A8850701BBE83BB0096E0D0 /* error@2x.png in Resources */,
 				8AB76DFF1BB8FDC8007DB972 /* ProfileV2ViewController.xib in Resources */,
 				8AD6C34C1B707D120040437E /* toolbarbg@2x.png in Resources */,
+				8A84754D1BC53229006DD614 /* ChangePlaceIcon@2x.png in Resources */,
 				0BB3A7101BC38FEC002EAE77 /* WhiteCollected@3x.png in Resources */,
 				0BB3A7291BC38FEC002EAE77 /* BrushIcon@3x.png in Resources */,
 				0BB3A73E1BC38FEC002EAE77 /* EditDisplayPhoto@2x.png in Resources */,
@@ -4682,6 +4689,7 @@
 				0B3FF10A1BB131620014AF2E /* NewCollectionViewController.xib in Resources */,
 				0BB3A7421BC38FEC002EAE77 /* LocationIcon@2x.png in Resources */,
 				0BB3A8271BC38FEC002EAE77 /* PostOverlay@2x.png in Resources */,
+				8A84754B1BC53229006DD614 /* BlueTime@2x.png in Resources */,
 				0BB3A7A61BC38FEC002EAE77 /* AbroadIcon@3x.png in Resources */,
 				0BB3A7C41BC38FEC002EAE77 /* ConnectWithFacebook@3x.png in Resources */,
 				0BB3A7ED1BC38FEC002EAE77 /* EyesCheck@2x.png in Resources */,
@@ -4718,7 +4726,6 @@
 				8A9F25CF1B8ED8BC00BB13BA /* EditHoursViewController.xib in Resources */,
 				0BB3A89A1BC38FEC002EAE77 /* WalkthroughFeed2.png in Resources */,
 				0BB3A7D71BC38FEC002EAE77 /* InviteIcon@2x 2.png in Resources */,
-				0BB3A8161BC38FEC002EAE77 /* BluePrice@3x.png in Resources */,
 				0BB3A8681BC38FEC002EAE77 /* ShareFBIcon@3x.png in Resources */,
 				0BB3A75F1BC38FEC002EAE77 /* ExploreLikeIcon@2x.png in Resources */,
 				0BB3A79F1BC38FEC002EAE77 /* EventLogo@2x.png in Resources */,
@@ -4777,6 +4784,7 @@
 				0BB3A77D1BC38FEC002EAE77 /* Distance2Icon@2x.png in Resources */,
 				0BB3A7AF1BC38FEC002EAE77 /* ForHerIcon@2x.png in Resources */,
 				0BB3A7641BC38FEC002EAE77 /* ExploreSearchBar@3x.png in Resources */,
+				8A8475441BC53229006DD614 /* BlueLink@3x.png in Resources */,
 				0BB3A8801BC38FEC002EAE77 /* FeedIconActive@2x.png in Resources */,
 				0BB3A77F1BC38FEC002EAE77 /* Distance3Icon@2x.png in Resources */,
 				8AD6C2821B7072FB0040437E /* AddHourViewController.xib in Resources */,
@@ -4811,11 +4819,11 @@
 				0BB3A88B1BC38FEC002EAE77 /* RecommendBtn@3x.png in Resources */,
 				0BB3A6DA1BC38FEC002EAE77 /* EditHoursIcon@2x.png in Resources */,
 				0BB3A72F1BC38FEC002EAE77 /* EditPostOverlay@3x.png in Resources */,
-				0BB3A8181BC38FEC002EAE77 /* BlueTime@3x.png in Resources */,
 				0BB3A8951BC38FEC002EAE77 /* iPhone5_Tour4@2x.png in Resources */,
 				8AD6C2AA1B7072FB0040437E /* WhereIsThisViewController.xib in Resources */,
 				0BB3A8371BC38FEC002EAE77 /* FollowerNumber@2x.png in Resources */,
 				8AD6C2841B7072FB0040437E /* AddLinkViewController.xib in Resources */,
+				8A8475501BC53229006DD614 /* DirectionIcon@3x.png in Resources */,
 				0BB3A8311BC38FEC002EAE77 /* DefaultProfilePic@2x.png in Resources */,
 				0BB3A8651BC38FEC002EAE77 /* ShareEmailIcon@2x.png in Resources */,
 				0BB3A6D81BC38FEC002EAE77 /* CurrencyArrow@2x.png in Resources */,
@@ -4860,7 +4868,6 @@
 				8AD6C11A1B706CF30040437E /* poweredByFoursquare_gray.png in Resources */,
 				0BCF10F41BB290C90017B614 /* ShareViewController.xib in Resources */,
 				0BB3A7C61BC38FEC002EAE77 /* ConnectWithInstagram@3x.png in Resources */,
-				0BB3A81A1BC38FEC002EAE77 /* DirectionIcon@3x.png in Resources */,
 				0B3FF1101BB131A20014AF2E /* NearbyViewController.xib in Resources */,
 				0BB3A7821BC38FEC002EAE77 /* Distance4Icon@3x.png in Resources */,
 				0BB3A85D1BC38FEC002EAE77 /* YellowCollect@2x.png in Resources */,
@@ -4882,6 +4889,7 @@
 				0BB3A8781BC38FEC002EAE77 /* DraftsIcon@2x.png in Resources */,
 				0BB3A6F01BC38FEC002EAE77 /* CheckGrey@3x.png in Resources */,
 				8AD6C2921B7072FB0040437E /* ChangeSearchLocationViewController.xib in Resources */,
+				8A84754F1BC53229006DD614 /* DirectionIcon@2x.png in Resources */,
 				0BB3A8841BC38FEC002EAE77 /* NotificationIconActive@2x.png in Resources */,
 				0BB3A7991BC38FEC002EAE77 /* ShareToIcon@2x.png in Resources */,
 				0BB3A7041BC38FEC002EAE77 /* MoreBtn@3x.png in Resources */,
@@ -4901,9 +4909,9 @@
 				0BB3A7A31BC38FEC002EAE77 /* WelcomeLogo@2x.png in Resources */,
 				8AD6BE5A1B706CF30040437E /* DoImagePickerController.xib in Resources */,
 				0BB3A7F91BC38FEC002EAE77 /* Caret@2x.png in Resources */,
+				8A84754C1BC53229006DD614 /* BlueTime@3x.png in Resources */,
 				0BB3A8881BC38FEC002EAE77 /* ProfileIconActive@2x.png in Resources */,
 				8AD6C0F91B706CF30040437E /* SearchResultV2ViewController.xib in Resources */,
-				0BB3A8121BC38FEC002EAE77 /* BluePhone@3x.png in Resources */,
 				0BB3A7651BC38FEC002EAE77 /* OpenStatus@2x.png in Resources */,
 				0BB3A7161BC38FEC002EAE77 /* EditIconSwipe@3x.png in Resources */,
 				0BB3A72C1BC38FEC002EAE77 /* CloseIcon@2x.png in Resources */,
@@ -4919,6 +4927,7 @@
 				8AD6C2A81B7072FB0040437E /* TellaStoryViewController.xib in Resources */,
 				0BB3A7851BC38FEC002EAE77 /* FeedOverlay@2x.png in Resources */,
 				0BB3A6FE1BC38FEC002EAE77 /* ListViewActive@3x.png in Resources */,
+				8A8475461BC53229006DD614 /* BluePhone@3x.png in Resources */,
 				0BB3A7AB1BC38FEC002EAE77 /* FollowingOnlyIcon@2x.png in Resources */,
 				8AD6C1031B706CF30040437E /* ChangePasswordViewController.xib in Resources */,
 				0BB3A8041BC38FEC002EAE77 /* warning-flat-icon.png in Resources */,
@@ -4966,7 +4975,6 @@
 				0BB3A8711BC38FEC002EAE77 /* BahasaIndonesia.png in Resources */,
 				0BB3A7CC1BC38FEC002EAE77 /* InstagramBtnActive@3x.png in Resources */,
 				8AEB5F651BC3E37600A804B4 /* GoToEnd@3x.png in Resources */,
-				0BB3A8171BC38FEC002EAE77 /* BlueTime@2x.png in Resources */,
 				0BB3A8901BC38FEC002EAE77 /* iPhone4_Tour3.png in Resources */,
 				0BB3A6E11BC38FEC002EAE77 /* Icon-72.png in Resources */,
 				0BB3A87E1BC38FEC002EAE77 /* FeedIcon@2x.png in Resources */,
@@ -4990,6 +4998,7 @@
 				0BB3A8871BC38FEC002EAE77 /* ProfileIcon@3x.png in Resources */,
 				8AD6C0D71B706CF30040437E /* PSelectYourInterestViewController.xib in Resources */,
 				0BB3A8671BC38FEC002EAE77 /* ShareFBIcon@2x.png in Resources */,
+				8A8475471BC53229006DD614 /* BluePin@2x.png in Resources */,
 				8AB76E011BB8FDC8007DB972 /* UserProfileV2ViewController.xib in Resources */,
 				8AD6C2801B7072FB0040437E /* AddContactViewController.xib in Resources */,
 				0BB3A7111BC38FEC002EAE77 /* CommentBox@2x.png in Resources */,
@@ -5003,6 +5012,7 @@
 				0BB3A7F11BC38FEC002EAE77 /* LoginFacebookIcon@2x.png in Resources */,
 				0BB3A7FA1BC38FEC002EAE77 /* Caret@3x.png in Resources */,
 				0BB3A7081BC38FEC002EAE77 /* ShareBase@3x.png in Resources */,
+				8A8475491BC53229006DD614 /* BluePrice@2x.png in Resources */,
 				0BB3A7BA1BC38FEC002EAE77 /* NightlifeIcon@3x.png in Resources */,
 				0BB3A7151BC38FEC002EAE77 /* EditIconSwipe@2x.png in Resources */,
 				0BB3A7EE1BC38FEC002EAE77 /* EyesCheck@3x.png in Resources */,
@@ -5044,14 +5054,12 @@
 				0BB3A81E1BC38FEC002EAE77 /* MoreIcon@3x.png in Resources */,
 				0BB3A87D1BC38FEC002EAE77 /* ExploreIconActive@3x.png in Resources */,
 				8A3409101B872B31009B66C3 /* EditPostViewController.xib in Resources */,
-				0BB3A8111BC38FEC002EAE77 /* BluePhone@2x.png in Resources */,
 				0BB3A7481BC38FEC002EAE77 /* UsernameIcon@3x.png in Resources */,
 				0BE340241B73021B00F49625 /* ProximaNovaSoft-Bold.ttf in Resources */,
 				0BB3A6FD1BC38FEC002EAE77 /* ListViewActive@2x.png in Resources */,
 				0BB3A7DD1BC38FEC002EAE77 /* InviteWechatIcon@2x.png in Resources */,
 				8AD6C0F51B706CF30040437E /* SearchChangeLocationViewController.xib in Resources */,
 				0BB3A8351BC38FEC002EAE77 /* FollowBtn@2x.png in Resources */,
-				0BB3A8141BC38FEC002EAE77 /* BluePin@3x.png in Resources */,
 				8AD6C0C91B706CF30040437E /* NotificationViewController.xib in Resources */,
 				0BB3A7001BC38FEC002EAE77 /* ListViewInactive@3x.png in Resources */,
 				0BB3A7B21BC38FEC002EAE77 /* ForHimIcon@3x.png in Resources */,
@@ -5498,8 +5506,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Reiner Lee (EFSLZ63588)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library/AviarySDK",
@@ -5532,7 +5540,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "7019fa0d-9f6e-41e5-955e-d97da8a6a364";
 			};
 			name = Debug;
 		};
@@ -5542,8 +5550,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Reiner Lee (EFSLZ63588)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library/AviarySDK",
@@ -5576,7 +5584,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "7019fa0d-9f6e-41e5-955e-d97da8a6a364";
 			};
 			name = Release;
 		};
