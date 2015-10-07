@@ -12,6 +12,7 @@
 @interface AddNewPlaceViewController ()
 
 
+@property (weak, nonatomic) IBOutlet UILabel *lblIndicator;
 @property (strong, nonatomic)SearchLocationDetailModel* gooModel;// google
 @property (strong, nonatomic)VenueModel* fsModel;// 4square
 @property (strong, nonatomic)RecommendationVenueModel* rModel;
@@ -320,5 +321,6 @@ didChangeDragState:(MKAnnotationViewDragState)newState
 -(void)changeLanguage
 {
     self.lblTitle.text = LocalisedString(@"Add a new place");
+    self.lblIndicator.text = LOCALIZATION(@"Tap the map to drop a pin");
 }
 @end

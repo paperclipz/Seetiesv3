@@ -115,7 +115,7 @@
                                      CAPSPageMenuOptionScrollMenuBackgroundColor: [UIColor colorWithRed:246.0/255.0 green:246.0/255.0 blue:246.0/255.0 alpha:1.0],
                                      CAPSPageMenuOptionViewBackgroundColor: [UIColor colorWithRed:246.0/255.0 green:246.0/255.0 blue:246.0/255.0 alpha:1.0],
                                      CAPSPageMenuOptionSelectionIndicatorColor: DEVICE_COLOR,
-                                     CAPSPageMenuOptionBottomMenuHairlineColor: [UIColor colorWithRed:70.0/255.0 green:70.0/255.0 blue:70.0/255.0 alpha:1.0],
+                                     CAPSPageMenuOptionBottomMenuHairlineColor: [UIColor clearColor],
                                      CAPSPageMenuOptionMenuItemFont: [UIFont fontWithName:@"HelveticaNeue" size:13.0],
                                      CAPSPageMenuOptionMenuHeight: @(40.0),
                                      CAPSPageMenuOptionMenuItemWidth: @(deviceFrame.size.width/2),

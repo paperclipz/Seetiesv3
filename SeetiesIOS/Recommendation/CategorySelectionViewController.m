@@ -90,7 +90,7 @@
     CGRect frame = [Utils getDeviceScreenSize];
     self.view.frame = CGRectMake(0, frame.size.height,  frame.size.width,  frame.size.height);
     [self initTableViewWithDelegate:self];
-    [Utils setRoundBorder:self.contentView color:[Utils defaultTextColor] borderRadius:8.0f];
+    [Utils setRoundBorder:self.contentView color:[UIColor clearColor] borderRadius:8.0f];
 }
 
 -(void)initTableViewWithDelegate:(id)delegate

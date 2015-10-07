@@ -1559,9 +1559,9 @@
 		8A9F25D41B8EF61900BB13BA /* EditHourTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditHourTableViewCell.xib; sourceTree = "<group>"; };
 		8A9F25D71B8EFD2200BB13BA /* EditHourModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditHourModel.h; sourceTree = "<group>"; };
 		8A9F25D81B8EFD2200BB13BA /* EditHourModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditHourModel.m; sourceTree = "<group>"; };
-		8A9F25DA1B90002B00BB13BA /* CustomPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPickerViewController.h; sourceTree = "<group>"; };
-		8A9F25DB1B90002B00BB13BA /* CustomPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPickerViewController.m; sourceTree = "<group>"; };
-		8A9F25DC1B90002B00BB13BA /* CustomPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomPickerViewController.xib; sourceTree = "<group>"; };
+		8A9F25DA1B90002B00BB13BA /* CustomPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomPickerViewController.h; path = ../Common/CustomPickerViewController.h; sourceTree = "<group>"; };
+		8A9F25DB1B90002B00BB13BA /* CustomPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomPickerViewController.m; path = ../Common/CustomPickerViewController.m; sourceTree = "<group>"; };
+		8A9F25DC1B90002B00BB13BA /* CustomPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomPickerViewController.xib; path = ../Common/CustomPickerViewController.xib; sourceTree = "<group>"; };
 		8A9F25DF1B90413700BB13BA /* EditPostDetailVIew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPostDetailVIew.h; sourceTree = "<group>"; };
 		8A9F25E01B90413700BB13BA /* EditPostDetailVIew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPostDetailVIew.m; sourceTree = "<group>"; };
 		8A9F25E21B90414800BB13BA /* EditPostDetailVIew.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPostDetailVIew.xib; sourceTree = "<group>"; };
@@ -4069,9 +4069,6 @@
 				8AD6C2D71B707D120040437E /* LanguageManager.m */,
 				8AD6C2D81B707D120040437E /* Lib */,
 				8AD6C2E51B707D120040437E /* Library */,
-				8A9F25DA1B90002B00BB13BA /* CustomPickerViewController.h */,
-				8A9F25DB1B90002B00BB13BA /* CustomPickerViewController.m */,
-				8A9F25DC1B90002B00BB13BA /* CustomPickerViewController.xib */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -4250,6 +4247,9 @@
 		8AD6C8771B74A7CD0040437E /* Recommendation */ = {
 			isa = PBXGroup;
 			children = (
+				8A9F25DA1B90002B00BB13BA /* CustomPickerViewController.h */,
+				8A9F25DB1B90002B00BB13BA /* CustomPickerViewController.m */,
+				8A9F25DC1B90002B00BB13BA /* CustomPickerViewController.xib */,
 				8AB76D1C1BB8FB8E007DB972 /* RecommendationQRView */,
 				8A6584391B98509100BC86B9 /* RecommendationDraft */,
 				8A65842E1B981B1E00BC86B9 /* CategorySelection */,

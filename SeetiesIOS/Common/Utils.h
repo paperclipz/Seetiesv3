@@ -38,10 +38,8 @@ typedef enum
 +(NSString*)getAppToken;
 +(NSString*)getUserID;
 
-#define UIColorFromRGB(rgbValue) [UIColor \
-colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
-green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
-blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+#define UIColorFromRGB(r,g,b,a)  [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
+
 +(CGRect)getDeviceScreenSize;
 #define DEVICE_COLOR [UIColor colorWithRed: 41.0 / 255 green: 182.0 / 255 blue: 246.0 / 255 alpha: 1.0]
 #define TEXT_GRAY_COLOR [UIColor colorWithRed:153.0/255.0 green:153.0/255.0 blue:153.0/255.0 alpha:1.0]
