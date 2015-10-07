@@ -47,6 +47,8 @@ typedef enum
 
 #define CustomFontName @"ProximaNovaSoft-Regular"
 #define CustomFontNameBold @"ProximaNovaSoft-Bold"
+#define REGULAR @"Regular"
+#define BOLD @"Bold"
 
 // ========================  Day ==========================
 

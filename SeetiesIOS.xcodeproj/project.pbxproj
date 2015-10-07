@@ -576,6 +576,10 @@
 		8A7420EC1B82F7D5005DA654 /* LoadingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7420EB1B82F7D5005DA654 /* LoadingManager.m */; };
 		8A7B9CE01BBD387000D7F604 /* EnbleLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7B9CDE1BBD387000D7F604 /* EnbleLocationViewController.m */; settings = {ASSET_TAGS = (); }; };
 		8A7B9CE11BBD387000D7F604 /* EnbleLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A7B9CDF1BBD387000D7F604 /* EnbleLocationViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		8A8475251BC5274C006DD614 /* UILabel+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A8475241BC5274C006DD614 /* UILabel+Extra.m */; settings = {ASSET_TAGS = (); }; };
+		8A84752B1BC52C0B006DD614 /* UITextField+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A84752A1BC52C0B006DD614 /* UITextField+Extra.m */; settings = {ASSET_TAGS = (); }; };
+		8A84752E1BC52C50006DD614 /* UIButton+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A84752D1BC52C50006DD614 /* UIButton+Extra.m */; settings = {ASSET_TAGS = (); }; };
+		8A8475311BC52CCF006DD614 /* UITextView+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A8475301BC52CCF006DD614 /* UITextView+Extra.m */; settings = {ASSET_TAGS = (); }; };
 		8A8850701BBE83BB0096E0D0 /* error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A88506D1BBE83BB0096E0D0 /* error@2x.png */; settings = {ASSET_TAGS = (); }; };
 		8A8850711BBE83BB0096E0D0 /* TextFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A88506F1BBE83BB0096E0D0 /* TextFieldValidator.m */; settings = {ASSET_TAGS = (); }; };
 		8A959D631B8B252700722920 /* FXImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A959D601B8B252700722920 /* FXImageView.m */; };
@@ -1531,6 +1535,15 @@
 		8A7B9CDD1BBD387000D7F604 /* EnbleLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnbleLocationViewController.h; sourceTree = "<group>"; };
 		8A7B9CDE1BBD387000D7F604 /* EnbleLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnbleLocationViewController.m; sourceTree = "<group>"; };
 		8A7B9CDF1BBD387000D7F604 /* EnbleLocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EnbleLocationViewController.xib; sourceTree = "<group>"; };
+		8A8475231BC5274C006DD614 /* UILabel+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Extra.h"; sourceTree = "<group>"; };
+		8A8475241BC5274C006DD614 /* UILabel+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Extra.m"; sourceTree = "<group>"; };
+		8A8475291BC52C0B006DD614 /* UITextField+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+Extra.h"; sourceTree = "<group>"; };
+		8A84752A1BC52C0B006DD614 /* UITextField+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Extra.m"; sourceTree = "<group>"; };
+		8A84752C1BC52C50006DD614 /* UIButton+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Extra.h"; sourceTree = "<group>"; };
+		8A84752D1BC52C50006DD614 /* UIButton+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Extra.m"; sourceTree = "<group>"; };
+		8A84752F1BC52CCF006DD614 /* UITextView+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Extra.h"; sourceTree = "<group>"; };
+		8A8475301BC52CCF006DD614 /* UITextView+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Extra.m"; sourceTree = "<group>"; };
+		8A8475331BC52D27006DD614 /* CustomFont.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomFont.h; sourceTree = "<group>"; };
 		8A88506D1BBE83BB0096E0D0 /* error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "error@2x.png"; sourceTree = "<group>"; };
 		8A88506E1BBE83BB0096E0D0 /* TextFieldValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldValidator.h; sourceTree = "<group>"; };
 		8A88506F1BBE83BB0096E0D0 /* TextFieldValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldValidator.m; sourceTree = "<group>"; };
@@ -3373,6 +3386,22 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		8A8475321BC52D0D006DD614 /* SystemOverride */ = {
+			isa = PBXGroup;
+			children = (
+				8A8475231BC5274C006DD614 /* UILabel+Extra.h */,
+				8A8475241BC5274C006DD614 /* UILabel+Extra.m */,
+				8A8475291BC52C0B006DD614 /* UITextField+Extra.h */,
+				8A84752A1BC52C0B006DD614 /* UITextField+Extra.m */,
+				8A84752C1BC52C50006DD614 /* UIButton+Extra.h */,
+				8A84752D1BC52C50006DD614 /* UIButton+Extra.m */,
+				8A84752F1BC52CCF006DD614 /* UITextView+Extra.h */,
+				8A8475301BC52CCF006DD614 /* UITextView+Extra.m */,
+				8A8475331BC52D27006DD614 /* CustomFont.h */,
+			);
+			name = SystemOverride;
+			sourceTree = "<group>";
+		};
 		8A88506C1BBE83BB0096E0D0 /* TextFieldValidator */ = {
 			isa = PBXGroup;
 			children = (
@@ -3626,6 +3655,7 @@
 		8AD6BA961B706CF10040437E /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				8A8475321BC52D0D006DD614 /* SystemOverride */,
 				8A4509781BAC012600A868CD /* NSArray+JSON.h */,
 				8A4509791BAC012600A868CD /* NSArray+JSON.m */,
 				8AF2C2731B9EA3B800B0A7F1 /* NSDictionary+STHelper */,
@@ -5146,6 +5176,7 @@
 				8AD6C86B1B7460DB0040437E /* NSData+MKBase64.m in Sources */,
 				8AD6C0AF1B706CF30040437E /* ExpertLoginViewController.m in Sources */,
 				8AD6C28F1B7072FB0040437E /* AddLocationViewController.m in Sources */,
+				8A8475311BC52CCF006DD614 /* UITextView+Extra.m in Sources */,
 				8AD6BE571B706CF30040437E /* DoAlbumCell.m in Sources */,
 				8AD6C2951B7072FB0040437E /* DraftsViewController.m in Sources */,
 				8AD6C81D1B73382E0040437E /* Localisator.m in Sources */,
@@ -5188,6 +5219,7 @@
 				8A9F25D91B8EFD2200BB13BA /* EditHourModel.m in Sources */,
 				8AD6C8761B7495B60040437E /* BaseViewController.m in Sources */,
 				8AD6C1041B706CF30040437E /* EditInterestV2ViewController.m in Sources */,
+				8A8475251BC5274C006DD614 /* UILabel+Extra.m in Sources */,
 				8A9F25C71B8ED33000BB13BA /* BKForwardingTextField.m in Sources */,
 				8AD6C0BC1B706CF30040437E /* CommentViewController.m in Sources */,
 				8A7420EC1B82F7D5005DA654 /* LoadingManager.m in Sources */,
@@ -5261,6 +5293,7 @@
 				8AD6C3371B707D120040437E /* UIScrollView+CRScrollIndicator.m in Sources */,
 				8A3757E41B85D635009DB7D4 /* EditPhotoViewController.m in Sources */,
 				8A2E2CEB1B81E15B0010895E /* STTableViewCell.m in Sources */,
+				8A84752B1BC52C0B006DD614 /* UITextField+Extra.m in Sources */,
 				8A959D941B8C0CBA00722920 /* NMBottomTabBar.m in Sources */,
 				8AD6C32A1B707D120040437E /* LanguageManager.m in Sources */,
 				8AD6C0C61B706CF30040437E /* NearByRecommtationViewController.m in Sources */,
@@ -5275,6 +5308,7 @@
 				8A959D951B8C0CBA00722920 /* NMBottomTabBarController.m in Sources */,
 				8A3757B01B842F74009DB7D4 /* SearchManager.m in Sources */,
 				8AD6C10C1B706CF30040437E /* ForgotPasswordViewController.m in Sources */,
+				8A84752E1BC52C50006DD614 /* UIButton+Extra.m in Sources */,
 				8A6584411B9851C200BC86B9 /* DraftTableViewCell.m in Sources */,
 				8A3408FA1B86FE0E009B66C3 /* BMXSwipableCell+ConfigureCell.m in Sources */,
 				8AD6C3391B707D120040437E /* FSVenue.m in Sources */,

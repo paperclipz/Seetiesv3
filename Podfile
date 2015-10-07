@@ -30,3 +30,4 @@ pod 'UITextView+Placeholder'
 pod 'iOSBlocks/Cocoa'
 pod 'DBCamera', '~> 2.4'
 
+#pod 'Canvas', '~> 0.1.2'
