@@ -447,7 +447,19 @@
     
     heightcheck += 130;
     
-    if ([arrImage count] && [arrType count] && [arrTitle count] && [arrUserName count] && [arrDistance count] && [arrDisplayCountryName count] && [arrAddress count] && [arrMessage count] && [arrlike count] && [arrCollect count]) {
+//    NSLog(@"[arrImage count] is %lu",(unsigned long)[arrImage count]);
+//    NSLog(@"[arrType count] is %lu",(unsigned long)[arrType count]);
+//    NSLog(@"[arrTitle count] is %lu",(unsigned long)[arrTitle count]);
+//    NSLog(@"[arrUserName count] is %lu",(unsigned long)[arrUserName count]);
+//    NSLog(@"[arrDistance count] is %lu",(unsigned long)[arrDistance count]);
+//    NSLog(@"[arrDisplayCountryName count] is %lu",(unsigned long)[arrDisplayCountryName count]);
+//    NSLog(@"[arrAddress count] is %lu",(unsigned long)[arrAddress count]);
+//    NSLog(@"[arrMessage count] is %lu",(unsigned long)[arrMessage count]);
+//    NSLog(@"[arrlike count] is %lu",(unsigned long)[arrlike count]);
+//    NSLog(@"[arrCollect count] is %lu",(unsigned long)[arrCollect count]);
+
+    
+    if ([arrImage count] == [arrType count] == [arrTitle count] == [arrUserName count] == [arrDistance count] == [arrDisplayCountryName count] == [arrAddress count] == [arrMessage count] == [arrlike count] == [arrCollect count]) {
         for (NSInteger i = 0; i < [arrImage count]; i++) {
             
             NSString *GetType = [arrType objectAtIndex:i];
