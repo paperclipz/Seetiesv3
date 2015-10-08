@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DraftViewController">
             <connections>
+                <outlet property="lblNoDraftYet" destination="W9r-wk-Vip" id="DPB-wB-SPq"/>
                 <outlet property="lblTitle" destination="18F-7n-ysR" id="gbm-y6-vJJ"/>
                 <outlet property="tableView" destination="at8-9G-hT0" id="kNP-lT-W3H"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -64,6 +65,9 @@
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="at8-9G-hT0">
                     <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="nxEV_emptyView" destination="ldi-Jq-eYN" id="Lp0-OE-r2X"/>
+                    </connections>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -78,8 +82,38 @@
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
+        <view contentMode="scaleToFill" id="ldi-Jq-eYN">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="NoDraft.png" translatesAutoresizingMaskIntoConstraints="NO" id="EwM-U3-Ivf">
+                    <rect key="frame" x="115" y="152" width="90" height="90"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Draft Yet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W9r-wk-Vip">
+                    <rect key="frame" x="0.0" y="262" width="320" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="IyF-hB-wTu"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="W9r-wk-Vip" firstAttribute="centerX" secondItem="ldi-Jq-eYN" secondAttribute="centerX" id="14Y-UF-Gce"/>
+                <constraint firstItem="EwM-U3-Ivf" firstAttribute="centerY" secondItem="ldi-Jq-eYN" secondAttribute="centerY" constant="-87" id="7ak-NE-6t2"/>
+                <constraint firstItem="W9r-wk-Vip" firstAttribute="top" secondItem="EwM-U3-Ivf" secondAttribute="bottom" constant="20" id="8kf-wf-5YN"/>
+                <constraint firstItem="EwM-U3-Ivf" firstAttribute="centerX" secondItem="ldi-Jq-eYN" secondAttribute="centerX" id="Tqm-yC-MmN"/>
+                <constraint firstAttribute="trailing" secondItem="W9r-wk-Vip" secondAttribute="trailing" id="gmT-UJ-vf1"/>
+                <constraint firstItem="W9r-wk-Vip" firstAttribute="leading" secondItem="ldi-Jq-eYN" secondAttribute="leading" id="t3e-GP-Rde"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="897" y="235"/>
+        </view>
     </objects>
     <resources>
         <image name="BackIcon.png" width="40" height="40"/>
+        <image name="NoDraft.png" width="90" height="90"/>
     </resources>
 </document>

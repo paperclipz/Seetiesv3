@@ -313,11 +313,14 @@
              NSLog(@"Success: %@ ***** %@", operation.responseString, responseObject);
 
          }
-         
+         [LoadingManager hide];
+
      }
               failure:
      ^(AFHTTPRequestOperation *operation, NSError *error) {
          NSLog(@"Error: %@ ***** %@", operation.responseString, error);
+         [LoadingManager hide];
+
      }];
     
     
