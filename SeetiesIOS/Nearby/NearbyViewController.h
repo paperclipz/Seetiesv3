@@ -49,6 +49,9 @@
     NSMutableArray *SelfCheckLikeArray;
     NSMutableArray *arrCollect;
     
+    NSMutableArray *arrlat;
+    NSMutableArray *arrlng;
+    
     NSString *CheckCollect;
     NSString *GetPostID;
     
