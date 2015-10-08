@@ -9,13 +9,16 @@
 #import "DraftViewController.h"
 #import "EditPostViewController.h"
 #import "MGSwipeButton.h"
+#import "UITableView+NXEmptyView.h"
 
 @interface DraftViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *lblNoDraftYet;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray* arrDraftList;
 
 @property(nonatomic,strong)EditPostViewController* editPostViewController;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+@property (nonatomic,strong)UIImageView* loadingImageView;
 @end
 
 @implementation DraftViewController
@@ -50,19 +53,43 @@
 {
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+   
     [self.tableView registerClass:[DraftTableViewCell class] forCellReuseIdentifier:@"DraftTableViewCell"];
     [self.tableView addPullToRefreshWithActionHandler:^{
+        [self.loadingImageView startAnimating];
         [self requestServerForDraft];
-        
+        [self.tableView.pullToRefreshView performSelector:@selector(stopAnimating) withObject:nil afterDelay:30];
         
     }];
 
+    UIImageView* initialLoadingView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+    initialLoadingView.image = [UIImage imageNamed:@"2.png"];
+    [self.tableView.pullToRefreshView setCustomView:self.loadingImageView forState:SVPullToRefreshStateAll];
+    [self.tableView.pullToRefreshView setCustomView:initialLoadingView forState:SVPullToRefreshStateTriggered];
+
+    
     [self changeLanguage];
+}
+
+-(UIImageView*)loadingImageView
+{
+    if(!_loadingImageView)
+    {
+        _loadingImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+        _loadingImageView.animationImages = @[[UIImage imageNamed:@"1.png"],[UIImage imageNamed:@"3.png"]];
+        _loadingImageView.animationDuration = 1.0f;
+        _loadingImageView.animationRepeatCount = 100;
+
+
+    }
+    return _loadingImageView;
 }
 
 -(void)changeLanguage
 {
     self.lblTitle.text = LocalisedString(@"Draft");
+    self.lblNoDraftYet.text = LocalisedString(@"No Draft Yet");
 }
 
 #pragma mark - UITableView DataSource
@@ -109,7 +136,7 @@
 {
     
     NSDictionary* dict = @{@"token":[Utils getAppToken]};
-    
+    [LoadingManager showWithTitle:LocalisedString(@"Deleting Draft...")];
     [[ConnectionManager Instance]requestServerWithDelete:ServerRequestTypePostDeletePost param:dict appendString:postID completeHandler:^(id object) {
         
         
@@ -132,8 +159,13 @@
         self.arrDraftList = [[NSMutableArray alloc]initWithArray:array];
         [self.tableView reloadData];
         [self.tableView.pullToRefreshView stopAnimating];
+       
+        [self.loadingImageView stopAnimating];
+
     } errorBlock:^(id object) {
         [self.tableView.pullToRefreshView stopAnimating];
+        [self.loadingImageView stopAnimating];
+
 
     }];
  
