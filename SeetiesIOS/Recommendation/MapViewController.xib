@@ -4,11 +4,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <mutableArray key="HelveticaNeue.ttc">
-            <string>HelveticaNeue</string>
-        </mutableArray>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapViewController">
             <connections>
@@ -27,9 +22,9 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tTl-dZ-IeZ">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add New Page" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ntf-HD-y3T">
-                            <rect key="frame" x="46" y="29" width="266" height="21"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add New Page" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ntf-HD-y3T">
+                            <rect key="frame" x="8" y="29" width="304" height="21"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -64,7 +59,7 @@
                         <constraint firstAttribute="trailing" secondItem="Ntf-HD-y3T" secondAttribute="trailing" constant="8" id="V3P-gi-42I"/>
                         <constraint firstAttribute="bottom" secondItem="Wbf-cj-wqX" secondAttribute="bottom" constant="4" id="f4u-KZ-6fa"/>
                         <constraint firstAttribute="height" constant="64" id="hjo-RW-oqE"/>
-                        <constraint firstItem="Ntf-HD-y3T" firstAttribute="leading" secondItem="Wbf-cj-wqX" secondAttribute="trailing" constant="11" id="oOQ-J0-sx8"/>
+                        <constraint firstItem="Ntf-HD-y3T" firstAttribute="leading" secondItem="Wbf-cj-wqX" secondAttribute="trailing" constant="-27" id="oOQ-J0-sx8"/>
                         <constraint firstItem="gId-Kb-VTN" firstAttribute="leading" secondItem="tTl-dZ-IeZ" secondAttribute="leading" id="p9j-7C-PwD"/>
                     </constraints>
                 </view>
@@ -72,21 +67,21 @@
                     <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                 </mapView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WbO-ys-HcZ" userLabel="indicatorView">
-                    <rect key="frame" x="0.0" y="64" width="320" height="55"/>
+                    <rect key="frame" x="0.0" y="64" width="320" height="67"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the map to drop a pin at the correct location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L5C-J9-YNc">
-                            <rect key="frame" x="8" y="7" width="312" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can zoom in to get really pricise" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aP5-Zs-YJK">
+                            <rect key="frame" x="8" y="36" width="312" height="21"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="21" id="uCR-tv-2C1"/>
+                                <constraint firstAttribute="height" constant="21" id="ALe-lc-In4"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can zoom in to get really pricise" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aP5-Zs-YJK">
-                            <rect key="frame" x="8" y="26" width="312" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the map to drop a pin at the correct location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L5C-J9-YNc">
+                            <rect key="frame" x="8" y="13" width="312" height="21"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="21" id="ALe-lc-In4"/>
+                                <constraint firstAttribute="height" constant="21" id="uCR-tv-2C1"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -101,11 +96,11 @@
                         <constraint firstAttribute="trailing" secondItem="L5C-J9-YNc" secondAttribute="trailing" id="J0P-db-3cD"/>
                         <constraint firstItem="L5C-J9-YNc" firstAttribute="top" secondItem="WbO-ys-HcZ" secondAttribute="top" constant="6" id="L02-Sn-4Ib"/>
                         <constraint firstItem="aP5-Zs-YJK" firstAttribute="leading" secondItem="WbO-ys-HcZ" secondAttribute="leading" constant="8" id="MHq-R1-reJ"/>
-                        <constraint firstItem="aP5-Zs-YJK" firstAttribute="top" secondItem="L5C-J9-YNc" secondAttribute="bottom" constant="-2" id="NIV-m1-h4y"/>
-                        <constraint firstAttribute="height" constant="55" id="iJX-zj-KcA"/>
+                        <constraint firstItem="aP5-Zs-YJK" firstAttribute="top" secondItem="L5C-J9-YNc" secondAttribute="bottom" constant="2" id="NIV-m1-h4y"/>
+                        <constraint firstAttribute="height" constant="67" id="iJX-zj-KcA"/>
                         <constraint firstItem="L5C-J9-YNc" firstAttribute="leading" secondItem="WbO-ys-HcZ" secondAttribute="leading" constant="8" id="jFy-Nl-NdT"/>
                         <constraint firstItem="L5C-J9-YNc" firstAttribute="centerY" secondItem="WbO-ys-HcZ" secondAttribute="centerY" id="lYF-Wb-hV2"/>
-                        <constraint firstItem="L5C-J9-YNc" firstAttribute="top" secondItem="WbO-ys-HcZ" secondAttribute="top" constant="7" id="xsj-Wp-eYf"/>
+                        <constraint firstItem="L5C-J9-YNc" firstAttribute="top" secondItem="WbO-ys-HcZ" secondAttribute="top" constant="13" id="xsj-Wp-eYf"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
