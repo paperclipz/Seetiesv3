@@ -18,10 +18,13 @@
     __weak IBOutlet UIButton *btnDraft;
     __weak IBOutlet UIButton *ibBtnCancel;
     __weak IBOutlet UIButton *btnRecommendation;
+    __weak IBOutlet UIImageView *frameOne;
+    __weak IBOutlet UIImageView *frameTwo;
 }
 @property (copy, nonatomic) IDBlock buttonOneBlock;
 @property (copy, nonatomic) IDBlock buttonTwoBlock;
 @property (weak, nonatomic) IBOutlet UIImageView *ibTransparentView;
+@property (weak, nonatomic) IBOutlet UIView *ibFullContentView;
 
 @end
 
@@ -59,11 +62,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-        isShow = YES;
+    self.view.hidden = true;
     // Do any additional setup after loading the view from its nib.
     
     [self initSelfView];
     [self changeLanguage];
+    
+    SLog(@"frame one w: %f || H : %f",frameOne.frame.size.width,frameOne.frame.size.height);
+    SLog(@"frame Two w: %f || H : %f",frameTwo.frame.size.width,frameTwo.frame.size.height);
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -92,51 +99,63 @@
     [[view layer] setCornerRadius:5.0f];
 }
 
--(void)presentView:(UIView*)view
-{
-    CATransition *transition = [CATransition animation];
-    transition.duration = 1.0f;
-    transition.type = kCATransitionFromTop; //choose your animation
-    [self.view.layer addAnimation:transition forKey:nil];
-    self.view.frame = [Utils getDeviceScreenSize];
-    [view addSubview:self.view];
-}
+//-(void)presentView:(UIView*)view
+//{
+//    CATransition *transition = [CATransition animation];
+//    transition.duration = 1.0f;
+//    transition.type = kCATransitionFromTop; //choose your animation
+//    [self.view.layer addAnimation:transition forKey:nil];
+//    self.view.frame = [Utils getDeviceScreenSize];
+//    [view addSubview:self.view];
+//}
 
 -(void)show
 {
     
-    if (!isShow) {
-        self.view.frame = hideFrame;
-        self.ibTransparentView.alpha = 0;
-        [UIView animateWithDuration:ANIMATION_DURATION delay:0 options:UIViewAnimationOptionTransitionCurlUp animations:^{
-            self.view.frame = showFrame;
-            isShow = true;
-            self.ibTransparentView.alpha = 1.0f;
-
-            
-        } completion:^(BOOL finished) {
-
-        }];
-
-    }
-   }
-
+    [self show:self.view transparentView:self.ibTransparentView MovingContentView:self.ibFullContentView];
+}
 -(void)hideWithAnimation:(BOOL)isAnimate
 {
-    if (isShow) {
-        self.view.frame = showFrame;
-        self.ibTransparentView.alpha = 1.0f;
+    [self hideWithAnimation:isAnimate MainView:self.view transparentView:self.ibTransparentView MovingContentView:self.ibFullContentView];
+}
 
-        [UIView animateWithDuration:isAnimate?ANIMATION_DURATION:0 delay:0 options:UIViewAnimationOptionTransitionCurlUp animations:^{
-            self.view.frame = hideFrame;
-            isShow = false;
-            self.ibTransparentView.alpha = 0;
-
+-(void)show:(UIView*)mainView transparentView:(UIView*)transparentView MovingContentView:(UIView*)mvView
+{
+    if ( mainView.hidden) {
+        mainView.hidden = false;
+        
+        mvView.frame = hideFrame;
+        transparentView.alpha = 0;
+        [UIView animateWithDuration:ANIMATION_DURATION delay:0 options:UIViewAnimationOptionTransitionCurlUp animations:^{
+            mvView.frame = showFrame;
+            transparentView.alpha = 1.0f;
+            
+            
         } completion:^(BOOL finished) {
             
         }];
+        
     }
-   
+
+}
+
+-(void)hideWithAnimation:(BOOL)isAnimate MainView:(UIView*)mainView transparentView:(UIView*)transparentView MovingContentView:(UIView*)mvView
+{
+    if (!mainView.hidden) {
+        mvView.frame = showFrame;
+        transparentView.alpha = 1.0f;
+        
+        [UIView animateWithDuration:isAnimate?ANIMATION_DURATION:0 delay:0 options:UIViewAnimationOptionTransitionCurlUp animations:^{
+            mvView.frame = hideFrame;
+            transparentView.alpha = 0;
+            
+        } completion:^(BOOL finished) {
+            mainView.hidden = true;
+            
+        }];
+    }
+
+    
 }
 
 +(id)initializeWithBlock:(IDBlock)buttonOne buttonTwo:(IDBlock)buttonTwo cancelBlock:(IDBlock)cancelBlock

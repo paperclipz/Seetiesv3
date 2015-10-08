@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "D295AD129EA999F213FDE67490075BBCE6D97E6D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "D295AD129EA999F213FDE67490075BBCE6D97E6D" : 0,
+    "E7CB312811DD7BF14A93CA808FCBE8B75C7A285B" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "18794A60-BDF0-4A02-B6F1-E7242797E699",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "D295AD129EA999F213FDE67490075BBCE6D97E6D" : "Seeties_NEW",
+    "E7CB312811DD7BF14A93CA808FCBE8B75C7A285B" : "Seeties_NEW\/SeetiesIOS\/SeetiesArtWork\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "SeetiesIOS",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "SeetiesIOS.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:stylar\/seeties-ios-new.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D295AD129EA999F213FDE67490075BBCE6D97E6D"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/bitbucket.org\/sexseeties\/seeties_ios_artwork.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E7CB312811DD7BF14A93CA808FCBE8B75C7A285B"
+    }
+  ]
+}

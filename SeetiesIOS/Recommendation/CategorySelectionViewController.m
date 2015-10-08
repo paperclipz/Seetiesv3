@@ -5,6 +5,7 @@
 //  Created by Evan Beh on 9/3/15.
 //  Copyright (c) 2015 Stylar Network. All rights reserved.
 //
+#define ANIMATION_DURATION 0.5f
 
 #import "CategorySelectionViewController.h"
 #import "CategoryCollectionViewCell.h"
@@ -19,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnBack;
 @property (weak, nonatomic) IBOutlet UIButton *btnDone;
 @property (weak, nonatomic) IBOutlet UIImageView *ibBackgroundView;
+@property (weak, nonatomic) IBOutlet UIView *ibFullContentView;
 
 @end
 
@@ -74,6 +76,8 @@
     [super viewDidLoad];
     [self initSelfView];
     [self changeLanguage];
+    self.view.hidden = true;
+
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -88,7 +92,7 @@
 {
     isShow =false;
     CGRect frame = [Utils getDeviceScreenSize];
-    self.view.frame = CGRectMake(0, frame.size.height,  frame.size.width,  frame.size.height);
+    self.view.frame = frame;
     [self initTableViewWithDelegate:self];
     [Utils setRoundBorder:self.contentView color:[UIColor clearColor] borderRadius:8.0f];
 }
@@ -193,34 +197,50 @@
 -(void)show
 {
     
-    if (!isShow) {
-        
-        self.ibBackgroundView.alpha = 0;
-        [UIView animateWithDuration:0.5 animations:^{
-            self.view.frame = CGRectMake(0, 0,  self.view.frame.size.width,  self.view.frame.size.height);
-            self.ibBackgroundView.alpha = 1.0f;
-
-        }];
-        isShow = true;
-    }
-    
+    [self show:self.view transparentView:self.ibBackgroundView MovingContentView:self.ibFullContentView];
 }
 
 -(void)hide
 {
-    if (isShow) {
-        self.ibBackgroundView.alpha = 1.0f;
+    [self hideWithAnimation:YES MainView:self.view transparentView:self.ibBackgroundView MovingContentView:self.ibFullContentView];
+    
+}
 
-        [UIView animateWithDuration:0.5 animations:^{
-            self.view.frame = CGRectMake(0, self.view.frame.size.height,  self.view.frame.size.width,  self.view.frame.size.height);
-            isShow = false;
-            self.ibBackgroundView.alpha = 0;
+-(void)show:(UIView*)mainView transparentView:(UIView*)transparentView MovingContentView:(UIView*)mvView
+{
+    if (mainView.hidden) {
+        mainView.hidden = false;
+        transparentView.alpha = 0;
+        mvView.frame = CGRectMake(0, self.view.frame.size.height,  self.view.frame.size.width,  self.view.frame.size.height);
 
+        [UIView animateWithDuration:ANIMATION_DURATION delay:0 options:UIViewAnimationOptionTransitionCurlUp animations:^{
+            mvView.frame = CGRectMake(0, 0,  self.view.frame.size.width,  self.view.frame.size.height);
+            transparentView.alpha = 1.0f;
+            
+            
+        } completion:^(BOOL finished) {
+            
+        }];
+        
+    }
+    
+}
+
+-(void)hideWithAnimation:(BOOL)isAnimate MainView:(UIView*)mainView transparentView:(UIView*)transparentView MovingContentView:(UIView*)mvView
+{
+    if (!mainView.hidden) {
+        transparentView.alpha = 1.0f;
+        
+        [UIView animateWithDuration:isAnimate?ANIMATION_DURATION:0 delay:0 options:UIViewAnimationOptionTransitionCurlUp animations:^{
+            mvView.frame = CGRectMake(0, self.view.frame.size.height,  self.view.frame.size.width,  self.view.frame.size.height);
+            transparentView.alpha = 0;
+            
+        } completion:^(BOOL finished) {
+            mainView.hidden = true;
+            
         }];
     }
     
     
 }
-
-
 @end
