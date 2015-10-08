@@ -328,6 +328,13 @@
     [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
     [self.view addSubview:PostControl];
     
+    UIButton *Line01 = [[UIButton alloc]init];
+    Line01.frame = CGRectMake(0, 133, screenWidth, 1);
+    [Line01 setTitle:@"" forState:UIControlStateNormal];
+    [Line01 setBackgroundColor:[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f]];
+    [self.view addSubview:Line01];
+    
+    
     if ([GetWhatView isEqualToString:@"Like"]) {
         MainScroll.hidden = YES;
         toolBar.hidden = YES;
@@ -390,7 +397,7 @@
     int GetFinalHeight = 0;
     for (int i = 0; i < [GetMessageArray count]; i ++) {
         int GetHeight = 0;
-        GetFinalHeight += 10;
+        GetFinalHeight += 20;
         
         AsyncImageView *ShowLikeUserImage = [[AsyncImageView alloc]init];
         ShowLikeUserImage.frame = CGRectMake(20, GetFinalHeight + i, 50, 50);
@@ -557,6 +564,14 @@
             //reset clicked
             NSLog(@"Confirm delete");
             [self SendDeleteMessageToServer];
+        }
+    }
+    if(alertView.tag == 1200){
+        if (buttonIndex == [alertView cancelButtonIndex]){
+            NSLog(@"Cancel");
+        }else{
+            //send delete data.
+            [self SendFollowData];
         }
     }
 
@@ -1227,7 +1242,7 @@
 
     for (int i = 0; i < [Like_UseruidArray count]; i++) {
         AsyncImageView *ShowLikeUserImage = [[AsyncImageView alloc]init];
-        ShowLikeUserImage.frame = CGRectMake(15, 20 + i * 70, 50, 50);
+        ShowLikeUserImage.frame = CGRectMake(15, 25 + i * 70, 50, 50);
         ShowLikeUserImage.contentMode = UIViewContentModeScaleAspectFill;
         ShowLikeUserImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
         ShowLikeUserImage.layer.cornerRadius=25;
@@ -1262,7 +1277,7 @@
         ShowUserName1.frame = CGRectMake(80, 20 + i * 70, screenWidth - 95, 50);
         ShowUserName1.text = [Like_UsernameArray objectAtIndex:i];
         //  ShowUserName1.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
-        ShowUserName1.font = [UIFont fontWithName:@"AdrianeText-BoldItalic" size:14];
+        ShowUserName1.font = [UIFont boldSystemFontOfSize:15];
         ShowUserName1.backgroundColor = [UIColor clearColor];
         ShowUserName1.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
         
@@ -1293,7 +1308,7 @@
         
         UIButton *Line01 = [UIButton buttonWithType:UIButtonTypeCustom];
         [Line01 setTitle:@"" forState:UIControlStateNormal];
-        [Line01 setFrame:CGRectMake(0, 80 + i * 70, screenWidth, 1)];
+        [Line01 setFrame:CGRectMake(100, 80 + i * 70, screenWidth, 1)];
         [Line01 setBackgroundColor:[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f]];
         
         [LikeScroll addSubview:Line01];
@@ -1312,7 +1327,7 @@
     for (int i = 0; i < [CollectionIDArray count]; i ++) {
         
         AsyncImageView *UserImage = [[AsyncImageView alloc]init];
-        UserImage.frame = CGRectMake(25, PeopleHeight + 15, 50, 50);
+        UserImage.frame = CGRectMake(25, PeopleHeight + 20, 50, 50);
         UserImage.contentMode = UIViewContentModeScaleAspectFill;
         UserImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
         UserImage.layer.cornerRadius=25;
@@ -1397,13 +1412,19 @@
     NSLog(@"SendUserUid is %@",SendUserUid);
     NSLog(@"SendFollowData is %@",SendFollowData);
     
-//    if ([SendFollowData isEqualToString:@"0"]) {
-//        SendFollowData = @"1";
-//    }else{
-//        SendFollowData = @"0";
-//    }
-    NSLog(@"After SendFollowData is %@",SendFollowData);
-    [self SendFollowData];
+    if ([SendFollowData isEqualToString:@"1"]) {
+        
+        NSString *tempStirng = [[NSString alloc]initWithFormat:@"%@ %@ ?",LocalisedString(@"Are you sure you want to quit following"),[Like_UsernameArray objectAtIndex:getbuttonIDN]];
+        
+        UIAlertView *ShowAlertView = [[UIAlertView alloc]initWithTitle:LocalisedString(@"Unfollow user") message:tempStirng delegate:self cancelButtonTitle:LocalisedString(@"Maybe not.") otherButtonTitles:LocalisedString(@"Yeah!"), nil];
+        ShowAlertView.tag = 1200;
+        [ShowAlertView show];
+    }else{
+        
+        [self SendFollowData];
+    }
+   // NSLog(@"After SendFollowData is %@",SendFollowData);
+    //[self SendFollowData];
 
 }
 -(void)SendFollowData{
@@ -1473,4 +1494,5 @@
     [self.navigationController pushViewController:OpenCollectionView animated:YES];
     [OpenCollectionView GetCollectionID:[CollectionIDArray objectAtIndex:getbuttonIDN]];
 }
+
 @end

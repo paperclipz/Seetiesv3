@@ -324,7 +324,7 @@
         [PostView addSubview:ButtonClick];
 
         UIButton *Line01 = [[UIButton alloc]init];
-        Line01.frame = CGRectMake(10, PostGetHeight + 50, screenWidth - 30, 1);
+        Line01.frame = CGRectMake(10, PostGetHeight + 50, screenWidth - 20, 1);
         [Line01 setTitle:@"" forState:UIControlStateNormal];//238
         [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
         [PostView addSubview:Line01];

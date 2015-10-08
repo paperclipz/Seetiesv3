@@ -183,7 +183,7 @@
         ShowTitle_.frame = CGRectMake(70, 0, 250, 44);
         ShowTitle_.tag = 150;
         //   ShowTitle_.text = [CategoryArray objectAtIndex:i];
-        ShowTitle_.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+        ShowTitle_.font = [UIFont boldSystemFontOfSize:15];
         ShowTitle_.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0];
         ShowTitle_.textAlignment = NSTextAlignmentLeft;
         ShowTitle_.backgroundColor = [UIColor clearColor];

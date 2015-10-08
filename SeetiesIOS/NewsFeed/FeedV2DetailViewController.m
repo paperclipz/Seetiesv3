@@ -1588,7 +1588,7 @@
     //show location data here.
     UIImageView *ShowPin = [[UIImageView alloc]init];
     ShowPin.image = [UIImage imageNamed:@"LocationpinIcon.png"];
-    ShowPin.frame = CGRectMake(10, GetHeightCheck, 18, 18);
+    ShowPin.frame = CGRectMake(15, GetHeightCheck, 18, 18);
     //ShowPin.frame = CGRectMake(15, 210 + 8 + heightcheck + i, 8, 11);
     [MainScroll addSubview:ShowPin];
     
@@ -2464,13 +2464,14 @@
         }
         [MainScroll addSubview:ShowImage_Nearby];
         
-//        UIImageView *ShowPin = [[UIImageView alloc]init];
-//        ShowPin.image = [UIImage imageNamed:@"FeedPin.png"];
-//        ShowPin.frame = CGRectMake(20 + (i % 2) * (FinalWidth + 20), GetFinalHeight + FinalWidth + 15, 8, 11);
-//        [MainScroll addSubview:ShowPin];
+        UIImageView *ShowPin = [[UIImageView alloc]init];
+        ShowPin.image = [UIImage imageNamed:@"LocationpinIcon.png"];
+        ShowPin.frame = CGRectMake(17 + (i % 2) * (FinalWidth + 20), GetFinalHeight + FinalWidth + 10, 18, 18);
+        //ShowPin.frame = CGRectMake(15, 210 + 8 + heightcheck + i, 8, 11);
+        [MainScroll addSubview:ShowPin];
         
         UILabel *ShowAddress = [[UILabel alloc]init];
-        ShowAddress.frame = CGRectMake(25 + (i % 2) * (FinalWidth + 20), GetFinalHeight + FinalWidth + 10, FinalWidth - 5, 20);
+        ShowAddress.frame = CGRectMake(35 + (i % 2) * (FinalWidth + 20), GetFinalHeight + FinalWidth + 10, FinalWidth - 15, 20);
         ShowAddress.text = [PlaceNameArray_Nearby objectAtIndex:i];
         ShowAddress.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
         ShowAddress.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
@@ -2478,7 +2479,7 @@
         [MainScroll addSubview:ShowAddress];
 
         AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
-        ShowUserProfileImage.frame = CGRectMake(25 + (i % 2) * (FinalWidth + 20),  GetFinalHeight + FinalWidth + 50 + TitleHeight , 30, 30);
+        ShowUserProfileImage.frame = CGRectMake(25 + (i % 2) * (FinalWidth + 20),  GetFinalHeight + FinalWidth + 45 + TitleHeight , 30, 30);
         ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
         ShowUserProfileImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
         ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
@@ -2498,7 +2499,7 @@
         }
         
         
-        UIButton *OpenProfileButton = [[UIButton alloc]initWithFrame:CGRectMake(25 + (i % 2) * (FinalWidth + 20),  GetFinalHeight + FinalWidth + 50 + TitleHeight , FinalWidth, 30)];
+        UIButton *OpenProfileButton = [[UIButton alloc]initWithFrame:CGRectMake(25 + (i % 2) * (FinalWidth + 20),  GetFinalHeight + FinalWidth + 45 + TitleHeight , FinalWidth, 30)];
         [OpenProfileButton setTitle:@"" forState:UIControlStateNormal];
         OpenProfileButton.tag = i;
         OpenProfileButton.backgroundColor = [UIColor clearColor];
@@ -2506,7 +2507,7 @@
         [MainScroll addSubview:OpenProfileButton];
         
         UILabel *ShowUserName = [[UILabel alloc]init];
-        ShowUserName.frame = CGRectMake(65 + (i % 2) * (FinalWidth + 20), GetFinalHeight + FinalWidth + 50+ TitleHeight, FinalWidth - 50, 30);
+        ShowUserName.frame = CGRectMake(65 + (i % 2) * (FinalWidth + 20), GetFinalHeight + FinalWidth + 45+ TitleHeight, FinalWidth - 50, 30);
         ShowUserName.text = [UserInfo_NameArray_Nearby objectAtIndex:i];
         ShowUserName.backgroundColor = [UIColor clearColor];
         ShowUserName.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];

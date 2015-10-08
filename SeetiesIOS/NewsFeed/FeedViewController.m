@@ -64,7 +64,7 @@
     heightcheck = 0;
     refreshControl = [[UIRefreshControl alloc] init];
     refreshControl.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    refreshControl.bounds = CGRectMake(refreshControl.bounds.origin.x - 20,
+    refreshControl.bounds = CGRectMake(refreshControl.bounds.origin.x,
                                        0,
                                        refreshControl.bounds.size.width,
                                        refreshControl.bounds.size.height);
