@@ -9,8 +9,9 @@
 #import "NearbyViewController.h"
 #import "FeedV2DetailViewController.h"
 #import "AddCollectionDataViewController.h"
-@interface NearbyViewController ()
-
+@interface NearbyViewController ()<MKMapViewDelegate>{
+}
+@property (nonatomic, strong)MKMapView *mapView;
 @end
 
 @implementation NearbyViewController
@@ -161,6 +162,8 @@
                 DataCount = 0;
                 
                 arrCollect = [[NSMutableArray alloc]init];
+                arrlat = [[NSMutableArray alloc]init];
+                arrlng = [[NSMutableArray alloc]init];
             }else{
                 
             }
@@ -170,6 +173,10 @@
                 [DistanceArray addObject:formatted_address];
                 NSString *SearchDisplayName = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"search_display_name"]];
                 [SearchDisplayNameArray addObject:SearchDisplayName];
+                NSString *lat = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"lat"]];
+                [arrlat addObject:lat];
+                NSString *lng = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"lng"]];
+                [arrlng addObject:lng];
             }
             
             NSDictionary *titleData = [GetAllData valueForKey:@"title"];
@@ -362,8 +369,7 @@
             
             [ShowActivity stopAnimating];
         }
-        
-        
+
     }else if(connection == theConnection_QuickCollect){
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
         NSLog(@"Quick Collection return get data to server ===== %@",GetData);
@@ -461,7 +467,7 @@
         
         NSString *TempDistanceString = [[NSString alloc]initWithFormat:@"%@",[DistanceArray objectAtIndex:i]];
         
-        if ([TempDistanceString isEqualToString:@"0"]) {
+        if ([TempDistanceString isEqualToString:@"-1"]) {
             UILabel *ShowLocation = [[UILabel alloc]init];
             ShowLocation.frame = CGRectMake(120, GetHeight + TempHeight + 25, screenWidth - 210, 20);
             ShowLocation.text = [LocationArray objectAtIndex:i];
@@ -474,21 +480,11 @@
             CGFloat strFloat = (CGFloat)[TempDistanceString floatValue] / 1000;
             int x_Nearby = [TempDistanceString intValue] / 1000;
             NSString *FullShowLocatinString;
+            
             if (x_Nearby < 1) {
-                if (x_Nearby <= 1) {
-                  //  FullShowLocatinString = [[NSString alloc]initWithFormat:@"1km • %@",[LocationArray objectAtIndex:i]];//within
-                    FullShowLocatinString = [[NSString alloc]initWithFormat:@"%.fM • %@",[TempDistanceString floatValue],[LocationArray objectAtIndex:i]];
-                }else{
-                    FullShowLocatinString = [[NSString alloc]initWithFormat:@"%.fkm • %@",strFloat,[LocationArray objectAtIndex:i]];
-                }
-                
-            }else if(x_Nearby > 10 && x_Nearby < 30){
-
-                FullShowLocatinString = [[NSString alloc]initWithFormat:@"%.fkm • %@",strFloat,[LocationArray objectAtIndex:i]];
+                FullShowLocatinString = [[NSString alloc]initWithFormat:@"%.fM • %@",[TempDistanceString floatValue],[LocationArray objectAtIndex:i]];
             }else{
-
-                FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@",[SearchDisplayNameArray objectAtIndex:i]];
-                
+                FullShowLocatinString = [[NSString alloc]initWithFormat:@"%.fkm • %@",strFloat,[LocationArray objectAtIndex:i]];
             }
             
             UILabel *ShowLocation = [[UILabel alloc]init];
@@ -553,6 +549,43 @@
     NearbyImg.layer.masksToBounds = YES;
     [MainScroll addSubview:NearbyImg];
     
+    self.mapView = [[MKMapView alloc]init];
+    self.mapView.delegate = self;
+    self.mapView.frame = CGRectMake(0, 0, screenWidth, 150);
+    [MainScroll addSubview:self.mapView];
+    
+    MKCoordinateRegion newRegion;
+    newRegion.center.latitude = [GetLatdata doubleValue];
+    newRegion.center.longitude = [GetLongData doubleValue];
+    newRegion.span.latitudeDelta = 0.030;
+    newRegion.span.longitudeDelta = 0.030;
+    [self.mapView setRegion:newRegion animated:YES];
+    
+    NSInteger GetMapCount = 0;
+    GetMapCount = [arrlat count];
+    if (GetMapCount >= 10) {
+        GetMapCount = 10;
+    }else{
+    
+    }
+    for (NSInteger i = 0; i < GetMapCount; i++) {
+        NSString *tamplatitude = [[NSString alloc]initWithFormat:@"%@",[arrlat objectAtIndex:i]];
+        NSString *tampLongitude = [[NSString alloc]initWithFormat:@"%@",[arrlng objectAtIndex:i]];
+        
+        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake([tamplatitude doubleValue], [tampLongitude doubleValue]);
+        
+        MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+        [annotation setCoordinate:coordinate];
+        [annotation setTitle:@""]; //You can set the subtitle too
+        [self.mapView addAnnotation:annotation];
+        
+    }
+    
+    
+
+    
+    
+    
     UIButton *ShowNearbyLocationText = [[UIButton alloc]init];
     [ShowNearbyLocationText setTitle:[LocationArray objectAtIndex:0] forState:UIControlStateNormal];
     ShowNearbyLocationText.layer.cornerRadius = 20;
@@ -565,6 +598,25 @@
     
     GetHeight += 170;
     [self InitContentView];
+}
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
+    if (annotation == mapView.userLocation)
+        return nil;
+    
+    static NSString *s = @"ann";
+    MKAnnotationView *pin = [mapView dequeueReusableAnnotationViewWithIdentifier:s];
+    if (!pin) {
+        pin = [[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:s];
+        pin.canShowCallout = YES;
+        pin.image = [UIImage imageNamed:@"PinInMap.png"];
+        pin.calloutOffset = CGPointMake(0, 0);
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        //        [button addTarget:self
+        //                   action:@selector(checkinButton) forControlEvents:UIControlEventTouchUpInside];
+        pin.rightCalloutAccessoryView = button;
+        
+    }
+    return pin;
 }
 -(IBAction)ProductButton:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;

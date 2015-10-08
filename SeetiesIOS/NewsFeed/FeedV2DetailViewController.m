@@ -111,7 +111,7 @@
     
     UISwipeGestureRecognizer *swipeRight =[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeRight:)];
     swipeRight.direction=UISwipeGestureRecognizerDirectionRight;
-    [MainScroll addGestureRecognizer:swipeRight];
+    [self.view addGestureRecognizer:swipeRight];
     
 
 }

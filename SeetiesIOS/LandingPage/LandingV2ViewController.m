@@ -596,6 +596,12 @@
         ShowNotificationCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
         [_leveyTabBarController.view addSubview:ShowNotificationCount];
         
+        UIButton *Line = [[UIButton alloc]init];
+        Line.frame = CGRectMake(0, screenHeight - 50, screenWidth, 1);
+        [Line setTitle:@"" forState:UIControlStateNormal];
+        Line.backgroundColor = [UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f];
+        [_leveyTabBarController.view addSubview:Line];
+        
     }
     
     return _leveyTabBarController;
