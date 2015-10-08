@@ -3799,6 +3799,8 @@
                 CheckSystemLanguage = 4;
             }else if([language isEqualToString:@"tl-PH"]){
                 CheckSystemLanguage = 5;
+            }else{
+                CheckSystemLanguage = 0;
             }
             LanguageManager *languageManager = [LanguageManager sharedLanguageManager];
             
