@@ -24,5 +24,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnEditHours;
 
 @property(nonatomic,copy)ButtonBlock btnEditHourClickedBlock;
+-(BOOL)validation;
 
 @end

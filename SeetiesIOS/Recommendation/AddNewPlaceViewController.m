@@ -58,7 +58,7 @@
 -(BOOL)validation
 {
     BOOL isPass = true;
-    if (self.addNewPlaceSubView.txtPlaceName.text.length <=3) {
+    if (![self.addNewPlaceSubView validation]) {
         isPass = false;
         [TSMessage showNotificationInViewController:self title:@"system" subtitle:@"Place Name Need to be more than 3 characters" type:TSMessageNotificationTypeWarning];
     }
