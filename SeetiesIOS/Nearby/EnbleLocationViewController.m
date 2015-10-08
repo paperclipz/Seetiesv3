@@ -56,26 +56,28 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 -(IBAction)AllowButtonOnClick:(id)sender{
-    self.locationManager = [[CLLocationManager alloc]init];
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    self.locationManager.delegate = self;
-    self.locationManager.distanceFilter = 10;
-    if(IS_OS_8_OR_LATER){
-        NSUInteger code = [CLLocationManager authorizationStatus];
-        if (code == kCLAuthorizationStatusNotDetermined && ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)] || [self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])) {
-            // choose one request according to your business.
-            if([[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationAlwaysUsageDescription"]){
-                [self.locationManager requestAlwaysAuthorization];
-                [self.locationManager startUpdatingLocation];
-            } else if([[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationWhenInUseUsageDescription"]) {
-                [self.locationManager  requestWhenInUseAuthorization];
-                [self.locationManager startUpdatingLocation];
-            } else {
-                NSLog(@"Info.plist does not contain NSLocationAlwaysUsageDescription or NSLocationWhenInUseUsageDescription");
-            }
-        }
-    }
-    [self.locationManager startUpdatingLocation];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+    
+//    self.locationManager = [[CLLocationManager alloc]init];
+//    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+//    self.locationManager.delegate = self;
+//    self.locationManager.distanceFilter = 10;
+//    if(IS_OS_8_OR_LATER){
+//        NSUInteger code = [CLLocationManager authorizationStatus];
+//        if (code == kCLAuthorizationStatusNotDetermined && ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)] || [self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])) {
+//            // choose one request according to your business.
+//            if([[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationAlwaysUsageDescription"]){
+//                [self.locationManager requestAlwaysAuthorization];
+//                [self.locationManager startUpdatingLocation];
+//            } else if([[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationWhenInUseUsageDescription"]) {
+//                [self.locationManager  requestWhenInUseAuthorization];
+//                [self.locationManager startUpdatingLocation];
+//            } else {
+//                NSLog(@"Info.plist does not contain NSLocationAlwaysUsageDescription or NSLocationWhenInUseUsageDescription");
+//            }
+//        }
+//    }
+//    [self.locationManager startUpdatingLocation];
 }
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {

@@ -9,6 +9,7 @@
 #import "CollectionViewController.h"
 #import "FeedV2DetailViewController.h"
 #import "ShareViewController.h"
+#import "SearchDetailViewController.h"
 @interface CollectionViewController ()
 
 @end
@@ -140,6 +141,10 @@
             GetTitle = [[NSString alloc]initWithFormat:@"%@",[ResData objectForKey:@"name"]];
             GetDescription = [[NSString alloc]initWithFormat:@"%@",[ResData objectForKey:@"description"]];
             GetTags = [[NSString alloc]initWithFormat:@"%@",[ResData valueForKey:@"tags"]];
+            
+            NSArray *TempGetTags = [ResData objectForKey:@"tags"];
+            GetTags = [TempGetTags componentsJoinedByString:@","];
+            
             if ([GetTags length] == 0 || [GetTags isEqualToString:@""] || [GetTags isEqualToString:@"(null)"] || GetTags == nil) {
             }else{
                 NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"() \n"];
@@ -403,24 +408,33 @@
             ShowHashTagText.text = [ArrHashTag objectAtIndex:i];
             ShowHashTagText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
             ShowHashTagText.textAlignment = NSTextAlignmentCenter;
-            ShowHashTagText.backgroundColor = [UIColor whiteColor];
+            ShowHashTagText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
             ShowHashTagText.layer.cornerRadius = 5;
             ShowHashTagText.layer.borderWidth = 1;
-            ShowHashTagText.layer.borderColor=[[UIColor grayColor] CGColor];
+            ShowHashTagText.layer.borderColor=[[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f] CGColor];
             
-            NSString *Text = [ArrHashTag objectAtIndex:i];
+            
+            NSString *Text = [NSString stringWithCString:[[ArrHashTag objectAtIndex:i] UTF8String] encoding:NSUTF8StringEncoding];
             CGRect r = [Text boundingRectWithSize:CGSizeMake(200, 0)
-                                          options:NSStringDrawingUsesLineFragmentOrigin
-                                       attributes:@{NSFontAttributeName:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]}
+                                          options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
+                                       attributes:@{NSFontAttributeName:[UIFont fontWithName:@"ProximaNovaSoft-Regular" size:12]}
                                           context:nil];
             
             //NSLog(@"r ==== %f",r.size.width);
+            
+            UIButton *TagsButton = [[UIButton alloc]init];
+            [TagsButton setTitle:@"" forState:UIControlStateNormal];
+            TagsButton.backgroundColor = [UIColor clearColor];
+            TagsButton.tag = i;
+            TagsButton.frame = CGRectMake(25 + frame2.size.width, 15, r.size.width + 20, 20);
+            [TagsButton addTarget:self action:@selector(PersonalTagsButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
             
             //CGSize textSize = [ShowHashTagText.text sizeWithAttributes:@{NSFontAttributeName:[ShowHashTagText font]}];
             //   CGFloat textSize = ShowHashTagText.intrinsicContentSize.width;
             ShowHashTagText.frame = CGRectMake(30 + frame2.size.width, 15, r.size.width + 20, 20);
             frame2.size.width += r.size.width + 30;
             [HashTagScroll addSubview:ShowHashTagText];
+            [HashTagScroll addSubview:TagsButton];
             
             HashTagScroll.contentSize = CGSizeMake(30 + frame2.size.width , 50);
         }
@@ -792,5 +806,15 @@
 -(IBAction)ShareLinkButtonOnClick:(id)sender{
 }
 -(IBAction)TranslateButtonOnClick:(id)sender{
+}
+
+-(IBAction)PersonalTagsButtonOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSString *GetTagsString = [[NSString alloc]initWithFormat:@"%@",[ArrHashTag objectAtIndex:getbuttonIDN]];
+    NSLog(@"ArrHashTag is %@",GetTagsString);
+    
+    SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
+    [self.navigationController pushViewController:SearchDetailView animated:YES];
+    [SearchDetailView GetSearchKeyword:GetTagsString Getlat:@"" GetLong:@"" GetLocationName:@""];
 }
 @end

@@ -303,7 +303,10 @@
 -(void)SendSearchKeywordData{
     NSLog(@"SendSearchKeywordData");
     CheckWhichOne = 1;
-   [ShowActivity startAnimating];
+    if (CheckFirstTimeLoad == 0) {
+           [ShowActivity startAnimating];
+    }
+
     if (CurrentPage == TotalPage) {
         
     }else{
@@ -814,7 +817,7 @@
     heightcheck = 0;
     
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    MainScroll.backgroundColor = [UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0];
+    MainScroll.backgroundColor = [UIColor whiteColor];
     
     for (UIView *subview in MainScroll.subviews) {
         // if ([subview isKindOfClass:[UIButton class]])
@@ -881,7 +884,7 @@
 
 -(void)InitPostsDataView{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    int PostGetHeight = 0;
+    int PostGetHeight = 5;
     
     
     for (NSInteger i = DataCount; i < DataTotal; i++) {
@@ -964,11 +967,11 @@
 
         UIImageView *ShowPin = [[UIImageView alloc]init];
         ShowPin.image = [UIImage imageNamed:@"LocationpinIcon"];
-        ShowPin.frame = CGRectMake(115, PostGetHeight + 80, 18, 18);
+        ShowPin.frame = CGRectMake(110, PostGetHeight + 80, 18, 18);
         [PostsView addSubview:ShowPin];
         
         UILabel *ShowPlaceName = [[UILabel alloc]init];
-        ShowPlaceName.frame = CGRectMake(135, PostGetHeight + 80, screenWidth - 200, 20);
+        ShowPlaceName.frame = CGRectMake(130, PostGetHeight + 80, screenWidth - 200, 20);
         ShowPlaceName.text = [place_nameArray objectAtIndex:i];
         ShowPlaceName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         ShowPlaceName.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0];
@@ -1052,10 +1055,10 @@
     for (int i = 0; i < [Experts_Name_Array count]; i ++) {
         
         AsyncImageView *UserImage = [[AsyncImageView alloc]init];
-        UserImage.frame = CGRectMake(25, PeopleHeight + 10, 60, 60);
+        UserImage.frame = CGRectMake(25, PeopleHeight + 15, 50, 50);
         UserImage.contentMode = UIViewContentModeScaleAspectFill;
         UserImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
-        UserImage.layer.cornerRadius=30;
+        UserImage.layer.cornerRadius=25;
         UserImage.layer.borderWidth=0;
         UserImage.layer.masksToBounds = YES;
         UserImage.layer.borderColor=[[UIColor whiteColor] CGColor];
@@ -1073,7 +1076,7 @@
         ShowUserName.frame = CGRectMake(100, PeopleHeight + 10, 200, 60);
         ShowUserName.text = [Experts_Name_Array objectAtIndex:i];
         ShowUserName.backgroundColor = [UIColor clearColor];
-        ShowUserName.textColor = [UIColor blackColor];
+        ShowUserName.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
         ShowUserName.textAlignment = NSTextAlignmentLeft;
         ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         [PeopleView addSubview:ShowUserName];

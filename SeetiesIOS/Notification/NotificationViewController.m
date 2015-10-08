@@ -542,7 +542,8 @@
         ShowMessage.textColor = [UIColor blackColor];
         ShowMessage.backgroundColor = [UIColor clearColor];
         NSString *GetString = [[NSString alloc]initWithFormat:@"%@",[Following_MessageArray objectAtIndex:i]];
-        ShowMessage.text = [self convertHtmlPlainText:GetString];
+        NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[GetString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+        ShowMessage.attributedText = attrStr;//[self convertHtmlPlainText:GetString]
         NSString *start = [[NSString alloc]initWithFormat:@"%@",[Following_DateArray objectAtIndex:i]];
         NSDateFormatter *f = [[NSDateFormatter alloc] init];
         [f setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
@@ -604,13 +605,6 @@
     
     
     
-}
--(NSString*)convertHtmlPlainText:(NSString*)HTMLString{
-    
-    NSData *HTMLData = [HTMLString dataUsingEncoding:NSUTF8StringEncoding];
-    NSAttributedString *attrString = [[NSAttributedString alloc] initWithData:HTMLData options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:NULL error:NULL];
-    NSString *plainString = attrString.string;
-    return plainString;
 }
 
 -(void)InitNotificationsDataView{
@@ -755,7 +749,8 @@
         ShowMessage.backgroundColor = [UIColor clearColor];
 
         NSString *GetString = [[NSString alloc]initWithFormat:@"%@",[MessageArray objectAtIndex:i]];
-        ShowMessage.text = [self convertHtmlPlainText:GetString];
+        NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[GetString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+        ShowMessage.attributedText = attrStr;//[self convertHtmlPlainText:GetString]
         NSString *start = [[NSString alloc]initWithFormat:@"%@",[DateArray objectAtIndex:i]];
         NSDateFormatter *f = [[NSDateFormatter alloc] init];
         [f setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
