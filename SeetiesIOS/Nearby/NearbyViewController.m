@@ -594,25 +594,6 @@
     GetHeight += 170;
     [self InitContentView];
 }
-//- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
-//    if (annotation == mapView.userLocation)
-//        return nil;
-//    
-//    static NSString *s = @"ann";
-//    MKAnnotationView *pin = [mapView dequeueReusableAnnotationViewWithIdentifier:s];
-//    if (!pin) {
-//        pin = [[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:s];
-//        pin.canShowCallout = YES;
-//        pin.image = [UIImage imageNamed:@"PinInMap.png"];
-//        pin.calloutOffset = CGPointMake(0, 0);
-//        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-//        [button setImage:[UIImage imageNamed:@"PinInMap.png"] forState:UIControlStateNormal];
-//        [button addTarget:self action:@selector(MapPinButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
-//        pin.rightCalloutAccessoryView = button;
-//        
-//    }
-//    return pin;
-//}
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
     MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"String"];
@@ -623,16 +604,16 @@
         annotationView.image = [UIImage imageNamed:@"PinInMap.png"];
         
         UIButton *directionButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        UIImage *directionIcon = [UIImage imageNamed:@"PinInMap.png"];
-        directionButton.frame =
-        CGRectMake(0, 0, directionIcon.size.width, directionIcon.size.height);
-        
+        UIImage *directionIcon = [UIImage imageNamed:@"LocationInfoIcon.png"];
+        directionButton.frame = CGRectMake(0, 0, directionIcon.size.width, directionIcon.size.height);
         [directionButton setImage:directionIcon forState:UIControlStateNormal];
+        [directionButton addTarget:self action:@selector(MapPinButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+//        NSInteger AnnotationIndex = [mapView.annotations indexOfObject:annotation];
+//        directionButton.tag = AnnotationIndex;
         
         annotationView.rightCalloutAccessoryView = directionButton;
         annotationView.enabled = YES;
         annotationView.canShowCallout = YES;
-        
     }
     else {
         //update annotation to current if re-using a view
@@ -641,8 +622,31 @@
     
     return annotationView;
 }
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control{
+    NSLog(@"click click click");
+    
+    NSLog(@"mapView is %@",mapView);
+    NSLog(@"view is %@",view.annotation);
+    NSLog(@"control is %@",control);
+    
+    NSInteger AnnotationIndex = [mapView.annotations indexOfObject:view.annotation];
+    NSLog(@"AnnotationIndex is %ld",(long)AnnotationIndex);
+    
+    
+    NSInteger getbuttonIDN = [control tag];
+    //NSLog(@"button %i",getbuttonIDN);
+    
+    NSString *TempString = [[NSString alloc]initWithFormat:@"%@",[TitleArray objectAtIndex:getbuttonIDN]];
+    NSLog(@"TempString is %@",TempString);
+}
 -(IBAction)MapPinButtonOnClick:(id)sender{
-    NSLog(@"MapPinButtonOnClick on click.");
+//    NSLog(@"MapPinButtonOnClick on click.");
+//    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+//    NSLog(@"button %li",(long)getbuttonIDN);
+//    
+//    NSString *TempString = [[NSString alloc]initWithFormat:@"%@",[TitleArray objectAtIndex:getbuttonIDN]];
+//    NSLog(@"TempString is %@",TempString);
+    
 }
 -(IBAction)ProductButton:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
