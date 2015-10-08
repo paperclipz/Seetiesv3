@@ -61,6 +61,7 @@
 
 - (IBAction)btnCurrencyClicked:(id)sender {
     
+    [self resignFirstResponder];
     NSArray *arrCurrency = [NSArray arrayWithObjects:USD, MYR, THB, SGD ,TWD, nil];
     
     [ActionSheetStringPicker showPickerWithTitle:@"Select A Currency"
