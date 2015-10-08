@@ -46,6 +46,7 @@
     [super viewDidLoad];
     [self initSelfView];
     [self changeLanguage];
+   // [self.lblTitle setFont:[UIFont fontWithName:CustomFontName size:17]];
 }
 
 -(void)viewDidAppear:(BOOL)animated

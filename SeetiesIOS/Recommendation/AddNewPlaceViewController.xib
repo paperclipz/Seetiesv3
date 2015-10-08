@@ -62,9 +62,13 @@
                                 <action selector="btnDoneClicked:" destination="-1" eventType="touchUpInside" id="iba-pD-rUf"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wcf-Rk-9Yr">
-                            <rect key="frame" x="204" y="25" width="46" height="30"/>
-                            <state key="normal" title="Button"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wcf-Rk-9Yr">
+                            <rect key="frame" x="228" y="20" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="0MV-Xj-Og5"/>
+                                <constraint firstAttribute="height" constant="40" id="c6T-xv-dr1"/>
+                            </constraints>
+                            <state key="normal" image="ChangePlaceIcon.png"/>
                             <connections>
                                 <action selector="btnEditLocationClicked:" destination="-1" eventType="touchUpInside" id="5fd-j4-NhJ"/>
                             </connections>
@@ -74,6 +78,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="64" id="27Z-cG-vh7"/>
                         <constraint firstItem="V7t-8u-g3s" firstAttribute="leading" secondItem="vJ5-lJ-w6a" secondAttribute="leading" id="3fC-N6-kKv"/>
+                        <constraint firstItem="unv-wv-jDS" firstAttribute="leading" secondItem="Wcf-Rk-9Yr" secondAttribute="trailing" constant="2" id="4T7-e3-dX7"/>
                         <constraint firstItem="key-Ts-FqN" firstAttribute="top" secondItem="iGC-uq-moM" secondAttribute="top" constant="10" id="GFi-hf-tGL"/>
                         <constraint firstAttribute="bottom" secondItem="iGC-uq-moM" secondAttribute="bottom" constant="4" id="OeO-wO-apg"/>
                         <constraint firstItem="iGC-uq-moM" firstAttribute="leading" secondItem="vJ5-lJ-w6a" secondAttribute="leading" constant="-5" id="Qqy-2Z-cUh"/>
@@ -84,6 +89,7 @@
                         <constraint firstItem="key-Ts-FqN" firstAttribute="leading" secondItem="iGC-uq-moM" secondAttribute="trailing" constant="18" id="dKW-2r-DqH"/>
                         <constraint firstItem="unv-wv-jDS" firstAttribute="top" secondItem="vJ5-lJ-w6a" secondAttribute="top" constant="20" id="fHj-yt-kxW"/>
                         <constraint firstItem="V7t-8u-g3s" firstAttribute="top" secondItem="vJ5-lJ-w6a" secondAttribute="top" id="fea-WW-H2O"/>
+                        <constraint firstItem="Wcf-Rk-9Yr" firstAttribute="centerY" secondItem="V7t-8u-g3s" secondAttribute="centerY" constant="8" id="u6H-PY-FGZ"/>
                     </constraints>
                 </view>
                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="dTw-XL-CGa">
@@ -151,6 +157,7 @@
     </objects>
     <resources>
         <image name="BackIcon.png" width="40" height="40"/>
+        <image name="ChangePlaceIcon.png" width="40" height="40"/>
         <image name="TickIcon.png" width="40" height="40"/>
     </resources>
 </document>
