@@ -733,6 +733,7 @@ static id ObjectOrNull(id object)
                                     @"name":ObjectOrNull(tempVenueModel.name),
                                     @"formatted_address":ObjectOrNull(tempVenueModel.formattedAddress),
                                     @"type":@2,
+                                    @"rating":@"",
                                     @"reference":ObjectOrNull(tempVenueModel.reference),
                                     @"contact_no":ObjectOrNull(tempVenueModel.formattedPhone),
                                     @"source":@"",
