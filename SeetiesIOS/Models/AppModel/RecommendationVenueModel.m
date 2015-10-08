@@ -83,13 +83,13 @@
     _facebookName = nil;
     _isOpenHour = nil;
     _statusHour = nil;
-    _currency = [self processCurrency];
+    _currency = _expense[@"code"];
     _priceMessage = nil;
     _tier = nil;
     _name = model.location.name;
     _url = model.location.link;
     _reference = model.location.reference;
-    _price = [self processPrice];
+    _price = _expense[@"value"];
     
     if (model.location.opening_hours.periods) {
         [self processOperatingHours:model.location.opening_hours.periods];
