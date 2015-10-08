@@ -580,7 +580,7 @@
         
         UIImageView *ShowPin = [[UIImageView alloc]init];
         ShowPin.image = [UIImage imageNamed:@"PhotoPin.png"];
-        ShowPin.frame = CGRectMake(25, TempHeight + 27, 15, 15);
+        ShowPin.frame = CGRectMake(25, TempHeight + 25, 15, 15);
         [ListView addSubview:ShowPin];
         
         NSString *TempDistanceString = [[NSString alloc]initWithFormat:@"%@",[Content_arrID_arrDistance objectAtIndex:i]];

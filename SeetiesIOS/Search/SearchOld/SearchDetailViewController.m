@@ -915,7 +915,7 @@
         ShowUserName.frame = CGRectMake(65, PostGetHeight + 10, 200, 30);
         ShowUserName.text = [UserInfo_NameArray objectAtIndex:i];
         ShowUserName.backgroundColor = [UIColor clearColor];
-        ShowUserName.textColor = [UIColor blackColor];
+        ShowUserName.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
         ShowUserName.textAlignment = NSTextAlignmentLeft;
         ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         [PostsView addSubview:ShowUserName];
