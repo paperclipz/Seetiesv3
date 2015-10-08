@@ -855,6 +855,18 @@
 		8AF389621BC624600062D035 /* WalkthroughFeed2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF387A51BC624600062D035 /* WalkthroughFeed2.png */; settings = {ASSET_TAGS = (); }; };
 		8AF389631BC624600062D035 /* WalkthroughPost.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF387A61BC624600062D035 /* WalkthroughPost.png */; settings = {ASSET_TAGS = (); }; };
 		8AF389641BC624600062D035 /* WalkthroughPostDetails.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF387A71BC624600062D035 /* WalkthroughPostDetails.png */; settings = {ASSET_TAGS = (); }; };
+		8AF39CCD1BC649D1009C7F26 /* Caret@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39CC11BC649D1009C7F26 /* Caret@2x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF39CCE1BC649D1009C7F26 /* Caret@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39CC21BC649D1009C7F26 /* Caret@3x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF39CCF1BC649D1009C7F26 /* LoginBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39CC31BC649D1009C7F26 /* LoginBackground.png */; settings = {ASSET_TAGS = (); }; };
+		8AF39CD01BC649D1009C7F26 /* LongSearchBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39CC41BC649D1009C7F26 /* LongSearchBar@2x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF39CD11BC649D1009C7F26 /* NearbyBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39CC51BC649D1009C7F26 /* NearbyBackground.png */; settings = {ASSET_TAGS = (); }; };
+		8AF39CD21BC649D1009C7F26 /* NearbyImg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39CC61BC649D1009C7F26 /* NearbyImg.png */; settings = {ASSET_TAGS = (); }; };
+		8AF39CD31BC649D1009C7F26 /* NoImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39CC71BC649D1009C7F26 /* NoImage.png */; settings = {ASSET_TAGS = (); }; };
+		8AF39CD41BC649D1009C7F26 /* QR.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39CC81BC649D1009C7F26 /* QR.png */; settings = {ASSET_TAGS = (); }; };
+		8AF39CD51BC649D1009C7F26 /* SelectPhotoArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39CC91BC649D1009C7F26 /* SelectPhotoArrow@2x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF39CD61BC649D1009C7F26 /* TitleBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39CCA1BC649D1009C7F26 /* TitleBar@2x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF39CD71BC649D1009C7F26 /* TitleBar@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39CCB1BC649D1009C7F26 /* TitleBar@3x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF39CD81BC649D1009C7F26 /* warning-flat-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39CCC1BC649D1009C7F26 /* warning-flat-icon.png */; settings = {ASSET_TAGS = (); }; };
 		D44BD397CA9972010A37D9F6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B526FE01F3F3414439C16DF /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -1999,6 +2011,18 @@
 		8AF387A51BC624600062D035 /* WalkthroughFeed2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WalkthroughFeed2.png; sourceTree = "<group>"; };
 		8AF387A61BC624600062D035 /* WalkthroughPost.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WalkthroughPost.png; sourceTree = "<group>"; };
 		8AF387A71BC624600062D035 /* WalkthroughPostDetails.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WalkthroughPostDetails.png; sourceTree = "<group>"; };
+		8AF39CC11BC649D1009C7F26 /* Caret@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Caret@2x.png"; sourceTree = "<group>"; };
+		8AF39CC21BC649D1009C7F26 /* Caret@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Caret@3x.png"; sourceTree = "<group>"; };
+		8AF39CC31BC649D1009C7F26 /* LoginBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoginBackground.png; sourceTree = "<group>"; };
+		8AF39CC41BC649D1009C7F26 /* LongSearchBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LongSearchBar@2x.png"; sourceTree = "<group>"; };
+		8AF39CC51BC649D1009C7F26 /* NearbyBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NearbyBackground.png; sourceTree = "<group>"; };
+		8AF39CC61BC649D1009C7F26 /* NearbyImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NearbyImg.png; sourceTree = "<group>"; };
+		8AF39CC71BC649D1009C7F26 /* NoImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NoImage.png; sourceTree = "<group>"; };
+		8AF39CC81BC649D1009C7F26 /* QR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QR.png; sourceTree = "<group>"; };
+		8AF39CC91BC649D1009C7F26 /* SelectPhotoArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SelectPhotoArrow@2x.png"; sourceTree = "<group>"; };
+		8AF39CCA1BC649D1009C7F26 /* TitleBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TitleBar@2x.png"; sourceTree = "<group>"; };
+		8AF39CCB1BC649D1009C7F26 /* TitleBar@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TitleBar@3x.png"; sourceTree = "<group>"; };
+		8AF39CCC1BC649D1009C7F26 /* warning-flat-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "warning-flat-icon.png"; sourceTree = "<group>"; };
 		A6BFDB1BE373200E64D8CBE7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CAB2B54F0EC79309593A3C4C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -3499,6 +3523,7 @@
 		8AF385CE1BC6245F0062D035 /* SEETIES_ASSETS */ = {
 			isa = PBXGroup;
 			children = (
+				8AF39CC01BC649D1009C7F26 /* Misc */,
 				8AF385CF1BC6245F0062D035 /* SeetiesArtWork */,
 			);
 			path = SEETIES_ASSETS;
@@ -4172,6 +4197,25 @@
 			path = Tour;
 			sourceTree = "<group>";
 		};
+		8AF39CC01BC649D1009C7F26 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				8AF39CC11BC649D1009C7F26 /* Caret@2x.png */,
+				8AF39CC21BC649D1009C7F26 /* Caret@3x.png */,
+				8AF39CC31BC649D1009C7F26 /* LoginBackground.png */,
+				8AF39CC41BC649D1009C7F26 /* LongSearchBar@2x.png */,
+				8AF39CC51BC649D1009C7F26 /* NearbyBackground.png */,
+				8AF39CC61BC649D1009C7F26 /* NearbyImg.png */,
+				8AF39CC71BC649D1009C7F26 /* NoImage.png */,
+				8AF39CC81BC649D1009C7F26 /* QR.png */,
+				8AF39CC91BC649D1009C7F26 /* SelectPhotoArrow@2x.png */,
+				8AF39CCA1BC649D1009C7F26 /* TitleBar@2x.png */,
+				8AF39CCB1BC649D1009C7F26 /* TitleBar@3x.png */,
+				8AF39CCC1BC649D1009C7F26 /* warning-flat-icon.png */,
+			);
+			path = Misc;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -4369,6 +4413,7 @@
 				8AF388301BC624600062D035 /* ExploreImgOverlay@3x.png in Resources */,
 				8AF388091BC624600062D035 /* AboutIcon@2x.png in Resources */,
 				8AF387B71BC624600062D035 /* Icon-iPad-Spotlight-iOS7@2x.png in Resources */,
+				8AF39CD21BC649D1009C7F26 /* NearbyImg.png in Resources */,
 				8AF388771BC624600062D035 /* BlueTick@2x.png in Resources */,
 				8AD6C11B1B706CF30040437E /* poweredByFoursquare_gray@2x.png in Resources */,
 				8AF387F21BC624600062D035 /* AddIcon@3x.png in Resources */,
@@ -4468,6 +4513,7 @@
 				8AF388AD1BC624600062D035 /* InviteWhatsappIcon@2x.png in Resources */,
 				8AF387FE1BC624600062D035 /* CategoriesCheck@3x.png in Resources */,
 				8AF389531BC624600062D035 /* FeedIconActive@3x.png in Resources */,
+				8AF39CCE1BC649D1009C7F26 /* Caret@3x.png in Resources */,
 				8AF387EA1BC624600062D035 /* EditIconSwipe@3x.png in Resources */,
 				0B3FF10A1BB131620014AF2E /* NewCollectionViewController.xib in Resources */,
 				8AF389241BC624600062D035 /* SearchLocationIcon@3x.png in Resources */,
@@ -4485,6 +4531,7 @@
 				8AF3889D1BC624600062D035 /* InviteBtnActive@2x.png in Resources */,
 				8AF388F91BC624600062D035 /* TranslateArrow@2x.png in Resources */,
 				8AD6C0DB1B706CF30040437E /* PTnCViewController.xib in Resources */,
+				8AF39CD71BC649D1009C7F26 /* TitleBar@3x.png in Resources */,
 				8A9F25CF1B8ED8BC00BB13BA /* EditHoursViewController.xib in Resources */,
 				8AF3887A1BC624600062D035 /* FollowingOnlyIcon@3x.png in Resources */,
 				8AF388251BC624600062D035 /* SearchIcon@2x.png in Resources */,
@@ -4509,10 +4556,12 @@
 				8AF3890D1BC624600062D035 /* ProfileFollowingIcon@2x.png in Resources */,
 				8AF388CF1BC624600062D035 /* NotificationBySeeties@2x.png in Resources */,
 				8AF387D11BC624600062D035 /* ListViewActive@2x.png in Resources */,
+				8AF39CD31BC649D1009C7F26 /* NoImage.png in Resources */,
 				8AF388841BC624600062D035 /* LeisureEntertainmentIcon@3x.png in Resources */,
 				0BBFE0551B9D6260004B17E9 /* NotificationSettingsViewController.xib in Resources */,
 				8AD6C3481B707D120040437E /* buttonbg@2x.png in Resources */,
 				8AF387F41BC624600062D035 /* BigAddIcon@3x-1.png in Resources */,
+				8AF39CD81BC649D1009C7F26 /* warning-flat-icon.png in Resources */,
 				8AF389151BC624600062D035 /* ProfileSettingsIcon@2x.png in Resources */,
 				8AF3885D1BC624600062D035 /* LocationpinIcon@2x.png in Resources */,
 				8AD6C0C51B706CF30040437E /* LocationFeedDetailViewController.xib in Resources */,
@@ -4578,6 +4627,7 @@
 				8AF387C41BC624600062D035 /* CollectionCrossBtn@3x.png in Resources */,
 				8AF387D41BC624600062D035 /* ListViewInactive@3x.png in Resources */,
 				8AF389381BC624600062D035 /* ShareEmailIcon@3x.png in Resources */,
+				8AF39CD41BC649D1009C7F26 /* QR.png in Resources */,
 				8AF387D91BC624600062D035 /* PhotoPin@2x.png in Resources */,
 				8AD6C2AA1B7072FB0040437E /* WhereIsThisViewController.xib in Resources */,
 				8AF388571BC624600062D035 /* FollowingIcon@2x.png in Resources */,
@@ -4610,6 +4660,7 @@
 				8AF387E11BC624600062D035 /* WhiteCollect@2x.png in Resources */,
 				8AF3884D1BC624600062D035 /* FeedCloseBtn@2x.png in Resources */,
 				8AD6C11A1B706CF30040437E /* poweredByFoursquare_gray.png in Resources */,
+				8AF39CD61BC649D1009C7F26 /* TitleBar@2x.png in Resources */,
 				8AF3884F1BC624600062D035 /* FeedOverlay@2x.png in Resources */,
 				8AF388561BC624600062D035 /* FollowIcon@3x.png in Resources */,
 				8AF387F61BC624600062D035 /* DeleteIcon@3x.png in Resources */,
@@ -4698,6 +4749,7 @@
 				8AF388EB1BC624600062D035 /* PostCollectedIcon@2x.png in Resources */,
 				8AF388371BC624600062D035 /* OpenStatus@2x.png in Resources */,
 				8AF388F71BC624600062D035 /* PreviewPhotoBlackOverlay@2x.png in Resources */,
+				8AF39CD11BC649D1009C7F26 /* NearbyBackground.png in Resources */,
 				8AD6C29C1B7072FB0040437E /* PublishMainViewController.xib in Resources */,
 				8AF388DC1BC624600062D035 /* BluePhone@3x.png in Resources */,
 				8AF388C41BC624600062D035 /* SeetiesLogo@3x.png in Resources */,
@@ -4709,6 +4761,7 @@
 				8AF3880E1BC624600062D035 /* BrithdayIcon@3x.png in Resources */,
 				8AD6C0BD1B706CF30040437E /* CommentViewController.xib in Resources */,
 				8AF387D31BC624600062D035 /* ListViewInactive@2x.png in Resources */,
+				8AF39CCD1BC649D1009C7F26 /* Caret@2x.png in Resources */,
 				8AF3889B1BC624600062D035 /* InstagramBtnInactive@2x.png in Resources */,
 				8AF387E81BC624600062D035 /* DeleteIconSwipe@3x.png in Resources */,
 				8AF387A81BC624600062D035 /* BackIcon@2x.png in Resources */,
@@ -4770,6 +4823,7 @@
 				8AF388201BC624600062D035 /* ConnectionWeak@3x.png in Resources */,
 				8AB76E011BB8FDC8007DB972 /* UserProfileV2ViewController.xib in Resources */,
 				8AD6C2801B7072FB0040437E /* AddContactViewController.xib in Resources */,
+				8AF39CCF1BC649D1009C7F26 /* LoginBackground.png in Resources */,
 				8AF388451BC624600062D035 /* Distance1Icon@2x.png in Resources */,
 				8AF388AB1BC624600062D035 /* InviteWechatIcon@2x.png in Resources */,
 				8AF3894F1BC624600062D035 /* ExploreIconActive@3x.png in Resources */,
@@ -4807,6 +4861,7 @@
 				8AF3891D1BC624600062D035 /* LongSearchBar@2x.png in Resources */,
 				8AD6BA6B1B705DF20040437E /* Images.xcassets in Resources */,
 				8AF388F01BC624600062D035 /* PostLikeIcon@3x.png in Resources */,
+				8AF39CD51BC649D1009C7F26 /* SelectPhotoArrow@2x.png in Resources */,
 				8AF389091BC624600062D035 /* ProfileExpand@2x.png in Resources */,
 				8AF389321BC624600062D035 /* GoToEnd@3x.png in Resources */,
 				8AF389301BC624600062D035 /* CameraIcon@3x.png in Resources */,
@@ -4814,6 +4869,7 @@
 				8AF389041BC624600062D035 /* FollowerNumber@3x.png in Resources */,
 				8AF388E81BC624600062D035 /* FullScreenIcon@3x.png in Resources */,
 				8AF388AA1BC624600062D035 /* InviteMessengarIcon@3x.png in Resources */,
+				8AF39CD01BC649D1009C7F26 /* LongSearchBar@2x.png in Resources */,
 				8AF3882B1BC624600062D035 /* ExploreFollow@2x.png in Resources */,
 				8AF387D21BC624600062D035 /* ListViewActive@3x.png in Resources */,
 				8AF389121BC624600062D035 /* ProfileOverlay@3x.png in Resources */,

@@ -49,6 +49,7 @@ typedef enum
 #define CustomFontNameBold @"ProximaNovaSoft-Bold"
 #define REGULAR @"Regular"
 #define BOLD @"Bold"
+#define ANIMATION_DURATION 0.5f
 
 // ========================  Day ==========================
 

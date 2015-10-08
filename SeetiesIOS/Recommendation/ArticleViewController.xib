@@ -8,7 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ArticleViewController">
             <connections>
                 <outlet property="ibBackgroundView" destination="tcq-be-GNt" id="WLm-SX-lCc"/>
-                <outlet property="ibImageView" destination="uj4-Co-5Ii" id="Cpj-w5-6BO"/>
+                <outlet property="ibFullContentView" destination="cmI-gO-GwT" id="JTT-Tt-39m"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,18 +21,23 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.70000000000000007" colorSpace="calibratedRGB"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="QR.png" translatesAutoresizingMaskIntoConstraints="NO" id="uj4-Co-5Ii">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cmI-gO-GwT" userLabel="FullView">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="English.png" translatesAutoresizingMaskIntoConstraints="NO" id="m7k-ED-HVb">
                     <rect key="frame" x="0.0" y="83" width="320" height="403"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="320" id="72P-bL-dff"/>
-                        <constraint firstAttribute="height" constant="403" id="uOa-Me-nUF"/>
+                        <constraint firstAttribute="width" constant="320" id="HAF-VC-rIp"/>
+                        <constraint firstAttribute="height" constant="403" id="kMv-7t-Ffh"/>
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egk-7d-Uuv">
-                    <rect key="frame" x="229" y="72" width="91" height="79"/>
+                    <rect key="frame" x="213" y="93" width="91" height="79"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="91" id="Bb0-TM-1dY"/>
+                        <constraint firstAttribute="height" constant="79" id="Dsr-WO-xhm"/>
                     </constraints>
                     <state key="normal">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -44,20 +49,29 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="cmI-gO-GwT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="0sj-Vm-gHL"/>
+                <constraint firstItem="m7k-ED-HVb" firstAttribute="top" secondItem="egk-7d-Uuv" secondAttribute="bottom" constant="-89" id="2ij-8Z-4y2"/>
                 <constraint firstItem="tcq-be-GNt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4UT-gb-hob"/>
-                <constraint firstAttribute="centerX" secondItem="uj4-Co-5Ii" secondAttribute="centerX" id="4ob-xz-6W5"/>
-                <constraint firstItem="uj4-Co-5Ii" firstAttribute="centerY" secondItem="egk-7d-Uuv" secondAttribute="centerY" constant="173" id="EIP-2W-mza"/>
-                <constraint firstItem="egk-7d-Uuv" firstAttribute="trailing" secondItem="uj4-Co-5Ii" secondAttribute="trailing" id="HCl-1x-ooU"/>
+                <constraint firstItem="m7k-ED-HVb" firstAttribute="centerX" secondItem="cmI-gO-GwT" secondAttribute="centerX" id="8fJ-G7-krI"/>
+                <constraint firstItem="egk-7d-Uuv" firstAttribute="top" secondItem="m7k-ED-HVb" secondAttribute="top" constant="10" id="HQk-no-U1C"/>
                 <constraint firstAttribute="trailing" secondItem="tcq-be-GNt" secondAttribute="trailing" id="LsV-9p-nAo"/>
-                <constraint firstItem="egk-7d-Uuv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="72" id="MMV-99-nCK"/>
-                <constraint firstAttribute="centerY" secondItem="uj4-Co-5Ii" secondAttribute="centerY" id="NWR-qr-tVW"/>
                 <constraint firstAttribute="bottom" secondItem="tcq-be-GNt" secondAttribute="bottom" id="Yta-cc-47o"/>
+                <constraint firstItem="egk-7d-Uuv" firstAttribute="trailing" secondItem="m7k-ED-HVb" secondAttribute="trailing" constant="-16" id="kMc-aI-ex8"/>
                 <constraint firstItem="tcq-be-GNt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="m5F-u6-HEJ"/>
+                <constraint firstAttribute="trailing" secondItem="cmI-gO-GwT" secondAttribute="trailing" id="m5S-8L-T1K"/>
+                <constraint firstItem="m7k-ED-HVb" firstAttribute="centerY" secondItem="cmI-gO-GwT" secondAttribute="centerY" id="n2y-se-xZf"/>
+                <constraint firstItem="cmI-gO-GwT" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="rAh-k9-Mk6"/>
+                <constraint firstAttribute="bottom" secondItem="cmI-gO-GwT" secondAttribute="bottom" id="x2g-sv-mjo"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="2ij-8Z-4y2"/>
+                </mask>
+            </variation>
         </view>
     </objects>
     <resources>
-        <image name="QR.png" width="510" height="788"/>
+        <image name="English.png" width="579" height="955"/>
     </resources>
 </document>

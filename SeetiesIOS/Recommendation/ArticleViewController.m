@@ -9,10 +9,10 @@
 #import "ArticleViewController.h"
 
 @interface ArticleViewController ()
-{
-    BOOL isShow;
-}
+
+
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
+@property (weak, nonatomic) IBOutlet UIView *ibFullContentView;
 @property (weak, nonatomic) IBOutlet UIImageView *ibBackgroundView;
 @end
 
@@ -23,10 +23,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    isShow =false;
     CGRect frame = [Utils getDeviceScreenSize];
-    self.view.frame = CGRectMake(0, frame.size.height,  frame.size.width,  frame.size.height);
-
+    self.view.frame = frame;
+    [self.view needsUpdateConstraints];
+    self.view.hidden = true;
     self.ibImageView.image = [UIImage imageNamed:LocalisedString(@"qrimage")];
     // Do any additional setup after loading the view from its nib.
 }
@@ -38,32 +38,51 @@
 
 -(void)show
 {
+    [self show:self.view transparentView:self.ibBackgroundView MovingContentView:self.ibFullContentView];
 
-    if (!isShow) {
-        self.ibBackgroundView.alpha = 0;
-        [UIView animateWithDuration:0.5 animations:^{
-            self.view.frame = CGRectMake(0, 0,  self.view.frame.size.width,  self.view.frame.size.height);
-            self.ibBackgroundView.alpha = 1.0f;
-
-        }];
-        isShow = true;
-    }
-    
 }
 
 -(void)hide
 {
-    if (isShow) {
-        self.ibBackgroundView.alpha = 1.0f;
+    [self hideWithAnimation:YES MainView:self.view transparentView:self.ibBackgroundView MovingContentView:self.ibFullContentView];
 
-        [UIView animateWithDuration:0.5 animations:^{
-            self.view.frame = CGRectMake(0, self.view.frame.size.height,  self.view.frame.size.width,  self.view.frame.size.height);
-            isShow = false;
-            self.ibBackgroundView.alpha = 0;
+}
+-(void)show:(UIView*)mainView transparentView:(UIView*)transparentView MovingContentView:(UIView*)mvView
+{
+    if (mainView.hidden) {
+        mainView.hidden = false;
+        transparentView.alpha = 0;
+        mvView.frame = CGRectMake(0, self.view.frame.size.height,  self.view.frame.size.width,  self.view.frame.size.height);
+        
+        [UIView animateWithDuration:ANIMATION_DURATION delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
+            mvView.frame = CGRectMake(0, 0,  self.view.frame.size.width,  self.view.frame.size.height);
+            transparentView.alpha = 1.0f;
+            
+            
+        } completion:^(BOOL finished) {
+            
+        }];
+        
+    }
+    
+}
+
+-(void)hideWithAnimation:(BOOL)isAnimate MainView:(UIView*)mainView transparentView:(UIView*)transparentView MovingContentView:(UIView*)mvView
+{
+    if (!mainView.hidden) {
+        transparentView.alpha = 1.0f;
+        
+        [UIView animateWithDuration:isAnimate?ANIMATION_DURATION:0 delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
+            mvView.frame = CGRectMake(0, self.view.frame.size.height,  self.view.frame.size.width,  self.view.frame.size.height);
+            transparentView.alpha = 0;
+            
+        } completion:^(BOOL finished) {
+            mainView.hidden = true;
+            
         }];
     }
-
-
+    
+    
 }
 /*
 #pragma mark - Navigation

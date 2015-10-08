@@ -5,15 +5,11 @@
 //  Created by Evan Beh on 9/3/15.
 //  Copyright (c) 2015 Stylar Network. All rights reserved.
 //
-#define ANIMATION_DURATION 0.5f
 
 #import "CategorySelectionViewController.h"
 #import "CategoryCollectionViewCell.h"
 @interface CategorySelectionViewController ()
-{
-    BOOL isShow;
 
-}
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
@@ -90,7 +86,6 @@
 
 -(void)initSelfView
 {
-    isShow =false;
     CGRect frame = [Utils getDeviceScreenSize];
     self.view.frame = frame;
     [self initTableViewWithDelegate:self];

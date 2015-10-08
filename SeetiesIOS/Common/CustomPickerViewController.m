@@ -126,7 +126,7 @@
         
         mvView.frame = hideFrame;
         transparentView.alpha = 0;
-        [UIView animateWithDuration:ANIMATION_DURATION delay:0 options:UIViewAnimationOptionTransitionCurlUp animations:^{
+        [UIView animateWithDuration:ANIMATION_DURATION delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
             mvView.frame = showFrame;
             transparentView.alpha = 1.0f;
             
@@ -145,7 +145,7 @@
         mvView.frame = showFrame;
         transparentView.alpha = 1.0f;
         
-        [UIView animateWithDuration:isAnimate?ANIMATION_DURATION:0 delay:0 options:UIViewAnimationOptionTransitionCurlUp animations:^{
+        [UIView animateWithDuration:isAnimate?ANIMATION_DURATION:0 delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
             mvView.frame = hideFrame;
             transparentView.alpha = 0;
             
