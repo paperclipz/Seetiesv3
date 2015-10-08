@@ -26,7 +26,7 @@
     CGRect frame = [Utils getDeviceScreenSize];
     self.view.frame = frame;
     [self.view needsUpdateConstraints];
-    self.view.hidden = true;
+    self.view.hidden = YES;
     self.ibImageView.image = [UIImage imageNamed:LocalisedString(@"qrimage")];
     // Do any additional setup after loading the view from its nib.
 }
@@ -50,9 +50,10 @@
 -(void)show:(UIView*)mainView transparentView:(UIView*)transparentView MovingContentView:(UIView*)mvView
 {
     if (mainView.hidden) {
+        mvView.frame = CGRectMake(0 , self.view.frame.size.height,  self.view.frame.size.width,  self.view.frame.size.height);
+
         mainView.hidden = false;
         transparentView.alpha = 0;
-        mvView.frame = CGRectMake(0, self.view.frame.size.height,  self.view.frame.size.width,  self.view.frame.size.height);
         
         [UIView animateWithDuration:ANIMATION_DURATION delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
             mvView.frame = CGRectMake(0, 0,  self.view.frame.size.width,  self.view.frame.size.height);
