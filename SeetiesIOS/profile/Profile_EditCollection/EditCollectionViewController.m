@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblDesc;
 @property (weak, nonatomic) IBOutlet UILabel *lblNumberOfRecommendation;
 @property (weak, nonatomic) IBOutlet UILabel *lblPostTitle;
+
 @property (strong, nonatomic)CollectionModel* collectionModel;
 @property (strong, nonatomic)NSString* collectionID;
 
@@ -56,32 +57,8 @@
     collectionDetailPage = 0;
     self.arrList = [NSMutableArray new];
  
-    [self requestServerForCollectionDetails:self.collectionID successBlock:^(id object) {
-        
-        self.collectionModel = [[ConnectionManager dataManager] collectionModels];
-        collectionDetailTotal_posts = self.collectionModel.total_posts;
-        collectionDetailPage = self.collectionModel.page;
-        collectionDetailTotal_page = self.collectionModel.total_page;
-
-        if (self.arrList.count < collectionDetailTotal_posts) {
-            
-            [self.ibTableView beginUpdates];
-            [self.arrList addObjectsFromArray:self.collectionModel.arrayPost];
-            NSMutableArray* indexPaths = [NSMutableArray new];
-            for (int i = 0; i<self.arrList.count; i++) {
-                NSIndexPath* indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-                [indexPaths addObject:indexPath];
-            }
-            
-            [self.ibTableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
-            [self.ibTableView endUpdates];
-        }
-        
-
-        
-    } failBlock:^(id object) {
-        
-    }];
+    collectionDetailTotal_page = 2;
+    [self requestServerDetail];
     
    // [self.lblTitle setFont:[UIFont fontWithName:CustomFontName size:17]];
 }
@@ -160,14 +137,6 @@
     
     };
     
-    
-    if (collectionDetailTotal_page > collectionDetailPage) {
-        [self requestServerForCollectionDetails:self.collectionModel.collection_id successBlock:^(id object) {
-            
-        } failBlock:^(id object) {
-            
-        }];
-    }
     return cell;
 }
 
@@ -175,20 +144,52 @@
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
     [self.arrList exchangeObjectAtIndex:sourceIndexPath.row withObjectAtIndex:destinationIndexPath.row];
 }
-
+- (void)scrollViewDidScroll:(UIScrollView *)aScrollView {
+    CGPoint offset = aScrollView.contentOffset;
+    CGRect bounds = aScrollView.bounds;
+    CGSize size = aScrollView.contentSize;
+    UIEdgeInsets inset = aScrollView.contentInset;
+    float y = offset.y + bounds.size.height - inset.bottom;
+    float h = size.height;
+   
+    float reload_distance = 10;
+    if(y > h + reload_distance) {
+        [self requestServerDetail];
+    }
+}
 #pragma mark - Server
+
+-(void)requestServerDetail
+{
+    if (collectionDetailTotal_page > collectionDetailPage) {
+        [self requestServerForCollectionDetails:self.collectionID successBlock:^(id object) {
+            
+            self.collectionModel = [[ConnectionManager dataManager] collectionModels];
+            collectionDetailTotal_posts = self.collectionModel.total_posts;
+            collectionDetailPage = self.collectionModel.page;
+            collectionDetailTotal_page = self.collectionModel.total_page;
+            [self.arrList addObjectsFromArray:self.collectionModel.arrayPost];
+            [self.ibTableView reloadData];
+            
+        } failBlock:^(id object) {
+            
+        }];
+
+    }
+
+}
 
 -(void)requestServerForCollectionDetails:(NSString*)collectionID successBlock:(IDBlock)successBlock failBlock:(IDBlock)failBlock{
     
     collectionDetailPage+=1;
     NSDictionary* dict = @{@"collection_id":collectionID,
-                           @"list_size":@30,
+                           @"list_size":@5,
                            @"page":@(collectionDetailPage)
                            };
     
     NSString* appendString = [NSString stringWithFormat:@"%@/collections/%@",[Utils getUserID],collectionID];
     
-    [LoadingManager show];
+    //[LoadingManager show];
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetCollectionInfo param:dict appendString:appendString completeHandler:^(id object) {
         
         
