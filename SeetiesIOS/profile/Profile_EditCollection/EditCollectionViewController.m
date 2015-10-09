@@ -10,6 +10,13 @@
 #import "EditCollectionTableViewCell.h"
 
 @interface EditCollectionViewController ()
+{
+    int collectionDetailPage;
+    int collectionDetailTotal_page;
+    int collectionDetailTotal_posts;
+
+
+}
 @property (strong, nonatomic) NSMutableArray *arrList; // use this to update collection
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 @property (weak, nonatomic) IBOutlet UIButton *ibBtnEdit;
@@ -17,8 +24,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblDesc;
 @property (weak, nonatomic) IBOutlet UILabel *lblNumberOfRecommendation;
 @property (weak, nonatomic) IBOutlet UILabel *lblPostTitle;
-
 @property (strong, nonatomic)CollectionModel* collectionModel;
+@property (strong, nonatomic)NSString* collectionID;
 
 @end
 
@@ -46,6 +53,36 @@
     [super viewDidLoad];
     [self initSelfView];
     [self changeLanguage];
+    collectionDetailPage = 0;
+    self.arrList = [NSMutableArray new];
+ 
+    [self requestServerForCollectionDetails:self.collectionID successBlock:^(id object) {
+        
+        self.collectionModel = [[ConnectionManager dataManager] collectionModels];
+        collectionDetailTotal_posts = self.collectionModel.total_posts;
+        collectionDetailPage = self.collectionModel.page;
+        collectionDetailTotal_page = self.collectionModel.total_page;
+
+        if (self.arrList.count < collectionDetailTotal_posts) {
+            
+            [self.ibTableView beginUpdates];
+            [self.arrList addObjectsFromArray:self.collectionModel.arrayPost];
+            NSMutableArray* indexPaths = [NSMutableArray new];
+            for (int i = 0; i<self.arrList.count; i++) {
+                NSIndexPath* indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+                [indexPaths addObject:indexPath];
+            }
+            
+            [self.ibTableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.ibTableView endUpdates];
+        }
+        
+
+        
+    } failBlock:^(id object) {
+        
+    }];
+    
    // [self.lblTitle setFont:[UIFont fontWithName:CustomFontName size:17]];
 }
 
@@ -62,13 +99,12 @@
         
     } completion:nil];
     
-  }
+}
 
--(void)initData:(CollectionModel*)model
+
+-(void)initData:(NSString*)collectionID
 {
-    self.collectionModel = model;
-    
-    self.arrList = [[NSMutableArray alloc]initWithArray:self.collectionModel.arrayPost];
+    self.collectionID = collectionID;
 }
 
 -(void)initSelfView
@@ -120,8 +156,18 @@
         self.lblNumberOfRecommendation.text = [NSString stringWithFormat:@"%lu %@",(unsigned long)self.arrList.count,LocalisedString(@"Recommendations")];
 
         [self.ibTableView endUpdates];
+        
     
     };
+    
+    
+    if (collectionDetailTotal_page > collectionDetailPage) {
+        [self requestServerForCollectionDetails:self.collectionModel.collection_id successBlock:^(id object) {
+            
+        } failBlock:^(id object) {
+            
+        }];
+    }
     return cell;
 }
 
@@ -134,15 +180,17 @@
 
 -(void)requestServerForCollectionDetails:(NSString*)collectionID successBlock:(IDBlock)successBlock failBlock:(IDBlock)failBlock{
     
+    collectionDetailPage+=1;
     NSDictionary* dict = @{@"collection_id":collectionID,
-                           @"list_size":@0,
-                           @"page":@0
+                           @"list_size":@30,
+                           @"page":@(collectionDetailPage)
                            };
     
     NSString* appendString = [NSString stringWithFormat:@"%@/collections/%@",[Utils getUserID],collectionID];
     
     [LoadingManager show];
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetCollectionInfo param:dict appendString:appendString completeHandler:^(id object) {
+        
         
         if (successBlock) {
             successBlock(nil);

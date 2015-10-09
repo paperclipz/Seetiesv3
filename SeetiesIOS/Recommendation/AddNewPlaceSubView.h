@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TextFieldValidator.h"
 
 
 @interface NSArray (Blocks)
@@ -14,7 +15,7 @@
 @end
 
 @interface AddNewPlaceSubView : UIView<UITextFieldDelegate>
-@property (strong, nonatomic) IBOutlet UITextField *txtPlaceName;
+@property (strong, nonatomic) IBOutlet TextFieldValidator *txtPlaceName;
 @property (strong, nonatomic) IBOutlet UITextField *txtAddress;
 @property (strong, nonatomic) IBOutlet UITextField *txtURL;
 @property (strong, nonatomic) IBOutlet UITextField *txtPhoneNo;

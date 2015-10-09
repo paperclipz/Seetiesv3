@@ -53,7 +53,7 @@
     [self insertSubview:view belowSubview:img];
     view.backgroundColor=self.popUpColor;
     view.layer.cornerRadius=5.0;
-    view.layer.shadowColor=[[UIColor blackColor] CGColor];
+    view.layer.shadowColor=[[UIColor clearColor] CGColor];
     view.layer.shadowRadius=5.0;
     view.layer.shadowOpacity=1.0;
     view.layer.shadowOffset=CGSizeMake(0, 0);

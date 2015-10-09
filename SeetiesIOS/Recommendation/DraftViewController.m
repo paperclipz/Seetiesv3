@@ -12,6 +12,8 @@
 #import "UITableView+NXEmptyView.h"
 
 @interface DraftViewController ()
+@property (weak, nonatomic) IBOutlet UIView *ibSwipeDeleteNoteView;
+@property (weak, nonatomic) IBOutlet UILabel *lblSwipeToDelete;
 @property (weak, nonatomic) IBOutlet UILabel *lblNoDraftYet;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray* arrDraftList;
@@ -53,8 +55,8 @@
 {
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
-   
+    [Utils setRoundBorder:self.ibSwipeDeleteNoteView color:TWO_ZERO_FOUR_COLOR borderRadius:0 borderWidth:0.5f];
+
     [self.tableView registerClass:[DraftTableViewCell class] forCellReuseIdentifier:@"DraftTableViewCell"];
     [self.tableView addPullToRefreshWithActionHandler:^{
         [self.loadingImageView startAnimating];
@@ -68,7 +70,6 @@
     [self.tableView.pullToRefreshView setCustomView:self.loadingImageView forState:SVPullToRefreshStateAll];
     [self.tableView.pullToRefreshView setCustomView:initialLoadingView forState:SVPullToRefreshStateTriggered];
 
-    
     [self changeLanguage];
 }
 

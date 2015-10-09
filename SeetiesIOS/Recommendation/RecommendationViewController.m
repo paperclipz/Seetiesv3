@@ -125,6 +125,7 @@
 -(void)showSearchView:(CLLocation*)location
 {
     _stSearchViewController = nil;
+    [_stSearchViewController setViewNew];
     [self.doImagePickerController.navigationController pushViewController:self.stSearchViewController animated:YES];
     [self.stSearchViewController initWithLocation:location];
 }
@@ -162,7 +163,7 @@
     if(!_stSearchViewController)
     {
         _stSearchViewController = [STSearchViewController new];
-        
+        [_stSearchViewController setViewNew];
         __block typeof (self)weakSelf = self;
         _stSearchViewController.didSelectOnLocationBlock = ^(RecommendationVenueModel* model)
         {

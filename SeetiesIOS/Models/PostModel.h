@@ -39,6 +39,10 @@
 @property(nonatomic,strong)NSString* collection_id;
 @property(nonatomic,assign)BOOL is_default;
 @property(nonatomic,strong)NSMutableArray* tagList;
+@property(nonatomic,assign)int total_page;
+@property(nonatomic,assign)int page;
+@property(nonatomic,assign)int total_posts;
+
 
 
 

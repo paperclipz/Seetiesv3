@@ -12,7 +12,7 @@
 
 @interface EditCollectionViewController : CommonViewController <UITableViewDataSource,UITableViewDelegate>
 -(void)requestServerForCollectionDetails:(NSString*)collectionID successBlock:(IDBlock)successBlock failBlock:(IDBlock)failBlock;
--(void)initData:(CollectionModel*)model;
+-(void)initData:(NSString*)collectionID;
 @property(nonatomic,strong)EditCollectionDetailViewController* editCollectionDetailViewController;
 
 @property(nonatomic,copy)IDBlock btnEditClickBlock;

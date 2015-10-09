@@ -1950,19 +1950,10 @@
     
     [LoadingManager show];
     
-    [self.editCollectionViewController requestServerForCollectionDetails:collectionID successBlock:^(id object) {
-        
-        [self.editCollectionViewController initData:[[ConnectionManager dataManager] collectionModels]];
-        
-        [self presentViewController:self.navEditCollectionViewController animated:YES completion:^{
+    [self.editCollectionViewController initData:collectionID];
+    [self presentViewController:self.navEditCollectionViewController animated:YES completion:^{
             
-        }];
-       // [LoadingManager hide];
-
-    } failBlock:^(id object) {
-        [TSMessage showNotificationInViewController:self title:@"System" subtitle:@"Error" type:TSMessageNotificationTypeError duration:1.0f canBeDismissedByUser:YES];
-      //  [LoadingManager hide];
-
+        
     }];
 }
 

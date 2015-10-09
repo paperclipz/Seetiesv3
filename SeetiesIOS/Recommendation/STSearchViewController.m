@@ -117,7 +117,7 @@
                                      CAPSPageMenuOptionViewBackgroundColor: [UIColor colorWithRed:246.0/255.0 green:246.0/255.0 blue:246.0/255.0 alpha:1.0],
                                      CAPSPageMenuOptionSelectionIndicatorColor: DEVICE_COLOR,
                                      CAPSPageMenuOptionBottomMenuHairlineColor: [UIColor clearColor],
-                                     CAPSPageMenuOptionMenuItemFont: [UIFont fontWithName:@"HelveticaNeue" size:13.0],
+                                     CAPSPageMenuOptionMenuItemFont: [UIFont fontWithName:@"HelveticaNeue-Bold" size:13.0],
                                      CAPSPageMenuOptionMenuHeight: @(40.0),
                                      CAPSPageMenuOptionMenuItemWidth: @(deviceFrame.size.width/2),
                                      CAPSPageMenuOptionCenterMenuItems: @(YES),
@@ -135,7 +135,15 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+-(void)setViewEdit
+{
+    self.placeViewType = PlaceViewTypeEdit;
+}
 
+-(void)setViewNew
+{
+    self.placeViewType = PlaceViewTypeNew;
+}
 -(void)initWithLocation:(CLLocation*)location
 {
     [LoadingManager show];
@@ -213,13 +221,15 @@
 #pragma mark - UITableView Data Source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    
+    int additionalCount = self.placeViewType==PlaceViewTypeNew?1:0;
     if(tableView == self.googleSearchTableViewController.tableView)
     {
-        return self.searchModel.predictions.count+1;
+        return self.searchModel.predictions.count+additionalCount;
 
     }
     else{
-        return self.nearbyVenues.count+1;
+        return self.nearbyVenues.count+additionalCount;
 
     }
   }
@@ -234,7 +244,7 @@
     {
         
 
-        if (indexPath.row == self.searchModel.predictions.count) {
+        if (indexPath.row == self.searchModel.predictions.count && self.placeViewType == PlaceViewTypeNew) {
             
             STAddNewTableViewCell *cell = (STAddNewTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"STAddNewTableViewCell"];
             
@@ -267,7 +277,7 @@
         STTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([STTableViewCell class])];
 
         
-        if (indexPath.row == self.nearbyVenues.count) {
+        if (indexPath.row == self.nearbyVenues.count && self.placeViewType == PlaceViewTypeNew) {
             
             STAddNewTableViewCell *cell = (STAddNewTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"STAddNewTableViewCell"];
             

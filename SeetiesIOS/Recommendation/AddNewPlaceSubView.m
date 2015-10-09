@@ -7,13 +7,12 @@
 //
 
 #import "AddNewPlaceSubView.h"
-#import "TextFieldValidator.h"
 #define MAX_LENGTH 12
 #define REGEX_PLACE_NAME_LIMIT @"^.{3,}$"
 #define REGEX_URL @"^(http:\/\/|https:\/\/)?(www.)?([a-zA-Z0-9]+).[a-zA-Z0-9]*.[a-z]{3}.?([a-z]+)?$"
 
 @interface AddNewPlaceSubView()
-@property (weak, nonatomic) IBOutlet TextFieldValidator *lblPlaceName;
+@property (weak, nonatomic) IBOutlet UILabel *lblPlaceName;
 @property (weak, nonatomic) IBOutlet UILabel *lblAddress;
 @property (weak, nonatomic) IBOutlet UILabel *lblURL;
 @property (weak, nonatomic) IBOutlet UILabel *lblPhoneNumber;
@@ -107,7 +106,8 @@
 {
     self.txtPerPax.delegate = self;
     self.txtPerPax.text = @"0.00";
-    [Utils setButtonWithBorder:self.btnCurrency];
+
+    [Utils setRoundBorder:self.btnCurrency color:TWO_ZERO_FOUR_COLOR borderRadius:5.0f borderWidth:0.8];
     [Utils setRoundBorder:self.btnEditHours color:TWO_ZERO_FOUR_COLOR borderRadius:self.btnEditHours.frame.size.height/2];
     [self.txtPhoneNo setKeyboardType:UIKeyboardTypePhonePad];
     
@@ -119,9 +119,10 @@
 }
 -(void)setupValidatorView
 {
-    self.lblPlaceName.presentInView = self;
-    [self.lblPlaceName addRegx:REGEX_PLACE_NAME_LIMIT withMsg:LocalisedString(@"Place Name need at least 3 character")];
-    [self.lblPlaceName setIsMandatory:YES];
+    self.txtPlaceName.presentInView = self;
+    [self.txtPlaceName addRegx:REGEX_PLACE_NAME_LIMIT withMsg:LocalisedString(@"Place Name need at least 3 character")];
+    [self.txtPlaceName setIsMandatory:YES];
+    self.txtPlaceName.popUpColor = ERROR_COLOR;
 }
 
 -(void)layoutSubviews
@@ -155,7 +156,7 @@
 
 -(BOOL)validation
 {
-    if (![self.lblPlaceName validate]) {
+    if (![self.txtPlaceName validate]) {
         return false;
     }
     

@@ -28,4 +28,8 @@ typedef void(^SearchResultBlock) (RecommendationVenueModel* venueModel);
 
 @property(nonatomic,assign)SearchType searchType;
 
+@property(nonatomic,assign)PlaceViewType placeViewType;
+-(void)setViewEdit;
+-(void)setViewNew;
+
 @end

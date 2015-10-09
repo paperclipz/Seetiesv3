@@ -28,7 +28,10 @@
                                                        @"posts.data": @"arrayPost",
                                                        @"description": @"postDesc",
                                                        @"is_private": @"isPrivate",
-                                                       @"tags":@"tagList"
+                                                       @"tags":@"tagList",
+                                                       @"posts.total_page": @"total_page",
+                                                       @"posts.total_posts": @"total_posts",
+                                                       @"posts.page": @"page"
                                                        }];
 }
 

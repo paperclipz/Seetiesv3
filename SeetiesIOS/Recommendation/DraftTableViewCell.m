@@ -41,7 +41,7 @@
     self.lblSubtitle.text = self.model.location.administrative_area_level_1;
 
     [self.imageView sd_setImageWithURL:[NSURL URLWithString:photoModel.imageURL]placeholderImage:nil options:SDWebImageProgressiveDownload];
-    [Utils setRoundBorder:self.imageView color:[UIColor whiteColor] borderRadius:5.0f];
+    [Utils setRoundBorder:self.imageView color:TWO_ZERO_FOUR_COLOR borderRadius:5.0f borderWidth:0.5f];
 
 }
 

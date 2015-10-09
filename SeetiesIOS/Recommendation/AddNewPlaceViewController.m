@@ -312,7 +312,7 @@ didChangeDragState:(MKAnnotationViewDragState)newState
 {
     if (!_stSearchViewController) {
         _stSearchViewController = [STSearchViewController new];
-        
+        [_stSearchViewController setViewEdit];
         __weak typeof (self)weakSelf = self;
         _stSearchViewController.didSelectOnLocationBlock = ^(RecommendationVenueModel* model)
         {

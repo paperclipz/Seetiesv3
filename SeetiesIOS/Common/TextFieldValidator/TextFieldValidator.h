@@ -16,7 +16,7 @@
 /**
     Image name for showing error on textfield.
  */
-#define IconImageName @"error.png"
+#define IconImageName @"ErrorIcon.png"
 
 /**
     Background color of message popup.
@@ -31,12 +31,12 @@
 /**
     Font size of the message.
  */
-#define FontSize 15
+#define FontSize 13
 
 /**
     Font style name of the message.
  */
-#define FontName @"Helvetica-Bold"
+#define FontName @"ProximaNovaSoft-Regular"
 
 /**
     Padding in pixels for the popup.

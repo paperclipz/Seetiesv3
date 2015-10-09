@@ -6,8 +6,8 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="ProximaNovaSoft-Regular.ttf">
-            <string>ProximaNovaSoft-Regular</string>
+        <mutableArray key="ProximaNovaSoft-Bold.ttf">
+            <string>ProximaNovaSoft-Bold</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -26,8 +26,8 @@
                             <constraint firstAttribute="width" constant="57" id="fgU-LN-NNo"/>
                             <constraint firstAttribute="height" constant="65" id="r77-pN-W1f"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="17"/>
-                        <color key="textColor" red="0.2752525252525253" green="0.2752525252525253" blue="0.2752525252525253" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" name="ProximaNovaSoft-Bold" family="Proxima Nova Soft" pointSize="17"/>
+                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rCR-9S-b09">
