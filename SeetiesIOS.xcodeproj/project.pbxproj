@@ -405,6 +405,8 @@
 		8AD6C8841B7849EF0040437E /* UserDefaultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6C8831B7849EF0040437E /* UserDefaultModel.m */; };
 		8AD6C8871B784BD50040437E /* ExploreCountryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6C8861B784BD50040437E /* ExploreCountryModel.m */; };
 		8AEB5F5B1BC38FF200A804B4 /* TagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AEB5F5A1BC38FF200A804B4 /* TagModel.m */; settings = {ASSET_TAGS = (); }; };
+		8AF0EF7B1BC7D6EF00B5D8D3 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF0EF791BC7D6EF00B5D8D3 /* ProfileViewController.m */; settings = {ASSET_TAGS = (); }; };
+		8AF0EF7C1BC7D6EF00B5D8D3 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF0EF7A1BC7D6EF00B5D8D3 /* ProfileViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		8AF2C2791B9EA3B800B0A7F1 /* NSDictionary+STHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF2C2761B9EA3B800B0A7F1 /* NSDictionary+STHelper.m */; };
 		8AF2C27A1B9EA3B800B0A7F1 /* NSMutableDictionary+STHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF2C2781B9EA3B800B0A7F1 /* NSMutableDictionary+STHelper.m */; };
 		8AF2C27E1BA13D1400B0A7F1 /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF2C27D1BA13D1400B0A7F1 /* AFNetworkActivityLogger.m */; };
@@ -1579,6 +1581,9 @@
 		8AD6C8861B784BD50040437E /* ExploreCountryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExploreCountryModel.m; sourceTree = "<group>"; };
 		8AEB5F591BC38FF200A804B4 /* TagModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagModel.h; sourceTree = "<group>"; };
 		8AEB5F5A1BC38FF200A804B4 /* TagModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagModel.m; sourceTree = "<group>"; };
+		8AF0EF781BC7D6EF00B5D8D3 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		8AF0EF791BC7D6EF00B5D8D3 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		8AF0EF7A1BC7D6EF00B5D8D3 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		8AF2C2741B9EA3B800B0A7F1 /* NSDictionary+STHelper-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+STHelper-Prefix.pch"; sourceTree = "<group>"; };
 		8AF2C2751B9EA3B800B0A7F1 /* NSDictionary+STHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+STHelper.h"; sourceTree = "<group>"; };
 		8AF2C2761B9EA3B800B0A7F1 /* NSDictionary+STHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+STHelper.m"; sourceTree = "<group>"; };
@@ -2703,6 +2708,7 @@
 		8AB76DDA1BB8FDC8007DB972 /* profile */ = {
 			isa = PBXGroup;
 			children = (
+				8AF0EF771BC7D6CD00B5D8D3 /* NewProfile */,
 				8AB76DDE1BB8FDC8007DB972 /* NewProfileV2ViewController.h */,
 				8AB76DDF1BB8FDC8007DB972 /* NewProfileV2ViewController.m */,
 				8AB76DE01BB8FDC8007DB972 /* NewProfileV2ViewController.xib */,
@@ -3541,6 +3547,16 @@
 			name = Recommendation;
 			path = SeetiesIOS/Recommendation;
 			sourceTree = SOURCE_ROOT;
+		};
+		8AF0EF771BC7D6CD00B5D8D3 /* NewProfile */ = {
+			isa = PBXGroup;
+			children = (
+				8AF0EF781BC7D6EF00B5D8D3 /* ProfileViewController.h */,
+				8AF0EF791BC7D6EF00B5D8D3 /* ProfileViewController.m */,
+				8AF0EF7A1BC7D6EF00B5D8D3 /* ProfileViewController.xib */,
+			);
+			path = NewProfile;
+			sourceTree = "<group>";
 		};
 		8AF2C2731B9EA3B800B0A7F1 /* NSDictionary+STHelper */ = {
 			isa = PBXGroup;
@@ -4869,6 +4885,7 @@
 				8AF3A0B21BC67E88009C7F26 /* WalkthroughEditPost.png in Resources */,
 				8AF3A0931BC67E88009C7F26 /* Thai.png in Resources */,
 				8AF39FF71BC67E88009C7F26 /* InviteMessengarIcon@3x.png in Resources */,
+				8AF0EF7C1BC7D6EF00B5D8D3 /* ProfileViewController.xib in Resources */,
 				8AF3A08C1BC67E88009C7F26 /* ShareMessangerIcon@2x.png in Resources */,
 				8AF39F1B1BC67E88009C7F26 /* ShareBase@2x.png in Resources */,
 				8AD6C29C1B7072FB0040437E /* PublishMainViewController.xib in Resources */,
@@ -5074,6 +5091,7 @@
 				8AD6C3321B707D120040437E /* AsyncImageView.m in Sources */,
 				8AD6BE4B1B706CF30040437E /* ExploreCountryV2ViewController.m in Sources */,
 				8AD6C10A1B706CF30040437E /* FeedbackViewController.m in Sources */,
+				8AF0EF7B1BC7D6EF00B5D8D3 /* ProfileViewController.m in Sources */,
 				8A1254181BC4F46500AA4120 /* NewsFeedTableViewCell.m in Sources */,
 				8A9F25E61B904F7600BB13BA /* RecommendationModel.m in Sources */,
 				8A3408FF1B86FE3D009B66C3 /* BMXDataItem.m in Sources */,

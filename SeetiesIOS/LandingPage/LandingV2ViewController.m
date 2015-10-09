@@ -495,6 +495,15 @@
 
 #pragma mark - Declaration
 
+-(ProfileViewController*)profileViewController
+{
+    if (_profileViewController) {
+        _profileViewController = [ProfileViewController new];
+    }
+    
+    return _profileViewController;
+}
+
 -(NewsFeedViewController*)newsFeedViewController
 {
     if (!_newsFeedViewController) {

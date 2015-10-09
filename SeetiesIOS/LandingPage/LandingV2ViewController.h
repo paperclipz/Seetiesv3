@@ -20,6 +20,7 @@
 #import "NewProfileV2ViewController.h"
 
 #import "NewsFeedViewController.h"
+#import "ProfileViewController.h"
 
 @interface LandingV2ViewController : GAITrackedViewController <UITabBarControllerDelegate,LeveyTabBarControllerDelegate>{
     
@@ -83,6 +84,8 @@
 @property(nonatomic,strong)UILabel* ShowNotificationCount;
 
 @property(nonatomic,strong)NewsFeedViewController* newsFeedViewController;
+
+@property(nonatomic,strong)ProfileViewController* profileViewController;
 
 //=========================================== Revamp Changes =======================================//
 
