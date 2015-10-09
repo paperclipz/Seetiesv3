@@ -121,7 +121,7 @@
         NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
         NSError *myError = nil;
         NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
-         NSLog(@"Feed Json = %@",res);
+        // NSLog(@"Feed Json = %@",res);
         
         NSString *statusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
         NSLog(@"statusString is %@",statusString);
@@ -372,12 +372,12 @@
 
     }else if(connection == theConnection_QuickCollect){
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
-        NSLog(@"Quick Collection return get data to server ===== %@",GetData);
+        //NSLog(@"Quick Collection return get data to server ===== %@",GetData);
         
         NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
         NSError *myError = nil;
         NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
-        NSLog(@"Expert Json = %@",res);
+      //  NSLog(@"Expert Json = %@",res);
         
         
         NSString *statusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
@@ -576,15 +576,10 @@
         
         MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
         [annotation setCoordinate:coordinate];
-        [annotation setTitle:@""]; //You can set the subtitle too
+        [annotation setTitle:[TitleArray objectAtIndex:i]];//[TitleArray objectAtIndex:i]
         [self.mapView addAnnotation:annotation];
         
     }
-    
-    
-
-    
-    
     
     UIButton *ShowNearbyLocationText = [[UIButton alloc]init];
     [ShowNearbyLocationText setTitle:[LocationArray objectAtIndex:0] forState:UIControlStateNormal];
@@ -599,24 +594,59 @@
     GetHeight += 170;
     [self InitContentView];
 }
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
-    if (annotation == mapView.userLocation)
-        return nil;
-    
-    static NSString *s = @"ann";
-    MKAnnotationView *pin = [mapView dequeueReusableAnnotationViewWithIdentifier:s];
-    if (!pin) {
-        pin = [[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:s];
-        pin.canShowCallout = YES;
-        pin.image = [UIImage imageNamed:@"PinInMap.png"];
-        pin.calloutOffset = CGPointMake(0, 0);
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-        //        [button addTarget:self
-        //                   action:@selector(checkinButton) forControlEvents:UIControlEventTouchUpInside];
-        pin.rightCalloutAccessoryView = button;
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"String"];
+    if(!annotationView) {
         
+        annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"String"];
+        
+        annotationView.image = [UIImage imageNamed:@"PinInMap.png"];
+        
+        UIButton *directionButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage *directionIcon = [UIImage imageNamed:@"LocationInfoIcon.png"];
+        directionButton.frame = CGRectMake(0, 0, directionIcon.size.width, directionIcon.size.height);
+        [directionButton setImage:directionIcon forState:UIControlStateNormal];
+        [directionButton addTarget:self action:@selector(MapPinButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+//        NSInteger AnnotationIndex = [mapView.annotations indexOfObject:annotation];
+//        directionButton.tag = AnnotationIndex;
+        
+        annotationView.rightCalloutAccessoryView = directionButton;
+        annotationView.enabled = YES;
+        annotationView.canShowCallout = YES;
     }
-    return pin;
+    else {
+        //update annotation to current if re-using a view
+        annotationView.annotation = annotation;
+    }
+    
+    return annotationView;
+}
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control{
+    NSLog(@"click click click");
+    
+    NSLog(@"mapView is %@",mapView);
+    NSLog(@"view is %@",view.annotation);
+    NSLog(@"control is %@",control);
+    
+    NSInteger AnnotationIndex = [mapView.annotations indexOfObject:view.annotation];
+    NSLog(@"AnnotationIndex is %ld",(long)AnnotationIndex);
+    
+    
+    NSInteger getbuttonIDN = [control tag];
+    //NSLog(@"button %i",getbuttonIDN);
+    
+    NSString *TempString = [[NSString alloc]initWithFormat:@"%@",[TitleArray objectAtIndex:getbuttonIDN]];
+    NSLog(@"TempString is %@",TempString);
+}
+-(IBAction)MapPinButtonOnClick:(id)sender{
+//    NSLog(@"MapPinButtonOnClick on click.");
+//    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+//    NSLog(@"button %li",(long)getbuttonIDN);
+//    
+//    NSString *TempString = [[NSString alloc]initWithFormat:@"%@",[TitleArray objectAtIndex:getbuttonIDN]];
+//    NSLog(@"TempString is %@",TempString);
+    
 }
 -(IBAction)ProductButton:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
