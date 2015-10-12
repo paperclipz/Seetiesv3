@@ -154,7 +154,7 @@
         
         SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
         [self.navigationController pushViewController:SearchDetailView animated:YES];
-        [SearchDetailView GetSearchKeyword:searchBar.text Getlat:@"" GetLong:@"" GetLocationName:@""];
+        [SearchDetailView GetSearchKeyword:searchBar.text Getlat:@"" GetLong:@"" GetLocationName:@"" GetCurrentLat:latPoint GetCurrentLong:lonPoint];
         mySearchBar.text = GetSearchText;
         
     }
@@ -262,7 +262,7 @@
         //    [self.view.window.layer addAnimation:transition forKey:nil];
         //    [self presentViewController:SearchDetailView animated:NO completion:nil];
         
-        [SearchDetailView GetSearchKeyword:[GetReturnSearchTextArray objectAtIndex:indexPath.row] Getlat:[GetReturnSearchLngArray objectAtIndex:indexPath.row] GetLong:[GetReturnSearchLatArray objectAtIndex:indexPath.row] GetLocationName:[GetReturnSearchAddressArray objectAtIndex:indexPath.row]];
+        [SearchDetailView GetSearchKeyword:[GetReturnSearchTextArray objectAtIndex:indexPath.row] Getlat:[GetReturnSearchLngArray objectAtIndex:indexPath.row] GetLong:[GetReturnSearchLatArray objectAtIndex:indexPath.row] GetLocationName:[GetReturnSearchAddressArray objectAtIndex:indexPath.row] GetCurrentLat:latPoint GetCurrentLong:lonPoint];
         //[SearchDetailView GetTitle:GetSearchText];
         [self.navigationController pushViewController:SearchDetailView animated:YES];
     
@@ -517,7 +517,7 @@
 //        [self.view.window.layer addAnimation:transition forKey:nil];
 //        [self presentViewController:SearchDetailView animated:NO completion:nil];
     [self.navigationController pushViewController:SearchDetailView animated:YES];
-    [SearchDetailView GetSearchKeyword:[GetReturnSearchTextArray objectAtIndex:getbuttonIDN] Getlat:[GetReturnSearchLatArray objectAtIndex:getbuttonIDN] GetLong:[GetReturnSearchLngArray objectAtIndex:getbuttonIDN] GetLocationName:[GetReturnSearchAddressArray objectAtIndex:getbuttonIDN]];
+    [SearchDetailView GetSearchKeyword:[GetReturnSearchTextArray objectAtIndex:getbuttonIDN] Getlat:[GetReturnSearchLatArray objectAtIndex:getbuttonIDN] GetLong:[GetReturnSearchLngArray objectAtIndex:getbuttonIDN] GetLocationName:[GetReturnSearchAddressArray objectAtIndex:getbuttonIDN] GetCurrentLat:latPoint GetCurrentLong:lonPoint];
     //[SearchDetailView GetTitle:GetSearchText];
     mySearchBar.text = GetSearchText;
 }
@@ -535,7 +535,7 @@
 //    [self.view.window.layer addAnimation:transition forKey:nil];
 //    [self presentViewController:SearchDetailView animated:NO completion:nil];
     [self.navigationController pushViewController:SearchDetailView animated:YES];
-    [SearchDetailView GetSearchKeyword:[GetSearchArray objectAtIndex:getbuttonIDN] Getlat:@"" GetLong:@"" GetLocationName:@""];
+    [SearchDetailView GetSearchKeyword:[GetSearchArray objectAtIndex:getbuttonIDN] Getlat:@"" GetLong:@"" GetLocationName:@"" GetCurrentLat:latPoint GetCurrentLong:lonPoint];
    // [SearchDetailView GetTitle:GetSearchText];
     mySearchBar.text = GetSearchText;
 }

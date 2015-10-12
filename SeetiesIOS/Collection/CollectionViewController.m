@@ -25,15 +25,16 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     MainScroll.delegate = self;
     [MainScroll setContentSize:CGSizeMake(screenWidth, 700)];
-    MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight);
+    MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight - 50);
     MainScroll.alwaysBounceVertical = YES;
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     MoreButton.frame = CGRectMake(screenWidth - 40, 20, 40, 44);
     MapButton.frame = CGRectMake(screenWidth - 80, 20, 40, 44);
     
     DownBarView.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
-    DownBarView.hidden = YES;
-    ShareButton.frame = CGRectMake(screenWidth - 50, 22, 50, 40);
+   // DownBarView.hidden = YES;
+    [self.view addSubview:DownBarView];
+    ShareButton.frame = CGRectMake(screenWidth - 120, 0, 120, 50);
     
     ShowBar.frame = CGRectMake(0, -64, screenWidth, 64);
     
@@ -63,6 +64,7 @@
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight, screenWidth, 50);
+
 }
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
@@ -815,6 +817,6 @@
     
     SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
     [self.navigationController pushViewController:SearchDetailView animated:YES];
-    [SearchDetailView GetSearchKeyword:GetTagsString Getlat:@"" GetLong:@"" GetLocationName:@""];
+    [SearchDetailView GetSearchKeyword:GetTagsString Getlat:@"" GetLong:@"" GetLocationName:@"" GetCurrentLat:@"" GetCurrentLong:@""];
 }
 @end
