@@ -223,6 +223,11 @@
     ProfileControl.frame = CGRectMake(10, GetHeight - 5, screenWidth - 20, 33);
     [ProfileControl addTarget:self action:@selector(segmentAction:) forControlEvents: UIControlEventValueChanged];
     ProfileControl.selectedSegmentIndex = 0;
+    UIFont *font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:12];
+    NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
+                                                           forKey:NSFontAttributeName];
+    [ProfileControl setTitleTextAttributes:attributes
+                               forState:UIControlStateNormal];
     [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
     [MainScroll addSubview:ProfileControl];
     

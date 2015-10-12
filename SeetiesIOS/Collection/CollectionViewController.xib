@@ -15,8 +15,10 @@
                 <outlet property="DownBarView" destination="soE-9o-KtM" id="Lt8-8r-Ndj"/>
                 <outlet property="MainScroll" destination="aNQ-3B-AGM" id="Vb3-MW-KCS"/>
                 <outlet property="ShareButton" destination="37c-rl-oNM" id="U4x-MB-zEE"/>
+                <outlet property="ShareLinkButton" destination="Wtv-zI-lko" id="phP-Sv-UFM"/>
                 <outlet property="ShowActivity" destination="HQ3-Of-TfP" id="p7A-R5-5lQ"/>
                 <outlet property="ShowBar" destination="rHX-T1-dQx" id="hNt-Wt-UBn"/>
+                <outlet property="TranslateButton" destination="Pz2-Na-2Wk" id="NpU-K3-eZS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
