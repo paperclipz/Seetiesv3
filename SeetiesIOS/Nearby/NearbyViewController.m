@@ -78,7 +78,7 @@
         CurrentPage += 1;
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
-        NSString *FullString = [[NSString alloc]initWithFormat:@"%@search?token=%@&keyword=&sort=&lat=%@&lng=%@&page=%li",DataUrl.UserWallpaper_Url,GetExpertToken,GetLatdata,GetLongData,(long)CurrentPage];
+        NSString *FullString = [[NSString alloc]initWithFormat:@"%@search?token=%@&keyword=&sort=&lat=%@&lng=%@&page=%li&current_lat=%@&current_lng=%@",DataUrl.UserWallpaper_Url,GetExpertToken,GetLatdata,GetLongData,(long)CurrentPage,GetLatdata,GetLongData];
         
         
         NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
