@@ -8,7 +8,6 @@
 
 #import "Model.h"
 
-
 @protocol PostModel
 
 @end
@@ -18,8 +17,6 @@
 @property(nonatomic,strong)NSString* imageURL;
 @property(nonatomic,strong)NSString* name;
 @property(nonatomic,strong)NSString* distance;
-
-
 @property(nonatomic,strong)NSArray* category;
 @property(nonatomic,strong)Location* location;
 @property(nonatomic,strong)NSArray<PhotoModel>* photos;
@@ -42,11 +39,7 @@
 @property(nonatomic,assign)int total_page;
 @property(nonatomic,assign)int page;
 @property(nonatomic,assign)int total_posts;
-
-
-
-
-
+@property(nonatomic,strong)NSMutableArray* deleted_posts;
 
 @end
 

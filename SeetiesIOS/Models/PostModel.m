@@ -35,6 +35,14 @@
                                                        }];
 }
 
+-(NSMutableArray*)deleted_posts
+{
+    if (!_deleted_posts) {
+        _deleted_posts = [NSMutableArray new];
+    }
+    return _deleted_posts;
+}
+
 
 -(id) copyWithZone: (NSZone *) zone
 {
@@ -47,7 +55,8 @@
 
 
     modelCopy.tagList = [[NSMutableArray alloc]initWithArray:_tagList copyItems:YES];
-    
+    modelCopy.deleted_posts = [[NSMutableArray alloc]initWithArray:_deleted_posts copyItems:YES];
+
     return modelCopy;
 }
 
