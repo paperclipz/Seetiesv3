@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
@@ -14,9 +14,11 @@
             <connections>
                 <outlet property="DownBarView" destination="soE-9o-KtM" id="Lt8-8r-Ndj"/>
                 <outlet property="MainScroll" destination="aNQ-3B-AGM" id="Vb3-MW-KCS"/>
-                <outlet property="ShareButton" destination="XlD-zj-Vk9" id="8wx-mS-HA6"/>
+                <outlet property="ShareButton" destination="37c-rl-oNM" id="U4x-MB-zEE"/>
+                <outlet property="ShareLinkButton" destination="Wtv-zI-lko" id="phP-Sv-UFM"/>
                 <outlet property="ShowActivity" destination="HQ3-Of-TfP" id="p7A-R5-5lQ"/>
                 <outlet property="ShowBar" destination="rHX-T1-dQx" id="hNt-Wt-UBn"/>
+                <outlet property="TranslateButton" destination="Pz2-Na-2Wk" id="NpU-K3-eZS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -28,34 +30,29 @@
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="aNQ-3B-AGM">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <animations/>
                     <color key="backgroundColor" red="0.91372549020000005" green="0.92941176469999998" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                 </scrollView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TitleBar.png" id="rHX-T1-dQx">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <animations/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackIcon.png" id="kdZ-Yd-1EK">
                     <rect key="frame" x="0.0" y="22" width="40" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <animations/>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="XlD-zj-Vk9">
-                    <rect key="frame" x="270" y="22" width="50" height="40"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="ProfileShareIcon.png">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="ShareButtonOnClick:" destination="-1" eventType="touchUpInside" id="5Wj-Pu-wFS"/>
-                    </connections>
-                </button>
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" id="HQ3-Of-TfP">
                     <rect key="frame" x="219" y="149" width="37" height="37"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <animations/>
                     <color key="color" red="0.20000000000000001" green="0.70980392160000005" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
                 </activityIndicatorView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rle-b7-HUM">
                     <rect key="frame" x="0.0" y="0.0" width="53" height="64"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <animations/>
                     <state key="normal">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -64,6 +61,7 @@
                     </connections>
                 </button>
             </subviews>
+            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <point key="canvasLocation" x="896" y="-5"/>
         </view>
@@ -74,6 +72,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Wtv-zI-lko">
                     <rect key="frame" x="61" y="3" width="43" height="43"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <animations/>
                     <state key="normal" image="CollectionLink.png"/>
                     <connections>
                         <action selector="ShareLinkButtonOnClick:" destination="-1" eventType="touchUpInside" id="V5O-tl-aQq"/>
@@ -82,6 +81,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Pz2-Na-2Wk">
                     <rect key="frame" x="10" y="3" width="43" height="43"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <animations/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <state key="normal" image="TranslateIcon.png"/>
                     <connections>
@@ -91,17 +91,21 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="37c-rl-oNM">
                     <rect key="frame" x="192" y="0.0" width="120" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <animations/>
                     <fontDescription key="fontDescription" name="ProximaNovaSoft-Bold" family="Proxima Nova Soft" pointSize="15"/>
                     <state key="normal" title="Share" backgroundImage="ShareBase.png"/>
+                    <connections>
+                        <action selector="ShareButtonOnClick:" destination="-1" eventType="touchUpInside" id="CrE-go-w9f"/>
+                    </connections>
                 </button>
             </subviews>
+            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
         </view>
     </objects>
     <resources>
         <image name="BackIcon.png" width="40" height="40"/>
         <image name="CollectionLink.png" width="42" height="42"/>
-        <image name="ProfileShareIcon.png" width="40" height="40"/>
         <image name="ShareBase.png" width="120" height="50"/>
         <image name="TitleBar.png" width="310" height="64"/>
         <image name="TranslateIcon.png" width="42" height="42"/>

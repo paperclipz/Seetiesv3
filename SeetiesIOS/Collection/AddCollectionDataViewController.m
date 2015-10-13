@@ -88,7 +88,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *Getuid = [defaults objectForKey:@"Useruid"];
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
-    NSString *FullString = [[NSString alloc]initWithFormat:@"%@%@/collections?token=%@&list_size=50",DataUrl.UserWallpaper_Url,Getuid,GetExpertToken];
+    NSString *FullString = [[NSString alloc]initWithFormat:@"%@%@/collections?token=%@&list_size=50&post_id=%@",DataUrl.UserWallpaper_Url,Getuid,GetExpertToken,GetPostID];
     
     
     NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
@@ -125,7 +125,7 @@
 {
     if (connection == theConnection_CollectionData) {
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
-      //  NSLog(@"GetCollectionData is %@",GetData);
+        //NSLog(@"GetCollectionData is %@",GetData);
         
         NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
         NSError *myError = nil;

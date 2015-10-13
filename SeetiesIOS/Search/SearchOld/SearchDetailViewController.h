@@ -23,6 +23,8 @@
     NSString *GetLong;
     NSString *GetCategoryText;
     NSString *GetLocationName;
+    NSString *GetCurrentLat;
+    NSString *GetCurrentLong;
     
     UrlDataClass *DataUrl;
     NSMutableData *webData;
@@ -110,8 +112,10 @@
     
     NSInteger MainGetButtonIDN;
     NSInteger CheckFollowView;
+    
+    int SelfSearchCurrentLocation;
 }
--(void)GetSearchKeyword:(NSString *)Keyword Getlat:(NSString *)lat GetLong:(NSString *)Long GetLocationName:(NSString *)LocationName;
+-(void)GetSearchKeyword:(NSString *)Keyword Getlat:(NSString *)lat GetLong:(NSString *)Long GetLocationName:(NSString *)LocationName GetCurrentLat:(NSString *)CurrentLat GetCurrentLong:(NSString *)CurrentLong;
 -(void)GetTitle:(NSString *)String;
 
 -(IBAction)SortbyButton:(id)sender;
