@@ -654,27 +654,32 @@
                                         GetTitle = PhilippinesTitle;
                                         GetLang = @"PH";
                                         [LanguageButton setImage:[UIImage imageNamed:@"LanguagePh.png"] forState:UIControlStateNormal];
+                                        ShowLanguageType = @"Filipino";
                                     }
                                 }else{
                                     GetTitle = IndonesianTitle;
                                     GetLang = @"IN";
                                     [LanguageButton setImage:[UIImage imageNamed:@"LanguageInd.png"] forState:UIControlStateNormal];
+                                    ShowLanguageType = @"Bahasa Indonesia";
                                 }
                             }else{
                                 GetTitle = ThaiTitle;
                                 GetLang = @"TH";
                                 [LanguageButton setImage:[UIImage imageNamed:@"LanguageTh.png"] forState:UIControlStateNormal];
+                                ShowLanguageType = @"Thai";
                             }
                         }else{
                             GetTitle = EngTitle;
                             GetLang = @"EN";
                             [LanguageButton setImage:[UIImage imageNamed:@"LanguageEng.png"] forState:UIControlStateNormal];
+                            ShowLanguageType = @"English";
                         }
                         
                     }else{
                         GetTitle = ChineseTitle;
                         GetLang = @"CN";
                         [LanguageButton setImage:[UIImage imageNamed:@"LanguageChi.png"] forState:UIControlStateNormal];
+                        ShowLanguageType = @"Traditional Chinese";
                     }
                 }
                 
@@ -791,7 +796,7 @@
                 CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
                 NSDictionary *languagesData = [GetAllData valueForKey:@"languages"];
                 NSLog(@"languagesData is %@",languagesData);
-                NSMutableArray *TempGetLanguageArray = [[NSMutableArray alloc]init];
+                TempGetLanguageArray = [[NSMutableArray alloc]init];
                 for (NSDictionary* dict in languagesData)
                 {
                     [TempGetLanguageArray addObject:dict];
@@ -865,6 +870,12 @@
                 }
                 
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//                NSMutableArray *GetUserSelectLanguagesArray = [[NSMutableArray alloc]initWithArray:[defaults valueForKey:@"GetUserSelectLanguagesArray"]];
+//                NSString *GetSystemLanguageCheck = [[NSString alloc]initWithFormat:@"%@",[defaults objectForKey:@"UserData_SystemLanguage"]];
+//                NSLog(@"GetUserSelectLanguagesArray is %@",GetUserSelectLanguagesArray);
+//                NSLog(@"GetSystemLanguageCheck is %@",GetSystemLanguageCheck);
+                
+                //NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                 NSString *GetSystemLanguage = [[NSString alloc]initWithFormat:@"%@",[defaults objectForKey:@"UserData_SystemLanguage"]];
                 NSLog(@"GetSystemLanguage is %@",GetSystemLanguage);
                 NSDictionary *CategoryData = [GetAllData valueForKey:@"category_meta"];
@@ -1536,7 +1547,7 @@
         UIButton *TanslateButton = [[UIButton alloc]init];
         TanslateButton.frame = CGRectMake(20, GetHeightCheck, screenWidth - 40, 40);
         [TanslateButton setTitle:LocalisedString(@"Translate") forState:UIControlStateNormal];
-      //  [TanslateButton setImage:[UIImage imageNamed:@"TranslateArrow.png"] forState:UIControlStateNormal];
+        [TanslateButton setImage:[UIImage imageNamed:@"TranslateArrow.png"] forState:UIControlStateNormal];
         TanslateButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         [TanslateButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f  blue:153.0f/255.0f  alpha:1.0f] forState:UIControlStateNormal];
         TanslateButton.layer.cornerRadius = 5;
@@ -1552,7 +1563,7 @@
         UIButton *TanslateButton = [[UIButton alloc]init];
         TanslateButton.frame = CGRectMake(20, GetHeightCheck, screenWidth - 40, 40);
         [TanslateButton setTitle:LocalisedString(@"Translate") forState:UIControlStateNormal];
-        //[TanslateButton setImage:[UIImage imageNamed:@"TranslateArrow.png"] forState:UIControlStateNormal];
+        [TanslateButton setImage:[UIImage imageNamed:@"TranslateArrow.png"] forState:UIControlStateNormal];
         TanslateButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         [TanslateButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f  blue:153.0f/255.0f  alpha:1.0f] forState:UIControlStateNormal];
         TanslateButton.layer.cornerRadius = 5;
@@ -3240,6 +3251,44 @@
             [actionSheet dismissWithClickedButtonIndex:0 animated:YES];
             [self OpenReport];
         }
+    }else if(actionSheet.tag == 5000){
+    //google translate
+        NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
+        if ([buttonTitle isEqualToString:CustomLocalisedString(@"No thanks!", nil)]) {
+            NSLog(@"Cancel Button");
+        }
+        if ([buttonTitle isEqualToString:LocalisedString(@"Read Original")]) {
+            [actionSheet dismissWithClickedButtonIndex:0 animated:YES];
+            if ([GetENMessageString length] == 0) {
+            }else{
+            [self CheckGoogleTranslateButton];
+            }
+            
+        }
+        if ([buttonTitle isEqualToString:LocalisedString(@"English by Google Translate")]) {
+            [actionSheet dismissWithClickedButtonIndex:0 animated:YES];
+            [self CheckGoogleTranslateButton];
+
+        }
+    }else if(actionSheet.tag == 6000){
+    //two language translate
+        NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
+        if ([buttonTitle isEqualToString:CustomLocalisedString(@"No thanks!", nil)]) {
+            NSLog(@"Cancel Button");
+        }
+        if ([buttonTitle isEqualToString:LocalisedString(@"Read Original")]) {
+            [actionSheet dismissWithClickedButtonIndex:0 animated:YES];
+            [self CheckTwoLanguageButton];
+        }
+        if ([buttonTitle isEqualToString:ShowLanguageType]) {
+            [actionSheet dismissWithClickedButtonIndex:0 animated:YES];
+            [self CheckTwoLanguageButton];
+        }
+        if ([buttonTitle isEqualToString:LocalisedString(@"English by Google Translate")]) {
+            [actionSheet dismissWithClickedButtonIndex:0 animated:YES];
+            [ShowActivity startAnimating];
+            [self GetTranslateData];
+        }
     }
 }
 // A function for parsing URL parameters returned by the Feed Dialog.
@@ -3357,6 +3406,56 @@
         NSString *TempGetCount = [[NSString alloc]initWithFormat:@"%@",[CountLanguageArray objectAtIndex:ClickCount]];
         CheckLanguage = [TempGetCount integerValue];
     }
+//    
+//    
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    NSString *GetSystemLanguageCheck = [[NSString alloc]initWithFormat:@"%@",[defaults objectForKey:@"UserData_SystemLanguage"]];
+//    NSLog(@"GetSystemLanguageCheck is %@",GetSystemLanguageCheck);
+    
+    
+    BOOL TranslateCheck = NO;
+    for (int i = 0; i < [TempGetLanguageArray count]; i++) {
+        NSString *GetLanguages = [[NSString alloc]initWithFormat:@"%@",[TempGetLanguageArray objectAtIndex:i]];
+        
+        if ([GetLanguages isEqualToString:@"530b0ab26424400c76000003"]) {
+            TranslateCheck = NO;
+            break;
+        }else{
+            TranslateCheck = YES;
+            
+        }
+    }
+    
+    
+    NSLog(@"TempGetLanguageArray is %@",TempGetLanguageArray);
+    
+    if (TranslateCheck == YES) {
+        
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                                 delegate:self
+                                                        cancelButtonTitle:CustomLocalisedString(@"No thanks!", nil)
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:CustomLocalisedString(@"Read Original", nil),ShowLanguageType,CustomLocalisedString(@"English by Google Translate", nil), nil];
+        
+        [actionSheet showInView:self.view];
+        
+        actionSheet.tag = 6000;
+    }else{
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                                 delegate:self
+                                                        cancelButtonTitle:CustomLocalisedString(@"No thanks!", nil)
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:CustomLocalisedString(@"Read Original", nil),ShowLanguageType, nil];
+        
+        [actionSheet showInView:self.view];
+        
+        actionSheet.tag = 6000;
+    }
+
+    //[self InitNearbyPostView];
+}
+
+-(void)CheckTwoLanguageButton{
     switch (CheckLanguage) {
         case 0:
             break;
@@ -3422,11 +3521,28 @@
     ShowMessage.text = GetMessage;
     ShowTitle.text = GetTitle;
     [self InitView];
-    //[self InitNearbyPostView];
 }
+
 -(IBAction)NewLanguageButton:(id)sender{
     TestingUse = YES;
     //[self InitView];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:CustomLocalisedString(@"No thanks!", nil)
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:CustomLocalisedString(@"Read Original", nil),CustomLocalisedString(@"English by Google Translate", nil), nil];
+    
+    [actionSheet showInView:self.view];
+    
+    actionSheet.tag = 5000;
+    
+    
+
+    
+}
+
+-(void)CheckGoogleTranslateButton{
+    
     if ([GetENMessageString length] == 0) {
         CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
         CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
@@ -3437,14 +3553,6 @@
         LoadingBlackBackground.alpha = 0.5f;
         LoadingBlackBackground.frame = CGRectMake(0, 0, screenWidth, screenHeight);
         [self.view addSubview:LoadingBlackBackground];
-        
-//        spinnerView = [[LLARingSpinnerView alloc] initWithFrame:CGRectZero];
-//        spinnerView.frame = CGRectMake((screenWidth/2) - 30, (screenHeight/2) - 30, 60, 60);
-//        spinnerView.tintColor = [UIColor colorWithRed:51.f/255 green:181.f/255 blue:229.f/255 alpha:1];
-//        // self.spinnerView.center = CGPointMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds));
-//        spinnerView.lineWidth = 1.0f;
-//        [self.view addSubview:spinnerView];
-//        [spinnerView startAnimating];
         [ShowActivity startAnimating];
         [self GetTranslateData];
     }else{
@@ -3482,9 +3590,6 @@
             ShowTitle.text = GetTitle;
             [self InitView];
         }else{
-            
-
-            
             TestingUse = YES;
             CheckENTranslation = @"1";
             
@@ -3495,8 +3600,9 @@
             [self InitView];
         }
     }
-    
 }
+
+
 -(void)GetTranslateData{
     [ShowActivity startAnimating];
 //[self.spinnerView startAnimating];
@@ -3682,6 +3788,6 @@
     
     SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
     [self.navigationController pushViewController:SearchDetailView animated:YES];
-    [SearchDetailView GetSearchKeyword:GetTagsString Getlat:@"" GetLong:@"" GetLocationName:@""];
+    [SearchDetailView GetSearchKeyword:GetTagsString Getlat:@"" GetLong:@"" GetLocationName:@"" GetCurrentLat:@"" GetCurrentLong:@""];
 }
 @end

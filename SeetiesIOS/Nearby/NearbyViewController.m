@@ -78,7 +78,7 @@
         CurrentPage += 1;
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
-        NSString *FullString = [[NSString alloc]initWithFormat:@"%@search?token=%@&keyword=&sort=&lat=%@&lng=%@&page=%li",DataUrl.UserWallpaper_Url,GetExpertToken,GetLatdata,GetLongData,(long)CurrentPage];
+        NSString *FullString = [[NSString alloc]initWithFormat:@"%@search?token=%@&keyword=&sort=&lat=%@&lng=%@&page=%li&current_lat=%@&current_lng=%@",DataUrl.UserWallpaper_Url,GetExpertToken,GetLatdata,GetLongData,(long)CurrentPage,GetLatdata,GetLongData];
         
         
         NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
@@ -574,10 +574,12 @@
         
         CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake([tamplatitude doubleValue], [tampLongitude doubleValue]);
         
-        MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
-        [annotation setCoordinate:coordinate];
-        [annotation setTitle:[TitleArray objectAtIndex:i]];//[TitleArray objectAtIndex:i]
-        [self.mapView addAnnotation:annotation];
+        MainAnnotation = [[MKPointAnnotation alloc] init];
+        [MainAnnotation setCoordinate:coordinate];
+        [MainAnnotation setTitle:[TitleArray objectAtIndex:i]];//[TitleArray objectAtIndex:i]
+        [self.mapView addAnnotation:MainAnnotation];
+        
+        NSLog(@"TitleArray data is %@",[TitleArray objectAtIndex:i]);
         
     }
     
@@ -599,7 +601,7 @@
     MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"String"];
     if(!annotationView) {
         
-        annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"String"];
+        annotationView = [[MKAnnotationView alloc] initWithAnnotation:MainAnnotation reuseIdentifier:@"String"];
         
         annotationView.image = [UIImage imageNamed:@"PinInMap.png"];
         
@@ -617,27 +619,17 @@
     }
     else {
         //update annotation to current if re-using a view
-        annotationView.annotation = annotation;
+        annotationView.annotation = MainAnnotation;
     }
     
     return annotationView;
 }
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control{
-    NSLog(@"click click click");
     
-    NSLog(@"mapView is %@",mapView);
-    NSLog(@"view is %@",view.annotation);
-    NSLog(@"control is %@",control);
-    
-    NSInteger AnnotationIndex = [mapView.annotations indexOfObject:view.annotation];
-    NSLog(@"AnnotationIndex is %ld",(long)AnnotationIndex);
-    
-    
-    NSInteger getbuttonIDN = [control tag];
-    //NSLog(@"button %i",getbuttonIDN);
-    
-    NSString *TempString = [[NSString alloc]initWithFormat:@"%@",[TitleArray objectAtIndex:getbuttonIDN]];
-    NSLog(@"TempString is %@",TempString);
+//    NSInteger AnnotationIndex = [mapView.annotations indexOfObject:view.annotation];
+//    NSLog(@"AnnotationIndex is %ld",(long)AnnotationIndex);
+//    NSString *TempString = [[NSString alloc]initWithFormat:@"%@",[TitleArray objectAtIndex:AnnotationIndex]];
+//    NSLog(@"TempString is %@",TempString);
 }
 -(IBAction)MapPinButtonOnClick:(id)sender{
 //    NSLog(@"MapPinButtonOnClick on click.");

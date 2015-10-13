@@ -68,6 +68,7 @@
     GetHeight = 0;
     CheckFirstTimeLoad = 0;
     heightcheck = 0;
+    SelfSearchCurrentLocation = 0;
     
     ShowSearchLocationView.frame = CGRectMake(0, 95, screenWidth, screenHeight - 95);
     ShowSearchLocationView.hidden = YES;
@@ -80,7 +81,6 @@
     [SearchPlaceIDArray addObject:@"0"];
     
     [self SendSearchKeywordData];
-
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -103,6 +103,7 @@
         DataCount = 0;
         DataTotal = 0;
         heightcheck = 0;
+        SelfSearchCurrentLocation = 0;
         
         [self SendSearchKeywordData];
     }
@@ -131,12 +132,14 @@
 //    [self dismissViewControllerAnimated:NO completion:nil];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
--(void)GetSearchKeyword:(NSString *)Keyword Getlat:(NSString *)lat GetLong:(NSString *)Long GetLocationName:(NSString *)LocationName{
+-(void)GetSearchKeyword:(NSString *)Keyword Getlat:(NSString *)lat GetLong:(NSString *)Long GetLocationName:(NSString *)LocationName GetCurrentLat:(NSString *)CurrentLat GetCurrentLong:(NSString *)CurrentLong{
     
     GetKeywordText = Keyword;
     GetLat = lat;
     GetLong = Long;
     GetLocationName = LocationName;
+    GetCurrentLat = CurrentLat;
+    GetCurrentLong = CurrentLong;
     [self SendSearchKeywordData];
 
     SearchTextField.text = GetKeywordText;
@@ -217,6 +220,7 @@
             DataCount = 0;
             DataTotal = 0;
             heightcheck = 0;
+            SelfSearchCurrentLocation = 0;
             [self SendSearchKeywordData];
         }
     }else if(textField == SearchAddressField){
@@ -228,6 +232,7 @@
         DataCount = 0;
         DataTotal = 0;
         heightcheck = 0;
+        SelfSearchCurrentLocation = 0;
     [self SendSearchKeywordData];
     }
     ShowSearchLocationView.hidden = YES;
@@ -315,7 +320,17 @@
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
         NSString *GetSortByString = [defaults objectForKey:@"Filter_Search_SortBy"];
         NSString *GetCategoryString = [defaults objectForKey:@"Filter_Search_Category"];
-    NSString *FullString = [[NSString alloc]initWithFormat:@"%@search?token=%@&keyword=%@&sort=%@&lat=%@&lng=%@&page=%li",DataUrl.UserWallpaper_Url,GetExpertToken,GetKeywordText,StringSortby,GetLat,GetLong,(long)CurrentPage];
+        
+        
+        if ([GetCurrentLat length] == 0 || [GetCurrentLat isEqualToString:@"(null)"]) {
+            GetCurrentLat = @"";
+        }
+        if ([GetCurrentLong length] == 0 || [GetCurrentLong isEqualToString:@"(null)"]) {
+            GetCurrentLong = @"";
+        }
+        
+        
+    NSString *FullString = [[NSString alloc]initWithFormat:@"%@search?token=%@&keyword=%@&sort=%@&lat=%@&lng=%@&current_lat=%@&current_lng=%@&page=%li",DataUrl.UserWallpaper_Url,GetExpertToken,GetKeywordText,StringSortby,GetLat,GetLong,GetCurrentLat,GetCurrentLong,(long)CurrentPage];
         
         if ([GetSortByString length] == 0 || [GetSortByString isEqualToString:@""] || [GetSortByString isEqualToString:@"(null)"] || GetSortByString == nil) {
             
@@ -833,6 +848,11 @@
     ProfileControl.frame = CGRectMake(15, heightcheck, screenWidth - 30, 33);
     [ProfileControl addTarget:self action:@selector(segmentAction:) forControlEvents: UIControlEventValueChanged];
     ProfileControl.selectedSegmentIndex = 0;
+    UIFont *font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:12];
+    NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
+                                                           forKey:NSFontAttributeName];
+    [ProfileControl setTitleTextAttributes:attributes
+                                  forState:UIControlStateNormal];
     [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
     [MainScroll addSubview:ProfileControl];
     
@@ -1273,6 +1293,7 @@
 {
     if (tableView == LocationTblView) {
         if (indexPath.row == 0) {
+            SelfSearchCurrentLocation = 1;
             self.locationManager = [[CLLocationManager alloc]init];
             self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
             self.locationManager.delegate = self;
@@ -1361,23 +1382,30 @@
     CLLocation *location = newLocation;
     
     if (location != nil) {
-        GetLat = [NSString stringWithFormat:@"%f", location.coordinate.latitude];
-        GetLong = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
+        GetCurrentLat = [NSString stringWithFormat:@"%f", location.coordinate.latitude];
+        GetCurrentLong = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
         
-        NSLog(@"Location Get lat is %@ : lon is %@",GetLat, GetLong);
-        if ([GetLat length] == 0 || [GetLat isEqualToString:@"(null)"]) {
+        NSLog(@"Location Get lat is %@ : lon is %@",GetCurrentLat, GetCurrentLong);
+        if ([GetCurrentLat length] == 0 || [GetCurrentLong isEqualToString:@"(null)"]) {
 
         }else{
-            SearchAddressField.text = @"Current Location";
-            CheckLoad = NO;
-            TotalPage = 1;
-            CurrentPage = 0;
-            GetHeight = 0;
-            CheckFirstTimeLoad = 0;
-            DataCount = 0;
-            DataTotal = 0;
-            heightcheck = 0;
-            [self SendSearchKeywordData];
+            if (SelfSearchCurrentLocation == 1) {
+                
+                GetLat = GetCurrentLat;
+                GetLong = GetCurrentLong;
+                
+                SearchAddressField.text = @"Current Location";
+                CheckLoad = NO;
+                TotalPage = 1;
+                CurrentPage = 0;
+                GetHeight = 0;
+                CheckFirstTimeLoad = 0;
+                DataCount = 0;
+                DataTotal = 0;
+                heightcheck = 0;
+                [self SendSearchKeywordData];
+            }
+
         }
         
        // [self performSearchLatnLong];

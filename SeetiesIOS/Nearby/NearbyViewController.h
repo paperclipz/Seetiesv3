@@ -56,6 +56,9 @@
     NSString *GetPostID;
     
     UIButton *CenterLine;
+    
+    MKPointAnnotation *MainAnnotation;
+    
 }
 -(void)Getlat:(NSString *)lat GetLong:(NSString *)Long;
 @end

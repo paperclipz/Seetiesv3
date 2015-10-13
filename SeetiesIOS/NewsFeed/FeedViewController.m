@@ -19,6 +19,7 @@
 #import "CommentViewController.h"
 #import "EnbleLocationViewController.h"
 #import "LandingV2ViewController.h"
+#import "AnnounceViewController.h"
 @interface FeedViewController ()
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;
@@ -3704,6 +3705,10 @@
         NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
         [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
         [NewUserProfileV2View GetUid:GetID];
+    }else{
+        AnnounceViewController *AnnounceView = [[AnnounceViewController alloc]init];
+        [self.navigationController pushViewController:AnnounceView animated:YES];
+        [AnnounceView GetDisplayImage:[arrImage objectAtIndex:getbuttonIDN] GetContent:[arrTitle objectAtIndex:getbuttonIDN]];
     }
     
     

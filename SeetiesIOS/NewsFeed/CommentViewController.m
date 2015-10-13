@@ -315,6 +315,11 @@
     NSArray *itemArray = [NSArray arrayWithObjects:LocalisedString(@"Comments"),LocalisedString(@"Collections"), LocalisedString(@"Likes"), nil];
     UISegmentedControl *PostControl = [[UISegmentedControl alloc]initWithItems:itemArray];
     PostControl.frame = CGRectMake(15, 80, screenWidth - 30, 33);
+    UIFont *font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:12];
+    NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
+                                                           forKey:NSFontAttributeName];
+    [PostControl setTitleTextAttributes:attributes
+                                  forState:UIControlStateNormal];
     [PostControl addTarget:self action:@selector(segmentAction:) forControlEvents: UIControlEventValueChanged];
     
     if ([GetWhatView isEqualToString:@"Like"]) {

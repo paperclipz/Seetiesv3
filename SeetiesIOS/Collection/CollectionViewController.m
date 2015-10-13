@@ -25,15 +25,18 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     MainScroll.delegate = self;
     [MainScroll setContentSize:CGSizeMake(screenWidth, 700)];
-    MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight);
+    MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight - 50);
     MainScroll.alwaysBounceVertical = YES;
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     MoreButton.frame = CGRectMake(screenWidth - 40, 20, 40, 44);
     MapButton.frame = CGRectMake(screenWidth - 80, 20, 40, 44);
     
     DownBarView.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
-    DownBarView.hidden = YES;
-    ShareButton.frame = CGRectMake(screenWidth - 50, 22, 50, 40);
+   // DownBarView.hidden = YES;
+    [self.view addSubview:DownBarView];
+    ShareButton.frame = CGRectMake(screenWidth - 120, 0, 120, 50);
+    TranslateButton.frame = CGRectMake(10, 3, 43, 43);
+    ShareLinkButton.frame = CGRectMake(61, 3, 43, 43);
     
     ShowBar.frame = CGRectMake(0, -64, screenWidth, 64);
     
@@ -63,6 +66,7 @@
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight, screenWidth, 50);
+
 }
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
@@ -141,6 +145,10 @@
             GetTitle = [[NSString alloc]initWithFormat:@"%@",[ResData objectForKey:@"name"]];
             GetDescription = [[NSString alloc]initWithFormat:@"%@",[ResData objectForKey:@"description"]];
             GetTags = [[NSString alloc]initWithFormat:@"%@",[ResData valueForKey:@"tags"]];
+            
+            
+            NSArray *LanguageData = [ResData valueForKey:@"languages"];
+            GetLanguagesArray = [[NSMutableArray alloc]initWithArray:LanguageData];
             
             NSArray *TempGetTags = [ResData objectForKey:@"tags"];
             GetTags = [TempGetTags componentsJoinedByString:@","];
@@ -277,6 +285,52 @@
             DataCount = DataTotal;
             DataTotal = [Content_arrImage count];
             if (CheckFirstTimeLoad == 0) {
+                
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                NSString *GetSystemLanguageCheck = [[NSString alloc]initWithFormat:@"%@",[defaults objectForKey:@"UserData_SystemLanguage"]];
+                NSLog(@"GetSystemLanguageCheck is %@",GetSystemLanguageCheck);
+                
+                NSString *GetSystemLanguageCode;
+
+                if ([GetSystemLanguageCheck isEqualToString:@"English"]) {
+                   GetSystemLanguageCode = @"530b0ab26424400c76000003";
+                }else if([GetSystemLanguageCheck isEqualToString:@"繁體中文"] || [GetSystemLanguageCheck isEqualToString:@"Traditional Chinese"]){
+                    GetSystemLanguageCode = @"530b0aa16424400c76000002";
+                }else if([GetSystemLanguageCheck isEqualToString:@"简体中文"] || [GetSystemLanguageCheck isEqualToString:@"Simplified Chinese"] || [GetSystemLanguageCheck isEqualToString:@"中文"]){
+                    GetSystemLanguageCode = @"530b0aa16424400c76000002";
+                }else if([GetSystemLanguageCheck isEqualToString:@"Bahasa Indonesia"]){
+                   GetSystemLanguageCode = @"53672e863efa3f857f8b4ed2";
+                }else if([GetSystemLanguageCheck isEqualToString:@"Filipino"]){
+                    GetSystemLanguageCode = @"539fbb273efa3fde3f8b4567";
+                }else if([GetSystemLanguageCheck isEqualToString:@"ภาษาไทย"] || [GetSystemLanguageCheck isEqualToString:@"Thai"]){
+                    GetSystemLanguageCode = @"544481503efa3ff1588b4567";
+                }else{
+                    GetSystemLanguageCode = @"530b0ab26424400c76000003";
+                }
+                
+                BOOL CheckShowLangaugesButton = NO;
+                
+                for (int i = 0; i < [GetLanguagesArray count]; i++) {
+                    NSString *TempLangauges = [[NSString alloc]initWithFormat:@"%@",[GetLanguagesArray objectAtIndex:i]];
+                    
+                    if ([TempLangauges isEqualToString:GetSystemLanguageCode]) {
+                        CheckShowLangaugesButton = NO;
+                        break;
+                    }else{
+                        CheckShowLangaugesButton = YES;
+                    }
+                }
+                
+                
+                if (CheckShowLangaugesButton == NO) {
+                  //  TranslateButton.frame = CGRectMake(10, 3, 43, 43);
+                    TranslateButton.hidden = YES;
+                    ShareLinkButton.frame = CGRectMake(10, 3, 43, 43);
+                }else{
+                
+                }
+                
+                
                 [self InitView];
                 
             }else{
@@ -287,6 +341,45 @@
             
         }
         [ShowActivity stopAnimating];
+    }else if (connection == theConnection_GetTranslate){
+        NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+        NSLog(@"theConnection_GetTranslate return get data to server ===== %@",GetData);
+        
+        NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *myError = nil;
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
+        NSLog(@"theConnection_CollectionData Json = %@",res);
+        
+        NSString *statusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
+        NSLog(@"statusString is %@",statusString);
+        
+        if ([statusString isEqualToString:@"ok"]) {
+            
+            NSDictionary *ResData = [res valueForKey:@"data"];
+            
+            GetTitle = [[NSString alloc]initWithFormat:@"%@",[ResData objectForKey:@"name"]];
+            GetDescription = [[NSString alloc]initWithFormat:@"%@",[ResData objectForKey:@"description"]];
+            
+            NSDictionary *GetData = [ResData valueForKey:@"posts"];
+            
+            [Content_arrID removeAllObjects];
+            [Content_arrNote removeAllObjects];
+            
+            for (NSDictionary * dict in GetData) {
+                NSString *PlaceID = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"post_id"]];
+                [Content_arrID addObject:PlaceID];
+                NSString *notedate = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"collection_note"]];
+                [Content_arrNote addObject:notedate];
+            }
+            for (UIView *subview in MainScroll.subviews) {
+                [subview removeFromSuperview];
+            }
+            GetHeight = 0;
+            [self InitView];
+            
+            [ShowActivity stopAnimating];
+        }
+    
     }
 }
 -(void)InitView{
@@ -804,8 +897,14 @@
     [ShareView GetCollectionID:GetID];
 }
 -(IBAction)ShareLinkButtonOnClick:(id)sender{
+    NSString *message = [NSString stringWithFormat:@"https://seeties.me/collections/%@",GetID];
+    
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = message;
+    [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success Copy Link" type:TSMessageNotificationTypeSuccess];
 }
 -(IBAction)TranslateButtonOnClick:(id)sender{
+    [self GetTranslateData];
 }
 
 -(IBAction)PersonalTagsButtonOnClick:(id)sender{
@@ -815,6 +914,33 @@
     
     SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
     [self.navigationController pushViewController:SearchDetailView animated:YES];
-    [SearchDetailView GetSearchKeyword:GetTagsString Getlat:@"" GetLong:@"" GetLocationName:@""];
+    [SearchDetailView GetSearchKeyword:GetTagsString Getlat:@"" GetLong:@"" GetLocationName:@"" GetCurrentLat:@"" GetCurrentLong:@""];
+}
+-(void)GetTranslateData{
+    [ShowActivity startAnimating];
+    //[self.spinnerView startAnimating];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *Getuid = [defaults objectForKey:@"Useruid"];
+    NSString *FullString = [[NSString alloc]initWithFormat:@"%@%@/collections/%@/translate?token=%@",DataUrl.UserWallpaper_Url,Getuid,GetID,GetExpertToken];
+    
+    
+    NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
+    NSLog(@"check postBack URL ==== %@",postBack);
+    // NSURL *url = [NSURL URLWithString:[postBack stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSURL *url = [NSURL URLWithString:postBack];
+    //    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
+    //    NSLog(@"theRequest === %@",theRequest);
+    //    [theRequest addValue:@"" forHTTPHeaderField:@"Accept-Encoding"];
+    NSURLRequest *theRequest = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData                                         timeoutInterval:30];
+    
+    theConnection_GetTranslate = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+    [theConnection_GetTranslate start];
+    
+    
+    if( theConnection_GetTranslate ){
+        webData = [NSMutableData data];
+    }
 }
 @end

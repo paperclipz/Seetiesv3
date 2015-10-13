@@ -18,6 +18,9 @@
     IBOutlet UIButton *ShareButton;
     IBOutlet UIImageView *ShowBar;
     
+    IBOutlet UIButton *TranslateButton;
+    IBOutlet UIButton *ShareLinkButton;
+    
     NSString *GetID;
     
     IBOutlet UIActivityIndicatorView *ShowActivity;
@@ -25,6 +28,7 @@
     UrlDataClass *DataUrl;
     NSMutableData *webData;
     NSURLConnection *theConnection_CollectionData;
+    NSURLConnection *theConnection_GetTranslate;
     
     NSInteger TotalPage;
     NSInteger CurrentPage;
@@ -42,6 +46,7 @@
     NSString *GetLocation;
     NSString *GetTags;
     NSMutableArray *ArrHashTag;
+    NSMutableArray *GetLanguagesArray;
     
     //Content Data
     NSMutableArray *Content_arrImage;

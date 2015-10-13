@@ -210,6 +210,9 @@
     NSURLConnection *theConnection_QuickCollect;
     
     int CheckLanguagedata;
+    NSString *ShowLanguageType;
+    
+    NSMutableArray *TempGetLanguageArray;
 }
 
 @property(nonatomic,strong)EditPostViewController* editPostViewController;
