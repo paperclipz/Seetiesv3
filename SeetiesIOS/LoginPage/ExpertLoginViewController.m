@@ -417,14 +417,21 @@
                 
             }else{
                 PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-                [currentInstallation setDeviceTokenFromData:GetDeviceToken];
                 NSString *TempTokenString = [[NSString alloc]initWithFormat:@"seeties_%@",GetUserUID];
+                
+                [currentInstallation removeObject:@"all" forKey:@"all"];
+                [currentInstallation removeObject:TempTokenString forKey:TempTokenString];
+                [currentInstallation saveInBackground];
+                
+                
+                //PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+                [currentInstallation setDeviceTokenFromData:GetDeviceToken];
+                
                 currentInstallation.channels = @[TempTokenString,@"all"];
                 [currentInstallation saveInBackground];
-                NSLog(@"work here?");
                 
-                NSArray *subscribedChannels = [PFInstallation currentInstallation].channels;
-                NSLog(@"subscribedChannels is %@",subscribedChannels);
+//                NSArray *subscribedChannels = [PFInstallation currentInstallation].channels;
+//                NSLog(@"subscribedChannels is %@",subscribedChannels);
                 
                 NSString *TempString = @"Done";
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

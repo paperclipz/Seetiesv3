@@ -480,8 +480,8 @@
 "No thanks!"= "暂无此需求";
 "Language translations use Google Translate and may not be completely accurate."= "此翻译源自Google，准确度上会有些出入唷。";
 ""= "";
-"Follow"= "关注";
-"Following"= "已关注";
+"Follow_"= "关注";
+"Following_"= "已关注";
 "See all activities"= "查看所有动态";
 ""= "";
 "About the place"= "位置详情";
@@ -502,7 +502,7 @@
 "Be the first to comment"= "快来抢头香吧！";
 "Write a comment"= "发表留言";
 "Collections"= "已收藏";
-"{!username} collected this into {!collection name}"= "{!username} 已收藏此文到 {!collection name}";
+"collected this into"= "已收藏此文到";
 "Aww. No one's collected this."= "还没有人收藏此文呢。";
 "Likes"= "他们都点赞";
 "Be the first to like"= "快来抢头香点赞吧！";
@@ -537,7 +537,7 @@
 "Let's get going!"= "更新贴文";
 ""= "";
 ""= "";
-"Nearby"= "附近好康";
+"Nearby_"= "附近好康";
 "{!username} liked this"= "{!username} 已点赞";
 "Open"= "营业中";
 "Closed"= "休息";
@@ -678,7 +678,7 @@
 "Posts"= "贴文";
 "Posts"= "贴文";
 "views"= "点阅";
-"There's nothing 'ere, yet."= "这里有点空荡荡的呢!";
+"There's nothing 'ere, yet. Post"= "这里有点空荡荡的呢!";
 "Would you like to start a post? (="= "你的贴文将会为此增添色彩";
 "New Post"= "发表新贴文";
 ""= "";

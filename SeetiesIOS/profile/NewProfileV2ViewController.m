@@ -871,7 +871,7 @@
         
         UILabel *ShowNoDataText = [[UILabel alloc]init];
         ShowNoDataText.frame = CGRectMake(30, 100, screenWidth - 60, 20);
-        ShowNoDataText.text = LocalisedString(@"There's nothing 'ere, yet.");
+        ShowNoDataText.text = LocalisedString(@"More food journeys, roadtrips, or parties to hit? Collect and share!");
         ShowNoDataText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowNoDataText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
         ShowNoDataText.textAlignment = NSTextAlignmentCenter;
@@ -1021,7 +1021,7 @@
         
         UILabel *ShowNoDataText = [[UILabel alloc]init];
         ShowNoDataText.frame = CGRectMake(30, 100, screenWidth - 60, 20);
-        ShowNoDataText.text = LocalisedString(@"Be the first to like");
+        ShowNoDataText.text = LocalisedString(@"There's nothing 'ere, yet.");
         ShowNoDataText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowNoDataText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
         ShowNoDataText.textAlignment = NSTextAlignmentCenter;
@@ -1158,7 +1158,7 @@
         
         UILabel *ShowNoDataText = [[UILabel alloc]init];
         ShowNoDataText.frame = CGRectMake(30, 170, screenWidth - 60, 20);
-        ShowNoDataText.text = LocalisedString(@"Let's get going!");
+        ShowNoDataText.text = LocalisedString(@"There's nothing 'ere, yet. Post");
         ShowNoDataText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowNoDataText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
         ShowNoDataText.textAlignment = NSTextAlignmentCenter;
@@ -1197,7 +1197,7 @@
             [PostView addSubview:ShowImage];
             
             UILabel *ShowTitle = [[UILabel alloc]init];
-            ShowTitle.frame = CGRectMake(120, heightcheck + 10, 200, 30);
+            ShowTitle.frame = CGRectMake(120, heightcheck + 10, screenWidth - 130, 30);
             ShowTitle.text = [PostsData_TitleArray objectAtIndex:i];
             ShowTitle.backgroundColor = [UIColor clearColor];
             ShowTitle.textColor = [UIColor blackColor];
@@ -1211,10 +1211,10 @@
             [PostView addSubview:ShowPin];
             
             UILabel *ShowPlaceName = [[UILabel alloc]init];
-            ShowPlaceName.frame = CGRectMake(140, heightcheck + 40, screenWidth - 140, 20);
+            ShowPlaceName.frame = CGRectMake(140, heightcheck + 40, screenWidth - 150, 20);
             ShowPlaceName.text = [PostsData_place_nameArray objectAtIndex:i];
-            ShowPlaceName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-            ShowPlaceName.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0];
+            ShowPlaceName.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+            ShowPlaceName.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0];
             ShowPlaceName.textAlignment = NSTextAlignmentLeft;
             ShowPlaceName.backgroundColor = [UIColor clearColor];
             [PostView addSubview:ShowPlaceName];
@@ -1780,8 +1780,8 @@
                     if ([dict count] == 0 || dict == nil || [dict isKindOfClass:[NSNull class]]) {
                         [PostsData_TitleArray addObject:@""];
                     }else{
-                        NSString *Title1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0aa16424400c76000002"]];
-                        NSString *Title2 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0ab26424400c76000003"]];
+                        NSString *Title2 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0aa16424400c76000002"]];
+                        NSString *Title1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0ab26424400c76000003"]];
                         NSString *ThaiTitle_Nearby = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"544481503efa3ff1588b4567"]];
                         NSString *IndonesianTitle_Nearby = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"53672e863efa3f857f8b4ed2"]];
                         NSString *PhilippinesTitle_Nearby = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"539fbb273efa3fde3f8b4567"]];

@@ -40,7 +40,7 @@
     DataUrl = [[UrlDataClass alloc]init];
     
     ShowNoDataText_1.frame = CGRectMake(15, (screenHeight / 2) - 220, screenWidth - 30, 21);
-    ShowNoDataText_2.frame = CGRectMake(15, (screenHeight / 2) - 170, screenWidth - 30, 62);
+    ShowNoDataText_2.frame = CGRectMake(15, (screenHeight / 2) - 190, screenWidth - 30, 62);
     ShowNoDataText_1.text = LocalisedString(@"There are no comments yet.");
     ShowNoDataText_2.text = LocalisedString(@"Be the first to comment");
     
@@ -52,9 +52,9 @@
 
     ShowMainTitle.frame = CGRectMake(15, 20, screenWidth - 30, 44);
     ShowMainTitle.text = LocalisedString(@"All Activities");
-    MainScroll.frame = CGRectMake(0, 120, screenWidth, screenHeight - 164);
-    LikeScroll.frame = CGRectMake(0, 120, screenWidth, screenHeight - 164);
-    CollectionsScroll.frame = CGRectMake(0, 120, screenWidth, screenHeight - 164);
+    MainScroll.frame = CGRectMake(0, 133, screenWidth, screenHeight - 133 - 44);
+    LikeScroll.frame = CGRectMake(0, 133, screenWidth, screenHeight - 133);
+    CollectionsScroll.frame = CGRectMake(0, 133, screenWidth, screenHeight - 133);
     toolBar.frame = CGRectMake(0, screenHeight - 44, screenWidth, 44);
     TextString.frame = CGRectMake(8, 8, screenWidth - 64 - 8 - 10, 30);
     sendButton.frame = CGRectMake(screenWidth - 64, 0, 64, 44);

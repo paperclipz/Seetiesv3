@@ -99,7 +99,7 @@
 
     MainNearbyButton= [[UIButton alloc]init];
     MainNearbyButton.frame = CGRectMake((screenWidth / 2) - 60, 74, 120, 37);
-    [MainNearbyButton setTitle:LocalisedString(@"Nearby") forState:UIControlStateNormal];
+    [MainNearbyButton setTitle:LocalisedString(@"Nearby_") forState:UIControlStateNormal];
     [MainNearbyButton setImage:[UIImage imageNamed:@"NearbyIcon.png"] forState:UIControlStateNormal];
     MainNearbyButton.backgroundColor = [UIColor clearColor];
     MainNearbyButton.backgroundColor = [UIColor colorWithRed:114.0f/255.0f green:190.0f/255.0f blue:68.0f/255.0f alpha:1.0f];
@@ -433,7 +433,7 @@
     
     UIButton *TempButton = [[UIButton alloc]init];
     TempButton.frame = CGRectMake((screenWidth / 2) - 60, 41, 120, 37);
-    [TempButton setTitle:LocalisedString(@"Nearby") forState:UIControlStateNormal];
+    [TempButton setTitle:LocalisedString(@"Nearby_") forState:UIControlStateNormal];
     [TempButton setImage:[UIImage imageNamed:@"NearbyIcon.png"] forState:UIControlStateNormal];
     TempButton.backgroundColor = [UIColor clearColor];
     TempButton.backgroundColor = [UIColor colorWithRed:114.0f/255.0f green:190.0f/255.0f blue:68.0f/255.0f alpha:1.0f];
@@ -821,7 +821,7 @@
 
     UIButton *TempButton = [[UIButton alloc]init];
     TempButton.frame = CGRectMake((screenWidth / 2) - 60, 41, 120, 37);
-    [TempButton setTitle:LocalisedString(@"Nearby")  forState:UIControlStateNormal];
+    [TempButton setTitle:LocalisedString(@"Nearby_")  forState:UIControlStateNormal];
     [TempButton setImage:[UIImage imageNamed:@"NearbyIcon.png"] forState:UIControlStateNormal];
     TempButton.backgroundColor = [UIColor clearColor];
     TempButton.backgroundColor = [UIColor colorWithRed:114.0f/255.0f green:190.0f/255.0f blue:68.0f/255.0f alpha:1.0f];

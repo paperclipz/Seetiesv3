@@ -480,8 +480,8 @@
 "No thanks!"= "No thanks!";
 "Language translations use Google Translate and may not be completely accurate."= "Language translations use Google Translate and may not be completely accurate.";
 ""= "";
-"Follow"= "Follow";
-"Following"= "Following";
+"Follow_"= "Follow";
+"Following_"= "Following";
 "See all activities"= "See all activities";
 ""= "";
 "About the place"= "About the place";
@@ -502,7 +502,7 @@
 "Be the first to comment"= "Be the first to comment";
 "Write a comment"= "Write a comment";
 "Collections"= "Collections";
-"{!username} collected this into {!collection name}"= "{!username} collected this into {!collection name}";
+"collected this into"= "collected this into";
 "Aww. No one's collected this."= "Aww. No one's collected this.";
 "Likes"= "Likes";
 "Be the first to like"= "Be the first to like";
@@ -537,7 +537,7 @@
 "Let's get going!"= "Let's get going!";
 ""= "";
 ""= "";
-"Nearby"= "Nearby";
+"Nearby_"= "Nearby";
 "{!username} liked this"= "{!username} liked this";
 "Open"= "Open";
 "Closed"= "Closed";
@@ -678,7 +678,7 @@
 "Posts"= "Posts";
 "Posts"= "Posts";
 "views"= "views";
-"There's nothing 'ere, yet."= "There's nothing 'ere, yet.";
+"There's nothing 'ere, yet. Post"= "There's nothing 'ere, yet.";
 "Would you like to start a post? (="= "Would you like to start a post? (=";
 "New Post"= "New Post";
 ""= "";

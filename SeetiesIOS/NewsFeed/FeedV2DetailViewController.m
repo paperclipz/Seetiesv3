@@ -101,7 +101,7 @@
     [AllCollectButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
     [AllCollectButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
     AllCollectButton.backgroundColor = [UIColor clearColor];
-    AllCollectButton.frame = CGRectMake(screenWidth - 10 - 140, 5, 140, 50);
+    AllCollectButton.frame = CGRectMake(screenWidth - 10 - 140, 7, 140, 50);
     
     QuickCollectButton.frame = CGRectMake(screenWidth - 10 - 60, 14, 60, 37);
 
@@ -644,9 +644,8 @@
                     NSLog(@"ThaiTitle is %@",ThaiTitle);
                     NSLog(@"IndonesianTitle is %@",IndonesianTitle);
                     NSLog(@"PhilippinesTitle is %@",PhilippinesTitle);
-                    
-                    if ([ChineseTitle length] == 0 || ChineseTitle == nil || [ChineseTitle isEqualToString:@"(null)"]) {
-                        if ([EngTitle length] == 0 || EngTitle == nil || [EngTitle isEqualToString:@"(null)"]) {
+                      if ([EngTitle length] == 0 || EngTitle == nil || [EngTitle isEqualToString:@"(null)"]) {
+                         if ([ChineseTitle length] == 0 || ChineseTitle == nil || [ChineseTitle isEqualToString:@"(null)"]) {
                             if ([ThaiTitle length] == 0 || ThaiTitle == nil || [ThaiTitle isEqualToString:@"(null)"]) {
                                 if ([IndonesianTitle length] == 0 || IndonesianTitle == nil || [IndonesianTitle isEqualToString:@"(null)"]) {
                                     if ([PhilippinesTitle length] == 0 || PhilippinesTitle == nil || [PhilippinesTitle isEqualToString:@"(null)"]) {
@@ -654,32 +653,28 @@
                                         GetTitle = PhilippinesTitle;
                                         GetLang = @"PH";
                                         [LanguageButton setImage:[UIImage imageNamed:@"LanguagePh.png"] forState:UIControlStateNormal];
-                                        ShowLanguageType = @"Filipino";
                                     }
                                 }else{
                                     GetTitle = IndonesianTitle;
                                     GetLang = @"IN";
                                     [LanguageButton setImage:[UIImage imageNamed:@"LanguageInd.png"] forState:UIControlStateNormal];
-                                    ShowLanguageType = @"Bahasa Indonesia";
                                 }
                             }else{
                                 GetTitle = ThaiTitle;
                                 GetLang = @"TH";
                                 [LanguageButton setImage:[UIImage imageNamed:@"LanguageTh.png"] forState:UIControlStateNormal];
-                                ShowLanguageType = @"Thai";
                             }
                         }else{
-                            GetTitle = EngTitle;
-                            GetLang = @"EN";
-                            [LanguageButton setImage:[UIImage imageNamed:@"LanguageEng.png"] forState:UIControlStateNormal];
-                            ShowLanguageType = @"English";
+
+                            GetTitle = ChineseTitle;
+                            GetLang = @"CN";
+                            [LanguageButton setImage:[UIImage imageNamed:@"LanguageChi.png"] forState:UIControlStateNormal];
                         }
                         
                     }else{
-                        GetTitle = ChineseTitle;
-                        GetLang = @"CN";
-                        [LanguageButton setImage:[UIImage imageNamed:@"LanguageChi.png"] forState:UIControlStateNormal];
-                        ShowLanguageType = @"Traditional Chinese";
+                        GetTitle = EngTitle;
+                        GetLang = @"EN";
+                        [LanguageButton setImage:[UIImage imageNamed:@"LanguageEng.png"] forState:UIControlStateNormal];
                     }
                 }
                 
@@ -692,9 +687,9 @@
                     ThaiMessage = [[NSString alloc]initWithFormat:@"%@",[messageData objectForKey:@"544481503efa3ff1588b4567"]];
                     IndonesianMessage = [[NSString alloc]initWithFormat:@"%@",[messageData objectForKey:@"53672e863efa3f857f8b4ed2"]];
                     PhilippinesMessage = [[NSString alloc]initWithFormat:@"%@",[messageData objectForKey:@"539fbb273efa3fde3f8b4567"]];
-                    if ([ChineseMessage length] == 0 || ChineseMessage == nil || [ChineseMessage isEqualToString:@"(null)"]) {
-                        if ([EndMessage length] == 0 || EndMessage == nil || [EndMessage isEqualToString:@"(null)"]) {
-                            if ([ThaiMessage length] == 0 || ThaiMessage == nil || [ThaiMessage isEqualToString:@"(null)"]) {
+                     if ([EndMessage length] == 0 || EndMessage == nil || [EndMessage isEqualToString:@"(null)"]) {
+                         if ([ChineseMessage length] == 0 || ChineseMessage == nil || [ChineseMessage isEqualToString:@"(null)"]) {
+                             if ([ThaiMessage length] == 0 || ThaiMessage == nil || [ThaiMessage isEqualToString:@"(null)"]) {
                                 if ([IndonesianMessage length] == 0 || IndonesianMessage == nil || [IndonesianMessage isEqualToString:@"(null)"]) {
                                     if ([PhilippinesMessage length] == 0 || PhilippinesMessage == nil || [PhilippinesMessage isEqualToString:@"(null)"]) {
                                     }else{
@@ -708,11 +703,12 @@
                             }
                             
                         }else{
-                            GetMessage = EndMessage;
+                            
+                            GetMessage = ChineseMessage;
                         }
                         
                     }else{
-                        GetMessage = ChineseMessage;
+                        GetMessage = EndMessage;
                     }
                 }
                 
@@ -804,8 +800,23 @@
                 
                 for (int i = 0; i < [TempGetLanguageArray count]; i++) {
                     NSString *GetLanguages = [[NSString alloc]initWithFormat:@"%@",[TempGetLanguageArray objectAtIndex:i]];
+                    
+                    
                     if ([GetLanguages isEqualToString:@"530b0ab26424400c76000003"]) {
-                        
+                        ShowLanguageType = @"English";
+                    }else if ([GetLanguages isEqualToString:@"530b0aa16424400c76000002"]){
+                        ShowLanguageType = @"简体中文";
+                    }else if ([GetLanguages isEqualToString:@"544481503efa3ff1588b4567"]){
+                        ShowLanguageType = @"ภาษาไทย";
+                    }else if ([GetLanguages isEqualToString:@"53672e863efa3f857f8b4ed2"]){
+                        ShowLanguageType = @"Bahasa Indonesia";
+                    }else if ([GetLanguages isEqualToString:@"539fbb273efa3fde3f8b4567"]){
+                        ShowLanguageType = @"Filipino";
+                    }
+                    
+                    
+                    
+                    if ([GetLanguages isEqualToString:@"530b0ab26424400c76000003"]) {
                     }else{
                         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                         //  [defaults setObject:GetUserSelectLanguagesArray forKey:@"GetUserSelectLanguagesArray"];
@@ -1411,12 +1422,12 @@
             if ([GetFollowing isEqualToString:@"0"]) {
                 GetFollowing = @"1";
                 [ShowFollowButton setTitleColor:[UIColor colorWithRed:156.0f/255.0f green:204.0f/255.0f blue:101.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
-                [ShowFollowButton setTitle:LocalisedString(@"Following")  forState:UIControlStateNormal];
+                [ShowFollowButton setTitle:LocalisedString(@"Following_")  forState:UIControlStateNormal];
                 [ShowFollowButton setImage:[UIImage imageNamed:@"ProfileFollowingIcon.png"] forState:UIControlStateNormal];
                 [ShowFollowButton setBackgroundImage:[UIImage imageNamed:@"FollowingBtn.png"] forState:UIControlStateNormal];
             }else{
                 GetFollowing = @"0";
-                [ShowFollowButton setTitle:LocalisedString(@"Follow") forState:UIControlStateNormal];
+                [ShowFollowButton setTitle:LocalisedString(@"Follow_") forState:UIControlStateNormal];
                 [ShowFollowButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
                 [ShowFollowButton setImage:[UIImage imageNamed:@"ProfileFollowIcon.png"] forState:UIControlStateNormal];
                 [ShowFollowButton setBackgroundImage:[UIImage imageNamed:@"FollowBtn.png"] forState:UIControlStateNormal];
@@ -1768,13 +1779,13 @@
         ShowFollowButton = [[UIButton alloc]init];
         ShowFollowButton.frame = CGRectMake(screenWidth - 120 - 15, GetMessageHeight + 15, 120, 40);
         if ([GetFollowing isEqualToString:@"0"]) {
-            [ShowFollowButton setTitle:LocalisedString(@"Follow") forState:UIControlStateNormal];
+            [ShowFollowButton setTitle:LocalisedString(@"Follow_") forState:UIControlStateNormal];
             [ShowFollowButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             [ShowFollowButton setImage:[UIImage imageNamed:@"ProfileFollowIcon.png"] forState:UIControlStateNormal];
             [ShowFollowButton setBackgroundImage:[UIImage imageNamed:@"FollowBtn.png"] forState:UIControlStateNormal];
         }else{
             [ShowFollowButton setTitleColor:[UIColor colorWithRed:156.0f/255.0f green:204.0f/255.0f blue:101.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
-            [ShowFollowButton setTitle:LocalisedString(@"Following") forState:UIControlStateNormal];
+            [ShowFollowButton setTitle:LocalisedString(@"Following_") forState:UIControlStateNormal];
             [ShowFollowButton setImage:[UIImage imageNamed:@"ProfileFollowingIcon.png"] forState:UIControlStateNormal];
             [ShowFollowButton setBackgroundImage:[UIImage imageNamed:@"FollowingBtn.png"] forState:UIControlStateNormal];
         }

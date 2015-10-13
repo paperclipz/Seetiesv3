@@ -29,7 +29,7 @@
     ShowTitle.frame = CGRectMake(15, 20, screenWidth - 30, 44);
     BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
-    ShowTitle.text = LocalisedString(@"Nearby");
+    ShowTitle.text = LocalisedString(@"Nearby_");
     CheckLoad = NO;
     TotalPage = 1;
     CurrentPage = 0;
@@ -452,7 +452,7 @@
         
         UIImageView *ShowPin = [[UIImageView alloc]init];
         ShowPin.image = [UIImage imageNamed:@"LocationpinIcon.png"];
-        ShowPin.frame = CGRectMake(120, GetHeight + TempHeight, 18, 18);
+        ShowPin.frame = CGRectMake(115, GetHeight + TempHeight, 18, 18);
         [MainScroll addSubview:ShowPin];
         
         UILabel *ShowPlaceName = [[UILabel alloc]init];

@@ -35,6 +35,7 @@
    // DownBarView.hidden = YES;
     [self.view addSubview:DownBarView];
     ShareButton.frame = CGRectMake(screenWidth - 120, 0, 120, 50);
+    [ShareLinkButton setTitle:LocalisedString(@"Share it") forState:UIControlStateNormal];
     TranslateButton.frame = CGRectMake(10, 3, 43, 43);
     ShareLinkButton.frame = CGRectMake(61, 3, 43, 43);
     
@@ -181,6 +182,7 @@
                 Content_arrNote = [[NSMutableArray alloc]init];
                 Content_arrID_arrDistance = [[NSMutableArray alloc]init];
                 Content_arrID_arrDisplayCountryName = [[NSMutableArray alloc]init];
+                Content_arrMessage = [[NSMutableArray alloc]init];
             }else{
             }
             
@@ -202,8 +204,8 @@
                 if ([dict count] == 0 || dict == nil || [dict isKindOfClass:[NSNull class]]) {
                     [Content_arrTitle addObject:@""];
                 }else{
-                    NSString *Title1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0aa16424400c76000002"]];
-                    NSString *Title2 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0ab26424400c76000003"]];
+                    NSString *Title2 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0aa16424400c76000002"]];
+                    NSString *Title1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0ab26424400c76000003"]];
                     NSString *ThaiTitle = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"544481503efa3ff1588b4567"]];
                     NSString *IndonesianTitle = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"53672e863efa3f857f8b4ed2"]];
                     NSString *PhilippinesTitle = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"539fbb273efa3fde3f8b4567"]];
@@ -235,6 +237,54 @@
                     
                 }
             }
+            
+            NSDictionary *messageData = [GetData valueForKey:@"message"];
+            for (NSDictionary * dict in messageData) {
+                if ([dict count] == 0 || dict == nil || [dict isKindOfClass:[NSNull class]]) {
+                    [Content_arrMessage addObject:@""];
+                }else{
+                    NSString *Title2 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0aa16424400c76000002"]];
+                    NSString *Title1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0ab26424400c76000003"]];
+                    NSString *ThaiTitle = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"544481503efa3ff1588b4567"]];
+                    NSString *IndonesianTitle = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"53672e863efa3f857f8b4ed2"]];
+                    NSString *PhilippinesTitle = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"539fbb273efa3fde3f8b4567"]];
+                    if ([Title1 length] == 0 || Title1 == nil || [Title1 isEqualToString:@"(null)"]) {
+                        if ([Title2 length] == 0 || Title2 == nil || [Title2 isEqualToString:@"(null)"]) {
+                            if ([ThaiTitle length] == 0 || ThaiTitle == nil || [ThaiTitle isEqualToString:@"(null)"]) {
+                                if ([IndonesianTitle length] == 0 || IndonesianTitle == nil || [IndonesianTitle isEqualToString:@"(null)"]) {
+                                    if ([PhilippinesTitle length] == 0 || PhilippinesTitle == nil || [PhilippinesTitle isEqualToString:@"(null)"]) {
+                                        [Content_arrMessage addObject:@""];
+                                    }else{
+                                        [Content_arrMessage addObject:PhilippinesTitle];
+                                        
+                                    }
+                                }else{
+                                    [Content_arrMessage addObject:IndonesianTitle];
+                                    
+                                }
+                            }else{
+                                [Content_arrMessage addObject:ThaiTitle];
+                            }
+                        }else{
+                            [Content_arrMessage addObject:Title2];
+                        }
+                        
+                    }else{
+                        [Content_arrMessage addObject:Title1];
+                        
+                    }
+                    
+                }
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            
 
             NSDictionary *locationData = [GetData valueForKey:@"location"];
             for (NSDictionary * dict in locationData) {
@@ -723,14 +773,35 @@
         
         NSString *TempGetNote = [[NSString alloc]initWithFormat:@"%@",[Content_arrNote objectAtIndex:i]];
         if ([TempGetNote length] == 0 || [TempGetNote isEqualToString:@""] || [TempGetNote isEqualToString:@"(null)"]) {
-           
-            TempHeight += 20;
+           NSString *TempGetMessage = [[NSString alloc]initWithFormat:@"%@",[Content_arrMessage objectAtIndex:i]];
+            if ([TempGetMessage length] == 0 || [TempGetMessage isEqualToString:@""] || [TempGetMessage isEqualToString:@"(null)"]) {
+                TempHeight += 20;
+            }else{
+                UILabel *ShowNoteData = [[UILabel alloc]init];
+                ShowNoteData.frame = CGRectMake(20, TempHeight, screenWidth - 40, 40);
+                ShowNoteData.text = TempGetMessage;
+                ShowNoteData.backgroundColor = [UIColor clearColor];
+                ShowNoteData.numberOfLines = 3;
+                ShowNoteData.textAlignment = NSTextAlignmentLeft;
+                ShowNoteData.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+                ShowNoteData.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+                [ListView addSubview:ShowNoteData];
+                
+                if([ShowNoteData sizeThatFits:CGSizeMake(screenWidth - 30, CGFLOAT_MAX)].height!=ShowNoteData.frame.size.height)
+                {
+                    ShowNoteData.frame = CGRectMake(20, TempHeight, screenWidth - 40,[ShowNoteData sizeThatFits:CGSizeMake(screenWidth - 40, CGFLOAT_MAX)].height);
+                }
+                
+                TempHeight += ShowNoteData.frame.size.height + 20;
+            }
+
+            
         }else{
             UILabel *ShowNoteData = [[UILabel alloc]init];
             ShowNoteData.frame = CGRectMake(20, TempHeight, screenWidth - 40, 40);
             ShowNoteData.text = TempGetNote;
             ShowNoteData.backgroundColor = [UIColor clearColor];
-            ShowNoteData.numberOfLines = 2;
+            ShowNoteData.numberOfLines = 3;
             ShowNoteData.textAlignment = NSTextAlignmentLeft;
             ShowNoteData.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
             ShowNoteData.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];

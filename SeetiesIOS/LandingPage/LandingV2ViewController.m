@@ -1220,6 +1220,11 @@
                     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
                     [currentInstallation setDeviceTokenFromData:GetDeviceToken];
                     NSString *TempTokenString = [[NSString alloc]initWithFormat:@"seeties_%@",GetUserUID];
+                    
+                    [currentInstallation removeObject:@"all" forKey:@"all"];
+                    [currentInstallation removeObject:TempTokenString forKey:TempTokenString];
+                    [currentInstallation saveInBackground];
+                    
                     currentInstallation.channels = @[TempTokenString,@"all"];
                     [currentInstallation saveInBackground];
                     NSLog(@"work here?");

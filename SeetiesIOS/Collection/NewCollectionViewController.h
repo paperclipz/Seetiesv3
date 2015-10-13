@@ -41,8 +41,6 @@
     IBOutlet UILabel *TagTitle;
     IBOutlet UILabel *SetasPublicTitle;
     IBOutlet UILabel *SubTitleSetasPublic;
-    
-    
 }
 
 @end
