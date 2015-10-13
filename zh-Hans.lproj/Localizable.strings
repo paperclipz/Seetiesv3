@@ -496,7 +496,7 @@
 "All Activities"= "所有动态";
 "Comments"= "留言版";
 "Write a comment"= "发表留言";
-"Done!"= "发送!";
+"Done!!"= "发送!";
 "You've deleted a comment. Tap to undo."= "留言已被移除，点击还原";
 "There are no comments yet."= "此文还没有留言";
 "Be the first to comment"= "快来抢头香吧！";
@@ -731,7 +731,7 @@
 ""= "";
 ""= "";
 "Festivals"= "节庆";
-"Discover the colours of {!country}"= "探索{!country]的缤纷色彩！";
+"Discover the colours of"= "探索的缤纷色彩！";
 "Check it out"= "立即探索！";
 ""= "";
 "Trending"= "热门贴文";

@@ -213,6 +213,8 @@
     NSString *ShowLanguageType;
     
     NSMutableArray *TempGetLanguageArray;
+    
+    int CheckNearbyPost;
 }
 
 @property(nonatomic,strong)EditPostViewController* editPostViewController;

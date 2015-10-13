@@ -187,10 +187,12 @@
 //        }else{
 //            [self GetFeedDataFromServer];
 //        }
-        
-        
         [self initData];
         [self initSelfView];
+        
+        
+        
+
         
     }else{
         
@@ -219,15 +221,10 @@
     [manager stopUpdatingLocation];
 
     [self GetExternalIPAddress];
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    NSString *CheckString = [defaults objectForKey:@"TestLocalData"];
-//    if ([CheckString isEqualToString:@"Done"]) {
-//    }else{
-//        [self GetFeedDataFromServer];
-//    }
     
     [self initData];
     [self initSelfView];
+    
 }
 -(void)initData
 {

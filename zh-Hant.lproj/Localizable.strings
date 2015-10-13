@@ -501,7 +501,7 @@
 "All Activities"= "所有動態";
 "Comments"= "留言版";
 "Write a comment"= "發表留言";
-"Done!"= "發送!";
+"Done!!"= "發送!";
 "You've deleted a comment. Tap to undo."= "留言已被移除，點擊還原";
 "There are no comments yet."= "此文還沒有留言";
 "Be the first to comment"= "快來搶頭香吧！";
@@ -736,7 +736,7 @@
 ""= "";
 ""= "";
 "Festivals"= "節慶";
-"Discover the colours of {!country}"= "探索{!country]的繽紛色彩！";
+"Discover the colours of"= "探索的繽紛色彩！";
 "Check it out"= "立即探索！";
 ""= "";
 "Trending"= "熱門貼文";

@@ -82,6 +82,7 @@
     CheckLikeInitView = NO;
     CheckCommentData = 0;
     CountLanguage = 0;
+    CheckNearbyPost = 0;
     LanguageButton.hidden = YES;
     NewLanguageButton.hidden = YES;
     TestingUse = NO;
@@ -175,6 +176,7 @@
         CheckLoadDone = NO;
         CheckClickCount = 0;
         CheckLanguagedata = 0;
+        CheckNearbyPost = 0;
         if (CheckLoadDone == NO) {
             [ShowActivity startAnimating];
         }
@@ -1152,23 +1154,60 @@
         if ([statusString isEqualToString:@"ok"]) {
             NSDictionary *GetAllData = [res valueForKey:@"data"];
             NSLog(@"GetAllData is %@",GetAllData);
-            NSDictionary *GetAlltranslation = [GetAllData valueForKey:@"translation"];
+            NSDictionary *GetAlltranslation = [GetAllData valueForKey:@"translations"];
             NSLog(@"GetAlltranslation is %@",GetAlltranslation);
-            NSDictionary *GetAllENData = [GetAlltranslation valueForKey:@"530b0ab26424400c76000003"];
-            NSLog(@"GetAllENData is %@",GetAllENData);
-            
-            if ([GetAllENData count] == 0) {
-                GetENMessageString = GetMessage;
-                GetENTItleStirng = GetTitle;
-            }else{
-                GetENMessageString = [[NSString alloc]initWithFormat:@"%@",[GetAllENData objectForKey:@"message"]];
-                NSLog(@"GetENMessageString is %@",GetENMessageString);
-                
-                GetENTItleStirng = [[NSString alloc]initWithFormat:@"%@",[GetAllENData objectForKey:@"title"]];
-                NSLog(@"GetENTItleStirng is %@",GetENTItleStirng);
-            }
-            
+//            NSDictionary *GetAllENData = [GetAlltranslation valueForKey:@"530b0ab26424400c76000003"];
+//            NSLog(@"GetAllENData is %@",GetAllENData);
+//            
+//            
+//            if ([GetAllENData count] == 0) {
+//                GetENMessageString = GetMessage;
+//                GetENTItleStirng = GetTitle;
+//            }else{
+//                GetENMessageString = [[NSString alloc]initWithFormat:@"%@",[GetAllENData objectForKey:@"message"]];
+//                NSLog(@"GetENMessageString is %@",GetENMessageString);
+//                
+//                GetENTItleStirng = [[NSString alloc]initWithFormat:@"%@",[GetAllENData objectForKey:@"title"]];
+//                NSLog(@"GetENTItleStirng is %@",GetENTItleStirng);
+//            }
+            NSDictionary *EnTranslation = [GetAlltranslation valueForKey:@"530b0ab26424400c76000003"];
+            NSDictionary *CnTranslation = [GetAlltranslation valueForKey:@"530b0aa16424400c76000002"];
+            NSDictionary *ThaiTranslation = [GetAlltranslation valueForKey:@"544481503efa3ff1588b4567"];
+            NSDictionary *IndonesianTranslation = [GetAlltranslation valueForKey:@"53672e863efa3f857f8b4ed2"];
+            NSDictionary *PhilippinesTranslation = [GetAlltranslation valueForKey:@"539fbb273efa3fde3f8b4567"];
+            if ([EnTranslation count] == 0 || EnTranslation == nil) {
+                if ([CnTranslation count] == 0 || CnTranslation == nil) {
+                    if ([ThaiTranslation count] == 0 || ThaiTranslation == nil) {
+                        if ([IndonesianTranslation count] == 0 || IndonesianTranslation == nil) {
+                            if ([PhilippinesTranslation count] == 0 || PhilippinesTranslation == nil) {
+                                GetENMessageString = GetMessage;
+                                GetENTItleStirng = GetTitle;
 
+                            }else{
+                                GetENMessageString = [[NSString alloc]initWithFormat:@"%@",[PhilippinesTranslation objectForKey:@"message"]];
+                                GetENTItleStirng = [[NSString alloc]initWithFormat:@"%@",[PhilippinesTranslation objectForKey:@"title"]];
+                                
+                            }
+                        }else{
+                            GetENMessageString = [[NSString alloc]initWithFormat:@"%@",[IndonesianTranslation objectForKey:@"message"]];
+                            GetENTItleStirng = [[NSString alloc]initWithFormat:@"%@",[IndonesianTranslation objectForKey:@"title"]];
+                            
+                        }
+                    }else{
+                        GetENMessageString = [[NSString alloc]initWithFormat:@"%@",[ThaiTranslation objectForKey:@"message"]];
+                        GetENTItleStirng = [[NSString alloc]initWithFormat:@"%@",[ThaiTranslation objectForKey:@"title"]];
+                    }
+                }else{
+                    GetENMessageString = [[NSString alloc]initWithFormat:@"%@",[CnTranslation objectForKey:@"message"]];
+                    GetENTItleStirng = [[NSString alloc]initWithFormat:@"%@",[CnTranslation objectForKey:@"title"]];
+                }
+                
+            }else{
+                GetENMessageString = [[NSString alloc]initWithFormat:@"%@",[EnTranslation objectForKey:@"message"]];
+                GetENTItleStirng = [[NSString alloc]initWithFormat:@"%@",[EnTranslation objectForKey:@"title"]];
+
+                
+            }
             
             CheckENTranslation = @"1";
             
@@ -1395,7 +1434,7 @@
                 }
                 
                 NSLog(@"PlaceNameArray_Nearby is %@",PlaceNameArray_Nearby);
-                
+                CheckNearbyPost = 1;
                 [self InitNearbyPostView];
             
             }
@@ -2412,7 +2451,11 @@
     GetFinalHeight = 0;
     GetFinalHeight = GetMessageHeight;
     
-    [self GetNearbyPostData];
+    if (CheckNearbyPost == 0) {
+        [self GetNearbyPostData];
+    }
+    
+    
    // [self InitNearbyPostView];
 
 }
@@ -2612,6 +2655,7 @@
     TestingUse = NO;
     CheckLoadDone = NO;
     CheckClickCount = 0;
+    CheckNearbyPost = 0;
     [CommentIDArray removeAllObjects];
     [MessageArray removeAllObjects];
     [PostIDArray removeAllObjects];
@@ -2659,6 +2703,7 @@
     TestingUse = NO;
     CheckLoadDone = NO;
     CheckClickCount = 0;
+    CheckNearbyPost = 0;
     
     [CommentIDArray removeAllObjects];
     [MessageArray removeAllObjects];
@@ -3620,8 +3665,27 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *GetSystemLanguageCheck = [[NSString alloc]initWithFormat:@"%@",[defaults objectForKey:@"UserData_SystemLanguage"]];
     
-    NSString *FullString = [[NSString alloc]initWithFormat:@"%@post/%@/translate?token=%@",DataUrl.UserWallpaper_Url,GetPostID,GetExpertToken];
+    NSString *GetSystemLanguageCode;
+    
+    if ([GetSystemLanguageCheck isEqualToString:@"English"]) {
+        GetSystemLanguageCode = @"530b0ab26424400c76000003";
+    }else if([GetSystemLanguageCheck isEqualToString:@"繁體中文"] || [GetSystemLanguageCheck isEqualToString:@"Traditional Chinese"]){
+        GetSystemLanguageCode = @"530b0aa16424400c76000002";
+    }else if([GetSystemLanguageCheck isEqualToString:@"简体中文"] || [GetSystemLanguageCheck isEqualToString:@"Simplified Chinese"] || [GetSystemLanguageCheck isEqualToString:@"中文"]){
+        GetSystemLanguageCode = @"530b0aa16424400c76000002";
+    }else if([GetSystemLanguageCheck isEqualToString:@"Bahasa Indonesia"]){
+        GetSystemLanguageCode = @"53672e863efa3f857f8b4ed2";
+    }else if([GetSystemLanguageCheck isEqualToString:@"Filipino"]){
+        GetSystemLanguageCode = @"539fbb273efa3fde3f8b4567";
+    }else if([GetSystemLanguageCheck isEqualToString:@"ภาษาไทย"] || [GetSystemLanguageCheck isEqualToString:@"Thai"]){
+        GetSystemLanguageCode = @"544481503efa3ff1588b4567";
+    }else{
+        GetSystemLanguageCode = @"530b0ab26424400c76000003";
+    }
+    
+    NSString *FullString = [[NSString alloc]initWithFormat:@"%@post/%@/translate?token=%@&translate_language_code=%@",DataUrl.UserWallpaper_Url,GetPostID,GetExpertToken,GetSystemLanguageCode];
     
     
     NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];

@@ -32,7 +32,7 @@
     BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
     
 
-    [sendButton setTitle:LocalisedString(@"Done!") forState:UIControlStateNormal];
+    [sendButton setTitle:LocalisedString(@"Done!!") forState:UIControlStateNormal];
 
     
     //ShowNoDataView.frame = CGRectMake(0, 0, screenWidth, [UIScreen mainScreen].bounds.size.height);

@@ -493,7 +493,7 @@
 "All Activities"= "Semua aktifitas";
 "Comments"= "Komentar";
 "Write a comment"= "Tambahkan komentar";
-"Done!"= "Selesai";
+"Done!!"= "Selesai";
 "You've deleted a comment. Tap to undo."= "Kamu telah menghapus komen. Tap untuk ulang";
 "There are no comments yet."= "Belum ada komen lagi..";
 "Be the first to comment"= "Jadilah komentar pertama ";
@@ -728,7 +728,7 @@
 ""= "";
 ""= "";
 "Festivals"= "Perayaan";
-"Discover the colours of {!country}"= "Temukan warna {!country}";
+"Discover the colours of"= "Temukan warna";
 "Check it out"= "Coba lihat";
 ""= "";
 "Trending"= "Tren sekarang";

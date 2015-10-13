@@ -35,7 +35,7 @@
    // DownBarView.hidden = YES;
     [self.view addSubview:DownBarView];
     ShareButton.frame = CGRectMake(screenWidth - 120, 0, 120, 50);
-    [ShareLinkButton setTitle:LocalisedString(@"Share it") forState:UIControlStateNormal];
+    [ShareButton setTitle:LocalisedString(@"Share it") forState:UIControlStateNormal];
     TranslateButton.frame = CGRectMake(10, 3, 43, 43);
     ShareLinkButton.frame = CGRectMake(61, 3, 43, 43);
     
@@ -384,6 +384,8 @@
                 [self InitView];
                 
             }else{
+                GridView.hidden = YES;
+                CheckClick = 0;
                 [self InitContentListView];
             }
             

@@ -1221,8 +1221,8 @@
                     [currentInstallation setDeviceTokenFromData:GetDeviceToken];
                     NSString *TempTokenString = [[NSString alloc]initWithFormat:@"seeties_%@",GetUserUID];
                     
-                    [currentInstallation removeObject:@"all" forKey:@"all"];
-                    [currentInstallation removeObject:TempTokenString forKey:TempTokenString];
+                    [currentInstallation removeObject:@"all" forKey:@"channels"];
+                    [currentInstallation removeObject:TempTokenString forKey:@"channels"];
                     [currentInstallation saveInBackground];
                     
                     currentInstallation.channels = @[TempTokenString,@"all"];

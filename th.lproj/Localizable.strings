@@ -495,7 +495,7 @@
 "All Activities"= "กิจกรรมทั้งหมด";
 "Comments"= "เขียนคอมเมนท์";
 "Write a comment"= "เขียนคอมเมนท์";
-"Done!"= "เรียบร้อย";
+"Done!!"= "เรียบร้อย";
 "You've deleted a comment. Tap to undo."= "คุณลบคอมเมนท์แล้ว แตะเพื่อยกเลิก";
 "There are no comments yet."= "ยังไม่มีคอมเมนท์";
 "Be the first to comment"= "คอมเมนท์เป็นคนแรก";
@@ -730,7 +730,7 @@
 ""= "";
 ""= "";
 "Festivals"= "Festivals";
-"Discover the colours of {!country}"= "สีสันเทศกาลไม่มีเบื่อใน {!country}";
+"Discover the colours of"= "สีสันเทศกาลไม่มีเบื่อใน";
 "Check it out"= "ไปกันเลย";
 ""= "";
 "Trending"= "มาแรง";

@@ -206,8 +206,8 @@
 //
 //            // When users indicate they are no longer Giants fans, we unsubscribe them.
             PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-            [currentInstallation removeObject:@"all" forKey:@"all"];
-            [currentInstallation removeObject:TempTokenString forKey:TempTokenString];
+            [currentInstallation removeObject:@"all" forKey:@"channels"];
+            [currentInstallation removeObject:TempTokenString forKey:@"channels"];
             [currentInstallation saveInBackground];
             
 
