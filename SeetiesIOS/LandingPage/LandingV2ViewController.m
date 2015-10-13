@@ -497,7 +497,7 @@
 
 -(ProfileViewController*)profileViewController
 {
-    if (_profileViewController) {
+    if (!_profileViewController) {
         _profileViewController = [ProfileViewController new];
     }
     
@@ -583,7 +583,7 @@
     if(!_leveyTabBarController)
     {
         
-         NSArray *arrViewControllers  = [NSArray arrayWithObjects:self.feedViewController.navController,self.explore2ViewController.navController,self.recommendationViewController.navController,self.notificationViewController.navController,self.userProfilePageViewController.navController, nil];
+         NSArray *arrViewControllers  = [NSArray arrayWithObjects:self.feedViewController.navController,self.explore2ViewController.navController,self.recommendationViewController.navController,self.notificationViewController.navController,self.profileViewController.navController, nil];
         _leveyTabBarController = [[LeveyTabBarController alloc] initWithViewControllers:arrViewControllers imageArray:[self arrTabImages]];
         [_leveyTabBarController.tabBar setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
         [_leveyTabBarController setTabBarTransparent:YES];

@@ -2689,7 +2689,7 @@
             NSLog(@"Server Error.");
             UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:CustomLocalisedString(@"SomethingError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             ShowAlert.tag = 1000;
-            [ShowAlert show];
+          //  [ShowAlert show];
         }else{
             NSString *StatusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
             if ([StatusString isEqualToString:@"ok"]) {
@@ -3367,7 +3367,7 @@
                 
                 UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:CustomLocalisedString(@"SomethingError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 ShowAlert.tag = 1000;
-                [ShowAlert show];
+              //  [ShowAlert show];
                 
             
             }

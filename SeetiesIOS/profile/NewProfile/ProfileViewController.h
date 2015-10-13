@@ -7,7 +7,9 @@
 //
 
 #import "BaseViewController.h"
+#import "PcollectionTableViewController.h"
 
-@interface ProfileViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate>
+@interface ProfileViewController : BaseViewController <UIScrollViewDelegate>
 
+@property(nonatomic,strong)PcollectionTableViewController* collectionTBLVC;
 @end

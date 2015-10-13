@@ -33,6 +33,15 @@ typedef enum
     
 } PlaceViewType;
 
+typedef enum ScrollDirection {
+    ScrollDirectionNone,
+    ScrollDirectionRight,
+    ScrollDirectionLeft,
+    ScrollDirectionUp,
+    ScrollDirectionDown,
+    ScrollDirectionCrazy,
+} ScrollDirection;
+
 +(BOOL)isLogin;
 +(void)setIsLogin;
 +(NSString*)getAppToken;

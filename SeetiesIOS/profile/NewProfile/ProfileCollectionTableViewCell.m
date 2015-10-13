@@ -7,6 +7,13 @@
 //
 
 #import "ProfileCollectionTableViewCell.h"
+#import "ProfileImageCollectionViewCell.h"
+
+
+@interface ProfileCollectionTableViewCell()
+@property (weak, nonatomic) IBOutlet UICollectionView *ibCollectionView;
+
+@end
 
 @implementation ProfileCollectionTableViewCell
 
@@ -17,5 +24,31 @@
     // Drawing code
 }
 */
+
+-(void)initSelfView
+{
+    [self initCollectionViewWithDelegate:self];
+}
+
+-(void)initCollectionViewWithDelegate:(id)delegate
+{
+    self.ibCollectionView.delegate = delegate;
+    self.ibCollectionView.dataSource = delegate;
+    [self.ibCollectionView registerClass:[ProfileImageCollectionViewCell class] forCellWithReuseIdentifier:@"ProfileImageCollectionViewCell"];
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return 4;
+}
+
+// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    ProfileImageCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ProfileImageCollectionViewCell" forIndexPath:indexPath];
+    
+    return cell;
+    
+}
 
 @end

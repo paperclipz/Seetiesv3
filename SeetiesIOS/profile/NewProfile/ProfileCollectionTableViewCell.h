@@ -8,6 +8,6 @@
 
 #import "CommonTableViewCell.h"
 
-@interface ProfileCollectionTableViewCell : CommonTableViewCell
+@interface ProfileCollectionTableViewCell : CommonTableViewCell <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @end
