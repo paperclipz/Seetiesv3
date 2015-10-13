@@ -126,6 +126,8 @@
         
         [self.ibTableView beginUpdates];
         
+        [self.collectionModel.deleted_posts addObject:self.arrList[indexPath.row]];
+
         [self.arrList removeObjectAtIndex:indexPath.row];
         
         [self.ibTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:YES];
@@ -286,7 +288,15 @@
 
                            };
     
+    
     NSMutableDictionary* finalDict = [[NSMutableDictionary alloc]initWithDictionary:dict];
+
+    for (int i = 0; i<self.collectionModel.deleted_posts.count; i++) {
+
+        PostModel* tempPostModel = self.collectionModel.deleted_posts[i];
+        NSDictionary* tempDict = @{[NSString stringWithFormat:@"delete_posts[%d]",i]:tempPostModel.post_id};
+        [finalDict addEntriesFromDictionary:tempDict];
+    }
     
     for (int i = 0; i<self.arrList.count; i++) {
         
