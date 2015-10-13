@@ -407,6 +407,8 @@
 		8AEB5F5B1BC38FF200A804B4 /* TagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AEB5F5A1BC38FF200A804B4 /* TagModel.m */; settings = {ASSET_TAGS = (); }; };
 		8AF0EF7B1BC7D6EF00B5D8D3 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF0EF791BC7D6EF00B5D8D3 /* ProfileViewController.m */; settings = {ASSET_TAGS = (); }; };
 		8AF0EF7C1BC7D6EF00B5D8D3 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF0EF7A1BC7D6EF00B5D8D3 /* ProfileViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		8AF0EF801BC7DD4600B5D8D3 /* ProfileCollectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF0EF7F1BC7DD4600B5D8D3 /* ProfileCollectionTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		8AF0EF821BC7DD5800B5D8D3 /* ProfileCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF0EF811BC7DD5800B5D8D3 /* ProfileCollectionTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
 		8AF2C2791B9EA3B800B0A7F1 /* NSDictionary+STHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF2C2761B9EA3B800B0A7F1 /* NSDictionary+STHelper.m */; };
 		8AF2C27A1B9EA3B800B0A7F1 /* NSMutableDictionary+STHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF2C2781B9EA3B800B0A7F1 /* NSMutableDictionary+STHelper.m */; };
 		8AF2C27E1BA13D1400B0A7F1 /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF2C27D1BA13D1400B0A7F1 /* AFNetworkActivityLogger.m */; };
@@ -1584,6 +1586,9 @@
 		8AF0EF781BC7D6EF00B5D8D3 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		8AF0EF791BC7D6EF00B5D8D3 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		8AF0EF7A1BC7D6EF00B5D8D3 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
+		8AF0EF7E1BC7DD4600B5D8D3 /* ProfileCollectionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileCollectionTableViewCell.h; sourceTree = "<group>"; };
+		8AF0EF7F1BC7DD4600B5D8D3 /* ProfileCollectionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileCollectionTableViewCell.m; sourceTree = "<group>"; };
+		8AF0EF811BC7DD5800B5D8D3 /* ProfileCollectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileCollectionTableViewCell.xib; sourceTree = "<group>"; };
 		8AF2C2741B9EA3B800B0A7F1 /* NSDictionary+STHelper-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+STHelper-Prefix.pch"; sourceTree = "<group>"; };
 		8AF2C2751B9EA3B800B0A7F1 /* NSDictionary+STHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+STHelper.h"; sourceTree = "<group>"; };
 		8AF2C2761B9EA3B800B0A7F1 /* NSDictionary+STHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+STHelper.m"; sourceTree = "<group>"; };
@@ -3551,11 +3556,22 @@
 		8AF0EF771BC7D6CD00B5D8D3 /* NewProfile */ = {
 			isa = PBXGroup;
 			children = (
+				8AF0EF7D1BC7DD1600B5D8D3 /* Extra */,
 				8AF0EF781BC7D6EF00B5D8D3 /* ProfileViewController.h */,
 				8AF0EF791BC7D6EF00B5D8D3 /* ProfileViewController.m */,
 				8AF0EF7A1BC7D6EF00B5D8D3 /* ProfileViewController.xib */,
 			);
 			path = NewProfile;
+			sourceTree = "<group>";
+		};
+		8AF0EF7D1BC7DD1600B5D8D3 /* Extra */ = {
+			isa = PBXGroup;
+			children = (
+				8AF0EF7E1BC7DD4600B5D8D3 /* ProfileCollectionTableViewCell.h */,
+				8AF0EF7F1BC7DD4600B5D8D3 /* ProfileCollectionTableViewCell.m */,
+				8AF0EF811BC7DD5800B5D8D3 /* ProfileCollectionTableViewCell.xib */,
+			);
+			name = Extra;
 			sourceTree = "<group>";
 		};
 		8AF2C2731B9EA3B800B0A7F1 /* NSDictionary+STHelper */ = {
@@ -4888,6 +4904,7 @@
 				8AF0EF7C1BC7D6EF00B5D8D3 /* ProfileViewController.xib in Resources */,
 				8AF3A08C1BC67E88009C7F26 /* ShareMessangerIcon@2x.png in Resources */,
 				8AF39F1B1BC67E88009C7F26 /* ShareBase@2x.png in Resources */,
+				8AF0EF821BC7DD5800B5D8D3 /* ProfileCollectionTableViewCell.xib in Resources */,
 				8AD6C29C1B7072FB0040437E /* PublishMainViewController.xib in Resources */,
 				8AF3A0481BC67E88009C7F26 /* AddPostBtn@2x.png in Resources */,
 				8AF3A0B61BC67E88009C7F26 /* WalkthroughPostDetails.png in Resources */,
@@ -5179,6 +5196,7 @@
 				8A3408F71B86FC99009B66C3 /* UITableViewController+BMXSwipableCellSupport.m in Sources */,
 				8AF2C27E1BA13D1400B0A7F1 /* AFNetworkActivityLogger.m in Sources */,
 				8AD6C2891B7072FB0040437E /* ConfirmPlaceViewController.m in Sources */,
+				8AF0EF801BC7DD4600B5D8D3 /* ProfileCollectionTableViewCell.m in Sources */,
 				8A9F25D91B8EFD2200BB13BA /* EditHourModel.m in Sources */,
 				8AD6C8761B7495B60040437E /* BaseViewController.m in Sources */,
 				8AD6C1041B706CF30040437E /* EditInterestV2ViewController.m in Sources */,
