@@ -54,15 +54,16 @@
 //    }];
     
     [self initTableViewWithDelegate:self];
-    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://i.ytimg.com/vi/tjW1mKwNUSo/maxresdefault.jpg"]]];
 
    // [self.ibTableView addParallaxWithView:self.ibTopContentView andHeight:160];
     
    // [self.ibTableView.parallaxView setDelegate:self];
-    
     [self.ibTopContentView adjustToScreenWidth];
-    [self.ibTableView addParallaxWithImage:image andHeight:212];
-    //[self.ibTableView.parallaxView addSubview:self.ibTopContentView];
+
+    UIImageView* imageView = [[UIImageView alloc]initWithFrame:self.ibTopContentView.frame];
+    [imageView sd_setImageWithURL:[NSURL URLWithString:@"http://i.ytimg.com/vi/tjW1mKwNUSo/maxresdefault.jpg"]];
+    [self.ibTableView addParallaxWithView:imageView andHeight:212];
+    [imageView addSubview:self.ibTopContentView];
     self.ibTableView.parallaxView.shadowView.hidden = YES;
 
 }
