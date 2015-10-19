@@ -8,6 +8,7 @@
 
 #import "ProfileViewController.h"
 #import "UIImage+FX.h"
+#import "UIScrollView+APParallaxHeader.h"
 
 //#import "ParallaxHeaderView.h"
 
@@ -55,7 +56,9 @@
         
     }];
     
-
+    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://i.ytimg.com/vi/tjW1mKwNUSo/maxresdefault.jpg"]]];
+    
+    [self.ibScrollView addParallaxWithImage:image andHeight:200];
 }
 
 @end
