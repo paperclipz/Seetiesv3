@@ -7,7 +7,8 @@
 //
 
 #import "BaseViewController.h"
+#import "TLTagsControl.h"
 
-@interface ProfileViewController : BaseViewController
+@interface ProfileViewController : BaseViewController<TLTagsControlDelegate>
 
 @end

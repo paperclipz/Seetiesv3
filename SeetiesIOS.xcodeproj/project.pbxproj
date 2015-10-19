@@ -158,6 +158,10 @@
 		8A83CC9E1BD4E49300C8B52C /* bgFeed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A83CC8E1BD4E49300C8B52C /* bgFeed.png */; settings = {ASSET_TAGS = (); }; };
 		8A83CC9F1BD4E49300C8B52C /* bgProfile.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A83CC8F1BD4E49300C8B52C /* bgProfile.png */; settings = {ASSET_TAGS = (); }; };
 		8A83CCA01BD4E49300C8B52C /* launch621x1104@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A83CC901BD4E49300C8B52C /* launch621x1104@2x.png */; settings = {ASSET_TAGS = (); }; };
+		8A83CCAC1BD50C5D00C8B52C /* ProfileCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A83CCAA1BD50C5D00C8B52C /* ProfileCollectionViewController.m */; settings = {ASSET_TAGS = (); }; };
+		8A83CCAD1BD50C5D00C8B52C /* ProfileCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A83CCAB1BD50C5D00C8B52C /* ProfileCollectionViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		8A83CCB31BD5108200C8B52C /* ProfileCollectionPageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A83CCB21BD5108200C8B52C /* ProfileCollectionPageTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		8A83CCB51BD5109000C8B52C /* ProfileCollectionPageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A83CCB41BD5109000C8B52C /* ProfileCollectionPageTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
 		8A8475251BC5274C006DD614 /* UILabel+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A8475241BC5274C006DD614 /* UILabel+Extra.m */; settings = {ASSET_TAGS = (); }; };
 		8A84752B1BC52C0B006DD614 /* UITextField+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A84752A1BC52C0B006DD614 /* UITextField+Extra.m */; settings = {ASSET_TAGS = (); }; };
 		8A84752E1BC52C50006DD614 /* UIButton+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A84752D1BC52C50006DD614 /* UIButton+Extra.m */; settings = {ASSET_TAGS = (); }; };
@@ -1168,6 +1172,12 @@
 		8A83CC8E1BD4E49300C8B52C /* bgFeed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bgFeed.png; sourceTree = "<group>"; };
 		8A83CC8F1BD4E49300C8B52C /* bgProfile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bgProfile.png; sourceTree = "<group>"; };
 		8A83CC901BD4E49300C8B52C /* launch621x1104@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launch621x1104@2x.png"; sourceTree = "<group>"; };
+		8A83CCA91BD50C5D00C8B52C /* ProfileCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileCollectionViewController.h; sourceTree = "<group>"; };
+		8A83CCAA1BD50C5D00C8B52C /* ProfileCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileCollectionViewController.m; sourceTree = "<group>"; };
+		8A83CCAB1BD50C5D00C8B52C /* ProfileCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileCollectionViewController.xib; sourceTree = "<group>"; };
+		8A83CCB11BD5108200C8B52C /* ProfileCollectionPageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileCollectionPageTableViewCell.h; sourceTree = "<group>"; };
+		8A83CCB21BD5108200C8B52C /* ProfileCollectionPageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileCollectionPageTableViewCell.m; sourceTree = "<group>"; };
+		8A83CCB41BD5109000C8B52C /* ProfileCollectionPageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileCollectionPageTableViewCell.xib; sourceTree = "<group>"; };
 		8A8475231BC5274C006DD614 /* UILabel+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Extra.h"; sourceTree = "<group>"; };
 		8A8475241BC5274C006DD614 /* UILabel+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Extra.m"; sourceTree = "<group>"; };
 		8A8475291BC52C0B006DD614 /* UITextField+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+Extra.h"; sourceTree = "<group>"; };
@@ -2711,6 +2721,27 @@
 			path = "5.5 inch";
 			sourceTree = "<group>";
 		};
+		8A83CCAF1BD50FFB00C8B52C /* ProfileCollectionExtra */ = {
+			isa = PBXGroup;
+			children = (
+				8A83CCB11BD5108200C8B52C /* ProfileCollectionPageTableViewCell.h */,
+				8A83CCB21BD5108200C8B52C /* ProfileCollectionPageTableViewCell.m */,
+				8A83CCB41BD5109000C8B52C /* ProfileCollectionPageTableViewCell.xib */,
+			);
+			name = ProfileCollectionExtra;
+			sourceTree = "<group>";
+		};
+		8A83CCB01BD5100500C8B52C /* ProfileCollection */ = {
+			isa = PBXGroup;
+			children = (
+				8A83CCA91BD50C5D00C8B52C /* ProfileCollectionViewController.h */,
+				8A83CCAA1BD50C5D00C8B52C /* ProfileCollectionViewController.m */,
+				8A83CCAB1BD50C5D00C8B52C /* ProfileCollectionViewController.xib */,
+				8A83CCAF1BD50FFB00C8B52C /* ProfileCollectionExtra */,
+			);
+			name = ProfileCollection;
+			sourceTree = "<group>";
+		};
 		8A8475321BC52D0D006DD614 /* SystemOverride */ = {
 			isa = PBXGroup;
 			children = (
@@ -3696,6 +3727,7 @@
 		8AF0EF771BC7D6CD00B5D8D3 /* NewProfile */ = {
 			isa = PBXGroup;
 			children = (
+				8A83CCB01BD5100500C8B52C /* ProfileCollection */,
 				8AF0EF7D1BC7DD1600B5D8D3 /* Extra */,
 				8AF0EF781BC7D6EF00B5D8D3 /* ProfileViewController.h */,
 				8AF0EF791BC7D6EF00B5D8D3 /* ProfileViewController.m */,
@@ -4632,6 +4664,7 @@
 				8AF3A0471BC67E88009C7F26 /* TranslateArrow@3x.png in Resources */,
 				8AF3A0591BC67E88009C7F26 /* ProfileFollowIcon@3x.png in Resources */,
 				8AF39FE01BC67E88009C7F26 /* ConnectWithInstagram@2x.png in Resources */,
+				8A83CCAD1BD50C5D00C8B52C /* ProfileCollectionViewController.xib in Resources */,
 				8AD6C11B1B706CF30040437E /* poweredByFoursquare_gray@2x.png in Resources */,
 				8A83CC251BD4DBA800C8B52C /* Icon-60@2x.png in Resources */,
 				8AD6C0C11B706CF30040437E /* FeedV2ViewController.xib in Resources */,
@@ -4978,6 +5011,7 @@
 				8AF39FA11BC67E88009C7F26 /* FollowingIcon@2x.png in Resources */,
 				8AF39FC11BC67E88009C7F26 /* AbroadIcon@3x.png in Resources */,
 				8AF39F471BC67E88009C7F26 /* StarRecommendationBtn@2x.png in Resources */,
+				8A83CCB51BD5109000C8B52C /* ProfileCollectionPageTableViewCell.xib in Resources */,
 				8AF3A0831BC67E88009C7F26 /* ShareCopyLinkIcon@3x.png in Resources */,
 				8AF39F401BC67E88009C7F26 /* CloseIcon@3x.png in Resources */,
 				8AF39F351BC67E88009C7F26 /* DeleteIcon@2x.png in Resources */,
@@ -5337,6 +5371,7 @@
 				8A2E2C4C1B8184C90010895E /* FourSquareModel.m in Sources */,
 				8A9F25C61B8ED33000BB13BA /* BKCurrencyTextField.m in Sources */,
 				8AD6C1111B706CF30040437E /* CHANGELOG.md in Sources */,
+				8A83CCAC1BD50C5D00C8B52C /* ProfileCollectionViewController.m in Sources */,
 				8AD6C86C1B7460DB0040437E /* NSDate+RFC1123.m in Sources */,
 				0BBFE08C1B9FCC00004B17E9 /* EditProfileViewController.m in Sources */,
 				8A34094A1B8AD06A009B66C3 /* UIView+Screenshot.m in Sources */,
@@ -5450,6 +5485,7 @@
 				8AD6C32C1B707D120040437E /* PECropView.m in Sources */,
 				8AB813C31BC23ECE002F5F06 /* UploadManager.m in Sources */,
 				8A7B9CE01BBD387000D7F604 /* EnbleLocationViewController.m in Sources */,
+				8A83CCB31BD5108200C8B52C /* ProfileCollectionPageTableViewCell.m in Sources */,
 				8A3757DB1B85B606009DB7D4 /* AddNewPlaceSubView.m in Sources */,
 				8AD6BA601B705DF20040437E /* main.m in Sources */,
 				8A3409481B8AD06A009B66C3 /* UIImage+Saving.m in Sources */,

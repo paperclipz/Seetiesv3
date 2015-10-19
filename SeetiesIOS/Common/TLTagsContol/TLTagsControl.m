@@ -13,8 +13,7 @@
 @end
 
 @implementation TLTagsControl {
-    UITextField                 *tagInputField_;
-    NSMutableArray              *tagSubviews_;
+  
 }
 
 @synthesize tapDelegate;
@@ -286,6 +285,107 @@
     
     [self setNeedsLayout];
 }
+
+- (void)reloadTagSubviewsCustom {
+    
+    tagInputField_.hidden = YES;
+    for (UIView *view in tagSubviews_) {
+        [view removeFromSuperview];
+    }
+    
+    [tagSubviews_ removeAllObjects];
+    
+    UIColor *tagBackgrounColor = _tagsBackgroundColor != nil ? _tagsBackgroundColor : [UIColor colorWithRed:0.9
+                                                                                                      green:0.91
+                                                                                                       blue:0.925
+                                                                                                      alpha:1];
+    UIColor *tagTextColor = _tagsTextColor != nil ? _tagsTextColor : [UIColor darkGrayColor];
+    UIColor *tagDeleteButtonColor = _tagsDeleteButtonColor != nil ? _tagsDeleteButtonColor : [UIColor blackColor];
+    
+    
+    
+    for (NSString *tag in _tags) {
+        float width = [tag boundingRectWithSize:CGSizeMake(3000,tagInputField_.frame.size.height)
+                                        options:NSStringDrawingUsesLineFragmentOrigin
+                                     attributes:@{NSFontAttributeName:tagInputField_.font}
+                                        context:nil].size.width;
+        
+        UIView *tagView = [[UIView alloc] initWithFrame:tagInputField_.frame];
+        CGRect tagFrame = tagView.frame;
+        tagView.layer.cornerRadius = 5;
+        tagFrame.origin.y = tagInputField_.frame.origin.y;
+        tagView.backgroundColor = tagBackgrounColor;
+        
+        UILabel *tagLabel = [[UILabel alloc] init];
+        CGRect labelFrame = tagLabel.frame;
+        tagLabel.font = tagInputField_.font;
+        labelFrame.size.width = width + 16;
+        labelFrame.size.height = tagInputField_.frame.size.height;
+        tagLabel.text = tag;
+        tagLabel.textColor = tagTextColor;
+        tagLabel.textAlignment = NSTextAlignmentCenter;
+        tagLabel.clipsToBounds = YES;
+        tagLabel.layer.cornerRadius = 5;
+        
+        if (_mode == TLTagsControlModeEdit) {
+            UIButton *deleteTagButton = [[UIButton alloc] initWithFrame:tagInputField_.frame];
+            CGRect buttonFrame = deleteTagButton.frame;
+            [deleteTagButton.titleLabel setFont:tagInputField_.font];
+            [deleteTagButton addTarget:self action:@selector(deleteTagButton:) forControlEvents:UIControlEventTouchUpInside];
+            buttonFrame.size.width = deleteTagButton.frame.size.height;
+            buttonFrame.size.height = tagInputField_.frame.size.height;
+            [deleteTagButton setTag:tagSubviews_.count];
+            [deleteTagButton setTitle:@"✕" forState:UIControlStateNormal];
+            [deleteTagButton setTitleColor:tagDeleteButtonColor forState:UIControlStateNormal];
+            buttonFrame.origin.y = 0;
+            buttonFrame.origin.x = labelFrame.size.width;
+            
+            deleteTagButton.frame = buttonFrame;
+            tagFrame.size.width = labelFrame.size.width;
+         //   [tagView addSubview:deleteTagButton];
+            labelFrame.origin.x = 0;
+        } else {
+            tagFrame.size.width = labelFrame.size.width + 5;
+            labelFrame.origin.x = (tagFrame.size.width - labelFrame.size.width) * 0.5;
+        }
+        
+        [tagView addSubview:tagLabel];
+        labelFrame.origin.y = 0;
+        UIView *lastView = tagSubviews_.lastObject;
+        
+        if (lastView != nil) {
+            tagFrame.origin.x = lastView.frame.origin.x + lastView.frame.size.width + 4;
+        }
+        
+        tagLabel.frame = labelFrame;
+        tagView.frame = tagFrame;
+        [tagSubviews_ addObject:tagView];
+        [self addSubview:tagView];
+    }
+    
+    
+    if (_mode == TLTagsControlModeEdit) {
+//        if (tagInputField_.superview == nil) {
+//         //   [self addSubview:tagInputField_];
+//        }
+        CGRect frame = tagInputField_.frame;
+        if (tagSubviews_.count == 0) {
+            frame.origin.x = 7;
+        } else {
+            UIView *view = tagSubviews_.lastObject;
+            frame.origin.x = view.frame.origin.x + view.frame.size.width + 4;
+        }
+        tagInputField_.frame = frame;
+        
+    } else {
+        if (tagInputField_.superview != nil) {
+            [tagInputField_ removeFromSuperview];
+        }
+    }
+    
+    [self setNeedsLayout];
+}
+
 
 #pragma mark - buttons handlers
 
