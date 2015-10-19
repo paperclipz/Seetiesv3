@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface ProfileViewController : BaseViewController <UITableViewDelegate,UITableViewDataSource>
+@interface ProfileViewController : BaseViewController
 
 @end
