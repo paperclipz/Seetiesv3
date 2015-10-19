@@ -52,7 +52,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>2.0.0.31</string>
+	<string>2.0.0.32</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -88,8 +88,19 @@
 		<string>ProximaNovaSoft-Regular.ttf</string>
 		<string>ProximaNovaSoft-Bold.ttf</string>
 	</array>
-	<key>UILaunchStoryboardName</key>
-	<string>LandingV2ViewController</string>
+	<key>UILaunchImages</key>
+	<array>
+		<dict>
+			<key>UILaunchImageMinimumOSVersion</key>
+			<string>7.0</string>
+			<key>UILaunchImageName</key>
+			<string>launch</string>
+			<key>UILaunchImageOrientation</key>
+			<string>Portrait</string>
+			<key>UILaunchImageSize</key>
+			<string>{320, 568}</string>
+		</dict>
+	</array>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UIRequiredDeviceCapabilities</key>

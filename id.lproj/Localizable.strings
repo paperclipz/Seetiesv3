@@ -477,8 +477,8 @@
 "No thanks!"= "Tidak terimakasih!";
 "Language translations use Google Translate and may not be completely accurate."= "Bahasa ini di translate menggunakan Google Translate, mungkin kurang akurat ";
 ""= "";
-"Follow"= "Ikut";
-"Following"= "Mengikuti";
+"Follow_"= "Ikut";
+"Following_"= "Mengikuti";
 "See all activities"= "Liat semua aktifitas";
 ""= "";
 "About the place"= "Tentang lokasi";
@@ -493,13 +493,13 @@
 "All Activities"= "Semua aktifitas";
 "Comments"= "Komentar";
 "Write a comment"= "Tambahkan komentar";
-"Done!"= "Selesai";
+"Done!!"= "Selesai";
 "You've deleted a comment. Tap to undo."= "Kamu telah menghapus komen. Tap untuk ulang";
 "There are no comments yet."= "Belum ada komen lagi..";
 "Be the first to comment"= "Jadilah komentar pertama ";
 "Write a comment"= "Tambahkan komentar";
 "Collections"= "Koleksi";
-"{!username} collected this into {!collection name}"= "{namapengguna} koleksikan kedalam {nama koleksi}";
+"collected this into"= "koleksikan kedalam";
 "Aww. No one's collected this."= "Aww. Tidak ada yang mengkoleksi ini";
 "Likes"= "Suka";
 "Be the first to like"= "Jadilah Like yang pertama";
@@ -534,7 +534,7 @@
 "Let's get going!"= "Ayo di mulai!";
 ""= "";
 ""= "";
-"Nearby"= "Sekitaran kamu";
+"Nearby_"= "Sekitaran kamu";
 "{!username} liked this"= "{namapengguna} Menyukai ini";
 "Open"= "Buka";
 "Closed"= "Tutup";
@@ -675,7 +675,7 @@
 "Posts"= "Rekomendasi";
 "Posts"= "Rekomendasi";
 "views"= "Ulasan";
-"There's nothing 'ere, yet."= "Sorry... ini kosong";
+"There's nothing 'ere, yet. Post"= "Sorry... ini kosong";
 "Would you like to start a post? (="= "apakah kamu mau memulai dari awal?";
 "New Post"= "Rekomendasi Baru";
 ""= "";
@@ -728,7 +728,7 @@
 ""= "";
 ""= "";
 "Festivals"= "Perayaan";
-"Discover the colours of {!country}"= "Temukan warna {!country}";
+"Discover the colours of"= "Temukan warna";
 "Check it out"= "Coba lihat";
 ""= "";
 "Trending"= "Tren sekarang";

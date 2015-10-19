@@ -479,8 +479,8 @@
 "No thanks!"= "อย่าเลย ขอบใจ!";
 "Language translations use Google Translate and may not be completely accurate."= "เราใช้ Google Translate ในการแปล เนื้อหาอาจจะไม่สวยงาม แต่โดยรวม ก็อ่านเข้าใจนะ ";
 ""= "";
-"Follow"= "ติดตาม";
-"Following"= "ตามติด";
+"Follow_"= "ติดตาม";
+"Following_"= "ตามติด";
 "See all activities"= "ดูกิจกรรมทั้งหมด";
 ""= "";
 "About the place"= "ข้อมูลสถานที่";
@@ -495,13 +495,13 @@
 "All Activities"= "กิจกรรมทั้งหมด";
 "Comments"= "เขียนคอมเมนท์";
 "Write a comment"= "เขียนคอมเมนท์";
-"Done!"= "เรียบร้อย";
+"Done!!"= "เรียบร้อย";
 "You've deleted a comment. Tap to undo."= "คุณลบคอมเมนท์แล้ว แตะเพื่อยกเลิก";
 "There are no comments yet."= "ยังไม่มีคอมเมนท์";
 "Be the first to comment"= "คอมเมนท์เป็นคนแรก";
 "Write a comment"= "เขียนคอมเมนท์";
 "Collections"= "คอลเลคชัน";
-"{!username} collected this into {!collection name}"= "{!username} เก็บรีวิวนี้ไว้ใน {!collection name}";
+"collected this into"= "เก็บรีวิวนี้ไว้ใน";
 "Aww. No one's collected this."= "ยังไม่มีใครเก็บรีวิวนี้เลย น่าเสียดายนะ";
 "Likes"= "ไลค์";
 "Be the first to like"= "ไลค์เป็นคนแรก";
@@ -536,7 +536,7 @@
 "Let's get going!"= "มาเริ่มกันเลย!";
 ""= "";
 ""= "";
-"Nearby"= "สถานที่ใกล้เคียง";
+"Nearby_"= "ใกล้ตัว";
 "{!username} liked this"= "{!username} ไลค์รีวิวนี้";
 "Open"= "เปิดอยู่";
 "Closed"= "ปิดแล้ว";
@@ -677,7 +677,7 @@
 "Posts"= "รีวิว";
 "Posts"= "รีวิว";
 "views"= "วิว";
-"There's nothing 'ere, yet."= "ตอนนี้ยังไม่มีอะไรให้ดูเลย";
+"There's nothing 'ere, yet. Post"= "ตอนนี้ยังไม่มีอะไรให้ดูเลย";
 "Would you like to start a post? (="= "อยากจะเริ่มเขียนรีวิวใช่มั้ย =)";
 "New Post"= "รีวิวใหม่";
 ""= "";
@@ -730,7 +730,7 @@
 ""= "";
 ""= "";
 "Festivals"= "Festivals";
-"Discover the colours of {!country}"= "สีสันเทศกาลไม่มีเบื่อใน {!country}";
+"Discover the colours of"= "สีสันเทศกาลไม่มีเบื่อใน";
 "Check it out"= "ไปกันเลย";
 ""= "";
 "Trending"= "มาแรง";

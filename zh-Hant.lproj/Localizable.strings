@@ -485,8 +485,8 @@
 "No thanks!"= "暫無此需求";
 "Language translations use Google Translate and may not be completely accurate."= "此翻譯源自Google，準確度上會有些出入唷。";
 ""= "";
-"Follow"= "關注";
-"Following"= "已關注";
+"Follow_"= "關注";
+"Following_"= "已關注";
 "See all activities"= "查看所有動態";
 ""= "";
 "About the place"= "位置詳情";
@@ -501,13 +501,13 @@
 "All Activities"= "所有動態";
 "Comments"= "留言版";
 "Write a comment"= "發表留言";
-"Done!"= "發送!";
+"Done!!"= "發送!";
 "You've deleted a comment. Tap to undo."= "留言已被移除，點擊還原";
 "There are no comments yet."= "此文還沒有留言";
 "Be the first to comment"= "快來搶頭香吧！";
 "Write a comment"= "發表留言";
 "Collections"= "已收藏";
-"{!username} collected this into {!collection name}"= "{!username} 已收藏此文到 {!collection name}";
+"collected this into"= "已收藏此文到";
 "Aww. No one's collected this."= "哎唷，還沒有人收藏此文呢。";
 "Likes"= "他們都點讚";
 "Be the first to like"= "快來搶頭香點讚吧！";
@@ -542,7 +542,7 @@
 "Let's get going!"= "更新貼文";
 ""= "";
 ""= "";
-"Nearby"= "附近好康";
+"Nearby_"= "附近好康";
 "{!username} liked this"= "{!username} 已點讚";
 "Open"= "營業中";
 "Closed"= "休息";
@@ -683,7 +683,7 @@
 "Posts"= "貼文";
 "Posts"= "貼文";
 "views"= "點閱";
-"There's nothing 'ere, yet."= "這裡有點空蕩蕩的呢!";
+"There's nothing 'ere, yet. Post"= "這裡有點空蕩蕩的呢!";
 "Would you like to start a post? (="= "你的貼文將會為此增添色彩";
 "New Post"= "發表新貼文";
 ""= "";
@@ -736,7 +736,7 @@
 ""= "";
 ""= "";
 "Festivals"= "節慶";
-"Discover the colours of {!country}"= "探索{!country]的繽紛色彩！";
+"Discover the colours of"= "探索的繽紛色彩！";
 "Check it out"= "立即探索！";
 ""= "";
 "Trending"= "熱門貼文";

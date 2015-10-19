@@ -201,14 +201,14 @@
             [languageManager setLanguageWithLocale:localeForRow];
             
            // NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//            NSString *GetUserUID = [defaults objectForKey:@"Useruid"];
-//            NSString *TempTokenString = [[NSString alloc]initWithFormat:@"seeties_%@",GetUserUID];
-//            
+            NSString *GetUserUID = [defaults objectForKey:@"Useruid"];
+            NSString *TempTokenString = [[NSString alloc]initWithFormat:@"seeties_%@",GetUserUID];
+//
 //            // When users indicate they are no longer Giants fans, we unsubscribe them.
-//            PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-//            [currentInstallation removeObject:@"all" forKey:@"channels"];
-//            [currentInstallation removeObject:TempTokenString forKey:@"channels"];
-//            [currentInstallation saveInBackground];
+            PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+            [currentInstallation removeObject:@"all" forKey:@"channels"];
+            [currentInstallation removeObject:TempTokenString forKey:@"channels"];
+            [currentInstallation saveInBackground];
             
 
             //save back
