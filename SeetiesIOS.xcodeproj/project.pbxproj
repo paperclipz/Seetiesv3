@@ -57,8 +57,6 @@
 		8A2E2CEF1B81E2480010895E /* CommonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E2CEE1B81E2480010895E /* CommonTableViewCell.m */; };
 		8A2E73BA1BCCF2A0003A2589 /* ProfileImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E73B81BCCF2A0003A2589 /* ProfileImageCollectionViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		8A2E73BB1BCCF2A0003A2589 /* ProfileImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A2E73B91BCCF2A0003A2589 /* ProfileImageCollectionViewCell.xib */; settings = {ASSET_TAGS = (); }; };
-		8A2E73C01BCCF872003A2589 /* PcollectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E73BE1BCCF872003A2589 /* PcollectionTableViewController.m */; settings = {ASSET_TAGS = (); }; };
-		8A2E73C11BCCF872003A2589 /* PcollectionTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A2E73BF1BCCF872003A2589 /* PcollectionTableViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		8A3408ED1B86EA4B009B66C3 /* UITableView+LongPressReorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3408EC1B86EA4B009B66C3 /* UITableView+LongPressReorder.m */; };
 		8A3408F51B86FC99009B66C3 /* BMXSwipableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3408F01B86FC99009B66C3 /* BMXSwipableCell.m */; };
 		8A3408F61B86FC99009B66C3 /* BMXSwipableCellGestureDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3408F21B86FC99009B66C3 /* BMXSwipableCellGestureDelegate.m */; };
@@ -185,6 +183,7 @@
 		8AB813BE1BC234C0002F5F06 /* FloatingIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB813BD1BC234C0002F5F06 /* FloatingIndicatorView.m */; settings = {ASSET_TAGS = (); }; };
 		8AB813C01BC234CE002F5F06 /* FloatingIndicatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AB813BF1BC234CE002F5F06 /* FloatingIndicatorView.xib */; settings = {ASSET_TAGS = (); }; };
 		8AB813C31BC23ECE002F5F06 /* UploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB813C21BC23ECE002F5F06 /* UploadManager.m */; settings = {ASSET_TAGS = (); }; };
+		8AB83A7C1BD49CED00715B69 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB83A7B1BD49CED00715B69 /* UIView+Extension.m */; settings = {ASSET_TAGS = (); }; };
 		8AD6BA601B705DF20040437E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA5F1B705DF20040437E /* main.m */; };
 		8AD6BA631B705DF20040437E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA621B705DF20040437E /* AppDelegate.m */; };
 		8AD6BA661B705DF20040437E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA651B705DF20040437E /* ViewController.m */; };
@@ -992,9 +991,6 @@
 		8A2E73B71BCCF2A0003A2589 /* ProfileImageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileImageCollectionViewCell.h; sourceTree = "<group>"; };
 		8A2E73B81BCCF2A0003A2589 /* ProfileImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileImageCollectionViewCell.m; sourceTree = "<group>"; };
 		8A2E73B91BCCF2A0003A2589 /* ProfileImageCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileImageCollectionViewCell.xib; sourceTree = "<group>"; };
-		8A2E73BD1BCCF872003A2589 /* PcollectionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PcollectionTableViewController.h; sourceTree = "<group>"; };
-		8A2E73BE1BCCF872003A2589 /* PcollectionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PcollectionTableViewController.m; sourceTree = "<group>"; };
-		8A2E73BF1BCCF872003A2589 /* PcollectionTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PcollectionTableViewController.xib; sourceTree = "<group>"; };
 		8A3408EB1B86EA4B009B66C3 /* UITableView+LongPressReorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+LongPressReorder.h"; sourceTree = "<group>"; };
 		8A3408EC1B86EA4B009B66C3 /* UITableView+LongPressReorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+LongPressReorder.m"; sourceTree = "<group>"; };
 		8A3408EF1B86FC99009B66C3 /* BMXSwipableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMXSwipableCell.h; sourceTree = "<group>"; };
@@ -1218,6 +1214,8 @@
 		8AB813BF1BC234CE002F5F06 /* FloatingIndicatorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FloatingIndicatorView.xib; sourceTree = "<group>"; };
 		8AB813C11BC23ECE002F5F06 /* UploadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadManager.h; sourceTree = "<group>"; };
 		8AB813C21BC23ECE002F5F06 /* UploadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadManager.m; sourceTree = "<group>"; };
+		8AB83A7A1BD49CED00715B69 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
+		8AB83A7B1BD49CED00715B69 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		8AD6BA5A1B705DF20040437E /* SeetiesIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeetiesIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AD6BA5E1B705DF20040437E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8AD6BA5F1B705DF20040437E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -2349,16 +2347,6 @@
 			name = Extra;
 			sourceTree = "<group>";
 		};
-		8A2E73BC1BCCF82C003A2589 /* Collection */ = {
-			isa = PBXGroup;
-			children = (
-				8A2E73BD1BCCF872003A2589 /* PcollectionTableViewController.h */,
-				8A2E73BE1BCCF872003A2589 /* PcollectionTableViewController.m */,
-				8A2E73BF1BCCF872003A2589 /* PcollectionTableViewController.xib */,
-			);
-			name = Collection;
-			sourceTree = "<group>";
-		};
 		8A3408EA1B86EA4B009B66C3 /* UITableView+LongPressReorder */ = {
 			isa = PBXGroup;
 			children = (
@@ -2788,6 +2776,15 @@
 			path = Profile_EditCollection;
 			sourceTree = "<group>";
 		};
+		8AB83A791BD49CD500715B69 /* UIView+Extension */ = {
+			isa = PBXGroup;
+			children = (
+				8AB83A7A1BD49CED00715B69 /* UIView+Extension.h */,
+				8AB83A7B1BD49CED00715B69 /* UIView+Extension.m */,
+			);
+			name = "UIView+Extension";
+			sourceTree = "<group>";
+		};
 		8AD6BA511B705DF20040437E = {
 			isa = PBXGroup;
 			children = (
@@ -2882,6 +2879,7 @@
 		8AD6BA961B706CF10040437E /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				8AB83A791BD49CD500715B69 /* UIView+Extension */,
 				8AF39CD91BC66536009C7F26 /* UITableView+NXEmptyView */,
 				8A8475321BC52D0D006DD614 /* SystemOverride */,
 				8A4509781BAC012600A868CD /* NSArray+JSON.h */,
@@ -3576,7 +3574,6 @@
 		8AF0EF771BC7D6CD00B5D8D3 /* NewProfile */ = {
 			isa = PBXGroup;
 			children = (
-				8A2E73BC1BCCF82C003A2589 /* Collection */,
 				8AF0EF7D1BC7DD1600B5D8D3 /* Extra */,
 				8AF0EF781BC7D6EF00B5D8D3 /* ProfileViewController.h */,
 				8AF0EF791BC7D6EF00B5D8D3 /* ProfileViewController.m */,
@@ -4701,7 +4698,6 @@
 				8AF3A0431BC67E88009C7F26 /* PostViewIcon@3x.png in Resources */,
 				8AF39F651BC67E88009C7F26 /* NoResult@2x.png in Resources */,
 				8AF3A03E1BC67E88009C7F26 /* PostLocationIcon@2x.png in Resources */,
-				8A2E73C11BCCF872003A2589 /* PcollectionTableViewController.xib in Resources */,
 				8AF39F861BC67E88009C7F26 /* CollectIndoBtn@3x.png in Resources */,
 				8AF3A07C1BC67E88009C7F26 /* CameraIcon@2x.png in Resources */,
 				8AF39F3F1BC67E88009C7F26 /* CloseIcon@2x.png in Resources */,
@@ -5270,7 +5266,6 @@
 				8AD6C29D1B7072FB0040437E /* PublishViewController.m in Sources */,
 				8AD6C2851B7072FB0040437E /* AddPriceViewController.m in Sources */,
 				8A3409CE1B8B0DCB009B66C3 /* UIImage+Alpha.m in Sources */,
-				8A2E73C01BCCF872003A2589 /* PcollectionTableViewController.m in Sources */,
 				8AD6C0D81B706CF30040437E /* PTellUsYourCityViewController.m in Sources */,
 				8A9F25C91B8ED33000BB13BA /* BKMoneyUtils.m in Sources */,
 				8AF2C2CF1BA1654200B0A7F1 /* DraftModel.m in Sources */,
@@ -5360,6 +5355,7 @@
 				8A4509921BAFF7C000A868CD /* UIColor+Extension.m in Sources */,
 				0BBFE08A1B9FCC00004B17E9 /* EditInterestViewController.m in Sources */,
 				8AD6C3451B707D120040437E /* BHExpandingTextViewInternal.m in Sources */,
+				8AB83A7C1BD49CED00715B69 /* UIView+Extension.m in Sources */,
 				8AD6C8701B7460DB0040437E /* UIImageView+MKNetworkKitAdditions.m in Sources */,
 				8AD6C2A11B7072FB0040437E /* RecommendV2ViewController.m in Sources */,
 				8A45096F1BA801D400A868CD /* STAddNewTableViewCell.m in Sources */,
