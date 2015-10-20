@@ -78,6 +78,8 @@
     CheckClick_Posts = 0;
     CheckClick_Likes = 0;
     
+    [self.view addSubview:ShowLoadingActivity];
+    
     if ([GetUserName isEqualToString:@""] && [GetUid isEqualToString:@""] ) {
         
     }else{
@@ -456,7 +458,7 @@
                                                            forKey:NSFontAttributeName];
     [ProfileControl setTitleTextAttributes:attributes
                                   forState:UIControlStateNormal];
-    [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
+    [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:41.0f/255.0f green:182.0f/255.0f blue:246.0f/255.0f alpha:1.0]];
     [AllContentView addSubview:ProfileControl];
     
     GetHeight += 40;
@@ -850,21 +852,21 @@
             [PostView addSubview:ShowImage];
             
             UILabel *ShowTitle = [[UILabel alloc]init];
-            ShowTitle.frame = CGRectMake(120, heightcheck + 10, screenWidth - 130, 30);
+            ShowTitle.frame = CGRectMake(110, heightcheck + 10, screenWidth - 130, 30);
             ShowTitle.text = [PostsData_TitleArray objectAtIndex:i];
             ShowTitle.backgroundColor = [UIColor clearColor];
-            ShowTitle.textColor = [UIColor blackColor];
+            ShowTitle.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
             ShowTitle.textAlignment = NSTextAlignmentLeft;
             ShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
             [PostView addSubview:ShowTitle];
             
             UIImageView *ShowPin = [[UIImageView alloc]init];
             ShowPin.image = [UIImage imageNamed:@"PostSmallPin.png"];
-            ShowPin.frame = CGRectMake(120, heightcheck + 40, 15, 15);
+            ShowPin.frame = CGRectMake(110, heightcheck + 40, 15, 15);
             [PostView addSubview:ShowPin];
             
             UILabel *ShowPlaceName = [[UILabel alloc]init];
-            ShowPlaceName.frame = CGRectMake(140, heightcheck + 40, screenWidth - 150, 20);
+            ShowPlaceName.frame = CGRectMake(130, heightcheck + 40, screenWidth - 150, 20);
             ShowPlaceName.text = [PostsData_place_nameArray objectAtIndex:i];
             ShowPlaceName.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
             ShowPlaceName.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0];

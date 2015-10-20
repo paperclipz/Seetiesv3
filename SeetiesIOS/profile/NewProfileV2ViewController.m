@@ -56,9 +56,10 @@
     [MainScroll addSubview:BackgroundImage withAcceleration:CGPointMake(0.0f, 0.5f)];
     
     ShowOverlayImg.image = [UIImage imageNamed:@"ProfileOverlay.png"];
-    ShowOverlayImg.frame = CGRectMake(0, 0, screenWidth, 200);
+    ShowOverlayImg.frame = CGRectMake(0, -50, screenWidth, 300);
     ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
     ShowOverlayImg.layer.masksToBounds = YES;
+    [MainScroll addSubview:ShowOverlayImg withAcceleration:CGPointMake(0.0f, 0.5f)];
     
     SettingsButton.frame = CGRectMake(screenWidth - 50 - 50, 64, 50, 40);
     ShareButton.frame = CGRectMake(screenWidth - 50, 64, 50, 40);
@@ -120,6 +121,9 @@
                                 options:UIViewAnimationOptionCurveEaseIn
                              animations:^{
                                  ShowBar.frame = CGRectMake(0, 0, screenWidth, 64);
+                                 ShowOverlayImg.hidden = YES;
+                                 SettingsButton.hidden = YES;
+                                 ShareButton.hidden = YES;
                              }
                              completion:^(BOOL finished) {
                              }];
@@ -129,6 +133,9 @@
                                 options:UIViewAnimationOptionCurveEaseIn
                              animations:^{
                                  ShowBar.frame = CGRectMake(0, -64, screenWidth, 64);
+                                 ShowOverlayImg.hidden = NO;
+                                 SettingsButton.hidden = NO;
+                                 ShareButton.hidden = NO;
                              }
                              completion:^(BOOL finished) {
                              }];
@@ -334,6 +341,7 @@
             headerFrame.origin.y -= 50.0f;
             BackgroundImage.frame = headerFrame;
             [MainScroll addSubview:BackgroundImage withAcceleration:CGPointMake(0.0f, 0.5f)];
+            [MainScroll addSubview:ShowOverlayImg withAcceleration:CGPointMake(0.0f, 0.5f)];
             
             CheckExpand = YES;
             
@@ -710,7 +718,7 @@
     ProfileControl.frame = CGRectMake(15, GetHeight, screenWidth - 30, 33);
     [ProfileControl addTarget:self action:@selector(segmentAction:) forControlEvents: UIControlEventValueChanged];
     ProfileControl.selectedSegmentIndex = 0;
-    [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
+    [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:41.0f/255.0f green:182.0f/255.0f blue:246.0f/255.0f alpha:1.0]];
     UIFont *font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:12];
     NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
                                                            forKey:NSFontAttributeName];
@@ -949,7 +957,7 @@
             UILabel *ShowExplore = [[UILabel alloc]init];
             ShowExplore.frame = CGRectMake(25, heightcheck + 5 + FinalWidth + 20 + i, screenWidth - 100, 20);
             ShowExplore.text = [CollectionData_TitleArray objectAtIndex:i];
-            ShowExplore.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
+            ShowExplore.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
             ShowExplore.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:18];
             [CollectionView addSubview:ShowExplore];
             
@@ -1020,7 +1028,7 @@
         
         
         UILabel *ShowNoDataText = [[UILabel alloc]init];
-        ShowNoDataText.frame = CGRectMake(30, 100, screenWidth - 60, 20);
+        ShowNoDataText.frame = CGRectMake(30, 120, screenWidth - 60, 20);
         ShowNoDataText.text = LocalisedString(@"There's nothing 'ere, yet.");
         ShowNoDataText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowNoDataText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
@@ -1056,17 +1064,17 @@
         
         int heightcheck = 60;
         
-        int TestWidth = screenWidth - 2;
+        int TestWidth = screenWidth - 20;
         //NSLog(@"TestWidth is %i",TestWidth);
         int FinalWidth = TestWidth / 3;
         FinalWidth += 1;
         // NSLog(@"FinalWidth is %i",FinalWidth);
-        int SpaceWidth = FinalWidth + 1;
+        int SpaceWidth = FinalWidth + 5;
         
         for (NSInteger i = DataCount_Like; i < DataTotal_Like; i++) {
             AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
             ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
-            ShowImage.frame = CGRectMake(0+(i % 3)*SpaceWidth, heightcheck + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
+            ShowImage.frame = CGRectMake(5+(i % 3)*SpaceWidth, heightcheck + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
             ShowImage.contentMode = UIViewContentModeScaleAspectFill;
             ShowImage.layer.masksToBounds = YES;
             ShowImage.layer.cornerRadius = 5;
@@ -1085,7 +1093,7 @@
             UIButton *ImageButton = [[UIButton alloc]init];
             [ImageButton setBackgroundColor:[UIColor clearColor]];
             [ImageButton setTitle:@"" forState:UIControlStateNormal];
-            ImageButton.frame = CGRectMake(0+(i % 3)*SpaceWidth, heightcheck + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
+            ImageButton.frame = CGRectMake(5+(i % 3)*SpaceWidth, heightcheck + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
             ImageButton.tag = i;
             [ImageButton addTarget:self action:@selector(LikesButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
             [LikeView addSubview:ImageButton];

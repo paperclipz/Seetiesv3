@@ -403,7 +403,7 @@
     PostControl.frame = CGRectMake(15, GetHeight, screenWidth - 30, 29);
     [PostControl addTarget:self action:@selector(segmentAction:) forControlEvents: UIControlEventValueChanged];
     PostControl.selectedSegmentIndex = segmentActionCheck;
-    [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
+    [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:41.0f/255.0f green:182.0f/255.0f blue:246.0f/255.0f alpha:1.0]];
     [MainScroll addSubview:PostControl];
     
     GetHeight += 49;

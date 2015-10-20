@@ -113,6 +113,7 @@
     NSInteger MainGetButtonIDN;
     NSInteger CheckFollowView;
     
+    
     int SelfSearchCurrentLocation;
 }
 -(void)GetSearchKeyword:(NSString *)Keyword Getlat:(NSString *)lat GetLong:(NSString *)Long GetLocationName:(NSString *)LocationName GetCurrentLat:(NSString *)CurrentLat GetCurrentLong:(NSString *)CurrentLong;

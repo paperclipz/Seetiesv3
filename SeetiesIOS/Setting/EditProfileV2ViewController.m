@@ -53,9 +53,10 @@
     LinkField.placeholder = LocalisedString(@"Website");
     TagasField.delegate = self;
     TagasField.placeholder = LocalisedString(@"Separate tags with space. Eg. Foodie, photographer, gym buff etc.");
-    DescriptionField.frame = CGRectMake(45, 414, screenWidth - 45 - 20, 95);
+    DescriptionField.frame = CGRectMake(45, 420, screenWidth - 45 - 20, 95);
     DescriptionField.delegate = self;
     DescriptionField.text = LocalisedString(@"About me");
+    DescriptionField.textColor = [UIColor lightGrayColor];
     LocationField.delegate = self;
     LocationField.placeholder = LocalisedString(@"Location");
     DOBField.delegate = self;
@@ -184,6 +185,7 @@
     if (textView == DescriptionField) {
         if ([DescriptionField.text isEqualToString:LocalisedString(@"About me")]) {
             DescriptionField.text = @"";
+            DescriptionField.textColor = [UIColor blackColor];
         }
     }
     

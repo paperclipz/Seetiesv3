@@ -28,8 +28,8 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
     mySearchBar.delegate = self;
-   // [mySearchBar setTintColor:[UIColor blackColor]];
-    mySearchBar.tintColor = [UIColor whiteColor];
+    [mySearchBar setTintColor:[UIColor whiteColor]];
+   // mySearchBar.tintColor = [UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f];
     mySearchBar.barTintColor = [UIColor clearColor];
     [mySearchBar setBackgroundImage:[[UIImage alloc]init]];
     mySearchBar.placeholder = LocalisedString(@"Search");
@@ -174,6 +174,19 @@
     return 0;
     
     
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    UILabel *myLabel = [[UILabel alloc] init];
+    myLabel.frame = CGRectMake(20, 8, 320, 20);
+    myLabel.text = [self tableView:tableView titleForHeaderInSection:section];
+    myLabel.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+    myLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+    
+    UIView *headerView = [[UIView alloc] init];
+    [headerView addSubview:myLabel];
+    
+    return headerView;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;

@@ -228,7 +228,7 @@
                                                            forKey:NSFontAttributeName];
     [ProfileControl setTitleTextAttributes:attributes
                                forState:UIControlStateNormal];
-    [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
+    [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:41.0f/255.0f green:182.0f/255.0f blue:246.0f/255.0f alpha:1.0]];
     [MainScroll addSubview:ProfileControl];
     
     GetHeight += 29 + 20;
@@ -315,7 +315,7 @@
         ShowUserName.frame = CGRectMake(65, PostGetHeight + 10, screenWidth - 70 - 57, 30);
         ShowUserName.text = [UserInfo_NameArray objectAtIndex:i];
         ShowUserName.backgroundColor = [UIColor clearColor];
-        ShowUserName.textColor = [UIColor blackColor];
+        ShowUserName.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
         ShowUserName.textAlignment = NSTextAlignmentLeft;
         ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         [PostView addSubview:ShowUserName];
@@ -371,7 +371,7 @@
         ShowLocation.frame = CGRectMake(115, PostGetHeight + 82, screenWidth - 140 - 70, 20);
         ShowLocation.text = [LocationArray objectAtIndex:i];
         ShowLocation.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
-        ShowLocation.textColor = [UIColor grayColor];
+        ShowLocation.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
         ShowLocation.textAlignment = NSTextAlignmentLeft;
         ShowLocation.backgroundColor = [UIColor clearColor];
         [PostView addSubview:ShowLocation];
@@ -474,7 +474,7 @@
         ShowUserName.frame = CGRectMake(80, PeopleGetHeight + 10, 200, 20);
         ShowUserName.text = [User_NameArray objectAtIndex:i];
         ShowUserName.backgroundColor = [UIColor clearColor];
-        ShowUserName.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
+        ShowUserName.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
         ShowUserName.textAlignment = NSTextAlignmentLeft;
         ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         [PeopleView addSubview:ShowUserName];

@@ -93,18 +93,18 @@
     
     LineButton.frame = CGRectMake(screenWidth - 105 - 15, screenHeight - 23, 105, 1);
 
-    LikeButton.frame = CGRectMake(10, 14, 37, 37);
-    CommentButton.frame = CGRectMake(60, 14, 37, 37);
-    shareFBButton.frame = CGRectMake(110, 14, 37, 37);
+    LikeButton.frame = CGRectMake(10, 7, 37, 37);
+    CommentButton.frame = CGRectMake(60, 7, 37, 37);
+    shareFBButton.frame = CGRectMake(110, 7, 37, 37);
     
     
     [AllCollectButton setImage:[UIImage imageNamed:@"CollectBtn.png"] forState:UIControlStateNormal];
     [AllCollectButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
     [AllCollectButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
     AllCollectButton.backgroundColor = [UIColor clearColor];
-    AllCollectButton.frame = CGRectMake(screenWidth - 10 - 140, 7, 140, 50);
+    AllCollectButton.frame = CGRectMake(screenWidth - 10 - 140, 0, 140, 50);
     
-    QuickCollectButton.frame = CGRectMake(screenWidth - 10 - 60, 14, 60, 37);
+    QuickCollectButton.frame = CGRectMake(screenWidth - 10 - 60, 7, 60, 37);
 
     ShowGoogleTranslate = NO;
     CheckClickCount = 0;
@@ -139,7 +139,7 @@
     self.screenName = @"IOS Feed Detail View V2";
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-    ShowDownBarView.frame = CGRectMake(0, screenHeight - 60, screenWidth, 60);
+    ShowDownBarView.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
     self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight, screenWidth, 50);
     [[NSNotificationCenter defaultCenter] postNotificationName:@"CHANGE_NOTIFICATION_HIDE" object:nil];
 
@@ -1632,7 +1632,12 @@
     }else{
         ShowTitle = [[UILabel alloc]init];
       //  ShowTitle.frame = CGRectMake(20, GetHeightCheck, screenWidth - 40, 40);
-        ShowTitle.text = GetTitle;
+        NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+        paragraph.minimumLineHeight = 21.0f;
+        paragraph.maximumLineHeight = 21.0f;
+        NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:GetTitle attributes:@{NSParagraphStyleAttributeName: paragraph}];
+        ShowTitle.attributedText = attributedString;
+       // ShowTitle.text = GetTitle;
         ShowTitle.numberOfLines = 0;
         ShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:17];
         ShowTitle.textAlignment = NSTextAlignmentLeft;
@@ -1679,6 +1684,8 @@
         ShowCaptionText.numberOfLines = 0;
         ShowCaptionText.textColor = [UIColor whiteColor];
         // ShowCaptionText.text = [captionArray objectAtIndex:i];
+
+        
         NSMutableAttributedString * string = [[NSMutableAttributedString alloc]initWithString:TempGetStirngMessage];
         NSString *str = TempGetStirngMessage;
         NSError *error = nil;
@@ -1690,8 +1697,12 @@
             NSRange wordRange = [match rangeAtIndex:0];
             [string addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] range:wordRange];
         }
-        
-        [ShowMessage setAttributedText:string];
+        NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+        paragraph.minimumLineHeight = 21.0f;
+        paragraph.maximumLineHeight = 21.0f;
+        NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:str attributes:@{NSParagraphStyleAttributeName: paragraph}];
+        ShowMessage.attributedText = attributedString;
+        //[ShowMessage setAttributedText:string];
         
        // ShowMessage.text = GetMessage;
         ShowMessage.scrollEnabled = NO;
@@ -2232,7 +2243,7 @@
     UILabel *ShowPlaceInfoText = [[UILabel alloc]init];
     ShowPlaceInfoText.frame = CGRectMake(20, GetMessageHeight, screenWidth - 40, 50);
     ShowPlaceInfoText.text = LocalisedString(@"About the place");
-    ShowPlaceInfoText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:17];
+    ShowPlaceInfoText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
     ShowPlaceInfoText.backgroundColor = [UIColor clearColor];
     ShowPlaceInfoText.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
     [MainScroll addSubview:ShowPlaceInfoText];
@@ -2477,8 +2488,9 @@
     if ([PhotoArray_Nearby count] <= 4) {
         GetCount = [PhotoArray_Nearby count];
     }else{
-        GetCount = [PhotoArray_Nearby count] - 1;
+        GetCount = 4;
     }
+
     
     GetFinalHeight += 50;
     

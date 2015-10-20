@@ -396,7 +396,8 @@
         CenterLine = [[UIButton alloc]init];
         CenterLine.frame = CGRectMake((screenWidth / 2), 170, 1, 100);
         [CenterLine setTitle:@"" forState:UIControlStateNormal];//238
-        [CenterLine setBackgroundColor:[UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0f]];
+        [CenterLine setBackgroundColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f]];
+       // [CenterLine setBackgroundColor:[UIColor redColor]];
         [MainScroll addSubview:CenterLine];
         
         GetHeight += 20;
@@ -409,14 +410,14 @@
     for (NSInteger i = DataCount; i < DataTotal; i++) {
         
         UIButton *TempButton = [[UIButton alloc]init];
-        TempButton.frame = CGRectMake(15, GetHeight, screenWidth - 30, 90);
+        TempButton.frame = CGRectMake(15, GetHeight, screenWidth - 30, 100);
         [TempButton setTitle:@"" forState:UIControlStateNormal];
         TempButton.backgroundColor = [UIColor whiteColor];
         TempButton.layer.cornerRadius = 5;
         [MainScroll addSubview: TempButton];
         
         AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
-        ShowImage.frame = CGRectMake(25, GetHeight + 5, 80, 80);
+        ShowImage.frame = CGRectMake(25, GetHeight + 10, 80, 80);
         ShowImage.contentMode = UIViewContentModeScaleAspectFill;
         ShowImage.layer.masksToBounds = YES;
         ShowImage.layer.cornerRadius = 5;
@@ -439,7 +440,7 @@
             TempHeight += 10;
         }else{
             UILabel *TempShowTitle = [[UILabel alloc]init];
-            TempShowTitle.frame = CGRectMake(120, GetHeight + 5, screenWidth - 210, 20);
+            TempShowTitle.frame = CGRectMake(120, GetHeight + 10, screenWidth - 210, 20);
             TempShowTitle.text = [TitleArray objectAtIndex:i];
             TempShowTitle.backgroundColor = [UIColor clearColor];
             TempShowTitle.textAlignment = NSTextAlignmentLeft;
@@ -452,11 +453,11 @@
         
         UIImageView *ShowPin = [[UIImageView alloc]init];
         ShowPin.image = [UIImage imageNamed:@"LocationpinIcon.png"];
-        ShowPin.frame = CGRectMake(115, GetHeight + TempHeight, 18, 18);
+        ShowPin.frame = CGRectMake(115, GetHeight + TempHeight + 5, 18, 18);
         [MainScroll addSubview:ShowPin];
         
         UILabel *ShowPlaceName = [[UILabel alloc]init];
-        ShowPlaceName.frame = CGRectMake(140, GetHeight + TempHeight, screenWidth - 210, 20);
+        ShowPlaceName.frame = CGRectMake(140, GetHeight + TempHeight + 5, screenWidth - 210, 20);
         ShowPlaceName.text = [place_nameArray objectAtIndex:i];
         ShowPlaceName.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
         ShowPlaceName.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
@@ -515,14 +516,14 @@
         }else{
             [CollectButton setImage:[UIImage imageNamed:@"YellowCollected.png"] forState:UIControlStateNormal];
         }
-        CollectButton.frame = CGRectMake(screenWidth - 15 - 57 - 10, GetHeight + 16, 57, 57);
+        CollectButton.frame = CGRectMake(screenWidth - 10 - 57, GetHeight + 21, 57, 57);
         CollectButton.tag = i;
         [CollectButton addTarget:self action:@selector(CollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
         [MainScroll addSubview:CollectButton];
         
-        GetHeight += 100;
+        GetHeight += 110;
         
-        CenterLine.frame = CGRectMake((screenWidth / 2), 170, 1, GetHeight + 100);
+        CenterLine.frame = CGRectMake((screenWidth / 2), 170, 1, GetHeight + 110);
         
     }
     

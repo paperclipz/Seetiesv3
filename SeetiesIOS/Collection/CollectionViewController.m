@@ -183,6 +183,7 @@
                 Content_arrID_arrDistance = [[NSMutableArray alloc]init];
                 Content_arrID_arrDisplayCountryName = [[NSMutableArray alloc]init];
                 Content_arrMessage = [[NSMutableArray alloc]init];
+                Content_arrUserName = [[NSMutableArray alloc]init];
             }else{
             }
             
@@ -277,9 +278,12 @@
                 }
             }
             
-            
-            
-            
+            NSDictionary *PostUserData = [GetData valueForKey:@"user_info"];
+            for (NSDictionary * dict in PostUserData) {
+                NSString *username = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"username"]];
+                [Content_arrUserName addObject:username];
+            }
+
             
             
             
@@ -683,6 +687,7 @@
     
 
     for (NSInteger i = DataCount; i < DataTotal; i++) {
+        int CountHeight = TempHeight;
         AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
         ShowImage.frame = CGRectMake(20, TempHeight, screenWidth - 40, 180);
         ShowImage.contentMode = UIViewContentModeScaleAspectFill;
@@ -709,12 +714,14 @@
         ShowOverlayImg.layer.cornerRadius = 5;
         [ListView addSubview:ShowOverlayImg];
         
+        CountHeight += 10;
+        
         NSString *TempGetStirng = [[NSString alloc]initWithFormat:@"%@",[Content_arrTitle objectAtIndex:i]];
         if ([TempGetStirng length] == 0 || [TempGetStirng isEqualToString:@""] || [TempGetStirng isEqualToString:@"(null)"]) {
             
         }else{
             UILabel *ShowTitle = [[UILabel alloc]init];
-            ShowTitle.frame = CGRectMake(30, TempHeight + 5, screenWidth - 60, 20);
+            ShowTitle.frame = CGRectMake(30, CountHeight, screenWidth - 60, 20);
             ShowTitle.text = TempGetStirng;
             ShowTitle.backgroundColor = [UIColor clearColor];
             ShowTitle.textAlignment = NSTextAlignmentLeft;
@@ -723,9 +730,9 @@
             [ListView addSubview:ShowTitle];
 
           //  TempHeight += ShowTitle.frame.size.height;
+            CountHeight += 20;
 
         }
-        
         
         UIButton *ClickToDetailButton = [[UIButton alloc]init];
         ClickToDetailButton.frame = CGRectMake(20, TempHeight, screenWidth - 40, 180);
@@ -739,7 +746,7 @@
         
         UIImageView *ShowPin = [[UIImageView alloc]init];
         ShowPin.image = [UIImage imageNamed:@"PhotoPin.png"];
-        ShowPin.frame = CGRectMake(25, TempHeight + 25, 15, 15);
+        ShowPin.frame = CGRectMake(28, CountHeight + 2, 15, 15);
         [ListView addSubview:ShowPin];
         
         NSString *TempDistanceString = [[NSString alloc]initWithFormat:@"%@",[Content_arrID_arrDistance objectAtIndex:i]];
@@ -763,7 +770,7 @@
 
         }
         UILabel *ShowDistance = [[UILabel alloc]init];
-        ShowDistance.frame = CGRectMake(50, TempHeight + 25, screenWidth - 100, 20);
+        ShowDistance.frame = CGRectMake(50, CountHeight, screenWidth - 100, 20);
         ShowDistance.text = FullShowLocatinString;
         ShowDistance.textColor = [UIColor whiteColor];
         ShowDistance.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
@@ -779,14 +786,40 @@
             if ([TempGetMessage length] == 0 || [TempGetMessage isEqualToString:@""] || [TempGetMessage isEqualToString:@"(null)"]) {
                 TempHeight += 20;
             }else{
+                NSString *FullString = [[NSString alloc]initWithFormat:@"%@: %@",[Content_arrUserName objectAtIndex:i],TempGetMessage];
+                
                 UILabel *ShowNoteData = [[UILabel alloc]init];
                 ShowNoteData.frame = CGRectMake(20, TempHeight, screenWidth - 40, 40);
-                ShowNoteData.text = TempGetMessage;
                 ShowNoteData.backgroundColor = [UIColor clearColor];
                 ShowNoteData.numberOfLines = 3;
                 ShowNoteData.textAlignment = NSTextAlignmentLeft;
-                ShowNoteData.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-                ShowNoteData.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+                ShowNoteData.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+                ShowNoteData.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+                NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+                paragraph.minimumLineHeight = 21.0f;
+                paragraph.maximumLineHeight = 21.0f;
+                NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:FullString attributes:@{NSParagraphStyleAttributeName: paragraph}];
+                ShowNoteData.attributedText = attributedString;
+                
+//                NSString *FinalString_CheckName = [[NSString alloc] initWithFormat:@"%@:",[Content_arrUserName objectAtIndex:i]];
+//                
+//                NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:FullString];
+//                [mutableAttributedString appendAttributedString:attributedString];
+//                [mutableAttributedString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15] range:NSMakeRange(0, FullString.length)];
+//                [mutableAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f] range:NSMakeRange(0, FullString.length)];
+//
+//                NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:FinalString_CheckName  options:kNilOptions error:nil];
+//                NSRange range = NSMakeRange(0,FullString.length);
+//                [regex enumerateMatchesInString:FullString options:kNilOptions range:range usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+//                    NSRange subStringRange = [result rangeAtIndex:0];
+//                    [mutableAttributedString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15] range:NSMakeRange(0, FinalString_CheckName.length)];
+//                    [mutableAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f] range:subStringRange];
+//                }];
+//                
+//                [ShowNoteData setAttributedText:mutableAttributedString];
+                
+                //ShowNoteData.text = FullString;
+
                 [ListView addSubview:ShowNoteData];
                 
                 if([ShowNoteData sizeThatFits:CGSizeMake(screenWidth - 30, CGFLOAT_MAX)].height!=ShowNoteData.frame.size.height)
@@ -799,14 +832,24 @@
 
             
         }else{
+            
+            NSString *FullString = [[NSString alloc]initWithFormat:@"%@: %@",[Content_arrUserName objectAtIndex:i],TempGetNote];
+            
             UILabel *ShowNoteData = [[UILabel alloc]init];
             ShowNoteData.frame = CGRectMake(20, TempHeight, screenWidth - 40, 40);
-            ShowNoteData.text = TempGetNote;
+            
+            NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+            paragraph.minimumLineHeight = 21.0f;
+            paragraph.maximumLineHeight = 21.0f;
+            NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:FullString attributes:@{NSParagraphStyleAttributeName: paragraph}];
+            ShowNoteData.attributedText = attributedString;
+            
+           // ShowNoteData.text = FullString;
             ShowNoteData.backgroundColor = [UIColor clearColor];
             ShowNoteData.numberOfLines = 3;
             ShowNoteData.textAlignment = NSTextAlignmentLeft;
-            ShowNoteData.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-            ShowNoteData.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+            ShowNoteData.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+            ShowNoteData.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
             [ListView addSubview:ShowNoteData];
             
             if([ShowNoteData sizeThatFits:CGSizeMake(screenWidth - 30, CGFLOAT_MAX)].height!=ShowNoteData.frame.size.height)
@@ -837,19 +880,20 @@
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     int heightcheck = 10;
     
-    int TestWidth = screenWidth - 2;
+    int TestWidth = screenWidth - 20;
     //NSLog(@"TestWidth is %i",TestWidth);
     int FinalWidth = TestWidth / 3;
-    FinalWidth += 1;
+    FinalWidth += 5;
     // NSLog(@"FinalWidth is %i",FinalWidth);
-    int SpaceWidth = FinalWidth + 1;
+    int SpaceWidth = FinalWidth + 5;
     
     for (NSInteger i = DataCount; i < DataTotal; i++) {
         AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
         ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
-        ShowImage.frame = CGRectMake(0+(i % 3)*SpaceWidth, heightcheck + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
+        ShowImage.frame = CGRectMake(5+(i % 3)*SpaceWidth, heightcheck + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
         ShowImage.contentMode = UIViewContentModeScaleAspectFill;
         ShowImage.layer.masksToBounds = YES;
+        ShowImage.layer.cornerRadius = 5;
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
         NSString *ImageData = [[NSString alloc]initWithFormat:@"%@",[Content_arrImage objectAtIndex:i]];
         NSArray *SplitArray = [ImageData componentsSeparatedByString:@","];
@@ -866,7 +910,7 @@
         UIButton *ImageButton = [[UIButton alloc]init];
         [ImageButton setBackgroundColor:[UIColor clearColor]];
         [ImageButton setTitle:@"" forState:UIControlStateNormal];
-        ImageButton.frame = CGRectMake(0+(i % 3)*SpaceWidth, heightcheck + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
+        ImageButton.frame = CGRectMake(5+(i % 3)*SpaceWidth, heightcheck + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
         ImageButton.tag = i;
         [ImageButton addTarget:self action:@selector(ClickToDetailButton:) forControlEvents:UIControlEventTouchUpInside];
         [GridView addSubview:ImageButton];

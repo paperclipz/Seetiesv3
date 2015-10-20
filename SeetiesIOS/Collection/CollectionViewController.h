@@ -57,6 +57,7 @@
     NSMutableArray *Content_arrID;
     NSMutableArray *Content_arrID_arrDistance;
     NSMutableArray *Content_arrID_arrDisplayCountryName;
+    NSMutableArray *Content_arrUserName;
     
     UIButton *ListButton;
     UIButton *GridButton;

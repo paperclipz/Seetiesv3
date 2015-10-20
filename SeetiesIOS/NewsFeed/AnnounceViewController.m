@@ -25,7 +25,7 @@
     ShowTitle.frame = CGRectMake(15, 20, screenWidth - 30, 44);
     BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
-    ShowTitle.text = LocalisedString(@"announce");
+    ShowTitle.text = LocalisedString(@"Announce");
     
     ShowBigImage.frame = CGRectMake(0, 0, screenWidth, 210);
     ShowIcon.frame = CGRectMake(screenWidth - 88, 173, 68, 68);

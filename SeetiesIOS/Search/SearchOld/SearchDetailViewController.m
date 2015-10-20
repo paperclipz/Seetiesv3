@@ -32,6 +32,8 @@
     BarImage.frame = CGRectMake(0, 0, screenWidth, 95);
     SearchTextField.frame = CGRectMake(50, 25, screenWidth - 50 - 39, 30);
     SearchAddressField.frame = CGRectMake(50, 58, screenWidth - 50 - 39, 30);
+    SearchAddressField.layer.cornerRadius = 5;
+    SearchTextField.layer.cornerRadius = 5;
     ShowTitle.frame = CGRectMake(15, 20, screenWidth - 30, 44);
     SortbyFullButton.frame = CGRectMake(screenWidth - 41 , 20, 41, 38);
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
@@ -853,9 +855,15 @@
                                                            forKey:NSFontAttributeName];
     [ProfileControl setTitleTextAttributes:attributes
                                   forState:UIControlStateNormal];
-    [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
+    [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:41.0f/255.0f green:182.0f/255.0f blue:246.0f/255.0f alpha:1.0]];
     [MainScroll addSubview:ProfileControl];
     
+    
+    UIButton *Line01 = [[UIButton alloc]init];
+    Line01.frame = CGRectMake(0, heightcheck + 48, screenWidth, 1);
+    [Line01 setTitle:@"" forState:UIControlStateNormal];//238
+    [Line01 setBackgroundColor:[UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0f]];
+    [MainScroll addSubview:Line01];
     
     heightcheck += 49;
     
@@ -873,7 +881,7 @@
     PostsView.hidden = NO;
     
     [self InitPostsDataView];
-
+    CheckLoad = 1;
 
 }
 - (void)segmentAction:(UISegmentedControl *)segment
@@ -893,6 +901,8 @@
             PeopleView.hidden = NO;
             
             [self initPeopleDataView];
+            
+            
             
             break;
         default:
@@ -993,8 +1003,8 @@
         UILabel *ShowPlaceName = [[UILabel alloc]init];
         ShowPlaceName.frame = CGRectMake(130, PostGetHeight + 80, screenWidth - 200, 20);
         ShowPlaceName.text = [place_nameArray objectAtIndex:i];
-        ShowPlaceName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-        ShowPlaceName.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0];
+        ShowPlaceName.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+        ShowPlaceName.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0];
         ShowPlaceName.textAlignment = NSTextAlignmentLeft;
         ShowPlaceName.backgroundColor = [UIColor clearColor];
         [PostsView addSubview:ShowPlaceName];
@@ -1068,6 +1078,11 @@
     MainScroll.contentSize = contentSize;
 }
 -(void)initPeopleDataView{
+    
+    for (UIView *subview in PeopleView.subviews) {
+        // if ([subview isKindOfClass:[UIButton class]])
+        [subview removeFromSuperview];
+    }
     
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     int PeopleHeight = 0;

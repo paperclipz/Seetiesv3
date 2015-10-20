@@ -40,7 +40,7 @@
     DataUrl = [[UrlDataClass alloc]init];
     
     ShowNoDataText_1.frame = CGRectMake(15, (screenHeight / 2) - 220, screenWidth - 30, 21);
-    ShowNoDataText_2.frame = CGRectMake(15, (screenHeight / 2) - 190, screenWidth - 30, 62);
+    ShowNoDataText_2.frame = CGRectMake(15, (screenHeight / 2) - 200, screenWidth - 30, 40);
     ShowNoDataText_1.text = LocalisedString(@"There are no comments yet.");
     ShowNoDataText_2.text = LocalisedString(@"Be the first to comment");
     
@@ -330,7 +330,7 @@
         PostControl.selectedSegmentIndex = 0;
     }
    // ShowMainTitle.text = @"All activites";
-    [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
+    [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:41.0f/255.0f green:182.0f/255.0f blue:246.0f/255.0f alpha:1.0]];
     [self.view addSubview:PostControl];
     
     UIButton *Line01 = [[UIButton alloc]init];
@@ -1247,7 +1247,7 @@
 
     for (int i = 0; i < [Like_UseruidArray count]; i++) {
         AsyncImageView *ShowLikeUserImage = [[AsyncImageView alloc]init];
-        ShowLikeUserImage.frame = CGRectMake(15, 25 + i * 70, 50, 50);
+        ShowLikeUserImage.frame = CGRectMake(15, 20 + i * 70, 50, 50);
         ShowLikeUserImage.contentMode = UIViewContentModeScaleAspectFill;
         ShowLikeUserImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
         ShowLikeUserImage.layer.cornerRadius=25;
@@ -1284,7 +1284,7 @@
         //  ShowUserName1.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
         ShowUserName1.font = [UIFont boldSystemFontOfSize:15];
         ShowUserName1.backgroundColor = [UIColor clearColor];
-        ShowUserName1.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
+        ShowUserName1.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
         
         [LikeScroll addSubview:ShowUserName1];
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

@@ -33,6 +33,7 @@
     ExitText.text = LocalisedString(@"Slide down to exit preview");
     
     [self.view addSubview:ShowImageCount];
+    [self.view addSubview:ExitText];
     
     
     UISwipeGestureRecognizer *swipeRight =[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeRight:)];
