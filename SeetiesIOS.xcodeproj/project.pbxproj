@@ -5549,7 +5549,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "b384f4c6-d74f-484d-ad13-a68f30676c55";
+				PROVISIONING_PROFILE = "bd33a98b-8fd4-49be-9c6d-cdb9423d6a91";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -5588,7 +5588,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "b384f4c6-d74f-484d-ad13-a68f30676c55";
+				PROVISIONING_PROFILE = "bd33a98b-8fd4-49be-9c6d-cdb9423d6a91";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -5633,9 +5633,9 @@
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Live;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b384f4c6-d74f-484d-ad13-a68f30676c55";
+				PROVISIONING_PROFILE = "bd33a98b-8fd4-49be-9c6d-cdb9423d6a91";
 			};
 			name = Debug;
 		};
@@ -5678,9 +5678,9 @@
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Live;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b384f4c6-d74f-484d-ad13-a68f30676c55";
+				PROVISIONING_PROFILE = "bd33a98b-8fd4-49be-9c6d-cdb9423d6a91";
 			};
 			name = Release;
 		};
