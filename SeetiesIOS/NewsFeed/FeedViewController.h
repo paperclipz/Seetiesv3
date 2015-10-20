@@ -27,6 +27,7 @@
     int heightcheck;
     int TestCheck;
     int TotalCount;
+    int CheckInitData;
     
     NSMutableArray *arrAddress;
     NSMutableArray *arrTitle;

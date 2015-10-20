@@ -162,10 +162,10 @@
     ShowTitle.text = CustomLocalisedString(@"SettingsPage_AccountSettings",nil);
    // [SaveButton setTitle:CustomLocalisedString(@"EditProfileSave",nil) forState:UIControlStateNormal];
     EmailText.text = CustomLocalisedString(@"SignUpPage_Email", nil);
-    PrimaryText.text = CustomLocalisedString(@"Primary", nil);
-    SecondaryText.text = CustomLocalisedString(@"Secondary", nil);
-    AppLanguageText.text = CustomLocalisedString(@"AppLangauge", nil);
-    ChangePasswordText.text = CustomLocalisedString(@"ChangePassword", nil);
+    PrimaryText.text = CustomLocalisedString(@"Primary Language", nil);
+    SecondaryText.text = CustomLocalisedString(@"Secondary Language", nil);
+    AppLanguageText.text = CustomLocalisedString(@"App Language", nil);
+    ChangePasswordText.text = CustomLocalisedString(@"Change Password", nil);
    // [DeleteButton setTitle:CustomLocalisedString(@"Deactivateaccount",nil) forState:UIControlStateNormal];
     ShowSubTitle.text = CustomLocalisedString(@"ContentLanguage", nil);
     ConnectFBText.text = LocalisedString(@"Connect to Facebook");

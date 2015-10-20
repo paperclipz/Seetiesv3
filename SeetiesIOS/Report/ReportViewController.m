@@ -46,6 +46,9 @@
     
     [InappropriateButton setTitle:LocalisedString(@"This post has content that violates terms & conditions in Seeties.") forState:UIControlStateNormal];
     [CopyrightButton setTitle:LocalisedString(@"This post uses copyrighted works without permission.") forState:UIControlStateNormal];
+    
+    InappropriateText.text = LocalisedString(@"This post has content that violates terms & conditions in Seeties.");
+    CopyrightText.text = LocalisedString(@"This post uses copyrighted works without permission.");
 }
 -(void)GetPostID:(NSString *)PostID{
 

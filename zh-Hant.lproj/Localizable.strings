@@ -542,7 +542,7 @@
 "Let's get going!"= "更新貼文";
 ""= "";
 ""= "";
-"Nearby_"= "附近好康";
+"Nearby_"= "附近";
 "{!username} liked this"= "{!username} 已點讚";
 "Open"= "營業中";
 "Closed"= "休息";
@@ -769,8 +769,8 @@
 ""= "";
 "Log out"= "確定登出？";
 "Are you sure you want to sign out of Seeties?"= "我們不想看見你的離去啊！";
-"Maybe not."= "留下";
-"Yeah!"= "心意已決";
+"Maybe not.."= "留下";
+"Yeah!!"= "心意已決";
 ""= "";
 ""= "";
 "Edit Profile"= "編輯個人資料";
@@ -1012,3 +1012,12 @@
 
 "PSkip" = "跳過";
 "PDone" = "瞭解！";
+
+"Share this post" = "分享好康";
+
+"Coffee" = "咖啡";
+"Pizza" = "披薩";
+"Night Club" = "夜店";
+"Sushi" = "壽司";
+"Museum" = "博物院";
+"Hiking" = "攀岩";

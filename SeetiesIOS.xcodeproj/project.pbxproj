@@ -30,6 +30,7 @@
 		0BBFE08D1B9FCC00004B17E9 /* EditProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBFE0861B9FCC00004B17E9 /* EditProfileViewController.xib */; };
 		0BBFE08E1B9FCC00004B17E9 /* SubmitProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBFE0881B9FCC00004B17E9 /* SubmitProfileViewController.m */; };
 		0BBFE08F1B9FCC00004B17E9 /* SubmitProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBFE0891B9FCC00004B17E9 /* SubmitProfileViewController.xib */; };
+		0BC558701BD5E69F00E7BFA8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BC5586F1BD5E69F00E7BFA8 /* Default-568h@2x.png */; settings = {ASSET_TAGS = (); }; };
 		0BC9B38A1B7DD287008334FF /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC9B3881B7DD287008334FF /* FeedViewController.m */; };
 		0BC9B38B1B7DD288008334FF /* FeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC9B3891B7DD287008334FF /* FeedViewController.xib */; };
 		0BCF10F31BB290C90017B614 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BCF10F11BB290C90017B614 /* ShareViewController.m */; };
@@ -964,6 +965,7 @@
 		0BBFE0871B9FCC00004B17E9 /* SubmitProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubmitProfileViewController.h; sourceTree = "<group>"; };
 		0BBFE0881B9FCC00004B17E9 /* SubmitProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubmitProfileViewController.m; sourceTree = "<group>"; };
 		0BBFE0891B9FCC00004B17E9 /* SubmitProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SubmitProfileViewController.xib; sourceTree = "<group>"; };
+		0BC5586F1BD5E69F00E7BFA8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		0BC9B3871B7DD287008334FF /* FeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
 		0BC9B3881B7DD287008334FF /* FeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
 		0BC9B3891B7DD287008334FF /* FeedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedViewController.xib; sourceTree = "<group>"; };
@@ -2886,6 +2888,7 @@
 		8AD6BA511B705DF20040437E = {
 			isa = PBXGroup;
 			children = (
+				0BC5586F1BD5E69F00E7BFA8 /* Default-568h@2x.png */,
 				8AD6BA5C1B705DF20040437E /* SeetiesIOS */,
 				8AD6BA761B705DF30040437E /* SeetiesIOSTests */,
 				8AD6BA5B1B705DF20040437E /* Products */,
@@ -4778,6 +4781,7 @@
 				8AF39F491BC67E88009C7F26 /* AboutIcon@2x.png in Resources */,
 				8AF39F021BC67E88009C7F26 /* CheckGrey@3x.png in Resources */,
 				8AD6BE4E1B706CF30040437E /* ExploreCountryViewController.xib in Resources */,
+				0BC558701BD5E69F00E7BFA8 /* Default-568h@2x.png in Resources */,
 				8AF39FAA1BC67E88009C7F26 /* LocationpinIcon@3x.png in Resources */,
 				8AF39F7A1BC67E88009C7F26 /* OpenStatus@3x.png in Resources */,
 				8AF39FFE1BC67E88009C7F26 /* Walkthrough1.png in Resources */,
@@ -5522,7 +5526,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Reiner Lee (EFSLZ63588)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
@@ -5545,7 +5549,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "df5a5555-e157-4c05-b69a-baf6d03fc84d";
+				PROVISIONING_PROFILE = "b384f4c6-d74f-484d-ad13-a68f30676c55";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -5567,7 +5571,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Reiner Lee (EFSLZ63588)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
@@ -5584,7 +5588,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "df5a5555-e157-4c05-b69a-baf6d03fc84d";
+				PROVISIONING_PROFILE = "b384f4c6-d74f-484d-ad13-a68f30676c55";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

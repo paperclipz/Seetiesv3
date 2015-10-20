@@ -63,6 +63,7 @@
     //    [FilterButton setTitle:CustomLocalisedString(@"Filter", nil) forState:UIControlStateNormal];
     
     heightcheck = 0;
+    CheckInitData = 0;
     refreshControl = [[UIRefreshControl alloc] init];
     refreshControl.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     refreshControl.bounds = CGRectMake(refreshControl.bounds.origin.x,
@@ -187,8 +188,13 @@
 //        }else{
 //            [self GetFeedDataFromServer];
 //        }
-        [self initData];
-        [self initSelfView];
+        if (CheckInitData == 1) {
+            
+        }else{
+            [self initData];
+            [self initSelfView];
+        }
+
         
         
         
@@ -222,14 +228,18 @@
 
     [self GetExternalIPAddress];
     
-    [self initData];
-    [self initSelfView];
+    if (CheckInitData == 1) {
+        
+    }else{
+        [self initData];
+        [self initSelfView];
+    }
     
 }
 -(void)initData
 {
 
-
+    CheckInitData = 1;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *CheckString = [defaults objectForKey:@"TestLocalData"];
     if ([CheckString isEqualToString:@"Done"]) {
@@ -2297,10 +2307,8 @@
                 NSLog(@"in invite_friend");
                 AsyncImageView *BannerImage = [[AsyncImageView alloc]init];
                 BannerImage.frame = CGRectMake(0, heightcheck, screenWidth, 250);
-              //  BannerImage.image = [UIImage imageNamed:@"Demoanner.jpg"];
-                BannerImage.contentMode = UIViewContentModeScaleToFill;
+                BannerImage.contentMode = UIViewContentModeScaleAspectFit;
                 BannerImage.backgroundColor = [UIColor whiteColor];
-               // BannerImage.layer.cornerRadius = 5;
                 BannerImage.layer.masksToBounds = YES;
                 [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:BannerImage];
                 NSString *ImageData = [[NSString alloc]initWithFormat:@"%@",[arrImage objectAtIndex:i]];
@@ -2310,6 +2318,7 @@
                     NSURL *url_NearbySmall = [NSURL URLWithString:ImageData];
                     BannerImage.imageURL = url_NearbySmall;
                 }
+                
                 [MainScroll addSubview:BannerImage];
                 
                 UIButton *TempButton = [[UIButton alloc]init];

@@ -41,12 +41,12 @@
     SearchScroll.hidden = YES;
     
     LocalSearchTextArray = [[NSMutableArray alloc]init];
-    [LocalSearchTextArray addObject:@"Hiking"];
-    [LocalSearchTextArray addObject:@"Museum"];
-    [LocalSearchTextArray addObject:@"Sushi"];
-    [LocalSearchTextArray addObject:@"Night Club"];
-    [LocalSearchTextArray addObject:@"Pizza"];
-    [LocalSearchTextArray addObject:@"Coffee"];
+    [LocalSearchTextArray addObject:LocalisedString(@"Hiking")];
+    [LocalSearchTextArray addObject:LocalisedString(@"Museum")];
+    [LocalSearchTextArray addObject:LocalisedString(@"Sushi")];
+    [LocalSearchTextArray addObject:LocalisedString(@"Night Club")];
+    [LocalSearchTextArray addObject:LocalisedString(@"Pizza")];
+    [LocalSearchTextArray addObject:LocalisedString(@"Coffee")];
     
     NSArray *ReveresdArray = [[LocalSearchTextArray reverseObjectEnumerator] allObjects];
     [LocalSearchTextArray removeAllObjects];

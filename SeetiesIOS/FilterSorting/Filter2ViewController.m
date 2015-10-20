@@ -26,7 +26,7 @@
     BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
     
     ApplyFilterButton.frame = CGRectMake(screenWidth - 50, 22, 50, 40);
-    TitleLabel.text = CustomLocalisedString(@"Filter", nil);
+    TitleLabel.text = CustomLocalisedString(@"Filter by", nil);
    // [ApplyFilterButton setTitle:CustomLocalisedString(@"ApplyFilter", nil) forState:UIControlStateNormal];
 
 
