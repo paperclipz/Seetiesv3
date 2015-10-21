@@ -60,4 +60,14 @@
     return modelCopy;
 }
 
+
+@end
+@implementation CollectionsModel
+
++(JSONKeyMapper*)keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{
+                                                       @"result": @"arrCollections"                                                       
+                                                       }];
+}
 @end

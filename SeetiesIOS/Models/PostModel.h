@@ -12,6 +12,10 @@
 
 @end
 
+@protocol CollectionModel
+
+@end
+
 @interface PostModel : JSONModel
 
 @property(nonatomic,strong)NSString* imageURL;
@@ -28,8 +32,10 @@
 @end
 
 @interface CollectionModel : Model
-
+// in future change to draft model
 @property(nonatomic,strong)NSArray<PostModel>* arrayPost;
+// in future change to draft model
+
 @property(nonatomic,strong)NSString* name;
 @property(nonatomic,strong)NSString* postDesc;
 @property(nonatomic,assign)BOOL isPrivate;
@@ -40,6 +46,13 @@
 @property(nonatomic,assign)int page;
 @property(nonatomic,assign)int total_posts;
 @property(nonatomic,strong)NSMutableArray* deleted_posts;
+
+@end
+
+@interface CollectionsModel : Model
+
+@property(nonatomic,strong)NSArray<CollectionModel>* arrCollections;
+
 
 @end
 

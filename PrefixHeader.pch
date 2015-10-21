@@ -50,6 +50,7 @@
 #import "UIColor+Extension.h"
 #import "iOSBlocks.h"
 #import "UITextView+Placeholder.h"
+#import "UIView+RoundedCorners.h"
 
 //===============Model=================
 #import "RecommendationModel.h"

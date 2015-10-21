@@ -159,53 +159,6 @@
         [self requestServerDetail];
     }
 }
-#pragma mark - Server
-
--(void)requestServerDetail
-{
-    if (collectionDetailTotal_page > collectionDetailPage) {
-        [self requestServerForCollectionDetails:self.collectionID successBlock:^(id object) {
-            
-            self.collectionModel = [[ConnectionManager dataManager] collectionModels];
-            collectionDetailTotal_posts = self.collectionModel.total_posts;
-            collectionDetailPage = self.collectionModel.page;
-            collectionDetailTotal_page = self.collectionModel.total_page;
-            [self.arrList addObjectsFromArray:self.collectionModel.arrayPost];
-            [self.ibTableView reloadData];
-            
-        } failBlock:^(id object) {
-            
-        }];
-
-    }
-
-}
-
--(void)requestServerForCollectionDetails:(NSString*)collectionID successBlock:(IDBlock)successBlock failBlock:(IDBlock)failBlock{
-    
-    collectionDetailPage+=1;
-    NSDictionary* dict = @{@"collection_id":collectionID,
-                           @"list_size":@5,
-                           @"page":@(collectionDetailPage)
-                           };
-    
-    NSString* appendString = [NSString stringWithFormat:@"%@/collections/%@",[Utils getUserID],collectionID];
-    
-    //[LoadingManager show];
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetCollectionInfo param:dict appendString:appendString completeHandler:^(id object) {
-        
-        
-        if (successBlock) {
-            successBlock(nil);
-        }
-        [LoadingManager hide];
-
-    } errorBlock:^(id object) {
-        [LoadingManager hide];
-
-    }];
-    
-}
 
 #pragma mark - Declaration
 
@@ -328,6 +281,55 @@
 
     }];
 }
+
+#pragma mark - Server
+
+-(void)requestServerDetail
+{
+    if (collectionDetailTotal_page > collectionDetailPage) {
+        [self requestServerForCollectionDetails:self.collectionID successBlock:^(id object) {
+            
+            self.collectionModel = [[ConnectionManager dataManager] collectionModels];
+            collectionDetailTotal_posts = self.collectionModel.total_posts;
+            collectionDetailPage = self.collectionModel.page;
+            collectionDetailTotal_page = self.collectionModel.total_page;
+            [self.arrList addObjectsFromArray:self.collectionModel.arrayPost];
+            [self.ibTableView reloadData];
+            
+        } failBlock:^(id object) {
+            
+        }];
+        
+    }
+    
+}
+
+-(void)requestServerForCollectionDetails:(NSString*)collectionID successBlock:(IDBlock)successBlock failBlock:(IDBlock)failBlock{
+    
+    collectionDetailPage+=1;
+    NSDictionary* dict = @{@"collection_id":collectionID,
+                           @"list_size":@5,
+                           @"page":@(collectionDetailPage)
+                           };
+    
+    NSString* appendString = [NSString stringWithFormat:@"%@/collections/%@",[Utils getUserID],collectionID];
+    
+    //[LoadingManager show];
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetCollectionInfo param:dict appendString:appendString completeHandler:^(id object) {
+        
+        
+        if (successBlock) {
+            successBlock(nil);
+        }
+        [LoadingManager hide];
+        
+    } errorBlock:^(id object) {
+        [LoadingManager hide];
+        
+    }];
+    
+}
+
 static id ObjectOrNull(id object)
 {
     return object ?: [NSNull null];

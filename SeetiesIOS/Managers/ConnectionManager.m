@@ -84,7 +84,7 @@
 -(void)requestServerWithPost:(bool)isPost customURL:(NSString*)url requestType:(ServerRequestType)type param:(NSDictionary*)dict completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
 {
     
-    NSLog(@"Request Server : %@ \n\n Request Json : %@",url,[dict bv_jsonStringWithPrettyPrint:YES]);
+    NSLog(@"\n\n ===== Request Server ===== : %@ \n\n Request Json : %@",url,[dict bv_jsonStringWithPrettyPrint:YES]);
     if(isPost)
     {
         [self.manager POST:url parameters:dict
@@ -93,7 +93,6 @@
              
              [self storeServerData:responseObject requestType:type];
              
-             SLog(@"response Json : %@",responseObject);
              
              if (completeBlock) {
                  completeBlock(responseObject);
@@ -119,8 +118,6 @@
              
              [self storeServerData:responseObject requestType:type];
             
-             NSLog(@"Success: %@", operation.responseString);
-
              
              if (completeBlock) {
                  completeBlock(responseObject);
@@ -145,7 +142,7 @@
 
 -(void)requestServerWithPost:(ServerRequestType)type param:(NSDictionary*)dict completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
 {
-    NSLog(@"Request Server : %@ \n\n Request Json : %@",[self getFullURLwithType:type],[dict JSONString]);
+    NSLog(@"\n\n ===== Request Server ===== : %@ \n\n Request Json : %@",[self getFullURLwithType:type],[dict JSONString]);
     
     [self.manager POST:[self getFullURLwithType:type] parameters:dict
                success:^(AFHTTPRequestOperation *operation, id responseObject)
@@ -153,8 +150,6 @@
          [self storeServerData:responseObject requestType:type];
          if (completeBlock) {
              completeBlock(responseObject);
-             NSLog(@"\n\n  Success: %@ ***** %@", operation.responseString, responseObject);
-
          }
      }
                failure:
@@ -180,7 +175,7 @@
         fullURL = [self getFullURLwithType:type];
     }
     
-    SLog(@"Request Server : %@ \n\n request Json : %@",fullURL,[dict bv_jsonStringWithPrettyPrint:YES]);
+    SLog(@"\n\n ===== Request Server ===== : %@ \n\n request Json : %@",fullURL,[dict bv_jsonStringWithPrettyPrint:YES]);
     
 
     [self.manager GET:fullURL parameters:dict
@@ -192,7 +187,6 @@
          
          if (completeBlock) {
              completeBlock(responseObject);
-             NSLog(@"\n\n Success: %@", [responseObject bv_jsonStringWithPrettyPrint:YES]);
 
          }
          [LoadingManager hide];
@@ -224,7 +218,7 @@
         fullURL = [self getFullURLwithType:type];
     }
     
-    SLog(@"Request Server : %@ \n\n request Json : %@",fullURL,[dict bv_jsonStringWithPrettyPrint:YES]);
+    SLog(@"\n\n ===== Request Server ===== : %@ \n\n request Json : %@",fullURL,[dict bv_jsonStringWithPrettyPrint:YES]);
     
     AFHTTPRequestOperation *op = [self.manager POST:fullURL parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         
@@ -271,7 +265,6 @@
         
         [LoadingManager hide];
 
-        NSLog(@"\n\n Success: %@", [responseObject bv_jsonStringWithPrettyPrint:YES]);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
         if (errorBlock) {
@@ -299,7 +292,7 @@
     
     NSString* fullString = [NSString stringWithFormat:@"%@/%@",[self getFullURLwithType:type],appendString];
 
-    NSLog(@"Request Server DELETE : %@ \n\n Request Json : %@",fullString,dict);
+    NSLog(@"\n\n ===== Request Server DELETE ===== : %@ \n\n Request Json : %@",fullString,dict);
     
     [self.manager DELETE:fullString parameters:dict
               success:^(AFHTTPRequestOperation *operation, id responseObject)
@@ -310,7 +303,6 @@
          
          if (completeBlock) {
              completeBlock(responseObject);
-             NSLog(@"Success: %@ ***** %@", operation.responseString, responseObject);
 
          }
          [LoadingManager hide];
@@ -340,7 +332,7 @@
         fullURL = [self getFullURLwithType:type];
     }
     
-    SLog(@"Request Server : %@ \n\n request Json : %@",fullURL,[dict bv_jsonStringWithPrettyPrint:YES]);
+    SLog(@"\n\n ===== Request Server ===== : %@ \n\n request Json : %@",fullURL,[dict bv_jsonStringWithPrettyPrint:YES]);
     
     
     [self.manager PUT:fullURL parameters:dict
@@ -352,7 +344,6 @@
          
          if (completeBlock) {
              completeBlock(responseObject);
-             NSLog(@"\n\n Success: %@", [responseObject bv_jsonStringWithPrettyPrint:YES]);
 
          }
 
@@ -420,6 +411,9 @@
             break;
             
         case ServerRequestTypeGetCollectionInfo:
+        case ServerRequestTypeGetUserCollections:
+        case ServerRequestTypeGetUserPosts:
+        case ServerRequestTypeGetUserLikes:
         default:
              str = @"v2.0";
             break;
@@ -433,6 +427,9 @@
 
 -(void)storeServerData:(id)obj requestType:(ServerRequestType)type
 {
+    NSLog(@"\n\n ===== Success  ===== : %@", [obj bv_jsonStringWithPrettyPrint:YES]);
+
+
     [LoadingManager hide];
 
     //make checking for status fail or success here
@@ -532,7 +529,32 @@
             self.dataManager.tagModel = [[TagModel alloc]initWithDictionary:dict error:nil];
         }
             break;
+        case ServerRequestTypeGetUserCollections:
+        {
             
+            NSDictionary* dict = obj[@"data"];
+            self.dataManager.userCollectionsModel = [[CollectionsModel alloc]initWithDictionary:dict error:nil];
+
+        }
+            break;
+        case ServerRequestTypeGetUserInfo:
+        {
+            NSDictionary* dict = obj[@"data"];
+            self.dataManager.userProfileModel = [[ProfileModel alloc]initWithDictionary:dict error:nil];
+        }
+            break;
+            
+        case ServerRequestTypeGetUserPosts:
+        {
+            self.dataManager.userProfilePostModel = [[ProfilePostModel alloc]initWithDictionary:obj error:nil];
+        }
+            break;
+            
+        case ServerRequestTypeGetUserLikes:
+        {
+            self.dataManager.userProfileLikeModel = [[ProfilePostModel alloc]initWithDictionary:obj error:nil];
+        }
+            break;
             
         default:
             

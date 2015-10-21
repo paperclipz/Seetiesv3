@@ -507,7 +507,7 @@
 -(NewsFeedViewController*)newsFeedViewController
 {
     if (!_newsFeedViewController) {
-        _newsFeedViewController = [NewsFeedViewController new];
+     //   _newsFeedViewController = [NewsFeedViewController new];
     }
     
     return _newsFeedViewController;

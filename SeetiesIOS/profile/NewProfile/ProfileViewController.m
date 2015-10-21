@@ -9,21 +9,43 @@
 #import "ProfileViewController.h"
 #import "UIImage+FX.h"
 #import "UIScrollView+APParallaxHeader.h"
+//cell
+#import "ProfilePageCollectionTableViewCell.h"
+#import "ProfilePagePostTableViewCell.h"
+#import "ProfilePageCollectionHeaderView.h"
+#import "ProfilePageCollectionFooterTableViewCell.h"
 
-//#import "ParallaxHeaderView.h"
-
-
-@interface ProfileViewController ()
+@interface ProfileViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
     NSMutableArray* arrayTag;
+    NSMutableArray* arrCollection;
+    NSMutableArray* arrPost;
+    NSMutableArray* arrLikes;
+
 }
+
+// =======  OUTLET   =======
+@property (weak, nonatomic) IBOutlet UILabel *lblUserName;
+@property (weak, nonatomic) IBOutlet UILabel *lblFollowing;
+@property (weak, nonatomic) IBOutlet UILabel *lblLocation;
 @property (strong, nonatomic) UIImageView *backgroundImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *ibImgProfilePic;
 @property (strong, nonatomic) IBOutlet UIView *ibTopContentView;
 @property (strong, nonatomic) IBOutlet UIView *ibContentView;
 @property (strong, nonatomic) IBOutlet TLTagsControl *ibTagControlView;
-
 @property (weak, nonatomic) IBOutlet UIScrollView *ibScrollView;
+//profile page table view
+@property (weak, nonatomic) IBOutlet UITableView *ibTableView;
+@property (weak, nonatomic) ProfilePageCollectionHeaderView *profilePageCollectionHeaderView1;
+// =======  OUTLET   =======
+// =======  MODEL   =======
+
+@property(nonatomic,strong)ProfileModel* userProfileModel;
+@property(nonatomic,strong)CollectionsModel* userCollectionsModel;
+@property(nonatomic,strong)ProfilePostModel* userProfilePostModel;
+@property(nonatomic,strong)ProfilePostModel* userProfileLikeModel;
+
+// =======  MODEL   =======
 
 @end
 
@@ -33,7 +55,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self initData];
     [self initSelfView];
+    [self requestServerForUserCollection];
+    [self requestServerForUserPost];
+    [self requestServerForUserLikes];
+    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -46,6 +73,8 @@
 {
     
     [self initTagView];
+    [self initProfilePageCell];
+    
     self.edgesForExtendedLayout=UIRectEdgeNone;
     self.extendedLayoutIncludesOpaqueBars=NO;
     self.automaticallyAdjustsScrollViewInsets=NO;
@@ -67,7 +96,23 @@
     self.ibScrollView.parallaxView.shadowView.hidden = YES;
     self.ibScrollView.contentSize = CGSizeMake(self.ibScrollView.frame.size.width, self.ibContentView.frame.size.height);
     [self.ibScrollView addSubview:self.ibContentView];
-    self.ibContentView.frame = CGRectMake(self.ibContentView.frame.origin.x, self.ibContentView.frame.origin.y- self.ibImgProfilePic.frame.size.height/2, self.ibContentView.frame.size.width, self.ibContentView.frame.size.height);
+  //  self.ibContentView.frame = CGRectMake(self.ibContentView.frame.origin.x, self.ibContentView.frame.origin.y - self.ibImgProfilePic.frame.size.height/2, self.ibContentView.frame.size.width, self.ibContentView.frame.size.height);
+
+//    self.ibImgProfilePic.frame = CGRectMake(self.ibImgProfilePic.frame.origin.x, self.ibImgProfilePic.frame.origin.y - self.ibImgProfilePic.frame.size.height/2, self.ibImgProfilePic.frame.size.width, self.ibImgProfilePic.frame.size.height);
+    [self adjustTableView];
+}
+
+-(void)adjustTableView
+{
+    int collectionHeight = (int)([ProfilePageCollectionTableViewCell getHeight]*arrCollection.count);
+    int postAndLikesHeight = (int)([ProfilePagePostTableViewCell getHeight]*((arrPost.count>0?1:0) + (arrLikes.count>0?1:0)));
+    int cellHeaderHeight = 3*[ProfilePageCollectionHeaderView getHeight];
+    int cellFooterHeight = 3* [ProfilePageCollectionFooterTableViewCell getHeight];
+    self.ibTableView.frame = CGRectMake(self.ibTableView.frame.origin.x, self.ibTableView.frame.origin.y, self.ibTableView.frame.size.width, collectionHeight + postAndLikesHeight + cellHeaderHeight + cellFooterHeight);
+    
+    self.ibContentView.frame = CGRectMake(self.ibContentView.frame.origin.x, self.ibContentView.frame.origin.y, self.ibContentView.frame.size.width, self.ibTableView.frame.origin.y +self.ibTableView.frame.size.height);
+    
+    self.ibScrollView.contentSize = CGSizeMake(self.ibScrollView.frame.size.width, self.ibContentView.frame.size.height);
 
 }
 
@@ -80,6 +125,195 @@
     
     return _backgroundImageView;
 }
+#pragma mark - Cell
+-(void)initProfilePageCell
+{
+    self.ibTableView.delegate = self;
+    self.ibTableView.dataSource = self;
+}
+#pragma mark - Table View Data Source
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return arrCollection.count+1;
+    }
+    else if(section == 1)
+    {
+        
+        if (arrPost.count>0) {
+            return 1+1;
+        }
+        return 0+1;
+    }
+    else if (section == 2)
+    {
+        if (arrLikes.count>0) {
+            return 1+1;
+
+        }
+        return 0+1;
+
+    }
+    else
+        return 0;
+
+    
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 3;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        
+        if (indexPath.row == arrCollection.count) {
+            return [ProfilePageCollectionFooterTableViewCell getHeight];
+        }
+        
+        return [ProfilePageCollectionTableViewCell getHeight];
+    }
+    else if (indexPath.section == 1 || indexPath.section == 2){
+        
+        if (indexPath.row == 1) {
+            return [ProfilePageCollectionFooterTableViewCell getHeight];
+        }
+
+        return [ProfilePagePostTableViewCell getHeight];
+
+    }
+    else{
+        return [ProfilePagePostTableViewCell getHeight];
+
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    
+    
+    return [ProfilePageCollectionHeaderView getHeight];
+}
+
+
+- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+
+    
+    ProfilePageCollectionHeaderView* headerView = [ProfilePageCollectionHeaderView initializeCustomView];
+    [headerView adjustRoundedEdge:self.ibTableView.frame];
+   
+    if (section == 0) {
+        headerView.lblTitle.text = @"Collections";
+    }else if(section == 1)
+        headerView.lblTitle.text = @"Posts";
+    else
+    headerView.lblTitle.text = @"Likes";
+    
+    return headerView;
+
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+    if (indexPath.section == 0) {
+       
+        if (indexPath.row==arrCollection.count) {
+            
+            static NSString* cellIndenfierNone = @"ProfilePageCollectionFooterTableViewCell";
+            ProfilePageCollectionFooterTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIndenfierNone];
+            
+            if (!cell) {
+                cell = [[ProfilePageCollectionFooterTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfierNone];
+            }
+            
+            [cell adjustRoundedEdge:self.ibTableView.frame];
+            return cell;
+        }
+        else{
+            
+            static NSString* cellIndenfier1 = @"ProfilePageCollectionTableViewCell";
+            ProfilePageCollectionTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIndenfier1];
+            
+            if (!cell) {
+                cell = [[ProfilePageCollectionTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfier1];
+            }
+            
+            return cell;
+        }
+       
+    }
+    
+    else if(indexPath.section == 1)
+    {
+        if (indexPath.row == 1) {
+            
+            static NSString* cellIndenfierNone = @"ProfilePageCollectionFooterTableViewCell";
+            ProfilePageCollectionFooterTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIndenfierNone];
+            
+            if (!cell) {
+                cell = [[ProfilePageCollectionFooterTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfierNone];
+            }
+            [cell adjustRoundedEdge:self.ibTableView.frame];
+
+            return cell;
+        }
+        else{
+        static NSString* cellIndenfier2 = @"ProfilePagePostTableViewCell";
+        ProfilePagePostTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIndenfier2];
+        
+        if (!cell) {
+            cell = [[ProfilePagePostTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfier2];
+        }
+            DraftModel* model = arrPost[0];
+            [cell initData:model.arrPhotos];
+            return cell;
+
+        }
+    }
+    
+    else if (indexPath.section == 2)
+    {
+        if (indexPath.row== 1) {
+            
+            static NSString* cellIndenfierNone = @"ProfilePageCollectionFooterTableViewCell";
+            ProfilePageCollectionFooterTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIndenfierNone];
+            
+            if (!cell) {
+                cell = [[ProfilePageCollectionFooterTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfierNone];
+            }
+            [cell adjustRoundedEdge:self.ibTableView.frame];
+
+            return cell;
+        }
+        else{
+            static NSString* cellIndenfier2 = @"ProfilePagePostTableViewCell";
+            ProfilePagePostTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIndenfier2];
+            
+            if (!cell) {
+                cell = [[ProfilePagePostTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfier2];
+            }
+            DraftModel* model = arrLikes[0];
+            [cell initData:model.arrPhotos];
+            return cell;
+            
+        }
+        
+        
+        
+    }
+
+    
+    return nil;
+    
+
+}
+
+
 
 #pragma mark - Tag
 -(void)initTagView
@@ -94,7 +328,6 @@
     _ibTagControlView.tagsBackgroundColor = DEVICE_COLOR;
     _ibTagControlView.tagsTextColor = whiteTextColor;
     [_ibTagControlView reloadTagSubviewsCustom];
-    
 }
 
 - (void)tagsControl:(TLTagsControl *)tagsControl tappedAtIndex:(NSInteger)index
@@ -102,4 +335,142 @@
     NSLog(@"Tag \"%@\" was tapped", tagsControl.tags[index]);
 }
 
+#pragma mark - Declaration
+-(void)initData
+{
+   // arrCollection = [[NSMutableArray alloc]initWithArray:@[@"123",@"222"]];
+    //arrLikes = [[NSMutableArray alloc]initWithArray:@[@"123",@"222",@"333"]];
+    //arrPost = [[NSMutableArray alloc]initWithArray:@[@"123",@"222",@"333"]];
+
+}
+
+-(ProfilePageCollectionHeaderView*)profilePageCollectionHeaderView1
+{
+    if (!_profilePageCollectionHeaderView1) {
+        _profilePageCollectionHeaderView1 = [ProfilePageCollectionHeaderView initializeCustomView];
+        
+    }
+    return _profilePageCollectionHeaderView1;
+}
+
+#pragma mark - Request Server
+-(void)requestServerForUserLikes
+{
+    NSString* appendString = [NSString stringWithFormat:@"%@/likes",[Utils getUserID]];
+    NSDictionary* dict = @{@"page":@1,
+                           @"list_size":@5,
+                           @"token":[Utils getAppToken]
+                           };
+    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserLikes param:dict appendString:appendString completeHandler:^(id object) {
+        
+        self.userProfileLikeModel = [[ConnectionManager dataManager]userProfileLikeModel];
+        [self assignLikesData];
+        
+    } errorBlock:^(id object) {
+        
+    }];
+}
+
+-(void)requestServerForUserPost
+{
+    NSString* appendString = [NSString stringWithFormat:@"%@/posts",[Utils getUserID]];
+    NSDictionary* dict = @{@"page":@1,
+                           @"list_size":@5,
+                           @"token":[Utils getAppToken]
+                           };
+    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserPosts param:dict appendString:appendString completeHandler:^(id object) {
+        
+        self.userProfilePostModel = [[ConnectionManager dataManager]userProfilePostModel];
+        [self assignPostData];
+        
+    } errorBlock:^(id object) {
+        
+    }];
+}
+
+-(void)requestServerForUserCollection
+{
+    //need to input token for own profile private collection, no token is get other people public collection
+    NSString* appendString = [NSString stringWithFormat:@"%@/collections",[Utils getUserID]];
+    NSDictionary* dict = @{@"page":@1,
+                           @"list_size":@5,
+                           @"token":[Utils getAppToken]
+                           };
+    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserCollections param:dict appendString:appendString completeHandler:^(id object) {
+        
+        
+        self.userCollectionsModel = [[ConnectionManager dataManager]userCollectionsModel];
+        [self assignCollectionData];
+        
+    } errorBlock:^(id object) {
+        
+    }];
+}
+
+-(void)requestServerForUserInfo
+{
+    NSString* appendString = [NSString stringWithFormat:@"%@",[Utils getUserID]];
+   
+    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserInfo param:nil appendString:appendString completeHandler:^(id object) {
+        
+        self.userProfileModel = [[ConnectionManager dataManager]userProfileModel];
+        [self assignData];
+        
+    } errorBlock:^(id object) {
+        
+    }];
+}
+
+
+-(void)assignData
+{
+    
+    [self assignUserData];
+}
+
+-(void)assignUserData
+{
+    self.lblUserName.text = self.userProfileModel.name;
+    [self setFollowing:self.userProfileModel.follower_count Following:self.userProfileModel.following_count];
+    self.lblLocation.text = self.userProfileModel.location;
+
+}
+
+-(void)assignCollectionData
+{
+    arrCollection = [[NSMutableArray alloc]initWithArray:self.userCollectionsModel.arrCollections];
+    arrCollection = nil;
+    NSRange range = NSMakeRange(0, 1);
+    NSIndexSet *section = [NSIndexSet indexSetWithIndexesInRange:range];
+    [self.ibTableView reloadData];
+    [self.ibTableView reloadSections:section withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self adjustTableView];
+}
+
+-(void)assignPostData
+{
+    arrPost = [[NSMutableArray alloc]initWithArray:self.userProfilePostModel.userPostData.posts];
+    NSRange range = NSMakeRange(1, 2);
+    NSIndexSet *section = [NSIndexSet indexSetWithIndexesInRange:range];
+    [self.ibTableView reloadData];
+    [self.ibTableView reloadSections:section withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self adjustTableView];
+}
+
+-(void)assignLikesData
+{
+    arrLikes = [[NSMutableArray alloc]initWithArray:self.userProfileLikeModel.userPostData.posts];
+
+    [self.ibTableView reloadSections:[NSIndexSet indexSetWithIndex:2]
+                  withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    [self adjustTableView];
+
+}
+
+-(void)setFollowing:(int)followers Following:(int)followings
+{
+    self.lblFollowing.text = [NSString stringWithFormat:@"%d Followers     %d Followings",followers,followings];
+    
+}
 @end

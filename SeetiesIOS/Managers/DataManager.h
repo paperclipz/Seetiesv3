@@ -20,7 +20,7 @@
 #import "RecommendationModel.h"
 
 #import "TagModel.h"
-
+#import "ProfileModel.h"
 @interface DataManager : NSObject
 + (id)Instance;
 +(NSArray*)getSampleObject;
@@ -40,6 +40,10 @@
 
 
 @property(nonatomic,strong)TagModel* tagModel;
+@property(nonatomic,strong)ProfileModel* userProfileModel;
+@property(nonatomic,strong)CollectionsModel* userCollectionsModel;
+@property(nonatomic,strong)ProfilePostModel* userProfilePostModel;
+@property(nonatomic,strong)ProfilePostModel* userProfileLikeModel;
 
 
 +(RecommendationModel*)getSampleRecommendation;
