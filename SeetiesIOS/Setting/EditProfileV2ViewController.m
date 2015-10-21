@@ -237,6 +237,18 @@
         }
         
         return YES;
+    }else if(textField == UserNameField){
+        if([string length] == 0)
+        {
+            if([textField.text length] != 0)
+            {
+                return YES;
+            }
+        }
+        else if([[textField text] length] >= 50)
+        {
+            return NO;
+        }
     }
     
     return YES;

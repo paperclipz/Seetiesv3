@@ -177,8 +177,8 @@
             NSDictionary *GetAllData = [res valueForKey:@"data"];
             NSDictionary *GetNotificationsData = [GetAllData valueForKey:@"notifications"];
             
-            NSString *CheckNotification = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"total_notifications"]];
-            if ([CheckNotification isEqualToString:@"0"]) {
+            CheckNotificationData = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"total_notifications"]];
+            if ([CheckNotificationData isEqualToString:@"0"]) {
                 ShowNoDataView.hidden = NO;
             }
             
@@ -253,6 +253,13 @@
             
             NSDictionary *GetAllData = [res valueForKey:@"data"];
             NSDictionary *GetActivitiesData = [GetAllData valueForKey:@"activities"];
+            
+            CheckFollowData = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"total_activities"]];
+            if ([CheckFollowData isEqualToString:@"0"]) {
+                ShowNoDataView.hidden = NO;
+            }else{
+                ShowNoDataView.hidden = YES;
+            }
             
             Following_PostIDArray = [[NSMutableArray alloc]init];
             Following_TypeArray = [[NSMutableArray alloc]init];
@@ -388,22 +395,38 @@
     switch (segment.selectedSegmentIndex) {
         case 0:
             NSLog(@"Following view click");
-            FollowingView.hidden = NO;
-            NotificationsView.hidden = YES;
-          //  [self InitFollowingDataView];
-            CGSize contentSize = MainScroll.frame.size;
-            contentSize.height = GetHeight + FollowingView.frame.size.height;
-            MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-            MainScroll.contentSize = contentSize;
+            
+            if ([CheckFollowData isEqualToString:@"0"]) {
+                ShowNoDataView.hidden = NO;
+            }else{
+                ShowNoDataView.hidden = YES;
+                
+                FollowingView.hidden = NO;
+                NotificationsView.hidden = YES;
+                
+                //  [self InitFollowingDataView];
+                CGSize contentSize = MainScroll.frame.size;
+                contentSize.height = GetHeight + FollowingView.frame.size.height;
+                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+                MainScroll.contentSize = contentSize;
+            }
+
             break;
         case 1:
             NSLog(@"Notifications view click");
-            FollowingView.hidden = YES;
-            NotificationsView.hidden = NO;
-            CGSize contentSize1 = MainScroll.frame.size;
-            contentSize1.height = GetHeight + NotificationsView.frame.size.height;
-            MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-            MainScroll.contentSize = contentSize1;
+            if ([CheckNotificationData isEqualToString:@"0"]) {
+                ShowNoDataView.hidden = NO;
+            }else{
+                ShowNoDataView.hidden = YES;
+                
+                FollowingView.hidden = YES;
+                NotificationsView.hidden = NO;
+                CGSize contentSize1 = MainScroll.frame.size;
+                contentSize1.height = GetHeight + NotificationsView.frame.size.height;
+                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+                MainScroll.contentSize = contentSize1;
+            }
+
           //  [self InitNotificationsDataView];
             
             break;
@@ -618,6 +641,9 @@
 }
 
 -(void)InitNotificationsDataView{
+    for (UIView *subview in NotificationsView.subviews) {
+        [subview removeFromSuperview];
+    }
     //CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     

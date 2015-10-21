@@ -555,15 +555,15 @@
 }
 -(IBAction)Feed1DoneButtonOnClick:(id)sender{
      CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-     [MainScroll setContentOffset:CGPointMake(screenWidth, 0) animated:YES];
+     [MainScroll setContentOffset:CGPointMake(screenWidth * 4, 0) animated:YES];
 }
 -(IBAction)Feed2DoneButtonOnClick:(id)sender{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    [MainScroll setContentOffset:CGPointMake(screenWidth * 2, 0) animated:YES];
+    [MainScroll setContentOffset:CGPointMake(screenWidth * 4, 0) animated:YES];
 }
 -(IBAction)ProfileDoneButtonOnClick:(id)sender{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    [MainScroll setContentOffset:CGPointMake(screenWidth * 3, 0) animated:YES];}
+    [MainScroll setContentOffset:CGPointMake(screenWidth * 4, 0) animated:YES];}
 -(IBAction)EditPostDoneButtonOnClick:(id)sender{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     [MainScroll setContentOffset:CGPointMake(screenWidth * 4, 0) animated:YES];

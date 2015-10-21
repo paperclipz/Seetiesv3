@@ -188,6 +188,11 @@
 //        }else{
 //            [self GetFeedDataFromServer];
 //        }
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:latPoint forKey:@"UserCurrentLocation_lat"];
+        [defaults setObject:lonPoint forKey:@"UserCurrentLocation_lng"];
+        [defaults synchronize];
+        
         if (CheckInitData == 1) {
             
         }else{
@@ -530,7 +535,7 @@
                 
                 AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
                 ShowUserProfileImage.frame = CGRectMake(25, heightcheck + 15, 40, 40);
-                // ShowUserProfileImage.image = [UIImage imageNamed:@"DemoProfile.jpg"];
+                ShowUserProfileImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
                 ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
                 ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
                 ShowUserProfileImage.layer.cornerRadius=20;
@@ -541,6 +546,7 @@
                 NSString *stringPath1 = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"Content_Folder"];
                 stringPath1  = [stringPath1 stringByAppendingPathComponent:[arrUserImage objectAtIndex:i]];
                 ShowUserProfileImage.image = [UIImage imageWithData:[NSData dataWithContentsOfFile:stringPath1]];
+                
                 [LocalScroll addSubview:ShowUserProfileImage];
                 
                 UIButton *ClicktoOpenUserProfileButton = [[UIButton alloc]init];

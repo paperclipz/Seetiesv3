@@ -42,6 +42,9 @@
     PageControlOn.frame = CGRectMake(15, 300, screenWidth - 30, 37);
     LocationButton.frame = CGRectMake(screenWidth - 85 - 15, 20, 60, 44);
     
+    ShowTopTitle.frame = CGRectMake(35, 32, screenWidth - 155, 24);
+    ShowTopTitle.hidden = YES;
+    
     ShowDownBarView.frame = CGRectMake(0, screenHeight - 62 - 50, screenWidth, 62);
     ShowbarView.frame = CGRectMake(0, 0, screenWidth, 64);
     ShowBarImg.frame = CGRectMake(0, -100, screenWidth, 64);
@@ -49,6 +52,8 @@
     MImageScroll.frame = CGRectMake(0, -20, screenWidth, 360);
     ShowLanguageTranslationView.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     ShowLanguageTranslationView.hidden = YES;
+    
+
     
     ShowTotalLikeCount.frame = CGRectMake((screenWidth/2) - 100, 15, 40, 21);
     ShowTotalCommentCount.frame = CGRectMake((screenWidth/2), 15, 40, 21);
@@ -59,10 +64,12 @@
     DisplayButton.frame = CGRectMake(screenWidth - 124 - 15, 26, 55, 33);
     [self.view addSubview:ShowLanguageTranslationView];
     
-    ShowPlaceNameTop.frame = CGRectMake(44, 21, screenWidth - 155, 24);
-    ShowCategoryTop.frame = CGRectMake(44, 38, screenWidth - 155, 21);
-    ShowPlaceNameTop.hidden = YES;
-    ShowCategoryTop.hidden = YES;
+
+    
+//    ShowPlaceNameTop.frame = CGRectMake(44, 21, screenWidth - 155, 24);
+//    ShowCategoryTop.frame = CGRectMake(44, 38, screenWidth - 155, 21);
+//    ShowPlaceNameTop.hidden = YES;
+//    ShowCategoryTop.hidden = YES;
     
     [MImageScroll setScrollEnabled:YES];
     MImageScroll.delegate = self;
@@ -83,6 +90,7 @@
     CheckCommentData = 0;
     CountLanguage = 0;
     CheckNearbyPost = 0;
+    GetPlaceNameHeight = 0;
     LanguageButton.hidden = YES;
     NewLanguageButton.hidden = YES;
     TestingUse = NO;
@@ -114,6 +122,8 @@
     swipeRight.direction=UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:swipeRight];
     
+    
+
 
 }
 -(void)swipeRight:(UISwipeGestureRecognizer*)gestureRecognizer
@@ -129,6 +139,13 @@
 //    [self dismissViewControllerAnimated:NO completion:nil];
     
     [self.navigationController popToRootViewControllerAnimated:YES];
+}
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+    ShowDownBarView.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
+    self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight, screenWidth, 50);
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -960,9 +977,9 @@
 //                GetExpense = @"100";
 //                }
 
-                ShowPlaceNameTop.text = GetPlaceName;
-                NSString * result = [GetCategoryNameArray componentsJoinedByString:@", "];
-                ShowCategoryTop.text = result;
+               // ShowCategoryTop.text = GetPlaceName;
+//                NSString * result = [GetCategoryNameArray componentsJoinedByString:@", "];
+//                ShowCategoryTop.text = result;
             //    GetPlaceLink = @"facebook.com/abc";
             //    GetContactNo = @"0168409874";
                 ShowTotalCommentCount.text = totalCommentCount;
@@ -1667,6 +1684,9 @@
     ShowAddress.backgroundColor = [UIColor clearColor];
     [MainScroll addSubview:ShowAddress];
     
+    ShowTopTitle.text = GetPlaceName;
+    GetPlaceNameHeight = GetHeightCheck;
+    GetPlaceNameHeight -= 20;
     GetHeightCheck += 40;
 
 
@@ -2941,6 +2961,13 @@
                              }
                              completion:^(BOOL finished) {
                              }];
+            
+
+        }
+        if (HeightCheck > GetPlaceNameHeight) {
+            ShowTopTitle.hidden = NO;
+        }else{
+            ShowTopTitle.hidden = YES;
         }
 
 

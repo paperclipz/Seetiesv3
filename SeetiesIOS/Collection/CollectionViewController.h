@@ -22,6 +22,7 @@
     IBOutlet UIButton *ShareLinkButton;
     
     NSString *GetID;
+    NSString *GetPermisionUser;
     
     IBOutlet UIActivityIndicatorView *ShowActivity;
     
@@ -29,6 +30,7 @@
     NSMutableData *webData;
     NSURLConnection *theConnection_CollectionData;
     NSURLConnection *theConnection_GetTranslate;
+    NSURLConnection *theConnection_QuickCollect;
     
     NSInteger TotalPage;
     NSInteger CurrentPage;
@@ -47,6 +49,7 @@
     NSString *GetTags;
     NSMutableArray *ArrHashTag;
     NSMutableArray *GetLanguagesArray;
+    NSString *GetIsPrivate;
     
     //Content Data
     NSMutableArray *Content_arrImage;
@@ -58,6 +61,7 @@
     NSMutableArray *Content_arrID_arrDistance;
     NSMutableArray *Content_arrID_arrDisplayCountryName;
     NSMutableArray *Content_arrUserName;
+    NSMutableArray *Content_arrCollect;
     
     UIButton *ListButton;
     UIButton *GridButton;
@@ -67,8 +71,10 @@
     
     int CheckClick;
     
+    NSString *GetPostID;
+    NSString *CheckCollect;
     int GetCollectionHeight;
     IBOutlet UILabel *ShowTitleInTop;
 }
--(void)GetCollectionID:(NSString *)ID_;
+-(void)GetCollectionID:(NSString *)ID_ GetPermision:(NSString *)PermisionUser;
 @end

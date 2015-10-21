@@ -153,6 +153,9 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *CheckEdit = [defaults objectForKey:@"CheckEditUserInformation"];
     
@@ -180,9 +183,6 @@
 //        
 //        NSURL *url_WallpaperImage = [NSURL URLWithString:GetWallpaper_];
 //        BackgroundImage.imageURL = url_WallpaperImage;
-        
-        CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
         
         MainScroll.delegate = self;
         MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight);
@@ -1949,7 +1949,7 @@
     CollectionViewController *OpenCollectionView = [[CollectionViewController alloc]init];
    // [self.view.window.rootViewController presentViewController:OpenCollectionView animated:YES completion:nil];
     [self.navigationController pushViewController:OpenCollectionView animated:YES];
-    [OpenCollectionView GetCollectionID:[CollectionData_IDArray objectAtIndex:getbuttonIDN]];
+    [OpenCollectionView GetCollectionID:[CollectionData_IDArray objectAtIndex:getbuttonIDN] GetPermision:@"Self"];
 }
 
 -(IBAction)CollectionEditButtonOnClick:(id)sender{

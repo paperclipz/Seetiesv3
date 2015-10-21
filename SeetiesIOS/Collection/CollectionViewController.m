@@ -10,6 +10,7 @@
 #import "FeedV2DetailViewController.h"
 #import "ShareViewController.h"
 #import "SearchDetailViewController.h"
+#import "AddCollectionDataViewController.h"
 @interface CollectionViewController ()
 
 @end
@@ -81,10 +82,12 @@
 -(IBAction)BackButton:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
--(void)GetCollectionID:(NSString *)ID_{
+-(void)GetCollectionID:(NSString *)ID_ GetPermision:(NSString *)PermisionUser{
 
     GetID = ID_;
+    GetPermisionUser = PermisionUser;
     NSLog(@"Get Collection ID is %@",GetID);
+    NSLog(@"Get Permision User is %@",GetPermisionUser);
     [self GetCollectionData];
 }
 -(void)GetCollectionData{
@@ -94,9 +97,16 @@
         CurrentPage += 1;
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *Getuid = [defaults objectForKey:@"Useruid"];
-        NSString *FullString = [[NSString alloc]initWithFormat:@"%@%@/collections/%@?page=%li",DataUrl.UserWallpaper_Url,Getuid,GetID,CurrentPage];
+        NSString *GetLat = [defaults objectForKey:@"UserCurrentLocation_lat"];
+        NSString *Getlng = [defaults objectForKey:@"UserCurrentLocation_lng"];
         
-        
+        NSString *FullString;
+        if ([GetLat length] == 0 || [GetLat isEqualToString:@""] || [GetLat isEqualToString:@"(null)"] || GetLat == nil) {
+            FullString = [[NSString alloc]initWithFormat:@"%@%@/collections/%@?page=%li",DataUrl.UserWallpaper_Url,Getuid,GetID,CurrentPage];
+        }else{
+            FullString = [[NSString alloc]initWithFormat:@"%@%@/collections/%@?page=%li&lat=%@&lng=%@",DataUrl.UserWallpaper_Url,Getuid,GetID,CurrentPage,GetLat,Getlng];
+        }
+
         NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
         NSLog(@"GetCollectionData check postBack URL ==== %@",postBack);
         NSURL *url = [NSURL URLWithString:[postBack stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
@@ -149,7 +159,7 @@
             GetTitle = [[NSString alloc]initWithFormat:@"%@",[ResData objectForKey:@"name"]];
             GetDescription = [[NSString alloc]initWithFormat:@"%@",[ResData objectForKey:@"description"]];
             GetTags = [[NSString alloc]initWithFormat:@"%@",[ResData valueForKey:@"tags"]];
-            
+            GetIsPrivate = [[NSString alloc]initWithFormat:@"%@",[ResData valueForKey:@"is_private"]];
             
             NSArray *LanguageData = [ResData valueForKey:@"languages"];
             GetLanguagesArray = [[NSMutableArray alloc]initWithArray:LanguageData];
@@ -187,6 +197,7 @@
                 Content_arrID_arrDisplayCountryName = [[NSMutableArray alloc]init];
                 Content_arrMessage = [[NSMutableArray alloc]init];
                 Content_arrUserName = [[NSMutableArray alloc]init];
+                Content_arrCollect = [[NSMutableArray alloc]init];
             }else{
             }
             
@@ -201,6 +212,8 @@
                 [Content_arrID addObject:PlaceID];
                 NSString *notedate = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"collection_note"]];
                 [Content_arrNote addObject:notedate];
+                NSString *collect = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"collect"]];
+                [Content_arrCollect addObject:collect];
             }
             
             NSDictionary *titleData = [GetData valueForKey:@"title"];
@@ -439,6 +452,22 @@
             [ShowActivity stopAnimating];
         }
     
+    }else if(connection == theConnection_QuickCollect){
+        NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+        //NSLog(@"Quick Collection return get data to server ===== %@",GetData);
+        
+        NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *myError = nil;
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
+        //  NSLog(@"Expert Json = %@",res);
+        
+        
+        NSString *statusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
+        NSLog(@"statusString is %@",statusString);
+        
+        if ([statusString isEqualToString:@"ok"]) {
+            [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success add to Collections" type:TSMessageNotificationTypeSuccess];
+        }
     }
 }
 -(void)InitView{
@@ -722,14 +751,46 @@
         ShowOverlayImg.layer.cornerRadius = 5;
         [ListView addSubview:ShowOverlayImg];
         
-        CountHeight += 10;
+        UIButton *ClickToDetailButton = [[UIButton alloc]init];
+        ClickToDetailButton.frame = CGRectMake(20, TempHeight, screenWidth - 40, 180);
+        [ClickToDetailButton setTitle:@"" forState:UIControlStateNormal];
+        ClickToDetailButton.backgroundColor = [UIColor clearColor];
+        ClickToDetailButton.tag = i;
+        [ClickToDetailButton addTarget:self action:@selector(ClickToDetailButton:) forControlEvents:UIControlEventTouchUpInside];
+        [ListView addSubview:ClickToDetailButton];
         
+        CheckCollect = [[NSString alloc]initWithFormat:@"%@",[Content_arrCollect objectAtIndex:i]];
+        
+        if ([GetPermisionUser isEqualToString:@"Self"]) {
+            
+        }else{
+            UIButton *CollectButton = [[UIButton alloc]init];
+            [CollectButton setBackgroundColor:[UIColor clearColor]];
+            if ([CheckCollect isEqualToString:@"0"]) {
+                [CollectButton setImage:[UIImage imageNamed:@"WhiteCollect.png"] forState:UIControlStateNormal];
+                [CollectButton setImage:[UIImage imageNamed:@"WhiteCollected.png"] forState:UIControlStateSelected];
+            }else{
+                [CollectButton setImage:[UIImage imageNamed:@"WhiteCollected.png"] forState:UIControlStateNormal];
+            }
+            CollectButton.frame = CGRectMake(screenWidth - 13 - 57, CountHeight, 57, 57);
+            CollectButton.tag = i;
+            [CollectButton addTarget:self action:@selector(CollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+            [ListView addSubview:CollectButton];
+        }
+        
+        CountHeight += 10;
+
         NSString *TempGetStirng = [[NSString alloc]initWithFormat:@"%@",[Content_arrTitle objectAtIndex:i]];
         if ([TempGetStirng length] == 0 || [TempGetStirng isEqualToString:@""] || [TempGetStirng isEqualToString:@"(null)"]) {
             
         }else{
             UILabel *ShowTitle = [[UILabel alloc]init];
-            ShowTitle.frame = CGRectMake(30, CountHeight, screenWidth - 60, 20);
+            if ([GetPermisionUser isEqualToString:@"Self"]) {
+                ShowTitle.frame = CGRectMake(30, CountHeight, screenWidth - 60, 20);
+            }else{
+            ShowTitle.frame = CGRectMake(30, CountHeight, screenWidth - 100, 20);
+            }
+            
             ShowTitle.text = TempGetStirng;
             ShowTitle.backgroundColor = [UIColor clearColor];
             ShowTitle.textAlignment = NSTextAlignmentLeft;
@@ -742,43 +803,50 @@
 
         }
         
-        UIButton *ClickToDetailButton = [[UIButton alloc]init];
-        ClickToDetailButton.frame = CGRectMake(20, TempHeight, screenWidth - 40, 180);
-        [ClickToDetailButton setTitle:@"" forState:UIControlStateNormal];
-        ClickToDetailButton.backgroundColor = [UIColor clearColor];
-        ClickToDetailButton.tag = i;
-        [ClickToDetailButton addTarget:self action:@selector(ClickToDetailButton:) forControlEvents:UIControlEventTouchUpInside];
-        [ListView addSubview:ClickToDetailButton];
-        
-        
-        
+
         UIImageView *ShowPin = [[UIImageView alloc]init];
         ShowPin.image = [UIImage imageNamed:@"PhotoPin.png"];
         ShowPin.frame = CGRectMake(28, CountHeight + 2, 15, 15);
         [ListView addSubview:ShowPin];
         
         NSString *TempDistanceString = [[NSString alloc]initWithFormat:@"%@",[Content_arrID_arrDistance objectAtIndex:i]];
+//        NSLog(@"TempDistanceString is %@",TempDistanceString);
         NSString *FullShowLocatinString;
-        if ([TempDistanceString isEqualToString:@"0"]) {
+        if ([TempDistanceString isEqualToString:@"-1"]) {
             FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@ • %@",[Content_arrPlaceName objectAtIndex:i],[Content_arrID_arrDisplayCountryName objectAtIndex:i]];
         }else{
             CGFloat strFloat = (CGFloat)[TempDistanceString floatValue] / 1000;
             int x_Nearby = [TempDistanceString intValue] / 1000;
-            if (x_Nearby < 100) {
-                if (x_Nearby <= 1) {
-                    FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@ • 1km",[Content_arrPlaceName objectAtIndex:i]];//within
-                }else{
-                    FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@ • %.fkm",[Content_arrPlaceName objectAtIndex:i],strFloat];
-                }
-                
-            }else{
+//            NSLog(@"strFloat is %f",strFloat);
+//            NSLog(@"x_Nearby is %i",x_Nearby);
+//            if (x_Nearby < 100) {
+//                if (x_Nearby <= 1) {
+//                    FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@ • 1km",[Content_arrPlaceName objectAtIndex:i]];//within
+//                }else{
+//                    FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@ • %.fkm",[Content_arrPlaceName objectAtIndex:i],strFloat];
+//                }
+//                
+//            }else{
+//                FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@ • %@",[Content_arrPlaceName objectAtIndex:i],[Content_arrID_arrDisplayCountryName objectAtIndex:i]];
+//                
+//            }
+            
+            if (x_Nearby < 1) {
+                FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@ • %.fm",[Content_arrPlaceName objectAtIndex:i],strFloat];
+            }else if(x_Nearby > 1000){
                 FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@ • %@",[Content_arrPlaceName objectAtIndex:i],[Content_arrID_arrDisplayCountryName objectAtIndex:i]];
-                
+            }else{
+                FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@ • %.fkm",[Content_arrPlaceName objectAtIndex:i],strFloat];
             }
 
         }
         UILabel *ShowDistance = [[UILabel alloc]init];
-        ShowDistance.frame = CGRectMake(50, CountHeight, screenWidth - 100, 20);
+        if ([GetPermisionUser isEqualToString:@"Self"]) {
+            ShowDistance.frame = CGRectMake(50, CountHeight, screenWidth - 100, 20);
+        }else{
+            ShowDistance.frame = CGRectMake(50, CountHeight, screenWidth - 160, 20);
+        }
+        
         ShowDistance.text = FullShowLocatinString;
         ShowDistance.textColor = [UIColor whiteColor];
         ShowDistance.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
@@ -786,7 +854,7 @@
         ShowDistance.backgroundColor = [UIColor clearColor];
         [ListView addSubview:ShowDistance];
         
-         TempHeight += 190;
+        TempHeight += 190;
         
         NSString *TempGetNote = [[NSString alloc]initWithFormat:@"%@",[Content_arrNote objectAtIndex:i]];
         if ([TempGetNote length] == 0 || [TempGetNote isEqualToString:@""] || [TempGetNote isEqualToString:@"(null)"]) {
@@ -797,7 +865,7 @@
                 NSString *FullString = [[NSString alloc]initWithFormat:@"%@: %@",[Content_arrUserName objectAtIndex:i],TempGetMessage];
                 
                 UILabel *ShowNoteData = [[UILabel alloc]init];
-                ShowNoteData.frame = CGRectMake(20, TempHeight, screenWidth - 40, 40);
+                ShowNoteData.frame = CGRectMake(25, TempHeight, screenWidth - 50, 40);
                 ShowNoteData.backgroundColor = [UIColor clearColor];
                 ShowNoteData.numberOfLines = 3;
                 ShowNoteData.textAlignment = NSTextAlignmentLeft;
@@ -831,9 +899,9 @@
 
                 [ListView addSubview:ShowNoteData];
                 
-                if([ShowNoteData sizeThatFits:CGSizeMake(screenWidth - 30, CGFLOAT_MAX)].height!=ShowNoteData.frame.size.height)
+                if([ShowNoteData sizeThatFits:CGSizeMake(screenWidth - 50, CGFLOAT_MAX)].height!=ShowNoteData.frame.size.height)
                 {
-                    ShowNoteData.frame = CGRectMake(20, TempHeight, screenWidth - 40,[ShowNoteData sizeThatFits:CGSizeMake(screenWidth - 40, CGFLOAT_MAX)].height);
+                    ShowNoteData.frame = CGRectMake(25, TempHeight, screenWidth - 50,[ShowNoteData sizeThatFits:CGSizeMake(screenWidth - 50, CGFLOAT_MAX)].height);
                 }
                 
                 TempHeight += ShowNoteData.frame.size.height + 20;
@@ -845,7 +913,7 @@
             NSString *FullString = [[NSString alloc]initWithFormat:@"%@: %@",[Content_arrUserName objectAtIndex:i],TempGetNote];
             
             UILabel *ShowNoteData = [[UILabel alloc]init];
-            ShowNoteData.frame = CGRectMake(20, TempHeight, screenWidth - 40, 40);
+            ShowNoteData.frame = CGRectMake(25, TempHeight, screenWidth - 50, 40);
             ShowNoteData.backgroundColor = [UIColor clearColor];
             ShowNoteData.numberOfLines = 3;
             ShowNoteData.textAlignment = NSTextAlignmentLeft;
@@ -877,9 +945,9 @@
 
             [ListView addSubview:ShowNoteData];
             
-            if([ShowNoteData sizeThatFits:CGSizeMake(screenWidth - 30, CGFLOAT_MAX)].height!=ShowNoteData.frame.size.height)
+            if([ShowNoteData sizeThatFits:CGSizeMake(screenWidth - 50, CGFLOAT_MAX)].height!=ShowNoteData.frame.size.height)
             {
-                ShowNoteData.frame = CGRectMake(20, TempHeight, screenWidth - 40,[ShowNoteData sizeThatFits:CGSizeMake(screenWidth - 40, CGFLOAT_MAX)].height);
+                ShowNoteData.frame = CGRectMake(25, TempHeight, screenWidth - 50,[ShowNoteData sizeThatFits:CGSizeMake(screenWidth - 50, CGFLOAT_MAX)].height);
             }
             
             TempHeight += ShowNoteData.frame.size.height + 20;
@@ -1045,16 +1113,28 @@
     
 }
 -(IBAction)ShareButtonOnClick:(id)sender{
-    ShareViewController *ShareView = [[ShareViewController alloc]init];
-    [self presentViewController:ShareView animated:YES completion:nil];
-    [ShareView GetCollectionID:GetID];
+    
+    if ([GetIsPrivate isEqualToString:@"true"]) {
+        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"your collection is set to private." type:TSMessageNotificationTypeError];
+    }else{
+        ShareViewController *ShareView = [[ShareViewController alloc]init];
+        [self presentViewController:ShareView animated:YES completion:nil];
+        [ShareView GetCollectionID:GetID];
+    }
+    
+
 }
 -(IBAction)ShareLinkButtonOnClick:(id)sender{
-    NSString *message = [NSString stringWithFormat:@"https://seeties.me/collections/%@",GetID];
-    
-    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-    pasteboard.string = message;
-    [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success Copy Link" type:TSMessageNotificationTypeSuccess];
+    if ([GetIsPrivate isEqualToString:@"true"]) {
+        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"your collection is set to private." type:TSMessageNotificationTypeError];
+    }else{
+        NSString *message = [NSString stringWithFormat:@"https://seeties.me/collections/%@",GetID];
+        
+        UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+        pasteboard.string = message;
+        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success Copy Link" type:TSMessageNotificationTypeSuccess];
+    }
+
 }
 -(IBAction)TranslateButtonOnClick:(id)sender{
     [self GetTranslateData];
@@ -1094,6 +1174,54 @@
     
     if( theConnection_GetTranslate ){
         webData = [NSMutableData data];
+    }
+}
+-(IBAction)CollectButtonOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    // NSLog(@"button %li",(long)getbuttonIDN);
+    NSLog(@"Quick CollectButtonOnClick");
+    GetPostID = [[NSString alloc]initWithFormat:@"%@",[Content_arrID objectAtIndex:getbuttonIDN]];
+    CheckCollect = [[NSString alloc]initWithFormat:@"%@",[Content_arrCollect objectAtIndex:getbuttonIDN]];
+    
+    if ([CheckCollect isEqualToString:@"0"]) {
+        [Content_arrCollect replaceObjectAtIndex:getbuttonIDN withObject:@"1"];
+        UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
+        buttonWithTag1.selected = !buttonWithTag1.selected;
+        
+        [self SendQuickCollect];
+    }else{
+        AddCollectionDataViewController *AddCollectionDataView = [[AddCollectionDataViewController alloc]init];
+        [self presentViewController:AddCollectionDataView animated:YES completion:nil];
+        //[self.view.window.rootViewController presentViewController:AddCollectionDataView animated:YES completion:nil];
+        [AddCollectionDataView GetPostID:[Content_arrID objectAtIndex:getbuttonIDN] GetImageData:[Content_arrImage objectAtIndex:getbuttonIDN]];
+    }
+}
+-(void)SendQuickCollect{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *GetUseruid = [defaults objectForKey:@"Useruid"];
+    //Server Address URL
+    NSString *urlString = [NSString stringWithFormat:@"%@%@/collections/0/collect",DataUrl.UserWallpaper_Url,GetUseruid];
+    NSLog(@"Send Quick Collection urlString is %@",urlString);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"PUT"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    
+    
+    NSString *dataString = [[NSString alloc]initWithFormat:@"token=%@&posts[0][id]=%@",GetExpertToken,GetPostID];
+    
+    NSData *postBodyData = [NSData dataWithBytes: [dataString UTF8String] length:[dataString length]];
+    [request setHTTPBody:postBodyData];
+    
+    theConnection_QuickCollect = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    if(theConnection_QuickCollect) {
+        //  NSLog(@"Connection Successful");
+        webData = [NSMutableData data];
+    } else {
+        
     }
 }
 @end
