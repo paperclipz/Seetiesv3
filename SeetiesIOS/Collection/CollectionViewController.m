@@ -30,6 +30,8 @@
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     MoreButton.frame = CGRectMake(screenWidth - 40, 20, 40, 44);
     MapButton.frame = CGRectMake(screenWidth - 80, 20, 40, 44);
+    ShowTitleInTop.frame = CGRectMake(42, 32, screenWidth - 47, 20);
+    ShowTitleInTop.hidden = YES;
     
     DownBarView.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
    // DownBarView.hidden = YES;
@@ -47,6 +49,7 @@
     GetHeight = 0;
     CheckFirstTimeLoad = 0;
     GetHeight = 0;
+    GetCollectionHeight = 0;
     
     if ([GetID length] ==0) {
         
@@ -506,6 +509,11 @@
     TempShowTitle.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
     TempShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:18];
     [MainScroll addSubview:TempShowTitle];
+    
+    ShowTitleInTop.text = GetTitle;
+    
+    GetCollectionHeight = GetHeight;
+    
 
     GetHeight += 30;
     
@@ -795,28 +803,29 @@
                 ShowNoteData.textAlignment = NSTextAlignmentLeft;
                 ShowNoteData.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
                 ShowNoteData.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+                
                 NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
                 paragraph.minimumLineHeight = 21.0f;
                 paragraph.maximumLineHeight = 21.0f;
-                NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:FullString attributes:@{NSParagraphStyleAttributeName: paragraph}];
-                ShowNoteData.attributedText = attributedString;
+//                NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:FullString attributes:@{NSParagraphStyleAttributeName: paragraph}];
+//                ShowNoteData.attributedText = attributedString;
                 
-//                NSString *FinalString_CheckName = [[NSString alloc] initWithFormat:@"%@:",[Content_arrUserName objectAtIndex:i]];
-//                
-//                NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:FullString];
-//                [mutableAttributedString appendAttributedString:attributedString];
-//                [mutableAttributedString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15] range:NSMakeRange(0, FullString.length)];
-//                [mutableAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f] range:NSMakeRange(0, FullString.length)];
-//
-//                NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:FinalString_CheckName  options:kNilOptions error:nil];
-//                NSRange range = NSMakeRange(0,FullString.length);
-//                [regex enumerateMatchesInString:FullString options:kNilOptions range:range usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
-//                    NSRange subStringRange = [result rangeAtIndex:0];
-//                    [mutableAttributedString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15] range:NSMakeRange(0, FinalString_CheckName.length)];
-//                    [mutableAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f] range:subStringRange];
-//                }];
-//                
-//                [ShowNoteData setAttributedText:mutableAttributedString];
+                NSString *FinalString_CheckName = [[NSString alloc] initWithFormat:@"%@:",[Content_arrUserName objectAtIndex:i]];
+                
+                NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:FullString];
+                [mutableAttributedString addAttribute:NSParagraphStyleAttributeName value:paragraph range:NSMakeRange(0, FullString.length)];
+                [mutableAttributedString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15] range:NSMakeRange(0, FullString.length)];
+                [mutableAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f] range:NSMakeRange(0, FullString.length)];
+
+                NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:FinalString_CheckName  options:kNilOptions error:nil];
+                NSRange range = NSMakeRange(0,FullString.length);
+                [regex enumerateMatchesInString:FullString options:kNilOptions range:range usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+                    NSRange subStringRange = [result rangeAtIndex:0];
+                    [mutableAttributedString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15] range:NSMakeRange(0, FinalString_CheckName.length)];
+                    [mutableAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f] range:subStringRange];
+                }];
+
+                [ShowNoteData setAttributedText:mutableAttributedString];
                 
                 //ShowNoteData.text = FullString;
 
@@ -837,19 +846,35 @@
             
             UILabel *ShowNoteData = [[UILabel alloc]init];
             ShowNoteData.frame = CGRectMake(20, TempHeight, screenWidth - 40, 40);
-            
-            NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
-            paragraph.minimumLineHeight = 21.0f;
-            paragraph.maximumLineHeight = 21.0f;
-            NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:FullString attributes:@{NSParagraphStyleAttributeName: paragraph}];
-            ShowNoteData.attributedText = attributedString;
-            
-           // ShowNoteData.text = FullString;
             ShowNoteData.backgroundColor = [UIColor clearColor];
             ShowNoteData.numberOfLines = 3;
             ShowNoteData.textAlignment = NSTextAlignmentLeft;
             ShowNoteData.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
             ShowNoteData.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+            
+            NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+            paragraph.minimumLineHeight = 21.0f;
+            paragraph.maximumLineHeight = 21.0f;
+            
+            NSString *FinalString_CheckName = [[NSString alloc] initWithFormat:@"%@:",[Content_arrUserName objectAtIndex:i]];
+            
+            NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:FullString];
+            [mutableAttributedString addAttribute:NSParagraphStyleAttributeName value:paragraph range:NSMakeRange(0, FullString.length)];
+            [mutableAttributedString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15] range:NSMakeRange(0, FullString.length)];
+            [mutableAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f] range:NSMakeRange(0, FullString.length)];
+            
+            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:FinalString_CheckName  options:kNilOptions error:nil];
+            NSRange range = NSMakeRange(0,FullString.length);
+            [regex enumerateMatchesInString:FullString options:kNilOptions range:range usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+                NSRange subStringRange = [result rangeAtIndex:0];
+                [mutableAttributedString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15] range:NSMakeRange(0, FinalString_CheckName.length)];
+                [mutableAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f] range:subStringRange];
+            }];
+            
+            [ShowNoteData setAttributedText:mutableAttributedString];
+            
+           // ShowNoteData.text = FullString;
+
             [ListView addSubview:ShowNoteData];
             
             if([ShowNoteData sizeThatFits:CGSizeMake(screenWidth - 30, CGFLOAT_MAX)].height!=ShowNoteData.frame.size.height)
@@ -998,6 +1023,17 @@
                              completion:^(BOOL finished) {
                              }];
         }
+        
+        
+        if (heightcheck_ > GetCollectionHeight) {
+            ShowTitleInTop.hidden = NO;
+        }else{
+        
+            ShowTitleInTop.hidden = YES;
+        }
+        
+        
+        
         
         
         

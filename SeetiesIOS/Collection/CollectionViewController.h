@@ -66,6 +66,9 @@
     UIView *GridView;
     
     int CheckClick;
+    
+    int GetCollectionHeight;
+    IBOutlet UILabel *ShowTitleInTop;
 }
 -(void)GetCollectionID:(NSString *)ID_;
 @end
