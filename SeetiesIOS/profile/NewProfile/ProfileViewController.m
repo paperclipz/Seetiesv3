@@ -14,6 +14,7 @@
 #import "ProfilePagePostTableViewCell.h"
 #import "ProfilePageCollectionHeaderView.h"
 #import "ProfilePageCollectionFooterTableViewCell.h"
+#import "ProfileNoItemTableViewCell.h"
 
 @interface ProfileViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
@@ -58,8 +59,8 @@
     [self initData];
     [self initSelfView];
     [self requestServerForUserCollection];
-    [self requestServerForUserPost];
-    [self requestServerForUserLikes];
+  //  [self requestServerForUserPost];
+  //  [self requestServerForUserLikes];
     
     // Do any additional setup after loading the view from its nib.
 }
@@ -104,11 +105,16 @@
 
 -(void)adjustTableView
 {
-    int collectionHeight = (int)([ProfilePageCollectionTableViewCell getHeight]*arrCollection.count);
-    int postAndLikesHeight = (int)([ProfilePagePostTableViewCell getHeight]*((arrPost.count>0?1:0) + (arrLikes.count>0?1:0)));
+    
+    int collectionHeight = arrCollection.count>0?(int)([ProfilePageCollectionTableViewCell getHeight]*arrCollection.count):[ProfileNoItemTableViewCell getHeight];
+  //  int postAndLikesHeight = (int)([ProfilePagePostTableViewCell getHeight]*((arrPost.count>0?1:0) + (arrLikes.count>0?1:0)));
+    int postAndLikesHeight = (arrPost.count>0?[ProfilePagePostTableViewCell getHeight]:[ProfileNoItemTableViewCell getHeight]) + (arrLikes.count>0?[ProfilePagePostTableViewCell getHeight]:[ProfileNoItemTableViewCell getHeight]);
+
     int cellHeaderHeight = 3*[ProfilePageCollectionHeaderView getHeight];
-    int cellFooterHeight = 3* [ProfilePageCollectionFooterTableViewCell getHeight];
-    self.ibTableView.frame = CGRectMake(self.ibTableView.frame.origin.x, self.ibTableView.frame.origin.y, self.ibTableView.frame.size.width, collectionHeight + postAndLikesHeight + cellHeaderHeight + cellFooterHeight);
+    int count = (arrCollection.count>0?1:0) + (arrPost.count>0?1:0) + (arrLikes.count>0?1:0);
+    int cellFooterHeight = [ProfilePageCollectionFooterTableViewCell getHeight]*(count);
+    
+    self.ibTableView.frame = CGRectMake(self.ibTableView.frame.origin.x, self.ibTableView.frame.origin.y, self.ibTableView.frame.size.width, collectionHeight + postAndLikesHeight + cellHeaderHeight + cellFooterHeight + 5);
     
     self.ibContentView.frame = CGRectMake(self.ibContentView.frame.origin.x, self.ibContentView.frame.origin.y, self.ibContentView.frame.size.width, self.ibTableView.frame.origin.y +self.ibTableView.frame.size.height);
     
@@ -155,7 +161,7 @@
 
     }
     else
-        return 0;
+        return 1;
 
     
 }
@@ -170,25 +176,42 @@
 {
     if (indexPath.section == 0) {
         
-        if (indexPath.row == arrCollection.count) {
+        
+        if (!arrCollection.count>0) {
+            return [ProfileNoItemTableViewCell getHeight];
+        }
+        else if (indexPath.row == arrCollection.count) {
             return [ProfilePageCollectionFooterTableViewCell getHeight];
         }
         
         return [ProfilePageCollectionTableViewCell getHeight];
     }
-    else if (indexPath.section == 1 || indexPath.section == 2){
-        
-        if (indexPath.row == 1) {
+    else if (indexPath.section == 1){
+        if (!arrPost.count>0) {
+            return [ProfileNoItemTableViewCell getHeight];
+        }
+        else if (indexPath.row == 1) {
             return [ProfilePageCollectionFooterTableViewCell getHeight];
         }
 
         return [ProfilePagePostTableViewCell getHeight];
 
     }
-    else{
+    else if (indexPath.section == 2){
+       
+        if (!arrLikes.count>0) {
+            return [ProfileNoItemTableViewCell getHeight];
+        }
+        else if (indexPath.row == 1) {
+            return [ProfilePageCollectionFooterTableViewCell getHeight];
+        }
+        
         return [ProfilePagePostTableViewCell getHeight];
+        
 
     }
+    
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -222,7 +245,19 @@
 
     if (indexPath.section == 0) {
        
-        if (indexPath.row==arrCollection.count) {
+        if (!arrCollection.count>0) {
+            
+            static NSString* cellIndenfierShowNone = @"ProfileNoItemTableViewCell";
+            ProfileNoItemTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIndenfierShowNone];
+            
+            if (!cell) {
+                cell = [[ProfileNoItemTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfierShowNone];
+            }
+            [cell adjustRoundedEdge:self.ibTableView.frame];
+
+            return cell;
+        }
+       else if (indexPath.row==arrCollection.count) {
             
             static NSString* cellIndenfierNone = @"ProfilePageCollectionFooterTableViewCell";
             ProfilePageCollectionFooterTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIndenfierNone];
@@ -243,6 +278,8 @@
                 cell = [[ProfilePageCollectionTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfier1];
             }
             
+            [cell initData:arrCollection[indexPath.row]];
+            
             return cell;
         }
        
@@ -250,7 +287,20 @@
     
     else if(indexPath.section == 1)
     {
-        if (indexPath.row == 1) {
+        
+        if (!arrPost.count>0) {
+            
+            static NSString* cellIndenfierShowNone = @"ProfileNoItemTableViewCell";
+            ProfileNoItemTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIndenfierShowNone];
+            
+            if (!cell) {
+                cell = [[ProfileNoItemTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfierShowNone];
+            }
+            [cell adjustRoundedEdge:self.ibTableView.frame];
+
+            return cell;
+        }
+        else if (indexPath.row == 1) {
             
             static NSString* cellIndenfierNone = @"ProfilePageCollectionFooterTableViewCell";
             ProfilePageCollectionFooterTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIndenfierNone];
@@ -278,41 +328,59 @@
     
     else if (indexPath.section == 2)
     {
-        if (indexPath.row== 1) {
+        
+        if (!arrLikes.count>0) {
             
-            static NSString* cellIndenfierNone = @"ProfilePageCollectionFooterTableViewCell";
-            ProfilePageCollectionFooterTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIndenfierNone];
+            static NSString* cellIndenfierShowNone = @"ProfileNoItemTableViewCell";
+            ProfileNoItemTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIndenfierShowNone];
             
             if (!cell) {
-                cell = [[ProfilePageCollectionFooterTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfierNone];
+                cell = [[ProfileNoItemTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfierShowNone];
             }
             [cell adjustRoundedEdge:self.ibTableView.frame];
 
             return cell;
         }
-        else{
-            static NSString* cellIndenfier2 = @"ProfilePagePostTableViewCell";
-            ProfilePagePostTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIndenfier2];
-            
-            if (!cell) {
-                cell = [[ProfilePagePostTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfier2];
-            }
-            DraftModel* model = arrLikes[0];
-            [cell initData:model.arrPhotos];
-            return cell;
-            
-        }
-        
-        
-        
-    }
 
+        else if (indexPath.row== 1) {
+                
+                static NSString* cellIndenfierNone = @"ProfilePageCollectionFooterTableViewCell";
+                ProfilePageCollectionFooterTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIndenfierNone];
+                
+                if (!cell) {
+                    cell = [[ProfilePageCollectionFooterTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfierNone];
+                }
+                [cell adjustRoundedEdge:self.ibTableView.frame];
+
+                return cell;
+            }
+        
+        else{
+                static NSString* cellIndenfier2 = @"ProfilePagePostTableViewCell";
+                ProfilePagePostTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIndenfier2];
+                
+                if (!cell) {
+                    cell = [[ProfilePagePostTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfier2];
+                }
+                DraftModel* model = arrLikes[0];
+                [cell initData:model.arrPhotos];
+                return cell;
+           
+        }
+    }
+        
     
     return nil;
     
 
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        [self.navigationController pushViewController:self.collectionListingViewController animated:YES];
+    }
+}
 
 
 #pragma mark - Tag
@@ -336,6 +404,24 @@
 }
 
 #pragma mark - Declaration
+
+-(CollectionListingViewController*)collectionListingViewController
+{
+    if (!_collectionListingViewController) {
+        _collectionListingViewController = [CollectionListingViewController new];
+    }
+    
+    return _collectionListingViewController;
+}
+-(CollectionViewController*)collectionViewController
+{
+    if(!_collectionViewController)
+    {
+        _collectionViewController = [CollectionViewController new];
+    }
+    
+    return _collectionViewController;
+}
 -(void)initData
 {
    // arrCollection = [[NSMutableArray alloc]initWithArray:@[@"123",@"222"]];
@@ -398,7 +484,6 @@
                            };
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserCollections param:dict appendString:appendString completeHandler:^(id object) {
         
-        
         self.userCollectionsModel = [[ConnectionManager dataManager]userCollectionsModel];
         [self assignCollectionData];
         
@@ -439,7 +524,6 @@
 -(void)assignCollectionData
 {
     arrCollection = [[NSMutableArray alloc]initWithArray:self.userCollectionsModel.arrCollections];
-    arrCollection = nil;
     NSRange range = NSMakeRange(0, 1);
     NSIndexSet *section = [NSIndexSet indexSetWithIndexesInRange:range];
     [self.ibTableView reloadData];
@@ -460,9 +544,11 @@
 -(void)assignLikesData
 {
     arrLikes = [[NSMutableArray alloc]initWithArray:self.userProfileLikeModel.userPostData.posts];
-
+   
+    [self.ibTableView reloadData];
+    
     [self.ibTableView reloadSections:[NSIndexSet indexSetWithIndex:2]
-                  withRowAnimation:UITableViewRowAnimationAutomatic];
+                        withRowAnimation:UITableViewRowAnimationAutomatic];
     
     [self adjustTableView];
 

@@ -7,7 +7,12 @@
 //
 
 #import "ProfilePageCollectionTableViewCell.h"
+@interface ProfilePageCollectionTableViewCell()
+@property (weak, nonatomic) IBOutlet UIImageView *ibImageViewA;
+@property (weak, nonatomic) IBOutlet UIImageView *ibImageViewB;
+@property (strong, nonatomic) CollectionModel *model;
 
+@end
 @implementation ProfilePageCollectionTableViewCell
 
 /*
@@ -21,5 +26,20 @@
 +(int)getHeight
 {
     return 222.0f;
+}
+
+-(void)initData:(CollectionModel*)model
+{
+//    self.model = model;
+//    
+//    if (self.model.arrTempFeedsPost>0) {
+//        
+//        DraftModel* postModel = self.model.arrTempFeedsPost[0];
+//        
+//        if (postModel.arrPhotos.count>0) {
+//            
+//        }
+//    }
+    
 }
 @end

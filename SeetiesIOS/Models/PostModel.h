@@ -8,33 +8,30 @@
 
 #import "Model.h"
 
-@protocol PostModel
-
-@end
-
 @protocol CollectionModel
 
 @end
 
-@interface PostModel : JSONModel
+//@interface PostModel : JSONModel
+//
+//@property(nonatomic,strong)NSString* imageURL;
+//@property(nonatomic,strong)NSString* name;
+//@property(nonatomic,strong)NSString* distance;
+//@property(nonatomic,strong)NSArray* category;
+//@property(nonatomic,strong)Location* location;
+//@property(nonatomic,strong)NSArray<PhotoModel>* photos;
+//@property(nonatomic,strong)NSString* collection_note;
+//@property(nonatomic,strong)NSString* post_id;
+//
+//
+//@end
 
-@property(nonatomic,strong)NSString* imageURL;
-@property(nonatomic,strong)NSString* name;
-@property(nonatomic,strong)NSString* distance;
-@property(nonatomic,strong)NSArray* category;
-@property(nonatomic,strong)Location* location;
-@property(nonatomic,strong)NSArray<PhotoModel>* photos;
-@property(nonatomic,strong)NSString* collection_note;
-@property(nonatomic,strong)NSString* post_id;
-
-
-
-@end
-
-@interface CollectionModel : Model
+@interface CollectionModel : JSONModel
 // in future change to draft model
-@property(nonatomic,strong)NSArray<PostModel>* arrayPost;
+@property(nonatomic,strong)NSArray<DraftModel>* arrayPost;
+
 // in future change to draft model
+//@property(nonatomic,strong)NSArray<DraftModel>* arrTempFeedsPost;
 
 @property(nonatomic,strong)NSString* name;
 @property(nonatomic,strong)NSString* postDesc;
@@ -52,7 +49,9 @@
 @interface CollectionsModel : Model
 
 @property(nonatomic,strong)NSArray<CollectionModel>* arrCollections;
-
+@property(nonatomic,assign)int total_page;
+@property(nonatomic,assign)int total_result;
+@property(nonatomic,assign)int page;
 
 @end
 

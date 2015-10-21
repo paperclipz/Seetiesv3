@@ -9,7 +9,7 @@
 #import "CommonTableViewCell.h"
 
 @interface EditCollectionTableViewCell : CommonTableViewCell<UITextViewDelegate>
--(void)initData:(PostModel*)model;
+-(void)initData:(DraftModel*)model;
 @property(nonatomic,copy)IDBlock deleteCellBlock;
 -(void)saveData;
 @end

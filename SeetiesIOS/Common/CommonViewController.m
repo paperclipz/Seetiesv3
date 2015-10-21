@@ -16,6 +16,13 @@
 @end
 
 @implementation CommonViewController
+- (IBAction)btnBackClicked:(id)sender {
+    
+    
+    if (self.navigationController) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

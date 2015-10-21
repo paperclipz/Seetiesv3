@@ -8,13 +8,13 @@
 
 #import "PostModel.h"
 
-@implementation PostModel
-+(BOOL)propertyIsOptional:(NSString*)propertyName
-{
-    return YES;
-}
-
-@end
+//@implementation PostModel
+//+(BOOL)propertyIsOptional:(NSString*)propertyName
+//{
+//    return YES;
+//}
+//
+//@end
 
 @implementation CollectionModel
 +(BOOL)propertyIsOptional:(NSString*)propertyName
@@ -25,13 +25,13 @@
 +(JSONKeyMapper*)keyMapper
 {
     return [[JSONKeyMapper alloc] initWithDictionary:@{
-                                                       @"posts.data": @"arrayPost",
+                                                       @"collection_posts.posts": @"arrayPost",
                                                        @"description": @"postDesc",
                                                        @"is_private": @"isPrivate",
                                                        @"tags":@"tagList",
-                                                       @"posts.total_page": @"total_page",
-                                                       @"posts.total_posts": @"total_posts",
-                                                       @"posts.page": @"page"
+                                                       @"collection_posts.total_page": @"total_page",
+                                                       @"collection_posts.total_posts": @"total_posts",
+                                                       @"collection_posts.page": @"page"
                                                        }];
 }
 

@@ -79,6 +79,10 @@
                     <constraint firstItem="cg4-oM-VeY" firstAttribute="leading" secondItem="Cad-BQ-EAB" secondAttribute="leadingMargin" id="rUv-Yb-gc1"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="ibImageViewA" destination="1l0-BW-VUP" id="aWH-UL-plQ"/>
+                <outlet property="ibImageViewB" destination="cXO-xp-Gkt" id="Kdm-lq-eCA"/>
+            </connections>
             <point key="canvasLocation" x="379" y="167"/>
         </tableViewCell>
     </objects>

@@ -17,6 +17,9 @@
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TnO-kS-Im2">
                         <rect key="frame" x="137" y="7" width="47" height="30"/>
                         <state key="normal" title="See All"/>
+                        <connections>
+                            <action selector="btnSeeAllClicked:" destination="XHL-uF-Nju" eventType="touchUpInside" id="6Ni-P9-Pjy"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>

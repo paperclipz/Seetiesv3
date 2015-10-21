@@ -10,5 +10,6 @@
 
 @interface ProfilePageCollectionTableViewCell : CommonTableViewCell
 +(int)getHeight;
+-(void)initData:(CollectionModel*)model;
 
 @end

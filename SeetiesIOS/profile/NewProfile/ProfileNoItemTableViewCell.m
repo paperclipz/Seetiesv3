@@ -1,15 +1,14 @@
-
 //
-//  ProfilePageCollectionFooterTableViewCell.m
+//  ProfileNoItemTableViewCell.m
 //  SeetiesIOS
 //
 //  Created by Evan Beh on 10/21/15.
 //  Copyright © 2015 Stylar Network. All rights reserved.
 //
 
-#import "ProfilePageCollectionFooterTableViewCell.h"
+#import "ProfileNoItemTableViewCell.h"
 
-@implementation ProfilePageCollectionFooterTableViewCell
+@implementation ProfileNoItemTableViewCell
 
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -18,9 +17,17 @@
     // Drawing code
 }
 */
-- (IBAction)btnSeeAllClicked:(id)sender {
++(int)getHeight
+{
+    return 120.0f;
+}
+
+-(void)initSelfView
+{
     
 }
+
+
 -(void)adjustRoundedEdge:(CGRect)frame
 {
     self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, frame.size.width, self.frame.size.height);
@@ -31,8 +38,4 @@
     
 }
 
-+(int)getHeight
-{
-    return 44.0f;
-}
 @end

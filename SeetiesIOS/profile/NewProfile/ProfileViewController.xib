@@ -29,7 +29,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </scrollView>
             </subviews>
-            <color key="backgroundColor" red="0.790423769" green="0.790423769" blue="0.790423769" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.9137254901960784" green="0.92941176470588238" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="pdp-kG-bwS" secondAttribute="trailing" id="FQX-jW-uSY"/>
                 <constraint firstAttribute="bottom" secondItem="pdp-kG-bwS" secondAttribute="bottom" constant="50" id="MZD-ti-Dp0"/>
@@ -157,7 +157,7 @@
                     </variation>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="222" sectionHeaderHeight="20" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="y6b-tE-4Np">
-                    <rect key="frame" x="10" y="237" width="302" height="331"/>
+                    <rect key="frame" x="10" y="237" width="302" height="330"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </tableView>
             </subviews>
@@ -169,7 +169,7 @@
                 <constraint firstAttribute="trailing" secondItem="lkl-HZ-BhG" secondAttribute="trailing" id="gTR-f8-dwt"/>
                 <constraint firstItem="lkl-HZ-BhG" firstAttribute="leading" secondItem="3Pb-zr-5rR" secondAttribute="leading" id="n5n-CL-1KX"/>
                 <constraint firstItem="lkl-HZ-BhG" firstAttribute="top" secondItem="3Pb-zr-5rR" secondAttribute="top" id="nUB-18-VGe"/>
-                <constraint firstAttribute="bottom" secondItem="y6b-tE-4Np" secondAttribute="bottom" id="tHy-rH-8By"/>
+                <constraint firstAttribute="bottom" secondItem="y6b-tE-4Np" secondAttribute="bottom" constant="1" id="tHy-rH-8By"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="897" y="158"/>

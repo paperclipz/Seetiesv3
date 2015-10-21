@@ -938,6 +938,12 @@
 		8AF53EFC1BD65F5A00AF6C9E /* UIView+RoundedCorners.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF53EFB1BD65F5A00AF6C9E /* UIView+RoundedCorners.m */; settings = {ASSET_TAGS = (); }; };
 		8AF53F041BD73ED200AF6C9E /* ProfilePageCollectionFooterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF53F031BD73ED200AF6C9E /* ProfilePageCollectionFooterTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		8AF53F061BD73EDF00AF6C9E /* ProfilePageCollectionFooterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F051BD73EDF00AF6C9E /* ProfilePageCollectionFooterTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
+		8AF53F091BD7490000AF6C9E /* ProfileNoItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF53F081BD7490000AF6C9E /* ProfileNoItemTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		8AF53F0B1BD7490900AF6C9E /* ProfileNoItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F0A1BD7490900AF6C9E /* ProfileNoItemTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
+		8AF53F101BD7990C00AF6C9E /* CollectionListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF53F0E1BD7990C00AF6C9E /* CollectionListingViewController.m */; settings = {ASSET_TAGS = (); }; };
+		8AF53F111BD7990C00AF6C9E /* CollectionListingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F0F1BD7990C00AF6C9E /* CollectionListingViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		8AF53F151BD79B5F00AF6C9E /* CollectionListingTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF53F131BD79B5F00AF6C9E /* CollectionListingTabViewController.m */; settings = {ASSET_TAGS = (); }; };
+		8AF53F161BD79B6000AF6C9E /* CollectionListingTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F141BD79B5F00AF6C9E /* CollectionListingTabViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		D44BD397CA9972010A37D9F6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B526FE01F3F3414439C16DF /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -2180,6 +2186,15 @@
 		8AF53F021BD73ED200AF6C9E /* ProfilePageCollectionFooterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfilePageCollectionFooterTableViewCell.h; sourceTree = "<group>"; };
 		8AF53F031BD73ED200AF6C9E /* ProfilePageCollectionFooterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfilePageCollectionFooterTableViewCell.m; sourceTree = "<group>"; };
 		8AF53F051BD73EDF00AF6C9E /* ProfilePageCollectionFooterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfilePageCollectionFooterTableViewCell.xib; sourceTree = "<group>"; };
+		8AF53F071BD7490000AF6C9E /* ProfileNoItemTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileNoItemTableViewCell.h; sourceTree = "<group>"; };
+		8AF53F081BD7490000AF6C9E /* ProfileNoItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileNoItemTableViewCell.m; sourceTree = "<group>"; };
+		8AF53F0A1BD7490900AF6C9E /* ProfileNoItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileNoItemTableViewCell.xib; sourceTree = "<group>"; };
+		8AF53F0D1BD7990C00AF6C9E /* CollectionListingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionListingViewController.h; sourceTree = "<group>"; };
+		8AF53F0E1BD7990C00AF6C9E /* CollectionListingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionListingViewController.m; sourceTree = "<group>"; };
+		8AF53F0F1BD7990C00AF6C9E /* CollectionListingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionListingViewController.xib; sourceTree = "<group>"; };
+		8AF53F121BD79B5F00AF6C9E /* CollectionListingTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionListingTabViewController.h; sourceTree = "<group>"; };
+		8AF53F131BD79B5F00AF6C9E /* CollectionListingTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionListingTabViewController.m; sourceTree = "<group>"; };
+		8AF53F141BD79B5F00AF6C9E /* CollectionListingTabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionListingTabViewController.xib; sourceTree = "<group>"; };
 		A6BFDB1BE373200E64D8CBE7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CAB2B54F0EC79309593A3C4C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2804,6 +2819,9 @@
 				8AF53F021BD73ED200AF6C9E /* ProfilePageCollectionFooterTableViewCell.h */,
 				8AF53F031BD73ED200AF6C9E /* ProfilePageCollectionFooterTableViewCell.m */,
 				8AF53F051BD73EDF00AF6C9E /* ProfilePageCollectionFooterTableViewCell.xib */,
+				8AF53F071BD7490000AF6C9E /* ProfileNoItemTableViewCell.h */,
+				8AF53F081BD7490000AF6C9E /* ProfileNoItemTableViewCell.m */,
+				8AF53F0A1BD7490900AF6C9E /* ProfileNoItemTableViewCell.xib */,
 			);
 			name = ProfilePageExtra;
 			sourceTree = "<group>";
@@ -3806,6 +3824,7 @@
 		8AF0EF771BC7D6CD00B5D8D3 /* NewProfile */ = {
 			isa = PBXGroup;
 			children = (
+				8AF53F0C1BD798DC00AF6C9E /* CollectionPage */,
 				8A83CCB61BD5E91C00C8B52C /* ProfilePage */,
 				8A83CCB01BD5100500C8B52C /* ProfileCollection */,
 				8AF0EF7D1BC7DD1600B5D8D3 /* Extra */,
@@ -4572,6 +4591,19 @@
 			path = "Add New Place";
 			sourceTree = "<group>";
 		};
+		8AF53F0C1BD798DC00AF6C9E /* CollectionPage */ = {
+			isa = PBXGroup;
+			children = (
+				8AF53F0D1BD7990C00AF6C9E /* CollectionListingViewController.h */,
+				8AF53F0E1BD7990C00AF6C9E /* CollectionListingViewController.m */,
+				8AF53F0F1BD7990C00AF6C9E /* CollectionListingViewController.xib */,
+				8AF53F121BD79B5F00AF6C9E /* CollectionListingTabViewController.h */,
+				8AF53F131BD79B5F00AF6C9E /* CollectionListingTabViewController.m */,
+				8AF53F141BD79B5F00AF6C9E /* CollectionListingTabViewController.xib */,
+			);
+			name = CollectionPage;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -5124,6 +5156,7 @@
 				8AF39FDC1BC67E88009C7F26 /* YoloIcon@2x.png in Resources */,
 				8AF39FE71BC67E88009C7F26 /* InstagramBtnActive@3x.png in Resources */,
 				8AD6C2A81B7072FB0040437E /* TellaStoryViewController.xib in Resources */,
+				8AF53F111BD7990C00AF6C9E /* CollectionListingViewController.xib in Resources */,
 				8A83CC281BD4DBA800C8B52C /* Icon-72@2x.png in Resources */,
 				8AF39FC01BC67E88009C7F26 /* AbroadIcon@2x.png in Resources */,
 				8AF39FD81BC67E88009C7F26 /* SportIcon@2x.png in Resources */,
@@ -5158,6 +5191,7 @@
 				8A6584381B981C0E00BC86B9 /* CategoryCollectionViewCell.xib in Resources */,
 				8AD6C0BF1B706CF30040437E /* FeedV2DetailViewController.xib in Resources */,
 				8AF3A04F1BC67E88009C7F26 /* FollowBtn@3x.png in Resources */,
+				8AF53F0B1BD7490900AF6C9E /* ProfileNoItemTableViewCell.xib in Resources */,
 				8AF39CD11BC649D1009C7F26 /* NearbyBackground.png in Resources */,
 				8AF3A0B21BC67E88009C7F26 /* WalkthroughEditPost.png in Resources */,
 				8AF3A0931BC67E88009C7F26 /* Thai.png in Resources */,
@@ -5291,6 +5325,7 @@
 				0BE340241B73021B00F49625 /* ProximaNovaSoft-Bold.ttf in Resources */,
 				8AF39F701BC67E88009C7F26 /* ExploreFollowing@3x.png in Resources */,
 				8AF39FB31BC67E88009C7F26 /* TitleBar@2x.png in Resources */,
+				8AF53F161BD79B6000AF6C9E /* CollectionListingTabViewController.xib in Resources */,
 				8AF3A0A71BC67E88009C7F26 /* ProfileIconActive@2x.png in Resources */,
 				8AD6C0F51B706CF30040437E /* SearchChangeLocationViewController.xib in Resources */,
 				8AF3A0051BC67E88009C7F26 /* MoveIcon@3x.png in Resources */,
@@ -5391,6 +5426,7 @@
 				8A3757C61B8583ED009DB7D4 /* UIFont+SystemFontOverride.m in Sources */,
 				8AD6C3501B707D120040437E /* Utils.m in Sources */,
 				8A3409D11B8B0DCB009B66C3 /* UIImage+Scaling.m in Sources */,
+				8AF53F091BD7490000AF6C9E /* ProfileNoItemTableViewCell.m in Sources */,
 				8AB76DFC1BB8FDC8007DB972 /* NewUserProfileV2ViewController.m in Sources */,
 				0B3FF1091BB131620014AF2E /* NewCollectionViewController.m in Sources */,
 				8AD6C0F41B706CF30040437E /* SearchChangeLocationViewController.m in Sources */,
@@ -5437,6 +5473,7 @@
 				8AD6C0C81B706CF30040437E /* NotificationViewController.m in Sources */,
 				8AD6C2261B706F6A0040437E /* Locale.m in Sources */,
 				8AD6BE5B1B706CF30040437E /* DoPhotoCell.m in Sources */,
+				8AF53F101BD7990C00AF6C9E /* CollectionListingViewController.m in Sources */,
 				8A65842D1B97079900BC86B9 /* RecommendationVenueModel.m in Sources */,
 				8A3409451B8AD06A009B66C3 /* UIImage+Reflection.m in Sources */,
 				8A5430101B8C1646009EFFF4 /* MapViewController.m in Sources */,
@@ -5466,6 +5503,7 @@
 				8A2E73BA1BCCF2A0003A2589 /* ProfileImageCollectionViewCell.m in Sources */,
 				8AF2C27E1BA13D1400B0A7F1 /* AFNetworkActivityLogger.m in Sources */,
 				8AD6C2891B7072FB0040437E /* ConfirmPlaceViewController.m in Sources */,
+				8AF53F151BD79B5F00AF6C9E /* CollectionListingTabViewController.m in Sources */,
 				8AF0EF801BC7DD4600B5D8D3 /* ProfileCollectionTableViewCell.m in Sources */,
 				8A9F25D91B8EFD2200BB13BA /* EditHourModel.m in Sources */,
 				8AD6C8761B7495B60040437E /* BaseViewController.m in Sources */,

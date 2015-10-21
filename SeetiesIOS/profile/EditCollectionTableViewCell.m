@@ -10,7 +10,7 @@
 #import "UIImage+Tint.h"
 @interface EditCollectionTableViewCell()
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
-@property (strong, nonatomic) PostModel* postModel;
+@property (strong, nonatomic) DraftModel* postModel;
 @property (weak, nonatomic) IBOutlet UILabel *lblLocation;
 @property (weak, nonatomic) IBOutlet UITextView *txtDescription;
 @property (weak, nonatomic) IBOutlet UIView *ibContentView;
@@ -33,7 +33,7 @@
 }
 */
 
--(void)initData:(PostModel*)model
+-(void)initData:(DraftModel*)model
 {
     self.postModel = model;
 }
@@ -44,7 +44,7 @@
     [Utils setRoundBorder:self.ibImageView color:TWO_ZERO_FOUR_COLOR borderRadius:5.0f borderWidth:BORDER_WIDTH];
     [Utils setRoundBorder:self.txtDescription color:TWO_ZERO_FOUR_COLOR borderRadius:5.0f borderWidth:BORDER_WIDTH];
 
-    PhotoModel* pModel = self.postModel.photos[0];
+    PhotoModel* pModel = self.postModel.arrPhotos[0];
     
     [self.ibImageView sd_setImageWithURL:[NSURL URLWithString:pModel.imageURL]];
     self.lblLocation.text = self.postModel.location.name;

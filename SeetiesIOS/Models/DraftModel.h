@@ -74,7 +74,7 @@
 @property(nonatomic,strong)Location* location;
 @property(nonatomic,strong)NSArray* category;
 
-@property(nonatomic,strong)NSString* imageURL;
+//@property(nonatomic,strong)NSString* imageURL;//take Small size images
 @property(nonatomic,strong)NSString* name;
 @property(nonatomic,strong)NSString* distance;
 @property(nonatomic,strong)NSString* collection_note;
