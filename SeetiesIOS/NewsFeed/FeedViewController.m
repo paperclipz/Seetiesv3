@@ -584,14 +584,21 @@
                         ShowDistanceIcon.image = [UIImage imageNamed:@"Distance2Icon.png"];
                         FullShowLocatinString = [[NSString alloc]initWithFormat:@"1km"];//within
                     }else if(x_Nearby > 4 && x_Nearby < 300){
-                        FullShowLocatinString = [[NSString alloc]initWithFormat:@"%.fkm",strFloat];
-                        ShowDistanceIcon.image = [UIImage imageNamed:@"Distance1Icon.png"];
+                        
+                        if (x_Nearby < 15) {
+                            FullShowLocatinString = [[NSString alloc]initWithFormat:@"%.fkm",strFloat];
+                            ShowDistanceIcon.image = [UIImage imageNamed:@"Distance1Icon.png"];
+                        }else{
+                            FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@",[arrDisplayCountryName objectAtIndex:i]];
+                            ShowDistanceIcon.image = [UIImage imageNamed:@"Distance1Icon.png"];
+                        }
+
                     }else if(x_Nearby > 301 && x_Nearby < 3000){
                         ShowDistanceIcon.image = [UIImage imageNamed:@"Distance3Icon.png"];
-                        FullShowLocatinString = [[NSString alloc]initWithFormat:@"%.fkm",strFloat];
+                        FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@",[arrDisplayCountryName objectAtIndex:i]];
                     }else if(x_Nearby > 301 && x_Nearby < 3000){
                         ShowDistanceIcon.image = [UIImage imageNamed:@"Distance4Icon.png"];
-                        FullShowLocatinString = [[NSString alloc]initWithFormat:@"%.fkm",strFloat];
+                        FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@",[arrDisplayCountryName objectAtIndex:i]];
                     }else{
                         Checkhide = 1;
                       //  ShowDistanceIcon.image = [UIImage imageNamed:@"Distance4Icon.png"];
@@ -1008,14 +1015,19 @@
                         ShowDistanceIcon.image = [UIImage imageNamed:@"Distance2Icon.png"];
                         FullShowLocatinString = [[NSString alloc]initWithFormat:@"1km"];//within
                     }else if(x_Nearby > 4 && x_Nearby < 300){
-                        FullShowLocatinString = [[NSString alloc]initWithFormat:@"%.fkm",strFloat];
-                        ShowDistanceIcon.image = [UIImage imageNamed:@"Distance1Icon.png"];
+                        if (x_Nearby < 15) {
+                            FullShowLocatinString = [[NSString alloc]initWithFormat:@"%.fkm",strFloat];
+                            ShowDistanceIcon.image = [UIImage imageNamed:@"Distance1Icon.png"];
+                        }else{
+                            FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@",[arrDisplayCountryName objectAtIndex:i]];
+                            ShowDistanceIcon.image = [UIImage imageNamed:@"Distance1Icon.png"];
+                        }
                     }else if(x_Nearby > 301 && x_Nearby < 3000){
                         ShowDistanceIcon.image = [UIImage imageNamed:@"Distance3Icon.png"];
-                        FullShowLocatinString = [[NSString alloc]initWithFormat:@"%.fkm",strFloat];
+                        FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@",[arrDisplayCountryName objectAtIndex:i]];
                     }else if(x_Nearby > 301 && x_Nearby < 3000){
                         ShowDistanceIcon.image = [UIImage imageNamed:@"Distance4Icon.png"];
-                        FullShowLocatinString = [[NSString alloc]initWithFormat:@"%.fkm",strFloat];
+                        FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@",[arrDisplayCountryName objectAtIndex:i]];
                     }else{
                         Checkhide = 1;
                        // ShowDistanceIcon.image = [UIImage imageNamed:@"Distance4Icon.png"];
@@ -1317,14 +1329,20 @@
                         ShowDistanceIcon.image = [UIImage imageNamed:@"Distance2Icon.png"];
                         FullShowLocatinStringLocalQR = [[NSString alloc]initWithFormat:@"1km"];//within
                     }else if(x_NearbyLocalQR > 4 && x_NearbyLocalQR < 300){
-                        FullShowLocatinStringLocalQR = [[NSString alloc]initWithFormat:@"%.fkm",strFloatLocalQR];
-                        ShowDistanceIcon.image = [UIImage imageNamed:@"Distance1Icon.png"];
+                        if (x_NearbyLocalQR < 15) {
+                            FullShowLocatinStringLocalQR = [[NSString alloc]initWithFormat:@"%.fkm",strFloatLocalQR];
+                            ShowDistanceIcon.image = [UIImage imageNamed:@"Distance1Icon.png"];
+                        }else{
+                            FullShowLocatinStringLocalQR = [[NSString alloc]initWithFormat:@"%@",[arrDisplayCountryName objectAtIndex:i]];
+                            ShowDistanceIcon.image = [UIImage imageNamed:@"Distance1Icon.png"];
+                        }
+
                     }else if(x_NearbyLocalQR > 301 && x_NearbyLocalQR < 3000){
                         ShowDistanceIcon.image = [UIImage imageNamed:@"Distance3Icon.png"];
-                        FullShowLocatinStringLocalQR = [[NSString alloc]initWithFormat:@"%.fkm",strFloatLocalQR];
+                        FullShowLocatinStringLocalQR = [[NSString alloc]initWithFormat:@"%@",[arrDisplayCountryName objectAtIndex:i]];
                     }else if(x_NearbyLocalQR > 301 && x_NearbyLocalQR < 3000){
                         ShowDistanceIcon.image = [UIImage imageNamed:@"Distance4Icon.png"];
-                        FullShowLocatinStringLocalQR = [[NSString alloc]initWithFormat:@"%.fkm",strFloatLocalQR];
+                        FullShowLocatinStringLocalQR = [[NSString alloc]initWithFormat:@"%@",[arrDisplayCountryName objectAtIndex:i]];
                     }else{
                         Checkhide = 1;
                        // ShowDistanceIcon.image = [UIImage imageNamed:@"Distance4Icon.png"];

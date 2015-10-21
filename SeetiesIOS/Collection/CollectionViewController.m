@@ -99,12 +99,13 @@
         NSString *Getuid = [defaults objectForKey:@"Useruid"];
         NSString *GetLat = [defaults objectForKey:@"UserCurrentLocation_lat"];
         NSString *Getlng = [defaults objectForKey:@"UserCurrentLocation_lng"];
+        NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
         
         NSString *FullString;
         if ([GetLat length] == 0 || [GetLat isEqualToString:@""] || [GetLat isEqualToString:@"(null)"] || GetLat == nil) {
-            FullString = [[NSString alloc]initWithFormat:@"%@%@/collections/%@?page=%li",DataUrl.UserWallpaper_Url,Getuid,GetID,CurrentPage];
+            FullString = [[NSString alloc]initWithFormat:@"%@%@/collections/%@?page=%li&token=%@",DataUrl.UserWallpaper_Url,Getuid,GetID,CurrentPage,GetExpertToken];
         }else{
-            FullString = [[NSString alloc]initWithFormat:@"%@%@/collections/%@?page=%li&lat=%@&lng=%@",DataUrl.UserWallpaper_Url,Getuid,GetID,CurrentPage,GetLat,Getlng];
+            FullString = [[NSString alloc]initWithFormat:@"%@%@/collections/%@?page=%li&lat=%@&lng=%@&token=%@",DataUrl.UserWallpaper_Url,Getuid,GetID,CurrentPage,GetLat,Getlng,GetExpertToken];
         }
 
         NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
@@ -626,6 +627,26 @@
         }
         GetHeight += 50;
     }
+
+    
+    //edit button
+    UIButton *EditButton = [[UIButton alloc]init];
+    EditButton.frame = CGRectMake((screenWidth / 2) - 65, GetHeight, 130, 35);
+    EditButton.layer.cornerRadius= 18;
+    EditButton.layer.borderWidth = 1;
+    EditButton.layer.masksToBounds = YES;
+    EditButton.layer.borderColor=[[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0] CGColor];
+    EditButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
+    [EditButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
+    EditButton.backgroundColor = [UIColor whiteColor];
+    if ([GetPermisionUser isEqualToString:@"Self"]) {
+        [EditButton setTitle:@"Edit" forState:UIControlStateNormal];
+    }else{
+        [EditButton setTitle:@"Collect" forState:UIControlStateNormal];
+    }
+    [MainScroll addSubview:EditButton];
+    
+    GetHeight += 45;
     
     UIButton *Line01 = [[UIButton alloc]init];
     Line01.frame = CGRectMake(0, GetHeight, screenWidth, 1);
@@ -910,7 +931,7 @@
             
         }else{
             
-            NSString *FullString = [[NSString alloc]initWithFormat:@"%@: %@",[Content_arrUserName objectAtIndex:i],TempGetNote];
+            NSString *FullString = [[NSString alloc]initWithFormat:@"%@: %@",GetUsername,TempGetNote];
             
             UILabel *ShowNoteData = [[UILabel alloc]init];
             ShowNoteData.frame = CGRectMake(25, TempHeight, screenWidth - 50, 40);
@@ -924,7 +945,7 @@
             paragraph.minimumLineHeight = 21.0f;
             paragraph.maximumLineHeight = 21.0f;
             
-            NSString *FinalString_CheckName = [[NSString alloc] initWithFormat:@"%@:",[Content_arrUserName objectAtIndex:i]];
+            NSString *FinalString_CheckName = [[NSString alloc] initWithFormat:@"%@:",GetUsername];
             
             NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:FullString];
             [mutableAttributedString addAttribute:NSParagraphStyleAttributeName value:paragraph range:NSMakeRange(0, FullString.length)];
