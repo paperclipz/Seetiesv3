@@ -126,6 +126,9 @@
 
 
 }
+- (void)dealloc {
+    [MainScroll setDelegate:nil];
+}
 -(void)swipeRight:(UISwipeGestureRecognizer*)gestureRecognizer
 {
 ////    //Do what you want here
@@ -229,9 +232,7 @@
                      }];
     
 }
-- (void)dealloc {
-    [MainScroll setDelegate:nil];
-}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -2484,6 +2485,8 @@
     
     if (CheckNearbyPost == 0) {
         [self GetNearbyPostData];
+    }else{
+        [self InitNearbyPostView];
     }
     
     
@@ -3901,7 +3904,13 @@
     NSLog(@"ArrHashTag is %@",GetTagsString);
     
     SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
-    [self.navigationController pushViewController:SearchDetailView animated:YES];
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.2;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromRight;
+    [self.view.window.layer addAnimation:transition forKey:nil];
+    [self presentViewController:SearchDetailView animated:NO completion:nil];
     [SearchDetailView GetSearchKeyword:GetTagsString Getlat:@"" GetLong:@"" GetLocationName:@"" GetCurrentLat:@"" GetCurrentLong:@""];
 }
 @end

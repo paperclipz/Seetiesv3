@@ -43,7 +43,7 @@
     DataUrl = [[UrlDataClass alloc]init];
     MainScroll.delegate = self;
     UserScroll.delegate = self;
-    MainScroll.frame = CGRectMake(0, 95 , screenWidth, screenHeight - 95 - 50);
+    MainScroll.frame = CGRectMake(0, 95 , screenWidth, screenHeight - 95);
     ShowSearchUserView.frame = CGRectMake(0, 114, screenWidth, screenHeight - 114);
     UserScroll.frame = CGRectMake(0, 0 , ShowSearchUserView.frame.size.width, ShowSearchUserView.frame.size.height);
     StringSortby = @"3";
@@ -124,15 +124,15 @@
    // ShowTitle.text = String;
 }
 -(IBAction)BackButton:(id)sender{
-//    CATransition *transition = [CATransition animation];
-//    transition.duration = 0.2;
-//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//    transition.type = kCATransitionPush;
-//    transition.subtype = kCATransitionFromLeft;
-//    [self.view.window.layer addAnimation:transition forKey:nil];
-//    //[self presentViewController:ListingDetail animated:NO completion:nil];
-//    [self dismissViewControllerAnimated:NO completion:nil];
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.2;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromLeft;
+    [self.view.window.layer addAnimation:transition forKey:nil];
+    [self dismissViewControllerAnimated:NO completion:nil];
+   // [self.navigationController popToRootViewControllerAnimated:YES];
+    //[self dismissViewControllerAnimated:YES completion:nil];
 }
 -(void)GetSearchKeyword:(NSString *)Keyword Getlat:(NSString *)lat GetLong:(NSString *)Long GetLocationName:(NSString *)LocationName GetCurrentLat:(NSString *)CurrentLat GetCurrentLong:(NSString *)CurrentLong{
     

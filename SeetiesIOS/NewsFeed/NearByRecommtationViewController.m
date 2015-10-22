@@ -303,16 +303,16 @@
         [MainScroll addSubview:LikeButton];
         
         
-        UIButton *CommentButton = [[UIButton alloc]init];
-        CommentButton.frame = CGRectMake(70, heightcheck + 4 ,37, 37);
-        [CommentButton setImage:[UIImage imageNamed:@"CommentIcon.png"] forState:UIControlStateNormal];
-        CommentButton.backgroundColor = [UIColor clearColor];
-        CommentButton.tag = i;
-        [CommentButton addTarget:self action:@selector(CommentButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
-        [MainScroll addSubview:CommentButton];
+//        UIButton *CommentButton = [[UIButton alloc]init];
+//        CommentButton.frame = CGRectMake(70, heightcheck + 4 ,37, 37);
+//        [CommentButton setImage:[UIImage imageNamed:@"CommentIcon.png"] forState:UIControlStateNormal];
+//        CommentButton.backgroundColor = [UIColor clearColor];
+//        CommentButton.tag = i;
+//        [CommentButton addTarget:self action:@selector(CommentButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+//        [MainScroll addSubview:CommentButton];
         
         UIButton *ShareButton = [[UIButton alloc]init];
-        ShareButton.frame = CGRectMake(122, heightcheck + 4 ,37, 37);
+        ShareButton.frame = CGRectMake(70, heightcheck + 4 ,37, 37);//3 button size 122, heightcheck + 4 ,37, 37
         [ShareButton setImage:[UIImage imageNamed:@"ShareToIcon.png"] forState:UIControlStateNormal];
         ShareButton.backgroundColor = [UIColor clearColor];
         ShareButton.tag = i;
