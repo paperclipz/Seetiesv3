@@ -11,4 +11,5 @@
 @interface ProfilePageCollectionFooterTableViewCell : CommonTableViewCell
 +(int)getHeight;
 -(void)adjustRoundedEdge:(CGRect)frame;
+@property(copy)VoidBlock btnSeeAllClickedBlock;
 @end

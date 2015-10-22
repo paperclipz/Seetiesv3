@@ -20,6 +20,10 @@
 */
 - (IBAction)btnSeeAllClicked:(id)sender {
     
+    if (_btnSeeAllClickedBlock) {
+        self.btnSeeAllClickedBlock();
+    }
+    
 }
 -(void)adjustRoundedEdge:(CGRect)frame
 {

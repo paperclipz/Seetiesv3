@@ -51,6 +51,7 @@
 #import "iOSBlocks.h"
 #import "UITextView+Placeholder.h"
 #import "UIView+RoundedCorners.h"
+#import "NSObject+Extension.h"
 
 //===============Model=================
 #import "RecommendationModel.h"

@@ -549,12 +549,16 @@
         case ServerRequestTypeGetUserPosts:
         {
             self.dataManager.userProfilePostModel = [[ProfilePostModel alloc]initWithDictionary:obj error:nil];
+            [self.dataManager.userProfilePostModel.userPostData process];
+
         }
             break;
             
         case ServerRequestTypeGetUserLikes:
         {
             self.dataManager.userProfileLikeModel = [[ProfilePostModel alloc]initWithDictionary:obj error:nil];
+            [self.dataManager.userProfileLikeModel.userPostData process];
+
         }
             break;
             

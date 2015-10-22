@@ -59,8 +59,8 @@
     [self initData];
     [self initSelfView];
     [self requestServerForUserCollection];
-  //  [self requestServerForUserPost];
-  //  [self requestServerForUserLikes];
+    [self requestServerForUserPost];
+    [self requestServerForUserLikes];
     
     // Do any additional setup after loading the view from its nib.
 }
@@ -230,12 +230,18 @@
     [headerView adjustRoundedEdge:self.ibTableView.frame];
    
     if (section == 0) {
-        headerView.lblTitle.text = @"Collections";
+        [headerView setHeaderViewWithCount:self.userCollectionsModel.total_result type:1];
+        
     }else if(section == 1)
-        headerView.lblTitle.text = @"Posts";
+    {
+        [headerView setHeaderViewWithCount:self.userProfilePostModel.userPostData.total_posts type:2];
+    }
     else
-    headerView.lblTitle.text = @"Likes";
-    
+    {
+        
+        [headerView setHeaderViewWithCount:self.userProfileLikeModel.userPostData.total_posts type:3];
+  
+    }
     return headerView;
 
 }
@@ -265,7 +271,13 @@
             if (!cell) {
                 cell = [[ProfilePageCollectionFooterTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfierNone];
             }
-            
+           
+           cell.btnSeeAllClickedBlock = ^(void)
+           {
+               [self didSelectFooterAtIndex:indexPath];
+
+           };
+           
             [cell adjustRoundedEdge:self.ibTableView.frame];
             return cell;
         }
@@ -309,7 +321,12 @@
                 cell = [[ProfilePageCollectionFooterTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfierNone];
             }
             [cell adjustRoundedEdge:self.ibTableView.frame];
-
+          
+            cell.btnSeeAllClickedBlock = ^(void)
+            {
+                [self didSelectFooterAtIndex:indexPath];
+                
+            };
             return cell;
         }
         else{
@@ -344,27 +361,41 @@
 
         else if (indexPath.row== 1) {
                 
-                static NSString* cellIndenfierNone = @"ProfilePageCollectionFooterTableViewCell";
-                ProfilePageCollectionFooterTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIndenfierNone];
-                
-                if (!cell) {
-                    cell = [[ProfilePageCollectionFooterTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfierNone];
-                }
-                [cell adjustRoundedEdge:self.ibTableView.frame];
-
-                return cell;
+            static NSString* cellIndenfierNone = @"ProfilePageCollectionFooterTableViewCell";
+            ProfilePageCollectionFooterTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIndenfierNone];
+            
+            if (!cell) {
+                cell = [[ProfilePageCollectionFooterTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfierNone];
             }
+            [cell adjustRoundedEdge:self.ibTableView.frame];
+            
+            cell.btnSeeAllClickedBlock = ^(void)
+            {
+                [self didSelectFooterAtIndex:indexPath];
+                
+            };
+                return cell;
+            
+        }
         
         else{
-                static NSString* cellIndenfier2 = @"ProfilePagePostTableViewCell";
-                ProfilePagePostTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIndenfier2];
+            
+            static NSString* cellIndenfier2 = @"ProfilePagePostTableViewCell";
+            
+            ProfilePagePostTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIndenfier2];
                 
-                if (!cell) {
-                    cell = [[ProfilePagePostTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfier2];
-                }
-                DraftModel* model = arrLikes[0];
-                [cell initData:model.arrPhotos];
-                return cell;
+            
+            if (!cell) {
+              
+                cell = [[ProfilePagePostTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfier2];
+              
+            }
+            
+            DraftModel* model = arrLikes[0];
+            
+            [cell initData:model.arrPhotos];
+            
+            return cell;
            
         }
     }
@@ -373,6 +404,24 @@
     return nil;
     
 
+}
+
+
+-(void)didSelectFooterAtIndex:(NSIndexPath*)indexPath
+{
+    switch (indexPath.section) {
+        
+        default:
+        case 0://collection
+            [self.navigationController pushViewController:self.collectionListingViewController animated:YES];
+            break;
+        case 1://post
+            
+            break;
+        case 2://likes
+            
+            break;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -386,8 +435,8 @@
 #pragma mark - Tag
 -(void)initTagView
 {
-    arrayTag = [[NSMutableArray alloc]initWithArray:@[@"111",@"222",@"333",@"111",@"222",@"333",@"111",@"222",@"333"]];
-    _ibTagControlView.tags = arrayTag;
+  //  arrayTag = [[NSMutableArray alloc]initWithArray:@[@"111",@"222",@"333",@"111",@"222",@"333",@"111",@"222",@"333"]];
+   // _ibTagControlView.tags = arrayTag;
     _ibTagControlView.mode = TLTagsControlModeEdit;
     _ibTagControlView.tagPlaceholder = @"Tag";
     [_ibTagControlView setTapDelegate:self];

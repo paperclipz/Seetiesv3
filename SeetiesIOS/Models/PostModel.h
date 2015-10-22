@@ -29,10 +29,6 @@
 @interface CollectionModel : JSONModel
 // in future change to draft model
 @property(nonatomic,strong)NSArray<DraftModel>* arrayPost;
-
-// in future change to draft model
-//@property(nonatomic,strong)NSArray<DraftModel>* arrTempFeedsPost;
-
 @property(nonatomic,strong)NSString* name;
 @property(nonatomic,strong)NSString* postDesc;
 @property(nonatomic,assign)BOOL isPrivate;

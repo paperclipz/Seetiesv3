@@ -483,44 +483,6 @@
 		8AF39CE01BC67125009C7F26 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39CDD1BC67125009C7F26 /* 3.png */; settings = {ASSET_TAGS = (); }; };
 		8AF39CE11BC67125009C7F26 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39CDE1BC67125009C7F26 /* 2.png */; settings = {ASSET_TAGS = (); }; };
 		8AF39CE21BC67125009C7F26 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39CDF1BC67125009C7F26 /* 1.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39EFF1BC67E88009C7F26 /* Check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D171BC67E87009C7F26 /* Check@2x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F001BC67E88009C7F26 /* Check@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D181BC67E87009C7F26 /* Check@3x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F011BC67E88009C7F26 /* CheckGrey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D191BC67E87009C7F26 /* CheckGrey@2x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F021BC67E88009C7F26 /* CheckGrey@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D1A1BC67E87009C7F26 /* CheckGrey@3x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F031BC67E88009C7F26 /* CollectionCrossBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D1B1BC67E87009C7F26 /* CollectionCrossBtn@2x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F041BC67E88009C7F26 /* CollectionCrossBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D1C1BC67E87009C7F26 /* CollectionCrossBtn@3x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F051BC67E88009C7F26 /* CollectionFolderIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D1D1BC67E87009C7F26 /* CollectionFolderIcon@2x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F061BC67E88009C7F26 /* CollectionFolderIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D1E1BC67E87009C7F26 /* CollectionFolderIcon@3x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F071BC67E88009C7F26 /* CollectionLink@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D1F1BC67E87009C7F26 /* CollectionLink@2x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F081BC67E88009C7F26 /* CollectionLink@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D201BC67E87009C7F26 /* CollectionLink@3x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F091BC67E88009C7F26 /* CollectionOverlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D211BC67E87009C7F26 /* CollectionOverlay@2x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F0A1BC67E88009C7F26 /* CollectionOverlay@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D221BC67E87009C7F26 /* CollectionOverlay@3x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F0B1BC67E88009C7F26 /* CreateCollection@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D231BC67E87009C7F26 /* CreateCollection@2x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F0C1BC67E88009C7F26 /* CreateCollection@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D241BC67E87009C7F26 /* CreateCollection@3x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F0D1BC67E88009C7F26 /* GridViewActive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D251BC67E87009C7F26 /* GridViewActive@2x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F0E1BC67E88009C7F26 /* GridViewActive@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D261BC67E87009C7F26 /* GridViewActive@3x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F0F1BC67E88009C7F26 /* GridViewInactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D271BC67E87009C7F26 /* GridViewInactive@2x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F101BC67E88009C7F26 /* GridViewInactive@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D281BC67E87009C7F26 /* GridViewInactive@3x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F111BC67E88009C7F26 /* ListViewActive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D291BC67E87009C7F26 /* ListViewActive@2x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F121BC67E88009C7F26 /* ListViewActive@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D2A1BC67E87009C7F26 /* ListViewActive@3x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F131BC67E88009C7F26 /* ListViewInactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D2B1BC67E87009C7F26 /* ListViewInactive@2x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F141BC67E88009C7F26 /* ListViewInactive@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D2C1BC67E87009C7F26 /* ListViewInactive@3x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F151BC67E88009C7F26 /* MapBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D2D1BC67E87009C7F26 /* MapBtn@2x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F161BC67E88009C7F26 /* MapBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D2E1BC67E87009C7F26 /* MapBtn@3x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F171BC67E88009C7F26 /* MoreBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D2F1BC67E87009C7F26 /* MoreBtn@2x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F181BC67E88009C7F26 /* MoreBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D301BC67E87009C7F26 /* MoreBtn@3x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F191BC67E88009C7F26 /* PhotoPin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D311BC67E87009C7F26 /* PhotoPin@2x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F1A1BC67E88009C7F26 /* PhotoPin@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D321BC67E87009C7F26 /* PhotoPin@3x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F1B1BC67E88009C7F26 /* ShareBase@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D331BC67E87009C7F26 /* ShareBase@2x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F1C1BC67E88009C7F26 /* ShareBase@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D341BC67E87009C7F26 /* ShareBase@3x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F1D1BC67E88009C7F26 /* TranslateIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D351BC67E87009C7F26 /* TranslateIcon@2x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F1E1BC67E88009C7F26 /* TranslateIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D361BC67E87009C7F26 /* TranslateIcon@3x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F1F1BC67E88009C7F26 /* Uncheck@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D371BC67E87009C7F26 /* Uncheck@2x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F201BC67E88009C7F26 /* Uncheck@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D381BC67E87009C7F26 /* Uncheck@3x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F211BC67E88009C7F26 /* WhiteCollect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D391BC67E87009C7F26 /* WhiteCollect@2x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F221BC67E88009C7F26 /* WhiteCollect@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D3A1BC67E87009C7F26 /* WhiteCollect@3x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F231BC67E88009C7F26 /* WhiteCollected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D3B1BC67E87009C7F26 /* WhiteCollected@2x.png */; settings = {ASSET_TAGS = (); }; };
-		8AF39F241BC67E88009C7F26 /* WhiteCollected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D3C1BC67E87009C7F26 /* WhiteCollected@3x.png */; settings = {ASSET_TAGS = (); }; };
 		8AF39F251BC67E88009C7F26 /* CommentBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D3E1BC67E87009C7F26 /* CommentBox@2x.png */; settings = {ASSET_TAGS = (); }; };
 		8AF39F261BC67E88009C7F26 /* CommentBox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D3F1BC67E87009C7F26 /* CommentBox@3x.png */; settings = {ASSET_TAGS = (); }; };
 		8AF39F271BC67E88009C7F26 /* DeleteIconSwipe@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39D401BC67E87009C7F26 /* DeleteIconSwipe@2x.png */; settings = {ASSET_TAGS = (); }; };
@@ -944,6 +906,47 @@
 		8AF53F111BD7990C00AF6C9E /* CollectionListingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F0F1BD7990C00AF6C9E /* CollectionListingViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		8AF53F151BD79B5F00AF6C9E /* CollectionListingTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF53F131BD79B5F00AF6C9E /* CollectionListingTabViewController.m */; settings = {ASSET_TAGS = (); }; };
 		8AF53F161BD79B6000AF6C9E /* CollectionListingTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F141BD79B5F00AF6C9E /* CollectionListingTabViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		8AF53F1B1BD8850E00AF6C9E /* NSObject+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF53F1A1BD8850E00AF6C9E /* NSObject+Extension.m */; settings = {ASSET_TAGS = (); }; };
+		8AF53F451BD88DCF00AF6C9E /* Check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F1D1BD88DCF00AF6C9E /* Check@2x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F461BD88DCF00AF6C9E /* Check@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F1E1BD88DCF00AF6C9E /* Check@3x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F471BD88DCF00AF6C9E /* CheckGrey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F1F1BD88DCF00AF6C9E /* CheckGrey@2x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F481BD88DCF00AF6C9E /* CheckGrey@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F201BD88DCF00AF6C9E /* CheckGrey@3x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F491BD88DCF00AF6C9E /* CollectionCrossBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F211BD88DCF00AF6C9E /* CollectionCrossBtn@2x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F4A1BD88DCF00AF6C9E /* CollectionCrossBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F221BD88DCF00AF6C9E /* CollectionCrossBtn@3x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F4B1BD88DCF00AF6C9E /* CollectionFolderIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F231BD88DCF00AF6C9E /* CollectionFolderIcon@2x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F4C1BD88DCF00AF6C9E /* CollectionFolderIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F241BD88DCF00AF6C9E /* CollectionFolderIcon@3x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F4D1BD88DCF00AF6C9E /* CollectionLink@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F251BD88DCF00AF6C9E /* CollectionLink@2x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F4E1BD88DCF00AF6C9E /* CollectionLink@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F261BD88DCF00AF6C9E /* CollectionLink@3x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F4F1BD88DCF00AF6C9E /* CollectionOverlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F271BD88DCF00AF6C9E /* CollectionOverlay@2x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F501BD88DCF00AF6C9E /* CollectionOverlay@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F281BD88DCF00AF6C9E /* CollectionOverlay@3x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F511BD88DCF00AF6C9E /* CreateCollection@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F291BD88DCF00AF6C9E /* CreateCollection@2x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F521BD88DCF00AF6C9E /* CreateCollection@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F2A1BD88DCF00AF6C9E /* CreateCollection@3x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F531BD88DCF00AF6C9E /* GridViewActive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F2B1BD88DCF00AF6C9E /* GridViewActive@2x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F541BD88DCF00AF6C9E /* GridViewActive@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F2C1BD88DCF00AF6C9E /* GridViewActive@3x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F551BD88DCF00AF6C9E /* GridViewInactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F2D1BD88DCF00AF6C9E /* GridViewInactive@2x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F561BD88DCF00AF6C9E /* GridViewInactive@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F2E1BD88DCF00AF6C9E /* GridViewInactive@3x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F571BD88DCF00AF6C9E /* ListViewActive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F2F1BD88DCF00AF6C9E /* ListViewActive@2x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F581BD88DCF00AF6C9E /* ListViewActive@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F301BD88DCF00AF6C9E /* ListViewActive@3x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F591BD88DCF00AF6C9E /* ListViewInactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F311BD88DCF00AF6C9E /* ListViewInactive@2x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F5A1BD88DCF00AF6C9E /* ListViewInactive@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F321BD88DCF00AF6C9E /* ListViewInactive@3x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F5B1BD88DCF00AF6C9E /* MapBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F331BD88DCF00AF6C9E /* MapBtn@2x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F5C1BD88DCF00AF6C9E /* MapBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F341BD88DCF00AF6C9E /* MapBtn@3x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F5D1BD88DCF00AF6C9E /* MoreBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F351BD88DCF00AF6C9E /* MoreBtn@2x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F5E1BD88DCF00AF6C9E /* MoreBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F361BD88DCF00AF6C9E /* MoreBtn@3x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F5F1BD88DCF00AF6C9E /* NoPhotoInCollection@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F371BD88DCF00AF6C9E /* NoPhotoInCollection@2x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F601BD88DCF00AF6C9E /* NoPhotoInCollection@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F381BD88DCF00AF6C9E /* NoPhotoInCollection@3x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F611BD88DCF00AF6C9E /* PhotoPin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F391BD88DCF00AF6C9E /* PhotoPin@2x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F621BD88DCF00AF6C9E /* PhotoPin@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F3A1BD88DCF00AF6C9E /* PhotoPin@3x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F631BD88DCF00AF6C9E /* ShareBase@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F3B1BD88DCF00AF6C9E /* ShareBase@2x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F641BD88DCF00AF6C9E /* ShareBase@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F3C1BD88DCF00AF6C9E /* ShareBase@3x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F651BD88DCF00AF6C9E /* TranslateIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F3D1BD88DCF00AF6C9E /* TranslateIcon@2x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F661BD88DCF00AF6C9E /* TranslateIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F3E1BD88DCF00AF6C9E /* TranslateIcon@3x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F671BD88DCF00AF6C9E /* Uncheck@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F3F1BD88DCF00AF6C9E /* Uncheck@2x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F681BD88DCF00AF6C9E /* Uncheck@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F401BD88DCF00AF6C9E /* Uncheck@3x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F691BD88DCF00AF6C9E /* WhiteCollect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F411BD88DCF00AF6C9E /* WhiteCollect@2x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F6A1BD88DCF00AF6C9E /* WhiteCollect@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F421BD88DCF00AF6C9E /* WhiteCollect@3x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F6B1BD88DCF00AF6C9E /* WhiteCollected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F431BD88DCF00AF6C9E /* WhiteCollected@2x.png */; settings = {ASSET_TAGS = (); }; };
+		8AF53F6C1BD88DCF00AF6C9E /* WhiteCollected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF53F441BD88DCF00AF6C9E /* WhiteCollected@3x.png */; settings = {ASSET_TAGS = (); }; };
 		D44BD397CA9972010A37D9F6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B526FE01F3F3414439C16DF /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -1729,44 +1732,6 @@
 		8AF39CDD1BC67125009C7F26 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
 		8AF39CDE1BC67125009C7F26 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		8AF39CDF1BC67125009C7F26 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
-		8AF39D171BC67E87009C7F26 /* Check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Check@2x.png"; sourceTree = "<group>"; };
-		8AF39D181BC67E87009C7F26 /* Check@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Check@3x.png"; sourceTree = "<group>"; };
-		8AF39D191BC67E87009C7F26 /* CheckGrey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CheckGrey@2x.png"; sourceTree = "<group>"; };
-		8AF39D1A1BC67E87009C7F26 /* CheckGrey@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CheckGrey@3x.png"; sourceTree = "<group>"; };
-		8AF39D1B1BC67E87009C7F26 /* CollectionCrossBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CollectionCrossBtn@2x.png"; sourceTree = "<group>"; };
-		8AF39D1C1BC67E87009C7F26 /* CollectionCrossBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CollectionCrossBtn@3x.png"; sourceTree = "<group>"; };
-		8AF39D1D1BC67E87009C7F26 /* CollectionFolderIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CollectionFolderIcon@2x.png"; sourceTree = "<group>"; };
-		8AF39D1E1BC67E87009C7F26 /* CollectionFolderIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CollectionFolderIcon@3x.png"; sourceTree = "<group>"; };
-		8AF39D1F1BC67E87009C7F26 /* CollectionLink@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CollectionLink@2x.png"; sourceTree = "<group>"; };
-		8AF39D201BC67E87009C7F26 /* CollectionLink@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CollectionLink@3x.png"; sourceTree = "<group>"; };
-		8AF39D211BC67E87009C7F26 /* CollectionOverlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CollectionOverlay@2x.png"; sourceTree = "<group>"; };
-		8AF39D221BC67E87009C7F26 /* CollectionOverlay@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CollectionOverlay@3x.png"; sourceTree = "<group>"; };
-		8AF39D231BC67E87009C7F26 /* CreateCollection@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CreateCollection@2x.png"; sourceTree = "<group>"; };
-		8AF39D241BC67E87009C7F26 /* CreateCollection@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CreateCollection@3x.png"; sourceTree = "<group>"; };
-		8AF39D251BC67E87009C7F26 /* GridViewActive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GridViewActive@2x.png"; sourceTree = "<group>"; };
-		8AF39D261BC67E87009C7F26 /* GridViewActive@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GridViewActive@3x.png"; sourceTree = "<group>"; };
-		8AF39D271BC67E87009C7F26 /* GridViewInactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GridViewInactive@2x.png"; sourceTree = "<group>"; };
-		8AF39D281BC67E87009C7F26 /* GridViewInactive@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GridViewInactive@3x.png"; sourceTree = "<group>"; };
-		8AF39D291BC67E87009C7F26 /* ListViewActive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ListViewActive@2x.png"; sourceTree = "<group>"; };
-		8AF39D2A1BC67E87009C7F26 /* ListViewActive@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ListViewActive@3x.png"; sourceTree = "<group>"; };
-		8AF39D2B1BC67E87009C7F26 /* ListViewInactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ListViewInactive@2x.png"; sourceTree = "<group>"; };
-		8AF39D2C1BC67E87009C7F26 /* ListViewInactive@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ListViewInactive@3x.png"; sourceTree = "<group>"; };
-		8AF39D2D1BC67E87009C7F26 /* MapBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MapBtn@2x.png"; sourceTree = "<group>"; };
-		8AF39D2E1BC67E87009C7F26 /* MapBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MapBtn@3x.png"; sourceTree = "<group>"; };
-		8AF39D2F1BC67E87009C7F26 /* MoreBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MoreBtn@2x.png"; sourceTree = "<group>"; };
-		8AF39D301BC67E87009C7F26 /* MoreBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MoreBtn@3x.png"; sourceTree = "<group>"; };
-		8AF39D311BC67E87009C7F26 /* PhotoPin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PhotoPin@2x.png"; sourceTree = "<group>"; };
-		8AF39D321BC67E87009C7F26 /* PhotoPin@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PhotoPin@3x.png"; sourceTree = "<group>"; };
-		8AF39D331BC67E87009C7F26 /* ShareBase@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareBase@2x.png"; sourceTree = "<group>"; };
-		8AF39D341BC67E87009C7F26 /* ShareBase@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareBase@3x.png"; sourceTree = "<group>"; };
-		8AF39D351BC67E87009C7F26 /* TranslateIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TranslateIcon@2x.png"; sourceTree = "<group>"; };
-		8AF39D361BC67E87009C7F26 /* TranslateIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TranslateIcon@3x.png"; sourceTree = "<group>"; };
-		8AF39D371BC67E87009C7F26 /* Uncheck@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Uncheck@2x.png"; sourceTree = "<group>"; };
-		8AF39D381BC67E87009C7F26 /* Uncheck@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Uncheck@3x.png"; sourceTree = "<group>"; };
-		8AF39D391BC67E87009C7F26 /* WhiteCollect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhiteCollect@2x.png"; sourceTree = "<group>"; };
-		8AF39D3A1BC67E87009C7F26 /* WhiteCollect@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhiteCollect@3x.png"; sourceTree = "<group>"; };
-		8AF39D3B1BC67E87009C7F26 /* WhiteCollected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhiteCollected@2x.png"; sourceTree = "<group>"; };
-		8AF39D3C1BC67E87009C7F26 /* WhiteCollected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhiteCollected@3x.png"; sourceTree = "<group>"; };
 		8AF39D3E1BC67E87009C7F26 /* CommentBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CommentBox@2x.png"; sourceTree = "<group>"; };
 		8AF39D3F1BC67E87009C7F26 /* CommentBox@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CommentBox@3x.png"; sourceTree = "<group>"; };
 		8AF39D401BC67E87009C7F26 /* DeleteIconSwipe@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DeleteIconSwipe@2x.png"; sourceTree = "<group>"; };
@@ -2195,6 +2160,48 @@
 		8AF53F121BD79B5F00AF6C9E /* CollectionListingTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionListingTabViewController.h; sourceTree = "<group>"; };
 		8AF53F131BD79B5F00AF6C9E /* CollectionListingTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionListingTabViewController.m; sourceTree = "<group>"; };
 		8AF53F141BD79B5F00AF6C9E /* CollectionListingTabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionListingTabViewController.xib; sourceTree = "<group>"; };
+		8AF53F191BD8850E00AF6C9E /* NSObject+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Extension.h"; sourceTree = "<group>"; };
+		8AF53F1A1BD8850E00AF6C9E /* NSObject+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Extension.m"; sourceTree = "<group>"; };
+		8AF53F1D1BD88DCF00AF6C9E /* Check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Check@2x.png"; sourceTree = "<group>"; };
+		8AF53F1E1BD88DCF00AF6C9E /* Check@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Check@3x.png"; sourceTree = "<group>"; };
+		8AF53F1F1BD88DCF00AF6C9E /* CheckGrey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CheckGrey@2x.png"; sourceTree = "<group>"; };
+		8AF53F201BD88DCF00AF6C9E /* CheckGrey@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CheckGrey@3x.png"; sourceTree = "<group>"; };
+		8AF53F211BD88DCF00AF6C9E /* CollectionCrossBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CollectionCrossBtn@2x.png"; sourceTree = "<group>"; };
+		8AF53F221BD88DCF00AF6C9E /* CollectionCrossBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CollectionCrossBtn@3x.png"; sourceTree = "<group>"; };
+		8AF53F231BD88DCF00AF6C9E /* CollectionFolderIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CollectionFolderIcon@2x.png"; sourceTree = "<group>"; };
+		8AF53F241BD88DCF00AF6C9E /* CollectionFolderIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CollectionFolderIcon@3x.png"; sourceTree = "<group>"; };
+		8AF53F251BD88DCF00AF6C9E /* CollectionLink@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CollectionLink@2x.png"; sourceTree = "<group>"; };
+		8AF53F261BD88DCF00AF6C9E /* CollectionLink@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CollectionLink@3x.png"; sourceTree = "<group>"; };
+		8AF53F271BD88DCF00AF6C9E /* CollectionOverlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CollectionOverlay@2x.png"; sourceTree = "<group>"; };
+		8AF53F281BD88DCF00AF6C9E /* CollectionOverlay@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CollectionOverlay@3x.png"; sourceTree = "<group>"; };
+		8AF53F291BD88DCF00AF6C9E /* CreateCollection@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CreateCollection@2x.png"; sourceTree = "<group>"; };
+		8AF53F2A1BD88DCF00AF6C9E /* CreateCollection@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CreateCollection@3x.png"; sourceTree = "<group>"; };
+		8AF53F2B1BD88DCF00AF6C9E /* GridViewActive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GridViewActive@2x.png"; sourceTree = "<group>"; };
+		8AF53F2C1BD88DCF00AF6C9E /* GridViewActive@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GridViewActive@3x.png"; sourceTree = "<group>"; };
+		8AF53F2D1BD88DCF00AF6C9E /* GridViewInactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GridViewInactive@2x.png"; sourceTree = "<group>"; };
+		8AF53F2E1BD88DCF00AF6C9E /* GridViewInactive@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GridViewInactive@3x.png"; sourceTree = "<group>"; };
+		8AF53F2F1BD88DCF00AF6C9E /* ListViewActive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ListViewActive@2x.png"; sourceTree = "<group>"; };
+		8AF53F301BD88DCF00AF6C9E /* ListViewActive@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ListViewActive@3x.png"; sourceTree = "<group>"; };
+		8AF53F311BD88DCF00AF6C9E /* ListViewInactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ListViewInactive@2x.png"; sourceTree = "<group>"; };
+		8AF53F321BD88DCF00AF6C9E /* ListViewInactive@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ListViewInactive@3x.png"; sourceTree = "<group>"; };
+		8AF53F331BD88DCF00AF6C9E /* MapBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MapBtn@2x.png"; sourceTree = "<group>"; };
+		8AF53F341BD88DCF00AF6C9E /* MapBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MapBtn@3x.png"; sourceTree = "<group>"; };
+		8AF53F351BD88DCF00AF6C9E /* MoreBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MoreBtn@2x.png"; sourceTree = "<group>"; };
+		8AF53F361BD88DCF00AF6C9E /* MoreBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MoreBtn@3x.png"; sourceTree = "<group>"; };
+		8AF53F371BD88DCF00AF6C9E /* NoPhotoInCollection@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NoPhotoInCollection@2x.png"; sourceTree = "<group>"; };
+		8AF53F381BD88DCF00AF6C9E /* NoPhotoInCollection@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NoPhotoInCollection@3x.png"; sourceTree = "<group>"; };
+		8AF53F391BD88DCF00AF6C9E /* PhotoPin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PhotoPin@2x.png"; sourceTree = "<group>"; };
+		8AF53F3A1BD88DCF00AF6C9E /* PhotoPin@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PhotoPin@3x.png"; sourceTree = "<group>"; };
+		8AF53F3B1BD88DCF00AF6C9E /* ShareBase@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareBase@2x.png"; sourceTree = "<group>"; };
+		8AF53F3C1BD88DCF00AF6C9E /* ShareBase@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareBase@3x.png"; sourceTree = "<group>"; };
+		8AF53F3D1BD88DCF00AF6C9E /* TranslateIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TranslateIcon@2x.png"; sourceTree = "<group>"; };
+		8AF53F3E1BD88DCF00AF6C9E /* TranslateIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TranslateIcon@3x.png"; sourceTree = "<group>"; };
+		8AF53F3F1BD88DCF00AF6C9E /* Uncheck@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Uncheck@2x.png"; sourceTree = "<group>"; };
+		8AF53F401BD88DCF00AF6C9E /* Uncheck@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Uncheck@3x.png"; sourceTree = "<group>"; };
+		8AF53F411BD88DCF00AF6C9E /* WhiteCollect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhiteCollect@2x.png"; sourceTree = "<group>"; };
+		8AF53F421BD88DCF00AF6C9E /* WhiteCollect@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhiteCollect@3x.png"; sourceTree = "<group>"; };
+		8AF53F431BD88DCF00AF6C9E /* WhiteCollected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhiteCollected@2x.png"; sourceTree = "<group>"; };
+		8AF53F441BD88DCF00AF6C9E /* WhiteCollected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhiteCollected@3x.png"; sourceTree = "<group>"; };
 		A6BFDB1BE373200E64D8CBE7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CAB2B54F0EC79309593A3C4C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -3119,6 +3126,7 @@
 		8AD6BA961B706CF10040437E /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				8AF53F171BD884E300AF6C9E /* NSObject+Extension */,
 				8AB83A791BD49CD500715B69 /* UIView+Extension */,
 				8AF39CD91BC66536009C7F26 /* UITableView+NXEmptyView */,
 				8A8475321BC52D0D006DD614 /* SystemOverride */,
@@ -3920,7 +3928,7 @@
 				8A83CC7C1BD4E49300C8B52C /* Launch Images */,
 				8A83CC111BD4DBA800C8B52C /* App Icons */,
 				8AF3A0B71BC78200009C7F26 /* Add New Place */,
-				8AF39D161BC67E87009C7F26 /* Collection */,
+				8AF53F1C1BD88DCF00AF6C9E /* Collection */,
 				8AF39D3D1BC67E87009C7F26 /* Comment */,
 				8AF39D461BC67E87009C7F26 /* Create New */,
 				8AF39D4B1BC67E87009C7F26 /* Edit Photos */,
@@ -3948,51 +3956,6 @@
 				8AF39EE21BC67E88009C7F26 /* Walkthrough */,
 			);
 			path = SeetiesArtWork;
-			sourceTree = "<group>";
-		};
-		8AF39D161BC67E87009C7F26 /* Collection */ = {
-			isa = PBXGroup;
-			children = (
-				8AF39D171BC67E87009C7F26 /* Check@2x.png */,
-				8AF39D181BC67E87009C7F26 /* Check@3x.png */,
-				8AF39D191BC67E87009C7F26 /* CheckGrey@2x.png */,
-				8AF39D1A1BC67E87009C7F26 /* CheckGrey@3x.png */,
-				8AF39D1B1BC67E87009C7F26 /* CollectionCrossBtn@2x.png */,
-				8AF39D1C1BC67E87009C7F26 /* CollectionCrossBtn@3x.png */,
-				8AF39D1D1BC67E87009C7F26 /* CollectionFolderIcon@2x.png */,
-				8AF39D1E1BC67E87009C7F26 /* CollectionFolderIcon@3x.png */,
-				8AF39D1F1BC67E87009C7F26 /* CollectionLink@2x.png */,
-				8AF39D201BC67E87009C7F26 /* CollectionLink@3x.png */,
-				8AF39D211BC67E87009C7F26 /* CollectionOverlay@2x.png */,
-				8AF39D221BC67E87009C7F26 /* CollectionOverlay@3x.png */,
-				8AF39D231BC67E87009C7F26 /* CreateCollection@2x.png */,
-				8AF39D241BC67E87009C7F26 /* CreateCollection@3x.png */,
-				8AF39D251BC67E87009C7F26 /* GridViewActive@2x.png */,
-				8AF39D261BC67E87009C7F26 /* GridViewActive@3x.png */,
-				8AF39D271BC67E87009C7F26 /* GridViewInactive@2x.png */,
-				8AF39D281BC67E87009C7F26 /* GridViewInactive@3x.png */,
-				8AF39D291BC67E87009C7F26 /* ListViewActive@2x.png */,
-				8AF39D2A1BC67E87009C7F26 /* ListViewActive@3x.png */,
-				8AF39D2B1BC67E87009C7F26 /* ListViewInactive@2x.png */,
-				8AF39D2C1BC67E87009C7F26 /* ListViewInactive@3x.png */,
-				8AF39D2D1BC67E87009C7F26 /* MapBtn@2x.png */,
-				8AF39D2E1BC67E87009C7F26 /* MapBtn@3x.png */,
-				8AF39D2F1BC67E87009C7F26 /* MoreBtn@2x.png */,
-				8AF39D301BC67E87009C7F26 /* MoreBtn@3x.png */,
-				8AF39D311BC67E87009C7F26 /* PhotoPin@2x.png */,
-				8AF39D321BC67E87009C7F26 /* PhotoPin@3x.png */,
-				8AF39D331BC67E87009C7F26 /* ShareBase@2x.png */,
-				8AF39D341BC67E87009C7F26 /* ShareBase@3x.png */,
-				8AF39D351BC67E87009C7F26 /* TranslateIcon@2x.png */,
-				8AF39D361BC67E87009C7F26 /* TranslateIcon@3x.png */,
-				8AF39D371BC67E87009C7F26 /* Uncheck@2x.png */,
-				8AF39D381BC67E87009C7F26 /* Uncheck@3x.png */,
-				8AF39D391BC67E87009C7F26 /* WhiteCollect@2x.png */,
-				8AF39D3A1BC67E87009C7F26 /* WhiteCollect@3x.png */,
-				8AF39D3B1BC67E87009C7F26 /* WhiteCollected@2x.png */,
-				8AF39D3C1BC67E87009C7F26 /* WhiteCollected@3x.png */,
-			);
-			path = Collection;
 			sourceTree = "<group>";
 		};
 		8AF39D3D1BC67E87009C7F26 /* Comment */ = {
@@ -4604,6 +4567,62 @@
 			name = CollectionPage;
 			sourceTree = "<group>";
 		};
+		8AF53F171BD884E300AF6C9E /* NSObject+Extension */ = {
+			isa = PBXGroup;
+			children = (
+				8AF53F191BD8850E00AF6C9E /* NSObject+Extension.h */,
+				8AF53F1A1BD8850E00AF6C9E /* NSObject+Extension.m */,
+			);
+			name = "NSObject+Extension";
+			sourceTree = "<group>";
+		};
+		8AF53F1C1BD88DCF00AF6C9E /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				8AF53F1D1BD88DCF00AF6C9E /* Check@2x.png */,
+				8AF53F1E1BD88DCF00AF6C9E /* Check@3x.png */,
+				8AF53F1F1BD88DCF00AF6C9E /* CheckGrey@2x.png */,
+				8AF53F201BD88DCF00AF6C9E /* CheckGrey@3x.png */,
+				8AF53F211BD88DCF00AF6C9E /* CollectionCrossBtn@2x.png */,
+				8AF53F221BD88DCF00AF6C9E /* CollectionCrossBtn@3x.png */,
+				8AF53F231BD88DCF00AF6C9E /* CollectionFolderIcon@2x.png */,
+				8AF53F241BD88DCF00AF6C9E /* CollectionFolderIcon@3x.png */,
+				8AF53F251BD88DCF00AF6C9E /* CollectionLink@2x.png */,
+				8AF53F261BD88DCF00AF6C9E /* CollectionLink@3x.png */,
+				8AF53F271BD88DCF00AF6C9E /* CollectionOverlay@2x.png */,
+				8AF53F281BD88DCF00AF6C9E /* CollectionOverlay@3x.png */,
+				8AF53F291BD88DCF00AF6C9E /* CreateCollection@2x.png */,
+				8AF53F2A1BD88DCF00AF6C9E /* CreateCollection@3x.png */,
+				8AF53F2B1BD88DCF00AF6C9E /* GridViewActive@2x.png */,
+				8AF53F2C1BD88DCF00AF6C9E /* GridViewActive@3x.png */,
+				8AF53F2D1BD88DCF00AF6C9E /* GridViewInactive@2x.png */,
+				8AF53F2E1BD88DCF00AF6C9E /* GridViewInactive@3x.png */,
+				8AF53F2F1BD88DCF00AF6C9E /* ListViewActive@2x.png */,
+				8AF53F301BD88DCF00AF6C9E /* ListViewActive@3x.png */,
+				8AF53F311BD88DCF00AF6C9E /* ListViewInactive@2x.png */,
+				8AF53F321BD88DCF00AF6C9E /* ListViewInactive@3x.png */,
+				8AF53F331BD88DCF00AF6C9E /* MapBtn@2x.png */,
+				8AF53F341BD88DCF00AF6C9E /* MapBtn@3x.png */,
+				8AF53F351BD88DCF00AF6C9E /* MoreBtn@2x.png */,
+				8AF53F361BD88DCF00AF6C9E /* MoreBtn@3x.png */,
+				8AF53F371BD88DCF00AF6C9E /* NoPhotoInCollection@2x.png */,
+				8AF53F381BD88DCF00AF6C9E /* NoPhotoInCollection@3x.png */,
+				8AF53F391BD88DCF00AF6C9E /* PhotoPin@2x.png */,
+				8AF53F3A1BD88DCF00AF6C9E /* PhotoPin@3x.png */,
+				8AF53F3B1BD88DCF00AF6C9E /* ShareBase@2x.png */,
+				8AF53F3C1BD88DCF00AF6C9E /* ShareBase@3x.png */,
+				8AF53F3D1BD88DCF00AF6C9E /* TranslateIcon@2x.png */,
+				8AF53F3E1BD88DCF00AF6C9E /* TranslateIcon@3x.png */,
+				8AF53F3F1BD88DCF00AF6C9E /* Uncheck@2x.png */,
+				8AF53F401BD88DCF00AF6C9E /* Uncheck@3x.png */,
+				8AF53F411BD88DCF00AF6C9E /* WhiteCollect@2x.png */,
+				8AF53F421BD88DCF00AF6C9E /* WhiteCollect@3x.png */,
+				8AF53F431BD88DCF00AF6C9E /* WhiteCollected@2x.png */,
+				8AF53F441BD88DCF00AF6C9E /* WhiteCollected@3x.png */,
+			);
+			path = Collection;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -4696,14 +4715,9 @@
 				0BBFE08D1B9FCC00004B17E9 /* EditProfileViewController.xib in Resources */,
 				8AF39FFB1BC67E88009C7F26 /* InviteWhatsappIcon@3x.png in Resources */,
 				8AF3A0C41BC78200009C7F26 /* BackIcon@2x.png in Resources */,
-				8AF39F051BC67E88009C7F26 /* CollectionFolderIcon@2x.png in Resources */,
-				8AF39EFF1BC67E88009C7F26 /* Check@2x.png in Resources */,
 				8AF39FCF1BC67E88009C7F26 /* LandmarkCultureIcon@3x.png in Resources */,
 				8AD6C2861B7072FB0040437E /* AddPriceViewController.xib in Resources */,
-				8AF39F001BC67E88009C7F26 /* Check@3x.png in Resources */,
 				8AF39F991BC67E88009C7F26 /* FeedOverlay@2x.png in Resources */,
-				8AF39F1A1BC67E88009C7F26 /* PhotoPin@3x.png in Resources */,
-				8AF39F041BC67E88009C7F26 /* CollectionCrossBtn@3x.png in Resources */,
 				8AF3A0961BC67E88009C7F26 /* CloseBtn@3x.png in Resources */,
 				8AF39FF91BC67E88009C7F26 /* InviteWechatIcon@3x.png in Resources */,
 				8A83CC351BD4DBA800C8B52C /* iTunesArtwork@2x.png in Resources */,
@@ -4723,7 +4737,6 @@
 				8AF39F841BC67E88009C7F26 /* CollectedBtn@3x.png in Resources */,
 				8AF39FEF1BC67E88009C7F26 /* InviteFacebookIcon@3x.png in Resources */,
 				8AF3A0441BC67E88009C7F26 /* PreviewPhotoBlackOverlay@2x.png in Resources */,
-				8AF39F0B1BC67E88009C7F26 /* CreateCollection@2x.png in Resources */,
 				8AF3A0521BC67E88009C7F26 /* FollowingBtn@2x.png in Resources */,
 				8AD6C0FB1B706CF30040437E /* SearchViewController.xib in Resources */,
 				8AF3A0241BC67E88009C7F26 /* NotificationLike@2x.png in Resources */,
@@ -4733,17 +4746,19 @@
 				8AF39FE11BC67E88009C7F26 /* ConnectWithInstagram@3x.png in Resources */,
 				8AF3A0A11BC67E88009C7F26 /* NotificationIcon@2x.png in Resources */,
 				8AF39F3A1BC67E88009C7F26 /* AddLanguageBtn@3x.png in Resources */,
+				8AF53F511BD88DCF00AF6C9E /* CreateCollection@2x.png in Resources */,
 				8AF39F611BC67E88009C7F26 /* NoActivity@2x.png in Resources */,
+				8AF53F551BD88DCF00AF6C9E /* GridViewInactive@2x.png in Resources */,
 				8AD6C1181B706CF30040437E /* pin.png in Resources */,
 				8AF3A0541BC67E88009C7F26 /* PostSmallPin@2x.png in Resources */,
 				8AD6BE581B706CF30040437E /* DoAlbumCell.xib in Resources */,
-				8AF39F0D1BC67E88009C7F26 /* GridViewActive@2x.png in Resources */,
+				8AF53F521BD88DCF00AF6C9E /* CreateCollection@3x.png in Resources */,
+				8AF53F491BD88DCF00AF6C9E /* CollectionCrossBtn@2x.png in Resources */,
 				8AF39FCB1BC67E88009C7F26 /* ForHerIcon@3x.png in Resources */,
 				8AF3A05F1BC67E88009C7F26 /* ProfileOverlay@3x.png in Resources */,
 				8AF39FB01BC67E88009C7F26 /* SearchIcon@3x.png in Resources */,
 				8AF3A07F1BC67E88009C7F26 /* GoToEnd@3x.png in Resources */,
 				8AF39FD41BC67E88009C7F26 /* NightlifeIcon@2x.png in Resources */,
-				8AF39F101BC67E88009C7F26 /* GridViewInactive@3x.png in Resources */,
 				8AD6C10D1B706CF30040437E /* ForgotPasswordViewController.xib in Resources */,
 				8AF39F5A1BC67E88009C7F26 /* TagsIcon@3x.png in Resources */,
 				8AF39F811BC67E88009C7F26 /* CollectBtn@2x.png in Resources */,
@@ -4757,20 +4772,28 @@
 				8A83CC2D1BD4DBA800C8B52C /* Icon-Small-40@3x.png in Resources */,
 				8AF39F291BC67E88009C7F26 /* EditIconSwipe@2x.png in Resources */,
 				8AF39FBC1BC67E88009C7F26 /* OtherLogo@2x.png in Resources */,
+				8AF53F461BD88DCF00AF6C9E /* Check@3x.png in Resources */,
 				8AF39F4F1BC67E88009C7F26 /* EditCoverPhoto@2x.png in Resources */,
+				8AF53F5A1BD88DCF00AF6C9E /* ListViewInactive@3x.png in Resources */,
+				8AF53F4F1BD88DCF00AF6C9E /* CollectionOverlay@2x.png in Resources */,
 				8AF3A0001BC67E88009C7F26 /* Walkthrough3.png in Resources */,
 				8AF3A0201BC67E88009C7F26 /* NotificationComment@2x.png in Resources */,
+				8AF53F451BD88DCF00AF6C9E /* Check@2x.png in Resources */,
 				8AF3A0661BC67E88009C7F26 /* ViewIcon@2x.png in Resources */,
 				8AF39F801BC67E88009C7F26 /* UserLikeIcon@3x.png in Resources */,
 				8AD6C2A21B7072FB0040437E /* RecommendV2ViewController.xib in Resources */,
+				8AF53F571BD88DCF00AF6C9E /* ListViewActive@2x.png in Resources */,
 				8A83CC981BD4E49300C8B52C /* launch320x568@2x.png in Resources */,
 				8AB76E091BB8FDC8007DB972 /* UserProfilePageViewController.xib in Resources */,
+				8AF53F4E1BD88DCF00AF6C9E /* CollectionLink@3x.png in Resources */,
 				8AF39FD51BC67E88009C7F26 /* NightlifeIcon@3x.png in Resources */,
 				8AD6C0D31B706CF30040437E /* PFollowTheExpertsViewController.xib in Resources */,
 				8AF39F301BC67E88009C7F26 /* WriteRecommendationIcon@3x.png in Resources */,
 				8AD6C32F1B707D120040437E /* PEPhotoCropEditor.bundle in Resources */,
 				8AF39CD21BC649D1009C7F26 /* NearbyImg.png in Resources */,
+				8AF53F4A1BD88DCF00AF6C9E /* CollectionCrossBtn@3x.png in Resources */,
 				8AF39F951BC67E88009C7F26 /* Distance4Icon@2x.png in Resources */,
+				8AF53F541BD88DCF00AF6C9E /* GridViewActive@3x.png in Resources */,
 				8AF3A0471BC67E88009C7F26 /* TranslateArrow@3x.png in Resources */,
 				8AF3A0591BC67E88009C7F26 /* ProfileFollowIcon@3x.png in Resources */,
 				8AF39FE01BC67E88009C7F26 /* ConnectWithInstagram@2x.png in Resources */,
@@ -4789,6 +4812,7 @@
 				8AF3A04C1BC67E88009C7F26 /* EditProfileSmiley@2x.png in Resources */,
 				8A83CC341BD4DBA800C8B52C /* Icon@2x.png in Resources */,
 				8A2E2CE31B81CFE40010895E /* STSearchViewController.xib in Resources */,
+				8AF53F661BD88DCF00AF6C9E /* TranslateIcon@3x.png in Resources */,
 				8A6584331B981B4E00BC86B9 /* CategorySelectionViewController.xib in Resources */,
 				0BBFE08B1B9FCC00004B17E9 /* EditInterestViewController.xib in Resources */,
 				8AF39F721BC67E88009C7F26 /* ExploreImgOverlay@3x.png in Resources */,
@@ -4836,20 +4860,22 @@
 				8AF3A0581BC67E88009C7F26 /* ProfileFollowIcon@2x.png in Resources */,
 				8AF39F9F1BC67E88009C7F26 /* FollowIcon@2x.png in Resources */,
 				8AF39F681BC67E88009C7F26 /* SearchIcon@3x.png in Resources */,
-				8AF39F1C1BC67E88009C7F26 /* ShareBase@3x.png in Resources */,
 				8AF39FF41BC67E88009C7F26 /* InviteLineIcon@2x.png in Resources */,
 				8AF39FC41BC67E88009C7F26 /* BlueTick@2x.png in Resources */,
 				8AD6C2981B7072FB0040437E /* EditLocationViewController.xib in Resources */,
 				8AD6C0FD1B706CF30040437E /* SearchViewV2.xib in Resources */,
 				8AF39F921BC67E88009C7F26 /* Distance2Icon@3x.png in Resources */,
 				8AF3A0551BC67E88009C7F26 /* PostSmallPin@3x.png in Resources */,
+				8AF53F5F1BD88DCF00AF6C9E /* NoPhotoInCollection@2x.png in Resources */,
 				8AF3A0301BC67E88009C7F26 /* ChangePlaceIcon@2x.png in Resources */,
 				8AF3A0611BC67E88009C7F26 /* ProfileSearchBar@3x.png in Resources */,
 				8AF39CCE1BC649D1009C7F26 /* Caret@3x.png in Resources */,
 				8AF3A02E1BC67E88009C7F26 /* BlueTime@2x.png in Resources */,
+				8AF53F5C1BD88DCF00AF6C9E /* MapBtn@3x.png in Resources */,
 				8AF39F531BC67E88009C7F26 /* GenderIcon@2x.png in Resources */,
 				8AF3A09A1BC67E88009C7F26 /* ExploreIcon@3x.png in Resources */,
 				0B3FF10A1BB131620014AF2E /* NewCollectionViewController.xib in Resources */,
+				8AF53F651BD88DCF00AF6C9E /* TranslateIcon@2x.png in Resources */,
 				8AF39F521BC67E88009C7F26 /* EditDisplayPhoto@3x.png in Resources */,
 				8AD6C0C31B706CF30040437E /* FullImageViewController.xib in Resources */,
 				8AD6C2901B7072FB0040437E /* AddLocationViewController.xib in Resources */,
@@ -4877,15 +4903,17 @@
 				8AF39F331BC67E88009C7F26 /* BigAddIcon@2x.png in Resources */,
 				8AD6C28C1B7072FB0040437E /* EditLocationV2ViewController.xib in Resources */,
 				8A83CC961BD4E49300C8B52C /* bgFeed.png in Resources */,
-				8AF39F141BC67E88009C7F26 /* ListViewInactive@3x.png in Resources */,
 				8AF39FBE1BC67E88009C7F26 /* WelcomeLogo@2x.png in Resources */,
 				8AF3A08E1BC67E88009C7F26 /* ShareWhatsappIcon@2x.png in Resources */,
 				8AF3A0981BC67E88009C7F26 /* DraftsIcon@3x.png in Resources */,
 				8AF3A09F1BC67E88009C7F26 /* FeedIconActive@2x.png in Resources */,
 				8AF3A01F1BC67E88009C7F26 /* NotificationCollect@3x.png in Resources */,
+				8AF53F5E1BD88DCF00AF6C9E /* MoreBtn@3x.png in Resources */,
+				8AF53F611BD88DCF00AF6C9E /* PhotoPin@2x.png in Resources */,
 				8AF39FD61BC67E88009C7F26 /* ShowAllIcon@2x.png in Resources */,
 				8A3757DD1B85B610009DB7D4 /* AddNewPlaceSubView.xib in Resources */,
 				8AF39F9E1BC67E88009C7F26 /* FilterIcon@3x.png in Resources */,
+				8AF53F681BD88DCF00AF6C9E /* Uncheck@3x.png in Resources */,
 				8AF3A06C1BC67E88009C7F26 /* SearchBarIcon@2x.png in Resources */,
 				8AF3A0561BC67E88009C7F26 /* ProfileExpand@2x.png in Resources */,
 				8AB813C01BC234CE002F5F06 /* FloatingIndicatorView.xib in Resources */,
@@ -4895,6 +4923,7 @@
 				8AF39FA51BC67E88009C7F26 /* LikeIcon@2x.png in Resources */,
 				8AF3A0321BC67E88009C7F26 /* DirectionIcon@2x.png in Resources */,
 				8AB76E051BB8FDC8007DB972 /* EditCollectionViewController.xib in Resources */,
+				8AF53F471BD88DCF00AF6C9E /* CheckGrey@2x.png in Resources */,
 				8AF3A0921BC67E88009C7F26 /* SimplifiedChinese.png in Resources */,
 				8AF39F7F1BC67E88009C7F26 /* UserLikeIcon@2x.png in Resources */,
 				8AF39F931BC67E88009C7F26 /* Distance3Icon@2x.png in Resources */,
@@ -4915,21 +4944,19 @@
 				8A83CC2F1BD4DBA800C8B52C /* Icon-Small-50@2x.png in Resources */,
 				8A83CC2A1BD4DBA800C8B52C /* Icon-76@2x.png in Resources */,
 				8AF39FEE1BC67E88009C7F26 /* InviteFacebookIcon@2x.png in Resources */,
-				8AF39F0F1BC67E88009C7F26 /* GridViewInactive@2x.png in Resources */,
 				8AF39CE01BC67125009C7F26 /* 3.png in Resources */,
 				8AF39FFC1BC67E88009C7F26 /* HomeBg@3x.png in Resources */,
+				8AF53F631BD88DCF00AF6C9E /* ShareBase@2x.png in Resources */,
 				8A83CC321BD4DBA800C8B52C /* Icon-Small@3x.png in Resources */,
 				8AF39CD81BC649D1009C7F26 /* warning-flat-icon.png in Resources */,
 				8AF3A00F1BC67E88009C7F26 /* LoginInstagramIcon@3x.png in Resources */,
 				8AF3A0C51BC78200009C7F26 /* BackIcon@3x.png in Resources */,
-				8AF39F211BC67E88009C7F26 /* WhiteCollect@2x.png in Resources */,
 				8A83CC941BD4E49300C8B52C /* launch320x480@2x.png in Resources */,
 				8AF39F6B1BC67E88009C7F26 /* CloseStatus@2x.png in Resources */,
 				8AF3A0461BC67E88009C7F26 /* TranslateArrow@2x.png in Resources */,
 				8AF39FD11BC67E88009C7F26 /* LeisureEntertainmentIcon@3x.png in Resources */,
 				8AD6C0C51B706CF30040437E /* LocationFeedDetailViewController.xib in Resources */,
 				8AF39FA41BC67E88009C7F26 /* LikedIcon@3x.png in Resources */,
-				8AF39F0A1BC67E88009C7F26 /* CollectionOverlay@3x.png in Resources */,
 				8A83CC301BD4DBA800C8B52C /* Icon-Small.png in Resources */,
 				8AF3A0031BC67E88009C7F26 /* WhiteSeetiesLogo@3x.png in Resources */,
 				8AF3A00E1BC67E88009C7F26 /* LoginInstagramIcon@2x.png in Resources */,
@@ -4939,17 +4966,16 @@
 				8A83CC931BD4E49300C8B52C /* bgProfile.png in Resources */,
 				8AF3A0851BC67E88009C7F26 /* ShareEmailIcon@3x.png in Resources */,
 				8AF3A0AE1BC67E88009C7F26 /* WalkthroughFeed.png in Resources */,
+				8AF53F4D1BD88DCF00AF6C9E /* CollectionLink@2x.png in Resources */,
 				8A83CCA01BD4E49300C8B52C /* launch621x1104@2x.png in Resources */,
 				0BA1CB2F1B85AEFA009FFD3E /* Explore2ViewController.xib in Resources */,
 				0B6A54E11BB51F84005B9D6B /* ReportViewController.xib in Resources */,
-				8AF39F171BC67E88009C7F26 /* MoreBtn@2x.png in Resources */,
 				8AF39F551BC67E88009C7F26 /* LocationIcon@2x.png in Resources */,
 				8AF39FA01BC67E88009C7F26 /* FollowIcon@3x.png in Resources */,
 				8AF39FFF1BC67E88009C7F26 /* Walkthrough2.png in Resources */,
 				8AF39F751BC67E88009C7F26 /* ExploreOverlay@2x.png in Resources */,
 				8AF3A02C1BC67E88009C7F26 /* BluePrice@2x.png in Resources */,
 				8AF39F491BC67E88009C7F26 /* AboutIcon@2x.png in Resources */,
-				8AF39F021BC67E88009C7F26 /* CheckGrey@3x.png in Resources */,
 				8AD6BE4E1B706CF30040437E /* ExploreCountryViewController.xib in Resources */,
 				8AF39FAA1BC67E88009C7F26 /* LocationpinIcon@3x.png in Resources */,
 				8AF39F7A1BC67E88009C7F26 /* OpenStatus@3x.png in Resources */,
@@ -4962,10 +4988,10 @@
 				8AF3A07C1BC67E88009C7F26 /* CameraIcon@2x.png in Resources */,
 				8AF39F3F1BC67E88009C7F26 /* CloseIcon@2x.png in Resources */,
 				8AF39FDF1BC67E88009C7F26 /* ConnectWithFacebook@3x.png in Resources */,
+				8AF53F581BD88DCF00AF6C9E /* ListViewActive@3x.png in Resources */,
 				8AF39FD21BC67E88009C7F26 /* LocalIcon@2x.png in Resources */,
 				8AF39F571BC67E88009C7F26 /* NamaIcon@2x.png in Resources */,
 				8AF3A0AC1BC67E88009C7F26 /* WriteRecommendationIcon@3x.png in Resources */,
-				8AF39F221BC67E88009C7F26 /* WhiteCollect@3x.png in Resources */,
 				8A7420E91B82F67F005DA654 /* KVNProgressView.xib in Resources */,
 				8AF39FF01BC67E88009C7F26 /* InviteFriendsBgImg.png in Resources */,
 				0BC9B38B1B7DD288008334FF /* FeedViewController.xib in Resources */,
@@ -4987,28 +5013,28 @@
 				8AF3A0261BC67E88009C7F26 /* BlueLink@2x.png in Resources */,
 				8AF3A0231BC67E88009C7F26 /* NotificationFollow@3x.png in Resources */,
 				8AF3A0A81BC67E88009C7F26 /* ProfileIconActive@3x.png in Resources */,
+				8AF53F671BD88DCF00AF6C9E /* Uncheck@2x.png in Resources */,
+				8AF53F6C1BD88DCF00AF6C9E /* WhiteCollected@3x.png in Resources */,
 				8AF3A04A1BC67E88009C7F26 /* DefaultProfilePic@2x.png in Resources */,
 				8AF39F3E1BC67E88009C7F26 /* CategoriesCheck@3x.png in Resources */,
 				8AF39F621BC67E88009C7F26 /* NoActivity@3x.png in Resources */,
 				8AF39F9C1BC67E88009C7F26 /* FeedSuggestionFollow@3x.png in Resources */,
 				8AD6C80A1B7096BA0040437E /* Localizable.strings in Resources */,
-				8AF39F191BC67E88009C7F26 /* PhotoPin@2x.png in Resources */,
 				8AF3A0C61BC78200009C7F26 /* CurrencyArrow@2x.png in Resources */,
 				8AF3A0151BC67E88009C7F26 /* Walkthrough2.png in Resources */,
 				8AF39FB11BC67E88009C7F26 /* ShareToIcon@2x.png in Resources */,
 				8AF39F381BC67E88009C7F26 /* RearrangeIcon@3x.png in Resources */,
 				8A2E2CEC1B81E15B0010895E /* STTableViewCell.xib in Resources */,
 				8A83CC951BD4E49300C8B52C /* bgExplore.png in Resources */,
+				8AF53F481BD88DCF00AF6C9E /* CheckGrey@3x.png in Resources */,
 				8AF3A0061BC67E88009C7F26 /* CorrectFill@2x.png in Resources */,
 				8AF39FCD1BC67E88009C7F26 /* ForHimIcon@3x.png in Resources */,
-				8AF39F201BC67E88009C7F26 /* Uncheck@3x.png in Resources */,
-				8AF39F1F1BC67E88009C7F26 /* Uncheck@2x.png in Resources */,
 				8AF3A0A31BC67E88009C7F26 /* NotificationIconActive@2x.png in Resources */,
 				8AF39F741BC67E88009C7F26 /* ExploreLikeIcon@3x.png in Resources */,
-				8AF39F071BC67E88009C7F26 /* CollectionLink@2x.png in Resources */,
 				8AF3A06E1BC67E88009C7F26 /* SearchLocationBar@2x.png in Resources */,
 				8A83CCBB1BD5E9C800C8B52C /* ProfilePageCollectionTableViewCell.xib in Resources */,
 				8AF39FA31BC67E88009C7F26 /* LikedIcon@2x.png in Resources */,
+				8AF53F561BD88DCF00AF6C9E /* GridViewInactive@3x.png in Resources */,
 				8AF3A0391BC67E88009C7F26 /* PostCollectedIcon@3x.png in Resources */,
 				8AF3A0651BC67E88009C7F26 /* ProfileShareIcon@3x.png in Resources */,
 				8AD6BE5C1B706CF30040437E /* DoPhotoCell.xib in Resources */,
@@ -5020,10 +5046,8 @@
 				8AF3A0511BC67E88009C7F26 /* FollowerNumber@3x.png in Resources */,
 				8AF3A0271BC67E88009C7F26 /* BlueLink@3x.png in Resources */,
 				8AF39F8F1BC67E88009C7F26 /* Distance1Icon@2x.png in Resources */,
-				8AF39F231BC67E88009C7F26 /* WhiteCollected@2x.png in Resources */,
 				8AF3A0901BC67E88009C7F26 /* BahasaIndonesia.png in Resources */,
 				8AF39F261BC67E88009C7F26 /* CommentBox@3x.png in Resources */,
-				8AF39F151BC67E88009C7F26 /* MapBtn@2x.png in Resources */,
 				8A83CC9F1BD4E49300C8B52C /* bgProfile.png in Resources */,
 				8AF3A0CB1BC78200009C7F26 /* ErrorIcon@3x.png in Resources */,
 				8AF39F591BC67E88009C7F26 /* TagsIcon@2x.png in Resources */,
@@ -5044,14 +5068,15 @@
 				8A83CC271BD4DBA800C8B52C /* Icon-72.png in Resources */,
 				8AF39F451BC67E88009C7F26 /* SaveDraftBtn@2x.png in Resources */,
 				8A1254141BC4F31A00AA4120 /* NewsFeedViewController.xib in Resources */,
+				8AF53F691BD88DCF00AF6C9E /* WhiteCollect@2x.png in Resources */,
 				8A83CC9D1BD4E49300C8B52C /* bgExplore.png in Resources */,
 				8AF39CD41BC649D1009C7F26 /* QR.png in Resources */,
 				8AF39F631BC67E88009C7F26 /* NoDraft@2x.png in Resources */,
 				8AF3A0861BC67E88009C7F26 /* ShareFBIcon@2x.png in Resources */,
+				8AF53F6A1BD88DCF00AF6C9E /* WhiteCollect@3x.png in Resources */,
 				8AF3A0571BC67E88009C7F26 /* ProfileExpand@3x.png in Resources */,
 				8AF3A0251BC67E88009C7F26 /* NotificationLike@3x.png in Resources */,
 				8AF39F2F1BC67E88009C7F26 /* WriteRecommendationIcon@2x.png in Resources */,
-				8AF39F161BC67E88009C7F26 /* MapBtn@3x.png in Resources */,
 				8AF3A05D1BC67E88009C7F26 /* ProfileLocationIcon@3x.png in Resources */,
 				8AD6C2AA1B7072FB0040437E /* WhereIsThisViewController.xib in Resources */,
 				8AF3A0A91BC67E88009C7F26 /* RecommendBtn@2x.png in Resources */,
@@ -5059,6 +5084,8 @@
 				8AF3A0771BC67E88009C7F26 /* YellowCollect@3x.png in Resources */,
 				8AF3A0701BC67E88009C7F26 /* SearchLocationIcon@2x.png in Resources */,
 				8AF3A0311BC67E88009C7F26 /* ChangePlaceIcon@3x.png in Resources */,
+				8AF53F4B1BD88DCF00AF6C9E /* CollectionFolderIcon@2x.png in Resources */,
+				8AF53F5D1BD88DCF00AF6C9E /* MoreBtn@2x.png in Resources */,
 				8AD6C2841B7072FB0040437E /* AddLinkViewController.xib in Resources */,
 				8AF3A03A1BC67E88009C7F26 /* PostCommentIcon@2x.png in Resources */,
 				8AF39FC21BC67E88009C7F26 /* ArtIcon@2x.png in Resources */,
@@ -5075,7 +5102,6 @@
 				8AD6C2A41B7072FB0040437E /* SelectImageViewController.xib in Resources */,
 				8AD6C0B01B706CF30040437E /* ExpertLoginViewController.xib in Resources */,
 				8AD6C1051B706CF30040437E /* EditInterestV2ViewController.xib in Resources */,
-				8AF39F081BC67E88009C7F26 /* CollectionLink@3x.png in Resources */,
 				8AF39F871BC67E88009C7F26 /* CollectSimplifiedChineseBtn@2x.png in Resources */,
 				8AF39F691BC67E88009C7F26 /* TryAgainBtn@2x.png in Resources */,
 				8AF3A0641BC67E88009C7F26 /* ProfileShareIcon@2x.png in Resources */,
@@ -5103,10 +5129,8 @@
 				8AD6C2921B7072FB0040437E /* ChangeSearchLocationViewController.xib in Resources */,
 				8AF3A0341BC67E88009C7F26 /* FullScreenIcon@2x.png in Resources */,
 				8AF3A0041BC67E88009C7F26 /* MoveIcon@2x.png in Resources */,
-				8AF39F241BC67E88009C7F26 /* WhiteCollected@3x.png in Resources */,
 				8AF3A0011BC67E88009C7F26 /* Walkthrough4.png in Resources */,
 				8AF39F8B1BC67E88009C7F26 /* CollectTraditonalChineseBtn@2x.png in Resources */,
-				8AF39F0E1BC67E88009C7F26 /* GridViewActive@3x.png in Resources */,
 				8AF39F2D1BC67E88009C7F26 /* DraftsIcon@2x.png in Resources */,
 				8AF3A0AB1BC67E88009C7F26 /* WriteRecommendationIcon@2x.png in Resources */,
 				8AF39FED1BC67E88009C7F26 /* InviteBtnInactive@3x.png in Resources */,
@@ -5122,8 +5146,10 @@
 				8AF39F4E1BC67E88009C7F26 /* BrithdayIcon@3x.png in Resources */,
 				8AF39FA71BC67E88009C7F26 /* LocationInfoIcon@2x.png in Resources */,
 				8AF39FA11BC67E88009C7F26 /* FollowingIcon@2x.png in Resources */,
+				8AF53F531BD88DCF00AF6C9E /* GridViewActive@2x.png in Resources */,
 				8AF39FC11BC67E88009C7F26 /* AbroadIcon@3x.png in Resources */,
 				8AF39F471BC67E88009C7F26 /* StarRecommendationBtn@2x.png in Resources */,
+				8AF53F621BD88DCF00AF6C9E /* PhotoPin@3x.png in Resources */,
 				8A83CCB51BD5109000C8B52C /* ProfileCollectionPageTableViewCell.xib in Resources */,
 				8AF3A0831BC67E88009C7F26 /* ShareCopyLinkIcon@3x.png in Resources */,
 				8AF39F401BC67E88009C7F26 /* CloseIcon@3x.png in Resources */,
@@ -5137,13 +5163,13 @@
 				8AD6C0F91B706CF30040437E /* SearchResultV2ViewController.xib in Resources */,
 				8AF39FB41BC67E88009C7F26 /* TitleBar@3x.png in Resources */,
 				8AF39FB51BC67E88009C7F26 /* WelcomeImg.png in Resources */,
+				8AF53F6B1BD88DCF00AF6C9E /* WhiteCollected@2x.png in Resources */,
 				8A83CC921BD4E49300C8B52C /* bgFeed.png in Resources */,
 				8AF39F281BC67E88009C7F26 /* DeleteIconSwipe@3x.png in Resources */,
 				8AF39F891BC67E88009C7F26 /* CollectThaiBtn@2x.png in Resources */,
 				8AF39FE91BC67E88009C7F26 /* InstagramBtnInactive@3x.png in Resources */,
 				8AB76E031BB8FDC8007DB972 /* EditCollectionDetailViewController.xib in Resources */,
 				8AF3A0731BC67E88009C7F26 /* SuggestionSearchIcon@3x.png in Resources */,
-				8AF39F061BC67E88009C7F26 /* CollectionFolderIcon@3x.png in Resources */,
 				8AD6C0D51B706CF30040437E /* PSearchLocationViewController.xib in Resources */,
 				8AF3A03F1BC67E88009C7F26 /* PostLocationIcon@3x.png in Resources */,
 				8A2E73BB1BCCF2A0003A2589 /* ProfileImageCollectionViewCell.xib in Resources */,
@@ -5164,7 +5190,6 @@
 				8A83CCBD1BD5ED5900C8B52C /* detox water.jpg in Resources */,
 				8AF39F641BC67E88009C7F26 /* NoDraft@3x.png in Resources */,
 				8AF3A0331BC67E88009C7F26 /* DirectionIcon@3x.png in Resources */,
-				8AF39F181BC67E88009C7F26 /* MoreBtn@3x.png in Resources */,
 				8A83CC9A1BD4E49300C8B52C /* bgFeed.png in Resources */,
 				8AD6C1031B706CF30040437E /* ChangePasswordViewController.xib in Resources */,
 				8AD6C0BA1B706CF30040437E /* ShowFollowerAndFollowingViewController.xib in Resources */,
@@ -5176,7 +5201,6 @@
 				8AF39F7C1BC67E88009C7F26 /* UserBookmarkIcon@3x.png in Resources */,
 				8AF39F601BC67E88009C7F26 /* ConnectionWeak@3x.png in Resources */,
 				0BE340231B73021B00F49625 /* Adriane Text Bold Italic.otf in Resources */,
-				8AF39F121BC67E88009C7F26 /* ListViewActive@3x.png in Resources */,
 				8AF39FFD1BC67E88009C7F26 /* HomeBgShort@2x.png in Resources */,
 				8AD6BE521B706CF30040437E /* Filter2ViewController.xib in Resources */,
 				8AD6C2961B7072FB0040437E /* DraftsViewController.xib in Resources */,
@@ -5186,6 +5210,7 @@
 				8AF3A08D1BC67E88009C7F26 /* ShareMessangerIcon@3x.png in Resources */,
 				8AF3A0621BC67E88009C7F26 /* ProfileSettingsIcon@2x.png in Resources */,
 				8A83CC331BD4DBA800C8B52C /* Icon.png in Resources */,
+				8AF53F641BD88DCF00AF6C9E /* ShareBase@3x.png in Resources */,
 				8A3757E51B85D635009DB7D4 /* EditPhotoViewController.xib in Resources */,
 				8AF39FF61BC67E88009C7F26 /* InviteMessengarIcon@2x.png in Resources */,
 				8A6584381B981C0E00BC86B9 /* CategoryCollectionViewCell.xib in Resources */,
@@ -5198,7 +5223,6 @@
 				8AF39FF71BC67E88009C7F26 /* InviteMessengarIcon@3x.png in Resources */,
 				8AF0EF7C1BC7D6EF00B5D8D3 /* ProfileViewController.xib in Resources */,
 				8AF3A08C1BC67E88009C7F26 /* ShareMessangerIcon@2x.png in Resources */,
-				8AF39F1B1BC67E88009C7F26 /* ShareBase@2x.png in Resources */,
 				8AF0EF821BC7DD5800B5D8D3 /* ProfileCollectionTableViewCell.xib in Resources */,
 				8AD6C29C1B7072FB0040437E /* PublishMainViewController.xib in Resources */,
 				8AF3A0481BC67E88009C7F26 /* AddPostBtn@2x.png in Resources */,
@@ -5212,10 +5236,12 @@
 				8AF3A0211BC67E88009C7F26 /* NotificationComment@3x.png in Resources */,
 				8AF3A0131BC67E88009C7F26 /* TitleBar@3x.png in Resources */,
 				8AF39CCD1BC649D1009C7F26 /* Caret@2x.png in Resources */,
+				8AF53F601BD88DCF00AF6C9E /* NoPhotoInCollection@3x.png in Resources */,
 				8AF39F8D1BC67E88009C7F26 /* CommentIcon@2x.png in Resources */,
 				8AF3A00D1BC67E88009C7F26 /* LoginFacebookIcon@3x.png in Resources */,
 				8AF3A0531BC67E88009C7F26 /* FollowingBtn@3x.png in Resources */,
 				0BE340251B73021B00F49625 /* ProximaNovaSoft-Regular.ttf in Resources */,
+				8AF53F5B1BD88DCF00AF6C9E /* MapBtn@2x.png in Resources */,
 				8A9F258B1B8D69E100BB13BA /* SearchTableViewController.xib in Resources */,
 				8AF3A0C81BC78200009C7F26 /* EditHoursIcon@2x.png in Resources */,
 				8AF3A0991BC67E88009C7F26 /* ExploreIcon@2x.png in Resources */,
@@ -5223,6 +5249,7 @@
 				8AF39F4A1BC67E88009C7F26 /* AboutIcon@3x.png in Resources */,
 				8AD6C0B61B706CF30040437E /* InstagramLoginWebViewController.xib in Resources */,
 				8AD6BE501B706CF30040437E /* ExploreViewController.xib in Resources */,
+				8AF53F591BD88DCF00AF6C9E /* ListViewInactive@2x.png in Resources */,
 				8AF3A08B1BC67E88009C7F26 /* ShareLineIcon@3x.png in Resources */,
 				8AF39F2A1BC67E88009C7F26 /* EditIconSwipe@3x.png in Resources */,
 				8AF3A0CD1BC78200009C7F26 /* PinInMap@3x.png in Resources */,
@@ -5237,18 +5264,16 @@
 				8AD6C28E1B7072FB0040437E /* LocationOnMapViewController.xib in Resources */,
 				8AF3A07A1BC67E88009C7F26 /* BackToTop@2x.png in Resources */,
 				8AF3A05A1BC67E88009C7F26 /* ProfileFollowingIcon@2x.png in Resources */,
-				8AF39F0C1BC67E88009C7F26 /* CreateCollection@3x.png in Resources */,
 				8AF39FDB1BC67E88009C7F26 /* StaycationIcon@3x.png in Resources */,
 				8AD6C0F71B706CF30040437E /* SearchDetailViewController.xib in Resources */,
 				8AF39F831BC67E88009C7F26 /* CollectedBtn@2x.png in Resources */,
 				8AF39FE61BC67E88009C7F26 /* InstagramBtnActive@2x.png in Resources */,
 				8AF3A0741BC67E88009C7F26 /* TimeIcon@2x.png in Resources */,
 				8AF3A03D1BC67E88009C7F26 /* PostLikeIcon@3x.png in Resources */,
-				8AF39F1E1BC67E88009C7F26 /* TranslateIcon@3x.png in Resources */,
 				8AF3A0601BC67E88009C7F26 /* ProfileSearchBar@2x.png in Resources */,
 				8AF3A07D1BC67E88009C7F26 /* CameraIcon@3x.png in Resources */,
 				8AD6C34A1B707D120040437E /* textbg@2x.png in Resources */,
-				8AF39F091BC67E88009C7F26 /* CollectionOverlay@2x.png in Resources */,
+				8AF53F4C1BD88DCF00AF6C9E /* CollectionFolderIcon@3x.png in Resources */,
 				8AD6C0D71B706CF30040437E /* PSelectYourInterestViewController.xib in Resources */,
 				8AF39CE21BC67125009C7F26 /* 1.png in Resources */,
 				8AF39FE41BC67E88009C7F26 /* FacebookBtnInactive@2x.png in Resources */,
@@ -5273,9 +5298,7 @@
 				8AF39F771BC67E88009C7F26 /* ExploreSearchBar@2x.png in Resources */,
 				8AF39F941BC67E88009C7F26 /* Distance3Icon@3x.png in Resources */,
 				8A00979D1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib in Resources */,
-				8AF39F111BC67E88009C7F26 /* ListViewActive@2x.png in Resources */,
 				8AF3A0B31BC67E88009C7F26 /* WalkthroughFeed.png in Resources */,
-				8AF39F1D1BC67E88009C7F26 /* TranslateIcon@2x.png in Resources */,
 				8AE642791BD61BA6003ACA56 /* ProfilePageCollectionHeaderView.xib in Resources */,
 				8AF3A0CE1BC78200009C7F26 /* TickIcon@2x.png in Resources */,
 				8AD6C2941B7072FB0040437E /* ChooseCategoryViewController.xib in Resources */,
@@ -5283,12 +5306,10 @@
 				8AD6C28A1B7072FB0040437E /* ConfirmPlaceViewController.xib in Resources */,
 				8AF3A0A51BC67E88009C7F26 /* ProfileIcon@2x.png in Resources */,
 				8AF3A0101BC67E88009C7F26 /* SeetiesLogo@2x.png in Resources */,
-				8AF39F011BC67E88009C7F26 /* CheckGrey@2x.png in Resources */,
 				8AF3A01C1BC67E88009C7F26 /* NotificationBySeeties@2x.png in Resources */,
 				0BBFE08F1B9FCC00004B17E9 /* SubmitProfileViewController.xib in Resources */,
 				8AF39FDA1BC67E88009C7F26 /* StaycationIcon@2x.png in Resources */,
 				8AB76D211BB8FBAF007DB972 /* ArticleViewController.xib in Resources */,
-				8AF39F031BC67E88009C7F26 /* CollectionCrossBtn@2x.png in Resources */,
 				8AF39F321BC67E88009C7F26 /* AddIcon@3x.png in Resources */,
 				8A2E2C151B79E7A30010895E /* RecommendationViewController.xib in Resources */,
 				8AF3A0A01BC67E88009C7F26 /* FeedIconActive@3x.png in Resources */,
@@ -5296,7 +5317,7 @@
 				8AF39FCA1BC67E88009C7F26 /* ForHerIcon@2x.png in Resources */,
 				8AD6BA6B1B705DF20040437E /* Images.xcassets in Resources */,
 				8AF3A0B41BC67E88009C7F26 /* WalkthroughFeed2.png in Resources */,
-				8AF39F131BC67E88009C7F26 /* ListViewInactive@2x.png in Resources */,
+				8AF53F501BD88DCF00AF6C9E /* CollectionOverlay@3x.png in Resources */,
 				8AF39CD51BC649D1009C7F26 /* SelectPhotoArrow@2x.png in Resources */,
 				8AF3A0631BC67E88009C7F26 /* ProfileSettingsIcon@3x.png in Resources */,
 				8AF3A01E1BC67E88009C7F26 /* NotificationCollect@2x.png in Resources */,
@@ -5481,6 +5502,7 @@
 				8A00979B1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m in Sources */,
 				8AD6C2931B7072FB0040437E /* ChooseCategoryViewController.m in Sources */,
 				8AD6C0AD1B706CF30040437E /* LandingV2ViewController.m in Sources */,
+				8AF53F1B1BD8850E00AF6C9E /* NSObject+Extension.m in Sources */,
 				8AD6BE231B706CF30040437E /* NSMutableArray+MoveArray.m in Sources */,
 				8AB76E021BB8FDC8007DB972 /* EditCollectionDetailViewController.m in Sources */,
 				8A3757B31B846788009DB7D4 /* SearchModel.m in Sources */,

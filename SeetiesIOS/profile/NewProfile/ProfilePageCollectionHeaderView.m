@@ -18,13 +18,6 @@
     // Drawing code
 }
 */
-- (IBAction)btnSeeAllClicked:(id)sender {
-    
-    if (self.btnSeeAllClickedBlock) {
-        self.btnSeeAllClickedBlock(nil);
-    }
-}
-
 -(void)initSelfView
 {
   
@@ -43,5 +36,33 @@
     [self layoutIfNeeded];
     [self.ibBackgroundView setRoundedCorners:UIRectCornerTopLeft|UIRectCornerTopRight radius:10.0f];
     
+}
+//type 1 collection type 2 post type 3 likes
+-(void)setHeaderViewWithCount:(int)count type:(int)type
+{
+    switch (type) {
+        case 1:
+            self.lblTitle.text = @"Collections";
+            self.lblNumberOfCollection.text = [NSString stringWithFormat:@"%d collections",count];
+
+            break;
+        case 2:
+            self.lblTitle.text = @"Posts";
+
+            self.lblNumberOfCollection.text = [NSString stringWithFormat:@"%d posts",count];
+
+            break;
+            
+        case 3:
+            self.lblTitle.text = @"Likes";
+
+            self.lblNumberOfCollection.text = [NSString stringWithFormat:@"%d likes",count];
+
+            break;
+        default:
+            break;
+    }
+   
+
 }
 @end
