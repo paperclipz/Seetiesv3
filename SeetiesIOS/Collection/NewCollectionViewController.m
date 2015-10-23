@@ -37,6 +37,7 @@
     TagsField.frame = CGRectMake(15, 13, screenWidth - 70, 30);
     TagsField.delegate = self;
     NameTextView.delegate = self;
+    DescriptionTextView.delegate = self;
    
     [Utils setRoundBorder:NameTextView color:TWO_ZERO_FOUR_COLOR borderRadius:5.0f borderWidth:1.0f];
     [Utils setRoundBorder:DescriptionTextView color:TWO_ZERO_FOUR_COLOR borderRadius:5.0f borderWidth:1.0f];
@@ -52,7 +53,7 @@
     
     TagsLine.frame = CGRectMake(0, 50, screenWidth - 40 , 1);
     
-    SetPublic = @"1";
+    SetPublic = @"0";
     
     ShowTitle.text = LocalisedString(@"New Collection");
     CollectionTitle.text = LocalisedString(@"Collection title");
@@ -85,7 +86,7 @@
         if ([NameTextView.text isEqualToString:LocalisedString(@"eg: Top 10 coffee hideouts in KL, Best spas in Bangkok")]) {
             NameTextView.text = @"";
         }
-    }else{
+    }else if (textView == DescriptionTextView){
         if ([DescriptionTextView.text isEqualToString:LocalisedString(@"Write a description")]) {
             DescriptionTextView.text = @"";
         }
@@ -101,9 +102,11 @@
     if (textView == NameTextView) {
         NSUInteger len = textView.text.length;
         ShowNameCount.text = [NSString stringWithFormat:@"%lu / 70",70 - len];
+        ShowNameCount.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
     }else if(textView == DescriptionTextView){
         NSUInteger len = textView.text.length;
         ShowDescriptionCount.text = [NSString stringWithFormat:@"%lu / 150",150 - len];
+        ShowDescriptionCount.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
     }
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UrlDataClass.h"
 #import "AsyncImageView.h"
+#import "EditCollectionViewController.h"
 @interface CollectionViewController : UIViewController<UIScrollViewDelegate>{
 
     IBOutlet UIScrollView *MainScroll;
@@ -76,5 +77,7 @@
     int GetCollectionHeight;
     IBOutlet UILabel *ShowTitleInTop;
 }
+@property(nonatomic,strong)EditCollectionViewController* editCollectionViewController;
+@property(nonatomic,strong)UINavigationController* navEditCollectionViewController;
 -(void)GetCollectionID:(NSString *)ID_ GetPermision:(NSString *)PermisionUser;
 @end

@@ -57,7 +57,8 @@
     CollectionsScroll.frame = CGRectMake(0, 133, screenWidth, screenHeight - 133);
     toolBar.frame = CGRectMake(0, screenHeight - 44, screenWidth, 44);
     TextString.frame = CGRectMake(8, 8, screenWidth - 64 - 8 - 10, 30);
-    sendButton.frame = CGRectMake(screenWidth - 64, 0, 64, 44);
+    sendButton.frame = CGRectMake(screenWidth - 64 - 5, 5, 64, 34);
+    sendButton.layer.cornerRadius = 17;
     ShowNoDataView.frame = CGRectMake(0, 120, screenWidth, screenHeight);
     NoCommentImage.frame = CGRectMake((screenWidth/2) - 160, 0, 320, 568);
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
@@ -118,11 +119,13 @@
     [super viewWillAppear:animated];
     /* Listen for keyboard */
     self.screenName = @"IOS Comment Page";
+    [IQKeyboardManager sharedManager].enableAutoToolbar = false;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+      [IQKeyboardManager sharedManager].enableAutoToolbar = true;
     /* No longer listen for keyboard */
 //    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
 //    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];

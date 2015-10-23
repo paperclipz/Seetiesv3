@@ -33,7 +33,7 @@
     NoteTextView.frame = CGRectMake(108, 59, screenWidth - 108 - 20, 80);
     NoteTextView.layer.cornerRadius = 5;
     NoteTextView.layer.borderWidth=1;
-    NoteTextView.layer.borderColor=[[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0f] CGColor];
+    NoteTextView.layer.borderColor=[[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f] CGColor];
     NoteTextView.text = LocalisedString(@"Leave a note");
     
     ShowNoteTextCount.frame = CGRectMake(screenWidth - 20 - 42, 119, 42, 20);
@@ -60,13 +60,18 @@
     // Dispose of any resources that can be recreated.
 }
 -(IBAction)BackButton:(id)sender{
-[self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    [IQKeyboardManager sharedManager].enableAutoToolbar = false;
     if (CheckReflash == YES) {
         [self GetUserCollections];
     }
+}
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [IQKeyboardManager sharedManager].enableAutoToolbar = true;
 }
 -(void)GetPostID:(NSString *)PostID GetImageData:(NSString *)ImageData{
 
@@ -259,6 +264,7 @@
     NSLog(@"did begin editing");
     if ([NoteTextView.text isEqualToString:LocalisedString(@"Leave a note")]) {
         NoteTextView.text = @"";
+        NoteTextView.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
     }
     
 }
@@ -266,13 +272,14 @@
 {
     if ([NoteTextView.text length] == 0) {
         NoteTextView.text = LocalisedString(@"Leave a note");
+        NoteTextView.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
     }
 }
 -(void)textViewDidChange:(UITextView *)textView
 {
     NSUInteger len = textView.text.length;
     ShowNoteTextCount.text = [NSString stringWithFormat:@"%lu/30",30 - len];
-     ShowNoteTextCount.textColor = [UIColor blackColor];
+    ShowNoteTextCount.textColor = [UIColor blackColor];
     
 }
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
@@ -384,7 +391,7 @@
         [regex enumerateMatchesInString:FullString options:kNilOptions range:range usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
             NSRange subStringRange = [result rangeAtIndex:0];
             [mutableAttributedString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15] range:NSMakeRange(0, FinalString_CheckName.length)];
-            [mutableAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] range:subStringRange];
+            [mutableAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:41.0f/255.0f green:182.0f/255.0f blue:246.0f/255.0f alpha:1.0f] range:subStringRange];
             
 
         }];

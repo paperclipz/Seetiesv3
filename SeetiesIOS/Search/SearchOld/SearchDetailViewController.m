@@ -88,6 +88,8 @@
     [super viewWillAppear:animated];
     self.screenName = @"IOS Search Detail Page";
     
+    [IQKeyboardManager sharedManager].enableAutoToolbar = false;
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetCategoryString = [defaults objectForKey:@"Filter_Search_Category"];
     if ([GetCategoryString length] == 0 || [GetCategoryString isEqualToString:@""] || [GetCategoryString isEqualToString:@"(null)"] || GetCategoryString == nil) {
@@ -112,6 +114,10 @@
     
     SearchTextField.text = GetKeywordText;
     SearchAddressField.text = GetLocationName;
+}
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [IQKeyboardManager sharedManager].enableAutoToolbar = true;
 }
 - (UIStatusBarStyle) preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;

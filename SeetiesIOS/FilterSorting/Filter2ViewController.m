@@ -183,7 +183,27 @@
 }
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    
+    if (section == 0) {
+        
+        // 1. The view for the header
+        UIView* headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 10, tableView.frame.size.width, 22)];
+        
+        
+        // 3. Add a label
+        UILabel* headerLabel = [[UILabel alloc] init];
+        headerLabel.frame = CGRectMake(15, 20, tableView.frame.size.width - 5, 30);
+        headerLabel.backgroundColor = [UIColor clearColor];
+        headerLabel.textColor = [UIColor darkGrayColor];
+        headerLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+        headerLabel.text = CustomLocalisedString(@"SortByBig", nil);
+        headerLabel.textAlignment = NSTextAlignmentLeft;
+        
+        // 4. Add the label to the header view
+        [headerView addSubview:headerLabel];
+        
+        // 5. Finally return
+        return headerView;
+    }
     
     if (section == 1) {
         // 1. The view for the header
@@ -195,7 +215,7 @@
         headerLabel.frame = CGRectMake(15, 5, tableView.frame.size.width - 5, 30);
         headerLabel.backgroundColor = [UIColor clearColor];
         headerLabel.textColor = [UIColor darkGrayColor];
-        headerLabel.font = [UIFont systemFontOfSize:14];
+        headerLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         headerLabel.text = CustomLocalisedString(@"ChooseacategoryBig", nil);
         headerLabel.textAlignment = NSTextAlignmentLeft;
         
@@ -209,7 +229,7 @@
             [SelectAllButton setTitle:CustomLocalisedString(@"UnSelectAll", nil) forState:UIControlStateNormal];
             SelectAllButton.backgroundColor = [UIColor clearColor];
             [SelectAllButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-            [SelectAllButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
+            [SelectAllButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15]];
             [SelectAllButton addTarget:self action:@selector(SelectAllButton:) forControlEvents:UIControlEventTouchUpInside];
             SelectAllButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
             [headerView addSubview:SelectAllButton];
@@ -223,7 +243,7 @@
             [SelectAllButton setTitle:CustomLocalisedString(@"UnSelectAll", nil) forState:UIControlStateNormal];
             SelectAllButton.backgroundColor = [UIColor clearColor];
             [SelectAllButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-            [SelectAllButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
+            [SelectAllButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15]];
             [SelectAllButton addTarget:self action:@selector(SelectAllButton:) forControlEvents:UIControlEventTouchUpInside];
             SelectAllButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
             [headerView addSubview:SelectAllButton];
@@ -235,7 +255,7 @@
             [SelectAllButton setTitle:CustomLocalisedString(@"SelectAll", nil) forState:UIControlStateNormal];
             SelectAllButton.backgroundColor = [UIColor clearColor];
             [SelectAllButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-            [SelectAllButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
+            [SelectAllButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15]];
             [SelectAllButton addTarget:self action:@selector(SelectAllButton:) forControlEvents:UIControlEventTouchUpInside];
             SelectAllButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
             [headerView addSubview:SelectAllButton];
@@ -280,7 +300,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    //if (cell == nil) {
+    if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         if (indexPath.section == 0) {
 //            UIImageView *ShowImage = [[UIImageView alloc]init];
@@ -294,7 +314,7 @@
             ShowTitle_.frame = CGRectMake(15, 0, 250, 44);
             ShowTitle_.tag = 200;
             //   ShowTitle_.text = [CategoryArray objectAtIndex:i];
-            ShowTitle_.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+            ShowTitle_.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
             ShowTitle_.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0];
             ShowTitle_.textAlignment = NSTextAlignmentLeft;
             ShowTitle_.backgroundColor = [UIColor clearColor];
@@ -336,7 +356,7 @@
             ShowTitle_.frame = CGRectMake(70, 0, 250, 44);
             ShowTitle_.tag = 150;
          //   ShowTitle_.text = [CategoryArray objectAtIndex:i];
-            ShowTitle_.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+            ShowTitle_.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
             ShowTitle_.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0];
             ShowTitle_.textAlignment = NSTextAlignmentLeft;
             ShowTitle_.backgroundColor = [UIColor clearColor];
@@ -344,7 +364,7 @@
             
             
         }
-  //  }
+    }
     if (indexPath.section == 0) {
         if([checkedIndexPath_Sort isEqual:indexPath])
         {

@@ -260,6 +260,7 @@
             NSLog(@"PostView click");
             PostView.hidden = NO;
             PeopleView.hidden = YES;
+            SearchButton.hidden = NO;
            [self InitPostDataView];
             
             break;
@@ -267,7 +268,7 @@
             NSLog(@"PeopleView click");
             PostView.hidden = YES;
             PeopleView.hidden = NO;
-            
+            SearchButton.hidden = YES;
             [self initPeopleDataView];
             
             break;

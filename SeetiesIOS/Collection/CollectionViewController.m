@@ -630,25 +630,31 @@
         GetHeight += 50;
     }
 
-    
-    //edit button
-    UIButton *EditButton = [[UIButton alloc]init];
-    EditButton.frame = CGRectMake((screenWidth / 2) - 65, GetHeight, 130, 35);
-    EditButton.layer.cornerRadius= 18;
-    EditButton.layer.borderWidth = 1;
-    EditButton.layer.masksToBounds = YES;
-    EditButton.layer.borderColor=[[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0] CGColor];
-    EditButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
-    [EditButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
-    EditButton.backgroundColor = [UIColor whiteColor];
     if ([GetPermisionUser isEqualToString:@"Self"]) {
+        //edit button
+        UIButton *EditButton = [[UIButton alloc]init];
+        EditButton.frame = CGRectMake((screenWidth / 2) - 65, GetHeight, 130, 35);
+        EditButton.layer.cornerRadius= 18;
+        EditButton.layer.borderWidth = 1;
+        EditButton.layer.masksToBounds = YES;
+        EditButton.layer.borderColor=[[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0] CGColor];
+        EditButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
+        [EditButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
+        EditButton.backgroundColor = [UIColor whiteColor];
         [EditButton setTitle:@"Edit" forState:UIControlStateNormal];
+        [EditButton addTarget:self action:@selector(EditButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+//        if ([GetPermisionUser isEqualToString:@"Self"]) {
+//            [EditButton setTitle:@"Edit" forState:UIControlStateNormal];
+//        }else{
+//            [EditButton setTitle:@"Collect" forState:UIControlStateNormal];
+//        }
+        [MainScroll addSubview:EditButton];
+        
+        GetHeight += 45;
     }else{
-        [EditButton setTitle:@"Collect" forState:UIControlStateNormal];
+       
     }
-    [MainScroll addSubview:EditButton];
-    
-    GetHeight += 45;
+
     
     UIButton *Line01 = [[UIButton alloc]init];
     Line01.frame = CGRectMake(0, GetHeight, screenWidth, 1);
@@ -697,6 +703,42 @@
     
     [self InitContentListView];
     
+}
+-(IBAction)EditButtonOnClick:(id)sender{
+    
+    _navEditCollectionViewController = nil;
+    _editCollectionViewController = nil;// for the view controller to reinitialize
+    
+    [LoadingManager show];
+    
+    [self.editCollectionViewController initData:GetID];
+    [self presentViewController:self.navEditCollectionViewController animated:YES completion:^{
+        
+        
+    }];
+}
+#pragma mark - Declaration
+-(EditCollectionViewController*)editCollectionViewController
+{
+    
+    if (!_editCollectionViewController) {
+        
+        _editCollectionViewController = [EditCollectionViewController new];
+        
+    }
+    return _editCollectionViewController;
+}
+
+-(UINavigationController*)navEditCollectionViewController
+{
+    
+    if (!_navEditCollectionViewController) {
+        
+        _navEditCollectionViewController = [[UINavigationController alloc]initWithRootViewController:self.editCollectionViewController];
+        [_navEditCollectionViewController setNavigationBarHidden:YES animated:NO];
+        
+    }
+    return _navEditCollectionViewController;
 }
 -(IBAction)ListButtonOnClick:(id)sender{
     [ListButton setImage:[UIImage imageNamed:@"ListViewActive.png"] forState:UIControlStateNormal];

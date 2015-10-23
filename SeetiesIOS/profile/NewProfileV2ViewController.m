@@ -650,12 +650,12 @@
         
         GetHeight = 220;
         
-        UIButton *Line01 = [[UIButton alloc]init];
-        Line01.frame = CGRectMake(0, GetHeight, screenWidth, 20);
-        [Line01 setTitle:@"" forState:UIControlStateNormal];
-        [Line01 setBackgroundColor:[UIColor whiteColor]];
-        Line01.alpha = 0.8f;
-        [AllContentView addSubview:Line01];
+//        UIButton *Line01 = [[UIButton alloc]init];
+//        Line01.frame = CGRectMake(0, GetHeight, screenWidth, 20);
+//        [Line01 setTitle:@"" forState:UIControlStateNormal];
+//        [Line01 setBackgroundColor:[UIColor whiteColor]];
+//        //Line01.alpha = 0.8f;
+//        [AllContentView addSubview:Line01];
         
         GetHeight += 20;
         
