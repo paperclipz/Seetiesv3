@@ -25,6 +25,10 @@
 }
 */
 - (IBAction)btnEditClicked:(id)sender {
+    
+    if (_btnEditClickedBlock) {
+        self.btnEditClickedBlock();
+    }
 }
 
 -(void)initSelfView

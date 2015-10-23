@@ -173,6 +173,10 @@
 		8A8475311BC52CCF006DD614 /* UITextView+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A8475301BC52CCF006DD614 /* UITextView+Extra.m */; settings = {ASSET_TAGS = (); }; };
 		8A8850701BBE83BB0096E0D0 /* error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A88506D1BBE83BB0096E0D0 /* error@2x.png */; settings = {ASSET_TAGS = (); }; };
 		8A8850711BBE83BB0096E0D0 /* TextFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A88506F1BBE83BB0096E0D0 /* TextFieldValidator.m */; settings = {ASSET_TAGS = (); }; };
+		8A90AC0B1BD9EF4600CE1ED6 /* PostListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A90AC091BD9EF4600CE1ED6 /* PostListingViewController.m */; settings = {ASSET_TAGS = (); }; };
+		8A90AC0C1BD9EF4600CE1ED6 /* PostListingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A90AC0A1BD9EF4600CE1ED6 /* PostListingViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		8A90AC101BD9F08900CE1ED6 /* PostListingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A90AC0F1BD9F08900CE1ED6 /* PostListingTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		8A90AC121BD9F09300CE1ED6 /* PostListingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A90AC111BD9F09300CE1ED6 /* PostListingTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
 		8A959D631B8B252700722920 /* FXImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A959D601B8B252700722920 /* FXImageView.m */; };
 		8A959D641B8B252700722920 /* UIImage+FX.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A959D621B8B252700722920 /* UIImage+FX.m */; };
 		8A959D941B8C0CBA00722920 /* NMBottomTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A959D911B8C0CBA00722920 /* NMBottomTabBar.m */; };
@@ -1215,6 +1219,12 @@
 		8A88506D1BBE83BB0096E0D0 /* error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "error@2x.png"; sourceTree = "<group>"; };
 		8A88506E1BBE83BB0096E0D0 /* TextFieldValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldValidator.h; sourceTree = "<group>"; };
 		8A88506F1BBE83BB0096E0D0 /* TextFieldValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldValidator.m; sourceTree = "<group>"; };
+		8A90AC081BD9EF4600CE1ED6 /* PostListingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostListingViewController.h; sourceTree = "<group>"; };
+		8A90AC091BD9EF4600CE1ED6 /* PostListingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostListingViewController.m; sourceTree = "<group>"; };
+		8A90AC0A1BD9EF4600CE1ED6 /* PostListingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostListingViewController.xib; sourceTree = "<group>"; };
+		8A90AC0E1BD9F08900CE1ED6 /* PostListingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostListingTableViewCell.h; sourceTree = "<group>"; };
+		8A90AC0F1BD9F08900CE1ED6 /* PostListingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostListingTableViewCell.m; sourceTree = "<group>"; };
+		8A90AC111BD9F09300CE1ED6 /* PostListingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostListingTableViewCell.xib; sourceTree = "<group>"; };
 		8A959D5F1B8B252700722920 /* FXImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXImageView.h; sourceTree = "<group>"; };
 		8A959D601B8B252700722920 /* FXImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXImageView.m; sourceTree = "<group>"; };
 		8A959D611B8B252700722920 /* UIImage+FX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FX.h"; sourceTree = "<group>"; };
@@ -2849,6 +2859,27 @@
 			path = TextFieldValidator;
 			sourceTree = "<group>";
 		};
+		8A90AC071BD9EF1400CE1ED6 /* PostListingPage */ = {
+			isa = PBXGroup;
+			children = (
+				8A90AC0D1BD9F03200CE1ED6 /* Extra */,
+				8A90AC081BD9EF4600CE1ED6 /* PostListingViewController.h */,
+				8A90AC091BD9EF4600CE1ED6 /* PostListingViewController.m */,
+				8A90AC0A1BD9EF4600CE1ED6 /* PostListingViewController.xib */,
+			);
+			name = PostListingPage;
+			sourceTree = "<group>";
+		};
+		8A90AC0D1BD9F03200CE1ED6 /* Extra */ = {
+			isa = PBXGroup;
+			children = (
+				8A90AC0E1BD9F08900CE1ED6 /* PostListingTableViewCell.h */,
+				8A90AC0F1BD9F08900CE1ED6 /* PostListingTableViewCell.m */,
+				8A90AC111BD9F09300CE1ED6 /* PostListingTableViewCell.xib */,
+			);
+			name = Extra;
+			sourceTree = "<group>";
+		};
 		8A959D5E1B8B252700722920 /* FXImageView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3822,7 +3853,8 @@
 		8AF0EF771BC7D6CD00B5D8D3 /* NewProfile */ = {
 			isa = PBXGroup;
 			children = (
-				8AF53F0C1BD798DC00AF6C9E /* CollectionPage */,
+				8A90AC071BD9EF1400CE1ED6 /* PostListingPage */,
+				8AF53F0C1BD798DC00AF6C9E /* CollectionListingPage */,
 				8A83CCB61BD5E91C00C8B52C /* ProfilePage */,
 				8A83CCB01BD5100500C8B52C /* ProfileCollection */,
 				8AB76DEB1BB8FDC8007DB972 /* Profile_EditCollection */,
@@ -4530,7 +4562,7 @@
 			path = "Add New Place";
 			sourceTree = "<group>";
 		};
-		8AF53F0C1BD798DC00AF6C9E /* CollectionPage */ = {
+		8AF53F0C1BD798DC00AF6C9E /* CollectionListingPage */ = {
 			isa = PBXGroup;
 			children = (
 				8AF53F0D1BD7990C00AF6C9E /* CollectionListingViewController.h */,
@@ -4540,7 +4572,7 @@
 				8AF53F131BD79B5F00AF6C9E /* CollectionListingTabViewController.m */,
 				8AF53F141BD79B5F00AF6C9E /* CollectionListingTabViewController.xib */,
 			);
-			name = CollectionPage;
+			name = CollectionListingPage;
 			sourceTree = "<group>";
 		};
 		8AF53F171BD884E300AF6C9E /* NSObject+Extension */ = {
@@ -4702,6 +4734,7 @@
 				8AF39F361BC67E88009C7F26 /* DeleteIcon@3x.png in Resources */,
 				8AF39F781BC67E88009C7F26 /* ExploreSearchBar@3x.png in Resources */,
 				8A6584431B9851D300BC86B9 /* DraftTableViewCell.xib in Resources */,
+				8A90AC121BD9F09300CE1ED6 /* PostListingTableViewCell.xib in Resources */,
 				8AD6C0B81B706CF30040437E /* OpenWebViewController.xib in Resources */,
 				8A3757B81B847C7A009DB7D4 /* AddNewPlaceViewController.xib in Resources */,
 				8AF39FC81BC67E88009C7F26 /* FoodDrinkIcon@2x.png in Resources */,
@@ -5153,6 +5186,7 @@
 				8AF3A0801BC67E88009C7F26 /* SelectPhotoArrow@2x.png in Resources */,
 				8AF39FC51BC67E88009C7F26 /* BlueTick@3x.png in Resources */,
 				8AF3A04E1BC67E88009C7F26 /* FollowBtn@2x.png in Resources */,
+				8A90AC0C1BD9EF4600CE1ED6 /* PostListingViewController.xib in Resources */,
 				8AF39F4C1BC67E88009C7F26 /* ArrowBtn@3x.png in Resources */,
 				8AF39FDC1BC67E88009C7F26 /* YoloIcon@2x.png in Resources */,
 				8AF39FE71BC67E88009C7F26 /* InstagramBtnActive@3x.png in Resources */,
@@ -5495,6 +5529,7 @@
 				0BBFE08C1B9FCC00004B17E9 /* EditProfileViewController.m in Sources */,
 				8A34094A1B8AD06A009B66C3 /* UIView+Screenshot.m in Sources */,
 				8AE6427E1BD62641003ACA56 /* ProfileModel.m in Sources */,
+				8A90AC0B1BD9EF4600CE1ED6 /* PostListingViewController.m in Sources */,
 				8A3408F71B86FC99009B66C3 /* UITableViewController+BMXSwipableCellSupport.m in Sources */,
 				8AF2C27E1BA13D1400B0A7F1 /* AFNetworkActivityLogger.m in Sources */,
 				8AD6C2891B7072FB0040437E /* ConfirmPlaceViewController.m in Sources */,
@@ -5556,6 +5591,7 @@
 				8A6584491B99554D00BC86B9 /* DismissingAnimationController.m in Sources */,
 				0B6A54E01BB51F84005B9D6B /* ReportViewController.m in Sources */,
 				8AD6C0AB1B706CF30040437E /* InviteFrenViewController.m in Sources */,
+				8A90AC101BD9F08900CE1ED6 /* PostListingTableViewCell.m in Sources */,
 				8A83CCC01BD5F0EB00C8B52C /* ProfilePagePostTableViewCell.m in Sources */,
 				8A8850711BBE83BB0096E0D0 /* TextFieldValidator.m in Sources */,
 				8A2E2CE61B81DEE60010895E /* CommonViewController.m in Sources */,

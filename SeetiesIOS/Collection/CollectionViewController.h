@@ -9,9 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UrlDataClass.h"
 #import "AsyncImageView.h"
-@interface CollectionViewController : UIViewController<UIScrollViewDelegate>{
+@interface CollectionViewController : UIViewController<UIScrollViewDelegate>
 
-   
-}
 -(void)GetCollectionID:(NSString *)ID_;
 @end

@@ -346,7 +346,6 @@
             
     }
     
-    
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -354,7 +353,6 @@
     [super viewDidAppear:animated];
     isSaved = false;
     [self loadData];
-
 
 }
 

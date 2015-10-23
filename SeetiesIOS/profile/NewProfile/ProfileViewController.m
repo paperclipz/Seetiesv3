@@ -59,10 +59,10 @@
 
 - (IBAction)btnSettingClicked:(id)sender {
     
-    SLog(@"btnSettingClicked");
     [self.navigationController pushViewController:self.settingsViewController animated:YES];
 
 }
+
 - (IBAction)btnSegmentedControlClicked:(id)sender {
 }
 
@@ -73,7 +73,7 @@
     [self requestServerForUserInfo];
     [self requestServerForUserCollection];
     [self requestServerForUserPost];
-   // [self requestServerForUserLikes];
+    [self requestServerForUserLikes];
     
     // Do any additional setup after loading the view from its nib.
 }
@@ -329,6 +329,11 @@
                 cell = [[ProfilePageCollectionTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfier1];
             }
             
+            cell.btnEditClickedBlock = ^(void)
+            {
+                [self didSelectEditAtIndexPath:indexPath];
+            };
+            
             [cell initData:arrCollection[indexPath.row]];
             
             return cell;
@@ -445,7 +450,6 @@
 
 }
 
-
 -(void)didSelectFooterAtIndex:(NSIndexPath*)indexPath
 {
     switch (indexPath.section) {
@@ -463,18 +467,35 @@
     }
 }
 
+-(void)didSelectEditAtIndexPath:(NSIndexPath*)indexPath
+{
+    if (indexPath.section == 0) {
+        
+        CollectionModel* collModel = self.userCollectionsModel.arrCollections[indexPath.row];
+        [self showEditCollectionViewWithCollectionID:collModel.collection_id];
+    }
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
         
         CollectionModel* collModel = self.userCollectionsModel.arrCollections[indexPath.row];
-        [self showCollectionViewWithCollectionID:collModel.collection_id];
-      
+        
+        [self showCollectionDisplayViewWithCollectionID:collModel.collection_id];
     }
+   
 }
 
 #pragma  mark - Show Collection - Post - Likes
--(void)showCollectionViewWithCollectionID:(NSString*)collID
+
+-(void)showCollectionDisplayViewWithCollectionID:(NSString*)collID
+{
+    [self.collectionViewController GetCollectionID:collID];
+    [self.navigationController pushViewController:self.collectionViewController animated:YES];
+}
+
+-(void)showEditCollectionViewWithCollectionID:(NSString*)collID
 {
     _editCollectionViewController = nil;
     [LoadingManager show];
