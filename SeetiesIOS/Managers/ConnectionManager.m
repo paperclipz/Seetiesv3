@@ -31,7 +31,7 @@
 -(id)init
 {
     self = [super init];//set default dev
-    self.serverPath = SERVER_PATH_LIVE;
+    self.serverPath = SERVER_PATH_DEV;
     self.dataManager = [DataManager Instance];
 
     return self;

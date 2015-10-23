@@ -30,7 +30,7 @@
     // Do any additional setup after loading the view from its nib.
     DataUrl = [[UrlDataClass alloc]init];
     
-    ShowTitle.text = CustomLocalisedString(@"SettingsPage_Title",nil);
+    ShowTitle.text = CustomLocalisedString(@"Settings",nil);
     Title_Account.text = CustomLocalisedString(@"SettingsPage_Account",nil);
     EditProfile.text = CustomLocalisedString(@"SettingsPage_EditProfile",nil);
     EditInterests.text = CustomLocalisedString(@"SettingsPage_EditInterests",nil);
@@ -593,7 +593,7 @@
         NSLog(@"Log Out %@", selectedCell);
         switch (indexPath.row) {
             case 0:{
-                UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:LocalisedString(@"Log out") message:LocalisedString(@"Are you sure you want to sign out of Seeties?") delegate:self cancelButtonTitle:LocalisedString(@"Maybe not.") otherButtonTitles:LocalisedString(@"Yeah!"), nil];
+                UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:LocalisedString(@"Log out") message:LocalisedString(@"Are you sure you want to sign out of Seeties?") delegate:self cancelButtonTitle:LocalisedString(@"Maybe not..") otherButtonTitles:LocalisedString(@"Yeah!!"), nil];
                 ShowAlert.tag = 1000;
                 [ShowAlert show];
               //  [self SendUserLogoutToServer];

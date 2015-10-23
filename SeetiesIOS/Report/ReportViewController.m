@@ -22,7 +22,7 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
     ShowTitle.frame = CGRectMake(15, 20, screenWidth - 30, 44);
-    SaveButton.frame = CGRectMake(screenWidth - 46 - 15, 29, 46, 30);
+    SaveButton.frame = CGRectMake(screenWidth - 50, 20, 50, 44);
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     
     MainScroll.delegate = self;
@@ -46,6 +46,9 @@
     
     [InappropriateButton setTitle:LocalisedString(@"This post has content that violates terms & conditions in Seeties.") forState:UIControlStateNormal];
     [CopyrightButton setTitle:LocalisedString(@"This post uses copyrighted works without permission.") forState:UIControlStateNormal];
+    
+    InappropriateText.text = LocalisedString(@"This post has content that violates terms & conditions in Seeties.");
+    CopyrightText.text = LocalisedString(@"This post uses copyrighted works without permission.");
 }
 -(void)GetPostID:(NSString *)PostID{
 

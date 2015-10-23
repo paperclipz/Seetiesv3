@@ -35,12 +35,16 @@
     UrlDataClass *DataUrl;
     NSMutableData *webData;
     NSURLConnection *theConnection_CreateCollection;
+    NSURLConnection *theConnection_GetTagsString;
     
     IBOutlet UILabel *CollectionTitle;
     IBOutlet UILabel *DescriptionTitle;
     IBOutlet UILabel *TagTitle;
     IBOutlet UILabel *SetasPublicTitle;
     IBOutlet UILabel *SubTitleSetasPublic;
+    
+    NSString *TagsString;
+    NSMutableArray *TagsArray;
 }
 
 @end

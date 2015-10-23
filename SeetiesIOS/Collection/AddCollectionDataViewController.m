@@ -23,7 +23,7 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
-    MainScroll.frame = CGRectMake(0, screenHeight - 450, screenWidth, 450);
+    MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight);//0, screenHeight - 450, screenWidth, 450
     MainScroll.delegate = self;
     BackgroundBlackButton.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     
@@ -43,12 +43,16 @@
     PostImg.layer.borderWidth=0;
     PostImg.layer.masksToBounds = YES;
     
-    tblview.frame = CGRectMake(0, 193, screenWidth, 207);
+    tblview.frame = CGRectMake(0, 193, screenWidth, screenHeight - 193 - 50);
     
     CollectThisTitle.text = LocalisedString(@"Collect this");
     PickaCollectionTitle.text = LocalisedString(@"Pick a collection");
     [CreateCollectionButton setTitle:LocalisedString(@"Create a new collection") forState:UIControlStateNormal];
-
+    CreateCollectionButton.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
+    
+    TextScroll.delegate = self;
+    TextScroll.frame = CGRectMake(0, screenHeight - 100, screenWidth, 50);
+    TextScroll.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -153,6 +157,20 @@
             NSLog(@"CollectionData_IDArray is %@",CollectionData_IDArray);
             NSLog(@"CollectionData_TitleArray is %@",CollectionData_TitleArray);
             
+            
+            NSArray *GetAllData_Existing = (NSArray *)[GetResData valueForKey:@"existing_result"];
+            
+            ExistingCollectionData_TitleArray = [[NSMutableArray alloc]init];
+            for (NSDictionary * dict in GetAllData_Existing) {
+                NSString *name = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"name"]];
+                [ExistingCollectionData_TitleArray addObject:name];
+            }
+            NSLog(@"ExistingCollectionData_TitleArray is %@",ExistingCollectionData_TitleArray);
+            if ([ExistingCollectionData_TitleArray count] == 0) {
+            }else{
+                [self DrawExistingText];
+            }
+            
             [tblview reloadData];
             [ShowActivity stopAnimating];
         }
@@ -254,7 +272,7 @@
 {
     NSUInteger len = textView.text.length;
     ShowNoteTextCount.text = [NSString stringWithFormat:@"%lu/30",30 - len];
-    
+     ShowNoteTextCount.textColor = [UIColor blackColor];
     
 }
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
@@ -285,6 +303,8 @@
 }
 -(void)SendQuickCollect{
     
+    NSLog(@"NoteTextView.text is %@",NoteTextView.text);
+    
     [ShowActivity startAnimating];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -302,13 +322,16 @@
     NSString *dataString;
     if ([NoteTextView.text isEqualToString:LocalisedString(@"Leave a note")] || [NoteTextView.text length] == 0) {
         NoteTextView.text = @"";
-        dataString = [[NSString alloc]initWithFormat:@"token=%@&posts[0][id]=%@",GetExpertToken,GetPostID];
+        dataString = [[NSString alloc]initWithFormat:@"token=%@&posts[0][id]=%@T",GetExpertToken,GetPostID];
     }else{
-        dataString = [[NSString alloc]initWithFormat:@"token=%@&posts[0][id]=%@&posts[0][note]=%@",GetExpertToken,GetPostID,NoteTextView.text];
+//        NSString *TempString = NoteTextView.text;
+//        TempString = [TempString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        dataString = [[NSString alloc]initWithFormat:@"token=%@&posts[0][id]=%@&posts[0][note]=%@",GetExpertToken,GetPostID,NoteTextView.text];//&_method=PUT
     }
 
-    
-    NSData *postBodyData = [NSData dataWithBytes: [dataString UTF8String] length:[dataString length]];
+    NSLog(@"dataString is %@",dataString);
+    //NSData *postBodyData = [NSData dataWithBytes: [dataString NSUTF8StringEncoding] length:[dataString length]];
+    NSData *postBodyData = [dataString dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPBody:postBodyData];
     
     theConnection_QuickCollect = [[NSURLConnection alloc]initWithRequest:request delegate:self];
@@ -325,4 +348,51 @@
     [self presentViewController:NewCollectionView animated:YES completion:nil];
    // [self.view.window.rootViewController presentViewController:NewCollectionView animated:YES completion:nil];
 }
+-(void)DrawExistingText{
+    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    
+    tblview.frame = CGRectMake(0, 193, screenWidth, screenHeight - 193 - 100);
+    TextScroll.hidden = NO;
+    
+    NSString *CollectionName = [ExistingCollectionData_TitleArray componentsJoinedByString:@", "];
+
+    NSString *FullString = [[NSString alloc]initWithFormat:@"You've already saved in %@",CollectionName];
+    
+    ShowExistingText.text = FullString;
+    NSString *TextString = FullString;
+    CGRect labelRect = [TextString
+                        boundingRectWithSize:CGSizeMake(5000, 0)
+                        options:NSStringDrawingUsesLineFragmentOrigin
+                        attributes:@{
+                                     NSFontAttributeName : [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]
+                                     }
+                        context:nil];
+    
+    ShowExistingText.frame = CGRectMake(20, 0, labelRect.size.width + 100, 50);
+    
+    TextScroll.contentSize = CGSizeMake(30 + labelRect.size.width + 100, 50);
+    
+    
+    for (int i = 0; i < [ExistingCollectionData_TitleArray count]; i++) {
+        NSString *FinalString_CheckName = [[NSString alloc] initWithFormat:@"%@",[ExistingCollectionData_TitleArray objectAtIndex:i]];
+        
+        NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:FullString];
+        
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:FinalString_CheckName  options:kNilOptions error:nil];
+        NSRange range = NSMakeRange(0,FullString.length);
+        [regex enumerateMatchesInString:FullString options:kNilOptions range:range usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+            NSRange subStringRange = [result rangeAtIndex:0];
+            [mutableAttributedString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15] range:NSMakeRange(0, FinalString_CheckName.length)];
+            [mutableAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] range:subStringRange];
+            
+
+        }];
+        
+        [ShowExistingText setAttributedText:mutableAttributedString];
+    }
+
+}
+
+
 @end

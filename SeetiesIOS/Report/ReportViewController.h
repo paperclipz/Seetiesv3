@@ -21,6 +21,9 @@
     IBOutlet UIButton *InappropriateButton;
     IBOutlet UIButton *CopyrightButton;
     
+    IBOutlet UILabel *InappropriateText;
+    IBOutlet UILabel *CopyrightText;
+    
     IBOutlet UIImageView *SelectedInappropriate;
     IBOutlet UIImageView *SelectedCopyright;
     

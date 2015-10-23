@@ -452,7 +452,7 @@
         ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
         ShowOverlayImg.layer.masksToBounds = YES;
         // ShowOverlayImg.layer.cornerRadius = 5;
-        [ibScrollViewCountry addSubview:ShowCountryImg];
+        [ibScrollViewCountry addSubview:ShowOverlayImg];
        
         
         UILabel *ShowUserName = [[UILabel alloc]init];

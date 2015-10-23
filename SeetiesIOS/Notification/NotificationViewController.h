@@ -59,6 +59,9 @@
      int CheckClick_Following;
     
     UILabel *UpdateNotificationLabel;
+    
+    NSString *CheckNotificationData;
+    NSString *CheckFollowData;
 }
 -(void)GetNotification;
 @end

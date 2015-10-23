@@ -35,7 +35,7 @@
     ShowDescriptionCount.frame = CGRectMake(screenWidth - 20 - 80, 247, 80, 21);
     
     TagsField.frame = CGRectMake(15, 13, screenWidth - 70, 30);
-    
+    TagsField.delegate = self;
     NameTextView.delegate = self;
    
     [Utils setRoundBorder:NameTextView color:TWO_ZERO_FOUR_COLOR borderRadius:5.0f borderWidth:1.0f];
@@ -48,9 +48,7 @@
     SaveButton.frame = CGRectMake(screenWidth - 60, 20, 60, 44);
     
     SetTagsView.frame = CGRectMake(20, 300, screenWidth - 40, 200);
-    SetTagsView.layer.cornerRadius = 5;
-    SetTagsView.layer.borderWidth=1;
-    SetTagsView.layer.borderColor=[[UIColor colorWithRed:232.0f/255.0f green:232.0f/255.0f blue:232.0f/255.0f alpha:1.0f] CGColor];
+    [Utils setRoundBorder:SetTagsView color:TWO_ZERO_FOUR_COLOR borderRadius:5.0f borderWidth:1.0f];
     
     TagsLine.frame = CGRectMake(0, 50, screenWidth - 40 , 1);
     
@@ -103,13 +101,23 @@
     if (textView == NameTextView) {
         NSUInteger len = textView.text.length;
         ShowNameCount.text = [NSString stringWithFormat:@"%lu / 70",70 - len];
-    }else{
+    }else if(textView == DescriptionTextView){
         NSUInteger len = textView.text.length;
         ShowDescriptionCount.text = [NSString stringWithFormat:@"%lu / 150",150 - len];
     }
+}
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    if ([newString length] >= 1) {
+        NSLog(@"Check server");
+        TagsString = newString;
+        [self GetSearchText];
+    }else{
+        
+    }
     
-    
-    
+    return YES;
 }
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
@@ -160,6 +168,23 @@
     
     
     return YES;
+}
+-(void)GetSearchText{
+    
+    NSString *FullString = [[NSString alloc]initWithFormat:@"%@tags/%@",DataUrl.UserWallpaper_Url,TagsString];
+
+    NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
+    NSLog(@"check postBack URL ==== %@",postBack);
+    NSURL *url = [NSURL URLWithString:[postBack stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
+    NSLog(@"theRequest === %@",theRequest);
+    [theRequest addValue:@"" forHTTPHeaderField:@"Accept-Encoding"];
+    theConnection_GetTagsString = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+    [theConnection_GetTagsString start];
+    
+    if( theConnection_GetTagsString ){
+        webData = [NSMutableData data];
+    }
 }
 -(IBAction)SaveButton:(id)sender{
     NSLog(@"Save Button On Click");
@@ -256,7 +281,7 @@
     if ([TagsField.text length] == 0) {
         
     }else{
-        NSArray *TempTagsArray = [TagsField.text componentsSeparatedByString:@" "];
+        NSArray *TempTagsArray = [TagsField.text componentsSeparatedByString:@","];
         for (int i = 0; i < [TempTagsArray count]; i++) {
             [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
             //Attaching the key name @"parameter_second" to the post body
@@ -320,6 +345,85 @@
         }
         
         [ShowActivity stopAnimating];
+    }else if(connection == theConnection_GetTagsString){
+        NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+        // NSLog(@"Edit Profile return get data to server ===== %@",GetData);
+        NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *myError = nil;
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
+       // NSLog(@"tags return data ===== %@",res);
+        
+        if ([res count] == 0) {
+            NSLog(@"Server Error.");
+            UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:CustomLocalisedString(@"SomethingError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            ShowAlert.tag = 1000;
+            [ShowAlert show];
+        }else{
+            NSString *StatusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
+            if ([StatusString isEqualToString:@"ok"]) {
+                NSDictionary *GetAllData = [res valueForKey:@"data"];
+                
+                NSArray *GetStringData = (NSArray *)[GetAllData valueForKey:@"simple"];
+                //NSLog(@"GetStringData is %@",GetStringData);
+                
+                TagsArray = [[NSMutableArray alloc]initWithArray:GetStringData];
+                if ([TagsArray count] == 0) {
+                    
+                }else{
+                    [self ShowTagsView];
+                }
+            }
+        
+        }
     }
+}
+
+-(void)ShowTagsView{
+    
+    UIScrollView *HashTagScroll = [[UIScrollView alloc]init];
+    HashTagScroll.delegate = self;
+    HashTagScroll.frame = CGRectMake(0, 85, SetTagsView.frame.size.width - 5, 50);
+    HashTagScroll.backgroundColor = [UIColor whiteColor];
+    [SetTagsView addSubview:HashTagScroll];
+    CGRect frame2 = {0,0};
+    
+    for (int i= 0; i < [TagsArray count]; i++) {
+        UILabel *ShowHashTagText = [[UILabel alloc]init];
+        ShowHashTagText.text = [NSString stringWithCString:[[TagsArray objectAtIndex:i] UTF8String] encoding:NSUTF8StringEncoding];
+        ShowHashTagText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:12];
+        ShowHashTagText.textAlignment = NSTextAlignmentCenter;
+        ShowHashTagText.backgroundColor = [UIColor whiteColor];
+        ShowHashTagText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+        ShowHashTagText.layer.cornerRadius = 5;
+        ShowHashTagText.layer.borderWidth = 1;
+        ShowHashTagText.layer.borderColor=[[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f] CGColor];
+        
+        NSString *Text = [NSString stringWithCString:[[TagsArray objectAtIndex:i] UTF8String] encoding:NSUTF8StringEncoding];
+        CGRect r = [Text boundingRectWithSize:CGSizeMake(200, 0)
+                                      options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
+                                   attributes:@{NSFontAttributeName:[UIFont fontWithName:@"ProximaNovaSoft-Regular" size:12]}
+                                      context:nil];
+
+        UIButton *TagsButton = [[UIButton alloc]init];
+        [TagsButton setTitle:@"" forState:UIControlStateNormal];
+        TagsButton.backgroundColor = [UIColor clearColor];
+        TagsButton.tag = i;
+        TagsButton.frame = CGRectMake(15 + frame2.size.width, 15, r.size.width + 20, 20);
+        [TagsButton addTarget:self action:@selector(PersonalTagsButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+        
+        ShowHashTagText.frame = CGRectMake(15 + frame2.size.width, 15, r.size.width + 20, 20);
+        frame2.size.width += r.size.width + 30;
+        [HashTagScroll addSubview:ShowHashTagText];
+        [HashTagScroll addSubview:TagsButton];
+        
+        HashTagScroll.contentSize = CGSizeMake(30 + frame2.size.width , 50);
+    }
+}
+-(IBAction)PersonalTagsButtonOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSString *GetTagsString = [[NSString alloc]initWithFormat:@"%@",[TagsArray objectAtIndex:getbuttonIDN]];
+    //NSLog(@"ArrHashTag is %@",GetTagsString);
+    NSString *joinedString = [@[TagsField.text, GetTagsString] componentsJoinedByString:@","];
+    TagsField.text = joinedString;
 }
 @end

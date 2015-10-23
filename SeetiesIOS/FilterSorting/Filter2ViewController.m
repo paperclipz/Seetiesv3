@@ -26,7 +26,7 @@
     BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
     
     ApplyFilterButton.frame = CGRectMake(screenWidth - 50, 22, 50, 40);
-    TitleLabel.text = CustomLocalisedString(@"Filter", nil);
+    TitleLabel.text = CustomLocalisedString(@"Filter by", nil);
    // [ApplyFilterButton setTitle:CustomLocalisedString(@"ApplyFilter", nil) forState:UIControlStateNormal];
 
 
@@ -205,12 +205,13 @@
         if ([selectedIndexes count] == [CategoryIDArray count]) {
             SelectAllButton = [[UIButton alloc]init];
             [SelectAllButton setSelected:YES];
-            SelectAllButton.frame = CGRectMake(tableView.frame.size.width - 100, 5, 100, 30);
+            SelectAllButton.frame = CGRectMake(tableView.frame.size.width - 115, 5, 100, 30);
             [SelectAllButton setTitle:CustomLocalisedString(@"UnSelectAll", nil) forState:UIControlStateNormal];
             SelectAllButton.backgroundColor = [UIColor clearColor];
             [SelectAllButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
             [SelectAllButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
             [SelectAllButton addTarget:self action:@selector(SelectAllButton:) forControlEvents:UIControlEventTouchUpInside];
+            SelectAllButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
             [headerView addSubview:SelectAllButton];
         }
 
@@ -218,23 +219,25 @@
             NSLog(@"Selected");
             SelectAllButton = [[UIButton alloc]init];
             [SelectAllButton setSelected:YES];
-            SelectAllButton.frame = CGRectMake(tableView.frame.size.width - 100, 5, 100, 30);
+            SelectAllButton.frame = CGRectMake(tableView.frame.size.width - 115, 5, 100, 30);
             [SelectAllButton setTitle:CustomLocalisedString(@"UnSelectAll", nil) forState:UIControlStateNormal];
             SelectAllButton.backgroundColor = [UIColor clearColor];
             [SelectAllButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
             [SelectAllButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
             [SelectAllButton addTarget:self action:@selector(SelectAllButton:) forControlEvents:UIControlEventTouchUpInside];
+            SelectAllButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
             [headerView addSubview:SelectAllButton];
         }else{
             NSLog(@"no select");
             SelectAllButton = [[UIButton alloc]init];
             [SelectAllButton setSelected:NO];
-            SelectAllButton.frame = CGRectMake(tableView.frame.size.width - 100, 5, 100, 30);
+            SelectAllButton.frame = CGRectMake(tableView.frame.size.width - 115, 5, 100, 30);
             [SelectAllButton setTitle:CustomLocalisedString(@"SelectAll", nil) forState:UIControlStateNormal];
             SelectAllButton.backgroundColor = [UIColor clearColor];
             [SelectAllButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
             [SelectAllButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
             [SelectAllButton addTarget:self action:@selector(SelectAllButton:) forControlEvents:UIControlEventTouchUpInside];
+            SelectAllButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
             [headerView addSubview:SelectAllButton];
         }
 

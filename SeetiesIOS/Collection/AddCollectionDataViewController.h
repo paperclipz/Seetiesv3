@@ -19,6 +19,8 @@
     IBOutlet UITableView *tblview;
     IBOutlet UILabel *ShowNoteTextCount;
     IBOutlet UIButton *BackgroundBlackButton;
+    IBOutlet UIScrollView *TextScroll;
+    IBOutlet UILabel *ShowExistingText;
     
     NSString *GetPostID;
     NSString *GetImageData;
@@ -31,6 +33,7 @@
     
     NSMutableArray *CollectionData_IDArray;
     NSMutableArray *CollectionData_TitleArray;
+    NSMutableArray *ExistingCollectionData_TitleArray;
     
     IBOutlet UIActivityIndicatorView *ShowActivity;
     

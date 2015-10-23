@@ -42,6 +42,9 @@
     PageControlOn.frame = CGRectMake(15, 300, screenWidth - 30, 37);
     LocationButton.frame = CGRectMake(screenWidth - 85 - 15, 20, 60, 44);
     
+    ShowTopTitle.frame = CGRectMake(35, 32, screenWidth - 155, 24);
+    ShowTopTitle.hidden = YES;
+    
     ShowDownBarView.frame = CGRectMake(0, screenHeight - 62 - 50, screenWidth, 62);
     ShowbarView.frame = CGRectMake(0, 0, screenWidth, 64);
     ShowBarImg.frame = CGRectMake(0, -100, screenWidth, 64);
@@ -49,6 +52,8 @@
     MImageScroll.frame = CGRectMake(0, -20, screenWidth, 360);
     ShowLanguageTranslationView.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     ShowLanguageTranslationView.hidden = YES;
+    
+
     
     ShowTotalLikeCount.frame = CGRectMake((screenWidth/2) - 100, 15, 40, 21);
     ShowTotalCommentCount.frame = CGRectMake((screenWidth/2), 15, 40, 21);
@@ -59,10 +64,12 @@
     DisplayButton.frame = CGRectMake(screenWidth - 124 - 15, 26, 55, 33);
     [self.view addSubview:ShowLanguageTranslationView];
     
-    ShowPlaceNameTop.frame = CGRectMake(44, 21, screenWidth - 155, 24);
-    ShowCategoryTop.frame = CGRectMake(44, 38, screenWidth - 155, 21);
-    ShowPlaceNameTop.hidden = YES;
-    ShowCategoryTop.hidden = YES;
+
+    
+//    ShowPlaceNameTop.frame = CGRectMake(44, 21, screenWidth - 155, 24);
+//    ShowCategoryTop.frame = CGRectMake(44, 38, screenWidth - 155, 21);
+//    ShowPlaceNameTop.hidden = YES;
+//    ShowCategoryTop.hidden = YES;
     
     [MImageScroll setScrollEnabled:YES];
     MImageScroll.delegate = self;
@@ -83,6 +90,7 @@
     CheckCommentData = 0;
     CountLanguage = 0;
     CheckNearbyPost = 0;
+    GetPlaceNameHeight = 0;
     LanguageButton.hidden = YES;
     NewLanguageButton.hidden = YES;
     TestingUse = NO;
@@ -93,18 +101,18 @@
     
     LineButton.frame = CGRectMake(screenWidth - 105 - 15, screenHeight - 23, 105, 1);
 
-    LikeButton.frame = CGRectMake(10, 14, 37, 37);
-    CommentButton.frame = CGRectMake(60, 14, 37, 37);
-    shareFBButton.frame = CGRectMake(110, 14, 37, 37);
+    LikeButton.frame = CGRectMake(10, 7, 37, 37);
+    CommentButton.frame = CGRectMake(60, 7, 37, 37);
+    shareFBButton.frame = CGRectMake(110, 7, 37, 37);
     
     
     [AllCollectButton setImage:[UIImage imageNamed:@"CollectBtn.png"] forState:UIControlStateNormal];
     [AllCollectButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
     [AllCollectButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
     AllCollectButton.backgroundColor = [UIColor clearColor];
-    AllCollectButton.frame = CGRectMake(screenWidth - 10 - 140, 7, 140, 50);
+    AllCollectButton.frame = CGRectMake(screenWidth - 10 - 140, 0, 140, 50);
     
-    QuickCollectButton.frame = CGRectMake(screenWidth - 10 - 60, 14, 60, 37);
+    QuickCollectButton.frame = CGRectMake(screenWidth - 10 - 60, 7, 60, 37);
 
     ShowGoogleTranslate = NO;
     CheckClickCount = 0;
@@ -114,7 +122,12 @@
     swipeRight.direction=UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:swipeRight];
     
+    
 
+
+}
+- (void)dealloc {
+    [MainScroll setDelegate:nil];
 }
 -(void)swipeRight:(UISwipeGestureRecognizer*)gestureRecognizer
 {
@@ -130,6 +143,13 @@
     
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+    ShowDownBarView.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
+    self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight, screenWidth, 50);
+}
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -139,7 +159,7 @@
     self.screenName = @"IOS Feed Detail View V2";
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-    ShowDownBarView.frame = CGRectMake(0, screenHeight - 60, screenWidth, 60);
+    ShowDownBarView.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
     self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight, screenWidth, 50);
     [[NSNotificationCenter defaultCenter] postNotificationName:@"CHANGE_NOTIFICATION_HIDE" object:nil];
 
@@ -212,9 +232,7 @@
                      }];
     
 }
-- (void)dealloc {
-    [MainScroll setDelegate:nil];
-}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -960,9 +978,9 @@
 //                GetExpense = @"100";
 //                }
 
-                ShowPlaceNameTop.text = GetPlaceName;
-                NSString * result = [GetCategoryNameArray componentsJoinedByString:@", "];
-                ShowCategoryTop.text = result;
+               // ShowCategoryTop.text = GetPlaceName;
+//                NSString * result = [GetCategoryNameArray componentsJoinedByString:@", "];
+//                ShowCategoryTop.text = result;
             //    GetPlaceLink = @"facebook.com/abc";
             //    GetContactNo = @"0168409874";
                 ShowTotalCommentCount.text = totalCommentCount;
@@ -1632,7 +1650,12 @@
     }else{
         ShowTitle = [[UILabel alloc]init];
       //  ShowTitle.frame = CGRectMake(20, GetHeightCheck, screenWidth - 40, 40);
-        ShowTitle.text = GetTitle;
+        NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+        paragraph.minimumLineHeight = 21.0f;
+        paragraph.maximumLineHeight = 21.0f;
+        NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:GetTitle attributes:@{NSParagraphStyleAttributeName: paragraph}];
+        ShowTitle.attributedText = attributedString;
+       // ShowTitle.text = GetTitle;
         ShowTitle.numberOfLines = 0;
         ShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:17];
         ShowTitle.textAlignment = NSTextAlignmentLeft;
@@ -1662,6 +1685,9 @@
     ShowAddress.backgroundColor = [UIColor clearColor];
     [MainScroll addSubview:ShowAddress];
     
+    ShowTopTitle.text = GetPlaceName;
+    GetPlaceNameHeight = GetHeightCheck;
+    GetPlaceNameHeight -= 20;
     GetHeightCheck += 40;
 
 
@@ -1679,6 +1705,8 @@
         ShowCaptionText.numberOfLines = 0;
         ShowCaptionText.textColor = [UIColor whiteColor];
         // ShowCaptionText.text = [captionArray objectAtIndex:i];
+
+        
         NSMutableAttributedString * string = [[NSMutableAttributedString alloc]initWithString:TempGetStirngMessage];
         NSString *str = TempGetStirngMessage;
         NSError *error = nil;
@@ -1690,8 +1718,12 @@
             NSRange wordRange = [match rangeAtIndex:0];
             [string addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] range:wordRange];
         }
-        
-        [ShowMessage setAttributedText:string];
+        NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+        paragraph.minimumLineHeight = 21.0f;
+        paragraph.maximumLineHeight = 21.0f;
+        NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:str attributes:@{NSParagraphStyleAttributeName: paragraph}];
+        ShowMessage.attributedText = attributedString;
+        //[ShowMessage setAttributedText:string];
         
        // ShowMessage.text = GetMessage;
         ShowMessage.scrollEnabled = NO;
@@ -2232,7 +2264,7 @@
     UILabel *ShowPlaceInfoText = [[UILabel alloc]init];
     ShowPlaceInfoText.frame = CGRectMake(20, GetMessageHeight, screenWidth - 40, 50);
     ShowPlaceInfoText.text = LocalisedString(@"About the place");
-    ShowPlaceInfoText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:17];
+    ShowPlaceInfoText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
     ShowPlaceInfoText.backgroundColor = [UIColor clearColor];
     ShowPlaceInfoText.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
     [MainScroll addSubview:ShowPlaceInfoText];
@@ -2453,6 +2485,8 @@
     
     if (CheckNearbyPost == 0) {
         [self GetNearbyPostData];
+    }else{
+        [self InitNearbyPostView];
     }
     
     
@@ -2477,8 +2511,9 @@
     if ([PhotoArray_Nearby count] <= 4) {
         GetCount = [PhotoArray_Nearby count];
     }else{
-        GetCount = [PhotoArray_Nearby count] - 1;
+        GetCount = 4;
     }
+
     
     GetFinalHeight += 50;
     
@@ -2929,6 +2964,13 @@
                              }
                              completion:^(BOOL finished) {
                              }];
+            
+
+        }
+        if (HeightCheck > GetPlaceNameHeight) {
+            ShowTopTitle.hidden = NO;
+        }else{
+            ShowTopTitle.hidden = YES;
         }
 
 
@@ -3862,7 +3904,13 @@
     NSLog(@"ArrHashTag is %@",GetTagsString);
     
     SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
-    [self.navigationController pushViewController:SearchDetailView animated:YES];
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.2;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromRight;
+    [self.view.window.layer addAnimation:transition forKey:nil];
+    [self presentViewController:SearchDetailView animated:NO completion:nil];
     [SearchDetailView GetSearchKeyword:GetTagsString Getlat:@"" GetLong:@"" GetLocationName:@"" GetCurrentLat:@"" GetCurrentLong:@""];
 }
 @end

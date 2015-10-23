@@ -63,6 +63,7 @@
     //    [FilterButton setTitle:CustomLocalisedString(@"Filter", nil) forState:UIControlStateNormal];
     
     heightcheck = 0;
+    CheckInitData = 0;
     refreshControl = [[UIRefreshControl alloc] init];
     refreshControl.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     refreshControl.bounds = CGRectMake(refreshControl.bounds.origin.x,
@@ -187,8 +188,18 @@
 //        }else{
 //            [self GetFeedDataFromServer];
 //        }
-        [self initData];
-        [self initSelfView];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:latPoint forKey:@"UserCurrentLocation_lat"];
+        [defaults setObject:lonPoint forKey:@"UserCurrentLocation_lng"];
+        [defaults synchronize];
+        
+        if (CheckInitData == 1) {
+            
+        }else{
+            [self initData];
+            [self initSelfView];
+        }
+
         
         
         
@@ -222,14 +233,18 @@
 
     [self GetExternalIPAddress];
     
-    [self initData];
-    [self initSelfView];
+    if (CheckInitData == 1) {
+        
+    }else{
+        [self initData];
+        [self initSelfView];
+    }
     
 }
 -(void)initData
 {
 
-
+    CheckInitData = 1;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *CheckString = [defaults objectForKey:@"TestLocalData"];
     if ([CheckString isEqualToString:@"Done"]) {
@@ -520,7 +535,7 @@
                 
                 AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
                 ShowUserProfileImage.frame = CGRectMake(25, heightcheck + 15, 40, 40);
-                // ShowUserProfileImage.image = [UIImage imageNamed:@"DemoProfile.jpg"];
+                ShowUserProfileImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
                 ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
                 ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
                 ShowUserProfileImage.layer.cornerRadius=20;
@@ -531,6 +546,7 @@
                 NSString *stringPath1 = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"Content_Folder"];
                 stringPath1  = [stringPath1 stringByAppendingPathComponent:[arrUserImage objectAtIndex:i]];
                 ShowUserProfileImage.image = [UIImage imageWithData:[NSData dataWithContentsOfFile:stringPath1]];
+                
                 [LocalScroll addSubview:ShowUserProfileImage];
                 
                 UIButton *ClicktoOpenUserProfileButton = [[UIButton alloc]init];
@@ -558,39 +574,63 @@
                 }else{
                     CGFloat strFloat = (CGFloat)[TempDistanceString floatValue] / 1000;
                     int x_Nearby = [TempDistanceString intValue] / 1000;
-                    // NSLog(@"x_Nearby is %i",x_Nearby);
+                   // NSLog(@"strFloat is %f",strFloat);
+                   // NSLog(@"x_Nearby is %i",x_Nearby);
                     
                     UIImageView *ShowDistanceIcon = [[UIImageView alloc]init];
                     NSString *FullShowLocatinString;
-                    if (x_Nearby < 10) {
-                        if (x_Nearby <= 1) {
-                            ShowDistanceIcon.image = [UIImage imageNamed:@"Distance2Icon.png"];
-                            FullShowLocatinString = [[NSString alloc]initWithFormat:@"1km"];//within
-                        }else{
+                    int Checkhide = 0;
+                    if (x_Nearby <= 3) {
+                        ShowDistanceIcon.image = [UIImage imageNamed:@"Distance2Icon.png"];
+                        FullShowLocatinString = [[NSString alloc]initWithFormat:@"1km"];//within
+                    }else if(x_Nearby > 4 && x_Nearby < 300){
+                        
+                        if (x_Nearby < 15) {
                             FullShowLocatinString = [[NSString alloc]initWithFormat:@"%.fkm",strFloat];
                             ShowDistanceIcon.image = [UIImage imageNamed:@"Distance1Icon.png"];
+                        }else{
+                            FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@",[arrDisplayCountryName objectAtIndex:i]];
+                            ShowDistanceIcon.image = [UIImage imageNamed:@"Distance1Icon.png"];
                         }
-                        
-                    }else if(x_Nearby > 10 && x_Nearby < 30){
+
+                    }else if(x_Nearby > 301 && x_Nearby < 3000){
                         ShowDistanceIcon.image = [UIImage imageNamed:@"Distance3Icon.png"];
-                        FullShowLocatinString = [[NSString alloc]initWithFormat:@"%.fkm",strFloat];
-                    }else{
+                        FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@",[arrDisplayCountryName objectAtIndex:i]];
+                    }else if(x_Nearby > 301 && x_Nearby < 3000){
                         ShowDistanceIcon.image = [UIImage imageNamed:@"Distance4Icon.png"];
                         FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@",[arrDisplayCountryName objectAtIndex:i]];
-                        
+                    }else{
+                        Checkhide = 1;
+                      //  ShowDistanceIcon.image = [UIImage imageNamed:@"Distance4Icon.png"];
+                        FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@",[arrDisplayCountryName objectAtIndex:i]];
                     }
-                    ShowDistanceIcon.frame = CGRectMake(screenWidth - 60, heightcheck + 17, 40, 36);
-                    [LocalScroll addSubview:ShowDistanceIcon];
                     
-                    UILabel *ShowDistance = [[UILabel alloc]init];
-                    ShowDistance.frame = CGRectMake(screenWidth - 165, heightcheck + 15, 100, 40);
-                    // ShowDistance.frame = CGRectMake(screenWidth - 115, 210 + heightcheck + i, 100, 20);
-                    ShowDistance.text = FullShowLocatinString;
-                    ShowDistance.textColor = [UIColor whiteColor];
-                    ShowDistance.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-                    ShowDistance.textAlignment = NSTextAlignmentRight;
-                    ShowDistance.backgroundColor = [UIColor clearColor];
-                    [LocalScroll addSubview:ShowDistance];
+                    
+                    if (Checkhide == 1) {
+                        UILabel *ShowDistance = [[UILabel alloc]init];
+                        ShowDistance.frame = CGRectMake(screenWidth - 125, heightcheck + 15, 100, 40);
+                        // ShowDistance.frame = CGRectMake(screenWidth - 115, 210 + heightcheck + i, 100, 20);
+                        ShowDistance.text = FullShowLocatinString;
+                        ShowDistance.textColor = [UIColor whiteColor];
+                        ShowDistance.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+                        ShowDistance.textAlignment = NSTextAlignmentRight;
+                        ShowDistance.backgroundColor = [UIColor clearColor];
+                        [LocalScroll addSubview:ShowDistance];
+                    }else{
+                        ShowDistanceIcon.frame = CGRectMake(screenWidth - 60, heightcheck + 17, 40, 36);
+                        [LocalScroll addSubview:ShowDistanceIcon];
+                        
+                        UILabel *ShowDistance = [[UILabel alloc]init];
+                        ShowDistance.frame = CGRectMake(screenWidth - 165, heightcheck + 15, 100, 40);
+                        // ShowDistance.frame = CGRectMake(screenWidth - 115, 210 + heightcheck + i, 100, 20);
+                        ShowDistance.text = FullShowLocatinString;
+                        ShowDistance.textColor = [UIColor whiteColor];
+                        ShowDistance.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+                        ShowDistance.textAlignment = NSTextAlignmentRight;
+                        ShowDistance.backgroundColor = [UIColor clearColor];
+                        [LocalScroll addSubview:ShowDistance];
+                    }
+
                     
                     
                     
@@ -609,7 +649,12 @@
                 }else{
                     UILabel *ShowTitle = [[UILabel alloc]init];
                     ShowTitle.frame = CGRectMake(25, heightcheck, screenWidth - 50, 40 +5);
-                    ShowTitle.text = TempGetStirng;
+                    NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+                    paragraph.minimumLineHeight = 21.0f;
+                    paragraph.maximumLineHeight = 21.0f;
+                    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:TempGetStirng attributes:@{NSParagraphStyleAttributeName: paragraph}];
+                    ShowTitle.attributedText = attributedString;
+                   // ShowTitle.text = TempGetStirng;
                     ShowTitle.backgroundColor = [UIColor clearColor];
                     ShowTitle.numberOfLines = 2;
                     ShowTitle.textAlignment = NSTextAlignmentLeft;
@@ -670,8 +715,12 @@
                         NSRange wordRange = [match rangeAtIndex:0];
                         [string addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] range:wordRange];
                     }
-                    
-                    [ShowMessage setAttributedText:string];
+                    NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+                    paragraph.minimumLineHeight = 21.0f;
+                    paragraph.maximumLineHeight = 21.0f;
+                    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:str attributes:@{NSParagraphStyleAttributeName: paragraph}];
+                    ShowMessage.attributedText = attributedString;
+                   // [ShowMessage setAttributedText:string];
                     
                     ShowMessage.backgroundColor = [UIColor clearColor];
                     ShowMessage.numberOfLines = 3;
@@ -688,14 +737,6 @@
                     TempCountWhiteHeight += ShowMessage.frame.size.height + 5;
                     //   heightcheck += 30;
                 }
-                
-                
-                //            UIImageView *ShowLikesIcon = [[UIImageView alloc]init];
-                //            ShowLikesIcon.image = [UIImage imageNamed:@"PostLike.png"];
-                //            ShowLikesIcon.frame = CGRectMake(40 , heightcheck + i + 20 ,23, 19);
-                //            //   ShowLikesIcon.backgroundColor = [UIColor purpleColor];
-                //            [LocalScroll addSubview:ShowLikesIcon];
-                
                 UIButton *LikeButton = [[UIButton alloc]init];
                 LikeButton.frame = CGRectMake(20, heightcheck + 4, 37, 37);
                 CheckLike = [[NSString alloc]initWithFormat:@"%@",[arrlike objectAtIndex:i]];
@@ -712,22 +753,16 @@
                 [LocalScroll addSubview:LikeButton];
                 
                 
-                UIButton *CommentButton = [[UIButton alloc]init];
-                CommentButton.frame = CGRectMake(70, heightcheck + 4 ,37, 37);
-                [CommentButton setImage:[UIImage imageNamed:@"CommentIcon.png"] forState:UIControlStateNormal];
-                CommentButton.backgroundColor = [UIColor clearColor];
-                CommentButton.tag = i;
-                [CommentButton addTarget:self action:@selector(CommentButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
-                [LocalScroll addSubview:CommentButton];
-                
-                //            UIImageView *ShowShareIcon = [[UIImageView alloc]init];
-                //            ShowShareIcon.image = [UIImage imageNamed:@"share_icon.png"];
-                //            ShowShareIcon.frame = CGRectMake(160, heightcheck + i + 20 ,19, 19);
-                //            //    ShowCommentIcon.backgroundColor = [UIColor redColor];
-                //            [LocalScroll addSubview:ShowShareIcon];
+//                UIButton *CommentButton = [[UIButton alloc]init];
+//                CommentButton.frame = CGRectMake(70, heightcheck + 4 ,37, 37);
+//                [CommentButton setImage:[UIImage imageNamed:@"CommentIcon.png"] forState:UIControlStateNormal];
+//                CommentButton.backgroundColor = [UIColor clearColor];
+//                CommentButton.tag = i;
+//                [CommentButton addTarget:self action:@selector(CommentButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+//                [LocalScroll addSubview:CommentButton];
                 
                 UIButton *ShareButton = [[UIButton alloc]init];
-                ShareButton.frame = CGRectMake(122, heightcheck + 4 ,37, 37);
+                ShareButton.frame = CGRectMake(70, heightcheck + 4 ,37, 37);//3 button size 122, heightcheck + 4 ,37, 37
                 [ShareButton setImage:[UIImage imageNamed:@"ShareToIcon.png"] forState:UIControlStateNormal];
                 ShareButton.backgroundColor = [UIColor clearColor];
                 ShareButton.tag = i;
@@ -961,34 +996,54 @@
                     
                     UIImageView *ShowDistanceIcon = [[UIImageView alloc]init];
                     NSString *FullShowLocatinString;
-                    if (x_Nearby < 10) {
-                        if (x_Nearby <= 1) {
-                            ShowDistanceIcon.image = [UIImage imageNamed:@"Distance2Icon.png"];
-                            FullShowLocatinString = [[NSString alloc]initWithFormat:@"1km"];//within
-                        }else{
+                    int Checkhide = 0;
+                    if (x_Nearby <= 3) {
+                        ShowDistanceIcon.image = [UIImage imageNamed:@"Distance2Icon.png"];
+                        FullShowLocatinString = [[NSString alloc]initWithFormat:@"1km"];//within
+                    }else if(x_Nearby > 4 && x_Nearby < 300){
+                        if (x_Nearby < 15) {
                             FullShowLocatinString = [[NSString alloc]initWithFormat:@"%.fkm",strFloat];
                             ShowDistanceIcon.image = [UIImage imageNamed:@"Distance1Icon.png"];
+                        }else{
+                            FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@",[arrDisplayCountryName objectAtIndex:i]];
+                            ShowDistanceIcon.image = [UIImage imageNamed:@"Distance1Icon.png"];
                         }
-                        
-                    }else if(x_Nearby > 10 && x_Nearby < 30){
+                    }else if(x_Nearby > 301 && x_Nearby < 3000){
                         ShowDistanceIcon.image = [UIImage imageNamed:@"Distance3Icon.png"];
-                        FullShowLocatinString = [[NSString alloc]initWithFormat:@"%.fkm",strFloat];
-                    }else{
+                        FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@",[arrDisplayCountryName objectAtIndex:i]];
+                    }else if(x_Nearby > 301 && x_Nearby < 3000){
                         ShowDistanceIcon.image = [UIImage imageNamed:@"Distance4Icon.png"];
                         FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@",[arrDisplayCountryName objectAtIndex:i]];
-                        
+                    }else{
+                        Checkhide = 1;
+                       // ShowDistanceIcon.image = [UIImage imageNamed:@"Distance4Icon.png"];
+                        FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@",[arrDisplayCountryName objectAtIndex:i]];
                     }
-                    ShowDistanceIcon.frame = CGRectMake(screenWidth - 60, heightcheck + 17, 40, 36);
-                    [MainScroll addSubview:ShowDistanceIcon];
                     
-                    UILabel *ShowDistance = [[UILabel alloc]init];
-                    ShowDistance.frame = CGRectMake(screenWidth - 165, heightcheck + 15, 100, 40);
-                    ShowDistance.text = FullShowLocatinString;
-                    ShowDistance.textColor = [UIColor whiteColor];
-                    ShowDistance.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-                    ShowDistance.textAlignment = NSTextAlignmentRight;
-                    ShowDistance.backgroundColor = [UIColor clearColor];
-                    [MainScroll addSubview:ShowDistance];
+                    if (Checkhide == 1) {
+                        UILabel *ShowDistance = [[UILabel alloc]init];
+                        ShowDistance.frame = CGRectMake(screenWidth - 125, heightcheck + 15, 100, 40);
+                        ShowDistance.text = FullShowLocatinString;
+                        ShowDistance.textColor = [UIColor whiteColor];
+                        ShowDistance.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+                        ShowDistance.textAlignment = NSTextAlignmentRight;
+                        ShowDistance.backgroundColor = [UIColor clearColor];
+                        [MainScroll addSubview:ShowDistance];
+                    }else{
+                        ShowDistanceIcon.frame = CGRectMake(screenWidth - 60, heightcheck + 17, 40, 36);
+                        [MainScroll addSubview:ShowDistanceIcon];
+                        
+                        UILabel *ShowDistance = [[UILabel alloc]init];
+                        ShowDistance.frame = CGRectMake(screenWidth - 165, heightcheck + 15, 100, 40);
+                        ShowDistance.text = FullShowLocatinString;
+                        ShowDistance.textColor = [UIColor whiteColor];
+                        ShowDistance.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+                        ShowDistance.textAlignment = NSTextAlignmentRight;
+                        ShowDistance.backgroundColor = [UIColor clearColor];
+                        [MainScroll addSubview:ShowDistance];
+                    }
+                    
+
                 }
                 
                 
@@ -1001,7 +1056,12 @@
                 }else{
                     UILabel *ShowTitle = [[UILabel alloc]init];
                     ShowTitle.frame = CGRectMake(25, heightcheck, screenWidth - 50, 40);
-                    ShowTitle.text = TempGetStirng;
+                    //ShowTitle.text = TempGetStirng;
+                    NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+                    paragraph.minimumLineHeight = 21.0f;
+                    paragraph.maximumLineHeight = 21.0f;
+                    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:TempGetStirng attributes:@{NSParagraphStyleAttributeName: paragraph}];
+                    ShowTitle.attributedText = attributedString;
                     ShowTitle.backgroundColor = [UIColor clearColor];
                     ShowTitle.numberOfLines = 2;
                     ShowTitle.textAlignment = NSTextAlignmentLeft;
@@ -1061,8 +1121,12 @@
                         NSRange wordRange = [match rangeAtIndex:0];
                         [string addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] range:wordRange];
                     }
-                    
-                    [ShowMessage setAttributedText:string];
+                    NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+                    paragraph.minimumLineHeight = 21.0f;
+                    paragraph.maximumLineHeight = 21.0f;
+                    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:str attributes:@{NSParagraphStyleAttributeName: paragraph}];
+                    ShowMessage.attributedText = attributedString;
+                    //[ShowMessage setAttributedText:string];
                     
                     ShowMessage.backgroundColor = [UIColor clearColor];
                     ShowMessage.numberOfLines = 3;
@@ -1097,16 +1161,16 @@
                 [MainScroll addSubview:LikeButton];
                 
                 
-                UIButton *CommentButton = [[UIButton alloc]init];
-                CommentButton.frame = CGRectMake(70, heightcheck + 4 ,37, 37);
-                [CommentButton setImage:[UIImage imageNamed:@"CommentIcon.png"] forState:UIControlStateNormal];
-                CommentButton.backgroundColor = [UIColor clearColor];
-                CommentButton.tag = i;
-                [CommentButton addTarget:self action:@selector(CommentButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
-                [MainScroll addSubview:CommentButton];
+//                UIButton *CommentButton = [[UIButton alloc]init];
+//                CommentButton.frame = CGRectMake(70, heightcheck + 4 ,37, 37);
+//                [CommentButton setImage:[UIImage imageNamed:@"CommentIcon.png"] forState:UIControlStateNormal];
+//                CommentButton.backgroundColor = [UIColor clearColor];
+//                CommentButton.tag = i;
+//                [CommentButton addTarget:self action:@selector(CommentButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+//                [MainScroll addSubview:CommentButton];
                 
                 UIButton *ShareButton = [[UIButton alloc]init];
-                ShareButton.frame = CGRectMake(122, heightcheck + 4 ,37, 37);
+                ShareButton.frame = CGRectMake(70, heightcheck + 4 ,37, 37);//3 button size 122, heightcheck + 4 ,37, 37
                 [ShareButton setImage:[UIImage imageNamed:@"ShareToIcon.png"] forState:UIControlStateNormal];
                 ShareButton.backgroundColor = [UIColor clearColor];
                 ShareButton.tag = i;
@@ -1246,35 +1310,55 @@
                     
                     UIImageView *ShowDistanceIcon = [[UIImageView alloc]init];
                     NSString *FullShowLocatinStringLocalQR;
-                    if (x_NearbyLocalQR < 10) {
-                        if (x_NearbyLocalQR <= 1) {
-                            ShowDistanceIcon.image = [UIImage imageNamed:@"Distance2Icon.png"];
-                            FullShowLocatinStringLocalQR = [[NSString alloc]initWithFormat:@"1km"];//within
-                        }else{
+                    int Checkhide = 0;
+                    if (x_NearbyLocalQR <= 3) {
+                        ShowDistanceIcon.image = [UIImage imageNamed:@"Distance2Icon.png"];
+                        FullShowLocatinStringLocalQR = [[NSString alloc]initWithFormat:@"1km"];//within
+                    }else if(x_NearbyLocalQR > 4 && x_NearbyLocalQR < 300){
+                        if (x_NearbyLocalQR < 15) {
                             FullShowLocatinStringLocalQR = [[NSString alloc]initWithFormat:@"%.fkm",strFloatLocalQR];
                             ShowDistanceIcon.image = [UIImage imageNamed:@"Distance1Icon.png"];
+                        }else{
+                            FullShowLocatinStringLocalQR = [[NSString alloc]initWithFormat:@"%@",[arrDisplayCountryName objectAtIndex:i]];
+                            ShowDistanceIcon.image = [UIImage imageNamed:@"Distance1Icon.png"];
                         }
-                        
-                    }else if(x_NearbyLocalQR > 10 && x_NearbyLocalQR < 30){
+
+                    }else if(x_NearbyLocalQR > 301 && x_NearbyLocalQR < 3000){
                         ShowDistanceIcon.image = [UIImage imageNamed:@"Distance3Icon.png"];
-                        FullShowLocatinStringLocalQR = [[NSString alloc]initWithFormat:@"%.fkm",strFloatLocalQR];
-                    }else{
+                        FullShowLocatinStringLocalQR = [[NSString alloc]initWithFormat:@"%@",[arrDisplayCountryName objectAtIndex:i]];
+                    }else if(x_NearbyLocalQR > 301 && x_NearbyLocalQR < 3000){
                         ShowDistanceIcon.image = [UIImage imageNamed:@"Distance4Icon.png"];
                         FullShowLocatinStringLocalQR = [[NSString alloc]initWithFormat:@"%@",[arrDisplayCountryName objectAtIndex:i]];
-                        
+                    }else{
+                        Checkhide = 1;
+                       // ShowDistanceIcon.image = [UIImage imageNamed:@"Distance4Icon.png"];
+                        FullShowLocatinStringLocalQR = [[NSString alloc]initWithFormat:@"%@",[arrDisplayCountryName objectAtIndex:i]];
                     }
                     
-                    ShowDistanceIcon.frame = CGRectMake(screenWidth - 60, heightcheck + 17, 40, 36);
-                    [MainScroll addSubview:ShowDistanceIcon];
+                    if (Checkhide == 1) {
+                        UILabel *ShowDistanceLocalQR = [[UILabel alloc]init];
+                        ShowDistanceLocalQR.frame = CGRectMake(screenWidth - 125, heightcheck + 15, 100, 40);
+                        ShowDistanceLocalQR.text = FullShowLocatinStringLocalQR;
+                        ShowDistanceLocalQR.textColor = [UIColor whiteColor];
+                        ShowDistanceLocalQR.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+                        ShowDistanceLocalQR.textAlignment = NSTextAlignmentRight;
+                        ShowDistanceLocalQR.backgroundColor = [UIColor clearColor];
+                        [MainScroll addSubview:ShowDistanceLocalQR];
+                    }else{
+                        ShowDistanceIcon.frame = CGRectMake(screenWidth - 60, heightcheck + 17, 40, 36);
+                        [MainScroll addSubview:ShowDistanceIcon];
+                        
+                        UILabel *ShowDistanceLocalQR = [[UILabel alloc]init];
+                        ShowDistanceLocalQR.frame = CGRectMake(screenWidth - 165, heightcheck + 15, 100, 40);
+                        ShowDistanceLocalQR.text = FullShowLocatinStringLocalQR;
+                        ShowDistanceLocalQR.textColor = [UIColor whiteColor];
+                        ShowDistanceLocalQR.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+                        ShowDistanceLocalQR.textAlignment = NSTextAlignmentRight;
+                        ShowDistanceLocalQR.backgroundColor = [UIColor clearColor];
+                        [MainScroll addSubview:ShowDistanceLocalQR];
+                    }
                     
-                    UILabel *ShowDistanceLocalQR = [[UILabel alloc]init];
-                    ShowDistanceLocalQR.frame = CGRectMake(screenWidth - 165, heightcheck + 15, 100, 40);
-                    ShowDistanceLocalQR.text = FullShowLocatinStringLocalQR;
-                    ShowDistanceLocalQR.textColor = [UIColor whiteColor];
-                    ShowDistanceLocalQR.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-                    ShowDistanceLocalQR.textAlignment = NSTextAlignmentRight;
-                    ShowDistanceLocalQR.backgroundColor = [UIColor clearColor];
-                    [MainScroll addSubview:ShowDistanceLocalQR];
+
                 }
                 
                 
@@ -1288,7 +1372,12 @@
                 }else{
                     UILabel *ShowTitleLocalQR = [[UILabel alloc]init];
                     ShowTitleLocalQR.frame = CGRectMake(25, heightcheck, screenWidth - 50, 40);
-                    ShowTitleLocalQR.text = TempGetStirngLocalQR;
+                    NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+                    paragraph.minimumLineHeight = 21.0f;
+                    paragraph.maximumLineHeight = 21.0f;
+                    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:TempGetStirngLocalQR attributes:@{NSParagraphStyleAttributeName: paragraph}];
+                    ShowTitleLocalQR.attributedText = attributedString;
+                    //ShowTitleLocalQR.text = TempGetStirngLocalQR;
                     ShowTitleLocalQR.backgroundColor = [UIColor clearColor];
                     ShowTitleLocalQR.numberOfLines = 2;
                     ShowTitleLocalQR.textAlignment = NSTextAlignmentLeft;
@@ -1348,8 +1437,12 @@
                         NSRange wordRange = [match rangeAtIndex:0];
                         [stringLocalQR addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] range:wordRange];
                     }
-                    
-                    [ShowMessageLocalQR setAttributedText:stringLocalQR];
+                    NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+                    paragraph.minimumLineHeight = 21.0f;
+                    paragraph.maximumLineHeight = 21.0f;
+                    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:strLocalQR attributes:@{NSParagraphStyleAttributeName: paragraph}];
+                    ShowMessageLocalQR.attributedText = attributedString;
+                   //[ShowMessageLocalQR setAttributedText:stringLocalQR];
                     
                     ShowMessageLocalQR.backgroundColor = [UIColor clearColor];
                     ShowMessageLocalQR.numberOfLines = 3;
@@ -1384,21 +1477,16 @@
                 [MainScroll addSubview:LikeButtonLocalQR];
                 
                 
-//                UIImageView *ShowCommentIconLocalQR = [[UIImageView alloc]init];
-//                ShowCommentIconLocalQR.image = [UIImage imageNamed:@"comment_icon.png"];
-//                ShowCommentIconLocalQR.frame = CGRectMake(100, heightcheck + 20 ,23, 19);
-//                //    ShowCommentIcon.backgroundColor = [UIColor redColor];
-//                [MainScroll addSubview:ShowCommentIconLocalQR];
-                UIButton *CommentButton = [[UIButton alloc]init];
-                CommentButton.frame = CGRectMake(70, heightcheck + 4 ,37, 37);
-                [CommentButton setImage:[UIImage imageNamed:@"CommentIcon.png"] forState:UIControlStateNormal];
-                CommentButton.backgroundColor = [UIColor clearColor];
-                CommentButton.tag = i;
-                [CommentButton addTarget:self action:@selector(CommentButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
-                [MainScroll addSubview:CommentButton];
+//                UIButton *CommentButton = [[UIButton alloc]init];
+//                CommentButton.frame = CGRectMake(70, heightcheck + 4 ,37, 37);
+//                [CommentButton setImage:[UIImage imageNamed:@"CommentIcon.png"] forState:UIControlStateNormal];
+//                CommentButton.backgroundColor = [UIColor clearColor];
+//                CommentButton.tag = i;
+//                [CommentButton addTarget:self action:@selector(CommentButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+//                [MainScroll addSubview:CommentButton];
                 
                 UIButton *ShareButton = [[UIButton alloc]init];
-                ShareButton.frame = CGRectMake(122, heightcheck + 4 ,37, 37);
+                ShareButton.frame = CGRectMake(70, heightcheck + 4 ,37, 37);//3 button size 122, heightcheck + 4 ,37, 37
                 [ShareButton setImage:[UIImage imageNamed:@"ShareToIcon.png"] forState:UIControlStateNormal];
                 ShareButton.backgroundColor = [UIColor clearColor];
                 ShareButton.tag = i;
@@ -1435,7 +1523,7 @@
                 TempCountWhiteHeightLocalQR += 55;
                 
                 UIButton *Line01 = [[UIButton alloc]init];
-                Line01.frame = CGRectMake(0, heightcheck, screenWidth, 1);
+                Line01.frame = CGRectMake(10, heightcheck, screenWidth - 20, 1);
                 [Line01 setTitle:@"" forState:UIControlStateNormal];
                 Line01.backgroundColor = [UIColor colorWithRed:232.0f/255.0f green:232.0f/255.0f blue:232.0f/255.0f alpha:1.0f];
                 [MainScroll addSubview:Line01];
@@ -1618,7 +1706,12 @@
                     }else{
                         UILabel *ShowTitle = [[UILabel alloc]init];
                         ShowTitle.frame = CGRectMake(25 + i * screenWidth, 51 + 198 + 10 + 30, screenWidth - 50, 40);
-                        ShowTitle.text = TempGetStirng;
+                       // ShowTitle.text = TempGetStirng;
+                        NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+                        paragraph.minimumLineHeight = 21.0f;
+                        paragraph.maximumLineHeight = 21.0f;
+                        NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:TempGetStirng attributes:@{NSParagraphStyleAttributeName: paragraph}];
+                        ShowTitle.attributedText = attributedString;
                         ShowTitle.backgroundColor = [UIColor clearColor];
                         ShowTitle.numberOfLines = 2;
                         ShowTitle.textAlignment = NSTextAlignmentLeft;
@@ -2251,7 +2344,11 @@
                     }else{
                         
                         ShowTitle.frame = CGRectMake(25 + i * screenWidth, 51 + 198 + 20, screenWidth - 50, 30);
-                        ShowTitle.text = TempGetStirng;
+                        NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+                        paragraph.minimumLineHeight = 21.0f;
+                        paragraph.maximumLineHeight = 21.0f;
+                        NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:TempGetStirng attributes:@{NSParagraphStyleAttributeName: paragraph}];
+                        ShowTitle.attributedText = attributedString;
                         ShowTitle.backgroundColor = [UIColor clearColor];
                         ShowTitle.numberOfLines = 2;
                         ShowTitle.textAlignment = NSTextAlignmentLeft;
@@ -2259,10 +2356,10 @@
                         ShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:17];
                         [SuggestedScrollview_Deal addSubview:ShowTitle];
                         
-                        if([ShowTitle sizeThatFits:CGSizeMake(screenWidth - 50, CGFLOAT_MAX)].height!=ShowTitle.frame.size.height)
-                        {
-                            ShowTitle.frame = CGRectMake(25 + i * screenWidth, 51 + 198 + 20, screenWidth - 50,[ShowTitle sizeThatFits:CGSizeMake(screenWidth - 50, CGFLOAT_MAX)].height);
-                        }
+//                        if([ShowTitle sizeThatFits:CGSizeMake(screenWidth - 50, CGFLOAT_MAX)].height!=ShowTitle.frame.size.height)
+//                        {
+//                            ShowTitle.frame = CGRectMake(25 + i * screenWidth, 51 + 198 + 20, screenWidth - 50,[ShowTitle sizeThatFits:CGSizeMake(screenWidth - 50, CGFLOAT_MAX)].height);
+//                        }
                     }
                     
                     UIImageView *ShowPinLocalQR = [[UIImageView alloc]init];
@@ -2296,11 +2393,9 @@
             case 9:{
                 NSLog(@"in invite_friend");
                 AsyncImageView *BannerImage = [[AsyncImageView alloc]init];
-                BannerImage.frame = CGRectMake(0, heightcheck, screenWidth, 250);
-              //  BannerImage.image = [UIImage imageNamed:@"Demoanner.jpg"];
-                BannerImage.contentMode = UIViewContentModeScaleToFill;
-                BannerImage.backgroundColor = [UIColor whiteColor];
-               // BannerImage.layer.cornerRadius = 5;
+                BannerImage.frame = CGRectMake(0, heightcheck, screenWidth, 150);
+                BannerImage.contentMode = UIViewContentModeScaleAspectFit;
+                BannerImage.backgroundColor = [UIColor clearColor];
                 BannerImage.layer.masksToBounds = YES;
                 [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:BannerImage];
                 NSString *ImageData = [[NSString alloc]initWithFormat:@"%@",[arrImage objectAtIndex:i]];
@@ -2310,16 +2405,17 @@
                     NSURL *url_NearbySmall = [NSURL URLWithString:ImageData];
                     BannerImage.imageURL = url_NearbySmall;
                 }
+                
                 [MainScroll addSubview:BannerImage];
                 
                 UIButton *TempButton = [[UIButton alloc]init];
-                TempButton.frame = CGRectMake(0, heightcheck, screenWidth, 250);
+                TempButton.frame = CGRectMake(0, heightcheck, screenWidth, 150);
                 [TempButton setTitle:@"" forState:UIControlStateNormal];
                 TempButton.backgroundColor = [UIColor clearColor];
                 [TempButton addTarget:self action:@selector(OpenInviteButton:) forControlEvents:UIControlEventTouchUpInside];
                 [MainScroll addSubview: TempButton];
                 
-                heightcheck += 260;
+                heightcheck += 160;
 }
                 break;
                 

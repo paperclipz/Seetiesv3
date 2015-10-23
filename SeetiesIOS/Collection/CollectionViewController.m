@@ -10,6 +10,7 @@
 #import "FeedV2DetailViewController.h"
 #import "ShareViewController.h"
 #import "SearchDetailViewController.h"
+#import "AddCollectionDataViewController.h"
 @interface CollectionViewController ()
 
 @end
@@ -30,6 +31,8 @@
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     MoreButton.frame = CGRectMake(screenWidth - 40, 20, 40, 44);
     MapButton.frame = CGRectMake(screenWidth - 80, 20, 40, 44);
+    ShowTitleInTop.frame = CGRectMake(42, 32, screenWidth - 47, 20);
+    ShowTitleInTop.hidden = YES;
     
     DownBarView.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
    // DownBarView.hidden = YES;
@@ -47,6 +50,7 @@
     GetHeight = 0;
     CheckFirstTimeLoad = 0;
     GetHeight = 0;
+    GetCollectionHeight = 0;
     
     if ([GetID length] ==0) {
         
@@ -54,7 +58,9 @@
         [self GetCollectionData];
     }
 }
-
+- (void)dealloc {
+    [MainScroll setDelegate:nil];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -78,10 +84,12 @@
 -(IBAction)BackButton:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
--(void)GetCollectionID:(NSString *)ID_{
+-(void)GetCollectionID:(NSString *)ID_ GetPermision:(NSString *)PermisionUser{
 
     GetID = ID_;
+    GetPermisionUser = PermisionUser;
     NSLog(@"Get Collection ID is %@",GetID);
+    NSLog(@"Get Permision User is %@",GetPermisionUser);
     [self GetCollectionData];
 }
 -(void)GetCollectionData{
@@ -91,9 +99,17 @@
         CurrentPage += 1;
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *Getuid = [defaults objectForKey:@"Useruid"];
-        NSString *FullString = [[NSString alloc]initWithFormat:@"%@%@/collections/%@?page=%li",DataUrl.UserWallpaper_Url,Getuid,GetID,CurrentPage];
+        NSString *GetLat = [defaults objectForKey:@"UserCurrentLocation_lat"];
+        NSString *Getlng = [defaults objectForKey:@"UserCurrentLocation_lng"];
+        NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
         
-        
+        NSString *FullString;
+        if ([GetLat length] == 0 || [GetLat isEqualToString:@""] || [GetLat isEqualToString:@"(null)"] || GetLat == nil) {
+            FullString = [[NSString alloc]initWithFormat:@"%@%@/collections/%@?page=%li&token=%@",DataUrl.UserWallpaper_Url,Getuid,GetID,CurrentPage,GetExpertToken];
+        }else{
+            FullString = [[NSString alloc]initWithFormat:@"%@%@/collections/%@?page=%li&lat=%@&lng=%@&token=%@",DataUrl.UserWallpaper_Url,Getuid,GetID,CurrentPage,GetLat,Getlng,GetExpertToken];
+        }
+
         NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
         NSLog(@"GetCollectionData check postBack URL ==== %@",postBack);
         NSURL *url = [NSURL URLWithString:[postBack stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
@@ -146,7 +162,7 @@
             GetTitle = [[NSString alloc]initWithFormat:@"%@",[ResData objectForKey:@"name"]];
             GetDescription = [[NSString alloc]initWithFormat:@"%@",[ResData objectForKey:@"description"]];
             GetTags = [[NSString alloc]initWithFormat:@"%@",[ResData valueForKey:@"tags"]];
-            
+            GetIsPrivate = [[NSString alloc]initWithFormat:@"%@",[ResData valueForKey:@"is_private"]];
             
             NSArray *LanguageData = [ResData valueForKey:@"languages"];
             GetLanguagesArray = [[NSMutableArray alloc]initWithArray:LanguageData];
@@ -183,6 +199,8 @@
                 Content_arrID_arrDistance = [[NSMutableArray alloc]init];
                 Content_arrID_arrDisplayCountryName = [[NSMutableArray alloc]init];
                 Content_arrMessage = [[NSMutableArray alloc]init];
+                Content_arrUserName = [[NSMutableArray alloc]init];
+                Content_arrCollect = [[NSMutableArray alloc]init];
             }else{
             }
             
@@ -197,6 +215,8 @@
                 [Content_arrID addObject:PlaceID];
                 NSString *notedate = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"collection_note"]];
                 [Content_arrNote addObject:notedate];
+                NSString *collect = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"collect"]];
+                [Content_arrCollect addObject:collect];
             }
             
             NSDictionary *titleData = [GetData valueForKey:@"title"];
@@ -277,9 +297,12 @@
                 }
             }
             
-            
-            
-            
+            NSDictionary *PostUserData = [GetData valueForKey:@"user_info"];
+            for (NSDictionary * dict in PostUserData) {
+                NSString *username = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"username"]];
+                [Content_arrUserName addObject:username];
+            }
+
             
             
             
@@ -432,6 +455,22 @@
             [ShowActivity stopAnimating];
         }
     
+    }else if(connection == theConnection_QuickCollect){
+        NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+        //NSLog(@"Quick Collection return get data to server ===== %@",GetData);
+        
+        NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *myError = nil;
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
+        //  NSLog(@"Expert Json = %@",res);
+        
+        
+        NSString *statusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
+        NSLog(@"statusString is %@",statusString);
+        
+        if ([statusString isEqualToString:@"ok"]) {
+            [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success add to Collections" type:TSMessageNotificationTypeSuccess];
+        }
     }
 }
 -(void)InitView{
@@ -502,6 +541,11 @@
     TempShowTitle.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
     TempShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:18];
     [MainScroll addSubview:TempShowTitle];
+    
+    ShowTitleInTop.text = GetTitle;
+    
+    GetCollectionHeight = GetHeight;
+    
 
     GetHeight += 30;
     
@@ -585,6 +629,26 @@
         }
         GetHeight += 50;
     }
+
+    
+    //edit button
+    UIButton *EditButton = [[UIButton alloc]init];
+    EditButton.frame = CGRectMake((screenWidth / 2) - 65, GetHeight, 130, 35);
+    EditButton.layer.cornerRadius= 18;
+    EditButton.layer.borderWidth = 1;
+    EditButton.layer.masksToBounds = YES;
+    EditButton.layer.borderColor=[[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0] CGColor];
+    EditButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
+    [EditButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
+    EditButton.backgroundColor = [UIColor whiteColor];
+    if ([GetPermisionUser isEqualToString:@"Self"]) {
+        [EditButton setTitle:@"Edit" forState:UIControlStateNormal];
+    }else{
+        [EditButton setTitle:@"Collect" forState:UIControlStateNormal];
+    }
+    [MainScroll addSubview:EditButton];
+    
+    GetHeight += 45;
     
     UIButton *Line01 = [[UIButton alloc]init];
     Line01.frame = CGRectMake(0, GetHeight, screenWidth, 1);
@@ -683,6 +747,7 @@
     
 
     for (NSInteger i = DataCount; i < DataTotal; i++) {
+        int CountHeight = TempHeight;
         AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
         ShowImage.frame = CGRectMake(20, TempHeight, screenWidth - 40, 180);
         ShowImage.contentMode = UIViewContentModeScaleAspectFill;
@@ -709,24 +774,6 @@
         ShowOverlayImg.layer.cornerRadius = 5;
         [ListView addSubview:ShowOverlayImg];
         
-        NSString *TempGetStirng = [[NSString alloc]initWithFormat:@"%@",[Content_arrTitle objectAtIndex:i]];
-        if ([TempGetStirng length] == 0 || [TempGetStirng isEqualToString:@""] || [TempGetStirng isEqualToString:@"(null)"]) {
-            
-        }else{
-            UILabel *ShowTitle = [[UILabel alloc]init];
-            ShowTitle.frame = CGRectMake(30, TempHeight + 5, screenWidth - 60, 20);
-            ShowTitle.text = TempGetStirng;
-            ShowTitle.backgroundColor = [UIColor clearColor];
-            ShowTitle.textAlignment = NSTextAlignmentLeft;
-            ShowTitle.textColor = [UIColor whiteColor];
-            ShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-            [ListView addSubview:ShowTitle];
-
-          //  TempHeight += ShowTitle.frame.size.height;
-
-        }
-        
-        
         UIButton *ClickToDetailButton = [[UIButton alloc]init];
         ClickToDetailButton.frame = CGRectMake(20, TempHeight, screenWidth - 40, 180);
         [ClickToDetailButton setTitle:@"" forState:UIControlStateNormal];
@@ -735,35 +782,94 @@
         [ClickToDetailButton addTarget:self action:@selector(ClickToDetailButton:) forControlEvents:UIControlEventTouchUpInside];
         [ListView addSubview:ClickToDetailButton];
         
+        CheckCollect = [[NSString alloc]initWithFormat:@"%@",[Content_arrCollect objectAtIndex:i]];
         
+        if ([GetPermisionUser isEqualToString:@"Self"]) {
+            
+        }else{
+            UIButton *CollectButton = [[UIButton alloc]init];
+            [CollectButton setBackgroundColor:[UIColor clearColor]];
+            if ([CheckCollect isEqualToString:@"0"]) {
+                [CollectButton setImage:[UIImage imageNamed:@"WhiteCollect.png"] forState:UIControlStateNormal];
+                [CollectButton setImage:[UIImage imageNamed:@"WhiteCollected.png"] forState:UIControlStateSelected];
+            }else{
+                [CollectButton setImage:[UIImage imageNamed:@"WhiteCollected.png"] forState:UIControlStateNormal];
+            }
+            CollectButton.frame = CGRectMake(screenWidth - 13 - 57, CountHeight, 57, 57);
+            CollectButton.tag = i;
+            [CollectButton addTarget:self action:@selector(CollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+            [ListView addSubview:CollectButton];
+        }
         
+        CountHeight += 10;
+
+        NSString *TempGetStirng = [[NSString alloc]initWithFormat:@"%@",[Content_arrTitle objectAtIndex:i]];
+        if ([TempGetStirng length] == 0 || [TempGetStirng isEqualToString:@""] || [TempGetStirng isEqualToString:@"(null)"]) {
+            
+        }else{
+            UILabel *ShowTitle = [[UILabel alloc]init];
+            if ([GetPermisionUser isEqualToString:@"Self"]) {
+                ShowTitle.frame = CGRectMake(30, CountHeight, screenWidth - 60, 20);
+            }else{
+            ShowTitle.frame = CGRectMake(30, CountHeight, screenWidth - 100, 20);
+            }
+            
+            ShowTitle.text = TempGetStirng;
+            ShowTitle.backgroundColor = [UIColor clearColor];
+            ShowTitle.textAlignment = NSTextAlignmentLeft;
+            ShowTitle.textColor = [UIColor whiteColor];
+            ShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+            [ListView addSubview:ShowTitle];
+
+          //  TempHeight += ShowTitle.frame.size.height;
+            CountHeight += 20;
+
+        }
+        
+
         UIImageView *ShowPin = [[UIImageView alloc]init];
         ShowPin.image = [UIImage imageNamed:@"PhotoPin.png"];
-        ShowPin.frame = CGRectMake(25, TempHeight + 25, 15, 15);
+        ShowPin.frame = CGRectMake(28, CountHeight + 2, 15, 15);
         [ListView addSubview:ShowPin];
         
         NSString *TempDistanceString = [[NSString alloc]initWithFormat:@"%@",[Content_arrID_arrDistance objectAtIndex:i]];
+//        NSLog(@"TempDistanceString is %@",TempDistanceString);
         NSString *FullShowLocatinString;
-        if ([TempDistanceString isEqualToString:@"0"]) {
+        if ([TempDistanceString isEqualToString:@"-1"]) {
             FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@ • %@",[Content_arrPlaceName objectAtIndex:i],[Content_arrID_arrDisplayCountryName objectAtIndex:i]];
         }else{
             CGFloat strFloat = (CGFloat)[TempDistanceString floatValue] / 1000;
             int x_Nearby = [TempDistanceString intValue] / 1000;
-            if (x_Nearby < 100) {
-                if (x_Nearby <= 1) {
-                    FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@ • 1km",[Content_arrPlaceName objectAtIndex:i]];//within
-                }else{
-                    FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@ • %.fkm",[Content_arrPlaceName objectAtIndex:i],strFloat];
-                }
-                
-            }else{
+//            NSLog(@"strFloat is %f",strFloat);
+//            NSLog(@"x_Nearby is %i",x_Nearby);
+//            if (x_Nearby < 100) {
+//                if (x_Nearby <= 1) {
+//                    FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@ • 1km",[Content_arrPlaceName objectAtIndex:i]];//within
+//                }else{
+//                    FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@ • %.fkm",[Content_arrPlaceName objectAtIndex:i],strFloat];
+//                }
+//                
+//            }else{
+//                FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@ • %@",[Content_arrPlaceName objectAtIndex:i],[Content_arrID_arrDisplayCountryName objectAtIndex:i]];
+//                
+//            }
+            
+            if (x_Nearby < 1) {
+                FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@ • %.fm",[Content_arrPlaceName objectAtIndex:i],strFloat];
+            }else if(x_Nearby > 1000){
                 FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@ • %@",[Content_arrPlaceName objectAtIndex:i],[Content_arrID_arrDisplayCountryName objectAtIndex:i]];
-                
+            }else{
+                FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@ • %.fkm",[Content_arrPlaceName objectAtIndex:i],strFloat];
             }
 
         }
         UILabel *ShowDistance = [[UILabel alloc]init];
-        ShowDistance.frame = CGRectMake(50, TempHeight + 25, screenWidth - 100, 20);
+        if ([GetPermisionUser isEqualToString:@"Self"]) {
+            ShowDistance.frame = CGRectMake(50, CountHeight, screenWidth - 100, 20);
+        }else{
+            ShowDistance.frame = CGRectMake(50, CountHeight, screenWidth - 160, 20);
+        }
+        
         ShowDistance.text = FullShowLocatinString;
         ShowDistance.textColor = [UIColor whiteColor];
         ShowDistance.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
@@ -771,7 +877,7 @@
         ShowDistance.backgroundColor = [UIColor clearColor];
         [ListView addSubview:ShowDistance];
         
-         TempHeight += 190;
+        TempHeight += 190;
         
         NSString *TempGetNote = [[NSString alloc]initWithFormat:@"%@",[Content_arrNote objectAtIndex:i]];
         if ([TempGetNote length] == 0 || [TempGetNote isEqualToString:@""] || [TempGetNote isEqualToString:@"(null)"]) {
@@ -779,19 +885,46 @@
             if ([TempGetMessage length] == 0 || [TempGetMessage isEqualToString:@""] || [TempGetMessage isEqualToString:@"(null)"]) {
                 TempHeight += 20;
             }else{
+                NSString *FullString = [[NSString alloc]initWithFormat:@"%@: %@",[Content_arrUserName objectAtIndex:i],TempGetMessage];
+                
                 UILabel *ShowNoteData = [[UILabel alloc]init];
-                ShowNoteData.frame = CGRectMake(20, TempHeight, screenWidth - 40, 40);
-                ShowNoteData.text = TempGetMessage;
+                ShowNoteData.frame = CGRectMake(25, TempHeight, screenWidth - 50, 40);
                 ShowNoteData.backgroundColor = [UIColor clearColor];
                 ShowNoteData.numberOfLines = 3;
                 ShowNoteData.textAlignment = NSTextAlignmentLeft;
-                ShowNoteData.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-                ShowNoteData.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+                ShowNoteData.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+                ShowNoteData.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+                
+                NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+                paragraph.minimumLineHeight = 21.0f;
+                paragraph.maximumLineHeight = 21.0f;
+//                NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:FullString attributes:@{NSParagraphStyleAttributeName: paragraph}];
+//                ShowNoteData.attributedText = attributedString;
+                
+                NSString *FinalString_CheckName = [[NSString alloc] initWithFormat:@"%@:",[Content_arrUserName objectAtIndex:i]];
+                
+                NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:FullString];
+                [mutableAttributedString addAttribute:NSParagraphStyleAttributeName value:paragraph range:NSMakeRange(0, FullString.length)];
+                [mutableAttributedString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15] range:NSMakeRange(0, FullString.length)];
+                [mutableAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f] range:NSMakeRange(0, FullString.length)];
+
+                NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:FinalString_CheckName  options:kNilOptions error:nil];
+                NSRange range = NSMakeRange(0,FullString.length);
+                [regex enumerateMatchesInString:FullString options:kNilOptions range:range usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+                    NSRange subStringRange = [result rangeAtIndex:0];
+                    [mutableAttributedString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15] range:NSMakeRange(0, FinalString_CheckName.length)];
+                    [mutableAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f] range:subStringRange];
+                }];
+
+                [ShowNoteData setAttributedText:mutableAttributedString];
+                
+                //ShowNoteData.text = FullString;
+
                 [ListView addSubview:ShowNoteData];
                 
-                if([ShowNoteData sizeThatFits:CGSizeMake(screenWidth - 30, CGFLOAT_MAX)].height!=ShowNoteData.frame.size.height)
+                if([ShowNoteData sizeThatFits:CGSizeMake(screenWidth - 50, CGFLOAT_MAX)].height!=ShowNoteData.frame.size.height)
                 {
-                    ShowNoteData.frame = CGRectMake(20, TempHeight, screenWidth - 40,[ShowNoteData sizeThatFits:CGSizeMake(screenWidth - 40, CGFLOAT_MAX)].height);
+                    ShowNoteData.frame = CGRectMake(25, TempHeight, screenWidth - 50,[ShowNoteData sizeThatFits:CGSizeMake(screenWidth - 50, CGFLOAT_MAX)].height);
                 }
                 
                 TempHeight += ShowNoteData.frame.size.height + 20;
@@ -799,19 +932,45 @@
 
             
         }else{
+            
+            NSString *FullString = [[NSString alloc]initWithFormat:@"%@: %@",GetUsername,TempGetNote];
+            
             UILabel *ShowNoteData = [[UILabel alloc]init];
-            ShowNoteData.frame = CGRectMake(20, TempHeight, screenWidth - 40, 40);
-            ShowNoteData.text = TempGetNote;
+            ShowNoteData.frame = CGRectMake(25, TempHeight, screenWidth - 50, 40);
             ShowNoteData.backgroundColor = [UIColor clearColor];
             ShowNoteData.numberOfLines = 3;
             ShowNoteData.textAlignment = NSTextAlignmentLeft;
-            ShowNoteData.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-            ShowNoteData.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+            ShowNoteData.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+            ShowNoteData.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+            
+            NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+            paragraph.minimumLineHeight = 21.0f;
+            paragraph.maximumLineHeight = 21.0f;
+            
+            NSString *FinalString_CheckName = [[NSString alloc] initWithFormat:@"%@:",GetUsername];
+            
+            NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:FullString];
+            [mutableAttributedString addAttribute:NSParagraphStyleAttributeName value:paragraph range:NSMakeRange(0, FullString.length)];
+            [mutableAttributedString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15] range:NSMakeRange(0, FullString.length)];
+            [mutableAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f] range:NSMakeRange(0, FullString.length)];
+            
+            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:FinalString_CheckName  options:kNilOptions error:nil];
+            NSRange range = NSMakeRange(0,FullString.length);
+            [regex enumerateMatchesInString:FullString options:kNilOptions range:range usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+                NSRange subStringRange = [result rangeAtIndex:0];
+                [mutableAttributedString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15] range:NSMakeRange(0, FinalString_CheckName.length)];
+                [mutableAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f] range:subStringRange];
+            }];
+            
+            [ShowNoteData setAttributedText:mutableAttributedString];
+            
+           // ShowNoteData.text = FullString;
+
             [ListView addSubview:ShowNoteData];
             
-            if([ShowNoteData sizeThatFits:CGSizeMake(screenWidth - 30, CGFLOAT_MAX)].height!=ShowNoteData.frame.size.height)
+            if([ShowNoteData sizeThatFits:CGSizeMake(screenWidth - 50, CGFLOAT_MAX)].height!=ShowNoteData.frame.size.height)
             {
-                ShowNoteData.frame = CGRectMake(20, TempHeight, screenWidth - 40,[ShowNoteData sizeThatFits:CGSizeMake(screenWidth - 40, CGFLOAT_MAX)].height);
+                ShowNoteData.frame = CGRectMake(25, TempHeight, screenWidth - 50,[ShowNoteData sizeThatFits:CGSizeMake(screenWidth - 50, CGFLOAT_MAX)].height);
             }
             
             TempHeight += ShowNoteData.frame.size.height + 20;
@@ -837,19 +996,20 @@
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     int heightcheck = 10;
     
-    int TestWidth = screenWidth - 2;
+    int TestWidth = screenWidth - 20;
     //NSLog(@"TestWidth is %i",TestWidth);
     int FinalWidth = TestWidth / 3;
-    FinalWidth += 1;
+    FinalWidth += 5;
     // NSLog(@"FinalWidth is %i",FinalWidth);
-    int SpaceWidth = FinalWidth + 1;
+    int SpaceWidth = FinalWidth + 5;
     
     for (NSInteger i = DataCount; i < DataTotal; i++) {
         AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
         ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
-        ShowImage.frame = CGRectMake(0+(i % 3)*SpaceWidth, heightcheck + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
+        ShowImage.frame = CGRectMake(5+(i % 3)*SpaceWidth, heightcheck + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
         ShowImage.contentMode = UIViewContentModeScaleAspectFill;
         ShowImage.layer.masksToBounds = YES;
+        ShowImage.layer.cornerRadius = 5;
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
         NSString *ImageData = [[NSString alloc]initWithFormat:@"%@",[Content_arrImage objectAtIndex:i]];
         NSArray *SplitArray = [ImageData componentsSeparatedByString:@","];
@@ -866,7 +1026,7 @@
         UIButton *ImageButton = [[UIButton alloc]init];
         [ImageButton setBackgroundColor:[UIColor clearColor]];
         [ImageButton setTitle:@"" forState:UIControlStateNormal];
-        ImageButton.frame = CGRectMake(0+(i % 3)*SpaceWidth, heightcheck + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
+        ImageButton.frame = CGRectMake(5+(i % 3)*SpaceWidth, heightcheck + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
         ImageButton.tag = i;
         [ImageButton addTarget:self action:@selector(ClickToDetailButton:) forControlEvents:UIControlEventTouchUpInside];
         [GridView addSubview:ImageButton];
@@ -956,6 +1116,17 @@
         }
         
         
+        if (heightcheck_ > GetCollectionHeight) {
+            ShowTitleInTop.hidden = NO;
+        }else{
+        
+            ShowTitleInTop.hidden = YES;
+        }
+        
+        
+        
+        
+        
         
     }
     
@@ -965,16 +1136,28 @@
     
 }
 -(IBAction)ShareButtonOnClick:(id)sender{
-    ShareViewController *ShareView = [[ShareViewController alloc]init];
-    [self presentViewController:ShareView animated:YES completion:nil];
-    [ShareView GetCollectionID:GetID];
+    
+    if ([GetIsPrivate isEqualToString:@"true"]) {
+        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"your collection is set to private." type:TSMessageNotificationTypeError];
+    }else{
+        ShareViewController *ShareView = [[ShareViewController alloc]init];
+        [self presentViewController:ShareView animated:YES completion:nil];
+        [ShareView GetCollectionID:GetID];
+    }
+    
+
 }
 -(IBAction)ShareLinkButtonOnClick:(id)sender{
-    NSString *message = [NSString stringWithFormat:@"https://seeties.me/collections/%@",GetID];
-    
-    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-    pasteboard.string = message;
-    [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success Copy Link" type:TSMessageNotificationTypeSuccess];
+    if ([GetIsPrivate isEqualToString:@"true"]) {
+        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"your collection is set to private." type:TSMessageNotificationTypeError];
+    }else{
+        NSString *message = [NSString stringWithFormat:@"https://seeties.me/collections/%@",GetID];
+        
+        UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+        pasteboard.string = message;
+        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success Copy Link" type:TSMessageNotificationTypeSuccess];
+    }
+
 }
 -(IBAction)TranslateButtonOnClick:(id)sender{
     [self GetTranslateData];
@@ -986,7 +1169,13 @@
     NSLog(@"ArrHashTag is %@",GetTagsString);
     
     SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
-    [self.navigationController pushViewController:SearchDetailView animated:YES];
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.2;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromRight;
+    [self.view.window.layer addAnimation:transition forKey:nil];
+    [self presentViewController:SearchDetailView animated:NO completion:nil];
     [SearchDetailView GetSearchKeyword:GetTagsString Getlat:@"" GetLong:@"" GetLocationName:@"" GetCurrentLat:@"" GetCurrentLong:@""];
 }
 -(void)GetTranslateData{
@@ -1014,6 +1203,54 @@
     
     if( theConnection_GetTranslate ){
         webData = [NSMutableData data];
+    }
+}
+-(IBAction)CollectButtonOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    // NSLog(@"button %li",(long)getbuttonIDN);
+    NSLog(@"Quick CollectButtonOnClick");
+    GetPostID = [[NSString alloc]initWithFormat:@"%@",[Content_arrID objectAtIndex:getbuttonIDN]];
+    CheckCollect = [[NSString alloc]initWithFormat:@"%@",[Content_arrCollect objectAtIndex:getbuttonIDN]];
+    
+    if ([CheckCollect isEqualToString:@"0"]) {
+        [Content_arrCollect replaceObjectAtIndex:getbuttonIDN withObject:@"1"];
+        UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
+        buttonWithTag1.selected = !buttonWithTag1.selected;
+        
+        [self SendQuickCollect];
+    }else{
+        AddCollectionDataViewController *AddCollectionDataView = [[AddCollectionDataViewController alloc]init];
+        [self presentViewController:AddCollectionDataView animated:YES completion:nil];
+        //[self.view.window.rootViewController presentViewController:AddCollectionDataView animated:YES completion:nil];
+        [AddCollectionDataView GetPostID:[Content_arrID objectAtIndex:getbuttonIDN] GetImageData:[Content_arrImage objectAtIndex:getbuttonIDN]];
+    }
+}
+-(void)SendQuickCollect{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *GetUseruid = [defaults objectForKey:@"Useruid"];
+    //Server Address URL
+    NSString *urlString = [NSString stringWithFormat:@"%@%@/collections/0/collect",DataUrl.UserWallpaper_Url,GetUseruid];
+    NSLog(@"Send Quick Collection urlString is %@",urlString);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"PUT"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    
+    
+    NSString *dataString = [[NSString alloc]initWithFormat:@"token=%@&posts[0][id]=%@",GetExpertToken,GetPostID];
+    
+    NSData *postBodyData = [NSData dataWithBytes: [dataString UTF8String] length:[dataString length]];
+    [request setHTTPBody:postBodyData];
+    
+    theConnection_QuickCollect = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    if(theConnection_QuickCollect) {
+        //  NSLog(@"Connection Successful");
+        webData = [NSMutableData data];
+    } else {
+        
     }
 }
 @end

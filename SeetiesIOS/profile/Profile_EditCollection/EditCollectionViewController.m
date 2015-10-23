@@ -184,7 +184,8 @@
 -(void)requestServerForCollectionDetails:(NSString*)collectionID successBlock:(IDBlock)successBlock failBlock:(IDBlock)failBlock{
     
     collectionDetailPage+=1;
-    NSDictionary* dict = @{@"collection_id":collectionID,
+    NSDictionary* dict = @{@"token":[Utils getAppToken],
+                           @"collection_id":collectionID,
                            @"list_size":@5,
                            @"page":@(collectionDetailPage)
                            };

@@ -30,6 +30,9 @@
     BackButton.frame = CGRectMake(screenWidth - 50, 0, 50, 50);
     
     CheckShareStatus = 0;
+    
+    ShowTitle.text = LocalisedString(@"Share this post");
+    ShowSubTitle.text = LocalisedString(@"Send via other apps");
 }
 -(void)GetCollectionID:(NSString *)Collectionid{
 

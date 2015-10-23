@@ -173,8 +173,9 @@
     
     IBOutlet UIButton *LineButton;
     
-    IBOutlet UILabel *ShowPlaceNameTop;
-    IBOutlet UILabel *ShowCategoryTop;
+    //IBOutlet UILabel *ShowPlaceNameTop;
+    //IBOutlet UILabel *ShowCategoryTop;
+    IBOutlet UILabel *ShowTopTitle;
     
     IBOutlet UIImageView *DisplayButton;
     
@@ -215,6 +216,8 @@
     NSMutableArray *TempGetLanguageArray;
     
     int CheckNearbyPost;
+    int GetPlaceNameHeight;
+    
 }
 
 @property(nonatomic,strong)EditPostViewController* editPostViewController;
