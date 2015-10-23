@@ -11,4 +11,8 @@
 @interface UIView (Extra)
 
 -(void)adjustToScreenWidth;
+-(void)setHeight:(float)height;
+-(void)setWidth:(float)width;
+-(void)setX:(float)X;
+-(void)setY:(float)Y;
 @end
