@@ -38,25 +38,24 @@
 
 -(void)initSelfView
 {
-    [self.myCollectionListingViewController.view adjustToScreenWidth];
-    [self.followingCollectionListingViewController.view adjustToScreenWidth];
     
+    CGRect frame = [Utils getDeviceScreenSize];
+    
+    [self.myCollectionListingViewController.view setWidth:frame.size.width];
+    [self.followingCollectionListingViewController.view setHeight:frame.size.height];
+
+    [self.ibScrollView setWidth:frame.size.width];
     [self.ibScrollView addSubview:self.myCollectionListingViewController.view];
     [self.ibScrollView addSubview:self.followingCollectionListingViewController.view];
   
     SLog(@"scroll view size : %f",self.ibScrollView.frame.size.width);
-    self.ibScrollView.contentSize = CGSizeMake([Utils getDeviceScreenSize].size.width*2, self.ibScrollView.frame.size.height);
+    self.ibScrollView.contentSize = CGSizeMake(frame.size.width*2, self.ibScrollView.frame.size.height);
     
     self.ibScrollView.pagingEnabled = YES;
 
-//   // [self.myCollectionListingViewController.view adjustToScreenWidth];
-//   // [self.followingCollectionListingViewController.view adjustToScreenWidth];
-//    
-//    self.myCollectionListingViewController.view.frame = CGRectMake(self.myCollectionListingViewController.view.frame.origin.x, 0, self.myCollectionListingViewController.view.frame.size.width, self.ibScrollView.frame.size.height);
-//
-//    
-    self.followingCollectionListingViewController.view.frame = CGRectMake(self.myCollectionListingViewController.view.frame.size.width, 0, self.followingCollectionListingViewController.view.frame.size.width, self.ibScrollView.frame.size.height);
+    [self.followingCollectionListingViewController.view setX:self.myCollectionListingViewController.view.frame.size.width];
 
+    
   }
 /*
 #pragma mark - Navigation

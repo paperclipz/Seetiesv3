@@ -703,6 +703,7 @@
 		8AB813C01BC234CE002F5F06 /* FloatingIndicatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AB813BF1BC234CE002F5F06 /* FloatingIndicatorView.xib */; settings = {ASSET_TAGS = (); }; };
 		8AB813C31BC23ECE002F5F06 /* UploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB813C21BC23ECE002F5F06 /* UploadManager.m */; settings = {ASSET_TAGS = (); }; };
 		8AB83A7C1BD49CED00715B69 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB83A7B1BD49CED00715B69 /* UIView+Extension.m */; settings = {ASSET_TAGS = (); }; };
+		8AC8F63C1BDA309D00DEF14A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AC8F63B1BDA309D00DEF14A /* Default-568h@2x.png */; settings = {ASSET_TAGS = (); }; };
 		8AD6BA601B705DF20040437E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA5F1B705DF20040437E /* main.m */; };
 		8AD6BA631B705DF20040437E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA621B705DF20040437E /* AppDelegate.m */; };
 		8AD6BA661B705DF20040437E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA651B705DF20040437E /* ViewController.m */; };
@@ -1806,6 +1807,7 @@
 		8AB813C21BC23ECE002F5F06 /* UploadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadManager.m; sourceTree = "<group>"; };
 		8AB83A7A1BD49CED00715B69 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		8AB83A7B1BD49CED00715B69 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		8AC8F63B1BDA309D00DEF14A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		8AD6BA5A1B705DF20040437E /* SeetiesIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeetiesIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AD6BA5E1B705DF20040437E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8AD6BA5F1B705DF20040437E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -3796,6 +3798,7 @@
 		8AD6BA511B705DF20040437E = {
 			isa = PBXGroup;
 			children = (
+				8AC8F63B1BDA309D00DEF14A /* Default-568h@2x.png */,
 				8AD6BA5C1B705DF20040437E /* SeetiesIOS */,
 				8AD6BA761B705DF30040437E /* SeetiesIOSTests */,
 				8AD6BA5B1B705DF20040437E /* Products */,
@@ -5043,6 +5046,7 @@
 				8AB76E071BB8FDC8007DB972 /* EditTagCollectionViewCell.xib in Resources */,
 				8A90B3031BD9F95B00CE1ED6 /* FeedCloseBtn@2x.png in Resources */,
 				8A90B4251BD9F95B00CE1ED6 /* ExploreIconActive@2x.png in Resources */,
+				8AC8F63C1BDA309D00DEF14A /* Default-568h@2x.png in Resources */,
 				8A90B26A1BD9F95B00CE1ED6 /* CollectionCrossBtn@3x.png in Resources */,
 				8A90B2FD1BD9F95B00CE1ED6 /* Distance2Icon@2x.png in Resources */,
 				8AB76E051BB8FDC8007DB972 /* EditCollectionViewController.xib in Resources */,
