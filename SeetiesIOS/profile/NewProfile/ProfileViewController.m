@@ -106,23 +106,26 @@
     }];
     
     // add parallax view with top content and content
+    
+    
+    CGRect frame = [Utils getDeviceScreenSize];
+    self.ibContentView.frame = CGRectMake(self.ibContentView.frame.origin.x, self.ibContentView.frame.origin.y, frame.size.width, self.ibContentView.frame.size.height);
     [self.ibScrollView addParallaxWithView:self.backgroundImageView andHeight:200];
+    [self.backgroundImageView adjustToScreenWidth];
     self.ibScrollView.parallaxView.shadowView.hidden = YES;
+    [self.ibScrollView.parallaxView adjustToScreenWidth];
     self.ibScrollView.contentSize = CGSizeMake(self.ibScrollView.frame.size.width, self.ibContentView.frame.size.height);
     [self.ibScrollView addSubview:self.ibContentView];
-  //  self.ibContentView.frame = CGRectMake(self.ibContentView.frame.origin.x, self.ibContentView.frame.origin.y - self.ibImgProfilePic.frame.size.height/2, self.ibContentView.frame.size.width, self.ibContentView.frame.size.height);
 
-//    self.ibImgProfilePic.frame = CGRectMake(self.ibImgProfilePic.frame.origin.x, self.ibImgProfilePic.frame.origin.y - self.ibImgProfilePic.frame.size.height/2, self.ibImgProfilePic.frame.size.width, self.ibImgProfilePic.frame.size.height);
+
     [self adjustTableView];
-    
-    
     [self addSettingAndShareView];
 
 }
 
 -(void)addSettingAndShareView// need to add after
 {
-    UIButton* btnShare = [[UIButton alloc]initWithFrame:CGRectMake(_backgroundImageView.frame.size.width - 40 -20, 20, 40, 40)];
+    UIButton* btnShare = [[UIButton alloc]initWithFrame:CGRectMake(self.ibScrollView.parallaxView.frame.size.width - 40 -20, 20, 40, 40)];
     [btnShare setImage:[UIImage imageNamed:@"ProfileShareIcon.png"] forState:UIControlStateNormal];
     
     UIButton* btnSetting = [[UIButton alloc]initWithFrame:CGRectMake(btnShare.frame.origin.x - btnShare.frame.size.width , 20, 40, 40)];
@@ -491,7 +494,8 @@
 
 -(void)showCollectionDisplayViewWithCollectionID:(NSString*)collID
 {
-    [self.collectionViewController GetCollectionID:collID];
+    
+    [self.collectionViewController GetCollectionID:collID GetPermision:@"self"];
     [self.navigationController pushViewController:self.collectionViewController animated:YES];
 }
 

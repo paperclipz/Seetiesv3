@@ -38,21 +38,26 @@
 
 -(void)initSelfView
 {
-    [self.ibScrollView addSubview:self.myCollectionListingViewController.view];
-    [self.ibScrollView addSubview:self.followingCollectionListingViewController.view];
-  
     [self.myCollectionListingViewController.view adjustToScreenWidth];
     [self.followingCollectionListingViewController.view adjustToScreenWidth];
     
-    self.myCollectionListingViewController.view.frame = CGRectMake(self.myCollectionListingViewController.view.frame.origin.x, 0, self.myCollectionListingViewController.view.frame.size.width, self.ibScrollView.frame.size.height);
-
-    
-    self.followingCollectionListingViewController.view.frame = CGRectMake(self.myCollectionListingViewController.view.frame.size.width, 0, self.followingCollectionListingViewController.view.frame.size.width, self.ibScrollView.frame.size.height);
-
-    self.ibScrollView.contentSize = CGSizeMake(self.myCollectionListingViewController.view.frame.size.width*2, self.ibScrollView.frame.size.height);
+    [self.ibScrollView addSubview:self.myCollectionListingViewController.view];
+    [self.ibScrollView addSubview:self.followingCollectionListingViewController.view];
+  
+    SLog(@"scroll view size : %f",self.ibScrollView.frame.size.width);
+    self.ibScrollView.contentSize = CGSizeMake([Utils getDeviceScreenSize].size.width*2, self.ibScrollView.frame.size.height);
     
     self.ibScrollView.pagingEnabled = YES;
-}
+
+//   // [self.myCollectionListingViewController.view adjustToScreenWidth];
+//   // [self.followingCollectionListingViewController.view adjustToScreenWidth];
+//    
+//    self.myCollectionListingViewController.view.frame = CGRectMake(self.myCollectionListingViewController.view.frame.origin.x, 0, self.myCollectionListingViewController.view.frame.size.width, self.ibScrollView.frame.size.height);
+//
+//    
+    self.followingCollectionListingViewController.view.frame = CGRectMake(self.myCollectionListingViewController.view.frame.size.width, 0, self.followingCollectionListingViewController.view.frame.size.width, self.ibScrollView.frame.size.height);
+
+  }
 /*
 #pragma mark - Navigation
 

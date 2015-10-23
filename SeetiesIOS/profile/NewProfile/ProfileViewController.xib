@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
@@ -39,6 +39,7 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="509" y="290"/>
         </view>
         <view contentMode="scaleToFill" id="3Pb-zr-5rR" userLabel="ContentView">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -136,12 +137,9 @@
                         <constraint firstAttribute="height" constant="238" id="S6J-P9-Jdf"/>
                         <constraint firstItem="kzZ-ZA-GD0" firstAttribute="top" secondItem="lZI-xc-IZb" secondAttribute="bottom" constant="10" id="Ud1-v6-cbj"/>
                         <constraint firstItem="W0N-44-6zb" firstAttribute="top" secondItem="lkl-HZ-BhG" secondAttribute="top" constant="-50" id="WtW-PJ-7Kc"/>
-                        <constraint firstItem="6jE-6p-qpf" firstAttribute="leading" secondItem="lkl-HZ-BhG" secondAttribute="leading" constant="15" id="cHR-ep-5id"/>
                         <constraint firstAttribute="trailing" secondItem="oN1-eJ-gY4" secondAttribute="trailing" constant="15" id="cWh-jb-vuY"/>
-                        <constraint firstItem="oN1-eJ-gY4" firstAttribute="baseline" secondItem="kzZ-ZA-GD0" secondAttribute="baseline" id="dEU-94-oxH"/>
                         <constraint firstItem="6jE-6p-qpf" firstAttribute="leading" secondItem="zyw-i4-9Jw" secondAttribute="leading" id="fef-mo-xBm"/>
                         <constraint firstItem="W0N-44-6zb" firstAttribute="leading" secondItem="lkl-HZ-BhG" secondAttribute="leading" constant="20" id="is9-YG-4qT"/>
-                        <constraint firstItem="lZI-xc-IZb" firstAttribute="leading" secondItem="lkl-HZ-BhG" secondAttribute="leading" constant="8" id="kbn-MH-QDG"/>
                         <constraint firstItem="kzZ-ZA-GD0" firstAttribute="leading" secondItem="lZI-xc-IZb" secondAttribute="leading" id="kuh-oJ-pIb"/>
                         <constraint firstItem="zyw-i4-9Jw" firstAttribute="top" secondItem="JJy-SB-8Oo" secondAttribute="bottom" constant="10" id="lZB-Oj-ksM"/>
                         <constraint firstItem="lZI-xc-IZb" firstAttribute="leading" secondItem="lkl-HZ-BhG" secondAttribute="leading" constant="20" id="m8F-tW-bd6"/>
@@ -149,13 +147,6 @@
                         <constraint firstItem="5wG-lf-rn3" firstAttribute="centerY" secondItem="JJy-SB-8Oo" secondAttribute="centerY" id="ply-dy-mmE"/>
                         <constraint firstItem="oN1-eJ-gY4" firstAttribute="leading" secondItem="kzZ-ZA-GD0" secondAttribute="trailing" constant="10" id="tew-Hb-tJ6"/>
                     </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="kbn-MH-QDG"/>
-                            <exclude reference="dEU-94-oxH"/>
-                            <exclude reference="cHR-ep-5id"/>
-                        </mask>
-                    </variation>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="222" sectionHeaderHeight="20" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="y6b-tE-4Np">
                     <rect key="frame" x="10" y="238" width="302" height="329"/>
@@ -167,18 +158,12 @@
                 <constraint firstItem="y6b-tE-4Np" firstAttribute="leading" secondItem="3Pb-zr-5rR" secondAttribute="leading" constant="10" id="3na-yN-agg"/>
                 <constraint firstItem="y6b-tE-4Np" firstAttribute="top" secondItem="lkl-HZ-BhG" secondAttribute="bottom" id="5cj-iJ-h7p"/>
                 <constraint firstAttribute="trailing" secondItem="y6b-tE-4Np" secondAttribute="trailing" constant="8" id="Pvw-Ir-M5R"/>
-                <constraint firstItem="y6b-tE-4Np" firstAttribute="top" secondItem="6jE-6p-qpf" secondAttribute="bottom" constant="10" id="ZaI-al-HQE"/>
                 <constraint firstAttribute="trailing" secondItem="lkl-HZ-BhG" secondAttribute="trailing" id="gTR-f8-dwt"/>
                 <constraint firstItem="lkl-HZ-BhG" firstAttribute="leading" secondItem="3Pb-zr-5rR" secondAttribute="leading" id="n5n-CL-1KX"/>
                 <constraint firstItem="lkl-HZ-BhG" firstAttribute="top" secondItem="3Pb-zr-5rR" secondAttribute="top" id="nUB-18-VGe"/>
                 <constraint firstAttribute="bottom" secondItem="y6b-tE-4Np" secondAttribute="bottom" constant="1" id="tHy-rH-8By"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="ZaI-al-HQE"/>
-                </mask>
-            </variation>
             <point key="canvasLocation" x="897" y="158"/>
         </view>
     </objects>

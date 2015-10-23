@@ -39,7 +39,7 @@
 
 +(int)getHeight
 {
-    return 167.0f;
+    return 166.0f;
 }
 
 -(void)initData:(CollectionModel*)model

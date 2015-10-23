@@ -21,7 +21,7 @@
 -(void)adjustToScreenWidth
 {
     CGRect frame = [Utils getDeviceScreenSize];
-    
+        
     self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, frame.size.width, self.frame.size.height);
 }
 
