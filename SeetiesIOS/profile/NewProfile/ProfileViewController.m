@@ -462,7 +462,8 @@
             [self.navigationController pushViewController:self.collectionListingViewController animated:YES];
             break;
         case 1://post
-            
+            [self.navigationController pushViewController:self.postListingViewController animated:YES];
+
             break;
         case 2://likes
             
@@ -557,6 +558,15 @@
     
     return _collectionListingViewController;
 }
+-(PostListingViewController*)postListingViewController
+{
+    if (!_postListingViewController) {
+        _postListingViewController = [PostListingViewController new];
+    }
+    
+    return _postListingViewController;
+}
+
 -(CollectionViewController*)collectionViewController
 {
     if(!_collectionViewController)

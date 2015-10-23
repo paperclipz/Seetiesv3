@@ -9,7 +9,7 @@
 #import "CommonViewController.h"
 #import "CollectionListingTabViewController.h"
 
-@interface CollectionListingViewController : CommonViewController
+@interface CollectionListingViewController : CommonViewController <UIScrollViewDelegate>
 
 @property(nonatomic,strong)CollectionListingTabViewController* myCollectionListingViewController;
 @property(nonatomic,strong)CollectionListingTabViewController* followingCollectionListingViewController;

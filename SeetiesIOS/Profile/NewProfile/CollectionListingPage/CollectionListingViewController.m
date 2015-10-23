@@ -10,6 +10,7 @@
 
 @interface CollectionListingViewController ()
 @property (weak, nonatomic) IBOutlet UIScrollView *ibScrollView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *ibSegmentedControl;
 
 @end
 
@@ -39,12 +40,20 @@
 -(void)initSelfView
 {
     
+    self.ibScrollView.delegate = self;
+    SLog(@" view size : %f || height : %f",self.view.frame.size.width,self.view.frame.size.height);
+    [self.ibScrollView addSubview:self.myCollectionListingViewController.view];
+   
     CGRect frame = [Utils getDeviceScreenSize];
     
-    [self.myCollectionListingViewController.view setWidth:frame.size.width];
-    [self.followingCollectionListingViewController.view setHeight:frame.size.height];
-
     [self.ibScrollView setWidth:frame.size.width];
+    [self.myCollectionListingViewController.view setWidth:frame.size.width];
+    [self.followingCollectionListingViewController.view setWidth:frame.size.width];
+    
+    [self.myCollectionListingViewController.view setHeight:self.ibScrollView.frame.size.height];
+    [self.followingCollectionListingViewController.view setHeight:self.ibScrollView.frame.size.height];
+
+
     [self.ibScrollView addSubview:self.myCollectionListingViewController.view];
     [self.ibScrollView addSubview:self.followingCollectionListingViewController.view];
   
@@ -54,7 +63,6 @@
     self.ibScrollView.pagingEnabled = YES;
 
     [self.followingCollectionListingViewController.view setX:self.myCollectionListingViewController.view.frame.size.width];
-
     
   }
 /*
@@ -85,6 +93,19 @@
     }
     
     return _followingCollectionListingViewController;
+}
+
+#pragma mark - UIScroll View Delegate
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    
+    CGFloat width = scrollView.frame.size.width;
+    NSInteger page = (scrollView.contentOffset.x + (0.5f * width)) / width;
+    
+    
+    self.ibSegmentedControl.selectedSegmentIndex = page;
+
+
 }
 
 

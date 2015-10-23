@@ -86,7 +86,7 @@
                     <constraint firstAttribute="bottomMargin" secondItem="cg4-oM-VeY" secondAttribute="bottom" id="ho8-wd-kVA"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.14901960780000001" green="0.65098039220000004" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="btnEdit" destination="Bl0-UK-jJ9" id="wYQ-P3-y5N"/>
                 <outlet property="ibImageViewA" destination="1l0-BW-VUP" id="aWH-UL-plQ"/>

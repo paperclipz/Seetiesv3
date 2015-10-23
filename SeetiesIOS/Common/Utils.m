@@ -49,7 +49,9 @@
 
 +(CGRect)getDeviceScreenSize
 {
-    return [[UIScreen mainScreen] bounds];
+    CGRect frame = [[UIScreen mainScreen] bounds];
+    SLog(@"screen size width : %f    ||  height : %f",frame.size.width,frame.size.height);
+    return frame;
 }
 
 +(void)setButtonWithBorder:(UIButton*)button

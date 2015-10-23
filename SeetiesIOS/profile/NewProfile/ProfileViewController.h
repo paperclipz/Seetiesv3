@@ -12,6 +12,7 @@
 #import "CollectionListingViewController.h"
 #import "EditCollectionViewController.h"
 #import "SettingsViewController.h"
+#import "PostListingViewController.h"
 
 
 @interface ProfileViewController : BaseViewController<TLTagsControlDelegate>
@@ -21,6 +22,6 @@
 @property(nonatomic,strong)CollectionListingViewController* collectionListingViewController;
 @property(nonatomic,strong)EditCollectionViewController* editCollectionViewController;
 @property(nonatomic,strong)SettingsViewController* settingsViewController;
-
+@property(nonatomic,strong)PostListingViewController* postListingViewController;
 
 @end
