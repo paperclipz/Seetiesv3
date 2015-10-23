@@ -1404,16 +1404,12 @@
         NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
         NSDictionary *GetAllData = [res valueForKey:@"data"];
         
-        NSString *GetTotalNewCount = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"total_new_notifications"]];
+        NSString *GetTotalNewCount = [[NSString alloc]initWithFormat:@"%@",[GetAllData valueForKey:@"total_new_notifications"]];
         NSLog(@"GetTotalNewCount is %@",GetTotalNewCount);
         
         NSString *ErrorString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"error"]];
-        
         if ([ErrorString length] == 0 || [ErrorString isEqualToString:@""] || [ErrorString isEqualToString:@"(null)"] || [ErrorString isEqualToString:@"<null>"]) {
-            
-        }else{
             CheckNotication = [GetTotalNewCount integerValue];
-            
             if (CheckNotication == 0) {
                 ShowNotificationCount.text = @"";
                 ShowNotificationCount.backgroundColor = [UIColor clearColor];
@@ -1422,6 +1418,8 @@
                 [self DrawNotificationData];
             }
             [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(GetNotificationData) userInfo:nil repeats:NO];
+        }else{
+             [NSTimer scheduledTimerWithTimeInterval:80.0 target:self selector:@selector(GetNotificationData) userInfo:nil repeats:NO];
         }
         
 

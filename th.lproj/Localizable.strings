@@ -763,8 +763,8 @@
 ""= "";
 "Log out"= "ออกระบบ";
 "Are you sure you want to sign out of Seeties?"= "ต้องการออกจาก Seeties?";
-"Maybe not."= "ไม่";
-"Yeah!"= "ใช่";
+"Maybe not.."= "ไม่";
+"Yeah!!"= "ใช่";
 ""= "";
 ""= "";
 "Edit Profile"= "แก้ไขโปรไฟล์";
@@ -1007,3 +1007,11 @@
 "PSkip" = "ข้าม";
 "PDone" = "เรียบร้อย";
 
+"Share this post" = "แชร์โพสต์";
+
+"Coffee" = "กาแฟ";
+"Pizza" = "พิซซ่า";
+"Night Club" = "ไนท์คลับ";
+"Sushi" = "ซูชิ";
+"Museum" = "พิพิธภัณฑ์";
+"Hiking" = "เดินป่า";

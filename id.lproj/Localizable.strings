@@ -761,8 +761,8 @@
 ""= "";
 "Log out"= "Keluar";
 "Are you sure you want to sign out of Seeties?"= "Anda yakin akan keluar dari Seeties?";
-"Maybe not."= "Tidak";
-"Yeah!"= "Ya";
+"Maybe not.."= "Tidak";
+"Yeah!!"= "Ya";
 ""= "";
 ""= "";
 "Edit Profile"= "Sunting Profil";
@@ -1005,7 +1005,12 @@
 "PSkip" = "Lewati";
 "PDone" = "Selesai";
 
+"Share this post" = "Bagikan konten ini";
 
-
-
+"Coffee" = "Coffee";
+"Pizza" = "Pizza";
+"Night Club" = "Night Club";
+"Sushi" = "Sushi";
+"Museum" = "Museum";
+"Hiking" = "Hiking";
 

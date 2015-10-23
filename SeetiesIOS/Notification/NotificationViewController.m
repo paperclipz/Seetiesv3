@@ -31,17 +31,17 @@
     TitleLabel.frame = CGRectMake(15, 20, screenWidth - 30, 44);
     ShowActivity.frame = CGRectMake(screenWidth - 20 - 15, 32, 20, 20);
     
-    ShowNoDataText_1.frame = CGRectMake(15, (screenHeight / 2) - 31 - 20 - 21, screenWidth - 30, 21);
-    ShowNoDataText_2.frame = CGRectMake((screenWidth/2) - 126, (screenHeight / 2) - 31, 253, 62);
+    ShowNoDataText_1.frame = CGRectMake(15, ((screenHeight-130) / 2) - 31 - 20 - 21 - 30, screenWidth - 30, 21);
+    ShowNoDataText_2.frame = CGRectMake((screenWidth/2) - 126, ((screenHeight-130) / 2) - 31 - 30 - 20, 253, 40);
     ShowNoDataText_1.text = CustomLocalisedString(@"NoNotification", nil);
     ShowNoDataText_2.text = CustomLocalisedString(@"NoNotificationDetail", nil);
 
-    MainScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight - 104);
+    MainScroll.frame = CGRectMake(0, 44, screenWidth, screenHeight - 114);
     MainScroll.alwaysBounceVertical = YES;
     MainScroll.backgroundColor = [UIColor whiteColor];
     TitleLabel.text = LocalisedString(@"Activity");
     ShowNoDataView.hidden = YES;
-    ShowNoDataView.frame = CGRectMake(0, 0, screenWidth, screenHeight);
+    ShowNoDataView.frame = CGRectMake(0, 130, screenWidth, screenHeight - 130);
     NoDataImg.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     DataUrl = [[UrlDataClass alloc]init];
     
@@ -177,6 +177,11 @@
             NSDictionary *GetAllData = [res valueForKey:@"data"];
             NSDictionary *GetNotificationsData = [GetAllData valueForKey:@"notifications"];
             
+            CheckNotificationData = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"total_notifications"]];
+            if ([CheckNotificationData isEqualToString:@"0"]) {
+                ShowNoDataView.hidden = NO;
+            }
+            
             PostIDArray = [[NSMutableArray alloc]init];
             TypeArray = [[NSMutableArray alloc]init];
             UserThumbnailArray = [[NSMutableArray alloc]init];
@@ -248,6 +253,13 @@
             
             NSDictionary *GetAllData = [res valueForKey:@"data"];
             NSDictionary *GetActivitiesData = [GetAllData valueForKey:@"activities"];
+            
+            CheckFollowData = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"total_activities"]];
+            if ([CheckFollowData isEqualToString:@"0"]) {
+                ShowNoDataView.hidden = NO;
+            }else{
+                ShowNoDataView.hidden = YES;
+            }
             
             Following_PostIDArray = [[NSMutableArray alloc]init];
             Following_TypeArray = [[NSMutableArray alloc]init];
@@ -333,7 +345,7 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     //MainScroll.backgroundColor = [UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0];
     
-    GetHeight += 20;
+    GetHeight += 15;
     
     NSString *TempStringPosts = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Following")];
     NSString *TempStringPeople = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Notifications")];
@@ -348,7 +360,7 @@
                                                            forKey:NSFontAttributeName];
     [ProfileControl setTitleTextAttributes:attributes
                                   forState:UIControlStateNormal];
-    [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
+    [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:41.0f/255.0f green:182.0f/255.0f blue:246.0f/255.0f alpha:1.0]];
     [MainScroll addSubview:ProfileControl];
     
     GetHeight += 49;
@@ -383,22 +395,38 @@
     switch (segment.selectedSegmentIndex) {
         case 0:
             NSLog(@"Following view click");
-            FollowingView.hidden = NO;
-            NotificationsView.hidden = YES;
-          //  [self InitFollowingDataView];
-            CGSize contentSize = MainScroll.frame.size;
-            contentSize.height = GetHeight + FollowingView.frame.size.height;
-            MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-            MainScroll.contentSize = contentSize;
+            
+            if ([CheckFollowData isEqualToString:@"0"]) {
+                ShowNoDataView.hidden = NO;
+            }else{
+                ShowNoDataView.hidden = YES;
+                
+                FollowingView.hidden = NO;
+                NotificationsView.hidden = YES;
+                
+                //  [self InitFollowingDataView];
+                CGSize contentSize = MainScroll.frame.size;
+                contentSize.height = GetHeight + FollowingView.frame.size.height;
+                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+                MainScroll.contentSize = contentSize;
+            }
+
             break;
         case 1:
             NSLog(@"Notifications view click");
-            FollowingView.hidden = YES;
-            NotificationsView.hidden = NO;
-            CGSize contentSize1 = MainScroll.frame.size;
-            contentSize1.height = GetHeight + NotificationsView.frame.size.height;
-            MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-            MainScroll.contentSize = contentSize1;
+            if ([CheckNotificationData isEqualToString:@"0"]) {
+                ShowNoDataView.hidden = NO;
+            }else{
+                ShowNoDataView.hidden = YES;
+                
+                FollowingView.hidden = YES;
+                NotificationsView.hidden = NO;
+                CGSize contentSize1 = MainScroll.frame.size;
+                contentSize1.height = GetHeight + NotificationsView.frame.size.height;
+                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+                MainScroll.contentSize = contentSize1;
+            }
+
           //  [self InitNotificationsDataView];
             
             break;
@@ -613,6 +641,9 @@
 }
 
 -(void)InitNotificationsDataView{
+    for (UIView *subview in NotificationsView.subviews) {
+        [subview removeFromSuperview];
+    }
     //CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
@@ -908,6 +939,7 @@
 }
 - (void)testRefresh:(UIRefreshControl *)refreshControl_
 {
+    ShowNoDataView.hidden = YES;
     refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@""];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -921,7 +953,7 @@
            // refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdate];
             CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
             CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-            MainScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight - 104);
+            MainScroll.frame = CGRectMake(0, 44, screenWidth, screenHeight - 114);
             MainScroll.alwaysBounceVertical = YES;
             for (UIView *subview in MainScroll.subviews) {
                 [subview removeFromSuperview];
