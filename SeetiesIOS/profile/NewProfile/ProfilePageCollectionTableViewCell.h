@@ -12,4 +12,6 @@
 +(int)getHeight;
 -(void)initData:(CollectionModel*)model;
 
+@property(nonatomic,copy)VoidBlock btnEditClickedBlock;
+
 @end

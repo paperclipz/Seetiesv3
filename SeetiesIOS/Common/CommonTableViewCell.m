@@ -14,12 +14,6 @@
     // Initialization code
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -48,4 +42,12 @@
 
 }
 
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+    
+    UIView * selectedBackgroundView = [[UIView alloc] init];
+    UIColor *color = [[UIColor alloc] initWithRed:0.0 green:0.0 blue:0.0 alpha:0.05];
+    [selectedBackgroundView setBackgroundColor:color]; // set color here
+    [self setSelectedBackgroundView:selectedBackgroundView];
+}
 @end

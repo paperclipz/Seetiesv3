@@ -29,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblUserName;
 @property (weak, nonatomic) IBOutlet UILabel *lblFollowing;
 @property (weak, nonatomic) IBOutlet UILabel *lblLocation;
+@property (weak, nonatomic) IBOutlet UILabel *lblDescription;
 @property (strong, nonatomic) UIImageView *backgroundImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *ibImgProfilePic;
 @property (strong, nonatomic) IBOutlet UIView *ibTopContentView;
@@ -51,6 +52,17 @@
 @end
 
 @implementation ProfileViewController
+- (IBAction)btnShareClicked:(id)sender {
+    
+    [self.navigationController pushViewController:self.settingsViewController animated:YES];
+}
+
+- (IBAction)btnSettingClicked:(id)sender {
+    
+    SLog(@"btnSettingClicked");
+    [self.navigationController pushViewController:self.settingsViewController animated:YES];
+
+}
 - (IBAction)btnSegmentedControlClicked:(id)sender {
 }
 
@@ -58,9 +70,10 @@
     [super viewDidLoad];
     [self initData];
     [self initSelfView];
+    [self requestServerForUserInfo];
     [self requestServerForUserCollection];
     [self requestServerForUserPost];
-    [self requestServerForUserLikes];
+   // [self requestServerForUserLikes];
     
     // Do any additional setup after loading the view from its nib.
 }
@@ -101,6 +114,29 @@
 
 //    self.ibImgProfilePic.frame = CGRectMake(self.ibImgProfilePic.frame.origin.x, self.ibImgProfilePic.frame.origin.y - self.ibImgProfilePic.frame.size.height/2, self.ibImgProfilePic.frame.size.width, self.ibImgProfilePic.frame.size.height);
     [self adjustTableView];
+    
+    
+    [self addSettingAndShareView];
+
+}
+
+-(void)addSettingAndShareView// need to add after
+{
+    UIButton* btnShare = [[UIButton alloc]initWithFrame:CGRectMake(_backgroundImageView.frame.size.width - 40 -20, 20, 40, 40)];
+    [btnShare setImage:[UIImage imageNamed:@"ProfileShareIcon.png"] forState:UIControlStateNormal];
+    
+    UIButton* btnSetting = [[UIButton alloc]initWithFrame:CGRectMake(btnShare.frame.origin.x - btnShare.frame.size.width , 20, 40, 40)];
+    [btnSetting setImage:[UIImage imageNamed:@"ProfileSettingsIcon.png"] forState:UIControlStateNormal];
+    
+    
+    [btnSetting addTarget:self action:@selector(btnSettingClicked:) forControlEvents: UIControlEventTouchUpInside];
+     [btnShare addTarget:self action:@selector(btnShareClicked:) forControlEvents: UIControlEventTouchUpInside];
+    
+    [self.ibScrollView.parallaxView addSubview:btnSetting];
+    [self.ibScrollView.parallaxView bringSubviewToFront:btnSetting];
+    
+    [self.ibScrollView.parallaxView addSubview:btnShare];
+    [self.ibScrollView.parallaxView bringSubviewToFront:btnShare];
 }
 
 -(void)adjustTableView
@@ -127,10 +163,13 @@
     if (!_backgroundImageView) {
         _backgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 0, 212)];
         [_backgroundImageView adjustToScreenWidth];
+        
     }
     
     return _backgroundImageView;
 }
+
+
 #pragma mark - Cell
 -(void)initProfilePageCell
 {
@@ -427,8 +466,21 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        [self.navigationController pushViewController:self.collectionListingViewController animated:YES];
+        
+        CollectionModel* collModel = self.userCollectionsModel.arrCollections[indexPath.row];
+        [self showCollectionViewWithCollectionID:collModel.collection_id];
+      
     }
+}
+
+#pragma  mark - Show Collection - Post - Likes
+-(void)showCollectionViewWithCollectionID:(NSString*)collID
+{
+    _editCollectionViewController = nil;
+    [LoadingManager show];
+    [self.editCollectionViewController initData:collID];
+    [LoadingManager show];
+    [self.navigationController pushViewController:self.editCollectionViewController animated:YES];
 }
 
 
@@ -453,6 +505,24 @@
 }
 
 #pragma mark - Declaration
+
+-(SettingsViewController*)settingsViewController
+{
+    if (!_settingsViewController) {
+        _settingsViewController = [SettingsViewController new];
+    }
+    
+    return _settingsViewController;
+}
+
+-(EditCollectionViewController*)editCollectionViewController
+{
+    if (!_editCollectionViewController) {
+        _editCollectionViewController = [EditCollectionViewController new];
+    }
+    
+    return _editCollectionViewController;
+}
 
 -(CollectionListingViewController*)collectionListingViewController
 {
@@ -567,7 +637,7 @@
     self.lblUserName.text = self.userProfileModel.name;
     [self setFollowing:self.userProfileModel.follower_count Following:self.userProfileModel.following_count];
     self.lblLocation.text = self.userProfileModel.location;
-
+    self.lblDescription.text = self.userProfileModel.profileDescription;
 }
 
 -(void)assignCollectionData

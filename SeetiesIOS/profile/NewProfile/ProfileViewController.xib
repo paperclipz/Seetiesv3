@@ -13,6 +13,7 @@
                 <outlet property="ibTableView" destination="y6b-tE-4Np" id="9jF-Gj-LTU"/>
                 <outlet property="ibTagControlView" destination="6jE-6p-qpf" id="6jN-4R-XgL"/>
                 <outlet property="ibTopContentView" destination="lkl-HZ-BhG" id="gLb-Dq-AmE"/>
+                <outlet property="lblDescription" destination="zyw-i4-9Jw" id="NVA-8Q-gGA"/>
                 <outlet property="lblFollowing" destination="oN1-eJ-gY4" id="Yoi-gf-dcM"/>
                 <outlet property="lblLocation" destination="5wG-lf-rn3" id="C5G-R7-uaS"/>
                 <outlet property="lblUserName" destination="lZI-xc-IZb" id="ceF-RM-owm"/>
@@ -44,7 +45,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lkl-HZ-BhG">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="312"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="238"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="W0N-44-6zb">
                             <rect key="frame" x="20" y="-50" width="100" height="100"/>
@@ -120,7 +121,7 @@
                             </constraints>
                         </scrollView>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="lZI-xc-IZb" secondAttribute="trailing" constant="20" id="0w2-aG-bhI"/>
                         <constraint firstItem="JJy-SB-8Oo" firstAttribute="leading" secondItem="kzZ-ZA-GD0" secondAttribute="leading" id="1AB-kB-co7"/>
@@ -132,7 +133,7 @@
                         <constraint firstAttribute="trailing" secondItem="5wG-lf-rn3" secondAttribute="trailing" constant="15" id="KFo-2c-OGj"/>
                         <constraint firstItem="oN1-eJ-gY4" firstAttribute="centerY" secondItem="kzZ-ZA-GD0" secondAttribute="centerY" id="MCn-nQ-y60"/>
                         <constraint firstItem="JJy-SB-8Oo" firstAttribute="top" secondItem="kzZ-ZA-GD0" secondAttribute="bottom" constant="10" id="Oka-Y5-ER6"/>
-                        <constraint firstAttribute="height" constant="312" id="S6J-P9-Jdf"/>
+                        <constraint firstAttribute="height" constant="238" id="S6J-P9-Jdf"/>
                         <constraint firstItem="kzZ-ZA-GD0" firstAttribute="top" secondItem="lZI-xc-IZb" secondAttribute="bottom" constant="10" id="Ud1-v6-cbj"/>
                         <constraint firstItem="W0N-44-6zb" firstAttribute="top" secondItem="lkl-HZ-BhG" secondAttribute="top" constant="-50" id="WtW-PJ-7Kc"/>
                         <constraint firstItem="6jE-6p-qpf" firstAttribute="leading" secondItem="lkl-HZ-BhG" secondAttribute="leading" constant="15" id="cHR-ep-5id"/>
@@ -156,14 +157,15 @@
                         </mask>
                     </variation>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="222" sectionHeaderHeight="20" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="y6b-tE-4Np">
-                    <rect key="frame" x="10" y="237" width="302" height="330"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="222" sectionHeaderHeight="20" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="y6b-tE-4Np">
+                    <rect key="frame" x="10" y="238" width="302" height="329"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="y6b-tE-4Np" firstAttribute="leading" secondItem="3Pb-zr-5rR" secondAttribute="leading" constant="10" id="3na-yN-agg"/>
+                <constraint firstItem="y6b-tE-4Np" firstAttribute="top" secondItem="lkl-HZ-BhG" secondAttribute="bottom" id="5cj-iJ-h7p"/>
                 <constraint firstAttribute="trailing" secondItem="y6b-tE-4Np" secondAttribute="trailing" constant="8" id="Pvw-Ir-M5R"/>
                 <constraint firstItem="y6b-tE-4Np" firstAttribute="top" secondItem="6jE-6p-qpf" secondAttribute="bottom" constant="10" id="ZaI-al-HQE"/>
                 <constraint firstAttribute="trailing" secondItem="lkl-HZ-BhG" secondAttribute="trailing" id="gTR-f8-dwt"/>
@@ -172,6 +174,11 @@
                 <constraint firstAttribute="bottom" secondItem="y6b-tE-4Np" secondAttribute="bottom" constant="1" id="tHy-rH-8By"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="ZaI-al-HQE"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="897" y="158"/>
         </view>
     </objects>

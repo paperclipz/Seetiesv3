@@ -47,7 +47,13 @@
 }
 - (IBAction)btnBackClicked:(id)sender {
    
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    if (self.navigationController) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else{
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 - (void)viewDidLoad {
@@ -67,17 +73,21 @@
 {
     [super viewDidAppear:NO];
     
+    [self reloadData];
+    
+}
+
+-(void)reloadData
+{
     [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
         
         self.lblPostTitle.text = self.collectionModel.name;
         self.lblDesc.text = self.collectionModel.postDesc;
-        self.lblNumberOfRecommendation.text = [NSString stringWithFormat:@"%lu %@",(unsigned long)self.arrList.count,LocalisedString(@"Recommendations")];
-
+        self.lblNumberOfRecommendation.text = [NSString stringWithFormat:@"%d %@",collectionDetailTotal_posts,LocalisedString(@"Recommendations")];
+        
         
     } completion:nil];
-    
 }
-
 
 -(void)initData:(NSString*)collectionID
 {
@@ -295,6 +305,9 @@
             collectionDetailTotal_page = self.collectionModel.total_page;
             [self.arrList addObjectsFromArray:self.collectionModel.arrayPost];
             [self.ibTableView reloadData];
+            
+            [self reloadData];
+
             
         } failBlock:^(id object) {
             

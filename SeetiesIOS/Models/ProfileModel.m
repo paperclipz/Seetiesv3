@@ -15,6 +15,15 @@
     return YES;
 }
 
++(JSONKeyMapper*)keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{
+                                                       @"description": @"profileDescription"
+                                                       
+                                                       }];
+}
+
+
 @end
 
 @implementation ProfilePostModel

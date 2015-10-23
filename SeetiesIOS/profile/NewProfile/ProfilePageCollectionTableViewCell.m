@@ -24,6 +24,8 @@
     // Drawing code
 }
 */
+- (IBAction)btnEditClicked:(id)sender {
+}
 
 -(void)initSelfView
 {

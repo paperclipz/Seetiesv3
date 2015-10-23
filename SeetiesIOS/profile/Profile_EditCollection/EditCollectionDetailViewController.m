@@ -17,6 +17,7 @@
 @interface EditCollectionDetailViewController ()<TLTagsControlDelegate>
 {
 
+    __weak IBOutlet NSLayoutConstraint *privacyViewHeight;
     __weak IBOutlet UIButton *btnSetPrivate;
     __weak IBOutlet UILabel *lblSetAsPublic;
     __weak IBOutlet UIView *ibPrivacyView;
@@ -73,18 +74,15 @@
     [super viewDidLoad];
     
     [self initSelfView];
+    
     self.txtName.enabled = !self.collectionModel.is_default;
     self.txtName.text = self.collectionModel.name;
     self.txtDesc.text = self.collectionModel.postDesc;
     
-    if (self.collectionModel.isPrivate) {
-        btnSetPrivate.selected = !self.collectionModel.isPrivate;
-        btnSetPrivate.enabled = YES;
-    }
-    else{
-        btnSetPrivate.enabled = false;
-    }
-    
+    privacyViewHeight.constant = self.collectionModel.isPrivate?90:0;
+    ibPrivacyView.hidden = !self.collectionModel.isPrivate;
+    btnSetPrivate.selected = !self.collectionModel.isPrivate;
+
     [self getCounterText:self.lblWordCountTitle maxCount:TITLE_MAX_COUNT textInputCount:(int)self.txtName.text.length];
     [self getCounterText:self.lblWordCountDesc maxCount:DESC_MAX_COUNT textInputCount:(int)self.txtDesc.text.length];
     [Utils setRoundBorder:ibPrivacyView color:TWO_ZERO_FOUR_COLOR borderRadius:0];

@@ -10,12 +10,17 @@
 #import "TLTagsControl.h"
 #import "CollectionViewController.h"
 #import "CollectionListingViewController.h"
+#import "EditCollectionViewController.h"
+#import "SettingsViewController.h"
+
 
 @interface ProfileViewController : BaseViewController<TLTagsControlDelegate>
 
 
 @property(nonatomic,strong)CollectionViewController* collectionViewController;
 @property(nonatomic,strong)CollectionListingViewController* collectionListingViewController;
-//@property(nonatomic,strong)UINavigationController* navCollectionListingViewController;
+@property(nonatomic,strong)EditCollectionViewController* editCollectionViewController;
+@property(nonatomic,strong)SettingsViewController* settingsViewController;
+
 
 @end

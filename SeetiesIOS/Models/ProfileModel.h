@@ -18,6 +18,8 @@
 @property(nonatomic,assign)int follower_count;
 @property(nonatomic,strong)NSString* username;
 @property(nonatomic,strong)NSString* name;
+@property(nonatomic,strong)NSString* profileDescription;
+
 
 @end
 

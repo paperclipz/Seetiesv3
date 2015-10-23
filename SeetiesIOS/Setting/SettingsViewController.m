@@ -94,7 +94,13 @@
 //    transition.subtype = kCATransitionFromLeft;
 //    [self.view.window.layer addAnimation:transition forKey:nil];
     //[self presentViewController:ListingDetail animated:NO completion:nil];
-    [self dismissViewControllerAnimated:NO completion:nil];
+    
+    if (self.navigationController) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else{
+        [self dismissViewControllerAnimated:NO completion:nil];
+    }
 }
 -(void)SendUserLogoutToServer{
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
