@@ -91,6 +91,7 @@
     NSMutableArray *CollectionData_TitleArray;
     NSMutableArray *CollectionData_DescriptionArray;
     NSMutableArray *CollectionData_PhotoArray;
+    NSMutableArray *CollectionData_IsPrivateArray;
     
     UIActivityIndicatorView *ShowActivityLike;
     UIActivityIndicatorView *ShowActivityPosts;

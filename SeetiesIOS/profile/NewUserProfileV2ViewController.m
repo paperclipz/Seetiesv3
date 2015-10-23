@@ -620,10 +620,12 @@
                 ShowImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
                 ShowImage.layer.cornerRadius=5;
                 ShowImage.layer.masksToBounds = YES;
+                ShowImage.layer.borderWidth = 1;
+                ShowImage.layer.borderColor=[[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f] CGColor];
                 [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
                 NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[SplitArray objectAtIndex:z]];
                 if ([FullImagesURL_First length] == 0) {
-                    ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
+                    ShowImage.image = [UIImage imageNamed:@"NoPhotoInCollection.png"];
                 }else{
                     NSURL *url = [NSURL URLWithString:FullImagesURL_First];
                     ShowImage.imageURL = url;

@@ -949,10 +949,12 @@
                 ShowImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
                 ShowImage.layer.cornerRadius=5;
                 ShowImage.layer.masksToBounds = YES;
+                ShowImage.layer.borderWidth = 1;
+                ShowImage.layer.borderColor=[[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f] CGColor];
                 [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
                 NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[SplitArray objectAtIndex:z]];
                 if ([FullImagesURL_First length] == 0) {
-                    ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
+                    ShowImage.image = [UIImage imageNamed:@"NoPhotoInCollection.png"];
                 }else{
                     NSURL *url = [NSURL URLWithString:FullImagesURL_First];
                     ShowImage.imageURL = url;
@@ -960,12 +962,33 @@
                 [CollectionView addSubview:ShowImage];
             }
             
-            UILabel *ShowExplore = [[UILabel alloc]init];
-            ShowExplore.frame = CGRectMake(25, heightcheck + 5 + FinalWidth + 20 + i, screenWidth - 100, 20);
-            ShowExplore.text = [CollectionData_TitleArray objectAtIndex:i];
-            ShowExplore.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-            ShowExplore.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:18];
-            [CollectionView addSubview:ShowExplore];
+            
+            NSString *GetIsPrivate = [[NSString alloc]initWithFormat:@"%@",[CollectionData_IsPrivateArray objectAtIndex:i]];
+            
+            if ([GetIsPrivate isEqualToString:@"true"]) {
+                UIImageView *ShowPrivateIcon = [[UIImageView alloc]init];
+                ShowPrivateIcon.frame = CGRectMake(22, heightcheck + 4 + FinalWidth + 20 + i, 17, 20);
+                ShowPrivateIcon.image = [UIImage imageNamed:@"PrivateCollectionIcon.png"];
+                [CollectionView addSubview:ShowPrivateIcon];
+                
+                UILabel *ShowExplore = [[UILabel alloc]init];
+                ShowExplore.frame = CGRectMake(42 + 5, heightcheck + 5 + FinalWidth + 20 + i, screenWidth - 123, 20);
+                ShowExplore.text = [CollectionData_TitleArray objectAtIndex:i];
+                ShowExplore.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+                ShowExplore.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:18];
+                [CollectionView addSubview:ShowExplore];
+            }else{
+                UILabel *ShowExplore = [[UILabel alloc]init];
+                ShowExplore.frame = CGRectMake(25, heightcheck + 5 + FinalWidth + 20 + i, screenWidth - 123, 20);
+                ShowExplore.text = [CollectionData_TitleArray objectAtIndex:i];
+                ShowExplore.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+                ShowExplore.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:18];
+                [CollectionView addSubview:ShowExplore];
+            }
+            
+
+            
+
             
             UILabel *ShowSubExplore = [[UILabel alloc]init];
             ShowSubExplore.frame = CGRectMake(25, heightcheck + 5 + FinalWidth + 40 + i, screenWidth - 100, 20);
@@ -1664,6 +1687,7 @@
                 DataCount_Collection = 0;
                 CollectionData_TitleArray = [[NSMutableArray alloc]init];
                 CollectionData_DescriptionArray = [[NSMutableArray alloc]init];
+                CollectionData_IsPrivateArray = [[NSMutableArray alloc]init];
             }else{
             }
             
@@ -1676,6 +1700,8 @@
                 [CollectionData_TitleArray addObject:name];
                 NSString *description = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"description"]];
                 [CollectionData_DescriptionArray addObject:description];
+                NSString *isprivate = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"is_private"]];
+                [CollectionData_IsPrivateArray addObject:isprivate];
             }
             NSDictionary *GetPostsData = [GetAllData valueForKey:@"posts"];
             NSArray *PhotoData = [GetPostsData valueForKey:@"photos"];
@@ -1695,7 +1721,7 @@
             NSLog(@"CollectionData_TitleArray is %@",CollectionData_TitleArray);
             NSLog(@"CollectionData_DescriptionArray is %@",CollectionData_DescriptionArray);
             NSLog(@"CollectionData_PhotoArray is %@",CollectionData_PhotoArray);
-            
+            NSLog(@"CollectionData_IsPrivateArray is %@",CollectionData_IsPrivateArray);
             
             DataCount_Collection = DataTotal_Collection;
             DataTotal_Collection = [CollectionData_IDArray count];

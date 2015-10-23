@@ -493,13 +493,15 @@
     NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[SplitArray objectAtIndex:0]];
     AsyncImageView *BackgroundImg = [[AsyncImageView alloc]init];
     BackgroundImg.frame = CGRectMake(0, -20, screenWidth, 140);
-    BackgroundImg.image = [UIImage imageNamed:@"NoImage.png"];
-    BackgroundImg.contentMode = UIViewContentModeScaleAspectFill;
-    BackgroundImg.layer.masksToBounds = YES;
+  //  BackgroundImg.image = [UIImage imageNamed:@"NoPhotoInCollection.png"];
+    NSLog(@"FullImagesURL_First is %@",FullImagesURL_First);
     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:BackgroundImg];
-    if ([FullImagesURL_First length] == 0) {
-        BackgroundImg.image = [UIImage imageNamed:@"NoImage.png"];
+    if ([FullImagesURL_First length] == 0 || [FullImagesURL_First isEqualToString:@"(null)"] || [FullImagesURL_First isEqualToString:@"<null>"]) {
+        BackgroundImg.image = [UIImage imageNamed:@"NoPhotoInCollection.png"];
+        BackgroundImg.contentMode = UIViewContentModeScaleAspectFit;
     }else{
+        BackgroundImg.contentMode = UIViewContentModeScaleAspectFill;
+        BackgroundImg.layer.masksToBounds = YES;
         NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL_First];
         BackgroundImg.imageURL = url_NearbySmall;
     }

@@ -329,7 +329,7 @@
     NSString *dataString;
     if ([NoteTextView.text isEqualToString:LocalisedString(@"Leave a note")] || [NoteTextView.text length] == 0) {
         NoteTextView.text = @"";
-        dataString = [[NSString alloc]initWithFormat:@"token=%@&posts[0][id]=%@T",GetExpertToken,GetPostID];
+        dataString = [[NSString alloc]initWithFormat:@"token=%@&posts[0][id]=%@",GetExpertToken,GetPostID];
     }else{
 //        NSString *TempString = NoteTextView.text;
 //        TempString = [TempString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
