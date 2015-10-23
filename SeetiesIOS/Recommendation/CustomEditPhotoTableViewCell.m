@@ -118,7 +118,9 @@
     }
     else if(self.model.imageURL){
         
-        [self.ibImage sd_setImageWithURL:[NSURL URLWithString:self.model.imageURL]];
+        [self.ibImage sd_setImageWithURL:[NSURL URLWithString:self.model.imageURL]completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            self.model.image = image;
+        }];
     }
     self.txtDescription.text = self.model.caption;
     [self getCounterText:self.lblWordCount maxCount:MAX_TEXT_COUNT textInputCount:(int)self.self.txtDescription.text.length];
