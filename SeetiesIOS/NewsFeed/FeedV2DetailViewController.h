@@ -17,7 +17,8 @@
     
     IBOutlet UIScrollView *MainScroll;
     IBOutlet UIScrollView *MImageScroll;
-    IBOutlet UIPageControl *PageControlOn;
+    //IBOutlet UIPageControl *PageControlOn;
+    IBOutlet UILabel *ShowImageCount;
     IBOutlet UIView *ShowbarView;
     IBOutlet UIActivityIndicatorView *ShowActivity;
     IBOutlet UIView *ShowDownBarView;
@@ -217,6 +218,8 @@
     
     int CheckNearbyPost;
     int GetPlaceNameHeight;
+    
+    NSInteger ImageCount;
     
 }
 

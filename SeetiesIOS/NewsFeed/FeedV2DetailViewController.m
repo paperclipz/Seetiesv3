@@ -39,7 +39,8 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     ShareButton.frame = CGRectMake(screenWidth - 55, 0, 55, 64);
     ShareIcon.frame = CGRectMake(screenWidth - 38 - 5, 22, 38, 38);
-    PageControlOn.frame = CGRectMake(15, 300, screenWidth - 30, 37);
+   // PageControlOn.frame = CGRectMake(15, 300, screenWidth - 30, 37);
+    ShowImageCount.frame = CGRectMake(15, 300, screenWidth - 30, 30);
     LocationButton.frame = CGRectMake(screenWidth - 85 - 15, 20, 60, 44);
     
     ShowTopTitle.frame = CGRectMake(35, 32, screenWidth - 155, 24);
@@ -81,7 +82,8 @@
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     
     [MainScroll addSubview:MImageScroll];
-    [MainScroll addSubview:PageControlOn];
+   // [MainScroll addSubview:PageControlOn];
+    [MainScroll addSubview:ShowImageCount];
     
   //  [self.view addSubview:ShowbarView];
     //ShareButton.hidden = YES;
@@ -91,6 +93,7 @@
     CountLanguage = 0;
     CheckNearbyPost = 0;
     GetPlaceNameHeight = 0;
+    ImageCount = 0;
     LanguageButton.hidden = YES;
     NewLanguageButton.hidden = YES;
     TestingUse = NO;
@@ -1515,7 +1518,8 @@
     
     
     [MainScroll addSubview:MImageScroll];
-    [MainScroll addSubview:PageControlOn];
+    //[MainScroll addSubview:PageControlOn];
+    
     
     UIImageView *ShowOverlayImg = [[UIImageView alloc]init];
     ShowOverlayImg.image = [UIImage imageNamed:@"PostOverlay.png"];
@@ -1524,6 +1528,8 @@
     ShowOverlayImg.layer.masksToBounds = YES;
     //ShowOverlayImg.layer.cornerRadius = 5;
     [MainScroll addSubview:ShowOverlayImg];
+    
+    [MainScroll addSubview:ShowImageCount];
     
     for (int i = 0 ; i < [UrlArray count]; i++) {
         ImageScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0+ i *screenWidth, 0, screenWidth, 360)];
@@ -1605,8 +1611,11 @@
     NSInteger productcount = [UrlArray count];
     MImageScroll.contentSize = CGSizeMake(productcount * screenWidth, 340);
     
-    PageControlOn.currentPage = 0;
-    PageControlOn.numberOfPages = productcount;
+    //PageControlOn.currentPage = 0;
+    //PageControlOn.numberOfPages = productcount;
+    NSString *TempCount = [[NSString alloc]initWithFormat:@"1/%li",(long)productcount];
+    ImageCount = productcount;
+    ShowImageCount.text = TempCount;
 
     int GetHeightCheck = 363;
     
@@ -2662,9 +2671,11 @@
         //SeeAllButton_Nearby.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
         
         [MainScroll addSubview:SeeAllButton_Nearby];
+        
+        GetFinalHeight += 51;
     }
     
-    GetFinalHeight += 51;
+    
 
     MainScroll.contentSize = CGSizeMake(screenWidth, GetFinalHeight + 50);
     
@@ -2940,7 +2951,9 @@
         // Update the page when more than 50% of the previous/next page is visible
         CGFloat pageWidth = MImageScroll.frame.size.width;
         int page = floor((MImageScroll.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-        PageControlOn.currentPage = page;
+      //  PageControlOn.currentPage = page;
+        NSString *TempCount = [[NSString alloc]initWithFormat:@"%i / %li",page + 1,(long)ImageCount];
+        ShowImageCount.text = TempCount;
     }else{
         
         float HeightCheck = MainScroll.contentOffset.y;

@@ -577,7 +577,7 @@
         NSString *GetString = [[NSString alloc]initWithFormat:@"%@",[Following_MessageArray objectAtIndex:i]];
         GetString = [GetString stringByAppendingString:[NSString stringWithFormat:@"<style>body{font-family: '%@'; font-size:%dpx; color:#666666;}</style>",
                                                   @"ProximaNovaSoft-Regular",
-                                                  14]];
+                                                  15]];
         NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[GetString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
         ShowMessage.attributedText = attrStr;//[self convertHtmlPlainText:GetString]
         NSString *start = [[NSString alloc]initWithFormat:@"%@",[Following_DateArray objectAtIndex:i]];
@@ -790,7 +790,7 @@
         NSString *GetString = [[NSString alloc]initWithFormat:@"%@",[MessageArray objectAtIndex:i]];
         GetString = [GetString stringByAppendingString:[NSString stringWithFormat:@"<style>body{font-family: '%@'; font-size:%dpx; color:#666666;}</style>",
                                                         @"ProximaNovaSoft-Regular",
-                                                        14]];
+                                                        15]];
         NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[GetString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
         ShowMessage.attributedText = attrStr;//[self convertHtmlPlainText:GetString]
         NSString *start = [[NSString alloc]initWithFormat:@"%@",[DateArray objectAtIndex:i]];
