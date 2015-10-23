@@ -569,7 +569,7 @@
                 
                 NSString *TempDistanceString = [[NSString alloc]initWithFormat:@"%@",[arrDistance objectAtIndex:i]];
                 
-                if ([TempDistanceString isEqualToString:@"0"]) {
+                if ([TempDistanceString isEqualToString:@"-1"]) {
                     
                 }else{
                     CGFloat strFloat = (CGFloat)[TempDistanceString floatValue] / 1000;
@@ -987,7 +987,7 @@
                 
                 NSString *TempDistanceString = [[NSString alloc]initWithFormat:@"%@",[arrDistance objectAtIndex:i]];
                 
-                if ([TempDistanceString isEqualToString:@"0"]) {
+                if ([TempDistanceString isEqualToString:@"-1"]) {
                     
                 }else{
                     CGFloat strFloat = (CGFloat)[TempDistanceString floatValue] / 1000;
@@ -1301,7 +1301,7 @@
                 
                 NSString *TempDistanceStringLocalQR = [[NSString alloc]initWithFormat:@"%@",[arrDistance objectAtIndex:i]];
                 
-                if ([TempDistanceStringLocalQR isEqualToString:@"0"]) {
+                if ([TempDistanceStringLocalQR isEqualToString:@"-1"]) {
                     
                 }else{
                     CGFloat strFloatLocalQR = (CGFloat)[TempDistanceStringLocalQR floatValue] / 1000;
@@ -2007,14 +2007,49 @@
                     NSString *GetImg = [[NSString alloc]initWithFormat:@"%@",[SplitArray_PostsImg objectAtIndex:i]];
                     NSArray *PostsImg = [GetImg componentsSeparatedByString:@","];
                     
-                    for (int z = 0; z < [PostsImg count]; z++) {
+                    
+                    for (int y = 0; y < 4; y++) {
                         AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
-                        ShowImage.frame = CGRectMake(15 + i * screenWidth +(z % 4) * SpaceWidth, 50 + 70, FinalWidth, FinalWidth);
-                       // ShowImage.image = [UIImage imageNamed:[PostsImg objectAtIndex:z]];
+                        ShowImage.frame = CGRectMake(15 + i * screenWidth +(y % 4) * SpaceWidth, 50 + 70, FinalWidth, FinalWidth);
+                        // ShowImage.image = [UIImage imageNamed:[PostsImg objectAtIndex:z]];
                         ShowImage.contentMode = UIViewContentModeScaleAspectFill;
                         ShowImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
                         ShowImage.layer.cornerRadius=5;
                         ShowImage.layer.masksToBounds = YES;
+                        ShowImage.layer.borderWidth = 1;
+                        ShowImage.layer.borderColor=[[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f] CGColor];
+                        
+                        switch (y) {
+                            case 0:
+                                ShowImage.backgroundColor = [UIColor colorWithRed:255.0f/255.0f green:231.0f/255.0f blue:142.0f/255.0f alpha:1.0f];
+                                break;
+                            case 1:
+                                ShowImage.backgroundColor = [UIColor colorWithRed:208.0f/255.0f green:164.0f/255.0f blue:125.0f/255.0f alpha:1.0f];
+                                break;
+                            case 2:
+                                ShowImage.backgroundColor = [UIColor colorWithRed:189.0f/255.0f green:109.0f/255.0f blue:107.0f/255.0f alpha:1.0f];
+                                break;
+                            case 3:
+                                ShowImage.backgroundColor = [UIColor colorWithRed:189.0f/255.0f green:137.0f/255.0f blue:72.0f/255.0f alpha:1.0f];
+                                break;
+                                
+                            default:
+                                break;
+                        }
+                        
+                        [SUserScrollview_Featured addSubview:ShowImage];
+                    }
+                    
+                    for (int z = 0; z < [PostsImg count]; z++) {
+                        AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
+                        ShowImage.frame = CGRectMake(15 + i * screenWidth +(z % 4) * SpaceWidth, 50 + 70, FinalWidth, FinalWidth);
+                        // ShowImage.image = [UIImage imageNamed:[PostsImg objectAtIndex:z]];
+                        ShowImage.contentMode = UIViewContentModeScaleAspectFill;
+                        ShowImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
+                        ShowImage.layer.cornerRadius=5;
+                        ShowImage.layer.masksToBounds = YES;
+                        ShowImage.layer.borderWidth = 1;
+                        ShowImage.layer.borderColor=[[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f] CGColor];
                         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
                         NSString *ImageData = [[NSString alloc]initWithFormat:@"%@",[PostsImg objectAtIndex:z]];
                         if ([ImageData length] == 0) {
@@ -2171,6 +2206,39 @@
                     NSString *GetImg = [[NSString alloc]initWithFormat:@"%@",[SplitArray_PostsImg objectAtIndex:i]];
                     NSArray *PostsImg = [GetImg componentsSeparatedByString:@","];
                     
+                    
+                    for (int y = 0; y < 4; y++) {
+                        AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
+                        ShowImage.frame = CGRectMake(15 + i * screenWidth +(y % 4) * SpaceWidth, 50 + 70, FinalWidth, FinalWidth);
+                        // ShowImage.image = [UIImage imageNamed:[PostsImg objectAtIndex:z]];
+                        ShowImage.contentMode = UIViewContentModeScaleAspectFill;
+                        ShowImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
+                        ShowImage.layer.cornerRadius=5;
+                        ShowImage.layer.masksToBounds = YES;
+                        ShowImage.layer.borderWidth = 1;
+                        ShowImage.layer.borderColor=[[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f] CGColor];
+                        
+                        switch (y) {
+                            case 0:
+                                ShowImage.backgroundColor = [UIColor colorWithRed:255.0f/255.0f green:231.0f/255.0f blue:142.0f/255.0f alpha:1.0f];
+                                break;
+                            case 1:
+                                ShowImage.backgroundColor = [UIColor colorWithRed:208.0f/255.0f green:164.0f/255.0f blue:125.0f/255.0f alpha:1.0f];
+                                break;
+                            case 2:
+                                ShowImage.backgroundColor = [UIColor colorWithRed:189.0f/255.0f green:109.0f/255.0f blue:107.0f/255.0f alpha:1.0f];
+                                break;
+                            case 3:
+                                ShowImage.backgroundColor = [UIColor colorWithRed:189.0f/255.0f green:137.0f/255.0f blue:72.0f/255.0f alpha:1.0f];
+                                break;
+                                
+                            default:
+                                break;
+                        }
+                        
+                        [SUserScrollview_Friend addSubview:ShowImage];
+                    }
+                    
                     for (int z = 0; z < [PostsImg count]; z++) {
                         AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
                         ShowImage.frame = CGRectMake(15 + i * screenWidth +(z % 4) * SpaceWidth, 50 + 70, FinalWidth, FinalWidth);
@@ -2179,6 +2247,8 @@
                         ShowImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
                         ShowImage.layer.cornerRadius=5;
                         ShowImage.layer.masksToBounds = YES;
+                        ShowImage.layer.borderWidth = 1;
+                        ShowImage.layer.borderColor=[[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f] CGColor];
                         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
                         NSString *ImageData = [[NSString alloc]initWithFormat:@"%@",[PostsImg objectAtIndex:z]];
                         if ([ImageData length] == 0) {
@@ -2188,6 +2258,7 @@
                             ShowImage.imageURL = url_NearbySmall;
                         }
                         [SUserScrollview_Friend addSubview:ShowImage];
+                        
                     }
                     
                     UIButton *OpenUserProfileButton = [[UIButton alloc]init];

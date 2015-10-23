@@ -97,7 +97,7 @@
     [SortImageArray addObject:@"Recent.png"];
     [SortImageArray addObject:@"Distance.png"];
     //First section data
-    NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:CustomLocalisedString(@"Popular", nil), CustomLocalisedString(@"MostRecent", nil), nil];
+    NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:CustomLocalisedString(@"Popular", nil), CustomLocalisedString(@"Distance", nil), nil];
     //NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:CustomLocalisedString(@"Popular", nil), CustomLocalisedString(@"MostRecent", nil),CustomLocalisedString(@"Distance", nil), nil];
     NSDictionary *firstItemsArrayDict = [NSDictionary dictionaryWithObject:firstItemsArray forKey:@"data"];
     [dataArray addObject:firstItemsArrayDict];
@@ -200,6 +200,17 @@
         
         // 4. Add the label to the header view
         [headerView addSubview:headerLabel];
+        
+        UIButton *ResetButton = [[UIButton alloc]init];
+        [ResetButton setSelected:YES];
+        ResetButton.frame = CGRectMake(tableView.frame.size.width - 115, 20, 100, 30);
+        [ResetButton setTitle:CustomLocalisedString(@"Reset", nil) forState:UIControlStateNormal];
+        ResetButton.backgroundColor = [UIColor clearColor];
+        [ResetButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+        [ResetButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15]];
+        [ResetButton addTarget:self action:@selector(ResetButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+        ResetButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+        [headerView addSubview:ResetButton];
         
         // 5. Finally return
         return headerView;
@@ -509,5 +520,24 @@
         
         [self dismissViewControllerAnimated:YES completion:nil];
     }
+}
+-(IBAction)ResetButtonOnClick:(id)sender{
+    NSLog(@"ResetButtonOnClick");
+    
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Filter_Feed_SortBy"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Filter_Feed_Category"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Filter_Explore_SortBy"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Filter_Explore_Category"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Filter_Search_SortBy"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Filter_Search_Category"];
+    
+    [SelectAllButton setTitle:CustomLocalisedString(@"SelectAll", nil) forState:UIControlStateNormal];
+    [SelectCategoryIDArray removeAllObjects];
+    [selectedIndexes removeAllObjects];
+    
+    checkedIndexPath_Sort = [NSIndexPath indexPathForRow:1 inSection:0];
+    GetSortStringData = @"2";
+    
+    [tblview reloadData];
 }
 @end

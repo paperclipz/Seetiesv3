@@ -78,7 +78,7 @@
         CurrentPage += 1;
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
-        NSString *FullString = [[NSString alloc]initWithFormat:@"%@search?token=%@&keyword=&sort=&lat=%@&lng=%@&page=%li&current_lat=%@&current_lng=%@",DataUrl.UserWallpaper_Url,GetExpertToken,GetLatdata,GetLongData,(long)CurrentPage,GetLatdata,GetLongData];
+        NSString *FullString = [[NSString alloc]initWithFormat:@"%@search?token=%@&keyword=&sort=3&lat=%@&lng=%@&page=%li&current_lat=%@&current_lng=%@",DataUrl.UserWallpaper_Url,GetExpertToken,GetLatdata,GetLongData,(long)CurrentPage,GetLatdata,GetLongData];
         
         
         NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
@@ -368,6 +368,8 @@
             }
             
             [ShowActivity stopAnimating];
+        }else{
+        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Whoops, looks like something went wrong. Please try later." type:TSMessageNotificationTypeError];
         }
 
     }else if(connection == theConnection_QuickCollect){

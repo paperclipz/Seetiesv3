@@ -572,9 +572,12 @@
         ShowMessage.numberOfLines = 5;
         ShowMessage.textAlignment = NSTextAlignmentLeft;
         ShowMessage.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:14];
-        ShowMessage.textColor = [UIColor blackColor];
+        ShowMessage.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
         ShowMessage.backgroundColor = [UIColor clearColor];
         NSString *GetString = [[NSString alloc]initWithFormat:@"%@",[Following_MessageArray objectAtIndex:i]];
+        GetString = [GetString stringByAppendingString:[NSString stringWithFormat:@"<style>body{font-family: '%@'; font-size:%dpx; color:#666666;}</style>",
+                                                  @"ProximaNovaSoft-Regular",
+                                                  14]];
         NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[GetString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
         ShowMessage.attributedText = attrStr;//[self convertHtmlPlainText:GetString]
         NSString *start = [[NSString alloc]initWithFormat:@"%@",[Following_DateArray objectAtIndex:i]];
@@ -781,10 +784,13 @@
         ShowMessage.numberOfLines = 5;
         ShowMessage.textAlignment = NSTextAlignmentLeft;
         ShowMessage.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:14];
-        ShowMessage.textColor = [UIColor blackColor];
+        ShowMessage.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
         ShowMessage.backgroundColor = [UIColor clearColor];
 
         NSString *GetString = [[NSString alloc]initWithFormat:@"%@",[MessageArray objectAtIndex:i]];
+        GetString = [GetString stringByAppendingString:[NSString stringWithFormat:@"<style>body{font-family: '%@'; font-size:%dpx; color:#666666;}</style>",
+                                                        @"ProximaNovaSoft-Regular",
+                                                        14]];
         NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[GetString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
         ShowMessage.attributedText = attrStr;//[self convertHtmlPlainText:GetString]
         NSString *start = [[NSString alloc]initWithFormat:@"%@",[DateArray objectAtIndex:i]];

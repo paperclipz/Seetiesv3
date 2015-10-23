@@ -46,7 +46,7 @@
     MainScroll.frame = CGRectMake(0, 95 , screenWidth, screenHeight - 95);
     ShowSearchUserView.frame = CGRectMake(0, 114, screenWidth, screenHeight - 114);
     UserScroll.frame = CGRectMake(0, 0 , ShowSearchUserView.frame.size.width, ShowSearchUserView.frame.size.height);
-    StringSortby = @"3";
+    StringSortby = @"4";
     CheckInt = 0;
     
     SearchTextField.delegate = self;
@@ -82,7 +82,7 @@
     [SearchLocationNameArray addObject:CustomLocalisedString(@"Currentlocation",nil)];
     [SearchPlaceIDArray addObject:@"0"];
     
-    [self SendSearchKeywordData];
+   // [self SendSearchKeywordData];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -108,7 +108,7 @@
         DataTotal = 0;
         heightcheck = 0;
         SelfSearchCurrentLocation = 0;
-        
+        [ShowActivity startAnimating];
         [self SendSearchKeywordData];
     }
     
