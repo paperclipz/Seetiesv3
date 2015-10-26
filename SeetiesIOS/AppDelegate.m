@@ -48,6 +48,8 @@
 #import "FeedViewController.h"
 
 #import "AFNetworkActivityLogger.h"
+
+#import <sys/utsname.h>
 @interface AppDelegate ()
 
 @property(nonatomic,strong)LandingV2ViewController* landingV2ViewController;
@@ -482,12 +484,21 @@
 }
 void myExceptionHandler(NSException *exception)
 {
-    
     NSLog(@"CRASH: %@", exception);
     NSLog(@"Stack Trace: %@", [exception callStackSymbols]);
+    NSString *GetDevice = deviceName();
+    NSLog(@"Device Info: %@",GetDevice);
+    
 }
 
-
+NSString* deviceName()
+{
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    
+    return [NSString stringWithCString:systemInfo.machine
+                              encoding:NSUTF8StringEncoding];
+}
 
 
 

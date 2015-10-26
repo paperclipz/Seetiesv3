@@ -1149,6 +1149,12 @@
                 [LikeButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
                 [self GetAllUserLikeData];
                 
+                
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                [defaults setObject:GetLikeCheck forKey:@"PostToDetail_like"];
+                [defaults synchronize];
+                
+                
             }else{
                 GetLikeCheck = @"0";
                 CheckLikeInitView = YES;
@@ -1156,6 +1162,10 @@
                // [LikeButton setTitle:CustomLocalisedString(@"Likes", nil) forState:UIControlStateNormal];
                 [LikeButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
                 [self GetAllUserLikeData];
+                
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                [defaults setObject:GetLikeCheck forKey:@"PostToDetail_like"];
+                [defaults synchronize];
                 
             }
             // [self InitView];

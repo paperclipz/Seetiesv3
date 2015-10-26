@@ -20,6 +20,7 @@
 #import "EnbleLocationViewController.h"
 #import "LandingV2ViewController.h"
 #import "AnnounceViewController.h"
+
 @interface FeedViewController ()
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;
@@ -368,6 +369,45 @@
         [defaults setObject:@"NO" forKey:@"SelfDeletePost"];
         [defaults synchronize];
     }
+    
+    NSString *CheckUpdateLike = [defaults objectForKey:@"PostToDetail_like"];
+    NSString *CheckUpdateCollect = [defaults objectForKey:@"PostToDetail_Collect"];
+    NSInteger CheckUpdateIDN = [defaults integerForKey:@"PostToDetail_IDN"];
+
+    
+    if ([CheckUpdateLike length] == 0 || [CheckUpdateLike isEqualToString:@""] || [CheckUpdateLike isEqualToString:@"(null)"] || [CheckUpdateLike isEqualToString:@"<null>"]) {
+        
+    }else{
+        NSLog(@"return check like = %@",CheckUpdateLike);
+        NSLog(@"return check Collect = %@",CheckUpdateCollect);
+        NSLog(@"return check IDN = %ld",(long)CheckUpdateIDN);
+        
+        if ([CheckUpdateLike isEqualToString:[arrlike objectAtIndex:CheckUpdateIDN - 6000]]) {
+            
+        }else{
+            UIButton * btn = (UIButton*)[MainScroll viewWithTag:CheckUpdateIDN];
+            
+            
+            if ([CheckUpdateLike isEqualToString:@"0"]) {
+                [btn setSelected:NO];
+                [arrlike replaceObjectAtIndex:CheckUpdateIDN - 6000 withObject:@"0"];
+            }else{
+                [arrlike replaceObjectAtIndex:CheckUpdateIDN - 6000 withObject:@"1"];
+                [btn setSelected:YES];
+            }
+            
+        
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"PostToDetail_like"];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"PostToDetail_IDN"];
+        }
+        
+
+        
+    }
+    
+
+    
+    
     
 }
 -(void)testRefresh{
@@ -748,7 +788,7 @@
                     [LikeButton setImage:[UIImage imageNamed:@"LikeIcon.png"] forState:UIControlStateSelected];
                 }
                 LikeButton.backgroundColor = [UIColor clearColor];
-                LikeButton.tag = i;
+                LikeButton.tag = 6000 + i;
                 [LikeButton addTarget:self action:@selector(LikeButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
                 [LocalScroll addSubview:LikeButton];
                 
@@ -1156,7 +1196,7 @@
                     [LikeButton setImage:[UIImage imageNamed:@"LikeIcon.png"] forState:UIControlStateSelected];
                 }
                 LikeButton.backgroundColor = [UIColor clearColor];
-                LikeButton.tag = i;
+                LikeButton.tag = 6000 + i;
                 [LikeButton addTarget:self action:@selector(LikeButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
                 [MainScroll addSubview:LikeButton];
                 
@@ -1472,7 +1512,7 @@
                     [LikeButtonLocalQR setImage:[UIImage imageNamed:@"LikeIcon.png"] forState:UIControlStateSelected];
                 }
                 LikeButtonLocalQR.backgroundColor = [UIColor clearColor];
-                LikeButtonLocalQR.tag = i;
+                LikeButtonLocalQR.tag = 6000 + i;
                 [LikeButtonLocalQR addTarget:self action:@selector(LikeButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
                 [MainScroll addSubview:LikeButtonLocalQR];
                 
@@ -1609,9 +1649,6 @@
                 SuggestedpageControl_Aboad.currentPageIndicatorTintColor = [UIColor colorWithRed:187.0f/255.0f green:187.0f/255.0f blue:187.0f/255.0f alpha:1.0f];
                 [MainScroll addSubview:SuggestedpageControl_Aboad];
                 
-
-
-
                 for (int i = 0; i < [SplitArray_username count]; i++) {
                     UIButton *TempButton = [[UIButton alloc]init];
                     TempButton.frame = CGRectMake(10 + i * screenWidth, 50 , screenWidth - 20 ,280);
@@ -3689,6 +3726,18 @@
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);
     
+    NSString *GetLikeClick = [[NSString alloc]initWithFormat:@"%@",[arrlike objectAtIndex:getbuttonIDN]];
+    NSString *GetCollectionClick = [[NSString alloc]initWithFormat:@"%@",[arrCollect objectAtIndex:getbuttonIDN]];
+    
+    NSLog(@"GetLikeClick is %@",GetLikeClick);
+    NSLog(@"GetCollectionClick is %@",GetCollectionClick);
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:GetLikeClick forKey:@"PostToDetail_like"];
+    [defaults setObject:GetCollectionClick forKey:@"PostToDetail_Collect"];
+    [defaults setInteger:getbuttonIDN + 6000 forKey:@"PostToDetail_IDN"];
+    [defaults synchronize];
+    
     FeedV2DetailViewController *vc = [[FeedV2DetailViewController alloc] initWithNibName:@"FeedV2DetailViewController" bundle:nil];
     [self.navigationController pushViewController:vc animated:YES];
     [vc GetPostID:[arrPostID objectAtIndex:getbuttonIDN]];
@@ -3730,6 +3779,8 @@
 
     UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
     buttonWithTag1.selected = !buttonWithTag1.selected;
+    
+    getbuttonIDN -= 6000;
     
     CheckLike = [[NSString alloc]initWithFormat:@"%@",[arrlike objectAtIndex:getbuttonIDN]];
     SendLikePostID = [[NSString alloc]initWithFormat:@"%@",[arrPostID objectAtIndex:getbuttonIDN]];
@@ -3894,7 +3945,6 @@
         [self.navigationController pushViewController:vc animated:YES];
         [vc GetPostID:GetID];
     }else if([GetAnnType isEqualToString:@"url"]){
-    
     }else if([GetAnnType isEqualToString:@"user"]){
         NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
         [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
