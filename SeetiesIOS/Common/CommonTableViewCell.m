@@ -10,6 +10,13 @@
 
 @implementation CommonTableViewCell
 
++(float)getHeight
+{
+    UIView *infoView = [[[NSBundle mainBundle] loadNibNamed:[NSString stringWithFormat:@"%@",[self class]] owner:self options:nil] objectAtIndex:0];
+    
+    return infoView.frame.size.height;
+}
+
 - (void)awakeFromNib {
     // Initialization code
 }

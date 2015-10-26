@@ -100,6 +100,11 @@
 		8A45098B1BAC17F200A868CD /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A45098A1BAC17F200A868CD /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8A45098E1BAFEEBF00A868CD /* CategoriesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A45098D1BAFEEBF00A868CD /* CategoriesModel.m */; };
 		8A4509921BAFF7C000A868CD /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4509911BAFF7C000A868CD /* UIColor+Extension.m */; };
+		8A4512341BDE2BEC008DE870 /* LikesListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4512321BDE2BEC008DE870 /* LikesListingViewController.m */; settings = {ASSET_TAGS = (); }; };
+		8A4512351BDE2BEC008DE870 /* LikesListingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4512331BDE2BEC008DE870 /* LikesListingViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		8A4512381BDE2C1B008DE870 /* CommonCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4512371BDE2C1B008DE870 /* CommonCollectionViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		8A45123C1BDE2C97008DE870 /* LikeListingCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A45123A1BDE2C97008DE870 /* LikeListingCollectionViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		8A45123D1BDE2C97008DE870 /* LikeListingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A45123B1BDE2C97008DE870 /* LikeListingCollectionViewCell.xib */; settings = {ASSET_TAGS = (); }; };
 		8A5430101B8C1646009EFFF4 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A54300E1B8C1646009EFFF4 /* MapViewController.m */; };
 		8A5430111B8C1646009EFFF4 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A54300F1B8C1646009EFFF4 /* MapViewController.xib */; };
 		8A58F7A41BC260B600DED466 /* TLTagsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A58F7A31BC260B600DED466 /* TLTagsControl.m */; settings = {ASSET_TAGS = (); }; };
@@ -717,6 +722,9 @@
 		8AC8F74B1BDA414E00DEF14A /* EditCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AC8F71E1BDA414E00DEF14A /* EditCollectionTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
 		8AC8F74C1BDA414E00DEF14A /* EditTagCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8F7201BDA414E00DEF14A /* EditTagCollectionViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		8AC8F74D1BDA414E00DEF14A /* EditTagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AC8F7211BDA414E00DEF14A /* EditTagCollectionViewCell.xib */; settings = {ASSET_TAGS = (); }; };
+		8AC8F7561BDDD44800DEF14A /* UIImageView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8F7551BDDD44800DEF14A /* UIImageView+Extension.m */; settings = {ASSET_TAGS = (); }; };
+		8AC8F75B1BDDD67600DEF14A /* ListingHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8F75A1BDDD67600DEF14A /* ListingHeaderView.m */; settings = {ASSET_TAGS = (); }; };
+		8AC8F75D1BDDD68500DEF14A /* ListingHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AC8F75C1BDDD68500DEF14A /* ListingHeaderView.xib */; settings = {ASSET_TAGS = (); }; };
 		8AD6BA601B705DF20040437E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA5F1B705DF20040437E /* main.m */; };
 		8AD6BA631B705DF20040437E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA621B705DF20040437E /* AppDelegate.m */; };
 		8AD6BA661B705DF20040437E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA651B705DF20040437E /* ViewController.m */; };
@@ -1140,6 +1148,14 @@
 		8A45098D1BAFEEBF00A868CD /* CategoriesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoriesModel.m; sourceTree = "<group>"; };
 		8A4509901BAFF7C000A868CD /* UIColor+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extension.h"; sourceTree = "<group>"; };
 		8A4509911BAFF7C000A868CD /* UIColor+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extension.m"; sourceTree = "<group>"; };
+		8A4512311BDE2BEC008DE870 /* LikesListingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LikesListingViewController.h; sourceTree = "<group>"; };
+		8A4512321BDE2BEC008DE870 /* LikesListingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LikesListingViewController.m; sourceTree = "<group>"; };
+		8A4512331BDE2BEC008DE870 /* LikesListingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LikesListingViewController.xib; sourceTree = "<group>"; };
+		8A4512361BDE2C1B008DE870 /* CommonCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonCollectionViewCell.h; sourceTree = "<group>"; };
+		8A4512371BDE2C1B008DE870 /* CommonCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonCollectionViewCell.m; sourceTree = "<group>"; };
+		8A4512391BDE2C97008DE870 /* LikeListingCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LikeListingCollectionViewCell.h; sourceTree = "<group>"; };
+		8A45123A1BDE2C97008DE870 /* LikeListingCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LikeListingCollectionViewCell.m; sourceTree = "<group>"; };
+		8A45123B1BDE2C97008DE870 /* LikeListingCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LikeListingCollectionViewCell.xib; sourceTree = "<group>"; };
 		8A54300D1B8C1646009EFFF4 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		8A54300E1B8C1646009EFFF4 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		8A54300F1B8C1646009EFFF4 /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
@@ -1828,6 +1844,11 @@
 		8AC8F71F1BDA414E00DEF14A /* EditTagCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTagCollectionViewCell.h; sourceTree = "<group>"; };
 		8AC8F7201BDA414E00DEF14A /* EditTagCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTagCollectionViewCell.m; sourceTree = "<group>"; };
 		8AC8F7211BDA414E00DEF14A /* EditTagCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTagCollectionViewCell.xib; sourceTree = "<group>"; };
+		8AC8F7541BDDD44800DEF14A /* UIImageView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Extension.h"; sourceTree = "<group>"; };
+		8AC8F7551BDDD44800DEF14A /* UIImageView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Extension.m"; sourceTree = "<group>"; };
+		8AC8F7591BDDD67600DEF14A /* ListingHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListingHeaderView.h; sourceTree = "<group>"; };
+		8AC8F75A1BDDD67600DEF14A /* ListingHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListingHeaderView.m; sourceTree = "<group>"; };
+		8AC8F75C1BDDD68500DEF14A /* ListingHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListingHeaderView.xib; sourceTree = "<group>"; };
 		8AD6BA5A1B705DF20040437E /* SeetiesIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeetiesIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AD6BA5E1B705DF20040437E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8AD6BA5F1B705DF20040437E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -2474,6 +2495,8 @@
 				8AB813BC1BC234C0002F5F06 /* FloatingIndicatorView.h */,
 				8AB813BD1BC234C0002F5F06 /* FloatingIndicatorView.m */,
 				8AB813BF1BC234CE002F5F06 /* FloatingIndicatorView.xib */,
+				8A4512361BDE2C1B008DE870 /* CommonCollectionViewCell.h */,
+				8A4512371BDE2C1B008DE870 /* CommonCollectionViewCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -3682,6 +3705,7 @@
 		8AC8F6D51BDA414E00DEF14A /* NewProfile */ = {
 			isa = PBXGroup;
 			children = (
+				8AC8F7581BDDD65100DEF14A /* ReusableView */,
 				8AC8F6D61BDA414E00DEF14A /* CollectionListingPage */,
 				8AC8F6DD1BDA414E00DEF14A /* LikeListingPage */,
 				8AC8F6DE1BDA414E00DEF14A /* PostListingPage */,
@@ -3711,6 +3735,12 @@
 		8AC8F6DD1BDA414E00DEF14A /* LikeListingPage */ = {
 			isa = PBXGroup;
 			children = (
+				8A4512311BDE2BEC008DE870 /* LikesListingViewController.h */,
+				8A4512321BDE2BEC008DE870 /* LikesListingViewController.m */,
+				8A4512331BDE2BEC008DE870 /* LikesListingViewController.xib */,
+				8A4512391BDE2C97008DE870 /* LikeListingCollectionViewCell.h */,
+				8A45123A1BDE2C97008DE870 /* LikeListingCollectionViewCell.m */,
+				8A45123B1BDE2C97008DE870 /* LikeListingCollectionViewCell.xib */,
 			);
 			path = LikeListingPage;
 			sourceTree = "<group>";
@@ -3830,6 +3860,25 @@
 			path = Extra;
 			sourceTree = "<group>";
 		};
+		8AC8F7531BDDD41C00DEF14A /* UIImageView+Exntesion */ = {
+			isa = PBXGroup;
+			children = (
+				8AC8F7541BDDD44800DEF14A /* UIImageView+Extension.h */,
+				8AC8F7551BDDD44800DEF14A /* UIImageView+Extension.m */,
+			);
+			name = "UIImageView+Exntesion";
+			sourceTree = "<group>";
+		};
+		8AC8F7581BDDD65100DEF14A /* ReusableView */ = {
+			isa = PBXGroup;
+			children = (
+				8AC8F7591BDDD67600DEF14A /* ListingHeaderView.h */,
+				8AC8F75A1BDDD67600DEF14A /* ListingHeaderView.m */,
+				8AC8F75C1BDDD68500DEF14A /* ListingHeaderView.xib */,
+			);
+			path = ReusableView;
+			sourceTree = "<group>";
+		};
 		8AD6BA511B705DF20040437E = {
 			isa = PBXGroup;
 			children = (
@@ -3925,6 +3974,7 @@
 		8AD6BA961B706CF10040437E /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				8AC8F7531BDDD41C00DEF14A /* UIImageView+Exntesion */,
 				8AF53F171BD884E300AF6C9E /* NSObject+Extension */,
 				8AB83A791BD49CD500715B69 /* UIView+Extension */,
 				8AF39CD91BC66536009C7F26 /* UITableView+NXEmptyView */,
@@ -4940,6 +4990,7 @@
 				8A90B30B1BD9F95B00CE1ED6 /* FollowIcon@2x.png in Resources */,
 				8AD6C34C1B707D120040437E /* toolbarbg@2x.png in Resources */,
 				8A90B3561BD9F95B00CE1ED6 /* InstagramBtnInactive@3x.png in Resources */,
+				8A45123D1BDE2C97008DE870 /* LikeListingCollectionViewCell.xib in Resources */,
 				8A90B27D1BD9F95B00CE1ED6 /* MoreBtn@2x.png in Resources */,
 				8A90B3D41BD9F95B00CE1ED6 /* NoCollectionIcon@2x.png in Resources */,
 				8A90B3631BD9F95B00CE1ED6 /* InviteMessengarIcon@2x.png in Resources */,
@@ -5253,6 +5304,7 @@
 				8A90B2AB1BD9F95B00CE1ED6 /* LocationBtn@2x.png in Resources */,
 				8A90B2901BD9F95B00CE1ED6 /* DeleteIconSwipe@3x.png in Resources */,
 				8AC8F6561BDA3A1E00DEF14A /* bgExplore.png in Resources */,
+				8A4512351BDE2BEC008DE870 /* LikesListingViewController.xib in Resources */,
 				8AC8F65B1BDA3A1E00DEF14A /* bgFeed.png in Resources */,
 				8AC8F72B1BDA414E00DEF14A /* ProfileNoItemTableViewCell.xib in Resources */,
 				8AD6C0BA1B706CF30040437E /* ShowFollowerAndFollowingViewController.xib in Resources */,
@@ -5336,6 +5388,7 @@
 				8A90B3C41BD9F95B00CE1ED6 /* AddPostBtn@2x.png in Resources */,
 				8AF39CCD1BC649D1009C7F26 /* Caret@2x.png in Resources */,
 				8A90B3FB1BD9F95B00CE1ED6 /* SearchLocationIcon@3x.png in Resources */,
+				8AC8F75D1BDDD68500DEF14A /* ListingHeaderView.xib in Resources */,
 				8A90B3831BD9F95B00CE1ED6 /* CorrectFill@3x.png in Resources */,
 				8A90B3EB1BD9F95B00CE1ED6 /* ProfileSearchBar@3x.png in Resources */,
 				8A90B3101BD9F95B00CE1ED6 /* LikedIcon@3x.png in Resources */,
@@ -5512,6 +5565,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A1254131BC4F31A00AA4120 /* NewsFeedViewController.m in Sources */,
+				8A45123C1BDE2C97008DE870 /* LikeListingCollectionViewCell.m in Sources */,
 				8AD6C29B1B7072FB0040437E /* PublishMainViewController.m in Sources */,
 				8A9F25C21B8ED33000BB13BA /* BKCardNumberField.m in Sources */,
 				8AC8F7281BDA414E00DEF14A /* PostListingViewController.m in Sources */,
@@ -5560,6 +5614,8 @@
 				8AD6BE591B706CF30040437E /* DoImagePickerController.m in Sources */,
 				8AD6C0BB1B706CF30040437E /* WhyWeUseFBViewController.m in Sources */,
 				8A3757B71B847C7A009DB7D4 /* AddNewPlaceViewController.m in Sources */,
+				8A4512381BDE2C1B008DE870 /* CommonCollectionViewCell.m in Sources */,
+				8AC8F7561BDDD44800DEF14A /* UIImageView+Extension.m in Sources */,
 				8AD6C3431B707D120040437E /* TPKeyboardAvoidingScrollView.m in Sources */,
 				8A3409461B8AD06A009B66C3 /* UIImage+Resizing.m in Sources */,
 				8AD6C8711B7460DB0040437E /* MKNetworkEngine.m in Sources */,
@@ -5668,6 +5724,7 @@
 				8AA743421BCCDD3700061E32 /* ParallaxHeaderView.m in Sources */,
 				8A6584321B981B4E00BC86B9 /* CategorySelectionViewController.m in Sources */,
 				8AC8F7401BDA414E00DEF14A /* NewUserProfileV2ViewController.m in Sources */,
+				8A4512341BDE2BEC008DE870 /* LikesListingViewController.m in Sources */,
 				8AF2C2D21BA27EDE00B0A7F1 /* UIImage+Tint.m in Sources */,
 				8A4509771BABC07F00A868CD /* OpeningPeriodModel.m in Sources */,
 				8AC8F7221BDA414E00DEF14A /* CollectionListingTabViewController.m in Sources */,
@@ -5768,6 +5825,7 @@
 				0BBFE0541B9D6260004B17E9 /* NotificationSettingsViewController.m in Sources */,
 				8A4509921BAFF7C000A868CD /* UIColor+Extension.m in Sources */,
 				0BBFE08A1B9FCC00004B17E9 /* EditInterestViewController.m in Sources */,
+				8AC8F75B1BDDD67600DEF14A /* ListingHeaderView.m in Sources */,
 				8AD6C3451B707D120040437E /* BHExpandingTextViewInternal.m in Sources */,
 				8AB83A7C1BD49CED00715B69 /* UIView+Extension.m in Sources */,
 				8AD6C8701B7460DB0040437E /* UIImageView+MKNetworkKitAdditions.m in Sources */,

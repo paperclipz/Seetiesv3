@@ -42,7 +42,7 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="btnBackClicked:" destination="-1" eventType="touchDragInside" id="f4W-P4-VXx"/>
+                                <action selector="btnBackClicked:" destination="-1" eventType="touchUpInside" id="cUD-g1-FhX"/>
                             </connections>
                         </button>
                     </subviews>
@@ -61,13 +61,13 @@
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="phP-5H-wxL">
-                    <rect key="frame" x="0.0" y="63" width="320" height="505"/>
+                    <rect key="frame" x="0.0" y="63" width="320" height="455"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="phP-5H-wxL" secondAttribute="bottom" id="1C5-gr-Ght"/>
+                <constraint firstAttribute="bottom" secondItem="phP-5H-wxL" secondAttribute="bottom" constant="50" id="1C5-gr-Ght"/>
                 <constraint firstAttribute="trailing" secondItem="hcZ-Ap-6Fu" secondAttribute="trailing" id="Ng7-nt-bNN"/>
                 <constraint firstItem="hcZ-Ap-6Fu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="UeH-VN-7gf"/>
                 <constraint firstItem="hcZ-Ap-6Fu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="cdc-VS-3xl"/>

@@ -2726,7 +2726,7 @@
         [theRequest addValue:@"" forHTTPHeaderField:@"Accept-Encoding"];
         
         theConnection_All = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
-        [theConnection_All start];
+        //[theConnection_All start];
         
         
         if( theConnection_All ){

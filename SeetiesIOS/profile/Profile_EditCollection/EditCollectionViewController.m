@@ -63,7 +63,7 @@
     collectionDetailPage = 0;
     self.arrList = [NSMutableArray new];
  
-    collectionDetailTotal_page = 2;
+    //collectionDetailTotal_page = 2;
     [self requestServerDetail];
     
    // [self.lblTitle setFont:[UIFont fontWithName:CustomFontName size:17]];

@@ -46,6 +46,7 @@
 @property(nonatomic,strong)ProfilePostModel* userProfileLikeModel;
 
 
+
 +(RecommendationModel*)getSampleRecommendation;
 +(EditPhotoModel*)getSampleEditPhotoModel;
 

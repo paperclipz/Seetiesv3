@@ -101,11 +101,16 @@ typedef enum ScrollDirection {
 
 +(NSString*)getLanguageName:(NSString*)code;
 +(NSString*)getLanguageCode:(NSString*)name;
++(NSString*)getLanguageCodeFromLocale:(NSString*)shortName;
 
 // =====================  currency =========================
 
 //easy conversion to jsonstring
 +(NSString*)convertToJsonString:(NSDictionary*)dict;
 +(BOOL)stringIsNilOrEmpty:(NSString*)aString;
+
+
+#define ARRAY_LIST_SIZE 10.0f
+#define LIKES_LIST_SIZE 30.0f
 
 @end

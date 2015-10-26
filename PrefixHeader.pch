@@ -43,6 +43,7 @@
 
 //===============Category Helper=================
 #import "UIView+Extension.h"
+#import "UIImage+FX.h"
 
 #import "CustomFont.h"
 
@@ -52,7 +53,7 @@
 #import "UITextView+Placeholder.h"
 #import "UIView+RoundedCorners.h"
 #import "NSObject+Extension.h"
-
+#import "UIImageView+Extension.h"
 //===============Model=================
 #import "RecommendationModel.h"
 #import "Locale.h"

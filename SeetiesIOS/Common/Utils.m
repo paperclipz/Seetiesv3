@@ -47,62 +47,6 @@
     return [defaults objectForKey:@"Useruid"];
 }
 
-+(CGRect)getDeviceScreenSize
-{
-    CGRect frame = [[UIScreen mainScreen] bounds];
-    SLog(@"screen size width : %f    ||  height : %f",frame.size.width,frame.size.height);
-    return frame;
-}
-
-+(void)setButtonWithBorder:(UIButton*)button
-{
-    
-    [[button layer] setBorderWidth:BORDER_WIDTH];
-    [[button layer] setBorderColor:[UIColor lightGrayColor].CGColor];
-    [[button layer] setCornerRadius:5.0f];
-}
-
-+(void)setButtonWithBorder:(UIButton*)button color:(UIColor*)color
-{
-    
-    [[button layer] setBorderWidth:BORDER_WIDTH];
-    [[button layer] setBorderColor:color.CGColor];
-    [[button layer] setCornerRadius:5.0f];
-}
-
-+(void)setRoundBorder:(UIView*)view color:(UIColor*)color borderRadius:(float)borderRadius
-{
-
-    [[view layer] setBorderWidth:BORDER_WIDTH];
-    [[view layer] setBorderColor:color.CGColor];
-    [[view layer] setCornerRadius:borderRadius];
-    [[view layer] setMasksToBounds:YES];
-
-}
-
-+(void)setRoundBorder:(UIView*)view color:(UIColor*)color borderRadius:(float)borderRadius borderWidth:(float)borderWidth
-{
-    
-    [[view layer] setBorderWidth:borderWidth];
-    [[view layer] setBorderColor:color.CGColor];
-    [[view layer] setCornerRadius:borderRadius];
-    [[view layer] setMasksToBounds:YES];
-    
-}
-
-
-
-+(UIFont*)defaultFont
-{
-    
-    return [UIFont fontWithName:CustomFontName size:15];
-}
-
-+(UIColor*)defaultTextColor
-{
-    return [UIColor lightGrayColor];
-}
-
 +(NSString*)getWeekName:(int)integer
 {
     
@@ -325,9 +269,62 @@
 #define FILIPINES_CODE @"539fbb273efa3fde3f8b4567"
 #define THAI_CODE @"544481503efa3ff1588b4567"
 
+#define ENGLISH_SHORT_NAME @"en"
+#define CHINESE_SHORT_NAME @"zh-Hans"
+#define TAIWAN_SHORT_NAME @"zh-Hant"
+#define INDONESIA_SHORT_NAME @"id"
+#define FILIPINES_SHORT_NAME @"tl-PH"
+#define THAI_SHORT_NAME @"th"
+
 #define TAIWAN_STR @"简体中文"
 #define CHINESE_STR @"繁體中文 "
 #define CHINESE_CENTRAL @"中文 "
+
+
++(NSString*)getLanguageCodeFromLocale:(NSString*)shortName
+{
+  
+    SWITCH (shortName) {
+        
+        CASE (ENGLISH_SHORT_NAME){
+            return ENGLISH_CODE;
+            break;
+        }
+        CASE (CHINESE_SHORT_NAME){
+            return CHINESE_CODE;
+            break;
+        }
+
+        CASE (TAIWAN_SHORT_NAME){
+            return TAIWAN_CODE;
+            break;
+        }
+
+        CASE (INDONESIA_SHORT_NAME){
+            return INDONESIA_CODE;
+            break;
+        }
+
+        CASE (FILIPINES_SHORT_NAME){
+            return FILIPINES_CODE;
+            break;
+        }
+
+        CASE (THAI_SHORT_NAME){
+            return THAI_CODE;
+            break;
+        }
+        DEFAULT
+        {
+            return ENGLISH_CODE;
+            break;
+            
+        }
+        
+        return nil;
+    }
+            
+}
 
 +(NSString*)getLanguageName:(NSString*)code
 {
@@ -367,6 +364,64 @@
     return LanguageID_Array[0];
     
 }
+
+#pragma mark - UI Utilities
++(CGRect)getDeviceScreenSize
+{
+    CGRect frame = [[UIScreen mainScreen] bounds];
+  //  SLog(@"screen size width : %f    ||  height : %f",frame.size.width,frame.size.height);
+    return frame;
+}
+
++(void)setButtonWithBorder:(UIButton*)button
+{
+    
+    [[button layer] setBorderWidth:BORDER_WIDTH];
+    [[button layer] setBorderColor:[UIColor lightGrayColor].CGColor];
+    [[button layer] setCornerRadius:5.0f];
+}
+
++(void)setButtonWithBorder:(UIButton*)button color:(UIColor*)color
+{
+    
+    [[button layer] setBorderWidth:BORDER_WIDTH];
+    [[button layer] setBorderColor:color.CGColor];
+    [[button layer] setCornerRadius:5.0f];
+}
+
++(void)setRoundBorder:(UIView*)view color:(UIColor*)color borderRadius:(float)borderRadius
+{
+    
+    [[view layer] setBorderWidth:BORDER_WIDTH];
+    [[view layer] setBorderColor:color.CGColor];
+    [[view layer] setCornerRadius:borderRadius];
+    [[view layer] setMasksToBounds:YES];
+    
+}
+
++(void)setRoundBorder:(UIView*)view color:(UIColor*)color borderRadius:(float)borderRadius borderWidth:(float)borderWidth
+{
+    
+    [[view layer] setBorderWidth:borderWidth];
+    [[view layer] setBorderColor:color.CGColor];
+    [[view layer] setCornerRadius:borderRadius];
+    [[view layer] setMasksToBounds:YES];
+    
+}
+
+
+
++(UIFont*)defaultFont
+{
+    
+    return [UIFont fontWithName:CustomFontName size:15];
+}
+
++(UIColor*)defaultTextColor
+{
+    return [UIColor lightGrayColor];
+}
+
 
 
 @end

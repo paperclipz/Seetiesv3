@@ -64,7 +64,7 @@
 
 
 @interface DraftModel : Model
-
+@property(nonatomic,strong)NSDictionary* contents;
 @property(nonatomic,strong)NSArray* arrPost;
 @property(nonatomic,strong)NSString* place_name;
 
@@ -78,6 +78,7 @@
 @property(nonatomic,strong)NSString* name;
 @property(nonatomic,strong)NSString* distance;
 @property(nonatomic,strong)NSString* collection_note;
+@property(nonatomic,strong)NSString* view_count;
 
 -(void)process;
 @end
@@ -87,6 +88,8 @@
 @property(nonatomic,strong)NSArray<DraftModel>* posts;
 @property(nonatomic,assign)int list_size;
 @property(nonatomic,assign)int total_posts;
+@property(nonatomic,assign)int total_page;
+@property(nonatomic,assign)int page;
 
 -(void)process;
 

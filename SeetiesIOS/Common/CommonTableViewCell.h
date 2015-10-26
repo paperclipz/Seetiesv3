@@ -10,5 +10,6 @@
 
 @interface CommonTableViewCell : UITableViewCell
 -(void)initSelfView;
++(float)getHeight;
 
 @end

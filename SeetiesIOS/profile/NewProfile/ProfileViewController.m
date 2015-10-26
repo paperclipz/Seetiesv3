@@ -7,7 +7,6 @@
 //
 
 #import "ProfileViewController.h"
-#import "UIImage+FX.h"
 #import "UIScrollView+APParallaxHeader.h"
 //cell
 #import "ProfilePageCollectionTableViewCell.h"
@@ -455,6 +454,8 @@
 
 -(void)didSelectFooterAtIndex:(NSIndexPath*)indexPath
 {
+    
+    SLog(@"index path section : %ld",(long)indexPath.section);
     switch (indexPath.section) {
         
         default:
@@ -462,11 +463,19 @@
             [self.navigationController pushViewController:self.collectionListingViewController animated:YES];
             break;
         case 1://post
+        {
+            _postListingViewController = nil;
+            [self.postListingViewController initData:self.userProfilePostModel];
             [self.navigationController pushViewController:self.postListingViewController animated:YES];
-
+        }
+            
             break;
         case 2://likes
-            
+        {
+            _likesListingViewController = nil;
+            [self.likesListingViewController initData:self.userProfileLikeModel];
+            [self.navigationController pushViewController:self.likesListingViewController animated:YES];
+        }
             break;
     }
 }
@@ -509,7 +518,6 @@
     [self.navigationController pushViewController:self.editCollectionViewController animated:YES];
 }
 
-
 #pragma mark - Tag
 -(void)initTagView
 {
@@ -531,6 +539,14 @@
 }
 
 #pragma mark - Declaration
+
+-(LikesListingViewController*)likesListingViewController
+{
+    if (!_likesListingViewController) {
+        _likesListingViewController = [LikesListingViewController new];
+    }
+    return _likesListingViewController;
+}
 
 -(SettingsViewController*)settingsViewController
 {
@@ -598,7 +614,7 @@
 {
     NSString* appendString = [NSString stringWithFormat:@"%@/likes",[Utils getUserID]];
     NSDictionary* dict = @{@"page":@1,
-                           @"list_size":@5,
+                           @"list_size":@(LIKES_LIST_SIZE),
                            @"token":[Utils getAppToken]
                            };
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserLikes param:dict appendString:appendString completeHandler:^(id object) {
@@ -615,7 +631,7 @@
 {
     NSString* appendString = [NSString stringWithFormat:@"%@/posts",[Utils getUserID]];
     NSDictionary* dict = @{@"page":@1,
-                           @"list_size":@5,
+                           @"list_size":@(ARRAY_LIST_SIZE),
                            @"token":[Utils getAppToken]
                            };
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserPosts param:dict appendString:appendString completeHandler:^(id object) {
@@ -633,7 +649,7 @@
     //need to input token for own profile private collection, no token is get other people public collection
     NSString* appendString = [NSString stringWithFormat:@"%@/collections",[Utils getUserID]];
     NSDictionary* dict = @{@"page":@1,
-                           @"list_size":@5,
+                           @"list_size":@(ARRAY_LIST_SIZE),
                            @"token":[Utils getAppToken]
                            };
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserCollections param:dict appendString:appendString completeHandler:^(id object) {

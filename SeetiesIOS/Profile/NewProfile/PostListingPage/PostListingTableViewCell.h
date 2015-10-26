@@ -9,5 +9,10 @@
 #import "CommonTableViewCell.h"
 
 @interface PostListingTableViewCell : CommonTableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+@property (weak, nonatomic) IBOutlet UILabel *lblLocation;
+@property (weak, nonatomic) IBOutlet UILabel *lblNoView;
+-(void)initData:(DraftModel*)model;
 
 @end
