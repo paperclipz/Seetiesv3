@@ -37,7 +37,7 @@
     [SearchButton setTitle:LocalisedString(@"Search") forState:UIControlStateNormal];
     
     ShowBar.frame = CGRectMake(0, -64, screenWidth, 64);
-    
+    ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     GetHeight = 0;
     
     MainScroll.delegate = self;
@@ -1302,6 +1302,7 @@
 }
 
 -(void)GetUserData{
+    [ShowActivity startAnimating];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetUseruid = [defaults objectForKey:@"Useruid"];
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
@@ -1481,7 +1482,7 @@
                 NSDictionary *GetAllData = [res valueForKey:@"data"];
                 
                 NSDictionary *WallpaperData = [GetAllData valueForKey:@"wallpaper"];
-                NSString *GetWallpaper = [[NSString alloc]initWithFormat:@"%@",[WallpaperData objectForKey:@"s"]];
+                NSString *GetWallpaper = [[NSString alloc]initWithFormat:@"%@",[WallpaperData objectForKey:@"l"]];
                 
                 NSDictionary *ProfilePhotoData = [GetAllData valueForKey:@"profile_photo_images"];
                 GetProfileImg = [[NSString alloc]initWithFormat:@"%@",[ProfilePhotoData objectForKey:@"l"]];
@@ -1951,6 +1952,8 @@
             
         }
     }
+    
+    [ShowActivity stopAnimating];
 }
 -(IBAction)SearchButton:(id)sender{
     SearchViewV2Controller *SearchView = [[SearchViewV2Controller alloc]initWithNibName:@"SearchViewV2Controller" bundle:nil];

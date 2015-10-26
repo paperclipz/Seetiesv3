@@ -21,6 +21,7 @@
     IBOutlet UIImageView *ShowOverlayImg;
     IBOutlet UIView *AllContentView;
     IBOutlet UIImageView *ShowBar;
+    IBOutlet UIActivityIndicatorView *ShowActivity;
     
     int GetHeight;
     

@@ -82,7 +82,7 @@
     [SearchLocationNameArray addObject:CustomLocalisedString(@"Currentlocation",nil)];
     [SearchPlaceIDArray addObject:@"0"];
     
-   // [self SendSearchKeywordData];
+    [self SendSearchKeywordData];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -130,15 +130,16 @@
    // ShowTitle.text = String;
 }
 -(IBAction)BackButton:(id)sender{
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromLeft;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self dismissViewControllerAnimated:NO completion:nil];
-   // [self.navigationController popToRootViewControllerAnimated:YES];
+//    CATransition *transition = [CATransition animation];
+//    transition.duration = 0.2;
+//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    transition.type = kCATransitionPush;
+//    transition.subtype = kCATransitionFromLeft;
+//    [self.view.window.layer addAnimation:transition forKey:nil];
+//    [self dismissViewControllerAnimated:NO completion:nil];
+
     //[self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)GetSearchKeyword:(NSString *)Keyword Getlat:(NSString *)lat GetLong:(NSString *)Long GetLocationName:(NSString *)LocationName GetCurrentLat:(NSString *)CurrentLat GetCurrentLong:(NSString *)CurrentLong{
     

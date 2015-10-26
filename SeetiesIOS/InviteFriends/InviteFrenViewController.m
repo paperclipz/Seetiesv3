@@ -176,7 +176,7 @@
 //    [InviteScroll addSubview:Background];
     
     UIImageView *ImgBackground = [[UIImageView alloc]init];
-    ImgBackground.frame = CGRectMake(0, 0, screenWidth, 200);
+    ImgBackground.frame = CGRectMake(0, 0, screenWidth, 220);
     ImgBackground.image = [UIImage imageNamed:@"InviteFriendsBgImg.png"];
     ImgBackground.backgroundColor = [UIColor clearColor];
     ImgBackground.clipsToBounds = YES;
@@ -190,68 +190,87 @@
     [InviteScroll addSubview:ShowOtherText_1];
     
     UIButton *WhiteBackground = [[UIButton alloc]init];
-    WhiteBackground.frame = CGRectMake(30, 170, screenWidth - 60, 500);
+    WhiteBackground.frame = CGRectMake(30, 190, screenWidth - 60, 800);
     [WhiteBackground setTitle:@"" forState:UIControlStateNormal];
     WhiteBackground.backgroundColor = [UIColor whiteColor];
     WhiteBackground.layer.cornerRadius = 5;
     [InviteScroll addSubview:WhiteBackground];
     
     UIImageView *ShowBigIcon = [[UIImageView alloc]init];
-    ShowBigIcon.frame = CGRectMake((screenWidth /2) - 89, 60, 178, 123);
+    ShowBigIcon.frame = CGRectMake((screenWidth /2) - 89, 80, 178, 123);
     ShowBigIcon.image = [UIImage imageNamed:@"InviteFriendsGraphic.png"];
     ShowBigIcon.backgroundColor = [UIColor clearColor];
     [InviteScroll addSubview:ShowBigIcon];
     
     
     UIImageView *ShowWhatsappIcon = [[UIImageView alloc]init];
-    ShowWhatsappIcon.frame = CGRectMake(60, 190 + 2, 50, 50);
+    ShowWhatsappIcon.frame = CGRectMake(60, 210 + 2, 50, 50);
     ShowWhatsappIcon.image = [UIImage imageNamed:@"InviteWhatsappIcon.png"];
     [InviteScroll addSubview:ShowWhatsappIcon];
     
-    WhatsappButton.frame = CGRectMake(118 , 190, screenWidth - 158, 55);
+    WhatsappButton.frame = CGRectMake(118 , 210, screenWidth - 158, 55);
     [WhatsappButton setTitle:LocalisedString(@"via Whatsapp") forState:UIControlStateNormal];
     [InviteScroll addSubview:WhatsappButton];
     
     UIButton *Line01 = [[UIButton alloc]init];
-    Line01.frame = CGRectMake(138, 245, screenWidth - 178, 1);
+    Line01.frame = CGRectMake(138, 265, screenWidth - 178, 1);
     [Line01 setTitle:@"" forState:UIControlStateNormal];
     Line01.backgroundColor = [UIColor colorWithRed:232.0f/255.0f green:232.0f/255.0f blue:232.0f/255.0f alpha:1.0f];
     [InviteScroll addSubview:Line01];
     
     UIImageView *ShowFBMessagerIcon = [[UIImageView alloc]init];
-    ShowFBMessagerIcon.frame = CGRectMake(60, 245 + 2, 50, 50);
+    ShowFBMessagerIcon.frame = CGRectMake(60, 265 + 2, 50, 50);
     ShowFBMessagerIcon.image = [UIImage imageNamed:@"InviteMessengarIcon.png"];
     [InviteScroll addSubview:ShowFBMessagerIcon];
 
-    FbMessagerButton.frame = CGRectMake(118, 245, screenWidth - 158, 55);
+    FbMessagerButton.frame = CGRectMake(118, 265, screenWidth - 158, 55);
     [FbMessagerButton setTitle:LocalisedString(@"via Messenger") forState:UIControlStateNormal];
     [InviteScroll addSubview:FbMessagerButton];
     
     UIButton *Line02 = [[UIButton alloc]init];
-    Line02.frame = CGRectMake(138, 300, screenWidth - 178, 1);
+    Line02.frame = CGRectMake(138, 320, screenWidth - 178, 1);
     [Line02 setTitle:@"" forState:UIControlStateNormal];
     Line02.backgroundColor = [UIColor colorWithRed:232.0f/255.0f green:232.0f/255.0f blue:232.0f/255.0f alpha:1.0f];
     [InviteScroll addSubview:Line02];
     
     UIImageView *ShowlineIcon = [[UIImageView alloc]init];
-    ShowlineIcon.frame = CGRectMake(60, 300 + 2, 50, 50);
+    ShowlineIcon.frame = CGRectMake(60, 320 + 2, 50, 50);
     ShowlineIcon.image = [UIImage imageNamed:@"InviteLineIcon.png"];
     [InviteScroll addSubview:ShowlineIcon];
     
-    TrueLineButton.frame = CGRectMake(118, 300, screenWidth - 158, 55);
+    TrueLineButton.frame = CGRectMake(118, 320, screenWidth - 158, 55);
     [TrueLineButton setTitle:LocalisedString(@"via LINE") forState:UIControlStateNormal];
     [InviteScroll addSubview:TrueLineButton];
 
     UIButton *Line03 = [[UIButton alloc]init];
-    Line03.frame = CGRectMake(60, 370, screenWidth - 120, 1);
+    Line03.frame = CGRectMake(60, 390, screenWidth - 120, 1);
     [Line03 setTitle:@"" forState:UIControlStateNormal];
     Line03.backgroundColor = [UIColor colorWithRed:232.0f/255.0f green:232.0f/255.0f blue:232.0f/255.0f alpha:1.0f];
     [InviteScroll addSubview:Line03];
     
+    UIButton *EmailButton = [[UIButton alloc]init];
+    EmailButton.frame = CGRectMake(60, 390, screenWidth - 120, 55);
+    [EmailButton setTitle:LocalisedString(@"Send email") forState:UIControlStateNormal];
+    EmailButton.backgroundColor = [UIColor clearColor];
+    [EmailButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+    EmailButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+    [EmailButton addTarget:self action:@selector(EmailButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [InviteScroll addSubview:EmailButton];
     
-    SMSButton.frame = CGRectMake(60, 370, screenWidth - 120, 55);
+    
+    SMSButton.frame = CGRectMake(60, 445, screenWidth - 120, 55);
     [SMSButton setTitle:LocalisedString(@"Send SMS") forState:UIControlStateNormal];
+    [SMSButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
     [InviteScroll addSubview:SMSButton];
+    
+    UIButton *CopylinkButton = [[UIButton alloc]init];
+    CopylinkButton.frame = CGRectMake(60, 500, screenWidth - 120, 55);
+    [CopylinkButton setTitle:LocalisedString(@"Copy Link") forState:UIControlStateNormal];
+    CopylinkButton.backgroundColor = [UIColor clearColor];
+    [CopylinkButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+    CopylinkButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+    [CopylinkButton addTarget:self action:@selector(CopyLinkButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [InviteScroll addSubview:CopylinkButton];
 
 }
 -(IBAction)InviteAllButton:(id)sender{
@@ -733,7 +752,7 @@
         UILabel *ShowSuggestionsText = [[UILabel alloc]init];
         ShowSuggestionsText.frame = CGRectMake(20, 205, 250, 30);
         ShowSuggestionsText.text = CustomLocalisedString(@"Suggestionsforyou", nil);
-        ShowSuggestionsText.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:22];
+        ShowSuggestionsText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:22];
         ShowSuggestionsText.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
         [MainScroll addSubview:ShowSuggestionsText];
         
@@ -742,7 +761,7 @@
             UILabel *ShowFollowAllText = [[UILabel alloc]init];
             ShowFollowAllText.frame = CGRectMake(screenWidth - 100 - 20, 210, 100, 20);
             ShowFollowAllText.text = CustomLocalisedString(@"FollowAll", nil);
-            ShowFollowAllText.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:15];
+            ShowFollowAllText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
             ShowFollowAllText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
             ShowFollowAllText.textAlignment = NSTextAlignmentRight;
             [MainScroll addSubview:ShowFollowAllText];
@@ -782,12 +801,12 @@
             UILabel *ShowName = [[UILabel alloc]init];
             ShowName.frame = CGRectMake(70, 250 + i * 70, 200, 30);
             ShowName.text = [All_Experts_Username_Array objectAtIndex:i];
-            ShowName.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
+            ShowName.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:17];
             ShowName.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
             
             UILabel *ShowUserName = [[UILabel alloc]init];
             ShowUserName.frame = CGRectMake(70, 275 + i * 70, 200, 20);
-            ShowUserName.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:13];
+            ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:13];
             NSString *UsernameString = [[NSString alloc]initWithFormat:@"%@",[All_Experts_Location_Array objectAtIndex:i]];
             ShowUserName.text = UsernameString;
             ShowUserName.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
@@ -841,7 +860,7 @@
             UILabel *ShowSuggestionsText = [[UILabel alloc]init];
             ShowSuggestionsText.frame = CGRectMake(20, 205, 250, 30);
             ShowSuggestionsText.text = TempString;
-            ShowSuggestionsText.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:22];
+            ShowSuggestionsText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:22];
             ShowSuggestionsText.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
             [MainScroll addSubview:ShowSuggestionsText];
             
@@ -850,7 +869,7 @@
                 UILabel *ShowFollowAllText = [[UILabel alloc]init];
                 ShowFollowAllText.frame = CGRectMake(screenWidth - 100 - 20, 210, 100, 20);
                 ShowFollowAllText.text = CustomLocalisedString(@"FollowAll", nil);
-                ShowFollowAllText.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:15];
+                ShowFollowAllText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
                 ShowFollowAllText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
                 ShowFollowAllText.textAlignment = NSTextAlignmentRight;
                 [MainScroll addSubview:ShowFollowAllText];
@@ -893,12 +912,12 @@
                 UILabel *ShowName = [[UILabel alloc]init];
                 ShowName.frame = CGRectMake(70, 250 + i * 70, 200, 30);
                 ShowName.text = [FB_Experts_Name_Array objectAtIndex:i];
-                ShowName.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
+                ShowName.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:17];
                 ShowName.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
                 
                 UILabel *ShowUserName = [[UILabel alloc]init];
                 ShowUserName.frame = CGRectMake(70, 275 + i * 70, 200, 20);
-                ShowUserName.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:13];
+                ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:13];
                 NSString *UsernameString = [[NSString alloc]initWithFormat:@"%@",[FB_Experts_Username_Array objectAtIndex:i]];
                 ShowUserName.text = UsernameString;
                 ShowUserName.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
@@ -954,7 +973,7 @@
             UILabel *ShowSuggestionsText2 = [[UILabel alloc]init];
             ShowSuggestionsText2.frame = CGRectMake(20, GetHeight, 250, 30);
             ShowSuggestionsText2.text = CustomLocalisedString(@"Suggestionsforyou", nil);
-            ShowSuggestionsText2.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:22];
+            ShowSuggestionsText2.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:22];
             ShowSuggestionsText2.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
             [MainScroll addSubview:ShowSuggestionsText2];
             
@@ -963,7 +982,7 @@
                 UILabel *ShowFollowAllText = [[UILabel alloc]init];
                 ShowFollowAllText.frame = CGRectMake(screenWidth - 100 - 20, GetHeight + 5, 100, 20);
                 ShowFollowAllText.text = CustomLocalisedString(@"FollowAll", nil);
-                ShowFollowAllText.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:15];
+                ShowFollowAllText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
                 ShowFollowAllText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
                 ShowFollowAllText.textAlignment = NSTextAlignmentRight;
                 [MainScroll addSubview:ShowFollowAllText];
@@ -1005,12 +1024,12 @@
                 UILabel *ShowName = [[UILabel alloc]init];
                 ShowName.frame = CGRectMake(70, (GetHeight - 5) + i * 70, 200, 30);
                 ShowName.text = [All_Experts_Username_Array objectAtIndex:i];
-                ShowName.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
+                ShowName.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:17];
                 ShowName.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
                 
                 UILabel *ShowUserName = [[UILabel alloc]init];
                 ShowUserName.frame = CGRectMake(70, (GetHeight + 20) + i * 70, 200, 20);
-                ShowUserName.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:13];
+                ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:13];
                 NSString *UsernameString = [[NSString alloc]initWithFormat:@"%@",[All_Experts_Location_Array objectAtIndex:i]];
                 ShowUserName.text = UsernameString;
                 ShowUserName.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
@@ -1763,4 +1782,34 @@
     }
     
 }
+-(IBAction)EmailButtonOnClick:(id)sender{
+    if ([MFMailComposeViewController canSendMail])
+    {
+        MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc] init];
+        
+        mailer.mailComposeDelegate = self;
+        
+        NSString *emailBody = @"https://seeties.me \n\n Seeties is about your city life - from skydiving, waterfall picnic, local street food, blind dating, latest fashion to sunset drinks and parties! You can find them in Seeties through recommendations from locals.";
+        [mailer setMessageBody:emailBody isHTML:NO];
+        
+        // [self presentModalViewController:mailer animated:YES];
+        [self presentViewController:mailer animated:YES completion:nil];
+    }
+    else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failure"
+                                                        message:@"Your device doesn't support the composer sheet"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+}
+-(IBAction)CopyLinkButtonOnClick:(id)sender{
+    NSString *message = @"https://seeties.me \n\n Seeties is about your city life - from skydiving, waterfall picnic, local street food, blind dating, latest fashion to sunset drinks and parties! You can find them in Seeties through recommendations from locals.";
+   
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = message;
+    [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success Copy Link" type:TSMessageNotificationTypeSuccess];
+}
+
 @end

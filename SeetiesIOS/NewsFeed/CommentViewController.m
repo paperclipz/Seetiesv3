@@ -315,7 +315,8 @@
   //  CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-    NSArray *itemArray = [NSArray arrayWithObjects:LocalisedString(@"Comments"),LocalisedString(@"Collections"), LocalisedString(@"Likes"), nil];
+    //NSArray *itemArray = [NSArray arrayWithObjects:LocalisedString(@"Comments"),LocalisedString(@"Collections"), LocalisedString(@"Likes"), nil];
+    NSArray *itemArray = [NSArray arrayWithObjects:LocalisedString(@"Collections"),LocalisedString(@"Likes"), LocalisedString(@"Comments"), nil];
     UISegmentedControl *PostControl = [[UISegmentedControl alloc]initWithItems:itemArray];
     PostControl.frame = CGRectMake(15, 80, screenWidth - 30, 33);
     UIFont *font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:12];
@@ -348,16 +349,24 @@
         toolBar.hidden = YES;
         LikeScroll.hidden = NO;
         ShowNoDataView.hidden = YES;
+        CollectionsScroll.hidden = YES;
     }else{
-        [TextString becomeFirstResponder];
-        MainScroll.hidden = NO;
-        toolBar.hidden = NO;
-        if ([GetMessageArray count] == 0) {
-            ShowNoDataView.hidden = NO;
-        }else{
-            ShowNoDataView.hidden = YES;
-        }
+        
+        MainScroll.hidden = YES;
+        toolBar.hidden = YES;
         LikeScroll.hidden = YES;
+        ShowNoDataView.hidden = YES;
+        CollectionsScroll.hidden = NO;
+        
+//        ///[TextString becomeFirstResponder];
+//        MainScroll.hidden = NO;
+//        toolBar.hidden = NO;
+//        if ([GetMessageArray count] == 0) {
+//          //  ShowNoDataView.hidden = NO;
+//        }else{
+//            ShowNoDataView.hidden = YES;
+//        }
+//        LikeScroll.hidden = YES;
     }
 }
 -(void)GetLikeData{
@@ -1204,19 +1213,6 @@
 {
     switch (segment.selectedSegmentIndex) {
         case 0:
-            NSLog(@"Posts click");
-            MainScroll.hidden = NO;
-            toolBar.hidden = NO;
-            if ([GetMessageArray count] == 0) {
-                ShowNoDataView.hidden = NO;
-            }else{
-            ShowNoDataView.hidden = YES;
-                [TextString becomeFirstResponder];
-            }
-            LikeScroll.hidden = YES;
-            CollectionsScroll.hidden = YES;
-            break;
-        case 1:
             NSLog(@"Collections click");
             [TextString resignFirstResponder];
             MainScroll.hidden = YES;
@@ -1225,13 +1221,26 @@
             ShowNoDataView.hidden = YES;
             CollectionsScroll.hidden = NO;
             break;
-        case 2:
-            NSLog(@"Likes click");
+        case 1:
+            NSLog(@"likes click");
             [TextString resignFirstResponder];
             MainScroll.hidden = YES;
             toolBar.hidden = YES;
             LikeScroll.hidden = NO;
             ShowNoDataView.hidden = YES;
+            CollectionsScroll.hidden = YES;
+            break;
+        case 2:
+            NSLog(@"comment click");
+            MainScroll.hidden = NO;
+            toolBar.hidden = NO;
+            if ([GetMessageArray count] == 0) {
+                ShowNoDataView.hidden = NO;
+            }else{
+                ShowNoDataView.hidden = YES;
+                [TextString becomeFirstResponder];
+            }
+            LikeScroll.hidden = YES;
             CollectionsScroll.hidden = YES;
             break;
         default:

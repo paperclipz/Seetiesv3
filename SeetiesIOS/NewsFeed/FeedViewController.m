@@ -1640,6 +1640,14 @@
                     }
                     [SuggestedScrollview_Aboad addSubview:ShowImage];
                     
+                    UIImageView *ShowOverlayImg = [[UIImageView alloc]init];
+                    ShowOverlayImg.image = [UIImage imageNamed:@"DealsAndRecommendationOverlay.png"];
+                    ShowOverlayImg.frame = CGRectMake(11 + i * screenWidth, 51, screenWidth - 22, 198);
+                    ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
+                    ShowOverlayImg.layer.masksToBounds = YES;
+                    // ShowOverlayImg.layer.cornerRadius = 5;
+                    [SuggestedScrollview_Aboad addSubview:ShowOverlayImg];
+                    
                     
                     
                     AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
@@ -1883,8 +1891,15 @@
                 NSArray *SplitArray_ProfileImg = [TempUserProfileImg componentsSeparatedByString:@"$"];
                 NSArray *SplitArray_Username = [TempUseName componentsSeparatedByString:@"$"];
                 NSArray *SplitArray_PostsImg = [TempUserPhoto componentsSeparatedByString:@"$"];
-                if ([SplitArray_PostsImg count] < 2) {
-                    SplitArray_PostsImg = [[NSArray alloc]initWithObjects:@"",@"",@"",@"",@"", nil];
+                
+                if ([SplitArray_PostsImg count] <= [SplitArray_Id count]) {
+                    //SplitArray_PostsImg = [[NSArray alloc]initWithObjects:@"",@"",@"",@"",@"", nil];
+                    NSUInteger GetCount = [SplitArray_PostsImg count];
+                    for (NSUInteger i = GetCount; i < [SplitArray_Id count]; i++) {
+                        SplitArray_PostsImg = [SplitArray_PostsImg arrayByAddingObject:@""];
+                    }
+                }else{
+                    
                 }
 //                NSLog(@"SplitArray_Id is %@",SplitArray_Id);
 //                NSLog(@"SplitArray_ProfileImg is %@",SplitArray_ProfileImg);
@@ -2088,8 +2103,15 @@
                 NSArray *SplitArray_ProfileImg = [TempUserProfileImg componentsSeparatedByString:@"$"];
                 NSArray *SplitArray_Username = [TempUseName componentsSeparatedByString:@"$"];
                 NSArray *SplitArray_PostsImg = [TempUserPhoto componentsSeparatedByString:@"$"];
-                if ([SplitArray_PostsImg count] < 2) {
-                    SplitArray_PostsImg = [[NSArray alloc]initWithObjects:@"",@"",@"",@"",@"", nil];
+                
+                if ([SplitArray_PostsImg count] <= [SplitArray_Id count]) {
+                    //SplitArray_PostsImg = [[NSArray alloc]initWithObjects:@"",@"",@"",@"",@"", nil];
+                    NSUInteger GetCount = [SplitArray_PostsImg count];
+                    for (NSUInteger i = GetCount; i < [SplitArray_Id count]; i++) {
+                        SplitArray_PostsImg = [SplitArray_PostsImg arrayByAddingObject:@""];
+                    }
+                }else{
+                
                 }
                 
                 NSLog(@"SplitArray_Id is %@",SplitArray_Id);
@@ -2364,6 +2386,14 @@
                     }
                     [SuggestedScrollview_Deal addSubview:ShowImage];
                     
+                    
+                    UIImageView *ShowOverlayImg = [[UIImageView alloc]init];
+                    ShowOverlayImg.image = [UIImage imageNamed:@"DealsAndRecommendationOverlay.png"];
+                    ShowOverlayImg.frame = CGRectMake(11 + i * screenWidth, 51, screenWidth - 22, 198);
+                    ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
+                    ShowOverlayImg.layer.masksToBounds = YES;
+                    // ShowOverlayImg.layer.cornerRadius = 5;
+                    [SuggestedScrollview_Deal addSubview:ShowOverlayImg];
                     
                     
                     AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];

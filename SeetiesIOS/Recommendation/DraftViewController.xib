@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
@@ -24,6 +24,7 @@
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CloseIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="laB-V3-voD">
                             <rect key="frame" x="0.0" y="20" width="40" height="40"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="Tnh-9x-RSE"/>
                                 <constraint firstAttribute="width" constant="40" id="na7-W5-i6D"/>
@@ -31,6 +32,7 @@
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YoW-RX-9NH">
                             <rect key="frame" x="0.0" y="0.0" width="44" height="64"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="44" id="JRq-nc-JEV"/>
                                 <constraint firstAttribute="height" constant="64" id="TZM-Dg-EuS"/>
@@ -44,11 +46,13 @@
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Draft" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u9S-bK-yhK">
                             <rect key="frame" x="0.0" y="28" width="320" height="24"/>
+                            <animations/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
+                    <animations/>
                     <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="laB-V3-voD" firstAttribute="leading" secondItem="Re1-a0-mFK" secondAttribute="leading" id="Cke-1G-7Wm"/>
@@ -64,6 +68,7 @@
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="94" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ylX-WT-ic6">
                     <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                    <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="nxEV_emptyView" destination="ldi-Jq-eYN" id="i0Q-ac-pl4"/>
@@ -74,6 +79,7 @@
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe a draft to delete" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4Z-Z7-lvU">
                             <rect key="frame" x="20" y="10" width="280" height="21"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="odl-0L-LjZ"/>
                             </constraints>
@@ -82,6 +88,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
+                    <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="f4Z-Z7-lvU" firstAttribute="leading" secondItem="Na7-XW-NJb" secondAttribute="leading" constant="20" id="2QZ-ea-35v"/>
@@ -97,6 +104,7 @@
                     </variation>
                 </view>
             </subviews>
+            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Re1-a0-mFK" secondAttribute="trailing" id="6Lq-ax-tPE"/>
@@ -118,9 +126,11 @@
             <subviews>
                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="NoDraft.png" translatesAutoresizingMaskIntoConstraints="NO" id="EwM-U3-Ivf">
                     <rect key="frame" x="115" y="85" width="90" height="90"/>
+                    <animations/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Draft Yet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W9r-wk-Vip">
                     <rect key="frame" x="0.0" y="157" width="320" height="42"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="42" id="IyF-hB-wTu"/>
                     </constraints>
@@ -129,6 +139,7 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
+            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="W9r-wk-Vip" firstAttribute="centerX" secondItem="ldi-Jq-eYN" secondAttribute="centerX" id="14Y-UF-Gce"/>

@@ -58,6 +58,11 @@
 
 -(void)registrationForApi
 {
+    // ****************************************************************************
+    // Uncomment and fill in with your Parse credentials:
+    // [Parse setApplicationId:@"UDy6JpDrh7N6mWznTYusRruA8a1VrCLK2s5gCXZo" clientKey:@"cDs5Sml0kIzwplNSMOnXgV5LnJiAP0UK1Z2K5pZm"];
+    // ****************************************************************************
+    
     [Fabric with:@[CrashlyticsKit]];
     [Parse setApplicationId:@"MMpGchSOutbiRC4KpHW47VLBFFQgv2jj5DIM4Qdi" clientKey:@"4kkfBL3btDWxoQN89WRBXVWYEUDZKD38XuzCakK7"];
     [Foursquare2 setupFoursquareWithClientId:@"V0RPRPAUHB1ZCFSKOXKNM0JA3Q1RN1QUBK14RZFOUYY15I4R"
@@ -83,6 +88,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    NSSetUncaughtExceptionHandler(&myExceptionHandler);
+    
    // [[AFNetworkActivityLogger sharedLogger] startLogging];
    // [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelDebug];
     
@@ -93,19 +100,6 @@
 //    NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
 //    SETLANGUAGE(@"zh-Hans");
 //    SLog(@"language supported : == %@",LOCALIZATION(@"ExpertLogin_Username"));
-    
-    // ****************************************************************************
-    // Uncomment and fill in with your Parse credentials:
-    // [Parse setApplicationId:@"UDy6JpDrh7N6mWznTYusRruA8a1VrCLK2s5gCXZo" clientKey:@"cDs5Sml0kIzwplNSMOnXgV5LnJiAP0UK1Z2K5pZm"];
-    // ****************************************************************************
-    
-    //    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
-    //                                                    UIUserNotificationTypeBadge |
-    //                                                    UIUserNotificationTypeSound);
-    //    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
-    //                                                                             categories:nil];
-    //    [application registerUserNotificationSettings:settings];
-    //    [application registerForRemoteNotifications];
     
     [self configureNotificaiton:application];
     [self requestForApiVersion];
@@ -484,11 +478,17 @@
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {
-    NSSetUncaughtExceptionHandler(&myExceptionHandler);
+    
 }
 void myExceptionHandler(NSException *exception)
 {
-    NSArray *stack = [exception callStackReturnAddresses];
-    NSLog(@"Stack trace: %@", stack);
+    
+    NSLog(@"CRASH: %@", exception);
+    NSLog(@"Stack Trace: %@", [exception callStackSymbols]);
 }
+
+
+
+
+
 @end

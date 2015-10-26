@@ -19,6 +19,9 @@
 		0B6A54E11BB51F84005B9D6B /* ReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B6A54DF1BB51F84005B9D6B /* ReportViewController.xib */; };
 		0B99C2001BCBA1F1006D7E63 /* AnnounceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B99C1FE1BCBA1F0006D7E63 /* AnnounceViewController.m */; settings = {ASSET_TAGS = (); }; };
 		0B99C2011BCBA1F1006D7E63 /* AnnounceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B99C1FF1BCBA1F0006D7E63 /* AnnounceViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		0BA0A7411BDE1155003C7A1D /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BA0A7401BDE1155003C7A1D /* Launch Screen.storyboard */; settings = {ASSET_TAGS = (); }; };
+		0BA0A7441BDE2D14003C7A1D /* DealsAndRecommendationOverlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA0A7421BDE2D14003C7A1D /* DealsAndRecommendationOverlay@2x.png */; settings = {ASSET_TAGS = (); }; };
+		0BA0A7451BDE2D14003C7A1D /* DealsAndRecommendationOverlay@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA0A7431BDE2D14003C7A1D /* DealsAndRecommendationOverlay@3x.png */; settings = {ASSET_TAGS = (); }; };
 		0BA1CB2F1B85AEFA009FFD3E /* Explore2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA1CB2E1B85AEFA009FFD3E /* Explore2ViewController.xib */; };
 		0BBFE04F1B9D624C004B17E9 /* EditProfileV2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBFE04D1B9D624C004B17E9 /* EditProfileV2ViewController.m */; };
 		0BBFE0501B9D624C004B17E9 /* EditProfileV2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBFE04E1B9D624C004B17E9 /* EditProfileV2ViewController.xib */; };
@@ -969,6 +972,9 @@
 		0B99C1FD1BCBA1F0006D7E63 /* AnnounceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnounceViewController.h; sourceTree = "<group>"; };
 		0B99C1FE1BCBA1F0006D7E63 /* AnnounceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnounceViewController.m; sourceTree = "<group>"; };
 		0B99C1FF1BCBA1F0006D7E63 /* AnnounceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnnounceViewController.xib; sourceTree = "<group>"; };
+		0BA0A7401BDE1155003C7A1D /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		0BA0A7421BDE2D14003C7A1D /* DealsAndRecommendationOverlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DealsAndRecommendationOverlay@2x.png"; sourceTree = "<group>"; };
+		0BA0A7431BDE2D14003C7A1D /* DealsAndRecommendationOverlay@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DealsAndRecommendationOverlay@3x.png"; sourceTree = "<group>"; };
 		0BA1CB2E1B85AEFA009FFD3E /* Explore2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Explore2ViewController.xib; sourceTree = "<group>"; };
 		0BBFE04C1B9D624C004B17E9 /* EditProfileV2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileV2ViewController.h; sourceTree = "<group>"; };
 		0BBFE04D1B9D624C004B17E9 /* EditProfileV2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileV2ViewController.m; sourceTree = "<group>"; };
@@ -1762,7 +1768,6 @@
 		8AD6BA651B705DF20040437E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		8AD6BA681B705DF20040437E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8AD6BA6A1B705DF20040437E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		8AD6BA6D1B705DF20040437E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		8AD6BA731B705DF30040437E /* SeetiesIOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeetiesIOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AD6BA781B705DF30040437E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8AD6BA791B705DF30040437E /* SeetiesIOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SeetiesIOSTests.m; sourceTree = "<group>"; };
@@ -2978,6 +2983,8 @@
 		8A90ACC51BD9F7C100CE1ED6 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				0BA0A7421BDE2D14003C7A1D /* DealsAndRecommendationOverlay@2x.png */,
+				0BA0A7431BDE2D14003C7A1D /* DealsAndRecommendationOverlay@3x.png */,
 				8A90ACC61BD9F7C100CE1ED6 /* CollectBtn@2x.png */,
 				8A90ACC71BD9F7C100CE1ED6 /* CollectBtn@3x.png */,
 				8A90ACC81BD9F7C100CE1ED6 /* CollectedBtn@2x.png */,
@@ -3633,6 +3640,7 @@
 		8AD6BA511B705DF20040437E = {
 			isa = PBXGroup;
 			children = (
+				0BA0A7401BDE1155003C7A1D /* Launch Screen.storyboard */,
 				0BC5586F1BD5E69F00E7BFA8 /* Default-568h@2x.png */,
 				8AD6BA5C1B705DF20040437E /* SeetiesIOS */,
 				8AD6BA761B705DF30040437E /* SeetiesIOSTests */,
@@ -3686,7 +3694,6 @@
 				8AD6BA651B705DF20040437E /* ViewController.m */,
 				8AD6BA671B705DF20040437E /* Main.storyboard */,
 				8AD6BA6A1B705DF20040437E /* Images.xcassets */,
-				8AD6BA6C1B705DF20040437E /* LaunchScreen.xib */,
 				8AD6BA5D1B705DF20040437E /* Supporting Files */,
 			);
 			path = SeetiesIOS;
@@ -4699,6 +4706,7 @@
 				8A90AE551BD9F7C100CE1ED6 /* CollectionFolderIcon@3x.png in Resources */,
 				8A90AE6B1BD9F7C100CE1ED6 /* PhotoPin@3x.png in Resources */,
 				8A90B0101BD9F7C200CE1ED6 /* FeedIcon@2x.png in Resources */,
+				0BA0A7411BDE1155003C7A1D /* Launch Screen.storyboard in Resources */,
 				8A90AEB11BD9F7C100CE1ED6 /* CollectionNoPhoto@3x.png in Resources */,
 				8A90AEB01BD9F7C100CE1ED6 /* CollectionNoPhoto@2x.png in Resources */,
 				8A90AFA01BD9F7C100CE1ED6 /* PostCommentIcon@3x.png in Resources */,
@@ -4773,6 +4781,7 @@
 				8A90AF561BD9F7C100CE1ED6 /* Walkthrough3.png in Resources */,
 				8A90AF2B1BD9F7C100CE1ED6 /* NightlifeIcon@3x.png in Resources */,
 				8A90AFB61BD9F7C100CE1ED6 /* FollowBtn@3x.png in Resources */,
+				0BA0A7451BDE2D14003C7A1D /* DealsAndRecommendationOverlay@3x.png in Resources */,
 				8AD6C0FD1B706CF30040437E /* SearchViewV2.xib in Resources */,
 				8A90AFA81BD9F7C100CE1ED6 /* PostViewIcon@3x.png in Resources */,
 				8A90AE781BD9F7C100CE1ED6 /* DeleteIconSwipe@2x.png in Resources */,
@@ -4989,6 +4998,7 @@
 				8A90B0161BD9F7C200CE1ED6 /* NotificationIconActive@2x.png in Resources */,
 				8AD6C1191B706CF30040437E /* pin@2x.png in Resources */,
 				8A90AE331BD9F7C100CE1ED6 /* CurrencyArrow@3x.png in Resources */,
+				0BA0A7441BDE2D14003C7A1D /* DealsAndRecommendationOverlay@2x.png in Resources */,
 				8AD6BE5A1B706CF30040437E /* DoImagePickerController.xib in Resources */,
 				8A90B0171BD9F7C200CE1ED6 /* NotificationIconActive@3x.png in Resources */,
 				8A90AEC11BD9F7C100CE1ED6 /* CloseStatus@3x.png in Resources */,
@@ -5572,14 +5582,6 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		8AD6BA6C1B705DF20040437E /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8AD6BA6D1B705DF20040437E /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
 		8AD6C80C1B7096BA0040437E /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -5637,7 +5639,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "bd33a98b-8fd4-49be-9c6d-cdb9423d6a91";
+				PROVISIONING_PROFILE = "b384f4c6-d74f-484d-ad13-a68f30676c55";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -5676,7 +5678,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "bd33a98b-8fd4-49be-9c6d-cdb9423d6a91";
+				PROVISIONING_PROFILE = "b384f4c6-d74f-484d-ad13-a68f30676c55";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -5723,7 +5725,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "bd33a98b-8fd4-49be-9c6d-cdb9423d6a91";
+				PROVISIONING_PROFILE = "b384f4c6-d74f-484d-ad13-a68f30676c55";
 			};
 			name = Debug;
 		};
@@ -5768,7 +5770,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "bd33a98b-8fd4-49be-9c6d-cdb9423d6a91";
+				PROVISIONING_PROFILE = "b384f4c6-d74f-484d-ad13-a68f30676c55";
 			};
 			name = Release;
 		};

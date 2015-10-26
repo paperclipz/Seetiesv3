@@ -109,7 +109,7 @@
     shareFBButton.frame = CGRectMake(110, 7, 37, 37);
     
     
-    [AllCollectButton setImage:[UIImage imageNamed:@"CollectBtn.png"] forState:UIControlStateNormal];
+    [AllCollectButton setImage:[UIImage imageNamed:LocalisedString(@"CollectBtn.png")] forState:UIControlStateNormal];
     [AllCollectButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
     [AllCollectButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
     AllCollectButton.backgroundColor = [UIColor clearColor];
@@ -455,7 +455,7 @@
                 }
                 
                 if ([GetCollectCheck isEqualToString:@"0"]) {
-                    [AllCollectButton setImage:[UIImage imageNamed:@"CollectBtn.png"] forState:UIControlStateNormal];
+                    [AllCollectButton setImage:[UIImage imageNamed:LocalisedString(@"CollectBtn.png")] forState:UIControlStateNormal];
                     [AllCollectButton setImage:[UIImage imageNamed:@"CollectedBtn.png"] forState:UIControlStateSelected];
                 }else{
                     [AllCollectButton setImage:[UIImage imageNamed:@"CollectedBtn.png"] forState:UIControlStateNormal];
@@ -1922,6 +1922,29 @@
         }
     }
     
+    if ([TotalCollectionCount length] == 0 || [TotalCollectionCount isEqualToString:@""] || [TotalCollectionCount isEqualToString:@"(null)"]) {
+        GetMessageHeight += 10;
+    }else{
+        //collected show
+        UIImageView *ShowCollectionIcon = [[UIImageView alloc]init];
+        ShowCollectionIcon.image = [UIImage imageNamed:@"PostCollectedIcon.png"];
+        ShowCollectionIcon.frame = CGRectMake(10, GetMessageHeight + 2, 35, 35);
+        [MainScroll addSubview:ShowCollectionIcon];
+        
+        NSString *TempCountString = [[NSString alloc]initWithFormat:@"Collected in %@ %@",TotalCollectionCount,LocalisedString(@"Collections")];
+        
+        UILabel *ShowCollectionText = [[UILabel alloc]init];
+        ShowCollectionText.frame = CGRectMake(50, GetMessageHeight, screenWidth - 69, 40);
+        ShowCollectionText.text = TempCountString;
+        ShowCollectionText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+        ShowCollectionText.backgroundColor = [UIColor clearColor];
+        ShowCollectionText.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+        [MainScroll addSubview:ShowCollectionText];
+        
+        GetMessageHeight += 40;
+    }
+    
+    
     NSLog(@"Like_UsernameArray is %@",Like_UsernameArray);
     
     if ([Like_UsernameArray count] == 0) {
@@ -1986,31 +2009,6 @@
         
          GetMessageHeight += 40;
     }
-    
-    if ([TotalCollectionCount length] == 0 || [TotalCollectionCount isEqualToString:@""] || [TotalCollectionCount isEqualToString:@"(null)"]) {
-        GetMessageHeight += 10;
-    }else{
-        //collected show
-        UIImageView *ShowCollectionIcon = [[UIImageView alloc]init];
-        ShowCollectionIcon.image = [UIImage imageNamed:@"PostCollectedIcon.png"];
-        ShowCollectionIcon.frame = CGRectMake(10, GetMessageHeight + 2, 35, 35);
-        [MainScroll addSubview:ShowCollectionIcon];
-        
-        NSString *TempCountString = [[NSString alloc]initWithFormat:@"Collected in %@ %@",TotalCollectionCount,LocalisedString(@"Collections")];
-        
-        UILabel *ShowCollectionText = [[UILabel alloc]init];
-        ShowCollectionText.frame = CGRectMake(50, GetMessageHeight, screenWidth - 69, 40);
-        ShowCollectionText.text = TempCountString;
-        ShowCollectionText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-        ShowCollectionText.backgroundColor = [UIColor clearColor];
-        ShowCollectionText.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-        [MainScroll addSubview:ShowCollectionText];
-        
-        GetMessageHeight += 40;
-    }
-    
-
-    
     
 
     if ([CommentIDArray count] == 0) {

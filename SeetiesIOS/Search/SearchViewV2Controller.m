@@ -153,13 +153,14 @@
 //        }
         
         SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
-        CATransition *transition = [CATransition animation];
-        transition.duration = 0.2;
-        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-        transition.type = kCATransitionPush;
-        transition.subtype = kCATransitionFromRight;
-        [self.view.window.layer addAnimation:transition forKey:nil];
-        [self presentViewController:SearchDetailView animated:NO completion:nil];
+//        CATransition *transition = [CATransition animation];
+//        transition.duration = 0.2;
+//        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//        transition.type = kCATransitionPush;
+//        transition.subtype = kCATransitionFromRight;
+//        [self.view.window.layer addAnimation:transition forKey:nil];
+//        [self presentViewController:SearchDetailView animated:NO completion:nil];
+        [self.navigationController pushViewController:SearchDetailView animated:YES];
         [SearchDetailView GetSearchKeyword:searchBar.text Getlat:@"" GetLong:@"" GetLocationName:@"" GetCurrentLat:latPoint GetCurrentLong:lonPoint];
         mySearchBar.text = GetSearchText;
         
@@ -273,17 +274,17 @@
     }else{
         
         SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
-        CATransition *transition = [CATransition animation];
-        transition.duration = 0.2;
-        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-        transition.type = kCATransitionPush;
-        transition.subtype = kCATransitionFromRight;
-        [self.view.window.layer addAnimation:transition forKey:nil];
-        [self presentViewController:SearchDetailView animated:NO completion:nil];
+//        CATransition *transition = [CATransition animation];
+//        transition.duration = 0.2;
+//        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//        transition.type = kCATransitionPush;
+//        transition.subtype = kCATransitionFromRight;
+//        [self.view.window.layer addAnimation:transition forKey:nil];
+//        [self presentViewController:SearchDetailView animated:NO completion:nil];
         
         [SearchDetailView GetSearchKeyword:[GetReturnSearchTextArray objectAtIndex:indexPath.row] Getlat:[GetReturnSearchLngArray objectAtIndex:indexPath.row] GetLong:[GetReturnSearchLatArray objectAtIndex:indexPath.row] GetLocationName:[GetReturnSearchAddressArray objectAtIndex:indexPath.row] GetCurrentLat:latPoint GetCurrentLong:lonPoint];
         //[SearchDetailView GetTitle:GetSearchText];
-       // [self.navigationController pushViewController:SearchDetailView animated:YES];
+        [self.navigationController pushViewController:SearchDetailView animated:YES];
     
     }
 }
@@ -528,14 +529,14 @@
     GetSearchText = [GetReturnSearchTextArray objectAtIndex:getbuttonIDN];
     
     SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromRight;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self presentViewController:SearchDetailView animated:NO completion:nil];
-//    [self.navigationController pushViewController:SearchDetailView animated:YES];
+//    CATransition *transition = [CATransition animation];
+//    transition.duration = 0.2;
+//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    transition.type = kCATransitionPush;
+//    transition.subtype = kCATransitionFromRight;
+//    [self.view.window.layer addAnimation:transition forKey:nil];
+//    [self presentViewController:SearchDetailView animated:NO completion:nil];
+    [self.navigationController pushViewController:SearchDetailView animated:YES];
     //[self presentViewController:SearchDetailView animated:YES completion:nil];
     [SearchDetailView GetSearchKeyword:[GetReturnSearchTextArray objectAtIndex:getbuttonIDN] Getlat:[GetReturnSearchLatArray objectAtIndex:getbuttonIDN] GetLong:[GetReturnSearchLngArray objectAtIndex:getbuttonIDN] GetLocationName:[GetReturnSearchAddressArray objectAtIndex:getbuttonIDN] GetCurrentLat:latPoint GetCurrentLong:lonPoint];
     //[SearchDetailView GetTitle:GetSearchText];
@@ -547,13 +548,14 @@
     GetSearchText = [GetSearchArray objectAtIndex:getbuttonIDN];
     
     SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromRight;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self presentViewController:SearchDetailView animated:NO completion:nil];
+//    CATransition *transition = [CATransition animation];
+//    transition.duration = 0.2;
+//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    transition.type = kCATransitionPush;
+//    transition.subtype = kCATransitionFromRight;
+//    [self.view.window.layer addAnimation:transition forKey:nil];
+//    [self presentViewController:SearchDetailView animated:NO completion:nil];
+    [self.navigationController pushViewController:SearchDetailView animated:YES];
     [SearchDetailView GetSearchKeyword:[GetSearchArray objectAtIndex:getbuttonIDN] Getlat:@"" GetLong:@"" GetLocationName:@"" GetCurrentLat:latPoint GetCurrentLong:lonPoint];
    // [SearchDetailView GetTitle:GetSearchText];
     mySearchBar.text = GetSearchText;

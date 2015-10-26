@@ -117,6 +117,7 @@
     if ([GetDescription length] == 0) {
     }else{
         DescriptionField.text = GetDescription;
+        DescriptionField.textColor = [UIColor blackColor];
     }
     
     if ([GetLocation length] == 0) {
