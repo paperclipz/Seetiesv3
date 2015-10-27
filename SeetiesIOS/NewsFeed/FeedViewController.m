@@ -3448,7 +3448,7 @@
                // NSLog(@"User_PhotoArray is %lu",(unsigned long)[User_PhotoArray count]);
     
                 if (CheckFirstTimeLoad == 0) {
-                    [self StartInit1stView];
+                   // [self StartInit1stView];
                    // CheckFirstTimeLoad = 1;
                 }else{
                     [self InitContent];

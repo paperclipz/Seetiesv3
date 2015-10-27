@@ -4,12 +4,20 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="ProximaNovaSoft-Regular.ttf">
+            <string>ProximaNovaSoft-Regular</string>
+        </mutableArray>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileViewController">
             <connections>
+                <outlet property="btnEditProfile" destination="B4G-vz-rNL" id="uKp-RS-6vr"/>
+                <outlet property="btnSearch" destination="SuG-v7-aXg" id="9kK-JQ-vfY"/>
                 <outlet property="ibContentView" destination="3Pb-zr-5rR" id="Xoa-8p-mgs"/>
                 <outlet property="ibImgProfilePic" destination="W0N-44-6zb" id="pnc-6y-Hxy"/>
                 <outlet property="ibScrollView" destination="pdp-kG-bwS" id="bhO-aD-lIC"/>
+                <outlet property="ibSettingContentView" destination="0UY-Bu-A3h" id="25C-XE-jTa"/>
                 <outlet property="ibTableView" destination="y6b-tE-4Np" id="9jF-Gj-LTU"/>
                 <outlet property="ibTagControlView" destination="6jE-6p-qpf" id="6jN-4R-XgL"/>
                 <outlet property="ibTopContentView" destination="lkl-HZ-BhG" id="gLb-Dq-AmE"/>
@@ -50,13 +58,17 @@
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="W0N-44-6zb">
                             <rect key="frame" x="20" y="-50" width="100" height="100"/>
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="100" id="3CL-Uw-owC"/>
                                 <constraint firstAttribute="height" constant="100" id="5zb-ze-UjJ"/>
                             </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="ooZ-jy-ols" appends="YES" id="feA-eD-Jz4"/>
+                            </connections>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lucy Jin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZI-xc-IZb">
-                            <rect key="frame" x="20" y="60" width="280" height="21"/>
+                            <rect key="frame" x="20" y="60" width="177" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="ql2-ZQ-Agy"/>
                             </constraints>
@@ -121,14 +133,26 @@
                                 <constraint firstAttribute="height" constant="30" id="FLJ-Pr-zTW"/>
                             </constraints>
                         </scrollView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B4G-vz-rNL">
+                            <rect key="frame" x="205" y="60" width="107" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="107" id="TOi-Xy-C1h"/>
+                                <constraint firstAttribute="height" constant="30" id="wf5-rL-jWd"/>
+                            </constraints>
+                            <state key="normal" title="Edit profile"/>
+                            <connections>
+                                <action selector="btnEditProfileClicked:" destination="-1" eventType="touchUpInside" id="0ti-GC-4qH"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="lZI-xc-IZb" secondAttribute="trailing" constant="20" id="0w2-aG-bhI"/>
+                        <constraint firstAttribute="trailing" secondItem="lZI-xc-IZb" secondAttribute="trailing" constant="123" id="0w2-aG-bhI"/>
                         <constraint firstItem="JJy-SB-8Oo" firstAttribute="leading" secondItem="kzZ-ZA-GD0" secondAttribute="leading" id="1AB-kB-co7"/>
                         <constraint firstAttribute="trailing" secondItem="6jE-6p-qpf" secondAttribute="trailing" constant="20" id="37h-hL-sBv"/>
                         <constraint firstItem="lZI-xc-IZb" firstAttribute="top" secondItem="W0N-44-6zb" secondAttribute="bottom" constant="10" id="4kw-IG-myq"/>
                         <constraint firstItem="zyw-i4-9Jw" firstAttribute="leading" secondItem="JJy-SB-8Oo" secondAttribute="leading" id="5tj-Fz-O3e"/>
+                        <constraint firstItem="B4G-vz-rNL" firstAttribute="top" secondItem="lkl-HZ-BhG" secondAttribute="top" constant="60" id="C61-tw-BVn"/>
                         <constraint firstAttribute="trailing" secondItem="zyw-i4-9Jw" secondAttribute="trailing" constant="20" id="CaN-jc-rlp"/>
                         <constraint firstItem="6jE-6p-qpf" firstAttribute="top" secondItem="zyw-i4-9Jw" secondAttribute="bottom" constant="10" id="Fsq-Na-lJo"/>
                         <constraint firstAttribute="trailing" secondItem="5wG-lf-rn3" secondAttribute="trailing" constant="15" id="KFo-2c-OGj"/>
@@ -145,6 +169,7 @@
                         <constraint firstItem="lZI-xc-IZb" firstAttribute="leading" secondItem="lkl-HZ-BhG" secondAttribute="leading" constant="20" id="m8F-tW-bd6"/>
                         <constraint firstItem="5wG-lf-rn3" firstAttribute="leading" secondItem="JJy-SB-8Oo" secondAttribute="trailing" constant="5" id="pK9-SA-IAf"/>
                         <constraint firstItem="5wG-lf-rn3" firstAttribute="centerY" secondItem="JJy-SB-8Oo" secondAttribute="centerY" id="ply-dy-mmE"/>
+                        <constraint firstAttribute="trailing" secondItem="B4G-vz-rNL" secondAttribute="trailing" constant="8" id="sUF-gG-Rym"/>
                         <constraint firstItem="oN1-eJ-gY4" firstAttribute="leading" secondItem="kzZ-ZA-GD0" secondAttribute="trailing" constant="10" id="tew-Hb-tJ6"/>
                     </constraints>
                 </view>
@@ -166,9 +191,77 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="897" y="158"/>
         </view>
+        <view contentMode="scaleToFill" id="0UY-Bu-A3h" userLabel="settingContentView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SuG-v7-aXg">
+                    <rect key="frame" x="0.0" y="15" width="320" height="53"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="53" id="asu-Pd-Ndz"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="15"/>
+                    <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="search" image="SearchBarIcon.png" backgroundImage="ProfileSearchBar.png">
+                        <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="btnSearchClicked:" destination="-1" eventType="touchUpInside" id="wMh-Bm-ecp"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nDf-Fa-R7S">
+                    <rect key="frame" x="277" y="59" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="dOy-BO-SJX"/>
+                        <constraint firstAttribute="height" constant="40" id="fI7-N1-ztI"/>
+                    </constraints>
+                    <state key="normal" image="ProfileShareIcon.png"/>
+                    <connections>
+                        <action selector="btnShareClicked:" destination="-1" eventType="touchUpInside" id="0pL-x8-Wog"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bDJ-wc-qMj">
+                    <rect key="frame" x="237" y="59" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="00w-WN-Ycb"/>
+                        <constraint firstAttribute="height" constant="40" id="pEi-r1-Voo"/>
+                    </constraints>
+                    <state key="normal" image="ProfileSettingsIcon.png"/>
+                    <connections>
+                        <action selector="btnSettingClicked:" destination="-1" eventType="touchUpInside" id="9fc-Lb-iwY"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="SuG-v7-aXg" firstAttribute="top" secondItem="0UY-Bu-A3h" secondAttribute="top" constant="15" id="62r-Iz-d8E"/>
+                <constraint firstItem="SuG-v7-aXg" firstAttribute="leading" secondItem="0UY-Bu-A3h" secondAttribute="leading" id="I7S-gP-tjH"/>
+                <constraint firstAttribute="trailing" secondItem="SuG-v7-aXg" secondAttribute="trailing" id="MVB-EI-9lk"/>
+                <constraint firstItem="nDf-Fa-R7S" firstAttribute="leading" secondItem="bDJ-wc-qMj" secondAttribute="trailing" id="OYZ-44-kmy"/>
+                <constraint firstAttribute="trailing" secondItem="nDf-Fa-R7S" secondAttribute="trailing" constant="3" id="byj-Dg-xnV"/>
+                <constraint firstItem="bDJ-wc-qMj" firstAttribute="bottom" secondItem="nDf-Fa-R7S" secondAttribute="bottom" id="iu1-Q4-bcK"/>
+                <constraint firstAttribute="bottom" secondItem="nDf-Fa-R7S" secondAttribute="bottom" id="uHA-h4-IpP"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="294" y="-132.5"/>
+        </view>
+        <tapGestureRecognizer id="ooZ-jy-ols">
+            <connections>
+                <action selector="profileImageTab:" destination="-1" id="hVt-mn-RFU"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="FollowerNumber.png" width="25" height="25"/>
         <image name="LocationIcon.png" width="30" height="30"/>
+        <image name="ProfileSearchBar.png" width="320" height="53"/>
+        <image name="ProfileSettingsIcon.png" width="40" height="40"/>
+        <image name="ProfileShareIcon.png" width="40" height="40"/>
+        <image name="SearchBarIcon.png" width="30" height="30"/>
     </resources>
 </document>

@@ -14,7 +14,9 @@
 #import "SettingsViewController.h"
 #import "PostListingViewController.h"
 #import "LikesListingViewController.h"
+#import "EditProfileV2ViewController.h"
 
+#import "SearchViewV2Controller.h"
 
 @interface ProfileViewController : BaseViewController<TLTagsControlDelegate>
 
@@ -24,5 +26,8 @@
 @property(nonatomic,strong)SettingsViewController* settingsViewController;
 @property(nonatomic,strong)PostListingViewController* postListingViewController;
 @property(nonatomic,strong)LikesListingViewController* likesListingViewController;
+
+@property(nonatomic,strong)EditProfileV2ViewController* editProfileV2ViewController;
+@property(nonatomic,strong)SearchViewV2Controller* searchViewV2Controller;
 
 @end

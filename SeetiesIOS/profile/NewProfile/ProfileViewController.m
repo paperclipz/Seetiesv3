@@ -14,6 +14,7 @@
 #import "ProfilePageCollectionHeaderView.h"
 #import "ProfilePageCollectionFooterTableViewCell.h"
 #import "ProfileNoItemTableViewCell.h"
+#import "JTSImageViewController.h"
 
 @interface ProfileViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
@@ -25,6 +26,7 @@
 }
 
 // =======  OUTLET   =======
+@property (weak, nonatomic) IBOutlet UIButton *btnEditProfile;
 @property (weak, nonatomic) IBOutlet UILabel *lblUserName;
 @property (weak, nonatomic) IBOutlet UILabel *lblFollowing;
 @property (weak, nonatomic) IBOutlet UILabel *lblLocation;
@@ -38,6 +40,9 @@
 //profile page table view
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 @property (weak, nonatomic) ProfilePageCollectionHeaderView *profilePageCollectionHeaderView1;
+@property (strong, nonatomic) IBOutlet UIButton *btnSearch;
+@property (strong, nonatomic) IBOutlet UIView *ibSettingContentView;
+
 // =======  OUTLET   =======
 // =======  MODEL   =======
 
@@ -51,6 +56,40 @@
 @end
 
 @implementation ProfileViewController
+- (IBAction)profileImageTab:(id)sender {
+    
+    SLog(@"profileImageTap");
+    // Create image info
+    JTSImageInfo *imageInfo = [[JTSImageInfo alloc] init];
+    imageInfo.image = [UIImage imageNamed:@"1.png"];
+    imageInfo.referenceRect = self.ibImgProfilePic.frame;
+    imageInfo.referenceView = self.ibImgProfilePic.superview;
+    
+    // Setup view controller
+    JTSImageViewController *imageViewer = [[JTSImageViewController alloc]
+                                           initWithImageInfo:imageInfo
+                                           mode:JTSImageViewControllerMode_Image
+                                           backgroundStyle:JTSImageViewControllerBackgroundOption_Scaled];
+    
+    // Present the view controller.
+    [imageViewer showFromViewController:self transition:JTSImageViewControllerTransition_FromOriginalPosition];
+}
+
+- (IBAction)btnSearchClicked:(id)sender {
+    
+    _searchViewV2Controller = nil;
+    [self.navigationController pushViewController:self.searchViewV2Controller animated:NO];
+    
+}
+
+- (IBAction)btnEditProfileClicked:(id)sender {
+
+
+    _editProfileV2ViewController = nil;
+    [self.editProfileV2ViewController initData:self.userProfileModel];
+    [self.navigationController pushViewController:self.editProfileV2ViewController animated:YES];
+    
+}
 - (IBAction)btnShareClicked:(id)sender {
     
     [self.navigationController pushViewController:self.settingsViewController animated:YES];
@@ -70,9 +109,9 @@
     [self initData];
     [self initSelfView];
     [self requestServerForUserInfo];
-    [self requestServerForUserCollection];
-    [self requestServerForUserPost];
-    [self requestServerForUserLikes];
+   // [self requestServerForUserCollection];
+   // [self requestServerForUserPost];
+   // [self requestServerForUserLikes];
     
     // Do any additional setup after loading the view from its nib.
 }
@@ -84,10 +123,11 @@
 
 -(void)initSelfView
 {
-    
     [self initTagView];
     [self initProfilePageCell];
     
+    [Utils setRoundBorder:self.btnEditProfile color:TWO_ZERO_FOUR_COLOR borderRadius:self.btnEditProfile.frame.size.height/2 borderWidth:0.5f];
+
     self.edgesForExtendedLayout=UIRectEdgeNone;
     self.extendedLayoutIncludesOpaqueBars=NO;
     self.automaticallyAdjustsScrollViewInsets=NO;
@@ -118,16 +158,18 @@
 
 
     [self adjustTableView];
-    [self addSettingAndShareView];
+    [self addSearchView];
 
 }
 
 -(void)addSettingAndShareView// need to add after
 {
-    UIButton* btnShare = [[UIButton alloc]initWithFrame:CGRectMake(self.ibScrollView.parallaxView.frame.size.width - 40 -20, 20, 40, 40)];
+    
+    float buttonYAxis = self.btnSearch.frame.origin.y + self.btnSearch.frame.size.height + 20;
+    UIButton* btnShare = [[UIButton alloc]initWithFrame:CGRectMake(self.ibScrollView.parallaxView.frame.size.width - 40 -10, buttonYAxis, 40, 40)];
     [btnShare setImage:[UIImage imageNamed:@"ProfileShareIcon.png"] forState:UIControlStateNormal];
     
-    UIButton* btnSetting = [[UIButton alloc]initWithFrame:CGRectMake(btnShare.frame.origin.x - btnShare.frame.size.width , 20, 40, 40)];
+    UIButton* btnSetting = [[UIButton alloc]initWithFrame:CGRectMake(btnShare.frame.origin.x - btnShare.frame.size.width , buttonYAxis, 40, 40)];
     [btnSetting setImage:[UIImage imageNamed:@"ProfileSettingsIcon.png"] forState:UIControlStateNormal];
     
     
@@ -139,6 +181,15 @@
     
     [self.ibScrollView.parallaxView addSubview:btnShare];
     [self.ibScrollView.parallaxView bringSubviewToFront:btnShare];
+}
+
+-(void)addSearchView
+{
+    [self.ibScrollView.parallaxView addSubview:self.ibSettingContentView];
+    [self.ibScrollView.parallaxView bringSubviewToFront:self.ibSettingContentView];
+    [self.ibSettingContentView adjustToScreenWidth];
+   // [self addSettingAndShareView];
+
 }
 
 -(void)adjustTableView
@@ -170,7 +221,6 @@
     
     return _backgroundImageView;
 }
-
 
 #pragma mark - Cell
 -(void)initProfilePageCell
@@ -544,6 +594,28 @@
 
 #pragma mark - Declaration
 
+-(SearchViewV2Controller*)searchViewV2Controller
+{
+    if (!_searchViewV2Controller) {
+        _searchViewV2Controller = [SearchViewV2Controller new];
+    }
+    
+    return _searchViewV2Controller;
+}
+-(EditProfileV2ViewController*)editProfileV2ViewController
+{
+    if (!_editProfileV2ViewController) {
+        _editProfileV2ViewController = [EditProfileV2ViewController new];
+        
+        __weak typeof (self)weakSelf = self;
+        _editProfileV2ViewController.didCompleteUpdateUserProfileBlock = ^(void)
+        {
+            [weakSelf requestServerForUserInfo];
+        };
+    }
+    
+    return _editProfileV2ViewController;
+}
 -(LikesListingViewController*)likesListingViewController
 {
     if (!_likesListingViewController) {
@@ -689,10 +761,24 @@
 
 -(void)assignUserData
 {
+    
+    SLog(@"assignUserData");
     self.lblUserName.text = self.userProfileModel.name;
     [self setFollowing:self.userProfileModel.follower_count Following:self.userProfileModel.following_count];
-    self.lblLocation.text = self.userProfileModel.location;
-    self.lblDescription.text = self.userProfileModel.profileDescription;
+    
+    if (![self.userProfileModel.location isEqualToString:@""]) {
+        self.lblLocation.text = self.userProfileModel.location;
+
+    }
+    else{
+        self.lblLocation.text = self.userProfileModel.country;
+
+    }
+    self.lblDescription.text = self.userProfileModel.personal_link;
+    
+     self.ibTagControlView.tags = [NSMutableArray arrayWithArray:self.userProfileModel.personal_tags];
+    [self.ibTagControlView reloadTagSubviewsCustom];
+
 }
 
 -(void)assignCollectionData

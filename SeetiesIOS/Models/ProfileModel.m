@@ -10,6 +10,16 @@
 
 @implementation ProfileModel
 
+
+-(NSString*)getGender
+{
+    if ([_gender isEqualToString:@"m"]) {
+        return @"Male";
+    }
+    else{
+        return @"Female";
+    }
+}
 +(BOOL)propertyIsOptional:(NSString*)propertyName
 {
     return YES;
@@ -18,8 +28,9 @@
 +(JSONKeyMapper*)keyMapper
 {
     return [[JSONKeyMapper alloc] initWithDictionary:@{
-                                                       @"description": @"profileDescription"
-                                                       
+                                                       @"description": @"profileDescription",
+                                                       @"wallpaper.s": @"wallpaper",
+                                                       @"profile_photo_images.s": @"profile_photo_images"
                                                        }];
 }
 

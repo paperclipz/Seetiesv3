@@ -60,24 +60,30 @@
         if (![draftModel.arrPhotos isNull]) {
             
             
-            if ([draftModel.arrPhotos count] ==1) {
+            if (![draftModel.arrPhotos isNull]) {
                 PhotoModel* photoModel1 = draftModel.arrPhotos[0];
 
                 [self.ibImageViewA sd_setImageWithURL:[NSURL URLWithString:photoModel1.imageURL]];
 
             }
             
-            if ([draftModel.arrPhotos count] ==2) {
+        }
+        
+        if (self.model.arrayPost[1] != [NSNull null]) {
+            
+            DraftModel* draftModelTwo = self.model.arrayPost[1];
+            
+            if (![draftModelTwo.arrPhotos isNull]) {
+                PhotoModel* photoModel2 = draftModelTwo.arrPhotos[0];
                 
-                PhotoModel* photoModel2 = draftModel.arrPhotos[1];
-
                 [self.ibImageViewB sd_setImageWithURL:[NSURL URLWithString:photoModel2.imageURL]];
                 
             }
-            
         }
     }
     
+   
+   
 //
 //    if (self.model.arrTempFeedsPost>0) {
 //        

@@ -975,6 +975,12 @@
 		8AF39CE21BC67125009C7F26 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF39CDF1BC67125009C7F26 /* 1.png */; settings = {ASSET_TAGS = (); }; };
 		8AF53EFC1BD65F5A00AF6C9E /* UIView+RoundedCorners.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF53EFB1BD65F5A00AF6C9E /* UIView+RoundedCorners.m */; settings = {ASSET_TAGS = (); }; };
 		8AF53F1B1BD8850E00AF6C9E /* NSObject+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF53F1A1BD8850E00AF6C9E /* NSObject+Extension.m */; settings = {ASSET_TAGS = (); }; };
+		8AFC19E51BDF935800DD8E2B /* JTSAnimatedGIFUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFC19DA1BDF935800DD8E2B /* JTSAnimatedGIFUtility.m */; settings = {ASSET_TAGS = (); }; };
+		8AFC19E61BDF935800DD8E2B /* JTSImageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFC19DC1BDF935800DD8E2B /* JTSImageInfo.m */; settings = {ASSET_TAGS = (); }; };
+		8AFC19E71BDF935800DD8E2B /* JTSImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFC19DE1BDF935800DD8E2B /* JTSImageViewController.m */; settings = {ASSET_TAGS = (); }; };
+		8AFC19E81BDF935800DD8E2B /* JTSSimpleImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFC19E01BDF935800DD8E2B /* JTSSimpleImageDownloader.m */; settings = {ASSET_TAGS = (); }; };
+		8AFC19E91BDF935800DD8E2B /* UIApplication+JTSImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFC19E21BDF935800DD8E2B /* UIApplication+JTSImageViewController.m */; settings = {ASSET_TAGS = (); }; };
+		8AFC19EA1BDF935800DD8E2B /* UIImage+JTSImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFC19E41BDF935800DD8E2B /* UIImage+JTSImageEffects.m */; settings = {ASSET_TAGS = (); }; };
 		D44BD397CA9972010A37D9F6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B526FE01F3F3414439C16DF /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -2263,6 +2269,18 @@
 		8AF53EFB1BD65F5A00AF6C9E /* UIView+RoundedCorners.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+RoundedCorners.m"; sourceTree = "<group>"; };
 		8AF53F191BD8850E00AF6C9E /* NSObject+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Extension.h"; sourceTree = "<group>"; };
 		8AF53F1A1BD8850E00AF6C9E /* NSObject+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Extension.m"; sourceTree = "<group>"; };
+		8AFC19D91BDF935800DD8E2B /* JTSAnimatedGIFUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSAnimatedGIFUtility.h; sourceTree = "<group>"; };
+		8AFC19DA1BDF935800DD8E2B /* JTSAnimatedGIFUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSAnimatedGIFUtility.m; sourceTree = "<group>"; };
+		8AFC19DB1BDF935800DD8E2B /* JTSImageInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSImageInfo.h; sourceTree = "<group>"; };
+		8AFC19DC1BDF935800DD8E2B /* JTSImageInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSImageInfo.m; sourceTree = "<group>"; };
+		8AFC19DD1BDF935800DD8E2B /* JTSImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSImageViewController.h; sourceTree = "<group>"; };
+		8AFC19DE1BDF935800DD8E2B /* JTSImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSImageViewController.m; sourceTree = "<group>"; };
+		8AFC19DF1BDF935800DD8E2B /* JTSSimpleImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSSimpleImageDownloader.h; sourceTree = "<group>"; };
+		8AFC19E01BDF935800DD8E2B /* JTSSimpleImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSSimpleImageDownloader.m; sourceTree = "<group>"; };
+		8AFC19E11BDF935800DD8E2B /* UIApplication+JTSImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+JTSImageViewController.h"; sourceTree = "<group>"; };
+		8AFC19E21BDF935800DD8E2B /* UIApplication+JTSImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+JTSImageViewController.m"; sourceTree = "<group>"; };
+		8AFC19E31BDF935800DD8E2B /* UIImage+JTSImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+JTSImageEffects.h"; sourceTree = "<group>"; };
+		8AFC19E41BDF935800DD8E2B /* UIImage+JTSImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+JTSImageEffects.m"; sourceTree = "<group>"; };
 		A6BFDB1BE373200E64D8CBE7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CAB2B54F0EC79309593A3C4C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -4449,6 +4467,7 @@
 		8AD6C2D21B707D120040437E /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				8AFC19D81BDF935800DD8E2B /* JTIMageViewer */,
 				8AA7433F1BCCDD3700061E32 /* ParallaxHeaderView */,
 				8A58F7A11BC260B600DED466 /* TLTagsContol */,
 				8A2AC21D1BC2279E0009C36B /* View */,
@@ -4755,6 +4774,25 @@
 				8AF53F1A1BD8850E00AF6C9E /* NSObject+Extension.m */,
 			);
 			name = "NSObject+Extension";
+			sourceTree = "<group>";
+		};
+		8AFC19D81BDF935800DD8E2B /* JTIMageViewer */ = {
+			isa = PBXGroup;
+			children = (
+				8AFC19D91BDF935800DD8E2B /* JTSAnimatedGIFUtility.h */,
+				8AFC19DA1BDF935800DD8E2B /* JTSAnimatedGIFUtility.m */,
+				8AFC19DB1BDF935800DD8E2B /* JTSImageInfo.h */,
+				8AFC19DC1BDF935800DD8E2B /* JTSImageInfo.m */,
+				8AFC19DD1BDF935800DD8E2B /* JTSImageViewController.h */,
+				8AFC19DE1BDF935800DD8E2B /* JTSImageViewController.m */,
+				8AFC19DF1BDF935800DD8E2B /* JTSSimpleImageDownloader.h */,
+				8AFC19E01BDF935800DD8E2B /* JTSSimpleImageDownloader.m */,
+				8AFC19E11BDF935800DD8E2B /* UIApplication+JTSImageViewController.h */,
+				8AFC19E21BDF935800DD8E2B /* UIApplication+JTSImageViewController.m */,
+				8AFC19E31BDF935800DD8E2B /* UIImage+JTSImageEffects.h */,
+				8AFC19E41BDF935800DD8E2B /* UIImage+JTSImageEffects.m */,
+			);
+			path = JTIMageViewer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -5566,18 +5604,21 @@
 			files = (
 				8A1254131BC4F31A00AA4120 /* NewsFeedViewController.m in Sources */,
 				8A45123C1BDE2C97008DE870 /* LikeListingCollectionViewCell.m in Sources */,
+				8AFC19EA1BDF935800DD8E2B /* UIImage+JTSImageEffects.m in Sources */,
 				8AD6C29B1B7072FB0040437E /* PublishMainViewController.m in Sources */,
 				8A9F25C21B8ED33000BB13BA /* BKCardNumberField.m in Sources */,
 				8AC8F7281BDA414E00DEF14A /* PostListingViewController.m in Sources */,
 				8AD6C34D1B707D120040437E /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				8A3409441B8AD06A009B66C3 /* UIImage+Masking.m in Sources */,
 				8A3409251B8737E4009B66C3 /* AUIAutoGrowingTextView.m in Sources */,
+				8AFC19E81BDF935800DD8E2B /* JTSSimpleImageDownloader.m in Sources */,
 				8AD6BE561B706CF30040437E /* AssetHelper.m in Sources */,
 				8AD6C0B91B706CF30040437E /* ShowFollowerAndFollowingViewController.m in Sources */,
 				0BD634FD1B71C9B800D82414 /* LeveyTabBarController.m in Sources */,
 				8AD6C0B11B706CF30040437E /* SignupViewController.m in Sources */,
 				8AC8F74A1BDA414E00DEF14A /* EditCollectionTableViewCell.m in Sources */,
 				0BCF10F31BB290C90017B614 /* ShareViewController.m in Sources */,
+				8AFC19E61BDF935800DD8E2B /* JTSImageInfo.m in Sources */,
 				8A959D631B8B252700722920 /* FXImageView.m in Sources */,
 				8A3408F51B86FC99009B66C3 /* BMXSwipableCell.m in Sources */,
 				8AD6C2A91B7072FB0040437E /* WhereIsThisViewController.m in Sources */,
@@ -5585,6 +5626,7 @@
 				8A7420E21B82F67F005DA654 /* KVNProgress.m in Sources */,
 				8AD6C0BE1B706CF30040437E /* FeedV2DetailViewController.m in Sources */,
 				8AD6BE241B706CF30040437E /* UIIimage+Extra.m in Sources */,
+				8AFC19E71BDF935800DD8E2B /* JTSImageViewController.m in Sources */,
 				8AD6C8201B736B070040437E /* Model.m in Sources */,
 				8AD6C3321B707D120040437E /* AsyncImageView.m in Sources */,
 				8AD6BE4B1B706CF30040437E /* ExploreCountryV2ViewController.m in Sources */,
@@ -5626,6 +5668,7 @@
 				8AD6C0F81B706CF30040437E /* SearchResultV2ViewController.m in Sources */,
 				8AB76DD91BB8FD78007DB972 /* ZFTokenField.m in Sources */,
 				8AD6C0D21B706CF30040437E /* PFollowTheExpertsViewController.m in Sources */,
+				8AFC19E51BDF935800DD8E2B /* JTSAnimatedGIFUtility.m in Sources */,
 				8A3409411B8AD06A009B66C3 /* UIImage+Blurring.m in Sources */,
 				8AD6C28D1B7072FB0040437E /* LocationOnMapViewController.m in Sources */,
 				8AD6C86F1B7460DB0040437E /* UIAlertView+MKNetworkKitAdditions.m in Sources */,
@@ -5637,6 +5680,7 @@
 				8AD6C86B1B7460DB0040437E /* NSData+MKBase64.m in Sources */,
 				8AD6C0AF1B706CF30040437E /* ExpertLoginViewController.m in Sources */,
 				8AD6C28F1B7072FB0040437E /* AddLocationViewController.m in Sources */,
+				8AFC19E91BDF935800DD8E2B /* UIApplication+JTSImageViewController.m in Sources */,
 				8A8475311BC52CCF006DD614 /* UITextView+Extra.m in Sources */,
 				8AD6BE571B706CF30040437E /* DoAlbumCell.m in Sources */,
 				8AD6C2951B7072FB0040437E /* DraftsViewController.m in Sources */,

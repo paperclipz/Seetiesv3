@@ -19,6 +19,14 @@
 @property(nonatomic,strong)NSString* username;
 @property(nonatomic,strong)NSString* name;
 @property(nonatomic,strong)NSString* profileDescription;
+@property(nonatomic,strong)NSString* personal_link;
+@property(nonatomic,strong)NSString* country;
+@property(nonatomic,strong)NSArray* personal_tags;
+@property(nonatomic,strong)NSString* wallpaper;
+@property(nonatomic,strong)NSString* dob;
+@property(nonatomic,strong)NSString* profile_photo_images;
+@property(nonatomic,strong)NSString* gender;
+
 
 
 @end
