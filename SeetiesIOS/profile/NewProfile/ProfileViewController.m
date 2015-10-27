@@ -313,6 +313,7 @@
                 cell = [[ProfilePageCollectionFooterTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfierNone];
             }
            
+           cell.selectionStyle = UITableViewCellSelectionStyleNone;
            cell.btnSeeAllClickedBlock = ^(void)
            {
                [self didSelectFooterAtIndex:indexPath];
@@ -493,9 +494,12 @@
 {
     if (indexPath.section == 0) {
         
-        CollectionModel* collModel = self.userCollectionsModel.arrCollections[indexPath.row];
-        
-        [self showCollectionDisplayViewWithCollectionID:collModel.collection_id];
+        if (![self.userCollectionsModel.arrCollections isNull]) {
+            CollectionModel* collModel = self.userCollectionsModel.arrCollections[indexPath.row];
+            
+            [self showCollectionDisplayViewWithCollectionID:collModel.collection_id];
+        }
+      
     }
    
 }
@@ -504,7 +508,7 @@
 
 -(void)showCollectionDisplayViewWithCollectionID:(NSString*)collID
 {
-    
+    _collectionViewController = nil;
     [self.collectionViewController GetCollectionID:collID GetPermision:@"self"];
     [self.navigationController pushViewController:self.collectionViewController animated:YES];
 }

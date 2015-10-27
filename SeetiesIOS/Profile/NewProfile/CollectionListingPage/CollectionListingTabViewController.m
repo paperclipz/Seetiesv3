@@ -10,7 +10,12 @@
 #import "ProfilePageCollectionTableViewCell.h"
 
 @interface CollectionListingTabViewController ()
+{
+    BOOL isMiddleOfCallingServer;
+}
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
+@property(nonatomic,strong)CollectionsModel* userCollectionsModel;
+@property(nonatomic,strong)NSMutableArray* arrCollections;
 
 @end
 
@@ -19,6 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
+    [self requestServerForUserCollection];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -54,19 +60,104 @@
     
 }
 
+#pragma mark - Declaration
 
+-(NSMutableArray*)arrCollections
+{
+    if(!_arrCollections)
+    {
+        _arrCollections = [NSMutableArray new];
+    }
+    return _arrCollections;
+}
 #pragma mark - UITableView Data Source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 10;
+    return self.arrCollections.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ProfilePageCollectionTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"ProfilePageCollectionTableViewCell"];
-                                         
+    CollectionModel* collModel = self.arrCollections[indexPath.row];
+    
+    [cell initData:collModel];
+    
+    
+    __weak CollectionModel* weakModel =collModel;
+    
+    cell.btnEditClickedBlock = ^(void)
+    {
+        if (_didSelectEdiCollectionRowBlock) {
+            self.didSelectEdiCollectionRowBlock(weakModel.collection_id);
+        }
+    };
+    
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+     CollectionModel* model = self.arrCollections[indexPath.row];
+    if (_didSelectDisplayCollectionRowBlock) {
+        self.didSelectDisplayCollectionRowBlock(model.collection_id);
+    }
+}
+
+-(void)requestServerForUserCollection
+{
+    
+    isMiddleOfCallingServer = true;
+ 
+    
+    //need to input token for own profile private collection, no token is get other people public collection
+    NSString* appendString = [NSString stringWithFormat:@"%@/collections",[Utils getUserID]];
+    
+    NSDictionary* dict = @{@"page":self.userCollectionsModel.page?@(self.userCollectionsModel.page + 1):@1,
+                           @"list_size":@(ARRAY_LIST_SIZE),
+                           @"token":[Utils getAppToken]
+                           };
+    
+    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserCollections param:dict appendString:appendString completeHandler:^(id object) {
+        
+        isMiddleOfCallingServer = false;
+        self.userCollectionsModel = [[ConnectionManager dataManager]userCollectionsModel];
+        
+        [self.arrCollections addObjectsFromArray:self.userCollectionsModel.arrCollections];
+        
+        [self.ibTableView reloadData];
+    } errorBlock:^(id object) {
+        isMiddleOfCallingServer = false;
+
+    }];
+}
+
+#pragma mark - UIScrollView Delegate
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    
+    CGPoint offset = scrollView.contentOffset;
+    CGRect bounds = scrollView.bounds;
+    CGSize size = scrollView.contentSize;
+    UIEdgeInsets inset = scrollView.contentInset;
+    float y = offset.y + bounds.size.height - inset.bottom;
+    float h = size.height;
+    
+    float reload_distance = 10;
+    if(y >= h - reload_distance) {
+        
+        if (!isMiddleOfCallingServer) {
+            if (self.userCollectionsModel.total_page > self.userCollectionsModel.page) {
+                SLog(@"start to call server");
+                [self requestServerForUserCollection];
+            }
+        }
+        
+        
+        
+    }
+}
 @end

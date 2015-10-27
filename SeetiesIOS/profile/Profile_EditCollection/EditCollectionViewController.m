@@ -63,7 +63,7 @@
     collectionDetailPage = 0;
     self.arrList = [NSMutableArray new];
  
-    //collectionDetailTotal_page = 2;
+    collectionDetailTotal_page = 1;//to ensure the first time is run
     [self requestServerDetail];
     
    // [self.lblTitle setFont:[UIFont fontWithName:CustomFontName size:17]];
@@ -305,7 +305,6 @@
             collectionDetailTotal_page = self.collectionModel.total_page;
             [self.arrList addObjectsFromArray:self.collectionModel.arrayPost];
             [self.ibTableView reloadData];
-            
             [self reloadData];
 
             
@@ -321,8 +320,9 @@
     
     collectionDetailPage+=1;
     NSDictionary* dict = @{@"collection_id":collectionID,
-                           @"list_size":@5,
-                           @"page":@(collectionDetailPage)
+                           @"list_size":@(ARRAY_LIST_SIZE),
+                           @"page":@(collectionDetailPage),
+                           @"token":[Utils getAppToken]
                            };
     
     NSString* appendString = [NSString stringWithFormat:@"%@/collections/%@",[Utils getUserID],collectionID];

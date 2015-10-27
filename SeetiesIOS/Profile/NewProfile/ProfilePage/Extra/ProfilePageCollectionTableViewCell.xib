@@ -92,6 +92,8 @@
                 <outlet property="ibImageViewA" destination="1l0-BW-VUP" id="aWH-UL-plQ"/>
                 <outlet property="ibImageViewB" destination="cXO-xp-Gkt" id="Kdm-lq-eCA"/>
                 <outlet property="ibInnerContentView" destination="cg4-oM-VeY" id="ret-PA-Uui"/>
+                <outlet property="lblNoOfCollection" destination="7pi-1D-4rC" id="Bua-lm-iI0"/>
+                <outlet property="lblTitle" destination="kHj-jv-4sW" id="abt-aM-bMp"/>
             </connections>
             <point key="canvasLocation" x="379" y="139"/>
         </tableViewCell>

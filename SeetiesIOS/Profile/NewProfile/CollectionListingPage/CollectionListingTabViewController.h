@@ -8,6 +8,11 @@
 
 #import "CommonViewController.h"
 
+
+typedef void (^DidSelectCollectionRowBlock)(NSString* collectionID);
 @interface CollectionListingTabViewController : CommonViewController <UITableViewDataSource,UITableViewDelegate>
+
+@property(nonatomic,copy)DidSelectCollectionRowBlock didSelectEdiCollectionRowBlock;
+@property(nonatomic,copy)DidSelectCollectionRowBlock didSelectDisplayCollectionRowBlock;
 
 @end

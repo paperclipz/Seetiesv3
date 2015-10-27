@@ -22,6 +22,7 @@
 @property (weak, nonatomic) ListingHeaderView *listingHeaderView;
 @property (strong, nonatomic) NSMutableArray *arrLikesList;
 @property (strong, nonatomic) ProfilePostModel *profileLikeModel;
+@property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *ibCollectionViewLayout;
 
 @end
 
@@ -30,6 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initCollectionView];
+    [self.ibCollectionView reloadData];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -44,13 +46,27 @@
     self.ibCollectionView.dataSource = self;
     [self.ibCollectionView registerClass:[LikeListingCollectionViewCell class] forCellWithReuseIdentifier:@"LikeListingCollectionViewCell"];
     [self.ibCollectionView registerClass:[ListingHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ListingHeaderView"];
-    self.listingHeaderView = [ListingHeaderView initializeCustomView];
     [self.ibCollectionHeader addSubview:self.listingHeaderView];
     
-    [self.listingHeaderView adjustToScreenWidth];
     
     self.ibCollectionView.backgroundColor = [UIColor clearColor];
+    
+}
 
+-(ListingHeaderView*)listingHeaderView
+{
+    if (!_listingHeaderView) {
+        _listingHeaderView = [ListingHeaderView initializeCustomView];
+        [_listingHeaderView adjustToScreenWidth];
+    
+        [_listingHeaderView setType:ListingViewTypePost addMoreClicked:^{
+            
+            SLog(@"Add More Clicked");
+        }totalCount:self.profileLikeModel.userPostData.total_posts];
+
+        
+    }
+    return _listingHeaderView;
 }
 
 -(void)initData:(ProfilePostModel*)model
@@ -95,9 +111,11 @@
     
     int numberOfCell = 3;
     
-    float cellSize = roundf(frame.size.width/numberOfCell)  -10;
+    float cellSize = roundf(frame.size.width/numberOfCell)  -10 - 5;
+    
     return CGSizeMake(cellSize, cellSize);
 }
+
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     float bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;

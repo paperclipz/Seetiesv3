@@ -88,7 +88,6 @@
 {
     
     
-    
     if (!_viewHeader) {
         _viewHeader = [ListingHeaderView initializeCustomView];
         [_viewHeader setType:ListingViewTypePost addMoreClicked:^{
@@ -130,8 +129,8 @@
         float y = offset.y + bounds.size.height - inset.bottom;
         float h = size.height;
         
-        float reload_distance = 0;
-        if(y >= h + reload_distance) {
+        float reload_distance = 10;
+        if(y >= h - reload_distance) {
             
             if (!isMiddleOfCallingServer) {
                 if (self.userProfilePostModel.userPostData.total_page > self.userProfilePostModel.userPostData.page) {

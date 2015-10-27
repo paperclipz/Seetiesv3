@@ -13,5 +13,7 @@
 -(void)initData:(CollectionModel*)model;
 
 @property(nonatomic,copy)VoidBlock btnEditClickedBlock;
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+@property (weak, nonatomic) IBOutlet UILabel *lblNoOfCollection;
 
 @end

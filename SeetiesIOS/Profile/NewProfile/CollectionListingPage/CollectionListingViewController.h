@@ -8,10 +8,14 @@
 
 #import "CommonViewController.h"
 #import "CollectionListingTabViewController.h"
+#import "EditCollectionViewController.h"
+#import "CollectionViewController.h"
 
 @interface CollectionListingViewController : CommonViewController <UIScrollViewDelegate>
 
 @property(nonatomic,strong)CollectionListingTabViewController* myCollectionListingViewController;
 @property(nonatomic,strong)CollectionListingTabViewController* followingCollectionListingViewController;
+@property(nonatomic,strong)EditCollectionViewController* editCollectionViewController;
+@property(nonatomic,strong)CollectionViewController* collectionViewController;
 
 @end

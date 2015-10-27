@@ -35,6 +35,10 @@
 {
     [Utils setRoundBorder:self.ibInnerContentView color:TWO_ZERO_FOUR_COLOR borderRadius:5.0f];
     [Utils setRoundBorder:self.btnEdit color:TWO_ZERO_FOUR_COLOR borderRadius:self.btnEdit.frame.size.height/2];
+    
+    [self.ibImageViewA setStandardBorder];
+    [self.ibImageViewB setStandardBorder];
+
 }
 
 +(int)getHeight
@@ -46,6 +50,9 @@
 {
 
     self.model = model;
+    
+    self.lblTitle.text = self.model.name;
+    self.lblNoOfCollection.text = @"";
     if (![self.model.arrayPost isNull])
     {
         DraftModel* draftModel = self.model.arrayPost[0];

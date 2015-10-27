@@ -17,4 +17,10 @@
     self.backgroundColor = UIColorFromRGB(238, 238, 238, 1);
 }
 
+-(void)setStandardBorder
+{
+    [Utils setRoundBorder:self color:LINE_COLOR borderRadius:5.0f];
+
+}
+
 @end

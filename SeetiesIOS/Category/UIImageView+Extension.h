@@ -10,5 +10,6 @@
 
 @interface UIImageView(Extra)
 -(void)setImagePlaceHolder;
+-(void)setStandardBorder;
 
 @end

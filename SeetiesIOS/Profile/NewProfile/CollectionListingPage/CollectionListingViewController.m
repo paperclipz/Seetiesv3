@@ -80,6 +80,18 @@
     if(!_myCollectionListingViewController)
     {
         _myCollectionListingViewController = [CollectionListingTabViewController new];
+        
+        __weak typeof (self)weakSelf = self;
+        _myCollectionListingViewController.didSelectEdiCollectionRowBlock = ^(NSString* collectionID)
+        {
+            [weakSelf showEditCollectionViewWithCollectionID:collectionID];
+        };
+        
+        _myCollectionListingViewController.didSelectDisplayCollectionRowBlock = ^(NSString* collectionID)
+        {
+            [weakSelf showCollectionDisplayViewWithCollectionID:collectionID];
+        };
+        
     }
     
     return _myCollectionListingViewController;
@@ -90,10 +102,41 @@
     if(!_followingCollectionListingViewController)
     {
         _followingCollectionListingViewController = [CollectionListingTabViewController new];
+        
+        __weak typeof (self)weakSelf = self;
+        
+        _followingCollectionListingViewController.didSelectEdiCollectionRowBlock = ^(NSString* collectionID)
+        {
+            [weakSelf showEditCollectionViewWithCollectionID:collectionID];
+        };
+        
+        _followingCollectionListingViewController.didSelectDisplayCollectionRowBlock = ^(NSString* collectionID)
+        {
+            [weakSelf showCollectionDisplayViewWithCollectionID:collectionID];
+        };
     }
     
     return _followingCollectionListingViewController;
 }
+
+-(EditCollectionViewController*)editCollectionViewController
+{
+    if (!_editCollectionViewController) {
+        _editCollectionViewController = [EditCollectionViewController new];
+    }
+    
+    return _editCollectionViewController;
+}
+
+-(CollectionViewController*)collectionViewController
+{
+    if (!_collectionViewController) {
+        _collectionViewController = [CollectionViewController new];
+    }
+    
+    return _collectionViewController;
+}
+
 
 #pragma mark - UIScroll View Delegate
 
@@ -105,8 +148,21 @@
     
     self.ibSegmentedControl.selectedSegmentIndex = page;
 
-
 }
 
 
+-(void)showEditCollectionViewWithCollectionID:(NSString*)collID
+{
+    _editCollectionViewController = nil;
+    [self.editCollectionViewController initData:collID];
+   // [LoadingManager show];
+    [self.navigationController pushViewController:self.editCollectionViewController animated:YES];
+}
+
+-(void)showCollectionDisplayViewWithCollectionID:(NSString*)collID
+{
+    _collectionViewController = nil;
+    [self.collectionViewController GetCollectionID:collID GetPermision:@"self"];
+    [self.navigationController pushViewController:self.collectionViewController animated:YES];
+}
 @end

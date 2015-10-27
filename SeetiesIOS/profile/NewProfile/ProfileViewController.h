@@ -18,7 +18,6 @@
 
 @interface ProfileViewController : BaseViewController<TLTagsControlDelegate>
 
-
 @property(nonatomic,strong)CollectionViewController* collectionViewController;
 @property(nonatomic,strong)CollectionListingViewController* collectionListingViewController;
 @property(nonatomic,strong)EditCollectionViewController* editCollectionViewController;

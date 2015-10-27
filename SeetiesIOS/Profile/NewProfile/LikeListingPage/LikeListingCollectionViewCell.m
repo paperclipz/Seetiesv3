@@ -15,6 +15,9 @@
 -(void)initSelfView
 {
     [self.ibImageView setImagePlaceHolder];
+    [Utils setRoundBorder:self.ibImageView color:LINE_COLOR borderRadius:5.0f];
+
+    
 }
 
 
