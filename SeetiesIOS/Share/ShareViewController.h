@@ -29,6 +29,10 @@
     NSString *GetCollectionID;
     
     int CheckShareStatus;
+    
+    IBOutlet UILabel *ShowSendToFren;
+    IBOutlet UILabel *ShowSendToFrenSub;
+    IBOutlet UIImageView *GoToIcon;
 }
  @property (nonatomic, strong) UIDocumentInteractionController *documentController;
 -(void)GetPostID:(NSString *)ID GetMessage:(NSString *)Msg GetTitle:(NSString *)Title GetImageData:(NSString *)ImgData;

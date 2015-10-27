@@ -9,6 +9,7 @@
 #import "ShareViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import <FBSDKShareKit/FBSDKShareKit.h>
+#import "ShareToFrenViewController.h"
 @interface ShareViewController ()
 
 @end
@@ -21,11 +22,12 @@
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
 
-    MainScroll.frame = CGRectMake(0, screenHeight - 450, screenWidth, 450);
+    MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     MainScroll.delegate = self;
     MainScroll.alwaysBounceVertical = YES;
     
-    CenterView.frame = CGRectMake((screenWidth / 2) - 160, 56, 320, screenHeight);
+    CenterView.frame = CGRectMake((screenWidth / 2) - 160, 120, 320, screenHeight);
+    GoToIcon.frame = CGRectMake(screenWidth - 25 - 10, 76, 25, 23);
     
     BackButton.frame = CGRectMake(screenWidth - 50, 0, 50, 50);
     
@@ -33,6 +35,8 @@
     
     ShowTitle.text = LocalisedString(@"Share this post");
     ShowSubTitle.text = LocalisedString(@"Send via other apps");
+    ShowSendToFren.text = LocalisedString(@"Send to buddies in Seeties");
+    ShowSendToFrenSub.text = LocalisedString(@"Your buddies will be notified of this collection you've shared.");
 }
 -(void)GetCollectionID:(NSString *)Collectionid{
 
@@ -353,5 +357,11 @@
 }
 - (void)appInviteDialog:(FBSDKAppInviteDialog *)appInviteDialog didFailWithError:(NSError *)error{
     NSLog(@"appInviteDialog error is %@",error);
+}
+-(IBAction)ShareToFrenButtonOnClick:(id)sender{
+
+    ShareToFrenViewController *ShareToFrenView = [[ShareToFrenViewController alloc]init];
+    [self presentViewController:ShareToFrenView animated:YES completion:nil];
+    [ShareToFrenView GetPostsID:GetPostID GetCollectionID:GetCollectionID];
 }
 @end

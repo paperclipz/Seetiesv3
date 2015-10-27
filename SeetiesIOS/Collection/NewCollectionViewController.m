@@ -213,6 +213,7 @@
     }else{
         SetPublic = @"1";
     }
+    NSLog(@"SetPublic is %@",SetPublic);
 }
 -(void)CreateNewCollection{
     [ShowActivity startAnimating];

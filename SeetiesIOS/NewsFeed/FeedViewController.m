@@ -379,7 +379,6 @@
         
     }else{
         NSLog(@"return check like = %@",CheckUpdateLike);
-        NSLog(@"return check Collect = %@",CheckUpdateCollect);
         NSLog(@"return check IDN = %ld",(long)CheckUpdateIDN);
         
         if ([CheckUpdateLike isEqualToString:[arrlike objectAtIndex:CheckUpdateIDN - 6000]]) {
@@ -395,20 +394,37 @@
                 [arrlike replaceObjectAtIndex:CheckUpdateIDN - 6000 withObject:@"1"];
                 [btn setSelected:YES];
             }
-            
-        
-            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"PostToDetail_like"];
-            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"PostToDetail_IDN"];
         }
+    }
+    if ([CheckUpdateCollect length] == 0 || [CheckUpdateCollect isEqualToString:@""] || [CheckUpdateCollect isEqualToString:@"(null)"] || [CheckUpdateCollect isEqualToString:@"<null>"]) {
         
-
+    }else{
+        NSLog(@"return check Collect = %@",CheckUpdateCollect);
+        NSLog(@"return check IDN = %ld",(long)CheckUpdateIDN);
         
+        if ([CheckUpdateCollect isEqualToString:[arrCollect objectAtIndex:CheckUpdateIDN - 6000]]) {
+            
+        }else{
+            CheckUpdateIDN -= 1000;
+            UIButton * btn = (UIButton*)[MainScroll viewWithTag:CheckUpdateIDN];
+            
+            
+            if ([CheckUpdateLike isEqualToString:@"0"]) {
+                [btn setSelected:NO];
+                [arrCollect replaceObjectAtIndex:CheckUpdateIDN - 5000 withObject:@"0"];
+            }else{
+                [arrCollect replaceObjectAtIndex:CheckUpdateIDN - 5000 withObject:@"1"];
+                [btn setSelected:YES];
+            }
+        }
     }
     
 
     
     
-    
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"PostToDetail_like"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"PostToDetail_Collect"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"PostToDetail_IDN"];
 }
 -(void)testRefresh{
     
@@ -824,7 +840,7 @@
                 QuickCollectButton.backgroundColor = [UIColor clearColor];
                 QuickCollectButton.frame = CGRectMake(screenWidth - 20 - 140, heightcheck -5, 140, 50);
                 [QuickCollectButton addTarget:self action:@selector(CollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
-                QuickCollectButton.tag = i;
+                QuickCollectButton.tag = i + 5000;
                 QuickCollectButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
                 [LocalScroll addSubview:QuickCollectButton];
                 
@@ -936,7 +952,7 @@
     for (NSInteger i = DataCount; i < [arrType count]; i++) {
         NSString *GetType = [[NSString alloc]initWithFormat:@"%@",[arrType objectAtIndex:i]];
         
-        NSArray *items = @[@"following_post", @"local_quality_post", @"abroad_quality_post", @"announcement", @"announcement_welcome", @"announcement_campaign", @"follow_suggestion_featured", @"follow_suggestion_friend", @"deal", @"invite_friend"];
+        NSArray *items = @[@"following_post", @"local_quality_post", @"abroad_quality_post", @"announcement", @"announcement_welcome", @"announcement_campaign", @"follow_suggestion_featured", @"follow_suggestion_friend", @"deal", @"invite_friend", @"country_promotion"];
         NSInteger item = [items indexOfObject:GetType];
         switch (item) {
             case 0:{
@@ -1232,7 +1248,7 @@
                 QuickCollectButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
                 QuickCollectButton.frame = CGRectMake(screenWidth - 20 - 140, heightcheck - 5, 140, 50);
                 [QuickCollectButton addTarget:self action:@selector(CollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
-                QuickCollectButton.tag = i;
+                QuickCollectButton.tag = i + 5000;
                 [MainScroll addSubview:QuickCollectButton];
                 
                 UIButton *CollectButton = [[UIButton alloc]init];
@@ -1547,7 +1563,7 @@
                 QuickCollectButtonLocalQR.backgroundColor = [UIColor clearColor];
                 QuickCollectButtonLocalQR.frame = CGRectMake(screenWidth - 20 - 140, heightcheck - 5, 140, 50);
                 [QuickCollectButtonLocalQR addTarget:self action:@selector(CollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
-                QuickCollectButtonLocalQR.tag = i;
+                QuickCollectButtonLocalQR.tag = i + 5000;
                 [MainScroll addSubview:QuickCollectButtonLocalQR];
                 
                 UIButton *CollectButtonLocalQR = [[UIButton alloc]init];
@@ -1808,14 +1824,22 @@
                 }
                 [MainScroll addSubview: ShowImage];
                 
-                UILabel *ShowUserName = [[UILabel alloc]init];
-                ShowUserName.frame = CGRectMake(20, heightcheck + 250, screenWidth - 40, 50);
-                ShowUserName.text = [arrTitle objectAtIndex:i];
-                ShowUserName.backgroundColor = [UIColor clearColor];
-                ShowUserName.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-                ShowUserName.textAlignment = NSTextAlignmentLeft;
-                ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-                [MainScroll addSubview:ShowUserName];
+                NSString *TempGetString = [[NSString alloc]initWithFormat:@"%@",[arrTitle objectAtIndex:i]];
+                
+                if ([TempGetString length] == 0 || [TempGetString isEqualToString:@""] || [TempGetString isEqualToString:@"(null)"] || [TempGetString isEqualToString:@"<null>"]) {
+                    ShowImage.frame = CGRectMake(10, heightcheck,screenWidth - 20 , 300);
+                }else{
+                    UILabel *ShowUserName = [[UILabel alloc]init];
+                    ShowUserName.frame = CGRectMake(20, heightcheck + 250, screenWidth - 40, 50);
+                    ShowUserName.text = [arrTitle objectAtIndex:i];
+                    ShowUserName.backgroundColor = [UIColor clearColor];
+                    ShowUserName.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+                    ShowUserName.textAlignment = NSTextAlignmentLeft;
+                    ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+                    [MainScroll addSubview:ShowUserName];
+                }
+                
+
                 
                 UIButton *AnnouncementButton = [[UIButton alloc]init];
                 AnnouncementButton.frame = CGRectMake(10, heightcheck, screenWidth - 20, 300);
@@ -1852,14 +1876,20 @@
                 }
                 [MainScroll addSubview: ShowImage];
                 
-                UILabel *ShowUserName = [[UILabel alloc]init];
-                ShowUserName.frame = CGRectMake(20, heightcheck + 250, screenWidth - 40, 50);
-                ShowUserName.text = [arrTitle objectAtIndex:i];
-                ShowUserName.backgroundColor = [UIColor clearColor];
-                ShowUserName.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-                ShowUserName.textAlignment = NSTextAlignmentLeft;
-                ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-                [MainScroll addSubview:ShowUserName];
+                NSString *TempGetString = [[NSString alloc]initWithFormat:@"%@",[arrTitle objectAtIndex:i]];
+                
+                if ([TempGetString length] == 0 || [TempGetString isEqualToString:@""] || [TempGetString isEqualToString:@"(null)"] || [TempGetString isEqualToString:@"<null>"]) {
+                    ShowImage.frame = CGRectMake(10, heightcheck,screenWidth - 20 , 300);
+                }else{
+                    UILabel *ShowUserName = [[UILabel alloc]init];
+                    ShowUserName.frame = CGRectMake(20, heightcheck + 250, screenWidth - 40, 50);
+                    ShowUserName.text = [arrTitle objectAtIndex:i];
+                    ShowUserName.backgroundColor = [UIColor clearColor];
+                    ShowUserName.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+                    ShowUserName.textAlignment = NSTextAlignmentLeft;
+                    ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+                    [MainScroll addSubview:ShowUserName];
+                }
                 
                 UIButton *AnnouncementButton = [[UIButton alloc]init];
                 AnnouncementButton.frame = CGRectMake(10, heightcheck, screenWidth - 20, 300);
@@ -1896,14 +1926,20 @@
                 }
                 [MainScroll addSubview: ShowImage];
                 
-                UILabel *ShowUserName = [[UILabel alloc]init];
-                ShowUserName.frame = CGRectMake(20, heightcheck + 250, screenWidth - 40, 50);
-                ShowUserName.text = [arrTitle objectAtIndex:i];
-                ShowUserName.backgroundColor = [UIColor clearColor];
-                ShowUserName.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-                ShowUserName.textAlignment = NSTextAlignmentLeft;
-                ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-                [MainScroll addSubview:ShowUserName];
+                NSString *TempGetString = [[NSString alloc]initWithFormat:@"%@",[arrTitle objectAtIndex:i]];
+                
+                if ([TempGetString length] == 0 || [TempGetString isEqualToString:@""] || [TempGetString isEqualToString:@"(null)"] || [TempGetString isEqualToString:@"<null>"]) {
+                    ShowImage.frame = CGRectMake(10, heightcheck,screenWidth - 20 , 300);
+                }else{
+                    UILabel *ShowUserName = [[UILabel alloc]init];
+                    ShowUserName.frame = CGRectMake(20, heightcheck + 250, screenWidth - 40, 50);
+                    ShowUserName.text = [arrTitle objectAtIndex:i];
+                    ShowUserName.backgroundColor = [UIColor clearColor];
+                    ShowUserName.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+                    ShowUserName.textAlignment = NSTextAlignmentLeft;
+                    ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+                    [MainScroll addSubview:ShowUserName];
+                }
                 
                 UIButton *AnnouncementButton = [[UIButton alloc]init];
                 AnnouncementButton.frame = CGRectMake(10, heightcheck, screenWidth - 20, 300);
@@ -2556,6 +2592,35 @@
                 heightcheck += 160;
 }
                 break;
+            case 10:{
+            NSLog(@"in country_promotion");
+                AsyncImageView *BannerImage = [[AsyncImageView alloc]init];
+                BannerImage.frame = CGRectMake(0, heightcheck, screenWidth, 150);
+                BannerImage.contentMode = UIViewContentModeScaleAspectFit;
+                BannerImage.backgroundColor = [UIColor whiteColor];
+                BannerImage.layer.masksToBounds = YES;
+                [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:BannerImage];
+                NSString *ImageData = [[NSString alloc]initWithFormat:@"%@",[arrImage objectAtIndex:i]];
+                if ([ImageData length] == 0) {
+                    BannerImage.image = [UIImage imageNamed:@"NoImage.png"];
+                }else{
+                    NSURL *url_NearbySmall = [NSURL URLWithString:ImageData];
+                    BannerImage.imageURL = url_NearbySmall;
+                }
+                
+                [MainScroll addSubview:BannerImage];
+                
+                UIButton *TempButton = [[UIButton alloc]init];
+                TempButton.frame = CGRectMake(0, heightcheck, screenWidth, 150);
+                [TempButton setTitle:@"" forState:UIControlStateNormal];
+                TempButton.backgroundColor = [UIColor clearColor];
+                TempButton.tag = i;
+                [TempButton addTarget:self action:@selector(OpenPromotionButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+                [MainScroll addSubview: TempButton];
+                
+                heightcheck += 160;
+            }
+                break;
                 
             default:
                 break;
@@ -2986,6 +3051,11 @@
                          PlaceName = @"";
                          Like = @"";
                          Collect = @"";
+                     }else if ([posttype isEqualToString:@"country_promotion"]) {
+                         PlaceID = @"";
+                         PlaceName = @"";
+                         Like = @"";
+                         Collect = @"";
                      }else if ([posttype isEqualToString:@"deal"]) {
                          NSMutableArray *TempArrayID = [[NSMutableArray alloc]init];
                          NSMutableArray *TempArrayPlaceName = [[NSMutableArray alloc]init];
@@ -3287,6 +3357,12 @@
                          [arrImage addObject:Photourl];
                          [arrImageHeight addObject:@""];
                          [arrImageWidth addObject:@""];
+                     }else if([posttype isEqualToString:@"country_promotion"]){
+                         NSString *Photourl = [[NSString alloc]initWithFormat:@"%@",[GetItemsData valueForKey:@"image"]];
+                         [arrImage addObject:Photourl];
+                         [arrImageHeight addObject:@""];
+                         [arrImageWidth addObject:@""];
+                         TrackerUrl = [[NSString alloc]initWithFormat:@"%@",[GetItemsData valueForKey:@"tracker_url"]];
                      }else if ([posttype isEqualToString:@"abroad_quality_post"]) {
                          NSMutableArray *UrlArray = [[NSMutableArray alloc]init];
                          NSMutableArray *ImageWidthArray = [[NSMutableArray alloc]init];
@@ -3389,7 +3465,7 @@
                    //  NSDictionary *UserInfoData_ProfilePhoto = [UserInfoData valueForKey:@"profile_photo"];
                      NSString *username = [[NSString alloc]initWithFormat:@"%@",[UserInfoData valueForKey:@"username"]];
                      NSString *url = [[NSString alloc]initWithFormat:@"%@",[UserInfoData valueForKey:@"profile_photo"]];
-                     
+                     //NSLog(@"print all username is %@",username);
                      if ([posttype isEqualToString:@"announcement"]) {
                          username = @"";
                          url = @"";
@@ -3418,6 +3494,9 @@
                          url = [arrUserImageTemp componentsJoinedByString:@","];
                      }else if ([posttype isEqualToString:@"invite_friend"]) {
                          username = @"";
+                         url = @"";
+                     }else if ([posttype isEqualToString:@"country_promotion"]) {
+                         username = [[NSString alloc]initWithFormat:@"%@",[UserInfoData valueForKey:@"username"]];
                          url = @"";
                      }else if ([posttype isEqualToString:@"abroad_quality_post"]) {
                          NSMutableArray *arrUserNameTemp = [[NSMutableArray alloc]init];
@@ -3461,20 +3540,38 @@
                              NSString *username = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"username"]];
                              [User_UserNameArrayTemp addObject:username];
                              
+//                             NSDictionary *PostsData = [dict valueForKey:@"posts"];
+//                             NSArray *PhotoData = [PostsData valueForKey:@"photos"];
+//                             
+//                             for (NSDictionary * dict in PhotoData) {
+//                                  NSMutableArray *UrlArray = [[NSMutableArray alloc]init];
+//                                 for (NSDictionary * dict_ in dict) {
+//                                     NSDictionary *UserInfoData = [dict_ valueForKey:@"s"];
+//                                     NSString *url = [[NSString alloc]initWithFormat:@"%@",[UserInfoData objectForKey:@"url"]];
+//                                     [UrlArray addObject:url];
+//                                 }
+//                                 
+//                                 NSString *result2 = [UrlArray componentsJoinedByString:@","];
+//                                 [User_UserNameArrayTempPostsImg addObject:result2];
+//                             }
+                             
                              NSDictionary *PostsData = [dict valueForKey:@"posts"];
                              NSArray *PhotoData = [PostsData valueForKey:@"photos"];
-                             
+                             NSMutableArray *UrlArray = [[NSMutableArray alloc]init];
                              for (NSDictionary * dict in PhotoData) {
-                                  NSMutableArray *UrlArray = [[NSMutableArray alloc]init];
+                                 NSString *url;
                                  for (NSDictionary * dict_ in dict) {
                                      NSDictionary *UserInfoData = [dict_ valueForKey:@"s"];
-                                     NSString *url = [[NSString alloc]initWithFormat:@"%@",[UserInfoData objectForKey:@"url"]];
-                                     [UrlArray addObject:url];
+                                     
+                                     url = [[NSString alloc]initWithFormat:@"%@",[UserInfoData objectForKey:@"url"]];
+                                     
+                                     break;
                                  }
+                                 [UrlArray addObject:url];
                                  
-                                 NSString *result2 = [UrlArray componentsJoinedByString:@","];
-                                 [User_UserNameArrayTempPostsImg addObject:result2];
                              }
+                             NSString *result2 = [UrlArray componentsJoinedByString:@","];
+                             [User_UserNameArrayTempPostsImg addObject:result2];
 
                          }
                          NSString *result2 = [User_UserNameArrayTempPostsImg componentsJoinedByString:@"$"];
@@ -3514,20 +3611,38 @@
                              NSString *username = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"username"]];
                              [User_UserNameArrayTemp addObject:username];
                              
+//                             NSDictionary *PostsData = [dict valueForKey:@"posts"];
+//                             NSArray *PhotoData = [PostsData valueForKey:@"photos"];
+//                             
+//                             for (NSDictionary * dict in PhotoData) {
+//                                 NSMutableArray *UrlArray = [[NSMutableArray alloc]init];
+//                                 for (NSDictionary * dict_ in dict) {
+//                                     NSDictionary *UserInfoData = [dict_ valueForKey:@"s"];
+//                                     NSString *url = [[NSString alloc]initWithFormat:@"%@",[UserInfoData objectForKey:@"url"]];
+//                                     [UrlArray addObject:url];
+//                                 }
+//                                 
+//                                 NSString *result2 = [UrlArray componentsJoinedByString:@","];
+//                                 [User_UserNameArrayTempPostsImg addObject:result2];
+//                             }
+                             
                              NSDictionary *PostsData = [dict valueForKey:@"posts"];
                              NSArray *PhotoData = [PostsData valueForKey:@"photos"];
-                             
+                             NSMutableArray *UrlArray = [[NSMutableArray alloc]init];
                              for (NSDictionary * dict in PhotoData) {
-                                 NSMutableArray *UrlArray = [[NSMutableArray alloc]init];
+                                 NSString *url;
                                  for (NSDictionary * dict_ in dict) {
                                      NSDictionary *UserInfoData = [dict_ valueForKey:@"s"];
-                                     NSString *url = [[NSString alloc]initWithFormat:@"%@",[UserInfoData objectForKey:@"url"]];
-                                     [UrlArray addObject:url];
+                                     
+                                     url = [[NSString alloc]initWithFormat:@"%@",[UserInfoData objectForKey:@"url"]];
+                                     
+                                     break;
                                  }
+                                 [UrlArray addObject:url];
                                  
-                                 NSString *result2 = [UrlArray componentsJoinedByString:@","];
-                                 [User_UserNameArrayTempPostsImg addObject:result2];
                              }
+                             NSString *result2 = [UrlArray componentsJoinedByString:@","];
+                             [User_UserNameArrayTempPostsImg addObject:result2];
                              
                          }
                          NSString *result2 = [User_UserNameArrayTempPostsImg componentsJoinedByString:@"$"];
@@ -3638,6 +3753,9 @@
         if ([statusString isEqualToString:@"ok"]) {
             [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success add to Collections" type:TSMessageNotificationTypeSuccess];
         }
+    }else if(connection == theConnection_TrackPromotedUserViews){
+        NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+        NSLog(@"theConnection_TrackPromotedUserViews return get data to server ===== %@",GetData);
     }
 }
 -(void)ReinitData{
@@ -3870,13 +3988,17 @@
 }
 -(IBAction)CollectButtonOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSLog(@"getbuttonIDN is %ld",(long)getbuttonIDN);
+    NSInteger ButtonIDN = getbuttonIDN;
+    ButtonIDN -= 5000;
+    NSLog(@"ButtonIDN is %ld",(long)ButtonIDN);
    // NSLog(@"button %li",(long)getbuttonIDN);
     NSLog(@"Quick CollectButtonOnClick");
-    GetPostID = [[NSString alloc]initWithFormat:@"%@",[arrPostID objectAtIndex:getbuttonIDN]];
-    CheckCollect = [[NSString alloc]initWithFormat:@"%@",[arrCollect objectAtIndex:getbuttonIDN]];
+    GetPostID = [[NSString alloc]initWithFormat:@"%@",[arrPostID objectAtIndex:ButtonIDN]];
+    CheckCollect = [[NSString alloc]initWithFormat:@"%@",[arrCollect objectAtIndex:ButtonIDN]];
     
     if ([CheckCollect isEqualToString:@"0"]) {
-        [arrCollect replaceObjectAtIndex:getbuttonIDN withObject:@"1"];
+        [arrCollect replaceObjectAtIndex:ButtonIDN withObject:@"1"];
         UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
         buttonWithTag1.selected = !buttonWithTag1.selected;
         
@@ -3885,7 +4007,7 @@
         AddCollectionDataViewController *AddCollectionDataView = [[AddCollectionDataViewController alloc]init];
         [self presentViewController:AddCollectionDataView animated:YES completion:nil];
        // [self.view.window.rootViewController presentViewController:AddCollectionDataView animated:YES completion:nil];
-        [AddCollectionDataView GetPostID:[arrPostID objectAtIndex:getbuttonIDN] GetImageData:[arrImage objectAtIndex:getbuttonIDN]];
+        [AddCollectionDataView GetPostID:[arrPostID objectAtIndex:ButtonIDN] GetImageData:[arrImage objectAtIndex:ButtonIDN]];
     }
     
     
@@ -3911,7 +4033,7 @@
     
     NSString *dataString = [[NSString alloc]initWithFormat:@"token=%@&posts[0][id]=%@",GetExpertToken,GetPostID];
     
-    NSData *postBodyData = [NSData dataWithBytes: [dataString UTF8String] length:[dataString length]];
+    NSData *postBodyData = [dataString dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPBody:postBodyData];
     
     theConnection_QuickCollect = [[NSURLConnection alloc]initWithRequest:request delegate:self];
@@ -4070,7 +4192,31 @@
     }
     
 }
-
-
+-(IBAction)OpenPromotionButtonOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSLog(@"Get TrackerUrl is %@",TrackerUrl);
+    NSLog(@"Get username is %@",[arrUserName objectAtIndex:getbuttonIDN]);
+    
+    [self SendUserTrackerToServer];
+    
+    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+    [NewUserProfileV2View GetUserName:[arrUserName objectAtIndex:getbuttonIDN]];
+}
+-(void)SendUserTrackerToServer{
+    // NSURL *url = [NSURL URLWithString:[postBack stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSURL *url = [NSURL URLWithString:TrackerUrl];
+    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
+    NSLog(@"theRequest === %@",theRequest);
+    [theRequest addValue:@"" forHTTPHeaderField:@"Accept-Encoding"];
+    
+    theConnection_TrackPromotedUserViews = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+    [theConnection_TrackPromotedUserViews start];
+    
+    
+    if( theConnection_TrackPromotedUserViews ){
+        webData = [NSMutableData data];
+    }
+}
 
 @end

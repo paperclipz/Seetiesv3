@@ -1300,6 +1300,9 @@
         NSLog(@"statusString is %@",statusString);
         
         if ([statusString isEqualToString:@"ok"]) {
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:GetCollectCheck forKey:@"PostToDetail_Collect"];
+            [defaults synchronize];
             [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success add to Collections" type:TSMessageNotificationTypeSuccess];
         }
     }else if(connection == theConnection_NearbyPost){

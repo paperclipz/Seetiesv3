@@ -66,7 +66,7 @@
 //    //[self presentViewController:ListingDetail animated:NO completion:nil];
 //    [self dismissViewControllerAnimated:NO completion:nil];
     
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)viewWillAppear:(BOOL)animated{
     
@@ -123,7 +123,7 @@
 //    //[self presentViewController:ListingDetail animated:NO completion:nil];
 //    [self dismissViewControllerAnimated:NO completion:nil];
     
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)initData{
     DataUrl = [[UrlDataClass alloc]init];
@@ -293,6 +293,14 @@
         TempButton.layer.cornerRadius = 5;
         [PostView addSubview: TempButton];
         
+        UIButton *ButtonOnClick = [[UIButton alloc]init];
+        [ButtonOnClick setBackgroundColor:[UIColor clearColor]];
+        [ButtonOnClick setTitle:@"" forState:UIControlStateNormal];
+        ButtonOnClick.frame = CGRectMake(10, PostGetHeight, screenWidth - 30, 150);
+        ButtonOnClick.tag = i;
+        [ButtonOnClick addTarget:self action:@selector(ImageButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [PostView addSubview:ButtonOnClick];
+        
         AsyncImageView *UserImage = [[AsyncImageView alloc]init];
         UserImage.frame = CGRectMake(20, PostGetHeight + 10, 30, 30);
         UserImage.contentMode = UIViewContentModeScaleAspectFill;
@@ -320,6 +328,8 @@
         ShowUserName.textAlignment = NSTextAlignmentLeft;
         ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         [PostView addSubview:ShowUserName];
+        
+        
         
         UIButton *ButtonClick = [UIButton buttonWithType:UIButtonTypeCustom];
         [ButtonClick setTitle:@"" forState:UIControlStateNormal];
@@ -377,13 +387,7 @@
         ShowLocation.backgroundColor = [UIColor clearColor];
         [PostView addSubview:ShowLocation];
         
-        UIButton *ButtonOnClick = [[UIButton alloc]init];
-        [ButtonOnClick setBackgroundColor:[UIColor clearColor]];
-        [ButtonOnClick setTitle:@"" forState:UIControlStateNormal];
-        ButtonOnClick.frame = CGRectMake(10, PostGetHeight + 60, screenWidth - 30, 90);
-        ButtonOnClick.tag = i;
-        [ButtonOnClick addTarget:self action:@selector(ImageButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
-        [PostView addSubview:ButtonOnClick];
+
         
         GetPostsFollow = [[NSString alloc]initWithFormat:@"%@",[UserInfo_FollowArray objectAtIndex:i]];
         UIButton *UserFollowButton = [[UIButton alloc]init];
@@ -951,25 +955,29 @@
                     [User_FollowArray addObject:followed];
                     NSString *username = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"username"]];
                     [User_UserNameArray addObject:username];
-                    
-                    NSDictionary *PostsData = [dict valueForKey:@"posts"];
-                    NSArray *PhotoData = [PostsData valueForKey:@"photos"];
 
+                    NSDictionary *GetPostsData = [dict valueForKey:@"posts"];
+                    NSArray *PhotoData = [GetPostsData valueForKey:@"photos"];
+                    NSMutableArray *UrlArray = [[NSMutableArray alloc]init];
                     for (NSDictionary * dict in PhotoData) {
-                        NSMutableArray *UrlArray = [[NSMutableArray alloc]init];
+                        NSString *url;
                         for (NSDictionary * dict_ in dict) {
                             NSDictionary *UserInfoData = [dict_ valueForKey:@"s"];
-                            NSString *url = [[NSString alloc]initWithFormat:@"%@",[UserInfoData objectForKey:@"url"]];
-                            [UrlArray addObject:url];
+                            
+                            url = [[NSString alloc]initWithFormat:@"%@",[UserInfoData objectForKey:@"url"]];
+                            
+                            break;
                         }
-                        NSString *result2 = [UrlArray componentsJoinedByString:@","];
-                        [User_PhotoArray addObject:result2];
+                        [UrlArray addObject:url];
+
                     }
-                    
+                    NSString *result2 = [UrlArray componentsJoinedByString:@","];
+                    [User_PhotoArray addObject:result2];
                     
                     
                 }
-               // NSLog(@"User_PhotoArray is %@",User_PhotoArray);
+
+                //NSLog(@"User_PhotoArray is %@",User_PhotoArray);
                 [self GetDataFromServer];
             }
         }

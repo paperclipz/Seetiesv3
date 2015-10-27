@@ -22,6 +22,12 @@
 		0BA0A7411BDE1155003C7A1D /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BA0A7401BDE1155003C7A1D /* Launch Screen.storyboard */; settings = {ASSET_TAGS = (); }; };
 		0BA0A7441BDE2D14003C7A1D /* DealsAndRecommendationOverlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA0A7421BDE2D14003C7A1D /* DealsAndRecommendationOverlay@2x.png */; settings = {ASSET_TAGS = (); }; };
 		0BA0A7451BDE2D14003C7A1D /* DealsAndRecommendationOverlay@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA0A7431BDE2D14003C7A1D /* DealsAndRecommendationOverlay@3x.png */; settings = {ASSET_TAGS = (); }; };
+		0BA0A74A1BDF29E4003C7A1D /* ShareGoIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA0A7461BDF29E4003C7A1D /* ShareGoIcon@2x.png */; settings = {ASSET_TAGS = (); }; };
+		0BA0A74B1BDF29E4003C7A1D /* ShareGoIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA0A7471BDF29E4003C7A1D /* ShareGoIcon@3x.png */; settings = {ASSET_TAGS = (); }; };
+		0BA0A74C1BDF29E4003C7A1D /* ShareSeetiesLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA0A7481BDF29E4003C7A1D /* ShareSeetiesLogo@2x.png */; settings = {ASSET_TAGS = (); }; };
+		0BA0A74D1BDF29E4003C7A1D /* ShareSeetiesLogo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA0A7491BDF29E4003C7A1D /* ShareSeetiesLogo@3x.png */; settings = {ASSET_TAGS = (); }; };
+		0BA0A7511BDF2AF7003C7A1D /* ShareToFrenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0A74F1BDF2AF7003C7A1D /* ShareToFrenViewController.m */; settings = {ASSET_TAGS = (); }; };
+		0BA0A7521BDF2AF7003C7A1D /* ShareToFrenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA0A7501BDF2AF7003C7A1D /* ShareToFrenViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		0BA1CB2F1B85AEFA009FFD3E /* Explore2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA1CB2E1B85AEFA009FFD3E /* Explore2ViewController.xib */; };
 		0BBFE04F1B9D624C004B17E9 /* EditProfileV2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBFE04D1B9D624C004B17E9 /* EditProfileV2ViewController.m */; };
 		0BBFE0501B9D624C004B17E9 /* EditProfileV2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBFE04E1B9D624C004B17E9 /* EditProfileV2ViewController.xib */; };
@@ -975,6 +981,13 @@
 		0BA0A7401BDE1155003C7A1D /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		0BA0A7421BDE2D14003C7A1D /* DealsAndRecommendationOverlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DealsAndRecommendationOverlay@2x.png"; sourceTree = "<group>"; };
 		0BA0A7431BDE2D14003C7A1D /* DealsAndRecommendationOverlay@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DealsAndRecommendationOverlay@3x.png"; sourceTree = "<group>"; };
+		0BA0A7461BDF29E4003C7A1D /* ShareGoIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareGoIcon@2x.png"; sourceTree = "<group>"; };
+		0BA0A7471BDF29E4003C7A1D /* ShareGoIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareGoIcon@3x.png"; sourceTree = "<group>"; };
+		0BA0A7481BDF29E4003C7A1D /* ShareSeetiesLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareSeetiesLogo@2x.png"; sourceTree = "<group>"; };
+		0BA0A7491BDF29E4003C7A1D /* ShareSeetiesLogo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareSeetiesLogo@3x.png"; sourceTree = "<group>"; };
+		0BA0A74E1BDF2AF7003C7A1D /* ShareToFrenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareToFrenViewController.h; sourceTree = "<group>"; };
+		0BA0A74F1BDF2AF7003C7A1D /* ShareToFrenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareToFrenViewController.m; sourceTree = "<group>"; };
+		0BA0A7501BDF2AF7003C7A1D /* ShareToFrenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareToFrenViewController.xib; sourceTree = "<group>"; };
 		0BA1CB2E1B85AEFA009FFD3E /* Explore2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Explore2ViewController.xib; sourceTree = "<group>"; };
 		0BBFE04C1B9D624C004B17E9 /* EditProfileV2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileV2ViewController.h; sourceTree = "<group>"; };
 		0BBFE04D1B9D624C004B17E9 /* EditProfileV2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileV2ViewController.m; sourceTree = "<group>"; };
@@ -2321,6 +2334,9 @@
 				0BCF10F01BB290C90017B614 /* ShareViewController.h */,
 				0BCF10F11BB290C90017B614 /* ShareViewController.m */,
 				0BCF10F21BB290C90017B614 /* ShareViewController.xib */,
+				0BA0A74E1BDF2AF7003C7A1D /* ShareToFrenViewController.h */,
+				0BA0A74F1BDF2AF7003C7A1D /* ShareToFrenViewController.m */,
+				0BA0A7501BDF2AF7003C7A1D /* ShareToFrenViewController.xib */,
 			);
 			path = Share;
 			sourceTree = "<group>";
@@ -3402,6 +3418,10 @@
 		8A90ADF61BD9F7C100CE1ED6 /* Share */ = {
 			isa = PBXGroup;
 			children = (
+				0BA0A7461BDF29E4003C7A1D /* ShareGoIcon@2x.png */,
+				0BA0A7471BDF29E4003C7A1D /* ShareGoIcon@3x.png */,
+				0BA0A7481BDF29E4003C7A1D /* ShareSeetiesLogo@2x.png */,
+				0BA0A7491BDF29E4003C7A1D /* ShareSeetiesLogo@3x.png */,
 				8A90ADF71BD9F7C100CE1ED6 /* ShareCopyLinkIcon@2x.png */,
 				8A90ADF81BD9F7C100CE1ED6 /* ShareCopyLinkIcon@3x.png */,
 				8A90ADF91BD9F7C100CE1ED6 /* ShareEmailIcon@2x.png */,
@@ -4989,6 +5009,7 @@
 				8A90AFF91BD9F7C200CE1ED6 /* ShareFBIcon@2x.png in Resources */,
 				8AD6C2921B7072FB0040437E /* ChangeSearchLocationViewController.xib in Resources */,
 				8A90AE661BD9F7C100CE1ED6 /* MoreBtn@2x.png in Resources */,
+				0BA0A7521BDF2AF7003C7A1D /* ShareToFrenViewController.xib in Resources */,
 				8A90AF591BD9F7C100CE1ED6 /* WhiteSeetiesLogo@3x.png in Resources */,
 				8A90B01C1BD9F7C200CE1ED6 /* RecommendBtn@2x.png in Resources */,
 				8A90B0121BD9F7C200CE1ED6 /* FeedIconActive@2x.png in Resources */,
@@ -5039,6 +5060,7 @@
 				8AD6BE521B706CF30040437E /* Filter2ViewController.xib in Resources */,
 				8A90AFB81BD9F7C100CE1ED6 /* FollowerNumber@3x.png in Resources */,
 				8AD6C2961B7072FB0040437E /* DraftsViewController.xib in Resources */,
+				0BA0A74C1BDF29E4003C7A1D /* ShareSeetiesLogo@2x.png in Resources */,
 				8A90AE7E1BD9F7C100CE1ED6 /* DraftsIcon@2x.png in Resources */,
 				8A90B0091BD9F7C200CE1ED6 /* CloseBtn@3x.png in Resources */,
 				8A90AEA41BD9F7C100CE1ED6 /* GenderIcon@2x.png in Resources */,
@@ -5108,6 +5130,7 @@
 				8A90AF3B1BD9F7C100CE1ED6 /* FacebookBtnInactive@3x.png in Resources */,
 				8A90AEEC1BD9F7C100CE1ED6 /* FeedCloseBtn@2x.png in Resources */,
 				8AD6C0B61B706CF30040437E /* InstagramLoginWebViewController.xib in Resources */,
+				0BA0A74D1BDF29E4003C7A1D /* ShareSeetiesLogo@3x.png in Resources */,
 				8A90AF361BD9F7C100CE1ED6 /* ConnectWithInstagram@2x.png in Resources */,
 				8A90AF7C1BD9F7C100CE1ED6 /* Walkthrough4.png in Resources */,
 				8AD6BE501B706CF30040437E /* ExploreViewController.xib in Resources */,
@@ -5130,6 +5153,7 @@
 				8A90AEFA1BD9F7C100CE1ED6 /* LikeIcon@2x.png in Resources */,
 				8A90AF5D1BD9F7C100CE1ED6 /* launch.png in Resources */,
 				8A90AF7A1BD9F7C100CE1ED6 /* Walkthrough2.png in Resources */,
+				0BA0A74B1BDF29E4003C7A1D /* ShareGoIcon@3x.png in Resources */,
 				8A90AF471BD9F7C100CE1ED6 /* InviteFriendsGraphic.png in Resources */,
 				8A90AE521BD9F7C100CE1ED6 /* CollectionCrossBtn@2x.png in Resources */,
 				8A90AFC51BD9F7C200CE1ED6 /* PostSmallPin@2x.png in Resources */,
@@ -5157,6 +5181,7 @@
 				8A90AF811BD9F7C100CE1ED6 /* NotificationBySeeties@2x.png in Resources */,
 				8A90AFEF1BD9F7C200CE1ED6 /* CameraIcon@2x.png in Resources */,
 				8AB76E011BB8FDC8007DB972 /* UserProfileV2ViewController.xib in Resources */,
+				0BA0A74A1BDF29E4003C7A1D /* ShareGoIcon@2x.png in Resources */,
 				8A90AF3F1BD9F7C100CE1ED6 /* InstagramBtnInactive@3x.png in Resources */,
 				8A90AF3D1BD9F7C100CE1ED6 /* InstagramBtnActive@3x.png in Resources */,
 				8A90B0021BD9F7C200CE1ED6 /* ShareWhatsappIcon@3x.png in Resources */,
@@ -5316,6 +5341,7 @@
 				8AD6C0B11B706CF30040437E /* SignupViewController.m in Sources */,
 				0BCF10F31BB290C90017B614 /* ShareViewController.m in Sources */,
 				8A959D631B8B252700722920 /* FXImageView.m in Sources */,
+				0BA0A7511BDF2AF7003C7A1D /* ShareToFrenViewController.m in Sources */,
 				8A3408F51B86FC99009B66C3 /* BMXSwipableCell.m in Sources */,
 				8AD6C2A91B7072FB0040437E /* WhereIsThisViewController.m in Sources */,
 				8AD6C3361B707D120040437E /* CRZoomScrollView.m in Sources */,

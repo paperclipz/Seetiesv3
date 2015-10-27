@@ -88,6 +88,7 @@
     NSURLConnection *theConnection_All;
     NSURLConnection *theConnection_likes;
     NSURLConnection *theConnection_QuickCollect;
+    NSURLConnection *theConnection_TrackPromotedUserViews;
     
     NSString *latPoint;
     NSString *lonPoint;
@@ -110,6 +111,9 @@
     NSString *GetPostID;
     
     UIButton *MainNearbyButton;
+    
+    //tracker url
+    NSString *TrackerUrl;
 }
 -(IBAction)TryAgainButton:(id)sender;
 -(IBAction)SearchButton:(id)sender;

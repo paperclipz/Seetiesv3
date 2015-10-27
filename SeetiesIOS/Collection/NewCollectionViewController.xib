@@ -225,7 +225,7 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                             <state key="normal" image="Check.png"/>
-                            <state key="selected" image="Check.png"/>
+                            <state key="selected" image="Uncheck.png"/>
                             <connections>
                                 <action selector="TickButton:" destination="-1" eventType="touchUpInside" id="eJe-Up-Az8"/>
                             </connections>
@@ -244,5 +244,6 @@
         <image name="BackIcon.png" width="40" height="40"/>
         <image name="Check.png" width="70" height="70"/>
         <image name="TitleBar.png" width="310" height="64"/>
+        <image name="Uncheck.png" width="70" height="70"/>
     </resources>
 </document>
