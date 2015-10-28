@@ -42,7 +42,7 @@
             if ([postModel.language isEqualToString:currentlangCode]) {
                 self.lblTitle.text = self.model.contents[currentlangCode][@"title"];
 
-                return;
+                break;
             }
         }
         postModel = self.model.arrPost[0];

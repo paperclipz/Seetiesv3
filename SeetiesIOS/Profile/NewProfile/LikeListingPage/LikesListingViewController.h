@@ -7,8 +7,10 @@
 //
 
 #import "CommonViewController.h"
+#import "FeedV2DetailViewController.h"
 
 @interface LikesListingViewController : CommonViewController
 -(void)initData:(ProfilePostModel*)model;
+@property(nonatomic, strong)FeedV2DetailViewController* feedV2DetailViewController;
 
 @end

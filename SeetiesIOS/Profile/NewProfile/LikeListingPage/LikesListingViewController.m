@@ -47,8 +47,6 @@
     [self.ibCollectionView registerClass:[LikeListingCollectionViewCell class] forCellWithReuseIdentifier:@"LikeListingCollectionViewCell"];
     [self.ibCollectionView registerClass:[ListingHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ListingHeaderView"];
     [self.ibCollectionHeader addSubview:self.listingHeaderView];
-    
-    
     self.ibCollectionView.backgroundColor = [UIColor clearColor];
     
 }
@@ -59,7 +57,7 @@
         _listingHeaderView = [ListingHeaderView initializeCustomView];
         [_listingHeaderView adjustToScreenWidth];
     
-        [_listingHeaderView setType:ListingViewTypePost addMoreClicked:^{
+        [_listingHeaderView setType:ListingViewTypeLikes addMoreClicked:^{
             
             SLog(@"Add More Clicked");
         }totalCount:self.profileLikeModel.userPostData.total_posts];
@@ -76,6 +74,16 @@
 }
 
 #pragma mark - Declaration
+-(FeedV2DetailViewController*)feedV2DetailViewController
+{
+    if (!_feedV2DetailViewController) {
+        _feedV2DetailViewController = [FeedV2DetailViewController new];
+    }
+    
+    return _feedV2DetailViewController;
+    
+}
+
 -(NSMutableArray*)arrLikesList
 {
 
@@ -102,6 +110,16 @@
     
    
     return cell;
+}
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    _feedV2DetailViewController = nil;
+    
+    DraftModel* model = self.arrLikesList[indexPath.row];
+    [self.navigationController pushViewController:self.feedV2DetailViewController animated:YES onCompletion:^{
+        [_feedV2DetailViewController GetPostID:model.post_id];
+        
+    }];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout  *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath

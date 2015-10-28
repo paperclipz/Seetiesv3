@@ -10,8 +10,10 @@ platform :ios, '7.0'
 #pod 'SDWebImage', :head
 #pod 'CocoaLumberjack'
 #pod 'AFNetworking', '~> 2.5'
+pod 'TTTAttributedLabel'
+#use_frameworks!
 pod 'JSONModel'
-pod 'TSMessages'
+pod 'TSMessages', :git => 'https://github.com/KrauseFx/TSMessages.git'
 pod 'ADTransitionController'
 pod 'IQKeyboardManager'
 pod 'SDWebImage'
@@ -32,4 +34,5 @@ pod 'DBCamera', '~> 2.4'
 pod 'A3ParallaxScrollView', '~> 1.0'
 
 pod 'APParallaxHeader'
+
 #pod 'Canvas', '~> 0.1.2'

@@ -499,6 +499,12 @@
 {
     if (!_profileViewController) {
         _profileViewController = [ProfileViewController new];
+        __weak typeof (self)weakSelf = self;
+        _profileViewController.btnAddMorePostClickedBlock = ^(void)
+        {
+            [weakSelf gotoRecommendationPage];
+
+        };
     }
     
     return _profileViewController;
@@ -688,14 +694,10 @@
         
         // type 1 is draft , default is image picker
         _recommendationChooseViewController = [CustomPickerViewController initializeWithBlock:^(id object) {
-            [self.recommendationViewController initData:1 sender:self.leveyTabBarController];
-            [self.leveyTabBarController setSelectedIndex:self.leveyTabBarController.previousIndex];
-            // go to draft
+            [self gotoDraftPage];
             
         } buttonTwo:^(id object) {
-            [self.recommendationViewController initData:2 sender:self.leveyTabBarController];
-            [self.leveyTabBarController setSelectedIndex:self.leveyTabBarController.previousIndex];
-
+            [self gotoRecommendationPage];
         }cancelBlock:^(id object) {
             [self.leveyTabBarController setSelectedIndex:self.leveyTabBarController.previousIndex];
         }];
@@ -708,7 +710,19 @@
         return _recommendationChooseViewController;
 }
 
+-(void)gotoDraftPage
+{
+    [self.recommendationViewController initData:1 sender:self.leveyTabBarController];
+    [self.leveyTabBarController setSelectedIndex:self.leveyTabBarController.previousIndex];
+    // go to draft
+}
 
+-(void)gotoRecommendationPage
+{
+    [self.recommendationViewController initData:2 sender:self.leveyTabBarController];
+    [self.leveyTabBarController setSelectedIndex:self.leveyTabBarController.previousIndex];
+
+}
 -(FeedViewController*)feedViewController
 {
     if(!_feedViewController){
@@ -775,8 +789,8 @@
         __weak typeof (self)weakSelf = self;
         _userProfilePageViewController.btnRecommendationClickBlock = ^(id object)
         {
-            [weakSelf.recommendationViewController initData:2 sender:weakSelf.leveyTabBarController];
-            [weakSelf.leveyTabBarController setSelectedIndex:weakSelf.leveyTabBarController.previousIndex];
+            
+            [weakSelf gotoRecommendationPage];
 
             
         };
@@ -891,7 +905,7 @@
          }
          
          // Retrieve the app delegate
-         AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
+         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
          // Call the app delegate's sessionStateChanged:state:error method to handle session state changes
          [appDelegate sessionStateChanged:session state:state error:error];
          

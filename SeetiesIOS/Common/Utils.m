@@ -422,6 +422,18 @@
     return [UIColor lightGrayColor];
 }
 
++(NSURL*)getPrefixedURLFromString:(NSString*)url
+{
+    NSString *myURLString = url;
+    NSURL *myURL;
+    if ([myURLString.lowercaseString hasPrefix:@"http://"]) {
+        myURL = [NSURL URLWithString:myURLString];
+    } else {
+        myURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@",myURLString]];
+    }
+    
+    return myURL;
+    
 
-
+}
 @end

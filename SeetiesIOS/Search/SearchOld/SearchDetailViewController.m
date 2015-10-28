@@ -124,13 +124,14 @@
    // ShowTitle.text = String;
 }
 -(IBAction)BackButton:(id)sender{
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromLeft;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self dismissViewControllerAnimated:NO completion:nil];
+  
+    if (self.navigationController) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+    else{
+        [self dismissViewControllerAnimated:NO completion:nil];
+
+    }
    // [self.navigationController popToRootViewControllerAnimated:YES];
     //[self dismissViewControllerAnimated:YES completion:nil];
 }

@@ -60,7 +60,16 @@
 
 }
 
-#pragma mark = Declaration
+#pragma mark - Declaration
+-(FeedV2DetailViewController*)feedV2DetailViewController
+{
+    if (!_feedV2DetailViewController) {
+        _feedV2DetailViewController = [FeedV2DetailViewController new];
+    }
+    
+    return _feedV2DetailViewController;
+    
+}
 -(NSMutableArray*)arrPostListing
 {
     if (!_arrPostListing) {
@@ -90,9 +99,15 @@
     
     if (!_viewHeader) {
         _viewHeader = [ListingHeaderView initializeCustomView];
+        
+        __weak typeof (self)wealSelf = self;
         [_viewHeader setType:ListingViewTypePost addMoreClicked:^{
             
-            SLog(@"Add More Clicked");
+            if (wealSelf.btnAddMorePostBlock) {
+                wealSelf.btnAddMorePostBlock();
+                SLog(@"Add More Clicked");
+
+            }
         }totalCount:self.userProfilePostModel.userPostData.total_posts];
     }
     
@@ -117,6 +132,18 @@
     PostListingTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"PostListingTableViewCell"];
     [cell initData:self.arrPostListing[indexPath.row]];
     return cell;
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    _feedV2DetailViewController = nil;
+    
+    DraftModel* model = self.arrPostListing[indexPath.row];
+    [self.navigationController pushViewController:self.feedV2DetailViewController animated:YES onCompletion:^{
+        [_feedV2DetailViewController GetPostID:model.post_id];
+
+    }];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView

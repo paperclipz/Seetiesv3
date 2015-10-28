@@ -69,7 +69,7 @@
             
         }
         
-        if (self.model.arrayPost[1] != [NSNull null]) {
+        if (self.model.arrayPost.count > 1) {
             
             DraftModel* draftModelTwo = self.model.arrayPost[1];
             

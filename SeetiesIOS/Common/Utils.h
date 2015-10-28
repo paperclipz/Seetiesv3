@@ -108,6 +108,7 @@ typedef enum ScrollDirection {
 //easy conversion to jsonstring
 +(NSString*)convertToJsonString:(NSDictionary*)dict;
 +(BOOL)stringIsNilOrEmpty:(NSString*)aString;
++(NSURL*)getPrefixedURLFromString:(NSString*)url;
 
 
 #define ARRAY_LIST_SIZE 10.0f

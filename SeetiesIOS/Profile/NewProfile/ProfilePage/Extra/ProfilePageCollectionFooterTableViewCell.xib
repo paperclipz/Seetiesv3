@@ -12,12 +12,15 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" tableViewCell="XHL-uF-Nju" id="anj-7u-29A">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TnO-kS-Im2">
+                    <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TnO-kS-Im2">
                         <rect key="frame" x="18" y="7" width="284" height="30"/>
-                        <state key="normal" title="See All"/>
+                        <color key="tintColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                        <state key="normal" title="See All" image="ArrowBtn.png">
+                            <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
                         <connections>
                             <action selector="btnSeeAllClicked:" destination="XHL-uF-Nju" eventType="touchUpInside" id="6Ni-P9-Pjy"/>
                         </connections>
@@ -44,4 +47,7 @@
             <point key="canvasLocation" x="231" y="233"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="ArrowBtn.png" width="30" height="30"/>
+    </resources>
 </document>

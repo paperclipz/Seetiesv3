@@ -22,6 +22,14 @@
     // Drawing code
 }
 */
+- (IBAction)btnAddmoreClicked:(id)sender {
+    if(_btnAddMoreClickedBlock)
+    {
+        self.btnAddMoreClickedBlock();
+    }
+    
+
+}
 
 -(void)initSelfView
 {
@@ -38,20 +46,12 @@
             
             self.lblTitle.text = [NSString stringWithFormat:@"%d %@",count,LocalisedString(@"Collections")];
             self.btnAddMore.hidden = false;
-            if(_btnAddMoreClickedBlock)
-            {
-                self.btnAddMoreClickedBlock();
-            }
-
+            
             
             break;
         case ListingViewTypePost:
             self.lblTitle.text = [NSString stringWithFormat:@"%d %@",count,LocalisedString(@"Posts")];
             
-            if(_btnAddMoreClickedBlock)
-            {
-                self.btnAddMoreClickedBlock();
-            }
             
             self.btnAddMore.hidden = false;
 
@@ -60,7 +60,7 @@
         case ListingViewTypeLikes:
             self.lblTitle.text = [NSString stringWithFormat:@"%d %@",count,LocalisedString(@"Likes")];
             self.btnAddMore.hidden = true;
-
+            self.ibImgLine.hidden = true;
             break;
     }
 }

@@ -7,8 +7,11 @@
 //
 
 #import "CommonViewController.h"
+#import "FeedV2DetailViewController.h"
 
 @interface PostListingViewController : CommonViewController
 -(void)initData:(ProfilePostModel*)model;
+@property(nonatomic, copy)VoidBlock btnAddMorePostBlock;
+@property(nonatomic, strong)FeedV2DetailViewController* feedV2DetailViewController;
 
 @end

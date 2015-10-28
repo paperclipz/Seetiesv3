@@ -14,7 +14,7 @@
                 <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="029-Dc-LXz">
                     <rect key="frame" x="260" y="10" width="1" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.56315104169999997" green="0.56315104169999997" blue="0.56315104169999997" alpha="1" colorSpace="calibratedRGB"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hhK-EX-QNg">
                     <rect key="frame" x="18" y="0.0" width="223" height="60"/>
@@ -27,6 +27,9 @@
                     <rect key="frame" x="267" y="0.0" width="53" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
                     <state key="normal" image="AddPostBtn.png"/>
+                    <connections>
+                        <action selector="btnAddmoreClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="LUs-dM-oco"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.91372549020000005" green="0.92941176469999998" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
