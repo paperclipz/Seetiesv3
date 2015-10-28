@@ -1618,7 +1618,7 @@
     
     UIImageView *ShowMoveIcon = [[UIImageView alloc]init];
     ShowMoveIcon.image = [UIImage imageNamed:@"FullScreenIcon.png"];
-    ShowMoveIcon.frame = CGRectMake(screenWidth - 40, 300, 30, 30);
+    ShowMoveIcon.frame = CGRectMake(screenWidth - 45 - 10, 300, 45, 45);
     [MainScroll addSubview:ShowMoveIcon];
     
     NSInteger productcount = [UrlArray count];

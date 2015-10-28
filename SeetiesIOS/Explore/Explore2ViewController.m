@@ -440,22 +440,22 @@
         
         switch (i) {
             case 0:
-                ShowCountryImg.backgroundColor = [UIColor colorWithRed:208.0f/255.0f green:164.0f/255.0f blue:125.0f/255.0f alpha:1.0f];
+                ShowCountryImg.backgroundColor = [UIColor colorWithRed:122.0f/255.0f green:109.0f/255.0f blue:191.0f/255.0f alpha:1.0f];
                 break;
             case 1:
-                ShowCountryImg.backgroundColor = [UIColor colorWithRed:115.0f/255.0f green:140.0f/255.0f blue:198.0f/255.0f alpha:1.0f];
+                ShowCountryImg.backgroundColor = [UIColor colorWithRed:149.0f/255.0f green:174.0f/255.0f blue:242.0f/255.0f alpha:1.0f];
                 break;
             case 2:
-                ShowCountryImg.backgroundColor = [UIColor colorWithRed:209.0f/255.0f green:229.0f/255.0f blue:240.0f/255.0f alpha:1.0f];
+                ShowCountryImg.backgroundColor = [UIColor colorWithRed:241.0f/255.0f green:115.0f/255.0f blue:112.0f/255.0f alpha:1.0f];
                 break;
             case 3:
-                ShowCountryImg.backgroundColor = [UIColor colorWithRed:189.0f/255.0f green:137.0f/255.0f blue:72.0f/255.0f alpha:1.0f];
+                ShowCountryImg.backgroundColor = [UIColor colorWithRed:255.0f/255.0f green:224.0f/255.0f blue:116.0f/255.0f alpha:1.0f];
                 break;
             case 4:
-                ShowCountryImg.backgroundColor = [UIColor colorWithRed:189.0f/255.0f green:109.0f/255.0f blue:107.0f/255.0f alpha:1.0f];
+                ShowCountryImg.backgroundColor = [UIColor colorWithRed:204.0f/255.0f green:244.0f/255.0f blue:106.0f/255.0f alpha:1.0f];
                 break;
             case 5:
-                ShowCountryImg.backgroundColor = [UIColor colorWithRed:255.0f/255.0f green:231.0f/255.0f blue:142.0f/255.0f alpha:1.0f];
+                ShowCountryImg.backgroundColor = [UIColor colorWithRed:239.0f/255.0f green:251.0f/255.0f blue:158.0f/255.0f alpha:1.0f];
                 break;
             case 6:
                 ShowCountryImg.backgroundColor = [UIColor colorWithRed:222.0f/255.0f green:229.0f/255.0f blue:240.0f/255.0f alpha:1.0f];
