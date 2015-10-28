@@ -18,6 +18,7 @@
 #import "LandingV2ViewController.h"
 #import "NewCollectionViewController.h"
 #import "SearchDetailViewController.h"
+#import "ShareViewController.h"
 @interface NewProfileV2ViewController ()
 
 @end
@@ -784,13 +785,7 @@
     NSLog(@"ArrHashTag is %@",GetTagsString);
     
     SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromRight;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self presentViewController:SearchDetailView animated:NO completion:nil];
+    [self.navigationController pushViewController:SearchDetailView animated:YES];
     [SearchDetailView GetSearchKeyword:GetTagsString Getlat:@"" GetLong:@"" GetLocationName:@"" GetCurrentLat:@"" GetCurrentLong:@""];
 }
 
@@ -2082,15 +2077,18 @@
    // [self.view.window.rootViewController presentViewController:EditProfileView animated:YES completion:nil];
 }
 -(IBAction)ShareButton:(id)sender{
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                             delegate:self
-                                                    cancelButtonTitle:CustomLocalisedString(@"SettingsPage_Cancel", nil)
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:CustomLocalisedString(@"ShareToFacebook", nil),CustomLocalisedString(@"CopyLink", nil), nil];
-    
-    [actionSheet showInView:self.view];
-    
-    actionSheet.tag = 200;
+    ShareViewController *ShareView = [[ShareViewController alloc]init];
+    [self presentViewController:ShareView animated:YES completion:nil];
+    [ShareView GetShareProfile:GetUserName];
+//    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+//                                                             delegate:self
+//                                                    cancelButtonTitle:CustomLocalisedString(@"SettingsPage_Cancel", nil)
+//                                               destructiveButtonTitle:nil
+//                                                    otherButtonTitles:CustomLocalisedString(@"ShareToFacebook", nil),CustomLocalisedString(@"CopyLink", nil), nil];
+//    
+//    [actionSheet showInView:self.view];
+//    
+//    actionSheet.tag = 200;
     
 }
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{

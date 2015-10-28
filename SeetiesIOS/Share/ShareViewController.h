@@ -15,6 +15,7 @@
     IBOutlet UIButton *BackButton;
     
     IBOutlet UIView *CenterView;
+    IBOutlet UIView *ShareToSeetiesView;
     
     NSString *GetPostID;
     NSString *GetMessage;
@@ -33,10 +34,13 @@
     IBOutlet UILabel *ShowSendToFren;
     IBOutlet UILabel *ShowSendToFrenSub;
     IBOutlet UIImageView *GoToIcon;
+    
+    NSString *GetUserID;
 }
  @property (nonatomic, strong) UIDocumentInteractionController *documentController;
 -(void)GetPostID:(NSString *)ID GetMessage:(NSString *)Msg GetTitle:(NSString *)Title GetImageData:(NSString *)ImgData;
 -(void)GetCollectionID:(NSString *)Collectionid;
+-(void)GetShareProfile:(NSString *)Userid;
 -(IBAction)FacebookButtonOnClick:(id)sender;
 -(IBAction)InstagramButtonOnClick:(id)sender;
 -(IBAction)LINEButtonOnClick:(id)sender;

@@ -36,7 +36,7 @@
     ShowNoDataText_1.text = CustomLocalisedString(@"NoNotification", nil);
     ShowNoDataText_2.text = CustomLocalisedString(@"NoNotificationDetail", nil);
 
-    MainScroll.frame = CGRectMake(0, 44, screenWidth, screenHeight - 114);
+    MainScroll.frame = CGRectMake(0, 127, screenWidth, screenHeight - 127 - 50);
     MainScroll.alwaysBounceVertical = YES;
     MainScroll.backgroundColor = [UIColor whiteColor];
     TitleLabel.text = LocalisedString(@"Activity");
@@ -50,7 +50,8 @@
     [refreshControl addTarget:self action:@selector(testRefresh:) forControlEvents:UIControlEventValueChanged];
     [MainScroll addSubview:refreshControl];
     CheckClick_Following = 0;
-    [self GetNotification];
+    [self InitView];
+    
     
     
 }
@@ -234,8 +235,8 @@
 //            NSLog(@"UserThumbnailArray is %@",UserThumbnailArray);
 //            NSLog(@"PostThumbnailArray is %@",PostThumbnailArray);
 //            NSLog(@"UserNameArray is %@",UserNameArray);
-             [self InitView];
-             [self GetFollowing];
+             [self InitNotificationsDataView];
+            // [self GetFollowing];
         }
     }else{
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
@@ -345,14 +346,15 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     //MainScroll.backgroundColor = [UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0];
     
-    GetHeight += 15;
+    
+  //  GetHeight += 15;
     
     NSString *TempStringPosts = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Following")];
     NSString *TempStringPeople = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Notifications")];
     
     NSArray *itemArray = [NSArray arrayWithObjects:TempStringPosts, TempStringPeople, nil];
     UISegmentedControl *ProfileControl = [[UISegmentedControl alloc]initWithItems:itemArray];
-    ProfileControl.frame = CGRectMake(15, GetHeight, screenWidth - 30, 33);
+    ProfileControl.frame = CGRectMake(15, 79, screenWidth - 30, 33);
     [ProfileControl addTarget:self action:@selector(segmentAction:) forControlEvents: UIControlEventValueChanged];
     ProfileControl.selectedSegmentIndex = 1;
     UIFont *font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:12];
@@ -361,33 +363,33 @@
     [ProfileControl setTitleTextAttributes:attributes
                                   forState:UIControlStateNormal];
     [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:41.0f/255.0f green:182.0f/255.0f blue:246.0f/255.0f alpha:1.0]];
-    [MainScroll addSubview:ProfileControl];
+    [self.view addSubview:ProfileControl];
     
-    GetHeight += 49;
+   // GetHeight += 49;
     
     UIButton *Line01 = [[UIButton alloc]init];
-    Line01.frame = CGRectMake(0, GetHeight, screenWidth, 1);
+    Line01.frame = CGRectMake(0, 127, screenWidth, 1);
     [Line01 setTitle:@"" forState:UIControlStateNormal];
     [Line01 setBackgroundColor:[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f]];
-    [MainScroll addSubview:Line01];
+    [self.view addSubview:Line01];
 
-    GetHeight += 1;
+   // GetHeight += 1;
     
     FollowingView = [[UIView alloc]init];
-    FollowingView.frame = CGRectMake(0, GetHeight, screenWidth, 400);
+    FollowingView.frame = CGRectMake(0, 0, screenWidth, 400);
     FollowingView.backgroundColor = [UIColor whiteColor];
     [MainScroll addSubview:FollowingView];
     
     NotificationsView = [[UIView alloc]init];
-    NotificationsView.frame = CGRectMake(0, GetHeight, screenWidth, 600);
+    NotificationsView.frame = CGRectMake(0, 0, screenWidth, 600);
     NotificationsView.backgroundColor = [UIColor whiteColor];
     [MainScroll addSubview:NotificationsView];
     
     NotificationsView.hidden = NO;
     FollowingView.hidden = YES;
     
-    [self InitNotificationsDataView];
-   
+    //[self InitNotificationsDataView];
+   [self GetNotification];
 }
 - (void)segmentAction:(UISegmentedControl *)segment
 {
@@ -399,16 +401,23 @@
             if ([CheckFollowData isEqualToString:@"0"]) {
                 ShowNoDataView.hidden = NO;
             }else{
-                ShowNoDataView.hidden = YES;
-                
                 FollowingView.hidden = NO;
                 NotificationsView.hidden = YES;
                 
-                //  [self InitFollowingDataView];
-                CGSize contentSize = MainScroll.frame.size;
-                contentSize.height = GetHeight + FollowingView.frame.size.height;
-                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-                MainScroll.contentSize = contentSize;
+                if (CheckClick_Following == 0) {
+                    CheckClick_Following = 1;
+                    [self GetFollowing];
+                }else{
+                    ShowNoDataView.hidden = YES;
+
+                    CGSize contentSize = MainScroll.frame.size;
+                    contentSize.height = GetHeight + FollowingView.frame.size.height;
+                    MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+                    MainScroll.contentSize = contentSize;
+                }
+                
+                
+
             }
 
             break;
@@ -471,7 +480,7 @@
         [ButtonClick setFrame:CGRectMake(0, 0 + i * 80, screenWidth, 80)];
         [ButtonClick setBackgroundColor:[UIColor clearColor]];
         ButtonClick.tag = i;
-        //[ButtonClick addTarget:self action:@selector(ClickButton:) forControlEvents:UIControlEventTouchUpInside];
+        //[ButtonClick addTarget:self action:@selector(FollowingButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
         
         UIImageView *MiniIcon = [[UIImageView alloc]init];
         MiniIcon.frame = CGRectMake(66, 50 + i * 80, 23, 28);
@@ -634,10 +643,6 @@
     MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     MainScroll.contentSize = contentSize;
     
-    if (CheckClick_Following == 0) {
-        [self InitNotificationsDataView];
-        CheckClick_Following = 1;
-    }
     
     
     
@@ -765,6 +770,16 @@
             }
             MiniIcon.frame = CGRectMake(66, 50 + i * 80, 23, 28);
             MiniIcon.image = [UIImage imageNamed:@"NotificationCollect.png"];
+        }else if([GetType isEqualToString:@"post_shared"] || [GetType isEqualToString:@"collection_shared"]){
+            NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserThumbnailArray objectAtIndex:i]];
+            if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
+                ShowUserImage.image = [UIImage imageNamed:@"Icon.png"];
+            }else{
+                NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
+                ShowUserImage.imageURL = url_UserImage;
+            }
+            MiniIcon.frame = CGRectMake(66, 50 + i * 80, 23, 28);
+            MiniIcon.image = [UIImage imageNamed:@"NotificationShare.png"];
         }else{ // handle new type
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
@@ -914,6 +929,19 @@
 //        [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
         [self.navigationController pushViewController:FeedDetailView animated:YES];
         [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
+    }else if([GetType isEqualToString:@"collect"]){
+        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+        [NewUserProfileV2View GetUserName:[UserNameArray objectAtIndex:getbuttonIDN]];
+        NSLog(@"UserNameArray is %@",[UserNameArray objectAtIndex:getbuttonIDN]);
+    }else if([GetType isEqualToString:@"post_shared"]){
+        FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
+        [self.navigationController pushViewController:FeedDetailView animated:YES];
+        [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
+    }else if([GetType isEqualToString:@"collection_shared"]){
+        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+        [NewUserProfileV2View GetUserName:[UserNameArray objectAtIndex:getbuttonIDN]];
     }else{
     
         NSString *GetAction = [[NSString alloc]initWithFormat:@"%@",[ActionArray objectAtIndex:getbuttonIDN]];
@@ -943,6 +971,54 @@
         }
     }
 }
+-(IBAction)FollowingButtonOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSLog(@"button %li",(long)getbuttonIDN);
+    
+    NSString *GetType = [[NSString alloc]initWithFormat:@"%@",[TypeArray objectAtIndex:getbuttonIDN]];
+    if ([GetType isEqualToString:@"follow"]) {
+        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+        [NewUserProfileV2View GetUserName:[Following_UserNameArray objectAtIndex:getbuttonIDN]];
+        NSLog(@"UserNameArray is %@",[Following_UserNameArray objectAtIndex:getbuttonIDN]);
+    }else if ([GetType isEqualToString:@"like"]){
+        FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
+        [self.navigationController pushViewController:FeedDetailView animated:YES];
+        [FeedDetailView GetPostID:[Following_PostIDArray objectAtIndex:getbuttonIDN]];
+    }else if ([GetType isEqualToString:@"mention"]){
+        FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
+        [self.navigationController pushViewController:FeedDetailView animated:YES];
+        [FeedDetailView GetPostID:[Following_PostIDArray objectAtIndex:getbuttonIDN]];
+    }else if ([GetType isEqualToString:@"comment"]){
+        FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
+        [self.navigationController pushViewController:FeedDetailView animated:YES];
+        [FeedDetailView GetPostID:[Following_PostIDArray objectAtIndex:getbuttonIDN]];
+    }else if([GetType isEqualToString:@"collect"]){
+        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+        [NewUserProfileV2View GetUserName:[Following_UserNameArray objectAtIndex:getbuttonIDN]];
+        NSLog(@"UserNameArray is %@",[Following_UserNameArray objectAtIndex:getbuttonIDN]);
+    }else{
+        
+        NSString *GetAction = [[NSString alloc]initWithFormat:@"%@",[Following_ActionArray objectAtIndex:getbuttonIDN]];
+        
+        NSLog(@"GetAction is %@",GetAction);
+        
+        if ([GetAction isEqualToString:@"post"]) {
+            FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
+            [self.navigationController pushViewController:FeedDetailView animated:YES];
+            [FeedDetailView GetPostID:[Following_PostIDArray objectAtIndex:getbuttonIDN]];
+        }else if([GetAction isEqualToString:@"none"]){
+            
+        }else if([GetAction isEqualToString:@"user"]){
+            NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+            [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+            [NewUserProfileV2View GetUserName:[Following_UserNameArray objectAtIndex:getbuttonIDN]];
+        }else{
+            
+        }
+    }
+}
 - (void)testRefresh:(UIRefreshControl *)refreshControl_
 {
     ShowNoDataView.hidden = YES;
@@ -957,13 +1033,13 @@
             [formatter setDateFormat:@"MMM d, h:mm a"];
           //  NSString *lastUpdate = [NSString stringWithFormat:@"Last updated on %@", [formatter stringFromDate:[NSDate date]]];
            // refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdate];
-            CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-            CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-            MainScroll.frame = CGRectMake(0, 44, screenWidth, screenHeight - 114);
-            MainScroll.alwaysBounceVertical = YES;
-            for (UIView *subview in MainScroll.subviews) {
-                [subview removeFromSuperview];
-            }
+//            CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+//            CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+//            MainScroll.frame = CGRectMake(0, 44, screenWidth, screenHeight - 114);
+//            MainScroll.alwaysBounceVertical = YES;
+//            for (UIView *subview in MainScroll.subviews) {
+//                [subview removeFromSuperview];
+//            }
             [[NSNotificationCenter defaultCenter] postNotificationName:@"CHANGE_NOTIFICATION_COUNT" object:nil];
             [refreshControl addTarget:self action:@selector(testRefresh:) forControlEvents:UIControlEventValueChanged];
             [MainScroll addSubview:refreshControl];

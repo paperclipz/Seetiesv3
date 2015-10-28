@@ -27,8 +27,9 @@
     MainScroll.alwaysBounceVertical = YES;
     MainScroll.contentSize = CGSizeMake(screenWidth, 568);
     
+    ShareToSeetiesView.frame = CGRectMake(0, 55, screenWidth, 65);
     CenterView.frame = CGRectMake((screenWidth / 2) - 160, 120, 320, screenHeight);
-    GoToIcon.frame = CGRectMake(screenWidth - 25 - 10, 76, 25, 23);
+    GoToIcon.frame = CGRectMake(screenWidth - 25 - 10, 21, 25, 23);
     
     BackButton.frame = CGRectMake(screenWidth - 50, 0, 50, 50);
     
@@ -38,6 +39,14 @@
     ShowSubTitle.text = LocalisedString(@"Send via other apps");
     ShowSendToFren.text = LocalisedString(@"Send to buddies in Seeties");
     ShowSendToFrenSub.text = LocalisedString(@"Your buddies will be notified of this collection you've shared.");
+}
+-(void)GetShareProfile:(NSString *)Userid{
+    GetUserID = Userid;
+    CheckShareStatus = 3;
+    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    ShareToSeetiesView.hidden = YES;
+    CenterView.frame = CGRectMake((screenWidth / 2) - 160, 70, 320, screenHeight);
 }
 -(void)GetCollectionID:(NSString *)Collectionid{
 
@@ -87,8 +96,12 @@
         message = [NSString stringWithFormat:@"https://seeties.me/post/%@",GetPostID];
         Description = [NSString stringWithFormat:@"%@",GetMessage];
         caption = [NSString stringWithFormat:@"SEETIES.ME"];
-    }else{
+    }else if (CheckShareStatus == 1){
         message = [NSString stringWithFormat:@"https://seeties.me/collections/%@",GetCollectionID];
+        Description = @"";
+        caption = [NSString stringWithFormat:@"SEETIES.ME"];
+    }else{
+        message = [NSString stringWithFormat:@"https://seeties.me/%@",GetUserID];
         Description = @"";
         caption = [NSString stringWithFormat:@"SEETIES.ME"];
     }
@@ -201,8 +214,10 @@
     
     if (CheckShareStatus == 0) {
         message = [NSString stringWithFormat:@"I found %@ on Seeties. Let's try it together.\n\nhttps://seeties.me/post/%@",GetTitle,GetPostID];
-    }else{
+    }else if (CheckShareStatus == 1){
         message = [NSString stringWithFormat:@"https://seeties.me/collections/%@",GetCollectionID];
+    }else{
+        message = [NSString stringWithFormat:@"Check out my profile on Seeties!\n\nhttps://seeties.me/%@",GetUserID];
     }
     
     NSString *ShareText = message;
@@ -223,8 +238,11 @@
     if (CheckShareStatus == 0) {
         message = [NSString stringWithFormat:@"https://seeties.me/post/%@",GetPostID];
         Description = [NSString stringWithFormat:@"%@",GetMessage];
-    }else{
+    }else if (CheckShareStatus == 1){
         message = [NSString stringWithFormat:@"https://seeties.me/collections/%@",GetCollectionID];
+        Description = @"";
+    }else{
+        message = [NSString stringWithFormat:@"Check out my profile on Seeties!\n\nhttps://seeties.me/%@",GetUserID];
         Description = @"";
     }
     
@@ -242,8 +260,10 @@
      NSString *message;
     if (CheckShareStatus == 0) {
         message = [NSString stringWithFormat:@"I found %@ on Seeties. Let's try it together.\n\nhttps://seeties.me/post/%@",GetTitle,GetPostID];
-    }else{
+    }else if (CheckShareStatus == 1){
         message = [NSString stringWithFormat:@"https://seeties.me/collections/%@",GetCollectionID];
+    }else{
+        message = [NSString stringWithFormat:@"Check out my profile on Seeties!\n\nhttps://seeties.me/%@",GetUserID];
     }
    
     NSString *ShareText = message;
@@ -263,8 +283,10 @@
     NSString *message;
     if (CheckShareStatus == 0) {
         message = [NSString stringWithFormat:@"I found %@ on Seeties. Let's try it together.\n\nhttps://seeties.me/post/%@",GetTitle,GetPostID];
-    }else{
+    }else if (CheckShareStatus == 1){
         message = [NSString stringWithFormat:@"https://seeties.me/collections/%@",GetCollectionID];
+    }else{
+        message = [NSString stringWithFormat:@"Check out my profile on Seeties!\n\nhttps://seeties.me/%@",GetUserID];
     }
     
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
@@ -281,8 +303,10 @@
         NSString *MessageSubject;
         if (CheckShareStatus == 0) {
             MessageSubject = [NSString stringWithFormat:@"I found %@ on Seeties. Let's try it together.\n\nhttps://seeties.me/post/%@",GetTitle,GetPostID];
-        }else{
+        }else if (CheckShareStatus == 1){
             MessageSubject = [NSString stringWithFormat:@"https://seeties.me/collections/%@",GetCollectionID];
+        }else{
+            MessageSubject = [NSString stringWithFormat:@"Check out my profile on Seeties!\n\nhttps://seeties.me/%@",GetUserID];
         }
        
         [mailer setSubject:MessageSubject];

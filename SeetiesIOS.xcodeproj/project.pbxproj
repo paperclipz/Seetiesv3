@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B3BB52A1BE0BD8800C90BB8 /* NotificationShare@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B3BB5281BE0BD8800C90BB8 /* NotificationShare@2x.png */; settings = {ASSET_TAGS = (); }; };
+		0B3BB52B1BE0BD8800C90BB8 /* NotificationShare@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B3BB5291BE0BD8800C90BB8 /* NotificationShare@3x.png */; settings = {ASSET_TAGS = (); }; };
 		0B3FF1051BB131620014AF2E /* AddCollectionDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3FF0FD1BB131620014AF2E /* AddCollectionDataViewController.m */; };
 		0B3FF1061BB131620014AF2E /* AddCollectionDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B3FF0FE1BB131620014AF2E /* AddCollectionDataViewController.xib */; };
 		0B3FF1071BB131620014AF2E /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3FF1001BB131620014AF2E /* CollectionViewController.m */; };
@@ -960,6 +962,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B3BB5281BE0BD8800C90BB8 /* NotificationShare@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NotificationShare@2x.png"; sourceTree = "<group>"; };
+		0B3BB5291BE0BD8800C90BB8 /* NotificationShare@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NotificationShare@3x.png"; sourceTree = "<group>"; };
 		0B3FF0FC1BB131620014AF2E /* AddCollectionDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCollectionDataViewController.h; sourceTree = "<group>"; };
 		0B3FF0FD1BB131620014AF2E /* AddCollectionDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCollectionDataViewController.m; sourceTree = "<group>"; };
 		0B3FF0FE1BB131620014AF2E /* AddCollectionDataViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddCollectionDataViewController.xib; sourceTree = "<group>"; };
@@ -3260,6 +3264,8 @@
 		8A90AD7C1BD9F7C100CE1ED6 /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
+				0B3BB5281BE0BD8800C90BB8 /* NotificationShare@2x.png */,
+				0B3BB5291BE0BD8800C90BB8 /* NotificationShare@3x.png */,
 				8A90AD7D1BD9F7C100CE1ED6 /* NotificationBySeeties@2x.png */,
 				8A90AD7E1BD9F7C100CE1ED6 /* NotificationBySeeties@3x.png */,
 				8A90AD7F1BD9F7C100CE1ED6 /* NotificationCollect@2x.png */,
@@ -5096,6 +5102,7 @@
 				8A90AFA61BD9F7C100CE1ED6 /* PostOverlay@3x.png in Resources */,
 				8AD6C0BF1B706CF30040437E /* FeedV2DetailViewController.xib in Resources */,
 				8A90AF801BD9F7C100CE1ED6 /* WrongFill@3x.png in Resources */,
+				0B3BB52B1BE0BD8800C90BB8 /* NotificationShare@3x.png in Resources */,
 				8A90AE671BD9F7C100CE1ED6 /* MoreBtn@3x.png in Resources */,
 				8AF39CD11BC649D1009C7F26 /* NearbyBackground.png in Resources */,
 				8A90AF3E1BD9F7C100CE1ED6 /* InstagramBtnInactive@2x.png in Resources */,
@@ -5279,6 +5286,7 @@
 				8A90AE7F1BD9F7C100CE1ED6 /* DraftsIcon@3x.png in Resources */,
 				8A90AF061BD9F7C100CE1ED6 /* ShareToIcon@2x.png in Resources */,
 				8A90AEB21BD9F7C100CE1ED6 /* CollectionNoPost@2x.png in Resources */,
+				0B3BB52A1BE0BD8800C90BB8 /* NotificationShare@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
