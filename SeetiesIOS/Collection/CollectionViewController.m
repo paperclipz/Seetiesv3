@@ -788,148 +788,226 @@
         TotalPage = 1;
     }
     
-    
-
-    for (NSInteger i = DataCount; i < DataTotal; i++) {
-        int CountHeight = TempHeight;
-        AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
-        ShowImage.frame = CGRectMake(20, TempHeight, screenWidth - 40, 180);
-        ShowImage.contentMode = UIViewContentModeScaleAspectFill;
-        ShowImage.layer.masksToBounds = YES;
-        ShowImage.layer.cornerRadius = 5;
-        ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
-        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
-        NSString *ImageData = [[NSString alloc]initWithFormat:@"%@",[Content_arrImage objectAtIndex:i]];
-        NSArray *SplitArray = [ImageData componentsSeparatedByString:@","];
-        NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[SplitArray objectAtIndex:0]];
-        if ([FullImagesURL_First length] == 0) {
+    if (DataTotal == 0) {
+       
+        
+        UIImageView *ShowNoPostsImg = [[UIImageView alloc]init];
+        ShowNoPostsImg.frame = CGRectMake((screenWidth / 2) - 48, TempHeight + 30, 95, 65);
+        ShowNoPostsImg.image = [UIImage imageNamed:@"CollectionNoPost.png"];
+        [ListView addSubview:ShowNoPostsImg];
+        
+        UILabel *ShowNoDataText1 = [[UILabel alloc]init];
+        ShowNoDataText1.frame = CGRectMake(30, TempHeight + 115, screenWidth - 60, 20);
+        ShowNoDataText1.text = LocalisedString(@"There's nothing 'ere, yet. Post");
+        ShowNoDataText1.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+        ShowNoDataText1.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+        ShowNoDataText1.textAlignment = NSTextAlignmentCenter;
+        [ListView addSubview:ShowNoDataText1];
+        
+//        UILabel *ShowNoDataText2 = [[UILabel alloc]init];
+//        ShowNoDataText2.frame = CGRectMake(30, TempHeight + 145, screenWidth - 60, 20);
+//        ShowNoDataText2.text = LocalisedString(@"There's nothing 'ere, yet. Post");
+//        ShowNoDataText2.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+//        ShowNoDataText2.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+//        ShowNoDataText2.textAlignment = NSTextAlignmentCenter;
+//        [ListView addSubview:ShowNoDataText2];
+        
+        TempHeight += 200;
+        ListView.frame = CGRectMake(0, GetHeight + 10, screenWidth, TempHeight + 20);
+        
+        CGSize contentSize = MainScroll.frame.size;
+        contentSize.height = GetHeight + ListView.frame.size.height;
+        MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        MainScroll.contentSize = contentSize;
+    }else{
+        for (NSInteger i = DataCount; i < DataTotal; i++) {
+            int CountHeight = TempHeight;
+            AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
+            ShowImage.frame = CGRectMake(20, TempHeight, screenWidth - 40, 180);
+            ShowImage.contentMode = UIViewContentModeScaleAspectFill;
+            ShowImage.layer.masksToBounds = YES;
+            ShowImage.layer.cornerRadius = 5;
             ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
-        }else{
-            NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL_First];
-            ShowImage.imageURL = url_NearbySmall;
-        }
-        [ListView addSubview:ShowImage];
-        
-        UIImageView *ShowOverlayImg = [[UIImageView alloc]init];
-        ShowOverlayImg.image = [UIImage imageNamed:@"FeedOverlay.png"];
-        ShowOverlayImg.frame = CGRectMake(20, TempHeight, screenWidth - 40, 180);
-        ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
-        ShowOverlayImg.layer.masksToBounds = YES;
-        ShowOverlayImg.layer.cornerRadius = 5;
-        [ListView addSubview:ShowOverlayImg];
-        
-        UIButton *ClickToDetailButton = [[UIButton alloc]init];
-        ClickToDetailButton.frame = CGRectMake(20, TempHeight, screenWidth - 40, 180);
-        [ClickToDetailButton setTitle:@"" forState:UIControlStateNormal];
-        ClickToDetailButton.backgroundColor = [UIColor clearColor];
-        ClickToDetailButton.tag = i;
-        [ClickToDetailButton addTarget:self action:@selector(ClickToDetailButton:) forControlEvents:UIControlEventTouchUpInside];
-        [ListView addSubview:ClickToDetailButton];
-        
-        CheckCollect = [[NSString alloc]initWithFormat:@"%@",[Content_arrCollect objectAtIndex:i]];
-        
-        if ([GetPermisionUser isEqualToString:@"Self"]) {
-            
-        }else{
-            UIButton *CollectButton = [[UIButton alloc]init];
-            [CollectButton setBackgroundColor:[UIColor clearColor]];
-            if ([CheckCollect isEqualToString:@"0"]) {
-                [CollectButton setImage:[UIImage imageNamed:@"WhiteCollect.png"] forState:UIControlStateNormal];
-                [CollectButton setImage:[UIImage imageNamed:@"WhiteCollected.png"] forState:UIControlStateSelected];
+            [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
+            NSString *ImageData = [[NSString alloc]initWithFormat:@"%@",[Content_arrImage objectAtIndex:i]];
+            NSArray *SplitArray = [ImageData componentsSeparatedByString:@","];
+            NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[SplitArray objectAtIndex:0]];
+            if ([FullImagesURL_First length] == 0) {
+                ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
             }else{
-                [CollectButton setImage:[UIImage imageNamed:@"WhiteCollected.png"] forState:UIControlStateNormal];
+                NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL_First];
+                ShowImage.imageURL = url_NearbySmall;
             }
-            CollectButton.frame = CGRectMake(screenWidth - 13 - 57, CountHeight, 57, 57);
-            CollectButton.tag = i;
-            [CollectButton addTarget:self action:@selector(CollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
-            [ListView addSubview:CollectButton];
-        }
-        
-        CountHeight += 10;
-
-        NSString *TempGetStirng = [[NSString alloc]initWithFormat:@"%@",[Content_arrTitle objectAtIndex:i]];
-        if ([TempGetStirng length] == 0 || [TempGetStirng isEqualToString:@""] || [TempGetStirng isEqualToString:@"(null)"]) {
+            [ListView addSubview:ShowImage];
             
-        }else{
-            UILabel *ShowTitle = [[UILabel alloc]init];
+            UIImageView *ShowOverlayImg = [[UIImageView alloc]init];
+            ShowOverlayImg.image = [UIImage imageNamed:@"FeedOverlay.png"];
+            ShowOverlayImg.frame = CGRectMake(20, TempHeight, screenWidth - 40, 180);
+            ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
+            ShowOverlayImg.layer.masksToBounds = YES;
+            ShowOverlayImg.layer.cornerRadius = 5;
+            [ListView addSubview:ShowOverlayImg];
+            
+            UIButton *ClickToDetailButton = [[UIButton alloc]init];
+            ClickToDetailButton.frame = CGRectMake(20, TempHeight, screenWidth - 40, 180);
+            [ClickToDetailButton setTitle:@"" forState:UIControlStateNormal];
+            ClickToDetailButton.backgroundColor = [UIColor clearColor];
+            ClickToDetailButton.tag = i;
+            [ClickToDetailButton addTarget:self action:@selector(ClickToDetailButton:) forControlEvents:UIControlEventTouchUpInside];
+            [ListView addSubview:ClickToDetailButton];
+            
+            CheckCollect = [[NSString alloc]initWithFormat:@"%@",[Content_arrCollect objectAtIndex:i]];
+            
             if ([GetPermisionUser isEqualToString:@"Self"]) {
-                ShowTitle.frame = CGRectMake(30, CountHeight, screenWidth - 60, 20);
+                
             }else{
-            ShowTitle.frame = CGRectMake(30, CountHeight, screenWidth - 100, 20);
+                UIButton *CollectButton = [[UIButton alloc]init];
+                [CollectButton setBackgroundColor:[UIColor clearColor]];
+                if ([CheckCollect isEqualToString:@"0"]) {
+                    [CollectButton setImage:[UIImage imageNamed:@"WhiteCollect.png"] forState:UIControlStateNormal];
+                    [CollectButton setImage:[UIImage imageNamed:@"WhiteCollected.png"] forState:UIControlStateSelected];
+                }else{
+                    [CollectButton setImage:[UIImage imageNamed:@"WhiteCollected.png"] forState:UIControlStateNormal];
+                }
+                CollectButton.frame = CGRectMake(screenWidth - 13 - 57, CountHeight, 57, 57);
+                CollectButton.tag = i;
+                [CollectButton addTarget:self action:@selector(CollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+                [ListView addSubview:CollectButton];
             }
             
-            ShowTitle.text = TempGetStirng;
-            ShowTitle.backgroundColor = [UIColor clearColor];
-            ShowTitle.textAlignment = NSTextAlignmentLeft;
-            ShowTitle.textColor = [UIColor whiteColor];
-            ShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-            [ListView addSubview:ShowTitle];
-
-          //  TempHeight += ShowTitle.frame.size.height;
-            CountHeight += 20;
-
-        }
-        
-
-        UIImageView *ShowPin = [[UIImageView alloc]init];
-        ShowPin.image = [UIImage imageNamed:@"PhotoPin.png"];
-        ShowPin.frame = CGRectMake(28, CountHeight + 2, 15, 15);
-        [ListView addSubview:ShowPin];
-        
-        NSString *TempDistanceString = [[NSString alloc]initWithFormat:@"%@",[Content_arrID_arrDistance objectAtIndex:i]];
-//        NSLog(@"TempDistanceString is %@",TempDistanceString);
-        NSString *FullShowLocatinString;
-        if ([TempDistanceString isEqualToString:@"-1"]) {
-            FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@ • %@",[Content_arrPlaceName objectAtIndex:i],[Content_arrID_arrDisplayCountryName objectAtIndex:i]];
-        }else{
-            CGFloat strFloat = (CGFloat)[TempDistanceString floatValue] / 1000;
-            int x_Nearby = [TempDistanceString intValue] / 1000;
-//            NSLog(@"strFloat is %f",strFloat);
-//            NSLog(@"x_Nearby is %i",x_Nearby);
-//            if (x_Nearby < 100) {
-//                if (x_Nearby <= 1) {
-//                    FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@ • 1km",[Content_arrPlaceName objectAtIndex:i]];//within
-//                }else{
-//                    FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@ • %.fkm",[Content_arrPlaceName objectAtIndex:i],strFloat];
-//                }
-//                
-//            }else{
-//                FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@ • %@",[Content_arrPlaceName objectAtIndex:i],[Content_arrID_arrDisplayCountryName objectAtIndex:i]];
-//                
-//            }
+            CountHeight += 10;
             
-            if (x_Nearby < 1) {
-                FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@ • %.fm",[Content_arrPlaceName objectAtIndex:i],strFloat];
-            }else if(x_Nearby > 1000){
+            NSString *TempGetStirng = [[NSString alloc]initWithFormat:@"%@",[Content_arrTitle objectAtIndex:i]];
+            if ([TempGetStirng length] == 0 || [TempGetStirng isEqualToString:@""] || [TempGetStirng isEqualToString:@"(null)"]) {
+                
+            }else{
+                UILabel *ShowTitle = [[UILabel alloc]init];
+                if ([GetPermisionUser isEqualToString:@"Self"]) {
+                    ShowTitle.frame = CGRectMake(30, CountHeight, screenWidth - 60, 20);
+                }else{
+                    ShowTitle.frame = CGRectMake(30, CountHeight, screenWidth - 100, 20);
+                }
+                
+                ShowTitle.text = TempGetStirng;
+                ShowTitle.backgroundColor = [UIColor clearColor];
+                ShowTitle.textAlignment = NSTextAlignmentLeft;
+                ShowTitle.textColor = [UIColor whiteColor];
+                ShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+                [ListView addSubview:ShowTitle];
+                
+                //  TempHeight += ShowTitle.frame.size.height;
+                CountHeight += 20;
+                
+            }
+            
+            
+            UIImageView *ShowPin = [[UIImageView alloc]init];
+            ShowPin.image = [UIImage imageNamed:@"PhotoPin.png"];
+            ShowPin.frame = CGRectMake(28, CountHeight + 2, 15, 15);
+            [ListView addSubview:ShowPin];
+            
+            NSString *TempDistanceString = [[NSString alloc]initWithFormat:@"%@",[Content_arrID_arrDistance objectAtIndex:i]];
+            //        NSLog(@"TempDistanceString is %@",TempDistanceString);
+            NSString *FullShowLocatinString;
+            if ([TempDistanceString isEqualToString:@"-1"]) {
                 FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@ • %@",[Content_arrPlaceName objectAtIndex:i],[Content_arrID_arrDisplayCountryName objectAtIndex:i]];
             }else{
-                FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@ • %.fkm",[Content_arrPlaceName objectAtIndex:i],strFloat];
+                CGFloat strFloat = (CGFloat)[TempDistanceString floatValue] / 1000;
+                int x_Nearby = [TempDistanceString intValue] / 1000;
+                //            NSLog(@"strFloat is %f",strFloat);
+                //            NSLog(@"x_Nearby is %i",x_Nearby);
+                //            if (x_Nearby < 100) {
+                //                if (x_Nearby <= 1) {
+                //                    FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@ • 1km",[Content_arrPlaceName objectAtIndex:i]];//within
+                //                }else{
+                //                    FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@ • %.fkm",[Content_arrPlaceName objectAtIndex:i],strFloat];
+                //                }
+                //
+                //            }else{
+                //                FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@ • %@",[Content_arrPlaceName objectAtIndex:i],[Content_arrID_arrDisplayCountryName objectAtIndex:i]];
+                //
+                //            }
+                
+                if (x_Nearby < 1) {
+                    FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@ • %.fm",[Content_arrPlaceName objectAtIndex:i],strFloat];
+                }else if(x_Nearby > 1000){
+                    FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@ • %@",[Content_arrPlaceName objectAtIndex:i],[Content_arrID_arrDisplayCountryName objectAtIndex:i]];
+                }else{
+                    FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@ • %.fkm",[Content_arrPlaceName objectAtIndex:i],strFloat];
+                }
+                
             }
-
-        }
-        UILabel *ShowDistance = [[UILabel alloc]init];
-        if ([GetPermisionUser isEqualToString:@"Self"]) {
-            ShowDistance.frame = CGRectMake(50, CountHeight, screenWidth - 100, 20);
-        }else{
-            ShowDistance.frame = CGRectMake(50, CountHeight, screenWidth - 160, 20);
-        }
-        
-        ShowDistance.text = FullShowLocatinString;
-        ShowDistance.textColor = [UIColor whiteColor];
-        ShowDistance.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
-        ShowDistance.textAlignment = NSTextAlignmentLeft;
-        ShowDistance.backgroundColor = [UIColor clearColor];
-        [ListView addSubview:ShowDistance];
-        
-        TempHeight += 190;
-        
-        NSString *TempGetNote = [[NSString alloc]initWithFormat:@"%@",[Content_arrNote objectAtIndex:i]];
-        if ([TempGetNote length] == 0 || [TempGetNote isEqualToString:@""] || [TempGetNote isEqualToString:@"(null)"]) {
-           NSString *TempGetMessage = [[NSString alloc]initWithFormat:@"%@",[Content_arrMessage objectAtIndex:i]];
-            if ([TempGetMessage length] == 0 || [TempGetMessage isEqualToString:@""] || [TempGetMessage isEqualToString:@"(null)"]) {
-                TempHeight += 20;
+            UILabel *ShowDistance = [[UILabel alloc]init];
+            if ([GetPermisionUser isEqualToString:@"Self"]) {
+                ShowDistance.frame = CGRectMake(50, CountHeight, screenWidth - 100, 20);
             }else{
-                NSString *FullString = [[NSString alloc]initWithFormat:@"%@: %@",[Content_arrUserName objectAtIndex:i],TempGetMessage];
+                ShowDistance.frame = CGRectMake(50, CountHeight, screenWidth - 160, 20);
+            }
+            
+            ShowDistance.text = FullShowLocatinString;
+            ShowDistance.textColor = [UIColor whiteColor];
+            ShowDistance.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+            ShowDistance.textAlignment = NSTextAlignmentLeft;
+            ShowDistance.backgroundColor = [UIColor clearColor];
+            [ListView addSubview:ShowDistance];
+            
+            TempHeight += 190;
+            
+            NSString *TempGetNote = [[NSString alloc]initWithFormat:@"%@",[Content_arrNote objectAtIndex:i]];
+            if ([TempGetNote length] == 0 || [TempGetNote isEqualToString:@""] || [TempGetNote isEqualToString:@"(null)"]) {
+                NSString *TempGetMessage = [[NSString alloc]initWithFormat:@"%@",[Content_arrMessage objectAtIndex:i]];
+                if ([TempGetMessage length] == 0 || [TempGetMessage isEqualToString:@""] || [TempGetMessage isEqualToString:@"(null)"]) {
+                    TempHeight += 20;
+                }else{
+                    NSString *FullString = [[NSString alloc]initWithFormat:@"%@: %@",[Content_arrUserName objectAtIndex:i],TempGetMessage];
+                    
+                    UILabel *ShowNoteData = [[UILabel alloc]init];
+                    ShowNoteData.frame = CGRectMake(25, TempHeight, screenWidth - 50, 40);
+                    ShowNoteData.backgroundColor = [UIColor clearColor];
+                    ShowNoteData.numberOfLines = 3;
+                    ShowNoteData.textAlignment = NSTextAlignmentLeft;
+                    ShowNoteData.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+                    ShowNoteData.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+                    
+                    NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+                    paragraph.minimumLineHeight = 21.0f;
+                    paragraph.maximumLineHeight = 21.0f;
+                    //                NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:FullString attributes:@{NSParagraphStyleAttributeName: paragraph}];
+                    //                ShowNoteData.attributedText = attributedString;
+                    
+                    NSString *FinalString_CheckName = [[NSString alloc] initWithFormat:@"%@:",[Content_arrUserName objectAtIndex:i]];
+                    
+                    NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:FullString];
+                    [mutableAttributedString addAttribute:NSParagraphStyleAttributeName value:paragraph range:NSMakeRange(0, FullString.length)];
+                    [mutableAttributedString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15] range:NSMakeRange(0, FullString.length)];
+                    [mutableAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f] range:NSMakeRange(0, FullString.length)];
+                    
+                    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:FinalString_CheckName  options:kNilOptions error:nil];
+                    NSRange range = NSMakeRange(0,FullString.length);
+                    [regex enumerateMatchesInString:FullString options:kNilOptions range:range usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+                        NSRange subStringRange = [result rangeAtIndex:0];
+                        [mutableAttributedString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15] range:NSMakeRange(0, FinalString_CheckName.length)];
+                        [mutableAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f] range:subStringRange];
+                    }];
+                    
+                    [ShowNoteData setAttributedText:mutableAttributedString];
+                    
+                    //ShowNoteData.text = FullString;
+                    
+                    [ListView addSubview:ShowNoteData];
+                    
+                    if([ShowNoteData sizeThatFits:CGSizeMake(screenWidth - 50, CGFLOAT_MAX)].height!=ShowNoteData.frame.size.height)
+                    {
+                        ShowNoteData.frame = CGRectMake(25, TempHeight, screenWidth - 50,[ShowNoteData sizeThatFits:CGSizeMake(screenWidth - 50, CGFLOAT_MAX)].height);
+                    }
+                    
+                    TempHeight += ShowNoteData.frame.size.height + 20;
+                }
+                
+                
+            }else{
+                
+                NSString *FullString = [[NSString alloc]initWithFormat:@"%@: %@",GetUsername,TempGetNote];
                 
                 UILabel *ShowNoteData = [[UILabel alloc]init];
                 ShowNoteData.frame = CGRectMake(25, TempHeight, screenWidth - 50, 40);
@@ -942,16 +1020,14 @@
                 NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
                 paragraph.minimumLineHeight = 21.0f;
                 paragraph.maximumLineHeight = 21.0f;
-//                NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:FullString attributes:@{NSParagraphStyleAttributeName: paragraph}];
-//                ShowNoteData.attributedText = attributedString;
                 
-                NSString *FinalString_CheckName = [[NSString alloc] initWithFormat:@"%@:",[Content_arrUserName objectAtIndex:i]];
+                NSString *FinalString_CheckName = [[NSString alloc] initWithFormat:@"%@:",GetUsername];
                 
                 NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:FullString];
                 [mutableAttributedString addAttribute:NSParagraphStyleAttributeName value:paragraph range:NSMakeRange(0, FullString.length)];
                 [mutableAttributedString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15] range:NSMakeRange(0, FullString.length)];
                 [mutableAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f] range:NSMakeRange(0, FullString.length)];
-
+                
                 NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:FinalString_CheckName  options:kNilOptions error:nil];
                 NSRange range = NSMakeRange(0,FullString.length);
                 [regex enumerateMatchesInString:FullString options:kNilOptions range:range usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
@@ -959,11 +1035,11 @@
                     [mutableAttributedString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15] range:NSMakeRange(0, FinalString_CheckName.length)];
                     [mutableAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f] range:subStringRange];
                 }];
-
+                
                 [ShowNoteData setAttributedText:mutableAttributedString];
                 
-                //ShowNoteData.text = FullString;
-
+                // ShowNoteData.text = FullString;
+                
                 [ListView addSubview:ShowNoteData];
                 
                 if([ShowNoteData sizeThatFits:CGSizeMake(screenWidth - 50, CGFLOAT_MAX)].height!=ShowNoteData.frame.size.height)
@@ -972,65 +1048,22 @@
                 }
                 
                 TempHeight += ShowNoteData.frame.size.height + 20;
-            }
-
-            
-        }else{
-            
-            NSString *FullString = [[NSString alloc]initWithFormat:@"%@: %@",GetUsername,TempGetNote];
-            
-            UILabel *ShowNoteData = [[UILabel alloc]init];
-            ShowNoteData.frame = CGRectMake(25, TempHeight, screenWidth - 50, 40);
-            ShowNoteData.backgroundColor = [UIColor clearColor];
-            ShowNoteData.numberOfLines = 3;
-            ShowNoteData.textAlignment = NSTextAlignmentLeft;
-            ShowNoteData.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
-            ShowNoteData.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
-            
-            NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
-            paragraph.minimumLineHeight = 21.0f;
-            paragraph.maximumLineHeight = 21.0f;
-            
-            NSString *FinalString_CheckName = [[NSString alloc] initWithFormat:@"%@:",GetUsername];
-            
-            NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:FullString];
-            [mutableAttributedString addAttribute:NSParagraphStyleAttributeName value:paragraph range:NSMakeRange(0, FullString.length)];
-            [mutableAttributedString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15] range:NSMakeRange(0, FullString.length)];
-            [mutableAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f] range:NSMakeRange(0, FullString.length)];
-            
-            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:FinalString_CheckName  options:kNilOptions error:nil];
-            NSRange range = NSMakeRange(0,FullString.length);
-            [regex enumerateMatchesInString:FullString options:kNilOptions range:range usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
-                NSRange subStringRange = [result rangeAtIndex:0];
-                [mutableAttributedString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15] range:NSMakeRange(0, FinalString_CheckName.length)];
-                [mutableAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f] range:subStringRange];
-            }];
-            
-            [ShowNoteData setAttributedText:mutableAttributedString];
-            
-           // ShowNoteData.text = FullString;
-
-            [ListView addSubview:ShowNoteData];
-            
-            if([ShowNoteData sizeThatFits:CGSizeMake(screenWidth - 50, CGFLOAT_MAX)].height!=ShowNoteData.frame.size.height)
-            {
-                ShowNoteData.frame = CGRectMake(25, TempHeight, screenWidth - 50,[ShowNoteData sizeThatFits:CGSizeMake(screenWidth - 50, CGFLOAT_MAX)].height);
+                
             }
             
-            TempHeight += ShowNoteData.frame.size.height + 20;
-
+            
+            
         }
         
+        ListView.frame = CGRectMake(0, GetHeight + 10, screenWidth, TempHeight + 20);
         
-        
+        CGSize contentSize = MainScroll.frame.size;
+        contentSize.height = GetHeight + ListView.frame.size.height;
+        MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        MainScroll.contentSize = contentSize;
     }
-    
-    ListView.frame = CGRectMake(0, GetHeight + 10, screenWidth, TempHeight + 20);
-    
-    CGSize contentSize = MainScroll.frame.size;
-    contentSize.height = GetHeight + ListView.frame.size.height;
-    MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    MainScroll.contentSize = contentSize;
+
+
     
     
    // [self InitGridViewData];
@@ -1047,45 +1080,72 @@
     // NSLog(@"FinalWidth is %i",FinalWidth);
     int SpaceWidth = FinalWidth + 5;
     
-    for (NSInteger i = DataCount; i < DataTotal; i++) {
-        AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
-        ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
-        ShowImage.frame = CGRectMake(5+(i % 3)*SpaceWidth, heightcheck + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
-        ShowImage.contentMode = UIViewContentModeScaleAspectFill;
-        ShowImage.layer.masksToBounds = YES;
-        ShowImage.layer.cornerRadius = 5;
-        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
-        NSString *ImageData = [[NSString alloc]initWithFormat:@"%@",[Content_arrImage objectAtIndex:i]];
-        NSArray *SplitArray = [ImageData componentsSeparatedByString:@","];
-        NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[SplitArray objectAtIndex:0]];
-        if ([FullImagesURL_First length] == 0) {
+    if (DataTotal == 0) {
+        
+        UIImageView *ShowNoPostsImg = [[UIImageView alloc]init];
+        ShowNoPostsImg.frame = CGRectMake((screenWidth / 2) - 48, heightcheck + 30, 95, 65);
+        ShowNoPostsImg.image = [UIImage imageNamed:@"CollectionNoPost.png"];
+        [GridView addSubview:ShowNoPostsImg];
+        
+        UILabel *ShowNoDataText1 = [[UILabel alloc]init];
+        ShowNoDataText1.frame = CGRectMake(30, heightcheck + 115, screenWidth - 60, 20);
+        ShowNoDataText1.text = LocalisedString(@"There's nothing 'ere, yet. Post");
+        ShowNoDataText1.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+        ShowNoDataText1.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+        ShowNoDataText1.textAlignment = NSTextAlignmentCenter;
+        [GridView addSubview:ShowNoDataText1];
+        
+        heightcheck += 200;
+        
+        GridView.frame = CGRectMake(0, GetHeight + 10, screenWidth, heightcheck + 20);
+        
+        CGSize contentSize = MainScroll.frame.size;
+        contentSize.height = GetHeight + GridView.frame.size.height;
+        MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        MainScroll.contentSize = contentSize;
+    }else{
+        for (NSInteger i = DataCount; i < DataTotal; i++) {
+            AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
             ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
-        }else{
-            NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL_First];
-            ShowImage.imageURL = url_NearbySmall;
+            ShowImage.frame = CGRectMake(5+(i % 3)*SpaceWidth, heightcheck + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
+            ShowImage.contentMode = UIViewContentModeScaleAspectFill;
+            ShowImage.layer.masksToBounds = YES;
+            ShowImage.layer.cornerRadius = 5;
+            [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
+            NSString *ImageData = [[NSString alloc]initWithFormat:@"%@",[Content_arrImage objectAtIndex:i]];
+            NSArray *SplitArray = [ImageData componentsSeparatedByString:@","];
+            NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[SplitArray objectAtIndex:0]];
+            if ([FullImagesURL_First length] == 0) {
+                ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
+            }else{
+                NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL_First];
+                ShowImage.imageURL = url_NearbySmall;
+            }
+            [GridView addSubview:ShowImage];
+            
+            
+            UIButton *ImageButton = [[UIButton alloc]init];
+            [ImageButton setBackgroundColor:[UIColor clearColor]];
+            [ImageButton setTitle:@"" forState:UIControlStateNormal];
+            ImageButton.frame = CGRectMake(5+(i % 3)*SpaceWidth, heightcheck + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
+            ImageButton.tag = i;
+            [ImageButton addTarget:self action:@selector(ClickToDetailButton:) forControlEvents:UIControlEventTouchUpInside];
+            [GridView addSubview:ImageButton];
+            
+            GridView.frame = CGRectMake(0, GetHeight, screenWidth, heightcheck + FinalWidth + (SpaceWidth * (CGFloat)(i /3)));
         }
-        [GridView addSubview:ShowImage];
+        if (GridView.frame.size.height < screenHeight) {
+            
+            GridView.frame = CGRectMake(0, GetHeight, screenWidth, screenHeight);
+        }
         
-        
-        UIButton *ImageButton = [[UIButton alloc]init];
-        [ImageButton setBackgroundColor:[UIColor clearColor]];
-        [ImageButton setTitle:@"" forState:UIControlStateNormal];
-        ImageButton.frame = CGRectMake(5+(i % 3)*SpaceWidth, heightcheck + (SpaceWidth * (CGFloat)(i /3)), FinalWidth, FinalWidth);
-        ImageButton.tag = i;
-        [ImageButton addTarget:self action:@selector(ClickToDetailButton:) forControlEvents:UIControlEventTouchUpInside];
-        [GridView addSubview:ImageButton];
-        
-        GridView.frame = CGRectMake(0, GetHeight, screenWidth, heightcheck + FinalWidth + (SpaceWidth * (CGFloat)(i /3)));
-    }
-    if (GridView.frame.size.height < screenHeight) {
-        
-        GridView.frame = CGRectMake(0, GetHeight, screenWidth, screenHeight);
+        CGSize contentSize = MainScroll.frame.size;
+        contentSize.height = GetHeight + GridView.frame.size.height + FinalWidth;
+        MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        MainScroll.contentSize = contentSize;
     }
     
-    CGSize contentSize = MainScroll.frame.size;
-    contentSize.height = GetHeight + GridView.frame.size.height + FinalWidth;
-    MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    MainScroll.contentSize = contentSize;
+
 }
 
 -(IBAction)ClickToDetailButton:(id)sender{

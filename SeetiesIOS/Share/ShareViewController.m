@@ -22,9 +22,10 @@
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
 
-    MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight);
+    MainScroll.frame = CGRectMake(0, screenHeight - 450, screenWidth, 450);
     MainScroll.delegate = self;
     MainScroll.alwaysBounceVertical = YES;
+    MainScroll.contentSize = CGSizeMake(screenWidth, 568);
     
     CenterView.frame = CGRectMake((screenWidth / 2) - 160, 120, 320, screenHeight);
     GoToIcon.frame = CGRectMake(screenWidth - 25 - 10, 76, 25, 23);

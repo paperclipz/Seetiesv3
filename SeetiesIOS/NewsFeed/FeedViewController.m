@@ -946,7 +946,7 @@
 //    'follow_suggestion_friend';
 //    'deal';
 //    'invite_friend';
-
+//    'country_promotion';
 
     
     for (NSInteger i = DataCount; i < [arrType count]; i++) {
@@ -2597,7 +2597,7 @@
                 AsyncImageView *BannerImage = [[AsyncImageView alloc]init];
                 BannerImage.frame = CGRectMake(0, heightcheck, screenWidth, 150);
                 BannerImage.contentMode = UIViewContentModeScaleAspectFit;
-                BannerImage.backgroundColor = [UIColor whiteColor];
+                BannerImage.backgroundColor = [UIColor clearColor];
                 BannerImage.layer.masksToBounds = YES;
                 [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:BannerImage];
                 NSString *ImageData = [[NSString alloc]initWithFormat:@"%@",[arrImage objectAtIndex:i]];

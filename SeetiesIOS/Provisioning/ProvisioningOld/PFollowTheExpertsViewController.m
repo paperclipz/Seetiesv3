@@ -161,7 +161,7 @@
         
         NSLog(@"got location get feed data");
         
-        [self UpdateUserDataToServer];
+       [self UpdateUserDataToServer];
     }else{
         
     }
@@ -191,9 +191,9 @@
     [self UpdateUserDataToServer];
     
 }
-- (BOOL)prefersStatusBarHidden {
-    return YES;
-}
+//- (BOOL)prefersStatusBarHidden {
+//    return YES;
+//}
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.screenName = @"IOS Provisioning Follow The Experts";

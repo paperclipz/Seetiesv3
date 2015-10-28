@@ -1059,10 +1059,15 @@
 }
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    [ShowActivity stopAnimating];
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:CustomLocalisedString(@"ErrorConnection", nil) message:CustomLocalisedString(@"NoData", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-    
-    [alert show];
+    if (connection == theConnection_GetNotificationCount) {
+        
+    }else{
+        [ShowActivity stopAnimating];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:CustomLocalisedString(@"ErrorConnection", nil) message:CustomLocalisedString(@"NoData", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [alert show];
+    }
+
 }
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {

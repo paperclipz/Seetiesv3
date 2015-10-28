@@ -144,7 +144,7 @@
 //    //[self presentViewController:ListingDetail animated:NO completion:nil];
 //    [self dismissViewControllerAnimated:NO completion:nil];
     
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];

@@ -12,7 +12,7 @@
 #import "UrlDataClass.h"
 @interface ShareToFrenViewController : UIViewController<UIScrollViewDelegate,UITextFieldDelegate>{
 
-    IBOutlet TPKeyboardAvoidingScrollView *MainScroll;
+    IBOutlet UIScrollView *MainScroll;
     IBOutlet UIButton *BackButton;
     IBOutlet UITextField *SearchKeywordField;
     

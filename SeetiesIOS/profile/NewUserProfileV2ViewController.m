@@ -323,13 +323,76 @@
         GetHeight += 30;
     }
     
+    if ([GetPersonalTags isEqualToString:@""] || [GetPersonalTags isEqualToString:@"(null)"] || [GetPersonalTags length] == 0) {
+        
+    }else{
+        
+        UIScrollView *HashTagScroll = [[UIScrollView alloc]init];
+        HashTagScroll.delegate = self;
+        HashTagScroll.frame = CGRectMake(0, GetHeight, screenWidth, 50);
+        HashTagScroll.backgroundColor = [UIColor whiteColor];
+        [AllContentView addSubview:HashTagScroll];
+        CGRect frame2 = {0,0};
+        for (int i= 0; i < [ArrHashTag count]; i++) {
+            UILabel *ShowHashTagText = [[UILabel alloc]init];
+            ShowHashTagText.text = [ArrHashTag objectAtIndex:i];
+            ShowHashTagText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:12];
+            ShowHashTagText.textAlignment = NSTextAlignmentCenter;
+            ShowHashTagText.backgroundColor = [UIColor whiteColor];
+            ShowHashTagText.layer.cornerRadius = 5;
+            ShowHashTagText.layer.borderWidth = 1;
+            ShowHashTagText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+            ShowHashTagText.layer.borderColor=[[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f] CGColor];
+            
+            NSString *Text = [ArrHashTag objectAtIndex:i];
+            CGRect r = [Text boundingRectWithSize:CGSizeMake(200, 0)
+                                          options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
+                                       attributes:@{NSFontAttributeName:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:12]}
+                                          context:nil];
+            
+            UIButton *TagsButton = [[UIButton alloc]init];
+            [TagsButton setTitle:@"" forState:UIControlStateNormal];
+            TagsButton.backgroundColor = [UIColor clearColor];
+            TagsButton.tag = i;
+            TagsButton.frame = CGRectMake(25 + frame2.size.width, 15, r.size.width + 20, 20);
+            [TagsButton addTarget:self action:@selector(PersonalTagsButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+            
+            ShowHashTagText.frame = CGRectMake(25 + frame2.size.width, 15, r.size.width + 20, 20);
+            frame2.size.width += r.size.width + 30;
+            [HashTagScroll addSubview:ShowHashTagText];
+            [HashTagScroll addSubview:TagsButton];
+            
+            HashTagScroll.contentSize = CGSizeMake(30 + frame2.size.width , 50);
+        }
+        
+        
+        GetHeight += 50;
+    }
+    
+    //        UIButton *Line01 = [[UIButton alloc]init];
+    //        Line01.frame = CGRectMake(0, GetHeight, screenWidth, 1);
+    //        [Line01 setTitle:@"" forState:UIControlStateNormal];
+    //        [Line01 setBackgroundColor:[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f]];
+    //        [AllContentView addSubview:Line01];
+    
+    GetHeight += 1;
+    
     NSLog(@"after about us height is ==== %d",GetHeight);
+    BOOL CheckShowExpand = false;
     if (CheckExpand == YES) {
         if (GetHeight > 240) {
             CheckExpand = YES;
         }else{
             CheckExpand = NO;
+            CheckShowExpand = NO;
         }
+    }else{
+        if (GetHeight > 240) {
+            CheckShowExpand = YES;
+        }else{
+            CheckShowExpand = NO;
+        }
+        
     }
     
     
@@ -368,71 +431,23 @@
         
     }else{
         
-        if ([GetPersonalTags isEqualToString:@""] || [GetPersonalTags isEqualToString:@"(null)"] || [GetPersonalTags length] == 0) {
-            
-        }else{
-            
-            UIScrollView *HashTagScroll = [[UIScrollView alloc]init];
-            HashTagScroll.delegate = self;
-            HashTagScroll.frame = CGRectMake(0, GetHeight, screenWidth, 50);
-            HashTagScroll.backgroundColor = [UIColor whiteColor];
-            [AllContentView addSubview:HashTagScroll];
-            CGRect frame2 = {0,0};
-            for (int i= 0; i < [ArrHashTag count]; i++) {
-                UILabel *ShowHashTagText = [[UILabel alloc]init];
-                ShowHashTagText.text = [ArrHashTag objectAtIndex:i];
-                ShowHashTagText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:12];
-                ShowHashTagText.textAlignment = NSTextAlignmentCenter;
-                ShowHashTagText.backgroundColor = [UIColor whiteColor];
-                ShowHashTagText.layer.cornerRadius = 5;
-                ShowHashTagText.layer.borderWidth = 1;
-                ShowHashTagText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
-                ShowHashTagText.layer.borderColor=[[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f] CGColor];
-                
-                NSString *Text = [ArrHashTag objectAtIndex:i];
-                CGRect r = [Text boundingRectWithSize:CGSizeMake(200, 0)
-                                              options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
-                                           attributes:@{NSFontAttributeName:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:12]}
-                                              context:nil];
-                
-                UIButton *TagsButton = [[UIButton alloc]init];
-                [TagsButton setTitle:@"" forState:UIControlStateNormal];
-                TagsButton.backgroundColor = [UIColor clearColor];
-                TagsButton.tag = i;
-                TagsButton.frame = CGRectMake(25 + frame2.size.width, 15, r.size.width + 20, 20);
-                [TagsButton addTarget:self action:@selector(PersonalTagsButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
-                
-                ShowHashTagText.frame = CGRectMake(25 + frame2.size.width, 15, r.size.width + 20, 20);
-                frame2.size.width += r.size.width + 30;
-                [HashTagScroll addSubview:ShowHashTagText];
-                [HashTagScroll addSubview:TagsButton];
-                
-                HashTagScroll.contentSize = CGSizeMake(30 + frame2.size.width , 50);
-            }
-            
+
+        
+        if (CheckShowExpand == YES) {
+            UIButton *CollapseButton = [[UIButton alloc]init];
+            CollapseButton.frame = CGRectMake(0, GetHeight, screenWidth, 50);
+            // [CollapseButton setTitle:@"Collapse" forState:UIControlStateNormal];
+            [CollapseButton setImage:[UIImage imageNamed:@"ProfileExpand.png"] forState:UIControlStateNormal];
+            CollapseButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
+            [CollapseButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
+            CollapseButton.backgroundColor = [UIColor whiteColor];
+            [CollapseButton addTarget:self action:@selector(CollapseButton:) forControlEvents:UIControlEventTouchUpInside];
+            [AllContentView addSubview:CollapseButton];
             
             GetHeight += 50;
+        }else{
+            GetHeight += 30;
         }
-        
-//        UIButton *Line01 = [[UIButton alloc]init];
-//        Line01.frame = CGRectMake(0, GetHeight, screenWidth, 1);
-//        [Line01 setTitle:@"" forState:UIControlStateNormal];
-//        [Line01 setBackgroundColor:[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f]];
-//        [AllContentView addSubview:Line01];
-        
-        GetHeight += 1;
-        
-        UIButton *CollapseButton = [[UIButton alloc]init];
-        CollapseButton.frame = CGRectMake(0, GetHeight, screenWidth, 50);
-        // [CollapseButton setTitle:@"Collapse" forState:UIControlStateNormal];
-        [CollapseButton setImage:[UIImage imageNamed:@"ProfileExpand.png"] forState:UIControlStateNormal];
-        CollapseButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
-        [CollapseButton setTitleColor:[UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
-        CollapseButton.backgroundColor = [UIColor whiteColor];
-        [CollapseButton addTarget:self action:@selector(CollapseButton:) forControlEvents:UIControlEventTouchUpInside];
-        [AllContentView addSubview:CollapseButton];
-        
-        GetHeight += 50;
         
     }
     
@@ -1633,7 +1648,7 @@
 }
 -(IBAction)OpenUrlButton:(id)sender{
     NSLog(@"OpenUrlButton Click.");
-    if ([GetLink hasPrefix:@"http://"]) {
+    if ([GetLink hasPrefix:@"http://"] || [GetLink hasPrefix:@"https://"]) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:GetLink]];
     } else {
         NSString *TempString = [[NSString alloc]initWithFormat:@"http://%@",GetLink];

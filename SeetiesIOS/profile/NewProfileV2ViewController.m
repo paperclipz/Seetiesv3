@@ -639,11 +639,20 @@
             CheckExpand = YES;
         }else{
             CheckExpand = NO;
-            CheckShowExpand = YES;
+            CheckShowExpand = NO;
         }
-    }
+    }else{
+        if (GetHeight > 240) {
+            CheckShowExpand = YES;
+        }else{
+            CheckShowExpand = NO;
+        }
     
+    }
 
+    
+//    NSLog(CheckExpand ? @"Yes" : @"No");
+//    NSLog(CheckShowExpand ? @"Yes" : @"No");
     
     
     if (CheckExpand == YES) {
@@ -682,8 +691,6 @@
 
         
         if (CheckShowExpand == YES) {
-            
-        }else{
             UIButton *CollapseButton = [[UIButton alloc]init];
             CollapseButton.frame = CGRectMake(0, GetHeight, screenWidth, 50);
             // [CollapseButton setTitle:@"Collapse" forState:UIControlStateNormal];
@@ -695,6 +702,8 @@
             [AllContentView addSubview:CollapseButton];
             
             GetHeight += 50;
+        }else{
+            GetHeight += 30;
         }
         
 
@@ -954,6 +963,7 @@
                 [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
                 NSString *FullImagesURL_First = [[NSString alloc]initWithFormat:@"%@",[SplitArray objectAtIndex:z]];
                 if ([FullImagesURL_First length] == 0) {
+                    ShowImage.contentMode = UIViewContentModeScaleAspectFit;
                     ShowImage.image = [UIImage imageNamed:@"NoPhotoInCollection.png"];
                 }else{
                     NSURL *url = [NSURL URLWithString:FullImagesURL_First];
@@ -962,40 +972,62 @@
                 [CollectionView addSubview:ShowImage];
             }
             
-            
+            NSString *GetDescriptionString = [[NSString alloc]initWithFormat:@"%@",[CollectionData_DescriptionArray objectAtIndex:i]];
             NSString *GetIsPrivate = [[NSString alloc]initWithFormat:@"%@",[CollectionData_IsPrivateArray objectAtIndex:i]];
             
-            if ([GetIsPrivate isEqualToString:@"true"]) {
-                UIImageView *ShowPrivateIcon = [[UIImageView alloc]init];
-                ShowPrivateIcon.frame = CGRectMake(22, heightcheck + 4 + FinalWidth + 20 + i, 17, 20);
-                ShowPrivateIcon.image = [UIImage imageNamed:@"PrivateCollectionIcon.png"];
-                [CollectionView addSubview:ShowPrivateIcon];
-                
-                UILabel *ShowExplore = [[UILabel alloc]init];
-                ShowExplore.frame = CGRectMake(42 + 5, heightcheck + 5 + FinalWidth + 20 + i, screenWidth - 123, 20);
-                ShowExplore.text = [CollectionData_TitleArray objectAtIndex:i];
-                ShowExplore.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-                ShowExplore.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:18];
-                [CollectionView addSubview:ShowExplore];
+            if ([GetDescriptionString length] == 0 || [GetDescriptionString isEqualToString:@""] || [GetDescriptionString isEqualToString:@"(null)"] || [GetDescriptionString isEqualToString:@"<null>"] ) {
+                if ([GetIsPrivate isEqualToString:@"true"]) {
+                    UIImageView *ShowPrivateIcon = [[UIImageView alloc]init];
+                    ShowPrivateIcon.frame = CGRectMake(22, heightcheck + 4 + FinalWidth + 30 + i, 17, 20);
+                    ShowPrivateIcon.image = [UIImage imageNamed:@"PrivateCollectionIcon.png"];
+                    [CollectionView addSubview:ShowPrivateIcon];
+                    
+                    UILabel *ShowExplore = [[UILabel alloc]init];
+                    ShowExplore.frame = CGRectMake(42 + 5, heightcheck + 5 + FinalWidth + 20 + i, screenWidth - 123, 40);
+                    ShowExplore.text = [CollectionData_TitleArray objectAtIndex:i];
+                    ShowExplore.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+                    ShowExplore.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:18];
+                    [CollectionView addSubview:ShowExplore];
+                }else{
+                    UILabel *ShowExplore = [[UILabel alloc]init];
+                    ShowExplore.frame = CGRectMake(25, heightcheck + 5 + FinalWidth + 20 + i, screenWidth - 123, 40);
+                    ShowExplore.text = [CollectionData_TitleArray objectAtIndex:i];
+                    ShowExplore.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+                    ShowExplore.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:18];
+                    [CollectionView addSubview:ShowExplore];
+                }
             }else{
-                UILabel *ShowExplore = [[UILabel alloc]init];
-                ShowExplore.frame = CGRectMake(25, heightcheck + 5 + FinalWidth + 20 + i, screenWidth - 123, 20);
-                ShowExplore.text = [CollectionData_TitleArray objectAtIndex:i];
-                ShowExplore.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-                ShowExplore.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:18];
-                [CollectionView addSubview:ShowExplore];
+                if ([GetIsPrivate isEqualToString:@"true"]) {
+                    UIImageView *ShowPrivateIcon = [[UIImageView alloc]init];
+                    ShowPrivateIcon.frame = CGRectMake(22, heightcheck + 4 + FinalWidth + 20 + i, 17, 20);
+                    ShowPrivateIcon.image = [UIImage imageNamed:@"PrivateCollectionIcon.png"];
+                    [CollectionView addSubview:ShowPrivateIcon];
+                    
+                    UILabel *ShowExplore = [[UILabel alloc]init];
+                    ShowExplore.frame = CGRectMake(42 + 5, heightcheck + 5 + FinalWidth + 20 + i, screenWidth - 123, 20);
+                    ShowExplore.text = [CollectionData_TitleArray objectAtIndex:i];
+                    ShowExplore.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+                    ShowExplore.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:18];
+                    [CollectionView addSubview:ShowExplore];
+                }else{
+                    UILabel *ShowExplore = [[UILabel alloc]init];
+                    ShowExplore.frame = CGRectMake(25, heightcheck + 5 + FinalWidth + 20 + i, screenWidth - 123, 20);
+                    ShowExplore.text = [CollectionData_TitleArray objectAtIndex:i];
+                    ShowExplore.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+                    ShowExplore.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:18];
+                    [CollectionView addSubview:ShowExplore];
+                }
+                
+                UILabel *ShowSubExplore = [[UILabel alloc]init];
+                ShowSubExplore.frame = CGRectMake(25, heightcheck + 5 + FinalWidth + 40 + i, screenWidth - 100, 20);
+                ShowSubExplore.text = [CollectionData_DescriptionArray objectAtIndex:i];
+                ShowSubExplore.textColor = [UIColor lightGrayColor];
+                ShowSubExplore.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:14];
+                [CollectionView addSubview:ShowSubExplore];
             }
             
-
             
 
-            
-            UILabel *ShowSubExplore = [[UILabel alloc]init];
-            ShowSubExplore.frame = CGRectMake(25, heightcheck + 5 + FinalWidth + 40 + i, screenWidth - 100, 20);
-            ShowSubExplore.text = [CollectionData_DescriptionArray objectAtIndex:i];
-            ShowSubExplore.textColor = [UIColor lightGrayColor];
-            ShowSubExplore.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:14];
-            [CollectionView addSubview:ShowSubExplore];
             
             UIButton *SelectButton = [UIButton buttonWithType:UIButtonTypeCustom];
             SelectButton.frame = CGRectMake(10, heightcheck + i, screenWidth - 20, FinalWidth + 10 + 70);
@@ -2197,7 +2229,7 @@ if(actionSheet.tag == 200){
 }
 -(IBAction)OpenUrlButton:(id)sender{
     NSLog(@"OpenUrlButton Click.");
-    if ([GetLink hasPrefix:@"http://"]) {
+    if ([GetLink hasPrefix:@"http://"] || [GetLink hasPrefix:@"https://"]) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:GetLink]];
     } else {
         NSString *TempString = [[NSString alloc]initWithFormat:@"http://%@",GetLink];
