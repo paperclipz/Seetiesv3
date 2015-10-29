@@ -29,7 +29,7 @@
 {
     return [[JSONKeyMapper alloc] initWithDictionary:@{
                                                        @"description": @"profileDescription",
-                                                       @"wallpaper.s": @"wallpaper",
+                                                       @"wallpaper.l": @"wallpaper",
                                                        @"profile_photo_images.s": @"profile_photo_images"
                                                        }];
 }

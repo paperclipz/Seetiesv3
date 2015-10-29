@@ -1,0 +1,6 @@
+framework module BkTask {
+  umbrella header "BkTask-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,6 @@
+framework module ADTransitionController {
+  umbrella header "ADTransitionController-umbrella.h"
+
+  export *
+  module * { export * }
+}

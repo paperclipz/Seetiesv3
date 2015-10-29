@@ -985,7 +985,7 @@
 		8AFC19E81BDF935800DD8E2B /* JTSSimpleImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFC19E01BDF935800DD8E2B /* JTSSimpleImageDownloader.m */; };
 		8AFC19E91BDF935800DD8E2B /* UIApplication+JTSImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFC19E21BDF935800DD8E2B /* UIApplication+JTSImageViewController.m */; };
 		8AFC19EA1BDF935800DD8E2B /* UIImage+JTSImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFC19E41BDF935800DD8E2B /* UIImage+JTSImageEffects.m */; };
-		CAA3CD60665EB0FEEBC33B61 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C688F1D64148EF970970F4A /* libPods.a */; };
+		C5AFD557B47280FB16C39985 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9C815292A4ED6F2408E5E5 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1045,7 +1045,7 @@
 		0BE340201B73021B00F49625 /* Adriane Text Bold Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Adriane Text Bold Italic.otf"; sourceTree = "<group>"; };
 		0BE340211B73021B00F49625 /* ProximaNovaSoft-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNovaSoft-Bold.ttf"; sourceTree = "<group>"; };
 		0BE340221B73021B00F49625 /* ProximaNovaSoft-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNovaSoft-Regular.ttf"; sourceTree = "<group>"; };
-		4C688F1D64148EF970970F4A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D9C815292A4ED6F2408E5E5 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A0097991B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomEditPhotoTableViewCell.h; sourceTree = "<group>"; };
 		8A00979A1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomEditPhotoTableViewCell.m; sourceTree = "<group>"; };
 		8A00979C1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomEditPhotoTableViewCell.xib; sourceTree = "<group>"; };
@@ -2329,7 +2329,7 @@
 				8AD6C2331B7070A60040437E /* FBSDKCoreKit.framework in Frameworks */,
 				8AD6C2301B7070A60040437E /* Crashlytics.framework in Frameworks */,
 				8AD6C2311B7070A60040437E /* Fabric.framework in Frameworks */,
-				CAA3CD60665EB0FEEBC33B61 /* libPods.a in Frameworks */,
+				C5AFD557B47280FB16C39985 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2374,7 +2374,7 @@
 				8AD6C22D1B7070A60040437E /* FBSDKCoreKit.framework */,
 				8AD6C22E1B7070A60040437E /* FBSDKShareKit.framework */,
 				8AD6C11E1B706DFF0040437E /* GoogleAnalyticsServicesiOS_3.09 */,
-				4C688F1D64148EF970970F4A /* libPods.a */,
+				0D9C815292A4ED6F2408E5E5 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -4821,6 +4821,7 @@
 				8AD6BA571B705DF20040437E /* Frameworks */,
 				8AD6BA581B705DF20040437E /* Resources */,
 				CF411A798918D16B53259309 /* Copy Pods Resources */,
+				0CF38FDB5DF63307606F50B8 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -5582,6 +5583,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0CF38FDB5DF63307606F50B8 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		CF411A798918D16B53259309 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

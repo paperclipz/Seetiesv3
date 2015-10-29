@@ -11,7 +11,7 @@ platform :ios, '7.0'
 #pod 'CocoaLumberjack'
 #pod 'AFNetworking', '~> 2.5'
 pod 'TTTAttributedLabel'
-#use_frameworks!
+use_frameworks!
 pod 'JSONModel'
 pod 'TSMessages', :git => 'https://github.com/KrauseFx/TSMessages.git'
 pod 'ADTransitionController'
