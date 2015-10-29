@@ -52,7 +52,7 @@
     GetHeight = 0;
     GetCollectionHeight = 0;
     CheckShowMessage = 0;
-    
+    TempHeight = 0;
     if ([GetID length] ==0) {
         
     }else{
@@ -359,7 +359,7 @@
             DataCount = DataTotal;
             DataTotal = [Content_arrImage count];
             if (CheckFirstTimeLoad == 0) {
-                
+                CheckFirstTimeLoad = 1;
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                 NSString *GetSystemLanguageCheck = [[NSString alloc]initWithFormat:@"%@",[defaults objectForKey:@"UserData_SystemLanguage"]];
                 NSLog(@"GetSystemLanguageCheck is %@",GetSystemLanguageCheck);
@@ -781,7 +781,7 @@
 }
 -(void)InitContentListView{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    int TempHeight = 0;
+    
     if (CheckFirstTimeLoad == 0) {
         TempHeight = 10;
         
@@ -1189,6 +1189,7 @@
                     [activityindicator1 setColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f]];
                     [MainScroll addSubview:activityindicator1];
                     [activityindicator1 startAnimating];
+                   // GetHeight = 0;
                     [self GetCollectionData];
                 }
                 

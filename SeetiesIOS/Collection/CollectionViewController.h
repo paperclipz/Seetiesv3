@@ -40,6 +40,7 @@
     BOOL CheckLoad;
     int CheckFirstTimeLoad;
     int GetHeight;
+    int TempHeight;
     
     //Collection Data
     NSString *GetTitle;
