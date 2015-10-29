@@ -638,7 +638,7 @@
         GetHeight += 50;
     }
 
-    if ([GetPermisionUser isEqualToString:@"Self"]) {
+    if ([GetPermisionUser isEqualToString:@"self"]) {
         //edit button
         UIButton *EditButton = [[UIButton alloc]init];
         EditButton.frame = CGRectMake((screenWidth / 2) - 65, GetHeight, 130, 35);
@@ -720,10 +720,8 @@
     [LoadingManager show];
     
     [self.editCollectionViewController initData:GetID];
-    [self presentViewController:self.navEditCollectionViewController animated:YES completion:^{
-        
-        
-    }];
+    [LoadingManager show];
+    [self.navigationController pushViewController:self.editCollectionViewController animated:YES];
 }
 #pragma mark - Declaration
 -(EditCollectionViewController*)editCollectionViewController
@@ -864,7 +862,7 @@
             
             CheckCollect = [[NSString alloc]initWithFormat:@"%@",[Content_arrCollect objectAtIndex:i]];
             
-            if ([GetPermisionUser isEqualToString:@"Self"]) {
+            if ([GetPermisionUser isEqualToString:@"self"]) {
                 
             }else{
                 UIButton *CollectButton = [[UIButton alloc]init];
@@ -889,7 +887,7 @@
                 
             }else{
                 UILabel *ShowTitle = [[UILabel alloc]init];
-                if ([GetPermisionUser isEqualToString:@"Self"]) {
+                if ([GetPermisionUser isEqualToString:@"self"]) {
                     ShowTitle.frame = CGRectMake(30, CountHeight, screenWidth - 60, 20);
                 }else{
                     ShowTitle.frame = CGRectMake(30, CountHeight, screenWidth - 100, 20);
@@ -945,7 +943,7 @@
                 
             }
             UILabel *ShowDistance = [[UILabel alloc]init];
-            if ([GetPermisionUser isEqualToString:@"Self"]) {
+            if ([GetPermisionUser isEqualToString:@"self"]) {
                 ShowDistance.frame = CGRectMake(50, CountHeight, screenWidth - 100, 20);
             }else{
                 ShowDistance.frame = CGRectMake(50, CountHeight, screenWidth - 160, 20);

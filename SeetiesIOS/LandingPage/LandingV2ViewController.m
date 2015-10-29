@@ -470,8 +470,8 @@
     
     [self.view addSubview:self.leveyTabBarController.view];
     //TODO:Delete this . use for development purpose only
-    [self.leveyTabBarController setSelectedIndex:4];
-   //  [self performSelectorOnMainThread:@selector(GetNotificationData) withObject:nil waitUntilDone:NO];
+    //[self.leveyTabBarController setSelectedIndex:4];
+    [self performSelectorOnMainThread:@selector(GetNotificationData) withObject:nil waitUntilDone:NO];
 }
 
 - (void)animateImages
@@ -1436,9 +1436,9 @@
             }else{
                 [self DrawNotificationData];
             }
-           // [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(GetNotificationData) userInfo:nil repeats:NO];
+            [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(GetNotificationData) userInfo:nil repeats:NO];
         }else{
-           //  [NSTimer scheduledTimerWithTimeInterval:80.0 target:self selector:@selector(GetNotificationData) userInfo:nil repeats:NO];
+            [NSTimer scheduledTimerWithTimeInterval:80.0 target:self selector:@selector(GetNotificationData) userInfo:nil repeats:NO];
         }
         
 

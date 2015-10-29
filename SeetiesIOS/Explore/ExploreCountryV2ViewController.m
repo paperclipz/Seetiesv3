@@ -638,6 +638,7 @@
     
 }
 -(void)SendFollowingData{
+    [ShowActivity startAnimating];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
@@ -1040,6 +1041,7 @@
         }
     }
     
+    [ShowActivity stopAnimating];
 }
 -(IBAction)SearchButton:(id)sender{
     SearchViewV2 *SearchView = [[SearchViewV2 alloc]init];
