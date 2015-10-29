@@ -10,14 +10,15 @@
 
 @implementation CommonTableViewCell
 
-- (void)awakeFromNib {
-    // Initialization code
++(float)getHeight
+{
+    UIView *infoView = [[[NSBundle mainBundle] loadNibNamed:[NSString stringWithFormat:@"%@",[self class]] owner:self options:nil] objectAtIndex:0];
+    
+    return infoView.frame.size.height;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)awakeFromNib {
+    // Initialization code
 }
 
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -48,4 +49,12 @@
 
 }
 
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+    
+    UIView * selectedBackgroundView = [[UIView alloc] init];
+    UIColor *color = [[UIColor alloc] initWithRed:0.0 green:0.0 blue:0.0 alpha:0.05];
+    [selectedBackgroundView setBackgroundColor:color]; // set color here
+    [self setSelectedBackgroundView:selectedBackgroundView];
+}
 @end
