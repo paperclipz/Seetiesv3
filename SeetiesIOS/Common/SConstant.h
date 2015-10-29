@@ -107,5 +107,9 @@ extern NSString *const kAFAviarySecret;
 
 #define BORDER_WIDTH 1.0f
 
+#define NOTIFICAION_TYPE_REFRESH_COLLECTION @"collection"
+#define NOTIFICAION_TYPE_REFRESH_POST @"post"
+#define NOTIFICAION_TYPE_REFRESH_LIKES @"likes"
+
 #endif
 

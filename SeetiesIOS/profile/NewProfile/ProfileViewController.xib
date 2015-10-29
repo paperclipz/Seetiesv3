@@ -129,7 +129,7 @@
                                 <constraint firstAttribute="width" constant="110" id="mpA-DI-oII"/>
                                 <constraint firstAttribute="height" constant="30" id="x02-ui-AvB"/>
                             </constraints>
-                            <state key="normal" title="10110 Follower">
+                            <state key="normal" title="... Follower">
                                 <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
@@ -148,7 +148,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="jGN-US-aj6"/>
                             </constraints>
-                            <state key="normal" title="10110 Follower">
+                            <state key="normal" title="... Follower">
                                 <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>

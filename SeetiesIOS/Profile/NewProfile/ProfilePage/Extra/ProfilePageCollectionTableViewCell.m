@@ -52,7 +52,7 @@
     self.model = model;
     
     self.lblTitle.text = self.model.name;
-    self.lblNoOfCollection.text = @"";
+    self.lblNoOfCollection.text = [NSString stringWithFormat:@"%d %@",self.model.collection_posts_count,LocalisedString(@"recommendation")];
     if (![self.model.arrayPost isNull])
     {
         DraftModel* draftModel = self.model.arrayPost[0];

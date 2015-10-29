@@ -285,6 +285,8 @@
         
         [TSMessage showNotificationInViewController:self title:@"system" subtitle:@"Success Saved Collections" type:TSMessageNotificationTypeSuccess];
         [LoadingManager hide];
+        
+         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:nil];
 
     } errorBlock:^(id object) {
         [LoadingManager hide];

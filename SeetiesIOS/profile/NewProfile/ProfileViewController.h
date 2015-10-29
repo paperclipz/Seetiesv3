@@ -21,6 +21,8 @@
 #import "ShowFollowerAndFollowingViewController.h"
 #import "SearchDetailViewController.h"
 
+#import "ShareViewController.h"
+
 @interface ProfileViewController : BaseViewController<TLTagsControlDelegate>
 
 @property(nonatomic,strong)CollectionViewController* collectionViewController;
@@ -38,5 +40,7 @@
 @property(nonatomic,strong)SearchDetailViewController* searchDetailViewController;
 
 @property(nonatomic,copy)VoidBlock btnAddMorePostClickedBlock;
+@property(nonatomic,strong)ShareViewController* shareViewController;
+-(void)requestAllData;
 
 @end

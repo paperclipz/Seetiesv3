@@ -683,6 +683,10 @@
     
         return NO;
     }
+    else if (index == 4)
+    {
+        [self.profileViewController requestAllData];
+    }
 
     return YES;
 }

@@ -9,35 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
 #import "AsyncImageView.h"
-@interface ShareViewController : UIViewController<UIScrollViewDelegate,MFMailComposeViewControllerDelegate,UIDocumentInteractionControllerDelegate>{
+@interface ShareViewController : UIViewController<UIScrollViewDelegate,MFMailComposeViewControllerDelegate,UIDocumentInteractionControllerDelegate>
 
-    IBOutlet UIScrollView *MainScroll;
-    IBOutlet UIButton *BackButton;
-    
-    IBOutlet UIView *CenterView;
-    IBOutlet UIView *ShareToSeetiesView;
-    
-    NSString *GetPostID;
-    NSString *GetMessage;
-    NSString *GetTitle;
-    NSString *GetImgData;
-    
-    AsyncImageView *imageMain;
-    
-    IBOutlet UILabel *ShowTitle;
-    IBOutlet UILabel *ShowSubTitle;
-    
-    NSString *GetCollectionID;
-    
-    int CheckShareStatus;
-    
-    IBOutlet UILabel *ShowSendToFren;
-    IBOutlet UILabel *ShowSendToFrenSub;
-    IBOutlet UIImageView *GoToIcon;
-    
-    NSString *GetUserID;
-}
- @property (nonatomic, strong) UIDocumentInteractionController *documentController;
+@property (nonatomic, strong) UIDocumentInteractionController *documentController;
 -(void)GetPostID:(NSString *)ID GetMessage:(NSString *)Msg GetTitle:(NSString *)Title GetImageData:(NSString *)ImgData;
 -(void)GetCollectionID:(NSString *)Collectionid;
 -(void)GetShareProfile:(NSString *)Userid;

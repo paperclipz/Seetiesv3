@@ -53,12 +53,15 @@
 @property(nonatomic,strong)CollectionsModel* userCollectionsModel;
 @property(nonatomic,strong)ProfilePostModel* userProfilePostModel;
 @property(nonatomic,strong)ProfilePostModel* userProfileLikeModel;
+@property (nonatomic,strong)UIImageView* loadingImageView;
 
 // =======  MODEL   =======
 
 @end
 
 @implementation ProfileViewController
+
+#pragma mark - IBACTION
 - (IBAction)btnFollowingClicked:(id)sender {
     
     _showFollowerAndFollowingViewController = nil;
@@ -114,7 +117,10 @@
 }
 - (IBAction)btnShareClicked:(id)sender {
     
-    [self.navigationController pushViewController:self.settingsViewController animated:YES];
+    _shareViewController = nil;
+    [self.navigationController pushViewController:self.shareViewController animated:YES onCompletion:^{
+        [self.shareViewController GetShareProfile:self.userProfileModel.username];
+    }];
 }
 
 - (IBAction)btnSettingClicked:(id)sender {
@@ -126,17 +132,36 @@
 - (IBAction)btnSegmentedControlClicked:(id)sender {
 }
 
+
+#pragma mark - DEFAULT VIEW LOAD
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initData];
     [self initSelfView];
+    [self registerNotification];
+
+    // Do any additional setup after loading the view from its nib.
+}
+
+
+-(void)registerNotification
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveTestNotification:)
+                                                 name:NOTIFICAION_TYPE_REFRESH_COLLECTION
+                                               object:nil];
+
+}
+
+
+-(void)requestAllData
+{
     [self requestServerForUserInfo];
     [self requestServerForUserCollection];
     [self requestServerForUserPost];
     [self requestServerForUserLikes];
-    
-    // Do any additional setup after loading the view from its nib.
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -145,6 +170,7 @@
 
 -(void)initSelfView
 {
+    
     [self initTagView];
     [self initProfilePageCell];
     
@@ -510,7 +536,7 @@
                 cell = [[ProfilePagePostTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfier2];
               
             }
-                        
+            
             [cell initData:arrLikes];
             
             return cell;
@@ -626,6 +652,29 @@
 }
 
 #pragma mark - Declaration
+-(UIImageView*)loadingImageView
+{
+    if(!_loadingImageView)
+    {
+        _loadingImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+        _loadingImageView.animationImages = @[[UIImage imageNamed:@"1.png"],[UIImage imageNamed:@"3.png"]];
+        _loadingImageView.animationDuration = 1.0f;
+        _loadingImageView.animationRepeatCount = 100;
+        
+        
+    }
+    return _loadingImageView;
+}
+-(ShareViewController*)shareViewController
+{
+    if(!_shareViewController)
+    {
+        _shareViewController = [ShareViewController new];
+    }
+    
+    return _shareViewController;
+}
+
 -(UIImageView*)backgroundImageView
 {
     if (!_backgroundImageView) {
@@ -824,6 +873,7 @@
     
     [self.ibImgProfilePic sd_setImageWithURL:[NSURL URLWithString:self.userProfileModel.profile_photo_images] placeholderImage:[UIImage imageNamed:@"DefaultProfilePic.png"]];
     
+    //UIImageView* tempImageView = [[UIImageView alloc]initWithFrame:self.backgroundImageView.frame];
     [self.backgroundImageView sd_setImageWithURL:[NSURL URLWithString:self.userProfileModel.wallpaper] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         
         self.backgroundImageView.image = [image imageCroppedAndScaledToSize:self.backgroundImageView.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
@@ -837,7 +887,7 @@
     NSString* strFollowing = [NSString stringWithFormat:@"%d Followings",self.userProfileModel.following_count];
 
     [self.btnFollower setTitle:strFollower forState:UIControlStateNormal];
-    [self.btnFollower setTitle:strFollowing forState:UIControlStateNormal];
+    [self.btnFollowing setTitle:strFollowing forState:UIControlStateNormal];
     
     if (![self.userProfileModel.location isEqualToString:@""]) {
         self.lblLocation.text = self.userProfileModel.location;
@@ -856,6 +906,11 @@
        // self.lblDescription.font = [UIFont systemFontOfSize:14];
         
         self.lblDescription.highlightedShadowColor = DEVICE_COLOR;
+        NSMutableDictionary* attributes = [NSMutableDictionary dictionaryWithDictionary:self.lblDescription.activeLinkAttributes];
+        [attributes setObject:(__bridge id)DEVICE_COLOR.CGColor forKey:(NSString*)kCTForegroundColorAttributeName];
+        self.lblDescription.activeLinkAttributes = attributes;
+        
+        
         self.lblDescription.text = self.userProfileModel.personal_link; // Repository URL will be automatically detected and linked
         
         NSRange range = [self.lblDescription.text rangeOfString:self.lblDescription.text];
@@ -921,6 +976,20 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
     }
  
     [[UIApplication sharedApplication] openURL:[Utils getPrefixedURLFromString:actionSheet.title]];
+}
+
+#pragma mark - NSNOTIFICATION CENTER
+
+- (void) receiveTestNotification:(NSNotification *) notification
+{
+    // [notification name] should always be @"TestNotification"
+    // unless you use this method for observation of other notifications
+    // as well.
+    
+    if ([[notification name] isEqualToString:NOTIFICAION_TYPE_REFRESH_COLLECTION])
+        //NSLog (@"Successfully received the test notification!");
+        
+        [self requestServerForUserCollection];
 }
 
 @end
