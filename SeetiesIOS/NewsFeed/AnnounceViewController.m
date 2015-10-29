@@ -29,7 +29,7 @@
     
     ShowBigImage.frame = CGRectMake(0, 0, screenWidth, 210);
     ShowIcon.frame = CGRectMake(screenWidth - 88, 173, 68, 68);
-    ShowContent.frame = CGRectMake(0, 238, screenWidth, screenHeight - 238);
+    ShowContent.frame = CGRectMake(10, 238, screenWidth - 20, screenHeight - 238);
     
     ShowBigImage.contentMode = UIViewContentModeScaleAspectFill;
     ShowBigImage.layer.masksToBounds = YES;
