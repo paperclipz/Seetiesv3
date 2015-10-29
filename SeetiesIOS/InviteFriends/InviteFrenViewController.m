@@ -166,7 +166,7 @@
     
 }
 -(void)initInviteFriendView{
-    //CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
 //    UIButton *Background = [[UIButton alloc]init];
@@ -186,11 +186,11 @@
     ShowOtherText_1.text = LocalisedString(@"The more, the merrier!");
     ShowOtherText_1.backgroundColor = [UIColor clearColor];
     ShowOtherText_1.textColor = [UIColor whiteColor];
-    ShowOtherText_1.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+    ShowOtherText_1.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:22];
     [InviteScroll addSubview:ShowOtherText_1];
     
     UIButton *WhiteBackground = [[UIButton alloc]init];
-    WhiteBackground.frame = CGRectMake(30, 190, screenWidth - 60, 800);
+    WhiteBackground.frame = CGRectMake(30, 190, screenWidth - 60, screenHeight - 190 - 114);
     [WhiteBackground setTitle:@"" forState:UIControlStateNormal];
     WhiteBackground.backgroundColor = [UIColor whiteColor];
     WhiteBackground.layer.cornerRadius = 5;
@@ -271,6 +271,8 @@
     CopylinkButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
     [CopylinkButton addTarget:self action:@selector(CopyLinkButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
     [InviteScroll addSubview:CopylinkButton];
+    
+    InviteScroll.contentSize = CGSizeMake(screenWidth, 600);
 
 }
 -(IBAction)InviteAllButton:(id)sender{

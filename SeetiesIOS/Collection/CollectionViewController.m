@@ -51,6 +51,7 @@
     CheckFirstTimeLoad = 0;
     GetHeight = 0;
     GetCollectionHeight = 0;
+    CheckShowMessage = 0;
     
     if ([GetID length] ==0) {
         
@@ -457,19 +458,24 @@
     
     }else if(connection == theConnection_QuickCollect){
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
-        //NSLog(@"Quick Collection return get data to server ===== %@",GetData);
+        NSLog(@"Quick Collection return get data to server ===== %@",GetData);
         
         NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
         NSError *myError = nil;
         NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
-        //  NSLog(@"Expert Json = %@",res);
+        NSLog(@"Expert Json = %@",res);
         
         
         NSString *statusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
         NSLog(@"statusString is %@",statusString);
         
         if ([statusString isEqualToString:@"ok"]) {
-            [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success add to Collections" type:TSMessageNotificationTypeSuccess];
+            if (CheckShowMessage == 0) {
+                [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success add to Collections" type:TSMessageNotificationTypeSuccess];
+            }else{
+                [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success Delete Posts" type:TSMessageNotificationTypeSuccess];
+            }
+            
         }
     }
 }
@@ -868,6 +874,7 @@
                     [CollectButton setImage:[UIImage imageNamed:@"WhiteCollected.png"] forState:UIControlStateSelected];
                 }else{
                     [CollectButton setImage:[UIImage imageNamed:@"WhiteCollected.png"] forState:UIControlStateNormal];
+                    [CollectButton setImage:[UIImage imageNamed:@"WhiteCollect.png"] forState:UIControlStateSelected];
                 }
                 CollectButton.frame = CGRectMake(screenWidth - 13 - 57, CountHeight, 57, 57);
                 CollectButton.tag = i;
@@ -1309,18 +1316,23 @@
     NSLog(@"Quick CollectButtonOnClick");
     GetPostID = [[NSString alloc]initWithFormat:@"%@",[Content_arrID objectAtIndex:getbuttonIDN]];
     CheckCollect = [[NSString alloc]initWithFormat:@"%@",[Content_arrCollect objectAtIndex:getbuttonIDN]];
+
     
     if ([CheckCollect isEqualToString:@"0"]) {
         [Content_arrCollect replaceObjectAtIndex:getbuttonIDN withObject:@"1"];
+        CheckShowMessage = 0;
+        
         UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
         buttonWithTag1.selected = !buttonWithTag1.selected;
-        
         [self SendQuickCollect];
     }else{
+        [Content_arrCollect replaceObjectAtIndex:getbuttonIDN withObject:@"0"];
+        CheckShowMessage = 1;
         AddCollectionDataViewController *AddCollectionDataView = [[AddCollectionDataViewController alloc]init];
         [self presentViewController:AddCollectionDataView animated:YES completion:nil];
         //[self.view.window.rootViewController presentViewController:AddCollectionDataView animated:YES completion:nil];
         [AddCollectionDataView GetPostID:[Content_arrID objectAtIndex:getbuttonIDN] GetImageData:[Content_arrImage objectAtIndex:getbuttonIDN]];
+       // [self SendDeleteCollectPosts];
     }
 }
 -(void)SendQuickCollect{
@@ -1340,7 +1352,36 @@
     
     NSString *dataString = [[NSString alloc]initWithFormat:@"token=%@&posts[0][id]=%@",GetExpertToken,GetPostID];
     
-    NSData *postBodyData = [NSData dataWithBytes: [dataString UTF8String] length:[dataString length]];
+    NSData *postBodyData = [dataString dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPBody:postBodyData];
+    
+    theConnection_QuickCollect = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    if(theConnection_QuickCollect) {
+        //  NSLog(@"Connection Successful");
+        webData = [NSMutableData data];
+    } else {
+        
+    }
+}
+-(void)SendDeleteCollectPosts{
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *GetUseruid = [defaults objectForKey:@"Useruid"];
+    //Server Address URL
+    NSString *urlString = [NSString stringWithFormat:@"%@%@/collections/%@/posts",DataUrl.UserWallpaper_Url,GetUseruid,GetID];
+    NSLog(@"Delete Posts in collection urlString is %@",urlString);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"DELETE"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    
+    
+    NSString *dataString = [[NSString alloc]initWithFormat:@"token=%@&post_id=%@",GetExpertToken,GetPostID];
+    
+    NSData *postBodyData = [dataString dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPBody:postBodyData];
     
     theConnection_QuickCollect = [[NSURLConnection alloc]initWithRequest:request delegate:self];

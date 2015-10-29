@@ -71,6 +71,7 @@
     UIView *GridView;
     
     int CheckClick;
+    int CheckShowMessage;
     
     NSString *GetPostID;
     NSString *CheckCollect;
