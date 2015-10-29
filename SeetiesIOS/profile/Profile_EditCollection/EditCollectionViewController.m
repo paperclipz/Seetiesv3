@@ -47,7 +47,13 @@
 }
 - (IBAction)btnBackClicked:(id)sender {
    
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    if (self.navigationController) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else{
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 - (void)viewDidLoad {
@@ -57,7 +63,7 @@
     collectionDetailPage = 0;
     self.arrList = [NSMutableArray new];
  
-    collectionDetailTotal_page = 2;
+    collectionDetailTotal_page = 1;//to ensure the first time is run
     [self requestServerDetail];
     
    // [self.lblTitle setFont:[UIFont fontWithName:CustomFontName size:17]];
@@ -67,17 +73,21 @@
 {
     [super viewDidAppear:NO];
     
+    [self reloadData];
+    
+}
+
+-(void)reloadData
+{
     [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
         
         self.lblPostTitle.text = self.collectionModel.name;
         self.lblDesc.text = self.collectionModel.postDesc;
-        self.lblNumberOfRecommendation.text = [NSString stringWithFormat:@"%lu %@",(unsigned long)self.arrList.count,LocalisedString(@"Recommendations")];
-
+        self.lblNumberOfRecommendation.text = [NSString stringWithFormat:@"%d %@",collectionDetailTotal_posts,LocalisedString(@"Recommendations")];
+        
         
     } completion:nil];
-    
 }
-
 
 -(void)initData:(NSString*)collectionID
 {
@@ -159,54 +169,6 @@
         [self requestServerDetail];
     }
 }
-#pragma mark - Server
-
--(void)requestServerDetail
-{
-    if (collectionDetailTotal_page > collectionDetailPage) {
-        [self requestServerForCollectionDetails:self.collectionID successBlock:^(id object) {
-            
-            self.collectionModel = [[ConnectionManager dataManager] collectionModels];
-            collectionDetailTotal_posts = self.collectionModel.total_posts;
-            collectionDetailPage = self.collectionModel.page;
-            collectionDetailTotal_page = self.collectionModel.total_page;
-            [self.arrList addObjectsFromArray:self.collectionModel.arrayPost];
-            [self.ibTableView reloadData];
-            
-        } failBlock:^(id object) {
-            
-        }];
-
-    }
-
-}
-
--(void)requestServerForCollectionDetails:(NSString*)collectionID successBlock:(IDBlock)successBlock failBlock:(IDBlock)failBlock{
-    
-    collectionDetailPage+=1;
-    NSDictionary* dict = @{@"token":[Utils getAppToken],
-                           @"collection_id":collectionID,
-                           @"list_size":@5,
-                           @"page":@(collectionDetailPage)
-                           };
-    
-    NSString* appendString = [NSString stringWithFormat:@"%@/collections/%@",[Utils getUserID],collectionID];
-    
-    //[LoadingManager show];
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetCollectionInfo param:dict appendString:appendString completeHandler:^(id object) {
-        
-        
-        if (successBlock) {
-            successBlock(nil);
-        }
-        [LoadingManager hide];
-
-    } errorBlock:^(id object) {
-        [LoadingManager hide];
-
-    }];
-    
-}
 
 #pragma mark - Declaration
 
@@ -249,7 +211,6 @@
     }
 
 }
-
 
 -(void)requestServerForCreateCollection{
     
@@ -294,14 +255,14 @@
 
     for (int i = 0; i<self.collectionModel.deleted_posts.count; i++) {
 
-        PostModel* tempPostModel = self.collectionModel.deleted_posts[i];
+        DraftModel* tempPostModel = self.collectionModel.deleted_posts[i];
         NSDictionary* tempDict = @{[NSString stringWithFormat:@"delete_posts[%d]",i]:tempPostModel.post_id};
         [finalDict addEntriesFromDictionary:tempDict];
     }
     
     for (int i = 0; i<self.arrList.count; i++) {
         
-        PostModel* model = self.arrList[i];
+        DraftModel* model = self.arrList[i];
         NSDictionary* tempDict = @{@"id":model.post_id,
                                    @"note":model.collection_note
                                    //@"section":@"1"
@@ -330,6 +291,58 @@
 
     }];
 }
+
+#pragma mark - Server
+
+-(void)requestServerDetail
+{
+    if (collectionDetailTotal_page > collectionDetailPage) {
+        [self requestServerForCollectionDetails:self.collectionID successBlock:^(id object) {
+            
+            self.collectionModel = [[ConnectionManager dataManager] collectionModels];
+            collectionDetailTotal_posts = self.collectionModel.total_posts;
+            collectionDetailPage = self.collectionModel.page;
+            collectionDetailTotal_page = self.collectionModel.total_page;
+            [self.arrList addObjectsFromArray:self.collectionModel.arrayPost];
+            [self.ibTableView reloadData];
+            [self reloadData];
+
+            
+        } failBlock:^(id object) {
+            
+        }];
+        
+    }
+    
+}
+
+-(void)requestServerForCollectionDetails:(NSString*)collectionID successBlock:(IDBlock)successBlock failBlock:(IDBlock)failBlock{
+    
+    collectionDetailPage+=1;
+    NSDictionary* dict = @{@"collection_id":collectionID,
+                           @"list_size":@(ARRAY_LIST_SIZE),
+                           @"page":@(collectionDetailPage),
+                           @"token":[Utils getAppToken]
+                           };
+    
+    NSString* appendString = [NSString stringWithFormat:@"%@/collections/%@",[Utils getUserID],collectionID];
+    
+    //[LoadingManager show];
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetCollectionInfo param:dict appendString:appendString completeHandler:^(id object) {
+        
+        
+        if (successBlock) {
+            successBlock(nil);
+        }
+        [LoadingManager hide];
+        
+    } errorBlock:^(id object) {
+        [LoadingManager hide];
+        
+    }];
+    
+}
+
 static id ObjectOrNull(id object)
 {
     return object ?: [NSNull null];

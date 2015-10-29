@@ -33,9 +33,21 @@ typedef enum
     // ========== Collection ========== //
     ServerRequestTypeGetCollectionInfo,
     ServerRequestTypePostCreateCollection,
-    ServerRequestTypeGetTagsSuggestion
+    ServerRequestTypeGetTagsSuggestion,
+    ServerRequestTypeGetUserCollections,
+    ServerRequestTypeGetUserPosts,
+    ServerRequestTypeGetUserLikes,
 
     // ========== Collection ========== //
+    // ========== User Info ========== //
+    
+    
+    ServerRequestTypeGetUserInfo,
+
+    
+    
+    
+    // ========== User Info ========== //
 
     
     

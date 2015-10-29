@@ -470,8 +470,8 @@
     
     [self.view addSubview:self.leveyTabBarController.view];
     //TODO:Delete this . use for development purpose only
-   // [self.leveyTabBarController setSelectedIndex:2];
-     [self performSelectorOnMainThread:@selector(GetNotificationData) withObject:nil waitUntilDone:NO];
+    [self.leveyTabBarController setSelectedIndex:4];
+   //  [self performSelectorOnMainThread:@selector(GetNotificationData) withObject:nil waitUntilDone:NO];
 }
 
 - (void)animateImages
@@ -497,8 +497,14 @@
 
 -(ProfileViewController*)profileViewController
 {
-    if (_profileViewController) {
+    if (!_profileViewController) {
         _profileViewController = [ProfileViewController new];
+        __weak typeof (self)weakSelf = self;
+        _profileViewController.btnAddMorePostClickedBlock = ^(void)
+        {
+            [weakSelf gotoRecommendationPage];
+
+        };
     }
     
     return _profileViewController;
@@ -507,7 +513,7 @@
 -(NewsFeedViewController*)newsFeedViewController
 {
     if (!_newsFeedViewController) {
-        _newsFeedViewController = [NewsFeedViewController new];
+     //   _newsFeedViewController = [NewsFeedViewController new];
     }
     
     return _newsFeedViewController;
@@ -583,7 +589,7 @@
     if(!_leveyTabBarController)
     {
         
-         NSArray *arrViewControllers  = [NSArray arrayWithObjects:self.feedViewController.navController,self.explore2ViewController.navController,self.recommendationViewController.navController,self.notificationViewController.navController,self.userProfilePageViewController.navController, nil];
+         NSArray *arrViewControllers  = [NSArray arrayWithObjects:self.feedViewController.navController,self.explore2ViewController.navController,self.recommendationViewController.navController,self.notificationViewController.navController,self.profileViewController.navController, nil];
         _leveyTabBarController = [[LeveyTabBarController alloc] initWithViewControllers:arrViewControllers imageArray:[self arrTabImages]];
         [_leveyTabBarController.tabBar setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
         [_leveyTabBarController setTabBarTransparent:YES];
@@ -688,14 +694,10 @@
         
         // type 1 is draft , default is image picker
         _recommendationChooseViewController = [CustomPickerViewController initializeWithBlock:^(id object) {
-            [self.recommendationViewController initData:1 sender:self.leveyTabBarController];
-            [self.leveyTabBarController setSelectedIndex:self.leveyTabBarController.previousIndex];
-            // go to draft
+            [self gotoDraftPage];
             
         } buttonTwo:^(id object) {
-            [self.recommendationViewController initData:2 sender:self.leveyTabBarController];
-            [self.leveyTabBarController setSelectedIndex:self.leveyTabBarController.previousIndex];
-
+            [self gotoRecommendationPage];
         }cancelBlock:^(id object) {
             [self.leveyTabBarController setSelectedIndex:self.leveyTabBarController.previousIndex];
         }];
@@ -708,7 +710,19 @@
         return _recommendationChooseViewController;
 }
 
+-(void)gotoDraftPage
+{
+    [self.recommendationViewController initData:1 sender:self.leveyTabBarController];
+    [self.leveyTabBarController setSelectedIndex:self.leveyTabBarController.previousIndex];
+    // go to draft
+}
 
+-(void)gotoRecommendationPage
+{
+    [self.recommendationViewController initData:2 sender:self.leveyTabBarController];
+    [self.leveyTabBarController setSelectedIndex:self.leveyTabBarController.previousIndex];
+
+}
 -(FeedViewController*)feedViewController
 {
     if(!_feedViewController){
@@ -775,8 +789,8 @@
         __weak typeof (self)weakSelf = self;
         _userProfilePageViewController.btnRecommendationClickBlock = ^(id object)
         {
-            [weakSelf.recommendationViewController initData:2 sender:weakSelf.leveyTabBarController];
-            [weakSelf.leveyTabBarController setSelectedIndex:weakSelf.leveyTabBarController.previousIndex];
+            
+            [weakSelf gotoRecommendationPage];
 
             
         };
@@ -891,7 +905,7 @@
          }
          
          // Retrieve the app delegate
-         AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
+         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
          // Call the app delegate's sessionStateChanged:state:error method to handle session state changes
          [appDelegate sessionStateChanged:session state:state error:error];
          
@@ -1422,9 +1436,9 @@
             }else{
                 [self DrawNotificationData];
             }
-            [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(GetNotificationData) userInfo:nil repeats:NO];
+           // [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(GetNotificationData) userInfo:nil repeats:NO];
         }else{
-             [NSTimer scheduledTimerWithTimeInterval:80.0 target:self selector:@selector(GetNotificationData) userInfo:nil repeats:NO];
+           //  [NSTimer scheduledTimerWithTimeInterval:80.0 target:self selector:@selector(GetNotificationData) userInfo:nil repeats:NO];
         }
         
 

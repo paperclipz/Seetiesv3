@@ -2929,7 +2929,7 @@
         [theRequest addValue:@"" forHTTPHeaderField:@"Accept-Encoding"];
         
         theConnection_All = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
-        [theConnection_All start];
+        //[theConnection_All start];
         
         
         if( theConnection_All ){
@@ -2985,7 +2985,7 @@
             NSLog(@"Server Error.");
             UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:CustomLocalisedString(@"SomethingError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             ShowAlert.tag = 1000;
-            [ShowAlert show];
+          //  [ShowAlert show];
         }else{
             NSString *StatusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
             if ([StatusString isEqualToString:@"ok"]) {
@@ -3701,7 +3701,7 @@
                // NSLog(@"User_PhotoArray is %lu",(unsigned long)[User_PhotoArray count]);
     
                 if (CheckFirstTimeLoad == 0) {
-                    [self StartInit1stView];
+                   // [self StartInit1stView];
                    // CheckFirstTimeLoad = 1;
                 }else{
                     [self InitContent];
@@ -3713,7 +3713,7 @@
                 
                 UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:CustomLocalisedString(@"SomethingError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 ShowAlert.tag = 1000;
-                [ShowAlert show];
+              //  [ShowAlert show];
                 
             
             }

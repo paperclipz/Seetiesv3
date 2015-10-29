@@ -346,7 +346,6 @@
             
     }
     
-    
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -354,7 +353,6 @@
     [super viewDidAppear:animated];
     isSaved = false;
     [self loadData];
-
 
 }
 
@@ -728,6 +726,14 @@ static id ObjectOrNull(id object)
                                       @"periods":ObjectOrNull(dictPeriods)};
    
     
+    
+    NSDictionary* expensesDict;
+    if (tempVenueModel.price) {
+        
+        expensesDict = @{@"code":tempVenueModel.currency,
+                         @"value":tempVenueModel.price};
+    }
+
     // ========================   location =============================
     NSDictionary* locationDict  = @{@"address_components":addressDict,
                                     @"name":ObjectOrNull(tempVenueModel.name),
@@ -740,14 +746,11 @@ static id ObjectOrNull(id object)
                                     @"opening_hours":openingHourDict,
                                     @"link":ObjectOrNull(tempVenueModel.url),
                                     @"lat":ObjectOrNull(tempVenueModel.lat),
+                                    @"expense":ObjectOrNull(expensesDict),
                                     @"lng":ObjectOrNull(tempVenueModel.lng)};
     
-    NSMutableDictionary* finalLocationDict = [[NSMutableDictionary alloc]initWithDictionary:locationDict];
-    NSDictionary* expensesDict = @{@"expense":@""};
-    if (tempVenueModel.price) {
-        expensesDict = @{ @"expense":@{[Utils currencyCode:tempVenueModel.currency]:tempVenueModel.expense}};
-    }
-    [finalLocationDict addEntriesFromDictionary:expensesDict];
+//    NSMutableDictionary* finalLocationDict = [[NSMutableDictionary alloc]initWithDictionary:locationDict];
+//       [finalLocationDict addEntriesFromDictionary:expensesDict];
 
     // ========================   location =============================
 
@@ -768,7 +771,7 @@ static id ObjectOrNull(id object)
                            [NSString stringWithFormat:@"message[%@]",self.recommendationModel.postMainLanguage]:ObjectOrNull(tempModel.postMainDescription),
                            @"category":categoriesSelected.count==0?@[@0]:categoriesSelected,
                            @"device_type":@2,
-                           @"location":[Utils convertToJsonString:finalLocationDict],
+                           @"location":[Utils convertToJsonString:locationDict],
                            @"link":ObjectOrNull(tempModel.postURL)};
     
 

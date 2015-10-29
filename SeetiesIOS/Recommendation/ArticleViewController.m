@@ -27,6 +27,8 @@
     self.view.frame = frame;
     [self.view needsUpdateConstraints];
     self.view.hidden = YES;
+    
+    SLog(@"image name %@",LocalisedString(@"qrimage"));
     self.ibImageView.image = [UIImage imageNamed:LocalisedString(@"qrimage")];
     // Do any additional setup after loading the view from its nib.
 }

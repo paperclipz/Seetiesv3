@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CollectionListingViewController">
+            <connections>
+                <outlet property="bottomConstraint" destination="5nU-nP-ul6" id="n2q-Ck-Tkw"/>
+                <outlet property="ibScrollView" destination="Lsb-YA-s3L" id="HWb-FG-Zvw"/>
+                <outlet property="ibSegmentedControl" destination="Ali-jO-zY8" id="fPg-TR-XOI"/>
+                <outlet property="view" destination="HmF-Tf-joH" id="syZ-VI-x8T"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="HmF-Tf-joH">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tuy-J5-blb">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="iTh-r3-EQv">
+                            <rect key="frame" x="0.0" y="20" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="0Lq-C8-AUu"/>
+                                <constraint firstAttribute="width" constant="40" id="Mz7-cT-7fT"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DTA-9L-tLv">
+                            <rect key="frame" x="0.0" y="0.0" width="44" height="64"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="44" id="Lav-ck-ydP"/>
+                                <constraint firstAttribute="height" constant="64" id="kDw-W9-pUL"/>
+                            </constraints>
+                            <state key="normal">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="btnBackClicked:" destination="-1" eventType="touchUpInside" id="SEN-py-5q4"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collections" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vuc-YZ-3e4">
+                            <rect key="frame" x="0.0" y="28" width="320" height="24"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="Vuc-YZ-3e4" firstAttribute="leading" secondItem="tuy-J5-blb" secondAttribute="leading" id="7XK-Tf-QH5"/>
+                        <constraint firstItem="iTh-r3-EQv" firstAttribute="leading" secondItem="tuy-J5-blb" secondAttribute="leading" id="8CJ-NB-aFb"/>
+                        <constraint firstAttribute="height" constant="64" id="Y0g-xM-GvQ"/>
+                        <constraint firstAttribute="bottom" secondItem="iTh-r3-EQv" secondAttribute="bottom" constant="4" id="cSW-uP-kgb"/>
+                        <constraint firstItem="DTA-9L-tLv" firstAttribute="leading" secondItem="tuy-J5-blb" secondAttribute="leading" id="fDB-zH-A0a"/>
+                        <constraint firstItem="Vuc-YZ-3e4" firstAttribute="centerY" secondItem="tuy-J5-blb" secondAttribute="centerY" constant="7.5" id="guw-4w-x1z"/>
+                        <constraint firstAttribute="trailing" secondItem="Vuc-YZ-3e4" secondAttribute="trailing" id="hNt-70-bvF"/>
+                        <constraint firstItem="DTA-9L-tLv" firstAttribute="top" secondItem="tuy-J5-blb" secondAttribute="top" id="qVn-x0-U6S"/>
+                        <constraint firstItem="iTh-r3-EQv" firstAttribute="top" secondItem="DTA-9L-tLv" secondAttribute="bottom" constant="-44" id="tmB-BB-HL2"/>
+                    </constraints>
+                </view>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ali-jO-zY8">
+                    <rect key="frame" x="10" y="72" width="300" height="29"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="oN4-cu-ha7"/>
+                        <constraint firstAttribute="height" constant="28" id="roq-pQ-knU"/>
+                    </constraints>
+                    <segments>
+                        <segment title="My Collections"/>
+                        <segment title="Following Collections"/>
+                    </segments>
+                    <connections>
+                        <action selector="btnSegmentedClicked:" destination="-1" eventType="valueChanged" id="4Ek-aZ-KyH"/>
+                    </connections>
+                </segmentedControl>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lsb-YA-s3L">
+                    <rect key="frame" x="0.0" y="110" width="320" height="408"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Ali-jO-zY8" firstAttribute="top" secondItem="tuy-J5-blb" secondAttribute="bottom" constant="8" id="0Ec-3B-7up"/>
+                <constraint firstAttribute="bottom" secondItem="Lsb-YA-s3L" secondAttribute="bottom" constant="50" id="5nU-nP-ul6"/>
+                <constraint firstItem="Lsb-YA-s3L" firstAttribute="top" secondItem="Ali-jO-zY8" secondAttribute="bottom" constant="10" id="DIa-MJ-6sd"/>
+                <constraint firstItem="tuy-J5-blb" firstAttribute="top" secondItem="HmF-Tf-joH" secondAttribute="top" id="Dd0-im-gaM"/>
+                <constraint firstItem="Lsb-YA-s3L" firstAttribute="leading" secondItem="HmF-Tf-joH" secondAttribute="leading" id="OkF-mm-tIV"/>
+                <constraint firstItem="Ali-jO-zY8" firstAttribute="leading" secondItem="HmF-Tf-joH" secondAttribute="leading" constant="10" id="U0P-W8-BS9"/>
+                <constraint firstAttribute="trailing" secondItem="tuy-J5-blb" secondAttribute="trailing" id="Xh4-ay-bLt"/>
+                <constraint firstItem="tuy-J5-blb" firstAttribute="leading" secondItem="HmF-Tf-joH" secondAttribute="leading" id="hf0-Vn-V1L"/>
+                <constraint firstAttribute="trailing" secondItem="Lsb-YA-s3L" secondAttribute="trailing" id="tYV-vD-bys"/>
+                <constraint firstAttribute="trailing" secondItem="Ali-jO-zY8" secondAttribute="trailing" constant="10" id="v4S-wD-mfT"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="440" y="122"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="BackIcon.png" width="40" height="40"/>
+    </resources>
+</document>

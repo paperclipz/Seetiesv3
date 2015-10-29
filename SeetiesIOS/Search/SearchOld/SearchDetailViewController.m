@@ -46,7 +46,7 @@
     MainScroll.frame = CGRectMake(0, 95 , screenWidth, screenHeight - 95);
     ShowSearchUserView.frame = CGRectMake(0, 114, screenWidth, screenHeight - 114);
     UserScroll.frame = CGRectMake(0, 0 , ShowSearchUserView.frame.size.width, ShowSearchUserView.frame.size.height);
-    StringSortby = @"4";
+    StringSortby = @"3";
     CheckInt = 0;
     
     SearchTextField.delegate = self;
@@ -88,8 +88,6 @@
     [super viewWillAppear:animated];
     self.screenName = @"IOS Search Detail Page";
     
-    [IQKeyboardManager sharedManager].enableAutoToolbar = false;
-    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetCategoryString = [defaults objectForKey:@"Filter_Search_Category"];
     if ([GetCategoryString length] == 0 || [GetCategoryString isEqualToString:@""] || [GetCategoryString isEqualToString:@"(null)"] || GetCategoryString == nil) {
@@ -108,16 +106,12 @@
         DataTotal = 0;
         heightcheck = 0;
         SelfSearchCurrentLocation = 0;
-        [ShowActivity startAnimating];
+        
         [self SendSearchKeywordData];
     }
     
     SearchTextField.text = GetKeywordText;
     SearchAddressField.text = GetLocationName;
-}
--(void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    [IQKeyboardManager sharedManager].enableAutoToolbar = true;
 }
 - (UIStatusBarStyle) preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
@@ -130,16 +124,16 @@
    // ShowTitle.text = String;
 }
 -(IBAction)BackButton:(id)sender{
-//    CATransition *transition = [CATransition animation];
-//    transition.duration = 0.2;
-//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//    transition.type = kCATransitionPush;
-//    transition.subtype = kCATransitionFromLeft;
-//    [self.view.window.layer addAnimation:transition forKey:nil];
-//    [self dismissViewControllerAnimated:NO completion:nil];
+  
+    if (self.navigationController) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+    else{
+        [self dismissViewControllerAnimated:NO completion:nil];
 
+    }
+   // [self.navigationController popToRootViewControllerAnimated:YES];
     //[self dismissViewControllerAnimated:YES completion:nil];
-    [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)GetSearchKeyword:(NSString *)Keyword Getlat:(NSString *)lat GetLong:(NSString *)Long GetLocationName:(NSString *)LocationName GetCurrentLat:(NSString *)CurrentLat GetCurrentLong:(NSString *)CurrentLong{
     

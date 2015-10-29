@@ -1,4 +1,5 @@
 PODS:
+  - A3ParallaxScrollView (1.0.2)
   - ActionSheetPicker-3.0 (1.7.1)
   - ADTransitionController (1.1.1)
   - AFNetworking (2.6.0):
@@ -22,6 +23,7 @@ PODS:
   - AFNetworking/UIKit (2.6.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - APParallaxHeader (0.1.6)
   - AviarySDK (4.2.1)
   - BkTask (0.9.1)
   - BOString (0.0.9)
@@ -30,7 +32,7 @@ PODS:
     - GPUImage (~> 0.1)
   - GoogleMaps (1.10.1)
   - GPUImage (0.1.7)
-  - HexColors (2.2.1)
+  - HexColors (2.3.0)
   - HMSegmentedControl (1.5.2)
   - iOSBlocks/Cocoa (1.2):
     - iOSBlocks/CoreLocation
@@ -46,18 +48,21 @@ PODS:
   - LPGoogleFunctions (1.2.3):
     - AFNetworking (~> 2.0)
   - MGSwipeTableCell (1.5.1)
-  - pop (1.0.7)
+  - pop (1.0.8)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
   - SVPullToRefresh (0.4.1)
-  - TSMessages (0.9.12):
-    - HexColors (~> 2.2.0)
+  - TSMessages (0.9.13):
+    - HexColors (~> 2.3.0)
+  - TTTAttributedLabel (1.13.4)
   - UITextView+Placeholder (1.1.0)
 
 DEPENDENCIES:
+  - A3ParallaxScrollView (~> 1.0)
   - ActionSheetPicker-3.0 (~> 1.7.1)
   - ADTransitionController
+  - APParallaxHeader
   - AviarySDK (= 4.2.1)
   - BkTask
   - BOString
@@ -73,13 +78,25 @@ DEPENDENCIES:
   - pop (~> 1.0)
   - SDWebImage
   - SVPullToRefresh
-  - TSMessages
+  - TSMessages (from `https://github.com/KrauseFx/TSMessages.git`)
+  - TTTAttributedLabel
   - UITextView+Placeholder
 
+EXTERNAL SOURCES:
+  TSMessages:
+    :git: https://github.com/KrauseFx/TSMessages.git
+
+CHECKOUT OPTIONS:
+  TSMessages:
+    :commit: f7d0e8cece3ca79852e49807812601e2d89f5719
+    :git: https://github.com/KrauseFx/TSMessages.git
+
 SPEC CHECKSUMS:
+  A3ParallaxScrollView: 1d16dc1881721642d5f25e320cabe7adcc997035
   ActionSheetPicker-3.0: 28a795c376f9d76850cb56eaf7dd5cf9a9088223
   ADTransitionController: 72299d31488bcbe59fb87c483a89a637ebc819f8
   AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
+  APParallaxHeader: 854bc48a2487ca12c702f8a236fec0d89cdac5c3
   AviarySDK: 23243fa982179c0084670c46cdd23a13c2ec2969
   BkTask: 8dd51efee729f637e4b11337f32dc52c97646a91
   BOString: c896f83b514996bbe874c0a3afd61f4c6764e0ed
@@ -87,17 +104,18 @@ SPEC CHECKSUMS:
   DBCamera: 7a4343a541e1264610f9f33176552b93170a843e
   GoogleMaps: ebf08677f181d9c2dcdbd1721d206f02beccc9b1
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
-  HexColors: abfd172e329dab59888614ccba6f216cec59289d
+  HexColors: 6ad3947c3447a055a3aa8efa859def096351fe5f
   HMSegmentedControl: 83b9686022d2176fb6457d2bdb61e5d6393fed7d
   iOSBlocks: a52cab17a30314e91b2c85ea4c65f84d19826676
   IQKeyboardManager: 555b1231fefafb21b19278d7cca72986a27b748b
   JSONModel: ec77e9865236a7a09d9cf7668df6b4b328d9ec1d
   LPGoogleFunctions: c78171de55b164e8e5dbf6b4bba477980771211a
   MGSwipeTableCell: a51fa670c01f0aa048f12af040acebf315223137
-  pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
+  pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
-  TSMessages: c8cc7b80f2a833af533872cd02010cac061532cc
+  TSMessages: 6e403b790139636c15ab4f51946537095e03e79c
+  TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
   UITextView+Placeholder: 672ce543356b5b5787f354415bc3b132d47f0362
 
 COCOAPODS: 0.38.2

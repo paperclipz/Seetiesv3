@@ -9,10 +9,85 @@
 #import "EditProfileV2ViewController.h"
 #import "PSearchLocationViewController.h"
 @interface EditProfileV2ViewController ()
-
+{
+    
+    IBOutlet TPKeyboardAvoidingScrollView *MainScroll;
+    IBOutlet UIImageView *BarImage;
+    IBOutlet UIButton *SaveButton;
+    IBOutlet UILabel *ShowTitle;
+    
+    IBOutlet AsyncImageView *BackgroundImg;
+    IBOutlet AsyncImageView *UserImg;
+    
+    IBOutlet UIButton *BackgroundImgButton;
+    IBOutlet UIButton *UserImgButton;
+    
+    IBOutlet UIActivityIndicatorView *spinnerView;
+    
+    NSString *GetWallpaper;
+    NSString *GetProfileImg;
+    NSString *GetUserName;
+    NSString *GetName;
+    NSString *GetLink;
+    NSString *GetDescription;
+    NSString *GetLocation;
+    NSString *Getdob;
+    NSString *GetGender;
+    NSString *GetPersonalTags;
+    
+    NSMutableArray *GenderArray;
+    NSString* CheckFullLocation;
+    int ButtonOnClick;
+    
+    UrlDataClass *DataUrl;
+    NSMutableData *webData;
+    
+    NSURLConnection *theConnection_Update;
+    
+    IBOutlet UITextField *UserNameField;
+    IBOutlet UITextField *NameField;
+    IBOutlet UITextField *LinkField;
+    IBOutlet UITextField *TagasField;
+    IBOutlet UITextView *DescriptionField;
+    
+    IBOutlet UITextField *LocationField;
+    IBOutlet UITextField *GenderField;
+    IBOutlet UITextField *DOBField;
+    
+    UIToolbar *Toolbar;
+    UIPickerView *Gender_PickerView;
+    UIDatePicker *Birthday_Picker;
+    
+    IBOutlet UIImageView *CaretLocationImg;
+    IBOutlet UILabel *ShowPersonalInformation;
+    
+}
+@property(nonatomic,strong)ProfileModel* profileModel;
 @end
 
 @implementation EditProfileV2ViewController
+
+-(void)initData:(ProfileModel*)model
+{
+    self.profileModel = model;
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    [defaults setObject:self.profileModel.wallpaper forKey:@"UserData_Wallpaper"];
+    [defaults setObject:self.profileModel.profile_photo_images forKey:@"UserData_ProfilePhoto"];
+    [defaults setObject:self.profileModel.username forKey:@"UserData_Username"];
+    [defaults setObject:self.profileModel.name forKey:@"UserData_Name"];
+    [defaults setObject:self.profileModel.personal_link forKey:@"UserData_Url"];
+    [defaults setObject:self.profileModel.profileDescription forKey:@"UserData_Abouts"];
+    [defaults setObject:self.profileModel.location forKey:@"UserData_Location"];
+    [defaults setObject:self.profileModel.dob forKey:@"UserData_dob"];
+    [defaults setObject:self.profileModel.gender forKey:@"UserData_Gender"];
+    NSString* personaltags = [self.profileModel.personal_tags componentsJoinedByString:@","];
+    [defaults setObject:personaltags forKey:@"UserData_PersonalTags"];
+
+}
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -77,7 +152,7 @@
     Getdob = [defaults objectForKey:@"UserData_dob"];
     GetGender = [defaults objectForKey:@"UserData_Gender"];
     GetPersonalTags = [defaults objectForKey:@"UserData_PersonalTags"];
-    NSString *CheckFullLocation = [defaults objectForKey:@"Provisioning_LocationName"];
+    CheckFullLocation = [defaults objectForKey:@"Provisioning_LocationName"];
     
     BackgroundImgButton.frame = CGRectMake(0, 64, screenWidth, 120);
     BackgroundImg.frame = CGRectMake(0, 64, screenWidth, 120);
@@ -163,7 +238,7 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     GetLocation = [defaults objectForKey:@"UserData_Location"];
-    NSString *CheckFullLocation = [defaults objectForKey:@"Provisioning_LocationName"];
+    CheckFullLocation = [defaults objectForKey:@"Provisioning_LocationName"];
     
     if ([GetLocation length] == 0) {
         if ([CheckFullLocation length] == 0) {
@@ -281,14 +356,14 @@
     // Dispose of any resources that can be recreated.
 }
 -(IBAction)BackButton:(id)sender{
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromLeft;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    //[self presentViewController:ListingDetail animated:NO completion:nil];
-    [self dismissViewControllerAnimated:NO completion:nil];
+    
+    
+    if (self.navigationController) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+    else{
+        [self dismissViewControllerAnimated:NO completion:nil];
+    }
 }
 - (UIStatusBarStyle) preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
@@ -649,16 +724,10 @@
                 [defaults setObject:EditDone forKey:@"CheckEditUserInformation"];
                 [defaults synchronize];
                 
-                
-                CATransition *transition = [CATransition animation];
-                transition.duration = 0.2;
-                transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-                transition.type = kCATransitionPush;
-                transition.subtype = kCATransitionFromLeft;
-                [self.view.window.layer addAnimation:transition forKey:nil];
-                //[self presentViewController:ListingDetail animated:NO completion:nil];
-                [self dismissViewControllerAnimated:NO completion:nil];
-                
+                if (_didCompleteUpdateUserProfileBlock) {
+                    self.didCompleteUpdateUserProfileBlock();
+                }
+                [self BackButton:nil];
                 
             }else{
                 

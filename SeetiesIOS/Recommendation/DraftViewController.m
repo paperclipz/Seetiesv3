@@ -167,7 +167,6 @@
         [self.tableView.pullToRefreshView stopAnimating];
         [self.loadingImageView stopAnimating];
 
-
     }];
  
 }

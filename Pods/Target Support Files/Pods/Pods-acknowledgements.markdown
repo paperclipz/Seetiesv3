@@ -1,6 +1,81 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
+## A3ParallaxScrollView
+
+
+ ..???????????????????????????????????????????????????.     
+.,?????============================================?????. . 
++???=================================================+???.  
+???===================================================+???. 
+??+====================================================???  
+??==========================~~~=========================??  
+??==================...................:================??  
+??===============.........................==============??  
+??=============.............................============??  
+??===========~...............................===========??  
+??===========............,======~............,==========??  
+??==========...........============...........==========??  
+??==========..........=============~..........==========??  
+??=========~..........==============..........==========??  
+??=================================,..........==========??  
+?????+===========================:............======+?????  
+???????????=============~:....................+???????????  
+?????????????????:............................????????????  
+??????????????=...............................????????????  
+????????????=....................~II..........????????????  
+???????????+.............=I????????I..........????????????  
+???????????...........+????????????I..........????????????  
+??????????~..........???????????????..........????????????  
+??????????...........??????????????,..........????????????  
+??????????...........??????????????...........I???????????  
+??????????...........I???????????+............I???????????  
+???????????............I??????I~..............I???????????  
+???????????,..................................????????????  
+IIIIIIIIIIII..................................=IIIIIIIIII?  
+IIIIIIIIIIIII~....................=?...........IIIIIIIIII?  
+IIIIIIIIIIIIIII+...............:IIII+..........?IIIIIIIIII  
+IIIIIIIIIIIIIIIIIIII?=~~=+?IIIIIIIIIIIIIIIIIIIIIIIIIIIIIII  
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII  
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII  
+.IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII.. 
+  IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII .  
+  .~IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII.     
+   ....................IIIIIIIIIII:...............    .     
+          .           ..IIIIIIIII,.                         
+                        .IIIIIII+ .                         
+                         .IIIIII.                           
+                         ..III?.                            
+                            II.                             
+                           .. .
+***********************************************************
+
+
+The MIT License (MIT)
+
+ A3ParallaxScrollView for iOS
+ Copyright (c) 2014, aaa - All About Apps
+ Developed by Botond Kis
+ All rights reserved.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
 ## ADTransitionController
 
 * Copyright (c) 2013, Applidium
@@ -50,6 +125,28 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
+
+## APParallaxHeader
+
+Copyright (c) 2011 Apping AB (http://apping.se/)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 
 ## ActionSheetPicker-3.0
 
@@ -385,6 +482,29 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 ## TSMessages
 
 Copyright (c) 2014 Toursprung, Felix Krause <krausefx@gmail.com>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+
+## TTTAttributedLabel
+
+Copyright (c) 2011 Mattt Thompson (http://mattt.me/)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

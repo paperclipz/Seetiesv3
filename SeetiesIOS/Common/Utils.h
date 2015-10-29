@@ -33,6 +33,15 @@ typedef enum
     
 } PlaceViewType;
 
+typedef enum ScrollDirection {
+    ScrollDirectionNone,
+    ScrollDirectionRight,
+    ScrollDirectionLeft,
+    ScrollDirectionUp,
+    ScrollDirectionDown,
+    ScrollDirectionCrazy,
+} ScrollDirection;
+
 +(BOOL)isLogin;
 +(void)setIsLogin;
 +(NSString*)getAppToken;
@@ -92,11 +101,17 @@ typedef enum
 
 +(NSString*)getLanguageName:(NSString*)code;
 +(NSString*)getLanguageCode:(NSString*)name;
++(NSString*)getLanguageCodeFromLocale:(NSString*)shortName;
 
 // =====================  currency =========================
 
 //easy conversion to jsonstring
 +(NSString*)convertToJsonString:(NSDictionary*)dict;
 +(BOOL)stringIsNilOrEmpty:(NSString*)aString;
++(NSURL*)getPrefixedURLFromString:(NSString*)url;
+
+
+#define ARRAY_LIST_SIZE 10.0f
+#define LIKES_LIST_SIZE 30.0f
 
 @end
