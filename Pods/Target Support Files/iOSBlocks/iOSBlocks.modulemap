@@ -1,0 +1,6 @@
+framework module iOSBlocks {
+  umbrella header "iOSBlocks-umbrella.h"
+
+  export *
+  module * { export * }
+}

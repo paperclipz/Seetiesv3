@@ -27,6 +27,7 @@
 }
 
 // =======  OUTLET   =======
+@property (weak, nonatomic) IBOutlet UILabel *lblName;
 @property (weak, nonatomic) IBOutlet UIButton *btnEditProfile;
 @property (weak, nonatomic) IBOutlet UILabel *lblUserName;
 @property (weak, nonatomic) IBOutlet UILabel *lblLocation;
@@ -180,14 +181,14 @@
 {
     [Utils setRoundBorder:self.ibImgProfilePic color:[UIColor whiteColor] borderRadius:self.ibImgProfilePic.frame.size.width/2 borderWidth:6.0f];
     
-    //set image from url
-    [self.ibImgProfilePic sd_setImageWithURL:[NSURL URLWithString:@"http://www.ambwallpapers.com/wp-content/uploads/2015/02/scarlett-johansson-wallpapers-2.jpg"] placeholderImage:[UIImage imageNamed:@"DefaultProfilePic.png"]];
-    
-    [self.backgroundImageView sd_setImageWithURL:[NSURL URLWithString:@"http://i.ytimg.com/vi/tjW1mKwNUSo/maxresdefault.jpg"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        
-        self.backgroundImageView.image = [image imageCroppedAndScaledToSize:self.backgroundImageView.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
-        
-    }];
+//    //set image from url
+//    [self.ibImgProfilePic sd_setImageWithURL:[NSURL URLWithString:@"http://www.ambwallpapers.com/wp-content/uploads/2015/02/scarlett-johansson-wallpapers-2.jpg"] placeholderImage:[UIImage imageNamed:@"DefaultProfilePic.png"]];
+//    
+//    [self.backgroundImageView sd_setImageWithURL:[NSURL URLWithString:@"http://i.ytimg.com/vi/tjW1mKwNUSo/maxresdefault.jpg"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+//        
+//        self.backgroundImageView.image = [image imageCroppedAndScaledToSize:self.backgroundImageView.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
+//        
+//    }];
 }
 //
 //-(void)addSettingAndShareView// need to add after
@@ -238,16 +239,6 @@
 
 }
 
--(UIImageView*)backgroundImageView
-{
-    if (!_backgroundImageView) {
-        _backgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 0, 212)];
-        [_backgroundImageView adjustToScreenWidth];
-        
-    }
-    
-    return _backgroundImageView;
-}
 
 #pragma mark - Cell
 -(void)initProfilePageCell
@@ -466,8 +457,7 @@
         if (!cell) {
             cell = [[ProfilePagePostTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfier2];
         }
-            DraftModel* model = arrPost[0];
-            [cell initData:model.arrPhotos];
+            [cell initData:arrPost];
             return cell;
 
         }
@@ -520,10 +510,8 @@
                 cell = [[ProfilePagePostTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfier2];
               
             }
-            
-            DraftModel* model = arrLikes[0];
-            
-            [cell initData:model.arrPhotos];
+                        
+            [cell initData:arrLikes];
             
             return cell;
            
@@ -638,7 +626,15 @@
 }
 
 #pragma mark - Declaration
-
+-(UIImageView*)backgroundImageView
+{
+    if (!_backgroundImageView) {
+        _backgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 0, 212)];
+        [_backgroundImageView adjustToScreenWidth];
+    }
+    
+    return _backgroundImageView;
+}
 -(SearchDetailViewController*)searchDetailViewController
 {
     if (!_searchDetailViewController) {
@@ -826,8 +822,17 @@
 -(void)assignUserData
 {
     
+    [self.ibImgProfilePic sd_setImageWithURL:[NSURL URLWithString:self.userProfileModel.profile_photo_images] placeholderImage:[UIImage imageNamed:@"DefaultProfilePic.png"]];
+    
+    [self.backgroundImageView sd_setImageWithURL:[NSURL URLWithString:self.userProfileModel.wallpaper] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        
+        self.backgroundImageView.image = [image imageCroppedAndScaledToSize:self.backgroundImageView.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
+        
+    }];
+
     SLog(@"assignUserData");
-    self.lblUserName.text = self.userProfileModel.name;
+    self.lblUserName.text = self.userProfileModel.username;
+    self.lblName.text = self.userProfileModel.name;
     NSString* strFollower = [NSString stringWithFormat:@"%d Followers",self.userProfileModel.follower_count];
     NSString* strFollowing = [NSString stringWithFormat:@"%d Followings",self.userProfileModel.following_count];
 
@@ -849,6 +854,8 @@
         self.lblDescription.enabledTextCheckingTypes = NSTextCheckingTypeLink; // Automatically detect links when the label text is subsequently changed
         self.lblDescription.delegate = self; // Delegate methods are called when the user taps on a link (see `TTTAttributedLabelDelegate` protocol)
        // self.lblDescription.font = [UIFont systemFontOfSize:14];
+        
+        self.lblDescription.highlightedShadowColor = DEVICE_COLOR;
         self.lblDescription.text = self.userProfileModel.personal_link; // Repository URL will be automatically detected and linked
         
         NSRange range = [self.lblDescription.text rangeOfString:self.lblDescription.text];

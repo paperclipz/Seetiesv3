@@ -470,7 +470,7 @@
     
     [self.view addSubview:self.leveyTabBarController.view];
     //TODO:Delete this . use for development purpose only
-    [self.leveyTabBarController setSelectedIndex:4];
+   // [self.leveyTabBarController setSelectedIndex:4];
    //  [self performSelectorOnMainThread:@selector(GetNotificationData) withObject:nil waitUntilDone:NO];
 }
 

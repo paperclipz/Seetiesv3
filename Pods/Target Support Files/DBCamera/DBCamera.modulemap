@@ -1,0 +1,6 @@
+framework module DBCamera {
+  umbrella header "DBCamera-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -13,7 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UICollectionView *ibCollectionView;
 
-@property (strong, nonatomic) NSArray* arrPhotos;
+@property (strong, nonatomic) NSArray* arrPost;
 
 @end
 
@@ -46,13 +46,13 @@
 
 -(void)initData:(NSArray*)array
 {
-    self.arrPhotos = array;
+    self.arrPost = array;
     [self.ibCollectionView reloadData];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.arrPhotos.count;
+    return self.arrPost.count;
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
@@ -60,8 +60,13 @@
 {
     ProfilePagePostCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ProfilePagePostCollectionViewCell" forIndexPath:indexPath];
     
-    PhotoModel* model = self.arrPhotos[indexPath.row];
-    [cell.ibImageView sd_setImageWithURL:[NSURL URLWithString:model.imageURL]];
+    DraftModel* draftModel = self.arrPost[indexPath.row];
+    
+    if (![draftModel.arrPhotos isNull]) {
+        PhotoModel* model = draftModel.arrPhotos[0];
+        [cell.ibImageView sd_setImageWithURL:[NSURL URLWithString:model.imageURL]];
+    }
+    
     return cell;
 }
 
