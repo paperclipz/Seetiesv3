@@ -2929,7 +2929,7 @@
         [theRequest addValue:@"" forHTTPHeaderField:@"Accept-Encoding"];
         
         theConnection_All = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
-        //[theConnection_All start];
+        [theConnection_All start];
         
         
         if( theConnection_All ){
@@ -3701,8 +3701,8 @@
                // NSLog(@"User_PhotoArray is %lu",(unsigned long)[User_PhotoArray count]);
     
                 if (CheckFirstTimeLoad == 0) {
-                   // [self StartInit1stView];
-                   // CheckFirstTimeLoad = 1;
+                    [self StartInit1stView];
+                    CheckFirstTimeLoad = 1;
                 }else{
                     [self InitContent];
                 }

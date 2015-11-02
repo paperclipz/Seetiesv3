@@ -52,7 +52,7 @@
     GetHeight = 0;
     GetCollectionHeight = 0;
     CheckShowMessage = 0;
-    
+    TempHeight = 0;
     if ([GetID length] ==0) {
         
     }else{
@@ -359,7 +359,7 @@
             DataCount = DataTotal;
             DataTotal = [Content_arrImage count];
             if (CheckFirstTimeLoad == 0) {
-                
+                CheckFirstTimeLoad = 1;
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                 NSString *GetSystemLanguageCheck = [[NSString alloc]initWithFormat:@"%@",[defaults objectForKey:@"UserData_SystemLanguage"]];
                 NSLog(@"GetSystemLanguageCheck is %@",GetSystemLanguageCheck);
@@ -638,7 +638,7 @@
         GetHeight += 50;
     }
 
-    if ([GetPermisionUser isEqualToString:@"Self"]) {
+    if ([GetPermisionUser isEqualToString:@"self"]) {
         //edit button
         UIButton *EditButton = [[UIButton alloc]init];
         EditButton.frame = CGRectMake((screenWidth / 2) - 65, GetHeight, 130, 35);
@@ -720,10 +720,8 @@
     [LoadingManager show];
     
     [self.editCollectionViewController initData:GetID];
-    [self presentViewController:self.navEditCollectionViewController animated:YES completion:^{
-        
-        
-    }];
+    [LoadingManager show];
+    [self.navigationController pushViewController:self.editCollectionViewController animated:YES];
 }
 #pragma mark - Declaration
 -(EditCollectionViewController*)editCollectionViewController
@@ -783,7 +781,7 @@
 }
 -(void)InitContentListView{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    int TempHeight = 0;
+    
     if (CheckFirstTimeLoad == 0) {
         TempHeight = 10;
         
@@ -864,7 +862,7 @@
             
             CheckCollect = [[NSString alloc]initWithFormat:@"%@",[Content_arrCollect objectAtIndex:i]];
             
-            if ([GetPermisionUser isEqualToString:@"Self"]) {
+            if ([GetPermisionUser isEqualToString:@"self"]) {
                 
             }else{
                 UIButton *CollectButton = [[UIButton alloc]init];
@@ -889,7 +887,7 @@
                 
             }else{
                 UILabel *ShowTitle = [[UILabel alloc]init];
-                if ([GetPermisionUser isEqualToString:@"Self"]) {
+                if ([GetPermisionUser isEqualToString:@"self"]) {
                     ShowTitle.frame = CGRectMake(30, CountHeight, screenWidth - 60, 20);
                 }else{
                     ShowTitle.frame = CGRectMake(30, CountHeight, screenWidth - 100, 20);
@@ -945,7 +943,7 @@
                 
             }
             UILabel *ShowDistance = [[UILabel alloc]init];
-            if ([GetPermisionUser isEqualToString:@"Self"]) {
+            if ([GetPermisionUser isEqualToString:@"self"]) {
                 ShowDistance.frame = CGRectMake(50, CountHeight, screenWidth - 100, 20);
             }else{
                 ShowDistance.frame = CGRectMake(50, CountHeight, screenWidth - 160, 20);
@@ -1191,6 +1189,7 @@
                     [activityindicator1 setColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f]];
                     [MainScroll addSubview:activityindicator1];
                     [activityindicator1 startAnimating];
+                   // GetHeight = 0;
                     [self GetCollectionData];
                 }
                 

@@ -380,24 +380,16 @@
     
     TextScroll.contentSize = CGSizeMake(30 + labelRect.size.width + 100, 50);
     
+    NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:FullString];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:CollectionName  options:kNilOptions error:nil];
+    NSRange range = NSMakeRange(0,FullString.length);
+    [regex enumerateMatchesInString:FullString options:kNilOptions range:range usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+        NSRange subStringRange = [result rangeAtIndex:0];
+        [mutableAttributedString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15] range:NSMakeRange(0, CollectionName.length)];
+        [mutableAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:41.0f/255.0f green:182.0f/255.0f blue:246.0f/255.0f alpha:1.0f] range:subStringRange];
+    }];
+    [ShowExistingText setAttributedText:mutableAttributedString];
     
-    for (int i = 0; i < [ExistingCollectionData_TitleArray count]; i++) {
-        NSString *FinalString_CheckName = [[NSString alloc] initWithFormat:@"%@",[ExistingCollectionData_TitleArray objectAtIndex:i]];
-        
-        NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:FullString];
-        
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:FinalString_CheckName  options:kNilOptions error:nil];
-        NSRange range = NSMakeRange(0,FullString.length);
-        [regex enumerateMatchesInString:FullString options:kNilOptions range:range usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
-            NSRange subStringRange = [result rangeAtIndex:0];
-            [mutableAttributedString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15] range:NSMakeRange(0, FinalString_CheckName.length)];
-            [mutableAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:41.0f/255.0f green:182.0f/255.0f blue:246.0f/255.0f alpha:1.0f] range:subStringRange];
-            
-
-        }];
-        
-        [ShowExistingText setAttributedText:mutableAttributedString];
-    }
 
 }
 

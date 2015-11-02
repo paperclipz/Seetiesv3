@@ -45,6 +45,8 @@
     
     NSString *TagsString;
     NSMutableArray *TagsArray;
+    
+    int CheckString;
 }
 
 @end

@@ -54,6 +54,7 @@
     TagsLine.frame = CGRectMake(0, 50, screenWidth - 40 , 1);
     
     SetPublic = @"0";
+    CheckString = 0;
     
     ShowTitle.text = LocalisedString(@"New Collection");
     CollectionTitle.text = LocalisedString(@"Collection title");
@@ -112,12 +113,15 @@
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    if ([newString length] >= 1) {
-        NSLog(@"Check server");
+    if ([newString length] >= 2) {
         TagsString = newString;
-        [self GetSearchText];
-    }else{
+        if (CheckString == 0) {
+             [self GetSearchText];
+        }
         
+       
+    }else{
+        CheckString = 0;
     }
     
     return YES;
@@ -174,7 +178,7 @@
 }
 -(void)GetSearchText{
     
-    NSString *FullString = [[NSString alloc]initWithFormat:@"%@tags/%@",DataUrl.UserWallpaper_Url,TagsString];
+    NSString *FullString = [[NSString alloc]initWithFormat:@"%@tags?keyword=%@",DataUrl.UserWallpaper_Url,TagsString];
 
     NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
     NSLog(@"check postBack URL ==== %@",postBack);
@@ -374,6 +378,7 @@
                 if ([TagsArray count] == 0) {
                     
                 }else{
+                    CheckString = 1;
                     [self ShowTagsView];
                 }
             }

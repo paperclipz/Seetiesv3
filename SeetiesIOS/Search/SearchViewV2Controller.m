@@ -294,7 +294,7 @@
  if ([latPoint length] == 0 || [latPoint isEqualToString:@""] || [latPoint isEqualToString:@"(null)"] || latPoint == nil) {
      FullString = [[NSString alloc]initWithFormat:@"%@tags/%@",DataUrl.UserWallpaper_Url,GetSearchText];
  }else{
-     FullString = [[NSString alloc]initWithFormat:@"%@tags/%@?lat=%@&lng=%@",DataUrl.UserWallpaper_Url,GetSearchText,latPoint,lonPoint];
+     FullString = [[NSString alloc]initWithFormat:@"%@tags?keyword=%@&lat=%@&lng=%@",DataUrl.UserWallpaper_Url,GetSearchText,latPoint,lonPoint];
  }
     
     
