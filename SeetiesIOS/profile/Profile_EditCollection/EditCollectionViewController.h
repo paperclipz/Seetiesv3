@@ -16,4 +16,5 @@
 @property(nonatomic,strong)EditCollectionDetailViewController* editCollectionDetailViewController;
 
 @property(nonatomic,copy)IDBlock btnEditClickBlock;
+@property(nonatomic,copy)VoidBlock refreshBlock;
 @end

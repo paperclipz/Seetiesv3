@@ -37,7 +37,7 @@ typedef enum
     ServerRequestTypeGetUserCollections,
     ServerRequestTypeGetUserPosts,
     ServerRequestTypeGetUserLikes,
-
+    ServerRequestTypeDeleteCollection,
     // ========== Collection ========== //
     // ========== User Info ========== //
     

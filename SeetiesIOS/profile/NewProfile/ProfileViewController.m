@@ -383,6 +383,11 @@
         [headerView setHeaderViewWithCount:self.userProfileLikeModel.userPostData.total_posts type:3];
   
     }
+    
+    headerView.btnSeeAllClickedBlock = ^(void){
+        [self didSelectFooterAtIndex:[NSIndexPath indexPathForRow:0 inSection:section]];
+    };
+
     return headerView;
 
 }
@@ -746,6 +751,12 @@
 {
     if (!_editCollectionViewController) {
         _editCollectionViewController = [EditCollectionViewController new];
+        
+        __weak typeof (self)weakSelf = self;
+        _editCollectionViewController.refreshBlock = ^(void)
+        {
+            [weakSelf requestServerForUserCollection];
+        };
     }
     
     return _editCollectionViewController;
