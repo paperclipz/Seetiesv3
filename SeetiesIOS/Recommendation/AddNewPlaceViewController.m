@@ -60,7 +60,7 @@
     BOOL isPass = true;
     if (![self.addNewPlaceSubView validation]) {
         isPass = false;
-        [TSMessage showNotificationInViewController:self title:@"system" subtitle:@"Place Name Need to be more than 3 characters" type:TSMessageNotificationTypeWarning];
+        [TSMessage showNotificationInViewController:self title:@"system" subtitle:@"Please Fill in the require field" type:TSMessageNotificationTypeWarning];
     }
     
     return isPass;
