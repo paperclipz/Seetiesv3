@@ -223,42 +223,4 @@
     return result;
 }
 
-#pragma mark - UIScrollView Delegate
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    SLog(@"%f !!!",scrollView.contentOffset.y);
-    float scrollYvariance = scrollView.contentOffset.y;
-    
-    SLog(@"content offset %f :",scrollYvariance);
-    
-    float tempnumber = fabs(scrollYvariance);
-    if (tempnumber <= self.ibHeaderView.frame.size.height) {
-        
-        SLog(@"MOVING");
-        [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffset.x, self.tableView.contentOffset.y-scrollYvariance)];
-
-    }
-    
-//    ScrollDirection scrollDirection;
-//    if (self.lastContentOffset > scrollView.contentOffset.y)
-//    {
-//        scrollDirection = ScrollDirectionDown;
-//        
-//        if(self.ibHeaderView.frame.origin.y == -self.ibHeaderView.frame.size.height)
-//        [self.ibHeaderView setY:self.ibHeaderView.frame.origin.y - scrollView.contentOffset.y];
-//
-//    }
-//    else if (self.lastContentOffset < scrollView.contentOffset.y)
-//    {
-//        SLog(@"bottom");
-//        [self.ibHeaderView setY:self.ibHeaderView.frame.origin.y + scrollView.contentOffset.y];
-//
-//        scrollDirection = ScrollDirectionUp;
-//
-//    }
-//    
-//    self.lastContentOffset = scrollView.contentOffset.x;
-
-   //ibHeaderView
-}
 @end

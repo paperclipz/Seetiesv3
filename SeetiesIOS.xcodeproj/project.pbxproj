@@ -54,12 +54,6 @@
 		8A114C871BE73F5D006AE3F0 /* UITableViewCell+ConfigureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114BB01BE73F5C006AE3F0 /* UITableViewCell+ConfigureCell.m */; };
 		8A114C881BE73F5D006AE3F0 /* UITableViewController+BMXSwipableCellSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114BB21BE73F5C006AE3F0 /* UITableViewController+BMXSwipableCellSupport.m */; };
 		8A114C891BE73F5D006AE3F0 /* CAPSPageMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114BB41BE73F5C006AE3F0 /* CAPSPageMenu.m */; };
-		8A114C8A1BE73F5D006AE3F0 /* AddCollectionDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114BB71BE73F5C006AE3F0 /* AddCollectionDataViewController.m */; };
-		8A114C8B1BE73F5D006AE3F0 /* AddCollectionDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A114BB81BE73F5C006AE3F0 /* AddCollectionDataViewController.xib */; };
-		8A114C8C1BE73F5D006AE3F0 /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114BBA1BE73F5C006AE3F0 /* CollectionViewController.m */; };
-		8A114C8D1BE73F5D006AE3F0 /* CollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A114BBB1BE73F5C006AE3F0 /* CollectionViewController.xib */; };
-		8A114C8E1BE73F5D006AE3F0 /* NewCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114BBD1BE73F5C006AE3F0 /* NewCollectionViewController.m */; };
-		8A114C8F1BE73F5D006AE3F0 /* NewCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A114BBE1BE73F5C006AE3F0 /* NewCollectionViewController.xib */; };
 		8A114C921BE73F5D006AE3F0 /* FloatingIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114BC91BE73F5C006AE3F0 /* FloatingIndicatorView.m */; };
 		8A114C931BE73F5D006AE3F0 /* FloatingIndicatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A114BCA1BE73F5C006AE3F0 /* FloatingIndicatorView.xib */; };
 		8A114C941BE73F5D006AE3F0 /* FXImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114BCD1BE73F5C006AE3F0 /* FXImageView.m */; };
@@ -132,6 +126,12 @@
 		8A114CD71BE73F5D006AE3F0 /* CommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114C721BE73F5D006AE3F0 /* CommonViewController.m */; };
 		8A114CD81BE73F5D006AE3F0 /* ZFTokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114C751BE73F5D006AE3F0 /* ZFTokenField.m */; };
 		8A114CDB1BE73FBF006AE3F0 /* UIScrollView+IBFloatingHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114CDA1BE73FBF006AE3F0 /* UIScrollView+IBFloatingHeader.m */; };
+		8A114CE61BE75CA0006AE3F0 /* AddCollectionDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114CDE1BE75CA0006AE3F0 /* AddCollectionDataViewController.m */; };
+		8A114CE71BE75CA0006AE3F0 /* AddCollectionDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A114CDF1BE75CA0006AE3F0 /* AddCollectionDataViewController.xib */; };
+		8A114CE81BE75CA0006AE3F0 /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114CE11BE75CA0006AE3F0 /* CollectionViewController.m */; };
+		8A114CE91BE75CA0006AE3F0 /* CollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A114CE21BE75CA0006AE3F0 /* CollectionViewController.xib */; };
+		8A114CEA1BE75CA0006AE3F0 /* NewCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114CE41BE75CA0006AE3F0 /* NewCollectionViewController.m */; };
+		8A114CEB1BE75CA0006AE3F0 /* NewCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A114CE51BE75CA0006AE3F0 /* NewCollectionViewController.xib */; };
 		8A1254131BC4F31A00AA4120 /* NewsFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A1254111BC4F31A00AA4120 /* NewsFeedViewController.m */; };
 		8A1254141BC4F31A00AA4120 /* NewsFeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A1254121BC4F31A00AA4120 /* NewsFeedViewController.xib */; };
 		8A1254181BC4F46500AA4120 /* NewsFeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A1254171BC4F46500AA4120 /* NewsFeedTableViewCell.m */; };
@@ -1078,15 +1078,6 @@
 		8A114BB21BE73F5C006AE3F0 /* UITableViewController+BMXSwipableCellSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewController+BMXSwipableCellSupport.m"; sourceTree = "<group>"; };
 		8A114BB31BE73F5C006AE3F0 /* CAPSPageMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPSPageMenu.h; sourceTree = "<group>"; };
 		8A114BB41BE73F5C006AE3F0 /* CAPSPageMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPSPageMenu.m; sourceTree = "<group>"; };
-		8A114BB61BE73F5C006AE3F0 /* AddCollectionDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCollectionDataViewController.h; sourceTree = "<group>"; };
-		8A114BB71BE73F5C006AE3F0 /* AddCollectionDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCollectionDataViewController.m; sourceTree = "<group>"; };
-		8A114BB81BE73F5C006AE3F0 /* AddCollectionDataViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddCollectionDataViewController.xib; sourceTree = "<group>"; };
-		8A114BB91BE73F5C006AE3F0 /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
-		8A114BBA1BE73F5C006AE3F0 /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
-		8A114BBB1BE73F5C006AE3F0 /* CollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewController.xib; sourceTree = "<group>"; };
-		8A114BBC1BE73F5C006AE3F0 /* NewCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewCollectionViewController.h; sourceTree = "<group>"; };
-		8A114BBD1BE73F5C006AE3F0 /* NewCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewCollectionViewController.m; sourceTree = "<group>"; };
-		8A114BBE1BE73F5C006AE3F0 /* NewCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewCollectionViewController.xib; sourceTree = "<group>"; };
 		8A114BC81BE73F5C006AE3F0 /* FloatingIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatingIndicatorView.h; sourceTree = "<group>"; };
 		8A114BC91BE73F5C006AE3F0 /* FloatingIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatingIndicatorView.m; sourceTree = "<group>"; };
 		8A114BCA1BE73F5C006AE3F0 /* FloatingIndicatorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FloatingIndicatorView.xib; sourceTree = "<group>"; };
@@ -1230,6 +1221,15 @@
 		8A114C751BE73F5D006AE3F0 /* ZFTokenField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFTokenField.m; sourceTree = "<group>"; };
 		8A114CD91BE73FBF006AE3F0 /* UIScrollView+IBFloatingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+IBFloatingHeader.h"; sourceTree = "<group>"; };
 		8A114CDA1BE73FBF006AE3F0 /* UIScrollView+IBFloatingHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+IBFloatingHeader.m"; sourceTree = "<group>"; };
+		8A114CDD1BE75CA0006AE3F0 /* AddCollectionDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCollectionDataViewController.h; sourceTree = "<group>"; };
+		8A114CDE1BE75CA0006AE3F0 /* AddCollectionDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCollectionDataViewController.m; sourceTree = "<group>"; };
+		8A114CDF1BE75CA0006AE3F0 /* AddCollectionDataViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddCollectionDataViewController.xib; sourceTree = "<group>"; };
+		8A114CE01BE75CA0006AE3F0 /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
+		8A114CE11BE75CA0006AE3F0 /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
+		8A114CE21BE75CA0006AE3F0 /* CollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewController.xib; sourceTree = "<group>"; };
+		8A114CE31BE75CA0006AE3F0 /* NewCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewCollectionViewController.h; sourceTree = "<group>"; };
+		8A114CE41BE75CA0006AE3F0 /* NewCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewCollectionViewController.m; sourceTree = "<group>"; };
+		8A114CE51BE75CA0006AE3F0 /* NewCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewCollectionViewController.xib; sourceTree = "<group>"; };
 		8A1254101BC4F31A00AA4120 /* NewsFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedViewController.h; sourceTree = "<group>"; };
 		8A1254111BC4F31A00AA4120 /* NewsFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFeedViewController.m; sourceTree = "<group>"; };
 		8A1254121BC4F31A00AA4120 /* NewsFeedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsFeedViewController.xib; sourceTree = "<group>"; };
@@ -2453,7 +2453,6 @@
 				8A114BA61BE73F5C006AE3F0 /* BMXSwipableCell */,
 				8A114BB31BE73F5C006AE3F0 /* CAPSPageMenu.h */,
 				8A114BB41BE73F5C006AE3F0 /* CAPSPageMenu.m */,
-				8A114BB51BE73F5C006AE3F0 /* Collection */,
 				8A114BBF1BE73F5C006AE3F0 /* CustomizableCamera */,
 				8A114BC81BE73F5C006AE3F0 /* FloatingIndicatorView.h */,
 				8A114BC91BE73F5C006AE3F0 /* FloatingIndicatorView.m */,
@@ -2562,22 +2561,6 @@
 				8A114BB21BE73F5C006AE3F0 /* UITableViewController+BMXSwipableCellSupport.m */,
 			);
 			path = BMXSwipableCell;
-			sourceTree = "<group>";
-		};
-		8A114BB51BE73F5C006AE3F0 /* Collection */ = {
-			isa = PBXGroup;
-			children = (
-				8A114BB61BE73F5C006AE3F0 /* AddCollectionDataViewController.h */,
-				8A114BB71BE73F5C006AE3F0 /* AddCollectionDataViewController.m */,
-				8A114BB81BE73F5C006AE3F0 /* AddCollectionDataViewController.xib */,
-				8A114BB91BE73F5C006AE3F0 /* CollectionViewController.h */,
-				8A114BBA1BE73F5C006AE3F0 /* CollectionViewController.m */,
-				8A114BBB1BE73F5C006AE3F0 /* CollectionViewController.xib */,
-				8A114BBC1BE73F5C006AE3F0 /* NewCollectionViewController.h */,
-				8A114BBD1BE73F5C006AE3F0 /* NewCollectionViewController.m */,
-				8A114BBE1BE73F5C006AE3F0 /* NewCollectionViewController.xib */,
-			);
-			path = Collection;
 			sourceTree = "<group>";
 		};
 		8A114BBF1BE73F5C006AE3F0 /* CustomizableCamera */ = {
@@ -3006,6 +2989,22 @@
 				8A114C751BE73F5D006AE3F0 /* ZFTokenField.m */,
 			);
 			path = ZFTokenField;
+			sourceTree = "<group>";
+		};
+		8A114CDC1BE75CA0006AE3F0 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				8A114CDD1BE75CA0006AE3F0 /* AddCollectionDataViewController.h */,
+				8A114CDE1BE75CA0006AE3F0 /* AddCollectionDataViewController.m */,
+				8A114CDF1BE75CA0006AE3F0 /* AddCollectionDataViewController.xib */,
+				8A114CE01BE75CA0006AE3F0 /* CollectionViewController.h */,
+				8A114CE11BE75CA0006AE3F0 /* CollectionViewController.m */,
+				8A114CE21BE75CA0006AE3F0 /* CollectionViewController.xib */,
+				8A114CE31BE75CA0006AE3F0 /* NewCollectionViewController.h */,
+				8A114CE41BE75CA0006AE3F0 /* NewCollectionViewController.m */,
+				8A114CE51BE75CA0006AE3F0 /* NewCollectionViewController.xib */,
+			);
+			path = Collection;
 			sourceTree = "<group>";
 		};
 		8A12540F1BC4F30E00AA4120 /* NEW_newsFeed */ = {
@@ -4277,6 +4276,7 @@
 				0B6A54DC1BB51F76005B9D6B /* Report */,
 				8A317BFD1BE1C5620010CAEE /* Share */,
 				0B3FF10B1BB131A20014AF2E /* Nearby */,
+				8A114CDC1BE75CA0006AE3F0 /* Collection */,
 				8A6584441B99553F00BC86B9 /* Animation */,
 				8A114B871BE73F5C006AE3F0 /* Common */,
 				8AD6C23B1B7072FA0040437E /* Publish */,
@@ -5049,6 +5049,7 @@
 				8A90B3E51BD9F95B00CE1ED6 /* ProfileFollowingIcon@3x.png in Resources */,
 				8A90B4211BD9F95B00CE1ED6 /* DraftsIcon@2x.png in Resources */,
 				8A3757B81B847C7A009DB7D4 /* AddNewPlaceViewController.xib in Resources */,
+				8A114CEB1BE75CA0006AE3F0 /* NewCollectionViewController.xib in Resources */,
 				0BBFE0501B9D624C004B17E9 /* EditProfileV2ViewController.xib in Resources */,
 				8A90B2491BD9F95B00CE1ED6 /* CurrencyArrow@2x.png in Resources */,
 				8AD6C0FB1B706CF30040437E /* SearchViewController.xib in Resources */,
@@ -5108,7 +5109,6 @@
 				8A90B3441BD9F95B00CE1ED6 /* ShowAllIcon@3x.png in Resources */,
 				8A90B3DF1BD9F95B00CE1ED6 /* PrivateCollectionIcon@3x.png in Resources */,
 				8A2E2CE31B81CFE40010895E /* STSearchViewController.xib in Resources */,
-				8A114C8D1BE73F5D006AE3F0 /* CollectionViewController.xib in Resources */,
 				8A6584331B981B4E00BC86B9 /* CategorySelectionViewController.xib in Resources */,
 				0BBFE08B1B9FCC00004B17E9 /* EditInterestViewController.xib in Resources */,
 				8AC8F6521BDA3A1E00DEF14A /* bgExplore.png in Resources */,
@@ -5144,6 +5144,7 @@
 				8A90B3CD1BD9F95B00CE1ED6 /* FollowBtn@3x.png in Resources */,
 				8A90B2841BD9F95B00CE1ED6 /* ShareBase@3x.png in Resources */,
 				8A90B3D81BD9F95B00CE1ED6 /* NoPostIcon@2x.png in Resources */,
+				8A114CE71BE75CA0006AE3F0 /* AddCollectionDataViewController.xib in Resources */,
 				8AC8F6591BDA3A1E00DEF14A /* launch320x568@2x.png in Resources */,
 				8A90B2821BD9F95B00CE1ED6 /* PhotoPin@3x.png in Resources */,
 				8AC8F6601BDA3A1E00DEF14A /* bgProfile.png in Resources */,
@@ -5426,6 +5427,7 @@
 				8A90B39F1BD9F95B00CE1ED6 /* NotificationFollow@3x.png in Resources */,
 				8A90B2B61BD9F95B00CE1ED6 /* BrithdayIcon@3x.png in Resources */,
 				8A90B3311BD9F95B00CE1ED6 /* BlueTick@2x.png in Resources */,
+				8A114CE91BE75CA0006AE3F0 /* CollectionViewController.xib in Resources */,
 				8A90B24C1BD9F95B00CE1ED6 /* EditHoursIcon@3x.png in Resources */,
 				8A90B3F01BD9F95B00CE1ED6 /* ViewIcon@2x.png in Resources */,
 				8A90B33A1BD9F95B00CE1ED6 /* ForHimIcon@3x.png in Resources */,
@@ -5607,7 +5609,6 @@
 				8AF39CE11BC67125009C7F26 /* 2.png in Resources */,
 				8A90B3401BD9F95B00CE1ED6 /* LocalIcon@3x.png in Resources */,
 				8A90B3091BD9F95B00CE1ED6 /* FilterIcon@2x.png in Resources */,
-				8A114C8F1BE73F5D006AE3F0 /* NewCollectionViewController.xib in Resources */,
 				8A90B2871BD9F95B00CE1ED6 /* Uncheck@2x.png in Resources */,
 				8A90B3451BD9F95B00CE1ED6 /* SportIcon@2x.png in Resources */,
 				8A90B42C1BD9F95B00CE1ED6 /* NotificationIcon@3x.png in Resources */,
@@ -5615,7 +5616,6 @@
 				8A90B3CE1BD9F95B00CE1ED6 /* FollowerNumber@2x.png in Resources */,
 				8A90B3E11BD9F95B00CE1ED6 /* ProfileExpand@3x.png in Resources */,
 				8A90B3FC1BD9F95B00CE1ED6 /* SuggestionSearchIcon@2x.png in Resources */,
-				8A114C8B1BE73F5D006AE3F0 /* AddCollectionDataViewController.xib in Resources */,
 				8A90B3391BD9F95B00CE1ED6 /* ForHimIcon@2x.png in Resources */,
 				8A00979D1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib in Resources */,
 				8A90B38D1BD9F95B00CE1ED6 /* SeetiesLogo@3x.png in Resources */,
@@ -5791,6 +5791,7 @@
 				8AC8F7561BDDD44800DEF14A /* UIImageView+Extension.m in Sources */,
 				8A3409461B8AD06A009B66C3 /* UIImage+Resizing.m in Sources */,
 				8A34090F1B872B31009B66C3 /* EditPostViewController.m in Sources */,
+				8A114CEA1BE75CA0006AE3F0 /* NewCollectionViewController.m in Sources */,
 				0BBFE04F1B9D624C004B17E9 /* EditProfileV2ViewController.m in Sources */,
 				8AD6BE4D1B706CF30040437E /* ExploreCountryViewController.m in Sources */,
 				8A9F25D31B8EF60C00BB13BA /* EditHourTableViewCell.m in Sources */,
@@ -5871,7 +5872,6 @@
 				8AD6C1041B706CF30040437E /* EditInterestV2ViewController.m in Sources */,
 				8A8475251BC5274C006DD614 /* UILabel+Extra.m in Sources */,
 				8AD6C0BC1B706CF30040437E /* CommentViewController.m in Sources */,
-				8A114C8C1BE73F5D006AE3F0 /* CollectionViewController.m in Sources */,
 				8A114CA41BE73F5D006AE3F0 /* PECropViewController.m in Sources */,
 				8A114C821BE73F5D006AE3F0 /* BKMoneyUtils.m in Sources */,
 				8A114CAC1BE73F5D006AE3F0 /* FSConverter.m in Sources */,
@@ -5880,7 +5880,6 @@
 				8A45098E1BAFEEBF00A868CD /* CategoriesModel.m in Sources */,
 				8AD6BE491B706CF30040437E /* Explore2ViewController.m in Sources */,
 				8AD6C0B31B706CF30040437E /* ConnectionManager.m in Sources */,
-				8A114C8E1BE73F5D006AE3F0 /* NewCollectionViewController.m in Sources */,
 				8A65843D1B9850CE00BC86B9 /* DraftViewController.m in Sources */,
 				8A114C9D1BE73F5D006AE3F0 /* UIImage+KVNEmpty.m in Sources */,
 				8A114C991BE73F5D006AE3F0 /* JTSImageViewController.m in Sources */,
@@ -5951,7 +5950,6 @@
 				8AD6C1001B706CF30040437E /* AccountSettingViewController.m in Sources */,
 				8A2E2C141B79E7A30010895E /* RecommendationViewController.m in Sources */,
 				8A114CD81BE73F5D006AE3F0 /* ZFTokenField.m in Sources */,
-				8A114C8A1BE73F5D006AE3F0 /* AddCollectionDataViewController.m in Sources */,
 				8AB76D201BB8FBAF007DB972 /* ArticleViewController.m in Sources */,
 				8AD6C0FE1B706CF30040437E /* SearchViewV2Controller.m in Sources */,
 				8A45097A1BAC012600A868CD /* NSArray+JSON.m in Sources */,
@@ -5997,7 +5995,9 @@
 				8A114CC41BE73F5D006AE3F0 /* NSString+MKNetworkKitAdditions.m in Sources */,
 				8AD6C0D61B706CF30040437E /* PSelectYourInterestViewController.m in Sources */,
 				8AD6C2831B7072FB0040437E /* AddLinkViewController.m in Sources */,
+				8A114CE81BE75CA0006AE3F0 /* CollectionViewController.m in Sources */,
 				8AD6C0FC1B706CF30040437E /* SearchViewV2.m in Sources */,
+				8A114CE61BE75CA0006AE3F0 /* AddCollectionDataViewController.m in Sources */,
 				8AD6C8841B7849EF0040437E /* UserDefaultModel.m in Sources */,
 				8AD6BE4F1B706CF30040437E /* ExploreViewController.m in Sources */,
 				8A114CD21BE73F5D006AE3F0 /* UrlDataClass.m in Sources */,
