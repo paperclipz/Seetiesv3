@@ -34,5 +34,5 @@ pod 'DBCamera', '~> 2.4'
 pod 'A3ParallaxScrollView', '~> 1.0'
 
 pod 'APParallaxHeader'
-
+pod 'AFSwipeToHide'
 #pod 'Canvas', '~> 0.1.2'

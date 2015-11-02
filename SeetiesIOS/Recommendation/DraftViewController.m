@@ -10,17 +10,22 @@
 #import "EditPostViewController.h"
 #import "MGSwipeButton.h"
 #import "UITableView+NXEmptyView.h"
+#import "AFSwipeToHide.h"
 
-@interface DraftViewController ()
+@interface DraftViewController ()<UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *ibSwipeDeleteNoteView;
 @property (weak, nonatomic) IBOutlet UILabel *lblSwipeToDelete;
 @property (weak, nonatomic) IBOutlet UILabel *lblNoDraftYet;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray* arrDraftList;
-
 @property(nonatomic,strong)EditPostViewController* editPostViewController;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (nonatomic,strong)UIImageView* loadingImageView;
+@property (strong, nonatomic) IBOutlet UIView *ibHeaderView;
+
+// ======
+@property (nonatomic, assign) CGFloat lastContentOffset;
+
 @end
 
 @implementation DraftViewController
@@ -70,6 +75,7 @@
     [self.tableView.pullToRefreshView setCustomView:self.loadingImageView forState:SVPullToRefreshStateAll];
     [self.tableView.pullToRefreshView setCustomView:initialLoadingView forState:SVPullToRefreshStateTriggered];
 
+    
     [self changeLanguage];
 }
 
@@ -81,7 +87,6 @@
         _loadingImageView.animationImages = @[[UIImage imageNamed:@"1.png"],[UIImage imageNamed:@"3.png"]];
         _loadingImageView.animationDuration = 1.0f;
         _loadingImageView.animationRepeatCount = 100;
-
 
     }
     return _loadingImageView;

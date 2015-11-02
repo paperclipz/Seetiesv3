@@ -23,6 +23,7 @@ PODS:
   - AFNetworking/UIKit (2.6.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - AFSwipeToHide (0.1.0)
   - APParallaxHeader (0.1.6)
   - AviarySDK (4.2.1)
   - BkTask (0.9.1)
@@ -62,6 +63,7 @@ DEPENDENCIES:
   - A3ParallaxScrollView (~> 1.0)
   - ActionSheetPicker-3.0 (~> 1.7.1)
   - ADTransitionController
+  - AFSwipeToHide
   - APParallaxHeader
   - AviarySDK (= 4.2.1)
   - BkTask
@@ -96,6 +98,7 @@ SPEC CHECKSUMS:
   ActionSheetPicker-3.0: 28a795c376f9d76850cb56eaf7dd5cf9a9088223
   ADTransitionController: 72299d31488bcbe59fb87c483a89a637ebc819f8
   AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
+  AFSwipeToHide: 2e9d9968dd40e4a3615c879783f0bfc1d30b80ec
   APParallaxHeader: 854bc48a2487ca12c702f8a236fec0d89cdac5c3
   AviarySDK: 23243fa982179c0084670c46cdd23a13c2ec2969
   BkTask: 8dd51efee729f637e4b11337f32dc52c97646a91

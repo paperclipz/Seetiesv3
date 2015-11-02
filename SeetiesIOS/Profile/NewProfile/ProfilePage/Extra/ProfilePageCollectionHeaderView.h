@@ -10,7 +10,7 @@
 
 @interface ProfilePageCollectionHeaderView : CommonView
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
-@property (copy, nonatomic) IDBlock btnSeeAllClickedBlock;
+@property (copy, nonatomic) VoidBlock btnSeeAllClickedBlock;
 @property (weak, nonatomic) IBOutlet UIImageView *ibBackgroundView;
 @property (weak, nonatomic) IBOutlet UILabel *lblNumberOfCollection;
 

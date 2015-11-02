@@ -1,0 +1,1 @@
+../../../AFSwipeToHide/Pod/Classes/AFSwipeToHide.h

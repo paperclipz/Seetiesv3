@@ -18,6 +18,12 @@
     // Drawing code
 }
 */
+- (IBAction)btnTitleClicked:(id)sender {
+    
+    if (_btnSeeAllClickedBlock) {
+        self.btnSeeAllClickedBlock();
+    }
+}
 -(void)initSelfView
 {
   

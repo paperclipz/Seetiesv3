@@ -28,7 +28,9 @@
     _facebookName = model.facebookName;
     _isOpenHour = model.isOpenHour;
     _statusHour = model.statusHour;
-    _currency = model.currency;
+   // _currency = model.currency;
+    _currency = nil;
+
     _priceMessage = model.priceMessage;
     _tier = model.tier;
     _name = model.name;

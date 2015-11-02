@@ -31,6 +31,10 @@
 @end
 
 @implementation EditCollectionViewController
+- (IBAction)btnDeleteClicked:(id)sender {
+    [self requestServerForDeleteCollection:self.collectionID];
+}
+
 - (IBAction)btnDoneClicked:(id)sender {
 
 
@@ -285,6 +289,8 @@
         
         [TSMessage showNotificationInViewController:self title:@"system" subtitle:@"Success Saved Collections" type:TSMessageNotificationTypeSuccess];
         [LoadingManager hide];
+        
+         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:nil];
 
     } errorBlock:^(id object) {
         [LoadingManager hide];
@@ -341,6 +347,40 @@
         
     }];
     
+}
+
+-(void)requestServerForDeleteCollection:(NSString*)collectionID
+{
+    NSDictionary* dict = @{@"collection_id":collectionID,
+                           @"token":[Utils getAppToken],
+                           };
+    
+    NSString* appendString = [NSString stringWithFormat:@"%@/collections/%@",[Utils getUserID],collectionID];
+    
+    [LoadingManager show];
+    [[ConnectionManager Instance] requestServerWithDelete:ServerRequestTypeDeleteCollection param:dict appendString:appendString completeHandler:^(id object) {
+        [self successFullyDeletedCollection];
+        
+    } errorBlock:^(id object) {
+        
+
+    }];
+    
+}
+
+-(void)successFullyDeletedCollection
+{
+    [TSMessage showNotificationWithTitle:@"system" subtitle:LocalisedString(@"Successfully Deleted Collection") type:TSMessageNotificationTypeSuccess];
+    [self btnBackWithRefresh];
+}
+
+-(void)btnBackWithRefresh
+{
+    if (_refreshBlock) {
+        self.refreshBlock();
+    }
+    [self btnBackClicked:nil];
+
 }
 
 static id ObjectOrNull(id object)

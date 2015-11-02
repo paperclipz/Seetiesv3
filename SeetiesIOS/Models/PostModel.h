@@ -39,6 +39,8 @@
 @property(nonatomic,assign)int page;
 @property(nonatomic,assign)int total_posts;
 @property(nonatomic,strong)NSMutableArray* deleted_posts;
+@property(nonatomic,assign)int collection_posts_count;
+
 
 @end
 
@@ -48,6 +50,7 @@
 @property(nonatomic,assign)int total_page;
 @property(nonatomic,assign)int total_result;
 @property(nonatomic,assign)int page;
+
 
 @end
 

@@ -9,6 +9,8 @@
 #import "AddNewPlaceSubView.h"
 #define MAX_LENGTH 12
 #define REGEX_PLACE_NAME_LIMIT @"^.{3,}$"
+#define REGEX_PLACE_ADDRESS_LIMIT @"^.{1,}$"
+
 #define REGEX_URL @"^(http:\/\/|https:\/\/)?(www.)?([a-zA-Z0-9]+).[a-zA-Z0-9]*.[a-z]{3}.?([a-z]+)?$"
 
 @interface AddNewPlaceSubView()
@@ -123,6 +125,12 @@
     [self.txtPlaceName addRegx:REGEX_PLACE_NAME_LIMIT withMsg:LocalisedString(@"Place Name need at least 3 character")];
     [self.txtPlaceName setIsMandatory:YES];
     self.txtPlaceName.popUpColor = ERROR_COLOR;
+    
+    self.txtAddress.presentInView = self;
+    [self.txtAddress addRegx:REGEX_PLACE_ADDRESS_LIMIT withMsg:LocalisedString(@"Place Address is Needed")];
+    [self.txtAddress setIsMandatory:YES];
+    self.txtAddress.popUpColor = ERROR_COLOR;
+
 }
 
 -(void)layoutSubviews
@@ -158,6 +166,10 @@
 {
     if (![self.txtPlaceName validate]) {
         return false;
+    }
+    if (![self.txtAddress validate]) {
+        return false;
+
     }
     
     return YES;

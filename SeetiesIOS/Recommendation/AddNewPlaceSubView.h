@@ -16,7 +16,7 @@
 
 @interface AddNewPlaceSubView : UIView<UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet TextFieldValidator *txtPlaceName;
-@property (strong, nonatomic) IBOutlet UITextField *txtAddress;
+@property (strong, nonatomic) IBOutlet TextFieldValidator *txtAddress;
 @property (strong, nonatomic) IBOutlet UITextField *txtURL;
 @property (strong, nonatomic) IBOutlet UITextField *txtPhoneNo;
 + (id)initializeCustomView;

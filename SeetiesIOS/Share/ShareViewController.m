@@ -11,7 +11,34 @@
 #import <FBSDKShareKit/FBSDKShareKit.h>
 #import "ShareToFrenViewController.h"
 @interface ShareViewController ()
+{
+    IBOutlet UIScrollView *MainScroll;
+    IBOutlet UIButton *BackButton;
+    
+    IBOutlet UIView *CenterView;
+    IBOutlet UIView *ShareToSeetiesView;
+    
+    NSString *GetPostID;
+    NSString *GetMessage;
+    NSString *GetTitle;
+    NSString *GetImgData;
+    
+    AsyncImageView *imageMain;
+    
+    IBOutlet UILabel *ShowTitle;
+    IBOutlet UILabel *ShowSubTitle;
+    
+    NSString *GetCollectionID;
+    
+    int CheckShareStatus;
+    
+    IBOutlet UILabel *ShowSendToFren;
+    IBOutlet UILabel *ShowSendToFrenSub;
+    IBOutlet UIImageView *GoToIcon;
+    
+    NSString *GetUserID;
 
+}
 @end
 
 @implementation ShareViewController
@@ -85,7 +112,14 @@
     // Dispose of any resources that can be recreated.
 }
 -(IBAction)BackButton:(id)sender{
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    if (self.navigationController) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else{
+        [self dismissViewControllerAnimated:YES completion:nil];
+
+    }
 }
 -(IBAction)FacebookButtonOnClick:(id)sender{
     NSLog(@"FacebookButtonOnClick");
