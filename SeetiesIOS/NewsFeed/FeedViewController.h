@@ -114,6 +114,8 @@
     
     //tracker url
     NSString *TrackerUrl;
+    
+    UIView *RateView;
 }
 -(IBAction)TryAgainButton:(id)sender;
 -(IBAction)SearchButton:(id)sender;

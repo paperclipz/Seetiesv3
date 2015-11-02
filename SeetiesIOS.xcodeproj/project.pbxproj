@@ -23,6 +23,7 @@
 		0B99C2001BCBA1F1006D7E63 /* AnnounceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B99C1FE1BCBA1F0006D7E63 /* AnnounceViewController.m */; };
 		0B99C2011BCBA1F1006D7E63 /* AnnounceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B99C1FF1BCBA1F0006D7E63 /* AnnounceViewController.xib */; };
 		0BA1CB2F1B85AEFA009FFD3E /* Explore2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA1CB2E1B85AEFA009FFD3E /* Explore2ViewController.xib */; };
+		0BA9452B1BE76008003AB2E4 /* RateUs.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA9452A1BE76008003AB2E4 /* RateUs.png */; };
 		0BBFE04F1B9D624C004B17E9 /* EditProfileV2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBFE04D1B9D624C004B17E9 /* EditProfileV2ViewController.m */; };
 		0BBFE0501B9D624C004B17E9 /* EditProfileV2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBFE04E1B9D624C004B17E9 /* EditProfileV2ViewController.xib */; };
 		0BBFE0541B9D6260004B17E9 /* NotificationSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBFE0521B9D6260004B17E9 /* NotificationSettingsViewController.m */; };
@@ -1022,6 +1023,7 @@
 		0B99C1FE1BCBA1F0006D7E63 /* AnnounceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnounceViewController.m; sourceTree = "<group>"; };
 		0B99C1FF1BCBA1F0006D7E63 /* AnnounceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnnounceViewController.xib; sourceTree = "<group>"; };
 		0BA1CB2E1B85AEFA009FFD3E /* Explore2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Explore2ViewController.xib; sourceTree = "<group>"; };
+		0BA9452A1BE76008003AB2E4 /* RateUs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RateUs.png; sourceTree = "<group>"; };
 		0BBFE04C1B9D624C004B17E9 /* EditProfileV2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileV2ViewController.h; sourceTree = "<group>"; };
 		0BBFE04D1B9D624C004B17E9 /* EditProfileV2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileV2ViewController.m; sourceTree = "<group>"; };
 		0BBFE04E1B9D624C004B17E9 /* EditProfileV2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditProfileV2ViewController.xib; sourceTree = "<group>"; };
@@ -4756,6 +4758,7 @@
 		8AF39CC01BC649D1009C7F26 /* Misc */ = {
 			isa = PBXGroup;
 			children = (
+				0BA9452A1BE76008003AB2E4 /* RateUs.png */,
 				8AF39CDD1BC67125009C7F26 /* 3.png */,
 				8AF39CDE1BC67125009C7F26 /* 2.png */,
 				8AF39CDF1BC67125009C7F26 /* 1.png */,
@@ -5447,6 +5450,7 @@
 				8A90B3C41BD9F95B00CE1ED6 /* AddPostBtn@2x.png in Resources */,
 				8AF39CCD1BC649D1009C7F26 /* Caret@2x.png in Resources */,
 				8A90B3FB1BD9F95B00CE1ED6 /* SearchLocationIcon@3x.png in Resources */,
+				0BA9452B1BE76008003AB2E4 /* RateUs.png in Resources */,
 				8AC8F75D1BDDD68500DEF14A /* ListingHeaderView.xib in Resources */,
 				8A90B3831BD9F95B00CE1ED6 /* CorrectFill@3x.png in Resources */,
 				8A90B3EB1BD9F95B00CE1ED6 /* ProfileSearchBar@3x.png in Resources */,

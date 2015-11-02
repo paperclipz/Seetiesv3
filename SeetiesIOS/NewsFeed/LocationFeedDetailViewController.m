@@ -131,10 +131,21 @@
     GetPrice = Price;
     GetAllPeriods = Periods;
     
-    if ([GetLocation length] == 0 || [GetLocation isEqualToString:@"<null>"]) {
+    if ([GetLocation length] == 0 || [GetLocation isEqualToString:@"<null>"] || [GetLocation isEqualToString:@"(null)"]) {
         GetLocation = @"";
     }
-    
+    if ([GetContact length] == 0 || [GetContact isEqualToString:@"<null>"] || [GetContact isEqualToString:@"(null)"]) {
+        GetContact = @"";
+    }
+    if ([GetOpeningHour length] == 0 || [GetOpeningHour isEqualToString:@"<null>"] || [GetOpeningHour isEqualToString:@"(null)"]) {
+        GetOpeningHour = @"";
+    }
+    if ([GetAllPeriods length] == 0 || [GetAllPeriods isEqualToString:@"<null>"] || [GetAllPeriods isEqualToString:@"(null)"]) {
+        GetAllPeriods = @"";
+    }
+    if ([GetPlaceLink length] == 0 || [GetPlaceLink isEqualToString:@"<null>"] || [GetPlaceLink isEqualToString:@"(null)"]) {
+        GetPlaceLink = @"";
+    }
     
     NSLog(@"GetPlaceLink is %@",GetPlaceLink);
     NSLog(@"GetContact is %@",GetContact);
