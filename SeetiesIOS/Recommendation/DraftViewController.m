@@ -10,17 +10,22 @@
 #import "EditPostViewController.h"
 #import "MGSwipeButton.h"
 #import "UITableView+NXEmptyView.h"
+#import "AFSwipeToHide.h"
 
-@interface DraftViewController ()
+@interface DraftViewController ()<UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *ibSwipeDeleteNoteView;
 @property (weak, nonatomic) IBOutlet UILabel *lblSwipeToDelete;
 @property (weak, nonatomic) IBOutlet UILabel *lblNoDraftYet;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray* arrDraftList;
-
 @property(nonatomic,strong)EditPostViewController* editPostViewController;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (nonatomic,strong)UIImageView* loadingImageView;
+@property (strong, nonatomic) IBOutlet UIView *ibHeaderView;
+
+// ======
+@property (nonatomic, assign) CGFloat lastContentOffset;
+
 @end
 
 @implementation DraftViewController
@@ -70,6 +75,7 @@
     [self.tableView.pullToRefreshView setCustomView:self.loadingImageView forState:SVPullToRefreshStateAll];
     [self.tableView.pullToRefreshView setCustomView:initialLoadingView forState:SVPullToRefreshStateTriggered];
 
+    
     [self changeLanguage];
 }
 
@@ -81,7 +87,6 @@
         _loadingImageView.animationImages = @[[UIImage imageNamed:@"1.png"],[UIImage imageNamed:@"3.png"]];
         _loadingImageView.animationDuration = 1.0f;
         _loadingImageView.animationRepeatCount = 100;
-
 
     }
     return _loadingImageView;
@@ -218,4 +223,42 @@
     return result;
 }
 
+#pragma mark - UIScrollView Delegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    SLog(@"%f !!!",scrollView.contentOffset.y);
+    float scrollYvariance = scrollView.contentOffset.y;
+    
+    SLog(@"content offset %f :",scrollYvariance);
+    
+    float tempnumber = fabs(scrollYvariance);
+    if (tempnumber <= self.ibHeaderView.frame.size.height) {
+        
+        SLog(@"MOVING");
+        [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffset.x, self.tableView.contentOffset.y-scrollYvariance)];
+
+    }
+    
+//    ScrollDirection scrollDirection;
+//    if (self.lastContentOffset > scrollView.contentOffset.y)
+//    {
+//        scrollDirection = ScrollDirectionDown;
+//        
+//        if(self.ibHeaderView.frame.origin.y == -self.ibHeaderView.frame.size.height)
+//        [self.ibHeaderView setY:self.ibHeaderView.frame.origin.y - scrollView.contentOffset.y];
+//
+//    }
+//    else if (self.lastContentOffset < scrollView.contentOffset.y)
+//    {
+//        SLog(@"bottom");
+//        [self.ibHeaderView setY:self.ibHeaderView.frame.origin.y + scrollView.contentOffset.y];
+//
+//        scrollDirection = ScrollDirectionUp;
+//
+//    }
+//    
+//    self.lastContentOffset = scrollView.contentOffset.x;
+
+   //ibHeaderView
+}
 @end
