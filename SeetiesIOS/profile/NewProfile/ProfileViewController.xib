@@ -58,7 +58,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lkl-HZ-BhG">
                     <rect key="frame" x="0.0" y="50" width="320" height="238"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lucy Jin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZI-xc-IZb">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZI-xc-IZb">
                             <rect key="frame" x="20" y="60" width="177" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="ql2-ZQ-Agy"/>
@@ -74,7 +74,7 @@
                                 <constraint firstAttribute="height" constant="25" id="ki9-Il-jPU"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="asdasdasd" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5wG-lf-rn3">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5wG-lf-rn3">
                             <rect key="frame" x="55" y="128" width="250" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="hwU-rr-vZc"/>
@@ -84,7 +84,7 @@
                             <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="asdasdasd" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zyw-i4-9Jw" customClass="TTTAttributedLabel">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zyw-i4-9Jw" customClass="TTTAttributedLabel">
                             <rect key="frame" x="22" y="166" width="275" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="jAf-z7-lUQ"/>
@@ -185,10 +185,6 @@
                         <constraint firstAttribute="trailing" secondItem="B4G-vz-rNL" secondAttribute="trailing" constant="8" id="sUF-gG-Rym"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="222" sectionHeaderHeight="20" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="y6b-tE-4Np">
-                    <rect key="frame" x="10" y="288" width="302" height="329"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                </tableView>
                 <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultProfilePic.png" translatesAutoresizingMaskIntoConstraints="NO" id="W0N-44-6zb">
                     <rect key="frame" x="20" y="0.0" width="100" height="100"/>
                     <gestureRecognizers/>
@@ -209,11 +205,15 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="222" sectionHeaderHeight="20" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="y6b-tE-4Np">
+                    <rect key="frame" x="10" y="289" width="302" height="329"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="y6b-tE-4Np" firstAttribute="leading" secondItem="3Pb-zr-5rR" secondAttribute="leading" constant="10" id="3na-yN-agg"/>
-                <constraint firstItem="y6b-tE-4Np" firstAttribute="top" secondItem="lkl-HZ-BhG" secondAttribute="bottom" id="5cj-iJ-h7p"/>
+                <constraint firstItem="y6b-tE-4Np" firstAttribute="top" secondItem="lkl-HZ-BhG" secondAttribute="bottom" constant="1" id="5cj-iJ-h7p"/>
                 <constraint firstItem="tZ4-gp-CpY" firstAttribute="leading" secondItem="W0N-44-6zb" secondAttribute="trailing" constant="10" id="7mp-Yy-l5R"/>
                 <constraint firstItem="W0N-44-6zb" firstAttribute="leading" secondItem="3Pb-zr-5rR" secondAttribute="leading" constant="20" id="A9o-Ur-hMn"/>
                 <constraint firstItem="W0N-44-6zb" firstAttribute="top" secondItem="lkl-HZ-BhG" secondAttribute="top" constant="-50" id="Cgh-vO-92H"/>
@@ -223,7 +223,7 @@
                 <constraint firstAttribute="trailing" secondItem="lkl-HZ-BhG" secondAttribute="trailing" id="gTR-f8-dwt"/>
                 <constraint firstItem="lkl-HZ-BhG" firstAttribute="leading" secondItem="3Pb-zr-5rR" secondAttribute="leading" id="n5n-CL-1KX"/>
                 <constraint firstItem="lkl-HZ-BhG" firstAttribute="top" secondItem="3Pb-zr-5rR" secondAttribute="top" constant="50" id="nUB-18-VGe"/>
-                <constraint firstAttribute="bottom" secondItem="y6b-tE-4Np" secondAttribute="bottom" constant="1" id="tHy-rH-8By"/>
+                <constraint firstAttribute="bottom" secondItem="y6b-tE-4Np" secondAttribute="bottom" id="tHy-rH-8By"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="897" y="133"/>
@@ -232,23 +232,6 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SuG-v7-aXg">
-                    <rect key="frame" x="0.0" y="15" width="320" height="53"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="53" id="asu-Pd-Ndz"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="15"/>
-                    <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    <inset key="imageEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    <state key="normal" title="search" image="SearchBarIcon.png" backgroundImage="ProfileSearchBar.png">
-                        <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="btnSearchClicked:" destination="-1" eventType="touchUpInside" id="wMh-Bm-ecp"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nDf-Fa-R7S">
                     <rect key="frame" x="277" y="59" width="40" height="40"/>
                     <constraints>
@@ -269,6 +252,23 @@
                     <state key="normal" image="ProfileSettingsIcon.png"/>
                     <connections>
                         <action selector="btnSettingClicked:" destination="-1" eventType="touchUpInside" id="9fc-Lb-iwY"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SuG-v7-aXg">
+                    <rect key="frame" x="0.0" y="15" width="320" height="53"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="53" id="asu-Pd-Ndz"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="15"/>
+                    <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="search" image="SearchBarIcon.png" backgroundImage="ProfileSearchBar.png">
+                        <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="btnSearchClicked:" destination="-1" eventType="touchUpInside" id="wMh-Bm-ecp"/>
                     </connections>
                 </button>
             </subviews>

@@ -10,7 +10,6 @@
 #import "EditPostViewController.h"
 #import "MGSwipeButton.h"
 #import "UITableView+NXEmptyView.h"
-#import "AFSwipeToHide.h"
 
 @interface DraftViewController ()<UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *ibSwipeDeleteNoteView;

@@ -190,16 +190,13 @@
     float imageFrameHeight = self.ibImgProfilePic.frame.size.height;
     
     self.ibContentView.frame = CGRectMake(self.ibContentView.frame.origin.x, self.ibContentView.frame.origin.y - imageFrameHeight/2, frame.size.width, self.ibContentView.frame.size.height);
-    [self.ibScrollView addParallaxWithView:self.backgroundImageView andHeight:200];
-    [self.backgroundImageView adjustToScreenWidth];
-    self.ibScrollView.parallaxView.shadowView.hidden = YES;
-    [self.ibScrollView.parallaxView adjustToScreenWidth];
+    [self setParallaxView];
     self.ibScrollView.contentSize = CGSizeMake(self.ibScrollView.frame.size.width, self.ibContentView.frame.size.height);
     [self.ibScrollView addSubview:self.ibContentView];
 
 
     [self adjustTableView];
-    [self addSearchView];
+  //  [self addSearchView];
 
 }
 
@@ -243,7 +240,6 @@
     [self.ibScrollView.parallaxView addSubview:self.ibSettingContentView];
     [self.ibScrollView.parallaxView bringSubviewToFront:self.ibSettingContentView];
     [self.ibSettingContentView adjustToScreenWidth];
-
 }
 
 -(void)adjustTableView
@@ -879,6 +875,16 @@
     [self assignUserData];
 }
 
+-(void)setParallaxView
+{
+    [self.ibScrollView addParallaxWithImage:self.backgroundImageView.image andHeight:200 andShadow:NO];
+    [self.backgroundImageView adjustToScreenWidth];
+    [self.ibScrollView.parallaxView adjustToScreenWidth];
+    [self.ibScrollView.parallaxView.imageView adjustToScreenWidth];
+    [self.ibScrollView.parallaxView.currentSubView adjustToScreenWidth];
+    [self addSearchView];
+}
+
 -(void)assignUserData
 {
     
@@ -887,7 +893,12 @@
     //UIImageView* tempImageView = [[UIImageView alloc]initWithFrame:self.backgroundImageView.frame];
     [self.backgroundImageView sd_setImageWithURL:[NSURL URLWithString:self.userProfileModel.wallpaper] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         
+
+
+        
+        
         self.backgroundImageView.image = [image imageCroppedAndScaledToSize:self.backgroundImageView.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
+        [self setParallaxView];
         
     }];
 
