@@ -14,6 +14,7 @@
 #import "SearchResultV2ViewController.h"
 #import "ExploreCountryV2ViewController.h"
 #import "SearchViewV2Controller.h"
+
 @interface Explore2ViewController ()<UISearchBarDelegate>
 {
     IBOutlet UIScrollView *ibScrollViewCountry;
@@ -21,7 +22,6 @@
     IBOutlet UIButton *MainLine;
     IBOutlet UIActivityIndicatorView *ShowActivity;
     IBOutlet UITableView *SearchTblView;
-
 }
 @property(nonatomic,strong)ExploreCountryModels* exploreCountryModels;
 
@@ -412,7 +412,7 @@
 }
 -(void)InitContentView{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    
+
     FestivalUrlArray = [[NSMutableArray alloc]init];
     FestivalImageArray = [[NSMutableArray alloc]init];
     for (int i = 0 ; i < [self.exploreCountryModels.countries count]; i++) {
@@ -504,8 +504,6 @@
         
         [ibScrollViewCountry setContentSize:CGSizeMake(screenWidth, 150 + i * 151)];
     }
-    
-   // NSLog(@"FestivalUrlArray is %@",FestivalUrlArray);
 
 }
 

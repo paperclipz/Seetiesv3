@@ -33,6 +33,22 @@
     // Do any additional setup after loading the view from its nib.
     DataUrl = [[UrlDataClass alloc]init];
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSInteger CheckInt = [defaults integerForKey:@"RateData"];
+    NSLog(@"CheckInt is %li",(long)CheckInt);
+
+    if (CheckInt == 5) {
+        [self ShowRateView];
+    }else if(CheckInt == 10){
+    
+    }else{
+        CheckInt += 1;
+        [defaults setInteger:CheckInt forKey:@"RateData"];
+        [defaults synchronize];
+    }
+//    [self ShowRateView];
+    
+    
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     //init no connection data
@@ -116,6 +132,89 @@
     
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
     
+}
+-(void)ShowRateView{
+    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    
+    RateView = [[UIView alloc]init];
+    RateView.frame = CGRectMake(0, 0, screenWidth, screenHeight);
+    RateView.backgroundColor = [UIColor clearColor];
+    //RateView.alpha = 0.5f;
+    [self.view addSubview:RateView];
+    
+    UIButton *BlackImg = [[UIButton alloc]init];
+    [BlackImg setTitle:@"" forState:UIControlStateNormal];
+    BlackImg.backgroundColor = [UIColor blackColor];
+    BlackImg.alpha = 0.5f;
+    BlackImg.frame = CGRectMake(0, 0, screenWidth, screenHeight);
+    [RateView addSubview:BlackImg];
+    
+    UIImageView *RateImg = [[UIImageView alloc]init];
+    RateImg.frame = CGRectMake((screenWidth / 2) - 135, 150, 270, 290);
+    RateImg.image = [UIImage imageNamed:@"RateUs.png"];
+    [RateView addSubview:RateImg];
+    
+    
+    UILabel *ShowThxText = [[UILabel alloc]init];
+    ShowThxText.text = LocalisedString(@"Do you like what we've done?");
+    ShowThxText.frame = CGRectMake((screenWidth / 2) - 115, 260, 230, 60);
+    ShowThxText.backgroundColor = [UIColor clearColor];
+    ShowThxText.textColor = [UIColor whiteColor];
+    ShowThxText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:20];
+    ShowThxText.textAlignment = NSTextAlignmentCenter;
+    ShowThxText.numberOfLines = 2;
+    [RateView addSubview:ShowThxText];
+    
+    
+    UIButton *CancelButton = [[UIButton alloc]init];
+    [CancelButton setTitle:@"" forState:UIControlStateNormal];
+    CancelButton.backgroundColor = [UIColor clearColor];
+    CancelButton.frame = CGRectMake((screenWidth / 2) + 85, 150, 50, 50);
+    [CancelButton addTarget:self action:@selector(Rate_CancelButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [RateView addSubview:CancelButton];
+    
+    UIButton *RateButton = [[UIButton alloc]init];
+    [RateButton setTitle:LocalisedString(@"Rate us now") forState:UIControlStateNormal];
+    RateButton.backgroundColor = [UIColor clearColor];
+    RateButton.frame = CGRectMake((screenWidth / 2) - 135, 350, 270, 40);
+    [RateButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:16]];
+    [RateButton addTarget:self action:@selector(Rate_RateButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [RateView addSubview:RateButton];
+    
+    UIButton *NotNowButton = [[UIButton alloc]init];
+    [NotNowButton setTitle:LocalisedString(@"Not now") forState:UIControlStateNormal];
+    NotNowButton.backgroundColor = [UIColor clearColor];
+    NotNowButton.frame = CGRectMake((screenWidth / 2) - 135, 390, 270, 40);
+    [NotNowButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15]];
+    [NotNowButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+    [NotNowButton addTarget:self action:@selector(Rate_NotNowButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [RateView addSubview:NotNowButton];
+
+}
+-(IBAction)Rate_CancelButtonOnClick:(id)sender{
+    [RateView removeFromSuperview];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSInteger CheckInt = 0;
+    [defaults setInteger:CheckInt forKey:@"RateData"];
+    [defaults synchronize];
+
+}
+-(IBAction)Rate_RateButtonOnClick:(id)sender{
+
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=956400552&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8"]];
+    [RateView removeFromSuperview];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSInteger CheckInt = 10;
+    [defaults setInteger:CheckInt forKey:@"RateData"];
+    [defaults synchronize];
+}
+-(IBAction)Rate_NotNowButtonOnClick:(id)sender{
+    [RateView removeFromSuperview];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSInteger CheckInt = 10;
+    [defaults setInteger:CheckInt forKey:@"RateData"];
+    [defaults synchronize];
 }
 -(IBAction)TryAgainButton:(id)sender{
     self.locationManager = [[CLLocationManager alloc]init];
