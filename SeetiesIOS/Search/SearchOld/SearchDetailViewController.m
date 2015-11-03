@@ -71,6 +71,7 @@
     CheckFirstTimeLoad = 0;
     heightcheck = 0;
     SelfSearchCurrentLocation = 0;
+    CheckUserInitView = 0;
     
     ShowSearchLocationView.frame = CGRectMake(0, 95, screenWidth, screenHeight - 95);
     ShowSearchLocationView.hidden = YES;
@@ -105,6 +106,7 @@
         DataCount = 0;
         DataTotal = 0;
         heightcheck = 0;
+        CheckUserInitView = 0;
         SelfSearchCurrentLocation = 0;
         
         [self SendSearchKeywordData];
@@ -893,15 +895,21 @@
             NSLog(@"PostView click");
             PostsView.hidden = NO;
             PeopleView.hidden = YES;
-            [self InitPostsDataView];
+           // [self InitPostsDataView];
             
             break;
         case 1:
             NSLog(@"PeopleView click");
             PostsView.hidden = YES;
             PeopleView.hidden = NO;
+            if (CheckUserInitView == 0) {
+                CheckUserInitView = 1;
+                [self initPeopleDataView];
+            }else{
             
-            [self initPeopleDataView];
+            }
+            
+            
             
             
             

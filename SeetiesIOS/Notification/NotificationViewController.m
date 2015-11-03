@@ -280,8 +280,7 @@
                 [Following_TypeArray addObject:type];
                 NSString *post_id =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"post_id"]];
                 [Following_PostIDArray addObject:post_id];
-                NSString *username =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"username"]];
-                [Following_UserNameArray addObject:username];
+
                 NSString *uid =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"uid"]];
                 [Following_uidArray addObject:uid];
                 NSString *message =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"message"]];
@@ -291,7 +290,7 @@
                 NSString *Date =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"date"]];
                 [Following_DateArray addObject:Date];
             }
-//            NSLog(@"Following_TypeArray is %lu",(unsigned long)[Following_TypeArray count]);
+            NSLog(@"Following_TypeArray is %lu",(unsigned long)[Following_TypeArray count]);
 //            NSLog(@"Following_PostIDArray is %lu",(unsigned long)[Following_PostIDArray count]);
 //            NSLog(@"Following_UserNameArray is %lu",(unsigned long)[Following_UserNameArray count]);
 //            NSLog(@"Following_uidArray is %lu",(unsigned long)[Following_uidArray count]);
@@ -305,6 +304,9 @@
                 for (NSDictionary * dict in UserInfoData){
                     NSString *user_thumbnail =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"url"]];
                     [Following_UserThumbnailArray addObject:user_thumbnail];
+                    NSString *username =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"username"]];
+                    [Following_UserNameArray addObject:username];
+                    break;
                 }
                 
 
@@ -323,11 +325,11 @@
                 [Following_PostThumbnailArray addObject:result];
             
             }
-//            NSLog(@"Following_PostThumbnailArray is %lu",(unsigned long)[Following_PostThumbnailArray count]);
+            NSLog(@"Following_PostThumbnailArray is %lu",(unsigned long)[Following_PostThumbnailArray count]);
 
 
 //            NSLog(@"Following_UserThumbnailArray is %@",Following_UserThumbnailArray);
-//            NSLog(@"Following_PostThumbnailArray is %@",Following_PostThumbnailArray);
+ //           NSLog(@"Following_PostThumbnailArray is %@",Following_PostThumbnailArray);
             [self InitFollowingDataView];
         }
         
@@ -455,7 +457,7 @@
         [Line01 setFrame:CGRectMake(0, 80 + i * 80, screenWidth, 1)];
         [Line01 setBackgroundColor:[UIColor colorWithRed:239.0/255.0f green:239.0/255.0f blue:244.0/255.0f alpha:1.0]];
         [FollowingView addSubview:Line01];
-        
+
         AsyncImageView *ShowUserImage = [[AsyncImageView alloc]init];
         ShowUserImage.frame = CGRectMake(13, 9 + i * 80, 40 , 40);
         ShowUserImage.contentMode = UIViewContentModeScaleAspectFill;
@@ -465,7 +467,7 @@
         ShowUserImage.layer.masksToBounds = YES;
         ShowUserImage.layer.borderColor=[[UIColor clearColor] CGColor];
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserImage];
-        
+
         AsyncImageView *ShowPostImage = [[AsyncImageView alloc]init];
         ShowPostImage.frame = CGRectMake(screenWidth - 13 - 40, 9 + i * 80, 40 , 40);
         ShowPostImage.contentMode = UIViewContentModeScaleAspectFill;
@@ -475,18 +477,33 @@
         ShowPostImage.layer.cornerRadius = 5;
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowPostImage];
         
+        UILabel *ShowMessage = [[UILabel alloc]init];
+        ShowMessage.frame = CGRectMake(66, 9 + i * 80, screenWidth - 132, 40);
+        ShowMessage.numberOfLines = 5;
+        ShowMessage.textAlignment = NSTextAlignmentLeft;
+        ShowMessage.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:14];
+        ShowMessage.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+        ShowMessage.backgroundColor = [UIColor clearColor];
+        NSString *GetString = [[NSString alloc]initWithFormat:@"%@",[Following_MessageArray objectAtIndex:i]];
+        GetString = [GetString stringByAppendingString:[NSString stringWithFormat:@"<style>body{font-family: '%@'; font-size:%dpx; color:#666666;}</style>",
+                                                        @"ProximaNovaSoft-Regular",
+                                                        15]];
+        NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[GetString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+        ShowMessage.attributedText = attrStr;//[self convertHtmlPlainText:GetString]
+        
+        
         UIButton *ButtonClick = [UIButton buttonWithType:UIButtonTypeCustom];
         [ButtonClick setTitle:@"" forState:UIControlStateNormal];
         [ButtonClick setFrame:CGRectMake(0, 0 + i * 80, screenWidth, 80)];
         [ButtonClick setBackgroundColor:[UIColor clearColor]];
         ButtonClick.tag = i;
-        //[ButtonClick addTarget:self action:@selector(FollowingButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [ButtonClick addTarget:self action:@selector(FollowingButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
         
         UIImageView *MiniIcon = [[UIImageView alloc]init];
         MiniIcon.frame = CGRectMake(66, 50 + i * 80, 23, 28);
        // MiniIcon.contentMode = UIViewContentModeScaleAspectFit;
         MiniIcon.image = [UIImage imageNamed:@"NotificationCollect.png"];
-        
+
         NSString *GetType = [[NSString alloc]initWithFormat:@"%@",[Following_TypeArray objectAtIndex:i]];
         if ([GetType isEqualToString:@"follow"]) {
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[Following_UserThumbnailArray objectAtIndex:i]];
@@ -498,6 +515,8 @@
             }
             MiniIcon.frame = CGRectMake(66, 50 + i * 80, 23, 28);
             MiniIcon.image = [UIImage imageNamed:@"NotificationFollow.png"];
+            
+            ShowMessage.frame = CGRectMake(66, 9 + i * 80, screenWidth - 71, 40);
         }else if ([GetType isEqualToString:@"like"]){
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[Following_UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
@@ -562,6 +581,8 @@
             }
             MiniIcon.frame = CGRectMake(66, 50 + i * 80, 23, 28);
             MiniIcon.image = [UIImage imageNamed:@"NotificationCollect.png"];
+            
+            ShowMessage.frame = CGRectMake(66, 9 + i * 80, screenWidth - 71, 40);
         }else{ // handle new type
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[Following_UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
@@ -572,23 +593,13 @@
             }
             MiniIcon.frame = CGRectMake(66, 50 + i * 80, 23, 28);
             MiniIcon.image = [UIImage imageNamed:@"NotificationBySeeties.png"];
+            
+            ShowMessage.frame = CGRectMake(66, 9 + i * 80, screenWidth - 71, 40);
         }
         
         
         
-        UILabel *ShowMessage = [[UILabel alloc]init];
-        ShowMessage.frame = CGRectMake(66, 9 + i * 80, screenWidth - 132, 40);
-        ShowMessage.numberOfLines = 5;
-        ShowMessage.textAlignment = NSTextAlignmentLeft;
-        ShowMessage.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:14];
-        ShowMessage.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-        ShowMessage.backgroundColor = [UIColor clearColor];
-        NSString *GetString = [[NSString alloc]initWithFormat:@"%@",[Following_MessageArray objectAtIndex:i]];
-        GetString = [GetString stringByAppendingString:[NSString stringWithFormat:@"<style>body{font-family: '%@'; font-size:%dpx; color:#666666;}</style>",
-                                                  @"ProximaNovaSoft-Regular",
-                                                  15]];
-        NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[GetString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
-        ShowMessage.attributedText = attrStr;//[self convertHtmlPlainText:GetString]
+
         NSString *start = [[NSString alloc]initWithFormat:@"%@",[Following_DateArray objectAtIndex:i]];
         NSDateFormatter *f = [[NSDateFormatter alloc] init];
         [f setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
@@ -628,7 +639,7 @@
         ShowDate.textColor = [UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0f];
         ShowDate.backgroundColor = [UIColor clearColor];
         ShowDate.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:12];
-        
+
         [FollowingView addSubview:ShowUserImage];
         [FollowingView addSubview:ShowMessage];
         [FollowingView addSubview:ShowPostImage];
@@ -638,6 +649,7 @@
         
         FollowingView.frame = CGRectMake(0, GetHeight, screenWidth, 80 + i * 80);
     }
+    
     CGSize contentSize = MainScroll.frame.size;
     contentSize.height = GetHeight + FollowingView.frame.size.height;
     MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
@@ -694,7 +706,20 @@
         MiniIcon.image = [UIImage imageNamed:@"NotificationCollect.png"];
         
         
+        UILabel *ShowMessage = [[UILabel alloc]init];
+        ShowMessage.frame = CGRectMake(66, 9 + i * 80, screenWidth - 132, 40);
+        ShowMessage.numberOfLines = 5;
+        ShowMessage.textAlignment = NSTextAlignmentLeft;
+        ShowMessage.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:14];
+        ShowMessage.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+        ShowMessage.backgroundColor = [UIColor clearColor];
         
+        NSString *GetString = [[NSString alloc]initWithFormat:@"%@",[MessageArray objectAtIndex:i]];
+        GetString = [GetString stringByAppendingString:[NSString stringWithFormat:@"<style>body{font-family: '%@'; font-size:%dpx; color:#666666;}</style>",
+                                                        @"ProximaNovaSoft-Regular",
+                                                        15]];
+        NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[GetString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+        ShowMessage.attributedText = attrStr;//[self convertHtmlPlainText:GetString]
         
         NSString *GetType = [[NSString alloc]initWithFormat:@"%@",[TypeArray objectAtIndex:i]];
         if ([GetType isEqualToString:@"follow"]) {
@@ -707,6 +732,8 @@
             }
             MiniIcon.frame = CGRectMake(66, 50 + i * 80, 23, 28);
             MiniIcon.image = [UIImage imageNamed:@"NotificationFollow.png"];
+            
+            ShowMessage.frame = CGRectMake(66, 9 + i * 80, screenWidth - 71, 40);
         }else if ([GetType isEqualToString:@"like"]){
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
@@ -770,6 +797,8 @@
             }
             MiniIcon.frame = CGRectMake(66, 50 + i * 80, 23, 28);
             MiniIcon.image = [UIImage imageNamed:@"NotificationCollect.png"];
+            
+            ShowMessage.frame = CGRectMake(66, 9 + i * 80, screenWidth - 71, 40);
         }else if([GetType isEqualToString:@"post_shared"] || [GetType isEqualToString:@"collection_shared"]){
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
@@ -780,6 +809,8 @@
             }
             MiniIcon.frame = CGRectMake(66, 50 + i * 80, 23, 28);
             MiniIcon.image = [UIImage imageNamed:@"NotificationShare.png"];
+            
+            ShowMessage.frame = CGRectMake(66, 9 + i * 80, screenWidth - 71, 40);
         }else{ // handle new type
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
@@ -790,24 +821,13 @@
             }
             MiniIcon.frame = CGRectMake(66, 50 + i * 80, 23, 28);
             MiniIcon.image = [UIImage imageNamed:@"NotificationBySeeties.png"];
+            
+            ShowMessage.frame = CGRectMake(66, 9 + i * 80, screenWidth - 71, 40);
         }
     
     
     
-        UILabel *ShowMessage = [[UILabel alloc]init];
-        ShowMessage.frame = CGRectMake(66, 9 + i * 80, screenWidth - 132, 40);
-        ShowMessage.numberOfLines = 5;
-        ShowMessage.textAlignment = NSTextAlignmentLeft;
-        ShowMessage.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:14];
-        ShowMessage.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-        ShowMessage.backgroundColor = [UIColor clearColor];
 
-        NSString *GetString = [[NSString alloc]initWithFormat:@"%@",[MessageArray objectAtIndex:i]];
-        GetString = [GetString stringByAppendingString:[NSString stringWithFormat:@"<style>body{font-family: '%@'; font-size:%dpx; color:#666666;}</style>",
-                                                        @"ProximaNovaSoft-Regular",
-                                                        15]];
-        NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[GetString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
-        ShowMessage.attributedText = attrStr;//[self convertHtmlPlainText:GetString]
         NSString *start = [[NSString alloc]initWithFormat:@"%@",[DateArray objectAtIndex:i]];
         NSDateFormatter *f = [[NSDateFormatter alloc] init];
         [f setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];

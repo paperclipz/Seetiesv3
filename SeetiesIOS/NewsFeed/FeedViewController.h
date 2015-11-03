@@ -60,6 +60,11 @@
     NSMutableArray *arrFriendUserName;
     NSMutableArray *arrDealID;
     
+    NSMutableArray *arrCollectionID;
+    NSMutableArray *arrCollectionName;
+    NSMutableArray *arrCollectionDescription;
+    
+    
     NSString *GetNextPaging;
     
     
@@ -82,6 +87,8 @@
     UIScrollView *SUserScrollview_Featured;
     UIPageControl *SUserpageControl_Featured;
     UILabel *ShowSUserCount_Featured;
+    
+    UIScrollView *CollectionScrollview;
     
     UrlDataClass *DataUrl;
     

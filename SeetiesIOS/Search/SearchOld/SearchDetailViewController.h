@@ -115,6 +115,7 @@
     
     
     int SelfSearchCurrentLocation;
+    NSInteger CheckUserInitView;
 }
 -(void)GetSearchKeyword:(NSString *)Keyword Getlat:(NSString *)lat GetLong:(NSString *)Long GetLocationName:(NSString *)LocationName GetCurrentLat:(NSString *)CurrentLat GetCurrentLong:(NSString *)CurrentLong;
 -(void)GetTitle:(NSString *)String;

@@ -74,6 +74,7 @@
     
     NSInteger MainGetButtonIDN;
     NSInteger CheckFollowView;
+    NSInteger CheckUserLoad;
    // LLARingSpinnerView *spinnerView;
 }
 -(IBAction)BackButton:(id)sender;

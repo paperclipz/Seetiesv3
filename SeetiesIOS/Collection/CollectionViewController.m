@@ -74,6 +74,7 @@
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight, screenWidth, 50);
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"CHANGE_NOTIFICATION_HIDE" object:nil];
 
 }
 -(void)viewDidDisappear:(BOOL)animated{

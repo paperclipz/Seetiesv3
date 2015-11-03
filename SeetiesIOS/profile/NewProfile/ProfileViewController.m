@@ -910,7 +910,7 @@
     }
     // ========== url Link  ==========
     
-    self.userProfileModel.personal_link = @"www.youtube.com";
+    //self.userProfileModel.personal_link = @"www.youtube.com";
     if (![self.userProfileModel.personal_link isNull]) {
         self.lblDescription.enabledTextCheckingTypes = NSTextCheckingTypeLink; // Automatically detect links when the label text is subsequently changed
         self.lblDescription.delegate = self; // Delegate methods are called when the user taps on a link (see `TTTAttributedLabelDelegate` protocol)

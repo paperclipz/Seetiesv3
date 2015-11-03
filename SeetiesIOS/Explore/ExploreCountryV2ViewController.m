@@ -47,7 +47,7 @@
     CheckFirstTimeLoad = 0;
     TotalPage = 1;
     CurrentPage = 0;
-    
+    CheckUserLoad = 0;
     CheckLoadDone = NO;
     
     UISwipeGestureRecognizer * swipeleft=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeRight:)];
@@ -87,15 +87,17 @@
         CurrentPage = 0;
         DataCount = 0;
         DataTotal = 0;
+        CheckUserLoad = 0;
         CheckLoadDone = NO;
        // [self GetFeaturedUserData];
-        [self GetFeaturedUserData];
+      //  [self GetFeaturedUserData];
     }
     
     
     if (CheckLoadDone == NO) {
 
-        [ShowActivity startAnimating];
+        //[ShowActivity startAnimating];
+        [self InitView];
     }else{
     
     }
@@ -132,8 +134,8 @@
     lblTitle.text =  self.model.name;
    // NSLog(@"lblTitle is %@",lblTitle);
    // [self GetDataFromServer];
-   // [self InitView];
-    [self GetFeaturedUserData];
+  //  [self InitView];
+  //  [self GetFeaturedUserData];
     
 
 }
@@ -147,7 +149,7 @@
 }
 -(void)InitView{
 
-    
+    NSLog(@"work here");
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
     GetHeight = 0;
@@ -231,7 +233,7 @@
     [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:41.0f/255.0f green:182.0f/255.0f blue:246.0f/255.0f alpha:1.0]];
     [MainScroll addSubview:ProfileControl];
     
-    GetHeight += 29 + 20;
+    GetHeight += 29 + 20;//https://itcave-api.seeties.me/v2.0/explore/country/1/posts?token=JDJ5JDEwJFRCdnBwdWluUEZZaHlKWWx2dXg3RHVhelJxZzRBY0VFN2hJVFZINWRQeWhCbkVGNXJPZzZh&featured=0&page=1
     
     PostView = [[UIView alloc]init];
     PostView.frame = CGRectMake(0, GetHeight, screenWidth, 400);
@@ -246,11 +248,11 @@
     PeopleView.hidden = YES;
     PostView.hidden = NO;
     
-    [self InitPostDataView];
+    //[self InitPostDataView];
+     [self GetDataFromServer];
     
     CheckLoadDone = YES;
 
-    [ShowActivity stopAnimating];
 }
 - (void)segmentAction:(UISegmentedControl *)segment
 {
@@ -261,7 +263,7 @@
             PostView.hidden = NO;
             PeopleView.hidden = YES;
             SearchButton.hidden = NO;
-           [self InitPostDataView];
+          // [self InitPostDataView];
             
             break;
         case 1:
@@ -269,7 +271,14 @@
             PostView.hidden = YES;
             PeopleView.hidden = NO;
             SearchButton.hidden = YES;
-            [self initPeopleDataView];
+          //  [self initPeopleDataView];
+            
+            if (CheckUserLoad == 0) {
+                CheckUserLoad = 1;
+                [self GetFeaturedUserData];
+            }else{
+            
+            }
             
             break;
         default:
@@ -695,7 +704,7 @@
     }
 }
 -(void)GetFeaturedUserData{
-    //[ShowActivity startAnimating];
+    [ShowActivity startAnimating];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
     
@@ -718,7 +727,7 @@
     }
 }
 -(void)GetDataFromServer{
-   // [ShowActivity startAnimating];
+    [ShowActivity startAnimating];
     if (CurrentPage == TotalPage) {
         
     }else{
@@ -900,7 +909,8 @@
 
                 CheckLoad_Explore = NO;
                 
-                [self InitView];
+             //   [self InitView];
+                [self InitPostDataView];
             }
         }
     }else if(connection == theConnection_GetUserData){
@@ -979,7 +989,7 @@
                 }
 
                 //NSLog(@"User_PhotoArray is %@",User_PhotoArray);
-                [self GetDataFromServer];
+                [self initPeopleDataView];
             }
         }
     }else if(connection == theConnection_QuickCollect){
