@@ -32,6 +32,7 @@
     NSURLConnection *theConnection_CollectionData;
     NSURLConnection *theConnection_GetTranslate;
     NSURLConnection *theConnection_QuickCollect;
+    NSURLConnection *theConnection_FollowCollect;
     
     NSInteger TotalPage;
     NSInteger CurrentPage;

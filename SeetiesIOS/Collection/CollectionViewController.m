@@ -478,6 +478,23 @@
             }
             
         }
+    }else if(connection == theConnection_FollowCollect){
+        NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+        NSLog(@"Follow Collection return get data to server ===== %@",GetData);
+        
+        NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *myError = nil;
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
+        NSLog(@"Expert Json = %@",res);
+        
+        
+        NSString *statusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
+        NSLog(@"statusString is %@",statusString);
+        
+        if ([statusString isEqualToString:@"ok"]) {
+            [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success follow this collection" type:TSMessageNotificationTypeSuccess];
+            
+        }
     }
 }
 -(void)InitView{
@@ -639,30 +656,26 @@
         GetHeight += 50;
     }
 
-    if ([GetPermisionUser isEqualToString:@"self"]) {
-        //edit button
-        UIButton *EditButton = [[UIButton alloc]init];
-        EditButton.frame = CGRectMake((screenWidth / 2) - 65, GetHeight, 130, 35);
-        EditButton.layer.cornerRadius= 18;
-        EditButton.layer.borderWidth = 1;
-        EditButton.layer.masksToBounds = YES;
-        EditButton.layer.borderColor=[[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0] CGColor];
-        EditButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
-        [EditButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
-        EditButton.backgroundColor = [UIColor whiteColor];
+    //edit button
+    UIButton *EditButton = [[UIButton alloc]init];
+    EditButton.frame = CGRectMake((screenWidth / 2) - 65, GetHeight, 130, 35);
+    EditButton.layer.cornerRadius= 18;
+    EditButton.layer.borderWidth = 1;
+    EditButton.layer.masksToBounds = YES;
+    EditButton.layer.borderColor=[[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0] CGColor];
+    EditButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
+    [EditButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
+    EditButton.backgroundColor = [UIColor whiteColor];
+    [EditButton setTitle:@"Edit" forState:UIControlStateNormal];
+    [EditButton addTarget:self action:@selector(EditButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+    if ([GetPermisionUser isEqualToString:@"Self"] || [GetPermisionUser isEqualToString:@"self"]) {
         [EditButton setTitle:@"Edit" forState:UIControlStateNormal];
-        [EditButton addTarget:self action:@selector(EditButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
-//        if ([GetPermisionUser isEqualToString:@"Self"]) {
-//            [EditButton setTitle:@"Edit" forState:UIControlStateNormal];
-//        }else{
-//            [EditButton setTitle:@"Collect" forState:UIControlStateNormal];
-//        }
-        [MainScroll addSubview:EditButton];
-        
-        GetHeight += 45;
     }else{
-       
+        [EditButton setTitle:@"Follow" forState:UIControlStateNormal];
     }
+    [MainScroll addSubview:EditButton];
+        
+    GetHeight += 45;
 
     
     UIButton *Line01 = [[UIButton alloc]init];
@@ -715,14 +728,21 @@
 }
 -(IBAction)EditButtonOnClick:(id)sender{
     
-    _navEditCollectionViewController = nil;
-    _editCollectionViewController = nil;// for the view controller to reinitialize
+    if ([GetPermisionUser isEqualToString:@"Self"]) {
+        _navEditCollectionViewController = nil;
+        _editCollectionViewController = nil;// for the view controller to reinitialize
+        
+        [LoadingManager show];
+        
+        [self.editCollectionViewController initData:GetID];
+        [LoadingManager show];
+        [self.navigationController pushViewController:self.editCollectionViewController animated:YES];
+    }else{
+        NSLog(@"follow collection button on click");
+        [self FollowCollection];
+    }
     
-    [LoadingManager show];
-    
-    [self.editCollectionViewController initData:GetID];
-    [LoadingManager show];
-    [self.navigationController pushViewController:self.editCollectionViewController animated:YES];
+
 }
 #pragma mark - Declaration
 -(EditCollectionViewController*)editCollectionViewController
@@ -1392,4 +1412,48 @@
         
     }
 }
+-(void)FollowCollection{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *GetUseruid = [defaults objectForKey:@"Useruid"];
+    //Server Address URL
+    NSString *urlString = [NSString stringWithFormat:@"%@%@/collections/%@/follow",DataUrl.UserWallpaper_Url,GetUseruid,GetID];
+    NSLog(@"Send Follow Collection urlString is %@",urlString);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
+    
+    NSMutableData *body = [NSMutableData data];
+    
+    NSString *boundary = @"---------------------------14737809831466499882746641449";
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+    [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //parameter first
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    //Attaching the key name @"parameter_first" to the post body
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"token\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    //Attaching the content to be posted ( ParameterFirst )
+    [body appendData:[[NSString stringWithFormat:@"%@",GetExpertToken] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //close form
+    [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSLog(@"Request  = %@",[[NSString alloc] initWithData:body encoding:NSUTF8StringEncoding]);
+    
+    //setting the body of the post to the reqeust
+    [request setHTTPBody:body];
+    
+    theConnection_FollowCollect = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    if(theConnection_FollowCollect) {
+        //  NSLog(@"Connection Successful");
+        webData = [NSMutableData data];
+    } else {
+        
+    }
+}
+
 @end
