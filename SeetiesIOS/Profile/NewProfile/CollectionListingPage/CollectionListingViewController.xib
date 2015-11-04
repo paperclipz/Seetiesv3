@@ -71,6 +71,7 @@
                         <segment title="My Collections"/>
                         <segment title="Following Collections"/>
                     </segments>
+                    <color key="tintColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <action selector="btnSegmentedClicked:" destination="-1" eventType="valueChanged" id="4Ek-aZ-KyH"/>
                     </connections>
