@@ -2774,10 +2774,23 @@
                 
                 NSString *TempUsername = [[NSString alloc]initWithFormat:@"%@",[arrUserName objectAtIndex:i]];
                 NSArray *SplitArray_username = [TempUsername componentsSeparatedByString:@","];
+                arrCollectionName = [[NSMutableArray alloc]initWithArray:SplitArray_username];
+                
                 NSString *TempUserImage = [[NSString alloc]initWithFormat:@"%@",[arrUserImage objectAtIndex:i]];
                 NSArray *SplitArray_UserImage = [TempUserImage componentsSeparatedByString:@","];
                 NSString *TempImage = [[NSString alloc]initWithFormat:@"%@",[arrImage objectAtIndex:i]];
                 NSArray *SplitArray_Image = [TempImage componentsSeparatedByString:@","];
+                
+                NSString *TempTitle = [[NSString alloc]initWithFormat:@"%@",[arrTitle objectAtIndex:i]];
+                NSArray *SplitArray_Title = [TempTitle componentsSeparatedByString:@","];
+                NSString *TempCount = [[NSString alloc]initWithFormat:@"%@",[arrMessage objectAtIndex:i]];
+                NSArray *SplitArray_Count = [TempCount componentsSeparatedByString:@","];
+                
+                
+                NSString *TempCollectionID = [[NSString alloc]initWithFormat:@"%@",[arrPostID objectAtIndex:i]];
+                NSArray *SplitArray_Id = [TempCollectionID componentsSeparatedByString:@","];
+                arrCollectionID = [[NSMutableArray alloc]initWithArray:SplitArray_Id];
+                
                // NSLog(@"SplitArray_Image is %@",SplitArray_Image);
                 for (int i = 0; i < [SplitArray_username count]; i++) {
                     UIButton *TempButton = [[UIButton alloc]init];
@@ -2838,7 +2851,20 @@
                     [CollectionScrollview addSubview:ShowOverlayImg];
                     
                     
-                    AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
+                    
+                    UIButton *OpenCollectionButton = [[UIButton alloc]init];
+                    OpenCollectionButton.frame = CGRectMake(10 + i * (screenWidth - 45), 50 , screenWidth - 50 ,190);
+                    [OpenCollectionButton setTitle:@"" forState:UIControlStateNormal];
+                    OpenCollectionButton.backgroundColor = [UIColor clearColor];
+                    OpenCollectionButton.layer.cornerRadius = 10;
+                    OpenCollectionButton.layer.borderWidth=1;
+                    OpenCollectionButton.layer.masksToBounds = YES;
+                    OpenCollectionButton.layer.borderColor=[[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f] CGColor];
+                    [OpenCollectionButton addTarget:self action:@selector(OpenCollectionButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+                    OpenCollectionButton.tag = i;
+                    [CollectionScrollview addSubview: OpenCollectionButton];
+                    
+                     AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
                     ShowUserProfileImage.frame = CGRectMake(25 + i * (screenWidth - 45), 51 + 10, 40, 40);
                     // ShowUserProfileImage.image = [UIImage imageNamed:@"DemoProfile.jpg"];
                     ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
@@ -2857,7 +2883,15 @@
                     }
                     [CollectionScrollview addSubview:ShowUserProfileImage];
                     
-                    NSString *usernameTemp = [[NSString alloc]initWithFormat:@"%@",[SplitArray_username objectAtIndex:i]];
+                    UIButton *OpenUserProfileButton = [[UIButton alloc]init];
+                    [OpenUserProfileButton setTitle:@"" forState:UIControlStateNormal];
+                    OpenUserProfileButton.backgroundColor = [UIColor clearColor];
+                    OpenUserProfileButton.frame = CGRectMake(25 + i * (screenWidth - 45), 51 + 10, screenWidth - 75 - 100, 40);
+                    [OpenUserProfileButton addTarget:self action:@selector(CollectionUserProfileOnClick:) forControlEvents:UIControlEventTouchUpInside];
+                    OpenUserProfileButton.tag = i;
+                    [CollectionScrollview addSubview:OpenUserProfileButton];
+                    
+                    NSString *usernameTemp = [[NSString alloc]initWithFormat:@"%@",[arrCollectionName objectAtIndex:i]];
                     
                     UILabel *ShowUserName = [[UILabel alloc]init];
                     ShowUserName.frame = CGRectMake(75 + i * (screenWidth - 45), 51 + 10, screenWidth - 75 - 100, 40);
@@ -2868,7 +2902,37 @@
                     ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
                     [CollectionScrollview addSubview:ShowUserName];
                     
+                    UILabel *ShowCollectionTitle = [[UILabel alloc]init];
+                    ShowCollectionTitle.frame = CGRectMake(25 + i * (screenWidth - 45), 180, screenWidth - 190 , 25);
+                    ShowCollectionTitle.text = [SplitArray_Title objectAtIndex:i];
+                    ShowCollectionTitle.backgroundColor = [UIColor clearColor];
+                    ShowCollectionTitle.textColor = [UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f blue:51.0f/255.0f alpha:1.0f];
+                    ShowCollectionTitle.textAlignment = NSTextAlignmentLeft;
+                    ShowCollectionTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:16];
+                    [CollectionScrollview addSubview:ShowCollectionTitle];
                     
+                    
+                    NSString *TempCount = [[NSString alloc]initWithFormat:@"%@ recommendations",[SplitArray_Count objectAtIndex:i]];
+                    
+                    UILabel *ShowCollectionCount = [[UILabel alloc]init];
+                    ShowCollectionCount.frame = CGRectMake(25 + i * (screenWidth - 45), 205, screenWidth - 190, 25);
+                    ShowCollectionCount.text = TempCount;
+                    ShowCollectionCount.backgroundColor = [UIColor clearColor];
+                    ShowCollectionCount.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+                    ShowCollectionCount.textAlignment = NSTextAlignmentLeft;
+                    ShowCollectionCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:14];
+                    [CollectionScrollview addSubview:ShowCollectionCount];
+                    
+                    
+                    UIButton *QuickCollectButtonLocalQR = [[UIButton alloc]init];
+                    [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:LocalisedString(@"CollectBtn.png")] forState:UIControlStateNormal];
+                    [QuickCollectButtonLocalQR setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+                    [QuickCollectButtonLocalQR.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
+                    QuickCollectButtonLocalQR.backgroundColor = [UIColor clearColor];
+                    QuickCollectButtonLocalQR.frame = CGRectMake((screenWidth - 50 - 140) + i * (screenWidth - 45), 180, 140, 50);
+//                    [QuickCollectButtonLocalQR addTarget:self action:@selector(CollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+//                    QuickCollectButtonLocalQR.tag = i + 5000;
+                    [CollectionScrollview addSubview:QuickCollectButtonLocalQR];
                     
                     
                     CollectionScrollview.contentSize = CGSizeMake(10 + i * (screenWidth - 40) + (screenWidth - 50), 200);
@@ -3537,7 +3601,7 @@
                              NSMutableArray *TempTitleArray = [[NSMutableArray alloc]init];
                              NSString *TempName;
                              for (NSDictionary * dict in GetItemsData) {
-                                 TempName = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"description"]];
+                                 TempName = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"collection_posts_count"]];
                                  if ([TempName length] == 0 || TempName == nil || [TempName isEqualToString:@"(null)"] || [TempName isEqualToString:@"{}"]) {
                                      
                                  }else{
@@ -4551,6 +4615,25 @@
     if( theConnection_TrackPromotedUserViews ){
         webData = [NSMutableData data];
     }
+}
+
+//Collection 2.0
+-(IBAction)OpenCollectionButtonOnClick:(id)sender{
+
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    
+    CollectionViewController *OpenCollectionView = [[CollectionViewController alloc]init];
+    [self.navigationController pushViewController:OpenCollectionView animated:YES];
+    [OpenCollectionView GetCollectionID:[arrCollectionID objectAtIndex:getbuttonIDN] GetPermision:@"User"];
+}
+-(IBAction)CollectionUserProfileOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSString *Getname = [[NSString alloc]initWithFormat:@"%@",[arrCollectionName objectAtIndex:getbuttonIDN]];
+    NSLog(@"CollectionUserProfileOnClick Getname is %@",Getname);
+    
+    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+    [NewUserProfileV2View GetUserName:Getname];
 }
 
 @end
