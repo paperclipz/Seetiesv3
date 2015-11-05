@@ -49,7 +49,6 @@
     CurrentPage = 0;
     GetHeight = 0;
     CheckFirstTimeLoad = 0;
-    GetHeight = 0;
     GetCollectionHeight = 0;
     CheckShowMessage = 0;
     TempHeight = 0;

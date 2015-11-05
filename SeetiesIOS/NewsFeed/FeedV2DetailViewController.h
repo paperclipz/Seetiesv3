@@ -46,6 +46,7 @@
     NSURLConnection *theConnection_Following;
     NSURLConnection *theConnection_DeletePost;
     NSURLConnection *theConnection_NearbyPost;
+    NSURLConnection *theConnection_CollectionSuggestion;
     
     NSMutableArray *captionArray;
     NSMutableArray *UrlArray;
@@ -217,6 +218,7 @@
     NSMutableArray *TempGetLanguageArray;
     
     int CheckNearbyPost;
+    int CheckCollectionSuggestions;
     int GetPlaceNameHeight;
     
     NSInteger ImageCount;

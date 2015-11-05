@@ -43,8 +43,8 @@
     DataUrl = [[UrlDataClass alloc]init];
     MainScroll.delegate = self;
     UserScroll.delegate = self;
-    MainScroll.frame = CGRectMake(0, 95 , screenWidth, screenHeight - 95);
-    ShowSearchUserView.frame = CGRectMake(0, 114, screenWidth, screenHeight - 114);
+    MainScroll.frame = CGRectMake(0, 95 , screenWidth, screenHeight - 95 - 50);
+    ShowSearchUserView.frame = CGRectMake(0, 114, screenWidth, screenHeight - 114 - 50);
     UserScroll.frame = CGRectMake(0, 0 , ShowSearchUserView.frame.size.width, ShowSearchUserView.frame.size.height);
     StringSortby = @"3";
     CheckInt = 0;
@@ -128,7 +128,7 @@
 -(IBAction)BackButton:(id)sender{
   
     if (self.navigationController) {
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self.navigationController popViewControllerAnimated:YES];
     }
     else{
         [self dismissViewControllerAnimated:NO completion:nil];
@@ -226,6 +226,7 @@
             DataTotal = 0;
             heightcheck = 0;
             SelfSearchCurrentLocation = 0;
+            CheckUserInitView = 0;
             [self SendSearchKeywordData];
         }
     }else if(textField == SearchAddressField){
@@ -238,6 +239,7 @@
         DataTotal = 0;
         heightcheck = 0;
         SelfSearchCurrentLocation = 0;
+        CheckUserInitView = 0;
     [self SendSearchKeywordData];
     }
     ShowSearchLocationView.hidden = YES;

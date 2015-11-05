@@ -28,7 +28,7 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
     TitleLabel.frame = CGRectMake(15, 20, screenWidth - 30, 44);
-    TitleLabel.text = CustomLocalisedString(@"NearbyRecommendations", nil);
+    TitleLabel.text = LocalisedString(@"Nearby recommendations");
     MainScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight - 64);
     
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
@@ -200,11 +200,11 @@
         
         heightcheck += 245 + 5;
         
-        UIImageView *ShowPin = [[UIImageView alloc]init];
-        ShowPin.image = [UIImage imageNamed:@"location_icon.png"];
-        ShowPin.frame = CGRectMake(20, heightcheck + 4, 9, 12);
+        UIImageView *ShowPinLocalQR = [[UIImageView alloc]init];
+        ShowPinLocalQR.image = [UIImage imageNamed:@"LocationpinIcon.png"];
+        ShowPinLocalQR.frame = CGRectMake(20, heightcheck, 18, 18);
         //ShowPin.frame = CGRectMake(15, 210 + 8 + heightcheck + i, 8, 11);
-        [MainScroll addSubview:ShowPin];
+        [MainScroll addSubview:ShowPinLocalQR];
         
         UILabel *ShowAddress = [[UILabel alloc]init];
         ShowAddress.frame = CGRectMake(40, heightcheck, screenWidth - 80, 20);

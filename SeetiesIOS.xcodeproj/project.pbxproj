@@ -549,6 +549,12 @@
 		0BA94DC51BE9B71F003AB2E4 /* WalkthroughFeed2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA94BAF1BE9B71F003AB2E4 /* WalkthroughFeed2.png */; };
 		0BA94DC61BE9B71F003AB2E4 /* WalkthroughPost.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA94BB01BE9B71F003AB2E4 /* WalkthroughPost.png */; };
 		0BA94DC71BE9B71F003AB2E4 /* WalkthroughPostDetails.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA94BB11BE9B71F003AB2E4 /* WalkthroughPostDetails.png */; };
+		0BA94DCB1BEAFA64003AB2E4 /* SuggestedCollectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA94DC91BEAFA64003AB2E4 /* SuggestedCollectionsViewController.m */; };
+		0BA94DCC1BEAFA64003AB2E4 /* SuggestedCollectionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA94DCA1BEAFA64003AB2E4 /* SuggestedCollectionsViewController.xib */; };
+		0BA94DD11BEB6156003AB2E4 /* GreyShareIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA94DCD1BEB6156003AB2E4 /* GreyShareIcon@2x.png */; };
+		0BA94DD21BEB6156003AB2E4 /* GreyShareIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA94DCE1BEB6156003AB2E4 /* GreyShareIcon@3x.png */; };
+		0BA94DD31BEB6156003AB2E4 /* YellowCollections@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA94DCF1BEB6156003AB2E4 /* YellowCollections@2x.png */; };
+		0BA94DD41BEB6156003AB2E4 /* YellowCollections@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA94DD01BEB6156003AB2E4 /* YellowCollections@3x.png */; };
 		0BBFE04F1B9D624C004B17E9 /* EditProfileV2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBFE04D1B9D624C004B17E9 /* EditProfileV2ViewController.m */; };
 		0BBFE0501B9D624C004B17E9 /* EditProfileV2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBFE04E1B9D624C004B17E9 /* EditProfileV2ViewController.xib */; };
 		0BBFE0541B9D6260004B17E9 /* NotificationSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBFE0521B9D6260004B17E9 /* NotificationSettingsViewController.m */; };
@@ -1557,6 +1563,13 @@
 		0BA94BAF1BE9B71F003AB2E4 /* WalkthroughFeed2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WalkthroughFeed2.png; sourceTree = "<group>"; };
 		0BA94BB01BE9B71F003AB2E4 /* WalkthroughPost.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WalkthroughPost.png; sourceTree = "<group>"; };
 		0BA94BB11BE9B71F003AB2E4 /* WalkthroughPostDetails.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WalkthroughPostDetails.png; sourceTree = "<group>"; };
+		0BA94DC81BEAFA64003AB2E4 /* SuggestedCollectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestedCollectionsViewController.h; sourceTree = "<group>"; };
+		0BA94DC91BEAFA64003AB2E4 /* SuggestedCollectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestedCollectionsViewController.m; sourceTree = "<group>"; };
+		0BA94DCA1BEAFA64003AB2E4 /* SuggestedCollectionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SuggestedCollectionsViewController.xib; sourceTree = "<group>"; };
+		0BA94DCD1BEB6156003AB2E4 /* GreyShareIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GreyShareIcon@2x.png"; sourceTree = "<group>"; };
+		0BA94DCE1BEB6156003AB2E4 /* GreyShareIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GreyShareIcon@3x.png"; sourceTree = "<group>"; };
+		0BA94DCF1BEB6156003AB2E4 /* YellowCollections@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YellowCollections@2x.png"; sourceTree = "<group>"; };
+		0BA94DD01BEB6156003AB2E4 /* YellowCollections@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YellowCollections@3x.png"; sourceTree = "<group>"; };
 		0BBFE04C1B9D624C004B17E9 /* EditProfileV2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileV2ViewController.h; sourceTree = "<group>"; };
 		0BBFE04D1B9D624C004B17E9 /* EditProfileV2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileV2ViewController.m; sourceTree = "<group>"; };
 		0BBFE04E1B9D624C004B17E9 /* EditProfileV2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditProfileV2ViewController.xib; sourceTree = "<group>"; };
@@ -2740,6 +2753,10 @@
 		0BA94A3E1BE9B71F003AB2E4 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				0BA94DCD1BEB6156003AB2E4 /* GreyShareIcon@2x.png */,
+				0BA94DCE1BEB6156003AB2E4 /* GreyShareIcon@3x.png */,
+				0BA94DCF1BEB6156003AB2E4 /* YellowCollections@2x.png */,
+				0BA94DD01BEB6156003AB2E4 /* YellowCollections@3x.png */,
 				0BA94A3F1BE9B71F003AB2E4 /* CollectBtn@2x.png */,
 				0BA94A401BE9B71F003AB2E4 /* CollectBtn@3x.png */,
 				0BA94A411BE9B71F003AB2E4 /* CollectedBtn@2x.png */,
@@ -3848,6 +3865,9 @@
 				8A114CE31BE75CA0006AE3F0 /* NewCollectionViewController.h */,
 				8A114CE41BE75CA0006AE3F0 /* NewCollectionViewController.m */,
 				8A114CE51BE75CA0006AE3F0 /* NewCollectionViewController.xib */,
+				0BA94DC81BEAFA64003AB2E4 /* SuggestedCollectionsViewController.h */,
+				0BA94DC91BEAFA64003AB2E4 /* SuggestedCollectionsViewController.m */,
+				0BA94DCA1BEAFA64003AB2E4 /* SuggestedCollectionsViewController.xib */,
 			);
 			path = Collection;
 			sourceTree = "<group>";
@@ -5045,6 +5065,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BA94C331BE9B71F003AB2E4 /* BrithdayIcon@2x.png in Resources */,
+				0BA94DCC1BEAFA64003AB2E4 /* SuggestedCollectionsViewController.xib in Resources */,
 				0BA94BE41BE9B71F003AB2E4 /* CheckGrey@3x.png in Resources */,
 				0BA94CFF1BE9B71F003AB2E4 /* bgFeed.png in Resources */,
 				8A114CB91BE73F5D006AE3F0 /* buttonbg.png in Resources */,
@@ -5195,6 +5216,7 @@
 				0BA94D471BE9B71F003AB2E4 /* PreviewPhotoBlackOverlay@2x.png in Resources */,
 				0BA94D2B1BE9B71F003AB2E4 /* BluePhone@2x.png in Resources */,
 				8A114CA01BE73F5D006AE3F0 /* KVNProgressView.xib in Resources */,
+				0BA94DD11BEB6156003AB2E4 /* GreyShareIcon@2x.png in Resources */,
 				0BA94C641BE9B71F003AB2E4 /* OpenStatus@3x.png in Resources */,
 				0BA94C8A1BE9B71F003AB2E4 /* FilterIcon@3x.png in Resources */,
 				0BA94C341BE9B71F003AB2E4 /* BrithdayIcon@3x.png in Resources */,
@@ -5350,6 +5372,7 @@
 				0BA94CE71BE9B71F003AB2E4 /* InviteLineIcon@3x.png in Resources */,
 				0BA94CFD1BE9B71F003AB2E4 /* launch.png in Resources */,
 				0BA94D661BE9B71F003AB2E4 /* PrivateCollectionIcon@3x.png in Resources */,
+				0BA94DD41BEB6156003AB2E4 /* YellowCollections@3x.png in Resources */,
 				0BA94C601BE9B71F003AB2E4 /* ExploreOverlay@3x.png in Resources */,
 				0BA94D921BE9B71F003AB2E4 /* SelectPhotoArrow@3x.png in Resources */,
 				0BA94CE01BE9B71F003AB2E4 /* InviteFacebookIcon@2x.png in Resources */,
@@ -5560,6 +5583,7 @@
 				0BA94D401BE9B71F003AB2E4 /* PostLikeIcon@3x.png in Resources */,
 				0BA94CB51BE9B71F003AB2E4 /* ArtIcon@3x.png in Resources */,
 				8AC8F7431BDA414E00DEF14A /* ProfileV2ViewController.xib in Resources */,
+				0BA94DD31BEB6156003AB2E4 /* YellowCollections@2x.png in Resources */,
 				0BA94C201BE9B71F003AB2E4 /* AddLanguageBtn@3x.png in Resources */,
 				8AD6C2961B7072FB0040437E /* DraftsViewController.xib in Resources */,
 				0BA94D3E1BE9B71F003AB2E4 /* PostCommentIcon@3x.png in Resources */,
@@ -5579,6 +5603,7 @@
 				0BA94DBF1BE9B71F003AB2E4 /* WalkthroughFeed.png in Resources */,
 				0BA94D8A1BE9B71F003AB2E4 /* YellowCollected@3x.png in Resources */,
 				0BA94DA31BE9B71F003AB2E4 /* SimplifiedChinese.png in Resources */,
+				0BA94DD21BEB6156003AB2E4 /* GreyShareIcon@3x.png in Resources */,
 				0BA94C491BE9B71F003AB2E4 /* ConnectionWeak@2x.png in Resources */,
 				8AD6C0BF1B706CF30040437E /* FeedV2DetailViewController.xib in Resources */,
 				0BA94CB01BE9B71F003AB2E4 /* WelcomeLogo@2x.png in Resources */,
@@ -5827,6 +5852,7 @@
 				8A3409D11B8B0DCB009B66C3 /* UIImage+Scaling.m in Sources */,
 				8AD6C0F41B706CF30040437E /* SearchChangeLocationViewController.m in Sources */,
 				8AD6C0D01B706CF30040437E /* PInterestV2ViewController.m in Sources */,
+				0BA94DCB1BEAFA64003AB2E4 /* SuggestedCollectionsViewController.m in Sources */,
 				8A114CA91BE73F5D006AE3F0 /* CRMotionView.m in Sources */,
 				8A9F25CE1B8ED8BC00BB13BA /* EditHoursViewController.m in Sources */,
 				8AD6BE591B706CF30040437E /* DoImagePickerController.m in Sources */,
@@ -6141,7 +6167,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Reiner Lee (EFSLZ63588)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
@@ -6164,7 +6190,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "b384f4c6-d74f-484d-ad13-a68f30676c55";
+				PROVISIONING_PROFILE = "df5a5555-e157-4c05-b69a-baf6d03fc84d";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -6186,7 +6212,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Reiner Lee (EFSLZ63588)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
@@ -6203,7 +6229,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "b384f4c6-d74f-484d-ad13-a68f30676c55";
+				PROVISIONING_PROFILE = "df5a5555-e157-4c05-b69a-baf6d03fc84d";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -6215,7 +6241,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6250,7 +6276,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b384f4c6-d74f-484d-ad13-a68f30676c55";
+				PROVISIONING_PROFILE = "df5a5555-e157-4c05-b69a-baf6d03fc84d";
 			};
 			name = Debug;
 		};
@@ -6260,7 +6286,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6295,7 +6321,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b384f4c6-d74f-484d-ad13-a68f30676c55";
+				PROVISIONING_PROFILE = "df5a5555-e157-4c05-b69a-baf6d03fc84d";
 			};
 			name = Release;
 		};
