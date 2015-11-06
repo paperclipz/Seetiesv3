@@ -48,11 +48,13 @@
     NSString *GetDescription;
     NSString *GetUsername;
     NSString *GetUserProfile;
+    NSString *GetUserID;
     NSString *GetLocation;
     NSString *GetTags;
     NSMutableArray *ArrHashTag;
     NSMutableArray *GetLanguagesArray;
     NSString *GetIsPrivate;
+    NSString *GetFollowing;
     
     //Content Data
     NSMutableArray *Content_arrImage;
@@ -79,6 +81,8 @@
     NSString *CheckCollect;
     int GetCollectionHeight;
     IBOutlet UILabel *ShowTitleInTop;
+    
+    UIButton *MainEditButton;
 }
 @property(nonatomic,strong)EditCollectionViewController* editCollectionViewController;
 @property(nonatomic,strong)UINavigationController* navEditCollectionViewController;

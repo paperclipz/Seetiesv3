@@ -164,7 +164,9 @@
             GetDescription = [[NSString alloc]initWithFormat:@"%@",[ResData objectForKey:@"description"]];
             GetTags = [[NSString alloc]initWithFormat:@"%@",[ResData valueForKey:@"tags"]];
             GetIsPrivate = [[NSString alloc]initWithFormat:@"%@",[ResData valueForKey:@"is_private"]];
+            GetFollowing = [[NSString alloc]initWithFormat:@"%@",[ResData valueForKey:@"following"]];
             
+            NSLog(@"Collection GetFollowing data is %@",GetFollowing);
             NSArray *LanguageData = [ResData valueForKey:@"languages"];
             GetLanguagesArray = [[NSMutableArray alloc]initWithArray:LanguageData];
             
@@ -183,7 +185,8 @@
             GetUsername = [[NSString alloc]initWithFormat:@"%@",[UserData objectForKey:@"username"]];
             GetLocation = [[NSString alloc]initWithFormat:@"%@",[UserData objectForKey:@"location"]];
             GetUserProfile = [[NSString alloc]initWithFormat:@"%@",[UserData objectForKey:@"profile_photo"]];
-            
+            GetUserID = [[NSString alloc]initWithFormat:@"%@",[UserData objectForKey:@"uid"]];
+            NSLog(@"Collection GetUserID data is %@",GetUserID);
             NSDictionary *PostsData = [ResData valueForKey:@"posts"];
             NSString *Temppage = [[NSString alloc]initWithFormat:@"%@",[PostsData objectForKey:@"page"]];
             NSString *Temptotal_page = [[NSString alloc]initWithFormat:@"%@",[PostsData objectForKey:@"total_page"]];
@@ -491,7 +494,14 @@
         NSLog(@"statusString is %@",statusString);
         
         if ([statusString isEqualToString:@"ok"]) {
-            [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success follow this collection" type:TSMessageNotificationTypeSuccess];
+            if ([GetFollowing isEqualToString:@"0"]) {
+                [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success follow this collection" type:TSMessageNotificationTypeSuccess];
+                GetFollowing = @"1";
+            }else{
+                [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success unfollow this collection" type:TSMessageNotificationTypeSuccess];
+                GetFollowing = @"0";
+            }
+            
             
         }
     }
@@ -656,23 +666,30 @@
     }
 
     //edit button
-    UIButton *EditButton = [[UIButton alloc]init];
-    EditButton.frame = CGRectMake((screenWidth / 2) - 65, GetHeight, 130, 35);
-    EditButton.layer.cornerRadius= 18;
-    EditButton.layer.borderWidth = 1;
-    EditButton.layer.masksToBounds = YES;
-    EditButton.layer.borderColor=[[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0] CGColor];
-    EditButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
-    [EditButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
-    EditButton.backgroundColor = [UIColor whiteColor];
-    [EditButton setTitle:@"Edit" forState:UIControlStateNormal];
-    [EditButton addTarget:self action:@selector(EditButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+    MainEditButton = [[UIButton alloc]init];
+    MainEditButton.frame = CGRectMake((screenWidth / 2) - 65, GetHeight, 130, 35);
+    MainEditButton.layer.cornerRadius= 18;
+    MainEditButton.layer.borderWidth = 1;
+    MainEditButton.layer.masksToBounds = YES;
+    MainEditButton.layer.borderColor=[[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0] CGColor];
+    MainEditButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
+    [MainEditButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
+    MainEditButton.backgroundColor = [UIColor whiteColor];
+    [MainEditButton setTitle:@"Edit" forState:UIControlStateNormal];
+    [MainEditButton addTarget:self action:@selector(EditButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
     if ([GetPermisionUser isEqualToString:@"Self"] || [GetPermisionUser isEqualToString:@"self"]) {
-        [EditButton setTitle:@"Edit" forState:UIControlStateNormal];
+        [MainEditButton setTitle:@"Edit" forState:UIControlStateNormal];
     }else{
-        [EditButton setTitle:@"Follow" forState:UIControlStateNormal];
+        if ([GetFollowing isEqualToString:@"0"]) {
+            [MainEditButton setTitle:@"Follow" forState:UIControlStateNormal];
+            [MainEditButton setTitle:@"Unfollow" forState:UIControlStateSelected];
+        }else{
+            [MainEditButton setTitle:@"Unfollow" forState:UIControlStateNormal];
+            [MainEditButton setTitle:@"Follow" forState:UIControlStateSelected];
+        }
+        
     }
-    [MainScroll addSubview:EditButton];
+    [MainScroll addSubview:MainEditButton];
         
     GetHeight += 45;
 
@@ -727,6 +744,7 @@
 }
 -(IBAction)EditButtonOnClick:(id)sender{
     
+    
     if ([GetPermisionUser isEqualToString:@"Self"]) {
         _navEditCollectionViewController = nil;
         _editCollectionViewController = nil;// for the view controller to reinitialize
@@ -737,8 +755,17 @@
         [LoadingManager show];
         [self.navigationController pushViewController:self.editCollectionViewController animated:YES];
     }else{
+        MainEditButton.selected = !MainEditButton.selected;
+        
         NSLog(@"follow collection button on click");
-        [self FollowCollection];
+        if ([GetFollowing isEqualToString:@"0"]) {
+            [self FollowCollection];
+           // GetFollowing = @"1";
+        }else{
+            [self DeleteFollowCollection];
+            //GetFollowing = @"0";
+        }
+        
     }
     
 
@@ -1414,9 +1441,8 @@
 -(void)FollowCollection{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
-    NSString *GetUseruid = [defaults objectForKey:@"Useruid"];
     //Server Address URL
-    NSString *urlString = [NSString stringWithFormat:@"%@%@/collections/%@/follow",DataUrl.UserWallpaper_Url,GetUseruid,GetID];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@/collections/%@/follow",DataUrl.UserWallpaper_Url,GetUserID,GetID];
     NSLog(@"Send Follow Collection urlString is %@",urlString);
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:urlString]];
@@ -1445,6 +1471,25 @@
     
     //setting the body of the post to the reqeust
     [request setHTTPBody:body];
+    
+    theConnection_FollowCollect = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    if(theConnection_FollowCollect) {
+        //  NSLog(@"Connection Successful");
+        webData = [NSMutableData data];
+    } else {
+        
+    }
+}
+-(void)DeleteFollowCollection{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    
+    //Server Address URL
+    NSString *urlString = [NSString stringWithFormat:@"%@%@/collections/%@/follow?token=%@",DataUrl.UserWallpaper_Url,GetUserID,GetID,GetExpertToken];
+    NSLog(@"Send Delete Collection urlString is %@",urlString);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"DELETE"];
     
     theConnection_FollowCollect = [[NSURLConnection alloc]initWithRequest:request delegate:self];
     if(theConnection_FollowCollect) {

@@ -36,6 +36,7 @@
     NSMutableArray *arrImage;
     NSMutableArray *arrUserImage;
     NSMutableArray *arrUserName;
+    NSMutableArray *arrUserID;
     NSMutableArray *arrDistance;
     NSMutableArray *arrDisplayCountryName;
     NSMutableArray *arrPostID;
@@ -63,6 +64,8 @@
     NSMutableArray *arrCollectionID;
     NSMutableArray *arrCollectionName;
     NSMutableArray *arrCollectionDescription;
+    NSMutableArray *arrCollectionFollowing;
+    NSMutableArray *arrCollectionUserID;
     
     
     NSString *GetNextPaging;
