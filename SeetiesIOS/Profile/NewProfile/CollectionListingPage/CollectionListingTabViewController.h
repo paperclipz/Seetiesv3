@@ -15,4 +15,7 @@ typedef void (^DidSelectCollectionRowBlock)(NSString* collectionID);
 @property(nonatomic,copy)DidSelectCollectionRowBlock didSelectEdiCollectionRowBlock;
 @property(nonatomic,copy)DidSelectCollectionRowBlock didSelectDisplayCollectionRowBlock;
 
+@property(nonatomic,assign)ProfileViewType profileType;
+@property(nonatomic,strong)NSString* userID;
+
 @end

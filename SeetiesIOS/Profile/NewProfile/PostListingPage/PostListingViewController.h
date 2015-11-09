@@ -13,5 +13,6 @@
 -(void)initData:(ProfilePostModel*)model;
 @property(nonatomic, copy)VoidBlock btnAddMorePostBlock;
 @property(nonatomic, strong)FeedV2DetailViewController* feedV2DetailViewController;
+@property(nonatomic,strong)NSString* userID;
 
 @end

@@ -13,5 +13,6 @@
 @interface LikesListingViewController : CommonViewController
 -(void)initData:(ProfilePostModel*)model;
 @property(nonatomic, strong)FeedV2DetailViewController* feedV2DetailViewController;
+@property(nonatomic,strong)NSString* userID;
 
 @end

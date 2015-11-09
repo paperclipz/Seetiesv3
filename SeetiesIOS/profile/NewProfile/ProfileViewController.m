@@ -94,7 +94,7 @@
     
     _showFollowerAndFollowingViewController = nil;
     [self.navigationController pushViewController:self.showFollowerAndFollowingViewController animated:YES onCompletion:^{
-        [self.showFollowerAndFollowingViewController GetToken:[Utils getAppToken] GetUID:[Utils getUserID] GetType:@"Following"];
+        [self.showFollowerAndFollowingViewController GetToken:[Utils getAppToken] GetUID:self.userID GetType:@"Following"];
  
     }];
 
@@ -103,7 +103,7 @@
     
     _showFollowerAndFollowingViewController = nil;
     [self.navigationController pushViewController:self.showFollowerAndFollowingViewController animated:YES onCompletion:^{
-        [self.showFollowerAndFollowingViewController GetToken:[Utils getAppToken] GetUID:[Utils getUserID] GetType:@"Follower"];
+        [self.showFollowerAndFollowingViewController GetToken:[Utils getAppToken] GetUID:self.userID GetType:@"Follower"];
 
     }];
 
@@ -489,12 +489,18 @@
                 cell = [[ProfilePageCollectionTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfier1];
             }
             
+            CollectionModel* colModel = arrCollection[indexPath.row];
             cell.btnEditClickedBlock = ^(void)
             {
                 [self didSelectEditAtIndexPath:indexPath];
             };
             
-            [cell initData:arrCollection[indexPath.row]];
+            cell.btnFollowBlock = ^(void)
+            {
+                [self requestServerToFollowCollection:colModel];
+            };
+            
+            [cell initData:colModel profileType:self.profileViewType];
             
             return cell;
         }
@@ -615,12 +621,16 @@
         
         default:
         case 0://collection
+            _collectionListingViewController = nil;
+            self.collectionListingViewController.profileType = self.profileViewType;
+            self.collectionListingViewController.userID = self.userID;
             [self.navigationController pushViewController:self.collectionListingViewController animated:YES];
             break;
         case 1://post
         {
             _postListingViewController = nil;
             [self.postListingViewController initData:self.userProfilePostModel];
+            self.postListingViewController.userID = self.userID;
             [self.navigationController pushViewController:self.postListingViewController animated:YES];
             
             self.postListingViewController.btnAddMorePostBlock = self.btnAddMorePostClickedBlock;
@@ -631,6 +641,7 @@
         {
             _likesListingViewController = nil;
             [self.likesListingViewController initData:self.userProfileLikeModel];
+            self.likesListingViewController.userID = self.userID;
             [self.navigationController pushViewController:self.likesListingViewController animated:YES];
         }
             break;
@@ -859,6 +870,42 @@
 
 #pragma mark - Request Server
 
+-(void)requestServerToFollowCollection:(CollectionModel*)colModel
+{
+    NSString* appendString = [NSString stringWithFormat:@"%@/collections/%@/follow",self.userID,colModel.collection_id];
+    NSDictionary* dict = @{@"uid":self.userID,
+                           @"token":[Utils getAppToken],
+                           @"collection_id":colModel.collection_id
+                           };
+    
+    if (!colModel.following) {
+        
+        [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostFollowCollection param:dict appendString:appendString meta:nil completeHandler:^(id object) {
+            
+            NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object[@"data"]];
+            
+            BOOL following = [[returnDict objectForKey:@"following"] boolValue];
+            colModel.following = following;
+            [self.ibTableView reloadSectionDU:0 withRowAnimation:UITableViewRowAnimationAutomatic];
+            
+        } errorBlock:^(id object) {
+            
+        }];
+    }
+    else{
+        [[ConnectionManager Instance]requestServerWithDelete:ServerRequestTypePostFollowCollection param:dict appendString:appendString completeHandler:^(id object) {
+            
+            NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object];
+            BOOL following = [[returnDict objectForKey:@"following"] boolValue];
+            colModel.following = following;
+            [self.ibTableView reloadSectionDU:0 withRowAnimation:UITableViewRowAnimationAutomatic];
+            
+        } errorBlock:^(id object) {
+        }];
+    }
+    
+}
+
 -(void)requestServerToFollowUser:(BOOL)isFollowing
 {
     NSString* appendString = [NSString stringWithFormat:@"%@/follow",self.userID];
@@ -893,7 +940,8 @@
         } errorBlock:^(id object) {
         }];
     }
-  }
+  
+}
 
 -(void)requestServerForUserLikes
 {

@@ -177,7 +177,7 @@
 {
     
     isMiddleOfCallingServer = true;
-    NSString* appendString = [NSString stringWithFormat:@"%@/posts",[Utils getUserID]];
+    NSString* appendString = [NSString stringWithFormat:@"%@/posts",self.userID];
     NSDictionary* dict = @{@"page":self.userProfilePostModel.userPostData.page?@(self.userProfilePostModel.userPostData.page + 1):@1,
                            @"list_size":@(ARRAY_LIST_SIZE),
                            @"token":[Utils getAppToken]

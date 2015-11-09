@@ -27,7 +27,7 @@
 @property(nonatomic,strong)NSString* profile_photo_images;
 @property(nonatomic,strong)NSString* gender;
 @property(nonatomic,assign)BOOL following;
-
+@property(nonatomic,strong)NSString* uid;
 
 
 @end

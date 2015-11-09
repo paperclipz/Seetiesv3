@@ -159,7 +159,7 @@
 {
     isMiddleOfCallingServer = true;
     SLog(@"requestServerForUserLikes");
-    NSString* appendString = [NSString stringWithFormat:@"%@/likes",[Utils getUserID]];
+    NSString* appendString = [NSString stringWithFormat:@"%@/likes",self.userID];
   
     
     NSDictionary* dict = @{@"page":self.profileLikeModel.userPostData.page?@(self.profileLikeModel.userPostData.page + 1):@1,

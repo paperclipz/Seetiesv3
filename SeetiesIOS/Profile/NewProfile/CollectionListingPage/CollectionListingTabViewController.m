@@ -82,7 +82,7 @@
     ProfilePageCollectionTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"ProfilePageCollectionTableViewCell"];
     CollectionModel* collModel = self.arrCollections[indexPath.row];
     
-    [cell initData:collModel];
+    [cell initData:collModel profileType:self.profileType];
     
     
     __weak CollectionModel* weakModel =collModel;
@@ -94,6 +94,10 @@
         }
     };
     
+    cell.btnFollowBlock = ^(void)
+    {
+        [self requestServerToFollowCollection:weakModel];
+    };
     return cell;
 }
 
@@ -113,7 +117,7 @@
  
     
     //need to input token for own profile private collection, no token is get other people public collection
-    NSString* appendString = [NSString stringWithFormat:@"%@/collections",[Utils getUserID]];
+    NSString* appendString = [NSString stringWithFormat:@"%@/collections",self.userID];
     
     NSDictionary* dict = @{@"page":self.userCollectionsModel.page?@(self.userCollectionsModel.page + 1):@1,
                            @"list_size":@(ARRAY_LIST_SIZE),
@@ -159,5 +163,42 @@
         
         
     }
+}
+
+#pragma mark - Request Server
+-(void)requestServerToFollowCollection:(CollectionModel*)colModel
+{
+    NSString* appendString = [NSString stringWithFormat:@"%@/collections/%@/follow",self.userID,colModel.collection_id];
+    NSDictionary* dict = @{@"uid":self.userID,
+                           @"token":[Utils getAppToken],
+                           @"collection_id":colModel.collection_id
+                           };
+    
+    if (!colModel.following) {
+        
+        [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostFollowCollection param:dict appendString:appendString meta:nil completeHandler:^(id object) {
+            
+            NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object[@"data"]];
+            
+            BOOL following = [[returnDict objectForKey:@"following"] boolValue];
+            colModel.following = following;
+            [self.ibTableView reloadData];
+            
+        } errorBlock:^(id object) {
+            
+        }];
+    }
+    else{
+        [[ConnectionManager Instance]requestServerWithDelete:ServerRequestTypePostFollowCollection param:dict appendString:appendString completeHandler:^(id object) {
+            
+            NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object];
+            BOOL following = [[returnDict objectForKey:@"following"] boolValue];
+            colModel.following = following;
+            [self.ibTableView reloadData];
+            
+        } errorBlock:^(id object) {
+        }];
+    }
+    
 }
 @end

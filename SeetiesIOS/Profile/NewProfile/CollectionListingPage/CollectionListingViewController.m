@@ -80,7 +80,8 @@
     if(!_myCollectionListingViewController)
     {
         _myCollectionListingViewController = [CollectionListingTabViewController new];
-        
+        _myCollectionListingViewController.profileType = self.profileType;
+        _myCollectionListingViewController.userID = self.userID;
         __weak typeof (self)weakSelf = self;
         _myCollectionListingViewController.didSelectEdiCollectionRowBlock = ^(NSString* collectionID)
         {
@@ -102,7 +103,8 @@
     if(!_followingCollectionListingViewController)
     {
         _followingCollectionListingViewController = [CollectionListingTabViewController new];
-        
+        _followingCollectionListingViewController.profileType = self.profileType;
+        _followingCollectionListingViewController.userID = self.userID;
         __weak typeof (self)weakSelf = self;
         
         _followingCollectionListingViewController.didSelectEdiCollectionRowBlock = ^(NSString* collectionID)
