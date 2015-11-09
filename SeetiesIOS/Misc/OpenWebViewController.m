@@ -91,6 +91,15 @@
     
     timer = [NSTimer scheduledTimerWithTimeInterval:(1.0/2.0) target:self selector:@selector(timerload) userInfo:nil repeats:YES];
 }
+-(void)GetFullUrlString:(NSString *)String{
+    url = String;
+    
+    [web setBackgroundColor:[UIColor whiteColor]];
+    [web loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
+    
+    
+    timer = [NSTimer scheduledTimerWithTimeInterval:(1.0/2.0) target:self selector:@selector(timerload) userInfo:nil repeats:YES];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

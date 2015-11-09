@@ -21,6 +21,7 @@
 #import "LandingV2ViewController.h"
 #import "AnnounceViewController.h"
 #import "SuggestedCollectionsViewController.h"
+#import "OpenWebViewController.h"
 @interface FeedViewController ()
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;
@@ -4892,6 +4893,9 @@
         [self.navigationController pushViewController:vc animated:YES];
         [vc GetPostID:GetID];
     }else if([GetAnnType isEqualToString:@"url"]){
+        OpenWebViewController *OpenWebView = [[OpenWebViewController alloc]init];
+        [self presentViewController:OpenWebView animated:YES completion:nil];
+        [OpenWebView GetFullUrlString:GetID];
     }else if([GetAnnType isEqualToString:@"user"]){
         NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
         [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
