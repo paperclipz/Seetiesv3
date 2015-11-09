@@ -1594,7 +1594,7 @@
         
         
         CheckCollectionSuggestions = 1;
-        [self InitCollectionSuggestionsView];
+       // [self InitCollectionSuggestionsView];
         }else{
         
         }

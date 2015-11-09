@@ -15,6 +15,7 @@
 #import "ProfilePageCollectionFooterTableViewCell.h"
 #import "ProfileNoItemTableViewCell.h"
 #import "JTSImageViewController.h"
+#import "UITableView+Extension.h"
 
 @interface ProfileViewController ()<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate>
 {
@@ -42,6 +43,7 @@
 @property (weak, nonatomic) ProfilePageCollectionHeaderView *profilePageCollectionHeaderView1;
 @property (strong, nonatomic) IBOutlet UIButton *btnSearch;
 @property (strong, nonatomic) IBOutlet UIView *ibSettingContentView;
+@property (strong, nonatomic) IBOutlet UIView *ibSettingOtherView;
 @property (weak, nonatomic) IBOutlet UIButton *btnFollowing;
 @property (weak, nonatomic) IBOutlet UIButton *btnFollower;
 @property (weak, nonatomic) IBOutlet UIButton *btnLink;
@@ -56,12 +58,31 @@
 @property (nonatomic,strong)UIImageView* loadingImageView;
 @property (nonatomic,assign)ProfileViewType profileViewType;
 @property (nonatomic,strong)NSString* userID;
+@property (weak, nonatomic) IBOutlet UIButton *btnFollow;
 
 // =======  MODEL   =======
 
 @end
 
 @implementation ProfileViewController
+
+- (IBAction)btnFollowClicked:(id)sender {
+    
+    UIButton* button = (UIButton*)sender;
+    button.selected = !button.selected;
+
+    [self requestServerToFollowUser:self.userProfileModel.following];
+   // [self setFollowButtonSelected:button.selected button:button];
+}
+
+-(void)setFollowButtonSelected:(BOOL)selected button:(UIButton*)button
+{
+    button.selected = selected;
+    
+    button.backgroundColor = selected?[UIColor whiteColor]:SELECTED_GREEN;
+    
+}
+
 - (IBAction)btnLinkClicked:(id)sender {
     
     [[[UIActionSheet alloc] initWithTitle:self.btnLink.titleLabel.text delegate:self cancelButtonTitle:LocalisedString(@"Cancel") destructiveButtonTitle:nil otherButtonTitles:LocalisedString(@"Open Link in Safari"), nil] showInView:self.view];
@@ -168,14 +189,31 @@
 -(void)initSelfView
 {
     
+    
+    if (self.profileViewType == ProfileViewTypeOwn) {
+        
+        self.btnFollow.hidden = YES;
+        
+    }
+    else{
+        self.btnEditProfile.hidden = YES;
+        followButtonConstraint.constant = 8.0f;
+        
+        [self.btnFollow setTitle:@"Follow" forState:UIControlStateNormal];
+        [self.btnFollow setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self.btnFollow setTitle:@"Following" forState:UIControlStateSelected];
+        [self.btnFollow setTitleColor:SELECTED_GREEN forState:UIControlStateSelected];
+
+    }
     [self initTagView];
     [self initProfilePageCell];
     
     [Utils setRoundBorder:self.btnEditProfile color:TWO_ZERO_FOUR_COLOR borderRadius:self.btnEditProfile.frame.size.height/2 borderWidth:0.5f];
+    [Utils setRoundBorder:self.btnFollow color:SELECTED_GREEN borderRadius:self.btnFollow.frame.size.height/2 borderWidth:0.5f];
 
     self.edgesForExtendedLayout=UIRectEdgeNone;
-    self.extendedLayoutIncludesOpaqueBars=NO;
-    self.automaticallyAdjustsScrollViewInsets=NO;
+    self.extendedLayoutIncludesOpaqueBars = NO;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
     [self setupProfileImages];
     
@@ -234,9 +272,18 @@
 
 -(void)addSearchView
 {
-    [self.ibScrollView.parallaxView addSubview:self.ibSettingContentView];
-    [self.ibScrollView.parallaxView bringSubviewToFront:self.ibSettingContentView];
-    [self.ibSettingContentView adjustToScreenWidth];
+    
+    if (self.profileViewType == ProfileViewTypeOwn) {
+        [self.ibScrollView.parallaxView addSubview:self.ibSettingContentView];
+        [self.ibScrollView.parallaxView bringSubviewToFront:self.ibSettingContentView];
+        [self.ibSettingContentView adjustToScreenWidth];
+    }
+    else{
+        [self.ibScrollView.parallaxView addSubview:self.ibSettingOtherView];
+        [self.ibScrollView.parallaxView bringSubviewToFront:self.ibSettingOtherView];
+        [self.ibSettingOtherView adjustToScreenWidth];
+    }
+  
 }
 
 #pragma mark - Request all Data
@@ -811,6 +858,43 @@
 }
 
 #pragma mark - Request Server
+
+-(void)requestServerToFollowUser:(BOOL)isFollowing
+{
+    NSString* appendString = [NSString stringWithFormat:@"%@/follow",self.userID];
+    NSDictionary* dict = @{@"uid":self.userID,
+                           @"token":[Utils getAppToken]
+                           };
+    
+    if (!isFollowing) {
+        
+        [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostFollowUser param:dict appendString:appendString meta:nil completeHandler:^(id object) {
+            
+            NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object[@"data"]];
+            
+            BOOL following = [[returnDict objectForKey:@"following"] boolValue];
+            self.userProfileModel.following = following;
+            [self setFollowButtonSelected:following button:self.btnFollow];
+            
+        } errorBlock:^(id object) {
+            
+        }];
+
+    }
+    else{
+        
+        [[ConnectionManager Instance]requestServerWithDelete:ServerRequestTypePostFollowUser param:dict appendString:appendString completeHandler:^(id object) {
+            
+            NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object];
+            BOOL following = [[returnDict objectForKey:@"data.following"] boolValue];
+            self.userProfileModel.following = following;
+            [self setFollowButtonSelected:following button:self.btnFollow];
+ 
+        } errorBlock:^(id object) {
+        }];
+    }
+  }
+
 -(void)requestServerForUserLikes
 {
     NSString* appendString = [NSString stringWithFormat:@"%@/likes",self.userID];
@@ -897,6 +981,8 @@
 -(void)assignUserData
 {
     
+    
+    [self setFollowButtonSelected:self.userProfileModel.following button:self.btnFollow];
     [self.ibImgProfilePic sd_setImageWithURL:[NSURL URLWithString:self.userProfileModel.profile_photo_images] placeholderImage:[UIImage imageNamed:@"DefaultProfilePic.png"]];
     
     //UIImageView* tempImageView = [[UIImageView alloc]initWithFrame:self.backgroundImageView.frame];
@@ -947,20 +1033,15 @@
 -(void)assignCollectionData
 {
     arrCollection = [[NSMutableArray alloc]initWithArray:self.userCollectionsModel.arrCollections];
-    NSRange range = NSMakeRange(0, 1);
-    NSIndexSet *section = [NSIndexSet indexSetWithIndexesInRange:range];
-    [self.ibTableView reloadData];
-    [self.ibTableView reloadSections:section withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.ibTableView reloadSectionDU:0 withRowAnimation:UITableViewRowAnimationAutomatic];
     [self adjustTableView];
 }
 
 -(void)assignPostData
 {
     arrPost = [[NSMutableArray alloc]initWithArray:self.userProfilePostModel.userPostData.posts];
-    NSRange range = NSMakeRange(1, 2);
-    NSIndexSet *section = [NSIndexSet indexSetWithIndexesInRange:range];
-    [self.ibTableView reloadData];
-    [self.ibTableView reloadSections:section withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.ibTableView reloadSectionDU:1 withRowAnimation:UITableViewRowAnimationAutomatic];
+
     [self adjustTableView];
 }
 
@@ -970,8 +1051,7 @@
    
     [self.ibTableView reloadData];
     
-    [self.ibTableView reloadSections:[NSIndexSet indexSetWithIndex:2]
-                        withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.ibTableView reloadSectionDU:2 withRowAnimation:UITableViewRowAnimationAutomatic];
     
     [self adjustTableView];
 

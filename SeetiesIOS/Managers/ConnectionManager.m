@@ -416,6 +416,8 @@
         case ServerRequestTypeGetUserCollections:
         case ServerRequestTypeGetUserPosts:
         case ServerRequestTypeGetUserLikes:
+        case ServerRequestTypePostFollowUser:
+        case ServerRequestTypePostFollowCollection:
         default:
              str = @"v2.0";
             break;

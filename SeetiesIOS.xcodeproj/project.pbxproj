@@ -740,6 +740,7 @@
 		8A6584431B9851D300BC86B9 /* DraftTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A6584421B9851D300BC86B9 /* DraftTableViewCell.xib */; };
 		8A6584491B99554D00BC86B9 /* DismissingAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6584461B99554D00BC86B9 /* DismissingAnimationController.m */; };
 		8A65844A1B99554D00BC86B9 /* PresentingAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6584481B99554D00BC86B9 /* PresentingAnimationController.m */; };
+		8A6BB40F1BF0A412005AA1B3 /* UITableView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6BB40E1BF0A412005AA1B3 /* UITableView+Extension.m */; };
 		8A7420EC1B82F7D5005DA654 /* LoadingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7420EB1B82F7D5005DA654 /* LoadingManager.m */; };
 		8A7B9CE01BBD387000D7F604 /* EnbleLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7B9CDE1BBD387000D7F604 /* EnbleLocationViewController.m */; };
 		8A7B9CE11BBD387000D7F604 /* EnbleLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A7B9CDF1BBD387000D7F604 /* EnbleLocationViewController.xib */; };
@@ -1907,6 +1908,8 @@
 		8A6584461B99554D00BC86B9 /* DismissingAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DismissingAnimationController.m; sourceTree = "<group>"; };
 		8A6584471B99554D00BC86B9 /* PresentingAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresentingAnimationController.h; sourceTree = "<group>"; };
 		8A6584481B99554D00BC86B9 /* PresentingAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresentingAnimationController.m; sourceTree = "<group>"; };
+		8A6BB40D1BF0A412005AA1B3 /* UITableView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+Extension.h"; sourceTree = "<group>"; };
+		8A6BB40E1BF0A412005AA1B3 /* UITableView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+Extension.m"; sourceTree = "<group>"; };
 		8A7420EA1B82F7D5005DA654 /* LoadingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingManager.h; sourceTree = "<group>"; };
 		8A7420EB1B82F7D5005DA654 /* LoadingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingManager.m; sourceTree = "<group>"; };
 		8A7B9CDD1BBD387000D7F604 /* EnbleLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnbleLocationViewController.h; sourceTree = "<group>"; };
@@ -4076,6 +4079,15 @@
 			path = Animation;
 			sourceTree = "<group>";
 		};
+		8A6BB40C1BF0A3F8005AA1B3 /* UITableView+Extension */ = {
+			isa = PBXGroup;
+			children = (
+				8A6BB40D1BF0A412005AA1B3 /* UITableView+Extension.h */,
+				8A6BB40E1BF0A412005AA1B3 /* UITableView+Extension.m */,
+			);
+			name = "UITableView+Extension";
+			sourceTree = "<group>";
+		};
 		8A8475321BC52D0D006DD614 /* SystemOverride */ = {
 			isa = PBXGroup;
 			children = (
@@ -4430,6 +4442,7 @@
 		8AD6BA961B706CF10040437E /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				8A6BB40C1BF0A3F8005AA1B3 /* UITableView+Extension */,
 				8AC8F7531BDDD41C00DEF14A /* UIImageView+Exntesion */,
 				8AF53F171BD884E300AF6C9E /* NSObject+Extension */,
 				8AB83A791BD49CD500715B69 /* UIView+Extension */,
@@ -5971,6 +5984,7 @@
 				8AD6C1151B706CF30040437E /* FSOperation.m in Sources */,
 				8A114CCA1BE73F5D006AE3F0 /* NMBottomTabBar.m in Sources */,
 				8AC8F73E1BDA414E00DEF14A /* NewProfileV2ViewController.m in Sources */,
+				8A6BB40F1BF0A412005AA1B3 /* UITableView+Extension.m in Sources */,
 				8AD6C1161B706CF30040437E /* FSWebLogin.m in Sources */,
 				8AD6BE511B706CF30040437E /* Filter2ViewController.m in Sources */,
 				8AB76DD61BB8FD4A007DB972 /* PostModel.m in Sources */,
