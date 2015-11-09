@@ -899,6 +899,11 @@
             PeopleView.hidden = YES;
            // [self InitPostsDataView];
             
+            CGSize contentSize = MainScroll.frame.size;
+            contentSize.height = heightcheck + PostsView.frame.size.height;
+            MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+            MainScroll.contentSize = contentSize;
+            
             break;
         case 1:
             NSLog(@"PeopleView click");
@@ -908,7 +913,10 @@
                 CheckUserInitView = 1;
                 [self initPeopleDataView];
             }else{
-            
+                CGSize contentSize = MainScroll.frame.size;
+                contentSize.height = heightcheck + PeopleView.frame.size.height;
+                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+                MainScroll.contentSize = contentSize;
             }
             
             

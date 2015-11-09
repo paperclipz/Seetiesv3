@@ -1944,9 +1944,26 @@
         GetHeightCheck += 60;
     }
     
+    int GetMessageHeight = GetHeightCheck;
+    
+    if ([GetLink length] == 0 || [GetLink isEqualToString:@""] || [GetLink isEqualToString:@"(null)"]) {
+        
+
+    }else{
+        UIButton *BlogLinkButton = [[UIButton alloc]init];
+        BlogLinkButton.frame = CGRectMake(20, GetMessageHeight + 10, screenWidth - 40, 30);
+        [BlogLinkButton setTitle:GetLink forState:UIControlStateNormal];
+        [BlogLinkButton setBackgroundColor:[UIColor clearColor]];
+        [BlogLinkButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+        [BlogLinkButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Regular" size:14]];
+        [BlogLinkButton addTarget:self action:@selector(BlogLinkButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [MainScroll addSubview:BlogLinkButton];
+        
+        GetMessageHeight += 40;
+    }
+    
 
     
-    int GetMessageHeight = GetHeightCheck;
 
     AsyncImageView *UserImage = [[AsyncImageView alloc]init];
     UserImage.frame = CGRectMake(20, GetMessageHeight + 15, 38, 38);
@@ -4273,5 +4290,13 @@
     buttonWithTag1.selected = !buttonWithTag1.selected;
     
     NSLog(@"Get Collection User ID == %@",[arrUserID objectAtIndex:getbuttonIDN]);
+}
+-(IBAction)BlogLinkButtonOnClick:(id)sender{
+    if ([GetLink hasPrefix:@"http://"] || [GetLink hasPrefix:@"https://"]) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:GetLink]];
+    } else {
+        NSString *TempString = [[NSString alloc]initWithFormat:@"http://%@",GetLink];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:TempString]];
+    }
 }
 @end
