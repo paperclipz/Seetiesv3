@@ -17,6 +17,8 @@
 #import "JTSImageViewController.h"
 #import "UITableView+Extension.h"
 
+#import "MZFormSheetPresentationViewController.h"
+
 @interface ProfileViewController ()<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate>
 {
     NSMutableArray* arrayTag;
@@ -146,9 +148,19 @@
 - (IBAction)btnShareClicked:(id)sender {
     
     _shareViewController = nil;
-    [self.navigationController pushViewController:self.shareViewController animated:YES onCompletion:^{
-        [self.shareViewController GetShareProfile:self.userProfileModel.username];
-    }];
+
+    //        [self.shareViewController GetShareProfile:self.userProfileModel.username];
+
+    
+    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:self.shareViewController];
+    formSheetController.presentationController.contentViewSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height);
+
+    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
+    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
+    
+    [self presentViewController:formSheetController animated:YES completion:nil];
+
+
 }
 
 - (IBAction)btnSettingClicked:(id)sender {
@@ -616,11 +628,16 @@
 -(void)didSelectFooterAtIndex:(NSIndexPath*)indexPath
 {
     
+    
     SLog(@"index path section : %ld",(long)indexPath.section);
     switch (indexPath.section) {
         
         default:
         case 0://collection
+            
+            if ([arrCollection isNull]) {
+                return;
+            }
             _collectionListingViewController = nil;
             self.collectionListingViewController.profileType = self.profileViewType;
             self.collectionListingViewController.userID = self.userID;
@@ -628,6 +645,10 @@
             break;
         case 1://post
         {
+            if ([arrPost isNull]) {
+                return;
+            }
+
             _postListingViewController = nil;
             [self.postListingViewController initData:self.userProfilePostModel];
             self.postListingViewController.userID = self.userID;
@@ -639,6 +660,11 @@
             break;
         case 2://likes
         {
+            
+            if ([arrLikes isNull]) {
+                return;
+            }
+
             _likesListingViewController = nil;
             [self.likesListingViewController initData:self.userProfileLikeModel];
             self.likesListingViewController.userID = self.userID;
@@ -983,7 +1009,8 @@
     NSString* appendString = [NSString stringWithFormat:@"%@/collections",self.userID];
     NSDictionary* dict = @{@"page":@1,
                            @"list_size":@(ARRAY_LIST_SIZE),
-                           @"token":[Utils getAppToken]
+                           @"token":[Utils getAppToken],
+                           @"uid":self.userID
                            };
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserCollections param:dict appendString:appendString completeHandler:^(id object) {
         

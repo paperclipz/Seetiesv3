@@ -48,6 +48,7 @@ PODS:
   - LPGoogleFunctions (1.2.3):
     - AFNetworking (~> 2.0)
   - MGSwipeTableCell (1.5.1)
+  - MZAppearance (1.1.6)
   - pop (1.0.8)
   - PureLayout (3.0.1)
   - SDWebImage (3.7.3):
@@ -76,6 +77,7 @@ DEPENDENCIES:
   - JSONModel
   - LPGoogleFunctions
   - MGSwipeTableCell
+  - MZAppearance
   - pop (~> 1.0)
   - PureLayout
   - SDWebImage
@@ -113,6 +115,7 @@ SPEC CHECKSUMS:
   JSONModel: ec77e9865236a7a09d9cf7668df6b4b328d9ec1d
   LPGoogleFunctions: c78171de55b164e8e5dbf6b4bba477980771211a
   MGSwipeTableCell: a51fa670c01f0aa048f12af040acebf315223137
+  MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
   pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84

@@ -35,5 +35,7 @@ pod 'A3ParallaxScrollView', '~> 1.0'
 
 pod 'APParallaxHeader'
 pod 'PureLayout'
+pod 'MZAppearance'
+
 
 #pod 'Canvas', '~> 0.1.2'
