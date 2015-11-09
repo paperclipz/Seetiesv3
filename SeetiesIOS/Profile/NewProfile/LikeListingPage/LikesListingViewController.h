@@ -9,6 +9,7 @@
 #import "CommonViewController.h"
 #import "FeedV2DetailViewController.h"
 
+@class FeedV2DetailViewController;
 @interface LikesListingViewController : CommonViewController
 -(void)initData:(ProfilePostModel*)model;
 @property(nonatomic, strong)FeedV2DetailViewController* feedV2DetailViewController;

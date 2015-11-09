@@ -15,15 +15,15 @@
 #import "ProfilePageCollectionFooterTableViewCell.h"
 #import "ProfileNoItemTableViewCell.h"
 #import "JTSImageViewController.h"
-#import "TTTAttributedLabel.h"
 
-@interface ProfileViewController ()<UITableViewDataSource, UITableViewDelegate,TTTAttributedLabelDelegate,UIActionSheetDelegate>
+@interface ProfileViewController ()<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate>
 {
     NSMutableArray* arrayTag;
     NSMutableArray* arrCollection;
     NSMutableArray* arrPost;
     NSMutableArray* arrLikes;
 
+    __weak IBOutlet NSLayoutConstraint *followButtonConstraint;
 }
 
 // =======  OUTLET   =======
@@ -31,7 +31,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnEditProfile;
 @property (weak, nonatomic) IBOutlet UILabel *lblUserName;
 @property (weak, nonatomic) IBOutlet UILabel *lblLocation;
-@property (weak, nonatomic) IBOutlet TTTAttributedLabel *lblDescription;
 @property (strong, nonatomic) UIImageView *backgroundImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *ibImgProfilePic;
 @property (strong, nonatomic) IBOutlet UIView *ibTopContentView;
@@ -45,6 +44,7 @@
 @property (strong, nonatomic) IBOutlet UIView *ibSettingContentView;
 @property (weak, nonatomic) IBOutlet UIButton *btnFollowing;
 @property (weak, nonatomic) IBOutlet UIButton *btnFollower;
+@property (weak, nonatomic) IBOutlet UIButton *btnLink;
 
 // =======  OUTLET   =======
 // =======  MODEL   =======
@@ -54,12 +54,19 @@
 @property(nonatomic,strong)ProfilePostModel* userProfilePostModel;
 @property(nonatomic,strong)ProfilePostModel* userProfileLikeModel;
 @property (nonatomic,strong)UIImageView* loadingImageView;
+@property (nonatomic,assign)ProfileViewType profileViewType;
+@property (nonatomic,strong)NSString* userID;
 
 // =======  MODEL   =======
 
 @end
 
 @implementation ProfileViewController
+- (IBAction)btnLinkClicked:(id)sender {
+    
+    [[[UIActionSheet alloc] initWithTitle:self.btnLink.titleLabel.text delegate:self cancelButtonTitle:LocalisedString(@"Cancel") destructiveButtonTitle:nil otherButtonTitles:LocalisedString(@"Open Link in Safari"), nil] showInView:self.view];
+
+}
 
 #pragma mark - IBACTION
 - (IBAction)btnFollowingClicked:(id)sender {
@@ -153,16 +160,6 @@
 
 }
 
-
--(void)requestAllData
-{
-    [self requestServerForUserInfo];
-    [self requestServerForUserCollection];
-    [self requestServerForUserPost];
-    [self requestServerForUserLikes];
-}
-
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -240,6 +237,18 @@
     [self.ibScrollView.parallaxView addSubview:self.ibSettingContentView];
     [self.ibScrollView.parallaxView bringSubviewToFront:self.ibSettingContentView];
     [self.ibSettingContentView adjustToScreenWidth];
+}
+
+#pragma mark - Request all Data
+-(void)requestAllDataWithType:(ProfileViewType)type UserID:(NSString*)uID
+{
+    
+    self.profileViewType = type;
+    self.userID = uID;
+    [self requestServerForUserInfo];
+    [self requestServerForUserCollection];
+    [self requestServerForUserPost];
+    [self requestServerForUserLikes];
 }
 
 -(void)adjustTableView
@@ -804,7 +813,7 @@
 #pragma mark - Request Server
 -(void)requestServerForUserLikes
 {
-    NSString* appendString = [NSString stringWithFormat:@"%@/likes",[Utils getUserID]];
+    NSString* appendString = [NSString stringWithFormat:@"%@/likes",self.userID];
     NSDictionary* dict = @{@"page":@1,
                            @"list_size":@(LIKES_LIST_SIZE),
                            @"token":[Utils getAppToken]
@@ -821,7 +830,7 @@
 
 -(void)requestServerForUserPost
 {
-    NSString* appendString = [NSString stringWithFormat:@"%@/posts",[Utils getUserID]];
+    NSString* appendString = [NSString stringWithFormat:@"%@/posts",self.userID];
     NSDictionary* dict = @{@"page":@1,
                            @"list_size":@(ARRAY_LIST_SIZE),
                            @"token":[Utils getAppToken]
@@ -839,7 +848,7 @@
 -(void)requestServerForUserCollection
 {
     //need to input token for own profile private collection, no token is get other people public collection
-    NSString* appendString = [NSString stringWithFormat:@"%@/collections",[Utils getUserID]];
+    NSString* appendString = [NSString stringWithFormat:@"%@/collections",self.userID];
     NSDictionary* dict = @{@"page":@1,
                            @"list_size":@(ARRAY_LIST_SIZE),
                            @"token":[Utils getAppToken]
@@ -856,7 +865,7 @@
 
 -(void)requestServerForUserInfo
 {
-    NSString* appendString = [NSString stringWithFormat:@"%@",[Utils getUserID]];
+    NSString* appendString = [NSString stringWithFormat:@"%@",self.userID];
    
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserInfo param:nil appendString:appendString completeHandler:^(id object) {
         
@@ -923,20 +932,8 @@
     
     //self.userProfileModel.personal_link = @"www.youtube.com";
     if (![self.userProfileModel.personal_link isNull]) {
-        self.lblDescription.enabledTextCheckingTypes = NSTextCheckingTypeLink; // Automatically detect links when the label text is subsequently changed
-        self.lblDescription.delegate = self; // Delegate methods are called when the user taps on a link (see `TTTAttributedLabelDelegate` protocol)
-       // self.lblDescription.font = [UIFont systemFontOfSize:14];
-        
-        self.lblDescription.highlightedShadowColor = DEVICE_COLOR;
-        NSMutableDictionary* attributes = [NSMutableDictionary dictionaryWithDictionary:self.lblDescription.activeLinkAttributes];
-        [attributes setObject:(__bridge id)DEVICE_COLOR.CGColor forKey:(NSString*)kCTForegroundColorAttributeName];
-        self.lblDescription.activeLinkAttributes = attributes;
-        
-        
-        self.lblDescription.text = self.userProfileModel.personal_link; // Repository URL will be automatically detected and linked
-        
-        NSRange range = [self.lblDescription.text rangeOfString:self.lblDescription.text];
-        [self.lblDescription addLinkToURL:[NSURL URLWithString:@"www.google.com"] withRange:range]; // Embedding a custom link in a substring
+      
+        [self.btnLink setTitle:self.userProfileModel.personal_link forState:UIControlStateNormal];
 
     }
       // ========== url Link  ==========
@@ -982,11 +979,6 @@
 
 #pragma mark - TTTAttributedLabelDelegate
 
-- (void)attributedLabel:(__unused TTTAttributedLabel *)label
-   didSelectLinkWithURL:(NSURL *)url
-{
-    [[[UIActionSheet alloc] initWithTitle:[url absoluteString] delegate:self cancelButtonTitle:LocalisedString(@"Cancel") destructiveButtonTitle:nil otherButtonTitles:LocalisedString(@"Open Link in Safari"), nil] showInView:self.view];
-}
 
 #pragma mark - UIActionSheetDelegate
 

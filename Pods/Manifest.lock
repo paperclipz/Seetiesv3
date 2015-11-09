@@ -64,7 +64,7 @@ DEPENDENCIES:
   - ActionSheetPicker-3.0 (~> 1.7.1)
   - ADTransitionController
   - APParallaxHeader
-  - AviarySDK (= 4.2.1)
+  - AviarySDK
   - BkTask
   - BOString
   - CLLocationManager-blocks

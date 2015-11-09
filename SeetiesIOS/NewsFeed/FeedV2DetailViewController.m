@@ -3136,12 +3136,17 @@
     if ([GetUsername isEqualToString:GetPostName]) {
         NSLog(@"user is self. open profile");
     }else{
-        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-        [NewUserProfileV2View GetUserName:GetPostName];
+//        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+//        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+//        [NewUserProfileV2View GetUserName:GetPostName];
+        
+        [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:GetUserUid];
+        [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        }];
     }
 
 }
+
 -(IBAction)OpenProfileButton2:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);
@@ -3801,6 +3806,14 @@
 }
 
 #pragma mark - declaration
+
+-(ProfileViewController*)profileViewController
+{
+    if(!_profileViewController)
+        _profileViewController = [ProfileViewController new];
+    
+    return _profileViewController;
+}
 -(EditPostViewController*)editPostViewController
 {
     if (!_editPostViewController) {

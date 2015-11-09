@@ -42,6 +42,14 @@ typedef enum ScrollDirection {
     ScrollDirectionCrazy,
 } ScrollDirection;
 
+typedef enum {
+
+    ProfileViewTypeOthers,
+    ProfileViewTypeOwn
+    
+} ProfileViewType;
+
+
 +(BOOL)isLogin;
 +(void)setIsLogin;
 +(NSString*)getAppToken;
