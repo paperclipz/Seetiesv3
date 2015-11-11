@@ -16,6 +16,7 @@
 #import "NSString+ChangeAsciiString.h"
 #import "Filter2ViewController.h"
 #import "AddCollectionDataViewController.h"
+#import "CollectionViewController.h"
 @interface SearchDetailViewController ()<CLLocationManagerDelegate>
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;
@@ -74,6 +75,7 @@
     CheckUserInitView = 0;
     SegmentedControlCheck = 0;
     CheckPostsInitView = 0;
+    CheckCollectionInitView = 0;
     
     ShowSearchLocationView.frame = CGRectMake(0, 95, screenWidth, screenHeight - 95);
     ShowSearchLocationView.hidden = YES;
@@ -84,6 +86,8 @@
     
     [SearchLocationNameArray addObject:CustomLocalisedString(@"Currentlocation",nil)];
     [SearchPlaceIDArray addObject:@"0"];
+    
+    [self InitView];
     
     [self SendSearchKeywordData];
 }
@@ -230,6 +234,8 @@
 //                SelfSearchCurrentLocation = 0;
 //                CheckUserInitView = 0;
                 [self SendSearchKeywordData];
+            }else if(SegmentedControlCheck == 2){
+                [self GetCollectionData];
             }else{
                // CheckUserInitView = 0;
                 [self GetAllUserData];
@@ -247,6 +253,8 @@
             DataCount = 0;
             DataTotal = 0;
             [self SendSearchKeywordData];
+        }else if(SegmentedControlCheck == 2){
+            [self GetCollectionData];
         }else{
             [self GetAllUserData];
         }
@@ -293,6 +301,31 @@
     
     
     if( theConnection_SearchLocation ){
+        webData = [NSMutableData data];
+    }
+}
+-(void)GetCollectionData{
+    [ShowActivity startAnimating];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    
+    NSString *FullString = [[NSString alloc]initWithFormat:@"%@search/collections?token=%@&keyword=%@&offset=1&limit=30",DataUrl.UserWallpaper_Url,GetExpertToken,GetKeywordText];
+    
+    
+    NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
+    NSLog(@"GetAllUserData check postBack URL ==== %@",postBack);
+    NSURL *url = [NSURL URLWithString:[postBack stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    // NSURL *url = [NSURL URLWithString:postBack];
+    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
+    NSLog(@"theRequest === %@",theRequest);
+    [theRequest addValue:@"" forHTTPHeaderField:@"Accept-Encoding"];
+    
+    theConnection_GetCollection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+    [theConnection_GetCollection start];
+    
+    
+    if( theConnection_GetCollection ){
         webData = [NSMutableData data];
     }
 }
@@ -642,7 +675,8 @@
         CheckLoad = NO;
         
         if (CheckPostsInitView == 0) {
-            [self InitView];
+           // [self InitView];
+            [self InitPostsDataView];
             CheckPostsInitView = 1;
         }else{
             for (UIView *subview in PostsView.subviews) {
@@ -682,8 +716,88 @@
 
     
         [self initPeopleDataView];
-    }
-    else if(connection == theConnection_SearchLocation){
+    }else if(connection == theConnection_GetCollection){
+        NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+        
+        NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *myError = nil;
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
+        //NSLog(@"theConnection_GetSuggestedCollectionData Json = %@",res);
+        
+        NSString *statusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
+        // NSLog(@"statusString is %@",statusString);
+        
+        if ([statusString isEqualToString:@"ok"]) {
+            
+            NSDictionary *AllData = [res valueForKey:@"data"];
+            
+//            NSDictionary *GetPaging = [AllData valueForKey:@"paging"];
+//            GetNextPaging = [[NSString alloc]initWithFormat:@"%@",[GetPaging objectForKey:@"next"]];
+//            NSLog(@"GetNextPaging is %@",GetNextPaging);
+
+            Collection_arrID = [[NSMutableArray alloc]init];
+            Collection_arrTitle = [[NSMutableArray alloc]init];
+            Collection_arrTotalCount = [[NSMutableArray alloc]init];
+            Collection_arrImageData = [[NSMutableArray alloc]init];
+            Collection_arrUsername = [[NSMutableArray alloc]init];
+            Collection_arrUserImage = [[NSMutableArray alloc]init];
+            Collection_arrUserID = [[NSMutableArray alloc]init];
+            Collection_arrFollowing = [[NSMutableArray alloc]init];
+            
+            NSDictionary *GetResultData = [AllData valueForKey:@"collections"];
+            
+            for (NSDictionary * dict in GetResultData) {
+                NSString *collectionid = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"collection_id"]];
+                [Collection_arrID addObject:collectionid];
+                NSString *getname = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"name"]];
+                [Collection_arrTitle addObject:getname];
+                NSString *collectioncount = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"collection_posts_count"]];
+                [Collection_arrTotalCount addObject:collectioncount];
+                NSString *following = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"following"]];
+                [Collection_arrFollowing addObject:following];
+            }
+            
+            NSLog(@"Collection_arrTitle is %@",Collection_arrTitle);
+            
+            NSDictionary *GetUserData = [GetResultData valueForKey:@"user_info"];
+            for (NSDictionary * dict in GetUserData) {
+                NSString *Getusername = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"username"]];
+                [Collection_arrUsername addObject:Getusername];
+                NSString *getUserImage = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"profile_photo"]];
+                [Collection_arrUserImage addObject:getUserImage];
+                NSString *getid = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"uid"]];
+                [Collection_arrUserID addObject:getid];
+            }
+            
+            NSLog(@"Collection_arrUsername is %@",Collection_arrUsername);
+            
+            
+            NSDictionary *CollectionPhotoData = [GetResultData valueForKey:@"collection_posts"];
+            
+            NSDictionary *PhotoData = [CollectionPhotoData valueForKey:@"posts"];
+            // NSMutableArray *FullUrlArray = [[NSMutableArray alloc]init];
+            for (NSDictionary * dict in PhotoData) {
+                NSMutableArray *UrlArray = [[NSMutableArray alloc]init];
+                for (NSDictionary * dict_ in dict) {
+                    NSArray *TempPhotoData = [dict_ valueForKey:@"photos"];
+                    for (NSDictionary * dict_ in TempPhotoData) {
+                        NSDictionary *UserInfoData = [dict_ valueForKey:@"m"];
+                        NSString *url = [[NSString alloc]initWithFormat:@"%@",[UserInfoData valueForKey:@"url"]];
+                        
+                        [UrlArray addObject:url];
+                    }
+                }
+                NSString *resultImageUrl = [UrlArray componentsJoinedByString:@"^^^"];
+                [Collection_arrImageData addObject:resultImageUrl];
+            }
+            
+            NSLog(@"Collection_arrImageData is %@",Collection_arrImageData);
+            
+            [self InitCollectionDataView];
+        }
+        
+        
+    }else if(connection == theConnection_SearchLocation){
         [SearchLocationNameArray removeAllObjects];
         [SearchPlaceIDArray removeAllObjects];
         
@@ -877,14 +991,15 @@
     }
     heightcheck += 20;
     
+    NSString *TempStringCollection = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Collection")];
     NSString *TempStringPosts = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Posts")];
     NSString *TempStringPeople = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Seetizens")];
     
-    NSArray *itemArray = [NSArray arrayWithObjects:TempStringPosts, TempStringPeople, nil];
+    NSArray *itemArray = [NSArray arrayWithObjects:TempStringCollection,TempStringPosts, TempStringPeople, nil];
     UISegmentedControl *ProfileControl = [[UISegmentedControl alloc]initWithItems:itemArray];
     ProfileControl.frame = CGRectMake(15, heightcheck, screenWidth - 30, 33);
     [ProfileControl addTarget:self action:@selector(segmentAction:) forControlEvents: UIControlEventValueChanged];
-    ProfileControl.selectedSegmentIndex = 0;
+    ProfileControl.selectedSegmentIndex = 1;
     UIFont *font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:12];
     NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
                                                            forKey:NSFontAttributeName];
@@ -903,7 +1018,7 @@
     heightcheck += 49;
     
     PostsView = [[UIView alloc]init];
-    PostsView.frame = CGRectMake(0, heightcheck, screenWidth, 400);
+    PostsView.frame = CGRectMake(0, heightcheck, screenWidth, 600);
     PostsView.backgroundColor = [UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0];
     [MainScroll addSubview:PostsView];
     
@@ -912,10 +1027,16 @@
     PeopleView.backgroundColor = [UIColor whiteColor];
     [MainScroll addSubview:PeopleView];
     
+    CollectionView = [[UIView alloc]init];
+    CollectionView.frame = CGRectMake(0, heightcheck, screenWidth, 600);
+    CollectionView.backgroundColor = [UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0];
+    [MainScroll addSubview:CollectionView];
+    
     PeopleView.hidden = YES;
     PostsView.hidden = NO;
+    CollectionView.hidden = YES;
     
-    [self InitPostsDataView];
+   // [self InitPostsDataView];
     CheckLoad = 1;
 
 }
@@ -924,10 +1045,27 @@
     
     switch (segment.selectedSegmentIndex) {
         case 0:
+            SegmentedControlCheck = 2;
+            NSLog(@"CollectionView Click");
+            PostsView.hidden = YES;
+            PeopleView.hidden = YES;
+            CollectionView.hidden = NO;
+            if (CheckCollectionInitView == 0) {
+                CheckCollectionInitView = 1;
+                [self GetCollectionData];
+            }else{
+                CGSize contentSize = MainScroll.frame.size;
+                contentSize.height = heightcheck + CollectionView.frame.size.height;
+                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+                MainScroll.contentSize = contentSize;
+            }
+            break;
+        case 1:
             SegmentedControlCheck = 0;
             NSLog(@"PostView click");
             PostsView.hidden = NO;
             PeopleView.hidden = YES;
+            CollectionView.hidden = YES;
            // [self InitPostsDataView];
             
             CGSize contentSize = MainScroll.frame.size;
@@ -936,11 +1074,12 @@
             MainScroll.contentSize = contentSize;
             
             break;
-        case 1:
+        case 2:
             SegmentedControlCheck = 1;
             NSLog(@"PeopleView click");
             PostsView.hidden = YES;
             PeopleView.hidden = NO;
+            CollectionView.hidden = YES;
             if (CheckUserInitView == 0) {
                 CheckUserInitView = 1;
                 //[self initPeopleDataView];
@@ -1210,23 +1349,208 @@
     MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     MainScroll.contentSize = contentSize;
 }
+-(void)InitCollectionDataView{
 
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    for (int i = 0; i < [Collection_arrTotalCount count]; i++) {
+        UIButton *TempButton = [[UIButton alloc]init];
+        TempButton.frame = CGRectMake(10 , 10 + i * 200, screenWidth - 20 ,190);
+        [TempButton setTitle:@"" forState:UIControlStateNormal];
+        TempButton.backgroundColor = [UIColor whiteColor];
+        TempButton.layer.cornerRadius = 10;
+        TempButton.layer.borderWidth=1;
+        TempButton.layer.masksToBounds = YES;
+        TempButton.layer.borderColor=[[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f] CGColor];
+        [CollectionView addSubview: TempButton];
+        
+        NSString *TempImage = [[NSString alloc]initWithFormat:@"%@",[Collection_arrImageData objectAtIndex:i]];
+        NSArray *SplitArray_TempImage = [TempImage componentsSeparatedByString:@"^^^"];
+        
+        NSLog(@"TempImage is %@",TempImage);
+        NSLog(@"SplitArray_TempImage is %@",SplitArray_TempImage);
+        
+        if ([SplitArray_TempImage count] == 1) {
+            AsyncImageView *ShowImage1 = [[AsyncImageView alloc]init];
+            ShowImage1.frame = CGRectMake(11 , 11 + i * 200 , screenWidth - 20 ,120);
+            //ShowImage.image = [UIImage imageNamed:@"UserDemo2.jpg"];
+            ShowImage1.contentMode = UIViewContentModeScaleAspectFill;
+            ShowImage1.layer.backgroundColor=[[UIColor clearColor] CGColor];
+            ShowImage1.layer.cornerRadius= 10;
+            ShowImage1.layer.masksToBounds = YES;
+            [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage1];
+            NSString *ImageData = [[NSString alloc]initWithFormat:@"%@",[SplitArray_TempImage objectAtIndex:0]];
+            if ([ImageData length] == 0) {
+                ShowImage1.image = [UIImage imageNamed:@"NoImage.png"];
+            }else{
+                NSURL *url_NearbySmall = [NSURL URLWithString:ImageData];
+                ShowImage1.imageURL = url_NearbySmall;
+            }
+            [CollectionView addSubview:ShowImage1];
+        }else{
+            AsyncImageView *ShowImage1 = [[AsyncImageView alloc]init];
+            ShowImage1.frame = CGRectMake(11 , 11 + i * 200 , ((screenWidth - 30) / 2) ,120);
+            //ShowImage.image = [UIImage imageNamed:@"UserDemo2.jpg"];
+            ShowImage1.contentMode = UIViewContentModeScaleAspectFill;
+            ShowImage1.layer.backgroundColor=[[UIColor clearColor] CGColor];
+            ShowImage1.layer.cornerRadius= 10;
+            ShowImage1.layer.masksToBounds = YES;
+            [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage1];
+            NSString *ImageData = [[NSString alloc]initWithFormat:@"%@",[SplitArray_TempImage objectAtIndex:0]];
+            if ([ImageData length] == 0) {
+                ShowImage1.image = [UIImage imageNamed:@"NoImage.png"];
+            }else{
+                NSURL *url_NearbySmall = [NSURL URLWithString:ImageData];
+                ShowImage1.imageURL = url_NearbySmall;
+            }
+            [CollectionView addSubview:ShowImage1];
+            
+            AsyncImageView *ShowImage2 = [[AsyncImageView alloc]init];
+            ShowImage2.frame = CGRectMake(14 + ((screenWidth - 20) / 2), 11 + i * 200 , ((screenWidth - 30) / 2) ,120);
+            //ShowImage.image = [UIImage imageNamed:@"UserDemo2.jpg"];
+            ShowImage2.contentMode = UIViewContentModeScaleAspectFill;
+            ShowImage2.layer.backgroundColor=[[UIColor clearColor] CGColor];
+            ShowImage2.layer.cornerRadius=10;
+            ShowImage2.layer.masksToBounds = YES;
+            [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage2];
+            NSString *ImageData100 = [[NSString alloc]initWithFormat:@"%@",[SplitArray_TempImage objectAtIndex:1]];
+            if ([ImageData100 length] == 0) {
+                ShowImage2.image = [UIImage imageNamed:@"NoImage.png"];
+            }else{
+                NSURL *url_NearbySmall = [NSURL URLWithString:ImageData100];
+                ShowImage2.imageURL = url_NearbySmall;
+            }
+            [CollectionView addSubview:ShowImage2];
+        }
+        
 
--(IBAction)AllExpertsButton:(id)sender{
-    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
-    NSLog(@"button %li",(long)getbuttonIDN);
-    
-    NewUserProfileV2ViewController *ExpertsUserProfileView = [[NewUserProfileV2ViewController alloc]init];
-//    CATransition *transition = [CATransition animation];
-//    transition.duration = 0.2;
-//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//    transition.type = kCATransitionPush;
-//    transition.subtype = kCATransitionFromRight;
-//    [self.view.window.layer addAnimation:transition forKey:nil];
-//    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
-    [self.navigationController pushViewController:ExpertsUserProfileView animated:YES];
-    [ExpertsUserProfileView GetUserName:[All_Experts_Username_Array objectAtIndex:getbuttonIDN]];
+        
+        
+        UIImageView *ShowOverlayImg = [[UIImageView alloc]init];
+        ShowOverlayImg.image = [UIImage imageNamed:@"DealsAndRecommendationOverlay.png"];
+        ShowOverlayImg.frame = CGRectMake(10 , 10 + i * 200, screenWidth - 20 ,120);
+        ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
+        ShowOverlayImg.layer.masksToBounds = YES;
+        ShowOverlayImg.layer.cornerRadius = 10;
+        [CollectionView addSubview:ShowOverlayImg];
+        
+        UIButton *OpenCollectionButton = [[UIButton alloc]init];
+        OpenCollectionButton.frame = CGRectMake(11 , 11 + i * 200 , screenWidth - 22 ,120);
+        [OpenCollectionButton setTitle:@"" forState:UIControlStateNormal];
+        OpenCollectionButton.backgroundColor = [UIColor clearColor];
+        OpenCollectionButton.layer.cornerRadius = 10;
+        OpenCollectionButton.layer.borderWidth=1;
+        OpenCollectionButton.layer.masksToBounds = YES;
+        OpenCollectionButton.layer.borderColor=[[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f] CGColor];
+        [OpenCollectionButton addTarget:self action:@selector(OpenCollectionButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+        OpenCollectionButton.tag = i;
+        [CollectionView addSubview: OpenCollectionButton];
+        
+        AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
+        ShowUserProfileImage.frame = CGRectMake(25 , 20 + i * 200, 40, 40);
+        // ShowUserProfileImage.image = [UIImage imageNamed:@"DemoProfile.jpg"];
+        ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
+        ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
+        ShowUserProfileImage.layer.cornerRadius=20;
+        ShowUserProfileImage.layer.borderWidth=1;
+        ShowUserProfileImage.layer.masksToBounds = YES;
+        ShowUserProfileImage.layer.borderColor=[[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] CGColor];
+        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
+        NSString *ImageData1 = [[NSString alloc]initWithFormat:@"%@",[Collection_arrUserImage objectAtIndex:i]];
+        if ([ImageData1 length] == 0) {
+            ShowUserProfileImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
+        }else{
+            NSURL *url_NearbySmall = [NSURL URLWithString:ImageData1];
+            ShowUserProfileImage.imageURL = url_NearbySmall;
+        }
+        [CollectionView addSubview:ShowUserProfileImage];
+        
+        UIButton *OpenUserProfileButton = [[UIButton alloc]init];
+        [OpenUserProfileButton setTitle:@"" forState:UIControlStateNormal];
+        OpenUserProfileButton.backgroundColor = [UIColor clearColor];
+        OpenUserProfileButton.frame = CGRectMake(25 , 20 + i * 200, screenWidth - 75 - 100, 40);
+        [OpenUserProfileButton addTarget:self action:@selector(CollectionUserProfileOnClick:) forControlEvents:UIControlEventTouchUpInside];
+        OpenUserProfileButton.tag = i;
+        [CollectionView addSubview:OpenUserProfileButton];
+        
+        NSString *usernameTemp = [[NSString alloc]initWithFormat:@"%@",[Collection_arrUsername objectAtIndex:i]];
+        
+        UILabel *ShowUserName = [[UILabel alloc]init];
+        ShowUserName.frame = CGRectMake(75 , 20 + i * 200, screenWidth - 75 - 100, 40);
+        ShowUserName.text = usernameTemp;
+        ShowUserName.backgroundColor = [UIColor clearColor];
+        ShowUserName.textColor = [UIColor whiteColor];
+        ShowUserName.textAlignment = NSTextAlignmentLeft;
+        ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+        [CollectionView addSubview:ShowUserName];
+        
+        UILabel *ShowCollectionTitle = [[UILabel alloc]init];
+        ShowCollectionTitle.frame = CGRectMake(25, 140 + i * 200, screenWidth - 190 , 25);
+        ShowCollectionTitle.text = [Collection_arrTitle objectAtIndex:i];
+        ShowCollectionTitle.backgroundColor = [UIColor clearColor];
+        ShowCollectionTitle.textColor = [UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f blue:51.0f/255.0f alpha:1.0f];
+        ShowCollectionTitle.textAlignment = NSTextAlignmentLeft;
+        ShowCollectionTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:16];
+        [CollectionView addSubview:ShowCollectionTitle];
+        
+        
+        NSString *TempCount = [[NSString alloc]initWithFormat:@"%@ recommendations",[Collection_arrTotalCount objectAtIndex:i]];
+        
+        UILabel *ShowCollectionCount = [[UILabel alloc]init];
+        ShowCollectionCount.frame = CGRectMake(25 , 165 + i * 200, screenWidth - 190, 25);
+        ShowCollectionCount.text = TempCount;
+        ShowCollectionCount.backgroundColor = [UIColor clearColor];
+        ShowCollectionCount.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+        ShowCollectionCount.textAlignment = NSTextAlignmentLeft;
+        ShowCollectionCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:14];
+        [CollectionView addSubview:ShowCollectionCount];
+        
+        NSString *CheckCollectionFollowing = [[NSString alloc]initWithFormat:@"%@",[Collection_arrFollowing objectAtIndex:i]];
+        NSLog(@"CheckCollectionFollowing is %@",CheckCollectionFollowing);
+        UIButton *CollectionFollowButton = [[UIButton alloc]init];
+        if ([CheckCollectionFollowing isEqualToString:@"0"]) {
+            [CollectionFollowButton setImage:[UIImage imageNamed:LocalisedString(@"CollectBtn.png")] forState:UIControlStateNormal];
+            [CollectionFollowButton setImage:[UIImage imageNamed:@"CollectedBtn.png"] forState:UIControlStateSelected];
+        }else{
+            [CollectionFollowButton setImage:[UIImage imageNamed:@"CollectedBtn.png"] forState:UIControlStateNormal];
+            [CollectionFollowButton setImage:[UIImage imageNamed:LocalisedString(@"CollectBtn.png")] forState:UIControlStateSelected];
+        }
+       // [CollectionFollowButton setImage:[UIImage imageNamed:LocalisedString(@"CollectBtn.png")] forState:UIControlStateNormal];
+        [CollectionFollowButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+        [CollectionFollowButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
+        CollectionFollowButton.backgroundColor = [UIColor clearColor];
+        CollectionFollowButton.frame = CGRectMake((screenWidth - 20 - 140), 140 + i * 200, 140, 50);
+        [CollectionFollowButton addTarget:self action:@selector(CollectionFollowingButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+        CollectionFollowButton.tag = i;
+        [CollectionView addSubview:CollectionFollowButton];
+        
+        
+        
+        
+        CollectionView.frame = CGRectMake(0, heightcheck, screenWidth, 200 + i * 200);
+        
+       // MainScroll.contentSize = CGSizeMake(screenWidth, 200 + i * 200);
+    }
+    CGSize contentSize = MainScroll.frame.size;
+    contentSize.height = heightcheck + CollectionView.frame.size.height;
+    MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    MainScroll.contentSize = contentSize;
 }
+
+//-(IBAction)AllExpertsButton:(id)sender{
+//    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+//    NSLog(@"button %li",(long)getbuttonIDN);
+//    
+//    NewUserProfileV2ViewController *ExpertsUserProfileView = [[NewUserProfileV2ViewController alloc]init];
+////    CATransition *transition = [CATransition animation];
+////    transition.duration = 0.2;
+////    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+////    transition.type = kCATransitionPush;
+////    transition.subtype = kCATransitionFromRight;
+////    [self.view.window.layer addAnimation:transition forKey:nil];
+////    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
+//    [self.navigationController pushViewController:ExpertsUserProfileView animated:YES];
+//    [ExpertsUserProfileView GetUserName:[All_Experts_Username_Array objectAtIndex:getbuttonIDN]];
+//}
 -(IBAction)ExpertsButton:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"ExpertsButton button %li",(long)getbuttonIDN);
@@ -1633,5 +1957,30 @@
     } else {
         
     }
+}
+-(IBAction)OpenCollectionButtonOnClick:(id)sender{
+    
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    
+    CollectionViewController *OpenCollectionView = [[CollectionViewController alloc]init];
+    [self.navigationController pushViewController:OpenCollectionView animated:YES];
+    [OpenCollectionView GetCollectionID:[Collection_arrID objectAtIndex:getbuttonIDN] GetPermision:@"User"];
+}
+-(IBAction)CollectionUserProfileOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSString *Getname = [[NSString alloc]initWithFormat:@"%@",[Collection_arrUsername objectAtIndex:getbuttonIDN]];
+    NSLog(@"CollectionUserProfileOnClick Getname is %@",Getname);
+    
+    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+    [NewUserProfileV2View GetUserName:Getname];
+}
+-(IBAction)CollectionFollowingButtonOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    
+    UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
+    buttonWithTag1.selected = !buttonWithTag1.selected;
+    
+    NSLog(@"Get Collection User ID == %@",[Collection_arrUserID objectAtIndex:getbuttonIDN]);
 }
 @end

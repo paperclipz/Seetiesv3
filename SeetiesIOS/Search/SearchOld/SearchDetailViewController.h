@@ -35,6 +35,7 @@
     NSURLConnection *theConnection_GetAllUserData;
     NSURLConnection *theConnection_Following;
     NSURLConnection *theConnection_QuickCollect;
+    NSURLConnection *theConnection_GetCollection;
     
     NSMutableArray *LPhotoArray;
     NSMutableArray *PostIDArray;
@@ -59,11 +60,15 @@
     NSMutableArray *Experts_uid_Array;
     NSMutableArray *Experts_Followed_Array;
     
-    NSMutableArray *All_Experts_Username_Array;
-    NSMutableArray *All_Experts_Name_Array;
-    NSMutableArray *All_Experts_ProfilePhoto_Array;
-    NSMutableArray *All_Experts_uid_Array;
-    NSMutableArray *All_Experts_Followed_Array;
+    NSMutableArray *Collection_arrID;
+    NSMutableArray *Collection_arrTitle;
+    NSMutableArray *Collection_arrTotalCount;
+    NSMutableArray *Collection_arrImageData;
+    NSMutableArray *Collection_arrFollowing;
+    
+    NSMutableArray *Collection_arrUsername;
+    NSMutableArray *Collection_arrUserImage;
+    NSMutableArray *Collection_arrUserID;
     
     NSInteger CheckInt;
     NSString *StringSortby;
@@ -93,6 +98,7 @@
     
     UIView *PostsView;
     UIView *PeopleView;
+    UIView *CollectionView;
     
     IBOutlet UIView *ShowSearchLocationView;
     IBOutlet UITableView *LocationTblView;
@@ -116,6 +122,7 @@
     int SelfSearchCurrentLocation;
     NSInteger CheckUserInitView;
     NSInteger CheckPostsInitView;
+    NSInteger CheckCollectionInitView;
     NSInteger SegmentedControlCheck;
 }
 -(void)GetSearchKeyword:(NSString *)Keyword Getlat:(NSString *)lat GetLong:(NSString *)Long GetLocationName:(NSString *)LocationName GetCurrentLat:(NSString *)CurrentLat GetCurrentLong:(NSString *)CurrentLong;

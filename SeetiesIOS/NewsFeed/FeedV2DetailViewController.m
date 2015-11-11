@@ -2706,40 +2706,60 @@
             
             NSString *TempImage = [[NSString alloc]initWithFormat:@"%@",[arrImageData objectAtIndex:i]];
             NSArray *SplitArray_TempImage = [TempImage componentsSeparatedByString:@"^^^"];
-            
-            AsyncImageView *ShowImage1 = [[AsyncImageView alloc]init];
-            ShowImage1.frame = CGRectMake(10 + i * (screenWidth - 45), 50 , ((screenWidth - 55) / 2) ,120);
-            //ShowImage.image = [UIImage imageNamed:@"UserDemo2.jpg"];
-            ShowImage1.contentMode = UIViewContentModeScaleAspectFill;
-            ShowImage1.layer.backgroundColor=[[UIColor clearColor] CGColor];
-            ShowImage1.layer.cornerRadius= 10;
-            ShowImage1.layer.masksToBounds = YES;
-            [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage1];
-            NSString *ImageData = [[NSString alloc]initWithFormat:@"%@",[SplitArray_TempImage objectAtIndex:0]];
-            if ([ImageData length] == 0) {
-                ShowImage1.image = [UIImage imageNamed:@"NoImage.png"];
+            if ([SplitArray_TempImage count] == 1) {
+                AsyncImageView *ShowImage1 = [[AsyncImageView alloc]init];
+                ShowImage1.frame = CGRectMake(10 + i * (screenWidth - 45), 50 , screenWidth - 50 ,120);
+                //ShowImage.image = [UIImage imageNamed:@"UserDemo2.jpg"];
+                ShowImage1.contentMode = UIViewContentModeScaleAspectFill;
+                ShowImage1.layer.backgroundColor=[[UIColor clearColor] CGColor];
+                ShowImage1.layer.cornerRadius= 10;
+                ShowImage1.layer.masksToBounds = YES;
+                [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage1];
+                NSString *ImageData = [[NSString alloc]initWithFormat:@"%@",[SplitArray_TempImage objectAtIndex:0]];
+                if ([ImageData length] == 0) {
+                    ShowImage1.image = [UIImage imageNamed:@"NoImage.png"];
+                }else{
+                    NSURL *url_NearbySmall = [NSURL URLWithString:ImageData];
+                    ShowImage1.imageURL = url_NearbySmall;
+                }
+                [CollectionScrollview addSubview:ShowImage1];
             }else{
-                NSURL *url_NearbySmall = [NSURL URLWithString:ImageData];
-                ShowImage1.imageURL = url_NearbySmall;
+                AsyncImageView *ShowImage1 = [[AsyncImageView alloc]init];
+                ShowImage1.frame = CGRectMake(10 + i * (screenWidth - 45), 50 , ((screenWidth - 55) / 2) ,120);
+                //ShowImage.image = [UIImage imageNamed:@"UserDemo2.jpg"];
+                ShowImage1.contentMode = UIViewContentModeScaleAspectFill;
+                ShowImage1.layer.backgroundColor=[[UIColor clearColor] CGColor];
+                ShowImage1.layer.cornerRadius= 10;
+                ShowImage1.layer.masksToBounds = YES;
+                [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage1];
+                NSString *ImageData = [[NSString alloc]initWithFormat:@"%@",[SplitArray_TempImage objectAtIndex:0]];
+                if ([ImageData length] == 0) {
+                    ShowImage1.image = [UIImage imageNamed:@"NoImage.png"];
+                }else{
+                    NSURL *url_NearbySmall = [NSURL URLWithString:ImageData];
+                    ShowImage1.imageURL = url_NearbySmall;
+                }
+                [CollectionScrollview addSubview:ShowImage1];
+                
+                AsyncImageView *ShowImage2 = [[AsyncImageView alloc]init];
+                ShowImage2.frame = CGRectMake(12 + ((screenWidth - 45) / 2) + i * (screenWidth - 45), 50 , ((screenWidth - 60) / 2) ,120);
+                //ShowImage.image = [UIImage imageNamed:@"UserDemo2.jpg"];
+                ShowImage2.contentMode = UIViewContentModeScaleAspectFill;
+                ShowImage2.layer.backgroundColor=[[UIColor clearColor] CGColor];
+                ShowImage2.layer.cornerRadius=10;
+                ShowImage2.layer.masksToBounds = YES;
+                [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage2];
+                NSString *ImageData100 = [[NSString alloc]initWithFormat:@"%@",[SplitArray_TempImage objectAtIndex:1]];
+                if ([ImageData100 length] == 0) {
+                    ShowImage2.image = [UIImage imageNamed:@"NoImage.png"];
+                }else{
+                    NSURL *url_NearbySmall = [NSURL URLWithString:ImageData100];
+                    ShowImage2.imageURL = url_NearbySmall;
+                }
+                [CollectionScrollview addSubview:ShowImage2];
             }
-            [CollectionScrollview addSubview:ShowImage1];
             
-            AsyncImageView *ShowImage2 = [[AsyncImageView alloc]init];
-            ShowImage2.frame = CGRectMake(12 + ((screenWidth - 45) / 2) + i * (screenWidth - 45), 50 , ((screenWidth - 60) / 2) ,120);
-            //ShowImage.image = [UIImage imageNamed:@"UserDemo2.jpg"];
-            ShowImage2.contentMode = UIViewContentModeScaleAspectFill;
-            ShowImage2.layer.backgroundColor=[[UIColor clearColor] CGColor];
-            ShowImage2.layer.cornerRadius=10;
-            ShowImage2.layer.masksToBounds = YES;
-            [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage2];
-            NSString *ImageData100 = [[NSString alloc]initWithFormat:@"%@",[SplitArray_TempImage objectAtIndex:1]];
-            if ([ImageData100 length] == 0) {
-                ShowImage2.image = [UIImage imageNamed:@"NoImage.png"];
-            }else{
-                NSURL *url_NearbySmall = [NSURL URLWithString:ImageData100];
-                ShowImage2.imageURL = url_NearbySmall;
-            }
-            [CollectionScrollview addSubview:ShowImage2];
+
             
             
             UIImageView *ShowOverlayImg = [[UIImageView alloc]init];
@@ -2760,7 +2780,7 @@
             OpenCollectionButton.layer.borderWidth=1;
             OpenCollectionButton.layer.masksToBounds = YES;
             OpenCollectionButton.layer.borderColor=[[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f] CGColor];
-            //  [OpenCollectionButton addTarget:self action:@selector(OpenCollectionButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+            [OpenCollectionButton addTarget:self action:@selector(OpenCollectionButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
             OpenCollectionButton.tag = i;
             [CollectionScrollview addSubview: OpenCollectionButton];
             
@@ -2787,7 +2807,7 @@
             [OpenUserProfileButton setTitle:@"" forState:UIControlStateNormal];
             OpenUserProfileButton.backgroundColor = [UIColor clearColor];
             OpenUserProfileButton.frame = CGRectMake(25 + i * (screenWidth - 45), 51 + 10, screenWidth - 75 - 100, 40);
-            //  [OpenUserProfileButton addTarget:self action:@selector(CollectionUserProfileOnClick:) forControlEvents:UIControlEventTouchUpInside];
+            [OpenUserProfileButton addTarget:self action:@selector(CollectionUserProfileOnClick:) forControlEvents:UIControlEventTouchUpInside];
             OpenUserProfileButton.tag = i;
             [CollectionScrollview addSubview:OpenUserProfileButton];
             
@@ -4283,14 +4303,6 @@
     [self.navigationController pushViewController:SearchDetailView animated:YES];
     [SearchDetailView GetSearchKeyword:GetTagsString Getlat:@"" GetLong:@"" GetLocationName:@"" GetCurrentLat:@"" GetCurrentLong:@""];
 }
--(IBAction)CollectionFollowingButtonOnClick:(id)sender{
-    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
-    
-    UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
-    buttonWithTag1.selected = !buttonWithTag1.selected;
-    
-    NSLog(@"Get Collection User ID == %@",[arrUserID objectAtIndex:getbuttonIDN]);
-}
 -(IBAction)BlogLinkButtonOnClick:(id)sender{
     if ([GetLink hasPrefix:@"http://"] || [GetLink hasPrefix:@"https://"]) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:GetLink]];
@@ -4298,5 +4310,30 @@
         NSString *TempString = [[NSString alloc]initWithFormat:@"http://%@",GetLink];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:TempString]];
     }
+}
+-(IBAction)OpenCollectionButtonOnClick:(id)sender{
+    
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    
+    CollectionViewController *OpenCollectionView = [[CollectionViewController alloc]init];
+    [self.navigationController pushViewController:OpenCollectionView animated:YES];
+    [OpenCollectionView GetCollectionID:[arrCollectionID objectAtIndex:getbuttonIDN] GetPermision:@"User"];
+}
+-(IBAction)CollectionUserProfileOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSString *Getname = [[NSString alloc]initWithFormat:@"%@",[arrUsername objectAtIndex:getbuttonIDN]];
+    NSLog(@"CollectionUserProfileOnClick Getname is %@",Getname);
+    
+    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+    [NewUserProfileV2View GetUserName:Getname];
+}
+-(IBAction)CollectionFollowingButtonOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    
+    UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
+    buttonWithTag1.selected = !buttonWithTag1.selected;
+    
+    NSLog(@"Get Collection User ID == %@",[arrUserID objectAtIndex:getbuttonIDN]);
 }
 @end
