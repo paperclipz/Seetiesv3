@@ -685,7 +685,7 @@
     }
     else if (index == 4)
     {
-        [self.profileViewController requestAllData];
+        [self.profileViewController requestAllDataWithType:ProfileViewTypeOwn UserID:[Utils getUserID]];
     }
 
     return YES;

@@ -49,13 +49,22 @@
             
             
             break;
-        case ListingViewTypePost:
+        case ListingViewTypePostOwn:
             self.lblTitle.text = [NSString stringWithFormat:@"%d %@",count,LocalisedString(@"Posts")];
             
             
             self.btnAddMore.hidden = false;
 
             break;
+            
+        case ListingViewTypePostOthers:
+            self.lblTitle.text = [NSString stringWithFormat:@"%d %@",count,LocalisedString(@"Posts")];
+            
+            self.ibImgLine.hidden = YES;
+            self.btnAddMore.hidden = YES;
+            
+            break;
+
 
         case ListingViewTypeLikes:
             self.lblTitle.text = [NSString stringWithFormat:@"%d %@",count,LocalisedString(@"Likes")];

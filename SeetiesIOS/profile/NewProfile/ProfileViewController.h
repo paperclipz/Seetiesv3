@@ -23,6 +23,9 @@
 
 #import "ShareViewController.h"
 
+@class PostListingViewController;
+@class LikesListingViewController;
+
 @interface ProfileViewController : BaseViewController<TLTagsControlDelegate>
 
 @property(nonatomic,strong)CollectionViewController* collectionViewController;
@@ -41,6 +44,6 @@
 
 @property(nonatomic,copy)VoidBlock btnAddMorePostClickedBlock;
 @property(nonatomic,strong)ShareViewController* shareViewController;
--(void)requestAllData;
+-(void)requestAllDataWithType:(ProfileViewType)type UserID:(NSString*)uID;
 
 @end

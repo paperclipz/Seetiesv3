@@ -8,10 +8,10 @@
 
 #import "CommonViewController.h"
 #import "FeedV2DetailViewController.h"
-
+@class FeedV2DetailViewController;
 @interface PostListingViewController : CommonViewController
--(void)initData:(ProfilePostModel*)model;
 @property(nonatomic, copy)VoidBlock btnAddMorePostBlock;
 @property(nonatomic, strong)FeedV2DetailViewController* feedV2DetailViewController;
+-(void)initData:(ProfilePostModel*)model UserProfileModel:(ProfileModel*)profileModel ProfileViewType:(ProfileViewType)type;
 
 @end

@@ -312,7 +312,9 @@
         
         UIView *tagView = [[UIView alloc] initWithFrame:tagInputField_.frame];
         CGRect tagFrame = tagView.frame;
-        tagView.layer.cornerRadius = 5;
+        //custom edit
+        [Utils setRoundBorder:tagView color:DEVICE_COLOR borderRadius:5.0f borderWidth:0.8f];
+       // tagView.layer.cornerRadius = 5;
         tagFrame.origin.y = tagInputField_.frame.origin.y;
         tagView.backgroundColor = tagBackgrounColor;
         

@@ -12,6 +12,9 @@
 #import "GAITrackedViewController.h"
 #import "LLARingSpinnerView.h"
 #import "EditPostViewController.h"
+#import "ProfileViewController.h"
+
+@class ProfileViewController;
 
 @interface FeedV2DetailViewController : GAITrackedViewController<UIScrollViewDelegate,UIActionSheetDelegate>{
     
@@ -226,6 +229,7 @@
 }
 
 @property(nonatomic,strong)EditPostViewController* editPostViewController;
+@property(nonatomic,strong)ProfileViewController* profileViewController;
 
 -(void)GetPostID:(NSString *)PostID;
 

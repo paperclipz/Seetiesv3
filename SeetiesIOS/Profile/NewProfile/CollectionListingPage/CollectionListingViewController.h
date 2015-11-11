@@ -18,4 +18,6 @@
 @property(nonatomic,strong)EditCollectionViewController* editCollectionViewController;
 @property(nonatomic,strong)CollectionViewController* collectionViewController;
 
+-(void)setType:(ProfileViewType)type ProfileModel:(ProfileModel*)model;
+
 @end

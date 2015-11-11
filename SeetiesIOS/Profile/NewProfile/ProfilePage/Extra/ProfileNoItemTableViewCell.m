@@ -8,6 +8,13 @@
 
 #import "ProfileNoItemTableViewCell.h"
 
+@interface ProfileNoItemTableViewCell()
+// 0 collection || 1 post || 2 likes
+@property (nonatomic,assign)int cellType;
+@property (weak, nonatomic) IBOutlet UIImageView *ibImage;
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+@property (weak, nonatomic) IBOutlet UILabel *lblDesc;
+@end
 @implementation ProfileNoItemTableViewCell
 
 /*
@@ -24,9 +31,8 @@
 
 -(void)initSelfView
 {
-    
+        self.lblTitle.text = LocalisedString(@"There's nothing 'ere, yet.");
 }
-
 
 -(void)adjustRoundedEdge:(CGRect)frame
 {
@@ -35,6 +41,38 @@
     [self setNeedsLayout];
     [self layoutIfNeeded];
     [self setRoundedCorners:UIRectCornerBottomLeft|UIRectCornerBottomRight radius:10.0f];
+    
+}
+
+-(void)setType:(int)type{
+
+    self.cellType = type;
+    
+    switch (self.cellType) {
+            
+        default:
+        case 0:
+            self.ibImage.image = [UIImage imageNamed:@"NoCollectionIcon.png"];
+            self.lblDesc.text = LocalisedString(@"No Collections");
+
+
+            break;
+            
+        case 1:
+            self.ibImage.image = [UIImage imageNamed:@"NoPostIcon-Icon.png"];
+            self.lblDesc.text = LocalisedString(@"Would you like to start a post?(:");
+
+            break;
+            
+        case 2:
+            self.ibImage.image = [UIImage imageNamed:@"NoLike-Icon.png"];
+            self.lblDesc.text = LocalisedString(@"Check back soon!");
+
+
+            break;
+    }
+    
+    
     
 }
 

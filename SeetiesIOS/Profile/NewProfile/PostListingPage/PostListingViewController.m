@@ -19,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 @property (strong, nonatomic) ProfilePostModel* userProfilePostModel;
 @property (strong, nonatomic) ListingHeaderView* viewHeader;
+@property (strong, nonatomic) ProfileModel* profileModel;
+@property (assign, nonatomic) ProfileViewType profileType;
 
 @end
 
@@ -52,10 +54,11 @@
 }
 
 
--(void)initData:(ProfilePostModel*)model
+-(void)initData:(ProfilePostModel*)model UserProfileModel:(ProfileModel*)profileModel ProfileViewType:(ProfileViewType)type
 {
+    self.profileType = type;
     self.userProfilePostModel = model;
-    
+    self.profileModel = profileModel;
     self.arrPostListing = [NSMutableArray arrayWithArray:self.userProfilePostModel.userPostData.posts];
 
 }
@@ -96,12 +99,11 @@
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     
-    
     if (!_viewHeader) {
         _viewHeader = [ListingHeaderView initializeCustomView];
         
         __weak typeof (self)wealSelf = self;
-        [_viewHeader setType:ListingViewTypePost addMoreClicked:^{
+        [_viewHeader setType:self.profileType==ProfileViewTypeOwn?ListingViewTypePostOwn:ListingViewTypePostOthers addMoreClicked:^{
             
             if (wealSelf.btnAddMorePostBlock) {
                 wealSelf.btnAddMorePostBlock();
@@ -177,7 +179,7 @@
 {
     
     isMiddleOfCallingServer = true;
-    NSString* appendString = [NSString stringWithFormat:@"%@/posts",[Utils getUserID]];
+    NSString* appendString = [NSString stringWithFormat:@"%@/posts",self.profileModel.uid];
     NSDictionary* dict = @{@"page":self.userProfilePostModel.userPostData.page?@(self.userProfilePostModel.userPostData.page + 1):@1,
                            @"list_size":@(ARRAY_LIST_SIZE),
                            @"token":[Utils getAppToken]

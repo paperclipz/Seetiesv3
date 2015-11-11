@@ -40,6 +40,7 @@
 @property(nonatomic,assign)int total_posts;
 @property(nonatomic,strong)NSMutableArray* deleted_posts;
 @property(nonatomic,assign)int collection_posts_count;
+@property(nonatomic,assign)BOOL following;
 
 
 @end

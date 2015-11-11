@@ -24,7 +24,7 @@ pod 'BkTask'
 pod 'HMSegmentedControl'
 pod 'ActionSheetPicker-3.0', '~> 1.7.1'
 pod 'BOString'
-pod 'AviarySDK', '4.2.1'
+pod 'AviarySDK'
 pod 'pop', '~> 1.0'
 pod 'MGSwipeTableCell'
 pod 'SVPullToRefresh'
@@ -35,5 +35,7 @@ pod 'A3ParallaxScrollView', '~> 1.0'
 
 pod 'APParallaxHeader'
 pod 'PureLayout'
+pod 'MZAppearance'
+
 
 #pod 'Canvas', '~> 0.1.2'

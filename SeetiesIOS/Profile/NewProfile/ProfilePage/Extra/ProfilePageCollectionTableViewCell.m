@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UIView *ibInnerContentView;
 @property (weak, nonatomic) IBOutlet UIButton *btnEdit;
 
+@property (assign, nonatomic)ProfileViewType profileType;
+
 @end
 @implementation ProfilePageCollectionTableViewCell
 
@@ -27,7 +29,16 @@
 - (IBAction)btnEditClicked:(id)sender {
     
     if (_btnEditClickedBlock) {
-        self.btnEditClickedBlock();
+        
+        if (self.profileType == ProfileViewTypeOwn) {
+            self.btnEditClickedBlock();
+
+        }
+        else{
+            if (_btnFollowBlock) {
+                self.btnFollowBlock();
+            }
+        }
     }
 }
 
@@ -38,7 +49,8 @@
     
     [self.ibImageViewA setStandardBorder];
     [self.ibImageViewB setStandardBorder];
-
+    
+   
 }
 
 +(int)getHeight
@@ -46,10 +58,11 @@
     return 166.0f;
 }
 
--(void)initData:(CollectionModel*)model
+-(void)initData:(CollectionModel*)model profileType:(ProfileViewType)type
 {
 
     self.model = model;
+    self.profileType = type;
     
     self.lblTitle.text = self.model.name;
     self.lblNoOfCollection.text = [NSString stringWithFormat:@"%d %@",self.model.collection_posts_count,LocalisedString(@"recommendation")];
@@ -82,6 +95,19 @@
         }
     }
     
+    
+    if (self.profileType == ProfileViewTypeOwn) {
+        [self.btnEdit setTitle:LocalisedString(@"Edit") forState:UIControlStateNormal];
+        
+    }
+    else{
+        [self.btnEdit setTitle:LocalisedString(@"Follow") forState:UIControlStateNormal];
+        [self.btnEdit setTitle:LocalisedString(@"Following") forState:UIControlStateSelected];
+        [self.btnEdit setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self.btnEdit setTitleColor:SELECTED_GREEN forState:UIControlStateSelected];
+
+        [self setFollowButtonSelected:self.model.following button:self.btnEdit];
+    }
    
    
 //
@@ -95,4 +121,12 @@
 //    }
     
 }
+
+-(void)setFollowButtonSelected:(BOOL)selected button:(UIButton*)button
+{
+    button.selected = selected;
+    button.backgroundColor = selected?[UIColor whiteColor]:SELECTED_GREEN;
+    
+}
+
 @end
