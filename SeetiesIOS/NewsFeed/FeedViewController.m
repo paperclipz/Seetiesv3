@@ -433,107 +433,107 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-   // NSLog(@"FeedViewController viewWillAppear");
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *CheckSelfDelete = [defaults objectForKey:@"SelfDeletePost"];
-    if ([CheckSelfDelete isEqualToString:@"YES"]) {
-        [self ReinitData];
-        
-        [User_LocationArray removeAllObjects];
-        [User_IDArray removeAllObjects];
-        [User_NameArray removeAllObjects];
-        [User_ProfileImageArray removeAllObjects];
-        [User_FollowArray removeAllObjects];
-        [User_UserNameArray removeAllObjects];
-        [User_PhotoArray removeAllObjects];
-        
-        [arrType_Announcement removeAllObjects];
-        [arrID_Announcement removeAllObjects];
-        
-        [arrAboadID removeAllObjects];
-        [arrfeaturedUserName removeAllObjects];
-        [arrFriendUserName removeAllObjects];
-        [arrDealID removeAllObjects];
-        
-        arrType_Announcement = [[NSMutableArray alloc]init];
-        arrID_Announcement = [[NSMutableArray alloc]init];
-        
-        DataCount = 0;
-        Offset = 1;
-        CheckFirstTimeLoad = 0;
-        OnLoad = NO;
-        
-        for (UIView *subview in MainScroll.subviews) {
-            [subview removeFromSuperview];
-        }
-
-        [refreshControl addTarget:self action:@selector(testRefresh) forControlEvents:UIControlEventValueChanged];
-        [MainScroll addSubview:refreshControl];
-        
-        GetNextPaging = @"";
-        [self GetFeedDataFromServer];
-        
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setObject:@"NO" forKey:@"SelfDeletePost"];
-        [defaults synchronize];
-    }
-    
-    NSString *CheckUpdateLike = [defaults objectForKey:@"PostToDetail_like"];
-    NSString *CheckUpdateCollect = [defaults objectForKey:@"PostToDetail_Collect"];
-    NSInteger CheckUpdateIDN = [defaults integerForKey:@"PostToDetail_IDN"];
-
-    
-    if ([CheckUpdateLike length] == 0 || [CheckUpdateLike isEqualToString:@""] || [CheckUpdateLike isEqualToString:@"(null)"] || [CheckUpdateLike isEqualToString:@"<null>"]) {
-        
-    }else{
-        NSLog(@"return check like = %@",CheckUpdateLike);
-        NSLog(@"return check IDN = %ld",(long)CheckUpdateIDN);
-        
-        if ([CheckUpdateLike isEqualToString:[arrlike objectAtIndex:CheckUpdateIDN - 6000]]) {
-            
-        }else{
-            UIButton * btn = (UIButton*)[MainScroll viewWithTag:CheckUpdateIDN];
-            
-            
-            if ([CheckUpdateLike isEqualToString:@"0"]) {
-                [btn setSelected:NO];
-                [arrlike replaceObjectAtIndex:CheckUpdateIDN - 6000 withObject:@"0"];
-            }else{
-                [arrlike replaceObjectAtIndex:CheckUpdateIDN - 6000 withObject:@"1"];
-                [btn setSelected:YES];
-            }
-        }
-    }
-    if ([CheckUpdateCollect length] == 0 || [CheckUpdateCollect isEqualToString:@""] || [CheckUpdateCollect isEqualToString:@"(null)"] || [CheckUpdateCollect isEqualToString:@"<null>"]) {
-        
-    }else{
-        NSLog(@"return check Collect = %@",CheckUpdateCollect);
-        NSLog(@"return check IDN = %ld",(long)CheckUpdateIDN);
-        
-        if ([CheckUpdateCollect isEqualToString:[arrCollect objectAtIndex:CheckUpdateIDN - 6000]]) {
-            
-        }else{
-            CheckUpdateIDN -= 1000;
-            UIButton * btn = (UIButton*)[MainScroll viewWithTag:CheckUpdateIDN];
-            
-            
-            if ([CheckUpdateLike isEqualToString:@"0"]) {
-                [btn setSelected:NO];
-                [arrCollect replaceObjectAtIndex:CheckUpdateIDN - 5000 withObject:@"0"];
-            }else{
-                [arrCollect replaceObjectAtIndex:CheckUpdateIDN - 5000 withObject:@"1"];
-                [btn setSelected:YES];
-            }
-        }
-    }
-    
-
-    
-    
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"PostToDetail_like"];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"PostToDetail_Collect"];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"PostToDetail_IDN"];
+//   // NSLog(@"FeedViewController viewWillAppear");
+//    
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    NSString *CheckSelfDelete = [defaults objectForKey:@"SelfDeletePost"];
+//    if ([CheckSelfDelete isEqualToString:@"YES"]) {
+//        [self ReinitData];
+//        
+//        [User_LocationArray removeAllObjects];
+//        [User_IDArray removeAllObjects];
+//        [User_NameArray removeAllObjects];
+//        [User_ProfileImageArray removeAllObjects];
+//        [User_FollowArray removeAllObjects];
+//        [User_UserNameArray removeAllObjects];
+//        [User_PhotoArray removeAllObjects];
+//        
+//        [arrType_Announcement removeAllObjects];
+//        [arrID_Announcement removeAllObjects];
+//        
+//        [arrAboadID removeAllObjects];
+//        [arrfeaturedUserName removeAllObjects];
+//        [arrFriendUserName removeAllObjects];
+//        [arrDealID removeAllObjects];
+//        
+//        arrType_Announcement = [[NSMutableArray alloc]init];
+//        arrID_Announcement = [[NSMutableArray alloc]init];
+//        
+//        DataCount = 0;
+//        Offset = 1;
+//        CheckFirstTimeLoad = 0;
+//        OnLoad = NO;
+//        
+//        for (UIView *subview in MainScroll.subviews) {
+//            [subview removeFromSuperview];
+//        }
+//
+//        [refreshControl addTarget:self action:@selector(testRefresh) forControlEvents:UIControlEventValueChanged];
+//        [MainScroll addSubview:refreshControl];
+//        
+//        GetNextPaging = @"";
+//        [self GetFeedDataFromServer];
+//        
+//        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//        [defaults setObject:@"NO" forKey:@"SelfDeletePost"];
+//        [defaults synchronize];
+//    }
+//    
+//    NSString *CheckUpdateLike = [defaults objectForKey:@"PostToDetail_like"];
+//    NSString *CheckUpdateCollect = [defaults objectForKey:@"PostToDetail_Collect"];
+//    NSInteger CheckUpdateIDN = [defaults integerForKey:@"PostToDetail_IDN"];
+//
+//    
+//    if ([CheckUpdateLike length] == 0 || [CheckUpdateLike isEqualToString:@""] || [CheckUpdateLike isEqualToString:@"(null)"] || [CheckUpdateLike isEqualToString:@"<null>"]) {
+//        
+//    }else{
+//        NSLog(@"return check like = %@",CheckUpdateLike);
+//        NSLog(@"return check IDN = %ld",(long)CheckUpdateIDN);
+//        
+//        if ([CheckUpdateLike isEqualToString:[arrlike objectAtIndex:CheckUpdateIDN - 6000]]) {
+//            
+//        }else{
+//            UIButton * btn = (UIButton*)[MainScroll viewWithTag:CheckUpdateIDN];
+//            
+//            
+//            if ([CheckUpdateLike isEqualToString:@"0"]) {
+//                [btn setSelected:NO];
+//                [arrlike replaceObjectAtIndex:CheckUpdateIDN - 6000 withObject:@"0"];
+//            }else{
+//                [arrlike replaceObjectAtIndex:CheckUpdateIDN - 6000 withObject:@"1"];
+//                [btn setSelected:YES];
+//            }
+//        }
+//    }
+//    if ([CheckUpdateCollect length] == 0 || [CheckUpdateCollect isEqualToString:@""] || [CheckUpdateCollect isEqualToString:@"(null)"] || [CheckUpdateCollect isEqualToString:@"<null>"]) {
+//        
+//    }else{
+//        NSLog(@"return check Collect = %@",CheckUpdateCollect);
+//        NSLog(@"return check IDN = %ld",(long)CheckUpdateIDN);
+//        
+//        if ([CheckUpdateCollect isEqualToString:[arrCollect objectAtIndex:CheckUpdateIDN - 6000]]) {
+//            
+//        }else{
+//            CheckUpdateIDN -= 1000;
+//            UIButton * btn = (UIButton*)[MainScroll viewWithTag:CheckUpdateIDN];
+//            
+//            
+//            if ([CheckUpdateLike isEqualToString:@"0"]) {
+//                [btn setSelected:NO];
+//                [arrCollect replaceObjectAtIndex:CheckUpdateIDN - 5000 withObject:@"0"];
+//            }else{
+//                [arrCollect replaceObjectAtIndex:CheckUpdateIDN - 5000 withObject:@"1"];
+//                [btn setSelected:YES];
+//            }
+//        }
+//    }
+//    
+//
+//    
+//    
+//    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"PostToDetail_like"];
+//    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"PostToDetail_Collect"];
+//    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"PostToDetail_IDN"];
 }
 -(void)testRefresh{
     

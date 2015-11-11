@@ -190,6 +190,16 @@
                                              selector:@selector(receiveTestNotification:)
                                                  name:NOTIFICAION_TYPE_REFRESH_COLLECTION
                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveTestNotification:)
+                                                 name:NOTIFICAION_TYPE_REFRESH_POST
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveTestNotification:)
+                                                 name:NOTIFICAION_TYPE_REFRESH_LIKES
+                                               object:nil];
 
 }
 
@@ -716,7 +726,7 @@
 {
     _editCollectionViewController = nil;
     [LoadingManager show];
-    [self.editCollectionViewController initData:collID];
+    [self.editCollectionViewController initData:collID ProfileType:self.profileViewType];
     [LoadingManager show];
     [self.navigationController pushViewController:self.editCollectionViewController animated:YES];
 }
@@ -823,6 +833,13 @@
 {
     if (!_likesListingViewController) {
         _likesListingViewController = [LikesListingViewController new];
+        
+        //__weak typeof (self)weakSelf = self;
+//        _likesListingViewController.btnBackBlock = ^(id object)
+//        {
+//            [weakSelf requestServerForUserLikes];
+//        };
+
     }
     return _likesListingViewController;
 }
@@ -863,6 +880,13 @@
 {
     if (!_postListingViewController) {
         _postListingViewController = [PostListingViewController new];
+        
+        __weak typeof (self)weakSelf = self;
+        _postListingViewController.btnBackBlock = ^(id object)
+        {
+            [weakSelf requestServerForUserPost];
+        };
+        
     }
     
     return _postListingViewController;
@@ -873,6 +897,8 @@
     if(!_collectionViewController)
     {
         _collectionViewController = [CollectionViewController new];
+        
+       
     }
     
     return _collectionViewController;
@@ -1156,9 +1182,22 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
     // as well.
     
     if ([[notification name] isEqualToString:NOTIFICAION_TYPE_REFRESH_COLLECTION])
+    {
+        [self requestServerForUserCollection];
+
+    }
+    else if ([[notification name] isEqualToString:NOTIFICAION_TYPE_REFRESH_POST])
+    {
+        [self requestServerForUserPost];
+    }
+    else if ([[notification name] isEqualToString:NOTIFICAION_TYPE_REFRESH_LIKES])
+    {
+        [self requestServerForUserLikes];
+
+    }
+
         //NSLog (@"Successfully received the test notification!");
         
-        [self requestServerForUserCollection];
 }
 
 //#pragma mark - UIScrollView

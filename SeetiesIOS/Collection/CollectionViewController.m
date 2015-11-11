@@ -751,7 +751,7 @@
         
         [LoadingManager show];
         
-        [self.editCollectionViewController initData:GetID];
+        [self.editCollectionViewController initData:GetID ProfileType:ProfileViewTypeOwn];
         [LoadingManager show];
         [self.navigationController pushViewController:self.editCollectionViewController animated:YES];
     }else{
