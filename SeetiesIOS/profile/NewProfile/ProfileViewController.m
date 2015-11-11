@@ -19,7 +19,7 @@
 
 #import "MZFormSheetPresentationViewController.h"
 
-@interface ProfileViewController ()<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate>
+@interface ProfileViewController ()<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate,UIScrollViewDelegate>
 {
     NSMutableArray* arrayTag;
     NSMutableArray* arrCollection;
@@ -30,6 +30,7 @@
 }
 
 // =======  OUTLET   =======
+@property (weak, nonatomic) IBOutlet UIImageView *ibImgViewOtherPadding;
 @property (weak, nonatomic) IBOutlet UILabel *lblName;
 @property (weak, nonatomic) IBOutlet UIButton *btnEditProfile;
 @property (weak, nonatomic) IBOutlet UILabel *lblUserName;
@@ -160,7 +161,6 @@
     
     [self presentViewController:formSheetController animated:YES completion:nil];
 
-
 }
 
 - (IBAction)btnSettingClicked:(id)sender {
@@ -201,7 +201,7 @@
 -(void)initSelfView
 {
     
-    
+    self.ibImgViewOtherPadding.alpha = 0;
     if (self.profileViewType == ProfileViewTypeOwn) {
         
         self.btnFollow.hidden = YES;
@@ -240,7 +240,7 @@
     [self setParallaxView];
     self.ibScrollView.contentSize = CGSizeMake(self.ibScrollView.frame.size.width, self.ibContentView.frame.size.height);
     [self.ibScrollView addSubview:self.ibContentView];
-
+    self.ibScrollView.delegate = self;
 
     [self adjustTableView];
   //  [self addSearchView];
@@ -291,7 +291,9 @@
         [self.ibSettingContentView adjustToScreenWidth];
     }
     else{
+        
         [self.ibScrollView.parallaxView addSubview:self.ibSettingOtherView];
+        self.ibImgViewOtherPadding.alpha = 0;
         [self.ibScrollView.parallaxView bringSubviewToFront:self.ibSettingOtherView];
         [self.ibSettingOtherView adjustToScreenWidth];
     }
@@ -470,7 +472,7 @@
                 cell = [[ProfileNoItemTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfierShowNone];
             }
             [cell adjustRoundedEdge:self.ibTableView.frame];
-
+            [cell setType:0];
             return cell;
         }
        else if (indexPath.row==arrCollection.count || indexPath.row == 3) {
@@ -531,6 +533,7 @@
                 cell = [[ProfileNoItemTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfierShowNone];
             }
             [cell adjustRoundedEdge:self.ibTableView.frame];
+            [cell setType:1];
 
             return cell;
         }
@@ -576,6 +579,7 @@
                 cell = [[ProfileNoItemTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfierShowNone];
             }
             [cell adjustRoundedEdge:self.ibTableView.frame];
+            [cell setType:2];
 
             return cell;
         }
@@ -639,8 +643,7 @@
                 return;
             }
             _collectionListingViewController = nil;
-            self.collectionListingViewController.profileType = self.profileViewType;
-            self.collectionListingViewController.userID = self.userID;
+            [self.collectionListingViewController setType:self.profileViewType ProfileModel:self.userProfileModel];
             [self.navigationController pushViewController:self.collectionListingViewController animated:YES];
             break;
         case 1://post
@@ -650,8 +653,7 @@
             }
 
             _postListingViewController = nil;
-            [self.postListingViewController initData:self.userProfilePostModel];
-            self.postListingViewController.userID = self.userID;
+            [self.postListingViewController initData:self.userProfilePostModel UserProfileModel:self.userProfileModel ProfileViewType:self.profileViewType];
             [self.navigationController pushViewController:self.postListingViewController animated:YES];
             
             self.postListingViewController.btnAddMorePostBlock = self.btnAddMorePostClickedBlock;
@@ -1026,7 +1028,11 @@
 {
     NSString* appendString = [NSString stringWithFormat:@"%@",self.userID];
    
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserInfo param:nil appendString:appendString completeHandler:^(id object) {
+    NSDictionary* dict = @{@"uid":self.userID,
+                           @"token":[Utils getAppToken]
+                           };
+    
+    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserInfo param:dict appendString:appendString completeHandler:^(id object) {
         
         self.userProfileModel = [[ConnectionManager dataManager]userProfileModel];
         [self assignData];
@@ -1062,11 +1068,7 @@
     
     //UIImageView* tempImageView = [[UIImageView alloc]initWithFrame:self.backgroundImageView.frame];
     [self.backgroundImageView sd_setImageWithURL:[NSURL URLWithString:self.userProfileModel.wallpaper] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        
 
-
-        
-        
         self.backgroundImageView.image = [image imageCroppedAndScaledToSize:self.backgroundImageView.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
         [self setParallaxView];
         
@@ -1161,4 +1163,17 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
         [self requestServerForUserCollection];
 }
 
+//#pragma mark - UIScrollView
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+//{
+//    int profileBackgroundHeight = 200;
+//    if (scrollView.contentOffset.y > -profileBackgroundHeight && scrollView.contentOffset.y <= 0) {
+//        NSLog(@"AAA!!%@",NSStringFromCGPoint(scrollView.contentOffset));
+//        
+//        self.ibImgViewOtherPadding.alpha = (profileBackgroundHeight - fabs(scrollView.contentOffset.y))/profileBackgroundHeight-10;
+//
+//        
+//    }
+//
+//}
 @end

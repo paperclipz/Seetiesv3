@@ -12,7 +12,8 @@
 typedef enum{
 
     ListingViewTypeCollection,
-    ListingViewTypePost,
+    ListingViewTypePostOwn,
+    ListingViewTypePostOthers,
     ListingViewTypeLikes
     
 }ListingViewType;

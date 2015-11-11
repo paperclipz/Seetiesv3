@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,22 +12,55 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UYm-CD-3wH" id="hKT-fK-65N">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="119.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Items" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMs-Ua-W6K">
-                        <rect key="frame" x="127" y="50" width="69" height="21"/>
+                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoLike-Icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="8rm-pf-czo">
+                        <rect key="frame" x="16" y="35" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="Kca-Ca-BXS"/>
+                            <constraint firstAttribute="height" constant="50" id="dkL-8W-SK2"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There's Notjing ere yet." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IzF-lL-M4W">
+                        <rect key="frame" x="90" y="35" width="208" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="msb-PV-1ja"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There's Notjing ere yet." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RnJ-T9-7IP">
+                        <rect key="frame" x="90" y="64" width="208" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="eFO-Ux-VGW"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="qMs-Ua-W6K" firstAttribute="centerX" secondItem="hKT-fK-65N" secondAttribute="centerX" constant="1.5" id="06g-BX-wiI"/>
-                    <constraint firstItem="qMs-Ua-W6K" firstAttribute="centerY" secondItem="hKT-fK-65N" secondAttribute="centerY" id="xti-bD-pBr"/>
+                    <constraint firstItem="RnJ-T9-7IP" firstAttribute="leading" secondItem="8rm-pf-czo" secondAttribute="trailing" constant="24" id="0CB-0h-kyi"/>
+                    <constraint firstItem="8rm-pf-czo" firstAttribute="leading" secondItem="hKT-fK-65N" secondAttribute="leadingMargin" constant="8" id="9hp-JV-25K"/>
+                    <constraint firstItem="IzF-lL-M4W" firstAttribute="leading" secondItem="8rm-pf-czo" secondAttribute="trailing" constant="24" id="dXf-Ks-QDh"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="RnJ-T9-7IP" secondAttribute="trailing" constant="14" id="ez6-Jf-OCu"/>
+                    <constraint firstItem="IzF-lL-M4W" firstAttribute="top" secondItem="8rm-pf-czo" secondAttribute="top" id="jX7-eK-8uR"/>
+                    <constraint firstItem="RnJ-T9-7IP" firstAttribute="bottom" secondItem="8rm-pf-czo" secondAttribute="bottom" id="vva-s1-0Db"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="IzF-lL-M4W" secondAttribute="trailing" constant="14" id="wvi-8R-fsA"/>
+                    <constraint firstItem="8rm-pf-czo" firstAttribute="centerY" secondItem="hKT-fK-65N" secondAttribute="centerY" id="y8w-JG-nCm"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="82" y="189"/>
+            <connections>
+                <outlet property="ibImage" destination="8rm-pf-czo" id="xpI-lG-qYd"/>
+                <outlet property="lblDesc" destination="RnJ-T9-7IP" id="2uu-1B-bIP"/>
+                <outlet property="lblTitle" destination="IzF-lL-M4W" id="jKm-rE-it0"/>
+            </connections>
+            <point key="canvasLocation" x="98" y="209"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="NoLike-Icon.png" width="47" height="47"/>
+    </resources>
 </document>

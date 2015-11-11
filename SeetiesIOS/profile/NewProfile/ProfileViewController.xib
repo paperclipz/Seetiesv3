@@ -21,6 +21,7 @@
                 <outlet property="followButtonConstraint" destination="cel-BN-3x1" id="QhG-lG-adF"/>
                 <outlet property="ibContentView" destination="3Pb-zr-5rR" id="Xoa-8p-mgs"/>
                 <outlet property="ibImgProfilePic" destination="W0N-44-6zb" id="pnc-6y-Hxy"/>
+                <outlet property="ibImgViewOtherPadding" destination="1Rf-az-Wqp" id="Dqt-tq-LQH"/>
                 <outlet property="ibScrollView" destination="pdp-kG-bwS" id="bhO-aD-lIC"/>
                 <outlet property="ibSettingContentView" destination="0UY-Bu-A3h" id="25C-XE-jTa"/>
                 <outlet property="ibSettingOtherView" destination="gsm-iH-WPd" id="FKV-dd-nnZ"/>
@@ -306,12 +307,16 @@
             </connections>
         </tapGestureRecognizer>
         <view contentMode="scaleToFill" id="gsm-iH-WPd" userLabel="settingContentOtherView">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sdQ-A6-kv8">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                     <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Rf-az-Wqp">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                            <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fad-xU-5dT">
                             <rect key="frame" x="0.0" y="29" width="320" height="24"/>
                             <constraints>
@@ -359,13 +364,17 @@
                         <constraint firstItem="Mf1-bL-6vH" firstAttribute="top" secondItem="sdQ-A6-kv8" secondAttribute="top" id="2pK-Gr-8Pe"/>
                         <constraint firstAttribute="trailing" secondItem="QlR-nU-Gfx" secondAttribute="trailing" constant="8" id="9Bm-0j-hh1"/>
                         <constraint firstAttribute="bottom" secondItem="Xxn-NS-gWk" secondAttribute="bottom" constant="4" id="Br8-YJ-B5X"/>
+                        <constraint firstItem="1Rf-az-Wqp" firstAttribute="top" secondItem="sdQ-A6-kv8" secondAttribute="top" id="FSd-LC-nvb"/>
                         <constraint firstItem="Fad-xU-5dT" firstAttribute="leading" secondItem="sdQ-A6-kv8" secondAttribute="leading" id="Jre-PF-1Ph"/>
+                        <constraint firstAttribute="trailing" secondItem="1Rf-az-Wqp" secondAttribute="trailing" id="PTp-Y2-oIs"/>
+                        <constraint firstAttribute="bottom" secondItem="1Rf-az-Wqp" secondAttribute="bottom" id="T3S-lm-zdr"/>
                         <constraint firstItem="Mf1-bL-6vH" firstAttribute="leading" secondItem="sdQ-A6-kv8" secondAttribute="leading" id="evP-3X-L4s"/>
                         <constraint firstItem="Xxn-NS-gWk" firstAttribute="top" secondItem="Mf1-bL-6vH" secondAttribute="bottom" constant="-44" id="gWB-FH-rzP"/>
                         <constraint firstItem="QlR-nU-Gfx" firstAttribute="top" secondItem="sdQ-A6-kv8" secondAttribute="top" constant="20" id="h6W-Vs-vFa"/>
                         <constraint firstAttribute="height" constant="64" id="hcd-s4-rE8"/>
                         <constraint firstItem="Fad-xU-5dT" firstAttribute="top" secondItem="sdQ-A6-kv8" secondAttribute="top" constant="29" id="imo-zM-KF4"/>
                         <constraint firstAttribute="trailing" secondItem="Fad-xU-5dT" secondAttribute="trailing" id="ujJ-vc-C1q"/>
+                        <constraint firstItem="1Rf-az-Wqp" firstAttribute="leading" secondItem="sdQ-A6-kv8" secondAttribute="leading" id="wEs-f0-K43"/>
                     </constraints>
                 </view>
             </subviews>
@@ -378,7 +387,7 @@
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="303" y="23.5"/>
+            <point key="canvasLocation" x="303" y="6"/>
         </view>
     </objects>
     <resources>

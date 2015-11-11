@@ -197,6 +197,8 @@
             BOOL following = [[returnDict objectForKey:@"following"] boolValue];
             colModel.following = following;
             [self.ibTableView reloadData];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:nil];
+
             
         } errorBlock:^(id object) {
         }];

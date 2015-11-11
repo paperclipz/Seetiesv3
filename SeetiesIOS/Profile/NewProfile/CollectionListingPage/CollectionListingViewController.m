@@ -11,6 +11,9 @@
 @interface CollectionListingViewController ()
 @property (weak, nonatomic) IBOutlet UIScrollView *ibScrollView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *ibSegmentedControl;
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+@property(nonatomic,assign)ProfileViewType profileType;
+@property(nonatomic,strong)ProfileModel* profileModel;
 
 @end
 
@@ -24,6 +27,13 @@
     frame.origin.x = frame.size.width * segmentedControl.selectedSegmentIndex;
     frame.origin.y = 0;
     [self.ibScrollView scrollRectToVisible:frame animated:YES];
+}
+
+-(void)setType:(ProfileViewType)type ProfileModel:(ProfileModel*)model
+{
+    self.profileType = type;
+    self.profileModel = model;
+    
 }
 
 - (void)viewDidLoad {
@@ -63,8 +73,16 @@
     self.ibScrollView.pagingEnabled = YES;
 
     [self.followingCollectionListingViewController.view setX:self.myCollectionListingViewController.view.frame.size.width];
-    
-  }
+    [self initViewData];
+  
+}
+
+-(void)initViewData
+{
+    self.lblTitle.text = [NSString stringWithFormat:@"%@ %@",self.profileModel.username,LocalisedString(@"Collections")];
+
+}
+
 /*
 #pragma mark - Navigation
 
@@ -81,7 +99,7 @@
     {
         _myCollectionListingViewController = [CollectionListingTabViewController new];
         _myCollectionListingViewController.profileType = self.profileType;
-        _myCollectionListingViewController.userID = self.userID;
+        _myCollectionListingViewController.userID = self.profileModel.uid;
         __weak typeof (self)weakSelf = self;
         _myCollectionListingViewController.didSelectEdiCollectionRowBlock = ^(NSString* collectionID)
         {
@@ -104,7 +122,7 @@
     {
         _followingCollectionListingViewController = [CollectionListingTabViewController new];
         _followingCollectionListingViewController.profileType = self.profileType;
-        _followingCollectionListingViewController.userID = self.userID;
+        _followingCollectionListingViewController.userID = self.profileModel.uid;
         __weak typeof (self)weakSelf = self;
         
         _followingCollectionListingViewController.didSelectEdiCollectionRowBlock = ^(NSString* collectionID)

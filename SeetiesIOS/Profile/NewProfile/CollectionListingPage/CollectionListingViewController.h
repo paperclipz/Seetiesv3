@@ -17,7 +17,7 @@
 @property(nonatomic,strong)CollectionListingTabViewController* followingCollectionListingViewController;
 @property(nonatomic,strong)EditCollectionViewController* editCollectionViewController;
 @property(nonatomic,strong)CollectionViewController* collectionViewController;
-@property(nonatomic,assign)ProfileViewType profileType;
-@property(nonatomic,strong)NSString* userID;
+
+-(void)setType:(ProfileViewType)type ProfileModel:(ProfileModel*)model;
 
 @end

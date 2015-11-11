@@ -10,6 +10,7 @@
                 <outlet property="bottomConstraint" destination="5nU-nP-ul6" id="n2q-Ck-Tkw"/>
                 <outlet property="ibScrollView" destination="Lsb-YA-s3L" id="HWb-FG-Zvw"/>
                 <outlet property="ibSegmentedControl" destination="Ali-jO-zY8" id="fPg-TR-XOI"/>
+                <outlet property="lblTitle" destination="Vuc-YZ-3e4" id="rxY-C4-ifY"/>
                 <outlet property="view" destination="HmF-Tf-joH" id="syZ-VI-x8T"/>
             </connections>
         </placeholder>
@@ -68,7 +69,7 @@
                         <constraint firstAttribute="height" constant="28" id="roq-pQ-knU"/>
                     </constraints>
                     <segments>
-                        <segment title="My Collections"/>
+                        <segment title="Collections"/>
                         <segment title="Following Collections"/>
                     </segments>
                     <color key="tintColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
