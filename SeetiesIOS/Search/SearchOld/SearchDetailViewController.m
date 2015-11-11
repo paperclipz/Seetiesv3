@@ -72,6 +72,8 @@
     heightcheck = 0;
     SelfSearchCurrentLocation = 0;
     CheckUserInitView = 0;
+    SegmentedControlCheck = 0;
+    CheckPostsInitView = 0;
     
     ShowSearchLocationView.frame = CGRectMake(0, 95, screenWidth, screenHeight - 95);
     ShowSearchLocationView.hidden = YES;
@@ -215,32 +217,39 @@
         if ([SearchTextField.text length] == 0) {
             GetKeywordText = @"";
         }else{
-        
             GetKeywordText = SearchTextField.text;
+            if (SegmentedControlCheck == 0) {
+                CheckLoad = NO;
+                TotalPage = 1;
+                CurrentPage = 0;
+//                GetHeight = 0;
+                CheckFirstTimeLoad = 0;
+                DataCount = 0;
+                DataTotal = 0;
+//                heightcheck = 0;
+//                SelfSearchCurrentLocation = 0;
+//                CheckUserInitView = 0;
+                [self SendSearchKeywordData];
+            }else{
+               // CheckUserInitView = 0;
+                [self GetAllUserData];
+            }
+        
+            
+
+        }
+    }else if(textField == SearchAddressField){
+        if (SegmentedControlCheck == 0) {
             CheckLoad = NO;
             TotalPage = 1;
             CurrentPage = 0;
-            GetHeight = 0;
             CheckFirstTimeLoad = 0;
             DataCount = 0;
             DataTotal = 0;
-            heightcheck = 0;
-            SelfSearchCurrentLocation = 0;
-            CheckUserInitView = 0;
             [self SendSearchKeywordData];
+        }else{
+            [self GetAllUserData];
         }
-    }else if(textField == SearchAddressField){
-        CheckLoad = NO;
-        TotalPage = 1;
-        CurrentPage = 0;
-        GetHeight = 0;
-        CheckFirstTimeLoad = 0;
-        DataCount = 0;
-        DataTotal = 0;
-        heightcheck = 0;
-        SelfSearchCurrentLocation = 0;
-        CheckUserInitView = 0;
-    [self SendSearchKeywordData];
     }
     ShowSearchLocationView.hidden = YES;
     
@@ -293,7 +302,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
     
-    NSString *FullString = [[NSString alloc]initWithFormat:@"%@user/suggestions?token=%@&number_of_suggestions=30",DataUrl.UserWallpaper_Url,GetExpertToken];
+    NSString *FullString = [[NSString alloc]initWithFormat:@"%@search/user?token=%@&keyword=%@",DataUrl.UserWallpaper_Url,GetExpertToken,GetKeywordText];
     
     
     NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
@@ -431,10 +440,10 @@
             TotalLikeArray = [[NSMutableArray alloc]init];
             TotalCommentArray = [[NSMutableArray alloc]init];
             DataCount = 0;
-            CheckFirstTimeLoad = 1;
             UserInfo_FollowArray = [[NSMutableArray alloc]init];
             CollectArray = [[NSMutableArray alloc]init];
             UserInfo_IDArray = [[NSMutableArray alloc]init];
+            CheckFirstTimeLoad = 1;
         }else{
             
         }
@@ -632,6 +641,25 @@
         DataTotal = [LPhotoArray count];
         CheckLoad = NO;
         
+        if (CheckPostsInitView == 0) {
+            [self InitView];
+            CheckPostsInitView = 1;
+        }else{
+            for (UIView *subview in PostsView.subviews) {
+                [subview removeFromSuperview];
+            }
+            [self InitPostsDataView];
+        }
+        
+    }else if(connection == theConnection_GetAllUserData){
+        NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+        NSLog(@"Search User return get data to server ===== %@",GetData);
+        
+        NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *myError = nil;
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
+        
+        NSDictionary *ResData = [res valueForKey:@"data"];
         
         NSDictionary *ResDataUser = [ResData valueForKey:@"experts"];
         Experts_Username_Array = [[NSMutableArray alloc]init];
@@ -651,9 +679,11 @@
             NSString *name =  [NSString stringWithFormat:@"%@",[dict objectForKey:@"name"]];
             [Experts_Name_Array addObject:name];
         }
-        
-        [self InitView];
-    }else if(connection == theConnection_SearchLocation){
+
+    
+        [self initPeopleDataView];
+    }
+    else if(connection == theConnection_SearchLocation){
         [SearchLocationNameArray removeAllObjects];
         [SearchPlaceIDArray removeAllObjects];
         
@@ -847,8 +877,8 @@
     }
     heightcheck += 20;
     
-    NSString *TempStringPosts = [[NSString alloc]initWithFormat:@"%lu %@",(unsigned long)[place_nameArray count],LocalisedString(@"Posts")];
-    NSString *TempStringPeople = [[NSString alloc]initWithFormat:@"%lu %@",(unsigned long)[Experts_Name_Array count],LocalisedString(@"Seetizens")];
+    NSString *TempStringPosts = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Posts")];
+    NSString *TempStringPeople = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Seetizens")];
     
     NSArray *itemArray = [NSArray arrayWithObjects:TempStringPosts, TempStringPeople, nil];
     UISegmentedControl *ProfileControl = [[UISegmentedControl alloc]initWithItems:itemArray];
@@ -894,6 +924,7 @@
     
     switch (segment.selectedSegmentIndex) {
         case 0:
+            SegmentedControlCheck = 0;
             NSLog(@"PostView click");
             PostsView.hidden = NO;
             PeopleView.hidden = YES;
@@ -906,12 +937,14 @@
             
             break;
         case 1:
+            SegmentedControlCheck = 1;
             NSLog(@"PeopleView click");
             PostsView.hidden = YES;
             PeopleView.hidden = NO;
             if (CheckUserInitView == 0) {
                 CheckUserInitView = 1;
-                [self initPeopleDataView];
+                //[self initPeopleDataView];
+                [self GetAllUserData];
             }else{
                 CGSize contentSize = MainScroll.frame.size;
                 contentSize.height = heightcheck + PeopleView.frame.size.height;
