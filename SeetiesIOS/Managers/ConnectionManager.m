@@ -414,6 +414,7 @@
             
         case ServerRequestTypeGetCollectionInfo:
         case ServerRequestTypeGetUserCollections:
+        case ServerRequestTypeGetUserFollowingCollections:
         case ServerRequestTypeGetUserPosts:
         case ServerRequestTypeGetUserLikes:
         case ServerRequestTypePostFollowUser:
@@ -563,7 +564,15 @@
 
         }
             break;
+        case ServerRequestTypeGetUserFollowingCollections:
+        {
             
+            NSDictionary* dict = obj[@"data"];
+            self.dataManager.userFollowingCollectionsModel = [[CollectionsModel alloc]initWithDictionary:dict error:nil];
+            
+        }
+           
+            break;
         default:
             
             SLog(@"the return result is :%@",obj);

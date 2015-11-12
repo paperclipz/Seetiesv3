@@ -17,8 +17,6 @@
 #import "JTSImageViewController.h"
 #import "UITableView+Extension.h"
 
-#import "MZFormSheetPresentationViewController.h"
-
 @interface ProfileViewController ()<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate,UIScrollViewDelegate>
 {
     NSMutableArray* arrayTag;
@@ -524,6 +522,10 @@
                 [self requestServerToFollowCollection:colModel];
             };
             
+            cell.btnShareClicked = ^(void)
+            {
+                [self showShareView:colModel];
+            };
             [cell initData:colModel profileType:self.profileViewType];
             
             return cell;
@@ -1200,6 +1202,16 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
         
 }
 
+-(void)showShareView:(CollectionModel*)colModel
+{
+    [self.shareViewController GetCollectionID:colModel.collection_id];
+    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:self.shareViewController];
+    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
+    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
+    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
+    [self presentViewController:formSheetController animated:YES completion:nil];
+
+}
 //#pragma mark - UIScrollView
 //- (void)scrollViewDidScroll:(UIScrollView *)scrollView
 //{

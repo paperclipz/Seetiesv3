@@ -35,11 +35,12 @@ typedef enum
     ServerRequestTypePostCreateCollection,
     ServerRequestTypeGetTagsSuggestion,
     ServerRequestTypeGetUserCollections,
+    ServerRequestTypeGetUserFollowingCollections,
     ServerRequestTypeGetUserPosts,
     ServerRequestTypeGetUserLikes,
     ServerRequestTypeDeleteCollection,
     ServerRequestTypePostFollowCollection,
-
+    ServerRequestTypePostShareCollection,   
     // ========== Collection ========== //
     // ========== User Info ========== //
     

@@ -1,4 +1,4 @@
-platform :ios, '7.0'
+platform :ios, '8.0'
 
 #pod 'MKMapView+AttributionView', :head
 #pod 'MMDrawerController', '~> 0.5.3'
