@@ -9,6 +9,9 @@
 #import "CommonTableViewCell.h"
 
 @interface SuggestedCollectionPostTableViewCell : CommonTableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
+@property (weak, nonatomic) IBOutlet UILabel *lblDesc;
+
 +(float)getHeight;
 
 @end

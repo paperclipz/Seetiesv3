@@ -8,6 +8,9 @@
 
 #import "SuggestedCollectionPostTableViewCell.h"
 
+@interface SuggestedCollectionPostTableViewCell()
+
+@end
 @implementation SuggestedCollectionPostTableViewCell
 
 /*
@@ -21,5 +24,11 @@
 +(float)getHeight
 {
     return 220.0f;
+}
+
+-(void)initSelfView
+{
+    [self.ibImageView sd_setImageWithURL:[NSURL URLWithString:@"http://www.hdwallpaperbackgrounds.org/photo/1366685048731_[hdwallpaperbackgrounds.org].jpg"]];
+    [Utils setRoundBorder:self.ibImageView color:[UIColor clearColor] borderRadius:DEFAULT_BORDER_RADIUS borderWidth:0];
 }
 @end

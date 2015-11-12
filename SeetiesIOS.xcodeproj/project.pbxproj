@@ -716,6 +716,9 @@
 		8A3757DD1B85B610009DB7D4 /* AddNewPlaceSubView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3757DC1B85B610009DB7D4 /* AddNewPlaceSubView.xib */; };
 		8A3757E41B85D635009DB7D4 /* EditPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3757E21B85D635009DB7D4 /* EditPhotoViewController.m */; };
 		8A3757E51B85D635009DB7D4 /* EditPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3757E31B85D635009DB7D4 /* EditPhotoViewController.xib */; };
+		8A3F2CB91BF48A53002B704C /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3F2CB81BF48A53002B704C /* NSString+Extension.m */; };
+		8A3F2CBD1BF49921002B704C /* SuggestedCollectionCollectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3F2CBB1BF49921002B704C /* SuggestedCollectionCollectionsViewController.m */; };
+		8A3F2CBE1BF49921002B704C /* SuggestedCollectionCollectionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3F2CBC1BF49921002B704C /* SuggestedCollectionCollectionsViewController.xib */; };
 		8A45096F1BA801D400A868CD /* STAddNewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A45096E1BA801D400A868CD /* STAddNewTableViewCell.m */; };
 		8A4509711BA801E100A868CD /* STAddNewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4509701BA801E100A868CD /* STAddNewTableViewCell.xib */; };
 		8A4509771BABC07F00A868CD /* OpeningPeriodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4509761BABC07F00A868CD /* OpeningPeriodModel.m */; };
@@ -1883,6 +1886,11 @@
 		8A3757E11B85D635009DB7D4 /* EditPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPhotoViewController.h; sourceTree = "<group>"; };
 		8A3757E21B85D635009DB7D4 /* EditPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPhotoViewController.m; sourceTree = "<group>"; };
 		8A3757E31B85D635009DB7D4 /* EditPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPhotoViewController.xib; sourceTree = "<group>"; };
+		8A3F2CB71BF48A53002B704C /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
+		8A3F2CB81BF48A53002B704C /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
+		8A3F2CBA1BF49921002B704C /* SuggestedCollectionCollectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestedCollectionCollectionsViewController.h; sourceTree = "<group>"; };
+		8A3F2CBB1BF49921002B704C /* SuggestedCollectionCollectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestedCollectionCollectionsViewController.m; sourceTree = "<group>"; };
+		8A3F2CBC1BF49921002B704C /* SuggestedCollectionCollectionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SuggestedCollectionCollectionsViewController.xib; sourceTree = "<group>"; };
 		8A45096D1BA801D400A868CD /* STAddNewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAddNewTableViewCell.h; sourceTree = "<group>"; };
 		8A45096E1BA801D400A868CD /* STAddNewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STAddNewTableViewCell.m; sourceTree = "<group>"; };
 		8A4509701BA801E100A868CD /* STAddNewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STAddNewTableViewCell.xib; sourceTree = "<group>"; };
@@ -4082,6 +4090,15 @@
 			name = EditPhoto;
 			sourceTree = "<group>";
 		};
+		8A3F2CB61BF48A25002B704C /* NSString+Extension */ = {
+			isa = PBXGroup;
+			children = (
+				8A3F2CB71BF48A53002B704C /* NSString+Extension.h */,
+				8A3F2CB81BF48A53002B704C /* NSString+Extension.m */,
+			);
+			name = "NSString+Extension";
+			sourceTree = "<group>";
+		};
 		8A45098F1BAFF79900A868CD /* Color */ = {
 			isa = PBXGroup;
 			children = (
@@ -4177,6 +4194,9 @@
 				8A6BB4381BF32859005AA1B3 /* SuggestedCollectionPostsViewController.h */,
 				8A6BB4391BF32859005AA1B3 /* SuggestedCollectionPostsViewController.m */,
 				8A6BB43A1BF32859005AA1B3 /* SuggestedCollectionPostsViewController.xib */,
+				8A3F2CBA1BF49921002B704C /* SuggestedCollectionCollectionsViewController.h */,
+				8A3F2CBB1BF49921002B704C /* SuggestedCollectionCollectionsViewController.m */,
+				8A3F2CBC1BF49921002B704C /* SuggestedCollectionCollectionsViewController.xib */,
 			);
 			name = NewsFeed_SuggestedCollectionPost;
 			path = NewsFeed_SuggestedCollection;
@@ -4546,6 +4566,7 @@
 		8AD6BA961B706CF10040437E /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				8A3F2CB61BF48A25002B704C /* NSString+Extension */,
 				8A6BB40C1BF0A3F8005AA1B3 /* UITableView+Extension */,
 				8AC8F7531BDDD41C00DEF14A /* UIImageView+Exntesion */,
 				8AF53F171BD884E300AF6C9E /* NSObject+Extension */,
@@ -5707,6 +5728,7 @@
 				8AD6C2961B7072FB0040437E /* DraftsViewController.xib in Resources */,
 				0BA94D3E1BE9B71F003AB2E4 /* PostCommentIcon@3x.png in Resources */,
 				0BA94BFF1BE9B71F003AB2E4 /* PhotoPin@2x.png in Resources */,
+				8A3F2CBE1BF49921002B704C /* SuggestedCollectionCollectionsViewController.xib in Resources */,
 				0BA94C011BE9B71F003AB2E4 /* ShareBase@2x.png in Resources */,
 				0BA94C151BE9B71F003AB2E4 /* WriteRecommendationIcon@2x.png in Resources */,
 				0BA94C931BE9B71F003AB2E4 /* LocationInfoIcon@2x.png in Resources */,
@@ -5948,6 +5970,7 @@
 				8A6BB42F1BF0C338005AA1B3 /* MZFormSheetPresentationViewController.m in Sources */,
 				8A114CC91BE73F5D006AE3F0 /* Reachability.m in Sources */,
 				8AD6C2A91B7072FB0040437E /* WhereIsThisViewController.m in Sources */,
+				8A3F2CB91BF48A53002B704C /* NSString+Extension.m in Sources */,
 				8AD6C0BE1B706CF30040437E /* FeedV2DetailViewController.m in Sources */,
 				8AD6BE241B706CF30040437E /* UIIimage+Extra.m in Sources */,
 				8A114CB41BE73F5D006AE3F0 /* NSMutableArray+MoveArray.m in Sources */,
@@ -6009,6 +6032,7 @@
 				8AD6C81D1B73382E0040437E /* Localisator.m in Sources */,
 				8AC8F72C1BDA414E00DEF14A /* ProfilePageCollectionFooterTableViewCell.m in Sources */,
 				8A6584371B981C0E00BC86B9 /* CategoryCollectionViewCell.m in Sources */,
+				8A3F2CBD1BF49921002B704C /* SuggestedCollectionCollectionsViewController.m in Sources */,
 				8AF53EFC1BD65F5A00AF6C9E /* UIView+RoundedCorners.m in Sources */,
 				8A114C771BE73F5D006AE3F0 /* AUIAutoGrowingTextView.m in Sources */,
 				8A114CA81BE73F5D006AE3F0 /* AsyncImageView.m in Sources */,

@@ -9,8 +9,6 @@
 #import "CustomEditPhotoTableViewCell.h"
 #import "UITableView+LongPressReorder.h"
 #import "DoImagePickerController.h"
-
-#import "AviarySDK.h"
 typedef void (^ImageBlock)(UIImage* image);
 typedef void (^DoneBlock)(NSArray* arrayImages,NSArray* arrDeleteImages);
 

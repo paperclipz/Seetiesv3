@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AviarySDK.h"
 
 typedef void (^ImageBlock)(UIImage* image);
 

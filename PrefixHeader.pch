@@ -32,7 +32,7 @@
 #import "CommonViewController.h"
 #import "CommonView.h"
 #import "LoadingManager.h"
-#import "GoogleMaps.h"
+#import <GoogleMaps/GoogleMaps.h>
 #import "SearchManager.h"
 #import "TPKeyboardAvoidingScrollView.h"
 #import "ActionSheetPicker.h"
@@ -41,7 +41,7 @@
 
 //for currency Usage
 #import "BKCurrencyTextField.h"
-
+#import <AviarySDK/AviarySDK.h>
 //===============Category Helper=================
 #import "UIView+Extension.h"
 #import "UIImage+FX.h"

@@ -8,11 +8,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="220" id="s3L-GQ-GGV" customClass="SuggestedCollectionPostTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="220"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="426" id="s3L-GQ-GGV" customClass="SuggestedCollectionPostTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="426"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="s3L-GQ-GGV" id="EEH-FA-f8V">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="219.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="426"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IdA-fO-4WB">
@@ -21,23 +21,51 @@
                             <constraint firstAttribute="height" constant="160" id="Ecv-wq-LZ2"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tPz-PE-sxL">
-                        <rect key="frame" x="8" y="178" width="304" height="32"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="asd" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tPz-PE-sxL">
+                        <rect key="frame" x="8" y="178" width="304" height="230"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="32" id="r5n-5X-BBL"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="r5n-5X-BBL"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="r5n-5X-BBL"/>
+                            </mask>
+                        </variation>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SearchLocationBar.png" translatesAutoresizingMaskIntoConstraints="NO" id="q0q-3e-PPH">
+                        <rect key="frame" x="18" y="18" width="25" height="25"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="25" id="PdK-mW-6MD"/>
+                            <constraint firstAttribute="height" constant="25" id="stB-oR-zMA"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pantai puteri Malaysia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Axl-j8-GLj">
+                        <rect key="frame" x="59" y="20" width="253" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="Q3r-qH-NyP"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="tPz-PE-sxL" firstAttribute="trailing" secondItem="EEH-FA-f8V" secondAttribute="trailingMargin" id="7uz-gS-Zrb"/>
                     <constraint firstItem="IdA-fO-4WB" firstAttribute="top" secondItem="EEH-FA-f8V" secondAttribute="topMargin" id="Nqp-tw-laq"/>
+                    <constraint firstItem="Axl-j8-GLj" firstAttribute="leading" secondItem="q0q-3e-PPH" secondAttribute="trailing" constant="16" id="Opf-9x-qnw"/>
                     <constraint firstAttribute="trailingMargin" secondItem="IdA-fO-4WB" secondAttribute="trailing" id="P8Z-qw-IQk"/>
                     <constraint firstItem="tPz-PE-sxL" firstAttribute="leading" secondItem="EEH-FA-f8V" secondAttribute="leadingMargin" id="QEu-AO-4SB"/>
+                    <constraint firstItem="q0q-3e-PPH" firstAttribute="top" secondItem="EEH-FA-f8V" secondAttribute="topMargin" constant="10" id="UFg-Bh-SrC"/>
+                    <constraint firstItem="Axl-j8-GLj" firstAttribute="centerY" secondItem="q0q-3e-PPH" secondAttribute="centerY" id="YCm-Vo-gO9"/>
                     <constraint firstAttribute="bottomMargin" secondItem="tPz-PE-sxL" secondAttribute="bottom" id="ZZi-S6-tuL"/>
                     <constraint firstItem="IdA-fO-4WB" firstAttribute="leading" secondItem="EEH-FA-f8V" secondAttribute="leadingMargin" id="bXC-K0-Xto"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="tPz-PE-sxL" secondAttribute="bottom" constant="10" id="kms-A5-WiY"/>
+                    <constraint firstItem="q0q-3e-PPH" firstAttribute="leading" secondItem="EEH-FA-f8V" secondAttribute="leadingMargin" constant="10" id="pYY-Be-Uao"/>
+                    <constraint firstItem="Axl-j8-GLj" firstAttribute="trailing" secondItem="IdA-fO-4WB" secondAttribute="trailing" id="umA-L0-EPy"/>
                     <constraint firstItem="tPz-PE-sxL" firstAttribute="top" secondItem="IdA-fO-4WB" secondAttribute="bottom" constant="10" id="vzM-KK-rQl"/>
                 </constraints>
                 <variation key="default">
@@ -46,7 +74,14 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="486" y="368"/>
+            <connections>
+                <outlet property="ibImageView" destination="IdA-fO-4WB" id="vyI-UJ-gKn"/>
+                <outlet property="lblDesc" destination="tPz-PE-sxL" id="j6e-Lh-B9Y"/>
+            </connections>
+            <point key="canvasLocation" x="486" y="471"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="SearchLocationBar.png" width="23" height="23"/>
+    </resources>
 </document>
