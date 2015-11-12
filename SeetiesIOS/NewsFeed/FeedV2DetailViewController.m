@@ -1163,6 +1163,9 @@
         NSLog(@"statusString is %@",statusString);
         
         if ([statusString isEqualToString:@"ok"]) {
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_LIKES object:nil];
+
             NSDictionary *GetAllData = [res valueForKey:@"data"];
             NSLog(@"GetAllData is %@",GetAllData);
             
@@ -1318,6 +1321,7 @@
             [self dismissViewControllerAnimated:NO completion:nil];
             
             [self.navigationController popToRootViewControllerAnimated:YES];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_POST object:nil];
 
         }
     }else if(connection == theConnection_QuickCollect){
