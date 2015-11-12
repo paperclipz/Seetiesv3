@@ -346,10 +346,13 @@
         
         NSString *statusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
         NSLog(@"statusString is %@",statusString);
+        NSString *MessageString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"message"]];
         
         if ([statusString isEqualToString:@"ok"]) {
             [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success Create New Collections" type:TSMessageNotificationTypeSuccess];
             [self dismissViewControllerAnimated:YES completion:nil];
+        }else{
+            [TSMessage showNotificationInViewController:self title:@"" subtitle:MessageString type:TSMessageNotificationTypeError];
         }
         
         [ShowActivity stopAnimating];
