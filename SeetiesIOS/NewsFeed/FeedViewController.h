@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "UrlDataClass.h"
-@interface FeedViewController : BaseViewController<UIScrollViewDelegate,CLLocationManagerDelegate>{
-    
+#import "SuggestedCollectionPostsViewController.h"
 
-}
+@interface FeedViewController : BaseViewController<UIScrollViewDelegate,CLLocationManagerDelegate>
+
+@property(nonatomic,strong)SuggestedCollectionPostsViewController* suggestedCollectionPostsViewController;
 
 @end

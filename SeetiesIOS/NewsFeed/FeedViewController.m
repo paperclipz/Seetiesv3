@@ -147,8 +147,24 @@
 @end
 
 @implementation FeedViewController
-- (IBAction)btnTestClicked:(id)sender {
+
+#pragma mark - Declaration
+
+-(SuggestedCollectionPostsViewController*)suggestedCollectionPostsViewController
+{
+    if (!_suggestedCollectionPostsViewController) {
+        _suggestedCollectionPostsViewController = [SuggestedCollectionPostsViewController new];
+    }
+    
+    return _suggestedCollectionPostsViewController;
 }
+
+#pragma mark - IBAction
+- (IBAction)btnTestClicked:(id)sender {
+    
+    [self presentViewController:self.suggestedCollectionPostsViewController animated:YES completion:nil];
+}
+
 #define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 - (void)viewDidLoad {
     [super viewDidLoad];
