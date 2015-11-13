@@ -8,6 +8,7 @@
 
 #import "ProfilePageCollectionHeaderView.h"
 @interface ProfilePageCollectionHeaderView()
+@property (weak, nonatomic) IBOutlet UIImageView *ibImageIcon;
 @end
 @implementation ProfilePageCollectionHeaderView
 
@@ -50,12 +51,13 @@
         case 1:
             self.lblTitle.text = @"Collections";
             self.lblNumberOfCollection.text = [NSString stringWithFormat:@"%d collections",count];
-
+            self.ibImageIcon.image = [UIImage imageNamed:@"NewCollectionsIcon.png"];
             break;
         case 2:
             self.lblTitle.text = @"Posts";
 
             self.lblNumberOfCollection.text = [NSString stringWithFormat:@"%d posts",count];
+            self.ibImageIcon.image = [UIImage imageNamed:@"NewPostsIcon.png"];
 
             break;
             
@@ -63,6 +65,7 @@
             self.lblTitle.text = @"Likes";
 
             self.lblNumberOfCollection.text = [NSString stringWithFormat:@"%d likes",count];
+            self.ibImageIcon.image = [UIImage imageNamed:@"NewLikesIcon.png"];
 
             break;
         default:

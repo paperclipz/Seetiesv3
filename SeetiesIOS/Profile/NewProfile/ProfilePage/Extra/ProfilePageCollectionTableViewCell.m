@@ -51,8 +51,8 @@
 
 -(void)initSelfView
 {
-    [Utils setRoundBorder:self.ibInnerContentView color:TWO_ZERO_FOUR_COLOR borderRadius:5.0f];
-    [Utils setRoundBorder:self.btnEdit color:TWO_ZERO_FOUR_COLOR borderRadius:self.btnEdit.frame.size.height/2];
+    [Utils setRoundBorder:self.ibInnerContentView color:LINE_COLOR borderRadius:5.0f];
+    [Utils setRoundBorder:self.btnEdit color:LINE_COLOR borderRadius:self.btnEdit.frame.size.height/2];
     
     [self.ibImageViewA setStandardBorder];
     [self.ibImageViewB setStandardBorder];
@@ -62,7 +62,7 @@
 
 +(int)getHeight
 {
-    return 166.0f;
+    return 170.0f;
 }
 
 -(void)initData:(CollectionModel*)model profileType:(ProfileViewType)type

@@ -85,7 +85,7 @@
     tagInputField_.layer.borderColor = [UIColor lightGrayColor].CGColor;
     tagInputField_.backgroundColor = [UIColor whiteColor];
     tagInputField_.delegate = self;
-    tagInputField_.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
+    tagInputField_.font = [UIFont fontWithName:CustomFontName size:12];
     tagInputField_.placeholder = @"tag";
     tagInputField_.autocorrectionType = UITextAutocorrectionTypeNo;
     
@@ -215,7 +215,7 @@
         UIView *tagView = [[UIView alloc] initWithFrame:tagInputField_.frame];
         CGRect tagFrame = tagView.frame;
         //custom edit
-        [Utils setRoundBorder:tagView color:TWO_ZERO_FOUR_COLOR borderRadius:5.0f borderWidth:0.8f];
+        [Utils setRoundBorder:tagView color:LINE_COLOR borderRadius:5.0f borderWidth:0.8f];
         // tagView.layer.cornerRadius = 5;
       //  tagView.layer.cornerRadius = 5;
         tagFrame.origin.y = tagInputField_.frame.origin.y;
@@ -308,7 +308,6 @@
     UIColor *tagDeleteButtonColor = _tagsDeleteButtonColor != nil ? _tagsDeleteButtonColor : [UIColor blackColor];
     
     
-    
     for (NSString *tag in _tags) {
         float width = [tag boundingRectWithSize:CGSizeMake(3000,tagInputField_.frame.size.height)
                                         options:NSStringDrawingUsesLineFragmentOrigin
@@ -318,7 +317,7 @@
         UIView *tagView = [[UIView alloc] initWithFrame:tagInputField_.frame];
         CGRect tagFrame = tagView.frame;
         //custom edit
-        [Utils setRoundBorder:tagView color:TWO_ZERO_FOUR_COLOR borderRadius:5.0f borderWidth:0.8f];
+        [Utils setRoundBorder:tagView color:LINE_COLOR borderRadius:5.0f borderWidth:0.8f];
        // tagView.layer.cornerRadius = 5;
         tagFrame.origin.y = tagInputField_.frame.origin.y;
         tagView.backgroundColor = tagBackgrounColor;

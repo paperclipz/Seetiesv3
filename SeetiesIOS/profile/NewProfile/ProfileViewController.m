@@ -741,7 +741,7 @@
     _ibTagControlView.mode = TLTagsControlModeList;
     _ibTagControlView.tagPlaceholder = @"Tag";
     [_ibTagControlView setTapDelegate:self];
-    _ibTagControlView.tagsTextColor = TWO_ZERO_FOUR_COLOR;
+    _ibTagControlView.tagsTextColor = TEXT_GRAY_COLOR;
     _ibTagControlView.tagsBackgroundColor = [UIColor whiteColor];
     [_ibTagControlView reloadTagSubviewsCustom];
 }

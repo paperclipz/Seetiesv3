@@ -59,7 +59,7 @@
             break;
             
         case 1:
-            self.ibImage.image = [UIImage imageNamed:@"NoPostIcon-Icon.png"];
+            self.ibImage.image = [UIImage imageNamed:@"NoPostIcon.png"];
             self.lblDesc.text = LocalisedString(@"Would you like to start a post?(:");
 
             break;
