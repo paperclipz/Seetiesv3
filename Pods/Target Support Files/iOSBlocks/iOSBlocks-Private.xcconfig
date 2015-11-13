@@ -1,0 +1,6 @@
+#include "iOSBlocks.xcconfig"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/iOSBlocks" "${PODS_ROOT}/Headers/Private/iOSBlocks/CoreLocation" "${PODS_ROOT}/Headers/Private/iOSBlocks/Foundation" "${PODS_ROOT}/Headers/Private/iOSBlocks/MessageUI" "${PODS_ROOT}/Headers/Private/iOSBlocks/UIKit" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AviarySDK" "${PODS_ROOT}/Headers/Public/AviarySDK/AviarySDK" "${PODS_ROOT}/Headers/Public/GoogleMaps" "${PODS_ROOT}/Headers/Public/GoogleMaps/GoogleMaps"
+OTHER_LDFLAGS = ${IOSBLOCKS_OTHER_LDFLAGS}
+PODS_ROOT = ${SRCROOT}
+SKIP_INSTALL = YES

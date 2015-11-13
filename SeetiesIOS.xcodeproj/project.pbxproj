@@ -717,6 +717,12 @@
 		8A3757DD1B85B610009DB7D4 /* AddNewPlaceSubView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3757DC1B85B610009DB7D4 /* AddNewPlaceSubView.xib */; };
 		8A3757E41B85D635009DB7D4 /* EditPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3757E21B85D635009DB7D4 /* EditPhotoViewController.m */; };
 		8A3757E51B85D635009DB7D4 /* EditPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3757E31B85D635009DB7D4 /* EditPhotoViewController.xib */; };
+		8A3F35641BF5E89D002B704C /* SuggestedCollectionCollectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3F355D1BF5E89D002B704C /* SuggestedCollectionCollectionsViewController.m */; };
+		8A3F35651BF5E89D002B704C /* SuggestedCollectionCollectionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3F355E1BF5E89D002B704C /* SuggestedCollectionCollectionsViewController.xib */; };
+		8A3F35661BF5E89D002B704C /* SuggestedCollectionPostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3F355F1BF5E89D002B704C /* SuggestedCollectionPostsViewController.m */; };
+		8A3F35671BF5E89D002B704C /* SuggestedCollectionPostsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3F35601BF5E89D002B704C /* SuggestedCollectionPostsViewController.xib */; };
+		8A3F35681BF5E89D002B704C /* SuggestedCollectionPostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3F35621BF5E89D002B704C /* SuggestedCollectionPostTableViewCell.m */; };
+		8A3F35691BF5E89D002B704C /* SuggestedCollectionPostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3F35631BF5E89D002B704C /* SuggestedCollectionPostTableViewCell.xib */; };
 		8A45096F1BA801D400A868CD /* STAddNewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A45096E1BA801D400A868CD /* STAddNewTableViewCell.m */; };
 		8A4509711BA801E100A868CD /* STAddNewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4509701BA801E100A868CD /* STAddNewTableViewCell.xib */; };
 		8A4509771BABC07F00A868CD /* OpeningPeriodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4509761BABC07F00A868CD /* OpeningPeriodModel.m */; };
@@ -1881,6 +1887,15 @@
 		8A3757E11B85D635009DB7D4 /* EditPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPhotoViewController.h; sourceTree = "<group>"; };
 		8A3757E21B85D635009DB7D4 /* EditPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPhotoViewController.m; sourceTree = "<group>"; };
 		8A3757E31B85D635009DB7D4 /* EditPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPhotoViewController.xib; sourceTree = "<group>"; };
+		8A3F355C1BF5E89D002B704C /* SuggestedCollectionCollectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestedCollectionCollectionsViewController.h; sourceTree = "<group>"; };
+		8A3F355D1BF5E89D002B704C /* SuggestedCollectionCollectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestedCollectionCollectionsViewController.m; sourceTree = "<group>"; };
+		8A3F355E1BF5E89D002B704C /* SuggestedCollectionCollectionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SuggestedCollectionCollectionsViewController.xib; sourceTree = "<group>"; };
+		8A3F355F1BF5E89D002B704C /* SuggestedCollectionPostsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestedCollectionPostsViewController.m; sourceTree = "<group>"; };
+		8A3F35601BF5E89D002B704C /* SuggestedCollectionPostsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SuggestedCollectionPostsViewController.xib; sourceTree = "<group>"; };
+		8A3F35611BF5E89D002B704C /* SuggestedCollectionPostTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestedCollectionPostTableViewCell.h; sourceTree = "<group>"; };
+		8A3F35621BF5E89D002B704C /* SuggestedCollectionPostTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestedCollectionPostTableViewCell.m; sourceTree = "<group>"; };
+		8A3F35631BF5E89D002B704C /* SuggestedCollectionPostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SuggestedCollectionPostTableViewCell.xib; sourceTree = "<group>"; };
+		8A3F356A1BF5E9C3002B704C /* SuggestedCollectionPostsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuggestedCollectionPostsViewController.h; sourceTree = "<group>"; };
 		8A45096D1BA801D400A868CD /* STAddNewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAddNewTableViewCell.h; sourceTree = "<group>"; };
 		8A45096E1BA801D400A868CD /* STAddNewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STAddNewTableViewCell.m; sourceTree = "<group>"; };
 		8A4509701BA801E100A868CD /* STAddNewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STAddNewTableViewCell.xib; sourceTree = "<group>"; };
@@ -3929,7 +3944,7 @@
 		8A12540F1BC4F30E00AA4120 /* NEW_newsFeed */ = {
 			isa = PBXGroup;
 			children = (
-				8A6BB4371BF327AE005AA1B3 /* NewsFeed_SuggestedCollectionPost */,
+				8A3F355B1BF5E89D002B704C /* NewsFeed_SuggestedCollection */,
 				8A1254151BC4F44A00AA4120 /* Extra */,
 				8A1254101BC4F31A00AA4120 /* NewsFeedViewController.h */,
 				8A1254111BC4F31A00AA4120 /* NewsFeedViewController.m */,
@@ -4076,6 +4091,22 @@
 			name = EditPhoto;
 			sourceTree = "<group>";
 		};
+		8A3F355B1BF5E89D002B704C /* NewsFeed_SuggestedCollection */ = {
+			isa = PBXGroup;
+			children = (
+				8A3F355C1BF5E89D002B704C /* SuggestedCollectionCollectionsViewController.h */,
+				8A3F355D1BF5E89D002B704C /* SuggestedCollectionCollectionsViewController.m */,
+				8A3F355E1BF5E89D002B704C /* SuggestedCollectionCollectionsViewController.xib */,
+				8A3F356A1BF5E9C3002B704C /* SuggestedCollectionPostsViewController.h */,
+				8A3F355F1BF5E89D002B704C /* SuggestedCollectionPostsViewController.m */,
+				8A3F35601BF5E89D002B704C /* SuggestedCollectionPostsViewController.xib */,
+				8A3F35611BF5E89D002B704C /* SuggestedCollectionPostTableViewCell.h */,
+				8A3F35621BF5E89D002B704C /* SuggestedCollectionPostTableViewCell.m */,
+				8A3F35631BF5E89D002B704C /* SuggestedCollectionPostTableViewCell.xib */,
+			);
+			path = NewsFeed_SuggestedCollection;
+			sourceTree = "<group>";
+		};
 		8A45098F1BAFF79900A868CD /* Color */ = {
 			isa = PBXGroup;
 			children = (
@@ -4162,14 +4193,6 @@
 				8A6BB42A1BF0C338005AA1B3 /* UIViewController+TargetViewController.m */,
 			);
 			path = MZFormSheetPresentationController;
-			sourceTree = "<group>";
-		};
-		8A6BB4371BF327AE005AA1B3 /* NewsFeed_SuggestedCollectionPost */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = NewsFeed_SuggestedCollectionPost;
-			path = NewsFeed_SuggestedCollection;
 			sourceTree = "<group>";
 		};
 		8A8475321BC52D0D006DD614 /* SystemOverride */ = {
@@ -5254,6 +5277,7 @@
 				8AD6C11B1B706CF30040437E /* poweredByFoursquare_gray@2x.png in Resources */,
 				8AD6C0C11B706CF30040437E /* FeedV2ViewController.xib in Resources */,
 				8AD6C2A61B7072FB0040437E /* ShowImageViewController.xib in Resources */,
+				8A3F35691BF5E89D002B704C /* SuggestedCollectionPostTableViewCell.xib in Resources */,
 				0BA94BFD1BE9B71F003AB2E4 /* NoPhotoInCollection@2x.png in Resources */,
 				0BA94BF11BE9B71F003AB2E4 /* GridViewActive@2x.png in Resources */,
 				0BA94CCC1BE9B71F003AB2E4 /* StaycationIcon@2x.png in Resources */,
@@ -5299,6 +5323,7 @@
 				0BA94C831BE9B71F003AB2E4 /* FeedCloseBtn@2x.png in Resources */,
 				0BA94C261BE9B71F003AB2E4 /* CloseIcon@3x.png in Resources */,
 				8A114C811BE73F5D006AE3F0 /* BKMoneyKit.bundle in Resources */,
+				8A3F35671BF5E89D002B704C /* SuggestedCollectionPostsViewController.xib in Resources */,
 				8A114CE71BE75CA0006AE3F0 /* AddCollectionDataViewController.xib in Resources */,
 				8A45123D1BDE2C97008DE870 /* LikeListingCollectionViewCell.xib in Resources */,
 				0BA94C671BE9B71F003AB2E4 /* UserCommentIcon@2x.png in Resources */,
@@ -5311,6 +5336,7 @@
 				0BA94CA91BE9B71F003AB2E4 /* AnnounceLogo@3x.png in Resources */,
 				8AC8F73D1BDA414E00DEF14A /* UserProfilePageViewController.xib in Resources */,
 				0BA94D471BE9B71F003AB2E4 /* PreviewPhotoBlackOverlay@2x.png in Resources */,
+				8A3F35651BF5E89D002B704C /* SuggestedCollectionCollectionsViewController.xib in Resources */,
 				0BA94D2B1BE9B71F003AB2E4 /* BluePhone@2x.png in Resources */,
 				8A114CA01BE73F5D006AE3F0 /* KVNProgressView.xib in Resources */,
 				0BA94DD11BEB6156003AB2E4 /* GreyShareIcon@2x.png in Resources */,
@@ -5967,6 +5993,7 @@
 				8A9F25D31B8EF60C00BB13BA /* EditHourTableViewCell.m in Sources */,
 				8AD6C0F81B706CF30040437E /* SearchResultV2ViewController.m in Sources */,
 				8A114CAB1BE73F5D006AE3F0 /* UIScrollView+CRScrollIndicator.m in Sources */,
+				8A3F35641BF5E89D002B704C /* SuggestedCollectionCollectionsViewController.m in Sources */,
 				8AD6C0D21B706CF30040437E /* PFollowTheExpertsViewController.m in Sources */,
 				8A114C981BE73F5D006AE3F0 /* JTSImageInfo.m in Sources */,
 				8A3409411B8AD06A009B66C3 /* UIImage+Blurring.m in Sources */,
@@ -6071,6 +6098,7 @@
 				8A3409471B8AD06A009B66C3 /* UIImage+Rotating.m in Sources */,
 				8AD6C1021B706CF30040437E /* ChangePasswordViewController.m in Sources */,
 				8A114C881BE73F5D006AE3F0 /* UITableViewController+BMXSwipableCellSupport.m in Sources */,
+				8A3F35681BF5E89D002B704C /* SuggestedCollectionPostTableViewCell.m in Sources */,
 				8AC8F7421BDA414E00DEF14A /* ProfileV2ViewController.m in Sources */,
 				8AD6C1151B706CF30040437E /* FSOperation.m in Sources */,
 				8A114CCA1BE73F5D006AE3F0 /* NMBottomTabBar.m in Sources */,
@@ -6158,6 +6186,7 @@
 				8A114CC11BE73F5D006AE3F0 /* NSData+MKBase64.m in Sources */,
 				8A84752E1BC52C50006DD614 /* UIButton+Extra.m in Sources */,
 				8A6584411B9851C200BC86B9 /* DraftTableViewCell.m in Sources */,
+				8A3F35661BF5E89D002B704C /* SuggestedCollectionPostsViewController.m in Sources */,
 				8AD6C1141B706CF30040437E /* FSOAuthNoAppStore.m in Sources */,
 				8AD6C8331B7454290040437E /* UIAlertView+Blocks.m in Sources */,
 				8AB813C31BC23ECE002F5F06 /* UploadManager.m in Sources */,
@@ -6354,17 +6383,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/SeetiesIOS/Common/Library/AviarySDK",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library",
 					"$(PROJECT_DIR)/SeetiesIOS/framework",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/framework",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/framework",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/framework",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/framework",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/framework",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/framework",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/framework",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/framework",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch";
@@ -6399,17 +6419,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/SeetiesIOS/Common/Library/AviarySDK",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library",
 					"$(PROJECT_DIR)/SeetiesIOS/framework",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/framework",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/framework",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/framework",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/framework",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/framework",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/framework",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/framework",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/framework",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch";

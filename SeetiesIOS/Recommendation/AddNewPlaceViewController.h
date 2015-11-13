@@ -19,6 +19,5 @@ typedef void (^LocationBlock)(id object);
 @property(nonatomic,copy)LocationBlock btnPressDoneBlock;
 
 -(void)initData:(RecommendationVenueModel*)model;
-@property(nonatomic,copy)IDBlock btnBackBlock;
 
 @end

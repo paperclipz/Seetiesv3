@@ -11,5 +11,6 @@
 #import "DismissingAnimationController.h"
 @interface CommonViewController : GAITrackedViewController<UIViewControllerTransitioningDelegate>
 -(void)applyTabBarContraint;
+@property(nonatomic,copy)IDBlock btnBackBlock;
 
 @end

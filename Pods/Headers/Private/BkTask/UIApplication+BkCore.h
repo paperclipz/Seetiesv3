@@ -1,1 +1,0 @@
-../../../BkTask/BkTask/Classes/UIApplication+BkCore.h

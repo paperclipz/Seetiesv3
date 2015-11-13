@@ -77,7 +77,7 @@
 
 - (IBAction)btnBackClicked:(id)sender {
     
-    if (_btnBackBlock) {
+    if (self.btnBackBlock) {
         self.btnBackBlock(self);
     }
     

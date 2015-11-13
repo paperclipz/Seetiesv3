@@ -177,7 +177,7 @@
 -(void)showEditCollectionViewWithCollectionID:(NSString*)collID
 {
     _editCollectionViewController = nil;
-    [self.editCollectionViewController initData:collID];
+    [self.editCollectionViewController initData:collID ProfileType:self.profileType];
    // [LoadingManager show];
     [self.navigationController pushViewController:self.editCollectionViewController animated:YES];
 }

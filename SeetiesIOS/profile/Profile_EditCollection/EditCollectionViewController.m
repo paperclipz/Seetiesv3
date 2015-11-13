@@ -25,14 +25,29 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblNumberOfRecommendation;
 @property (weak, nonatomic) IBOutlet UILabel *lblPostTitle;
 
+@property (weak, nonatomic) IBOutlet UIButton *btnDeleteCollection;
 @property (strong, nonatomic)CollectionModel* collectionModel;
 @property (strong, nonatomic)NSString* collectionID;
+@property (assign, nonatomic)ProfileViewType profileType;
 
 @end
 
 @implementation EditCollectionViewController
 - (IBAction)btnDeleteClicked:(id)sender {
-    [self requestServerForDeleteCollection:self.collectionID];
+    
+    [UIAlertView showWithTitle:LocalisedString(@"System")
+                       message:LocalisedString(@"Are You Sure You Want To delete")
+             cancelButtonTitle:LocalisedString(@"Cancel")
+             otherButtonTitles:@[LocalisedString(@"Delete")]
+                      tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                          if (buttonIndex == [alertView cancelButtonIndex]) {
+                              NSLog(@"Cancelled");
+                              
+                          } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:LocalisedString(@"Delete")]) {
+                              [self requestServerForDeleteCollection:self.collectionID];
+                          }
+                          
+                      }];
 }
 
 - (IBAction)btnDoneClicked:(id)sender {
@@ -93,13 +108,16 @@
     } completion:nil];
 }
 
--(void)initData:(NSString*)collectionID
+-(void)initData:(NSString*)collectionID ProfileType:(ProfileViewType)type
 {
     self.collectionID = collectionID;
+    self.profileType = type;
 }
 
 -(void)initSelfView
 {
+    
+    self.btnDeleteCollection.hidden = self.profileType == ProfileViewTypeOwn?YES:NO;
     [Utils setRoundBorder:self.ibBtnEdit color:TWO_ZERO_FOUR_COLOR borderRadius:self.ibBtnEdit.frame.size.height/2 borderWidth:BORDER_WIDTH];
 
     [self initTableViewWithDelegate:self];
@@ -146,7 +164,7 @@
         
         [self.ibTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:YES];
         
-        self.lblNumberOfRecommendation.text = [NSString stringWithFormat:@"%lu %@",(unsigned long)self.arrList.count,LocalisedString(@"Recommendations")];
+        self.lblNumberOfRecommendation.text = [NSString stringWithFormat:@"%d %@",collectionDetailTotal_posts,LocalisedString(@"Recommendations")];
 
         [self.ibTableView endUpdates];
         
@@ -305,17 +323,32 @@
     if (collectionDetailTotal_page > collectionDetailPage) {
         [self requestServerForCollectionDetails:self.collectionID successBlock:^(id object) {
             
-            self.collectionModel = [[ConnectionManager dataManager] collectionModels];
-            collectionDetailTotal_posts = self.collectionModel.total_posts;
-            collectionDetailPage = self.collectionModel.page;
-            collectionDetailTotal_page = self.collectionModel.total_page;
-            [self.arrList addObjectsFromArray:self.collectionModel.arrayPost];
-            [self.ibTableView reloadData];
-            [self reloadData];
+            if (collectionDetailPage==0) {
+                self.collectionModel = [[ConnectionManager dataManager] collectionModels];
+                collectionDetailTotal_posts = self.collectionModel.total_posts;
+                collectionDetailPage = self.collectionModel.page;
+                collectionDetailTotal_page = self.collectionModel.total_page;
+                [self.arrList addObjectsFromArray:self.collectionModel.arrayPost];
+                [self.ibTableView reloadData];
+                [self reloadData];
 
+            }
+            else{
+            
+                CollectionModel* model = [[ConnectionManager dataManager] collectionModels];
+                collectionDetailTotal_posts = model.total_posts;
+                collectionDetailPage = model.page;
+                collectionDetailTotal_page = model.total_page;
+                [self.arrList addObjectsFromArray:model.arrayPost];
+                [self.ibTableView reloadData];
+                [self reloadData];
+
+            }
+           
             
         } failBlock:^(id object) {
             
+           
         }];
         
     }
@@ -324,10 +357,9 @@
 
 -(void)requestServerForCollectionDetails:(NSString*)collectionID successBlock:(IDBlock)successBlock failBlock:(IDBlock)failBlock{
     
-    collectionDetailPage+=1;
     NSDictionary* dict = @{@"collection_id":collectionID,
                            @"list_size":@(ARRAY_LIST_SIZE),
-                           @"page":@(collectionDetailPage),
+                           @"page":@(collectionDetailPage+1),
                            @"token":[Utils getAppToken]
                            };
     
@@ -351,6 +383,7 @@
 
 -(void)requestServerForDeleteCollection:(NSString*)collectionID
 {
+    
     NSDictionary* dict = @{@"collection_id":collectionID,
                            @"token":[Utils getAppToken],
                            };

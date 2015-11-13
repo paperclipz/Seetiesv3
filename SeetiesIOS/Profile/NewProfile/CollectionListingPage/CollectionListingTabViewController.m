@@ -117,7 +117,7 @@
     
     cell.btnShareClicked = ^(void)
     {
-        [self.shareViewController GetCollectionID:collModel.collection_id];
+        [self.shareViewController GetCollectionID:collModel.collection_id GetCollectionTitle:collModel.name];
         MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:self.shareViewController];
         formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
         formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;

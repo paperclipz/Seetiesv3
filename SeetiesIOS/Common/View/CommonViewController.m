@@ -18,7 +18,9 @@
 @implementation CommonViewController
 - (IBAction)btnBackClicked:(id)sender {
     
-    
+    if (_btnBackBlock) {
+        self.btnBackBlock(nil);
+    }
     if (self.navigationController) {
         [self.navigationController popViewControllerAnimated:YES];
     }
@@ -30,14 +32,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   // self.transitioningDelegate = self;
-   // self.modalPresentationStyle = UIModalPresentationCustom;
-       // Do any additional setup after loading the view.
+    // self.transitioningDelegate = self;
+    // self.modalPresentationStyle = UIModalPresentationCustom;
+    // Do any additional setup after loading the view.
 }
 
 -(void)applyTabBarContraint
 {
-
+    
     if (self.bottomConstraint) {
         self.bottomConstraint.constant = TAB_BAR_HEIGHT;
     }
@@ -51,15 +53,15 @@
 -(id)init{
     
     if (self = [super init]) {
-      //  self.navController = [[UINavigationController alloc]initWithRootViewController:self];
-       // [[self navController] setNavigationBarHidden:YES animated:NO];
+        //  self.navController = [[UINavigationController alloc]initWithRootViewController:self];
+        // [[self navController] setNavigationBarHidden:YES animated:NO];
         
-//        SLog(@"view height before : %f",self.view.bounds.size.height);
-//        self.view.bounds = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height-TAB_BAR_HEIGHT);
-//        SLog(@"view height after: %f",self.view.bounds.size.height);
-//
-//        [self.view updateConstraints];
-//        [self.view layoutIfNeeded];
+        //        SLog(@"view height before : %f",self.view.bounds.size.height);
+        //        self.view.bounds = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height-TAB_BAR_HEIGHT);
+        //        SLog(@"view height after: %f",self.view.bounds.size.height);
+        //
+        //        [self.view updateConstraints];
+        //        [self.view layoutIfNeeded];
     }
     
     return self;
@@ -78,14 +80,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 
 
