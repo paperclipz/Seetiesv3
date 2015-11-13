@@ -28,7 +28,7 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
     BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
-    MainScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight);
+    MainScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight - 64);
     ShowTitle.frame = CGRectMake(15, 20, screenWidth - 30, 44);
     ShowActivity.frame = CGRectMake(screenWidth - 35, 32, 20, 20);
     

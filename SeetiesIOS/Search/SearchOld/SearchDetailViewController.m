@@ -1006,16 +1006,16 @@
 -(void)InitView{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-   // NSString *TempStringCollection = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Collection")];
+    NSString *TempStringCollection = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Collection")];
     NSString *TempStringPosts = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Posts")];
     NSString *TempStringPeople = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Seetizens")];
     
-    NSArray *itemArray = [NSArray arrayWithObjects:TempStringPosts, TempStringPeople, nil];
-   // NSArray *itemArray = [NSArray arrayWithObjects:TempStringCollection,TempStringPosts, TempStringPeople, nil];
+    //NSArray *itemArray = [NSArray arrayWithObjects:TempStringPosts, TempStringPeople, nil];
+    NSArray *itemArray = [NSArray arrayWithObjects:TempStringCollection,TempStringPosts, TempStringPeople, nil];
     UISegmentedControl *ProfileControl = [[UISegmentedControl alloc]initWithItems:itemArray];
     ProfileControl.frame = CGRectMake(15, 105, screenWidth - 30, 33);
     [ProfileControl addTarget:self action:@selector(segmentAction:) forControlEvents: UIControlEventValueChanged];
-    ProfileControl.selectedSegmentIndex = 0;
+    ProfileControl.selectedSegmentIndex = 1;
     UIFont *font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:12];
     NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
                                                            forKey:NSFontAttributeName];
@@ -1057,93 +1057,31 @@
     PeopleView.hidden = YES;
     PostsView.hidden = NO;
     CollectionView.hidden = YES;
-    
-    // [self InitPostsDataView];
-    CheckLoad = 1;
 
-    
-    
-//    heightcheck = 0;
-//    
-//    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-//    MainScroll.backgroundColor = [UIColor whiteColor];
-//    
-//    for (UIView *subview in MainScroll.subviews) {
-//        // if ([subview isKindOfClass:[UIButton class]])
-//        [subview removeFromSuperview];
-//    }
-//    heightcheck += 20;
-//    
-//    NSString *TempStringCollection = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Collection")];
-//    NSString *TempStringPosts = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Posts")];
-//    NSString *TempStringPeople = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Seetizens")];
-//    
-//    NSArray *itemArray = [NSArray arrayWithObjects:TempStringCollection,TempStringPosts, TempStringPeople, nil];
-//    UISegmentedControl *ProfileControl = [[UISegmentedControl alloc]initWithItems:itemArray];
-//    ProfileControl.frame = CGRectMake(15, heightcheck, screenWidth - 30, 33);
-//    [ProfileControl addTarget:self action:@selector(segmentAction:) forControlEvents: UIControlEventValueChanged];
-//    ProfileControl.selectedSegmentIndex = 1;
-//    UIFont *font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:12];
-//    NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
-//                                                           forKey:NSFontAttributeName];
-//    [ProfileControl setTitleTextAttributes:attributes
-//                                  forState:UIControlStateNormal];
-//    [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:41.0f/255.0f green:182.0f/255.0f blue:246.0f/255.0f alpha:1.0]];
-//    [MainScroll addSubview:ProfileControl];
-//    
-//    
-//    UIButton *Line01 = [[UIButton alloc]init];
-//    Line01.frame = CGRectMake(0, heightcheck + 48, screenWidth, 1);
-//    [Line01 setTitle:@"" forState:UIControlStateNormal];//238
-//    [Line01 setBackgroundColor:[UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0f]];
-//    [MainScroll addSubview:Line01];
-//    
-//    heightcheck += 49;
-//    
-//    PostsView = [[UIView alloc]init];
-//    PostsView.frame = CGRectMake(0, heightcheck, screenWidth, 600);
-//    PostsView.backgroundColor = [UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0];
-//    [MainScroll addSubview:PostsView];
-//    
-//    PeopleView = [[UIView alloc]init];
-//    PeopleView.frame = CGRectMake(0, heightcheck, screenWidth, 600);
-//    PeopleView.backgroundColor = [UIColor whiteColor];
-//    [MainScroll addSubview:PeopleView];
-//    
-//    CollectionView = [[UIView alloc]init];
-//    CollectionView.frame = CGRectMake(0, heightcheck, screenWidth, 600);
-//    CollectionView.backgroundColor = [UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0];
-//    [MainScroll addSubview:CollectionView];
-//    
-//    PeopleView.hidden = YES;
-//    PostsView.hidden = NO;
-//    CollectionView.hidden = YES;
-//    
-//   // [self InitPostsDataView];
-//    CheckLoad = 1;
+    CheckLoad = 1;
 
 }
 - (void)segmentAction:(UISegmentedControl *)segment
 {
     
     switch (segment.selectedSegmentIndex) {
-//        case 0:
-//            SegmentedControlCheck = 2;
-//            NSLog(@"CollectionView Click");
-//            PostsView.hidden = YES;
-//            PeopleView.hidden = YES;
-//            CollectionView.hidden = NO;
-//            if (CheckCollectionInitView == 0) {
-//                CheckCollectionInitView = 1;
-//                [self GetCollectionData];
-//            }else{
-//                CGSize contentSize = MainScroll.frame.size;
-//                contentSize.height = heightcheck + CollectionView.frame.size.height;
-//                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-//                MainScroll.contentSize = contentSize;
-//            }
-//            break;
         case 0:
+            SegmentedControlCheck = 2;
+            NSLog(@"CollectionView Click");
+            PostsView.hidden = YES;
+            PeopleView.hidden = YES;
+            CollectionView.hidden = NO;
+            if (CheckCollectionInitView == 0) {
+                CheckCollectionInitView = 1;
+                [self GetCollectionData];
+            }else{
+                CGSize contentSize = MainScroll.frame.size;
+                contentSize.height = heightcheck + CollectionView.frame.size.height;
+                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+                MainScroll.contentSize = contentSize;
+            }
+            break;
+        case 1:
             SegmentedControlCheck = 0;
             NSLog(@"PostView click");
             PostsView.hidden = NO;
@@ -1157,7 +1095,7 @@
             MainScroll.contentSize = contentSize;
             
             break;
-        case 1:
+        case 2:
             SegmentedControlCheck = 1;
             NSLog(@"PeopleView click");
             PostsView.hidden = YES;
@@ -1188,7 +1126,18 @@
 
 -(void)InitPostsDataView{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    int PostGetHeight = 5;
+    int PostGetHeight = 0;
+    
+    UILabel *ShowResults = [[UILabel alloc]init];
+    ShowResults.frame = CGRectMake(0, PostGetHeight, screenWidth, 40);
+    ShowResults.text = [NSString stringWithFormat:@"about %ld results",(long)DataTotal];
+    ShowResults.backgroundColor = [UIColor clearColor];
+    ShowResults.textAlignment = NSTextAlignmentCenter;
+    ShowResults.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+    ShowResults.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+    [PostsView addSubview:ShowResults];
+    
+    PostGetHeight += 40;
     
     
     for (NSInteger i = DataCount; i < DataTotal; i++) {
@@ -1360,6 +1309,17 @@
     
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     int PeopleHeight = 0;
+    
+    UILabel *ShowResults = [[UILabel alloc]init];
+    ShowResults.frame = CGRectMake(0, PeopleHeight, screenWidth, 40);
+    ShowResults.text = [NSString stringWithFormat:@"about %ld results",[Experts_Name_Array count]];
+    ShowResults.backgroundColor = [UIColor clearColor];
+    ShowResults.textAlignment = NSTextAlignmentCenter;
+    ShowResults.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+    ShowResults.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+    [PeopleView addSubview:ShowResults];
+    
+    PeopleHeight += 40;
 
     for (int i = 0; i < [Experts_Name_Array count]; i ++) {
         
@@ -1435,9 +1395,20 @@
 -(void)InitCollectionDataView{
 
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    
+    UILabel *ShowResults = [[UILabel alloc]init];
+    ShowResults.frame = CGRectMake(0, 0, screenWidth, 40);
+    ShowResults.text = [NSString stringWithFormat:@"about %ld results",[Collection_arrTotalCount count]];
+    ShowResults.backgroundColor = [UIColor clearColor];
+    ShowResults.textAlignment = NSTextAlignmentCenter;
+    ShowResults.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+    ShowResults.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+    [CollectionView addSubview:ShowResults];
+    
+    
     for (int i = 0; i < [Collection_arrTotalCount count]; i++) {
         UIButton *TempButton = [[UIButton alloc]init];
-        TempButton.frame = CGRectMake(10 , 10 + i * 200, screenWidth - 20 ,190);
+        TempButton.frame = CGRectMake(10 , 40 + i * 200, screenWidth - 20 ,190);
         [TempButton setTitle:@"" forState:UIControlStateNormal];
         TempButton.backgroundColor = [UIColor whiteColor];
         TempButton.layer.cornerRadius = 10;
@@ -1454,7 +1425,7 @@
         
         if ([SplitArray_TempImage count] == 1) {
             AsyncImageView *ShowImage1 = [[AsyncImageView alloc]init];
-            ShowImage1.frame = CGRectMake(10 , 10 + i * 200 , screenWidth - 20 ,120);
+            ShowImage1.frame = CGRectMake(10 , 40 + i * 200 , screenWidth - 20 ,120);
             //ShowImage.image = [UIImage imageNamed:@"UserDemo2.jpg"];
             ShowImage1.contentMode = UIViewContentModeScaleAspectFill;
             ShowImage1.layer.backgroundColor=[[UIColor clearColor] CGColor];
@@ -1471,7 +1442,7 @@
             [CollectionView addSubview:ShowImage1];
         }else{
             AsyncImageView *ShowImage1 = [[AsyncImageView alloc]init];
-            ShowImage1.frame = CGRectMake(10 , 10 + i * 200 , ((screenWidth - 30) / 2) ,120);
+            ShowImage1.frame = CGRectMake(10 , 40 + i * 200 , ((screenWidth - 30) / 2) ,120);
             //ShowImage.image = [UIImage imageNamed:@"UserDemo2.jpg"];
             ShowImage1.contentMode = UIViewContentModeScaleAspectFill;
             ShowImage1.layer.backgroundColor=[[UIColor clearColor] CGColor];
@@ -1488,7 +1459,7 @@
             [CollectionView addSubview:ShowImage1];
             
             AsyncImageView *ShowImage2 = [[AsyncImageView alloc]init];
-            ShowImage2.frame = CGRectMake(14 + ((screenWidth - 20) / 2), 10 + i * 200 , ((screenWidth - 30) / 2) ,120);
+            ShowImage2.frame = CGRectMake(14 + ((screenWidth - 20) / 2), 40 + i * 200 , ((screenWidth - 30) / 2) ,120);
             //ShowImage.image = [UIImage imageNamed:@"UserDemo2.jpg"];
             ShowImage2.contentMode = UIViewContentModeScaleAspectFill;
             ShowImage2.layer.backgroundColor=[[UIColor clearColor] CGColor];
@@ -1510,14 +1481,14 @@
         
         UIImageView *ShowOverlayImg = [[UIImageView alloc]init];
         ShowOverlayImg.image = [UIImage imageNamed:@"DealsAndRecommendationOverlay.png"];
-        ShowOverlayImg.frame = CGRectMake(10 , 10 + i * 200, screenWidth - 20 ,120);
+        ShowOverlayImg.frame = CGRectMake(10 , 40 + i * 200, screenWidth - 20 ,120);
         ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
         ShowOverlayImg.layer.masksToBounds = YES;
         ShowOverlayImg.layer.cornerRadius = 10;
         [CollectionView addSubview:ShowOverlayImg];
         
         UIButton *OpenCollectionButton = [[UIButton alloc]init];
-        OpenCollectionButton.frame = CGRectMake(11 , 11 + i * 200 , screenWidth - 22 ,120);
+        OpenCollectionButton.frame = CGRectMake(11 , 40 + i * 200 , screenWidth - 22 ,120);
         [OpenCollectionButton setTitle:@"" forState:UIControlStateNormal];
         OpenCollectionButton.backgroundColor = [UIColor clearColor];
         OpenCollectionButton.layer.cornerRadius = 10;
@@ -1529,7 +1500,7 @@
         [CollectionView addSubview: OpenCollectionButton];
         
         AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
-        ShowUserProfileImage.frame = CGRectMake(25 , 20 + i * 200, 40, 40);
+        ShowUserProfileImage.frame = CGRectMake(25 , 50 + i * 200, 40, 40);
         // ShowUserProfileImage.image = [UIImage imageNamed:@"DemoProfile.jpg"];
         ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
         ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
@@ -1550,7 +1521,7 @@
         UIButton *OpenUserProfileButton = [[UIButton alloc]init];
         [OpenUserProfileButton setTitle:@"" forState:UIControlStateNormal];
         OpenUserProfileButton.backgroundColor = [UIColor clearColor];
-        OpenUserProfileButton.frame = CGRectMake(25 , 20 + i * 200, screenWidth - 75 - 100, 40);
+        OpenUserProfileButton.frame = CGRectMake(25 , 50 + i * 200, screenWidth - 75 - 100, 40);
         [OpenUserProfileButton addTarget:self action:@selector(CollectionUserProfileOnClick:) forControlEvents:UIControlEventTouchUpInside];
         OpenUserProfileButton.tag = i;
         [CollectionView addSubview:OpenUserProfileButton];
@@ -1558,7 +1529,7 @@
         NSString *usernameTemp = [[NSString alloc]initWithFormat:@"%@",[Collection_arrUsername objectAtIndex:i]];
         
         UILabel *ShowUserName = [[UILabel alloc]init];
-        ShowUserName.frame = CGRectMake(75 , 20 + i * 200, screenWidth - 75 - 100, 40);
+        ShowUserName.frame = CGRectMake(75 , 50 + i * 200, screenWidth - 75 - 100, 40);
         ShowUserName.text = usernameTemp;
         ShowUserName.backgroundColor = [UIColor clearColor];
         ShowUserName.textColor = [UIColor whiteColor];
@@ -1567,7 +1538,7 @@
         [CollectionView addSubview:ShowUserName];
         
         UILabel *ShowCollectionTitle = [[UILabel alloc]init];
-        ShowCollectionTitle.frame = CGRectMake(25, 140 + i * 200, screenWidth - 190 , 25);
+        ShowCollectionTitle.frame = CGRectMake(25, 170 + i * 200, screenWidth - 190 , 25);
         ShowCollectionTitle.text = [Collection_arrTitle objectAtIndex:i];
         ShowCollectionTitle.backgroundColor = [UIColor clearColor];
         ShowCollectionTitle.textColor = [UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f blue:51.0f/255.0f alpha:1.0f];
@@ -1579,7 +1550,7 @@
         NSString *TempCount = [[NSString alloc]initWithFormat:@"%@ recommendations",[Collection_arrTotalCount objectAtIndex:i]];
         
         UILabel *ShowCollectionCount = [[UILabel alloc]init];
-        ShowCollectionCount.frame = CGRectMake(25 , 165 + i * 200, screenWidth - 190, 25);
+        ShowCollectionCount.frame = CGRectMake(25 , 195 + i * 200, screenWidth - 190, 25);
         ShowCollectionCount.text = TempCount;
         ShowCollectionCount.backgroundColor = [UIColor clearColor];
         ShowCollectionCount.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
@@ -1601,7 +1572,7 @@
         [CollectionFollowButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
         [CollectionFollowButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
         CollectionFollowButton.backgroundColor = [UIColor clearColor];
-        CollectionFollowButton.frame = CGRectMake((screenWidth - 20 - 140), 140 + i * 200, 140, 50);
+        CollectionFollowButton.frame = CGRectMake((screenWidth - 20 - 140), 170 + i * 200, 140, 50);
         [CollectionFollowButton addTarget:self action:@selector(CollectionFollowingButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
         CollectionFollowButton.tag = i;
         [CollectionView addSubview:CollectionFollowButton];
@@ -1609,7 +1580,7 @@
         
         
         
-        CollectionView.frame = CGRectMake(0, heightcheck, screenWidth, 200 + i * 200);
+        CollectionView.frame = CGRectMake(0, heightcheck, screenWidth, 230 + i * 200);
         
        // MainScroll.contentSize = CGSizeMake(screenWidth, 200 + i * 200);
     }

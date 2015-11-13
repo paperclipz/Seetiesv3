@@ -1165,7 +1165,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
 
 -(void)showShareView:(CollectionModel*)colModel
 {
-    [self.shareViewController GetCollectionID:colModel.collection_id];
+    [self.shareViewController GetCollectionID:colModel.collection_id GetCollectionTitle:colModel.name];
     MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:self.shareViewController];
     formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
     formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;

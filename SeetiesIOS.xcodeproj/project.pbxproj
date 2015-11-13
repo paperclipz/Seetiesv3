@@ -566,6 +566,13 @@
 		0BBFE08E1B9FCC00004B17E9 /* SubmitProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBFE0881B9FCC00004B17E9 /* SubmitProfileViewController.m */; };
 		0BBFE08F1B9FCC00004B17E9 /* SubmitProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBFE0891B9FCC00004B17E9 /* SubmitProfileViewController.xib */; };
 		0BC789A61BF4A31C00D126A3 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BC789A51BF4A31C00D126A3 /* AdSupport.framework */; };
+		0BC789A91BF5C9BE00D126A3 /* SuggestedCollectionPostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC789A71BF5C9BE00D126A3 /* SuggestedCollectionPostsViewController.m */; };
+		0BC789AA1BF5C9BE00D126A3 /* SuggestedCollectionPostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC789A81BF5C9BE00D126A3 /* SuggestedCollectionPostTableViewCell.xib */; };
+		0BC789B31BF5CFA200D126A3 /* SuggestedCollectionCollectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC789AE1BF5CFA200D126A3 /* SuggestedCollectionCollectionsViewController.m */; };
+		0BC789B41BF5CFA200D126A3 /* SuggestedCollectionCollectionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC789AF1BF5CFA200D126A3 /* SuggestedCollectionCollectionsViewController.xib */; };
+		0BC789B51BF5CFA200D126A3 /* SuggestedCollectionPostsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC789B01BF5CFA200D126A3 /* SuggestedCollectionPostsViewController.xib */; };
+		0BC789B61BF5CFA200D126A3 /* SuggestedCollectionPostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC789B21BF5CFA200D126A3 /* SuggestedCollectionPostTableViewCell.m */; };
+		0BC789B81BF5DB6200D126A3 /* ExploreTopImg@.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BC789B71BF5DB6200D126A3 /* ExploreTopImg@.png */; };
 		0BC9B38A1B7DD287008334FF /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC9B3881B7DD287008334FF /* FeedViewController.m */; };
 		0BC9B38B1B7DD288008334FF /* FeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC9B3891B7DD287008334FF /* FeedViewController.xib */; };
 		0BE340231B73021B00F49625 /* Adriane Text Bold Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0BE340201B73021B00F49625 /* Adriane Text Bold Italic.otf */; };
@@ -1599,6 +1606,16 @@
 		0BBFE0881B9FCC00004B17E9 /* SubmitProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubmitProfileViewController.m; sourceTree = "<group>"; };
 		0BBFE0891B9FCC00004B17E9 /* SubmitProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SubmitProfileViewController.xib; sourceTree = "<group>"; };
 		0BC789A51BF4A31C00D126A3 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		0BC789A71BF5C9BE00D126A3 /* SuggestedCollectionPostsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestedCollectionPostsViewController.m; sourceTree = "<group>"; };
+		0BC789A81BF5C9BE00D126A3 /* SuggestedCollectionPostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SuggestedCollectionPostTableViewCell.xib; sourceTree = "<group>"; };
+		0BC789AC1BF5CE7400D126A3 /* SuggestedCollectionPostsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestedCollectionPostsViewController.h; sourceTree = "<group>"; };
+		0BC789AD1BF5CFA200D126A3 /* SuggestedCollectionCollectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestedCollectionCollectionsViewController.h; sourceTree = "<group>"; };
+		0BC789AE1BF5CFA200D126A3 /* SuggestedCollectionCollectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestedCollectionCollectionsViewController.m; sourceTree = "<group>"; };
+		0BC789AF1BF5CFA200D126A3 /* SuggestedCollectionCollectionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SuggestedCollectionCollectionsViewController.xib; sourceTree = "<group>"; };
+		0BC789B01BF5CFA200D126A3 /* SuggestedCollectionPostsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SuggestedCollectionPostsViewController.xib; sourceTree = "<group>"; };
+		0BC789B11BF5CFA200D126A3 /* SuggestedCollectionPostTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestedCollectionPostTableViewCell.h; sourceTree = "<group>"; };
+		0BC789B21BF5CFA200D126A3 /* SuggestedCollectionPostTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestedCollectionPostTableViewCell.m; sourceTree = "<group>"; };
+		0BC789B71BF5DB6200D126A3 /* ExploreTopImg@.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ExploreTopImg@.png"; sourceTree = "<group>"; };
 		0BC9B3871B7DD287008334FF /* FeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
 		0BC9B3881B7DD287008334FF /* FeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
 		0BC9B3891B7DD287008334FF /* FeedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedViewController.xib; sourceTree = "<group>"; };
@@ -2500,6 +2517,7 @@
 		0BA9497A1BE9B71F003AB2E4 /* Misc */ = {
 			isa = PBXGroup;
 			children = (
+				0BC789B71BF5DB6200D126A3 /* ExploreTopImg@.png */,
 				0BA9497B1BE9B71F003AB2E4 /* 1.png */,
 				0BA9497C1BE9B71F003AB2E4 /* 2.png */,
 				0BA9497D1BE9B71F003AB2E4 /* 3.png */,
@@ -4167,6 +4185,15 @@
 		8A6BB4371BF327AE005AA1B3 /* NewsFeed_SuggestedCollectionPost */ = {
 			isa = PBXGroup;
 			children = (
+				0BC789AD1BF5CFA200D126A3 /* SuggestedCollectionCollectionsViewController.h */,
+				0BC789AE1BF5CFA200D126A3 /* SuggestedCollectionCollectionsViewController.m */,
+				0BC789AF1BF5CFA200D126A3 /* SuggestedCollectionCollectionsViewController.xib */,
+				0BC789B01BF5CFA200D126A3 /* SuggestedCollectionPostsViewController.xib */,
+				0BC789B11BF5CFA200D126A3 /* SuggestedCollectionPostTableViewCell.h */,
+				0BC789B21BF5CFA200D126A3 /* SuggestedCollectionPostTableViewCell.m */,
+				0BC789AC1BF5CE7400D126A3 /* SuggestedCollectionPostsViewController.h */,
+				0BC789A71BF5C9BE00D126A3 /* SuggestedCollectionPostsViewController.m */,
+				0BC789A81BF5C9BE00D126A3 /* SuggestedCollectionPostTableViewCell.xib */,
 			);
 			name = NewsFeed_SuggestedCollectionPost;
 			path = NewsFeed_SuggestedCollection;
@@ -5314,6 +5341,7 @@
 				0BA94D2B1BE9B71F003AB2E4 /* BluePhone@2x.png in Resources */,
 				8A114CA01BE73F5D006AE3F0 /* KVNProgressView.xib in Resources */,
 				0BA94DD11BEB6156003AB2E4 /* GreyShareIcon@2x.png in Resources */,
+				0BC789AA1BF5C9BE00D126A3 /* SuggestedCollectionPostTableViewCell.xib in Resources */,
 				0BA94C641BE9B71F003AB2E4 /* OpenStatus@3x.png in Resources */,
 				0BA94C8A1BE9B71F003AB2E4 /* FilterIcon@3x.png in Resources */,
 				0BA94C341BE9B71F003AB2E4 /* BrithdayIcon@3x.png in Resources */,
@@ -5456,6 +5484,7 @@
 				0BA94DAA1BE9B71F003AB2E4 /* ExploreIcon@2x.png in Resources */,
 				0BA94D1B1BE9B71F003AB2E4 /* WrongFill@2x.png in Resources */,
 				0BA94CF11BE9B71F003AB2E4 /* Walkthrough2.png in Resources */,
+				0BC789B81BF5DB6200D126A3 /* ExploreTopImg@.png in Resources */,
 				0BA94C7D1BE9B71F003AB2E4 /* Distance2Icon@2x.png in Resources */,
 				0BA94D741BE9B71F003AB2E4 /* ProfileSettingsIcon@3x.png in Resources */,
 				0BA94BF71BE9B71F003AB2E4 /* ListViewInactive@2x.png in Resources */,
@@ -5638,6 +5667,7 @@
 				0BA94D581BE9B71F003AB2E4 /* FollowingBtn@3x.png in Resources */,
 				0BA94C6D1BE9B71F003AB2E4 /* CollectedBtn@2x.png in Resources */,
 				0BA94C411BE9B71F003AB2E4 /* UsernameIcon@2x.png in Resources */,
+				0BC789B41BF5CFA200D126A3 /* SuggestedCollectionCollectionsViewController.xib in Resources */,
 				0BA94DC21BE9B71F003AB2E4 /* WalkthroughPostDetails.png in Resources */,
 				0BA94CDE1BE9B71F003AB2E4 /* InviteBtnInactive@2x.png in Resources */,
 				0BA94BC11BE9B71F003AB2E4 /* TitleBar@3x.png in Resources */,
@@ -5667,6 +5697,7 @@
 				0BA94CBA1BE9B71F003AB2E4 /* FoodDrinkIcon@2x.png in Resources */,
 				8AD6C0BA1B706CF30040437E /* ShowFollowerAndFollowingViewController.xib in Resources */,
 				0BA94BDA1BE9B71F003AB2E4 /* Icon-Small-50@2x.png in Resources */,
+				0BC789B51BF5CFA200D126A3 /* SuggestedCollectionPostsViewController.xib in Resources */,
 				0BA94CAE1BE9B71F003AB2E4 /* OtherLogo@2x.png in Resources */,
 				0BA94DB91BE9B71F003AB2E4 /* ProfileIconActive@3x.png in Resources */,
 				0BE340231B73021B00F49625 /* Adriane Text Bold Italic.otf in Resources */,
@@ -6003,6 +6034,7 @@
 				8AD6C2261B706F6A0040437E /* Locale.m in Sources */,
 				8AD6BE5B1B706CF30040437E /* DoPhotoCell.m in Sources */,
 				8A6BB42C1BF0C338005AA1B3 /* MZFormSheetContentSizingNavigationController.m in Sources */,
+				0BC789A91BF5C9BE00D126A3 /* SuggestedCollectionPostsViewController.m in Sources */,
 				8A65842D1B97079900BC86B9 /* RecommendationVenueModel.m in Sources */,
 				8A114CC01BE73F5D006AE3F0 /* NSAlert+MKNetworkKitAdditions.m in Sources */,
 				8A3409451B8AD06A009B66C3 /* UIImage+Reflection.m in Sources */,
@@ -6071,6 +6103,7 @@
 				8A3409471B8AD06A009B66C3 /* UIImage+Rotating.m in Sources */,
 				8AD6C1021B706CF30040437E /* ChangePasswordViewController.m in Sources */,
 				8A114C881BE73F5D006AE3F0 /* UITableViewController+BMXSwipableCellSupport.m in Sources */,
+				0BC789B61BF5CFA200D126A3 /* SuggestedCollectionPostTableViewCell.m in Sources */,
 				8AC8F7421BDA414E00DEF14A /* ProfileV2ViewController.m in Sources */,
 				8AD6C1151B706CF30040437E /* FSOperation.m in Sources */,
 				8A114CCA1BE73F5D006AE3F0 /* NMBottomTabBar.m in Sources */,
@@ -6094,6 +6127,7 @@
 				8A4509771BABC07F00A868CD /* OpeningPeriodModel.m in Sources */,
 				8AC8F7221BDA414E00DEF14A /* CollectionListingTabViewController.m in Sources */,
 				8AD6C2871B7072FB0040437E /* BrightnessViewController.m in Sources */,
+				0BC789B31BF5CFA200D126A3 /* SuggestedCollectionCollectionsViewController.m in Sources */,
 				8A34094F1B8AD267009B66C3 /* NYXImagesHelper.m in Sources */,
 				8AD6C29D1B7072FB0040437E /* PublishViewController.m in Sources */,
 				8AD6C2851B7072FB0040437E /* AddPriceViewController.m in Sources */,
