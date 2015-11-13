@@ -70,6 +70,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -137,11 +138,10 @@
     _blueEditingTagControl.tagPlaceholder = @"Tag";
     
     _blueEditingTagControl.delegate  = self;
-       UIColor *whiteTextColor = [UIColor whiteColor];
     
-    _blueEditingTagControl.tagsBackgroundColor = DEVICE_COLOR;
-    _blueEditingTagControl.tagsDeleteButtonColor = whiteTextColor;
-    _blueEditingTagControl.tagsTextColor = whiteTextColor;
+    _blueEditingTagControl.tagsBackgroundColor = [UIColor whiteColor];
+    _blueEditingTagControl.tagsDeleteButtonColor = TWO_ZERO_FOUR_COLOR;
+    _blueEditingTagControl.tagsTextColor = TWO_ZERO_FOUR_COLOR;
     
     
     [_blueEditingTagControl reloadTagSubviews];

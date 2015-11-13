@@ -37,6 +37,7 @@ typedef NS_ENUM(NSUInteger, TLTagsControlMode) {
 @property (nonatomic,copy) TagBlock tagBlock;
 
 @property (assign, nonatomic) id<TLTagsControlDelegate> tapDelegate;
+@property (assign, nonatomic) int maxWordLimit;
 
 - (id)initWithFrame:(CGRect)frame andTags:(NSArray *)tags withTagsControlMode:(TLTagsControlMode)mode;
 

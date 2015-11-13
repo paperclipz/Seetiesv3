@@ -8,6 +8,8 @@
 
 #import "EditCollectionTableViewCell.h"
 #import "UIImage+Tint.h"
+
+#define MAX_TEXT_COUNT 150.0f
 @interface EditCollectionTableViewCell()
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
 @property (strong, nonatomic) DraftModel* postModel;
@@ -71,7 +73,13 @@
 
 - (void)textViewDidChange:(UITextView *)textView
 {
+    
+    if (textView.text.length >= MAX_TEXT_COUNT) {
+        NSString *currentString = [textView.text substringWithRange:NSMakeRange(0, textView.text.length>=MAX_TEXT_COUNT?MAX_TEXT_COUNT:textView.text.length)];
+        textView.text = currentString;
+    }
     self.postModel.collection_note = self.txtDescription.text;
+
 }
 
 @end
