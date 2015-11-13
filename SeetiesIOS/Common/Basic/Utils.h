@@ -49,6 +49,12 @@ typedef enum {
     
 } ProfileViewType;
 
+typedef enum {
+    
+    CollectionListingTypeMyOwn,
+    CollectionListingTypeFollowing
+    
+} CollectionListingType;
 
 +(BOOL)isLogin;
 +(void)setIsLogin;

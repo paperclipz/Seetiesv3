@@ -32,7 +32,6 @@
     [super viewDidLoad];
     [self initCollectionView];
     [self.ibCollectionView reloadData];
-    [self registerNotification];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -163,7 +162,7 @@
     NSString* appendString = [NSString stringWithFormat:@"%@/likes",self.userID];
   
     
-    NSDictionary* dict = @{@"page":self.profileLikeModel.userPostData.page==0?@(self.profileLikeModel.userPostData.page + 1):@1,
+    NSDictionary* dict = @{@"page":self.profileLikeModel.userPostData.page?@(self.profileLikeModel.userPostData.page + 1):@1,
                            @"list_size":@(LIKES_LIST_SIZE),
                            @"token":[Utils getAppToken]
                            };
@@ -174,8 +173,6 @@
         
         [self.arrLikesList addObjectsFromArray:self.profileLikeModel.userPostData.posts];
         
-        [self.listingHeaderView setTotalCount:self.profileLikeModel.userPostData.total_posts];
-
         [self.ibCollectionView reloadData];
         
         isMiddleOfCallingServer = false;
@@ -185,35 +182,6 @@
 
     }];
 }
-
--(void)registerNotification
-{
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(receiveListingNotification:)
-                                                 name:NOTIFICAION_TYPE_REFRESH_LIKES
-                                               object:nil];
-    
-}
-
-- (void) receiveListingNotification:(NSNotification *) notification
-{
-    // [notification name] should always be @"TestNotification"
-    // unless you use this method for observation of other notifications
-    // as well.
-    
-    if ([[notification name] isEqualToString:NOTIFICAION_TYPE_REFRESH_LIKES])
-    {
-        self.profileLikeModel.userPostData.page = 0;
-        _arrLikesList  = nil;
-
-        [self requestServerForUserLikes];
-    }
-    
-    //NSLog (@"Successfully received the test notification!");
-    
-}
-
-
 /*
 #pragma mark - Navigation
 

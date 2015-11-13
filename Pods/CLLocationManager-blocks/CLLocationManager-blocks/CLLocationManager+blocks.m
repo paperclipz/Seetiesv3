@@ -111,11 +111,14 @@ CLLocationAgeFilter const kCLLocationAgeFilterNone = 0.0;
         }
         
         // Location age filtering
-        NSDate *eventDate = loc.timestamp;
-        NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
-        if (abs(howRecent) > self.updateLocationAgeFilter) {
-            continue;
+        if (self.updateLocationAgeFilter != kCLLocationAgeFilterNone) {
+            NSDate *eventDate = loc.timestamp;
+            NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
+            if (isless(fabs(howRecent), self.updateLocationAgeFilter) == 0) {
+                continue;
+            }
         }
+        
         
         [filteredLocationsMutable addObject:loc];
         
@@ -443,6 +446,10 @@ CLLocationAgeFilter const kCLLocationAgeFilterNone = 0.0;
     CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
     
     if ([CLLocationManager instancesRespondToSelector:@selector(requestWhenInUseAuthorization)]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-variable" alwaysDescription
+#pragma clang diagnostic ignored "-Wunused-variable" whenInUseDescription
+#pragma clang diagnostic pop
         NSString *alwaysDescription = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationAlwaysUsageDescription"];
         NSString *whenInUseDescription = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationWhenInUseUsageDescription"];
         NSAssert([alwaysDescription length] || [whenInUseDescription length], @"NSLocationAlwaysUsageDescription or NSLocationWhenInUseUsageDescription key not present in the info.plist. Please add it in order to recieve location updates");

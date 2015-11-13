@@ -36,6 +36,7 @@
     NSURLConnection *theConnection_Following;
     NSURLConnection *theConnection_QuickCollect;
     NSURLConnection *theConnection_GetCollection;
+    NSURLConnection *theConnection_FollowCollect;
     
     NSMutableArray *LPhotoArray;
     NSMutableArray *PostIDArray;
@@ -124,6 +125,11 @@
     NSInteger CheckPostsInitView;
     NSInteger CheckCollectionInitView;
     NSInteger SegmentedControlCheck;
+    
+    
+    NSString *GetCollectionFollowing;
+    NSString *GetCollectID;
+    NSString *GetCollectUserID;
 }
 -(void)GetSearchKeyword:(NSString *)Keyword Getlat:(NSString *)lat GetLong:(NSString *)Long GetLocationName:(NSString *)LocationName GetCurrentLat:(NSString *)CurrentLat GetCurrentLong:(NSString *)CurrentLong;
 -(void)GetTitle:(NSString *)String;

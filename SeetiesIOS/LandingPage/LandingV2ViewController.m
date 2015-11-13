@@ -211,6 +211,8 @@
     PageControlOn.numberOfPages = productcount;
     //checkauto = productcount;
     checkauto = 0;
+    
+    
 }
 
 -(void)changeLanguage

@@ -17,8 +17,6 @@
 #import "JTSImageViewController.h"
 #import "UITableView+Extension.h"
 
-#import "MZFormSheetPresentationViewController.h"
-
 @interface ProfileViewController ()<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate,UIScrollViewDelegate>
 {
     NSMutableArray* arrayTag;
@@ -189,16 +187,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveTestNotification:)
                                                  name:NOTIFICAION_TYPE_REFRESH_COLLECTION
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(receiveTestNotification:)
-                                                 name:NOTIFICAION_TYPE_REFRESH_POST
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(receiveTestNotification:)
-                                                 name:NOTIFICAION_TYPE_REFRESH_LIKES
                                                object:nil];
 
 }
@@ -524,6 +512,10 @@
                 [self requestServerToFollowCollection:colModel];
             };
             
+            cell.btnShareClicked = ^(void)
+            {
+                [self showShareView:colModel];
+            };
             [cell initData:colModel profileType:self.profileViewType];
             
             return cell;
@@ -726,7 +718,7 @@
 {
     _editCollectionViewController = nil;
     [LoadingManager show];
-    [self.editCollectionViewController initData:collID ProfileType:self.profileViewType];
+    [self.editCollectionViewController initData:collID];
     [LoadingManager show];
     [self.navigationController pushViewController:self.editCollectionViewController animated:YES];
 }
@@ -833,13 +825,6 @@
 {
     if (!_likesListingViewController) {
         _likesListingViewController = [LikesListingViewController new];
-        
-        //__weak typeof (self)weakSelf = self;
-//        _likesListingViewController.btnBackBlock = ^(id object)
-//        {
-//            [weakSelf requestServerForUserLikes];
-//        };
-
     }
     return _likesListingViewController;
 }
@@ -880,13 +865,6 @@
 {
     if (!_postListingViewController) {
         _postListingViewController = [PostListingViewController new];
-        
-        __weak typeof (self)weakSelf = self;
-        _postListingViewController.btnBackBlock = ^(id object)
-        {
-            [weakSelf requestServerForUserPost];
-        };
-        
     }
     
     return _postListingViewController;
@@ -897,8 +875,6 @@
     if(!_collectionViewController)
     {
         _collectionViewController = [CollectionViewController new];
-        
-       
     }
     
     return _collectionViewController;
@@ -1182,24 +1158,21 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
     // as well.
     
     if ([[notification name] isEqualToString:NOTIFICAION_TYPE_REFRESH_COLLECTION])
-    {
-        [self requestServerForUserCollection];
-
-    }
-    else if ([[notification name] isEqualToString:NOTIFICAION_TYPE_REFRESH_POST])
-    {
-        [self requestServerForUserPost];
-    }
-    else if ([[notification name] isEqualToString:NOTIFICAION_TYPE_REFRESH_LIKES])
-    {
-        [self requestServerForUserLikes];
-
-    }
-
         //NSLog (@"Successfully received the test notification!");
         
+        [self requestServerForUserCollection];
 }
 
+-(void)showShareView:(CollectionModel*)colModel
+{
+    [self.shareViewController GetCollectionID:colModel.collection_id];
+    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:self.shareViewController];
+    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
+    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
+    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
+    [self presentViewController:formSheetController animated:YES completion:nil];
+
+}
 //#pragma mark - UIScrollView
 //- (void)scrollViewDidScroll:(UIScrollView *)scrollView
 //{

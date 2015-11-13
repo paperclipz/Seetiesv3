@@ -1163,9 +1163,6 @@
         NSLog(@"statusString is %@",statusString);
         
         if ([statusString isEqualToString:@"ok"]) {
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_LIKES object:nil];
-
             NSDictionary *GetAllData = [res valueForKey:@"data"];
             NSLog(@"GetAllData is %@",GetAllData);
             
@@ -1321,7 +1318,6 @@
             [self dismissViewControllerAnimated:NO completion:nil];
             
             [self.navigationController popToRootViewControllerAnimated:YES];
-            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_POST object:nil];
 
         }
     }else if(connection == theConnection_QuickCollect){
@@ -1598,9 +1594,33 @@
         
         
         CheckCollectionSuggestions = 1;
-       // [self InitCollectionSuggestionsView];
+        [self InitCollectionSuggestionsView];
         }else{
         
+        }
+    }else if(connection == theConnection_FollowCollect){
+        NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+        NSLog(@"Follow Collection return get data to server ===== %@",GetData);
+        
+        NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *myError = nil;
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
+        NSLog(@"Expert Json = %@",res);
+        
+        
+        NSString *statusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
+        NSLog(@"statusString is %@",statusString);
+        
+        if ([statusString isEqualToString:@"ok"]) {
+            if ([GetCollectionFollowing isEqualToString:@"0"]) {
+                [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success follow this collection" type:TSMessageNotificationTypeSuccess];
+                GetCollectionFollowing = @"1";
+            }else{
+                [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success unfollow this collection" type:TSMessageNotificationTypeSuccess];
+                GetCollectionFollowing = @"0";
+            }
+            
+            
         }
     }else{
     //follow data
@@ -1742,7 +1762,7 @@
     
     UIImageView *ShowMoveIcon = [[UIImageView alloc]init];
     ShowMoveIcon.image = [UIImage imageNamed:@"FullScreenIcon.png"];
-    ShowMoveIcon.frame = CGRectMake(screenWidth - 45 - 10, 300, 45, 45);
+    ShowMoveIcon.frame = CGRectMake(screenWidth - 45, 290, 45, 45);
     [MainScroll addSubview:ShowMoveIcon];
     
     NSInteger productcount = [UrlArray count];
@@ -1750,7 +1770,7 @@
     
     //PageControlOn.currentPage = 0;
     //PageControlOn.numberOfPages = productcount;
-    NSString *TempCount = [[NSString alloc]initWithFormat:@"1/%li",(long)productcount];
+    NSString *TempCount = [[NSString alloc]initWithFormat:@"1 / %li",(long)productcount];
     ImageCount = productcount;
     ShowImageCount.text = TempCount;
 
@@ -2879,7 +2899,6 @@
         
         GetFinalHeight += 20;
     }
-    
     
     
     
@@ -4352,5 +4371,78 @@
     buttonWithTag1.selected = !buttonWithTag1.selected;
     
     NSLog(@"Get Collection User ID == %@",[arrUserID objectAtIndex:getbuttonIDN]);
+    NSLog(@"Get Collection Following == %@",[arrFollowing objectAtIndex:getbuttonIDN]);
+    GetCollectionFollowing = [[NSString alloc]initWithFormat:@"%@",[arrFollowing objectAtIndex:getbuttonIDN]];
+    GetCollectUserID = [[NSString alloc]initWithFormat:@"%@",[arrUserID objectAtIndex:getbuttonIDN]];
+    GetCollectID = [[NSString alloc]initWithFormat:@"%@",[arrCollectionID objectAtIndex:getbuttonIDN]];
+    
+    if ([GetCollectionFollowing isEqualToString:@"0"]) {
+        [self FollowCollection];
+        [arrFollowing replaceObjectAtIndex:getbuttonIDN withObject:@"1"];
+    }else{
+        [self DeleteFollowCollection];
+        [arrFollowing replaceObjectAtIndex:getbuttonIDN withObject:@"0"];
+    }
+}
+-(void)FollowCollection{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    //Server Address URL
+    NSString *urlString = [NSString stringWithFormat:@"%@%@/collections/%@/follow",DataUrl.UserWallpaper_Url,GetCollectUserID,GetCollectID];
+    NSLog(@"Send Follow Collection urlString is %@",urlString);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
+    
+    NSMutableData *body = [NSMutableData data];
+    
+    NSString *boundary = @"---------------------------14737809831466499882746641449";
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+    [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //parameter first
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    //Attaching the key name @"parameter_first" to the post body
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"token\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    //Attaching the content to be posted ( ParameterFirst )
+    [body appendData:[[NSString stringWithFormat:@"%@",GetExpertToken] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //close form
+    [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSLog(@"Request  = %@",[[NSString alloc] initWithData:body encoding:NSUTF8StringEncoding]);
+    
+    //setting the body of the post to the reqeust
+    [request setHTTPBody:body];
+    
+    theConnection_FollowCollect = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    if(theConnection_FollowCollect) {
+        //  NSLog(@"Connection Successful");
+        webData = [NSMutableData data];
+    } else {
+        
+    }
+}
+-(void)DeleteFollowCollection{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    
+    //Server Address URL
+    NSString *urlString = [NSString stringWithFormat:@"%@%@/collections/%@/follow?token=%@",DataUrl.UserWallpaper_Url,GetCollectUserID,GetCollectID,GetExpertToken];
+    NSLog(@"Send Delete Collection urlString is %@",urlString);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"DELETE"];
+    
+    theConnection_FollowCollect = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    if(theConnection_FollowCollect) {
+        //  NSLog(@"Connection Successful");
+        webData = [NSMutableData data];
+    } else {
+        
+    }
 }
 @end

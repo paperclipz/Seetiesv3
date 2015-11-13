@@ -18,4 +18,6 @@
 -(void)setFollowButtonSelected:(BOOL)selected button:(UIButton*)button;
 
 @property(nonatomic,copy)VoidBlock btnFollowBlock;
+@property(nonatomic,copy)VoidBlock btnShareClicked;
+
 @end

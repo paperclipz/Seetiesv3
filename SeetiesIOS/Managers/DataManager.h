@@ -42,6 +42,7 @@
 @property(nonatomic,strong)TagModel* tagModel;
 @property(nonatomic,strong)ProfileModel* userProfileModel;
 @property(nonatomic,strong)CollectionsModel* userCollectionsModel;
+@property(nonatomic,strong)CollectionsModel* userFollowingCollectionsModel;
 @property(nonatomic,strong)ProfilePostModel* userProfilePostModel;
 @property(nonatomic,strong)ProfilePostModel* userProfileLikeModel;
 

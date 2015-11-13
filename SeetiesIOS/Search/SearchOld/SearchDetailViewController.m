@@ -44,7 +44,7 @@
     DataUrl = [[UrlDataClass alloc]init];
     MainScroll.delegate = self;
     UserScroll.delegate = self;
-    MainScroll.frame = CGRectMake(0, 95 , screenWidth, screenHeight - 95 - 50);
+    MainScroll.frame = CGRectMake(0, 149 , screenWidth, screenHeight - 149 - 50);
     ShowSearchUserView.frame = CGRectMake(0, 114, screenWidth, screenHeight - 114 - 50);
     UserScroll.frame = CGRectMake(0, 0 , ShowSearchUserView.frame.size.width, ShowSearchUserView.frame.size.height);
     StringSortby = @"3";
@@ -936,6 +936,30 @@
         if ([statusString isEqualToString:@"ok"]) {
             [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success add to Collections" type:TSMessageNotificationTypeSuccess];
         }
+    }else if(connection == theConnection_FollowCollect){
+        NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+        NSLog(@"Follow Collection return get data to server ===== %@",GetData);
+        
+        NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *myError = nil;
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
+        NSLog(@"Expert Json = %@",res);
+        
+        
+        NSString *statusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
+        NSLog(@"statusString is %@",statusString);
+        
+        if ([statusString isEqualToString:@"ok"]) {
+            if ([GetCollectionFollowing isEqualToString:@"0"]) {
+                [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success follow this collection" type:TSMessageNotificationTypeSuccess];
+                GetCollectionFollowing = @"1";
+            }else{
+                [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success unfollow this collection" type:TSMessageNotificationTypeSuccess];
+                GetCollectionFollowing = @"0";
+            }
+            
+            
+        }
     }else{
             //follow data
             NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
@@ -980,42 +1004,40 @@
 
 }
 -(void)InitView{
-    heightcheck = 0;
-    
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    MainScroll.backgroundColor = [UIColor whiteColor];
     
-    for (UIView *subview in MainScroll.subviews) {
-        // if ([subview isKindOfClass:[UIButton class]])
-        [subview removeFromSuperview];
-    }
-    heightcheck += 20;
-    
-    NSString *TempStringCollection = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Collection")];
+   // NSString *TempStringCollection = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Collection")];
     NSString *TempStringPosts = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Posts")];
     NSString *TempStringPeople = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Seetizens")];
     
-    NSArray *itemArray = [NSArray arrayWithObjects:TempStringCollection,TempStringPosts, TempStringPeople, nil];
+    NSArray *itemArray = [NSArray arrayWithObjects:TempStringPosts, TempStringPeople, nil];
+   // NSArray *itemArray = [NSArray arrayWithObjects:TempStringCollection,TempStringPosts, TempStringPeople, nil];
     UISegmentedControl *ProfileControl = [[UISegmentedControl alloc]initWithItems:itemArray];
-    ProfileControl.frame = CGRectMake(15, heightcheck, screenWidth - 30, 33);
+    ProfileControl.frame = CGRectMake(15, 105, screenWidth - 30, 33);
     [ProfileControl addTarget:self action:@selector(segmentAction:) forControlEvents: UIControlEventValueChanged];
-    ProfileControl.selectedSegmentIndex = 1;
+    ProfileControl.selectedSegmentIndex = 0;
     UIFont *font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:12];
     NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
                                                            forKey:NSFontAttributeName];
     [ProfileControl setTitleTextAttributes:attributes
                                   forState:UIControlStateNormal];
     [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:41.0f/255.0f green:182.0f/255.0f blue:246.0f/255.0f alpha:1.0]];
-    [MainScroll addSubview:ProfileControl];
+    [self.view addSubview:ProfileControl];
     
     
     UIButton *Line01 = [[UIButton alloc]init];
-    Line01.frame = CGRectMake(0, heightcheck + 48, screenWidth, 1);
+    Line01.frame = CGRectMake(0, 105 + 43, screenWidth, 1);
     [Line01 setTitle:@"" forState:UIControlStateNormal];//238
     [Line01 setBackgroundColor:[UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0f]];
-    [MainScroll addSubview:Line01];
+    [self.view addSubview:Line01];
     
-    heightcheck += 49;
+    MainScroll.backgroundColor = [UIColor whiteColor];
+    
+    for (UIView *subview in MainScroll.subviews) {
+        [subview removeFromSuperview];
+    }
+
+    heightcheck += 0;
     
     PostsView = [[UIView alloc]init];
     PostsView.frame = CGRectMake(0, heightcheck, screenWidth, 600);
@@ -1036,31 +1058,92 @@
     PostsView.hidden = NO;
     CollectionView.hidden = YES;
     
-   // [self InitPostsDataView];
+    // [self InitPostsDataView];
     CheckLoad = 1;
+
+    
+    
+//    heightcheck = 0;
+//    
+//    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+//    MainScroll.backgroundColor = [UIColor whiteColor];
+//    
+//    for (UIView *subview in MainScroll.subviews) {
+//        // if ([subview isKindOfClass:[UIButton class]])
+//        [subview removeFromSuperview];
+//    }
+//    heightcheck += 20;
+//    
+//    NSString *TempStringCollection = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Collection")];
+//    NSString *TempStringPosts = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Posts")];
+//    NSString *TempStringPeople = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Seetizens")];
+//    
+//    NSArray *itemArray = [NSArray arrayWithObjects:TempStringCollection,TempStringPosts, TempStringPeople, nil];
+//    UISegmentedControl *ProfileControl = [[UISegmentedControl alloc]initWithItems:itemArray];
+//    ProfileControl.frame = CGRectMake(15, heightcheck, screenWidth - 30, 33);
+//    [ProfileControl addTarget:self action:@selector(segmentAction:) forControlEvents: UIControlEventValueChanged];
+//    ProfileControl.selectedSegmentIndex = 1;
+//    UIFont *font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:12];
+//    NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
+//                                                           forKey:NSFontAttributeName];
+//    [ProfileControl setTitleTextAttributes:attributes
+//                                  forState:UIControlStateNormal];
+//    [[UISegmentedControl appearance] setTintColor:[UIColor colorWithRed:41.0f/255.0f green:182.0f/255.0f blue:246.0f/255.0f alpha:1.0]];
+//    [MainScroll addSubview:ProfileControl];
+//    
+//    
+//    UIButton *Line01 = [[UIButton alloc]init];
+//    Line01.frame = CGRectMake(0, heightcheck + 48, screenWidth, 1);
+//    [Line01 setTitle:@"" forState:UIControlStateNormal];//238
+//    [Line01 setBackgroundColor:[UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0f]];
+//    [MainScroll addSubview:Line01];
+//    
+//    heightcheck += 49;
+//    
+//    PostsView = [[UIView alloc]init];
+//    PostsView.frame = CGRectMake(0, heightcheck, screenWidth, 600);
+//    PostsView.backgroundColor = [UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0];
+//    [MainScroll addSubview:PostsView];
+//    
+//    PeopleView = [[UIView alloc]init];
+//    PeopleView.frame = CGRectMake(0, heightcheck, screenWidth, 600);
+//    PeopleView.backgroundColor = [UIColor whiteColor];
+//    [MainScroll addSubview:PeopleView];
+//    
+//    CollectionView = [[UIView alloc]init];
+//    CollectionView.frame = CGRectMake(0, heightcheck, screenWidth, 600);
+//    CollectionView.backgroundColor = [UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0];
+//    [MainScroll addSubview:CollectionView];
+//    
+//    PeopleView.hidden = YES;
+//    PostsView.hidden = NO;
+//    CollectionView.hidden = YES;
+//    
+//   // [self InitPostsDataView];
+//    CheckLoad = 1;
 
 }
 - (void)segmentAction:(UISegmentedControl *)segment
 {
     
     switch (segment.selectedSegmentIndex) {
+//        case 0:
+//            SegmentedControlCheck = 2;
+//            NSLog(@"CollectionView Click");
+//            PostsView.hidden = YES;
+//            PeopleView.hidden = YES;
+//            CollectionView.hidden = NO;
+//            if (CheckCollectionInitView == 0) {
+//                CheckCollectionInitView = 1;
+//                [self GetCollectionData];
+//            }else{
+//                CGSize contentSize = MainScroll.frame.size;
+//                contentSize.height = heightcheck + CollectionView.frame.size.height;
+//                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+//                MainScroll.contentSize = contentSize;
+//            }
+//            break;
         case 0:
-            SegmentedControlCheck = 2;
-            NSLog(@"CollectionView Click");
-            PostsView.hidden = YES;
-            PeopleView.hidden = YES;
-            CollectionView.hidden = NO;
-            if (CheckCollectionInitView == 0) {
-                CheckCollectionInitView = 1;
-                [self GetCollectionData];
-            }else{
-                CGSize contentSize = MainScroll.frame.size;
-                contentSize.height = heightcheck + CollectionView.frame.size.height;
-                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-                MainScroll.contentSize = contentSize;
-            }
-            break;
-        case 1:
             SegmentedControlCheck = 0;
             NSLog(@"PostView click");
             PostsView.hidden = NO;
@@ -1074,7 +1157,7 @@
             MainScroll.contentSize = contentSize;
             
             break;
-        case 2:
+        case 1:
             SegmentedControlCheck = 1;
             NSLog(@"PeopleView click");
             PostsView.hidden = YES;
@@ -1371,7 +1454,7 @@
         
         if ([SplitArray_TempImage count] == 1) {
             AsyncImageView *ShowImage1 = [[AsyncImageView alloc]init];
-            ShowImage1.frame = CGRectMake(11 , 11 + i * 200 , screenWidth - 20 ,120);
+            ShowImage1.frame = CGRectMake(10 , 10 + i * 200 , screenWidth - 20 ,120);
             //ShowImage.image = [UIImage imageNamed:@"UserDemo2.jpg"];
             ShowImage1.contentMode = UIViewContentModeScaleAspectFill;
             ShowImage1.layer.backgroundColor=[[UIColor clearColor] CGColor];
@@ -1388,7 +1471,7 @@
             [CollectionView addSubview:ShowImage1];
         }else{
             AsyncImageView *ShowImage1 = [[AsyncImageView alloc]init];
-            ShowImage1.frame = CGRectMake(11 , 11 + i * 200 , ((screenWidth - 30) / 2) ,120);
+            ShowImage1.frame = CGRectMake(10 , 10 + i * 200 , ((screenWidth - 30) / 2) ,120);
             //ShowImage.image = [UIImage imageNamed:@"UserDemo2.jpg"];
             ShowImage1.contentMode = UIViewContentModeScaleAspectFill;
             ShowImage1.layer.backgroundColor=[[UIColor clearColor] CGColor];
@@ -1405,7 +1488,7 @@
             [CollectionView addSubview:ShowImage1];
             
             AsyncImageView *ShowImage2 = [[AsyncImageView alloc]init];
-            ShowImage2.frame = CGRectMake(14 + ((screenWidth - 20) / 2), 11 + i * 200 , ((screenWidth - 30) / 2) ,120);
+            ShowImage2.frame = CGRectMake(14 + ((screenWidth - 20) / 2), 10 + i * 200 , ((screenWidth - 30) / 2) ,120);
             //ShowImage.image = [UIImage imageNamed:@"UserDemo2.jpg"];
             ShowImage2.contentMode = UIViewContentModeScaleAspectFill;
             ShowImage2.layer.backgroundColor=[[UIColor clearColor] CGColor];
@@ -1982,5 +2065,78 @@
     buttonWithTag1.selected = !buttonWithTag1.selected;
     
     NSLog(@"Get Collection User ID == %@",[Collection_arrUserID objectAtIndex:getbuttonIDN]);
+    NSLog(@"Get Collection Following == %@",[Collection_arrFollowing objectAtIndex:getbuttonIDN]);
+    GetCollectionFollowing = [[NSString alloc]initWithFormat:@"%@",[Collection_arrFollowing objectAtIndex:getbuttonIDN]];
+    GetCollectUserID = [[NSString alloc]initWithFormat:@"%@",[Collection_arrUserID objectAtIndex:getbuttonIDN]];
+    GetCollectID = [[NSString alloc]initWithFormat:@"%@",[Collection_arrID objectAtIndex:getbuttonIDN]];
+    
+    if ([GetCollectionFollowing isEqualToString:@"0"]) {
+        [self FollowCollection];
+        [Collection_arrFollowing replaceObjectAtIndex:getbuttonIDN withObject:@"1"];
+    }else{
+        [self DeleteFollowCollection];
+        [Collection_arrFollowing replaceObjectAtIndex:getbuttonIDN withObject:@"0"];
+    }
+}
+-(void)FollowCollection{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    //Server Address URL
+    NSString *urlString = [NSString stringWithFormat:@"%@%@/collections/%@/follow",DataUrl.UserWallpaper_Url,GetCollectUserID,GetCollectID];
+    NSLog(@"Send Follow Collection urlString is %@",urlString);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
+    
+    NSMutableData *body = [NSMutableData data];
+    
+    NSString *boundary = @"---------------------------14737809831466499882746641449";
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+    [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //parameter first
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    //Attaching the key name @"parameter_first" to the post body
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"token\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    //Attaching the content to be posted ( ParameterFirst )
+    [body appendData:[[NSString stringWithFormat:@"%@",GetExpertToken] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //close form
+    [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSLog(@"Request  = %@",[[NSString alloc] initWithData:body encoding:NSUTF8StringEncoding]);
+    
+    //setting the body of the post to the reqeust
+    [request setHTTPBody:body];
+    
+    theConnection_FollowCollect = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    if(theConnection_FollowCollect) {
+        //  NSLog(@"Connection Successful");
+        webData = [NSMutableData data];
+    } else {
+        
+    }
+}
+-(void)DeleteFollowCollection{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    
+    //Server Address URL
+    NSString *urlString = [NSString stringWithFormat:@"%@%@/collections/%@/follow?token=%@",DataUrl.UserWallpaper_Url,GetCollectUserID,GetCollectID,GetExpertToken];
+    NSLog(@"Send Delete Collection urlString is %@",urlString);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"DELETE"];
+    
+    theConnection_FollowCollect = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    if(theConnection_FollowCollect) {
+        //  NSLog(@"Connection Successful");
+        webData = [NSMutableData data];
+    } else {
+        
+    }
 }
 @end

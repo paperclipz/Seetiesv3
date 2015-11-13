@@ -178,7 +178,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ## AviarySDK
 
-Copyright (c) 2014 Aviary, Inc. All rights reserved.
+Copyright (c) 2015 Aviary, Inc. All rights reserved.
 
 
 ## BOString

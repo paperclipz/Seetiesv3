@@ -13,7 +13,7 @@
 
 @property (nonatomic, strong) UIDocumentInteractionController *documentController;
 -(void)GetPostID:(NSString *)ID GetMessage:(NSString *)Msg GetTitle:(NSString *)Title GetImageData:(NSString *)ImgData;
--(void)GetCollectionID:(NSString *)Collectionid;
+-(void)GetCollectionID:(NSString *)Collectionid GetCollectionTitle:(NSString *)CollectionTitle;
 -(void)GetShareProfile:(NSString *)Userid;
 -(IBAction)FacebookButtonOnClick:(id)sender;
 -(IBAction)InstagramButtonOnClick:(id)sender;

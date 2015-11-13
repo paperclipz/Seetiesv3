@@ -29,6 +29,7 @@
     IBOutlet UILabel *ShowSubTitle;
     
     NSString *GetCollectionID;
+    NSString *GetCollectionTitle;
     
     int CheckShareStatus;
     
@@ -75,9 +76,10 @@
     ShareToSeetiesView.hidden = YES;
     CenterView.frame = CGRectMake((screenWidth / 2) - 160, 70, 320, screenHeight);
 }
--(void)GetCollectionID:(NSString *)Collectionid{
+-(void)GetCollectionID:(NSString *)Collectionid GetCollectionTitle:(NSString *)CollectionTitle{
 
     GetCollectionID = Collectionid;
+    GetCollectionTitle = CollectionTitle;
     CheckShareStatus = 1;
 }
 -(void)GetPostID:(NSString *)ID GetMessage:(NSString *)Msg GetTitle:(NSString *)Title GetImageData:(NSString *)ImgData{
@@ -127,11 +129,25 @@
     NSString *Description;
     NSString *caption;
     if (CheckShareStatus == 0) {
-        message = [NSString stringWithFormat:@"https://seeties.me/post/%@",GetPostID];
+        
+        NSString  *TempUrl = [NSString stringWithFormat:@"https://seeties.me/post/%@",GetPostID];
+        message = LocalisedString(@"I was reading [post title] on Seeties and I thought you might be interested in reading it too.\n\n[post url]");
+        message = [message stringByReplacingOccurrencesOfString:@"[post title]"
+                                                     withString:GetTitle];
+        message = [message stringByReplacingOccurrencesOfString:@"[post url]"
+                                                     withString:TempUrl];
+        
+       // message = [NSString stringWithFormat:@"https://seeties.me/post/%@",GetPostID];
         Description = [NSString stringWithFormat:@"%@",GetMessage];
         caption = [NSString stringWithFormat:@"SEETIES.ME"];
     }else if (CheckShareStatus == 1){
-        message = [NSString stringWithFormat:@"https://seeties.me/collections/%@",GetCollectionID];
+        NSString  *TempUrl = [NSString stringWithFormat:@"https://seeties.me/collections/%@",GetCollectionID];
+        message = LocalisedString(@"I was checking this collection [collection title] on Seeties and I thought you might like to see it too.\n\n[post url]");
+        message = [message stringByReplacingOccurrencesOfString:@"[collection title]"
+                                             withString:GetCollectionTitle];
+        message = [message stringByReplacingOccurrencesOfString:@"[post url]"
+                                                     withString:TempUrl];
+
         Description = @"";
         caption = [NSString stringWithFormat:@"SEETIES.ME"];
     }else{
@@ -247,9 +263,20 @@
     NSString *message;
     
     if (CheckShareStatus == 0) {
-        message = [NSString stringWithFormat:@"I found %@ on Seeties. Let's try it together.\n\nhttps://seeties.me/post/%@",GetTitle,GetPostID];
+        NSString  *TempUrl = [NSString stringWithFormat:@"https://seeties.me/post/%@",GetPostID];
+        message = LocalisedString(@"I was reading [post title] on Seeties and I thought you might be interested in reading it too.\n\n[post url]");
+        message = [message stringByReplacingOccurrencesOfString:@"[post title]"
+                                                     withString:GetTitle];
+        message = [message stringByReplacingOccurrencesOfString:@"[post url]"
+                                                     withString:TempUrl];
     }else if (CheckShareStatus == 1){
-        message = [NSString stringWithFormat:@"https://seeties.me/collections/%@",GetCollectionID];
+        NSString  *TempUrl = [NSString stringWithFormat:@"https://seeties.me/collections/%@",GetCollectionID];
+        message = LocalisedString(@"I was checking this collection [collection title] on Seeties and I thought you might like to see it too.\n\n[post url]");
+        message = [message stringByReplacingOccurrencesOfString:@"[collection title]"
+                                                     withString:GetCollectionTitle];
+        message = [message stringByReplacingOccurrencesOfString:@"[post url]"
+                                                     withString:TempUrl];
+
     }else{
         message = [NSString stringWithFormat:@"Check out my profile on Seeties!\n\nhttps://seeties.me/%@",GetUserID];
     }
@@ -270,10 +297,21 @@
     NSString *message;
     NSString *Description;
     if (CheckShareStatus == 0) {
-        message = [NSString stringWithFormat:@"https://seeties.me/post/%@",GetPostID];
+        NSString  *TempUrl = [NSString stringWithFormat:@"https://seeties.me/post/%@",GetPostID];
+        message = LocalisedString(@"I was reading [post title] on Seeties and I thought you might be interested in reading it too.\n\n[post url]");
+        message = [message stringByReplacingOccurrencesOfString:@"[post title]"
+                                                     withString:GetTitle];
+        message = [message stringByReplacingOccurrencesOfString:@"[post url]"
+                                                     withString:TempUrl];
         Description = [NSString stringWithFormat:@"%@",GetMessage];
     }else if (CheckShareStatus == 1){
-        message = [NSString stringWithFormat:@"https://seeties.me/collections/%@",GetCollectionID];
+        NSString  *TempUrl = [NSString stringWithFormat:@"https://seeties.me/collections/%@",GetCollectionID];
+        message = LocalisedString(@"I was checking this collection [collection title] on Seeties and I thought you might like to see it too.\n\n[post url]");
+        message = [message stringByReplacingOccurrencesOfString:@"[collection title]"
+                                                     withString:GetCollectionTitle];
+        message = [message stringByReplacingOccurrencesOfString:@"[post url]"
+                                                     withString:TempUrl];
+
         Description = @"";
     }else{
         message = [NSString stringWithFormat:@"Check out my profile on Seeties!\n\nhttps://seeties.me/%@",GetUserID];
@@ -293,9 +331,20 @@
 -(IBAction)WhatsappButtonOnClick:(id)sender{
      NSString *message;
     if (CheckShareStatus == 0) {
-        message = [NSString stringWithFormat:@"I found %@ on Seeties. Let's try it together.\n\nhttps://seeties.me/post/%@",GetTitle,GetPostID];
+        NSString  *TempUrl = [NSString stringWithFormat:@"https://seeties.me/post/%@",GetPostID];
+        message = LocalisedString(@"I was reading [post title] on Seeties and I thought you might be interested in reading it too.\n\n[post url]");
+        message = [message stringByReplacingOccurrencesOfString:@"[post title]"
+                                                     withString:GetTitle];
+        message = [message stringByReplacingOccurrencesOfString:@"[post url]"
+                                                     withString:TempUrl];
     }else if (CheckShareStatus == 1){
-        message = [NSString stringWithFormat:@"https://seeties.me/collections/%@",GetCollectionID];
+        NSString  *TempUrl = [NSString stringWithFormat:@"https://seeties.me/collections/%@",GetCollectionID];
+        message = LocalisedString(@"I was checking this collection [collection title] on Seeties and I thought you might like to see it too.\n\n[post url]");
+        message = [message stringByReplacingOccurrencesOfString:@"[collection title]"
+                                                     withString:GetCollectionTitle];
+        message = [message stringByReplacingOccurrencesOfString:@"[post url]"
+                                                     withString:TempUrl];
+
     }else{
         message = [NSString stringWithFormat:@"Check out my profile on Seeties!\n\nhttps://seeties.me/%@",GetUserID];
     }
@@ -316,9 +365,20 @@
     
     NSString *message;
     if (CheckShareStatus == 0) {
-        message = [NSString stringWithFormat:@"I found %@ on Seeties. Let's try it together.\n\nhttps://seeties.me/post/%@",GetTitle,GetPostID];
+        NSString  *TempUrl = [NSString stringWithFormat:@"https://seeties.me/post/%@",GetPostID];
+        message = LocalisedString(@"I was reading [post title] on Seeties and I thought you might be interested in reading it too.\n\n[post url]");
+        message = [message stringByReplacingOccurrencesOfString:@"[post title]"
+                                                     withString:GetTitle];
+        message = [message stringByReplacingOccurrencesOfString:@"[post url]"
+                                                     withString:TempUrl];
     }else if (CheckShareStatus == 1){
-        message = [NSString stringWithFormat:@"https://seeties.me/collections/%@",GetCollectionID];
+        NSString  *TempUrl = [NSString stringWithFormat:@"https://seeties.me/collections/%@",GetCollectionID];
+        message = LocalisedString(@"I was checking this collection [collection title] on Seeties and I thought you might like to see it too.\n\n[post url]");
+        message = [message stringByReplacingOccurrencesOfString:@"[collection title]"
+                                                     withString:GetCollectionTitle];
+        message = [message stringByReplacingOccurrencesOfString:@"[post url]"
+                                                     withString:TempUrl];
+
     }else{
         message = [NSString stringWithFormat:@"Check out my profile on Seeties!\n\nhttps://seeties.me/%@",GetUserID];
     }
@@ -336,9 +396,20 @@
         
         NSString *MessageSubject;
         if (CheckShareStatus == 0) {
-            MessageSubject = [NSString stringWithFormat:@"I found %@ on Seeties. Let's try it together.\n\nhttps://seeties.me/post/%@",GetTitle,GetPostID];
+            NSString  *TempUrl = [NSString stringWithFormat:@"https://seeties.me/post/%@",GetPostID];
+            MessageSubject = LocalisedString(@"I was reading [post title] on Seeties and I thought you might be interested in reading it too.\n\n[post url]");
+            MessageSubject = [MessageSubject stringByReplacingOccurrencesOfString:@"[post title]"
+                                                         withString:GetTitle];
+            MessageSubject = [MessageSubject stringByReplacingOccurrencesOfString:@"[post url]"
+                                                         withString:TempUrl];
         }else if (CheckShareStatus == 1){
-            MessageSubject = [NSString stringWithFormat:@"https://seeties.me/collections/%@",GetCollectionID];
+            NSString  *TempUrl = [NSString stringWithFormat:@"https://seeties.me/collections/%@",GetCollectionID];
+            MessageSubject = LocalisedString(@"I was checking this collection [collection title] on Seeties and I thought you might like to see it too.\n\n[post url]");
+            MessageSubject = [MessageSubject stringByReplacingOccurrencesOfString:@"[collection title]"
+                                                         withString:GetCollectionTitle];
+            MessageSubject = [MessageSubject stringByReplacingOccurrencesOfString:@"[post url]"
+                                                         withString:TempUrl];
+
         }else{
             MessageSubject = [NSString stringWithFormat:@"Check out my profile on Seeties!\n\nhttps://seeties.me/%@",GetUserID];
         }
@@ -349,10 +420,20 @@
         NSString *Description;
         
         if (CheckShareStatus == 0) {
-            message = [NSString stringWithFormat:@"https://seeties.me/post/%@",GetPostID];
+            NSString  *TempUrl = [NSString stringWithFormat:@"https://seeties.me/post/%@",GetPostID];
+            message = LocalisedString(@"I was reading [post title] on Seeties and I thought you might be interested in reading it too.\n\n[post url]");
+            message = [message stringByReplacingOccurrencesOfString:@"[post title]"
+                                                                       withString:GetTitle];
+            message = [message stringByReplacingOccurrencesOfString:@"[post url]"
+                                                                       withString:TempUrl];
             Description = [NSString stringWithFormat:@"%@",GetMessage];
         }else{
-            message = [NSString stringWithFormat:@"https://seeties.me/collections/%@",GetCollectionID];
+            NSString  *TempUrl = [NSString stringWithFormat:@"https://seeties.me/collections/%@",GetCollectionID];
+            message = LocalisedString(@"I was checking this collection [collection title] on Seeties and I thought you might like to see it too.\n\n[post url]");
+            message = [message stringByReplacingOccurrencesOfString:@"[collection title]"
+                                                                       withString:GetCollectionTitle];
+            message = [message stringByReplacingOccurrencesOfString:@"[post url]"
+                                                                       withString:TempUrl];
             Description = @"";
         }
         

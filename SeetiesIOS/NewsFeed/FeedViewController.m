@@ -22,12 +22,149 @@
 #import "AnnounceViewController.h"
 #import "SuggestedCollectionsViewController.h"
 #import "OpenWebViewController.h"
+
 @interface FeedViewController ()
+{
+    //no connection view
+    IBOutlet UIView *NoConnectionView;
+    IBOutlet UILabel *ShowNoConnectionText;
+    IBOutlet UIImageView *NoConnectionImg;
+    IBOutlet UIButton *TryAgainButton;
+    IBOutlet UIScrollView *MainScroll;
+    IBOutlet UIScrollView *LocalScroll;
+    UIRefreshControl *refreshControl;
+    IBOutlet UIActivityIndicatorView *ShowActivity;
+    IBOutlet UILabel *ShowFeedText;
+    IBOutlet UIButton *SearchButton;
+    IBOutlet UIButton *FilterButton;
+    IBOutlet UIImageView *BarImage;
+    
+    int heightcheck;
+    int TestCheck;
+    int TotalCount;
+    int CheckInitData;
+    
+    NSMutableArray *arrAddress;
+    NSMutableArray *arrTitle;
+    NSMutableArray *arrMessage;
+    NSMutableArray *arrType;
+    NSMutableArray *arrImage;
+    NSMutableArray *arrUserImage;
+    NSMutableArray *arrUserName;
+    NSMutableArray *arrUserID;
+    NSMutableArray *arrDistance;
+    NSMutableArray *arrDisplayCountryName;
+    NSMutableArray *arrPostID;
+    NSMutableArray *arrImageWidth;
+    NSMutableArray *arrImageHeight;
+    NSMutableArray *arrlike;
+    NSMutableArray *arrCollect;
+    
+    NSMutableArray *User_IDArray;
+    NSMutableArray *User_ProfileImageArray;
+    NSMutableArray *User_NameArray;
+    NSMutableArray *User_LocationArray;
+    NSMutableArray *User_FollowArray;
+    NSMutableArray *User_UserNameArray;
+    NSMutableArray *User_PhotoArray;
+    
+    NSMutableArray *arrType_Announcement;
+    NSMutableArray *arrID_Announcement;
+    
+    NSMutableArray *arrAboadID;
+    NSMutableArray *arrfeaturedUserName;
+    NSMutableArray *arrFriendUserName;
+    NSMutableArray *arrDealID;
+    
+    NSMutableArray *arrCollectionID;
+    NSMutableArray *arrCollectionName;
+    NSMutableArray *arrCollectionDescription;
+    NSMutableArray *arrCollectionFollowing;
+    NSMutableArray *arrCollectionUserID;
+    
+    
+    NSString *GetNextPaging;
+    
+    
+    NSDate *methodStart;
+    
+    IBOutlet UILabel *ShowUpdateText;
+    
+    UIScrollView *SuggestedScrollview_Deal;
+    UIPageControl *SuggestedpageControl_Deal;
+    UILabel *ShowSuggestedCount_Deal;
+    
+    UIScrollView *SuggestedScrollview_Aboad;
+    UIPageControl *SuggestedpageControl_Aboad;
+    UILabel *ShowSuggestedCount_Aboad;
+    
+    UIScrollView *SUserScrollview_Friend;
+    UIPageControl *SUserpageControl_Friend;
+    UILabel *ShowSUserCount_Friend;
+    
+    UIScrollView *SUserScrollview_Featured;
+    UIPageControl *SUserpageControl_Featured;
+    UILabel *ShowSUserCount_Featured;
+    
+    UIScrollView *CollectionScrollview;
+    
+    UrlDataClass *DataUrl;
+    
+    NSURLConnection *theConnection_All;
+    NSURLConnection *theConnection_likes;
+    NSURLConnection *theConnection_QuickCollect;
+    NSURLConnection *theConnection_TrackPromotedUserViews;
+    
+    NSString *latPoint;
+    NSString *lonPoint;
+    NSString *ExternalIPAddress;
+    
+    NSMutableData *webData;
+    
+    // NSInteger TotalPage;
+    // NSInteger CurrentPage;
+    NSInteger DataCount;
+    NSInteger Offset;
+    
+    int CheckFirstTimeLoad;
+    BOOL OnLoad;
+    
+    //send like data
+    NSString *SendLikePostID;
+    NSString *CheckLike;
+    NSString *CheckCollect;
+    NSString *GetPostID;
+    
+    UIButton *MainNearbyButton;
+    
+    //tracker url
+    NSString *TrackerUrl;
+    
+    UIView *RateView;
+}
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;
 @end
 
 @implementation FeedViewController
+
+#pragma mark - Declaration
+
+-(SuggestedCollectionPostsViewController*)suggestedCollectionPostsViewController
+{
+    if (!_suggestedCollectionPostsViewController) {
+        _suggestedCollectionPostsViewController = [SuggestedCollectionPostsViewController new];
+    }
+    
+    return _suggestedCollectionPostsViewController;
+}
+
+#pragma mark - IBAction
+- (IBAction)btnTestClicked:(id)sender {
+    
+    [self presentViewController:self.suggestedCollectionPostsViewController animated:YES completion:nil];
+}
+
 #define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -2962,7 +3099,7 @@
                     [CollectionScrollview addSubview:ShowCollectionCount];
                     
                     NSString *CheckCollectionFollowing = [[NSString alloc]initWithFormat:@"%@",[arrCollectionFollowing objectAtIndex:i]];
-                    NSLog(@"CheckCollectionFollowing is %@",CheckCollectionFollowing);
+                   // NSLog(@"CheckCollectionFollowing is %@",CheckCollectionFollowing);
                     UIButton *QuickCollectButtonLocalQR = [[UIButton alloc]init];
                     if ([CheckCollectionFollowing isEqualToString:@"0"]) {
                         [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:LocalisedString(@"CollectBtn.png")] forState:UIControlStateNormal];
@@ -4602,6 +4739,30 @@
     }else if(connection == theConnection_TrackPromotedUserViews){
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
         NSLog(@"theConnection_TrackPromotedUserViews return get data to server ===== %@",GetData);
+    }else if(connection == theConnection_FollowCollect){
+        NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+        NSLog(@"Follow Collection return get data to server ===== %@",GetData);
+        
+        NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *myError = nil;
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
+        NSLog(@"Expert Json = %@",res);
+        
+        
+        NSString *statusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
+        NSLog(@"statusString is %@",statusString);
+        
+        if ([statusString isEqualToString:@"ok"]) {
+            if ([GetCollectionFollowing isEqualToString:@"0"]) {
+                [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success follow this collection" type:TSMessageNotificationTypeSuccess];
+                GetCollectionFollowing = @"1";
+            }else{
+                [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success unfollow this collection" type:TSMessageNotificationTypeSuccess];
+                GetCollectionFollowing = @"0";
+            }
+            
+            
+        }
     }
 }
 -(void)ReinitData{
@@ -5101,5 +5262,78 @@
     ButtonIDN -= 8000;
     
     NSLog(@"Get Collection User ID == %@",[arrCollectionUserID objectAtIndex:ButtonIDN]);
+    NSLog(@"Get Collection Following == %@",[arrCollectionFollowing objectAtIndex:ButtonIDN]);
+    GetCollectionFollowing = [[NSString alloc]initWithFormat:@"%@",[arrCollectionFollowing objectAtIndex:ButtonIDN]];
+    GetCollectUserID = [[NSString alloc]initWithFormat:@"%@",[arrCollectionUserID objectAtIndex:ButtonIDN]];
+    GetCollectID = [[NSString alloc]initWithFormat:@"%@",[arrCollectionID objectAtIndex:ButtonIDN]];
+    
+    if ([GetCollectionFollowing isEqualToString:@"0"]) {
+        [self FollowCollection];
+        [arrCollectionFollowing replaceObjectAtIndex:ButtonIDN withObject:@"1"];
+    }else{
+        [self DeleteFollowCollection];
+        [arrCollectionFollowing replaceObjectAtIndex:ButtonIDN withObject:@"0"];
+    }
+}
+-(void)FollowCollection{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    //Server Address URL
+    NSString *urlString = [NSString stringWithFormat:@"%@%@/collections/%@/follow",DataUrl.UserWallpaper_Url,GetCollectUserID,GetCollectID];
+    NSLog(@"Send Follow Collection urlString is %@",urlString);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
+    
+    NSMutableData *body = [NSMutableData data];
+    
+    NSString *boundary = @"---------------------------14737809831466499882746641449";
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+    [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //parameter first
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    //Attaching the key name @"parameter_first" to the post body
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"token\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    //Attaching the content to be posted ( ParameterFirst )
+    [body appendData:[[NSString stringWithFormat:@"%@",GetExpertToken] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //close form
+    [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSLog(@"Request  = %@",[[NSString alloc] initWithData:body encoding:NSUTF8StringEncoding]);
+    
+    //setting the body of the post to the reqeust
+    [request setHTTPBody:body];
+    
+    theConnection_FollowCollect = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    if(theConnection_FollowCollect) {
+        //  NSLog(@"Connection Successful");
+        webData = [NSMutableData data];
+    } else {
+        
+    }
+}
+-(void)DeleteFollowCollection{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    
+    //Server Address URL
+    NSString *urlString = [NSString stringWithFormat:@"%@%@/collections/%@/follow?token=%@",DataUrl.UserWallpaper_Url,GetCollectUserID,GetCollectID,GetExpertToken];
+    NSLog(@"Send Delete Collection urlString is %@",urlString);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"DELETE"];
+    
+    theConnection_FollowCollect = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    if(theConnection_FollowCollect) {
+        //  NSLog(@"Connection Successful");
+        webData = [NSMutableData data];
+    } else {
+        
+    }
 }
 @end

@@ -8,7 +8,6 @@
 
 #import "AddCollectionDataViewController.h"
 #import "NewCollectionViewController.h"
-#import "NewCollectionViewController.h"
 @interface AddCollectionDataViewController ()
 
 @end
@@ -36,7 +35,7 @@
     NoteTextView.layer.borderColor=[[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f] CGColor];
     NoteTextView.text = LocalisedString(@"Leave a note");
     
-    ShowNoteTextCount.frame = CGRectMake(screenWidth - 20 - 42, 119, 42, 20);
+    ShowNoteTextCount.frame = CGRectMake(screenWidth - 20 - 60, 119, 60, 20);
     
     PostImg.layer.cornerRadius = 5;
     PostImg.contentMode = UIViewContentModeScaleAspectFill;
@@ -278,7 +277,7 @@
 -(void)textViewDidChange:(UITextView *)textView
 {
     NSUInteger len = textView.text.length;
-    ShowNoteTextCount.text = [NSString stringWithFormat:@"%lu/30",30 - len];
+    ShowNoteTextCount.text = [NSString stringWithFormat:@"%lu/150",30 - len];
     ShowNoteTextCount.textColor = [UIColor blackColor];
     
 }
@@ -300,7 +299,7 @@
             }
             else if([[textView text] length] >= 30)
             {
-                ShowNoteTextCount.text = @"0/30";
+                ShowNoteTextCount.text = @"0/150";
                 ShowNoteTextCount.textColor = [UIColor redColor];
                 return NO;
             }

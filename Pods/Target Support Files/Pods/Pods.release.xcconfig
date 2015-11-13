@@ -1,5 +1,5 @@
 CLANG_MODULES_AUTOLINK = YES
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/AviarySDK/AviarySDK-4.2.1/AviarySDK" "${PODS_ROOT}/GoogleMaps/Frameworks"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/AviarySDK/AviarySDK-4.4.5/AviarySDK" "${PODS_ROOT}/GoogleMaps/Frameworks"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AviarySDK" "${PODS_ROOT}/Headers/Public/GoogleMaps"
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'

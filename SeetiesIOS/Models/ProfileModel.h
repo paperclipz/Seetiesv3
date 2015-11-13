@@ -29,7 +29,6 @@
 @property(nonatomic,assign)BOOL following;
 @property(nonatomic,strong)NSString* uid;
 
-
 @end
 
 @interface ProfilePostModel : Model

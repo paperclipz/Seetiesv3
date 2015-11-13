@@ -12,7 +12,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditCollectionViewController">
             <connections>
-                <outlet property="btnDeleteCollection" destination="G5P-z0-NnO" id="cqJ-PN-fae"/>
                 <outlet property="ibBtnEdit" destination="xEX-3U-me2" id="KSW-ew-uan"/>
                 <outlet property="ibTableView" destination="kQ5-xQ-m0t" id="2gB-tr-Bqm"/>
                 <outlet property="lblDesc" destination="0y9-3j-M1f" id="UUp-lO-TVP"/>

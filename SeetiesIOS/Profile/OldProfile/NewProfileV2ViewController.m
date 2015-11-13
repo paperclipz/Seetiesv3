@@ -2025,7 +2025,7 @@
     
     [LoadingManager show];
     
-    [self.editCollectionViewController initData:collectionID ProfileType:ProfileViewTypeOwn];
+    [self.editCollectionViewController initData:collectionID];
     [self presentViewController:self.navEditCollectionViewController animated:YES completion:^{
             
         

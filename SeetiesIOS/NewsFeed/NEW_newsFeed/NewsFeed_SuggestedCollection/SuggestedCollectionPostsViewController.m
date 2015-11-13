@@ -11,8 +11,14 @@
 
 @interface SuggestedCollectionPostsViewController ()<UITableViewDataSource,UITableViewDelegate>
 
+
+@property(nonatomic,strong)NSMutableArray* arrPostList;
+
+// =================== IBOUTLET ===========================
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
+// =================== IBOUTLET ===========================
+
 @end
 
 @implementation SuggestedCollectionPostsViewController
@@ -56,6 +62,16 @@
 //    
 //    return ceil(size.height / label.font.lineHeight);
 //}
+
+#pragma mark - Declaration
+-(NSMutableArray*)arrPostList
+{
+    if (!_arrPostList) {
+        _arrPostList = [[NSMutableArray alloc]initWithArray:@[@"123",@"123",@"2222"]];
+    }
+    
+    return _arrPostList;
+}
 #pragma mark - UITableView Data Source
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
@@ -71,7 +87,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.arrPostList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

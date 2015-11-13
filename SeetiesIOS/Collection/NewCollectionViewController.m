@@ -202,7 +202,7 @@
     NSLog(@"SetPublic === %@",SetPublic);
     
     if ([NameTextView.text isEqualToString:LocalisedString(@"eg: Top 10 coffee hideouts in KL, Best spas in Bangkok")] || [NameTextView.text isEqualToString:@""] || [NameTextView.text length] == 0) {
-        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Collection name must be at least 6 characters" type:TSMessageNotificationTypeError];
+        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Collection name must be at least 1 characters" type:TSMessageNotificationTypeError];
     }else{
         [self CreateNewCollection];
     }

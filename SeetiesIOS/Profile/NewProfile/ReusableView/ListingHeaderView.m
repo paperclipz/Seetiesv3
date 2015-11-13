@@ -74,11 +74,6 @@
     }
 }
 
--(void)setTotalCount:(int)count
-{
-    self.lblTitle.text = [NSString stringWithFormat:@"%d %@",count,LocalisedString(@"Likes")];
-
-}
 
 +(float)getheight
 {

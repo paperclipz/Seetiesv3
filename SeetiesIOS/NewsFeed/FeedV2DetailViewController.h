@@ -214,6 +214,7 @@
     NSString *ViewCountString;
     
     NSURLConnection *theConnection_QuickCollect;
+    NSURLConnection *theConnection_FollowCollect;
     
     int CheckLanguagedata;
     NSString *ShowLanguageType;
@@ -225,6 +226,10 @@
     int GetPlaceNameHeight;
     
     NSInteger ImageCount;
+    
+    NSString *GetCollectionFollowing;
+    NSString *GetCollectID;
+    NSString *GetCollectUserID;
     
 }
 

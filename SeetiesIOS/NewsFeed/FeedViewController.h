@@ -99,6 +99,7 @@
     NSURLConnection *theConnection_likes;
     NSURLConnection *theConnection_QuickCollect;
     NSURLConnection *theConnection_TrackPromotedUserViews;
+    NSURLConnection *theConnection_FollowCollect;
     
     NSString *latPoint;
     NSString *lonPoint;
@@ -126,6 +127,11 @@
     NSString *TrackerUrl;
     
     UIView *RateView;
+    
+    
+    NSString *GetCollectionFollowing;
+    NSString *GetCollectID;
+    NSString *GetCollectUserID;
 }
 -(IBAction)TryAgainButton:(id)sender;
 -(IBAction)SearchButton:(id)sender;

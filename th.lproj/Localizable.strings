@@ -1015,3 +1015,15 @@
 "Sushi" = "ซูชิ";
 "Museum" = "พิพิธภัณฑ์";
 "Hiking" = "เดินป่า";
+
+"I was reading [post title] on Seeties and I thought you might be interested in reading it too.\n\n[post url]" = "แชร์รีวิว [post title] จากแอพ Seeties มาให้อ่าน ว่างๆ ไปลองกันมะ\n\n[post url]";
+"I was checking this collection [collection title] on Seeties and I thought you might like to see it too.\n\n[post url]" = "แชร์คอลเลคชัน [collection title] จากแอพ Seeties มาให้อ่าน ตามรอยกันมะ\n\n[post url]";
+
+
+
+
+
+
+
+
+

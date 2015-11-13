@@ -26,6 +26,13 @@
     // Drawing code
 }
 */
+- (IBAction)btnShareClicked:(id)sender {
+    
+    if (_btnShareClicked) {
+        self.btnShareClicked();
+    }
+    
+}
 - (IBAction)btnEditClicked:(id)sender {
     
     if (_btnEditClickedBlock) {

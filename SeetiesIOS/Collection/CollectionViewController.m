@@ -745,13 +745,13 @@
 -(IBAction)EditButtonOnClick:(id)sender{
     
     
-    if ([GetPermisionUser isEqualToString:@"Self"]) {
+    if ([GetPermisionUser isEqualToString:@"Self"] || [GetPermisionUser isEqualToString:@"self"]) {
         _navEditCollectionViewController = nil;
         _editCollectionViewController = nil;// for the view controller to reinitialize
         
         [LoadingManager show];
         
-        [self.editCollectionViewController initData:GetID ProfileType:ProfileViewTypeOwn];
+        [self.editCollectionViewController initData:GetID];
         [LoadingManager show];
         [self.navigationController pushViewController:self.editCollectionViewController animated:YES];
     }else{
@@ -1299,7 +1299,7 @@
     }else{
         ShareViewController *ShareView = [[ShareViewController alloc]init];
         [self presentViewController:ShareView animated:YES completion:nil];
-        [ShareView GetCollectionID:GetID];
+        [ShareView GetCollectionID:GetID GetCollectionTitle:GetTitle];
     }
     
 

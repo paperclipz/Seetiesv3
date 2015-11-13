@@ -7,7 +7,9 @@
 //
 
 #import "Model.h"
+#import "ProfileModel.h"
 
+@class ProfileModel;
 @protocol CollectionModel
 
 @end
@@ -41,7 +43,7 @@
 @property(nonatomic,strong)NSMutableArray* deleted_posts;
 @property(nonatomic,assign)int collection_posts_count;
 @property(nonatomic,assign)BOOL following;
-
+@property(nonatomic,strong)ProfileModel* user_info;
 
 @end
 

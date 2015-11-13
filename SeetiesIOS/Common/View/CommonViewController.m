@@ -18,9 +18,7 @@
 @implementation CommonViewController
 - (IBAction)btnBackClicked:(id)sender {
     
-    if (_btnBackBlock) {
-        self.btnBackBlock(nil);
-    }
+    
     if (self.navigationController) {
         [self.navigationController popViewControllerAnimated:YES];
     }

@@ -24,7 +24,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
-    [self requestServerForUserCollection];
+    
+    if (self.collectionListingType == CollectionListingTypeMyOwn) {
+        [self requestServerForUserCollection];
+
+    }
+    else{
+        [self requestServerForOtherUserCollection];
+
+    }
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -62,6 +70,14 @@
 
 #pragma mark - Declaration
 
+-(ShareViewController*)shareViewController
+{
+    if (!_shareViewController) {
+        _shareViewController = [ShareViewController new];
+    }
+    
+    return _shareViewController;
+}
 -(NSMutableArray*)arrCollections
 {
     if(!_arrCollections)
@@ -96,8 +112,20 @@
     
     cell.btnFollowBlock = ^(void)
     {
-        [self requestServerToFollowCollection:weakModel];
+        [self requestServerToFollowFromOthersCollection:weakModel];
     };
+    
+    cell.btnShareClicked = ^(void)
+    {
+        [self.shareViewController GetCollectionID:collModel.collection_id];
+        MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:self.shareViewController];
+        formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
+        formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
+        formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
+        [self presentViewController:formSheetController animated:YES completion:nil];
+        
+    };
+    
     return cell;
 }
 
@@ -109,19 +137,20 @@
         self.didSelectDisplayCollectionRowBlock(model.collection_id);
     }
 }
+#pragma mark - Request Server
 
 -(void)requestServerForUserCollection
 {
     
     isMiddleOfCallingServer = true;
  
-    
     //need to input token for own profile private collection, no token is get other people public collection
     NSString* appendString = [NSString stringWithFormat:@"%@/collections",self.userID];
     
     NSDictionary* dict = @{@"page":self.userCollectionsModel.page?@(self.userCollectionsModel.page + 1):@1,
                            @"list_size":@(ARRAY_LIST_SIZE),
-                           @"token":[Utils getAppToken]
+                           @"token":[Utils getAppToken],
+                           @"uid":self.userID
                            };
     
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserCollections param:dict appendString:appendString completeHandler:^(id object) {
@@ -136,6 +165,140 @@
         isMiddleOfCallingServer = false;
 
     }];
+}
+
+-(void)requestServerToFollowFromOthersCollection:(CollectionModel*)colModel
+{
+    
+    NSString* appendString = [NSString stringWithFormat:@"%@/collections/%@/follow",colModel.user_info.uid,colModel.collection_id];
+    NSDictionary* dict = @{@"uid":colModel.user_info.uid,
+                           @"token":[Utils getAppToken],
+                           @"collection_id":colModel.collection_id
+                           };
+    
+    if (!colModel.following) {
+        
+        [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostFollowCollection param:dict appendString:appendString meta:nil completeHandler:^(id object) {
+            
+            NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object[@"data"]];
+            
+            BOOL following = [[returnDict objectForKey:@"following"] boolValue];
+            colModel.following = following;
+            [self.ibTableView reloadData];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:nil];
+            
+            
+        } errorBlock:^(id object) {
+            
+        }];
+    }
+    else{
+        [[ConnectionManager Instance]requestServerWithDelete:ServerRequestTypePostFollowCollection param:dict appendString:appendString completeHandler:^(id object) {
+            
+            NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object];
+            BOOL following = [[returnDict objectForKey:@"following"] boolValue];
+            
+            //delete follow for user if return following false
+            if (!following) {
+                [self.arrCollections removeObject:colModel];
+            }
+            
+            
+            [self.ibTableView reloadData];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:nil];
+            
+            
+        } errorBlock:^(id object) {
+        }];
+    }
+    
+}
+
+-(void)requestServerToFollowCollection:(CollectionModel*)colModel
+{
+    
+    NSString* appendString = [NSString stringWithFormat:@"%@/collections/%@/follow",self.userID,colModel.collection_id];
+    NSDictionary* dict = @{@"uid":self.userID,
+                           @"token":[Utils getAppToken],
+                           @"collection_id":colModel.collection_id
+                           };
+    
+    if (!colModel.following) {
+        
+        [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostFollowCollection param:dict appendString:appendString meta:nil completeHandler:^(id object) {
+            
+            NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object[@"data"]];
+            
+            BOOL following = [[returnDict objectForKey:@"following"] boolValue];
+            colModel.following = following;
+            [self.ibTableView reloadData];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:nil];
+            
+            
+        } errorBlock:^(id object) {
+            
+        }];
+    }
+    else{
+        [[ConnectionManager Instance]requestServerWithDelete:ServerRequestTypePostFollowCollection param:dict appendString:appendString completeHandler:^(id object) {
+            
+            NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object];
+            BOOL following = [[returnDict objectForKey:@"following"] boolValue];
+            colModel.following = following;
+            [self.ibTableView reloadData];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:nil];
+            
+            
+        } errorBlock:^(id object) {
+        }];
+    }
+    
+}
+-(void)requestServerForOtherUserCollection
+{
+    isMiddleOfCallingServer = true;
+    
+    //need to input token for own profile private collection, no token is get other people public collection
+    NSString* appendString = [NSString stringWithFormat:@"%@/collections/following",self.userID];
+    
+    NSDictionary* dict = @{@"page":self.userCollectionsModel.page?@(self.userCollectionsModel.page + 1):@1,
+                           @"list_size":@(ARRAY_LIST_SIZE),
+                           @"token":[Utils getAppToken],
+                           @"uid":self.userID
+                           };
+    
+    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserFollowingCollections param:dict appendString:appendString completeHandler:^(id object) {
+        
+        isMiddleOfCallingServer = false;
+        self.userCollectionsModel = [[ConnectionManager dataManager]userFollowingCollectionsModel];
+        
+        [self.arrCollections addObjectsFromArray:self.userCollectionsModel.arrCollections];
+        
+        [self.ibTableView reloadData];
+    } errorBlock:^(id object) {
+        isMiddleOfCallingServer = false;
+        
+    }];
+}
+
+-(void)requestServerForShareCollection:(CollectionModel*)colModel
+{
+
+    
+    NSString* appendString = [NSString stringWithFormat:@"%@/collections/following",self.userID];
+    
+    NSDictionary* dict = @{@"collection_id":colModel.collection_id,
+                           @"token":[Utils getAppToken],
+                           @"user_ids":self.userID
+                           };
+    
+    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostShareCollection param:dict appendString:appendString meta:nil completeHandler:^(id object) {
+        
+        
+    } errorBlock:^(id object) {
+        
+    }];
+
 }
 
 #pragma mark - UIScrollView Delegate
@@ -156,7 +319,16 @@
         if (!isMiddleOfCallingServer) {
             if (self.userCollectionsModel.total_page > self.userCollectionsModel.page) {
                 SLog(@"start to call server");
-                [self requestServerForUserCollection];
+                
+                if (self.profileType == ProfileViewTypeOwn) {
+                    [self requestServerForUserCollection];
+
+                }
+                else
+                {
+                    [self requestServerForOtherUserCollection];
+
+                }
             }
         }
         
@@ -165,44 +337,5 @@
     }
 }
 
-#pragma mark - Request Server
--(void)requestServerToFollowCollection:(CollectionModel*)colModel
-{
-    NSString* appendString = [NSString stringWithFormat:@"%@/collections/%@/follow",self.userID,colModel.collection_id];
-    NSDictionary* dict = @{@"uid":self.userID,
-                           @"token":[Utils getAppToken],
-                           @"collection_id":colModel.collection_id
-                           };
-    
-    if (!colModel.following) {
-        
-        [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostFollowCollection param:dict appendString:appendString meta:nil completeHandler:^(id object) {
-            
-            NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object[@"data"]];
-            
-            BOOL following = [[returnDict objectForKey:@"following"] boolValue];
-            colModel.following = following;
-            [self.ibTableView reloadData];
-            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:nil];
 
-            
-        } errorBlock:^(id object) {
-            
-        }];
-    }
-    else{
-        [[ConnectionManager Instance]requestServerWithDelete:ServerRequestTypePostFollowCollection param:dict appendString:appendString completeHandler:^(id object) {
-            
-            NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object];
-            BOOL following = [[returnDict objectForKey:@"following"] boolValue];
-            colModel.following = following;
-            [self.ibTableView reloadData];
-            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:nil];
-
-            
-        } errorBlock:^(id object) {
-        }];
-    }
-    
-}
 @end
