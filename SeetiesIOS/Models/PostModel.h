@@ -45,6 +45,7 @@
 @property(nonatomic,assign)BOOL following;
 @property(nonatomic,strong)ProfileModel* user_info;
 
+-(void)process;
 @end
 
 @interface CollectionsModel : Model

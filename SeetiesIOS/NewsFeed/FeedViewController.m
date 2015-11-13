@@ -162,6 +162,7 @@
 #pragma mark - IBAction
 - (IBAction)btnTestClicked:(id)sender {
     
+    _suggestedCollectionPostsViewController = nil;
     [self presentViewController:self.suggestedCollectionPostsViewController animated:YES completion:nil];
 }
 

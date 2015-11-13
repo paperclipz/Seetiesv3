@@ -19,6 +19,16 @@
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 // =================== IBOUTLET ===========================
 
+
+
+// =================== MODEL ===========================
+@property (strong, nonatomic) NSMutableArray* arrCellSize;
+@property (strong, nonatomic) NSString* collectionID;
+@property (strong, nonatomic) NSArray* arrPostIDs;
+@property (strong, nonatomic) CollectionModel* collectionModel;
+
+// =================== MODEL ===========================
+
 @end
 
 @implementation SuggestedCollectionPostsViewController
@@ -26,9 +36,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
+    [self requestServerForCollectionInfo];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didChangePreferredContentSize:)
+                                                 name:UIContentSizeCategoryDidChangeNotification object:nil];
     // Do any additional setup after loading the view from its nib.
 }
-
+- (void)didChangePreferredContentSize:(NSNotification *)notification
+{
+    [self.ibTableView reloadData];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -67,7 +85,7 @@
 -(NSMutableArray*)arrPostList
 {
     if (!_arrPostList) {
-        _arrPostList = [[NSMutableArray alloc]initWithArray:@[@"123",@"123",@"2222"]];
+        _arrPostList = [NSMutableArray new];
     }
     
     return _arrPostList;
@@ -76,12 +94,6 @@
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
     return [SuggestedCollectionPostTableViewCell getHeight];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return [SuggestedCollectionPostTableViewCell getHeight];
-
 }
 
 
@@ -94,8 +106,79 @@
 {
     SuggestedCollectionPostTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"SuggestedCollectionPostTableViewCell"];
     
+    DraftModel* draftModel = self.arrPostList[indexPath.row];
+    Post* postModel = draftModel.arrCustomPost[0];
+    PhotoModel* photoModel = draftModel.arrPhotos[0];
+    cell.lblDesc.text = postModel.message;
+    [cell.ibImageView sd_setImageWithURL:[NSURL URLWithString:photoModel.imageURL]];
     return cell;
 }
 
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+
+    if (self.arrCellSize[indexPath.row] == [NSNull null]) {
+        
+        DraftModel* draftModel = self.arrPostList[indexPath.row];
+        Post* postModel = draftModel.arrCustomPost[0];
+        CGRect frame = [Utils getDeviceScreenSize];
+        
+        CGRect rect = [postModel.message boundingRectWithSize:frame.size
+                                         options:NSStringDrawingUsesLineFragmentOrigin
+                                      attributes:@{
+                                                   NSFontAttributeName : [UIFont fontWithName:CustomFontName size:17]
+                                                   }
+                                         context:nil];
+        //SLog(@"AAAA = %f",rect.size.height);
+        [self.arrCellSize replaceObjectAtIndex:indexPath.row withObject:[NSNumber numberWithFloat:rect.size.height]];
+
+    }
+       return [self.arrCellSize[indexPath.row] floatValue] + 160 + 60;
+
+}
+
+
+-(NSMutableArray*)arrCellSize
+{
+    if (!_arrCellSize) {
+        _arrCellSize = [[NSMutableArray alloc]init];
+        for(int i = 0;i<self.arrPostList.count;i++)
+        {
+            [_arrCellSize addObject:[NSNull null]];
+        }
+    }
+    return  _arrCellSize;
+}
+
+#pragma mark - SERVER REQUEST
+
+-(void)requestServerForCollectionInfo
+{
+    
+    self.collectionID = @"56022ed61c4d5b19038b4627";
+    NSDictionary* dict = @{@"collection_id":self.collectionID,
+                           @"list_size":@(ARRAY_LIST_SIZE),
+                           @"page":@(1),
+                           @"token":[Utils getAppToken]
+                           };
+    
+    NSString* appendString = [NSString stringWithFormat:@"%@/collections/%@",[Utils getUserID],self.collectionID];
+    
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetCollectionInfo param:dict appendString:appendString completeHandler:^(id object) {
+        
+        
+        self.collectionModel = [[ConnectionManager dataManager] collectionModels];
+        self.arrPostList = [[NSMutableArray alloc]initWithArray:self.collectionModel.arrayPost];
+        _arrCellSize = nil;
+        [LoadingManager hide];
+        
+        [self.ibTableView reloadData];
+    } errorBlock:^(id object) {
+        [LoadingManager hide];
+        
+    }];
+    
+
+}
 @end

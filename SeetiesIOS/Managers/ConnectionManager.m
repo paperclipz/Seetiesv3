@@ -506,7 +506,7 @@
             NSDictionary* dict = obj[@"data"];
 
             self.dataManager.collectionModels = [[CollectionModel alloc]initWithDictionary:dict error:nil];
-
+            [self.dataManager.collectionModels process];
         }
             break;
             

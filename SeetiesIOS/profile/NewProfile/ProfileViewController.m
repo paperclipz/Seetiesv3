@@ -731,7 +731,7 @@
     _ibTagControlView.mode = TLTagsControlModeList;
     _ibTagControlView.tagPlaceholder = @"Tag";
     [_ibTagControlView setTapDelegate:self];
-    _ibTagControlView.tagsTextColor = DEVICE_COLOR;
+    _ibTagControlView.tagsTextColor = TEXT_GRAY_COLOR;
     _ibTagControlView.tagsBackgroundColor = [UIColor whiteColor];
     [_ibTagControlView reloadTagSubviewsCustom];
 }
@@ -1061,8 +1061,7 @@
 
 -(void)assignUserData
 {
-    
-    
+    self.btnLink.hidden = [self.userProfileModel.personal_link isNull]?YES:NO;
     [self setFollowButtonSelected:self.userProfileModel.following button:self.btnFollow];
     [self.ibImgProfilePic sd_setImageWithURL:[NSURL URLWithString:self.userProfileModel.profile_photo_images] placeholderImage:[UIImage imageNamed:@"DefaultProfilePic.png"]];
     
