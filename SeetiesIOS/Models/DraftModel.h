@@ -65,7 +65,8 @@
 
 @interface DraftModel : Model
 @property(nonatomic,strong)NSDictionary* contents;
-@property(nonatomic,strong)NSArray* arrPost;
+@property(nonatomic,strong)NSArray* arrCustomPost;//using content_languages to process
+@property(nonatomic,strong)NSArray* arrPost;//using title key to process
 @property(nonatomic,strong)NSString* place_name;
 
 @property(nonatomic,strong)NSArray<PhotoModel>* arrPhotos;
@@ -79,8 +80,12 @@
 @property(nonatomic,strong)NSString* distance;
 @property(nonatomic,strong)NSString* collection_note;
 @property(nonatomic,strong)NSString* view_count;
+@property(nonatomic,strong)NSArray* content_languages;
+
 
 -(void)process;
+-(void)customProcess;
+
 @end
 
 @interface DraftsModel : Model

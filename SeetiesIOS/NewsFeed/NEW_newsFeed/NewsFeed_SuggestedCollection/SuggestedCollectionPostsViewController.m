@@ -18,7 +18,16 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 // =================== IBOUTLET ===========================
+
+
+
+// =================== MODEL ===========================
 @property (strong, nonatomic) NSMutableArray* arrCellSize;
+@property (strong, nonatomic) NSString* collectionID;
+@property (strong, nonatomic) NSArray* arrPostIDs;
+@property (strong, nonatomic) CollectionModel* collectionModel;
+
+// =================== MODEL ===========================
 
 @end
 
@@ -27,6 +36,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
+    [self requestServerForCollectionInfo];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didChangePreferredContentSize:)
@@ -75,13 +85,7 @@
 -(NSMutableArray*)arrPostList
 {
     if (!_arrPostList) {
-        _arrPostList = [[NSMutableArray alloc]initWithArray:@[@"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum    has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-                                                              @"Lorem Ipsum is simply dummy text",
-                                                              @"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                                                              @"Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.",
-                                                              @"There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc."
-                                                           
-                                                              ]];
+        _arrPostList = [NSMutableArray new];
     }
     
     return _arrPostList;
@@ -101,7 +105,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SuggestedCollectionPostTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"SuggestedCollectionPostTableViewCell"];
-    cell.lblDesc.text = self.arrPostList[indexPath.row];
+    
+    DraftModel* draftModel = self.arrPostList[indexPath.row];
+    Post* postModel = draftModel.arrCustomPost[0];
+    PhotoModel* photoModel = draftModel.arrPhotos[0];
+    cell.lblDesc.text = postModel.message;
+    [cell.ibImageView sd_setImageWithURL:[NSURL URLWithString:photoModel.imageURL]];
     return cell;
 }
 
@@ -111,16 +120,16 @@
 
     if (self.arrCellSize[indexPath.row] == [NSNull null]) {
         
-        NSString* test = self.arrPostList[indexPath.row];
+        DraftModel* draftModel = self.arrPostList[indexPath.row];
+        Post* postModel = draftModel.arrCustomPost[0];
         CGRect frame = [Utils getDeviceScreenSize];
         
-        CGRect rect = [test boundingRectWithSize:frame.size
+        CGRect rect = [postModel.message boundingRectWithSize:frame.size
                                          options:NSStringDrawingUsesLineFragmentOrigin
                                       attributes:@{
                                                    NSFontAttributeName : [UIFont fontWithName:CustomFontName size:17]
                                                    }
                                          context:nil];
-        
         //SLog(@"AAAA = %f",rect.size.height);
         [self.arrCellSize replaceObjectAtIndex:indexPath.row withObject:[NSNumber numberWithFloat:rect.size.height]];
 
@@ -140,5 +149,36 @@
         }
     }
     return  _arrCellSize;
+}
+
+#pragma mark - SERVER REQUEST
+
+-(void)requestServerForCollectionInfo
+{
+    
+    self.collectionID = @"56022ed61c4d5b19038b4627";
+    NSDictionary* dict = @{@"collection_id":self.collectionID,
+                           @"list_size":@(ARRAY_LIST_SIZE),
+                           @"page":@(1),
+                           @"token":[Utils getAppToken]
+                           };
+    
+    NSString* appendString = [NSString stringWithFormat:@"%@/collections/%@",[Utils getUserID],self.collectionID];
+    
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetCollectionInfo param:dict appendString:appendString completeHandler:^(id object) {
+        
+        
+        self.collectionModel = [[ConnectionManager dataManager] collectionModels];
+        self.arrPostList = [[NSMutableArray alloc]initWithArray:self.collectionModel.arrayPost];
+        _arrCellSize = nil;
+        [LoadingManager hide];
+        
+        [self.ibTableView reloadData];
+    } errorBlock:^(id object) {
+        [LoadingManager hide];
+        
+    }];
+    
+
 }
 @end

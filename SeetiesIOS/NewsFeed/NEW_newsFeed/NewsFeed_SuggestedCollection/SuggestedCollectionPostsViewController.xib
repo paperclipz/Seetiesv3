@@ -43,7 +43,7 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="btnBackClicked:" destination="-1" eventType="touchUpInside" id="E5f-Va-FGp"/>
+                                <action selector="btnBackClicked:" destination="-1" eventType="touchUpInside" id="Ugn-oY-UGU"/>
                             </connections>
                         </button>
                     </subviews>
