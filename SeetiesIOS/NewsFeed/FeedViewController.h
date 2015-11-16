@@ -9,14 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "UrlDataClass.h"
 #import "SuggestedCollectionPostsViewController.h"
-@interface FeedViewController : BaseViewController<UIScrollViewDelegate,CLLocationManagerDelegate>{
-    
 
-}
-@property(nonatomic,strong)SuggestedCollectionPostsViewController *suggestedCollectionPostsViewController;
--(IBAction)TryAgainButton:(id)sender;
--(IBAction)SearchButton:(id)sender;
--(IBAction)InviteFriendsButton:(id)sender;
+@interface FeedViewController : BaseViewController<UIScrollViewDelegate,CLLocationManagerDelegate>
 
--(IBAction)ScrollTotopButton:(id)sender;
+@property(nonatomic,strong)SuggestedCollectionPostsViewController* suggestedCollectionPostsViewController;
+
+
 @end

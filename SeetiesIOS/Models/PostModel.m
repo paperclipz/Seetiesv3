@@ -42,7 +42,17 @@
     }
     return _deleted_posts;
 }
-
+-(void)process
+{
+    
+    for (int i = 0; i<self.arrayPost.count; i++) {
+        DraftModel* model = self.arrayPost[i];
+        [model process];
+        [model customProcess];
+        
+    }
+    
+}
 
 -(id) copyWithZone: (NSZone *) zone
 {

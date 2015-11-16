@@ -16,29 +16,29 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Collections" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uvz-Z6-M0m">
-                    <rect key="frame" x="10" y="29" width="136" height="21"/>
+                    <rect key="frame" x="58" y="29" width="124" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="Yax-SW-WS7"/>
-                        <constraint firstAttribute="width" constant="136" id="Zv7-Ed-N0x"/>
+                        <constraint firstAttribute="width" constant="124" id="Zv7-Ed-N0x"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                    <color key="textColor" red="0.27525252529999999" green="0.27525252529999999" blue="0.27525252529999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ctp-b2-A4i" userLabel="line">
                     <rect key="frame" x="10" y="70" width="300" height="1"/>
-                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="zKD-lb-a8r"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Collections" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i5D-fY-N7U">
-                    <rect key="frame" x="154" y="29" width="156" height="21"/>
+                    <rect key="frame" x="190" y="29" width="120" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="3ft-6Z-fxP"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hfm-bL-PFc">
@@ -47,12 +47,20 @@
                         <action selector="btnTitleClicked:" destination="nzL-6M-0Zm" eventType="touchUpInside" id="vFo-Ye-ooq"/>
                     </connections>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NewCollectionsIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="lc3-rK-apr">
+                    <rect key="frame" x="10" y="18" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="Q33-ai-BbW"/>
+                        <constraint firstAttribute="height" constant="40" id="RO0-LJ-g4q"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="Uvz-Z6-M0m" firstAttribute="top" secondItem="nzL-6M-0Zm" secondAttribute="top" constant="29" id="2cj-Rp-jFV"/>
-                <constraint firstItem="Uvz-Z6-M0m" firstAttribute="leading" secondItem="nzL-6M-0Zm" secondAttribute="leading" constant="10" id="A33-dJ-uXZ"/>
+                <constraint firstItem="Uvz-Z6-M0m" firstAttribute="leading" secondItem="nzL-6M-0Zm" secondAttribute="leading" constant="58" id="A33-dJ-uXZ"/>
                 <constraint firstItem="Ctp-b2-A4i" firstAttribute="top" secondItem="Hfm-bL-PFc" secondAttribute="bottom" constant="3" id="AFT-qz-XB9"/>
+                <constraint firstItem="lc3-rK-apr" firstAttribute="leading" secondItem="NW4-ad-t21" secondAttribute="leading" constant="10" id="BQZ-lz-5tH"/>
                 <constraint firstItem="Ctp-b2-A4i" firstAttribute="leading" secondItem="nzL-6M-0Zm" secondAttribute="leading" constant="10" id="Fcs-h1-IzE"/>
                 <constraint firstAttribute="bottom" secondItem="NW4-ad-t21" secondAttribute="bottom" id="GPL-2G-R0a"/>
                 <constraint firstItem="NW4-ad-t21" firstAttribute="leading" secondItem="nzL-6M-0Zm" secondAttribute="leading" id="IV6-vA-jNB"/>
@@ -63,19 +71,24 @@
                 <constraint firstItem="i5D-fY-N7U" firstAttribute="leading" secondItem="Uvz-Z6-M0m" secondAttribute="trailing" constant="8" id="ak5-96-HuM"/>
                 <constraint firstItem="Hfm-bL-PFc" firstAttribute="top" secondItem="nzL-6M-0Zm" secondAttribute="top" constant="8" id="b1V-ed-Gsi"/>
                 <constraint firstItem="Hfm-bL-PFc" firstAttribute="leading" secondItem="nzL-6M-0Zm" secondAttribute="leading" constant="10" id="bEU-TK-JUv"/>
-                <constraint firstItem="i5D-fY-N7U" firstAttribute="leading" secondItem="Hfm-bL-PFc" secondAttribute="trailing" constant="-60" id="ehD-Ks-l1s"/>
+                <constraint firstItem="i5D-fY-N7U" firstAttribute="leading" secondItem="Hfm-bL-PFc" secondAttribute="trailing" constant="-24" id="ehD-Ks-l1s"/>
                 <constraint firstItem="i5D-fY-N7U" firstAttribute="top" secondItem="Uvz-Z6-M0m" secondAttribute="top" id="p8s-eh-1Z5"/>
                 <constraint firstAttribute="trailing" secondItem="NW4-ad-t21" secondAttribute="trailing" id="vtJ-R4-Kzg"/>
+                <constraint firstItem="lc3-rK-apr" firstAttribute="centerY" secondItem="nzL-6M-0Zm" secondAttribute="centerY" constant="2.5" id="wFx-D8-WkV"/>
                 <constraint firstAttribute="bottom" secondItem="Ctp-b2-A4i" secondAttribute="bottom" id="yEI-Hs-hNx"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="ibBackgroundView" destination="NW4-ad-t21" id="TU7-eF-bVD"/>
+                <outlet property="ibImageIcon" destination="lc3-rK-apr" id="mrg-Ry-FBw"/>
                 <outlet property="lblNumberOfCollection" destination="i5D-fY-N7U" id="Gof-s4-Zfh"/>
                 <outlet property="lblTitle" destination="Uvz-Z6-M0m" id="wYC-3F-52K"/>
             </connections>
             <point key="canvasLocation" x="901" y="-308.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="NewCollectionsIcon.png" width="21" height="24"/>
+    </resources>
 </document>

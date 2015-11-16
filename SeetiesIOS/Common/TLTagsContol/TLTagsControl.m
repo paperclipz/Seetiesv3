@@ -8,6 +8,7 @@
 
 #import "TLTagsControl.h"
 
+#define MAX_TAG_COUNT 30
 @interface TLTagsControl () <UITextFieldDelegate, UIGestureRecognizerDelegate>
 
 @end
@@ -72,6 +73,7 @@
 }
 
 - (void)commonInit {
+    self.maxWordLimit = MAX_TAG_COUNT;
     _tags = [NSMutableArray array];
     
     self.layer.cornerRadius = 5;
@@ -83,7 +85,7 @@
     tagInputField_.layer.borderColor = [UIColor lightGrayColor].CGColor;
     tagInputField_.backgroundColor = [UIColor whiteColor];
     tagInputField_.delegate = self;
-    tagInputField_.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
+    tagInputField_.font = [UIFont fontWithName:CustomFontName size:12];
     tagInputField_.placeholder = @"tag";
     tagInputField_.autocorrectionType = UITextAutocorrectionTypeNo;
     
@@ -212,7 +214,10 @@
         
         UIView *tagView = [[UIView alloc] initWithFrame:tagInputField_.frame];
         CGRect tagFrame = tagView.frame;
-        tagView.layer.cornerRadius = 5;
+        //custom edit
+        [Utils setRoundBorder:tagView color:LINE_COLOR borderRadius:5.0f borderWidth:0.8f];
+        // tagView.layer.cornerRadius = 5;
+      //  tagView.layer.cornerRadius = 5;
         tagFrame.origin.y = tagInputField_.frame.origin.y;
         tagView.backgroundColor = tagBackgrounColor;
         
@@ -303,7 +308,6 @@
     UIColor *tagDeleteButtonColor = _tagsDeleteButtonColor != nil ? _tagsDeleteButtonColor : [UIColor blackColor];
     
     
-    
     for (NSString *tag in _tags) {
         float width = [tag boundingRectWithSize:CGSizeMake(3000,tagInputField_.frame.size.height)
                                         options:NSStringDrawingUsesLineFragmentOrigin
@@ -313,7 +317,7 @@
         UIView *tagView = [[UIView alloc] initWithFrame:tagInputField_.frame];
         CGRect tagFrame = tagView.frame;
         //custom edit
-        [Utils setRoundBorder:tagView color:DEVICE_COLOR borderRadius:5.0f borderWidth:0.8f];
+        [Utils setRoundBorder:tagView color:LINE_COLOR borderRadius:5.0f borderWidth:0.8f];
        // tagView.layer.cornerRadius = 5;
         tagFrame.origin.y = tagInputField_.frame.origin.y;
         tagView.backgroundColor = tagBackgrounColor;
@@ -423,6 +427,18 @@
     NSString *resultingString;
     NSString *text = textField.text;
     
+    
+    if (text.length >= self.maxWordLimit) {
+        
+        if ([string isEqualToString:@" "]) {
+            [self textFieldShouldReturn:textField];
+        }
+        return NO;
+    }
+    
+    if ([string isEqualToString:@" "]) {
+        [self textFieldShouldReturn:textField];
+    }
 
     if (string.length == 1 && [string rangeOfCharacterFromSet:[[NSCharacterSet alphanumericCharacterSet] invertedSet]].location != NSNotFound) {
         return NO;
@@ -458,7 +474,17 @@
         return YES;
     }
 }
+#pragma mark - Custom Edit
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [IQKeyboardManager sharedManager].keyboardDistanceFromTextField = 100.0f;
 
+}
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [IQKeyboardManager sharedManager].keyboardDistanceFromTextField = 10.0f;
+
+}
 #pragma mark - other
 
 - (void)setMode:(TLTagsControlMode)mode {

@@ -90,7 +90,6 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/APParallaxHeader.framework"
   install_framework "Pods/ActionSheetPicker_3_0.framework"
   install_framework "Pods/BOString.framework"
-  install_framework "Pods/BkTask.framework"
   install_framework "Pods/CLLocationManager_blocks.framework"
   install_framework "Pods/DBCamera.framework"
   install_framework "Pods/GPUImage.framework"
@@ -108,7 +107,6 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/TTTAttributedLabel.framework"
   install_framework "Pods/UITextView_Placeholder.framework"
   install_framework "Pods/iOSBlocks.framework"
-  install_framework "Pods/pop.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/A3ParallaxScrollView.framework"
@@ -117,7 +115,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/APParallaxHeader.framework"
   install_framework "Pods/ActionSheetPicker_3_0.framework"
   install_framework "Pods/BOString.framework"
-  install_framework "Pods/BkTask.framework"
   install_framework "Pods/CLLocationManager_blocks.framework"
   install_framework "Pods/DBCamera.framework"
   install_framework "Pods/GPUImage.framework"
@@ -135,5 +132,4 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/TTTAttributedLabel.framework"
   install_framework "Pods/UITextView_Placeholder.framework"
   install_framework "Pods/iOSBlocks.framework"
-  install_framework "Pods/pop.framework"
 fi

@@ -25,5 +25,6 @@ typedef enum{
 @property (weak, nonatomic) IBOutlet UIImageView *ibImgLine;
 -(void)setType:(ListingViewType)type addMoreClicked:(VoidBlock)addMoreClicked totalCount:(int)count;
 +(float)getheight;
+-(void)setTotalCount:(int)count;
 
 @end

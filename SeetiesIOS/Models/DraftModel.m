@@ -96,7 +96,7 @@
                                                        }];
 }
 
--(void)process
+-(void)process// For getting Draft title and message WITHOUT using "content_languages"
 {
     NSMutableArray* array = [NSMutableArray new];
     NSArray* key = [self.title allKeys];
@@ -114,6 +114,22 @@
    // PhotoModel* photoModel = [PhotoModel alloc]init;
 }
 
+-(void)customProcess //For getting Draft title and message  USING "content_languages"
+{
+    NSMutableArray* array = [NSMutableArray new];
+    
+    for (int i = 0; i < self.content_languages.count; i++) {
+        
+        NSString* langKey = self.content_languages[i];
+        Post* object = [Post new];
+        object.title = self.title[langKey];
+        object.message = self.message[langKey];
+        object.language = langKey;
+        [array addObject:object];
+    }
+    
+    self.arrPost = [[NSArray alloc]initWithArray:array];
+}
 @end
 
 
@@ -130,7 +146,8 @@
     for (int i = 0; i<self.posts.count; i++) {
         DraftModel* model = self.posts[i];
         [model process];
-        
+        [model customProcess];
+
     }
 
 }

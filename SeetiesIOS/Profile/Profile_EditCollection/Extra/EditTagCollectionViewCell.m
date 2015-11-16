@@ -38,9 +38,8 @@
 
 -(void)initSelfView
 {
-    [Utils setRoundBorder:self.ibContentView color:[UIColor orangeColor] borderRadius:5.0f borderWidth:0.5f];
+    [Utils setRoundBorder:self.ibContentView color:TWO_ZERO_FOUR_COLOR borderRadius:5.0f borderWidth:1.0f];
     
-    self.ibImagePlusView.image = [self.ibImagePlusView.image imageTintedWithColor:[UIColor orangeColor]];
-    [Utils setRoundBorder:self.ibContentView color:[UIColor orangeColor] borderRadius:5.0f borderWidth:2.0f];
+    self.ibImagePlusView.image = [self.ibImagePlusView.image imageTintedWithColor:TWO_ZERO_FOUR_COLOR];
 }
 @end

@@ -115,6 +115,7 @@
     NSURLConnection *theConnection_QuickCollect;
     NSURLConnection *theConnection_TrackPromotedUserViews;
     NSURLConnection *theConnection_FollowCollect;
+
     
     NSString *latPoint;
     NSString *lonPoint;
@@ -143,12 +144,10 @@
     
     UIView *RateView;
     
-    
     NSString *GetCollectionFollowing;
     NSString *GetCollectID;
     NSString *GetCollectUserID;
 }
-
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;
 @end
@@ -169,6 +168,7 @@
 #pragma mark - IBAction
 - (IBAction)btnTestClicked:(id)sender {
     
+    _suggestedCollectionPostsViewController = nil;
     [self presentViewController:self.suggestedCollectionPostsViewController animated:YES completion:nil];
 }
 

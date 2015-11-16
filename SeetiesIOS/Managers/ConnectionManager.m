@@ -8,11 +8,11 @@
 
 #import "ConnectionManager.h"
 #import "NSArray+JSON.h"
-
 @interface ConnectionManager()
 @property (strong, nonatomic) DataManager *dataManager;
 
 @end
+
 @implementation ConnectionManager
 + (id)Instance {
     static ConnectionManager *instance = nil;
@@ -506,7 +506,7 @@
             NSDictionary* dict = obj[@"data"];
 
             self.dataManager.collectionModels = [[CollectionModel alloc]initWithDictionary:dict error:nil];
-
+            [self.dataManager.collectionModels process];
         }
             break;
             

@@ -25,7 +25,6 @@ PODS:
     - AFNetworking/NSURLSession
   - APParallaxHeader (0.1.6)
   - AviarySDK (4.4.5)
-  - BkTask (0.9.1)
   - BOString (0.0.9)
   - CLLocationManager-blocks (1.3.3)
   - DBCamera (2.4.1):
@@ -49,7 +48,6 @@ PODS:
     - AFNetworking (~> 2.0)
   - MGSwipeTableCell (1.5.1)
   - MZAppearance (1.1.6)
-  - pop (1.0.8)
   - PureLayout (3.0.1)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
@@ -66,7 +64,6 @@ DEPENDENCIES:
   - ADTransitionController
   - APParallaxHeader
   - AviarySDK
-  - BkTask
   - BOString
   - CLLocationManager-blocks
   - DBCamera (~> 2.4)
@@ -78,7 +75,6 @@ DEPENDENCIES:
   - LPGoogleFunctions
   - MGSwipeTableCell
   - MZAppearance
-  - pop (~> 1.0)
   - PureLayout
   - SDWebImage
   - SVPullToRefresh
@@ -102,7 +98,6 @@ SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   APParallaxHeader: 854bc48a2487ca12c702f8a236fec0d89cdac5c3
   AviarySDK: 311bdc7c2a81aee93ab1dc7bb5f3e4ef6ee52041
-  BkTask: 8dd51efee729f637e4b11337f32dc52c97646a91
   BOString: c896f83b514996bbe874c0a3afd61f4c6764e0ed
   CLLocationManager-blocks: ae34b44992b3d26de10d27d51043a123444efb1b
   DBCamera: 7a4343a541e1264610f9f33176552b93170a843e
@@ -116,7 +111,6 @@ SPEC CHECKSUMS:
   LPGoogleFunctions: c78171de55b164e8e5dbf6b4bba477980771211a
   MGSwipeTableCell: a51fa670c01f0aa048f12af040acebf315223137
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
-  pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
