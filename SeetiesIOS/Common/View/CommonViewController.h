@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PresentingAnimationController.h"
-#import "DismissingAnimationController.h"
+//#import "PresentingAnimationController.h"
+//#import "DismissingAnimationController.h"
 @interface CommonViewController : GAITrackedViewController<UIViewControllerTransitioningDelegate>
 -(void)applyTabBarContraint;
 @property(nonatomic,copy)IDBlock btnBackBlock;

@@ -66,18 +66,18 @@
     
     return self;
 }
-#pragma mark - UIViewControllerTransitionDelegate -
-
-- (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source
-{
-    
-    return [[PresentingAnimationController alloc] init];
-}
-
-- (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
-{
-    return [[DismissingAnimationController alloc] init];
-}
+//#pragma mark - UIViewControllerTransitionDelegate -
+//
+//- (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source
+//{
+//    
+//    return [[PresentingAnimationController alloc] init];
+//}
+//
+//- (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
+//{
+//    return [[DismissingAnimationController alloc] init];
+//}
 
 /*
  #pragma mark - Navigation
