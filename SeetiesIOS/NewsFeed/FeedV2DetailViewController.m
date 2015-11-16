@@ -2077,7 +2077,7 @@
         ShowTotalView.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
         [MainScroll addSubview:ShowTotalView];
         
-        GetMessageHeight += 30;
+        GetMessageHeight += 35;
     }
     
     if ([Like_UsernameArray count] == 0 && [CommentIDArray count] == 0 && [TotalCollectionCount length] == 0) {

@@ -151,7 +151,7 @@
         NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
         NSError *myError = nil;
         NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
-        NSLog(@"theConnection_CollectionData Json = %@",res);
+       // NSLog(@"theConnection_CollectionData Json = %@",res);
         
         NSString *statusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
         NSLog(@"statusString is %@",statusString);
@@ -187,7 +187,8 @@
             GetUserProfile = [[NSString alloc]initWithFormat:@"%@",[UserData objectForKey:@"profile_photo"]];
             GetUserID = [[NSString alloc]initWithFormat:@"%@",[UserData objectForKey:@"uid"]];
             NSLog(@"Collection GetUserID data is %@",GetUserID);
-            NSDictionary *PostsData = [ResData valueForKey:@"posts"];
+            
+            NSDictionary *PostsData = [ResData valueForKey:@"collection_posts"];
             NSString *Temppage = [[NSString alloc]initWithFormat:@"%@",[PostsData objectForKey:@"page"]];
             NSString *Temptotal_page = [[NSString alloc]initWithFormat:@"%@",[PostsData objectForKey:@"total_page"]];
             
@@ -209,7 +210,7 @@
             }
             
             
-            NSDictionary *GetData = [PostsData valueForKey:@"data"];
+            NSDictionary *GetData = [PostsData valueForKey:@"posts"];
             
             
             for (NSDictionary * dict in GetData) {
@@ -453,7 +454,17 @@
             for (UIView *subview in MainScroll.subviews) {
                 [subview removeFromSuperview];
             }
+            for (UIView *subview in ListView.subviews) {
+                [subview removeFromSuperview];
+            }
+            for (UIView *subview in GridView.subviews) {
+                [subview removeFromSuperview];
+            }
             GetHeight = 0;
+            CheckFirstTimeLoad = 0;
+            GetCollectionHeight = 0;
+            CheckShowMessage = 0;
+            TempHeight = 0;
             [self InitView];
             
             [ShowActivity stopAnimating];
@@ -874,7 +885,7 @@
         for (NSInteger i = DataCount; i < DataTotal; i++) {
             int CountHeight = TempHeight;
             AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
-            ShowImage.frame = CGRectMake(20, TempHeight, screenWidth - 40, 180);
+            ShowImage.frame = CGRectMake(10, TempHeight, screenWidth - 20, 180);
             ShowImage.contentMode = UIViewContentModeScaleAspectFill;
             ShowImage.layer.masksToBounds = YES;
             ShowImage.layer.cornerRadius = 5;
@@ -893,14 +904,14 @@
             
             UIImageView *ShowOverlayImg = [[UIImageView alloc]init];
             ShowOverlayImg.image = [UIImage imageNamed:@"FeedOverlay.png"];
-            ShowOverlayImg.frame = CGRectMake(20, TempHeight, screenWidth - 40, 180);
+            ShowOverlayImg.frame = CGRectMake(10, TempHeight, screenWidth - 20, 180);
             ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
             ShowOverlayImg.layer.masksToBounds = YES;
             ShowOverlayImg.layer.cornerRadius = 5;
             [ListView addSubview:ShowOverlayImg];
             
             UIButton *ClickToDetailButton = [[UIButton alloc]init];
-            ClickToDetailButton.frame = CGRectMake(20, TempHeight, screenWidth - 40, 180);
+            ClickToDetailButton.frame = CGRectMake(10, TempHeight, screenWidth - 20, 180);
             [ClickToDetailButton setTitle:@"" forState:UIControlStateNormal];
             ClickToDetailButton.backgroundColor = [UIColor clearColor];
             ClickToDetailButton.tag = i;
@@ -935,9 +946,9 @@
             }else{
                 UILabel *ShowTitle = [[UILabel alloc]init];
                 if ([GetPermisionUser isEqualToString:@"self"]) {
-                    ShowTitle.frame = CGRectMake(30, CountHeight, screenWidth - 60, 20);
+                    ShowTitle.frame = CGRectMake(20, CountHeight, screenWidth - 40, 20);
                 }else{
-                    ShowTitle.frame = CGRectMake(30, CountHeight, screenWidth - 100, 20);
+                    ShowTitle.frame = CGRectMake(20, CountHeight, screenWidth - 100, 20);
                 }
                 
                 ShowTitle.text = TempGetStirng;
@@ -955,7 +966,7 @@
             
             UIImageView *ShowPin = [[UIImageView alloc]init];
             ShowPin.image = [UIImage imageNamed:@"PhotoPin.png"];
-            ShowPin.frame = CGRectMake(28, CountHeight + 2, 15, 15);
+            ShowPin.frame = CGRectMake(18, CountHeight + 2, 15, 15);
             [ListView addSubview:ShowPin];
             
             NSString *TempDistanceString = [[NSString alloc]initWithFormat:@"%@",[Content_arrID_arrDistance objectAtIndex:i]];
@@ -991,9 +1002,9 @@
             }
             UILabel *ShowDistance = [[UILabel alloc]init];
             if ([GetPermisionUser isEqualToString:@"self"]) {
-                ShowDistance.frame = CGRectMake(50, CountHeight, screenWidth - 100, 20);
+                ShowDistance.frame = CGRectMake(40, CountHeight, screenWidth - 100, 20);
             }else{
-                ShowDistance.frame = CGRectMake(50, CountHeight, screenWidth - 160, 20);
+                ShowDistance.frame = CGRectMake(40, CountHeight, screenWidth - 160, 20);
             }
             
             ShowDistance.text = FullShowLocatinString;
@@ -1014,7 +1025,7 @@
                     NSString *FullString = [[NSString alloc]initWithFormat:@"%@: %@",[Content_arrUserName objectAtIndex:i],TempGetMessage];
                     
                     UILabel *ShowNoteData = [[UILabel alloc]init];
-                    ShowNoteData.frame = CGRectMake(25, TempHeight, screenWidth - 50, 40);
+                    ShowNoteData.frame = CGRectMake(15, TempHeight, screenWidth - 50, 40);
                     ShowNoteData.backgroundColor = [UIColor clearColor];
                     ShowNoteData.numberOfLines = 3;
                     ShowNoteData.textAlignment = NSTextAlignmentLeft;
@@ -1050,7 +1061,7 @@
                     
                     if([ShowNoteData sizeThatFits:CGSizeMake(screenWidth - 50, CGFLOAT_MAX)].height!=ShowNoteData.frame.size.height)
                     {
-                        ShowNoteData.frame = CGRectMake(25, TempHeight, screenWidth - 50,[ShowNoteData sizeThatFits:CGSizeMake(screenWidth - 50, CGFLOAT_MAX)].height);
+                        ShowNoteData.frame = CGRectMake(15, TempHeight, screenWidth - 50,[ShowNoteData sizeThatFits:CGSizeMake(screenWidth - 50, CGFLOAT_MAX)].height);
                     }
                     
                     TempHeight += ShowNoteData.frame.size.height + 20;
@@ -1062,7 +1073,7 @@
                 NSString *FullString = [[NSString alloc]initWithFormat:@"%@: %@",GetUsername,TempGetNote];
                 
                 UILabel *ShowNoteData = [[UILabel alloc]init];
-                ShowNoteData.frame = CGRectMake(25, TempHeight, screenWidth - 50, 40);
+                ShowNoteData.frame = CGRectMake(15, TempHeight, screenWidth - 50, 40);
                 ShowNoteData.backgroundColor = [UIColor clearColor];
                 ShowNoteData.numberOfLines = 3;
                 ShowNoteData.textAlignment = NSTextAlignmentLeft;
@@ -1096,7 +1107,7 @@
                 
                 if([ShowNoteData sizeThatFits:CGSizeMake(screenWidth - 50, CGFLOAT_MAX)].height!=ShowNoteData.frame.size.height)
                 {
-                    ShowNoteData.frame = CGRectMake(25, TempHeight, screenWidth - 50,[ShowNoteData sizeThatFits:CGSizeMake(screenWidth - 50, CGFLOAT_MAX)].height);
+                    ShowNoteData.frame = CGRectMake(15, TempHeight, screenWidth - 50,[ShowNoteData sizeThatFits:CGSizeMake(screenWidth - 50, CGFLOAT_MAX)].height);
                 }
                 
                 TempHeight += ShowNoteData.frame.size.height + 20;
