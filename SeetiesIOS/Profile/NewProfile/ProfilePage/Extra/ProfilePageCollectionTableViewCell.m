@@ -108,14 +108,14 @@
         
     }
     else{
-        [self.btnEdit setTitle:LocalisedString(@"Follow") forState:UIControlStateNormal];
-        [self.btnEdit setTitle:LocalisedString(@"Following") forState:UIControlStateSelected];
-        [self.btnEdit setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.btnEdit setTitleColor:SELECTED_GREEN forState:UIControlStateSelected];
-
-        [self setFollowButtonSelected:self.model.following button:self.btnEdit];
+        self.btnEdit.hidden = YES;
+//        [self.btnEdit setTitle:LocalisedString(@"Follow") forState:UIControlStateNormal];
+//        [self.btnEdit setTitle:LocalisedString(@"Following") forState:UIControlStateSelected];
+//        [self.btnEdit setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//        [self.btnEdit setTitleColor:SELECTED_GREEN forState:UIControlStateSelected];
+//
+//        [self setFollowButtonSelected:self.model.following button:self.btnEdit];
     }
-   
    
 //
 //    if (self.model.arrTempFeedsPost>0) {
