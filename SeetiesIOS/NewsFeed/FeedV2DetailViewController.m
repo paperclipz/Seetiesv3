@@ -1464,11 +1464,14 @@
                 
                 UserInfo_NameArray_Nearby = [[NSMutableArray alloc] initWithCapacity:[UserInfoData count]];
                 UserInfo_UrlArray_Nearby = [[NSMutableArray alloc] initWithCapacity:[UserInfoData count]];
+                UserInfo_IDArray_Nearby = [[NSMutableArray alloc] initWithCapacity:[UserInfoData count]];
                 for (NSDictionary * dict in UserInfoData) {
                     NSString *username = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"username"]];
                     [UserInfo_NameArray_Nearby addObject:username];
                     NSString *url = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"profile_photo"]];
                     [UserInfo_UrlArray_Nearby addObject:url];
+                    NSString *userid = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"uid"]];
+                    [UserInfo_IDArray_Nearby addObject:userid];
                 }
 
                 
@@ -3209,45 +3212,39 @@
 //    [self.view.window.layer addAnimation:transition forKey:nil];
 //    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
 //    [ExpertsUserProfileView GetUsername:[User_Comment_usernameArray objectAtIndex:getbuttonIDN]];
-    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-    [NewUserProfileV2View GetUserName:[User_Comment_usernameArray objectAtIndex:getbuttonIDN]];
+//    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+//    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+//    [NewUserProfileV2View GetUserName:[User_Comment_usernameArray objectAtIndex:getbuttonIDN]];
     
+    
+    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[User_Comment_uidArray objectAtIndex:getbuttonIDN]];
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+    }];
 }
 -(IBAction)OpenProfileButton3:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);
     
-//    UserProfileV2ViewController *ExpertsUserProfileView = [[UserProfileV2ViewController alloc]init];
-//    CATransition *transition = [CATransition animation];
-//    transition.duration = 0.2;
-//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//    transition.type = kCATransitionPush;
-//    transition.subtype = kCATransitionFromRight;
-//    [self.view.window.layer addAnimation:transition forKey:nil];
-//    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
-//    [ExpertsUserProfileView GetUsername:[UserInfo_NameArray_Nearby objectAtIndex:getbuttonIDN]];
-    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-    [NewUserProfileV2View GetUserName:[UserInfo_NameArray_Nearby objectAtIndex:getbuttonIDN]];
+//    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+//    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+//    [NewUserProfileV2View GetUserName:[UserInfo_NameArray_Nearby objectAtIndex:getbuttonIDN]];
     
+    
+    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[UserInfo_IDArray_Nearby objectAtIndex:getbuttonIDN]];
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+    }];
 }
 -(IBAction)OpenProfileButton4:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);
+
+//    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+//    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+//    [NewUserProfileV2View GetUserName:[UserInfo_NameArray_Nearby lastObject]];
     
-//    UserProfileV2ViewController *ExpertsUserProfileView = [[UserProfileV2ViewController alloc]init];
-//    CATransition *transition = [CATransition animation];
-//    transition.duration = 0.2;
-//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//    transition.type = kCATransitionPush;
-//    transition.subtype = kCATransitionFromRight;
-//    [self.view.window.layer addAnimation:transition forKey:nil];
-//    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
-//    [ExpertsUserProfileView GetUsername:[UserInfo_NameArray_Nearby lastObject]];
-    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-    [NewUserProfileV2View GetUserName:[UserInfo_NameArray_Nearby lastObject]];
+    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[UserInfo_IDArray_Nearby objectAtIndex:getbuttonIDN]];
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+    }];
     
 }
 -(IBAction)FollowButton:(id)sender{
@@ -4199,9 +4196,13 @@
 //    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
 //    [ExpertsUserProfileView GetUsername:[Like_UsernameArray objectAtIndex:getbuttonIDN]];
     
-    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-    [NewUserProfileV2View GetUserName:[Like_UsernameArray objectAtIndex:getbuttonIDN]];
+//    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+//    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+//    [NewUserProfileV2View GetUserName:[Like_UsernameArray objectAtIndex:getbuttonIDN]];
+    
+    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[Like_UseruidArray objectAtIndex:getbuttonIDN]];
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+    }];
     
     
 }
@@ -4219,9 +4220,13 @@
 //    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
 //    [ExpertsUserProfileView GetUsername:[User_Comment_usernameArray objectAtIndex:getbuttonIDN]];
     
-    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-    [NewUserProfileV2View GetUserName:[User_Comment_usernameArray objectAtIndex:getbuttonIDN]];
+//    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+//    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+//    [NewUserProfileV2View GetUserName:[User_Comment_usernameArray objectAtIndex:getbuttonIDN]];
+    
+    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[User_Comment_uidArray objectAtIndex:getbuttonIDN]];
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+    }];
 }
 -(void)DeletePost{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -4366,9 +4371,13 @@
     NSString *Getname = [[NSString alloc]initWithFormat:@"%@",[arrUsername objectAtIndex:getbuttonIDN]];
     NSLog(@"CollectionUserProfileOnClick Getname is %@",Getname);
     
-    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-    [NewUserProfileV2View GetUserName:Getname];
+//    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+//    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+//    [NewUserProfileV2View GetUserName:Getname];
+    
+    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[arrUserID objectAtIndex:getbuttonIDN]];
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+    }];
 }
 -(IBAction)CollectionFollowingButtonOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;

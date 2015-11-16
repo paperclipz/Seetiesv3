@@ -9,7 +9,7 @@
 #import "NearByRecommtationViewController.h"
 #import "AsyncImageView.h"
 #import "NSString+ChangeAsciiString.h"
-#import "NewUserProfileV2ViewController.h"
+//#import "NewUserProfileV2ViewController.h"
 #import "LanguageManager.h"
 #import "Locale.h"
 #import "CommentViewController.h"
@@ -361,15 +361,15 @@
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);
     
-    NewUserProfileV2ViewController *ExpertsUserProfileView = [[NewUserProfileV2ViewController alloc]init];
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromRight;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
-    [ExpertsUserProfileView GetUserName:[UserInfo_NameArray objectAtIndex:getbuttonIDN]];
+//    NewUserProfileV2ViewController *ExpertsUserProfileView = [[NewUserProfileV2ViewController alloc]init];
+//    CATransition *transition = [CATransition animation];
+//    transition.duration = 0.2;
+//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    transition.type = kCATransitionPush;
+//    transition.subtype = kCATransitionFromRight;
+//    [self.view.window.layer addAnimation:transition forKey:nil];
+//    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
+//    [ExpertsUserProfileView GetUserName:[UserInfo_NameArray objectAtIndex:getbuttonIDN]];
 }
 -(IBAction)ProductButton:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;

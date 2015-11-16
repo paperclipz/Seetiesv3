@@ -8,7 +8,7 @@
 
 #import "NotificationViewController.h"
 #import "AsyncImageView.h"
-#import "NewUserProfileV2ViewController.h"
+//#import "NewUserProfileV2ViewController.h"
 #import "FeedV2DetailViewController.h"
 #import "SelectImageViewController.h"
 #import "LanguageManager.h"
@@ -908,9 +908,14 @@
 //        transition.subtype = kCATransitionFromRight;
 //        [self.view.window.layer addAnimation:transition forKey:nil];
 //        [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
-        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-        [NewUserProfileV2View GetUserName:[UserNameArray objectAtIndex:getbuttonIDN]];
+//        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+//        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+//        [NewUserProfileV2View GetUserName:[UserNameArray objectAtIndex:getbuttonIDN]];
+        
+        [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[uidArray objectAtIndex:getbuttonIDN]];
+        [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        }];
+        
         NSLog(@"UserNameArray is %@",[UserNameArray objectAtIndex:getbuttonIDN]);
     }else if ([GetType isEqualToString:@"like"]){
         FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
@@ -950,18 +955,27 @@
         [self.navigationController pushViewController:FeedDetailView animated:YES];
         [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
     }else if([GetType isEqualToString:@"collect"]){
-        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-        [NewUserProfileV2View GetUserName:[UserNameArray objectAtIndex:getbuttonIDN]];
+//        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+//        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+//        [NewUserProfileV2View GetUserName:[UserNameArray objectAtIndex:getbuttonIDN]];
+        
+        [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[uidArray objectAtIndex:getbuttonIDN]];
+        [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        }];
+        
         NSLog(@"UserNameArray is %@",[UserNameArray objectAtIndex:getbuttonIDN]);
     }else if([GetType isEqualToString:@"post_shared"]){
         FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
         [self.navigationController pushViewController:FeedDetailView animated:YES];
         [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
     }else if([GetType isEqualToString:@"collection_shared"]){
-        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-        [NewUserProfileV2View GetUserName:[UserNameArray objectAtIndex:getbuttonIDN]];
+//        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+//        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+//        [NewUserProfileV2View GetUserName:[UserNameArray objectAtIndex:getbuttonIDN]];
+        
+        [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[uidArray objectAtIndex:getbuttonIDN]];
+        [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        }];
     }else{
     
         NSString *GetAction = [[NSString alloc]initWithFormat:@"%@",[ActionArray objectAtIndex:getbuttonIDN]];
@@ -983,9 +997,14 @@
         }else if([GetAction isEqualToString:@"none"]){
         
         }else if([GetAction isEqualToString:@"user"]){
-            NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-            [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-            [NewUserProfileV2View GetUserName:[UserNameArray objectAtIndex:getbuttonIDN]];
+//            NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+//            [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+//            [NewUserProfileV2View GetUserName:[UserNameArray objectAtIndex:getbuttonIDN]];
+            
+            [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[uidArray objectAtIndex:getbuttonIDN]];
+            [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+            }];
+            
         }else{
         
         }
@@ -997,9 +1016,14 @@
     
     NSString *GetType = [[NSString alloc]initWithFormat:@"%@",[TypeArray objectAtIndex:getbuttonIDN]];
     if ([GetType isEqualToString:@"follow"]) {
-        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-        [NewUserProfileV2View GetUserName:[Following_UserNameArray objectAtIndex:getbuttonIDN]];
+//        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+//        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+//        [NewUserProfileV2View GetUserName:[Following_UserNameArray objectAtIndex:getbuttonIDN]];
+        
+        [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[Following_uidArray objectAtIndex:getbuttonIDN]];
+        [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        }];
+        
         NSLog(@"UserNameArray is %@",[Following_UserNameArray objectAtIndex:getbuttonIDN]);
     }else if ([GetType isEqualToString:@"like"]){
         FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
@@ -1014,9 +1038,13 @@
         [self.navigationController pushViewController:FeedDetailView animated:YES];
         [FeedDetailView GetPostID:[Following_PostIDArray objectAtIndex:getbuttonIDN]];
     }else if([GetType isEqualToString:@"collect"]){
-        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-        [NewUserProfileV2View GetUserName:[Following_UserNameArray objectAtIndex:getbuttonIDN]];
+//        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+//        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+//        [NewUserProfileV2View GetUserName:[Following_UserNameArray objectAtIndex:getbuttonIDN]];
+        
+        [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[Following_uidArray objectAtIndex:getbuttonIDN]];
+        [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        }];
         NSLog(@"UserNameArray is %@",[Following_UserNameArray objectAtIndex:getbuttonIDN]);
     }else{
         
@@ -1031,9 +1059,13 @@
         }else if([GetAction isEqualToString:@"none"]){
             
         }else if([GetAction isEqualToString:@"user"]){
-            NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-            [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-            [NewUserProfileV2View GetUserName:[Following_UserNameArray objectAtIndex:getbuttonIDN]];
+//            NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+//            [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+//            [NewUserProfileV2View GetUserName:[Following_UserNameArray objectAtIndex:getbuttonIDN]];
+            
+            [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[Following_uidArray objectAtIndex:getbuttonIDN]];
+            [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+            }];
         }else{
             
         }
@@ -1070,5 +1102,12 @@
             NSLog(@"refresh end");
         });
     });
+}
+-(ProfileViewController*)profileViewController
+{
+    if(!_profileViewController)
+        _profileViewController = [ProfileViewController new];
+    
+    return _profileViewController;
 }
 @end

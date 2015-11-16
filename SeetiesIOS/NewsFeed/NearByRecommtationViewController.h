@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "UrlDataClass.h"
+#import "ProfileViewController.h"
+@class ProfileViewController;
 @interface NearByRecommtationViewController : UIViewController<UIScrollViewDelegate>{
 
     IBOutlet UILabel *TitleLabel;

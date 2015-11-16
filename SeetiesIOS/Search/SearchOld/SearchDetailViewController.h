@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "UrlDataClass.h"
 #import "GAITrackedViewController.h"
+#import "ProfileViewController.h"
+@class ProfileViewController;
 @interface SearchDetailViewController : GAITrackedViewController<UIScrollViewDelegate,UITextFieldDelegate>{
     
     IBOutlet UIScrollView *MainScroll;
@@ -131,6 +133,7 @@
     NSString *GetCollectID;
     NSString *GetCollectUserID;
 }
+@property(nonatomic,strong)ProfileViewController* profileViewController;
 -(void)GetSearchKeyword:(NSString *)Keyword Getlat:(NSString *)lat GetLong:(NSString *)Long GetLocationName:(NSString *)LocationName GetCurrentLat:(NSString *)CurrentLat GetCurrentLong:(NSString *)CurrentLong;
 -(void)GetTitle:(NSString *)String;
 

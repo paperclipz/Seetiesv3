@@ -10,7 +10,8 @@
 #import "AsyncImageView.h"
 #import "UrlDataClass.h"
 #import "GAITrackedViewController.h"
-
+#import "ProfileViewController.h"
+@class ProfileViewController;
 @interface ShowFollowerAndFollowingViewController : GAITrackedViewController<UIScrollViewDelegate>{
     
     IBOutlet UIScrollView *MainScroll;
@@ -48,6 +49,7 @@
     
     int CheckFirstTimeLoad;
 }
+@property(nonatomic,strong)ProfileViewController* profileViewController;
 -(void)GetToken:(NSString *)Token GetUID:(NSString *)uid GetType:(NSString *)Type;
 -(IBAction)BackButton:(id)sender;
 @end

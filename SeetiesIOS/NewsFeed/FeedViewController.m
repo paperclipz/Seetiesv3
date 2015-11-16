@@ -75,6 +75,8 @@
     NSMutableArray *arrfeaturedUserName;
     NSMutableArray *arrFriendUserName;
     NSMutableArray *arrDealID;
+    NSMutableArray *arrfeaturedUserID;
+    NSMutableArray *arrFriendUserID;
     
     NSMutableArray *arrCollectionID;
     NSMutableArray *arrCollectionName;
@@ -598,6 +600,8 @@
         [arrAboadID removeAllObjects];
         [arrfeaturedUserName removeAllObjects];
         [arrFriendUserName removeAllObjects];
+        [arrfeaturedUserID removeAllObjects];
+        [arrFriendUserID removeAllObjects];
         [arrDealID removeAllObjects];
         
         arrType_Announcement = [[NSMutableArray alloc]init];
@@ -699,6 +703,8 @@
     [arrfeaturedUserName removeAllObjects];
     [arrFriendUserName removeAllObjects];
     [arrDealID removeAllObjects];
+    [arrfeaturedUserID removeAllObjects];
+    [arrFriendUserID removeAllObjects];
     
     arrType_Announcement = [[NSMutableArray alloc]init];
     arrID_Announcement = [[NSMutableArray alloc]init];
@@ -2233,6 +2239,7 @@
 //                NSLog(@"SplitArray_PostsImg is %@",SplitArray_PostsImg);
                 
                 arrfeaturedUserName = [[NSMutableArray alloc]initWithArray:SplitArray_Username];
+                arrfeaturedUserID = [[NSMutableArray alloc]initWithArray:SplitArray_Id];
                 int TestWidth = screenWidth - 40;
                 //    NSLog(@"TestWidth is %i",TestWidth);
                 int FinalWidth = TestWidth / 4;
@@ -2446,6 +2453,7 @@
                 NSLog(@"SplitArray_PostsImg is %@",SplitArray_PostsImg);
                 
                 arrFriendUserName = [[NSMutableArray alloc]initWithArray:SplitArray_Username];
+                arrFriendUserID = [[NSMutableArray alloc]initWithArray:SplitArray_Id];
                 int TestWidth = screenWidth - 40;
                 //    NSLog(@"TestWidth is %i",TestWidth);
                 int FinalWidth = TestWidth / 4;
@@ -4898,9 +4906,13 @@
     NSString *GetUsername = [defaults objectForKey:@"UserName"];
     if ([GetUsername isEqualToString:CheckUsername]) {
     }else{
-        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-        [NewUserProfileV2View GetUserName:[arrUserName objectAtIndex:getbuttonIDN]];
+//        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+//        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+//        [NewUserProfileV2View GetUserName:[arrUserName objectAtIndex:getbuttonIDN]];
+        
+        [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[arrUserID objectAtIndex:getbuttonIDN]];
+        [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        }];
     }
     
 
@@ -5085,9 +5097,12 @@
         [self presentViewController:OpenWebView animated:YES completion:nil];
         [OpenWebView GetFullUrlString:GetID];
     }else if([GetAnnType isEqualToString:@"user"]){
-        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-        [NewUserProfileV2View GetUid:GetID];
+//        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+//        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+//        [NewUserProfileV2View GetUid:GetID];
+        [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:GetID];
+        [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        }];
     }else{
         AnnounceViewController *AnnounceView = [[AnnounceViewController alloc]init];
         [self.navigationController pushViewController:AnnounceView animated:YES];
@@ -5116,21 +5131,29 @@
 }
 -(IBAction)FeaturedOpenUserProfile:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
-    NSString *Getname = [[NSString alloc]initWithFormat:@"%@",[arrfeaturedUserName objectAtIndex:getbuttonIDN]];
-    NSLog(@"FeaturedOpenUserProfile Getname is %@",Getname);
+//    NSString *Getname = [[NSString alloc]initWithFormat:@"%@",[arrfeaturedUserName objectAtIndex:getbuttonIDN]];
+//    NSLog(@"FeaturedOpenUserProfile Getname is %@",Getname);
+//    
+//    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+//    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+//    [NewUserProfileV2View GetUserName:Getname];
     
-    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-    [NewUserProfileV2View GetUserName:Getname];
+    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[arrfeaturedUserID objectAtIndex:getbuttonIDN]];
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+    }];
 }
 -(IBAction)FriendsOpenUserProfile:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSString *Getname = [[NSString alloc]initWithFormat:@"%@",[arrFriendUserName objectAtIndex:getbuttonIDN]];
     NSLog(@"FriendsOpenUserProfile Getname is %@",Getname);
     
-    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-    [NewUserProfileV2View GetUserName:Getname];
+//    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+//    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+//    [NewUserProfileV2View GetUserName:Getname];
+    
+    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[arrFriendUserID objectAtIndex:getbuttonIDN]];
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+    }];
 }
 -(IBAction)ShareButtonOnClick:(id)sender{
     NSLog(@"ShareButtonOnClick");
@@ -5216,9 +5239,13 @@
     
     [self SendUserTrackerToServer];
     
-    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-    [NewUserProfileV2View GetUserName:[arrUserName objectAtIndex:getbuttonIDN]];
+//    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+//    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+//    [NewUserProfileV2View GetUserName:[arrUserName objectAtIndex:getbuttonIDN]];
+    
+    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[arrUserID objectAtIndex:getbuttonIDN]];
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+    }];
 }
 -(void)SendUserTrackerToServer{
     // NSURL *url = [NSURL URLWithString:[postBack stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
@@ -5247,12 +5274,16 @@
 }
 -(IBAction)CollectionUserProfileOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
-    NSString *Getname = [[NSString alloc]initWithFormat:@"%@",[arrCollectionName objectAtIndex:getbuttonIDN]];
-    NSLog(@"CollectionUserProfileOnClick Getname is %@",Getname);
+//    NSString *Getname = [[NSString alloc]initWithFormat:@"%@",[arrCollectionName objectAtIndex:getbuttonIDN]];
+//    NSLog(@"CollectionUserProfileOnClick Getname is %@",Getname);
+//    
+//    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+//    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+//    [NewUserProfileV2View GetUserName:Getname];
     
-    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-    [NewUserProfileV2View GetUserName:Getname];
+    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[arrCollectionUserID objectAtIndex:getbuttonIDN]];
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+    }];
 }
 -(IBAction)SeeAllButtonOnClick:(id)sender{
     SuggestedCollectionsViewController *SuggestedCollectionsView = [[SuggestedCollectionsViewController alloc]init];
@@ -5342,5 +5373,12 @@
     } else {
         
     }
+}
+-(ProfileViewController*)profileViewController
+{
+    if(!_profileViewController)
+        _profileViewController = [ProfileViewController new];
+    
+    return _profileViewController;
 }
 @end

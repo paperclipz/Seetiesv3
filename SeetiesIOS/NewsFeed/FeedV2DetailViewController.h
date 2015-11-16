@@ -15,7 +15,7 @@
 #import "ProfileViewController.h"
 
 @class ProfileViewController;
-
+@class EditPostViewController;
 @interface FeedV2DetailViewController : GAITrackedViewController<UIScrollViewDelegate,UIActionSheetDelegate>{
     
     IBOutlet UIScrollView *MainScroll;
@@ -195,6 +195,7 @@
     NSMutableArray *TitleArray_Nearby;
     NSMutableArray *UserInfo_NameArray_Nearby;
     NSMutableArray *UserInfo_UrlArray_Nearby;
+    NSMutableArray *UserInfo_IDArray_Nearby;
     NSMutableArray *PhotoArray_Nearby;
     NSMutableArray *PostIDArray_Nearby;
     NSMutableArray *PlaceNameArray_Nearby;

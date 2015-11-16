@@ -11,6 +11,8 @@
 #import "UrlDataClass.h"
 #import "GAITrackedViewController.h"
 #import "LLARingSpinnerView.h"
+#import "ProfileViewController.h"
+@class ProfileViewController;
 @interface CommentViewController : GAITrackedViewController<UIScrollViewDelegate,BHInputToolbarDelegate,UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>{
     
     BHInputToolbar *inputToolbar;
@@ -107,6 +109,7 @@
     NSMutableArray *CollectionUserIDArray;
     NSMutableArray *CollectionUserProfileArray;
 }
+@property(nonatomic,strong)ProfileViewController* profileViewController;
 @property (nonatomic, strong) BHInputToolbar *inputToolbar;
 -(IBAction)BackButton:(id)sender;
 -(IBAction)SendButton:(id)sender;

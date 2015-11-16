@@ -10,6 +10,8 @@
 #import "UrlDataClass.h"
 #import "AsyncImageView.h"
 #import "LLARingSpinnerView.h"
+#import "ProfileViewController.h"
+@class ProfileViewController;
 @interface ExploreCountryV2ViewController : UIViewController<UIScrollViewDelegate>{
     
     IBOutlet UILabel *lblTitle;
@@ -83,5 +85,5 @@
 -(void)initData;
 -(void)GetFestivalUrl:(NSString *)UrlStirng GetFestivalImage:(NSString *)ImageString;
 @property(nonatomic,strong)ExploreCountryModel* model;
-
+@property(nonatomic,strong)ProfileViewController* profileViewController;
 @end

@@ -102,7 +102,7 @@
     MainScroll.delegate = self;
     MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     MainScroll.alwaysBounceVertical = YES;
-    [MainScroll setContentSize:CGSizeMake(screenWidth, 744)];
+    [MainScroll setContentSize:CGSizeMake(screenWidth, 800)];
     
     spinnerView.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     

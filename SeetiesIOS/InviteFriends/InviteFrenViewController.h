@@ -13,7 +13,8 @@
 #import <FBSDKShareKit/FBSDKShareKit.h>
 #import <MessageUI/MessageUI.h>
 #import "UrlDataClass.h"
-
+#import "ProfileViewController.h"
+@class ProfileViewController;
 @interface InviteFrenViewController : UIViewController<ABPeoplePickerNavigationControllerDelegate,UITableViewDataSource,UITableViewDelegate,FBSDKAppInviteDialogDelegate,MFMailComposeViewControllerDelegate,UIScrollViewDelegate,MFMessageComposeViewControllerDelegate>{
 
     IBOutlet UILabel *TitleLabel;
@@ -97,6 +98,7 @@
     int GetHeight;
     int CheckFirstTimeLoad;
 }
+@property(nonatomic,strong)ProfileViewController* profileViewController;
 -(IBAction)TabButton_1:(id)sender;
 -(IBAction)TabButton_2:(id)sender;
 -(IBAction)TabButton_3:(id)sender;

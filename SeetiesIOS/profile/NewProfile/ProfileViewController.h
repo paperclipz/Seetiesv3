@@ -25,7 +25,8 @@
 
 @class PostListingViewController;
 @class LikesListingViewController;
-
+@class ShowFollowerAndFollowingViewController;
+@class SearchDetailViewController;
 @interface ProfileViewController : BaseViewController<TLTagsControlDelegate>
 
 @property(nonatomic,strong)CollectionViewController* collectionViewController;

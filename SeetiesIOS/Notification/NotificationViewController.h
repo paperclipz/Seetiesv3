@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "UrlDataClass.h"
-
+#import "ProfileViewController.h"
+@class ProfileViewController;
 @interface NotificationViewController : BaseViewController<UIScrollViewDelegate>{
     UrlDataClass *DataUrl;
     NSMutableData *webData;
@@ -63,5 +64,6 @@
     NSString *CheckNotificationData;
     NSString *CheckFollowData;
 }
+@property(nonatomic,strong)ProfileViewController* profileViewController;
 -(void)GetNotification;
 @end

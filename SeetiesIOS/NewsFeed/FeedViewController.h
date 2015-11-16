@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "UrlDataClass.h"
 #import "SuggestedCollectionPostsViewController.h"
+#import "ProfileViewController.h"
 
+@class ProfileViewController;
 @interface FeedViewController : BaseViewController<UIScrollViewDelegate,CLLocationManagerDelegate>
 
 @property(nonatomic,strong)SuggestedCollectionPostsViewController* suggestedCollectionPostsViewController;
-
+@property(nonatomic,strong)ProfileViewController* profileViewController;
 
 @end

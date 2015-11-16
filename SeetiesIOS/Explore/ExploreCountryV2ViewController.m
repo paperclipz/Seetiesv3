@@ -9,7 +9,7 @@
 #import "ExploreCountryV2ViewController.h"
 #import "FeedV2DetailViewController.h"
 #import "SearchViewV2.h"
-#import "NewUserProfileV2ViewController.h"
+//#import "NewUserProfileV2ViewController.h"
 #import "LanguageManager.h"
 #import "Locale.h"
 #import "Filter2ViewController.h"
@@ -1061,16 +1061,20 @@
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);
     
-    NewUserProfileV2ViewController *ExpertsUserProfileView = [[NewUserProfileV2ViewController alloc]init];
-//    CATransition *transition = [CATransition animation];
-//    transition.duration = 0.2;
-//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//    transition.type = kCATransitionPush;
-//    transition.subtype = kCATransitionFromRight;
-//    [self.view.window.layer addAnimation:transition forKey:nil];
-//    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
-    [self.navigationController pushViewController:ExpertsUserProfileView animated:YES];
-    [ExpertsUserProfileView GetUserName:[User_UserNameArray objectAtIndex:getbuttonIDN]];
+//    NewUserProfileV2ViewController *ExpertsUserProfileView = [[NewUserProfileV2ViewController alloc]init];
+////    CATransition *transition = [CATransition animation];
+////    transition.duration = 0.2;
+////    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+////    transition.type = kCATransitionPush;
+////    transition.subtype = kCATransitionFromRight;
+////    [self.view.window.layer addAnimation:transition forKey:nil];
+////    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
+//    [self.navigationController pushViewController:ExpertsUserProfileView animated:YES];
+//    [ExpertsUserProfileView GetUserName:[User_UserNameArray objectAtIndex:getbuttonIDN]];
+    
+    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[User_IDArray objectAtIndex:getbuttonIDN]];
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+    }];
 }
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
@@ -1160,30 +1164,45 @@
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"ExpertsButton button %li",(long)getbuttonIDN);
     
-    NewUserProfileV2ViewController *ExpertsUserProfileView = [[NewUserProfileV2ViewController alloc]init];
-//    CATransition *transition = [CATransition animation];
-//    transition.duration = 0.2;
-//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//    transition.type = kCATransitionPush;
-//    transition.subtype = kCATransitionFromRight;
-//    [self.view.window.layer addAnimation:transition forKey:nil];
-//    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
-    [self.navigationController pushViewController:ExpertsUserProfileView animated:YES];
-    [ExpertsUserProfileView GetUserName:[UserInfo_NameArray objectAtIndex:getbuttonIDN]];
+//    NewUserProfileV2ViewController *ExpertsUserProfileView = [[NewUserProfileV2ViewController alloc]init];
+////    CATransition *transition = [CATransition animation];
+////    transition.duration = 0.2;
+////    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+////    transition.type = kCATransitionPush;
+////    transition.subtype = kCATransitionFromRight;
+////    [self.view.window.layer addAnimation:transition forKey:nil];
+////    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
+//    [self.navigationController pushViewController:ExpertsUserProfileView animated:YES];
+//    [ExpertsUserProfileView GetUserName:[UserInfo_NameArray objectAtIndex:getbuttonIDN]];
+    
+    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[UserInfo_IDArray objectAtIndex:getbuttonIDN]];
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+    }];
 }
 -(IBAction)PPLExpertsButton2:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"ExpertsButton2 button %li",(long)getbuttonIDN);
     
-    NewUserProfileV2ViewController *ExpertsUserProfileView = [[NewUserProfileV2ViewController alloc]init];
-//    CATransition *transition = [CATransition animation];
-//    transition.duration = 0.2;
-//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//    transition.type = kCATransitionPush;
-//    transition.subtype = kCATransitionFromRight;
-//    [self.view.window.layer addAnimation:transition forKey:nil];
-//    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
-    [self.navigationController pushViewController:ExpertsUserProfileView animated:YES];
-    [ExpertsUserProfileView GetUserName:[User_UserNameArray objectAtIndex:getbuttonIDN]];
+//    NewUserProfileV2ViewController *ExpertsUserProfileView = [[NewUserProfileV2ViewController alloc]init];
+////    CATransition *transition = [CATransition animation];
+////    transition.duration = 0.2;
+////    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+////    transition.type = kCATransitionPush;
+////    transition.subtype = kCATransitionFromRight;
+////    [self.view.window.layer addAnimation:transition forKey:nil];
+////    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
+//    [self.navigationController pushViewController:ExpertsUserProfileView animated:YES];
+//    [ExpertsUserProfileView GetUserName:[User_UserNameArray objectAtIndex:getbuttonIDN]];
+    
+    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[User_IDArray objectAtIndex:getbuttonIDN]];
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+    }];
+}
+-(ProfileViewController*)profileViewController
+{
+    if(!_profileViewController)
+        _profileViewController = [ProfileViewController new];
+    
+    return _profileViewController;
 }
 @end
