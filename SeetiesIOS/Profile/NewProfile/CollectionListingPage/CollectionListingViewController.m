@@ -58,8 +58,8 @@
     
     [self.ibScrollView setWidth:frame.size.width];
     [self.myCollectionListingViewController.view setWidth:frame.size.width];
-  //  [self.followingCollectionListingViewController.view setWidth:frame.size.width];
-    
+//    [self.followingCollectionListingViewController.view setWidth:frame.size.width];
+//    
 //    [self.myCollectionListingViewController.view setHeight:self.ibScrollView.frame.size.height];
 //    [self.followingCollectionListingViewController.view setHeight:self.ibScrollView.frame.size.height];
 //
@@ -79,7 +79,15 @@
 
 -(void)initViewData
 {
-    self.lblTitle.text = [NSString stringWithFormat:@"%@ %@",self.profileModel.username,LocalisedString(@"Collections")];
+    
+    if ([self.profileModel.uid isEqualToString:[Utils getUserID]]) {
+        self.lblTitle.text = LocalisedString(@"Collections");
+
+    }
+    else{
+        self.lblTitle.text = [NSString stringWithFormat:@"%@ %@",self.profileModel.username,LocalisedString(@"Collections")];
+
+    }
 
 }
 

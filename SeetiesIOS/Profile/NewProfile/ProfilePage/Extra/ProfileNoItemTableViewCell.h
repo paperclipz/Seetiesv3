@@ -11,6 +11,6 @@
 @interface ProfileNoItemTableViewCell : CommonTableViewCell
 +(int)getHeight;
 -(void)adjustRoundedEdge:(CGRect)frame;
--(void)setType:(int)type;
+-(void)setViewType:(int)type;
 
 @end

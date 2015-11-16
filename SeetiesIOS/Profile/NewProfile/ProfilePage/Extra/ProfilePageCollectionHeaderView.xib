@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -47,7 +47,7 @@
                         <action selector="btnTitleClicked:" destination="nzL-6M-0Zm" eventType="touchUpInside" id="vFo-Ye-ooq"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NewCollectionsIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="lc3-rK-apr">
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoCollectionIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="lc3-rK-apr">
                     <rect key="frame" x="10" y="18" width="40" height="40"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="Q33-ai-BbW"/>
@@ -89,6 +89,6 @@
         </view>
     </objects>
     <resources>
-        <image name="NewCollectionsIcon.png" width="21" height="24"/>
+        <image name="NoCollectionIcon.png" width="55" height="40"/>
     </resources>
 </document>

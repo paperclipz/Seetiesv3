@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SuggestedCollectionPostsViewController">
@@ -61,10 +61,20 @@
                         <constraint firstItem="Q3P-fR-ePg" firstAttribute="leading" secondItem="ywd-6j-xiY" secondAttribute="trailing" constant="-35" id="iNH-ZZ-FA4"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1IN-iU-smc">
-                    <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1IN-iU-smc">
+                    <rect key="frame" x="0.0" y="64" width="320" height="454"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
+                <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ze0-Zc-YLO">
+                    <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="j8s-wo-M7g"/>
+                    </constraints>
+                    <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <inset key="contentEdgeInsets" minX="-40" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="250" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="See full collection" image="ArrowBtn.png"/>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -72,15 +82,19 @@
                 <constraint firstItem="1IN-iU-smc" firstAttribute="top" secondItem="ixH-Oz-i3N" secondAttribute="bottom" id="CqR-eQ-fBl"/>
                 <constraint firstAttribute="trailing" secondItem="1IN-iU-smc" secondAttribute="trailing" id="JqM-wZ-SmS"/>
                 <constraint firstAttribute="trailing" secondItem="ixH-Oz-i3N" secondAttribute="trailing" id="KL7-e4-Vxt"/>
-                <constraint firstAttribute="bottom" secondItem="1IN-iU-smc" secondAttribute="bottom" id="RJd-4d-G6X"/>
+                <constraint firstAttribute="trailing" secondItem="ze0-Zc-YLO" secondAttribute="trailing" id="LjQ-qb-95j"/>
+                <constraint firstAttribute="bottom" secondItem="1IN-iU-smc" secondAttribute="bottom" constant="50" id="RJd-4d-G6X"/>
                 <constraint firstItem="1IN-iU-smc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="XqJ-Q3-JTP"/>
                 <constraint firstItem="ixH-Oz-i3N" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="es6-ke-Bvd"/>
+                <constraint firstItem="ze0-Zc-YLO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="jEB-VU-TKT"/>
+                <constraint firstAttribute="bottom" secondItem="ze0-Zc-YLO" secondAttribute="bottom" id="mpK-29-xra"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="481" y="250"/>
         </view>
     </objects>
     <resources>
+        <image name="ArrowBtn.png" width="30" height="30"/>
         <image name="BackIcon.png" width="40" height="40"/>
     </resources>
 </document>
