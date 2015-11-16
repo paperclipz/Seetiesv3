@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CollectionListingViewController">
@@ -43,7 +43,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collections" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vuc-YZ-3e4">
-                            <rect key="frame" x="0.0" y="28" width="320" height="24"/>
+                            <rect key="frame" x="37" y="28" width="275" height="24"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -51,18 +51,18 @@
                     </subviews>
                     <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstItem="Vuc-YZ-3e4" firstAttribute="leading" secondItem="tuy-J5-blb" secondAttribute="leading" id="7XK-Tf-QH5"/>
+                        <constraint firstItem="Vuc-YZ-3e4" firstAttribute="leading" secondItem="tuy-J5-blb" secondAttribute="leading" constant="37" id="7XK-Tf-QH5"/>
                         <constraint firstItem="iTh-r3-EQv" firstAttribute="leading" secondItem="tuy-J5-blb" secondAttribute="leading" id="8CJ-NB-aFb"/>
                         <constraint firstAttribute="height" constant="64" id="Y0g-xM-GvQ"/>
                         <constraint firstAttribute="bottom" secondItem="iTh-r3-EQv" secondAttribute="bottom" constant="4" id="cSW-uP-kgb"/>
                         <constraint firstItem="DTA-9L-tLv" firstAttribute="leading" secondItem="tuy-J5-blb" secondAttribute="leading" id="fDB-zH-A0a"/>
                         <constraint firstItem="Vuc-YZ-3e4" firstAttribute="centerY" secondItem="tuy-J5-blb" secondAttribute="centerY" constant="7.5" id="guw-4w-x1z"/>
-                        <constraint firstAttribute="trailing" secondItem="Vuc-YZ-3e4" secondAttribute="trailing" id="hNt-70-bvF"/>
+                        <constraint firstAttribute="trailing" secondItem="Vuc-YZ-3e4" secondAttribute="trailing" constant="8" id="hNt-70-bvF"/>
                         <constraint firstItem="DTA-9L-tLv" firstAttribute="top" secondItem="tuy-J5-blb" secondAttribute="top" id="qVn-x0-U6S"/>
                         <constraint firstItem="iTh-r3-EQv" firstAttribute="top" secondItem="DTA-9L-tLv" secondAttribute="bottom" constant="-44" id="tmB-BB-HL2"/>
                     </constraints>
                 </view>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ali-jO-zY8">
+                <segmentedControl hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ali-jO-zY8">
                     <rect key="frame" x="10" y="72" width="300" height="29"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="oN4-cu-ha7"/>
@@ -78,7 +78,7 @@
                     </connections>
                 </segmentedControl>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lsb-YA-s3L">
-                    <rect key="frame" x="0.0" y="110" width="320" height="408"/>
+                    <rect key="frame" x="0.0" y="64" width="320" height="454"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                 </scrollView>
             </subviews>
@@ -86,7 +86,7 @@
             <constraints>
                 <constraint firstItem="Ali-jO-zY8" firstAttribute="top" secondItem="tuy-J5-blb" secondAttribute="bottom" constant="8" id="0Ec-3B-7up"/>
                 <constraint firstAttribute="bottom" secondItem="Lsb-YA-s3L" secondAttribute="bottom" constant="50" id="5nU-nP-ul6"/>
-                <constraint firstItem="Lsb-YA-s3L" firstAttribute="top" secondItem="Ali-jO-zY8" secondAttribute="bottom" constant="10" id="DIa-MJ-6sd"/>
+                <constraint firstItem="Lsb-YA-s3L" firstAttribute="top" secondItem="Ali-jO-zY8" secondAttribute="bottom" constant="-36" id="DIa-MJ-6sd"/>
                 <constraint firstItem="tuy-J5-blb" firstAttribute="top" secondItem="HmF-Tf-joH" secondAttribute="top" id="Dd0-im-gaM"/>
                 <constraint firstItem="Lsb-YA-s3L" firstAttribute="leading" secondItem="HmF-Tf-joH" secondAttribute="leading" id="OkF-mm-tIV"/>
                 <constraint firstItem="Ali-jO-zY8" firstAttribute="leading" secondItem="HmF-Tf-joH" secondAttribute="leading" constant="10" id="U0P-W8-BS9"/>

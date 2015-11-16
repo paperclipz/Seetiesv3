@@ -58,28 +58,36 @@
     
     [self.ibScrollView setWidth:frame.size.width];
     [self.myCollectionListingViewController.view setWidth:frame.size.width];
-    [self.followingCollectionListingViewController.view setWidth:frame.size.width];
-    
-    [self.myCollectionListingViewController.view setHeight:self.ibScrollView.frame.size.height];
-    [self.followingCollectionListingViewController.view setHeight:self.ibScrollView.frame.size.height];
-
-
+//    [self.followingCollectionListingViewController.view setWidth:frame.size.width];
+//    
+//    [self.myCollectionListingViewController.view setHeight:self.ibScrollView.frame.size.height];
+//    [self.followingCollectionListingViewController.view setHeight:self.ibScrollView.frame.size.height];
+//
+//
     [self.ibScrollView addSubview:self.myCollectionListingViewController.view];
-    [self.ibScrollView addSubview:self.followingCollectionListingViewController.view];
-  
-    SLog(@"scroll view size : %f",self.ibScrollView.frame.size.width);
-    self.ibScrollView.contentSize = CGSizeMake(frame.size.width*2, self.ibScrollView.frame.size.height);
-    
-    self.ibScrollView.pagingEnabled = YES;
-
-    [self.followingCollectionListingViewController.view setX:self.myCollectionListingViewController.view.frame.size.width];
+//    [self.ibScrollView addSubview:self.followingCollectionListingViewController.view];
+//  
+//    SLog(@"scroll view size : %f",self.ibScrollView.frame.size.width);
+//    self.ibScrollView.contentSize = CGSizeMake(frame.size.width*2, self.ibScrollView.frame.size.height);
+//    
+//    self.ibScrollView.pagingEnabled = YES;
+//
+//    [self.followingCollectionListingViewController.view setX:self.myCollectionListingViewController.view.frame.size.width];
     [self initViewData];
   
 }
 
 -(void)initViewData
 {
-    self.lblTitle.text = [NSString stringWithFormat:@"%@ %@",self.profileModel.username,LocalisedString(@"Collections")];
+    
+    if ([self.profileModel.uid isEqualToString:[Utils getUserID]]) {
+        self.lblTitle.text = LocalisedString(@"Collections");
+
+    }
+    else{
+        self.lblTitle.text = [NSString stringWithFormat:@"%@ %@",self.profileModel.username,LocalisedString(@"Collections")];
+
+    }
 
 }
 

@@ -34,14 +34,10 @@
 @property(nonatomic,strong)SettingsViewController* settingsViewController;
 @property(nonatomic,strong)PostListingViewController* postListingViewController;
 @property(nonatomic,strong)LikesListingViewController* likesListingViewController;
-
 @property(nonatomic,strong)EditProfileV2ViewController* editProfileV2ViewController;
 @property(nonatomic,strong)SearchViewV2Controller* searchViewV2Controller;
-
 @property(nonatomic,strong)ShowFollowerAndFollowingViewController* showFollowerAndFollowingViewController;
-
 @property(nonatomic,strong)SearchDetailViewController* searchDetailViewController;
-
 @property(nonatomic,copy)VoidBlock btnAddMorePostClickedBlock;
 @property(nonatomic,strong)ShareViewController* shareViewController;
 -(void)requestAllDataWithType:(ProfileViewType)type UserID:(NSString*)uID;
