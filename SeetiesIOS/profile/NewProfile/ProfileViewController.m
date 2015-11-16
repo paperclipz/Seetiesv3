@@ -480,7 +480,7 @@
                 cell = [[ProfileNoItemTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfierShowNone];
             }
             [cell adjustRoundedEdge:self.ibTableView.frame];
-            [cell setType:0];
+            [cell setViewType:0];
             return cell;
         }
         else if (indexPath.row==arrCollection.count || indexPath.row == 3) {
@@ -545,7 +545,7 @@
                 cell = [[ProfileNoItemTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfierShowNone];
             }
             [cell adjustRoundedEdge:self.ibTableView.frame];
-            [cell setType:1];
+            [cell setViewType:1];
             
             return cell;
         }
@@ -591,7 +591,7 @@
                 cell = [[ProfileNoItemTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfierShowNone];
             }
             [cell adjustRoundedEdge:self.ibTableView.frame];
-            [cell setType:2];
+            [cell setViewType:2];
             
             return cell;
         }

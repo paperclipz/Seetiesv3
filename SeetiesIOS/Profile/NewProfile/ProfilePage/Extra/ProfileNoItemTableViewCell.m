@@ -44,7 +44,7 @@
     
 }
 
--(void)setType:(int)type{
+-(void)setViewType:(int)type{
 
     self.cellType = type;
     
