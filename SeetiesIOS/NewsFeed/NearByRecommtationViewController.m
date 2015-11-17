@@ -16,7 +16,40 @@
 #import "ShareViewController.h"
 #import "AddCollectionDataViewController.h"
 @interface NearByRecommtationViewController ()
+{
+    IBOutlet UILabel *TitleLabel;
+    IBOutlet UIImageView *BarImage;
+    IBOutlet UIScrollView *MainScroll;
+    IBOutlet UIActivityIndicatorView *ShowActivity;
+    
+    NSMutableArray *LPhotoArray;
+    NSMutableArray *PostIDArray;
+    NSMutableArray *place_nameArray;
+    NSMutableArray *UserInfo_UrlArray;
+    NSMutableArray *UserInfo_NameArray;
+    NSMutableArray *TitleArray;
+    NSMutableArray *MessageArray;
+    NSMutableArray *DistanceArray;
+    NSMutableArray *SearchDisplayNameArray;
+    NSMutableArray *TotalCommentArray;
+    NSMutableArray *TotalLikeArray;
+    NSMutableArray *SelfCheckLikeArray;
+    NSMutableArray *SelfCheckCollectArray;
+    
+    int heightcheck;
+    
+    NSString *CheckLike;
+    NSString *SendLikePostID;
+    NSString *CheckCollect;
+    
+    NSURLConnection *theConnection_likes;
+    NSURLConnection *theConnection_QuickCollect;
+    
+    NSMutableData *webData;
+    
+    UrlDataClass *DataUrl;
 
+}
 @end
 
 @implementation NearByRecommtationViewController

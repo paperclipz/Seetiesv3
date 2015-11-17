@@ -18,7 +18,100 @@
 #define kKeyboardHeightPortrait 216
 #define kKeyboardHeightLandscape 140
 @interface CommentViewController ()
-
+{
+    BHInputToolbar *inputToolbar;
+    
+    IBOutlet UIView *ShowNoDataView;
+    IBOutlet UILabel *ShowMainTitle;
+    IBOutlet UIImageView *BarImage;
+    IBOutlet UIImageView *NoCommentImage;
+    
+    BOOL keyboardIsVisible;
+    BOOL isFirstShowKeyboard;
+    BOOL isButtonClicked;
+    BOOL isKeyboardShowing;
+    BOOL isSystemBoardShow;
+    
+    IBOutlet UIView *toolBar;
+    IBOutlet UITextField *TextString;
+    IBOutlet UIButton *sendButton;
+    CGFloat keyboardHeight;
+    
+    IBOutlet UIScrollView *MainScroll;
+    IBOutlet UIScrollView *LikeScroll;
+    IBOutlet UIScrollView *CollectionsScroll;
+    // IBOutlet UITextField *textField;
+    
+    NSMutableArray *GetCommentIDArray;
+    NSMutableArray *GetPostIDArray;
+    NSMutableArray *GetMessageArray;
+    NSMutableArray *GetUser_Comment_uidArray;
+    NSMutableArray *GetUser_Comment_nameArray;
+    NSMutableArray *GetUser_Comment_usernameArray;
+    NSMutableArray *GetUser_Comment_photoArray;
+    
+    NSString *GetPostIDN;
+    NSString *GetMessage;
+    NSString *GetMentionsString;
+    
+    UrlDataClass *DataUrl;
+    NSMutableData *webData;
+    
+    NSURLConnection *theConnection_Comment;
+    NSURLConnection *theConnection_Mentions;
+    NSURLConnection *theConnection_GetComment;
+    NSURLConnection *theConnection_GetAllUserlikes;
+    NSURLConnection *theConnection_SendFollowData;
+    NSURLConnection *theConnection_DeleteCommentData;
+    NSURLConnection *theConnection_GetCollections;
+    
+    IBOutlet UILabel *ShowNoDataText_1;
+    IBOutlet UILabel *ShowNoDataText_2;
+    
+    int checkDataLoading;
+    
+    IBOutlet UIView *MentionsView;
+    IBOutlet UITableView *MetionsTblview;
+    IBOutlet UIButton *BlackgroundButton;
+    IBOutlet UIButton *BlackgroundWhiteButton;
+    
+    
+    NSMutableArray *Mentions_UsernameArray;
+    NSMutableArray *Mentions_NameArray;
+    NSMutableArray *Mentions_uidArray;
+    NSMutableArray *Mentions_ProfilePhotoArray;
+    
+    NSString *GetCommentCount;
+    NSString *GetMentionsUID;
+    
+    int checkagain;
+    
+    NSMutableArray *TagNameArray;
+    
+    NSMutableArray *Like_UseruidArray;
+    NSMutableArray *Like_UserProfilePhotoArray;
+    NSMutableArray *Like_UsernameArray;
+    NSMutableArray *Like_UserFollowingArray;
+    
+    NSString *SendFollowData;
+    NSString *SendUserUid;
+    
+    NSString *GetWhatView;
+    
+    //LLARingSpinnerView *spinnerView;
+    IBOutlet UIActivityIndicatorView *ShowActivity;
+    
+    NSString *GetDeletePostID;
+    NSString *GetDeleteCommentID;
+    
+    
+    //Collection data
+    NSMutableArray *CollectionNameArray;
+    NSMutableArray *CollectionUserNameArray;
+    NSMutableArray *CollectionIDArray;
+    NSMutableArray *CollectionUserIDArray;
+    NSMutableArray *CollectionUserProfileArray;
+}
 @end
 
 @implementation CommentViewController

@@ -9,7 +9,21 @@
 #import "AnnounceViewController.h"
 
 @interface AnnounceViewController ()
-
+{
+    
+    IBOutlet UIScrollView *MainScroll;
+    IBOutlet UIImageView *BarImage;
+    IBOutlet UILabel *ShowTitle;
+    
+    IBOutlet UIActivityIndicatorView *ShowActivity;
+    
+    IBOutlet AsyncImageView *ShowBigImage;
+    IBOutlet UIImageView *ShowIcon;
+    IBOutlet UITextView *ShowContent;
+    
+    NSString *GetImageString;
+    NSString *GetContentString;
+}
 @end
 
 @implementation AnnounceViewController

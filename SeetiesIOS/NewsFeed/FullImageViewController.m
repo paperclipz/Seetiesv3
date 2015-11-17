@@ -9,7 +9,26 @@
 #import "FullImageViewController.h"
 #import "AsyncImageView.h"
 @interface FullImageViewController ()
-
+{
+    
+    IBOutlet UIScrollView *MImageScroll;
+    IBOutlet UIPageControl *PageControlOn;
+    NSMutableArray *GetAllFullImageArray;
+    NSMutableArray *GetAllFullCaptionArray;
+    NSInteger GetCurrentIdn;
+    AsyncImageView *ShowImage;
+    
+    UIScrollView *ImageScroll;
+    BOOL pageControlBeingUsed;
+    
+    IBOutlet UILabel *ShowImageCount;
+    
+    NSString *GetImageString;
+    
+    IBOutlet UIButton *BackButton;
+    
+    IBOutlet UILabel *ExitText;
+}
 @end
 
 @implementation FullImageViewController
