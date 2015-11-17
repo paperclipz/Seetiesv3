@@ -317,7 +317,7 @@
     CheckCommentData = 0;
     CountLanguage = 0;
     CheckNearbyPost = 0;
-    isThereAnyCollectionSuggestion = YES;
+    isThereAnyCollectionSuggestion = NO;
     GetPlaceNameHeight = 0;
     ImageCount = 0;
     LanguageButton.hidden = YES;
@@ -2892,7 +2892,7 @@
     if (isThereAnyCollectionSuggestion) {
         
         //TODO: Uncomment the following for collecting suggestion
-        //[self GetCollectionSuggestionsData];
+        [self GetCollectionSuggestionsData];
     }else{
         [self InitCollectionSuggestionsView];
     }

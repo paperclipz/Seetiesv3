@@ -567,8 +567,6 @@
 		8ABB3BDB1BF9F30200FC330D /* Walkthrough2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ABB39BC1BF9F30200FC330D /* Walkthrough2.png */; };
 		8ABB3BDC1BF9F30200FC330D /* Walkthrough3.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ABB39BD1BF9F30200FC330D /* Walkthrough3.png */; };
 		8ABB3BDD1BF9F30200FC330D /* Walkthrough4.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ABB39BE1BF9F30200FC330D /* Walkthrough4.png */; };
-		8ABB3BDE1BF9F30200FC330D /* WhiteSeetiesLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ABB39BF1BF9F30200FC330D /* WhiteSeetiesLogo@2x.png */; };
-		8ABB3BDF1BF9F30200FC330D /* WhiteSeetiesLogo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ABB39C01BF9F30200FC330D /* WhiteSeetiesLogo@3x.png */; };
 		8ABB3BE01BF9F30200FC330D /* bgExplore_3.5.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ABB39C31BF9F30200FC330D /* bgExplore_3.5.png */; };
 		8ABB3BE11BF9F30200FC330D /* bgFeed_3.5.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ABB39C41BF9F30200FC330D /* bgFeed_3.5.png */; };
 		8ABB3BE21BF9F30200FC330D /* bgProfile_3.5.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ABB39C51BF9F30200FC330D /* bgProfile_3.5.png */; };
@@ -1786,8 +1784,6 @@
 		8ABB39BC1BF9F30200FC330D /* Walkthrough2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Walkthrough2.png; sourceTree = "<group>"; };
 		8ABB39BD1BF9F30200FC330D /* Walkthrough3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Walkthrough3.png; sourceTree = "<group>"; };
 		8ABB39BE1BF9F30200FC330D /* Walkthrough4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Walkthrough4.png; sourceTree = "<group>"; };
-		8ABB39BF1BF9F30200FC330D /* WhiteSeetiesLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhiteSeetiesLogo@2x.png"; sourceTree = "<group>"; };
-		8ABB39C01BF9F30200FC330D /* WhiteSeetiesLogo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhiteSeetiesLogo@3x.png"; sourceTree = "<group>"; };
 		8ABB39C31BF9F30200FC330D /* bgExplore_3.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bgExplore_3.5.png; sourceTree = "<group>"; };
 		8ABB39C41BF9F30200FC330D /* bgFeed_3.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bgFeed_3.5.png; sourceTree = "<group>"; };
 		8ABB39C51BF9F30200FC330D /* bgProfile_3.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bgProfile_3.5.png; sourceTree = "<group>"; };
@@ -3907,8 +3903,6 @@
 				8ABB39BC1BF9F30200FC330D /* Walkthrough2.png */,
 				8ABB39BD1BF9F30200FC330D /* Walkthrough3.png */,
 				8ABB39BE1BF9F30200FC330D /* Walkthrough4.png */,
-				8ABB39BF1BF9F30200FC330D /* WhiteSeetiesLogo@2x.png */,
-				8ABB39C01BF9F30200FC330D /* WhiteSeetiesLogo@3x.png */,
 			);
 			path = Landing;
 			sourceTree = "<group>";
@@ -5205,7 +5199,6 @@
 				8ABB3ADF1BF9F30200FC330D /* MapBtn@2x.png in Resources */,
 				8ABB3C651BF9F30200FC330D /* ProfileSettingsIcon@2x.png in Resources */,
 				8ABB3C6E1BF9F30200FC330D /* AutoComplete@3x.png in Resources */,
-				8ABB3BDF1BF9F30200FC330D /* WhiteSeetiesLogo@3x.png in Resources */,
 				8ABB3B0B1BF9F30200FC330D /* CloseIcon@2x.png in Resources */,
 				8A6584431B9851D300BC86B9 /* DraftTableViewCell.xib in Resources */,
 				8AD6C0B81B706CF30040437E /* OpenWebViewController.xib in Resources */,
@@ -5764,7 +5757,6 @@
 				8ABB3B0E1BF9F30200FC330D /* EditPostOverlay@3x.png in Resources */,
 				8ABB3C2E1BF9F30200FC330D /* PostOverlay@3x.png in Resources */,
 				8AD6C0F71B706CF30040437E /* SearchDetailViewController.xib in Resources */,
-				8ABB3BDE1BF9F30200FC330D /* WhiteSeetiesLogo@2x.png in Resources */,
 				8ABB3C361BF9F30200FC330D /* AddPostBtn@3x.png in Resources */,
 				8ABB3B001BF9F30200FC330D /* BigAddIcon@3x.png in Resources */,
 				8ABB3BB51BF9F30200FC330D /* SportIcon@3x.png in Resources */,

@@ -82,6 +82,15 @@
 //}
 
 #pragma mark - Declaration
+
+-(FeedV2DetailViewController*)feedV2DetailViewController
+{
+    if (!_feedV2DetailViewController) {
+        _feedV2DetailViewController = [FeedV2DetailViewController new];
+    }
+    
+    return _feedV2DetailViewController;
+}
 -(NSMutableArray*)arrPostList
 {
     if (!_arrPostList) {
@@ -147,6 +156,11 @@
 
 }
 
+#pragma mark - UITable View Delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self showPostDetailView];
+}
 
 -(NSMutableArray*)arrCellSize
 {
@@ -188,6 +202,13 @@
         
     }];
     
+
+}
+
+-(void)showPostDetailView
+{
+
+    [self.navigationController pushViewController:self.feedV2DetailViewController animated:YES];
 
 }
 @end

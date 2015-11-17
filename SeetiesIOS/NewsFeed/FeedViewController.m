@@ -4599,7 +4599,7 @@
                          for (NSDictionary * dict in GetItemsData) {
                              NSString *location = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"location"]];
                              [User_LocationArrayTemp addObject:location];
-                             NSString *uid = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"_id"]];
+                             NSString *uid = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"uid"]];
                              [User_IDArrayTemp addObject:uid];
                              NSString *name = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"name"]];
                              [User_NameArrayTemp addObject:name];
@@ -5153,8 +5153,10 @@
 //    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
 //    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
 //    [NewUserProfileV2View GetUserName:Getname];
+    
+    SLog(@"user ID : %@",arrFriendUserID);
     _profileViewController = nil;
-    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[arrFriendUserID objectAtIndex:getbuttonIDN]];
+    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:arrFriendUserID[getbuttonIDN]];
     [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
     }];
 }
