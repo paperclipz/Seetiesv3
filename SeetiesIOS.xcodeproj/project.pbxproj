@@ -27,7 +27,6 @@
 		0BA94BBB1BE9B71F003AB2E4 /* NearbyImg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA949831BE9B71F003AB2E4 /* NearbyImg.png */; };
 		0BA94BBC1BE9B71F003AB2E4 /* NoImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA949841BE9B71F003AB2E4 /* NoImage.png */; };
 		0BA94BBD1BE9B71F003AB2E4 /* QR.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA949851BE9B71F003AB2E4 /* QR.png */; };
-		0BA94BBE1BE9B71F003AB2E4 /* RateUs.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA949861BE9B71F003AB2E4 /* RateUs.png */; };
 		0BA94BBF1BE9B71F003AB2E4 /* SelectPhotoArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA949871BE9B71F003AB2E4 /* SelectPhotoArrow@2x.png */; };
 		0BA94BC01BE9B71F003AB2E4 /* TitleBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA949881BE9B71F003AB2E4 /* TitleBar@2x.png */; };
 		0BA94BC11BE9B71F003AB2E4 /* TitleBar@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA949891BE9B71F003AB2E4 /* TitleBar@3x.png */; };
@@ -758,8 +757,6 @@
 		8ABB3C991BF9F30200FC330D /* TraditionalChinese.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ABB3A891BF9F30200FC330D /* TraditionalChinese.png */; };
 		8ABB3C9A1BF9F30200FC330D /* CloseBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ABB3A8B1BF9F30200FC330D /* CloseBtn@2x.png */; };
 		8ABB3C9B1BF9F30200FC330D /* CloseBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ABB3A8C1BF9F30200FC330D /* CloseBtn@3x.png */; };
-		8ABB3C9C1BF9F30200FC330D /* DraftsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ABB3A8D1BF9F30200FC330D /* DraftsIcon@2x.png */; };
-		8ABB3C9D1BF9F30200FC330D /* DraftsIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ABB3A8E1BF9F30200FC330D /* DraftsIcon@3x.png */; };
 		8ABB3C9E1BF9F30200FC330D /* ExploreIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ABB3A8F1BF9F30200FC330D /* ExploreIcon@2x.png */; };
 		8ABB3C9F1BF9F30200FC330D /* ExploreIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ABB3A901BF9F30200FC330D /* ExploreIcon@3x.png */; };
 		8ABB3CA01BF9F30200FC330D /* ExploreIconActive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ABB3A911BF9F30200FC330D /* ExploreIconActive@2x.png */; };
@@ -1061,7 +1058,6 @@
 		0BA949831BE9B71F003AB2E4 /* NearbyImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NearbyImg.png; sourceTree = "<group>"; };
 		0BA949841BE9B71F003AB2E4 /* NoImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NoImage.png; sourceTree = "<group>"; };
 		0BA949851BE9B71F003AB2E4 /* QR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QR.png; sourceTree = "<group>"; };
-		0BA949861BE9B71F003AB2E4 /* RateUs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RateUs.png; sourceTree = "<group>"; };
 		0BA949871BE9B71F003AB2E4 /* SelectPhotoArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SelectPhotoArrow@2x.png"; sourceTree = "<group>"; };
 		0BA949881BE9B71F003AB2E4 /* TitleBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TitleBar@2x.png"; sourceTree = "<group>"; };
 		0BA949891BE9B71F003AB2E4 /* TitleBar@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TitleBar@3x.png"; sourceTree = "<group>"; };
@@ -1980,8 +1976,6 @@
 		8ABB3A891BF9F30200FC330D /* TraditionalChinese.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TraditionalChinese.png; sourceTree = "<group>"; };
 		8ABB3A8B1BF9F30200FC330D /* CloseBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CloseBtn@2x.png"; sourceTree = "<group>"; };
 		8ABB3A8C1BF9F30200FC330D /* CloseBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CloseBtn@3x.png"; sourceTree = "<group>"; };
-		8ABB3A8D1BF9F30200FC330D /* DraftsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DraftsIcon@2x.png"; sourceTree = "<group>"; };
-		8ABB3A8E1BF9F30200FC330D /* DraftsIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DraftsIcon@3x.png"; sourceTree = "<group>"; };
 		8ABB3A8F1BF9F30200FC330D /* ExploreIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ExploreIcon@2x.png"; sourceTree = "<group>"; };
 		8ABB3A901BF9F30200FC330D /* ExploreIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ExploreIcon@3x.png"; sourceTree = "<group>"; };
 		8ABB3A911BF9F30200FC330D /* ExploreIconActive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ExploreIconActive@2x.png"; sourceTree = "<group>"; };
@@ -2526,7 +2520,6 @@
 				0BA949831BE9B71F003AB2E4 /* NearbyImg.png */,
 				0BA949841BE9B71F003AB2E4 /* NoImage.png */,
 				0BA949851BE9B71F003AB2E4 /* QR.png */,
-				0BA949861BE9B71F003AB2E4 /* RateUs.png */,
 				0BA949871BE9B71F003AB2E4 /* SelectPhotoArrow@2x.png */,
 				0BA949881BE9B71F003AB2E4 /* TitleBar@2x.png */,
 				0BA949891BE9B71F003AB2E4 /* TitleBar@3x.png */,
@@ -4220,8 +4213,6 @@
 			children = (
 				8ABB3A8B1BF9F30200FC330D /* CloseBtn@2x.png */,
 				8ABB3A8C1BF9F30200FC330D /* CloseBtn@3x.png */,
-				8ABB3A8D1BF9F30200FC330D /* DraftsIcon@2x.png */,
-				8ABB3A8E1BF9F30200FC330D /* DraftsIcon@3x.png */,
 				8ABB3A8F1BF9F30200FC330D /* ExploreIcon@2x.png */,
 				8ABB3A901BF9F30200FC330D /* ExploreIcon@3x.png */,
 				8ABB3A911BF9F30200FC330D /* ExploreIconActive@2x.png */,
@@ -5224,7 +5215,6 @@
 				8ABB3AFF1BF9F30200FC330D /* BigAddIcon@2x.png in Resources */,
 				8ABB3AD61BF9F30200FC330D /* DeleteCollection@3x.png in Resources */,
 				8ABB3C831BF9F30200FC330D /* GoToEnd@2x.png in Resources */,
-				8ABB3C9C1BF9F30200FC330D /* DraftsIcon@2x.png in Resources */,
 				8ABB3B1A1BF9F30200FC330D /* BrithdayIcon@3x.png in Resources */,
 				8ABB3C531BF9F30200FC330D /* PostIcon@2x.png in Resources */,
 				8A114CEB1BE75CA0006AE3F0 /* NewCollectionViewController.xib in Resources */,
@@ -5579,7 +5569,6 @@
 				8A317C051BE1C5620010CAEE /* ShareToFrenViewController.xib in Resources */,
 				8AC8F7451BDA414E00DEF14A /* UserProfileV2ViewController.xib in Resources */,
 				8ABB3C9B1BF9F30200FC330D /* CloseBtn@3x.png in Resources */,
-				0BA94BBE1BE9B71F003AB2E4 /* RateUs.png in Resources */,
 				8ABB3C5A1BF9F30200FC330D /* ProfileExpand@3x.png in Resources */,
 				8ABB3B801BF9F30200FC330D /* NearbyIcon@3x.png in Resources */,
 				8ABB3B711BF9F30200FC330D /* FollowIcon@2x.png in Resources */,
@@ -5769,7 +5758,6 @@
 				8ABB3BE81BF9F30200FC330D /* bgExplore_4.7.png in Resources */,
 				8ABB3B2C1BF9F30200FC330D /* CollectionNoPhoto@3x.png in Resources */,
 				8ABB3BA81BF9F30200FC330D /* ForHimIcon@2x.png in Resources */,
-				8ABB3C9D1BF9F30200FC330D /* DraftsIcon@3x.png in Resources */,
 				8ABB3B3C1BF9F30200FC330D /* CloseStatus@3x.png in Resources */,
 				8ABB3AC01BF9F30200FC330D /* Icon-Small-50@2x.png in Resources */,
 				8ABB3BCF1BF9F30200FC330D /* InviteGraphic@3x.png in Resources */,
@@ -6371,8 +6359,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Reiner Lee (EFSLZ63588)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library",
@@ -6397,7 +6385,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "7019fa0d-9f6e-41e5-955e-d97da8a6a364";
 			};
 			name = Debug;
 		};
@@ -6407,8 +6395,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Reiner Lee (EFSLZ63588)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library",
@@ -6433,7 +6421,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "7019fa0d-9f6e-41e5-955e-d97da8a6a364";
 			};
 			name = Release;
 		};

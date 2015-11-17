@@ -47,6 +47,12 @@
                                     <constraint firstAttribute="height" constant="100" id="BSv-Uw-mwR"/>
                                 </constraints>
                             </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="CollectionOverlay.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZuT-nx-PRe">
+                                <rect key="frame" x="2" y="1" width="148" height="99"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="CollectionOverlay.png" translatesAutoresizingMaskIntoConstraints="NO" id="dCT-4H-bvK">
+                                <rect key="frame" x="155" y="1" width="148" height="99"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bl0-UK-jJ9">
                                 <rect key="frame" x="208" y="117" width="88" height="42"/>
                                 <constraints>
@@ -85,23 +91,31 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="1t0-2b-t7N" firstAttribute="top" secondItem="1l0-BW-VUP" secondAttribute="bottom" constant="17" id="3N6-te-GXh"/>
+                            <constraint firstItem="ZuT-nx-PRe" firstAttribute="width" secondItem="1l0-BW-VUP" secondAttribute="width" constant="-2" id="9v6-fp-dDX"/>
+                            <constraint firstItem="dCT-4H-bvK" firstAttribute="height" secondItem="cXO-xp-Gkt" secondAttribute="height" constant="-1" id="Dy6-RA-YUe"/>
                             <constraint firstItem="Bl0-UK-jJ9" firstAttribute="leading" secondItem="kHj-jv-4sW" secondAttribute="trailing" constant="21" id="E6P-4i-cmR"/>
                             <constraint firstItem="1l0-BW-VUP" firstAttribute="leading" secondItem="cg4-oM-VeY" secondAttribute="leading" id="E9e-Da-XaQ"/>
                             <constraint firstItem="kHj-jv-4sW" firstAttribute="top" secondItem="1l0-BW-VUP" secondAttribute="bottom" constant="17" id="FSK-1y-gUO"/>
+                            <constraint firstItem="ZuT-nx-PRe" firstAttribute="height" secondItem="1l0-BW-VUP" secondAttribute="height" constant="-1" id="ISE-Yj-anD"/>
                             <constraint firstAttribute="trailing" secondItem="Sed-jd-NEw" secondAttribute="trailing" id="JgU-if-iXy"/>
+                            <constraint firstItem="dCT-4H-bvK" firstAttribute="trailing" secondItem="cXO-xp-Gkt" secondAttribute="trailing" constant="-2" id="Lp9-dt-bAM"/>
                             <constraint firstItem="cXO-xp-Gkt" firstAttribute="leading" secondItem="1l0-BW-VUP" secondAttribute="trailing" constant="5" id="LzX-mO-ICR"/>
                             <constraint firstItem="kHj-jv-4sW" firstAttribute="leading" secondItem="cg4-oM-VeY" secondAttribute="leading" constant="33" id="TLQ-9P-mGa"/>
                             <constraint firstItem="7pi-1D-4rC" firstAttribute="top" secondItem="kHj-jv-4sW" secondAttribute="bottom" id="Vqr-CF-zVP"/>
                             <constraint firstItem="1l0-BW-VUP" firstAttribute="top" secondItem="cg4-oM-VeY" secondAttribute="top" id="VrD-gS-TwN"/>
                             <constraint firstAttribute="trailing" secondItem="7pi-1D-4rC" secondAttribute="trailing" constant="117" id="W3a-Ab-JJb"/>
                             <constraint firstItem="Sed-jd-NEw" firstAttribute="top" secondItem="cg4-oM-VeY" secondAttribute="top" id="WdS-im-bNn"/>
+                            <constraint firstItem="dCT-4H-bvK" firstAttribute="top" secondItem="cXO-xp-Gkt" secondAttribute="top" constant="1" id="aBO-IZ-Rmw"/>
                             <constraint firstAttribute="trailing" secondItem="cXO-xp-Gkt" secondAttribute="trailing" constant="-1" id="bMQ-9Q-z3B"/>
+                            <constraint firstItem="ZuT-nx-PRe" firstAttribute="top" secondItem="dCT-4H-bvK" secondAttribute="top" id="blt-z4-Eyu"/>
+                            <constraint firstItem="ZuT-nx-PRe" firstAttribute="leading" secondItem="1l0-BW-VUP" secondAttribute="trailing" constant="-148" id="cZU-rO-md8"/>
                             <constraint firstItem="cXO-xp-Gkt" firstAttribute="height" secondItem="1l0-BW-VUP" secondAttribute="height" id="ddQ-S5-sbg"/>
                             <constraint firstItem="Bl0-UK-jJ9" firstAttribute="top" secondItem="cXO-xp-Gkt" secondAttribute="bottom" constant="17" id="dlk-At-7Uj"/>
                             <constraint firstItem="7pi-1D-4rC" firstAttribute="leading" secondItem="cg4-oM-VeY" secondAttribute="leading" constant="10" id="e0L-sf-0ec"/>
                             <constraint firstAttribute="trailing" secondItem="Bl0-UK-jJ9" secondAttribute="trailing" constant="8" id="es4-hC-jNg"/>
                             <constraint firstItem="1t0-2b-t7N" firstAttribute="leading" secondItem="cg4-oM-VeY" secondAttribute="leading" constant="8" id="gwf-Zv-ZcM"/>
                             <constraint firstItem="cXO-xp-Gkt" firstAttribute="width" secondItem="1l0-BW-VUP" secondAttribute="width" id="nnT-NZ-HCH"/>
+                            <constraint firstItem="dCT-4H-bvK" firstAttribute="width" secondItem="cXO-xp-Gkt" secondAttribute="width" constant="-2" id="sIm-uY-5WA"/>
                             <constraint firstItem="cXO-xp-Gkt" firstAttribute="top" secondItem="cg4-oM-VeY" secondAttribute="top" id="xkD-EF-uMo"/>
                         </constraints>
                     </view>
@@ -128,6 +142,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="CollectionOverlay.png" width="300" height="165"/>
         <image name="EmptyCollection.png" width="134" height="91"/>
         <image name="GreyShareIcon.png" width="22" height="15"/>
         <image name="PrivateCollectionIcon.png" width="17" height="20"/>

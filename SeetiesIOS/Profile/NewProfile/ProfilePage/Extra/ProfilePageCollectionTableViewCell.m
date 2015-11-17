@@ -70,7 +70,12 @@
         ibCollectionNameLeadingConstraint.constant = NO_LOCK_CONSTRSINT_CONSTANT;
         self.ibImageLock.hidden = YES;
     }
-   
+    [self changeLanguage];
+}
+
+-(void)changeLanguage
+{
+    [self.btnEdit setTitle:LocalisedString(@"Edit") forState:UIControlStateNormal];
 }
 
 +(int)getHeight

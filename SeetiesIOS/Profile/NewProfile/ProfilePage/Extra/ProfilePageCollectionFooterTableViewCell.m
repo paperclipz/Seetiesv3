@@ -8,7 +8,9 @@
 //
 
 #import "ProfilePageCollectionFooterTableViewCell.h"
-
+@interface ProfilePageCollectionFooterTableViewCell()
+@property (weak, nonatomic) IBOutlet UIButton *lblTitle;
+@end
 @implementation ProfilePageCollectionFooterTableViewCell
 
 /*
@@ -38,5 +40,15 @@
 +(int)getHeight
 {
     return 44.0f;
+}
+
+-(void)initSelfView
+{
+    [self changeLanguage];
+}
+
+-(void)changeLanguage
+{
+    [self.lblTitle setTitle:LocalisedString(@"See All") forState:UIControlStateNormal];
 }
 @end

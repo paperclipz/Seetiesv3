@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" tableViewCell="XHL-uF-Nju" id="anj-7u-29A">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TnO-kS-Im2">
@@ -46,6 +46,9 @@
                     <constraint firstAttribute="trailingMargin" secondItem="ThC-Zc-qvw" secondAttribute="trailing" constant="-8" id="zI6-C3-6SO"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="lblTitle" destination="TnO-kS-Im2" id="tCN-ca-Sqw"/>
+            </connections>
             <point key="canvasLocation" x="231" y="233"/>
         </tableViewCell>
     </objects>

@@ -403,6 +403,9 @@
     
 }
 -(void)updateUserInformation{
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_PROFILE object:nil];
+
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     LoadingBlackBackground = [[UIButton alloc]init];
