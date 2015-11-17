@@ -59,8 +59,8 @@
     [self.ibScrollView setWidth:frame.size.width];
     [self.myCollectionListingViewController.view setWidth:frame.size.width];
 //    [self.followingCollectionListingViewController.view setWidth:frame.size.width];
-//    
-//    [self.myCollectionListingViewController.view setHeight:self.ibScrollView.frame.size.height];
+    
+    [self.myCollectionListingViewController.view setHeight:self.ibScrollView.frame.size.height];
 //    [self.followingCollectionListingViewController.view setHeight:self.ibScrollView.frame.size.height];
 //
 //

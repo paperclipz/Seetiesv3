@@ -256,6 +256,8 @@
 }
 -(void)requestServerForOtherUserCollection
 {
+    
+    SLog(@"requestServerForOtherUserCollection");
     isMiddleOfCallingServer = true;
     
     //need to input token for own profile private collection, no token is get other people public collection
@@ -320,7 +322,7 @@
             if (self.userCollectionsModel.total_page > self.userCollectionsModel.page) {
                 SLog(@"start to call server");
                 
-                if (self.profileType == ProfileViewTypeOwn) {
+                if (self.collectionListingType == CollectionListingTypeMyOwn) {
                     [self requestServerForUserCollection];
 
                 }
