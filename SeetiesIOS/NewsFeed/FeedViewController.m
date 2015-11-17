@@ -2887,6 +2887,8 @@
                 break;
                 
             case 11:{
+                //TODO: Delete break; for collection suggestion
+                break;
                 NSLog(@"in collect_suggestion");
                 
 //                NSLog(@"Show ID == %@",[arrPostID objectAtIndex:i]);

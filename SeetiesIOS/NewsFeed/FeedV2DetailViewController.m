@@ -103,7 +103,7 @@
     CheckCommentData = 0;
     CountLanguage = 0;
     CheckNearbyPost = 0;
-    CheckCollectionSuggestions = 0;
+    isThereAnyCollectionSuggestion = YES;
     GetPlaceNameHeight = 0;
     ImageCount = 0;
     LanguageButton.hidden = YES;
@@ -212,7 +212,7 @@
         CheckClickCount = 0;
         CheckLanguagedata = 0;
         CheckNearbyPost = 0;
-        CheckCollectionSuggestions = 0;
+        isThereAnyCollectionSuggestion = NO;
         if (CheckLoadDone == NO) {
             [ShowActivity startAnimating];
         }
@@ -1602,7 +1602,7 @@
         
         
         
-        CheckCollectionSuggestions = 1;
+        isThereAnyCollectionSuggestion = NO;
         [self InitCollectionSuggestionsView];
         }else{
         
@@ -2675,8 +2675,10 @@
     
 
     
-    if (CheckCollectionSuggestions == 0) {
-        [self GetCollectionSuggestionsData];
+    if (isThereAnyCollectionSuggestion) {
+        
+        //TODO: Uncomment the following for collecting suggestion
+        //[self GetCollectionSuggestionsData];
     }else{
         [self InitCollectionSuggestionsView];
     }

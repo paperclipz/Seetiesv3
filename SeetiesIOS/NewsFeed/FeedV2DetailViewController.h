@@ -223,7 +223,7 @@
     NSMutableArray *TempGetLanguageArray;
     
     int CheckNearbyPost;
-    int CheckCollectionSuggestions;
+    BOOL isThereAnyCollectionSuggestion;
     int GetPlaceNameHeight;
     
     NSInteger ImageCount;

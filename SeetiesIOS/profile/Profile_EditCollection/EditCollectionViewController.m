@@ -14,6 +14,7 @@
     int collectionDetailPage;
     int collectionDetailTotal_page;
     int collectionDetailTotal_posts;
+    BOOL isMiddleOfRequesting;
 
 
 }
@@ -321,35 +322,40 @@
 -(void)requestServerDetail
 {
     if (collectionDetailTotal_page > collectionDetailPage) {
-        [self requestServerForCollectionDetails:self.collectionID successBlock:^(id object) {
-            
-            if (collectionDetailPage==0) {
-                self.collectionModel = [[ConnectionManager dataManager] collectionModels];
-                collectionDetailTotal_posts = self.collectionModel.total_posts;
-                collectionDetailPage = self.collectionModel.page;
-                collectionDetailTotal_page = self.collectionModel.total_page;
-                [self.arrList addObjectsFromArray:self.collectionModel.arrayPost];
-                [self.ibTableView reloadData];
-                [self reloadData];
-
-            }
-            else{
-            
-                CollectionModel* model = [[ConnectionManager dataManager] collectionModels];
-                collectionDetailTotal_posts = model.total_posts;
-                collectionDetailPage = model.page;
-                collectionDetailTotal_page = model.total_page;
-                [self.arrList addObjectsFromArray:model.arrayPost];
-                [self.ibTableView reloadData];
-                [self reloadData];
-
-            }
+        
+        if (!isMiddleOfRequesting) {
            
-            
-        } failBlock:^(id object) {
-            
-           
-        }];
+            [self requestServerForCollectionDetails:self.collectionID successBlock:^(id object) {
+                
+                if (collectionDetailPage==0) {
+                    self.collectionModel = [[ConnectionManager dataManager] collectionModels];
+                    collectionDetailTotal_posts = self.collectionModel.total_posts;
+                    collectionDetailPage = self.collectionModel.page;
+                    collectionDetailTotal_page = self.collectionModel.total_page;
+                    [self.arrList addObjectsFromArray:self.collectionModel.arrayPost];
+                    [self.ibTableView reloadData];
+                    [self reloadData];
+                    
+                }
+                else{
+                    
+                    CollectionModel* model = [[ConnectionManager dataManager] collectionModels];
+                    collectionDetailTotal_posts = model.total_posts;
+                    collectionDetailPage = model.page;
+                    collectionDetailTotal_page = model.total_page;
+                    [self.arrList addObjectsFromArray:model.arrayPost];
+                    [self.ibTableView reloadData];
+                    [self reloadData];
+                    
+                }
+                
+                
+            } failBlock:^(id object) {
+                
+                
+            }];
+        }
+       
         
     }
     
@@ -357,6 +363,8 @@
 
 -(void)requestServerForCollectionDetails:(NSString*)collectionID successBlock:(IDBlock)successBlock failBlock:(IDBlock)failBlock{
     
+    
+    isMiddleOfRequesting = YES;
     NSDictionary* dict = @{@"collection_id":collectionID,
                            @"list_size":@(ARRAY_LIST_SIZE),
                            @"page":@(collectionDetailPage+1),
@@ -373,10 +381,13 @@
             successBlock(nil);
         }
         [LoadingManager hide];
+        isMiddleOfRequesting = NO;
+
         
     } errorBlock:^(id object) {
         [LoadingManager hide];
-        
+        isMiddleOfRequesting = NO;
+
     }];
     
 }
