@@ -7,27 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UrlDataClass.h"
 #import "GAITrackedViewController.h"
 #import "LLARingSpinnerView.h"
-@interface SubmitProfileViewController : GAITrackedViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate>{
+@interface SubmitProfileViewController : GAITrackedViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate>
 
-    IBOutlet UILabel *ShowTitle;
-    IBOutlet UIImageView *ShowImage;
-    IBOutlet UIButton *EditButton;
-    IBOutlet UIButton *SaveButton;
-    IBOutlet UIImageView *BarImage;
-
-    NSString *GetType;
-    
-    UrlDataClass *DataUrl;
-    NSMutableData *webData;
-    
-    LLARingSpinnerView *spinnerView;
-    UIButton *LoadingBlackBackground;
-    UILabel *ShowLoadingText;
-}
 -(void)GetType:(NSString *)Type;
--(IBAction)SaveButton:(id)sender;
--(IBAction)EditButton:(id)sender;
 @end

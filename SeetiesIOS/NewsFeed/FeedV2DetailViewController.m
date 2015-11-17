@@ -3407,7 +3407,7 @@
 //        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
 //        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
 //        [NewUserProfileV2View GetUserName:GetPostName];
-        
+        _profileViewController = nil;
         [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:GetUserUid];
         [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
         }];
@@ -3432,7 +3432,7 @@
 //    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
 //    [NewUserProfileV2View GetUserName:[User_Comment_usernameArray objectAtIndex:getbuttonIDN]];
     
-    
+    _profileViewController = nil;
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[User_Comment_uidArray objectAtIndex:getbuttonIDN]];
     [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
     }];
@@ -3445,7 +3445,7 @@
 //    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
 //    [NewUserProfileV2View GetUserName:[UserInfo_NameArray_Nearby objectAtIndex:getbuttonIDN]];
     
-    
+    _profileViewController = nil;
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[UserInfo_IDArray_Nearby objectAtIndex:getbuttonIDN]];
     [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
     }];
@@ -3457,7 +3457,7 @@
 //    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
 //    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
 //    [NewUserProfileV2View GetUserName:[UserInfo_NameArray_Nearby lastObject]];
-    
+    _profileViewController = nil;
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[UserInfo_IDArray_Nearby objectAtIndex:getbuttonIDN]];
     [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
     }];
@@ -4415,7 +4415,7 @@
 //    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
 //    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
 //    [NewUserProfileV2View GetUserName:[Like_UsernameArray objectAtIndex:getbuttonIDN]];
-    
+    _profileViewController = nil;
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[Like_UseruidArray objectAtIndex:getbuttonIDN]];
     [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
     }];
@@ -4439,7 +4439,7 @@
 //    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
 //    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
 //    [NewUserProfileV2View GetUserName:[User_Comment_usernameArray objectAtIndex:getbuttonIDN]];
-    
+    _profileViewController = nil;
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[User_Comment_uidArray objectAtIndex:getbuttonIDN]];
     [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
     }];
@@ -4590,7 +4590,7 @@
 //    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
 //    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
 //    [NewUserProfileV2View GetUserName:Getname];
-    
+    _profileViewController = nil;
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[arrUserID objectAtIndex:getbuttonIDN]];
     [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
     }];

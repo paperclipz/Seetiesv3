@@ -4911,7 +4911,7 @@
 //        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
 //        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
 //        [NewUserProfileV2View GetUserName:[arrUserName objectAtIndex:getbuttonIDN]];
-        
+        _profileViewController = nil;
         [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[arrUserID objectAtIndex:getbuttonIDN]];
         [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
         }];
@@ -5102,6 +5102,7 @@
 //        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
 //        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
 //        [NewUserProfileV2View GetUid:GetID];
+        _profileViewController = nil;
         [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:GetID];
         [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
         }];
@@ -5139,7 +5140,7 @@
 //    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
 //    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
 //    [NewUserProfileV2View GetUserName:Getname];
-    
+    _profileViewController = nil;
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[arrfeaturedUserID objectAtIndex:getbuttonIDN]];
     [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
     }];
@@ -5152,7 +5153,7 @@
 //    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
 //    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
 //    [NewUserProfileV2View GetUserName:Getname];
-    
+    _profileViewController = nil;
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[arrFriendUserID objectAtIndex:getbuttonIDN]];
     [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
     }];
@@ -5244,7 +5245,7 @@
 //    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
 //    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
 //    [NewUserProfileV2View GetUserName:[arrUserName objectAtIndex:getbuttonIDN]];
-    
+    _profileViewController = nil;
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[arrUserID objectAtIndex:getbuttonIDN]];
     [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
     }];
@@ -5282,7 +5283,7 @@
 //    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
 //    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
 //    [NewUserProfileV2View GetUserName:Getname];
-    
+    _profileViewController = nil;
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[arrCollectionUserID objectAtIndex:getbuttonIDN]];
     [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
     }];

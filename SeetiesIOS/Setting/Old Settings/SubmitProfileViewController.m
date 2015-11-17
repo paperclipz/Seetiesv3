@@ -7,12 +7,26 @@
 //
 
 #import "SubmitProfileViewController.h"
-//#import <CoreLocation/CoreLocation.h>
-//@import AssetsLibrary;
-#import "LanguageManager.h"
 #import "Locale.h"
 
 @interface SubmitProfileViewController ()
+{
+    
+    IBOutlet UILabel *ShowTitle;
+    IBOutlet UIImageView *ShowImage;
+    IBOutlet UIButton *EditButton;
+    IBOutlet UIButton *SaveButton;
+    IBOutlet UIImageView *BarImage;
+    
+    NSString *GetType;
+    
+    UrlDataClass *DataUrl;
+    NSMutableData *webData;
+    
+    LLARingSpinnerView *spinnerView;
+    UIButton *LoadingBlackBackground;
+    UILabel *ShowLoadingText;
+}
 
 @end
 
