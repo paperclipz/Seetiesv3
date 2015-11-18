@@ -388,25 +388,31 @@
                 
                 BOOL CheckShowLangaugesButton = NO;
                 
-                for (int i = 0; i < [GetLanguagesArray count]; i++) {
-                    NSString *TempLangauges = [[NSString alloc]initWithFormat:@"%@",[GetLanguagesArray objectAtIndex:i]];
-                    
-                    if ([TempLangauges isEqualToString:GetSystemLanguageCode]) {
-                        CheckShowLangaugesButton = NO;
-                        break;
-                    }else{
-                        CheckShowLangaugesButton = YES;
+                if ([GetLanguagesArray count] == 1) {
+                    for (int i = 0; i < [GetLanguagesArray count]; i++) {
+                        NSString *TempLangauges = [[NSString alloc]initWithFormat:@"%@",[GetLanguagesArray objectAtIndex:i]];
+                        
+                        if ([TempLangauges isEqualToString:GetSystemLanguageCode]) {
+                            CheckShowLangaugesButton = NO;
+                            break;
+                        }else{
+                            CheckShowLangaugesButton = YES;
+                        }
                     }
-                }
-                
-                
-                if (CheckShowLangaugesButton == NO) {
-                  //  TranslateButton.frame = CGRectMake(10, 3, 43, 43);
-                    TranslateButton.hidden = YES;
-                    ShareLinkButton.frame = CGRectMake(10, 3, 43, 43);
+                    
+                    
+                    if (CheckShowLangaugesButton == NO) {
+                        //  TranslateButton.frame = CGRectMake(10, 3, 43, 43);
+                        TranslateButton.hidden = YES;
+                        ShareLinkButton.frame = CGRectMake(10, 3, 43, 43);
+                    }else{
+                        
+                    }
                 }else{
                 
                 }
+                
+
                 
                 
                 [self InitView];
@@ -525,8 +531,6 @@
     [WhiteBackground setTitle:@"" forState:UIControlStateNormal];
     WhiteBackground.backgroundColor = [UIColor whiteColor];
     [MainScroll addSubview:WhiteBackground];
-    
-    
 
     NSString *ImageData;
     if ([Content_arrImage count] > 0){

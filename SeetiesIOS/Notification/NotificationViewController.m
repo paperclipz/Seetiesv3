@@ -334,9 +334,6 @@
                 [Following_TypeArray addObject:type];
                 NSString *post_id =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"post_id"]];
                 [Following_PostIDArray addObject:post_id];
-
-                NSString *uid =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"uid"]];
-                [Following_uidArray addObject:uid];
                 NSString *message =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"message"]];
                 [Following_MessageArray addObject:message];
                 NSString *Action =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"action"]];
@@ -360,6 +357,8 @@
                     [Following_UserThumbnailArray addObject:user_thumbnail];
                     NSString *username =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"username"]];
                     [Following_UserNameArray addObject:username];
+                    NSString *uid =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"user_id"]];
+                    [Following_uidArray addObject:uid];
                     break;
                 }
                 
@@ -1070,6 +1069,8 @@
 -(IBAction)FollowingButtonOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);
+    
+    NSLog(@"Following_uidArray is %@",[Following_uidArray objectAtIndex:getbuttonIDN]);
     
     NSString *GetType = [[NSString alloc]initWithFormat:@"%@",[TypeArray objectAtIndex:getbuttonIDN]];
     if ([GetType isEqualToString:@"follow"]) {
