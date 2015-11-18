@@ -2722,7 +2722,7 @@
         SeeallButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         [SeeallButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
         [SeeallButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
-        // [SeeallButton addTarget:self action:@selector(SeeAllButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [SeeallButton addTarget:self action:@selector(SeeAllButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
         [MainScroll addSubview: SeeallButton];
         
         for (int i = 0; i < [arrCollectionID count]; i++) {
@@ -4459,5 +4459,8 @@
     } else {
         
     }
+}
+-(IBAction)SeeAllButtonOnClick:(id)sender{
+    NSLog(@"SeeAllButtonOnClick");
 }
 @end

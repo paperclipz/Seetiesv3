@@ -457,7 +457,7 @@
     CollectionViewNowButton.layer.borderColor = [[UIColor  whiteColor] CGColor];
     CollectionViewNowButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:13];
     [CollectionViewNowButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-   // [CollectionViewNowButton addTarget:self action:@selector(LetsgoButton:) forControlEvents:UIControlEventTouchUpInside];
+    [CollectionViewNowButton addTarget:self action:@selector(OpenCollectionOnClick:) forControlEvents:UIControlEventTouchUpInside];
     [CollectionViewNowButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
     [ibScrollViewCountry addSubview:CollectionViewNowButton];
     
@@ -610,5 +610,8 @@
     SearchViewV2Controller *SearchView = [[SearchViewV2Controller alloc]initWithNibName:@"SearchViewV2Controller" bundle:nil];
     //[self presentViewController:SearchView animated:YES completion:nil];
     [self.navigationController pushViewController:SearchView animated:NO];
+}
+-(IBAction)OpenCollectionOnClick:(id)sender{
+    NSLog(@"OpenCollectionOnClick");
 }
 @end

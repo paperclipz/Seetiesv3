@@ -3366,6 +3366,15 @@
                // ShowOverlayImg.layer.cornerRadius = 10;
                 [MainScroll addSubview:ShowOverlayImg];
                 
+                
+                UIButton *OpenFollowingCollectionButton = [[UIButton alloc]init];
+                [OpenFollowingCollectionButton setTitle:@"" forState:UIControlStateNormal];
+                OpenFollowingCollectionButton.backgroundColor = [UIColor clearColor];
+                OpenFollowingCollectionButton.frame = CGRectMake(10, heightcheck + 50, screenWidth - 20, 280);
+                [OpenFollowingCollectionButton addTarget:self action:@selector(FollowingCollectionButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+                [MainScroll addSubview:OpenFollowingCollectionButton];
+                
+                
                 AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
                 ShowUserProfileImage.frame = CGRectMake(25 , heightcheck + 51 + 10, 40, 40);
                 // ShowUserProfileImage.image = [UIImage imageNamed:@"DemoProfile.jpg"];
@@ -5380,5 +5389,8 @@
         _profileViewController = [ProfileViewController new];
     
     return _profileViewController;
+}
+-(IBAction)FollowingCollectionButtonOnClick:(id)sender{
+NSLog(@"FollowingCollectionButtonOnClick");
 }
 @end
