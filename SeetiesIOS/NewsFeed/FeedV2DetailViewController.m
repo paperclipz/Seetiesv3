@@ -2902,6 +2902,9 @@
 
 }
 -(void)InitCollectionSuggestionsView{
+    
+    NSLog(@"InitCollectionSuggestionsView");
+    
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
     if ([arrCollectionID count] == 0) {

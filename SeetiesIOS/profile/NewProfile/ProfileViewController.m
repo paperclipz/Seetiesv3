@@ -323,9 +323,9 @@
     self.profileViewType = type;
     self.userID = uID;
     [self requestServerForUserInfo];
-   //[self requestServerForUserCollection];
-    //[self requestServerForUserPost];
-    //[self requestServerForUserLikes];
+    [self requestServerForUserCollection];
+    [self requestServerForUserPost];
+    [self requestServerForUserLikes];
 }
 
 -(void)adjustTableView
