@@ -3485,6 +3485,15 @@
                // ShowOverlayImg.layer.cornerRadius = 10;
                 [MainScroll addSubview:ShowOverlayImg];
                 
+                
+                UIButton *OpenFollowingCollectionButton = [[UIButton alloc]init];
+                [OpenFollowingCollectionButton setTitle:@"" forState:UIControlStateNormal];
+                OpenFollowingCollectionButton.backgroundColor = [UIColor clearColor];
+                OpenFollowingCollectionButton.frame = CGRectMake(10, heightcheck + 50, screenWidth - 20, 280);
+                [OpenFollowingCollectionButton addTarget:self action:@selector(FollowingCollectionButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+                [MainScroll addSubview:OpenFollowingCollectionButton];
+                
+                
                 AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
                 ShowUserProfileImage.frame = CGRectMake(25 , heightcheck + 51 + 10, 40, 40);
                 // ShowUserProfileImage.image = [UIImage imageNamed:@"DemoProfile.jpg"];
@@ -3560,7 +3569,8 @@
                 ShareButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
                 [ShareButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
                 [ShareButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
-               // [ShareButton addTarget:self action:@selector(NearbyButton:) forControlEvents:UIControlEventTouchUpInside];
+                [ShareButton addTarget:self action:@selector(FollowCollectionShareButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+                ShareButton.tag = i;
                 [MainScroll addSubview: ShareButton];
                 
                 
@@ -3719,7 +3729,7 @@
         NSString *TempCount = [[NSString alloc]initWithFormat:@"%li/%lu",page + 1,(unsigned long)[arrFriendUserName count] - FollowSuggestionFriendCount];
         ShowSUserCount_Friend.text = TempCount;
     }else if(scrollView == SUserScrollview_Featured){
-        NSLog(@"SUserScrollview_Featured.tag === %li",(long)SUserScrollview_Featured.tag);
+        //NSLog(@"SUserScrollview_Featured.tag === %li",(long)SUserScrollview_Featured.tag);
         
         CGFloat pageWidth = SUserScrollview_Featured.frame.size.width; // you need to have a **iVar** with getter for scrollView
         float fractionalPage = SUserScrollview_Featured.contentOffset.x / pageWidth;
@@ -5284,8 +5294,16 @@
     NSLog(@"ShareButtonOnClick");
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     ShareViewController *ShareView = [[ShareViewController alloc]init];
-    [self presentViewController:ShareView animated:YES completion:nil];
-    //[self.view.window.rootViewController presentViewController:ShareView animated:YES completion:nil];
+//    [self presentViewController:ShareView animated:YES completion:nil];
+//    //[self.view.window.rootViewController presentViewController:ShareView animated:YES completion:nil];
+//    [ShareView GetPostID:[arrPostID objectAtIndex:getbuttonIDN] GetMessage:[arrMessage objectAtIndex:getbuttonIDN] GetTitle:[arrTitle objectAtIndex:getbuttonIDN] GetImageData:[arrImage objectAtIndex:getbuttonIDN]];
+    
+    
+    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:ShareView];
+    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
+    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
+    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
+    [self presentViewController:formSheetController animated:YES completion:nil];
     [ShareView GetPostID:[arrPostID objectAtIndex:getbuttonIDN] GetMessage:[arrMessage objectAtIndex:getbuttonIDN] GetTitle:[arrTitle objectAtIndex:getbuttonIDN] GetImageData:[arrImage objectAtIndex:getbuttonIDN]];
 }
 -(IBAction)CommentButtonOnClick:(id)sender{
@@ -5411,8 +5429,9 @@
     }];
 }
 -(IBAction)SeeAllButtonOnClick:(id)sender{
-    SuggestedCollectionsViewController *SuggestedCollectionsView = [[SuggestedCollectionsViewController alloc]init];
-    [self.navigationController pushViewController:SuggestedCollectionsView animated:YES];
+    NSLog(@"Suggested Collection SeeAllButtonOnClick");
+//    SuggestedCollectionsViewController *SuggestedCollectionsView = [[SuggestedCollectionsViewController alloc]init];
+//    [self.navigationController pushViewController:SuggestedCollectionsView animated:YES];
 }
 
 -(IBAction)CollectionFollowingButtonOnClick:(id)sender{
@@ -5505,5 +5524,20 @@
         _profileViewController = [ProfileViewController new];
     
     return _profileViewController;
+}
+-(IBAction)FollowingCollectionButtonOnClick:(id)sender{
+NSLog(@"FollowingCollectionButtonOnClick");
+}
+-(IBAction)FollowCollectionShareButtonOnClick:(id)sender{
+   NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    
+    ShareViewController *ShareView = [[ShareViewController alloc]init];
+    
+    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:ShareView];
+    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
+    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
+    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
+    [self presentViewController:formSheetController animated:YES completion:nil];
+    [ShareView GetCollectionID:[arrPostID objectAtIndex:getbuttonIDN] GetCollectionTitle:[arrTitle objectAtIndex:getbuttonIDN]];
 }
 @end

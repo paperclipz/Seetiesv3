@@ -14,6 +14,7 @@
 		0B6A54E11BB51F84005B9D6B /* ReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B6A54DF1BB51F84005B9D6B /* ReportViewController.xib */; };
 		0B99C2001BCBA1F1006D7E63 /* AnnounceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B99C1FE1BCBA1F0006D7E63 /* AnnounceViewController.m */; };
 		0B99C2011BCBA1F1006D7E63 /* AnnounceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B99C1FF1BCBA1F0006D7E63 /* AnnounceViewController.xib */; };
+		0B9E1A421BFD8BD7003EAFDC /* ExploreTopImg@.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9E1A411BFD8BD7003EAFDC /* ExploreTopImg@.png */; };
 		0BA1CB2F1B85AEFA009FFD3E /* Explore2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA1CB2E1B85AEFA009FFD3E /* Explore2ViewController.xib */; };
 		0BA94BB21BE9B71F003AB2E4 /* launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA949791BE9B71F003AB2E4 /* launch.png */; };
 		0BA94BB31BE9B71F003AB2E4 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA9497B1BE9B71F003AB2E4 /* 1.png */; };
@@ -1043,6 +1044,7 @@
 		0B99C1FD1BCBA1F0006D7E63 /* AnnounceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnounceViewController.h; sourceTree = "<group>"; };
 		0B99C1FE1BCBA1F0006D7E63 /* AnnounceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnounceViewController.m; sourceTree = "<group>"; };
 		0B99C1FF1BCBA1F0006D7E63 /* AnnounceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnnounceViewController.xib; sourceTree = "<group>"; };
+		0B9E1A411BFD8BD7003EAFDC /* ExploreTopImg@.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ExploreTopImg@.png"; sourceTree = "<group>"; };
 		0BA1CB2E1B85AEFA009FFD3E /* Explore2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Explore2ViewController.xib; sourceTree = "<group>"; };
 		0BA949791BE9B71F003AB2E4 /* launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch.png; sourceTree = "<group>"; };
 		0BA9497B1BE9B71F003AB2E4 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
@@ -2505,6 +2507,7 @@
 		0BA9497A1BE9B71F003AB2E4 /* Misc */ = {
 			isa = PBXGroup;
 			children = (
+				0B9E1A411BFD8BD7003EAFDC /* ExploreTopImg@.png */,
 				0BA9497B1BE9B71F003AB2E4 /* 1.png */,
 				0BA9497C1BE9B71F003AB2E4 /* 2.png */,
 				0BA9497D1BE9B71F003AB2E4 /* 3.png */,
@@ -5787,6 +5790,7 @@
 				8AC8F7471BDA414E00DEF14A /* EditCollectionDetailViewController.xib in Resources */,
 				8ABB3C2B1BF9F30200FC330D /* PostLocationIcon@2x.png in Resources */,
 				8ABB3BC51BF9F30200FC330D /* InstagramBtnInactive@3x.png in Resources */,
+				0B9E1A421BFD8BD7003EAFDC /* ExploreTopImg@.png in Resources */,
 				8ABB3B0A1BF9F30200FC330D /* CategoriesCheck@3x.png in Resources */,
 				8ABB3B9E1BF9F30200FC330D /* ArtIcon@2x.png in Resources */,
 				8ABB3AE51BF9F30200FC330D /* PhotoPin@2x.png in Resources */,
@@ -6375,7 +6379,7 @@
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Live;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "bd33a98b-8fd4-49be-9c6d-cdb9423d6a91";
 			};
@@ -6411,7 +6415,7 @@
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Live;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "bd33a98b-8fd4-49be-9c6d-cdb9423d6a91";
 			};

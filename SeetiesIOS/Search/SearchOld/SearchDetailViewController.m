@@ -357,6 +357,18 @@
                 CheckUserInitView = 0;
                 [self SendSearchKeywordData];
             }else if(SegmentedControlCheck == 2){
+                for (UIView *subview in PostsView.subviews) {
+                    [subview removeFromSuperview];
+                }
+                CheckLoad = NO;
+                TotalPage = 1;
+                CurrentPage = 0;
+                CheckFirstTimeLoad = 0;
+                DataCount = 0;
+                DataTotal = 0;
+                CheckPostsInitView = 0;
+                CheckUserInitView = 0;
+                CheckCollectionInitView = 0;
                 [self GetCollectionData];
             }else{
                // CheckUserInitView = 0;
@@ -370,6 +382,7 @@
                 DataCount = 0;
                 DataTotal = 0;
                 CheckPostsInitView = 0;
+                CheckCollectionInitView = 0;
                 [self GetAllUserData];
             }
         
@@ -1142,12 +1155,12 @@
     NSString *TempStringPosts = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Posts")];
     NSString *TempStringPeople = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Seetizens")];
     
-    NSArray *itemArray = [NSArray arrayWithObjects:TempStringPosts, TempStringPeople, nil];
-   // NSArray *itemArray = [NSArray arrayWithObjects:TempStringCollection,TempStringPosts, TempStringPeople, nil];
+    //NSArray *itemArray = [NSArray arrayWithObjects:TempStringPosts, TempStringPeople, nil];
+    NSArray *itemArray = [NSArray arrayWithObjects:TempStringCollection,TempStringPosts, TempStringPeople, nil];
     UISegmentedControl *ProfileControl = [[UISegmentedControl alloc]initWithItems:itemArray];
     ProfileControl.frame = CGRectMake(15, 105, screenWidth - 30, 33);
     [ProfileControl addTarget:self action:@selector(segmentAction:) forControlEvents: UIControlEventValueChanged];
-    ProfileControl.selectedSegmentIndex = 0;
+    ProfileControl.selectedSegmentIndex = 1;
     UIFont *font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:12];
     NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
                                                            forKey:NSFontAttributeName];
@@ -1197,23 +1210,23 @@
 {
     
     switch (segment.selectedSegmentIndex) {
-//        case 0:
-//            SegmentedControlCheck = 2;
-//            NSLog(@"CollectionView Click");
-//            PostsView.hidden = YES;
-//            PeopleView.hidden = YES;
-//            CollectionView.hidden = NO;
-//            if (CheckCollectionInitView == 0) {
-//                CheckCollectionInitView = 1;
-//                [self GetCollectionData];
-//            }else{
-//                CGSize contentSize = MainScroll.frame.size;
-//                contentSize.height = heightcheck + CollectionView.frame.size.height;
-//                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-//                MainScroll.contentSize = contentSize;
-//            }
-//            break;
         case 0:
+            SegmentedControlCheck = 2;
+            NSLog(@"CollectionView Click");
+            PostsView.hidden = YES;
+            PeopleView.hidden = YES;
+            CollectionView.hidden = NO;
+            if (CheckCollectionInitView == 0) {
+                CheckCollectionInitView = 1;
+                [self GetCollectionData];
+            }else{
+                CGSize contentSize = MainScroll.frame.size;
+                contentSize.height = heightcheck + CollectionView.frame.size.height;
+                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+                MainScroll.contentSize = contentSize;
+            }
+            break;
+        case 1:
             SegmentedControlCheck = 0;
             NSLog(@"PostView click");
             PostsView.hidden = NO;
@@ -1233,7 +1246,7 @@
 
             
             break;
-        case 1:
+        case 2:
             SegmentedControlCheck = 1;
             NSLog(@"PeopleView click");
             PostsView.hidden = YES;

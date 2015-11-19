@@ -413,53 +413,53 @@
 -(void)InitContentView{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-//    
-//    //top collection
-//    AsyncImageView *TopCollectionImage = [[AsyncImageView alloc]init];
-//    TopCollectionImage.frame = CGRectMake(0, 0, screenWidth, 290);
-//    TopCollectionImage.contentMode = UIViewContentModeScaleAspectFill;
-//    TopCollectionImage.layer.masksToBounds = YES;
-//    [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:TopCollectionImage];
-//    TopCollectionImage.image = [UIImage imageNamed:@"ExploreTopImg@.png"];
-//    [ibScrollViewCountry addSubview:TopCollectionImage];
-//    
-////    UIImageView *ShowOverlayImg = [[UIImageView alloc]init];
-////    ShowOverlayImg.image = [UIImage imageNamed:@"ExploreImgOverlay.png"];
-////    ShowOverlayImg.frame = CGRectMake(0, GetHeight -20, screenWidth, 200);
-////    ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
-////    ShowOverlayImg.layer.masksToBounds = YES;
-////    // ShowOverlayImg.layer.cornerRadius = 5;
-////    [MainScroll addSubview:ShowOverlayImg];
-//    
-//    UILabel *ShowBigText = [[UILabel alloc]init];
-//    ShowBigText.frame = CGRectMake(15, 100, screenWidth - 30, 50);
-//    ShowBigText.text = @"Top Collection";
-//    ShowBigText.textAlignment = NSTextAlignmentCenter;
-//    ShowBigText.textColor = [UIColor whiteColor];
-//    ShowBigText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:36];
-//    [ibScrollViewCountry addSubview:ShowBigText];
-//
-//    UILabel *ShowSubText = [[UILabel alloc]init];
-//    ShowSubText.frame = CGRectMake(15, 150, screenWidth - 30, 40);
-//    ShowSubText.text = @"Simply awesme, collect now.";
-//    ShowSubText.textAlignment = NSTextAlignmentCenter;
-//    ShowSubText.textColor = [UIColor whiteColor];
-//    ShowSubText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:18];
-//    [ibScrollViewCountry addSubview:ShowSubText];
-//    
-//    UIButton *CollectionViewNowButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [CollectionViewNowButton setTitle:@"View now" forState:UIControlStateNormal];
-//    [CollectionViewNowButton setFrame:CGRectMake((screenWidth/2) - 70, 200, 140, 50)];
-//    [CollectionViewNowButton setBackgroundColor:[UIColor clearColor]];
-//    CollectionViewNowButton.layer.cornerRadius= 25;
-//    CollectionViewNowButton.layer.borderWidth = 1;
-//    CollectionViewNowButton.layer.masksToBounds = YES;
-//    CollectionViewNowButton.layer.borderColor = [[UIColor  whiteColor] CGColor];
-//    CollectionViewNowButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:13];
-//    [CollectionViewNowButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//   // [CollectionViewNowButton addTarget:self action:@selector(LetsgoButton:) forControlEvents:UIControlEventTouchUpInside];
-//    [CollectionViewNowButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
-//    [ibScrollViewCountry addSubview:CollectionViewNowButton];
+    
+    //top collection
+    AsyncImageView *TopCollectionImage = [[AsyncImageView alloc]init];
+    TopCollectionImage.frame = CGRectMake(0, 0, screenWidth, 290);
+    TopCollectionImage.contentMode = UIViewContentModeScaleAspectFill;
+    TopCollectionImage.layer.masksToBounds = YES;
+    [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:TopCollectionImage];
+    TopCollectionImage.image = [UIImage imageNamed:@"ExploreTopImg@.png"];
+    [ibScrollViewCountry addSubview:TopCollectionImage];
+    
+//    UIImageView *ShowOverlayImg = [[UIImageView alloc]init];
+//    ShowOverlayImg.image = [UIImage imageNamed:@"ExploreImgOverlay.png"];
+//    ShowOverlayImg.frame = CGRectMake(0, GetHeight -20, screenWidth, 200);
+//    ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
+//    ShowOverlayImg.layer.masksToBounds = YES;
+//    // ShowOverlayImg.layer.cornerRadius = 5;
+//    [MainScroll addSubview:ShowOverlayImg];
+    
+    UILabel *ShowBigText = [[UILabel alloc]init];
+    ShowBigText.frame = CGRectMake(15, 100, screenWidth - 30, 50);
+    ShowBigText.text = @"Top Collection";
+    ShowBigText.textAlignment = NSTextAlignmentCenter;
+    ShowBigText.textColor = [UIColor whiteColor];
+    ShowBigText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:36];
+    [ibScrollViewCountry addSubview:ShowBigText];
+
+    UILabel *ShowSubText = [[UILabel alloc]init];
+    ShowSubText.frame = CGRectMake(15, 150, screenWidth - 30, 40);
+    ShowSubText.text = @"Simply awesme, collect now.";
+    ShowSubText.textAlignment = NSTextAlignmentCenter;
+    ShowSubText.textColor = [UIColor whiteColor];
+    ShowSubText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:18];
+    [ibScrollViewCountry addSubview:ShowSubText];
+    
+    UIButton *CollectionViewNowButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [CollectionViewNowButton setTitle:@"View now" forState:UIControlStateNormal];
+    [CollectionViewNowButton setFrame:CGRectMake((screenWidth/2) - 70, 200, 140, 50)];
+    [CollectionViewNowButton setBackgroundColor:[UIColor clearColor]];
+    CollectionViewNowButton.layer.cornerRadius= 25;
+    CollectionViewNowButton.layer.borderWidth = 1;
+    CollectionViewNowButton.layer.masksToBounds = YES;
+    CollectionViewNowButton.layer.borderColor = [[UIColor  whiteColor] CGColor];
+    CollectionViewNowButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:13];
+    [CollectionViewNowButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [CollectionViewNowButton addTarget:self action:@selector(OpenCollectionOnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [CollectionViewNowButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
+    [ibScrollViewCountry addSubview:CollectionViewNowButton];
     
     
 
@@ -486,7 +486,7 @@
 
 
         AsyncImageView *ShowCountryImg = [[AsyncImageView alloc]init];
-        ShowCountryImg.frame = CGRectMake(0, 0 + i * 151, screenWidth, 150);
+        ShowCountryImg.frame = CGRectMake(0, 290 + i * 151, screenWidth, 150);
         
         switch (i) {
             case 0:
@@ -527,7 +527,7 @@
         
         UIImageView *ShowOverlayImg = [[UIImageView alloc]init];
         ShowOverlayImg.image = [UIImage imageNamed:@"ExploreOverlay.png"];
-        ShowOverlayImg.frame = CGRectMake(0, 0 + i * 151, screenWidth, 150);
+        ShowOverlayImg.frame = CGRectMake(0, 290 + i * 151, screenWidth, 150);
         ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
         ShowOverlayImg.layer.masksToBounds = YES;
         // ShowOverlayImg.layer.cornerRadius = 5;
@@ -535,7 +535,7 @@
        
         
         UILabel *ShowUserName = [[UILabel alloc]init];
-        ShowUserName.frame = CGRectMake(20, 100 + i * 151, screenWidth - 40, 50);
+        ShowUserName.frame = CGRectMake(20, 390 + i * 151, screenWidth - 40, 50);
         NSString *uppercase = [self.exploreCountryModels.countries[i] name];
         ShowUserName.text = uppercase;
         ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:17];
@@ -546,13 +546,13 @@
         
         UIButton *ClickButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [ClickButton setTitle:@"" forState:UIControlStateNormal];
-        [ClickButton setFrame:CGRectMake(0, 0 + i * 151, screenWidth, 150)];
+        [ClickButton setFrame:CGRectMake(0, 290 + i * 151, screenWidth, 150)];
         [ClickButton setBackgroundColor:[UIColor clearColor]];
         ClickButton.tag = i;
         [ClickButton addTarget:self action:@selector(ClickButton:) forControlEvents:UIControlEventTouchUpInside];
         [ibScrollViewCountry addSubview:ClickButton];
         
-        [ibScrollViewCountry setContentSize:CGSizeMake(screenWidth, 150 + i * 151)];
+        [ibScrollViewCountry setContentSize:CGSizeMake(screenWidth, 440 + i * 151)];
     }
 
 }
@@ -610,5 +610,8 @@
     SearchViewV2Controller *SearchView = [[SearchViewV2Controller alloc]initWithNibName:@"SearchViewV2Controller" bundle:nil];
     //[self presentViewController:SearchView animated:YES completion:nil];
     [self.navigationController pushViewController:SearchView animated:NO];
+}
+-(IBAction)OpenCollectionOnClick:(id)sender{
+    NSLog(@"OpenCollectionOnClick");
 }
 @end
