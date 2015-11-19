@@ -14,6 +14,7 @@
 {
     BOOL isMiddleOfCallingServer;
 }
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 
 @property (strong, nonatomic)NSMutableArray* arrPostListing;
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
@@ -41,7 +42,7 @@
 -(void)initSelfView
 {
     [self initTableViewWithDelegate];
-
+    self.lblTitle.text = LocalisedString(@"Posts");
     
 }
 

@@ -15,6 +15,60 @@
 #import "Locale.h"
 
 @interface NotificationViewController ()
+{
+    UrlDataClass *DataUrl;
+    NSMutableData *webData;
+    
+    IBOutlet UIView *ShowNoDataView;
+    IBOutlet UIScrollView *MainScroll;
+    IBOutlet UILabel *TitleLabel;
+    IBOutlet UIImageView *BarImage;
+    
+    NSMutableArray *PostIDArray;
+    NSMutableArray *TypeArray;
+    NSMutableArray *UserThumbnailArray;
+    NSMutableArray *PostThumbnailArray;
+    NSMutableArray *UserNameArray;
+    NSMutableArray *uidArray;
+    NSMutableArray *MessageArray;
+    NSMutableArray *ActionArray;
+    NSMutableArray *DateArray;
+    
+    IBOutlet UIActivityIndicatorView *ShowActivity;
+    
+    IBOutlet UIImageView *NoDataImg;
+    
+    IBOutlet UILabel *ShowNoDataText_1;
+    IBOutlet UILabel *ShowNoDataText_2;
+    
+    UIView *FollowingView;
+    UIView *NotificationsView;
+    
+    int GetHeight;
+    
+    NSURLConnection *theConnection_GetNotification;
+    NSURLConnection *theConnection_GetFollowing;
+    
+    //following data
+    NSMutableArray *Following_PostIDArray;
+    NSMutableArray *Following_TypeArray;
+    NSMutableArray *Following_UserThumbnailArray;
+    NSMutableArray *Following_PostThumbnailArray;
+    NSMutableArray *Following_UserNameArray;
+    NSMutableArray *Following_uidArray;
+    NSMutableArray *Following_MessageArray;
+    NSMutableArray *Following_ActionArray;
+    NSMutableArray *Following_DateArray;
+    
+    UIRefreshControl *refreshControl;
+    
+    int CheckClick_Following;
+    
+    UILabel *UpdateNotificationLabel;
+    
+    NSString *CheckNotificationData;
+    NSString *CheckFollowData;
+}
 
 @end
 
@@ -280,9 +334,6 @@
                 [Following_TypeArray addObject:type];
                 NSString *post_id =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"post_id"]];
                 [Following_PostIDArray addObject:post_id];
-
-                NSString *uid =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"uid"]];
-                [Following_uidArray addObject:uid];
                 NSString *message =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"message"]];
                 [Following_MessageArray addObject:message];
                 NSString *Action =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"action"]];
@@ -306,6 +357,8 @@
                     [Following_UserThumbnailArray addObject:user_thumbnail];
                     NSString *username =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"username"]];
                     [Following_UserNameArray addObject:username];
+                    NSString *uid =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"user_id"]];
+                    [Following_uidArray addObject:uid];
                     break;
                 }
                 
@@ -911,7 +964,7 @@
 //        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
 //        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
 //        [NewUserProfileV2View GetUserName:[UserNameArray objectAtIndex:getbuttonIDN]];
-        
+        _profileViewController = nil;
         [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[uidArray objectAtIndex:getbuttonIDN]];
         [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
         }];
@@ -958,7 +1011,8 @@
 //        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
 //        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
 //        [NewUserProfileV2View GetUserName:[UserNameArray objectAtIndex:getbuttonIDN]];
-        
+        _profileViewController = nil;
+
         [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[uidArray objectAtIndex:getbuttonIDN]];
         [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
         }];
@@ -972,7 +1026,8 @@
 //        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
 //        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
 //        [NewUserProfileV2View GetUserName:[UserNameArray objectAtIndex:getbuttonIDN]];
-        
+        _profileViewController = nil;
+
         [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[uidArray objectAtIndex:getbuttonIDN]];
         [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
         }];
@@ -1000,7 +1055,8 @@
 //            NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
 //            [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
 //            [NewUserProfileV2View GetUserName:[UserNameArray objectAtIndex:getbuttonIDN]];
-            
+            _profileViewController = nil;
+
             [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[uidArray objectAtIndex:getbuttonIDN]];
             [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
             }];
@@ -1014,12 +1070,15 @@
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);
     
+    NSLog(@"Following_uidArray is %@",[Following_uidArray objectAtIndex:getbuttonIDN]);
+    
     NSString *GetType = [[NSString alloc]initWithFormat:@"%@",[TypeArray objectAtIndex:getbuttonIDN]];
     if ([GetType isEqualToString:@"follow"]) {
 //        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
 //        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
 //        [NewUserProfileV2View GetUserName:[Following_UserNameArray objectAtIndex:getbuttonIDN]];
-        
+        _profileViewController = nil;
+
         [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[Following_uidArray objectAtIndex:getbuttonIDN]];
         [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
         }];
@@ -1041,7 +1100,8 @@
 //        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
 //        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
 //        [NewUserProfileV2View GetUserName:[Following_UserNameArray objectAtIndex:getbuttonIDN]];
-        
+        _profileViewController = nil;
+
         [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[Following_uidArray objectAtIndex:getbuttonIDN]];
         [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
         }];
@@ -1062,7 +1122,8 @@
 //            NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
 //            [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
 //            [NewUserProfileV2View GetUserName:[Following_UserNameArray objectAtIndex:getbuttonIDN]];
-            
+            _profileViewController = nil;
+
             [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[Following_uidArray objectAtIndex:getbuttonIDN]];
             [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
             }];

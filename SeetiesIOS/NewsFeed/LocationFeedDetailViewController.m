@@ -10,7 +10,28 @@
 #import "LanguageManager.h"
 #import "Locale.h"
 @interface LocationFeedDetailViewController ()
+{
+    IBOutlet UILabel *ShowMainTitle;
+    IBOutlet UIButton *DirectionsButton;
+    IBOutlet UIImageView *BarImage;
+    IBOutlet UIScrollView *MainScroll;
+    
+    NSString *GetLat;
+    NSString *GetLong;
+    NSString *GetFirstImage;
+    NSString *GetTitle;
+    NSString *GetLocation;
+    
+    IBOutlet MKMapView *MapView;
+    CLLocationCoordinate2D coordinate;
+    
+    NSString *GetPlaceLink;
+    NSString *GetContact;
+    NSString *GetOpeningHour;
+    NSString *GetPrice;
+    NSString *GetAllPeriods;
 
+}
 @end
 
 @implementation LocationFeedDetailViewController

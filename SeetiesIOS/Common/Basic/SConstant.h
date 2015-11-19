@@ -115,6 +115,7 @@ extern NSString *const kAFAviarySecret;
 #define NOTIFICAION_TYPE_REFRESH_COLLECTION @"collection"
 #define NOTIFICAION_TYPE_REFRESH_POST @"post"
 #define NOTIFICAION_TYPE_REFRESH_LIKES @"likes"
+#define NOTIFICAION_TYPE_REFRESH_PROFILE @"profile"
 
 #endif
 

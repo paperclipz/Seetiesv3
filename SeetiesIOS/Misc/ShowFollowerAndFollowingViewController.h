@@ -12,44 +12,8 @@
 #import "GAITrackedViewController.h"
 #import "ProfileViewController.h"
 @class ProfileViewController;
-@interface ShowFollowerAndFollowingViewController : GAITrackedViewController<UIScrollViewDelegate>{
-    
-    IBOutlet UIScrollView *MainScroll;
-    IBOutlet UILabel *ShowTitle;
-    IBOutlet UIImageView *BarImage;
-    IBOutlet UIActivityIndicatorView *ShowActivity;
-    
-    NSString *GetToken;
-    NSString *Getuid;
-    NSString *GetType;
-    
-    UrlDataClass *DataUrl;
-    NSMutableData *webData;
-    
-    NSMutableArray *User_LocationArray;
-    NSMutableArray *User_NameArray;
-    NSMutableArray *User_UserNameArray;
-    NSMutableArray *User_ProfilePhotoArray;
-    NSMutableArray *User_UIDArray;
-    NSMutableArray *User_FollowedArray;
-    
-    
-    NSURLConnection *theConnection_GetFollower;
-    NSURLConnection *theConnection_GetFollowing;
-    NSURLConnection *theConnection_SendFollowData;
-    
-    NSInteger DataTest;
-    
-    NSInteger GetSelectIDN;
-    
-    NSInteger TotalPage;
-    NSInteger CurrentPage;
-    NSInteger DataCount;
-    NSInteger DataTotal;
-    
-    int CheckFirstTimeLoad;
-}
+@interface ShowFollowerAndFollowingViewController : GAITrackedViewController<UIScrollViewDelegate>
+
 @property(nonatomic,strong)ProfileViewController* profileViewController;
 -(void)GetToken:(NSString *)Token GetUID:(NSString *)uid GetType:(NSString *)Type;
--(IBAction)BackButton:(id)sender;
 @end

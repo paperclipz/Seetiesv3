@@ -1071,7 +1071,8 @@
 ////    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
 //    [self.navigationController pushViewController:ExpertsUserProfileView animated:YES];
 //    [ExpertsUserProfileView GetUserName:[User_UserNameArray objectAtIndex:getbuttonIDN]];
-    
+    _profileViewController = nil;
+
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[User_IDArray objectAtIndex:getbuttonIDN]];
     [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
     }];
@@ -1174,7 +1175,8 @@
 ////    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
 //    [self.navigationController pushViewController:ExpertsUserProfileView animated:YES];
 //    [ExpertsUserProfileView GetUserName:[UserInfo_NameArray objectAtIndex:getbuttonIDN]];
-    
+    _profileViewController = nil;
+
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[UserInfo_IDArray objectAtIndex:getbuttonIDN]];
     [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
     }];
@@ -1194,6 +1196,7 @@
 //    [self.navigationController pushViewController:ExpertsUserProfileView animated:YES];
 //    [ExpertsUserProfileView GetUserName:[User_UserNameArray objectAtIndex:getbuttonIDN]];
     
+    _profileViewController = nil;
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[User_IDArray objectAtIndex:getbuttonIDN]];
     [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
     }];

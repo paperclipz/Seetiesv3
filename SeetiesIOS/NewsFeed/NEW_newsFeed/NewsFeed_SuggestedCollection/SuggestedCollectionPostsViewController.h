@@ -7,7 +7,9 @@
 //
 
 #import "CommonViewController.h"
+#import "FeedV2DetailViewController.h"
 
 @interface SuggestedCollectionPostsViewController : CommonViewController
 
+@property(nonatomic,strong)FeedV2DetailViewController* feedV2DetailViewController;
 @end

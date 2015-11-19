@@ -7,12 +7,20 @@
 //
 
 #import "ProfilePageCollectionTableViewCell.h"
+
+#define NO_LOCK_CONSTRSINT_CONSTANT 10.0f
 @interface ProfilePageCollectionTableViewCell()
+{
+
+    __weak IBOutlet NSLayoutConstraint *ibCollectionNameLeadingConstraint;
+
+}
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageViewA;
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageViewB;
 @property (strong, nonatomic) CollectionModel *model;
 @property (weak, nonatomic) IBOutlet UIView *ibInnerContentView;
 @property (weak, nonatomic) IBOutlet UIButton *btnEdit;
+@property (weak, nonatomic) IBOutlet UIImageView *ibImageLock;
 
 @property (assign, nonatomic)ProfileViewType profileType;
 
@@ -57,12 +65,22 @@
     [self.ibImageViewA setStandardBorder];
     [self.ibImageViewB setStandardBorder];
     
-   
+    
+    if (!self.model.isPrivate) {
+        ibCollectionNameLeadingConstraint.constant = NO_LOCK_CONSTRSINT_CONSTANT;
+        self.ibImageLock.hidden = YES;
+    }
+    [self changeLanguage];
+}
+
+-(void)changeLanguage
+{
+    [self.btnEdit setTitle:LocalisedString(@"Edit") forState:UIControlStateNormal];
 }
 
 +(int)getHeight
 {
-    return 170.0f;
+    return 190.0f;
 }
 
 -(void)initData:(CollectionModel*)model profileType:(ProfileViewType)type
@@ -108,12 +126,15 @@
         
     }
     else{
-        [self.btnEdit setTitle:LocalisedString(@"Follow") forState:UIControlStateNormal];
-        [self.btnEdit setTitle:LocalisedString(@"Following") forState:UIControlStateSelected];
-        [self.btnEdit setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.btnEdit setTitleColor:SELECTED_GREEN forState:UIControlStateSelected];
-
-        [self setFollowButtonSelected:self.model.following button:self.btnEdit];
+        
+        self.btnEdit.hidden = YES;
+        //current hide the below code first because following feature hvnt added in
+//        [self.btnEdit setTitle:LocalisedString(@"Follow") forState:UIControlStateNormal];
+//        [self.btnEdit setTitle:LocalisedString(@"Following") forState:UIControlStateSelected];
+//        [self.btnEdit setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//        [self.btnEdit setTitleColor:SELECTED_GREEN forState:UIControlStateSelected];
+//
+//        [self setFollowButtonSelected:self.model.following button:self.btnEdit];
     }
    
    

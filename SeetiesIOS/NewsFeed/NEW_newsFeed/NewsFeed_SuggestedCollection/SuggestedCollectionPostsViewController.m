@@ -82,6 +82,15 @@
 //}
 
 #pragma mark - Declaration
+
+-(FeedV2DetailViewController*)feedV2DetailViewController
+{
+    if (!_feedV2DetailViewController) {
+        _feedV2DetailViewController = [FeedV2DetailViewController new];
+    }
+    
+    return _feedV2DetailViewController;
+}
 -(NSMutableArray*)arrPostList
 {
     if (!_arrPostList) {
@@ -109,8 +118,12 @@
     DraftModel* draftModel = self.arrPostList[indexPath.row];
     Post* postModel = draftModel.arrCustomPost[0];
     PhotoModel* photoModel = draftModel.arrPhotos[0];
-    cell.lblDesc.text = postModel.message;
+    [cell setDescription:postModel.message userName:draftModel.user_info.name];
     [cell.ibImageView sd_setImageWithURL:[NSURL URLWithString:photoModel.imageURL]];
+    
+    cell.lblLocation.text = draftModel.location.sublocality;
+    cell.lblName.text = draftModel.location.name;
+
     return cell;
 }
 
@@ -124,20 +137,30 @@
         Post* postModel = draftModel.arrCustomPost[0];
         CGRect frame = [Utils getDeviceScreenSize];
         
-        CGRect rect = [postModel.message boundingRectWithSize:frame.size
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        
+        [paragraphStyle setLineSpacing:5];
+        
+        CGRect rect = [postModel.message boundingRectWithSize:CGSizeMake(frame.size.width - (2*10), frame.size.height)
                                          options:NSStringDrawingUsesLineFragmentOrigin
                                       attributes:@{
-                                                   NSFontAttributeName : [UIFont fontWithName:CustomFontName size:17]
+                                                   NSFontAttributeName : [UIFont fontWithName:CustomFontName size:17],
+                                                   NSParagraphStyleAttributeName : paragraphStyle
                                                    }
                                          context:nil];
         //SLog(@"AAAA = %f",rect.size.height);
         [self.arrCellSize replaceObjectAtIndex:indexPath.row withObject:[NSNumber numberWithFloat:rect.size.height]];
 
     }
-       return [self.arrCellSize[indexPath.row] floatValue] + 160 + 60;
+       return [self.arrCellSize[indexPath.row] floatValue] + 160 + 60;//60 is buffer
 
 }
 
+#pragma mark - UITable View Delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self showPostDetailView];
+}
 
 -(NSMutableArray*)arrCellSize
 {
@@ -179,6 +202,13 @@
         
     }];
     
+
+}
+
+-(void)showPostDetailView
+{
+
+    [self.navigationController pushViewController:self.feedV2DetailViewController animated:YES];
 
 }
 @end

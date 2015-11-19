@@ -27,7 +27,7 @@
 }
 -(void)initSelfView
 {
-  
+    [self changeLanguage];
 
 }
 +(int)getHeight
@@ -49,22 +49,21 @@
 {
     switch (type) {
         case 1:
-            self.lblTitle.text = @"Collections";
-            self.lblNumberOfCollection.text = [NSString stringWithFormat:@"%d collections",count];
+            self.lblTitle.text = LocalisedString(@"Collections");
+            self.lblNumberOfCollection.text = [NSString stringWithFormat:@"%d %@",count,LocalisedString(@"collections")];
             self.ibImageIcon.image = [UIImage imageNamed:@"NewCollectionsIcon.png"];
             break;
         case 2:
-            self.lblTitle.text = @"Posts";
+            self.lblTitle.text = LocalisedString(@"Posts");
 
-            self.lblNumberOfCollection.text = [NSString stringWithFormat:@"%d posts",count];
+            self.lblNumberOfCollection.text = [NSString stringWithFormat:@"%d %@",count,LocalisedString(@"posts")];
             self.ibImageIcon.image = [UIImage imageNamed:@"NewPostsIcon.png"];
 
             break;
             
         case 3:
-            self.lblTitle.text = @"Likes";
-
-            self.lblNumberOfCollection.text = [NSString stringWithFormat:@"%d likes",count];
+            self.lblTitle.text = LocalisedString(@"Likes");
+            self.lblNumberOfCollection.text = [NSString stringWithFormat:@"%d %@",count,LocalisedString(@"likes")];
             self.ibImageIcon.image = [UIImage imageNamed:@"NewLikesIcon.png"];
 
             break;
@@ -74,4 +73,10 @@
    
 
 }
+
+-(void)changeLanguage
+{
+    self.lblTitle.text = LocalisedString(@"Collections");
+}
+
 @end

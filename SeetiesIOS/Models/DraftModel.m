@@ -128,7 +128,7 @@
         [array addObject:object];
     }
     
-    self.arrPost = [[NSArray alloc]initWithArray:array];
+    self.arrCustomPost = [[NSArray alloc]initWithArray:array];
 }
 @end
 

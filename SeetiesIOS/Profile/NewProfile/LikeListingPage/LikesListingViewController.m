@@ -17,6 +17,7 @@
 
 }
 
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UICollectionView *ibCollectionView;
 @property (weak, nonatomic) IBOutlet UIView *ibCollectionHeader;
 @property (weak, nonatomic) ListingHeaderView *listingHeaderView;
@@ -30,10 +31,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self initSelfView];
     [self initCollectionView];
     [self.ibCollectionView reloadData];
     [self registerNotification];
     // Do any additional setup after loading the view from its nib.
+}
+
+-(void)initSelfView
+{
+    self.lblTitle.text = LocalisedString(@"Like");
 }
 
 - (void)didReceiveMemoryWarning {

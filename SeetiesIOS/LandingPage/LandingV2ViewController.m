@@ -7,36 +7,6 @@
 //
 
 #import "LandingV2ViewController.h"
-#import "AppDelegate.h"
-#import "ExpertLoginViewController.h"
-#import "PTnCViewController.h"
-#import "AsyncImageView.h"
-#import "WhyWeUseFBViewController.h"
-#import "SignupViewController.h"
-#import <QuartzCore/QuartzCore.h>
-#import "PTellUsYourCityViewController.h"
-#import "ExploreViewController.h"
-#import "Explore2ViewController.h"
-#import "NotificationViewController.h"
-#import "ProfileV2ViewController.h"
-#import "PublishMainViewController.h"
-#import "PTellUsYourCityViewController.h"
-#import "PSelectYourInterestViewController.h"
-#import "PFollowTheExpertsViewController.h"
-#import "LanguageManager.h"
-#import "Locale.h"
-#import <Parse/Parse.h>
-#import "InstagramLoginWebViewController.h"
-#import "CRMotionView.h"
-#import "RecommendationViewController.h"
-#import "PInterestV2ViewController.h"
-#import "FeedViewController.h"
-#import "OpenWebViewController.h"
-#import "NewProfileV2ViewController.h"
-
-#import "CustomPickerViewController.h"
-#import "PInterestV2ViewController.h"
-
 @interface LandingV2ViewController ()<UIScrollViewDelegate>
 {
     
@@ -60,6 +30,36 @@
     
     BOOL pageControlBeingUsed;
     int checkauto;
+    
+    
+    UrlDataClass *DataUrl;
+    NSMutableData *webData;
+    NSString *UserEmail;
+    NSString *UserName;
+    NSString *GetFB_ID;
+    NSString *GetFB_Token;
+    NSString *Name;
+    NSString *Userdob;
+    NSString *UserGender;
+    NSArray *animationImages;
+    int count;
+    NSURLConnection *theConnection_Facebook;
+    NSURLConnection *theConnection_GetLanguages;
+    NSURLConnection *theConnection_GetAllCategory;
+    NSURLConnection *theConnection_GetNotificationCount;
+    
+    NSString *InstagramOnClickListen;
+    NSString *GetInstagramToken;
+    NSString *GetInstagramID;
+    
+    IBOutlet UIButton *TnCButton;
+    IBOutlet UIButton *PrivacyButton;
+    
+    NSTimer *SilderImgMove;
+    
+    NSInteger CheckNotication;
+    
+    UILabel *ShowNotificationCount;
 }
 
 @property(nonatomic,strong)CustomPickerViewController* recommendationChooseViewController;

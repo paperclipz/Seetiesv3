@@ -8,20 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "AsyncImageView.h"
-@interface AnnounceViewController : UIViewController<UIScrollViewDelegate>{
-    
-    IBOutlet UIScrollView *MainScroll;
-    IBOutlet UIImageView *BarImage;
-    IBOutlet UILabel *ShowTitle;
-    
-    IBOutlet UIActivityIndicatorView *ShowActivity;
-
-    IBOutlet AsyncImageView *ShowBigImage;
-    IBOutlet UIImageView *ShowIcon;
-    IBOutlet UITextView *ShowContent;
-    
-    NSString *GetImageString;
-    NSString *GetContentString;
-}
+@interface AnnounceViewController : UIViewController<UIScrollViewDelegate>
 -(void)GetDisplayImage:(NSString *)ImageData GetContent:(NSString *)content;
 @end

@@ -13,6 +13,43 @@
 #import "Locale.h"
 
 @interface ShowFollowerAndFollowingViewController ()
+{
+    
+    IBOutlet UIScrollView *MainScroll;
+    IBOutlet UILabel *ShowTitle;
+    IBOutlet UIImageView *BarImage;
+    IBOutlet UIActivityIndicatorView *ShowActivity;
+    
+    NSString *GetToken;
+    NSString *Getuid;
+    NSString *GetType;
+    
+    UrlDataClass *DataUrl;
+    NSMutableData *webData;
+    
+    NSMutableArray *User_LocationArray;
+    NSMutableArray *User_NameArray;
+    NSMutableArray *User_UserNameArray;
+    NSMutableArray *User_ProfilePhotoArray;
+    NSMutableArray *User_UIDArray;
+    NSMutableArray *User_FollowedArray;
+    
+    
+    NSURLConnection *theConnection_GetFollower;
+    NSURLConnection *theConnection_GetFollowing;
+    NSURLConnection *theConnection_SendFollowData;
+    
+    NSInteger DataTest;
+    
+    NSInteger GetSelectIDN;
+    
+    NSInteger TotalPage;
+    NSInteger CurrentPage;
+    NSInteger DataCount;
+    NSInteger DataTotal;
+    
+    int CheckFirstTimeLoad;
+}
 
 @end
 
@@ -536,7 +573,7 @@
 //    [self.view.window.layer addAnimation:transition forKey:nil];
 //    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
 //    [ExpertsUserProfileView GetUserName:[User_UserNameArray objectAtIndex:getbuttonIDN]];
-    
+    _profileViewController = nil;
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[User_UIDArray objectAtIndex:getbuttonIDN]];
     [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
     }];

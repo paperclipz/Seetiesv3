@@ -9,27 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AsyncImageView.h"
 #import "GAITrackedViewController.h"
-@interface FullImageViewController : GAITrackedViewController<UIScrollViewDelegate>{
-
-    IBOutlet UIScrollView *MImageScroll;
-    IBOutlet UIPageControl *PageControlOn;
-    NSMutableArray *GetAllFullImageArray;
-    NSMutableArray *GetAllFullCaptionArray;
-    NSInteger GetCurrentIdn;
-    AsyncImageView *ShowImage;
-    
-    UIScrollView *ImageScroll;
-    BOOL pageControlBeingUsed;
-    
-    IBOutlet UILabel *ShowImageCount;
-    
-    NSString *GetImageString;
-    
-    IBOutlet UIButton *BackButton;
-    
-    IBOutlet UILabel *ExitText;
-}
--(IBAction)BackButton:(id)sender;
+@interface FullImageViewController : GAITrackedViewController<UIScrollViewDelegate>
 -(void)GetAllImageArray:(NSMutableArray *)AllImageArray GetIDN:(NSInteger)ImageIdn GetAllCaptionArray:(NSMutableArray *)AllCaptionArray;
 -(void)GetImageString:(NSString *)ImageString;
 -(void)GetLocalAllImageArray:(NSMutableArray *)AllImageArray GetIDN:(NSInteger)ImageIdn;

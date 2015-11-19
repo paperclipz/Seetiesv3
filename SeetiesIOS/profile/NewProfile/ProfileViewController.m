@@ -199,6 +199,13 @@
                                                  name:NOTIFICAION_TYPE_REFRESH_LIKES
                                                object:nil];
     
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveTestNotification:)
+                                                 name:NOTIFICAION_TYPE_REFRESH_PROFILE
+                                               object:nil];
+
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -219,9 +226,9 @@
         self.btnEditProfile.hidden = YES;
         followButtonConstraint.constant = 8.0f;
         
-        [self.btnFollow setTitle:@"Follow" forState:UIControlStateNormal];
+        [self.btnFollow setTitle:LocalisedString(@"Follow") forState:UIControlStateNormal];
         [self.btnFollow setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.btnFollow setTitle:@"Following" forState:UIControlStateSelected];
+        [self.btnFollow setTitle:LocalisedString(@"Following") forState:UIControlStateSelected];
         [self.btnFollow setTitleColor:SELECTED_GREEN forState:UIControlStateSelected];
         
     }
@@ -252,6 +259,7 @@
     
     [self adjustTableView];
     //  [self addSearchView];
+    [self changeLanguage];
     
 }
 
@@ -480,7 +488,7 @@
                 cell = [[ProfileNoItemTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfierShowNone];
             }
             [cell adjustRoundedEdge:self.ibTableView.frame];
-            [cell setType:0];
+            [cell setViewType:0];
             return cell;
         }
         else if (indexPath.row==arrCollection.count || indexPath.row == 3) {
@@ -545,7 +553,7 @@
                 cell = [[ProfileNoItemTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfierShowNone];
             }
             [cell adjustRoundedEdge:self.ibTableView.frame];
-            [cell setType:1];
+            [cell setViewType:1];
             
             return cell;
         }
@@ -591,7 +599,7 @@
                 cell = [[ProfileNoItemTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfierShowNone];
             }
             [cell adjustRoundedEdge:self.ibTableView.frame];
-            [cell setType:2];
+            [cell setViewType:2];
             
             return cell;
         }
@@ -1099,11 +1107,10 @@
         
     }];
     
-    SLog(@"assignUserData");
     self.lblUserName.text = self.userProfileModel.username;
     self.lblName.text = self.userProfileModel.name;
-    NSString* strFollower = [NSString stringWithFormat:@"%d Followers",self.userProfileModel.follower_count];
-    NSString* strFollowing = [NSString stringWithFormat:@"%d Followings",self.userProfileModel.following_count];
+    NSString* strFollower = [NSString stringWithFormat:@"%d %@",self.userProfileModel.follower_count,LocalisedString(@"Followers")];
+    NSString* strFollowing = [NSString stringWithFormat:@"%d %@",self.userProfileModel.following_count,LocalisedString(@"Followings")];
     
     [self.btnFollower setTitle:strFollower forState:UIControlStateNormal];
     [self.btnFollowing setTitle:strFollowing forState:UIControlStateNormal];
@@ -1196,6 +1203,10 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
         [self requestServerForUserLikes];
         
     }
+    else if ([[notification name] isEqualToString:NOTIFICAION_TYPE_REFRESH_PROFILE])
+    {
+        [self changeLanguage];
+    }
     
     //NSLog (@"Successfully received the test notification!");
     
@@ -1210,6 +1221,20 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
     formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
     [self presentViewController:formSheetController animated:YES completion:nil];
     
+}
+
+#pragma mark -ChangeLanguage
+-(void)changeLanguage
+{
+    
+    NSString* strFollower = [NSString stringWithFormat:@"%d %@",self.userProfileModel.follower_count,LocalisedString(@"Followers")];
+    NSString* strFollowing = [NSString stringWithFormat:@"%d %@",self.userProfileModel.following_count,LocalisedString(@"Followings")];
+    [self.btnFollower setTitle:strFollower forState:UIControlStateNormal];
+    [self.btnFollowing setTitle:strFollowing forState:UIControlStateNormal];
+    [self.btnEditProfile setTitle:LocalisedString(@"Edit Profile") forState:UIControlStateNormal];
+    [self.btnSearch setTitle:LocalisedString(@"search") forState:UIControlStateNormal];
+    [self.ibTableView reloadData];
+
 }
 //#pragma mark - UIScrollView
 //- (void)scrollViewDidScroll:(UIScrollView *)scrollView
