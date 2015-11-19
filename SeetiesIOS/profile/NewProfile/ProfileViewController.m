@@ -1263,11 +1263,11 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     int profileBackgroundHeight = 200;
     if (scrollView.contentOffset.y > -profileBackgroundHeight && scrollView.contentOffset.y <= 5) {
-        NSLog(@"AAA!!%@",NSStringFromCGPoint(scrollView.contentOffset));
+        //NSLog(@"AAA!!%@",NSStringFromCGPoint(scrollView.contentOffset));
         
         float adjustment = (profileBackgroundHeight + scrollView.contentOffset.y
                             )/(profileBackgroundHeight);
-        SLog(@"adjustment : %f",adjustment);
+       // SLog(@"adjustment : %f",adjustment);
         self.ibImgViewOtherPadding.alpha = adjustment;
 
         

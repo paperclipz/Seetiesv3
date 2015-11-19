@@ -54,7 +54,6 @@
     [self.ibTableView registerClass:[PostListingTableViewCell class] forCellReuseIdentifier:@"PostListingTableViewCell"];
 }
 
-
 -(void)initData:(ProfilePostModel*)model UserProfileModel:(ProfileModel*)profileModel ProfileViewType:(ProfileViewType)type
 {
     self.profileType = type;

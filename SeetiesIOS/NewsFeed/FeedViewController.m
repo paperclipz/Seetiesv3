@@ -190,7 +190,8 @@
 - (IBAction)btnTestClicked:(id)sender {
     
     _suggestedCollectionPostsViewController = nil;
-    [self presentViewController:self.suggestedCollectionPostsViewController animated:YES completion:nil];
+    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.suggestedCollectionPostsViewController];
+    [self presentViewController:naviVC animated:YES completion:nil];
 }
 
 #define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)

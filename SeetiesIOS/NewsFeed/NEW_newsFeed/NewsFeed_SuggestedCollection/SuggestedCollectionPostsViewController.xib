@@ -71,8 +71,8 @@
                         <constraint firstAttribute="height" constant="50" id="j8s-wo-M7g"/>
                     </constraints>
                     <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <inset key="contentEdgeInsets" minX="-40" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    <inset key="imageEdgeInsets" minX="250" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="contentEdgeInsets" minX="-60" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="270" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <state key="normal" title="See full collection" image="ArrowBtn.png"/>
                 </button>
             </subviews>
