@@ -81,6 +81,9 @@
     GetCollectionID = Collectionid;
     GetCollectionTitle = CollectionTitle;
     CheckShareStatus = 1;
+    
+    NSLog(@"GetCollectionID %@",GetCollectionID);
+    NSLog(@"GetCollectionTitle is %@",GetCollectionTitle);
 }
 -(void)GetPostID:(NSString *)ID GetMessage:(NSString *)Msg GetTitle:(NSString *)Title GetImageData:(NSString *)ImgData{
     CheckShareStatus = 0;
@@ -372,6 +375,10 @@
         message = [message stringByReplacingOccurrencesOfString:@"[post url]"
                                                      withString:TempUrl];
     }else if (CheckShareStatus == 1){
+        
+        NSLog(@"GetCollectionID is %@",GetCollectionID);
+        NSLog(@"GetCollectionTitle is %@",GetCollectionTitle);
+        
         NSString  *TempUrl = [NSString stringWithFormat:@"https://seeties.me/collections/%@",GetCollectionID];
         message = LocalisedString(@"I was checking this collection [collection title] on Seeties and I thought you might like to see it too.\n\n[post url]");
         message = [message stringByReplacingOccurrencesOfString:@"[collection title]"
