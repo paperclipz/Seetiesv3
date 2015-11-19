@@ -468,6 +468,7 @@
     InstagramButton.hidden = NO;
     ContinueText.hidden = NO;
 }
+
 -(void)ChangeView2{
     
     [self.view addSubview:self.leveyTabBarController.view];

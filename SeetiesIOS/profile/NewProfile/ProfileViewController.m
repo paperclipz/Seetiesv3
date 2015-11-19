@@ -68,11 +68,30 @@
 @implementation ProfileViewController
 
 - (IBAction)btnFollowClicked:(id)sender {
+
     
-    UIButton* button = (UIButton*)sender;
-    button.selected = !button.selected;
+    if (self.userProfileModel.following) {
+        [UIAlertView showWithTitle:LocalisedString(@"system")
+                           message:LocalisedString(@"Are You Sure You Want to Unfollow")
+                 cancelButtonTitle:LocalisedString(@"Maybe Not")
+                 otherButtonTitles:@[LocalisedString(@"YES")]
+                          tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                              if (buttonIndex == [alertView cancelButtonIndex]) {
+                                  NSLog(@"Cancelled");
+                                  
+                              } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:LocalisedString(@"YES")]) {
+                                  NSLog(@"YES");
+                                  [self requestServerToFollowUser:self.userProfileModel.following];
+
+                              }
+                          }];
+
+    }
+    else{
+        [self requestServerToFollowUser:self.userProfileModel.following];
+
+    }
     
-    [self requestServerToFollowUser:self.userProfileModel.following];
     // [self setFollowButtonSelected:button.selected button:button];
 }
 
@@ -308,10 +327,12 @@
     }
     else{
         
-        [self.ibScrollView.parallaxView addSubview:self.ibSettingOtherView];
+        [self.ibScrollView.parallaxView addSubview:[UIView new]];
         self.ibImgViewOtherPadding.alpha = 0;
-        [self.ibScrollView.parallaxView bringSubviewToFront:self.ibSettingOtherView];
+//        [self.ibScrollView.parallaxView bringSubviewToFront:self.ibSettingOtherView];
+        [self.view addSubview:self.ibSettingOtherView];
         [self.ibSettingOtherView adjustToScreenWidth];
+
     }
     
 }
@@ -319,7 +340,6 @@
 #pragma mark - Request all Data
 -(void)requestAllDataWithType:(ProfileViewType)type UserID:(NSString*)uID
 {
-    
     self.profileViewType = type;
     self.userID = uID;
     [self requestServerForUserInfo];
@@ -975,6 +995,7 @@
                            @"token":[Utils getAppToken]
                            };
     
+    [LoadingManager show];
     if (!isFollowing) {
         
         [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostFollowUser param:dict appendString:appendString meta:nil completeHandler:^(id object) {
@@ -984,6 +1005,7 @@
             BOOL following = [[returnDict objectForKey:@"following"] boolValue];
             self.userProfileModel.following = following;
             [self setFollowButtonSelected:following button:self.btnFollow];
+            
             
         } errorBlock:^(id object) {
             
@@ -1236,17 +1258,24 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
     [self.ibTableView reloadData];
 
 }
-//#pragma mark - UIScrollView
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-//{
-//    int profileBackgroundHeight = 200;
-//    if (scrollView.contentOffset.y > -profileBackgroundHeight && scrollView.contentOffset.y <= 0) {
-//        NSLog(@"AAA!!%@",NSStringFromCGPoint(scrollView.contentOffset));
-//        
-//        self.ibImgViewOtherPadding.alpha = (profileBackgroundHeight - fabs(scrollView.contentOffset.y))/profileBackgroundHeight-10;
-//
-//        
-//    }
-//
-//}
+#pragma mark - UIScrollView
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    int profileBackgroundHeight = 200;
+    if (scrollView.contentOffset.y > -profileBackgroundHeight && scrollView.contentOffset.y <= 5) {
+        NSLog(@"AAA!!%@",NSStringFromCGPoint(scrollView.contentOffset));
+        
+        float adjustment = (profileBackgroundHeight + scrollView.contentOffset.y
+                            )/(profileBackgroundHeight);
+        SLog(@"adjustment : %f",adjustment);
+        self.ibImgViewOtherPadding.alpha = adjustment;
+
+        
+    }
+    else if (scrollView.contentOffset.y > profileBackgroundHeight)
+    {
+        self.ibImgViewOtherPadding.alpha = 1;
+
+    }
+}
 @end
