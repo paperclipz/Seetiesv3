@@ -3729,7 +3729,7 @@
         NSString *TempCount = [[NSString alloc]initWithFormat:@"%li/%lu",page + 1,(unsigned long)[arrFriendUserName count] - FollowSuggestionFriendCount];
         ShowSUserCount_Friend.text = TempCount;
     }else if(scrollView == SUserScrollview_Featured){
-        NSLog(@"SUserScrollview_Featured.tag === %li",(long)SUserScrollview_Featured.tag);
+        //NSLog(@"SUserScrollview_Featured.tag === %li",(long)SUserScrollview_Featured.tag);
         
         CGFloat pageWidth = SUserScrollview_Featured.frame.size.width; // you need to have a **iVar** with getter for scrollView
         float fractionalPage = SUserScrollview_Featured.contentOffset.x / pageWidth;

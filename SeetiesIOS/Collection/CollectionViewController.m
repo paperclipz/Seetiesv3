@@ -11,7 +11,10 @@
 #import "ShareViewController.h"
 #import "SearchDetailViewController.h"
 #import "AddCollectionDataViewController.h"
-@interface CollectionViewController ()
+@interface CollectionViewController (){
+
+    int CheckButtonOnClick;
+}
 
 @end
 
@@ -52,6 +55,7 @@
     GetCollectionHeight = 0;
     CheckShowMessage = 0;
     TempHeight = 0;
+    CheckButtonOnClick = 0;
     if ([GetID length] ==0) {
         
     }else{
@@ -418,9 +422,15 @@
                 [self InitView];
                 
             }else{
-                GridView.hidden = YES;
+              //  GridView.hidden = YES;
                 CheckClick = 0;
-                [self InitContentListView];
+                if (CheckButtonOnClick == 1) {
+                    [self InitGridViewData];
+                }else{
+                    
+                    [self InitContentListView];
+                }
+
             }
             
             CheckLoad = NO;
@@ -522,6 +532,9 @@
             
         }
     }
+    
+    
+    [ShowActivity stopAnimating];
 }
 -(void)InitView{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
@@ -680,33 +693,33 @@
         GetHeight += 50;
     }
 
-//    //edit button
-//    MainEditButton = [[UIButton alloc]init];
-//    MainEditButton.frame = CGRectMake((screenWidth / 2) - 65, GetHeight, 130, 35);
-//    MainEditButton.layer.cornerRadius= 18;
-//    MainEditButton.layer.borderWidth = 1;
-//    MainEditButton.layer.masksToBounds = YES;
-//    MainEditButton.layer.borderColor=[[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0] CGColor];
-//    MainEditButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
-//    [MainEditButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
-//    MainEditButton.backgroundColor = [UIColor whiteColor];
-//    [MainEditButton setTitle:@"Edit" forState:UIControlStateNormal];
-//    [MainEditButton addTarget:self action:@selector(EditButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
-//    if ([GetPermisionUser isEqualToString:@"Self"] || [GetPermisionUser isEqualToString:@"self"]) {
-//        [MainEditButton setTitle:@"Edit" forState:UIControlStateNormal];
-//    }else{
-//        if ([GetFollowing isEqualToString:@"0"]) {
-//            [MainEditButton setTitle:@"Follow" forState:UIControlStateNormal];
-//            [MainEditButton setTitle:@"Unfollow" forState:UIControlStateSelected];
-//        }else{
-//            [MainEditButton setTitle:@"Unfollow" forState:UIControlStateNormal];
-//            [MainEditButton setTitle:@"Follow" forState:UIControlStateSelected];
-//        }
-//        
-//    }
-//    [MainScroll addSubview:MainEditButton];
-//        
-//    GetHeight += 45;
+    //edit button
+    MainEditButton = [[UIButton alloc]init];
+    MainEditButton.frame = CGRectMake((screenWidth / 2) - 65, GetHeight, 130, 35);
+    MainEditButton.layer.cornerRadius= 18;
+    MainEditButton.layer.borderWidth = 1;
+    MainEditButton.layer.masksToBounds = YES;
+    MainEditButton.layer.borderColor=[[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0] CGColor];
+    MainEditButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
+    [MainEditButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
+    MainEditButton.backgroundColor = [UIColor whiteColor];
+    [MainEditButton setTitle:@"Edit" forState:UIControlStateNormal];
+    [MainEditButton addTarget:self action:@selector(EditButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+    if ([GetPermisionUser isEqualToString:@"Self"] || [GetPermisionUser isEqualToString:@"self"]) {
+        [MainEditButton setTitle:@"Edit" forState:UIControlStateNormal];
+    }else{
+        if ([GetFollowing isEqualToString:@"0"]) {
+            [MainEditButton setTitle:@"Follow" forState:UIControlStateNormal];
+            [MainEditButton setTitle:@"Unfollow" forState:UIControlStateSelected];
+        }else{
+            [MainEditButton setTitle:@"Unfollow" forState:UIControlStateNormal];
+            [MainEditButton setTitle:@"Follow" forState:UIControlStateSelected];
+        }
+        
+    }
+    [MainScroll addSubview:MainEditButton];
+        
+    GetHeight += 45;
 
     
     UIButton *Line01 = [[UIButton alloc]init];
@@ -809,6 +822,7 @@
     return _navEditCollectionViewController;
 }
 -(IBAction)ListButtonOnClick:(id)sender{
+    CheckButtonOnClick = 0;
     [ListButton setImage:[UIImage imageNamed:@"ListViewActive.png"] forState:UIControlStateNormal];
     [GridButton setImage:[UIImage imageNamed:@"GridViewInactive.png"] forState:UIControlStateNormal];
     
@@ -821,6 +835,7 @@
     MainScroll.contentSize = contentSize;
 }
 -(IBAction)GridButtonOnClick:(id)sender{
+    CheckButtonOnClick = 1;
     [ListButton setImage:[UIImage imageNamed:@"ListViewInactive.png"] forState:UIControlStateNormal];
     [GridButton setImage:[UIImage imageNamed:@"GridViewActive.png"] forState:UIControlStateNormal];
     
@@ -1253,6 +1268,7 @@
                     [activityindicator1 startAnimating];
                    // GetHeight = 0;
                     [self GetCollectionData];
+                    [activityindicator1 stopAnimating];
                 }
                 
             }

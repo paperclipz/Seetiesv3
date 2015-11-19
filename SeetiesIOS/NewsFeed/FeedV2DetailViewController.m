@@ -317,7 +317,7 @@
     CheckCommentData = 0;
     CountLanguage = 0;
     CheckNearbyPost = 0;
-    isThereAnyCollectionSuggestion = NO;
+    isThereAnyCollectionSuggestion = YES;
     GetPlaceNameHeight = 0;
     ImageCount = 0;
     LanguageButton.hidden = YES;
@@ -426,7 +426,7 @@
         CheckClickCount = 0;
         CheckLanguagedata = 0;
         CheckNearbyPost = 0;
-        isThereAnyCollectionSuggestion = NO;
+        isThereAnyCollectionSuggestion = YES;
         if (CheckLoadDone == NO) {
             [ShowActivity startAnimating];
         }
@@ -1816,7 +1816,7 @@
         
         
         
-        isThereAnyCollectionSuggestion = NO;
+        isThereAnyCollectionSuggestion = YES;
         [self InitCollectionSuggestionsView];
         }else{
         

@@ -154,8 +154,8 @@
     GetPersonalTags = [defaults objectForKey:@"UserData_PersonalTags"];
     CheckFullLocation = [defaults objectForKey:@"Provisioning_LocationName"];
     
-    BackgroundImgButton.frame = CGRectMake(0, 64, screenWidth, 120);
-    BackgroundImg.frame = CGRectMake(0, 64, screenWidth, 120);
+    BackgroundImgButton.frame = CGRectMake(0, 20, screenWidth, 164);
+    BackgroundImg.frame = CGRectMake(0, 20, screenWidth, 164);
     NSLog(@"BackgroundImg is %@",BackgroundImg);
     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:BackgroundImg];
     //NSLog(@"User Wallpaper FullString ====== %@",GetWallpaper);
