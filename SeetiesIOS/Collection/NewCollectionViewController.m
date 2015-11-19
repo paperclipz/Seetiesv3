@@ -71,7 +71,13 @@
     // Dispose of any resources that can be recreated.
 }
 -(IBAction)BackButton:(id)sender{
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    if (self.navigationController) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else{
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     // [self.view endEditing:YES];// this will do the trick

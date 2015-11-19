@@ -7,7 +7,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LikesListingViewController">
             <connections>
-                <outlet property="ibCollectionHeader" destination="HmZ-SW-lqq" id="3B3-yu-Eyx"/>
                 <outlet property="ibCollectionView" destination="qhO-On-UL4" id="Id8-IA-t0R"/>
                 <outlet property="ibCollectionViewLayout" destination="veu-RM-yza" id="CH0-0d-oGw"/>
                 <outlet property="lblTitle" destination="oW7-Oi-p5c" id="U7Q-VF-th0"/>
@@ -64,7 +63,7 @@
                     </constraints>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="qhO-On-UL4">
-                    <rect key="frame" x="0.0" y="124" width="320" height="394"/>
+                    <rect key="frame" x="0.0" y="64" width="320" height="456"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="veu-RM-yza">
                         <size key="itemSize" width="50" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -72,24 +71,14 @@
                         <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HmZ-SW-lqq">
-                    <rect key="frame" x="0.0" y="64" width="320" height="60"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="60" id="eD1-cX-V94"/>
-                    </constraints>
-                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="EOY-yT-4bV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="2XP-Cc-4Az"/>
-                <constraint firstAttribute="trailing" secondItem="HmZ-SW-lqq" secondAttribute="trailing" id="9EG-M5-AMO"/>
-                <constraint firstItem="HmZ-SW-lqq" firstAttribute="top" secondItem="EOY-yT-4bV" secondAttribute="bottom" id="9q7-L8-nmy"/>
                 <constraint firstItem="EOY-yT-4bV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="PUp-75-nP2"/>
                 <constraint firstAttribute="trailing" secondItem="qhO-On-UL4" secondAttribute="trailing" id="UMx-nd-cG2"/>
-                <constraint firstItem="HmZ-SW-lqq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="eOb-gb-zvh"/>
-                <constraint firstItem="qhO-On-UL4" firstAttribute="top" secondItem="EOY-yT-4bV" secondAttribute="bottom" constant="60" id="hyd-cn-Kxl"/>
-                <constraint firstAttribute="bottom" secondItem="qhO-On-UL4" secondAttribute="bottom" constant="50" id="sGn-Ia-9d4"/>
+                <constraint firstItem="qhO-On-UL4" firstAttribute="top" secondItem="EOY-yT-4bV" secondAttribute="bottom" id="hyd-cn-Kxl"/>
+                <constraint firstAttribute="bottom" secondItem="qhO-On-UL4" secondAttribute="bottom" constant="48" id="sGn-Ia-9d4"/>
                 <constraint firstAttribute="trailing" secondItem="EOY-yT-4bV" secondAttribute="trailing" id="tKs-fi-Shh"/>
                 <constraint firstItem="qhO-On-UL4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="z7J-l9-tlq"/>
             </constraints>

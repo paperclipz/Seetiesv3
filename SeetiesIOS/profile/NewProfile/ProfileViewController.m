@@ -683,7 +683,7 @@
                 return;
             }
             _collectionListingViewController = nil;
-            [self.collectionListingViewController setType:self.profileViewType ProfileModel:self.userProfileModel];
+            [self.collectionListingViewController setType:self.profileViewType ProfileModel:self.userProfileModel NumberOfPage:2];
             [self.navigationController pushViewController:self.collectionListingViewController animated:YES];
             break;
         case 1://post

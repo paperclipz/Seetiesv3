@@ -26,6 +26,15 @@
 @end
 
 @implementation PostListingViewController
+- (IBAction)btnAddMoreClicked:(id)sender {
+    
+    if(_btnAddMorePostBlock)
+    {
+        self.btnAddMorePostBlock();
+
+    }
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,7 +51,7 @@
 -(void)initSelfView
 {
     [self initTableViewWithDelegate];
-    self.lblTitle.text = LocalisedString(@"Posts");
+    self.lblTitle.text = [NSString stringWithFormat:@"%d %@",self.userProfilePostModel.userPostData.total_posts,LocalisedString(@"Posts")];
     
 }
 
@@ -91,30 +100,30 @@
     return 1;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return [ListingHeaderView getheight];
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//{
+//    return [ListingHeaderView getheight];
+//}
 
-- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    
-    if (!_viewHeader) {
-        _viewHeader = [ListingHeaderView initializeCustomView];
-        
-        __weak typeof (self)wealSelf = self;
-        [_viewHeader setType:self.profileType==ProfileViewTypeOwn?ListingViewTypePostOwn:ListingViewTypePostOthers addMoreClicked:^{
-            
-            if (wealSelf.btnAddMorePostBlock) {
-                wealSelf.btnAddMorePostBlock();
-                SLog(@"Add More Clicked");
-
-            }
-        }totalCount:self.userProfilePostModel.userPostData.total_posts];
-    }
-    
-    return _viewHeader;
-}
+//- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    
+//    if (!_viewHeader) {
+//        _viewHeader = [ListingHeaderView initializeCustomView];
+//        
+//        __weak typeof (self)wealSelf = self;
+//        [_viewHeader setType:self.profileType==ProfileViewTypeOwn?ListingViewTypePostOwn:ListingViewTypePostOthers addMoreClicked:^{
+//            
+//            if (wealSelf.btnAddMorePostBlock) {
+//                wealSelf.btnAddMorePostBlock();
+//                SLog(@"Add More Clicked");
+//
+//            }
+//        }totalCount:self.userProfilePostModel.userPostData.total_posts];
+//    }
+//    
+//    return _viewHeader;
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

@@ -9,15 +9,28 @@
 #import "CollectionListingViewController.h"
 
 @interface CollectionListingViewController ()
+{
+    
+    __weak IBOutlet NSLayoutConstraint *scrollViewTopConstraint;
+}
 @property (weak, nonatomic) IBOutlet UIScrollView *ibScrollView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *ibSegmentedControl;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property(nonatomic,assign)ProfileViewType profileType;
 @property(nonatomic,strong)ProfileModel* profileModel;
+@property(nonatomic,assign)int viewPage;
+@property (weak, nonatomic) IBOutlet UIButton *btnAddMore;
 
 @end
 
 @implementation CollectionListingViewController
+- (IBAction)btnAddMoreClicked:(id)sender {
+    
+    _newCollectionViewController = nil;
+
+    [self.navigationController pushViewController:self.newCollectionViewController animated:YES];
+
+}
 
 - (IBAction)btnSegmentedClicked:(id)sender {
     
@@ -29,10 +42,11 @@
     [self.ibScrollView scrollRectToVisible:frame animated:YES];
 }
 
--(void)setType:(ProfileViewType)type ProfileModel:(ProfileModel*)model
+-(void)setType:(ProfileViewType)type ProfileModel:(ProfileModel*)model NumberOfPage:(int)page
 {
     self.profileType = type;
     self.profileModel = model;
+    self.viewPage = page;
     
 }
 
@@ -49,32 +63,37 @@
 
 -(void)initSelfView
 {
-    
     self.ibScrollView.delegate = self;
     SLog(@" view size : %f || height : %f",self.view.frame.size.width,self.view.frame.size.height);
     [self.ibScrollView addSubview:self.myCollectionListingViewController.view];
-   
+    
     CGRect frame = [Utils getDeviceScreenSize];
     
     [self.ibScrollView setWidth:frame.size.width];
     [self.myCollectionListingViewController.view setWidth:frame.size.width];
-//    [self.followingCollectionListingViewController.view setWidth:frame.size.width];
-    
     [self.myCollectionListingViewController.view setHeight:self.ibScrollView.frame.size.height];
-//    [self.followingCollectionListingViewController.view setHeight:self.ibScrollView.frame.size.height];
-//
-//
     [self.ibScrollView addSubview:self.myCollectionListingViewController.view];
-//    [self.ibScrollView addSubview:self.followingCollectionListingViewController.view];
-//  
-//    SLog(@"scroll view size : %f",self.ibScrollView.frame.size.width);
-//    self.ibScrollView.contentSize = CGSizeMake(frame.size.width*2, self.ibScrollView.frame.size.height);
-//    
-//    self.ibScrollView.pagingEnabled = YES;
-//
-//    [self.followingCollectionListingViewController.view setX:self.myCollectionListingViewController.view.frame.size.width];
+    scrollViewTopConstraint.constant = -36;
+
+    if (self.viewPage == 2)
+    {
+        scrollViewTopConstraint.constant = 10;
+        self.ibSegmentedControl.hidden = NO;
+        [self.followingCollectionListingViewController.view setWidth:frame.size.width];
+        [self.followingCollectionListingViewController.view setHeight:self.ibScrollView.frame.size.height];
+        [self.ibScrollView addSubview:self.followingCollectionListingViewController.view];
+        self.ibScrollView.contentSize = CGSizeMake(frame.size.width*2, self.ibScrollView.frame.size.height);
+        self.ibScrollView.pagingEnabled = YES;
+        [self.followingCollectionListingViewController.view setX:self.myCollectionListingViewController.view.frame.size.width];
+    }
+    else{
+        self.ibSegmentedControl.hidden = YES;
+
+    }
+    
+    self.btnAddMore.hidden = self.profileType == ProfileViewTypeOthers;
+    
     [self initViewData];
-  
 }
 
 -(void)initViewData
@@ -82,25 +101,33 @@
     
     if ([self.profileModel.uid isEqualToString:[Utils getUserID]]) {
         self.lblTitle.text = LocalisedString(@"Collections");
-
+        
     }
     else{
         self.lblTitle.text = [NSString stringWithFormat:@"%@ %@",self.profileModel.username,LocalisedString(@"Collections")];
-
+        
     }
-
+    
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
+#pragma mark - Declaration
+-(NewCollectionViewController*)newCollectionViewController
+{
+    if (!_newCollectionViewController) {
+        _newCollectionViewController = [NewCollectionViewController new];
+    }
+    
+    return _newCollectionViewController;
 }
-*/
-
 -(CollectionListingTabViewController*)myCollectionListingViewController
 {
     if(!_myCollectionListingViewController)
@@ -108,7 +135,7 @@
         _myCollectionListingViewController = [CollectionListingTabViewController new];
         _myCollectionListingViewController.profileType = self.profileType;
         _myCollectionListingViewController.collectionListingType = CollectionListingTypeMyOwn;
-
+        
         _myCollectionListingViewController.userID = self.profileModel.uid;
         __weak typeof (self)weakSelf = self;
         _myCollectionListingViewController.didSelectEdiCollectionRowBlock = ^(NSString* collectionID)
@@ -178,7 +205,7 @@
     
     
     self.ibSegmentedControl.selectedSegmentIndex = page;
-
+    
 }
 
 
@@ -186,7 +213,7 @@
 {
     _editCollectionViewController = nil;
     [self.editCollectionViewController initData:collID ProfileType:self.profileType];
-   // [LoadingManager show];
+    // [LoadingManager show];
     [self.navigationController pushViewController:self.editCollectionViewController animated:YES];
 }
 
