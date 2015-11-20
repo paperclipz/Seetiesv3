@@ -213,6 +213,7 @@
     checkauto = 0;
     
     
+                              
 }
 
 -(void)changeLanguage

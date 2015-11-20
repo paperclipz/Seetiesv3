@@ -462,6 +462,7 @@
 -(IBAction)ShareButtonOnClick:(id)sender{
     NSLog(@"ShareButtonOnClick");
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+
     ShareViewController *ShareView = [[ShareViewController alloc]init];
     [self presentViewController:ShareView animated:YES completion:nil];
     //[self.view.window.rootViewController presentViewController:ShareView animated:YES completion:nil];
