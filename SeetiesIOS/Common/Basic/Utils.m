@@ -436,4 +436,17 @@
     
 
 }
+
++(BOOL)isStringNull:(NSString*)str
+{
+    BOOL _isNUll = false;
+    
+
+    if ([str isEqualToString:@""] || str.length == 0 || str == nil) {
+        _isNUll = true;
+    }
+
+    return _isNUll;
+}
+
 @end

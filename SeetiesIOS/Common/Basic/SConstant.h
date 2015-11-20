@@ -36,6 +36,7 @@ typedef enum
     ServerRequestTypeGetTagsSuggestion,
     ServerRequestTypeGetUserCollections,
     ServerRequestTypeGetUserFollowingCollections,
+    ServerRequestTypeGetUserSuggestedCollections,
     ServerRequestTypeGetUserPosts,
     ServerRequestTypeGetUserLikes,
     ServerRequestTypeDeleteCollection,

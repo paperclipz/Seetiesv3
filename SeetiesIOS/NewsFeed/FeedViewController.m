@@ -216,7 +216,7 @@
     _collectionListingViewController = nil;
     ProfileModel* model = [ProfileModel new];
     model.uid = @"20b6fac7431ed4aadf8885808d28a9d9";
-    [self.collectionListingViewController setType:ProfileViewTypeOthers ProfileModel:model NumberOfPage:1];
+    [self.collectionListingViewController setType:ProfileViewTypeOthers ProfileModel:model NumberOfPage:1 collectionType:CollectionListingTypeSuggestion];
     UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.collectionListingViewController];
 
     [naviVC setNavigationBarHidden:YES animated:NO];
@@ -5468,7 +5468,7 @@
     
     ProfileModel* model = [ProfileModel new];
     model.uid = [Utils getUserID];
-    [self.collectionListingViewController setType:ProfileViewTypeOthers ProfileModel:model NumberOfPage:1];
+    [self.collectionListingViewController setType:ProfileViewTypeOthers ProfileModel:model NumberOfPage:1 collectionType:CollectionListingTypeSuggestion];
     [self.navigationController pushViewController:self.collectionListingViewController animated:YES];
 //    SuggestedCollectionsViewController *SuggestedCollectionsView = [[SuggestedCollectionsViewController alloc]init];
 //    [self.navigationController pushViewController:SuggestedCollectionsView animated:YES];

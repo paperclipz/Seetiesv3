@@ -71,12 +71,36 @@
 
 
 @end
+
+@interface CollectionsModel()
+@property(nonatomic,strong)NSDictionary* paging;
+
+@end
 @implementation CollectionsModel
 
 +(JSONKeyMapper*)keyMapper
 {
     return [[JSONKeyMapper alloc] initWithDictionary:@{
-                                                       @"result": @"arrCollections"                                                       
+                                                       @"result": @"arrCollections",
+                                                       @"collections": @"arrSuggestedCollection",
+
                                                        }];
+}
+
+-(NSString*)next
+{
+    if (_paging) {
+        _next = _paging[@"next"];
+    }
+    return _next;
+    
+}
+
+-(NSString*)previous
+{
+    if (_previous) {
+        _previous = _paging[@"previous"];
+    }
+    return _previous;
 }
 @end

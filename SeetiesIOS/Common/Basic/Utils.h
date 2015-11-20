@@ -52,7 +52,8 @@ typedef enum {
 typedef enum {
     
     CollectionListingTypeMyOwn,
-    CollectionListingTypeFollowing
+    CollectionListingTypeFollowing,
+    CollectionListingTypeSuggestion
     
 } CollectionListingType;
 
@@ -125,6 +126,7 @@ typedef enum {
 +(NSString*)convertToJsonString:(NSDictionary*)dict;
 +(BOOL)stringIsNilOrEmpty:(NSString*)aString;
 +(NSURL*)getPrefixedURLFromString:(NSString*)url;
++(BOOL)isStringNull:(NSString*)str;
 
 
 #define ARRAY_LIST_SIZE 10.0f

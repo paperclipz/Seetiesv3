@@ -21,5 +21,6 @@
 @property(nonatomic,strong)NewCollectionViewController* newCollectionViewController;
 
 -(void)setType:(ProfileViewType)type ProfileModel:(ProfileModel*)model NumberOfPage:(int)page;
+-(void)setType:(ProfileViewType)type ProfileModel:(ProfileModel*)model NumberOfPage:(int)page collectionType:(CollectionListingType)collType;
 
 @end

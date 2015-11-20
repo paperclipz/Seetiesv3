@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *ibSegmentedControl;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property(nonatomic,assign)ProfileViewType profileType;
+@property(nonatomic,assign)CollectionListingType collectionListingType;
 @property(nonatomic,strong)ProfileModel* profileModel;
 @property(nonatomic,assign)int viewPage;
 @property (weak, nonatomic) IBOutlet UIButton *btnAddMore;
@@ -24,6 +25,8 @@
 @end
 
 @implementation CollectionListingViewController
+
+
 - (IBAction)btnAddMoreClicked:(id)sender {
     
     _newCollectionViewController = nil;
@@ -57,6 +60,13 @@
     self.viewPage = page;
     
 }
+
+-(void)setType:(ProfileViewType)type ProfileModel:(ProfileModel*)model NumberOfPage:(int)page collectionType:(CollectionListingType)collType
+{
+    [self setType:type ProfileModel:model NumberOfPage:page];
+    self.collectionListingType = collType;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -145,7 +155,7 @@
     {
         _myCollectionListingViewController = [CollectionListingTabViewController new];
         _myCollectionListingViewController.profileType = self.profileType;
-        _myCollectionListingViewController.collectionListingType = CollectionListingTypeMyOwn;
+        _myCollectionListingViewController.collectionListingType = self.collectionListingType == CollectionListingTypeMyOwn?CollectionListingTypeMyOwn:CollectionListingTypeSuggestion;
         
         _myCollectionListingViewController.userID = self.profileModel.uid;
         __weak typeof (self)weakSelf = self;
