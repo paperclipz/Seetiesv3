@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CollectionListingViewController">
             <connections>
                 <outlet property="bottomConstraint" destination="5nU-nP-ul6" id="n2q-Ck-Tkw"/>
+                <outlet property="btnAddMore" destination="kH2-gC-JZm" id="1OK-Op-FLk"/>
                 <outlet property="ibScrollView" destination="Lsb-YA-s3L" id="HWb-FG-Zvw"/>
                 <outlet property="ibSegmentedControl" destination="Ali-jO-zY8" id="fPg-TR-XOI"/>
                 <outlet property="lblTitle" destination="Vuc-YZ-3e4" id="rxY-C4-ifY"/>

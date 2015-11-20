@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 @property(nonatomic,strong)CollectionsModel* userCollectionsModel;
 @property(nonatomic,strong)NSMutableArray* arrCollections;
-
+@property (weak, nonatomic) IBOutlet UILabel *lblCount;
 @end
 
 @implementation CollectionListingTabViewController
@@ -27,13 +27,12 @@
     
     if (self.collectionListingType == CollectionListingTypeMyOwn) {
         [self requestServerForUserCollection];
-
     }
     else{
+        
         [self requestServerForOtherUserCollection];
 
     }
-    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -160,6 +159,7 @@
         
         [self.arrCollections addObjectsFromArray:self.userCollectionsModel.arrCollections];
         
+        self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_result,LocalisedString(@"Collections")];
         [self.ibTableView reloadData];
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = false;
@@ -275,7 +275,7 @@
         self.userCollectionsModel = [[ConnectionManager dataManager]userFollowingCollectionsModel];
         
         [self.arrCollections addObjectsFromArray:self.userCollectionsModel.arrCollections];
-        
+        self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_result,LocalisedString(@"Collections")];
         [self.ibTableView reloadData];
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = false;

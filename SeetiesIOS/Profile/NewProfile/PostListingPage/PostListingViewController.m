@@ -22,6 +22,8 @@
 @property (strong, nonatomic) ListingHeaderView* viewHeader;
 @property (strong, nonatomic) ProfileModel* profileModel;
 @property (assign, nonatomic) ProfileViewType profileType;
+@property (weak, nonatomic) IBOutlet UILabel *lblCount;
+@property (weak, nonatomic) IBOutlet UIButton *btnAddMore;
 
 @end
 
@@ -53,6 +55,9 @@
     [self initTableViewWithDelegate];
     self.lblTitle.text = [NSString stringWithFormat:@"%d %@",self.userProfilePostModel.userPostData.total_posts,LocalisedString(@"Posts")];
     
+    if (self.profileType == ProfileViewTypeOthers) {
+        self.btnAddMore.hidden = YES;
+    }
 }
 
 -(void)initTableViewWithDelegate
@@ -201,6 +206,7 @@
         
         [self.arrPostListing addObjectsFromArray:self.userProfilePostModel.userPostData.posts];
         
+        self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userProfilePostModel.userPostData.total_posts,LocalisedString(@"Posts")];
         [self.ibTableView reloadData];
         
     } errorBlock:^(id object) {

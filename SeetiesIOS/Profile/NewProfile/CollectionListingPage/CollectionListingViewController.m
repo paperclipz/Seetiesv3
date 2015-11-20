@@ -40,6 +40,14 @@
     frame.origin.x = frame.size.width * segmentedControl.selectedSegmentIndex;
     frame.origin.y = 0;
     [self.ibScrollView scrollRectToVisible:frame animated:YES];
+    
+    if (self.profileType == ProfileViewTypeOwn && segmentedControl.selectedSegmentIndex == 0) {
+        self.btnAddMore.hidden = NO;
+    }
+    else{
+        self.btnAddMore.hidden = YES;
+
+    }
 }
 
 -(void)setType:(ProfileViewType)type ProfileModel:(ProfileModel*)model NumberOfPage:(int)page
@@ -104,6 +112,7 @@
         
     }
     else{
+        
         self.lblTitle.text = [NSString stringWithFormat:@"%@ %@",self.profileModel.username,LocalisedString(@"Collections")];
         
     }

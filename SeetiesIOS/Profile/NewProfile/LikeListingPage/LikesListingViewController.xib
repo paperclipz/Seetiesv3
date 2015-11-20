@@ -8,7 +8,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LikesListingViewController">
             <connections>
                 <outlet property="ibCollectionView" destination="qhO-On-UL4" id="Id8-IA-t0R"/>
-                <outlet property="ibCollectionViewLayout" destination="veu-RM-yza" id="CH0-0d-oGw"/>
+                <outlet property="ibHeaderView" destination="ef7-s0-58p" id="Dnu-y4-TjS"/>
+                <outlet property="lblCount" destination="ef7-s0-58p" id="uEm-yP-f7V"/>
                 <outlet property="lblTitle" destination="oW7-Oi-p5c" id="U7Q-VF-th0"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -64,21 +65,34 @@
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="qhO-On-UL4">
                     <rect key="frame" x="0.0" y="64" width="320" height="456"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="veu-RM-yza">
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dhh-lb-xA5">
                         <size key="itemSize" width="50" height="50"/>
-                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="headerReferenceSize" width="50" height="50"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                        <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collections" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ef7-s0-58p">
+                    <rect key="frame" x="0.0" y="64" width="320" height="40"/>
+                    <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="ZcO-wG-88T"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="EOY-yT-4bV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="2XP-Cc-4Az"/>
                 <constraint firstItem="EOY-yT-4bV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="PUp-75-nP2"/>
+                <constraint firstAttribute="trailing" secondItem="ef7-s0-58p" secondAttribute="trailing" id="Pdn-hu-Jye"/>
                 <constraint firstAttribute="trailing" secondItem="qhO-On-UL4" secondAttribute="trailing" id="UMx-nd-cG2"/>
                 <constraint firstItem="qhO-On-UL4" firstAttribute="top" secondItem="EOY-yT-4bV" secondAttribute="bottom" id="hyd-cn-Kxl"/>
+                <constraint firstItem="ef7-s0-58p" firstAttribute="top" secondItem="EOY-yT-4bV" secondAttribute="bottom" id="olY-cB-dnc"/>
                 <constraint firstAttribute="bottom" secondItem="qhO-On-UL4" secondAttribute="bottom" constant="48" id="sGn-Ia-9d4"/>
+                <constraint firstItem="ef7-s0-58p" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="sI3-Lk-fup"/>
                 <constraint firstAttribute="trailing" secondItem="EOY-yT-4bV" secondAttribute="trailing" id="tKs-fi-Shh"/>
                 <constraint firstItem="qhO-On-UL4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="z7J-l9-tlq"/>
             </constraints>
