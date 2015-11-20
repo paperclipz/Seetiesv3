@@ -149,6 +149,7 @@
     NSString *GetCollectionFollowing;
     NSString *GetCollectID;
     NSString *GetCollectUserID;
+    NSString *GetFollowingCollectionID;
     
     
     //follow_suggestion_friend Check
@@ -168,6 +169,7 @@
     NSMutableArray *SplitArray_ProfileImg_Featured;
     NSMutableArray *SplitArray_Username_Featured;
     NSMutableArray *SplitArray_PostsImg_Featured;
+    
 }
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;
@@ -495,11 +497,6 @@
             [self initData];
             [self initSelfView];
         }
-
-        
-        
-        
-
         
     }else{
         
@@ -3281,7 +3278,7 @@
             }
                 break;
             case 12:{
-                 NSLog(@"in following_collection");
+                NSLog(@"in following_collection");
                 
                 UIButton *TempButton = [[UIButton alloc]init];
                 TempButton.frame = CGRectMake(10, heightcheck, screenWidth - 20, 400);
@@ -3301,6 +3298,8 @@
                 ShowIcon.image = [UIImage imageNamed:@"YellowCollections.png"];
                 ShowIcon.frame = CGRectMake(20, heightcheck + 8, 33, 33);
                 [MainScroll addSubview:ShowIcon];
+                
+                GetFollowingCollectionID = [[NSString alloc]initWithFormat:@"%@",[arrPostID objectAtIndex:i]];
                 
                 NSString *TempString = [[NSString alloc]initWithFormat:@"%@ collected %lu posts in %@",[arrUserName objectAtIndex:i],(unsigned long)[SplitArray_ImageData count],[arrTitle objectAtIndex:i]];
                 
@@ -5547,7 +5546,8 @@
     return _profileViewController;
 }
 -(IBAction)FollowingCollectionButtonOnClick:(id)sender{
-NSLog(@"FollowingCollectionButtonOnClick");
+    NSLog(@"FollowingCollectionButtonOnClick");
+    NSLog(@"GetFollowingCollectionID is %@",GetFollowingCollectionID);
 }
 -(IBAction)FollowCollectionShareButtonOnClick:(id)sender{
    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
