@@ -52,6 +52,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)initData:(NSString*)collectionID
+{
+    self.collectionID = collectionID;
+}
+
 -(void)initSelfView
 {
     [self iniiTableViewDelegate:self];
@@ -195,7 +200,6 @@
 -(void)requestServerForCollectionInfo
 {
     
-    self.collectionID = @"5638431d1c4d5b1b098b48b0";
     NSDictionary* dict = @{@"collection_id":self.collectionID,
                            @"list_size":@(ARRAY_LIST_SIZE),
                            @"page":@(1),

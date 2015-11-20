@@ -12,4 +12,7 @@
 @interface SuggestedCollectionPostsViewController : CommonViewController
 
 @property(nonatomic,strong)FeedV2DetailViewController* feedV2DetailViewController;
+
+-(void)initData:(NSString*)collectionID;
+
 @end

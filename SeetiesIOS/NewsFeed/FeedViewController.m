@@ -187,13 +187,13 @@
     
     return _collectionListingViewController;
 }
--(SuggestedCollectionPostsViewController*)suggestedCollectionPostsViewController
+-(SuggestedCollectionPostsViewController*)followingCollectionPostsViewController
 {
-    if (!_suggestedCollectionPostsViewController) {
-        _suggestedCollectionPostsViewController = [SuggestedCollectionPostsViewController new];
+    if (!_followingCollectionPostsViewController) {
+        _followingCollectionPostsViewController = [SuggestedCollectionPostsViewController new];
     }
     
-    return _suggestedCollectionPostsViewController;
+    return _followingCollectionPostsViewController;
 }
 
 #pragma mark - IBAction
@@ -3022,8 +3022,6 @@
                 break;
                 
             case 11:{
-                //TODO: Delete break; for collection suggestion
-                break;
                 NSLog(@"in collect_suggestion");
                 
 //                NSLog(@"Show ID == %@",[arrPostID objectAtIndex:i]);
@@ -5450,6 +5448,13 @@
 }
 -(IBAction)SeeAllButtonOnClick:(id)sender{
     NSLog(@"Suggested Collection SeeAllButtonOnClick");
+    
+    _collectionListingViewController = nil;
+    
+    ProfileModel* model = [ProfileModel new];
+    model.uid = [Utils getUserID];
+    [self.collectionListingViewController setType:ProfileViewTypeOthers ProfileModel:model NumberOfPage:1];
+    [self.navigationController pushViewController:self.collectionListingViewController animated:YES];
 //    SuggestedCollectionsViewController *SuggestedCollectionsView = [[SuggestedCollectionsViewController alloc]init];
 //    [self.navigationController pushViewController:SuggestedCollectionsView animated:YES];
 }
@@ -5548,6 +5553,10 @@
 -(IBAction)FollowingCollectionButtonOnClick:(id)sender{
     NSLog(@"FollowingCollectionButtonOnClick");
     NSLog(@"GetFollowingCollectionID is %@",GetFollowingCollectionID);
+    
+    _followingCollectionPostsViewController = nil;
+    [self.followingCollectionPostsViewController initData:GetFollowingCollectionID];
+    [self.navigationController pushViewController:self.followingCollectionPostsViewController animated:YES];
 }
 -(IBAction)FollowCollectionShareButtonOnClick:(id)sender{
    NSInteger getbuttonIDN = ((UIControl *) sender).tag;

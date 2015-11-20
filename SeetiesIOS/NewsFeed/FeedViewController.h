@@ -15,7 +15,7 @@
 @class ProfileViewController;
 @interface FeedViewController : BaseViewController<UIScrollViewDelegate,CLLocationManagerDelegate>
 
-@property(nonatomic,strong)SuggestedCollectionPostsViewController* suggestedCollectionPostsViewController;
+@property(nonatomic,strong)SuggestedCollectionPostsViewController* followingCollectionPostsViewController;
 @property(nonatomic,strong)ProfileViewController* profileViewController;
 @property(nonatomic,strong)CollectionListingViewController* collectionListingViewController;
 

@@ -127,14 +127,12 @@
     }
     else{
         
-        self.btnEdit.hidden = YES;
-        //current hide the below code first because following feature hvnt added in
-//        [self.btnEdit setTitle:LocalisedString(@"Follow") forState:UIControlStateNormal];
-//        [self.btnEdit setTitle:LocalisedString(@"Following") forState:UIControlStateSelected];
-//        [self.btnEdit setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//        [self.btnEdit setTitleColor:SELECTED_GREEN forState:UIControlStateSelected];
-//
-//        [self setFollowButtonSelected:self.model.following button:self.btnEdit];
+        [self.btnEdit setTitle:LocalisedString(@"Follow") forState:UIControlStateNormal];
+        [self.btnEdit setTitle:LocalisedString(@"Following") forState:UIControlStateSelected];
+        [self.btnEdit setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self.btnEdit setTitleColor:SELECTED_GREEN forState:UIControlStateSelected];
+
+        [self setFollowButtonSelected:self.model.following button:self.btnEdit];
     }
    
    

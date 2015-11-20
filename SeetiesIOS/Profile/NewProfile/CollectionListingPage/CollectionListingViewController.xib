@@ -12,7 +12,7 @@
                 <outlet property="ibScrollView" destination="Lsb-YA-s3L" id="HWb-FG-Zvw"/>
                 <outlet property="ibSegmentedControl" destination="Ali-jO-zY8" id="fPg-TR-XOI"/>
                 <outlet property="lblTitle" destination="Vuc-YZ-3e4" id="rxY-C4-ifY"/>
-                <outlet property="scrollViewTopConstraint" destination="DIa-MJ-6sd" id="xgy-44-cyl"/>
+                <outlet property="scrollViewTopConstraint" destination="Lwe-ZJ-tPg" id="Tmg-HS-Vhs"/>
                 <outlet property="view" destination="HmF-Tf-joH" id="syZ-VI-x8T"/>
             </connections>
         </placeholder>
@@ -92,7 +92,7 @@
                         <action selector="btnSegmentedClicked:" destination="-1" eventType="valueChanged" id="4Ek-aZ-KyH"/>
                     </connections>
                 </segmentedControl>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lsb-YA-s3L">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lsb-YA-s3L">
                     <rect key="frame" x="0.0" y="110" width="320" height="408"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                 </scrollView>
@@ -101,8 +101,8 @@
             <constraints>
                 <constraint firstItem="Ali-jO-zY8" firstAttribute="top" secondItem="tuy-J5-blb" secondAttribute="bottom" constant="8" id="0Ec-3B-7up"/>
                 <constraint firstAttribute="bottom" secondItem="Lsb-YA-s3L" secondAttribute="bottom" constant="50" id="5nU-nP-ul6"/>
-                <constraint firstItem="Lsb-YA-s3L" firstAttribute="top" secondItem="Ali-jO-zY8" secondAttribute="bottom" constant="10" id="DIa-MJ-6sd"/>
                 <constraint firstItem="tuy-J5-blb" firstAttribute="top" secondItem="HmF-Tf-joH" secondAttribute="top" id="Dd0-im-gaM"/>
+                <constraint firstItem="Lsb-YA-s3L" firstAttribute="top" secondItem="tuy-J5-blb" secondAttribute="bottom" constant="46" id="Lwe-ZJ-tPg"/>
                 <constraint firstItem="Lsb-YA-s3L" firstAttribute="leading" secondItem="HmF-Tf-joH" secondAttribute="leading" id="OkF-mm-tIV"/>
                 <constraint firstItem="Ali-jO-zY8" firstAttribute="leading" secondItem="HmF-Tf-joH" secondAttribute="leading" constant="10" id="U0P-W8-BS9"/>
                 <constraint firstAttribute="trailing" secondItem="tuy-J5-blb" secondAttribute="trailing" id="Xh4-ay-bLt"/>

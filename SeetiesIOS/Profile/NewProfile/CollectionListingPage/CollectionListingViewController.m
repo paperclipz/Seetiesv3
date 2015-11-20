@@ -61,6 +61,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
+    [self changeLanguage];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -72,20 +73,20 @@
 -(void)initSelfView
 {
     self.ibScrollView.delegate = self;
-    SLog(@" view size : %f || height : %f",self.view.frame.size.width,self.view.frame.size.height);
     [self.ibScrollView addSubview:self.myCollectionListingViewController.view];
-    
+    scrollViewTopConstraint.constant = 0;
+
     CGRect frame = [Utils getDeviceScreenSize];
-    
     [self.ibScrollView setWidth:frame.size.width];
     [self.myCollectionListingViewController.view setWidth:frame.size.width];
     [self.myCollectionListingViewController.view setHeight:self.ibScrollView.frame.size.height];
     [self.ibScrollView addSubview:self.myCollectionListingViewController.view];
-    scrollViewTopConstraint.constant = -36;
+    self.ibScrollView.contentSize = CGSizeMake(frame.size.width, self.ibScrollView.frame.size.height);
+
 
     if (self.viewPage == 2)
     {
-        scrollViewTopConstraint.constant = 10;
+        scrollViewTopConstraint.constant = 46;
         self.ibSegmentedControl.hidden = NO;
         [self.followingCollectionListingViewController.view setWidth:frame.size.width];
         [self.followingCollectionListingViewController.view setHeight:self.ibScrollView.frame.size.height];
@@ -99,6 +100,7 @@
 
     }
     
+
     self.btnAddMore.hidden = self.profileType == ProfileViewTypeOthers;
     
     [self initViewData];
@@ -231,5 +233,12 @@
     _collectionViewController = nil;
     [self.collectionViewController GetCollectionID:collID GetPermision:@"self"];
     [self.navigationController pushViewController:self.collectionViewController animated:YES];
+}
+
+-(void)changeLanguage
+{
+    [self.ibSegmentedControl setTitle:LocalisedString(@"Collections") forSegmentAtIndex:0];
+    [self.ibSegmentedControl setTitle:LocalisedString(@"Following Collections") forSegmentAtIndex:1];
+
 }
 @end
