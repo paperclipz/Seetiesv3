@@ -60,6 +60,22 @@
     NSMutableArray *arrlike;
     NSMutableArray *arrCollect;
     
+    NSMutableArray *arrLocalAddress;
+    NSMutableArray *arrLocalTitle;
+    NSMutableArray *arrLocalMessage;
+    NSMutableArray *arrLocalType;
+    NSMutableArray *arrLocalImage;
+    NSMutableArray *arrLocalUserImage;
+    NSMutableArray *arrLocalUserName;
+    NSMutableArray *arrLocalUserID;
+    NSMutableArray *arrLocalDistance;
+    NSMutableArray *arrLocalDisplayCountryName;
+    NSMutableArray *arrLocalPostID;
+    NSMutableArray *arrLocalImageWidth;
+    NSMutableArray *arrLocalImageHeight;
+    NSMutableArray *arrLocallike;
+    NSMutableArray *arrLocalCollect;
+    
     NSMutableArray *User_IDArray;
     NSMutableArray *User_ProfileImageArray;
     NSMutableArray *User_NameArray;
@@ -149,9 +165,7 @@
     NSString *GetCollectionFollowing;
     NSString *GetCollectID;
     NSString *GetCollectUserID;
-    NSString *GetFollowingCollectionID;
-    
-    
+
     //follow_suggestion_friend Check
     int CheckFollowSuggestionFriend;
     int FollowSuggestionFriendCount;
@@ -523,52 +537,54 @@
 
         // put data here
         NSMutableArray *arrImageTemp = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"FeedLocalImg"]];
-        arrImage = [[NSMutableArray alloc]initWithArray:arrImageTemp];
+        arrLocalImage = [[NSMutableArray alloc]initWithArray:arrImageTemp];
         NSMutableArray *arrAddressTemp = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"FeedLocalarrAddress"]];
-        arrAddress = [[NSMutableArray alloc]initWithArray:arrAddressTemp];
+        arrLocalAddress = [[NSMutableArray alloc]initWithArray:arrAddressTemp];
         NSMutableArray *arrTitleTemp = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"FeedLocalarrTitle"]];
-        arrTitle = [[NSMutableArray alloc]initWithArray:arrTitleTemp];
+        arrLocalTitle = [[NSMutableArray alloc]initWithArray:arrTitleTemp];
         NSMutableArray *arrMessageTemp = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"FeedLocalarrMessage"]];
-        arrMessage = [[NSMutableArray alloc]initWithArray:arrMessageTemp];
+        arrLocalMessage = [[NSMutableArray alloc]initWithArray:arrMessageTemp];
         NSMutableArray *arrTypeTemp = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"FeedLocalarrType"]];
-        arrType = [[NSMutableArray alloc]initWithArray:arrTypeTemp];
+        arrLocalType = [[NSMutableArray alloc]initWithArray:arrTypeTemp];
         NSMutableArray *arrDistanceTemp = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"FeedLocalarrDistance"]];
-        arrDistance = [[NSMutableArray alloc]initWithArray:arrDistanceTemp];
+        arrLocalDistance = [[NSMutableArray alloc]initWithArray:arrDistanceTemp];
         NSMutableArray *arrUserNameTemp = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"FeedLocalarrUserName"]];
-        arrUserName = [[NSMutableArray alloc]initWithArray:arrUserNameTemp];
+        arrLocalUserName = [[NSMutableArray alloc]initWithArray:arrUserNameTemp];
         NSMutableArray *arrUserIDTemp = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"FeedLocalarrUserID"]];
-        arrUserID = [[NSMutableArray alloc]initWithArray:arrUserIDTemp];
+        arrLocalUserID = [[NSMutableArray alloc]initWithArray:arrUserIDTemp];
         NSMutableArray *arrUserImageTemp = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"FeedLocalarrUserImage"]];
-        arrUserImage = [[NSMutableArray alloc]initWithArray:arrUserImageTemp];
+        arrLocalUserImage = [[NSMutableArray alloc]initWithArray:arrUserImageTemp];
         NSMutableArray *arrDisplayCountryNameTemp = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"FeedLocalarrDisplayCountryName"]];
-        arrDisplayCountryName = [[NSMutableArray alloc]initWithArray:arrDisplayCountryNameTemp];
+        arrLocalDisplayCountryName = [[NSMutableArray alloc]initWithArray:arrDisplayCountryNameTemp];
         NSMutableArray *arrPostIDTemp = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"FeedLocalarrPostID"]];
-        arrPostID = [[NSMutableArray alloc]initWithArray:arrPostIDTemp];
+        arrLocalPostID = [[NSMutableArray alloc]initWithArray:arrPostIDTemp];
         NSMutableArray *arrImageHeightTemp = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"FeedLocalarrImageHeight"]];
-        arrImageHeight = [[NSMutableArray alloc]initWithArray:arrImageHeightTemp];
+        arrLocalImageHeight = [[NSMutableArray alloc]initWithArray:arrImageHeightTemp];
         NSMutableArray *arrImageWidthTemp = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"FeedLocalarrImageWidth"]];
-        arrImageWidth = [[NSMutableArray alloc]initWithArray:arrImageWidthTemp];
+        arrLocalImageWidth = [[NSMutableArray alloc]initWithArray:arrImageWidthTemp];
         NSMutableArray *arrLikeWidthTemp = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"FeedLocalarrLike"]];
-        arrlike = [[NSMutableArray alloc]initWithArray:arrLikeWidthTemp];
+        arrLocallike = [[NSMutableArray alloc]initWithArray:arrLikeWidthTemp];
         NSMutableArray *arrCollectWidthTemp = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"FeedLocalarrCollect"]];
-        arrCollect = [[NSMutableArray alloc]initWithArray:arrCollectWidthTemp];
+        arrLocalCollect = [[NSMutableArray alloc]initWithArray:arrCollectWidthTemp];
     }else{
-        arrAddress = [[NSMutableArray alloc]init];
-        arrTitle = [[NSMutableArray alloc]init];
-        arrMessage = [[NSMutableArray alloc]init];
-        arrType = [[NSMutableArray alloc]init];
-        arrImage = [[NSMutableArray alloc]init];//https://unsplash.it/375/400/?random
-        arrDistance = [[NSMutableArray alloc]init];
-        arrUserName = [[NSMutableArray alloc]init];
-        arrUserID = [[NSMutableArray alloc]init];
-        arrUserImage = [[NSMutableArray alloc]init];
-        arrDisplayCountryName = [[NSMutableArray alloc]init];
-        arrPostID = [[NSMutableArray alloc]init];
-        arrImageWidth = [[NSMutableArray alloc]init];
-        arrImageHeight = [[NSMutableArray alloc]init];
-        arrlike = [[NSMutableArray alloc]init];
-        arrCollect = [[NSMutableArray alloc]init];
+
     }
+    
+    arrAddress = [[NSMutableArray alloc]init];
+    arrTitle = [[NSMutableArray alloc]init];
+    arrMessage = [[NSMutableArray alloc]init];
+    arrType = [[NSMutableArray alloc]init];
+    arrImage = [[NSMutableArray alloc]init];//https://unsplash.it/375/400/?random
+    arrDistance = [[NSMutableArray alloc]init];
+    arrUserName = [[NSMutableArray alloc]init];
+    arrUserID = [[NSMutableArray alloc]init];
+    arrUserImage = [[NSMutableArray alloc]init];
+    arrDisplayCountryName = [[NSMutableArray alloc]init];
+    arrPostID = [[NSMutableArray alloc]init];
+    arrImageWidth = [[NSMutableArray alloc]init];
+    arrImageHeight = [[NSMutableArray alloc]init];
+    arrlike = [[NSMutableArray alloc]init];
+    arrCollect = [[NSMutableArray alloc]init];
 
     User_LocationArray = [[NSMutableArray alloc]init];
     User_IDArray = [[NSMutableArray alloc]init];
@@ -855,11 +871,11 @@
 //    NSLog(@"[arrUserImage count] is %lu",(unsigned long)[arrUserImage count]);
 
     
-    if ([arrImage count] == [arrType count]) {
+    if ([arrLocalImage count] == [arrLocalType count]) {
        // NSLog(@"load local data...");
-        for (NSInteger i = 0; i < [arrImage count]; i++) {
+        for (NSInteger i = 0; i < [arrLocalImage count]; i++) {
             
-            NSString *GetType = [arrType objectAtIndex:i];
+            NSString *GetType = [arrLocalType objectAtIndex:i];
             
             if ([GetType isEqualToString:@"following_post"]) {
                 NSInteger TempHeight = heightcheck + i;
@@ -877,7 +893,7 @@
                 ShowImage.layer.cornerRadius = 5;
                 [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
                 NSString *stringPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"Content_Folder"];
-                stringPath  = [stringPath stringByAppendingPathComponent:[arrImage objectAtIndex:i]];
+                stringPath  = [stringPath stringByAppendingPathComponent:[arrLocalImage objectAtIndex:i]];
                 // NSLog(@"stringpath %@",stringPath);
                 UIImage *image_;
                 UIImage *newImage;
@@ -926,7 +942,7 @@
                 ShowUserProfileImage.layer.borderColor=[[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] CGColor];
                 [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
                 NSString *stringPath1 = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"Content_Folder"];
-                stringPath1  = [stringPath1 stringByAppendingPathComponent:[arrUserImage objectAtIndex:i]];
+                stringPath1  = [stringPath1 stringByAppendingPathComponent:[arrLocalUserImage objectAtIndex:i]];
                 ShowUserProfileImage.image = [UIImage imageWithData:[NSData dataWithContentsOfFile:stringPath1]];
                 
                 [LocalScroll addSubview:ShowUserProfileImage];
@@ -942,14 +958,14 @@
                 
                 UILabel *ShowUserName = [[UILabel alloc]init];
                 ShowUserName.frame = CGRectMake(75, heightcheck + 15, 200, 40);
-                ShowUserName.text = [arrUserName objectAtIndex:i];
+                ShowUserName.text = [arrLocalUserName objectAtIndex:i];
                 ShowUserName.backgroundColor = [UIColor clearColor];
                 ShowUserName.textColor = [UIColor whiteColor];
                 ShowUserName.textAlignment = NSTextAlignmentLeft;
                 ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
                 [LocalScroll addSubview:ShowUserName];
                 
-                NSString *TempDistanceString = [[NSString alloc]initWithFormat:@"%@",[arrDistance objectAtIndex:i]];
+                NSString *TempDistanceString = [[NSString alloc]initWithFormat:@"%@",[arrLocalDistance objectAtIndex:i]];
                 
                 if ([TempDistanceString isEqualToString:@"-1"]) {
                     
@@ -971,20 +987,20 @@
                             FullShowLocatinString = [[NSString alloc]initWithFormat:@"%.fkm",strFloat];
                             ShowDistanceIcon.image = [UIImage imageNamed:@"Distance1Icon.png"];
                         }else{
-                            FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@",[arrDisplayCountryName objectAtIndex:i]];
+                            FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@",[arrLocalDisplayCountryName objectAtIndex:i]];
                             ShowDistanceIcon.image = [UIImage imageNamed:@"Distance1Icon.png"];
                         }
 
                     }else if(x_Nearby > 301 && x_Nearby < 3000){
                         ShowDistanceIcon.image = [UIImage imageNamed:@"Distance3Icon.png"];
-                        FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@",[arrDisplayCountryName objectAtIndex:i]];
+                        FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@",[arrLocalDisplayCountryName objectAtIndex:i]];
                     }else if(x_Nearby > 3001 && x_Nearby < 15000){
                         ShowDistanceIcon.image = [UIImage imageNamed:@"Distance4Icon.png"];
-                        FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@",[arrDisplayCountryName objectAtIndex:i]];
+                        FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@",[arrLocalDisplayCountryName objectAtIndex:i]];
                     }else{
                         Checkhide = 1;
                        // ShowDistanceIcon.image = [UIImage imageNamed:@"Distance4Icon.png"];
-                        FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@",[arrDisplayCountryName objectAtIndex:i]];
+                        FullShowLocatinString = [[NSString alloc]initWithFormat:@"%@",[arrLocalDisplayCountryName objectAtIndex:i]];
                     }
                     
                     
@@ -1025,7 +1041,7 @@
                 heightcheck += newImage.size.height + 20;
                 TempCountWhiteHeight += newImage.size.height + 20;
                 
-                NSString *TempGetStirng = [[NSString alloc]initWithFormat:@"%@",[arrTitle objectAtIndex:i]];
+                NSString *TempGetStirng = [[NSString alloc]initWithFormat:@"%@",[arrLocalTitle objectAtIndex:i]];
                 if ([TempGetStirng length] == 0 || [TempGetStirng isEqualToString:@""] || [TempGetStirng isEqualToString:@"(null)"]) {
                     
                 }else{
@@ -1062,7 +1078,7 @@
                 
                 UILabel *ShowAddress = [[UILabel alloc]init];
                 ShowAddress.frame = CGRectMake(40, heightcheck , screenWidth - 80, 20);
-                ShowAddress.text = [arrAddress objectAtIndex:i];
+                ShowAddress.text = [arrLocalAddress objectAtIndex:i];
                 ShowAddress.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
                 ShowAddress.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
                 [LocalScroll addSubview:ShowAddress];
@@ -1070,7 +1086,7 @@
                 heightcheck += 30;
                 TempCountWhiteHeight += 30;
                 
-                NSString *TempGetMessage = [[NSString alloc]initWithFormat:@"%@",[arrMessage objectAtIndex:i]];
+                NSString *TempGetMessage = [[NSString alloc]initWithFormat:@"%@",[arrLocalMessage objectAtIndex:i]];
                 //TempGetMessage = [TempGetMessage stringByDecodingXMLEntities];
                 if ([TempGetMessage length] == 0 || [TempGetMessage isEqualToString:@""] || [TempGetMessage isEqualToString:@"(null)"]) {
                     
@@ -1121,7 +1137,7 @@
                 }
                 UIButton *LikeButton = [[UIButton alloc]init];
                 LikeButton.frame = CGRectMake(20, heightcheck + 4, 37, 37);
-                CheckLike = [[NSString alloc]initWithFormat:@"%@",[arrlike objectAtIndex:i]];
+                CheckLike = [[NSString alloc]initWithFormat:@"%@",[arrLocallike objectAtIndex:i]];
                 if ([CheckLike isEqualToString:@"0"]) {
                     [LikeButton setImage:[UIImage imageNamed:@"LikeIcon.png"] forState:UIControlStateNormal];
                     [LikeButton setImage:[UIImage imageNamed:@"LikedIcon.png"] forState:UIControlStateSelected];
@@ -1131,7 +1147,7 @@
                 }
                 LikeButton.backgroundColor = [UIColor clearColor];
                 LikeButton.tag = 6000 + i;
-                [LikeButton addTarget:self action:@selector(LikeButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+               // [LikeButton addTarget:self action:@selector(LikeButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
                 [LocalScroll addSubview:LikeButton];
                 
                 
@@ -1148,11 +1164,11 @@
                 [ShareButton setImage:[UIImage imageNamed:@"ShareToIcon.png"] forState:UIControlStateNormal];
                 ShareButton.backgroundColor = [UIColor clearColor];
                 ShareButton.tag = i;
-                [ShareButton addTarget:self action:@selector(ShareButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+               // [ShareButton addTarget:self action:@selector(ShareButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
                 [LocalScroll addSubview:ShareButton];
                 
                 
-                CheckCollect = [[NSString alloc]initWithFormat:@"%@",[arrCollect objectAtIndex:i]];;
+                CheckCollect = [[NSString alloc]initWithFormat:@"%@",[arrLocalCollect objectAtIndex:i]];;
                 UIButton *QuickCollectButton = [[UIButton alloc]init];
                 if ([CheckCollect isEqualToString:@"0"]) {
                     [QuickCollectButton setImage:[UIImage imageNamed:LocalisedString(@"CollectBtn.png")] forState:UIControlStateNormal];
@@ -1165,7 +1181,7 @@
                 [QuickCollectButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
                 QuickCollectButton.backgroundColor = [UIColor clearColor];
                 QuickCollectButton.frame = CGRectMake(screenWidth - 20 - 140, heightcheck -5, 140, 50);
-                [QuickCollectButton addTarget:self action:@selector(CollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+               // [QuickCollectButton addTarget:self action:@selector(CollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
                 QuickCollectButton.tag = i + 5000;
                 QuickCollectButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
                 [LocalScroll addSubview:QuickCollectButton];
@@ -1174,7 +1190,7 @@
                 [CollectButton setTitle:@"" forState:UIControlStateNormal];
                 CollectButton.backgroundColor = [UIColor clearColor];
                 CollectButton.frame = CGRectMake(screenWidth - 20 - 60, heightcheck - 5, 60, 37);
-                [CollectButton addTarget:self action:@selector(AddCollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+                //[CollectButton addTarget:self action:@selector(AddCollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
                 CollectButton.tag = i;
                 [LocalScroll addSubview:CollectButton];
                 
@@ -3002,7 +3018,6 @@
                 
             case 11:{
                 //TODO: Delete break; for collection suggestion
-                break;
                 NSLog(@"in collect_suggestion");
                 
 //                NSLog(@"Show ID == %@",[arrPostID objectAtIndex:i]);
@@ -3278,8 +3293,6 @@
                 ShowIcon.frame = CGRectMake(20, heightcheck + 8, 33, 33);
                 [MainScroll addSubview:ShowIcon];
                 
-                GetFollowingCollectionID = [[NSString alloc]initWithFormat:@"%@",[arrPostID objectAtIndex:i]];
-                
                 NSString *TempString = [[NSString alloc]initWithFormat:@"%@ collected %lu posts in %@",[arrUserName objectAtIndex:i],(unsigned long)[SplitArray_ImageData count],[arrTitle objectAtIndex:i]];
                 
                 UILabel *ShowSuggestedText = [[UILabel alloc]init];
@@ -3490,6 +3503,7 @@
                 OpenFollowingCollectionButton.backgroundColor = [UIColor clearColor];
                 OpenFollowingCollectionButton.frame = CGRectMake(10, heightcheck + 50, screenWidth - 20, 280);
                 [OpenFollowingCollectionButton addTarget:self action:@selector(FollowingCollectionButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+                OpenFollowingCollectionButton.tag = i;
                 [MainScroll addSubview:OpenFollowingCollectionButton];
                 
                 
@@ -4997,21 +5011,30 @@
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);
     
-    NSString *GetLikeClick = [[NSString alloc]initWithFormat:@"%@",[arrlike objectAtIndex:getbuttonIDN]];
-    NSString *GetCollectionClick = [[NSString alloc]initWithFormat:@"%@",[arrCollect objectAtIndex:getbuttonIDN]];
+    if (LocalScroll.hidden == YES) {
+        NSString *GetLikeClick = [[NSString alloc]initWithFormat:@"%@",[arrlike objectAtIndex:getbuttonIDN]];
+        NSString *GetCollectionClick = [[NSString alloc]initWithFormat:@"%@",[arrCollect objectAtIndex:getbuttonIDN]];
+        
+        NSLog(@"GetLikeClick is %@",GetLikeClick);
+        NSLog(@"GetCollectionClick is %@",GetCollectionClick);
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:GetLikeClick forKey:@"PostToDetail_like"];
+        [defaults setObject:GetCollectionClick forKey:@"PostToDetail_Collect"];
+        [defaults setInteger:getbuttonIDN + 6000 forKey:@"PostToDetail_IDN"];
+        [defaults synchronize];
+        
+        FeedV2DetailViewController *vc = [[FeedV2DetailViewController alloc] initWithNibName:@"FeedV2DetailViewController" bundle:nil];
+        [self.navigationController pushViewController:vc animated:YES];
+        [vc GetPostID:[arrPostID objectAtIndex:getbuttonIDN]];
+    }else{
+        
+        FeedV2DetailViewController *vc = [[FeedV2DetailViewController alloc] initWithNibName:@"FeedV2DetailViewController" bundle:nil];
+        [self.navigationController pushViewController:vc animated:YES];
+        [vc GetPostID:[arrLocalPostID objectAtIndex:getbuttonIDN]];
+    }
     
-    NSLog(@"GetLikeClick is %@",GetLikeClick);
-    NSLog(@"GetCollectionClick is %@",GetCollectionClick);
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:GetLikeClick forKey:@"PostToDetail_like"];
-    [defaults setObject:GetCollectionClick forKey:@"PostToDetail_Collect"];
-    [defaults setInteger:getbuttonIDN + 6000 forKey:@"PostToDetail_IDN"];
-    [defaults synchronize];
-    
-    FeedV2DetailViewController *vc = [[FeedV2DetailViewController alloc] initWithNibName:@"FeedV2DetailViewController" bundle:nil];
-    [self.navigationController pushViewController:vc animated:YES];
-    [vc GetPostID:[arrPostID objectAtIndex:getbuttonIDN]];
+
     
 }
 -(IBAction)NearbyButton:(id)sender{
@@ -5033,18 +5056,35 @@
     NSLog(@"button %li",(long)getbuttonIDN);
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    NSString *CheckUsername = [[NSString alloc]initWithFormat:@"%@",[arrUserName objectAtIndex:getbuttonIDN]];
-    NSString *GetUsername = [defaults objectForKey:@"UserName"];
-    if ([GetUsername isEqualToString:CheckUsername]) {
+    if (LocalScroll.hidden == YES) {
+        NSString *CheckUsername = [[NSString alloc]initWithFormat:@"%@",[arrUserName objectAtIndex:getbuttonIDN]];
+        NSString *GetUsername = [defaults objectForKey:@"UserName"];
+        if ([GetUsername isEqualToString:CheckUsername]) {
+        }else{
+            //        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+            //        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+            //        [NewUserProfileV2View GetUserName:[arrUserName objectAtIndex:getbuttonIDN]];
+            _profileViewController = nil;
+            [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[arrUserID objectAtIndex:getbuttonIDN]];
+            [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+            }];
+        }
     }else{
-//        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-//        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-//        [NewUserProfileV2View GetUserName:[arrUserName objectAtIndex:getbuttonIDN]];
-        _profileViewController = nil;
-        [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[arrUserID objectAtIndex:getbuttonIDN]];
-        [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-        }];
+        NSString *CheckUsername = [[NSString alloc]initWithFormat:@"%@",[arrLocalUserName objectAtIndex:getbuttonIDN]];
+        NSString *GetUsername = [defaults objectForKey:@"UserName"];
+        if ([GetUsername isEqualToString:CheckUsername]) {
+        }else{
+            //        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+            //        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+            //        [NewUserProfileV2View GetUserName:[arrUserName objectAtIndex:getbuttonIDN]];
+            _profileViewController = nil;
+            [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[arrLocalUserID objectAtIndex:getbuttonIDN]];
+            [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+            }];
+        }
     }
+    
+
     
 
 }
@@ -5525,7 +5565,9 @@
     return _profileViewController;
 }
 -(IBAction)FollowingCollectionButtonOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"FollowingCollectionButtonOnClick");
+    NSString *GetFollowingCollectionID = [[NSString alloc]initWithFormat:@"%@",[arrPostID objectAtIndex:getbuttonIDN]];
     NSLog(@"GetFollowingCollectionID is %@",GetFollowingCollectionID);
 }
 -(IBAction)FollowCollectionShareButtonOnClick:(id)sender{
