@@ -122,11 +122,19 @@
     
     DraftModel* draftModel = self.arrPostList[indexPath.row];
     
-    if (![draftModel.arrCustomPost isNull]) {
-        Post* postModel = draftModel.arrCustomPost[0];
-        [cell setDescription:postModel.message userName:draftModel.user_info.name];
-
+    
+    if (![draftModel.collection_note isNull]) {
+        [cell setDescription:draftModel.collection_note userName:draftModel.user_info.name];
+        
     }
+    else{
+        if (![draftModel.arrCustomPost isNull]) {
+            Post* postModel = draftModel.arrCustomPost[0];
+            [cell setDescription:postModel.message userName:draftModel.user_info.name];
+        }
+    }
+    
+  
     
     if (![draftModel.arrPhotos isNull]) {
         PhotoModel* photoModel = draftModel.arrPhotos[0];
@@ -143,7 +151,6 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-
     if (self.arrCellSize[indexPath.row] == [NSNull null]) {
         
         DraftModel* draftModel = self.arrPostList[indexPath.row];
@@ -151,10 +158,17 @@
         
         NSString* message = @"";
         
-        if (![draftModel.arrCustomPost isNull]) {
-            Post* postModel = draftModel.arrCustomPost[0];
-            message = postModel.message;
+        
+        if (![draftModel.collection_note isNull]) {
+            message = draftModel.collection_note;
         }
+        else{
+            if (![draftModel.arrCustomPost isNull]) {
+                Post* postModel = draftModel.arrCustomPost[0];
+                message = postModel.message;
+            }
+        }
+        
             CGRect frame = [Utils getDeviceScreenSize];
             
             NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
@@ -168,12 +182,24 @@
                                                                     NSParagraphStyleAttributeName : paragraphStyle
                                                                     }
                                                           context:nil];
-            //SLog(@"AAAA = %f",rect.size.height);
-            [self.arrCellSize replaceObjectAtIndex:indexPath.row withObject:[NSNumber numberWithFloat:rect.size.height]];
-
+     
+        
+        [self.arrCellSize replaceObjectAtIndex:indexPath.row withObject:[NSNumber numberWithFloat:rect.size.height]];
 
     }
-    return [self.arrCellSize[indexPath.row] floatValue] + 160 + 60;//60 is buffer
+    
+    
+    float frameHeight = [self.arrCellSize[indexPath.row] floatValue];
+
+    
+    if ((frameHeight + 160) >= [SuggestedCollectionPostTableViewCell getHeight]) {
+        
+        return [SuggestedCollectionPostTableViewCell getHeight];
+    }
+    else
+    {
+        return frameHeight + 160 + 40;//60 is buffer
+    }
 
 }
 
