@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 @property(nonatomic,strong)CollectionsModel* userCollectionsModel;
 @property(nonatomic,strong)NSMutableArray* arrCollections;
-
+@property (weak, nonatomic) IBOutlet UILabel *lblCount;
 @end
 
 @implementation CollectionListingTabViewController
@@ -25,15 +25,23 @@
     [super viewDidLoad];
     [self initSelfView];
     
-    if (self.collectionListingType == CollectionListingTypeMyOwn) {
-        [self requestServerForUserCollection];
-
+    
+    switch (self.collectionListingType) {
+        default:
+        case CollectionListingTypeMyOwn:
+            [self requestServerForUserCollection];
+            
+            break;
+        case CollectionListingTypeFollowing:
+            [self requestServerForOtherUserCollection];
+            
+            break;
+            
+        case CollectionListingTypeSuggestion:
+            [self requestServerForSuggestedCollection];
+            
+            break;
     }
-    else{
-        [self requestServerForOtherUserCollection];
-
-    }
-    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -160,6 +168,7 @@
         
         [self.arrCollections addObjectsFromArray:self.userCollectionsModel.arrCollections];
         
+        self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_result,LocalisedString(@"Collections")];
         [self.ibTableView reloadData];
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = false;
@@ -167,9 +176,66 @@
     }];
 }
 
--(void)requestServerToFollowFromOthersCollection:(CollectionModel*)colModel
+-(void)requestServerForOtherUserCollection
 {
     
+    SLog(@"requestServerForOtherUserCollection");
+    isMiddleOfCallingServer = true;
+    
+    //need to input token for own profile private collection, no token is get other people public collection
+    NSString* appendString = [NSString stringWithFormat:@"%@/collections/following",self.userID];
+    
+    NSDictionary* dict = @{@"page":self.userCollectionsModel.page?@(self.userCollectionsModel.page + 1):@1,
+                           @"list_size":@(ARRAY_LIST_SIZE),
+                           @"token":[Utils getAppToken],
+                           @"uid":self.userID
+                           };
+    
+    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserFollowingCollections param:dict appendString:appendString completeHandler:^(id object) {
+        
+        isMiddleOfCallingServer = false;
+        self.userCollectionsModel = [[ConnectionManager dataManager]userFollowingCollectionsModel];
+        
+        [self.arrCollections addObjectsFromArray:self.userCollectionsModel.arrCollections];
+        self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_result,LocalisedString(@"Collections")];
+        [self.ibTableView reloadData];
+    } errorBlock:^(id object) {
+        isMiddleOfCallingServer = false;
+        
+    }];
+}
+
+-(void)requestServerForSuggestedCollection
+{
+    
+    SLog(@"requestServerForSuggestedCollection");
+    isMiddleOfCallingServer = true;
+    
+    //need to input token for own profile private collection, no token is get other people public collection
+    NSString* appendString = [NSString stringWithFormat:@"%@/collections/suggestions",self.userID];
+    
+    NSDictionary* dict = @{@"limit":@(ARRAY_LIST_SIZE),
+                           @"offset":@(self.userCollectionsModel.offset + self.userCollectionsModel.limit),
+                           @"token":[Utils getAppToken],
+                           };
+    
+    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserSuggestedCollections param:dict appendString:appendString completeHandler:^(id object) {
+        
+        isMiddleOfCallingServer = false;
+        self.userCollectionsModel = [[ConnectionManager dataManager]userSuggestedCollectionsModel];
+        
+        [self.arrCollections addObjectsFromArray:self.userCollectionsModel.arrSuggestedCollection];
+        self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_result,LocalisedString(@"Collections")];
+        [self.ibTableView reloadData];
+    } errorBlock:^(id object) {
+        isMiddleOfCallingServer = false;
+        
+    }];
+}
+
+
+-(void)requestServerToFollowFromOthersCollection:(CollectionModel*)colModel
+{
     NSString* appendString = [NSString stringWithFormat:@"%@/collections/%@/follow",colModel.user_info.uid,colModel.collection_id];
     NSDictionary* dict = @{@"uid":colModel.user_info.uid,
                            @"token":[Utils getAppToken],
@@ -214,6 +280,7 @@
     
 }
 
+
 -(void)requestServerToFollowCollection:(CollectionModel*)colModel
 {
     
@@ -254,34 +321,6 @@
     }
     
 }
--(void)requestServerForOtherUserCollection
-{
-    
-    SLog(@"requestServerForOtherUserCollection");
-    isMiddleOfCallingServer = true;
-    
-    //need to input token for own profile private collection, no token is get other people public collection
-    NSString* appendString = [NSString stringWithFormat:@"%@/collections/following",self.userID];
-    
-    NSDictionary* dict = @{@"page":self.userCollectionsModel.page?@(self.userCollectionsModel.page + 1):@1,
-                           @"list_size":@(ARRAY_LIST_SIZE),
-                           @"token":[Utils getAppToken],
-                           @"uid":self.userID
-                           };
-    
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserFollowingCollections param:dict appendString:appendString completeHandler:^(id object) {
-        
-        isMiddleOfCallingServer = false;
-        self.userCollectionsModel = [[ConnectionManager dataManager]userFollowingCollectionsModel];
-        
-        [self.arrCollections addObjectsFromArray:self.userCollectionsModel.arrCollections];
-        
-        [self.ibTableView reloadData];
-    } errorBlock:^(id object) {
-        isMiddleOfCallingServer = false;
-        
-    }];
-}
 
 -(void)requestServerForShareCollection:(CollectionModel*)colModel
 {
@@ -319,19 +358,29 @@
     if(y >= h - reload_distance) {
         
         if (!isMiddleOfCallingServer) {
-            if (self.userCollectionsModel.total_page > self.userCollectionsModel.page) {
-                SLog(@"start to call server");
-                
+            
                 if (self.collectionListingType == CollectionListingTypeMyOwn) {
-                    [self requestServerForUserCollection];
+                    if (self.userCollectionsModel.total_page > self.userCollectionsModel.page) {
+
+                        [self requestServerForUserCollection];
+                    }
 
                 }
-                else
+                else if(self.collectionListingType == CollectionListingTypeSuggestion)
                 {
-                    [self requestServerForOtherUserCollection];
+                    if(![Utils isStringNull:self.userCollectionsModel.next])
+                    {
+                        [self requestServerForSuggestedCollection];
+                    }
+                }
+                else if(self.collectionListingType == CollectionListingTypeFollowing)
+                {
+                    if (self.userCollectionsModel.total_page > self.userCollectionsModel.page) {
+
+                        [self requestServerForOtherUserCollection];
+                    }
 
                 }
-            }
         }
         
         

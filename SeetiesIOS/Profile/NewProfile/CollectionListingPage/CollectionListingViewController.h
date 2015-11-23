@@ -10,6 +10,7 @@
 #import "CollectionListingTabViewController.h"
 #import "EditCollectionViewController.h"
 #import "CollectionViewController.h"
+#import "NewCollectionViewController.h"
 
 @interface CollectionListingViewController : CommonViewController <UIScrollViewDelegate>
 
@@ -17,7 +18,9 @@
 @property(nonatomic,strong)CollectionListingTabViewController* followingCollectionListingViewController;
 @property(nonatomic,strong)EditCollectionViewController* editCollectionViewController;
 @property(nonatomic,strong)CollectionViewController* collectionViewController;
+@property(nonatomic,strong)NewCollectionViewController* newCollectionViewController;
 
--(void)setType:(ProfileViewType)type ProfileModel:(ProfileModel*)model;
+-(void)setType:(ProfileViewType)type ProfileModel:(ProfileModel*)model NumberOfPage:(int)page;
+-(void)setType:(ProfileViewType)type ProfileModel:(ProfileModel*)model NumberOfPage:(int)page collectionType:(CollectionListingType)collType;
 
 @end

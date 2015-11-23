@@ -14,6 +14,7 @@
 @interface LikesListingViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
 {
     BOOL isMiddleOfCallingServer;
+    IBOutlet UILabel *ibHeaderView;
 
 }
 
@@ -24,6 +25,7 @@
 @property (strong, nonatomic) NSMutableArray *arrLikesList;
 @property (strong, nonatomic) ProfilePostModel *profileLikeModel;
 @property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *ibCollectionViewLayout;
+@property (weak, nonatomic) IBOutlet UILabel *lblCount;
 
 @end
 
@@ -40,7 +42,8 @@
 
 -(void)initSelfView
 {
-    self.lblTitle.text = LocalisedString(@"Like");
+    self.lblTitle.text = [NSString stringWithFormat:@"%d %@",self.profileLikeModel.userPostData.total_posts,LocalisedString(@"Like")];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,9 +56,10 @@
     self.ibCollectionView.delegate = self;
     self.ibCollectionView.dataSource = self;
     [self.ibCollectionView registerClass:[LikeListingCollectionViewCell class] forCellWithReuseIdentifier:@"LikeListingCollectionViewCell"];
-    [self.ibCollectionView registerClass:[ListingHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ListingHeaderView"];
-    [self.ibCollectionHeader addSubview:self.listingHeaderView];
+   // [self.ibCollectionView registerClass:[ListingHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ListingHeaderView"];
+  //  [self.ibCollectionHeader addSubview:self.listingHeaderView];
     self.ibCollectionView.backgroundColor = [UIColor clearColor];
+    [self.ibCollectionView addSubview:ibHeaderView];
     
 }
 
@@ -181,7 +185,9 @@
         
         [self.arrLikesList addObjectsFromArray:self.profileLikeModel.userPostData.posts];
         
-        [self.listingHeaderView setTotalCount:self.profileLikeModel.userPostData.total_posts];
+        //[self.listingHeaderView setTotalCount:self.profileLikeModel.userPostData.total_posts];
+
+        self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.profileLikeModel.userPostData.total_posts,LocalisedString(@"Posts")];
 
         [self.ibCollectionView reloadData];
         

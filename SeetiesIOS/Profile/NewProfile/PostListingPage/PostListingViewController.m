@@ -22,10 +22,21 @@
 @property (strong, nonatomic) ListingHeaderView* viewHeader;
 @property (strong, nonatomic) ProfileModel* profileModel;
 @property (assign, nonatomic) ProfileViewType profileType;
+@property (weak, nonatomic) IBOutlet UILabel *lblCount;
+@property (weak, nonatomic) IBOutlet UIButton *btnAddMore;
 
 @end
 
 @implementation PostListingViewController
+- (IBAction)btnAddMoreClicked:(id)sender {
+    
+    if(_btnAddMorePostBlock)
+    {
+        self.btnAddMorePostBlock();
+
+    }
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,8 +53,11 @@
 -(void)initSelfView
 {
     [self initTableViewWithDelegate];
-    self.lblTitle.text = LocalisedString(@"Posts");
+    self.lblTitle.text = [NSString stringWithFormat:@"%d %@",self.userProfilePostModel.userPostData.total_posts,LocalisedString(@"Posts")];
     
+    if (self.profileType == ProfileViewTypeOthers) {
+        self.btnAddMore.hidden = YES;
+    }
 }
 
 -(void)initTableViewWithDelegate
@@ -53,7 +67,6 @@
     self.ibTableView.dataSource = self;
     [self.ibTableView registerClass:[PostListingTableViewCell class] forCellReuseIdentifier:@"PostListingTableViewCell"];
 }
-
 
 -(void)initData:(ProfilePostModel*)model UserProfileModel:(ProfileModel*)profileModel ProfileViewType:(ProfileViewType)type
 {
@@ -92,30 +105,30 @@
     return 1;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return [ListingHeaderView getheight];
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//{
+//    return [ListingHeaderView getheight];
+//}
 
-- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    
-    if (!_viewHeader) {
-        _viewHeader = [ListingHeaderView initializeCustomView];
-        
-        __weak typeof (self)wealSelf = self;
-        [_viewHeader setType:self.profileType==ProfileViewTypeOwn?ListingViewTypePostOwn:ListingViewTypePostOthers addMoreClicked:^{
-            
-            if (wealSelf.btnAddMorePostBlock) {
-                wealSelf.btnAddMorePostBlock();
-                SLog(@"Add More Clicked");
-
-            }
-        }totalCount:self.userProfilePostModel.userPostData.total_posts];
-    }
-    
-    return _viewHeader;
-}
+//- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    
+//    if (!_viewHeader) {
+//        _viewHeader = [ListingHeaderView initializeCustomView];
+//        
+//        __weak typeof (self)wealSelf = self;
+//        [_viewHeader setType:self.profileType==ProfileViewTypeOwn?ListingViewTypePostOwn:ListingViewTypePostOthers addMoreClicked:^{
+//            
+//            if (wealSelf.btnAddMorePostBlock) {
+//                wealSelf.btnAddMorePostBlock();
+//                SLog(@"Add More Clicked");
+//
+//            }
+//        }totalCount:self.userProfilePostModel.userPostData.total_posts];
+//    }
+//    
+//    return _viewHeader;
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -193,6 +206,7 @@
         
         [self.arrPostListing addObjectsFromArray:self.userProfilePostModel.userPostData.posts];
         
+        self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userProfilePostModel.userPostData.total_posts,LocalisedString(@"Posts")];
         [self.ibTableView reloadData];
         
     } errorBlock:^(id object) {

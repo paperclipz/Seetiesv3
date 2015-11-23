@@ -256,14 +256,18 @@
         if (resDict[@"error"]) {
             if (errorBlock) {
                 errorBlock(resDict[@"error"]);
+
+            }
+        }
+        else {
+            [self storeServerData:responseObject requestType:type];
+            if (completeBlock) {
+                completeBlock(responseObject);
             }
         }
         
-        [self storeServerData:responseObject requestType:type];
 
-        if (completeBlock) {
-            completeBlock(responseObject);
-        }
+       
         
         [LoadingManager hide];
 
@@ -415,6 +419,7 @@
         case ServerRequestTypeGetCollectionInfo:
         case ServerRequestTypeGetUserCollections:
         case ServerRequestTypeGetUserFollowingCollections:
+        case ServerRequestTypeGetUserSuggestedCollections:
         case ServerRequestTypeGetUserPosts:
         case ServerRequestTypeGetUserLikes:
         case ServerRequestTypePostFollowUser:
@@ -573,6 +578,18 @@
         }
            
             break;
+            
+        case ServerRequestTypeGetUserSuggestedCollections:
+        {
+            
+            NSDictionary* dict = obj[@"data"];
+            self.dataManager.userSuggestedCollectionsModel = [[CollectionsModel alloc]initWithDictionary:dict error:nil];
+            
+        }
+            
+            break;
+            
+            
         default:
             
             SLog(@"the return result is :%@",obj);

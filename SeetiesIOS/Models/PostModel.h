@@ -14,6 +14,8 @@
 
 @end
 
+
+
 //@interface PostModel : JSONModel
 //
 //@property(nonatomic,strong)NSString* imageURL;
@@ -51,9 +53,17 @@
 @interface CollectionsModel : Model
 
 @property(nonatomic,strong)NSArray<CollectionModel>* arrCollections;
+@property(nonatomic,strong)NSArray<CollectionModel>* arrSuggestedCollection;
 @property(nonatomic,assign)int total_page;
 @property(nonatomic,assign)int total_result;
 @property(nonatomic,assign)int page;
+
+@property(nonatomic,strong)NSString* next;
+@property(nonatomic,strong)NSString* previous;
+@property(nonatomic,assign)int offset;
+@property(nonatomic,assign)int total_collections;
+@property(nonatomic,assign)int limit;
+
 
 
 @end

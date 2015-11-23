@@ -21,16 +21,9 @@
             _isNUll = true;
         }
     }
-    
-    else if([self isKindOfClass:[NSString class]])
-    {
-        NSString* string = (NSString*)self;
-        
-        if ([string isEqualToString:@""] || string.length == 0 || string == nil) {
-            _isNUll = true;
-        }
-    }
-    
+
     return _isNUll;
 }
+
+
 @end

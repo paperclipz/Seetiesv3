@@ -52,6 +52,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)initData:(NSString*)collectionID
+{
+    self.collectionID = collectionID;
+}
+
 -(void)initSelfView
 {
     [self iniiTableViewDelegate:self];
@@ -116,10 +121,18 @@
     SuggestedCollectionPostTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"SuggestedCollectionPostTableViewCell"];
     
     DraftModel* draftModel = self.arrPostList[indexPath.row];
-    Post* postModel = draftModel.arrCustomPost[0];
-    PhotoModel* photoModel = draftModel.arrPhotos[0];
-    [cell setDescription:postModel.message userName:draftModel.user_info.name];
-    [cell.ibImageView sd_setImageWithURL:[NSURL URLWithString:photoModel.imageURL]];
+    
+    if (![draftModel.arrCustomPost isNull]) {
+        Post* postModel = draftModel.arrCustomPost[0];
+        [cell setDescription:postModel.message userName:draftModel.user_info.name];
+
+    }
+    
+    if (![draftModel.arrPhotos isNull]) {
+        PhotoModel* photoModel = draftModel.arrPhotos[0];
+        [cell.ibImageView sd_setImageWithURL:[NSURL URLWithString:photoModel.imageURL]];
+
+    }
     
     cell.lblLocation.text = draftModel.location.sublocality;
     cell.lblName.text = draftModel.location.name;
@@ -134,32 +147,40 @@
     if (self.arrCellSize[indexPath.row] == [NSNull null]) {
         
         DraftModel* draftModel = self.arrPostList[indexPath.row];
-        Post* postModel = draftModel.arrCustomPost[0];
-        CGRect frame = [Utils getDeviceScreenSize];
         
-        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
         
-        [paragraphStyle setLineSpacing:5];
+        NSString* message = @"";
         
-        CGRect rect = [postModel.message boundingRectWithSize:CGSizeMake(frame.size.width - (2*10), frame.size.height)
-                                         options:NSStringDrawingUsesLineFragmentOrigin
-                                      attributes:@{
-                                                   NSFontAttributeName : [UIFont fontWithName:CustomFontName size:17],
-                                                   NSParagraphStyleAttributeName : paragraphStyle
-                                                   }
-                                         context:nil];
-        //SLog(@"AAAA = %f",rect.size.height);
-        [self.arrCellSize replaceObjectAtIndex:indexPath.row withObject:[NSNumber numberWithFloat:rect.size.height]];
+        if (![draftModel.arrCustomPost isNull]) {
+            Post* postModel = draftModel.arrCustomPost[0];
+            message = postModel.message;
+        }
+            CGRect frame = [Utils getDeviceScreenSize];
+            
+            NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+            
+            [paragraphStyle setLineSpacing:5];
+            
+            CGRect rect = [message boundingRectWithSize:CGSizeMake(frame.size.width - (2*10), frame.size.height)
+                                                          options:NSStringDrawingUsesLineFragmentOrigin
+                                                       attributes:@{
+                                                                    NSFontAttributeName : [UIFont fontWithName:CustomFontName size:17],
+                                                                    NSParagraphStyleAttributeName : paragraphStyle
+                                                                    }
+                                                          context:nil];
+            //SLog(@"AAAA = %f",rect.size.height);
+            [self.arrCellSize replaceObjectAtIndex:indexPath.row withObject:[NSNumber numberWithFloat:rect.size.height]];
+
 
     }
-       return [self.arrCellSize[indexPath.row] floatValue] + 160 + 60;//60 is buffer
+    return [self.arrCellSize[indexPath.row] floatValue] + 160 + 60;//60 is buffer
 
 }
 
 #pragma mark - UITable View Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self showPostDetailView];
+    [self showPostDetailView:indexPath];
 }
 
 -(NSMutableArray*)arrCellSize
@@ -179,7 +200,6 @@
 -(void)requestServerForCollectionInfo
 {
     
-    self.collectionID = @"56022ed61c4d5b19038b4627";
     NSDictionary* dict = @{@"collection_id":self.collectionID,
                            @"list_size":@(ARRAY_LIST_SIZE),
                            @"page":@(1),
@@ -205,9 +225,10 @@
 
 }
 
--(void)showPostDetailView
+-(void)showPostDetailView:(NSIndexPath*)indexPath
 {
-
+    DraftModel* model = self.arrPostList[indexPath.row];
+    [self.feedV2DetailViewController GetPostID:model.post_id];
     [self.navigationController pushViewController:self.feedV2DetailViewController animated:YES];
 
 }

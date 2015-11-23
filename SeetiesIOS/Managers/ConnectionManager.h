@@ -12,6 +12,8 @@
 #import "AFHTTPRequestOperationManager.h"
 
 typedef void (^IDBlock)(id object);
+typedef void (^IntBlock)(int count);
+
 typedef void (^IErrorBlock)(id object);
 @interface ConnectionManager :NSObject
 @property(nonatomic,strong)NSString* serverPath;

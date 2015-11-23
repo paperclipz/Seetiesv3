@@ -63,13 +63,17 @@
     modelCopy.isPrivate = _isPrivate;
     modelCopy.is_default = _is_default;
 
-
     modelCopy.tagList = [[NSMutableArray alloc]initWithArray:_tagList copyItems:YES];
-    modelCopy.deleted_posts = [[NSMutableArray alloc]initWithArray:_deleted_posts copyItems:YES];
-
+    modelCopy.deleted_posts = [_deleted_posts mutableCopy];
+    modelCopy.user_info = _user_info;
     return modelCopy;
 }
 
+
+@end
+
+@interface CollectionsModel()
+@property(nonatomic,strong)NSDictionary* paging;
 
 @end
 @implementation CollectionsModel
@@ -77,7 +81,26 @@
 +(JSONKeyMapper*)keyMapper
 {
     return [[JSONKeyMapper alloc] initWithDictionary:@{
-                                                       @"result": @"arrCollections"                                                       
+                                                       @"result": @"arrCollections",
+                                                       @"collections": @"arrSuggestedCollection",
+
                                                        }];
+}
+
+-(NSString*)next
+{
+    if (_paging) {
+        _next = _paging[@"next"];
+    }
+    return _next;
+    
+}
+
+-(NSString*)previous
+{
+    if (_previous) {
+        _previous = _paging[@"previous"];
+    }
+    return _previous;
 }
 @end

@@ -193,20 +193,41 @@
 
 #pragma mark - Declaration
 
--(SuggestedCollectionPostsViewController*)suggestedCollectionPostsViewController
+-(CollectionListingViewController*)collectionListingViewController
 {
-    if (!_suggestedCollectionPostsViewController) {
-        _suggestedCollectionPostsViewController = [SuggestedCollectionPostsViewController new];
+    if (!_collectionListingViewController) {
+        _collectionListingViewController = [CollectionListingViewController new];
     }
     
-    return _suggestedCollectionPostsViewController;
+    return _collectionListingViewController;
+}
+-(SuggestedCollectionPostsViewController*)followingCollectionPostsViewController
+{
+    if (!_followingCollectionPostsViewController) {
+        _followingCollectionPostsViewController = [SuggestedCollectionPostsViewController new];
+    }
+    
+    return _followingCollectionPostsViewController;
 }
 
 #pragma mark - IBAction
 - (IBAction)btnTestClicked:(id)sender {
     
-    _suggestedCollectionPostsViewController = nil;
-    [self presentViewController:self.suggestedCollectionPostsViewController animated:YES completion:nil];
+    _collectionListingViewController = nil;
+    ProfileModel* model = [ProfileModel new];
+    model.uid = @"20b6fac7431ed4aadf8885808d28a9d9";
+    [self.collectionListingViewController setType:ProfileViewTypeOthers ProfileModel:model NumberOfPage:1 collectionType:CollectionListingTypeSuggestion];
+    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.collectionListingViewController];
+
+    [naviVC setNavigationBarHidden:YES animated:NO];
+
+    [self presentViewController:naviVC animated:YES completion:nil];
+    
+    self.collectionListingViewController.btnBackBlock = ^(id object)
+    {
+    
+        [naviVC dismissViewControllerAnimated:YES completion:nil];
+    };
 }
 
 #define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
@@ -3017,7 +3038,6 @@
                 break;
                 
             case 11:{
-                //TODO: Delete break; for collection suggestion
                 NSLog(@"in collect_suggestion");
                 
 //                NSLog(@"Show ID == %@",[arrPostID objectAtIndex:i]);
@@ -5011,30 +5031,21 @@
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);
     
-    if (LocalScroll.hidden == YES) {
-        NSString *GetLikeClick = [[NSString alloc]initWithFormat:@"%@",[arrlike objectAtIndex:getbuttonIDN]];
-        NSString *GetCollectionClick = [[NSString alloc]initWithFormat:@"%@",[arrCollect objectAtIndex:getbuttonIDN]];
-        
-        NSLog(@"GetLikeClick is %@",GetLikeClick);
-        NSLog(@"GetCollectionClick is %@",GetCollectionClick);
-        
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setObject:GetLikeClick forKey:@"PostToDetail_like"];
-        [defaults setObject:GetCollectionClick forKey:@"PostToDetail_Collect"];
-        [defaults setInteger:getbuttonIDN + 6000 forKey:@"PostToDetail_IDN"];
-        [defaults synchronize];
-        
-        FeedV2DetailViewController *vc = [[FeedV2DetailViewController alloc] initWithNibName:@"FeedV2DetailViewController" bundle:nil];
-        [self.navigationController pushViewController:vc animated:YES];
-        [vc GetPostID:[arrPostID objectAtIndex:getbuttonIDN]];
-    }else{
-        
-        FeedV2DetailViewController *vc = [[FeedV2DetailViewController alloc] initWithNibName:@"FeedV2DetailViewController" bundle:nil];
-        [self.navigationController pushViewController:vc animated:YES];
-        [vc GetPostID:[arrLocalPostID objectAtIndex:getbuttonIDN]];
-    }
+    NSString *GetLikeClick = [[NSString alloc]initWithFormat:@"%@",[arrlike objectAtIndex:getbuttonIDN]];
+    NSString *GetCollectionClick = [[NSString alloc]initWithFormat:@"%@",[arrCollect objectAtIndex:getbuttonIDN]];
     
-
+    NSLog(@"GetLikeClick is %@",GetLikeClick);
+    NSLog(@"GetCollectionClick is %@",GetCollectionClick);
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:GetLikeClick forKey:@"PostToDetail_like"];
+    [defaults setObject:GetCollectionClick forKey:@"PostToDetail_Collect"];
+    [defaults setInteger:getbuttonIDN + 6000 forKey:@"PostToDetail_IDN"];
+    [defaults synchronize];
+    
+    FeedV2DetailViewController *vc = [[FeedV2DetailViewController alloc] initWithNibName:@"FeedV2DetailViewController" bundle:nil];
+    [self.navigationController pushViewController:vc animated:YES];
+    [vc GetPostID:[arrPostID objectAtIndex:getbuttonIDN]];
     
 }
 -(IBAction)NearbyButton:(id)sender{
@@ -5056,35 +5067,18 @@
     NSLog(@"button %li",(long)getbuttonIDN);
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    if (LocalScroll.hidden == YES) {
-        NSString *CheckUsername = [[NSString alloc]initWithFormat:@"%@",[arrUserName objectAtIndex:getbuttonIDN]];
-        NSString *GetUsername = [defaults objectForKey:@"UserName"];
-        if ([GetUsername isEqualToString:CheckUsername]) {
-        }else{
-            //        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-            //        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-            //        [NewUserProfileV2View GetUserName:[arrUserName objectAtIndex:getbuttonIDN]];
-            _profileViewController = nil;
-            [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[arrUserID objectAtIndex:getbuttonIDN]];
-            [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-            }];
-        }
+    NSString *CheckUsername = [[NSString alloc]initWithFormat:@"%@",[arrUserName objectAtIndex:getbuttonIDN]];
+    NSString *GetUsername = [defaults objectForKey:@"UserName"];
+    if ([GetUsername isEqualToString:CheckUsername]) {
     }else{
-        NSString *CheckUsername = [[NSString alloc]initWithFormat:@"%@",[arrLocalUserName objectAtIndex:getbuttonIDN]];
-        NSString *GetUsername = [defaults objectForKey:@"UserName"];
-        if ([GetUsername isEqualToString:CheckUsername]) {
-        }else{
-            //        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-            //        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-            //        [NewUserProfileV2View GetUserName:[arrUserName objectAtIndex:getbuttonIDN]];
-            _profileViewController = nil;
-            [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[arrLocalUserID objectAtIndex:getbuttonIDN]];
-            [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-            }];
-        }
+//        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+//        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+//        [NewUserProfileV2View GetUserName:[arrUserName objectAtIndex:getbuttonIDN]];
+        _profileViewController = nil;
+        [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[arrUserID objectAtIndex:getbuttonIDN]];
+        [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        }];
     }
-    
-
     
 
 }
@@ -5469,6 +5463,13 @@
 }
 -(IBAction)SeeAllButtonOnClick:(id)sender{
     NSLog(@"Suggested Collection SeeAllButtonOnClick");
+    
+    _collectionListingViewController = nil;
+    
+    ProfileModel* model = [ProfileModel new];
+    model.uid = [Utils getUserID];
+    [self.collectionListingViewController setType:ProfileViewTypeOthers ProfileModel:model NumberOfPage:1 collectionType:CollectionListingTypeSuggestion];
+    [self.navigationController pushViewController:self.collectionListingViewController animated:YES];
 //    SuggestedCollectionsViewController *SuggestedCollectionsView = [[SuggestedCollectionsViewController alloc]init];
 //    [self.navigationController pushViewController:SuggestedCollectionsView animated:YES];
 }
@@ -5569,9 +5570,10 @@
     NSLog(@"FollowingCollectionButtonOnClick");
     NSString *GetFollowingCollectionID = [[NSString alloc]initWithFormat:@"%@",[arrPostID objectAtIndex:getbuttonIDN]];
     NSLog(@"GetFollowingCollectionID is %@",GetFollowingCollectionID);
-    NSString *GetFollowingCollectionUserID = [[NSString alloc]initWithFormat:@"%@",[arrUserID objectAtIndex:getbuttonIDN]];
-    NSLog(@"GetFollowingCollectionUserID is %@",GetFollowingCollectionUserID);
     
+    _followingCollectionPostsViewController = nil;
+    [self.followingCollectionPostsViewController initData:GetFollowingCollectionID];
+    [self.navigationController pushViewController:self.followingCollectionPostsViewController animated:YES];
 }
 -(IBAction)FollowCollectionShareButtonOnClick:(id)sender{
    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
