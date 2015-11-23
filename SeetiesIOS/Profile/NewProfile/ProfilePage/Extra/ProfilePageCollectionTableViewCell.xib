@@ -105,6 +105,8 @@
                             <constraint firstItem="1l0-BW-VUP" firstAttribute="top" secondItem="cg4-oM-VeY" secondAttribute="top" id="VrD-gS-TwN"/>
                             <constraint firstAttribute="trailing" secondItem="7pi-1D-4rC" secondAttribute="trailing" constant="117" id="W3a-Ab-JJb"/>
                             <constraint firstItem="Sed-jd-NEw" firstAttribute="top" secondItem="cg4-oM-VeY" secondAttribute="top" id="WdS-im-bNn"/>
+                            <constraint firstItem="dCT-4H-bvK" firstAttribute="trailing" secondItem="cXO-xp-Gkt" secondAttribute="trailing" constant="-2" id="XQ8-9l-wmU"/>
+                            <constraint firstItem="ZuT-nx-PRe" firstAttribute="leading" secondItem="1l0-BW-VUP" secondAttribute="leading" constant="2" id="YzZ-LM-bxl"/>
                             <constraint firstAttribute="trailing" secondItem="cXO-xp-Gkt" secondAttribute="trailing" constant="-1" id="bMQ-9Q-z3B"/>
                             <constraint firstItem="cXO-xp-Gkt" firstAttribute="height" secondItem="1l0-BW-VUP" secondAttribute="height" id="ddQ-S5-sbg"/>
                             <constraint firstItem="Bl0-UK-jJ9" firstAttribute="top" secondItem="cXO-xp-Gkt" secondAttribute="bottom" constant="17" id="dlk-At-7Uj"/>
@@ -115,7 +117,6 @@
                             <constraint firstItem="cXO-xp-Gkt" firstAttribute="width" secondItem="1l0-BW-VUP" secondAttribute="width" id="nnT-NZ-HCH"/>
                             <constraint firstItem="dCT-4H-bvK" firstAttribute="width" secondItem="cXO-xp-Gkt" secondAttribute="height" multiplier="37:25" id="q6w-dt-6vg"/>
                             <constraint firstItem="ZuT-nx-PRe" firstAttribute="trailing" secondItem="1l0-BW-VUP" secondAttribute="trailing" id="qr4-Im-ENc"/>
-                            <constraint firstItem="ZuT-nx-PRe" firstAttribute="width" secondItem="1l0-BW-VUP" secondAttribute="height" multiplier="37:25" id="tKd-6U-4oE"/>
                             <constraint firstItem="dCT-4H-bvK" firstAttribute="bottom" secondItem="cXO-xp-Gkt" secondAttribute="bottom" id="xgR-GZ-coK"/>
                             <constraint firstItem="cXO-xp-Gkt" firstAttribute="top" secondItem="cg4-oM-VeY" secondAttribute="top" id="xkD-EF-uMo"/>
                         </constraints>
