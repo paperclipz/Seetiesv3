@@ -21,6 +21,12 @@
 
 @implementation CollectionListingTabViewController
 
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self.ibTableView reloadData];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
@@ -168,7 +174,7 @@
         
         [self.arrCollections addObjectsFromArray:self.userCollectionsModel.arrCollections];
         
-        self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_result,LocalisedString(@"Collections")];
+        self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_collections,LocalisedString(@"Collections")];
         [self.ibTableView reloadData];
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = false;
@@ -197,7 +203,7 @@
         self.userCollectionsModel = [[ConnectionManager dataManager]userFollowingCollectionsModel];
         
         [self.arrCollections addObjectsFromArray:self.userCollectionsModel.arrCollections];
-        self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_result,LocalisedString(@"Collections")];
+        self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_collections,LocalisedString(@"Collections")];
         [self.ibTableView reloadData];
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = false;
@@ -225,14 +231,13 @@
         self.userCollectionsModel = [[ConnectionManager dataManager]userSuggestedCollectionsModel];
         
         [self.arrCollections addObjectsFromArray:self.userCollectionsModel.arrSuggestedCollection];
-        self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_result,LocalisedString(@"Collections")];
+        self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_collections,LocalisedString(@"Collections")];
         [self.ibTableView reloadData];
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = false;
         
     }];
 }
-
 
 -(void)requestServerToFollowFromOthersCollection:(CollectionModel*)colModel
 {
@@ -247,9 +252,9 @@
         [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostFollowCollection param:dict appendString:appendString meta:nil completeHandler:^(id object) {
             
             NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object[@"data"]];
-            
             BOOL following = [[returnDict objectForKey:@"following"] boolValue];
             colModel.following = following;
+            [DataManager setCollectionFollowing:colModel.collection_id isFollowing:following];
             [self.ibTableView reloadData];
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:nil];
             
@@ -263,11 +268,14 @@
             
             NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object];
             BOOL following = [[returnDict objectForKey:@"following"] boolValue];
-            
+           //dont delete the collection instead change the status only
+            colModel.following = following;
+            [DataManager setCollectionFollowing:colModel.collection_id isFollowing:following];
+
             //delete follow for user if return following false
-            if (!following) {
-                [self.arrCollections removeObject:colModel];
-            }
+//            if (!following) {
+//                [self.arrCollections removeObject:colModel];
+//            }
             
             
             [self.ibTableView reloadData];
@@ -298,6 +306,8 @@
             
             BOOL following = [[returnDict objectForKey:@"following"] boolValue];
             colModel.following = following;
+            [DataManager setCollectionFollowing:colModel.collection_id isFollowing:following];
+
             [self.ibTableView reloadData];
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:nil];
             
@@ -312,6 +322,8 @@
             NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object];
             BOOL following = [[returnDict objectForKey:@"following"] boolValue];
             colModel.following = following;
+            [DataManager setCollectionFollowing:colModel.collection_id isFollowing:following];
+
             [self.ibTableView reloadData];
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:nil];
             

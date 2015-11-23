@@ -8,6 +8,15 @@
 
 #import "DataManager.h"
 
+
+
+@interface DataManager()
+
+@property(nonatomic,strong)NSMutableDictionary* dictCollections;
+@property(nonatomic,copy)BoolBlock boolBlock;
+
+
+@end
 @implementation DataManager
 
 + (id)Instance {
@@ -61,4 +70,44 @@
     
     return model;
 }
+
+-(NSMutableDictionary*)dictCollections
+{
+    if (!_dictCollections) {
+        _dictCollections = [NSMutableDictionary new];
+    }
+    
+    return _dictCollections;
+}
++(void)getCollectionFollowing:(NSString*)collectionID HasCollected:(BoolBlock)isCollected completion:(CompletionVoidBlock)completionBlock
+{
+    BOOL isTempCollected = NO;
+
+    DataManager* dataManager = [DataManager Instance];
+    
+    if ([[dataManager.dictCollections allKeys]containsObject:collectionID]) {
+       
+        isTempCollected = [[dataManager.dictCollections objectForKey:collectionID]boolValue];
+        if (isCollected) {
+            isCollected(isTempCollected);
+        }
+        
+    }
+    else{
+        if (completionBlock) {
+            completionBlock();
+        }
+    }
+    
+}
+
+
++(void)setCollectionFollowing:(NSString*)collectionID isFollowing:(BOOL)following
+{
+    DataManager* dataManager = [DataManager Instance];
+
+    [dataManager.dictCollections setValue:[NSNumber numberWithBool:following] forKey:collectionID];
+
+}
+
 @end

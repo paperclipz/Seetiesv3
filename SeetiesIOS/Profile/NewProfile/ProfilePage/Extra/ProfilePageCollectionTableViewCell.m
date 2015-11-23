@@ -132,7 +132,13 @@
         [self.btnEdit setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self.btnEdit setTitleColor:SELECTED_GREEN forState:UIControlStateSelected];
 
-        [self setFollowButtonSelected:self.model.following button:self.btnEdit];
+        
+        [DataManager getCollectionFollowing:self.model.collection_id HasCollected:^(BOOL isCollected) {
+            [self setFollowButtonSelected:isCollected button:self.btnEdit];
+
+        } completion:^{
+            [self setFollowButtonSelected:self.model.following button:self.btnEdit];
+        }];
     }
    
    

@@ -21,6 +21,11 @@
 
 #import "TagModel.h"
 #import "ProfileModel.h"
+
+
+typedef void(^BoolBlock) (BOOL isCollected);
+typedef void(^CompletionVoidBlock) (void);
+
 @interface DataManager : NSObject
 + (id)Instance;
 +(NSArray*)getSampleObject;
@@ -51,5 +56,7 @@
 
 +(RecommendationModel*)getSampleRecommendation;
 +(EditPhotoModel*)getSampleEditPhotoModel;
++(void)getCollectionFollowing:(NSString*)collectionID HasCollected:(BoolBlock)isCollected completion:(CompletionVoidBlock)completionBlock;
++(void)setCollectionFollowing:(NSString*)collectionID isFollowing:(BOOL)following;
 
 @end

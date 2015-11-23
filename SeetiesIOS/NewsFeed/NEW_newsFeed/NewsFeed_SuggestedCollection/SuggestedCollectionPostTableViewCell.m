@@ -23,7 +23,7 @@
 
 +(float)getHeight
 {
-    return 220.0f;
+    return 270.0f;
 }
 
 -(void)initSelfView
