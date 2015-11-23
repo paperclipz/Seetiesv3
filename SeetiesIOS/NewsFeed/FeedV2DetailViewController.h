@@ -13,11 +13,13 @@
 #import "LLARingSpinnerView.h"
 #import "EditPostViewController.h"
 #import "ProfileViewController.h"
+#import "CollectionListingViewController.h"
 
 @class ProfileViewController;
 @class EditPostViewController;
 @interface FeedV2DetailViewController : GAITrackedViewController<UIScrollViewDelegate,UIActionSheetDelegate>
 @property(nonatomic,strong)EditPostViewController* editPostViewController;
 @property(nonatomic,strong)ProfileViewController* profileViewController;
+@property(nonatomic,strong)CollectionListingViewController* collectionListingViewController;
 -(void)GetPostID:(NSString *)PostID;
 @end

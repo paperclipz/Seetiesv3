@@ -613,5 +613,19 @@
 }
 -(IBAction)OpenCollectionOnClick:(id)sender{
     NSLog(@"OpenCollectionOnClick");
+    _collectionListingViewController = nil;
+    
+    ProfileModel* model = [ProfileModel new];
+    model.uid = [Utils getUserID];
+    [self.collectionListingViewController setType:ProfileViewTypeOthers ProfileModel:model NumberOfPage:1 collectionType:CollectionListingTypeSuggestion];
+    [self.navigationController pushViewController:self.collectionListingViewController animated:YES];
+}
+-(CollectionListingViewController*)collectionListingViewController
+{
+    if (!_collectionListingViewController) {
+        _collectionListingViewController = [CollectionListingViewController new];
+    }
+    
+    return _collectionListingViewController;
 }
 @end
