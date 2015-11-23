@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UrlDataClass.h"
+#import "CollectionListingViewController.h"
 @interface Explore2ViewController : BaseViewController<UIScrollViewDelegate>{
     NSString *GetSearchText;
     
@@ -34,6 +35,7 @@
     
 
 }
+@property(nonatomic,strong)CollectionListingViewController* collectionListingViewController;
 -(IBAction)TryAgainButton:(id)sender;
 -(void)GetExploreDataFromServer;
 -(void)InitCountriesView;
