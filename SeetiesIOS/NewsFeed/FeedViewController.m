@@ -5569,6 +5569,9 @@
     NSLog(@"FollowingCollectionButtonOnClick");
     NSString *GetFollowingCollectionID = [[NSString alloc]initWithFormat:@"%@",[arrPostID objectAtIndex:getbuttonIDN]];
     NSLog(@"GetFollowingCollectionID is %@",GetFollowingCollectionID);
+    NSString *GetFollowingCollectionUserID = [[NSString alloc]initWithFormat:@"%@",[arrUserID objectAtIndex:getbuttonIDN]];
+    NSLog(@"GetFollowingCollectionUserID is %@",GetFollowingCollectionUserID);
+    
 }
 -(IBAction)FollowCollectionShareButtonOnClick:(id)sender{
    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
