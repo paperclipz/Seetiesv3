@@ -3100,11 +3100,11 @@
             NSLog(@"CheckCollectionFollowing is %@",CheckCollectionFollowing);
             UIButton *QuickCollectButtonLocalQR = [[UIButton alloc]init];
             if ([CheckCollectionFollowing isEqualToString:@"0"]) {
-                [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:LocalisedString(@"CollectBtn.png")] forState:UIControlStateNormal];
-                [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:@"CollectedBtn.png"] forState:UIControlStateSelected];
+                [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:@"FollowCollectionIcon.png"] forState:UIControlStateNormal];
+                [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:@"FollowingCollectionIcon.PNG"] forState:UIControlStateSelected];
             }else{
-                [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:@"CollectedBtn.png"] forState:UIControlStateNormal];
-                [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:LocalisedString(@"CollectBtn.png")] forState:UIControlStateSelected];
+                [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:@"FollowingCollectionIcon.PNG"] forState:UIControlStateNormal];
+                [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:@"FollowCollectionIcon.png"] forState:UIControlStateSelected];
             }
             [QuickCollectButtonLocalQR setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
             [QuickCollectButtonLocalQR.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
