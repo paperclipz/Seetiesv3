@@ -1563,9 +1563,9 @@
         [TempButton setTitle:@"" forState:UIControlStateNormal];
         TempButton.backgroundColor = [UIColor whiteColor];
         TempButton.layer.cornerRadius = 10;
-        TempButton.layer.borderWidth=1;
+       // TempButton.layer.borderWidth = 1;
         TempButton.layer.masksToBounds = YES;
-        TempButton.layer.borderColor=[[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f] CGColor];
+        //TempButton.layer.borderColor=[[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f] CGColor];
         [CollectionView addSubview: TempButton];
         
         NSString *TempImage = [[NSString alloc]initWithFormat:@"%@",[Collection_arrImageData objectAtIndex:i]];
@@ -1639,7 +1639,7 @@
         [CollectionView addSubview:ShowOverlayImg];
         
         UIButton *OpenCollectionButton = [[UIButton alloc]init];
-        OpenCollectionButton.frame = CGRectMake(11 , 40 + i * 200 , screenWidth - 22 ,120);
+        OpenCollectionButton.frame = CGRectMake(10 , 40 + i * 200 , screenWidth - 20 ,120);
         [OpenCollectionButton setTitle:@"" forState:UIControlStateNormal];
         OpenCollectionButton.backgroundColor = [UIColor clearColor];
         OpenCollectionButton.layer.cornerRadius = 10;

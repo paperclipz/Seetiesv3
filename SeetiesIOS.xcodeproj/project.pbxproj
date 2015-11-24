@@ -16,6 +16,8 @@
 		0B91B0821C031A5800BF8A60 /* FollowCollectionIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B91B07E1C031A5800BF8A60 /* FollowCollectionIcon@3x.png */; };
 		0B91B0831C031A5800BF8A60 /* FollowingCollectionIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B91B07F1C031A5800BF8A60 /* FollowingCollectionIcon@2x.png */; };
 		0B91B0841C031A5800BF8A60 /* FollowingCollectionIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B91B0801C031A5800BF8A60 /* FollowingCollectionIcon@3x.png */; };
+		0B91B0871C040B1E00BF8A60 /* BtnLetsgo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B91B0851C040B1E00BF8A60 /* BtnLetsgo@2x.png */; };
+		0B91B0881C040B1E00BF8A60 /* BtnLetsgo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B91B0861C040B1E00BF8A60 /* BtnLetsgo@3x.png */; };
 		0B99C2001BCBA1F1006D7E63 /* AnnounceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B99C1FE1BCBA1F0006D7E63 /* AnnounceViewController.m */; };
 		0B99C2011BCBA1F1006D7E63 /* AnnounceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B99C1FF1BCBA1F0006D7E63 /* AnnounceViewController.xib */; };
 		0B9E1A421BFD8BD7003EAFDC /* ExploreTopImg@.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9E1A411BFD8BD7003EAFDC /* ExploreTopImg@.png */; };
@@ -1050,6 +1052,8 @@
 		0B91B07E1C031A5800BF8A60 /* FollowCollectionIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FollowCollectionIcon@3x.png"; sourceTree = "<group>"; };
 		0B91B07F1C031A5800BF8A60 /* FollowingCollectionIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FollowingCollectionIcon@2x.png"; sourceTree = "<group>"; };
 		0B91B0801C031A5800BF8A60 /* FollowingCollectionIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FollowingCollectionIcon@3x.png"; sourceTree = "<group>"; };
+		0B91B0851C040B1E00BF8A60 /* BtnLetsgo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BtnLetsgo@2x.png"; sourceTree = "<group>"; };
+		0B91B0861C040B1E00BF8A60 /* BtnLetsgo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BtnLetsgo@3x.png"; sourceTree = "<group>"; };
 		0B99C1FD1BCBA1F0006D7E63 /* AnnounceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnounceViewController.h; sourceTree = "<group>"; };
 		0B99C1FE1BCBA1F0006D7E63 /* AnnounceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnounceViewController.m; sourceTree = "<group>"; };
 		0B99C1FF1BCBA1F0006D7E63 /* AnnounceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnnounceViewController.xib; sourceTree = "<group>"; };
@@ -3723,6 +3727,8 @@
 		8ABB39161BF9F30200FC330D /* Explore */ = {
 			isa = PBXGroup;
 			children = (
+				0B91B0851C040B1E00BF8A60 /* BtnLetsgo@2x.png */,
+				0B91B0861C040B1E00BF8A60 /* BtnLetsgo@3x.png */,
 				8ABB39171BF9F30200FC330D /* CloseStatus@2x.png */,
 				8ABB39181BF9F30200FC330D /* CloseStatus@3x.png */,
 				8ABB39191BF9F30200FC330D /* ExploreFollow@2x.png */,
@@ -5302,6 +5308,7 @@
 				8AD6C0D31B706CF30040437E /* PFollowTheExpertsViewController.xib in Resources */,
 				8ABB3BBC1BF9F30200FC330D /* ConnectWithInstagram@2x.png in Resources */,
 				8AC8F7351BDA414E00DEF14A /* ProfilePagePostTableViewCell.xib in Resources */,
+				0B91B0881C040B1E00BF8A60 /* BtnLetsgo@3x.png in Resources */,
 				8AD6C11B1B706CF30040437E /* poweredByFoursquare_gray@2x.png in Resources */,
 				8ABB3BA71BF9F30200FC330D /* ForHerIcon@3x.png in Resources */,
 				8ABB3C6C1BF9F30200FC330D /* WhiteShareIcon@3x.png in Resources */,
@@ -5869,6 +5876,7 @@
 				8ABB3BB41BF9F30200FC330D /* SportIcon@2x.png in Resources */,
 				8ABB3CA41BF9F30200FC330D /* FeedIconActive@2x.png in Resources */,
 				8ABB3BD31BF9F30200FC330D /* InviteMessengarIcon@3x.png in Resources */,
+				0B91B0871C040B1E00BF8A60 /* BtnLetsgo@2x.png in Resources */,
 				8ABB3C551BF9F30200FC330D /* PostSmallPin@2x.png in Resources */,
 				8ABB3BFC1BF9F30200FC330D /* SeetiesLogo@3x.png in Resources */,
 				8ABB3B8A1BF9F30200FC330D /* ShareToIcon@2x.png in Resources */,
