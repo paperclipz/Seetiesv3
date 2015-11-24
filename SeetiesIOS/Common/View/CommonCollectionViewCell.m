@@ -33,6 +33,25 @@
     return self;
 }
 
+- (id)initWithFrame:(CGRect)frame name:(NSString*)name
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        NSArray *objects = [[NSBundle mainBundle] loadNibNamed:name owner:nil options:nil];
+        
+        for (id currentObject in objects ){
+            if ([currentObject isKindOfClass:[self class]]) {
+                [currentObject initSelfView];
+                return currentObject;
+            }
+        }
+        return nil;
+    }
+    
+    return self;
+}
+
+
 -(void)initSelfView
 {
     
