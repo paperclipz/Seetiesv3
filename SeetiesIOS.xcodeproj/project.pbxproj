@@ -12,6 +12,12 @@
 		0B3FF1101BB131A20014AF2E /* NearbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B3FF10E1BB131A20014AF2E /* NearbyViewController.xib */; };
 		0B6A54E01BB51F84005B9D6B /* ReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6A54DE1BB51F84005B9D6B /* ReportViewController.m */; };
 		0B6A54E11BB51F84005B9D6B /* ReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B6A54DF1BB51F84005B9D6B /* ReportViewController.xib */; };
+		0B91B0811C031A5800BF8A60 /* FollowCollectionIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B91B07D1C031A5800BF8A60 /* FollowCollectionIcon@2x.png */; };
+		0B91B0821C031A5800BF8A60 /* FollowCollectionIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B91B07E1C031A5800BF8A60 /* FollowCollectionIcon@3x.png */; };
+		0B91B0831C031A5800BF8A60 /* FollowingCollectionIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B91B07F1C031A5800BF8A60 /* FollowingCollectionIcon@2x.png */; };
+		0B91B0841C031A5800BF8A60 /* FollowingCollectionIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B91B0801C031A5800BF8A60 /* FollowingCollectionIcon@3x.png */; };
+		0B91B0871C040B1E00BF8A60 /* BtnLetsgo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B91B0851C040B1E00BF8A60 /* BtnLetsgo@2x.png */; };
+		0B91B0881C040B1E00BF8A60 /* BtnLetsgo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B91B0861C040B1E00BF8A60 /* BtnLetsgo@3x.png */; };
 		0B99C2001BCBA1F1006D7E63 /* AnnounceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B99C1FE1BCBA1F0006D7E63 /* AnnounceViewController.m */; };
 		0B99C2011BCBA1F1006D7E63 /* AnnounceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B99C1FF1BCBA1F0006D7E63 /* AnnounceViewController.xib */; };
 		0B9E1A421BFD8BD7003EAFDC /* ExploreTopImg@.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9E1A411BFD8BD7003EAFDC /* ExploreTopImg@.png */; };
@@ -1046,6 +1052,12 @@
 		0B6A54DD1BB51F84005B9D6B /* ReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportViewController.h; sourceTree = "<group>"; };
 		0B6A54DE1BB51F84005B9D6B /* ReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportViewController.m; sourceTree = "<group>"; };
 		0B6A54DF1BB51F84005B9D6B /* ReportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReportViewController.xib; sourceTree = "<group>"; };
+		0B91B07D1C031A5800BF8A60 /* FollowCollectionIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FollowCollectionIcon@2x.png"; sourceTree = "<group>"; };
+		0B91B07E1C031A5800BF8A60 /* FollowCollectionIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FollowCollectionIcon@3x.png"; sourceTree = "<group>"; };
+		0B91B07F1C031A5800BF8A60 /* FollowingCollectionIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FollowingCollectionIcon@2x.png"; sourceTree = "<group>"; };
+		0B91B0801C031A5800BF8A60 /* FollowingCollectionIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FollowingCollectionIcon@3x.png"; sourceTree = "<group>"; };
+		0B91B0851C040B1E00BF8A60 /* BtnLetsgo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BtnLetsgo@2x.png"; sourceTree = "<group>"; };
+		0B91B0861C040B1E00BF8A60 /* BtnLetsgo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BtnLetsgo@3x.png"; sourceTree = "<group>"; };
 		0B99C1FD1BCBA1F0006D7E63 /* AnnounceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnounceViewController.h; sourceTree = "<group>"; };
 		0B99C1FE1BCBA1F0006D7E63 /* AnnounceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnounceViewController.m; sourceTree = "<group>"; };
 		0B99C1FF1BCBA1F0006D7E63 /* AnnounceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnnounceViewController.xib; sourceTree = "<group>"; };
@@ -3570,6 +3582,10 @@
 		8ABB389B1BF9F30100FC330D /* Collection */ = {
 			isa = PBXGroup;
 			children = (
+				0B91B07D1C031A5800BF8A60 /* FollowCollectionIcon@2x.png */,
+				0B91B07E1C031A5800BF8A60 /* FollowCollectionIcon@3x.png */,
+				0B91B07F1C031A5800BF8A60 /* FollowingCollectionIcon@2x.png */,
+				0B91B0801C031A5800BF8A60 /* FollowingCollectionIcon@3x.png */,
 				8ABB389C1BF9F30100FC330D /* Check@2x.png */,
 				8ABB389D1BF9F30100FC330D /* Check@3x.png */,
 				8ABB389E1BF9F30100FC330D /* CheckGrey@2x.png */,
@@ -3733,6 +3749,8 @@
 		8ABB39161BF9F30200FC330D /* Explore */ = {
 			isa = PBXGroup;
 			children = (
+				0B91B0851C040B1E00BF8A60 /* BtnLetsgo@2x.png */,
+				0B91B0861C040B1E00BF8A60 /* BtnLetsgo@3x.png */,
 				8ABB39171BF9F30200FC330D /* CloseStatus@2x.png */,
 				8ABB39181BF9F30200FC330D /* CloseStatus@3x.png */,
 				8ABB39191BF9F30200FC330D /* ExploreFollow@2x.png */,
@@ -5313,6 +5331,7 @@
 				8AD6C0D31B706CF30040437E /* PFollowTheExpertsViewController.xib in Resources */,
 				8ABB3BBC1BF9F30200FC330D /* ConnectWithInstagram@2x.png in Resources */,
 				8AC8F7351BDA414E00DEF14A /* ProfilePagePostTableViewCell.xib in Resources */,
+				0B91B0881C040B1E00BF8A60 /* BtnLetsgo@3x.png in Resources */,
 				8AD6C11B1B706CF30040437E /* poweredByFoursquare_gray@2x.png in Resources */,
 				8ABB3BA71BF9F30200FC330D /* ForHerIcon@3x.png in Resources */,
 				8ABB3C6C1BF9F30200FC330D /* WhiteShareIcon@3x.png in Resources */,
@@ -5456,6 +5475,7 @@
 				8ABB3C201BF9F30200FC330D /* DirectionIcon@3x.png in Resources */,
 				8ABB3ACC1BF9F30200FC330D /* CollectionCrossBtn@3x.png in Resources */,
 				8ABB3AF01BF9F30200FC330D /* WhiteCollected@3x.png in Resources */,
+				0B91B0811C031A5800BF8A60 /* FollowCollectionIcon@2x.png in Resources */,
 				8ABB3ABF1BF9F30200FC330D /* Icon-Small-50.png in Resources */,
 				8ABB3B391BF9F30200FC330D /* TryAgainBtn@2x.png in Resources */,
 				8ABB3B311BF9F30200FC330D /* NoActivity@2x.png in Resources */,
@@ -5552,6 +5572,8 @@
 				8AD6C2AA1B7072FB0040437E /* WhereIsThisViewController.xib in Resources */,
 				8ABB3BDA1BF9F30200FC330D /* Walkthrough1.png in Resources */,
 				8ABB3BD41BF9F30200FC330D /* InviteWechatIcon@2x.png in Resources */,
+				0B91B0841C031A5800BF8A60 /* FollowingCollectionIcon@3x.png in Resources */,
+				0B91B0821C031A5800BF8A60 /* FollowCollectionIcon@3x.png in Resources */,
 				8ABB3C311BF9F30200FC330D /* PreviewPhotoBlackOverlay@2x.png in Resources */,
 				8ABB3B091BF9F30200FC330D /* CategoriesCheck@2x.png in Resources */,
 				8ABB3C901BF9F30200FC330D /* ShareLineIcon@3x.png in Resources */,
@@ -5700,6 +5722,7 @@
 				8ABB3B5C1BF9F30200FC330D /* CollectTraditonalChineseBtn@3x.png in Resources */,
 				8ABB3BED1BF9F30200FC330D /* bgProfile_5.5.png in Resources */,
 				8AC8F72D1BDA414E00DEF14A /* ProfilePageCollectionFooterTableViewCell.xib in Resources */,
+				0B91B0831C031A5800BF8A60 /* FollowingCollectionIcon@2x.png in Resources */,
 				8ABB3B281BF9F30200FC330D /* UsernameIcon@3x.png in Resources */,
 				8AC8F7431BDA414E00DEF14A /* ProfileV2ViewController.xib in Resources */,
 				8ABB3BCD1BF9F30200FC330D /* InviteFriendsGraphic.png in Resources */,
@@ -5878,6 +5901,7 @@
 				8ABB3BB41BF9F30200FC330D /* SportIcon@2x.png in Resources */,
 				8ABB3CA41BF9F30200FC330D /* FeedIconActive@2x.png in Resources */,
 				8ABB3BD31BF9F30200FC330D /* InviteMessengarIcon@3x.png in Resources */,
+				0B91B0871C040B1E00BF8A60 /* BtnLetsgo@2x.png in Resources */,
 				8ABB3C551BF9F30200FC330D /* PostSmallPin@2x.png in Resources */,
 				8ABB3BFC1BF9F30200FC330D /* SeetiesLogo@3x.png in Resources */,
 				8ABB3B8A1BF9F30200FC330D /* ShareToIcon@2x.png in Resources */,

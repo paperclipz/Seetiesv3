@@ -1563,9 +1563,9 @@
         [TempButton setTitle:@"" forState:UIControlStateNormal];
         TempButton.backgroundColor = [UIColor whiteColor];
         TempButton.layer.cornerRadius = 10;
-        TempButton.layer.borderWidth=1;
+       // TempButton.layer.borderWidth = 1;
         TempButton.layer.masksToBounds = YES;
-        TempButton.layer.borderColor=[[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f] CGColor];
+        //TempButton.layer.borderColor=[[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f] CGColor];
         [CollectionView addSubview: TempButton];
         
         NSString *TempImage = [[NSString alloc]initWithFormat:@"%@",[Collection_arrImageData objectAtIndex:i]];
@@ -1639,7 +1639,7 @@
         [CollectionView addSubview:ShowOverlayImg];
         
         UIButton *OpenCollectionButton = [[UIButton alloc]init];
-        OpenCollectionButton.frame = CGRectMake(11 , 40 + i * 200 , screenWidth - 22 ,120);
+        OpenCollectionButton.frame = CGRectMake(10 , 40 + i * 200 , screenWidth - 20 ,120);
         [OpenCollectionButton setTitle:@"" forState:UIControlStateNormal];
         OpenCollectionButton.backgroundColor = [UIColor clearColor];
         OpenCollectionButton.layer.cornerRadius = 10;
@@ -1713,11 +1713,11 @@
         NSLog(@"CheckCollectionFollowing is %@",CheckCollectionFollowing);
         UIButton *CollectionFollowButton = [[UIButton alloc]init];
         if ([CheckCollectionFollowing isEqualToString:@"0"]) {
-            [CollectionFollowButton setImage:[UIImage imageNamed:LocalisedString(@"CollectBtn.png")] forState:UIControlStateNormal];
-            [CollectionFollowButton setImage:[UIImage imageNamed:@"CollectedBtn.png"] forState:UIControlStateSelected];
+            [CollectionFollowButton setImage:[UIImage imageNamed:@"FollowCollectionIcon.png"] forState:UIControlStateNormal];
+            [CollectionFollowButton setImage:[UIImage imageNamed:@"FollowingCollectionIcon.PNG"] forState:UIControlStateSelected];
         }else{
-            [CollectionFollowButton setImage:[UIImage imageNamed:@"CollectedBtn.png"] forState:UIControlStateNormal];
-            [CollectionFollowButton setImage:[UIImage imageNamed:LocalisedString(@"CollectBtn.png")] forState:UIControlStateSelected];
+            [CollectionFollowButton setImage:[UIImage imageNamed:@"FollowingCollectionIcon.PNG"] forState:UIControlStateNormal];
+            [CollectionFollowButton setImage:[UIImage imageNamed:@"FollowCollectionIcon.png"] forState:UIControlStateSelected];
         }
        // [CollectionFollowButton setImage:[UIImage imageNamed:LocalisedString(@"CollectBtn.png")] forState:UIControlStateNormal];
         [CollectionFollowButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];

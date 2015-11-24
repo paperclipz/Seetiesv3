@@ -109,12 +109,12 @@
     IBOutlet UILabel *ShowUpdateText;
     
     UIScrollView *SuggestedScrollview_Deal;
-    UIPageControl *SuggestedpageControl_Deal;
-    UILabel *ShowSuggestedCount_Deal;
+//    UIPageControl *SuggestedpageControl_Deal;
+//    UILabel *ShowSuggestedCount_Deal;
     
     UIScrollView *SuggestedScrollview_Aboad;
-    UIPageControl *SuggestedpageControl_Aboad;
-    UILabel *ShowSuggestedCount_Aboad;
+//    UIPageControl *SuggestedpageControl_Aboad;
+//    UILabel *ShowSuggestedCount_Aboad;
     
     UIScrollView *SUserScrollview_Friend;
     UIPageControl *SUserpageControl_Friend;
@@ -1993,9 +1993,9 @@
                // NSLog(@"in abroad_quality_post");
                 SuggestedScrollview_Aboad = [[UIScrollView alloc]init];
                 SuggestedScrollview_Aboad.delegate = self;
-                SuggestedScrollview_Aboad.frame = CGRectMake(0, heightcheck, screenWidth, 370);
+                SuggestedScrollview_Aboad.frame = CGRectMake(0, heightcheck, screenWidth, 355);
                 SuggestedScrollview_Aboad.backgroundColor = [UIColor whiteColor];
-                SuggestedScrollview_Aboad.pagingEnabled = YES;
+                //SuggestedScrollview_Aboad.pagingEnabled = YES;
                 [SuggestedScrollview_Aboad setShowsHorizontalScrollIndicator:NO];
                 [SuggestedScrollview_Aboad setShowsVerticalScrollIndicator:NO];
                 SuggestedScrollview_Aboad.tag = 1000;
@@ -2010,28 +2010,28 @@
                 ShowSuggestedText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
                 [MainScroll addSubview:ShowSuggestedText];
                 
-                NSString *TempCount = [[NSString alloc]initWithFormat:@"1/%lu",(unsigned long)[arrAboadID count]];
-                
-                ShowSuggestedCount_Aboad = [[UILabel alloc]init];
-                ShowSuggestedCount_Aboad.frame = CGRectMake(screenWidth - 220, heightcheck, 200, 50);
-                ShowSuggestedCount_Aboad.text = TempCount;
-                ShowSuggestedCount_Aboad.backgroundColor = [UIColor clearColor];
-                ShowSuggestedCount_Aboad.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
-                ShowSuggestedCount_Aboad.textAlignment = NSTextAlignmentRight;
-                ShowSuggestedCount_Aboad.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-                [MainScroll addSubview:ShowSuggestedCount_Aboad];
-                
-                SuggestedpageControl_Aboad = [[UIPageControl alloc] init];
-                SuggestedpageControl_Aboad.frame = CGRectMake(0,heightcheck + 340,screenWidth,30);
-                SuggestedpageControl_Aboad.numberOfPages = 3;
-                SuggestedpageControl_Aboad.currentPage = 0;
-                SuggestedpageControl_Aboad.pageIndicatorTintColor = [UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f];
-                SuggestedpageControl_Aboad.currentPageIndicatorTintColor = [UIColor colorWithRed:187.0f/255.0f green:187.0f/255.0f blue:187.0f/255.0f alpha:1.0f];
-                [MainScroll addSubview:SuggestedpageControl_Aboad];
+//                NSString *TempCount = [[NSString alloc]initWithFormat:@"1/%lu",(unsigned long)[arrAboadID count]];
+//                
+//                ShowSuggestedCount_Aboad = [[UILabel alloc]init];
+//                ShowSuggestedCount_Aboad.frame = CGRectMake(screenWidth - 220, heightcheck, 200, 50);
+//                ShowSuggestedCount_Aboad.text = TempCount;
+//                ShowSuggestedCount_Aboad.backgroundColor = [UIColor clearColor];
+//                ShowSuggestedCount_Aboad.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+//                ShowSuggestedCount_Aboad.textAlignment = NSTextAlignmentRight;
+//                ShowSuggestedCount_Aboad.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+//                [MainScroll addSubview:ShowSuggestedCount_Aboad];
+//                
+//                SuggestedpageControl_Aboad = [[UIPageControl alloc] init];
+//                SuggestedpageControl_Aboad.frame = CGRectMake(0,heightcheck + 340,screenWidth,30);
+//                SuggestedpageControl_Aboad.numberOfPages = 3;
+//                SuggestedpageControl_Aboad.currentPage = 0;
+//                SuggestedpageControl_Aboad.pageIndicatorTintColor = [UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f];
+//                SuggestedpageControl_Aboad.currentPageIndicatorTintColor = [UIColor colorWithRed:187.0f/255.0f green:187.0f/255.0f blue:187.0f/255.0f alpha:1.0f];
+//                [MainScroll addSubview:SuggestedpageControl_Aboad];
                 
                 for (int i = 0; i < [SplitArray_username count]; i++) {
                     UIButton *TempButton = [[UIButton alloc]init];
-                    TempButton.frame = CGRectMake(10 + i * screenWidth, 50 , screenWidth - 20 ,290);
+                    TempButton.frame = CGRectMake(10 + i * (screenWidth - 45), 50 , screenWidth - 50 ,290);
                     [TempButton setTitle:@"" forState:UIControlStateNormal];
                     TempButton.backgroundColor = [UIColor whiteColor];
                     TempButton.layer.cornerRadius = 5;
@@ -2041,7 +2041,7 @@
                     [SuggestedScrollview_Aboad addSubview: TempButton];
                     
                     AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
-                    ShowImage.frame = CGRectMake(11 + i * screenWidth, 51 , screenWidth - 22 ,198);
+                    ShowImage.frame = CGRectMake(10 + i * (screenWidth - 45), 50 , screenWidth - 50 ,198);
                     ShowImage.image = [UIImage imageNamed:@"UserDemo2.jpg"];
                     ShowImage.contentMode = UIViewContentModeScaleAspectFill;
                     ShowImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
@@ -2059,16 +2059,16 @@
                     
                     UIImageView *ShowOverlayImg = [[UIImageView alloc]init];
                     ShowOverlayImg.image = [UIImage imageNamed:@"DealsAndRecommendationOverlay.png"];
-                    ShowOverlayImg.frame = CGRectMake(11 + i * screenWidth, 51, screenWidth - 22, 198);
+                    ShowOverlayImg.frame = CGRectMake(10 + i * (screenWidth - 45), 50 , screenWidth - 50, 198);
                     ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
                     ShowOverlayImg.layer.masksToBounds = YES;
-                    // ShowOverlayImg.layer.cornerRadius = 5;
+                    ShowOverlayImg.layer.cornerRadius = 5;
                     [SuggestedScrollview_Aboad addSubview:ShowOverlayImg];
                     
                     
                     
                     AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
-                    ShowUserProfileImage.frame = CGRectMake(25 + i * screenWidth, 51 + 10, 40, 40);
+                    ShowUserProfileImage.frame = CGRectMake(25 + i * (screenWidth - 45), 51 + 10, 40, 40);
                    // ShowUserProfileImage.image = [UIImage imageNamed:@"DemoProfile.jpg"];
                     ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
                     ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
@@ -2091,7 +2091,7 @@
                     NSString *Address = [[NSString alloc]initWithFormat:@"%@",[SplitArray_Address objectAtIndex:i]];
                     
                     UILabel *ShowUserName = [[UILabel alloc]init];
-                    ShowUserName.frame = CGRectMake(75 + i * screenWidth, 51 + 10, 180, 40);
+                    ShowUserName.frame = CGRectMake(75 + i * (screenWidth - 45), 51 + 10, 180, 40);
                     ShowUserName.text = usernameTemp;
                     ShowUserName.backgroundColor = [UIColor clearColor];
                     ShowUserName.textColor = [UIColor whiteColor];
@@ -2100,7 +2100,7 @@
                     [SuggestedScrollview_Aboad addSubview:ShowUserName];
                     
                     UILabel *ShowDistance = [[UILabel alloc]init];
-                    ShowDistance.frame = CGRectMake(screenWidth - 125 + i * screenWidth, 51 + 10, 100, 40);
+                    ShowDistance.frame = CGRectMake(screenWidth - 155 + i * (screenWidth - 45), 51 + 10, 100, 40);
                     // ShowDistance.frame = CGRectMake(screenWidth - 115, 210 + heightcheck + i, 100, 20);
                     ShowDistance.text = Distance;
                     ShowDistance.textColor = [UIColor whiteColor];
@@ -2112,12 +2112,12 @@
                     
                     UIImageView *ShowPinLocalQR = [[UIImageView alloc]init];
                     ShowPinLocalQR.image = [UIImage imageNamed:@"LocationpinIcon.png"];
-                    ShowPinLocalQR.frame = CGRectMake(20 + i * screenWidth, 51 + 198 + 10, 18, 18);
+                    ShowPinLocalQR.frame = CGRectMake(20 + i * (screenWidth - 45), 51 + 198 + 10, 18, 18);
                     //ShowPin.frame = CGRectMake(15, 210 + 8 + heightcheck + i, 8, 11);
                     [SuggestedScrollview_Aboad addSubview:ShowPinLocalQR];
                     
                     UILabel *ShowAddressLocalQR = [[UILabel alloc]init];
-                    ShowAddressLocalQR.frame = CGRectMake(40 + i * screenWidth, 51 + 198 + 10, screenWidth - 80, 20);
+                    ShowAddressLocalQR.frame = CGRectMake(40 + i * (screenWidth - 45), 51 + 198 + 10, screenWidth - 80, 20);
                     ShowAddressLocalQR.text = Address;
                     ShowAddressLocalQR.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
                     ShowAddressLocalQR.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
@@ -2130,7 +2130,7 @@
                         
                     }else{
                         UILabel *ShowTitle = [[UILabel alloc]init];
-                        ShowTitle.frame = CGRectMake(25 + i * screenWidth, 51 + 198 + 10 + 30, screenWidth - 50, 40);
+                        ShowTitle.frame = CGRectMake(25 + i * (screenWidth - 45), 51 + 198 + 10 + 30, screenWidth - 80, 40);
                        // ShowTitle.text = TempGetStirng;
                         NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
                         paragraph.minimumLineHeight = 21.0f;
@@ -2141,25 +2141,25 @@
                         ShowTitle.numberOfLines = 2;
                         ShowTitle.textAlignment = NSTextAlignmentLeft;
                         ShowTitle.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-                        ShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:17];
+                        ShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
                         [SuggestedScrollview_Aboad addSubview:ShowTitle];
                     }
                     
                     UIButton *OpenPostsButton = [[UIButton alloc]init];
                     [OpenPostsButton setTitle:@"" forState:UIControlStateNormal];
                     OpenPostsButton.backgroundColor = [UIColor clearColor];
-                    OpenPostsButton.frame = CGRectMake(10 + i * screenWidth, 50 , screenWidth - 20 ,320);
+                    OpenPostsButton.frame = CGRectMake(10 + i * (screenWidth - 45), 50 , screenWidth - 20 ,320);
                     [OpenPostsButton addTarget:self action:@selector(AboadOpenPostsOnClick:) forControlEvents:UIControlEventTouchUpInside];
                     OpenPostsButton.tag = i;
                     [SuggestedScrollview_Aboad addSubview:OpenPostsButton];
                     
                     
-                    SuggestedScrollview_Aboad.contentSize = CGSizeMake(10 + i * screenWidth + screenWidth, 300);
+                    SuggestedScrollview_Aboad.contentSize = CGSizeMake(10 + i * (screenWidth - 45) + (screenWidth - 45), 300);
                 }
                 
                 
                 
-                heightcheck += 380;
+                heightcheck += 360;
 
                 
             }
@@ -2369,7 +2369,7 @@
                 
                 arrfeaturedUserName = [[NSMutableArray alloc]initWithArray:SplitArray_Username_Featured];
                 arrfeaturedUserID = [[NSMutableArray alloc]initWithArray:SplitArray_Id_Featured];
-                int TestWidth = screenWidth - 40;
+                int TestWidth = screenWidth - 70;
                 //    NSLog(@"TestWidth is %i",TestWidth);
                 int FinalWidth = TestWidth / 4;
                 //    NSLog(@"FinalWidth is %i",FinalWidth);
@@ -2377,9 +2377,9 @@
                 
                 SUserScrollview_Featured = [[UIScrollView alloc]init];
                 SUserScrollview_Featured.delegate = self;
-                SUserScrollview_Featured.frame = CGRectMake(0, heightcheck, screenWidth, FinalWidth + 10 + 70 + 50 + 30);
+                SUserScrollview_Featured.frame = CGRectMake(0, heightcheck, screenWidth, FinalWidth + 10 + 70 + 50 + 10);
                 SUserScrollview_Featured.backgroundColor = [UIColor whiteColor];
-                SUserScrollview_Featured.pagingEnabled = YES;
+                //SUserScrollview_Featured.pagingEnabled = YES;
                 [SUserScrollview_Featured setShowsHorizontalScrollIndicator:NO];
                 [SUserScrollview_Featured setShowsVerticalScrollIndicator:NO];
                 SUserScrollview_Featured.tag = 2000 + i;
@@ -2394,32 +2394,32 @@
                 ShowSuggestedText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
                 [MainScroll addSubview:ShowSuggestedText];
                 
-                NSString *TempCount = [[NSString alloc]initWithFormat:@"1/%lu",(unsigned long)[TempSplitArray_Id count]];
-                
-                ShowSUserCount_Featured = [[UILabel alloc]init];
-                ShowSUserCount_Featured.frame = CGRectMake(screenWidth - 220, heightcheck, 200, 50);
-                ShowSUserCount_Featured.text = TempCount;
-                ShowSUserCount_Featured.backgroundColor = [UIColor clearColor];
-                ShowSUserCount_Featured.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
-                ShowSUserCount_Featured.textAlignment = NSTextAlignmentRight;
-                ShowSUserCount_Featured.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-                ShowSUserCount_Featured.tag = 2000 + i;
-                [MainScroll addSubview:ShowSUserCount_Featured];
-                
-                
-                SUserpageControl_Featured = [[UIPageControl alloc] init];
-                SUserpageControl_Featured.frame = CGRectMake(0,heightcheck + FinalWidth + 10 + 70 + 50,screenWidth,30);
-                SUserpageControl_Featured.numberOfPages = [TempSplitArray_Id count];
-                SUserpageControl_Featured.currentPage = 0;
-                SUserpageControl_Featured.pageIndicatorTintColor = [UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f];
-                SUserpageControl_Featured.currentPageIndicatorTintColor = [UIColor colorWithRed:187.0f/255.0f green:187.0f/255.0f blue:187.0f/255.0f alpha:1.0f];
-                SUserpageControl_Featured.tag = 2000 + i;
-                [MainScroll addSubview:SUserpageControl_Featured];
+//                NSString *TempCount = [[NSString alloc]initWithFormat:@"1/%lu",(unsigned long)[TempSplitArray_Id count]];
+//                
+//                ShowSUserCount_Featured = [[UILabel alloc]init];
+//                ShowSUserCount_Featured.frame = CGRectMake(screenWidth - 220, heightcheck, 200, 50);
+//                ShowSUserCount_Featured.text = TempCount;
+//                ShowSUserCount_Featured.backgroundColor = [UIColor clearColor];
+//                ShowSUserCount_Featured.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+//                ShowSUserCount_Featured.textAlignment = NSTextAlignmentRight;
+//                ShowSUserCount_Featured.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+//                ShowSUserCount_Featured.tag = 2000 + i;
+//                [MainScroll addSubview:ShowSUserCount_Featured];
+//                
+//                
+//                SUserpageControl_Featured = [[UIPageControl alloc] init];
+//                SUserpageControl_Featured.frame = CGRectMake(0,heightcheck + FinalWidth + 10 + 70 + 50,screenWidth,30);
+//                SUserpageControl_Featured.numberOfPages = [TempSplitArray_Id count];
+//                SUserpageControl_Featured.currentPage = 0;
+//                SUserpageControl_Featured.pageIndicatorTintColor = [UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f];
+//                SUserpageControl_Featured.currentPageIndicatorTintColor = [UIColor colorWithRed:187.0f/255.0f green:187.0f/255.0f blue:187.0f/255.0f alpha:1.0f];
+//                SUserpageControl_Featured.tag = 2000 + i;
+//                [MainScroll addSubview:SUserpageControl_Featured];
                 
                 
                 for (int i = 0; i < [TempSplitArray_Id count]; i++) {
                     UIButton *TempButton = [[UIButton alloc]init];
-                    TempButton.frame = CGRectMake(10 + i * screenWidth, 50, screenWidth - 20, FinalWidth + 10 + 70);
+                    TempButton.frame = CGRectMake(10 + i * (screenWidth - 45), 50, screenWidth - 50, FinalWidth + 10 + 70);
                     [TempButton setTitle:@"" forState:UIControlStateNormal];
                     TempButton.backgroundColor = [UIColor whiteColor];
                     TempButton.layer.cornerRadius = 5;
@@ -2430,7 +2430,7 @@
                     
                     
                     AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
-                    ShowUserProfileImage.frame = CGRectMake(20 + i * screenWidth, 60, 40, 40);
+                    ShowUserProfileImage.frame = CGRectMake(20 + i * (screenWidth - 45), 60, 40, 40);
                    // ShowUserProfileImage.image = [UIImage imageNamed:@"DemoProfile.jpg"];
                     ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
                     ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
@@ -2450,7 +2450,7 @@
                     
                     
                     UILabel *ShowUserName = [[UILabel alloc]init];
-                    ShowUserName.frame = CGRectMake(70 + i * screenWidth, 50 + 10, 200, 20);
+                    ShowUserName.frame = CGRectMake(70 + i * (screenWidth - 45), 50 + 10, 200, 20);
                     ShowUserName.text = [TempSplitArray_Username objectAtIndex:i];
                     ShowUserName.backgroundColor = [UIColor clearColor];
                     ShowUserName.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
@@ -2459,7 +2459,7 @@
                     [SUserScrollview_Featured addSubview:ShowUserName];
                     
                     UILabel *ShowMessage = [[UILabel alloc]init];
-                    ShowMessage.frame = CGRectMake(70 + i * screenWidth, 50 + 30, screenWidth - 140 - 10, 20);
+                    ShowMessage.frame = CGRectMake(70 + i * (screenWidth - 45), 50 + 30, screenWidth - 140 - 10, 20);
                     ShowMessage.text = LocalisedString(@"Follow this Seetizen for more");
                     ShowMessage.backgroundColor = [UIColor clearColor];
                     ShowMessage.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
@@ -2468,7 +2468,7 @@
                     [SUserScrollview_Featured addSubview:ShowMessage];
                     
                     UIButton *FollowButton = [[UIButton alloc]init];
-                    FollowButton.frame = CGRectMake(screenWidth - 20 - 70 + i * screenWidth, 52,70, 48);
+                    FollowButton.frame = CGRectMake(screenWidth - 45 - 70 + i * (screenWidth - 45), 52,70, 48);
                     // [FollowButton setTitle:@"Icon" forState:UIControlStateNormal];
                     [FollowButton setImage:[UIImage imageNamed:@"ExploreFollow.png"] forState:UIControlStateNormal];
                     [FollowButton setImage:[UIImage imageNamed:@"ExploreFollowing.png"] forState:UIControlStateSelected];
@@ -2489,7 +2489,7 @@
                     
                     for (int y = 0; y < 4; y++) {
                         AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
-                        ShowImage.frame = CGRectMake(15 + i * screenWidth +(y % 4) * SpaceWidth, 50 + 70, FinalWidth, FinalWidth);
+                        ShowImage.frame = CGRectMake(15 + i * (screenWidth - 45) +(y % 4) * SpaceWidth, 50 + 70, FinalWidth, FinalWidth);
                         // ShowImage.image = [UIImage imageNamed:[PostsImg objectAtIndex:z]];
                         ShowImage.contentMode = UIViewContentModeScaleAspectFill;
                         ShowImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
@@ -2521,7 +2521,7 @@
                     
                     for (int z = 0; z < [PostsImg count]; z++) {
                         AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
-                        ShowImage.frame = CGRectMake(15 + i * screenWidth +(z % 4) * SpaceWidth, 50 + 70, FinalWidth, FinalWidth);
+                        ShowImage.frame = CGRectMake(15 + i * (screenWidth - 45) +(z % 4) * SpaceWidth, 50 + 70, FinalWidth, FinalWidth);
                         // ShowImage.image = [UIImage imageNamed:[PostsImg objectAtIndex:z]];
                         ShowImage.contentMode = UIViewContentModeScaleAspectFill;
                         ShowImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
@@ -2543,16 +2543,16 @@
                     UIButton *OpenUserProfileButton = [[UIButton alloc]init];
                     [OpenUserProfileButton setTitle:@"" forState:UIControlStateNormal];
                     OpenUserProfileButton.backgroundColor = [UIColor clearColor];
-                    OpenUserProfileButton.frame = CGRectMake(10 + i * screenWidth, 50, screenWidth - 20, FinalWidth + 10 + 70);
+                    OpenUserProfileButton.frame = CGRectMake(10 + i * (screenWidth - 45), 50, screenWidth - 20, FinalWidth + 10 + 70);
                     [OpenUserProfileButton addTarget:self action:@selector(FeaturedOpenUserProfile:) forControlEvents:UIControlEventTouchUpInside];
                     OpenUserProfileButton.tag = i + FollowSuggestionFeaturedCount;
                     [SUserScrollview_Featured addSubview:OpenUserProfileButton];
                     
                     
-                    SUserScrollview_Featured.contentSize = CGSizeMake(10 + i * screenWidth + screenWidth, 100);
+                    SUserScrollview_Featured.contentSize = CGSizeMake(10 + i * (screenWidth - 45) + (screenWidth - 45), 100);
                 }
                 
-                heightcheck += FinalWidth + 10 + 70 + 50 + 30 + 10;
+                heightcheck += FinalWidth + 10 + 70 + 50 + 10 + 10;
 
             }break;
             case 7:{
@@ -2603,7 +2603,7 @@
                 
                 arrFriendUserName = [[NSMutableArray alloc]initWithArray:SplitArray_Username_Friend];
                 arrFriendUserID = [[NSMutableArray alloc]initWithArray:SplitArray_Id_Friend];
-                int TestWidth = screenWidth - 40;
+                int TestWidth = screenWidth - 70;
                 //    NSLog(@"TestWidth is %i",TestWidth);
                 int FinalWidth = TestWidth / 4;
                 //    NSLog(@"FinalWidth is %i",FinalWidth);
@@ -2611,9 +2611,9 @@
                 
                 SUserScrollview_Friend = [[UIScrollView alloc]init];
                 SUserScrollview_Friend.delegate = self;
-                SUserScrollview_Friend.frame = CGRectMake(0, heightcheck, screenWidth, FinalWidth + 10 + 70 + 50 + 30);
+                SUserScrollview_Friend.frame = CGRectMake(0, heightcheck, screenWidth, FinalWidth + 10 + 70 + 50 + 10);
                 SUserScrollview_Friend.backgroundColor = [UIColor whiteColor];
-                SUserScrollview_Friend.pagingEnabled = YES;
+                //SUserScrollview_Friend.pagingEnabled = YES;
                 [SUserScrollview_Friend setShowsHorizontalScrollIndicator:NO];
                 [SUserScrollview_Friend setShowsVerticalScrollIndicator:NO];
                 SUserScrollview_Friend.tag = 2100 + i;
@@ -2628,32 +2628,32 @@
                 ShowSuggestedText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
                 [MainScroll addSubview:ShowSuggestedText];
                 
-                NSString *TempCount = [[NSString alloc]initWithFormat:@"1/%lu",(unsigned long)[TempSplitArray_Id count]];
-                
-                ShowSUserCount_Friend = [[UILabel alloc]init];
-                ShowSUserCount_Friend.frame = CGRectMake(screenWidth - 220, heightcheck, 200, 50);
-                ShowSUserCount_Friend.text = TempCount;
-                ShowSUserCount_Friend.backgroundColor = [UIColor clearColor];
-                ShowSUserCount_Friend.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
-                ShowSUserCount_Friend.textAlignment = NSTextAlignmentRight;
-                ShowSUserCount_Friend.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-                ShowSUserCount_Friend.tag = 2100 + i;
-                [MainScroll addSubview:ShowSUserCount_Friend];
-                
-                
-                SUserpageControl_Friend = [[UIPageControl alloc] init];
-                SUserpageControl_Friend.frame = CGRectMake(0,heightcheck + FinalWidth + 10 + 70 + 50,screenWidth,30);
-                SUserpageControl_Friend.numberOfPages = [TempSplitArray_Id count];
-                SUserpageControl_Friend.currentPage = 0;
-                SUserpageControl_Friend.pageIndicatorTintColor = [UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f];
-                SUserpageControl_Friend.currentPageIndicatorTintColor = [UIColor colorWithRed:187.0f/255.0f green:187.0f/255.0f blue:187.0f/255.0f alpha:1.0f];
-                SUserpageControl_Friend.tag = 2100 + i;
-                [MainScroll addSubview:SUserpageControl_Friend];
+//                NSString *TempCount = [[NSString alloc]initWithFormat:@"1/%lu",(unsigned long)[TempSplitArray_Id count]];
+//                
+//                ShowSUserCount_Friend = [[UILabel alloc]init];
+//                ShowSUserCount_Friend.frame = CGRectMake(screenWidth - 220, heightcheck, 200, 50);
+//                ShowSUserCount_Friend.text = TempCount;
+//                ShowSUserCount_Friend.backgroundColor = [UIColor clearColor];
+//                ShowSUserCount_Friend.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+//                ShowSUserCount_Friend.textAlignment = NSTextAlignmentRight;
+//                ShowSUserCount_Friend.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+//                ShowSUserCount_Friend.tag = 2100 + i;
+//                [MainScroll addSubview:ShowSUserCount_Friend];
+//                
+//                
+//                SUserpageControl_Friend = [[UIPageControl alloc] init];
+//                SUserpageControl_Friend.frame = CGRectMake(0,heightcheck + FinalWidth + 10 + 70 + 50,screenWidth,30);
+//                SUserpageControl_Friend.numberOfPages = [TempSplitArray_Id count];
+//                SUserpageControl_Friend.currentPage = 0;
+//                SUserpageControl_Friend.pageIndicatorTintColor = [UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f];
+//                SUserpageControl_Friend.currentPageIndicatorTintColor = [UIColor colorWithRed:187.0f/255.0f green:187.0f/255.0f blue:187.0f/255.0f alpha:1.0f];
+//                SUserpageControl_Friend.tag = 2100 + i;
+//                [MainScroll addSubview:SUserpageControl_Friend];
                 
             
                 for (int i = 0; i < [TempSplitArray_Id count]; i++) {
                     UIButton *TempButton = [[UIButton alloc]init];
-                    TempButton.frame = CGRectMake(10 + i * screenWidth, 50, screenWidth - 20, FinalWidth + 10 + 70);
+                    TempButton.frame = CGRectMake(10 + i * (screenWidth - 45), 50, screenWidth - 50, FinalWidth + 10 + 70);
                     [TempButton setTitle:@"" forState:UIControlStateNormal];
                     TempButton.backgroundColor = [UIColor whiteColor];
                     TempButton.layer.cornerRadius = 5;
@@ -2664,7 +2664,7 @@
                     
                     
                     AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
-                    ShowUserProfileImage.frame = CGRectMake(20 + i * screenWidth, 60, 40, 40);
+                    ShowUserProfileImage.frame = CGRectMake(20 + i * (screenWidth - 45), 60, 40, 40);
                     // ShowUserProfileImage.image = [UIImage imageNamed:@"DemoProfile.jpg"];
                     ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
                     ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
@@ -2684,7 +2684,7 @@
                     
                     
                     UILabel *ShowUserName = [[UILabel alloc]init];
-                    ShowUserName.frame = CGRectMake(70 + i * screenWidth, 50 + 10, 200, 20);
+                    ShowUserName.frame = CGRectMake(70 + i * (screenWidth - 45), 50 + 10, 200, 20);
                     ShowUserName.text = [TempSplitArray_Username objectAtIndex:i];
                     ShowUserName.backgroundColor = [UIColor clearColor];
                     ShowUserName.textColor = [UIColor colorWithRed:53.0f/255.0f green:53.0f/255.0f blue:53.0f/255.0f alpha:1.0f];
@@ -2693,7 +2693,7 @@
                     [SUserScrollview_Friend addSubview:ShowUserName];
                     
                     UILabel *ShowMessage = [[UILabel alloc]init];
-                    ShowMessage.frame = CGRectMake(70 + i * screenWidth, 50 + 30, screenWidth - 140 - 10, 20);
+                    ShowMessage.frame = CGRectMake(70 + i * (screenWidth - 45), 50 + 30, screenWidth - 140 - 10, 20);
                     ShowMessage.text = LocalisedString(@"Follow this Seetizen for more");
                     ShowMessage.backgroundColor = [UIColor clearColor];
                     ShowMessage.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
@@ -2702,7 +2702,7 @@
                     [SUserScrollview_Friend addSubview:ShowMessage];
                     
                     UIButton *FollowButton = [[UIButton alloc]init];
-                    FollowButton.frame = CGRectMake(screenWidth - 20 - 70 + i * screenWidth, 52,70, 48);
+                    FollowButton.frame = CGRectMake(screenWidth - 50 - 70 + i * (screenWidth - 45), 52,70, 48);
                     // [FollowButton setTitle:@"Icon" forState:UIControlStateNormal];
                     [FollowButton setImage:[UIImage imageNamed:@"ExploreFollow.png"] forState:UIControlStateNormal];
                     [FollowButton setImage:[UIImage imageNamed:@"ExploreFollowing.png"] forState:UIControlStateSelected];
@@ -2716,7 +2716,7 @@
                     
                     for (int y = 0; y < 4; y++) {
                         AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
-                        ShowImage.frame = CGRectMake(15 + i * screenWidth +(y % 4) * SpaceWidth, 50 + 70, FinalWidth, FinalWidth);
+                        ShowImage.frame = CGRectMake(15 + i * (screenWidth - 45) +(y % 4) * SpaceWidth, 50 + 70, FinalWidth, FinalWidth);
                         // ShowImage.image = [UIImage imageNamed:[PostsImg objectAtIndex:z]];
                         ShowImage.contentMode = UIViewContentModeScaleAspectFill;
                         ShowImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
@@ -2748,7 +2748,7 @@
                     
                     for (int z = 0; z < [PostsImg count]; z++) {
                         AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
-                        ShowImage.frame = CGRectMake(15 + i * screenWidth +(z % 4) * SpaceWidth, 50 + 70, FinalWidth, FinalWidth);
+                        ShowImage.frame = CGRectMake(15 + i * (screenWidth - 45) +(z % 4) * SpaceWidth, 50 + 70, FinalWidth, FinalWidth);
                         // ShowImage.image = [UIImage imageNamed:[PostsImg objectAtIndex:z]];
                         ShowImage.contentMode = UIViewContentModeScaleAspectFill;
                         ShowImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
@@ -2771,23 +2771,23 @@
                     UIButton *OpenUserProfileButton = [[UIButton alloc]init];
                     [OpenUserProfileButton setTitle:@"" forState:UIControlStateNormal];
                     OpenUserProfileButton.backgroundColor = [UIColor clearColor];
-                    OpenUserProfileButton.frame = CGRectMake(10 + i * screenWidth, 50, screenWidth - 20, FinalWidth + 10 + 70);
+                    OpenUserProfileButton.frame = CGRectMake(10 + i * (screenWidth - 45), 50, screenWidth - 20, FinalWidth + 10 + 70);
                     [OpenUserProfileButton addTarget:self action:@selector(FriendsOpenUserProfile:) forControlEvents:UIControlEventTouchUpInside];
                     OpenUserProfileButton.tag = i + FollowSuggestionFriendCount;
                     [SUserScrollview_Friend addSubview:OpenUserProfileButton];
                     
-                    SUserScrollview_Friend.contentSize = CGSizeMake(10 + i * screenWidth + screenWidth, 100);
+                    SUserScrollview_Friend.contentSize = CGSizeMake(10 + i * (screenWidth - 45) + (screenWidth - 45), 100);
                 }
                 
-                heightcheck += FinalWidth + 10 + 70 + 50 + 30 + 10;
+                heightcheck += FinalWidth + 10 + 70 + 50 + 10 + 10;
             }break;
             case 8:{
                 NSLog(@"in deal");
                 SuggestedScrollview_Deal = [[UIScrollView alloc]init];
                 SuggestedScrollview_Deal.delegate = self;
-                SuggestedScrollview_Deal.frame = CGRectMake(0, heightcheck, screenWidth, 370);
+                SuggestedScrollview_Deal.frame = CGRectMake(0, heightcheck, screenWidth, 355);
                 SuggestedScrollview_Deal.backgroundColor = [UIColor whiteColor];
-                SuggestedScrollview_Deal.pagingEnabled = YES;
+                //SuggestedScrollview_Deal.pagingEnabled = YES;
                 [SuggestedScrollview_Deal setShowsHorizontalScrollIndicator:NO];
                 [SuggestedScrollview_Deal setShowsVerticalScrollIndicator:NO];
                 SuggestedScrollview_Deal.tag = 1100;
@@ -2825,30 +2825,29 @@
                 ShowSuggestedText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
                 [MainScroll addSubview:ShowSuggestedText];
                 
-                NSString *TempString = [[NSString alloc]initWithFormat:@"1/%lu",(unsigned long)[SplitArray_Id count]];
-                
-                ShowSuggestedCount_Deal = [[UILabel alloc]init];
-                ShowSuggestedCount_Deal.frame = CGRectMake(screenWidth - 220, heightcheck, 200, 50);
-                ShowSuggestedCount_Deal.text = TempString;
-                ShowSuggestedCount_Deal.backgroundColor = [UIColor clearColor];
-                ShowSuggestedCount_Deal.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
-                ShowSuggestedCount_Deal.textAlignment = NSTextAlignmentRight;
-                ShowSuggestedCount_Deal.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-                [MainScroll addSubview:ShowSuggestedCount_Deal];
-                
-                SuggestedpageControl_Deal = [[UIPageControl alloc] init];
-                SuggestedpageControl_Deal.frame = CGRectMake(0,heightcheck + 340,screenWidth,30);
-                SuggestedpageControl_Deal.numberOfPages = [SplitArray_Id count];
-                SuggestedpageControl_Deal.currentPage = 0;
-                SuggestedpageControl_Deal.pageIndicatorTintColor = [UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f];
-                SuggestedpageControl_Deal.currentPageIndicatorTintColor = [UIColor colorWithRed:187.0f/255.0f green:187.0f/255.0f blue:187.0f/255.0f alpha:1.0f];
-                [MainScroll addSubview:SuggestedpageControl_Deal];
-                
+//                NSString *TempString = [[NSString alloc]initWithFormat:@"1/%lu",(unsigned long)[SplitArray_Id count]];
+//                
+//                ShowSuggestedCount_Deal = [[UILabel alloc]init];
+//                ShowSuggestedCount_Deal.frame = CGRectMake(screenWidth - 220, heightcheck, 200, 50);
+//                ShowSuggestedCount_Deal.text = TempString;
+//                ShowSuggestedCount_Deal.backgroundColor = [UIColor clearColor];
+//                ShowSuggestedCount_Deal.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+//                ShowSuggestedCount_Deal.textAlignment = NSTextAlignmentRight;
+//                ShowSuggestedCount_Deal.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+//                [MainScroll addSubview:ShowSuggestedCount_Deal];
+//                
+//                SuggestedpageControl_Deal = [[UIPageControl alloc] init];
+//                SuggestedpageControl_Deal.frame = CGRectMake(0,heightcheck + 340,screenWidth,30);
+//                SuggestedpageControl_Deal.numberOfPages = [SplitArray_Id count];
+//                SuggestedpageControl_Deal.currentPage = 0;
+//                SuggestedpageControl_Deal.pageIndicatorTintColor = [UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f];
+//                SuggestedpageControl_Deal.currentPageIndicatorTintColor = [UIColor colorWithRed:187.0f/255.0f green:187.0f/255.0f blue:187.0f/255.0f alpha:1.0f];
+//                [MainScroll addSubview:SuggestedpageControl_Deal];
 
                 
                 for (int i = 0; i < [SplitArray_username count]; i++) {
                     UIButton *TempButton = [[UIButton alloc]init];
-                    TempButton.frame = CGRectMake(10 + i * screenWidth, 50 , screenWidth - 20 ,290);
+                    TempButton.frame = CGRectMake(10 + i * (screenWidth - 45), 50 , screenWidth - 50 ,290);
                     [TempButton setTitle:@"" forState:UIControlStateNormal];
                     TempButton.backgroundColor = [UIColor whiteColor];
                     TempButton.layer.cornerRadius = 5;
@@ -2858,7 +2857,7 @@
                     [SuggestedScrollview_Deal addSubview: TempButton];
                     
                     AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
-                    ShowImage.frame = CGRectMake(11 + i * screenWidth, 51 , screenWidth - 22 ,198);
+                    ShowImage.frame = CGRectMake(10 + i * (screenWidth - 45), 50 , screenWidth - 50 ,198);
                     ShowImage.image = [UIImage imageNamed:@"UserDemo2.jpg"];
                     ShowImage.contentMode = UIViewContentModeScaleAspectFill;
                     ShowImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
@@ -2877,15 +2876,15 @@
                     
                     UIImageView *ShowOverlayImg = [[UIImageView alloc]init];
                     ShowOverlayImg.image = [UIImage imageNamed:@"DealsAndRecommendationOverlay.png"];
-                    ShowOverlayImg.frame = CGRectMake(11 + i * screenWidth, 51, screenWidth - 22, 198);
+                    ShowOverlayImg.frame = CGRectMake(10 + i * (screenWidth - 45), 50, screenWidth - 50, 198);
                     ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
                     ShowOverlayImg.layer.masksToBounds = YES;
-                    // ShowOverlayImg.layer.cornerRadius = 5;
+                    ShowOverlayImg.layer.cornerRadius = 5;
                     [SuggestedScrollview_Deal addSubview:ShowOverlayImg];
                     
                     
                     AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
-                    ShowUserProfileImage.frame = CGRectMake(25 + i * screenWidth, 51 + 10, 40, 40);
+                    ShowUserProfileImage.frame = CGRectMake(25 + i * (screenWidth - 45), 51 + 10, 40, 40);
                     // ShowUserProfileImage.image = [UIImage imageNamed:@"DemoProfile.jpg"];
                     ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
                     ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
@@ -2908,7 +2907,7 @@
                     NSString *Address = [[NSString alloc]initWithFormat:@"%@",[SplitArray_Address objectAtIndex:i]];
                     
                     UILabel *ShowUserName = [[UILabel alloc]init];
-                    ShowUserName.frame = CGRectMake(75 + i * screenWidth, 51 + 10, screenWidth - 75 - 100, 40);
+                    ShowUserName.frame = CGRectMake(75 + i * (screenWidth - 45), 51 + 10, screenWidth - 75 - 100, 40);
                     ShowUserName.text = usernameTemp;
                     ShowUserName.backgroundColor = [UIColor clearColor];
                     ShowUserName.textColor = [UIColor whiteColor];
@@ -2917,7 +2916,7 @@
                     [SuggestedScrollview_Deal addSubview:ShowUserName];
                     
                     UILabel *ShowDistance = [[UILabel alloc]init];
-                    ShowDistance.frame = CGRectMake(screenWidth - 125 + i * screenWidth, 51 + 10, 100, 40);
+                    ShowDistance.frame = CGRectMake(screenWidth - 155 + i * (screenWidth - 45), 51 + 10, 100, 40);
                     // ShowDistance.frame = CGRectMake(screenWidth - 115, 210 + heightcheck + i, 100, 20);
                     ShowDistance.text = Distance;
                     ShowDistance.textColor = [UIColor whiteColor];
@@ -2945,20 +2944,20 @@
                         ShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:17];
                         [SuggestedScrollview_Deal addSubview:ShowTitle];
                         
-                        if([ShowTitle sizeThatFits:CGSizeMake(screenWidth - 50, CGFLOAT_MAX)].height!=ShowTitle.frame.size.height)
+                        if([ShowTitle sizeThatFits:CGSizeMake(screenWidth - 80, CGFLOAT_MAX)].height!=ShowTitle.frame.size.height)
                         {
-                            ShowTitle.frame = CGRectMake(25 + i * screenWidth, 51 + 198 + 20, screenWidth - 50,[ShowTitle sizeThatFits:CGSizeMake(screenWidth - 50, CGFLOAT_MAX)].height);
+                            ShowTitle.frame = CGRectMake(25 + i * (screenWidth - 45), 51 + 198 + 20, screenWidth - 80,[ShowTitle sizeThatFits:CGSizeMake(screenWidth - 80, CGFLOAT_MAX)].height);
                         }
                     }
                     
                     UIImageView *ShowPinLocalQR = [[UIImageView alloc]init];
                     ShowPinLocalQR.image = [UIImage imageNamed:@"LocationpinIcon.png"];
-                    ShowPinLocalQR.frame = CGRectMake(20 + i * screenWidth, 51 + 198 + ShowTitle.frame.size.height + 25, 18, 18);
+                    ShowPinLocalQR.frame = CGRectMake(20 + i * (screenWidth - 45), 51 + 198 + ShowTitle.frame.size.height + 25, 18, 18);
                     //ShowPin.frame = CGRectMake(15, 210 + 8 + heightcheck + i, 8, 11);
                     [SuggestedScrollview_Deal addSubview:ShowPinLocalQR];
                     
                     UILabel *ShowAddressLocalQR = [[UILabel alloc]init];
-                    ShowAddressLocalQR.frame = CGRectMake(40 + i * screenWidth, 51 + 198 + ShowTitle.frame.size.height + 25, screenWidth - 80, 20);
+                    ShowAddressLocalQR.frame = CGRectMake(40 + i * (screenWidth - 45), 51 + 198 + ShowTitle.frame.size.height + 25, screenWidth - 80, 20);
                     ShowAddressLocalQR.text = Address;
                     ShowAddressLocalQR.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
                     ShowAddressLocalQR.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
@@ -2969,15 +2968,15 @@
                     UIButton *OpenPostsButton = [[UIButton alloc]init];
                     [OpenPostsButton setTitle:@"" forState:UIControlStateNormal];
                     OpenPostsButton.backgroundColor = [UIColor clearColor];
-                    OpenPostsButton.frame = CGRectMake(10 + i * screenWidth, 50 , screenWidth - 20 ,280);
+                    OpenPostsButton.frame = CGRectMake(10 + i * (screenWidth - 45), 50 , screenWidth - 50 ,280);
                     [OpenPostsButton addTarget:self action:@selector(DealOpenPostsOnClick:) forControlEvents:UIControlEventTouchUpInside];
                     OpenPostsButton.tag = i;
                     [SuggestedScrollview_Deal addSubview:OpenPostsButton];
                     
                     
-                    SuggestedScrollview_Deal.contentSize = CGSizeMake(10 + i * screenWidth + screenWidth, 300);
+                    SuggestedScrollview_Deal.contentSize = CGSizeMake(10 + i * (screenWidth - 45) + (screenWidth - 45), 300);
                 }
-                heightcheck += 380;
+                heightcheck += 360;
             }break;
             case 9:{
                 NSLog(@"in invite_friend");
@@ -3268,11 +3267,11 @@
                    // NSLog(@"CheckCollectionFollowing is %@",CheckCollectionFollowing);
                     UIButton *QuickCollectButtonLocalQR = [[UIButton alloc]init];
                     if ([CheckCollectionFollowing isEqualToString:@"0"]) {
-                        [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:LocalisedString(@"CollectBtn.png")] forState:UIControlStateNormal];
-                        [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:@"CollectedBtn.png"] forState:UIControlStateSelected];
+                        [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:@"FollowCollectionIcon.png"] forState:UIControlStateNormal];
+                        [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:@"FollowingCollectionIcon.PNG"] forState:UIControlStateSelected];
                     }else{
-                        [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:@"CollectedBtn.png"] forState:UIControlStateNormal];
-                        [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:LocalisedString(@"CollectBtn.png")] forState:UIControlStateSelected];
+                        [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:@"FollowingCollectionIcon.PNG"] forState:UIControlStateNormal];
+                        [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:@"FollowCollectionIcon.png"] forState:UIControlStateSelected];
                     }
                     //[QuickCollectButtonLocalQR setImage:[UIImage imageNamed:LocalisedString(@"CollectBtn.png")] forState:UIControlStateNormal];
                     [QuickCollectButtonLocalQR setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
@@ -3738,21 +3737,21 @@
     
     
     if (scrollView == SuggestedScrollview_Aboad) {
-        CGFloat pageWidth = SuggestedScrollview_Aboad.frame.size.width; // you need to have a **iVar** with getter for scrollView
-        float fractionalPage = SuggestedScrollview_Aboad.contentOffset.x / pageWidth;
-        NSInteger page = lround(fractionalPage);
-        SuggestedpageControl_Aboad.currentPage = page; // you need to have a **iVar** with getter for pageControl
-        
-        NSString *TempCount = [[NSString alloc]initWithFormat:@"%li/%lu",page + 1,(unsigned long)[arrAboadID count]];
-        ShowSuggestedCount_Aboad.text = TempCount;
+//        CGFloat pageWidth = SuggestedScrollview_Aboad.frame.size.width; // you need to have a **iVar** with getter for scrollView
+//        float fractionalPage = SuggestedScrollview_Aboad.contentOffset.x / pageWidth;
+//        NSInteger page = lround(fractionalPage);
+//        SuggestedpageControl_Aboad.currentPage = page; // you need to have a **iVar** with getter for pageControl
+//        
+//        NSString *TempCount = [[NSString alloc]initWithFormat:@"%li/%lu",page + 1,(unsigned long)[arrAboadID count]];
+//        ShowSuggestedCount_Aboad.text = TempCount;
     }else if (scrollView == SuggestedScrollview_Deal){
-        CGFloat pageWidth = SuggestedScrollview_Deal.frame.size.width; // you need to have a **iVar** with getter for scrollView
-        float fractionalPage = SuggestedScrollview_Deal.contentOffset.x / pageWidth;
-        NSInteger page = lround(fractionalPage);
-        SuggestedpageControl_Deal.currentPage = page; // you need to have a **iVar** with getter for pageControl
-        
-        NSString *TempCount = [[NSString alloc]initWithFormat:@"%li/%lu",page + 1,(unsigned long)[arrDealID count]];
-        ShowSuggestedCount_Deal.text = TempCount;
+//        CGFloat pageWidth = SuggestedScrollview_Deal.frame.size.width; // you need to have a **iVar** with getter for scrollView
+//        float fractionalPage = SuggestedScrollview_Deal.contentOffset.x / pageWidth;
+//        NSInteger page = lround(fractionalPage);
+//        SuggestedpageControl_Deal.currentPage = page; // you need to have a **iVar** with getter for pageControl
+//        
+//        NSString *TempCount = [[NSString alloc]initWithFormat:@"%li/%lu",page + 1,(unsigned long)[arrDealID count]];
+//        ShowSuggestedCount_Deal.text = TempCount;
     }else if(scrollView == SUserScrollview_Friend){
         CGFloat pageWidth = SUserScrollview_Friend.frame.size.width; // you need to have a **iVar** with getter for scrollView
         float fractionalPage = SUserScrollview_Friend.contentOffset.x / pageWidth;

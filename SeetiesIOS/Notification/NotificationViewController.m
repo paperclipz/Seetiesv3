@@ -68,6 +68,12 @@
     
     NSString *CheckNotificationData;
     NSString *CheckFollowData;
+    
+    NSInteger DataCount;
+    NSInteger Offset;
+    NSString *GetNextPaging;
+    int CheckButtonOnClick;
+    BOOL OnLoad;
 }
 
 @end
@@ -93,12 +99,27 @@
     MainScroll.frame = CGRectMake(0, 127, screenWidth, screenHeight - 127 - 50);
     MainScroll.alwaysBounceVertical = YES;
     MainScroll.backgroundColor = [UIColor whiteColor];
+    MainScroll.delegate = self;
     TitleLabel.text = LocalisedString(@"Activity");
     ShowNoDataView.hidden = YES;
     ShowNoDataView.frame = CGRectMake(0, 130, screenWidth, screenHeight - 130);
     NoDataImg.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     DataUrl = [[UrlDataClass alloc]init];
     
+    DataCount = 0;
+    Offset = 1;
+    CheckButtonOnClick = 0;
+    GetHeight = 0;
+    OnLoad = NO;
+    PostIDArray = [[NSMutableArray alloc]init];
+    TypeArray = [[NSMutableArray alloc]init];
+    UserThumbnailArray = [[NSMutableArray alloc]init];
+    PostThumbnailArray = [[NSMutableArray alloc]init];
+    UserNameArray = [[NSMutableArray alloc]init];
+    uidArray = [[NSMutableArray alloc]init];
+    MessageArray = [[NSMutableArray alloc]init];
+    ActionArray = [[NSMutableArray alloc]init];
+    DateArray = [[NSMutableArray alloc]init];
     
     refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(testRefresh:) forControlEvents:UIControlEventValueChanged];
@@ -152,12 +173,23 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 -(void)GetNotification{
+    OnLoad = YES;
     [ShowActivity startAnimating];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
     
-    NSString *FullString = [[NSString alloc]initWithFormat:@"%@?token=%@",DataUrl.GetNotification_Url,GetExpertToken];
+    NSString *FullString;
+    
+    if ([GetNextPaging isEqualToString:@""]|| [GetNextPaging length] == 0) {
+        FullString = [[NSString alloc]initWithFormat:@"%@?token=%@&limit=10&offset=%ld",DataUrl.GetNotification_Url,GetExpertToken,(long)Offset];
+    }else{
+        Offset += 10;
+        DataCount += 10;
+        FullString = GetNextPaging;
+    }
+    
+    //NSString *FullString = [[NSString alloc]initWithFormat:@"%@?token=%@",DataUrl.GetNotification_Url,GetExpertToken];
     NSLog(@"Get Notification is %@",FullString);
     
     NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
@@ -231,21 +263,16 @@
             
             NSDictionary *GetAllData = [res valueForKey:@"data"];
             NSDictionary *GetNotificationsData = [GetAllData valueForKey:@"notifications"];
+            NSDictionary *GetPaging = [GetAllData valueForKey:@"paging"];
+            GetNextPaging = [[NSString alloc]initWithFormat:@"%@",[GetPaging objectForKey:@"next"]];
+            NSLog(@"GetNextPaging is %@",GetNextPaging);
             
             CheckNotificationData = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"total_notifications"]];
             if ([CheckNotificationData isEqualToString:@"0"]) {
                 ShowNoDataView.hidden = NO;
             }
             
-            PostIDArray = [[NSMutableArray alloc]init];
-            TypeArray = [[NSMutableArray alloc]init];
-            UserThumbnailArray = [[NSMutableArray alloc]init];
-            PostThumbnailArray = [[NSMutableArray alloc]init];
-            UserNameArray = [[NSMutableArray alloc]init];
-            uidArray = [[NSMutableArray alloc]init];
-            MessageArray = [[NSMutableArray alloc]init];
-            ActionArray = [[NSMutableArray alloc]init];
-            DateArray = [[NSMutableArray alloc]init];
+
             
             NSDictionary *UserInfoData = [GetNotificationsData valueForKey:@"user_thumbnail"];
             NSDictionary *PostInfoData = [GetNotificationsData valueForKey:@"post_thumbnail"];
@@ -289,8 +316,10 @@
 //            NSLog(@"UserThumbnailArray is %@",UserThumbnailArray);
 //            NSLog(@"PostThumbnailArray is %@",PostThumbnailArray);
 //            NSLog(@"UserNameArray is %@",UserNameArray);
+            
              [self InitNotificationsDataView];
             // [self GetFollowing];
+            OnLoad = NO;
         }
     }else{
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
@@ -452,7 +481,7 @@
     switch (segment.selectedSegmentIndex) {
         case 0:
             NSLog(@"Following view click");
-            
+            CheckButtonOnClick = 1;
             if ([CheckFollowData isEqualToString:@"0"]) {
                 ShowNoDataView.hidden = NO;
             }else{
@@ -477,6 +506,7 @@
 
             break;
         case 1:
+            CheckButtonOnClick = 0;
             NSLog(@"Notifications view click");
             if ([CheckNotificationData isEqualToString:@"0"]) {
                 ShowNoDataView.hidden = NO;
@@ -714,13 +744,14 @@
 }
 
 -(void)InitNotificationsDataView{
-    for (UIView *subview in NotificationsView.subviews) {
-        [subview removeFromSuperview];
-    }
+//    for (UIView *subview in NotificationsView.subviews) {
+//        [subview removeFromSuperview];
+//    }
     //CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-    for (int i = 0; i < [TypeArray count]; i++) {
+    for (NSInteger i = DataCount; i < [TypeArray count]; i++) {
+    //for (int i = 0; i < [TypeArray count]; i++) {
         UIButton *Line01 = [UIButton buttonWithType:UIButtonTypeCustom];
         [Line01 setTitle:@"" forState:UIControlStateNormal];
         [Line01 setFrame:CGRectMake(0, 80 + i * 80, screenWidth, 1)];
@@ -1150,14 +1181,29 @@
 //            CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
 //            MainScroll.frame = CGRectMake(0, 44, screenWidth, screenHeight - 114);
 //            MainScroll.alwaysBounceVertical = YES;
-//            for (UIView *subview in MainScroll.subviews) {
-//                [subview removeFromSuperview];
-//            }
+            for (UIView *subview in NotificationsView.subviews) {
+                [subview removeFromSuperview];
+            }
             [[NSNotificationCenter defaultCenter] postNotificationName:@"CHANGE_NOTIFICATION_COUNT" object:nil];
             [refreshControl addTarget:self action:@selector(testRefresh:) forControlEvents:UIControlEventValueChanged];
             [MainScroll addSubview:refreshControl];
             GetHeight = 0;
             CheckClick_Following = 0;
+            DataCount = 0;
+            Offset = 1;
+            CheckButtonOnClick = 0;
+            GetNextPaging = @"";
+            OnLoad = NO;
+            [PostIDArray removeAllObjects];
+            [TypeArray removeAllObjects];
+            [UserThumbnailArray removeAllObjects];
+            [PostThumbnailArray removeAllObjects];
+            [UserNameArray removeAllObjects];
+            [uidArray removeAllObjects];
+            [MessageArray removeAllObjects];
+            [ActionArray removeAllObjects];
+            [DateArray removeAllObjects];
+            
              [self GetNotification];
             [refreshControl endRefreshing];
             NSLog(@"refresh end");
@@ -1170,5 +1216,46 @@
         _profileViewController = [ProfileViewController new];
     
     return _profileViewController;
+}
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+
+    if(scrollView == MainScroll){
+        float endScrolling = scrollView.contentOffset.y + scrollView.frame.size.height;
+        float endScrolling1 = scrollView.contentOffset.x + scrollView.frame.size.width;
+        NSLog(@"endScrolling1 %f ",endScrolling1);
+        if (endScrolling >= scrollView.contentSize.height)
+        {
+            if (CheckButtonOnClick == 0) {
+                if ([GetNextPaging length] == 0 || [GetNextPaging isEqualToString:@"(null)"] || [GetNextPaging isEqualToString:@"<null>"]) {
+                    
+                }else{
+                    if (OnLoad == YES) {
+                        
+                    }else{
+                        NSLog(@"load more..");
+                        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+                        [MainScroll setContentSize:CGSizeMake(screenWidth, MainScroll.contentSize.height + 150)];
+                        UIActivityIndicatorView *  activityindicator1 = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake((screenWidth/2) - 15, NotificationsView.frame.size.height + 40, 30, 30)];
+                        [activityindicator1 setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhiteLarge];
+                        [activityindicator1 setColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f]];
+                        [MainScroll addSubview:activityindicator1];
+                        [activityindicator1 startAnimating];
+                        [self GetNotification];
+                        [activityindicator1 stopAnimating];
+                    }
+
+                    
+                    
+                }
+            }else{
+            
+            }
+
+        }
+    
+    
+    
+    }
 }
 @end
