@@ -25,9 +25,12 @@
     NSMutableArray* arrLikes;
     
     __weak IBOutlet NSLayoutConstraint *followButtonConstraint;
+    
+    CGRect labelFrame;
 }
 
 // =======  OUTLET   =======
+@property (weak, nonatomic) IBOutlet UILabel *lblUserName_Header;
 @property (weak, nonatomic) IBOutlet UIImageView *ibImgViewOtherPadding;
 @property (weak, nonatomic) IBOutlet UILabel *lblName;
 @property (weak, nonatomic) IBOutlet UIButton *btnEditProfile;
@@ -48,6 +51,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnFollowing;
 @property (weak, nonatomic) IBOutlet UIButton *btnFollower;
 @property (weak, nonatomic) IBOutlet UIButton *btnLink;
+@property (weak, nonatomic) IBOutlet UIButton *btnFollow;
 
 // =======  OUTLET   =======
 // =======  MODEL   =======
@@ -59,7 +63,6 @@
 @property (nonatomic,strong)UIImageView* loadingImageView;
 @property (nonatomic,assign)ProfileViewType profileViewType;
 @property (nonatomic,strong)NSString* userID;
-@property (weak, nonatomic) IBOutlet UIButton *btnFollow;
 
 // =======  MODEL   =======
 
@@ -165,13 +168,15 @@
 }
 - (IBAction)btnShareClicked:(id)sender {
     
+    _shareV2ViewController = nil;
     _shareViewController = nil;
+    [self.shareViewController GetShareProfile:self.userProfileModel.username];
     
-    //        [self.shareViewController GetShareProfile:self.userProfileModel.username];
-    
-    
-    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:self.shareViewController];
-    formSheetController.presentationController.contentViewSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height);
+    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareViewController];
+    [naviVC setNavigationBarHidden:YES animated:NO];
+
+    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
+    formSheetController.presentationController.contentViewSize = CGSizeMake(self.view.frame.size.width,self.view.frame.size.height);
     
     formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
     formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
@@ -234,8 +239,9 @@
 
 -(void)initSelfView
 {
-    
+    labelFrame = self.lblUserName_Header.frame;
     self.ibImgViewOtherPadding.alpha = 0;
+    self.lblUserName_Header.alpha = 0;
     if (self.profileViewType == ProfileViewTypeOwn) {
         
         self.btnFollow.hidden = YES;
@@ -345,21 +351,71 @@
     [self requestServerForUserInfo];
     [self requestServerForUserCollection];
     [self requestServerForUserPost];
-    [self requestServerForUserLikes];
+    
+    if (self.profileViewType != ProfileViewTypeOthers) {
+        [self requestServerForUserLikes];
+
+    }
 }
 
 -(void)adjustTableView
 {
+    //CollectionHeight
     
-    int collectionHeight = arrCollection.count>0?(int)([ProfilePageCollectionTableViewCell getHeight]*(arrCollection.count>3?3:arrCollection.count)):[ProfileNoItemTableViewCell getHeight];
-    //  int postAndLikesHeight = (int)([ProfilePagePostTableViewCell getHeight]*((arrPost.count>0?1:0) + (arrLikes.count>0?1:0)));
-    int postAndLikesHeight = (arrPost.count>0?[ProfilePagePostTableViewCell getHeight]:[ProfileNoItemTableViewCell getHeight]) + (arrLikes.count>0?[ProfilePagePostTableViewCell getHeight]:[ProfileNoItemTableViewCell getHeight]);
+    float collectionHeight = 0;
+    float headerHeight = 0;
+    float cellFooterHeight = 0;
     
-    int cellHeaderHeight = 3*[ProfilePageCollectionHeaderView getHeight];
-    int count = (arrCollection.count>0?1:0) + (arrPost.count>0?1:0) + (arrLikes.count>0?1:0);
-    int cellFooterHeight = [ProfilePageCollectionFooterTableViewCell getHeight]*(count);
+    headerHeight += [ProfilePageCollectionHeaderView getHeight];
+
+    if (arrCollection.count>0) {
+        collectionHeight += [ProfilePageCollectionTableViewCell getHeight] * (arrCollection.count>3?3:arrCollection.count);
+        cellFooterHeight += [ProfilePageCollectionFooterTableViewCell getHeight];
+    }
+    else
+    {
+        collectionHeight = [ProfileNoItemTableViewCell getHeight];
+    }
     
-    self.ibTableView.frame = CGRectMake(self.ibTableView.frame.origin.x, self.ibTableView.frame.origin.y, self.ibTableView.frame.size.width, collectionHeight + postAndLikesHeight + cellHeaderHeight + cellFooterHeight + 5);
+    //Postheight
+    int postHeight = 0;
+    headerHeight += [ProfilePageCollectionHeaderView getHeight];
+    if(arrPost.count>0)
+    {
+        postHeight+= [ProfilePagePostTableViewCell getHeight];
+        cellFooterHeight += [ProfilePageCollectionFooterTableViewCell getHeight];
+
+    }
+    
+    else{
+        
+        postHeight+= [ProfileNoItemTableViewCell getHeight];
+    }
+    
+    int likeHeight = 0;
+    
+    if (self.profileViewType != ProfileViewTypeOthers) {
+
+        if (arrLikes.count>0) {
+            likeHeight += [ProfilePagePostTableViewCell getHeight];
+            cellFooterHeight += [ProfilePageCollectionFooterTableViewCell getHeight];
+
+        }
+        else{
+            likeHeight+= [ProfileNoItemTableViewCell getHeight];
+
+        }
+        
+        headerHeight += [ProfilePageCollectionHeaderView getHeight];
+        
+    }
+
+   // int collectionHeight = arrCollection.count>0?(int)([ProfilePageCollectionTableViewCell getHeight]*(arrCollection.count>3?3:arrCollection.count)):[ProfileNoItemTableViewCell getHeight];
+    
+   
+    
+    
+    self.ibTableView.frame = CGRectMake(self.ibTableView.frame.origin.x, self.ibTableView.frame.origin.y, self.ibTableView.frame.size.width,collectionHeight +postHeight + likeHeight + headerHeight + cellFooterHeight+ 5);
     
     self.ibContentView.frame = CGRectMake(self.ibContentView.frame.origin.x, self.ibContentView.frame.origin.y, self.ibContentView.frame.size.width, self.ibTableView.frame.origin.y +self.ibTableView.frame.size.height);
     
@@ -411,7 +467,15 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    
+    if (self.profileViewType == ProfileViewTypeOthers) {
+        return 2;
+    }
+    else
+    {
+        return 3;
+
+    }
 }
 
 
@@ -786,6 +850,15 @@
 }
 
 #pragma mark - Declaration
+
+-(ShareV2ViewController*)shareV2ViewController
+{
+    if (!_shareV2ViewController) {
+        _shareV2ViewController = [ShareV2ViewController new];
+    }
+    
+    return _shareV2ViewController;
+}
 -(UIImageView*)loadingImageView
 {
     if(!_loadingImageView)
@@ -1130,6 +1203,7 @@
     }];
     
     self.lblUserName.text = self.userProfileModel.username;
+    self.lblUserName_Header.text = self.userProfileModel.username;
     self.lblName.text = self.userProfileModel.name;
     NSString* strFollower = [NSString stringWithFormat:@"%d %@",self.userProfileModel.follower_count,LocalisedString(@"Followers")];
     NSString* strFollowing = [NSString stringWithFormat:@"%d %@",self.userProfileModel.following_count,LocalisedString(@"Followings")];
@@ -1236,11 +1310,14 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
 
 -(void)showShareView:(CollectionModel*)colModel
 {
+    _shareViewController = nil;
     [self.shareViewController GetCollectionID:colModel.collection_id GetCollectionTitle:colModel.name];
+    _shareV2ViewController = nil;
     MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:self.shareViewController];
     formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
     formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
     formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
+    
     [self presentViewController:formSheetController animated:YES completion:nil];
     
 }
@@ -1261,21 +1338,25 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
 #pragma mark - UIScrollView
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+
     int profileBackgroundHeight = 200;
     if (scrollView.contentOffset.y > -profileBackgroundHeight && scrollView.contentOffset.y <= 5) {
-        //NSLog(@"AAA!!%@",NSStringFromCGPoint(scrollView.contentOffset));
+        NSLog(@"AAA!!%@",NSStringFromCGPoint(scrollView.contentOffset));
         
         float adjustment = (profileBackgroundHeight + scrollView.contentOffset.y
                             )/(profileBackgroundHeight);
        // SLog(@"adjustment : %f",adjustment);
         self.ibImgViewOtherPadding.alpha = adjustment;
-
+        self.lblUserName_Header.alpha = adjustment;
         
     }
     else if (scrollView.contentOffset.y > profileBackgroundHeight)
     {
         self.ibImgViewOtherPadding.alpha = 1;
+        self.lblUserName_Header.alpha = 1;
 
+        
+        
     }
 }
 @end
