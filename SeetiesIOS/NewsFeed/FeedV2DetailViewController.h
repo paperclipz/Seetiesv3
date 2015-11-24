@@ -17,6 +17,7 @@
 
 @class ProfileViewController;
 @class EditPostViewController;
+@class CollectionListingViewController;
 @interface FeedV2DetailViewController : GAITrackedViewController<UIScrollViewDelegate,UIActionSheetDelegate>
 @property(nonatomic,strong)EditPostViewController* editPostViewController;
 @property(nonatomic,strong)ProfileViewController* profileViewController;
