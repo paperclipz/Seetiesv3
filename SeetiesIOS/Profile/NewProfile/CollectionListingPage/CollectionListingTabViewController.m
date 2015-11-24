@@ -110,6 +110,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ProfilePageCollectionTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"ProfilePageCollectionTableViewCell"];
+    
+    if (indexPath.row == 3) {
+        SLog(@"33333");
+    }
+    
+    if (indexPath.row == 7) {
+        SLog(@"77777");
+
+    }
     CollectionModel* collModel = self.arrCollections[indexPath.row];
     
     [cell initData:collModel profileType:self.profileType];

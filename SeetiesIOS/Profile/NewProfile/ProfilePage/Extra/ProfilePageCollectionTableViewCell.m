@@ -91,6 +91,10 @@
     
     self.lblTitle.text = self.model.name;
     self.lblNoOfCollection.text = [NSString stringWithFormat:@"%d %@",self.model.collection_posts_count,LocalisedString(@"recommendation")];
+    
+    self.ibImageViewA.image = [UIImage imageNamed:@"EmptyCollection.png"];
+    self.ibImageViewB.image = [UIImage imageNamed:@"EmptyCollection.png"];
+
     if (![self.model.arrayPost isNull])
     {
         DraftModel* draftModel = self.model.arrayPost[0];
@@ -102,6 +106,7 @@
                 PhotoModel* photoModel1 = draftModel.arrPhotos[0];
 
                 [self.ibImageViewA sd_setImageWithURL:[NSURL URLWithString:photoModel1.imageURL]];
+                SLog(@"Image A: %@",photoModel1.imageURL);
 
             }
             
@@ -115,7 +120,8 @@
                 PhotoModel* photoModel2 = draftModelTwo.arrPhotos[0];
                 
                 [self.ibImageViewB sd_setImageWithURL:[NSURL URLWithString:photoModel2.imageURL]];
-                
+                SLog(@"Image A: %@",photoModel2.imageURL);
+
             }
         }
     }
@@ -140,7 +146,6 @@
             [self setFollowButtonSelected:self.model.following button:self.btnEdit];
         }];
     }
-   
    
 //
 //    if (self.model.arrTempFeedsPost>0) {

@@ -10,5 +10,6 @@
 
 @interface CommonCollectionViewCell : UICollectionViewCell
 -(void)initSelfView;
+- (id)initWithFrame:(CGRect)frame name:(NSString*)name;
 
 @end

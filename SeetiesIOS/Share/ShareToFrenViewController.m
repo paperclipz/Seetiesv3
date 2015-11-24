@@ -24,7 +24,7 @@
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     
     MainScroll.delegate = self;
-    MainScroll.frame = CGRectMake(0, screenHeight - 450, screenWidth, 450);
+    //MainScroll.frame = CGRectMake(0, screenHeight - 450, screenWidth, 450);
     
     ShowTitle.text = LocalisedString(@"Share with your buddies!");
     ShowSendTo.text = LocalisedString(@"Send to...");
@@ -179,11 +179,12 @@
         NSLog(@"statusString is %@",statusString);
         
         if ([statusString isEqualToString:@"ok"]) {
-            [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success Send to Friends" type:TSMessageNotificationTypeSuccess];
+            [TSMessage showNotificationWithTitle:@"System" subtitle:LocalisedString(@"Success Send to Friends") type:TSMessageNotificationTypeSuccess];
         }else{
             
             NSString *MessageString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"message"]];
-            [TSMessage showNotificationInViewController:self title:@"" subtitle:MessageString type:TSMessageNotificationTypeError];
+            [TSMessage showNotificationWithTitle:@"System" subtitle:MessageString type:TSMessageNotificationTypeError];
+
         }
         
     }else if(connection == theConnection_SendPostsData){
@@ -199,11 +200,11 @@
         NSLog(@"statusString is %@",statusString);
         
         if ([statusString isEqualToString:@"ok"]) {
-            [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success Send to Friends" type:TSMessageNotificationTypeSuccess];
+            [TSMessage showNotificationWithTitle:@"System" subtitle:LocalisedString(@"Success Send to Friends") type:TSMessageNotificationTypeSuccess];
         }else{
             
             NSString *MessageString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"message"]];
-            [TSMessage showNotificationInViewController:self title:@"" subtitle:MessageString type:TSMessageNotificationTypeError];
+            [TSMessage showNotificationWithTitle:@"System" subtitle:MessageString type:TSMessageNotificationTypeError];
         }
         
     }
