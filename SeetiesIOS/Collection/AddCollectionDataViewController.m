@@ -297,7 +297,7 @@
                     return YES;
                 }
             }
-            else if([[textView text] length] >= 30)
+            else if([[textView text] length] >= 150)
             {
                 ShowNoteTextCount.text = @"0/150";
                 ShowNoteTextCount.textColor = [UIColor redColor];
