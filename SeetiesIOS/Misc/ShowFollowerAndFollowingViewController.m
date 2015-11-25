@@ -37,6 +37,7 @@
     
     NSURLConnection *theConnection_GetFollower;
     NSURLConnection *theConnection_GetFollowing;
+    NSURLConnection *theConnection_GetCollection;
     NSURLConnection *theConnection_SendFollowData;
     
     NSInteger DataTest;
@@ -106,9 +107,12 @@
     if ([GetType isEqualToString:@"Follower"]) {
         [self GetFollowerData];
         ShowTitle.text = CustomLocalisedString(@"Followers", nil);
-    }else{
+    }else if ([GetType isEqualToString:@"Following"]){
         [self GetFollowingData];
         ShowTitle.text = CustomLocalisedString(@"Following", nil);
+    }else{
+        [self GetCollectionData];
+        ShowTitle.text = CustomLocalisedString(@"Followers", nil);
     }
 }
 -(void)GetFollowerData{
@@ -163,6 +167,29 @@
         if( theConnection_GetFollowing ){
             webData = [NSMutableData data];
         }
+    }
+}
+-(void)GetCollectionData{
+    [ShowActivity startAnimating];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    
+    NSString *FullString = [[NSString alloc]initWithFormat:@"%@%@/collections/%@/follow?token=%@",DataUrl.UserWallpaper_Url,Getuid,GetToken,GetExpertToken];
+    NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
+    NSLog(@"Collection Data check postBack URL ==== %@",postBack);
+    
+    NSURL *url = [NSURL URLWithString:postBack];
+    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
+    NSLog(@"theRequest === %@",theRequest);
+    [theRequest addValue:@"" forHTTPHeaderField:@"Accept-Encoding"];
+    
+    theConnection_GetCollection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+    [theConnection_GetCollection start];
+    
+    
+    if( theConnection_GetCollection ){
+        webData = [NSMutableData data];
     }
 }
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
@@ -335,6 +362,74 @@
             [self InitView];
             
         }
+    }else if(connection == theConnection_GetCollection){
+        NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+        NSLog(@"Get Collection Follower return get data to server ===== %@",GetData);
+        
+        NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *myError = nil;
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
+        NSLog(@"Feed Json = %@",res);
+        
+        NSDictionary *resultData = [res valueForKey:@"data"];
+        
+        NSString *total_followingString = [[NSString alloc]initWithFormat:@"%@",[resultData objectForKey:@"total_follower"]];
+        NSLog(@"total_followingString is %@",total_followingString);
+        
+        if ([total_followingString isEqualToString:@"0"] || [total_followingString length] == 0) {
+            
+        }else{
+            NSString *page = [[NSString alloc]initWithFormat:@"%@",[resultData objectForKey:@"page"]];
+            NSString *total_page = [[NSString alloc]initWithFormat:@"%@",[resultData objectForKey:@"total_page"]];
+            CurrentPage = [page intValue];
+            TotalPage = [total_page intValue];
+            
+            NSLog(@"CurrentPage is %li",(long)CurrentPage);
+            NSLog(@"TotalPage is %li",(long)TotalPage);
+            
+            NSDictionary *resultData = [res valueForKey:@"data"];
+            NSDictionary *UserInfoData = [resultData valueForKey:@"follower"];
+            
+            if (CheckFirstTimeLoad == 0) {
+                User_UIDArray = [[NSMutableArray alloc] initWithCapacity:[UserInfoData count]];
+                User_LocationArray = [[NSMutableArray alloc] initWithCapacity:[UserInfoData count]];
+                User_NameArray = [[NSMutableArray alloc] initWithCapacity:[UserInfoData count]];
+                User_UserNameArray = [[NSMutableArray alloc] initWithCapacity:[UserInfoData count]];
+                User_ProfilePhotoArray = [[NSMutableArray alloc] initWithCapacity:[UserInfoData count]];
+                User_FollowedArray = [[NSMutableArray alloc]initWithCapacity:[UserInfoData count]];
+            }else{
+                
+            }
+            
+            
+            for (NSDictionary * dict in UserInfoData) {
+                NSString *name = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"name"]];
+                [User_NameArray addObject:name];
+                NSString *location = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"location"]];
+                [User_LocationArray addObject:location];
+                NSString *uid = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"uid"]];
+                [User_UIDArray addObject:uid];
+                NSString *profile_photo = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"profile_photo"]];
+                [User_ProfilePhotoArray addObject:profile_photo];
+                NSString *username = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"username"]];
+                [User_UserNameArray addObject:username];
+                NSString *followed = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"following"]];
+                [User_FollowedArray addObject:followed];
+            }
+            NSLog(@"User_NameArray is %@",User_NameArray);
+            
+            DataCount = DataTotal;
+            DataTotal = [User_NameArray count];
+            
+            if (CheckFirstTimeLoad == 0) {
+                CheckFirstTimeLoad = 1;
+            }else{
+            }
+            
+            [self InitView];
+            
+        }
+
     }else{
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
         NSLog(@"Get Following return get data to server ===== %@",GetData);
@@ -434,11 +529,18 @@
         ShowTitleLabel.backgroundColor = [UIColor clearColor];
         
         UILabel *ShowUserName = [[UILabel alloc]init];
-        ShowUserName.frame = CGRectMake(60, 40 + i * 70, screenWidth - 100, 20);
-        NSString *TempString = [[NSString alloc]initWithFormat:@"@%@",[User_UserNameArray objectAtIndex:i]];
-        ShowUserName.text = TempString;
+        ShowUserName.frame = CGRectMake(60, 40 + i * 70, screenWidth - 100, 20);\
         ShowUserName.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
         ShowUserName.textColor = [UIColor lightGrayColor];
+        NSString *TempString;
+        if ([GetType isEqualToString:@"Collection"]) {
+            TempString = @"view collections";
+        }else{
+            TempString = [[NSString alloc]initWithFormat:@"@%@",[User_UserNameArray objectAtIndex:i]];
+            
+        }
+        ShowUserName.text = TempString;
+
         
         UIButton *ShowFollowerButton = [[UIButton alloc]init];
         [ShowFollowerButton setFrame:CGRectMake(screenWidth - 40 - 15, 20 + i * 70, 40, 40)];
@@ -480,86 +582,7 @@
         MainScroll.backgroundColor = [UIColor whiteColor];
         [MainScroll setContentSize:CGSizeMake(screenWidth,140 + i * 70)];
     }
-    //    for (int i = 0; i < [User_NameArray count]; i++) {
-    //        AsyncImageView *ShowNearbySmallImage = [[AsyncImageView alloc]init];
-    //        ShowNearbySmallImage.frame = CGRectMake(200, 10 + i * 120, 100 , 100);
-    ////        ShowNearbySmallImage.contentMode = UIViewContentModeScaleAspectFill;
-    ////        ShowNearbySmallImage.backgroundColor = [UIColor clearColor];
-    ////        ShowNearbySmallImage.clipsToBounds = YES;
-    ////        ShowNearbySmallImage.tag = 99;
-    ////        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowNearbySmallImage];
-    ////        NSURL *url_NearbySmall = [NSURL URLWithString:[User_ProfilePhotoArray objectAtIndex:i]];
-    ////        //NSLog(@"url is %@",url);
-    ////        ShowNearbySmallImage.imageURL = url_NearbySmall;
-    //        ShowNearbySmallImage.contentMode = UIViewContentModeScaleAspectFill;
-    //        ShowNearbySmallImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
-    //        ShowNearbySmallImage.layer.cornerRadius=50;
-    //        ShowNearbySmallImage.layer.borderWidth=1;
-    //        ShowNearbySmallImage.layer.masksToBounds = YES;
-    //        ShowNearbySmallImage.layer.borderColor=[[UIColor clearColor] CGColor];
-    //        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowNearbySmallImage];
-    //        NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[User_ProfilePhotoArray objectAtIndex:i]];
-    //        NSLog(@"FullImagesURL1 ====== %@",FullImagesURL1);
-    //        if ([FullImagesURL1 length] == 0) {
-    //            ShowNearbySmallImage.image = [UIImage imageNamed:@"No_image_available.jpg"];
-    //        }else{
-    //            NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
-    //            //NSLog(@"url_NearbyBig is %@",url_NearbyBig);
-    //            ShowNearbySmallImage.imageURL = url_UserImage;
-    //        }
-    //
-    //        UIImageView *ShowLocationImage = [[UIImageView alloc]init];
-    //        ShowLocationImage.frame = CGRectMake(20, 10 + i * 120, 8, 12);
-    //        ShowLocationImage.image = [UIImage imageNamed:@"LocationPin.png"];
-    //
-    //        UILabel *ShowLocationLabel = [[UILabel alloc]init];
-    //        ShowLocationLabel.frame = CGRectMake(35, 5 + i * 120, 165, 20);
-    //        ShowLocationLabel.text = [User_LocationArray objectAtIndex:i];
-    //        ShowLocationLabel.font = [UIFont systemFontOfSize:12];
-    //        ShowLocationLabel.textColor = [UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0];
-    //
-    //        UILabel *ShowTitleLabel = [[UILabel alloc]init];
-    //        ShowTitleLabel.frame = CGRectMake(20, 25 + i * 120, 170, 50);
-    //        ShowTitleLabel.text = [User_NameArray objectAtIndex:i];
-    //        ShowTitleLabel.numberOfLines = 5;
-    //        ShowTitleLabel.textAlignment = NSTextAlignmentLeft;
-    //        ShowTitleLabel.font = [UIFont systemFontOfSize:16];
-    //        ShowTitleLabel.textColor = [UIColor blackColor];
-    //        ShowTitleLabel.backgroundColor = [UIColor clearColor];
-    //
-    //        UILabel *ShowUserName = [[UILabel alloc]init];
-    //        ShowUserName.frame = CGRectMake(10, 75 + i * 120, 250, 20);
-    //        NSString *TempString = [[NSString alloc]initWithFormat:@"@%@",[User_UserNameArray objectAtIndex:i]];
-    //        ShowUserName.text = TempString;
-    //        ShowUserName.font = [UIFont systemFontOfSize:14];
-    //        ShowUserName.textColor = [UIColor lightGrayColor];
-    //
-    //
-    //        UIButton *Line01 = [UIButton buttonWithType:UIButtonTypeCustom];
-    //        [Line01 setTitle:@"" forState:UIControlStateNormal];
-    //        [Line01 setFrame:CGRectMake(0, 120 + i * 120, 320, 1)];
-    //        [Line01 setBackgroundColor:[UIColor colorWithRed:239.0/255.0f green:239.0/255.0f blue:244.0/255.0f alpha:1.0]];
-    //
-    //        UIButton *ClickButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    //        [ClickButton setTitle:@"" forState:UIControlStateNormal];
-    //        [ClickButton setFrame:CGRectMake(0, 0 + i * 120, 320, 150)];
-    //        [ClickButton setBackgroundColor:[UIColor clearColor]];
-    //        ClickButton.tag = i;
-    //        [ClickButton addTarget:self action:@selector(ButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    //
-    //
-    //        [MainScroll addSubview:ShowNearbySmallImage];
-    //        [MainScroll addSubview:ShowLocationLabel];
-    //        [MainScroll addSubview:ShowLocationImage];
-    //        [MainScroll addSubview:ShowTitleLabel];
-    //        [MainScroll addSubview:ShowUserName];
-    //        [MainScroll addSubview:Line01];
-    //        [MainScroll addSubview:ClickButton];
-    //
-    //        [MainScroll setScrollEnabled:YES];
-    //        MainScroll.backgroundColor = [UIColor whiteColor];
-    //        [MainScroll setContentSize:CGSizeMake(320, 200 + i * 120)];
-    //    }
+
 }
 -(IBAction)ButtonClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
@@ -708,8 +731,10 @@
             
             if ([GetType isEqualToString:@"Follower"]) {
                 [self GetFollowerData];
-            }else{
+            }else if ([GetType isEqualToString:@"Following"]){
                 [self GetFollowingData];
+            }else{
+            
             }
             
         }

@@ -1020,10 +1020,17 @@
 "I was checking this collection [collection title] on Seeties and I thought you might like to see it too.\n\n[post url]" = "แชร์คอลเลคชัน [collection title] จากแอพ Seeties มาให้อ่าน ตามรอยกันมะ\n\n[post url]";
 
 
+"Suggested Collections" = "คอลเลคชันแนะนำ";
+"See all" = "ดูทั้งหมด";
+"Follow" = "ติดตาม ";
+"Collections of joy" = "คอลเลคชันความสนุก";
+"Collections of joyful places and meaningful things to do in your city" = "คอลเลคชันรวมความสนุกจากทุกสถานที่และกิจกรรมในเมือง";
+"Unfollow Collection" = "เลิกติดตามคอลเลคชัน";
+"Are you sure you want to quit following this collection?" = "คุณแน่ใจว่าต้องการเลิกติดตามคอลเลคชันนี้?";
+"recommendations" = "รีวิว";
+"View now" = "View now";
 
-
-
-
-
+"FollowCollectionIcon.png" = "FollowCollectionThaiIcon.png";
+"FollowingCollectionIcon.png" = "FollowingCollectionThaiIcon.png";
 
 

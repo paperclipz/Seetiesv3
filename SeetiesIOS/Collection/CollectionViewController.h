@@ -10,6 +10,10 @@
 #import "UrlDataClass.h"
 #import "AsyncImageView.h"
 #import "EditCollectionViewController.h"
+#import "ProfileViewController.h"
+#import "ShowFollowerAndFollowingViewController.h"
+@class ProfileViewController;
+@class ShowFollowerAndFollowingViewController;
 @interface CollectionViewController : UIViewController<UIScrollViewDelegate>{
 
     IBOutlet UIScrollView *MainScroll;
@@ -55,6 +59,7 @@
     NSMutableArray *GetLanguagesArray;
     NSString *GetIsPrivate;
     NSString *GetFollowing;
+    NSString *GetFollowersCount;
     
     //Content Data
     NSMutableArray *Content_arrImage;
@@ -84,6 +89,8 @@
     
     UIButton *MainEditButton;
 }
+@property(nonatomic,strong)ShowFollowerAndFollowingViewController* showFollowerAndFollowingViewController;
+@property(nonatomic,strong)ProfileViewController* profileViewController;
 @property(nonatomic,strong)EditCollectionViewController* editCollectionViewController;
 @property(nonatomic,strong)UINavigationController* navEditCollectionViewController;
 -(void)GetCollectionID:(NSString *)ID_ GetPermision:(NSString *)PermisionUser;

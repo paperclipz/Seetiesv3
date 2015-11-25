@@ -169,6 +169,7 @@
             GetTags = [[NSString alloc]initWithFormat:@"%@",[ResData valueForKey:@"tags"]];
             GetIsPrivate = [[NSString alloc]initWithFormat:@"%@",[ResData valueForKey:@"is_private"]];
             GetFollowing = [[NSString alloc]initWithFormat:@"%@",[ResData valueForKey:@"following"]];
+            GetFollowersCount = [[NSString alloc]initWithFormat:@"%@",[ResData valueForKey:@"follower_count"]];
             
             NSLog(@"Collection GetFollowing data is %@",GetFollowing);
             NSArray *LanguageData = [ResData valueForKey:@"languages"];
@@ -312,11 +313,6 @@
                 [Content_arrUserName addObject:username];
             }
 
-            
-            
-            
-            
-            
 
             NSDictionary *locationData = [GetData valueForKey:@"location"];
             for (NSDictionary * dict in locationData) {
@@ -612,7 +608,7 @@
 
     GetHeight += 30;
     
-    NSString *TempString = [[NSString alloc]initWithFormat:@"by %@ • %@",GetUsername,GetLocation];
+    NSString *TempString = [[NSString alloc]initWithFormat:@"by %@ • %@ followers",GetUsername,GetFollowersCount];
     
     UILabel *TempShowUserDetail = [[UILabel alloc]init];
     TempShowUserDetail.frame = CGRectMake(20, GetHeight, screenWidth - 40, 20);
@@ -622,6 +618,20 @@
     TempShowUserDetail.textColor = [UIColor colorWithRed:152.0f/255.0f green:152.0f/255.0f blue:152.0f/255.0f alpha:1.0f];
     TempShowUserDetail.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
     [MainScroll addSubview:TempShowUserDetail];
+    
+    UIButton *OpenProfileButton = [[UIButton alloc]init];
+    [OpenProfileButton setTitle:@"" forState:UIControlStateNormal];
+    OpenProfileButton.backgroundColor = [UIColor clearColor];
+    OpenProfileButton.frame = CGRectMake(20, GetHeight, (screenWidth / 2), 20);
+    [OpenProfileButton addTarget:self action:@selector(OpenProfileButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [MainScroll addSubview:OpenProfileButton];
+    
+    UIButton *OpenFollowersButton = [[UIButton alloc]init];
+    [OpenFollowersButton setTitle:@"" forState:UIControlStateNormal];
+    OpenFollowersButton.backgroundColor = [UIColor clearColor];
+    OpenFollowersButton.frame = CGRectMake((screenWidth / 2), GetHeight, (screenWidth / 2), 20);
+    [OpenFollowersButton addTarget:self action:@selector(OpenFollowersButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [MainScroll addSubview:OpenFollowersButton];
     
     GetHeight += 30;
     
@@ -1155,7 +1165,7 @@
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     int heightcheck = 10;
     
-    int TestWidth = screenWidth - 20;
+    int TestWidth = screenWidth - 35;
     //NSLog(@"TestWidth is %i",TestWidth);
     int FinalWidth = TestWidth / 3;
     FinalWidth += 5;
@@ -1310,18 +1320,9 @@
         
             ShowTitleInTop.hidden = YES;
         }
-        
-        
-        
-        
-        
-        
+ 
     }
-    
-    
-    
-    
-    
+ 
 }
 -(IBAction)ShareButtonOnClick:(id)sender{
     
@@ -1530,5 +1531,34 @@
         
     }
 }
-
+-(IBAction)OpenProfileButtonOnClick:(id)sender{
+    _profileViewController = nil;
+    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:GetUserID];
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+    }];
+}
+-(ProfileViewController*)profileViewController
+{
+    if(!_profileViewController)
+        _profileViewController = [ProfileViewController new];
+    
+    return _profileViewController;
+}
+-(IBAction)OpenFollowersButtonOnClick:(id)sender{
+    NSLog(@"OpenFollowersButtonOnClick");
+    _showFollowerAndFollowingViewController = nil;
+    [self.navigationController pushViewController:self.showFollowerAndFollowingViewController animated:YES onCompletion:^{
+        [self.showFollowerAndFollowingViewController GetToken:GetID GetUID:GetUserID GetType:@"Collection"];
+        
+    }];
+}
+-(ShowFollowerAndFollowingViewController*)showFollowerAndFollowingViewController
+{
+    
+    if (!_showFollowerAndFollowingViewController) {
+        _showFollowerAndFollowingViewController = [ShowFollowerAndFollowingViewController new];
+    }
+    
+    return _showFollowerAndFollowingViewController;
+}
 @end

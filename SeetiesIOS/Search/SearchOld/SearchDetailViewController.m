@@ -1151,7 +1151,7 @@
 -(void)InitView{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-    NSString *TempStringCollection = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Collection")];
+    NSString *TempStringCollection = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"PCollections")];
     NSString *TempStringPosts = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Posts")];
     NSString *TempStringPeople = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Seetizens")];
     
@@ -1281,11 +1281,11 @@
     
     UILabel *ShowResults = [[UILabel alloc]init];
     ShowResults.frame = CGRectMake(0, PostGetHeight, screenWidth, 40);
-    ShowResults.text = [NSString stringWithFormat:@"about %ld results",(long)DataTotal];
+    ShowResults.text = [NSString stringWithFormat:@"%ld %@",(long)DataTotal,LocalisedString(@"Posts")];
     ShowResults.backgroundColor = [UIColor clearColor];
     ShowResults.textAlignment = NSTextAlignmentCenter;
-    ShowResults.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-    ShowResults.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+    ShowResults.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+    ShowResults.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
     [PostsView addSubview:ShowResults];
     
     PostGetHeight += 40;
@@ -1463,11 +1463,11 @@
     
     UILabel *ShowResults = [[UILabel alloc]init];
     ShowResults.frame = CGRectMake(0, PeopleHeight, screenWidth, 40);
-    ShowResults.text = [NSString stringWithFormat:@"about %ld results",[Experts_Name_Array count]];
+    ShowResults.text = [NSString stringWithFormat:@"%ld %@",[Experts_Name_Array count],LocalisedString(@"Seetizens")];
     ShowResults.backgroundColor = [UIColor clearColor];
     ShowResults.textAlignment = NSTextAlignmentCenter;
-    ShowResults.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-    ShowResults.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+    ShowResults.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+    ShowResults.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
     [PeopleView addSubview:ShowResults];
     
     PeopleHeight += 40;
@@ -1549,11 +1549,11 @@
     
     UILabel *ShowResults = [[UILabel alloc]init];
     ShowResults.frame = CGRectMake(0, 0, screenWidth, 40);
-    ShowResults.text = [NSString stringWithFormat:@"about %ld results",[Collection_arrTotalCount count]];
+    ShowResults.text = [NSString stringWithFormat:@"%ld %@",[Collection_arrTotalCount count],LocalisedString(@"PCollections")];
     ShowResults.backgroundColor = [UIColor clearColor];
     ShowResults.textAlignment = NSTextAlignmentCenter;
-    ShowResults.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-    ShowResults.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+    ShowResults.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+    ShowResults.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
     [CollectionView addSubview:ShowResults];
     
     
@@ -1698,7 +1698,7 @@
         [CollectionView addSubview:ShowCollectionTitle];
         
         
-        NSString *TempCount = [[NSString alloc]initWithFormat:@"%@ recommendations",[Collection_arrTotalCount objectAtIndex:i]];
+        NSString *TempCount = [[NSString alloc]initWithFormat:@"%@ %@",[Collection_arrTotalCount objectAtIndex:i],LocalisedString(@"recommendations")];
         
         UILabel *ShowCollectionCount = [[UILabel alloc]init];
         ShowCollectionCount.frame = CGRectMake(25 , 195 + i * 200, screenWidth - 190, 25);
