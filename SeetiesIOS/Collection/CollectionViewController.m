@@ -575,8 +575,8 @@
     UserImage.frame = CGRectMake((screenWidth /2) - 30, 90, 60, 60);
     UserImage.contentMode = UIViewContentModeScaleAspectFill;
     UserImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
-    UserImage.layer.cornerRadius=30;
-    UserImage.layer.borderWidth=0;
+    UserImage.layer.cornerRadius = 30;
+    UserImage.layer.borderWidth = 0;
     UserImage.layer.masksToBounds = YES;
     UserImage.layer.borderColor=[[UIColor whiteColor] CGColor];
     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:UserImage];
@@ -608,7 +608,7 @@
 
     GetHeight += 30;
     
-    NSString *TempString = [[NSString alloc]initWithFormat:@"by %@ • %@ followers",GetUsername,GetFollowersCount];
+    NSString *TempString = [[NSString alloc]initWithFormat:@"by %@ • %@ %@",GetUsername,GetFollowersCount,LocalisedString(@"Followers")];
     
     UILabel *TempShowUserDetail = [[UILabel alloc]init];
     TempShowUserDetail.frame = CGRectMake(20, GetHeight, screenWidth - 40, 20);
@@ -716,14 +716,14 @@
     [MainEditButton setTitle:@"Edit" forState:UIControlStateNormal];
     [MainEditButton addTarget:self action:@selector(EditButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
     if ([GetPermisionUser isEqualToString:@"Self"] || [GetPermisionUser isEqualToString:@"self"]) {
-        [MainEditButton setTitle:@"Edit" forState:UIControlStateNormal];
+        [MainEditButton setTitle:LocalisedString(@"Edit") forState:UIControlStateNormal];
     }else{
         if ([GetFollowing isEqualToString:@"0"]) {
-            [MainEditButton setTitle:@"Follow" forState:UIControlStateNormal];
-            [MainEditButton setTitle:@"Unfollow" forState:UIControlStateSelected];
+            [MainEditButton setTitle:LocalisedString(@"PFollow") forState:UIControlStateNormal];
+            [MainEditButton setTitle:LocalisedString(@"Unfollow") forState:UIControlStateSelected];
         }else{
-            [MainEditButton setTitle:@"Unfollow" forState:UIControlStateNormal];
-            [MainEditButton setTitle:@"Follow" forState:UIControlStateSelected];
+            [MainEditButton setTitle:LocalisedString(@"Unfollow") forState:UIControlStateNormal];
+            [MainEditButton setTitle:LocalisedString(@"PFollow") forState:UIControlStateSelected];
         }
         
     }

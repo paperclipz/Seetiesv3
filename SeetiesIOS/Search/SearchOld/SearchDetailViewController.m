@@ -1722,7 +1722,7 @@
         [CollectionFollowButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
         [CollectionFollowButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
         CollectionFollowButton.backgroundColor = [UIColor clearColor];
-        CollectionFollowButton.frame = CGRectMake((screenWidth - 20 - 140), 170 + i * 200, 140, 50);
+        CollectionFollowButton.frame = CGRectMake((screenWidth - 25 - 115), 176 + i * 200, 115, 38);//115,38
         [CollectionFollowButton addTarget:self action:@selector(CollectionFollowingButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
         CollectionFollowButton.tag = i;
         [CollectionView addSubview:CollectionFollowButton];
