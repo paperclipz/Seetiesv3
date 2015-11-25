@@ -617,7 +617,7 @@
     
     ProfileModel* model = [ProfileModel new];
     model.uid = [Utils getUserID];
-    [self.collectionListingViewController setType:ProfileViewTypeOthers ProfileModel:model NumberOfPage:1 collectionType:CollectionListingTypeSuggestion];
+    [self.collectionListingViewController setType:ProfileViewTypeOthers ProfileModel:model NumberOfPage:1 collectionType:CollectionListingTypeTrending];
     [self.navigationController pushViewController:self.collectionListingViewController animated:YES];
 }
 -(CollectionListingViewController*)collectionListingViewController

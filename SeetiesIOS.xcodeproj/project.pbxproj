@@ -235,6 +235,7 @@
 		8A69E0F51C04066100224BB4 /* ShareV2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A69E0F31C04066100224BB4 /* ShareV2ViewController.xib */; };
 		8A69E0F81C0412D800224BB4 /* ShareV2CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A69E0F71C0412D800224BB4 /* ShareV2CollectionViewCell.swift */; };
 		8A69E0FA1C0412F000224BB4 /* ShareV2CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A69E0F91C0412F000224BB4 /* ShareV2CollectionViewCell.xib */; };
+		8A69E0FD1C046DF900224BB4 /* ShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A69E0FC1C046DF900224BB4 /* ShareManager.m */; };
 		8A6BB40F1BF0A412005AA1B3 /* UITableView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6BB40E1BF0A412005AA1B3 /* UITableView+Extension.m */; };
 		8A6BB42B1BF0C338005AA1B3 /* MZBlurEffectAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6BB4121BF0C338005AA1B3 /* MZBlurEffectAdapter.m */; };
 		8A6BB42C1BF0C338005AA1B3 /* MZFormSheetContentSizingNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6BB4141BF0C338005AA1B3 /* MZFormSheetContentSizingNavigationController.m */; };
@@ -1432,6 +1433,8 @@
 		8A69E0F31C04066100224BB4 /* ShareV2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareV2ViewController.xib; sourceTree = "<group>"; };
 		8A69E0F71C0412D800224BB4 /* ShareV2CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareV2CollectionViewCell.swift; sourceTree = "<group>"; };
 		8A69E0F91C0412F000224BB4 /* ShareV2CollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareV2CollectionViewCell.xib; sourceTree = "<group>"; };
+		8A69E0FB1C046DF900224BB4 /* ShareManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareManager.h; sourceTree = "<group>"; };
+		8A69E0FC1C046DF900224BB4 /* ShareManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareManager.m; sourceTree = "<group>"; };
 		8A6BB40D1BF0A412005AA1B3 /* UITableView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+Extension.h"; sourceTree = "<group>"; };
 		8A6BB40E1BF0A412005AA1B3 /* UITableView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+Extension.m"; sourceTree = "<group>"; };
 		8A6BB4111BF0C338005AA1B3 /* MZBlurEffectAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZBlurEffectAdapter.h; sourceTree = "<group>"; };
@@ -4711,6 +4714,8 @@
 				8A6584291B96ED7300BC86B9 /* EditPhotoManager.m */,
 				8AB813C11BC23ECE002F5F06 /* UploadManager.h */,
 				8AB813C21BC23ECE002F5F06 /* UploadManager.m */,
+				8A69E0FB1C046DF900224BB4 /* ShareManager.h */,
+				8A69E0FC1C046DF900224BB4 /* ShareManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -6098,6 +6103,7 @@
 				8A114CB51BE73F5D006AE3F0 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				8A114CD61BE73F5D006AE3F0 /* CommonView.m in Sources */,
 				8A114CB11BE73F5D006AE3F0 /* LeveyTabBarController.m in Sources */,
+				8A69E0FD1C046DF900224BB4 /* ShareManager.m in Sources */,
 				8A114C921BE73F5D006AE3F0 /* FloatingIndicatorView.m in Sources */,
 				8AD6C2891B7072FB0040437E /* ConfirmPlaceViewController.m in Sources */,
 				8A9F25D91B8EFD2200BB13BA /* EditHourModel.m in Sources */,

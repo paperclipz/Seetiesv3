@@ -4,3 +4,4 @@
 
 #import "CommonCollectionViewCell.h"
 #import "ShareToFrenViewController.h"
+#import "ShareManager.h"

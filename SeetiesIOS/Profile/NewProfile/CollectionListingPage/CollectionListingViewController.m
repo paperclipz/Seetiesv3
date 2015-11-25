@@ -57,7 +57,7 @@
 {
     self.profileType = type;
     self.profileModel = model;
-    self.viewPage = page;
+    self.viewPage = page;//page refers to 1 or 2 page which can be scroll in scroll view . my collection 1st page , my following 2nd page
     
 }
 
@@ -155,7 +155,8 @@
     {
         _myCollectionListingViewController = [CollectionListingTabViewController new];
         _myCollectionListingViewController.profileType = self.profileType;
-        _myCollectionListingViewController.collectionListingType = self.collectionListingType == CollectionListingTypeMyOwn?CollectionListingTypeMyOwn:CollectionListingTypeSuggestion;
+        //my collection is used for my own collection , suggested collection and trending collection
+        _myCollectionListingViewController.collectionListingType = self.collectionListingType == CollectionListingTypeMyOwn?CollectionListingTypeMyOwn:self.collectionListingType;
         
         _myCollectionListingViewController.userID = self.profileModel.uid;
         __weak typeof (self)weakSelf = self;

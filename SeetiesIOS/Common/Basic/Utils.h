@@ -53,7 +53,8 @@ typedef enum {
     
     CollectionListingTypeMyOwn,
     CollectionListingTypeFollowing,
-    CollectionListingTypeSuggestion
+    CollectionListingTypeSuggestion,
+    CollectionListingTypeTrending
     
 } CollectionListingType;
 
