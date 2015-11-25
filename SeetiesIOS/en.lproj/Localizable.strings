@@ -1020,5 +1020,22 @@
 "I was reading [post title] on Seeties and I thought you might be interested in reading it too.\n\n[post url]" = "I was reading [post title] on Seeties and I thought you might be interested in reading it too.\n\n[post url]";
 "I was checking this collection [collection title] on Seeties and I thought you might like to see it too.\n\n[post url]" = "I was checking this collection [collection title] on Seeties and I thought you might like to see it too.\n\n[post url]";
 
+"Suggested Collections" = "Suggested Collections";
+"See all" = "See all";
+"Follow" = "Follow";
+"Collections of joy" = "Collections of joy";
+"Collections of joyful places and meaningful things to do in your city" = "Collections of joyful places and meaningful things to do in your city";
+"Unfollow Collection" = "Unfollow Collection";
+"Are you sure you want to quit following this collection?" = "Are you sure you want to quit following this collection?";
+"recommendations" = "recommendations";
+"View now" = "View now";
+
+"FollowCollectionIcon.png" = "FollowCollectionIcon.png";
+"FollowingCollectionIcon.png" = "FollowingCollectionIcon.png";
+
+
+
+
+
 
 

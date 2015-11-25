@@ -39,7 +39,7 @@
     
     
     //CountriesScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight - 114);
-    ibScrollViewCountry.frame = CGRectMake(0, 64, screenWidth, screenHeight - 114);
+    ibScrollViewCountry.frame = CGRectMake(0, 0, screenWidth, screenHeight - 50);
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     
     SearchButton.frame = CGRectMake(0, 20, screenWidth, 44);
@@ -416,7 +416,7 @@
     
     //top collection
     AsyncImageView *TopCollectionImage = [[AsyncImageView alloc]init];
-    TopCollectionImage.frame = CGRectMake(0, 0, screenWidth, 290);
+    TopCollectionImage.frame = CGRectMake(0, 0, screenWidth, 354);
     TopCollectionImage.contentMode = UIViewContentModeScaleAspectFill;
     TopCollectionImage.layer.masksToBounds = YES;
     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:TopCollectionImage];
@@ -432,26 +432,27 @@
 //    [MainScroll addSubview:ShowOverlayImg];
     
     UILabel *ShowBigText = [[UILabel alloc]init];
-    ShowBigText.frame = CGRectMake(15, 100, screenWidth - 30, 50);
-    ShowBigText.text = @"Top Collection";
+    ShowBigText.frame = CGRectMake(15, 144, screenWidth - 30, 40);
+    ShowBigText.text = LocalisedString(@"Collections of joy");
     ShowBigText.textAlignment = NSTextAlignmentCenter;
     ShowBigText.textColor = [UIColor whiteColor];
-    ShowBigText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:36];
+    ShowBigText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:21];
     [ibScrollViewCountry addSubview:ShowBigText];
 
     UILabel *ShowSubText = [[UILabel alloc]init];
-    ShowSubText.frame = CGRectMake(15, 150, screenWidth - 30, 40);
-    ShowSubText.text = @"Simply awesme, collect now.";
+    ShowSubText.frame = CGRectMake(15, 184, screenWidth - 30, 50);
+    ShowSubText.text = LocalisedString(@"Collections of joyful places and meaningful things to do in your city");
     ShowSubText.textAlignment = NSTextAlignmentCenter;
     ShowSubText.textColor = [UIColor whiteColor];
-    ShowSubText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:18];
+    ShowSubText.numberOfLines = 2;
+    ShowSubText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:16];
     [ibScrollViewCountry addSubview:ShowSubText];
     
     UIButton *CollectionViewNowButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [CollectionViewNowButton setTitle:@"View now" forState:UIControlStateNormal];
-    [CollectionViewNowButton setFrame:CGRectMake((screenWidth/2) - 70, 200, 140, 50)];
+    [CollectionViewNowButton setTitle:LocalisedString(@"View now") forState:UIControlStateNormal];
+    [CollectionViewNowButton setFrame:CGRectMake((screenWidth/2) - 60, 244, 120, 40)];
     [CollectionViewNowButton setBackgroundColor:[UIColor clearColor]];
-    CollectionViewNowButton.layer.cornerRadius= 25;
+    CollectionViewNowButton.layer.cornerRadius= 20;
     CollectionViewNowButton.layer.borderWidth = 1;
     CollectionViewNowButton.layer.masksToBounds = YES;
     CollectionViewNowButton.layer.borderColor = [[UIColor  whiteColor] CGColor];
@@ -486,7 +487,7 @@
 
 
         AsyncImageView *ShowCountryImg = [[AsyncImageView alloc]init];
-        ShowCountryImg.frame = CGRectMake(0, 290 + i * 151, screenWidth, 150);
+        ShowCountryImg.frame = CGRectMake(0, 355 + i * 151, screenWidth, 150);
         
         switch (i) {
             case 0:
@@ -527,7 +528,7 @@
         
         UIImageView *ShowOverlayImg = [[UIImageView alloc]init];
         ShowOverlayImg.image = [UIImage imageNamed:@"ExploreOverlay.png"];
-        ShowOverlayImg.frame = CGRectMake(0, 290 + i * 151, screenWidth, 150);
+        ShowOverlayImg.frame = CGRectMake(0, 355 + i * 151, screenWidth, 150);
         ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
         ShowOverlayImg.layer.masksToBounds = YES;
         // ShowOverlayImg.layer.cornerRadius = 5;
@@ -535,7 +536,7 @@
        
         
         UILabel *ShowUserName = [[UILabel alloc]init];
-        ShowUserName.frame = CGRectMake(20, 390 + i * 151, screenWidth - 40, 50);
+        ShowUserName.frame = CGRectMake(20, 454 + i * 151, screenWidth - 40, 50);
         NSString *uppercase = [self.exploreCountryModels.countries[i] name];
         ShowUserName.text = uppercase;
         ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:17];
@@ -546,13 +547,13 @@
         
         UIButton *ClickButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [ClickButton setTitle:@"" forState:UIControlStateNormal];
-        [ClickButton setFrame:CGRectMake(0, 290 + i * 151, screenWidth, 150)];
+        [ClickButton setFrame:CGRectMake(0, 355 + i * 151, screenWidth, 150)];
         [ClickButton setBackgroundColor:[UIColor clearColor]];
         ClickButton.tag = i;
         [ClickButton addTarget:self action:@selector(ClickButton:) forControlEvents:UIControlEventTouchUpInside];
         [ibScrollViewCountry addSubview:ClickButton];
         
-        [ibScrollViewCountry setContentSize:CGSizeMake(screenWidth, 440 + i * 151)];
+        [ibScrollViewCountry setContentSize:CGSizeMake(screenWidth, 504 + i * 151)];
     }
 
 }

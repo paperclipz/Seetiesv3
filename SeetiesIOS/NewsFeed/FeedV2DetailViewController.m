@@ -2933,13 +2933,13 @@
         [MainScroll addSubview:ShowSuggestedText];
         
         UIButton *SeeallButton = [[UIButton alloc]init];
-        SeeallButton.frame = CGRectMake(screenWidth - 100, GetFinalHeight, 100, 50);
+        SeeallButton.frame = CGRectMake(screenWidth - 120, GetFinalHeight, 120, 50);
         [SeeallButton setTitle:LocalisedString(@"See all")  forState:UIControlStateNormal];
         [SeeallButton setImage:[UIImage imageNamed:@"ArrowBtn.png"] forState:UIControlStateNormal];
         SeeallButton.backgroundColor = [UIColor clearColor];
         SeeallButton.imageEdgeInsets = UIEdgeInsetsMake(0, 75, 0, 0);
         SeeallButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-        [SeeallButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
+        [SeeallButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Regular" size:13]];
         [SeeallButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
         [SeeallButton addTarget:self action:@selector(SeeAllButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
         [MainScroll addSubview: SeeallButton];
@@ -2960,7 +2960,7 @@
             NSArray *SplitArray_TempImage = [TempImage componentsSeparatedByString:@"^^^"];
             if ([SplitArray_TempImage count] == 1) {
                 AsyncImageView *ShowImage1 = [[AsyncImageView alloc]init];
-                ShowImage1.frame = CGRectMake(10 + i * (screenWidth - 45), 50 , screenWidth - 50 ,120);
+                ShowImage1.frame = CGRectMake(10 + i * (screenWidth - 40), 50 , screenWidth - 50 ,120);
                 //ShowImage.image = [UIImage imageNamed:@"UserDemo2.jpg"];
                 ShowImage1.contentMode = UIViewContentModeScaleAspectFill;
                 ShowImage1.layer.backgroundColor=[[UIColor clearColor] CGColor];
@@ -2977,7 +2977,7 @@
                 [CollectionScrollview addSubview:ShowImage1];
             }else{
                 AsyncImageView *ShowImage1 = [[AsyncImageView alloc]init];
-                ShowImage1.frame = CGRectMake(10 + i * (screenWidth - 45), 50 , ((screenWidth - 55) / 2) ,120);
+                ShowImage1.frame = CGRectMake(10 + i * (screenWidth - 40), 50 , ((screenWidth - 55) / 2) ,120);
                 //ShowImage.image = [UIImage imageNamed:@"UserDemo2.jpg"];
                 ShowImage1.contentMode = UIViewContentModeScaleAspectFill;
                 ShowImage1.layer.backgroundColor=[[UIColor clearColor] CGColor];
@@ -2994,7 +2994,7 @@
                 [CollectionScrollview addSubview:ShowImage1];
                 
                 AsyncImageView *ShowImage2 = [[AsyncImageView alloc]init];
-                ShowImage2.frame = CGRectMake(12 + ((screenWidth - 45) / 2) + i * (screenWidth - 45), 50 , ((screenWidth - 60) / 2) ,120);
+                ShowImage2.frame = CGRectMake(10 + ((screenWidth - 40) / 2) + i * (screenWidth - 40), 50 , ((screenWidth - 60) / 2) ,120);
                 //ShowImage.image = [UIImage imageNamed:@"UserDemo2.jpg"];
                 ShowImage2.contentMode = UIViewContentModeScaleAspectFill;
                 ShowImage2.layer.backgroundColor=[[UIColor clearColor] CGColor];
@@ -3016,7 +3016,7 @@
             
             UIImageView *ShowOverlayImg = [[UIImageView alloc]init];
             ShowOverlayImg.image = [UIImage imageNamed:@"DealsAndRecommendationOverlay.png"];
-            ShowOverlayImg.frame = CGRectMake(10 + i * (screenWidth - 45), 50 , screenWidth - 50 ,150);
+            ShowOverlayImg.frame = CGRectMake(10 + i * (screenWidth - 40), 50 , screenWidth - 50 ,150);
             ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
             ShowOverlayImg.layer.masksToBounds = YES;
             ShowOverlayImg.layer.cornerRadius = 10;
@@ -3025,7 +3025,7 @@
             
             
             UIButton *OpenCollectionButton = [[UIButton alloc]init];
-            OpenCollectionButton.frame = CGRectMake(10 + i * (screenWidth - 45), 50 , screenWidth - 50 ,190);
+            OpenCollectionButton.frame = CGRectMake(10 + i * (screenWidth - 40), 50 , screenWidth - 50 ,190);
             [OpenCollectionButton setTitle:@"" forState:UIControlStateNormal];
             OpenCollectionButton.backgroundColor = [UIColor clearColor];
             OpenCollectionButton.layer.cornerRadius = 10;
@@ -3037,7 +3037,7 @@
             [CollectionScrollview addSubview: OpenCollectionButton];
             
             AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
-            ShowUserProfileImage.frame = CGRectMake(25 + i * (screenWidth - 45), 51 + 10, 40, 40);
+            ShowUserProfileImage.frame = CGRectMake(25 + i * (screenWidth - 40), 51 + 10, 40, 40);
             // ShowUserProfileImage.image = [UIImage imageNamed:@"DemoProfile.jpg"];
             ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
             ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
@@ -3058,7 +3058,7 @@
             UIButton *OpenUserProfileButton = [[UIButton alloc]init];
             [OpenUserProfileButton setTitle:@"" forState:UIControlStateNormal];
             OpenUserProfileButton.backgroundColor = [UIColor clearColor];
-            OpenUserProfileButton.frame = CGRectMake(25 + i * (screenWidth - 45), 51 + 10, screenWidth - 75 - 100, 40);
+            OpenUserProfileButton.frame = CGRectMake(25 + i * (screenWidth - 40), 51 + 10, screenWidth - 75 - 100, 40);
             [OpenUserProfileButton addTarget:self action:@selector(CollectionUserProfileOnClick:) forControlEvents:UIControlEventTouchUpInside];
             OpenUserProfileButton.tag = i;
             [CollectionScrollview addSubview:OpenUserProfileButton];
@@ -3066,7 +3066,7 @@
             NSString *usernameTemp = [[NSString alloc]initWithFormat:@"%@",[arrUsername objectAtIndex:i]];
             
             UILabel *ShowUserName = [[UILabel alloc]init];
-            ShowUserName.frame = CGRectMake(75 + i * (screenWidth - 45), 51 + 10, screenWidth - 75 - 100, 40);
+            ShowUserName.frame = CGRectMake(75 + i * (screenWidth - 40), 51 + 10, screenWidth - 75 - 100, 40);
             ShowUserName.text = usernameTemp;
             ShowUserName.backgroundColor = [UIColor clearColor];
             ShowUserName.textColor = [UIColor whiteColor];
@@ -3075,7 +3075,7 @@
             [CollectionScrollview addSubview:ShowUserName];
             
             UILabel *ShowCollectionTitle = [[UILabel alloc]init];
-            ShowCollectionTitle.frame = CGRectMake(25 + i * (screenWidth - 45), 180, screenWidth - 190 , 25);
+            ShowCollectionTitle.frame = CGRectMake(25 + i * (screenWidth - 40), 180, screenWidth - 190 , 20);
             ShowCollectionTitle.text = [arrTitle objectAtIndex:i];
             ShowCollectionTitle.backgroundColor = [UIColor clearColor];
             ShowCollectionTitle.textColor = [UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f blue:51.0f/255.0f alpha:1.0f];
@@ -3087,7 +3087,7 @@
             NSString *TempCount = [[NSString alloc]initWithFormat:@"%@ recommendations",[arrTotalCount objectAtIndex:i]];
             
             UILabel *ShowCollectionCount = [[UILabel alloc]init];
-            ShowCollectionCount.frame = CGRectMake(25 + i * (screenWidth - 45), 205, screenWidth - 190, 25);
+            ShowCollectionCount.frame = CGRectMake(25 + i * (screenWidth - 40), 200, screenWidth - 190, 20);
             ShowCollectionCount.text = TempCount;
             ShowCollectionCount.backgroundColor = [UIColor clearColor];
             ShowCollectionCount.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
@@ -3100,16 +3100,16 @@
             NSLog(@"CheckCollectionFollowing is %@",CheckCollectionFollowing);
             UIButton *QuickCollectButtonLocalQR = [[UIButton alloc]init];
             if ([CheckCollectionFollowing isEqualToString:@"0"]) {
-                [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:@"FollowCollectionIcon.png"] forState:UIControlStateNormal];
-                [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:@"FollowingCollectionIcon.PNG"] forState:UIControlStateSelected];
+                [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:LocalisedString(@"FollowCollectionIcon.png")] forState:UIControlStateNormal];
+                [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:LocalisedString(@"FollowingCollectionIcon.png")] forState:UIControlStateSelected];
             }else{
-                [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:@"FollowingCollectionIcon.PNG"] forState:UIControlStateNormal];
-                [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:@"FollowCollectionIcon.png"] forState:UIControlStateSelected];
+                [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:LocalisedString(@"FollowingCollectionIcon.png")] forState:UIControlStateNormal];
+                [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:LocalisedString(@"FollowCollectionIcon.png")] forState:UIControlStateSelected];
             }
             [QuickCollectButtonLocalQR setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
             [QuickCollectButtonLocalQR.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
             QuickCollectButtonLocalQR.backgroundColor = [UIColor clearColor];
-            QuickCollectButtonLocalQR.frame = CGRectMake((screenWidth - 50 - 140) + i * (screenWidth - 45), 180, 140, 50);
+            QuickCollectButtonLocalQR.frame = CGRectMake((screenWidth - 50 - 140) + i * (screenWidth - 40), 180, 140, 50);
             [QuickCollectButtonLocalQR addTarget:self action:@selector(CollectionFollowingButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
             QuickCollectButtonLocalQR.tag = i;
             [CollectionScrollview addSubview:QuickCollectButtonLocalQR];

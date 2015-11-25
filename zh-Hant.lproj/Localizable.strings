@@ -1025,9 +1025,16 @@
 "I was reading [post title] on Seeties and I thought you might be interested in reading it too.\n\n[post url]" = "好康推薦！我剛在Seeties瀏覽了[post title]，我想你也會有興趣想要探索哦！\n\n[post url]";
 "I was checking this collection [collection title] on Seeties and I thought you might like to see it too.\n\n[post url]" = "好康推薦！我剛在Seeties瀏覽了這個收藏集 - [collection title]！我想你也會有興趣喔！\n\n[post url]";
 
+"Suggested Collections" = "精選收藏集";
+"See all" = "查看全部";
+"Follow" = "關注";
+"Collections of joy" = "精選收藏集";
+"Collections of joyful places and meaningful things to do in your city" = "結集最獨特的收藏集，增添玩樂新趣事";
+"Unfollow Collection" = "放棄關注";
+"Are you sure you want to quit following this collection?" = "確定放棄關注此收藏集？";
+"recommendations" = "貼文";
+"View now" = "立即查看";
 
-
-
-
-
+"FollowCollectionIcon.png" = "FollowCollectionTradChiIcon.png";
+"FollowingCollectionIcon.png" = "FollowingCollectionTradChiIcon.png";
 
