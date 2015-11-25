@@ -1460,11 +1460,10 @@
     
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     int PeopleHeight = 0;
-    
     UILabel *ShowResults = [[UILabel alloc]init];
     ShowResults.frame = CGRectMake(0, PeopleHeight, screenWidth, 40);
     ShowResults.text = [NSString stringWithFormat:@"%ld %@",[Experts_Name_Array count],LocalisedString(@"Seetizens")];
-    ShowResults.backgroundColor = [UIColor clearColor];
+    ShowResults.backgroundColor = [UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0];
     ShowResults.textAlignment = NSTextAlignmentCenter;
     ShowResults.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
     ShowResults.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
