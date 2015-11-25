@@ -47,6 +47,10 @@
             [self requestServerForSuggestedCollection];
             
             break;
+            
+        case CollectionListingTypeTrending:
+            [self requestServerForTrendingCollection];
+            break;
     }
 }
 
@@ -183,7 +187,7 @@
         
         [self.arrCollections addObjectsFromArray:self.userCollectionsModel.arrCollections];
         
-        self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_collections,LocalisedString(@"Collections")];
+        self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_result,LocalisedString(@"Collections")];
         [self.ibTableView reloadData];
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = false;
@@ -212,7 +216,7 @@
         self.userCollectionsModel = [[ConnectionManager dataManager]userFollowingCollectionsModel];
         
         [self.arrCollections addObjectsFromArray:self.userCollectionsModel.arrCollections];
-        self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_collections,LocalisedString(@"Collections")];
+        self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_result,LocalisedString(@"Collections")];
         [self.ibTableView reloadData];
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = false;
@@ -240,13 +244,41 @@
         self.userCollectionsModel = [[ConnectionManager dataManager]userSuggestedCollectionsModel];
         
         [self.arrCollections addObjectsFromArray:self.userCollectionsModel.arrSuggestedCollection];
-        self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_collections,LocalisedString(@"Collections")];
+        self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_result,LocalisedString(@"Collections")];
         [self.ibTableView reloadData];
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = false;
         
     }];
 }
+
+-(void)requestServerForTrendingCollection
+{
+    SLog(@"requestServerForTrendingCollection");
+    isMiddleOfCallingServer = true;
+    
+    //need to input token for own profile private collection, no token is get other people public collection
+    NSString* appendString = [NSString stringWithFormat:@"collections"];
+    
+    NSDictionary* dict = @{@"limit":@(ARRAY_LIST_SIZE),
+                           @"offset":@(self.userCollectionsModel.offset + self.userCollectionsModel.limit),
+                           @"token":[Utils getAppToken],
+                           };
+    
+    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserSuggestedCollections param:dict appendString:appendString completeHandler:^(id object) {
+        
+        isMiddleOfCallingServer = false;
+        self.userCollectionsModel = [[ConnectionManager dataManager]userSuggestedCollectionsModel];
+        
+        [self.arrCollections addObjectsFromArray:self.userCollectionsModel.arrSuggestedCollection];
+        self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_result,LocalisedString(@"Collections")];
+        [self.ibTableView reloadData];
+    } errorBlock:^(id object) {
+        isMiddleOfCallingServer = false;
+        
+    }];
+}
+
 
 -(void)requestServerToFollowFromOthersCollection:(CollectionModel*)colModel
 {
@@ -392,6 +424,13 @@
                     if(![Utils isStringNull:self.userCollectionsModel.next])
                     {
                         [self requestServerForSuggestedCollection];
+                    }
+                }
+                else if(self.collectionListingType == CollectionListingTypeTrending)
+                {
+                    if(![Utils isStringNull:self.userCollectionsModel.next])
+                    {
+                        [self requestServerForTrendingCollection];
                     }
                 }
                 else if(self.collectionListingType == CollectionListingTypeFollowing)

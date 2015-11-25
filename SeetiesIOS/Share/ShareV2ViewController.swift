@@ -8,6 +8,11 @@
 
 import UIKit
 
+//protocol ShareV2ViewController {
+//    
+//    func share(postID:String, message:String,title:String, imagURL:String, shareType:ShareType, userID:String)
+//}
+
 class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate{
     @IBOutlet weak var ibCollectionView: UICollectionView!
     
@@ -15,10 +20,15 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
     var Images = Array<String>()
     var Titles = Array<String>()
     
-    var postID: NSString = ""
-    var postMessage: NSString = ""
-    var postTitle: NSString = ""
-    var imageURL: NSString = ""
+    var postID: String = ""
+    var postMessage: String = ""
+    var postTitle: String = ""
+    var imageURL: String = ""
+    var postURL: String = ""
+    var userID: String = ""
+
+    var shareType:ShareType?
+    var shareManager:ShareManager?
 
     // MARK: - IBACTION
 
@@ -32,10 +42,10 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         initSelfView()
+        shareManager = ShareManager()
         // Do any additional setup after loading the view.
     }
 
@@ -51,7 +61,6 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
         Titles = ["Facebook","Instagram","LINE","Messenger","Whatsapp","Copy Link","Email"]
     }
     
-
   
     /*
     // MARK: - Navigation
@@ -84,12 +93,14 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
         ibCollectionView!.registerNib(UINib(nibName: "ShareV2CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ShareV2CollectionViewCell")
     }
     
-    internal func share(postID:NSString, message:NSString,title:NSString, imagURL:NSString)
+    func share(postID:String, message:String,title:String, imagURL:String, shareType:ShareType, userID:String)
     {
         self.postID = postID
         self.postMessage = message
         self.postTitle = title
         self.imageURL = imagURL
+        self.shareType = shareType
+        self.userID = userID
     
     }
     
@@ -107,13 +118,12 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
 
             default: break
         }
-     
-        
     }
     
     func shareFacebook()
     {
-    
+      //  shareManager?.shareFacebook(self.postTitle, message: self.postMessage, shareType: ShareTypeFacebookPost, userID: self.userID, delegate: self)
+        //param.link = NSURL(string:postURL as String)
     }
     
     func shareInstagram()
