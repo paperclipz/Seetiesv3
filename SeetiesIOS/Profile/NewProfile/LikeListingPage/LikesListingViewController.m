@@ -42,7 +42,7 @@
 
 -(void)initSelfView
 {
-    self.lblTitle.text = [NSString stringWithFormat:@"%d %@",self.profileLikeModel.userPostData.total_posts,LocalisedString(@"Like")];
+    self.lblTitle.text = [NSString stringWithFormat:@"%d %@",self.profileLikeModel.userPostData.total_posts,LocalisedString(@"Likes")];
 
 }
 
@@ -58,6 +58,7 @@
     [self.ibCollectionView registerClass:[LikeListingCollectionViewCell class] forCellWithReuseIdentifier:@"LikeListingCollectionViewCell"];
    // [self.ibCollectionView registerClass:[ListingHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ListingHeaderView"];
   //  [self.ibCollectionHeader addSubview:self.listingHeaderView];
+    ibHeaderView.text = LocalisedString(@"Likes");
     self.ibCollectionView.backgroundColor = [UIColor clearColor];
     [self.ibCollectionView addSubview:ibHeaderView];
     
