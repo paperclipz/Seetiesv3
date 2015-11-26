@@ -16,14 +16,9 @@
 #import "LikesListingViewController.h"
 #import "EditProfileV2ViewController.h"
 #import "SearchViewV2Controller.h"
-
-
 #import "ShowFollowerAndFollowingViewController.h"
 #import "SearchDetailViewController.h"
-
 #import "ShareViewController.h"
-
-#import "SeetiesIOS-Swift.h"
 
 @class PostListingViewController;
 @class LikesListingViewController;
@@ -44,7 +39,6 @@
 @property(nonatomic,strong)SearchDetailViewController* searchDetailViewController;
 @property(nonatomic,copy)VoidBlock btnAddMorePostClickedBlock;
 @property(nonatomic,strong)ShareViewController* shareViewController;
-
 @property(nonatomic,strong)ShareV2ViewController* shareV2ViewController;
 -(void)requestAllDataWithType:(ProfileViewType)type UserID:(NSString*)uID;
 

@@ -193,6 +193,15 @@
 
 #pragma mark - Declaration
 
+-(ShareV2ViewController*)shareV2ViewController
+{
+    if (!_shareV2ViewController) {
+        _shareV2ViewController = [[ShareV2ViewController alloc]initWithNibName:@"ShareV2ViewController" bundle:nil];
+    }
+    
+    return _shareV2ViewController;
+}
+
 -(CollectionListingViewController*)collectionListingViewController
 {
     if (!_collectionListingViewController) {
@@ -5333,19 +5342,30 @@
 -(IBAction)ShareButtonOnClick:(id)sender{
     NSLog(@"ShareButtonOnClick");
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
-    ShareViewController *ShareView = [[ShareViewController alloc]init];
-//    [self presentViewController:ShareView animated:YES completion:nil];
-//    //[self.view.window.rootViewController presentViewController:ShareView animated:YES completion:nil];
+//    ShareViewController *ShareView = [[ShareViewController alloc]init];
+////    [self presentViewController:ShareView animated:YES completion:nil];
+////    //[self.view.window.rootViewController presentViewController:ShareView animated:YES completion:nil];
+////    [ShareView GetPostID:[arrPostID objectAtIndex:getbuttonIDN] GetMessage:[arrMessage objectAtIndex:getbuttonIDN] GetTitle:[arrTitle objectAtIndex:getbuttonIDN] GetImageData:[arrImage objectAtIndex:getbuttonIDN]];
+//    
+//    
+//    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:ShareView];
+//    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
+//    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
+//    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
+//    [self presentViewController:formSheetController animated:YES completion:nil];
 //    [ShareView GetPostID:[arrPostID objectAtIndex:getbuttonIDN] GetMessage:[arrMessage objectAtIndex:getbuttonIDN] GetTitle:[arrTitle objectAtIndex:getbuttonIDN] GetImageData:[arrImage objectAtIndex:getbuttonIDN]];
     
-    
-    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:ShareView];
+    _shareV2ViewController = nil;
+    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
+    [naviVC setNavigationBarHidden:YES animated:NO];
+    [self.shareV2ViewController share:@"" title:[arrTitle objectAtIndex:getbuttonIDN] imagURL:[arrImage objectAtIndex:getbuttonIDN] shareType:ShareTypeFacebookPost shareID:[arrPostID objectAtIndex:getbuttonIDN] inViewC:naviVC];
+    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
     formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
     formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
     formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
     [self presentViewController:formSheetController animated:YES completion:nil];
-    [ShareView GetPostID:[arrPostID objectAtIndex:getbuttonIDN] GetMessage:[arrMessage objectAtIndex:getbuttonIDN] GetTitle:[arrTitle objectAtIndex:getbuttonIDN] GetImageData:[arrImage objectAtIndex:getbuttonIDN]];
 }
+
 -(IBAction)CommentButtonOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     
@@ -5585,15 +5605,26 @@
 -(IBAction)FollowCollectionShareButtonOnClick:(id)sender{
    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     
-    ShareViewController *ShareView = [[ShareViewController alloc]init];
-    
-    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:ShareView];
+//    ShareViewController *ShareView = [[ShareViewController alloc]init];
+//    
+//    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:ShareView];
+//    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
+//    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
+//    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
+//    [self presentViewController:formSheetController animated:YES completion:nil];
+//    [ShareView GetCollectionID:[arrPostID objectAtIndex:getbuttonIDN] GetCollectionTitle:[arrTitle objectAtIndex:getbuttonIDN]];
+
+    _shareV2ViewController = nil;
+    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
+    [naviVC setNavigationBarHidden:YES animated:NO];
+    [self.shareV2ViewController share:@"" title:[arrTitle objectAtIndex:getbuttonIDN] imagURL:@"" shareType:ShareTypeFacebookCollection shareID:[arrCollectionID objectAtIndex:getbuttonIDN] inViewC:naviVC];
+    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
     formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
     formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
     formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
     [self presentViewController:formSheetController animated:YES completion:nil];
-    [ShareView GetCollectionID:[arrPostID objectAtIndex:getbuttonIDN] GetCollectionTitle:[arrTitle objectAtIndex:getbuttonIDN]];
 }
+
 -(IBAction)FollowingCollectionUserProfileOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     //    NSString *Getname = [[NSString alloc]initWithFormat:@"%@",[arrCollectionName objectAtIndex:getbuttonIDN]];

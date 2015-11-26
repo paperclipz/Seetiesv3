@@ -14,6 +14,78 @@
 @interface CollectionViewController (){
 
     int CheckButtonOnClick;
+    IBOutlet UIScrollView *MainScroll;
+    IBOutlet UIButton *MapButton;
+    IBOutlet UIButton *MoreButton;
+    IBOutlet UIView *DownBarView;
+    IBOutlet UIButton *ShareButton;
+    IBOutlet UIImageView *ShowBar;
+    
+    IBOutlet UIButton *TranslateButton;
+    IBOutlet UIButton *ShareLinkButton;
+    
+    NSString *GetID;
+    NSString *GetPermisionUser;
+    
+    IBOutlet UIActivityIndicatorView *ShowActivity;
+    
+    UrlDataClass *DataUrl;
+    NSMutableData *webData;
+    NSURLConnection *theConnection_CollectionData;
+    NSURLConnection *theConnection_GetTranslate;
+    NSURLConnection *theConnection_QuickCollect;
+    NSURLConnection *theConnection_FollowCollect;
+    
+    NSInteger TotalPage;
+    NSInteger CurrentPage;
+    NSInteger DataCount;
+    NSInteger DataTotal;
+    BOOL CheckLoad;
+    int CheckFirstTimeLoad;
+    int GetHeight;
+    int TempHeight;
+    
+    //Collection Data
+    NSString *GetTitle;
+    NSString *GetDescription;
+    NSString *GetUsername;
+    NSString *GetUserProfile;
+    NSString *GetUserID;
+    NSString *GetLocation;
+    NSString *GetTags;
+    NSMutableArray *ArrHashTag;
+    NSMutableArray *GetLanguagesArray;
+    NSString *GetIsPrivate;
+    NSString *GetFollowing;
+    NSString *GetFollowersCount;
+    
+    //Content Data
+    NSMutableArray *Content_arrImage;
+    NSMutableArray *Content_arrTitle;
+    NSMutableArray *Content_arrMessage;
+    NSMutableArray *Content_arrPlaceName;
+    NSMutableArray *Content_arrNote;
+    NSMutableArray *Content_arrID;
+    NSMutableArray *Content_arrID_arrDistance;
+    NSMutableArray *Content_arrID_arrDisplayCountryName;
+    NSMutableArray *Content_arrUserName;
+    NSMutableArray *Content_arrCollect;
+    
+    UIButton *ListButton;
+    UIButton *GridButton;
+    
+    UIView *ListView;
+    UIView *GridView;
+    
+    int CheckClick;
+    int CheckShowMessage;
+    
+    NSString *GetPostID;
+    NSString *CheckCollect;
+    int GetCollectionHeight;
+    IBOutlet UILabel *ShowTitleInTop;
+    
+    UIButton *MainEditButton;
 }
 
 @end
@@ -809,6 +881,16 @@
 
 }
 #pragma mark - Declaration
+
+-(ShareV2ViewController*)shareV2ViewController
+{
+    if (!_shareV2ViewController) {
+        _shareV2ViewController = [[ShareV2ViewController alloc]initWithNibName:@"ShareV2ViewController" bundle:nil];
+    }
+    
+    return _shareV2ViewController;
+}
+
 -(EditCollectionViewController*)editCollectionViewController
 {
     
@@ -1329,9 +1411,20 @@
     if ([GetIsPrivate isEqualToString:@"true"]) {
         [TSMessage showNotificationInViewController:self title:@"" subtitle:@"your collection is set to private." type:TSMessageNotificationTypeError];
     }else{
-        ShareViewController *ShareView = [[ShareViewController alloc]init];
-        [self presentViewController:ShareView animated:YES completion:nil];
-        [ShareView GetCollectionID:GetID GetCollectionTitle:GetTitle];
+//        ShareViewController *ShareView = [[ShareViewController alloc]init];
+//        [self presentViewController:ShareView animated:YES completion:nil];
+//        [ShareView GetCollectionID:GetID GetCollectionTitle:GetTitle];
+        
+        _shareV2ViewController = nil;
+        UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
+        [naviVC setNavigationBarHidden:YES animated:NO];
+        [self.shareV2ViewController share:@"" title:GetTitle imagURL:@"" shareType:ShareTypeFacebookPost shareID:GetID inViewC:naviVC];
+        MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
+        formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
+        formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
+        formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
+        [self presentViewController:formSheetController animated:YES completion:nil];
+
     }
     
 

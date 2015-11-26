@@ -463,10 +463,23 @@
     NSLog(@"ShareButtonOnClick");
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
 
-    ShareViewController *ShareView = [[ShareViewController alloc]init];
-    [self presentViewController:ShareView animated:YES completion:nil];
-    //[self.view.window.rootViewController presentViewController:ShareView animated:YES completion:nil];
-    [ShareView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN] GetMessage:[MessageArray objectAtIndex:getbuttonIDN] GetTitle:[TitleArray objectAtIndex:getbuttonIDN] GetImageData:[LPhotoArray objectAtIndex:getbuttonIDN]];
+//    ShareViewController *ShareView = [[ShareViewController alloc]init];
+//    [self presentViewController:ShareView animated:YES completion:nil];
+//    //[self.view.window.rootViewController presentViewController:ShareView animated:YES completion:nil];
+//    [ShareView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN] GetMessage:[MessageArray objectAtIndex:getbuttonIDN] GetTitle:[TitleArray objectAtIndex:getbuttonIDN] GetImageData:[LPhotoArray objectAtIndex:getbuttonIDN]];
+
+    _shareV2ViewController = nil;
+    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
+    [naviVC setNavigationBarHidden:YES animated:NO];
+    [self.shareV2ViewController share:@"" title:[TitleArray objectAtIndex:getbuttonIDN] imagURL:[LPhotoArray objectAtIndex:getbuttonIDN] shareType:ShareTypeFacebookPost shareID:[PostIDArray objectAtIndex:getbuttonIDN] inViewC:naviVC];
+    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
+    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
+    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
+    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
+    [self presentViewController:formSheetController animated:YES completion:nil];
+    
+    
+    
 }
 -(void)GetUnLikeData{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -643,4 +656,16 @@
     }
 
 }
+
+#pragma mark - Declaration
+
+-(ShareV2ViewController*)shareV2ViewController
+{
+    if (!_shareV2ViewController) {
+        _shareV2ViewController = [[ShareV2ViewController alloc]initWithNibName:@"ShareV2ViewController" bundle:nil];
+    }
+    
+    return _shareV2ViewController;
+}
+
 @end

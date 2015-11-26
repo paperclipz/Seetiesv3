@@ -88,13 +88,13 @@
 
 #pragma mark - Declaration
 
--(ShareViewController*)shareViewController
+-(ShareV2ViewController*)shareV2ViewController
 {
-    if (!_shareViewController) {
-        _shareViewController = [ShareViewController new];
+    if (!_shareV2ViewController) {
+        _shareV2ViewController = [ShareV2ViewController new];
     }
     
-    return _shareViewController;
+    return _shareV2ViewController;
 }
 -(NSMutableArray*)arrCollections
 {
@@ -115,14 +115,6 @@
 {
     ProfilePageCollectionTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"ProfilePageCollectionTableViewCell"];
     
-    if (indexPath.row == 3) {
-        SLog(@"33333");
-    }
-    
-    if (indexPath.row == 7) {
-        SLog(@"77777");
-
-    }
     CollectionModel* collModel = self.arrCollections[indexPath.row];
     
     [cell initData:collModel profileType:self.profileType];
@@ -144,8 +136,11 @@
     
     cell.btnShareClicked = ^(void)
     {
-        [self.shareViewController GetCollectionID:collModel.collection_id GetCollectionTitle:collModel.name];
-        MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:self.shareViewController];
+        _shareV2ViewController = nil;
+        UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
+        [naviVC setNavigationBarHidden:YES animated:NO];
+        [self.shareV2ViewController share:@"" title:weakModel.postDesc imagURL:@"" shareType:ShareTypeFacebookPost shareID:weakModel.collection_id inViewC:naviVC];
+        MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
         formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
         formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
         formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;

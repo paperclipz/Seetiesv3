@@ -3807,39 +3807,22 @@
 -(IBAction)ShareButton:(id)sender{
     NSLog(@"ShareButton Click.");
     
-    ShareViewController *ShareView = [[ShareViewController alloc]init];
-    [self presentViewController:ShareView animated:YES completion:nil];
-    //[self.view.window.rootViewController presentViewController:ShareView animated:YES completion:nil];
-    [ShareView GetPostID:GetPostID GetMessage:GetMessage GetTitle:GetTitle GetImageData:[UrlArray objectAtIndex:0]];
+//    ShareViewController *ShareView = [[ShareViewController alloc]init];
+//    [self presentViewController:ShareView animated:YES completion:nil];
+//    //[self.view.window.rootViewController presentViewController:ShareView animated:YES completion:nil];
+  //  [ShareView GetPostID:GetPostID GetMessage:GetMessage GetTitle:GetTitle GetImageData:[UrlArray objectAtIndex:0]];
     
-//    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-//                                                             delegate:self
-//                                                    cancelButtonTitle:CustomLocalisedString(@"SettingsPage_Cancel", nil)
-//                                               destructiveButtonTitle:nil
-//                                                    otherButtonTitles:CustomLocalisedString(@"ShareToFacebook", nil),CustomLocalisedString(@"CopyLink", nil), nil];
-//    
-//    [actionSheet showInView:self.view];
-//    
-//    actionSheet.tag = 200;
-//    
-////    NSString *text = @"How to add Facebook and Twitter sharing to an iOS app";
-////    NSURL *url = [NSURL URLWithString:@"http://roadfiresoftware.com/2014/02/how-to-add-facebook-and-twitter-sharing-to-an-ios-app/"];
-////    UIImage *image = [UIImage imageNamed:@"Icon-120.png"];
-////    
-////    UIActivityViewController *controller =
-////    [[UIActivityViewController alloc]
-////     initWithActivityItems:@[text, url, image]
-////     applicationActivities:nil];
-////    
-////    controller.excludedActivityTypes = @[UIActivityTypeMessage,
-////                                         UIActivityTypeMail,
-////                                         UIActivityTypePrint,
-////                                         UIActivityTypeCopyToPasteboard,
-////                                         UIActivityTypeAirDrop];
-////    
-////    [self presentViewController:controller animated:YES completion:nil];
-
+    _shareV2ViewController = nil;
+    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
+    [naviVC setNavigationBarHidden:YES animated:NO];
+    [self.shareV2ViewController share:@"" title:GetTitle imagURL:UrlArray[0] shareType:ShareTypeFacebookPost shareID:GetPostID inViewC:naviVC];
+      MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
+    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
+    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
+    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
+    [self presentViewController:formSheetController animated:YES completion:nil];
 }
+
 -(IBAction)SettingButton:(id)sender{
     NSLog(@"Setting Button Click.");
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -4060,6 +4043,15 @@
 }
 
 #pragma mark - declaration
+
+-(ShareV2ViewController*)shareV2ViewController
+{
+    if (!_shareV2ViewController) {
+        _shareV2ViewController = [[ShareV2ViewController alloc]initWithNibName:@"ShareV2ViewController" bundle:nil];
+    }
+    
+    return _shareV2ViewController;
+}
 
 -(ProfileViewController*)profileViewController
 {

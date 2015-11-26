@@ -20,7 +20,118 @@
 #import "SearchDetailViewController.h"
 #import "ShareViewController.h"
 @interface NewProfileV2ViewController ()
-
+{
+    IBOutlet A3ParallaxScrollView *MainScroll;
+    IBOutlet AsyncImageView *BackgroundImage;
+    IBOutlet UIImageView *ShowOverlayImg;
+    IBOutlet UIView *AllContentView;
+    IBOutlet UIImageView *ShowBar;
+    IBOutlet UIActivityIndicatorView *ShowActivity;
+    
+    int GetHeight;
+    
+    UISegmentedControl *ProfileControl;
+    
+    UIView *PostView;
+    UIView *CollectionView;
+    UIView *LikeView;
+    
+    IBOutlet UIButton *SettingsButton;
+    IBOutlet UIButton *ShareButton;
+    
+    BOOL CheckExpand;
+    
+    UrlDataClass *DataUrl;
+    NSMutableData *webData;
+    
+    NSURLConnection *theConnection_GetUserData;
+    NSURLConnection *theConnection_GetPostsData;
+    NSURLConnection *theConnection_GetLikesData;
+    NSURLConnection *theConnection_GetCollectionData;
+    
+    //content data
+    AsyncImageView *ShowUserProfileImage;
+    
+    UILabel *ShowUserName;
+    UILabel *ShowName_;
+    UILabel *ShowAboutText;
+    UILabel *ShowLink;
+    
+    NSString *GetProfileImg;
+    NSString *GetName;
+    NSString *GetUserName;
+    NSString *GetLocation;
+    NSString *GetDescription;
+    NSString *GetLink;
+    NSString *GetFollowersCount;
+    NSString *GetFollowingCount;
+    NSString *GetCategories;
+    NSString *Getdob;
+    NSString *GetGender;
+    NSString *GetPersonalTags;
+    NSMutableArray *ArrHashTag;
+    NSString *GetEmail;
+    NSString *GetSystemLanguage;
+    NSString *GetPrimaryLanguage;
+    NSString *GetSecondaryLanguage;
+    NSString *GetFbID;
+    NSString *GetInstaID;
+    
+    //like data
+    NSString *GetLikesDataCount;
+    NSMutableArray *LikesData_PhotoArray;
+    NSMutableArray *LikesData_IDArray;
+    
+    //posts data
+    NSString *GetPostsDataCount;
+    NSMutableArray *PostsData_PhotoArray;
+    NSMutableArray *PostsData_IDArray;
+    NSMutableArray *PostsData_place_nameArray;
+    NSMutableArray *PostsData_UserInfo_UrlArray;
+    NSMutableArray *PostsData_TitleArray;
+    NSMutableArray *PostsData_TotalCountArray;
+    
+    //collection data
+    NSString *GetCollectionDataCount;
+    NSMutableArray *CollectionData_IDArray;
+    NSMutableArray *CollectionData_TitleArray;
+    NSMutableArray *CollectionData_DescriptionArray;
+    NSMutableArray *CollectionData_PhotoArray;
+    NSMutableArray *CollectionData_IsPrivateArray;
+    
+    UIActivityIndicatorView *ShowActivityLike;
+    UIActivityIndicatorView *ShowActivityPosts;
+    UIActivityIndicatorView *ShowActivityCollection;
+    
+    NSInteger TotalPage_Like;
+    NSInteger CurrentPage_Like;
+    NSInteger DataCount_Like;
+    NSInteger DataTotal_Like;
+    
+    NSInteger TotalPage_Post;
+    NSInteger CurrentPage_Post;
+    NSInteger DataCount_Post;
+    NSInteger DataTotal_Post;
+    
+    NSInteger TotalPage_Collection;
+    NSInteger CurrentPage_Collection;
+    NSInteger DataCount_Collection;
+    NSInteger DataTotal_Collection;
+    
+    BOOL CheckLoad_Likes;
+    BOOL CheckLoad_Post;
+    BOOL CheckLoad_Collection;
+    int CheckFirstTimeLoadLikes;
+    int CheckFirstTimeLoadPost;
+    int CheckFirstTimeLoadCollection;
+    
+    IBOutlet UIButton *SearchButton;
+    
+    UIRefreshControl *refreshControl;
+    
+    int CheckClick_Posts;
+    int CheckClick_Likes;
+}
 @end
 
 @implementation NewProfileV2ViewController
@@ -2042,6 +2153,15 @@
 }
 
 #pragma mark - Declaration
+
+-(ShareV2ViewController*)shareV2ViewController
+{
+    if (!_shareV2ViewController) {
+        _shareV2ViewController = [[ShareV2ViewController alloc]initWithNibName:@"ShareV2ViewController" bundle:nil];
+    }
+    
+    return _shareV2ViewController;
+}
 -(EditCollectionViewController*)editCollectionViewController
 {
     
@@ -2077,18 +2197,19 @@
    // [self.view.window.rootViewController presentViewController:EditProfileView animated:YES completion:nil];
 }
 -(IBAction)ShareButton:(id)sender{
-    ShareViewController *ShareView = [[ShareViewController alloc]init];
-    [self presentViewController:ShareView animated:YES completion:nil];
-    [ShareView GetShareProfile:GetUserName];
-//    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-//                                                             delegate:self
-//                                                    cancelButtonTitle:CustomLocalisedString(@"SettingsPage_Cancel", nil)
-//                                               destructiveButtonTitle:nil
-//                                                    otherButtonTitles:CustomLocalisedString(@"ShareToFacebook", nil),CustomLocalisedString(@"CopyLink", nil), nil];
-//    
-//    [actionSheet showInView:self.view];
-//    
-//    actionSheet.tag = 200;
+//    ShareViewController *ShareView = [[ShareViewController alloc]init];
+//    [self presentViewController:ShareView animated:YES completion:nil];
+//    [ShareView GetShareProfile:GetUserName];
+    
+    _shareV2ViewController = nil;
+    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
+    [naviVC setNavigationBarHidden:YES animated:NO];
+    [self.shareV2ViewController share:@"" title:GetUserName imagURL:@"" shareType:ShareTypeFacebookPostUser shareID:GetUserName inViewC:naviVC];
+    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
+    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
+        formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
+    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
+    [self presentViewController:formSheetController animated:YES completion:nil];
     
 }
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{

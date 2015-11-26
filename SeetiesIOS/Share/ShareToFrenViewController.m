@@ -9,10 +9,15 @@
 #import "ShareToFrenViewController.h"
 
 @interface ShareToFrenViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *btnBack;
 
 @end
 
 @implementation ShareToFrenViewController
+- (IBAction)btnBackClicked:(id)sender {
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -224,7 +229,8 @@
     [MainScroll addSubview:ShowSendTo];
     [MainScroll addSubview:SearchKeywordField];
     [MainScroll addSubview:Line02];
-    
+    [MainScroll addSubview:self.btnBack];
+
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
     for (int i = 0; i < [arrUID count]; i ++) {

@@ -232,6 +232,7 @@
     }
 
 }
+#define ROOTVIEW [[[UIApplication sharedApplication] keyWindow] rootViewController]
 
 -(void)shareWithCopyLink:(ShareType)type shareID:(NSString*)shareID delegate:(UIViewController*)vc
 {
@@ -241,8 +242,18 @@
 
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = message;
-    [TSMessage showNotificationInViewController:viewController title:@"System" subtitle:@"Success Copy Link" type:TSMessageNotificationTypeSuccess];
-    [TSMessage showNotificationInViewController:viewController title:@"system" subtitle:LocalisedString(@"Success Copy Link") image:nil type:TSMessageNotificationTypeSuccess duration:1.0 callback:nil buttonTitle:nil buttonCallback:nil atPosition:TSMessageNotificationPositionBottom canBeDismissedByUser:YES];
+    
+    [UIAlertView showWithTitle:LocalisedString(@"system")
+                       message:LocalisedString(@"Success Copy Link")
+             cancelButtonTitle:LocalisedString(@"OK")
+             otherButtonTitles:nil
+                      tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                          if (buttonIndex == [alertView cancelButtonIndex]) {
+                              NSLog(@"Cancelled");
+                          }
+                      }];
+
+
 }
 
 -(void)shareOnEmail:(ShareType)type viewController:(UIViewController*)vc shareID:(NSString*)shareID

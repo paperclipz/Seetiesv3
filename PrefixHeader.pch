@@ -58,6 +58,8 @@
 //===============Model=================
 #import "RecommendationModel.h"
 #import "Locale.h"
+#import "SeetiesIOS-Swift.h"
+
 #endif
 
 

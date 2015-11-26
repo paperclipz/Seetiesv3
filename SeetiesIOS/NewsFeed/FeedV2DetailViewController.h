@@ -22,5 +22,7 @@
 @property(nonatomic,strong)EditPostViewController* editPostViewController;
 @property(nonatomic,strong)ProfileViewController* profileViewController;
 @property(nonatomic,strong)CollectionListingViewController* collectionListingViewController;
+@property(nonatomic,strong)ShareV2ViewController* shareV2ViewController;
+
 -(void)GetPostID:(NSString *)PostID;
 @end

@@ -169,21 +169,15 @@
 - (IBAction)btnShareClicked:(id)sender {
     
     _shareV2ViewController = nil;
-    _shareViewController = nil;
-    // [self.shareViewController GetShareProfile:self.userProfileModel.username];
-    [self.shareV2ViewController share:@"" message:@"this is spartan" title:@"This is title" imagURL:self.userProfileModel.profile_photo_images shareType:ShareTypeFacebookPost shareID:self.userProfileModel.uid];
-    
     UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
     [naviVC setNavigationBarHidden:YES animated:NO];
-    
     MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
-    formSheetController.presentationController.contentViewSize = CGSizeMake(self.view.frame.size.width,self.view.frame.size.height);
-    
+
+    [self.shareV2ViewController share:@"" title:self.userProfileModel.username imagURL:self.userProfileModel.profile_photo_images shareType:ShareTypeFacebookPost shareID:self.userProfileModel.username inViewC:naviVC];
+    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
     formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
     formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
-    
     [self presentViewController:formSheetController animated:YES completion:nil];
-    
 }
 
 - (IBAction)btnSettingClicked:(id)sender {
@@ -1313,12 +1307,15 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
 {
    // _shareViewController = nil;
    // [self.shareViewController GetCollectionID:colModel.collection_id GetCollectionTitle:colModel.name];
+
     _shareV2ViewController = nil;
-    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:self.shareViewController];
+    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
+    [naviVC setNavigationBarHidden:YES animated:NO];
+    [self.shareV2ViewController share:@"" title:colModel.name imagURL:@"" shareType:ShareTypeFacebookCollection shareID:colModel.collection_id inViewC:naviVC];
+    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
     formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
     formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
     formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
-    
     [self presentViewController:formSheetController animated:YES completion:nil];
     
 }

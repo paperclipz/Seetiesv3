@@ -21,6 +21,7 @@
                 <outlet property="ShowActivity" destination="jma-u8-ohq" id="Ndi-fH-yXr"/>
                 <outlet property="ShowSendTo" destination="Ttb-Jm-MAC" id="IM9-YB-u7w"/>
                 <outlet property="ShowTitle" destination="6oH-zi-p0t" id="Wqs-hO-HvC"/>
+                <outlet property="btnBack" destination="xea-ky-w1u" id="W6I-9J-OnR"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -52,7 +53,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share to friends" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6oH-zi-p0t">
-                            <rect key="frame" x="20" y="19" width="287" height="21"/>
+                            <rect key="frame" x="74" y="19" width="257" height="21"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="ProximaNovaSoft-Bold" family="Proxima Nova Soft" pointSize="17"/>
                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -86,6 +87,16 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                             <color key="color" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         </activityIndicatorView>
+                        <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xea-ky-w1u">
+                            <rect key="frame" x="0.0" y="0.0" width="59" height="55"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" image="BackIcon.png"/>
+                            <connections>
+                                <action selector="btnBackClicked:" destination="-1" eventType="touchUpInside" id="3mu-L9-YgC"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </scrollView>
@@ -96,6 +107,7 @@
         </view>
     </objects>
     <resources>
+        <image name="BackIcon.png" width="40" height="40"/>
         <image name="CollectionCrossBtn.png" width="25" height="25"/>
     </resources>
 </document>
