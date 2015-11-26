@@ -172,8 +172,7 @@
     UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
     [naviVC setNavigationBarHidden:YES animated:NO];
     MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
-
-    [self.shareV2ViewController share:@"" title:self.userProfileModel.username imagURL:self.userProfileModel.profile_photo_images shareType:ShareTypeFacebookPost shareID:self.userProfileModel.username inViewC:naviVC];
+    [self.shareV2ViewController share:@"" title:self.userProfileModel.username imagURL:self.userProfileModel.profile_photo_images shareType:ShareTypeFacebookPost shareID:self.userProfileModel.username];
     formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
     formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
     formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
@@ -1311,7 +1310,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
     _shareV2ViewController = nil;
     UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
     [naviVC setNavigationBarHidden:YES animated:NO];
-    [self.shareV2ViewController share:@"" title:colModel.name imagURL:@"" shareType:ShareTypeFacebookCollection shareID:colModel.collection_id inViewC:naviVC];
+    [self.shareV2ViewController share:@"" title:colModel.name imagURL:@"" shareType:ShareTypeFacebookCollection shareID:colModel.collection_id];
     MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
     formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
     formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;

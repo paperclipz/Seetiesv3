@@ -38,7 +38,8 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
       //  shareToFrenVC = ShareV2ViewController.init(nibName: "ShareToFrenViewController", bundle: nil)
       //  self.navigationController!.pushViewController(shareToFrenVC, animated: true)
         self.shareToFrenVC = ShareToFrenViewController(nibName: "ShareToFrenViewController", bundle: nil)
-        self.navigationController!.pushViewController(self.shareToFrenVC, animated: true)
+        self.presentViewController(self.shareToFrenVC, animated: true, completion: nil)
+       // self.navigationController!.pushViewController(self.shareToFrenVC, animated: true)
 
     }
     
@@ -113,24 +114,15 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
         self.ibCollectionView.registerNib(UINib(nibName: "ShareV2CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ShareV2CollectionViewCell")
     }
     
-    func share(message:String,title:String, imagURL:String, shareType:ShareType, shareID:String, inViewC:UIViewController?)
+    func share(message:String,title:String, imagURL:String, shareType:ShareType, shareID:String)
     {
         self.postMessage = message
         self.postTitle = title
         self.imageURL = imagURL
         self.shareType = shareType
         self.shareID = shareID
+        self.viewController = self;
         
-        
-        if(inViewC == nil)
-        {
-            self.viewController = self;
-
-        }
-        else
-        {
-            self.viewController = inViewC!
-        }
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
