@@ -37,5 +37,5 @@ pod 'APParallaxHeader'
 pod 'PureLayout'
 pod 'MZAppearance'
 #pod 'ViewMonitor'
-
+pod 'MGInstagram'
 #pod 'Canvas', '~> 0.1.2'

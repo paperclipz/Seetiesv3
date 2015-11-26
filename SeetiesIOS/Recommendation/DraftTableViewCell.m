@@ -7,6 +7,7 @@
 //
 
 #import "DraftTableViewCell.h"
+#import "MGSwipeButton.h"
 
 
 @interface DraftTableViewCell()
@@ -82,11 +83,37 @@
     }
     return self;
 }
+
+-(NSArray *) createRightButtons: (int) number
+{
+    NSMutableArray * result = [NSMutableArray array];
+    NSString* titles[1] = {@"Delete"};
+    UIColor * colors[1] = {UIColorFromRGB(239, 94, 65, 1)};
+    for (int i = 0; i < number; ++i)
+    {
+        MGSwipeButton * button = [MGSwipeButton buttonWithTitle:titles[i] backgroundColor:colors[i] callback:^BOOL(MGSwipeTableCell * sender){
+            NSLog(@"Convenience callback received (right).");
+            BOOL autoHide = i != 0;
+            
+            if (self.didDeleteAtIndexPath) {
+                self.didDeleteAtIndexPath(self);
+            }
+            
+            return autoHide; //Don't autohide in delete button to improve delete expansion animation
+        }];
+        button.titleLabel.font = [UIFont fontWithName:CustomFontNameBold size:15];
+
+        [result addObject:button];
+    }
+    
+    return result;
+}
+
 #define BUTTON_THRESHOLD 80
 
 -(void)initSelfView
 {
-   
+    self.rightButtons = [self createRightButtons:1];
 }
 
 

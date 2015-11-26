@@ -111,17 +111,27 @@
     DraftTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"DraftTableViewCell"];
     cell.delegate = self;
    // cell.rightButtons = [self createRightButtons:data.rightButtonsCount];
-    cell.rightButtons = [self createRightButtons:1];
+    cell.didDeleteAtIndexPath = ^(DraftTableViewCell* sender)
+    {
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+
+        if (indexPath) {
+            [self.tableView beginUpdates];
+            NSString* postID = [self.arrDraftList[indexPath.row] post_id];
+            [self.arrDraftList removeObjectAtIndex:indexPath.row];
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView endUpdates];
+            [self requestServerForDeletePost:postID];
+        }
+        
+    };
     
     CGRect frame = [Utils getDeviceScreenSize];
     cell.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
         DraftModel* model = self.arrDraftList[indexPath.row];
     [cell initData:model];
     
-       
-    
-    
-    return cell;
+        return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -194,32 +204,6 @@
     }
     return _editPostViewController;
 }
--(NSArray *) createRightButtons: (int) number
-{
-    NSMutableArray * result = [NSMutableArray array];
-    NSString* titles[2] = {@"Delete", @"More"};
-    UIColor * colors[2] = {[UIColor redColor], [UIColor lightGrayColor]};
-    for (int i = 0; i < number; ++i)
-    {
-        MGSwipeButton * button = [MGSwipeButton buttonWithTitle:titles[i] backgroundColor:colors[i] callback:^BOOL(MGSwipeTableCell * sender){
-            NSLog(@"Convenience callback received (right).");
-            BOOL autoHide = i != 0;
-            
-            [self.tableView beginUpdates];
-            NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-            NSString* postID = [self.arrDraftList[indexPath.row] post_id];
 
-            [self.arrDraftList removeObjectAtIndex:indexPath.row];
-            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            [self.tableView endUpdates];
-            
-            [self requestServerForDeletePost:postID];
-
-            return autoHide; //Don't autohide in delete button to improve delete expansion animation
-        }];
-        [result addObject:button];
-    }
-    return result;
-}
 
 @end

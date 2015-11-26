@@ -71,7 +71,7 @@
 @implementation ProfileViewController
 
 - (IBAction)btnFollowClicked:(id)sender {
-
+    
     
     if (self.userProfileModel.following) {
         [UIAlertView showWithTitle:LocalisedString(@"system")
@@ -85,14 +85,14 @@
                               } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:LocalisedString(@"YES")]) {
                                   NSLog(@"YES");
                                   [self requestServerToFollowUser:self.userProfileModel.following];
-
+                                  
                               }
                           }];
-
+        
     }
     else{
         [self requestServerToFollowUser:self.userProfileModel.following];
-
+        
     }
     
     // [self setFollowButtonSelected:button.selected button:button];
@@ -160,21 +160,22 @@
 
 - (IBAction)btnEditProfileClicked:(id)sender {
     
-    
     _editProfileV2ViewController = nil;
     [self.editProfileV2ViewController initData:self.userProfileModel];
     [self.navigationController pushViewController:self.editProfileV2ViewController animated:YES];
     
 }
+
 - (IBAction)btnShareClicked:(id)sender {
     
     _shareV2ViewController = nil;
     _shareViewController = nil;
-    [self.shareViewController GetShareProfile:self.userProfileModel.username];
+    // [self.shareViewController GetShareProfile:self.userProfileModel.username];
+    [self.shareV2ViewController share:@"" message:@"this is spartan" title:@"This is title" imagURL:self.userProfileModel.profile_photo_images shareType:ShareTypeFacebookPost shareID:self.userProfileModel.uid];
     
-    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareViewController];
+    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
     [naviVC setNavigationBarHidden:YES animated:NO];
-
+    
     MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
     formSheetController.presentationController.contentViewSize = CGSizeMake(self.view.frame.size.width,self.view.frame.size.height);
     
@@ -228,7 +229,7 @@
                                              selector:@selector(receiveTestNotification:)
                                                  name:NOTIFICAION_TYPE_REFRESH_PROFILE
                                                object:nil];
-
+    
     
 }
 
@@ -335,10 +336,10 @@
         
         [self.ibScrollView.parallaxView addSubview:[UIView new]];
         self.ibImgViewOtherPadding.alpha = 0;
-//        [self.ibScrollView.parallaxView bringSubviewToFront:self.ibSettingOtherView];
+        //        [self.ibScrollView.parallaxView bringSubviewToFront:self.ibSettingOtherView];
         [self.view addSubview:self.ibSettingOtherView];
         [self.ibSettingOtherView adjustToScreenWidth];
-
+        
     }
     
 }
@@ -354,7 +355,7 @@
     
     if (self.profileViewType != ProfileViewTypeOthers) {
         [self requestServerForUserLikes];
-
+        
     }
 }
 
@@ -367,7 +368,7 @@
     float cellFooterHeight = 0;
     
     headerHeight += [ProfilePageCollectionHeaderView getHeight];
-
+    
     if (arrCollection.count>0) {
         collectionHeight += [ProfilePageCollectionTableViewCell getHeight] * (arrCollection.count>3?3:arrCollection.count);
         cellFooterHeight += [ProfilePageCollectionFooterTableViewCell getHeight];
@@ -384,7 +385,7 @@
     {
         postHeight+= [ProfilePagePostTableViewCell getHeight];
         cellFooterHeight += [ProfilePageCollectionFooterTableViewCell getHeight];
-
+        
     }
     
     else{
@@ -395,24 +396,24 @@
     int likeHeight = 0;
     
     if (self.profileViewType != ProfileViewTypeOthers) {
-
+        
         if (arrLikes.count>0) {
             likeHeight += [ProfilePagePostTableViewCell getHeight];
             cellFooterHeight += [ProfilePageCollectionFooterTableViewCell getHeight];
-
+            
         }
         else{
             likeHeight+= [ProfileNoItemTableViewCell getHeight];
-
+            
         }
         
         headerHeight += [ProfilePageCollectionHeaderView getHeight];
         
     }
-
-   // int collectionHeight = arrCollection.count>0?(int)([ProfilePageCollectionTableViewCell getHeight]*(arrCollection.count>3?3:arrCollection.count)):[ProfileNoItemTableViewCell getHeight];
     
-   
+    // int collectionHeight = arrCollection.count>0?(int)([ProfilePageCollectionTableViewCell getHeight]*(arrCollection.count>3?3:arrCollection.count)):[ProfileNoItemTableViewCell getHeight];
+    
+    
     
     
     self.ibTableView.frame = CGRectMake(self.ibTableView.frame.origin.x, self.ibTableView.frame.origin.y, self.ibTableView.frame.size.width,collectionHeight +postHeight + likeHeight + headerHeight + cellFooterHeight+ 5);
@@ -474,7 +475,7 @@
     else
     {
         return 3;
-
+        
     }
 }
 
@@ -854,7 +855,7 @@
 -(ShareV2ViewController*)shareV2ViewController
 {
     if (!_shareV2ViewController) {
-        _shareV2ViewController = [ShareV2ViewController new];
+        _shareV2ViewController = [[ShareV2ViewController alloc]initWithNibName:@"ShareV2ViewController" bundle:nil];
     }
     
     return _shareV2ViewController;
@@ -1310,8 +1311,8 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
 
 -(void)showShareView:(CollectionModel*)colModel
 {
-    _shareViewController = nil;
-    [self.shareViewController GetCollectionID:colModel.collection_id GetCollectionTitle:colModel.name];
+   // _shareViewController = nil;
+   // [self.shareViewController GetCollectionID:colModel.collection_id GetCollectionTitle:colModel.name];
     _shareV2ViewController = nil;
     MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:self.shareViewController];
     formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
@@ -1333,19 +1334,19 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
     [self.btnEditProfile setTitle:LocalisedString(@"Edit Profile") forState:UIControlStateNormal];
     [self.btnSearch setTitle:LocalisedString(@"search") forState:UIControlStateNormal];
     [self.ibTableView reloadData];
-
+    
 }
 #pragma mark - UIScrollView
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-
+    
     int profileBackgroundHeight = 200;
     if (scrollView.contentOffset.y > -profileBackgroundHeight && scrollView.contentOffset.y <= 5) {
-        NSLog(@"AAA!!%@",NSStringFromCGPoint(scrollView.contentOffset));
+     //   NSLog(@"AAA!!%@",NSStringFromCGPoint(scrollView.contentOffset));
         
         float adjustment = (profileBackgroundHeight + scrollView.contentOffset.y
                             )/(profileBackgroundHeight);
-       // SLog(@"adjustment : %f",adjustment);
+        // SLog(@"adjustment : %f",adjustment);
         self.ibImgViewOtherPadding.alpha = adjustment;
         self.lblUserName_Header.alpha = adjustment;
         
@@ -1354,7 +1355,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
     {
         self.ibImgViewOtherPadding.alpha = 1;
         self.lblUserName_Header.alpha = 1;
-
+        
         
         
     }
