@@ -88,6 +88,7 @@
 		<string>fb-messenger-api</string>
 		<string>fbshareextension</string>
 		<string>itms-apps://itunes.apple.com/app/id956400552</string>
+		<string>waze</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

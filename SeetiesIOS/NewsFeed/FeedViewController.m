@@ -3277,13 +3277,13 @@
                     [QuickCollectButtonLocalQR setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
                     [QuickCollectButtonLocalQR.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
                     QuickCollectButtonLocalQR.backgroundColor = [UIColor clearColor];
-                    QuickCollectButtonLocalQR.frame = CGRectMake((screenWidth - 50 - 140) + i * (screenWidth - 40), 180, 140, 50);
+                    QuickCollectButtonLocalQR.frame = CGRectMake((screenWidth - 45 - 115) + i * (screenWidth - 40), 186, 115, 38);//115,38
                     [QuickCollectButtonLocalQR addTarget:self action:@selector(CollectionFollowingButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
                     QuickCollectButtonLocalQR.tag = i + 8000;
                     [CollectionScrollview addSubview:QuickCollectButtonLocalQR];
                     
                     
-                    CollectionScrollview.contentSize = CGSizeMake(10 + i * (screenWidth - 40) + (screenWidth - 50), 200);
+                    CollectionScrollview.contentSize = CGSizeMake(20 + i * (screenWidth - 40) + (screenWidth - 50), 200);
                 }
                 
                 
@@ -3545,13 +3545,13 @@
                 }
                 [MainScroll addSubview:ShowUserProfileImage];
                 
-//                UIButton *OpenUserProfileButton = [[UIButton alloc]init];
-//                [OpenUserProfileButton setTitle:@"" forState:UIControlStateNormal];
-//                OpenUserProfileButton.backgroundColor = [UIColor clearColor];
-//                OpenUserProfileButton.frame = CGRectMake(25 , 51 + 10, screenWidth - 75 - 100, 40);
-//                [OpenUserProfileButton addTarget:self action:@selector(CollectionUserProfileOnClick:) forControlEvents:UIControlEventTouchUpInside];
-//                OpenUserProfileButton.tag = i;
-//                [MainScroll addSubview:OpenUserProfileButton];
+                UIButton *OpenUserProfileButton = [[UIButton alloc]init];
+                [OpenUserProfileButton setTitle:@"" forState:UIControlStateNormal];
+                OpenUserProfileButton.backgroundColor = [UIColor clearColor];
+                OpenUserProfileButton.frame = CGRectMake(25 , heightcheck + 51 + 10, screenWidth - 50, 40);
+                [OpenUserProfileButton addTarget:self action:@selector(FollowingCollectionUserProfileOnClick:) forControlEvents:UIControlEventTouchUpInside];
+                OpenUserProfileButton.tag = i;
+                [MainScroll addSubview:OpenUserProfileButton];
                 
                 NSString *usernameTemp = [[NSString alloc]initWithFormat:@"%@",[arrUserName objectAtIndex:i]];
                 
@@ -5585,5 +5585,13 @@
     formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
     [self presentViewController:formSheetController animated:YES completion:nil];
     [ShareView GetCollectionID:[arrPostID objectAtIndex:getbuttonIDN] GetCollectionTitle:[arrTitle objectAtIndex:getbuttonIDN]];
+}
+-(IBAction)FollowingCollectionUserProfileOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    //    NSString *Getname = [[NSString alloc]initWithFormat:@"%@",[arrCollectionName objectAtIndex:getbuttonIDN]];
+    _profileViewController = nil;
+    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[arrUserID objectAtIndex:getbuttonIDN]];
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+    }];
 }
 @end

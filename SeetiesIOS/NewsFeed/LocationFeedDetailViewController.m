@@ -9,7 +9,7 @@
 #import "LocationFeedDetailViewController.h"
 #import "LanguageManager.h"
 #import "Locale.h"
-@interface LocationFeedDetailViewController ()
+@interface LocationFeedDetailViewController ()<UIActionSheetDelegate>
 {
     IBOutlet UILabel *ShowMainTitle;
     IBOutlet UIButton *DirectionsButton;
@@ -393,34 +393,100 @@
     return pin;
 }
 -(IBAction)DirectionsButton:(id)sender{
-    NSString *latlong = [[NSString alloc]initWithFormat:@"%@,%@",GetLat,GetLong];
+    
     // NSString *latlong = @"-56.568545,1.256281";
     
-    CGFloat systemVersion = [[[ UIDevice currentDevice ] systemVersion ] floatValue ];
-    if( systemVersion > 6.0 ){
-
-        if ([[UIApplication sharedApplication] canOpenURL:
-             [NSURL URLWithString:@"comgooglemaps://"]]) {
-//            NSString *url = [NSString stringWithFormat: @"comgooglemaps://?center=%@&zoom=14&views=traffic",
+    
+    UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:LocalisedString(@"Cancel") destructiveButtonTitle:nil otherButtonTitles:
+                            @"Waze",
+                            @"Google Maps",
+                            @"Apple Maps",
+                            nil];
+    popup.tag = 1;
+    [popup showInView:self.view];
+    
+//    CGFloat systemVersion = [[[ UIDevice currentDevice ] systemVersion ] floatValue ];
+//    if( systemVersion > 6.0 ){
+//
+//        if ([[UIApplication sharedApplication] canOpenURL:
+//             [NSURL URLWithString:@"comgooglemaps://"]]) {
+////            NSString *url = [NSString stringWithFormat: @"comgooglemaps://?center=%@&zoom=14&views=traffic",
+////                             [latlong stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+//            NSString *url = [NSString stringWithFormat: @"comgooglemaps://?q=%@&zoom=10",
+//                             latlong];
+//
+//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+////            [[UIApplication sharedApplication] openURL:
+////             [NSURL URLWithString:@"comgooglemaps://?center=40.765819,-73.975866&zoom=14&views=traffic"]];
+//        } else {
+//            NSLog(@"Can't use comgooglemaps://");
+//            NSString *url = [NSString stringWithFormat: @"http://maps.apple.com?q=%@",
 //                             [latlong stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-            NSString *url = [NSString stringWithFormat: @"comgooglemaps://?q=%@&zoom=10",
-                             latlong];
-
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
-//            [[UIApplication sharedApplication] openURL:
-//             [NSURL URLWithString:@"comgooglemaps://?center=40.765819,-73.975866&zoom=14&views=traffic"]];
-        } else {
-            NSLog(@"Can't use comgooglemaps://");
-            NSString *url = [NSString stringWithFormat: @"http://maps.apple.com?q=%@",
-                             [latlong stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+//        }
+//
+//    }else{
+//        
+//        NSString *url = [NSString stringWithFormat: @"http://maps.google.com/maps?q=%@",
+//                         [latlong stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+//    }
+}
+- (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSString *latlong = [[NSString alloc]initWithFormat:@"%@,%@",GetLat,GetLong];
+    switch (popup.tag) {
+        case 1: {
+            switch (buttonIndex) {
+                case 0:{
+                    NSLog(@"Waze");
+                    if ([[UIApplication sharedApplication]
+                         canOpenURL:[NSURL URLWithString:@"waze://"]]) {
+                        
+                        // Waze is installed. Launch Waze and start navigation
+                        NSString *urlStr =
+                        [NSString stringWithFormat:@"waze://?ll=%@&navigate=yes",
+                         latlong];
+                        
+                        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
+                        
+                    } else {
+                        
+                        // Waze is not installed. Launch AppStore to install Waze app
+                        [[UIApplication sharedApplication] openURL:[NSURL
+                                                                    URLWithString:@"http://itunes.apple.com/us/app/id323229106"]];
+                    }
+                }
+                    break;
+                case 1:{
+                    NSLog(@"Google Maps");
+                    if ([[UIApplication sharedApplication] canOpenURL:
+                         [NSURL URLWithString:@"comgooglemaps://"]]) {
+                        NSString *url = [NSString stringWithFormat: @"comgooglemaps://?q=%@&zoom=10",
+                                         latlong];
+                        
+                        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+                    } else {
+                        NSLog(@"Can't use comgooglemaps://");
+                        NSString *url = [NSString stringWithFormat: @"http://maps.apple.com?q=%@",
+                                         [latlong stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+                    }
+                }
+                    break;
+                case 2:{
+                    NSLog(@"Apple Maps");
+                    NSString *url = [NSString stringWithFormat: @"http://maps.apple.com?q=%@",
+                                     [latlong stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+                }
+                    break;
+                default:
+                    break;
+            }
+            break;
         }
-
-    }else{
-        
-        NSString *url = [NSString stringWithFormat: @"http://maps.google.com/maps?q=%@",
-                         [latlong stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+        default:
+            break;
     }
 }
 -(IBAction)OpenLinkButton:(id)sender{

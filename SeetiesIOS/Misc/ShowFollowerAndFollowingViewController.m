@@ -524,17 +524,17 @@
         ShowTitleLabel.text = [User_NameArray objectAtIndex:i];
         ShowTitleLabel.numberOfLines = 5;
         ShowTitleLabel.textAlignment = NSTextAlignmentLeft;
-        ShowTitleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
+        ShowTitleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:16];
         ShowTitleLabel.textColor = [UIColor blackColor];
         ShowTitleLabel.backgroundColor = [UIColor clearColor];
         
         UILabel *ShowUserName = [[UILabel alloc]init];
         ShowUserName.frame = CGRectMake(60, 40 + i * 70, screenWidth - 100, 20);\
-        ShowUserName.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
+        ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:14];
         ShowUserName.textColor = [UIColor lightGrayColor];
         NSString *TempString;
         if ([GetType isEqualToString:@"Collection"]) {
-            TempString = @"view collections";
+            TempString = LocalisedString(@"View collections");
         }else{
             TempString = [[NSString alloc]initWithFormat:@"@%@",[User_UserNameArray objectAtIndex:i]];
             

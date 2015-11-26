@@ -3109,11 +3109,11 @@
             [QuickCollectButtonLocalQR setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
             [QuickCollectButtonLocalQR.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
             QuickCollectButtonLocalQR.backgroundColor = [UIColor clearColor];
-            QuickCollectButtonLocalQR.frame = CGRectMake((screenWidth - 50 - 140) + i * (screenWidth - 40), 180, 140, 50);
+            QuickCollectButtonLocalQR.frame = CGRectMake((screenWidth - 45 - 115) + i * (screenWidth - 40), 186, 115, 38);//115,38
             [QuickCollectButtonLocalQR addTarget:self action:@selector(CollectionFollowingButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
             QuickCollectButtonLocalQR.tag = i;
             [CollectionScrollview addSubview:QuickCollectButtonLocalQR];
-            CollectionScrollview.contentSize = CGSizeMake(10 + i * (screenWidth - 40) + (screenWidth - 50), 200);
+            CollectionScrollview.contentSize = CGSizeMake(20 + i * (screenWidth - 40) + (screenWidth - 50), 200);
         }
         
         
