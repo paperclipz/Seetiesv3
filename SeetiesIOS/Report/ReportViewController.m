@@ -37,7 +37,12 @@
     
     DescriptionText.delegate = self;
     DescriptionText.text = LocalisedString(@"Please specify");
+    DescriptionText.frame = CGRectMake(22, 282, screenWidth - 44, 110);
     CheckStatus = 0;
+    
+    Line01.frame = CGRectMake(0, 163, screenWidth, 1);
+    Line02.frame = CGRectMake(0, 255, screenWidth, 1);
+    Line03.frame = CGRectMake(0, 400, screenWidth, 1);
     
     ShowTitle.text = LocalisedString(@"Report this");
     ShowInappropriate.text = LocalisedString(@"Inappropriate content");

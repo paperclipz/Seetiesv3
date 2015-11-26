@@ -3484,26 +3484,34 @@
                     }
                     [MainScroll addSubview:ShowImage4];
                     
-                    UIButton *MiniOverlay = [[UIButton alloc]init];
-                    [MiniOverlay setTitle:@"" forState:UIControlStateNormal];
-                    MiniOverlay.frame = CGRectMake(screenWidth - 10 - 96 , heightcheck + 60 + 90 + 90, 96, 90);
-                    MiniOverlay.alpha = 0.8f;
-                    MiniOverlay.backgroundColor = [UIColor blackColor];
-                    [MainScroll addSubview:MiniOverlay];
+
                     
                     NSInteger GetImageTotalCount = [SplitArray_ImageData count];
                     NSInteger GetLastCount = GetImageTotalCount - 4;
                     
-                    NSString *TempCountString = [[NSString alloc]initWithFormat:@"%li +",(long)GetLastCount];
+                    if (GetLastCount == 0) {
+                        
+                    }else{
+                        UIButton *MiniOverlay = [[UIButton alloc]init];
+                        [MiniOverlay setTitle:@"" forState:UIControlStateNormal];
+                        MiniOverlay.frame = CGRectMake(screenWidth - 10 - 96 , heightcheck + 60 + 90 + 90, 96, 90);
+                        MiniOverlay.alpha = 0.8f;
+                        MiniOverlay.backgroundColor = [UIColor blackColor];
+                        [MainScroll addSubview:MiniOverlay];
+                        
+                        NSString *TempCountString = [[NSString alloc]initWithFormat:@"%li +",(long)GetLastCount];
+                        
+                        UILabel *ShowMoreText = [[UILabel alloc]init];
+                        ShowMoreText.frame = CGRectMake(screenWidth - 10 - 96 , heightcheck + 60 + 90 + 90, 96, 90);
+                        ShowMoreText.text = TempCountString;
+                        ShowMoreText.backgroundColor = [UIColor clearColor];
+                        ShowMoreText.textColor = [UIColor whiteColor];
+                        ShowMoreText.textAlignment = NSTextAlignmentCenter;
+                        ShowMoreText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:22];
+                        [MainScroll addSubview:ShowMoreText];
+                    }
                     
-                    UILabel *ShowMoreText = [[UILabel alloc]init];
-                    ShowMoreText.frame = CGRectMake(screenWidth - 10 - 96 , heightcheck + 60 + 90 + 90, 96, 90);
-                    ShowMoreText.text = TempCountString;
-                    ShowMoreText.backgroundColor = [UIColor clearColor];
-                    ShowMoreText.textColor = [UIColor whiteColor];
-                    ShowMoreText.textAlignment = NSTextAlignmentCenter;
-                    ShowMoreText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:22];
-                    [MainScroll addSubview:ShowMoreText];
+
                     
                     //96 x 85
                 }

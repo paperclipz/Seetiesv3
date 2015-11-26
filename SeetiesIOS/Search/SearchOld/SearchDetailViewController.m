@@ -938,6 +938,9 @@
             
             NSLog(@"Collection_arrImageData is %@",Collection_arrImageData);
             
+            for (UIView *subview in CollectionView.subviews) {
+                [subview removeFromSuperview];
+            }
             [self InitCollectionDataView];
         }
         

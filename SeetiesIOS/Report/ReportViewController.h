@@ -38,6 +38,10 @@
     IBOutlet UILabel *ShowInappropriate;
     IBOutlet UILabel *ShowCopyright;
     IBOutlet UILabel *ShowOther;
+    
+    IBOutlet UIButton *Line01;
+    IBOutlet UIButton *Line02;
+    IBOutlet UIButton *Line03;
 }
 -(void)GetPostID:(NSString *)PostID;
 @end

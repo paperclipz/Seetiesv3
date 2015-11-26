@@ -657,7 +657,7 @@
         }else if([GetType isEqualToString:@"collect"]){
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[Following_UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
-                ShowUserImage.image = [UIImage imageNamed:@"Icon.png"];
+                ShowUserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
                 ShowUserImage.imageURL = url_UserImage;
@@ -669,7 +669,7 @@
         }else{ // handle new type
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[Following_UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
-                ShowUserImage.image = [UIImage imageNamed:@"Icon.png"];
+                ShowUserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
                 ShowUserImage.imageURL = url_UserImage;
@@ -874,7 +874,7 @@
         }else if([GetType isEqualToString:@"collect"]){
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
-                ShowUserImage.image = [UIImage imageNamed:@"Icon.png"];
+                ShowUserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
                 ShowUserImage.imageURL = url_UserImage;
@@ -886,7 +886,7 @@
         }else if([GetType isEqualToString:@"post_shared"] || [GetType isEqualToString:@"collection_shared"]){
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
-                ShowUserImage.image = [UIImage imageNamed:@"Icon.png"];
+                ShowUserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
                 ShowUserImage.imageURL = url_UserImage;
@@ -898,7 +898,7 @@
         }else{ // handle new type
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
-                ShowUserImage.image = [UIImage imageNamed:@"Icon.png"];
+                ShowUserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
                 NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
                 ShowUserImage.imageURL = url_UserImage;
