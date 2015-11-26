@@ -10,7 +10,6 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import <FBSDKShareKit/FBSDKShareKit.h>
 
-
 typedef enum
 {
     ShareTypeFacebookPost,
@@ -19,6 +18,13 @@ typedef enum
 } ShareType;
 
 @interface ShareManager : NSObject
--(void)shareFacebook:(NSString*)title message:(NSString*)description shareType:(ShareType)type userID:(NSString*)userID delegate:(UIViewController*)vc;
+//shareID (postID, collectionID,UserID)
+-(void)shareFacebook:(NSString*)title message:(NSString*)description imageURL:(NSString*)imageURL shareType:(ShareType)type shareID:(NSString*)shareID delegate:(UIViewController*)vc;
+-(void)shareOnLINE:(NSString*)title message:(NSString*)description imageURL:(NSString*)imageURL shareType:(ShareType)type shareID:(NSString*)shareID delegate:(UIViewController*)vc;
+-(void)shareOnInstagram:(NSString*)imageURL delegate:(UIViewController*)vc;
+-(void)shareOnMessanger:(NSString*)title message:(NSString*)description imageURL:(NSString*)imageURL shareType:(ShareType)type shareID:(NSString*)shareID delegate:(UIViewController*)vc;
+-(void)shareOnWhatsapp:(NSString*)title message:(NSString*)description imageURL:(NSString*)imageURL shareType:(ShareType)type shareID:(NSString*)shareID delegate:(UIViewController*)vc;
+-(void)shareWithCopyLink:(ShareType)type shareID:(NSString*)shareID delegate:(UIViewController*)vc;
+-(void)shareOnEmail:(ShareType)type viewController:(UIViewController*)vc shareID:(NSString*)shareID;
 
 @end

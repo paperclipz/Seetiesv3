@@ -7,114 +7,387 @@
 //
 
 #import "ShareManager.h"
+#import <MessageUI/MessageUI.h>
+#import <MGInstagram/MGInstagram.h>
 
-@interface ShareManager()
+#define SEETIES_LOGO_URL @"https://pbs.twimg.com/profile_images/499756229170716673/U1ejUl7V.png"
+@interface ShareManager()<UIDocumentInteractionControllerDelegate,MFMailComposeViewControllerDelegate>
+{
+    UIImageView* postImageView;
+    UIViewController* viewController;
+}
+
+@property (nonatomic, strong) UIDocumentInteractionController *documentController;
 
 @property(nonatomic,strong)FBLinkShareParams* params;
 @property(nonatomic,strong)NSString* postDescription;
-@property(nonatomic,strong)NSString* userID;
+@property(nonatomic,strong)NSString* shareID;
 @property(nonatomic,strong)NSString* postTitle;
+@property(nonatomic,strong)NSString* postImageURL;
+
+
+@property(nonatomic,strong)MGInstagram* instagram;
 
 
 @end
 @implementation ShareManager
 
--(void)shareFacebookTitle:(NSString*)title message:(NSString*)description shareType:(ShareType)type userID:(NSString*)userID delegate:(UIViewController*)vc
+#pragma mark - SHARE API
+
+-(instancetype)init
 {
+    self = [super init];
+    
+    if (self) {
+        _postTitle = @"SEEITES";
+    }
+    
+    return self;
+}
+-(void)shareFacebook:(NSString*)title message:(NSString*)description imageURL:(NSString*)imageURL shareType:(ShareType)type shareID:(NSString*)shareID delegate:(UIViewController*)vc
+{
+    NSString* caption = @"SEEITES";
+
     self.postTitle = title;
-    self.userID = userID;
+    self.postImageURL = imageURL;
+    self.shareID = shareID;
     self.postDescription = description;
-    NSString* message = @"";
-    NSString* seetiesLink = @"https://seeties.me/";
-    NSString* subLink;
-    NSString* iDLink = @"";
+    viewController = vc;
+    
+    postImageView = [UIImageView new];
+    [postImageView sd_setImageWithPreviousCachedImageWithURL:[NSURL URLWithString:self.postImageURL] andPlaceholderImage:[UIImage imageNamed:@"NoImage.png"] options:SDWebImageHighPriority progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+      
+        SLog(@"image finish load");
+    }];
+    
+    NSString* message = [self getShareMessage:type appendURL:YES];
+    NSString* finalLink = [self getShareLink:type];
+
+    
+    FBSDKShareLinkContent *content = [[FBSDKShareLinkContent alloc] init];
+    content.contentURL = [NSURL URLWithString:finalLink];
+    content.contentDescription = message;
+    content.contentTitle = caption;
+    content.imageURL = [NSURL URLWithString:imageURL];
+    [FBSDKShareDialog showFromViewController:vc
+                                 withContent:content
+                                    delegate:nil];
+    
+    
+}
+
+-(void)shareOnInstagram:(NSString*)imageURL delegate:(UIViewController*)vc
+{
+    self.postImageURL = imageURL;
+    viewController = vc;
+   // NSURL *instagramURL = [NSURL URLWithString:@"instagram://app"];
+    postImageView = [UIImageView new];
+   
+    [postImageView sd_setImageWithURL:[NSURL URLWithString:self.postImageURL] placeholderImage:[UIImage imageNamed:@"NoImage.png"] options:SDWebImageHighPriority completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        
+        if (error) {
+            [UIAlertView showWithTitle:LocalisedString(@"system")
+                               message:LocalisedString(@"Loading Fail")
+                     cancelButtonTitle:LocalisedString(@"OK")
+                     otherButtonTitles:nil
+                              tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                                  if (buttonIndex == [alertView cancelButtonIndex]) {
+                                      NSLog(@"Cancelled");
+                                  }
+                              }];
+
+            return;
+        }
+        
+        if([MGInstagram isAppInstalled])
+        {
+            self.instagram = [[MGInstagram alloc] init];
+
+            CGFloat cropVal = (postImageView.image.size.height > postImageView.image.size.width ? postImageView.image.size.width : postImageView.image.size.height);
+            
+            cropVal *= [postImageView.image scale];
+            
+            CGRect cropRect = (CGRect){.size.height = cropVal, .size.width = cropVal};
+            CGImageRef imageRef = CGImageCreateWithImageInRect([postImageView.image CGImage], cropRect);
+            
+            NSData *imageData = UIImageJPEGRepresentation([UIImage imageWithCGImage:imageRef], 1.0);
+            CGImageRelease(imageRef);
+            
+            postImageView.image =  [UIImage imageWithData:imageData];
+            
+            UIImage *image = postImageView.image;
+
+            [self.instagram postImage:image inView:viewController.view];
+            
+//            CGFloat cropVal = (postImageView.image.size.height > postImageView.image.size.width ? postImageView.image.size.width : postImageView.image.size.height);
+//            
+//            cropVal *= [postImageView.image scale];
+//            
+//            CGRect cropRect = (CGRect){.size.height = cropVal, .size.width = cropVal};
+//            CGImageRef imageRef = CGImageCreateWithImageInRect([postImageView.image CGImage], cropRect);
+//            
+//            NSData *imageData = UIImageJPEGRepresentation([UIImage imageWithCGImage:imageRef], 1.0);
+//            CGImageRelease(imageRef);
+//            
+//            postImageView.image =  [UIImage imageWithData:imageData];
+//            
+//            NSString *writePath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"instagram.igo"];
+//            if (![imageData writeToFile:writePath atomically:YES]) {
+//                // failure
+//                NSLog(@"image save failed to path %@", writePath);
+//                return;
+//            } else {
+//                // success.
+//            }
+//            
+//            // send it to instagram.
+//            NSURL *fileURL = [NSURL fileURLWithPath:writePath];
+//            self.documentController = [UIDocumentInteractionController interactionControllerWithURL:fileURL];
+//            self.documentController.delegate = self;
+//            [self.documentController setUTI:@"com.instagram.exclusivegram"];
+//            [self.documentController setAnnotation:@{@"InstagramCaption" : @"We are making fun"}];
+//            [self.documentController presentOpenInMenuFromRect:CGRectMake(0, 0, 320, 480) inView:viewController.view animated:YES];
+        }
+        else
+        {
+            NSLog(@"Error Instagram is either not installed or image is incorrect size");
+            [self showMessageForType];
+            
+        }
+}];
+   
+}
+
+-(void)shareOnLINE:(NSString*)title message:(NSString*)description imageURL:(NSString*)imageURL shareType:(ShareType)type shareID:(NSString*)shareID delegate:(UIViewController*)vc
+{
+    
+    self.postTitle = title;
+    self.postImageURL = imageURL;
+    self.shareID = shareID;
+    self.postDescription = description;
+    viewController = vc;
+  
+    NSString* message = [self getShareMessage:type appendURL:YES];
+
+    
+
+    NSString *ShareText = message;
+    ShareText = [ShareText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    NSURL *appURL = [NSURL URLWithString:[NSString stringWithFormat:@"line://msg/text/%@",ShareText]];
+    if ([[UIApplication sharedApplication] canOpenURL: appURL]) {
+        [[UIApplication sharedApplication] openURL: appURL];
+    }
+    else { //Connect to itunes if user dont have app install
+        
+        [self showMessageForType];
+      //  NSURL *itunesURL = [NSURL URLWithString:@"itms-apps://itunes.apple.com/app/id443904275"];
+        //[[UIApplication sharedApplication] openURL:itunesURL];
+    }
+}
+
+-(void)shareOnMessanger:(NSString*)title message:(NSString*)description imageURL:(NSString*)imageURL shareType:(ShareType)type shareID:(NSString*)shareID delegate:(UIViewController*)vc
+{
+    
+    self.postTitle = title;
+    self.postImageURL = imageURL;
+    self.shareID = shareID;
     NSString* caption = @"SEETIES.ME";
+    self.postDescription = description;
+    viewController = vc;
+    NSString* message = [self getShareMessage:type appendURL:YES];
+    NSString* finalLink = [self getShareLink:type];
+    FBSDKShareLinkContent *content = [[FBSDKShareLinkContent alloc] init];
+    content.contentURL = [NSURL URLWithString:finalLink];
+    content.contentTitle = caption;
+    content.contentDescription = message;
+    content.imageURL = [NSURL URLWithString:SEETIES_LOGO_URL];
+    [FBSDKMessageDialog showWithContent:content delegate:nil];
+    
+}
+
+-(void)shareOnWhatsapp:(NSString*)title message:(NSString*)description imageURL:(NSString*)imageURL shareType:(ShareType)type shareID:(NSString*)shareID delegate:(UIViewController*)vc
+{
+    
+    self.postTitle = title;
+    self.postImageURL = imageURL;
+    self.shareID = shareID;
+    self.postDescription = description;
+    viewController = vc;
+
+    NSString* message = [self getShareMessage:type appendURL:YES];
+
+    NSString *ShareText = message;
+    ShareText = [ShareText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    // NSURL *whatsappURL = [NSURL URLWithString:@"whatsapp://send?text=%@"];
+    NSURL *whatsappURL = [NSURL URLWithString:[NSString stringWithFormat:@"whatsapp://send?text=%@",ShareText]];
+    if ([[UIApplication sharedApplication] canOpenURL: whatsappURL]) {
+        [[UIApplication sharedApplication] openURL: whatsappURL];
+    }else{
+        [self showMessageForType];
+
+       // NSURL *itunesURL = [NSURL URLWithString:@"itms-apps://itunes.apple.com/app/id310633997"];
+        //[[UIApplication sharedApplication] openURL:itunesURL];
+    }
+
+}
+
+-(void)shareWithCopyLink:(ShareType)type shareID:(NSString*)shareID delegate:(UIViewController*)vc
+{
+    self.shareID = shareID;
+    viewController = vc;
+    NSString* message = [self getShareMessage:type appendURL:YES];
+
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = message;
+    [TSMessage showNotificationInViewController:viewController title:@"System" subtitle:@"Success Copy Link" type:TSMessageNotificationTypeSuccess];
+    [TSMessage showNotificationInViewController:viewController title:@"system" subtitle:LocalisedString(@"Success Copy Link") image:nil type:TSMessageNotificationTypeSuccess duration:1.0 callback:nil buttonTitle:nil buttonCallback:nil atPosition:TSMessageNotificationPositionBottom canBeDismissedByUser:YES];
+}
+
+-(void)shareOnEmail:(ShareType)type viewController:(UIViewController*)vc shareID:(NSString*)shareID
+{
+    
+    viewController = vc;
+    self.shareID = shareID;
+    
+    
+    if ([MFMailComposeViewController canSendMail])
+    {
+        
+       
+        MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc] init];
+        
+        mailer.mailComposeDelegate = self;
+        
+        NSString *messageSubject;
+
+        switch (type) {
+            default:
+            case ShareTypeFacebookPost:
+                
+                messageSubject = @"Seeties Post";
+                break;
+            case ShareTypeFacebookCollection:
+                messageSubject = @"Seeties Collection";
+
+                break;
+
+            case ShareTypeFacebookPostUser:
+                messageSubject = @"Seeties User";
+
+                break;
+
+                
+        }
+        
+        [mailer setSubject:messageSubject];
+        NSString* message = [self getShareMessage:type appendURL:YES];
+        [mailer setMessageBody:message isHTML:NO];
+        
+        [viewController presentViewController:mailer animated:YES completion:nil];
+        [MFMailComposeViewController mailWithSubject:messageSubject message:message recipients:nil bccRecipients:nil ccRecipients:nil andAttachments:nil onCreation:^(UIViewController *controller) {
+            
+            //[viewController presentViewController:controller animated:YES completion:nil];
+
+            
+        } onFinish:^(UIViewController *controller, int result, NSError *error) {
+            
+        }];
+
+    }
+    else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failure"
+                                                        message:@"Your device doesn't support the composer sheet"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
+#pragma mark - Utility
+-(NSString*)getShareMessage:(ShareType)type appendURL:(BOOL)isNeedAppendURL
+{
+    NSString* message;
     
     switch (type) {
             
         default:
         case ShareTypeFacebookPost:
         {
-            subLink = @"post/";
             message = LocalisedString(@"I was reading [post title] on Seeties and I thought you might be interested in reading it too.\n\n[post url]");
-            message = [message stringByReplacingOccurrencesOfString:@"[post title]"
-                                                         withString:self.postTitle];
+            if (self.postTitle) {
+                message = [message stringByReplacingOccurrencesOfString:@"[post title]"
+                                                             withString:self.postTitle];
+            }
+            else{
+                message = [message stringByReplacingOccurrencesOfString:@"[post title]"
+                                                             withString:@""];
+            }
+                 message = [message stringByReplacingOccurrencesOfString:@"[post url]"
+                                                         withString:isNeedAppendURL?[self getShareLink:type]:@""];
+        }
+            break;
+        case ShareTypeFacebookCollection:
+        {
+            message = LocalisedString(@"I was checking this collection [collection title] on Seeties and I thought you might like to see it too.\n\n[post url]");
+            if (self.postTitle) {
+                message = [message stringByReplacingOccurrencesOfString:@"[collection title]"
+                                                             withString:self.postTitle];
+            }
+            else{
+                message = [message stringByReplacingOccurrencesOfString:@"[collection title]"
+                                                             withString:@""];
+            }
+            
             message = [message stringByReplacingOccurrencesOfString:@"[post url]"
-                                                         withString:@""];
+                                                         withString:isNeedAppendURL?[self getShareLink:type]:@""];
+        }
+            break;
+        case ShareTypeFacebookPostUser:
+        {
+            message = [NSString stringWithFormat:@"Check out my profile on Seeties!"];
+            
+        }
+            break;
+    }
+    
+    return message;
+
+}
+
+-(NSString*)getShareLink:(ShareType)type
+{
+    NSString* seetiesLink = @"https://seeties.me/";
+    NSString* subLink;
+    switch (type) {
+            
+        default:
+        case ShareTypeFacebookPost:
+        {
+            subLink = @"post/";
+            
         }
             break;
         case ShareTypeFacebookCollection:
         {
             subLink = @"collections/";
-            message = LocalisedString(@"I was checking this collection [collection title] on Seeties and I thought you might like to see it too.\n\n[post url]");
-            message = [message stringByReplacingOccurrencesOfString:@"[collection title]"
-                                                         withString:self.postTitle];
-            message = [message stringByReplacingOccurrencesOfString:@"[post url]"
-                                                         withString:@""];
+           
         }
             break;
         case ShareTypeFacebookPostUser:
         {
             subLink = @"/";
-            message = [NSString stringWithFormat:@"Check out my profile on Seeties!"];
-
+            
         }
             break;
     }
-    
-    NSString* finalLink = [NSString stringWithFormat:@"%@%@%@",seetiesLink,subLink,iDLink];
 
-    
-    FBSDKShareLinkContent *content = [[FBSDKShareLinkContent alloc] init];
-    content.contentURL = [NSURL URLWithString:finalLink];
-    content.contentDescription = self.postDescription;
-    content.contentTitle = self.postTitle;
-    content.imageURL = [NSURL URLWithString:@"http://www.wallpapereast.com/static/images/hd-computer-wallpapers.jpg"];
-    [FBSDKShareDialog showFromViewController:vc
-                                 withContent:content
-                                    delegate:nil];
-    
-    
-    
-    // Check if the Facebook app is installed and we can present the share dialog
-    _params = nil;
-    self.params = [[FBLinkShareParams alloc] init];
-    self.params.link = [NSURL URLWithString:message];
-    
-    
-    // If the Facebook app is installed and we can present the share dialog
-    if ([FBDialogs canPresentShareDialogWithParams:_params]) {
-        
-        // Present share dialog
-        [FBDialogs presentShareDialogWithLink:self.params.link
-                                      handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
-                                          if(error) {
-                                              // An error occurred, we need to handle the error
-                                              // See: https://developers.facebook.com/docs/ios/errors
-                                              NSLog(@"Error publishing story: %@", error.description);
-                                          } else {
-                                              // Success
-                                              NSLog(@"result %@", results);
-                                          }
-                                      }];
-        
-        // If the Facebook app is NOT installed and we can't present the share dialog
-    } else {
-        // FALLBACK: publish just a link using the Feed dialog
-        
-        // Put together the dialog parameters
-    
-        
-        NSDictionary* params = @{@"name":@"",
-                                 @"caption":caption,
-                                 @"description":self.postDescription,
-                                 @"link":message,
-                                 @"picture":@""};
-        
-        
-    }
+    NSString* finalLink = [NSString stringWithFormat:@"%@%@%@",seetiesLink,subLink,self.shareID];
+
+    return finalLink;
 }
-
 // A function for parsing URL parameters returned by the Feed Dialog.
 - (NSDictionary*)parseURLParams:(NSString *)query {
     NSArray *pairs = [query componentsSeparatedByString:@"&"];
@@ -126,5 +399,21 @@
         params[kv[0]] = val;
     }
     return params;
+}
+
+#pragma mark - ERROR MESSAGE
+
+-(void)showMessageForType
+{
+    [UIAlertView showWithTitle:LocalisedString(@"system")
+                       message:LocalisedString(@"App Not Installed")
+             cancelButtonTitle:LocalisedString(@"OK")
+             otherButtonTitles:nil
+                      tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                          if (buttonIndex == [alertView cancelButtonIndex]) {
+                              NSLog(@"Cancelled");
+                          }
+                      }];
+
 }
 @end

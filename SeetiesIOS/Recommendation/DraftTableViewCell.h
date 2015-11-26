@@ -16,6 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblSubtitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblDateTime;
 -(void)initData:(DraftModel*)model;
-
+@property(nonatomic,copy)IDBlock didDeleteAtIndexPath;
 @end
 

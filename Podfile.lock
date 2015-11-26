@@ -46,6 +46,7 @@ PODS:
   - JSONModel (1.1.2)
   - LPGoogleFunctions (1.2.3):
     - AFNetworking (~> 2.0)
+  - MGInstagram (0.1.0)
   - MGSwipeTableCell (1.5.1)
   - MZAppearance (1.1.6)
   - PureLayout (3.0.1)
@@ -73,6 +74,7 @@ DEPENDENCIES:
   - IQKeyboardManager
   - JSONModel
   - LPGoogleFunctions
+  - MGInstagram
   - MGSwipeTableCell
   - MZAppearance
   - PureLayout
@@ -109,6 +111,7 @@ SPEC CHECKSUMS:
   IQKeyboardManager: ac803e61e5b50efae6b3aeedd95a02c7c7d3b2b3
   JSONModel: 216584d0311b053ff714f1d6cb700dbf890847bc
   LPGoogleFunctions: c78171de55b164e8e5dbf6b4bba477980771211a
+  MGInstagram: c85a061e25b053ad1cb1227675e238ce6cc50221
   MGSwipeTableCell: a51fa670c01f0aa048f12af040acebf315223137
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb

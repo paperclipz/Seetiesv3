@@ -13,6 +13,7 @@
 
 typedef void (^IDBlock)(id object);
 typedef void (^IntBlock)(int count);
+typedef void (^IndexPathBlock)(NSIndexPath* indexPath);
 
 typedef void (^IErrorBlock)(id object);
 @interface ConnectionManager :NSObject

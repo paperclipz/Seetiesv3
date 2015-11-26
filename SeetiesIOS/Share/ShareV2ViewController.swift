@@ -25,7 +25,7 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
     var postTitle: String = ""
     var imageURL: String = ""
     var postURL: String = ""
-    var userID: String = ""
+    var shareID: String = ""
 
     var shareType:ShareType?
     var shareManager:ShareManager?
@@ -34,7 +34,11 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
 
     @IBAction func btnShareToFriendClicked(sender: AnyObject) {
         
-        self.navigationController!.pushViewController(shareToFrenVC, animated: true)
+      //  shareToFrenVC = ShareV2ViewController.init(nibName: "ShareToFrenViewController", bundle: nil)
+      //  self.navigationController!.pushViewController(shareToFrenVC, animated: true)
+        self.shareToFrenVC = ShareToFrenViewController(nibName: "ShareToFrenViewController", bundle: nil)
+        self.navigationController!.pushViewController(self.shareToFrenVC, animated: true)
+
     }
     
     @IBAction func btnBackClicked(sender: AnyObject) {
@@ -71,6 +75,7 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
         // Pass the selected object to the new view controller.
     }
     */
+    //MARK: - CollectionView Delegate
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return Images.count
@@ -85,22 +90,33 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
         
         return cell
     }
+    func collectionView(collectionView : UICollectionView,layout collectionViewLayout:UICollectionViewLayout,sizeForItemAtIndexPath indexPath:NSIndexPath) -> CGSize
+    {
+        
+        let cellDefaultWidth:CGFloat = 100
+        let cellDefaultHeight:CGFloat = 110
+
+        let screenFrame:CGRect = Utils.getDeviceScreenSize()
+        let cellWidth:CGFloat = ((screenFrame.size.width/3) - 15)
+        let cellSize = CGSizeMake(cellWidth,cellDefaultWidth/cellWidth*cellDefaultHeight)
+        return cellSize
+    }
     
     func initCollectionView()
     {
-        ibCollectionView.delegate = self;
-        ibCollectionView.dataSource = self;
-        ibCollectionView!.registerNib(UINib(nibName: "ShareV2CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ShareV2CollectionViewCell")
+       //ibCollectionView.delegate = self;
+        //self.ibCollectionView.dataSource = self;
+        self.ibCollectionView.registerNib(UINib(nibName: "ShareV2CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ShareV2CollectionViewCell")
     }
     
-    func share(postID:String, message:String,title:String, imagURL:String, shareType:ShareType, userID:String)
+    func share(postID:String, message:String,title:String, imagURL:String, shareType:ShareType, shareID:String)
     {
         self.postID = postID
         self.postMessage = message
         self.postTitle = title
         self.imageURL = imagURL
         self.shareType = shareType
-        self.userID = userID
+        self.shareID = shareID
     
     }
     
@@ -122,38 +138,40 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
     
     func shareFacebook()
     {
-      //  shareManager?.shareFacebook(self.postTitle, message: self.postMessage, shareType: ShareTypeFacebookPost, userID: self.userID, delegate: self)
+       // shareManager?.shareFacebook(self.postTitle, message: self.postMessage, shareType: ShareTypeFacebookPost, userID: self.userID, delegate: self)
+        shareManager?.shareFacebook(self.postTitle, message: self.postMessage, imageURL: self.imageURL, shareType: ShareTypeFacebookPost, shareID: self.shareID, delegate: self)
         //param.link = NSURL(string:postURL as String)
     }
     
     func shareInstagram()
     {
-    
+        shareManager?.shareOnInstagram(self.imageURL, delegate: self)
     }
     
     func shareLine()
     {
-    
+        shareManager?.shareOnLINE(self.postTitle, message: self.postMessage, imageURL: self.imageURL, shareType: ShareTypeFacebookCollection, shareID: self.shareID, delegate: self)
     }
     
     func shareMessanger()
     {
-    
+        shareManager?.shareOnMessanger(self.postTitle, message: self.postMessage, imageURL: self.imageURL, shareType: self.shareType!, shareID:self.shareID, delegate: self);
     }
     
     func shareWhatsapp()
     {
-    
+        shareManager?.shareOnWhatsapp(self.postTitle, message: self.postMessage, imageURL: self.imageURL, shareType: self.shareType!, shareID: self.shareID, delegate: self)
     }
     
     func shareCopyLink()
     {
+        shareManager?.shareWithCopyLink(self.shareType!, shareID: self.shareID, delegate: self)
     
     }
     
     func shareEmail()
     {
-        
+        shareManager?.shareOnEmail(self.shareType!, viewController: self,shareID: self.shareID)
     }
 
 }
