@@ -3496,7 +3496,7 @@
 
                     
                     NSInteger GetImageTotalCount = [SplitArray_ImageData count];
-                    NSInteger GetLastCount = GetImageTotalCount - 4;
+                    NSInteger GetLastCount = GetImageTotalCount - 3;
                     
                     if (GetLastCount == 0) {
                         

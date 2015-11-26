@@ -835,10 +835,12 @@
 - (void)tagsControl:(TLTagsControl *)tagsControl tappedAtIndex:(NSInteger)index
 {
     
+    NSString *TempTags = [[NSString alloc]initWithFormat:@"#%@",tagsControl.tags[index]];
+    
     _searchDetailViewController = nil;
     [self.navigationController pushViewController:self.searchDetailViewController animated:YES onCompletion:^{
         
-        [self.searchDetailViewController GetSearchKeyword:tagsControl.tags[index] Getlat:nil GetLong:nil GetLocationName:nil GetCurrentLat:nil GetCurrentLong:nil];
+        [self.searchDetailViewController GetSearchKeyword:TempTags Getlat:nil GetLong:nil GetLocationName:nil GetCurrentLat:nil GetCurrentLong:nil];
     }];
     NSLog(@"Tag \"%@\" was tapped", tagsControl.tags[index]);
 }
@@ -1036,7 +1038,7 @@
             BOOL following = [[returnDict objectForKey:@"following"] boolValue];
             colModel.following = following;
             [self.ibTableView reloadSectionDU:0 withRowAnimation:UITableViewRowAnimationAutomatic];
-            
+            [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success follow this collection" type:TSMessageNotificationTypeSuccess];
         } errorBlock:^(id object) {
             
         }];
@@ -1048,7 +1050,7 @@
             BOOL following = [[returnDict objectForKey:@"following"] boolValue];
             colModel.following = following;
             [self.ibTableView reloadSectionDU:0 withRowAnimation:UITableViewRowAnimationAutomatic];
-            
+            [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success unfollow this collection" type:TSMessageNotificationTypeSuccess];
         } errorBlock:^(id object) {
         }];
     }
@@ -1072,7 +1074,6 @@
             BOOL following = [[returnDict objectForKey:@"following"] boolValue];
             self.userProfileModel.following = following;
             [self setFollowButtonSelected:following button:self.btnFollow];
-            
             
         } errorBlock:^(id object) {
             
