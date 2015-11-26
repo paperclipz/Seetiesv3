@@ -135,8 +135,11 @@ if ([DescriptionText.text length] == 0) {
                 {
                     return YES;
                 }
+            }else if([[textView text] length] >= 300)
+            {
+                return NO;
             }
-                }
+        }
     }
     return YES;
 }
@@ -162,10 +165,7 @@ if ([DescriptionText.text length] == 0) {
     }else if(CheckStatus == 2){
     GetString = @"This post users copyrighted works without permission.";
     }
-    
-    
-    
-    
+
     //Server Address URL
     NSString *urlString = [NSString stringWithFormat:@"%@post/%@/flag",DataUrl.UserWallpaper_Url,GetPostID];
     NSLog(@"urlString is %@",urlString);
