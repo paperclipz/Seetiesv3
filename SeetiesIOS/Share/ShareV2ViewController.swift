@@ -66,8 +66,18 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
         self.view.bounds = CGRectMake(0, 0, Utils.getDeviceScreenSize().size.width, Utils.getDeviceScreenSize().size.height)
         self.view.setNeedsLayout()
         initCollectionView()
-        Images = ["ShareFBIcon.png","ShareIGIcon.png","ShareLineIcon.png","ShareMessangerIcon.png","ShareWhatsappIcon.png","ShareCopyLinkIcon.png","ShareEmailIcon.png"]
-        Titles = ["Facebook","Instagram","LINE","Messenger","Whatsapp","Copy Link","Email"]
+        
+        if(self.shareType == ShareTypeFacebookPost)
+        {
+            Images = ["ShareFBIcon.png","ShareIGIcon.png","ShareLineIcon.png","ShareMessangerIcon.png","ShareWhatsappIcon.png","ShareCopyLinkIcon.png","ShareEmailIcon.png"]
+            Titles = ["Facebook","Instagram","LINE","Messenger","Whatsapp","Copy Link","Email"]
+        }
+        else
+        {
+            Images = ["ShareFBIcon.png","ShareLineIcon.png","ShareMessangerIcon.png","ShareWhatsappIcon.png","ShareCopyLinkIcon.png","ShareEmailIcon.png"]
+            Titles = ["Facebook","LINE","Messenger","Whatsapp","Copy Link","Email"]
+        }
+      
     }
     
   

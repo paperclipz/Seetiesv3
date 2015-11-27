@@ -28,16 +28,21 @@
 
 -(void)initSelfView
 {
-    [self.ibImageView sd_setImageWithURL:[NSURL URLWithString:@"http://www.hdwallpaperbackgrounds.org/photo/1366685048731_[hdwallpaperbackgrounds.org].jpg"]];
+    [self.ibImageView sd_setImageWithURL:[NSURL URLWithString:@"http://www.hdwallpaperbackgrounds.org/photo/1366685048731_[hdwallpaperbackgrounds.org].jpg"]completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+       
+        
+        self.ibImageView.image = [image imageCroppedAndScaledToSize:self.ibImageView.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
+
+    }];
+    
     [Utils setRoundBorder:self.ibImageView color:[UIColor clearColor] borderRadius:DEFAULT_BORDER_RADIUS borderWidth:0];
     
 }
 
+
 -(void)setDescription:(NSString*)text userName:(NSString*)name
 {
-    NSString* combineText = [NSString stringWithFormat:@"%@ : %@",name,text];
-    
-    
+    NSString* combineText = [NSString stringWithFormat:@"%@ : %@",name,text];    
     
     UIFont* fnt = [UIFont fontWithName:CustomFontNameBold size:17];
     UIFont* fnt2 = [UIFont fontWithName:CustomFontName size:17];

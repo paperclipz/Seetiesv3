@@ -15,13 +15,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1.png" translatesAutoresizingMaskIntoConstraints="NO" id="rsZ-ju-Vw2">
-                        <rect key="frame" x="0.0" y="0.0" width="100" height="84"/>
+                        <rect key="frame" x="5" y="0.0" width="90" height="80"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="84" id="r0u-I6-Vyt"/>
+                            <constraint firstAttribute="height" constant="80" id="r0u-I6-Vyt"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7lp-H2-57V">
-                        <rect key="frame" x="0.0" y="82" width="100" height="21"/>
+                        <rect key="frame" x="0.0" y="81" width="100" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="5aA-hC-PpP"/>
                         </constraints>
@@ -34,14 +34,20 @@
             </view>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="rsZ-ju-Vw2" secondAttribute="trailing" id="Lzc-LQ-qaT"/>
+                <constraint firstAttribute="trailing" secondItem="rsZ-ju-Vw2" secondAttribute="trailing" constant="5" id="Lzc-LQ-qaT"/>
                 <constraint firstAttribute="bottom" secondItem="7lp-H2-57V" secondAttribute="bottom" constant="7" id="XX9-jR-ykc"/>
                 <constraint firstAttribute="trailing" secondItem="7lp-H2-57V" secondAttribute="trailing" id="Yft-ht-2gw"/>
                 <constraint firstItem="rsZ-ju-Vw2" firstAttribute="top" secondItem="oWB-aw-6Ll" secondAttribute="top" id="bLj-Ft-cJT"/>
+                <constraint firstItem="7lp-H2-57V" firstAttribute="top" secondItem="rsZ-ju-Vw2" secondAttribute="bottom" constant="1" id="fEb-4j-sDd"/>
                 <constraint firstItem="7lp-H2-57V" firstAttribute="leading" secondItem="oWB-aw-6Ll" secondAttribute="leading" id="usF-Wi-bZv"/>
-                <constraint firstItem="rsZ-ju-Vw2" firstAttribute="leading" secondItem="oWB-aw-6Ll" secondAttribute="leading" id="y2T-hh-jTl"/>
+                <constraint firstItem="rsZ-ju-Vw2" firstAttribute="leading" secondItem="oWB-aw-6Ll" secondAttribute="leading" constant="5" id="y2T-hh-jTl"/>
             </constraints>
             <size key="customSize" width="117" height="101"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="XX9-jR-ykc"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="ibImageView" destination="rsZ-ju-Vw2" id="e4x-Cx-Yah"/>
                 <outlet property="lblTitle" destination="7lp-H2-57V" id="Kz5-8z-BSV"/>

@@ -23,6 +23,9 @@
     __weak IBOutlet UIView *ibPrivacyView;
     __weak IBOutlet UILabel *lblSetAsPublicDesc;
 }
+@property (weak, nonatomic) IBOutlet UIView *ibTagsBorderView;
+@property (weak, nonatomic) IBOutlet UILabel *lblTagSuggestions;
+@property (weak, nonatomic) IBOutlet UILabel *lblTags;
 @property (weak, nonatomic) IBOutlet UILabel *lblWordCountTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblWordCountDesc;
 @property (weak, nonatomic) IBOutlet UITextField *txtName;
@@ -97,7 +100,7 @@
 #define CELL_PADDING 10
 -(void)initSelfView
 {
-    
+    [Utils setRoundBorder:self.ibTagsBorderView color:LINE_COLOR borderRadius:5.0f borderWidth:1.0f];
     [self.txtName addTarget:self
                       action:@selector(textFieldDidChange:)
             forControlEvents:UIControlEventEditingChanged];
@@ -274,6 +277,7 @@
     EditTagCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"EditTagCollectionViewCell" forIndexPath:indexPath];
     
     cell.lblTitle.text = self.tagList[indexPath.row];
+    [cell setCustomView:(int)indexPath.row];
     return cell;
 }
 
@@ -336,7 +340,8 @@
     self.txtDesc.placeholder = LocalisedString(@"eg: Top 10 coffee hideouts in KL, Best spas in Bangkok");
     lblSetAsPublic.text = LocalisedString(@"Set as public");
     lblSetAsPublicDesc.text = LocalisedString(@"You will not be able to change your privacy settings for this collection once it goes public.");
-
+    self.lblTags.text = LocalisedString(@"Tags");
+    self.lblTagSuggestions.text = LocalisedString(@"Tap Suggestions to add into your tags");
 }
 
 #pragma mark - Request Server

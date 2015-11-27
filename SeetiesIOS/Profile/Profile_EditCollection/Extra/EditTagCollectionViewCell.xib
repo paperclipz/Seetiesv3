@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -25,27 +25,27 @@
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="BigAddIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="XdM-dI-NoP">
-                                <rect key="frame" x="136" y="8" width="25" height="25"/>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="BigAddIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="XdM-dI-NoP">
+                                <rect key="frame" x="137" y="4" width="32" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="AWI-Ha-bcP"/>
-                                    <constraint firstAttribute="width" constant="25" id="bvG-4K-Z1l"/>
+                                    <constraint firstAttribute="height" constant="32" id="AWI-Ha-bcP"/>
+                                    <constraint firstAttribute="width" constant="32" id="bvG-4K-Z1l"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="0Bn-A5-BsW" firstAttribute="leading" secondItem="8nN-DA-Fsf" secondAttribute="leading" constant="8" id="HCt-Yr-wYR"/>
-                            <constraint firstAttribute="trailing" secondItem="XdM-dI-NoP" secondAttribute="trailing" constant="8" id="Kcp-aE-Tb6"/>
-                            <constraint firstItem="XdM-dI-NoP" firstAttribute="top" secondItem="8nN-DA-Fsf" secondAttribute="top" constant="8" id="Oxq-5c-spx"/>
-                            <constraint firstItem="XdM-dI-NoP" firstAttribute="leading" secondItem="0Bn-A5-BsW" secondAttribute="trailing" constant="3" id="Q0M-ln-ccG"/>
+                            <constraint firstAttribute="trailing" secondItem="XdM-dI-NoP" secondAttribute="trailing" id="Kcp-aE-Tb6"/>
+                            <constraint firstItem="XdM-dI-NoP" firstAttribute="top" secondItem="8nN-DA-Fsf" secondAttribute="top" constant="4" id="Oxq-5c-spx"/>
+                            <constraint firstItem="XdM-dI-NoP" firstAttribute="leading" secondItem="0Bn-A5-BsW" secondAttribute="trailing" constant="4" id="Q0M-ln-ccG"/>
                             <constraint firstItem="0Bn-A5-BsW" firstAttribute="centerY" secondItem="XdM-dI-NoP" secondAttribute="centerY" id="TaN-MK-a6j"/>
                         </constraints>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="8nN-DA-Fsf" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="692-yX-WtT"/>
                 <constraint firstItem="8nN-DA-Fsf" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Erw-Ms-W9e"/>

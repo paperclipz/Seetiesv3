@@ -8,7 +8,9 @@
 
 #import "TLTagsControl.h"
 
-#define MAX_TAG_COUNT 30
+#define MAX_TAG_CHARACTER_COUNT 30
+#define MAX_TAG_LIMIT_COUNT 20
+
 @interface TLTagsControl () <UITextFieldDelegate, UIGestureRecognizerDelegate>
 
 @end
@@ -73,7 +75,7 @@
 }
 
 - (void)commonInit {
-    self.maxWordLimit = MAX_TAG_COUNT;
+    self.maxWordLimit = MAX_TAG_CHARACTER_COUNT;
     _tags = [NSMutableArray array];
     
     self.layer.cornerRadius = 5;
@@ -88,6 +90,9 @@
     tagInputField_.font = [UIFont fontWithName:CustomFontName size:12];
     tagInputField_.placeholder = @"tag";
     tagInputField_.autocorrectionType = UITextAutocorrectionTypeNo;
+    [tagInputField_ addTarget:self
+                     action:@selector(textFieldDidChange:)
+           forControlEvents:UIControlEventEditingChanged];
     
     if (_mode == TLTagsControlModeEdit) {
         [self addSubview:tagInputField_];
@@ -162,11 +167,22 @@
     tagInputField_.placeholder = (_tagPlaceholder == nil) ? @"tag" : _tagPlaceholder;
 }
 
+-(void)validateTag
+{
+
+}
+
 - (void)addTag:(NSString *)tag {
     for (NSString *oldTag in _tags) {
         if ([oldTag isEqualToString:tag]) {
+            
             return;
         }
+    }
+    
+    // max number of tags
+    if (self.tags.count >= MAX_TAG_LIMIT_COUNT) {
+        return;
     }
     
     [_tags addObject:tag];
@@ -422,19 +438,20 @@
     
     return YES;
 }
+- (void)textFieldDidChange:(UITextField *)textField
+{
+    if (textField.text.length>=self.maxWordLimit) {
+        
+        NSString *currentString = [textField.text substringWithRange:NSMakeRange(0, textField.text.length>=self.maxWordLimit?self.maxWordLimit:textField.text.length)];
+        
+        textField.text = currentString;
+    }
+}
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSString *resultingString;
     NSString *text = textField.text;
     
-    
-    if (text.length >= self.maxWordLimit) {
-        
-        if ([string isEqualToString:@" "]) {
-            [self textFieldShouldReturn:textField];
-        }
-        return NO;
-    }
     
     if ([string isEqualToString:@" "]) {
         [self textFieldShouldReturn:textField];

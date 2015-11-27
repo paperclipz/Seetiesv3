@@ -10,5 +10,6 @@
 
 @interface EditTagCollectionViewCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+-(void)setCustomView:(int)index;
 
 @end

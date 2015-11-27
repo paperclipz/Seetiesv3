@@ -22,6 +22,9 @@
     IBOutlet UIButton *MainLine;
     IBOutlet UIActivityIndicatorView *ShowActivity;
     IBOutlet UITableView *SearchTblView;
+    AsyncImageView *TopCollectionImage;
+    NSArray* imageArray;
+    int varietyImageAnimationIndex;
 }
 @property(nonatomic,strong)ExploreCountryModels* exploreCountryModels;
 
@@ -410,18 +413,44 @@
     
     [ShowActivity stopAnimating];
 }
+
+-(void)animateImages
+{
+    varietyImageAnimationIndex++;
+    
+    [UIView transitionWithView:TopCollectionImage
+                      duration:3.0f
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+                        TopCollectionImage.image = [imageArray objectAtIndex:varietyImageAnimationIndex % [imageArray count]];
+                    } completion:^(BOOL finished) {
+                        [self animateImages];
+                    }];
+}
+
 -(void)InitContentView{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
     
     //top collection
-    AsyncImageView *TopCollectionImage = [[AsyncImageView alloc]init];
+    TopCollectionImage = [[AsyncImageView alloc]init];
     TopCollectionImage.frame = CGRectMake(0, 0, screenWidth, 354);
     TopCollectionImage.contentMode = UIViewContentModeScaleAspectFill;
     TopCollectionImage.layer.masksToBounds = YES;
+    
+    //======== animated GIF
+    varietyImageAnimationIndex = 0;
     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:TopCollectionImage];
-    TopCollectionImage.image = [UIImage imageNamed:@"ExploreTopImg@.png"];
+    imageArray = @[[UIImage imageNamed:@"ExploreCollectionImg1.png"],[UIImage imageNamed:@"ExploreCollectionImg2.png"],[UIImage imageNamed:@"ExploreCollectionImg3.png"]];
+  
+    [self animateImages];
+    UIImageView* overlay = [[UIImageView alloc]initWithFrame:TopCollectionImage.frame];
+    overlay.image = [UIImage imageNamed:@"CollectionImgOverlay.png"];
     [ibScrollViewCountry addSubview:TopCollectionImage];
+    [ibScrollViewCountry addSubview:overlay];
+
+    // image view cross fade
+    
     
 //    UIImageView *ShowOverlayImg = [[UIImageView alloc]init];
 //    ShowOverlayImg.image = [UIImage imageNamed:@"ExploreImgOverlay.png"];
