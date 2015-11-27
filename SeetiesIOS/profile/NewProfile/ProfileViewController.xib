@@ -45,7 +45,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </scrollView>
             </subviews>
-            <color key="backgroundColor" red="0.9137254901960784" green="0.92941176470588238" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="pdp-kG-bwS" secondAttribute="trailing" id="FQX-jW-uSY"/>
                 <constraint firstAttribute="bottom" secondItem="pdp-kG-bwS" secondAttribute="bottom" constant="50" id="MZD-ti-Dp0"/>

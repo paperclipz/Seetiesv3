@@ -729,20 +729,6 @@
 		8A7365111C0849AB00A64824 /* GoToEnd@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A7362F91C0849AB00A64824 /* GoToEnd@3x.png */; };
 		8A7365121C0849AB00A64824 /* SelectPhotoArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A7362FA1C0849AB00A64824 /* SelectPhotoArrow@2x.png */; };
 		8A7365131C0849AB00A64824 /* SelectPhotoArrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A7362FB1C0849AB00A64824 /* SelectPhotoArrow@3x.png */; };
-		8A7365141C0849AB00A64824 /* ShareCopyLinkIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A7362FD1C0849AB00A64824 /* ShareCopyLinkIcon@2x.png */; };
-		8A7365151C0849AB00A64824 /* ShareCopyLinkIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A7362FE1C0849AB00A64824 /* ShareCopyLinkIcon@3x.png */; };
-		8A7365161C0849AB00A64824 /* ShareEmailIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A7362FF1C0849AB00A64824 /* ShareEmailIcon@2x.png */; };
-		8A7365171C0849AB00A64824 /* ShareEmailIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A7363001C0849AB00A64824 /* ShareEmailIcon@3x.png */; };
-		8A7365181C0849AB00A64824 /* ShareFBIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A7363011C0849AB00A64824 /* ShareFBIcon@2x.png */; };
-		8A7365191C0849AB00A64824 /* ShareFBIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A7363021C0849AB00A64824 /* ShareFBIcon@3x.png */; };
-		8A73651A1C0849AB00A64824 /* ShareIGIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A7363031C0849AB00A64824 /* ShareIGIcon@2x.png */; };
-		8A73651B1C0849AB00A64824 /* ShareIGIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A7363041C0849AB00A64824 /* ShareIGIcon@3x.png */; };
-		8A73651C1C0849AB00A64824 /* ShareLineIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A7363051C0849AB00A64824 /* ShareLineIcon@2x.png */; };
-		8A73651D1C0849AB00A64824 /* ShareLineIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A7363061C0849AB00A64824 /* ShareLineIcon@3x.png */; };
-		8A73651E1C0849AB00A64824 /* ShareMessangerIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A7363071C0849AB00A64824 /* ShareMessangerIcon@2x.png */; };
-		8A73651F1C0849AB00A64824 /* ShareMessangerIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A7363081C0849AB00A64824 /* ShareMessangerIcon@3x.png */; };
-		8A7365201C0849AB00A64824 /* ShareWhatsappIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A7363091C0849AB00A64824 /* ShareWhatsappIcon@2x.png */; };
-		8A7365211C0849AB00A64824 /* ShareWhatsappIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A73630A1C0849AB00A64824 /* ShareWhatsappIcon@3x.png */; };
 		8A7365221C0849AB00A64824 /* BahasaIndonesia.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A73630C1C0849AB00A64824 /* BahasaIndonesia.png */; };
 		8A7365231C0849AB00A64824 /* English.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A73630D1C0849AB00A64824 /* English.png */; };
 		8A7365241C0849AB00A64824 /* SimplifiedChinese.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A73630E1C0849AB00A64824 /* SimplifiedChinese.png */; };
@@ -775,6 +761,22 @@
 		8A73653F1C0849AB00A64824 /* WalkthroughFeed2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A73632B1C0849AB00A64824 /* WalkthroughFeed2.png */; };
 		8A7365401C0849AB00A64824 /* WalkthroughPost.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A73632C1C0849AB00A64824 /* WalkthroughPost.png */; };
 		8A7365411C0849AB00A64824 /* WalkthroughPostDetails.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A73632D1C0849AB00A64824 /* WalkthroughPostDetails.png */; };
+		8A7365531C0858D500A64824 /* BlackBack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A7365431C0858D500A64824 /* BlackBack@2x.png */; };
+		8A7365541C0858D500A64824 /* BlackBack@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A7365441C0858D500A64824 /* BlackBack@3x.png */; };
+		8A7365551C0858D500A64824 /* ShareCopyLinkIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A7365451C0858D500A64824 /* ShareCopyLinkIcon@2x.png */; };
+		8A7365561C0858D500A64824 /* ShareCopyLinkIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A7365461C0858D500A64824 /* ShareCopyLinkIcon@3x.png */; };
+		8A7365571C0858D500A64824 /* ShareEmailIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A7365471C0858D500A64824 /* ShareEmailIcon@2x.png */; };
+		8A7365581C0858D500A64824 /* ShareEmailIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A7365481C0858D500A64824 /* ShareEmailIcon@3x.png */; };
+		8A7365591C0858D500A64824 /* ShareFBIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A7365491C0858D500A64824 /* ShareFBIcon@2x.png */; };
+		8A73655A1C0858D500A64824 /* ShareFBIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A73654A1C0858D500A64824 /* ShareFBIcon@3x.png */; };
+		8A73655B1C0858D500A64824 /* ShareIGIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A73654B1C0858D500A64824 /* ShareIGIcon@2x.png */; };
+		8A73655C1C0858D500A64824 /* ShareIGIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A73654C1C0858D500A64824 /* ShareIGIcon@3x.png */; };
+		8A73655D1C0858D500A64824 /* ShareLineIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A73654D1C0858D500A64824 /* ShareLineIcon@2x.png */; };
+		8A73655E1C0858D500A64824 /* ShareLineIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A73654E1C0858D500A64824 /* ShareLineIcon@3x.png */; };
+		8A73655F1C0858D500A64824 /* ShareMessangerIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A73654F1C0858D500A64824 /* ShareMessangerIcon@2x.png */; };
+		8A7365601C0858D500A64824 /* ShareMessangerIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A7365501C0858D500A64824 /* ShareMessangerIcon@3x.png */; };
+		8A7365611C0858D500A64824 /* ShareWhatsappIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A7365511C0858D500A64824 /* ShareWhatsappIcon@2x.png */; };
+		8A7365621C0858D500A64824 /* ShareWhatsappIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A7365521C0858D500A64824 /* ShareWhatsappIcon@3x.png */; };
 		8A7420EC1B82F7D5005DA654 /* LoadingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7420EB1B82F7D5005DA654 /* LoadingManager.m */; };
 		8A7B9CE01BBD387000D7F604 /* EnbleLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7B9CDE1BBD387000D7F604 /* EnbleLocationViewController.m */; };
 		8A7B9CE11BBD387000D7F604 /* EnbleLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A7B9CDF1BBD387000D7F604 /* EnbleLocationViewController.xib */; };
@@ -1952,20 +1954,6 @@
 		8A7362F91C0849AB00A64824 /* GoToEnd@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GoToEnd@3x.png"; sourceTree = "<group>"; };
 		8A7362FA1C0849AB00A64824 /* SelectPhotoArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SelectPhotoArrow@2x.png"; sourceTree = "<group>"; };
 		8A7362FB1C0849AB00A64824 /* SelectPhotoArrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SelectPhotoArrow@3x.png"; sourceTree = "<group>"; };
-		8A7362FD1C0849AB00A64824 /* ShareCopyLinkIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareCopyLinkIcon@2x.png"; sourceTree = "<group>"; };
-		8A7362FE1C0849AB00A64824 /* ShareCopyLinkIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareCopyLinkIcon@3x.png"; sourceTree = "<group>"; };
-		8A7362FF1C0849AB00A64824 /* ShareEmailIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareEmailIcon@2x.png"; sourceTree = "<group>"; };
-		8A7363001C0849AB00A64824 /* ShareEmailIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareEmailIcon@3x.png"; sourceTree = "<group>"; };
-		8A7363011C0849AB00A64824 /* ShareFBIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareFBIcon@2x.png"; sourceTree = "<group>"; };
-		8A7363021C0849AB00A64824 /* ShareFBIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareFBIcon@3x.png"; sourceTree = "<group>"; };
-		8A7363031C0849AB00A64824 /* ShareIGIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareIGIcon@2x.png"; sourceTree = "<group>"; };
-		8A7363041C0849AB00A64824 /* ShareIGIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareIGIcon@3x.png"; sourceTree = "<group>"; };
-		8A7363051C0849AB00A64824 /* ShareLineIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareLineIcon@2x.png"; sourceTree = "<group>"; };
-		8A7363061C0849AB00A64824 /* ShareLineIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareLineIcon@3x.png"; sourceTree = "<group>"; };
-		8A7363071C0849AB00A64824 /* ShareMessangerIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareMessangerIcon@2x.png"; sourceTree = "<group>"; };
-		8A7363081C0849AB00A64824 /* ShareMessangerIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareMessangerIcon@3x.png"; sourceTree = "<group>"; };
-		8A7363091C0849AB00A64824 /* ShareWhatsappIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareWhatsappIcon@2x.png"; sourceTree = "<group>"; };
-		8A73630A1C0849AB00A64824 /* ShareWhatsappIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareWhatsappIcon@3x.png"; sourceTree = "<group>"; };
 		8A73630C1C0849AB00A64824 /* BahasaIndonesia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BahasaIndonesia.png; sourceTree = "<group>"; };
 		8A73630D1C0849AB00A64824 /* English.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = English.png; sourceTree = "<group>"; };
 		8A73630E1C0849AB00A64824 /* SimplifiedChinese.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SimplifiedChinese.png; sourceTree = "<group>"; };
@@ -1998,6 +1986,22 @@
 		8A73632B1C0849AB00A64824 /* WalkthroughFeed2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WalkthroughFeed2.png; sourceTree = "<group>"; };
 		8A73632C1C0849AB00A64824 /* WalkthroughPost.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WalkthroughPost.png; sourceTree = "<group>"; };
 		8A73632D1C0849AB00A64824 /* WalkthroughPostDetails.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WalkthroughPostDetails.png; sourceTree = "<group>"; };
+		8A7365431C0858D500A64824 /* BlackBack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BlackBack@2x.png"; sourceTree = "<group>"; };
+		8A7365441C0858D500A64824 /* BlackBack@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BlackBack@3x.png"; sourceTree = "<group>"; };
+		8A7365451C0858D500A64824 /* ShareCopyLinkIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareCopyLinkIcon@2x.png"; sourceTree = "<group>"; };
+		8A7365461C0858D500A64824 /* ShareCopyLinkIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareCopyLinkIcon@3x.png"; sourceTree = "<group>"; };
+		8A7365471C0858D500A64824 /* ShareEmailIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareEmailIcon@2x.png"; sourceTree = "<group>"; };
+		8A7365481C0858D500A64824 /* ShareEmailIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareEmailIcon@3x.png"; sourceTree = "<group>"; };
+		8A7365491C0858D500A64824 /* ShareFBIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareFBIcon@2x.png"; sourceTree = "<group>"; };
+		8A73654A1C0858D500A64824 /* ShareFBIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareFBIcon@3x.png"; sourceTree = "<group>"; };
+		8A73654B1C0858D500A64824 /* ShareIGIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareIGIcon@2x.png"; sourceTree = "<group>"; };
+		8A73654C1C0858D500A64824 /* ShareIGIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareIGIcon@3x.png"; sourceTree = "<group>"; };
+		8A73654D1C0858D500A64824 /* ShareLineIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareLineIcon@2x.png"; sourceTree = "<group>"; };
+		8A73654E1C0858D500A64824 /* ShareLineIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareLineIcon@3x.png"; sourceTree = "<group>"; };
+		8A73654F1C0858D500A64824 /* ShareMessangerIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareMessangerIcon@2x.png"; sourceTree = "<group>"; };
+		8A7365501C0858D500A64824 /* ShareMessangerIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareMessangerIcon@3x.png"; sourceTree = "<group>"; };
+		8A7365511C0858D500A64824 /* ShareWhatsappIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareWhatsappIcon@2x.png"; sourceTree = "<group>"; };
+		8A7365521C0858D500A64824 /* ShareWhatsappIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareWhatsappIcon@3x.png"; sourceTree = "<group>"; };
 		8A7420EA1B82F7D5005DA654 /* LoadingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingManager.h; sourceTree = "<group>"; };
 		8A7420EB1B82F7D5005DA654 /* LoadingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingManager.m; sourceTree = "<group>"; };
 		8A7B9CDD1BBD387000D7F604 /* EnbleLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnbleLocationViewController.h; sourceTree = "<group>"; };
@@ -3466,7 +3470,7 @@
 				8A7362A31C0849AA00A64824 /* Profile */,
 				8A7362E01C0849AB00A64824 /* Search */,
 				8A7362F31C0849AB00A64824 /* Select Photos */,
-				8A7362FC1C0849AB00A64824 /* Share */,
+				8A7365421C0858D500A64824 /* Share */,
 				8A73630B1C0849AB00A64824 /* SR img */,
 				8A7363111C0849AB00A64824 /* Tab Bar */,
 				8A7363281C0849AB00A64824 /* Walkthrough */,
@@ -4114,27 +4118,6 @@
 			path = "Select Photos";
 			sourceTree = "<group>";
 		};
-		8A7362FC1C0849AB00A64824 /* Share */ = {
-			isa = PBXGroup;
-			children = (
-				8A7362FD1C0849AB00A64824 /* ShareCopyLinkIcon@2x.png */,
-				8A7362FE1C0849AB00A64824 /* ShareCopyLinkIcon@3x.png */,
-				8A7362FF1C0849AB00A64824 /* ShareEmailIcon@2x.png */,
-				8A7363001C0849AB00A64824 /* ShareEmailIcon@3x.png */,
-				8A7363011C0849AB00A64824 /* ShareFBIcon@2x.png */,
-				8A7363021C0849AB00A64824 /* ShareFBIcon@3x.png */,
-				8A7363031C0849AB00A64824 /* ShareIGIcon@2x.png */,
-				8A7363041C0849AB00A64824 /* ShareIGIcon@3x.png */,
-				8A7363051C0849AB00A64824 /* ShareLineIcon@2x.png */,
-				8A7363061C0849AB00A64824 /* ShareLineIcon@3x.png */,
-				8A7363071C0849AB00A64824 /* ShareMessangerIcon@2x.png */,
-				8A7363081C0849AB00A64824 /* ShareMessangerIcon@3x.png */,
-				8A7363091C0849AB00A64824 /* ShareWhatsappIcon@2x.png */,
-				8A73630A1C0849AB00A64824 /* ShareWhatsappIcon@3x.png */,
-			);
-			path = Share;
-			sourceTree = "<group>";
-		};
 		8A73630B1C0849AB00A64824 /* SR img */ = {
 			isa = PBXGroup;
 			children = (
@@ -4186,6 +4169,29 @@
 				8A73632D1C0849AB00A64824 /* WalkthroughPostDetails.png */,
 			);
 			path = Walkthrough;
+			sourceTree = "<group>";
+		};
+		8A7365421C0858D500A64824 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				8A7365431C0858D500A64824 /* BlackBack@2x.png */,
+				8A7365441C0858D500A64824 /* BlackBack@3x.png */,
+				8A7365451C0858D500A64824 /* ShareCopyLinkIcon@2x.png */,
+				8A7365461C0858D500A64824 /* ShareCopyLinkIcon@3x.png */,
+				8A7365471C0858D500A64824 /* ShareEmailIcon@2x.png */,
+				8A7365481C0858D500A64824 /* ShareEmailIcon@3x.png */,
+				8A7365491C0858D500A64824 /* ShareFBIcon@2x.png */,
+				8A73654A1C0858D500A64824 /* ShareFBIcon@3x.png */,
+				8A73654B1C0858D500A64824 /* ShareIGIcon@2x.png */,
+				8A73654C1C0858D500A64824 /* ShareIGIcon@3x.png */,
+				8A73654D1C0858D500A64824 /* ShareLineIcon@2x.png */,
+				8A73654E1C0858D500A64824 /* ShareLineIcon@3x.png */,
+				8A73654F1C0858D500A64824 /* ShareMessangerIcon@2x.png */,
+				8A7365501C0858D500A64824 /* ShareMessangerIcon@3x.png */,
+				8A7365511C0858D500A64824 /* ShareWhatsappIcon@2x.png */,
+				8A7365521C0858D500A64824 /* ShareWhatsappIcon@3x.png */,
+			);
+			path = Share;
 			sourceTree = "<group>";
 		};
 		8A8475321BC52D0D006DD614 /* SystemOverride */ = {
@@ -5192,7 +5198,6 @@
 				8A7364411C0849AB00A64824 /* ArtIcon@3x.png in Resources */,
 				8A7363DC1C0849AB00A64824 /* ExploreFollow@3x.png in Resources */,
 				8A7364511C0849AB00A64824 /* LocalIcon@3x.png in Resources */,
-				8A7365161C0849AB00A64824 /* ShareEmailIcon@2x.png in Resources */,
 				8A7363551C0849AB00A64824 /* CollectionFolderIcon@3x.png in Resources */,
 				0BBFE08D1B9FCC00004B17E9 /* EditProfileViewController.xib in Resources */,
 				8A73648F1C0849AB00A64824 /* WrongFill@3x.png in Resources */,
@@ -5228,6 +5233,7 @@
 				8A7363991C0849AB00A64824 /* AddIcon@3x.png in Resources */,
 				8A7364F61C0849AB00A64824 /* ViewIcon@2x.png in Resources */,
 				8A3757B81B847C7A009DB7D4 /* AddNewPlaceViewController.xib in Resources */,
+				8A7365551C0858D500A64824 /* ShareCopyLinkIcon@2x.png in Resources */,
 				8A7363B51C0849AB00A64824 /* BrithdayIcon@3x.png in Resources */,
 				8A7363441C0849AB00A64824 /* Icon-Small-50.png in Resources */,
 				8A7363721C0849AB00A64824 /* GridViewActive@2x.png in Resources */,
@@ -5263,7 +5269,6 @@
 				8A73641E1C0849AB00A64824 /* LocationpinIcon@3x.png in Resources */,
 				8A7364191C0849AB00A64824 /* LikedIcon@2x.png in Resources */,
 				8AD6C1181B706CF30040437E /* pin.png in Resources */,
-				8A7365141C0849AB00A64824 /* ShareCopyLinkIcon@2x.png in Resources */,
 				8A73633F1C0849AB00A64824 /* Icon-76.png in Resources */,
 				8AD6BE581B706CF30040437E /* DoAlbumCell.xib in Resources */,
 				8A7364E71C0849AB00A64824 /* ProfileExpand@3x.png in Resources */,
@@ -5290,6 +5295,7 @@
 				8A7364EB1C0849AB00A64824 /* ProfileFollowingIcon@3x.png in Resources */,
 				8AD6C11B1B706CF30040437E /* poweredByFoursquare_gray@2x.png in Resources */,
 				8A7363C81C0849AB00A64824 /* CollectionNoPost@2x.png in Resources */,
+				8A73655C1C0858D500A64824 /* ShareIGIcon@3x.png in Resources */,
 				8A73649D1C0849AB00A64824 /* BlueLink@3x.png in Resources */,
 				8AD6C0C11B706CF30040437E /* FeedV2ViewController.xib in Resources */,
 				8A7363941C0849AB00A64824 /* DraftsIcon@2x.png in Resources */,
@@ -5299,11 +5305,11 @@
 				8A7364E91C0849AB00A64824 /* ProfileFollowIcon@3x.png in Resources */,
 				8AD6C2A61B7072FB0040437E /* ShowImageViewController.xib in Resources */,
 				8A7364D91C0849AB00A64824 /* NoCollectionIcon@3x.png in Resources */,
-				8A73651C1C0849AB00A64824 /* ShareLineIcon@2x.png in Resources */,
 				8A7364BA1C0849AB00A64824 /* PreviewPhotoBlackOverlay@2x.png in Resources */,
 				8A3F35691BF5E89D002B704C /* SuggestedCollectionPostTableViewCell.xib in Resources */,
 				8A7364041C0849AB00A64824 /* Distance2Icon@3x.png in Resources */,
 				8A7363471C0849AB00A64824 /* Icon-Small@2x.png in Resources */,
+				8A73655E1C0858D500A64824 /* ShareLineIcon@3x.png in Resources */,
 				8A7364CA1C0849AB00A64824 /* FollowBtn@2x.png in Resources */,
 				8AD6C0C71B706CF30040437E /* NearByRecommtationViewController.xib in Resources */,
 				8A73647F1C0849AB00A64824 /* EyesCheck@3x.png in Resources */,
@@ -5382,6 +5388,7 @@
 				8A73637F1C0849AB00A64824 /* NoPhotoInCollection@3x.png in Resources */,
 				8A7364C01C0849AB00A64824 /* CollectionIcon@2x.png in Resources */,
 				8A7363691C0849AB00A64824 /* FollowingCollectionBahasaIndoIcon@3x.png in Resources */,
+				8A7365621C0858D500A64824 /* ShareWhatsappIcon@3x.png in Resources */,
 				8A73643A1C0849AB00A64824 /* OtherLogo@2x.png in Resources */,
 				8A7365071C0849AB00A64824 /* TimeIcon@3x.png in Resources */,
 				8A73637C1C0849AB00A64824 /* MoreBtn@2x.png in Resources */,
@@ -5398,6 +5405,8 @@
 				8A7363AB1C0849AB00A64824 /* LocationBtn@3x.png in Resources */,
 				8A7364651C0849AB00A64824 /* InstagramBtnActive@3x.png in Resources */,
 				8A7364D71C0849AB00A64824 /* NewPostsIcon@3x.png in Resources */,
+				8A73655B1C0858D500A64824 /* ShareIGIcon@2x.png in Resources */,
+				8A7365581C0858D500A64824 /* ShareEmailIcon@3x.png in Resources */,
 				8A9F25E31B90414800BB13BA /* EditPostDetailVIew.xib in Resources */,
 				8A7363831C0849AB00A64824 /* ShareBase@3x.png in Resources */,
 				8A73632F1C0849AB00A64824 /* BackIcon@3x.png in Resources */,
@@ -5428,6 +5437,7 @@
 				8AD6C0DB1B706CF30040437E /* PTnCViewController.xib in Resources */,
 				8A7363FB1C0849AB00A64824 /* CollectTraditonalChineseBtn@2x.png in Resources */,
 				8A9F25CF1B8ED8BC00BB13BA /* EditHoursViewController.xib in Resources */,
+				8A7365611C0858D500A64824 /* ShareWhatsappIcon@2x.png in Resources */,
 				8A7363321C0849AB00A64824 /* EditHoursIcon@2x.png in Resources */,
 				8A7365321C0849AB00A64824 /* NotificationIcon@3x.png in Resources */,
 				8AC8F7251BDA414E00DEF14A /* CollectionListingViewController.xib in Resources */,
@@ -5478,7 +5488,6 @@
 				0BBFE0551B9D6260004B17E9 /* NotificationSettingsViewController.xib in Resources */,
 				8AC8F7291BDA414E00DEF14A /* PostListingViewController.xib in Resources */,
 				8A7365231C0849AB00A64824 /* English.png in Resources */,
-				8A7365191C0849AB00A64824 /* ShareFBIcon@3x.png in Resources */,
 				8A7365061C0849AB00A64824 /* TimeIcon@2x.png in Resources */,
 				8A73635E1C0849AB00A64824 /* FollowCollectionBahasaIndoIcon@2x.png in Resources */,
 				8A7364741C0849AB00A64824 /* InviteMessengarIcon@2x.png in Resources */,
@@ -5530,6 +5539,7 @@
 				8A7363781C0849AB00A64824 /* ListViewInactive@2x.png in Resources */,
 				8A7363771C0849AB00A64824 /* ListViewActive@3x.png in Resources */,
 				8A7363A61C0849AB00A64824 /* CloseIcon@2x.png in Resources */,
+				8A7365591C0858D500A64824 /* ShareFBIcon@2x.png in Resources */,
 				8AD6C0B21B706CF30040437E /* SignupViewController.xib in Resources */,
 				8A7364D61C0849AB00A64824 /* NewPostsIcon@2x.png in Resources */,
 				0BA94BBC1BE9B71F003AB2E4 /* NoImage.png in Resources */,
@@ -5562,6 +5572,7 @@
 				8AD6C2AA1B7072FB0040437E /* WhereIsThisViewController.xib in Resources */,
 				8A7364451C0849AB00A64824 /* FollowingOnlyIcon@3x.png in Resources */,
 				8A73648A1C0849AB00A64824 /* Walkthrough3.png in Resources */,
+				8A7365561C0858D500A64824 /* ShareCopyLinkIcon@3x.png in Resources */,
 				8AD6C2841B7072FB0040437E /* AddLinkViewController.xib in Resources */,
 				8A7363561C0849AB00A64824 /* CollectionLink@2x.png in Resources */,
 				8A73640A1C0849AB00A64824 /* FeedCloseBtn@3x.png in Resources */,
@@ -5587,7 +5598,6 @@
 				8A73641D1C0849AB00A64824 /* LocationpinIcon@2x.png in Resources */,
 				8A7363BC1C0849AB00A64824 /* LocationIcon@2x.png in Resources */,
 				8A7363A91C0849AB00A64824 /* EditPostOverlay@3x.png in Resources */,
-				8A7365151C0849AB00A64824 /* ShareCopyLinkIcon@3x.png in Resources */,
 				8A7364961C0849AB00A64824 /* NotificationFollow@2x.png in Resources */,
 				8AD6C2A41B7072FB0040437E /* SelectImageViewController.xib in Resources */,
 				0BA94BC21BE9B71F003AB2E4 /* warning-flat-icon.png in Resources */,
@@ -5603,7 +5613,6 @@
 				8A7364E41C0849AB00A64824 /* ProfileCollectionAddIcon@2x.png in Resources */,
 				8A7364E31C0849AB00A64824 /* PrivateCollectionIcon@3x.png in Resources */,
 				8A7363F11C0849AB00A64824 /* CollectedBtn@2x.png in Resources */,
-				8A73651E1C0849AB00A64824 /* ShareMessangerIcon@2x.png in Resources */,
 				8A73644E1C0849AB00A64824 /* LeisureEntertainmentIcon@2x.png in Resources */,
 				8A7364AE1C0849AB00A64824 /* PostCollectedIcon@2x.png in Resources */,
 				8A7364CB1C0849AB00A64824 /* FollowBtn@3x.png in Resources */,
@@ -5615,6 +5624,7 @@
 				0B3FF1101BB131A20014AF2E /* NearbyViewController.xib in Resources */,
 				8AD6C0AE1B706CF30040437E /* LandingV2ViewController.xib in Resources */,
 				8A73652F1C0849AB00A64824 /* FeedIconActive@2x.png in Resources */,
+				8A7365571C0858D500A64824 /* ShareEmailIcon@2x.png in Resources */,
 				8A73647E1C0849AB00A64824 /* EyesCheck@2x.png in Resources */,
 				8A7365361C0849AB00A64824 /* ProfileIcon@3x.png in Resources */,
 				0BA94BBF1BE9B71F003AB2E4 /* SelectPhotoArrow@2x.png in Resources */,
@@ -5624,9 +5634,12 @@
 				8A7363891C0849AB00A64824 /* WhiteCollect@3x.png in Resources */,
 				8A7365351C0849AB00A64824 /* ProfileIcon@2x.png in Resources */,
 				8AD6C2921B7072FB0040437E /* ChangeSearchLocationViewController.xib in Resources */,
+				8A73655F1C0858D500A64824 /* ShareMessangerIcon@2x.png in Resources */,
 				8A73653C1C0849AB00A64824 /* WriteRecommendationIcon@3x.png in Resources */,
+				8A73655D1C0858D500A64824 /* ShareLineIcon@2x.png in Resources */,
 				8AC8F7311BDA414E00DEF14A /* ProfilePageCollectionTableViewCell.xib in Resources */,
 				8AD6C10B1B706CF30040437E /* FeedbackViewController.xib in Resources */,
+				8A7365541C0858D500A64824 /* BlackBack@3x.png in Resources */,
 				8A7364BE1C0849AB00A64824 /* AddPostBtn@2x.png in Resources */,
 				8AD6C1191B706CF30040437E /* pin@2x.png in Resources */,
 				8A7364271C0849AB00A64824 /* ShareGoIcon@3x.png in Resources */,
@@ -5635,8 +5648,8 @@
 				8A7364A71C0849AB00A64824 /* ChangePlaceIcon@3x.png in Resources */,
 				8A7363E21C0849AB00A64824 /* ExploreLikeIcon@3x.png in Resources */,
 				8A7363D11C0849AB00A64824 /* NoResult@3x.png in Resources */,
-				8A73651D1C0849AB00A64824 /* ShareLineIcon@3x.png in Resources */,
 				8A7363D71C0849AB00A64824 /* CollectionImgOverlay@3x.png in Resources */,
+				8A73655A1C0858D500A64824 /* ShareFBIcon@3x.png in Resources */,
 				8A7364F71C0849AB00A64824 /* ViewIcon@3x.png in Resources */,
 				8A7363A71C0849AB00A64824 /* CloseIcon@3x.png in Resources */,
 				8A73649B1C0849AB00A64824 /* NotificationShare@3x.png in Resources */,
@@ -5654,17 +5667,16 @@
 				8A7364FB1C0849AB00A64824 /* AutoComplete@3x.png in Resources */,
 				8A7363981C0849AB00A64824 /* AddIcon@2x.png in Resources */,
 				8A73646C1C0849AB00A64824 /* InviteFacebookIcon@2x.png in Resources */,
-				8A73651F1C0849AB00A64824 /* ShareMessangerIcon@3x.png in Resources */,
 				0BA94BC11BE9B71F003AB2E4 /* TitleBar@3x.png in Resources */,
 				8A73634B1C0849AB00A64824 /* iTunesArtwork@2x.png in Resources */,
 				8A73647A1C0849AB00A64824 /* MoveIcon@2x.png in Resources */,
 				8AD6C0D51B706CF30040437E /* PSearchLocationViewController.xib in Resources */,
 				8A7364DC1C0849AB00A64824 /* NoPostIcon@2x.png in Resources */,
+				8A7365531C0858D500A64824 /* BlackBack@2x.png in Resources */,
 				8A7365031C0849AB00A64824 /* SearchLocationIcon@3x.png in Resources */,
 				8A7364DF1C0849AB00A64824 /* PostIcon@3x.png in Resources */,
 				8A73636A1C0849AB00A64824 /* FollowingCollectionIcon@2x.png in Resources */,
 				8A7364161C0849AB00A64824 /* FollowingIcon@3x.png in Resources */,
-				8A7365171C0849AB00A64824 /* ShareEmailIcon@3x.png in Resources */,
 				8A317C071BE1C5620010CAEE /* ShareViewController.xib in Resources */,
 				8A7364EA1C0849AB00A64824 /* ProfileFollowingIcon@2x.png in Resources */,
 				0B1D9F271BE2317700AAE8CE /* Launch Screen.storyboard in Resources */,
@@ -5679,7 +5691,6 @@
 				8A7363331C0849AB00A64824 /* EditHoursIcon@3x.png in Resources */,
 				8A73640D1C0849AB00A64824 /* FeedOverlay@2x.png in Resources */,
 				8A4512351BDE2BEC008DE870 /* LikesListingViewController.xib in Resources */,
-				8A7365181C0849AB00A64824 /* ShareFBIcon@2x.png in Resources */,
 				8A114CBB1BE73F5D006AE3F0 /* textbg.png in Resources */,
 				8A7363B91C0849AB00A64824 /* EditDisplayPhoto@3x.png in Resources */,
 				8AC8F72B1BDA414E00DEF14A /* ProfileNoItemTableViewCell.xib in Resources */,
@@ -5691,7 +5702,6 @@
 				8A7363BE1C0849AB00A64824 /* NamaIcon@2x.png in Resources */,
 				8A7363391C0849AB00A64824 /* TickIcon@3x.png in Resources */,
 				8A73650D1C0849AB00A64824 /* BackToTop@3x.png in Resources */,
-				8A7365211C0849AB00A64824 /* ShareWhatsappIcon@3x.png in Resources */,
 				8A7363541C0849AB00A64824 /* CollectionFolderIcon@2x.png in Resources */,
 				0BE340231B73021B00F49625 /* Adriane Text Bold Italic.otf in Resources */,
 				8A7363FE1C0849AB00A64824 /* CommentIcon@3x.png in Resources */,
@@ -5716,12 +5726,12 @@
 				8A7364891C0849AB00A64824 /* Walkthrough2.png in Resources */,
 				8A7365401C0849AB00A64824 /* WalkthroughPost.png in Resources */,
 				8A7364141C0849AB00A64824 /* FollowIcon@3x.png in Resources */,
-				8A7365201C0849AB00A64824 /* ShareWhatsappIcon@2x.png in Resources */,
 				8A7363AC1C0849AB00A64824 /* SaveDraftBtn@2x.png in Resources */,
 				8A7364AB1C0849AB00A64824 /* FullScreenIcon@3x.png in Resources */,
 				8A7365341C0849AB00A64824 /* NotificationIconActive@3x.png in Resources */,
 				8A7364FF1C0849AB00A64824 /* SearchBarIcon@3x.png in Resources */,
 				8AC8F7431BDA414E00DEF14A /* ProfileV2ViewController.xib in Resources */,
+				8A7365601C0858D500A64824 /* ShareMessangerIcon@3x.png in Resources */,
 				8A7364561C0849AB00A64824 /* SportIcon@2x.png in Resources */,
 				8A7364B71C0849AB00A64824 /* PostOverlay@3x.png in Resources */,
 				8A73644D1C0849AB00A64824 /* LandmarkCultureIcon@3x.png in Resources */,
@@ -5777,7 +5787,6 @@
 				8A7364131C0849AB00A64824 /* FollowIcon@2x.png in Resources */,
 				8A73645C1C0849AB00A64824 /* ConnectWithFacebook@2x.png in Resources */,
 				8A7364E01C0849AB00A64824 /* PostSmallPin@2x.png in Resources */,
-				8A73651A1C0849AB00A64824 /* ShareIGIcon@2x.png in Resources */,
 				8A7364791C0849AB00A64824 /* InviteWhatsappIcon@3x.png in Resources */,
 				8A7364601C0849AB00A64824 /* FacebookBtnActive@2x.png in Resources */,
 				8A7363EB1C0849AB00A64824 /* UserCommentIcon@2x.png in Resources */,
@@ -5839,7 +5848,6 @@
 				8A7364E81C0849AB00A64824 /* ProfileFollowIcon@2x.png in Resources */,
 				8AC8F72F1BDA414E00DEF14A /* ProfilePageCollectionHeaderView.xib in Resources */,
 				8A7364171C0849AB00A64824 /* GreyShareIcon@2x.png in Resources */,
-				8A73651B1C0849AB00A64824 /* ShareIGIcon@3x.png in Resources */,
 				8A7365311C0849AB00A64824 /* NotificationIcon@2x.png in Resources */,
 				8AD6C28A1B7072FB0040437E /* ConfirmPlaceViewController.xib in Resources */,
 				8A7363FF1C0849AB00A64824 /* DealsAndRecommendationOverlay@2x.png in Resources */,
@@ -6393,7 +6401,7 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6417,9 +6425,9 @@
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Live;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b384f4c6-d74f-484d-ad13-a68f30676c55";
+				PROVISIONING_PROFILE = "3dc8c860-008f-4306-9b2e-2cf9de849459";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -6432,7 +6440,7 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6456,9 +6464,9 @@
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Live;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b384f4c6-d74f-484d-ad13-a68f30676c55";
+				PROVISIONING_PROFILE = "3dc8c860-008f-4306-9b2e-2cf9de849459";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 			};
 			name = Release;
