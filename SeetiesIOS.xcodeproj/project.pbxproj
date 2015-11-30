@@ -5149,7 +5149,7 @@
 				TargetAttributes = {
 					8AD6BA591B705DF20040437E = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 22DQJTA32H;
+						DevelopmentTeam = WS3A7X5B4Y;
 					};
 					8AD6BA721B705DF30040437E = {
 						CreatedOnToolsVersion = 6.4;
@@ -6401,8 +6401,8 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library",
@@ -6425,9 +6425,9 @@
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Live;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3dc8c860-008f-4306-9b2e-2cf9de849459";
+				PROVISIONING_PROFILE = "7019fa0d-9f6e-41e5-955e-d97da8a6a364";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -6440,8 +6440,8 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library",
@@ -6464,9 +6464,9 @@
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Live;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3dc8c860-008f-4306-9b2e-2cf9de849459";
+				PROVISIONING_PROFILE = "7019fa0d-9f6e-41e5-955e-d97da8a6a364";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 			};
 			name = Release;

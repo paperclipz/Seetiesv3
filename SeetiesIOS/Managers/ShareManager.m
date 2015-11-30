@@ -295,16 +295,7 @@
         [mailer setSubject:messageSubject];
         NSString* message = [self getShareMessage:type appendURL:YES];
         [mailer setMessageBody:message isHTML:NO];
-        
         [viewController presentViewController:mailer animated:YES completion:nil];
-        [MFMailComposeViewController mailWithSubject:messageSubject message:message recipients:nil bccRecipients:nil ccRecipients:nil andAttachments:nil onCreation:^(UIViewController *controller) {
-            
-            //[viewController presentViewController:controller animated:YES completion:nil];
-
-            
-        } onFinish:^(UIViewController *controller, int result, NSError *error) {
-            
-        }];
 
     }
     else{
@@ -359,6 +350,8 @@
         case ShareTypeFacebookPostUser:
         {
             message = [NSString stringWithFormat:@"Check out my profile on Seeties!"];
+            message = [NSString stringWithFormat:@"%@ %@",message,isNeedAppendURL?[self getShareLink:type]:@""];
+
             
         }
             break;
@@ -389,7 +382,7 @@
             break;
         case ShareTypeFacebookPostUser:
         {
-            subLink = @"/";
+            subLink = @"";
             
         }
             break;
@@ -426,5 +419,29 @@
                           }
                       }];
 
+}
+
+#pragma mark - Mail Composer Delegate
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result) {
+        case MFMailComposeResultSent:
+            NSLog(@"You sent the email.");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"You saved a draft of this email");
+            break;
+        case MFMailComposeResultCancelled:
+            NSLog(@"You cancelled sending this email.");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail failed:  An error occurred when trying to compose this email");
+            break;
+        default:
+            NSLog(@"An error occurred when trying to compose this email");
+            break;
+    }
+    
+    [viewController dismissViewControllerAnimated:YES completion:NULL];
 }
 @end
