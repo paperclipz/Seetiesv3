@@ -806,7 +806,15 @@
 -(void)showCollectionDisplayViewWithCollectionID:(NSString*)collID
 {
     _collectionViewController = nil;
-    [self.collectionViewController GetCollectionID:collID GetPermision:@"self"];
+    if (self.profileViewType == ProfileViewTypeOwn) {
+        [self.collectionViewController GetCollectionID:collID GetPermision:@"self"];
+
+    }
+    else{
+        [self.collectionViewController GetCollectionID:collID GetPermision:@"Others"];
+
+    }
+    
     [self.navigationController pushViewController:self.collectionViewController animated:YES];
 }
 
