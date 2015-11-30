@@ -237,6 +237,7 @@
     [self DeleteAllSaveData];
 
     count = 0;
+    
 }
 
 - (void)didReceiveMemoryWarning {
