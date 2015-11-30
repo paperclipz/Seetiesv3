@@ -50,11 +50,12 @@
 #import "AFNetworkActivityLogger.h"
 
 #import <sys/utsname.h>
+@import ViewMonitor;
+
 @interface AppDelegate ()
 
 @property(nonatomic,strong)LandingV2ViewController* landingV2ViewController;
 @end
-
 
 @implementation AppDelegate
 
@@ -72,7 +73,7 @@
                                  callbackURL:@"testapp123://foursquare"];
     [GMSServices provideAPIKey:GOOGLE_API_KEY];
 
-
+    //[ViewMonitor start];
 }
 
 -(void)configureNotificaiton:(UIApplication*)application
