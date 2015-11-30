@@ -59,6 +59,7 @@
 
 -(void)initSelfView
 {
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     [Utils setRoundBorder:self.ibInnerContentView color:LINE_COLOR borderRadius:5.0f];
     [Utils setRoundBorder:self.btnEdit color:LINE_COLOR borderRadius:self.btnEdit.frame.size.height/2];
     

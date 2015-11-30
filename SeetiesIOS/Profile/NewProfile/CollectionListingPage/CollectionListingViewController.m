@@ -242,7 +242,7 @@
 -(void)showCollectionDisplayViewWithCollectionID:(NSString*)collID ProfileType:(ProfileViewType)profileType
 {
     _collectionViewController = nil;
-    if (self.profileType == profileType) {
+    if (self.profileType == ProfileViewTypeOwn) {
         [self.collectionViewController GetCollectionID:collID GetPermision:@"self"];
 
     }

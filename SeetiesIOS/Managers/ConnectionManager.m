@@ -33,7 +33,7 @@
     self = [super init];//set default dev
     
     // ====== set to Live if wanna go production   ========
-    self.serverPath = SERVER_PATH_LIVE;
+    self.serverPath = SERVER_PATH_DEV;
     self.dataManager = [DataManager Instance];
 
     return self;

@@ -19,9 +19,9 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
     var viewController = UIViewController()
 
     var shareToFrenVC = ShareToFrenViewController()
-    var Images = Array<String>()
-    var Titles = Array<String>()
-    
+    var arrImages = Array<String>()
+    var arrTitles = Array<String>()
+    var arrIndex = [Int]()
     var postMessage: String = ""
     var postTitle: String = ""
     var imageURL: String = ""
@@ -69,13 +69,16 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
         
         if(self.shareType == ShareTypeFacebookPost)
         {
-            Images = ["ShareFBIcon.png","ShareIGIcon.png","ShareLineIcon.png","ShareMessangerIcon.png","ShareWhatsappIcon.png","ShareCopyLinkIcon.png","ShareEmailIcon.png"]
-            Titles = ["Facebook","Instagram","LINE","Messenger","Whatsapp","Copy Link","Email"]
+            arrImages = ["ShareFBIcon.png","ShareIGIcon.png","ShareLineIcon.png","ShareMessangerIcon.png","ShareWhatsappIcon.png","ShareCopyLinkIcon.png","ShareEmailIcon.png"]
+            arrTitles   = ["Facebook","Instagram","LINE","Messenger","Whatsapp","Copy Link","Email"]
+            arrIndex = [0,1,2,3,4,5,6]
         }
         else
         {
-            Images = ["ShareFBIcon.png","ShareLineIcon.png","ShareMessangerIcon.png","ShareWhatsappIcon.png","ShareCopyLinkIcon.png","ShareEmailIcon.png"]
-            Titles = ["Facebook","LINE","Messenger","Whatsapp","Copy Link","Email"]
+            arrImages = ["ShareFBIcon.png","ShareLineIcon.png","ShareMessangerIcon.png","ShareWhatsappIcon.png","ShareCopyLinkIcon.png","ShareEmailIcon.png"]
+            arrTitles = ["Facebook","LINE","Messenger","Whatsapp","Copy Link","Email"]
+            arrIndex = [0,2,3,4,5,6]
+
         }
       
     }
@@ -93,15 +96,15 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
     //MARK: - CollectionView Delegate
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return Images.count
+        return arrImages.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let cell:ShareV2CollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("ShareV2CollectionViewCell", forIndexPath: indexPath) as! ShareV2CollectionViewCell
 
-        cell.ibImageView.image = UIImage(named: Images[indexPath.row])
-        cell.lblTitle.text = Titles[indexPath.row];
+        cell.ibImageView.image = UIImage(named: arrImages[indexPath.row])
+        cell.lblTitle.text = arrTitles[indexPath.row];
         
         return cell
     }
@@ -137,7 +140,10 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
-        switch (indexPath.row)
+        
+        let index = indexPath.row
+        
+        switch (arrIndex[index])
         {
             case 0: shareFacebook()
             case 1: shareInstagram()
