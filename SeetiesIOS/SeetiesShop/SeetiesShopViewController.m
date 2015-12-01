@@ -12,6 +12,10 @@
 #import "SeDealsView.h"
 #import "MapViewController.h"
 
+#import "SeCollectionView.h"
+#import "SeRecommendations.h"
+#import "SeNearbySeetishop.h"
+
 @interface SeetiesShopViewController ()
 
 //================ CONTROLLERS ====================//
@@ -22,6 +26,9 @@
 
 @property (nonatomic,strong)SeShopDetailView* seShopDetailView;
 @property (nonatomic,strong)SeDealsView* seDealsView;
+@property (nonatomic,strong)SeCollectionView* seCollectionView;
+@property (nonatomic,strong)SeRecommendations* seRecommendations;
+@property (nonatomic,strong)SeNearbySeetishop* seNearbySeetishop;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *ibScrollView;
 @property(nonatomic,assign)SeetiesShopType seetiesType;
@@ -54,6 +61,9 @@
 {
   
     [self.arrViews addObject:self.seShopDetailView];
+    [self.arrViews addObject:self.seCollectionView];
+    [self.arrViews addObject:self.seRecommendations];
+    [self.arrViews addObject:self.seNearbySeetishop];
 
 }
 -(void)addViews
@@ -136,6 +146,27 @@
         _seDealsView = [SeDealsView initializeCustomView];
     }
     return _seDealsView;
+}
+-(SeCollectionView*)seCollectionView
+{
+    if (!_seCollectionView) {
+        _seCollectionView = [SeCollectionView initializeCustomView];
+    }
+    return _seCollectionView;
+}
+-(SeRecommendations*)seRecommendations
+{
+    if (!_seRecommendations) {
+        _seRecommendations = [SeRecommendations initializeCustomView];
+    }
+    return _seRecommendations;
+}
+-(SeNearbySeetishop*)seNearbySeetishop
+{
+    if (!_seNearbySeetishop) {
+        _seNearbySeetishop = [SeNearbySeetishop initializeCustomView];
+    }
+    return _seNearbySeetishop;
 }
 /*
 #pragma mark - Navigation
