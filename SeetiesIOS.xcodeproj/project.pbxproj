@@ -45,6 +45,12 @@
 		0BBFE08E1B9FCC00004B17E9 /* SubmitProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBFE0881B9FCC00004B17E9 /* SubmitProfileViewController.m */; };
 		0BBFE08F1B9FCC00004B17E9 /* SubmitProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBFE0891B9FCC00004B17E9 /* SubmitProfileViewController.xib */; };
 		0BC789A61BF4A31C00D126A3 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BC789A51BF4A31C00D126A3 /* AdSupport.framework */; };
+		0BC8A0E91C0D4AD500EB8548 /* SeCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC8A0E81C0D4AD500EB8548 /* SeCollectionView.m */; };
+		0BC8A0EB1C0D4CB000EB8548 /* SeCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC8A0EA1C0D4CB000EB8548 /* SeCollectionView.xib */; };
+		0BC8A0EF1C0D585F00EB8548 /* SeNearbySeetishop.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC8A0EE1C0D585F00EB8548 /* SeNearbySeetishop.m */; };
+		0BC8A0F11C0D588C00EB8548 /* SeNearbySeetishop.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC8A0F01C0D588C00EB8548 /* SeNearbySeetishop.xib */; };
+		0BC8A0F51C0D934600EB8548 /* SeRecommendations.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC8A0F41C0D934600EB8548 /* SeRecommendations.m */; };
+		0BC8A0F71C0D935500EB8548 /* SeRecommendations.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC8A0F61C0D935500EB8548 /* SeRecommendations.xib */; };
 		0BC9B38A1B7DD287008334FF /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC9B3881B7DD287008334FF /* FeedViewController.m */; };
 		0BC9B38B1B7DD288008334FF /* FeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC9B3891B7DD287008334FF /* FeedViewController.xib */; };
 		0BE340231B73021B00F49625 /* Adriane Text Bold Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0BE340201B73021B00F49625 /* Adriane Text Bold Italic.otf */; };
@@ -1110,6 +1116,15 @@
 		0BBFE0881B9FCC00004B17E9 /* SubmitProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubmitProfileViewController.m; sourceTree = "<group>"; };
 		0BBFE0891B9FCC00004B17E9 /* SubmitProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SubmitProfileViewController.xib; sourceTree = "<group>"; };
 		0BC789A51BF4A31C00D126A3 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		0BC8A0E71C0D4AD500EB8548 /* SeCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeCollectionView.h; sourceTree = "<group>"; };
+		0BC8A0E81C0D4AD500EB8548 /* SeCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeCollectionView.m; sourceTree = "<group>"; };
+		0BC8A0EA1C0D4CB000EB8548 /* SeCollectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeCollectionView.xib; sourceTree = "<group>"; };
+		0BC8A0ED1C0D585F00EB8548 /* SeNearbySeetishop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeNearbySeetishop.h; sourceTree = "<group>"; };
+		0BC8A0EE1C0D585F00EB8548 /* SeNearbySeetishop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeNearbySeetishop.m; sourceTree = "<group>"; };
+		0BC8A0F01C0D588C00EB8548 /* SeNearbySeetishop.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeNearbySeetishop.xib; sourceTree = "<group>"; };
+		0BC8A0F31C0D934600EB8548 /* SeRecommendations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeRecommendations.h; sourceTree = "<group>"; };
+		0BC8A0F41C0D934600EB8548 /* SeRecommendations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeRecommendations.m; sourceTree = "<group>"; };
+		0BC8A0F61C0D935500EB8548 /* SeRecommendations.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeRecommendations.xib; sourceTree = "<group>"; };
 		0BC9B3871B7DD287008334FF /* FeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
 		0BC9B3881B7DD287008334FF /* FeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
 		0BC9B3891B7DD287008334FF /* FeedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedViewController.xib; sourceTree = "<group>"; };
@@ -2609,6 +2624,36 @@
 			path = "Old Settings";
 			sourceTree = "<group>";
 		};
+		0BC8A0E61C0D4A9200EB8548 /* seetiesCollection */ = {
+			isa = PBXGroup;
+			children = (
+				0BC8A0E71C0D4AD500EB8548 /* SeCollectionView.h */,
+				0BC8A0E81C0D4AD500EB8548 /* SeCollectionView.m */,
+				0BC8A0EA1C0D4CB000EB8548 /* SeCollectionView.xib */,
+			);
+			name = seetiesCollection;
+			sourceTree = "<group>";
+		};
+		0BC8A0EC1C0D584200EB8548 /* seetiesNearbySeetishop */ = {
+			isa = PBXGroup;
+			children = (
+				0BC8A0ED1C0D585F00EB8548 /* SeNearbySeetishop.h */,
+				0BC8A0EE1C0D585F00EB8548 /* SeNearbySeetishop.m */,
+				0BC8A0F01C0D588C00EB8548 /* SeNearbySeetishop.xib */,
+			);
+			name = seetiesNearbySeetishop;
+			sourceTree = "<group>";
+		};
+		0BC8A0F21C0D932000EB8548 /* seetiesRecommendations */ = {
+			isa = PBXGroup;
+			children = (
+				0BC8A0F31C0D934600EB8548 /* SeRecommendations.h */,
+				0BC8A0F41C0D934600EB8548 /* SeRecommendations.m */,
+				0BC8A0F61C0D935500EB8548 /* SeRecommendations.xib */,
+			);
+			name = seetiesRecommendations;
+			sourceTree = "<group>";
+		};
 		0BE3401F1B73021B00F49625 /* Font */ = {
 			isa = PBXGroup;
 			children = (
@@ -3433,6 +3478,9 @@
 		8A4AC4B31C0C367B00968781 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0BC8A0F21C0D932000EB8548 /* seetiesRecommendations */,
+				0BC8A0EC1C0D584200EB8548 /* seetiesNearbySeetishop */,
+				0BC8A0E61C0D4A9200EB8548 /* seetiesCollection */,
 				8A0F50C51C0C4599002B1E22 /* seetiesDeals */,
 				8A0F50C41C0C458D002B1E22 /* seetiesDetail */,
 			);
@@ -5303,6 +5351,7 @@
 				8A7363C51C0849AB00A64824 /* WebsiteLinkIcon@3x.png in Resources */,
 				8AD6C0B81B706CF30040437E /* OpenWebViewController.xib in Resources */,
 				8A7364761C0849AB00A64824 /* InviteWechatIcon@2x.png in Resources */,
+				0BC8A0EB1C0D4CB000EB8548 /* SeCollectionView.xib in Resources */,
 				8A7363991C0849AB00A64824 /* AddIcon@3x.png in Resources */,
 				8A7364F61C0849AB00A64824 /* ViewIcon@2x.png in Resources */,
 				8A3757B81B847C7A009DB7D4 /* AddNewPlaceViewController.xib in Resources */,
@@ -5624,6 +5673,7 @@
 				8A7364821C0849AB00A64824 /* LoginFacebookIcon@2x.png in Resources */,
 				8A73645A1C0849AB00A64824 /* YoloIcon@2x.png in Resources */,
 				8A7364C41C0849AB00A64824 /* DefaultProfilePic@2x.png in Resources */,
+				0BC8A0F71C0D935500EB8548 /* SeRecommendations.xib in Resources */,
 				0BA94BB21BE9B71F003AB2E4 /* launch.png in Resources */,
 				8A7365411C0849AB00A64824 /* WalkthroughPostDetails.png in Resources */,
 				8A73639E1C0849AB00A64824 /* RearrangeIcon@2x.png in Resources */,
@@ -5836,6 +5886,7 @@
 				8A7363E71C0849AB00A64824 /* OpenStatus@2x.png in Resources */,
 				8A7363711C0849AB00A64824 /* FollowingCollectionTradChiIcon@3x.png in Resources */,
 				8A73653F1C0849AB00A64824 /* WalkthroughFeed2.png in Resources */,
+				0BC8A0F11C0D588C00EB8548 /* SeNearbySeetishop.xib in Resources */,
 				8A7365221C0849AB00A64824 /* BahasaIndonesia.png in Resources */,
 				8A7363571C0849AB00A64824 /* CollectionLink@3x.png in Resources */,
 				8A7364FD1C0849AB00A64824 /* LongSearchBar@3x.png in Resources */,
@@ -6097,6 +6148,7 @@
 				8AD6C28D1B7072FB0040437E /* LocationOnMapViewController.m in Sources */,
 				8AD6C0DA1B706CF30040437E /* PTnCViewController.m in Sources */,
 				8AD6C1121B706CF30040437E /* Foursquare2.m in Sources */,
+				0BC8A0EF1C0D585F00EB8548 /* SeNearbySeetishop.m in Sources */,
 				8AD6C0F61B706CF30040437E /* SearchDetailViewController.m in Sources */,
 				8A7360FE1C080C7100A64824 /* UITableviewPaging.m in Sources */,
 				8A9F258A1B8D69E100BB13BA /* SearchTableViewController.m in Sources */,
@@ -6125,6 +6177,7 @@
 				8AD6C0C81B706CF30040437E /* NotificationViewController.m in Sources */,
 				8A114CD11BE73F5D006AE3F0 /* UIImageViewModeScaleAspect.m in Sources */,
 				8A114CDB1BE73FBF006AE3F0 /* UIScrollView+IBFloatingHeader.m in Sources */,
+				0BC8A0E91C0D4AD500EB8548 /* SeCollectionView.m in Sources */,
 				8AD6C2261B706F6A0040437E /* Locale.m in Sources */,
 				8AD6BE5B1B706CF30040437E /* DoPhotoCell.m in Sources */,
 				8A6BB42C1BF0C338005AA1B3 /* MZFormSheetContentSizingNavigationController.m in Sources */,
@@ -6301,6 +6354,7 @@
 				8A3409481B8AD06A009B66C3 /* UIImage+Saving.m in Sources */,
 				8AD6C2291B706FA10040437E /* NSString+ChangeAsciiString.m in Sources */,
 				8AC8F7301BDA414E00DEF14A /* ProfilePageCollectionTableViewCell.m in Sources */,
+				0BC8A0F51C0D934600EB8548 /* SeRecommendations.m in Sources */,
 				8AD6C0B51B706CF30040437E /* InstagramLoginWebViewController.m in Sources */,
 				8A114CC41BE73F5D006AE3F0 /* NSString+MKNetworkKitAdditions.m in Sources */,
 				8AD6C0D61B706CF30040437E /* PSelectYourInterestViewController.m in Sources */,

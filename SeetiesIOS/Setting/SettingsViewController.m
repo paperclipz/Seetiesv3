@@ -79,7 +79,7 @@
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     MainScroll.delegate = self;
-    [MainScroll setContentSize:CGSizeMake(screenWidth, 700)];
+    [MainScroll setContentSize:CGSizeMake(screenWidth, 750)];
     MainScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight);
     ShowTitle.frame = CGRectMake(15, 20, screenWidth - 30, 44);
     BarImage.frame = CGRectMake(0, 0, screenWidth, 64);

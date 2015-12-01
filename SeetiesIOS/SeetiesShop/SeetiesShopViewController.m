@@ -10,11 +10,17 @@
 
 #import "SeShopDetailView.h"
 #import "SeDealsView.h"
+#import "SeCollectionView.h"
+#import "SeNearbySeetishop.h"
+#import "SeRecommendations.h"
 
 @interface SeetiesShopViewController ()
 
 @property (nonatomic,strong)SeShopDetailView* seShopDetailView;
 @property (nonatomic,strong)SeDealsView* seDealsView;
+@property (nonatomic,strong)SeCollectionView* seCollectionView;
+@property (nonatomic,strong)SeNearbySeetishop* seNearbySeetishop;
+@property (nonatomic,strong)SeRecommendations* seRecommendations;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *ibScrollView;
 @property(nonatomic,assign)SeetiesShopType seetiesType;
@@ -33,12 +39,21 @@
    // [self.arrViews addObject:self.seDealsView];
 
     
-    for (int i = 0; i<5; i++) {
+    for (int i = 0; i<1; i++) {
        
         SeShopDetailView* temp = [SeShopDetailView initializeCustomView];
-        [temp setupViewWithData:i];
+        [temp setupViewWithData:3];
         [self.arrViews addObject:temp];
     }
+
+    SeCollectionView* temp = [SeCollectionView initializeCustomView];
+    [self.arrViews addObject:temp];
+
+    SeRecommendations* temp1 = [SeRecommendations initializeCustomView];
+    [self.arrViews addObject:temp1];
+    
+    SeNearbySeetishop* temp2 = [SeNearbySeetishop initializeCustomView];
+    [self.arrViews addObject:temp2];
     
     for (int i = 0; i< self.arrViews.count; i++) {
         UIView* view = self.arrViews[i];
@@ -107,6 +122,27 @@
         _seDealsView = [SeDealsView initializeCustomView];
     }
     return _seDealsView;
+}
+-(SeCollectionView*)seCollectionView
+{
+    if (!_seCollectionView) {
+        _seCollectionView = [SeCollectionView initializeCustomView];
+    }
+    return _seCollectionView;
+}
+-(SeNearbySeetishop*)seNearbySeetishop
+{
+    if (!_seNearbySeetishop) {
+        _seNearbySeetishop = [SeNearbySeetishop initializeCustomView];
+    }
+    return _seNearbySeetishop;
+}
+-(SeRecommendations*)seRecommendations
+{
+    if (!_seRecommendations) {
+        _seRecommendations = [SeRecommendations initializeCustomView];
+    }
+    return _seRecommendations;
 }
 /*
 #pragma mark - Navigation
