@@ -118,7 +118,7 @@
 -(void)initSelfView
 {
     
-    self.btnDeleteCollection.hidden = self.profileType == ProfileViewTypeOwn?YES:NO;
+    self.btnDeleteCollection.hidden = self.profileType == ProfileViewTypeOwn?NO:YES;
     [Utils setRoundBorder:self.ibBtnEdit color:TWO_ZERO_FOUR_COLOR borderRadius:self.ibBtnEdit.frame.size.height/2 borderWidth:BORDER_WIDTH];
 
     [self initTableViewWithDelegate:self];
