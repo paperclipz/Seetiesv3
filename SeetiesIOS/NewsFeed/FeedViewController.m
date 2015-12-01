@@ -976,7 +976,7 @@
                 [ClicktoOpenUserProfileButton setTitle:@"" forState:UIControlStateNormal];
                 ClicktoOpenUserProfileButton.backgroundColor = [UIColor clearColor];
                 ClicktoOpenUserProfileButton.tag = i;
-                [ClicktoOpenUserProfileButton addTarget:self action:@selector(OpenUserProfileOnClick:) forControlEvents:UIControlEventTouchUpInside];
+                //[ClicktoOpenUserProfileButton addTarget:self action:@selector(OpenUserProfileOnClick:) forControlEvents:UIControlEventTouchUpInside];
                 [LocalScroll addSubview:ClicktoOpenUserProfileButton];
                 
                 
@@ -5041,21 +5041,29 @@
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);
     
-    NSString *GetLikeClick = [[NSString alloc]initWithFormat:@"%@",[arrlike objectAtIndex:getbuttonIDN]];
-    NSString *GetCollectionClick = [[NSString alloc]initWithFormat:@"%@",[arrCollect objectAtIndex:getbuttonIDN]];
+    if (LocalScroll.hidden == YES) {
+        NSString *GetLikeClick = [[NSString alloc]initWithFormat:@"%@",[arrlike objectAtIndex:getbuttonIDN]];
+        NSString *GetCollectionClick = [[NSString alloc]initWithFormat:@"%@",[arrCollect objectAtIndex:getbuttonIDN]];
+        
+        NSLog(@"GetLikeClick is %@",GetLikeClick);
+        NSLog(@"GetCollectionClick is %@",GetCollectionClick);
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:GetLikeClick forKey:@"PostToDetail_like"];
+        [defaults setObject:GetCollectionClick forKey:@"PostToDetail_Collect"];
+        [defaults setInteger:getbuttonIDN + 6000 forKey:@"PostToDetail_IDN"];
+        [defaults synchronize];
+        
+        FeedV2DetailViewController *vc = [[FeedV2DetailViewController alloc] initWithNibName:@"FeedV2DetailViewController" bundle:nil];
+        [self.navigationController pushViewController:vc animated:YES];
+        [vc GetPostID:[arrPostID objectAtIndex:getbuttonIDN]];
+    }else{
+        FeedV2DetailViewController *vc = [[FeedV2DetailViewController alloc] initWithNibName:@"FeedV2DetailViewController" bundle:nil];
+        [self.navigationController pushViewController:vc animated:YES];
+        [vc GetPostID:[arrLocalPostID objectAtIndex:getbuttonIDN]];
+    }
     
-    NSLog(@"GetLikeClick is %@",GetLikeClick);
-    NSLog(@"GetCollectionClick is %@",GetCollectionClick);
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:GetLikeClick forKey:@"PostToDetail_like"];
-    [defaults setObject:GetCollectionClick forKey:@"PostToDetail_Collect"];
-    [defaults setInteger:getbuttonIDN + 6000 forKey:@"PostToDetail_IDN"];
-    [defaults synchronize];
-    
-    FeedV2DetailViewController *vc = [[FeedV2DetailViewController alloc] initWithNibName:@"FeedV2DetailViewController" bundle:nil];
-    [self.navigationController pushViewController:vc animated:YES];
-    [vc GetPostID:[arrPostID objectAtIndex:getbuttonIDN]];
+
     
 }
 -(IBAction)NearbyButton:(id)sender{

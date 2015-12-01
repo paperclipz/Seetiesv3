@@ -378,26 +378,26 @@
             break;
             
         case ServerRequestTypeGetLanguage:
-            str =  @"/v2.1/system/languages";
+            str =  @"/v2.2/system/languages";
             break;
             
         case ServerRequestTypeGetApiVersion:
-            str = @"v2.1/system/apiversion?device_type=2";
+            str = @"v2.2/system/apiversion?device_type=2";
             break;
         case ServerRequestTypeGetExplore:
-            str = @"v2.1/explore";
+            str = @"v2.2/explore";
             break;
             
         case ServerRequestTypePostCreatePost:
         case ServerRequestTypePostDeletePost:
         case ServerRequestTypeGetPostInfo:
         case ServerRequestTypePostSaveDraft:
-            str = @"v2.1/post";
+            str = @"v2.2/post";
             
             break;
             
         case ServerRequestTypeGetRecommendationDraft:
-            str = @"v2.1/draft";
+            str = @"v2.2/draft";
             
             break;
             
@@ -408,10 +408,10 @@
             break;
             
         case ServerRequestTypeGetCategories:
-            str = @"v2.1/system/update/category";
+            str = @"v2.2/system/update/category";
             break;
         case ServerRequestTypeGetTagsSuggestion:
-            str = @"v2.1/tags";
+            str = @"v2.2/tags";
 
             
             break;
@@ -425,7 +425,7 @@
         case ServerRequestTypePostFollowUser:
         case ServerRequestTypePostFollowCollection:
         default:
-             str = @"v2.1";
+             str = @"v2.2";
             break;
             
     }

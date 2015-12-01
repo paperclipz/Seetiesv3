@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define API_VERSION @"2.1"
+#define API_VERSION @"2.2"
 
 @interface SConstant : NSObject
 
