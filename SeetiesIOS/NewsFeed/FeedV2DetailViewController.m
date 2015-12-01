@@ -4087,7 +4087,8 @@
 }
 -(IBAction)OpenAddressButton:(id)sender{
 
-    NSLog(@"Open address click");
+    NSLog(@"Open Location Detail and Seetieshop.");
+    
     LocationFeedDetailViewController *LocationFeedDetailView = [[LocationFeedDetailViewController alloc]init];
     CATransition *transition = [CATransition animation];
     transition.duration = 0.2;
