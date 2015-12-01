@@ -58,6 +58,17 @@ typedef enum {
     
 } CollectionListingType;
 
+typedef enum {
+    
+    SeetiesShopTypeDetail,
+    SeetiesShopTypeMap,
+    SeetiesShopTypeDeal,
+    SeetiesShopTypeCollections,
+    SeetiesShopTypeRecommendation,
+    SeetiesShopTypeNearbyShop
+    
+}SeetiesShopType;
+
 +(BOOL)isLogin;
 +(void)setIsLogin;
 +(NSString*)getAppToken;

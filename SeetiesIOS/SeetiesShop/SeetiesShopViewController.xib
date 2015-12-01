@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SeetiesShopViewController">
+            <connections>
+                <outlet property="ibScrollView" destination="PfW-mD-EzJ" id="lRY-u4-pPr"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tx2-5y-CkB">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="sKM-8K-bSi">
+                            <rect key="frame" x="-5" y="20" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="7wK-m7-7jp"/>
+                                <constraint firstAttribute="height" constant="40" id="TYa-cD-V5x"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ghx-1x-5Rn">
+                            <rect key="frame" x="0.0" y="0.0" width="44" height="64"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="64" id="DCv-Ac-Ojv"/>
+                                <constraint firstAttribute="width" constant="44" id="L06-7j-mTp"/>
+                            </constraints>
+                            <state key="normal">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="Ghx-1x-5Rn" firstAttribute="top" secondItem="tx2-5y-CkB" secondAttribute="top" id="FYL-Po-CBV"/>
+                        <constraint firstItem="sKM-8K-bSi" firstAttribute="top" secondItem="Ghx-1x-5Rn" secondAttribute="bottom" constant="-44" id="J5n-QB-oPW"/>
+                        <constraint firstItem="Ghx-1x-5Rn" firstAttribute="leading" secondItem="tx2-5y-CkB" secondAttribute="leading" id="O2t-9I-3TY"/>
+                        <constraint firstAttribute="bottom" secondItem="sKM-8K-bSi" secondAttribute="bottom" constant="4" id="Qqr-ho-88H"/>
+                        <constraint firstAttribute="height" constant="64" id="Vfq-xN-DKd"/>
+                        <constraint firstItem="sKM-8K-bSi" firstAttribute="leading" secondItem="tx2-5y-CkB" secondAttribute="leading" constant="-5" id="p9c-HX-fYc"/>
+                    </constraints>
+                </view>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PfW-mD-EzJ">
+                    <rect key="frame" x="0.0" y="63" width="320" height="505"/>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="tx2-5y-CkB" secondAttribute="trailing" id="0lA-VO-Wor"/>
+                <constraint firstItem="tx2-5y-CkB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7qG-z7-jb6"/>
+                <constraint firstAttribute="bottom" secondItem="PfW-mD-EzJ" secondAttribute="bottom" id="9Bi-RB-cQ3"/>
+                <constraint firstItem="PfW-mD-EzJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="IEj-XP-bPZ"/>
+                <constraint firstItem="PfW-mD-EzJ" firstAttribute="top" secondItem="tx2-5y-CkB" secondAttribute="bottom" constant="-1" id="aic-a4-v4B"/>
+                <constraint firstAttribute="trailing" secondItem="PfW-mD-EzJ" secondAttribute="trailing" id="mN5-Vd-i6g"/>
+                <constraint firstItem="tx2-5y-CkB" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="yvx-zR-prZ"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="BackIcon.png" width="40" height="40"/>
+    </resources>
+</document>

@@ -193,6 +193,14 @@
 
 #pragma mark - Declaration
 
+-(SeetiesShopViewController*)seetiesShopViewController
+{
+    
+    if (!_seetiesShopViewController) {
+        _seetiesShopViewController = [SeetiesShopViewController new];
+    }
+    return _seetiesShopViewController;
+}
 -(ShareV2ViewController*)shareV2ViewController
 {
     if (!_shareV2ViewController) {
@@ -222,21 +230,7 @@
 #pragma mark - IBAction
 - (IBAction)btnTestClicked:(id)sender {
     
-    _collectionListingViewController = nil;
-    ProfileModel* model = [ProfileModel new];
-    model.uid = @"20b6fac7431ed4aadf8885808d28a9d9";
-    [self.collectionListingViewController setType:ProfileViewTypeOthers ProfileModel:model NumberOfPage:1 collectionType:CollectionListingTypeSuggestion];
-    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.collectionListingViewController];
-
-    [naviVC setNavigationBarHidden:YES animated:NO];
-
-    [self presentViewController:naviVC animated:YES completion:nil];
-    
-    self.collectionListingViewController.btnBackBlock = ^(id object)
-    {
-    
-        [naviVC dismissViewControllerAnimated:YES completion:nil];
-    };
+    [self presentViewController:self.seetiesShopViewController animated:YES completion:nil];
 }
 
 #define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)

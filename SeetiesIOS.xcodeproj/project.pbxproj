@@ -52,6 +52,12 @@
 		0BE340251B73021B00F49625 /* ProximaNovaSoft-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BE340221B73021B00F49625 /* ProximaNovaSoft-Regular.ttf */; };
 		8A00979B1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A00979A1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m */; };
 		8A00979D1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A00979C1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib */; };
+		8A0F50B11C0C3B5B002B1E22 /* SeShopDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0F50B01C0C3B5B002B1E22 /* SeShopDetailView.m */; };
+		8A0F50B31C0C3B71002B1E22 /* SeShopDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0F50B21C0C3B71002B1E22 /* SeShopDetailView.xib */; };
+		8A0F50C11C0C3F08002B1E22 /* SeShopDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0F50C01C0C3F08002B1E22 /* SeShopDetailTableViewCell.m */; };
+		8A0F50C31C0C3F14002B1E22 /* SeShopDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0F50C21C0C3F14002B1E22 /* SeShopDetailTableViewCell.xib */; };
+		8A0F50C81C0C45C3002B1E22 /* SeDealsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0F50C71C0C45C3002B1E22 /* SeDealsView.m */; };
+		8A0F50CA1C0C45CD002B1E22 /* SeDealsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0F50C91C0C45CD002B1E22 /* SeDealsView.xib */; };
 		8A114C761BE73F5D006AE3F0 /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114B8A1BE73F5C006AE3F0 /* AFNetworkActivityLogger.m */; };
 		8A114C771BE73F5D006AE3F0 /* AUIAutoGrowingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114B8E1BE73F5C006AE3F0 /* AUIAutoGrowingTextView.m */; };
 		8A114C781BE73F5D006AE3F0 /* SConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114B911BE73F5C006AE3F0 /* SConstant.m */; };
@@ -212,6 +218,8 @@
 		8A4512351BDE2BEC008DE870 /* LikesListingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4512331BDE2BEC008DE870 /* LikesListingViewController.xib */; };
 		8A45123C1BDE2C97008DE870 /* LikeListingCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A45123A1BDE2C97008DE870 /* LikeListingCollectionViewCell.m */; };
 		8A45123D1BDE2C97008DE870 /* LikeListingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A45123B1BDE2C97008DE870 /* LikeListingCollectionViewCell.xib */; };
+		8A4AC4B71C0C369B00968781 /* SeetiesShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4AC4B51C0C369B00968781 /* SeetiesShopViewController.m */; };
+		8A4AC4B81C0C369B00968781 /* SeetiesShopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4AC4B61C0C369B00968781 /* SeetiesShopViewController.xib */; };
 		8A5430101B8C1646009EFFF4 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A54300E1B8C1646009EFFF4 /* MapViewController.m */; };
 		8A5430111B8C1646009EFFF4 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A54300F1B8C1646009EFFF4 /* MapViewController.xib */; };
 		8A65842A1B96ED7300BC86B9 /* EditPhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6584291B96ED7300BC86B9 /* EditPhotoManager.m */; };
@@ -1112,6 +1120,15 @@
 		8A0097991B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomEditPhotoTableViewCell.h; sourceTree = "<group>"; };
 		8A00979A1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomEditPhotoTableViewCell.m; sourceTree = "<group>"; };
 		8A00979C1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomEditPhotoTableViewCell.xib; sourceTree = "<group>"; };
+		8A0F50AF1C0C3B5B002B1E22 /* SeShopDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeShopDetailView.h; sourceTree = "<group>"; };
+		8A0F50B01C0C3B5B002B1E22 /* SeShopDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeShopDetailView.m; sourceTree = "<group>"; };
+		8A0F50B21C0C3B71002B1E22 /* SeShopDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeShopDetailView.xib; sourceTree = "<group>"; };
+		8A0F50BF1C0C3F08002B1E22 /* SeShopDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeShopDetailTableViewCell.h; sourceTree = "<group>"; };
+		8A0F50C01C0C3F08002B1E22 /* SeShopDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeShopDetailTableViewCell.m; sourceTree = "<group>"; };
+		8A0F50C21C0C3F14002B1E22 /* SeShopDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeShopDetailTableViewCell.xib; sourceTree = "<group>"; };
+		8A0F50C61C0C45C3002B1E22 /* SeDealsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeDealsView.h; sourceTree = "<group>"; };
+		8A0F50C71C0C45C3002B1E22 /* SeDealsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeDealsView.m; sourceTree = "<group>"; };
+		8A0F50C91C0C45CD002B1E22 /* SeDealsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeDealsView.xib; sourceTree = "<group>"; };
 		8A114B891BE73F5C006AE3F0 /* AFNetworkActivityLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityLogger.h; sourceTree = "<group>"; };
 		8A114B8A1BE73F5C006AE3F0 /* AFNetworkActivityLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityLogger.m; sourceTree = "<group>"; };
 		8A114B8D1BE73F5C006AE3F0 /* AUIAutoGrowingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUIAutoGrowingTextView.h; sourceTree = "<group>"; };
@@ -1410,6 +1427,9 @@
 		8A4512391BDE2C97008DE870 /* LikeListingCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LikeListingCollectionViewCell.h; sourceTree = "<group>"; };
 		8A45123A1BDE2C97008DE870 /* LikeListingCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LikeListingCollectionViewCell.m; sourceTree = "<group>"; };
 		8A45123B1BDE2C97008DE870 /* LikeListingCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LikeListingCollectionViewCell.xib; sourceTree = "<group>"; };
+		8A4AC4B41C0C369B00968781 /* SeetiesShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeetiesShopViewController.h; sourceTree = "<group>"; };
+		8A4AC4B51C0C369B00968781 /* SeetiesShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeetiesShopViewController.m; sourceTree = "<group>"; };
+		8A4AC4B61C0C369B00968781 /* SeetiesShopViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeetiesShopViewController.xib; sourceTree = "<group>"; };
 		8A54300D1B8C1646009EFFF4 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		8A54300E1B8C1646009EFFF4 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		8A54300F1B8C1646009EFFF4 /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
@@ -2608,6 +2628,37 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8A0F50B41C0C3E41002B1E22 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				8A0F50BF1C0C3F08002B1E22 /* SeShopDetailTableViewCell.h */,
+				8A0F50C01C0C3F08002B1E22 /* SeShopDetailTableViewCell.m */,
+				8A0F50C21C0C3F14002B1E22 /* SeShopDetailTableViewCell.xib */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		8A0F50C41C0C458D002B1E22 /* seetiesDetail */ = {
+			isa = PBXGroup;
+			children = (
+				8A0F50B41C0C3E41002B1E22 /* Cell */,
+				8A0F50AF1C0C3B5B002B1E22 /* SeShopDetailView.h */,
+				8A0F50B01C0C3B5B002B1E22 /* SeShopDetailView.m */,
+				8A0F50B21C0C3B71002B1E22 /* SeShopDetailView.xib */,
+			);
+			name = seetiesDetail;
+			sourceTree = "<group>";
+		};
+		8A0F50C51C0C4599002B1E22 /* seetiesDeals */ = {
+			isa = PBXGroup;
+			children = (
+				8A0F50C61C0C45C3002B1E22 /* SeDealsView.h */,
+				8A0F50C71C0C45C3002B1E22 /* SeDealsView.m */,
+				8A0F50C91C0C45CD002B1E22 /* SeDealsView.xib */,
+			);
+			name = seetiesDeals;
+			sourceTree = "<group>";
+		};
 		8A114B871BE73F5C006AE3F0 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -3366,6 +3417,26 @@
 				8A4509911BAFF7C000A868CD /* UIColor+Extension.m */,
 			);
 			name = Color;
+			sourceTree = "<group>";
+		};
+		8A4AC4B21C0C365C00968781 /* SeetiesShop */ = {
+			isa = PBXGroup;
+			children = (
+				8A4AC4B31C0C367B00968781 /* View */,
+				8A4AC4B41C0C369B00968781 /* SeetiesShopViewController.h */,
+				8A4AC4B51C0C369B00968781 /* SeetiesShopViewController.m */,
+				8A4AC4B61C0C369B00968781 /* SeetiesShopViewController.xib */,
+			);
+			path = SeetiesShop;
+			sourceTree = "<group>";
+		};
+		8A4AC4B31C0C367B00968781 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8A0F50C51C0C4599002B1E22 /* seetiesDeals */,
+				8A0F50C41C0C458D002B1E22 /* seetiesDetail */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		8A65842E1B981B1E00BC86B9 /* CategorySelection */ = {
@@ -4501,6 +4572,7 @@
 				8AD6BDDE1B706CF30040437E /* Search */,
 				8AD6BDF21B706CF30040437E /* Setting */,
 				8AD6BE0D1B706CF30040437E /* SocialNetwork */,
+				8A4AC4B21C0C365C00968781 /* SeetiesShop */,
 				8AD6BA611B705DF20040437E /* AppDelegate.h */,
 				8AD6BA621B705DF20040437E /* AppDelegate.m */,
 				8AD6BA641B705DF20040437E /* ViewController.h */,
@@ -5205,6 +5277,7 @@
 				8A7365021C0849AB00A64824 /* SearchLocationIcon@2x.png in Resources */,
 				8A7363A31C0849AB00A64824 /* BrushIcon@3x.png in Resources */,
 				8A7364031C0849AB00A64824 /* Distance2Icon@2x.png in Resources */,
+				8A0F50C31C0C3F14002B1E22 /* SeShopDetailTableViewCell.xib in Resources */,
 				8A73643D1C0849AB00A64824 /* WelcomeLogo@3x.png in Resources */,
 				8A73637E1C0849AB00A64824 /* NoPhotoInCollection@2x.png in Resources */,
 				8A7363511C0849AB00A64824 /* CheckGrey@3x.png in Resources */,
@@ -5276,6 +5349,7 @@
 				8A7363B31C0849AB00A64824 /* ArrowBtn@3x.png in Resources */,
 				8A7363B41C0849AB00A64824 /* BrithdayIcon@2x.png in Resources */,
 				8A7364981C0849AB00A64824 /* NotificationLike@2x.png in Resources */,
+				8A0F50B31C0C3B71002B1E22 /* SeShopDetailView.xib in Resources */,
 				8A114CA61BE73F5D006AE3F0 /* PEPhotoCropEditor.bundle in Resources */,
 				8A7364FC1C0849AB00A64824 /* LongSearchBar@2x.png in Resources */,
 				8A7B9CE11BBD387000D7F604 /* EnbleLocationViewController.xib in Resources */,
@@ -5377,6 +5451,7 @@
 				0BA94BB81BE9B71F003AB2E4 /* LoginBackground.png in Resources */,
 				8A73648E1C0849AB00A64824 /* WrongFill@2x.png in Resources */,
 				8A73644C1C0849AB00A64824 /* LandmarkCultureIcon@2x.png in Resources */,
+				8A0F50CA1C0C45CD002B1E22 /* SeDealsView.xib in Resources */,
 				8A73639F1C0849AB00A64824 /* RearrangeIcon@3x.png in Resources */,
 				8A73650B1C0849AB00A64824 /* YellowCollected@3x.png in Resources */,
 				8A7363851C0849AB00A64824 /* TranslateIcon@3x.png in Resources */,
@@ -5826,6 +5901,7 @@
 				8A7364021C0849AB00A64824 /* Distance1Icon@3x.png in Resources */,
 				8A7364D51C0849AB00A64824 /* NewLikesIcon@3x.png in Resources */,
 				8A7363AD1C0849AB00A64824 /* SaveDraftBtn@3x.png in Resources */,
+				8A4AC4B81C0C369B00968781 /* SeetiesShopViewController.xib in Resources */,
 				8A7364721C0849AB00A64824 /* InviteLineIcon@2x.png in Resources */,
 				8A7363931C0849AB00A64824 /* SendCommentBtn@3x.png in Resources */,
 				8A7364F91C0849AB00A64824 /* WhiteShareIcon@3x.png in Resources */,
@@ -5960,6 +6036,7 @@
 				8A1254131BC4F31A00AA4120 /* NewsFeedViewController.m in Sources */,
 				8A45123C1BDE2C97008DE870 /* LikeListingCollectionViewCell.m in Sources */,
 				8AD6C29B1B7072FB0040437E /* PublishMainViewController.m in Sources */,
+				8A0F50B11C0C3B5B002B1E22 /* SeShopDetailView.m in Sources */,
 				8AC8F7281BDA414E00DEF14A /* PostListingViewController.m in Sources */,
 				8A3409441B8AD06A009B66C3 /* UIImage+Masking.m in Sources */,
 				8AD6BE561B706CF30040437E /* AssetHelper.m in Sources */,
@@ -6006,10 +6083,12 @@
 				8A34090F1B872B31009B66C3 /* EditPostViewController.m in Sources */,
 				8A6BB4321BF0C338005AA1B3 /* MZFormSheetPresentationViewControllerSegue.m in Sources */,
 				8A114CEA1BE75CA0006AE3F0 /* NewCollectionViewController.m in Sources */,
+				8A0F50C11C0C3F08002B1E22 /* SeShopDetailTableViewCell.m in Sources */,
 				0BBFE04F1B9D624C004B17E9 /* EditProfileV2ViewController.m in Sources */,
 				8AD6BE4D1B706CF30040437E /* ExploreCountryViewController.m in Sources */,
 				8A9F25D31B8EF60C00BB13BA /* EditHourTableViewCell.m in Sources */,
 				8AD6C0F81B706CF30040437E /* SearchResultV2ViewController.m in Sources */,
+				8A4AC4B71C0C369B00968781 /* SeetiesShopViewController.m in Sources */,
 				8A114CAB1BE73F5D006AE3F0 /* UIScrollView+CRScrollIndicator.m in Sources */,
 				8A3F35641BF5E89D002B704C /* SuggestedCollectionCollectionsViewController.m in Sources */,
 				8AD6C0D21B706CF30040437E /* PFollowTheExpertsViewController.m in Sources */,
@@ -6074,6 +6153,7 @@
 				8A6BB4351BF0C338005AA1B3 /* UIViewController+TargetViewController.m in Sources */,
 				8AC8F72E1BDA414E00DEF14A /* ProfilePageCollectionHeaderView.m in Sources */,
 				8AC8F73C1BDA414E00DEF14A /* UserProfilePageViewController.m in Sources */,
+				8A0F50C81C0C45C3002B1E22 /* SeDealsView.m in Sources */,
 				8AD6C2A51B7072FB0040437E /* ShowImageViewController.m in Sources */,
 				8A2E2C4C1B8184C90010895E /* FourSquareModel.m in Sources */,
 				8AD6C1111B706CF30040437E /* CHANGELOG.md in Sources */,
