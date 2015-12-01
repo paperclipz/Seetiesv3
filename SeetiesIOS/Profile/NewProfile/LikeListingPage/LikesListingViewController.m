@@ -34,7 +34,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
-    [self initCollectionView];
     [self.ibCollectionView reloadData];
     [self registerNotification];
     // Do any additional setup after loading the view from its nib.
@@ -42,7 +41,9 @@
 
 -(void)initSelfView
 {
-    self.lblTitle.text = [NSString stringWithFormat:@"%d %@",self.profileLikeModel.userPostData.total_posts,LocalisedString(@"Likes")];
+    self.lblTitle.text = LocalisedString(@"Likes");
+    self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.profileLikeModel.userPostData.total_posts,LocalisedString(@"Likes")];
+    [self initCollectionView];
 
 }
 
