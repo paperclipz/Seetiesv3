@@ -1,3 +1,4 @@
+
 //
 //  SeShopDetailView.m
 //  SeetiesIOS
@@ -10,7 +11,8 @@
 #import "SeShopDetailTableViewCell.h"
 #import "PhotoCollectionViewCell.h"
 
-@interface SeShopDetailView()<UITableViewDataSource,UITableViewDelegate, UICollectionViewDataSource,UICollectionViewDelegate>
+#define Info_Title_Height 44.0f;
+@interface SeShopDetailView()<UITableViewDataSource,UITableViewDelegate, UICollectionViewDataSource,UICollectionViewDelegate,MKMapViewDelegate>
 {
     
     __weak IBOutlet NSLayoutConstraint *tableviewConstraint;
@@ -27,9 +29,22 @@
 @property (weak, nonatomic) IBOutlet UIView *ibPhotoView;
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 
+//================== MAP =======================//
+@property(nonatomic,assign)MKCoordinateRegion region;
+@property(strong,nonatomic)MKPointAnnotation* annotation;
+@property (weak, nonatomic) IBOutlet MKMapView *ibMapView;
+@property (weak, nonatomic) IBOutlet UIView *ibMapMainView;
+@property (weak, nonatomic) IBOutlet UIView *ibMapInfoView;
+
 @end
 
 @implementation SeShopDetailView
+
+- (IBAction)btnMapClicked:(id)sender {
+    if (self.btnMapClickedBlock) {
+        self.btnMapClickedBlock();
+    }
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -45,7 +60,13 @@
     [self initCollectionViewDelegate];
     [self initTableViewDelegate];
     [self.ibProfileImageView sd_setImageWithURL:[NSURL URLWithString:@"http://www.venusbuzz.com/wp-content/uploads/rekindle-ss2-review-2.jpg"]];
-    [self setupViewWithData:10];
+    
+    self.arrayList = @[@"1",@"2",@"3",@"4",@"5"];
+    [self setupViewWithData];
+    
+    self.ibMapView.delegate = self;
+    [Utils setRoundBorder:self.ibMapInfoView color:[UIColor clearColor] borderRadius:5.0f];
+
 }
 
 -(void)initTableViewDelegate
@@ -62,37 +83,30 @@
     self.ibCollectionView.backgroundColor = [UIColor clearColor];
 }
 
--(void)setupViewWithData:(int)counter
+-(void)setupViewWithData
 {
     
-    tableviewConstraint.constant = (10*[SeShopDetailTableViewCell getHeight]) + 44;
+    tableviewConstraint.constant = (self.arrayList.count*[SeShopDetailTableViewCell getHeight]) + Info_Title_Height;
+    //tableviewConstraint.constant = 0;
     [self layoutIfNeeded];
 
-    [self setHeight:self.ibTableView.frame.size.height + self.ibTableView.frame.origin.y + VIEW_PADDING];
-   // CGRect lastRowRect= [self.ibTableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:9 inSection:0]];
-   // CGFloat contentHeight = lastRowRect.origin.y + lastRowRect.size.height;
-    //tableviewConstraint.constant = 700;
-  //  [self setHeight:[self getPositionYBelowView:self.ibTableView]];
+    [self setHeight:self.ibMapMainView.frame.size.height + self.ibMapMainView.frame.origin.y + VIEW_PADDING];
     
-//    self.counter = counter;
-//    
-//    self.arrayCell = [NSMutableArray new];
-//    for (int i = 0; i<counter; i++) {
-//        SeShopDetailTableViewCell* cell = [[SeShopDetailTableViewCell alloc]init];
-//        [cell setY:i* [SeShopDetailTableViewCell getHeight]];
-//        [self.arrayCell addObject:cell];
-//    }
-//    
-//    for (int i = 0; i<self.arrayCell.count; i++) {
-//        
-//        [self.ibInformationContentView addSubview:self.arrayCell[i]];
-//    }
-//    
-//    if (self.arrayCell) {
-//        
-//        CGRect rect = [[self.arrayCell lastObject] frame];
-//       
-//    }
+ 
+    [[SearchManager Instance]getCoordinateFromGPSThenWifi:^(CLLocation *currentLocation) {
+        _region.center.longitude = currentLocation.coordinate.longitude;
+        _region.center.latitude = currentLocation.coordinate.latitude;
+        
+        
+        [self.annotation setCoordinate:self.region.center];
+        
+        [self.ibMapView setRegion:self.region animated:YES];
+        
+    } errorBlock:^(NSString *status) {
+        
+    }];
+
+   
 }
 
 -(float)getPositionYBelowView:(UIView*)view
@@ -114,7 +128,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.arrayList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -138,6 +152,42 @@
     return cell;
 }
 
+#pragma mark - Map
+-(MKPointAnnotation*)annotation
+{
+    if(!_annotation)
+    {
+        _annotation = [MKPointAnnotation new];
+        [_annotation setTitle:@"is This the Location?"]; //You can set the subtitle too
+        [self.ibMapView addAnnotation:_annotation];
+        
+        
+    }
+    return _annotation;
+}
 
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+{
+    if ([annotation isKindOfClass:[MKUserLocation class]])
+        return nil;
+    
+    static NSString *reuseId = @"pin";
+    
+    MKAnnotationView *pav = [mapView dequeueReusableAnnotationViewWithIdentifier:reuseId];
+    if (pav == nil)
+    {
+        pav = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseId];
+        pav.draggable = NO;
+        pav.canShowCallout = NO;
+        pav.calloutOffset = CGPointMake(0, 0);
+    }
+    else
+    {
+        pav.annotation = annotation;
+    }
+    pav.image = [UIImage imageNamed:@"PinInMap.png"];
+    
+    return pav;
+}
 
 @end

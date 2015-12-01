@@ -9,7 +9,7 @@
 #import "CommonView.h"
 
 @interface SeShopDetailView : CommonView
--(void)setupViewWithData:(int)counter;
+-(void)setupViewWithData;
 -(BOOL)isAvailable;
-
+@property(nonatomic,copy)VoidBlock btnMapClickedBlock;
 @end

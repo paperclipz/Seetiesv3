@@ -10,8 +10,15 @@
 
 #import "SeShopDetailView.h"
 #import "SeDealsView.h"
+#import "MapViewController.h"
 
 @interface SeetiesShopViewController ()
+
+//================ CONTROLLERS ====================//
+@property (nonatomic,strong)MapViewController* mapViewController;
+
+
+//$$============== CONTROLLERS ==================$$//
 
 @property (nonatomic,strong)SeShopDetailView* seShopDetailView;
 @property (nonatomic,strong)SeDealsView* seDealsView;
@@ -45,12 +52,8 @@
 
 -(void)setupViews
 {
-    for (int i = 0; i<1; i++) {
-        
-        SeShopDetailView* temp = [SeShopDetailView initializeCustomView];
-        //[temp setupViewWithData:i];
-        [self.arrViews addObject:temp];
-    }
+  
+    [self.arrViews addObject:self.seShopDetailView];
 
 }
 -(void)addViews
@@ -99,12 +102,29 @@
 }
 
 
+#pragma mark - Declaration
+-(MapViewController*)mapViewController
+{
+    if (!_mapViewController) {
+        _mapViewController = [MapViewController new];
+    }
+
+    return _mapViewController;
+}
+
 -(SeShopDetailView*)seShopDetailView
 {
     if (!_seShopDetailView)
 {
         _seShopDetailView = [SeShopDetailView initializeCustomView];
-        [_seShopDetailView setupViewWithData:10];
+    
+        __weak typeof (self)weakSelf = self;
+        _seShopDetailView.btnMapClickedBlock = ^(void)
+        {
+            [weakSelf.navigationController pushViewController:weakSelf.mapViewController animated:YES];
+        };
+    
+    
     }
     
     return _seShopDetailView;
