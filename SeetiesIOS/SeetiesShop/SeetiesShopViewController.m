@@ -10,74 +10,70 @@
 
 #import "SeShopDetailView.h"
 #import "SeDealsView.h"
-#import "SeCollectionView.h"
-#import "SeNearbySeetishop.h"
-#import "SeRecommendations.h"
+#import "MapViewController.h"
 
 @interface SeetiesShopViewController ()
 
+//================ CONTROLLERS ====================//
+@property (nonatomic,strong)MapViewController* mapViewController;
+
+
+//$$============== CONTROLLERS ==================$$//
+
 @property (nonatomic,strong)SeShopDetailView* seShopDetailView;
 @property (nonatomic,strong)SeDealsView* seDealsView;
-@property (nonatomic,strong)SeCollectionView* seCollectionView;
-@property (nonatomic,strong)SeNearbySeetishop* seNearbySeetishop;
-@property (nonatomic,strong)SeRecommendations* seRecommendations;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *ibScrollView;
 @property(nonatomic,assign)SeetiesShopType seetiesType;
-
 @property(nonatomic, strong)NSMutableArray* arrViews;
 
 @end
 
 @implementation SeetiesShopViewController
 
+#pragma mark - IBACTION
+- (IBAction)btnBackClicked:(id)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     _arrViews = [NSMutableArray new];
-   // [self.arrViews addObject:self.seShopDetailView];
-   // [self.arrViews addObject:self.seDealsView];
 
-    
-    for (int i = 0; i<1; i++) {
-       
-        SeShopDetailView* temp = [SeShopDetailView initializeCustomView];
-        [temp setupViewWithData:3];
-        [self.arrViews addObject:temp];
-    }
-
-    SeCollectionView* temp = [SeCollectionView initializeCustomView];
-    [self.arrViews addObject:temp];
-
-    SeRecommendations* temp1 = [SeRecommendations initializeCustomView];
-    [self.arrViews addObject:temp1];
-    
-    SeNearbySeetishop* temp2 = [SeNearbySeetishop initializeCustomView];
-    [self.arrViews addObject:temp2];
-    
-    for (int i = 0; i< self.arrViews.count; i++) {
-        UIView* view = self.arrViews[i];
-        
-        SLog(@"add how many times");
-        [self.ibScrollView addSubview:view];
-        
-
-    }
-
+    [self setupViews];
+    [self addViews];
     [self adjustView:self.arrViews[self.arrViews.count-1] :(int)(self.arrViews.count - 1)];
-    
-    
     UIView* lastView = [self.arrViews lastObject];
     self.ibScrollView.contentSize = CGSizeMake( self.ibScrollView.frame.size.width, lastView.frame.size.height+ lastView.frame.origin.y);
 
 }
 
+-(void)setupViews
+{
+  
+    [self.arrViews addObject:self.seShopDetailView];
+
+}
+-(void)addViews
+{
+    for (int i = 0; i< self.arrViews.count; i++) {
+        UIView* view = self.arrViews[i];
+        //[view adjustToScreenWidth];
+        [self.ibScrollView addSubview:view];
+        
+        
+    }
+
+
+}
+// readjust view from top to bottom
 -(UIView*)adjustView:(UIView*)view :(int)count
 {
     
     if (count <=0) {
-       // count--;
-
+        
         return view;
 
     }
@@ -106,11 +102,29 @@
 }
 
 
+#pragma mark - Declaration
+-(MapViewController*)mapViewController
+{
+    if (!_mapViewController) {
+        _mapViewController = [MapViewController new];
+    }
+
+    return _mapViewController;
+}
+
 -(SeShopDetailView*)seShopDetailView
 {
-    if (!_seShopDetailView) {
+    if (!_seShopDetailView)
+{
         _seShopDetailView = [SeShopDetailView initializeCustomView];
-        [_seShopDetailView setupViewWithData:10];
+    
+        __weak typeof (self)weakSelf = self;
+        _seShopDetailView.btnMapClickedBlock = ^(void)
+        {
+            [weakSelf.navigationController pushViewController:weakSelf.mapViewController animated:YES];
+        };
+    
+    
     }
     
     return _seShopDetailView;
@@ -122,27 +136,6 @@
         _seDealsView = [SeDealsView initializeCustomView];
     }
     return _seDealsView;
-}
--(SeCollectionView*)seCollectionView
-{
-    if (!_seCollectionView) {
-        _seCollectionView = [SeCollectionView initializeCustomView];
-    }
-    return _seCollectionView;
-}
--(SeNearbySeetishop*)seNearbySeetishop
-{
-    if (!_seNearbySeetishop) {
-        _seNearbySeetishop = [SeNearbySeetishop initializeCustomView];
-    }
-    return _seNearbySeetishop;
-}
--(SeRecommendations*)seRecommendations
-{
-    if (!_seRecommendations) {
-        _seRecommendations = [SeRecommendations initializeCustomView];
-    }
-    return _seRecommendations;
 }
 /*
 #pragma mark - Navigation

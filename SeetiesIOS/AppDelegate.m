@@ -72,7 +72,6 @@
                                  callbackURL:@"testapp123://foursquare"];
     [GMSServices provideAPIKey:GOOGLE_API_KEY];
 
-
 }
 
 -(void)configureNotificaiton:(UIApplication*)application

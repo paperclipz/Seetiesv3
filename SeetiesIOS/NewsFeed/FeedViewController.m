@@ -230,7 +230,9 @@
 #pragma mark - IBAction
 - (IBAction)btnTestClicked:(id)sender {
     
-    [self presentViewController:self.seetiesShopViewController animated:YES completion:nil];
+    UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:self.seetiesShopViewController];
+    [nav setNavigationBarHidden:YES];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 #define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
