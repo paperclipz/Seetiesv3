@@ -118,5 +118,8 @@ extern NSString *const kAFAviarySecret;
 #define NOTIFICAION_TYPE_REFRESH_LIKES @"likes"
 #define NOTIFICAION_TYPE_REFRESH_PROFILE @"profile"
 
+
+// ================== seeties shop ================//
+#define VIEW_PADDING 20.0f
 #endif
 

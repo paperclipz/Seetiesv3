@@ -18,51 +18,59 @@
 
 @property (weak, nonatomic) IBOutlet UIScrollView *ibScrollView;
 @property(nonatomic,assign)SeetiesShopType seetiesType;
-
 @property(nonatomic, strong)NSMutableArray* arrViews;
 
 @end
 
 @implementation SeetiesShopViewController
 
+#pragma mark - IBACTION
+- (IBAction)btnBackClicked:(id)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     _arrViews = [NSMutableArray new];
-   // [self.arrViews addObject:self.seShopDetailView];
-   // [self.arrViews addObject:self.seDealsView];
 
-    
-    for (int i = 0; i<5; i++) {
-       
-        SeShopDetailView* temp = [SeShopDetailView initializeCustomView];
-        [temp setupViewWithData:i];
-        [self.arrViews addObject:temp];
-    }
-    
-    for (int i = 0; i< self.arrViews.count; i++) {
-        UIView* view = self.arrViews[i];
-        
-        SLog(@"add how many times");
-        [self.ibScrollView addSubview:view];
-        
-
-    }
-
+    [self setupViews];
+    [self addViews];
     [self adjustView:self.arrViews[self.arrViews.count-1] :(int)(self.arrViews.count - 1)];
-    
-    
     UIView* lastView = [self.arrViews lastObject];
     self.ibScrollView.contentSize = CGSizeMake( self.ibScrollView.frame.size.width, lastView.frame.size.height+ lastView.frame.origin.y);
 
 }
 
+-(void)setupViews
+{
+    for (int i = 0; i<1; i++) {
+        
+        SeShopDetailView* temp = [SeShopDetailView initializeCustomView];
+        //[temp setupViewWithData:i];
+        [self.arrViews addObject:temp];
+    }
+
+}
+-(void)addViews
+{
+    for (int i = 0; i< self.arrViews.count; i++) {
+        UIView* view = self.arrViews[i];
+        //[view adjustToScreenWidth];
+        [self.ibScrollView addSubview:view];
+        
+        
+    }
+
+
+}
+// readjust view from top to bottom
 -(UIView*)adjustView:(UIView*)view :(int)count
 {
     
     if (count <=0) {
-       // count--;
-
+        
         return view;
 
     }
@@ -93,7 +101,8 @@
 
 -(SeShopDetailView*)seShopDetailView
 {
-    if (!_seShopDetailView) {
+    if (!_seShopDetailView)
+{
         _seShopDetailView = [SeShopDetailView initializeCustomView];
         [_seShopDetailView setupViewWithData:10];
     }
