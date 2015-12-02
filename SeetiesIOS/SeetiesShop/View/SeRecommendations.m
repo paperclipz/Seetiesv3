@@ -36,9 +36,7 @@
     ShowbackLine.frame = CGRectMake(-1, 0, screenWidth + 2 , 50);
     [ShowbackLine setTitle:@"" forState:UIControlStateNormal];
     ShowbackLine.backgroundColor = [UIColor whiteColor];
-    ShowbackLine.layer.borderWidth = 1;
-    ShowbackLine.layer.masksToBounds = YES;
-    ShowbackLine.layer.borderColor=[[UIColor redColor] CGColor];
+    [Utils setRoundBorder:ShowbackLine color:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
     
     ShowRecommendationsText.frame = CGRectMake(20, 0, screenWidth - 40, 50);
     ShowRecommendationsText.text = @"Recommendations";
@@ -52,10 +50,7 @@
     SeeAllButton.frame = CGRectMake(-1, self.frame.size.height - 70, screenWidth + 2 , 50);
     [SeeAllButton setTitle:@"See all 6 recommendations" forState:UIControlStateNormal];
     SeeAllButton.backgroundColor = [UIColor whiteColor];
-    SeeAllButton.layer.borderWidth = 1;
-    SeeAllButton.layer.masksToBounds = YES;
-    SeeAllButton.layer.borderColor=[[UIColor redColor] CGColor];
-    
+    [Utils setRoundBorder:SeeAllButton color:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
     
 
 }
@@ -91,7 +86,7 @@
         ShowUsername.backgroundColor = [UIColor whiteColor];
         ShowUsername.textColor = [UIColor blackColor];
         ShowUsername.textAlignment = NSTextAlignmentLeft;
-        ShowUsername.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+        ShowUsername.font = [UIFont fontWithName:CustomFontName size:15];
         [self addSubview:ShowUsername];
         
         Getheight += 40;
@@ -109,7 +104,7 @@
             ShowTitle.backgroundColor = [UIColor whiteColor];
             ShowTitle.textColor = [UIColor blackColor];
             ShowTitle.textAlignment = NSTextAlignmentLeft;
-            ShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+            ShowTitle.font = [UIFont fontWithName:CustomFontNameBold size:15];
             [self addSubview:ShowTitle];
         
             Getheight += 20;
@@ -125,7 +120,7 @@
             ShowDetail.backgroundColor = [UIColor whiteColor];
             ShowDetail.textColor = [UIColor blackColor];
             ShowDetail.textAlignment = NSTextAlignmentLeft;
-            ShowDetail.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+            ShowDetail.font = [UIFont fontWithName:CustomFontName size:15];
             [self addSubview:ShowDetail];
             
             UILabel *ShowReadMore = [[UILabel alloc]init];
@@ -134,7 +129,7 @@
             ShowReadMore.backgroundColor = [UIColor whiteColor];
             ShowReadMore.textColor = [UIColor colorWithRed:41.0f/255.0f green:182.0f/255.0f blue:246.0f/255.0f alpha:1.0f];
             ShowReadMore.textAlignment = NSTextAlignmentLeft;
-            ShowReadMore.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+            ShowReadMore.font = [UIFont fontWithName:CustomFontNameBold size:15];
             [self addSubview:ShowReadMore];
             
             Getheight += 40;
