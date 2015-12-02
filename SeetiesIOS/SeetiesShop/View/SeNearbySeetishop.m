@@ -36,9 +36,7 @@
     ShowbackLine.frame = CGRectMake(-1, 0, screenWidth + 2 , 50);
     [ShowbackLine setTitle:@"" forState:UIControlStateNormal];
     ShowbackLine.backgroundColor = [UIColor whiteColor];
-    ShowbackLine.layer.borderWidth = 1;
-    ShowbackLine.layer.masksToBounds = YES;
-    ShowbackLine.layer.borderColor=[[UIColor redColor] CGColor];
+    [Utils setRoundBorder:ShowbackLine color:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
     
     ShowSeenearbySeetishop.frame = CGRectMake(20, 0, screenWidth - 40, 50);
     ShowSeenearbySeetishop.text = @"See nearby Seetishop";
