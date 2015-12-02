@@ -58,6 +58,7 @@ PODS:
     - HexColors (~> 2.3.0)
   - TTTAttributedLabel (1.13.4)
   - UITextView+Placeholder (1.1.0)
+  - ViewMonitor (1.0.9)
 
 DEPENDENCIES:
   - A3ParallaxScrollView (~> 1.0)
@@ -83,6 +84,7 @@ DEPENDENCIES:
   - TSMessages (from `https://github.com/KrauseFx/TSMessages.git`)
   - TTTAttributedLabel
   - UITextView+Placeholder
+  - ViewMonitor
 
 EXTERNAL SOURCES:
   TSMessages:
@@ -120,5 +122,6 @@ SPEC CHECKSUMS:
   TSMessages: 6e403b790139636c15ab4f51946537095e03e79c
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
   UITextView+Placeholder: 672ce543356b5b5787f354415bc3b132d47f0362
+  ViewMonitor: 3bf94bdead583c7ed08fdab9212fe08661173477
 
 COCOAPODS: 0.39.0

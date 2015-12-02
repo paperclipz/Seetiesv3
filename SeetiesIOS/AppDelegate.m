@@ -50,6 +50,7 @@
 #import "AFNetworkActivityLogger.h"
 
 #import <sys/utsname.h>
+@import ViewMonitor;
 @interface AppDelegate ()
 
 @property(nonatomic,strong)LandingV2ViewController* landingV2ViewController;
@@ -71,6 +72,7 @@
                                       secret:@"T5XT0AVNHLLO1NMXRNFCDBYGA453E12CTVN0WOSIHREEZTWA"
                                  callbackURL:@"testapp123://foursquare"];
     [GMSServices provideAPIKey:GOOGLE_API_KEY];
+   // [ViewMonitor start];
 
 
 }
@@ -105,6 +107,7 @@
     
     [self configureNotificaiton:application];
     [self requestForApiVersion];
+
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:API_VERSION forKey:@"APIVersionSet"];
