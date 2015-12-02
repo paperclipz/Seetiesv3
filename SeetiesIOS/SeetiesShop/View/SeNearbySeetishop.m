@@ -92,7 +92,7 @@
         ShowTitle.backgroundColor = [UIColor purpleColor];
         ShowTitle.textColor = [UIColor blackColor];
         ShowTitle.textAlignment = NSTextAlignmentCenter;
-        ShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+        ShowTitle.font = [UIFont fontWithName:CustomFontNameBold size:15];
         ShowTitle.numberOfLines = 3;
         [MainScroll addSubview:ShowTitle];
 

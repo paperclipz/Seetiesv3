@@ -46,6 +46,9 @@
     MainScroll.delegate = self;
     MainScroll.backgroundColor = [UIColor whiteColor];
     MainScroll.frame = CGRectMake(0, 50, screenWidth, 260);
+    
+    // init scroll view data
+    [self InitScrollViewData];
 
     
     SeeAllButton.frame = CGRectMake(-1, self.frame.size.height - 70, screenWidth + 2, 50);
@@ -56,7 +59,7 @@
     SeeAllButton.layer.borderColor=[[UIColor redColor] CGColor];
     
     
-    [self InitScrollViewData];
+    
     
 }
 -(void)InitScrollViewData{
@@ -210,7 +213,7 @@
         ShowCollectionTitle.backgroundColor = [UIColor clearColor];
         ShowCollectionTitle.textColor = [UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f blue:51.0f/255.0f alpha:1.0f];
         ShowCollectionTitle.textAlignment = NSTextAlignmentLeft;
-        ShowCollectionTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:16];
+        ShowCollectionTitle.font = [UIFont fontWithName:CustomFontNameBold size:16];
         [MainScroll addSubview:ShowCollectionTitle];
         
         
@@ -222,7 +225,7 @@
         ShowCollectionCount.backgroundColor = [UIColor clearColor];
         ShowCollectionCount.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
         ShowCollectionCount.textAlignment = NSTextAlignmentLeft;
-        ShowCollectionCount.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:14];
+        ShowCollectionCount.font = [UIFont fontWithName:CustomFontName size:14];
         [MainScroll addSubview:ShowCollectionCount];
         
         

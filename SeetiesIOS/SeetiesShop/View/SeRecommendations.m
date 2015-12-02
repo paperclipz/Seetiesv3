@@ -91,7 +91,7 @@
         ShowUsername.backgroundColor = [UIColor whiteColor];
         ShowUsername.textColor = [UIColor blackColor];
         ShowUsername.textAlignment = NSTextAlignmentLeft;
-        ShowUsername.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+        ShowUsername.font = [UIFont fontWithName:CustomFontName size:15];
         [self addSubview:ShowUsername];
         
         Getheight += 40;
@@ -109,7 +109,7 @@
             ShowTitle.backgroundColor = [UIColor whiteColor];
             ShowTitle.textColor = [UIColor blackColor];
             ShowTitle.textAlignment = NSTextAlignmentLeft;
-            ShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+            ShowTitle.font = [UIFont fontWithName:CustomFontNameBold size:15];
             [self addSubview:ShowTitle];
         
             Getheight += 20;
@@ -125,7 +125,7 @@
             ShowDetail.backgroundColor = [UIColor whiteColor];
             ShowDetail.textColor = [UIColor blackColor];
             ShowDetail.textAlignment = NSTextAlignmentLeft;
-            ShowDetail.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+            ShowDetail.font = [UIFont fontWithName:CustomFontName size:15];
             [self addSubview:ShowDetail];
             
             UILabel *ShowReadMore = [[UILabel alloc]init];
@@ -134,7 +134,7 @@
             ShowReadMore.backgroundColor = [UIColor whiteColor];
             ShowReadMore.textColor = [UIColor colorWithRed:41.0f/255.0f green:182.0f/255.0f blue:246.0f/255.0f alpha:1.0f];
             ShowReadMore.textAlignment = NSTextAlignmentLeft;
-            ShowReadMore.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+            ShowReadMore.font = [UIFont fontWithName:CustomFontNameBold size:15];
             [self addSubview:ShowReadMore];
             
             Getheight += 40;
