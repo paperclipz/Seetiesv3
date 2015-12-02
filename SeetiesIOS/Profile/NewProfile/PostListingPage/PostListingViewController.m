@@ -53,8 +53,8 @@
 -(void)initSelfView
 {
     [self initTableViewWithDelegate];
-    self.lblTitle.text = [NSString stringWithFormat:@"%d %@",self.userProfilePostModel.userPostData.total_posts,LocalisedString(@"Posts")];
-    self.lblCount.text = LocalisedString(@"Posts");
+    self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userProfilePostModel.userPostData.total_posts,LocalisedString(@"Posts")];
+    self.lblTitle.text = LocalisedString(@"Posts");
     if (self.profileType == ProfileViewTypeOthers) {
         self.btnAddMore.hidden = YES;
     }

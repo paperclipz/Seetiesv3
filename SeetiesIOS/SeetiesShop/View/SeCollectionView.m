@@ -62,20 +62,28 @@
     
     
 }
+
+-(UIButton*)setupButton
+{
+    UIButton *TempButton = [[UIButton alloc]init];
+    [TempButton setTitle:@"" forState:UIControlStateNormal];
+    TempButton.backgroundColor = [UIColor whiteColor];
+    TempButton.layer.cornerRadius = 10;
+    TempButton.layer.borderWidth=1;
+    TempButton.layer.masksToBounds = YES;
+    TempButton.layer.borderColor=[[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f] CGColor];
+
+    return TempButton;
+}
 -(void)InitScrollViewData{
     
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
 
     for (int i = 0; i < 3; i++) {
-        UIButton *TempButton = [[UIButton alloc]init];
-        TempButton.frame = CGRectMake(10 + i * (screenWidth - 40), 20 , screenWidth - 50 ,220);
-        [TempButton setTitle:@"" forState:UIControlStateNormal];
-        TempButton.backgroundColor = [UIColor whiteColor];
-        TempButton.layer.cornerRadius = 10;
-        TempButton.layer.borderWidth=1;
-        TempButton.layer.masksToBounds = YES;
-        TempButton.layer.borderColor=[[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f] CGColor];
-        [MainScroll addSubview: TempButton];
+       
+        UIButton* button = [self setupButton];
+        button.frame = CGRectMake(10 + i * (screenWidth - 40), 20 , screenWidth - 50 ,220);
+        [MainScroll addSubview:button];
         
         AsyncImageView *ShowImage1 = [[AsyncImageView alloc]init];
         ShowImage1.frame = CGRectMake(10 + i * (screenWidth - 40), 20 , screenWidth - 50 ,150);
