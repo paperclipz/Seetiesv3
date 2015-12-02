@@ -7,7 +7,15 @@
 //
 
 #import "SeDealsView.h"
+#import "SeDealsTableViewCell.h"
 
+#define HeaderHeight 44.0f
+@interface SeDealsView()<UITableViewDataSource,UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *ibTableView;
+
+@property (strong, nonatomic)NSArray *arrList;
+
+@end
 @implementation SeDealsView
 
 /*
@@ -20,6 +28,29 @@
 
 -(void)initSelfView
 {
+    [self initTableViewDelegate];
+    self.arrList = @[@"1",@"2",@"3"];
+    
+    [self setHeight:HeaderHeight+ ((int)self.arrList.count * [SeDealsTableViewCell getHeight])];
+}
+
+-(void)initTableViewDelegate
+{
+    self.ibTableView.delegate = self;
+    self.ibTableView.dataSource = self;
+    [self.ibTableView registerClass:[SeDealsTableViewCell class] forCellReuseIdentifier:@"SeDealsTableViewCell"];
+}
+
+#pragma mark UITableView
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.arrList.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    SeDealsTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"SeDealsTableViewCell"];
+    return cell;
 }
 
 @end

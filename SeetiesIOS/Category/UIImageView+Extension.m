@@ -23,4 +23,16 @@
 
 }
 
+-(void)sd_setImageCroppedWithURL:(NSURL *)url completed:(ImageBlock)block
+{
+    
+    [self sd_setImageWithURL:url completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        
+        self.image = [image imageCroppedAndScaledToSize:self.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
+        if (block) {
+            block(self.image);
+        }
+    }];
+
+}
 @end

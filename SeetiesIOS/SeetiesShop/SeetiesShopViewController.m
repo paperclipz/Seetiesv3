@@ -16,7 +16,7 @@
 #import "SeRecommendations.h"
 #import "SeNearbySeetishop.h"
 
-@interface SeetiesShopViewController ()
+@interface SeetiesShopViewController ()<UIScrollViewDelegate>
 
 //================ CONTROLLERS ====================//
 @property (nonatomic,strong)MapViewController* mapViewController;
@@ -24,6 +24,7 @@
 
 //$$============== CONTROLLERS ==================$$//
 
+@property (weak, nonatomic) IBOutlet UIImageView *ibImgViewTopPadding;
 @property (nonatomic,strong)SeShopDetailView* seShopDetailView;
 @property (nonatomic,strong)SeDealsView* seDealsView;
 @property (nonatomic,strong)SeCollectionView* seCollectionView;
@@ -33,6 +34,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *ibScrollView;
 @property(nonatomic,assign)SeetiesShopType seetiesType;
 @property(nonatomic, strong)NSMutableArray* arrViews;
+@property (weak, nonatomic) IBOutlet UIImageView *ibImgViewOtherPadding;
 
 @end
 
@@ -47,6 +49,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.ibScrollView.delegate = self;
     _arrViews = [NSMutableArray new];
 
     [self setupViews];
@@ -61,6 +65,7 @@
 {
   
     [self.arrViews addObject:self.seShopDetailView];
+    [self.arrViews addObject:self.seDealsView];
     [self.arrViews addObject:self.seCollectionView];
     [self.arrViews addObject:self.seRecommendations];
     [self.arrViews addObject:self.seNearbySeetishop];
@@ -125,13 +130,23 @@
 -(SeShopDetailView*)seShopDetailView
 {
     if (!_seShopDetailView)
-{
+    {
+        
         _seShopDetailView = [SeShopDetailView initializeCustomView];
-    
+        
+        
         __weak typeof (self)weakSelf = self;
+        
         _seShopDetailView.btnMapClickedBlock = ^(void)
         {
+            
             [weakSelf.navigationController pushViewController:weakSelf.mapViewController animated:YES];
+            
+        };
+        
+        _seShopDetailView.imageDidFinishLoadBlock = ^(UIImage* image)
+        {
+            weakSelf.ibImgViewTopPadding.image = image;
         };
     
     
@@ -167,6 +182,28 @@
         _seNearbySeetishop = [SeNearbySeetishop initializeCustomView];
     }
     return _seNearbySeetishop;
+}
+
+#pragma mark - UIScrollView
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    
+    int profileBackgroundHeight = 200;
+    if (scrollView.contentOffset.y > -profileBackgroundHeight && scrollView.contentOffset.y <= 5) {
+        
+        float adjustment = (profileBackgroundHeight + scrollView.contentOffset.y
+                            )/(profileBackgroundHeight);
+        // SLog(@"adjustment : %f",adjustment);
+        self.ibImgViewOtherPadding.alpha = adjustment;
+        
+    }
+    else if (scrollView.contentOffset.y > profileBackgroundHeight)
+    {
+        self.ibImgViewOtherPadding.alpha = 1;
+        
+        
+        
+    }
 }
 /*
 #pragma mark - Navigation

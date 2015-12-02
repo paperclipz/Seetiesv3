@@ -11,7 +11,8 @@
 #import "SeShopDetailTableViewCell.h"
 #import "PhotoCollectionViewCell.h"
 
-#define Info_Title_Height 44.0f;
+#define Info_Footer_HEader_Height 50+44;
+
 @interface SeShopDetailView()<UITableViewDataSource,UITableViewDelegate, UICollectionViewDataSource,UICollectionViewDelegate,MKMapViewDelegate>
 {
     
@@ -59,7 +60,12 @@
     //[self initTableViewDelegate];
     [self initCollectionViewDelegate];
     [self initTableViewDelegate];
-    [self.ibProfileImageView sd_setImageWithURL:[NSURL URLWithString:@"http://www.venusbuzz.com/wp-content/uploads/rekindle-ss2-review-2.jpg"]];
+    [self.ibProfileImageView sd_setImageCroppedWithURL:[NSURL URLWithString:@"http://www.bangsarbabe.com/wp-content/uploads/2014/05/81.jpg"] completed:^(UIImage *image){
+        
+        if (self.imageDidFinishLoadBlock) {
+            self.imageDidFinishLoadBlock(image);
+        }
+    }];
     
     self.arrayList = @[@"1",@"2",@"3",@"4",@"5"];
     [self setupViewWithData];
@@ -86,7 +92,7 @@
 -(void)setupViewWithData
 {
     
-    tableviewConstraint.constant = (self.arrayList.count*[SeShopDetailTableViewCell getHeight]) + Info_Title_Height;
+    tableviewConstraint.constant = (self.arrayList.count*[SeShopDetailTableViewCell getHeight]) + Info_Footer_HEader_Height;
     //tableviewConstraint.constant = 0;
     [self layoutIfNeeded];
 

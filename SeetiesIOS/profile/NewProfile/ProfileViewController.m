@@ -1052,15 +1052,28 @@
         }];
     }
     else{
-        [[ConnectionManager Instance]requestServerWithDelete:ServerRequestTypePostFollowCollection param:dict appendString:appendString completeHandler:^(id object) {
+
+        [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Are You Sure You Want To Unfollow") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"YES"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
             
-            NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object];
-            BOOL following = [[returnDict objectForKey:@"following"] boolValue];
-            colModel.following = following;
-            [self.ibTableView reloadSectionDU:0 withRowAnimation:UITableViewRowAnimationAutomatic];
-            [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success unfollow this collection" type:TSMessageNotificationTypeSuccess];
-        } errorBlock:^(id object) {
+            if (buttonIndex == [alertView cancelButtonIndex]) {
+                NSLog(@"Cancelled");
+                
+            } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:LocalisedString(@"YES")]) {
+                
+                
+                [[ConnectionManager Instance]requestServerWithDelete:ServerRequestTypePostFollowCollection param:dict appendString:appendString completeHandler:^(id object) {
+                    
+                    NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object];
+                    BOOL following = [[returnDict objectForKey:@"following"] boolValue];
+                    colModel.following = following;
+                    [self.ibTableView reloadSectionDU:0 withRowAnimation:UITableViewRowAnimationAutomatic];
+                    [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success unfollow this collection" type:TSMessageNotificationTypeSuccess];
+                } errorBlock:^(id object) {
+                }];
+                
+            }
         }];
+
     }
     
 }

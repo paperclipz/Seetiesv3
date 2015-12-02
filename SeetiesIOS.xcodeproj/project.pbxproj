@@ -66,6 +66,8 @@
 		8A0F50CA1C0C45CD002B1E22 /* SeDealsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0F50C91C0C45CD002B1E22 /* SeDealsView.xib */; };
 		8A0F50CD1C0D52AE002B1E22 /* PhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0F50CC1C0D52AE002B1E22 /* PhotoCollectionViewCell.m */; };
 		8A0F50CF1C0D52BB002B1E22 /* PhotoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0F50CE1C0D52BB002B1E22 /* PhotoCollectionViewCell.xib */; };
+		8A0F50D41C0EAD9A002B1E22 /* SeDealsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0F50D21C0EAD9A002B1E22 /* SeDealsTableViewCell.m */; };
+		8A0F50D51C0EAD9A002B1E22 /* SeDealsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0F50D31C0EAD9A002B1E22 /* SeDealsTableViewCell.xib */; };
 		8A114C761BE73F5D006AE3F0 /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114B8A1BE73F5C006AE3F0 /* AFNetworkActivityLogger.m */; };
 		8A114C771BE73F5D006AE3F0 /* AUIAutoGrowingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114B8E1BE73F5C006AE3F0 /* AUIAutoGrowingTextView.m */; };
 		8A114C781BE73F5D006AE3F0 /* SConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114B911BE73F5C006AE3F0 /* SConstant.m */; };
@@ -1149,6 +1151,9 @@
 		8A0F50CB1C0D52AE002B1E22 /* PhotoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCollectionViewCell.h; sourceTree = "<group>"; };
 		8A0F50CC1C0D52AE002B1E22 /* PhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCollectionViewCell.m; sourceTree = "<group>"; };
 		8A0F50CE1C0D52BB002B1E22 /* PhotoCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoCollectionViewCell.xib; sourceTree = "<group>"; };
+		8A0F50D11C0EAD9A002B1E22 /* SeDealsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeDealsTableViewCell.h; sourceTree = "<group>"; };
+		8A0F50D21C0EAD9A002B1E22 /* SeDealsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeDealsTableViewCell.m; sourceTree = "<group>"; };
+		8A0F50D31C0EAD9A002B1E22 /* SeDealsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeDealsTableViewCell.xib; sourceTree = "<group>"; };
 		8A114B891BE73F5C006AE3F0 /* AFNetworkActivityLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityLogger.h; sourceTree = "<group>"; };
 		8A114B8A1BE73F5C006AE3F0 /* AFNetworkActivityLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityLogger.m; sourceTree = "<group>"; };
 		8A114B8D1BE73F5C006AE3F0 /* AUIAutoGrowingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUIAutoGrowingTextView.h; sourceTree = "<group>"; };
@@ -2705,11 +2710,22 @@
 		8A0F50C51C0C4599002B1E22 /* seetiesDeals */ = {
 			isa = PBXGroup;
 			children = (
+				8A0F50D01C0EAD78002B1E22 /* Cell */,
 				8A0F50C61C0C45C3002B1E22 /* SeDealsView.h */,
 				8A0F50C71C0C45C3002B1E22 /* SeDealsView.m */,
 				8A0F50C91C0C45CD002B1E22 /* SeDealsView.xib */,
 			);
 			name = seetiesDeals;
+			sourceTree = "<group>";
+		};
+		8A0F50D01C0EAD78002B1E22 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				8A0F50D11C0EAD9A002B1E22 /* SeDealsTableViewCell.h */,
+				8A0F50D21C0EAD9A002B1E22 /* SeDealsTableViewCell.m */,
+				8A0F50D31C0EAD9A002B1E22 /* SeDealsTableViewCell.xib */,
+			);
+			name = Cell;
 			sourceTree = "<group>";
 		};
 		8A114B871BE73F5C006AE3F0 /* Common */ = {
@@ -5370,6 +5386,7 @@
 				8A73636E1C0849AB00A64824 /* FollowingCollectionThaiIcon@2x.png in Resources */,
 				8A7364121C0849AB00A64824 /* FilterIcon@3x.png in Resources */,
 				8A114CEB1BE75CA0006AE3F0 /* NewCollectionViewController.xib in Resources */,
+				8A0F50D51C0EAD9A002B1E22 /* SeDealsTableViewCell.xib in Resources */,
 				8A7364461C0849AB00A64824 /* FoodDrinkIcon@2x.png in Resources */,
 				8A7364061C0849AB00A64824 /* Distance3Icon@3x.png in Resources */,
 				8A7364101C0849AB00A64824 /* FeedSuggestionFollow@3x.png in Resources */,
@@ -6170,6 +6187,7 @@
 				8A8475311BC52CCF006DD614 /* UITextView+Extra.m in Sources */,
 				8AD6BE571B706CF30040437E /* DoAlbumCell.m in Sources */,
 				8AD6C2951B7072FB0040437E /* DraftsViewController.m in Sources */,
+				8A0F50D41C0EAD9A002B1E22 /* SeDealsTableViewCell.m in Sources */,
 				8AD6C81D1B73382E0040437E /* Localisator.m in Sources */,
 				8AC8F72C1BDA414E00DEF14A /* ProfilePageCollectionFooterTableViewCell.m in Sources */,
 				8A6584371B981C0E00BC86B9 /* CategoryCollectionViewCell.m in Sources */,

@@ -12,4 +12,5 @@
 -(void)setupViewWithData;
 -(BOOL)isAvailable;
 @property(nonatomic,copy)VoidBlock btnMapClickedBlock;
+@property (nonatomic,copy)ImageBlock imageDidFinishLoadBlock;
 @end

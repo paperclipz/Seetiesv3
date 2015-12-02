@@ -98,9 +98,9 @@ typedef enum {
 +(int)getWeekInteger:(NSString*)week;
 // ========================  Day ==========================
 
++(void)setButtonWithBorder:button;
 +(void)setButtonWithBorder:(UIButton*)button color:(UIColor*)color;
 +(void)setRoundBorder:(UIView*)view color:(UIColor*)color borderRadius:(float)borderRadius;
-+(void)setButtonWithBorder:(UIButton*)button;
 +(void)setRoundBorder:(UIView*)view color:(UIColor*)color borderRadius:(float)borderRadius borderWidth:(float)borderWidth;
 
 

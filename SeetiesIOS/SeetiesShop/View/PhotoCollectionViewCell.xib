@@ -15,19 +15,23 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="2.png" translatesAutoresizingMaskIntoConstraints="NO" id="HX8-a4-dBV">
-                        <rect key="frame" x="0.0" y="0.0" width="88" height="88"/>
+                        <rect key="frame" x="5" y="5" width="78" height="78"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
-            <color key="backgroundColor" red="0.0098684210530000007" green="0.86666666670000003" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="HX8-a4-dBV" firstAttribute="leading" secondItem="5Br-FZ-n7P" secondAttribute="leading" id="2Tu-1q-bd8"/>
-                <constraint firstAttribute="trailing" secondItem="HX8-a4-dBV" secondAttribute="trailing" id="abm-u4-Ie4"/>
-                <constraint firstAttribute="bottom" secondItem="HX8-a4-dBV" secondAttribute="bottom" id="ok0-oP-W9X"/>
-                <constraint firstItem="HX8-a4-dBV" firstAttribute="top" secondItem="5Br-FZ-n7P" secondAttribute="top" id="wsr-1u-5Hd"/>
+                <constraint firstItem="HX8-a4-dBV" firstAttribute="leading" secondItem="5Br-FZ-n7P" secondAttribute="leading" constant="5" id="2Tu-1q-bd8"/>
+                <constraint firstAttribute="trailing" secondItem="HX8-a4-dBV" secondAttribute="trailing" constant="5" id="abm-u4-Ie4"/>
+                <constraint firstAttribute="bottom" secondItem="HX8-a4-dBV" secondAttribute="bottom" constant="5" id="ok0-oP-W9X"/>
+                <constraint firstItem="HX8-a4-dBV" firstAttribute="top" secondItem="5Br-FZ-n7P" secondAttribute="top" constant="5" id="wsr-1u-5Hd"/>
             </constraints>
             <size key="customSize" width="82" height="81"/>
+            <connections>
+                <outlet property="ibImageView" destination="HX8-a4-dBV" id="0JE-er-Ubx"/>
+            </connections>
             <point key="canvasLocation" x="510" y="319"/>
         </collectionViewCell>
     </objects>

@@ -18,4 +18,8 @@
 }
 */
 
+-(void)initSelfView
+{
+    [self.ibImageView setStandardBorder];
+}
 @end

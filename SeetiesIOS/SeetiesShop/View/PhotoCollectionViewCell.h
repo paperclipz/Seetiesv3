@@ -9,5 +9,6 @@
 #import "CommonCollectionViewCell.h"
 
 @interface PhotoCollectionViewCell : CommonCollectionViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
 
 @end
