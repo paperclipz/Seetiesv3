@@ -598,8 +598,7 @@
 //    [ExpertsUserProfileView GetUserName:[User_UserNameArray objectAtIndex:getbuttonIDN]];
     _profileViewController = nil;
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[User_UIDArray objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-    }];
+    [self.navigationController pushViewController:self.profileViewController animated:YES];
 }
 -(IBAction)FollowerButton:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;

@@ -997,8 +997,7 @@
 //        [NewUserProfileV2View GetUserName:[UserNameArray objectAtIndex:getbuttonIDN]];
         _profileViewController = nil;
         [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[uidArray objectAtIndex:getbuttonIDN]];
-        [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-        }];
+        [self.navigationController pushViewController:self.profileViewController animated:YES];
         
         NSLog(@"UserNameArray is %@",[UserNameArray objectAtIndex:getbuttonIDN]);
     }else if ([GetType isEqualToString:@"like"]){
@@ -1045,8 +1044,7 @@
         _profileViewController = nil;
 
         [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[uidArray objectAtIndex:getbuttonIDN]];
-        [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-        }];
+        [self.navigationController pushViewController:self.profileViewController animated:YES];
         
         NSLog(@"UserNameArray is %@",[UserNameArray objectAtIndex:getbuttonIDN]);
     }else if([GetType isEqualToString:@"post_shared"]){
@@ -1060,8 +1058,7 @@
         _profileViewController = nil;
 
         [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[uidArray objectAtIndex:getbuttonIDN]];
-        [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-        }];
+        [self.navigationController pushViewController:self.profileViewController animated:YES];
     }else{
     
         NSString *GetAction = [[NSString alloc]initWithFormat:@"%@",[ActionArray objectAtIndex:getbuttonIDN]];
@@ -1089,8 +1086,7 @@
             _profileViewController = nil;
 
             [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[uidArray objectAtIndex:getbuttonIDN]];
-            [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-            }];
+            [self.navigationController pushViewController:self.profileViewController animated:YES];
             
         }else{
         
@@ -1111,8 +1107,7 @@
         _profileViewController = nil;
 
         [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[Following_uidArray objectAtIndex:getbuttonIDN]];
-        [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-        }];
+        [self.navigationController pushViewController:self.profileViewController animated:YES];
         
         NSLog(@"UserNameArray is %@",[Following_UserNameArray objectAtIndex:getbuttonIDN]);
     }else if ([GetType isEqualToString:@"like"]){
@@ -1134,8 +1129,7 @@
         _profileViewController = nil;
 
         [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[Following_uidArray objectAtIndex:getbuttonIDN]];
-        [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-        }];
+        [self.navigationController pushViewController:self.profileViewController animated:YES ];
         NSLog(@"UserNameArray is %@",[Following_UserNameArray objectAtIndex:getbuttonIDN]);
     }else{
         
@@ -1156,8 +1150,7 @@
             _profileViewController = nil;
 
             [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[Following_uidArray objectAtIndex:getbuttonIDN]];
-            [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-            }];
+            [self.navigationController pushViewController:self.profileViewController animated:YES];
         }else{
             
         }

@@ -863,6 +863,7 @@
     
     return _shareV2ViewController;
 }
+
 -(UIImageView*)loadingImageView
 {
     if(!_loadingImageView)
