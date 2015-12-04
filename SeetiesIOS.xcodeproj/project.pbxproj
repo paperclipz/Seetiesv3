@@ -826,8 +826,6 @@
 		8ABA51F51C0FE7F000A3DC15 /* PhotoListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ABA51F31C0FE7F000A3DC15 /* PhotoListViewController.xib */; };
 		8ABA51F91C10329600A3DC15 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ABA51F71C10329600A3DC15 /* PhotoViewController.m */; };
 		8ABA51FA1C10329600A3DC15 /* PhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ABA51F81C10329600A3DC15 /* PhotoViewController.xib */; };
-		8ABA52001C10371800A3DC15 /* BCMagicTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ABA51FD1C10371800A3DC15 /* BCMagicTransition.m */; };
-		8ABA52011C10371800A3DC15 /* UIViewController+BCMagicTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ABA51FF1C10371800A3DC15 /* UIViewController+BCMagicTransition.m */; };
 		8AC8F63C1BDA309D00DEF14A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AC8F63B1BDA309D00DEF14A /* Default-568h@2x.png */; };
 		8AC8F7221BDA414E00DEF14A /* CollectionListingTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8F6D81BDA414E00DEF14A /* CollectionListingTabViewController.m */; };
 		8AC8F7231BDA414E00DEF14A /* CollectionListingTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AC8F6D91BDA414E00DEF14A /* CollectionListingTabViewController.xib */; };
@@ -2108,10 +2106,6 @@
 		8ABA51F61C10329600A3DC15 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
 		8ABA51F71C10329600A3DC15 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
 		8ABA51F81C10329600A3DC15 /* PhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoViewController.xib; sourceTree = "<group>"; };
-		8ABA51FC1C10371800A3DC15 /* BCMagicTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCMagicTransition.h; sourceTree = "<group>"; };
-		8ABA51FD1C10371800A3DC15 /* BCMagicTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMagicTransition.m; sourceTree = "<group>"; };
-		8ABA51FE1C10371800A3DC15 /* UIViewController+BCMagicTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BCMagicTransition.h"; sourceTree = "<group>"; };
-		8ABA51FF1C10371800A3DC15 /* UIViewController+BCMagicTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BCMagicTransition.m"; sourceTree = "<group>"; };
 		8AC8F63B1BDA309D00DEF14A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		8AC8F6D71BDA414E00DEF14A /* CollectionListingTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionListingTabViewController.h; sourceTree = "<group>"; };
 		8AC8F6D81BDA414E00DEF14A /* CollectionListingTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionListingTabViewController.m; sourceTree = "<group>"; };
@@ -2753,7 +2747,6 @@
 		8A114B871BE73F5C006AE3F0 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				8ABA51FB1C10371800A3DC15 /* BCMagicTransition */,
 				8A6BB4101BF0C338005AA1B3 /* MZFormSheetPresentationController */,
 				8A11513B1BE777FD006AE3F0 /* VGParallaxHeader */,
 				8A114B881BE73F5C006AE3F0 /* AFNetworkActivityLogger */,
@@ -4444,17 +4437,6 @@
 				8ABA51EF1C0F042000A3DC15 /* UINavigationController+Transition.m */,
 			);
 			path = "UINavigationController+Transition";
-			sourceTree = "<group>";
-		};
-		8ABA51FB1C10371800A3DC15 /* BCMagicTransition */ = {
-			isa = PBXGroup;
-			children = (
-				8ABA51FC1C10371800A3DC15 /* BCMagicTransition.h */,
-				8ABA51FD1C10371800A3DC15 /* BCMagicTransition.m */,
-				8ABA51FE1C10371800A3DC15 /* UIViewController+BCMagicTransition.h */,
-				8ABA51FF1C10371800A3DC15 /* UIViewController+BCMagicTransition.m */,
-			);
-			path = BCMagicTransition;
 			sourceTree = "<group>";
 		};
 		8AC8F6D41BDA414E00DEF14A /* Profile */ = {
@@ -6173,7 +6155,6 @@
 				8AD6BE561B706CF30040437E /* AssetHelper.m in Sources */,
 				8AD6C0B91B706CF30040437E /* ShowFollowerAndFollowingViewController.m in Sources */,
 				8AD6C0B11B706CF30040437E /* SignupViewController.m in Sources */,
-				8ABA52001C10371800A3DC15 /* BCMagicTransition.m in Sources */,
 				8A114C7D1BE73F5D006AE3F0 /* BKCardNumberLabel.m in Sources */,
 				8AC8F74A1BDA414E00DEF14A /* EditCollectionTableViewCell.m in Sources */,
 				8A6BB42F1BF0C338005AA1B3 /* MZFormSheetPresentationViewController.m in Sources */,
@@ -6393,7 +6374,6 @@
 				8A114CD41BE73F5D006AE3F0 /* CommonCollectionViewCell.m in Sources */,
 				8AD6C1001B706CF30040437E /* AccountSettingViewController.m in Sources */,
 				8A11513E1BE777FD006AE3F0 /* UIScrollView+VGParallaxHeader.m in Sources */,
-				8ABA52011C10371800A3DC15 /* UIViewController+BCMagicTransition.m in Sources */,
 				8A2E2C141B79E7A30010895E /* RecommendationViewController.m in Sources */,
 				8A114CD81BE73F5D006AE3F0 /* ZFTokenField.m in Sources */,
 				8AB76D201BB8FBAF007DB972 /* ArticleViewController.m in Sources */,

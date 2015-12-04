@@ -141,8 +141,8 @@
     _editPostViewController = nil;
     [self.editPostViewController initDataDraft:draftModel];
 
-    [self.navigationController pushViewController:self.editPostViewController animated:YES onCompletion:^{
-    }];
+    [self.navigationController pushViewController:self.editPostViewController animated:YES];
+
 }
 
 #pragma mark Request Server
