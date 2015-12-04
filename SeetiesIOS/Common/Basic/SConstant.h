@@ -44,18 +44,17 @@ typedef enum
     ServerRequestTypePostShareCollection,   
     // ========== Collection ========== //
     // ========== User Info ========== //
-    
-    
     ServerRequestTypeGetUserInfo,
     ServerRequestTypePostFollowUser,
-    
-
-    
-    
-    
     // ========== User Info ========== //
 
     
+    // ========== SEETIES SHOP ========== //
+
+    ServerRequestTypeGetSeetiShopDetail,
+    
+    // ========== SEETIES SHOP ========== //
+
     
 }ServerRequestType;
 

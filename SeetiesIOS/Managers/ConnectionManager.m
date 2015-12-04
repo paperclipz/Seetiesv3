@@ -8,6 +8,7 @@
 
 #import "ConnectionManager.h"
 #import "NSArray+JSON.h"
+#define API_VERION_URL @"v2.2"
 @interface ConnectionManager()
 @property (strong, nonatomic) DataManager *dataManager;
 
@@ -378,27 +379,31 @@
             break;
             
         case ServerRequestTypeGetLanguage:
-            str =  @"/v2.2/system/languages";
-            break;
             
+            str = [NSString stringWithFormat:@"/%@/system/languages",API_VERION_URL];
+            break;
         case ServerRequestTypeGetApiVersion:
-            str = @"v2.2/system/apiversion?device_type=2";
+            
+            str = [NSString stringWithFormat:@"%@/system/apiversion?device_type=2",API_VERION_URL];
+
             break;
         case ServerRequestTypeGetExplore:
-            str = @"v2.2/explore";
+            str = [NSString stringWithFormat:@"%@/explore",API_VERION_URL];
+
             break;
             
         case ServerRequestTypePostCreatePost:
         case ServerRequestTypePostDeletePost:
         case ServerRequestTypeGetPostInfo:
         case ServerRequestTypePostSaveDraft:
-            str = @"v2.2/post";
+            str = [NSString stringWithFormat:@"%@/post",API_VERION_URL];
+
             
             break;
             
         case ServerRequestTypeGetRecommendationDraft:
-            str = @"v2.2/draft";
-            
+            str = [NSString stringWithFormat:@"%@/draft",API_VERION_URL];
+
             break;
             
             case ServerRequestTypeGetGeoIP:
@@ -408,12 +413,18 @@
             break;
             
         case ServerRequestTypeGetCategories:
-            str = @"v2.2/system/update/category";
+            str = [NSString stringWithFormat:@"%@/system/update/category",API_VERION_URL];
+
             break;
         case ServerRequestTypeGetTagsSuggestion:
-            str = @"v2.2/tags";
+            str = [NSString stringWithFormat:@"%@/tags",API_VERION_URL];
 
             
+            break;
+            
+        case ServerRequestTypeGetSeetiShopDetail:
+            str = [NSString stringWithFormat:@"%@/seetishops/",API_VERION_URL];
+
             break;
             
         case ServerRequestTypeGetCollectionInfo:
@@ -425,14 +436,13 @@
         case ServerRequestTypePostFollowUser:
         case ServerRequestTypePostFollowCollection:
         default:
-             str = @"v2.2";
+             str = API_VERION_URL;
             break;
             
     }
     
     return [NSString stringWithFormat:@"https://%@/%@",self.serverPath,str];
     
-    // return str;
 }
 
 -(void)storeServerData:(id)obj requestType:(ServerRequestType)type
@@ -588,7 +598,10 @@
         }
             
             break;
+        case ServerRequestTypeGetSeetiShopDetail:
             
+            
+            break;
             
         default:
             

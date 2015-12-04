@@ -58,6 +58,7 @@
 		0BE340251B73021B00F49625 /* ProximaNovaSoft-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BE340221B73021B00F49625 /* ProximaNovaSoft-Regular.ttf */; };
 		8A00979B1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A00979A1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m */; };
 		8A00979D1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A00979C1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib */; };
+		8A0829401C1046F200AD8CBD /* UIView+draggable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A08293F1C1046F200AD8CBD /* UIView+draggable.m */; };
 		8A0F50B11C0C3B5B002B1E22 /* SeShopDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0F50B01C0C3B5B002B1E22 /* SeShopDetailView.m */; };
 		8A0F50B31C0C3B71002B1E22 /* SeShopDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0F50B21C0C3B71002B1E22 /* SeShopDetailView.xib */; };
 		8A0F50C11C0C3F08002B1E22 /* SeShopDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0F50C01C0C3F08002B1E22 /* SeShopDetailTableViewCell.m */; };
@@ -820,6 +821,13 @@
 		8AB76DD61BB8FD4A007DB972 /* PostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB76DD51BB8FD4A007DB972 /* PostModel.m */; };
 		8AB813C31BC23ECE002F5F06 /* UploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB813C21BC23ECE002F5F06 /* UploadManager.m */; };
 		8AB83A7C1BD49CED00715B69 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB83A7B1BD49CED00715B69 /* UIView+Extension.m */; };
+		8ABA51F01C0F042000A3DC15 /* UINavigationController+Transition.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ABA51EF1C0F042000A3DC15 /* UINavigationController+Transition.m */; };
+		8ABA51F41C0FE7F000A3DC15 /* PhotoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ABA51F21C0FE7F000A3DC15 /* PhotoListViewController.m */; };
+		8ABA51F51C0FE7F000A3DC15 /* PhotoListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ABA51F31C0FE7F000A3DC15 /* PhotoListViewController.xib */; };
+		8ABA51F91C10329600A3DC15 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ABA51F71C10329600A3DC15 /* PhotoViewController.m */; };
+		8ABA51FA1C10329600A3DC15 /* PhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ABA51F81C10329600A3DC15 /* PhotoViewController.xib */; };
+		8ABA52001C10371800A3DC15 /* BCMagicTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ABA51FD1C10371800A3DC15 /* BCMagicTransition.m */; };
+		8ABA52011C10371800A3DC15 /* UIViewController+BCMagicTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ABA51FF1C10371800A3DC15 /* UIViewController+BCMagicTransition.m */; };
 		8AC8F63C1BDA309D00DEF14A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AC8F63B1BDA309D00DEF14A /* Default-568h@2x.png */; };
 		8AC8F7221BDA414E00DEF14A /* CollectionListingTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8F6D81BDA414E00DEF14A /* CollectionListingTabViewController.m */; };
 		8AC8F7231BDA414E00DEF14A /* CollectionListingTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AC8F6D91BDA414E00DEF14A /* CollectionListingTabViewController.xib */; };
@@ -1139,6 +1147,8 @@
 		8A0097991B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomEditPhotoTableViewCell.h; sourceTree = "<group>"; };
 		8A00979A1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomEditPhotoTableViewCell.m; sourceTree = "<group>"; };
 		8A00979C1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomEditPhotoTableViewCell.xib; sourceTree = "<group>"; };
+		8A08293E1C1046F200AD8CBD /* UIView+draggable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+draggable.h"; sourceTree = "<group>"; };
+		8A08293F1C1046F200AD8CBD /* UIView+draggable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+draggable.m"; sourceTree = "<group>"; };
 		8A0F50AF1C0C3B5B002B1E22 /* SeShopDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeShopDetailView.h; sourceTree = "<group>"; };
 		8A0F50B01C0C3B5B002B1E22 /* SeShopDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeShopDetailView.m; sourceTree = "<group>"; };
 		8A0F50B21C0C3B71002B1E22 /* SeShopDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeShopDetailView.xib; sourceTree = "<group>"; };
@@ -2090,6 +2100,18 @@
 		8AB813C21BC23ECE002F5F06 /* UploadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadManager.m; sourceTree = "<group>"; };
 		8AB83A7A1BD49CED00715B69 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		8AB83A7B1BD49CED00715B69 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		8ABA51EE1C0F042000A3DC15 /* UINavigationController+Transition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Transition.h"; sourceTree = "<group>"; };
+		8ABA51EF1C0F042000A3DC15 /* UINavigationController+Transition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Transition.m"; sourceTree = "<group>"; };
+		8ABA51F11C0FE7F000A3DC15 /* PhotoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoListViewController.h; sourceTree = "<group>"; };
+		8ABA51F21C0FE7F000A3DC15 /* PhotoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoListViewController.m; sourceTree = "<group>"; };
+		8ABA51F31C0FE7F000A3DC15 /* PhotoListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoListViewController.xib; sourceTree = "<group>"; };
+		8ABA51F61C10329600A3DC15 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
+		8ABA51F71C10329600A3DC15 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
+		8ABA51F81C10329600A3DC15 /* PhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoViewController.xib; sourceTree = "<group>"; };
+		8ABA51FC1C10371800A3DC15 /* BCMagicTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCMagicTransition.h; sourceTree = "<group>"; };
+		8ABA51FD1C10371800A3DC15 /* BCMagicTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMagicTransition.m; sourceTree = "<group>"; };
+		8ABA51FE1C10371800A3DC15 /* UIViewController+BCMagicTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BCMagicTransition.h"; sourceTree = "<group>"; };
+		8ABA51FF1C10371800A3DC15 /* UIViewController+BCMagicTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BCMagicTransition.m"; sourceTree = "<group>"; };
 		8AC8F63B1BDA309D00DEF14A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		8AC8F6D71BDA414E00DEF14A /* CollectionListingTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionListingTabViewController.h; sourceTree = "<group>"; };
 		8AC8F6D81BDA414E00DEF14A /* CollectionListingTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionListingTabViewController.m; sourceTree = "<group>"; };
@@ -2731,6 +2753,7 @@
 		8A114B871BE73F5C006AE3F0 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				8ABA51FB1C10371800A3DC15 /* BCMagicTransition */,
 				8A6BB4101BF0C338005AA1B3 /* MZFormSheetPresentationController */,
 				8A11513B1BE777FD006AE3F0 /* VGParallaxHeader */,
 				8A114B881BE73F5C006AE3F0 /* AFNetworkActivityLogger */,
@@ -3492,9 +3515,15 @@
 			isa = PBXGroup;
 			children = (
 				8A4AC4B31C0C367B00968781 /* View */,
+				8ABA51F61C10329600A3DC15 /* PhotoViewController.h */,
+				8ABA51F71C10329600A3DC15 /* PhotoViewController.m */,
+				8ABA51F81C10329600A3DC15 /* PhotoViewController.xib */,
 				8A4AC4B41C0C369B00968781 /* SeetiesShopViewController.h */,
 				8A4AC4B51C0C369B00968781 /* SeetiesShopViewController.m */,
 				8A4AC4B61C0C369B00968781 /* SeetiesShopViewController.xib */,
+				8ABA51F11C0FE7F000A3DC15 /* PhotoListViewController.h */,
+				8ABA51F21C0FE7F000A3DC15 /* PhotoListViewController.m */,
+				8ABA51F31C0FE7F000A3DC15 /* PhotoListViewController.xib */,
 			);
 			path = SeetiesShop;
 			sourceTree = "<group>";
@@ -4408,6 +4437,26 @@
 			name = "UIView+Extension";
 			sourceTree = "<group>";
 		};
+		8ABA51ED1C0F042000A3DC15 /* UINavigationController+Transition */ = {
+			isa = PBXGroup;
+			children = (
+				8ABA51EE1C0F042000A3DC15 /* UINavigationController+Transition.h */,
+				8ABA51EF1C0F042000A3DC15 /* UINavigationController+Transition.m */,
+			);
+			path = "UINavigationController+Transition";
+			sourceTree = "<group>";
+		};
+		8ABA51FB1C10371800A3DC15 /* BCMagicTransition */ = {
+			isa = PBXGroup;
+			children = (
+				8ABA51FC1C10371800A3DC15 /* BCMagicTransition.h */,
+				8ABA51FD1C10371800A3DC15 /* BCMagicTransition.m */,
+				8ABA51FE1C10371800A3DC15 /* UIViewController+BCMagicTransition.h */,
+				8ABA51FF1C10371800A3DC15 /* UIViewController+BCMagicTransition.m */,
+			);
+			path = BCMagicTransition;
+			sourceTree = "<group>";
+		};
 		8AC8F6D41BDA414E00DEF14A /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -4691,6 +4740,9 @@
 		8AD6BA961B706CF10040437E /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				8A08293E1C1046F200AD8CBD /* UIView+draggable.h */,
+				8A08293F1C1046F200AD8CBD /* UIView+draggable.m */,
+				8ABA51ED1C0F042000A3DC15 /* UINavigationController+Transition */,
 				8A6BB40C1BF0A3F8005AA1B3 /* UITableView+Extension */,
 				8AC8F7531BDDD41C00DEF14A /* UIImageView+Exntesion */,
 				8AF53F171BD884E300AF6C9E /* NSObject+Extension */,
@@ -5488,6 +5540,7 @@
 				8AD6BE4C1B706CF30040437E /* ExploreCountryV2ViewController.xib in Resources */,
 				8A114CBE1BE73F5D006AE3F0 /* toolbarbg@2x.png in Resources */,
 				8A114C811BE73F5D006AE3F0 /* BKMoneyKit.bundle in Resources */,
+				8ABA51FA1C10329600A3DC15 /* PhotoViewController.xib in Resources */,
 				8A7363BB1C0849AB00A64824 /* GenderIcon@3x.png in Resources */,
 				8A7363DE1C0849AB00A64824 /* ExploreFollowing@3x.png in Resources */,
 				8A7364381C0849AB00A64824 /* EventLogo@2x.png in Resources */,
@@ -5776,6 +5829,7 @@
 				8A73652F1C0849AB00A64824 /* FeedIconActive@2x.png in Resources */,
 				8A7365571C0858D500A64824 /* ShareEmailIcon@2x.png in Resources */,
 				8A0F50CF1C0D52BB002B1E22 /* PhotoCollectionViewCell.xib in Resources */,
+				8ABA51F51C0FE7F000A3DC15 /* PhotoListViewController.xib in Resources */,
 				8A73647E1C0849AB00A64824 /* EyesCheck@2x.png in Resources */,
 				8A7365361C0849AB00A64824 /* ProfileIcon@3x.png in Resources */,
 				0BA94BBF1BE9B71F003AB2E4 /* SelectPhotoArrow@2x.png in Resources */,
@@ -6119,6 +6173,7 @@
 				8AD6BE561B706CF30040437E /* AssetHelper.m in Sources */,
 				8AD6C0B91B706CF30040437E /* ShowFollowerAndFollowingViewController.m in Sources */,
 				8AD6C0B11B706CF30040437E /* SignupViewController.m in Sources */,
+				8ABA52001C10371800A3DC15 /* BCMagicTransition.m in Sources */,
 				8A114C7D1BE73F5D006AE3F0 /* BKCardNumberLabel.m in Sources */,
 				8AC8F74A1BDA414E00DEF14A /* EditCollectionTableViewCell.m in Sources */,
 				8A6BB42F1BF0C338005AA1B3 /* MZFormSheetPresentationViewController.m in Sources */,
@@ -6254,6 +6309,7 @@
 				8A6BB4311BF0C338005AA1B3 /* MZFormSheetPresentationViewControllerInteractiveAnimator.m in Sources */,
 				8A8475251BC5274C006DD614 /* UILabel+Extra.m in Sources */,
 				8AD6C0BC1B706CF30040437E /* CommentViewController.m in Sources */,
+				8ABA51F91C10329600A3DC15 /* PhotoViewController.m in Sources */,
 				8A114CA41BE73F5D006AE3F0 /* PECropViewController.m in Sources */,
 				8A114C821BE73F5D006AE3F0 /* BKMoneyUtils.m in Sources */,
 				8A114CAC1BE73F5D006AE3F0 /* FSConverter.m in Sources */,
@@ -6303,6 +6359,7 @@
 				8AD6C2871B7072FB0040437E /* BrightnessViewController.m in Sources */,
 				8A34094F1B8AD267009B66C3 /* NYXImagesHelper.m in Sources */,
 				8AD6C29D1B7072FB0040437E /* PublishViewController.m in Sources */,
+				8ABA51F41C0FE7F000A3DC15 /* PhotoListViewController.m in Sources */,
 				8AD6C2851B7072FB0040437E /* AddPriceViewController.m in Sources */,
 				8A3409CE1B8B0DCB009B66C3 /* UIImage+Alpha.m in Sources */,
 				8AD6C0D81B706CF30040437E /* PTellUsYourCityViewController.m in Sources */,
@@ -6317,6 +6374,7 @@
 				8AD6BA661B705DF20040437E /* ViewController.m in Sources */,
 				8A3409D01B8B0DCB009B66C3 /* UIImage+RoundedCorner.m in Sources */,
 				8A114CD71BE73F5D006AE3F0 /* CommonViewController.m in Sources */,
+				8A0829401C1046F200AD8CBD /* UIView+draggable.m in Sources */,
 				8A114CC31BE73F5D006AE3F0 /* NSDictionary+RequestEncoding.m in Sources */,
 				8A114CA71BE73F5D006AE3F0 /* UIImage+PECrop.m in Sources */,
 				8A114C871BE73F5D006AE3F0 /* UITableViewCell+ConfigureCell.m in Sources */,
@@ -6335,6 +6393,7 @@
 				8A114CD41BE73F5D006AE3F0 /* CommonCollectionViewCell.m in Sources */,
 				8AD6C1001B706CF30040437E /* AccountSettingViewController.m in Sources */,
 				8A11513E1BE777FD006AE3F0 /* UIScrollView+VGParallaxHeader.m in Sources */,
+				8ABA52011C10371800A3DC15 /* UIViewController+BCMagicTransition.m in Sources */,
 				8A2E2C141B79E7A30010895E /* RecommendationViewController.m in Sources */,
 				8A114CD81BE73F5D006AE3F0 /* ZFTokenField.m in Sources */,
 				8AB76D201BB8FBAF007DB972 /* ArticleViewController.m in Sources */,
@@ -6350,6 +6409,7 @@
 				8A3757E41B85D635009DB7D4 /* EditPhotoViewController.m in Sources */,
 				8AC8F7481BDA414E00DEF14A /* EditCollectionViewController.m in Sources */,
 				8A114C7B1BE73F5D006AE3F0 /* BKCardNumberField.m in Sources */,
+				8ABA51F01C0F042000A3DC15 /* UINavigationController+Transition.m in Sources */,
 				8A2E2CEB1B81E15B0010895E /* STTableViewCell.m in Sources */,
 				8A84752B1BC52C0B006DD614 /* UITextField+Extra.m in Sources */,
 				8AD6C0C61B706CF30040437E /* NearByRecommtationViewController.m in Sources */,
