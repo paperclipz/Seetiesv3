@@ -2666,217 +2666,302 @@
     }
     
 
-    
-    UIButton *Line01 = [[UIButton alloc]init];
-    Line01.frame = CGRectMake(0, GetMessageHeight, screenWidth, 20);
-    [Line01 setTitle:@"" forState:UIControlStateNormal];//238
-    [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
-    [MainScroll addSubview:Line01];
-    
-    GetMessageHeight += 20;
-    
-    UILabel *ShowPlaceInfoText = [[UILabel alloc]init];
-    ShowPlaceInfoText.frame = CGRectMake(20, GetMessageHeight, screenWidth - 40, 50);
-    ShowPlaceInfoText.text = LocalisedString(@"About the place");
-    ShowPlaceInfoText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-    ShowPlaceInfoText.backgroundColor = [UIColor clearColor];
-    ShowPlaceInfoText.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-    [MainScroll addSubview:ShowPlaceInfoText];
-    
-    
-    UIButton *DirectionsButton = [[UIButton alloc]init];
-    DirectionsButton.frame = CGRectMake(screenWidth - 200 - 20, GetMessageHeight, 200, 50);
-    [DirectionsButton setTitle:LocalisedString(@"Getting here") forState:UIControlStateNormal];
-    [DirectionsButton setBackgroundColor:[UIColor clearColor]];
-    [DirectionsButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
-    [DirectionsButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
-    [DirectionsButton addTarget:self action:@selector(OpenAddressButton:) forControlEvents:UIControlEventTouchUpInside];
-    DirectionsButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-    
-    [MainScroll addSubview:DirectionsButton];
-    
-    
-    GetMessageHeight += 50;
-    
-    UIButton *Line02 = [[UIButton alloc]init];
-    Line02.frame = CGRectMake(0, GetMessageHeight - 1, screenWidth, 1);
-    [Line02 setTitle:@"" forState:UIControlStateNormal];//238
-    [Line02 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
-    [MainScroll addSubview:Line02];
-    
-//    int TempGetNewHeight = GetMessageHeight;
-    
-//    UIButton *DemoBlackButton = [[UIButton alloc]init];
-//    DemoBlackButton.frame = CGRectMake(21, GetMessageHeight, screenWidth - 41, 80);
-//    [DemoBlackButton setTitle:@"" forState:UIControlStateNormal];
-//    [DemoBlackButton setBackgroundColor:[UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0f]];
-//    DemoBlackButton.layer.cornerRadius = 10;
-//    DemoBlackButton.clipsToBounds = YES;
-//    [MainScroll addSubview:DemoBlackButton];
-//    
-//    UIButton *DemoWhiteButton = [[UIButton alloc]init];
-//    DemoWhiteButton.frame = CGRectMake(22, GetMessageHeight + 1, screenWidth - 43, 78);
-//    [DemoWhiteButton setTitle:@"" forState:UIControlStateNormal];
-//    [DemoWhiteButton setBackgroundColor:[UIColor whiteColor]];
-//    DemoWhiteButton.layer.cornerRadius = 10;
-//    DemoWhiteButton.clipsToBounds = YES;
-//    [MainScroll addSubview:DemoWhiteButton];
-    
-    UIImageView *ShowLocationIcon = [[UIImageView alloc]init];
-    ShowLocationIcon.frame = CGRectMake(20, GetMessageHeight + 18, 25, 25);
-    ShowLocationIcon.image = [UIImage imageNamed:@"BluePin.png"];
-    [MainScroll addSubview:ShowLocationIcon];
-    
-    UILabel *ShowPlaceName = [[UILabel alloc]init];
-    ShowPlaceName.frame = CGRectMake(50, GetMessageHeight + 20, screenWidth - 86 - 61 - 5, 21);
-    ShowPlaceName.text = GetPlaceName;
-    ShowPlaceName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-    ShowPlaceName.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-    [MainScroll addSubview:ShowPlaceName];
-    
-//    UIImageView *ShowArrowRight = [[UIImageView alloc]init];
-//    ShowArrowRight.frame = CGRectMake(screenWidth - 43 - 8 - 10, GetMessageHeight + 24, 8, 13);
-//    ShowArrowRight.image = [UIImage imageNamed:@"Caret.png"];
-//    [MainScroll addSubview:ShowArrowRight];
-    
-    GetMessageHeight += 40;
-    
-    if ([GetPlaceFormattedAddress length] == 0 || [GetPlaceFormattedAddress isEqualToString:@"<null>"]) {
-        GetPlaceFormattedAddress = @"";
-    }
-    
-    UILabel *ShowPlaceFormattedAddress = [[UILabel alloc]init];
-    ShowPlaceFormattedAddress.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
-    ShowPlaceFormattedAddress.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
-    ShowPlaceFormattedAddress.text = GetPlaceFormattedAddress;
-    ShowPlaceFormattedAddress.numberOfLines = 0;
-    ShowPlaceFormattedAddress.backgroundColor = [UIColor clearColor];
-    ShowPlaceFormattedAddress.frame = CGRectMake(50, GetMessageHeight, screenWidth - 152,[ShowPlaceFormattedAddress sizeThatFits:CGSizeMake(screenWidth - 152, CGFLOAT_MAX)].height);
-    [MainScroll addSubview:ShowPlaceFormattedAddress];
-    
-    UIButton *OpenAllInformationButton = [[UIButton alloc]init];
-    OpenAllInformationButton.frame = CGRectMake(86, GetMessageHeight - 20, screenWidth - 86 - 61 - 5, 21 + ShowPlaceFormattedAddress.frame.size.height);
-    [OpenAllInformationButton setTitle:@"" forState:UIControlStateNormal];
-    [OpenAllInformationButton setBackgroundColor:[UIColor clearColor]];
-    [OpenAllInformationButton addTarget:self action:@selector(OpenAddressButton:) forControlEvents:UIControlEventTouchUpInside];
-    [MainScroll addSubview:OpenAllInformationButton];
-    
-    GetMessageHeight += ShowPlaceFormattedAddress.frame.size.height + 20;
-    
-
-    
-    if ([GetPlaceLink length] == 0 || [GetPlaceLink isEqualToString:@"(null)"]) {
-    }else{
-        UIImageView *ShowLinkIcon = [[UIImageView alloc]init];
-        ShowLinkIcon.frame = CGRectMake(20, GetMessageHeight, 25, 25);
-        ShowLinkIcon.image = [UIImage imageNamed:@"BlueLink.png"];
-        [MainScroll addSubview:ShowLinkIcon];
+    if ([GetSeetishopID isEqualToString:@""] || [GetSeetishopID length] == 0) {
+        UIButton *Line01 = [[UIButton alloc]init];
+        Line01.frame = CGRectMake(0, GetMessageHeight, screenWidth, 20);
+        [Line01 setTitle:@"" forState:UIControlStateNormal];//238
+        [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+        [MainScroll addSubview:Line01];
         
-        UILabel *ShowPlacelink = [[UILabel alloc]init];
-        ShowPlacelink.frame = CGRectMake(50, GetMessageHeight, screenWidth - 152, 25);
-        ShowPlacelink.text = GetPlaceLink;
-        ShowPlacelink.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
-        ShowPlacelink.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-        [MainScroll addSubview:ShowPlacelink];
+        GetMessageHeight += 20;
         
-        UIButton *OpenLinkButton = [[UIButton alloc]init];
-        OpenLinkButton.frame = CGRectMake(50, GetMessageHeight - 6, screenWidth - 152, 21);
-        [OpenLinkButton setTitle:@"" forState:UIControlStateNormal];
-        [OpenLinkButton addTarget:self action:@selector(OpenLinkButton:) forControlEvents:UIControlEventTouchUpInside];
-        [OpenLinkButton setBackgroundColor:[UIColor clearColor]];
-        [MainScroll addSubview:OpenLinkButton];
+        UILabel *ShowPlaceInfoText = [[UILabel alloc]init];
+        ShowPlaceInfoText.frame = CGRectMake(20, GetMessageHeight, screenWidth - 40, 50);
+        ShowPlaceInfoText.text = LocalisedString(@"About the place");
+        ShowPlaceInfoText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+        ShowPlaceInfoText.backgroundColor = [UIColor clearColor];
+        ShowPlaceInfoText.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+        [MainScroll addSubview:ShowPlaceInfoText];
         
-        GetMessageHeight += 50;
-    }
-    if ([GetContactNo length] == 0 || [GetContactNo isEqualToString:@"(null)"]) {
         
-    }else{
-        UIImageView *ShowContactIcon = [[UIImageView alloc]init];
-        ShowContactIcon.frame = CGRectMake(20, GetMessageHeight, 25, 25);
-        ShowContactIcon.image = [UIImage imageNamed:@"BluePhone.png"];
-        [MainScroll addSubview:ShowContactIcon];
+        UIButton *DirectionsButton = [[UIButton alloc]init];
+        DirectionsButton.frame = CGRectMake(screenWidth - 200 - 20, GetMessageHeight, 200, 50);
+        [DirectionsButton setTitle:LocalisedString(@"Getting here") forState:UIControlStateNormal];
+        [DirectionsButton setBackgroundColor:[UIColor clearColor]];
+        [DirectionsButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
+        [DirectionsButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+        [DirectionsButton addTarget:self action:@selector(OpenAddressButton:) forControlEvents:UIControlEventTouchUpInside];
+        DirectionsButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
         
-        UILabel *ShowContact = [[UILabel alloc]init];
-        ShowContact.frame = CGRectMake(50, GetMessageHeight, screenWidth - 152, 25);
-        ShowContact.text = GetContactNo;
-        ShowContact.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
-        ShowContact.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-        [MainScroll addSubview:ShowContact];
-        
-        UIButton *OpenContactButton = [[UIButton alloc]init];
-        OpenContactButton.frame = CGRectMake(50, GetMessageHeight - 6, screenWidth - 152, 21);
-        [OpenContactButton setTitle:@"" forState:UIControlStateNormal];
-        [OpenContactButton addTarget:self action:@selector(OpenContactButton:) forControlEvents:UIControlEventTouchUpInside];
-        [OpenContactButton setBackgroundColor:[UIColor clearColor]];
-        [MainScroll addSubview:OpenContactButton];
-        
+        [MainScroll addSubview:DirectionsButton];
         
         
         GetMessageHeight += 50;
-    }
-    if ([GetOpeningHourOpen length] == 0 || [GetOpeningHourOpen isEqualToString:@"(null)"]) {
         
-    }else{
-        UIImageView *ShowOpeningIcon = [[UIImageView alloc]init];
-        ShowOpeningIcon.frame = CGRectMake(20, GetMessageHeight, 25, 25);
-        ShowOpeningIcon.image = [UIImage imageNamed:@"BlueTime.png"];
-        [MainScroll addSubview:ShowOpeningIcon];
+        UIButton *Line02 = [[UIButton alloc]init];
+        Line02.frame = CGRectMake(0, GetMessageHeight - 1, screenWidth, 1);
+        [Line02 setTitle:@"" forState:UIControlStateNormal];//238
+        [Line02 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+        [MainScroll addSubview:Line02];
         
-        if ([GetOpeningHourOpen isEqualToString:@"0"]) {
-            GetOpeningHourOpen = @"Close";
-        }else{
-            
-            GetOpeningHourOpen = @"Open";
+        UIImageView *ShowLocationIcon = [[UIImageView alloc]init];
+        ShowLocationIcon.frame = CGRectMake(20, GetMessageHeight + 18, 25, 25);
+        ShowLocationIcon.image = [UIImage imageNamed:@"BluePin.png"];
+        [MainScroll addSubview:ShowLocationIcon];
+        
+        UILabel *ShowPlaceName = [[UILabel alloc]init];
+        ShowPlaceName.frame = CGRectMake(50, GetMessageHeight + 20, screenWidth - 86 - 61 - 5, 21);
+        ShowPlaceName.text = GetPlaceName;
+        ShowPlaceName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+        ShowPlaceName.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+        [MainScroll addSubview:ShowPlaceName];
+        
+        GetMessageHeight += 40;
+        
+        if ([GetPlaceFormattedAddress length] == 0 || [GetPlaceFormattedAddress isEqualToString:@"<null>"]) {
+            GetPlaceFormattedAddress = @"";
         }
         
-        UILabel *ShowOpeningTExt = [[UILabel alloc]init];
-        ShowOpeningTExt.frame = CGRectMake(50, GetMessageHeight, screenWidth - 152, 25);
-        ShowOpeningTExt.text = GetOpeningHourOpen;
-        ShowOpeningTExt.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
-        ShowOpeningTExt.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-        [MainScroll addSubview:ShowOpeningTExt];
+        UILabel *ShowPlaceFormattedAddress = [[UILabel alloc]init];
+        ShowPlaceFormattedAddress.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+        ShowPlaceFormattedAddress.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+        ShowPlaceFormattedAddress.text = GetPlaceFormattedAddress;
+        ShowPlaceFormattedAddress.numberOfLines = 0;
+        ShowPlaceFormattedAddress.backgroundColor = [UIColor clearColor];
+        ShowPlaceFormattedAddress.frame = CGRectMake(50, GetMessageHeight, screenWidth - 152,[ShowPlaceFormattedAddress sizeThatFits:CGSizeMake(screenWidth - 152, CGFLOAT_MAX)].height);
+        [MainScroll addSubview:ShowPlaceFormattedAddress];
         
+        UIButton *OpenAllInformationButton = [[UIButton alloc]init];
+        OpenAllInformationButton.frame = CGRectMake(86, GetMessageHeight - 20, screenWidth - 86 - 61 - 5, 21 + ShowPlaceFormattedAddress.frame.size.height);
+        [OpenAllInformationButton setTitle:@"" forState:UIControlStateNormal];
+        [OpenAllInformationButton setBackgroundColor:[UIColor clearColor]];
+        [OpenAllInformationButton addTarget:self action:@selector(OpenAddressButton:) forControlEvents:UIControlEventTouchUpInside];
+        [MainScroll addSubview:OpenAllInformationButton];
+        
+        GetMessageHeight += ShowPlaceFormattedAddress.frame.size.height + 20;
+        
+        
+        
+        if ([GetPlaceLink length] == 0 || [GetPlaceLink isEqualToString:@"(null)"]) {
+        }else{
+            UIImageView *ShowLinkIcon = [[UIImageView alloc]init];
+            ShowLinkIcon.frame = CGRectMake(20, GetMessageHeight, 25, 25);
+            ShowLinkIcon.image = [UIImage imageNamed:@"BlueLink.png"];
+            [MainScroll addSubview:ShowLinkIcon];
+            
+            UILabel *ShowPlacelink = [[UILabel alloc]init];
+            ShowPlacelink.frame = CGRectMake(50, GetMessageHeight, screenWidth - 152, 25);
+            ShowPlacelink.text = GetPlaceLink;
+            ShowPlacelink.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+            ShowPlacelink.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+            [MainScroll addSubview:ShowPlacelink];
+            
+            UIButton *OpenLinkButton = [[UIButton alloc]init];
+            OpenLinkButton.frame = CGRectMake(50, GetMessageHeight - 6, screenWidth - 152, 21);
+            [OpenLinkButton setTitle:@"" forState:UIControlStateNormal];
+            [OpenLinkButton addTarget:self action:@selector(OpenLinkButton:) forControlEvents:UIControlEventTouchUpInside];
+            [OpenLinkButton setBackgroundColor:[UIColor clearColor]];
+            [MainScroll addSubview:OpenLinkButton];
+            
+            GetMessageHeight += 50;
+        }
+        if ([GetContactNo length] == 0 || [GetContactNo isEqualToString:@"(null)"]) {
+            
+        }else{
+            UIImageView *ShowContactIcon = [[UIImageView alloc]init];
+            ShowContactIcon.frame = CGRectMake(20, GetMessageHeight, 25, 25);
+            ShowContactIcon.image = [UIImage imageNamed:@"BluePhone.png"];
+            [MainScroll addSubview:ShowContactIcon];
+            
+            UILabel *ShowContact = [[UILabel alloc]init];
+            ShowContact.frame = CGRectMake(50, GetMessageHeight, screenWidth - 152, 25);
+            ShowContact.text = GetContactNo;
+            ShowContact.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+            ShowContact.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+            [MainScroll addSubview:ShowContact];
+            
+            UIButton *OpenContactButton = [[UIButton alloc]init];
+            OpenContactButton.frame = CGRectMake(50, GetMessageHeight - 6, screenWidth - 152, 21);
+            [OpenContactButton setTitle:@"" forState:UIControlStateNormal];
+            [OpenContactButton addTarget:self action:@selector(OpenContactButton:) forControlEvents:UIControlEventTouchUpInside];
+            [OpenContactButton setBackgroundColor:[UIColor clearColor]];
+            [MainScroll addSubview:OpenContactButton];
+            
+            
+            
+            GetMessageHeight += 50;
+        }
+        if ([GetOpeningHourOpen length] == 0 || [GetOpeningHourOpen isEqualToString:@"(null)"]) {
+            
+        }else{
+            UIImageView *ShowOpeningIcon = [[UIImageView alloc]init];
+            ShowOpeningIcon.frame = CGRectMake(20, GetMessageHeight, 25, 25);
+            ShowOpeningIcon.image = [UIImage imageNamed:@"BlueTime.png"];
+            [MainScroll addSubview:ShowOpeningIcon];
+            
+            if ([GetOpeningHourOpen isEqualToString:@"0"]) {
+                GetOpeningHourOpen = @"Close";
+            }else{
+                
+                GetOpeningHourOpen = @"Open";
+            }
+            
+            UILabel *ShowOpeningTExt = [[UILabel alloc]init];
+            ShowOpeningTExt.frame = CGRectMake(50, GetMessageHeight, screenWidth - 152, 25);
+            ShowOpeningTExt.text = GetOpeningHourOpen;
+            ShowOpeningTExt.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+            ShowOpeningTExt.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+            [MainScroll addSubview:ShowOpeningTExt];
+            
+            GetMessageHeight += 50;
+        }
+        if ([GetExpense length] == 0 || [GetExpense isEqualToString:@"(null)"]) {
+            
+        }else{
+            UIImageView *ShowPriceIcon = [[UIImageView alloc]init];
+            ShowPriceIcon.frame = CGRectMake(20, GetMessageHeight, 25, 25);
+            ShowPriceIcon.image = [UIImage imageNamed:@"BluePrice.png"];
+            [MainScroll addSubview:ShowPriceIcon];
+            
+            UILabel *ShowPriceTExt = [[UILabel alloc]init];
+            ShowPriceTExt.frame = CGRectMake(50, GetMessageHeight, screenWidth - 152, 25);
+            ShowPriceTExt.text = GetExpense;
+            ShowPriceTExt.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+            ShowPriceTExt.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+            [MainScroll addSubview:ShowPriceTExt];
+            
+            GetMessageHeight += 50;
+        }
+        
+        UIButton *Line03 = [[UIButton alloc]init];
+        Line03.frame = CGRectMake(0, GetMessageHeight, screenWidth, 1);
+        [Line03 setTitle:@"" forState:UIControlStateNormal];//238
+        [Line03 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+        [MainScroll addSubview:Line03];
+        
+        UIButton *MoreInfoButton = [[UIButton alloc]init];
+        MoreInfoButton.frame = CGRectMake(0, GetMessageHeight + 1, screenWidth, 50);
+        [MoreInfoButton setTitle:LocalisedString(@"Read more") forState:UIControlStateNormal];
+        [MoreInfoButton setBackgroundColor:[UIColor clearColor]];
+        [MoreInfoButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
+        [MoreInfoButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+        [MoreInfoButton addTarget:self action:@selector(OpenAddressButton:) forControlEvents:UIControlEventTouchUpInside];
+        // SeeAllCommentButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        
+        [MainScroll addSubview:MoreInfoButton];
         GetMessageHeight += 50;
-    }
-    if ([GetExpense length] == 0 || [GetExpense isEqualToString:@"(null)"]) {
         
+
     }else{
-        UIImageView *ShowPriceIcon = [[UIImageView alloc]init];
-        ShowPriceIcon.frame = CGRectMake(20, GetMessageHeight, 25, 25);
-        ShowPriceIcon.image = [UIImage imageNamed:@"BluePrice.png"];
-        [MainScroll addSubview:ShowPriceIcon];
         
-        UILabel *ShowPriceTExt = [[UILabel alloc]init];
-        ShowPriceTExt.frame = CGRectMake(50, GetMessageHeight, screenWidth - 152, 25);
-        ShowPriceTExt.text = GetExpense;
-        ShowPriceTExt.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
-        ShowPriceTExt.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-        [MainScroll addSubview:ShowPriceTExt];
+        //Seetishop UI
+        
+        UIButton *Line01 = [[UIButton alloc]init];
+        Line01.frame = CGRectMake(0, GetMessageHeight, screenWidth, 20);
+        [Line01 setTitle:@"" forState:UIControlStateNormal];//238
+        [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+        [MainScroll addSubview:Line01];
+        
+        GetMessageHeight += 20;
+        
+        UILabel *ShowPlaceInfoText = [[UILabel alloc]init];
+        ShowPlaceInfoText.frame = CGRectMake(20, GetMessageHeight, screenWidth - 40, 50);
+        ShowPlaceInfoText.text = LocalisedString(@"About the place");
+        ShowPlaceInfoText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+        ShowPlaceInfoText.backgroundColor = [UIColor clearColor];
+        ShowPlaceInfoText.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+        [MainScroll addSubview:ShowPlaceInfoText];
+        
+        
+        UIButton *DirectionsButton = [[UIButton alloc]init];
+        DirectionsButton.frame = CGRectMake(screenWidth - 200 - 20, GetMessageHeight, 200, 50);
+        [DirectionsButton setTitle:LocalisedString(@"Getting here") forState:UIControlStateNormal];
+        [DirectionsButton setBackgroundColor:[UIColor clearColor]];
+        [DirectionsButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
+        [DirectionsButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+        [DirectionsButton addTarget:self action:@selector(OpenAddressButton:) forControlEvents:UIControlEventTouchUpInside];
+        DirectionsButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+        
+        [MainScroll addSubview:DirectionsButton];
+        
         
         GetMessageHeight += 50;
+        
+        UIButton *Line02 = [[UIButton alloc]init];
+        Line02.frame = CGRectMake(0, GetMessageHeight - 1, screenWidth, 1);
+        [Line02 setTitle:@"" forState:UIControlStateNormal];//238
+        [Line02 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+        [MainScroll addSubview:Line02];
+        
+        //Shop Icon, Name and Address
+        
+        AsyncImageView *ShowShopImage = [[AsyncImageView alloc]init];
+        ShowShopImage.frame = CGRectMake(20, GetMessageHeight + 20, 50, 50);
+        ShowShopImage.contentMode = UIViewContentModeScaleAspectFill;
+        ShowShopImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
+        ShowShopImage.layer.cornerRadius= 25;
+        ShowShopImage.layer.borderWidth=1;
+        ShowShopImage.layer.masksToBounds = YES;
+        ShowShopImage.layer.borderColor=[[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f] CGColor];
+        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowShopImage];
+        ShowShopImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
+//        NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",GetUserProfileUrl];
+//        NSLog(@"FullImagesURL1 ====== %@",FullImagesURL1);
+//        if ([FullImagesURL1 length] == 0) {
+//            UserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
+//        }else{
+//            NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
+//            //NSLog(@"url_NearbyBig is %@",url_NearbyBig);
+//            UserImage.imageURL = url_UserImage;
+//        }
+        [MainScroll addSubview:ShowShopImage];
+        
+        UILabel *ShowUserName = [[UILabel alloc]init];
+        ShowUserName.text = @"This is Shop Name";
+        ShowUserName.frame = CGRectMake(90, GetMessageHeight + 20, ShowUserName.intrinsicContentSize.width, 20);
+        ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+        ShowUserName.backgroundColor = [UIColor clearColor];
+        // ShowUserName.textColor = color;
+        ShowUserName.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+        [MainScroll addSubview:ShowUserName];
+        
+        UIImageView *ShowVerifiedImg = [[UIImageView alloc]init];
+        ShowVerifiedImg.image = [UIImage imageNamed:@"VerifiedSeetishopIcon.png"];
+        ShowVerifiedImg.frame = CGRectMake(90 + ShowUserName.frame.size.width, GetMessageHeight + 21, 18, 18);
+        [MainScroll addSubview:ShowVerifiedImg];
+        
+        UILabel *ShowAddress = [[UILabel alloc]init];
+        ShowAddress.frame = CGRectMake(90, GetMessageHeight + 45, screenWidth - 20 - 90, 30);
+        ShowAddress.text = @"2. Jalan SS 21/35, Damansara Utaman, 47400 Petaling Jaya, Selangor";
+        ShowAddress.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+        ShowAddress.numberOfLines = 2;
+        // ShowUserName.textColor = color;
+        ShowAddress.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+        [MainScroll addSubview:ShowAddress];
+        
+        
+        
+        GetMessageHeight += 90;
+        
+        UIButton *Line03 = [[UIButton alloc]init];
+        Line03.frame = CGRectMake(0, GetMessageHeight, screenWidth, 1);
+        [Line03 setTitle:@"" forState:UIControlStateNormal];//238
+        [Line03 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+        [MainScroll addSubview:Line03];
+        
+        UIButton *ViewSeetishopButton = [[UIButton alloc]init];
+        ViewSeetishopButton.frame = CGRectMake(0, GetMessageHeight + 1, screenWidth, 50);
+        [ViewSeetishopButton setTitle:@"View Seetishop" forState:UIControlStateNormal];
+        [ViewSeetishopButton setBackgroundColor:[UIColor clearColor]];
+        [ViewSeetishopButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
+        [ViewSeetishopButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+        [ViewSeetishopButton addTarget:self action:@selector(ViewSeetishopButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+        // SeeAllCommentButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        
+        [MainScroll addSubview:ViewSeetishopButton];
+        GetMessageHeight += 50;
+    
     }
-
-//    DemoBlackButton.frame = CGRectMake(21, TempGetNewHeight, screenWidth - 41, GetMessageHeight - TempGetNewHeight);
-//    DemoWhiteButton.frame = CGRectMake(22, TempGetNewHeight + 1, screenWidth - 43, GetMessageHeight - TempGetNewHeight - 2);
-    
-
-    UIButton *Line03 = [[UIButton alloc]init];
-    Line03.frame = CGRectMake(0, GetMessageHeight, screenWidth, 1);
-    [Line03 setTitle:@"" forState:UIControlStateNormal];//238
-    [Line03 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
-    [MainScroll addSubview:Line03];
-    
-    UIButton *MoreInfoButton = [[UIButton alloc]init];
-    MoreInfoButton.frame = CGRectMake(0, GetMessageHeight + 1, screenWidth, 50);
-    [MoreInfoButton setTitle:LocalisedString(@"Read more") forState:UIControlStateNormal];
-    [MoreInfoButton setBackgroundColor:[UIColor clearColor]];
-    [MoreInfoButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
-    [MoreInfoButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
-    [MoreInfoButton addTarget:self action:@selector(OpenAddressButton:) forControlEvents:UIControlEventTouchUpInside];
-    // SeeAllCommentButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    
-    [MainScroll addSubview:MoreInfoButton];
-    GetMessageHeight += 50;
     
     UIButton *Line04 = [[UIButton alloc]init];
     Line04.frame = CGRectMake(0, GetMessageHeight, screenWidth, 20);
@@ -2884,11 +2969,10 @@
     [Line04 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
     [MainScroll addSubview:Line04];
     
-   // OpenAddressButton
-    
     GetMessageHeight += 20;
+
     
-    MainScroll.contentSize = CGSizeMake(screenWidth, GetMessageHeight);
+    MainScroll.contentSize = CGSizeMake(screenWidth, GetMessageHeight + 50);
     CheckLoadDone = YES;
     [ShowActivity stopAnimating];
    // [spinnerView stopAnimating];
@@ -4692,5 +4776,22 @@
     }
     
     return _collectionListingViewController;
+}
+-(SeetiesShopViewController*)seetiesShopViewController
+{
+    
+    if (!_seetiesShopViewController) {
+        _seetiesShopViewController = [SeetiesShopViewController new];
+    }
+    return _seetiesShopViewController;
+}
+-(IBAction)ViewSeetishopButtonOnClick:(id)sender{
+
+    NSLog(@"ViewSeetishopButtonOnClick and SeetishopID = %@",GetSeetishopID);
+    NSLog(@"GetPostID is %@ and GetLocationPlaceId is %@",GetPostID,GetLocationPlaceId);
+    
+    UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:self.seetiesShopViewController];
+    [nav setNavigationBarHidden:YES];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 @end

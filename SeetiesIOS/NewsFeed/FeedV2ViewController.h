@@ -14,4 +14,5 @@
 #import "DoImagePickerController.h"
 
 @interface FeedV2ViewController : BaseViewController<UIScrollViewDelegate,DoImagePickerControllerDelegate>
+
 @end

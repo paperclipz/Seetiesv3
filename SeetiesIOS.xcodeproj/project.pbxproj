@@ -10,6 +10,8 @@
 		0B1D9F271BE2317700AAE8CE /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B1D9F261BE2317700AAE8CE /* Launch Screen.storyboard */; };
 		0B3FF10F1BB131A20014AF2E /* NearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3FF10D1BB131A20014AF2E /* NearbyViewController.m */; };
 		0B3FF1101BB131A20014AF2E /* NearbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B3FF10E1BB131A20014AF2E /* NearbyViewController.xib */; };
+		0B4EA25B1C118F9D00A8EDE9 /* VerifiedSeetishopIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B4EA2591C118F9D00A8EDE9 /* VerifiedSeetishopIcon@2x.png */; };
+		0B4EA25C1C118F9D00A8EDE9 /* VerifiedSeetishopIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B4EA25A1C118F9D00A8EDE9 /* VerifiedSeetishopIcon@3x.png */; };
 		0B6A54E01BB51F84005B9D6B /* ReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6A54DE1BB51F84005B9D6B /* ReportViewController.m */; };
 		0B6A54E11BB51F84005B9D6B /* ReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B6A54DF1BB51F84005B9D6B /* ReportViewController.xib */; };
 		0B99C2001BCBA1F1006D7E63 /* AnnounceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B99C1FE1BCBA1F0006D7E63 /* AnnounceViewController.m */; };
@@ -1084,6 +1086,8 @@
 		0B3FF10C1BB131A20014AF2E /* NearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyViewController.h; sourceTree = "<group>"; };
 		0B3FF10D1BB131A20014AF2E /* NearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyViewController.m; sourceTree = "<group>"; };
 		0B3FF10E1BB131A20014AF2E /* NearbyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NearbyViewController.xib; sourceTree = "<group>"; };
+		0B4EA2591C118F9D00A8EDE9 /* VerifiedSeetishopIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VerifiedSeetishopIcon@2x.png"; sourceTree = "<group>"; };
+		0B4EA25A1C118F9D00A8EDE9 /* VerifiedSeetishopIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VerifiedSeetishopIcon@3x.png"; sourceTree = "<group>"; };
 		0B6A54DD1BB51F84005B9D6B /* ReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportViewController.h; sourceTree = "<group>"; };
 		0B6A54DE1BB51F84005B9D6B /* ReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportViewController.m; sourceTree = "<group>"; };
 		0B6A54DF1BB51F84005B9D6B /* ReportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReportViewController.xib; sourceTree = "<group>"; };
@@ -2594,6 +2598,15 @@
 			path = Nearby;
 			sourceTree = "<group>";
 		};
+		0B4EA2581C118F9D00A8EDE9 /* SeetiShop */ = {
+			isa = PBXGroup;
+			children = (
+				0B4EA2591C118F9D00A8EDE9 /* VerifiedSeetishopIcon@2x.png */,
+				0B4EA25A1C118F9D00A8EDE9 /* VerifiedSeetishopIcon@3x.png */,
+			);
+			path = SeetiShop;
+			sourceTree = "<group>";
+		};
 		0B6A54DC1BB51F76005B9D6B /* Report */ = {
 			isa = PBXGroup;
 			children = (
@@ -3625,6 +3638,7 @@
 		8A7360FF1C0849AA00A64824 /* SeetiesArtWork */ = {
 			isa = PBXGroup;
 			children = (
+				0B4EA2581C118F9D00A8EDE9 /* SeetiShop */,
 				8A7361001C0849AA00A64824 /* Add New Place */,
 				8A73610D1C0849AA00A64824 /* App Icons */,
 				8A7361201C0849AA00A64824 /* Collection */,
@@ -5978,6 +5992,7 @@
 				8A7364701C0849AB00A64824 /* InviteGraphic@2x.png in Resources */,
 				8A7364971C0849AB00A64824 /* NotificationFollow@3x.png in Resources */,
 				8A7363CD1C0849AB00A64824 /* NoActivity@3x.png in Resources */,
+				0B4EA25B1C118F9D00A8EDE9 /* VerifiedSeetishopIcon@2x.png in Resources */,
 				8A7364D11C0849AB00A64824 /* LikeIcon@3x.png in Resources */,
 				8A7364501C0849AB00A64824 /* LocalIcon@2x.png in Resources */,
 				8A7364DD1C0849AB00A64824 /* NoPostIcon@3x.png in Resources */,
@@ -6057,6 +6072,7 @@
 				8A7364171C0849AB00A64824 /* GreyShareIcon@2x.png in Resources */,
 				8A7365311C0849AB00A64824 /* NotificationIcon@2x.png in Resources */,
 				8AD6C28A1B7072FB0040437E /* ConfirmPlaceViewController.xib in Resources */,
+				0B4EA25C1C118F9D00A8EDE9 /* VerifiedSeetishopIcon@3x.png in Resources */,
 				8A7363FF1C0849AB00A64824 /* DealsAndRecommendationOverlay@2x.png in Resources */,
 				8A7365301C0849AB00A64824 /* FeedIconActive@3x.png in Resources */,
 				8A7363A11C0849AB00A64824 /* AddLanguageBtn@3x.png in Resources */,
