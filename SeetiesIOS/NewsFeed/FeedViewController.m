@@ -93,6 +93,8 @@
     NSMutableArray *arrDealID;
     NSMutableArray *arrfeaturedUserID;
     NSMutableArray *arrFriendUserID;
+    NSMutableArray *arrAboadUserID;
+    NSMutableArray *arrDealUserID;
     
     NSMutableArray *arrCollectionID;
     NSMutableArray *arrCollectionName;
@@ -678,6 +680,8 @@
         [arrfeaturedUserID removeAllObjects];
         [arrFriendUserID removeAllObjects];
         [arrDealID removeAllObjects];
+        [arrDealUserID removeAllObjects];
+        [arrAboadUserID removeAllObjects];
         
         [SplitArray_Id_Friend removeAllObjects];
         [SplitArray_ProfileImg_Friend removeAllObjects];
@@ -798,6 +802,8 @@
     [arrDealID removeAllObjects];
     [arrfeaturedUserID removeAllObjects];
     [arrFriendUserID removeAllObjects];
+    [arrDealUserID removeAllObjects];
+    [arrAboadUserID removeAllObjects];
     
     [SplitArray_Id_Friend removeAllObjects];
     [SplitArray_ProfileImg_Friend removeAllObjects];
@@ -1995,6 +2001,10 @@
                 NSArray *SplitArray_Id = [TempId componentsSeparatedByString:@","];
                 arrAboadID = [[NSMutableArray alloc]initWithArray:SplitArray_Id];
                 
+                NSString *TempUserID = [[NSString alloc]initWithFormat:@"%@",[arrUserID objectAtIndex:i]];
+                NSArray *SplitArray_UserID = [TempUserID componentsSeparatedByString:@","];
+                arrAboadUserID = [[NSMutableArray alloc]initWithArray:SplitArray_UserID];
+                
                // NSLog(@"in abroad_quality_post");
                 SuggestedScrollview_Aboad = [[UIScrollView alloc]init];
                 SuggestedScrollview_Aboad.delegate = self;
@@ -2157,6 +2167,14 @@
                     [OpenPostsButton addTarget:self action:@selector(AboadOpenPostsOnClick:) forControlEvents:UIControlEventTouchUpInside];
                     OpenPostsButton.tag = i;
                     [SuggestedScrollview_Aboad addSubview:OpenPostsButton];
+                    
+                    UIButton *OpenUserButton = [[UIButton alloc]init];
+                    [OpenUserButton setTitle:@"" forState:UIControlStateNormal];
+                    OpenUserButton.backgroundColor = [UIColor clearColor];
+                    OpenUserButton.frame = CGRectMake(25 + i * (screenWidth - 40), 51 + 10, screenWidth - 75 - 100, 40);
+                    [OpenUserButton addTarget:self action:@selector(AboadUserOpenProfileOnClick:) forControlEvents:UIControlEventTouchUpInside];
+                    OpenUserButton.tag = i;
+                    [SuggestedScrollview_Aboad addSubview:OpenUserButton];
                     
                     
                     SuggestedScrollview_Aboad.contentSize = CGSizeMake(10 + i * (screenWidth - 40) + (screenWidth - 40), 300);
@@ -2821,6 +2839,10 @@
                 NSArray *SplitArray_Id = [TempId componentsSeparatedByString:@","];
                 arrDealID = [[NSMutableArray alloc]initWithArray:SplitArray_Id];
                 
+                NSString *TempUserID = [[NSString alloc]initWithFormat:@"%@",[arrUserID objectAtIndex:i]];
+                NSArray *SplitArray_UserID = [TempUserID componentsSeparatedByString:@","];
+                arrDealUserID = [[NSMutableArray alloc]initWithArray:SplitArray_UserID];
+                
                 UILabel *ShowSuggestedText = [[UILabel alloc]init];
                 ShowSuggestedText.frame = CGRectMake(20, heightcheck, screenWidth - 70, 50);
                 ShowSuggestedText.text = LocalisedString(@"Deals near you");
@@ -2977,6 +2999,14 @@
                     [OpenPostsButton addTarget:self action:@selector(DealOpenPostsOnClick:) forControlEvents:UIControlEventTouchUpInside];
                     OpenPostsButton.tag = i;
                     [SuggestedScrollview_Deal addSubview:OpenPostsButton];
+                    
+                    UIButton *OpenUserButton = [[UIButton alloc]init];
+                    [OpenUserButton setTitle:@"" forState:UIControlStateNormal];
+                    OpenUserButton.backgroundColor = [UIColor clearColor];
+                    OpenUserButton.frame = CGRectMake(25 + i * (screenWidth - 40), 51 + 10, screenWidth - 75 - 100, 40);
+                    [OpenUserButton addTarget:self action:@selector(DealUserOpenProfileOnClick:) forControlEvents:UIControlEventTouchUpInside];
+                    OpenUserButton.tag = i;
+                    [SuggestedScrollview_Deal addSubview:OpenUserButton];
                     
                     
                     SuggestedScrollview_Deal.contentSize = CGSizeMake(10 + i * (screenWidth - 40) + (screenWidth - 45), 300);
@@ -5306,6 +5336,16 @@
     [self.navigationController pushViewController:vc animated:YES];
     [vc GetPostID:GetID];
 }
+-(IBAction)AboadUserOpenProfileOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSString *GetID = [[NSString alloc]initWithFormat:@"%@",[arrAboadUserID objectAtIndex:getbuttonIDN]];
+    NSLog(@"DealUserOpenProfileOnClick GetID is %@",GetID);
+    
+    _profileViewController = nil;
+    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:GetID];
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+    }];
+}
 -(IBAction)DealOpenPostsOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSString *GetID = [[NSString alloc]initWithFormat:@"%@",[arrDealID objectAtIndex:getbuttonIDN]];
@@ -5314,6 +5354,16 @@
     FeedV2DetailViewController *vc = [[FeedV2DetailViewController alloc] initWithNibName:@"FeedV2DetailViewController" bundle:nil];
     [self.navigationController pushViewController:vc animated:YES];
     [vc GetPostID:GetID];
+}
+-(IBAction)DealUserOpenProfileOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSString *GetID = [[NSString alloc]initWithFormat:@"%@",[arrDealUserID objectAtIndex:getbuttonIDN]];
+    NSLog(@"DealUserOpenProfileOnClick GetID is %@",GetID);
+    
+    _profileViewController = nil;
+    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:GetID];
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+    }];
 }
 -(IBAction)FeaturedOpenUserProfile:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;

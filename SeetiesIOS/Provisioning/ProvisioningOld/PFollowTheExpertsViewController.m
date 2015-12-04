@@ -42,7 +42,7 @@
     
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight);
+    MainScroll.frame = CGRectMake(0, -20, screenWidth, screenHeight + 20);
     [MainScroll setContentSize:CGSizeMake(screenWidth * 5, 480)];
     
     Feed1View.frame = CGRectMake(0, 0, screenWidth, screenHeight);

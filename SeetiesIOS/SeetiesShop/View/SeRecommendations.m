@@ -54,6 +54,36 @@
     
 
 }
+
+-(AsyncImageView *)SetupUserProfileImage
+{
+    AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
+    ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
+    ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
+    ShowUserProfileImage.layer.cornerRadius = 20;
+    ShowUserProfileImage.layer.masksToBounds = YES;
+    ShowUserProfileImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
+    return ShowUserProfileImage;
+}
+-(UILabel *)SetupLabel
+{
+    UILabel *Showlabel = [[UILabel alloc]init];
+    Showlabel.text = @"Label";
+    Showlabel.backgroundColor = [UIColor whiteColor];
+    Showlabel.textColor = [UIColor blackColor];
+    Showlabel.textAlignment = NSTextAlignmentLeft;
+    
+    return Showlabel;
+
+}
+-(UIButton *)SetupLineBtn
+{
+    UIButton *Line = [[UIButton alloc]init];
+    [Line setTitle:@"" forState:UIControlStateNormal];
+    [Line setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+    return Line;
+}
+
 -(void)InitRecommendationViewdata{
     
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
@@ -71,21 +101,13 @@
     [ArrDetail addObject:@"A good place to hangout with friend in night time."];
     
     for (int i = 0; i < 3; i++) {
-        AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
+        AsyncImageView *ShowUserProfileImage = [self SetupUserProfileImage];
         ShowUserProfileImage.frame = CGRectMake(20 , Getheight, 40, 40);
-        ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
-        ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
-        ShowUserProfileImage.layer.cornerRadius = 20;
-        ShowUserProfileImage.layer.masksToBounds = YES;
-        ShowUserProfileImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
         [self addSubview:ShowUserProfileImage];
         
-        UILabel *ShowUsername = [[UILabel alloc]init];
+        UILabel *ShowUsername = [self SetupLabel];
         ShowUsername.frame = CGRectMake(80, Getheight, screenWidth - 100, 40);
         ShowUsername.text = @"Butter + Beans";
-        ShowUsername.backgroundColor = [UIColor whiteColor];
-        ShowUsername.textColor = [UIColor blackColor];
-        ShowUsername.textAlignment = NSTextAlignmentLeft;
         ShowUsername.font = [UIFont fontWithName:CustomFontName size:15];
         [self addSubview:ShowUsername];
         
@@ -98,12 +120,9 @@
         if ([TestTitle length] == 0 || [TestTitle isEqualToString:@""] || [TestTitle isEqualToString:@"(null)"]) {
             
         }else{
-            UILabel *ShowTitle = [[UILabel alloc]init];
+            UILabel *ShowTitle = [self SetupLabel];
             ShowTitle.frame = CGRectMake(80, Getheight, screenWidth - 100, 20);
             ShowTitle.text = TestTitle;
-            ShowTitle.backgroundColor = [UIColor whiteColor];
-            ShowTitle.textColor = [UIColor blackColor];
-            ShowTitle.textAlignment = NSTextAlignmentLeft;
             ShowTitle.font = [UIFont fontWithName:CustomFontNameBold size:15];
             [self addSubview:ShowTitle];
         
@@ -114,21 +133,17 @@
             
         }else{
             
-            UILabel *ShowDetail = [[UILabel alloc]init];
+            UILabel *ShowDetail = [self SetupLabel];
             ShowDetail.frame = CGRectMake(80, Getheight, screenWidth - 100, 20);
             ShowDetail.text = TestDetail;
-            ShowDetail.backgroundColor = [UIColor whiteColor];
             ShowDetail.textColor = [UIColor blackColor];
-            ShowDetail.textAlignment = NSTextAlignmentLeft;
             ShowDetail.font = [UIFont fontWithName:CustomFontName size:15];
             [self addSubview:ShowDetail];
             
-            UILabel *ShowReadMore = [[UILabel alloc]init];
+            UILabel *ShowReadMore = [self SetupLabel];
             ShowReadMore.frame = CGRectMake(80, Getheight + 20, screenWidth - 100, 20);
             ShowReadMore.text = @"Read more...";
-            ShowReadMore.backgroundColor = [UIColor whiteColor];
             ShowReadMore.textColor = [UIColor colorWithRed:41.0f/255.0f green:182.0f/255.0f blue:246.0f/255.0f alpha:1.0f];
-            ShowReadMore.textAlignment = NSTextAlignmentLeft;
             ShowReadMore.font = [UIFont fontWithName:CustomFontNameBold size:15];
             [self addSubview:ShowReadMore];
             
@@ -150,10 +165,8 @@
         Getheight += 70;
         
         
-        UIButton *Line04 = [[UIButton alloc]init];
+        UIButton *Line04 = [self SetupLineBtn];
         Line04.frame = CGRectMake(20, Getheight + 10, screenWidth, 1);
-        [Line04 setTitle:@"" forState:UIControlStateNormal];
-        [Line04 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
         [self addSubview:Line04];
         
 

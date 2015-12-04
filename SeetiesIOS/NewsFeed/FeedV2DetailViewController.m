@@ -136,6 +136,9 @@
     NSString *GetExpense_Code;
     NSString *GetExpense_RealData;
     
+    //Seetishop ID
+    NSString *GetSeetishopID;
+    
     NSMutableArray *ArrHashTag;
     
     NSString *PhotoCount;
@@ -626,12 +629,12 @@
     if (connection == theConnection_GetPostAllData) {
         
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
-        NSLog(@"GetPostAllData return get data to server ===== %@",GetData);
+        //NSLog(@"GetPostAllData return get data to server ===== %@",GetData);
         
         NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
         NSError *myError = nil;
         NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
-        NSLog(@"Feed Json = %@",res);
+       // NSLog(@"Feed Json = %@",res);
         
         if ([res count] == 0) {
             NSLog(@"Server Error.");
@@ -684,10 +687,11 @@
                 ViewCountString = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"view_count"]];
                 TotalCollectionCount = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"collection_count"]];
                 GetTags = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"tags"]];
+                GetSeetishopID = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"seetishop_id"]];
                 
                 NSLog(@"TotalCollectionCount is %@",TotalCollectionCount);
                 NSLog(@"GetTags is %@",GetTags);
-                
+                NSLog(@"GetSeetishopID is %@",GetSeetishopID);
 
                 
                 

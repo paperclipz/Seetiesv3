@@ -468,7 +468,8 @@
     }
    
     
-    //PFollowTheExpertsViewController *SeeView = [[PFollowTheExpertsViewController alloc]init];
+   // PFollowTheExpertsViewController *SeeView = [[PFollowTheExpertsViewController alloc]init];
+
     
     self.window.rootViewController = self.landingV2ViewController;//self.landingV2ViewController
     self.window.backgroundColor = [UIColor whiteColor];

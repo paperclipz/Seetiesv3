@@ -419,10 +419,13 @@
                                   forState:UIControlStateNormal];
     [PostControl addTarget:self action:@selector(segmentAction:) forControlEvents: UIControlEventValueChanged];
     
-    if ([GetWhatView isEqualToString:@"Like"]) {
+    if ([GetWhatView isEqualToString:@"Comment"]) {
         PostControl.selectedSegmentIndex = 2;
       //  ShowMainTitle.text = CustomLocalisedString(@"MainTab_Like", nil);
+    }else if([GetWhatView isEqualToString:@"Like"]){
+        PostControl.selectedSegmentIndex = 1;
     }else{
+            
        // ShowMainTitle.text = CustomLocalisedString(@"Comments", nil);
         PostControl.selectedSegmentIndex = 0;
     }
@@ -443,6 +446,18 @@
         LikeScroll.hidden = NO;
         ShowNoDataView.hidden = YES;
         CollectionsScroll.hidden = YES;
+    }else if([GetWhatView isEqualToString:@"Comment"]){
+        ///[TextString becomeFirstResponder];
+        MainScroll.hidden = NO;
+        toolBar.hidden = NO;
+        if ([GetMessageArray count] == 0) {
+            //  ShowNoDataView.hidden = NO;
+        }else{
+            ShowNoDataView.hidden = YES;
+        }
+        LikeScroll.hidden = YES;
+        CollectionsScroll.hidden = YES;
+
     }else{
         
         MainScroll.hidden = YES;
@@ -451,15 +466,6 @@
         ShowNoDataView.hidden = YES;
         CollectionsScroll.hidden = NO;
         
-//        ///[TextString becomeFirstResponder];
-//        MainScroll.hidden = NO;
-//        toolBar.hidden = NO;
-//        if ([GetMessageArray count] == 0) {
-//          //  ShowNoDataView.hidden = NO;
-//        }else{
-//            ShowNoDataView.hidden = YES;
-//        }
-//        LikeScroll.hidden = YES;
     }
 }
 -(void)GetLikeData{
