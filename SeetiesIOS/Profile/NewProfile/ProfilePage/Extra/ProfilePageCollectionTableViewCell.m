@@ -60,8 +60,15 @@
 -(void)initSelfView
 {
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    [Utils setRoundBorder:self.ibInnerContentView color:LINE_COLOR borderRadius:5.0f];
-    [Utils setRoundBorder:self.btnEdit color:LINE_COLOR borderRadius:self.btnEdit.frame.size.height/2];
+    
+    if (self.profileType == ProfileViewTypeOwn) {
+        [Utils setRoundBorder:self.ibInnerContentView color:LINE_COLOR borderRadius:5.0f];
+        [Utils setRoundBorder:self.btnEdit color:LINE_COLOR borderRadius:self.btnEdit.frame.size.height/2];
+    }
+    else{
+    
+    }
+   
     
     [self.ibImageViewA setStandardBorder];
     [self.ibImageViewB setStandardBorder];
@@ -134,10 +141,13 @@
     }
     else{
         
-        [self.btnEdit setTitle:LocalisedString(@"Follow") forState:UIControlStateNormal];
-        [self.btnEdit setTitle:LocalisedString(@"Following") forState:UIControlStateSelected];
-        [self.btnEdit setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.btnEdit setTitleColor:SELECTED_GREEN forState:UIControlStateSelected];
+        [self.btnEdit setImage:[UIImage imageNamed:LocalisedString(@"FollowCollectionIcon.png")] forState:UIControlStateNormal];
+        [self.btnEdit setImage:[UIImage imageNamed:LocalisedString(@"FollowingCollectionIcon.png")] forState:UIControlStateSelected];
+        
+//        [self.btnEdit setTitle:LocalisedString(@"Follow") forState:UIControlStateNormal];
+//        [self.btnEdit setTitle:LocalisedString(@"Following") forState:UIControlStateSelected];
+//        [self.btnEdit setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//        [self.btnEdit setTitleColor:SELECTED_GREEN forState:UIControlStateSelected];
 
         
         [DataManager getCollectionFollowing:self.model.collection_id HasCollected:^(BOOL isCollected) {
@@ -163,7 +173,7 @@
 -(void)setFollowButtonSelected:(BOOL)selected button:(UIButton*)button
 {
     button.selected = selected;
-    button.backgroundColor = selected?[UIColor whiteColor]:SELECTED_GREEN;
+   // button.backgroundColor = selected?[UIColor whiteColor]:SELECTED_GREEN;
     
 }
 
