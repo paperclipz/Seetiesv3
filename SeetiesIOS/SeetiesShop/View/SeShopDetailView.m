@@ -144,6 +144,16 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Assuming view is at zero index of XIB file.
+    // this view will contain all lable and other controls
+    CGRect myRect = [tableView rectForRowAtIndexPath:indexPath];
+    
+    if (self.didSelectInformationAtRectBlock) {
+        self.didSelectInformationAtRectBlock(tableView,myRect);
+    }
+}
 
 #pragma mark - UICollectionViewDelegate
 
@@ -157,6 +167,14 @@
     
     return cell;
 }
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.didSelectPhotoAtIndexPath) {
+        self.didSelectPhotoAtIndexPath(indexPath);
+    }
+}
+
 
 #pragma mark - Map
 -(MKPointAnnotation*)annotation

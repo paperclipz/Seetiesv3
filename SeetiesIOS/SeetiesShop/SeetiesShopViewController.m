@@ -15,12 +15,15 @@
 #import "SeCollectionView.h"
 #import "SeRecommendations.h"
 #import "SeNearbySeetishop.h"
+#import "UINavigationController+Transition.h"
+#import "LikesListingViewController.h"
+#import "PhotoListViewController.h"
 
 @interface SeetiesShopViewController ()<UIScrollViewDelegate>
 
 //================ CONTROLLERS ====================//
 @property (nonatomic,strong)MapViewController* mapViewController;
-
+@property (nonatomic,strong)PhotoListViewController* photoListViewController;
 
 //$$============== CONTROLLERS ==================$$//
 
@@ -118,6 +121,16 @@
 
 
 #pragma mark - Declaration
+
+-(PhotoListViewController*)photoListViewController
+{
+    if (!_photoListViewController) {
+        _photoListViewController = [PhotoListViewController new];
+    }
+    
+    return _photoListViewController;
+}
+
 -(MapViewController*)mapViewController
 {
     if (!_mapViewController) {
@@ -149,6 +162,16 @@
             weakSelf.ibImgViewTopPadding.image = image;
         };
     
+        _seShopDetailView.didSelectInformationAtRectBlock=^(UIView* fromView, CGRect rect)
+        {
+       
+        };
+        
+        _seShopDetailView.didSelectPhotoAtIndexPath = ^(NSIndexPath* indexPath)
+        {
+            _photoListViewController = nil;
+            [weakSelf.navigationController pushViewController:weakSelf.photoListViewController animated:YES];
+        };
     
     }
     

@@ -46,8 +46,13 @@ PODS:
   - JSONModel (1.1.2)
   - LPGoogleFunctions (1.2.3):
     - AFNetworking (~> 2.0)
+  - Masonry (0.6.3)
   - MGInstagram (0.1.0)
   - MGSwipeTableCell (1.5.1)
+  - MHVideoPhotoGallery (2.1.1):
+    - Masonry
+    - SDWebImage
+    - TTTAttributedLabel
   - MZAppearance (1.1.6)
   - PureLayout (3.0.1)
   - SDWebImage (3.7.3):
@@ -76,6 +81,7 @@ DEPENDENCIES:
   - LPGoogleFunctions
   - MGInstagram
   - MGSwipeTableCell
+  - MHVideoPhotoGallery
   - MZAppearance
   - PureLayout
   - SDWebImage
@@ -111,8 +117,10 @@ SPEC CHECKSUMS:
   IQKeyboardManager: ac803e61e5b50efae6b3aeedd95a02c7c7d3b2b3
   JSONModel: 216584d0311b053ff714f1d6cb700dbf890847bc
   LPGoogleFunctions: c78171de55b164e8e5dbf6b4bba477980771211a
+  Masonry: ff105a956abcd19a618b2028b121cb638d7a8e2f
   MGInstagram: c85a061e25b053ad1cb1227675e238ce6cc50221
   MGSwipeTableCell: a51fa670c01f0aa048f12af040acebf315223137
+  MHVideoPhotoGallery: 62368d5f551717b15623c3c6cb506c4c64775f58
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
