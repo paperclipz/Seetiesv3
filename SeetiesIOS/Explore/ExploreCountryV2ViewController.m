@@ -373,13 +373,23 @@
         }
         [PostView addSubview:ShowImage];
         
+        UILabel *ShowTitle = [[UILabel alloc]init];
+        ShowTitle.frame = CGRectMake(110, PostGetHeight + 62, screenWidth - 140 - 45, 20);
+        ShowTitle.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+        ShowTitle.font = [UIFont fontWithName:CustomFontNameBold size:15];
+        ShowTitle.textAlignment = NSTextAlignmentLeft;
+        ShowTitle.backgroundColor = [UIColor clearColor];
+        ShowTitle.text = [TitleArray objectAtIndex:i];
+        [PostView addSubview:ShowTitle];
+        
+        
         UIImageView *ShowPin = [[UIImageView alloc]init];
         ShowPin.image = [UIImage imageNamed:@"LocationpinIcon.png"];
-        ShowPin.frame = CGRectMake(110, PostGetHeight + 62 ,18,18);
+        ShowPin.frame = CGRectMake(110, PostGetHeight + 82 ,18,18);
         [PostView addSubview:ShowPin];
         
         UILabel *ShowPlaceName = [[UILabel alloc]init];
-        ShowPlaceName.frame = CGRectMake(135, PostGetHeight + 62, screenWidth - 140 - 70, 20);
+        ShowPlaceName.frame = CGRectMake(135, PostGetHeight + 82, screenWidth - 140 - 70, 20);
         ShowPlaceName.text = [place_nameArray objectAtIndex:i];
         ShowPlaceName.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
         ShowPlaceName.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
@@ -387,14 +397,14 @@
         ShowPlaceName.backgroundColor = [UIColor clearColor];
         [PostView addSubview:ShowPlaceName];
         
-        UILabel *ShowLocation = [[UILabel alloc]init];
-        ShowLocation.frame = CGRectMake(115, PostGetHeight + 82, screenWidth - 140 - 70, 20);
-        ShowLocation.text = [LocationArray objectAtIndex:i];
-        ShowLocation.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
-        ShowLocation.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
-        ShowLocation.textAlignment = NSTextAlignmentLeft;
-        ShowLocation.backgroundColor = [UIColor clearColor];
-        [PostView addSubview:ShowLocation];
+//        UILabel *ShowLocation = [[UILabel alloc]init];
+//        ShowLocation.frame = CGRectMake(115, PostGetHeight + 82, screenWidth - 140 - 70, 20);
+//        ShowLocation.text = [LocationArray objectAtIndex:i];
+//        ShowLocation.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+//        ShowLocation.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+//        ShowLocation.textAlignment = NSTextAlignmentLeft;
+//        ShowLocation.backgroundColor = [UIColor clearColor];
+//        [PostView addSubview:ShowLocation];
         
 
         
@@ -844,6 +854,7 @@
                     UserInfo_FollowArray = [[NSMutableArray alloc]init];
                     CollectArray = [[NSMutableArray alloc]init];
                     UserInfo_IDArray = [[NSMutableArray alloc]init];
+                    TitleArray = [[NSMutableArray alloc]init];
                 }else{
                     
                 }
@@ -904,6 +915,55 @@
                     }
                     [LocationArray addObject:FullString];
                 }
+                
+                NSDictionary *titleData = [GetAllData valueForKey:@"title"];
+                
+                
+                for (NSDictionary * dict in titleData) {
+                    //       NSLog(@"dict is %@",dict);
+                    if ([dict count] == 0 || dict == nil || [dict isKindOfClass:[NSNull class]]) {
+                        //       NSLog(@"titleData nil");
+                        [TitleArray addObject:@""];
+                        //                            [LangArray addObject:@"English"];
+                    }else{
+                        //      NSLog(@"titleData got data");
+                        NSString *Title1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0aa16424400c76000002"]];
+                        NSString *Title2 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0ab26424400c76000003"]];
+                        NSString *ThaiTitle = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"544481503efa3ff1588b4567"]];
+                        NSString *IndonesianTitle = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"53672e863efa3f857f8b4ed2"]];
+                        NSString *PhilippinesTitle = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"539fbb273efa3fde3f8b4567"]];
+                        //        NSLog(@"Title1 is %@",Title1);
+                        //        NSLog(@"Title2 is %@",Title2);
+                        if ([Title1 length] == 0 || Title1 == nil || [Title1 isEqualToString:@"(null)"]) {
+                            if ([Title2 length] == 0 || Title2 == nil || [Title2 isEqualToString:@"(null)"]) {
+                                if ([ThaiTitle length] == 0 || ThaiTitle == nil || [ThaiTitle isEqualToString:@"(null)"]) {
+                                    if ([IndonesianTitle length] == 0 || IndonesianTitle == nil || [IndonesianTitle isEqualToString:@"(null)"]) {
+                                        if ([PhilippinesTitle length] == 0 || PhilippinesTitle == nil || [PhilippinesTitle isEqualToString:@"(null)"]) {
+                                            [TitleArray addObject:@""];
+                                        }else{
+                                            [TitleArray addObject:PhilippinesTitle];
+                                            
+                                        }
+                                    }else{
+                                        [TitleArray addObject:IndonesianTitle];
+                                        
+                                    }
+                                }else{
+                                    [TitleArray addObject:ThaiTitle];
+                                }
+                            }else{
+                                [TitleArray addObject:Title2];
+                            }
+                            
+                        }else{
+                            [TitleArray addObject:Title1];
+                            
+                        }
+                        
+                    }
+                    
+                }
+                
                 DataCount = DataTotal;
                 DataTotal = [PostIDArray count];
 

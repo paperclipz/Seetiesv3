@@ -1357,88 +1357,111 @@
     //[self InitView];
 }
 -(void)InitLikeView{
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    
     for (UIView *subview in LikeScroll.subviews) {
         [subview removeFromSuperview];
     }
     
-  //  CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    if ([Like_UseruidArray count] == 0) {
+        NSLog(@"Like Tab Kosong View");
+        
+        
+        UIImageView *NoActivityImg = [[UIImageView alloc]init];
+        NoActivityImg.image = [UIImage imageNamed:@"NoActivity.png"];
+        NoActivityImg.frame = CGRectMake((screenWidth / 2) - 45, 150, 90, 90);
+        [LikeScroll addSubview:NoActivityImg];
 
-    for (int i = 0; i < [Like_UseruidArray count]; i++) {
-        AsyncImageView *ShowLikeUserImage = [[AsyncImageView alloc]init];
-        ShowLikeUserImage.frame = CGRectMake(15, 20 + i * 70, 50, 50);
-        ShowLikeUserImage.contentMode = UIViewContentModeScaleAspectFill;
-        ShowLikeUserImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
-        ShowLikeUserImage.layer.cornerRadius=25;
-        ShowLikeUserImage.layer.borderWidth=1;
-        ShowLikeUserImage.layer.masksToBounds = YES;
-        ShowLikeUserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
-        ShowLikeUserImage.layer.borderColor=[[UIColor whiteColor] CGColor];
-        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowLikeUserImage];
-        NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[Like_UserProfilePhotoArray objectAtIndex:i]];
-        if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"null"] || [FullImagesURL1 isEqualToString:@"<null>"]) {
+        
+        UILabel *ShowNoDataTitle = [[UILabel alloc]init];
+        ShowNoDataTitle.text = CustomLocalisedString(@"Be the first to like", nil);
+        ShowNoDataTitle.frame = CGRectMake(0, 240, screenWidth, 20);
+        ShowNoDataTitle.textAlignment = NSTextAlignmentCenter;
+        ShowNoDataTitle.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+        [LikeScroll addSubview:ShowNoDataTitle];
+
+    }else{
+        //  CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+        
+        
+        for (int i = 0; i < [Like_UseruidArray count]; i++) {
+            AsyncImageView *ShowLikeUserImage = [[AsyncImageView alloc]init];
+            ShowLikeUserImage.frame = CGRectMake(15, 20 + i * 70, 50, 50);
+            ShowLikeUserImage.contentMode = UIViewContentModeScaleAspectFill;
+            ShowLikeUserImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
+            ShowLikeUserImage.layer.cornerRadius=25;
+            ShowLikeUserImage.layer.borderWidth=1;
+            ShowLikeUserImage.layer.masksToBounds = YES;
             ShowLikeUserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
-        }else{
-            NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
-            //NSLog(@"url_NearbyBig is %@",url_NearbyBig);
-            ShowLikeUserImage.imageURL = url_UserImage;
-        }
-        [LikeScroll addSubview:ShowLikeUserImage];
-        
-        UIImageView *AvatarLike = [[UIImageView alloc]init];
-        AvatarLike.frame = CGRectMake(15 + 50 - 18, 55 + i * 70, 18, 15);
-        AvatarLike.image = [UIImage imageNamed:@"AvatarLike.png"];
-        [LikeScroll addSubview:AvatarLike];
-        
-        UIButton *OpenExpertsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [OpenExpertsButton setFrame:CGRectMake(15, 20 + i * 70, 50, 50)];
-        [OpenExpertsButton setBackgroundColor:[UIColor clearColor]];
-        OpenExpertsButton.tag = i;
-        [OpenExpertsButton addTarget:self action:@selector(OpenExpertsButton3:) forControlEvents:UIControlEventTouchUpInside];
-        [LikeScroll addSubview:OpenExpertsButton];
-        
-        UILabel *ShowUserName1 = [[UILabel alloc]init];
-        ShowUserName1.frame = CGRectMake(80, 20 + i * 70, screenWidth - 95, 50);
-        ShowUserName1.text = [Like_UsernameArray objectAtIndex:i];
-        //  ShowUserName1.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
-        ShowUserName1.font = [UIFont boldSystemFontOfSize:15];
-        ShowUserName1.backgroundColor = [UIColor clearColor];
-        ShowUserName1.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
-        
-        [LikeScroll addSubview:ShowUserName1];
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSString *GetSelfuid = [[NSString alloc]initWithFormat:@"%@",[defaults objectForKey:@"Useruid"]];
-        
-        if ([GetSelfuid isEqualToString:[Like_UseruidArray objectAtIndex:i]]) {
-            
-        }else{
-            NSString *GetFollowing = [[NSString alloc]initWithFormat:@"%@",[Like_UserFollowingArray objectAtIndex:i]];
-            
-            //follow button
-            UIButton *ShowFollowButton = [[UIButton alloc]init];
-            ShowFollowButton.frame = CGRectMake(screenWidth - 40 - 15, 30 + i * 70, 40, 40);
-            if ([GetFollowing isEqualToString:@"1"]) {
-                
-                [ShowFollowButton setImage:[UIImage imageNamed:@"FollowingIcon.png"] forState:UIControlStateNormal];
+            ShowLikeUserImage.layer.borderColor=[[UIColor whiteColor] CGColor];
+            [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowLikeUserImage];
+            NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[Like_UserProfilePhotoArray objectAtIndex:i]];
+            if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"null"] || [FullImagesURL1 isEqualToString:@"<null>"]) {
+                ShowLikeUserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
             }else{
-                [ShowFollowButton setImage:[UIImage imageNamed:@"FollowIcon.png"] forState:UIControlStateNormal];
+                NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
+                //NSLog(@"url_NearbyBig is %@",url_NearbyBig);
+                ShowLikeUserImage.imageURL = url_UserImage;
             }
-            ShowFollowButton.tag = i;
-            [ShowFollowButton addTarget:self action:@selector(FollowButton:) forControlEvents:UIControlEventTouchUpInside];
-            [LikeScroll addSubview:ShowFollowButton];
+            [LikeScroll addSubview:ShowLikeUserImage];
+            
+            UIImageView *AvatarLike = [[UIImageView alloc]init];
+            AvatarLike.frame = CGRectMake(15 + 50 - 18, 55 + i * 70, 18, 15);
+            AvatarLike.image = [UIImage imageNamed:@"AvatarLike.png"];
+            [LikeScroll addSubview:AvatarLike];
+            
+            UIButton *OpenExpertsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            [OpenExpertsButton setFrame:CGRectMake(15, 20 + i * 70, 50, 50)];
+            [OpenExpertsButton setBackgroundColor:[UIColor clearColor]];
+            OpenExpertsButton.tag = i;
+            [OpenExpertsButton addTarget:self action:@selector(OpenExpertsButton3:) forControlEvents:UIControlEventTouchUpInside];
+            [LikeScroll addSubview:OpenExpertsButton];
+            
+            UILabel *ShowUserName1 = [[UILabel alloc]init];
+            ShowUserName1.frame = CGRectMake(80, 20 + i * 70, screenWidth - 95, 50);
+            ShowUserName1.text = [Like_UsernameArray objectAtIndex:i];
+            //  ShowUserName1.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
+            ShowUserName1.font = [UIFont boldSystemFontOfSize:15];
+            ShowUserName1.backgroundColor = [UIColor clearColor];
+            ShowUserName1.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+            
+            [LikeScroll addSubview:ShowUserName1];
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSString *GetSelfuid = [[NSString alloc]initWithFormat:@"%@",[defaults objectForKey:@"Useruid"]];
+            
+            if ([GetSelfuid isEqualToString:[Like_UseruidArray objectAtIndex:i]]) {
+                
+            }else{
+                NSString *GetFollowing = [[NSString alloc]initWithFormat:@"%@",[Like_UserFollowingArray objectAtIndex:i]];
+                
+                //follow button
+                UIButton *ShowFollowButton = [[UIButton alloc]init];
+                ShowFollowButton.frame = CGRectMake(screenWidth - 40 - 15, 30 + i * 70, 40, 40);
+                if ([GetFollowing isEqualToString:@"1"]) {
+                    
+                    [ShowFollowButton setImage:[UIImage imageNamed:@"FollowingIcon.png"] forState:UIControlStateNormal];
+                }else{
+                    [ShowFollowButton setImage:[UIImage imageNamed:@"FollowIcon.png"] forState:UIControlStateNormal];
+                }
+                ShowFollowButton.tag = i;
+                [ShowFollowButton addTarget:self action:@selector(FollowButton:) forControlEvents:UIControlEventTouchUpInside];
+                [LikeScroll addSubview:ShowFollowButton];
+            }
+            
+            
+            
+            UIButton *Line01 = [UIButton buttonWithType:UIButtonTypeCustom];
+            [Line01 setTitle:@"" forState:UIControlStateNormal];
+            [Line01 setFrame:CGRectMake(100, 80 + i * 70, screenWidth, 1)];
+            [Line01 setBackgroundColor:[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f]];
+            
+            [LikeScroll addSubview:Line01];
+            
+            [LikeScroll setContentSize:CGSizeMake(screenWidth, 210 + i * 70)];
         }
-        
-
-        
-        UIButton *Line01 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [Line01 setTitle:@"" forState:UIControlStateNormal];
-        [Line01 setFrame:CGRectMake(100, 80 + i * 70, screenWidth, 1)];
-        [Line01 setBackgroundColor:[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f]];
-        
-        [LikeScroll addSubview:Line01];
-        
-        [LikeScroll setContentSize:CGSizeMake(screenWidth, 140 + i * 70)];
     }
+    
+  
 }
 
 -(void)InitCollectionsView{
@@ -1447,59 +1470,74 @@
     
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     int PeopleHeight = 0;
-    
-    for (int i = 0; i < [CollectionIDArray count]; i ++) {
+    if ([CollectionIDArray count] == 0) {
+        UIImageView *NoActivityImg = [[UIImageView alloc]init];
+        NoActivityImg.image = [UIImage imageNamed:@"NoActivity.png"];
+        NoActivityImg.frame = CGRectMake((screenWidth / 2) - 45, 150, 90, 90);
+        [CollectionsScroll addSubview:NoActivityImg];
         
-        AsyncImageView *UserImage = [[AsyncImageView alloc]init];
-        UserImage.frame = CGRectMake(25, PeopleHeight + 20, 50, 50);
-        UserImage.contentMode = UIViewContentModeScaleAspectFill;
-        UserImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
-        UserImage.layer.cornerRadius=25;
-        UserImage.layer.borderWidth=0;
-        UserImage.layer.masksToBounds = YES;
-        UserImage.layer.borderColor=[[UIColor whiteColor] CGColor];
-        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:UserImage];
-        NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[CollectionUserProfileArray objectAtIndex:i]];
-        if ([FullImagesURL length] == 0 || [FullImagesURL isEqualToString:@"\"\""]) {
-            UserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
-        }else{
-            NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL];
-            UserImage.imageURL = url_NearbySmall;
+        
+        UILabel *ShowNoDataTitle = [[UILabel alloc]init];
+        ShowNoDataTitle.text = CustomLocalisedString(@"Aww. No one's collected this.", nil);
+        ShowNoDataTitle.frame = CGRectMake(0, 240, screenWidth, 20);
+        ShowNoDataTitle.textAlignment = NSTextAlignmentCenter;
+        ShowNoDataTitle.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+        [CollectionsScroll addSubview:ShowNoDataTitle];
+    }else{
+        for (int i = 0; i < [CollectionIDArray count]; i ++) {
+            
+            AsyncImageView *UserImage = [[AsyncImageView alloc]init];
+            UserImage.frame = CGRectMake(25, PeopleHeight + 20, 50, 50);
+            UserImage.contentMode = UIViewContentModeScaleAspectFill;
+            UserImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
+            UserImage.layer.cornerRadius=25;
+            UserImage.layer.borderWidth=0;
+            UserImage.layer.masksToBounds = YES;
+            UserImage.layer.borderColor=[[UIColor whiteColor] CGColor];
+            [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:UserImage];
+            NSString *FullImagesURL = [[NSString alloc]initWithFormat:@"%@",[CollectionUserProfileArray objectAtIndex:i]];
+            if ([FullImagesURL length] == 0 || [FullImagesURL isEqualToString:@"\"\""]) {
+                UserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
+            }else{
+                NSURL *url_NearbySmall = [NSURL URLWithString:FullImagesURL];
+                UserImage.imageURL = url_NearbySmall;
+            }
+            [CollectionsScroll addSubview:UserImage];
+            
+            NSString *TempString = [[NSString alloc]initWithFormat:@"%@ %@ %@",[CollectionUserNameArray objectAtIndex:i],LocalisedString(@"collected this into"),[CollectionNameArray objectAtIndex:i]];;
+            
+            UILabel *ShowUserName = [[UILabel alloc]init];
+            ShowUserName.frame = CGRectMake(100, PeopleHeight + 10, screenWidth - 120, 60);
+            ShowUserName.text = TempString;
+            ShowUserName.backgroundColor = [UIColor clearColor];
+            ShowUserName.textColor = [UIColor blackColor];
+            ShowUserName.textAlignment = NSTextAlignmentLeft;
+            ShowUserName.numberOfLines = 5;
+            ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+            [CollectionsScroll addSubview:ShowUserName];
+            
+            UIButton *OpenExpertsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            [OpenExpertsButton setFrame:CGRectMake(25, PeopleHeight, 50, 110)];
+            [OpenExpertsButton setBackgroundColor:[UIColor clearColor]];
+            OpenExpertsButton.tag = i;
+            [OpenExpertsButton addTarget:self action:@selector(OpenCollectionOnClick:) forControlEvents:UIControlEventTouchUpInside];
+            [LikeScroll addSubview:OpenExpertsButton];
+            
+            
+            UIButton *Line01 = [[UIButton alloc]init];
+            Line01.frame = CGRectMake(100, PeopleHeight + 80, screenWidth - 30, 1);
+            [Line01 setTitle:@"" forState:UIControlStateNormal];//238
+            [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+            [CollectionsScroll addSubview:Line01];
+            
+            PeopleHeight += 80;
+            
         }
-        [CollectionsScroll addSubview:UserImage];
         
-        NSString *TempString = [[NSString alloc]initWithFormat:@"%@ %@ %@",[CollectionUserNameArray objectAtIndex:i],LocalisedString(@"collected this into"),[CollectionNameArray objectAtIndex:i]];;
         
-        UILabel *ShowUserName = [[UILabel alloc]init];
-        ShowUserName.frame = CGRectMake(100, PeopleHeight + 10, screenWidth - 120, 60);
-        ShowUserName.text = TempString;
-        ShowUserName.backgroundColor = [UIColor clearColor];
-        ShowUserName.textColor = [UIColor blackColor];
-        ShowUserName.textAlignment = NSTextAlignmentLeft;
-        ShowUserName.numberOfLines = 5;
-        ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
-        [CollectionsScroll addSubview:ShowUserName];
-        
-        UIButton *OpenExpertsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [OpenExpertsButton setFrame:CGRectMake(25, PeopleHeight, 50, 110)];
-        [OpenExpertsButton setBackgroundColor:[UIColor clearColor]];
-        OpenExpertsButton.tag = i;
-        [OpenExpertsButton addTarget:self action:@selector(OpenCollectionOnClick:) forControlEvents:UIControlEventTouchUpInside];
-        [LikeScroll addSubview:OpenExpertsButton];
-
-        
-        UIButton *Line01 = [[UIButton alloc]init];
-        Line01.frame = CGRectMake(100, PeopleHeight + 80, screenWidth - 30, 1);
-        [Line01 setTitle:@"" forState:UIControlStateNormal];//238
-        [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
-        [CollectionsScroll addSubview:Line01];
-        
-        PeopleHeight += 80;
-        
+        [CollectionsScroll setContentSize:CGSizeMake(screenWidth, PeopleHeight)];
     }
-   
-    
-    [CollectionsScroll setContentSize:CGSizeMake(screenWidth, PeopleHeight)];
+
 }
 -(void)GetCollectionData{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

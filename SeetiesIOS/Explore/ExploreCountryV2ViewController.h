@@ -33,6 +33,7 @@
     NSMutableArray *UserInfo_FollowArray;
     NSMutableArray *UserInfo_IDArray;
     NSMutableArray *CollectArray;
+    NSMutableArray *TitleArray;
     
     NSURLConnection *theConnection_GetCountryData;
     NSURLConnection *theConnection_GetUserData;

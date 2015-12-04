@@ -2307,7 +2307,7 @@
         GetMessageHeight += 35;
     }
     
-    if ([Like_UsernameArray count] == 0 && [CommentIDArray count] == 0 && [TotalCollectionCount length] == 0) {
+    if ([Like_UsernameArray count] == 0 && [CommentIDArray count] == 0 && [TotalCollectionCount isEqualToString:@"0"]) {
         //GetMessageHeight += 20;
     }else{
         if ([GetUsername isEqualToString:GetPostName]) {
@@ -2318,12 +2318,12 @@
         [Line01 setTitle:@"" forState:UIControlStateNormal];//238
         [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
         [MainScroll addSubview:Line01];
-        
+
         GetMessageHeight += 10;
         }
     }
-    
-    if ([TotalCollectionCount length] == 0 || [TotalCollectionCount isEqualToString:@""] || [TotalCollectionCount isEqualToString:@"(null)"]) {
+    NSLog(@"TotalCollectionCount is %@",TotalCollectionCount);
+    if ([TotalCollectionCount length] == 0 || [TotalCollectionCount isEqualToString:@""] || [TotalCollectionCount isEqualToString:@"(null)"] || [TotalCollectionCount isEqualToString:@"0"]) {
         GetMessageHeight += 10;
     }else{
         //collected show
@@ -2642,24 +2642,30 @@
     }
     //NSLog(@"GetMessageHeight ==== %i",GetMessageHeight);
     
-    UIButton *LineFinalAcrivities = [[UIButton alloc]init];
-    LineFinalAcrivities.frame = CGRectMake(0, GetMessageHeight, screenWidth, 1);
-    [LineFinalAcrivities setTitle:@"" forState:UIControlStateNormal];//238
-    [LineFinalAcrivities setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
-    [MainScroll addSubview:LineFinalAcrivities];
+    if ([Like_UsernameArray count] == 0 && [CommentIDArray count] == 0 && [TotalCollectionCount isEqualToString:@"0"]) {
+
+    }else{
+        UIButton *LineFinalAcrivities = [[UIButton alloc]init];
+        LineFinalAcrivities.frame = CGRectMake(0, GetMessageHeight, screenWidth, 1);
+        [LineFinalAcrivities setTitle:@"" forState:UIControlStateNormal];//238
+        [LineFinalAcrivities setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+        [MainScroll addSubview:LineFinalAcrivities];
+        
+        UIButton *SeeAllCommentButton = [[UIButton alloc]init];
+        SeeAllCommentButton.frame = CGRectMake(0, GetMessageHeight + 1, screenWidth, 50);
+        [SeeAllCommentButton setTitle:LocalisedString(@"See all activities") forState:UIControlStateNormal];
+        [SeeAllCommentButton setBackgroundColor:[UIColor clearColor]];
+        [SeeAllCommentButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
+        [SeeAllCommentButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+        [SeeAllCommentButton addTarget:self action:@selector(CommentButton:) forControlEvents:UIControlEventTouchUpInside];
+        // SeeAllCommentButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        
+        [MainScroll addSubview:SeeAllCommentButton];
+        
+        GetMessageHeight += 51;
+    }
     
-    UIButton *SeeAllCommentButton = [[UIButton alloc]init];
-    SeeAllCommentButton.frame = CGRectMake(0, GetMessageHeight + 1, screenWidth, 50);
-    [SeeAllCommentButton setTitle:LocalisedString(@"See all activities") forState:UIControlStateNormal];
-    [SeeAllCommentButton setBackgroundColor:[UIColor clearColor]];
-    [SeeAllCommentButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
-    [SeeAllCommentButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
-    [SeeAllCommentButton addTarget:self action:@selector(CommentButton:) forControlEvents:UIControlEventTouchUpInside];
-    // SeeAllCommentButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    
-    [MainScroll addSubview:SeeAllCommentButton];
-    
-    GetMessageHeight += 51;
+
     
     UIButton *Line01 = [[UIButton alloc]init];
     Line01.frame = CGRectMake(0, GetMessageHeight, screenWidth, 20);
@@ -4134,62 +4140,70 @@
     ClickCount++;
     NSLog(@"ClickCount is %i",ClickCount);
     NSLog(@"[CountLanguageArray count] is %lu",(unsigned long)[CountLanguageArray count]);
-    if (ClickCount >= [CountLanguageArray count]) {
-        ClickCount = 0;
-        NSString *TempGetCount = [[NSString alloc]initWithFormat:@"%@",[CountLanguageArray objectAtIndex:ClickCount]];
-        CheckLanguage = [TempGetCount integerValue];
+    
+    
+    if ([CountLanguageArray count] == 0) {
+        
     }else{
         
-        NSString *TempGetCount = [[NSString alloc]initWithFormat:@"%@",[CountLanguageArray objectAtIndex:ClickCount]];
-        CheckLanguage = [TempGetCount integerValue];
-    }
-//    
-//    
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    NSString *GetSystemLanguageCheck = [[NSString alloc]initWithFormat:@"%@",[defaults objectForKey:@"UserData_SystemLanguage"]];
-//    NSLog(@"GetSystemLanguageCheck is %@",GetSystemLanguageCheck);
-    
-    
-    BOOL TranslateCheck = NO;
-    for (int i = 0; i < [TempGetLanguageArray count]; i++) {
-        NSString *GetLanguages = [[NSString alloc]initWithFormat:@"%@",[TempGetLanguageArray objectAtIndex:i]];
-        
-        if ([GetLanguages isEqualToString:@"530b0ab26424400c76000003"]) {
-            TranslateCheck = NO;
-            break;
+        if (ClickCount >= [CountLanguageArray count]) {
+            ClickCount = 0;
+            NSString *TempGetCount = [[NSString alloc]initWithFormat:@"%@",[CountLanguageArray objectAtIndex:ClickCount]];
+            CheckLanguage = [TempGetCount integerValue];
         }else{
-            TranslateCheck = YES;
             
+            NSString *TempGetCount = [[NSString alloc]initWithFormat:@"%@",[CountLanguageArray objectAtIndex:ClickCount]];
+            CheckLanguage = [TempGetCount integerValue];
         }
-    }
-    
-    
-    NSLog(@"TempGetLanguageArray is %@",TempGetLanguageArray);
-    
-    if (TranslateCheck == YES) {
+        //
+        //
+        //    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        //    NSString *GetSystemLanguageCheck = [[NSString alloc]initWithFormat:@"%@",[defaults objectForKey:@"UserData_SystemLanguage"]];
+        //    NSLog(@"GetSystemLanguageCheck is %@",GetSystemLanguageCheck);
         
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                                 delegate:self
-                                                        cancelButtonTitle:CustomLocalisedString(@"No thanks!", nil)
-                                                   destructiveButtonTitle:nil
-                                                        otherButtonTitles:CustomLocalisedString(@"Read Original", nil),ShowLanguageType,CustomLocalisedString(@"English by Google Translate", nil), nil];
         
-        [actionSheet showInView:self.view];
+        BOOL TranslateCheck = NO;
+        for (int i = 0; i < [TempGetLanguageArray count]; i++) {
+            NSString *GetLanguages = [[NSString alloc]initWithFormat:@"%@",[TempGetLanguageArray objectAtIndex:i]];
+            
+            if ([GetLanguages isEqualToString:@"530b0ab26424400c76000003"]) {
+                TranslateCheck = NO;
+                break;
+            }else{
+                TranslateCheck = YES;
+                
+            }
+        }
         
-        actionSheet.tag = 6000;
-    }else{
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                                 delegate:self
-                                                        cancelButtonTitle:CustomLocalisedString(@"No thanks!", nil)
-                                                   destructiveButtonTitle:nil
-                                                        otherButtonTitles:CustomLocalisedString(@"Read Original", nil),ShowLanguageType, nil];
         
-        [actionSheet showInView:self.view];
+        NSLog(@"TempGetLanguageArray is %@",TempGetLanguageArray);
         
-        actionSheet.tag = 6000;
+        if (TranslateCheck == YES) {
+            
+            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                                     delegate:self
+                                                            cancelButtonTitle:CustomLocalisedString(@"No thanks!", nil)
+                                                       destructiveButtonTitle:nil
+                                                            otherButtonTitles:CustomLocalisedString(@"Read Original", nil),ShowLanguageType,CustomLocalisedString(@"English by Google Translate", nil), nil];
+            
+            [actionSheet showInView:self.view];
+            
+            actionSheet.tag = 6000;
+        }else{
+            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                                     delegate:self
+                                                            cancelButtonTitle:CustomLocalisedString(@"No thanks!", nil)
+                                                       destructiveButtonTitle:nil
+                                                            otherButtonTitles:CustomLocalisedString(@"Read Original", nil),ShowLanguageType, nil];
+            
+            [actionSheet showInView:self.view];
+            
+            actionSheet.tag = 6000;
+        }
+        
+        //[self InitNearbyPostView];
     }
 
-    //[self InitNearbyPostView];
 }
 
 -(void)CheckTwoLanguageButton{

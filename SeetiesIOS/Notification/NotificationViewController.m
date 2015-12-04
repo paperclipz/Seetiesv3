@@ -255,12 +255,12 @@
             ShowNoDataView.hidden = NO;
         }else{
             //check follow, like, mention, comment
-            
+
             NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
             NSError *myError = nil;
             NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
           //  NSLog(@"Expert Json = %@",res);
-            
+
             NSDictionary *GetAllData = [res valueForKey:@"data"];
             NSDictionary *GetNotificationsData = [GetAllData valueForKey:@"notifications"];
             NSDictionary *GetPaging = [GetAllData valueForKey:@"paging"];
@@ -271,9 +271,7 @@
             if ([CheckNotificationData isEqualToString:@"0"]) {
                 ShowNoDataView.hidden = NO;
             }
-            
 
-            
             NSDictionary *UserInfoData = [GetNotificationsData valueForKey:@"user_thumbnail"];
             NSDictionary *PostInfoData = [GetNotificationsData valueForKey:@"post_thumbnail"];
             //NSLog(@"UserInfoData is %@",UserInfoData);
@@ -293,6 +291,7 @@
                 NSString *Date =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"date"]];
                 [DateArray addObject:Date];
             }
+
             for (NSDictionary * dict in UserInfoData){
                 if( [dict valueForKey:@"url"] == nil ||
                    [[dict valueForKey:@"url"] isEqual:[NSNull null]] || [[dict valueForKey:@"url"] isEqualToString:@"<null>"]){
@@ -302,6 +301,7 @@
                     [UserThumbnailArray addObject:user_thumbnail];
                 }
             }
+
             for (NSDictionary * dict in PostInfoData){
                 if( [dict valueForKey:@"url"] == nil ||
                    [[dict valueForKey:@"url"] isEqual:[NSNull null]] || [[dict valueForKey:@"url"] isEqualToString:@"<null>"]){
