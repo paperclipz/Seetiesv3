@@ -13,6 +13,7 @@
 
 #define Info_Footer_HEader_Height 50+44;
 
+
 @interface SeShopDetailView()<UITableViewDataSource,UITableViewDelegate, UICollectionViewDataSource,UICollectionViewDelegate,MKMapViewDelegate>
 {
     
@@ -36,7 +37,8 @@
 @property (weak, nonatomic) IBOutlet MKMapView *ibMapView;
 @property (weak, nonatomic) IBOutlet UIView *ibMapMainView;
 @property (weak, nonatomic) IBOutlet UIView *ibMapInfoView;
-
+// ================== MODEL ======================/
+@property(nonatomic,strong)SeShopDetailModel* seShopModel;
 @end
 
 @implementation SeShopDetailView
@@ -143,6 +145,13 @@
 {
     SeShopDetailTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"SeShopDetailTableViewCell"];
     
+    
+    NSDictionary* dict = self.arrayList[indexPath.row];
+    NSArray* keys = [dict allKeys];
+    
+    cell.lblTitle.text = keys[0];
+    cell.lblDesc.text = [dict objectForKey:keys[0]];
+
     return cell;
 }
 
@@ -225,6 +234,8 @@
     NSString* appendString = @"56397e301c4d5be92e8b4711";
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetiShopDetail param:param appendString:appendString completeHandler:^(id object) {
         
+        self.seShopModel = [[ConnectionManager Instance] seShopDetailModel];
+        self.arrayList = self.seShopModel;
         SLog(@"requestServerForSeetiShopDetail RESULT: %@",object);
         
     } errorBlock:^(id object) {

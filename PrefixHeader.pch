@@ -45,8 +45,8 @@
 //===============Category Helper=================
 #import "UIView+Extension.h"
 #import "UIImage+FX.h"
-
 #import "CustomFont.h"
+#import <CocoaLumberjack/CocoaLumberjack.h>
 
 #import "NSDictionary+STHelper.h"
 #import "UIColor+Extension.h"
@@ -61,12 +61,6 @@
 #import "SeetiesIOS-Swift.h"
 
 #endif
-
-
-
-
-
-
 
 #define IS_IN_DEBUG_MODE
 

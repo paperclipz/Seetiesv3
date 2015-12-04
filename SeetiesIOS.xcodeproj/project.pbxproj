@@ -59,6 +59,7 @@
 		8A00979B1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A00979A1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m */; };
 		8A00979D1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A00979C1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib */; };
 		8A0829401C1046F200AD8CBD /* UIView+draggable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A08293F1C1046F200AD8CBD /* UIView+draggable.m */; };
+		8A0829471C1183A800AD8CBD /* SeShopDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0829461C1183A800AD8CBD /* SeShopDetailModel.m */; };
 		8A0F50B11C0C3B5B002B1E22 /* SeShopDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0F50B01C0C3B5B002B1E22 /* SeShopDetailView.m */; };
 		8A0F50B31C0C3B71002B1E22 /* SeShopDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0F50B21C0C3B71002B1E22 /* SeShopDetailView.xib */; };
 		8A0F50C11C0C3F08002B1E22 /* SeShopDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0F50C01C0C3F08002B1E22 /* SeShopDetailTableViewCell.m */; };
@@ -1147,6 +1148,8 @@
 		8A00979C1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomEditPhotoTableViewCell.xib; sourceTree = "<group>"; };
 		8A08293E1C1046F200AD8CBD /* UIView+draggable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+draggable.h"; sourceTree = "<group>"; };
 		8A08293F1C1046F200AD8CBD /* UIView+draggable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+draggable.m"; sourceTree = "<group>"; };
+		8A0829451C1183A800AD8CBD /* SeShopDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeShopDetailModel.h; sourceTree = "<group>"; };
+		8A0829461C1183A800AD8CBD /* SeShopDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeShopDetailModel.m; sourceTree = "<group>"; };
 		8A0F50AF1C0C3B5B002B1E22 /* SeShopDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeShopDetailView.h; sourceTree = "<group>"; };
 		8A0F50B01C0C3B5B002B1E22 /* SeShopDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeShopDetailView.m; sourceTree = "<group>"; };
 		8A0F50B21C0C3B71002B1E22 /* SeShopDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeShopDetailView.xib; sourceTree = "<group>"; };
@@ -1484,7 +1487,7 @@
 		8A6584421B9851D300BC86B9 /* DraftTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DraftTableViewCell.xib; sourceTree = "<group>"; };
 		8A69E0EA1BFF26A000224BB4 /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
 		8A69E0EB1BFF26A000224BB4 /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
-		8A69E0ED1C0405DD00224BB4 /* SeetiesIOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SeetiesIOS-Bridging-Header.h"; sourceTree = "<group>"; };
+		8A69E0ED1C0405DD00224BB4 /* SeetiesIOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SeetiesIOS-Bridging-Header.h"; path = "Share/SeetiesIOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		8A69E0F21C04066100224BB4 /* ShareV2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareV2ViewController.swift; sourceTree = "<group>"; };
 		8A69E0F31C04066100224BB4 /* ShareV2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareV2ViewController.xib; sourceTree = "<group>"; };
 		8A69E0F71C0412D800224BB4 /* ShareV2CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareV2CollectionViewCell.swift; sourceTree = "<group>"; };
@@ -2699,6 +2702,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8A0829441C11836600AD8CBD /* SeetiShopModel */ = {
+			isa = PBXGroup;
+			children = (
+				8A0829451C1183A800AD8CBD /* SeShopDetailModel.h */,
+				8A0829461C1183A800AD8CBD /* SeShopDetailModel.m */,
+			);
+			name = SeetiShopModel;
+			sourceTree = "<group>";
+		};
 		8A0F50B41C0C3E41002B1E22 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -2744,7 +2756,7 @@
 			name = Cell;
 			sourceTree = "<group>";
 		};
-		8A114B871BE73F5C006AE3F0 /* Common */ = {
+		8A114B871BE73F5C006AE3F0 /* COMMON */ = {
 			isa = PBXGroup;
 			children = (
 				8A6BB4101BF0C338005AA1B3 /* MZFormSheetPresentationController */,
@@ -2786,6 +2798,7 @@
 				8A7360FC1C080C7100A64824 /* UITableviewPaging.h */,
 				8A7360FD1C080C7100A64824 /* UITableviewPaging.m */,
 			);
+			name = COMMON;
 			path = Common;
 			sourceTree = "<group>";
 		};
@@ -3373,7 +3386,6 @@
 				8A317C011BE1C5620010CAEE /* ShareViewController.h */,
 				8A317C021BE1C5620010CAEE /* ShareViewController.m */,
 				8A317C031BE1C5620010CAEE /* ShareViewController.xib */,
-				8A69E0ED1C0405DD00224BB4 /* SeetiesIOS-Bridging-Header.h */,
 				8A69E0F21C04066100224BB4 /* ShareV2ViewController.swift */,
 				8A69E0F31C04066100224BB4 /* ShareV2ViewController.xib */,
 			);
@@ -4651,24 +4663,24 @@
 		8AD6BA5C1B705DF20040437E /* SeetiesIOS */ = {
 			isa = PBXGroup;
 			children = (
+				8AD6BAF41B706CF10040437E /* FRAMEWORK */,
+				8AD6BA961B706CF10040437E /* CATEGORY */,
+				8A114B871BE73F5C006AE3F0 /* COMMON */,
+				8AD6BD821B706CF30040437E /* MODELS */,
+				8AD6BD711B706CF30040437E /* MANAGER */,
 				0B6A54DC1BB51F76005B9D6B /* Report */,
 				8A317BFD1BE1C5620010CAEE /* Share */,
 				0B3FF10B1BB131A20014AF2E /* Nearby */,
 				8A114CDC1BE75CA0006AE3F0 /* Collection */,
-				8A114B871BE73F5C006AE3F0 /* Common */,
 				8AD6C23B1B7072FA0040437E /* Publish */,
-				8AD6BA961B706CF10040437E /* Category */,
 				8AD6BAE01B706CF10040437E /* Explore */,
 				8AD6BAED1B706CF10040437E /* FilterSorting */,
-				8AD6BAF41B706CF10040437E /* framework */,
 				8AD6BD621B706CF30040437E /* InviteFriends */,
 				8AD6BD661B706CF30040437E /* LandingPage */,
 				8AD6BD6A1B706CF30040437E /* LoginPage */,
 				8AD6C8771B74A7CD0040437E /* Recommendation */,
 				8AC8F6D41BDA414E00DEF14A /* Profile */,
 				8AD6BD761B706CF30040437E /* Misc */,
-				8AD6BD711B706CF30040437E /* Managers */,
-				8AD6BD821B706CF30040437E /* Models */,
 				8AD6BD831B706CF30040437E /* NewsFeed */,
 				8AD6BD961B706CF30040437E /* Notification */,
 				8AD6BDA51B706CF30040437E /* Provisioning */,
@@ -4683,6 +4695,7 @@
 				8AD6BA671B705DF20040437E /* Main.storyboard */,
 				8AD6BA6A1B705DF20040437E /* Images.xcassets */,
 				8AD6BA6C1B705DF20040437E /* LaunchScreen.xib */,
+				8A69E0ED1C0405DD00224BB4 /* SeetiesIOS-Bridging-Header.h */,
 				8AD6BA5D1B705DF20040437E /* Supporting Files */,
 			);
 			path = SeetiesIOS;
@@ -4719,7 +4732,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		8AD6BA961B706CF10040437E /* Category */ = {
+		8AD6BA961B706CF10040437E /* CATEGORY */ = {
 			isa = PBXGroup;
 			children = (
 				8A08293E1C1046F200AD8CBD /* UIView+draggable.h */,
@@ -4747,6 +4760,7 @@
 				8A3757C41B8583ED009DB7D4 /* UIFont+SystemFontOverride.h */,
 				8A3757C51B8583ED009DB7D4 /* UIFont+SystemFontOverride.m */,
 			);
+			name = CATEGORY;
 			path = Category;
 			sourceTree = "<group>";
 		};
@@ -4779,11 +4793,12 @@
 			path = FilterSorting;
 			sourceTree = "<group>";
 		};
-		8AD6BAF41B706CF10040437E /* framework */ = {
+		8AD6BAF41B706CF10040437E /* FRAMEWORK */ = {
 			isa = PBXGroup;
 			children = (
 				8AD6BAF61B706CF10040437E /* Helper */,
 			);
+			name = FRAMEWORK;
 			path = framework;
 			sourceTree = "<group>";
 		};
@@ -4848,7 +4863,7 @@
 			path = LoginPage;
 			sourceTree = "<group>";
 		};
-		8AD6BD711B706CF30040437E /* Managers */ = {
+		8AD6BD711B706CF30040437E /* MANAGER */ = {
 			isa = PBXGroup;
 			children = (
 				8AD6C81B1B73382E0040437E /* Localisator.h */,
@@ -4868,6 +4883,7 @@
 				8A69E0FB1C046DF900224BB4 /* ShareManager.h */,
 				8A69E0FC1C046DF900224BB4 /* ShareManager.m */,
 			);
+			name = MANAGER;
 			path = Managers;
 			sourceTree = "<group>";
 		};
@@ -4889,9 +4905,10 @@
 			path = Misc;
 			sourceTree = "<group>";
 		};
-		8AD6BD821B706CF30040437E /* Models */ = {
+		8AD6BD821B706CF30040437E /* MODELS */ = {
 			isa = PBXGroup;
 			children = (
+				8A0829441C11836600AD8CBD /* SeetiShopModel */,
 				8AE6427A1BD62628003ACA56 /* ProfileModel */,
 				8AB76DD41BB8FD4A007DB972 /* PostModel.h */,
 				8AB76DD51BB8FD4A007DB972 /* PostModel.m */,
@@ -4925,6 +4942,7 @@
 				8AEB5F591BC38FF200A804B4 /* TagModel.h */,
 				8AEB5F5A1BC38FF200A804B4 /* TagModel.m */,
 			);
+			name = MODELS;
 			path = Models;
 			sourceTree = "<group>";
 		};
@@ -6225,6 +6243,7 @@
 				8AD6C2951B7072FB0040437E /* DraftsViewController.m in Sources */,
 				8A0F50D41C0EAD9A002B1E22 /* SeDealsTableViewCell.m in Sources */,
 				8AD6C81D1B73382E0040437E /* Localisator.m in Sources */,
+				8A0829471C1183A800AD8CBD /* SeShopDetailModel.m in Sources */,
 				8AC8F72C1BDA414E00DEF14A /* ProfilePageCollectionFooterTableViewCell.m in Sources */,
 				8A6584371B981C0E00BC86B9 /* CategoryCollectionViewCell.m in Sources */,
 				8AF53EFC1BD65F5A00AF6C9E /* UIView+RoundedCorners.m in Sources */,
