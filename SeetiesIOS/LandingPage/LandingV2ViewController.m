@@ -253,6 +253,10 @@
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Filter_Search_SortBy"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Filter_Search_Category"];
     
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"PostToDetail_like"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"PostToDetail_Collect"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"PostToDetail_IDN"];
+    
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"PublishV2_Address"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"PublishV2_Name"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"PublishV2_Lat"];
