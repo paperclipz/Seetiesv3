@@ -2870,6 +2870,18 @@
 //                SuggestedpageControl_Deal.pageIndicatorTintColor = [UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f];
 //                SuggestedpageControl_Deal.currentPageIndicatorTintColor = [UIColor colorWithRed:187.0f/255.0f green:187.0f/255.0f blue:187.0f/255.0f alpha:1.0f];
 //                [MainScroll addSubview:SuggestedpageControl_Deal];
+                
+                UIButton *SeeallButton = [[UIButton alloc]init];
+                SeeallButton.frame = CGRectMake(screenWidth - 120, heightcheck, 120, 50);
+                [SeeallButton setTitle:LocalisedString(@"See all")  forState:UIControlStateNormal];
+                [SeeallButton setImage:[UIImage imageNamed:@"ArrowBtn.png"] forState:UIControlStateNormal];
+                SeeallButton.backgroundColor = [UIColor clearColor];
+                SeeallButton.imageEdgeInsets = UIEdgeInsetsMake(0, 75, 0, 0);
+                SeeallButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+                [SeeallButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Regular" size:13]];
+                [SeeallButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+                [SeeallButton addTarget:self action:@selector(DealSeeAllButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+                [MainScroll addSubview: SeeallButton];
 
                 
                 for (int i = 0; i < [SplitArray_username count]; i++) {
@@ -5339,7 +5351,7 @@
 -(IBAction)AboadUserOpenProfileOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSString *GetID = [[NSString alloc]initWithFormat:@"%@",[arrAboadUserID objectAtIndex:getbuttonIDN]];
-    NSLog(@"DealUserOpenProfileOnClick GetID is %@",GetID);
+    NSLog(@"AboadUserOpenProfileOnClick GetID is %@",GetID);
     
     _profileViewController = nil;
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:GetID];
@@ -5685,5 +5697,13 @@
     _profileViewController = nil;
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[arrUserID objectAtIndex:getbuttonIDN]];
     [self.navigationController pushViewController:self.profileViewController animated:YES];
+}
+-(IBAction)DealSeeAllButtonOnClick:(id)sender{
+    NSLog(@"Open all deal");
+    NSString *GetID = [[NSString alloc]initWithFormat:@"%@",[arrDealUserID objectAtIndex:0]];
+    _profileViewController = nil;
+    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:GetID];
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+    }];
 }
 @end

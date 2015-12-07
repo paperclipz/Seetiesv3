@@ -1512,6 +1512,9 @@
         }
         
     }else if(connection == theConnection_DeletePost){
+        
+        [ShowActivity stopAnimating];
+        
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
         NSLog(@"delete post return get data to server ===== %@",GetData);
         
@@ -1527,7 +1530,11 @@
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             [defaults setObject:@"YES" forKey:@"SelfDeletePost"];
             [defaults setObject:@"YES" forKey:@"SelfDeletePost_Profile"];
+            [defaults setObject:@"" forKey:@"PostToDetail_like"];
+            [defaults setObject:@"" forKey:@"PostToDetail_Collect"];
+            [defaults setObject:@"" forKey:@"PostToDetail_IDN"];
             [defaults synchronize];
+            
             
             CATransition *transition = [CATransition animation];
             transition.duration = 0.2;
@@ -4529,6 +4536,9 @@
 
 }
 -(void)DeletePost{
+    
+    [ShowActivity startAnimating];
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
     

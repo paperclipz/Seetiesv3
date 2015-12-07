@@ -30,6 +30,8 @@
     NSString *GetOpeningHour;
     NSString *GetPrice;
     NSString *GetAllPeriods;
+    
+    BOOL CheckBlueTimeIcon;
 
 }
 @end
@@ -53,6 +55,8 @@
     MainScroll.delegate = self;
     MainScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight - 64);
     MainScroll.alwaysBounceVertical = YES;
+    
+    CheckBlueTimeIcon = NO;
 //    if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ){
 //        
 //        CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
@@ -304,8 +308,9 @@
         }
         
         if ([GetOpeningHour length] == 0) {
-            
+            CheckBlueTimeIcon = YES;
         }else{
+            CheckBlueTimeIcon = NO;
             UIImageView *ShowOpeningIcon = [[UIImageView alloc]init];
             ShowOpeningIcon.frame = CGRectMake(25, GetHeight, 25, 25);
             ShowOpeningIcon.image = [UIImage imageNamed:@"BlueTime.png"];
@@ -331,8 +336,15 @@
         if ([GetAllPeriods rangeOfString:@"("].location == NSNotFound) {
           //  NSLog(@"string does not contain bla");
             if ([GetAllPeriods length] == 0 || [GetAllPeriods length] == 10) {
-                
+                CheckBlueTimeIcon = NO;
             }else{
+                
+                if (CheckBlueTimeIcon == YES) {
+                    UIImageView *ShowOpeningIcon = [[UIImageView alloc]init];
+                    ShowOpeningIcon.frame = CGRectMake(25, GetHeight, 25, 25);
+                    ShowOpeningIcon.image = [UIImage imageNamed:@"BlueTime.png"];
+                    [MainScroll addSubview:ShowOpeningIcon];
+                }
                 
                 GetAllPeriods = [GetAllPeriods stringByReplacingOccurrencesOfString:@"="
                                                                          withString:@" "];
