@@ -21,6 +21,7 @@
 
 #import "TagModel.h"
 #import "ProfileModel.h"
+#import "SeShopDetailModel.h"
 
 
 typedef void(^BoolBlock) (BOOL isCollected);
@@ -51,6 +52,7 @@ typedef void(^CompletionVoidBlock) (void);
 @property(nonatomic,strong)CollectionsModel* userSuggestedCollectionsModel;
 @property(nonatomic,strong)ProfilePostModel* userProfilePostModel;
 @property(nonatomic,strong)ProfilePostModel* userProfileLikeModel;
+@property(nonatomic,strong)SeShopDetailModel* seShopDetailModel;
 
 
 

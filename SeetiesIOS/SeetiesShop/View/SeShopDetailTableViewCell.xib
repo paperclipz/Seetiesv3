@@ -50,6 +50,10 @@
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="lblDesc" destination="t0D-pr-57K" id="DZI-zX-IIB"/>
+                <outlet property="lblTitle" destination="0MF-Wz-7H9" id="DSW-c0-tM1"/>
+            </connections>
             <point key="canvasLocation" x="238" y="144.5"/>
         </tableViewCell>
     </objects>

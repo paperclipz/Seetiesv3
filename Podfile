@@ -1,4 +1,4 @@
-platform :ios, '8.0'
+platform :ios, '7.0'
 
 #pod 'MKMapView+AttributionView', :head
 #pod 'MMDrawerController', '~> 0.5.3'
@@ -39,4 +39,8 @@ pod 'MZAppearance'
 #pod 'ViewMonitor'
 pod 'MGInstagram'
 pod 'MHVideoPhotoGallery'
+
+#================ debugging =====================#
+#pod 'CocoaLumberjack'
+
 #pod 'Canvas', '~> 0.1.2'

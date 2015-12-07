@@ -178,7 +178,7 @@
         fullURL = [self getFullURLwithType:type];
     }
     
-    SLog(@"\n\n ===== Request Server ===== : %@ \n\n request Json : %@",fullURL,[dict bv_jsonStringWithPrettyPrint:YES]);
+    SLog(@"\n\n ===== [REQUEST SERVER WITH GET][URL] : %@ \n [REQUEST JSON] : %@\n\n",fullURL,[dict bv_jsonStringWithPrettyPrint:YES]);
     
 
     [self.manager GET:fullURL parameters:dict
@@ -447,7 +447,7 @@
 
 -(void)storeServerData:(id)obj requestType:(ServerRequestType)type
 {
-    NSLog(@"\n\n ===== Success  ===== : %@", [obj bv_jsonStringWithPrettyPrint:YES]);
+    NSLog(@"\n\n\n [SUCCESS RESPONSE RESULT URL : %@] \n%@ \n\n\n", [self getFullURLwithType:type],[obj bv_jsonStringWithPrettyPrint:YES]);
 
 
     [LoadingManager hide];
@@ -599,8 +599,11 @@
             
             break;
         case ServerRequestTypeGetSeetiShopDetail:
-            
-            
+        {
+            NSDictionary* dict = obj[@"data"];
+            self.dataManager.seShopDetailModel = [[SeShopDetailModel alloc]initWithDictionary:dict error:nil];
+            [self.dataManager.seShopDetailModel process];
+        }
             break;
             
         default:

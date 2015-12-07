@@ -10,5 +10,7 @@
 
 @interface SeShopDetailTableViewCell : CommonTableViewCell
 +(int)getHeight;
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+@property (weak, nonatomic) IBOutlet UILabel *lblDesc;
 
 @end

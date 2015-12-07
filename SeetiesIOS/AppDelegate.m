@@ -50,11 +50,11 @@
 #import "AFNetworkActivityLogger.h"
 
 #import <sys/utsname.h>
+
 @interface AppDelegate ()
-
 @property(nonatomic,strong)LandingV2ViewController* landingV2ViewController;
-@end
 
+@end
 
 @implementation AppDelegate
 
@@ -71,8 +71,9 @@
                                       secret:@"T5XT0AVNHLLO1NMXRNFCDBYGA453E12CTVN0WOSIHREEZTWA"
                                  callbackURL:@"testapp123://foursquare"];
     [GMSServices provideAPIKey:GOOGLE_API_KEY];
-
+    
 }
+
 
 -(void)configureNotificaiton:(UIApplication*)application
 {
@@ -81,6 +82,7 @@
         [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
         [[UIApplication sharedApplication] registerForRemoteNotifications];
     } else {
+
         [[UIApplication sharedApplication] registerForRemoteNotificationTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     }
 
