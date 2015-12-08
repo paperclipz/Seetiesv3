@@ -11,7 +11,7 @@
 #import "SeShopDetailTableViewCell.h"
 #import "PhotoCollectionViewCell.h"
 
-#define Info_Footer_HEader_Height 50+44;
+#define Info_Footer_HEader_Height 44+44;
 
 
 @interface SeShopDetailView()<UITableViewDataSource,UITableViewDelegate, UICollectionViewDataSource,UICollectionViewDelegate,MKMapViewDelegate>
@@ -42,6 +42,11 @@
 @end
 
 @implementation SeShopDetailView
+- (IBAction)btnMoreInfoClicked:(id)sender {
+    if (self.btnMoreInfoClickedBlock) {
+        self.btnMoreInfoClickedBlock(self.seShopModel);
+    }
+}
 
 - (IBAction)btnMapClicked:(id)sender {
     if (self.btnMapClickedBlock) {
@@ -62,22 +67,7 @@
     //[self initTableViewDelegate];
     [self initCollectionViewDelegate];
     [self initTableViewDelegate];
-    [self.ibProfileImageView sd_setImageCroppedWithURL:[NSURL URLWithString:@"http://www.bangsarbabe.com/wp-content/uploads/2014/05/81.jpg"] completed:^(UIImage *image){
-        
-        if (self.imageDidFinishLoadBlock) {
-            self.imageDidFinishLoadBlock(image);
-        }
-    }];
-    
-    self.arrayList = @[@"1",@"2",@"3",@"4",@"5"];
-    self.arrayList = nil;
-    [self setupViewWithData];
-    
     self.ibMapView.delegate = self;
-    [Utils setRoundBorder:self.ibMapInfoView color:[UIColor clearColor] borderRadius:5.0f];
-    
-  //  [self requestServerForSeetiShopDetail];
-
 
 }
 
@@ -87,6 +77,7 @@
     self.ibTableView.dataSource = self;
     [self.ibTableView registerClass:[SeShopDetailTableViewCell class] forCellReuseIdentifier:@"SeShopDetailTableViewCell"];
 }
+
 -(void)initCollectionViewDelegate
 {
     self.ibCollectionView.delegate = self;
@@ -97,28 +88,10 @@
 
 -(void)setupViewWithData
 {
-    
-    tableviewConstraint.constant = (self.arrayList.count*[SeShopDetailTableViewCell getHeight]) + Info_Footer_HEader_Height;
-    //tableviewConstraint.constant = 0;
-    [self layoutIfNeeded];
-
-    [self setHeight:self.ibMapMainView.frame.size.height + self.ibMapMainView.frame.origin.y + VIEW_PADDING];
-    
  
-    [[SearchManager Instance]getCoordinateFromGPSThenWifi:^(CLLocation *currentLocation) {
-        _region.center.longitude = currentLocation.coordinate.longitude;
-        _region.center.latitude = currentLocation.coordinate.latitude;
-        
-        
-        [self.annotation setCoordinate:self.region.center];
-        
-        [self.ibMapView setRegion:self.region animated:YES];
-        
-    } errorBlock:^(NSString *status) {
-        
-    }];
-
-   
+    float constant =  (self.arrayList.count*[SeShopDetailTableViewCell getHeight]) + Info_Footer_HEader_Height;
+    tableviewConstraint.constant = constant;
+    [self setHeight:self.ibMapMainView.frame.size.height + self.ibMapMainView.frame.origin.y + VIEW_PADDING];
 }
 
 -(float)getPositionYBelowView:(UIView*)view
@@ -151,8 +124,10 @@
     NSDictionary* dict = self.arrayList[indexPath.row];
     NSArray* keys = [dict allKeys];
     
-    cell.lblTitle.text = keys[0];
-    cell.lblDesc.text = [dict objectForKey:keys[0]];
+    NSString* key = keys[0];
+
+    cell.lblTitle.text = key;
+    cell.lblDesc.text = [dict objectForKey:key];
 
     return cell;
 }
@@ -229,16 +204,52 @@
 
 #pragma mark - Server
 
+-(void)initData
+{
+    [self.ibProfileImageView sd_setImageCroppedWithURL:[NSURL URLWithString:@"http://www.bangsarbabe.com/wp-content/uploads/2014/05/81.jpg"] completed:^(UIImage *image){
+        
+        if (self.imageDidFinishLoadBlock) {
+            self.imageDidFinishLoadBlock(image);
+        }
+    }];
+    
+    [Utils setRoundBorder:self.ibMapInfoView color:[UIColor clearColor] borderRadius:5.0f];
+    
+    [[SearchManager Instance]getCoordinateFromGPSThenWifi:^(CLLocation *currentLocation) {
+        _region.center.longitude = currentLocation.coordinate.longitude;
+        _region.center.latitude = currentLocation.coordinate.latitude;
+        
+        
+        [self.annotation setCoordinate:self.region.center];
+        
+        [self.ibMapView setRegion:self.region animated:YES];
+        
+    } errorBlock:^(NSString *status) {
+        
+    }];
+
+    [self requestServerForSeetiShopDetail];
+}
 -(void)requestServerForSeetiShopDetail
 {
-    
+       SLog(@"last width : %f || last height : %f",self.frame.size.width,self.frame.size.height);
     NSDictionary* param;
     NSString* appendString = @"56397e301c4d5be92e8b4711";
+    
+    CGRect frame = self.frame;
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetiShopDetail param:param appendString:appendString completeHandler:^(id object) {
-        self.seShopModel = [[ConnectionManager Instance] seShopDetailModel];
-        self.arrayList = self.seShopModel;
-        SLog(@"requestServerForSeetiShopDetail RESULT: %@",object);
         
+        SLog(@"last width : %f || last height : %f",self.frame.size.width,self.frame.size.height);
+
+        self.frame = frame;
+//        self.seShopModel = [[ConnectionManager dataManager] seShopDetailModel];
+//        self.arrayList = self.seShopModel.arrayInformation;
+//        [self.ibTableView reloadData];
+//        [self setupViewWithData];
+        
+        if (self.viewDidFinishLoadBlock) {
+            self.viewDidFinishLoadBlock();
+        }
     } errorBlock:^(id object) {
         
         

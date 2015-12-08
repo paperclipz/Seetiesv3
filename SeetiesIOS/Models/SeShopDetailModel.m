@@ -19,49 +19,79 @@
                                                        }];
 }
 
+#define BestKnowFor @"Best known for"
+#define Price @"Price"
+#define Hours @"Hours"
+#define Phone_Number @"Phone Number"
+#define URL_Link @"URL/Link"
+#define FACEBOOK @"Facebook"
 
 -(void)process
 {
     self.arrayInfo = [NSMutableArray new];
     if (![Utils isStringNull:_recommended_information]) {
         NSMutableDictionary* temp = [NSMutableDictionary new];
-        [temp setObject:_recommended_information forKey:@"Best known for"];
+        [temp setObject:_recommended_information forKey:BestKnowFor];
+        [self.arrayInfo addObject:temp];
     }
-    else if(true)//check price
+    if(_price)//check price
     {
         NSMutableDictionary* temp = [NSMutableDictionary new];
-        [temp setObject:_recommended_information forKey:@"Price"];
-    }
-    
-    else if(true)//check Hours
-    {
-        NSMutableDictionary* temp = [NSMutableDictionary new];
-        [temp setObject:_recommended_information forKey:@"Hours"];
-    }
-    
-    else if(![Utils isStringNull:_contact_number])//check Phone Number
-    {
-        NSMutableDictionary* temp = [NSMutableDictionary new];
-        [temp setObject:_recommended_information forKey:@"Phone Number"];
+        
+        NSString* tempPrice = [NSString stringWithFormat:@"%@ %@",_price.code,_price.value];
+        [temp setObject:tempPrice forKey:Price];
+        [self.arrayInfo addObject:temp];
+
     }
     
-    else if(![Utils isStringNull:_urlWebsite])//check URL/Link
+    if(_location && _location.opening_hours && _location.opening_hours.period_text)//check Hours
     {
         NSMutableDictionary* temp = [NSMutableDictionary new];
-        [temp setObject:_recommended_information forKey:@"URL/Link"];
+        
+        NSDateFormatter* day = [[NSDateFormatter alloc] init];
+        [day setDateFormat: @"EEEE"];
+        NSString* dayOfWeek = [day stringFromDate:[NSDate date]];
+        
+        if ([[_location.opening_hours.period_text allKeys]containsObject:dayOfWeek]) {
+            NSString* operatingHourText = [_location.opening_hours.period_text objectForKey:dayOfWeek];
+            [temp setObject:operatingHourText forKey:Hours];
+
+        }
+        else{
+            [temp setObject:@"Closed" forKey:Hours];
+
+        }
+        [self.arrayInfo addObject:temp];
+
+    }
+    
+    if(![Utils isStringNull:_contact_number])//check Phone Number
+    {
+        NSMutableDictionary* temp = [NSMutableDictionary new];
+        [temp setObject:_contact_number forKey:Phone_Number];
+        [self.arrayInfo addObject:temp];
+
+    }
+    
+    if(![Utils isStringNull:_urlWebsite])//check URL/Link
+    {
+        NSMutableDictionary* temp = [NSMutableDictionary new];
+        [temp setObject:_urlWebsite forKey:URL_Link];
+        [self.arrayInfo addObject:temp];
+
     }
 
-    else if(![Utils isStringNull:_urlFacebook])//check Facebook
+    if(![Utils isStringNull:_urlFacebook])//check Facebook
     {
         NSMutableDictionary* temp = [NSMutableDictionary new];
-        [temp setObject:_recommended_information forKey:@"Facebook"];
-    }
-    
+        [temp setObject:_urlFacebook forKey:FACEBOOK];
+        [self.arrayInfo addObject:temp];
 
+    }
 
 }
 
--(NSArray*)arrayInformation
+-(NSArray*)arrayInformation// for information after process
 {
     return [NSArray arrayWithArray:_arrayInfo];
 }

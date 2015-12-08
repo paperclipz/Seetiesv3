@@ -8,13 +8,18 @@
 
 #import "CommonView.h"
 typedef void (^RectBlock)(UIView* fromView, CGRect subRect);
+typedef void (^BtnMoreInfoBlock)(SeShopDetailModel* model);
+
 
 @interface SeShopDetailView : CommonView
--(void)setupViewWithData;
 -(BOOL)isAvailable;
 @property(nonatomic,copy)VoidBlock btnMapClickedBlock;
 @property (nonatomic,copy)ImageBlock imageDidFinishLoadBlock;
 @property (nonatomic,copy)RectBlock didSelectInformationAtRectBlock;
 @property (nonatomic,copy)IndexPathBlock didSelectPhotoAtIndexPath;
 
+
+@property(nonatomic,copy)VoidBlock viewDidFinishLoadBlock;
+@property(nonatomic,copy)BtnMoreInfoBlock btnMoreInfoClickedBlock;
+-(void)initData;
 @end
