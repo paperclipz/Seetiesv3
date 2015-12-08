@@ -67,7 +67,7 @@
 -(void)setupViews
 {
   
-    [self.arrViews addObject:self.seShopDetailView];
+   [self.arrViews addObject:self.seShopDetailView];
     [self.arrViews addObject:self.seDealsView];
     [self.arrViews addObject:self.seCollectionView];
     [self.arrViews addObject:self.seRecommendations];

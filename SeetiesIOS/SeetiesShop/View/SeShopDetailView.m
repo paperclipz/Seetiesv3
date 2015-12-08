@@ -70,12 +70,14 @@
     }];
     
     self.arrayList = @[@"1",@"2",@"3",@"4",@"5"];
+    self.arrayList = nil;
     [self setupViewWithData];
     
     self.ibMapView.delegate = self;
     [Utils setRoundBorder:self.ibMapInfoView color:[UIColor clearColor] borderRadius:5.0f];
     
-    [self requestServerForSeetiShopDetail];
+  //  [self requestServerForSeetiShopDetail];
+
 
 }
 
@@ -233,7 +235,6 @@
     NSDictionary* param;
     NSString* appendString = @"56397e301c4d5be92e8b4711";
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetiShopDetail param:param appendString:appendString completeHandler:^(id object) {
-        
         self.seShopModel = [[ConnectionManager Instance] seShopDetailModel];
         self.arrayList = self.seShopModel;
         SLog(@"requestServerForSeetiShopDetail RESULT: %@",object);
