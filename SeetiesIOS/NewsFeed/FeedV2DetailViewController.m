@@ -253,6 +253,8 @@
     NSString *GetCollectionFollowing;
     NSString *GetCollectID;
     NSString *GetCollectUserID;
+    
+    NSString *MessageCount;
 }
 @end
 
@@ -1331,43 +1333,52 @@
         
         NSString *countString = [[NSString alloc]initWithFormat:@"%@",[GetAllData valueForKey:@"count"]];
         NSLog(@"countString is %@",countString);
+        NSLog(@"ShowTotalCommentCount.text is %@",ShowTotalCommentCount.text);
         
-        ShowTotalCommentCount.text = countString;
         
-        NSArray *GetCommentData = (NSArray *)[GetAllData valueForKey:@"comments"];
-        NSLog(@"GetCommentData is %@",GetCommentData);
-        
-        CommentIDArray = [[NSMutableArray alloc] initWithCapacity:[GetCommentData count]];
-        PostIDArray = [[NSMutableArray alloc] initWithCapacity:[GetCommentData count]];
-        MessageArray = [[NSMutableArray alloc] initWithCapacity:[GetCommentData count]];
-        for (NSDictionary * dict in GetCommentData) {
-            NSString *comment_id = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"comment_id"]];
-            [CommentIDArray addObject:comment_id];
-            NSString *post_id = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"post_id"]];
-            [PostIDArray addObject:post_id];
-            NSString *message = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"message"]];
-            [MessageArray addObject:message];
+        if ([MessageCount isEqualToString:countString]) {
+            
+        }else{
+            MessageCount = countString;
+            ShowTotalCommentCount.text = MessageCount;
+            
+            NSArray *GetCommentData = (NSArray *)[GetAllData valueForKey:@"comments"];
+            NSLog(@"GetCommentData is %@",GetCommentData);
+            
+            CommentIDArray = [[NSMutableArray alloc] initWithCapacity:[GetCommentData count]];
+            PostIDArray = [[NSMutableArray alloc] initWithCapacity:[GetCommentData count]];
+            MessageArray = [[NSMutableArray alloc] initWithCapacity:[GetCommentData count]];
+            for (NSDictionary * dict in GetCommentData) {
+                NSString *comment_id = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"comment_id"]];
+                [CommentIDArray addObject:comment_id];
+                NSString *post_id = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"post_id"]];
+                [PostIDArray addObject:post_id];
+                NSString *message = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"message"]];
+                [MessageArray addObject:message];
+            }
+            
+            NSDictionary *UserInfoData_ = [GetCommentData valueForKey:@"author_info"];
+            NSLog(@"UserInfoData_ is %@",UserInfoData_);
+            
+            User_Comment_uidArray = [[NSMutableArray alloc] initWithCapacity:[UserInfoData_ count]];
+            User_Comment_nameArray = [[NSMutableArray alloc] initWithCapacity:[UserInfoData_ count]];
+            User_Comment_usernameArray = [[NSMutableArray alloc] initWithCapacity:[UserInfoData_ count]];
+            User_Comment_photoArray = [[NSMutableArray alloc] initWithCapacity:[UserInfoData_ count]];
+            for (NSDictionary * dict in UserInfoData_) {
+                NSString *uid = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"uid"]];
+                [User_Comment_uidArray addObject:uid];
+                NSString *name = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"name"]];
+                [User_Comment_nameArray addObject:name];
+                NSString *username = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"username"]];
+                [User_Comment_usernameArray addObject:username];
+                NSString *photo = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"profile_photo"]];
+                [User_Comment_photoArray addObject:photo];
+            }
+            
+            [self InitView];
         }
         
-        NSDictionary *UserInfoData_ = [GetCommentData valueForKey:@"author_info"];
-        NSLog(@"UserInfoData_ is %@",UserInfoData_);
         
-        User_Comment_uidArray = [[NSMutableArray alloc] initWithCapacity:[UserInfoData_ count]];
-        User_Comment_nameArray = [[NSMutableArray alloc] initWithCapacity:[UserInfoData_ count]];
-        User_Comment_usernameArray = [[NSMutableArray alloc] initWithCapacity:[UserInfoData_ count]];
-        User_Comment_photoArray = [[NSMutableArray alloc] initWithCapacity:[UserInfoData_ count]];
-        for (NSDictionary * dict in UserInfoData_) {
-            NSString *uid = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"uid"]];
-            [User_Comment_uidArray addObject:uid];
-            NSString *name = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"name"]];
-            [User_Comment_nameArray addObject:name];
-            NSString *username = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"username"]];
-            [User_Comment_usernameArray addObject:username];
-            NSString *photo = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"profile_photo"]];
-            [User_Comment_photoArray addObject:photo];
-        }
-        
-        [self InitView];
     }else if(connection == theConnection_likes){
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
         NSLog(@"Send post like return get data to server ===== %@",GetData);
@@ -1512,6 +1523,9 @@
         }
         
     }else if(connection == theConnection_DeletePost){
+        
+        [ShowActivity stopAnimating];
+        
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
         NSLog(@"delete post return get data to server ===== %@",GetData);
         
@@ -1527,7 +1541,11 @@
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             [defaults setObject:@"YES" forKey:@"SelfDeletePost"];
             [defaults setObject:@"YES" forKey:@"SelfDeletePost_Profile"];
+            [defaults setObject:@"" forKey:@"PostToDetail_like"];
+            [defaults setObject:@"" forKey:@"PostToDetail_Collect"];
+            [defaults setObject:@"" forKey:@"PostToDetail_IDN"];
             [defaults synchronize];
+            
             
             CATransition *transition = [CATransition animation];
             transition.duration = 0.2;
@@ -4529,6 +4547,9 @@
 
 }
 -(void)DeletePost{
+    
+    [ShowActivity startAnimating];
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
     

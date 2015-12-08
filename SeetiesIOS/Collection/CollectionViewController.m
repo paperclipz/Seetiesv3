@@ -777,30 +777,35 @@
 
     //edit button
     MainEditButton = [[UIButton alloc]init];
-    MainEditButton.frame = CGRectMake((screenWidth / 2) - 65, GetHeight, 130, 35);
-    MainEditButton.layer.cornerRadius= 18;
-    MainEditButton.layer.borderWidth = 1;
-    MainEditButton.layer.masksToBounds = YES;
-    MainEditButton.layer.borderColor=[[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0] CGColor];
+    MainEditButton.frame = CGRectMake((screenWidth / 2) - 58, GetHeight, 115, 38);
+//    MainEditButton.layer.cornerRadius= 18;
+//    MainEditButton.layer.borderWidth = 1;
+//    MainEditButton.layer.masksToBounds = YES;
+//    MainEditButton.layer.borderColor=[[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0] CGColor];
     MainEditButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
     [MainEditButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
-    MainEditButton.backgroundColor = [UIColor whiteColor];
+    MainEditButton.backgroundColor = [UIColor clearColor];
     [MainEditButton setTitle:@"Edit" forState:UIControlStateNormal];
     [MainEditButton addTarget:self action:@selector(EditButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
     if ([GetPermisionUser isEqualToString:@"Self"] || [GetPermisionUser isEqualToString:@"self"]) {
         [MainEditButton setTitle:LocalisedString(@"Edit") forState:UIControlStateNormal];
     }else{
         if ([GetFollowing isEqualToString:@"0"]) {
-            [MainEditButton setTitle:LocalisedString(@"PFollow") forState:UIControlStateNormal];
-            [MainEditButton setTitle:LocalisedString(@"Unfollow") forState:UIControlStateSelected];
+//            [MainEditButton setTitle:LocalisedString(@"PFollow") forState:UIControlStateNormal];
+//            [MainEditButton setTitle:LocalisedString(@"Unfollow") forState:UIControlStateSelected];
+            [MainEditButton setImage:[UIImage imageNamed:LocalisedString(@"FollowCollectionIcon.png")] forState:UIControlStateNormal];
+            [MainEditButton setImage:[UIImage imageNamed:LocalisedString(@"FollowingCollectionIcon.png")] forState:UIControlStateSelected];
         }else{
-            [MainEditButton setTitle:LocalisedString(@"Unfollow") forState:UIControlStateNormal];
-            [MainEditButton setTitle:LocalisedString(@"PFollow") forState:UIControlStateSelected];
+//            [MainEditButton setTitle:LocalisedString(@"Unfollow") forState:UIControlStateNormal];
+//            [MainEditButton setTitle:LocalisedString(@"PFollow") forState:UIControlStateSelected];
+            [MainEditButton setImage:[UIImage imageNamed:LocalisedString(@"FollowingCollectionIcon.png")] forState:UIControlStateNormal];
+            [MainEditButton setImage:[UIImage imageNamed:LocalisedString(@"FollowCollectionIcon.png")] forState:UIControlStateSelected];
         }
+
         
     }
     [MainScroll addSubview:MainEditButton];
-        
+    
     GetHeight += 45;
 
     
