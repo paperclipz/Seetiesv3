@@ -61,8 +61,7 @@
     [self setupViews];
     [self addViews];
 
-    [self.seShopDetailView requestServerForSeetiShopDetail];
-    
+    [self.seShopDetailView initData];
 //    [self adjustView:self.arrViews[self.arrViews.count-1] :(int)(self.arrViews.count - 1)];
 //    UIView* lastView = [self.arrViews lastObject];
 //    
@@ -74,12 +73,11 @@
 
 -(void)setupViews
 {
-  
     [self.arrViews addObject:self.seShopDetailView];
     [self.arrViews addObject:self.seDealsView];
     [self.arrViews addObject:self.seCollectionView];
-    [self.arrViews addObject:self.seRecommendations];
-    [self.arrViews addObject:self.seNearbySeetishop];
+    //[self.arrViews addObject:self.seRecommendations];
+   // [self.arrViews addObject:self.seNearbySeetishop];
 
 }
 -(void)addViews
@@ -87,7 +85,6 @@
     for (int i = 0; i< self.arrViews.count; i++) {
         UIView* view = self.arrViews[i];
         [view adjustToScreenWidth];
-        [view layoutIfNeeded];
         SLog(@"last width : %f || last height : %f",view.frame.size.width,view.frame.size.height);
 
         [view adjustToScreenWidth];

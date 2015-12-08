@@ -197,7 +197,7 @@
                         </constraints>
                     </view>
                 </tableView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HtQ-ef-F0z">
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HtQ-ef-F0z">
                     <rect key="frame" x="0.0" y="788" width="375" height="223"/>
                     <subviews>
                         <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="LHG-yv-1Iz">

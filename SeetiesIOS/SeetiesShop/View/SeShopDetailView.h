@@ -21,5 +21,5 @@ typedef void (^BtnMoreInfoBlock)(SeShopDetailModel* model);
 
 @property(nonatomic,copy)VoidBlock viewDidFinishLoadBlock;
 @property(nonatomic,copy)BtnMoreInfoBlock btnMoreInfoClickedBlock;
--(void)requestServerForSeetiShopDetail;
+-(void)initData;
 @end
