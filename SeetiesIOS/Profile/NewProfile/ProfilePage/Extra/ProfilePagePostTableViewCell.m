@@ -64,7 +64,11 @@
     
     if (![draftModel.arrPhotos isNull]) {
         PhotoModel* model = draftModel.arrPhotos[0];
-        [cell.ibImageView sd_setImageWithURL:[NSURL URLWithString:model.imageURL]];
+        [cell.ibImageView sd_setImageWithURL:[NSURL URLWithString:model.imageURL] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            
+            cell.ibImageView.image = [image imageCroppedAndScaledToSize:cell.ibImageView.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
+            
+        }];
     }
     
     return cell;

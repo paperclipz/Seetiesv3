@@ -60,6 +60,10 @@
 		0BE340251B73021B00F49625 /* ProximaNovaSoft-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BE340221B73021B00F49625 /* ProximaNovaSoft-Regular.ttf */; };
 		8A00979B1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A00979A1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m */; };
 		8A00979D1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A00979C1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib */; };
+		8A0348751C15374B0015E606 /* PriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0348741C15374B0015E606 /* PriceModel.m */; };
+		8A0348791C154F9C0015E606 /* SeetiesMoreInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0348771C154F9C0015E606 /* SeetiesMoreInfoViewController.m */; };
+		8A03487A1C154F9C0015E606 /* SeetiesMoreInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0348781C154F9C0015E606 /* SeetiesMoreInfoViewController.xib */; };
+		8A03487E1C1579640015E606 /* NSString+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A03487D1C1579640015E606 /* NSString+Extra.m */; };
 		8A0829401C1046F200AD8CBD /* UIView+draggable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A08293F1C1046F200AD8CBD /* UIView+draggable.m */; };
 		8A0829471C1183A800AD8CBD /* SeShopDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0829461C1183A800AD8CBD /* SeShopDetailModel.m */; };
 		8A0F50B11C0C3B5B002B1E22 /* SeShopDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0F50B01C0C3B5B002B1E22 /* SeShopDetailView.m */; };
@@ -1150,6 +1154,13 @@
 		8A0097991B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomEditPhotoTableViewCell.h; sourceTree = "<group>"; };
 		8A00979A1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomEditPhotoTableViewCell.m; sourceTree = "<group>"; };
 		8A00979C1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomEditPhotoTableViewCell.xib; sourceTree = "<group>"; };
+		8A0348731C15374B0015E606 /* PriceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriceModel.h; sourceTree = "<group>"; };
+		8A0348741C15374B0015E606 /* PriceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriceModel.m; sourceTree = "<group>"; };
+		8A0348761C154F9C0015E606 /* SeetiesMoreInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeetiesMoreInfoViewController.h; sourceTree = "<group>"; };
+		8A0348771C154F9C0015E606 /* SeetiesMoreInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeetiesMoreInfoViewController.m; sourceTree = "<group>"; };
+		8A0348781C154F9C0015E606 /* SeetiesMoreInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeetiesMoreInfoViewController.xib; sourceTree = "<group>"; };
+		8A03487C1C1579640015E606 /* NSString+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extra.h"; sourceTree = "<group>"; };
+		8A03487D1C1579640015E606 /* NSString+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extra.m"; sourceTree = "<group>"; };
 		8A08293E1C1046F200AD8CBD /* UIView+draggable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+draggable.h"; sourceTree = "<group>"; };
 		8A08293F1C1046F200AD8CBD /* UIView+draggable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+draggable.m"; sourceTree = "<group>"; };
 		8A0829451C1183A800AD8CBD /* SeShopDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeShopDetailModel.h; sourceTree = "<group>"; };
@@ -2715,6 +2726,24 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8A0348721C15372A0015E606 /* SubModel */ = {
+			isa = PBXGroup;
+			children = (
+				8A0348731C15374B0015E606 /* PriceModel.h */,
+				8A0348741C15374B0015E606 /* PriceModel.m */,
+			);
+			name = SubModel;
+			sourceTree = "<group>";
+		};
+		8A03487B1C15793A0015E606 /* NSString+Extension */ = {
+			isa = PBXGroup;
+			children = (
+				8A03487C1C1579640015E606 /* NSString+Extra.h */,
+				8A03487D1C1579640015E606 /* NSString+Extra.m */,
+			);
+			name = "NSString+Extension";
+			sourceTree = "<group>";
+		};
 		8A0829441C11836600AD8CBD /* SeetiShopModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -3542,6 +3571,9 @@
 				8ABA51F11C0FE7F000A3DC15 /* PhotoListViewController.h */,
 				8ABA51F21C0FE7F000A3DC15 /* PhotoListViewController.m */,
 				8ABA51F31C0FE7F000A3DC15 /* PhotoListViewController.xib */,
+				8A0348761C154F9C0015E606 /* SeetiesMoreInfoViewController.h */,
+				8A0348771C154F9C0015E606 /* SeetiesMoreInfoViewController.m */,
+				8A0348781C154F9C0015E606 /* SeetiesMoreInfoViewController.xib */,
 			);
 			path = SeetiesShop;
 			sourceTree = "<group>";
@@ -4749,6 +4781,7 @@
 		8AD6BA961B706CF10040437E /* CATEGORY */ = {
 			isa = PBXGroup;
 			children = (
+				8A03487B1C15793A0015E606 /* NSString+Extension */,
 				8A08293E1C1046F200AD8CBD /* UIView+draggable.h */,
 				8A08293F1C1046F200AD8CBD /* UIView+draggable.m */,
 				8ABA51ED1C0F042000A3DC15 /* UINavigationController+Transition */,
@@ -4922,6 +4955,7 @@
 		8AD6BD821B706CF30040437E /* MODELS */ = {
 			isa = PBXGroup;
 			children = (
+				8A0348721C15372A0015E606 /* SubModel */,
 				8A0829441C11836600AD8CBD /* SeetiShopModel */,
 				8AE6427A1BD62628003ACA56 /* ProfileModel */,
 				8AB76DD41BB8FD4A007DB972 /* PostModel.h */,
@@ -5566,6 +5600,7 @@
 				8A7364341C0849AB00A64824 /* AnnounceLogo@2x.png in Resources */,
 				8A45123D1BDE2C97008DE870 /* LikeListingCollectionViewCell.xib in Resources */,
 				8A7363E61C0849AB00A64824 /* ExploreSearchBar@3x.png in Resources */,
+				8A03487A1C154F9C0015E606 /* SeetiesMoreInfoViewController.xib in Resources */,
 				8A69E0FA1C0412F000224BB4 /* ShareV2CollectionViewCell.xib in Resources */,
 				8A7363E41C0849AB00A64824 /* ExploreOverlay@3x.png in Resources */,
 				8A7363661C0849AB00A64824 /* FollowCollectionTradChiIcon@2x.png in Resources */,
@@ -6264,6 +6299,7 @@
 				8A6584371B981C0E00BC86B9 /* CategoryCollectionViewCell.m in Sources */,
 				8AF53EFC1BD65F5A00AF6C9E /* UIView+RoundedCorners.m in Sources */,
 				8A114C771BE73F5D006AE3F0 /* AUIAutoGrowingTextView.m in Sources */,
+				8A03487E1C1579640015E606 /* NSString+Extra.m in Sources */,
 				8A114CA81BE73F5D006AE3F0 /* AsyncImageView.m in Sources */,
 				8A114CD01BE73F5D006AE3F0 /* TLTagsControl.m in Sources */,
 				8A3409421B8AD06A009B66C3 /* UIImage+Enhancing.m in Sources */,
@@ -6335,6 +6371,7 @@
 				8AD6BE491B706CF30040437E /* Explore2ViewController.m in Sources */,
 				8AD6C0B31B706CF30040437E /* ConnectionManager.m in Sources */,
 				8A65843D1B9850CE00BC86B9 /* DraftViewController.m in Sources */,
+				8A0348751C15374B0015E606 /* PriceModel.m in Sources */,
 				8A114C9D1BE73F5D006AE3F0 /* UIImage+KVNEmpty.m in Sources */,
 				8A114C991BE73F5D006AE3F0 /* JTSImageViewController.m in Sources */,
 				8AD6C29F1B7072FB0040437E /* SelectPhotosViewController.m in Sources */,
@@ -6454,6 +6491,7 @@
 				8AD6BA601B705DF20040437E /* main.m in Sources */,
 				8A114C841BE73F5D006AE3F0 /* BMXSwipableCell+ConfigureCell.m in Sources */,
 				8A3409481B8AD06A009B66C3 /* UIImage+Saving.m in Sources */,
+				8A0348791C154F9C0015E606 /* SeetiesMoreInfoViewController.m in Sources */,
 				8AD6C2291B706FA10040437E /* NSString+ChangeAsciiString.m in Sources */,
 				8AC8F7301BDA414E00DEF14A /* ProfilePageCollectionTableViewCell.m in Sources */,
 				0BC8A0F51C0D934600EB8548 /* SeRecommendations.m in Sources */,

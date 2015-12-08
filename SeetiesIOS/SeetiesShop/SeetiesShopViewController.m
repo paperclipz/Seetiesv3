@@ -18,12 +18,14 @@
 #import "UINavigationController+Transition.h"
 #import "LikesListingViewController.h"
 #import "PhotoListViewController.h"
+#import "SeetiesMoreInfoViewController.h"
 
 @interface SeetiesShopViewController ()<UIScrollViewDelegate>
 
 //================ CONTROLLERS ====================//
 @property (nonatomic,strong)MapViewController* mapViewController;
 @property (nonatomic,strong)PhotoListViewController* photoListViewController;
+@property (nonatomic,strong)SeetiesMoreInfoViewController* seetiesMoreInfoViewController;
 
 //$$============== CONTROLLERS ==================$$//
 
@@ -52,15 +54,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.automaticallyAdjustsScrollViewInsets = NO;
+    //self.automaticallyAdjustsScrollViewInsets = NO;
     self.ibScrollView.delegate = self;
     _arrViews = [NSMutableArray new];
 
     [self setupViews];
     [self addViews];
-    [self adjustView:self.arrViews[self.arrViews.count-1] :(int)(self.arrViews.count - 1)];
-    UIView* lastView = [self.arrViews lastObject];
-    self.ibScrollView.contentSize = CGSizeMake( self.ibScrollView.frame.size.width, lastView.frame.size.height+ lastView.frame.origin.y);
+
+    [self.seShopDetailView requestServerForSeetiShopDetail];
+    
+//    [self adjustView:self.arrViews[self.arrViews.count-1] :(int)(self.arrViews.count - 1)];
+//    UIView* lastView = [self.arrViews lastObject];
+//    
+//    SLog(@"last width : %f || last height : %f",lastView.frame.size.width,lastView.frame.size.height);
+//    self.ibScrollView.contentSize = CGSizeMake( self.ibScrollView.frame.size.width, lastView.frame.size.height+ lastView.frame.origin.y);
+//    SLog(@"content Size : %f",self.ibScrollView.contentSize.height);
 
 }
 
@@ -78,12 +86,16 @@
 {
     for (int i = 0; i< self.arrViews.count; i++) {
         UIView* view = self.arrViews[i];
-        //[view adjustToScreenWidth];
+        [view adjustToScreenWidth];
+        [view layoutIfNeeded];
+        SLog(@"last width : %f || last height : %f",view.frame.size.width,view.frame.size.height);
+
+        [view adjustToScreenWidth];
         [self.ibScrollView addSubview:view];
+        SLog(@"last width : %f || last height : %f",view.frame.size.width,view.frame.size.height);
         
         
     }
-
 
 }
 // readjust view from top to bottom
@@ -91,7 +103,10 @@
 {
     
     if (count <=0) {
-        
+        [view adjustToScreenWidth];
+
+        SLog(@"last width : %f || last height : %f",view.frame.size.width,view.frame.size.height);
+
         return view;
 
     }
@@ -100,6 +115,7 @@
 
         UIView *previousView = [self adjustView:self.arrViews[count] :count];
         float height = previousView.frame.origin.y + previousView.frame.size.height;
+        [view adjustToScreenWidth];
         [view setY:height];
 
         return view;
@@ -107,12 +123,6 @@
     
 }
 
--(void)addView:(SeetiesShopType)type view:(UIView*)view
-{
-    [self.ibScrollView addSubview:self.seShopDetailView];
-    [self.seDealsView setY:self.seShopDetailView.frame.size.height];
-
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -122,6 +132,13 @@
 
 #pragma mark - Declaration
 
+-(SeetiesMoreInfoViewController*)seetiesMoreInfoViewController
+{
+    if (!_seetiesMoreInfoViewController) {
+        _seetiesMoreInfoViewController = [SeetiesMoreInfoViewController new];
+    }
+    return _seetiesMoreInfoViewController;
+}
 -(PhotoListViewController*)photoListViewController
 {
     if (!_photoListViewController) {
@@ -147,9 +164,8 @@
         
         _seShopDetailView = [SeShopDetailView initializeCustomView];
         
-        
         __weak typeof (self)weakSelf = self;
-        
+
         _seShopDetailView.btnMapClickedBlock = ^(void)
         {
             
@@ -171,6 +187,33 @@
         {
             _photoListViewController = nil;
             [weakSelf.navigationController pushViewController:weakSelf.photoListViewController animated:YES];
+        };
+        
+        _seShopDetailView.viewDidFinishLoadBlock = ^(void)
+        {
+
+           // [weakSelf.arrViews removeObject:weakSelf.seDealsView];
+           // [weakSelf.seDealsView removeFromSuperview];
+            [weakSelf adjustView:weakSelf.arrViews[self.arrViews.count-1] :(int)(weakSelf.arrViews.count - 1)];
+            UIView* lastView = [weakSelf.arrViews lastObject];
+            weakSelf.ibScrollView.contentSize = CGSizeMake( weakSelf.ibScrollView.frame.size.width, lastView.frame.size.height+ lastView.frame.origin.y);
+            
+            SLog(@"last width : %f || last height : %f",lastView.frame.size.width,lastView.frame.size.height);
+            weakSelf.ibScrollView.contentSize = CGSizeMake( weakSelf.ibScrollView.frame.size.width, lastView.frame.size.height+ lastView.frame.origin.y);
+            SLog(@"content Size : %f",weakSelf.ibScrollView.contentSize.height);
+//            [UIView animateWithDuration:1.0 animations:^{
+//                
+//            }completion:^(BOOL finished) {
+//                
+//    
+//            }];
+        };
+        
+        _seShopDetailView.btnMoreInfoClickedBlock = ^(SeShopDetailModel* model)
+        {
+            weakSelf.seetiesMoreInfoViewController.seShopModel = model;
+            [weakSelf.navigationController pushViewController:weakSelf.seetiesMoreInfoViewController animated:YES];
+
         };
     
     }

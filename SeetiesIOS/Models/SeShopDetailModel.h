@@ -8,6 +8,9 @@
 
 #import "Model.h"
 #import "DraftModel.h"
+#import "PriceModel.h"
+#import "OpeningPeriodModel.h"
+
 @class DraftModel;
 
 @interface SeShopDetailModel : Model
@@ -18,6 +21,8 @@
 @property(nonatomic,strong)NSString* urlFacebook;
 @property(nonatomic,strong)NSString* urlWebsite;
 @property(nonatomic,strong)Location* location;
+
+@property(nonatomic,strong)PriceModel* price;
 
 @property(nonatomic,readonly)NSArray* arrayInformation;
 -(void)process;

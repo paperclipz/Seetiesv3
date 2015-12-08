@@ -29,9 +29,10 @@
 -(void)initSelfView
 {
     [self initTableViewDelegate];
-    self.arrList = @[@"1",@"2",@"3"];
-    
-    [self setHeight:HeaderHeight+ ((int)self.arrList.count * [SeDealsTableViewCell getHeight])];
+    self.arrList = @[@"1"];
+    float height = HeaderHeight+ ((int)self.arrList.count * [SeDealsTableViewCell getHeight]);
+    [self setHeight:height];
+    [self layoutIfNeeded];
 }
 
 -(void)initTableViewDelegate

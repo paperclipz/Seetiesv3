@@ -232,6 +232,7 @@
 #pragma mark - IBAction
 - (IBAction)btnTestClicked:(id)sender {
     
+    _seetiesShopViewController = nil;
     UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:self.seetiesShopViewController];
     [nav setNavigationBarHidden:YES];
     [self presentViewController:nav animated:YES completion:nil];

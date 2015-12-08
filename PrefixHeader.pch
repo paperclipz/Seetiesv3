@@ -43,6 +43,7 @@
 #import "BKCurrencyTextField.h"
 #import <AviarySDK/AviarySDK.h>
 //===============Category Helper=================
+#import "NSString+Extra.h"
 #import "UIView+Extension.h"
 #import "UIImage+FX.h"
 #import "CustomFont.h"

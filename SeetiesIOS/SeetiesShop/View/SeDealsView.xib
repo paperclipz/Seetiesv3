@@ -8,11 +8,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SeDealsView">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="247"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="344"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Lbc-DX-9YZ">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="247"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="344"/>
                     <color key="backgroundColor" red="0.8980392157" green="0.33456726380000001" blue="0.22577852570000001" alpha="1" colorSpace="calibratedRGB"/>
                     <view key="tableHeaderView" contentMode="scaleToFill" id="n3r-ky-axd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

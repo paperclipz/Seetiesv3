@@ -41,6 +41,7 @@
 
 @property(nonatomic,assign)BOOL open_now;
 @property(nonatomic,strong)NSArray<OperatingHoursModel>* periods;
+@property(nonatomic,strong)NSDictionary* period_text;
 
 
 
