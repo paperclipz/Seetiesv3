@@ -61,19 +61,21 @@
     [self setupViews];
     [self addViews];
 
-    [self.seShopDetailView initData];
-//    [self adjustView:self.arrViews[self.arrViews.count-1] :(int)(self.arrViews.count - 1)];
-//    UIView* lastView = [self.arrViews lastObject];
-//    
-//    SLog(@"last width : %f || last height : %f",lastView.frame.size.width,lastView.frame.size.height);
-//    self.ibScrollView.contentSize = CGSizeMake( self.ibScrollView.frame.size.width, lastView.frame.size.height+ lastView.frame.origin.y);
-//    SLog(@"content Size : %f",self.ibScrollView.contentSize.height);
+   // [self.seShopDetailView initData];
+    [self.seCollectionView initData];
+    
+    [self adjustView:self.arrViews[self.arrViews.count-1] :(int)(self.arrViews.count - 1)];
+    UIView* lastView = [self.arrViews lastObject];
+    
+    SLog(@"last width : %f || last height : %f",lastView.frame.size.width,lastView.frame.size.height);
+    self.ibScrollView.contentSize = CGSizeMake( self.ibScrollView.frame.size.width, lastView.frame.size.height+ lastView.frame.origin.y);
+    SLog(@"content Size : %f",self.ibScrollView.contentSize.height);
 
 }
 
 -(void)setupViews
 {
-    [self.arrViews addObject:self.seShopDetailView];
+   // [self.arrViews addObject:self.seShopDetailView];
     [self.arrViews addObject:self.seDealsView];
     [self.arrViews addObject:self.seCollectionView];
     //[self.arrViews addObject:self.seRecommendations];

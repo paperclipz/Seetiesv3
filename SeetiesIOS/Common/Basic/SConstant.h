@@ -52,6 +52,7 @@ typedef enum
     // ========== SEETIES SHOP ========== //
 
     ServerRequestTypeGetSeetiShopDetail,
+    ServerRequestTypeGetSeetiShopCollection,
     
     // ========== SEETIES SHOP ========== //
 

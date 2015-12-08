@@ -395,12 +395,12 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
     if (CheckFirstTimeLoad == 0) {
-        CenterLine = [[UIButton alloc]init];
-        CenterLine.frame = CGRectMake((screenWidth / 2), 170, 1, 100);
-        [CenterLine setTitle:@"" forState:UIControlStateNormal];//238
-        [CenterLine setBackgroundColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f]];
-       // [CenterLine setBackgroundColor:[UIColor redColor]];
-        [MainScroll addSubview:CenterLine];
+//        CenterLine = [[UIButton alloc]init];
+//        CenterLine.frame = CGRectMake((screenWidth / 2), 170, 1, 100);
+//        [CenterLine setTitle:@"" forState:UIControlStateNormal];//238
+//        [CenterLine setBackgroundColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f]];
+//       // [CenterLine setBackgroundColor:[UIColor redColor]];
+//        [MainScroll addSubview:CenterLine];
         
         GetHeight += 20;
     }else{
@@ -525,7 +525,7 @@
         
         GetHeight += 110;
         
-        CenterLine.frame = CGRectMake((screenWidth / 2), 170, 1, GetHeight + 110);
+       // CenterLine.frame = CGRectMake((screenWidth / 2), 170, 1, GetHeight + 110);
         
     }
     

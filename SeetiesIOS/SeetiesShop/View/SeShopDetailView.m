@@ -236,12 +236,12 @@
     NSDictionary* param;
     NSString* appendString = @"56397e301c4d5be92e8b4711";
     
-    CGRect frame = self.frame;
+//    CGRect frame = self.frame;
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetiShopDetail param:param appendString:appendString completeHandler:^(id object) {
         
-        SLog(@"last width : %f || last height : %f",self.frame.size.width,self.frame.size.height);
+        SLog(@"1 last width : %f || last height : %f",self.frame.size.width,self.frame.size.height);
 
-        self.frame = frame;
+//        self.frame = frame;
 //        self.seShopModel = [[ConnectionManager dataManager] seShopDetailModel];
 //        self.arrayList = self.seShopModel.arrayInformation;
 //        [self.ibTableView reloadData];
@@ -250,9 +250,11 @@
         if (self.viewDidFinishLoadBlock) {
             self.viewDidFinishLoadBlock();
         }
+        SLog(@"2 last width : %f || last height : %f",self.frame.size.width,self.frame.size.height);
     } errorBlock:^(id object) {
         
         
     }];
+
 }
 @end
