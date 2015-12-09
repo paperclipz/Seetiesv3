@@ -7,7 +7,10 @@
 //
 
 #import "CommonViewController.h"
+#import "MapViewController.h"
 
 @interface SeetiesMoreInfoViewController : CommonViewController
 @property(nonatomic,strong)SeShopDetailModel* seShopModel;
+
+@property(nonatomic,strong)MapViewController* mapViewController;
 @end

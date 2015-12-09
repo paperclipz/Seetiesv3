@@ -23,6 +23,8 @@
 @property(nonatomic,strong)Location* location;
 @property(nonatomic,strong)NSString* nearby_public_transport;
 @property(nonatomic,strong)PriceModel* price;
+@property(nonatomic,strong)NSArray* arrFeatureAvaiable;
+@property(nonatomic,strong)NSArray* arrFeatureUnavaiable;
 
 @property(nonatomic,readonly)NSArray* arrayInformation;
 -(void)process;

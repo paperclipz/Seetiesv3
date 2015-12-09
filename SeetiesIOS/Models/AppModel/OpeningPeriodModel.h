@@ -15,17 +15,10 @@
 @protocol OperatingHoursModel
 @end
 
-
-
-
-
 @interface DayTimeModel : JSONModel
 @property(nonatomic,assign)int day;
 @property(nonatomic,assign)int time;
 @end
-
-
-
 
 @interface OperatingHoursModel : JSONModel
 @property(nonatomic,strong)DayTimeModel* close;
@@ -34,15 +27,10 @@
 
 @end
 
-
-
-
 @interface OpeningPeriodModels : JSONModel
 
 @property(nonatomic,assign)BOOL open_now;
 @property(nonatomic,strong)NSArray<OperatingHoursModel>* periods;
 @property(nonatomic,strong)NSDictionary* period_text;
-
-
 
 @end
