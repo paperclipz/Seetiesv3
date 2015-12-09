@@ -70,7 +70,7 @@
     
     for (int i = 0 ; i < [self.arrShop count]; i++) {
         ShopsModel* collModel = self.arrShop[i];
-        NSLog(@"collModel == %@",collModel);
+        
         UIButton *TempButton = [[UIButton alloc]init];
         TempButton.frame = CGRectMake(25 + i * (GetWidth + 25), 0 , GetWidth ,200);
         [TempButton setTitle:@"" forState:UIControlStateNormal];

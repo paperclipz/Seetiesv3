@@ -1099,7 +1099,7 @@
     
     NSLog(@"Following_uidArray is %@",[Following_uidArray objectAtIndex:getbuttonIDN]);
     
-    NSString *GetType = [[NSString alloc]initWithFormat:@"%@",[TypeArray objectAtIndex:getbuttonIDN]];
+    NSString *GetType = [[NSString alloc]initWithFormat:@"%@",[Following_TypeArray objectAtIndex:getbuttonIDN]];
     if ([GetType isEqualToString:@"follow"]) {
 //        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
 //        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
@@ -1111,17 +1111,17 @@
         
         NSLog(@"UserNameArray is %@",[Following_UserNameArray objectAtIndex:getbuttonIDN]);
     }else if ([GetType isEqualToString:@"like"]){
-        FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
-        [self.navigationController pushViewController:FeedDetailView animated:YES];
-        [FeedDetailView GetPostID:[Following_PostIDArray objectAtIndex:getbuttonIDN]];
+//        FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
+//        [self.navigationController pushViewController:FeedDetailView animated:YES];
+//        [FeedDetailView GetPostID:[Following_PostIDArray objectAtIndex:getbuttonIDN]];
     }else if ([GetType isEqualToString:@"mention"]){
-        FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
-        [self.navigationController pushViewController:FeedDetailView animated:YES];
-        [FeedDetailView GetPostID:[Following_PostIDArray objectAtIndex:getbuttonIDN]];
+//        FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
+//        [self.navigationController pushViewController:FeedDetailView animated:YES];
+//        [FeedDetailView GetPostID:[Following_PostIDArray objectAtIndex:getbuttonIDN]];
     }else if ([GetType isEqualToString:@"comment"]){
-        FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
-        [self.navigationController pushViewController:FeedDetailView animated:YES];
-        [FeedDetailView GetPostID:[Following_PostIDArray objectAtIndex:getbuttonIDN]];
+//        FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
+//        [self.navigationController pushViewController:FeedDetailView animated:YES];
+//        [FeedDetailView GetPostID:[Following_PostIDArray objectAtIndex:getbuttonIDN]];
     }else if([GetType isEqualToString:@"collect"]){
 //        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
 //        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
@@ -1138,9 +1138,9 @@
         NSLog(@"GetAction is %@",GetAction);
         
         if ([GetAction isEqualToString:@"post"]) {
-            FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
-            [self.navigationController pushViewController:FeedDetailView animated:YES];
-            [FeedDetailView GetPostID:[Following_PostIDArray objectAtIndex:getbuttonIDN]];
+//            FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
+//            [self.navigationController pushViewController:FeedDetailView animated:YES];
+//            [FeedDetailView GetPostID:[Following_PostIDArray objectAtIndex:getbuttonIDN]];
         }else if([GetAction isEqualToString:@"none"]){
             
         }else if([GetAction isEqualToString:@"user"]){
