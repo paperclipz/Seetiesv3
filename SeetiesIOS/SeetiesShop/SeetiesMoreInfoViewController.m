@@ -80,10 +80,15 @@
     [self.arrViews addObject:self.ibFacebookLinkView];
     [self.arrViews addObject:self.ibPriceView];
 
+  
+    [self initData];
+}
+
+-(void)initData
+{
     self.lblAddressDesc.text =self.seShopModel.location.formatted_address;
     
     [self updateConstraintForLabel:self.lblAddressDesc labelHeightConst:constlblAddressDesc_Height superView:self.ibAddressView lasSubView:self.lblNearbyDesc];
-    
 }
 
 -(void)updateConstraintForLabel:(UILabel*)label labelHeightConst:(NSLayoutConstraint*)labelHeightConst superView:(UIView*)sView lasSubView:(UIView*)lastView

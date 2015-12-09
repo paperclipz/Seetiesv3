@@ -21,7 +21,7 @@
 @property(nonatomic,strong)NSString* urlFacebook;
 @property(nonatomic,strong)NSString* urlWebsite;
 @property(nonatomic,strong)Location* location;
-
+@property(nonatomic,strong)NSString* nearby_public_transport;
 @property(nonatomic,strong)PriceModel* price;
 
 @property(nonatomic,readonly)NSArray* arrayInformation;
