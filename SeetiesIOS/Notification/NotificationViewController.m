@@ -184,7 +184,7 @@
     if ([GetNextPaging isEqualToString:@""]|| [GetNextPaging length] == 0) {
         FullString = [[NSString alloc]initWithFormat:@"%@?token=%@&limit=10&offset=%ld",DataUrl.GetNotification_Url,GetExpertToken,(long)Offset];
     }else{
-        Offset += 10;
+        Offset += [TypeArray count];
         DataCount += 10;
         FullString = GetNextPaging;
     }

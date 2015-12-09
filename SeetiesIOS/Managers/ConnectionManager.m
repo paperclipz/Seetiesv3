@@ -426,6 +426,9 @@
             str = [NSString stringWithFormat:@"%@/seetishops/",API_VERION_URL];
 
             break;
+        case ServerRequestTypeGetSeetiShopCollection:
+            str = [NSString stringWithFormat:@"%@/seetishops/",API_VERION_URL];
+            break;
             
         case ServerRequestTypeGetCollectionInfo:
         case ServerRequestTypeGetUserCollections:
@@ -603,6 +606,13 @@
             NSDictionary* dict = obj[@"data"];
             self.dataManager.seShopDetailModel = [[SeShopDetailModel alloc]initWithDictionary:dict error:nil];
             [self.dataManager.seShopDetailModel process];
+        }
+            break;
+            
+        case ServerRequestTypeGetSeetiShopCollection:
+        {
+            NSDictionary* dict = obj[@"data"];
+            self.dataManager.userSuggestedCollectionsModel = [[CollectionsModel alloc]initWithDictionary:dict error:nil];
         }
             break;
             

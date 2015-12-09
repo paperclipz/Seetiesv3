@@ -33,6 +33,9 @@
     float height = HeaderHeight+ ((int)self.arrList.count * [SeDealsTableViewCell getHeight]);
     [self setHeight:height];
     [self layoutIfNeeded];
+    
+    
+    //self.frame = CGRectMake(0, 0, 200, 500);
 }
 
 -(void)initTableViewDelegate
@@ -40,6 +43,7 @@
     self.ibTableView.delegate = self;
     self.ibTableView.dataSource = self;
     [self.ibTableView registerClass:[SeDealsTableViewCell class] forCellReuseIdentifier:@"SeDealsTableViewCell"];
+    self.ibTableView.frame = CGRectMake(0, 50, 200, 200);
 }
 
 #pragma mark UITableView

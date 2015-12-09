@@ -7,7 +7,7 @@
 //
 
 #import "SeCollectionView.h"
-
+#import "CollectionViewController.h"
 @interface SeCollectionView()<UIScrollViewDelegate>{
     IBOutlet UIButton *ShowbackLine;
     IBOutlet UILabel *ShowRelatedCollectionsText;
@@ -15,6 +15,8 @@
     
     IBOutlet UIScrollView *MainScroll;
 }
+@property(nonatomic,strong)NSMutableArray* arrCollections;
+@property(nonatomic,strong)CollectionsModel* SeetiShopCollectionsModel;
 @end
 @implementation SeCollectionView
 /*
@@ -44,16 +46,29 @@
     MainScroll.delegate = self;
     MainScroll.backgroundColor = [UIColor whiteColor];
     MainScroll.frame = CGRectMake(0, 50, screenWidth, 260);
-    
-    // init scroll view data
-    [self InitScrollViewData];
 
     
+
+  
+}
+-(void)initData
+{
+
+    [self requestServerForSeetiShopCollection];
+    [self DrawView];
+}
+-(void)DrawView{
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    
+    
+    NSString *GetTotalCollection = [[NSString alloc]initWithFormat:@"See all %i Collections",self.SeetiShopCollectionsModel.total_collections];
+    
     SeeAllButton.frame = CGRectMake(-1, self.frame.size.height - 70, screenWidth + 2, 50);
-    [SeeAllButton setTitle:@"See all 5 Collections" forState:UIControlStateNormal];
+    [SeeAllButton setTitle:GetTotalCollection forState:UIControlStateNormal];
     SeeAllButton.backgroundColor = [UIColor whiteColor];
     [Utils setRoundBorder:SeeAllButton color:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
-  
+    
+    [self InitScrollViewData];
 }
 
 -(UIButton*)setupButton
@@ -73,7 +88,7 @@
     ShowImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
     ShowImage.layer.cornerRadius= 10;
     ShowImage.layer.masksToBounds = YES;
-    ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
+    //ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
     return ShowImage;
     
@@ -101,7 +116,9 @@
     
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
 
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < [self.arrCollections count]; i++) {
+        
+        CollectionModel* collModel = self.arrCollections[i];
        
         UIButton* button = [self setupButton];
         button.frame = CGRectMake(10 + i * (screenWidth - 40), 20 , screenWidth - 50 ,220);
@@ -111,42 +128,50 @@
         ShowImage1.frame = CGRectMake(10 + i * (screenWidth - 40), 20 , screenWidth - 50 ,150);
         [MainScroll addSubview:ShowImage1];
         
-//        NSString *TempImage = [[NSString alloc]initWithFormat:@"%@",[arrImageData objectAtIndex:i]];
-//        NSArray *SplitArray_TempImage = [TempImage componentsSeparatedByString:@"^^^"];
-//        if ([SplitArray_TempImage count] == 1) {
-//            AsyncImageView *ShowImage1 = [self SetupImage];
-//            ShowImage1.frame = CGRectMake(10 + i * (screenWidth - 40), 20 , screenWidth - 50 ,150);
-//            NSString *ImageData = [[NSString alloc]initWithFormat:@"%@",[SplitArray_TempImage objectAtIndex:0]];
-//            if ([ImageData length] == 0) {
-//                ShowImage1.image = [UIImage imageNamed:@"NoImage.png"];
-//            }else{
-//                NSURL *url_NearbySmall = [NSURL URLWithString:ImageData];
-//                ShowImage1.imageURL = url_NearbySmall;
-//            }
-//            [MainScroll addSubview:ShowImage1];
-//        }else{
-//            AsyncImageView *ShowImage1 = [self SetupImage];
-//            ShowImage1.frame = CGRectMake(10 + i * (screenWidth - 40), 20 , screenWidth - 50 ,150);
-//            NSString *ImageData = [[NSString alloc]initWithFormat:@"%@",[SplitArray_TempImage objectAtIndex:0]];
-//            if ([ImageData length] == 0) {
-//                ShowImage1.image = [UIImage imageNamed:@"NoImage.png"];
-//            }else{
-//                NSURL *url_NearbySmall = [NSURL URLWithString:ImageData];
-//                ShowImage1.imageURL = url_NearbySmall;
-//            }
-//            [MainScroll addSubview:ShowImage1];
-//            
-//            AsyncImageView *ShowImage2 = [self SetupImage];
-//            ShowImage1.frame = CGRectMake(10 + i * (screenWidth - 40), 20 , screenWidth - 50 ,150);
-//            NSString *ImageData100 = [[NSString alloc]initWithFormat:@"%@",[SplitArray_TempImage objectAtIndex:1]];
-//            if ([ImageData100 length] == 0) {
-//                ShowImage2.image = [UIImage imageNamed:@"NoImage.png"];
-//            }else{
-//                NSURL *url_NearbySmall = [NSURL URLWithString:ImageData100];
-//                ShowImage2.imageURL = url_NearbySmall;
-//            }
-//            [MainScroll addSubview:ShowImage2];
-//        }
+        
+        if (![collModel.arrayPost isNull])
+        {
+            DraftModel* draftModel = collModel.arrayPost[0];
+            PhotoModel* photoModel1 = draftModel.arrPhotos[0];
+            if (collModel.arrayPost.count > 1) {
+                DraftModel* draftModel2 = collModel.arrayPost[1];
+                PhotoModel* photoModel2 = draftModel2.arrPhotos[0];
+                
+                AsyncImageView *ShowImage1 = [self SetupImage];
+                ShowImage1.frame = CGRectMake(10 + i * (screenWidth - 40), 20 , ((screenWidth - 55) / 2) ,150);
+                NSString *ImageData = [[NSString alloc]initWithFormat:@"%@",photoModel1.imageURL];
+                if ([ImageData length] == 0) {
+                    ShowImage1.image = [UIImage imageNamed:@"NoImage.png"];
+                }else{
+                    NSURL *url_NearbySmall = [NSURL URLWithString:ImageData];
+                    ShowImage1.imageURL = url_NearbySmall;
+                }
+                [MainScroll addSubview:ShowImage1];
+                
+                AsyncImageView *ShowImage2 = [self SetupImage];
+                ShowImage2.frame = CGRectMake(10 + ((screenWidth - 40) / 2) + i * (screenWidth - 40), 20 , ((screenWidth - 60) / 2) ,150);
+                NSString *ImageData100 = [[NSString alloc]initWithFormat:@"%@",photoModel2.imageURL];
+                if ([ImageData100 length] == 0) {
+                    ShowImage2.image = [UIImage imageNamed:@"NoImage.png"];
+                }else{
+                    NSURL *url_NearbySmall = [NSURL URLWithString:ImageData100];
+                    ShowImage2.imageURL = url_NearbySmall;
+                }
+                [MainScroll addSubview:ShowImage2];
+            }else{
+                AsyncImageView *ShowImage1 = [self SetupImage];
+                ShowImage1.frame = CGRectMake(10 + i * (screenWidth - 40), 20 , screenWidth - 50 ,150);
+                NSString *ImageData = [[NSString alloc]initWithFormat:@"%@",photoModel1.imageURL];
+                if ([ImageData length] == 0) {
+                    ShowImage1.image = [UIImage imageNamed:@"NoImage.png"];
+                }else{
+                    NSURL *url_NearbySmall = [NSURL URLWithString:ImageData];
+                    ShowImage1.imageURL = url_NearbySmall;
+                }
+                [MainScroll addSubview:ShowImage1];
+
+            }
+        }
 
         
         UIImageView *ShowOverlayImg = [self SetupOverlayImage];
@@ -162,30 +187,30 @@
         OpenCollectionButton.layer.borderWidth=1;
         OpenCollectionButton.layer.masksToBounds = YES;
         OpenCollectionButton.layer.borderColor=[[UIColor colorWithRed:244.0f/255.0f green:244.0f/255.0f blue:244.0f/255.0f alpha:1.0f] CGColor];
-      //  [OpenCollectionButton addTarget:self action:@selector(OpenCollectionButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [OpenCollectionButton addTarget:self action:@selector(OpenCollectionButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
         OpenCollectionButton.tag = i;
         [MainScroll addSubview: OpenCollectionButton];
         
         UILabel *ShowCollectionTitle = [self SetupLabel];
         ShowCollectionTitle.frame = CGRectMake(25 + i * (screenWidth - 40), 180, screenWidth - 190 , 20);
-        ShowCollectionTitle.text = @"This is title";
+        ShowCollectionTitle.text = collModel.name;
         ShowCollectionTitle.textColor = [UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f blue:51.0f/255.0f alpha:1.0f];
         ShowCollectionTitle.font = [UIFont fontWithName:CustomFontNameBold size:16];
         [MainScroll addSubview:ShowCollectionTitle];
         
         
-       // NSString *TempCount = [[NSString alloc]initWithFormat:@"%@ recommendations",[arrTotalCount objectAtIndex:i]];
+        NSString *TempCount = [[NSString alloc]initWithFormat:@"%d recommendations",collModel.collection_posts_count];
         
         UILabel *ShowCollectionCount = [self SetupLabel];
         ShowCollectionCount.frame = CGRectMake(25 + i * (screenWidth - 40), 200, screenWidth - 190, 20);
-        ShowCollectionCount.text = @"10 recommendations";
+        ShowCollectionCount.text = TempCount;
         ShowCollectionCount.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
         ShowCollectionCount.font = [UIFont fontWithName:CustomFontName size:14];
         [MainScroll addSubview:ShowCollectionCount];
         
         
-       // NSString *CheckCollectionFollowing = [[NSString alloc]initWithFormat:@"%@",[arrFollowing objectAtIndex:i]];
-        NSString *CheckCollectionFollowing = @"0";
+        NSString *CheckCollectionFollowing = [[NSString alloc]initWithFormat:@"%d",collModel.following? 1:0];
+       // NSString *CheckCollectionFollowing = @"0";
         UIButton *QuickCollectButtonLocalQR = [[UIButton alloc]init];
         if ([CheckCollectionFollowing isEqualToString:@"0"]) {
             [QuickCollectButtonLocalQR setImage:[UIImage imageNamed:LocalisedString(@"FollowCollectionIcon.png")] forState:UIControlStateNormal];
@@ -205,4 +230,56 @@
         MainScroll.contentSize = CGSizeMake(20 + i * (screenWidth - 40) + (screenWidth - 50), 200);
     }
 }
+-(void)requestServerForSeetiShopCollection
+{
+  //  NSDictionary* param;
+    NSString* appendString = @"56397e301c4d5be92e8b4711/collections";
+    NSDictionary* dict = @{@"limit":@"5",
+                           @"offset":@"1",
+                           };
+
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetiShopCollection param:dict appendString:appendString completeHandler:^(id object) {
+
+        self.SeetiShopCollectionsModel = [[ConnectionManager dataManager]userSuggestedCollectionsModel];
+        
+        NSString *GetTotalCollection = [[NSString alloc]initWithFormat:@"See all %i Collections",self.SeetiShopCollectionsModel.total_collections];
+        [SeeAllButton setTitle:GetTotalCollection forState:UIControlStateNormal];
+
+        [self.arrCollections addObjectsFromArray:self.SeetiShopCollectionsModel.arrSuggestedCollection];
+        
+        [self InitScrollViewData];
+        
+        if (self.viewDidFinishLoadBlock) {
+            self.viewDidFinishLoadBlock();
+        }
+    } errorBlock:^(id object) {
+        
+        
+    }];
+    
+}
+-(NSMutableArray*)arrCollections
+{
+    if(!_arrCollections)
+    {
+        _arrCollections = [NSMutableArray new];
+    }
+    return _arrCollections;
+}
+
+
+
+-(IBAction)OpenCollectionButtonOnClick:(id)sender{
+
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    CollectionModel* collModel = self.arrCollections[getbuttonIDN];
+    
+    NSLog(@"Collection ID == %@",collModel.collection_id);
+    
+//    CollectionViewController *OpenCollectionView = [[CollectionViewController alloc]init];
+//    [self.navigationController pushViewController:OpenCollectionView animated:YES];
+//    [OpenCollectionView GetCollectionID:collModel.collection_id GetPermision:@"User"];
+    
+}
+
 @end
