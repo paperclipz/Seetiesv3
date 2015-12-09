@@ -16,8 +16,11 @@
     return [[JSONKeyMapper alloc] initWithDictionary:@{
                                                        @"url.facebook": @"urlFacebook",
                                                        @"url.website": @"urlWebsite",
+                                                       @"features.available" : @"arrFeatureAvaiable",
+                                                       @"features.unavailable" : @"arrFeatureUnavaiable",
                                                        }];
 }
+
 
 #define BestKnowFor @"Best known for"
 #define Price @"Price"

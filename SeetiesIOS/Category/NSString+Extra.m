@@ -18,4 +18,13 @@
     return r.size.height;
 }
 
+-(NSNumber*)toNSNumber
+{
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+    f.numberStyle = NSNumberFormatterDecimalStyle;
+    NSNumber *myNumber = [f numberFromString:self];
+    
+    return myNumber;
+}
+
 @end

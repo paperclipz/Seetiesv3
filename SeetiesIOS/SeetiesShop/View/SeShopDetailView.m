@@ -232,7 +232,6 @@
 }
 -(void)requestServerForSeetiShopDetail
 {
-       SLog(@"last width : %f || last height : %f",self.frame.size.width,self.frame.size.height);
     NSDictionary* param;
     NSString* appendString = @"56397e301c4d5be92e8b4711";
     

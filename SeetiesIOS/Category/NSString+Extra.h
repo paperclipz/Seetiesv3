@@ -10,4 +10,6 @@
 
 @interface NSString(Extra)
 - (CGFloat)heightForWidth:(CGFloat)width usingFont:(UIFont *)font;
+-(NSNumber*)toNSNumber;
+
 @end

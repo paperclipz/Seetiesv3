@@ -13,4 +13,6 @@
 
 @property(nonatomic,strong)NSString* value;
 @property(nonatomic,strong)NSString* code;
+@property(nonatomic,strong)NSString* payment;
+
 @end
