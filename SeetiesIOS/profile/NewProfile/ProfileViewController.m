@@ -1144,6 +1144,7 @@
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserPosts param:dict appendString:appendString completeHandler:^(id object) {
         
         self.userProfilePostModel = [[ConnectionManager dataManager]userProfilePostModel];
+
         [self assignPostData];
         
     } errorBlock:^(id object) {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
@@ -12,18 +12,20 @@
             <rect key="frame" x="0.0" y="0.0" width="344" height="100"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QfS-GJ-rnA" id="Gfw-c0-Zbm">
-                <rect key="frame" x="0.0" y="0.0" width="344" height="100"/>
+                <rect key="frame" x="0.0" y="0.0" width="344" height="99"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LocationIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="8df-OT-L6L">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="LocationIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="8df-OT-L6L">
                         <rect key="frame" x="93" y="38" width="25" height="25"/>
+                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="7dG-st-K8m"/>
                             <constraint firstAttribute="width" constant="25" id="kZH-EO-kOW"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kuala Lumpur" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yjg-Hs-UKJ">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Kuala Lumpur" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yjg-Hs-UKJ">
                         <rect key="frame" x="118" y="40" width="218" height="21"/>
+                        <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="akD-2n-UjR"/>
@@ -32,8 +34,9 @@
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nkt-0f-xU4">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="No Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nkt-0f-xU4">
                         <rect key="frame" x="98" y="13" width="238" height="21"/>
+                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="6aM-IK-QMD"/>
                         </constraints>
@@ -41,8 +44,9 @@
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kuala Lumpur" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yKw-MX-C6k">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Kuala Lumpur" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yKw-MX-C6k">
                         <rect key="frame" x="118" y="62" width="218" height="21"/>
+                        <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="wCw-AM-Lbs"/>
@@ -51,15 +55,17 @@
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ViewIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="1kk-ly-0bD">
+                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ViewIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="1kk-ly-0bD">
                         <rect key="frame" x="93" y="60" width="25" height="25"/>
+                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="25" id="dwr-hq-FmE"/>
                             <constraint firstAttribute="height" constant="25" id="hdX-Ca-sDW"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="R02-fL-Att">
+                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R02-fL-Att">
                         <rect key="frame" x="18" y="13" width="75" height="75"/>
+                        <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="75" id="Asj-wS-okv"/>
@@ -67,6 +73,7 @@
                         </constraints>
                     </imageView>
                 </subviews>
+                <animations/>
                 <constraints>
                     <constraint firstItem="8df-OT-L6L" firstAttribute="leading" secondItem="R02-fL-Att" secondAttribute="trailing" id="0bK-qt-8Qg"/>
                     <constraint firstItem="yKw-MX-C6k" firstAttribute="top" secondItem="Yjg-Hs-UKJ" secondAttribute="bottom" constant="1" id="RfB-7B-4fq"/>
@@ -85,6 +92,7 @@
                     <constraint firstItem="Yjg-Hs-UKJ" firstAttribute="trailing" secondItem="Gfw-c0-Zbm" secondAttribute="trailingMargin" id="zfE-Ia-Jke"/>
                 </constraints>
             </tableViewCellContentView>
+            <animations/>
             <connections>
                 <outlet property="ibImageView" destination="R02-fL-Att" id="EkH-iA-X4J"/>
                 <outlet property="lblLocation" destination="Yjg-Hs-UKJ" id="hsj-PX-27U"/>

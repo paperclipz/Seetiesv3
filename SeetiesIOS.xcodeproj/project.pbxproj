@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0B1D9F271BE2317700AAE8CE /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B1D9F261BE2317700AAE8CE /* Launch Screen.storyboard */; };
+		0B3E53961C17E031002FCFED /* SeNearbyShopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3E53951C17E031002FCFED /* SeNearbyShopModel.m */; };
 		0B3FF10F1BB131A20014AF2E /* NearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3FF10D1BB131A20014AF2E /* NearbyViewController.m */; };
 		0B3FF1101BB131A20014AF2E /* NearbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B3FF10E1BB131A20014AF2E /* NearbyViewController.xib */; };
 		0B4EA25B1C118F9D00A8EDE9 /* VerifiedSeetishopIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B4EA2591C118F9D00A8EDE9 /* VerifiedSeetishopIcon@2x.png */; };
@@ -1087,6 +1088,8 @@
 
 /* Begin PBXFileReference section */
 		0B1D9F261BE2317700AAE8CE /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		0B3E53941C17E031002FCFED /* SeNearbyShopModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeNearbyShopModel.h; sourceTree = "<group>"; };
+		0B3E53951C17E031002FCFED /* SeNearbyShopModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeNearbyShopModel.m; sourceTree = "<group>"; };
 		0B3FF10C1BB131A20014AF2E /* NearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyViewController.h; sourceTree = "<group>"; };
 		0B3FF10D1BB131A20014AF2E /* NearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyViewController.m; sourceTree = "<group>"; };
 		0B3FF10E1BB131A20014AF2E /* NearbyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NearbyViewController.xib; sourceTree = "<group>"; };
@@ -2749,6 +2752,8 @@
 			children = (
 				8A0829451C1183A800AD8CBD /* SeShopDetailModel.h */,
 				8A0829461C1183A800AD8CBD /* SeShopDetailModel.m */,
+				0B3E53941C17E031002FCFED /* SeNearbyShopModel.h */,
+				0B3E53951C17E031002FCFED /* SeNearbyShopModel.m */,
 			);
 			name = SeetiShopModel;
 			sourceTree = "<group>";
@@ -6304,6 +6309,7 @@
 				8A114CD01BE73F5D006AE3F0 /* TLTagsControl.m in Sources */,
 				8A3409421B8AD06A009B66C3 /* UIImage+Enhancing.m in Sources */,
 				8A114CB81BE73F5D006AE3F0 /* BHInputToolbar.m in Sources */,
+				0B3E53961C17E031002FCFED /* SeNearbyShopModel.m in Sources */,
 				8AD6C0C41B706CF30040437E /* LocationFeedDetailViewController.m in Sources */,
 				8A114CA11BE73F5D006AE3F0 /* LanguageManager.m in Sources */,
 				8AC8F7441BDA414E00DEF14A /* UserProfileV2ViewController.m in Sources */,
