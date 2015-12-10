@@ -7,6 +7,7 @@
 //
 
 #import "SeRecommendations.h"
+#import "FeedV2DetailViewController.h"
 @interface SeRecommendations(){
     IBOutlet UIButton *ShowbackLine;
     IBOutlet UILabel *ShowRecommendationsText;
@@ -49,6 +50,7 @@
     SeeAllButton.frame = CGRectMake(-1, self.frame.size.height - 70, screenWidth + 2 , 50);
     [SeeAllButton setTitle:@"See all recommendations" forState:UIControlStateNormal];
     SeeAllButton.backgroundColor = [UIColor whiteColor];
+    [SeeAllButton addTarget:self action:@selector(SeeAllButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
     [Utils setRoundBorder:SeeAllButton color:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
     
 
@@ -98,6 +100,7 @@
     for (int i = 0; i < [self.arrPostListing count]; i++) {
         
         DraftModel* model = self.arrPostListing[i];
+        int btnHeight = Getheight;
         
         
         AsyncImageView *ShowUserProfileImage = [self SetupUserProfileImage];
@@ -216,6 +219,17 @@
         else{
             SLog(@"NO Images");
         }
+        
+        UIButton *OpenPostsDetailButton = [[UIButton alloc]init];
+        OpenPostsDetailButton.frame = CGRectMake(0, btnHeight, screenWidth, Getheight);
+        [OpenPostsDetailButton setTitle:@"" forState:UIControlStateNormal];
+        OpenPostsDetailButton.backgroundColor = [UIColor clearColor];
+        OpenPostsDetailButton.tag = i;
+        [OpenPostsDetailButton addTarget:self action:@selector(OpenPostsDetailButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:OpenPostsDetailButton];
+        
+        
+        
 
         UIButton *Line04 = [self SetupLineBtn];
         Line04.frame = CGRectMake(20, Getheight + 10, screenWidth, 1);
@@ -267,5 +281,20 @@
     }
     
     return _arrPostListing;
+}
+-(IBAction)OpenPostsDetailButtonOnClick:(id)sender{
+    NSLog(@"SeetiShop OpenPostsDetailButtonOnClick");
+
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    DraftModel* model = self.arrPostListing[getbuttonIDN];
+
+    if (self.btnPostsDetailClickedBlock) {
+        self.btnPostsDetailClickedBlock(model.post_id);
+    }
+}
+-(IBAction)SeeAllButtonOnClick:(id)sender{
+    if (self.btnPostsSeeAllClickedBlock) {
+        self.btnPostsSeeAllClickedBlock(@"SeetiShopIDN");
+    }
 }
 @end

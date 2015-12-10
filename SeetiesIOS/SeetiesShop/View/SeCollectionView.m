@@ -66,6 +66,7 @@
     SeeAllButton.frame = CGRectMake(-1, self.frame.size.height - 70, screenWidth + 2, 50);
     [SeeAllButton setTitle:GetTotalCollection forState:UIControlStateNormal];
     SeeAllButton.backgroundColor = [UIColor whiteColor];
+    [SeeAllButton addTarget:self action:@selector(SeeAllButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
     [Utils setRoundBorder:SeeAllButton color:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
     
     [self InitScrollViewData];
@@ -274,12 +275,15 @@
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     CollectionModel* collModel = self.arrCollections[getbuttonIDN];
     
-    NSLog(@"Collection ID == %@",collModel.collection_id);
+    if (self.btnCollectionDetailClickedBlock) {
+        self.btnCollectionDetailClickedBlock(collModel.collection_id);
+    }
     
-//    CollectionViewController *OpenCollectionView = [[CollectionViewController alloc]init];
-//    [self.navigationController pushViewController:OpenCollectionView animated:YES];
-//    [OpenCollectionView GetCollectionID:collModel.collection_id GetPermision:@"User"];
-    
+}
+-(IBAction)SeeAllButtonOnClick:(id)sender{
+    if (self.btnCollectionSeeAllClickedBlock) {
+        self.btnCollectionSeeAllClickedBlock(@"SeetiShopIDN");
+    }
 }
 
 @end
