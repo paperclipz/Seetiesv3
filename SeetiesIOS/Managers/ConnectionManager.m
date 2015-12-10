@@ -425,7 +425,6 @@
         case ServerRequestTypeGetSeetiShopDetail:
         case ServerRequestTypeGetSeetiShopCollection:
         case ServerRequestTypeGetSeetiShopPhoto:
-        case ServerRequestTypeGetSeetiShopCollection:
         case ServerRequestTypeGetSeetoShopNearbyShop:
             str = [NSString stringWithFormat:@"%@/seetishops",API_VERION_URL];
 
