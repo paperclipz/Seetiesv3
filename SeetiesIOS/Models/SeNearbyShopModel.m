@@ -8,18 +8,11 @@
 
 #import "SeNearbyShopModel.h"
 
-@implementation SeNearbyShopModel
--(void)process
-{
-    
-    for (int i = 0; i<self.shops.count; i++) {
-        ShopsModel* model = self.shops[i];
-    }
-    
-}
+@implementation ShopsModel
+
 @end
 
-@implementation ShopsModel
+@implementation ShopModel
 +(JSONKeyMapper*)keyMapper
 {
     return [[JSONKeyMapper alloc] initWithDictionary:@{
@@ -29,31 +22,9 @@
                                                        }];
 }
 
-
-@end
-
-@implementation SeetiShopNearbyShopPhotoModel
-
 +(BOOL)propertyIsOptional:(NSString*)propertyName
 {
     return YES;
 }
-+(JSONKeyMapper*)keyMapper
-{
-    return [[JSONKeyMapper alloc] initWithDictionary:@{
-                                                       @"m" :@"imageURL"
-                                                       }];
-}
-
-
--(id) copyWithZone: (NSZone *) zone
-{
-    PhotoModel *modelCopy = [[PhotoModel allocWithZone: zone] init];
-    modelCopy.imageURL = [_imageURL mutableCopy];
-    modelCopy.image = _image;
-    
-    return modelCopy;
-    
-}
-
 @end
+

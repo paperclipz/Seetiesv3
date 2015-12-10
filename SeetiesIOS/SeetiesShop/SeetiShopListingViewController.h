@@ -9,5 +9,6 @@
 #import "CommonViewController.h"
 
 @interface SeetiShopListingViewController : CommonViewController
+-(void)initData;
 
 @end

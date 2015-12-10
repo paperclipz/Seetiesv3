@@ -53,7 +53,7 @@
 
 @end
 
-@implementation SeetiShopNearbyShopModel
+@implementation SeetiShopsModel
 +(BOOL)propertyIsOptional:(NSString*)propertyName
 {
     return YES;

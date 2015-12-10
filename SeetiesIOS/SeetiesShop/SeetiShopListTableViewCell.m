@@ -7,11 +7,16 @@
 //
 
 #import "SeetiShopListTableViewCell.h"
+@interface SeetiShopListTableViewCell()
 
+@property (weak, nonatomic) IBOutlet UIImageView *ibImageVerified;
+@end
 @implementation SeetiShopListTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code
+    
+    [self.ibImageView setRoundedCorners:UIRectCornerAllCorners radius:self.ibImageView.frame.size.width/2];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

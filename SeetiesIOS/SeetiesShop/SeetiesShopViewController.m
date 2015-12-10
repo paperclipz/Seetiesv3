@@ -19,6 +19,7 @@
 #import "LikesListingViewController.h"
 #import "PhotoListViewController.h"
 #import "SeetiesMoreInfoViewController.h"
+#import "SeetiShopListingViewController.h"
 
 @interface SeetiesShopViewController ()<UIScrollViewDelegate>
 
@@ -26,6 +27,7 @@
 @property (nonatomic,strong)MapViewController* mapViewController;
 @property (nonatomic,strong)PhotoListViewController* photoListViewController;
 @property (nonatomic,strong)SeetiesMoreInfoViewController* seetiesMoreInfoViewController;
+@property (nonatomic,strong)SeetiShopListingViewController* seetiShopListingViewController;
 
 //$$============== CONTROLLERS ==================$$//
 
@@ -40,6 +42,7 @@
 @property(nonatomic,assign)SeetiesShopType seetiesType;
 @property(nonatomic, strong)NSMutableArray* arrViews;
 @property (weak, nonatomic) IBOutlet UIImageView *ibImgViewOtherPadding;
+@property(nonatomic,assign)MKCoordinateRegion region;
 
 @end
 
@@ -125,6 +128,15 @@
 
 #pragma mark - Declaration
 
+-(SeetiShopListingViewController*)seetiShopListingViewController
+{
+    if (!_seetiShopListingViewController) {
+        _seetiShopListingViewController = [SeetiShopListingViewController new];
+    }
+    
+    return _seetiShopListingViewController;
+}
+
 -(SeetiesMoreInfoViewController*)seetiesMoreInfoViewController
 {
     if (!_seetiesMoreInfoViewController) {
@@ -165,11 +177,12 @@
         _seShopDetailView.btnMapClickedBlock = ^(SeShopDetailModel* model)
         {
             _mapViewController = nil;
-            MKCoordinateRegion region;
-            region.center.latitude = [model.location.lat doubleValue];
-            region.center.longitude = [model.location.lng doubleValue];
-            [weakSelf.mapViewController initData:region EnableRePin:NO];
-            [weakSelf.navigationController pushViewController:weakSelf.mapViewController animated:YES];
+            _region.center.latitude = [model.location.lat doubleValue];
+            _region.center.longitude = [model.location.lng doubleValue];
+            [weakSelf.mapViewController initData:weakSelf.region EnableRePin:NO];
+            [weakSelf.navigationController pushViewController:weakSelf.mapViewController animated:YES onCompletion:^{
+                weakSelf.mapViewController.lblTitle.text = LocalisedString(@"MAP");
+            }];
 
             
         };
@@ -252,6 +265,14 @@
 {
     if (!_seNearbySeetishop) {
         _seNearbySeetishop = [SeNearbySeetishop initializeCustomView];
+        
+        __weak typeof (self)weakSelf = self;
+        _seNearbySeetishop.btnSelectSeetiShopListBlock = ^(void)
+        {
+            [weakSelf.seetiShopListingViewController initData];
+            [weakSelf.navigationController pushViewController:weakSelf.seetiShopListingViewController animated:YES];
+            
+        };
     }
     return _seNearbySeetishop;
 }

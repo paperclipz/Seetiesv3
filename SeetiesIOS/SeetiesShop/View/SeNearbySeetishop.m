@@ -17,17 +17,16 @@
 
 }
 @property(nonatomic,strong)NSMutableArray* arrShop;
-@property (strong, nonatomic) SeetiShopNearbyShopModel* PostModel;
+@property (strong, nonatomic) SeetiShopsModel* seetiShopsModel;
 @end
 @implementation SeNearbySeetishop
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (IBAction)btnSeeAllClicked:(id)sender {
+    
+    if (self.btnSelectSeetiShopListBlock) {
+        self.btnSelectSeetiShopListBlock();
+    }
 }
-*/
 
 -(void)initSelfView
 {
@@ -42,7 +41,7 @@
     [Utils setRoundBorder:ShowbackLine color:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
     
     ShowSeenearbySeetishop.frame = CGRectMake(20, 0, screenWidth - 40, 50);
-    ShowSeenearbySeetishop.text = @"See nearby Seetishop";
+    ShowSeenearbySeetishop.text = LocalisedString(@"See nearby Seetishop");
     ShowSeenearbySeetishop.backgroundColor = [UIColor clearColor];
     
     ShowbackLineSeeAll.frame = CGRectMake(-1, 250, screenWidth + 2 , 50);
@@ -51,7 +50,7 @@
     [Utils setRoundBorder:ShowbackLineSeeAll color:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
     
     SeeAllButton.frame = CGRectMake(0, 250, screenWidth, 50);
-    [SeeAllButton setTitle:@"See all" forState:UIControlStateNormal];
+    [SeeAllButton setTitle:LocalisedString(@"See All") forState:UIControlStateNormal];
     SeeAllButton.backgroundColor = [UIColor clearColor];
     
     MainScroll.delegate = self;
@@ -69,7 +68,7 @@
     NSLog(@"GetWidth is %d",GetWidth);
     
     for (int i = 0 ; i < [self.arrShop count]; i++) {
-        ShopsModel* collModel = self.arrShop[i];
+        ShopModel* shopModel = self.arrShop[i];
         
         UIButton *TempButton = [[UIButton alloc]init];
         TempButton.frame = CGRectMake(25 + i * (GetWidth + 25), 0 , GetWidth ,200);
@@ -84,10 +83,9 @@
         ShowUserProfileImage.layer.cornerRadius = GetWidth / 2;
         ShowUserProfileImage.layer.masksToBounds = YES;
         
-        if (![collModel.arrPhotos isNull])
+        if (![shopModel.arrPhotos isNull])
         {
-            
-            PhotoModel* ImgModel = collModel.arrPhotos[0];
+            PhotoModel* ImgModel = shopModel.arrPhotos[0];
             [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
             NSString *ImageData1 = [[NSString alloc]initWithFormat:@"%@",ImgModel.imageURL];
             if ([ImageData1 length] == 0) {
@@ -105,7 +103,7 @@
         
         UILabel *ShowTitle = [[UILabel alloc]init];
         ShowTitle.frame = CGRectMake(25 + i * (GetWidth + 25), 20 + GetWidth + 5, GetWidth, GetWidth);
-        ShowTitle.text = collModel.name;
+        ShowTitle.text = shopModel.name;
         ShowTitle.backgroundColor = [UIColor clearColor];
         ShowTitle.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
         ShowTitle.textAlignment = NSTextAlignmentCenter;
@@ -134,8 +132,8 @@
     
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetoShopNearbyShop param:dict appendString:appendString completeHandler:^(id object) {
         
-        self.PostModel = [[ConnectionManager dataManager]seNearbyShopModel];
-        [self.arrShop addObjectsFromArray:self.PostModel.userPostData.shops];
+        self.seetiShopsModel = [[ConnectionManager dataManager]seNearbyShopModel];
+        [self.arrShop addObjectsFromArray:self.seetiShopsModel.userPostData.shops];
 
         [self InitNearByViewData];
         

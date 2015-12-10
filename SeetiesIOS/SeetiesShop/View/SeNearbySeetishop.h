@@ -10,5 +10,7 @@
 
 @interface SeNearbySeetishop : CommonView
 @property(nonatomic,copy)VoidBlock viewDidFinishLoadBlock;
+@property(nonatomic,copy)VoidBlock btnSelectSeetiShopListBlock;
+
 -(void)initData;
 @end

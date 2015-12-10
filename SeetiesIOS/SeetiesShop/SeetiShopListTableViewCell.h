@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CommonTableViewCell.h"
 
-@interface SeetiShopListTableViewCell : UITableViewCell
-
+@interface SeetiShopListTableViewCell : CommonTableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+@property (weak, nonatomic) IBOutlet UILabel *lblDesc;
 @end

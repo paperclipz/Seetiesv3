@@ -75,10 +75,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [self.ibMapView setRegion:self.region animated:YES];
-    
-    
     [self.annotation setCoordinate:self.region.center];
-
 }
 
 -(MKPointAnnotation*)annotation

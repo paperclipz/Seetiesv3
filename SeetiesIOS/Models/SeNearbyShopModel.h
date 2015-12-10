@@ -10,13 +10,14 @@
 #import "Model.h"
 #import "DraftModel.h"
 #import "PriceModel.h"
+#import "SeShopPhotoModel.h"
 
+@protocol ShopModel
+@end
 @protocol ShopsModel
 @end
-@protocol SeetiShopNearbyShopPhotoModel
-@end
 
-@interface ShopsModel : Model
+@interface ShopModel : JSONModel
 @property(nonatomic,strong)NSString* name;
 @property(nonatomic,strong)NSString* nearby_public_transport;
 @property(nonatomic,strong)NSString* seetishop_id;
@@ -30,25 +31,17 @@
 @property(nonatomic,strong)NSString* urlWebsite;
 @property(nonatomic,strong)NSString* wallpaper;
 @property(nonatomic,strong)NSString* recommended_information;
-@property(nonatomic,strong)NSArray<SeetiShopNearbyShopPhotoModel>* arrPhotos;
+@property(nonatomic,strong)NSArray<SePhotoModel>* arrPhotos;
 @end
 
-@interface SeNearbyShopModel : Model
+@interface ShopsModel : Model
 
-@property(nonatomic,strong)NSArray<ShopsModel>* shops;
+@property(nonatomic,strong)NSArray<ShopModel>* shops;
 @property(nonatomic,assign)int offset;
 @property(nonatomic,assign)int limit;
 @property(nonatomic,assign)int total_shops;
 @property(nonatomic,assign)int page;
 
--(void)process;
 
-@end
-
-
-@interface SeetiShopNearbyShopPhotoModel : JSONModel
-@property(nonatomic,strong)NSString* imageURL;
-@property(nonatomic,strong)UIImage* image;
--(id) copyWithZone: (NSZone *) zone;
 
 @end

@@ -626,9 +626,7 @@
             
         case ServerRequestTypeGetSeetoShopNearbyShop:
         {
-            self.dataManager.seNearbyShopModel = [[SeetiShopNearbyShopModel alloc]initWithDictionary:obj error:nil];
-           // [self.dataManager.seNearbyShopModel.userPostData process];
-            [self.dataManager.seNearbyShopModel.userPostData process];
+            self.dataManager.seNearbyShopModel = [[SeetiShopsModel alloc]initWithDictionary:obj error:nil];
         }
             break;
         case ServerRequestTypeGetSeetoShopRecommendations:
@@ -637,6 +635,7 @@
             [self.dataManager.userProfilePostModel.userPostData process];
         }
             break;
+            
             
         default:
             

@@ -78,7 +78,10 @@
     _region.center.latitude = [self.seShopModel.location.lat doubleValue];
     _region.center.longitude = [self.seShopModel.location.lng doubleValue];
     [self.mapViewController initData:self.region EnableRePin:NO];
-    [self.navigationController pushViewController:self.mapViewController animated:YES];
+    [self.navigationController pushViewController:self.mapViewController animated:YES onCompletion:^{
+        self.mapViewController.lblTitle.text = LocalisedString(@"MAP");
+
+    }];
 }
 
 - (void)viewDidLoad {
@@ -298,6 +301,7 @@
 {
     if (!_mapViewController) {
         _mapViewController = [MapViewController new];
+
     }
     return _mapViewController;
 }

@@ -36,7 +36,7 @@
 @property(nonatomic,strong)DraftsModel* userPostData;
 @end
 
-@interface SeetiShopNearbyShopModel : Model
-@property(nonatomic,strong)SeNearbyShopModel* userPostData;
+@interface SeetiShopsModel : Model
+@property(nonatomic,strong)ShopsModel* userPostData;
 
 @end

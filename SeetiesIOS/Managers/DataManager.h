@@ -55,7 +55,8 @@ typedef void(^CompletionVoidBlock) (void);
 @property(nonatomic,strong)ProfilePostModel* userProfileLikeModel;
 @property(nonatomic,strong)SeShopPhotoModel* seShopPhotoModel;
 @property(nonatomic,strong)SeShopDetailModel* seShopDetailModel;
-@property(nonatomic,strong)SeetiShopNearbyShopModel* seNearbyShopModel;
+@property(nonatomic,strong)SeetiShopsModel* seNearbyShopModel;
+@property(nonatomic,strong)SeetiShopsModel* seNearbyShopListingModel;
 
 
 +(RecommendationModel*)getSampleRecommendation;

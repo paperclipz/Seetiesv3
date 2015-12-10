@@ -833,6 +833,10 @@
 		8A6CCEE01C18075800BCD54E /* WalkthroughPost.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A6CCC9E1C18075800BCD54E /* WalkthroughPost.png */; };
 		8A6CCEE11C18075800BCD54E /* WalkthroughPostDetails.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A6CCC9F1C18075800BCD54E /* WalkthroughPostDetails.png */; };
 		8A6CCEE41C18226000BCD54E /* SeShopPhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6CCEE31C18226000BCD54E /* SeShopPhotoModel.m */; };
+		8A6CCEE91C1982D500BCD54E /* SeetiShopListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6CCEE71C1982D500BCD54E /* SeetiShopListingViewController.m */; };
+		8A6CCEEA1C1982D500BCD54E /* SeetiShopListingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A6CCEE81C1982D500BCD54E /* SeetiShopListingViewController.xib */; };
+		8A6CCEEE1C19837100BCD54E /* SeetiShopListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6CCEEC1C19837100BCD54E /* SeetiShopListTableViewCell.m */; };
+		8A6CCEEF1C19837100BCD54E /* SeetiShopListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A6CCEED1C19837100BCD54E /* SeetiShopListTableViewCell.xib */; };
 		8A7360FE1C080C7100A64824 /* UITableviewPaging.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7360FD1C080C7100A64824 /* UITableviewPaging.m */; };
 		8A7420EC1B82F7D5005DA654 /* LoadingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7420EB1B82F7D5005DA654 /* LoadingManager.m */; };
 		8A7B9CE01BBD387000D7F604 /* EnbleLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7B9CDE1BBD387000D7F604 /* EnbleLocationViewController.m */; };
@@ -2137,6 +2141,12 @@
 		8A6CCC9F1C18075800BCD54E /* WalkthroughPostDetails.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WalkthroughPostDetails.png; sourceTree = "<group>"; };
 		8A6CCEE21C18226000BCD54E /* SeShopPhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeShopPhotoModel.h; sourceTree = "<group>"; };
 		8A6CCEE31C18226000BCD54E /* SeShopPhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeShopPhotoModel.m; sourceTree = "<group>"; };
+		8A6CCEE61C1982D500BCD54E /* SeetiShopListingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeetiShopListingViewController.h; sourceTree = "<group>"; };
+		8A6CCEE71C1982D500BCD54E /* SeetiShopListingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeetiShopListingViewController.m; sourceTree = "<group>"; };
+		8A6CCEE81C1982D500BCD54E /* SeetiShopListingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeetiShopListingViewController.xib; sourceTree = "<group>"; };
+		8A6CCEEB1C19837100BCD54E /* SeetiShopListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeetiShopListTableViewCell.h; sourceTree = "<group>"; };
+		8A6CCEEC1C19837100BCD54E /* SeetiShopListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeetiShopListTableViewCell.m; sourceTree = "<group>"; };
+		8A6CCEED1C19837100BCD54E /* SeetiShopListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeetiShopListTableViewCell.xib; sourceTree = "<group>"; };
 		8A7360FC1C080C7100A64824 /* UITableviewPaging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableviewPaging.h; sourceTree = "<group>"; };
 		8A7360FD1C080C7100A64824 /* UITableviewPaging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableviewPaging.m; sourceTree = "<group>"; };
 		8A7420EA1B82F7D5005DA654 /* LoadingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingManager.h; sourceTree = "<group>"; };
@@ -3589,6 +3599,7 @@
 		8A4AC4B21C0C365C00968781 /* SeetiesShop */ = {
 			isa = PBXGroup;
 			children = (
+				8A6CCEE51C1982B000BCD54E /* SeetiShopListing */,
 				8A6CCA351C17D0FA00BCD54E /* SeetiesShopMoreInfo */,
 				8A4AC4B31C0C367B00968781 /* View */,
 				8ABA51F61C10329600A3DC15 /* PhotoViewController.h */,
@@ -4524,6 +4535,19 @@
 				8A6CCC9F1C18075800BCD54E /* WalkthroughPostDetails.png */,
 			);
 			path = Walkthrough;
+			sourceTree = "<group>";
+		};
+		8A6CCEE51C1982B000BCD54E /* SeetiShopListing */ = {
+			isa = PBXGroup;
+			children = (
+				8A6CCEE61C1982D500BCD54E /* SeetiShopListingViewController.h */,
+				8A6CCEE71C1982D500BCD54E /* SeetiShopListingViewController.m */,
+				8A6CCEE81C1982D500BCD54E /* SeetiShopListingViewController.xib */,
+				8A6CCEEB1C19837100BCD54E /* SeetiShopListTableViewCell.h */,
+				8A6CCEEC1C19837100BCD54E /* SeetiShopListTableViewCell.m */,
+				8A6CCEED1C19837100BCD54E /* SeetiShopListTableViewCell.xib */,
+			);
+			name = SeetiShopListing;
 			sourceTree = "<group>";
 		};
 		8A8475321BC52D0D006DD614 /* SystemOverride */ = {
@@ -5749,6 +5773,7 @@
 				8A6CCDB71C18075800BCD54E /* TitleBar@2x.png in Resources */,
 				8A6CCCDE1C18075800BCD54E /* CollectionLink@3x.png in Resources */,
 				8A6CCD671C18075800BCD54E /* ExploreFollowing@3x.png in Resources */,
+				8A6CCEEA1C1982D500BCD54E /* SeetiShopListingViewController.xib in Resources */,
 				8A6CCDBE1C18075800BCD54E /* AnnounceLogo@3x.png in Resources */,
 				8A6CCCFB1C18075800BCD54E /* GridViewActive@2x.png in Resources */,
 				8A6CCD801C18075800BCD54E /* CollectSimplifiedChineseBtn@2x.png in Resources */,
@@ -6105,6 +6130,7 @@
 				8A6CCCAF1C18075800BCD54E /* TitleBar@3x.png in Resources */,
 				8A6CCCD21C18075800BCD54E /* AddTagIcon@3x.png in Resources */,
 				8A6CCE741C18075800BCD54E /* ProfileFollowingIcon@3x.png in Resources */,
+				8A6CCEEF1C19837100BCD54E /* SeetiShopListTableViewCell.xib in Resources */,
 				8A6CCE631C18075800BCD54E /* NoLike-Icon@3x.png in Resources */,
 				8A6CCD1B1C18075800BCD54E /* SendCommentBtn@2x.png in Resources */,
 				8A6CCCDC1C18075800BCD54E /* CollectionFollowerIcon@3x.png in Resources */,
@@ -6374,6 +6400,7 @@
 				8A114CB31BE73F5D006AE3F0 /* NSAttributedString+DVSTracking.m in Sources */,
 				8A1254181BC4F46500AA4120 /* NewsFeedTableViewCell.m in Sources */,
 				8A114CA31BE73F5D006AE3F0 /* PECropView.m in Sources */,
+				8A6CCEE91C1982D500BCD54E /* SeetiShopListingViewController.m in Sources */,
 				8A114CB61BE73F5D006AE3F0 /* BHExpandingTextView.m in Sources */,
 				8AC8F72A1BDA414E00DEF14A /* ProfileNoItemTableViewCell.m in Sources */,
 				8A9F25E61B904F7600BB13BA /* RecommendationModel.m in Sources */,
@@ -6584,6 +6611,7 @@
 				8AD6C0AB1B706CF30040437E /* InviteFrenViewController.m in Sources */,
 				8A3409081B871CB5009B66C3 /* EditPhotoModel.m in Sources */,
 				8A114CD41BE73F5D006AE3F0 /* CommonCollectionViewCell.m in Sources */,
+				8A6CCEEE1C19837100BCD54E /* SeetiShopListTableViewCell.m in Sources */,
 				8AD6C1001B706CF30040437E /* AccountSettingViewController.m in Sources */,
 				8A11513E1BE777FD006AE3F0 /* UIScrollView+VGParallaxHeader.m in Sources */,
 				8A2E2C141B79E7A30010895E /* RecommendationViewController.m in Sources */,

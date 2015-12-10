@@ -16,7 +16,7 @@
 +(JSONKeyMapper*)keyMapper
 {
     return [[JSONKeyMapper alloc] initWithDictionary:@{
-                                                       @"s" :@"imageURL"
+                                                       @"m" :@"imageURL"
                                                        }];
 }
 
