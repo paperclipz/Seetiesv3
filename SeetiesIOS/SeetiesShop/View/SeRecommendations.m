@@ -38,11 +38,11 @@
     ShowbackLine.frame = CGRectMake(-1, 0, screenWidth + 2 , 50);
     [ShowbackLine setTitle:@"" forState:UIControlStateNormal];
     ShowbackLine.backgroundColor = [UIColor whiteColor];
-    [Utils setRoundBorder:ShowbackLine color:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
+   // [Utils setRoundBorder:ShowbackLine color:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
     
-    ShowRecommendationsText.frame = CGRectMake(20, 0, screenWidth - 40, 50);
-    ShowRecommendationsText.text = @"Recommendations";
-    ShowRecommendationsText.backgroundColor = [UIColor clearColor];
+//    ShowRecommendationsText.frame = CGRectMake(20, 0, screenWidth - 40, 50);
+//    ShowRecommendationsText.text = @"Recommendations";
+//    ShowRecommendationsText.backgroundColor = [UIColor clearColor];
     
     Getheight = 50;
     

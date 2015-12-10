@@ -56,6 +56,7 @@
     [self initSelfView];
     [self.seShopDetailView initData];
     [self.seCollectionView initData];
+    [self.seRecommendations initData];
     [self.seNearbySeetishop initData];
 }
 
@@ -67,16 +68,15 @@
     
     [self setupViews];
     [self addViews];
-    [self adjustView:self.arrViews[self.arrViews.count-1] :(int)(self.arrViews.count - 1)];
-    UIView* lastView = [self.arrViews lastObject];
-    self.ibScrollView.contentSize = CGSizeMake( self.ibScrollView.frame.size.width, lastView.frame.size.height+ lastView.frame.origin.y);
+    
+    [self rearrangeView];
 }
 -(void)setupViews
 {
     [self.arrViews addObject:self.seShopDetailView];
-    [self.arrViews addObject:self.seCollectionView];
-   // [self.arrViews addObject:self.seRecommendations];
-    [self.arrViews addObject:self.seNearbySeetishop];
+  //  [self.arrViews addObject:self.seCollectionView];
+    [self.arrViews addObject:self.seRecommendations];
+  //  [self.arrViews addObject:self.seNearbySeetishop];
 
 }
 -(void)addViews
@@ -88,6 +88,15 @@
     }
 
 }
+
+-(void)rearrangeView
+{
+    [self adjustView:self.arrViews[self.arrViews.count-1] :(int)(self.arrViews.count - 1)];
+    UIView* lastView = [self.arrViews lastObject];
+    self.ibScrollView.contentSize = CGSizeMake( self.ibScrollView.frame.size.width, lastView.frame.size.height+ lastView.frame.origin.y);
+    
+}
+
 // readjust view from top to bottom
 -(UIView*)adjustView:(UIView*)view :(int)count
 {
@@ -182,9 +191,8 @@
         {
            // [weakSelf.arrViews removeObject:weakSelf.seDealsView];
            // [weakSelf.seDealsView removeFromSuperview];
-            [weakSelf adjustView:weakSelf.arrViews[self.arrViews.count-1] :(int)(weakSelf.arrViews.count - 1)];
-            UIView* lastView = [weakSelf.arrViews lastObject];
-            weakSelf.ibScrollView.contentSize = CGSizeMake( weakSelf.ibScrollView.frame.size.width, lastView.frame.size.height+ lastView.frame.origin.y);
+          
+            [weakSelf rearrangeView];
 //            [UIView animateWithDuration:1.0 animations:^{
 //                
 //            }completion:^(BOOL finished) {
@@ -227,6 +235,12 @@
 {
     if (!_seRecommendations) {
         _seRecommendations = [SeRecommendations initializeCustomView];
+        __weak typeof (self)weakSelf = self;
+        _seRecommendations.viewDidFinishLoadBlock = ^(void)
+        {
+            [weakSelf rearrangeView];
+
+        };
     }
     return _seRecommendations;
 }
