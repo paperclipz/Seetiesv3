@@ -52,6 +52,13 @@
 
 @implementation SeShopDetailView
 
+- (void)handleTapPress:(UIGestureRecognizer *)gestureRecognizer{
+    
+    if (self.btnMapClickedBlock) {
+        self.btnMapClickedBlock(self.seShopModel);
+    }
+}
+
 - (IBAction)btnMorePhotoClicked:(id)sender {
     
     if (self.didSelectMorePhotosBlock) {
@@ -65,12 +72,6 @@
     }
 }
 
-- (IBAction)btnMapClicked:(id)sender {
-    if (self.btnMapClickedBlock) {
-        self.btnMapClickedBlock();
-    }
-}
-
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -81,10 +82,19 @@
 
 -(void)initSelfView
 {
-    //[self initTableViewDelegate];
     [self initCollectionViewDelegate];
     [self initTableViewDelegate];
     self.ibMapView.delegate = self;
+    
+    self.ibMapView.zoomEnabled = NO;
+    self.ibMapView.scrollEnabled = NO;
+    
+    UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self action:@selector(handleTapPress:)];
+    tgr.numberOfTapsRequired = 1;
+    tgr.numberOfTouchesRequired = 1;
+    [self.ibMapView addGestureRecognizer:tgr];
+   
 
 }
 
@@ -108,6 +118,8 @@
     
     float constant =  (self.arrayList.count*[SeShopDetailTableViewCell getHeight]) + Info_Footer_HEader_Height;
     tableviewConstraint.constant = constant;
+    [self setNeedsUpdateConstraints];
+    [self layoutIfNeeded];
     [self setHeight:self.ibMapMainView.frame.size.height + self.ibMapMainView.frame.origin.y + VIEW_PADDING];
 
     
