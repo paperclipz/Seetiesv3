@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+typedef void (^BtnCollectionDetailBlock)(NSString * idn);
+typedef void (^BtnCollectionSeeAllBlock)(NSString * SeetiShopIDN);
 
 @interface SeCollectionView : CommonView
 @property(nonatomic,copy)VoidBlock viewDidFinishLoadBlock;
 -(void)initData;
+@property(nonatomic,copy)BtnCollectionDetailBlock btnCollectionDetailClickedBlock;
+@property(nonatomic,copy)BtnCollectionSeeAllBlock btnCollectionSeeAllClickedBlock;
 @end

@@ -2943,15 +2943,12 @@
         ShowShopImage.layer.masksToBounds = YES;
         ShowShopImage.layer.borderColor=[[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f] CGColor];
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowShopImage];
-       // ShowShopImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
         NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",GetSeetishopImage];
-        NSLog(@"FullImagesURL1 ====== %@",FullImagesURL1);
         if ([FullImagesURL1 length] == 0) {
-            UserImage.image = [UIImage imageNamed:@"NoImage.png"];
+            ShowShopImage.image = [UIImage imageNamed:@"NoImage.png"];
         }else{
             NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
-            //NSLog(@"url_NearbyBig is %@",url_NearbyBig);
-            UserImage.imageURL = url_UserImage;
+            ShowShopImage.imageURL = url_UserImage;
         }
         [MainScroll addSubview:ShowShopImage];
         

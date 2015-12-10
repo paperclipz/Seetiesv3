@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void (^BtnPostsDetailBlock)(NSString * idn);
+typedef void (^BtnPostsSeeAllBlock)(NSString * idn);
+
 @interface SeRecommendations : CommonView
 @property(nonatomic,copy)VoidBlock viewDidFinishLoadBlock;
+@property(nonatomic,copy)BtnPostsDetailBlock btnPostsDetailClickedBlock;
+@property(nonatomic,copy)BtnPostsSeeAllBlock btnPostsSeeAllClickedBlock;
 -(void)initData;
 @end

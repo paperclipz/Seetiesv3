@@ -20,6 +20,9 @@
 #import "PhotoListViewController.h"
 #import "SeetiesMoreInfoViewController.h"
 #import "SeetiShopListingViewController.h"
+#import "FeedV2DetailViewController.h"
+#import "CollectionViewController.h"
+#import "CollectionListingViewController.h"
 
 @interface SeetiesShopViewController ()<UIScrollViewDelegate>
 
@@ -28,6 +31,9 @@
 @property (nonatomic,strong)PhotoListViewController* photoListViewController;
 @property (nonatomic,strong)SeetiesMoreInfoViewController* seetiesMoreInfoViewController;
 @property (nonatomic,strong)SeetiShopListingViewController* seetiShopListingViewController;
+@property (nonatomic,strong)FeedV2DetailViewController* PostDetailViewController;
+@property (nonatomic,strong)CollectionViewController* CollectionDetailViewController;
+@property (nonatomic,strong)CollectionListingViewController* collectionListingViewController;
 
 //$$============== CONTROLLERS ==================$$//
 
@@ -144,6 +150,27 @@
     }
     return _seetiesMoreInfoViewController;
 }
+-(FeedV2DetailViewController*)PostDetailViewController
+{
+    if (!_PostDetailViewController) {
+        _PostDetailViewController = [FeedV2DetailViewController new];
+    }
+    return _PostDetailViewController;
+}
+-(CollectionViewController*)CollectionDetailViewController
+{
+    if (!_CollectionDetailViewController) {
+        _CollectionDetailViewController = [CollectionViewController new];
+    }
+    return _CollectionDetailViewController;
+}
+-(CollectionListingViewController*)collectionListingViewController
+{
+    if (!_collectionListingViewController) {
+        _collectionListingViewController = [CollectionListingViewController new];
+    }
+    return _collectionListingViewController;
+}
 -(PhotoListViewController*)photoListViewController
 {
     if (!_photoListViewController) {
@@ -245,6 +272,28 @@
 {
     if (!_seCollectionView) {
         _seCollectionView = [SeCollectionView initializeCustomView];
+        __weak typeof (self)weakSelf = self;
+        _seCollectionView.viewDidFinishLoadBlock = ^(void)
+        {
+            [weakSelf rearrangeView];
+            
+        };
+        _seCollectionView.btnCollectionDetailClickedBlock = ^(NSString* idn)
+        {
+            _CollectionDetailViewController = nil;
+            [weakSelf.CollectionDetailViewController GetCollectionID:idn GetPermision:@"User"];
+            [weakSelf.navigationController pushViewController:weakSelf.CollectionDetailViewController animated:YES];
+            
+        };
+        _seCollectionView.btnCollectionSeeAllClickedBlock = ^(NSString* idn)
+        {
+            _collectionListingViewController = nil;
+            ProfileModel* model = [ProfileModel new];
+            model.uid = [Utils getUserID];
+            [weakSelf.collectionListingViewController setType:ProfileViewTypeOthers ProfileModel:model NumberOfPage:1 collectionType:CollectionListingTypeSuggestion];
+            [weakSelf.navigationController pushViewController:weakSelf.collectionListingViewController animated:YES];
+            
+        };
     }
     return _seCollectionView;
 }
@@ -257,6 +306,20 @@
         {
             [weakSelf rearrangeView];
 
+        };
+        
+        _seRecommendations.btnPostsDetailClickedBlock = ^(NSString* idn)
+        {
+            _PostDetailViewController = nil;
+            [weakSelf.PostDetailViewController GetPostID:idn];
+            [weakSelf.navigationController pushViewController:weakSelf.PostDetailViewController animated:YES];
+            
+        };
+        _seRecommendations.btnPostsSeeAllClickedBlock = ^(NSString* idn)
+        {
+
+            // see all recommendation view
+            
         };
     }
     return _seRecommendations;
