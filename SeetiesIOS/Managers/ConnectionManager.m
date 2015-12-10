@@ -425,6 +425,7 @@
         case ServerRequestTypeGetSeetiShopDetail:
         case ServerRequestTypeGetSeetiShopCollection:
         case ServerRequestTypeGetSeetoShopNearbyShop:
+        case ServerRequestTypeGetSeetoShopRecommendations:
             str = [NSString stringWithFormat:@"%@/seetishops",API_VERION_URL];
 
             break;
@@ -621,6 +622,12 @@
            // [self.dataManager.seNearbyShopModel.userPostData process];
             [self.dataManager.seNearbyShopModel.userPostData process];
 
+        }
+            break;
+        case ServerRequestTypeGetSeetoShopRecommendations:
+        {
+            self.dataManager.userProfilePostModel = [[ProfilePostModel alloc]initWithDictionary:obj error:nil];
+            [self.dataManager.userProfilePostModel.userPostData process];
         }
             break;
             

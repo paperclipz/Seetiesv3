@@ -34,7 +34,6 @@
 @interface ProfilePostModel : Model
 
 @property(nonatomic,strong)DraftsModel* userPostData;
-
 @end
 
 @interface SeetiShopNearbyShopModel : Model

@@ -54,6 +54,7 @@ typedef enum
     ServerRequestTypeGetSeetiShopDetail,
     ServerRequestTypeGetSeetiShopCollection,
     ServerRequestTypeGetSeetoShopNearbyShop,
+    ServerRequestTypeGetSeetoShopRecommendations,
     
     // ========== SEETIES SHOP ========== //
 

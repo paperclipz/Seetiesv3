@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface SeRecommendations : CommonView
-
+@property(nonatomic,copy)VoidBlock viewDidFinishLoadBlock;
+-(void)initData;
 @end
