@@ -6,10 +6,6 @@
 //  Copyright (c) 2015 Ahyong87. All rights reserved.
 //
 #import "Utils.h"
-// =====================  CURRENCY =========================
-#define CASE(str)                       if ([__s__ isEqualToString:(str)])
-#define SWITCH(s)                       for (NSString *__s__ = (s); ; )
-#define DEFAULT
 
 @implementation Utils
 {

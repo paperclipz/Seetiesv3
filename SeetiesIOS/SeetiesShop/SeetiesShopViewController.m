@@ -72,7 +72,6 @@
 -(void)setupViews
 {
     [self.arrViews addObject:self.seShopDetailView];
-    [self.arrViews addObject:self.seDealsView];
     [self.arrViews addObject:self.seCollectionView];
     //[self.arrViews addObject:self.seRecommendations];
    // [self.arrViews addObject:self.seNearbySeetishop];
@@ -170,8 +169,9 @@
        
         };
         
-        _seShopDetailView.didSelectPhotoAtIndexPath = ^(NSIndexPath* indexPath)
+        _seShopDetailView.didSelectMorePhotosBlock = ^(SeShopPhotoModel* model)
         {
+            
             _photoListViewController = nil;
             [weakSelf.navigationController pushViewController:weakSelf.photoListViewController animated:YES];
         };

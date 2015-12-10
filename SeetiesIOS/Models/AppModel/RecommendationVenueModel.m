@@ -80,7 +80,7 @@
     _country = model.location.country;
     _state =  model.location.administrative_area_level_1;
     _postalCode = model.location.postal_code;
-    _distance =  model.location.distance;
+    _distance =  [NSString stringWithFormat:@"%f",model.location.distance];
     _formattedPhone = model.location.contact_no;
     _facebookName = nil;
     _isOpenHour = nil;

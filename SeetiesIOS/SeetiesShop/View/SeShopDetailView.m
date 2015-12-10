@@ -17,6 +17,7 @@
 @interface SeShopDetailView()<UITableViewDataSource,UITableViewDelegate, UICollectionViewDataSource,UICollectionViewDelegate,MKMapViewDelegate>
 {
     
+    __weak IBOutlet UILabel *lblPhotoCount;
     __weak IBOutlet NSLayoutConstraint *tableviewConstraint;
 }
 
@@ -30,8 +31,14 @@
 @property (weak, nonatomic) IBOutlet UIButton *ibBtnInformationDetails;
 @property (weak, nonatomic) IBOutlet UIView *ibPhotoView;
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
+@property (weak, nonatomic) IBOutlet UILabel *lblNearbyTransport;
+@property (weak, nonatomic) IBOutlet UILabel *lblDistance;
 
 //================== MAP =======================//
+
+@property (weak, nonatomic) IBOutlet UILabel *lblNearbyPublicTransport;
+
+@property (weak, nonatomic) IBOutlet UILabel *lblAddress;
 @property(nonatomic,assign)MKCoordinateRegion region;
 @property(strong,nonatomic)MKPointAnnotation* annotation;
 @property (weak, nonatomic) IBOutlet MKMapView *ibMapView;
@@ -39,9 +46,19 @@
 @property (weak, nonatomic) IBOutlet UIView *ibMapInfoView;
 // ================== MODEL ======================/
 @property(nonatomic,strong)SeShopDetailModel* seShopModel;
+@property(nonatomic,strong)SeShopPhotoModel* seShopPhotoModel;
+
 @end
 
 @implementation SeShopDetailView
+
+- (IBAction)btnMorePhotoClicked:(id)sender {
+    
+    if (self.didSelectMorePhotosBlock) {
+        self.didSelectMorePhotosBlock(self.seShopPhotoModel);
+    }
+}
+
 - (IBAction)btnMoreInfoClicked:(id)sender {
     if (self.btnMoreInfoClickedBlock) {
         self.btnMoreInfoClickedBlock(self.seShopModel);
@@ -88,11 +105,19 @@
 
 -(void)setupViewWithData
 {
- 
+    
     float constant =  (self.arrayList.count*[SeShopDetailTableViewCell getHeight]) + Info_Footer_HEader_Height;
     tableviewConstraint.constant = constant;
     [self setHeight:self.ibMapMainView.frame.size.height + self.ibMapMainView.frame.origin.y + VIEW_PADDING];
-}
+
+    
+    
+    self.lblAddress.text = self.seShopModel.location.formatted_address;
+    self.lblNearbyPublicTransport.text = self.seShopModel.nearby_public_transport;
+    self.lblDistance.text = [NSString stringWithFormat:@"%.1f KM",self.seShopModel.location.distance/100];
+    lblPhotoCount.text = [NSString stringWithFormat:@"%@ (%d)",LocalisedString(@"Photos"),self.seShopPhotoModel.total_photos];
+
+    }
 
 -(float)getPositionYBelowView:(UIView*)view
 { 
@@ -127,6 +152,7 @@
     NSString* key = keys[0];
 
     cell.lblTitle.text = key;
+    [cell setImage:key];
     cell.lblDesc.text = [dict objectForKey:key];
 
     return cell;
@@ -147,19 +173,24 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 20;
+    return self.seShopPhotoModel.photos.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     PhotoCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoCollectionViewCell" forIndexPath:indexPath];
     
+    
+    SePhotoModel* model = self.seShopPhotoModel.photos[indexPath.row];
+    [cell.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:model.imageURL] completed:^(UIImage *image) {
+       
+    }];
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.didSelectPhotoAtIndexPath) {
-        self.didSelectPhotoAtIndexPath(indexPath);
+    if (self.didSelectMorePhotosBlock) {
+        self.didSelectMorePhotosBlock(self.seShopPhotoModel);
     }
 }
 
@@ -229,14 +260,21 @@
     }];
 
     [self requestServerForSeetiShopDetail];
+    [self requestServerForSeetiShopPhotos];
 }
+
 -(void)requestServerForSeetiShopDetail
 {
-    NSDictionary* param;
+    NSDictionary* dict = @{@"token":[Utils getAppToken],
+                           @"seetishop_id":@"56397e301c4d5be92e8b4711",
+                           @"post_id" : @"56603c9af9df245c7b8b4573",
+                           @"lat" : @"1.934400",
+                           @"lng" : @"103.358727",
+                           };
+    
     NSString* appendString = @"56397e301c4d5be92e8b4711";
     
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetiShopDetail param:param appendString:appendString completeHandler:^(id object) {
-        
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetiShopDetail param:dict appendString:appendString completeHandler:^(id object) {
 
         self.seShopModel = [[ConnectionManager dataManager] seShopDetailModel];
         self.arrayList = self.seShopModel.arrayInformation;
@@ -251,4 +289,25 @@
         
     }];
 }
+
+-(void)requestServerForSeetiShopPhotos
+{
+    NSDictionary* dict = @{@"token":[Utils getAppToken],
+                        };
+    
+    NSString* appendString = [NSString stringWithFormat:@"%@/photos",@"56397e301c4d5be92e8b4711"];
+    
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetiShopPhoto param:dict appendString:appendString completeHandler:^(id object) {
+        self.seShopPhotoModel = [[ConnectionManager dataManager]seShopPhotoModel];
+        [self setupViewWithData];
+        [self.ibCollectionView reloadData];
+        
+    } errorBlock:^(id object) {
+        
+        
+    }];
+
+}
+
+
 @end

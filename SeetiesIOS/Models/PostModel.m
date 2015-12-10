@@ -90,7 +90,9 @@
 -(NSString*)next
 {
     if (_paging) {
-        _next = _paging[@"next"];
+        if ([[_paging allKeys]containsObject:@"next"]) {
+            _next = _paging[@"next"];
+        }
     }
     return _next;
     
@@ -98,8 +100,10 @@
 
 -(NSString*)previous
 {
-    if (_previous) {
-        _previous = _paging[@"previous"];
+    if (_paging) {
+        if ([[_paging allKeys]containsObject:@"previous"]) {
+            _previous = _paging[@"previous"];
+        }
     }
     return _previous;
 }

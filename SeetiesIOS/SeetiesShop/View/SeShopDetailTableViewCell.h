@@ -12,5 +12,7 @@
 +(int)getHeight;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblDesc;
+@property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
+-(void)setImage:(NSString *)lblTitle;
 
 @end

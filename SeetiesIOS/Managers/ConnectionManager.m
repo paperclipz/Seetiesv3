@@ -423,11 +423,14 @@
             break;
             
         case ServerRequestTypeGetSeetiShopDetail:
-            str = [NSString stringWithFormat:@"%@/seetishops/",API_VERION_URL];
+            str = [NSString stringWithFormat:@"%@/seetishops",API_VERION_URL];
 
             break;
         case ServerRequestTypeGetSeetiShopCollection:
-            str = [NSString stringWithFormat:@"%@/seetishops/",API_VERION_URL];
+            str = [NSString stringWithFormat:@"%@/seetishops",API_VERION_URL];
+            break;
+        case ServerRequestTypeGetSeetiShopPhoto:
+            str = [NSString stringWithFormat:@"%@/seetishops",API_VERION_URL];
             break;
             
         case ServerRequestTypeGetCollectionInfo:
@@ -613,6 +616,12 @@
         {
             NSDictionary* dict = obj[@"data"];
             self.dataManager.userSuggestedCollectionsModel = [[CollectionsModel alloc]initWithDictionary:dict error:nil];
+        }
+            break;
+        case ServerRequestTypeGetSeetiShopPhoto:
+        {
+            NSDictionary* dict = obj[@"data"];
+            self.dataManager.seShopPhotoModel = [[SeShopPhotoModel alloc]initWithDictionary:dict error:nil];
         }
             break;
             

@@ -20,7 +20,6 @@
     
 }
 @property (strong, nonatomic) IBOutletCollection(UIView) NSArray *draggableViews;
-@property (weak, nonatomic) IBOutlet UICollectionView *ibCollectionView;
 
 
 // --------------------- DATA ---------------------//
@@ -49,6 +48,8 @@
   
     [self someMethod];
     [self initColletionViewDelegate];
+    [self.ibCollectionView setNeedsUpdateConstraints];
+    [self.ibCollectionView layoutIfNeeded];
 
 }
 
@@ -62,7 +63,8 @@
 -(void)collectionViewSrollToIndexPath
 {
     
-    [self.ibCollectionView scrollToItemAtIndexPath:currentIndexPath atScrollPosition:UICollectionViewScrollPositionRight animated:YES];
+    [self.ibCollectionView scrollToItemAtIndexPath:currentIndexPath atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+    [self.ibCollectionView reloadData];
 
 }
 
@@ -72,6 +74,12 @@
     self.ibCollectionView.dataSource = self;
     [self.ibCollectionView registerClass:[LikeListingCollectionViewCell class] forCellWithReuseIdentifier:@"LikeListingCollectionViewCell"];
     self.ibCollectionView.pagingEnabled = YES;
+    
+    CGRect frame = [Utils getDeviceScreenSize];
+    UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout*)self.ibCollectionView.collectionViewLayout;
+    CGFloat availableWidthForCells = CGRectGetWidth(self.ibCollectionView.frame) - flowLayout.sectionInset.left - flowLayout.sectionInset.right - flowLayout.minimumInteritemSpacing * (frame.size.width - 1);
+
+    flowLayout.itemSize = CGSizeMake(availableWidthForCells, availableWidthForCells);
 }
 
 -(IBAction) someMethod {
@@ -143,17 +151,24 @@
 {
     LikeListingCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LikeListingCollectionViewCell" forIndexPath:indexPath];
     
-    cell.ibImageView.image = [UIImage imageNamed:self.arrImageList[indexPath.row]];
+    
+    [cell setNoRoundBorder];
+    [cell setNeedsUpdateConstraints];
+    [cell layoutIfNeeded];
+
+    SePhotoModel* model = self.arrImageList[indexPath.row];
+    [cell.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:model.imageURL] completed:nil];
+
     return cell;
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout  *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    CGRect frame = [Utils getDeviceScreenSize];
-    
-    return CGSizeMake(frame.size.width, frame.size.width);
-}
+//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout  *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    
+//    CGRect frame = [Utils getDeviceScreenSize];
+//    
+//    return CGSizeMake(frame.size.width, frame.size.width);
+//}
 
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
@@ -162,9 +177,9 @@
     float reload_distance = 10;
     if (bottomEdge >= scrollView.contentSize.width -  reload_distance) {
         
-        SLog(@"RIGHT SIDE LIAO");
-        if (!isMiddleOfCallingServer) {
-            
+        
+        if (self.triggerLoadMoreBlock) {
+            self.triggerLoadMoreBlock();
         }
     }
 }
