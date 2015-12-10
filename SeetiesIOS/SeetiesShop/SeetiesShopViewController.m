@@ -68,15 +68,14 @@
     
     [self setupViews];
     [self addViews];
-    
     [self rearrangeView];
 }
 -(void)setupViews
 {
     [self.arrViews addObject:self.seShopDetailView];
-  //  [self.arrViews addObject:self.seCollectionView];
+    [self.arrViews addObject:self.seCollectionView];
     [self.arrViews addObject:self.seRecommendations];
-  //  [self.arrViews addObject:self.seNearbySeetishop];
+    [self.arrViews addObject:self.seNearbySeetishop];
 
 }
 -(void)addViews
@@ -163,10 +162,15 @@
         
         __weak typeof (self)weakSelf = self;
 
-        _seShopDetailView.btnMapClickedBlock = ^(void)
+        _seShopDetailView.btnMapClickedBlock = ^(SeShopDetailModel* model)
         {
-            
+            _mapViewController = nil;
+            MKCoordinateRegion region;
+            region.center.latitude = [model.location.lat doubleValue];
+            region.center.longitude = [model.location.lng doubleValue];
+            [weakSelf.mapViewController initData:region EnableRePin:NO];
             [weakSelf.navigationController pushViewController:weakSelf.mapViewController animated:YES];
+
             
         };
         

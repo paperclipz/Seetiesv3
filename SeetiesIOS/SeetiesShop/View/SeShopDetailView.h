@@ -14,7 +14,7 @@ typedef void (^BtnMorePhotosBlock)(SeShopPhotoModel* model);
 
 @interface SeShopDetailView : CommonView
 -(BOOL)isAvailable;
-@property(nonatomic,copy)VoidBlock btnMapClickedBlock;
+@property(nonatomic,copy)BtnMoreInfoBlock btnMapClickedBlock;
 @property (nonatomic,copy)ImageBlock imageDidFinishLoadBlock;
 @property (nonatomic,copy)RectBlock didSelectInformationAtRectBlock;
 @property (nonatomic,copy)IndexPathBlock didSelectPhotoAtIndexPath;

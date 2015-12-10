@@ -155,7 +155,7 @@
                         <constraint firstItem="1WH-ls-phI" firstAttribute="top" secondItem="B01-Mp-njm" secondAttribute="bottom" constant="10" id="uNR-ol-icp"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="RwS-g9-DQA">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="60" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="RwS-g9-DQA">
                     <rect key="frame" x="0.0" y="462" width="320" height="400"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -224,7 +224,7 @@
                     </view>
                 </tableView>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HtQ-ef-F0z">
-                    <rect key="frame" x="0.0" y="872" width="320" height="250"/>
+                    <rect key="frame" x="0.0" y="872" width="320" height="220"/>
                     <subviews>
                         <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="LHG-yv-1Iz">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="147"/>
@@ -298,9 +298,6 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="147"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <state key="normal" title="Button"/>
-                            <connections>
-                                <action selector="btnMapClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="UKh-ZZ-Y9p"/>
-                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -313,7 +310,7 @@
                         <constraint firstItem="ahD-iK-ogv" firstAttribute="top" secondItem="LHG-yv-1Iz" secondAttribute="top" id="HbM-vB-np6"/>
                         <constraint firstItem="1ab-eU-31z" firstAttribute="baseline" secondItem="LHG-yv-1Iz" secondAttribute="baseline" constant="-15" id="N9W-rc-bIw"/>
                         <constraint firstAttribute="trailing" secondItem="REW-ZP-o6h" secondAttribute="trailing" constant="10" id="QPn-1a-UHc"/>
-                        <constraint firstAttribute="height" constant="250" id="X8N-A7-fgq"/>
+                        <constraint firstAttribute="height" constant="220" id="X8N-A7-fgq"/>
                         <constraint firstItem="LHG-yv-1Iz" firstAttribute="top" secondItem="HtQ-ef-F0z" secondAttribute="top" id="cap-dk-oqg"/>
                         <constraint firstItem="LHG-yv-1Iz" firstAttribute="leading" secondItem="HtQ-ef-F0z" secondAttribute="leading" id="eA6-DJ-Q1Q"/>
                         <constraint firstItem="REW-ZP-o6h" firstAttribute="top" secondItem="PrS-Nz-WcK" secondAttribute="bottom" constant="8" id="h23-sa-v3g"/>
@@ -330,7 +327,7 @@
                     </variation>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.0098684210530000007" green="0.86666666670000003" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="L0E-TK-nIM" firstAttribute="top" secondItem="MIM-N7-Wb7" secondAttribute="bottom" id="522-m5-l9g"/>
                 <constraint firstItem="L0E-TK-nIM" firstAttribute="leading" secondItem="ByR-rM-hDs" secondAttribute="trailing" constant="1" id="8VN-Lh-uhc"/>
