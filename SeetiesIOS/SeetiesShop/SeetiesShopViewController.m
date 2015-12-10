@@ -56,6 +56,7 @@
     [self initSelfView];
     [self.seShopDetailView initData];
     [self.seCollectionView initData];
+    [self.seRecommendations initData];
     [self.seNearbySeetishop initData];
 }
 
@@ -75,7 +76,7 @@
 {
     [self.arrViews addObject:self.seShopDetailView];
     [self.arrViews addObject:self.seCollectionView];
-   // [self.arrViews addObject:self.seRecommendations];
+    [self.arrViews addObject:self.seRecommendations];
     [self.arrViews addObject:self.seNearbySeetishop];
 
 }
