@@ -9,6 +9,7 @@
 #import "CommonView.h"
 typedef void (^RectBlock)(UIView* fromView, CGRect subRect);
 typedef void (^BtnMoreInfoBlock)(SeShopDetailModel* model);
+typedef void (^BtnMorePhotosBlock)(SeShopPhotoModel* model);
 
 
 @interface SeShopDetailView : CommonView
@@ -21,5 +22,7 @@ typedef void (^BtnMoreInfoBlock)(SeShopDetailModel* model);
 
 @property(nonatomic,copy)VoidBlock viewDidFinishLoadBlock;
 @property(nonatomic,copy)BtnMoreInfoBlock btnMoreInfoClickedBlock;
+@property(nonatomic,copy)BtnMorePhotosBlock didSelectMorePhotosBlock;
+
 -(void)initData;
 @end

@@ -46,6 +46,7 @@
 @property (strong, nonatomic) IBOutlet UIView *ibNoHeader;
 
 // ---------------- Features----------------------//
+@property (strong, nonatomic) IBOutlet UIView *ibBestKnownView;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblBestKnown;
 
@@ -76,7 +77,7 @@
 
     _region.center.latitude = [self.seShopModel.location.lat doubleValue];
     _region.center.longitude = [self.seShopModel.location.lng doubleValue];
-    [self.mapViewController initData:self.region];
+    [self.mapViewController initData:self.region EnableRePin:NO];
     [self.navigationController pushViewController:self.mapViewController animated:YES];
 }
 
@@ -127,6 +128,7 @@
     [self.arrViews addObject:self.ibURLView];
     [self.arrViews addObject:self.ibFacebookLinkView];
     [self.arrViews addObject:self.ibPriceView];
+    [self.arrViews addObject:self.ibBestKnownView];
     [self.arrViews addObject:self.ibFeatureTableView];
 
     [self initData];
@@ -182,6 +184,20 @@
     }
     
     // ==========================   URL Link / Facebook     ==========================
+
+    
+    // ==========================   BEST KNOWN     ==========================
+
+    
+    if ([Utils isStringNull:self.seShopModel.recommended_information]) {
+        
+        [self removeViewFromArray:self.ibBestKnownView];
+
+    }
+    else{
+        self.lblBestKnown.text = self.seShopModel.recommended_information;
+    }
+    // ==========================   BEST KNOWN     ==========================
 
     // ==========================   feature     ==========================
     self.arrayFeatureAvailableList = self.seShopModel.arrFeatureAvaiable;

@@ -17,4 +17,6 @@ typedef void (^ViewDidDismissBlock)(MKCoordinateRegion object);
 
 @property(nonatomic,copy)ViewDidDismissBlock viewDidDismissBlock;
 -(void)initData:(MKCoordinateRegion)tempRegion;
+-(void)initData:(MKCoordinateRegion)tempRegion EnableRePin:(BOOL)repin;
+
 @end

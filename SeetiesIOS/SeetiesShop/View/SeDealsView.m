@@ -58,4 +58,26 @@
     return cell;
 }
 
+#pragma mark - Request Server
+//-(void)requestServerForSeetiShopDeals
+//{
+//    NSDictionary* param;
+//    NSString* appendString = @"56397e301c4d5be92e8b4711";
+//    
+//    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetiShopDetail param:param appendString:appendString completeHandler:^(id object) {
+//        
+//        
+//        self.seShopModel = [[ConnectionManager dataManager] seShopDetailModel];
+//        self.arrayList = self.seShopModel.arrayInformation;
+//        [self.ibTableView reloadData];
+//        [self setupViewWithData];
+//        
+//        if (self.viewDidFinishLoadBlock) {
+//            self.viewDidFinishLoadBlock();
+//        }
+//    } errorBlock:^(id object) {
+//        
+//        
+//    }];
+//}
 @end

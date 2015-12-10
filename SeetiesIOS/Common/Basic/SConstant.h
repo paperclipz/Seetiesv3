@@ -53,6 +53,7 @@ typedef enum
 
     ServerRequestTypeGetSeetiShopDetail,
     ServerRequestTypeGetSeetiShopCollection,
+    ServerRequestTypeGetSeetiShopPhoto,
     ServerRequestTypeGetSeetoShopNearbyShop,
     ServerRequestTypeGetSeetoShopRecommendations,
     

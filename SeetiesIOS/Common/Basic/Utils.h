@@ -10,6 +10,14 @@
 
 @interface Utils : NSObject
 
+
+// ======================== STTRING SWITCH CASE ========================
+#define CASE(str)                       if ([__s__ isEqualToString:(str)])
+#define SWITCH(s)                       for (NSString *__s__ = (s); ; )
+#define DEFAULT
+
+// ======================== STTRING SWITCH CASE ========================
+
 typedef void(^ButtonBlock) (id sender);
 
 typedef enum
@@ -143,5 +151,6 @@ typedef enum {
 
 #define ARRAY_LIST_SIZE 10.0f
 #define LIKES_LIST_SIZE 30.0f
+
 
 @end

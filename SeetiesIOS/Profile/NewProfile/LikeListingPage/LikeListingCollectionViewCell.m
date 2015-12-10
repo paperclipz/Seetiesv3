@@ -20,7 +20,11 @@
     
 }
 
+-(void)setNoRoundBorder
+{
+    [Utils setRoundBorder:self.ibImageView color:[UIColor clearColor] borderRadius:0];
 
+}
 -(void)initData:(PhotoModel*)model
 {
     [self.ibImageView sd_setImageWithURL:[NSURL URLWithString:model.imageURL] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {

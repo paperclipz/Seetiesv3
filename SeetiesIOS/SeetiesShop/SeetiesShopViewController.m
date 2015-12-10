@@ -53,12 +53,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self initSelfView];
-   // [self.seShopDetailView initData];
-   // [self.seCollectionView initData];
-  //  [self.seNearbySeetishop initData];
-    [self.seRecommendations initData];
+    [self.seShopDetailView initData];
+    [self.seCollectionView initData];
+    [self.seNearbySeetishop initData];
 }
 
 -(void)initSelfView
@@ -75,11 +73,10 @@
 }
 -(void)setupViews
 {
-   // [self.arrViews addObject:self.seShopDetailView];
-    [self.arrViews addObject:self.seDealsView];
-  //  [self.arrViews addObject:self.seCollectionView];
-    [self.arrViews addObject:self.seRecommendations];
-   // [self.arrViews addObject:self.seNearbySeetishop];
+    [self.arrViews addObject:self.seShopDetailView];
+    [self.arrViews addObject:self.seCollectionView];
+   // [self.arrViews addObject:self.seRecommendations];
+    [self.arrViews addObject:self.seNearbySeetishop];
 
 }
 -(void)addViews
@@ -174,8 +171,9 @@
        
         };
         
-        _seShopDetailView.didSelectPhotoAtIndexPath = ^(NSIndexPath* indexPath)
+        _seShopDetailView.didSelectMorePhotosBlock = ^(SeShopPhotoModel* model)
         {
+            
             _photoListViewController = nil;
             [weakSelf.navigationController pushViewController:weakSelf.photoListViewController animated:YES];
         };

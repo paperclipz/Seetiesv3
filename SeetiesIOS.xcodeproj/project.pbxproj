@@ -832,6 +832,7 @@
 		8A6CCEDF1C18075800BCD54E /* WalkthroughFeed2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A6CCC9D1C18075800BCD54E /* WalkthroughFeed2.png */; };
 		8A6CCEE01C18075800BCD54E /* WalkthroughPost.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A6CCC9E1C18075800BCD54E /* WalkthroughPost.png */; };
 		8A6CCEE11C18075800BCD54E /* WalkthroughPostDetails.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A6CCC9F1C18075800BCD54E /* WalkthroughPostDetails.png */; };
+		8A6CCEE41C18226000BCD54E /* SeShopPhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6CCEE31C18226000BCD54E /* SeShopPhotoModel.m */; };
 		8A7360FE1C080C7100A64824 /* UITableviewPaging.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7360FD1C080C7100A64824 /* UITableviewPaging.m */; };
 		8A7420EC1B82F7D5005DA654 /* LoadingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7420EB1B82F7D5005DA654 /* LoadingManager.m */; };
 		8A7B9CE01BBD387000D7F604 /* EnbleLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7B9CDE1BBD387000D7F604 /* EnbleLocationViewController.m */; };
@@ -2134,6 +2135,8 @@
 		8A6CCC9D1C18075800BCD54E /* WalkthroughFeed2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WalkthroughFeed2.png; sourceTree = "<group>"; };
 		8A6CCC9E1C18075800BCD54E /* WalkthroughPost.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WalkthroughPost.png; sourceTree = "<group>"; };
 		8A6CCC9F1C18075800BCD54E /* WalkthroughPostDetails.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WalkthroughPostDetails.png; sourceTree = "<group>"; };
+		8A6CCEE21C18226000BCD54E /* SeShopPhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeShopPhotoModel.h; sourceTree = "<group>"; };
+		8A6CCEE31C18226000BCD54E /* SeShopPhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeShopPhotoModel.m; sourceTree = "<group>"; };
 		8A7360FC1C080C7100A64824 /* UITableviewPaging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableviewPaging.h; sourceTree = "<group>"; };
 		8A7360FD1C080C7100A64824 /* UITableviewPaging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableviewPaging.m; sourceTree = "<group>"; };
 		8A7420EA1B82F7D5005DA654 /* LoadingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingManager.h; sourceTree = "<group>"; };
@@ -2770,6 +2773,8 @@
 			children = (
 				8A0829451C1183A800AD8CBD /* SeShopDetailModel.h */,
 				8A0829461C1183A800AD8CBD /* SeShopDetailModel.m */,
+				8A6CCEE21C18226000BCD54E /* SeShopPhotoModel.h */,
+				8A6CCEE31C18226000BCD54E /* SeShopPhotoModel.m */,
 				0B3E53941C17E031002FCFED /* SeNearbyShopModel.h */,
 				0B3E53951C17E031002FCFED /* SeNearbyShopModel.m */,
 			);
@@ -6465,6 +6470,7 @@
 				8AD6BE231B706CF30040437E /* NSMutableArray+MoveArray.m in Sources */,
 				8A3757B31B846788009DB7D4 /* SearchModel.m in Sources */,
 				8A6BB42E1BF0C338005AA1B3 /* MZFormSheetPresentationController.m in Sources */,
+				8A6CCEE41C18226000BCD54E /* SeShopPhotoModel.m in Sources */,
 				8AC8F73A1BDA414E00DEF14A /* ProfileViewController.m in Sources */,
 				8AF2C2791B9EA3B800B0A7F1 /* NSDictionary+STHelper.m in Sources */,
 				8AD6C2991B7072FB0040437E /* ExtasViewController.m in Sources */,

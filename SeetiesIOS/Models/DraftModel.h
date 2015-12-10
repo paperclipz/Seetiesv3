@@ -35,7 +35,7 @@
 @property(nonatomic,strong)OpeningPeriodModels* opening_hours;
 @property(nonatomic,strong)NSString* contact_no;
 @property(nonatomic,strong)NSString* link;
-@property(nonatomic,strong)NSString* distance;
+@property(nonatomic,assign)float distance;
 @property(nonatomic,strong)NSString* reference;
 @property(nonatomic,strong)NSString* formatted_address;
 @property(nonatomic,strong)NSDictionary* expense;
