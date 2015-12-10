@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface SeNearbySeetishop : CommonView
-
+@property(nonatomic,copy)VoidBlock viewDidFinishLoadBlock;
+-(void)initData;
 @end

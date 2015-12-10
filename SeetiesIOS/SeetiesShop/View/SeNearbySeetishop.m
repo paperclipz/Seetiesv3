@@ -11,10 +11,13 @@
     IBOutlet UIButton *ShowbackLine;
     IBOutlet UILabel *ShowSeenearbySeetishop;
     IBOutlet UIButton *SeeAllButton;
+    IBOutlet UIButton *ShowbackLineSeeAll;
     
     IBOutlet UIScrollView *MainScroll;
 
 }
+@property(nonatomic,strong)NSMutableArray* arrShop;
+@property (strong, nonatomic) SeetiShopNearbyShopModel* PostModel;
 @end
 @implementation SeNearbySeetishop
 
@@ -30,7 +33,7 @@
 {
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-    self.frame = CGRectMake(0, 0, screenWidth, 250);
+    self.frame = CGRectMake(0, 0, screenWidth, 300);
     self.backgroundColor = [UIColor clearColor];
     
     ShowbackLine.frame = CGRectMake(-1, 0, screenWidth + 2 , 50);
@@ -42,15 +45,20 @@
     ShowSeenearbySeetishop.text = @"See nearby Seetishop";
     ShowSeenearbySeetishop.backgroundColor = [UIColor clearColor];
     
-    SeeAllButton.frame = CGRectMake(screenWidth - 120, 0, 100, 50);
+    ShowbackLineSeeAll.frame = CGRectMake(-1, 250, screenWidth + 2 , 50);
+    [ShowbackLineSeeAll setTitle:@"" forState:UIControlStateNormal];
+    ShowbackLineSeeAll.backgroundColor = [UIColor whiteColor];
+    [Utils setRoundBorder:ShowbackLineSeeAll color:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
+    
+    SeeAllButton.frame = CGRectMake(0, 250, screenWidth, 50);
     [SeeAllButton setTitle:@"See all" forState:UIControlStateNormal];
     SeeAllButton.backgroundColor = [UIColor clearColor];
     
     MainScroll.delegate = self;
     MainScroll.frame = CGRectMake(0, 50, screenWidth, 200);
-    MainScroll.backgroundColor = [UIColor redColor];
+    MainScroll.backgroundColor = [UIColor whiteColor];
     
-    [self InitNearByViewData];
+    
 }
 
 -(void)InitNearByViewData{
@@ -60,11 +68,13 @@
     int GetWidth = (screenWidth - 100) / 3;
     NSLog(@"GetWidth is %d",GetWidth);
     
-    for (int i = 0 ; i < 6; i++) {
+    for (int i = 0 ; i < [self.arrShop count]; i++) {
+        ShopsModel* collModel = self.arrShop[i];
+        
         UIButton *TempButton = [[UIButton alloc]init];
         TempButton.frame = CGRectMake(25 + i * (GetWidth + 25), 0 , GetWidth ,200);
         [TempButton setTitle:@"" forState:UIControlStateNormal];
-        TempButton.backgroundColor = [UIColor yellowColor];
+        TempButton.backgroundColor = [UIColor clearColor];
         [MainScroll addSubview: TempButton];
         
         AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
@@ -73,22 +83,31 @@
         ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
         ShowUserProfileImage.layer.cornerRadius = GetWidth / 2;
         ShowUserProfileImage.layer.masksToBounds = YES;
-        ShowUserProfileImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
-        //        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
-        //        NSString *ImageData1 = [[NSString alloc]initWithFormat:@"%@",[arrUserImage objectAtIndex:i]];
-        //        if ([ImageData1 length] == 0) {
-        //            ShowUserProfileImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
-        //        }else{
-        //            NSURL *url_NearbySmall = [NSURL URLWithString:ImageData1];
-        //            ShowUserProfileImage.imageURL = url_NearbySmall;
-        //        }
+        
+        if (![collModel.arrPhotos isNull])
+        {
+            
+            PhotoModel* ImgModel = collModel.arrPhotos[0];
+            [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
+            NSString *ImageData1 = [[NSString alloc]initWithFormat:@"%@",ImgModel.imageURL];
+            if ([ImageData1 length] == 0) {
+                ShowUserProfileImage.image = [UIImage imageNamed:@"NoImage.png"];
+            }else{
+                NSURL *url_NearbySmall = [NSURL URLWithString:ImageData1];
+                ShowUserProfileImage.imageURL = url_NearbySmall;
+            }
+        }else{
+             ShowUserProfileImage.image = [UIImage imageNamed:@"NoImage.png"];
+        }
+
+
         [MainScroll addSubview:ShowUserProfileImage];
         
         UILabel *ShowTitle = [[UILabel alloc]init];
         ShowTitle.frame = CGRectMake(25 + i * (GetWidth + 25), 20 + GetWidth + 5, GetWidth, GetWidth);
-        ShowTitle.text = @"Butter + Beans";
-        ShowTitle.backgroundColor = [UIColor purpleColor];
-        ShowTitle.textColor = [UIColor blackColor];
+        ShowTitle.text = collModel.name;
+        ShowTitle.backgroundColor = [UIColor clearColor];
+        ShowTitle.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
         ShowTitle.textAlignment = NSTextAlignmentCenter;
         ShowTitle.font = [UIFont fontWithName:CustomFontNameBold size:15];
         ShowTitle.numberOfLines = 3;
@@ -99,5 +118,42 @@
         MainScroll.contentSize = CGSizeMake(GetWidth + 50 + i * (GetWidth + 25), 200);
     }
 
+}
+-(void)initData
+{
+    
+    [self requestServerForSeetiShopNearbyShop];
+}
+-(void)requestServerForSeetiShopNearbyShop
+{
+    //  NSDictionary* param;
+    NSString* appendString = @"56397e301c4d5be92e8b4711/nearby/shops";
+    NSDictionary* dict = @{@"limit":@"6",
+                           @"offset":@"1",
+                           };
+    
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetoShopNearbyShop param:dict appendString:appendString completeHandler:^(id object) {
+        
+        self.PostModel = [[ConnectionManager dataManager]seNearbyShopModel];
+        [self.arrShop addObjectsFromArray:self.PostModel.userPostData.shops];
+
+        [self InitNearByViewData];
+        
+        if (self.viewDidFinishLoadBlock) {
+            self.viewDidFinishLoadBlock();
+        }
+    } errorBlock:^(id object) {
+        
+        
+    }];
+    
+}
+-(NSMutableArray*)arrShop
+{
+    if(!_arrShop)
+    {
+        _arrShop = [NSMutableArray new];
+    }
+    return _arrShop;
 }
 @end
