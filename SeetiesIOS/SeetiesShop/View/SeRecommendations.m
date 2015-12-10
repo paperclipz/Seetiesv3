@@ -46,8 +46,6 @@
     
     Getheight = 50;
     
-    
-
     SeeAllButton.frame = CGRectMake(-1, self.frame.size.height - 70, screenWidth + 2 , 50);
     [SeeAllButton setTitle:@"See all recommendations" forState:UIControlStateNormal];
     SeeAllButton.backgroundColor = [UIColor whiteColor];
@@ -90,16 +88,6 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
     Getheight += 20;
-    
-    NSMutableArray *ArrTitle = [[NSMutableArray alloc]init];
-    [ArrTitle addObject:@""];
-    [ArrTitle addObject:@"Rekindle Cafe is the best"];
-    [ArrTitle addObject:@"weekend hangout"];
-    
-    NSMutableArray *ArrDetail = [[NSMutableArray alloc]init];
-    [ArrDetail addObject:@""];
-    [ArrDetail addObject:@""];
-    [ArrDetail addObject:@"A good place to hangout with friend in night time."];
     
     UIButton *whiteBack = [self SetupLineBtn];
     whiteBack.frame = CGRectMake(0, 0, screenWidth, 200);
@@ -184,8 +172,7 @@
             
             Getheight += 40;
         }
-        
-       // NSLog(@"model.arrPhotos == %@",model.arrPhotos);
+
         if (![model.arrPhotos isNull]) {
             
             PhotoModel* photoModel;
@@ -222,9 +209,7 @@
             }
             
             Getheight += 70;
-            
-//            PhotoModel* photoModel = model.arrPhotos[0];
-//            SLog(@"Images : %@",photoModel.imageURL);
+        
 
         }
         else{

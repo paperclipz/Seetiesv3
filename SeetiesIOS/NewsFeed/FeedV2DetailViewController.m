@@ -138,6 +138,9 @@
     
     //Seetishop ID
     NSString *GetSeetishopID;
+    NSString *GetSeetishopName;
+    NSString *GetSeetishopImage;
+    NSString *GetSeetishopAddress;
     
     NSMutableArray *ArrHashTag;
     
@@ -255,6 +258,8 @@
     NSString *GetCollectUserID;
     
     NSString *MessageCount;
+    
+    
 }
 @end
 
@@ -693,7 +698,23 @@
                 
                 NSLog(@"TotalCollectionCount is %@",TotalCollectionCount);
                 NSLog(@"GetTags is %@",GetTags);
+                
+                
+                if ([GetSeetishopID length] == 0 || [GetSeetishopID isEqualToString:@""] || [GetSeetishopID isEqualToString:@"(null)"]) {
+                
+                }else{
+                
+                    NSDictionary *SeetishopInfo = [GetAllData valueForKey:@"seetishop_info"];
+                    GetSeetishopName = [[NSString alloc]initWithFormat:@"%@",[SeetishopInfo objectForKey:@"name"]];
+                    NSDictionary *SeetishopLocation = [SeetishopInfo valueForKey:@"location"];
+                    GetSeetishopAddress = [[NSString alloc]initWithFormat:@"%@",[SeetishopLocation objectForKey:@"formatted_address"]];
+                    GetSeetishopImage = [[NSString alloc]initWithFormat:@"%@",[SeetishopInfo objectForKey:@"profile_photo"]];
+                }
+                
                 NSLog(@"GetSeetishopID is %@",GetSeetishopID);
+                NSLog(@"GetSeetishopName is %@",GetSeetishopName);
+                NSLog(@"GetSeetishopAddress is %@",GetSeetishopAddress);
+                NSLog(@"GetSeetishopImage is %@",GetSeetishopImage);
 
                 
                 
@@ -2922,20 +2943,20 @@
         ShowShopImage.layer.masksToBounds = YES;
         ShowShopImage.layer.borderColor=[[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f] CGColor];
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowShopImage];
-        ShowShopImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
-//        NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",GetUserProfileUrl];
-//        NSLog(@"FullImagesURL1 ====== %@",FullImagesURL1);
-//        if ([FullImagesURL1 length] == 0) {
-//            UserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
-//        }else{
-//            NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
-//            //NSLog(@"url_NearbyBig is %@",url_NearbyBig);
-//            UserImage.imageURL = url_UserImage;
-//        }
+       // ShowShopImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
+        NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",GetSeetishopImage];
+        NSLog(@"FullImagesURL1 ====== %@",FullImagesURL1);
+        if ([FullImagesURL1 length] == 0) {
+            UserImage.image = [UIImage imageNamed:@"NoImage.png"];
+        }else{
+            NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
+            //NSLog(@"url_NearbyBig is %@",url_NearbyBig);
+            UserImage.imageURL = url_UserImage;
+        }
         [MainScroll addSubview:ShowShopImage];
         
         UILabel *ShowUserName = [[UILabel alloc]init];
-        ShowUserName.text = @"This is Shop Name";
+        ShowUserName.text = GetSeetishopName;
         ShowUserName.frame = CGRectMake(90, GetMessageHeight + 20, ShowUserName.intrinsicContentSize.width, 20);
         ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         ShowUserName.backgroundColor = [UIColor clearColor];
@@ -2950,7 +2971,7 @@
         
         UILabel *ShowAddress = [[UILabel alloc]init];
         ShowAddress.frame = CGRectMake(90, GetMessageHeight + 45, screenWidth - 20 - 90, 30);
-        ShowAddress.text = @"2. Jalan SS 21/35, Damansara Utaman, 47400 Petaling Jaya, Selangor";
+        ShowAddress.text = GetSeetishopAddress;
         ShowAddress.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowAddress.numberOfLines = 2;
         // ShowUserName.textColor = color;
