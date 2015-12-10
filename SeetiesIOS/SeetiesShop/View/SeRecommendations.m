@@ -38,11 +38,11 @@
     ShowbackLine.frame = CGRectMake(-1, 0, screenWidth + 2 , 50);
     [ShowbackLine setTitle:@"" forState:UIControlStateNormal];
     ShowbackLine.backgroundColor = [UIColor whiteColor];
-   // [Utils setRoundBorder:ShowbackLine color:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
+    [Utils setRoundBorder:ShowbackLine color:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
     
-//    ShowRecommendationsText.frame = CGRectMake(20, 0, screenWidth - 40, 50);
-//    ShowRecommendationsText.text = @"Recommendations";
-//    ShowRecommendationsText.backgroundColor = [UIColor clearColor];
+    ShowRecommendationsText.frame = CGRectMake(20, 0, screenWidth - 40, 50);
+    ShowRecommendationsText.text = @"Recommendations";
+    ShowRecommendationsText.backgroundColor = [UIColor clearColor];
     
     Getheight = 50;
     
@@ -85,12 +85,13 @@
 
 -(void)InitRecommendationViewdata{
     
+    
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
     Getheight += 20;
     
     UIButton *whiteBack = [self SetupLineBtn];
-    whiteBack.frame = CGRectMake(0, 0, screenWidth, 200);
+    whiteBack.frame = CGRectMake(0, 50, screenWidth, 200);
     whiteBack.backgroundColor = [UIColor whiteColor];
     [self addSubview:whiteBack];
     
@@ -215,10 +216,7 @@
         else{
             SLog(@"NO Images");
         }
-        
 
-
-        
         UIButton *Line04 = [self SetupLineBtn];
         Line04.frame = CGRectMake(20, Getheight + 10, screenWidth, 1);
         [self addSubview:Line04];
@@ -228,7 +226,7 @@
         
 
     }
-    whiteBack.frame = CGRectMake(0, 0, screenWidth,  Getheight);
+    whiteBack.frame = CGRectMake(0, 50, screenWidth,  Getheight - 50);
     self.frame = CGRectMake(0, 0, screenWidth, Getheight + 50);
     SeeAllButton.frame = CGRectMake(-1, self.frame.size.height - 70, screenWidth + 2 , 50);
 }
