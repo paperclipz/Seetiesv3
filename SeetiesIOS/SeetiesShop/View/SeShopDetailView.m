@@ -342,7 +342,10 @@
     
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetiShopPhoto param:dict appendString:appendString completeHandler:^(id object) {
         self.seShopPhotoModel = [[ConnectionManager dataManager]seShopPhotoModel];
-        [self setupViewWithData];
+        
+        [UIView transitionWithView:self duration:1.0f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+            [self setupViewWithData];
+        } completion:nil];
         [self.ibCollectionView reloadData];
         
     } errorBlock:^(id object) {
