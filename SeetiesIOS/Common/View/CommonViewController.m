@@ -24,10 +24,7 @@
     if (self.navigationController) {
         [self.navigationController popViewControllerAnimated:YES];
     }
-    else
-    {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)viewDidLoad {

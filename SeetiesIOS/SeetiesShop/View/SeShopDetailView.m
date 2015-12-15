@@ -12,7 +12,7 @@
 #import "PhotoCollectionViewCell.h"
 
 #define Info_Footer_HEader_Height 44+44;
-
+#define MaxDistance 100000
 
 @interface SeShopDetailView()<UITableViewDataSource,UITableViewDelegate, UICollectionViewDataSource,UICollectionViewDelegate,MKMapViewDelegate>
 {
@@ -20,6 +20,13 @@
     __weak IBOutlet UILabel *lblPhotoCount;
     __weak IBOutlet NSLayoutConstraint *tableviewConstraint;
 }
+//================== Detail =======================//
+@property (weak, nonatomic) IBOutlet UILabel *lblShopCategory;
+@property (weak, nonatomic) IBOutlet UILabel *lblShopName;
+@property (weak, nonatomic) IBOutlet UIImageView *ibImageVerified;
+@property (weak, nonatomic) IBOutlet UILabel *lblOpenNow;
+
+//================== Detail =======================//
 
 @property (weak, nonatomic) IBOutlet UIView *ibInformationMainView;
 @property (weak, nonatomic) IBOutlet UIView *ibInformationContentView;
@@ -124,12 +131,36 @@
 
     
     
+    self.lblShopName.text = self.seShopModel.name;
+    self.lblShopCategory.text = self.seShopModel.category.title;
+    
     self.lblAddress.text = self.seShopModel.location.formatted_address;
     self.lblNearbyPublicTransport.text = self.seShopModel.nearby_public_transport;
-    self.lblDistance.text = [NSString stringWithFormat:@"%.1f KM",self.seShopModel.location.distance/100];
-    lblPhotoCount.text = [NSString stringWithFormat:@"%@ (%d)",LocalisedString(@"Photos"),self.seShopPhotoModel.total_photos];
+    if(self.seShopModel.location.distance <= MaxDistance)
+    {
+        self.lblDistance.text = [NSString stringWithFormat:@"%.1f KM",self.seShopModel.location.distance/100];
 
     }
+    else{
+        self.lblDistance.text = self.seShopModel.location.locality;
+
+    }
+    
+    lblPhotoCount.text = [NSString stringWithFormat:@"%@ (%d)",LocalisedString(@"Photos"),self.seShopPhotoModel.total_photos];
+
+    
+    self.ibImageVerified.hidden = [Utils stringIsNilOrEmpty:self.seShopModel.seetishop_id];
+    
+    if (self.seShopModel.location.opening_hours.open_now) {
+        self.lblOpenNow.textColor = UIColorFromRGB(156, 204, 101, 1);
+        self.lblOpenNow.text = LocalisedString(@"Open Now");
+    }
+    else{
+        self.lblOpenNow.textColor = UIColorFromRGB(248, 76, 76, 1);
+        self.lblOpenNow.text = LocalisedString(@"Closed");
+
+    }
+}
 
 -(float)getPositionYBelowView:(UIView*)view
 { 
