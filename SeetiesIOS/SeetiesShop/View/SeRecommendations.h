@@ -15,5 +15,5 @@ typedef void (^BtnPostsSeeAllBlock)(NSString * idn);
 @property(nonatomic,copy)VoidBlock viewDidFinishLoadBlock;
 @property(nonatomic,copy)BtnPostsDetailBlock btnPostsDetailClickedBlock;
 @property(nonatomic,copy)BtnPostsSeeAllBlock btnPostsSeeAllClickedBlock;
--(void)initData;
+-(void)initData:(NSString*)seetiesID PlaceID:(NSString*)placeID PostID:(NSString*)postID;
 @end

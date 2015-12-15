@@ -9,6 +9,8 @@
 #import "SeRecommendationsSeeAllViewController.h"
 #import "FeedV2DetailViewController.h"
 #import "ProfileViewController.h"
+#import "AddCollectionDataViewController.h"
+#import "UrlDataClass.h"
 @interface SeRecommendationsSeeAllViewController ()<UIScrollViewDelegate>{
 
     IBOutlet UIScrollView *MainScroll;
@@ -20,12 +22,25 @@
     int heightcheck;
     NSString *CheckLike;
     NSString *CheckCollect;
+    NSString *SendLikePostID;
+    NSString *GetPostID;
+    
+    //old way
+    NSURLConnection *theConnection_likes;
+    NSURLConnection *theConnection_QuickCollect;
+    UrlDataClass *DataUrl;
+    NSMutableData *webData;
+    
 }
 @property (strong, nonatomic)NSMutableArray* arrPostListing;
+@property(nonatomic,strong)NSString* seetiesID;
+@property(nonatomic,strong)NSString* placeID;
+@property(nonatomic,strong)NSString* postID;
 @property(nonatomic,strong)ProfilePostModel* userProfilePostModel;
 
 @property (nonatomic,strong)FeedV2DetailViewController* PostDetailViewController;
 @property(nonatomic,strong)ProfileViewController* profileViewController;
+@property(nonatomic,strong)ShareV2ViewController* shareV2ViewController;
 @end
 
 @implementation SeRecommendationsSeeAllViewController
@@ -34,7 +49,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self initSelfView];
-    [self initData];
+    [self initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
 }
 -(void)initSelfView
 {
@@ -47,6 +62,8 @@
     
     MainScroll.delegate = self;
     MainScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight - 64);
+    
+    DataUrl = [[UrlDataClass alloc]init];
     
     heightcheck = 10;
 }
@@ -74,7 +91,7 @@
 -(IBAction)BackButton:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
--(void)initData
+-(void)initData:(NSString*)seetiesID PlaceID:(NSString*)placeID PostID:(NSString*)postID;
 {
     [self requestServerForSeetiShopRecommendations];
     
@@ -83,10 +100,29 @@
 {
     [ShowActivity startAnimating];
     //  NSDictionary* param;
-    NSString* appendString = @"56397e301c4d5be92e8b4711/posts";
-    NSDictionary* dict = @{@"limit":@"10",
-                           @"offset":@"1",
-                           };
+//    NSString* appendString = @"56397e301c4d5be92e8b4711/posts";
+//    NSDictionary* dict = @{@"limit":@"10",
+//                           @"offset":@"1",
+//                           };
+    NSDictionary* dict;
+    NSString* appendString;
+    if (![Utils stringIsNilOrEmpty:self.seetiesID]) {
+        
+        dict = @{@"limit":@"10",
+                 @"offset":@"1",
+                 };
+        appendString = [[NSString alloc]initWithFormat:@"%@/posts",self.seetiesID];
+        
+    }
+    else{
+        
+        dict = @{@"limit":@"10",
+                 @"offset":@"1",
+                 };
+        
+        appendString = [[NSString alloc]initWithFormat:@"%@/posts",self.placeID];
+        
+    }
     
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetoShopRecommendations param:dict appendString:appendString completeHandler:^(id object) {
         self.userProfilePostModel = [[ConnectionManager dataManager]userProfilePostModel];
@@ -458,10 +494,100 @@
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:model.user_info.uid];
     [self.navigationController pushViewController:self.profileViewController animated:YES];
 }
--(IBAction)LikeButtonOnClick:(id)sender{}
--(IBAction)ShareButtonOnClick:(id)sender{}
--(IBAction)CollectButtonOnClick:(id)sender{}
--(IBAction)AddCollectButtonOnClick:(id)sender{}
+-(IBAction)LikeButtonOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    DraftModel* model = self.arrPostListing[getbuttonIDN];
+    
+    UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
+    buttonWithTag1.selected = !buttonWithTag1.selected;
+    
+    CheckLike = [[NSString alloc]initWithFormat:@"%@",model.like];
+    SendLikePostID = [[NSString alloc]initWithFormat:@"%@",model.post_id];
+    
+    
+
+    
+    if ([CheckLike isEqualToString:@"0"]) {
+        NSLog(@"send like to server");
+        [self SendPostLike];
+        model.like = [model.like stringByReplacingOccurrencesOfString:@"0"
+                                                           withString:@"1"];
+    }else{
+        NSLog(@"send unlike to server");
+        [self GetUnLikeData];
+        model.like = [model.like stringByReplacingOccurrencesOfString:@"1"
+                                                           withString:@"0"];
+    }
+
+}
+-(IBAction)ShareButtonOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    DraftModel* model = self.arrPostListing[getbuttonIDN];
+    
+    NSString* currentlangCode = [Utils getLanguageCodeFromLocale:[[LanguageManager sharedLanguageManager]getSelectedLocale].languageCode];
+    NSString *TestTitle;
+    NSString *TestDetail;
+    if (![model.arrPost isNull]) {
+        
+        Post* postModel;
+        for (int i = 0 ; i< model.arrPost.count; i++) {
+            postModel = model.arrPost[i];
+            
+            if ([postModel.language isEqualToString:currentlangCode]) {
+                TestTitle = model.contents[currentlangCode][@"title"];
+                TestDetail = model.contents[currentlangCode][@"message"];
+                break;
+            }
+        }
+        postModel = model.arrPost[0];
+        
+        TestTitle = postModel.title;
+        TestDetail = postModel.message;
+    }
+    PhotoModel* photoModel = model.arrPhotos[0];
+    
+    _shareV2ViewController = nil;
+    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
+    [naviVC setNavigationBarHidden:YES animated:NO];
+    [self.shareV2ViewController share:@"" title:TestTitle imagURL:photoModel.imageURL shareType:ShareTypeFacebookPost shareID:model.post_id];
+    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
+    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
+    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
+    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
+    [self presentViewController:formSheetController animated:YES completion:nil];
+}
+-(IBAction)CollectButtonOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    DraftModel* model = self.arrPostListing[getbuttonIDN];
+    PhotoModel* photoModel = model.arrPhotos[0];
+    
+    GetPostID = [[NSString alloc]initWithFormat:@"%@",model.post_id];
+    CheckCollect = [[NSString alloc]initWithFormat:@"%@",model.collect];
+    
+    if ([CheckCollect isEqualToString:@"0"]) {
+        model.collect = [model.collect stringByReplacingOccurrencesOfString:@"0"
+                                                           withString:@"1"];
+        UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
+        buttonWithTag1.selected = !buttonWithTag1.selected;
+        
+        [self SendQuickCollect];
+    }else{
+        AddCollectionDataViewController *AddCollectionDataView = [[AddCollectionDataViewController alloc]init];
+        [self presentViewController:AddCollectionDataView animated:YES completion:nil];
+        //[self.view.window.rootViewController presentViewController:AddCollectionDataView animated:YES completion:nil];
+        [AddCollectionDataView GetPostID:model.post_id GetImageData:photoModel.imageURL];
+    }
+}
+-(IBAction)AddCollectButtonOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    DraftModel* model = self.arrPostListing[getbuttonIDN];
+    PhotoModel* photoModel = model.arrPhotos[0];
+    
+    AddCollectionDataViewController *AddCollectionDataView = [[AddCollectionDataViewController alloc]init];
+    [self presentViewController:AddCollectionDataView animated:YES completion:nil];
+    //[self.view.window.rootViewController presentViewController:AddCollectionDataView animated:YES completion:nil];
+    [AddCollectionDataView GetPostID:model.post_id GetImageData:photoModel.imageURL];
+}
 
 
 -(FeedV2DetailViewController*)PostDetailViewController
@@ -477,5 +603,143 @@
         _profileViewController = [ProfileViewController new];
     
     return _profileViewController;
+}
+-(ShareV2ViewController*)shareV2ViewController
+{
+    if (!_shareV2ViewController) {
+        _shareV2ViewController = [[ShareV2ViewController alloc]initWithNibName:@"ShareV2ViewController" bundle:nil];
+    }
+    
+    return _shareV2ViewController;
+}
+-(void)GetUnLikeData{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    
+    //Server Address URL
+    NSString *urlString = [NSString stringWithFormat:@"%@post/%@/like?token=%@",DataUrl.UserWallpaper_Url,SendLikePostID,GetExpertToken];
+    NSLog(@"urlString is %@",urlString);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"DELETE"];
+    
+    theConnection_likes = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    if(theConnection_likes) {
+        //  NSLog(@"Connection Successful");
+        webData = [NSMutableData data];
+    } else {
+        
+    }
+    
+}
+-(void)SendPostLike{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    
+    //Server Address URL
+    NSString *urlString = [NSString stringWithFormat:@"%@post/%@/like",DataUrl.UserWallpaper_Url,SendLikePostID];
+    NSLog(@"urlString is %@",urlString);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
+    
+    NSMutableData *body = [NSMutableData data];
+    
+    NSString *boundary = @"---------------------------14737809831466499882746641449";
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+    [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    //parameter second
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    //Attaching the key name @"parameter_second" to the post body
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"token\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    //Attaching the content to be posted ( ParameterSecond )
+    [body appendData:[[NSString stringWithFormat:@"%@",GetExpertToken] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    
+    //close form
+    [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSLog(@"Request  = %@",[[NSString alloc] initWithData:body encoding:NSUTF8StringEncoding]);
+    
+    //setting the body of the post to the reqeust
+    [request setHTTPBody:body];
+    
+    theConnection_likes = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    if(theConnection_likes) {
+        //  NSLog(@"Connection Successful");
+        webData = [NSMutableData data];
+    } else {
+        
+    }
+}
+-(void)SendQuickCollect{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *GetUseruid = [defaults objectForKey:@"Useruid"];
+    //Server Address URL
+    NSString *urlString = [NSString stringWithFormat:@"%@%@/collections/0/collect",DataUrl.UserWallpaper_Url,GetUseruid];
+    NSLog(@"Send Quick Collection urlString is %@",urlString);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"PUT"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    
+    
+    NSString *dataString = [[NSString alloc]initWithFormat:@"token=%@&posts[0][id]=%@",GetExpertToken,GetPostID];
+    
+    NSData *postBodyData = [dataString dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPBody:postBodyData];
+    
+    theConnection_QuickCollect = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    if(theConnection_QuickCollect) {
+        //  NSLog(@"Connection Successful");
+        webData = [NSMutableData data];
+    } else {
+        
+    }
+}
+-(void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    if (connection == theConnection_likes) {
+        NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+        NSLog(@"Send post like return get data to server ===== %@",GetData);
+        
+        NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *myError = nil;
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
+        NSLog(@"Expert Json = %@",res);
+        
+        NSString *statusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
+        NSLog(@"statusString is %@",statusString);
+        
+        if ([statusString isEqualToString:@"ok"]) {
+            //NSDictionary *GetAllData = [res valueForKey:@"data"];
+            // NSLog(@"GetAllData is %@",GetAllData);
+            
+        }
+    }else if(connection == theConnection_QuickCollect){
+        NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+        NSLog(@"Quick Collection return get data to server ===== %@",GetData);
+        
+        NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *myError = nil;
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
+        NSLog(@"Expert Json = %@",res);
+        
+        
+        NSString *statusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
+        NSLog(@"statusString is %@",statusString);
+        
+        if ([statusString isEqualToString:@"ok"]) {
+            [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success add to Collections" type:TSMessageNotificationTypeSuccess];
+        }
+    }
+
+
 }
 @end

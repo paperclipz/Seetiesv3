@@ -17,6 +17,10 @@
 }
 @property (strong, nonatomic)NSMutableArray* arrPostListing;
 @property(nonatomic,strong)ProfilePostModel* userProfilePostModel;
+
+@property(nonatomic,strong)NSString* seetiesID;
+@property(nonatomic,strong)NSString* placeID;
+@property(nonatomic,strong)NSString* postID;
 @end
 @implementation SeRecommendations
 
@@ -246,18 +250,42 @@
     SeeAllButton.frame = CGRectMake(-1, self.frame.size.height - 70, screenWidth + 2 , 50);
     [self addSubview:SeeAllButton];
 }
--(void)initData
+-(void)initData:(NSString*)seetiesID PlaceID:(NSString*)placeID PostID:(NSString*)postID
 {
+    
+    self.seetiesID = seetiesID;
+    self.placeID = placeID;
+    self.postID = postID;
+    
     [self requestServerForSeetiShopRecommendations];
 
 }
 -(void)requestServerForSeetiShopRecommendations
 {
-    //  NSDictionary* param;
-    NSString* appendString = @"56397e301c4d5be92e8b4711/posts";
-    NSDictionary* dict = @{@"limit":@"4",
-                           @"offset":@"1",
-                           };
+//    //  NSDictionary* param;
+//    NSString* appendString = @"56397e301c4d5be92e8b4711/posts";
+//    NSDictionary* dict = @{@"limit":@"4",
+//                           @"offset":@"1",
+//                           };
+    NSDictionary* dict;
+    NSString* appendString;
+    if (![Utils stringIsNilOrEmpty:self.seetiesID]) {
+        
+        dict = @{@"limit":@"4",
+                 @"offset":@"1",
+                 };
+        appendString = [[NSString alloc]initWithFormat:@"%@/posts",self.seetiesID];
+        
+    }
+    else{
+        
+        dict = @{@"limit":@"4",
+                 @"offset":@"1",
+                 };
+        
+        appendString = [[NSString alloc]initWithFormat:@"%@/posts",self.placeID];
+        
+    }
     
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetoShopRecommendations param:dict appendString:appendString completeHandler:^(id object) {
         self.userProfilePostModel = [[ConnectionManager dataManager]userProfilePostModel];
@@ -296,7 +324,15 @@
 }
 -(IBAction)SeeAllButtonOnClick:(id)sender{
     if (self.btnPostsSeeAllClickedBlock) {
-        self.btnPostsSeeAllClickedBlock(@"SeetiShopIDN");
+        if (![Utils stringIsNilOrEmpty:self.seetiesID]) {
+            self.btnPostsSeeAllClickedBlock(self.seetiesID);
+            
+        }
+        else{
+            self.btnPostsSeeAllClickedBlock(self.placeID);
+            
+        }
+        
     }
 }
 @end

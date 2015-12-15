@@ -76,8 +76,8 @@
     [super viewDidLoad];
     [self initSelfView];
     [self.seShopDetailView initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
-    [self.seCollectionView initData];
-    [self.seRecommendations initData];
+    [self.seCollectionView initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
+    [self.seRecommendations initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
     [self.seNearbySeetishop initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
 }
 

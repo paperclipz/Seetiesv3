@@ -17,6 +17,10 @@
 }
 @property(nonatomic,strong)NSMutableArray* arrCollections;
 @property(nonatomic,strong)CollectionsModel* SeetiShopCollectionsModel;
+
+@property(nonatomic,strong)NSString* seetiesID;
+@property(nonatomic,strong)NSString* placeID;
+@property(nonatomic,strong)NSString* postID;
 @end
 @implementation SeCollectionView
 /*
@@ -51,8 +55,12 @@
 
   
 }
--(void)initData
+-(void)initData:(NSString*)seetiesID PlaceID:(NSString*)placeID PostID:(NSString*)postID
 {
+    
+    self.seetiesID = seetiesID;
+    self.placeID = placeID;
+    self.postID = postID;
 
     [self requestServerForSeetiShopCollection];
     [self DrawView];
@@ -224,7 +232,7 @@
         [QuickCollectButtonLocalQR.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
         QuickCollectButtonLocalQR.backgroundColor = [UIColor clearColor];
         QuickCollectButtonLocalQR.frame = CGRectMake((screenWidth - 45 - 115) + i * (screenWidth - 40), 186, 115, 38);//115,38
-        //[QuickCollectButtonLocalQR addTarget:self action:@selector(CollectionFollowingButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [QuickCollectButtonLocalQR addTarget:self action:@selector(CollectionFollowingButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
         QuickCollectButtonLocalQR.tag = i;
         [MainScroll addSubview:QuickCollectButtonLocalQR];
         
@@ -234,10 +242,30 @@
 -(void)requestServerForSeetiShopCollection
 {
   //  NSDictionary* param;
-    NSString* appendString = @"56397e301c4d5be92e8b4711/collections";
-    NSDictionary* dict = @{@"limit":@"5",
-                           @"offset":@"1",
-                           };
+//    NSString* appendString = @"56397e301c4d5be92e8b4711/collections";
+//    NSDictionary* dict = @{@"limit":@"5",
+//                           @"offset":@"1",
+//                           };
+    
+    NSDictionary* dict;
+    NSString* appendString;
+    if (![Utils stringIsNilOrEmpty:self.seetiesID]) {
+        
+        dict = @{@"limit":@"6",
+                 @"offset":@"1",
+                 };
+        appendString = [[NSString alloc]initWithFormat:@"%@/collections",self.seetiesID];
+        
+    }
+    else{
+        
+        dict = @{@"limit":@"6",
+                 @"offset":@"1",
+                 };
+
+        appendString = [[NSString alloc]initWithFormat:@"%@/collections",self.placeID];
+        
+    }
 
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetiShopCollection param:dict appendString:appendString completeHandler:^(id object) {
 
@@ -284,6 +312,9 @@
     if (self.btnCollectionSeeAllClickedBlock) {
         self.btnCollectionSeeAllClickedBlock(@"SeetiShopIDN");
     }
+}
+-(IBAction)CollectionFollowingButtonOnClick:(id)sender{
+
 }
 
 @end

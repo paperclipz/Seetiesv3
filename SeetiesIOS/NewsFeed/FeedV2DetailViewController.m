@@ -2729,7 +2729,7 @@
         [DirectionsButton setBackgroundColor:[UIColor clearColor]];
         [DirectionsButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
         [DirectionsButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
-        [DirectionsButton addTarget:self action:@selector(OpenAddressButton:) forControlEvents:UIControlEventTouchUpInside];
+        [DirectionsButton addTarget:self action:@selector(OpenMapButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
         DirectionsButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
         
         [MainScroll addSubview:DirectionsButton];
@@ -4135,6 +4135,56 @@
             [ShowActivity startAnimating];
             [self GetTranslateData];
         }
+    }else if(actionSheet.tag == 80000){
+        NSString *latlong = [[NSString alloc]initWithFormat:@"%@,%@",GetLat,GetLng];
+                switch (buttonIndex) {
+                    case 0:{
+                        NSLog(@"Waze");
+                        if ([[UIApplication sharedApplication]
+                             canOpenURL:[NSURL URLWithString:@"waze://"]]) {
+                            
+                            // Waze is installed. Launch Waze and start navigation
+                            NSString *urlStr =
+                            [NSString stringWithFormat:@"waze://?ll=%@&navigate=yes",
+                             latlong];
+                            
+                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
+                            
+                        } else {
+                            
+                            // Waze is not installed. Launch AppStore to install Waze app
+                            [[UIApplication sharedApplication] openURL:[NSURL
+                                                                        URLWithString:@"http://itunes.apple.com/us/app/id323229106"]];
+                        }
+                    }
+                        break;
+                    case 1:{
+                        NSLog(@"Google Maps");
+                        if ([[UIApplication sharedApplication] canOpenURL:
+                             [NSURL URLWithString:@"comgooglemaps://"]]) {
+                            NSString *url = [NSString stringWithFormat: @"comgooglemaps://?q=%@&zoom=10",
+                                             latlong];
+                            
+                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+                        } else {
+                            NSLog(@"Can't use comgooglemaps://");
+                            NSString *url = [NSString stringWithFormat: @"http://maps.apple.com?q=%@",
+                                             [latlong stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+                        }
+                    }
+                        break;
+                    case 2:{
+                        NSLog(@"Apple Maps");
+                        NSString *url = [NSString stringWithFormat: @"http://maps.apple.com?q=%@",
+                                         [latlong stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+                    }
+                        break;
+                    default:
+                        break;
+                }
+        
     }
 }
 // A function for parsing URL parameters returned by the Feed Dialog.
@@ -4218,16 +4268,16 @@
 -(IBAction)OpenAddressButton:(id)sender{
 
     NSLog(@"Open address click");
-    LocationFeedDetailViewController *LocationFeedDetailView = [[LocationFeedDetailViewController alloc]init];
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromRight;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self presentViewController:LocationFeedDetailView animated:NO completion:nil];
-    [LocationFeedDetailView GetLat:GetLat GetLong:GetLng GetFirstImage:[UrlArray objectAtIndex:0] GetTitle:GetPlaceName GetLocation:GetPlaceFormattedAddress ];
-    [LocationFeedDetailView GetLink:GetPlaceLink GetContact:GetContactNo GetOpeningHour:GetOpenNow GetPrice:GetExpense GetPeriods:GetPeriods];
+//    LocationFeedDetailViewController *LocationFeedDetailView = [[LocationFeedDetailViewController alloc]init];
+//    CATransition *transition = [CATransition animation];
+//    transition.duration = 0.2;
+//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    transition.type = kCATransitionPush;
+//    transition.subtype = kCATransitionFromRight;
+//    [self.view.window.layer addAnimation:transition forKey:nil];
+//    [self presentViewController:LocationFeedDetailView animated:NO completion:nil];
+//    [LocationFeedDetailView GetLat:GetLat GetLong:GetLng GetFirstImage:[UrlArray objectAtIndex:0] GetTitle:GetPlaceName GetLocation:GetPlaceFormattedAddress ];
+//    [LocationFeedDetailView GetLink:GetPlaceLink GetContact:GetContactNo GetOpeningHour:GetOpenNow GetPrice:GetExpense GetPeriods:GetPeriods];
 }
 -(IBAction)OpenLinkButton:(id)sender{
     
@@ -4824,6 +4874,15 @@
     }
     return _seetiesShopViewController;
 }
+-(IBAction)OpenMapButtonOnClick:(id)sender{
+    UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:LocalisedString(@"Cancel") destructiveButtonTitle:nil otherButtonTitles:
+                            @"Waze",
+                            @"Google Maps",
+                            @"Apple Maps",
+                            nil];
+    popup.tag = 80000;
+    [popup showInView:self.view];
+}
 -(IBAction)ViewSeetishopButtonOnClick:(id)sender{
 
     NSLog(@"ViewSeetishopButtonOnClick and SeetishopID = %@",GetSeetishopID);
@@ -4833,4 +4892,5 @@
     [nav setNavigationBarHidden:YES];
     [self presentViewController:nav animated:YES completion:nil];
 }
+
 @end
