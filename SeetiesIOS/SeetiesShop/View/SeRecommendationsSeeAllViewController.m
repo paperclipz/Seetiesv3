@@ -33,6 +33,8 @@
     
 }
 @property (strong, nonatomic)NSMutableArray* arrPostListing;
+@property (strong, nonatomic)NSMutableArray* arrPostLike;
+@property (strong, nonatomic)NSMutableArray* arrPostCollect;
 @property(nonatomic,strong)NSString* seetiesID;
 @property(nonatomic,strong)NSString* placeID;
 @property(nonatomic,strong)NSString* postID;
@@ -64,6 +66,9 @@
     MainScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight - 64);
     
     DataUrl = [[UrlDataClass alloc]init];
+    
+    self.arrPostLike = [[NSMutableArray alloc]init];
+    self.arrPostCollect = [[NSMutableArray alloc]init];
     
     heightcheck = 10;
 }
@@ -150,6 +155,8 @@
 
     for (int i = 0; i < [self.arrPostListing count]; i++) {
         DraftModel* model = self.arrPostListing[i];
+        [self.arrPostLike addObject:model.like];
+        [self.arrPostCollect addObject:model.collect];
         
         NSInteger TempHeight = heightcheck;
         int TempCountWhiteHeight = 0;
@@ -510,13 +517,11 @@
     if ([CheckLike isEqualToString:@"0"]) {
         NSLog(@"send like to server");
         [self SendPostLike];
-        model.like = [model.like stringByReplacingOccurrencesOfString:@"0"
-                                                           withString:@"1"];
+        [self.arrPostLike replaceObjectAtIndex:getbuttonIDN withObject:@"1"];
     }else{
         NSLog(@"send unlike to server");
         [self GetUnLikeData];
-        model.like = [model.like stringByReplacingOccurrencesOfString:@"1"
-                                                           withString:@"0"];
+        [self.arrPostLike replaceObjectAtIndex:getbuttonIDN withObject:@"0"];
     }
 
 }
@@ -565,8 +570,7 @@
     CheckCollect = [[NSString alloc]initWithFormat:@"%@",model.collect];
     
     if ([CheckCollect isEqualToString:@"0"]) {
-        model.collect = [model.collect stringByReplacingOccurrencesOfString:@"0"
-                                                           withString:@"1"];
+        [self.arrPostCollect replaceObjectAtIndex:getbuttonIDN withObject:@"1"];
         UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
         buttonWithTag1.selected = !buttonWithTag1.selected;
         
