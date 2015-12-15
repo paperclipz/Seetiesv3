@@ -1100,6 +1100,7 @@
 		8AD6C8871B784BD50040437E /* ExploreCountryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6C8861B784BD50040437E /* ExploreCountryModel.m */; };
 		8AE6427E1BD62641003ACA56 /* ProfileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AE6427D1BD62641003ACA56 /* ProfileModel.m */; };
 		8AEB5F5B1BC38FF200A804B4 /* TagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AEB5F5A1BC38FF200A804B4 /* TagModel.m */; };
+		8AEDBF6C1C1FD92E000BD2FF /* SeShopCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AEDBF6B1C1FD92E000BD2FF /* SeShopCategoryModel.m */; };
 		8AF2C2791B9EA3B800B0A7F1 /* NSDictionary+STHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF2C2761B9EA3B800B0A7F1 /* NSDictionary+STHelper.m */; };
 		8AF2C27A1B9EA3B800B0A7F1 /* NSMutableDictionary+STHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF2C2781B9EA3B800B0A7F1 /* NSMutableDictionary+STHelper.m */; };
 		8AF2C2CF1BA1654200B0A7F1 /* DraftModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF2C2CE1BA1654200B0A7F1 /* DraftModel.m */; };
@@ -2566,6 +2567,8 @@
 		8AE6427D1BD62641003ACA56 /* ProfileModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileModel.m; sourceTree = "<group>"; };
 		8AEB5F591BC38FF200A804B4 /* TagModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagModel.h; sourceTree = "<group>"; };
 		8AEB5F5A1BC38FF200A804B4 /* TagModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagModel.m; sourceTree = "<group>"; };
+		8AEDBF6A1C1FD92E000BD2FF /* SeShopCategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeShopCategoryModel.h; sourceTree = "<group>"; };
+		8AEDBF6B1C1FD92E000BD2FF /* SeShopCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeShopCategoryModel.m; sourceTree = "<group>"; };
 		8AF2C2741B9EA3B800B0A7F1 /* NSDictionary+STHelper-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+STHelper-Prefix.pch"; sourceTree = "<group>"; };
 		8AF2C2751B9EA3B800B0A7F1 /* NSDictionary+STHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+STHelper.h"; sourceTree = "<group>"; };
 		8AF2C2761B9EA3B800B0A7F1 /* NSDictionary+STHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+STHelper.m"; sourceTree = "<group>"; };
@@ -2787,6 +2790,8 @@
 				8A6CCEE31C18226000BCD54E /* SeShopPhotoModel.m */,
 				0B3E53941C17E031002FCFED /* SeNearbyShopModel.h */,
 				0B3E53951C17E031002FCFED /* SeNearbyShopModel.m */,
+				8AEDBF6A1C1FD92E000BD2FF /* SeShopCategoryModel.h */,
+				8AEDBF6B1C1FD92E000BD2FF /* SeShopCategoryModel.m */,
 			);
 			name = SeetiShopModel;
 			sourceTree = "<group>";
@@ -6594,6 +6599,7 @@
 				8AD6BA661B705DF20040437E /* ViewController.m in Sources */,
 				8A3409D01B8B0DCB009B66C3 /* UIImage+RoundedCorner.m in Sources */,
 				8A114CD71BE73F5D006AE3F0 /* CommonViewController.m in Sources */,
+				8AEDBF6C1C1FD92E000BD2FF /* SeShopCategoryModel.m in Sources */,
 				8A0829401C1046F200AD8CBD /* UIView+draggable.m in Sources */,
 				8A114CC31BE73F5D006AE3F0 /* NSDictionary+RequestEncoding.m in Sources */,
 				8A114CA71BE73F5D006AE3F0 /* UIImage+PECrop.m in Sources */,

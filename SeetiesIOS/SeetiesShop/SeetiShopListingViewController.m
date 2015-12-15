@@ -8,9 +8,13 @@
 
 #import "SeetiShopListingViewController.h"
 #import "SeetiShopListTableViewCell.h"
+#import "SeetiesShopViewController.h"
+@class SeetiesShopViewController;
 
 
 @interface SeetiShopListingViewController ()<UITableViewDataSource,UITableViewDelegate>
+@property(nonatomic,strong)SeetiesShopViewController* seetiesShopViewController;
+
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 @property (strong, nonatomic)SeetiShopsModel *seetiShopsModel;
 
@@ -56,9 +60,19 @@
         [cell.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:photoModel.imageURL] completed:nil];
 
     }
+    cell.lblTitle.text = model.name;
+    cell.lblDesc.text = [NSString stringWithFormat:@"%f • %@",model.location.distance,model.location.formatted_address];
    
     
     return cell;
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    _seetiesShopViewController = nil;
+    
+    [self.navigationController pushViewController:self.seetiesShopViewController animated:YES];
 }
 
 
@@ -66,6 +80,18 @@
 {
     [self requestServerForSeetiShopNearbyShop];
 }
+
+#pragma mark - Declaration
+
+-(SeetiesShopViewController*)seetiesShopViewController
+{
+    if (!_seetiesShopViewController) {
+        _seetiesShopViewController = [SeetiesShopViewController new];
+    }
+    return _seetiesShopViewController;
+    
+}
+
 #pragma mark - Server Request
 
 -(void)requestServerForSeetiShopNearbyShop

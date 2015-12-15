@@ -55,11 +55,6 @@
 @implementation SeetiesShopViewController
 
 #pragma mark - IBACTION
-- (IBAction)btnBackClicked:(id)sender {
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];

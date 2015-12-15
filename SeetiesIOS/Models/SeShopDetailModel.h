@@ -10,10 +10,12 @@
 #import "DraftModel.h"
 #import "PriceModel.h"
 #import "OpeningPeriodModel.h"
+#import "SeShopCategoryModel.h"
 
 @class DraftModel;
 
 @interface SeShopDetailModel : Model
+@property(nonatomic,strong)NSString* name;
 
 @property(nonatomic,strong)NSString* seetishop_id;
 @property(nonatomic,strong)NSString* recommended_information;//best know for
@@ -27,6 +29,8 @@
 @property(nonatomic,strong)NSArray* arrFeatureUnavaiable;
 
 @property(nonatomic,readonly)NSArray* arrayInformation;
+@property(nonatomic,strong)SeShopCategoryModel* category;
+
 -(void)process;
 
 @end
