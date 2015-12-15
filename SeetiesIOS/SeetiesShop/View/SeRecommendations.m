@@ -118,7 +118,8 @@
         UILabel *ShowUsername = [self SetupLabel];
         ShowUsername.frame = CGRectMake(80, Getheight, screenWidth - 100, 40);
         ShowUsername.text = model.user_info.name;
-        ShowUsername.font = [UIFont fontWithName:CustomFontName size:15];
+        ShowUsername.font = [UIFont fontWithName:CustomFontName size:13];
+        ShowUsername.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
         [self addSubview:ShowUsername];
         
         Getheight += 40;
@@ -163,7 +164,7 @@
             UILabel *ShowDetail = [self SetupLabel];
             ShowDetail.frame = CGRectMake(80, Getheight, screenWidth - 100, 20);
             ShowDetail.text = TestDetail;
-            ShowDetail.textColor = [UIColor blackColor];
+            ShowDetail.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
             ShowDetail.font = [UIFont fontWithName:CustomFontName size:15];
             [self addSubview:ShowDetail];
             
@@ -171,7 +172,7 @@
             ShowReadMore.frame = CGRectMake(80, Getheight + 20, screenWidth - 100, 20);
             ShowReadMore.text = @"Read more...";
             ShowReadMore.textColor = [UIColor colorWithRed:41.0f/255.0f green:182.0f/255.0f blue:246.0f/255.0f alpha:1.0f];
-            ShowReadMore.font = [UIFont fontWithName:CustomFontNameBold size:15];
+            ShowReadMore.font = [UIFont fontWithName:CustomFontNameBold size:14];
             [self addSubview:ShowReadMore];
             
             Getheight += 40;

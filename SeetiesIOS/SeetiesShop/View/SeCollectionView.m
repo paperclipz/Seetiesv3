@@ -180,7 +180,7 @@
         [MainScroll addSubview:ShowOverlayImg];
 
         
-        UIButton *OpenCollectionButton = [[UIButton alloc]init];
+        UIButton *OpenCollectionButton = [self setupButton];
         OpenCollectionButton.frame = CGRectMake(10 + i * (screenWidth - 40), 20 , screenWidth - 50 ,220);
         [OpenCollectionButton setTitle:@"" forState:UIControlStateNormal];
         OpenCollectionButton.backgroundColor = [UIColor clearColor];
@@ -195,8 +195,8 @@
         UILabel *ShowCollectionTitle = [self SetupLabel];
         ShowCollectionTitle.frame = CGRectMake(25 + i * (screenWidth - 40), 180, screenWidth - 190 , 20);
         ShowCollectionTitle.text = collModel.name;
-        ShowCollectionTitle.textColor = [UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f blue:51.0f/255.0f alpha:1.0f];
-        ShowCollectionTitle.font = [UIFont fontWithName:CustomFontNameBold size:16];
+        ShowCollectionTitle.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+        ShowCollectionTitle.font = [UIFont fontWithName:CustomFontNameBold size:15];
         [MainScroll addSubview:ShowCollectionTitle];
         
         
@@ -206,7 +206,7 @@
         ShowCollectionCount.frame = CGRectMake(25 + i * (screenWidth - 40), 200, screenWidth - 190, 20);
         ShowCollectionCount.text = TempCount;
         ShowCollectionCount.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
-        ShowCollectionCount.font = [UIFont fontWithName:CustomFontName size:14];
+        ShowCollectionCount.font = [UIFont fontWithName:CustomFontName size:13];
         [MainScroll addSubview:ShowCollectionCount];
         
         
