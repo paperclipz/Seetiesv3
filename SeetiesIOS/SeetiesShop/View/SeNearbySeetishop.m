@@ -18,6 +18,10 @@
 }
 @property(nonatomic,strong)NSMutableArray* arrShop;
 @property (strong, nonatomic) SeetiShopsModel* seetiShopsModel;
+@property(nonatomic,strong)NSString* seetiesID;
+@property(nonatomic,strong)NSString* placeID;
+@property(nonatomic,strong)NSString* postID;
+
 @end
 @implementation SeNearbySeetishop
 
@@ -117,8 +121,11 @@
     }
 
 }
--(void)initData
+-(void)initData:(NSString*)seetiesID PlaceID:(NSString*)placeID PostID:(NSString*)postID
 {
+    self.seetiesID = seetiesID;
+    self.placeID = placeID;
+    self.postID = postID;
     
     [self requestServerForSeetiShopNearbyShop];
 }

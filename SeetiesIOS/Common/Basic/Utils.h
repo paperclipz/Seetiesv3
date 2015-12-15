@@ -77,6 +77,13 @@ typedef enum {
     
 }SeetiesShopType;
 
+//typedef enum {
+//    
+//    IsSeetiesShop,
+//    NonSeetiesShop,
+//    
+//}SeetiesShopVerifyType;
+
 +(BOOL)isLogin;
 +(void)setIsLogin;
 +(NSString*)getAppToken;

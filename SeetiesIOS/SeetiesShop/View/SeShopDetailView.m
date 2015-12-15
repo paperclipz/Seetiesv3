@@ -16,7 +16,7 @@
 
 @interface SeShopDetailView()<UITableViewDataSource,UITableViewDelegate, UICollectionViewDataSource,UICollectionViewDelegate,MKMapViewDelegate>
 {
-    
+   
     __weak IBOutlet UILabel *lblPhotoCount;
     __weak IBOutlet NSLayoutConstraint *tableviewConstraint;
 }
@@ -54,6 +54,11 @@
 // ================== MODEL ======================/
 @property(nonatomic,strong)SeShopDetailModel* seShopModel;
 @property(nonatomic,strong)SeShopPhotoModel* seShopPhotoModel;
+
+
+@property(nonatomic,strong)NSString* seetiesID;
+@property(nonatomic,strong)NSString* placeID;
+@property(nonatomic,strong)NSString* postID;
 
 @end
 
@@ -278,8 +283,13 @@
 
 #pragma mark - Server
 
--(void)initData
+-(void)initData:(NSString*)seetiesID PlaceID:(NSString*)placeID PostID:(NSString*)postID
 {
+
+    self.seetiesID = seetiesID;
+    self.placeID = placeID;
+    self.postID = postID;
+    
     [self.ibProfileImageView sd_setImageCroppedWithURL:[NSURL URLWithString:@"http://www.bangsarbabe.com/wp-content/uploads/2014/05/81.jpg"] completed:^(UIImage *image){
         
         if (self.imageDidFinishLoadBlock) {
@@ -308,14 +318,30 @@
 
 -(void)requestServerForSeetiShopDetail
 {
-    NSDictionary* dict = @{@"token":[Utils getAppToken],
-                           @"seetishop_id":@"56397e301c4d5be92e8b4711",
-                           @"post_id" : @"56603c9af9df245c7b8b4573",
-                           @"lat" : @"1.934400",
-                           @"lng" : @"103.358727",
-                           };
+    NSDictionary* dict;
+    NSString* appendString;
+    if (![Utils stringIsNilOrEmpty:self.seetiesID]) {
+        
+        dict = @{@"token":[Utils getAppToken],
+                               @"seetishop_id":self.seetiesID,
+                               @"lat" : @"1.934400",
+                               @"lng" : @"103.358727",
+                               };
+        appendString = self.seetiesID;
+
+    }
+    else{
+       
+        dict = @{@"token":[Utils getAppToken],
+                               @"place_id":self.placeID,
+                               @"post_id" : self.postID,
+                               @"lat" : @"1.934400",
+                               @"lng" : @"103.358727",
+                               };
+        appendString = self.placeID;
+
+    }
     
-    NSString* appendString = @"56397e301c4d5be92e8b4711";
     
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetiShopDetail param:dict appendString:appendString completeHandler:^(id object) {
 
@@ -335,10 +361,28 @@
 
 -(void)requestServerForSeetiShopPhotos
 {
-    NSDictionary* dict = @{@"token":[Utils getAppToken],
-                        };
+    NSDictionary* dict;
+    NSString* appendString;
+
+    if (![Utils stringIsNilOrEmpty:self.seetiesID]) {
     
-    NSString* appendString = [NSString stringWithFormat:@"%@/photos",@"56397e301c4d5be92e8b4711"];
+        dict = @{@"token":[Utils getAppToken],
+                 };
+        
+        appendString = [NSString stringWithFormat:@"%@/photos",self.seetiesID];
+
+
+    }
+    else
+    {
+        dict = @{@"token":[Utils getAppToken],
+                 @"post_id":self.postID
+                 };
+        
+        appendString = [NSString stringWithFormat:@"%@/photos",self.placeID];
+
+    }
+
     
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetiShopPhoto param:dict appendString:appendString completeHandler:^(id object) {
         self.seShopPhotoModel = [[ConnectionManager dataManager]seShopPhotoModel];
