@@ -23,6 +23,7 @@
 #import "FeedV2DetailViewController.h"
 #import "CollectionViewController.h"
 #import "CollectionListingViewController.h"
+#import "SeRecommendationsSeeAllViewController.h"
 
 @interface SeetiesShopViewController ()<UIScrollViewDelegate>
 
@@ -34,7 +35,7 @@
 @property (nonatomic,strong)FeedV2DetailViewController* PostDetailViewController;
 @property (nonatomic,strong)CollectionViewController* CollectionDetailViewController;
 @property (nonatomic,strong)CollectionListingViewController* collectionListingViewController;
-
+@property (nonatomic,strong)SeRecommendationsSeeAllViewController* seRecommendationsSeeAllViewController;
 //$$============== CONTROLLERS ==================$$//
 
 @property (weak, nonatomic) IBOutlet UIImageView *ibImgViewTopPadding;
@@ -170,6 +171,13 @@
         _collectionListingViewController = [CollectionListingViewController new];
     }
     return _collectionListingViewController;
+}
+-(SeRecommendationsSeeAllViewController*)seRecommendationsSeeAllViewController
+{
+    if (!_seRecommendationsSeeAllViewController) {
+        _seRecommendationsSeeAllViewController = [SeRecommendationsSeeAllViewController new];
+    }
+    return _seRecommendationsSeeAllViewController;
 }
 -(PhotoListViewController*)photoListViewController
 {
@@ -319,7 +327,8 @@
         {
 
             // see all recommendation view
-            
+            _seRecommendationsSeeAllViewController = nil;
+            [weakSelf.navigationController pushViewController:weakSelf.seRecommendationsSeeAllViewController animated:YES];
         };
     }
     return _seRecommendations;

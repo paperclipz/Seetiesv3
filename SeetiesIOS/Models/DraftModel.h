@@ -39,6 +39,7 @@
 @property(nonatomic,strong)NSString* reference;
 @property(nonatomic,strong)NSString* formatted_address;
 @property(nonatomic,strong)NSDictionary* expense;
+@property(nonatomic,strong)NSString* search_display_name;
 
 //below here is all inside address_components
 @property(nonatomic,strong)NSString* administrative_area_level_1;
@@ -59,6 +60,8 @@
 @property(nonatomic,assign)int position;
 @property(nonatomic,strong)NSString* imageURL;
 @property(nonatomic,strong)UIImage* image;
+@property(nonatomic,strong)NSString* imageWidth;
+@property(nonatomic,strong)NSString* imageHeight;
 -(id) copyWithZone: (NSZone *) zone;
 
 @end
@@ -83,7 +86,8 @@
 @property(nonatomic,strong)NSString* view_count;
 @property(nonatomic,strong)NSArray* content_languages;
 @property(nonatomic,strong)ProfileModel* user_info;
-
+@property(nonatomic,strong)NSString* like;
+@property(nonatomic,strong)NSString* collect;
 
 -(void)process;
 -(void)customProcess;

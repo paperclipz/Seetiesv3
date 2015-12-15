@@ -443,5 +443,6 @@
     }
     
     [viewController dismissViewControllerAnimated:YES completion:NULL];
+    [controller dismissViewControllerAnimated:YES completion:nil];
 }
 @end

@@ -49,7 +49,10 @@
 +(JSONKeyMapper*)keyMapper
 {
     return [[JSONKeyMapper alloc] initWithDictionary:@{
-                                                       @"s.url" :@"imageURL"
+                                                       @"s.url" :@"imageURL",
+                                                       @"s.resolution.w":@"imageWidth",
+                                                       @"s.resolution.h":@"imageHeight"
+                                                       
                                                        }];
 }
 

@@ -38,6 +38,7 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
       //  shareToFrenVC = ShareV2ViewController.init(nibName: "ShareToFrenViewController", bundle: nil)
       //  self.navigationController!.pushViewController(shareToFrenVC, animated: true)
         self.shareToFrenVC = ShareToFrenViewController(nibName: "ShareToFrenViewController", bundle: nil)
+        self.shareToFrenVC.GetPostsID(self.shareID, getCollectionID: self.shareID)
         self.presentViewController(self.shareToFrenVC, animated: true, completion: nil)
        // self.navigationController!.pushViewController(self.shareToFrenVC, animated: true)
 

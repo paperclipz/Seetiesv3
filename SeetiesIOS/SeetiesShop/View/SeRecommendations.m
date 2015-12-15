@@ -243,6 +243,7 @@
     whiteBack.frame = CGRectMake(0, 50, screenWidth,  Getheight - 50);
     self.frame = CGRectMake(0, 0, screenWidth, Getheight + 50);
     SeeAllButton.frame = CGRectMake(-1, self.frame.size.height - 70, screenWidth + 2 , 50);
+    [self addSubview:SeeAllButton];
 }
 -(void)initData
 {
