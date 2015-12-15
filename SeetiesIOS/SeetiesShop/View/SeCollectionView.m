@@ -8,15 +8,30 @@
 
 #import "SeCollectionView.h"
 #import "CollectionViewController.h"
+#import "UrlDataClass.h"
 @interface SeCollectionView()<UIScrollViewDelegate>{
     IBOutlet UIButton *ShowbackLine;
     IBOutlet UILabel *ShowRelatedCollectionsText;
     IBOutlet UIButton *SeeAllButton;
     
     IBOutlet UIScrollView *MainScroll;
+    
+    //old way
+    NSURLConnection *theConnection_FollowCollect;
+    UrlDataClass *DataUrl;
+    NSMutableData *webData;
+    
+    NSString *GetCollectionFollowing;
+    NSString *GetCollectUserID;
+    NSString *GetCollectID;
 }
 @property(nonatomic,strong)NSMutableArray* arrCollections;
+@property(nonatomic,strong)NSMutableArray* arrCollectFollow;
 @property(nonatomic,strong)CollectionsModel* SeetiShopCollectionsModel;
+
+@property(nonatomic,strong)NSString* seetiesID;
+@property(nonatomic,strong)NSString* placeID;
+@property(nonatomic,strong)NSString* postID;
 @end
 @implementation SeCollectionView
 /*
@@ -47,12 +62,17 @@
     MainScroll.backgroundColor = [UIColor whiteColor];
     MainScroll.frame = CGRectMake(0, 50, screenWidth, 260);
 
+    self.arrCollectFollow = [[NSMutableArray alloc]init];
     
 
   
 }
--(void)initData
+-(void)initData:(NSString*)seetiesID PlaceID:(NSString*)placeID PostID:(NSString*)postID
 {
+    
+    self.seetiesID = seetiesID;
+    self.placeID = placeID;
+    self.postID = postID;
 
     [self requestServerForSeetiShopCollection];
     [self DrawView];
@@ -120,6 +140,8 @@
     for (int i = 0; i < [self.arrCollections count]; i++) {
         
         CollectionModel* collModel = self.arrCollections[i];
+        NSString *TempString = [[NSString alloc]initWithFormat:@"%d",collModel.following ? 1:0];
+        [self.arrCollectFollow addObject:TempString];
        
         UIButton* button = [self setupButton];
         button.frame = CGRectMake(10 + i * (screenWidth - 40), 20 , screenWidth - 50 ,220);
@@ -180,7 +202,7 @@
         [MainScroll addSubview:ShowOverlayImg];
 
         
-        UIButton *OpenCollectionButton = [[UIButton alloc]init];
+        UIButton *OpenCollectionButton = [self setupButton];
         OpenCollectionButton.frame = CGRectMake(10 + i * (screenWidth - 40), 20 , screenWidth - 50 ,220);
         [OpenCollectionButton setTitle:@"" forState:UIControlStateNormal];
         OpenCollectionButton.backgroundColor = [UIColor clearColor];
@@ -195,8 +217,8 @@
         UILabel *ShowCollectionTitle = [self SetupLabel];
         ShowCollectionTitle.frame = CGRectMake(25 + i * (screenWidth - 40), 180, screenWidth - 190 , 20);
         ShowCollectionTitle.text = collModel.name;
-        ShowCollectionTitle.textColor = [UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f blue:51.0f/255.0f alpha:1.0f];
-        ShowCollectionTitle.font = [UIFont fontWithName:CustomFontNameBold size:16];
+        ShowCollectionTitle.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+        ShowCollectionTitle.font = [UIFont fontWithName:CustomFontNameBold size:15];
         [MainScroll addSubview:ShowCollectionTitle];
         
         
@@ -206,7 +228,7 @@
         ShowCollectionCount.frame = CGRectMake(25 + i * (screenWidth - 40), 200, screenWidth - 190, 20);
         ShowCollectionCount.text = TempCount;
         ShowCollectionCount.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
-        ShowCollectionCount.font = [UIFont fontWithName:CustomFontName size:14];
+        ShowCollectionCount.font = [UIFont fontWithName:CustomFontName size:13];
         [MainScroll addSubview:ShowCollectionCount];
         
         
@@ -224,7 +246,7 @@
         [QuickCollectButtonLocalQR.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
         QuickCollectButtonLocalQR.backgroundColor = [UIColor clearColor];
         QuickCollectButtonLocalQR.frame = CGRectMake((screenWidth - 45 - 115) + i * (screenWidth - 40), 186, 115, 38);//115,38
-        //[QuickCollectButtonLocalQR addTarget:self action:@selector(CollectionFollowingButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [QuickCollectButtonLocalQR addTarget:self action:@selector(CollectionFollowingButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
         QuickCollectButtonLocalQR.tag = i;
         [MainScroll addSubview:QuickCollectButtonLocalQR];
         
@@ -234,10 +256,30 @@
 -(void)requestServerForSeetiShopCollection
 {
   //  NSDictionary* param;
-    NSString* appendString = @"56397e301c4d5be92e8b4711/collections";
-    NSDictionary* dict = @{@"limit":@"5",
-                           @"offset":@"1",
-                           };
+//    NSString* appendString = @"56397e301c4d5be92e8b4711/collections";
+//    NSDictionary* dict = @{@"limit":@"5",
+//                           @"offset":@"1",
+//                           };
+    
+    NSDictionary* dict;
+    NSString* appendString;
+    if (![Utils stringIsNilOrEmpty:self.seetiesID]) {
+        
+        dict = @{@"limit":@"6",
+                 @"offset":@"1",
+                 };
+        appendString = [[NSString alloc]initWithFormat:@"%@/collections",self.seetiesID];
+        
+    }
+    else{
+        
+        dict = @{@"limit":@"6",
+                 @"offset":@"1",
+                 };
+
+        appendString = [[NSString alloc]initWithFormat:@"%@/collections",self.placeID];
+        
+    }
 
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetiShopCollection param:dict appendString:appendString completeHandler:^(id object) {
 
@@ -283,6 +325,112 @@
 -(IBAction)SeeAllButtonOnClick:(id)sender{
     if (self.btnCollectionSeeAllClickedBlock) {
         self.btnCollectionSeeAllClickedBlock(@"SeetiShopIDN");
+    }
+}
+-(IBAction)CollectionFollowingButtonOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    CollectionModel* collModel = self.arrCollections[getbuttonIDN];
+    
+    GetCollectionFollowing = [[NSString alloc]initWithFormat:@"%d",collModel.following ? 1:0];
+    GetCollectUserID = [[NSString alloc]initWithFormat:@"%@",collModel.user_info.uid];
+    GetCollectID = [[NSString alloc]initWithFormat:@"%@",collModel.collection_id];
+    
+    if ([GetCollectionFollowing isEqualToString:@"0"]) {
+        [self FollowCollection];
+        [self.arrCollectFollow replaceObjectAtIndex:getbuttonIDN withObject:@"1"];
+    }else{
+        [self DeleteFollowCollection];
+        [self.arrCollectFollow replaceObjectAtIndex:getbuttonIDN withObject:@"0"];
+    }
+}
+-(void)FollowCollection{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    //Server Address URL
+    NSString *urlString = [NSString stringWithFormat:@"%@%@/collections/%@/follow",DataUrl.UserWallpaper_Url,GetCollectUserID,GetCollectID];
+    NSLog(@"Send Follow Collection urlString is %@",urlString);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
+    
+    NSMutableData *body = [NSMutableData data];
+    
+    NSString *boundary = @"---------------------------14737809831466499882746641449";
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+    [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //parameter first
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    //Attaching the key name @"parameter_first" to the post body
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"token\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    //Attaching the content to be posted ( ParameterFirst )
+    [body appendData:[[NSString stringWithFormat:@"%@",GetExpertToken] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //close form
+    [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSLog(@"Request  = %@",[[NSString alloc] initWithData:body encoding:NSUTF8StringEncoding]);
+    
+    //setting the body of the post to the reqeust
+    [request setHTTPBody:body];
+    
+    theConnection_FollowCollect = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    if(theConnection_FollowCollect) {
+        //  NSLog(@"Connection Successful");
+        webData = [NSMutableData data];
+    } else {
+        
+    }
+}
+-(void)DeleteFollowCollection{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    
+    //Server Address URL
+    NSString *urlString = [NSString stringWithFormat:@"%@%@/collections/%@/follow?token=%@",DataUrl.UserWallpaper_Url,GetCollectUserID,GetCollectID,GetExpertToken];
+    NSLog(@"Send Delete Collection urlString is %@",urlString);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"DELETE"];
+    
+    theConnection_FollowCollect = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    if(theConnection_FollowCollect) {
+        //  NSLog(@"Connection Successful");
+        webData = [NSMutableData data];
+    } else {
+        
+    }
+}
+-(void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    if (connection == theConnection_FollowCollect) {
+        NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+        NSLog(@"Follow Collection return get data to server ===== %@",GetData);
+        
+        NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *myError = nil;
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
+        NSLog(@"Expert Json = %@",res);
+        
+        
+        NSString *statusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
+        NSLog(@"statusString is %@",statusString);
+        
+        if ([statusString isEqualToString:@"ok"]) {
+            if ([GetCollectionFollowing isEqualToString:@"0"]) {
+             //  [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success follow this collection" type:TSMessageNotificationTypeSuccess];
+                GetCollectionFollowing = @"1";
+            }else{
+             //   [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success unfollow this collection" type:TSMessageNotificationTypeSuccess];
+                GetCollectionFollowing = @"0";
+            }
+            
+            
+        }
+
     }
 }
 

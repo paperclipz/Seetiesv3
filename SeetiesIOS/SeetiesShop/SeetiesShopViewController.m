@@ -93,7 +93,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
-   
 }
 
 -(void)initSelfView
@@ -123,8 +122,8 @@
 -(void)setupViewData
 {
     [self.seShopDetailView initData:self.seetiesID PlaceID:self.placeID PostID:self.postID Latitude:self.shopLat Longitude:self.shopLng];
-    [self.seCollectionView initData];
-    [self.seRecommendations initData];
+    [self.seCollectionView initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
+    [self.seRecommendations initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
     
     if (![Utils stringIsNilOrEmpty:self.seetiesID]) {
         [self.seNearbySeetishop initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];

@@ -12,7 +12,7 @@ typedef void (^BtnCollectionSeeAllBlock)(NSString * SeetiShopIDN);
 
 @interface SeCollectionView : CommonView
 @property(nonatomic,copy)VoidBlock viewDidFinishLoadBlock;
--(void)initData;
+-(void)initData:(NSString*)seetiesID PlaceID:(NSString*)placeID PostID:(NSString*)postID;
 @property(nonatomic,copy)BtnCollectionDetailBlock btnCollectionDetailClickedBlock;
 @property(nonatomic,copy)BtnCollectionSeeAllBlock btnCollectionSeeAllClickedBlock;
 @end

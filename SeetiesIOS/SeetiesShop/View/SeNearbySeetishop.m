@@ -111,7 +111,7 @@
         ShowTitle.backgroundColor = [UIColor clearColor];
         ShowTitle.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
         ShowTitle.textAlignment = NSTextAlignmentCenter;
-        ShowTitle.font = [UIFont fontWithName:CustomFontNameBold size:15];
+        ShowTitle.font = [UIFont fontWithName:CustomFontNameBold size:14];
         ShowTitle.numberOfLines = 3;
         [MainScroll addSubview:ShowTitle];
 

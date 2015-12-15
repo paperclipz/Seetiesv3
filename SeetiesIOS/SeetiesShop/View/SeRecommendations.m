@@ -17,6 +17,10 @@
 }
 @property (strong, nonatomic)NSMutableArray* arrPostListing;
 @property(nonatomic,strong)ProfilePostModel* userProfilePostModel;
+
+@property(nonatomic,strong)NSString* seetiesID;
+@property(nonatomic,strong)NSString* placeID;
+@property(nonatomic,strong)NSString* postID;
 @end
 @implementation SeRecommendations
 
@@ -118,7 +122,8 @@
         UILabel *ShowUsername = [self SetupLabel];
         ShowUsername.frame = CGRectMake(80, Getheight, screenWidth - 100, 40);
         ShowUsername.text = model.user_info.name;
-        ShowUsername.font = [UIFont fontWithName:CustomFontName size:15];
+        ShowUsername.font = [UIFont fontWithName:CustomFontName size:13];
+        ShowUsername.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
         [self addSubview:ShowUsername];
         
         Getheight += 40;
@@ -163,7 +168,7 @@
             UILabel *ShowDetail = [self SetupLabel];
             ShowDetail.frame = CGRectMake(80, Getheight, screenWidth - 100, 20);
             ShowDetail.text = TestDetail;
-            ShowDetail.textColor = [UIColor blackColor];
+            ShowDetail.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
             ShowDetail.font = [UIFont fontWithName:CustomFontName size:15];
             [self addSubview:ShowDetail];
             
@@ -171,7 +176,7 @@
             ShowReadMore.frame = CGRectMake(80, Getheight + 20, screenWidth - 100, 20);
             ShowReadMore.text = @"Read more...";
             ShowReadMore.textColor = [UIColor colorWithRed:41.0f/255.0f green:182.0f/255.0f blue:246.0f/255.0f alpha:1.0f];
-            ShowReadMore.font = [UIFont fontWithName:CustomFontNameBold size:15];
+            ShowReadMore.font = [UIFont fontWithName:CustomFontNameBold size:14];
             [self addSubview:ShowReadMore];
             
             Getheight += 40;
@@ -245,18 +250,42 @@
     SeeAllButton.frame = CGRectMake(-1, self.frame.size.height - 70, screenWidth + 2 , 50);
     [self addSubview:SeeAllButton];
 }
--(void)initData
+-(void)initData:(NSString*)seetiesID PlaceID:(NSString*)placeID PostID:(NSString*)postID
 {
+    
+    self.seetiesID = seetiesID;
+    self.placeID = placeID;
+    self.postID = postID;
+    
     [self requestServerForSeetiShopRecommendations];
 
 }
 -(void)requestServerForSeetiShopRecommendations
 {
-    //  NSDictionary* param;
-    NSString* appendString = @"56397e301c4d5be92e8b4711/posts";
-    NSDictionary* dict = @{@"limit":@"4",
-                           @"offset":@"1",
-                           };
+//    //  NSDictionary* param;
+//    NSString* appendString = @"56397e301c4d5be92e8b4711/posts";
+//    NSDictionary* dict = @{@"limit":@"4",
+//                           @"offset":@"1",
+//                           };
+    NSDictionary* dict;
+    NSString* appendString;
+    if (![Utils stringIsNilOrEmpty:self.seetiesID]) {
+        
+        dict = @{@"limit":@"4",
+                 @"offset":@"1",
+                 };
+        appendString = [[NSString alloc]initWithFormat:@"%@/posts",self.seetiesID];
+        
+    }
+    else{
+        
+        dict = @{@"limit":@"4",
+                 @"offset":@"1",
+                 };
+        
+        appendString = [[NSString alloc]initWithFormat:@"%@/posts",self.placeID];
+        
+    }
     
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetoShopRecommendations param:dict appendString:appendString completeHandler:^(id object) {
         self.userProfilePostModel = [[ConnectionManager dataManager]userProfilePostModel];
@@ -295,7 +324,15 @@
 }
 -(IBAction)SeeAllButtonOnClick:(id)sender{
     if (self.btnPostsSeeAllClickedBlock) {
-        self.btnPostsSeeAllClickedBlock(@"SeetiShopIDN");
+        if (![Utils stringIsNilOrEmpty:self.seetiesID]) {
+            self.btnPostsSeeAllClickedBlock(self.seetiesID);
+            
+        }
+        else{
+            self.btnPostsSeeAllClickedBlock(self.placeID);
+            
+        }
+        
     }
 }
 @end
