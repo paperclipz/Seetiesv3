@@ -11,6 +11,8 @@
 		0B3E53961C17E031002FCFED /* SeNearbyShopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3E53951C17E031002FCFED /* SeNearbyShopModel.m */; };
 		0B3FF10F1BB131A20014AF2E /* NearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3FF10D1BB131A20014AF2E /* NearbyViewController.m */; };
 		0B3FF1101BB131A20014AF2E /* NearbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B3FF10E1BB131A20014AF2E /* NearbyViewController.xib */; };
+		0B40B3FB1C1FD2A7002D4ECB /* SeRecommendationsSeeAllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B40B3F91C1FD2A7002D4ECB /* SeRecommendationsSeeAllViewController.m */; };
+		0B40B3FC1C1FD2A7002D4ECB /* SeRecommendationsSeeAllViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B40B3FA1C1FD2A7002D4ECB /* SeRecommendationsSeeAllViewController.xib */; };
 		0B6A54E01BB51F84005B9D6B /* ReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6A54DE1BB51F84005B9D6B /* ReportViewController.m */; };
 		0B6A54E11BB51F84005B9D6B /* ReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B6A54DF1BB51F84005B9D6B /* ReportViewController.xib */; };
 		0B99C2001BCBA1F1006D7E63 /* AnnounceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B99C1FE1BCBA1F0006D7E63 /* AnnounceViewController.m */; };
@@ -1128,6 +1130,9 @@
 		0B3FF10C1BB131A20014AF2E /* NearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyViewController.h; sourceTree = "<group>"; };
 		0B3FF10D1BB131A20014AF2E /* NearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyViewController.m; sourceTree = "<group>"; };
 		0B3FF10E1BB131A20014AF2E /* NearbyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NearbyViewController.xib; sourceTree = "<group>"; };
+		0B40B3F81C1FD2A7002D4ECB /* SeRecommendationsSeeAllViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeRecommendationsSeeAllViewController.h; sourceTree = "<group>"; };
+		0B40B3F91C1FD2A7002D4ECB /* SeRecommendationsSeeAllViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeRecommendationsSeeAllViewController.m; sourceTree = "<group>"; };
+		0B40B3FA1C1FD2A7002D4ECB /* SeRecommendationsSeeAllViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeRecommendationsSeeAllViewController.xib; sourceTree = "<group>"; };
 		0B6A54DD1BB51F84005B9D6B /* ReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportViewController.h; sourceTree = "<group>"; };
 		0B6A54DE1BB51F84005B9D6B /* ReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportViewController.m; sourceTree = "<group>"; };
 		0B6A54DF1BB51F84005B9D6B /* ReportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReportViewController.xib; sourceTree = "<group>"; };
@@ -2740,6 +2745,9 @@
 				0BC8A0F31C0D934600EB8548 /* SeRecommendations.h */,
 				0BC8A0F41C0D934600EB8548 /* SeRecommendations.m */,
 				0BC8A0F61C0D935500EB8548 /* SeRecommendations.xib */,
+				0B40B3F81C1FD2A7002D4ECB /* SeRecommendationsSeeAllViewController.h */,
+				0B40B3F91C1FD2A7002D4ECB /* SeRecommendationsSeeAllViewController.m */,
+				0B40B3FA1C1FD2A7002D4ECB /* SeRecommendationsSeeAllViewController.xib */,
 			);
 			name = seetiesRecommendations;
 			sourceTree = "<group>";
@@ -5589,6 +5597,7 @@
 				8A6CCE441C18075800BCD54E /* PreviewPhotoBlackOverlay@3x.png in Resources */,
 				8A6CCDAA1C18075800BCD54E /* NearbyImage.png in Resources */,
 				8AD6C2861B7072FB0040437E /* AddPriceViewController.xib in Resources */,
+				0B40B3FC1C1FD2A7002D4ECB /* SeRecommendationsSeeAllViewController.xib in Resources */,
 				8A6CCD851C18075800BCD54E /* CollectTraditonalChineseBtn@3x.png in Resources */,
 				8A0F50C31C0C3F14002B1E22 /* SeShopDetailTableViewCell.xib in Resources */,
 				8AC8F7371BDA414E00DEF14A /* ProfileCollectionPageTableViewCell.xib in Resources */,
@@ -6463,6 +6472,7 @@
 				8AD6C2951B7072FB0040437E /* DraftsViewController.m in Sources */,
 				8A0F50D41C0EAD9A002B1E22 /* SeDealsTableViewCell.m in Sources */,
 				8AD6C81D1B73382E0040437E /* Localisator.m in Sources */,
+				0B40B3FB1C1FD2A7002D4ECB /* SeRecommendationsSeeAllViewController.m in Sources */,
 				8A0829471C1183A800AD8CBD /* SeShopDetailModel.m in Sources */,
 				8AC8F72C1BDA414E00DEF14A /* ProfilePageCollectionFooterTableViewCell.m in Sources */,
 				8A6584371B981C0E00BC86B9 /* CategoryCollectionViewCell.m in Sources */,
