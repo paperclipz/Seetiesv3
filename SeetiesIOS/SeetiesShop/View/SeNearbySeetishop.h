@@ -12,5 +12,5 @@
 @property(nonatomic,copy)VoidBlock viewDidFinishLoadBlock;
 @property(nonatomic,copy)VoidBlock btnSelectSeetiShopListBlock;
 
--(void)initData;
+-(void)initData:(NSString*)seetiesID PlaceID:(NSString*)placeID PostID:(NSString*)postID;
 @end

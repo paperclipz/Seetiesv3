@@ -9,5 +9,7 @@
 #import "CommonViewController.h"
 
 @interface SeetiesShopViewController : CommonViewController
+-(void)initDataWithSeetiesID:(NSString*)seetiesID;
+-(void)initDataPlaceID:(NSString*)placeID postID:(NSString*)postID;
 
 @end

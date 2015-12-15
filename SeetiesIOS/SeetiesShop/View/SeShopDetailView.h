@@ -24,5 +24,5 @@ typedef void (^BtnMorePhotosBlock)(SeShopPhotoModel* model);
 @property(nonatomic,copy)BtnMoreInfoBlock btnMoreInfoClickedBlock;
 @property(nonatomic,copy)BtnMorePhotosBlock didSelectMorePhotosBlock;
 
--(void)initData;
+-(void)initData:(NSString*)seetiesID PlaceID:(NSString*)placeID PostID:(NSString*)postID;
 @end

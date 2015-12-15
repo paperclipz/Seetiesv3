@@ -51,18 +51,34 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ibImgViewOtherPadding;
 @property(nonatomic,assign)MKCoordinateRegion region;
 
+@property(nonatomic,strong)NSString* seetiesID;
+@property(nonatomic,strong)NSString* placeID;
+@property(nonatomic,strong)NSString* postID;
+
 @end
 
 @implementation SeetiesShopViewController
+
+-(void)initDataWithSeetiesID:(NSString*)seetiesID
+{
+    self.seetiesID = seetiesID;
+}
+
+-(void)initDataPlaceID:(NSString*)placeID postID:(NSString*)postID
+{
+    self.placeID = placeID;
+    self.postID = postID;
+
+}
 
 #pragma mark - IBACTION
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
-    [self.seShopDetailView initData];
+    [self.seShopDetailView initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
     [self.seCollectionView initData];
     [self.seRecommendations initData];
-    [self.seNearbySeetishop initData];
+    [self.seNearbySeetishop initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
 }
 
 -(void)initSelfView
