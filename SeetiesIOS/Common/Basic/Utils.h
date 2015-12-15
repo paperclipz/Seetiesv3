@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface Utils : NSObject
+#define MaxDistance 100000
 
 
 // ======================== STTRING SWITCH CASE ========================

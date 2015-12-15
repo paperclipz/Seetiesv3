@@ -17,8 +17,11 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 @property (strong, nonatomic)SeetiShopsModel *seetiShopsModel;
-
-
+@property(nonatomic,strong)NSString* seetiesID;
+@property(nonatomic,strong)NSString* placeID;
+@property(nonatomic,strong)NSString* postID;
+@property(nonatomic,assign)float shoplat;
+@property(nonatomic,assign)float shopLgn;
 // ===================      Model       ===============//
 @property(nonatomic,strong)NSMutableArray* arrShopList;
 @end
@@ -29,6 +32,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self initTableViewDelegate];
+    [self requestServerForSeetiShopNearbyShop];
 }
 
 -(void)initTableViewDelegate
@@ -61,7 +65,19 @@
 
     }
     cell.lblTitle.text = model.name;
-    cell.lblDesc.text = [NSString stringWithFormat:@"%f • %@",model.location.distance,model.location.formatted_address];
+    
+    NSString* strDistance;
+    if(model.location.distance <= MaxDistance)
+    {
+        strDistance = [NSString stringWithFormat:@"%.1f KM",model.location.distance/100];
+        
+    }
+    else{
+        strDistance = model.location.locality;
+        
+    }
+
+    cell.lblDesc.text = [NSString stringWithFormat:@"%@ • %@",strDistance,model.location.formatted_address];
    
     
     return cell;
@@ -72,13 +88,18 @@
 {
     _seetiesShopViewController = nil;
     
+    ShopModel* model = self.arrShopList[indexPath.row];
+    [self.seetiesShopViewController initDataWithSeetiesID:model.seetishop_id Latitude:[model.location.lat floatValue] Longitude:[model.location.lng floatValue]];
     [self.navigationController pushViewController:self.seetiesShopViewController animated:YES];
 }
 
-
--(void)initData
+-(void)initData:(NSString*)seetiesID PlaceID:(NSString*)placeID PostID:(NSString*)postID Latitude:(float)lat Longtitude:(float)lgn
 {
-    [self requestServerForSeetiShopNearbyShop];
+    self.shoplat = lat;
+    self.shopLgn = lgn;
+    self.seetiesID = seetiesID;
+    self.placeID = placeID;
+    self.postID = postID;
 }
 
 #pragma mark - Declaration
@@ -96,12 +117,27 @@
 
 -(void)requestServerForSeetiShopNearbyShop
 {
+    NSDictionary* dict;
+    NSString* appendString;
     
-        NSString* appendString = @"56397e301c4d5be92e8b4711/nearby/shops";
-        NSDictionary* dict = @{@"limit":@(10),
-                               @"offset":@"1",
-                               };
-        
+    if (![Utils stringIsNilOrEmpty:self.seetiesID]) {
+        appendString = [NSString stringWithFormat:@"%@/nearby/shops",self.seetiesID];
+        dict = @{@"limit":@(ARRAY_LIST_SIZE),
+                 @"offset":@"1",
+                 @"lat":@(self.shoplat),
+                 @"lng":@(self.shopLgn),
+                 };
+
+    }
+    else{
+        appendString = [NSString stringWithFormat:@"%@/nearby/shops",self.placeID];
+        dict = @{@"limit":@(ARRAY_LIST_SIZE),
+                 @"offset":@"1",
+                 @"post_id":self.postID
+                 };
+
+    }
+    
         [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetoShopNearbyShop param:dict appendString:appendString completeHandler:^(id object) {
             
             

@@ -20,7 +20,9 @@
 // -------------------- MODEL -----------------------------//
 @property(nonatomic,strong)NSMutableArray* arrImagesList;
 @property(nonatomic,strong)SeShopPhotoModel* seShopPhotoModel;
-
+@property(nonatomic,strong)NSString* seetiesID;
+@property(nonatomic,strong)NSString* placeID;
+@property(nonatomic,strong)NSString* postID;
 // -------------------- MODEL -----------------------------//
 
 @end
@@ -34,6 +36,14 @@
     [self initSelfView];
     [self requestServerForSeetiShopPhotos];
 
+}
+
+-(void)initData:(NSString*)seetiesID PlaceID:(NSString*)placeID PostID:(NSString*)postID
+{
+    self.seetiesID = seetiesID;
+    self.placeID = placeID;
+    self.postID = postID;
+    
 }
 
 -(void)initSelfView
@@ -163,12 +173,32 @@
 {
     
     isMiddleOfCallingServer = YES;
-    NSDictionary* dict = @{@"limit":@(LIKES_LIST_SIZE),
-                           @"offset":@(self.seShopPhotoModel.offset + self.seShopPhotoModel.limit),
-                           @"token":[Utils getAppToken],
-                           };
-    NSString* appendString = [NSString stringWithFormat:@"%@/photos",@"56397e301c4d5be92e8b4711"];
     
+    NSDictionary* dict;
+    NSString* appendString;
+    
+    if (![Utils stringIsNilOrEmpty:self.seetiesID]) {
+    
+        dict = @{@"limit":@(LIKES_LIST_SIZE),
+                 @"offset":@(self.seShopPhotoModel.offset + self.seShopPhotoModel.limit),
+                 @"token":[Utils getAppToken],
+                 };
+        
+        appendString = [NSString stringWithFormat:@"%@/photos",self.seetiesID];
+    }
+    else{
+    
+        dict = @{@"limit":@(LIKES_LIST_SIZE),
+                 @"offset":@(self.seShopPhotoModel.offset + self.seShopPhotoModel.limit),
+                 @"token":[Utils getAppToken],
+                 @"post_id":self.postID
+                 };
+        
+        appendString = [NSString stringWithFormat:@"%@/photos",self.placeID];
+
+    }
+    
+
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetiShopPhoto param:dict appendString:appendString completeHandler:^(id object) {
         self.seShopPhotoModel = [[ConnectionManager dataManager]seShopPhotoModel];
         

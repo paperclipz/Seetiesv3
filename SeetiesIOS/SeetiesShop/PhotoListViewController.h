@@ -9,5 +9,6 @@
 #import "CommonViewController.h"
 
 @interface PhotoListViewController : CommonViewController
+-(void)initData:(NSString*)seetiesID PlaceID:(NSString*)placeID PostID:(NSString*)postID;
 
 @end
