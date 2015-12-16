@@ -21,6 +21,9 @@
 @property(nonatomic,strong)NSString* seetiesID;
 @property(nonatomic,strong)NSString* placeID;
 @property(nonatomic,strong)NSString* postID;
+
+@property(nonatomic,assign)float shoplat;
+@property(nonatomic,assign)float shopLgn;
 @end
 @implementation SeRecommendations
 
@@ -257,7 +260,18 @@
     self.placeID = placeID;
     self.postID = postID;
     
-    [self requestServerForSeetiShopRecommendations];
+    [[SearchManager Instance]getCoordinateFromGPSThenWifi:^(CLLocation *currentLocation) {
+        
+        self.shoplat = currentLocation.coordinate.latitude;
+        self.shopLgn = currentLocation.coordinate.longitude;
+        
+        [self requestServerForSeetiShopRecommendations];
+        
+    } errorBlock:^(NSString *status) {
+        [self requestServerForSeetiShopRecommendations];
+        
+    }];
+    
 
 }
 -(void)requestServerForSeetiShopRecommendations
