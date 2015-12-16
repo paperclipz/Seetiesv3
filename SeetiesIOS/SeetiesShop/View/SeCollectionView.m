@@ -65,8 +65,8 @@
     self.arrCollectFollow = [[NSMutableArray alloc]init];
     
 
-  
 }
+
 -(void)initData:(NSString*)seetiesID PlaceID:(NSString*)placeID PostID:(NSString*)postID
 {
     
@@ -292,9 +292,14 @@
         
         [self InitScrollViewData];
         
-        if (self.viewDidFinishLoadBlock) {
-            self.viewDidFinishLoadBlock();
+        BOOL isDeleteView = false;
+        if (self.arrCollections.count == 0) {
+            isDeleteView = true;
         }
+        if (self.viewDidFinishLoadBlock) {
+            self.viewDidFinishLoadBlock(isDeleteView);
+        }
+        
     } errorBlock:^(id object) {
         
         

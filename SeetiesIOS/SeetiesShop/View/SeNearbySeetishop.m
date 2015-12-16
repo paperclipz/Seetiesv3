@@ -127,20 +127,12 @@
     self.seetiesID = seetiesID;
     self.placeID = placeID;
     self.postID = postID;
-    
-    [[SearchManager Instance]getCoordinateFromGPSThenWifi:^(CLLocation *currentLocation) {
-        
-        self.shoplat = currentLocation.coordinate.latitude;
-        self.shopLgn = currentLocation.coordinate.longitude;
-        
-        [self requestServerForSeetiShopNearbyShop];
-        
-    } errorBlock:^(NSString *status) {
-        [self requestServerForSeetiShopNearbyShop];
-        
-    }];
+    self.shoplat = [[SearchManager Instance]getLocation].coordinate.latitude;
+    self.shopLgn = [[SearchManager Instance]getLocation].coordinate.longitude;
+    [self requestServerForSeetiShopNearbyShop];
 
 }
+
 -(void)requestServerForSeetiShopNearbyShop
 {
     //  NSDictionary* param;

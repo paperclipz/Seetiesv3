@@ -18,6 +18,17 @@
 @implementation SearchManager
 
 
+-(CLLocation*)getLocation
+{
+    if (self.location) {
+        return self.location;
+    }
+    else
+    {
+        return self.wifiLocation;
+    }
+}
+
 + (id)Instance {
     
     static SearchManager *sharedInstance = nil;
@@ -45,8 +56,6 @@
         return;
     }
     if ([CLLocationManager isLocationUpdatesAvailable]) {
-      //  [LoadingManager showWithTitle:[NSString stringWithFormat:@"%@ GPS",LocalisedString(@"Searching...")]];
-        
         
         self.manager = [CLLocationManager updateManagerWithAccuracy:50.0 locationAge:15.0 authorizationDesciption:CLLocationUpdateAuthorizationDescriptionAlways];
         [self performSelector:@selector(stopLocationSearch) withObject:@"TimedOut" afterDelay:3];
@@ -57,11 +66,6 @@
             if (error && !location) {
                 SLog(@"error : %@",error.description);
                 [LoadingManager hide];
-                
-                
-                if (errorBlock) {
-                    errorBlock(@"no new location from gps");
-                }
             }
             else
             {
@@ -272,18 +276,24 @@
         }
         
     }
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetGeoIP param:nil appendString:nil completeHandler:^(id object) {
-        
-        if (successBlock) {
-            successBlock([self convertToCLLocation:object[@"latitude"] longt:object[@"longitude"]]);
-        }
-    } errorBlock:^(id object) {
-        
-        if (errorBlock) {
-            errorBlock(nil);
-        }
-        
-    }];
+    else
+    {
+        [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetGeoIP param:nil appendString:nil completeHandler:^(id object) {
+            
+            if (successBlock) {
+                successBlock([self convertToCLLocation:object[@"latitude"] longt:object[@"longitude"]]);
+            }
+            self.wifiLocation = [self convertToCLLocation:object[@"latitude"] longt:object[@"longitude"]];
+            
+        } errorBlock:^(id object) {
+            
+            if (errorBlock) {
+                errorBlock(nil);
+            }
+            
+        }];
+    }
+   
 
 }
 

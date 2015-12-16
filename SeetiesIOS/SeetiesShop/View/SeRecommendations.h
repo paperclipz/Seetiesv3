@@ -12,7 +12,7 @@ typedef void (^BtnPostsDetailBlock)(NSString * idn);
 typedef void (^BtnPostsSeeAllBlock)(NSString * idn);
 
 @interface SeRecommendations : CommonView
-@property(nonatomic,copy)VoidBlock viewDidFinishLoadBlock;
+@property(nonatomic,copy)BoolBlock viewDidFinishLoadBlock;
 @property(nonatomic,copy)BtnPostsDetailBlock btnPostsDetailClickedBlock;
 @property(nonatomic,copy)BtnPostsSeeAllBlock btnPostsSeeAllClickedBlock;
 -(void)initData:(NSString*)seetiesID PlaceID:(NSString*)placeID PostID:(NSString*)postID;

@@ -346,7 +346,9 @@
     self.seetiesID = seetiesID;
     self.placeID = placeID;
     self.postID = postID;
-    
+    self.shoplat = [[SearchManager Instance]getLocation].coordinate.latitude;
+    self.shopLgn = [[SearchManager Instance]getLocation].coordinate.longitude;
+
     [self.ibProfileImageView sd_setImageCroppedWithURL:[NSURL URLWithString:@"http://www.bangsarbabe.com/wp-content/uploads/2014/05/81.jpg"] completed:^(UIImage *image){
         
         if (self.imageDidFinishLoadBlock) {
@@ -369,18 +371,8 @@
         
     }];
 
-    [[SearchManager Instance]getCoordinateFromGPSThenWifi:^(CLLocation *currentLocation) {
-        
-        self.shoplat = currentLocation.coordinate.latitude;
-        self.shopLgn = currentLocation.coordinate.longitude;
+    [self requestServerForSeetiShopDetail];
 
-        [self requestServerForSeetiShopDetail];
-
-    } errorBlock:^(NSString *status) {
-        [self requestServerForSeetiShopDetail];
-
-    }];
-    
     [self requestServerForSeetiShopPhotos];
 }
 

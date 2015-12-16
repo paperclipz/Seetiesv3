@@ -71,6 +71,7 @@
     self.shopLng = lng;
     self.seetiesID = seetiesID;
     
+    
 }
 
 -(void)initDataPlaceID:(NSString*)placeID postID:(NSString*)postID
@@ -92,7 +93,17 @@
 #pragma mark - IBACTION
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initSelfView];
+    
+    [LoadingManager show];
+    [[SearchManager Instance]getCoordinateFromGPSThenWifi:^(CLLocation *currentLocation) {
+        
+        [self initSelfView];
+
+    } errorBlock:^(NSString *status) {
+        [self initSelfView];
+
+    }];
+
 }
 
 -(void)initSelfView
@@ -100,6 +111,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.ibScrollView.delegate = self;
     _arrViews = [NSMutableArray new];
+    
     
     [self setupViews];
     [self addViews];
@@ -323,8 +335,14 @@
     if (!_seCollectionView) {
         _seCollectionView = [SeCollectionView initializeCustomView];
         __weak typeof (self)weakSelf = self;
-        _seCollectionView.viewDidFinishLoadBlock = ^(void)
+        _seCollectionView.viewDidFinishLoadBlock = ^(BOOL isDeleteView)
         {
+            if (isDeleteView) {
+                
+                [weakSelf.arrViews removeObject:weakSelf.seCollectionView];
+                [weakSelf.seCollectionView removeFromSuperview];
+            }
+            
             [weakSelf rearrangeView];
             
         };
@@ -352,8 +370,16 @@
     if (!_seRecommendations) {
         _seRecommendations = [SeRecommendations initializeCustomView];
         __weak typeof (self)weakSelf = self;
-        _seRecommendations.viewDidFinishLoadBlock = ^(void)
+        _seRecommendations.viewDidFinishLoadBlock = ^(BOOL isDeleteView)
         {
+            
+            if (isDeleteView) {
+                
+                [weakSelf.arrViews removeObject:weakSelf.seRecommendations];
+                [weakSelf.seRecommendations removeFromSuperview];
+                
+            }
+
             [weakSelf rearrangeView];
 
         };

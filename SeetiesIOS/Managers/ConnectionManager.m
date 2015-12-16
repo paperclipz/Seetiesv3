@@ -164,7 +164,7 @@
 }
 
 
--(void)requestServerWithGet:(ServerRequestType)type param:(NSDictionary*)dict appendString:(NSString*)appendString completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
+-(void)requestServerWithGet:(ServerRequestType)type param:(NSDictionary*)dict appendString:(NSString*)appendString completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)errorBlock
 {
     
     NSString* fullURL;
@@ -199,6 +199,9 @@
                failure:
      ^(AFHTTPRequestOperation *operation, NSError *error) {
          
+         if (errorBlock) {
+             errorBlock(error);
+         }
          NSLog(@"\n\n Error: %@", error);
          [LoadingManager hide];
      }];

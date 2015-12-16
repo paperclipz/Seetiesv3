@@ -255,22 +255,13 @@
 }
 -(void)initData:(NSString*)seetiesID PlaceID:(NSString*)placeID PostID:(NSString*)postID
 {
-    
+
     self.seetiesID = seetiesID;
     self.placeID = placeID;
     self.postID = postID;
-    
-    [[SearchManager Instance]getCoordinateFromGPSThenWifi:^(CLLocation *currentLocation) {
-        
-        self.shoplat = currentLocation.coordinate.latitude;
-        self.shopLgn = currentLocation.coordinate.longitude;
-        
-        [self requestServerForSeetiShopRecommendations];
-        
-    } errorBlock:^(NSString *status) {
-        [self requestServerForSeetiShopRecommendations];
-        
-    }];
+    self.shoplat = [[SearchManager Instance]getLocation].coordinate.latitude;
+    self.shopLgn = [[SearchManager Instance]getLocation].coordinate.longitude;
+    [self requestServerForSeetiShopRecommendations];
     
 
 }
@@ -300,17 +291,24 @@
         appendString = [[NSString alloc]initWithFormat:@"%@/posts",self.placeID];
         
     }
-    
+
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetoShopRecommendations param:dict appendString:appendString completeHandler:^(id object) {
         self.userProfilePostModel = [[ConnectionManager dataManager]userProfilePostModel];
         [self.arrPostListing addObjectsFromArray:self.userProfilePostModel.userPostData.posts];
 
+        
+        SLog(@"ServerRequestTypeGetSeetoShopRecommendations");
          NSString *GetTotalPosts = [[NSString alloc]initWithFormat:@"See all %i recommendations",self.userProfilePostModel.userPostData.total_posts];
          [SeeAllButton setTitle:GetTotalPosts forState:UIControlStateNormal];
          [self InitRecommendationViewdata];
         
+        
+        BOOL isDeleteView = false;
+        if (self.arrPostListing.count == 0) {
+            isDeleteView = true;
+        }
         if (self.viewDidFinishLoadBlock) {
-            self.viewDidFinishLoadBlock();
+            self.viewDidFinishLoadBlock(isDeleteView);
         }
     } errorBlock:^(id object) {
         
