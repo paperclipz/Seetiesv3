@@ -4914,6 +4914,7 @@
     //[self.seetiesShopViewController initDataPlaceID:GetSeetishopID postID:@"56603c9af9df245c7b8b4573"];
     [self.seetiesShopViewController initDataWithSeetiesID:GetSeetishopID];
 
+
     _seetiesShopViewController = nil;
     
 //    if (![Utils stringIsNilOrEmpty:GetSeetishopID]) {

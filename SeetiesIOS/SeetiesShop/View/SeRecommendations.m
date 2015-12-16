@@ -105,7 +105,6 @@
     [self addSubview:whiteBack];
     
     for (int i = 0; i < [self.arrPostListing count]; i++) {
-        
         DraftModel* model = self.arrPostListing[i];
         int btnHeight = Getheight;
         
@@ -294,7 +293,10 @@
 
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetoShopRecommendations param:dict appendString:appendString completeHandler:^(id object) {
         self.userProfilePostModel = [[ConnectionManager dataManager]userProfilePostModel];
+        self.arrPostListing = nil;
         [self.arrPostListing addObjectsFromArray:self.userProfilePostModel.userPostData.posts];
+        
+        Getheight = 50;
 
         
         SLog(@"ServerRequestTypeGetSeetoShopRecommendations");
