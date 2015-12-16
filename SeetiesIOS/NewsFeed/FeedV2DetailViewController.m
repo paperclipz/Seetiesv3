@@ -4278,6 +4278,14 @@
 //    [self presentViewController:LocationFeedDetailView animated:NO completion:nil];
 //    [LocationFeedDetailView GetLat:GetLat GetLong:GetLng GetFirstImage:[UrlArray objectAtIndex:0] GetTitle:GetPlaceName GetLocation:GetPlaceFormattedAddress ];
 //    [LocationFeedDetailView GetLink:GetPlaceLink GetContact:GetContactNo GetOpeningHour:GetOpenNow GetPrice:GetExpense GetPeriods:GetPeriods];
+    NSLog(@"ViewSeetishopButtonOnClick and SeetishopID = %@",GetSeetishopID);
+    NSLog(@"GetPostID is %@ and GetLocationPlaceId is %@",GetPostID,GetLocationPlaceId);
+    
+    [self.seetiesShopViewController initDataPlaceID:GetLocationPlaceId postID:GetPostID];
+   // [self.seetiesShopViewController initDataWithSeetiesID:GetSeetishopID];
+    UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:self.seetiesShopViewController];
+    [nav setNavigationBarHidden:YES];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 -(IBAction)OpenLinkButton:(id)sender{
     
@@ -4771,8 +4779,7 @@
 -(IBAction)CollectionFollowingButtonOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     
-    UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
-    buttonWithTag1.selected = !buttonWithTag1.selected;
+
     
     NSLog(@"Get Collection User ID == %@",[arrUserID objectAtIndex:getbuttonIDN]);
     NSLog(@"Get Collection Following == %@",[arrFollowing objectAtIndex:getbuttonIDN]);
@@ -4781,11 +4788,27 @@
     GetCollectID = [[NSString alloc]initWithFormat:@"%@",[arrCollectionID objectAtIndex:getbuttonIDN]];
     
     if ([GetCollectionFollowing isEqualToString:@"0"]) {
+        UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
+        buttonWithTag1.selected = !buttonWithTag1.selected;
         [self FollowCollection];
         [arrFollowing replaceObjectAtIndex:getbuttonIDN withObject:@"1"];
     }else{
-        [self DeleteFollowCollection];
-        [arrFollowing replaceObjectAtIndex:getbuttonIDN withObject:@"0"];
+
+        [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Are You Sure You Want To Unfollow") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"YES"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+            
+            if (buttonIndex == [alertView cancelButtonIndex]) {
+                NSLog(@"Cancelled");
+                
+            } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:LocalisedString(@"YES")]) {
+                
+                UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
+                buttonWithTag1.selected = !buttonWithTag1.selected;
+                [self DeleteFollowCollection];
+                [arrFollowing replaceObjectAtIndex:getbuttonIDN withObject:@"0"];
+                
+                
+            }
+        }];
     }
 }
 -(void)FollowCollection{
@@ -4888,6 +4911,8 @@
     NSLog(@"ViewSeetishopButtonOnClick and SeetishopID = %@",GetSeetishopID);
     NSLog(@"GetPostID is %@ and GetLocationPlaceId is %@",GetPostID,GetLocationPlaceId);
     
+    //[self.seetiesShopViewController initDataPlaceID:GetSeetishopID postID:@"56603c9af9df245c7b8b4573"];
+    [self.seetiesShopViewController initDataWithSeetiesID:GetSeetishopID];
     UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:self.seetiesShopViewController];
     [nav setNavigationBarHidden:YES];
     [self presentViewController:nav animated:YES completion:nil];

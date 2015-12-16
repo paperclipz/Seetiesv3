@@ -5573,8 +5573,8 @@
 -(IBAction)CollectionFollowingButtonOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     
-    UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
-    buttonWithTag1.selected = !buttonWithTag1.selected;
+//    UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
+//    buttonWithTag1.selected = !buttonWithTag1.selected;
     
     NSInteger ButtonIDN = getbuttonIDN;
     ButtonIDN -= 8000;
@@ -5586,11 +5586,27 @@
     GetCollectID = [[NSString alloc]initWithFormat:@"%@",[arrCollectionID objectAtIndex:ButtonIDN]];
     
     if ([GetCollectionFollowing isEqualToString:@"0"]) {
+        UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
+        buttonWithTag1.selected = !buttonWithTag1.selected;
         [self FollowCollection];
         [arrCollectionFollowing replaceObjectAtIndex:ButtonIDN withObject:@"1"];
     }else{
-        [self DeleteFollowCollection];
-        [arrCollectionFollowing replaceObjectAtIndex:ButtonIDN withObject:@"0"];
+
+        [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Are You Sure You Want To Unfollow") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"YES"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+            
+            if (buttonIndex == [alertView cancelButtonIndex]) {
+                NSLog(@"Cancelled");
+                
+            } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:LocalisedString(@"YES")]) {
+                
+                UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
+                buttonWithTag1.selected = !buttonWithTag1.selected;
+                [self DeleteFollowCollection];
+                [arrCollectionFollowing replaceObjectAtIndex:ButtonIDN withObject:@"0"];
+                
+                
+            }
+        }];
     }
 }
 -(void)FollowCollection{
