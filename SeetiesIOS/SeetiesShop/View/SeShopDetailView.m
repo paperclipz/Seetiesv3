@@ -12,11 +12,11 @@
 #import "PhotoCollectionViewCell.h"
 
 #define Info_Footer_HEader_Height 44+44;
-#define MaxDistance 100000
 
 @interface SeShopDetailView()<UITableViewDataSource,UITableViewDelegate, UICollectionViewDataSource,UICollectionViewDelegate,MKMapViewDelegate>
 {
    
+    __weak IBOutlet NSLayoutConstraint *photoHeightConstraint;
     __weak IBOutlet UILabel *lblPhotoCount;
     __weak IBOutlet NSLayoutConstraint *tableviewConstraint;
 }
@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblShopName;
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageVerified;
 @property (weak, nonatomic) IBOutlet UILabel *lblOpenNow;
+@property (weak, nonatomic) IBOutlet UILabel *lblDistanceIndicator;
 
 //================== Detail =======================//
 
@@ -59,6 +60,8 @@
 @property(nonatomic,strong)NSString* seetiesID;
 @property(nonatomic,strong)NSString* placeID;
 @property(nonatomic,strong)NSString* postID;
+@property(nonatomic,assign)float shoplat;
+@property(nonatomic,assign)float shopLgn;
 
 @end
 
@@ -94,6 +97,8 @@
 
 -(void)initSelfView
 {
+    tableviewConstraint.constant = 0;
+    photoHeightConstraint.constant = 0;
     [self initCollectionViewDelegate];
     [self initTableViewDelegate];
     self.ibMapView.delegate = self;
@@ -130,6 +135,19 @@
     
     float constant =  (self.arrayList.count*[SeShopDetailTableViewCell getHeight]) + Info_Footer_HEader_Height;
     tableviewConstraint.constant = constant;
+    
+    if (self.arrayList.count == 0) {
+        tableviewConstraint.constant = 0;
+    }
+    
+    if (self.seShopPhotoModel.photos.count == 0) {
+        photoHeightConstraint.constant = 0;
+    }
+    else{
+        photoHeightConstraint.constant = 200;
+
+    }
+
     [self setNeedsUpdateConstraints];
     [self layoutIfNeeded];
     [self setHeight:self.ibMapMainView.frame.size.height + self.ibMapMainView.frame.origin.y + VIEW_PADDING];
@@ -141,16 +159,9 @@
     
     self.lblAddress.text = self.seShopModel.location.formatted_address;
     self.lblNearbyPublicTransport.text = self.seShopModel.nearby_public_transport;
-    if(self.seShopModel.location.distance <= MaxDistance)
-    {
-        self.lblDistance.text = [NSString stringWithFormat:@"%.1f KM",self.seShopModel.location.distance/100];
-
-    }
-    else{
-        self.lblDistance.text = self.seShopModel.location.locality;
-
-    }
     
+    self.lblDistance.text = [Utils getDistance:self.seShopModel.location.distance Locality:self.seShopModel.location.locality];
+       
     lblPhotoCount.text = [NSString stringWithFormat:@"%@ (%d)",LocalisedString(@"Photos"),self.seShopPhotoModel.total_photos];
 
     
@@ -163,6 +174,20 @@
     else{
         self.lblOpenNow.textColor = UIColorFromRGB(248, 76, 76, 1);
         self.lblOpenNow.text = LocalisedString(@"Closed");
+
+    }
+    
+    if (self.seShopModel.location.distance<1000) {
+        self.lblDistanceIndicator.text = LocalisedString(@"Walk");
+
+    }
+    else if(self.seShopModel.location.distance<30000)
+    {
+        self.lblDistanceIndicator.text = LocalisedString(@"Drive");
+
+    }
+    else{
+        self.lblDistanceIndicator.text = LocalisedString(@"Swim or Fly");
 
     }
 }
@@ -282,7 +307,39 @@
 }
 
 #pragma mark - Server
-
+//-(void)initData:(NSString*)seetiesID PlaceID:(NSString*)placeID PostID:(NSString*)postID  Latitude:(float)lat Longitude:(float)lng
+//{
+//    self.shoplat = lat;
+//    self.shopLgn = lng;
+//    self.seetiesID = seetiesID;
+//    self.placeID = placeID;
+//    self.postID = postID;
+//    
+//    [self.ibProfileImageView sd_setImageCroppedWithURL:[NSURL URLWithString:@"http://www.bangsarbabe.com/wp-content/uploads/2014/05/81.jpg"] completed:^(UIImage *image){
+//        
+//        if (self.imageDidFinishLoadBlock) {
+//            self.imageDidFinishLoadBlock(image);
+//        }
+//    }];
+//    
+//    [Utils setRoundBorder:self.ibMapInfoView color:[UIColor clearColor] borderRadius:5.0f];
+//    
+//    [[SearchManager Instance]getCoordinateFromGPSThenWifi:^(CLLocation *currentLocation) {
+//        _region.center.longitude = currentLocation.coordinate.longitude;
+//        _region.center.latitude = currentLocation.coordinate.latitude;
+//        
+//        
+//        [self.annotation setCoordinate:self.region.center];
+//        
+//        [self.ibMapView setRegion:self.region animated:YES];
+//        
+//    } errorBlock:^(NSString *status) {
+//        
+//    }];
+//    
+//    [self requestServerForSeetiShopDetail];
+//    [self requestServerForSeetiShopPhotos];
+//}
 -(void)initData:(NSString*)seetiesID PlaceID:(NSString*)placeID PostID:(NSString*)postID
 {
 
@@ -312,7 +369,18 @@
         
     }];
 
-    [self requestServerForSeetiShopDetail];
+    [[SearchManager Instance]getCoordinateFromGPSThenWifi:^(CLLocation *currentLocation) {
+        
+        self.shoplat = currentLocation.coordinate.latitude;
+        self.shopLgn = currentLocation.coordinate.longitude;
+
+        [self requestServerForSeetiShopDetail];
+
+    } errorBlock:^(NSString *status) {
+        [self requestServerForSeetiShopDetail];
+
+    }];
+    
     [self requestServerForSeetiShopPhotos];
 }
 
@@ -324,8 +392,8 @@
         
         dict = @{@"token":[Utils getAppToken],
                                @"seetishop_id":self.seetiesID,
-                               @"lat" : @"1.934400",
-                               @"lng" : @"103.358727",
+                               @"lat" : @(self.shoplat),
+                               @"lng" : @(self.shopLgn),
                                };
         appendString = self.seetiesID;
 
@@ -333,11 +401,12 @@
     else{
        
         dict = @{@"token":[Utils getAppToken],
-                               @"place_id":self.placeID,
-                               @"post_id" : self.postID,
-                               @"lat" : @"1.934400",
-                               @"lng" : @"103.358727",
-                               };
+                                @"place_id":self.placeID,
+                                @"post_id" : self.postID,
+                                @"lat" : @(self.shoplat),
+                                @"lng" : @(self.shopLgn),
+                 };
+        
         appendString = self.placeID;
 
     }
@@ -348,7 +417,10 @@
         self.seShopModel = [[ConnectionManager dataManager] seShopDetailModel];
         self.arrayList = self.seShopModel.arrayInformation;
         [self.ibTableView reloadData];
-        [self setupViewWithData];
+        [UIView transitionWithView:self duration:1.0f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+            [self setupViewWithData];
+        } completion:nil];
+
         
         if (self.viewDidFinishLoadBlock) {
             self.viewDidFinishLoadBlock();

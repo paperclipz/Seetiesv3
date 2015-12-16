@@ -233,8 +233,8 @@
 - (IBAction)btnTestClicked:(id)sender {
     
     _seetiesShopViewController = nil;
-    //[self.seetiesShopViewController initDataWithSeetiesID:@"56397e301c4d5be92e8b4711"];
-    [self.seetiesShopViewController initDataPlaceID:@"56603c9af9df245c7b8b4572" postID:@"56603c9af9df245c7b8b4573"];
+   // [self.seetiesShopViewController initDataWithSeetiesID:@"56397e301c4d5be92e8b4711" Latitude:1.934400 Longitude:103.358727];
+    [self.seetiesShopViewController initDataPlaceID:@"56603c9af9df245c7b8b4572" postID:@"56603c9af9df245c7b8b4573" Latitude:1.934400 Longitude:103.358727];
     UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:self.seetiesShopViewController];
     [nav setNavigationBarHidden:YES];
     [self presentViewController:nav animated:YES completion:nil];

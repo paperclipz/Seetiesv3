@@ -54,7 +54,8 @@
 @property(nonatomic,strong)NSString* seetiesID;
 @property(nonatomic,strong)NSString* placeID;
 @property(nonatomic,strong)NSString* postID;
-
+@property(nonatomic,assign)float shopLat;
+@property(nonatomic,assign)float shopLng;
 @end
 
 @implementation SeetiesShopViewController
@@ -62,23 +63,36 @@
 -(void)initDataWithSeetiesID:(NSString*)seetiesID
 {
     self.seetiesID = seetiesID;
+    
+}
+-(void)initDataWithSeetiesID:(NSString*)seetiesID Latitude:(float)lat Longitude:(float)lng
+{
+    self.shopLat = lat;
+    self.shopLng = lng;
+    self.seetiesID = seetiesID;
+    
 }
 
 -(void)initDataPlaceID:(NSString*)placeID postID:(NSString*)postID
 {
     self.placeID = placeID;
     self.postID = postID;
+    
+}
 
+-(void)initDataPlaceID:(NSString*)placeID postID:(NSString*)postID Latitude:(float)lat Longitude:(float)lng
+{
+    self.shopLat = lat;
+    self.shopLng = lng;
+    self.placeID = placeID;
+    self.postID = postID;
+    
 }
 
 #pragma mark - IBACTION
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
-    [self.seShopDetailView initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
-    [self.seCollectionView initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
-    [self.seRecommendations initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
-    [self.seNearbySeetishop initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
 }
 
 -(void)initSelfView
@@ -90,14 +104,30 @@
     [self setupViews];
     [self addViews];
     [self rearrangeView];
+    [self setupViewData];
+   
 }
 -(void)setupViews
 {
     [self.arrViews addObject:self.seShopDetailView];
     [self.arrViews addObject:self.seCollectionView];
     [self.arrViews addObject:self.seRecommendations];
-    [self.arrViews addObject:self.seNearbySeetishop];
+    
+    if (![Utils stringIsNilOrEmpty:self.seetiesID]) {
+        [self.arrViews addObject:self.seNearbySeetishop];
 
+    }
+
+}
+-(void)setupViewData
+{
+    [self.seShopDetailView initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
+    [self.seCollectionView initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
+    [self.seRecommendations initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
+    
+    if (![Utils stringIsNilOrEmpty:self.seetiesID]) {
+        [self.seNearbySeetishop initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
+    }
 }
 -(void)addViews
 {
@@ -247,6 +277,7 @@
         {
             
             _photoListViewController = nil;
+            [weakSelf.photoListViewController initData:weakSelf.seetiesID PlaceID:weakSelf.placeID PostID:weakSelf.postID];
             [weakSelf.navigationController pushViewController:weakSelf.photoListViewController animated:YES];
         };
         
@@ -352,7 +383,8 @@
         __weak typeof (self)weakSelf = self;
         _seNearbySeetishop.btnSelectSeetiShopListBlock = ^(void)
         {
-            [weakSelf.seetiShopListingViewController initData];
+            _seetiShopListingViewController = nil;
+            [weakSelf.seetiShopListingViewController initData:weakSelf.seetiesID PlaceID:nil PostID:nil];
             [weakSelf.navigationController pushViewController:weakSelf.seetiShopListingViewController animated:YES];
             
         };

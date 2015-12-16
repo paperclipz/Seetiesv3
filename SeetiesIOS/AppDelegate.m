@@ -72,6 +72,17 @@
                                  callbackURL:@"testapp123://foursquare"];
     [GMSServices provideAPIKey:GOOGLE_API_KEY];
     
+    // ======================= GOOGLE ANALYTICS =====================//
+    // Optional: automatically send uncaught exceptions to Google Analytics.
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
+    [GAI sharedInstance].dispatchInterval = 30;
+    // Optional: set Logger to VERBOSE for debug information.
+    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
+    // Initialize tracker. Replace with your tracking ID.
+    [[GAI sharedInstance] trackerWithTrackingId:@"UA-45737845-4"];
+    // ======================= GOOGLE ANALYTICS =====================//
+
 }
 
 
@@ -176,16 +187,7 @@
         NSLog(@"DEFAULTS_KEY_LANGUAGE_CODE = %@",DEFAULTS_KEY_LANGUAGE_CODE);
         NSLog(@"The language has already been set :)");
     }
-    
-    
-    // Optional: automatically send uncaught exceptions to Google Analytics.
-//    [GAI sharedInstance].trackUncaughtExceptions = YES;
-//    // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
-//    [GAI sharedInstance].dispatchInterval = 30;
-//    // Optional: set Logger to VERBOSE for debug information.
-//    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
-//    // Initialize tracker. Replace with your tracking ID.
-//    [[GAI sharedInstance] trackerWithTrackingId:@"UA-45737845-4"];
+   
     
     if (![Utils isLogin]) {
       

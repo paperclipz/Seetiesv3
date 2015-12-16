@@ -125,21 +125,75 @@
     
     [self.arrViews addObject:self.ibMapMainView];
     [self.ibMapView reloadInputViews];
-    [self.arrViews addObject:self.ibAddressView];
-    [self.arrViews addObject:self.ibPhoneNumberView];
-    [self.arrViews addObject:self.ibHourTableView];
-    [self.arrViews addObject:self.ibURLView];
-    [self.arrViews addObject:self.ibFacebookLinkView];
-    [self.arrViews addObject:self.ibPriceView];
-    [self.arrViews addObject:self.ibBestKnownView];
-    [self.arrViews addObject:self.ibFeatureTableView];
-
-    [self initData];
-}
-
--(void)initData
-{
     
+    self.arrayFeatureAvailableList = self.seShopModel.arrFeatureAvaiable;
+    self.arrayFeatureUnavailableList = self.seShopModel.arrFeatureUnavaiable;
+
+    
+    if (![Utils stringIsNilOrEmpty:self.seShopModel.location.formatted_address]) {
+        [self.arrViews addObject:self.ibAddressView];
+        self.lblAddressDesc.text =self.seShopModel.location.formatted_address;
+
+    }
+
+    
+    if (![Utils stringIsNilOrEmpty:self.seShopModel.contact_number]) {
+        [self.arrViews addObject:self.ibPhoneNumberView];
+        self.lblContactDesc.text = self.seShopModel.contact_number;
+
+    }
+    
+    if ([self.seShopModel.location.opening_hours.period_text allKeys].count >0) {
+        [self.arrViews addObject:self.ibHourTableView];
+        self.arrayHourList = [self.seShopModel.location.opening_hours.period_text allKeys];
+        [self.ibHourTableView setHeight:((int)self.arrayHourList.count*[SeShopMoreInfoTableViewCell getHeight]) + 44];
+        [self.ibHourTableView reloadData];
+    }
+    
+    if (![Utils stringIsNilOrEmpty:self.seShopModel.urlWebsite]) {
+        self.lblURLLinkDesc.text = self.seShopModel.urlWebsite;
+        [self.arrViews addObject:self.ibURLView];
+
+    }
+    
+    if (![Utils stringIsNilOrEmpty:self.seShopModel.urlFacebook]) {
+        self.lblFacebookLinkDesc.text = self.seShopModel.urlFacebook;
+        [self.arrViews addObject:self.ibFacebookLinkView];
+        
+    }
+    
+    if (![Utils stringIsNilOrEmpty:self.seShopModel.price.value]) {
+        self.lblPrice.text = [NSString stringWithFormat:@"%@ %@",self.seShopModel.price.code,self.seShopModel.price.value];
+        self.lblAcceptCreditCard.text = self.seShopModel.price.payment;
+        [self.arrViews addObject:self.ibPriceView];
+        
+    }
+    
+    if (![self isArrayNull:self.arrayFeatureAvailableList] && ![self isArrayNull:self.arrayFeatureUnavailableList]) {
+        float featureHeight = 0;
+        
+        if (![self isArrayNull:self.arrayFeatureAvailableList]) {
+            
+            
+            featureHeight += (44+ ((int)(self.arrayFeatureAvailableList.count)*[SeShopFeatureTableViewCell getHeight]));
+        }
+        if (![self isArrayNull:self.arrayFeatureUnavailableList]) {
+            featureHeight += (44+ ((int)(self.arrayFeatureUnavailableList.count)*[SeShopFeatureTableViewCell getHeight]));
+            
+        }
+        [self.ibFeatureTableView setHeight:featureHeight];
+        
+        [self.arrViews addObject:self.ibBestKnownView];
+
+        [self.ibFeatureTableView reloadData];
+
+    }
+    if (![Utils stringIsNilOrEmpty:self.seShopModel.recommended_information]) {
+        self.lblBestKnown.text = self.seShopModel.recommended_information;
+        [self.arrViews addObject:self.ibFeatureTableView];
+
+    }
+
     [[SearchManager Instance]getCoordinateFromGPSThenWifi:^(CLLocation *currentLocation) {
         _region.center.longitude = currentLocation.coordinate.longitude;
         _region.center.latitude = currentLocation.coordinate.latitude;
@@ -152,85 +206,12 @@
     } errorBlock:^(NSString *status) {
         
     }];
-
     
-    self.lblAddressDesc.text =self.seShopModel.location.formatted_address;
+    
     self.lblNearbyDesc.text = self.seShopModel.nearby_public_transport;
     [self updateConstraintForLabel:self.lblAddressDesc labelHeightConst:constlblAddressDesc_Height superView:self.ibAddressView lasSubView:self.lblNearbyDesc];
-    self.lblContactDesc.text = self.seShopModel.contact_number;
-    
-    self.arrayHourList = [self.seShopModel.location.opening_hours.period_text allKeys];
-    [self.ibHourTableView setHeight:((int)self.arrayHourList.count*[SeShopMoreInfoTableViewCell getHeight]) + 44];
-    [self.ibHourTableView reloadData];
-    
-    self.lblPrice.text = [NSString stringWithFormat:@"%@ %@",self.seShopModel.price.code,self.seShopModel.price.value];
-    self.lblAcceptCreditCard.text = self.seShopModel.price.payment;
-    self.lblBestKnown.text = self.seShopModel.recommended_information;
-    
-    
-    // ==========================   URL Link / Facebook     ==========================
-    
-    if ([Utils isStringNull:self.seShopModel.urlWebsite]) {
-        [self removeViewFromArray:self.ibURLView];
-    }
-    else{
-        self.lblURLLinkDesc.text = self.seShopModel.urlWebsite;
-
-    }
-    
-    if ([Utils isStringNull:self.seShopModel.urlFacebook]) {
-        [self removeViewFromArray:self.ibFacebookLinkView];
-
-    }
-    else{
-        self.lblFacebookLinkDesc.text = self.seShopModel.urlFacebook;
-    }
-    
-    // ==========================   URL Link / Facebook     ==========================
-
-    
-    // ==========================   BEST KNOWN     ==========================
-
-    
-    if ([Utils isStringNull:self.seShopModel.recommended_information]) {
-        
-        [self removeViewFromArray:self.ibBestKnownView];
-
-    }
-    else{
-        self.lblBestKnown.text = self.seShopModel.recommended_information;
-    }
-    // ==========================   BEST KNOWN     ==========================
-
-    // ==========================   feature     ==========================
-    self.arrayFeatureAvailableList = self.seShopModel.arrFeatureAvaiable;
-    self.arrayFeatureUnavailableList = self.seShopModel.arrFeatureUnavaiable;
-    
-    if (![self isArrayNull:self.arrayFeatureAvailableList] && ![self isArrayNull:self.arrayFeatureUnavailableList]) {
-        float featureHeight = 0;
-        
-        if (![self isArrayNull:self.arrayFeatureAvailableList]) {
-            
-            
-            featureHeight += (44+ ((int)(self.arrayFeatureAvailableList.count)*[SeShopFeatureTableViewCell getHeight]));
-        }
-        if (![self isArrayNull:self.arrayFeatureUnavailableList]) {
-            featureHeight += (44+ ((int)(self.arrayFeatureUnavailableList.count)*[SeShopFeatureTableViewCell getHeight]));
-
-        }
-        [self.ibFeatureTableView setHeight:featureHeight];
-        
-    }
-    else{
-    
-        [self removeViewFromArray:self.ibFeatureTableView];
-    }
-    [self.ibFeatureTableView reloadData];
-    // ==========================   feature     ==========================
-
-    [self redrawView];
-
 }
+
 
 -(void)removeViewFromArray:(UIView*)view
 {
