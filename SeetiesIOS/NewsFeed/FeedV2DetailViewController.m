@@ -4280,7 +4280,7 @@
 //    [LocationFeedDetailView GetLink:GetPlaceLink GetContact:GetContactNo GetOpeningHour:GetOpenNow GetPrice:GetExpense GetPeriods:GetPeriods];
     NSLog(@"ViewSeetishopButtonOnClick and SeetishopID = %@",GetSeetishopID);
     NSLog(@"GetPostID is %@ and GetLocationPlaceId is %@",GetPostID,GetLocationPlaceId);
-    
+    self.seetiesShopViewController = nil;
     [self.seetiesShopViewController initDataPlaceID:GetLocationPlaceId postID:GetPostID];
    // [self.seetiesShopViewController initDataWithSeetiesID:GetSeetishopID];
     UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:self.seetiesShopViewController];
@@ -4910,12 +4910,12 @@
 
     NSLog(@"ViewSeetishopButtonOnClick and SeetishopID = %@",GetSeetishopID);
     NSLog(@"GetPostID is %@ and GetLocationPlaceId is %@",GetPostID,GetLocationPlaceId);
-
+    _seetiesShopViewController = nil;
     //[self.seetiesShopViewController initDataPlaceID:GetSeetishopID postID:@"56603c9af9df245c7b8b4573"];
     [self.seetiesShopViewController initDataWithSeetiesID:GetSeetishopID];
 
 
-    _seetiesShopViewController = nil;
+
     
 //    if (![Utils stringIsNilOrEmpty:GetSeetishopID]) {
 //        [self.seetiesShopViewController initDataWithSeetiesID:GetSeetishopID];

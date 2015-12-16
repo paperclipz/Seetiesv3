@@ -79,6 +79,8 @@
         TempButton.frame = CGRectMake(25 + i * (GetWidth + 25), 0 , GetWidth ,200);
         [TempButton setTitle:@"" forState:UIControlStateNormal];
         TempButton.backgroundColor = [UIColor clearColor];
+        TempButton.tag = i;
+        [TempButton addTarget:self action:@selector(OpenSeetiShopButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
         [MainScroll addSubview: TempButton];
         
         AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
@@ -166,5 +168,15 @@
         _arrShop = [NSMutableArray new];
     }
     return _arrShop;
+}
+-(IBAction)OpenSeetiShopButtonOnClick:(id)sender{
+    NSLog(@"SeetiShop OpenSeetiShopButtonOnClick");
+    
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    ShopModel* model = self.arrShop[getbuttonIDN];
+    
+    if (self.btnSeetiShopClickedBlock) {
+        self.btnSeetiShopClickedBlock(model.seetishop_id);
+    }
 }
 @end
