@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CollectionListingViewController">
@@ -26,7 +26,6 @@
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="iTh-r3-EQv">
                             <rect key="frame" x="0.0" y="20" width="40" height="40"/>
-                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="0Lq-C8-AUu"/>
                                 <constraint firstAttribute="width" constant="40" id="Mz7-cT-7fT"/>
@@ -34,7 +33,6 @@
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DTA-9L-tLv">
                             <rect key="frame" x="0.0" y="0.0" width="44" height="64"/>
-                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="44" id="Lav-ck-ydP"/>
                                 <constraint firstAttribute="height" constant="64" id="kDw-W9-pUL"/>
@@ -48,14 +46,12 @@
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collections" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vuc-YZ-3e4">
                             <rect key="frame" x="40" y="28" width="240" height="24"/>
-                            <animations/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kH2-gC-JZm">
                             <rect key="frame" x="270" y="14" width="50" height="50"/>
-                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="7p2-2h-gbx"/>
                                 <constraint firstAttribute="width" constant="50" id="Kgn-I6-gSi"/>
@@ -66,7 +62,6 @@
                             </connections>
                         </button>
                     </subviews>
-                    <animations/>
                     <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="Vuc-YZ-3e4" firstAttribute="leading" secondItem="tuy-J5-blb" secondAttribute="leading" constant="40" id="7XK-Tf-QH5"/>
@@ -84,7 +79,6 @@
                 </view>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ali-jO-zY8">
                     <rect key="frame" x="10" y="72" width="300" height="29"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="oN4-cu-ha7"/>
                         <constraint firstAttribute="height" constant="28" id="roq-pQ-knU"/>
@@ -100,11 +94,9 @@
                 </segmentedControl>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lsb-YA-s3L">
                     <rect key="frame" x="0.0" y="110" width="320" height="408"/>
-                    <animations/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                 </scrollView>
             </subviews>
-            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="Ali-jO-zY8" firstAttribute="top" secondItem="tuy-J5-blb" secondAttribute="bottom" constant="8" id="0Ec-3B-7up"/>

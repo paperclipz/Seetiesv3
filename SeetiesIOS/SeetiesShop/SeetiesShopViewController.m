@@ -415,6 +415,14 @@
             [weakSelf.navigationController pushViewController:weakSelf.seetiShopListingViewController animated:YES];
             
         };
+        
+        _seNearbySeetishop.btnSelectSeetiShopListBlock = ^(NSString* idn)
+        {
+            // open nearby seetiShop
+        
+        };
+    
+        
     }
     return _seNearbySeetishop;
 }
