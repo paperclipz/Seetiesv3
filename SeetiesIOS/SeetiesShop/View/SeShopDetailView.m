@@ -132,6 +132,18 @@
 
 -(void)setupViewWithData
 {
+ 
+    if (self.seShopModel.wallpapers.count >0) {
+        NSDictionary* wallpaperDict = self.seShopModel.wallpapers[0];
+        [self.ibProfileImageView sd_setImageCroppedWithURL:[NSURL URLWithString:[wallpaperDict objectForKey:@"m"]] completed:^(UIImage *image){
+            
+            if (self.imageDidFinishLoadBlock) {
+                self.imageDidFinishLoadBlock(image);
+            }
+        }];
+    }
+   
+
     
     float constant =  (self.arrayList.count*[SeShopDetailTableViewCell getHeight]) + Info_Footer_HEader_Height;
     tableviewConstraint.constant = constant;
@@ -349,12 +361,6 @@
     self.shoplat = [[SearchManager Instance]getLocation].coordinate.latitude;
     self.shopLgn = [[SearchManager Instance]getLocation].coordinate.longitude;
 
-    [self.ibProfileImageView sd_setImageCroppedWithURL:[NSURL URLWithString:@"http://www.bangsarbabe.com/wp-content/uploads/2014/05/81.jpg"] completed:^(UIImage *image){
-        
-        if (self.imageDidFinishLoadBlock) {
-            self.imageDidFinishLoadBlock(image);
-        }
-    }];
     
     [Utils setRoundBorder:self.ibMapInfoView color:[UIColor clearColor] borderRadius:5.0f];
     
@@ -447,7 +453,6 @@
 
     }
 
-    
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetiShopPhoto param:dict appendString:appendString completeHandler:^(id object) {
         self.seShopPhotoModel = [[ConnectionManager dataManager]seShopPhotoModel];
         

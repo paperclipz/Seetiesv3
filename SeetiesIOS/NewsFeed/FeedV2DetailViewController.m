@@ -4910,12 +4910,11 @@
 
     NSLog(@"ViewSeetishopButtonOnClick and SeetishopID = %@",GetSeetishopID);
     NSLog(@"GetPostID is %@ and GetLocationPlaceId is %@",GetPostID,GetLocationPlaceId);
+    _seetiesShopViewController = nil;
 
     //[self.seetiesShopViewController initDataPlaceID:GetSeetishopID postID:@"56603c9af9df245c7b8b4573"];
     [self.seetiesShopViewController initDataWithSeetiesID:GetSeetishopID];
 
-
-    _seetiesShopViewController = nil;
     
 //    if (![Utils stringIsNilOrEmpty:GetSeetishopID]) {
 //        [self.seetiesShopViewController initDataWithSeetiesID:GetSeetishopID];

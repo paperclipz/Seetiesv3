@@ -94,6 +94,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.automaticallyAdjustsScrollViewInsets = NO;
+
     [LoadingManager show];
     [[SearchManager Instance]getCoordinateFromGPSThenWifi:^(CLLocation *currentLocation) {
         
@@ -108,7 +110,6 @@
 
 -(void)initSelfView
 {
-    self.automaticallyAdjustsScrollViewInsets = NO;
     self.ibScrollView.delegate = self;
     _arrViews = [NSMutableArray new];
     

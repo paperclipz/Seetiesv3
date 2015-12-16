@@ -30,6 +30,7 @@
 
 @property(nonatomic,readonly)NSArray* arrayInformation;
 @property(nonatomic,strong)SeShopCategoryModel* category;
+@property(nonatomic,strong)NSArray* wallpapers;
 
 -(void)process;
 

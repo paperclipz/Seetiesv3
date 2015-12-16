@@ -557,6 +557,7 @@
                 <constraint firstAttribute="trailing" secondItem="HtQ-ef-F0z" secondAttribute="trailing" id="zud-0Q-9Rm"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <variation key="default">
                 <mask key="constraints">
