@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblShopName;
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageVerified;
 @property (weak, nonatomic) IBOutlet UILabel *lblOpenNow;
+@property (weak, nonatomic) IBOutlet UILabel *lblDistanceIndicator;
 
 //================== Detail =======================//
 
@@ -173,6 +174,20 @@
     else{
         self.lblOpenNow.textColor = UIColorFromRGB(248, 76, 76, 1);
         self.lblOpenNow.text = LocalisedString(@"Closed");
+
+    }
+    
+    if (self.seShopModel.location.distance<1000) {
+        self.lblDistanceIndicator.text = LocalisedString(@"Walk");
+
+    }
+    else if(self.seShopModel.location.distance<30000)
+    {
+        self.lblDistanceIndicator.text = LocalisedString(@"Drive");
+
+    }
+    else{
+        self.lblDistanceIndicator.text = LocalisedString(@"Swim or Fly");
 
     }
 }

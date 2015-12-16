@@ -258,7 +258,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ab-eU-31z" userLabel="mapInfoView">
                             <rect key="frame" x="15" y="74" width="290" height="58"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="asdasdasdasdsadsadasdasdasdasdasdadadadasdasdasdasdas" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5uy-r3-aYB">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="...." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5uy-r3-aYB">
                                     <rect key="frame" x="10" y="0.0" width="206" height="58"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="58" id="3bF-0n-vhy"/>
@@ -575,6 +575,7 @@
                 <outlet property="ibTableView" destination="RwS-g9-DQA" id="IFS-93-2CZ"/>
                 <outlet property="lblAddress" destination="5uy-r3-aYB" id="ATR-ad-m74"/>
                 <outlet property="lblDistance" destination="OSQ-Pp-SET" id="NwA-Ke-87f"/>
+                <outlet property="lblDistanceIndicator" destination="VgL-Nh-nSz" id="oWP-EB-Qwx"/>
                 <outlet property="lblNearbyPublicTransport" destination="REW-ZP-o6h" id="fT4-sV-F0F"/>
                 <outlet property="lblOpenNow" destination="NB6-Tx-B27" id="Hdi-U2-cCH"/>
                 <outlet property="lblPhotoCount" destination="B01-Mp-njm" id="6Qt-kj-nkc"/>
