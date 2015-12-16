@@ -9,6 +9,6 @@
 #import "CommonViewController.h"
 
 @interface SeetiShopListingViewController : CommonViewController
--(void)initData:(NSString*)seetiesID PlaceID:(NSString*)placeID PostID:(NSString*)postID Latitude:(float)lat Longtitude:(float)lgn;
+-(void)initData:(NSString*)seetiesID PlaceID:(NSString*)placeID PostID:(NSString*)postID;
 
 @end

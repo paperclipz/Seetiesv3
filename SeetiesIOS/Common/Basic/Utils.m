@@ -443,4 +443,44 @@
     return _isNUll;
 }
 
++(NSString*)getDistance:(float)distance Locality:(NSString*)local
+{
+    NSString* strDistance;
+    
+    if(distance <= MaxDistance)
+    {
+        if (distance <= 1000) {
+            strDistance = [NSString stringWithFormat:@"%.1f Meter",distance];
+            
+        }
+        else{
+            strDistance = [NSString stringWithFormat:@"%.1f KM",distance/100];
+            
+        }
+    }
+    
+    else{
+        
+        if ([Utils stringIsNilOrEmpty:strDistance]) {
+            
+            if (distance <= 1000) {
+                strDistance = [NSString stringWithFormat:@"%.1f Meter",distance];
+                
+            }
+            else{
+                strDistance = [NSString stringWithFormat:@"%.1f KM",distance/100];
+                
+            }
+            
+        }
+        else{
+            strDistance = local;
+            
+        }
+        
+    }
+    
+    return strDistance;
+    
+}
 @end

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface Utils : NSObject
-#define MaxDistance 100000
+#define MaxDistance 30000
 
 
 // ======================== STTRING SWITCH CASE ========================
@@ -155,6 +155,7 @@ typedef enum {
 +(BOOL)stringIsNilOrEmpty:(NSString*)aString;
 +(NSURL*)getPrefixedURLFromString:(NSString*)url;
 +(BOOL)isStringNull:(NSString*)str;
++(NSString*)getDistance:(float)distance Locality:(NSString*)local;
 
 
 #define ARRAY_LIST_SIZE 10.0f

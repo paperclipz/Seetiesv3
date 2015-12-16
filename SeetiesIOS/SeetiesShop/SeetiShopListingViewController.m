@@ -32,7 +32,19 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self initTableViewDelegate];
-    [self requestServerForSeetiShopNearbyShop];
+    
+    [[SearchManager Instance]getCoordinateFromGPSThenWifi:^(CLLocation *currentLocation) {
+        
+        self.shoplat = currentLocation.coordinate.latitude;
+        self.shopLgn = currentLocation.coordinate.longitude;
+        
+        [self requestServerForSeetiShopNearbyShop];
+        
+    } errorBlock:^(NSString *status) {
+        [self requestServerForSeetiShopNearbyShop];
+        
+    }];
+
 }
 
 -(void)initTableViewDelegate
@@ -65,24 +77,13 @@
 
     }
     cell.lblTitle.text = model.name;
-    
-    NSString* strDistance;
-    if(model.location.distance <= MaxDistance)
-    {
-        strDistance = [NSString stringWithFormat:@"%.1f KM",model.location.distance/100];
-        
-    }
-    else{
-        strDistance = model.location.locality;
-        
-    }
-
-    cell.lblDesc.text = [NSString stringWithFormat:@"%@ • %@",strDistance,model.location.formatted_address];
    
+    cell.lblDesc.text = [NSString stringWithFormat:@"%@ • %@",[Utils getDistance:model.location.distance Locality:model.location.locality],model.location.formatted_address];
+   
+    [cell setIsOpen:model.location.opening_hours.open_now];
     
     return cell;
 }
-
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -93,10 +94,8 @@
     [self.navigationController pushViewController:self.seetiesShopViewController animated:YES];
 }
 
--(void)initData:(NSString*)seetiesID PlaceID:(NSString*)placeID PostID:(NSString*)postID Latitude:(float)lat Longtitude:(float)lgn
+-(void)initData:(NSString*)seetiesID PlaceID:(NSString*)placeID PostID:(NSString*)postID
 {
-    self.shoplat = lat;
-    self.shopLgn = lgn;
     self.seetiesID = seetiesID;
     self.placeID = placeID;
     self.postID = postID;
@@ -126,6 +125,8 @@
                  @"offset":@"1",
                  @"lat":@(self.shoplat),
                  @"lng":@(self.shopLgn),
+                 @"lat" : @(self.shoplat),
+                 @"lng" : @(self.shopLgn),
                  };
 
     }
@@ -133,7 +134,9 @@
         appendString = [NSString stringWithFormat:@"%@/nearby/shops",self.placeID];
         dict = @{@"limit":@(ARRAY_LIST_SIZE),
                  @"offset":@"1",
-                 @"post_id":self.postID
+                 @"post_id":self.postID,
+                 @"lat" : @(self.shoplat),
+                 @"lng" : @(self.shopLgn),
                  };
 
     }

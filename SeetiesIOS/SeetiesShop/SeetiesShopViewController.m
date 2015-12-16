@@ -121,7 +121,7 @@
 }
 -(void)setupViewData
 {
-    [self.seShopDetailView initData:self.seetiesID PlaceID:self.placeID PostID:self.postID Latitude:self.shopLat Longitude:self.shopLng];
+    [self.seShopDetailView initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
     [self.seCollectionView initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
     [self.seRecommendations initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
     
@@ -384,7 +384,7 @@
         _seNearbySeetishop.btnSelectSeetiShopListBlock = ^(void)
         {
             _seetiShopListingViewController = nil;
-            [weakSelf.seetiShopListingViewController initData:weakSelf.seetiesID PlaceID:nil PostID:nil Latitude:weakSelf.shopLat Longtitude:weakSelf.shopLng];
+            [weakSelf.seetiShopListingViewController initData:weakSelf.seetiesID PlaceID:nil PostID:nil];
             [weakSelf.navigationController pushViewController:weakSelf.seetiShopListingViewController animated:YES];
             
         };

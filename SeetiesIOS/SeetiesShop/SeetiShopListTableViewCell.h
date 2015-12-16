@@ -13,4 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblDesc;
+
+-(void)setIsOpen:(BOOL)isOpen;
+
 @end

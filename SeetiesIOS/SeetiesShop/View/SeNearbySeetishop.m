@@ -21,7 +21,8 @@
 @property(nonatomic,strong)NSString* seetiesID;
 @property(nonatomic,strong)NSString* placeID;
 @property(nonatomic,strong)NSString* postID;
-
+@property(nonatomic,assign)float shoplat;
+@property(nonatomic,assign)float shopLgn;
 @end
 @implementation SeNearbySeetishop
 
@@ -127,7 +128,18 @@
     self.placeID = placeID;
     self.postID = postID;
     
-    [self requestServerForSeetiShopNearbyShop];
+    [[SearchManager Instance]getCoordinateFromGPSThenWifi:^(CLLocation *currentLocation) {
+        
+        self.shoplat = currentLocation.coordinate.latitude;
+        self.shopLgn = currentLocation.coordinate.longitude;
+        
+        [self requestServerForSeetiShopNearbyShop];
+        
+    } errorBlock:^(NSString *status) {
+        [self requestServerForSeetiShopNearbyShop];
+        
+    }];
+
 }
 -(void)requestServerForSeetiShopNearbyShop
 {
@@ -135,6 +147,8 @@
     NSString* appendString = @"56397e301c4d5be92e8b4711/nearby/shops";
     NSDictionary* dict = @{@"limit":@"6",
                            @"offset":@"1",
+                           @"lat" : @(self.shoplat),
+                           @"lng" : @(self.shopLgn),                           
                            };
     
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetoShopNearbyShop param:dict appendString:appendString completeHandler:^(id object) {
