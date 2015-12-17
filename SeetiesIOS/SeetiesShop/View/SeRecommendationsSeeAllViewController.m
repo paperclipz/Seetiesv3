@@ -104,8 +104,7 @@
     self.seetiesID = seetiesID;
     self.postID = postID;
     self.placeID = placeID;
-    
-    
+
     [self requestServerForSeetiShopRecommendations];
     
 }
@@ -121,7 +120,8 @@
     NSString* appendString;
     if (![Utils stringIsNilOrEmpty:self.seetiesID]) {
         
-        dict = @{@"limit":@"10",
+        dict = @{@"token":[Utils getAppToken],
+                 @"limit":@"10",
                  @"offset":@"1",
                  };
         appendString = [[NSString alloc]initWithFormat:@"%@/posts",self.seetiesID];
@@ -129,7 +129,8 @@
     }
     else{
         
-        dict = @{@"limit":@"10",
+        dict = @{@"token":[Utils getAppToken],
+                 @"limit":@"10",
                  @"offset":@"1",
                  };
         
@@ -531,10 +532,7 @@
     
     CheckLike = [[NSString alloc]initWithFormat:@"%@",model.like];
     SendLikePostID = [[NSString alloc]initWithFormat:@"%@",model.post_id];
-    
-    
 
-    
     if ([CheckLike isEqualToString:@"0"]) {
         NSLog(@"send like to server");
         [self SendPostLike];
@@ -712,8 +710,6 @@
     [request setHTTPMethod:@"PUT"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    
-    
     
     NSString *dataString = [[NSString alloc]initWithFormat:@"token=%@&posts[0][id]=%@",GetExpertToken,GetPostID];
     

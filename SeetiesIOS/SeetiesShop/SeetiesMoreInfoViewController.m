@@ -17,6 +17,7 @@
 
 // ============ IBOUTLET======================//
 @property (weak, nonatomic) IBOutlet UIScrollView *ibScrollView;
+@property (weak, nonatomic) IBOutlet UIButton *btnTranslation;
 
 // ---------------- ADDRESS----------------------//
 @property (weak, nonatomic) IBOutlet UIView *ibAddressView;
@@ -100,6 +101,8 @@
     [self adjustView:self.arrViews[self.arrViews.count-1] :(int)(self.arrViews.count - 1)];
     UIView* lastView = [self.arrViews lastObject];
     self.ibScrollView.contentSize = CGSizeMake( self.ibScrollView.frame.size.width, lastView.frame.size.height+ lastView.frame.origin.y);
+    
+
 }
 
 -(void)initSelfView

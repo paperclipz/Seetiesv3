@@ -86,6 +86,15 @@
     IBOutlet UILabel *ShowTitleInTop;
     
     UIButton *MainEditButton;
+    
+    //Translate
+    NSString *strGetTranslateTitle;
+    NSString *strGetTranslateDescription;
+    NSMutableArray *Translate_arrNote;
+    NSMutableArray *Translate_arrID;
+    
+    NSString *strOriginalTitle;
+    NSString *strOriginalDescription;
 }
 
 @end
@@ -242,6 +251,9 @@
             GetIsPrivate = [[NSString alloc]initWithFormat:@"%@",[ResData valueForKey:@"is_private"]];
             GetFollowing = [[NSString alloc]initWithFormat:@"%@",[ResData valueForKey:@"following"]];
             GetFollowersCount = [[NSString alloc]initWithFormat:@"%@",[ResData valueForKey:@"follower_count"]];
+            
+            strOriginalTitle = GetTitle;
+            strOriginalDescription = GetDescription;
             
             NSLog(@"Collection GetFollowing data is %@",GetFollowing);
             NSArray *LanguageData = [ResData valueForKey:@"languages"];
@@ -521,19 +533,19 @@
             
             NSDictionary *ResData = [res valueForKey:@"data"];
             
-            GetTitle = [[NSString alloc]initWithFormat:@"%@",[ResData objectForKey:@"name"]];
-            GetDescription = [[NSString alloc]initWithFormat:@"%@",[ResData objectForKey:@"description"]];
+            strGetTranslateTitle = [[NSString alloc]initWithFormat:@"%@",[ResData objectForKey:@"name"]];
+            strGetTranslateDescription = [[NSString alloc]initWithFormat:@"%@",[ResData objectForKey:@"description"]];
             
             NSDictionary *GetData = [ResData valueForKey:@"posts"];
             
-            [Content_arrID removeAllObjects];
-            [Content_arrNote removeAllObjects];
+            Translate_arrID = [[NSMutableArray alloc]init];
+            Translate_arrNote = [[NSMutableArray alloc]init];
             
             for (NSDictionary * dict in GetData) {
                 NSString *PlaceID = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"post_id"]];
-                [Content_arrID addObject:PlaceID];
+                [Translate_arrID addObject:PlaceID];
                 NSString *notedate = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"collection_note"]];
-                [Content_arrNote addObject:notedate];
+                [Translate_arrNote addObject:notedate];
             }
             for (UIView *subview in MainScroll.subviews) {
                 [subview removeFromSuperview];
@@ -549,6 +561,16 @@
             GetCollectionHeight = 0;
             CheckShowMessage = 0;
             TempHeight = 0;
+            
+            GetTitle = strGetTranslateTitle;
+            GetDescription = strGetTranslateDescription;
+            
+            [Content_arrID removeAllObjects];
+            [Content_arrNote removeAllObjects];
+            
+            [Content_arrID addObjectsFromArray:Translate_arrID];
+            [Content_arrNote addObjectsFromArray:Translate_arrNote];
+            
             [self InitView];
             
             [ShowActivity stopAnimating];
@@ -1447,6 +1469,9 @@
 
 }
 -(IBAction)TranslateButtonOnClick:(id)sender{
+//    if (strGetTranslateTitle) {
+//        <#statements#>
+//    }
     [self GetTranslateData];
 }
 
