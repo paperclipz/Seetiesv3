@@ -43,7 +43,7 @@
     ShowbackLine.frame = CGRectMake(-1, 0, screenWidth + 2 , 50);
     [ShowbackLine setTitle:@"" forState:UIControlStateNormal];
     ShowbackLine.backgroundColor = [UIColor whiteColor];
-    [Utils setRoundBorder:ShowbackLine color:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
+    [Utils setRoundBorder:ShowbackLine color:[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
     
     ShowSeenearbySeetishop.frame = CGRectMake(20, 0, screenWidth - 40, 50);
     ShowSeenearbySeetishop.text = LocalisedString(@"See nearby Seetishop");
@@ -52,7 +52,7 @@
     ShowbackLineSeeAll.frame = CGRectMake(-1, 250, screenWidth + 2 , 50);
     [ShowbackLineSeeAll setTitle:@"" forState:UIControlStateNormal];
     ShowbackLineSeeAll.backgroundColor = [UIColor whiteColor];
-    [Utils setRoundBorder:ShowbackLineSeeAll color:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
+    [Utils setRoundBorder:ShowbackLineSeeAll color:[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
     
     SeeAllButton.frame = CGRectMake(0, 250, screenWidth, 50);
     [SeeAllButton setTitle:LocalisedString(@"See All") forState:UIControlStateNormal];
@@ -89,20 +89,35 @@
         ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
         ShowUserProfileImage.layer.cornerRadius = GetWidth / 2;
         ShowUserProfileImage.layer.masksToBounds = YES;
+        ShowUserProfileImage.layer.borderWidth = 1.0f;
+        ShowUserProfileImage.layer.borderColor = [UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f].CGColor;
         
-        if (![shopModel.arrPhotos isNull])
-        {
-            PhotoModel* ImgModel = shopModel.arrPhotos[0];
+//        if (![shopModel.arrPhotos isNull])
+//        {
+//            PhotoModel* ImgModel = shopModel.arrPhotos[0];
+//            [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
+//            NSString *ImageData1 = [[NSString alloc]initWithFormat:@"%@",ImgModel.imageURL];
+//            if ([ImageData1 length] == 0) {
+//                ShowUserProfileImage.image = [UIImage imageNamed:@"NoImage.png"];
+//            }else{
+//                NSURL *url_NearbySmall = [NSURL URLWithString:ImageData1];
+//                ShowUserProfileImage.imageURL = url_NearbySmall;
+//            }
+//        }else{
+//             ShowUserProfileImage.image = [UIImage imageNamed:@"NoImage.png"];
+//        }
+        
+        if (![shopModel.profile_photo isNull]) {
             [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
-            NSString *ImageData1 = [[NSString alloc]initWithFormat:@"%@",ImgModel.imageURL];
+            NSString *ImageData1 = [[NSString alloc]initWithFormat:@"%@",shopModel.profile_photo];
             if ([ImageData1 length] == 0) {
-                ShowUserProfileImage.image = [UIImage imageNamed:@"SSDefaultDisplayPhoto.png"];
+                ShowUserProfileImage.image = [UIImage imageNamed:@"SSDefaultLogo.png"];
             }else{
                 NSURL *url_NearbySmall = [NSURL URLWithString:ImageData1];
                 ShowUserProfileImage.imageURL = url_NearbySmall;
             }
         }else{
-             ShowUserProfileImage.image = [UIImage imageNamed:@"SSDefaultDisplayPhoto.png"];
+           ShowUserProfileImage.image = [UIImage imageNamed:@"SSDefaultLogo.png"];
         }
 
 

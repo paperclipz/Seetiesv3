@@ -51,7 +51,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self initSelfView];
-    [self initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
+    
 }
 -(void)initSelfView
 {
@@ -71,6 +71,8 @@
     self.arrPostCollect = [[NSMutableArray alloc]init];
     
     heightcheck = 10;
+    
+    [self initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -98,6 +100,11 @@
 }
 -(void)initData:(NSString*)seetiesID PlaceID:(NSString*)placeID PostID:(NSString*)postID;
 {
+    
+    self.seetiesID = seetiesID;
+    self.postID = postID;
+    self.placeID = placeID;
+
     [self requestServerForSeetiShopRecommendations];
     
 }
@@ -113,7 +120,8 @@
     NSString* appendString;
     if (![Utils stringIsNilOrEmpty:self.seetiesID]) {
         
-        dict = @{@"limit":@"10",
+        dict = @{@"token":[Utils getAppToken],
+                 @"limit":@"10",
                  @"offset":@"1",
                  };
         appendString = [[NSString alloc]initWithFormat:@"%@/posts",self.seetiesID];
@@ -121,7 +129,8 @@
     }
     else{
         
-        dict = @{@"limit":@"10",
+        dict = @{@"token":[Utils getAppToken],
+                 @"limit":@"10",
                  @"offset":@"1",
                  };
         
@@ -131,8 +140,9 @@
     
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetoShopRecommendations param:dict appendString:appendString completeHandler:^(id object) {
         self.userProfilePostModel = [[ConnectionManager dataManager]userProfilePostModel];
+        self.arrPostListing = nil;
         [self.arrPostListing addObjectsFromArray:self.userProfilePostModel.userPostData.posts];
-        
+
         [self InitRecommendationView];
         [ShowActivity stopAnimating];
     } errorBlock:^(id object) {
@@ -150,13 +160,25 @@
     return _arrPostListing;
 }
 -(void)InitRecommendationView{
+    SLog(@"run how many time?");
     
+    [self.arrPostLike removeAllObjects];
+    [self.arrPostCollect removeAllObjects];
+    
+    for (UIView *subview in MainScroll.subviews) {
+        [subview removeFromSuperview];
+    }
+    heightcheck = 10;
+
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
 
     for (int i = 0; i < [self.arrPostListing count]; i++) {
         DraftModel* model = self.arrPostListing[i];
         [self.arrPostLike addObject:model.like];
         [self.arrPostCollect addObject:model.collect];
+        
+        NSLog(@"self.arrPostLike == %@",self.arrPostLike);
+        NSLog(@"self.arrPostCollect == %@",self.arrPostCollect);
         
         NSInteger TempHeight = heightcheck;
         int TempCountWhiteHeight = 0;
@@ -434,7 +456,7 @@
             [LikeButton setImage:[UIImage imageNamed:@"LikeIcon.png"] forState:UIControlStateSelected];
         }
         LikeButton.backgroundColor = [UIColor clearColor];
-        LikeButton.tag = 6000 + i;
+        LikeButton.tag = i;
         [LikeButton addTarget:self action:@selector(LikeButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
         [MainScroll addSubview:LikeButton];
         
@@ -461,7 +483,7 @@
         QuickCollectButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
         QuickCollectButton.frame = CGRectMake(screenWidth - 20 - 140, heightcheck - 5, 140, 50);
         [QuickCollectButton addTarget:self action:@selector(CollectButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
-        QuickCollectButton.tag = i + 5000;
+        QuickCollectButton.tag = i ;
         [MainScroll addSubview:QuickCollectButton];
         
         UIButton *CollectButton = [[UIButton alloc]init];
@@ -510,10 +532,7 @@
     
     CheckLike = [[NSString alloc]initWithFormat:@"%@",model.like];
     SendLikePostID = [[NSString alloc]initWithFormat:@"%@",model.post_id];
-    
-    
 
-    
     if ([CheckLike isEqualToString:@"0"]) {
         NSLog(@"send like to server");
         [self SendPostLike];
@@ -691,8 +710,6 @@
     [request setHTTPMethod:@"PUT"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    
-    
     
     NSString *dataString = [[NSString alloc]initWithFormat:@"token=%@&posts[0][id]=%@",GetExpertToken,GetPostID];
     

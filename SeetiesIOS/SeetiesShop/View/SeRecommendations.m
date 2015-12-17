@@ -46,7 +46,7 @@
     ShowbackLine.frame = CGRectMake(-1, 0, screenWidth + 2 , 50);
     [ShowbackLine setTitle:@"" forState:UIControlStateNormal];
     ShowbackLine.backgroundColor = [UIColor whiteColor];
-    [Utils setRoundBorder:ShowbackLine color:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
+    [Utils setRoundBorder:ShowbackLine color:[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
     
     ShowRecommendationsText.frame = CGRectMake(20, 0, screenWidth - 40, 50);
     ShowRecommendationsText.text = @"Recommendations";
@@ -54,11 +54,11 @@
     
     Getheight = 50;
     
-    SeeAllButton.frame = CGRectMake(-1, self.frame.size.height - 70, screenWidth + 2 , 50);
+    SeeAllButton.frame = CGRectMake(-1, self.frame.size.height - 60, screenWidth + 2 , 50);
     [SeeAllButton setTitle:@"See all recommendations" forState:UIControlStateNormal];
     SeeAllButton.backgroundColor = [UIColor whiteColor];
     [SeeAllButton addTarget:self action:@selector(SeeAllButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [Utils setRoundBorder:SeeAllButton color:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
+    [Utils setRoundBorder:SeeAllButton color:[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
     
 
 }
@@ -71,6 +71,8 @@
     ShowUserProfileImage.layer.cornerRadius = 20;
     ShowUserProfileImage.layer.masksToBounds = YES;
     ShowUserProfileImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
+    ShowUserProfileImage.layer.borderWidth = 1.0f;
+    ShowUserProfileImage.layer.borderColor = [UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f].CGColor;
     return ShowUserProfileImage;
 }
 -(UILabel *)SetupLabel
@@ -78,7 +80,7 @@
     UILabel *Showlabel = [[UILabel alloc]init];
     Showlabel.text = @"Label";
     Showlabel.backgroundColor = [UIColor whiteColor];
-    Showlabel.textColor = [UIColor blackColor];
+    Showlabel.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
     Showlabel.textAlignment = NSTextAlignmentLeft;
     
     return Showlabel;
@@ -124,7 +126,7 @@
         UILabel *ShowUsername = [self SetupLabel];
         ShowUsername.frame = CGRectMake(80, Getheight, screenWidth - 100, 40);
         ShowUsername.text = model.user_info.name;
-        ShowUsername.font = [UIFont fontWithName:CustomFontName size:13];
+        ShowUsername.font = [UIFont fontWithName:CustomFontName size:15];
         ShowUsername.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
         [self addSubview:ShowUsername];
         
@@ -157,7 +159,8 @@
             UILabel *ShowTitle = [self SetupLabel];
             ShowTitle.frame = CGRectMake(80, Getheight, screenWidth - 100, 20);
             ShowTitle.text = TestTitle;
-            ShowTitle.font = [UIFont fontWithName:CustomFontNameBold size:15];
+            ShowTitle.font = [UIFont fontWithName:CustomFontNameBold size:17];
+            ShowTitle.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
             [self addSubview:ShowTitle];
         
             Getheight += 20;
@@ -243,13 +246,13 @@
         [self addSubview:Line04];
         
 
-        Getheight += 30;
+        Getheight += 20;
         
 
     }
     whiteBack.frame = CGRectMake(0, 50, screenWidth,  Getheight - 50);
     self.frame = CGRectMake(0, 0, screenWidth, Getheight + 50);
-    SeeAllButton.frame = CGRectMake(-1, self.frame.size.height - 70, screenWidth + 2 , 50);
+    SeeAllButton.frame = CGRectMake(-1, self.frame.size.height - 60, screenWidth + 2 , 50);
     [self addSubview:SeeAllButton];
 }
 -(void)initData:(NSString*)seetiesID PlaceID:(NSString*)placeID PostID:(NSString*)postID
