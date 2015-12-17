@@ -4908,22 +4908,10 @@
 }
 -(IBAction)ViewSeetishopButtonOnClick:(id)sender{
 
-    NSLog(@"ViewSeetishopButtonOnClick and SeetishopID = %@",GetSeetishopID);
-    NSLog(@"GetPostID is %@ and GetLocationPlaceId is %@",GetPostID,GetLocationPlaceId);
+   // NSLog(@"ViewSeetishopButtonOnClick and SeetishopID = %@",GetSeetishopID);
+   // NSLog(@"GetPostID is %@ and GetLocationPlaceId is %@",GetPostID,GetLocationPlaceId);
     _seetiesShopViewController = nil;
-    //[self.seetiesShopViewController initDataPlaceID:GetSeetishopID postID:@"56603c9af9df245c7b8b4573"];
     [self.seetiesShopViewController initDataWithSeetiesID:GetSeetishopID];
-
-
-
-    
-//    if (![Utils stringIsNilOrEmpty:GetSeetishopID]) {
-//        [self.seetiesShopViewController initDataWithSeetiesID:GetSeetishopID];
-//    }
-//    else{
-//        [self.seetiesShopViewController initDataPlaceID:GetLocationPlaceId postID:GetPostID];
-//    }
-
     UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:self.seetiesShopViewController];
     [nav setNavigationBarHidden:YES];
     [self presentViewController:nav animated:YES completion:nil];

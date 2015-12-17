@@ -17,6 +17,7 @@
 
 // ============ IBOUTLET======================//
 @property (weak, nonatomic) IBOutlet UIScrollView *ibScrollView;
+@property (weak, nonatomic) IBOutlet UILabel *lblShopTitle;
 @property (weak, nonatomic) IBOutlet UIButton *btnTranslation;
 
 // ---------------- ADDRESS----------------------//
@@ -149,7 +150,7 @@
     if ([self.seShopModel.location.opening_hours.period_text allKeys].count >0) {
         [self.arrViews addObject:self.ibHourTableView];
         self.arrayHourList = [self.seShopModel.location.opening_hours.period_text allKeys];
-        [self.ibHourTableView setHeight:((int)self.arrayHourList.count*[SeShopMoreInfoTableViewCell getHeight]) + 44];
+        [self.ibHourTableView setHeight:((int)self.arrayHourList.count*[SeShopMoreInfoTableViewCell getHeight]) + 44 + 5];
         [self.ibHourTableView reloadData];
     }
     
@@ -184,7 +185,7 @@
             featureHeight += (44+ ((int)(self.arrayFeatureUnavailableList.count)*[SeShopFeatureTableViewCell getHeight]));
             
         }
-        [self.ibFeatureTableView setHeight:featureHeight];
+        [self.ibFeatureTableView setHeight:featureHeight + 30];//this 44 is for tableview header
         
         [self.arrViews addObject:self.ibBestKnownView];
 

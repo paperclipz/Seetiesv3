@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -32,7 +32,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Durian mango bingsu, Oreo wallffles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0D-pr-57K">
-                        <rect key="frame" x="63" y="27" width="240" height="18"/>
+                        <rect key="frame" x="63" y="31" width="240" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -41,7 +41,7 @@
                 <constraints>
                     <constraint firstItem="0MF-Wz-7H9" firstAttribute="leading" secondItem="Q9e-Q5-msS" secondAttribute="trailing" constant="15" id="PQc-po-zCc"/>
                     <constraint firstAttribute="trailingMargin" secondItem="0MF-Wz-7H9" secondAttribute="trailing" constant="9" id="TLp-5R-ZeW"/>
-                    <constraint firstItem="t0D-pr-57K" firstAttribute="top" secondItem="0MF-Wz-7H9" secondAttribute="bottom" constant="-2" id="WZ1-oI-RMP"/>
+                    <constraint firstItem="t0D-pr-57K" firstAttribute="top" secondItem="0MF-Wz-7H9" secondAttribute="bottom" constant="2" id="WZ1-oI-RMP"/>
                     <constraint firstItem="t0D-pr-57K" firstAttribute="leading" secondItem="0MF-Wz-7H9" secondAttribute="leading" id="Xct-im-lW6"/>
                     <constraint firstAttribute="trailingMargin" secondItem="t0D-pr-57K" secondAttribute="trailing" constant="9" id="aeo-MU-3if"/>
                     <constraint firstItem="Q9e-Q5-msS" firstAttribute="top" secondItem="gmn-MP-Zy7" secondAttribute="topMargin" id="bQh-b2-YTO"/>

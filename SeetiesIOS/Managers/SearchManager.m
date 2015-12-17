@@ -14,18 +14,60 @@
 @property(nonatomic,strong)ConnectionManager* connManager;
 @property(nonatomic,copy)SearchManagerFailBlock searchManagerFailBlock;
 
+
 @end
 @implementation SearchManager
 
 
+-(void)startGetWifiLocation
+{
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetGeoIP param:nil appendString:nil completeHandler:^(id object) {
+       
+        self.wifiLocation = [self convertToCLLocation:object[@"latitude"] longt:object[@"longitude"]];
+        
+    } errorBlock:^(id object) {
+    
+    }];
+
+}
+-(void)startSearchGPSLocation
+{
+    if ([CLLocationManager isLocationUpdatesAvailable]) {
+        
+        self.manager = [CLLocationManager updateManagerWithAccuracy:50.0 locationAge:15.0 authorizationDesciption:CLLocationUpdateAuthorizationDescriptionAlways];
+        [self.manager startUpdatingLocationWithUpdateBlock:^(CLLocationManager *manager, CLLocation *location, NSError *error, BOOL *stopUpdating) {
+            NSLog(@"Our new location from GPS: %@", location);
+            
+            if (error && !location) {
+            }
+            else
+            {
+                self.GPSLocation = location;
+                *stopUpdating = YES;
+                [LoadingManager hide];
+            }
+        }];
+        
+    }
+    else{
+        
+        SLog(@"/n  ============== PLEASE ENABLE GPS LOCATION ===============  /n");
+    }
+
+}
+
 -(CLLocation*)getLocation
 {
-    if (self.location) {
+    if (self.GPSLocation) {
+        return self.GPSLocation;
+    }
+    else if(self.location)
+    {
         return self.location;
     }
-    else
-    {
+    else{
         return self.wifiLocation;
+
     }
 }
 

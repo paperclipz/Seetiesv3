@@ -83,6 +83,8 @@
     [[GAI sharedInstance] trackerWithTrackingId:@"UA-45737845-4"];
     // ======================= GOOGLE ANALYTICS =====================//
 
+    [[SearchManager Instance]startSearchGPSLocation];
+    [[SearchManager Instance]startGetWifiLocation];
 }
 
 

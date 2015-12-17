@@ -18,6 +18,7 @@
                                                        @"url.website": @"urlWebsite",
                                                        @"features.available" : @"arrFeatureAvaiable",
                                                        @"features.unavailable" : @"arrFeatureUnavaiable",
+                                                       @"profile_photo_images.m" : @"profile_photo_images"
                                                        }];
 }
 

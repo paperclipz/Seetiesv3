@@ -11,7 +11,7 @@
 #import "SeShopDetailTableViewCell.h"
 #import "PhotoCollectionViewCell.h"
 
-#define Info_Footer_HEader_Height 44+44;
+#define Info_Footer_HEader_Height 54+54;
 
 @interface SeShopDetailView()<UITableViewDataSource,UITableViewDelegate, UICollectionViewDataSource,UICollectionViewDelegate,MKMapViewDelegate>
 {
@@ -26,11 +26,12 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageVerified;
 @property (weak, nonatomic) IBOutlet UILabel *lblOpenNow;
 @property (weak, nonatomic) IBOutlet UILabel *lblDistanceIndicator;
+@property (weak, nonatomic) IBOutlet UIView *ibProfileContentView;
+@property (weak, nonatomic) IBOutlet UIImageView *ibImgProfile;
+@property (weak, nonatomic) IBOutlet UIImageView *ibImgProfileBackground;
 
 //================== Detail =======================//
 
-@property (weak, nonatomic) IBOutlet UIView *ibInformationMainView;
-@property (weak, nonatomic) IBOutlet UIView *ibInformationContentView;
 @property (weak, nonatomic) IBOutlet UIImageView *ibProfileImageView;
 @property(nonatomic,strong)NSArray* arrayList;
 @property(nonatomic,assign)int counter;
@@ -39,7 +40,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *ibBtnInformationDetails;
 @property (weak, nonatomic) IBOutlet UIView *ibPhotoView;
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
-@property (weak, nonatomic) IBOutlet UILabel *lblNearbyTransport;
+//@property (weak, nonatomic) IBOutlet UILabel *lblNearbyTransport;
 @property (weak, nonatomic) IBOutlet UILabel *lblDistance;
 
 //================== MAP =======================//
@@ -97,6 +98,7 @@
 
 -(void)initSelfView
 {
+    [Utils setRoundBorder:self.ibProfileContentView color:[UIColor clearColor] borderRadius:self.ibProfileContentView.frame.size.width/2];
     tableviewConstraint.constant = 0;
     photoHeightConstraint.constant = 0;
     [self initCollectionViewDelegate];
@@ -132,6 +134,25 @@
 
 -(void)setupViewWithData
 {
+ 
+    if (self.seShopModel.wallpapers.count >0) {
+        NSDictionary* wallpaperDict = self.seShopModel.wallpapers[0];
+        [self.ibImgProfile sd_setImageCroppedWithURL:[NSURL URLWithString:[wallpaperDict objectForKey:@"m"]] completed:^(UIImage *image){
+            
+        }];
+    }
+    
+    if (self.seShopModel.profile_photo_images) {
+        [self.ibImgProfileBackground sd_setImageCroppedWithURL:[NSURL URLWithString:self.seShopModel.profile_photo_images] completed:^(UIImage *image){
+            
+            if (self.imageDidFinishLoadBlock) {
+                self.imageDidFinishLoadBlock(image);
+            }
+        }];
+    }
+   
+
+
     
     float constant =  (self.arrayList.count*[SeShopDetailTableViewCell getHeight]) + Info_Footer_HEader_Height;
     tableviewConstraint.constant = constant;
@@ -144,7 +165,7 @@
         photoHeightConstraint.constant = 0;
     }
     else{
-        photoHeightConstraint.constant = 200;
+        photoHeightConstraint.constant = 230;
 
     }
 
@@ -349,14 +370,8 @@
     self.shoplat = [[SearchManager Instance]getLocation].coordinate.latitude;
     self.shopLgn = [[SearchManager Instance]getLocation].coordinate.longitude;
 
-    [self.ibProfileImageView sd_setImageCroppedWithURL:[NSURL URLWithString:@"http://www.bangsarbabe.com/wp-content/uploads/2014/05/81.jpg"] completed:^(UIImage *image){
-        
-        if (self.imageDidFinishLoadBlock) {
-            self.imageDidFinishLoadBlock(image);
-        }
-    }];
     
-    [Utils setRoundBorder:self.ibMapInfoView color:[UIColor clearColor] borderRadius:5.0f];
+    [Utils setRoundBorder:self.ibMapInfoView color:OUTLINE_COLOR borderRadius:5.0f];
     
     [[SearchManager Instance]getCoordinateFromGPSThenWifi:^(CLLocation *currentLocation) {
         _region.center.longitude = currentLocation.coordinate.longitude;
@@ -447,7 +462,6 @@
 
     }
 
-    
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetiShopPhoto param:dict appendString:appendString completeHandler:^(id object) {
         self.seShopPhotoModel = [[ConnectionManager dataManager]seShopPhotoModel];
         

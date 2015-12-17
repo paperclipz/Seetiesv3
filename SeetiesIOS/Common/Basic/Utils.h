@@ -54,7 +54,8 @@ typedef enum ScrollDirection {
 typedef enum {
 
     ProfileViewTypeOthers,
-    ProfileViewTypeOwn
+    ProfileViewTypeOwn,
+
     
 } ProfileViewType;
 
@@ -63,7 +64,8 @@ typedef enum {
     CollectionListingTypeMyOwn,
     CollectionListingTypeFollowing,
     CollectionListingTypeSuggestion,
-    CollectionListingTypeTrending
+    CollectionListingTypeTrending,
+    CollectionListingTypeSeetiesShop
     
 } CollectionListingType;
 
@@ -101,6 +103,7 @@ typedef enum {
 
 #define LINE_COLOR [UIColor colorWithRed:221.0/255.0 green:221.0/255.0 blue:221.0/255.0 alpha:1.0]
 #define ERROR_COLOR [UIColor colorWithRed:239.0/255.0 green:94.0/255.0 blue:65.0/255.0 alpha:1.0]
+#define OUTLINE_COLOR [UIColor colorWithRed:238.0/255.0 green:238.0/255.0 blue:238.0/255.0 alpha:1.0]
 
 #define CustomFontName @"ProximaNovaSoft-Regular"
 #define CustomFontNameBold @"ProximaNovaSoft-Bold"

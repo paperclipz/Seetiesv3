@@ -12,6 +12,7 @@
 {
     
     __weak IBOutlet NSLayoutConstraint *scrollViewTopConstraint;
+    NSString* seetiesID;
 }
 @property (weak, nonatomic) IBOutlet UIScrollView *ibScrollView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *ibSegmentedControl;
@@ -53,11 +54,22 @@
     }
 }
 
+
 -(void)setType:(ProfileViewType)type ProfileModel:(ProfileModel*)model NumberOfPage:(int)page
 {
     self.profileType = type;
     self.profileModel = model;
     self.viewPage = page;//page refers to 1 or 2 page which can be scroll in scroll view . my collection 1st page , my following 2nd page
+    
+}
+
+-(void)setTypeSeeties:(NSString*)ID
+{
+    self.profileType = ProfileViewTypeOthers;
+    self.collectionListingType = CollectionListingTypeSeetiesShop;
+    seetiesID = ID;
+    self.myCollectionListingViewController.userID = seetiesID;
+    self.viewPage = 1;//page refers to 1 or 2 page which can be scroll in scroll view . my collection 1st page , my following 2nd page
     
 }
 
@@ -119,14 +131,23 @@
 -(void)initViewData
 {
     
-    if ([self.profileModel.uid isEqualToString:[Utils getUserID]]) {
-        self.lblTitle.text = LocalisedString(@"Collections");
+    if (self.collectionListingType == CollectionListingTypeSeetiesShop) {
         
+        self.lblTitle.text = LocalisedString(@"SeetiShop Collections");
+
     }
-    else{
-        
-        self.lblTitle.text = [NSString stringWithFormat:@"%@ %@",self.profileModel.username,LocalisedString(@"Collections")];
-        
+    else
+    {
+        if ([self.profileModel.uid isEqualToString:[Utils getUserID]]) {
+            self.lblTitle.text = LocalisedString(@"Collections");
+            
+        }
+        else{
+            
+            self.lblTitle.text = [NSString stringWithFormat:@"%@ %@",self.profileModel.username,LocalisedString(@"Collections")];
+            
+        }
+
     }
     
 }

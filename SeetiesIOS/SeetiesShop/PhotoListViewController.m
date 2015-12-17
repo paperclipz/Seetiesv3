@@ -74,7 +74,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     LikeListingCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LikeListingCollectionViewCell" forIndexPath:indexPath];
-    [Utils setRoundBorder:cell.ibImageView color:[UIColor clearColor] borderRadius:3.0f];
+    [Utils setRoundBorder:cell.ibImageView color:OUTLINE_COLOR borderRadius:3.0f];
 
     SePhotoModel* model = self.arrImagesList[indexPath.row];
     [cell.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:model.imageURL] completed:nil];
@@ -110,13 +110,13 @@
     
     CGRect frame = [Utils getDeviceScreenSize];
     
+    int remainSize = frame.size.width - 10;
     int numberOfCell = 3;
     
-    float cellSize = roundf(frame.size.width/numberOfCell)  -10 - 5;
+    float cellSize = roundf((remainSize/numberOfCell)-5);
     
     return CGSizeMake(cellSize, cellSize);
 }
-
 
 #pragma mark - Declaration
 -(NSMutableArray*)arrImagesList
