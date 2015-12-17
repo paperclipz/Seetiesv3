@@ -123,6 +123,14 @@
         }
         [self addSubview:ShowUserProfileImage];
         
+        UIButton *OpenProfileButton = [[UIButton alloc]init];
+        OpenProfileButton.frame = CGRectMake(20 , Getheight, screenWidth - 20, 40);
+        [OpenProfileButton setTitle:@"" forState:UIControlStateNormal];
+        OpenProfileButton.backgroundColor = [UIColor clearColor];
+        OpenProfileButton.tag = i;
+        [OpenProfileButton addTarget:self action:@selector(OpenProfileButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+        
+        
         UILabel *ShowUsername = [self SetupLabel];
         ShowUsername.frame = CGRectMake(80, Getheight, screenWidth - 100, 40);
         ShowUsername.text = model.user_info.name;
@@ -238,6 +246,7 @@
         [OpenPostsDetailButton addTarget:self action:@selector(OpenPostsDetailButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:OpenPostsDetailButton];
         
+        [self addSubview:OpenProfileButton];
         
         
 
@@ -350,6 +359,14 @@
             
         }
         
+    }
+}
+-(IBAction)OpenProfileButtonOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    DraftModel* model = self.arrPostListing[getbuttonIDN];
+    
+    if (self.btnPostsOpenProfileClickedBlock) {
+        self.btnPostsOpenProfileClickedBlock(model.user_info.uid);
     }
 }
 @end

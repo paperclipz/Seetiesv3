@@ -95,6 +95,9 @@
     
     NSString *strOriginalTitle;
     NSString *strOriginalDescription;
+    NSMutableArray *Original_arrNote;
+    NSMutableArray *Original_arrID;
+    BOOL OriginalText;
 }
 
 @end
@@ -137,6 +140,7 @@
     CheckShowMessage = 0;
     TempHeight = 0;
     CheckButtonOnClick = 0;
+    OriginalText = YES;
     if ([GetID length] ==0) {
         
     }else{
@@ -295,6 +299,9 @@
                 Content_arrMessage = [[NSMutableArray alloc]init];
                 Content_arrUserName = [[NSMutableArray alloc]init];
                 Content_arrCollect = [[NSMutableArray alloc]init];
+                
+                Original_arrID = [[NSMutableArray alloc]init];
+                Original_arrNote = [[NSMutableArray alloc]init];
             }else{
             }
             
@@ -307,8 +314,10 @@
                 [Content_arrPlaceName addObject:PlaceName];
                 NSString *PlaceID = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"post_id"]];
                 [Content_arrID addObject:PlaceID];
+                [Original_arrID addObject:PlaceID];
                 NSString *notedate = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"collection_note"]];
                 [Content_arrNote addObject:notedate];
+                [Original_arrNote addObject:notedate];
                 NSString *collect = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"collect"]];
                 [Content_arrCollect addObject:collect];
             }
@@ -571,6 +580,7 @@
             [Content_arrID addObjectsFromArray:Translate_arrID];
             [Content_arrNote addObjectsFromArray:Translate_arrNote];
             
+            OriginalText = NO;
             [self InitView];
             
             [ShowActivity stopAnimating];
@@ -1469,10 +1479,43 @@
 
 }
 -(IBAction)TranslateButtonOnClick:(id)sender{
-//    if (strGetTranslateTitle) {
-//        <#statements#>
-//    }
-    [self GetTranslateData];
+    if ([strGetTranslateTitle length] == 0) {
+        [self GetTranslateData];
+    }else{
+        
+        if (OriginalText == NO) {
+            OriginalText = YES;
+            
+            GetTitle = strOriginalTitle;
+            GetDescription = strOriginalDescription;
+            
+            [Content_arrID removeAllObjects];
+            [Content_arrNote removeAllObjects];
+            
+            [Content_arrID addObjectsFromArray:Original_arrID];
+            [Content_arrNote addObjectsFromArray:Original_arrNote];
+            
+        }else{
+            OriginalText = NO;
+            
+            GetTitle = strGetTranslateTitle;
+            GetDescription = strGetTranslateDescription;
+            
+            [Content_arrID removeAllObjects];
+            [Content_arrNote removeAllObjects];
+            
+            [Content_arrID addObjectsFromArray:Translate_arrID];
+            [Content_arrNote addObjectsFromArray:Translate_arrNote];
+        }
+        
+        GetHeight = 0;
+        CheckFirstTimeLoad = 0;
+        GetCollectionHeight = 0;
+        CheckShowMessage = 0;
+        TempHeight = 0;
+        [self InitView];
+    }
+    
 }
 
 -(IBAction)PersonalTagsButtonOnClick:(id)sender{

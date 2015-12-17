@@ -24,6 +24,7 @@
 #import "CollectionViewController.h"
 #import "CollectionListingViewController.h"
 #import "SeRecommendationsSeeAllViewController.h"
+#import "ProfileViewController.h"
 
 @interface SeetiesShopViewController ()<UIScrollViewDelegate>
 
@@ -36,6 +37,7 @@
 @property (nonatomic,strong)CollectionViewController* CollectionDetailViewController;
 @property (nonatomic,strong)CollectionListingViewController* collectionListingViewController;
 @property (nonatomic,strong)SeRecommendationsSeeAllViewController* seRecommendationsSeeAllViewController;
+@property (nonatomic,strong)ProfileViewController* profileViewController;
 //$$============== CONTROLLERS ==================$$//
 
 @property (weak, nonatomic) IBOutlet UIImageView *ibImgViewTopPadding;
@@ -232,6 +234,13 @@
     }
     return _seRecommendationsSeeAllViewController;
 }
+-(ProfileViewController*)profileViewController
+{
+    if (!_profileViewController) {
+        _profileViewController = [ProfileViewController new];
+    }
+    return _profileViewController;
+}
 -(PhotoListViewController*)photoListViewController
 {
     if (!_photoListViewController) {
@@ -398,6 +407,13 @@
             _seRecommendationsSeeAllViewController = nil;
             [weakSelf.seRecommendationsSeeAllViewController initData:weakSelf.seetiesID PlaceID:weakSelf.placeID PostID:weakSelf.postID];
             [weakSelf.navigationController pushViewController:weakSelf.seRecommendationsSeeAllViewController animated:YES];
+        };
+        _seRecommendations.btnPostsOpenProfileClickedBlock = ^(NSString* idn)
+        {
+            
+            _profileViewController = nil;
+            [weakSelf.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:idn];
+            [weakSelf.navigationController pushViewController:weakSelf.profileViewController animated:YES];
         };
     }
     return _seRecommendations;
