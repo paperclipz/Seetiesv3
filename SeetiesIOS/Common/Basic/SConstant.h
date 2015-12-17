@@ -41,7 +41,7 @@ typedef enum
     ServerRequestTypeGetUserLikes,
     ServerRequestTypeDeleteCollection,
     ServerRequestTypePostFollowCollection,
-    ServerRequestTypePostShareCollection,   
+    ServerRequestTypePostShareCollection,
     // ========== Collection ========== //
     // ========== User Info ========== //
     ServerRequestTypeGetUserInfo,

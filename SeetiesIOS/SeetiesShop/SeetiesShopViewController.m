@@ -26,8 +26,12 @@
 #import "SeRecommendationsSeeAllViewController.h"
 
 @interface SeetiesShopViewController ()<UIScrollViewDelegate>
+{
 
+}
 //================ CONTROLLERS ====================//
+@property (nonatomic,strong)SeetiesShopViewController* seetiesShopViewController;
+
 @property (nonatomic,strong)MapViewController* mapViewController;
 @property (nonatomic,strong)PhotoListViewController* photoListViewController;
 @property (nonatomic,strong)SeetiesMoreInfoViewController* seetiesMoreInfoViewController;
@@ -37,6 +41,7 @@
 @property (nonatomic,strong)CollectionListingViewController* collectionListingViewController;
 @property (nonatomic,strong)SeRecommendationsSeeAllViewController* seRecommendationsSeeAllViewController;
 //$$============== CONTROLLERS ==================$$//
+@property (weak, nonatomic) IBOutlet UIImageView *ibTopPaddingOverlay;
 
 @property (weak, nonatomic) IBOutlet UIImageView *ibImgViewTopPadding;
 @property (nonatomic,strong)SeShopDetailView* seShopDetailView;
@@ -188,6 +193,13 @@
 
 
 #pragma mark - Declaration
+-(SeetiesShopViewController*)seetiesShopViewController
+{
+    if (!_seetiesShopViewController) {
+        _seetiesShopViewController = [SeetiesShopViewController new];
+    }
+    return _seetiesShopViewController;
+}
 
 -(SeetiShopListingViewController*)seetiShopListingViewController
 {
@@ -273,12 +285,12 @@
                 weakSelf.mapViewController.lblTitle.text = LocalisedString(@"MAP");
             }];
 
-            
         };
         
         _seShopDetailView.imageDidFinishLoadBlock = ^(UIImage* image)
         {
             weakSelf.ibImgViewTopPadding.image = image;
+            weakSelf.ibTopPaddingOverlay.hidden = NO;
         };
     
         _seShopDetailView.didSelectInformationAtRectBlock=^(UIView* fromView, CGRect rect)
@@ -357,9 +369,8 @@
         _seCollectionView.btnCollectionSeeAllClickedBlock = ^(NSString* idn)
         {
             _collectionListingViewController = nil;
-            ProfileModel* model = [ProfileModel new];
-            model.uid = [Utils getUserID];
-            [weakSelf.collectionListingViewController setType:ProfileViewTypeOthers ProfileModel:model NumberOfPage:1 collectionType:CollectionListingTypeSuggestion];
+       
+            [weakSelf.collectionListingViewController setTypeSeeties:weakSelf.seetiesID];
             [weakSelf.navigationController pushViewController:weakSelf.collectionListingViewController animated:YES];
             
         };
@@ -416,8 +427,11 @@
             
         };
         
-        _seNearbySeetishop.btnSelectSeetiShopListBlock = ^(NSString* idn)
+        _seNearbySeetishop.btnSeetiShopClickedBlock = ^(NSString* idn)
         {
+            _seetiesShopViewController = nil;
+            [weakSelf.seetiesShopViewController initDataWithSeetiesID:idn];
+            [weakSelf.navigationController pushViewController:weakSelf.seetiesShopViewController animated:YES];
             // open nearby seetiShop
         
         };

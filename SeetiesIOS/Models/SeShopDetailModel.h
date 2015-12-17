@@ -31,6 +31,7 @@
 @property(nonatomic,readonly)NSArray* arrayInformation;
 @property(nonatomic,strong)SeShopCategoryModel* category;
 @property(nonatomic,strong)NSArray* wallpapers;
+@property(nonatomic,strong)NSString* profile_photo_images;
 
 -(void)process;
 

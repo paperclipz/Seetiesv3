@@ -51,6 +51,9 @@
         case CollectionListingTypeTrending:
             [self requestServerForTrendingCollection];
             break;
+        case CollectionListingTypeSeetiesShop:
+            [self requestServerForSeetiesCollection];
+            break;
     }
 }
 
@@ -400,6 +403,32 @@
 
 }
 
+-(void)requestServerForSeetiesCollection
+{
+    SLog(@"requestServerForSeetiesCollection");
+    isMiddleOfCallingServer = true;
+    
+    //need to input token for own profile private collection, no token is get other people public collection
+    NSString* appendString = [NSString stringWithFormat:@"%@/collections",self.userID];
+    
+    NSDictionary* dict = @{@"seetishop_id":self.userID,
+                           @"limit":@(ARRAY_LIST_SIZE),
+                           @"offset":@(self.userCollectionsModel.offset + self.userCollectionsModel.limit),
+                           @"token":[Utils getAppToken],
+                           };
+    
+    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetSeetiShopCollection param:dict appendString:appendString completeHandler:^(id object) {
+        isMiddleOfCallingServer = false;
+        self.userCollectionsModel = [[ConnectionManager dataManager]userSuggestedCollectionsModel];
+        [self.arrCollections addObjectsFromArray:self.userCollectionsModel.arrSuggestedCollection];
+        self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_collections,LocalisedString(@"Collections")];
+        [self.ibTableView reloadData];
+    } errorBlock:^(id object) {
+        isMiddleOfCallingServer = false;
+    }];
+}
+
+
 #pragma mark - UIScrollView Delegate
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
@@ -445,6 +474,14 @@
                         [self requestServerForOtherUserCollection];
                     }
 
+                }
+                else if(self.collectionListingType == CollectionListingTypeSeetiesShop)
+                {
+                    if(![Utils isStringNull:self.userCollectionsModel.next])
+                    {
+                        [self requestServerForSeetiesCollection];
+                    }
+                    
                 }
         }
         

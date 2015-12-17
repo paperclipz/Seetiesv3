@@ -194,7 +194,6 @@
          }
          [LoadingManager hide];
 
-         
      }
                failure:
      ^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -638,7 +637,6 @@
             [self.dataManager.userProfilePostModel.userPostData process];
         }
             break;
-            
             
         default:
             

@@ -96,13 +96,13 @@
             [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
             NSString *ImageData1 = [[NSString alloc]initWithFormat:@"%@",ImgModel.imageURL];
             if ([ImageData1 length] == 0) {
-                ShowUserProfileImage.image = [UIImage imageNamed:@"NoImage.png"];
+                ShowUserProfileImage.image = [UIImage imageNamed:@"SSDefaultDisplayPhoto.png"];
             }else{
                 NSURL *url_NearbySmall = [NSURL URLWithString:ImageData1];
                 ShowUserProfileImage.imageURL = url_NearbySmall;
             }
         }else{
-             ShowUserProfileImage.image = [UIImage imageNamed:@"NoImage.png"];
+             ShowUserProfileImage.image = [UIImage imageNamed:@"SSDefaultDisplayPhoto.png"];
         }
 
 
