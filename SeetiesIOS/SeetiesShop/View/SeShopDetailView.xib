@@ -529,39 +529,13 @@
                         <constraint firstAttribute="width" constant="30" id="RvW-XM-FC0"/>
                     </constraints>
                 </imageView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W4k-Bb-Hsg">
-                    <rect key="frame" x="20" y="84" width="80" height="80"/>
-                    <subviews>
-                        <visualEffectView opaque="NO" clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1T5-Pd-fQQ">
-                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
-                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Chr-SH-Ei4">
-                                <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SsDefaultDisplayPhoto.png" translatesAutoresizingMaskIntoConstraints="NO" id="h3y-ba-aOd">
-                                        <rect key="frame" x="10" y="10" width="60" height="60"/>
-                                    </imageView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="h3y-ba-aOd" secondAttribute="trailing" constant="10" id="I3b-Gx-3DJ"/>
-                                    <constraint firstItem="h3y-ba-aOd" firstAttribute="leading" secondItem="Chr-SH-Ei4" secondAttribute="leading" constant="10" id="cm5-9D-M0N"/>
-                                    <constraint firstAttribute="bottom" secondItem="h3y-ba-aOd" secondAttribute="bottom" constant="10" id="gIF-xT-pps"/>
-                                    <constraint firstItem="h3y-ba-aOd" firstAttribute="top" secondItem="Chr-SH-Ei4" secondAttribute="top" constant="10" id="yl1-Q2-jpV"/>
-                                </constraints>
-                            </view>
-                            <blurEffect style="extraLight"/>
-                        </visualEffectView>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SSDefaultLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="h3y-ba-aOd">
+                    <rect key="frame" x="20" y="110" width="60" height="60"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="1T5-Pd-fQQ" secondAttribute="trailing" id="MrP-9x-Lsa"/>
-                        <constraint firstItem="1T5-Pd-fQQ" firstAttribute="leading" secondItem="W4k-Bb-Hsg" secondAttribute="leading" id="gFS-gF-pbN"/>
-                        <constraint firstAttribute="bottom" secondItem="1T5-Pd-fQQ" secondAttribute="bottom" id="k6e-ek-2IX"/>
-                        <constraint firstAttribute="width" constant="80" id="nlU-wD-Rw1"/>
-                        <constraint firstAttribute="height" constant="80" id="vfB-nh-J9b"/>
-                        <constraint firstItem="1T5-Pd-fQQ" firstAttribute="top" secondItem="W4k-Bb-Hsg" secondAttribute="top" id="yUS-vr-zqh"/>
+                        <constraint firstAttribute="height" constant="60" id="P7D-Hb-IZC"/>
+                        <constraint firstAttribute="width" constant="60" id="PNE-B4-ouF"/>
                     </constraints>
-                </view>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
@@ -579,13 +553,14 @@
                 <constraint firstItem="L0E-TK-nIM" firstAttribute="top" secondItem="oh3-pV-PUj" secondAttribute="bottom" id="Mo4-SX-osS"/>
                 <constraint firstItem="tH8-OE-pPv" firstAttribute="top" secondItem="BlP-yz-pZ6" secondAttribute="bottom" constant="10" id="Mwm-aY-ldQ"/>
                 <constraint firstAttribute="trailing" secondItem="24v-UW-sgl" secondAttribute="trailing" constant="10" id="PBD-k0-K4m"/>
+                <constraint firstItem="eEM-Xk-IGo" firstAttribute="top" secondItem="h3y-ba-aOd" secondAttribute="bottom" constant="8" id="S5j-m6-9KF"/>
                 <constraint firstAttribute="trailing" secondItem="tH8-OE-pPv" secondAttribute="trailing" id="SIp-9c-hxK"/>
+                <constraint firstItem="h3y-ba-aOd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="Slq-vR-P3c"/>
                 <constraint firstItem="24v-UW-sgl" firstAttribute="top" secondItem="eEM-Xk-IGo" secondAttribute="bottom" id="SoC-pk-dJw"/>
                 <constraint firstItem="h9M-Hc-q6N" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="TYJ-jd-fMW"/>
                 <constraint firstItem="L0E-TK-nIM" firstAttribute="height" secondItem="ByR-rM-hDs" secondAttribute="height" id="U1D-1v-0ch"/>
                 <constraint firstItem="BlP-yz-pZ6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="UNP-CU-11U"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="VX2-Kx-7mO" secondAttribute="trailing" constant="10" id="Ut5-VS-nqf"/>
-                <constraint firstItem="VX2-Kx-7mO" firstAttribute="top" secondItem="W4k-Bb-Hsg" secondAttribute="bottom" constant="10" id="WJj-4b-cV2"/>
                 <constraint firstItem="ByR-rM-hDs" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Y74-m4-qzC"/>
                 <constraint firstItem="HtQ-ef-F0z" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="b5f-lt-fsk"/>
                 <constraint firstItem="oh3-pV-PUj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="bYs-ZJ-gHA"/>
@@ -596,7 +571,6 @@
                 <constraint firstAttribute="trailing" secondItem="h9M-Hc-q6N" secondAttribute="trailing" id="ifr-pq-cuB"/>
                 <constraint firstItem="tH8-OE-pPv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="n9k-bZ-ei5"/>
                 <constraint firstItem="oh3-pV-PUj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="pSe-l7-lMl"/>
-                <constraint firstItem="W4k-Bb-Hsg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="qEE-vU-SN7"/>
                 <constraint firstItem="VX2-Kx-7mO" firstAttribute="leading" secondItem="eEM-Xk-IGo" secondAttribute="trailing" constant="10" id="u9C-4q-JAl"/>
                 <constraint firstItem="L0E-TK-nIM" firstAttribute="top" secondItem="24v-UW-sgl" secondAttribute="bottom" constant="10" id="vRU-9o-zl8"/>
                 <constraint firstItem="VX2-Kx-7mO" firstAttribute="centerY" secondItem="eEM-Xk-IGo" secondAttribute="centerY" id="xR9-lE-Nx4"/>
@@ -622,7 +596,6 @@
                 <outlet property="ibMapMainView" destination="HtQ-ef-F0z" id="1uf-cG-yjc"/>
                 <outlet property="ibMapView" destination="LHG-yv-1Iz" id="dPh-Go-R9a"/>
                 <outlet property="ibPhotoView" destination="BlP-yz-pZ6" id="L5Y-fM-kfp"/>
-                <outlet property="ibProfileContentView" destination="W4k-Bb-Hsg" id="qZi-K3-i7S"/>
                 <outlet property="ibTableView" destination="RwS-g9-DQA" id="IFS-93-2CZ"/>
                 <outlet property="lblAddress" destination="5uy-r3-aYB" id="ATR-ad-m74"/>
                 <outlet property="lblDistance" destination="OSQ-Pp-SET" id="NwA-Ke-87f"/>
@@ -641,7 +614,7 @@
     <resources>
         <image name="SSBlueDirectionIcon.png" width="26" height="26"/>
         <image name="SSDefaultCoverPhoto.png" width="1242" height="776"/>
+        <image name="SSDefaultLogo.png" width="70" height="70"/>
         <image name="SSWhiteVerifiedIcon.png" width="19" height="19"/>
-        <image name="SsDefaultDisplayPhoto.png" width="39" height="30"/>
     </resources>
 </document>

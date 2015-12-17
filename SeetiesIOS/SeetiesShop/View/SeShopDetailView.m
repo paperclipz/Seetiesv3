@@ -26,7 +26,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageVerified;
 @property (weak, nonatomic) IBOutlet UILabel *lblOpenNow;
 @property (weak, nonatomic) IBOutlet UILabel *lblDistanceIndicator;
-@property (weak, nonatomic) IBOutlet UIView *ibProfileContentView;
 @property (weak, nonatomic) IBOutlet UIImageView *ibImgProfile;
 @property (weak, nonatomic) IBOutlet UIImageView *ibImgProfileBackground;
 
@@ -98,7 +97,8 @@
 
 -(void)initSelfView
 {
-    [Utils setRoundBorder:self.ibProfileContentView color:[UIColor clearColor] borderRadius:self.ibProfileContentView.frame.size.width/2];
+    [Utils setRoundBorder:self.ibImgProfile color:UIColorFromRGB(238, 238, 238, 0.5) borderRadius:self.ibImgProfile.frame.size.width/2 borderWidth:2.0f];
+
     tableviewConstraint.constant = 0;
     photoHeightConstraint.constant = 0;
     [self initCollectionViewDelegate];
