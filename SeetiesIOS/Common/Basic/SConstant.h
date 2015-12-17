@@ -123,6 +123,6 @@ extern NSString *const kAFAviarySecret;
 
 
 // ================== seeties shop ================//
-#define VIEW_PADDING 20.0f
+#define VIEW_PADDING 10.0f
 #endif
 

@@ -12,6 +12,8 @@
 		0B3FF1101BB131A20014AF2E /* NearbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B3FF10E1BB131A20014AF2E /* NearbyViewController.xib */; };
 		0B40B3FB1C1FD2A7002D4ECB /* SeRecommendationsSeeAllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B40B3F91C1FD2A7002D4ECB /* SeRecommendationsSeeAllViewController.m */; };
 		0B40B3FC1C1FD2A7002D4ECB /* SeRecommendationsSeeAllViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B40B3FA1C1FD2A7002D4ECB /* SeRecommendationsSeeAllViewController.xib */; };
+		0B40B3FF1C2164C9002D4ECB /* SSDefaultLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B40B3FD1C2164C9002D4ECB /* SSDefaultLogo@2x.png */; };
+		0B40B4001C2164C9002D4ECB /* SSDefaultLogo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B40B3FE1C2164C9002D4ECB /* SSDefaultLogo@3x.png */; };
 		0B6A54E01BB51F84005B9D6B /* ReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6A54DE1BB51F84005B9D6B /* ReportViewController.m */; };
 		0B6A54E11BB51F84005B9D6B /* ReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B6A54DF1BB51F84005B9D6B /* ReportViewController.xib */; };
 		0B99C2001BCBA1F1006D7E63 /* AnnounceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B99C1FE1BCBA1F0006D7E63 /* AnnounceViewController.m */; };
@@ -1131,6 +1133,8 @@
 		0B40B3F81C1FD2A7002D4ECB /* SeRecommendationsSeeAllViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeRecommendationsSeeAllViewController.h; sourceTree = "<group>"; };
 		0B40B3F91C1FD2A7002D4ECB /* SeRecommendationsSeeAllViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeRecommendationsSeeAllViewController.m; sourceTree = "<group>"; };
 		0B40B3FA1C1FD2A7002D4ECB /* SeRecommendationsSeeAllViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeRecommendationsSeeAllViewController.xib; sourceTree = "<group>"; };
+		0B40B3FD1C2164C9002D4ECB /* SSDefaultLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SSDefaultLogo@2x.png"; path = "SeetiesIOS/SEETIES_ASSETS/SeetiesArtWork/SeetiShop/SSDefaultLogo@2x.png"; sourceTree = SOURCE_ROOT; };
+		0B40B3FE1C2164C9002D4ECB /* SSDefaultLogo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SSDefaultLogo@3x.png"; path = "SeetiesIOS/SEETIES_ASSETS/SeetiesArtWork/SeetiShop/SSDefaultLogo@3x.png"; sourceTree = SOURCE_ROOT; };
 		0B6A54DD1BB51F84005B9D6B /* ReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportViewController.h; sourceTree = "<group>"; };
 		0B6A54DE1BB51F84005B9D6B /* ReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportViewController.m; sourceTree = "<group>"; };
 		0B6A54DF1BB51F84005B9D6B /* ReportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReportViewController.xib; sourceTree = "<group>"; };
@@ -4410,6 +4414,8 @@
 		8A6CCC4D1C18075800BCD54E /* Seetishop */ = {
 			isa = PBXGroup;
 			children = (
+				0B40B3FD1C2164C9002D4ECB /* SSDefaultLogo@2x.png */,
+				0B40B3FE1C2164C9002D4ECB /* SSDefaultLogo@3x.png */,
 				8A6CCC4E1C18075800BCD54E /* SSBestKnowIcon@2x.png */,
 				8A6CCC4F1C18075800BCD54E /* SSBestKnowIcon@3x.png */,
 				8A6CCC501C18075800BCD54E /* SSBlueDirectionIcon@2x.png */,
@@ -5912,6 +5918,7 @@
 				8A6CCEAF1C18075800BCD54E /* GoToEnd@3x.png in Resources */,
 				8A6CCE561C18075800BCD54E /* FollowerNumber@3x.png in Resources */,
 				8AD6C2821B7072FB0040437E /* AddHourViewController.xib in Resources */,
+				0B40B4001C2164C9002D4ECB /* SSDefaultLogo@3x.png in Resources */,
 				8A6CCE701C18075800BCD54E /* ProfileExpand@3x.png in Resources */,
 				8A6CCD7D1C18075800BCD54E /* CollectIndoBtn@3x.png in Resources */,
 				8A6CCED91C18075800BCD54E /* RecommendBtn@2x.png in Resources */,
@@ -6232,6 +6239,7 @@
 				8A6CCCC11C18075800BCD54E /* Icon-72@2x.png in Resources */,
 				8A6CCE891C18075800BCD54E /* SearchLocationBar@2x.png in Resources */,
 				8A6CCDDF1C18075800BCD54E /* SportIcon@2x.png in Resources */,
+				0B40B3FF1C2164C9002D4ECB /* SSDefaultLogo@2x.png in Resources */,
 				8A6CCE681C18075800BCD54E /* PostIcon@3x.png in Resources */,
 				8A6CCEC71C18075800BCD54E /* CloseBtn@2x.png in Resources */,
 				8AD6C0D71B706CF30040437E /* PSelectYourInterestViewController.xib in Resources */,

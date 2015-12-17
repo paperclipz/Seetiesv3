@@ -396,6 +396,7 @@
 
             // see all recommendation view
             _seRecommendationsSeeAllViewController = nil;
+            [weakSelf.seRecommendationsSeeAllViewController initData:weakSelf.seetiesID PlaceID:weakSelf.placeID PostID:weakSelf.postID];
             [weakSelf.navigationController pushViewController:weakSelf.seRecommendationsSeeAllViewController animated:YES];
         };
     }
@@ -415,7 +416,7 @@
             
         };
         
-        _seNearbySeetishop.btnSelectSeetiShopListBlock = ^(NSString* idn)
+        _seNearbySeetishop.btnSeetiShopClickedBlock = ^(NSString* idn)
         {
             // open nearby seetiShop
         

@@ -46,13 +46,13 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     NSLog(@"screenWidth == %f",screenWidth);
 
-    self.frame = CGRectMake(0, 0, screenWidth, 380);
+    self.frame = CGRectMake(0, 0, screenWidth, 370);
     self.backgroundColor = [UIColor clearColor];
 
     ShowbackLine.frame = CGRectMake(-1, 0, screenWidth + 2 , 50);
     [ShowbackLine setTitle:@"" forState:UIControlStateNormal];
     ShowbackLine.backgroundColor = [UIColor whiteColor];
-    [Utils setRoundBorder:ShowbackLine color:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
+    [Utils setRoundBorder:ShowbackLine color:[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
     
     ShowRelatedCollectionsText.frame = CGRectMake(20, 0, screenWidth - 40, 50);
     ShowRelatedCollectionsText.text = @"Related Collections";
@@ -83,7 +83,7 @@
     
     NSString *GetTotalCollection = [[NSString alloc]initWithFormat:@"See all %i Collections",self.SeetiShopCollectionsModel.total_collections];
     
-    SeeAllButton.frame = CGRectMake(-1, self.frame.size.height - 70, screenWidth + 2, 50);
+    SeeAllButton.frame = CGRectMake(-1, self.frame.size.height - 60, screenWidth + 2, 50);
     [SeeAllButton setTitle:GetTotalCollection forState:UIControlStateNormal];
     SeeAllButton.backgroundColor = [UIColor whiteColor];
     [SeeAllButton addTarget:self action:@selector(SeeAllButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];

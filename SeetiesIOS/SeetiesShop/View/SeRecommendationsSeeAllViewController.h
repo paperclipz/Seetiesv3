@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface SeRecommendationsSeeAllViewController : UIViewController
-
+-(void)initData:(NSString*)seetiesID PlaceID:(NSString*)placeID PostID:(NSString*)postID;
 @end
