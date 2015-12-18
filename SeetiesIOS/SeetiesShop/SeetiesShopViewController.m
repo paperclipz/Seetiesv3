@@ -364,6 +364,7 @@
         {
             _seetiesMoreInfoViewController = nil;
             weakSelf.seetiesMoreInfoViewController.seShopModel = model;
+            [weakSelf.seetiesMoreInfoViewController initData:weakSelf.seetiesID PlaceID:weakSelf.placeID PostID:weakSelf.postID];
             [weakSelf.navigationController pushViewController:weakSelf.seetiesMoreInfoViewController animated:YES];
 
         };
