@@ -445,6 +445,9 @@
             NSLog(@"Getrole is %@",Getrole);
             NSString *GetPasswordCheck = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"has_password"]];
             NSLog(@"GetPasswordCheck is %@",GetPasswordCheck);
+            NSString *GetCategories = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"categories"]];
+            NSString *GetFbID = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"fb_id"]];
+            NSString *GetInstaID = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"insta_id"]];
             
             //  NSString *CheckLogin = [[NSString alloc]initWithFormat:@"LoginDone"];
             
@@ -455,6 +458,9 @@
             [defaults setObject:Getuid forKey:@"Useruid"];
             [defaults setObject:Getrole forKey:@"Role"];
             [defaults setObject:GetPasswordCheck forKey:@"CheckPassword"];
+            [defaults setObject:GetCategories forKey:@"UserData_Categories"];
+            [defaults setObject:GetFbID forKey:@"UserData_FbID"];
+            [defaults setObject:GetInstaID forKey:@"UserData_instaID"];
             // [defaults setObject:CheckLogin forKey:@"CheckLogin"];
             [defaults synchronize];
             

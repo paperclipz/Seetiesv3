@@ -1148,6 +1148,10 @@
             NSLog(@"Getrole is %@",Getrole);
             NSDictionary *SystemLanguage = [GetAllData valueForKey:@"system_language"];
             NSLog(@"SystemLanguage is %@",SystemLanguage);
+            NSString *GetCategories = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"categories"]];
+            NSString *GetFbID = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"fb_id"]];
+            NSString *GetInstaID = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"insta_id"]];
+            
             NSString *GetCaption;
             if ([SystemLanguage isKindOfClass:[NSNull class]]) {
                 GetCaption = @"English";
@@ -1228,6 +1232,9 @@
             [defaults setObject:GetCaption forKey:@"UserData_SystemLanguage"];
             [defaults setObject:GetUserSelectLanguagesArray forKey:@"GetUserSelectLanguagesArray"];
             [defaults setObject:GetFbExtendedToken forKey:@"fbextendedtoken"];
+            [defaults setObject:GetCategories forKey:@"UserData_Categories"];
+            [defaults setObject:GetFbID forKey:@"UserData_FbID"];
+            [defaults setObject:GetInstaID forKey:@"UserData_instaID"];
             if (NSDictionaryLanguage == NULL) {
                 
             }else{
