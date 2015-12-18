@@ -19,7 +19,7 @@
 
 @property(nonatomic,strong)NSString* seetishop_id;
 @property(nonatomic,strong)NSString* recommended_information;//best know for
-@property(nonatomic,strong)NSString* contact_number;
+@property(nonatomic,strong)NSArray* contact_number;
 @property(nonatomic,strong)NSString* urlFacebook;
 @property(nonatomic,strong)NSString* urlWebsite;
 @property(nonatomic,strong)Location* location;

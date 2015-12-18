@@ -23,7 +23,7 @@
 @property(nonatomic,strong)NSString* seetishop_id;
 @property(nonatomic,strong)NSString* posts_count;
 @property(nonatomic,strong)NSString* collections_count;
-@property(nonatomic,strong)NSString* contact_number;
+@property(nonatomic,strong)NSArray* contact_number;
 @property(nonatomic,strong)NSString* profile_photo;
 @property(nonatomic,strong)Location* location;
 @property(nonatomic,strong)PriceModel* price;
