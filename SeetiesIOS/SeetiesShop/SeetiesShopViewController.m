@@ -118,7 +118,9 @@
     
     self.automaticallyAdjustsScrollViewInsets = NO;
 
+    [LoadingManager hide];
     [LoadingManager show];
+    
     [[SearchManager Instance]getCoordinateFromGPSThenWifi:^(CLLocation *currentLocation) {
         
         [self initSelfView];
@@ -419,8 +421,8 @@
         _seCollectionView.btnCollectionSeeAllClickedBlock = ^(NSString* idn)
         {
             _collectionListingViewController = nil;
-       
-            [weakSelf.collectionListingViewController setTypeSeeties:weakSelf.seetiesID];
+    
+            [weakSelf.collectionListingViewController setTypeSeeties:idn];
             [weakSelf.navigationController pushViewController:weakSelf.collectionListingViewController animated:YES];
             
         };

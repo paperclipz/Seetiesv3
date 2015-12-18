@@ -329,7 +329,14 @@
 }
 -(IBAction)SeeAllButtonOnClick:(id)sender{
     if (self.btnCollectionSeeAllClickedBlock) {
-        self.btnCollectionSeeAllClickedBlock(@"SeetiShopIDN");
+        if (self.seetiesID) {
+            self.btnCollectionSeeAllClickedBlock(self.seetiesID);
+
+        }
+        else{
+            self.btnCollectionSeeAllClickedBlock(self.placeID);
+
+        }
     }
 }
 -(IBAction)CollectionFollowingButtonOnClick:(id)sender{
