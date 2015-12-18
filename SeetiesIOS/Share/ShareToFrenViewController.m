@@ -46,12 +46,13 @@
     SearchKeywordField.delegate = self;
     [self GetFriendsList];
 }
--(void)GetPostsID:(NSString *)PostID GetCollectionID:(NSString *)CollectionID{
+-(void)GetPostsID:(NSString *)PostID GetCollectionID:(NSString *)CollectionID GetUserID:(NSString *)userID{
 
     GetPostsID = PostID;
     GetCollectionID = CollectionID;
+    ShareUserUID = userID;
     
-    NSLog(@"GetPostsID is %@ and GetCollectionID is %@",GetPostsID,GetCollectionID);
+    NSLog(@"GetPostsID is %@ and GetCollectionID is %@ ShareUserUID is %@",GetPostsID,GetCollectionID,ShareUserUID);
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -355,11 +356,10 @@
 -(void)SendCollectionToFriend{
     [ShowActivity startAnimating];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *Getuid = [defaults objectForKey:@"Useruid"];
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
     
     //Server Address URL
-    NSString *urlString = [[NSString alloc]initWithFormat:@"%@%@/collections/%@/share",DataUrl.UserWallpaper_Url,Getuid,GetCollectionID];
+    NSString *urlString = [[NSString alloc]initWithFormat:@"%@%@/collections/%@/share",DataUrl.UserWallpaper_Url,ShareUserUID,GetCollectionID];
     NSLog(@"urlString is %@",urlString);
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:urlString]];

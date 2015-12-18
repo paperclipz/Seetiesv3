@@ -39,5 +39,5 @@
     NSString *GetPostsID;
     NSString *GetCollectionID;
 }
--(void)GetPostsID:(NSString *)PostID GetCollectionID:(NSString *)CollectionID;
+-(void)GetPostsID:(NSString *)PostID GetCollectionID:(NSString *)CollectionID GetUserID:(NSString *)userID;
 @end

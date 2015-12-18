@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-typedef void (^BtnCollectionDetailBlock)(NSString * idn);
+typedef void (^BtnCollectionDetailBlock)(NSString * idn, NSString *userid);
 typedef void (^BtnCollectionSeeAllBlock)(NSString * SeetiShopIDN);
 
 @interface SeCollectionView : CommonView

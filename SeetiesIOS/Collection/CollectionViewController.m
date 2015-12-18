@@ -26,6 +26,7 @@
     
     NSString *GetID;
     NSString *GetPermisionUser;
+    NSString *GetMainUserID;
     
     IBOutlet UIActivityIndicatorView *ShowActivity;
     
@@ -174,10 +175,11 @@
 -(IBAction)BackButton:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
--(void)GetCollectionID:(NSString *)ID_ GetPermision:(NSString *)PermisionUser{
+-(void)GetCollectionID:(NSString *)ID_ GetPermision:(NSString *)PermisionUser GetUserUid:(NSString *)UserUid{
 
     GetID = ID_;
     GetPermisionUser = PermisionUser;
+    GetMainUserID = UserUid;
     NSLog(@"Get Collection ID is %@",GetID);
     NSLog(@"Get Permision User is %@",GetPermisionUser);
     [self GetCollectionData];
@@ -188,16 +190,25 @@
     }else{
         CurrentPage += 1;
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSString *Getuid = [defaults objectForKey:@"Useruid"];
+        
         NSString *GetLat = [defaults objectForKey:@"UserCurrentLocation_lat"];
         NSString *Getlng = [defaults objectForKey:@"UserCurrentLocation_lng"];
         NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
         
+        if ([GetPermisionUser isEqualToString:@"Self"] || [GetPermisionUser isEqualToString:@"self"]) {
+            GetMainUserID = [defaults objectForKey:@"Useruid"];
+        }else{
+            
+            
+        }
+        
+        
+        
         NSString *FullString;
         if ([GetLat length] == 0 || [GetLat isEqualToString:@""] || [GetLat isEqualToString:@"(null)"] || GetLat == nil) {
-            FullString = [[NSString alloc]initWithFormat:@"%@%@/collections/%@?page=%li&token=%@",DataUrl.UserWallpaper_Url,Getuid,GetID,CurrentPage,GetExpertToken];
+            FullString = [[NSString alloc]initWithFormat:@"%@%@/collections/%@?page=%li&token=%@",DataUrl.UserWallpaper_Url,GetMainUserID,GetID,CurrentPage,GetExpertToken];
         }else{
-            FullString = [[NSString alloc]initWithFormat:@"%@%@/collections/%@?page=%li&lat=%@&lng=%@&token=%@",DataUrl.UserWallpaper_Url,Getuid,GetID,CurrentPage,GetLat,Getlng,GetExpertToken];
+            FullString = [[NSString alloc]initWithFormat:@"%@%@/collections/%@?page=%li&lat=%@&lng=%@&token=%@",DataUrl.UserWallpaper_Url,GetMainUserID,GetID,CurrentPage,GetLat,Getlng,GetExpertToken];
         }
 
         NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
@@ -1455,7 +1466,7 @@
         _shareV2ViewController = nil;
         UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
         [naviVC setNavigationBarHidden:YES animated:NO];
-        [self.shareV2ViewController share:@"" title:GetTitle imagURL:@"" shareType:ShareTypePost shareID:GetID];
+        [self.shareV2ViewController share:@"" title:GetTitle imagURL:@"" shareType:ShareTypeCollection shareID:GetID userID:GetMainUserID];
         MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
         formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
         formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
@@ -1533,8 +1544,7 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
-    NSString *Getuid = [defaults objectForKey:@"Useruid"];
-    NSString *FullString = [[NSString alloc]initWithFormat:@"%@%@/collections/%@/translate?token=%@",DataUrl.UserWallpaper_Url,Getuid,GetID,GetExpertToken];
+    NSString *FullString = [[NSString alloc]initWithFormat:@"%@%@/collections/%@/translate?token=%@",DataUrl.UserWallpaper_Url,GetMainUserID,GetID,GetExpertToken];
     
     
     NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];

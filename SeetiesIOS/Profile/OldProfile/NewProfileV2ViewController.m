@@ -2121,7 +2121,7 @@
     CollectionViewController *OpenCollectionView = [[CollectionViewController alloc]init];
    // [self.view.window.rootViewController presentViewController:OpenCollectionView animated:YES completion:nil];
     [self.navigationController pushViewController:OpenCollectionView animated:YES];
-    [OpenCollectionView GetCollectionID:[CollectionData_IDArray objectAtIndex:getbuttonIDN] GetPermision:@"Self"];
+    //[OpenCollectionView GetCollectionID:[CollectionData_IDArray objectAtIndex:getbuttonIDN] GetPermision:@"Self"];
 }
 
 -(IBAction)CollectionEditButtonOnClick:(id)sender{
@@ -2203,7 +2203,7 @@
     _shareV2ViewController = nil;
     UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
     [naviVC setNavigationBarHidden:YES animated:NO];
-    [self.shareV2ViewController share:@"" title:GetUserName imagURL:@"" shareType:ShareTypePostUser shareID:GetUserName];
+    [self.shareV2ViewController share:@"" title:GetUserName imagURL:@"" shareType:ShareTypePostUser shareID:GetUserName userID:@""];
     MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
     formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
         formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;

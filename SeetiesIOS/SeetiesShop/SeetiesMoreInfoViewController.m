@@ -428,14 +428,15 @@
 - (IBAction)btnTranslationClicked:(id)sender{
 
     if (BTranslation == NO) {
-        BTranslation = YES;
-        
-        if ([self.strTranslationBestKnown length] == 0) {
+        if ([self.strTranslationBestKnown isEqual:[NSNull null]] || [self.strTranslationBestKnown length] == 0) {
+
+            [self getTranslation];
+        }else{
             self.lblBestKnown.text = self.strTranslationBestKnown;
             self.lblNearbyDesc.text = self.strTranslationNearbyDesc;
-        }else{
-        [self getTranslation];
         }
+      //  [self getTranslation];
+        BTranslation = YES;
     }else{
         self.lblBestKnown.text = self.seShopModel.recommended_information;
         self.lblNearbyDesc.text = self.seShopModel.nearby_public_transport;

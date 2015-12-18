@@ -27,6 +27,7 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
     var imageURL: String = ""
     var postURL: String = ""
     var shareID: String = ""
+    var userID: String = ""
 
     var shareType:ShareType?
     var shareManager:ShareManager?
@@ -38,7 +39,11 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
       //  shareToFrenVC = ShareV2ViewController.init(nibName: "ShareToFrenViewController", bundle: nil)
       //  self.navigationController!.pushViewController(shareToFrenVC, animated: true)
         self.shareToFrenVC = ShareToFrenViewController(nibName: "ShareToFrenViewController", bundle: nil)
-        self.shareToFrenVC.GetPostsID(self.shareID, getCollectionID: self.shareID)
+        if(self.shareType == ShareTypePost){
+        self.shareToFrenVC.GetPostsID(self.shareID, getCollectionID: nil, getUserID: userID)
+        }else{
+        self.shareToFrenVC.GetPostsID(nil, getCollectionID: self.shareID, getUserID: userID)
+        }
         self.presentViewController(self.shareToFrenVC, animated: true, completion: nil)
        // self.navigationController!.pushViewController(self.shareToFrenVC, animated: true)
 
@@ -128,13 +133,14 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
         self.ibCollectionView.registerNib(UINib(nibName: "ShareV2CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ShareV2CollectionViewCell")
     }
     
-    func share(message:String,title:String, imagURL:String, shareType:ShareType, shareID:String)
+    func share(message:String,title:String, imagURL:String, shareType:ShareType, shareID:String, userID:String)
     {
         self.postMessage = message
         self.postTitle = title
         self.imageURL = imagURL
         self.shareType = shareType
         self.shareID = shareID
+        self.userID = userID;
         self.viewController = self;
         
     }

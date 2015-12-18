@@ -5427,7 +5427,7 @@
     _shareV2ViewController = nil;
     UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
     [naviVC setNavigationBarHidden:YES animated:NO];
-    [self.shareV2ViewController share:@"" title:[arrTitle objectAtIndex:getbuttonIDN] imagURL:[arrImage objectAtIndex:getbuttonIDN] shareType:ShareTypePost shareID:[arrPostID objectAtIndex:getbuttonIDN]];
+    [self.shareV2ViewController share:@"" title:[arrTitle objectAtIndex:getbuttonIDN] imagURL:[arrImage objectAtIndex:getbuttonIDN] shareType:ShareTypePost shareID:[arrPostID objectAtIndex:getbuttonIDN] userID:@""];
     MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
     formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
     formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
@@ -5542,7 +5542,7 @@
     
     CollectionViewController *OpenCollectionView = [[CollectionViewController alloc]init];
     [self.navigationController pushViewController:OpenCollectionView animated:YES];
-    [OpenCollectionView GetCollectionID:[arrCollectionID objectAtIndex:getbuttonIDN] GetPermision:@"User"];
+    [OpenCollectionView GetCollectionID:[arrCollectionID objectAtIndex:getbuttonIDN] GetPermision:@"User" GetUserUid:[arrCollectionUserID objectAtIndex:getbuttonIDN]];
 }
 -(IBAction)CollectionUserProfileOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
@@ -5702,7 +5702,7 @@
     _shareV2ViewController = nil;
     UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
     [naviVC setNavigationBarHidden:YES animated:NO];
-    [self.shareV2ViewController share:@"" title:[arrTitle objectAtIndex:getbuttonIDN] imagURL:@"" shareType:ShareTypeCollection shareID:[arrCollectionID objectAtIndex:getbuttonIDN]];
+    [self.shareV2ViewController share:@"" title:[arrTitle objectAtIndex:getbuttonIDN] imagURL:@"" shareType:ShareTypeCollection shareID:[arrCollectionID objectAtIndex:getbuttonIDN] userID:[arrCollectionUserID objectAtIndex:getbuttonIDN]];
     MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
     formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
     formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;

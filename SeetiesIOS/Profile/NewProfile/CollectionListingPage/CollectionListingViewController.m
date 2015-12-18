@@ -264,12 +264,12 @@
 {
     _collectionViewController = nil;
     if (self.profileType == ProfileViewTypeOwn) {
-        [self.collectionViewController GetCollectionID:collID GetPermision:@"self"];
+        [self.collectionViewController GetCollectionID:collID GetPermision:@"self" GetUserUid:self.profileModel.uid];
 
     }
     else{
         
-     [self.collectionViewController GetCollectionID:collID GetPermision:@"Others"];
+     [self.collectionViewController GetCollectionID:collID GetPermision:@"Others" GetUserUid:self.profileModel.uid];
     }
 
     [self.navigationController pushViewController:self.collectionViewController animated:YES];

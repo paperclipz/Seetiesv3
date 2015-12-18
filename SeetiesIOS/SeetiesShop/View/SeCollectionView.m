@@ -323,7 +323,7 @@
     CollectionModel* collModel = self.arrCollections[getbuttonIDN];
     
     if (self.btnCollectionDetailClickedBlock) {
-        self.btnCollectionDetailClickedBlock(collModel.collection_id);
+        self.btnCollectionDetailClickedBlock(collModel.collection_id,collModel.user_info.uid);
     }
     
 }

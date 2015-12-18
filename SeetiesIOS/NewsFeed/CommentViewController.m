@@ -1656,7 +1656,7 @@
     CollectionViewController *OpenCollectionView = [[CollectionViewController alloc]init];
     // [self.view.window.rootViewController presentViewController:OpenCollectionView animated:YES completion:nil];
     [self.navigationController pushViewController:OpenCollectionView animated:YES];
-    [OpenCollectionView GetCollectionID:[CollectionIDArray objectAtIndex:getbuttonIDN] GetPermision:@"User"];
+    [OpenCollectionView GetCollectionID:[CollectionIDArray objectAtIndex:getbuttonIDN] GetPermision:@"User" GetUserUid:[CollectionUserIDArray objectAtIndex:getbuttonIDN]];
 }
 -(ProfileViewController*)profileViewController
 {
