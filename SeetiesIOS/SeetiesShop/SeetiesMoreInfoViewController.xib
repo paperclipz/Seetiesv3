@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -67,20 +67,40 @@
                                 <action selector="btnBackClicked:" destination="-1" eventType="touchUpInside" id="TAN-uX-lRl"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pw2-9X-zHA">
+                            <rect key="frame" x="260" y="20" width="60" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="grp-Ta-xxB"/>
+                                <constraint firstAttribute="width" constant="60" id="ma0-0M-dT3"/>
+                            </constraints>
+                            <state key="normal" image="SSWhiteTranslateIcon.png"/>
+                            <connections>
+                                <action selector="btnTranslationClicked:" destination="-1" eventType="touchUpInside" id="rb0-h4-rxu"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="64" id="7A1-TS-LnY"/>
                         <constraint firstItem="YyN-kx-LCl" firstAttribute="top" secondItem="ABi-z1-rSE" secondAttribute="bottom" constant="-44" id="8Z8-pu-yKg"/>
+                        <constraint firstItem="Pw2-9X-zHA" firstAttribute="leading" secondItem="dlT-gL-RCd" secondAttribute="leading" id="Ckc-JG-UXl"/>
                         <constraint firstItem="ABi-z1-rSE" firstAttribute="top" secondItem="dlT-gL-RCd" secondAttribute="top" id="Hgb-bC-bSc"/>
                         <constraint firstItem="YyN-kx-LCl" firstAttribute="leading" secondItem="dlT-gL-RCd" secondAttribute="leading" constant="-5" id="IrE-f4-0XY"/>
+                        <constraint firstAttribute="bottom" secondItem="Pw2-9X-zHA" secondAttribute="bottom" id="Itv-ha-8Ae"/>
                         <constraint firstAttribute="trailing" secondItem="V4C-jn-Zry" secondAttribute="trailing" id="Yhx-cK-zax"/>
                         <constraint firstItem="YyN-kx-LCl" firstAttribute="top" secondItem="V4C-jn-Zry" secondAttribute="top" constant="-9" id="awr-tb-2SF"/>
                         <constraint firstItem="V4C-jn-Zry" firstAttribute="leading" secondItem="YyN-kx-LCl" secondAttribute="trailing" constant="-35" id="gH4-h4-wDq"/>
                         <constraint firstAttribute="bottom" secondItem="YyN-kx-LCl" secondAttribute="bottom" constant="4" id="gfG-RC-aeO"/>
                         <constraint firstAttribute="bottom" secondItem="V4C-jn-Zry" secondAttribute="bottom" constant="11" id="jit-wU-BgF"/>
                         <constraint firstItem="ABi-z1-rSE" firstAttribute="leading" secondItem="dlT-gL-RCd" secondAttribute="leading" id="nHh-sc-ZfS"/>
+                        <constraint firstAttribute="trailing" secondItem="Pw2-9X-zHA" secondAttribute="trailing" id="skg-DV-gOX"/>
+                        <constraint firstItem="Pw2-9X-zHA" firstAttribute="top" secondItem="dlT-gL-RCd" secondAttribute="top" constant="20" id="sqp-zx-6LR"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="Ckc-JG-UXl"/>
+                        </mask>
+                    </variation>
                 </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qDK-bo-Rhj">
                     <rect key="frame" x="0.0" y="63" width="320" height="505"/>
@@ -706,6 +726,7 @@
         <image name="SSBlueDirectionIcon.png" width="26" height="26"/>
         <image name="SSFacebookIcon.png" width="18" height="18"/>
         <image name="SSFeaturesIcon.png" width="20" height="20"/>
+        <image name="SSWhiteTranslateIcon.png" width="25" height="26"/>
         <image name="SearchLocationIcon.png" width="30" height="30"/>
     </resources>
 </document>

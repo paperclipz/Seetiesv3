@@ -13,6 +13,8 @@
 @interface SeetiesMoreInfoViewController ()<MKMapViewDelegate,UITableViewDataSource,UITableViewDelegate>
 {
     __weak IBOutlet NSLayoutConstraint *constlblAddressDesc_Height;
+    
+    BOOL BTranslation;
 }
 
 // ============ IBOUTLET======================//
@@ -70,6 +72,12 @@
 @property(nonatomic,strong)NSArray* arrayFeatureAvailableList;
 @property(nonatomic,strong)NSArray* arrayFeatureUnavailableList;
 
+@property(nonatomic,strong)NSString* seetiesID;
+@property(nonatomic,strong)NSString* placeID;
+@property(nonatomic,strong)NSString* postID;
+
+@property(nonatomic,strong)NSString* strTranslationBestKnown;
+@property(nonatomic,strong)NSString* strTranslationNearbyDesc;
 @end
 
 @implementation SeetiesMoreInfoViewController
@@ -106,6 +114,7 @@
 -(void)initSelfView
 {
     self.ibMapView.delegate = self;
+    BTranslation = NO;
 
     [self initTableViewDelegate];
 }
@@ -409,7 +418,66 @@
    
 
 }
+-(void)initData:(NSString*)seetiesID PlaceID:(NSString*)placeID PostID:(NSString*)postID
+{
+    
+    self.seetiesID = seetiesID;
+    self.placeID = placeID;
+    self.postID = postID;
+}
+- (IBAction)btnTranslationClicked:(id)sender{
 
+    if (BTranslation == NO) {
+        BTranslation = YES;
+        
+        if ([self.strTranslationBestKnown length] == 0) {
+            self.lblBestKnown.text = self.strTranslationBestKnown;
+            self.lblNearbyDesc.text = self.strTranslationNearbyDesc;
+        }else{
+        [self getTranslation];
+        }
+    }else{
+        self.lblBestKnown.text = self.seShopModel.recommended_information;
+        self.lblNearbyDesc.text = self.seShopModel.nearby_public_transport;
+        BTranslation = NO;
+    }
+    
+}
+-(void)getTranslation
+{
+    [self requestServerForTransalation];
+}
+-(void)requestServerForTransalation
+{
+    
+    NSDictionary* dict = @{@"token":[Utils getAppToken],
+                           @"seetishop_id":self.seetiesID,
+                           };
+    
+    NSString* appendString;
+    
+    appendString = [NSString stringWithFormat:@"%@/translate",self.seetiesID];
+    
+    
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetoShopTranslation param:dict appendString:appendString completeHandler:^(id object) {
+        
+        [self triggerLanguageChanged:[[NSDictionary alloc]initWithDictionary:object[@"data"]]];
+    } errorBlock:^(id object) {
+        
+        
+    }];
+    
+}
+-(void)triggerLanguageChanged:(NSDictionary*)dict
+{
+    NSArray* allKeys = [dict allKeys];
+    NSLog(@"allKeys == %@",allKeys);
+    self.lblBestKnown.text = dict[Recommended_Information];
+    self.lblNearbyDesc.text = dict[Nearby_Public_Transport];
+    
+    self.strTranslationBestKnown = dict[Recommended_Information];
+    self.strTranslationNearbyDesc = dict[Nearby_Public_Transport];
+}
 /*
 #pragma mark - Navigation
 

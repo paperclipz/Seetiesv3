@@ -13,5 +13,5 @@
 @property(nonatomic,strong)SeShopDetailModel* seShopModel;
 
 @property(nonatomic,strong)MapViewController* mapViewController;
-
+-(void)initData:(NSString*)seetiesID PlaceID:(NSString*)placeID PostID:(NSString*)postID;
 @end
