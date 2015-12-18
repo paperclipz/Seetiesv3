@@ -21,6 +21,13 @@
     __weak IBOutlet UILabel *lblPhotoCount;
     __weak IBOutlet NSLayoutConstraint *tableviewConstraint;
     BOOL isTranslated;
+    BOOL inTranslatedLanguage;
+    
+    NSString* nearbyPubTransport_Translated;
+    NSString* bestKnownFor_Translated;
+    NSString* bestKnownFor_NotTranslated;
+
+
 }
 //================== Detail =======================//
 @property (weak, nonatomic) IBOutlet UILabel *lblShopCategory;
@@ -66,6 +73,7 @@
 @property(nonatomic,assign)float shopLgn;
 
 @property(nonatomic,copy)NSArray* arrListTranslated;
+@property(nonatomic,copy)NSArray* arrListNonTranslated;
 
 @end
 
@@ -102,6 +110,7 @@
 -(void)initSelfView
 {
     isTranslated = NO;
+    inTranslatedLanguage = NO;
     [Utils setRoundBorder:self.ibImgProfile color:UIColorFromRGB(255, 255, 255, 1) borderRadius:self.ibImgProfile.frame.size.width/2 borderWidth:0.0f];
     self.ibMapInfoView.alpha = 0;
 
@@ -510,7 +519,28 @@
     
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetoShopTranslation param:dict appendString:appendString completeHandler:^(id object) {
     
-        [self triggerLanguageChanged:[[NSDictionary alloc]initWithDictionary:object[@"data"]]];
+        NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object[@"data"]];
+        NSArray* allKeys = [returnDict allKeys];
+        if ([allKeys containsObject:Nearby_Public_Transport]) {
+            nearbyPubTransport_Translated = returnDict[Nearby_Public_Transport];
+
+        }
+        
+        for (int i = 0; i<self.arrayList.count; i++) {
+            
+            NSDictionary* tempDict = self.arrayList[i];
+            if ([tempDict containsKey:BestKnowFor]) {
+                bestKnownFor_NotTranslated = tempDict[BestKnowFor];
+                if ([allKeys containsObject:Recommended_Information]) {
+                    bestKnownFor_Translated = returnDict[Recommended_Information];
+                }
+            }
+            
+        }
+        
+        isTranslated = YES;
+        [self switchBwtweenLanguageTranslated];
+
     } errorBlock:^(id object) {
         
         
@@ -518,40 +548,37 @@
 
 }
 
-
-
--(void)triggerLanguageChanged:(NSDictionary*)dict
+-(void)editDictInArrayForKey:(NSString*)key withValue:(NSString*)value array:(NSArray*)array
 {
-    isTranslated = YES;
-    
-        NSArray* allKeys = [dict allKeys];
+    for (int i = 0; i<array.count; i++) {
         
-        if ([allKeys containsObject:Nearby_Public_Transport]) {
-            self.lblNearbyPublicTransport.text = dict[Nearby_Public_Transport];
+        NSDictionary* tempDict = array[i];
+        if ([tempDict containsKey:BestKnowFor]) {
+            
+            [tempDict setValue:value forKey:key];
         }
         
-        for (int i = 0; i<self.arrayList.count; i++) {
-            
-            NSDictionary* tempDict = self.arrayList[i];
-            if ([tempDict containsKey:BestKnowFor]) {
-                
-                if ([allKeys containsObject:Recommended_Information]) {
-                    [tempDict setValue:dict[Recommended_Information] forKey:BestKnowFor];
-                    
-                    self.arrListTranslated = [[NSArray alloc]initWithArray:self.arrayList];
-                    [self.ibTableView reloadData];
-                }
-            }
-            
-        }
-}
+    }
 
+}
 -(void)switchBwtweenLanguageTranslated
 {
     
+    inTranslatedLanguage = !inTranslatedLanguage;
+    
+    if (inTranslatedLanguage) {
+        self.lblNearbyPublicTransport.text = nearbyPubTransport_Translated;
+        
+        [self editDictInArrayForKey:BestKnowFor withValue:bestKnownFor_Translated array:self.arrayList];
+    }
+    else
+    {
+        self.lblNearbyPublicTransport.text = self.seShopModel.nearby_public_transport;
+        [self editDictInArrayForKey:BestKnowFor withValue:bestKnownFor_NotTranslated array:self.arrayList];
 
-    self.lblNearbyPublicTransport.text = self.seShopModel.nearby_public_transport;
-    self.arrayList = self.arrListTranslated;
+    }
+    
+ 
     [self.ibTableView reloadData];
     
     

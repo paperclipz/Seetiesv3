@@ -31,6 +31,7 @@
     
     __weak IBOutlet UIButton *btnTranslate;
 }
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnTranslateWidthConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnShareWidthConstraint;
 @property (weak, nonatomic) IBOutlet UIButton *btnShare;
 //================ CONTROLLERS ====================//
@@ -151,11 +152,7 @@
         [self.arrViews addObject:self.seNearbySeetishop];
 
     }
-    else{
-        
-        btnTranslate.hidden = YES;
-    }
-
+  
 }
 -(void)setupViewData
 {
@@ -377,6 +374,9 @@
 {
     [UIView transitionWithView:self.btnShare duration:1.0f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
         self.btnShareWidthConstraint.constant = 50;
+        self.btnTranslateWidthConstraint.constant = 50;
+        [btnTranslate setNeedsUpdateConstraints];
+        [btnTranslate layoutIfNeeded];
         [self.btnShare setNeedsUpdateConstraints];
         [self.btnShare layoutIfNeeded];
     } completion:nil];
