@@ -33,17 +33,11 @@
     // Do any additional setup after loading the view from its nib.
     [self initTableViewDelegate];
     
-    [[SearchManager Instance]getCoordinateFromGPSThenWifi:^(CLLocation *currentLocation) {
-        
-        self.shoplat = currentLocation.coordinate.latitude;
-        self.shopLgn = currentLocation.coordinate.longitude;
-        
-        [self requestServerForSeetiShopNearbyShop];
-        
-    } errorBlock:^(NSString *status) {
-        [self requestServerForSeetiShopNearbyShop];
-        
-    }];
+    [LoadingManager show];
+    
+    self.shoplat = [[SearchManager Instance]getLocation].coordinate.latitude;
+    self.shopLgn = [[SearchManager Instance]getLocation].coordinate.longitude;
+    [self requestServerForSeetiShopNearbyShop];
 
 }
 
@@ -78,7 +72,15 @@
     }
     cell.lblTitle.text = model.name;
    
-    cell.lblDesc.text = [NSString stringWithFormat:@"%@ • %@",[Utils getDistance:model.location.distance Locality:model.location.locality],model.location.formatted_address];
+    
+    if (self.shoplat==0) {
+        cell.lblDesc.text = [NSString stringWithFormat:@"%@ • %@",model.location.locality,model.location.formatted_address];
+
+    }
+    else{
+        cell.lblDesc.text = [NSString stringWithFormat:@"%@ • %@",[Utils getDistance:model.location.distance Locality:model.location.locality],model.location.formatted_address];
+
+    }
    
     [cell setIsOpen:model.location.opening_hours.open_now];
     
@@ -123,8 +125,6 @@
         appendString = [NSString stringWithFormat:@"%@/nearby/shops",self.seetiesID];
         dict = @{@"limit":@(ARRAY_LIST_SIZE),
                  @"offset":@"1",
-                 @"lat":@(self.shoplat),
-                 @"lng":@(self.shopLgn),
                  @"lat" : @(self.shoplat),
                  @"lng" : @(self.shopLgn),
                  };

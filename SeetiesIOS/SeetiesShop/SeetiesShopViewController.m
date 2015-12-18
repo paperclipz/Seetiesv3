@@ -118,17 +118,17 @@
     
     self.automaticallyAdjustsScrollViewInsets = NO;
 
-    [LoadingManager hide];
     [LoadingManager show];
-    
-    [[SearchManager Instance]getCoordinateFromGPSThenWifi:^(CLLocation *currentLocation) {
-        
-        [self initSelfView];
+    [self initSelfView];
 
-    } errorBlock:^(NSString *status) {
-        [self initSelfView];
-
-    }];
+//    [[SearchManager Instance]getCoordinateFromGPSThenWifi:^(CLLocation *currentLocation) {
+//        
+//        [self initSelfView];
+//
+//    } errorBlock:^(NSString *status) {
+//        [self initSelfView];
+//
+//    }];
 
 }
 
