@@ -159,7 +159,7 @@
     
      CollectionModel* model = self.arrCollections[indexPath.row];
     if (_didSelectDisplayCollectionRowBlock) {
-        self.didSelectDisplayCollectionRowBlock(model.collection_id);
+        self.didSelectDisplayCollectionRowBlock(model);
     }
 }
 #pragma mark - Request Server

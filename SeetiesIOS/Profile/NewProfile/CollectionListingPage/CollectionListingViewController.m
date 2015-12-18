@@ -181,14 +181,14 @@
         
         _myCollectionListingViewController.userID = self.profileModel.uid;
         __weak typeof (self)weakSelf = self;
-        _myCollectionListingViewController.didSelectEdiCollectionRowBlock = ^(NSString* collectionID)
+        _myCollectionListingViewController.didSelectEdiCollectionRowBlock = ^(CollectionModel* model)
         {
-            [weakSelf showEditCollectionViewWithCollectionID:collectionID];
+            [weakSelf showEditCollectionViewWithCollectionID:model.collection_id];
         };
         
-        _myCollectionListingViewController.didSelectDisplayCollectionRowBlock = ^(NSString* collectionID)
+        _myCollectionListingViewController.didSelectDisplayCollectionRowBlock = ^(CollectionModel* model)
         {
-            [weakSelf showCollectionDisplayViewWithCollectionID:collectionID ProfileType:weakSelf.profileType];
+            [weakSelf showCollectionDisplayViewWithCollectionID:model ProfileType:weakSelf.profileType];
         };
         
     }
@@ -206,14 +206,14 @@
         _followingCollectionListingViewController.userID = self.profileModel.uid;
         __weak typeof (self)weakSelf = self;
         
-        _followingCollectionListingViewController.didSelectEdiCollectionRowBlock = ^(NSString* collectionID)
+        _followingCollectionListingViewController.didSelectEdiCollectionRowBlock = ^(CollectionModel* model)
         {
-            [weakSelf showEditCollectionViewWithCollectionID:collectionID];
+            [weakSelf showEditCollectionViewWithCollectionID:model.collection_id];
         };
         
-        _followingCollectionListingViewController.didSelectDisplayCollectionRowBlock = ^(NSString* collectionID)
+        _followingCollectionListingViewController.didSelectDisplayCollectionRowBlock = ^(CollectionModel* model)
         {
-            [weakSelf showCollectionDisplayViewWithCollectionID:collectionID ProfileType:ProfileViewTypeOthers];
+            [weakSelf showCollectionDisplayViewWithCollectionID:model.collection_id ProfileType:ProfileViewTypeOthers];
         };
     }
     
@@ -260,16 +260,16 @@
     [self.navigationController pushViewController:self.editCollectionViewController animated:YES];
 }
 
--(void)showCollectionDisplayViewWithCollectionID:(NSString*)collID ProfileType:(ProfileViewType)profileType
+-(void)showCollectionDisplayViewWithCollectionID:(CollectionModel*)colModel ProfileType:(ProfileViewType)profileType
 {
     _collectionViewController = nil;
     if (self.profileType == ProfileViewTypeOwn) {
-        [self.collectionViewController GetCollectionID:collID GetPermision:@"self" GetUserUid:self.profileModel.uid];
+        [self.collectionViewController GetCollectionID:colModel.collection_id GetPermision:@"self" GetUserUid:colModel.user_info.uid];
 
     }
     else{
         
-     [self.collectionViewController GetCollectionID:collID GetPermision:@"Others" GetUserUid:self.profileModel.uid];
+     [self.collectionViewController GetCollectionID:colModel.collection_id GetPermision:@"Others" GetUserUid:colModel.user_info.uid];
     }
 
     [self.navigationController pushViewController:self.collectionViewController animated:YES];
