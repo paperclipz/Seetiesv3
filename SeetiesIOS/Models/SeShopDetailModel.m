@@ -74,10 +74,10 @@
 
     }
     
-    if(![Utils isStringNull:_contact_number])//check Phone Number
+    if(_contact_number.count>0)//check Phone Number
     {
         NSMutableDictionary* temp = [NSMutableDictionary new];
-        [temp setObject:_contact_number forKey:Phone_Number];
+        [temp setObject:_contact_number[0] forKey:Phone_Number];
         [self.arrayInfo addObject:temp];
 
     }

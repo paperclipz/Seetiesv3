@@ -526,7 +526,7 @@
                     </variation>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YES" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YeC-Kr-33F">
-                    <rect key="frame" x="25" y="13" width="50" height="21"/>
+                    <rect key="frame" x="50" y="13" width="50" height="21"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="50" id="NqP-eZ-I1f"/>
@@ -545,7 +545,7 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="YeC-Kr-33F" firstAttribute="leading" secondItem="PPD-ze-gX7" secondAttribute="leading" constant="25" id="8cs-yF-gti"/>
+                <constraint firstItem="YeC-Kr-33F" firstAttribute="leading" secondItem="PPD-ze-gX7" secondAttribute="leading" constant="50" id="8cs-yF-gti"/>
                 <constraint firstItem="YeC-Kr-33F" firstAttribute="centerY" secondItem="PPD-ze-gX7" secondAttribute="centerY" constant="1.5" id="A4O-Tm-09l"/>
                 <constraint firstItem="ctX-06-t1e" firstAttribute="leading" secondItem="PPD-ze-gX7" secondAttribute="leading" id="Amu-tP-hl3"/>
                 <constraint firstAttribute="trailing" secondItem="ctX-06-t1e" secondAttribute="trailing" id="GTu-wd-ecH"/>
@@ -566,7 +566,7 @@
                     <exclude reference="yX2-0F-mMD"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="724" y="1251"/>
+            <point key="canvasLocation" x="634" y="1113"/>
         </view>
         <view contentMode="scaleToFill" id="kLR-rC-bbo">
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -586,7 +586,7 @@
                     </variation>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uPi-Bh-naX">
-                    <rect key="frame" x="25" y="13" width="50" height="21"/>
+                    <rect key="frame" x="50" y="13" width="50" height="21"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="92" id="ecy-Ew-n2L"/>
@@ -608,7 +608,7 @@
                 <constraint firstItem="mpG-fc-l3p" firstAttribute="centerX" secondItem="kLR-rC-bbo" secondAttribute="centerX" id="VHQ-iX-jxv"/>
                 <constraint firstItem="mpG-fc-l3p" firstAttribute="centerX" secondItem="kLR-rC-bbo" secondAttribute="centerX" id="aLz-kx-CXT"/>
                 <constraint firstItem="mpG-fc-l3p" firstAttribute="leading" secondItem="kLR-rC-bbo" secondAttribute="leading" id="ffF-K3-nko"/>
-                <constraint firstItem="uPi-Bh-naX" firstAttribute="leading" secondItem="kLR-rC-bbo" secondAttribute="leading" constant="25" id="gv3-mc-Caf"/>
+                <constraint firstItem="uPi-Bh-naX" firstAttribute="leading" secondItem="kLR-rC-bbo" secondAttribute="leading" constant="50" id="gv3-mc-Caf"/>
                 <constraint firstItem="uPi-Bh-naX" firstAttribute="centerX" secondItem="kLR-rC-bbo" secondAttribute="centerX" constant="-86" id="kUa-NQ-L7f"/>
                 <constraint firstAttribute="trailing" secondItem="mpG-fc-l3p" secondAttribute="trailing" id="ltG-YB-050"/>
                 <constraint firstItem="mpG-fc-l3p" firstAttribute="leading" secondItem="kLR-rC-bbo" secondAttribute="leading" id="paf-8U-qoU"/>

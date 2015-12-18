@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SeetiesShopViewController">
             <connections>
                 <outlet property="btnShare" destination="Vmn-Th-Z6e" id="9Yu-9k-ziZ"/>
+                <outlet property="btnShareWidthConstraint" destination="U6K-AN-dCF" id="KKn-0j-kef"/>
                 <outlet property="btnTranslate" destination="JRS-YQ-XgZ" id="ynS-Qm-GmZ"/>
                 <outlet property="ibImgViewTopPadding" destination="scf-vQ-TpH" id="nXw-Nu-jcK"/>
                 <outlet property="ibScrollView" destination="PfW-mD-EzJ" id="lRY-u4-pPr"/>
@@ -54,9 +55,9 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JRS-YQ-XgZ">
-                            <rect key="frame" x="255" y="0.0" width="60" height="64"/>
+                            <rect key="frame" x="305" y="0.0" width="50" height="64"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="60" id="Ama-cA-y4c"/>
+                                <constraint firstAttribute="width" constant="50" id="Ama-cA-y4c"/>
                             </constraints>
                             <state key="normal" image="SSWhiteTranslateIcon.png"/>
                             <connections>
@@ -64,9 +65,9 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vmn-Th-Z6e">
-                            <rect key="frame" x="315" y="0.0" width="60" height="64"/>
+                            <rect key="frame" x="355" y="0.0" width="0.0" height="64"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="60" id="U6K-AN-dCF"/>
+                                <constraint firstAttribute="width" id="U6K-AN-dCF"/>
                             </constraints>
                             <state key="normal" image="ProfileShareIcon.png"/>
                             <connections>
@@ -87,7 +88,7 @@
                         <constraint firstItem="Ghx-1x-5Rn" firstAttribute="leading" secondItem="tx2-5y-CkB" secondAttribute="leading" constant="2" id="O2t-9I-3TY"/>
                         <constraint firstAttribute="bottom" secondItem="Vmn-Th-Z6e" secondAttribute="bottom" id="TDm-jw-QUe"/>
                         <constraint firstAttribute="height" constant="64" id="Vfq-xN-DKd"/>
-                        <constraint firstAttribute="trailing" secondItem="Vmn-Th-Z6e" secondAttribute="trailing" id="XDw-DB-KCG"/>
+                        <constraint firstAttribute="trailing" secondItem="Vmn-Th-Z6e" secondAttribute="trailing" constant="20" id="XDw-DB-KCG"/>
                         <constraint firstItem="scf-vQ-TpH" firstAttribute="leading" secondItem="tx2-5y-CkB" secondAttribute="leading" id="bmJ-bK-KDK"/>
                         <constraint firstItem="scf-vQ-TpH" firstAttribute="top" secondItem="tx2-5y-CkB" secondAttribute="top" id="e9T-SC-VI2"/>
                         <constraint firstAttribute="bottom" secondItem="scf-vQ-TpH" secondAttribute="bottom" id="fc6-5B-XBk"/>

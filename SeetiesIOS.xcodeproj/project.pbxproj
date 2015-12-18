@@ -205,6 +205,7 @@
 		8A3F35671BF5E89D002B704C /* SuggestedCollectionPostsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3F35601BF5E89D002B704C /* SuggestedCollectionPostsViewController.xib */; };
 		8A3F35681BF5E89D002B704C /* SuggestedCollectionPostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3F35621BF5E89D002B704C /* SuggestedCollectionPostTableViewCell.m */; };
 		8A3F35691BF5E89D002B704C /* SuggestedCollectionPostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3F35631BF5E89D002B704C /* SuggestedCollectionPostTableViewCell.xib */; };
+		8A41471E1C23E18D00D633D1 /* NSDictionary+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A41471D1C23E18D00D633D1 /* NSDictionary+Extra.m */; };
 		8A45096F1BA801D400A868CD /* STAddNewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A45096E1BA801D400A868CD /* STAddNewTableViewCell.m */; };
 		8A4509711BA801E100A868CD /* STAddNewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4509701BA801E100A868CD /* STAddNewTableViewCell.xib */; };
 		8A45097A1BAC012600A868CD /* NSArray+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4509791BAC012600A868CD /* NSArray+JSON.m */; };
@@ -1475,6 +1476,8 @@
 		8A3F35621BF5E89D002B704C /* SuggestedCollectionPostTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestedCollectionPostTableViewCell.m; sourceTree = "<group>"; };
 		8A3F35631BF5E89D002B704C /* SuggestedCollectionPostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SuggestedCollectionPostTableViewCell.xib; sourceTree = "<group>"; };
 		8A3F356A1BF5E9C3002B704C /* SuggestedCollectionPostsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuggestedCollectionPostsViewController.h; sourceTree = "<group>"; };
+		8A41471C1C23E18D00D633D1 /* NSDictionary+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Extra.h"; sourceTree = "<group>"; };
+		8A41471D1C23E18D00D633D1 /* NSDictionary+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Extra.m"; sourceTree = "<group>"; };
 		8A45096D1BA801D400A868CD /* STAddNewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAddNewTableViewCell.h; sourceTree = "<group>"; };
 		8A45096E1BA801D400A868CD /* STAddNewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STAddNewTableViewCell.m; sourceTree = "<group>"; };
 		8A4509701BA801E100A868CD /* STAddNewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STAddNewTableViewCell.xib; sourceTree = "<group>"; };
@@ -3580,6 +3583,15 @@
 			path = NewsFeed_SuggestedCollection;
 			sourceTree = "<group>";
 		};
+		8A41471B1C23E14C00D633D1 /* NSDictionary+Extension */ = {
+			isa = PBXGroup;
+			children = (
+				8A41471C1C23E18D00D633D1 /* NSDictionary+Extra.h */,
+				8A41471D1C23E18D00D633D1 /* NSDictionary+Extra.m */,
+			);
+			name = "NSDictionary+Extension";
+			sourceTree = "<group>";
+		};
 		8A45098F1BAFF79900A868CD /* Color */ = {
 			isa = PBXGroup;
 			children = (
@@ -4896,6 +4908,7 @@
 		8AD6BA961B706CF10040437E /* CATEGORY */ = {
 			isa = PBXGroup;
 			children = (
+				8A41471B1C23E14C00D633D1 /* NSDictionary+Extension */,
 				8A03487B1C15793A0015E606 /* NSString+Extension */,
 				8A08293E1C1046F200AD8CBD /* UIView+draggable.h */,
 				8A08293F1C1046F200AD8CBD /* UIView+draggable.m */,
@@ -6400,6 +6413,7 @@
 				8AD6C0BE1B706CF30040437E /* FeedV2DetailViewController.m in Sources */,
 				8AEDBFB91C2031BA000BD2FF /* SearchModel.m in Sources */,
 				8AD6BE241B706CF30040437E /* UIIimage+Extra.m in Sources */,
+				8A41471E1C23E18D00D633D1 /* NSDictionary+Extra.m in Sources */,
 				8A114CB41BE73F5D006AE3F0 /* NSMutableArray+MoveArray.m in Sources */,
 				8AD6BE4B1B706CF30040437E /* ExploreCountryV2ViewController.m in Sources */,
 				8AD6C10A1B706CF30040437E /* FeedbackViewController.m in Sources */,

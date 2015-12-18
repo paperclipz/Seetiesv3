@@ -10,6 +10,7 @@
 #import "SeShopDetailView.h"
 #import "SeShopDetailTableViewCell.h"
 #import "PhotoCollectionViewCell.h"
+#import "NSDictionary+Extra.h"
 
 #define Info_Footer_HEader_Height 54+54;
 
@@ -19,6 +20,7 @@
     __weak IBOutlet NSLayoutConstraint *photoHeightConstraint;
     __weak IBOutlet UILabel *lblPhotoCount;
     __weak IBOutlet NSLayoutConstraint *tableviewConstraint;
+    BOOL isTranslated;
 }
 //================== Detail =======================//
 @property (weak, nonatomic) IBOutlet UILabel *lblShopCategory;
@@ -63,6 +65,8 @@
 @property(nonatomic,assign)float shoplat;
 @property(nonatomic,assign)float shopLgn;
 
+@property(nonatomic,copy)NSArray* arrListTranslated;
+
 @end
 
 @implementation SeShopDetailView
@@ -97,6 +101,7 @@
 
 -(void)initSelfView
 {
+    isTranslated = NO;
     [Utils setRoundBorder:self.ibImgProfile color:UIColorFromRGB(255, 255, 255, 1) borderRadius:self.ibImgProfile.frame.size.width/2 borderWidth:0.0f];
     self.ibMapInfoView.alpha = 0;
 
@@ -503,7 +508,6 @@
 
     appendString = [NSString stringWithFormat:@"%@/translate",self.seetiesID];
     
-
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetoShopTranslation param:dict appendString:appendString completeHandler:^(id object) {
     
         [self triggerLanguageChanged:[[NSDictionary alloc]initWithDictionary:object[@"data"]]];
@@ -514,40 +518,55 @@
 
 }
 
-- (BOOL)dicContainsKey: (NSString *)key Dict:(NSDictionary*)dict{
-    BOOL retVal = 0;
-    NSArray *allKeys = [dict allKeys];
-    retVal = [allKeys containsObject:key];
-    return retVal;
-}
+
 
 -(void)triggerLanguageChanged:(NSDictionary*)dict
 {
-    NSArray* allKeys = [dict allKeys];
+    isTranslated = YES;
     
-    if ([allKeys containsObject:Nearby_Public_Transport]) {
-        self.lblNearbyPublicTransport.text = dict[Nearby_Public_Transport];
-    }
-    
-    for (int i = 0; i<self.arrayList.count; i++) {
+        NSArray* allKeys = [dict allKeys];
         
-        NSDictionary* tempDict = self.arrayList[i];
-        if ([self dicContainsKey:BestKnowFor Dict:tempDict]) {
-            
-            if ([allKeys containsObject:Recommended_Information]) {
-                [tempDict setValue:dict[Recommended_Information] forKey:BestKnowFor];
- 
-                [self.ibTableView reloadData];
-            }
+        if ([allKeys containsObject:Nearby_Public_Transport]) {
+            self.lblNearbyPublicTransport.text = dict[Nearby_Public_Transport];
         }
         
-    }
-   
+        for (int i = 0; i<self.arrayList.count; i++) {
+            
+            NSDictionary* tempDict = self.arrayList[i];
+            if ([tempDict containsKey:BestKnowFor]) {
+                
+                if ([allKeys containsObject:Recommended_Information]) {
+                    [tempDict setValue:dict[Recommended_Information] forKey:BestKnowFor];
+                    
+                    self.arrListTranslated = [[NSArray alloc]initWithArray:self.arrayList];
+                    [self.ibTableView reloadData];
+                }
+            }
+            
+        }
+}
+
+-(void)switchBwtweenLanguageTranslated
+{
+    
+
+    self.lblNearbyPublicTransport.text = self.seShopModel.nearby_public_transport;
+    self.arrayList = self.arrListTranslated;
+    [self.ibTableView reloadData];
+    
+    
 }
 
 -(void)getTranslation
 {
-    [self requestServerForTransalation];
+    
+    if (isTranslated) {
+        [self switchBwtweenLanguageTranslated];
+    }
+    else{
+        [self requestServerForTransalation];
+
+    }
 }
 
 @end

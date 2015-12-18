@@ -31,6 +31,7 @@
     
     __weak IBOutlet UIButton *btnTranslate;
 }
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnShareWidthConstraint;
 @property (weak, nonatomic) IBOutlet UIButton *btnShare;
 //================ CONTROLLERS ====================//
 @property (nonatomic,strong)SeetiesShopViewController* seetiesShopViewController;
@@ -130,7 +131,6 @@
 
 -(void)initSelfView
 {
-    self.btnShare.hidden = YES;
     self.ibScrollView.delegate = self;
     _arrViews = [NSMutableArray new];
     
@@ -321,7 +321,6 @@
             [weakSelf.navigationController pushViewController:weakSelf.mapViewController animated:YES onCompletion:^{
                 weakSelf.mapViewController.lblTitle.text = LocalisedString(@"MAP");
             }];
-
         };
         
         _seShopDetailView.imageDidFinishLoadBlock = ^(UIImage* image)
@@ -329,13 +328,14 @@
             if (image) {
                 
                 weakSelf.ibTopPaddingOverlay.hidden = NO;
+                weakSelf.ibImgViewTopPadding.image = image;
 
-                weakSelf.ibTopPaddingOverlay.alpha = 0;
-                [UIView animateWithDuration:.5f animations:^{
-                    weakSelf.ibTopPaddingOverlay.alpha = 1;
-                    weakSelf.ibImgViewTopPadding.image = image;
-
-                }];
+//                weakSelf.ibTopPaddingOverlay.alpha = 0;
+//                [UIView animateWithDuration:.5f animations:^{
+//                    weakSelf.ibTopPaddingOverlay.alpha = 1;
+//                    weakSelf.ibImgViewTopPadding.image = image;
+//
+//                }];
             }
         };
     
@@ -354,7 +354,7 @@
         
         _seShopDetailView.viewDidFinishLoadBlock = ^(SeShopDetailModel* model)
         {
-            weakSelf.btnShare.hidden = NO;
+            [weakSelf setHiddenVisible];
             weakSelf.seShopModel = model;
             [weakSelf rearrangeView];
             
@@ -373,7 +373,16 @@
     
     return _seShopDetailView;
 }
+-(void)setHiddenVisible
+{
+    [UIView transitionWithView:self.btnShare duration:1.0f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+        self.btnShareWidthConstraint.constant = 50;
+        [self.btnShare setNeedsUpdateConstraints];
+        [self.btnShare layoutIfNeeded];
+    } completion:nil];
+   
 
+}
 -(SeDealsView*)seDealsView
 {
     if (!_seDealsView) {

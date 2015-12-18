@@ -16,7 +16,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WPM-3l-h5J">
-                        <rect key="frame" x="38" y="6" width="284" height="21"/>
+                        <rect key="frame" x="68" y="6" width="254" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="eJx-IW-2va"/>
                         </constraints>
@@ -27,7 +27,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="WPM-3l-h5J" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="10" id="P2n-k2-y1p"/>
-                    <constraint firstItem="WPM-3l-h5J" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="30" id="Zc8-ue-qmo"/>
+                    <constraint firstItem="WPM-3l-h5J" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="60" id="Zc8-ue-qmo"/>
                     <constraint firstItem="WPM-3l-h5J" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="mvQ-O9-0LR"/>
                 </constraints>
             </tableViewCellContentView>

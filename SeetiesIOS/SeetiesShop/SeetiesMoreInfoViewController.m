@@ -147,9 +147,9 @@
     }
 
     
-    if (![Utils stringIsNilOrEmpty:self.seShopModel.contact_number]) {
+    if (self.seShopModel.contact_number.count>0) {
         [self.arrViews addObject:self.ibPhoneNumberView];
-        self.lblContactDesc.text = self.seShopModel.contact_number;
+        self.lblContactDesc.text = self.seShopModel.contact_number[0];
 
     }
     
