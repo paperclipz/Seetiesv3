@@ -141,16 +141,19 @@
 
     }
     
+    [LoadingManager show];
         [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetoShopNearbyShop param:dict appendString:appendString completeHandler:^(id object) {
             
             
             self.seetiShopsModel = [[ConnectionManager dataManager]seNearbyShopModel];
             [self.arrShopList addObjectsFromArray:self.seetiShopsModel.userPostData.shops];
             [self.ibTableView reloadData];
-            
+            [LoadingManager hide];
+
         } errorBlock:^(id object) {
             
-            
+            [LoadingManager hide];
+
         }];
         
 }

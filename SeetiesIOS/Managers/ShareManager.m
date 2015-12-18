@@ -275,16 +275,16 @@
 
         switch (type) {
             default:
-            case ShareTypeFacebookPost:
+            case ShareTypePost:
                 
                 messageSubject = @"Seeties Post";
                 break;
-            case ShareTypeFacebookCollection:
+            case ShareTypeCollection:
                 messageSubject = @"Seeties Collection";
 
                 break;
 
-            case ShareTypeFacebookPostUser:
+            case ShareTypePostUser:
                 messageSubject = @"Seeties User";
 
                 break;
@@ -316,7 +316,7 @@
     switch (type) {
             
         default:
-        case ShareTypeFacebookPost:
+        case ShareTypePost:
         {
             message = LocalisedString(@"I was reading [post title] on Seeties and I thought you might be interested in reading it too.\n\n[post url]");
             if (self.postTitle) {
@@ -331,7 +331,7 @@
                                                          withString:isNeedAppendURL?[self getShareLink:type]:@""];
         }
             break;
-        case ShareTypeFacebookCollection:
+        case ShareTypeCollection:
         {
             message = LocalisedString(@"I was checking this collection [collection title] on Seeties and I thought you might like to see it too.\n\n[post url]");
             if (self.postTitle) {
@@ -347,7 +347,7 @@
                                                          withString:isNeedAppendURL?[self getShareLink:type]:@""];
         }
             break;
-        case ShareTypeFacebookPostUser:
+        case ShareTypePostUser:
         {
             message = [NSString stringWithFormat:@"Check out my profile on Seeties!"];
             message = [NSString stringWithFormat:@"%@ %@",message,isNeedAppendURL?[self getShareLink:type]:@""];
@@ -368,23 +368,29 @@
     switch (type) {
             
         default:
-        case ShareTypeFacebookPost:
+        case ShareTypePost:
         {
             subLink = @"post/";
             
         }
             break;
-        case ShareTypeFacebookCollection:
+        case ShareTypeCollection:
         {
             subLink = @"collections/";
            
         }
             break;
-        case ShareTypeFacebookPostUser:
+        case ShareTypePostUser:
         {
             subLink = @"";
             
         }
+        case ShareTypeSeetiesShop:
+        {
+            subLink = @"seetishops/";
+            
+        }
+
             break;
     }
 

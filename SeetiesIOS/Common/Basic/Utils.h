@@ -164,5 +164,15 @@ typedef enum {
 #define ARRAY_LIST_SIZE 10.0f
 #define LIKES_LIST_SIZE 30.0f
 
+// seeties shop model
+#define BestKnowFor @"Best known for"
+#define PriceKey @"Price"
+#define HoursKey @"Hours"
+#define Phone_Number @"Phone Number"
+#define URL_Link @"URL/Link"
+#define FACEBOOK @"Facebook"
+#define Nearby_Public_Transport @"nearby_public_transport"
+#define Recommended_Information @"recommended_information"
+
 
 @end

@@ -5427,7 +5427,7 @@
     _shareV2ViewController = nil;
     UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
     [naviVC setNavigationBarHidden:YES animated:NO];
-    [self.shareV2ViewController share:@"" title:[arrTitle objectAtIndex:getbuttonIDN] imagURL:[arrImage objectAtIndex:getbuttonIDN] shareType:ShareTypeFacebookPost shareID:[arrPostID objectAtIndex:getbuttonIDN]];
+    [self.shareV2ViewController share:@"" title:[arrTitle objectAtIndex:getbuttonIDN] imagURL:[arrImage objectAtIndex:getbuttonIDN] shareType:ShareTypePost shareID:[arrPostID objectAtIndex:getbuttonIDN]];
     MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
     formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
     formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
@@ -5702,7 +5702,7 @@
     _shareV2ViewController = nil;
     UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
     [naviVC setNavigationBarHidden:YES animated:NO];
-    [self.shareV2ViewController share:@"" title:[arrTitle objectAtIndex:getbuttonIDN] imagURL:@"" shareType:ShareTypeFacebookCollection shareID:[arrCollectionID objectAtIndex:getbuttonIDN]];
+    [self.shareV2ViewController share:@"" title:[arrTitle objectAtIndex:getbuttonIDN] imagURL:@"" shareType:ShareTypeCollection shareID:[arrCollectionID objectAtIndex:getbuttonIDN]];
     MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
     formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
     formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;

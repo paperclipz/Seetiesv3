@@ -11,6 +11,12 @@
 @property(nonatomic,strong)NSMutableArray* arrayInfo;
 @end
 @implementation SeShopDetailModel
+
++(BOOL)propertyIsOptional:(NSString*)propertyName
+{
+    return YES;
+}
+
 +(JSONKeyMapper*)keyMapper
 {
     return [[JSONKeyMapper alloc] initWithDictionary:@{
@@ -18,7 +24,6 @@
                                                        @"url.website": @"urlWebsite",
                                                        @"features.available" : @"arrFeatureAvaiable",
                                                        @"features.unavailable" : @"arrFeatureUnavaiable",
-                                                       @"profile_photo_images.m" : @"profile_photo_images"
                                                        }];
 }
 

@@ -28,8 +28,10 @@
 
 @interface SeetiesShopViewController ()<UIScrollViewDelegate>
 {
-
+    
+    __weak IBOutlet UIButton *btnTranslate;
 }
+@property (weak, nonatomic) IBOutlet UIButton *btnShare;
 //================ CONTROLLERS ====================//
 @property (nonatomic,strong)SeetiesShopViewController* seetiesShopViewController;
 
@@ -42,6 +44,7 @@
 @property (nonatomic,strong)CollectionListingViewController* collectionListingViewController;
 @property (nonatomic,strong)SeRecommendationsSeeAllViewController* seRecommendationsSeeAllViewController;
 @property (nonatomic,strong)ProfileViewController* profileViewController;
+@property (nonatomic,strong)ShareV2ViewController* shareV2ViewController;
 //$$============== CONTROLLERS ==================$$//
 @property (weak, nonatomic) IBOutlet UIImageView *ibTopPaddingOverlay;
 
@@ -63,9 +66,19 @@
 @property(nonatomic,strong)NSString* postID;
 @property(nonatomic,assign)float shopLat;
 @property(nonatomic,assign)float shopLng;
+
+@property(nonatomic,strong)SeShopDetailModel* seShopModel;
 @end
 
 @implementation SeetiesShopViewController
+- (IBAction)btnShareClicked:(id)sender {
+    
+    [self showShareView:self.seShopModel];
+}
+- (IBAction)btnTransalateClicked:(id)sender {
+    
+    [self.seShopDetailView getTranslation];
+}
 
 -(void)initDataWithSeetiesID:(NSString*)seetiesID
 {
@@ -117,6 +130,7 @@
 
 -(void)initSelfView
 {
+    self.btnShare.hidden = YES;
     self.ibScrollView.delegate = self;
     _arrViews = [NSMutableArray new];
     
@@ -136,6 +150,10 @@
     if (![Utils stringIsNilOrEmpty:self.seetiesID]) {
         [self.arrViews addObject:self.seNearbySeetishop];
 
+    }
+    else{
+        
+        btnTranslate.hidden = YES;
     }
 
 }
@@ -195,6 +213,16 @@
 
 
 #pragma mark - Declaration
+
+-(ShareV2ViewController*)shareV2ViewController
+{
+    if (!_shareV2ViewController) {
+        _shareV2ViewController = [[ShareV2ViewController alloc]initWithNibName:@"ShareV2ViewController" bundle:nil];
+    }
+    
+    return _shareV2ViewController;
+}
+
 -(SeetiesShopViewController*)seetiesShopViewController
 {
     if (!_seetiesShopViewController) {
@@ -298,8 +326,17 @@
         
         _seShopDetailView.imageDidFinishLoadBlock = ^(UIImage* image)
         {
-            weakSelf.ibImgViewTopPadding.image = image;
-            weakSelf.ibTopPaddingOverlay.hidden = NO;
+            if (image) {
+                
+                weakSelf.ibTopPaddingOverlay.hidden = NO;
+
+                weakSelf.ibTopPaddingOverlay.alpha = 0;
+                [UIView animateWithDuration:.5f animations:^{
+                    weakSelf.ibTopPaddingOverlay.alpha = 1;
+                    weakSelf.ibImgViewTopPadding.image = image;
+
+                }];
+            }
         };
     
         _seShopDetailView.didSelectInformationAtRectBlock=^(UIView* fromView, CGRect rect)
@@ -315,18 +352,12 @@
             [weakSelf.navigationController pushViewController:weakSelf.photoListViewController animated:YES];
         };
         
-        _seShopDetailView.viewDidFinishLoadBlock = ^(void)
+        _seShopDetailView.viewDidFinishLoadBlock = ^(SeShopDetailModel* model)
         {
-           // [weakSelf.arrViews removeObject:weakSelf.seDealsView];
-           // [weakSelf.seDealsView removeFromSuperview];
-          
+            weakSelf.btnShare.hidden = NO;
+            weakSelf.seShopModel = model;
             [weakSelf rearrangeView];
-//            [UIView animateWithDuration:1.0 animations:^{
-//                
-//            }completion:^(BOOL finished) {
-//                
-//    
-//            }];
+            
         };
         
         _seShopDetailView.btnMoreInfoClickedBlock = ^(SeShopDetailModel* model)
@@ -458,6 +489,20 @@
     return _seNearbySeetishop;
 }
 
+#pragma mrak - Show View
+-(void)showShareView:(SeShopDetailModel*)shopModel
+{
+    _shareV2ViewController = nil;
+    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
+    [naviVC setNavigationBarHidden:YES animated:NO];
+    [self.shareV2ViewController share:@"" title:shopModel.name imagURL:@"" shareType:ShareTypeSeetiesShop shareID:shopModel.seetishop_id];
+    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
+    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
+    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
+    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
+    [self presentViewController:formSheetController animated:YES completion:nil];
+    
+}
 #pragma mark - UIScrollView
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {

@@ -471,7 +471,7 @@
     _shareV2ViewController = nil;
     UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
     [naviVC setNavigationBarHidden:YES animated:NO];
-    [self.shareV2ViewController share:@"" title:[TitleArray objectAtIndex:getbuttonIDN] imagURL:[LPhotoArray objectAtIndex:getbuttonIDN] shareType:ShareTypeFacebookPost shareID:[PostIDArray objectAtIndex:getbuttonIDN]];
+    [self.shareV2ViewController share:@"" title:[TitleArray objectAtIndex:getbuttonIDN] imagURL:[LPhotoArray objectAtIndex:getbuttonIDN] shareType:ShareTypePost shareID:[PostIDArray objectAtIndex:getbuttonIDN]];
     MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
     formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
     formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;

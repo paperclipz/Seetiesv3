@@ -13,4 +13,5 @@
 @property(nonatomic,strong)SeShopDetailModel* seShopModel;
 
 @property(nonatomic,strong)MapViewController* mapViewController;
+
 @end

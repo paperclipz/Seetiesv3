@@ -8,6 +8,8 @@
 
 #import "SeShopDetailTableViewCell.h"
 
+
+
 @implementation SeShopDetailTableViewCell
 
 /*
@@ -33,14 +35,6 @@
     return self;
 }
 
-// seeties shop model
-#define BestKnowFor @"Best known for"
-#define Price @"Price"
-#define Hours @"Hours"
-#define Phone_Number @"Phone Number"
-#define URL_Link @"URL/Link"
-#define FACEBOOK @"Facebook"
-
 -(void)setImage:(NSString *)lblTitle
 {
     NSString* imageName;
@@ -52,7 +46,7 @@
             break;
             
         }
-        CASE (Price){
+        CASE (PriceKey){
             imageName = @"BluePrice.png";
             break;
             
@@ -62,7 +56,7 @@
             break;
             
         }
-        CASE (Hours){
+        CASE (HoursKey){
             imageName = @"BlueTime.png";
             break;
             

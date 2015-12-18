@@ -97,7 +97,8 @@
 
 -(void)initSelfView
 {
-    [Utils setRoundBorder:self.ibImgProfile color:UIColorFromRGB(238, 238, 238, 0.5) borderRadius:self.ibImgProfile.frame.size.width/2 borderWidth:2.0f];
+    [Utils setRoundBorder:self.ibImgProfile color:UIColorFromRGB(255, 255, 255, 1) borderRadius:self.ibImgProfile.frame.size.width/2 borderWidth:0.0f];
+    self.ibMapInfoView.alpha = 0;
 
     tableviewConstraint.constant = 0;
     photoHeightConstraint.constant = 0;
@@ -135,24 +136,30 @@
 -(void)setupViewWithData
 {
  
+    [UIView animateWithDuration:1.0 animations:^{
+        self.ibMapInfoView.alpha = 1;
+    }];
+    
     if (self.seShopModel.wallpapers.count >0) {
         NSDictionary* wallpaperDict = self.seShopModel.wallpapers[0];
-        [self.ibImgProfile sd_setImageCroppedWithURL:[NSURL URLWithString:[wallpaperDict objectForKey:@"m"]] completed:^(UIImage *image){
+        [self.ibImgProfileBackground sd_setImageCroppedWithURL:[NSURL URLWithString:[wallpaperDict objectForKey:@"m"]] completed:^(UIImage *image){
             
-        }];
-    }
-    
-    if (self.seShopModel.profile_photo_images) {
-        [self.ibImgProfileBackground sd_setImageCroppedWithURL:[NSURL URLWithString:self.seShopModel.profile_photo_images] completed:^(UIImage *image){
-            
+            if (!image) {
+                self.ibImgProfileBackground.image = [UIImage imageNamed:@"SSDefaultCoverPhoto.png"];
+            }
             if (self.imageDidFinishLoadBlock) {
                 self.imageDidFinishLoadBlock(image);
             }
         }];
+
+      
     }
-   
-
-
+    
+    if (self.seShopModel.profile_photo_images) {
+        [self.ibImgProfile sd_setImageCroppedWithURL:[NSURL URLWithString:self.seShopModel.profile_photo_images[@"m"]] completed:^(UIImage *image){
+            
+        }];
+    }
     
     float constant =  (self.arrayList.count*[SeShopDetailTableViewCell getHeight]) + Info_Footer_HEader_Height;
     tableviewConstraint.constant = constant;
@@ -211,6 +218,14 @@
         self.lblDistanceIndicator.text = LocalisedString(@"Swim or Fly");
 
     }
+    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([self.seShopModel.location.lat doubleValue], [self.seShopModel.location.lng doubleValue]);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 500, 500);
+    
+    _region = region;
+    
+    [self.annotation setCoordinate:self.region.center];
+    
+    [self.ibMapView setRegion:self.region animated:YES];
 }
 
 -(float)getPositionYBelowView:(UIView*)view
@@ -430,7 +445,7 @@
 
         
         if (self.viewDidFinishLoadBlock) {
-            self.viewDidFinishLoadBlock();
+            self.viewDidFinishLoadBlock(self.seShopModel);
         }
     } errorBlock:^(id object) {
         
@@ -477,5 +492,62 @@
 
 }
 
+-(void)requestServerForTransalation
+{
+    
+    NSDictionary* dict = @{@"token":[Utils getAppToken],
+             @"seetishop_id":self.seetiesID,
+             };
+    
+    NSString* appendString;
+
+    appendString = [NSString stringWithFormat:@"%@/translate",self.seetiesID];
+    
+
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetoShopTranslation param:dict appendString:appendString completeHandler:^(id object) {
+    
+        [self triggerLanguageChanged:[[NSDictionary alloc]initWithDictionary:object[@"data"]]];
+    } errorBlock:^(id object) {
+        
+        
+    }];
+
+}
+
+- (BOOL)dicContainsKey: (NSString *)key Dict:(NSDictionary*)dict{
+    BOOL retVal = 0;
+    NSArray *allKeys = [dict allKeys];
+    retVal = [allKeys containsObject:key];
+    return retVal;
+}
+
+-(void)triggerLanguageChanged:(NSDictionary*)dict
+{
+    NSArray* allKeys = [dict allKeys];
+    
+    if ([allKeys containsObject:Nearby_Public_Transport]) {
+        self.lblNearbyPublicTransport.text = dict[Nearby_Public_Transport];
+    }
+    
+    for (int i = 0; i<self.arrayList.count; i++) {
+        
+        NSDictionary* tempDict = self.arrayList[i];
+        if ([self dicContainsKey:BestKnowFor Dict:tempDict]) {
+            
+            if ([allKeys containsObject:Recommended_Information]) {
+                [tempDict setValue:dict[Recommended_Information] forKey:BestKnowFor];
+ 
+                [self.ibTableView reloadData];
+            }
+        }
+        
+    }
+   
+}
+
+-(void)getTranslation
+{
+    [self requestServerForTransalation];
+}
 
 @end

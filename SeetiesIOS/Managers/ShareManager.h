@@ -12,9 +12,10 @@
 
 typedef enum
 {
-    ShareTypeFacebookPost,
-    ShareTypeFacebookCollection,
-    ShareTypeFacebookPostUser,
+    ShareTypePost,
+    ShareTypeCollection,
+    ShareTypePostUser,
+    ShareTypeSeetiesShop
 } ShareType;
 
 @interface ShareManager : NSObject

@@ -14,7 +14,7 @@
                 <outlet property="ibFeatureTableView" destination="RLm-py-vv7" id="G16-T6-bQP"/>
                 <outlet property="ibHourTableView" destination="dCZ-KL-5Cb" id="c1P-be-11x"/>
                 <outlet property="ibMapMainView" destination="gXa-Q7-etx" id="HpG-I3-eLu"/>
-                <outlet property="ibMapView" destination="OoS-TG-gt8" id="dJA-Qc-hJl"/>
+                <outlet property="ibMapView" destination="OoS-TG-gt8" id="AGc-0C-qJW"/>
                 <outlet property="ibNoHeader" destination="kLR-rC-bbo" id="cgu-5R-Asy"/>
                 <outlet property="ibPhoneNumberView" destination="jfD-w2-9IQ" id="jev-T9-0Td"/>
                 <outlet property="ibPriceView" destination="nUI-sp-3vE" id="Poo-IR-jIx"/>
@@ -28,6 +28,7 @@
                 <outlet property="lblFacebookLinkDesc" destination="XW5-cx-VXD" id="ek8-aG-SE5"/>
                 <outlet property="lblNearbyDesc" destination="ZRF-IY-tR6" id="5N1-5U-3ht"/>
                 <outlet property="lblPrice" destination="fKg-yw-lov" id="Cbs-Ae-91y"/>
+                <outlet property="lblShopTitle" destination="V4C-jn-Zry" id="Mqk-6y-KpD"/>
                 <outlet property="lblURLLinkDesc" destination="Tuk-bd-Xq8" id="69s-rx-yhO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -625,7 +626,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0J8-dZ-x6H">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="153"/>
                     <connections>
-                        <action selector="btnMapClicked:" destination="-1" eventType="touchUpInside" id="Mg4-Ms-meP"/>
+                        <action selector="btnMapClicked:" destination="-1" eventType="touchUpInside" id="u8e-Kt-KTH"/>
                     </connections>
                 </button>
             </subviews>

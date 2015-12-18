@@ -129,7 +129,7 @@
     
     self.arrayFeatureAvailableList = self.seShopModel.arrFeatureAvaiable;
     self.arrayFeatureUnavailableList = self.seShopModel.arrFeatureUnavaiable;
-
+    self.lblShopTitle.text = self.seShopModel.name;
     
     if (![Utils stringIsNilOrEmpty:self.seShopModel.location.formatted_address]) {
         [self.arrViews addObject:self.ibAddressView];
@@ -195,19 +195,12 @@
 
     }
 
-    [[SearchManager Instance]getCoordinateFromGPSThenWifi:^(CLLocation *currentLocation) {
-        _region.center.longitude = currentLocation.coordinate.longitude;
-        _region.center.latitude = currentLocation.coordinate.latitude;
-        
-        
-        [self.annotation setCoordinate:self.region.center];
-        
-        [self.ibMapView setRegion:self.region animated:YES];
-        
-    } errorBlock:^(NSString *status) {
-        
-    }];
-    
+    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([self.seShopModel.location.lat doubleValue], [self.seShopModel.location.lng doubleValue]);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 500, 500);
+    _region = region;
+    [self.annotation setCoordinate:self.region.center];
+    [self.ibMapView setRegion:self.region animated:YES];
+      
     
     self.lblNearbyDesc.text = self.seShopModel.nearby_public_transport;
     [self updateConstraintForLabel:self.lblAddressDesc labelHeightConst:constlblAddressDesc_Height superView:self.ibAddressView lasSubView:self.lblNearbyDesc];
