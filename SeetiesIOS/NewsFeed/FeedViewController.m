@@ -2969,7 +2969,7 @@
                     
                     UILabel *ShowTitle = [[UILabel alloc]init];
                     NSString *TempGetStirng = [[NSString alloc]initWithFormat:@"%@",[SplitArray_Title objectAtIndex:i]];
-                    if ([TempGetStirng length] == 0 || [TempGetStirng isEqualToString:@""] || [TempGetStirng isEqualToString:@"(null)"] || [TempGetStirng isEqualToString:@"("]) {
+                    if ([TempGetStirng length] == 0 || [TempGetStirng isEqualToString:@""] || [TempGetStirng isEqualToString:@"(null)"] || [TempGetStirng isEqualToString:@"(\n)"]) {
                         
                     }else{
                         
