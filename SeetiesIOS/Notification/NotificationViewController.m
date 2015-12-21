@@ -267,15 +267,16 @@
             GetNextPaging = [[NSString alloc]initWithFormat:@"%@",[GetPaging objectForKey:@"next"]];
             NSLog(@"GetNextPaging is %@",GetNextPaging);
             
-            CheckNotificationData = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"total_notifications"]];
+            CheckNotificationData = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"total_count"]];
             if ([CheckNotificationData isEqualToString:@"0"]) {
                 ShowNoDataView.hidden = NO;
             }
 
-            NSDictionary *UserInfoData = [GetNotificationsData valueForKey:@"user_thumbnail"];
-            NSDictionary *PostInfoData = [GetNotificationsData valueForKey:@"post_thumbnail"];
+            NSDictionary *GetNotificationsResultData = [GetNotificationsData valueForKey:@"result"];
+            NSDictionary *UserInfoData = [GetNotificationsResultData valueForKey:@"user_thumbnail"];
+            NSDictionary *PostInfoData = [GetNotificationsResultData valueForKey:@"post_thumbnail"];
             //NSLog(@"UserInfoData is %@",UserInfoData);
-            for (NSDictionary * dict in GetNotificationsData){
+            for (NSDictionary * dict in GetNotificationsResultData){
                 NSString *type =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"type"]];
                 [TypeArray addObject:type];
                 NSString *post_id =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"post_id"]];
