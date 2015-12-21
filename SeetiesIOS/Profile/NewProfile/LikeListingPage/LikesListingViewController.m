@@ -121,7 +121,9 @@
     
     DraftModel* draftModel = self.arrLikesList[indexPath.row];
     [cell initData:draftModel.arrPhotos[0]];
-    
+    [cell setNeedsUpdateConstraints];
+    [cell layoutIfNeeded];
+
    
     return cell;
 }
@@ -143,7 +145,7 @@
     
     int numberOfCell = 3;
     
-    float cellSize = roundf(frame.size.width/numberOfCell)  -10 - 5;
+    float cellSize = roundf(frame.size.width/numberOfCell) -5;
     
     return CGSizeMake(cellSize, cellSize);
 }
@@ -175,8 +177,8 @@
     SLog(@"requestServerForUserLikes");
     NSString* appendString = [NSString stringWithFormat:@"%@/likes",self.userID];
   
-    
-    NSDictionary* dict = @{@"page":self.profileLikeModel.userPostData.page==0?@(self.profileLikeModel.userPostData.page + 1):@1,
+    SLog(@"page : %d",self.profileLikeModel.userPostData.page);
+    NSDictionary* dict = @{@"page":self.profileLikeModel.userPostData.page==0? @1 : @(self.profileLikeModel.userPostData.page + 1),
                            @"list_size":@(LIKES_LIST_SIZE),
                            @"token":[Utils getAppToken]
                            };

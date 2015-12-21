@@ -30,29 +30,20 @@
     }];
 
 }
+
+-(void)locationManager:(CLLocationManager *)manager
+    didUpdateLocations:(NSArray *)locations {
+   
+    self.location = locations[0];
+    [self.manager stopUpdatingLocation];
+}
+
 -(void)startSearchGPSLocation
 {
-    if ([CLLocationManager isLocationUpdatesAvailable]) {
-        
-        self.manager = [CLLocationManager updateManagerWithAccuracy:50.0 locationAge:15.0 authorizationDesciption:CLLocationUpdateAuthorizationDescriptionAlways];
-        [self.manager startUpdatingLocationWithUpdateBlock:^(CLLocationManager *manager, CLLocation *location, NSError *error, BOOL *stopUpdating) {
-            NSLog(@"Our new location from GPS: %@", location);
-            
-            if (error && !location) {
-            }
-            else
-            {
-                self.GPSLocation = location;
-                *stopUpdating = YES;
-                [LoadingManager hide];
-            }
-        }];
-        
-    }
-    else{
-        
-        SLog(@"/n  ============== PLEASE ENABLE GPS LOCATION ===============  /n");
-    }
+    self.manager = [CLLocationManager updateManagerWithAccuracy:50.0 locationAge:15.0 authorizationDesciption:CLLocationUpdateAuthorizationDescriptionAlways];
+    self.manager.delegate = self;
+    [self.manager requestWhenInUseAuthorization];
+    [self.manager startUpdatingLocation];
 
 }
 
@@ -107,7 +98,7 @@
             
             if (error && !location) {
                 SLog(@"error : %@",error.description);
-                [LoadingManager hide];
+                //[LoadingManager hide];
             }
             else
             {

@@ -181,7 +181,6 @@
 
 - (IBAction)btnSettingClicked:(id)sender {
     
-    [self SaveProfileData];
     [self.navigationController pushViewController:self.settingsViewController animated:YES];
     
 }
@@ -556,6 +555,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
+    __weak typeof (self)weakSelf = self;
     if (indexPath.section == 0) {
         
         if ( ! arrCollection.count>0) {
@@ -661,6 +661,11 @@
                 cell = [[ProfilePagePostTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfier2];
             }
             [cell initData:arrPost];
+            cell.didSelectAtIndexPathBlock = ^(NSIndexPath* collectionIndexPath)
+            {
+                [weakSelf showPostDetailView:collectionIndexPath forType:1];
+            };
+
             return cell;
             
         }
@@ -708,7 +713,6 @@
             
             ProfilePagePostTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIndenfier2];
             
-            
             if (!cell) {
                 
                 cell = [[ProfilePagePostTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfier2];
@@ -716,6 +720,11 @@
             }
             
             [cell initData:arrLikes];
+           
+            cell.didSelectAtIndexPathBlock = ^(NSIndexPath* collectionIndexPath)
+            {
+                [weakSelf showPostDetailView:collectionIndexPath forType:2];
+            };
             
             return cell;
             
@@ -799,6 +808,15 @@
         }
         
     }
+    else if(indexPath.section == 1)//post
+    {
+        [self didSelectFooterAtIndex:indexPath];
+    }
+    else if(indexPath.section == 2)//likes
+    {
+        [self didSelectFooterAtIndex:indexPath];
+
+    }
     
 }
 
@@ -855,6 +873,16 @@
 }
 
 #pragma mark - Declaration
+
+-(FeedV2DetailViewController*)feedV2DetailViewController
+{
+    if (!_feedV2DetailViewController) {
+        _feedV2DetailViewController = [FeedV2DetailViewController new];
+        
+    }
+    
+    return _feedV2DetailViewController;
+}
 
 -(ShareV2ViewController*)shareV2ViewController
 {
@@ -1381,20 +1409,23 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
         
     }
 }
--(void)SaveProfileData{
 
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+#pragma mark - SHOW POST DETAILS
+-(void)showPostDetailView:(NSIndexPath*)indexPath forType:(int)type// 1 for post 2 for likes
+{
+    _feedV2DetailViewController = nil;
+    DraftModel* model;
+
+    if (type == 1) {
+        model = arrPost[indexPath.row];
+    }
+    else{
+        model = arrLikes[indexPath.row];
+    }
     
-    [defaults setObject:self.userProfileModel.wallpaper forKey:@"UserData_Wallpaper"];
-    [defaults setObject:self.userProfileModel.profile_photo_images forKey:@"UserData_ProfilePhoto"];
-    [defaults setObject:self.userProfileModel.username forKey:@"UserData_Username"];
-    [defaults setObject:self.userProfileModel.name forKey:@"UserData_Name"];
-    [defaults setObject:self.userProfileModel.personal_link forKey:@"UserData_Url"];
-    [defaults setObject:self.userProfileModel.profileDescription forKey:@"UserData_Abouts"];
-    [defaults setObject:self.userProfileModel.location forKey:@"UserData_Location"];
-    [defaults setObject:self.userProfileModel.dob forKey:@"UserData_dob"];
-    [defaults setObject:self.userProfileModel.gender forKey:@"UserData_Gender"];
-    NSString* personaltags = [self.userProfileModel.personal_tags componentsJoinedByString:@","];
-    [defaults setObject:personaltags forKey:@"UserData_PersonalTags"];
+    [self.navigationController pushViewController:self.feedV2DetailViewController animated:YES onCompletion:^{
+        [_feedV2DetailViewController GetPostID:model.post_id];
+        
+    }];
 }
 @end

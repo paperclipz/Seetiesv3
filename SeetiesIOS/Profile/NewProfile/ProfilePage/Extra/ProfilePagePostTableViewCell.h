@@ -11,5 +11,5 @@
 @interface ProfilePagePostTableViewCell : CommonTableViewCell
 +(int)getHeight;
 -(void)initData:(NSArray*)array;
-
+@property(nonatomic,copy)IndexPathBlock didSelectAtIndexPathBlock;
 @end

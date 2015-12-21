@@ -118,17 +118,17 @@
     
     self.automaticallyAdjustsScrollViewInsets = NO;
 
-    [LoadingManager hide];
     [LoadingManager show];
-    
-    [[SearchManager Instance]getCoordinateFromGPSThenWifi:^(CLLocation *currentLocation) {
-        
-        [self initSelfView];
+    [self initSelfView];
 
-    } errorBlock:^(NSString *status) {
-        [self initSelfView];
-
-    }];
+//    [[SearchManager Instance]getCoordinateFromGPSThenWifi:^(CLLocation *currentLocation) {
+//        
+//        [self initSelfView];
+//
+//    } errorBlock:^(NSString *status) {
+//        [self initSelfView];
+//
+//    }];
 
 }
 
@@ -136,7 +136,8 @@
 {
     self.ibScrollView.delegate = self;
     _arrViews = [NSMutableArray new];
-    
+    self.ibImgViewOtherPadding.alpha = 0;
+
     
     [self setupViews];
     [self addViews];
@@ -326,8 +327,8 @@
         {
             if (image) {
                 
-                weakSelf.ibTopPaddingOverlay.hidden = NO;
-                weakSelf.ibImgViewTopPadding.image = image;
+              //  weakSelf.ibTopPaddingOverlay.hidden = NO;
+              //  weakSelf.ibImgViewTopPadding.image = image;
 
 //                weakSelf.ibTopPaddingOverlay.alpha = 0;
 //                [UIView animateWithDuration:.5f animations:^{
@@ -519,12 +520,11 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     
-    int profileBackgroundHeight = 200;
-    if (scrollView.contentOffset.y > -profileBackgroundHeight && scrollView.contentOffset.y <= 5) {
+    int profileBackgroundHeight = 210;
+    if (scrollView.contentOffset.y <= profileBackgroundHeight) {
         
-        float adjustment = (profileBackgroundHeight + scrollView.contentOffset.y
+        float adjustment = (scrollView.contentOffset.y
                             )/(profileBackgroundHeight);
-        // SLog(@"adjustment : %f",adjustment);
         self.ibImgViewOtherPadding.alpha = adjustment;
         
     }
