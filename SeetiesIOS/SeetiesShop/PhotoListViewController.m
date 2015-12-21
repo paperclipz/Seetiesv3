@@ -153,7 +153,7 @@
     float reload_distance = 10;
     if (bottomEdge >= scrollView.contentSize.height -  reload_distance) {
         
-     //   [self scrollViewRequestServerForPhotos];
+        [self scrollViewRequestServerForPhotos];
     }
 }
 

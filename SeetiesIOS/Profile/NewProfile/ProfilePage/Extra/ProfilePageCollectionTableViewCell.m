@@ -130,10 +130,16 @@
         [self.btnEdit setTitle:LocalisedString(@"Edit") forState:UIControlStateNormal];
         [Utils setRoundBorder:self.ibInnerContentView color:LINE_COLOR borderRadius:5.0f];
         [Utils setRoundBorder:self.btnEdit color:LINE_COLOR borderRadius:self.btnEdit.frame.size.height/2];
+        
+        [self.btnEdit setImage:nil forState:UIControlStateNormal];
+        [self.btnEdit setImage:nil forState:UIControlStateSelected];
+
 
     }
     else{
-        
+        [Utils setRoundBorder:self.ibInnerContentView color:LINE_COLOR borderRadius:5.0f];
+        [Utils setRoundBorder:self.btnEdit color:[UIColor clearColor] borderRadius:0];
+
         [self.btnEdit setImage:[UIImage imageNamed:LocalisedString(@"FollowCollectionIcon.png")] forState:UIControlStateNormal];
         [self.btnEdit setImage:[UIImage imageNamed:LocalisedString(@"FollowingCollectionIcon.png")] forState:UIControlStateSelected];
         

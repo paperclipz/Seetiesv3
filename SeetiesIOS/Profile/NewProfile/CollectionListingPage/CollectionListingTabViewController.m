@@ -24,7 +24,13 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    [self reloadView];
+}
+
+-(void)reloadView
+{
     [self.ibTableView reloadData];
+
 }
 
 - (void)viewDidLoad {
@@ -120,15 +126,24 @@
     
     CollectionModel* collModel = self.arrCollections[indexPath.row];
     
-    [cell initData:collModel profileType:self.profileType];
+    NSString* userID = [Utils getUserID];
     
+    if ([collModel.user_info.uid isEqualToString:userID]) {
+        
+        [cell initData:collModel profileType:ProfileViewTypeOwn];
+    }
+    
+    else{
+        [cell initData:collModel profileType:ProfileViewTypeOthers];
+
+    }
     
     __weak CollectionModel* weakModel =collModel;
     
     cell.btnEditClickedBlock = ^(void)
     {
         if (_didSelectEdiCollectionRowBlock) {
-            self.didSelectEdiCollectionRowBlock(weakModel.collection_id);
+            self.didSelectEdiCollectionRowBlock(weakModel);
         }
     };
     
@@ -287,7 +302,7 @@
                            @"collection_id":colModel.collection_id
                            };
 
-            if (!colModel.following) {
+            if (![DataManager isCollectionFollowed:colModel.collection_id isFollowing:colModel.following]) {
                 
                 
                 [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostFollowCollection param:dict appendString:appendString meta:nil completeHandler:^(id object) {
@@ -299,6 +314,7 @@
                     [self.ibTableView reloadData];
                     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:nil];
                     
+                    [TSMessage showNotificationWithTitle:LocalisedString(SUCCESSFUL_COLLECTED) type:TSMessageNotificationTypeSuccess];
                     
                 } errorBlock:^(id object) {
                     

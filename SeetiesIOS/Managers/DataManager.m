@@ -101,6 +101,25 @@
     
 }
 
++(BOOL)isCollectionFollowed:(NSString*)collectionID isFollowing:(BOOL)isFollowing
+{
+    
+    BOOL isCollected = isFollowing;
+    DataManager* dataManager = [DataManager Instance];
+    if ([[dataManager.dictCollections allKeys]containsObject:collectionID]) {
+        isCollected = [[dataManager.dictCollections objectForKey:collectionID]boolValue];
+
+    }
+    else{
+    
+        [DataManager setCollectionFollowing:collectionID isFollowing:isFollowing];
+    }
+    
+    return isCollected;
+    
+
+}
+
 
 +(void)setCollectionFollowing:(NSString*)collectionID isFollowing:(BOOL)following
 {

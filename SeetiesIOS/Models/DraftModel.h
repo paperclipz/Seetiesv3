@@ -102,6 +102,11 @@
 @property(nonatomic,assign)int total_page;
 @property(nonatomic,assign)int page;
 
+@property(nonatomic,strong)NSString* next;
+@property(nonatomic,strong)NSString* previous;
+@property(nonatomic,assign)int offset;
+@property(nonatomic,assign)int limit;
+
 -(void)process;
 
 @end
