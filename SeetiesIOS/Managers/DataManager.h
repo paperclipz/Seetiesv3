@@ -61,7 +61,8 @@ typedef void(^CompletionVoidBlock) (void);
 
 +(RecommendationModel*)getSampleRecommendation;
 +(EditPhotoModel*)getSampleEditPhotoModel;
-+(void)getCollectionFollowing:(NSString*)collectionID HasCollected:(BoolBlock)isCollected completion:(CompletionVoidBlock)completionBlock;
-+(void)setCollectionFollowing:(NSString*)collectionID isFollowing:(BOOL)following;
++(void)getCollectionFollowing:(NSString*)collectionID HasCollected:(BoolBlock)isCollected completion:(CompletionVoidBlock)completionBlock;//get collection is collected to show in view
++(void)setCollectionFollowing:(NSString*)collectionID isFollowing:(BOOL)following;//to set collection is collected and store after request from server
++(BOOL)isCollectionFollowed:(NSString*)collectionID isFollowing:(BOOL)isFollowing;//to check collection is collected to request from server
 
 @end

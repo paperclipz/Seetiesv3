@@ -133,14 +133,17 @@
     
     self.arrCustomPost = [[NSArray alloc]initWithArray:array];
 }
+
+
 @end
 
 
 
+@interface DraftsModel()
 
+@property(nonatomic,strong)NSDictionary* paging;
 
-
-
+@end
 @implementation DraftsModel
 
 -(void)process
@@ -153,6 +156,27 @@
 
     }
 
+}
+
+-(NSString*)next
+{
+    if (_paging) {
+        if ([[_paging allKeys]containsObject:@"next"]) {
+            _next = _paging[@"next"];
+        }
+    }
+    return _next;
+    
+}
+
+-(NSString*)previous
+{
+    if (_paging) {
+        if ([[_paging allKeys]containsObject:@"previous"]) {
+            _previous = _paging[@"previous"];
+        }
+    }
+    return _previous;
 }
 
 @end

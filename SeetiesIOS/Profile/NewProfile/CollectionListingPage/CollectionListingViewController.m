@@ -79,6 +79,11 @@
     self.collectionListingType = collType;
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self.myCollectionListingViewController reloadView];
+    [self.followingCollectionListingViewController reloadView];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

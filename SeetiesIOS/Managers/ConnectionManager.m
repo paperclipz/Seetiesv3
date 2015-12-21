@@ -8,7 +8,7 @@
 
 #import "ConnectionManager.h"
 #import "NSArray+JSON.h"
-#define API_VERION_URL @"v2.2"
+#define API_VERION_URL @"v2.3"
 @interface ConnectionManager()
 @property (strong, nonatomic) DataManager *dataManager;
 

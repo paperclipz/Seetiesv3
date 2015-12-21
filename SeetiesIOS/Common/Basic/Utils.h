@@ -174,5 +174,6 @@ typedef enum {
 #define Nearby_Public_Transport @"nearby_public_transport"
 #define Recommended_Information @"recommended_information"
 
-
+// ======================================   Prompt Message      ============================
+#define SUCCESSFUL_COLLECTED @"Successful Collected"
 @end

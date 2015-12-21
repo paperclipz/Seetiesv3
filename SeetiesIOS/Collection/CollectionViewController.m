@@ -635,9 +635,13 @@
             if ([GetFollowing isEqualToString:@"0"]) {
                 [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success follow this collection" type:TSMessageNotificationTypeSuccess];
                 GetFollowing = @"1";
+                
+                [DataManager setCollectionFollowing:GetID isFollowing:YES];
             }else{
                 [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success unfollow this collection" type:TSMessageNotificationTypeSuccess];
                 GetFollowing = @"0";
+                [DataManager setCollectionFollowing:GetID isFollowing:NO];
+
             }
             
             
