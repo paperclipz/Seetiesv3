@@ -61,18 +61,9 @@
 {
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    if (self.profileType == ProfileViewTypeOwn) {
-        [Utils setRoundBorder:self.ibInnerContentView color:LINE_COLOR borderRadius:5.0f];
-        [Utils setRoundBorder:self.btnEdit color:LINE_COLOR borderRadius:self.btnEdit.frame.size.height/2];
-    }
-    else{
-    
-    }
-   
-    
+
     [self.ibImageViewA setStandardBorder];
     [self.ibImageViewB setStandardBorder];
-    
     
     if (!self.model.isPrivate) {
         ibCollectionNameLeadingConstraint.constant = NO_LOCK_CONSTRSINT_CONSTANT;
@@ -137,7 +128,9 @@
     
     if (self.profileType == ProfileViewTypeOwn) {
         [self.btnEdit setTitle:LocalisedString(@"Edit") forState:UIControlStateNormal];
-        
+        [Utils setRoundBorder:self.ibInnerContentView color:LINE_COLOR borderRadius:5.0f];
+        [Utils setRoundBorder:self.btnEdit color:LINE_COLOR borderRadius:self.btnEdit.frame.size.height/2];
+
     }
     else{
         

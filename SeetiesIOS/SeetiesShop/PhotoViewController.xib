@@ -40,13 +40,38 @@
                         <constraint firstAttribute="width" secondItem="VeS-Fo-Znk" secondAttribute="height" multiplier="40:40" id="gBC-cc-zHE"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="38U-h9-9ys">
+                    <rect key="frame" x="10" y="72" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="BSc-9Z-Bdk"/>
+                        <constraint firstAttribute="width" constant="50" id="mOi-zA-Urx"/>
+                    </constraints>
+                    <state key="normal" image="CloseBtn.png"/>
+                    <connections>
+                        <action selector="btnBackClicked:" destination="-1" eventType="touchUpInside" id="6jA-cM-7HL"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe up or down to close" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JYe-KR-Hdy">
+                    <rect key="frame" x="70" y="86" width="295" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="BUR-mS-bcp"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="VeS-Fo-Znk" firstAttribute="top" secondItem="38U-h9-9ys" secondAttribute="bottom" constant="24" id="0zb-ak-zfM"/>
+                <constraint firstItem="JYe-KR-Hdy" firstAttribute="leading" secondItem="38U-h9-9ys" secondAttribute="trailing" constant="10" id="BDU-5w-zuM"/>
                 <constraint firstAttribute="height" secondItem="VeS-Fo-Znk" secondAttribute="height" id="D2W-T3-ARx"/>
+                <constraint firstItem="JYe-KR-Hdy" firstAttribute="centerY" secondItem="38U-h9-9ys" secondAttribute="centerY" id="K7x-Ly-wMt"/>
                 <constraint firstAttribute="trailing" secondItem="VeS-Fo-Znk" secondAttribute="trailing" id="Nhc-3Q-cmD"/>
                 <constraint firstItem="VeS-Fo-Znk" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="bZd-8K-lbG"/>
                 <constraint firstItem="VeS-Fo-Znk" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="hSC-r7-ltU"/>
+                <constraint firstItem="38U-h9-9ys" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="kI8-sM-9nD"/>
+                <constraint firstAttribute="trailing" secondItem="JYe-KR-Hdy" secondAttribute="trailing" constant="10" id="lsf-ui-f3F"/>
                 <constraint firstItem="VeS-Fo-Znk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zjO-Ph-aG5"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
@@ -56,7 +81,10 @@
                     <exclude reference="D2W-T3-ARx"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="542" y="306"/>
+            <point key="canvasLocation" x="541.5" y="305.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="CloseBtn.png" width="50" height="50"/>
+    </resources>
 </document>
