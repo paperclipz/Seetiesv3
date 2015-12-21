@@ -47,6 +47,7 @@
     NSMutableArray *User_FollowArray;
     NSMutableArray *User_UserNameArray;
     NSMutableArray *User_PhotoArray;
+    NSMutableArray *User_PostsIDNArray;
     
     NSString *GetUserID;
     NSString *GetFollowString;

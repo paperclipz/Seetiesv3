@@ -60,6 +60,7 @@
     
     BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
     ShowTitle.frame = CGRectMake(0, 20, screenWidth, 44);
+    ShowTitle.text = LocalisedString(@"Recommendations");
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     
     MainScroll.delegate = self;

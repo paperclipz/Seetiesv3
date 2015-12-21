@@ -181,6 +181,7 @@
 
 - (IBAction)btnSettingClicked:(id)sender {
     
+    [self SaveProfileData];
     [self.navigationController pushViewController:self.settingsViewController animated:YES];
     
 }
@@ -1379,5 +1380,21 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
         
         
     }
+}
+-(void)SaveProfileData{
+
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    [defaults setObject:self.userProfileModel.wallpaper forKey:@"UserData_Wallpaper"];
+    [defaults setObject:self.userProfileModel.profile_photo_images forKey:@"UserData_ProfilePhoto"];
+    [defaults setObject:self.userProfileModel.username forKey:@"UserData_Username"];
+    [defaults setObject:self.userProfileModel.name forKey:@"UserData_Name"];
+    [defaults setObject:self.userProfileModel.personal_link forKey:@"UserData_Url"];
+    [defaults setObject:self.userProfileModel.profileDescription forKey:@"UserData_Abouts"];
+    [defaults setObject:self.userProfileModel.location forKey:@"UserData_Location"];
+    [defaults setObject:self.userProfileModel.dob forKey:@"UserData_dob"];
+    [defaults setObject:self.userProfileModel.gender forKey:@"UserData_Gender"];
+    NSString* personaltags = [self.userProfileModel.personal_tags componentsJoinedByString:@","];
+    [defaults setObject:personaltags forKey:@"UserData_PersonalTags"];
 }
 @end

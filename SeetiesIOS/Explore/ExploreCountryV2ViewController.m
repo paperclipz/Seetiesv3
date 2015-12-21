@@ -16,7 +16,10 @@
 #import "NSAttributedString+DVSTracking.h"
 #import "OpenWebViewController.h"
 #import "AddCollectionDataViewController.h"
-@interface ExploreCountryV2ViewController ()
+@interface ExploreCountryV2ViewController (){
+
+    NSMutableArray *arrUserPostsIDN;
+}
 
 @end
 
@@ -49,6 +52,8 @@
     CurrentPage = 0;
     CheckUserLoad = 0;
     CheckLoadDone = NO;
+    
+    arrUserPostsIDN = [[NSMutableArray alloc]init];
     
     UISwipeGestureRecognizer * swipeleft=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeRight:)];
     swipeleft.direction=UISwipeGestureRecognizerDirectionRight;
@@ -464,6 +469,7 @@
     //    NSLog(@"FinalWidth is %i",FinalWidth);
     int SpaceWidth = FinalWidth + 4;
     
+    int countadd =0;
     for (int i = 0; i < [User_NameArray count]; i++) {
         UIButton *TempButton = [[UIButton alloc]init];
         TempButton.frame = CGRectMake(15, PeopleGetHeight, screenWidth - 30, FinalWidth + 10 + 70);
@@ -547,7 +553,14 @@
         
         NSString *TempImage = [[NSString alloc]initWithFormat:@"%@",[User_PhotoArray objectAtIndex:i]];
         NSArray *SplitArray = [TempImage componentsSeparatedByString:@","];
+        
+        NSString *TempIDN = [[NSString alloc]initWithFormat:@"%@",[User_PostsIDNArray objectAtIndex:i]];
+        NSArray *SplitArray1 = [TempIDN componentsSeparatedByString:@","];
+       // NSLog(@"SplitArray1 == %@",SplitArray1);
+        
+        [arrUserPostsIDN addObjectsFromArray:SplitArray1];
         for (int z = 0; z < [SplitArray count]; z++) {
+            countadd++;
             AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
             ShowImage.frame = CGRectMake(30 +(z % 4) * SpaceWidth, PeopleGetHeight + 70, FinalWidth, FinalWidth);
            // ShowImage.image = [UIImage imageNamed:[SplitArray objectAtIndex:z]];
@@ -564,6 +577,16 @@
                 ShowImage.imageURL = url;
             }
             [PeopleView addSubview:ShowImage];
+            
+            UIButton *ButtonClick = [UIButton buttonWithType:UIButtonTypeCustom];
+            [ButtonClick setTitle:@"" forState:UIControlStateNormal];
+            [ButtonClick setFrame:CGRectMake(30 +(z % 4) * SpaceWidth, PeopleGetHeight + 70, FinalWidth, FinalWidth)];
+            [ButtonClick setBackgroundColor:[UIColor clearColor]];
+            ButtonClick.tag = countadd;
+            [ButtonClick addTarget:self action:@selector(PPLExpertsOpenPostsDetailButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+            [PeopleView addSubview:ButtonClick];
+            
+           // [arrUserPostsIDN addObject:[SplitArray1 objectAtIndex:z]];
         }
         
         PeopleGetHeight += FinalWidth + 10 + 70 + 10;
@@ -577,6 +600,7 @@
     MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     MainScroll.contentSize = contentSize;
 
+   // NSLog(@"final arrUserPostsIDN == %@",arrUserPostsIDN);
 }
 
 
@@ -1013,6 +1037,7 @@
                 User_FollowArray = [[NSMutableArray alloc]init];
                 User_UserNameArray = [[NSMutableArray alloc]init];
                 User_PhotoArray = [[NSMutableArray alloc]init];
+                User_PostsIDNArray = [[NSMutableArray alloc]init];
                 for (NSDictionary * dict in GetAllData) {
                     NSString *location = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"location"]];
                     [User_LocationArray addObject:location];
@@ -1028,6 +1053,11 @@
                     [User_UserNameArray addObject:username];
 
                     NSDictionary *GetPostsData = [dict valueForKey:@"posts"];
+                    
+                    NSArray *IDNData = [GetPostsData valueForKey:@"post_id"];
+                    NSString * GetPostsID = [IDNData componentsJoinedByString:@","];
+                    [User_PostsIDNArray addObject:GetPostsID];
+                    
                     NSArray *PhotoData = [GetPostsData valueForKey:@"photos"];
                     NSMutableArray *UrlArray = [[NSMutableArray alloc]init];
                     for (NSDictionary * dict in PhotoData) {
@@ -1048,7 +1078,7 @@
                     
                 }
 
-                //NSLog(@"User_PhotoArray is %@",User_PhotoArray);
+              //  NSLog(@"User_PostsIDNArray is %@",User_PostsIDNArray);
                 [self initPeopleDataView];
             }
         }
@@ -1264,5 +1294,16 @@
         _profileViewController = [ProfileViewController new];
     
     return _profileViewController;
+}
+-(IBAction)PPLExpertsOpenPostsDetailButtonOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+
+    NSString *GetID = [[NSString alloc]initWithFormat:@"%@",[arrUserPostsIDN objectAtIndex:getbuttonIDN - 1]];
+    NSLog(@"GetID === %@",GetID);
+    
+    FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
+    [self.navigationController pushViewController:FeedDetailView animated:YES];
+    [FeedDetailView GetPostID:GetID];
+    
 }
 @end
