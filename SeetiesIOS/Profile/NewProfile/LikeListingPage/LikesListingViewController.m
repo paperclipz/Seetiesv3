@@ -121,7 +121,9 @@
     
     DraftModel* draftModel = self.arrLikesList[indexPath.row];
     [cell initData:draftModel.arrPhotos[0]];
-    
+    [cell setNeedsUpdateConstraints];
+    [cell layoutIfNeeded];
+
    
     return cell;
 }
@@ -143,7 +145,7 @@
     
     int numberOfCell = 3;
     
-    float cellSize = roundf(frame.size.width/numberOfCell)  -10 - 5;
+    float cellSize = roundf(frame.size.width/numberOfCell) -5;
     
     return CGSizeMake(cellSize, cellSize);
 }
