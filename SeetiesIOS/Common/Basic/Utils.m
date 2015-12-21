@@ -443,6 +443,15 @@
     return _isNUll;
 }
 
++(BOOL)isArrayNull:(NSArray*)array
+{
+    BOOL _isNUll = NO;
+    if (array == nil || [array count] == 0) {
+        _isNUll = YES;
+    }
+    return _isNUll;
+}
+
 +(NSString*)getDistance:(float)distance Locality:(NSString*)local
 {
     NSString* strDistance;

@@ -9,6 +9,8 @@
 #import "ProfilePageCollectionTableViewCell.h"
 
 #define NO_LOCK_CONSTRSINT_CONSTANT 10.0f
+#define LOCK_CONSTRSINT_CONSTANT 33.0f
+
 @interface ProfilePageCollectionTableViewCell()
 {
 
@@ -65,10 +67,6 @@
     [self.ibImageViewA setStandardBorder];
     [self.ibImageViewB setStandardBorder];
     
-    if (!self.model.isPrivate) {
-        ibCollectionNameLeadingConstraint.constant = NO_LOCK_CONSTRSINT_CONSTANT;
-        self.ibImageLock.hidden = YES;
-    }
     [self changeLanguage];
 }
 
@@ -105,7 +103,7 @@
                 PhotoModel* photoModel1 = draftModel.arrPhotos[0];
 
                 [self.ibImageViewA sd_setImageWithURL:[NSURL URLWithString:photoModel1.imageURL]];
-                SLog(@"Image A: %@",photoModel1.imageURL);
+                //SLog(@"Image A: %@",photoModel1.imageURL);
 
             }
             
@@ -119,7 +117,7 @@
                 PhotoModel* photoModel2 = draftModelTwo.arrPhotos[0];
                 
                 [self.ibImageViewB sd_setImageWithURL:[NSURL URLWithString:photoModel2.imageURL]];
-                SLog(@"Image A: %@",photoModel2.imageURL);
+               // SLog(@"Image A: %@",photoModel2.imageURL);
 
             }
         }
@@ -156,16 +154,13 @@
             [self setFollowButtonSelected:self.model.following button:self.btnEdit];
         }];
     }
-   
-//
-//    if (self.model.arrTempFeedsPost>0) {
-//        
-//        DraftModel* postModel = self.model.arrTempFeedsPost[0];
-//        
-//        if (postModel.arrPhotos.count>0) {
-//            
-//        }
-//    }
+    
+    [UIView transitionWithView:self duration:1.0f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+        self.ibImageLock.hidden = !self.model.isPrivate;
+        ibCollectionNameLeadingConstraint.constant =self.model.isPrivate?LOCK_CONSTRSINT_CONSTANT:NO_LOCK_CONSTRSINT_CONSTANT;
+        [self.ibImageLock refreshConstraint];
+    } completion:nil];
+
     
 }
 

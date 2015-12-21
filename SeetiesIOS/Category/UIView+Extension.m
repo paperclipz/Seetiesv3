@@ -44,4 +44,10 @@
 {
     self.frame = CGRectMake(self.frame.origin.x, Y, self.frame.size.width, self.frame.size.height);
 }
+
+-(void)refreshConstraint
+{
+    [self setNeedsUpdateConstraints];
+    [self layoutIfNeeded];
+}
 @end
