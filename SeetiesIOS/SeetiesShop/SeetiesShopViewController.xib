@@ -11,7 +11,7 @@
                 <outlet property="btnShareWidthConstraint" destination="U6K-AN-dCF" id="KKn-0j-kef"/>
                 <outlet property="btnTranslate" destination="JRS-YQ-XgZ" id="ynS-Qm-GmZ"/>
                 <outlet property="btnTranslateWidthConstraint" destination="Ama-cA-y4c" id="NZ9-R5-DkK"/>
-                <outlet property="ibImgViewTopPadding" destination="scf-vQ-TpH" id="nXw-Nu-jcK"/>
+                <outlet property="ibImgViewOtherPadding" destination="scf-vQ-TpH" id="X7Z-32-LeJ"/>
                 <outlet property="ibScrollView" destination="PfW-mD-EzJ" id="lRY-u4-pPr"/>
                 <outlet property="ibTopPaddingOverlay" destination="bEo-RN-euA" id="3QW-fG-8wx"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -23,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PfW-mD-EzJ">
-                    <rect key="frame" x="0.0" y="63" width="375" height="604"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                 </scrollView>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tx2-5y-CkB">
@@ -111,6 +111,7 @@
                 <constraint firstItem="tx2-5y-CkB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7qG-z7-jb6"/>
                 <constraint firstAttribute="bottom" secondItem="PfW-mD-EzJ" secondAttribute="bottom" id="9Bi-RB-cQ3"/>
                 <constraint firstItem="PfW-mD-EzJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="IEj-XP-bPZ"/>
+                <constraint firstItem="PfW-mD-EzJ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="PhU-9K-YCF"/>
                 <constraint firstItem="PfW-mD-EzJ" firstAttribute="top" secondItem="bEo-RN-euA" secondAttribute="bottom" constant="-1" id="Pob-fk-xRP"/>
                 <constraint firstItem="PfW-mD-EzJ" firstAttribute="top" secondItem="tx2-5y-CkB" secondAttribute="bottom" constant="-64" id="aic-a4-v4B"/>
                 <constraint firstAttribute="trailing" secondItem="PfW-mD-EzJ" secondAttribute="trailing" id="mN5-Vd-i6g"/>
@@ -124,6 +125,7 @@
                 <mask key="constraints">
                     <exclude reference="Pob-fk-xRP"/>
                     <exclude reference="aic-a4-v4B"/>
+                    <exclude reference="nKm-cb-Kr7"/>
                 </mask>
             </variation>
             <point key="canvasLocation" x="418.5" y="310.5"/>

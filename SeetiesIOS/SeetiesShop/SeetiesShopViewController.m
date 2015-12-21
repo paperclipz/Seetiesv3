@@ -136,7 +136,8 @@
 {
     self.ibScrollView.delegate = self;
     _arrViews = [NSMutableArray new];
-    
+    self.ibImgViewOtherPadding.alpha = 0;
+
     
     [self setupViews];
     [self addViews];
@@ -519,12 +520,11 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     
-    int profileBackgroundHeight = 200;
-    if (scrollView.contentOffset.y > -profileBackgroundHeight && scrollView.contentOffset.y <= 5) {
+    int profileBackgroundHeight = 210;
+    if (scrollView.contentOffset.y <= profileBackgroundHeight) {
         
-        float adjustment = (profileBackgroundHeight + scrollView.contentOffset.y
+        float adjustment = (scrollView.contentOffset.y
                             )/(profileBackgroundHeight);
-        // SLog(@"adjustment : %f",adjustment);
         self.ibImgViewOtherPadding.alpha = adjustment;
         
     }

@@ -19,6 +19,7 @@
 #import "ShowFollowerAndFollowingViewController.h"
 #import "SearchDetailViewController.h"
 #import "ShareViewController.h"
+#import "FeedV2DetailViewController.h"
 
 @class PostListingViewController;
 @class LikesListingViewController;
@@ -40,6 +41,8 @@
 @property(nonatomic,copy)VoidBlock btnAddMorePostClickedBlock;
 @property(nonatomic,strong)ShareViewController* shareViewController;
 @property(nonatomic,strong)ShareV2ViewController* shareV2ViewController;
+@property(nonatomic,strong)FeedV2DetailViewController* feedV2DetailViewController;
+
 -(void)requestAllDataWithType:(ProfileViewType)type UserID:(NSString*)uID;
 
 @end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -287,7 +287,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="www.gg.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tuk-bd-Xq8">
-                    <rect key="frame" x="58" y="48" width="252" height="21"/>
+                    <rect key="frame" x="60" y="48" width="250" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="kiq-bt-0Kx"/>
                     </constraints>
@@ -305,10 +305,16 @@
                 <constraint firstItem="Tuk-bd-Xq8" firstAttribute="leading" secondItem="qIW-Xa-zMt" secondAttribute="trailing" constant="8" id="WHR-S3-509"/>
                 <constraint firstItem="Tuk-bd-Xq8" firstAttribute="top" secondItem="jkP-wt-6iP" secondAttribute="bottom" constant="8" id="fkr-KF-o6Z"/>
                 <constraint firstItem="qIW-Xa-zMt" firstAttribute="top" secondItem="48W-d5-2oc" secondAttribute="top" constant="10" id="kYR-Ct-Fro"/>
+                <constraint firstItem="Tuk-bd-Xq8" firstAttribute="leading" secondItem="jkP-wt-6iP" secondAttribute="leading" id="oVD-R9-0OW"/>
                 <constraint firstAttribute="trailing" secondItem="Tuk-bd-Xq8" secondAttribute="trailing" constant="10" id="vLo-9p-auz"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="WHR-S3-509"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="1151" y="654.5"/>
         </view>
         <view contentMode="scaleToFill" id="nSl-PC-Ye5">
@@ -332,7 +338,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="www.facebook.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XW5-cx-VXD">
-                    <rect key="frame" x="58" y="51" width="252" height="21"/>
+                    <rect key="frame" x="60" y="51" width="250" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="hCc-LO-rHt"/>
                     </constraints>
@@ -351,12 +357,14 @@
                 <constraint firstAttribute="trailing" secondItem="4XZ-Nz-cGR" secondAttribute="trailing" constant="10" id="Zy1-tH-S6v"/>
                 <constraint firstItem="XW5-cx-VXD" firstAttribute="top" secondItem="4XZ-Nz-cGR" secondAttribute="bottom" constant="10" id="kJe-15-vwd"/>
                 <constraint firstItem="XW5-cx-VXD" firstAttribute="top" secondItem="4XZ-Nz-cGR" secondAttribute="bottom" constant="8" id="kbg-1s-gef"/>
+                <constraint firstItem="XW5-cx-VXD" firstAttribute="leading" secondItem="4XZ-Nz-cGR" secondAttribute="leading" id="nDf-IY-Vvg"/>
                 <constraint firstItem="VPo-Ra-zje" firstAttribute="top" secondItem="nSl-PC-Ye5" secondAttribute="top" constant="10" id="vTa-EN-aAf"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <variation key="default">
                 <mask key="constraints">
+                    <exclude reference="8BF-S8-GB5"/>
                     <exclude reference="kbg-1s-gef"/>
                 </mask>
             </variation>
@@ -404,12 +412,14 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="qqy-LM-tU7" firstAttribute="top" secondItem="fKg-yw-lov" secondAttribute="bottom" constant="8" id="7ym-hE-1Dq"/>
+                <constraint firstItem="qqy-LM-tU7" firstAttribute="leading" secondItem="fKg-yw-lov" secondAttribute="leading" id="8bZ-iI-5C2"/>
                 <constraint firstItem="6h3-mf-Z6f" firstAttribute="top" secondItem="nUI-sp-3vE" secondAttribute="top" constant="10" id="HWv-n4-Ucn"/>
                 <constraint firstItem="gUp-DS-Mp4" firstAttribute="leading" secondItem="6h3-mf-Z6f" secondAttribute="trailing" constant="6" id="Hna-bZ-Fae"/>
                 <constraint firstItem="6h3-mf-Z6f" firstAttribute="leading" secondItem="nUI-sp-3vE" secondAttribute="leading" constant="10" id="KQV-ko-ad6"/>
                 <constraint firstItem="gUp-DS-Mp4" firstAttribute="centerY" secondItem="6h3-mf-Z6f" secondAttribute="centerY" id="MPc-jE-K1g"/>
                 <constraint firstItem="fKg-yw-lov" firstAttribute="top" secondItem="gUp-DS-Mp4" secondAttribute="bottom" constant="8" id="OSy-6b-NIn"/>
                 <constraint firstItem="fKg-yw-lov" firstAttribute="leading" secondItem="6h3-mf-Z6f" secondAttribute="trailing" constant="6" id="V8m-YT-dPd"/>
+                <constraint firstItem="fKg-yw-lov" firstAttribute="leading" secondItem="gUp-DS-Mp4" secondAttribute="leading" id="Yi0-zM-AmV"/>
                 <constraint firstAttribute="trailing" secondItem="fKg-yw-lov" secondAttribute="trailing" constant="10" id="ZTY-9F-hj4"/>
                 <constraint firstAttribute="trailing" secondItem="qqy-LM-tU7" secondAttribute="trailing" constant="10" id="bwv-PO-jUd"/>
                 <constraint firstAttribute="trailing" secondItem="gUp-DS-Mp4" secondAttribute="trailing" constant="8" id="hGA-cW-9Db"/>
@@ -417,6 +427,12 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="V8m-YT-dPd"/>
+                    <exclude reference="mb6-JR-qsd"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="1151" y="958"/>
         </view>
         <view contentMode="scaleToFill" id="HDi-Wb-iKp">
@@ -440,7 +456,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Durian mango" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GFM-ab-ISN">
-                    <rect key="frame" x="58" y="48" width="252" height="21"/>
+                    <rect key="frame" x="60" y="48" width="250" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="PEE-qz-n5Z"/>
                     </constraints>
@@ -458,10 +474,16 @@
                 <constraint firstItem="GFM-ab-ISN" firstAttribute="top" secondItem="tsl-Iy-L1k" secondAttribute="bottom" constant="8" id="Wya-4c-8ga"/>
                 <constraint firstItem="d9r-Od-d1P" firstAttribute="top" secondItem="HDi-Wb-iKp" secondAttribute="top" constant="10" id="hAR-2x-uPt"/>
                 <constraint firstItem="d9r-Od-d1P" firstAttribute="leading" secondItem="HDi-Wb-iKp" secondAttribute="leading" constant="10" id="lX4-pD-15X"/>
+                <constraint firstItem="GFM-ab-ISN" firstAttribute="leading" secondItem="tsl-Iy-L1k" secondAttribute="leading" id="mYr-0P-Qxz"/>
                 <constraint firstItem="GFM-ab-ISN" firstAttribute="leading" secondItem="d9r-Od-d1P" secondAttribute="trailing" constant="8" id="pTu-mb-qNZ"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="pTu-mb-qNZ"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="1151" y="1112.5"/>
         </view>
         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="33" sectionHeaderHeight="44" sectionFooterHeight="1" id="RLm-py-vv7">
@@ -663,7 +685,7 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="707" y="-310.5"/>
+            <point key="canvasLocation" x="1119" y="-270.5"/>
         </view>
         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="3dK-tg-EnW">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -713,7 +735,7 @@
                     <constraint firstItem="Cou-L2-7be" firstAttribute="centerY" secondItem="fOS-HJ-dxh" secondAttribute="centerY" id="ipO-wF-lbJ"/>
                 </constraints>
             </view>
-            <point key="canvasLocation" x="1135" y="319.5"/>
+            <point key="canvasLocation" x="1141" y="380.5"/>
         </tableView>
     </objects>
     <resources>

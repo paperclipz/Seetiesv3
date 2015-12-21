@@ -175,8 +175,8 @@
     SLog(@"requestServerForUserLikes");
     NSString* appendString = [NSString stringWithFormat:@"%@/likes",self.userID];
   
-    
-    NSDictionary* dict = @{@"page":self.profileLikeModel.userPostData.page==0?@(self.profileLikeModel.userPostData.page + 1):@1,
+    SLog(@"page : %d",self.profileLikeModel.userPostData.page);
+    NSDictionary* dict = @{@"page":self.profileLikeModel.userPostData.page==0? @1 : @(self.profileLikeModel.userPostData.page + 1),
                            @"list_size":@(LIKES_LIST_SIZE),
                            @"token":[Utils getAppToken]
                            };

@@ -74,4 +74,13 @@
     return cell;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.didSelectAtIndexPathBlock) {
+        self.didSelectAtIndexPathBlock(indexPath);
+    }
+    
+}
+
+
 @end
