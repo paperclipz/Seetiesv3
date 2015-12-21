@@ -165,8 +165,6 @@
                 self.imageDidFinishLoadBlock(image);
             }
         }];
-
-      
     }
     
     if (self.seShopModel.profile_photo_images) {

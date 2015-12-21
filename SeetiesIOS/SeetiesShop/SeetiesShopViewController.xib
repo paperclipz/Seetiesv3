@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -23,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PfW-mD-EzJ">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <rect key="frame" x="0.0" y="63" width="375" height="604"/>
                     <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                 </scrollView>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tx2-5y-CkB">
@@ -31,11 +31,12 @@
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="scf-vQ-TpH">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                            <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="64" id="NgM-5S-HYj"/>
                             </constraints>
                         </imageView>
-                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bEo-RN-euA" userLabel="overlaybackground">
+                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bEo-RN-euA" userLabel="overlaybackground">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                             <color key="backgroundColor" red="0.14117647059999999" green="0.1450980392" blue="0.17254901959999999" alpha="0.5" colorSpace="calibratedRGB"/>
                             <constraints>
@@ -43,9 +44,9 @@
                             </constraints>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ghx-1x-5Rn">
-                            <rect key="frame" x="2" y="0.0" width="64" height="64"/>
+                            <rect key="frame" x="2" y="20" width="64" height="44"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="64" id="DCv-Ac-Ojv"/>
+                                <constraint firstAttribute="height" constant="44" id="DCv-Ac-Ojv"/>
                                 <constraint firstAttribute="width" constant="64" id="L06-7j-mTp"/>
                             </constraints>
                             <state key="normal" image="BackIcon.png">
@@ -56,7 +57,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JRS-YQ-XgZ">
-                            <rect key="frame" x="355" y="0.0" width="0.0" height="64"/>
+                            <rect key="frame" x="355" y="20" width="0.0" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="width" id="Ama-cA-y4c"/>
                             </constraints>
@@ -66,7 +67,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vmn-Th-Z6e">
-                            <rect key="frame" x="355" y="0.0" width="0.0" height="64"/>
+                            <rect key="frame" x="355" y="20" width="0.0" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="width" id="U6K-AN-dCF"/>
                             </constraints>
@@ -79,13 +80,13 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="scf-vQ-TpH" secondAttribute="trailing" id="56m-0Q-WpB"/>
-                        <constraint firstItem="Vmn-Th-Z6e" firstAttribute="top" secondItem="tx2-5y-CkB" secondAttribute="top" id="7DG-oP-LTv"/>
+                        <constraint firstItem="Vmn-Th-Z6e" firstAttribute="top" secondItem="tx2-5y-CkB" secondAttribute="top" constant="20" id="7DG-oP-LTv"/>
                         <constraint firstItem="Vmn-Th-Z6e" firstAttribute="leading" secondItem="JRS-YQ-XgZ" secondAttribute="trailing" id="Bdw-62-EFe"/>
                         <constraint firstItem="bEo-RN-euA" firstAttribute="top" secondItem="tx2-5y-CkB" secondAttribute="top" id="DgV-xy-9ak"/>
                         <constraint firstAttribute="trailing" secondItem="JRS-YQ-XgZ" secondAttribute="trailing" id="F4c-76-jii"/>
-                        <constraint firstItem="Ghx-1x-5Rn" firstAttribute="top" secondItem="tx2-5y-CkB" secondAttribute="top" id="FYL-Po-CBV"/>
+                        <constraint firstItem="Ghx-1x-5Rn" firstAttribute="top" secondItem="tx2-5y-CkB" secondAttribute="top" constant="20" id="FYL-Po-CBV"/>
                         <constraint firstItem="bEo-RN-euA" firstAttribute="leading" secondItem="tx2-5y-CkB" secondAttribute="leading" id="GrO-mV-Zw4"/>
-                        <constraint firstItem="JRS-YQ-XgZ" firstAttribute="top" secondItem="tx2-5y-CkB" secondAttribute="top" id="HQA-JQ-sfM"/>
+                        <constraint firstItem="JRS-YQ-XgZ" firstAttribute="top" secondItem="tx2-5y-CkB" secondAttribute="top" constant="20" id="HQA-JQ-sfM"/>
                         <constraint firstItem="Ghx-1x-5Rn" firstAttribute="leading" secondItem="tx2-5y-CkB" secondAttribute="leading" constant="2" id="O2t-9I-3TY"/>
                         <constraint firstAttribute="bottom" secondItem="Vmn-Th-Z6e" secondAttribute="bottom" id="TDm-jw-QUe"/>
                         <constraint firstAttribute="height" constant="64" id="Vfq-xN-DKd"/>
@@ -110,9 +111,10 @@
                 <constraint firstItem="tx2-5y-CkB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7qG-z7-jb6"/>
                 <constraint firstAttribute="bottom" secondItem="PfW-mD-EzJ" secondAttribute="bottom" id="9Bi-RB-cQ3"/>
                 <constraint firstItem="PfW-mD-EzJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="IEj-XP-bPZ"/>
-                <constraint firstItem="PfW-mD-EzJ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="X65-G8-fMS"/>
+                <constraint firstItem="PfW-mD-EzJ" firstAttribute="top" secondItem="bEo-RN-euA" secondAttribute="bottom" constant="-1" id="Pob-fk-xRP"/>
                 <constraint firstItem="PfW-mD-EzJ" firstAttribute="top" secondItem="tx2-5y-CkB" secondAttribute="bottom" constant="-64" id="aic-a4-v4B"/>
                 <constraint firstAttribute="trailing" secondItem="PfW-mD-EzJ" secondAttribute="trailing" id="mN5-Vd-i6g"/>
+                <constraint firstItem="PfW-mD-EzJ" firstAttribute="top" secondItem="scf-vQ-TpH" secondAttribute="bottom" constant="-1" id="nKm-cb-Kr7"/>
                 <constraint firstItem="tx2-5y-CkB" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="yvx-zR-prZ"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
@@ -120,6 +122,7 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <variation key="default">
                 <mask key="constraints">
+                    <exclude reference="Pob-fk-xRP"/>
                     <exclude reference="aic-a4-v4B"/>
                 </mask>
             </variation>

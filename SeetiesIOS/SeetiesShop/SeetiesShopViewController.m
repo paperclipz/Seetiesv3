@@ -326,8 +326,8 @@
         {
             if (image) {
                 
-                weakSelf.ibTopPaddingOverlay.hidden = NO;
-                weakSelf.ibImgViewTopPadding.image = image;
+              //  weakSelf.ibTopPaddingOverlay.hidden = NO;
+              //  weakSelf.ibImgViewTopPadding.image = image;
 
 //                weakSelf.ibTopPaddingOverlay.alpha = 0;
 //                [UIView animateWithDuration:.5f animations:^{
