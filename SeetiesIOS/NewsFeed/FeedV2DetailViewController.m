@@ -1428,31 +1428,10 @@
             ShowTotalLikeCount.text = likeStringCount;
             TotalLikeCount = likeStringCount;
             if ([likeString isEqualToString:@"1"]) {
-                GetLikeCheck = @"1";
-                CheckLikeInitView = YES;
-                ShowTotalLikeCount.textColor = [UIColor redColor];
-                [LikeButton setImage:[UIImage imageNamed:@"LikedIcon.png"] forState:UIControlStateNormal];
-               // [LikeButton setTitle:CustomLocalisedString(@"Likes", nil) forState:UIControlStateNormal];
-                [LikeButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
                 [self GetAllUserLikeData];
-                
-                
-                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                [defaults setObject:GetLikeCheck forKey:@"PostToDetail_like"];
-                [defaults synchronize];
-                
-                
+
             }else{
-                GetLikeCheck = @"0";
-                CheckLikeInitView = YES;
-                [LikeButton setImage:[UIImage imageNamed:@"LikeIcon.png"] forState:UIControlStateNormal];
-               // [LikeButton setTitle:CustomLocalisedString(@"Likes", nil) forState:UIControlStateNormal];
-                [LikeButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
                 [self GetAllUserLikeData];
-                
-                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                [defaults setObject:GetLikeCheck forKey:@"PostToDetail_like"];
-                [defaults synchronize];
                 
             }
             // [self InitView];
@@ -3748,12 +3727,28 @@
 -(IBAction)LikeButton:(id)sender{
     NSLog(@"Like Button Click");
     if ([GetLikeCheck isEqualToString:@"0"]) {
+        GetLikeCheck = @"1";
+        CheckLikeInitView = YES;
+        ShowTotalLikeCount.textColor = [UIColor redColor];
+        [LikeButton setImage:[UIImage imageNamed:@"LikedIcon.png"] forState:UIControlStateNormal];
+        [LikeButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         [self SendPostLike];
         NSLog(@"like post");
     }else{
+        GetLikeCheck = @"0";
+        CheckLikeInitView = YES;
+        [LikeButton setImage:[UIImage imageNamed:@"LikeIcon.png"] forState:UIControlStateNormal];
+        [LikeButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
         [self GetUnLikeData];
         NSLog(@"unlike post");
     }
+
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:GetLikeCheck forKey:@"PostToDetail_like"];
+    [defaults synchronize];
+    
+    
+    
 }
 -(IBAction)CommentButton:(id)sender{
     NSLog(@"Comment Button Click");

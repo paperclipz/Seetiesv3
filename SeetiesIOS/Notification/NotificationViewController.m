@@ -883,7 +883,7 @@
             MiniIcon.image = [UIImage imageNamed:@"NotificationCollect.png"];
             
             ShowMessage.frame = CGRectMake(66, 9 + i * 80, screenWidth - 71, 40);
-        }else if([GetType isEqualToString:@"post_shared"] || [GetType isEqualToString:@"collection_shared"]){
+        }else if([GetType isEqualToString:@"post_shared"] || [GetType isEqualToString:@"collection_shared"] || [GetType isEqualToString:@"seetishop_shared"]){
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
                 ShowUserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
@@ -984,17 +984,6 @@
     
     NSString *GetType = [[NSString alloc]initWithFormat:@"%@",[TypeArray objectAtIndex:getbuttonIDN]];
     if ([GetType isEqualToString:@"follow"]) {
-//        NewUserProfileV2ViewController *ExpertsUserProfileView = [[NewUserProfileV2ViewController alloc]init];
-//        CATransition *transition = [CATransition animation];
-//        transition.duration = 0.2;
-//        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//        transition.type = kCATransitionPush;
-//        transition.subtype = kCATransitionFromRight;
-//        [self.view.window.layer addAnimation:transition forKey:nil];
-//        [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
-//        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-//        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-//        [NewUserProfileV2View GetUserName:[UserNameArray objectAtIndex:getbuttonIDN]];
         _profileViewController = nil;
         [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[uidArray objectAtIndex:getbuttonIDN]];
         [self.navigationController pushViewController:self.profileViewController animated:YES];
@@ -1002,45 +991,17 @@
         NSLog(@"UserNameArray is %@",[UserNameArray objectAtIndex:getbuttonIDN]);
     }else if ([GetType isEqualToString:@"like"]){
         FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
-//        CATransition *transition = [CATransition animation];
-//        transition.duration = 0.2;
-//        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//        transition.type = kCATransitionPush;
-//        transition.subtype = kCATransitionFromRight;
-//        [self.view.window.layer addAnimation:transition forKey:nil];
-//        [self presentViewController:FeedDetailView animated:NO completion:nil];
-//        [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
-        
         [self.navigationController pushViewController:FeedDetailView animated:YES];
         [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
     }else if ([GetType isEqualToString:@"mention"]){
         FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
-//        CATransition *transition = [CATransition animation];
-//        transition.duration = 0.2;
-//        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//        transition.type = kCATransitionPush;
-//        transition.subtype = kCATransitionFromRight;
-//        [self.view.window.layer addAnimation:transition forKey:nil];
-//        [self presentViewController:FeedDetailView animated:NO completion:nil];
-//        [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
         [self.navigationController pushViewController:FeedDetailView animated:YES];
         [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
     }else if ([GetType isEqualToString:@"comment"]){
         FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
-//        CATransition *transition = [CATransition animation];
-//        transition.duration = 0.2;
-//        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//        transition.type = kCATransitionPush;
-//        transition.subtype = kCATransitionFromRight;
-//        [self.view.window.layer addAnimation:transition forKey:nil];
-//        [self presentViewController:FeedDetailView animated:NO completion:nil];
-//        [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
         [self.navigationController pushViewController:FeedDetailView animated:YES];
         [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
     }else if([GetType isEqualToString:@"collect"]){
-//        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-//        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-//        [NewUserProfileV2View GetUserName:[UserNameArray objectAtIndex:getbuttonIDN]];
         _profileViewController = nil;
 
         [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[uidArray objectAtIndex:getbuttonIDN]];
@@ -1052,9 +1013,6 @@
         [self.navigationController pushViewController:FeedDetailView animated:YES];
         [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
     }else if([GetType isEqualToString:@"collection_shared"]){
-//        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-//        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-//        [NewUserProfileV2View GetUserName:[UserNameArray objectAtIndex:getbuttonIDN]];
         _profileViewController = nil;
 
         [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[uidArray objectAtIndex:getbuttonIDN]];
@@ -1067,22 +1025,11 @@
         
         if ([GetAction isEqualToString:@"post"]) {
             FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
-//            CATransition *transition = [CATransition animation];
-//            transition.duration = 0.2;
-//            transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//            transition.type = kCATransitionPush;
-//            transition.subtype = kCATransitionFromRight;
-//            [self.view.window.layer addAnimation:transition forKey:nil];
-//            [self presentViewController:FeedDetailView animated:NO completion:nil];
-//            [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
             [self.navigationController pushViewController:FeedDetailView animated:YES];
             [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
         }else if([GetAction isEqualToString:@"none"]){
         
         }else if([GetAction isEqualToString:@"user"]){
-//            NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-//            [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-//            [NewUserProfileV2View GetUserName:[UserNameArray objectAtIndex:getbuttonIDN]];
             _profileViewController = nil;
 
             [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[uidArray objectAtIndex:getbuttonIDN]];

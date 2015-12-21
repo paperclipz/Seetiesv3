@@ -1505,7 +1505,7 @@
         
         UIButton *ButtonClick = [UIButton buttonWithType:UIButtonTypeCustom];
         [ButtonClick setTitle:@"" forState:UIControlStateNormal];
-        [ButtonClick setFrame:CGRectMake(25, PeopleHeight + 10, 60, 60)];
+        [ButtonClick setFrame:CGRectMake(25, PeopleHeight + 10, screenWidth - 25, 60)];
         [ButtonClick setBackgroundColor:[UIColor clearColor]];
         ButtonClick.tag = i;
         [ButtonClick addTarget:self action:@selector(ExpertsButton:) forControlEvents:UIControlEventTouchUpInside];
