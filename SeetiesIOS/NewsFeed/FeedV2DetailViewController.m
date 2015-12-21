@@ -1096,87 +1096,86 @@
                     [TempGetLanguageArray addObject:dict];
                 }
                 
-                for (int i = 0; i < [TempGetLanguageArray count]; i++) {
-                    NSString *GetLanguages = [[NSString alloc]initWithFormat:@"%@",[TempGetLanguageArray objectAtIndex:i]];
-                    
-                    
-                    if ([GetLanguages isEqualToString:@"530b0ab26424400c76000003"]) {
-                        ShowLanguageType = @"English";
-                    }else if ([GetLanguages isEqualToString:@"530b0aa16424400c76000002"]){
-                        ShowLanguageType = @"简体中文";
-                    }else if ([GetLanguages isEqualToString:@"544481503efa3ff1588b4567"]){
-                        ShowLanguageType = @"ภาษาไทย";
-                    }else if ([GetLanguages isEqualToString:@"53672e863efa3f857f8b4ed2"]){
-                        ShowLanguageType = @"Bahasa Indonesia";
-                    }else if ([GetLanguages isEqualToString:@"539fbb273efa3fde3f8b4567"]){
-                        ShowLanguageType = @"Filipino";
-                    }
-                    
-                    
-                    
-                    if ([GetLanguages isEqualToString:@"530b0ab26424400c76000003"]) {
-                    }else{
-                        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                        //  [defaults setObject:GetUserSelectLanguagesArray forKey:@"GetUserSelectLanguagesArray"];
-                        NSMutableArray *GetUserSelectLanguagesArray = [[NSMutableArray alloc]initWithArray:[defaults valueForKey:@"GetUserSelectLanguagesArray"]];
-                        NSLog(@"GetUserSelectLanguagesArray is %@",GetUserSelectLanguagesArray);
-                        if (CountLanguage == 1) {
-                            NSLog(@"only one lang");
-                            if ([GetUserSelectLanguagesArray count] == 2) {
-                                NSLog(@"2 language");
-                                NSString *TempLanguage1 = [[NSString alloc]initWithFormat:@"%@",[GetUserSelectLanguagesArray objectAtIndex:0]];
-                                NSString *TempLanguage2 = [[NSString alloc]initWithFormat:@"%@",[GetUserSelectLanguagesArray objectAtIndex:1]];
-                                
-                                if ([GetLanguages isEqualToString:TempLanguage1]) {
-                                    NSLog(@"in here 1111");
-                                    ShowLanguageTranslationView.hidden = YES;
-                                }else if([GetLanguages isEqualToString:TempLanguage2]){
-                                    NSLog(@"in here 2222");
-                                    ShowLanguageTranslationView.hidden = YES;
-                                }else{
-                                    NSLog(@"in here 3333");
-                                    ShowGoogleTranslate = YES;
-                                    
-                                    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                                    NSString *CheckDontShowAgain = [defaults objectForKey:@"DontShowAgainTranslate"];
-                                    if ([CheckDontShowAgain isEqualToString:@"DontShowAgain"]) {
-                                        ShowLanguageTranslationView.hidden = YES;
-                                    }else{
-                                        ShowLanguageTranslationView.hidden = NO;
-                                    }
-                                    // ShowTopTitle.frame = CGRectMake(40, 20, 204, 44);
-                                    NewLanguageButton.frame = CGRectMake(screenWidth - 124 - 15, 26, 55, 33);
-                                    DisplayButton.frame = CGRectMake(screenWidth - 124 - 15, 26, 55, 33);
-                                    NewLanguageButton.hidden = NO;
-                                    [ShowbarView addSubview:NewLanguageButton];
-                                    CheckLanguagedata = 2;
-                                }
-                                
-                            }else{
-                                NSLog(@"1 language");
-                                NSString *TempLanguage1 = [[NSString alloc]initWithFormat:@"%@",[GetUserSelectLanguagesArray objectAtIndex:0]];
-                                if ([GetLanguages isEqualToString:TempLanguage1]) {
-                                    ShowLanguageTranslationView.hidden = YES;
-                                }else{
-                                    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                                    NSString *CheckDontShowAgain = [defaults objectForKey:@"DontShowAgainTranslate"];
-                                    if ([CheckDontShowAgain isEqualToString:@"DontShowAgain"]) {
-                                        ShowLanguageTranslationView.hidden = YES;
-                                    }else{
-                                        ShowLanguageTranslationView.hidden = NO;
-                                    }
-                                    ShowGoogleTranslate = YES;
-                                    //    ShowTopTitle.frame = CGRectMake(40, 20, 204, 44);
-                                    NewLanguageButton.frame = CGRectMake(screenWidth - 124 - 15, 26, 55, 33);
-                                    DisplayButton.frame = CGRectMake(screenWidth - 124 - 15, 26, 55, 33);
-                                    NewLanguageButton.hidden = NO;
-                                    [ShowbarView addSubview:NewLanguageButton];
-                                    CheckLanguagedata = 2;
-                                }
-                            }
-                        }
-                    }
-                }
+//                for (int i = 0; i < [TempGetLanguageArray count]; i++) {
+//                    NSString *GetLanguages = [[NSString alloc]initWithFormat:@"%@",[TempGetLanguageArray objectAtIndex:i]];
+//                    
+//                    
+//                    if ([GetLanguages isEqualToString:@"530b0ab26424400c76000003"]) {
+//                        ShowLanguageType = @"English";
+//                    }else if ([GetLanguages isEqualToString:@"530b0aa16424400c76000002"]){
+//                        ShowLanguageType = @"简体中文";
+//                    }else if ([GetLanguages isEqualToString:@"544481503efa3ff1588b4567"]){
+//                        ShowLanguageType = @"ภาษาไทย";
+//                    }else if ([GetLanguages isEqualToString:@"53672e863efa3f857f8b4ed2"]){
+//                        ShowLanguageType = @"Bahasa Indonesia";
+//                    }else if ([GetLanguages isEqualToString:@"539fbb273efa3fde3f8b4567"]){
+//                        ShowLanguageType = @"Filipino";
+//                    }
+//                    
+//                    
+//                    if ([GetLanguages isEqualToString:@"530b0ab26424400c76000003"]) {
+//                    }else{
+//                        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//                        //  [defaults setObject:GetUserSelectLanguagesArray forKey:@"GetUserSelectLanguagesArray"];
+//                        NSMutableArray *GetUserSelectLanguagesArray = [[NSMutableArray alloc]initWithArray:[defaults valueForKey:@"GetUserSelectLanguagesArray"]];
+//                        NSLog(@"GetUserSelectLanguagesArray is %@",GetUserSelectLanguagesArray);
+//                        if (CountLanguage == 1) {
+//                            NSLog(@"only one lang");
+//                            if ([GetUserSelectLanguagesArray count] == 2) {
+//                                NSLog(@"2 language");
+//                                NSString *TempLanguage1 = [[NSString alloc]initWithFormat:@"%@",[GetUserSelectLanguagesArray objectAtIndex:0]];
+//                                NSString *TempLanguage2 = [[NSString alloc]initWithFormat:@"%@",[GetUserSelectLanguagesArray objectAtIndex:1]];
+//                                
+//                                if ([GetLanguages isEqualToString:TempLanguage1]) {
+//                                    NSLog(@"in here 1111");
+//                                    ShowLanguageTranslationView.hidden = YES;
+//                                }else if([GetLanguages isEqualToString:TempLanguage2]){
+//                                    NSLog(@"in here 2222");
+//                                    ShowLanguageTranslationView.hidden = YES;
+//                                }else{
+//                                    NSLog(@"in here 3333");
+//                                    ShowGoogleTranslate = YES;
+//                                    
+//                                    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//                                    NSString *CheckDontShowAgain = [defaults objectForKey:@"DontShowAgainTranslate"];
+//                                    if ([CheckDontShowAgain isEqualToString:@"DontShowAgain"]) {
+//                                        ShowLanguageTranslationView.hidden = YES;
+//                                    }else{
+//                                        ShowLanguageTranslationView.hidden = NO;
+//                                    }
+//                                    // ShowTopTitle.frame = CGRectMake(40, 20, 204, 44);
+//                                    NewLanguageButton.frame = CGRectMake(screenWidth - 124 - 15, 26, 55, 33);
+//                                    DisplayButton.frame = CGRectMake(screenWidth - 124 - 15, 26, 55, 33);
+//                                    NewLanguageButton.hidden = NO;
+//                                    [ShowbarView addSubview:NewLanguageButton];
+//                                    CheckLanguagedata = 2;
+//                                }
+//                                
+//                            }else{
+//                                NSLog(@"1 language");
+//                                NSString *TempLanguage1 = [[NSString alloc]initWithFormat:@"%@",[GetUserSelectLanguagesArray objectAtIndex:0]];
+//                                if ([GetLanguages isEqualToString:TempLanguage1]) {
+//                                    ShowLanguageTranslationView.hidden = YES;
+//                                }else{
+//                                    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//                                    NSString *CheckDontShowAgain = [defaults objectForKey:@"DontShowAgainTranslate"];
+//                                    if ([CheckDontShowAgain isEqualToString:@"DontShowAgain"]) {
+//                                        ShowLanguageTranslationView.hidden = YES;
+//                                    }else{
+//                                        ShowLanguageTranslationView.hidden = NO;
+//                                    }
+//                                    ShowGoogleTranslate = YES;
+//                                    //    ShowTopTitle.frame = CGRectMake(40, 20, 204, 44);
+//                                    NewLanguageButton.frame = CGRectMake(screenWidth - 124 - 15, 26, 55, 33);
+//                                    DisplayButton.frame = CGRectMake(screenWidth - 124 - 15, 26, 55, 33);
+//                                    NewLanguageButton.hidden = NO;
+//                                    [ShowbarView addSubview:NewLanguageButton];
+//                                    CheckLanguagedata = 2;
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
                 
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 //                NSMutableArray *GetUserSelectLanguagesArray = [[NSMutableArray alloc]initWithArray:[defaults valueForKey:@"GetUserSelectLanguagesArray"]];
@@ -1187,6 +1186,41 @@
                 //NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                 NSString *GetSystemLanguage = [[NSString alloc]initWithFormat:@"%@",[defaults objectForKey:@"UserData_SystemLanguage"]];
                 NSLog(@"GetSystemLanguage is %@",GetSystemLanguage);
+                NSString *SystemLangaugeCode;
+                if ([GetSystemLanguage isEqualToString:@"English"]) {
+                    SystemLangaugeCode = @"530b0ab26424400c76000003";
+                }else if([GetSystemLanguage isEqualToString:@"繁體中文"] || [GetSystemLanguage isEqualToString:@"Traditional Chinese"]){
+                    SystemLangaugeCode = @"530d5e9b642440d128000018";
+                }else if([GetSystemLanguage isEqualToString:@"简体中文"] || [GetSystemLanguage isEqualToString:@"Simplified Chinese"] || [GetSystemLanguage isEqualToString:@"中文"]){
+                    SystemLangaugeCode = @"530b0aa16424400c76000002";
+                }else if([GetSystemLanguage isEqualToString:@"Bahasa Indonesia"]){
+                     SystemLangaugeCode = @"53672e863efa3f857f8b4ed2";
+                }else if([GetSystemLanguage isEqualToString:@"Filipino"]){
+                     SystemLangaugeCode = @"539fbb273efa3fde3f8b4567";
+                }else if([GetSystemLanguage isEqualToString:@"ภาษาไทย"] || [GetSystemLanguage isEqualToString:@"Thai"]){
+                     SystemLangaugeCode = @"544481503efa3ff1588b4567";
+                }else{
+                     SystemLangaugeCode = @"530b0ab26424400c76000003";
+                }
+                
+                if ([TempGetLanguageArray count] > 2) {
+                    CheckLanguagedata = 3;
+                }else{
+                    for (int i = 0; i < [TempGetLanguageArray count]; i++) {
+                        NSString *GetData = [[NSString alloc]initWithFormat:@"%@",[TempGetLanguageArray objectAtIndex:i]];
+                        
+                        if ([GetData isEqualToString:SystemLangaugeCode]) {
+                            break;
+                        }else{
+                            CheckLanguagedata = 3;
+                        }
+                    }
+                }
+                
+
+                
+                
+                
                 NSDictionary *CategoryData = [GetAllData valueForKey:@"category_meta"];
                 //NSLog(@"CategoryData is %@",CategoryData);
                 GetCategoryIDArray = [[NSMutableArray alloc]init];
@@ -2021,8 +2055,7 @@
 
     int GetHeightCheck = 363;
     
-    if (CheckLanguagedata == 2) {
-        //tanslate button here
+    if (CheckLanguagedata == 3) {
         UIButton *TanslateButton = [[UIButton alloc]init];
         TanslateButton.frame = CGRectMake(20, GetHeightCheck, screenWidth - 40, 40);
         [TanslateButton setTitle:LocalisedString(@"Translate") forState:UIControlStateNormal];
@@ -2033,27 +2066,45 @@
         TanslateButton.layer.borderWidth=1;
         TanslateButton.layer.masksToBounds = YES;
         TanslateButton.layer.borderColor=[[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0f] CGColor];
-        [TanslateButton addTarget:self action:@selector(NewLanguageButton:) forControlEvents:UIControlEventTouchUpInside];
-        [MainScroll addSubview:TanslateButton];
-        
-        GetHeightCheck += 63;
-    }else if(CheckLanguagedata == 0){
-        //tanslate button here
-        UIButton *TanslateButton = [[UIButton alloc]init];
-        TanslateButton.frame = CGRectMake(20, GetHeightCheck, screenWidth - 40, 40);
-        [TanslateButton setTitle:LocalisedString(@"Translate") forState:UIControlStateNormal];
-        [TanslateButton setImage:[UIImage imageNamed:@"TranslateArrow.png"] forState:UIControlStateNormal];
-        TanslateButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-        [TanslateButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f  blue:153.0f/255.0f  alpha:1.0f] forState:UIControlStateNormal];
-        TanslateButton.layer.cornerRadius = 5;
-        TanslateButton.layer.borderWidth=1;
-        TanslateButton.layer.masksToBounds = YES;
-        TanslateButton.layer.borderColor=[[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0f] CGColor];
-        [TanslateButton addTarget:self action:@selector(LanguageButton:) forControlEvents:UIControlEventTouchUpInside];
+        [TanslateButton addTarget:self action:@selector(LanguageButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
         [MainScroll addSubview:TanslateButton];
         
         GetHeightCheck += 63;
     }
+    
+//    if (CheckLanguagedata == 2) {
+//        //tanslate button here
+//        UIButton *TanslateButton = [[UIButton alloc]init];
+//        TanslateButton.frame = CGRectMake(20, GetHeightCheck, screenWidth - 40, 40);
+//        [TanslateButton setTitle:LocalisedString(@"Translate") forState:UIControlStateNormal];
+//        [TanslateButton setImage:[UIImage imageNamed:@"TranslateArrow.png"] forState:UIControlStateNormal];
+//        TanslateButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+//        [TanslateButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f  blue:153.0f/255.0f  alpha:1.0f] forState:UIControlStateNormal];
+//        TanslateButton.layer.cornerRadius = 5;
+//        TanslateButton.layer.borderWidth=1;
+//        TanslateButton.layer.masksToBounds = YES;
+//        TanslateButton.layer.borderColor=[[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0f] CGColor];
+//        [TanslateButton addTarget:self action:@selector(NewLanguageButton:) forControlEvents:UIControlEventTouchUpInside];
+//        [MainScroll addSubview:TanslateButton];
+//        
+//        GetHeightCheck += 63;
+//    }else if(CheckLanguagedata == 0){
+//        //tanslate button here
+//        UIButton *TanslateButton = [[UIButton alloc]init];
+//        TanslateButton.frame = CGRectMake(20, GetHeightCheck, screenWidth - 40, 40);
+//        [TanslateButton setTitle:LocalisedString(@"Translate") forState:UIControlStateNormal];
+//        [TanslateButton setImage:[UIImage imageNamed:@"TranslateArrow.png"] forState:UIControlStateNormal];
+//        TanslateButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+//        [TanslateButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f  blue:153.0f/255.0f  alpha:1.0f] forState:UIControlStateNormal];
+//        TanslateButton.layer.cornerRadius = 5;
+//        TanslateButton.layer.borderWidth=1;
+//        TanslateButton.layer.masksToBounds = YES;
+//        TanslateButton.layer.borderColor=[[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0f] CGColor];
+//        [TanslateButton addTarget:self action:@selector(LanguageButton:) forControlEvents:UIControlEventTouchUpInside];
+//        [MainScroll addSubview:TanslateButton];
+//        
+//        GetHeightCheck += 63;
+//    }
 
     
     if ([GetTitle length] == 0 || [GetTitle isEqualToString:@""] || [GetTitle isEqualToString:@"(null)"]) {
@@ -4910,6 +4961,21 @@
     UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:self.seetiesShopViewController];
     [nav setNavigationBarHidden:YES];
     [self presentViewController:nav animated:YES completion:nil];
+}
+-(IBAction)LanguageButtonOnClick:(id)sender{
+
+    NSLog(@"NEW Language Button On Click");
+    TestingUse = YES;
+    //[self InitView];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:CustomLocalisedString(@"No thanks!", nil)
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:CustomLocalisedString(@"Read Original", nil),CustomLocalisedString(@"English by Google Translate", nil), nil];
+    
+    [actionSheet showInView:self.view];
+    
+    actionSheet.tag = 5000;
 }
 
 @end

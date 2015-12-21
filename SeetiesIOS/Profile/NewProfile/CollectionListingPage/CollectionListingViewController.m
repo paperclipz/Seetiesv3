@@ -32,8 +32,8 @@
     
     _newCollectionViewController = nil;
 
-    [self.navigationController pushViewController:self.newCollectionViewController animated:YES];
-
+    //[self.navigationController pushViewController:self.newCollectionViewController animated:YES];
+    [self presentViewController:self.newCollectionViewController animated:YES completion:nil];
 }
 
 - (IBAction)btnSegmentedClicked:(id)sender {
