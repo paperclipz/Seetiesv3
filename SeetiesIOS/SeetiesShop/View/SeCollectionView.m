@@ -44,7 +44,7 @@
 -(void)initSelfView
 {
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    NSLog(@"screenWidth == %f",screenWidth);
+   // NSLog(@"screenWidth == %f",screenWidth);
 
     self.frame = CGRectMake(0, 0, screenWidth, 370);
     self.backgroundColor = [UIColor clearColor];
@@ -89,7 +89,7 @@
     [SeeAllButton addTarget:self action:@selector(SeeAllButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
     [Utils setRoundBorder:SeeAllButton color:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
     
-    [self InitScrollViewData];
+    //[self InitScrollViewData];
 }
 
 -(UIButton*)setupButton
@@ -252,6 +252,8 @@
         
         MainScroll.contentSize = CGSizeMake(20 + i * (screenWidth - 40) + (screenWidth - 50), 200);
     }
+
+    self.frame = CGRectMake(0, 0, screenWidth, 370);
 }
 -(void)requestServerForSeetiShopCollection
 {
