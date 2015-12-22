@@ -29,6 +29,12 @@
 
 
 }
+
+//==================  title label =================//
+@property (weak, nonatomic) IBOutlet UILabel *lblInformation;
+@property (weak, nonatomic) IBOutlet UIButton *btnMoreInfo;
+@property (weak, nonatomic) IBOutlet UILabel *lblNearbyPubTransport;
+
 //================== Detail =======================//
 @property (weak, nonatomic) IBOutlet UILabel *lblShopCategory;
 @property (weak, nonatomic) IBOutlet UILabel *lblShopName;
@@ -129,7 +135,7 @@
     tgr.numberOfTouchesRequired = 1;
     [self.ibMapView addGestureRecognizer:tgr];
    
-
+    [self changeLanguage];
 }
 
 -(void)initTableViewDelegate
@@ -352,6 +358,16 @@
     pav.image = [UIImage imageNamed:@"PinInMap.png"];
     
     return pav;
+}
+
+#pragma mark - Change Language
+-(void)changeLanguage
+{
+    
+    self.lblInformation.text = LocalisedString(@"Information");
+    [self.btnMoreInfo setTitle:LocalisedString(@"Hours, Features & more") forState:UIControlStateNormal];
+    self.lblNearbyPubTransport.text = LocalisedString(@"Nearby public transport station");
+    
 }
 
 #pragma mark - Server

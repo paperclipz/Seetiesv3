@@ -15,6 +15,7 @@
 @interface SeetiShopListingViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)SeetiesShopViewController* seetiesShopViewController;
 
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 @property (strong, nonatomic)SeetiShopsModel *seetiShopsModel;
 @property(nonatomic,strong)NSString* seetiesID;
@@ -166,4 +167,9 @@
     return _arrShopList;
 }
 
+#pragma mark - Change Language
+-(void)changLanguage
+{
+    self.lblTitle.text = LocalisedString(@"Nearby Shops");
+}
 @end

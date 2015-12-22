@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SeetiShopListingViewController">
             <connections>
                 <outlet property="ibTableView" destination="knz-tK-wWw" id="YCb-bb-97M"/>
+                <outlet property="lblTitle" destination="lMB-0f-cHp" id="Th3-Zw-Agd"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

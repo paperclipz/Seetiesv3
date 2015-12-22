@@ -588,6 +588,7 @@
                 </mask>
             </variation>
             <connections>
+                <outlet property="btnMoreInfo" destination="SUu-pX-80K" id="r9V-P0-qDx"/>
                 <outlet property="ibCollectionView" destination="1WH-ls-phI" id="mh2-16-aRn"/>
                 <outlet property="ibImageVerified" destination="VX2-Kx-7mO" id="07Z-Pc-OKj"/>
                 <outlet property="ibImgProfile" destination="h3y-ba-aOd" id="SbC-cz-m0P"/>
@@ -600,6 +601,8 @@
                 <outlet property="lblAddress" destination="5uy-r3-aYB" id="ATR-ad-m74"/>
                 <outlet property="lblDistance" destination="OSQ-Pp-SET" id="NwA-Ke-87f"/>
                 <outlet property="lblDistanceIndicator" destination="VgL-Nh-nSz" id="oWP-EB-Qwx"/>
+                <outlet property="lblInformation" destination="hEL-lc-X62" id="ihq-kJ-01n"/>
+                <outlet property="lblNearbyPubTransport" destination="PrS-Nz-WcK" id="hz2-6f-eeR"/>
                 <outlet property="lblNearbyPublicTransport" destination="REW-ZP-o6h" id="fT4-sV-F0F"/>
                 <outlet property="lblOpenNow" destination="NB6-Tx-B27" id="Hdi-U2-cCH"/>
                 <outlet property="lblPhotoCount" destination="B01-Mp-njm" id="6Qt-kj-nkc"/>

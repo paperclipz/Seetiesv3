@@ -596,6 +596,8 @@
 "Address"= "เพิ่มที่อยู่";
 "URL / Facebook Page"= "เว็บไซต์ / Facebook";
 "Phone No."= "เบอร์โทร";
+"Phone Number"= "เบอร์โทร";
+
 "Price range"= "ราคา";
 "Select Currency"= "สกุลเงิน";
 "Per person"= "ต่อคน";
@@ -1060,7 +1062,6 @@
 "Hours" = "เวลาทำการ";
 "Website" = "เว็บไซต์";
 "Facebook" = "Facebook";
-"Best known for" = "ขึ้นชื่อเรื่อง";
 "Cost" = "ราคา";
 "Features" = "บริการ";
 "Available" = "มี";
