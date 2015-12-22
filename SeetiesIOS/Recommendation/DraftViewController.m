@@ -213,6 +213,8 @@
         {
             EditPostViewController* obj  = (EditPostViewController*)object;
             obj = nil;
+            _arrDraftList = nil;
+            _draftsModel = nil;
             [weakSelf requestServerForDraft];
         
         };

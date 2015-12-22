@@ -376,8 +376,8 @@
 -(void)setHiddenVisible
 {
     [UIView transitionWithView:self.btnShare duration:1.0f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-        self.btnShareWidthConstraint.constant = 50;
-        self.btnTranslateWidthConstraint.constant = 50;
+        self.btnShareWidthConstraint.constant = 40;
+        self.btnTranslateWidthConstraint.constant = 40;
         [btnTranslate setNeedsUpdateConstraints];
         [btnTranslate layoutIfNeeded];
         [self.btnShare setNeedsUpdateConstraints];
