@@ -740,14 +740,13 @@
 -(void)didSelectFooterAtIndex:(NSIndexPath*)indexPath
 {
     
-    
     SLog(@"index path section : %ld",(long)indexPath.section);
     switch (indexPath.section) {
             
         default:
         case 0://collection
             
-            if ([arrCollection isNull]) {
+            if ([Utils isArrayNull:arrCollection]) {
                 return;
             }
             _collectionListingViewController = nil;
@@ -756,7 +755,7 @@
             break;
         case 1://post
         {
-            if ([arrPost isNull]) {
+            if ([Utils isArrayNull:arrPost]) {
                 return;
             }
             
@@ -771,7 +770,7 @@
         case 2://likes
         {
             
-            if ([arrLikes isNull]) {
+            if ([Utils isArrayNull:arrLikes]) {
                 return;
             }
             

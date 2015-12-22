@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="190"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZWw-DX-Gtz" id="Cad-BQ-EAB">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="190"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="189.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cg4-oM-VeY" userLabel="innerContentView">
@@ -142,7 +142,7 @@
     </objects>
     <resources>
         <image name="CollectionOverlay.png" width="300" height="165"/>
-        <image name="EmptyCollection.png" width="310" height="64"/>
+        <image name="EmptyCollection.png" width="134" height="91"/>
         <image name="GreyShareIcon.png" width="22" height="15"/>
         <image name="PrivateCollectionIcon.png" width="17" height="20"/>
     </resources>

@@ -15,4 +15,6 @@
 -(void)setWidth:(float)width;
 -(void)setX:(float)X;
 -(void)setY:(float)Y;
+-(void)refreshConstraint;
+
 @end

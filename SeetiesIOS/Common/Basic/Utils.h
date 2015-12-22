@@ -158,6 +158,8 @@ typedef enum {
 +(BOOL)stringIsNilOrEmpty:(NSString*)aString;
 +(NSURL*)getPrefixedURLFromString:(NSString*)url;
 +(BOOL)isStringNull:(NSString*)str;
++(BOOL)isArrayNull:(NSArray*)array;
+
 +(NSString*)getDistance:(float)distance Locality:(NSString*)local;
 
 
