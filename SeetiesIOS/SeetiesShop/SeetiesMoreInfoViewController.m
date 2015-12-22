@@ -16,6 +16,17 @@
     
     BOOL BTranslation;
 }
+//============= title desc ====================//
+@property (weak, nonatomic) IBOutlet UILabel *ilblAddress;
+@property (weak, nonatomic) IBOutlet UILabel *ilblPubTransport;
+@property (weak, nonatomic) IBOutlet UILabel *ilblPhoneNumber;
+@property (weak, nonatomic) IBOutlet UILabel *ilblHour;
+@property (weak, nonatomic) IBOutlet UILabel *ilblLink;
+
+@property (weak, nonatomic) IBOutlet UILabel *ilblFacebook;
+@property (weak, nonatomic) IBOutlet UILabel *ilblPrice;
+@property (weak, nonatomic) IBOutlet UILabel *ilblBestKnownFor;
+@property (weak, nonatomic) IBOutlet UILabel *ilblFeature;
 
 // ============ IBOUTLET======================//
 @property (weak, nonatomic) IBOutlet UIScrollView *ibScrollView;
@@ -115,9 +126,10 @@
 {
     self.ibMapView.delegate = self;
     BTranslation = NO;
-
     [self initTableViewDelegate];
+    [self changeLanguage];
 }
+
 -(void)initTableViewDelegate
 {
     self.ibHourTableView.delegate = self;
@@ -488,5 +500,21 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - Change Language
+-(void)changeLanguage
+{
+    
+    self.ilblAddress.text = LocalisedString(@"Address");
+    self.ilblPubTransport.text = LocalisedString(@"Nearby public transport station");
+    self.ilblPhoneNumber.text = LocalisedString(@"Phone Number");
+    self.ilblHour.text = LocalisedString(@"Hours");
+    self.ilblLink.text = LocalisedString(@"URL/Link");
+    self.ilblFacebook.text = LocalisedString(@"Facebook");
+    self.ilblPrice.text = LocalisedString(@"Price");
+    self.ilblBestKnownFor.text = LocalisedString(@"Best known for");
+    self.ilblFeature.text = LocalisedString(@"Features");
+    
+}
 
 @end

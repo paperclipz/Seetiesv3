@@ -21,6 +21,15 @@
                 <outlet property="ibScrollView" destination="qDK-bo-Rhj" id="4jD-nU-fZc"/>
                 <outlet property="ibURLView" destination="48W-d5-2oc" id="VIA-HB-Ium"/>
                 <outlet property="ibYESHeader" destination="PPD-ze-gX7" id="4JL-9G-We9"/>
+                <outlet property="ilblAddress" destination="o3I-jv-3dd" id="QkT-xt-d6m"/>
+                <outlet property="ilblBestKnownFor" destination="tsl-Iy-L1k" id="Ity-Bu-OD7"/>
+                <outlet property="ilblFacebook" destination="4XZ-Nz-cGR" id="guU-Lg-Tuu"/>
+                <outlet property="ilblFeature" destination="Bvk-FX-bCT" id="aKx-g0-knd"/>
+                <outlet property="ilblHour" destination="lyh-3t-D8Y" id="uLw-og-YEk"/>
+                <outlet property="ilblLink" destination="jkP-wt-6iP" id="8VN-bh-JgO"/>
+                <outlet property="ilblPhoneNumber" destination="XCv-jQ-lUK" id="7US-AG-SlV"/>
+                <outlet property="ilblPrice" destination="gUp-DS-Mp4" id="jn0-3v-miv"/>
+                <outlet property="ilblPubTransport" destination="E5t-Ob-ssa" id="enW-br-kaF"/>
                 <outlet property="lblAcceptCreditCard" destination="qqy-LM-tU7" id="mDV-3j-Kco"/>
                 <outlet property="lblAddressDesc" destination="cPN-7g-p9k" id="4dS-Za-HJv"/>
                 <outlet property="lblBestKnown" destination="GFM-ab-ISN" id="rCA-hl-ghj"/>

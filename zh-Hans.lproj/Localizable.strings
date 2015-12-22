@@ -597,6 +597,8 @@
 "Address"= "地址";
 "URL / Facebook Page"= "网址 / Facebook";
 "Phone No."= "联络号码";
+"Phone Number"= "联络号码";
+
 "Price range"= "价格";
 "Select Currency"= "选择货币";
 "Per person"= "每位";
@@ -1061,7 +1063,6 @@
 "Hours" = "营业时间";
 "Website" = "网站";
 "Facebook" = "Facebook";
-"Best known for" = "热门推荐";
 "Cost" = "价格";
 "Features" = "店家特点";
 "Available" = "附有";

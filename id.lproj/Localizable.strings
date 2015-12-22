@@ -594,6 +594,8 @@
 "Address"= "Alamat";
 "URL / Facebook Page"= "Situs URL / Tambah Facebook";
 "Phone No."= "Telfon";
+"Phone Number"= "Telfon";
+
 "Price range"= "Harga rata-rata";
 "Select Currency"= "Pilih mata uang";
 "Per person"= "Per orang";
@@ -1059,7 +1061,6 @@
 "Hours" = "Jam Operasional ";
 "Website" = "Situs web";
 "Facebook" = "Facebook";
-"Best known for" = "Harga";
 "Cost" = "Harga";
 "Features" = "Features";
 "Available" = "Tersedia";
