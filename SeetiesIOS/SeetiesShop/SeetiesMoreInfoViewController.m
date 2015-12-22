@@ -405,7 +405,7 @@
         SeShopMoreInfoTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"SeShopMoreInfoTableViewCell"];
         
         NSString* day = self.arrayHourList[indexPath.row];
-        cell.lblDay.text = day;
+        cell.lblDay.text = LocalisedString(day);
         cell.lblOpening.text = [self.seShopModel.location.opening_hours.period_text objectForKey:day];
         
         return cell;
