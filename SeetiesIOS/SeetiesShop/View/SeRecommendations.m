@@ -49,13 +49,13 @@
     [Utils setRoundBorder:ShowbackLine color:[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
     
     ShowRecommendationsText.frame = CGRectMake(20, 0, screenWidth - 40, 50);
-    ShowRecommendationsText.text = @"Recommendations";
+    ShowRecommendationsText.text = LocalisedString(@"Recommendations");
     ShowRecommendationsText.backgroundColor = [UIColor clearColor];
     
     Getheight = 50;
     
     SeeAllButton.frame = CGRectMake(-1, self.frame.size.height - 60, screenWidth + 2 , 50);
-    [SeeAllButton setTitle:@"See all recommendations" forState:UIControlStateNormal];
+    [SeeAllButton setTitle:LocalisedString(@"See all recommendations") forState:UIControlStateNormal];
     SeeAllButton.backgroundColor = [UIColor whiteColor];
     [SeeAllButton addTarget:self action:@selector(SeeAllButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
     [Utils setRoundBorder:SeeAllButton color:[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
@@ -187,7 +187,7 @@
             
             UILabel *ShowReadMore = [self SetupLabel];
             ShowReadMore.frame = CGRectMake(80, Getheight + 20, screenWidth - 100, 20);
-            ShowReadMore.text = @"Read more...";
+            ShowReadMore.text = LocalisedString(@"Read more");
             ShowReadMore.textColor = [UIColor colorWithRed:41.0f/255.0f green:182.0f/255.0f blue:246.0f/255.0f alpha:1.0f];
             ShowReadMore.font = [UIFont fontWithName:CustomFontNameBold size:14];
             [self addSubview:ShowReadMore];
@@ -312,8 +312,8 @@
 
         
         SLog(@"ServerRequestTypeGetSeetoShopRecommendations");
-         NSString *GetTotalPosts = [[NSString alloc]initWithFormat:@"See all %i recommendations",self.userProfilePostModel.userPostData.total_posts];
-         [SeeAllButton setTitle:GetTotalPosts forState:UIControlStateNormal];
+        // NSString *GetTotalPosts = [[NSString alloc]initWithFormat:@"See all %i recommendations",self.userProfilePostModel.userPostData.total_posts];
+         [SeeAllButton setTitle:LocalisedString(@"See all recommendations") forState:UIControlStateNormal];
          [self InitRecommendationViewdata];
         
         

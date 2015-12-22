@@ -46,7 +46,7 @@
     [Utils setRoundBorder:ShowbackLine color:[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
     
     ShowSeenearbySeetishop.frame = CGRectMake(20, 0, screenWidth - 40, 50);
-    ShowSeenearbySeetishop.text = LocalisedString(@"See nearby Seetishop");
+    ShowSeenearbySeetishop.text = LocalisedString(@"Nearby Shops");
     ShowSeenearbySeetishop.backgroundColor = [UIColor clearColor];
     
     ShowbackLineSeeAll.frame = CGRectMake(-1, 250, screenWidth + 2 , 50);
@@ -55,7 +55,7 @@
     [Utils setRoundBorder:ShowbackLineSeeAll color:[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
     
     SeeAllButton.frame = CGRectMake(0, 250, screenWidth, 50);
-    [SeeAllButton setTitle:LocalisedString(@"See All") forState:UIControlStateNormal];
+    [SeeAllButton setTitle:LocalisedString(@"See all") forState:UIControlStateNormal];
     SeeAllButton.backgroundColor = [UIColor clearColor];
     
     MainScroll.delegate = self;

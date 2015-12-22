@@ -485,7 +485,13 @@
             NSString *FullShowLocatinString;
             
             if (x_Nearby < 1) {
+                NSLog(@"x_Nearby === %i",x_Nearby);
+                if (x_Nearby == 0) {
+                    FullShowLocatinString = [[NSString alloc]initWithFormat:@"Current • %@",[LocationArray objectAtIndex:i]];
+                }else{
                 FullShowLocatinString = [[NSString alloc]initWithFormat:@"%.fM • %@",[TempDistanceString floatValue],[LocationArray objectAtIndex:i]];
+                }
+                
             }else{
                 FullShowLocatinString = [[NSString alloc]initWithFormat:@"%.fkm • %@",strFloat,[LocationArray objectAtIndex:i]];
             }
