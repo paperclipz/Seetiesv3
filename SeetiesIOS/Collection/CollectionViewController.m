@@ -917,14 +917,29 @@
         [LoadingManager show];
         [self.navigationController pushViewController:self.editCollectionViewController animated:YES];
     }else{
-        MainEditButton.selected = !MainEditButton.selected;
+        
         
         NSLog(@"follow collection button on click");
         if ([GetFollowing isEqualToString:@"0"]) {
             [self FollowCollection];
            // GetFollowing = @"1";
+            MainEditButton.selected = !MainEditButton.selected;
         }else{
-            [self DeleteFollowCollection];
+            [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Are You Sure You Want To Unfollow") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"YES"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                
+                if (buttonIndex == [alertView cancelButtonIndex]) {
+                    NSLog(@"Cancelled");
+                    
+                } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:LocalisedString(@"YES")]) {
+
+                    MainEditButton.selected = !MainEditButton.selected;
+                    [self DeleteFollowCollection];
+
+                    
+                    
+                }
+            }];
+            
             //GetFollowing = @"0";
         }
         
