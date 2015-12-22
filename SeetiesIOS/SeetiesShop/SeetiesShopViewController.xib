@@ -56,8 +56,8 @@
                                 <action selector="btnBackClicked:" destination="-1" eventType="touchUpInside" id="nKe-RS-k3j"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JRS-YQ-XgZ">
-                            <rect key="frame" x="355" y="20" width="0.0" height="44"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JRS-YQ-XgZ">
+                            <rect key="frame" x="365" y="20" width="0.0" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="width" id="Ama-cA-y4c"/>
                             </constraints>
@@ -66,8 +66,8 @@
                                 <action selector="btnTransalateClicked:" destination="-1" eventType="touchUpInside" id="huk-6N-ggF"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vmn-Th-Z6e">
-                            <rect key="frame" x="355" y="20" width="0.0" height="44"/>
+                        <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vmn-Th-Z6e">
+                            <rect key="frame" x="365" y="20" width="0.0" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="width" id="U6K-AN-dCF"/>
                             </constraints>
@@ -90,7 +90,7 @@
                         <constraint firstItem="Ghx-1x-5Rn" firstAttribute="leading" secondItem="tx2-5y-CkB" secondAttribute="leading" constant="2" id="O2t-9I-3TY"/>
                         <constraint firstAttribute="bottom" secondItem="Vmn-Th-Z6e" secondAttribute="bottom" id="TDm-jw-QUe"/>
                         <constraint firstAttribute="height" constant="64" id="Vfq-xN-DKd"/>
-                        <constraint firstAttribute="trailing" secondItem="Vmn-Th-Z6e" secondAttribute="trailing" constant="20" id="XDw-DB-KCG"/>
+                        <constraint firstAttribute="trailing" secondItem="Vmn-Th-Z6e" secondAttribute="trailing" constant="10" id="XDw-DB-KCG"/>
                         <constraint firstItem="scf-vQ-TpH" firstAttribute="leading" secondItem="tx2-5y-CkB" secondAttribute="leading" id="bmJ-bK-KDK"/>
                         <constraint firstItem="scf-vQ-TpH" firstAttribute="top" secondItem="tx2-5y-CkB" secondAttribute="top" id="e9T-SC-VI2"/>
                         <constraint firstAttribute="bottom" secondItem="scf-vQ-TpH" secondAttribute="bottom" id="fc6-5B-XBk"/>

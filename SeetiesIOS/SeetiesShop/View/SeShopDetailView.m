@@ -272,7 +272,7 @@
     
     NSString* key = keys[0];
 
-    cell.lblTitle.text = key;
+    cell.lblTitle.text = LocalisedString(key);
     [cell setImage:key];
     cell.lblDesc.text = [dict objectForKey:key];
 

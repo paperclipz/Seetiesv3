@@ -840,6 +840,8 @@
 		8A84752B1BC52C0B006DD614 /* UITextField+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A84752A1BC52C0B006DD614 /* UITextField+Extra.m */; };
 		8A84752E1BC52C50006DD614 /* UIButton+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A84752D1BC52C50006DD614 /* UIButton+Extra.m */; };
 		8A8475311BC52CCF006DD614 /* UITextView+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A8475301BC52CCF006DD614 /* UITextView+Extra.m */; };
+		8A988FB91C29049800D0F0EF /* WMATweetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A988FB81C29049800D0F0EF /* WMATweetView.m */; };
+		8A993CC41C290CE4009359E2 /* UITextView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A993CC31C290CE4009359E2 /* UITextView+Extension.swift */; };
 		8A9F258A1B8D69E100BB13BA /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9F25881B8D69E100BB13BA /* SearchTableViewController.m */; };
 		8A9F258B1B8D69E100BB13BA /* SearchTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9F25891B8D69E100BB13BA /* SearchTableViewController.xib */; };
 		8A9F25CE1B8ED8BC00BB13BA /* EditHoursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9F25CC1B8ED8BC00BB13BA /* EditHoursViewController.m */; };
@@ -2155,6 +2157,9 @@
 		8A84752F1BC52CCF006DD614 /* UITextView+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Extra.h"; sourceTree = "<group>"; };
 		8A8475301BC52CCF006DD614 /* UITextView+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Extra.m"; sourceTree = "<group>"; };
 		8A8475331BC52D27006DD614 /* CustomFont.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomFont.h; sourceTree = "<group>"; };
+		8A988FB71C29049800D0F0EF /* WMATweetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMATweetView.h; sourceTree = "<group>"; };
+		8A988FB81C29049800D0F0EF /* WMATweetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMATweetView.m; sourceTree = "<group>"; };
+		8A993CC31C290CE4009359E2 /* UITextView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Extension.swift"; sourceTree = "<group>"; };
 		8A9F25871B8D69E100BB13BA /* SearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewController.h; sourceTree = "<group>"; };
 		8A9F25881B8D69E100BB13BA /* SearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewController.m; sourceTree = "<group>"; };
 		8A9F25891B8D69E100BB13BA /* SearchTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchTableViewController.xib; sourceTree = "<group>"; };
@@ -2835,6 +2840,7 @@
 		8A114B871BE73F5C006AE3F0 /* COMMON */ = {
 			isa = PBXGroup;
 			children = (
+				8A988FB61C29049800D0F0EF /* WMATweetView */,
 				8A6BB4101BF0C338005AA1B3 /* MZFormSheetPresentationController */,
 				8A11513B1BE777FD006AE3F0 /* VGParallaxHeader */,
 				8A114B881BE73F5C006AE3F0 /* AFNetworkActivityLogger */,
@@ -4573,6 +4579,15 @@
 			name = SystemOverride;
 			sourceTree = "<group>";
 		};
+		8A988FB61C29049800D0F0EF /* WMATweetView */ = {
+			isa = PBXGroup;
+			children = (
+				8A988FB71C29049800D0F0EF /* WMATweetView.h */,
+				8A988FB81C29049800D0F0EF /* WMATweetView.m */,
+			);
+			path = WMATweetView;
+			sourceTree = "<group>";
+		};
 		8A9F25CA1B8ED89300BB13BA /* EditHours */ = {
 			isa = PBXGroup;
 			children = (
@@ -4934,6 +4949,7 @@
 				8AD6BA9A1B706CF10040437E /* UIIimage+Extra.m */,
 				8A3757C41B8583ED009DB7D4 /* UIFont+SystemFontOverride.h */,
 				8A3757C51B8583ED009DB7D4 /* UIFont+SystemFontOverride.m */,
+				8A993CC31C290CE4009359E2 /* UITextView+Extension.swift */,
 			);
 			name = CATEGORY;
 			path = Category;
@@ -6682,6 +6698,7 @@
 				8AD6BA601B705DF20040437E /* main.m in Sources */,
 				8A114C841BE73F5D006AE3F0 /* BMXSwipableCell+ConfigureCell.m in Sources */,
 				8A3409481B8AD06A009B66C3 /* UIImage+Saving.m in Sources */,
+				8A988FB91C29049800D0F0EF /* WMATweetView.m in Sources */,
 				8A0348791C154F9C0015E606 /* SeetiesMoreInfoViewController.m in Sources */,
 				8AD6C2291B706FA10040437E /* NSString+ChangeAsciiString.m in Sources */,
 				8AC8F7301BDA414E00DEF14A /* ProfilePageCollectionTableViewCell.m in Sources */,
@@ -6703,6 +6720,7 @@
 				8AF39CDC1BC66536009C7F26 /* UITableView+NXEmptyView.m in Sources */,
 				8A317C061BE1C5620010CAEE /* ShareViewController.m in Sources */,
 				8A3409CF1B8B0DCB009B66C3 /* UIImage+Resize.m in Sources */,
+				8A993CC41C290CE4009359E2 /* UITextView+Extension.swift in Sources */,
 				8A114C941BE73F5D006AE3F0 /* FXImageView.m in Sources */,
 				0BBFE0541B9D6260004B17E9 /* NotificationSettingsViewController.m in Sources */,
 				8A4509921BAFF7C000A868CD /* UIColor+Extension.m in Sources */,
@@ -6866,8 +6884,8 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Reiner Lee (EFSLZ63588)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library",
@@ -6892,7 +6910,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7019fa0d-9f6e-41e5-955e-d97da8a6a364";
+				PROVISIONING_PROFILE = "b384f4c6-d74f-484d-ad13-a68f30676c55";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -6905,8 +6923,8 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Reiner Lee (EFSLZ63588)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library",
@@ -6931,7 +6949,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7019fa0d-9f6e-41e5-955e-d97da8a6a364";
+				PROVISIONING_PROFILE = "b384f4c6-d74f-484d-ad13-a68f30676c55";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 			};
 			name = Release;
