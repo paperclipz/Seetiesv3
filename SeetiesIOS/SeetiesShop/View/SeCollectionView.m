@@ -55,7 +55,7 @@
     [Utils setRoundBorder:ShowbackLine color:[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
     
     ShowRelatedCollectionsText.frame = CGRectMake(20, 0, screenWidth - 40, 50);
-    ShowRelatedCollectionsText.text = @"Related Collections";
+    ShowRelatedCollectionsText.text = LocalisedString(@"Related collections");
     ShowRelatedCollectionsText.backgroundColor = [UIColor clearColor];
     
     MainScroll.delegate = self;
@@ -81,10 +81,10 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
     
-    NSString *GetTotalCollection = [[NSString alloc]initWithFormat:@"See all %i Collections",self.SeetiShopCollectionsModel.total_collections];
+ //   NSString *GetTotalCollection = [[NSString alloc]initWithFormat:@"See all %i Collections",self.SeetiShopCollectionsModel.total_collections];
     
     SeeAllButton.frame = CGRectMake(-1, self.frame.size.height - 60, screenWidth + 2, 50);
-    [SeeAllButton setTitle:GetTotalCollection forState:UIControlStateNormal];
+    [SeeAllButton setTitle:LocalisedString(@"See all collections") forState:UIControlStateNormal];
     SeeAllButton.backgroundColor = [UIColor whiteColor];
     [SeeAllButton addTarget:self action:@selector(SeeAllButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
     [Utils setRoundBorder:SeeAllButton color:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
@@ -222,7 +222,7 @@
         [MainScroll addSubview:ShowCollectionTitle];
         
         
-        NSString *TempCount = [[NSString alloc]initWithFormat:@"%d recommendations",collModel.collection_posts_count];
+        NSString *TempCount = [[NSString alloc]initWithFormat:@"%d %@",collModel.collection_posts_count,LocalisedString(@"Recommendations")];
         
         UILabel *ShowCollectionCount = [self SetupLabel];
         ShowCollectionCount.frame = CGRectMake(25 + i * (screenWidth - 40), 200, screenWidth - 190, 20);
@@ -285,8 +285,8 @@
 
         self.SeetiShopCollectionsModel = [[ConnectionManager dataManager]userSuggestedCollectionsModel];
         
-        NSString *GetTotalCollection = [[NSString alloc]initWithFormat:@"See all %i Collections",self.SeetiShopCollectionsModel.total_collections];
-        [SeeAllButton setTitle:GetTotalCollection forState:UIControlStateNormal];
+       // NSString *GetTotalCollection = [[NSString alloc]initWithFormat:@"See all %i Collections",self.SeetiShopCollectionsModel.total_collections];
+        [SeeAllButton setTitle:LocalisedString(@"See all collections") forState:UIControlStateNormal];
 
         [self.arrCollections addObjectsFromArray:self.SeetiShopCollectionsModel.arrSuggestedCollection];
         

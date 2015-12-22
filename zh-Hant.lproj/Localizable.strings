@@ -1039,7 +1039,37 @@
 "FollowingCollectionIcon.png" = "FollowingCollectionTradChiIcon.png";
 "View collections" = "查看收藏集";
 
-
+"Walk" = "步行";
+"Drive" = "開車";
+"Open now" = "營業中";
+"Closed" = "休息";
+"Photos" = "相冊";
+"See all photos" = "查閱所有相片";
+"Information" = "相關資訊";
+"Best known for" = "熱門推薦";
+"Cost" = "價格";
+"Hours" = "營業時間";
+"Contact number" = "聯絡號碼";
+"Website" = "網站";
+"Facebook" = "Facebook";
+"See all info" = "查閱所有資訊";
+"Related collections" = "相關收藏集";
+"See all collections" = "查閱所有收藏集";
+"Recommendations" = "相關貼文";
+"See all recommendations" = "查閱所有貼文";
+"Nearby Shops" = "附近商家";
+"See all" = "查看全部";
+"Address" = "地址";
+"Nearby public transport station" = "就近公共交通站";
+"Contact number" = "聯絡號碼";
+"Hours" = "營業時間";
+"Website" = "網站";
+"Facebook" = "Facebook";
+"Best known for" = "熱門推薦";
+"Cost" = "價格";
+"Features" = "店家特點";
+"Available" = "附有";
+"Not Available" = "暫無";
 
 
 
