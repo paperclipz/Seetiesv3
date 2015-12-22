@@ -22,7 +22,7 @@
 #import "AnnounceViewController.h"
 #import "SuggestedCollectionsViewController.h"
 #import "OpenWebViewController.h"
-
+#import "NSString+ChangeAsciiString.h"
 @interface FeedViewController ()
 {
     //no connection view
@@ -1122,7 +1122,7 @@
                 TempCountWhiteHeight += 30;
                 
                 NSString *TempGetMessage = [[NSString alloc]initWithFormat:@"%@",[arrLocalMessage objectAtIndex:i]];
-                //TempGetMessage = [TempGetMessage stringByDecodingXMLEntities];
+                TempGetMessage = [TempGetMessage stringByDecodingXMLEntities];
                 if ([TempGetMessage length] == 0 || [TempGetMessage isEqualToString:@""] || [TempGetMessage isEqualToString:@"(null)"]) {
                     
                 }else{
@@ -1529,7 +1529,7 @@
                 TempCountWhiteHeight += 30;
                 
                 NSString *TempGetMessage = [[NSString alloc]initWithFormat:@"%@",[arrMessage objectAtIndex:i]];
-                //TempGetMessage = [TempGetMessage stringByDecodingXMLEntities];
+                TempGetMessage = [TempGetMessage stringByDecodingXMLEntities];
                 if ([TempGetMessage length] == 0 || [TempGetMessage isEqualToString:@""] || [TempGetMessage isEqualToString:@"(null)"]) {
                     
                 }else{
@@ -1845,7 +1845,7 @@
                 TempCountWhiteHeightLocalQR += 30;
                 
                 NSString *TempGetMessageLocalQR = [[NSString alloc]initWithFormat:@"%@",[arrMessage objectAtIndex:i]];
-                //TempGetMessage = [TempGetMessage stringByDecodingXMLEntities];
+                TempGetMessageLocalQR = [TempGetMessageLocalQR stringByDecodingXMLEntities];
                 if ([TempGetMessageLocalQR length] == 0 || [TempGetMessageLocalQR isEqualToString:@""] || [TempGetMessageLocalQR isEqualToString:@"(null)"]) {
                     
                 }else{

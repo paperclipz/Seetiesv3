@@ -1715,11 +1715,11 @@
         NSLog(@"CheckCollectionFollowing is %@",CheckCollectionFollowing);
         UIButton *CollectionFollowButton = [[UIButton alloc]init];
         if ([CheckCollectionFollowing isEqualToString:@"0"]) {
-            [CollectionFollowButton setImage:[UIImage imageNamed:@"FollowCollectionIcon.png"] forState:UIControlStateNormal];
-            [CollectionFollowButton setImage:[UIImage imageNamed:@"FollowingCollectionIcon.PNG"] forState:UIControlStateSelected];
+            [CollectionFollowButton setImage:[UIImage imageNamed:LocalisedString(@"FollowCollectionIcon.png")] forState:UIControlStateNormal];
+            [CollectionFollowButton setImage:[UIImage imageNamed:LocalisedString(@"FollowingCollectionIcon.png")] forState:UIControlStateSelected];
         }else{
-            [CollectionFollowButton setImage:[UIImage imageNamed:@"FollowingCollectionIcon.PNG"] forState:UIControlStateNormal];
-            [CollectionFollowButton setImage:[UIImage imageNamed:@"FollowCollectionIcon.png"] forState:UIControlStateSelected];
+            [CollectionFollowButton setImage:[UIImage imageNamed:LocalisedString(@"FollowingCollectionIcon.png")] forState:UIControlStateNormal];
+            [CollectionFollowButton setImage:[UIImage imageNamed:LocalisedString(@"FollowCollectionIcon.png")] forState:UIControlStateSelected];
         }
        // [CollectionFollowButton setImage:[UIImage imageNamed:LocalisedString(@"CollectBtn.png")] forState:UIControlStateNormal];
         [CollectionFollowButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
