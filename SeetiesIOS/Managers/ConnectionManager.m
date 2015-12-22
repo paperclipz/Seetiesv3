@@ -94,7 +94,7 @@
                    success:^(AFHTTPRequestOperation *operation, id responseObject)
          {
              
-             [self storeServerData:responseObject requestType:type];
+             [self storeServerData:responseObject requestType:type withURL:url];
              
              
              if (completeBlock) {
@@ -119,7 +119,7 @@
                    success:^(AFHTTPRequestOperation *operation, id responseObject)
          {
              
-             [self storeServerData:responseObject requestType:type];
+             [self storeServerData:responseObject requestType:type withURL:url];
             
              
              if (completeBlock) {
@@ -145,12 +145,14 @@
 
 -(void)requestServerWithPost:(ServerRequestType)type param:(NSDictionary*)dict completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
 {
-    NSLog(@"\n\n ===== Request Server ===== : %@ \n\n Request Json : %@",[self getFullURLwithType:type],[dict JSONString]);
     
-    [self.manager POST:[self getFullURLwithType:type] parameters:dict
+    NSString* fullURL = [self getFullURLwithType:type];
+    NSLog(@"\n\n ===== Request Server ===== : %@ \n\n Request Json : %@",fullURL,[dict JSONString]);
+    
+    [self.manager POST:fullURL parameters:dict
                success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
-         [self storeServerData:responseObject requestType:type];
+         [self storeServerData:responseObject requestType:type withURL:fullURL];
          if (completeBlock) {
              completeBlock(responseObject);
          }
@@ -185,7 +187,7 @@
                success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          
-         [self storeServerData:responseObject requestType:type];
+         [self storeServerData:responseObject requestType:type withURL:fullURL];
          
          
          if (completeBlock) {
@@ -263,7 +265,7 @@
             }
         }
         else {
-            [self storeServerData:responseObject requestType:type];
+            [self storeServerData:responseObject requestType:type withURL:fullURL];
             if (completeBlock) {
                 completeBlock(responseObject);
             }
@@ -299,15 +301,15 @@
 -(void)requestServerWithDelete:(ServerRequestType)type param:(NSDictionary*)dict appendString:(NSString*)appendString completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
 {
     
-    NSString* fullString = [NSString stringWithFormat:@"%@/%@",[self getFullURLwithType:type],appendString];
+    NSString* fullURL = [NSString stringWithFormat:@"%@/%@",[self getFullURLwithType:type],appendString];
 
-    NSLog(@"\n\n ===== Request Server DELETE ===== : %@ \n\n Request Json : %@",fullString,dict);
+    NSLog(@"\n\n ===== Request Server DELETE ===== : %@ \n\n Request Json : %@",fullURL,dict);
     
-    [self.manager DELETE:fullString parameters:dict
+    [self.manager DELETE:fullURL parameters:dict
               success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          
-         [self storeServerData:responseObject requestType:type];
+         [self storeServerData:responseObject requestType:type withURL:fullURL];
          
          
          if (completeBlock) {
@@ -348,7 +350,7 @@
               success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          
-         [self storeServerData:responseObject requestType:type];
+         [self storeServerData:responseObject requestType:type withURL:fullURL];
          
          
          if (completeBlock) {
@@ -453,9 +455,15 @@
     
 }
 
--(void)storeServerData:(id)obj requestType:(ServerRequestType)type
+-(void)storeServerData:(id)obj requestType:(ServerRequestType)type withURL:(NSString*)url
 {
     NSLog(@"\n\n\n [SUCCESS RESPONSE RESULT URL : %@] \n%@ \n\n\n", [self getFullURLwithType:type],[obj bv_jsonStringWithPrettyPrint:YES]);
+
+    [self storeServerData:obj requestType:type];
+}
+
+-(void)storeServerData:(id)obj requestType:(ServerRequestType)type
+{
 
 
     [LoadingManager hide];

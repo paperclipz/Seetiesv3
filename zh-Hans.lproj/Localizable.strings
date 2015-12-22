@@ -616,6 +616,13 @@
 "Fri"= "周五";
 "Sat"= "周六";
 "Sun"= "周日";
+"Monday"= "周一";
+"Tuesday"= "周二";
+"Wednesday"= "周三";
+"Thursday"= "周四";
+"Friday"= "周五";
+"Saturday"= "周六";
+"Sunday"= "周日";
 ""= "";
 "Edit Place Info"= "更改位置资讯";
 "b"= "地点错了？";

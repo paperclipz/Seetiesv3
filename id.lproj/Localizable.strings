@@ -613,6 +613,15 @@
 "Fri"= "Jum";
 "Sat"= "Sab";
 "Sun"= "Min";
+
+"Monday"= "Sen";
+"Tuesday"= "Sel";
+"Wednesday"= "Rab";
+"Thursday"= "Kam";
+"Friday"= "Jum";
+"Saturday"= "Sab";
+"Sunday"= "Min";
+
 ""= "";
 "Edit Place Info"= "Ubah info tempat";
 "b"= "Salah tempat?";

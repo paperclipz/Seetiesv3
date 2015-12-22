@@ -842,6 +842,7 @@
 		8A8475311BC52CCF006DD614 /* UITextView+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A8475301BC52CCF006DD614 /* UITextView+Extra.m */; };
 		8A988FB91C29049800D0F0EF /* WMATweetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A988FB81C29049800D0F0EF /* WMATweetView.m */; };
 		8A993CC41C290CE4009359E2 /* UITextView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A993CC31C290CE4009359E2 /* UITextView+Extension.swift */; };
+		8A993CCB1C2960D5009359E2 /* NSArray+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A993CCA1C2960D5009359E2 /* NSArray+Extension.m */; };
 		8A9F258A1B8D69E100BB13BA /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9F25881B8D69E100BB13BA /* SearchTableViewController.m */; };
 		8A9F258B1B8D69E100BB13BA /* SearchTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9F25891B8D69E100BB13BA /* SearchTableViewController.xib */; };
 		8A9F25CE1B8ED8BC00BB13BA /* EditHoursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9F25CC1B8ED8BC00BB13BA /* EditHoursViewController.m */; };
@@ -2160,6 +2161,8 @@
 		8A988FB71C29049800D0F0EF /* WMATweetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMATweetView.h; sourceTree = "<group>"; };
 		8A988FB81C29049800D0F0EF /* WMATweetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMATweetView.m; sourceTree = "<group>"; };
 		8A993CC31C290CE4009359E2 /* UITextView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Extension.swift"; sourceTree = "<group>"; };
+		8A993CC91C2960D5009359E2 /* NSArray+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Extension.h"; sourceTree = "<group>"; };
+		8A993CCA1C2960D5009359E2 /* NSArray+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Extension.m"; sourceTree = "<group>"; };
 		8A9F25871B8D69E100BB13BA /* SearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewController.h; sourceTree = "<group>"; };
 		8A9F25881B8D69E100BB13BA /* SearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewController.m; sourceTree = "<group>"; };
 		8A9F25891B8D69E100BB13BA /* SearchTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchTableViewController.xib; sourceTree = "<group>"; };
@@ -4588,6 +4591,15 @@
 			path = WMATweetView;
 			sourceTree = "<group>";
 		};
+		8A993CC51C296085009359E2 /* NSarray+Extension */ = {
+			isa = PBXGroup;
+			children = (
+				8A993CC91C2960D5009359E2 /* NSArray+Extension.h */,
+				8A993CCA1C2960D5009359E2 /* NSArray+Extension.m */,
+			);
+			name = "NSarray+Extension";
+			sourceTree = "<group>";
+		};
 		8A9F25CA1B8ED89300BB13BA /* EditHours */ = {
 			isa = PBXGroup;
 			children = (
@@ -4923,6 +4935,7 @@
 		8AD6BA961B706CF10040437E /* CATEGORY */ = {
 			isa = PBXGroup;
 			children = (
+				8A993CC51C296085009359E2 /* NSarray+Extension */,
 				8A41471B1C23E14C00D633D1 /* NSDictionary+Extension */,
 				8A03487B1C15793A0015E606 /* NSString+Extension */,
 				8A08293E1C1046F200AD8CBD /* UIView+draggable.h */,
@@ -6458,6 +6471,7 @@
 				8AD6BE591B706CF30040437E /* DoImagePickerController.m in Sources */,
 				8A114C9A1BE73F5D006AE3F0 /* JTSSimpleImageDownloader.m in Sources */,
 				8AD6C0BB1B706CF30040437E /* WhyWeUseFBViewController.m in Sources */,
+				8A993CCB1C2960D5009359E2 /* NSArray+Extension.m in Sources */,
 				8A3757B71B847C7A009DB7D4 /* AddNewPlaceViewController.m in Sources */,
 				8AC8F7561BDDD44800DEF14A /* UIImageView+Extension.m in Sources */,
 				8A3409461B8AD06A009B66C3 /* UIImage+Resizing.m in Sources */,
@@ -6884,8 +6898,8 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Reiner Lee (EFSLZ63588)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library",
@@ -6910,7 +6924,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b384f4c6-d74f-484d-ad13-a68f30676c55";
+				PROVISIONING_PROFILE = "7019fa0d-9f6e-41e5-955e-d97da8a6a364";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -6923,8 +6937,8 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Reiner Lee (EFSLZ63588)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library",
@@ -6949,7 +6963,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b384f4c6-d74f-484d-ad13-a68f30676c55";
+				PROVISIONING_PROFILE = "7019fa0d-9f6e-41e5-955e-d97da8a6a364";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 			};
 			name = Release;

@@ -141,6 +141,7 @@
 }
 -(void)initData:(NSString*)seetiesID PlaceID:(NSString*)placeID PostID:(NSString*)postID
 {
+    SLog(@"current seeties ID: %@",seetiesID);
     self.seetiesID = seetiesID;
     self.placeID = placeID;
     self.postID = postID;
@@ -153,8 +154,9 @@
 -(void)requestServerForSeetiShopNearbyShop
 {
     //  NSDictionary* param;
-    NSString* appendString = @"56397e301c4d5be92e8b4711/nearby/shops";
-    NSDictionary* dict = @{@"limit":@"6",
+    NSString* appendString = [NSString stringWithFormat:@"%@/nearby/shops",self.seetiesID];
+
+    NSDictionary* dict = @{@"limit":@"10",
                            @"offset":@"1",
                            @"lat" : @(self.shoplat),
                            @"lng" : @(self.shopLgn),                           
@@ -164,7 +166,7 @@
         
         self.seetiShopsModel = [[ConnectionManager dataManager]seNearbyShopModel];
         [self.arrShop addObjectsFromArray:self.seetiShopsModel.userPostData.shops];
-
+        [self.arrShop shuffledArray];
         [self InitNearByViewData];
         
         if (self.viewDidFinishLoadBlock) {

@@ -617,6 +617,13 @@
 "Sat"= "Sat";
 "Sun"= "Sun";
 
+"Monday"= "Monday";
+"Tuesday"= "Tuesday";
+"Wednesday"= "Wednesday";
+"Thursday"= "Thursday";
+"Friday"= "Friday";
+"Saturday"= "Saturday";
+"Sunday"= "Sunday";
 ""= "";
 "Edit Place Info"= "Edit Place Info";
 "b"= "b";

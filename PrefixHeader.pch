@@ -55,6 +55,8 @@
 #import "UIView+RoundedCorners.h"
 #import "NSObject+Extension.h"
 #import "UIImageView+Extension.h"
+#import "NSArray+Extension.h"
+
 //===============Model=================
 #import "RecommendationModel.h"
 #import "Locale.h"

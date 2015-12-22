@@ -491,6 +491,7 @@
         _seNearbySeetishop.btnSeetiShopClickedBlock = ^(NSString* idn)
         {
             _seetiesShopViewController = nil;
+            SLog(@"seeties shop ID: %@",idn);
             [weakSelf.seetiesShopViewController initDataWithSeetiesID:idn];
             [weakSelf.navigationController pushViewController:weakSelf.seetiesShopViewController animated:YES];
             // open nearby seetiShop
