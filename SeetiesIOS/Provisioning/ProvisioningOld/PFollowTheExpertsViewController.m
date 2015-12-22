@@ -561,18 +561,18 @@
 }
 -(IBAction)Feed1DoneButtonOnClick:(id)sender{
      CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-     [MainScroll setContentOffset:CGPointMake(screenWidth * 4, 0) animated:YES];
+     [MainScroll setContentOffset:CGPointMake(screenWidth * 4, -20) animated:YES];
 }
 -(IBAction)Feed2DoneButtonOnClick:(id)sender{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    [MainScroll setContentOffset:CGPointMake(screenWidth * 4, 0) animated:YES];
+    [MainScroll setContentOffset:CGPointMake(screenWidth * 4, -20) animated:YES];
 }
 -(IBAction)ProfileDoneButtonOnClick:(id)sender{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    [MainScroll setContentOffset:CGPointMake(screenWidth * 4, 0) animated:YES];}
+    [MainScroll setContentOffset:CGPointMake(screenWidth * 4, -20) animated:YES];}
 -(IBAction)EditPostDoneButtonOnClick:(id)sender{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    [MainScroll setContentOffset:CGPointMake(screenWidth * 4, 0) animated:YES];
+    [MainScroll setContentOffset:CGPointMake(screenWidth * 4, -20) animated:YES];
 }
 -(IBAction)TranslateDoneButtonOnClick:(id)sender{
     NSLog(@"Done tour");
