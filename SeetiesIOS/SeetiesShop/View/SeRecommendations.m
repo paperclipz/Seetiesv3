@@ -197,6 +197,9 @@
 
         if (![model.arrPhotos isNull]) {
             
+            int CountWidth = screenWidth - 110;
+            CountWidth = CountWidth / 4;
+            
             PhotoModel* photoModel;
             for (int z = 0; z < model.arrPhotos.count; z++) {
                 photoModel = model.arrPhotos[z];
@@ -206,7 +209,7 @@
                     break;
                 }else{
                     AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
-                    ShowUserProfileImage.frame = CGRectMake(80 + z * 65 , Getheight + 5, 60, 60);
+                    ShowUserProfileImage.frame = CGRectMake(80 + z * (CountWidth + 5) , Getheight + 5, CountWidth, CountWidth);
                     ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
                     ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
                     ShowUserProfileImage.layer.cornerRadius = 5;
@@ -230,7 +233,7 @@
                 
             }
             
-            Getheight += 70;
+            Getheight += CountWidth + 10;
         
 
         }
