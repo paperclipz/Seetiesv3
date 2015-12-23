@@ -2992,7 +2992,7 @@
         [MainScroll addSubview:ShowUserName];
         
         UIImageView *ShowVerifiedImg = [[UIImageView alloc]init];
-        ShowVerifiedImg.image = [UIImage imageNamed:@"VerifiedSeetishopIcon.png"];
+        ShowVerifiedImg.image = [UIImage imageNamed:@"SSBlueVerifiedIcon.png"];
         ShowVerifiedImg.frame = CGRectMake(90 + ShowUserName.frame.size.width, GetMessageHeight + 21, 18, 18);
         [MainScroll addSubview:ShowVerifiedImg];
         

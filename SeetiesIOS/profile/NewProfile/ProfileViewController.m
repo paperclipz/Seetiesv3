@@ -1380,7 +1380,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
     [self.btnFollower setTitle:strFollower forState:UIControlStateNormal];
     [self.btnFollowing setTitle:strFollowing forState:UIControlStateNormal];
     [self.btnEditProfile setTitle:LocalisedString(@"Edit Profile") forState:UIControlStateNormal];
-    [self.btnSearch setTitle:LocalisedString(@"search") forState:UIControlStateNormal];
+    [self.btnSearch setTitle:LocalisedString(@"Search") forState:UIControlStateNormal];
     [self.ibTableView reloadData];
     
 }

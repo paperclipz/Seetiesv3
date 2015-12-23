@@ -825,17 +825,18 @@
     //edit button
     MainEditButton = [[UIButton alloc]init];
     MainEditButton.frame = CGRectMake((screenWidth / 2) - 58, GetHeight, 115, 38);
-//    MainEditButton.layer.cornerRadius= 18;
-//    MainEditButton.layer.borderWidth = 1;
-//    MainEditButton.layer.masksToBounds = YES;
-//    MainEditButton.layer.borderColor=[[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0] CGColor];
     MainEditButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
     [MainEditButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
     MainEditButton.backgroundColor = [UIColor clearColor];
-    [MainEditButton setTitle:@"Edit" forState:UIControlStateNormal];
+    [MainEditButton setTitle:@"" forState:UIControlStateNormal];
     [MainEditButton addTarget:self action:@selector(EditButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
     if ([GetPermisionUser isEqualToString:@"Self"] || [GetPermisionUser isEqualToString:@"self"]) {
         [MainEditButton setTitle:LocalisedString(@"Edit") forState:UIControlStateNormal];
+        MainEditButton.layer.cornerRadius= 18;
+        MainEditButton.layer.borderWidth = 1;
+        MainEditButton.layer.masksToBounds = YES;
+        MainEditButton.layer.borderColor=[[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0] CGColor];
+
     }else{
         if ([GetFollowing isEqualToString:@"0"]) {
 //            [MainEditButton setTitle:LocalisedString(@"PFollow") forState:UIControlStateNormal];
