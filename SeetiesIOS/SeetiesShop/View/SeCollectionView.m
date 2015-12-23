@@ -52,7 +52,7 @@
     ShowbackLine.frame = CGRectMake(-1, 0, screenWidth + 2 , 50);
     [ShowbackLine setTitle:@"" forState:UIControlStateNormal];
     ShowbackLine.backgroundColor = [UIColor whiteColor];
-    [Utils setRoundBorder:ShowbackLine color:[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
+    [Utils setRoundBorder:ShowbackLine color:[UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
     
     ShowRelatedCollectionsText.frame = CGRectMake(20, 0, screenWidth - 40, 50);
     ShowRelatedCollectionsText.text = LocalisedString(@"Related collections");
@@ -87,7 +87,7 @@
     [SeeAllButton setTitle:LocalisedString(@"See all collections") forState:UIControlStateNormal];
     SeeAllButton.backgroundColor = [UIColor whiteColor];
     [SeeAllButton addTarget:self action:@selector(SeeAllButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [Utils setRoundBorder:SeeAllButton color:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
+    [Utils setRoundBorder:SeeAllButton color:[UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
     
     //[self InitScrollViewData];
 }
@@ -97,7 +97,7 @@
     UIButton *TempButton = [[UIButton alloc]init];
     [TempButton setTitle:@"" forState:UIControlStateNormal];
     TempButton.backgroundColor = [UIColor whiteColor];
-    [Utils setRoundBorder:TempButton color:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f] borderRadius:10.0f borderWidth:1.0f];
+    [Utils setRoundBorder:TempButton color:[UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0f] borderRadius:10.0f borderWidth:1.0f];
 
     return TempButton;
 }

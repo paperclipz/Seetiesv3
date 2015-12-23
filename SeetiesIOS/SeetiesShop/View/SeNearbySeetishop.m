@@ -43,7 +43,7 @@
     ShowbackLine.frame = CGRectMake(-1, 0, screenWidth + 2 , 50);
     [ShowbackLine setTitle:@"" forState:UIControlStateNormal];
     ShowbackLine.backgroundColor = [UIColor whiteColor];
-    [Utils setRoundBorder:ShowbackLine color:[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
+    [Utils setRoundBorder:ShowbackLine color:[UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
     
     ShowSeenearbySeetishop.frame = CGRectMake(20, 0, screenWidth - 40, 50);
     ShowSeenearbySeetishop.text = LocalisedString(@"Nearby Shops");
@@ -52,7 +52,7 @@
     ShowbackLineSeeAll.frame = CGRectMake(-1, 250, screenWidth + 2 , 50);
     [ShowbackLineSeeAll setTitle:@"" forState:UIControlStateNormal];
     ShowbackLineSeeAll.backgroundColor = [UIColor whiteColor];
-    [Utils setRoundBorder:ShowbackLineSeeAll color:[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
+    [Utils setRoundBorder:ShowbackLineSeeAll color:[UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
     
     SeeAllButton.frame = CGRectMake(0, 250, screenWidth, 50);
     [SeeAllButton setTitle:LocalisedString(@"See all") forState:UIControlStateNormal];

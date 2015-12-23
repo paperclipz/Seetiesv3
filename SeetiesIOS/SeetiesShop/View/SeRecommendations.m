@@ -46,7 +46,7 @@
     ShowbackLine.frame = CGRectMake(-1, 0, screenWidth + 2 , 50);
     [ShowbackLine setTitle:@"" forState:UIControlStateNormal];
     ShowbackLine.backgroundColor = [UIColor whiteColor];
-    [Utils setRoundBorder:ShowbackLine color:[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
+    [Utils setRoundBorder:ShowbackLine color:[UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
     
     ShowRecommendationsText.frame = CGRectMake(20, 0, screenWidth - 40, 50);
     ShowRecommendationsText.text = LocalisedString(@"Recommendations");
@@ -58,7 +58,7 @@
     [SeeAllButton setTitle:LocalisedString(@"See all recommendations") forState:UIControlStateNormal];
     SeeAllButton.backgroundColor = [UIColor whiteColor];
     [SeeAllButton addTarget:self action:@selector(SeeAllButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [Utils setRoundBorder:SeeAllButton color:[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
+    [Utils setRoundBorder:SeeAllButton color:[UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
     
 
 }
@@ -72,7 +72,7 @@
     ShowUserProfileImage.layer.masksToBounds = YES;
     ShowUserProfileImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
     ShowUserProfileImage.layer.borderWidth = 1.0f;
-    ShowUserProfileImage.layer.borderColor = [UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f].CGColor;
+    ShowUserProfileImage.layer.borderColor = [UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0f].CGColor;
     return ShowUserProfileImage;
 }
 -(UILabel *)SetupLabel
@@ -90,7 +90,7 @@
 {
     UIButton *Line = [[UIButton alloc]init];
     [Line setTitle:@"" forState:UIControlStateNormal];
-    [Line setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+    [Line setBackgroundColor:[UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0f]];
     return Line;
 }
 
