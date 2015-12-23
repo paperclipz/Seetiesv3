@@ -457,7 +457,7 @@
 
 -(void)storeServerData:(id)obj requestType:(ServerRequestType)type withURL:(NSString*)url
 {
-    NSLog(@"\n\n\n [SUCCESS RESPONSE RESULT URL : %@] \n%@ \n\n\n", [self getFullURLwithType:type],[obj bv_jsonStringWithPrettyPrint:YES]);
+    NSLog(@"\n\n\n [SUCCESS RESPONSE RESULT URL : %@] \n%@ \n\n\n", url,[obj bv_jsonStringWithPrettyPrint:YES]);
 
     [self storeServerData:obj requestType:type];
 }

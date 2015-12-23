@@ -452,6 +452,36 @@
     return _isNUll;
 }
 
+#pragma mark - App Utilities
++(NSString*)getDeviceAppLanguageCode
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *userLanguage = [defaults objectForKey:@"UserData_SystemLanguage"];
+    
+    if (userLanguage) {
+        if ([userLanguage isEqualToString:@"English"]) {
+            
+            return ENGLISH_CODE;
+        }else if([userLanguage isEqualToString:@"Simplified Chinese"] || [userLanguage isEqualToString:@"简体中文"]){
+            return CHINESE_CODE;
+
+        }else if([userLanguage isEqualToString:@"Traditional Chinese"] || [userLanguage isEqualToString:@"繁體中文"]){
+
+            return TAIWAN_CODE;
+            
+        }else if([userLanguage isEqualToString:@"Bahasa Indonesia"]){
+
+            return INDONESIA_CODE;
+
+        }else if([userLanguage isEqualToString:@"Thai"] || [userLanguage isEqualToString:@"th"] || [userLanguage isEqualToString:@"ภาษาไทย"]){
+            return THAI_CODE;
+        }
+    
+    }
+    return nil;
+    
+}
+
 +(NSString*)getDistance:(float)distance Locality:(NSString*)local
 {
     NSString* strDistance;

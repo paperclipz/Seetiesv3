@@ -16,6 +16,7 @@
     
     BOOL BTranslation;
 }
+@property (weak, nonatomic) IBOutlet UIButton *btnTranslate;
 //============= title desc ====================//
 @property (weak, nonatomic) IBOutlet UILabel *ilblAddress;
 @property (weak, nonatomic) IBOutlet UILabel *ilblPubTransport;
@@ -78,6 +79,7 @@
 
 
 // ----------------     MODEL   ----------------------//
+@property(nonatomic,strong)SeShopDetailModel* seShopModel;
 
 @property(nonatomic,strong)NSArray* arrayHourList;
 @property(nonatomic,strong)NSArray* arrayFeatureAvailableList;
@@ -85,7 +87,6 @@
 
 @property(nonatomic,strong)NSString* seetiesID;
 @property(nonatomic,strong)NSString* placeID;
-@property(nonatomic,strong)NSString* postID;
 
 @property(nonatomic,strong)NSString* strTranslationBestKnown;
 @property(nonatomic,strong)NSString* strTranslationNearbyDesc;
@@ -127,6 +128,11 @@
     self.ibMapView.delegate = self;
     BTranslation = NO;
     [self initTableViewDelegate];
+    
+    if ([self.seShopModel.language isEqualToString:[Utils getDeviceAppLanguageCode]]) {
+        self.btnTranslate.hidden = YES;
+    }
+    
     [self changeLanguage];
 }
 
@@ -430,13 +436,13 @@
    
 
 }
--(void)initData:(NSString*)seetiesID PlaceID:(NSString*)placeID PostID:(NSString*)postID
+-(void)initData:(SeShopDetailModel*)shopModel
 {
-    
-    self.seetiesID = seetiesID;
-    self.placeID = placeID;
-    self.postID = postID;
+    self.seShopModel = shopModel;
+    self.seetiesID = self.seShopModel.seetishop_id;
+    self.placeID = self.seShopModel.location.place_id;
 }
+
 - (IBAction)btnTranslationClicked:(id)sender{
 
     if (BTranslation == NO) {

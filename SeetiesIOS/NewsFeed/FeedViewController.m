@@ -23,8 +23,11 @@
 #import "SuggestedCollectionsViewController.h"
 #import "OpenWebViewController.h"
 #import "NSString+ChangeAsciiString.h"
+
+
 @interface FeedViewController ()
 {
+    __weak IBOutlet UIButton *btnTest;
     //no connection view
     IBOutlet UIView *NoConnectionView;
     IBOutlet UILabel *ShowNoConnectionText;
@@ -469,6 +472,9 @@
 }
 -(void)initSelfView
 {
+
+    btnTest.hidden = !IS_SIMULATOR;
+    
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *CheckString = [defaults objectForKey:@"TestLocalData"];

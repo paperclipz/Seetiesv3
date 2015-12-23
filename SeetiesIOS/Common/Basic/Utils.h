@@ -161,6 +161,7 @@ typedef enum {
 +(BOOL)isArrayNull:(NSArray*)array;
 
 +(NSString*)getDistance:(float)distance Locality:(NSString*)local;
++(NSString*)getDeviceAppLanguageCode;
 
 
 #define ARRAY_LIST_SIZE 10.0f
@@ -175,6 +176,8 @@ typedef enum {
 #define FACEBOOK @"Facebook"
 #define Nearby_Public_Transport @"nearby_public_transport"
 #define Recommended_Information @"recommended_information"
+
+//#define USER_SYSTEM_LANGUAGE_CODE @"user_system_language_code"
 
 // ======================================   Prompt Message      ============================
 #define SUCCESSFUL_COLLECTED @"Successful Collected"

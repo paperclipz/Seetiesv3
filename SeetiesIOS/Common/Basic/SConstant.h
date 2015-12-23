@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define API_VERSION @"2.2"
+#define API_VERSION @"2.3"
 
 @interface SConstant : NSObject
 
@@ -88,17 +88,14 @@ extern NSString *const kAFAviarySecret;
 
 #define TOKEN_2_0 @"JDJ5JDEwJDZyamE0MlZKbTNKbHpDSElxR0dpUGVnbkJQMzdzRC40eDJna2M3RlJiVFZVbnJzRVpTQTNt"
 
-
-#ifndef Language_Changer_Constants_h
-#define Language_Changer_Constants_h
-
+// ======================= LANGUAGE CODE ========================//
 #define ENGLISH_CODE @"530b0ab26424400c76000003"
 #define CHINESE_CODE @"530b0aa16424400c76000002"
 #define TAIWAN_CODE @"530d5e9b642440d128000018"
 #define INDONESIA_CODE @"53672e863efa3f857f8b4ed2"
-
 #define FILIPINES_CODE @"539fbb273efa3fde3f8b4567"
 #define THAI_CODE @"544481503efa3ff1588b4567"
+// ======================= LANGUAGE CODE ========================//
 
 // NSUserDefaults keys
 #define DEFAULTS_KEY_LANGUAGE_CODE @"LanguageCode" // The key against which to store the selected language code.
@@ -126,5 +123,12 @@ extern NSString *const kAFAviarySecret;
 #define VIEW_PADDING 10.0f
 #define TRANSITION_DURTION 0.3f
 
+
+#if TARGET_IPHONE_SIMULATOR
+static BOOL IS_SIMULATOR = YES;
+
+#else
+static BOOL IS_SIMULATOR = NO;
 #endif
+
 

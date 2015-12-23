@@ -121,15 +121,6 @@
     [LoadingManager show];
     [self initSelfView];
 
-//    [[SearchManager Instance]getCoordinateFromGPSThenWifi:^(CLLocation *currentLocation) {
-//        
-//        [self initSelfView];
-//
-//    } errorBlock:^(NSString *status) {
-//        [self initSelfView];
-//
-//    }];
-
 }
 
 -(void)initSelfView
@@ -148,11 +139,11 @@
 -(void)setupViews
 {
     [self.arrViews addObject:self.seShopDetailView];
-    [self.arrViews addObject:self.seCollectionView];
-    [self.arrViews addObject:self.seRecommendations];
+  //  [self.arrViews addObject:self.seCollectionView];
+  //  [self.arrViews addObject:self.seRecommendations];
     
     if (![Utils stringIsNilOrEmpty:self.seetiesID]) {
-        [self.arrViews addObject:self.seNearbySeetishop];
+   //     [self.arrViews addObject:self.seNearbySeetishop];
 
     }
   
@@ -160,11 +151,11 @@
 -(void)setupViewData
 {
     [self.seShopDetailView initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
-    [self.seCollectionView initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
-    [self.seRecommendations initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
+  //  [self.seCollectionView initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
+  //  [self.seRecommendations initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
     
     if (![Utils stringIsNilOrEmpty:self.seetiesID]) {
-        [self.seNearbySeetishop initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
+   //     [self.seNearbySeetishop initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
     }
 }
 -(void)addViews
@@ -199,7 +190,6 @@
         UIView *previousView = [self adjustView:self.arrViews[count] :count];
         float height = previousView.frame.origin.y + previousView.frame.size.height;
         [view setY:height];
-
         return view;
     }
     
@@ -306,7 +296,7 @@
     {
         
         _seShopDetailView = [SeShopDetailView initializeCustomView];
-        [_seShopDetailView adjustToScreenWidth];
+        [_seShopDetailView setWidth:self.view.frame.size.width];
         [_seShopDetailView setNeedsUpdateConstraints];
         [_seShopDetailView layoutIfNeeded];
         
@@ -354,8 +344,8 @@
         
         _seShopDetailView.viewDidFinishLoadBlock = ^(SeShopDetailModel* model)
         {
-            [weakSelf setHiddenVisible];
             weakSelf.seShopModel = model;
+            [weakSelf setHiddenVisible];
             [weakSelf rearrangeView];
             
         };
@@ -363,8 +353,7 @@
         _seShopDetailView.btnMoreInfoClickedBlock = ^(SeShopDetailModel* model)
         {
             _seetiesMoreInfoViewController = nil;
-            weakSelf.seetiesMoreInfoViewController.seShopModel = model;
-            [weakSelf.seetiesMoreInfoViewController initData:weakSelf.seetiesID PlaceID:weakSelf.placeID PostID:weakSelf.postID];
+            [weakSelf.seetiesMoreInfoViewController initData:model];
             [weakSelf.navigationController pushViewController:weakSelf.seetiesMoreInfoViewController animated:YES];
 
         };
@@ -376,8 +365,18 @@
 -(void)setHiddenVisible
 {
     [UIView transitionWithView:self.btnShare duration:1.0f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+       
+
+        if ([self.seShopModel.language isEqualToString:[Utils getDeviceAppLanguageCode]]) {
+            self.btnTranslateWidthConstraint.constant = 0;
+
+        }
+        else
+        {
+            self.btnTranslateWidthConstraint.constant = 40;
+
+        }
         self.btnShareWidthConstraint.constant = 40;
-        self.btnTranslateWidthConstraint.constant = 40;
         [btnTranslate setNeedsUpdateConstraints];
         [btnTranslate layoutIfNeeded];
         [self.btnShare setNeedsUpdateConstraints];
