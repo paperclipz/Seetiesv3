@@ -56,6 +56,7 @@
 #import "NSObject+Extension.h"
 #import "UIImageView+Extension.h"
 #import "NSArray+Extension.h"
+#import "MapManager.h"
 
 //===============Model=================
 #import "RecommendationModel.h"

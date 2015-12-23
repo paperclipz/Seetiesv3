@@ -847,6 +847,7 @@
 		8A988FB91C29049800D0F0EF /* WMATweetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A988FB81C29049800D0F0EF /* WMATweetView.m */; };
 		8A993CC41C290CE4009359E2 /* UITextView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A993CC31C290CE4009359E2 /* UITextView+Extension.swift */; };
 		8A993CCB1C2960D5009359E2 /* NSArray+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A993CCA1C2960D5009359E2 /* NSArray+Extension.m */; };
+		8A993CCE1C2A8113009359E2 /* MapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A993CCD1C2A8113009359E2 /* MapManager.m */; };
 		8A9F258A1B8D69E100BB13BA /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9F25881B8D69E100BB13BA /* SearchTableViewController.m */; };
 		8A9F258B1B8D69E100BB13BA /* SearchTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9F25891B8D69E100BB13BA /* SearchTableViewController.xib */; };
 		8A9F25CE1B8ED8BC00BB13BA /* EditHoursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9F25CC1B8ED8BC00BB13BA /* EditHoursViewController.m */; };
@@ -2171,6 +2172,8 @@
 		8A993CC31C290CE4009359E2 /* UITextView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Extension.swift"; sourceTree = "<group>"; };
 		8A993CC91C2960D5009359E2 /* NSArray+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Extension.h"; sourceTree = "<group>"; };
 		8A993CCA1C2960D5009359E2 /* NSArray+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Extension.m"; sourceTree = "<group>"; };
+		8A993CCC1C2A8113009359E2 /* MapManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapManager.h; sourceTree = "<group>"; };
+		8A993CCD1C2A8113009359E2 /* MapManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapManager.m; sourceTree = "<group>"; };
 		8A9F25871B8D69E100BB13BA /* SearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewController.h; sourceTree = "<group>"; };
 		8A9F25881B8D69E100BB13BA /* SearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewController.m; sourceTree = "<group>"; };
 		8A9F25891B8D69E100BB13BA /* SearchTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchTableViewController.xib; sourceTree = "<group>"; };
@@ -5098,6 +5101,8 @@
 				8AB813C21BC23ECE002F5F06 /* UploadManager.m */,
 				8A69E0FB1C046DF900224BB4 /* ShareManager.h */,
 				8A69E0FC1C046DF900224BB4 /* ShareManager.m */,
+				8A993CCC1C2A8113009359E2 /* MapManager.h */,
+				8A993CCD1C2A8113009359E2 /* MapManager.m */,
 			);
 			name = MANAGER;
 			path = Managers;
@@ -6529,6 +6534,7 @@
 				8AC8F72C1BDA414E00DEF14A /* ProfilePageCollectionFooterTableViewCell.m in Sources */,
 				8A6584371B981C0E00BC86B9 /* CategoryCollectionViewCell.m in Sources */,
 				8AF53EFC1BD65F5A00AF6C9E /* UIView+RoundedCorners.m in Sources */,
+				8A993CCE1C2A8113009359E2 /* MapManager.m in Sources */,
 				8A114C771BE73F5D006AE3F0 /* AUIAutoGrowingTextView.m in Sources */,
 				8A03487E1C1579640015E606 /* NSString+Extra.m in Sources */,
 				8A114CA81BE73F5D006AE3F0 /* AsyncImageView.m in Sources */,

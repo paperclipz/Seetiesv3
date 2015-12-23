@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PhotoListViewController">
             <connections>
                 <outlet property="ibCollectionView" destination="0j1-4I-eAy" id="irq-8H-tdG"/>
+                <outlet property="lblTitle" destination="LnO-XM-sN3" id="f2z-Qf-0ec"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
