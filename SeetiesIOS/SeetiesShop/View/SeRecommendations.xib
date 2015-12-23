@@ -37,7 +37,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="ProximaNovaSoft-Bold" family="Proxima Nova Soft" pointSize="14"/>
                     <state key="normal" title="Button">
-                        <color key="titleColor" red="0.20000000000000001" green="0.70980392160000005" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="titleColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
             </subviews>

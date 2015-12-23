@@ -138,6 +138,9 @@
         MainScroll.contentSize = CGSizeMake(GetWidth + 50 + i * (GetWidth + 25), 200);
     }
 
+   // self.frame = CGRectMake(0), 0, screenWidth, 300);
+    [self setHeight:300];
+    [self setWidth:screenWidth];
 }
 -(void)initData:(NSString*)seetiesID PlaceID:(NSString*)placeID PostID:(NSString*)postID
 {
