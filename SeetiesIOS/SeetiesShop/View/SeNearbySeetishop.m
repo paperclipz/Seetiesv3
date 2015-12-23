@@ -90,7 +90,7 @@
         ShowUserProfileImage.layer.cornerRadius = GetWidth / 2;
         ShowUserProfileImage.layer.masksToBounds = YES;
         ShowUserProfileImage.layer.borderWidth = 1.0f;
-        ShowUserProfileImage.layer.borderColor = [UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f].CGColor;
+        ShowUserProfileImage.layer.borderColor = OUTLINE_COLOR.CGColor;
         
 //        if (![shopModel.arrPhotos isNull])
 //        {
