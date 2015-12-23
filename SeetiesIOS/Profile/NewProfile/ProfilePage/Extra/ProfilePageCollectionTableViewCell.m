@@ -87,7 +87,7 @@
     self.profileType = type;
     
     self.lblTitle.text = self.model.name;
-    self.lblNoOfCollection.text = [NSString stringWithFormat:@"%d %@",self.model.collection_posts_count,LocalisedString(@"recommendation")];
+    self.lblNoOfCollection.text = [NSString stringWithFormat:@"%d %@",self.model.collection_posts_count,LocalisedString(@"Recommendations")];
     
     self.ibImageViewA.image = [UIImage imageNamed:@"EmptyCollection.png"];
     self.ibImageViewB.image = [UIImage imageNamed:@"EmptyCollection.png"];

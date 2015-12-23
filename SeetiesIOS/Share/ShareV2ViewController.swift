@@ -15,6 +15,7 @@ import UIKit
 
 class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate{
     @IBOutlet weak var ibCollectionView: UICollectionView!
+    @IBOutlet weak var ShareFrenView: UIView!
     
     var viewController = UIViewController()
 
@@ -58,6 +59,7 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
     override func viewDidLoad() {
         super.viewDidLoad()
         initSelfView()
+        initShareFrenView()
         shareManager = ShareManager()
         // Do any additional setup after loading the view.
     }
@@ -125,6 +127,13 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
         let cellWidth:CGFloat = ((screenFrame.size.width/3) - 15)
         let cellSize = CGSizeMake(cellWidth,cellDefaultWidth/cellWidth*cellDefaultHeight)
         return cellSize
+    }
+    
+    func initShareFrenView()
+    {
+        if(self.shareType == ShareTypePostUser){
+            self.ShareFrenView.hidden = true
+        }
     }
     
     func initCollectionView()
