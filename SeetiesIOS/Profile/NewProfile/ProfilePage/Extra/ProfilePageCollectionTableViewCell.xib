@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -12,10 +12,10 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="190"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZWw-DX-Gtz" id="Cad-BQ-EAB">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="189"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="189.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cg4-oM-VeY" userLabel="innerContentView">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cg4-oM-VeY" userLabel="innerContentView">
                         <rect key="frame" x="8" y="8" width="304" height="174"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EmptyCollection.png" translatesAutoresizingMaskIntoConstraints="NO" id="cXO-xp-Gkt">
@@ -23,7 +23,7 @@
                                 <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Someone Collection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kHj-jv-4sW">
-                                <rect key="frame" x="33" y="117" width="127" height="21"/>
+                                <rect key="frame" x="33" y="117" width="146.5" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="mC9-fF-UTc"/>
                                 </constraints>
@@ -54,10 +54,10 @@
                                 <rect key="frame" x="155" y="1" width="148" height="99"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bl0-UK-jJ9">
-                                <rect key="frame" x="181" y="117" width="115" height="38"/>
+                                <rect key="frame" x="208" y="117" width="88" height="42"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="38" id="0jW-RY-bfl"/>
-                                    <constraint firstAttribute="width" constant="115" id="TbI-8t-0G8"/>
+                                    <constraint firstAttribute="height" constant="42" id="0jW-RY-bfl"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="88" id="TbI-8t-0G8"/>
                                 </constraints>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Edit">
@@ -91,7 +91,7 @@
                         <constraints>
                             <constraint firstItem="1t0-2b-t7N" firstAttribute="top" secondItem="1l0-BW-VUP" secondAttribute="bottom" constant="17" id="3N6-te-GXh"/>
                             <constraint firstItem="ZuT-nx-PRe" firstAttribute="top" secondItem="1l0-BW-VUP" secondAttribute="top" id="AAb-1F-wU0"/>
-                            <constraint firstItem="Bl0-UK-jJ9" firstAttribute="leading" secondItem="kHj-jv-4sW" secondAttribute="trailing" constant="21" id="E6P-4i-cmR"/>
+                            <constraint firstItem="Bl0-UK-jJ9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kHj-jv-4sW" secondAttribute="trailing" constant="10" id="E6P-4i-cmR"/>
                             <constraint firstItem="1l0-BW-VUP" firstAttribute="leading" secondItem="cg4-oM-VeY" secondAttribute="leading" id="E9e-Da-XaQ"/>
                             <constraint firstItem="kHj-jv-4sW" firstAttribute="top" secondItem="1l0-BW-VUP" secondAttribute="bottom" constant="17" id="FSK-1y-gUO"/>
                             <constraint firstItem="ZuT-nx-PRe" firstAttribute="leading" secondItem="1l0-BW-VUP" secondAttribute="leading" id="I0k-2N-3ug"/>

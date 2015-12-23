@@ -9,6 +9,8 @@
 #import "SeShopDetailModel.h"
 @interface SeShopDetailModel()
 @property(nonatomic,strong)NSMutableArray* arrayInfo;
+@property(nonatomic,strong)NSArray* languages;
+
 @end
 @implementation SeShopDetailModel
 
@@ -103,5 +105,14 @@
 -(NSArray*)arrayInformation// for information after process
 {
     return [NSArray arrayWithArray:_arrayInfo];
+}
+
+-(NSString*)language
+{
+    if (_languages.count >0) {
+        
+        _language = _languages[0];
+    }
+    return _language;
 }
 @end

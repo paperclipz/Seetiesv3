@@ -15,10 +15,12 @@
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bt2-NP-Mhi">
                         <rect key="frame" x="0.0" y="0.0" width="117" height="117"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="bt2-NP-Mhi" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="4CD-y6-Qcj"/>
                 <constraint firstAttribute="trailing" secondItem="bt2-NP-Mhi" secondAttribute="trailing" id="9I2-iV-RN6"/>
