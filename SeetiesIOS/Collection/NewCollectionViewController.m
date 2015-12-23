@@ -231,9 +231,9 @@
     NSLog(@"Tick Button On Click");
     TickButton.selected=!TickButton.selected;
     if (TickButton.selected) {
-        SetPublic = @"0";
-    }else{
         SetPublic = @"1";
+    }else{
+        SetPublic = @"0";
     }
     NSLog(@"SetPublic is %@",SetPublic);
 }

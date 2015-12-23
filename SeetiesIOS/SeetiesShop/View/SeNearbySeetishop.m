@@ -124,7 +124,7 @@
         [MainScroll addSubview:ShowUserProfileImage];
         
         UILabel *ShowTitle = [[UILabel alloc]init];
-        ShowTitle.frame = CGRectMake(25 + i * (GetWidth + 25), 20 + GetWidth + 5, GetWidth, GetWidth);
+        ShowTitle.frame = CGRectMake(25 + i * (GetWidth + 25), 5 + GetWidth + 5, GetWidth, GetWidth);
         ShowTitle.text = shopModel.name;
         ShowTitle.backgroundColor = [UIColor clearColor];
         ShowTitle.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
