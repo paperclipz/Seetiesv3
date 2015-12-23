@@ -43,6 +43,10 @@
 		0BE340231B73021B00F49625 /* Adriane Text Bold Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0BE340201B73021B00F49625 /* Adriane Text Bold Italic.otf */; };
 		0BE340241B73021B00F49625 /* ProximaNovaSoft-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BE340211B73021B00F49625 /* ProximaNovaSoft-Bold.ttf */; };
 		0BE340251B73021B00F49625 /* ProximaNovaSoft-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BE340221B73021B00F49625 /* ProximaNovaSoft-Regular.ttf */; };
+		0BFB21A41C2A8E0200EE9D84 /* featureNo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BFB21A01C2A8E0200EE9D84 /* featureNo@2x.png */; };
+		0BFB21A51C2A8E0200EE9D84 /* featureNo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BFB21A11C2A8E0200EE9D84 /* featureNo@3x.png */; };
+		0BFB21A61C2A8E0200EE9D84 /* featureYes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BFB21A21C2A8E0200EE9D84 /* featureYes@2x.png */; };
+		0BFB21A71C2A8E0200EE9D84 /* featureYes@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BFB21A31C2A8E0200EE9D84 /* featureYes@3x.png */; };
 		8A00979B1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A00979A1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m */; };
 		8A00979D1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A00979C1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib */; };
 		8A0348791C154F9C0015E606 /* SeetiesMoreInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0348771C154F9C0015E606 /* SeetiesMoreInfoViewController.m */; };
@@ -1180,6 +1184,10 @@
 		0BE340201B73021B00F49625 /* Adriane Text Bold Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Adriane Text Bold Italic.otf"; sourceTree = "<group>"; };
 		0BE340211B73021B00F49625 /* ProximaNovaSoft-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNovaSoft-Bold.ttf"; sourceTree = "<group>"; };
 		0BE340221B73021B00F49625 /* ProximaNovaSoft-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNovaSoft-Regular.ttf"; sourceTree = "<group>"; };
+		0BFB21A01C2A8E0200EE9D84 /* featureNo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "featureNo@2x.png"; path = "SeetiesIOS/SEETIES_ASSETS/SeetiesArtWork/SeetiShop/featureNo@2x.png"; sourceTree = SOURCE_ROOT; };
+		0BFB21A11C2A8E0200EE9D84 /* featureNo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "featureNo@3x.png"; path = "SeetiesIOS/SEETIES_ASSETS/SeetiesArtWork/SeetiShop/featureNo@3x.png"; sourceTree = SOURCE_ROOT; };
+		0BFB21A21C2A8E0200EE9D84 /* featureYes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "featureYes@2x.png"; path = "SeetiesIOS/SEETIES_ASSETS/SeetiesArtWork/SeetiShop/featureYes@2x.png"; sourceTree = SOURCE_ROOT; };
+		0BFB21A31C2A8E0200EE9D84 /* featureYes@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "featureYes@3x.png"; path = "SeetiesIOS/SEETIES_ASSETS/SeetiesArtWork/SeetiShop/featureYes@3x.png"; sourceTree = SOURCE_ROOT; };
 		0D9C815292A4ED6F2408E5E5 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A0097991B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomEditPhotoTableViewCell.h; sourceTree = "<group>"; };
 		8A00979A1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomEditPhotoTableViewCell.m; sourceTree = "<group>"; };
@@ -4435,6 +4443,10 @@
 		8A6CCC4D1C18075800BCD54E /* Seetishop */ = {
 			isa = PBXGroup;
 			children = (
+				0BFB21A01C2A8E0200EE9D84 /* featureNo@2x.png */,
+				0BFB21A11C2A8E0200EE9D84 /* featureNo@3x.png */,
+				0BFB21A21C2A8E0200EE9D84 /* featureYes@2x.png */,
+				0BFB21A31C2A8E0200EE9D84 /* featureYes@3x.png */,
 				0B40B3FD1C2164C9002D4ECB /* SSDefaultLogo@2x.png */,
 				0B40B3FE1C2164C9002D4ECB /* SSDefaultLogo@3x.png */,
 				8A6CCC4E1C18075800BCD54E /* SSBestKnowIcon@2x.png */,
@@ -5908,6 +5920,7 @@
 				8A6CCCA11C18075800BCD54E /* 1.png in Resources */,
 				8A6CCD531C18075800BCD54E /* ConnectionWeak@2x.png in Resources */,
 				8AC8F7331BDA414E00DEF14A /* ProfilePagePostCollectionViewCell.xib in Resources */,
+				0BFB21A51C2A8E0200EE9D84 /* featureNo@3x.png in Resources */,
 				8A6CCEE11C18075800BCD54E /* WalkthroughPostDetails.png in Resources */,
 				8A6CCD331C18075800BCD54E /* LocationBtn@2x.png in Resources */,
 				8A6CCE881C18075800BCD54E /* SearchBarIcon@3x.png in Resources */,
@@ -5951,6 +5964,7 @@
 				8A6CCD5D1C18075800BCD54E /* CloseStatus@2x.png in Resources */,
 				8A6CCD601C18075800BCD54E /* CollectionImgOverlay@3x.png in Resources */,
 				0BC9B38B1B7DD288008334FF /* FeedViewController.xib in Resources */,
+				0BFB21A41C2A8E0200EE9D84 /* featureNo@2x.png in Resources */,
 				8A6CCD7F1C18075800BCD54E /* CollectionInFeedOverlay@3x.png in Resources */,
 				8A6CCE2B1C18075800BCD54E /* BluePrice@2x.png in Resources */,
 				8A6CCCB91C18075800BCD54E /* PinInMap@2x.png in Resources */,
@@ -6150,6 +6164,7 @@
 				8A6CCE611C18075800BCD54E /* NoCollectionIcon@2x.png in Resources */,
 				8A6CCDE51C18075800BCD54E /* ConnectWithFacebook@2x.png in Resources */,
 				8A6CCCC41C18075800BCD54E /* Icon-Small-40.png in Resources */,
+				0BFB21A61C2A8E0200EE9D84 /* featureYes@2x.png in Resources */,
 				8A6CCE5A1C18075800BCD54E /* LikeIcon@3x.png in Resources */,
 				8A6CCD081C18075800BCD54E /* NoPhotoInCollection@3x.png in Resources */,
 				8A6CCD6F1C18075800BCD54E /* ExploreSearchBar@3x.png in Resources */,
@@ -6198,6 +6213,7 @@
 				8A6CCEC51C18075800BCD54E /* Thai.png in Resources */,
 				8A6CCCF41C18075800BCD54E /* FollowingCollectionIcon@3x.png in Resources */,
 				8A6CCE7C1C18075800BCD54E /* ProfileSettingsIcon@3x.png in Resources */,
+				0BFB21A71C2A8E0200EE9D84 /* featureYes@3x.png in Resources */,
 				8A6CCEC81C18075800BCD54E /* CloseBtn@3x.png in Resources */,
 				8A6CCE791C18075800BCD54E /* ProfileSearchBar@2x.png in Resources */,
 				8A6CCDCB1C18075800BCD54E /* BlueTick@2x.png in Resources */,

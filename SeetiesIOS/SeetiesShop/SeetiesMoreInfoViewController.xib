@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -557,36 +557,25 @@
                         </mask>
                     </variation>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YES" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YeC-Kr-33F">
-                    <rect key="frame" x="50" y="13" width="50" height="21"/>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="featureYes.png" translatesAutoresizingMaskIntoConstraints="NO" id="J8q-Bj-hyX">
+                    <rect key="frame" x="50" y="12" width="50" height="20"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="50" id="NqP-eZ-I1f"/>
-                        <constraint firstAttribute="width" constant="92" id="Rqt-G8-19J"/>
-                        <constraint firstAttribute="height" constant="21" id="pgS-IY-ZUB"/>
+                        <constraint firstAttribute="width" constant="50" id="BAi-lI-WAg"/>
+                        <constraint firstAttribute="height" constant="20" id="Neb-2M-zI7"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                    <color key="textColor" red="0.61176470588235299" green="0.80000000000000004" blue="0.396078431372549" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="Rqt-G8-19J"/>
-                        </mask>
-                    </variation>
-                </label>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="YeC-Kr-33F" firstAttribute="leading" secondItem="PPD-ze-gX7" secondAttribute="leading" constant="50" id="8cs-yF-gti"/>
-                <constraint firstItem="YeC-Kr-33F" firstAttribute="centerY" secondItem="PPD-ze-gX7" secondAttribute="centerY" constant="1.5" id="A4O-Tm-09l"/>
                 <constraint firstItem="ctX-06-t1e" firstAttribute="leading" secondItem="PPD-ze-gX7" secondAttribute="leading" id="Amu-tP-hl3"/>
                 <constraint firstAttribute="trailing" secondItem="ctX-06-t1e" secondAttribute="trailing" id="GTu-wd-ecH"/>
-                <constraint firstItem="ctX-06-t1e" firstAttribute="centerY" secondItem="YeC-Kr-33F" secondAttribute="centerY" id="IhK-VK-Em5"/>
                 <constraint firstItem="ctX-06-t1e" firstAttribute="centerX" secondItem="PPD-ze-gX7" secondAttribute="centerX" id="O7n-Qv-oS9"/>
+                <constraint firstItem="J8q-Bj-hyX" firstAttribute="centerY" secondItem="PPD-ze-gX7" secondAttribute="centerY" id="bUV-ab-Fp3"/>
+                <constraint firstItem="ctX-06-t1e" firstAttribute="top" secondItem="PPD-ze-gX7" secondAttribute="top" constant="23" id="jgQ-3v-pGo"/>
                 <constraint firstItem="ctX-06-t1e" firstAttribute="leading" secondItem="PPD-ze-gX7" secondAttribute="leading" id="pEK-By-yqd"/>
-                <constraint firstAttribute="trailing" secondItem="YeC-Kr-33F" secondAttribute="trailing" constant="200" id="r5u-Hp-y6t"/>
+                <constraint firstItem="J8q-Bj-hyX" firstAttribute="leading" secondItem="PPD-ze-gX7" secondAttribute="leading" constant="50" id="pj5-bh-ySb"/>
                 <constraint firstItem="ctX-06-t1e" firstAttribute="centerX" secondItem="PPD-ze-gX7" secondAttribute="centerX" id="vcZ-En-fKx"/>
-                <constraint firstItem="YeC-Kr-33F" firstAttribute="centerX" secondItem="PPD-ze-gX7" secondAttribute="centerX" constant="-86" id="yX2-0F-mMD"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -594,11 +583,9 @@
                 <mask key="constraints">
                     <exclude reference="pEK-By-yqd"/>
                     <exclude reference="vcZ-En-fKx"/>
-                    <exclude reference="r5u-Hp-y6t"/>
-                    <exclude reference="yX2-0F-mMD"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="634" y="1113"/>
+            <point key="canvasLocation" x="539" y="1183"/>
         </view>
         <view contentMode="scaleToFill" id="kLR-rC-bbo">
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -617,36 +604,25 @@
                         </mask>
                     </variation>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uPi-Bh-naX">
-                    <rect key="frame" x="50" y="13" width="50" height="21"/>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="featureNo.png" translatesAutoresizingMaskIntoConstraints="NO" id="3jM-o8-jI1">
+                    <rect key="frame" x="50" y="12" width="50" height="20"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="92" id="ecy-Ew-n2L"/>
-                        <constraint firstAttribute="height" constant="21" id="hkP-Pr-cmT"/>
-                        <constraint firstAttribute="width" constant="50" id="yXk-oQ-fOF"/>
+                        <constraint firstAttribute="height" constant="20" id="7HY-tu-Bh3"/>
+                        <constraint firstAttribute="width" constant="50" id="HUw-6h-Rja"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                    <color key="textColor" red="0.99607843137254903" green="0.29411764705882354" blue="0.29411764705882354" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="ecy-Ew-n2L"/>
-                        </mask>
-                    </variation>
-                </label>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="3jM-o8-jI1" firstAttribute="centerY" secondItem="kLR-rC-bbo" secondAttribute="centerY" id="8WI-s0-74P"/>
+                <constraint firstItem="3jM-o8-jI1" firstAttribute="leading" secondItem="kLR-rC-bbo" secondAttribute="leading" constant="50" id="LuL-F5-Mqh"/>
                 <constraint firstItem="mpG-fc-l3p" firstAttribute="centerX" secondItem="kLR-rC-bbo" secondAttribute="centerX" id="VHQ-iX-jxv"/>
                 <constraint firstItem="mpG-fc-l3p" firstAttribute="centerX" secondItem="kLR-rC-bbo" secondAttribute="centerX" id="aLz-kx-CXT"/>
                 <constraint firstItem="mpG-fc-l3p" firstAttribute="leading" secondItem="kLR-rC-bbo" secondAttribute="leading" id="ffF-K3-nko"/>
-                <constraint firstItem="uPi-Bh-naX" firstAttribute="leading" secondItem="kLR-rC-bbo" secondAttribute="leading" constant="50" id="gv3-mc-Caf"/>
-                <constraint firstItem="uPi-Bh-naX" firstAttribute="centerX" secondItem="kLR-rC-bbo" secondAttribute="centerX" constant="-86" id="kUa-NQ-L7f"/>
+                <constraint firstItem="mpG-fc-l3p" firstAttribute="top" secondItem="kLR-rC-bbo" secondAttribute="top" constant="23" id="kqy-oK-NGb"/>
                 <constraint firstAttribute="trailing" secondItem="mpG-fc-l3p" secondAttribute="trailing" id="ltG-YB-050"/>
                 <constraint firstItem="mpG-fc-l3p" firstAttribute="leading" secondItem="kLR-rC-bbo" secondAttribute="leading" id="paf-8U-qoU"/>
-                <constraint firstItem="mpG-fc-l3p" firstAttribute="centerY" secondItem="uPi-Bh-naX" secondAttribute="centerY" id="w3n-pg-j1V"/>
-                <constraint firstAttribute="trailing" secondItem="uPi-Bh-naX" secondAttribute="trailing" constant="197" id="wUz-a1-7Pw"/>
-                <constraint firstItem="uPi-Bh-naX" firstAttribute="centerY" secondItem="kLR-rC-bbo" secondAttribute="centerY" constant="1.5" id="zd3-tp-bCC"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -654,8 +630,6 @@
                 <mask key="constraints">
                     <exclude reference="aLz-kx-CXT"/>
                     <exclude reference="ffF-K3-nko"/>
-                    <exclude reference="kUa-NQ-L7f"/>
-                    <exclude reference="wUz-a1-7Pw"/>
                 </mask>
             </variation>
             <point key="canvasLocation" x="729" y="1330"/>
@@ -760,5 +734,7 @@
         <image name="SSFeaturesIcon.png" width="20" height="20"/>
         <image name="SSWhiteTranslateIcon.png" width="25" height="26"/>
         <image name="SearchLocationIcon.png" width="30" height="30"/>
+        <image name="featureNo.png" width="20" height="20"/>
+        <image name="featureYes.png" width="20" height="20"/>
     </resources>
 </document>
