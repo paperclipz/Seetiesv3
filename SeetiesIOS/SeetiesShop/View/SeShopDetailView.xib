@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -558,14 +558,15 @@
                     </variation>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SSWhiteVerifiedIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="VX2-Kx-7mO">
-                    <rect key="frame" x="34" y="154" width="30" height="30"/>
+                    <rect key="frame" x="29" y="154" width="30" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="Qzz-eX-CSX"/>
                         <constraint firstAttribute="width" constant="30" id="RvW-XM-FC0"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SSDefaultLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="h3y-ba-aOd">
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SsDefaultDisplayPhoto.png" translatesAutoresizingMaskIntoConstraints="NO" id="h3y-ba-aOd">
                     <rect key="frame" x="20" y="70" width="80" height="80"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="80" id="P7D-Hb-IZC"/>
                         <constraint firstAttribute="width" constant="80" id="PNE-B4-ouF"/>
@@ -606,7 +607,7 @@
                 <constraint firstAttribute="trailing" secondItem="h9M-Hc-q6N" secondAttribute="trailing" id="ifr-pq-cuB"/>
                 <constraint firstItem="tH8-OE-pPv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="n9k-bZ-ei5"/>
                 <constraint firstItem="oh3-pV-PUj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="pSe-l7-lMl"/>
-                <constraint firstItem="VX2-Kx-7mO" firstAttribute="leading" secondItem="eEM-Xk-IGo" secondAttribute="trailing" constant="10" id="u9C-4q-JAl"/>
+                <constraint firstItem="VX2-Kx-7mO" firstAttribute="leading" secondItem="eEM-Xk-IGo" secondAttribute="trailing" constant="5" id="u9C-4q-JAl"/>
                 <constraint firstItem="L0E-TK-nIM" firstAttribute="top" secondItem="24v-UW-sgl" secondAttribute="bottom" constant="10" id="vRU-9o-zl8"/>
                 <constraint firstItem="VX2-Kx-7mO" firstAttribute="centerY" secondItem="eEM-Xk-IGo" secondAttribute="centerY" id="xR9-lE-Nx4"/>
                 <constraint firstItem="L0E-TK-nIM" firstAttribute="width" secondItem="ByR-rM-hDs" secondAttribute="width" id="yOB-9E-nCu"/>
@@ -654,7 +655,7 @@
     <resources>
         <image name="SSBlueDirectionIcon.png" width="26" height="26"/>
         <image name="SSDefaultCoverPhoto.png" width="1242" height="776"/>
-        <image name="SSDefaultLogo.png" width="70" height="70"/>
         <image name="SSWhiteVerifiedIcon.png" width="19" height="19"/>
+        <image name="SsDefaultDisplayPhoto.png" width="39" height="30"/>
     </resources>
 </document>

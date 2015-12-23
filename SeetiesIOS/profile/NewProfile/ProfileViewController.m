@@ -1407,6 +1407,12 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
         
         
     }
+    else if (scrollView.contentOffset.y<5)
+    {
+        self.ibImgViewOtherPadding.alpha = 0;
+        self.lblUserName_Header.alpha = 0;
+
+    }
 }
 
 #pragma mark - SHOW POST DETAILS
