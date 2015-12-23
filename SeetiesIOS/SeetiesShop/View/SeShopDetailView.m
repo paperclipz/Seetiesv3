@@ -13,10 +13,12 @@
 #import "NSDictionary+Extra.h"
 
 #define Info_Footer_HEader_Height 54+54;
+#define MapMainViewHeight 210;
 
 @interface SeShopDetailView()<UITableViewDataSource,UITableViewDelegate, UICollectionViewDataSource,UICollectionViewDelegate,MKMapViewDelegate>
 {
    
+    __weak IBOutlet NSLayoutConstraint *constantMapMainView;
     __weak IBOutlet NSLayoutConstraint *photoHeightConstraint;
     __weak IBOutlet UILabel *lblPhotoCount;
     __weak IBOutlet NSLayoutConstraint *tableviewConstraint;
@@ -34,6 +36,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblInformation;
 @property (weak, nonatomic) IBOutlet UIButton *btnMoreInfo;
 @property (weak, nonatomic) IBOutlet UILabel *lblNearbyPubTransport;
+@property (weak, nonatomic) IBOutlet UIButton *btnSeeAll;
 
 //================== Detail =======================//
 @property (weak, nonatomic) IBOutlet UILabel *lblShopCategory;
@@ -85,6 +88,12 @@
 
 @implementation SeShopDetailView
 
+- (IBAction)btnMapDirectionClicked:(id)sender {
+    
+    [[MapManager Instance]showMapOptions:self LocationLat:self.seShopModel.location.lat LocationLong:self.seShopModel.location.lng];
+    
+}
+
 - (void)handleTapPress:(UIGestureRecognizer *)gestureRecognizer{
     
     if (self.btnMapClickedBlock) {
@@ -120,6 +129,7 @@
     [Utils setRoundBorder:self.ibImgProfile color:UIColorFromRGB(255, 255, 255, 1) borderRadius:self.ibImgProfile.frame.size.width/2 borderWidth:0.0f];
     self.ibMapInfoView.alpha = 0;
 
+    constantMapMainView.constant = 0;
     tableviewConstraint.constant = 0;
     photoHeightConstraint.constant = 0;
     [self initCollectionViewDelegate];
@@ -194,6 +204,7 @@
 
     }
 
+    constantMapMainView.constant = MapMainViewHeight;
     [self setNeedsUpdateConstraints];
     [self layoutIfNeeded];
     [self setHeight:self.ibMapMainView.frame.size.height + self.ibMapMainView.frame.origin.y + VIEW_PADDING];
@@ -363,11 +374,10 @@
 #pragma mark - Change Language
 -(void)changeLanguage
 {
-    
     self.lblInformation.text = LocalisedString(@"Information");
     [self.btnMoreInfo setTitle:LocalisedString(@"Hours, Features & more") forState:UIControlStateNormal];
     self.lblNearbyPubTransport.text = LocalisedString(@"Nearby public transport station");
-    
+    [self.btnSeeAll setTitle:LocalisedString(@"See all") forState:UIControlStateNormal];
 }
 
 #pragma mark - Server
@@ -467,11 +477,8 @@
         self.seShopModel = [[ConnectionManager dataManager] seShopDetailModel];
         self.arrayList = self.seShopModel.arrayInformation;
         [self.ibTableView reloadData];
-        [UIView transitionWithView:self duration:1.0f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-            [self setupViewWithData];
-        } completion:nil];
+        [self setupViewWithData];
 
-        
         if (self.viewDidFinishLoadBlock) {
             self.viewDidFinishLoadBlock(self.seShopModel);
         }

@@ -16,6 +16,7 @@
 }
 @property (weak, nonatomic) IBOutlet UICollectionView *ibCollectionView;
 @property(nonatomic,strong)PhotoViewController* photoVC;
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 
 // -------------------- MODEL -----------------------------//
 @property(nonatomic,strong)NSMutableArray* arrImagesList;
@@ -29,6 +30,10 @@
 
 @implementation PhotoListViewController
 
+-(void)changeLanguage
+{
+    self.lblTitle.text = LocalisedString(@"Photos");
+}
 
 - (void)viewDidLoad {
     
@@ -49,6 +54,7 @@
 -(void)initSelfView
 {
     [self initCollectionViewDelegate];
+    [self changeLanguage];
 }
 
 - (void)didReceiveMemoryWarning {

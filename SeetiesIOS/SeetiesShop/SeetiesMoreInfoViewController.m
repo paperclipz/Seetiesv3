@@ -93,6 +93,11 @@
 @end
 
 @implementation SeetiesMoreInfoViewController
+
+- (IBAction)btnMapDirectionClicked:(id)sender {
+  
+    [[MapManager Instance]showMapOptions:self.view LocationLat:self.seShopModel.location.lat LocationLong:self.seShopModel.location.lng];
+}
 - (IBAction)btnMapClicked:(id)sender {
     
 
