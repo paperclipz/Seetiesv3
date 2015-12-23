@@ -140,12 +140,8 @@
 
         [self.btnEdit setImage:[UIImage imageNamed:LocalisedString(@"FollowCollectionIcon.png")] forState:UIControlStateNormal];
         [self.btnEdit setImage:[UIImage imageNamed:LocalisedString(@"FollowingCollectionIcon.png")] forState:UIControlStateSelected];
-        
-//        [self.btnEdit setTitle:LocalisedString(@"Follow") forState:UIControlStateNormal];
-//        [self.btnEdit setTitle:LocalisedString(@"Following") forState:UIControlStateSelected];
-//        [self.btnEdit setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//        [self.btnEdit setTitleColor:SELECTED_GREEN forState:UIControlStateSelected];
-
+        [self.btnEdit setTitle:@"" forState:UIControlStateNormal];
+        [self.btnEdit setTitle:@"" forState:UIControlStateSelected];
         
         [DataManager getCollectionFollowing:self.model.collection_id HasCollected:^(BOOL isCollected) {
             [self setFollowButtonSelected:isCollected button:self.btnEdit];

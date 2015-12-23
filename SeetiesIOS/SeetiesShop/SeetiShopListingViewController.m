@@ -65,10 +65,10 @@
     
     ShopModel* model = self.arrShopList[indexPath.row];
     
-    if (![model.arrPhotos isNull])
+    if (!model.profile_photo)
     {
-        PhotoModel* photoModel = model.arrPhotos[0];
-        [cell.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:photoModel.imageURL] completed:nil];
+       // PhotoModel* photoModel = model.arrPhotos[0];
+        [cell.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:model.profile_photo] completed:nil];
 
     }
     cell.lblTitle.text = model.name;
