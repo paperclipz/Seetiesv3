@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -12,11 +12,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="39.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5kA-1n-8cw">
-                        <rect key="frame" x="170" y="10" width="132" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5kA-1n-8cw">
+                        <rect key="frame" x="149" y="10" width="153" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="mzq-n2-0qw"/>
                         </constraints>
@@ -24,11 +24,11 @@
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gJl-w3-nL5">
-                        <rect key="frame" x="59" y="10" width="92" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gJl-w3-nL5">
+                        <rect key="frame" x="59" y="10" width="80" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="2vQ-fI-8N3"/>
-                            <constraint firstAttribute="width" constant="92" id="5h1-Sg-q03"/>
+                            <constraint firstAttribute="width" constant="80" id="5h1-Sg-q03"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -37,7 +37,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="gJl-w3-nL5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="9UA-fl-tKP"/>
-                    <constraint firstItem="5kA-1n-8cw" firstAttribute="leading" secondItem="gJl-w3-nL5" secondAttribute="trailing" constant="19" id="A2S-21-Z7o"/>
+                    <constraint firstItem="5kA-1n-8cw" firstAttribute="leading" secondItem="gJl-w3-nL5" secondAttribute="trailing" constant="10" id="A2S-21-Z7o"/>
                     <constraint firstItem="5kA-1n-8cw" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="-10" id="Gey-gE-elH"/>
                     <constraint firstItem="5kA-1n-8cw" firstAttribute="centerY" secondItem="gJl-w3-nL5" secondAttribute="centerY" id="ecw-8y-ED5"/>
                     <constraint firstItem="gJl-w3-nL5" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="pU3-Cs-wvN"/>
