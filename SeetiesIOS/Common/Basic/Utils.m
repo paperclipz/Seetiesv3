@@ -500,7 +500,7 @@
     
     else{
         
-        if ([Utils stringIsNilOrEmpty:strDistance]) {
+        if ([Utils stringIsNilOrEmpty:local]) {
             
             if (distance <= 1000) {
                 strDistance = [NSString stringWithFormat:@"%.1f Meter",distance];

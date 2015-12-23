@@ -129,7 +129,7 @@
     [Utils setRoundBorder:self.ibImgProfile color:UIColorFromRGB(255, 255, 255, 1) borderRadius:self.ibImgProfile.frame.size.width/2 borderWidth:0.0f];
     self.ibMapInfoView.alpha = 0;
 
-   // constantMapMainView.constant = 0;
+    constantMapMainView.constant = 0;
     tableviewConstraint.constant = 0;
     photoHeightConstraint.constant = 0;
     [self initCollectionViewDelegate];
@@ -204,12 +204,10 @@
 
     }
 
-   // constantMapMainView.constant = MapMainViewHeight;
+    constantMapMainView.constant = MapMainViewHeight;
     [self setNeedsUpdateConstraints];
     [self layoutIfNeeded];
     [self setHeight:self.ibMapMainView.frame.size.height + self.ibMapMainView.frame.origin.y + VIEW_PADDING];
-
-    
     
     self.lblShopName.text = self.seShopModel.name;
     self.lblShopCategory.text = self.seShopModel.category.title;
