@@ -244,6 +244,7 @@
     
     int CheckLanguagedata;
     NSString *ShowLanguageType;
+    int CheckLanguageType;
     
     NSMutableArray *TempGetLanguageArray;
     
@@ -356,6 +357,7 @@
     ShowGoogleTranslate = NO;
     CheckClickCount = 0;
     CheckLanguagedata = 0;
+    CheckLanguageType = 0;
     
     UISwipeGestureRecognizer *swipeRight =[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeRight:)];
     swipeRight.direction=UISwipeGestureRecognizerDirectionRight;
@@ -2056,20 +2058,28 @@
     int GetHeightCheck = 363;
     
     if (CheckLanguagedata == 3) {
-        UIButton *TanslateButton = [[UIButton alloc]init];
-        TanslateButton.frame = CGRectMake(20, GetHeightCheck, screenWidth - 40, 40);
-        [TanslateButton setTitle:LocalisedString(@"Translate") forState:UIControlStateNormal];
-        [TanslateButton setImage:[UIImage imageNamed:@"TranslateArrow.png"] forState:UIControlStateNormal];
-        TanslateButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-        [TanslateButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f  blue:153.0f/255.0f  alpha:1.0f] forState:UIControlStateNormal];
-        TanslateButton.layer.cornerRadius = 5;
-        TanslateButton.layer.borderWidth=1;
-        TanslateButton.layer.masksToBounds = YES;
-        TanslateButton.layer.borderColor=[[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0f] CGColor];
-        [TanslateButton addTarget:self action:@selector(LanguageButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
-        [MainScroll addSubview:TanslateButton];
         
-        GetHeightCheck += 63;
+        if ([GetTitle length] == 0 || [GetTitle isEqualToString:@""] || [GetTitle isEqualToString:@"(null)"] || [GetMessage length] == 0 || [GetMessage isEqualToString:@""] || [GetMessage isEqualToString:@"(null)"]) {
+
+        }else{
+            UIButton *TanslateButton = [[UIButton alloc]init];
+            TanslateButton.frame = CGRectMake(20, GetHeightCheck, screenWidth - 40, 40);
+            [TanslateButton setTitle:LocalisedString(@"Translate") forState:UIControlStateNormal];
+            [TanslateButton setImage:[UIImage imageNamed:@"TranslateArrow.png"] forState:UIControlStateNormal];
+            TanslateButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+            [TanslateButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f  blue:153.0f/255.0f  alpha:1.0f] forState:UIControlStateNormal];
+            TanslateButton.layer.cornerRadius = 5;
+            TanslateButton.layer.borderWidth=1;
+            TanslateButton.layer.masksToBounds = YES;
+            TanslateButton.layer.borderColor=[[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0f] CGColor];
+            [TanslateButton addTarget:self action:@selector(LanguageButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+            [MainScroll addSubview:TanslateButton];
+            
+            GetHeightCheck += 63;
+        }
+        
+        
+
     }
     
 //    if (CheckLanguagedata == 2) {
@@ -4151,6 +4161,7 @@
         }
         if ([buttonTitle isEqualToString:LocalisedString(@"Read Original")]) {
             [actionSheet dismissWithClickedButtonIndex:0 animated:YES];
+            CheckLanguageType = 0;
             if ([GetENMessageString length] == 0) {
             }else{
             [self CheckGoogleTranslateButton];
@@ -4158,6 +4169,7 @@
             
         }
         if ([buttonTitle isEqualToString:LocalisedString(@"English by Google Translate")]) {
+            CheckLanguageType = 1;
             [actionSheet dismissWithClickedButtonIndex:0 animated:YES];
             [self CheckGoogleTranslateButton];
 
@@ -4965,17 +4977,33 @@
 -(IBAction)LanguageButtonOnClick:(id)sender{
 
     NSLog(@"NEW Language Button On Click");
+    
+    if (CheckLanguageType == 0) {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                                 delegate:self
+                                                        cancelButtonTitle:CustomLocalisedString(@"No thanks!", nil)
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:CustomLocalisedString(@"English by Google Translate", nil), nil];
+        
+        [actionSheet showInView:self.view];
+        
+        actionSheet.tag = 5000;
+    }else{
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                                 delegate:self
+                                                        cancelButtonTitle:CustomLocalisedString(@"No thanks!", nil)
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:CustomLocalisedString(@"Read Original", nil), nil];
+        
+        [actionSheet showInView:self.view];
+        
+        actionSheet.tag = 5000;
+    }
+    
+    
     TestingUse = YES;
     //[self InitView];
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                             delegate:self
-                                                    cancelButtonTitle:CustomLocalisedString(@"No thanks!", nil)
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:CustomLocalisedString(@"Read Original", nil),CustomLocalisedString(@"English by Google Translate", nil), nil];
-    
-    [actionSheet showInView:self.view];
-    
-    actionSheet.tag = 5000;
+
 }
 
 @end
