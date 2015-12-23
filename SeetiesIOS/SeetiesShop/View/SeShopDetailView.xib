@@ -460,7 +460,7 @@
                                     </constraints>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ydl-2i-Ge5" userLabel="Line">
-                                    <rect key="frame" x="0.0" y="51" width="320" height="1"/>
+                                    <rect key="frame" x="0.0" y="53" width="320" height="1"/>
                                     <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="dZM-Dp-hLF"/>
@@ -496,7 +496,7 @@
                                 <constraint firstItem="ydl-2i-Ge5" firstAttribute="leading" secondItem="jKG-UT-GzZ" secondAttribute="leading" id="a7x-Ir-8vx"/>
                                 <constraint firstAttribute="trailing" secondItem="ydl-2i-Ge5" secondAttribute="trailing" id="cld-gj-nCq"/>
                                 <constraint firstItem="SUu-pX-80K" firstAttribute="top" secondItem="jKG-UT-GzZ" secondAttribute="top" constant="1" id="cvF-kD-Udf"/>
-                                <constraint firstAttribute="bottom" secondItem="ydl-2i-Ge5" secondAttribute="bottom" constant="2" id="epU-1k-emc"/>
+                                <constraint firstAttribute="bottom" secondItem="ydl-2i-Ge5" secondAttribute="bottom" id="epU-1k-emc"/>
                                 <constraint firstItem="SUu-pX-80K" firstAttribute="top" secondItem="hTS-mt-AvD" secondAttribute="bottom" id="jU1-U1-9ow"/>
                                 <constraint firstAttribute="trailing" secondItem="hTS-mt-AvD" secondAttribute="trailing" id="jzT-u3-Y28"/>
                                 <constraint firstItem="hTS-mt-AvD" firstAttribute="top" secondItem="jKG-UT-GzZ" secondAttribute="top" id="mgV-lN-YjX"/>

@@ -155,7 +155,7 @@
     [self.seRecommendations initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
     
     if (![Utils stringIsNilOrEmpty:self.seetiesID]) {
-        [self.seNearbySeetishop initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
+       [self.seNearbySeetishop initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
     }
 }
 -(void)addViews
