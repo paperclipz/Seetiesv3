@@ -6868,7 +6868,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "bd33a98b-8fd4-49be-9c6d-cdb9423d6a91";
+				PROVISIONING_PROFILE = "3dc8c860-008f-4306-9b2e-2cf9de849459";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -6907,7 +6907,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "bd33a98b-8fd4-49be-9c6d-cdb9423d6a91";
+				PROVISIONING_PROFILE = "3dc8c860-008f-4306-9b2e-2cf9de849459";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -6946,7 +6946,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Live;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "bd33a98b-8fd4-49be-9c6d-cdb9423d6a91";
+				PROVISIONING_PROFILE = "3dc8c860-008f-4306-9b2e-2cf9de849459";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -6985,7 +6985,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Live;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "bd33a98b-8fd4-49be-9c6d-cdb9423d6a91";
+				PROVISIONING_PROFILE = "3dc8c860-008f-4306-9b2e-2cf9de849459";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 			};
 			name = Release;
