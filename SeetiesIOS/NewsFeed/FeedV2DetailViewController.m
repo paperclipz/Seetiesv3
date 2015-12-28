@@ -935,6 +935,9 @@
                     GetTitle = @"";
                 }else{
                     ChineseTitle = [[NSString alloc]initWithFormat:@"%@",[titleData objectForKey:@"530b0aa16424400c76000002"]];
+                    if ([ChineseTitle length] == 0 || ChineseTitle == nil || [ChineseTitle isEqualToString:@"(null)"]) {
+                    ChineseTitle = [[NSString alloc]initWithFormat:@"%@",[titleData objectForKey:@"530d5e9b642440d128000018"]];
+                    }
                     EngTitle = [[NSString alloc]initWithFormat:@"%@",[titleData objectForKey:@"530b0ab26424400c76000003"]];
                     ThaiTitle = [[NSString alloc]initWithFormat:@"%@",[titleData objectForKey:@"544481503efa3ff1588b4567"]];
                     IndonesianTitle = [[NSString alloc]initWithFormat:@"%@",[titleData objectForKey:@"53672e863efa3f857f8b4ed2"]];
@@ -983,6 +986,9 @@
                     GetMessage = @"";
                 }else{
                     ChineseMessage = [[NSString alloc]initWithFormat:@"%@",[messageData objectForKey:@"530b0aa16424400c76000002"]];
+                    if ([ChineseMessage length] == 0 || ChineseMessage == nil || [ChineseMessage isEqualToString:@"(null)"]) {
+                        ChineseMessage = [[NSString alloc]initWithFormat:@"%@",[messageData objectForKey:@"530d5e9b642440d128000018"]];
+                    }
                     EndMessage = [[NSString alloc]initWithFormat:@"%@",[messageData objectForKey:@"530b0ab26424400c76000003"]];
                     ThaiMessage = [[NSString alloc]initWithFormat:@"%@",[messageData objectForKey:@"544481503efa3ff1588b4567"]];
                     IndonesianMessage = [[NSString alloc]initWithFormat:@"%@",[messageData objectForKey:@"53672e863efa3f857f8b4ed2"]];
@@ -1656,6 +1662,9 @@
                         [TitleArray_Nearby addObject:@""];
                     }else{
                         NSString *Title1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0aa16424400c76000002"]];
+                        if ([Title1 length] == 0 || Title1== nil || [Title1 isEqualToString:@"(null)"]) {
+                            Title1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530d5e9b642440d128000018"]];
+                        }
                         NSString *Title2 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0ab26424400c76000003"]];
                         NSString *ThaiTitle_Nearby = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"544481503efa3ff1588b4567"]];
                         NSString *IndonesianTitle_Nearby = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"53672e863efa3f857f8b4ed2"]];
@@ -1697,6 +1706,9 @@
 
                     }else{
                         NSString *Title1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0aa16424400c76000002"]];
+                        if ([Title1 length] == 0 || Title1== nil || [Title1 isEqualToString:@"(null)"]) {
+                            Title1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530d5e9b642440d128000018"]];
+                        }
                         NSString *Title2 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0ab26424400c76000003"]];
                         NSString *ThaiTitle_Nearby = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"544481503efa3ff1588b4567"]];
                         NSString *IndonesianTitle_Nearby = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"53672e863efa3f857f8b4ed2"]];

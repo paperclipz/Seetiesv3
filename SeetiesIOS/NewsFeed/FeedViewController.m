@@ -4223,6 +4223,9 @@
                              NSMutableArray *TempTitleArray = [[NSMutableArray alloc]init];
                              for (NSDictionary * dict in titleData) {
                                  NSString *Title2 = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"530b0aa16424400c76000002"]];
+                                 if ([Title2 length] == 0 || Title2 == nil || [Title2 isEqualToString:@"(null)"]) {
+                                     Title2 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530d5e9b642440d128000018"]];
+                                 }
                                  NSString *Title1 = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"530b0ab26424400c76000003"]];
                                  NSString *ThaiTitle = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"544481503efa3ff1588b4567"]];
                                  NSString *IndonesianTitle = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"53672e863efa3f857f8b4ed2"]];
@@ -4278,6 +4281,9 @@
                              NSLog(@"arrTitle == %@",arrTitle);
                          }else{
                              Title2 = [[NSString alloc]initWithFormat:@"%@",[titleData valueForKey:@"530b0aa16424400c76000002"]];
+                             if ([Title2 length] == 0 || Title2 == nil || [Title2 isEqualToString:@"(null)"]) {
+                                 Title2 = [[NSString alloc]initWithFormat:@"%@",[titleData objectForKey:@"530d5e9b642440d128000018"]];
+                             }
                              Title1 = [[NSString alloc]initWithFormat:@"%@",[titleData valueForKey:@"530b0ab26424400c76000003"]];
                              ThaiTitle = [[NSString alloc]initWithFormat:@"%@",[titleData valueForKey:@"544481503efa3ff1588b4567"]];
                              IndonesianTitle = [[NSString alloc]initWithFormat:@"%@",[titleData valueForKey:@"53672e863efa3f857f8b4ed2"]];
@@ -4338,6 +4344,9 @@
                              NSMutableArray *TempTitleArray = [[NSMutableArray alloc]init];
                              for (NSDictionary * dict in titleData) {
                                  NSString *Title2 = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"530b0aa16424400c76000002"]];
+                                 if ([Title2 length] == 0 || Title2 == nil || [Title2 isEqualToString:@"(null)"]) {
+                                     Title2 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530d5e9b642440d128000018"]];
+                                 }
                                  NSString *Title1 = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"530b0ab26424400c76000003"]];
                                  NSString *ThaiTitle = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"544481503efa3ff1588b4567"]];
                                  NSString *IndonesianTitle = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"53672e863efa3f857f8b4ed2"]];
@@ -4391,6 +4400,9 @@
                              [arrMessage addObject:TempName];
                          }else{
                              Title2_message = [[NSString alloc]initWithFormat:@"%@",[messageData valueForKey:@"530b0aa16424400c76000002"]];
+                             if ([Title2_message length] == 0 || Title2_message == nil || [Title2_message isEqualToString:@"(null)"]) {
+                                 Title2_message= [[NSString alloc]initWithFormat:@"%@",[messageData objectForKey:@"530d5e9b642440d128000018"]];
+                             }
                              Title1_message = [[NSString alloc]initWithFormat:@"%@",[messageData valueForKey:@"530b0ab26424400c76000003"]];
                              ThaiTitle_message = [[NSString alloc]initWithFormat:@"%@",[messageData valueForKey:@"544481503efa3ff1588b4567"]];
                              IndonesianTitle_message = [[NSString alloc]initWithFormat:@"%@",[messageData valueForKey:@"53672e863efa3f857f8b4ed2"]];
