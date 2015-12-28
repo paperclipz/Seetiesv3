@@ -147,6 +147,7 @@
 {
     PostListingTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"PostListingTableViewCell"];
     [cell initData:self.arrPostListing[indexPath.row]];
+    [cell ProfileViewType:self.profileType];
     return cell;
 }
 
