@@ -9,6 +9,7 @@
 #import "TestingViewController.h"
 
 @interface TestingViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
 
@@ -16,6 +17,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+//    NSString* apple = @"#this is so good hahahaha #yes";
+//    SLog(@"%@",apple.tags);
     // Do any additional setup after loading the view from its nib.
 }
 
