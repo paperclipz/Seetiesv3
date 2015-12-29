@@ -23,6 +23,7 @@
 #import "SuggestedCollectionsViewController.h"
 #import "OpenWebViewController.h"
 #import "NSString+ChangeAsciiString.h"
+#import "TestingViewController.h"
 
 
 @interface FeedViewController ()
@@ -192,6 +193,7 @@
 }
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;
+@property (strong, nonatomic) TestingViewController* testingViewController;
 @end
 
 @implementation FeedViewController
@@ -235,12 +237,18 @@
 #pragma mark - IBAction
 - (IBAction)btnTestClicked:(id)sender {
     
-    _seetiesShopViewController = nil;
-    [self.seetiesShopViewController initDataWithSeetiesID:@"56397e301c4d5be92e8b4711" Latitude:1.934400 Longitude:103.358727];
-   // [self.seetiesShopViewController initDataPlaceID:@"56603c9af9df245c7b8b4572" postID:@"56603c9af9df245c7b8b4573" Latitude:1.934400 Longitude:103.358727];
-    UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:self.seetiesShopViewController];
+    self.testingViewController = [TestingViewController new];
+    UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:self.testingViewController];
     [nav setNavigationBarHidden:YES];
     [self presentViewController:nav animated:YES completion:nil];
+
+    
+//    _seetiesShopViewController = nil;
+//    [self.seetiesShopViewController initDataWithSeetiesID:@"56397e301c4d5be92e8b4711" Latitude:1.934400 Longitude:103.358727];
+//   // [self.seetiesShopViewController initDataPlaceID:@"56603c9af9df245c7b8b4572" postID:@"56603c9af9df245c7b8b4573" Latitude:1.934400 Longitude:103.358727];
+//    UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:self.seetiesShopViewController];
+//    [nav setNavigationBarHidden:YES];
+//    [self presentViewController:nav animated:YES completion:nil];
 }
 
 #define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
