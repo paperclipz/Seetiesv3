@@ -26,7 +26,7 @@
 #import "ShareViewController.h"
 #import "SearchDetailViewController.h"
 @interface FeedV2DetailViewController (){
-
+    
     NSMutableArray *arrCollectionID;
     NSMutableArray *arrTitle;
     NSMutableArray *arrTotalCount;
@@ -136,6 +136,12 @@
     NSString *GetExpense_Code;
     NSString *GetExpense_RealData;
     
+    //Seetishop ID
+    NSString *GetSeetishopID;
+    NSString *GetSeetishopName;
+    NSString *GetSeetishopImage;
+    NSString *GetSeetishopAddress;
+    
     NSMutableArray *ArrHashTag;
     
     NSString *PhotoCount;
@@ -238,6 +244,7 @@
     
     int CheckLanguagedata;
     NSString *ShowLanguageType;
+    int CheckLanguageType;
     
     NSMutableArray *TempGetLanguageArray;
     
@@ -250,6 +257,10 @@
     NSString *GetCollectionFollowing;
     NSString *GetCollectID;
     NSString *GetCollectUserID;
+    
+    NSString *MessageCount;
+    
+    
 }
 @end
 
@@ -264,7 +275,7 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     ShareButton.frame = CGRectMake(screenWidth - 55, 0, 55, 64);
     ShareIcon.frame = CGRectMake(screenWidth - 38 - 5, 22, 38, 38);
-   // PageControlOn.frame = CGRectMake(15, 300, screenWidth - 30, 37);
+    // PageControlOn.frame = CGRectMake(15, 300, screenWidth - 30, 37);
     ShowImageCount.frame = CGRectMake(15, 300, screenWidth - 30, 30);
     LocationButton.frame = CGRectMake(screenWidth - 85 - 15, 20, 60, 44);
     
@@ -279,7 +290,7 @@
     ShowLanguageTranslationView.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     ShowLanguageTranslationView.hidden = YES;
     
-
+    
     
     ShowTotalLikeCount.frame = CGRectMake((screenWidth/2) - 100, 15, 40, 21);
     ShowTotalCommentCount.frame = CGRectMake((screenWidth/2), 15, 40, 21);
@@ -290,12 +301,12 @@
     DisplayButton.frame = CGRectMake(screenWidth - 124 - 15, 26, 55, 33);
     [self.view addSubview:ShowLanguageTranslationView];
     
-
     
-//    ShowPlaceNameTop.frame = CGRectMake(44, 21, screenWidth - 155, 24);
-//    ShowCategoryTop.frame = CGRectMake(44, 38, screenWidth - 155, 21);
-//    ShowPlaceNameTop.hidden = YES;
-//    ShowCategoryTop.hidden = YES;
+    
+    //    ShowPlaceNameTop.frame = CGRectMake(44, 21, screenWidth - 155, 24);
+    //    ShowCategoryTop.frame = CGRectMake(44, 38, screenWidth - 155, 21);
+    //    ShowPlaceNameTop.hidden = YES;
+    //    ShowCategoryTop.hidden = YES;
     
     [MImageScroll setScrollEnabled:YES];
     MImageScroll.delegate = self;
@@ -307,10 +318,10 @@
     ShowActivity.frame = CGRectMake((screenWidth / 2) - 18, (screenHeight / 2 ) - 18, 37, 37);
     
     [MainScroll addSubview:MImageScroll];
-   // [MainScroll addSubview:PageControlOn];
+    // [MainScroll addSubview:PageControlOn];
     [MainScroll addSubview:ShowImageCount];
     
-  //  [self.view addSubview:ShowbarView];
+    //  [self.view addSubview:ShowbarView];
     //ShareButton.hidden = YES;
     //ShareIcon.hidden = YES;
     CheckLikeInitView = NO;
@@ -329,7 +340,7 @@
     CheckLoadDone = NO;
     
     LineButton.frame = CGRectMake(screenWidth - 105 - 15, screenHeight - 23, 105, 1);
-
+    
     LikeButton.frame = CGRectMake(10, 7, 37, 37);
     CommentButton.frame = CGRectMake(60, 7, 37, 37);
     shareFBButton.frame = CGRectMake(110, 7, 37, 37);
@@ -342,33 +353,34 @@
     AllCollectButton.frame = CGRectMake(screenWidth - 10 - 140, 0, 140, 50);
     
     QuickCollectButton.frame = CGRectMake(screenWidth - 10 - 60, 7, 60, 37);
-
+    
     ShowGoogleTranslate = NO;
     CheckClickCount = 0;
     CheckLanguagedata = 0;
+    CheckLanguageType = 0;
     
     UISwipeGestureRecognizer *swipeRight =[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeRight:)];
     swipeRight.direction=UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:swipeRight];
     
     
-
-
+    
+    
 }
 - (void)dealloc {
     [MainScroll setDelegate:nil];
 }
 -(void)swipeRight:(UISwipeGestureRecognizer*)gestureRecognizer
 {
-////    //Do what you want here
-//    CATransition *transition = [CATransition animation];
-//    transition.duration = 0.2;
-//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//    transition.type = kCATransitionPush;
-//    transition.subtype = kCATransitionFromLeft;
-//    [self.view.window.layer addAnimation:transition forKey:nil];
-//    //[self presentViewController:ListingDetail animated:NO completion:nil];
-//    [self dismissViewControllerAnimated:NO completion:nil];
+    ////    //Do what you want here
+    //    CATransition *transition = [CATransition animation];
+    //    transition.duration = 0.2;
+    //    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    //    transition.type = kCATransitionPush;
+    //    transition.subtype = kCATransitionFromLeft;
+    //    [self.view.window.layer addAnimation:transition forKey:nil];
+    //    //[self presentViewController:ListingDetail animated:NO completion:nil];
+    //    [self dismissViewControllerAnimated:NO completion:nil];
     
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -384,15 +396,15 @@
     
     //self.leveyTabBarController.tabBar.frame = CGRectMake(0, 300, 320, 100);
     
-   // self.screenName = @"IOS Feed Detail Page";
+    // self.screenName = @"IOS Feed Detail Page";
     self.screenName = @"IOS Feed Detail View V2";
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     ShowDownBarView.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
     self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight, screenWidth, 50);
     [[NSNotificationCenter defaultCenter] postNotificationName:@"CHANGE_NOTIFICATION_HIDE" object:nil];
-
-
+    
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetNearbyIDNString = [defaults objectForKey:@"NearbyRecommendationsIDN"];
     if ([GetNearbyIDNString length] == 0 || [GetNearbyIDNString isEqualToString:@""] || [GetNearbyIDNString isEqualToString:@"(null)"] || GetNearbyIDNString == nil) {
@@ -415,7 +427,7 @@
         }
         
         //ShareButton.hidden = YES;
-       // ShareIcon.hidden = YES;
+        // ShareIcon.hidden = YES;
         CheckLikeInitView = NO;
         CheckCommentData = 0;
         CountLanguage = 0;
@@ -439,9 +451,9 @@
     
     
     
-
     
-
+    
+    
     
 }
 - (void)viewWillDisappear:(BOOL)animated{
@@ -471,14 +483,14 @@
     return UIStatusBarStyleLightContent;
 }
 -(IBAction)BackButton:(id)sender{
-//    CATransition *transition = [CATransition animation];
-//    transition.duration = 0.2;
-//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//    transition.type = kCATransitionPush;
-//    transition.subtype = kCATransitionFromLeft;
-//    [self.view.window.layer addAnimation:transition forKey:nil];
-//    //[self presentViewController:ListingDetail animated:NO completion:nil];
-//    [self dismissViewControllerAnimated:NO completion:nil];
+    //    CATransition *transition = [CATransition animation];
+    //    transition.duration = 0.2;
+    //    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    //    transition.type = kCATransitionPush;
+    //    transition.subtype = kCATransitionFromLeft;
+    //    [self.view.window.layer addAnimation:transition forKey:nil];
+    //    //[self presentViewController:ListingDetail animated:NO completion:nil];
+    //    [self dismissViewControllerAnimated:NO completion:nil];
     
     //[self.navigationController popToRootViewControllerAnimated:YES];
     [self.navigationController popViewControllerAnimated:YES];
@@ -490,7 +502,7 @@
     [self GetPostAllData];
 }
 -(void)GetPostAllData{
-   // [spinnerView startAnimating];
+    // [spinnerView startAnimating];
     [ShowActivity startAnimating];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -613,9 +625,9 @@
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     [ShowActivity stopAnimating];
-
-   // [spinnerView stopAnimating];
-   // [spinnerView removeFromSuperview];
+    
+    // [spinnerView stopAnimating];
+    // [spinnerView removeFromSuperview];
     [LoadingBlackBackground removeFromSuperview];
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:CustomLocalisedString(@"ErrorConnection", nil) message:CustomLocalisedString(@"NoData", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     
@@ -626,12 +638,12 @@
     if (connection == theConnection_GetPostAllData) {
         
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
-        NSLog(@"GetPostAllData return get data to server ===== %@",GetData);
+        //NSLog(@"GetPostAllData return get data to server ===== %@",GetData);
         
         NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
         NSError *myError = nil;
         NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
-        NSLog(@"Feed Json = %@",res);
+        // NSLog(@"Feed Json = %@",res);
         
         if ([res count] == 0) {
             NSLog(@"Server Error.");
@@ -684,21 +696,38 @@
                 ViewCountString = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"view_count"]];
                 TotalCollectionCount = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"collection_count"]];
                 GetTags = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"tags"]];
+                GetSeetishopID = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"seetishop_id"]];
                 
                 NSLog(@"TotalCollectionCount is %@",TotalCollectionCount);
                 NSLog(@"GetTags is %@",GetTags);
                 
-
+                
+                if ([GetSeetishopID length] == 0 || [GetSeetishopID isEqualToString:@""] || [GetSeetishopID isEqualToString:@"(null)"]) {
+                    
+                }else{
+                    
+                    NSDictionary *SeetishopInfo = [GetAllData valueForKey:@"seetishop_info"];
+                    GetSeetishopName = [[NSString alloc]initWithFormat:@"%@",[SeetishopInfo objectForKey:@"name"]];
+                    NSDictionary *SeetishopLocation = [SeetishopInfo valueForKey:@"location"];
+                    GetSeetishopAddress = [[NSString alloc]initWithFormat:@"%@",[SeetishopLocation objectForKey:@"formatted_address"]];
+                    GetSeetishopImage = [[NSString alloc]initWithFormat:@"%@",[SeetishopInfo objectForKey:@"profile_photo"]];
+                }
+                
+                NSLog(@"GetSeetishopID is %@",GetSeetishopID);
+                NSLog(@"GetSeetishopName is %@",GetSeetishopName);
+                NSLog(@"GetSeetishopAddress is %@",GetSeetishopAddress);
+                NSLog(@"GetSeetishopImage is %@",GetSeetishopImage);
+                
                 
                 
                 if ([GetLikeCheck isEqualToString:@"0"]) {
                     [LikeButton setImage:[UIImage imageNamed:@"LikeIcon.png"] forState:UIControlStateNormal];
-                   // [LikeButton setTitle:CustomLocalisedString(@"Likes", nil) forState:UIControlStateNormal];
+                    // [LikeButton setTitle:CustomLocalisedString(@"Likes", nil) forState:UIControlStateNormal];
                     [LikeButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
                 }else{
                     ShowTotalLikeCount.textColor = [UIColor redColor];
                     [LikeButton setImage:[UIImage imageNamed:@"LikedIcon.png"] forState:UIControlStateNormal];
-                   // [LikeButton setTitle:CustomLocalisedString(@"Likes", nil) forState:UIControlStateNormal];
+                    // [LikeButton setTitle:CustomLocalisedString(@"Likes", nil) forState:UIControlStateNormal];
                     [LikeButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
                 }
                 
@@ -738,7 +767,7 @@
                     NSString *CheckString_ = [[NSString alloc]initWithFormat:@"%@d",CheckString];
                     GetPostTime = CheckString_;
                 }
- 
+                
                 NSDictionary *LocationData = [GetAllData valueForKey:@"location"];
                 GetLat = [[NSString alloc]initWithFormat:@"%@",[LocationData objectForKey:@"lat"]];
                 GetLng = [[NSString alloc]initWithFormat:@"%@",[LocationData objectForKey:@"lng"]];
@@ -759,136 +788,136 @@
                 
                 NSDictionary *ExpenseData = [LocationData valueForKey:@"expense"];
                 GetExpense = [[NSString alloc]initWithFormat:@"%@",[LocationData objectForKey:@"expense"]];
-                    if ([ExpenseData count] == 0 || ExpenseData == nil || [ExpenseData isEqual:[NSNull null]]) {
-                        GetExpense = @"";
-                        GetExpense_Code = @"";
-                        GetExpense_RealData = @"";
-                        GetExpense_Show = @"";
-                    }else{
-                        NSString *TempPrice;
-                        NSString *TempPriceCode;
-                        NSString *CheckCode001 = [[NSString alloc]initWithFormat:@"%@",[ExpenseData objectForKey:@"840"]];
-                        NSString *CheckCode002 = [[NSString alloc]initWithFormat:@"%@",[ExpenseData objectForKey:@"458"]];
-                        NSString *CheckCode003 = [[NSString alloc]initWithFormat:@"%@",[ExpenseData objectForKey:@"702"]];
-                        NSString *CheckCode004 = [[NSString alloc]initWithFormat:@"%@",[ExpenseData objectForKey:@"764"]];
-                        NSString *CheckCode005 = [[NSString alloc]initWithFormat:@"%@",[ExpenseData objectForKey:@"360"]];
-                        NSString *CheckCode006 = [[NSString alloc]initWithFormat:@"%@",[ExpenseData objectForKey:@"901"]];
-                        NSString *CheckCode007 = [[NSString alloc]initWithFormat:@"%@",[ExpenseData objectForKey:@"608"]];
-                        if ([CheckCode001 length] == 0 || CheckCode001 == nil || [CheckCode001 isEqualToString:@"(null)"]) {
-                            if ([CheckCode002 length] == 0 || CheckCode002 == nil || [CheckCode002 isEqualToString:@"(null)"]) {
-                                if ([CheckCode003 length] == 0 || CheckCode003 == nil || [CheckCode003 isEqualToString:@"(null)"]) {
-                                    if ([CheckCode004 length] == 0 || CheckCode004 == nil || [CheckCode004 isEqualToString:@"(null)"]) {
-                                        if ([CheckCode005 length] == 0 || CheckCode005 == nil || [CheckCode005 isEqualToString:@"(null)"]) {
-                                            if ([CheckCode006 length] == 0 || CheckCode006 == nil || [CheckCode006 isEqualToString:@"(null)"]) {
-                                                if ([CheckCode007 length] == 0 || CheckCode007 == nil || [CheckCode007 isEqualToString:@"(null)"]) {
-                                                    //GetExpense = @"";
-                                                    if ([TempPrice isEqualToString:@"(null)"] || [TempPrice isEqualToString:@""] || TempPrice == nil) {
-                                                        TempPrice = @"";
-                                                    }
-                                                    GetExpense = [[NSString alloc]initWithFormat:@"USD %@",TempPrice];
-                                                    GetExpense_Code = @"840";
-                                                    GetExpense_RealData = CheckCode001;
-                                                    GetExpense_Show = @"USD";
-                                                }else{
-                                                    TempPrice = CheckCode007;
-                                                    if ([TempPrice isEqualToString:@"(null)"] || [TempPrice isEqualToString:@""] || TempPrice == nil) {
-                                                        TempPrice = @"";
-                                                    }
-                                                    TempPriceCode = @"608";
-                                                    if ([TempPriceCode isEqualToString:@"608"]) {
-                                                        //PHP
-                                                        GetExpense = [[NSString alloc]initWithFormat:@"PHP %@",TempPrice];
-                                                        GetExpense_Code = TempPriceCode;
-                                                        GetExpense_RealData = TempPrice;
-                                                        GetExpense_Show = @"PHP";
-                                                    }
-                                                }
-                                            }else{
-                                                TempPrice = CheckCode006;
+                if ([ExpenseData count] == 0 || ExpenseData == nil || [ExpenseData isEqual:[NSNull null]]) {
+                    GetExpense = @"";
+                    GetExpense_Code = @"";
+                    GetExpense_RealData = @"";
+                    GetExpense_Show = @"";
+                }else{
+                    NSString *TempPrice;
+                    NSString *TempPriceCode;
+                    NSString *CheckCode001 = [[NSString alloc]initWithFormat:@"%@",[ExpenseData objectForKey:@"840"]];
+                    NSString *CheckCode002 = [[NSString alloc]initWithFormat:@"%@",[ExpenseData objectForKey:@"458"]];
+                    NSString *CheckCode003 = [[NSString alloc]initWithFormat:@"%@",[ExpenseData objectForKey:@"702"]];
+                    NSString *CheckCode004 = [[NSString alloc]initWithFormat:@"%@",[ExpenseData objectForKey:@"764"]];
+                    NSString *CheckCode005 = [[NSString alloc]initWithFormat:@"%@",[ExpenseData objectForKey:@"360"]];
+                    NSString *CheckCode006 = [[NSString alloc]initWithFormat:@"%@",[ExpenseData objectForKey:@"901"]];
+                    NSString *CheckCode007 = [[NSString alloc]initWithFormat:@"%@",[ExpenseData objectForKey:@"608"]];
+                    if ([CheckCode001 length] == 0 || CheckCode001 == nil || [CheckCode001 isEqualToString:@"(null)"]) {
+                        if ([CheckCode002 length] == 0 || CheckCode002 == nil || [CheckCode002 isEqualToString:@"(null)"]) {
+                            if ([CheckCode003 length] == 0 || CheckCode003 == nil || [CheckCode003 isEqualToString:@"(null)"]) {
+                                if ([CheckCode004 length] == 0 || CheckCode004 == nil || [CheckCode004 isEqualToString:@"(null)"]) {
+                                    if ([CheckCode005 length] == 0 || CheckCode005 == nil || [CheckCode005 isEqualToString:@"(null)"]) {
+                                        if ([CheckCode006 length] == 0 || CheckCode006 == nil || [CheckCode006 isEqualToString:@"(null)"]) {
+                                            if ([CheckCode007 length] == 0 || CheckCode007 == nil || [CheckCode007 isEqualToString:@"(null)"]) {
+                                                //GetExpense = @"";
                                                 if ([TempPrice isEqualToString:@"(null)"] || [TempPrice isEqualToString:@""] || TempPrice == nil) {
                                                     TempPrice = @"";
                                                 }
-                                                TempPriceCode = @"901";
-                                                if ([TempPriceCode isEqualToString:@"901"]) {
-                                                    //TWD
-                                                    GetExpense = [[NSString alloc]initWithFormat:@"TWD %@",TempPrice];
+                                                GetExpense = [[NSString alloc]initWithFormat:@"USD %@",TempPrice];
+                                                GetExpense_Code = @"840";
+                                                GetExpense_RealData = CheckCode001;
+                                                GetExpense_Show = @"USD";
+                                            }else{
+                                                TempPrice = CheckCode007;
+                                                if ([TempPrice isEqualToString:@"(null)"] || [TempPrice isEqualToString:@""] || TempPrice == nil) {
+                                                    TempPrice = @"";
+                                                }
+                                                TempPriceCode = @"608";
+                                                if ([TempPriceCode isEqualToString:@"608"]) {
+                                                    //PHP
+                                                    GetExpense = [[NSString alloc]initWithFormat:@"PHP %@",TempPrice];
                                                     GetExpense_Code = TempPriceCode;
                                                     GetExpense_RealData = TempPrice;
-                                                    GetExpense_Show = @"TWD";
+                                                    GetExpense_Show = @"PHP";
                                                 }
                                             }
                                         }else{
-                                            TempPrice = CheckCode005;
+                                            TempPrice = CheckCode006;
                                             if ([TempPrice isEqualToString:@"(null)"] || [TempPrice isEqualToString:@""] || TempPrice == nil) {
                                                 TempPrice = @"";
                                             }
-                                            TempPriceCode = @"360";
-                                            if ([TempPriceCode isEqualToString:@"360"]) {
-                                                //IDR
-                                                GetExpense = [[NSString alloc]initWithFormat:@"IDR %@",TempPrice];
+                                            TempPriceCode = @"901";
+                                            if ([TempPriceCode isEqualToString:@"901"]) {
+                                                //TWD
+                                                GetExpense = [[NSString alloc]initWithFormat:@"TWD %@",TempPrice];
                                                 GetExpense_Code = TempPriceCode;
                                                 GetExpense_RealData = TempPrice;
-                                                GetExpense_Show = @"IDR";
+                                                GetExpense_Show = @"TWD";
                                             }
                                         }
                                     }else{
-                                        TempPrice = CheckCode004;
+                                        TempPrice = CheckCode005;
                                         if ([TempPrice isEqualToString:@"(null)"] || [TempPrice isEqualToString:@""] || TempPrice == nil) {
                                             TempPrice = @"";
                                         }
-                                        TempPriceCode = @"764";
-                                        if ([TempPriceCode isEqualToString:@"764"]) {
-                                            //THB
-                                            GetExpense = [[NSString alloc]initWithFormat:@"THB %@",TempPrice];
+                                        TempPriceCode = @"360";
+                                        if ([TempPriceCode isEqualToString:@"360"]) {
+                                            //IDR
+                                            GetExpense = [[NSString alloc]initWithFormat:@"IDR %@",TempPrice];
                                             GetExpense_Code = TempPriceCode;
                                             GetExpense_RealData = TempPrice;
-                                            GetExpense_Show = @"THB";
+                                            GetExpense_Show = @"IDR";
                                         }
                                     }
                                 }else{
-                                    TempPrice = CheckCode003;
+                                    TempPrice = CheckCode004;
                                     if ([TempPrice isEqualToString:@"(null)"] || [TempPrice isEqualToString:@""] || TempPrice == nil) {
                                         TempPrice = @"";
                                     }
-                                    TempPriceCode = @"702";
-                                    if ([TempPriceCode isEqualToString:@"702"]) {
-                                        //SGD
-                                        GetExpense = [[NSString alloc]initWithFormat:@"SGD %@",TempPrice];
+                                    TempPriceCode = @"764";
+                                    if ([TempPriceCode isEqualToString:@"764"]) {
+                                        //THB
+                                        GetExpense = [[NSString alloc]initWithFormat:@"THB %@",TempPrice];
                                         GetExpense_Code = TempPriceCode;
                                         GetExpense_RealData = TempPrice;
-                                        GetExpense_Show = @"SGD";
+                                        GetExpense_Show = @"THB";
                                     }
                                 }
                             }else{
-                                TempPrice = CheckCode002;
+                                TempPrice = CheckCode003;
                                 if ([TempPrice isEqualToString:@"(null)"] || [TempPrice isEqualToString:@""] || TempPrice == nil) {
                                     TempPrice = @"";
                                 }
-                                TempPriceCode = @"458";
-                                if ([TempPriceCode isEqualToString:@"458"]) {
-                                    //MYR
-                                    GetExpense = [[NSString alloc]initWithFormat:@"MYR %@",TempPrice];
+                                TempPriceCode = @"702";
+                                if ([TempPriceCode isEqualToString:@"702"]) {
+                                    //SGD
+                                    GetExpense = [[NSString alloc]initWithFormat:@"SGD %@",TempPrice];
                                     GetExpense_Code = TempPriceCode;
                                     GetExpense_RealData = TempPrice;
-                                    GetExpense_Show = @"MYR";
+                                    GetExpense_Show = @"SGD";
                                 }
                             }
-                            
                         }else{
-                            TempPrice = CheckCode001;
+                            TempPrice = CheckCode002;
                             if ([TempPrice isEqualToString:@"(null)"] || [TempPrice isEqualToString:@""] || TempPrice == nil) {
                                 TempPrice = @"";
                             }
-                            TempPriceCode = @"840";
-                            if ([TempPriceCode isEqualToString:@"840"]) {
-                                //USD
-                                GetExpense = [[NSString alloc]initWithFormat:@"USD %@",TempPrice];
+                            TempPriceCode = @"458";
+                            if ([TempPriceCode isEqualToString:@"458"]) {
+                                //MYR
+                                GetExpense = [[NSString alloc]initWithFormat:@"MYR %@",TempPrice];
+                                GetExpense_Code = TempPriceCode;
+                                GetExpense_RealData = TempPrice;
+                                GetExpense_Show = @"MYR";
                             }
-                            
                         }
+                        
+                    }else{
+                        TempPrice = CheckCode001;
+                        if ([TempPrice isEqualToString:@"(null)"] || [TempPrice isEqualToString:@""] || TempPrice == nil) {
+                            TempPrice = @"";
+                        }
+                        TempPriceCode = @"840";
+                        if ([TempPriceCode isEqualToString:@"840"]) {
+                            //USD
+                            GetExpense = [[NSString alloc]initWithFormat:@"USD %@",TempPrice];
+                        }
+                        
                     }
+                }
                 NSLog(@"Final show GetExpense is %@",GetExpense);
-        
+                
                 GetPlaceLink = [[NSString alloc]initWithFormat:@"%@",[LocationData objectForKey:@"link"]];
                 
                 
@@ -906,6 +935,9 @@
                     GetTitle = @"";
                 }else{
                     ChineseTitle = [[NSString alloc]initWithFormat:@"%@",[titleData objectForKey:@"530b0aa16424400c76000002"]];
+                    if ([ChineseTitle length] == 0 || ChineseTitle == nil || [ChineseTitle isEqualToString:@"(null)"]) {
+                        ChineseTitle = [[NSString alloc]initWithFormat:@"%@",[titleData objectForKey:@"530d5e9b642440d128000018"]];
+                    }
                     EngTitle = [[NSString alloc]initWithFormat:@"%@",[titleData objectForKey:@"530b0ab26424400c76000003"]];
                     ThaiTitle = [[NSString alloc]initWithFormat:@"%@",[titleData objectForKey:@"544481503efa3ff1588b4567"]];
                     IndonesianTitle = [[NSString alloc]initWithFormat:@"%@",[titleData objectForKey:@"53672e863efa3f857f8b4ed2"]];
@@ -915,8 +947,8 @@
                     NSLog(@"ThaiTitle is %@",ThaiTitle);
                     NSLog(@"IndonesianTitle is %@",IndonesianTitle);
                     NSLog(@"PhilippinesTitle is %@",PhilippinesTitle);
-                      if ([EngTitle length] == 0 || EngTitle == nil || [EngTitle isEqualToString:@"(null)"]) {
-                         if ([ChineseTitle length] == 0 || ChineseTitle == nil || [ChineseTitle isEqualToString:@"(null)"]) {
+                    if ([EngTitle length] == 0 || EngTitle == nil || [EngTitle isEqualToString:@"(null)"]) {
+                        if ([ChineseTitle length] == 0 || ChineseTitle == nil || [ChineseTitle isEqualToString:@"(null)"]) {
                             if ([ThaiTitle length] == 0 || ThaiTitle == nil || [ThaiTitle isEqualToString:@"(null)"]) {
                                 if ([IndonesianTitle length] == 0 || IndonesianTitle == nil || [IndonesianTitle isEqualToString:@"(null)"]) {
                                     if ([PhilippinesTitle length] == 0 || PhilippinesTitle == nil || [PhilippinesTitle isEqualToString:@"(null)"]) {
@@ -936,7 +968,7 @@
                                 [LanguageButton setImage:[UIImage imageNamed:@"LanguageTh.png"] forState:UIControlStateNormal];
                             }
                         }else{
-
+                            
                             GetTitle = ChineseTitle;
                             GetLang = @"CN";
                             [LanguageButton setImage:[UIImage imageNamed:@"LanguageChi.png"] forState:UIControlStateNormal];
@@ -954,13 +986,16 @@
                     GetMessage = @"";
                 }else{
                     ChineseMessage = [[NSString alloc]initWithFormat:@"%@",[messageData objectForKey:@"530b0aa16424400c76000002"]];
+                    if ([ChineseMessage length] == 0 || ChineseMessage == nil || [ChineseMessage isEqualToString:@"(null)"]) {
+                        ChineseMessage = [[NSString alloc]initWithFormat:@"%@",[messageData objectForKey:@"530d5e9b642440d128000018"]];
+                    }
                     EndMessage = [[NSString alloc]initWithFormat:@"%@",[messageData objectForKey:@"530b0ab26424400c76000003"]];
                     ThaiMessage = [[NSString alloc]initWithFormat:@"%@",[messageData objectForKey:@"544481503efa3ff1588b4567"]];
                     IndonesianMessage = [[NSString alloc]initWithFormat:@"%@",[messageData objectForKey:@"53672e863efa3f857f8b4ed2"]];
                     PhilippinesMessage = [[NSString alloc]initWithFormat:@"%@",[messageData objectForKey:@"539fbb273efa3fde3f8b4567"]];
-                     if ([EndMessage length] == 0 || EndMessage == nil || [EndMessage isEqualToString:@"(null)"]) {
-                         if ([ChineseMessage length] == 0 || ChineseMessage == nil || [ChineseMessage isEqualToString:@"(null)"]) {
-                             if ([ThaiMessage length] == 0 || ThaiMessage == nil || [ThaiMessage isEqualToString:@"(null)"]) {
+                    if ([EndMessage length] == 0 || EndMessage == nil || [EndMessage isEqualToString:@"(null)"]) {
+                        if ([ChineseMessage length] == 0 || ChineseMessage == nil || [ChineseMessage isEqualToString:@"(null)"]) {
+                            if ([ThaiMessage length] == 0 || ThaiMessage == nil || [ThaiMessage isEqualToString:@"(null)"]) {
                                 if ([IndonesianMessage length] == 0 || IndonesianMessage == nil || [IndonesianMessage isEqualToString:@"(null)"]) {
                                     if ([PhilippinesMessage length] == 0 || PhilippinesMessage == nil || [PhilippinesMessage isEqualToString:@"(null)"]) {
                                     }else{
@@ -1069,97 +1104,131 @@
                     [TempGetLanguageArray addObject:dict];
                 }
                 
-                for (int i = 0; i < [TempGetLanguageArray count]; i++) {
-                    NSString *GetLanguages = [[NSString alloc]initWithFormat:@"%@",[TempGetLanguageArray objectAtIndex:i]];
-                    
-                    
-                    if ([GetLanguages isEqualToString:@"530b0ab26424400c76000003"]) {
-                        ShowLanguageType = @"English";
-                    }else if ([GetLanguages isEqualToString:@"530b0aa16424400c76000002"]){
-                        ShowLanguageType = @"简体中文";
-                    }else if ([GetLanguages isEqualToString:@"544481503efa3ff1588b4567"]){
-                        ShowLanguageType = @"ภาษาไทย";
-                    }else if ([GetLanguages isEqualToString:@"53672e863efa3f857f8b4ed2"]){
-                        ShowLanguageType = @"Bahasa Indonesia";
-                    }else if ([GetLanguages isEqualToString:@"539fbb273efa3fde3f8b4567"]){
-                        ShowLanguageType = @"Filipino";
-                    }
-                    
-                    
-                    
-                    if ([GetLanguages isEqualToString:@"530b0ab26424400c76000003"]) {
-                    }else{
-                        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                        //  [defaults setObject:GetUserSelectLanguagesArray forKey:@"GetUserSelectLanguagesArray"];
-                        NSMutableArray *GetUserSelectLanguagesArray = [[NSMutableArray alloc]initWithArray:[defaults valueForKey:@"GetUserSelectLanguagesArray"]];
-                        NSLog(@"GetUserSelectLanguagesArray is %@",GetUserSelectLanguagesArray);
-                        if (CountLanguage == 1) {
-                            NSLog(@"only one lang");
-                            if ([GetUserSelectLanguagesArray count] == 2) {
-                                NSLog(@"2 language");
-                                NSString *TempLanguage1 = [[NSString alloc]initWithFormat:@"%@",[GetUserSelectLanguagesArray objectAtIndex:0]];
-                                NSString *TempLanguage2 = [[NSString alloc]initWithFormat:@"%@",[GetUserSelectLanguagesArray objectAtIndex:1]];
-                                
-                                if ([GetLanguages isEqualToString:TempLanguage1]) {
-                                    NSLog(@"in here 1111");
-                                    ShowLanguageTranslationView.hidden = YES;
-                                }else if([GetLanguages isEqualToString:TempLanguage2]){
-                                    NSLog(@"in here 2222");
-                                    ShowLanguageTranslationView.hidden = YES;
-                                }else{
-                                    NSLog(@"in here 3333");
-                                    ShowGoogleTranslate = YES;
-                                    
-                                    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                                    NSString *CheckDontShowAgain = [defaults objectForKey:@"DontShowAgainTranslate"];
-                                    if ([CheckDontShowAgain isEqualToString:@"DontShowAgain"]) {
-                                        ShowLanguageTranslationView.hidden = YES;
-                                    }else{
-                                        ShowLanguageTranslationView.hidden = NO;
-                                    }
-                                    // ShowTopTitle.frame = CGRectMake(40, 20, 204, 44);
-                                    NewLanguageButton.frame = CGRectMake(screenWidth - 124 - 15, 26, 55, 33);
-                                    DisplayButton.frame = CGRectMake(screenWidth - 124 - 15, 26, 55, 33);
-                                    NewLanguageButton.hidden = NO;
-                                    [ShowbarView addSubview:NewLanguageButton];
-                                    CheckLanguagedata = 2;
-                                }
-                                
-                            }else{
-                                NSLog(@"1 language");
-                                NSString *TempLanguage1 = [[NSString alloc]initWithFormat:@"%@",[GetUserSelectLanguagesArray objectAtIndex:0]];
-                                if ([GetLanguages isEqualToString:TempLanguage1]) {
-                                    ShowLanguageTranslationView.hidden = YES;
-                                }else{
-                                    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                                    NSString *CheckDontShowAgain = [defaults objectForKey:@"DontShowAgainTranslate"];
-                                    if ([CheckDontShowAgain isEqualToString:@"DontShowAgain"]) {
-                                        ShowLanguageTranslationView.hidden = YES;
-                                    }else{
-                                        ShowLanguageTranslationView.hidden = NO;
-                                    }
-                                    ShowGoogleTranslate = YES;
-                                    //    ShowTopTitle.frame = CGRectMake(40, 20, 204, 44);
-                                    NewLanguageButton.frame = CGRectMake(screenWidth - 124 - 15, 26, 55, 33);
-                                    DisplayButton.frame = CGRectMake(screenWidth - 124 - 15, 26, 55, 33);
-                                    NewLanguageButton.hidden = NO;
-                                    [ShowbarView addSubview:NewLanguageButton];
-                                    CheckLanguagedata = 2;
-                                }
-                            }
-                        }
-                    }
-                }
+                //                for (int i = 0; i < [TempGetLanguageArray count]; i++) {
+                //                    NSString *GetLanguages = [[NSString alloc]initWithFormat:@"%@",[TempGetLanguageArray objectAtIndex:i]];
+                //
+                //
+                //                    if ([GetLanguages isEqualToString:@"530b0ab26424400c76000003"]) {
+                //                        ShowLanguageType = @"English";
+                //                    }else if ([GetLanguages isEqualToString:@"530b0aa16424400c76000002"]){
+                //                        ShowLanguageType = @"简体中文";
+                //                    }else if ([GetLanguages isEqualToString:@"544481503efa3ff1588b4567"]){
+                //                        ShowLanguageType = @"ภาษาไทย";
+                //                    }else if ([GetLanguages isEqualToString:@"53672e863efa3f857f8b4ed2"]){
+                //                        ShowLanguageType = @"Bahasa Indonesia";
+                //                    }else if ([GetLanguages isEqualToString:@"539fbb273efa3fde3f8b4567"]){
+                //                        ShowLanguageType = @"Filipino";
+                //                    }
+                //
+                //
+                //                    if ([GetLanguages isEqualToString:@"530b0ab26424400c76000003"]) {
+                //                    }else{
+                //                        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                //                        //  [defaults setObject:GetUserSelectLanguagesArray forKey:@"GetUserSelectLanguagesArray"];
+                //                        NSMutableArray *GetUserSelectLanguagesArray = [[NSMutableArray alloc]initWithArray:[defaults valueForKey:@"GetUserSelectLanguagesArray"]];
+                //                        NSLog(@"GetUserSelectLanguagesArray is %@",GetUserSelectLanguagesArray);
+                //                        if (CountLanguage == 1) {
+                //                            NSLog(@"only one lang");
+                //                            if ([GetUserSelectLanguagesArray count] == 2) {
+                //                                NSLog(@"2 language");
+                //                                NSString *TempLanguage1 = [[NSString alloc]initWithFormat:@"%@",[GetUserSelectLanguagesArray objectAtIndex:0]];
+                //                                NSString *TempLanguage2 = [[NSString alloc]initWithFormat:@"%@",[GetUserSelectLanguagesArray objectAtIndex:1]];
+                //
+                //                                if ([GetLanguages isEqualToString:TempLanguage1]) {
+                //                                    NSLog(@"in here 1111");
+                //                                    ShowLanguageTranslationView.hidden = YES;
+                //                                }else if([GetLanguages isEqualToString:TempLanguage2]){
+                //                                    NSLog(@"in here 2222");
+                //                                    ShowLanguageTranslationView.hidden = YES;
+                //                                }else{
+                //                                    NSLog(@"in here 3333");
+                //                                    ShowGoogleTranslate = YES;
+                //
+                //                                    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                //                                    NSString *CheckDontShowAgain = [defaults objectForKey:@"DontShowAgainTranslate"];
+                //                                    if ([CheckDontShowAgain isEqualToString:@"DontShowAgain"]) {
+                //                                        ShowLanguageTranslationView.hidden = YES;
+                //                                    }else{
+                //                                        ShowLanguageTranslationView.hidden = NO;
+                //                                    }
+                //                                    // ShowTopTitle.frame = CGRectMake(40, 20, 204, 44);
+                //                                    NewLanguageButton.frame = CGRectMake(screenWidth - 124 - 15, 26, 55, 33);
+                //                                    DisplayButton.frame = CGRectMake(screenWidth - 124 - 15, 26, 55, 33);
+                //                                    NewLanguageButton.hidden = NO;
+                //                                    [ShowbarView addSubview:NewLanguageButton];
+                //                                    CheckLanguagedata = 2;
+                //                                }
+                //
+                //                            }else{
+                //                                NSLog(@"1 language");
+                //                                NSString *TempLanguage1 = [[NSString alloc]initWithFormat:@"%@",[GetUserSelectLanguagesArray objectAtIndex:0]];
+                //                                if ([GetLanguages isEqualToString:TempLanguage1]) {
+                //                                    ShowLanguageTranslationView.hidden = YES;
+                //                                }else{
+                //                                    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                //                                    NSString *CheckDontShowAgain = [defaults objectForKey:@"DontShowAgainTranslate"];
+                //                                    if ([CheckDontShowAgain isEqualToString:@"DontShowAgain"]) {
+                //                                        ShowLanguageTranslationView.hidden = YES;
+                //                                    }else{
+                //                                        ShowLanguageTranslationView.hidden = NO;
+                //                                    }
+                //                                    ShowGoogleTranslate = YES;
+                //                                    //    ShowTopTitle.frame = CGRectMake(40, 20, 204, 44);
+                //                                    NewLanguageButton.frame = CGRectMake(screenWidth - 124 - 15, 26, 55, 33);
+                //                                    DisplayButton.frame = CGRectMake(screenWidth - 124 - 15, 26, 55, 33);
+                //                                    NewLanguageButton.hidden = NO;
+                //                                    [ShowbarView addSubview:NewLanguageButton];
+                //                                    CheckLanguagedata = 2;
+                //                                }
+                //                            }
+                //                        }
+                //                    }
+                //                }
                 
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//                NSMutableArray *GetUserSelectLanguagesArray = [[NSMutableArray alloc]initWithArray:[defaults valueForKey:@"GetUserSelectLanguagesArray"]];
-//                NSString *GetSystemLanguageCheck = [[NSString alloc]initWithFormat:@"%@",[defaults objectForKey:@"UserData_SystemLanguage"]];
-//                NSLog(@"GetUserSelectLanguagesArray is %@",GetUserSelectLanguagesArray);
-//                NSLog(@"GetSystemLanguageCheck is %@",GetSystemLanguageCheck);
+                //                NSMutableArray *GetUserSelectLanguagesArray = [[NSMutableArray alloc]initWithArray:[defaults valueForKey:@"GetUserSelectLanguagesArray"]];
+                //                NSString *GetSystemLanguageCheck = [[NSString alloc]initWithFormat:@"%@",[defaults objectForKey:@"UserData_SystemLanguage"]];
+                //                NSLog(@"GetUserSelectLanguagesArray is %@",GetUserSelectLanguagesArray);
+                //                NSLog(@"GetSystemLanguageCheck is %@",GetSystemLanguageCheck);
                 
                 //NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                 NSString *GetSystemLanguage = [[NSString alloc]initWithFormat:@"%@",[defaults objectForKey:@"UserData_SystemLanguage"]];
                 NSLog(@"GetSystemLanguage is %@",GetSystemLanguage);
+                NSString *SystemLangaugeCode;
+                if ([GetSystemLanguage isEqualToString:@"English"]) {
+                    SystemLangaugeCode = @"530b0ab26424400c76000003";
+                }else if([GetSystemLanguage isEqualToString:@"繁體中文"] || [GetSystemLanguage isEqualToString:@"Traditional Chinese"]){
+                    SystemLangaugeCode = @"530d5e9b642440d128000018";
+                }else if([GetSystemLanguage isEqualToString:@"简体中文"] || [GetSystemLanguage isEqualToString:@"Simplified Chinese"] || [GetSystemLanguage isEqualToString:@"中文"]){
+                    SystemLangaugeCode = @"530b0aa16424400c76000002";
+                }else if([GetSystemLanguage isEqualToString:@"Bahasa Indonesia"]){
+                    SystemLangaugeCode = @"53672e863efa3f857f8b4ed2";
+                }else if([GetSystemLanguage isEqualToString:@"Filipino"]){
+                    SystemLangaugeCode = @"539fbb273efa3fde3f8b4567";
+                }else if([GetSystemLanguage isEqualToString:@"ภาษาไทย"] || [GetSystemLanguage isEqualToString:@"Thai"]){
+                    SystemLangaugeCode = @"544481503efa3ff1588b4567";
+                }else{
+                    SystemLangaugeCode = @"530b0ab26424400c76000003";
+                }
+                
+                if ([TempGetLanguageArray count] > 2) {
+                    CheckLanguagedata = 3;
+                }else{
+                    for (int i = 0; i < [TempGetLanguageArray count]; i++) {
+                        NSString *GetData = [[NSString alloc]initWithFormat:@"%@",[TempGetLanguageArray objectAtIndex:i]];
+                        
+                        if ([GetData isEqualToString:SystemLangaugeCode]) {
+                            break;
+                        }else{
+                            CheckLanguagedata = 3;
+                        }
+                    }
+                }
+                
+                
+                
+                
+                
                 NSDictionary *CategoryData = [GetAllData valueForKey:@"category_meta"];
                 //NSLog(@"CategoryData is %@",CategoryData);
                 GetCategoryIDArray = [[NSMutableArray alloc]init];
@@ -1178,7 +1247,7 @@
                     }else if([GetSystemLanguage isEqualToString:@"繁體中文"] || [GetSystemLanguage isEqualToString:@"Traditional Chinese"]){
                         name = [[NSString alloc]initWithFormat:@"%@",[CategoryNameData objectForKey:@"530d5e9b642440d128000018"]];
                     }else if([GetSystemLanguage isEqualToString:@"简体中文"] || [GetSystemLanguage isEqualToString:@"Simplified Chinese"] || [GetSystemLanguage isEqualToString:@"中文"]){
-                       name = [[NSString alloc]initWithFormat:@"%@",[CategoryNameData objectForKey:@"530b0aa16424400c76000002"]];
+                        name = [[NSString alloc]initWithFormat:@"%@",[CategoryNameData objectForKey:@"530b0aa16424400c76000002"]];
                     }else if([GetSystemLanguage isEqualToString:@"Bahasa Indonesia"]){
                         name = [[NSString alloc]initWithFormat:@"%@",[CategoryNameData objectForKey:@"53672e863efa3f857f8b4ed2"]];
                     }else if([GetSystemLanguage isEqualToString:@"Filipino"]){
@@ -1189,7 +1258,7 @@
                         name = [[NSString alloc]initWithFormat:@"%@",[CategoryNameData objectForKey:@"530b0ab26424400c76000003"]];
                     }
                     
-                     [GetCategoryNameArray addObject:name ];
+                    [GetCategoryNameArray addObject:name ];
                 }
                 
                 NSLog(@"GetCategoryNameArray is %@",GetCategoryNameArray);
@@ -1221,24 +1290,24 @@
                 NSLog(@"GetExpense is %@",GetExpense);
                 NSLog(@"GetPlaceLink is %@",GetPlaceLink);
                 
-//                NSLog(@"GetOpeningHourOpen is %@",GetOpeningHourOpen);
+                //                NSLog(@"GetOpeningHourOpen is %@",GetOpeningHourOpen);
                 
-//                if ([GetExpense isEqualToString:@"(\n)"]) {
-//                    GetExpense = @"";
-//                }else{
-//                GetExpense = @"100";
-//                }
-
-               // ShowCategoryTop.text = GetPlaceName;
-//                NSString * result = [GetCategoryNameArray componentsJoinedByString:@", "];
-//                ShowCategoryTop.text = result;
-            //    GetPlaceLink = @"facebook.com/abc";
-            //    GetContactNo = @"0168409874";
+                //                if ([GetExpense isEqualToString:@"(\n)"]) {
+                //                    GetExpense = @"";
+                //                }else{
+                //                GetExpense = @"100";
+                //                }
+                
+                // ShowCategoryTop.text = GetPlaceName;
+                //                NSString * result = [GetCategoryNameArray componentsJoinedByString:@", "];
+                //                ShowCategoryTop.text = result;
+                //    GetPlaceLink = @"facebook.com/abc";
+                //    GetContactNo = @"0168409874";
                 ShowTotalCommentCount.text = totalCommentCount;
                 ShowTotalLikeCount.text = TotalLikeCount;
                 
                 
-              //  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                //  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                 NSString *GetUsername = [defaults objectForKey:@"UserName"];
                 if ([GetUsername isEqualToString:GetPostName]) {
                     //self
@@ -1248,15 +1317,15 @@
                     //other user
                     // ShareButton.frame = CGRectMake(screenWidth - 55, 0, 55, 64);
                     // ShareIcon.frame = CGRectMake(screenWidth - 22 - 15, 31, 22, 22);
-                  //  ShareButton.hidden = YES;
-                  //  ShareIcon.hidden = YES;
-//                    LocationButton.frame = CGRectMake(screenWidth - 40 - 15, 20, 60, 44);
-//                    LanguageButton.frame = CGRectMake(screenWidth - 85 - 15, 26, 55, 33);
-//                    NewLanguageButton.frame = CGRectMake(screenWidth - 85 - 15, 26, 55, 33);
-//                    DisplayButton.frame = CGRectMake(screenWidth - 85 - 15, 26, 55, 33);
-//                    ShowTranslateOverlay.frame = CGRectMake(screenWidth - 85 - 20, 10, 60, 60);
-//                    ShowTranslateOverlay.layer.cornerRadius = 30;
-
+                    //  ShareButton.hidden = YES;
+                    //  ShareIcon.hidden = YES;
+                    //                    LocationButton.frame = CGRectMake(screenWidth - 40 - 15, 20, 60, 44);
+                    //                    LanguageButton.frame = CGRectMake(screenWidth - 85 - 15, 26, 55, 33);
+                    //                    NewLanguageButton.frame = CGRectMake(screenWidth - 85 - 15, 26, 55, 33);
+                    //                    DisplayButton.frame = CGRectMake(screenWidth - 85 - 15, 26, 55, 33);
+                    //                    ShowTranslateOverlay.frame = CGRectMake(screenWidth - 85 - 20, 10, 60, 60);
+                    //                    ShowTranslateOverlay.layer.cornerRadius = 30;
+                    
                 }
                 
                 
@@ -1264,7 +1333,7 @@
                 
                 
                 [self GetAllUserLikeData];
-              //  [self InitView];
+                //  [self InitView];
             }
         }
     }else if(connection == theConnection_GetAllUserlikes){
@@ -1309,7 +1378,7 @@
                 [self GetAllCommentData];
             }
         }
-
+        
         
         
     }else if(connection == theConnection_GetAllComment){
@@ -1321,49 +1390,58 @@
         NSError *myError = nil;
         NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
         NSLog(@"Get all comment Json = %@",res);
-    
+        
         NSArray *GetAllData = (NSArray *)[res valueForKey:@"data"];
         NSLog(@"GetAllData is %@",GetAllData);
         
         NSString *countString = [[NSString alloc]initWithFormat:@"%@",[GetAllData valueForKey:@"count"]];
         NSLog(@"countString is %@",countString);
+        NSLog(@"ShowTotalCommentCount.text is %@",ShowTotalCommentCount.text);
         
-        ShowTotalCommentCount.text = countString;
         
-        NSArray *GetCommentData = (NSArray *)[GetAllData valueForKey:@"comments"];
-        NSLog(@"GetCommentData is %@",GetCommentData);
-        
-        CommentIDArray = [[NSMutableArray alloc] initWithCapacity:[GetCommentData count]];
-        PostIDArray = [[NSMutableArray alloc] initWithCapacity:[GetCommentData count]];
-        MessageArray = [[NSMutableArray alloc] initWithCapacity:[GetCommentData count]];
-        for (NSDictionary * dict in GetCommentData) {
-            NSString *comment_id = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"comment_id"]];
-            [CommentIDArray addObject:comment_id];
-            NSString *post_id = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"post_id"]];
-            [PostIDArray addObject:post_id];
-            NSString *message = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"message"]];
-            [MessageArray addObject:message];
+        if ([MessageCount isEqualToString:countString]) {
+            
+        }else{
+            MessageCount = countString;
+            ShowTotalCommentCount.text = MessageCount;
+            
+            NSArray *GetCommentData = (NSArray *)[GetAllData valueForKey:@"comments"];
+            NSLog(@"GetCommentData is %@",GetCommentData);
+            
+            CommentIDArray = [[NSMutableArray alloc] initWithCapacity:[GetCommentData count]];
+            PostIDArray = [[NSMutableArray alloc] initWithCapacity:[GetCommentData count]];
+            MessageArray = [[NSMutableArray alloc] initWithCapacity:[GetCommentData count]];
+            for (NSDictionary * dict in GetCommentData) {
+                NSString *comment_id = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"comment_id"]];
+                [CommentIDArray addObject:comment_id];
+                NSString *post_id = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"post_id"]];
+                [PostIDArray addObject:post_id];
+                NSString *message = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"message"]];
+                [MessageArray addObject:message];
+            }
+            
+            NSDictionary *UserInfoData_ = [GetCommentData valueForKey:@"author_info"];
+            NSLog(@"UserInfoData_ is %@",UserInfoData_);
+            
+            User_Comment_uidArray = [[NSMutableArray alloc] initWithCapacity:[UserInfoData_ count]];
+            User_Comment_nameArray = [[NSMutableArray alloc] initWithCapacity:[UserInfoData_ count]];
+            User_Comment_usernameArray = [[NSMutableArray alloc] initWithCapacity:[UserInfoData_ count]];
+            User_Comment_photoArray = [[NSMutableArray alloc] initWithCapacity:[UserInfoData_ count]];
+            for (NSDictionary * dict in UserInfoData_) {
+                NSString *uid = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"uid"]];
+                [User_Comment_uidArray addObject:uid];
+                NSString *name = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"name"]];
+                [User_Comment_nameArray addObject:name];
+                NSString *username = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"username"]];
+                [User_Comment_usernameArray addObject:username];
+                NSString *photo = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"profile_photo"]];
+                [User_Comment_photoArray addObject:photo];
+            }
+            
+            [self InitView];
         }
         
-        NSDictionary *UserInfoData_ = [GetCommentData valueForKey:@"author_info"];
-        NSLog(@"UserInfoData_ is %@",UserInfoData_);
         
-        User_Comment_uidArray = [[NSMutableArray alloc] initWithCapacity:[UserInfoData_ count]];
-        User_Comment_nameArray = [[NSMutableArray alloc] initWithCapacity:[UserInfoData_ count]];
-        User_Comment_usernameArray = [[NSMutableArray alloc] initWithCapacity:[UserInfoData_ count]];
-        User_Comment_photoArray = [[NSMutableArray alloc] initWithCapacity:[UserInfoData_ count]];
-        for (NSDictionary * dict in UserInfoData_) {
-            NSString *uid = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"uid"]];
-            [User_Comment_uidArray addObject:uid];
-            NSString *name = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"name"]];
-            [User_Comment_nameArray addObject:name];
-            NSString *username = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"username"]];
-            [User_Comment_usernameArray addObject:username];
-            NSString *photo = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"profile_photo"]];
-            [User_Comment_photoArray addObject:photo];
-        }
-        
-        [self InitView];
     }else if(connection == theConnection_likes){
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
         NSLog(@"Send post like return get data to server ===== %@",GetData);
@@ -1379,7 +1457,7 @@
         if ([statusString isEqualToString:@"ok"]) {
             
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_LIKES object:nil];
-
+            
             NSDictionary *GetAllData = [res valueForKey:@"data"];
             NSLog(@"GetAllData is %@",GetAllData);
             
@@ -1392,31 +1470,10 @@
             ShowTotalLikeCount.text = likeStringCount;
             TotalLikeCount = likeStringCount;
             if ([likeString isEqualToString:@"1"]) {
-                GetLikeCheck = @"1";
-                CheckLikeInitView = YES;
-                ShowTotalLikeCount.textColor = [UIColor redColor];
-                [LikeButton setImage:[UIImage imageNamed:@"LikedIcon.png"] forState:UIControlStateNormal];
-               // [LikeButton setTitle:CustomLocalisedString(@"Likes", nil) forState:UIControlStateNormal];
-                [LikeButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
                 [self GetAllUserLikeData];
-                
-                
-                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                [defaults setObject:GetLikeCheck forKey:@"PostToDetail_like"];
-                [defaults synchronize];
-                
                 
             }else{
-                GetLikeCheck = @"0";
-                CheckLikeInitView = YES;
-                [LikeButton setImage:[UIImage imageNamed:@"LikeIcon.png"] forState:UIControlStateNormal];
-               // [LikeButton setTitle:CustomLocalisedString(@"Likes", nil) forState:UIControlStateNormal];
-                [LikeButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
                 [self GetAllUserLikeData];
-                
-                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                [defaults setObject:GetLikeCheck forKey:@"PostToDetail_like"];
-                [defaults synchronize];
                 
             }
             // [self InitView];
@@ -1438,20 +1495,20 @@
             NSLog(@"GetAllData is %@",GetAllData);
             NSDictionary *GetAlltranslation = [GetAllData valueForKey:@"translations"];
             NSLog(@"GetAlltranslation is %@",GetAlltranslation);
-//            NSDictionary *GetAllENData = [GetAlltranslation valueForKey:@"530b0ab26424400c76000003"];
-//            NSLog(@"GetAllENData is %@",GetAllENData);
-//            
-//            
-//            if ([GetAllENData count] == 0) {
-//                GetENMessageString = GetMessage;
-//                GetENTItleStirng = GetTitle;
-//            }else{
-//                GetENMessageString = [[NSString alloc]initWithFormat:@"%@",[GetAllENData objectForKey:@"message"]];
-//                NSLog(@"GetENMessageString is %@",GetENMessageString);
-//                
-//                GetENTItleStirng = [[NSString alloc]initWithFormat:@"%@",[GetAllENData objectForKey:@"title"]];
-//                NSLog(@"GetENTItleStirng is %@",GetENTItleStirng);
-//            }
+            //            NSDictionary *GetAllENData = [GetAlltranslation valueForKey:@"530b0ab26424400c76000003"];
+            //            NSLog(@"GetAllENData is %@",GetAllENData);
+            //
+            //
+            //            if ([GetAllENData count] == 0) {
+            //                GetENMessageString = GetMessage;
+            //                GetENTItleStirng = GetTitle;
+            //            }else{
+            //                GetENMessageString = [[NSString alloc]initWithFormat:@"%@",[GetAllENData objectForKey:@"message"]];
+            //                NSLog(@"GetENMessageString is %@",GetENMessageString);
+            //
+            //                GetENTItleStirng = [[NSString alloc]initWithFormat:@"%@",[GetAllENData objectForKey:@"title"]];
+            //                NSLog(@"GetENTItleStirng is %@",GetENTItleStirng);
+            //            }
             NSDictionary *EnTranslation = [GetAlltranslation valueForKey:@"530b0ab26424400c76000003"];
             NSDictionary *CnTranslation = [GetAlltranslation valueForKey:@"530b0aa16424400c76000002"];
             NSDictionary *ThaiTranslation = [GetAlltranslation valueForKey:@"544481503efa3ff1588b4567"];
@@ -1464,7 +1521,7 @@
                             if ([PhilippinesTranslation count] == 0 || PhilippinesTranslation == nil) {
                                 GetENMessageString = GetMessage;
                                 GetENTItleStirng = GetTitle;
-
+                                
                             }else{
                                 GetENMessageString = [[NSString alloc]initWithFormat:@"%@",[PhilippinesTranslation objectForKey:@"message"]];
                                 GetENTItleStirng = [[NSString alloc]initWithFormat:@"%@",[PhilippinesTranslation objectForKey:@"title"]];
@@ -1487,7 +1544,7 @@
             }else{
                 GetENMessageString = [[NSString alloc]initWithFormat:@"%@",[EnTranslation objectForKey:@"message"]];
                 GetENTItleStirng = [[NSString alloc]initWithFormat:@"%@",[EnTranslation objectForKey:@"title"]];
-
+                
                 
             }
             
@@ -1502,12 +1559,15 @@
             [self InitView];
             
             [ShowActivity stopAnimating];
-           // [spinnerView stopAnimating];
-           // [spinnerView removeFromSuperview];
+            // [spinnerView stopAnimating];
+            // [spinnerView removeFromSuperview];
             [LoadingBlackBackground removeFromSuperview];
         }
         
     }else if(connection == theConnection_DeletePost){
+        
+        [ShowActivity stopAnimating];
+        
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
         NSLog(@"delete post return get data to server ===== %@",GetData);
         
@@ -1523,7 +1583,11 @@
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             [defaults setObject:@"YES" forKey:@"SelfDeletePost"];
             [defaults setObject:@"YES" forKey:@"SelfDeletePost_Profile"];
+            [defaults setObject:@"" forKey:@"PostToDetail_like"];
+            [defaults setObject:@"" forKey:@"PostToDetail_Collect"];
+            [defaults setObject:@"" forKey:@"PostToDetail_IDN"];
             [defaults synchronize];
+            
             
             CATransition *transition = [CATransition animation];
             transition.duration = 0.2;
@@ -1536,7 +1600,7 @@
             
             [self.navigationController popToRootViewControllerAnimated:YES];
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_POST object:nil];
-
+            
         }
     }else if(connection == theConnection_QuickCollect){
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
@@ -1553,7 +1617,7 @@
         
         if ([statusString isEqualToString:@"ok"]) {
             
-
+            
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             [defaults setObject:GetCollectCheck forKey:@"PostToDetail_Collect"];
             [defaults synchronize];
@@ -1561,13 +1625,13 @@
         }
     }else if(connection == theConnection_NearbyPost){
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
-      //  NSLog(@"Get Nearby Post return get data to server ===== %@",GetData);
+        //  NSLog(@"Get Nearby Post return get data to server ===== %@",GetData);
         
         
         NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
         NSError *myError = nil;
         NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
-       // NSLog(@"Expert Json = %@",res);
+        // NSLog(@"Expert Json = %@",res);
         
         NSString *statusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
         NSLog(@"statusString is %@",statusString);
@@ -1598,6 +1662,9 @@
                         [TitleArray_Nearby addObject:@""];
                     }else{
                         NSString *Title1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0aa16424400c76000002"]];
+                        if ([Title1 length] == 0 || Title1== nil || [Title1 isEqualToString:@"(null)"]) {
+                            Title1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530d5e9b642440d128000018"]];
+                        }
                         NSString *Title2 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0ab26424400c76000003"]];
                         NSString *ThaiTitle_Nearby = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"544481503efa3ff1588b4567"]];
                         NSString *IndonesianTitle_Nearby = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"53672e863efa3f857f8b4ed2"]];
@@ -1636,9 +1703,12 @@
                 for (NSDictionary * dict in messageData) {
                     if ([dict count] == 0 || dict == nil || [dict isKindOfClass:[NSNull class]]) {
                         [MessageArray_Nearby addObject:@""];
-
+                        
                     }else{
                         NSString *Title1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0aa16424400c76000002"]];
+                        if ([Title1 length] == 0 || Title1== nil || [Title1 isEqualToString:@"(null)"]) {
+                            Title1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530d5e9b642440d128000018"]];
+                        }
                         NSString *Title2 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0ab26424400c76000003"]];
                         NSString *ThaiTitle_Nearby = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"544481503efa3ff1588b4567"]];
                         NSString *IndonesianTitle_Nearby = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"53672e863efa3f857f8b4ed2"]];
@@ -1674,7 +1744,7 @@
                 }
                 
                 NSDictionary *UserInfoData = [GetAllData valueForKey:@"user_info"];
-             //   NSDictionary *UserInfoData_ProfilePhoto = [UserInfoData valueForKey:@"profile_photo"];
+                //   NSDictionary *UserInfoData_ProfilePhoto = [UserInfoData valueForKey:@"profile_photo"];
                 
                 UserInfo_NameArray_Nearby = [[NSMutableArray alloc] initWithCapacity:[UserInfoData count]];
                 UserInfo_UrlArray_Nearby = [[NSMutableArray alloc] initWithCapacity:[UserInfoData count]];
@@ -1687,7 +1757,7 @@
                     NSString *userid = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"uid"]];
                     [UserInfo_IDArray_Nearby addObject:userid];
                 }
-
+                
                 
                 NSArray *PhotoData = [GetAllData valueForKey:@"photos"];
                 PhotoArray_Nearby = [[NSMutableArray alloc]init];
@@ -1727,12 +1797,12 @@
                 NSLog(@"PlaceNameArray_Nearby is %@",PlaceNameArray_Nearby);
                 CheckNearbyPost = 1;
                 [self InitNearbyPostView];
-            
+                
             }
             
             
         }else{
-
+            
         }
         
     }else if(connection == theConnection_CollectionSuggestion){
@@ -1750,7 +1820,7 @@
         if ([statusString isEqualToString:@"ok"]) {
             
             NSDictionary *AllData = [res valueForKey:@"data"];
-   
+            
             arrCollectionID = [[NSMutableArray alloc]init];
             arrTitle = [[NSMutableArray alloc]init];
             arrTotalCount = [[NSMutableArray alloc]init];
@@ -1759,7 +1829,7 @@
             arrUserImage = [[NSMutableArray alloc]init];
             arrUserID = [[NSMutableArray alloc]init];
             arrFollowing = [[NSMutableArray alloc]init];
-     
+            
             
             NSDictionary *GetResultData = [AllData valueForKey:@"collections"];
             
@@ -1812,14 +1882,14 @@
             //            [arrImageData addObject:resultImageUrl];
             
             NSLog(@"arrImageData is %@",arrImageData);
-        
-        
-        
-        
-        isThereAnyCollectionSuggestion = YES;
-        [self InitCollectionSuggestionsView];
+            
+            
+            
+            
+            isThereAnyCollectionSuggestion = YES;
+            [self InitCollectionSuggestionsView];
         }else{
-        
+            
         }
     }else if(connection == theConnection_FollowCollect){
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
@@ -1846,7 +1916,7 @@
             
         }
     }else{
-    //follow data
+        //follow data
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
         NSLog(@"Get Following return get data to server ===== %@",GetData);
         
@@ -1879,9 +1949,9 @@
 
 -(void)InitView{
     
-  //  CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+    //  CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-
+    
     for (UIView *subview in MainScroll.subviews) {
         [subview removeFromSuperview];
     }
@@ -1889,12 +1959,12 @@
         [subview removeFromSuperview];
     }
     
-//    UIButton *HideButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [HideButton setTitle:@"" forState:UIControlStateNormal];
-//    [HideButton setFrame:CGRectMake(0, 340, screenWidth, screenHeight)];
-//    [HideButton setBackgroundColor:[UIColor clearColor]];
-//    [HideButton addTarget:self action:@selector(HideButton:) forControlEvents:UIControlEventTouchUpInside];
-//    [MainScroll addSubview:HideButton];
+    //    UIButton *HideButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    //    [HideButton setTitle:@"" forState:UIControlStateNormal];
+    //    [HideButton setFrame:CGRectMake(0, 340, screenWidth, screenHeight)];
+    //    [HideButton setBackgroundColor:[UIColor clearColor]];
+    //    [HideButton addTarget:self action:@selector(HideButton:) forControlEvents:UIControlEventTouchUpInside];
+    //    [MainScroll addSubview:HideButton];
     
     
     [MainScroll addSubview:MImageScroll];
@@ -1921,10 +1991,10 @@
         [ImageScroll setNeedsDisplay];
         [MImageScroll addSubview:ImageScroll];
         
-//        UIImageView *PostShade = [[UIImageView alloc]init];
-//        PostShade.frame = CGRectMake(0+ i *screenWidth, 308, screenWidth, 96);
-//        PostShade.image = [UIImage imageNamed:@"PostShade2.png"];
-//        [MImageScroll addSubview:PostShade];
+        //        UIImageView *PostShade = [[UIImageView alloc]init];
+        //        PostShade.frame = CGRectMake(0+ i *screenWidth, 308, screenWidth, 96);
+        //        PostShade.image = [UIImage imageNamed:@"PostShade2.png"];
+        //        [MImageScroll addSubview:PostShade];
         
         ShowImage = [[AsyncImageView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 360)];
         [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
@@ -1938,7 +2008,7 @@
         ShowImage.tag = 6000000;
         [ImageScroll addSubview:ShowImage];
         
-
+        
         
         UIButton *ImageButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [ImageButton setTitle:@"" forState:UIControlStateNormal];
@@ -1947,7 +2017,7 @@
         ImageButton.tag = i;
         [ImageButton addTarget:self action:@selector(ImageButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         [ImageScroll addSubview:ImageButton];
-
+        
         
         NSLog(@"captionArray is %@",captionArray);
         
@@ -1955,10 +2025,10 @@
         NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"[]:"];
         TempGetStirngMessage = [[TempGetStirngMessage componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString:@""];
         UILabel *ShowCaptionText = [[UILabel alloc]init];
-      //  ShowCaptionText.frame = CGRectMake(15 + i *screenWidth, 265, screenWidth - 30, 60);
+        //  ShowCaptionText.frame = CGRectMake(15 + i *screenWidth, 265, screenWidth - 30, 60);
         ShowCaptionText.numberOfLines = 0;
         ShowCaptionText.textColor = [UIColor whiteColor];
-       // ShowCaptionText.text = [captionArray objectAtIndex:i];
+        // ShowCaptionText.text = [captionArray objectAtIndex:i];
         NSMutableAttributedString * string = [[NSMutableAttributedString alloc]initWithString:TempGetStirngMessage];
         NSString *str = TempGetStirngMessage;
         NSError *error = nil;
@@ -1978,8 +2048,8 @@
         ShowCaptionText.backgroundColor = [UIColor clearColor];
         ShowCaptionText.frame = CGRectMake(15 + i *screenWidth, 301 - [ShowCaptionText sizeThatFits:CGSizeMake(screenWidth - 30, CGFLOAT_MAX)].height , screenWidth - 30,[ShowCaptionText sizeThatFits:CGSizeMake(screenWidth - 30, CGFLOAT_MAX)].height);
         
-
-       // [MImageScroll addSubview:ShowCaptionText];
+        
+        // [MImageScroll addSubview:ShowCaptionText];
     }
     //NSLog(@"start draw title");
     
@@ -1996,65 +2066,90 @@
     NSString *TempCount = [[NSString alloc]initWithFormat:@"1 / %li",(long)productcount];
     ImageCount = productcount;
     ShowImageCount.text = TempCount;
-
+    
     int GetHeightCheck = 363;
     
-    if (CheckLanguagedata == 2) {
-        //tanslate button here
-        UIButton *TanslateButton = [[UIButton alloc]init];
-        TanslateButton.frame = CGRectMake(20, GetHeightCheck, screenWidth - 40, 40);
-        [TanslateButton setTitle:LocalisedString(@"Translate") forState:UIControlStateNormal];
-        [TanslateButton setImage:[UIImage imageNamed:@"TranslateArrow.png"] forState:UIControlStateNormal];
-        TanslateButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-        [TanslateButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f  blue:153.0f/255.0f  alpha:1.0f] forState:UIControlStateNormal];
-        TanslateButton.layer.cornerRadius = 5;
-        TanslateButton.layer.borderWidth=1;
-        TanslateButton.layer.masksToBounds = YES;
-        TanslateButton.layer.borderColor=[[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0f] CGColor];
-        [TanslateButton addTarget:self action:@selector(NewLanguageButton:) forControlEvents:UIControlEventTouchUpInside];
-        [MainScroll addSubview:TanslateButton];
+    if (CheckLanguagedata == 3) {
         
-        GetHeightCheck += 63;
-    }else if(CheckLanguagedata == 0){
-        //tanslate button here
-        UIButton *TanslateButton = [[UIButton alloc]init];
-        TanslateButton.frame = CGRectMake(20, GetHeightCheck, screenWidth - 40, 40);
-        [TanslateButton setTitle:LocalisedString(@"Translate") forState:UIControlStateNormal];
-        [TanslateButton setImage:[UIImage imageNamed:@"TranslateArrow.png"] forState:UIControlStateNormal];
-        TanslateButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-        [TanslateButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f  blue:153.0f/255.0f  alpha:1.0f] forState:UIControlStateNormal];
-        TanslateButton.layer.cornerRadius = 5;
-        TanslateButton.layer.borderWidth=1;
-        TanslateButton.layer.masksToBounds = YES;
-        TanslateButton.layer.borderColor=[[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0f] CGColor];
-        [TanslateButton addTarget:self action:@selector(LanguageButton:) forControlEvents:UIControlEventTouchUpInside];
-        [MainScroll addSubview:TanslateButton];
+        if ([GetTitle length] == 0 || [GetTitle isEqualToString:@""] || [GetTitle isEqualToString:@"(null)"] || [GetMessage length] == 0 || [GetMessage isEqualToString:@""] || [GetMessage isEqualToString:@"(null)"]) {
+            
+        }else{
+            UIButton *TanslateButton = [[UIButton alloc]init];
+            TanslateButton.frame = CGRectMake(20, GetHeightCheck, screenWidth - 40, 40);
+            [TanslateButton setTitle:LocalisedString(@"Translate") forState:UIControlStateNormal];
+            [TanslateButton setImage:[UIImage imageNamed:@"TranslateArrow.png"] forState:UIControlStateNormal];
+            TanslateButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+            [TanslateButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f  blue:153.0f/255.0f  alpha:1.0f] forState:UIControlStateNormal];
+            TanslateButton.layer.cornerRadius = 5;
+            TanslateButton.layer.borderWidth=1;
+            TanslateButton.layer.masksToBounds = YES;
+            TanslateButton.layer.borderColor=[[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0f] CGColor];
+            [TanslateButton addTarget:self action:@selector(LanguageButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+            [MainScroll addSubview:TanslateButton];
+            
+            GetHeightCheck += 63;
+        }
         
-        GetHeightCheck += 63;
+        
+        
     }
-
+    
+    //    if (CheckLanguagedata == 2) {
+    //        //tanslate button here
+    //        UIButton *TanslateButton = [[UIButton alloc]init];
+    //        TanslateButton.frame = CGRectMake(20, GetHeightCheck, screenWidth - 40, 40);
+    //        [TanslateButton setTitle:LocalisedString(@"Translate") forState:UIControlStateNormal];
+    //        [TanslateButton setImage:[UIImage imageNamed:@"TranslateArrow.png"] forState:UIControlStateNormal];
+    //        TanslateButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+    //        [TanslateButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f  blue:153.0f/255.0f  alpha:1.0f] forState:UIControlStateNormal];
+    //        TanslateButton.layer.cornerRadius = 5;
+    //        TanslateButton.layer.borderWidth=1;
+    //        TanslateButton.layer.masksToBounds = YES;
+    //        TanslateButton.layer.borderColor=[[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0f] CGColor];
+    //        [TanslateButton addTarget:self action:@selector(NewLanguageButton:) forControlEvents:UIControlEventTouchUpInside];
+    //        [MainScroll addSubview:TanslateButton];
+    //
+    //        GetHeightCheck += 63;
+    //    }else if(CheckLanguagedata == 0){
+    //        //tanslate button here
+    //        UIButton *TanslateButton = [[UIButton alloc]init];
+    //        TanslateButton.frame = CGRectMake(20, GetHeightCheck, screenWidth - 40, 40);
+    //        [TanslateButton setTitle:LocalisedString(@"Translate") forState:UIControlStateNormal];
+    //        [TanslateButton setImage:[UIImage imageNamed:@"TranslateArrow.png"] forState:UIControlStateNormal];
+    //        TanslateButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+    //        [TanslateButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f  blue:153.0f/255.0f  alpha:1.0f] forState:UIControlStateNormal];
+    //        TanslateButton.layer.cornerRadius = 5;
+    //        TanslateButton.layer.borderWidth=1;
+    //        TanslateButton.layer.masksToBounds = YES;
+    //        TanslateButton.layer.borderColor=[[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0f] CGColor];
+    //        [TanslateButton addTarget:self action:@selector(LanguageButton:) forControlEvents:UIControlEventTouchUpInside];
+    //        [MainScroll addSubview:TanslateButton];
+    //
+    //        GetHeightCheck += 63;
+    //    }
+    
     
     if ([GetTitle length] == 0 || [GetTitle isEqualToString:@""] || [GetTitle isEqualToString:@"(null)"]) {
         GetHeightCheck -= 10;
     }else{
         ShowTitle = [[UILabel alloc]init];
-      //  ShowTitle.frame = CGRectMake(20, GetHeightCheck, screenWidth - 40, 40);
+        //  ShowTitle.frame = CGRectMake(20, GetHeightCheck, screenWidth - 40, 40);
         NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
         paragraph.minimumLineHeight = 21.0f;
         paragraph.maximumLineHeight = 21.0f;
         NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:GetTitle attributes:@{NSParagraphStyleAttributeName: paragraph}];
         ShowTitle.attributedText = attributedString;
-       // ShowTitle.text = GetTitle;
+        // ShowTitle.text = GetTitle;
         ShowTitle.numberOfLines = 0;
         ShowTitle.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:17];
         ShowTitle.textAlignment = NSTextAlignmentLeft;
         ShowTitle.textColor = [UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f  blue:51.0f/255.0f  alpha:1.0f];
         [MainScroll addSubview:ShowTitle];
         
-     //   if([ShowTitle sizeThatFits:CGSizeMake(screenWidth - 40, CGFLOAT_MAX)].height!=ShowTitle.frame.size.height)
-      //  {
-            ShowTitle.frame = CGRectMake(20, GetHeightCheck, screenWidth - 40,[ShowTitle sizeThatFits:CGSizeMake(screenWidth - 40, CGFLOAT_MAX)].height);
-      //  }
+        //   if([ShowTitle sizeThatFits:CGSizeMake(screenWidth - 40, CGFLOAT_MAX)].height!=ShowTitle.frame.size.height)
+        //  {
+        ShowTitle.frame = CGRectMake(20, GetHeightCheck, screenWidth - 40,[ShowTitle sizeThatFits:CGSizeMake(screenWidth - 40, CGFLOAT_MAX)].height);
+        //  }
         GetHeightCheck += ShowTitle.frame.size.height + 10;
     }
     
@@ -2078,14 +2173,14 @@
     GetPlaceNameHeight = GetHeightCheck;
     GetPlaceNameHeight -= 20;
     GetHeightCheck += 40;
-
-
+    
+    
     GetMessage = [GetMessage stringByDecodingXMLEntities];
     if ([GetMessage length] == 0 || [GetMessage isEqualToString:@""] || [GetMessage isEqualToString:@"(null)"]) {
         GetHeightCheck -= 10;
     }else{
         ShowMessage = [[UITextView alloc]init];
-      //  ShowMessage.frame = CGRectMake(20, GetHeightCheck, screenWidth - 40, 100);
+        //  ShowMessage.frame = CGRectMake(20, GetHeightCheck, screenWidth - 40, 100);
         NSString *TempGetStirngMessage = [[NSString alloc]initWithFormat:@"%@",GetMessage];
         NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"[]:"];
         TempGetStirngMessage = [[TempGetStirngMessage componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString:@""];
@@ -2094,7 +2189,7 @@
         ShowCaptionText.numberOfLines = 0;
         ShowCaptionText.textColor = [UIColor whiteColor];
         // ShowCaptionText.text = [captionArray objectAtIndex:i];
-
+        
         
         NSMutableAttributedString * string = [[NSMutableAttributedString alloc]initWithString:TempGetStirngMessage];
         NSString *str = TempGetStirngMessage;
@@ -2114,21 +2209,21 @@
         ShowMessage.attributedText = attributedString;
         //[ShowMessage setAttributedText:string];
         
-       // ShowMessage.text = GetMessage;
+        // ShowMessage.text = GetMessage;
         ShowMessage.scrollEnabled = NO;
         ShowMessage.editable = NO;
         ShowMessage.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
         ShowMessage.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f  blue:153.0f/255.0f  alpha:1.0f];
         [MainScroll addSubview:ShowMessage];
-      //  if([ShowMessage sizeThatFits:CGSizeMake(screenWidth - 30, CGFLOAT_MAX)].height!=ShowMessage.frame.size.height)
-     //   {
-            ShowMessage.frame = CGRectMake(20, GetHeightCheck, screenWidth - 40,[ShowMessage sizeThatFits:CGSizeMake(screenWidth - 40, CGFLOAT_MAX)].height);
-//            if (ShowMessage.frame.size.height  > 100) {
-//                
-//            }else{
-//                
-//            }
-//        }
+        //  if([ShowMessage sizeThatFits:CGSizeMake(screenWidth - 30, CGFLOAT_MAX)].height!=ShowMessage.frame.size.height)
+        //   {
+        ShowMessage.frame = CGRectMake(20, GetHeightCheck, screenWidth - 40,[ShowMessage sizeThatFits:CGSizeMake(screenWidth - 40, CGFLOAT_MAX)].height);
+        //            if (ShowMessage.frame.size.height  > 100) {
+        //
+        //            }else{
+        //
+        //            }
+        //        }
         
         GetHeightCheck += ShowMessage.frame.size.height;
     }
@@ -2195,7 +2290,7 @@
     
     if ([GetLink length] == 0 || [GetLink isEqualToString:@""] || [GetLink isEqualToString:@"(null)"]) {
         
-
+        
     }else{
         UIButton *BlogLinkButton = [[UIButton alloc]init];
         BlogLinkButton.frame = CGRectMake(20, GetMessageHeight + 10, screenWidth - 40, 30);
@@ -2209,9 +2304,9 @@
         GetMessageHeight += 40;
     }
     
-
     
-
+    
+    
     AsyncImageView *UserImage = [[AsyncImageView alloc]init];
     UserImage.frame = CGRectMake(20, GetMessageHeight + 15, 38, 38);
     UserImage.contentMode = UIViewContentModeScaleAspectFill;
@@ -2236,15 +2331,15 @@
     ShowUserName.frame = CGRectMake(72, GetMessageHeight + 10, screenWidth - 140 - 72, 50);
     ShowUserName.text = GetPostName;
     ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-   // ShowUserName.textColor = color;
+    // ShowUserName.textColor = color;
     ShowUserName.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
     [MainScroll addSubview:ShowUserName];
     
-     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetUsername = [defaults objectForKey:@"UserName"];
     if ([GetUsername isEqualToString:GetPostName]) {
         //follow button
-
+        
     }else{
         UIButton *OpenProfileButton = [[UIButton alloc]init];
         OpenProfileButton.frame = CGRectMake(20, GetMessageHeight + 10, 250, 50);
@@ -2303,23 +2398,23 @@
         GetMessageHeight += 35;
     }
     
-    if ([Like_UsernameArray count] == 0 && [CommentIDArray count] == 0 && [TotalCollectionCount length] == 0) {
+    if ([Like_UsernameArray count] == 0 && [CommentIDArray count] == 0 && [TotalCollectionCount isEqualToString:@"0"]) {
         //GetMessageHeight += 20;
     }else{
         if ([GetUsername isEqualToString:GetPostName]) {
             
         }else{
-        UIButton *Line01 = [[UIButton alloc]init];
-        Line01.frame = CGRectMake(0, GetMessageHeight, screenWidth, 1);
-        [Line01 setTitle:@"" forState:UIControlStateNormal];//238
-        [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
-        [MainScroll addSubview:Line01];
-        
-        GetMessageHeight += 10;
+            UIButton *Line01 = [[UIButton alloc]init];
+            Line01.frame = CGRectMake(0, GetMessageHeight, screenWidth, 1);
+            [Line01 setTitle:@"" forState:UIControlStateNormal];//238
+            [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+            [MainScroll addSubview:Line01];
+            
+            GetMessageHeight += 10;
         }
     }
-    
-    if ([TotalCollectionCount length] == 0 || [TotalCollectionCount isEqualToString:@""] || [TotalCollectionCount isEqualToString:@"(null)"]) {
+    NSLog(@"TotalCollectionCount is %@",TotalCollectionCount);
+    if ([TotalCollectionCount length] == 0 || [TotalCollectionCount isEqualToString:@""] || [TotalCollectionCount isEqualToString:@"(null)"] || [TotalCollectionCount isEqualToString:@"0"]) {
         GetMessageHeight += 10;
     }else{
         //collected show
@@ -2349,9 +2444,9 @@
         
     }else{
         
-       // (name) like this
-       // (name) and (name) like this
-      //  (name) and (number) others like this
+        // (name) like this
+        // (name) and (name) like this
+        //  (name) and (number) others like this
         
         UIImageView *ShowLikesIcon = [[UIImageView alloc]init];
         ShowLikesIcon.image = [UIImage imageNamed:@"PostLikeIcon.png"];
@@ -2363,7 +2458,7 @@
         
         NSString *tempString;
         if ([Like_UsernameArray count] == 1) {
-
+            
             if ([GetUsername isEqualToString:[Like_UsernameArray objectAtIndex:0]]) {
                 tempString = [[NSString alloc]initWithFormat:@"You like this."];
             }else{
@@ -2386,9 +2481,9 @@
         }
         
         //"likeText_1" = "liked this";
-       // "likeText_and" = "and";
+        // "likeText_and" = "and";
         //"likeText_and_2" = "and";
-       // "likeText_andOther" = "other liked this";
+        // "likeText_andOther" = "other liked this";
         
         UILabel *ShowLikeMessage = [[UILabel alloc]init];
         ShowLikeMessage.frame = CGRectMake(50, GetMessageHeight, screenWidth - 69, 40);
@@ -2404,10 +2499,10 @@
         [OpenLikeButton addTarget:self action:@selector(SeeLikeButton:) forControlEvents:UIControlEventTouchUpInside];
         [MainScroll addSubview:OpenLikeButton];
         
-         GetMessageHeight += 40;
+        GetMessageHeight += 40;
     }
     
-
+    
     if ([CommentIDArray count] == 0) {
         GetMessageHeight += 10;
     }else{
@@ -2417,7 +2512,7 @@
         [MainScroll addSubview:ShowCommentIcon];
         
         if ([CommentIDArray count] > 4) {
-        //    GetMessageHeight += 15;
+            //    GetMessageHeight += 15;
             
             NSMutableArray *TempCommentIDArray = [[NSMutableArray alloc]init];
             NSMutableArray *TempMessageArray = [[NSMutableArray alloc]init];
@@ -2433,7 +2528,7 @@
                 [TempMessageArray addObject:GetMessage_];
                 [TempUser_Comment_usernameArray addObject:GetUser_Comment_username];
                 
-
+                
             }
             
             TempCommentIDArray = [[[TempCommentIDArray reverseObjectEnumerator] allObjects]mutableCopy];
@@ -2519,24 +2614,24 @@
             }
             GetMessageHeight += 20;
             
-//            UIButton *Line01 = [[UIButton alloc]init];
-//            Line01.frame = CGRectMake(0, GetMessageHeight, screenWidth, 1);
-//            [Line01 setTitle:@"" forState:UIControlStateNormal];//238
-//            [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
-//            [MainScroll addSubview:Line01];
-//            
-//            UIButton *SeeAllCommentButton = [[UIButton alloc]init];
-//            SeeAllCommentButton.frame = CGRectMake(0, GetMessageHeight + 1, screenWidth, 50);
-//            [SeeAllCommentButton setTitle:LocalisedString(@"See all activities") forState:UIControlStateNormal];
-//            [SeeAllCommentButton setBackgroundColor:[UIColor clearColor]];
-//            [SeeAllCommentButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
-//            [SeeAllCommentButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
-//            [SeeAllCommentButton addTarget:self action:@selector(CommentButton:) forControlEvents:UIControlEventTouchUpInside];
-//           // SeeAllCommentButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-//
-//            [MainScroll addSubview:SeeAllCommentButton];
-//            
-//            GetMessageHeight += 51;
+            //            UIButton *Line01 = [[UIButton alloc]init];
+            //            Line01.frame = CGRectMake(0, GetMessageHeight, screenWidth, 1);
+            //            [Line01 setTitle:@"" forState:UIControlStateNormal];//238
+            //            [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+            //            [MainScroll addSubview:Line01];
+            //
+            //            UIButton *SeeAllCommentButton = [[UIButton alloc]init];
+            //            SeeAllCommentButton.frame = CGRectMake(0, GetMessageHeight + 1, screenWidth, 50);
+            //            [SeeAllCommentButton setTitle:LocalisedString(@"See all activities") forState:UIControlStateNormal];
+            //            [SeeAllCommentButton setBackgroundColor:[UIColor clearColor]];
+            //            [SeeAllCommentButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
+            //            [SeeAllCommentButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+            //            [SeeAllCommentButton addTarget:self action:@selector(CommentButton:) forControlEvents:UIControlEventTouchUpInside];
+            //           // SeeAllCommentButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+            //
+            //            [MainScroll addSubview:SeeAllCommentButton];
+            //
+            //            GetMessageHeight += 51;
             
             
         }else{
@@ -2545,7 +2640,7 @@
             NSMutableArray *TempMessageArray = [[[MessageArray reverseObjectEnumerator] allObjects]mutableCopy];
             NSMutableArray *TempUser_Comment_usernameArray = [[[User_Comment_usernameArray reverseObjectEnumerator] allObjects]mutableCopy];
             
-           // GetMessageHeight += 7;
+            // GetMessageHeight += 7;
             for (int i = 0; i < [TempCommentIDArray count]; i++) {
                 UILabel *ShowUserName = [[UILabel alloc]init];
                 ShowUserName.frame = CGRectMake(50, GetMessageHeight + 5 + i, 100, 25);
@@ -2622,251 +2717,339 @@
                 }
                 if([Showcomment sizeThatFits:CGSizeMake(screenWidth - TempWidth - 15, CGFLOAT_MAX)].height!=Showcomment.frame.size.height)
                 {
-                Showcomment.frame = CGRectMake(TempWidth, GetMessageHeight+ 8+ i, screenWidth - TempWidth - 15,[Showcomment sizeThatFits:CGSizeMake(screenWidth - TempWidth - 15, CGFLOAT_MAX)].height);
-                GetMessageHeight += [Showcomment sizeThatFits:CGSizeMake(screenWidth - TempWidth - 15, CGFLOAT_MAX)].height + 13;
+                    Showcomment.frame = CGRectMake(TempWidth, GetMessageHeight+ 8+ i, screenWidth - TempWidth - 15,[Showcomment sizeThatFits:CGSizeMake(screenWidth - TempWidth - 15, CGFLOAT_MAX)].height);
+                    GetMessageHeight += [Showcomment sizeThatFits:CGSizeMake(screenWidth - TempWidth - 15, CGFLOAT_MAX)].height + 13;
                 }else{
-                GetMessageHeight += 23;
+                    GetMessageHeight += 23;
                 }
-
-//                NSLog(@"ShowUserName height === %f",ShowUserName.frame.origin.y);
-//                NSLog(@"Showcomment height === %f",Showcomment.frame.origin.y);
-
-              //  GetMessageHeight += 20;
+                
+                //                NSLog(@"ShowUserName height === %f",ShowUserName.frame.origin.y);
+                //                NSLog(@"Showcomment height === %f",Showcomment.frame.origin.y);
+                
+                //  GetMessageHeight += 20;
             }
             GetMessageHeight += 20;
         }
     }
     //NSLog(@"GetMessageHeight ==== %i",GetMessageHeight);
     
-    UIButton *LineFinalAcrivities = [[UIButton alloc]init];
-    LineFinalAcrivities.frame = CGRectMake(0, GetMessageHeight, screenWidth, 1);
-    [LineFinalAcrivities setTitle:@"" forState:UIControlStateNormal];//238
-    [LineFinalAcrivities setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
-    [MainScroll addSubview:LineFinalAcrivities];
-    
-    UIButton *SeeAllCommentButton = [[UIButton alloc]init];
-    SeeAllCommentButton.frame = CGRectMake(0, GetMessageHeight + 1, screenWidth, 50);
-    [SeeAllCommentButton setTitle:LocalisedString(@"See all activities") forState:UIControlStateNormal];
-    [SeeAllCommentButton setBackgroundColor:[UIColor clearColor]];
-    [SeeAllCommentButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
-    [SeeAllCommentButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
-    [SeeAllCommentButton addTarget:self action:@selector(CommentButton:) forControlEvents:UIControlEventTouchUpInside];
-    // SeeAllCommentButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    
-    [MainScroll addSubview:SeeAllCommentButton];
-    
-    GetMessageHeight += 51;
-    
-    UIButton *Line01 = [[UIButton alloc]init];
-    Line01.frame = CGRectMake(0, GetMessageHeight, screenWidth, 20);
-    [Line01 setTitle:@"" forState:UIControlStateNormal];//238
-    [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
-    [MainScroll addSubview:Line01];
-    
-    GetMessageHeight += 20;
-    
-    UILabel *ShowPlaceInfoText = [[UILabel alloc]init];
-    ShowPlaceInfoText.frame = CGRectMake(20, GetMessageHeight, screenWidth - 40, 50);
-    ShowPlaceInfoText.text = LocalisedString(@"About the place");
-    ShowPlaceInfoText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-    ShowPlaceInfoText.backgroundColor = [UIColor clearColor];
-    ShowPlaceInfoText.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-    [MainScroll addSubview:ShowPlaceInfoText];
-    
-    
-    UIButton *DirectionsButton = [[UIButton alloc]init];
-    DirectionsButton.frame = CGRectMake(screenWidth - 200 - 20, GetMessageHeight, 200, 50);
-    [DirectionsButton setTitle:LocalisedString(@"Getting here") forState:UIControlStateNormal];
-    [DirectionsButton setBackgroundColor:[UIColor clearColor]];
-    [DirectionsButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
-    [DirectionsButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
-    [DirectionsButton addTarget:self action:@selector(OpenAddressButton:) forControlEvents:UIControlEventTouchUpInside];
-    DirectionsButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-    
-    [MainScroll addSubview:DirectionsButton];
-    
-    
-    GetMessageHeight += 50;
-    
-    UIButton *Line02 = [[UIButton alloc]init];
-    Line02.frame = CGRectMake(0, GetMessageHeight - 1, screenWidth, 1);
-    [Line02 setTitle:@"" forState:UIControlStateNormal];//238
-    [Line02 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
-    [MainScroll addSubview:Line02];
-    
-//    int TempGetNewHeight = GetMessageHeight;
-    
-//    UIButton *DemoBlackButton = [[UIButton alloc]init];
-//    DemoBlackButton.frame = CGRectMake(21, GetMessageHeight, screenWidth - 41, 80);
-//    [DemoBlackButton setTitle:@"" forState:UIControlStateNormal];
-//    [DemoBlackButton setBackgroundColor:[UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0f]];
-//    DemoBlackButton.layer.cornerRadius = 10;
-//    DemoBlackButton.clipsToBounds = YES;
-//    [MainScroll addSubview:DemoBlackButton];
-//    
-//    UIButton *DemoWhiteButton = [[UIButton alloc]init];
-//    DemoWhiteButton.frame = CGRectMake(22, GetMessageHeight + 1, screenWidth - 43, 78);
-//    [DemoWhiteButton setTitle:@"" forState:UIControlStateNormal];
-//    [DemoWhiteButton setBackgroundColor:[UIColor whiteColor]];
-//    DemoWhiteButton.layer.cornerRadius = 10;
-//    DemoWhiteButton.clipsToBounds = YES;
-//    [MainScroll addSubview:DemoWhiteButton];
-    
-    UIImageView *ShowLocationIcon = [[UIImageView alloc]init];
-    ShowLocationIcon.frame = CGRectMake(20, GetMessageHeight + 18, 25, 25);
-    ShowLocationIcon.image = [UIImage imageNamed:@"BluePin.png"];
-    [MainScroll addSubview:ShowLocationIcon];
-    
-    UILabel *ShowPlaceName = [[UILabel alloc]init];
-    ShowPlaceName.frame = CGRectMake(50, GetMessageHeight + 20, screenWidth - 86 - 61 - 5, 21);
-    ShowPlaceName.text = GetPlaceName;
-    ShowPlaceName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-    ShowPlaceName.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-    [MainScroll addSubview:ShowPlaceName];
-    
-//    UIImageView *ShowArrowRight = [[UIImageView alloc]init];
-//    ShowArrowRight.frame = CGRectMake(screenWidth - 43 - 8 - 10, GetMessageHeight + 24, 8, 13);
-//    ShowArrowRight.image = [UIImage imageNamed:@"Caret.png"];
-//    [MainScroll addSubview:ShowArrowRight];
-    
-    GetMessageHeight += 40;
-    
-    if ([GetPlaceFormattedAddress length] == 0 || [GetPlaceFormattedAddress isEqualToString:@"<null>"]) {
-        GetPlaceFormattedAddress = @"";
-    }
-    
-    UILabel *ShowPlaceFormattedAddress = [[UILabel alloc]init];
-    ShowPlaceFormattedAddress.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
-    ShowPlaceFormattedAddress.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
-    ShowPlaceFormattedAddress.text = GetPlaceFormattedAddress;
-    ShowPlaceFormattedAddress.numberOfLines = 0;
-    ShowPlaceFormattedAddress.backgroundColor = [UIColor clearColor];
-    ShowPlaceFormattedAddress.frame = CGRectMake(50, GetMessageHeight, screenWidth - 152,[ShowPlaceFormattedAddress sizeThatFits:CGSizeMake(screenWidth - 152, CGFLOAT_MAX)].height);
-    [MainScroll addSubview:ShowPlaceFormattedAddress];
-    
-    UIButton *OpenAllInformationButton = [[UIButton alloc]init];
-    OpenAllInformationButton.frame = CGRectMake(86, GetMessageHeight - 20, screenWidth - 86 - 61 - 5, 21 + ShowPlaceFormattedAddress.frame.size.height);
-    [OpenAllInformationButton setTitle:@"" forState:UIControlStateNormal];
-    [OpenAllInformationButton setBackgroundColor:[UIColor clearColor]];
-    [OpenAllInformationButton addTarget:self action:@selector(OpenAddressButton:) forControlEvents:UIControlEventTouchUpInside];
-    [MainScroll addSubview:OpenAllInformationButton];
-    
-    GetMessageHeight += ShowPlaceFormattedAddress.frame.size.height + 20;
-    
-
-    
-    if ([GetPlaceLink length] == 0 || [GetPlaceLink isEqualToString:@"(null)"]) {
-    }else{
-        UIImageView *ShowLinkIcon = [[UIImageView alloc]init];
-        ShowLinkIcon.frame = CGRectMake(20, GetMessageHeight, 25, 25);
-        ShowLinkIcon.image = [UIImage imageNamed:@"BlueLink.png"];
-        [MainScroll addSubview:ShowLinkIcon];
-        
-        UILabel *ShowPlacelink = [[UILabel alloc]init];
-        ShowPlacelink.frame = CGRectMake(50, GetMessageHeight, screenWidth - 152, 25);
-        ShowPlacelink.text = GetPlaceLink;
-        ShowPlacelink.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
-        ShowPlacelink.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-        [MainScroll addSubview:ShowPlacelink];
-        
-        UIButton *OpenLinkButton = [[UIButton alloc]init];
-        OpenLinkButton.frame = CGRectMake(50, GetMessageHeight - 6, screenWidth - 152, 21);
-        [OpenLinkButton setTitle:@"" forState:UIControlStateNormal];
-        [OpenLinkButton addTarget:self action:@selector(OpenLinkButton:) forControlEvents:UIControlEventTouchUpInside];
-        [OpenLinkButton setBackgroundColor:[UIColor clearColor]];
-        [MainScroll addSubview:OpenLinkButton];
-        
-        GetMessageHeight += 50;
-    }
-    if ([GetContactNo length] == 0 || [GetContactNo isEqualToString:@"(null)"]) {
+    if ([Like_UsernameArray count] == 0 && [CommentIDArray count] == 0 && [TotalCollectionCount isEqualToString:@"0"]) {
         
     }else{
-        UIImageView *ShowContactIcon = [[UIImageView alloc]init];
-        ShowContactIcon.frame = CGRectMake(20, GetMessageHeight, 25, 25);
-        ShowContactIcon.image = [UIImage imageNamed:@"BluePhone.png"];
-        [MainScroll addSubview:ShowContactIcon];
+        UIButton *LineFinalAcrivities = [[UIButton alloc]init];
+        LineFinalAcrivities.frame = CGRectMake(0, GetMessageHeight, screenWidth, 1);
+        [LineFinalAcrivities setTitle:@"" forState:UIControlStateNormal];//238
+        [LineFinalAcrivities setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+        [MainScroll addSubview:LineFinalAcrivities];
         
-        UILabel *ShowContact = [[UILabel alloc]init];
-        ShowContact.frame = CGRectMake(50, GetMessageHeight, screenWidth - 152, 25);
-        ShowContact.text = GetContactNo;
-        ShowContact.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
-        ShowContact.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-        [MainScroll addSubview:ShowContact];
+        UIButton *SeeAllCommentButton = [[UIButton alloc]init];
+        SeeAllCommentButton.frame = CGRectMake(0, GetMessageHeight + 1, screenWidth, 50);
+        [SeeAllCommentButton setTitle:LocalisedString(@"See all activities") forState:UIControlStateNormal];
+        [SeeAllCommentButton setBackgroundColor:[UIColor clearColor]];
+        [SeeAllCommentButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
+        [SeeAllCommentButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+        [SeeAllCommentButton addTarget:self action:@selector(CommentButton:) forControlEvents:UIControlEventTouchUpInside];
+        // SeeAllCommentButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         
-        UIButton *OpenContactButton = [[UIButton alloc]init];
-        OpenContactButton.frame = CGRectMake(50, GetMessageHeight - 6, screenWidth - 152, 21);
-        [OpenContactButton setTitle:@"" forState:UIControlStateNormal];
-        [OpenContactButton addTarget:self action:@selector(OpenContactButton:) forControlEvents:UIControlEventTouchUpInside];
-        [OpenContactButton setBackgroundColor:[UIColor clearColor]];
-        [MainScroll addSubview:OpenContactButton];
+        [MainScroll addSubview:SeeAllCommentButton];
         
+        GetMessageHeight += 51;
+    }
+    
+    
+    if ([GetSeetishopID isEqualToString:@""] || [GetSeetishopID length] == 0) {
+        UIButton *Line01 = [[UIButton alloc]init];
+        Line01.frame = CGRectMake(0, GetMessageHeight, screenWidth, 20);
+        [Line01 setTitle:@"" forState:UIControlStateNormal];//238
+        [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+        [MainScroll addSubview:Line01];
+        
+        GetMessageHeight += 20;
+        
+        UILabel *ShowPlaceInfoText = [[UILabel alloc]init];
+        ShowPlaceInfoText.frame = CGRectMake(20, GetMessageHeight, screenWidth - 40, 50);
+        ShowPlaceInfoText.text = LocalisedString(@"About the place");
+        ShowPlaceInfoText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+        ShowPlaceInfoText.backgroundColor = [UIColor clearColor];
+        ShowPlaceInfoText.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+        [MainScroll addSubview:ShowPlaceInfoText];
+        
+        
+        UIButton *DirectionsButton = [[UIButton alloc]init];
+        DirectionsButton.frame = CGRectMake(screenWidth - 200 - 20, GetMessageHeight, 200, 50);
+        [DirectionsButton setTitle:LocalisedString(@"Getting here") forState:UIControlStateNormal];
+        [DirectionsButton setBackgroundColor:[UIColor clearColor]];
+        [DirectionsButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
+        [DirectionsButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+        [DirectionsButton addTarget:self action:@selector(OpenMapButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+        DirectionsButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+        
+        [MainScroll addSubview:DirectionsButton];
         
         
         GetMessageHeight += 50;
-    }
-    if ([GetOpeningHourOpen length] == 0 || [GetOpeningHourOpen isEqualToString:@"(null)"]) {
         
-    }else{
-        UIImageView *ShowOpeningIcon = [[UIImageView alloc]init];
-        ShowOpeningIcon.frame = CGRectMake(20, GetMessageHeight, 25, 25);
-        ShowOpeningIcon.image = [UIImage imageNamed:@"BlueTime.png"];
-        [MainScroll addSubview:ShowOpeningIcon];
+        UIButton *Line02 = [[UIButton alloc]init];
+        Line02.frame = CGRectMake(0, GetMessageHeight - 1, screenWidth, 1);
+        [Line02 setTitle:@"" forState:UIControlStateNormal];//238
+        [Line02 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+        [MainScroll addSubview:Line02];
         
-        if ([GetOpeningHourOpen isEqualToString:@"0"]) {
-            GetOpeningHourOpen = @"Close";
-        }else{
-            
-            GetOpeningHourOpen = @"Open";
+        UIImageView *ShowLocationIcon = [[UIImageView alloc]init];
+        ShowLocationIcon.frame = CGRectMake(20, GetMessageHeight + 18, 25, 25);
+        ShowLocationIcon.image = [UIImage imageNamed:@"BluePin.png"];
+        [MainScroll addSubview:ShowLocationIcon];
+        
+        UILabel *ShowPlaceName = [[UILabel alloc]init];
+        ShowPlaceName.frame = CGRectMake(50, GetMessageHeight + 20, screenWidth - 86 - 61 - 5, 21);
+        ShowPlaceName.text = GetPlaceName;
+        ShowPlaceName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+        ShowPlaceName.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+        [MainScroll addSubview:ShowPlaceName];
+        
+        GetMessageHeight += 40;
+        
+        if ([GetPlaceFormattedAddress length] == 0 || [GetPlaceFormattedAddress isEqualToString:@"<null>"]) {
+            GetPlaceFormattedAddress = @"";
         }
         
-        UILabel *ShowOpeningTExt = [[UILabel alloc]init];
-        ShowOpeningTExt.frame = CGRectMake(50, GetMessageHeight, screenWidth - 152, 25);
-        ShowOpeningTExt.text = GetOpeningHourOpen;
-        ShowOpeningTExt.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
-        ShowOpeningTExt.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-        [MainScroll addSubview:ShowOpeningTExt];
+        UILabel *ShowPlaceFormattedAddress = [[UILabel alloc]init];
+        ShowPlaceFormattedAddress.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+        ShowPlaceFormattedAddress.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+        ShowPlaceFormattedAddress.text = GetPlaceFormattedAddress;
+        ShowPlaceFormattedAddress.numberOfLines = 0;
+        ShowPlaceFormattedAddress.backgroundColor = [UIColor clearColor];
+        ShowPlaceFormattedAddress.frame = CGRectMake(50, GetMessageHeight, screenWidth - 152,[ShowPlaceFormattedAddress sizeThatFits:CGSizeMake(screenWidth - 152, CGFLOAT_MAX)].height);
+        [MainScroll addSubview:ShowPlaceFormattedAddress];
         
+        UIButton *OpenAllInformationButton = [[UIButton alloc]init];
+        OpenAllInformationButton.frame = CGRectMake(86, GetMessageHeight - 20, screenWidth - 86 - 61 - 5, 21 + ShowPlaceFormattedAddress.frame.size.height);
+        [OpenAllInformationButton setTitle:@"" forState:UIControlStateNormal];
+        [OpenAllInformationButton setBackgroundColor:[UIColor clearColor]];
+        [OpenAllInformationButton addTarget:self action:@selector(OpenAddressButton:) forControlEvents:UIControlEventTouchUpInside];
+        [MainScroll addSubview:OpenAllInformationButton];
+        
+        GetMessageHeight += ShowPlaceFormattedAddress.frame.size.height + 20;
+        
+        
+        
+        if ([GetPlaceLink length] == 0 || [GetPlaceLink isEqualToString:@"(null)"]) {
+        }else{
+            UIImageView *ShowLinkIcon = [[UIImageView alloc]init];
+            ShowLinkIcon.frame = CGRectMake(20, GetMessageHeight, 25, 25);
+            ShowLinkIcon.image = [UIImage imageNamed:@"BlueLink.png"];
+            [MainScroll addSubview:ShowLinkIcon];
+            
+            UILabel *ShowPlacelink = [[UILabel alloc]init];
+            ShowPlacelink.frame = CGRectMake(50, GetMessageHeight, screenWidth - 152, 25);
+            ShowPlacelink.text = GetPlaceLink;
+            ShowPlacelink.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+            ShowPlacelink.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+            [MainScroll addSubview:ShowPlacelink];
+            
+            UIButton *OpenLinkButton = [[UIButton alloc]init];
+            OpenLinkButton.frame = CGRectMake(50, GetMessageHeight - 6, screenWidth - 152, 21);
+            [OpenLinkButton setTitle:@"" forState:UIControlStateNormal];
+            [OpenLinkButton addTarget:self action:@selector(OpenLinkButton:) forControlEvents:UIControlEventTouchUpInside];
+            [OpenLinkButton setBackgroundColor:[UIColor clearColor]];
+            [MainScroll addSubview:OpenLinkButton];
+            
+            GetMessageHeight += 50;
+        }
+        if ([GetContactNo length] == 0 || [GetContactNo isEqualToString:@"(null)"]) {
+            
+        }else{
+            UIImageView *ShowContactIcon = [[UIImageView alloc]init];
+            ShowContactIcon.frame = CGRectMake(20, GetMessageHeight, 25, 25);
+            ShowContactIcon.image = [UIImage imageNamed:@"BluePhone.png"];
+            [MainScroll addSubview:ShowContactIcon];
+            
+            UILabel *ShowContact = [[UILabel alloc]init];
+            ShowContact.frame = CGRectMake(50, GetMessageHeight, screenWidth - 152, 25);
+            ShowContact.text = GetContactNo;
+            ShowContact.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+            ShowContact.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+            [MainScroll addSubview:ShowContact];
+            
+            UIButton *OpenContactButton = [[UIButton alloc]init];
+            OpenContactButton.frame = CGRectMake(50, GetMessageHeight - 6, screenWidth - 152, 21);
+            [OpenContactButton setTitle:@"" forState:UIControlStateNormal];
+            [OpenContactButton addTarget:self action:@selector(OpenContactButton:) forControlEvents:UIControlEventTouchUpInside];
+            [OpenContactButton setBackgroundColor:[UIColor clearColor]];
+            [MainScroll addSubview:OpenContactButton];
+            
+            
+            
+            GetMessageHeight += 50;
+        }
+        if ([GetOpeningHourOpen length] == 0 || [GetOpeningHourOpen isEqualToString:@"(null)"]) {
+            
+        }else{
+            UIImageView *ShowOpeningIcon = [[UIImageView alloc]init];
+            ShowOpeningIcon.frame = CGRectMake(20, GetMessageHeight, 25, 25);
+            ShowOpeningIcon.image = [UIImage imageNamed:@"BlueTime.png"];
+            [MainScroll addSubview:ShowOpeningIcon];
+            
+            if ([GetOpeningHourOpen isEqualToString:@"0"]) {
+                GetOpeningHourOpen = @"Close";
+            }else{
+                
+                GetOpeningHourOpen = @"Open";
+            }
+            
+            UILabel *ShowOpeningTExt = [[UILabel alloc]init];
+            ShowOpeningTExt.frame = CGRectMake(50, GetMessageHeight, screenWidth - 152, 25);
+            ShowOpeningTExt.text = GetOpeningHourOpen;
+            ShowOpeningTExt.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+            ShowOpeningTExt.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+            [MainScroll addSubview:ShowOpeningTExt];
+            
+            GetMessageHeight += 50;
+        }
+        if ([GetExpense length] == 0 || [GetExpense isEqualToString:@"(null)"]) {
+            
+        }else{
+            UIImageView *ShowPriceIcon = [[UIImageView alloc]init];
+            ShowPriceIcon.frame = CGRectMake(20, GetMessageHeight, 25, 25);
+            ShowPriceIcon.image = [UIImage imageNamed:@"BluePrice.png"];
+            [MainScroll addSubview:ShowPriceIcon];
+            
+            UILabel *ShowPriceTExt = [[UILabel alloc]init];
+            ShowPriceTExt.frame = CGRectMake(50, GetMessageHeight, screenWidth - 152, 25);
+            ShowPriceTExt.text = GetExpense;
+            ShowPriceTExt.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+            ShowPriceTExt.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+            [MainScroll addSubview:ShowPriceTExt];
+            
+            GetMessageHeight += 50;
+        }
+        
+        UIButton *Line03 = [[UIButton alloc]init];
+        Line03.frame = CGRectMake(0, GetMessageHeight, screenWidth, 1);
+        [Line03 setTitle:@"" forState:UIControlStateNormal];//238
+        [Line03 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+        [MainScroll addSubview:Line03];
+        
+        UIButton *MoreInfoButton = [[UIButton alloc]init];
+        MoreInfoButton.frame = CGRectMake(0, GetMessageHeight + 1, screenWidth, 50);
+        [MoreInfoButton setTitle:LocalisedString(@"Read more") forState:UIControlStateNormal];
+        [MoreInfoButton setBackgroundColor:[UIColor clearColor]];
+        [MoreInfoButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
+        [MoreInfoButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+        [MoreInfoButton addTarget:self action:@selector(OpenAddressButton:) forControlEvents:UIControlEventTouchUpInside];
+        // SeeAllCommentButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        
+        [MainScroll addSubview:MoreInfoButton];
         GetMessageHeight += 50;
-    }
-    if ([GetExpense length] == 0 || [GetExpense isEqualToString:@"(null)"]) {
+        
         
     }else{
-        UIImageView *ShowPriceIcon = [[UIImageView alloc]init];
-        ShowPriceIcon.frame = CGRectMake(20, GetMessageHeight, 25, 25);
-        ShowPriceIcon.image = [UIImage imageNamed:@"BluePrice.png"];
-        [MainScroll addSubview:ShowPriceIcon];
         
-        UILabel *ShowPriceTExt = [[UILabel alloc]init];
-        ShowPriceTExt.frame = CGRectMake(50, GetMessageHeight, screenWidth - 152, 25);
-        ShowPriceTExt.text = GetExpense;
-        ShowPriceTExt.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
-        ShowPriceTExt.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
-        [MainScroll addSubview:ShowPriceTExt];
+        //Seetishop UI
+        
+        UIButton *Line01 = [[UIButton alloc]init];
+        Line01.frame = CGRectMake(0, GetMessageHeight, screenWidth, 20);
+        [Line01 setTitle:@"" forState:UIControlStateNormal];//238
+        [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+        [MainScroll addSubview:Line01];
+        
+        GetMessageHeight += 20;
+        
+        UILabel *ShowPlaceInfoText = [[UILabel alloc]init];
+        ShowPlaceInfoText.frame = CGRectMake(20, GetMessageHeight, screenWidth - 40, 50);
+        ShowPlaceInfoText.text = LocalisedString(@"About the place");
+        ShowPlaceInfoText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+        ShowPlaceInfoText.backgroundColor = [UIColor clearColor];
+        ShowPlaceInfoText.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+        [MainScroll addSubview:ShowPlaceInfoText];
+        
+        
+        UIButton *DirectionsButton = [[UIButton alloc]init];
+        DirectionsButton.frame = CGRectMake(screenWidth - 200 - 20, GetMessageHeight, 200, 50);
+        [DirectionsButton setTitle:LocalisedString(@"Getting here") forState:UIControlStateNormal];
+        [DirectionsButton setBackgroundColor:[UIColor clearColor]];
+        [DirectionsButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
+        [DirectionsButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+        [DirectionsButton addTarget:self action:@selector(OpenAddressButton:) forControlEvents:UIControlEventTouchUpInside];
+        DirectionsButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+        
+        [MainScroll addSubview:DirectionsButton];
+        
         
         GetMessageHeight += 50;
+        
+        UIButton *Line02 = [[UIButton alloc]init];
+        Line02.frame = CGRectMake(0, GetMessageHeight - 1, screenWidth, 1);
+        [Line02 setTitle:@"" forState:UIControlStateNormal];//238
+        [Line02 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+        [MainScroll addSubview:Line02];
+        
+        //Shop Icon, Name and Address
+        
+        AsyncImageView *ShowShopImage = [[AsyncImageView alloc]init];
+        ShowShopImage.frame = CGRectMake(20, GetMessageHeight + 20, 50, 50);
+        ShowShopImage.contentMode = UIViewContentModeScaleAspectFill;
+        ShowShopImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
+        ShowShopImage.layer.cornerRadius= 25;
+        ShowShopImage.layer.borderWidth=1;
+        ShowShopImage.layer.masksToBounds = YES;
+        ShowShopImage.layer.borderColor=[[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f] CGColor];
+        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowShopImage];
+        NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",GetSeetishopImage];
+        if ([FullImagesURL1 length] == 0) {
+            ShowShopImage.image = [UIImage imageNamed:@"NoImage.png"];
+        }else{
+            NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
+            ShowShopImage.imageURL = url_UserImage;
+        }
+        [MainScroll addSubview:ShowShopImage];
+        
+        UILabel *ShowUserName = [[UILabel alloc]init];
+        ShowUserName.text = GetSeetishopName;
+        ShowUserName.frame = CGRectMake(90, GetMessageHeight + 20, ShowUserName.intrinsicContentSize.width, 20);
+        ShowUserName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+        ShowUserName.backgroundColor = [UIColor clearColor];
+        // ShowUserName.textColor = color;
+        ShowUserName.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+        [MainScroll addSubview:ShowUserName];
+        
+        UIImageView *ShowVerifiedImg = [[UIImageView alloc]init];
+        ShowVerifiedImg.image = [UIImage imageNamed:@"SSBlueVerifiedIcon.png"];
+        ShowVerifiedImg.frame = CGRectMake(90 + ShowUserName.frame.size.width, GetMessageHeight + 21, 18, 18);
+        [MainScroll addSubview:ShowVerifiedImg];
+        
+        UILabel *ShowAddress = [[UILabel alloc]init];
+        ShowAddress.frame = CGRectMake(90, GetMessageHeight + 45, screenWidth - 20 - 90, 30);
+        ShowAddress.text = GetSeetishopAddress;
+        ShowAddress.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+        ShowAddress.numberOfLines = 2;
+        // ShowUserName.textColor = color;
+        ShowAddress.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+        [MainScroll addSubview:ShowAddress];
+        
+        
+        
+        GetMessageHeight += 90;
+        
+        UIButton *Line03 = [[UIButton alloc]init];
+        Line03.frame = CGRectMake(0, GetMessageHeight, screenWidth, 1);
+        [Line03 setTitle:@"" forState:UIControlStateNormal];//238
+        [Line03 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+        [MainScroll addSubview:Line03];
+        
+        UIButton *ViewSeetishopButton = [[UIButton alloc]init];
+        ViewSeetishopButton.frame = CGRectMake(0, GetMessageHeight + 1, screenWidth, 50);
+        [ViewSeetishopButton setTitle:@"View Seetishop" forState:UIControlStateNormal];
+        [ViewSeetishopButton setBackgroundColor:[UIColor clearColor]];
+        [ViewSeetishopButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
+        [ViewSeetishopButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+        [ViewSeetishopButton addTarget:self action:@selector(ViewSeetishopButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+        // SeeAllCommentButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        
+        [MainScroll addSubview:ViewSeetishopButton];
+        GetMessageHeight += 50;
+        
     }
-
-//    DemoBlackButton.frame = CGRectMake(21, TempGetNewHeight, screenWidth - 41, GetMessageHeight - TempGetNewHeight);
-//    DemoWhiteButton.frame = CGRectMake(22, TempGetNewHeight + 1, screenWidth - 43, GetMessageHeight - TempGetNewHeight - 2);
-    
-
-    UIButton *Line03 = [[UIButton alloc]init];
-    Line03.frame = CGRectMake(0, GetMessageHeight, screenWidth, 1);
-    [Line03 setTitle:@"" forState:UIControlStateNormal];//238
-    [Line03 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
-    [MainScroll addSubview:Line03];
-    
-    UIButton *MoreInfoButton = [[UIButton alloc]init];
-    MoreInfoButton.frame = CGRectMake(0, GetMessageHeight + 1, screenWidth, 50);
-    [MoreInfoButton setTitle:LocalisedString(@"Read more") forState:UIControlStateNormal];
-    [MoreInfoButton setBackgroundColor:[UIColor clearColor]];
-    [MoreInfoButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
-    [MoreInfoButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
-    [MoreInfoButton addTarget:self action:@selector(OpenAddressButton:) forControlEvents:UIControlEventTouchUpInside];
-    // SeeAllCommentButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    
-    [MainScroll addSubview:MoreInfoButton];
-    GetMessageHeight += 50;
     
     UIButton *Line04 = [[UIButton alloc]init];
     Line04.frame = CGRectMake(0, GetMessageHeight, screenWidth, 20);
@@ -2874,20 +3057,19 @@
     [Line04 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
     [MainScroll addSubview:Line04];
     
-   // OpenAddressButton
-    
     GetMessageHeight += 20;
     
-    MainScroll.contentSize = CGSizeMake(screenWidth, GetMessageHeight);
+    
+    MainScroll.contentSize = CGSizeMake(screenWidth, GetMessageHeight + 50);
     CheckLoadDone = YES;
     [ShowActivity stopAnimating];
-   // [spinnerView stopAnimating];
+    // [spinnerView stopAnimating];
     //[spinnerView removeFromSuperview];
     [LoadingBlackBackground removeFromSuperview];
     GetFinalHeight = 0;
     GetFinalHeight = GetMessageHeight;
     
-
+    
     
     if (isThereAnyCollectionSuggestion) {
         
@@ -2898,8 +3080,8 @@
     }
     
     
-   // [self InitNearbyPostView];
-
+    // [self InitNearbyPostView];
+    
 }
 -(void)InitCollectionSuggestionsView{
     
@@ -3011,7 +3193,7 @@
                 [CollectionScrollview addSubview:ShowImage2];
             }
             
-
+            
             
             
             UIImageView *ShowOverlayImg = [[UIImageView alloc]init];
@@ -3138,7 +3320,7 @@
 }
 -(void)InitNearbyPostView{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-
+    
     UILabel *ShowNearbyTitle = [[UILabel alloc]init];
     ShowNearbyTitle.frame = CGRectMake(20, GetFinalHeight, screenWidth - 40, 50);
     ShowNearbyTitle.text = LocalisedString(@"Nearby recommendations");
@@ -3156,7 +3338,7 @@
     }else{
         GetCount = 2;
     }
-
+    
     
     GetFinalHeight += 50;
     
@@ -3166,7 +3348,7 @@
     [Line01 setTitle:@"" forState:UIControlStateNormal];//238
     [Line01 setBackgroundColor:[UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
     [MainScroll addSubview:Line01];
-
+    
     
     GetFinalHeight += 21;
     
@@ -3220,7 +3402,7 @@
         ShowAddress.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         ShowAddress.backgroundColor = [UIColor clearColor];
         [MainScroll addSubview:ShowAddress];
-
+        
         AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
         ShowUserProfileImage.frame = CGRectMake(25 + (i % 2) * (FinalWidth + 20),  GetFinalHeight + FinalWidth + 45 + TitleHeight , 30, 30);
         ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
@@ -3265,21 +3447,21 @@
         [SelectButton setBackgroundColor:[UIColor clearColor]];
         [SelectButton addTarget:self action:@selector(SelectButton:) forControlEvents:UIControlEventTouchUpInside];
         [MainScroll addSubview:SelectButton];
-
-        
-        
-         Background.frame = CGRectMake(19 + (i % 2) * (FinalWidth + 20), GetFinalHeight - 1, FinalWidth + 2, FinalWidth + 50+ TitleHeight + 30 + 10);
         
         
         
-
+        Background.frame = CGRectMake(19 + (i % 2) * (FinalWidth + 20), GetFinalHeight - 1, FinalWidth + 2, FinalWidth + 50+ TitleHeight + 30 + 10);
+        
+        
+        
+        
         if ([UserInfo_NameArray_Nearby count] < 2) {
             GetFinalHeight += 267;
         }else{
             GetFinalHeight += 0 + (i % 2) * (FinalWidth + TitleHeight + 50 + 57);
         }
         
-
+        
         
         //GetFinalHeight += 20;
         
@@ -3310,7 +3492,7 @@
     }
     
     
-
+    
     MainScroll.contentSize = CGSizeMake(screenWidth, GetFinalHeight + 50);
     
 }
@@ -3343,8 +3525,8 @@
     [User_Comment_nameArray removeAllObjects];
     [User_Comment_usernameArray removeAllObjects];
     [User_Comment_photoArray removeAllObjects];
-
-
+    
+    
     if (CheckLoadDone == NO) {
         [ShowActivity startAnimating];
     }
@@ -3358,7 +3540,7 @@
     NearByRecommtationViewController *NearByRecommtationView = [[NearByRecommtationViewController alloc]init];
     [self presentViewController:NearByRecommtationView animated:YES completion:nil];
     [NearByRecommtationView GetLPhoto:PhotoArray_Nearby GetPostID:PostIDArray_Nearby GetPlaceName:PlaceNameArray_Nearby GetUserInfoUrl:UserInfo_UrlArray_Nearby GetUserInfoName:UserInfo_NameArray_Nearby GetTitle:TitleArray_Nearby GetMessage:MessageArray_Nearby GetDistance:DistanceArray_Nearby GetSearchDisplayName:SearchDisplayNameArray_Nearby GetTotalComment:TotalCommentArray_Nearby GetTotalLike:TotalLikeArray_Nearby GetSelfCheckLike:SelfCheckLikeArray_Nearby GetSelfCheckCollect:SelfCheckCollectArray_Nearby];
-
+    
 }
 -(IBAction)SelectButton2:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
@@ -3394,7 +3576,7 @@
     [User_Comment_photoArray removeAllObjects];
     
     if (CheckLoadDone == NO) {
-
+        
         [ShowActivity startAnimating];
     }
     
@@ -3407,15 +3589,15 @@
     if ([GetUsername isEqualToString:GetPostName]) {
         NSLog(@"user is self. open profile");
     }else{
-//        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-//        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-//        [NewUserProfileV2View GetUserName:GetPostName];
+        //        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+        //        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+        //        [NewUserProfileV2View GetUserName:GetPostName];
         _profileViewController = nil;
         [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:GetUserUid];
-        [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-        }];
+        [self.navigationController pushViewController:self.profileViewController animated:YES];
+        
     }
-
+    
 }
 
 -(IBAction)OpenProfileButton2:(id)sender{
@@ -3426,33 +3608,33 @@
     
     _profileViewController = nil;
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[TempUser_User_Comment_uidArray objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-    }];
+    [self.navigationController pushViewController:self.profileViewController animated:YES];
+    
 }
 -(IBAction)OpenProfileButton3:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);
     
-//    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-//    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-//    [NewUserProfileV2View GetUserName:[UserInfo_NameArray_Nearby objectAtIndex:getbuttonIDN]];
+    //    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+    //    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+    //    [NewUserProfileV2View GetUserName:[UserInfo_NameArray_Nearby objectAtIndex:getbuttonIDN]];
     
     _profileViewController = nil;
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[UserInfo_IDArray_Nearby objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-    }];
+    [self.navigationController pushViewController:self.profileViewController animated:YES];
+    
 }
 -(IBAction)OpenProfileButton4:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);
-
-//    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-//    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-//    [NewUserProfileV2View GetUserName:[UserInfo_NameArray_Nearby lastObject]];
+    
+    //    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+    //    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+    //    [NewUserProfileV2View GetUserName:[UserInfo_NameArray_Nearby lastObject]];
     _profileViewController = nil;
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[UserInfo_IDArray_Nearby objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-    }];
+    [self.navigationController pushViewController:self.profileViewController animated:YES];
+    
     
 }
 -(IBAction)FollowButton:(id)sender{
@@ -3471,9 +3653,9 @@
         }else{
             [self SendFollowingData];
         }
-      //  [self SendFollowingData];
+        //  [self SendFollowingData];
     }
-
+    
 }
 -(void)SendFollowingData{
     
@@ -3499,13 +3681,13 @@
     [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     
-//    //parameter second
-//    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-//    //Attaching the key name @"parameter_second" to the post body
-//    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"token\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-//    //Attaching the content to be posted ( ParameterSecond )
-//    [body appendData:[[NSString stringWithFormat:@"%@",GetExpertToken] dataUsingEncoding:NSUTF8StringEncoding]];
-//    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    //    //parameter second
+    //    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    //    //Attaching the key name @"parameter_second" to the post body
+    //    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"token\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    //    //Attaching the content to be posted ( ParameterSecond )
+    //    [body appendData:[[NSString stringWithFormat:@"%@",GetExpertToken] dataUsingEncoding:NSUTF8StringEncoding]];
+    //    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     
     
     //close form
@@ -3562,18 +3744,18 @@
                          }
                          completion:^(BOOL finished) {
                          }];
-    
+        
     }
-
+    
 }
 - (void)scrollViewDidScroll:(UIScrollView *)sender {
-
+    
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     if (sender == MImageScroll) {
         // Update the page when more than 50% of the previous/next page is visible
         CGFloat pageWidth = MImageScroll.frame.size.width;
         int page = floor((MImageScroll.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-      //  PageControlOn.currentPage = page;
+        //  PageControlOn.currentPage = page;
         NSString *TempCount = [[NSString alloc]initWithFormat:@"%i / %li",page + 1,(long)ImageCount];
         ShowImageCount.text = TempCount;
     }else{
@@ -3585,11 +3767,11 @@
                                   delay:0
                                 options:UIViewAnimationOptionCurveEaseIn
                              animations:^{
-                                  ShowBarImg.frame = CGRectMake(0, 0, screenWidth, 64);
+                                 ShowBarImg.frame = CGRectMake(0, 0, screenWidth, 64);
                              }
                              completion:^(BOOL finished) {
                              }];
-           
+            
         }else{
             [UIView animateWithDuration:0.2
                                   delay:0
@@ -3600,41 +3782,57 @@
                              completion:^(BOOL finished) {
                              }];
             
-
+            
         }
         if (HeightCheck > GetPlaceNameHeight) {
             ShowTopTitle.hidden = NO;
         }else{
             ShowTopTitle.hidden = YES;
         }
-
-
-
-
+        
+        
+        
+        
     }
     
-
+    
 }
 -(IBAction)LikeButton:(id)sender{
     NSLog(@"Like Button Click");
     if ([GetLikeCheck isEqualToString:@"0"]) {
+        GetLikeCheck = @"1";
+        CheckLikeInitView = YES;
+        ShowTotalLikeCount.textColor = [UIColor redColor];
+        [LikeButton setImage:[UIImage imageNamed:@"LikedIcon.png"] forState:UIControlStateNormal];
+        [LikeButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         [self SendPostLike];
         NSLog(@"like post");
     }else{
+        GetLikeCheck = @"0";
+        CheckLikeInitView = YES;
+        [LikeButton setImage:[UIImage imageNamed:@"LikeIcon.png"] forState:UIControlStateNormal];
+        [LikeButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
         [self GetUnLikeData];
         NSLog(@"unlike post");
     }
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:GetLikeCheck forKey:@"PostToDetail_like"];
+    [defaults synchronize];
+    
+    
+    
 }
 -(IBAction)CommentButton:(id)sender{
     NSLog(@"Comment Button Click");
     CheckCommentData = 1;
     CommentViewController *CommentView = [[CommentViewController alloc]init];
-//    CATransition *transition = [CATransition animation];
-//    transition.duration = 0.2;
-//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//    transition.type = kCATransitionPush;
-//    transition.subtype = kCATransitionFromRight;
-//    [self.view.window.layer addAnimation:transition forKey:nil];
+    //    CATransition *transition = [CATransition animation];
+    //    transition.duration = 0.2;
+    //    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    //    transition.type = kCATransitionPush;
+    //    transition.subtype = kCATransitionFromRight;
+    //    [self.view.window.layer addAnimation:transition forKey:nil];
     [self presentViewController:CommentView animated:YES completion:nil];
     [CommentView GetCommentIDArray:CommentIDArray GetPostIDArray:PostIDArray GetMessageArray:MessageArray GetUser_Comment_uidArray:User_Comment_uidArray GetUser_Comment_nameArray:User_Comment_nameArray GetUser_Comment_usernameArray:User_Comment_usernameArray GetUser_Comment_photoArray:User_Comment_photoArray];
     [CommentView GetRealPostID:GetPostID];
@@ -3644,12 +3842,12 @@
 -(IBAction)SeeLikeButton:(id)sender{
     CheckCommentData = 1;
     CommentViewController *CommentView = [[CommentViewController alloc]init];
-//    CATransition *transition = [CATransition animation];
-//    transition.duration = 0.2;
-//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//    transition.type = kCATransitionPush;
-//    transition.subtype = kCATransitionFromRight;
-//    [self.view.window.layer addAnimation:transition forKey:nil];
+    //    CATransition *transition = [CATransition animation];
+    //    transition.duration = 0.2;
+    //    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    //    transition.type = kCATransitionPush;
+    //    transition.subtype = kCATransitionFromRight;
+    //    [self.view.window.layer addAnimation:transition forKey:nil];
     [self presentViewController:CommentView animated:YES completion:nil];
     [CommentView GetCommentIDArray:CommentIDArray GetPostIDArray:PostIDArray GetMessageArray:MessageArray GetUser_Comment_uidArray:User_Comment_uidArray GetUser_Comment_nameArray:User_Comment_nameArray GetUser_Comment_usernameArray:User_Comment_usernameArray GetUser_Comment_photoArray:User_Comment_photoArray];
     [CommentView GetRealPostID:GetPostID];
@@ -3807,19 +4005,16 @@
 -(IBAction)ShareButton:(id)sender{
     NSLog(@"ShareButton Click.");
     
-//    ShareViewController *ShareView = [[ShareViewController alloc]init];
-//    [self presentViewController:ShareView animated:YES completion:nil];
-//    //[self.view.window.rootViewController presentViewController:ShareView animated:YES completion:nil];
-  //  [ShareView GetPostID:GetPostID GetMessage:GetMessage GetTitle:GetTitle GetImageData:[UrlArray objectAtIndex:0]];
+    //    ShareViewController *ShareView = [[ShareViewController alloc]init];
+    //    [self presentViewController:ShareView animated:YES completion:nil];
+    //    //[self.view.window.rootViewController presentViewController:ShareView animated:YES completion:nil];
+    //  [ShareView GetPostID:GetPostID GetMessage:GetMessage GetTitle:GetTitle GetImageData:[UrlArray objectAtIndex:0]];
     
     _shareV2ViewController = nil;
     UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
     [naviVC setNavigationBarHidden:YES animated:NO];
-    
-    
-    [self.shareV2ViewController share:@"" title:GetTitle imagURL:UrlArray[0] shareType:ShareTypePost shareID:GetPostID userID:GetUserUid];
-    
-      MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
+    [self.shareV2ViewController share:@"" title:GetTitle imagURL:UrlArray[0] shareType:ShareTypePost shareID:GetPostID userID:@""];
+    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
     formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
     formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
     formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
@@ -3854,7 +4049,7 @@
     }
     
     
-
+    
 }
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(actionSheet.tag == 200){
@@ -3942,7 +4137,7 @@
             NSLog(@"Cancel Button");
         }
     }else if(actionSheet.tag == 300){
-         NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
+        NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
         if ([buttonTitle isEqualToString:CustomLocalisedString(@"SettingsPage_Cancel", nil)]) {
             NSLog(@"Cancel Button");
         }
@@ -3959,7 +4154,7 @@
             [alert show];
             
         }
-       
+        
     }else if(actionSheet.tag == 400){
         NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
         if ([buttonTitle isEqualToString:CustomLocalisedString(@"SettingsPage_Cancel", nil)]) {
@@ -3971,26 +4166,28 @@
             [self OpenReport];
         }
     }else if(actionSheet.tag == 5000){
-    //google translate
+        //google translate
         NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
         if ([buttonTitle isEqualToString:CustomLocalisedString(@"No thanks!", nil)]) {
             NSLog(@"Cancel Button");
         }
         if ([buttonTitle isEqualToString:LocalisedString(@"Read Original")]) {
             [actionSheet dismissWithClickedButtonIndex:0 animated:YES];
+            CheckLanguageType = 0;
             if ([GetENMessageString length] == 0) {
             }else{
-            [self CheckGoogleTranslateButton];
+                [self CheckGoogleTranslateButton];
             }
             
         }
         if ([buttonTitle isEqualToString:LocalisedString(@"English by Google Translate")]) {
+            CheckLanguageType = 1;
             [actionSheet dismissWithClickedButtonIndex:0 animated:YES];
             [self CheckGoogleTranslateButton];
-
+            
         }
     }else if(actionSheet.tag == 6000){
-    //two language translate
+        //two language translate
         NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
         if ([buttonTitle isEqualToString:CustomLocalisedString(@"No thanks!", nil)]) {
             NSLog(@"Cancel Button");
@@ -4008,6 +4205,56 @@
             [ShowActivity startAnimating];
             [self GetTranslateData];
         }
+    }else if(actionSheet.tag == 80000){
+        NSString *latlong = [[NSString alloc]initWithFormat:@"%@,%@",GetLat,GetLng];
+        switch (buttonIndex) {
+            case 0:{
+                NSLog(@"Waze");
+                if ([[UIApplication sharedApplication]
+                     canOpenURL:[NSURL URLWithString:@"waze://"]]) {
+                    
+                    // Waze is installed. Launch Waze and start navigation
+                    NSString *urlStr =
+                    [NSString stringWithFormat:@"waze://?ll=%@&navigate=yes",
+                     latlong];
+                    
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
+                    
+                } else {
+                    
+                    // Waze is not installed. Launch AppStore to install Waze app
+                    [[UIApplication sharedApplication] openURL:[NSURL
+                                                                URLWithString:@"http://itunes.apple.com/us/app/id323229106"]];
+                }
+            }
+                break;
+            case 1:{
+                NSLog(@"Google Maps");
+                if ([[UIApplication sharedApplication] canOpenURL:
+                     [NSURL URLWithString:@"comgooglemaps://"]]) {
+                    NSString *url = [NSString stringWithFormat: @"comgooglemaps://?q=%@&zoom=10",
+                                     latlong];
+                    
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+                } else {
+                    NSLog(@"Can't use comgooglemaps://");
+                    NSString *url = [NSString stringWithFormat: @"http://maps.apple.com?q=%@",
+                                     [latlong stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+                }
+            }
+                break;
+            case 2:{
+                NSLog(@"Apple Maps");
+                NSString *url = [NSString stringWithFormat: @"http://maps.apple.com?q=%@",
+                                 [latlong stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+            }
+                break;
+            default:
+                break;
+        }
+        
     }
 }
 // A function for parsing URL parameters returned by the Feed Dialog.
@@ -4034,15 +4281,15 @@
     
     [self.editPostViewController requestServerForPostInfo:GetPostID completionBLock:^{
         
-       DraftModel* editPost = [[ConnectionManager dataManager] editPostModel];
+        DraftModel* editPost = [[ConnectionManager dataManager] editPostModel];
         
         [self.editPostViewController initDataPostEdit:editPost];
         
         [self presentViewController:self.editPostViewController animated:YES completion:nil];
-
+        
     }];
     
-
+    
 }
 
 #pragma mark - declaration
@@ -4069,7 +4316,7 @@
         _editPostViewController = [EditPostViewController new];
         _editPostViewController.editPostDoneBlock = ^(id object)
         {
-                //FIXME: To Do write a refresh page for new feed details
+            //FIXME: To Do write a refresh page for new feed details
         };
     }
     
@@ -4089,19 +4336,26 @@
     return [UIImage imageWithData:data];
 }
 -(IBAction)OpenAddressButton:(id)sender{
-
-    NSLog(@"Open Location Detail and Seetieshop.");
     
-    LocationFeedDetailViewController *LocationFeedDetailView = [[LocationFeedDetailViewController alloc]init];
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromRight;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self presentViewController:LocationFeedDetailView animated:NO completion:nil];
-    [LocationFeedDetailView GetLat:GetLat GetLong:GetLng GetFirstImage:[UrlArray objectAtIndex:0] GetTitle:GetPlaceName GetLocation:GetPlaceFormattedAddress ];
-    [LocationFeedDetailView GetLink:GetPlaceLink GetContact:GetContactNo GetOpeningHour:GetOpenNow GetPrice:GetExpense GetPeriods:GetPeriods];
+    NSLog(@"Open address click");
+    //    LocationFeedDetailViewController *LocationFeedDetailView = [[LocationFeedDetailViewController alloc]init];
+    //    CATransition *transition = [CATransition animation];
+    //    transition.duration = 0.2;
+    //    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    //    transition.type = kCATransitionPush;
+    //    transition.subtype = kCATransitionFromRight;
+    //    [self.view.window.layer addAnimation:transition forKey:nil];
+    //    [self presentViewController:LocationFeedDetailView animated:NO completion:nil];
+    //    [LocationFeedDetailView GetLat:GetLat GetLong:GetLng GetFirstImage:[UrlArray objectAtIndex:0] GetTitle:GetPlaceName GetLocation:GetPlaceFormattedAddress ];
+    //    [LocationFeedDetailView GetLink:GetPlaceLink GetContact:GetContactNo GetOpeningHour:GetOpenNow GetPrice:GetExpense GetPeriods:GetPeriods];
+    NSLog(@"ViewSeetishopButtonOnClick and SeetishopID = %@",GetSeetishopID);
+    NSLog(@"GetPostID is %@ and GetLocationPlaceId is %@",GetPostID,GetLocationPlaceId);
+    self.seetiesShopViewController = nil;
+    [self.seetiesShopViewController initDataPlaceID:GetLocationPlaceId postID:GetPostID];
+    // [self.seetiesShopViewController initDataWithSeetiesID:GetSeetishopID];
+    UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:self.seetiesShopViewController];
+    [nav setNavigationBarHidden:YES];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 -(IBAction)OpenLinkButton:(id)sender{
     
@@ -4134,62 +4388,70 @@
     ClickCount++;
     NSLog(@"ClickCount is %i",ClickCount);
     NSLog(@"[CountLanguageArray count] is %lu",(unsigned long)[CountLanguageArray count]);
-    if (ClickCount >= [CountLanguageArray count]) {
-        ClickCount = 0;
-        NSString *TempGetCount = [[NSString alloc]initWithFormat:@"%@",[CountLanguageArray objectAtIndex:ClickCount]];
-        CheckLanguage = [TempGetCount integerValue];
+    
+    
+    if ([CountLanguageArray count] == 0) {
+        
     }else{
         
-        NSString *TempGetCount = [[NSString alloc]initWithFormat:@"%@",[CountLanguageArray objectAtIndex:ClickCount]];
-        CheckLanguage = [TempGetCount integerValue];
-    }
-//    
-//    
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    NSString *GetSystemLanguageCheck = [[NSString alloc]initWithFormat:@"%@",[defaults objectForKey:@"UserData_SystemLanguage"]];
-//    NSLog(@"GetSystemLanguageCheck is %@",GetSystemLanguageCheck);
-    
-    
-    BOOL TranslateCheck = NO;
-    for (int i = 0; i < [TempGetLanguageArray count]; i++) {
-        NSString *GetLanguages = [[NSString alloc]initWithFormat:@"%@",[TempGetLanguageArray objectAtIndex:i]];
-        
-        if ([GetLanguages isEqualToString:@"530b0ab26424400c76000003"]) {
-            TranslateCheck = NO;
-            break;
+        if (ClickCount >= [CountLanguageArray count]) {
+            ClickCount = 0;
+            NSString *TempGetCount = [[NSString alloc]initWithFormat:@"%@",[CountLanguageArray objectAtIndex:ClickCount]];
+            CheckLanguage = [TempGetCount integerValue];
         }else{
-            TranslateCheck = YES;
             
+            NSString *TempGetCount = [[NSString alloc]initWithFormat:@"%@",[CountLanguageArray objectAtIndex:ClickCount]];
+            CheckLanguage = [TempGetCount integerValue];
         }
+        //
+        //
+        //    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        //    NSString *GetSystemLanguageCheck = [[NSString alloc]initWithFormat:@"%@",[defaults objectForKey:@"UserData_SystemLanguage"]];
+        //    NSLog(@"GetSystemLanguageCheck is %@",GetSystemLanguageCheck);
+        
+        
+        BOOL TranslateCheck = NO;
+        for (int i = 0; i < [TempGetLanguageArray count]; i++) {
+            NSString *GetLanguages = [[NSString alloc]initWithFormat:@"%@",[TempGetLanguageArray objectAtIndex:i]];
+            
+            if ([GetLanguages isEqualToString:@"530b0ab26424400c76000003"]) {
+                TranslateCheck = NO;
+                break;
+            }else{
+                TranslateCheck = YES;
+                
+            }
+        }
+        
+        
+        NSLog(@"TempGetLanguageArray is %@",TempGetLanguageArray);
+        
+        if (TranslateCheck == YES) {
+            
+            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                                     delegate:self
+                                                            cancelButtonTitle:CustomLocalisedString(@"No thanks!", nil)
+                                                       destructiveButtonTitle:nil
+                                                            otherButtonTitles:CustomLocalisedString(@"Read Original", nil),ShowLanguageType,CustomLocalisedString(@"English by Google Translate", nil), nil];
+            
+            [actionSheet showInView:self.view];
+            
+            actionSheet.tag = 6000;
+        }else{
+            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                                     delegate:self
+                                                            cancelButtonTitle:CustomLocalisedString(@"No thanks!", nil)
+                                                       destructiveButtonTitle:nil
+                                                            otherButtonTitles:CustomLocalisedString(@"Read Original", nil),ShowLanguageType, nil];
+            
+            [actionSheet showInView:self.view];
+            
+            actionSheet.tag = 6000;
+        }
+        
+        //[self InitNearbyPostView];
     }
     
-    
-    NSLog(@"TempGetLanguageArray is %@",TempGetLanguageArray);
-    
-    if (TranslateCheck == YES) {
-        
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                                 delegate:self
-                                                        cancelButtonTitle:CustomLocalisedString(@"No thanks!", nil)
-                                                   destructiveButtonTitle:nil
-                                                        otherButtonTitles:CustomLocalisedString(@"Read Original", nil),ShowLanguageType,CustomLocalisedString(@"English by Google Translate", nil), nil];
-        
-        [actionSheet showInView:self.view];
-        
-        actionSheet.tag = 6000;
-    }else{
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                                 delegate:self
-                                                        cancelButtonTitle:CustomLocalisedString(@"No thanks!", nil)
-                                                   destructiveButtonTitle:nil
-                                                        otherButtonTitles:CustomLocalisedString(@"Read Original", nil),ShowLanguageType, nil];
-        
-        [actionSheet showInView:self.view];
-        
-        actionSheet.tag = 6000;
-    }
-
-    //[self InitNearbyPostView];
 }
 
 -(void)CheckTwoLanguageButton{
@@ -4274,7 +4536,7 @@
     actionSheet.tag = 5000;
     
     
-
+    
     
 }
 
@@ -4342,7 +4604,7 @@
 
 -(void)GetTranslateData{
     [ShowActivity startAnimating];
-//[self.spinnerView startAnimating];
+    //[self.spinnerView startAnimating];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
@@ -4390,49 +4652,50 @@
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);
     
-//    UserProfileV2ViewController *ExpertsUserProfileView = [[UserProfileV2ViewController alloc]init];
-//    CATransition *transition = [CATransition animation];
-//    transition.duration = 0.2;
-//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//    transition.type = kCATransitionPush;
-//    transition.subtype = kCATransitionFromRight;
-//    [self.view.window.layer addAnimation:transition forKey:nil];
-//    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
-//    [ExpertsUserProfileView GetUsername:[Like_UsernameArray objectAtIndex:getbuttonIDN]];
+    //    UserProfileV2ViewController *ExpertsUserProfileView = [[UserProfileV2ViewController alloc]init];
+    //    CATransition *transition = [CATransition animation];
+    //    transition.duration = 0.2;
+    //    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    //    transition.type = kCATransitionPush;
+    //    transition.subtype = kCATransitionFromRight;
+    //    [self.view.window.layer addAnimation:transition forKey:nil];
+    //    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
+    //    [ExpertsUserProfileView GetUsername:[Like_UsernameArray objectAtIndex:getbuttonIDN]];
     
-//    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-//    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-//    [NewUserProfileV2View GetUserName:[Like_UsernameArray objectAtIndex:getbuttonIDN]];
+    //    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+    //    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+    //    [NewUserProfileV2View GetUserName:[Like_UsernameArray objectAtIndex:getbuttonIDN]];
     _profileViewController = nil;
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[Like_UseruidArray objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-    }];
-    
+    [self.navigationController pushViewController:self.profileViewController animated:YES];
     
 }
 -(IBAction)OpenCommentProfileButton:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);
     
-//    UserProfileV2ViewController *ExpertsUserProfileView = [[UserProfileV2ViewController alloc]init];
-//    CATransition *transition = [CATransition animation];
-//    transition.duration = 0.2;
-//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//    transition.type = kCATransitionPush;
-//    transition.subtype = kCATransitionFromRight;
-//    [self.view.window.layer addAnimation:transition forKey:nil];
-//    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
-//    [ExpertsUserProfileView GetUsername:[User_Comment_usernameArray objectAtIndex:getbuttonIDN]];
+    //    UserProfileV2ViewController *ExpertsUserProfileView = [[UserProfileV2ViewController alloc]init];
+    //    CATransition *transition = [CATransition animation];
+    //    transition.duration = 0.2;
+    //    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    //    transition.type = kCATransitionPush;
+    //    transition.subtype = kCATransitionFromRight;
+    //    [self.view.window.layer addAnimation:transition forKey:nil];
+    //    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
+    //    [ExpertsUserProfileView GetUsername:[User_Comment_usernameArray objectAtIndex:getbuttonIDN]];
     
-//    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-//    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-//    [NewUserProfileV2View GetUserName:[User_Comment_usernameArray objectAtIndex:getbuttonIDN]];
+    //    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+    //    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+    //    [NewUserProfileV2View GetUserName:[User_Comment_usernameArray objectAtIndex:getbuttonIDN]];
     _profileViewController = nil;
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[User_Comment_uidArray objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-    }];
+    [self.navigationController pushViewController:self.profileViewController animated:YES];
+    
 }
 -(void)DeletePost{
+    
+    [ShowActivity startAnimating];
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
     
@@ -4505,7 +4768,7 @@
     }else{
         AddCollectionDataViewController *AddCollectionDataView = [[AddCollectionDataViewController alloc]init];
         [self presentViewController:AddCollectionDataView animated:YES completion:nil];
-       // [self.view.window.rootViewController presentViewController:AddCollectionDataView animated:YES completion:nil];
+        // [self.view.window.rootViewController presentViewController:AddCollectionDataView animated:YES completion:nil];
         [AddCollectionDataView GetPostID:GetPostID GetImageData:[UrlArray objectAtIndex:0]];
     }
     
@@ -4568,23 +4831,25 @@
     
     CollectionViewController *OpenCollectionView = [[CollectionViewController alloc]init];
     [self.navigationController pushViewController:OpenCollectionView animated:YES];
-    [OpenCollectionView GetCollectionID:[arrCollectionID objectAtIndex:getbuttonIDN] GetPermision:@"User" GetUserUid:GetUserUid];
+    [OpenCollectionView GetCollectionID:[arrCollectionID objectAtIndex:getbuttonIDN] GetPermision:@"User" GetUserUid:[arrUserID objectAtIndex:getbuttonIDN]];
 }
 -(IBAction)CollectionUserProfileOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSString *Getname = [[NSString alloc]initWithFormat:@"%@",[arrUsername objectAtIndex:getbuttonIDN]];
     NSLog(@"CollectionUserProfileOnClick Getname is %@",Getname);
     
+    //    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
+    //    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
+    //    [NewUserProfileV2View GetUserName:Getname];
     _profileViewController = nil;
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[arrUserID objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-    }];
+    [self.navigationController pushViewController:self.profileViewController animated:YES];
+    
 }
 -(IBAction)CollectionFollowingButtonOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     
-    UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
-    buttonWithTag1.selected = !buttonWithTag1.selected;
+    
     
     NSLog(@"Get Collection User ID == %@",[arrUserID objectAtIndex:getbuttonIDN]);
     NSLog(@"Get Collection Following == %@",[arrFollowing objectAtIndex:getbuttonIDN]);
@@ -4593,11 +4858,27 @@
     GetCollectID = [[NSString alloc]initWithFormat:@"%@",[arrCollectionID objectAtIndex:getbuttonIDN]];
     
     if ([GetCollectionFollowing isEqualToString:@"0"]) {
+        UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
+        buttonWithTag1.selected = !buttonWithTag1.selected;
         [self FollowCollection];
         [arrFollowing replaceObjectAtIndex:getbuttonIDN withObject:@"1"];
     }else{
-        [self DeleteFollowCollection];
-        [arrFollowing replaceObjectAtIndex:getbuttonIDN withObject:@"0"];
+        
+        [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Are You Sure You Want To Unfollow") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"YES"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+            
+            if (buttonIndex == [alertView cancelButtonIndex]) {
+                NSLog(@"Cancelled");
+                
+            } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:LocalisedString(@"YES")]) {
+                
+                UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
+                buttonWithTag1.selected = !buttonWithTag1.selected;
+                [self DeleteFollowCollection];
+                [arrFollowing replaceObjectAtIndex:getbuttonIDN withObject:@"0"];
+                
+                
+            }
+        }];
     }
 }
 -(void)FollowCollection{
@@ -4678,4 +4959,63 @@
     
     return _collectionListingViewController;
 }
+-(SeetiesShopViewController*)seetiesShopViewController
+{
+    
+    if (!_seetiesShopViewController) {
+        _seetiesShopViewController = [SeetiesShopViewController new];
+    }
+    return _seetiesShopViewController;
+}
+-(IBAction)OpenMapButtonOnClick:(id)sender{
+    UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:LocalisedString(@"Cancel") destructiveButtonTitle:nil otherButtonTitles:
+                            @"Waze",
+                            @"Google Maps",
+                            @"Apple Maps",
+                            nil];
+    popup.tag = 80000;
+    [popup showInView:self.view];
+}
+-(IBAction)ViewSeetishopButtonOnClick:(id)sender{
+    
+    // NSLog(@"ViewSeetishopButtonOnClick and SeetishopID = %@",GetSeetishopID);
+    // NSLog(@"GetPostID is %@ and GetLocationPlaceId is %@",GetPostID,GetLocationPlaceId);
+    _seetiesShopViewController = nil;
+    [self.seetiesShopViewController initDataWithSeetiesID:GetSeetishopID];
+    UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:self.seetiesShopViewController];
+    [nav setNavigationBarHidden:YES];
+    [self presentViewController:nav animated:YES completion:nil];
+}
+-(IBAction)LanguageButtonOnClick:(id)sender{
+    
+    NSLog(@"NEW Language Button On Click");
+    
+    if (CheckLanguageType == 0) {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                                 delegate:self
+                                                        cancelButtonTitle:CustomLocalisedString(@"No thanks!", nil)
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:CustomLocalisedString(@"English by Google Translate", nil), nil];
+        
+        [actionSheet showInView:self.view];
+        
+        actionSheet.tag = 5000;
+    }else{
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                                 delegate:self
+                                                        cancelButtonTitle:CustomLocalisedString(@"No thanks!", nil)
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:CustomLocalisedString(@"Read Original", nil), nil];
+        
+        [actionSheet showInView:self.view];
+        
+        actionSheet.tag = 5000;
+    }
+    
+    
+    TestingUse = YES;
+    //[self InitView];
+    
+}
+
 @end
