@@ -12,6 +12,9 @@
 #import "UITableView+NXEmptyView.h"
 
 @interface DraftViewController ()<UIScrollViewDelegate>
+{
+    BOOL isMiddleOfCallingServer;
+}
 @property (weak, nonatomic) IBOutlet UIView *ibSwipeDeleteNoteView;
 @property (weak, nonatomic) IBOutlet UILabel *lblSwipeToDelete;
 @property (weak, nonatomic) IBOutlet UILabel *lblNoDraftYet;
@@ -21,9 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (nonatomic,strong)UIImageView* loadingImageView;
 @property (strong, nonatomic) IBOutlet UIView *ibHeaderView;
-
-// ======
-@property (nonatomic, assign) CGFloat lastContentOffset;
+@property (strong, nonatomic) DraftsModel* draftsModel;
 
 @end
 
@@ -141,8 +142,8 @@
     _editPostViewController = nil;
     [self.editPostViewController initDataDraft:draftModel];
 
-    [self.navigationController pushViewController:self.editPostViewController animated:YES onCompletion:^{
-    }];
+    [self.navigationController pushViewController:self.editPostViewController animated:YES];
+
 }
 
 #pragma mark Request Server
@@ -160,32 +161,46 @@
 
 -(void)requestServerForDraft
 {
-//    self.arrDraftList = [NSMutableArray new];
-//    
-//    for (int i = 0; i<10; i++) {
-//        [self.arrDraftList addObject:[DataManager getSampleRecommendation]];
-//    }
 
-    NSDictionary* dict = @{@"token":[Utils getAppToken]};
+    isMiddleOfCallingServer = YES;
+
+    
+    NSDictionary* dict = @{@"token":[Utils getAppToken],
+                           @"limit":@(ARRAY_LIST_SIZE),
+                           @"offset":@(self.draftsModel.offset + self.draftsModel.limit)
+                           
+                           };
     
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetRecommendationDraft param:dict appendString:nil completeHandler:^(id object) {
         
+        self.draftsModel = [[ConnectionManager dataManager]draftsModel];
         NSArray<DraftModel>* array = [[[ConnectionManager dataManager]draftsModel]posts];
-        self.arrDraftList = [[NSMutableArray alloc]initWithArray:array];
+        [self.arrDraftList addObjectsFromArray:array];
         [self.tableView reloadData];
         [self.tableView.pullToRefreshView stopAnimating];
        
         [self.loadingImageView stopAnimating];
+        isMiddleOfCallingServer = NO;
+
 
     } errorBlock:^(id object) {
         [self.tableView.pullToRefreshView stopAnimating];
         [self.loadingImageView stopAnimating];
+        isMiddleOfCallingServer = NO;
 
     }];
  
 }
 
 #pragma mark Declaration
+
+-(NSMutableArray*)arrDraftList
+{
+    if (!_arrDraftList) {
+        _arrDraftList = [NSMutableArray new];
+    }
+    return _arrDraftList;
+}
 
 -(EditPostViewController*)editPostViewController
 {
@@ -198,6 +213,8 @@
         {
             EditPostViewController* obj  = (EditPostViewController*)object;
             obj = nil;
+            _arrDraftList = nil;
+            _draftsModel = nil;
             [weakSelf requestServerForDraft];
         
         };
@@ -205,5 +222,22 @@
     return _editPostViewController;
 }
 
+#pragma mark - UIScrollView Delegate
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    float bottomEdge = scrollView.contentOffset.x + scrollView.frame.size.width;
+    
+    float reload_distance = 10;
+    if (bottomEdge >= scrollView.contentSize.width -  reload_distance) {
+        
+        if(![Utils isStringNull:self.draftsModel.next])
+        {
+            [self requestServerForDraft];
+        }
+//        if (self.triggerLoadMoreBlock) {
+//            self.triggerLoadMoreBlock();
+//        }
+    }
+}
 
 @end

@@ -26,6 +26,7 @@
     
     NSString *GetID;
     NSString *GetPermisionUser;
+    NSString *GetMainUserID;
     
     IBOutlet UIActivityIndicatorView *ShowActivity;
     
@@ -86,6 +87,18 @@
     IBOutlet UILabel *ShowTitleInTop;
     
     UIButton *MainEditButton;
+    
+    //Translate
+    NSString *strGetTranslateTitle;
+    NSString *strGetTranslateDescription;
+    NSMutableArray *Translate_arrNote;
+    NSMutableArray *Translate_arrID;
+    
+    NSString *strOriginalTitle;
+    NSString *strOriginalDescription;
+    NSMutableArray *Original_arrNote;
+    NSMutableArray *Original_arrID;
+    BOOL OriginalText;
 }
 
 @end
@@ -128,6 +141,7 @@
     CheckShowMessage = 0;
     TempHeight = 0;
     CheckButtonOnClick = 0;
+    OriginalText = YES;
     if ([GetID length] ==0) {
         
     }else{
@@ -161,10 +175,11 @@
 -(IBAction)BackButton:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
--(void)GetCollectionID:(NSString *)ID_ GetPermision:(NSString *)PermisionUser{
+-(void)GetCollectionID:(NSString *)ID_ GetPermision:(NSString *)PermisionUser GetUserUid:(NSString *)UserUid{
 
     GetID = ID_;
     GetPermisionUser = PermisionUser;
+    GetMainUserID = UserUid;
     NSLog(@"Get Collection ID is %@",GetID);
     NSLog(@"Get Permision User is %@",GetPermisionUser);
     [self GetCollectionData];
@@ -175,16 +190,25 @@
     }else{
         CurrentPage += 1;
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSString *Getuid = [defaults objectForKey:@"Useruid"];
+        
         NSString *GetLat = [defaults objectForKey:@"UserCurrentLocation_lat"];
         NSString *Getlng = [defaults objectForKey:@"UserCurrentLocation_lng"];
         NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
         
+        if ([GetPermisionUser isEqualToString:@"Self"] || [GetPermisionUser isEqualToString:@"self"]) {
+            GetMainUserID = [defaults objectForKey:@"Useruid"];
+        }else{
+            
+            
+        }
+        
+        
+        
         NSString *FullString;
         if ([GetLat length] == 0 || [GetLat isEqualToString:@""] || [GetLat isEqualToString:@"(null)"] || GetLat == nil) {
-            FullString = [[NSString alloc]initWithFormat:@"%@%@/collections/%@?page=%li&token=%@",DataUrl.UserWallpaper_Url,Getuid,GetID,CurrentPage,GetExpertToken];
+            FullString = [[NSString alloc]initWithFormat:@"%@%@/collections/%@?page=%li&token=%@",DataUrl.UserWallpaper_Url,GetMainUserID,GetID,CurrentPage,GetExpertToken];
         }else{
-            FullString = [[NSString alloc]initWithFormat:@"%@%@/collections/%@?page=%li&lat=%@&lng=%@&token=%@",DataUrl.UserWallpaper_Url,Getuid,GetID,CurrentPage,GetLat,Getlng,GetExpertToken];
+            FullString = [[NSString alloc]initWithFormat:@"%@%@/collections/%@?page=%li&lat=%@&lng=%@&token=%@",DataUrl.UserWallpaper_Url,GetMainUserID,GetID,CurrentPage,GetLat,Getlng,GetExpertToken];
         }
 
         NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
@@ -243,6 +267,9 @@
             GetFollowing = [[NSString alloc]initWithFormat:@"%@",[ResData valueForKey:@"following"]];
             GetFollowersCount = [[NSString alloc]initWithFormat:@"%@",[ResData valueForKey:@"follower_count"]];
             
+            strOriginalTitle = GetTitle;
+            strOriginalDescription = GetDescription;
+            
             NSLog(@"Collection GetFollowing data is %@",GetFollowing);
             NSArray *LanguageData = [ResData valueForKey:@"languages"];
             GetLanguagesArray = [[NSMutableArray alloc]initWithArray:LanguageData];
@@ -283,6 +310,9 @@
                 Content_arrMessage = [[NSMutableArray alloc]init];
                 Content_arrUserName = [[NSMutableArray alloc]init];
                 Content_arrCollect = [[NSMutableArray alloc]init];
+                
+                Original_arrID = [[NSMutableArray alloc]init];
+                Original_arrNote = [[NSMutableArray alloc]init];
             }else{
             }
             
@@ -295,8 +325,10 @@
                 [Content_arrPlaceName addObject:PlaceName];
                 NSString *PlaceID = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"post_id"]];
                 [Content_arrID addObject:PlaceID];
+                [Original_arrID addObject:PlaceID];
                 NSString *notedate = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"collection_note"]];
                 [Content_arrNote addObject:notedate];
+                [Original_arrNote addObject:notedate];
                 NSString *collect = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"collect"]];
                 [Content_arrCollect addObject:collect];
             }
@@ -307,6 +339,9 @@
                     [Content_arrTitle addObject:@""];
                 }else{
                     NSString *Title2 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0aa16424400c76000002"]];
+                    if ([Title2 length] == 0 || Title2 == nil || [Title2 isEqualToString:@"(null)"]) {
+                        Title2 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530d5e9b642440d128000018"]];
+                    }
                     NSString *Title1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0ab26424400c76000003"]];
                     NSString *ThaiTitle = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"544481503efa3ff1588b4567"]];
                     NSString *IndonesianTitle = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"53672e863efa3f857f8b4ed2"]];
@@ -346,6 +381,9 @@
                     [Content_arrMessage addObject:@""];
                 }else{
                     NSString *Title2 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0aa16424400c76000002"]];
+                    if ([Title2 length] == 0 || Title2 == nil || [Title2 isEqualToString:@"(null)"]) {
+                        Title2 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530d5e9b642440d128000018"]];
+                    }
                     NSString *Title1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0ab26424400c76000003"]];
                     NSString *ThaiTitle = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"544481503efa3ff1588b4567"]];
                     NSString *IndonesianTitle = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"53672e863efa3f857f8b4ed2"]];
@@ -521,19 +559,19 @@
             
             NSDictionary *ResData = [res valueForKey:@"data"];
             
-            GetTitle = [[NSString alloc]initWithFormat:@"%@",[ResData objectForKey:@"name"]];
-            GetDescription = [[NSString alloc]initWithFormat:@"%@",[ResData objectForKey:@"description"]];
+            strGetTranslateTitle = [[NSString alloc]initWithFormat:@"%@",[ResData objectForKey:@"name"]];
+            strGetTranslateDescription = [[NSString alloc]initWithFormat:@"%@",[ResData objectForKey:@"description"]];
             
             NSDictionary *GetData = [ResData valueForKey:@"posts"];
             
-            [Content_arrID removeAllObjects];
-            [Content_arrNote removeAllObjects];
+            Translate_arrID = [[NSMutableArray alloc]init];
+            Translate_arrNote = [[NSMutableArray alloc]init];
             
             for (NSDictionary * dict in GetData) {
                 NSString *PlaceID = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"post_id"]];
-                [Content_arrID addObject:PlaceID];
+                [Translate_arrID addObject:PlaceID];
                 NSString *notedate = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"collection_note"]];
-                [Content_arrNote addObject:notedate];
+                [Translate_arrNote addObject:notedate];
             }
             for (UIView *subview in MainScroll.subviews) {
                 [subview removeFromSuperview];
@@ -549,6 +587,17 @@
             GetCollectionHeight = 0;
             CheckShowMessage = 0;
             TempHeight = 0;
+            
+            GetTitle = strGetTranslateTitle;
+            GetDescription = strGetTranslateDescription;
+            
+            [Content_arrID removeAllObjects];
+            [Content_arrNote removeAllObjects];
+            
+            [Content_arrID addObjectsFromArray:Translate_arrID];
+            [Content_arrNote addObjectsFromArray:Translate_arrNote];
+            
+            OriginalText = NO;
             [self InitView];
             
             [ShowActivity stopAnimating];
@@ -592,9 +641,13 @@
             if ([GetFollowing isEqualToString:@"0"]) {
                 [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success follow this collection" type:TSMessageNotificationTypeSuccess];
                 GetFollowing = @"1";
+                
+                [DataManager setCollectionFollowing:GetID isFollowing:YES];
             }else{
                 [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success unfollow this collection" type:TSMessageNotificationTypeSuccess];
                 GetFollowing = @"0";
+                [DataManager setCollectionFollowing:GetID isFollowing:NO];
+
             }
             
             
@@ -777,30 +830,36 @@
 
     //edit button
     MainEditButton = [[UIButton alloc]init];
-    MainEditButton.frame = CGRectMake((screenWidth / 2) - 65, GetHeight, 130, 35);
-    MainEditButton.layer.cornerRadius= 18;
-    MainEditButton.layer.borderWidth = 1;
-    MainEditButton.layer.masksToBounds = YES;
-    MainEditButton.layer.borderColor=[[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0] CGColor];
+    MainEditButton.frame = CGRectMake((screenWidth / 2) - 58, GetHeight, 115, 38);
     MainEditButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
     [MainEditButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
-    MainEditButton.backgroundColor = [UIColor whiteColor];
-    [MainEditButton setTitle:@"Edit" forState:UIControlStateNormal];
+    MainEditButton.backgroundColor = [UIColor clearColor];
+    [MainEditButton setTitle:@"" forState:UIControlStateNormal];
     [MainEditButton addTarget:self action:@selector(EditButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
     if ([GetPermisionUser isEqualToString:@"Self"] || [GetPermisionUser isEqualToString:@"self"]) {
         [MainEditButton setTitle:LocalisedString(@"Edit") forState:UIControlStateNormal];
+        MainEditButton.layer.cornerRadius= 18;
+        MainEditButton.layer.borderWidth = 1;
+        MainEditButton.layer.masksToBounds = YES;
+        MainEditButton.layer.borderColor=[[UIColor colorWithRed:204.0f/255.0f green:204.0f/255.0f blue:204.0f/255.0f alpha:1.0] CGColor];
+
     }else{
         if ([GetFollowing isEqualToString:@"0"]) {
-            [MainEditButton setTitle:LocalisedString(@"PFollow") forState:UIControlStateNormal];
-            [MainEditButton setTitle:LocalisedString(@"Unfollow") forState:UIControlStateSelected];
+//            [MainEditButton setTitle:LocalisedString(@"PFollow") forState:UIControlStateNormal];
+//            [MainEditButton setTitle:LocalisedString(@"Unfollow") forState:UIControlStateSelected];
+            [MainEditButton setImage:[UIImage imageNamed:LocalisedString(@"FollowCollectionIcon.png")] forState:UIControlStateNormal];
+            [MainEditButton setImage:[UIImage imageNamed:LocalisedString(@"FollowingCollectionIcon.png")] forState:UIControlStateSelected];
         }else{
-            [MainEditButton setTitle:LocalisedString(@"Unfollow") forState:UIControlStateNormal];
-            [MainEditButton setTitle:LocalisedString(@"PFollow") forState:UIControlStateSelected];
+//            [MainEditButton setTitle:LocalisedString(@"Unfollow") forState:UIControlStateNormal];
+//            [MainEditButton setTitle:LocalisedString(@"PFollow") forState:UIControlStateSelected];
+            [MainEditButton setImage:[UIImage imageNamed:LocalisedString(@"FollowingCollectionIcon.png")] forState:UIControlStateNormal];
+            [MainEditButton setImage:[UIImage imageNamed:LocalisedString(@"FollowCollectionIcon.png")] forState:UIControlStateSelected];
         }
+
         
     }
     [MainScroll addSubview:MainEditButton];
-        
+    
     GetHeight += 45;
 
     
@@ -865,14 +924,29 @@
         [LoadingManager show];
         [self.navigationController pushViewController:self.editCollectionViewController animated:YES];
     }else{
-        MainEditButton.selected = !MainEditButton.selected;
+        
         
         NSLog(@"follow collection button on click");
         if ([GetFollowing isEqualToString:@"0"]) {
             [self FollowCollection];
            // GetFollowing = @"1";
+            MainEditButton.selected = !MainEditButton.selected;
         }else{
-            [self DeleteFollowCollection];
+            [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Are You Sure You Want To Unfollow") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"YES"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                
+                if (buttonIndex == [alertView cancelButtonIndex]) {
+                    NSLog(@"Cancelled");
+                    
+                } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:LocalisedString(@"YES")]) {
+
+                    MainEditButton.selected = !MainEditButton.selected;
+                    [self DeleteFollowCollection];
+
+                    
+                    
+                }
+            }];
+            
             //GetFollowing = @"0";
         }
         
@@ -936,6 +1010,7 @@
     if (CheckClick == 0) {
         CheckClick = 1;
         GridView.hidden = NO;
+        DataCount = 0;
         [self InitGridViewData];
     }else{
         GridView.hidden = NO;
@@ -1418,7 +1493,7 @@
         _shareV2ViewController = nil;
         UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
         [naviVC setNavigationBarHidden:YES animated:NO];
-        [self.shareV2ViewController share:@"" title:GetTitle imagURL:@"" shareType:ShareTypeFacebookPost shareID:GetID];
+        [self.shareV2ViewController share:@"" title:GetTitle imagURL:@"" shareType:ShareTypeCollection shareID:GetID userID:GetMainUserID];
         MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
         formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
         formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
@@ -1442,7 +1517,43 @@
 
 }
 -(IBAction)TranslateButtonOnClick:(id)sender{
-    [self GetTranslateData];
+    if ([strGetTranslateTitle length] == 0) {
+        [self GetTranslateData];
+    }else{
+        
+        if (OriginalText == NO) {
+            OriginalText = YES;
+            
+            GetTitle = strOriginalTitle;
+            GetDescription = strOriginalDescription;
+            
+            [Content_arrID removeAllObjects];
+            [Content_arrNote removeAllObjects];
+            
+            [Content_arrID addObjectsFromArray:Original_arrID];
+            [Content_arrNote addObjectsFromArray:Original_arrNote];
+            
+        }else{
+            OriginalText = NO;
+            
+            GetTitle = strGetTranslateTitle;
+            GetDescription = strGetTranslateDescription;
+            
+            [Content_arrID removeAllObjects];
+            [Content_arrNote removeAllObjects];
+            
+            [Content_arrID addObjectsFromArray:Translate_arrID];
+            [Content_arrNote addObjectsFromArray:Translate_arrNote];
+        }
+        
+        GetHeight = 0;
+        CheckFirstTimeLoad = 0;
+        GetCollectionHeight = 0;
+        CheckShowMessage = 0;
+        TempHeight = 0;
+        [self InitView];
+    }
+    
 }
 
 -(IBAction)PersonalTagsButtonOnClick:(id)sender{
@@ -1460,8 +1571,7 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
-    NSString *Getuid = [defaults objectForKey:@"Useruid"];
-    NSString *FullString = [[NSString alloc]initWithFormat:@"%@%@/collections/%@/translate?token=%@",DataUrl.UserWallpaper_Url,Getuid,GetID,GetExpertToken];
+    NSString *FullString = [[NSString alloc]initWithFormat:@"%@%@/collections/%@/translate?token=%@",DataUrl.UserWallpaper_Url,GetMainUserID,GetID,GetExpertToken];
     
     
     NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
@@ -1627,8 +1737,8 @@
 -(IBAction)OpenProfileButtonOnClick:(id)sender{
     _profileViewController = nil;
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:GetUserID];
-    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-    }];
+    [self.navigationController pushViewController:self.profileViewController animated:YES];
+
 }
 -(ProfileViewController*)profileViewController
 {

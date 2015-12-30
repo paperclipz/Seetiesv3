@@ -12,5 +12,6 @@
 @interface LikeListingCollectionViewCell : CommonCollectionViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
 -(void)initData:(PhotoModel*)model;
+-(void)setNoRoundBorder;
 
 @end

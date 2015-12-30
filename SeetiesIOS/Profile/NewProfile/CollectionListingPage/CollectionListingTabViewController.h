@@ -8,7 +8,7 @@
 
 #import "CommonViewController.h"
 
-typedef void (^DidSelectCollectionRowBlock)(NSString* collectionID);
+typedef void (^DidSelectCollectionRowBlock)(CollectionModel* model);
 @interface CollectionListingTabViewController : CommonViewController <UITableViewDataSource,UITableViewDelegate>
 
 //@property(nonatomic,strong)ShareViewController* shareViewController;
@@ -21,5 +21,6 @@ typedef void (^DidSelectCollectionRowBlock)(NSString* collectionID);
 
 
 @property(nonatomic,strong)NSString* userID;
+-(void)reloadView;
 
 @end

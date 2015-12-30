@@ -597,6 +597,8 @@
 "Address"= "地址";
 "URL / Facebook Page"= "网址 / Facebook";
 "Phone No."= "联络号码";
+"Phone Number"= "联络号码";
+
 "Price range"= "价格";
 "Select Currency"= "选择货币";
 "Per person"= "每位";
@@ -614,6 +616,13 @@
 "Fri"= "周五";
 "Sat"= "周六";
 "Sun"= "周日";
+"Monday"= "周一";
+"Tuesday"= "周二";
+"Wednesday"= "周三";
+"Thursday"= "周四";
+"Friday"= "周五";
+"Saturday"= "周六";
+"Sunday"= "周日";
 ""= "";
 "Edit Place Info"= "更改位置资讯";
 "b"= "地点错了？";
@@ -1035,6 +1044,35 @@
 "FollowingCollectionIcon.png" = "FollowingCollectionSimplifiedChiIcon.png";
 "View collections" = "查看收藏集";
 
-
+"Walk" = "步行";
+"Drive" = "开车";
+"Open now" = "营业中";
+"Closed" = "休息";
+"Photos" = "相冊";
+"See all photos" = "查阅所有照片";
+"Information" = "相关资讯";
+"Best known for" = "热门推荐";
+"Cost" = "价格";
+"Hours" = "营业时间";
+"Contact number" = "联络号码";
+"Website" = "网站";
+"Facebook" = "Facebook";
+"See all info" = "查阅所有资讯";
+"Related collections" = "相关收藏集";
+"See all collections" = "查阅所有收藏集";
+"Recommendations" = "相关贴文";
+"See all recommendations" = "查阅所有贴文";
+"Nearby Shops" = "附近商家";
+"See all" = "查看全部";
+"Address" = "地址";
+"Nearby public transport station" = "就近公共交通站";
+"Contact number" = "联络号码";
+"Hours" = "营业时间";
+"Website" = "网站";
+"Facebook" = "Facebook";
+"Cost" = "价格";
+"Features" = "店家特点";
+"Available" = "附有";
+"Not Available" = "暂无";
 
 

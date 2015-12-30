@@ -596,6 +596,8 @@
 "Address"= "เพิ่มที่อยู่";
 "URL / Facebook Page"= "เว็บไซต์ / Facebook";
 "Phone No."= "เบอร์โทร";
+"Phone Number"= "เบอร์โทร";
+
 "Price range"= "ราคา";
 "Select Currency"= "สกุลเงิน";
 "Per person"= "ต่อคน";
@@ -613,6 +615,14 @@
 "Fri"= "ศุกร์";
 "Sat"= "เสาร์";
 "Sun"= "อาทิตย์";
+
+"Monday"= "จันทร์";
+"Tuesday"= "อังคาร";
+"Wednesday"= "พุธ";
+"Thursday"= "พฤหัสบดี";
+"Friday"= "ศุกร์";
+"Saturday"= "เสาร์";
+"Sunday"= "อาทิตย์";
 ""= "";
 "Edit Place Info"= "แก้ไขข้อมูลสถานที่";
 "b"= "ที่อยู่ไม่ถูกต้อง?";
@@ -1033,4 +1043,35 @@
 "FollowCollectionIcon.png" = "FollowCollectionThaiIcon.png";
 "FollowingCollectionIcon.png" = "FollowingCollectionThaiIcon.png";
 "View collections" = "ดูคอลเลคชัน";
+
+"Walk" = "เดิน";
+"Drive" = "ขับรถ";
+"Open now" = "เปิด";
+"Closed" = "ปิด";
+"Photos" = "รูป";
+"See all photos" = "ดูรูปทั้งหมด";
+"Information" = "ข้อมูล";
+"Best known for" = "ขึ้นชื่อเรื่อง";
+"Cost" = "ราคา";
+"Hours" = "เวลาทำการ";
+"Contact number" = "เบอร์โทร";
+"Website" = "เว็บไซต์";
+"Facebook" = "Facebook";
+"See all info" = "ดูข้อมูลทั้งหมด";
+"Related collections" = "คอลเลคชันที่เกี่ยวข้อง";
+"See all collections" = "ดูคอลเลคชันทั้งหมด";
+"Recommendations" = "รีวิว";
+"See all recommendations" = "ดูรีวิวทั้งหมด";
+"Nearby Shops" = "ร้านใกล้ๆ ";
+"See all" = "ดูทั้งหมด";
+"Address" = "ที่อยู่";
+"Nearby public transport station" = "จุดเดินทางใกล้เคียง ";
+"Contact number" = "เบอร์โทร";
+"Hours" = "เวลาทำการ";
+"Website" = "เว็บไซต์";
+"Facebook" = "Facebook";
+"Cost" = "ราคา";
+"Features" = "บริการ";
+"Available" = "มี";
+"Not Available" = "ไม่มี ";
 

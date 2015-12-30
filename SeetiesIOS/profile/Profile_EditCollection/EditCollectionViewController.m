@@ -18,6 +18,7 @@
 
 
 }
+@property (weak, nonatomic) IBOutlet UIButton *btnDone;
 @property (strong, nonatomic) NSMutableArray *arrList; // use this to update collection
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 @property (weak, nonatomic) IBOutlet UIButton *ibBtnEdit;
@@ -89,22 +90,16 @@
    // [self.lblTitle setFont:[UIFont fontWithName:CustomFontName size:17]];
 }
 
--(void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:NO];
-    
-    [self reloadData];
-    
-}
-
 -(void)reloadData
 {
-    [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-        
+    [UIView animateWithDuration:1.0f delay:0 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+        self.ibBtnEdit.hidden = NO;
         self.lblPostTitle.text = self.collectionModel.name;
         self.lblDesc.text = self.collectionModel.postDesc;
         self.lblNumberOfRecommendation.text = [NSString stringWithFormat:@"%d %@",collectionDetailTotal_posts,LocalisedString(@"Recommendations")];
         
+        self.btnDone.hidden = NO;
+        self.btnDeleteCollection.hidden = ![[Utils getUserID]isEqualToString:self.collectionModel.user_info.uid];
         
     } completion:nil];
 }
@@ -117,8 +112,11 @@
 
 -(void)initSelfView
 {
-    
-    self.btnDeleteCollection.hidden = self.profileType == ProfileViewTypeOwn?YES:NO;
+    self.ibBtnEdit.hidden = YES;
+    self.btnDone.hidden = YES;
+    self.btnDeleteCollection.hidden = YES;
+
+    //self.btnDeleteCollection.hidden = self.profileType == ProfileViewTypeOwn?NO:YES;
     [Utils setRoundBorder:self.ibBtnEdit color:TWO_ZERO_FOUR_COLOR borderRadius:self.ibBtnEdit.frame.size.height/2 borderWidth:BORDER_WIDTH];
 
     [self initTableViewWithDelegate:self];
@@ -206,6 +204,7 @@
         _editCollectionDetailViewController.btnDoneBlock = ^(id block)
         {
             weakSelf.collectionModel = (CollectionModel*)block;
+            [weakSelf reloadData];
          //   weakSelf.editCollectionDetailViewController = nil;
         };
         
@@ -335,7 +334,7 @@
                     [self.arrList addObjectsFromArray:self.collectionModel.arrayPost];
                     [self.ibTableView reloadData];
                     [self reloadData];
-                    
+                                        
                 }
                 else{
                     
@@ -375,7 +374,6 @@
     
     //[LoadingManager show];
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetCollectionInfo param:dict appendString:appendString completeHandler:^(id object) {
-        
         
         if (successBlock) {
             successBlock(nil);
@@ -431,7 +429,6 @@ static id ObjectOrNull(id object)
 {
     return object ?: [NSNull null];
 }
-
 
 #pragma mark - change language
 

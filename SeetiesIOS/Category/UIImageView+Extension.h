@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+typedef void(^ImageBlock) (UIImage* image);
 
 @interface UIImageView(Extra)
 -(void)setImagePlaceHolder;
 -(void)setStandardBorder;
+-(void)sd_setImageCroppedWithURL:(NSURL *)url completed:(ImageBlock)block;
+-(void)tintWithOverlay;
 
 @end

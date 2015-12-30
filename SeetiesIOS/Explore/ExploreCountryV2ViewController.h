@@ -33,6 +33,7 @@
     NSMutableArray *UserInfo_FollowArray;
     NSMutableArray *UserInfo_IDArray;
     NSMutableArray *CollectArray;
+    NSMutableArray *TitleArray;
     
     NSURLConnection *theConnection_GetCountryData;
     NSURLConnection *theConnection_GetUserData;
@@ -46,6 +47,7 @@
     NSMutableArray *User_FollowArray;
     NSMutableArray *User_UserNameArray;
     NSMutableArray *User_PhotoArray;
+    NSMutableArray *User_PostsIDNArray;
     
     NSString *GetUserID;
     NSString *GetFollowString;

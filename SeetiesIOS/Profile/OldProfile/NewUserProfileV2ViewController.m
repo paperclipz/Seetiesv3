@@ -1519,7 +1519,7 @@
     CollectionViewController *OpenCollectionView = [[CollectionViewController alloc]init];
     [self.navigationController pushViewController:OpenCollectionView animated:YES];
     //[self.view.window.rootViewController presentViewController:OpenCollectionView animated:YES completion:nil];
-    [OpenCollectionView GetCollectionID:[CollectionData_IDArray objectAtIndex:getbuttonIDN] GetPermision:@"User"];
+    //[OpenCollectionView GetCollectionID:[CollectionData_IDArray objectAtIndex:getbuttonIDN] GetPermision:@"User" GetUserUid:[collec]];
 }
 -(IBAction)ShowAll_FollowerButton:(id)sender{
     ShowFollowerAndFollowingViewController *ShowFollowerAndFollowingView = [[ShowFollowerAndFollowingViewController alloc]init];

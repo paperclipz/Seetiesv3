@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditCollectionViewController">
             <connections>
                 <outlet property="btnDeleteCollection" destination="G5P-z0-NnO" id="cqJ-PN-fae"/>
+                <outlet property="btnDone" destination="QqW-aZ-t34" id="TEJ-G0-JW8"/>
                 <outlet property="ibBtnEdit" destination="xEX-3U-me2" id="KSW-ew-uan"/>
                 <outlet property="ibTableView" destination="kQ5-xQ-m0t" id="2gB-tr-Bqm"/>
                 <outlet property="lblDesc" destination="0y9-3j-M1f" id="UUp-lO-TVP"/>
@@ -144,6 +145,15 @@
                                 <constraint firstAttribute="height" constant="1" id="5uh-03-oXo"/>
                             </constraints>
                         </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SdY-Do-FGt">
+                            <rect key="frame" x="15" y="117" width="230" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="ieG-xc-dcq"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xEX-3U-me2">
                             <rect key="frame" x="253" y="113" width="52" height="34"/>
                             <constraints>
@@ -158,15 +168,6 @@
                                 <action selector="btnEditClicked:" destination="-1" eventType="touchUpInside" id="JDk-TF-bdc"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SdY-Do-FGt">
-                            <rect key="frame" x="15" y="117" width="230" height="21"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="21" id="ieG-xc-dcq"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>

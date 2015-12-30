@@ -21,6 +21,8 @@
 
 #import "TagModel.h"
 #import "ProfileModel.h"
+#import "SeShopDetailModel.h"
+#import "SeShopPhotoModel.h"
 
 
 typedef void(^BoolBlock) (BOOL isCollected);
@@ -51,12 +53,16 @@ typedef void(^CompletionVoidBlock) (void);
 @property(nonatomic,strong)CollectionsModel* userSuggestedCollectionsModel;
 @property(nonatomic,strong)ProfilePostModel* userProfilePostModel;
 @property(nonatomic,strong)ProfilePostModel* userProfileLikeModel;
-
+@property(nonatomic,strong)SeShopPhotoModel* seShopPhotoModel;
+@property(nonatomic,strong)SeShopDetailModel* seShopDetailModel;
+@property(nonatomic,strong)SeetiShopsModel* seNearbyShopModel;
+@property(nonatomic,strong)SeetiShopsModel* seNearbyShopListingModel;
 
 
 +(RecommendationModel*)getSampleRecommendation;
 +(EditPhotoModel*)getSampleEditPhotoModel;
-+(void)getCollectionFollowing:(NSString*)collectionID HasCollected:(BoolBlock)isCollected completion:(CompletionVoidBlock)completionBlock;
-+(void)setCollectionFollowing:(NSString*)collectionID isFollowing:(BOOL)following;
++(void)getCollectionFollowing:(NSString*)collectionID HasCollected:(BoolBlock)isCollected completion:(CompletionVoidBlock)completionBlock;//get collection is collected to show in view
++(void)setCollectionFollowing:(NSString*)collectionID isFollowing:(BOOL)following;//to set collection is collected and store after request from server
++(BOOL)isCollectionFollowed:(NSString*)collectionID isFollowing:(BOOL)isFollowing;//to check collection is collected to request from server
 
 @end

@@ -9,6 +9,15 @@
 #import <Foundation/Foundation.h>
 
 @interface Utils : NSObject
+#define MaxDistance 30000
+
+
+// ======================== STTRING SWITCH CASE ========================
+#define CASE(str)                       if ([__s__ isEqualToString:(str)])
+#define SWITCH(s)                       for (NSString *__s__ = (s); ; )
+#define DEFAULT
+
+// ======================== STTRING SWITCH CASE ========================
 
 typedef void(^ButtonBlock) (id sender);
 
@@ -45,7 +54,8 @@ typedef enum ScrollDirection {
 typedef enum {
 
     ProfileViewTypeOthers,
-    ProfileViewTypeOwn
+    ProfileViewTypeOwn,
+
     
 } ProfileViewType;
 
@@ -54,9 +64,28 @@ typedef enum {
     CollectionListingTypeMyOwn,
     CollectionListingTypeFollowing,
     CollectionListingTypeSuggestion,
-    CollectionListingTypeTrending
+    CollectionListingTypeTrending,
+    CollectionListingTypeSeetiesShop
     
 } CollectionListingType;
+
+typedef enum {
+    
+    SeetiesShopTypeDetail,
+    SeetiesShopTypeMap,
+    SeetiesShopTypeDeal,
+    SeetiesShopTypeCollections,
+    SeetiesShopTypeRecommendation,
+    SeetiesShopTypeNearbyShop
+    
+}SeetiesShopType;
+
+//typedef enum {
+//    
+//    IsSeetiesShop,
+//    NonSeetiesShop,
+//    
+//}SeetiesShopVerifyType;
 
 +(BOOL)isLogin;
 +(void)setIsLogin;
@@ -74,6 +103,7 @@ typedef enum {
 
 #define LINE_COLOR [UIColor colorWithRed:221.0/255.0 green:221.0/255.0 blue:221.0/255.0 alpha:1.0]
 #define ERROR_COLOR [UIColor colorWithRed:239.0/255.0 green:94.0/255.0 blue:65.0/255.0 alpha:1.0]
+#define OUTLINE_COLOR [UIColor colorWithRed:238.0/255.0 green:238.0/255.0 blue:238.0/255.0 alpha:1.0]
 
 #define CustomFontName @"ProximaNovaSoft-Regular"
 #define CustomFontNameBold @"ProximaNovaSoft-Bold"
@@ -87,9 +117,9 @@ typedef enum {
 +(int)getWeekInteger:(NSString*)week;
 // ========================  Day ==========================
 
++(void)setButtonWithBorder:button;
 +(void)setButtonWithBorder:(UIButton*)button color:(UIColor*)color;
 +(void)setRoundBorder:(UIView*)view color:(UIColor*)color borderRadius:(float)borderRadius;
-+(void)setButtonWithBorder:(UIButton*)button;
 +(void)setRoundBorder:(UIView*)view color:(UIColor*)color borderRadius:(float)borderRadius borderWidth:(float)borderWidth;
 
 
@@ -128,9 +158,27 @@ typedef enum {
 +(BOOL)stringIsNilOrEmpty:(NSString*)aString;
 +(NSURL*)getPrefixedURLFromString:(NSString*)url;
 +(BOOL)isStringNull:(NSString*)str;
++(BOOL)isArrayNull:(NSArray*)array;
+
++(NSString*)getDistance:(float)distance Locality:(NSString*)local;
++(NSString*)getDeviceAppLanguageCode;
 
 
 #define ARRAY_LIST_SIZE 10.0f
 #define LIKES_LIST_SIZE 30.0f
 
+// seeties shop model
+#define BestKnowFor @"Best known for"
+#define PriceKey @"Price"
+#define HoursKey @"Hours"
+#define Phone_Number @"Phone Number"
+#define URL_Link @"URL/Link"
+#define FACEBOOK @"Facebook"
+#define Nearby_Public_Transport @"nearby_public_transport"
+#define Recommended_Information @"recommended_information"
+
+//#define USER_SYSTEM_LANGUAGE_CODE @"user_system_language_code"
+
+// ======================================   Prompt Message      ============================
+#define SUCCESSFUL_COLLECTED @"Successful Collected"
 @end

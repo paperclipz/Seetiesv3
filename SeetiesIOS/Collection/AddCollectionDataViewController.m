@@ -277,7 +277,7 @@
 -(void)textViewDidChange:(UITextView *)textView
 {
     NSUInteger len = textView.text.length;
-    ShowNoteTextCount.text = [NSString stringWithFormat:@"%lu/150",30 - len];
+    ShowNoteTextCount.text = [NSString stringWithFormat:@"%lu/150",150 - len];
     ShowNoteTextCount.textColor = [UIColor blackColor];
     
 }

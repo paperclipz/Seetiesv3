@@ -53,8 +53,8 @@
 -(void)initSelfView
 {
     [self initTableViewWithDelegate];
-    self.lblTitle.text = [NSString stringWithFormat:@"%d %@",self.userProfilePostModel.userPostData.total_posts,LocalisedString(@"Posts")];
-    self.lblCount.text = LocalisedString(@"Posts");
+    self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userProfilePostModel.userPostData.total_posts,LocalisedString(@"Posts")];
+    self.lblTitle.text = LocalisedString(@"Posts");
     if (self.profileType == ProfileViewTypeOthers) {
         self.btnAddMore.hidden = YES;
     }
@@ -147,6 +147,7 @@
 {
     PostListingTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"PostListingTableViewCell"];
     [cell initData:self.arrPostListing[indexPath.row]];
+    [cell ProfileViewType:self.profileType];
     return cell;
 }
 
@@ -194,7 +195,7 @@
     
     isMiddleOfCallingServer = true;
     NSString* appendString = [NSString stringWithFormat:@"%@/posts",self.profileModel.uid];
-    NSDictionary* dict = @{@"page":self.userProfilePostModel.userPostData.page?@(self.userProfilePostModel.userPostData.page + 1):@1,
+    NSDictionary* dict = @{@"page":self.userProfilePostModel.userPostData.page== 0 ?@1 : @(self.userProfilePostModel.userPostData.page + 1),
                            @"list_size":@(ARRAY_LIST_SIZE),
                            @"token":[Utils getAppToken]
                            };

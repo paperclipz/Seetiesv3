@@ -8,7 +8,7 @@
 
 #import "Model.h"
 #import "DraftModel.h"
-
+#import "SeNearbyShopModel.h"
 
 @interface ProfileModel : Model
 
@@ -33,8 +33,10 @@
 
 @interface ProfilePostModel : Model
 
-
 @property(nonatomic,strong)DraftsModel* userPostData;
-
 @end
 
+@interface SeetiShopsModel : Model
+@property(nonatomic,strong)ShopsModel* userPostData;
+
+@end

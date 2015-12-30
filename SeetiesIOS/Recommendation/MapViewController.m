@@ -13,6 +13,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblIndicatorTwo;
 @property(nonatomic,assign)MKCoordinateRegion region;
 @property(nonatomic,strong)MKPointAnnotation* annotation;
+@property(nonatomic,assign)BOOL enableRepin;
+@property (weak, nonatomic) IBOutlet UIView *indicatorView;
 
 
 @end
@@ -45,10 +47,16 @@
 -(void)initSelfView
 {
     
-    
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     lpgr.minimumPressDuration = 0.3f;
-    [self.ibMapView addGestureRecognizer:lpgr];
+    
+    if (self.enableRepin) {
+        [self.ibMapView addGestureRecognizer:lpgr];
+
+    }else{
+        self.indicatorView.hidden = YES;
+    }
+    
     self.ibMapView.delegate = self;
 
     self.ibMapView.delegate = self;
@@ -67,10 +75,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [self.ibMapView setRegion:self.region animated:YES];
-    
-    
     [self.annotation setCoordinate:self.region.center];
-
 }
 
 -(MKPointAnnotation*)annotation
@@ -85,9 +90,17 @@
     return _annotation;
 }
 
+-(void)initData:(MKCoordinateRegion)tempRegion EnableRePin:(BOOL)repin
+{
+    [self initData:tempRegion];
+    self.enableRepin = repin;
+    
+}
+
 -(void)initData:(MKCoordinateRegion)tempRegion
 {
     _region = tempRegion;
+    self.enableRepin = YES;
 
     
 }

@@ -46,13 +46,23 @@
     SearchKeywordField.delegate = self;
     [self GetFriendsList];
 }
--(void)GetPostsID:(NSString *)PostID GetCollectionID:(NSString *)CollectionID{
+-(void)GetID:(NSString *)ID GetUserID:(NSString *)userID GetType:(ShareType)type{
 
-    GetPostsID = PostID;
-    GetCollectionID = CollectionID;
+    GetShareID = ID;
+    GetUserID = userID;
+    GetType = type;
     
-    NSLog(@"GetPostsID is %@ and GetCollectionID is %@",GetPostsID,GetCollectionID);
+    NSLog(@"GetShareID is %@ and GetUserID is %@ GetType is %li",GetShareID,GetUserID,(long)GetType);
 }
+//-(void)GetPostsID:(NSString *)PostID GetCollectionID:(NSString *)CollectionID GetUserID:(NSString *)userID GetType:(NSString *)type{
+//
+//    GetPostsID = PostID;
+//    GetCollectionID = CollectionID;
+//    ShareUserUID = userID;
+//    GetType = type;
+//    
+//    NSLog(@"GetPostsID is %@ and GetCollectionID is %@ ShareUserUID is %@",GetPostsID,GetCollectionID,ShareUserUID);
+//}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -190,6 +200,13 @@
         
         if ([statusString isEqualToString:@"ok"]) {
             [TSMessage showNotificationWithTitle:@"System" subtitle:LocalisedString(@"Success Send to Friends") type:TSMessageNotificationTypeSuccess];
+            
+            if (self.navigationController) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            else{
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }
         }else{
             
             NSString *MessageString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"message"]];
@@ -211,6 +228,40 @@
         
         if ([statusString isEqualToString:@"ok"]) {
             [TSMessage showNotificationWithTitle:@"System" subtitle:LocalisedString(@"Success Send to Friends") type:TSMessageNotificationTypeSuccess];
+            
+            if (self.navigationController) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            else{
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }
+        }else{
+            
+            NSString *MessageString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"message"]];
+            [TSMessage showNotificationWithTitle:@"System" subtitle:MessageString type:TSMessageNotificationTypeError];
+        }
+        
+    }else if(connection == theConnection_SendSeetiShopData){
+        NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
+        //NSLog(@"Search Keyword return get data to server ===== %@",GetData);
+        
+        NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *myError = nil;
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
+        NSLog(@"theConnection_SendSeetiShopData Json = %@",res);
+        
+        NSString *statusString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"status"]];
+        NSLog(@"statusString is %@",statusString);
+        
+        if ([statusString isEqualToString:@"ok"]) {
+            [TSMessage showNotificationWithTitle:@"System" subtitle:LocalisedString(@"Success Send to Friends") type:TSMessageNotificationTypeSuccess];
+            
+            if (self.navigationController) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            else{
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }
         }else{
             
             NSString *MessageString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"message"]];
@@ -293,11 +344,19 @@
     
     ShareUserUID = [[NSString alloc]initWithFormat:@"%@",[arrUID objectAtIndex:getbuttonIDN]];
     
-    if ([GetPostsID length] == 0 || [GetPostsID isEqualToString:@""] || [GetPostsID isEqualToString:@"(null)"] || [GetPostsID isEqualToString:@"<null>"]) {
-        [self SendCollectionToFriend];
-    }else{
+    if (GetType == ShareTypePost) {
         [self SendPostsToFriend];
+    }else if(GetType == ShareTypeCollection){
+    [self SendCollectionToFriend];
+    }else if(GetType == ShareTypeSeetiesShop){
+        [self SendSeetiShopToFriend];
     }
+    
+//    if ([GetPostsID length] == 0 || [GetPostsID isEqualToString:@""] || [GetPostsID isEqualToString:@"(null)"] || [GetPostsID isEqualToString:@"<null>"]) {
+//        [self SendCollectionToFriend];
+//    }else{
+//        [self SendPostsToFriend];
+//    }
     
 }
 -(void)SendPostsToFriend{
@@ -306,7 +365,7 @@
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
     
     //Server Address URL
-    NSString *urlString = [[NSString alloc]initWithFormat:@"%@/post/%@/share",DataUrl.UserWallpaper_Url,GetPostsID];
+    NSString *urlString = [[NSString alloc]initWithFormat:@"%@/post/%@/share",DataUrl.UserWallpaper_Url,GetShareID];
     NSLog(@"urlString is %@",urlString);
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:urlString]];
@@ -355,11 +414,10 @@
 -(void)SendCollectionToFriend{
     [ShowActivity startAnimating];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *Getuid = [defaults objectForKey:@"Useruid"];
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
     
     //Server Address URL
-    NSString *urlString = [[NSString alloc]initWithFormat:@"%@%@/collections/%@/share",DataUrl.UserWallpaper_Url,Getuid,GetCollectionID];
+    NSString *urlString = [[NSString alloc]initWithFormat:@"%@%@/collections/%@/share",DataUrl.UserWallpaper_Url,GetUserID,GetShareID];
     NSLog(@"urlString is %@",urlString);
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:urlString]];
@@ -401,6 +459,58 @@
     
     theConnection_SendCollectionata = [[NSURLConnection alloc]initWithRequest:request delegate:self];
     if(theConnection_SendCollectionata) {
+        webData = [NSMutableData data];
+    } else {
+    }
+}
+-(void)SendSeetiShopToFriend{
+    [ShowActivity startAnimating];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    
+    //Server Address URL
+    NSString *urlString = [[NSString alloc]initWithFormat:@"%@/seetishops/%@/share",DataUrl.UserWallpaper_Url,GetShareID];
+    NSLog(@"urlString is %@",urlString);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
+    
+    NSMutableData *body = [NSMutableData data];
+    
+    NSString *boundary = @"---------------------------14737809831466499882746641449";
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+    [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //parameter first
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    //Attaching the key name @"parameter_first" to the post body
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"token\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    //Attaching the content to be posted ( ParameterFirst )
+    [body appendData:[[NSString stringWithFormat:@"%@",GetExpertToken] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //parameter second
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    //Attaching the key name @"parameter_second" to the post body
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"user_ids[0]\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    //Attaching the content to be posted ( ParameterSecond )
+    [body appendData:[[NSString stringWithFormat:@"%@",ShareUserUID] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    
+    
+    //close form
+    [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSLog(@"Request  = %@",[[NSString alloc] initWithData:body encoding:NSUTF8StringEncoding]);
+    
+    //setting the body of the post to the reqeust
+    [request setHTTPBody:body];
+    
+    theConnection_SendSeetiShopData = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    if(theConnection_SendSeetiShopData) {
         webData = [NSMutableData data];
     } else {
     }

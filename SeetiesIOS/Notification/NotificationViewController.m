@@ -184,7 +184,7 @@
     if ([GetNextPaging isEqualToString:@""]|| [GetNextPaging length] == 0) {
         FullString = [[NSString alloc]initWithFormat:@"%@?token=%@&limit=10&offset=%ld",DataUrl.GetNotification_Url,GetExpertToken,(long)Offset];
     }else{
-        Offset += 10;
+        Offset += [TypeArray count];
         DataCount += 10;
         FullString = GetNextPaging;
     }
@@ -255,29 +255,28 @@
             ShowNoDataView.hidden = NO;
         }else{
             //check follow, like, mention, comment
-            
+
             NSData *jsonData = [GetData dataUsingEncoding:NSUTF8StringEncoding];
             NSError *myError = nil;
             NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&myError];
           //  NSLog(@"Expert Json = %@",res);
-            
+
             NSDictionary *GetAllData = [res valueForKey:@"data"];
             NSDictionary *GetNotificationsData = [GetAllData valueForKey:@"notifications"];
             NSDictionary *GetPaging = [GetAllData valueForKey:@"paging"];
             GetNextPaging = [[NSString alloc]initWithFormat:@"%@",[GetPaging objectForKey:@"next"]];
             NSLog(@"GetNextPaging is %@",GetNextPaging);
             
-            CheckNotificationData = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"total_notifications"]];
+            CheckNotificationData = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"total_count"]];
             if ([CheckNotificationData isEqualToString:@"0"]) {
                 ShowNoDataView.hidden = NO;
             }
-            
 
-            
-            NSDictionary *UserInfoData = [GetNotificationsData valueForKey:@"user_thumbnail"];
-            NSDictionary *PostInfoData = [GetNotificationsData valueForKey:@"post_thumbnail"];
+            NSDictionary *GetNotificationsResultData = [GetNotificationsData valueForKey:@"result"];
+            NSDictionary *UserInfoData = [GetNotificationsResultData valueForKey:@"user_thumbnail"];
+            NSDictionary *PostInfoData = [GetNotificationsResultData valueForKey:@"post_thumbnail"];
             //NSLog(@"UserInfoData is %@",UserInfoData);
-            for (NSDictionary * dict in GetNotificationsData){
+            for (NSDictionary * dict in GetNotificationsResultData){
                 NSString *type =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"type"]];
                 [TypeArray addObject:type];
                 NSString *post_id =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"post_id"]];
@@ -293,6 +292,7 @@
                 NSString *Date =  [NSString stringWithFormat:@"%@",[dict valueForKey:@"date"]];
                 [DateArray addObject:Date];
             }
+
             for (NSDictionary * dict in UserInfoData){
                 if( [dict valueForKey:@"url"] == nil ||
                    [[dict valueForKey:@"url"] isEqual:[NSNull null]] || [[dict valueForKey:@"url"] isEqualToString:@"<null>"]){
@@ -302,6 +302,7 @@
                     [UserThumbnailArray addObject:user_thumbnail];
                 }
             }
+
             for (NSDictionary * dict in PostInfoData){
                 if( [dict valueForKey:@"url"] == nil ||
                    [[dict valueForKey:@"url"] isEqual:[NSNull null]] || [[dict valueForKey:@"url"] isEqualToString:@"<null>"]){
@@ -883,7 +884,7 @@
             MiniIcon.image = [UIImage imageNamed:@"NotificationCollect.png"];
             
             ShowMessage.frame = CGRectMake(66, 9 + i * 80, screenWidth - 71, 40);
-        }else if([GetType isEqualToString:@"post_shared"] || [GetType isEqualToString:@"collection_shared"]){
+        }else if([GetType isEqualToString:@"post_shared"] || [GetType isEqualToString:@"collection_shared"] || [GetType isEqualToString:@"seetishop_shared"]){
             NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",[UserThumbnailArray objectAtIndex:i]];
             if ([FullImagesURL1 length] == 0 || [FullImagesURL1 isEqualToString:@"Null"]) {
                 ShowUserImage.image = [UIImage imageNamed:@"DefaultProfilePic.png"];
@@ -984,69 +985,28 @@
     
     NSString *GetType = [[NSString alloc]initWithFormat:@"%@",[TypeArray objectAtIndex:getbuttonIDN]];
     if ([GetType isEqualToString:@"follow"]) {
-//        NewUserProfileV2ViewController *ExpertsUserProfileView = [[NewUserProfileV2ViewController alloc]init];
-//        CATransition *transition = [CATransition animation];
-//        transition.duration = 0.2;
-//        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//        transition.type = kCATransitionPush;
-//        transition.subtype = kCATransitionFromRight;
-//        [self.view.window.layer addAnimation:transition forKey:nil];
-//        [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
-//        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-//        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-//        [NewUserProfileV2View GetUserName:[UserNameArray objectAtIndex:getbuttonIDN]];
         _profileViewController = nil;
         [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[uidArray objectAtIndex:getbuttonIDN]];
-        [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-        }];
+        [self.navigationController pushViewController:self.profileViewController animated:YES];
         
         NSLog(@"UserNameArray is %@",[UserNameArray objectAtIndex:getbuttonIDN]);
     }else if ([GetType isEqualToString:@"like"]){
         FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
-//        CATransition *transition = [CATransition animation];
-//        transition.duration = 0.2;
-//        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//        transition.type = kCATransitionPush;
-//        transition.subtype = kCATransitionFromRight;
-//        [self.view.window.layer addAnimation:transition forKey:nil];
-//        [self presentViewController:FeedDetailView animated:NO completion:nil];
-//        [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
-        
         [self.navigationController pushViewController:FeedDetailView animated:YES];
         [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
     }else if ([GetType isEqualToString:@"mention"]){
         FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
-//        CATransition *transition = [CATransition animation];
-//        transition.duration = 0.2;
-//        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//        transition.type = kCATransitionPush;
-//        transition.subtype = kCATransitionFromRight;
-//        [self.view.window.layer addAnimation:transition forKey:nil];
-//        [self presentViewController:FeedDetailView animated:NO completion:nil];
-//        [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
         [self.navigationController pushViewController:FeedDetailView animated:YES];
         [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
     }else if ([GetType isEqualToString:@"comment"]){
         FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
-//        CATransition *transition = [CATransition animation];
-//        transition.duration = 0.2;
-//        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//        transition.type = kCATransitionPush;
-//        transition.subtype = kCATransitionFromRight;
-//        [self.view.window.layer addAnimation:transition forKey:nil];
-//        [self presentViewController:FeedDetailView animated:NO completion:nil];
-//        [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
         [self.navigationController pushViewController:FeedDetailView animated:YES];
         [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
     }else if([GetType isEqualToString:@"collect"]){
-//        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-//        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-//        [NewUserProfileV2View GetUserName:[UserNameArray objectAtIndex:getbuttonIDN]];
         _profileViewController = nil;
 
         [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[uidArray objectAtIndex:getbuttonIDN]];
-        [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-        }];
+        [self.navigationController pushViewController:self.profileViewController animated:YES];
         
         NSLog(@"UserNameArray is %@",[UserNameArray objectAtIndex:getbuttonIDN]);
     }else if([GetType isEqualToString:@"post_shared"]){
@@ -1054,14 +1014,10 @@
         [self.navigationController pushViewController:FeedDetailView animated:YES];
         [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
     }else if([GetType isEqualToString:@"collection_shared"]){
-//        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-//        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-//        [NewUserProfileV2View GetUserName:[UserNameArray objectAtIndex:getbuttonIDN]];
         _profileViewController = nil;
 
         [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[uidArray objectAtIndex:getbuttonIDN]];
-        [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-        }];
+        [self.navigationController pushViewController:self.profileViewController animated:YES];
     }else{
     
         NSString *GetAction = [[NSString alloc]initWithFormat:@"%@",[ActionArray objectAtIndex:getbuttonIDN]];
@@ -1070,27 +1026,15 @@
         
         if ([GetAction isEqualToString:@"post"]) {
             FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
-//            CATransition *transition = [CATransition animation];
-//            transition.duration = 0.2;
-//            transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//            transition.type = kCATransitionPush;
-//            transition.subtype = kCATransitionFromRight;
-//            [self.view.window.layer addAnimation:transition forKey:nil];
-//            [self presentViewController:FeedDetailView animated:NO completion:nil];
-//            [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
             [self.navigationController pushViewController:FeedDetailView animated:YES];
             [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
         }else if([GetAction isEqualToString:@"none"]){
         
         }else if([GetAction isEqualToString:@"user"]){
-//            NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-//            [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-//            [NewUserProfileV2View GetUserName:[UserNameArray objectAtIndex:getbuttonIDN]];
             _profileViewController = nil;
 
             [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[uidArray objectAtIndex:getbuttonIDN]];
-            [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-            }];
+            [self.navigationController pushViewController:self.profileViewController animated:YES];
             
         }else{
         
@@ -1103,7 +1047,7 @@
     
     NSLog(@"Following_uidArray is %@",[Following_uidArray objectAtIndex:getbuttonIDN]);
     
-    NSString *GetType = [[NSString alloc]initWithFormat:@"%@",[TypeArray objectAtIndex:getbuttonIDN]];
+    NSString *GetType = [[NSString alloc]initWithFormat:@"%@",[Following_TypeArray objectAtIndex:getbuttonIDN]];
     if ([GetType isEqualToString:@"follow"]) {
 //        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
 //        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
@@ -1111,22 +1055,21 @@
         _profileViewController = nil;
 
         [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[Following_uidArray objectAtIndex:getbuttonIDN]];
-        [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-        }];
+        [self.navigationController pushViewController:self.profileViewController animated:YES];
         
         NSLog(@"UserNameArray is %@",[Following_UserNameArray objectAtIndex:getbuttonIDN]);
     }else if ([GetType isEqualToString:@"like"]){
-        FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
-        [self.navigationController pushViewController:FeedDetailView animated:YES];
-        [FeedDetailView GetPostID:[Following_PostIDArray objectAtIndex:getbuttonIDN]];
+//        FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
+//        [self.navigationController pushViewController:FeedDetailView animated:YES];
+//        [FeedDetailView GetPostID:[Following_PostIDArray objectAtIndex:getbuttonIDN]];
     }else if ([GetType isEqualToString:@"mention"]){
-        FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
-        [self.navigationController pushViewController:FeedDetailView animated:YES];
-        [FeedDetailView GetPostID:[Following_PostIDArray objectAtIndex:getbuttonIDN]];
+//        FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
+//        [self.navigationController pushViewController:FeedDetailView animated:YES];
+//        [FeedDetailView GetPostID:[Following_PostIDArray objectAtIndex:getbuttonIDN]];
     }else if ([GetType isEqualToString:@"comment"]){
-        FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
-        [self.navigationController pushViewController:FeedDetailView animated:YES];
-        [FeedDetailView GetPostID:[Following_PostIDArray objectAtIndex:getbuttonIDN]];
+//        FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
+//        [self.navigationController pushViewController:FeedDetailView animated:YES];
+//        [FeedDetailView GetPostID:[Following_PostIDArray objectAtIndex:getbuttonIDN]];
     }else if([GetType isEqualToString:@"collect"]){
 //        NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
 //        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
@@ -1134,8 +1077,7 @@
         _profileViewController = nil;
 
         [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[Following_uidArray objectAtIndex:getbuttonIDN]];
-        [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-        }];
+        [self.navigationController pushViewController:self.profileViewController animated:YES ];
         NSLog(@"UserNameArray is %@",[Following_UserNameArray objectAtIndex:getbuttonIDN]);
     }else{
         
@@ -1144,9 +1086,9 @@
         NSLog(@"GetAction is %@",GetAction);
         
         if ([GetAction isEqualToString:@"post"]) {
-            FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
-            [self.navigationController pushViewController:FeedDetailView animated:YES];
-            [FeedDetailView GetPostID:[Following_PostIDArray objectAtIndex:getbuttonIDN]];
+//            FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
+//            [self.navigationController pushViewController:FeedDetailView animated:YES];
+//            [FeedDetailView GetPostID:[Following_PostIDArray objectAtIndex:getbuttonIDN]];
         }else if([GetAction isEqualToString:@"none"]){
             
         }else if([GetAction isEqualToString:@"user"]){
@@ -1156,8 +1098,7 @@
             _profileViewController = nil;
 
             [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[Following_uidArray objectAtIndex:getbuttonIDN]];
-            [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-            }];
+            [self.navigationController pushViewController:self.profileViewController animated:YES];
         }else{
             
         }

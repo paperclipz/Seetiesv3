@@ -22,9 +22,13 @@
 #import "AnnounceViewController.h"
 #import "SuggestedCollectionsViewController.h"
 #import "OpenWebViewController.h"
+#import "NSString+ChangeAsciiString.h"
+#import "TestingViewController.h"
+
 
 @interface FeedViewController ()
 {
+    __weak IBOutlet UIButton *btnTest;
     //no connection view
     IBOutlet UIView *NoConnectionView;
     IBOutlet UILabel *ShowNoConnectionText;
@@ -93,6 +97,8 @@
     NSMutableArray *arrDealID;
     NSMutableArray *arrfeaturedUserID;
     NSMutableArray *arrFriendUserID;
+    NSMutableArray *arrAboadUserID;
+    NSMutableArray *arrDealUserID;
     
     NSMutableArray *arrCollectionID;
     NSMutableArray *arrCollectionName;
@@ -187,12 +193,21 @@
 }
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;
+@property (strong, nonatomic) TestingViewController* testingViewController;
 @end
 
 @implementation FeedViewController
 
 #pragma mark - Declaration
 
+-(SeetiesShopViewController*)seetiesShopViewController
+{
+    
+    if (!_seetiesShopViewController) {
+        _seetiesShopViewController = [SeetiesShopViewController new];
+    }
+    return _seetiesShopViewController;
+}
 -(ShareV2ViewController*)shareV2ViewController
 {
     if (!_shareV2ViewController) {
@@ -222,21 +237,18 @@
 #pragma mark - IBAction
 - (IBAction)btnTestClicked:(id)sender {
     
-    _collectionListingViewController = nil;
-    ProfileModel* model = [ProfileModel new];
-    model.uid = @"20b6fac7431ed4aadf8885808d28a9d9";
-    [self.collectionListingViewController setType:ProfileViewTypeOthers ProfileModel:model NumberOfPage:1 collectionType:CollectionListingTypeSuggestion];
-    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.collectionListingViewController];
+    self.testingViewController = [TestingViewController new];
+    UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:self.testingViewController];
+    [nav setNavigationBarHidden:YES];
+    [self presentViewController:nav animated:YES completion:nil];
 
-    [naviVC setNavigationBarHidden:YES animated:NO];
-
-    [self presentViewController:naviVC animated:YES completion:nil];
     
-    self.collectionListingViewController.btnBackBlock = ^(id object)
-    {
-    
-        [naviVC dismissViewControllerAnimated:YES completion:nil];
-    };
+//    _seetiesShopViewController = nil;
+//    [self.seetiesShopViewController initDataWithSeetiesID:@"56397e301c4d5be92e8b4711" Latitude:1.934400 Longitude:103.358727];
+//   // [self.seetiesShopViewController initDataPlaceID:@"56603c9af9df245c7b8b4572" postID:@"56603c9af9df245c7b8b4573" Latitude:1.934400 Longitude:103.358727];
+//    UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:self.seetiesShopViewController];
+//    [nav setNavigationBarHidden:YES];
+//    [self presentViewController:nav animated:YES completion:nil];
 }
 
 #define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
@@ -468,6 +480,9 @@
 }
 -(void)initSelfView
 {
+
+    btnTest.hidden = !IS_SIMULATOR;
+    
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *CheckString = [defaults objectForKey:@"TestLocalData"];
@@ -682,6 +697,8 @@
         [arrfeaturedUserID removeAllObjects];
         [arrFriendUserID removeAllObjects];
         [arrDealID removeAllObjects];
+        [arrDealUserID removeAllObjects];
+        [arrAboadUserID removeAllObjects];
         
         [SplitArray_Id_Friend removeAllObjects];
         [SplitArray_ProfileImg_Friend removeAllObjects];
@@ -802,6 +819,8 @@
     [arrDealID removeAllObjects];
     [arrfeaturedUserID removeAllObjects];
     [arrFriendUserID removeAllObjects];
+    [arrDealUserID removeAllObjects];
+    [arrAboadUserID removeAllObjects];
     
     [SplitArray_Id_Friend removeAllObjects];
     [SplitArray_ProfileImg_Friend removeAllObjects];
@@ -982,7 +1001,7 @@
                 [ClicktoOpenUserProfileButton setTitle:@"" forState:UIControlStateNormal];
                 ClicktoOpenUserProfileButton.backgroundColor = [UIColor clearColor];
                 ClicktoOpenUserProfileButton.tag = i;
-                [ClicktoOpenUserProfileButton addTarget:self action:@selector(OpenUserProfileOnClick:) forControlEvents:UIControlEventTouchUpInside];
+                //[ClicktoOpenUserProfileButton addTarget:self action:@selector(OpenUserProfileOnClick:) forControlEvents:UIControlEventTouchUpInside];
                 [LocalScroll addSubview:ClicktoOpenUserProfileButton];
                 
                 
@@ -1117,7 +1136,7 @@
                 TempCountWhiteHeight += 30;
                 
                 NSString *TempGetMessage = [[NSString alloc]initWithFormat:@"%@",[arrLocalMessage objectAtIndex:i]];
-                //TempGetMessage = [TempGetMessage stringByDecodingXMLEntities];
+                TempGetMessage = [TempGetMessage stringByDecodingXMLEntities];
                 if ([TempGetMessage length] == 0 || [TempGetMessage isEqualToString:@""] || [TempGetMessage isEqualToString:@"(null)"]) {
                     
                 }else{
@@ -1524,7 +1543,7 @@
                 TempCountWhiteHeight += 30;
                 
                 NSString *TempGetMessage = [[NSString alloc]initWithFormat:@"%@",[arrMessage objectAtIndex:i]];
-                //TempGetMessage = [TempGetMessage stringByDecodingXMLEntities];
+                TempGetMessage = [TempGetMessage stringByDecodingXMLEntities];
                 if ([TempGetMessage length] == 0 || [TempGetMessage isEqualToString:@""] || [TempGetMessage isEqualToString:@"(null)"]) {
                     
                 }else{
@@ -1840,7 +1859,7 @@
                 TempCountWhiteHeightLocalQR += 30;
                 
                 NSString *TempGetMessageLocalQR = [[NSString alloc]initWithFormat:@"%@",[arrMessage objectAtIndex:i]];
-                //TempGetMessage = [TempGetMessage stringByDecodingXMLEntities];
+                TempGetMessageLocalQR = [TempGetMessageLocalQR stringByDecodingXMLEntities];
                 if ([TempGetMessageLocalQR length] == 0 || [TempGetMessageLocalQR isEqualToString:@""] || [TempGetMessageLocalQR isEqualToString:@"(null)"]) {
                     
                 }else{
@@ -1998,6 +2017,10 @@
                 NSString *TempId = [[NSString alloc]initWithFormat:@"%@",[arrPostID objectAtIndex:i]];
                 NSArray *SplitArray_Id = [TempId componentsSeparatedByString:@","];
                 arrAboadID = [[NSMutableArray alloc]initWithArray:SplitArray_Id];
+                
+                NSString *TempUserID = [[NSString alloc]initWithFormat:@"%@",[arrUserID objectAtIndex:i]];
+                NSArray *SplitArray_UserID = [TempUserID componentsSeparatedByString:@","];
+                arrAboadUserID = [[NSMutableArray alloc]initWithArray:SplitArray_UserID];
                 
                // NSLog(@"in abroad_quality_post");
                 SuggestedScrollview_Aboad = [[UIScrollView alloc]init];
@@ -2161,6 +2184,14 @@
                     [OpenPostsButton addTarget:self action:@selector(AboadOpenPostsOnClick:) forControlEvents:UIControlEventTouchUpInside];
                     OpenPostsButton.tag = i;
                     [SuggestedScrollview_Aboad addSubview:OpenPostsButton];
+                    
+                    UIButton *OpenUserButton = [[UIButton alloc]init];
+                    [OpenUserButton setTitle:@"" forState:UIControlStateNormal];
+                    OpenUserButton.backgroundColor = [UIColor clearColor];
+                    OpenUserButton.frame = CGRectMake(25 + i * (screenWidth - 40), 51 + 10, screenWidth - 75 - 100, 40);
+                    [OpenUserButton addTarget:self action:@selector(AboadUserOpenProfileOnClick:) forControlEvents:UIControlEventTouchUpInside];
+                    OpenUserButton.tag = i;
+                    [SuggestedScrollview_Aboad addSubview:OpenUserButton];
                     
                     
                     SuggestedScrollview_Aboad.contentSize = CGSizeMake(10 + i * (screenWidth - 40) + (screenWidth - 40), 300);
@@ -2825,6 +2856,10 @@
                 NSArray *SplitArray_Id = [TempId componentsSeparatedByString:@","];
                 arrDealID = [[NSMutableArray alloc]initWithArray:SplitArray_Id];
                 
+                NSString *TempUserID = [[NSString alloc]initWithFormat:@"%@",[arrUserID objectAtIndex:i]];
+                NSArray *SplitArray_UserID = [TempUserID componentsSeparatedByString:@","];
+                arrDealUserID = [[NSMutableArray alloc]initWithArray:SplitArray_UserID];
+                
                 UILabel *ShowSuggestedText = [[UILabel alloc]init];
                 ShowSuggestedText.frame = CGRectMake(20, heightcheck, screenWidth - 70, 50);
                 ShowSuggestedText.text = LocalisedString(@"Deals near you");
@@ -2852,6 +2887,18 @@
 //                SuggestedpageControl_Deal.pageIndicatorTintColor = [UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f];
 //                SuggestedpageControl_Deal.currentPageIndicatorTintColor = [UIColor colorWithRed:187.0f/255.0f green:187.0f/255.0f blue:187.0f/255.0f alpha:1.0f];
 //                [MainScroll addSubview:SuggestedpageControl_Deal];
+                
+                UIButton *SeeallButton = [[UIButton alloc]init];
+                SeeallButton.frame = CGRectMake(screenWidth - 120, heightcheck, 120, 50);
+                [SeeallButton setTitle:LocalisedString(@"See all")  forState:UIControlStateNormal];
+                [SeeallButton setImage:[UIImage imageNamed:@"ArrowBtn.png"] forState:UIControlStateNormal];
+                SeeallButton.backgroundColor = [UIColor clearColor];
+                SeeallButton.imageEdgeInsets = UIEdgeInsetsMake(0, 75, 0, 0);
+                SeeallButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+                [SeeallButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Regular" size:13]];
+                [SeeallButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+                [SeeallButton addTarget:self action:@selector(DealSeeAllButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+                [MainScroll addSubview: SeeallButton];
 
                 
                 for (int i = 0; i < [SplitArray_username count]; i++) {
@@ -2936,7 +2983,7 @@
                     
                     UILabel *ShowTitle = [[UILabel alloc]init];
                     NSString *TempGetStirng = [[NSString alloc]initWithFormat:@"%@",[SplitArray_Title objectAtIndex:i]];
-                    if ([TempGetStirng length] == 0 || [TempGetStirng isEqualToString:@""] || [TempGetStirng isEqualToString:@"(null)"] || [TempGetStirng isEqualToString:@"("]) {
+                    if ([TempGetStirng length] == 0 || [TempGetStirng isEqualToString:@""] || [TempGetStirng isEqualToString:@"(null)"] || [TempGetStirng isEqualToString:@"(\n)"]) {
                         
                     }else{
                         
@@ -2981,6 +3028,14 @@
                     [OpenPostsButton addTarget:self action:@selector(DealOpenPostsOnClick:) forControlEvents:UIControlEventTouchUpInside];
                     OpenPostsButton.tag = i;
                     [SuggestedScrollview_Deal addSubview:OpenPostsButton];
+                    
+                    UIButton *OpenUserButton = [[UIButton alloc]init];
+                    [OpenUserButton setTitle:@"" forState:UIControlStateNormal];
+                    OpenUserButton.backgroundColor = [UIColor clearColor];
+                    OpenUserButton.frame = CGRectMake(25 + i * (screenWidth - 40), 51 + 10, screenWidth - 75 - 100, 40);
+                    [OpenUserButton addTarget:self action:@selector(DealUserOpenProfileOnClick:) forControlEvents:UIControlEventTouchUpInside];
+                    OpenUserButton.tag = i;
+                    [SuggestedScrollview_Deal addSubview:OpenUserButton];
                     
                     
                     SuggestedScrollview_Deal.contentSize = CGSizeMake(10 + i * (screenWidth - 40) + (screenWidth - 45), 300);
@@ -4176,6 +4231,9 @@
                              NSMutableArray *TempTitleArray = [[NSMutableArray alloc]init];
                              for (NSDictionary * dict in titleData) {
                                  NSString *Title2 = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"530b0aa16424400c76000002"]];
+                                 if ([Title2 length] == 0 || Title2 == nil || [Title2 isEqualToString:@"(null)"]) {
+                                     Title2 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530d5e9b642440d128000018"]];
+                                 }
                                  NSString *Title1 = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"530b0ab26424400c76000003"]];
                                  NSString *ThaiTitle = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"544481503efa3ff1588b4567"]];
                                  NSString *IndonesianTitle = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"53672e863efa3f857f8b4ed2"]];
@@ -4231,6 +4289,9 @@
                              NSLog(@"arrTitle == %@",arrTitle);
                          }else{
                              Title2 = [[NSString alloc]initWithFormat:@"%@",[titleData valueForKey:@"530b0aa16424400c76000002"]];
+                             if ([Title2 length] == 0 || Title2 == nil || [Title2 isEqualToString:@"(null)"]) {
+                                 Title2 = [[NSString alloc]initWithFormat:@"%@",[titleData objectForKey:@"530d5e9b642440d128000018"]];
+                             }
                              Title1 = [[NSString alloc]initWithFormat:@"%@",[titleData valueForKey:@"530b0ab26424400c76000003"]];
                              ThaiTitle = [[NSString alloc]initWithFormat:@"%@",[titleData valueForKey:@"544481503efa3ff1588b4567"]];
                              IndonesianTitle = [[NSString alloc]initWithFormat:@"%@",[titleData valueForKey:@"53672e863efa3f857f8b4ed2"]];
@@ -4291,6 +4352,9 @@
                              NSMutableArray *TempTitleArray = [[NSMutableArray alloc]init];
                              for (NSDictionary * dict in titleData) {
                                  NSString *Title2 = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"530b0aa16424400c76000002"]];
+                                 if ([Title2 length] == 0 || Title2 == nil || [Title2 isEqualToString:@"(null)"]) {
+                                     Title2 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530d5e9b642440d128000018"]];
+                                 }
                                  NSString *Title1 = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"530b0ab26424400c76000003"]];
                                  NSString *ThaiTitle = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"544481503efa3ff1588b4567"]];
                                  NSString *IndonesianTitle = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"53672e863efa3f857f8b4ed2"]];
@@ -4344,6 +4408,9 @@
                              [arrMessage addObject:TempName];
                          }else{
                              Title2_message = [[NSString alloc]initWithFormat:@"%@",[messageData valueForKey:@"530b0aa16424400c76000002"]];
+                             if ([Title2_message length] == 0 || Title2_message == nil || [Title2_message isEqualToString:@"(null)"]) {
+                                 Title2_message= [[NSString alloc]initWithFormat:@"%@",[messageData objectForKey:@"530d5e9b642440d128000018"]];
+                             }
                              Title1_message = [[NSString alloc]initWithFormat:@"%@",[messageData valueForKey:@"530b0ab26424400c76000003"]];
                              ThaiTitle_message = [[NSString alloc]initWithFormat:@"%@",[messageData valueForKey:@"544481503efa3ff1588b4567"]];
                              IndonesianTitle_message = [[NSString alloc]initWithFormat:@"%@",[messageData valueForKey:@"53672e863efa3f857f8b4ed2"]];
@@ -5047,21 +5114,29 @@
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"button %li",(long)getbuttonIDN);
     
-    NSString *GetLikeClick = [[NSString alloc]initWithFormat:@"%@",[arrlike objectAtIndex:getbuttonIDN]];
-    NSString *GetCollectionClick = [[NSString alloc]initWithFormat:@"%@",[arrCollect objectAtIndex:getbuttonIDN]];
+    if (LocalScroll.hidden == YES) {
+        NSString *GetLikeClick = [[NSString alloc]initWithFormat:@"%@",[arrlike objectAtIndex:getbuttonIDN]];
+        NSString *GetCollectionClick = [[NSString alloc]initWithFormat:@"%@",[arrCollect objectAtIndex:getbuttonIDN]];
+        
+        NSLog(@"GetLikeClick is %@",GetLikeClick);
+        NSLog(@"GetCollectionClick is %@",GetCollectionClick);
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:GetLikeClick forKey:@"PostToDetail_like"];
+        [defaults setObject:GetCollectionClick forKey:@"PostToDetail_Collect"];
+        [defaults setInteger:getbuttonIDN + 6000 forKey:@"PostToDetail_IDN"];
+        [defaults synchronize];
+        
+        FeedV2DetailViewController *vc = [[FeedV2DetailViewController alloc] initWithNibName:@"FeedV2DetailViewController" bundle:nil];
+        [self.navigationController pushViewController:vc animated:YES];
+        [vc GetPostID:[arrPostID objectAtIndex:getbuttonIDN]];
+    }else{
+        FeedV2DetailViewController *vc = [[FeedV2DetailViewController alloc] initWithNibName:@"FeedV2DetailViewController" bundle:nil];
+        [self.navigationController pushViewController:vc animated:YES];
+        [vc GetPostID:[arrLocalPostID objectAtIndex:getbuttonIDN]];
+    }
     
-    NSLog(@"GetLikeClick is %@",GetLikeClick);
-    NSLog(@"GetCollectionClick is %@",GetCollectionClick);
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:GetLikeClick forKey:@"PostToDetail_like"];
-    [defaults setObject:GetCollectionClick forKey:@"PostToDetail_Collect"];
-    [defaults setInteger:getbuttonIDN + 6000 forKey:@"PostToDetail_IDN"];
-    [defaults synchronize];
-    
-    FeedV2DetailViewController *vc = [[FeedV2DetailViewController alloc] initWithNibName:@"FeedV2DetailViewController" bundle:nil];
-    [self.navigationController pushViewController:vc animated:YES];
-    [vc GetPostID:[arrPostID objectAtIndex:getbuttonIDN]];
+
     
 }
 -(IBAction)NearbyButton:(id)sender{
@@ -5092,8 +5167,8 @@
 //        [NewUserProfileV2View GetUserName:[arrUserName objectAtIndex:getbuttonIDN]];
         _profileViewController = nil;
         [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[arrUserID objectAtIndex:getbuttonIDN]];
-        [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-        }];
+        [self.navigationController pushViewController:self.profileViewController animated:YES];
+    
     }
     
 
@@ -5283,8 +5358,8 @@
 //        [NewUserProfileV2View GetUid:GetID];
         _profileViewController = nil;
         [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:GetID];
-        [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-        }];
+        [self.navigationController pushViewController:self.profileViewController animated:YES];
+    
     }else{
         AnnounceViewController *AnnounceView = [[AnnounceViewController alloc]init];
         [self.navigationController pushViewController:AnnounceView animated:YES];
@@ -5302,6 +5377,16 @@
     [self.navigationController pushViewController:vc animated:YES];
     [vc GetPostID:GetID];
 }
+-(IBAction)AboadUserOpenProfileOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSString *GetID = [[NSString alloc]initWithFormat:@"%@",[arrAboadUserID objectAtIndex:getbuttonIDN]];
+    NSLog(@"AboadUserOpenProfileOnClick GetID is %@",GetID);
+    
+    _profileViewController = nil;
+    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:GetID];
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+    }];
+}
 -(IBAction)DealOpenPostsOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSString *GetID = [[NSString alloc]initWithFormat:@"%@",[arrDealID objectAtIndex:getbuttonIDN]];
@@ -5310,6 +5395,16 @@
     FeedV2DetailViewController *vc = [[FeedV2DetailViewController alloc] initWithNibName:@"FeedV2DetailViewController" bundle:nil];
     [self.navigationController pushViewController:vc animated:YES];
     [vc GetPostID:GetID];
+}
+-(IBAction)DealUserOpenProfileOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+    NSString *GetID = [[NSString alloc]initWithFormat:@"%@",[arrDealUserID objectAtIndex:getbuttonIDN]];
+    NSLog(@"DealUserOpenProfileOnClick GetID is %@",GetID);
+    
+    _profileViewController = nil;
+    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:GetID];
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+    }];
 }
 -(IBAction)FeaturedOpenUserProfile:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
@@ -5321,8 +5416,8 @@
 //    [NewUserProfileV2View GetUserName:Getname];
     _profileViewController = nil;
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[arrfeaturedUserID objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-    }];
+    [self.navigationController pushViewController:self.profileViewController animated:YES];
+
 }
 -(IBAction)FriendsOpenUserProfile:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
@@ -5336,8 +5431,8 @@
     SLog(@"user ID : %@",arrFriendUserID);
     _profileViewController = nil;
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:arrFriendUserID[getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-    }];
+    [self.navigationController pushViewController:self.profileViewController animated:YES];
+
 }
 -(IBAction)ShareButtonOnClick:(id)sender{
     NSLog(@"ShareButtonOnClick");
@@ -5358,7 +5453,7 @@
     _shareV2ViewController = nil;
     UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
     [naviVC setNavigationBarHidden:YES animated:NO];
-    [self.shareV2ViewController share:@"" title:[arrTitle objectAtIndex:getbuttonIDN] imagURL:[arrImage objectAtIndex:getbuttonIDN] shareType:ShareTypeFacebookPost shareID:[arrPostID objectAtIndex:getbuttonIDN]];
+    [self.shareV2ViewController share:@"" title:[arrTitle objectAtIndex:getbuttonIDN] imagURL:[arrImage objectAtIndex:getbuttonIDN] shareType:ShareTypePost shareID:[arrPostID objectAtIndex:getbuttonIDN] userID:@""];
     MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
     formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
     formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
@@ -5447,8 +5542,8 @@
 //    [NewUserProfileV2View GetUserName:[arrUserName objectAtIndex:getbuttonIDN]];
     _profileViewController = nil;
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[arrUserID objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-    }];
+    [self.navigationController pushViewController:self.profileViewController animated:YES];
+
 }
 -(void)SendUserTrackerToServer{
     // NSURL *url = [NSURL URLWithString:[postBack stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
@@ -5473,7 +5568,7 @@
     
     CollectionViewController *OpenCollectionView = [[CollectionViewController alloc]init];
     [self.navigationController pushViewController:OpenCollectionView animated:YES];
-    [OpenCollectionView GetCollectionID:[arrCollectionID objectAtIndex:getbuttonIDN] GetPermision:@"User"];
+    [OpenCollectionView GetCollectionID:[arrCollectionID objectAtIndex:getbuttonIDN] GetPermision:@"User" GetUserUid:[arrCollectionUserID objectAtIndex:getbuttonIDN]];
 }
 -(IBAction)CollectionUserProfileOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
@@ -5485,8 +5580,8 @@
 //    [NewUserProfileV2View GetUserName:Getname];
     _profileViewController = nil;
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[arrCollectionUserID objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-    }];
+    [self.navigationController pushViewController:self.profileViewController animated:YES];
+
 }
 -(IBAction)SeeAllButtonOnClick:(id)sender{
     NSLog(@"Suggested Collection SeeAllButtonOnClick");
@@ -5504,8 +5599,8 @@
 -(IBAction)CollectionFollowingButtonOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     
-    UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
-    buttonWithTag1.selected = !buttonWithTag1.selected;
+//    UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
+//    buttonWithTag1.selected = !buttonWithTag1.selected;
     
     NSInteger ButtonIDN = getbuttonIDN;
     ButtonIDN -= 8000;
@@ -5517,11 +5612,27 @@
     GetCollectID = [[NSString alloc]initWithFormat:@"%@",[arrCollectionID objectAtIndex:ButtonIDN]];
     
     if ([GetCollectionFollowing isEqualToString:@"0"]) {
+        UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
+        buttonWithTag1.selected = !buttonWithTag1.selected;
         [self FollowCollection];
         [arrCollectionFollowing replaceObjectAtIndex:ButtonIDN withObject:@"1"];
     }else{
-        [self DeleteFollowCollection];
-        [arrCollectionFollowing replaceObjectAtIndex:ButtonIDN withObject:@"0"];
+
+        [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Are You Sure You Want To Unfollow") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"YES"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+            
+            if (buttonIndex == [alertView cancelButtonIndex]) {
+                NSLog(@"Cancelled");
+                
+            } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:LocalisedString(@"YES")]) {
+                
+                UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
+                buttonWithTag1.selected = !buttonWithTag1.selected;
+                [self DeleteFollowCollection];
+                [arrCollectionFollowing replaceObjectAtIndex:ButtonIDN withObject:@"0"];
+                
+                
+            }
+        }];
     }
 }
 -(void)FollowCollection{
@@ -5617,7 +5728,7 @@
     _shareV2ViewController = nil;
     UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
     [naviVC setNavigationBarHidden:YES animated:NO];
-    [self.shareV2ViewController share:@"" title:[arrTitle objectAtIndex:getbuttonIDN] imagURL:@"" shareType:ShareTypeFacebookCollection shareID:[arrCollectionID objectAtIndex:getbuttonIDN]];
+    [self.shareV2ViewController share:@"" title:[arrTitle objectAtIndex:getbuttonIDN] imagURL:@"" shareType:ShareTypeCollection shareID:[arrCollectionID objectAtIndex:getbuttonIDN] userID:[arrCollectionUserID objectAtIndex:getbuttonIDN]];
     MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
     formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
     formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
@@ -5630,6 +5741,13 @@
     //    NSString *Getname = [[NSString alloc]initWithFormat:@"%@",[arrCollectionName objectAtIndex:getbuttonIDN]];
     _profileViewController = nil;
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[arrUserID objectAtIndex:getbuttonIDN]];
+    [self.navigationController pushViewController:self.profileViewController animated:YES];
+}
+-(IBAction)DealSeeAllButtonOnClick:(id)sender{
+    NSLog(@"Open all deal");
+    NSString *GetID = [[NSString alloc]initWithFormat:@"%@",[arrDealUserID objectAtIndex:0]];
+    _profileViewController = nil;
+    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:GetID];
     [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
     }];
 }

@@ -9,6 +9,7 @@
 #import "PostListingTableViewCell.h"
 @interface PostListingTableViewCell()
 @property(nonatomic,strong)DraftModel* model;
+@property (assign, nonatomic) ProfileViewType profileType;
 @end
 @implementation PostListingTableViewCell
 
@@ -25,7 +26,16 @@
     [Utils setRoundBorder:self.ibImageView color:LINE_COLOR borderRadius:5.0f];
    
 }
-
+-(void)ProfileViewType:(ProfileViewType)type
+{
+    self.profileType = type;
+    
+    if (self.profileType == ProfileViewTypeOthers) {
+        self.lblNoView.hidden = YES;
+        self.ibImageNoViewIcon.hidden = YES;
+    }
+    
+}
 -(void)initData:(DraftModel*)model
 {
     
@@ -54,6 +64,11 @@
     
     self.lblLocation.text = self.model.place_name;
     self.lblNoView.text = self.model.view_count;
+    
+//    if (self.profileViewType != ProfileViewTypeOthers) {
+//        [self requestServerForUserLikes];
+//        
+//    }
     
     if (![self.model.arrPhotos isNull]) {
         

@@ -12,6 +12,7 @@
 {
     
     __weak IBOutlet NSLayoutConstraint *scrollViewTopConstraint;
+    NSString* seetiesID;
 }
 @property (weak, nonatomic) IBOutlet UIScrollView *ibScrollView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *ibSegmentedControl;
@@ -31,8 +32,8 @@
     
     _newCollectionViewController = nil;
 
-    [self.navigationController pushViewController:self.newCollectionViewController animated:YES];
-
+    //[self.navigationController pushViewController:self.newCollectionViewController animated:YES];
+    [self presentViewController:self.newCollectionViewController animated:YES completion:nil];
 }
 
 - (IBAction)btnSegmentedClicked:(id)sender {
@@ -53,11 +54,22 @@
     }
 }
 
+
 -(void)setType:(ProfileViewType)type ProfileModel:(ProfileModel*)model NumberOfPage:(int)page
 {
     self.profileType = type;
     self.profileModel = model;
     self.viewPage = page;//page refers to 1 or 2 page which can be scroll in scroll view . my collection 1st page , my following 2nd page
+    
+}
+
+-(void)setTypeSeeties:(NSString*)ID
+{
+    self.profileType = ProfileViewTypeOthers;
+    self.collectionListingType = CollectionListingTypeSeetiesShop;
+    seetiesID = ID;
+    self.myCollectionListingViewController.userID = seetiesID;
+    self.viewPage = 1;//page refers to 1 or 2 page which can be scroll in scroll view . my collection 1st page , my following 2nd page
     
 }
 
@@ -67,6 +79,11 @@
     self.collectionListingType = collType;
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self.myCollectionListingViewController reloadView];
+    [self.followingCollectionListingViewController reloadView];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -119,14 +136,23 @@
 -(void)initViewData
 {
     
-    if ([self.profileModel.uid isEqualToString:[Utils getUserID]]) {
-        self.lblTitle.text = LocalisedString(@"Collections");
+    if (self.collectionListingType == CollectionListingTypeSeetiesShop) {
         
+        self.lblTitle.text = LocalisedString(@"SeetiShop Collections");
+
     }
-    else{
-        
-        self.lblTitle.text = [NSString stringWithFormat:@"%@ %@",self.profileModel.username,LocalisedString(@"Collections")];
-        
+    else
+    {
+        if ([self.profileModel.uid isEqualToString:[Utils getUserID]]) {
+            self.lblTitle.text = LocalisedString(@"Collections");
+            
+        }
+        else{
+            
+            self.lblTitle.text = [NSString stringWithFormat:@"%@ %@",self.profileModel.username,LocalisedString(@"Collections")];
+            
+        }
+
     }
     
 }
@@ -160,14 +186,14 @@
         
         _myCollectionListingViewController.userID = self.profileModel.uid;
         __weak typeof (self)weakSelf = self;
-        _myCollectionListingViewController.didSelectEdiCollectionRowBlock = ^(NSString* collectionID)
+        _myCollectionListingViewController.didSelectEdiCollectionRowBlock = ^(CollectionModel* model)
         {
-            [weakSelf showEditCollectionViewWithCollectionID:collectionID];
+            [weakSelf showEditCollectionViewWithCollectionID:model.collection_id];
         };
         
-        _myCollectionListingViewController.didSelectDisplayCollectionRowBlock = ^(NSString* collectionID)
+        _myCollectionListingViewController.didSelectDisplayCollectionRowBlock = ^(CollectionModel* model)
         {
-            [weakSelf showCollectionDisplayViewWithCollectionID:collectionID ProfileType:weakSelf.profileType];
+            [weakSelf showCollectionDisplayViewWithCollectionID:model ProfileType:weakSelf.profileType];
         };
         
     }
@@ -185,14 +211,14 @@
         _followingCollectionListingViewController.userID = self.profileModel.uid;
         __weak typeof (self)weakSelf = self;
         
-        _followingCollectionListingViewController.didSelectEdiCollectionRowBlock = ^(NSString* collectionID)
+        _followingCollectionListingViewController.didSelectEdiCollectionRowBlock = ^(CollectionModel* model)
         {
-            [weakSelf showEditCollectionViewWithCollectionID:collectionID];
+            [weakSelf showEditCollectionViewWithCollectionID:model.collection_id];
         };
         
-        _followingCollectionListingViewController.didSelectDisplayCollectionRowBlock = ^(NSString* collectionID)
+        _followingCollectionListingViewController.didSelectDisplayCollectionRowBlock = ^(CollectionModel* model)
         {
-            [weakSelf showCollectionDisplayViewWithCollectionID:collectionID ProfileType:ProfileViewTypeOthers];
+            [weakSelf showCollectionDisplayViewWithCollectionID:model.collection_id ProfileType:ProfileViewTypeOthers];
         };
     }
     
@@ -239,16 +265,16 @@
     [self.navigationController pushViewController:self.editCollectionViewController animated:YES];
 }
 
--(void)showCollectionDisplayViewWithCollectionID:(NSString*)collID ProfileType:(ProfileViewType)profileType
+-(void)showCollectionDisplayViewWithCollectionID:(CollectionModel*)colModel ProfileType:(ProfileViewType)profileType
 {
     _collectionViewController = nil;
     if (self.profileType == ProfileViewTypeOwn) {
-        [self.collectionViewController GetCollectionID:collID GetPermision:@"self"];
+        [self.collectionViewController GetCollectionID:colModel.collection_id GetPermision:@"self" GetUserUid:colModel.user_info.uid];
 
     }
     else{
         
-     [self.collectionViewController GetCollectionID:collID GetPermision:@"Others"];
+     [self.collectionViewController GetCollectionID:colModel.collection_id GetPermision:@"Others" GetUserUid:colModel.user_info.uid];
     }
 
     [self.navigationController pushViewController:self.collectionViewController animated:YES];

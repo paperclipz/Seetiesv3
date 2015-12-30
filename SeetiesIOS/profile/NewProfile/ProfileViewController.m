@@ -172,7 +172,7 @@
     UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
     [naviVC setNavigationBarHidden:YES animated:NO];
     MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
-    [self.shareV2ViewController share:@"" title:self.userProfileModel.username imagURL:self.userProfileModel.profile_photo_images shareType:ShareTypeFacebookPostUser shareID:self.userProfileModel.username];
+    [self.shareV2ViewController share:@"" title:self.userProfileModel.username imagURL:self.userProfileModel.profile_photo_images shareType:ShareTypePostUser shareID:self.userProfileModel.username userID:@""];
     formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
     formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
     formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
@@ -180,7 +180,7 @@
 }
 
 - (IBAction)btnSettingClicked:(id)sender {
-    
+    [self SaveProfileData];
     [self.navigationController pushViewController:self.settingsViewController animated:YES];
     
 }
@@ -555,6 +555,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
+    __weak typeof (self)weakSelf = self;
     if (indexPath.section == 0) {
         
         if ( ! arrCollection.count>0) {
@@ -660,6 +661,11 @@
                 cell = [[ProfilePagePostTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfier2];
             }
             [cell initData:arrPost];
+            cell.didSelectAtIndexPathBlock = ^(NSIndexPath* collectionIndexPath)
+            {
+                [weakSelf showPostDetailView:collectionIndexPath forType:1];
+            };
+
             return cell;
             
         }
@@ -707,7 +713,6 @@
             
             ProfilePagePostTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIndenfier2];
             
-            
             if (!cell) {
                 
                 cell = [[ProfilePagePostTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfier2];
@@ -715,6 +720,11 @@
             }
             
             [cell initData:arrLikes];
+           
+            cell.didSelectAtIndexPathBlock = ^(NSIndexPath* collectionIndexPath)
+            {
+                [weakSelf showPostDetailView:collectionIndexPath forType:2];
+            };
             
             return cell;
             
@@ -730,14 +740,13 @@
 -(void)didSelectFooterAtIndex:(NSIndexPath*)indexPath
 {
     
-    
     SLog(@"index path section : %ld",(long)indexPath.section);
     switch (indexPath.section) {
             
         default:
         case 0://collection
             
-            if ([arrCollection isNull]) {
+            if ([Utils isArrayNull:arrCollection]) {
                 return;
             }
             _collectionListingViewController = nil;
@@ -746,7 +755,7 @@
             break;
         case 1://post
         {
-            if ([arrPost isNull]) {
+            if ([Utils isArrayNull:arrPost]) {
                 return;
             }
             
@@ -761,7 +770,7 @@
         case 2://likes
         {
             
-            if ([arrLikes isNull]) {
+            if ([Utils isArrayNull:arrLikes]) {
                 return;
             }
             
@@ -798,6 +807,15 @@
         }
         
     }
+    else if(indexPath.section == 1)//post
+    {
+        [self didSelectFooterAtIndex:indexPath];
+    }
+    else if(indexPath.section == 2)//likes
+    {
+        [self didSelectFooterAtIndex:indexPath];
+
+    }
     
 }
 
@@ -807,11 +825,11 @@
 {
     _collectionViewController = nil;
     if (self.profileViewType == ProfileViewTypeOwn) {
-        [self.collectionViewController GetCollectionID:collID GetPermision:@"self"];
+        [self.collectionViewController GetCollectionID:collID GetPermision:@"self" GetUserUid:self.userProfileModel.uid];
 
     }
     else{
-        [self.collectionViewController GetCollectionID:collID GetPermision:@"Others"];
+        [self.collectionViewController GetCollectionID:collID GetPermision:@"Others" GetUserUid:self.userProfileModel.uid];
 
     }
     
@@ -855,6 +873,16 @@
 
 #pragma mark - Declaration
 
+-(FeedV2DetailViewController*)feedV2DetailViewController
+{
+    if (!_feedV2DetailViewController) {
+        _feedV2DetailViewController = [FeedV2DetailViewController new];
+        
+    }
+    
+    return _feedV2DetailViewController;
+}
+
 -(ShareV2ViewController*)shareV2ViewController
 {
     if (!_shareV2ViewController) {
@@ -863,6 +891,7 @@
     
     return _shareV2ViewController;
 }
+
 -(UIImageView*)loadingImageView
 {
     if(!_loadingImageView)
@@ -1052,15 +1081,28 @@
         }];
     }
     else{
-        [[ConnectionManager Instance]requestServerWithDelete:ServerRequestTypePostFollowCollection param:dict appendString:appendString completeHandler:^(id object) {
+
+        [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Are You Sure You Want To Unfollow") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"YES"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
             
-            NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object];
-            BOOL following = [[returnDict objectForKey:@"following"] boolValue];
-            colModel.following = following;
-            [self.ibTableView reloadSectionDU:0 withRowAnimation:UITableViewRowAnimationAutomatic];
-            [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success unfollow this collection" type:TSMessageNotificationTypeSuccess];
-        } errorBlock:^(id object) {
+            if (buttonIndex == [alertView cancelButtonIndex]) {
+                NSLog(@"Cancelled");
+                
+            } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:LocalisedString(@"YES")]) {
+                
+                
+                [[ConnectionManager Instance]requestServerWithDelete:ServerRequestTypePostFollowCollection param:dict appendString:appendString completeHandler:^(id object) {
+                    
+                    NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object];
+                    BOOL following = [[returnDict objectForKey:@"following"] boolValue];
+                    colModel.following = following;
+                    [self.ibTableView reloadSectionDU:0 withRowAnimation:UITableViewRowAnimationAutomatic];
+                    [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success unfollow this collection" type:TSMessageNotificationTypeSuccess];
+                } errorBlock:^(id object) {
+                }];
+                
+            }
         }];
+
     }
     
 }
@@ -1130,6 +1172,7 @@
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserPosts param:dict appendString:appendString completeHandler:^(id object) {
         
         self.userProfilePostModel = [[ConnectionManager dataManager]userProfilePostModel];
+
         [self assignPostData];
         
     } errorBlock:^(id object) {
@@ -1188,6 +1231,7 @@
     [self.ibScrollView.parallaxView adjustToScreenWidth];
     [self.ibScrollView.parallaxView.imageView adjustToScreenWidth];
     [self.ibScrollView.parallaxView.currentSubView adjustToScreenWidth];
+
     [self addSearchView];
 }
 
@@ -1319,7 +1363,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
     _shareV2ViewController = nil;
     UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
     [naviVC setNavigationBarHidden:YES animated:NO];
-    [self.shareV2ViewController share:@"" title:colModel.name imagURL:@"" shareType:ShareTypeFacebookCollection shareID:colModel.collection_id];
+    [self.shareV2ViewController share:@"" title:colModel.name imagURL:@"" shareType:ShareTypeCollection shareID:colModel.collection_id userID:colModel.user_info.uid];
     MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
     formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
     formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
@@ -1337,7 +1381,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
     [self.btnFollower setTitle:strFollower forState:UIControlStateNormal];
     [self.btnFollowing setTitle:strFollowing forState:UIControlStateNormal];
     [self.btnEditProfile setTitle:LocalisedString(@"Edit Profile") forState:UIControlStateNormal];
-    [self.btnSearch setTitle:LocalisedString(@"search") forState:UIControlStateNormal];
+    [self.btnSearch setTitle:LocalisedString(@"Search") forState:UIControlStateNormal];
     [self.ibTableView reloadData];
     
 }
@@ -1364,5 +1408,46 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
         
         
     }
+    else if (scrollView.contentOffset.y<5)
+    {
+        self.ibImgViewOtherPadding.alpha = 0;
+        self.lblUserName_Header.alpha = 0;
+
+    }
+}
+
+#pragma mark - SHOW POST DETAILS
+-(void)showPostDetailView:(NSIndexPath*)indexPath forType:(int)type// 1 for post 2 for likes
+{
+    _feedV2DetailViewController = nil;
+    DraftModel* model;
+
+    if (type == 1) {
+        model = arrPost[indexPath.row];
+    }
+    else{
+        model = arrLikes[indexPath.row];
+    }
+    
+    [self.navigationController pushViewController:self.feedV2DetailViewController animated:YES onCompletion:^{
+        [_feedV2DetailViewController GetPostID:model.post_id];
+        
+    }];
+}
+-(void)SaveProfileData{
+
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    [defaults setObject:self.userProfileModel.wallpaper forKey:@"UserData_Wallpaper"];
+    [defaults setObject:self.userProfileModel.profile_photo_images forKey:@"UserData_ProfilePhoto"];
+    [defaults setObject:self.userProfileModel.username forKey:@"UserData_Username"];
+    [defaults setObject:self.userProfileModel.name forKey:@"UserData_Name"];
+    [defaults setObject:self.userProfileModel.personal_link forKey:@"UserData_Url"];
+    [defaults setObject:self.userProfileModel.profileDescription forKey:@"UserData_Abouts"];
+    [defaults setObject:self.userProfileModel.location forKey:@"UserData_Location"];
+    [defaults setObject:self.userProfileModel.dob forKey:@"UserData_dob"];
+    [defaults setObject:self.userProfileModel.gender forKey:@"UserData_Gender"];
+    NSString* personaltags = [self.userProfileModel.personal_tags componentsJoinedByString:@","];
+    [defaults setObject:personaltags forKey:@"UserData_PersonalTags"];
 }
 @end

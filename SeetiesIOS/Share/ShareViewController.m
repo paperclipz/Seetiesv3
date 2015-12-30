@@ -505,6 +505,6 @@
 
     ShareToFrenViewController *ShareToFrenView = [[ShareToFrenViewController alloc]init];
     [self presentViewController:ShareToFrenView animated:YES completion:nil];
-    [ShareToFrenView GetPostsID:GetPostID GetCollectionID:GetCollectionID];
+    //[ShareToFrenView GetPostsID:GetPostID GetCollectionID:GetCollectionID];
 }
 @end

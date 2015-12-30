@@ -23,5 +23,6 @@
 
 -(void)setType:(ProfileViewType)type ProfileModel:(ProfileModel*)model NumberOfPage:(int)page;
 -(void)setType:(ProfileViewType)type ProfileModel:(ProfileModel*)model NumberOfPage:(int)page collectionType:(CollectionListingType)collType;
+-(void)setTypeSeeties:(NSString*)ID;
 
 @end

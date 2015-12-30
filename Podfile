@@ -38,4 +38,9 @@ pod 'PureLayout'
 pod 'MZAppearance'
 pod 'ViewMonitor'
 pod 'MGInstagram'
+pod 'MHVideoPhotoGallery'
+
+#================ debugging =====================#
+#pod 'CocoaLumberjack'
+
 #pod 'Canvas', '~> 0.1.2'

@@ -10,6 +10,7 @@
 #import "TPKeyboardAvoidingScrollView.h"
 #import "AsyncImageView.h"
 #import "UrlDataClass.h"
+#import "ShareManager.h"
 @interface ShareToFrenViewController : UIViewController<UIScrollViewDelegate,UITextFieldDelegate>{
 
     IBOutlet UIScrollView *MainScroll;
@@ -29,6 +30,7 @@
     NSURLConnection *theConnection_GetFriendsListData;
     NSURLConnection *theConnection_SendCollectionata;
     NSURLConnection *theConnection_SendPostsData;
+    NSURLConnection *theConnection_SendSeetiShopData;
     
     //friends data
     NSMutableArray *arrUID;
@@ -36,8 +38,9 @@
     NSMutableArray *arrProfileImg;
     
     NSString *ShareUserUID;
-    NSString *GetPostsID;
-    NSString *GetCollectionID;
+    NSString *GetShareID;
+    NSString *GetUserID;
+    NSInteger GetType;
 }
--(void)GetPostsID:(NSString *)PostID GetCollectionID:(NSString *)CollectionID;
+-(void)GetID:(NSString *)ID GetUserID:(NSString *)userID GetType:(ShareType)type;
 @end

@@ -10,6 +10,17 @@
 
 @implementation UIImageView(Extra)
 
+-(void)tintWithOverlay
+{
+    CAShapeLayer *shadow = [CAShapeLayer layer];
+    shadow.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height) cornerRadius:0].CGPath;
+    shadow.position = CGPointMake(0, 0);
+    shadow.fillColor = [UIColor blackColor].CGColor;
+    shadow.lineWidth = 0;
+    shadow.opacity = 0.3;
+    [self.layer addSublayer:shadow];
+}
+
 -(void)setImagePlaceHolder
 {
     self.image = [UIImage imageNamed:@"NoPhotoInCollection.png"];
@@ -23,4 +34,16 @@
 
 }
 
+-(void)sd_setImageCroppedWithURL:(NSURL *)url completed:(ImageBlock)block
+{
+    
+    [self sd_setImageWithURL:url completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        
+        self.image = [image imageCroppedAndScaledToSize:self.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
+        if (block) {
+            block(self.image);
+        }
+    }];
+
+}
 @end

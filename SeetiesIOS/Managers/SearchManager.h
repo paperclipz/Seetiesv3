@@ -20,7 +20,11 @@ typedef void(^SearchManagerFailBlock)(NSString *status);
 + (id)Instance;
 @property(strong,nonatomic)CLLocation* location;
 @property(strong,nonatomic)CLLocation* wifiLocation;
+@property(strong,nonatomic)CLLocation* GPSLocation;//new feature
 
+-(CLLocation*)getLocation;
+-(void)startSearchGPSLocation;
+-(void)startGetWifiLocation;
 
 -(void)getSuggestedLocationFromFoursquare:(CLLocation*)tempCurrentLocation input:(NSString*)input completionBlock:(IDBlock)completionBlock;
 

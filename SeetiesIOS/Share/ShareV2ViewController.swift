@@ -15,6 +15,7 @@ import UIKit
 
 class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate{
     @IBOutlet weak var ibCollectionView: UICollectionView!
+    @IBOutlet weak var ShareFrenView: UIView!
     
     var viewController = UIViewController()
 
@@ -27,6 +28,7 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
     var imageURL: String = ""
     var postURL: String = ""
     var shareID: String = ""
+    var userID: String = ""
 
     var shareType:ShareType?
     var shareManager:ShareManager?
@@ -38,6 +40,12 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
       //  shareToFrenVC = ShareV2ViewController.init(nibName: "ShareToFrenViewController", bundle: nil)
       //  self.navigationController!.pushViewController(shareToFrenVC, animated: true)
         self.shareToFrenVC = ShareToFrenViewController(nibName: "ShareToFrenViewController", bundle: nil)
+//        if(self.shareType == ShareTypePost){
+//        self.shareToFrenVC.GetPostsID(self.shareID, getCollectionID: nil, getUserID: userID, getType: self.shareType!)
+//        }else{
+//        self.shareToFrenVC.GetPostsID(nil, getCollectionID: self.shareID, getUserID: userID)
+//        }
+        self.shareToFrenVC.GetID(self.shareID, getUserID: userID, getType: self.shareType!)
         self.presentViewController(self.shareToFrenVC, animated: true, completion: nil)
        // self.navigationController!.pushViewController(self.shareToFrenVC, animated: true)
 
@@ -51,6 +59,7 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
     override func viewDidLoad() {
         super.viewDidLoad()
         initSelfView()
+        initShareFrenView()
         shareManager = ShareManager()
         // Do any additional setup after loading the view.
     }
@@ -67,7 +76,7 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
         self.view.setNeedsLayout()
         initCollectionView()
         
-        if(self.shareType == ShareTypeFacebookPost)
+        if(self.shareType == ShareTypePost)
         {
             arrImages = ["ShareFBIcon.png","ShareIGIcon.png","ShareLineIcon.png","ShareMessangerIcon.png","ShareWhatsappIcon.png","ShareCopyLinkIcon.png","ShareEmailIcon.png"]
             arrTitles   = ["Facebook","Instagram","LINE","Messenger","Whatsapp","Copy Link","Email"]
@@ -120,6 +129,13 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
         return cellSize
     }
     
+    func initShareFrenView()
+    {
+        if(self.shareType == ShareTypePostUser){
+            self.ShareFrenView.hidden = true
+        }
+    }
+    
     func initCollectionView()
     {
        //ibCollectionView.delegate = self;
@@ -127,13 +143,14 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
         self.ibCollectionView.registerNib(UINib(nibName: "ShareV2CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ShareV2CollectionViewCell")
     }
     
-    func share(message:String,title:String, imagURL:String, shareType:ShareType, shareID:String)
+    func share(message:String,title:String, imagURL:String, shareType:ShareType, shareID:String, userID:String)
     {
         self.postMessage = message
         self.postTitle = title
         self.imageURL = imagURL
         self.shareType = shareType
         self.shareID = shareID
+        self.userID = userID;
         self.viewController = self;
         
     }
@@ -160,7 +177,7 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
     func shareFacebook()
     {
        // shareManager?.shareFacebook(self.postTitle, message: self.postMessage, shareType: ShareTypeFacebookPost, userID: self.userID, delegate: self)
-        shareManager?.shareFacebook(self.postTitle, message: self.postMessage, imageURL: self.imageURL, shareType: ShareTypeFacebookPost, shareID: self.shareID, delegate: viewController)
+        shareManager?.shareFacebook(self.postTitle, message: self.postMessage, imageURL: self.imageURL, shareType: self.shareType!, shareID: self.shareID, delegate: viewController)
         //param.link = NSURL(string:postURL as String)
     }
     
@@ -171,7 +188,7 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
     
     func shareLine()
     {
-        shareManager?.shareOnLINE(self.postTitle, message: self.postMessage, imageURL: self.imageURL, shareType: ShareTypeFacebookCollection, shareID: self.shareID, delegate: viewController)
+        shareManager?.shareOnLINE(self.postTitle, message: self.postMessage, imageURL: self.imageURL, shareType: self.shareType!, shareID: self.shareID, delegate: viewController)
     }
     
     func shareMessanger()

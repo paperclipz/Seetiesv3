@@ -6,10 +6,6 @@
 //  Copyright (c) 2015 Ahyong87. All rights reserved.
 //
 #import "Utils.h"
-// =====================  CURRENCY =========================
-#define CASE(str)                       if ([__s__ isEqualToString:(str)])
-#define SWITCH(s)                       for (NSString *__s__ = (s); ; )
-#define DEFAULT
 
 @implementation Utils
 {
@@ -409,8 +405,6 @@
     
 }
 
-
-
 +(UIFont*)defaultFont
 {
     
@@ -449,4 +443,83 @@
     return _isNUll;
 }
 
++(BOOL)isArrayNull:(NSArray*)array
+{
+    BOOL _isNUll = NO;
+    if (array == nil || [array count] == 0) {
+        _isNUll = YES;
+    }
+    return _isNUll;
+}
+
+#pragma mark - App Utilities
++(NSString*)getDeviceAppLanguageCode
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *userLanguage = [defaults objectForKey:@"UserData_SystemLanguage"];
+    
+    if (userLanguage) {
+        if ([userLanguage isEqualToString:@"English"]) {
+            
+            return ENGLISH_CODE;
+        }else if([userLanguage isEqualToString:@"Simplified Chinese"] || [userLanguage isEqualToString:@"简体中文"]){
+            return CHINESE_CODE;
+
+        }else if([userLanguage isEqualToString:@"Traditional Chinese"] || [userLanguage isEqualToString:@"繁體中文"]){
+
+            return TAIWAN_CODE;
+            
+        }else if([userLanguage isEqualToString:@"Bahasa Indonesia"]){
+
+            return INDONESIA_CODE;
+
+        }else if([userLanguage isEqualToString:@"Thai"] || [userLanguage isEqualToString:@"th"] || [userLanguage isEqualToString:@"ภาษาไทย"]){
+            return THAI_CODE;
+        }
+    
+    }
+    return nil;
+    
+}
+
++(NSString*)getDistance:(float)distance Locality:(NSString*)local
+{
+    NSString* strDistance;
+    
+    if(distance <= MaxDistance)
+    {
+        if (distance <= 1000) {
+            strDistance = [NSString stringWithFormat:@"%.1f Meter",distance];
+            
+        }
+        else{
+            strDistance = [NSString stringWithFormat:@"%.1f KM",distance/100];
+            
+        }
+    }
+    
+    else{
+        
+        if ([Utils stringIsNilOrEmpty:local]) {
+            
+            if (distance <= 1000) {
+                strDistance = [NSString stringWithFormat:@"%.1f Meter",distance];
+                
+            }
+            else{
+                strDistance = [NSString stringWithFormat:@"%.1f KM",distance/100];
+                
+            }
+            
+        }
+        else{
+            strDistance = local;
+            
+        }
+        
+    }
+    
+    return strDistance;
+    
+}
 @end

@@ -19,7 +19,6 @@
 #import "LeveyTabBarController.h"
 
 #import "FeedViewController.h"
-#import "NewProfileV2ViewController.h"
 #import "LanguageManager.h"
 #import "Locale.h"
 @interface PFollowTheExpertsViewController ()<CLLocationManagerDelegate>
@@ -42,7 +41,7 @@
     
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight);
+    MainScroll.frame = CGRectMake(0, -20, screenWidth, screenHeight + 20);
     [MainScroll setContentSize:CGSizeMake(screenWidth * 5, 480)];
     
     Feed1View.frame = CGRectMake(0, 0, screenWidth, screenHeight);
@@ -262,6 +261,9 @@
         NSLog(@"GetGender is %@",GetGender);
         NSString *GetFbExtendedToken = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"fb_extended_token"]];
         NSLog(@"GetFbExtendedToken is %@",GetFbExtendedToken);
+        NSString *GetCategories = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"categories"]];
+        NSString *GetFbID = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"fb_id"]];
+        NSString *GetInstaID = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"insta_id"]];
         
         NSDictionary *SystemLanguage = [GetAllData valueForKey:@"system_language"];
         NSLog(@"SystemLanguage is %@",SystemLanguage);
@@ -343,6 +345,9 @@
         [defaults setObject:GetFollowingCount forKey:@"UserData_FollowingCount"];
         [defaults setObject:GetUserSelectLanguagesArray forKey:@"GetUserSelectLanguagesArray"];
         [defaults setObject:GetFbExtendedToken forKey:@"fbextendedtoken"];
+        [defaults setObject:GetCategories forKey:@"UserData_Categories"];
+        [defaults setObject:GetFbID forKey:@"UserData_FbID"];
+        [defaults setObject:GetInstaID forKey:@"UserData_instaID"];
         [defaults synchronize];
         
         
@@ -555,18 +560,18 @@
 }
 -(IBAction)Feed1DoneButtonOnClick:(id)sender{
      CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-     [MainScroll setContentOffset:CGPointMake(screenWidth * 4, 0) animated:YES];
+     [MainScroll setContentOffset:CGPointMake(screenWidth * 4, -20) animated:YES];
 }
 -(IBAction)Feed2DoneButtonOnClick:(id)sender{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    [MainScroll setContentOffset:CGPointMake(screenWidth * 4, 0) animated:YES];
+    [MainScroll setContentOffset:CGPointMake(screenWidth * 4, -20) animated:YES];
 }
 -(IBAction)ProfileDoneButtonOnClick:(id)sender{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    [MainScroll setContentOffset:CGPointMake(screenWidth * 4, 0) animated:YES];}
+    [MainScroll setContentOffset:CGPointMake(screenWidth * 4, -20) animated:YES];}
 -(IBAction)EditPostDoneButtonOnClick:(id)sender{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    [MainScroll setContentOffset:CGPointMake(screenWidth * 4, 0) animated:YES];
+    [MainScroll setContentOffset:CGPointMake(screenWidth * 4, -20) animated:YES];
 }
 -(IBAction)TranslateDoneButtonOnClick:(id)sender{
     NSLog(@"Done tour");

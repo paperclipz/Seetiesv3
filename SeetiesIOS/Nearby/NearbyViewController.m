@@ -191,6 +191,9 @@
                 }else{
                     //      NSLog(@"titleData got data");
                     NSString *Title1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0aa16424400c76000002"]];
+                    if ([Title1 length] == 0 || Title1== nil || [Title1 isEqualToString:@"(null)"]) {
+                        Title1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530d5e9b642440d128000018"]];
+                    }
                     NSString *Title2 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0ab26424400c76000003"]];
                     NSString *ThaiTitle = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"544481503efa3ff1588b4567"]];
                     NSString *IndonesianTitle = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"53672e863efa3f857f8b4ed2"]];
@@ -239,6 +242,9 @@
                 }else{
                     //           NSLog(@"titleData got data");
                     NSString *Title1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0aa16424400c76000002"]];
+                    if ([Title1 length] == 0 || Title1== nil || [Title1 isEqualToString:@"(null)"]) {
+                        Title1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530d5e9b642440d128000018"]];
+                    }
                     NSString *Title2 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0ab26424400c76000003"]];
                     NSString *ThaiTitle = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"544481503efa3ff1588b4567"]];
                     NSString *IndonesianTitle = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"53672e863efa3f857f8b4ed2"]];
@@ -395,12 +401,12 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
     if (CheckFirstTimeLoad == 0) {
-        CenterLine = [[UIButton alloc]init];
-        CenterLine.frame = CGRectMake((screenWidth / 2), 170, 1, 100);
-        [CenterLine setTitle:@"" forState:UIControlStateNormal];//238
-        [CenterLine setBackgroundColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f]];
-       // [CenterLine setBackgroundColor:[UIColor redColor]];
-        [MainScroll addSubview:CenterLine];
+//        CenterLine = [[UIButton alloc]init];
+//        CenterLine.frame = CGRectMake((screenWidth / 2), 170, 1, 100);
+//        [CenterLine setTitle:@"" forState:UIControlStateNormal];//238
+//        [CenterLine setBackgroundColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f]];
+//       // [CenterLine setBackgroundColor:[UIColor redColor]];
+//        [MainScroll addSubview:CenterLine];
         
         GetHeight += 20;
     }else{
@@ -485,7 +491,13 @@
             NSString *FullShowLocatinString;
             
             if (x_Nearby < 1) {
+                NSLog(@"x_Nearby === %i",x_Nearby);
+                if (x_Nearby == 0) {
+                    FullShowLocatinString = [[NSString alloc]initWithFormat:@"Current • %@",[LocationArray objectAtIndex:i]];
+                }else{
                 FullShowLocatinString = [[NSString alloc]initWithFormat:@"%.fM • %@",[TempDistanceString floatValue],[LocationArray objectAtIndex:i]];
+                }
+                
             }else{
                 FullShowLocatinString = [[NSString alloc]initWithFormat:@"%.fkm • %@",strFloat,[LocationArray objectAtIndex:i]];
             }
@@ -525,7 +537,7 @@
         
         GetHeight += 110;
         
-        CenterLine.frame = CGRectMake((screenWidth / 2), 170, 1, GetHeight + 110);
+       // CenterLine.frame = CGRectMake((screenWidth / 2), 170, 1, GetHeight + 110);
         
     }
     

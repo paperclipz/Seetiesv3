@@ -645,6 +645,9 @@
             }else{
                 //      NSLog(@"titleData got data");
                 NSString *Title1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0aa16424400c76000002"]];
+                if ([Title1 length] == 0 || Title1== nil || [Title1 isEqualToString:@"(null)"]) {
+                    Title1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530d5e9b642440d128000018"]];
+                }
                 NSString *Title2 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0ab26424400c76000003"]];
                 NSString *ThaiTitle = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"544481503efa3ff1588b4567"]];
                 NSString *IndonesianTitle = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"53672e863efa3f857f8b4ed2"]];
@@ -693,6 +696,9 @@
             }else{
                 //           NSLog(@"titleData got data");
                 NSString *Title1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0aa16424400c76000002"]];
+                if ([Title1 length] == 0 || Title1== nil || [Title1 isEqualToString:@"(null)"]) {
+                    Title1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530d5e9b642440d128000018"]];
+                }
                 NSString *Title2 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0ab26424400c76000003"]];
                 NSString *ThaiTitle = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"544481503efa3ff1588b4567"]];
                 NSString *IndonesianTitle = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"53672e863efa3f857f8b4ed2"]];
@@ -1189,7 +1195,7 @@
     
     PostsView = [[UIView alloc]init];
     PostsView.frame = CGRectMake(0, heightcheck, screenWidth, 600);
-    PostsView.backgroundColor = [UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0];
+    PostsView.backgroundColor = [UIColor colorWithRed:247.0f/255.0f green:247.0f/255.0f blue:247.0f/255.0f alpha:1.0];
     [MainScroll addSubview:PostsView];
     
     PeopleView = [[UIView alloc]init];
@@ -1199,7 +1205,7 @@
     
     CollectionView = [[UIView alloc]init];
     CollectionView.frame = CGRectMake(0, heightcheck, screenWidth, 600);
-    CollectionView.backgroundColor = [UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0];
+    CollectionView.backgroundColor = [UIColor colorWithRed:247.0f/255.0f green:247.0f/255.0f blue:247.0f/255.0f alpha:1.0];
     [MainScroll addSubview:CollectionView];
     
     PeopleView.hidden = YES;
@@ -1466,7 +1472,7 @@
     UILabel *ShowResults = [[UILabel alloc]init];
     ShowResults.frame = CGRectMake(0, PeopleHeight, screenWidth, 40);
     ShowResults.text = [NSString stringWithFormat:@"%ld %@",[Experts_Name_Array count],LocalisedString(@"Seetizens")];
-    ShowResults.backgroundColor = [UIColor colorWithRed:233.0f/255.0f green:237.0f/255.0f blue:242.0f/255.0f alpha:1.0];
+    ShowResults.backgroundColor = [UIColor colorWithRed:247.0f/255.0f green:247.0f/255.0f blue:247.0f/255.0f alpha:1.0];
     ShowResults.textAlignment = NSTextAlignmentCenter;
     ShowResults.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
     ShowResults.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
@@ -1505,7 +1511,7 @@
         
         UIButton *ButtonClick = [UIButton buttonWithType:UIButtonTypeCustom];
         [ButtonClick setTitle:@"" forState:UIControlStateNormal];
-        [ButtonClick setFrame:CGRectMake(25, PeopleHeight + 10, 60, 60)];
+        [ButtonClick setFrame:CGRectMake(25, PeopleHeight + 10, screenWidth - 25, 60)];
         [ButtonClick setBackgroundColor:[UIColor clearColor]];
         ButtonClick.tag = i;
         [ButtonClick addTarget:self action:@selector(ExpertsButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -1715,11 +1721,11 @@
         NSLog(@"CheckCollectionFollowing is %@",CheckCollectionFollowing);
         UIButton *CollectionFollowButton = [[UIButton alloc]init];
         if ([CheckCollectionFollowing isEqualToString:@"0"]) {
-            [CollectionFollowButton setImage:[UIImage imageNamed:@"FollowCollectionIcon.png"] forState:UIControlStateNormal];
-            [CollectionFollowButton setImage:[UIImage imageNamed:@"FollowingCollectionIcon.PNG"] forState:UIControlStateSelected];
+            [CollectionFollowButton setImage:[UIImage imageNamed:LocalisedString(@"FollowCollectionIcon.png")] forState:UIControlStateNormal];
+            [CollectionFollowButton setImage:[UIImage imageNamed:LocalisedString(@"FollowingCollectionIcon.png")] forState:UIControlStateSelected];
         }else{
-            [CollectionFollowButton setImage:[UIImage imageNamed:@"FollowingCollectionIcon.PNG"] forState:UIControlStateNormal];
-            [CollectionFollowButton setImage:[UIImage imageNamed:@"FollowCollectionIcon.png"] forState:UIControlStateSelected];
+            [CollectionFollowButton setImage:[UIImage imageNamed:LocalisedString(@"FollowingCollectionIcon.png")] forState:UIControlStateNormal];
+            [CollectionFollowButton setImage:[UIImage imageNamed:LocalisedString(@"FollowCollectionIcon.png")] forState:UIControlStateSelected];
         }
        // [CollectionFollowButton setImage:[UIImage imageNamed:LocalisedString(@"CollectBtn.png")] forState:UIControlStateNormal];
         [CollectionFollowButton setTitleColor:[UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
@@ -1775,8 +1781,7 @@
     
     _profileViewController = nil;
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[Experts_uid_Array objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-    }];
+    [self.navigationController pushViewController:self.profileViewController animated:YES];
 }
 -(IBAction)ExpertsButton2:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
@@ -1795,8 +1800,7 @@
     
     _profileViewController = nil;
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[UserInfo_IDArray objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-    }];
+    [self.navigationController pushViewController:self.profileViewController animated:YES];
 }
 -(IBAction)ProductButton:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
@@ -2181,7 +2185,7 @@
     
     CollectionViewController *OpenCollectionView = [[CollectionViewController alloc]init];
     [self.navigationController pushViewController:OpenCollectionView animated:YES];
-    [OpenCollectionView GetCollectionID:[Collection_arrID objectAtIndex:getbuttonIDN] GetPermision:@"User"];
+    [OpenCollectionView GetCollectionID:[Collection_arrID objectAtIndex:getbuttonIDN] GetPermision:@"User" GetUserUid:[Collection_arrUserID objectAtIndex:getbuttonIDN]];
 }
 -(IBAction)CollectionUserProfileOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
@@ -2193,14 +2197,12 @@
 //    [NewUserProfileV2View GetUserName:Getname];
     _profileViewController = nil;
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[Collection_arrUserID objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-    }];
+    [self.navigationController pushViewController:self.profileViewController animated:YES];
 }
 -(IBAction)CollectionFollowingButtonOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     
-    UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
-    buttonWithTag1.selected = !buttonWithTag1.selected;
+
     
     NSLog(@"Get Collection User ID == %@",[Collection_arrUserID objectAtIndex:getbuttonIDN]);
     NSLog(@"Get Collection Following == %@",[Collection_arrFollowing objectAtIndex:getbuttonIDN]);
@@ -2209,11 +2211,27 @@
     GetCollectID = [[NSString alloc]initWithFormat:@"%@",[Collection_arrID objectAtIndex:getbuttonIDN]];
     
     if ([GetCollectionFollowing isEqualToString:@"0"]) {
+        UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
+        buttonWithTag1.selected = !buttonWithTag1.selected;
         [self FollowCollection];
         [Collection_arrFollowing replaceObjectAtIndex:getbuttonIDN withObject:@"1"];
     }else{
-        [self DeleteFollowCollection];
-        [Collection_arrFollowing replaceObjectAtIndex:getbuttonIDN withObject:@"0"];
+
+        [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Are You Sure You Want To Unfollow") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"YES"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+            
+            if (buttonIndex == [alertView cancelButtonIndex]) {
+                NSLog(@"Cancelled");
+                
+            } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:LocalisedString(@"YES")]) {
+                
+                UIButton *buttonWithTag1 = (UIButton *)[sender viewWithTag:getbuttonIDN];
+                buttonWithTag1.selected = !buttonWithTag1.selected;
+                [self DeleteFollowCollection];
+                [Collection_arrFollowing replaceObjectAtIndex:getbuttonIDN withObject:@"0"];
+                
+                
+            }
+        }];
     }
 }
 -(void)FollowCollection{

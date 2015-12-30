@@ -23,9 +23,10 @@
     // Drawing code
 }
 */
+
 -(void)initSelfView
 {
-
+   
     self.txtDescription.delegate = self;
     self.txtTitle.delegate = self;
     
@@ -59,7 +60,6 @@
     
     [self getCounterText:self.lblTitleIndicator maxCount:TITLE_MAX_COUNT textInputCount:(int)self.txtTitle.text.length];
     [self getCounterText:self.lblDescIndicator maxCount:DESC_MAX_COUNT textInputCount:(int)self.txtDescription.text.length];
-
 }
 
 //- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
@@ -123,7 +123,7 @@
 
 - (void)textViewDidChange:(UITextView *)textView
 {
-   
+
     if (textView.text.length >= DESC_MAX_COUNT) {
         NSString *currentString = [textView.text substringWithRange:NSMakeRange(0, textView.text.length>=DESC_MAX_COUNT?DESC_MAX_COUNT:textView.text.length)];
         

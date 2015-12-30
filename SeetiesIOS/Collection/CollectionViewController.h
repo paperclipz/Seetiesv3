@@ -22,5 +22,5 @@
 @property(nonatomic,strong)UINavigationController* navEditCollectionViewController;
 @property(nonatomic,strong)ShareV2ViewController* shareV2ViewController;
 
--(void)GetCollectionID:(NSString *)ID_ GetPermision:(NSString *)PermisionUser;
+-(void)GetCollectionID:(NSString *)ID_ GetPermision:(NSString *)PermisionUser GetUserUid:(NSString *)UserUid;
 @end

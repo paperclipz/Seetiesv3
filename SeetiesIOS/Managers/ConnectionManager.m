@@ -8,6 +8,7 @@
 
 #import "ConnectionManager.h"
 #import "NSArray+JSON.h"
+#define API_VERION_URL @"v2.3"
 @interface ConnectionManager()
 @property (strong, nonatomic) DataManager *dataManager;
 
@@ -33,7 +34,7 @@
     self = [super init];//set default dev
     
     // ====== set to Live if wanna go production   ========
-    self.serverPath = SERVER_PATH_DEV;
+    self.serverPath = SERVER_PATH_LIVE;
     self.dataManager = [DataManager Instance];
 
     return self;
@@ -93,7 +94,7 @@
                    success:^(AFHTTPRequestOperation *operation, id responseObject)
          {
              
-             [self storeServerData:responseObject requestType:type];
+             [self storeServerData:responseObject requestType:type withURL:url];
              
              
              if (completeBlock) {
@@ -118,7 +119,7 @@
                    success:^(AFHTTPRequestOperation *operation, id responseObject)
          {
              
-             [self storeServerData:responseObject requestType:type];
+             [self storeServerData:responseObject requestType:type withURL:url];
             
              
              if (completeBlock) {
@@ -144,12 +145,14 @@
 
 -(void)requestServerWithPost:(ServerRequestType)type param:(NSDictionary*)dict completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
 {
-    NSLog(@"\n\n ===== Request Server ===== : %@ \n\n Request Json : %@",[self getFullURLwithType:type],[dict JSONString]);
     
-    [self.manager POST:[self getFullURLwithType:type] parameters:dict
+    NSString* fullURL = [self getFullURLwithType:type];
+    NSLog(@"\n\n ===== Request Server ===== : %@ \n\n Request Json : %@",fullURL,[dict JSONString]);
+    
+    [self.manager POST:fullURL parameters:dict
                success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
-         [self storeServerData:responseObject requestType:type];
+         [self storeServerData:responseObject requestType:type withURL:fullURL];
          if (completeBlock) {
              completeBlock(responseObject);
          }
@@ -163,7 +166,7 @@
 }
 
 
--(void)requestServerWithGet:(ServerRequestType)type param:(NSDictionary*)dict appendString:(NSString*)appendString completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
+-(void)requestServerWithGet:(ServerRequestType)type param:(NSDictionary*)dict appendString:(NSString*)appendString completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)errorBlock
 {
     
     NSString* fullURL;
@@ -177,14 +180,14 @@
         fullURL = [self getFullURLwithType:type];
     }
     
-    SLog(@"\n\n ===== Request Server ===== : %@ \n\n request Json : %@",fullURL,[dict bv_jsonStringWithPrettyPrint:YES]);
+    SLog(@"\n\n ===== [REQUEST SERVER WITH GET][URL] : %@ \n [REQUEST JSON] : %@\n\n",fullURL,[dict bv_jsonStringWithPrettyPrint:YES]);
     
 
     [self.manager GET:fullURL parameters:dict
                success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          
-         [self storeServerData:responseObject requestType:type];
+         [self storeServerData:responseObject requestType:type withURL:fullURL];
          
          
          if (completeBlock) {
@@ -193,11 +196,13 @@
          }
          [LoadingManager hide];
 
-         
      }
                failure:
      ^(AFHTTPRequestOperation *operation, NSError *error) {
          
+         if (errorBlock) {
+             errorBlock(error);
+         }
          NSLog(@"\n\n Error: %@", error);
          [LoadingManager hide];
      }];
@@ -260,7 +265,7 @@
             }
         }
         else {
-            [self storeServerData:responseObject requestType:type];
+            [self storeServerData:responseObject requestType:type withURL:fullURL];
             if (completeBlock) {
                 completeBlock(responseObject);
             }
@@ -296,15 +301,15 @@
 -(void)requestServerWithDelete:(ServerRequestType)type param:(NSDictionary*)dict appendString:(NSString*)appendString completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
 {
     
-    NSString* fullString = [NSString stringWithFormat:@"%@/%@",[self getFullURLwithType:type],appendString];
+    NSString* fullURL = [NSString stringWithFormat:@"%@/%@",[self getFullURLwithType:type],appendString];
 
-    NSLog(@"\n\n ===== Request Server DELETE ===== : %@ \n\n Request Json : %@",fullString,dict);
+    NSLog(@"\n\n ===== Request Server DELETE ===== : %@ \n\n Request Json : %@",fullURL,dict);
     
-    [self.manager DELETE:fullString parameters:dict
+    [self.manager DELETE:fullURL parameters:dict
               success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          
-         [self storeServerData:responseObject requestType:type];
+         [self storeServerData:responseObject requestType:type withURL:fullURL];
          
          
          if (completeBlock) {
@@ -345,7 +350,7 @@
               success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          
-         [self storeServerData:responseObject requestType:type];
+         [self storeServerData:responseObject requestType:type withURL:fullURL];
          
          
          if (completeBlock) {
@@ -378,27 +383,31 @@
             break;
             
         case ServerRequestTypeGetLanguage:
-            str =  @"/v2.1/system/languages";
-            break;
             
+            str = [NSString stringWithFormat:@"/%@/system/languages",API_VERION_URL];
+            break;
         case ServerRequestTypeGetApiVersion:
-            str = @"v2.1/system/apiversion?device_type=2";
+            
+            str = [NSString stringWithFormat:@"%@/system/apiversion?device_type=2",API_VERION_URL];
+
             break;
         case ServerRequestTypeGetExplore:
-            str = @"v2.1/explore";
+            str = [NSString stringWithFormat:@"%@/explore",API_VERION_URL];
+
             break;
             
         case ServerRequestTypePostCreatePost:
         case ServerRequestTypePostDeletePost:
         case ServerRequestTypeGetPostInfo:
         case ServerRequestTypePostSaveDraft:
-            str = @"v2.1/post";
+            str = [NSString stringWithFormat:@"%@/post",API_VERION_URL];
+
             
             break;
             
         case ServerRequestTypeGetRecommendationDraft:
-            str = @"v2.1/draft";
-            
+            str = [NSString stringWithFormat:@"%@/draft",API_VERION_URL];
+
             break;
             
             case ServerRequestTypeGetGeoIP:
@@ -408,12 +417,24 @@
             break;
             
         case ServerRequestTypeGetCategories:
-            str = @"v2.1/system/update/category";
+            str = [NSString stringWithFormat:@"%@/system/update/category",API_VERION_URL];
+
             break;
         case ServerRequestTypeGetTagsSuggestion:
-            str = @"v2.1/tags";
+            str = [NSString stringWithFormat:@"%@/tags",API_VERION_URL];
 
             
+            break;
+            
+        case ServerRequestTypeGetSeetiShopDetail:
+        case ServerRequestTypeGetSeetiShopCollection:
+        case ServerRequestTypeGetSeetiShopPhoto:
+        case ServerRequestTypeGetSeetoShopNearbyShop:
+        case ServerRequestTypeGetSeetoShopRecommendations:
+        case ServerRequestTypeGetSeetoShopTranslation:
+
+            str = [NSString stringWithFormat:@"%@/seetishops",API_VERION_URL];
+
             break;
             
         case ServerRequestTypeGetCollectionInfo:
@@ -425,19 +446,24 @@
         case ServerRequestTypePostFollowUser:
         case ServerRequestTypePostFollowCollection:
         default:
-             str = @"v2.1";
+             str = API_VERION_URL;
             break;
             
     }
     
     return [NSString stringWithFormat:@"https://%@/%@",self.serverPath,str];
     
-    // return str;
+}
+
+-(void)storeServerData:(id)obj requestType:(ServerRequestType)type withURL:(NSString*)url
+{
+    NSLog(@"\n\n\n [SUCCESS RESPONSE RESULT URL : %@] \n%@ \n\n\n", url,[obj bv_jsonStringWithPrettyPrint:YES]);
+
+    [self storeServerData:obj requestType:type];
 }
 
 -(void)storeServerData:(id)obj requestType:(ServerRequestType)type
 {
-    NSLog(@"\n\n ===== Success  ===== : %@", [obj bv_jsonStringWithPrettyPrint:YES]);
 
 
     [LoadingManager hide];
@@ -588,7 +614,46 @@
         }
             
             break;
+        case ServerRequestTypeGetSeetiShopDetail:
+        {
+            NSDictionary* dict = obj[@"data"];
+            self.dataManager.seShopDetailModel = [[SeShopDetailModel alloc]initWithDictionary:dict error:nil];
+            [self.dataManager.seShopDetailModel process];
+        }
+            break;
             
+        case ServerRequestTypeGetSeetiShopCollection:
+        {
+            NSDictionary* dict = obj[@"data"];
+            self.dataManager.userSuggestedCollectionsModel = [[CollectionsModel alloc]initWithDictionary:dict error:nil];
+        }
+            break;
+            
+        case ServerRequestTypeGetSeetiShopPhoto:
+        {
+            NSDictionary* dict = obj[@"data"];
+            self.dataManager.seShopPhotoModel = [[SeShopPhotoModel alloc]initWithDictionary:dict error:nil];
+        }
+            break;
+            
+        case ServerRequestTypeGetSeetoShopNearbyShop:
+        {
+            self.dataManager.seNearbyShopModel = [[SeetiShopsModel alloc]initWithDictionary:obj error:nil];
+        }
+            break;
+        case ServerRequestTypeGetSeetoShopRecommendations:
+        {
+            self.dataManager.userProfilePostModel = [[ProfilePostModel alloc]initWithDictionary:obj error:nil];
+            [self.dataManager.userProfilePostModel.userPostData process];
+        }
+            break;
+            
+        case ServerRequestTypeGetSeetoShopTranslation:
+        {
+            SLog(@"the ServerRequestTypeGetSeetoShopTranslation result is :%@",obj);
+
+        }
+            break;
             
         default:
             

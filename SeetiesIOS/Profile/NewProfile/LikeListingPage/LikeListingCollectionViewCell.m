@@ -12,15 +12,25 @@
 @end
 @implementation LikeListingCollectionViewCell
 
+-(void)awakeFromNib
+{
+    [self setNeedsUpdateConstraints];
+    [self layoutIfNeeded];
+}
+
 -(void)initSelfView
 {
     [self.ibImageView setImagePlaceHolder];
     [Utils setRoundBorder:self.ibImageView color:LINE_COLOR borderRadius:5.0f];
-
+  
     
 }
 
+-(void)setNoRoundBorder
+{
+    [Utils setRoundBorder:self.ibImageView color:[UIColor clearColor] borderRadius:0];
 
+}
 -(void)initData:(PhotoModel*)model
 {
     [self.ibImageView sd_setImageWithURL:[NSURL URLWithString:model.imageURL] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {

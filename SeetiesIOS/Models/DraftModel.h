@@ -35,10 +35,11 @@
 @property(nonatomic,strong)OpeningPeriodModels* opening_hours;
 @property(nonatomic,strong)NSString* contact_no;
 @property(nonatomic,strong)NSString* link;
-@property(nonatomic,strong)NSString* distance;
+@property(nonatomic,assign)float distance;
 @property(nonatomic,strong)NSString* reference;
 @property(nonatomic,strong)NSString* formatted_address;
 @property(nonatomic,strong)NSDictionary* expense;
+@property(nonatomic,strong)NSString* search_display_name;
 
 //below here is all inside address_components
 @property(nonatomic,strong)NSString* administrative_area_level_1;
@@ -59,6 +60,8 @@
 @property(nonatomic,assign)int position;
 @property(nonatomic,strong)NSString* imageURL;
 @property(nonatomic,strong)UIImage* image;
+@property(nonatomic,strong)NSString* imageWidth;
+@property(nonatomic,strong)NSString* imageHeight;
 -(id) copyWithZone: (NSZone *) zone;
 
 @end
@@ -83,7 +86,8 @@
 @property(nonatomic,strong)NSString* view_count;
 @property(nonatomic,strong)NSArray* content_languages;
 @property(nonatomic,strong)ProfileModel* user_info;
-
+@property(nonatomic,strong)NSString* like;
+@property(nonatomic,strong)NSString* collect;
 
 -(void)process;
 -(void)customProcess;
@@ -97,6 +101,11 @@
 @property(nonatomic,assign)int total_posts;
 @property(nonatomic,assign)int total_page;
 @property(nonatomic,assign)int page;
+
+@property(nonatomic,strong)NSString* next;
+@property(nonatomic,strong)NSString* previous;
+@property(nonatomic,assign)int offset;
+@property(nonatomic,assign)int limit;
 
 -(void)process;
 

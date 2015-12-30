@@ -597,6 +597,8 @@
 "Address"= "Address";
 "URL / Facebook Page"= "URL / Facebook Page";
 "Phone No."= "Phone No.";
+"Phone Number"= "Phone Number";
+
 "Price range"= "Price range";
 "Select Currency"= "Select Currency";
 "Per person"= "Per person";
@@ -614,6 +616,14 @@
 "Fri"= "Fri";
 "Sat"= "Sat";
 "Sun"= "Sun";
+
+"Monday"= "Monday";
+"Tuesday"= "Tuesday";
+"Wednesday"= "Wednesday";
+"Thursday"= "Thursday";
+"Friday"= "Friday";
+"Saturday"= "Saturday";
+"Sunday"= "Sunday";
 ""= "";
 "Edit Place Info"= "Edit Place Info";
 "b"= "b";
@@ -1034,8 +1044,37 @@
 "FollowingCollectionIcon.png" = "FollowingCollectionIcon.png";
 "View collections" = "View collections";
 
-
-
+"Walk" = "Walk";
+"Drive" = "Drive";
+"Open now" = "Open now";
+"Closed" = "Closed";
+"Photos" = "Photos";
+"See all photos" = "See all photos";
+"Information" = "Information";
+"Best known for" = "Best known for";
+"Cost" = "Cost";
+"Hours" = "Hours";
+"Contact number" = "Contact number";
+"Website" = "Website";
+"Facebook" = "Facebook";
+"See all info" = "See all info";
+"Related collections" = "Related collections";
+"See all collections" = "See all collections";
+"Recommendations" = "Recommendations";
+"See all recommendations" = "See all recommendations";
+"Nearby Shops" = "Nearby Shops";
+"See all" = "See all";
+"Address" = "Address";
+"Nearby public transport station" = "Nearby public transport station";
+"Contact number" = "Contact number";
+"Hours" = "Hours";
+"Website" = "Website";
+"Facebook" = "Facebook";
+"Best known for" = "Best known for";
+"Cost" = "Cost";
+"Features" = "Features";
+"Available" = "Available";
+"Not Available" = "Not Available";
 
 
 

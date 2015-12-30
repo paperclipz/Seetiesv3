@@ -24,7 +24,13 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    [self reloadView];
+}
+
+-(void)reloadView
+{
     [self.ibTableView reloadData];
+
 }
 
 - (void)viewDidLoad {
@@ -50,6 +56,9 @@
             
         case CollectionListingTypeTrending:
             [self requestServerForTrendingCollection];
+            break;
+        case CollectionListingTypeSeetiesShop:
+            [self requestServerForSeetiesCollection];
             break;
     }
 }
@@ -117,15 +126,24 @@
     
     CollectionModel* collModel = self.arrCollections[indexPath.row];
     
-    [cell initData:collModel profileType:self.profileType];
+    NSString* userID = [Utils getUserID];
     
+    if ([collModel.user_info.uid isEqualToString:userID]) {
+        
+        [cell initData:collModel profileType:ProfileViewTypeOwn];
+    }
+    
+    else{
+        [cell initData:collModel profileType:ProfileViewTypeOthers];
+
+    }
     
     __weak CollectionModel* weakModel =collModel;
     
     cell.btnEditClickedBlock = ^(void)
     {
         if (_didSelectEdiCollectionRowBlock) {
-            self.didSelectEdiCollectionRowBlock(weakModel.collection_id);
+            self.didSelectEdiCollectionRowBlock(weakModel);
         }
     };
     
@@ -139,7 +157,7 @@
         _shareV2ViewController = nil;
         UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
         [naviVC setNavigationBarHidden:YES animated:NO];
-        [self.shareV2ViewController share:@"" title:weakModel.postDesc imagURL:@"" shareType:ShareTypeFacebookCollection shareID:weakModel.collection_id];
+        [self.shareV2ViewController share:@"" title:weakModel.postDesc imagURL:@"" shareType:ShareTypeCollection shareID:weakModel.collection_id userID:weakModel.user_info.uid];
         MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
         formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
         formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
@@ -156,7 +174,7 @@
     
      CollectionModel* model = self.arrCollections[indexPath.row];
     if (_didSelectDisplayCollectionRowBlock) {
-        self.didSelectDisplayCollectionRowBlock(model.collection_id);
+        self.didSelectDisplayCollectionRowBlock(model);
     }
 }
 #pragma mark - Request Server
@@ -284,7 +302,7 @@
                            @"collection_id":colModel.collection_id
                            };
 
-            if (!colModel.following) {
+            if (![DataManager isCollectionFollowed:colModel.collection_id isFollowing:colModel.following]) {
                 
                 
                 [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostFollowCollection param:dict appendString:appendString meta:nil completeHandler:^(id object) {
@@ -296,6 +314,7 @@
                     [self.ibTableView reloadData];
                     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:nil];
                     
+                    [TSMessage showNotificationWithTitle:LocalisedString(SUCCESSFUL_COLLECTED) type:TSMessageNotificationTypeSuccess];
                     
                 } errorBlock:^(id object) {
                     
@@ -400,6 +419,32 @@
 
 }
 
+-(void)requestServerForSeetiesCollection
+{
+    SLog(@"requestServerForSeetiesCollection");
+    isMiddleOfCallingServer = true;
+    
+    //need to input token for own profile private collection, no token is get other people public collection
+    NSString* appendString = [NSString stringWithFormat:@"%@/collections",self.userID];
+    
+    NSDictionary* dict = @{@"seetishop_id":self.userID,
+                           @"limit":@(ARRAY_LIST_SIZE),
+                           @"offset":@(self.userCollectionsModel.offset + self.userCollectionsModel.limit),
+                           @"token":[Utils getAppToken],
+                           };
+    
+    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetSeetiShopCollection param:dict appendString:appendString completeHandler:^(id object) {
+        isMiddleOfCallingServer = false;
+        self.userCollectionsModel = [[ConnectionManager dataManager]userSuggestedCollectionsModel];
+        [self.arrCollections addObjectsFromArray:self.userCollectionsModel.arrSuggestedCollection];
+        self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_collections,LocalisedString(@"Collections")];
+        [self.ibTableView reloadData];
+    } errorBlock:^(id object) {
+        isMiddleOfCallingServer = false;
+    }];
+}
+
+
 #pragma mark - UIScrollView Delegate
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
@@ -445,6 +490,14 @@
                         [self requestServerForOtherUserCollection];
                     }
 
+                }
+                else if(self.collectionListingType == CollectionListingTypeSeetiesShop)
+                {
+                    if(![Utils isStringNull:self.userCollectionsModel.next])
+                    {
+                        [self requestServerForSeetiesCollection];
+                    }
+                    
                 }
         }
         

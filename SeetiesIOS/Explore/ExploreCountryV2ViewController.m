@@ -16,7 +16,10 @@
 #import "NSAttributedString+DVSTracking.h"
 #import "OpenWebViewController.h"
 #import "AddCollectionDataViewController.h"
-@interface ExploreCountryV2ViewController ()
+@interface ExploreCountryV2ViewController (){
+
+    NSMutableArray *arrUserPostsIDN;
+}
 
 @end
 
@@ -49,6 +52,8 @@
     CurrentPage = 0;
     CheckUserLoad = 0;
     CheckLoadDone = NO;
+    
+    arrUserPostsIDN = [[NSMutableArray alloc]init];
     
     UISwipeGestureRecognizer * swipeleft=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeRight:)];
     swipeleft.direction=UISwipeGestureRecognizerDirectionRight;
@@ -373,13 +378,23 @@
         }
         [PostView addSubview:ShowImage];
         
+        UILabel *ShowTitle = [[UILabel alloc]init];
+        ShowTitle.frame = CGRectMake(110, PostGetHeight + 62, screenWidth - 140 - 45, 20);
+        ShowTitle.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+        ShowTitle.font = [UIFont fontWithName:CustomFontNameBold size:15];
+        ShowTitle.textAlignment = NSTextAlignmentLeft;
+        ShowTitle.backgroundColor = [UIColor clearColor];
+        ShowTitle.text = [TitleArray objectAtIndex:i];
+        [PostView addSubview:ShowTitle];
+        
+        
         UIImageView *ShowPin = [[UIImageView alloc]init];
         ShowPin.image = [UIImage imageNamed:@"LocationpinIcon.png"];
-        ShowPin.frame = CGRectMake(110, PostGetHeight + 62 ,18,18);
+        ShowPin.frame = CGRectMake(110, PostGetHeight + 82 ,18,18);
         [PostView addSubview:ShowPin];
         
         UILabel *ShowPlaceName = [[UILabel alloc]init];
-        ShowPlaceName.frame = CGRectMake(135, PostGetHeight + 62, screenWidth - 140 - 70, 20);
+        ShowPlaceName.frame = CGRectMake(135, PostGetHeight + 82, screenWidth - 140 - 70, 20);
         ShowPlaceName.text = [place_nameArray objectAtIndex:i];
         ShowPlaceName.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
         ShowPlaceName.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
@@ -387,14 +402,14 @@
         ShowPlaceName.backgroundColor = [UIColor clearColor];
         [PostView addSubview:ShowPlaceName];
         
-        UILabel *ShowLocation = [[UILabel alloc]init];
-        ShowLocation.frame = CGRectMake(115, PostGetHeight + 82, screenWidth - 140 - 70, 20);
-        ShowLocation.text = [LocationArray objectAtIndex:i];
-        ShowLocation.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
-        ShowLocation.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
-        ShowLocation.textAlignment = NSTextAlignmentLeft;
-        ShowLocation.backgroundColor = [UIColor clearColor];
-        [PostView addSubview:ShowLocation];
+//        UILabel *ShowLocation = [[UILabel alloc]init];
+//        ShowLocation.frame = CGRectMake(115, PostGetHeight + 82, screenWidth - 140 - 70, 20);
+//        ShowLocation.text = [LocationArray objectAtIndex:i];
+//        ShowLocation.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+//        ShowLocation.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+//        ShowLocation.textAlignment = NSTextAlignmentLeft;
+//        ShowLocation.backgroundColor = [UIColor clearColor];
+//        [PostView addSubview:ShowLocation];
         
 
         
@@ -454,6 +469,7 @@
     //    NSLog(@"FinalWidth is %i",FinalWidth);
     int SpaceWidth = FinalWidth + 4;
     
+    int countadd =0;
     for (int i = 0; i < [User_NameArray count]; i++) {
         UIButton *TempButton = [[UIButton alloc]init];
         TempButton.frame = CGRectMake(15, PeopleGetHeight, screenWidth - 30, FinalWidth + 10 + 70);
@@ -537,7 +553,14 @@
         
         NSString *TempImage = [[NSString alloc]initWithFormat:@"%@",[User_PhotoArray objectAtIndex:i]];
         NSArray *SplitArray = [TempImage componentsSeparatedByString:@","];
+        
+        NSString *TempIDN = [[NSString alloc]initWithFormat:@"%@",[User_PostsIDNArray objectAtIndex:i]];
+        NSArray *SplitArray1 = [TempIDN componentsSeparatedByString:@","];
+       // NSLog(@"SplitArray1 == %@",SplitArray1);
+        
+        [arrUserPostsIDN addObjectsFromArray:SplitArray1];
         for (int z = 0; z < [SplitArray count]; z++) {
+            countadd++;
             AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
             ShowImage.frame = CGRectMake(30 +(z % 4) * SpaceWidth, PeopleGetHeight + 70, FinalWidth, FinalWidth);
            // ShowImage.image = [UIImage imageNamed:[SplitArray objectAtIndex:z]];
@@ -554,6 +577,16 @@
                 ShowImage.imageURL = url;
             }
             [PeopleView addSubview:ShowImage];
+            
+            UIButton *ButtonClick = [UIButton buttonWithType:UIButtonTypeCustom];
+            [ButtonClick setTitle:@"" forState:UIControlStateNormal];
+            [ButtonClick setFrame:CGRectMake(30 +(z % 4) * SpaceWidth, PeopleGetHeight + 70, FinalWidth, FinalWidth)];
+            [ButtonClick setBackgroundColor:[UIColor clearColor]];
+            ButtonClick.tag = countadd;
+            [ButtonClick addTarget:self action:@selector(PPLExpertsOpenPostsDetailButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
+            [PeopleView addSubview:ButtonClick];
+            
+           // [arrUserPostsIDN addObject:[SplitArray1 objectAtIndex:z]];
         }
         
         PeopleGetHeight += FinalWidth + 10 + 70 + 10;
@@ -567,6 +600,7 @@
     MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     MainScroll.contentSize = contentSize;
 
+   // NSLog(@"final arrUserPostsIDN == %@",arrUserPostsIDN);
 }
 
 
@@ -844,6 +878,7 @@
                     UserInfo_FollowArray = [[NSMutableArray alloc]init];
                     CollectArray = [[NSMutableArray alloc]init];
                     UserInfo_IDArray = [[NSMutableArray alloc]init];
+                    TitleArray = [[NSMutableArray alloc]init];
                 }else{
                     
                 }
@@ -904,6 +939,58 @@
                     }
                     [LocationArray addObject:FullString];
                 }
+                
+                NSDictionary *titleData = [GetAllData valueForKey:@"title"];
+                
+                
+                for (NSDictionary * dict in titleData) {
+                    //       NSLog(@"dict is %@",dict);
+                    if ([dict count] == 0 || dict == nil || [dict isKindOfClass:[NSNull class]]) {
+                        //       NSLog(@"titleData nil");
+                        [TitleArray addObject:@""];
+                        //                            [LangArray addObject:@"English"];
+                    }else{
+                        //      NSLog(@"titleData got data");
+                        NSString *Title1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0aa16424400c76000002"]];
+                        if ([Title1 length] == 0 || Title1== nil || [Title1 isEqualToString:@"(null)"]) {
+                            Title1 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530d5e9b642440d128000018"]];
+                        }
+                        NSString *Title2 = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"530b0ab26424400c76000003"]];
+                        NSString *ThaiTitle = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"544481503efa3ff1588b4567"]];
+                        NSString *IndonesianTitle = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"53672e863efa3f857f8b4ed2"]];
+                        NSString *PhilippinesTitle = [[NSString alloc]initWithFormat:@"%@",[dict objectForKey:@"539fbb273efa3fde3f8b4567"]];
+                        //        NSLog(@"Title1 is %@",Title1);
+                        //        NSLog(@"Title2 is %@",Title2);
+                        if ([Title1 length] == 0 || Title1 == nil || [Title1 isEqualToString:@"(null)"]) {
+                            if ([Title2 length] == 0 || Title2 == nil || [Title2 isEqualToString:@"(null)"]) {
+                                if ([ThaiTitle length] == 0 || ThaiTitle == nil || [ThaiTitle isEqualToString:@"(null)"]) {
+                                    if ([IndonesianTitle length] == 0 || IndonesianTitle == nil || [IndonesianTitle isEqualToString:@"(null)"]) {
+                                        if ([PhilippinesTitle length] == 0 || PhilippinesTitle == nil || [PhilippinesTitle isEqualToString:@"(null)"]) {
+                                            [TitleArray addObject:@""];
+                                        }else{
+                                            [TitleArray addObject:PhilippinesTitle];
+                                            
+                                        }
+                                    }else{
+                                        [TitleArray addObject:IndonesianTitle];
+                                        
+                                    }
+                                }else{
+                                    [TitleArray addObject:ThaiTitle];
+                                }
+                            }else{
+                                [TitleArray addObject:Title2];
+                            }
+                            
+                        }else{
+                            [TitleArray addObject:Title1];
+                            
+                        }
+                        
+                    }
+                    
+                }
+                
                 DataCount = DataTotal;
                 DataTotal = [PostIDArray count];
 
@@ -953,6 +1040,7 @@
                 User_FollowArray = [[NSMutableArray alloc]init];
                 User_UserNameArray = [[NSMutableArray alloc]init];
                 User_PhotoArray = [[NSMutableArray alloc]init];
+                User_PostsIDNArray = [[NSMutableArray alloc]init];
                 for (NSDictionary * dict in GetAllData) {
                     NSString *location = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"location"]];
                     [User_LocationArray addObject:location];
@@ -968,6 +1056,11 @@
                     [User_UserNameArray addObject:username];
 
                     NSDictionary *GetPostsData = [dict valueForKey:@"posts"];
+                    
+                    NSArray *IDNData = [GetPostsData valueForKey:@"post_id"];
+                    NSString * GetPostsID = [IDNData componentsJoinedByString:@","];
+                    [User_PostsIDNArray addObject:GetPostsID];
+                    
                     NSArray *PhotoData = [GetPostsData valueForKey:@"photos"];
                     NSMutableArray *UrlArray = [[NSMutableArray alloc]init];
                     for (NSDictionary * dict in PhotoData) {
@@ -988,7 +1081,7 @@
                     
                 }
 
-                //NSLog(@"User_PhotoArray is %@",User_PhotoArray);
+              //  NSLog(@"User_PostsIDNArray is %@",User_PostsIDNArray);
                 [self initPeopleDataView];
             }
         }
@@ -1074,8 +1167,7 @@
     _profileViewController = nil;
 
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[User_IDArray objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-    }];
+    [self.navigationController pushViewController:self.profileViewController animated:YES];
 }
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
@@ -1178,8 +1270,7 @@
     _profileViewController = nil;
 
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[UserInfo_IDArray objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-    }];
+    [self.navigationController pushViewController:self.profileViewController animated:YES];
 }
 -(IBAction)PPLExpertsButton2:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
@@ -1198,8 +1289,7 @@
     
     _profileViewController = nil;
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[User_IDArray objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-    }];
+    [self.navigationController pushViewController:self.profileViewController animated:YES];
 }
 -(ProfileViewController*)profileViewController
 {
@@ -1207,5 +1297,16 @@
         _profileViewController = [ProfileViewController new];
     
     return _profileViewController;
+}
+-(IBAction)PPLExpertsOpenPostsDetailButtonOnClick:(id)sender{
+    NSInteger getbuttonIDN = ((UIControl *) sender).tag;
+
+    NSString *GetID = [[NSString alloc]initWithFormat:@"%@",[arrUserPostsIDN objectAtIndex:getbuttonIDN - 1]];
+    NSLog(@"GetID === %@",GetID);
+    
+    FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
+    [self.navigationController pushViewController:FeedDetailView animated:YES];
+    [FeedDetailView GetPostID:GetID];
+    
 }
 @end
