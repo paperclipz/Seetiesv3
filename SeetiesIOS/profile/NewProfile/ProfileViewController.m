@@ -1231,6 +1231,7 @@
     [self.ibScrollView.parallaxView adjustToScreenWidth];
     [self.ibScrollView.parallaxView.imageView adjustToScreenWidth];
     [self.ibScrollView.parallaxView.currentSubView adjustToScreenWidth];
+
     [self addSearchView];
 }
 

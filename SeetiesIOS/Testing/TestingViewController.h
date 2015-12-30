@@ -7,6 +7,7 @@
 //
 
 #import "CommonViewController.h"
+#import "NSString+Extra.h"
 
 @interface TestingViewController : CommonViewController
 

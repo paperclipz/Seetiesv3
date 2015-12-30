@@ -146,7 +146,7 @@
 }
 -(IBAction)BackButton:(id)sender{
    
-    [self dismissViewControllerAnimated:NO completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 -(IBAction)RegisterButton:(id)sender{
     

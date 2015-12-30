@@ -12,4 +12,7 @@
 - (CGFloat)heightForWidth:(CGFloat)width usingFont:(UIFont *)font;
 -(NSNumber*)toNSNumber;
 
+@property (nonatomic, copy) NSArray* tags;
+-(NSArray*)getTagWithFormat;
+
 @end

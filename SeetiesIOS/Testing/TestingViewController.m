@@ -7,8 +7,10 @@
 //
 
 #import "TestingViewController.h"
+#import "UIImageView+Extension.h"
 
 @interface TestingViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
 
@@ -16,6 +18,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.imageView tintWithOverlay];
+    //self.imageView.image = [[UIImage imageNamed:@"BahasaIndonesia.png"] imageWithColorOverlay:[UIColor blackColor]];
+//    NSString* apple = @"#this is so good hahahaha #yes";
+//    SLog(@"%@",apple.tags);
     // Do any additional setup after loading the view from its nib.
 }
 

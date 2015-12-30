@@ -8,7 +8,59 @@
 
 #import "NSString+Extra.h"
 
+NSString * const TagKey = @"tagKey";
+
 @implementation NSString(Extra)
+
+- (void)setTags:(NSArray *)tags
+{
+    objc_setAssociatedObject(self, (__bridge const void *)(TagKey), tags, OBJC_ASSOCIATION_COPY);
+}
+
+- (NSArray*)tags
+{
+    NSMutableArray* tempArray = [NSMutableArray new];
+
+    if (self.length>0) {
+        NSString* pattern = @"\\B#\\w+";
+        NSRegularExpression* hashTagRegExp = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:nil];
+        
+        [hashTagRegExp enumerateMatchesInString:self options:0 range:NSMakeRange(0,self.length)
+                                     usingBlock:^(NSTextCheckingResult *match, NSMatchingFlags flags, BOOL *stop)
+         {
+             // For each "#xxx" hashtag found, add a custom link:
+             NSString* tag = [[self substringWithRange:match.range] substringFromIndex:1]; // get the tag without the "#"
+             [tempArray addObject:tag];
+             
+         }];
+
+    }
+       return tempArray;
+    //return objc_getAssociatedObject(self, (__bridge const void *)(TagKey));
+}
+
+-(NSArray*)getTagWithFormat
+{
+    NSMutableArray* tempArray = [NSMutableArray new];
+    
+    if (self.length>0) {
+        NSString* pattern = @"\\B#\\w+";
+        NSRegularExpression* hashTagRegExp = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:nil];
+        
+        [hashTagRegExp enumerateMatchesInString:self options:0 range:NSMakeRange(0,self.length)
+                                     usingBlock:^(NSTextCheckingResult *match, NSMatchingFlags flags, BOOL *stop)
+         {
+             // For each "#xxx" hashtag found, add a custom link:
+             NSString* tag = [[self substringWithRange:match.range] substringFromIndex:1]; // get the tag without the "#"
+             NSString* linkURLString = [NSString stringWithFormat:@"#[tag:%@]", tag]; // build a "tag:xxx" link
+             [tempArray addObject:linkURLString];
+             
+         }];
+        
+    }
+    return tempArray;
+
+}
 
 - (CGFloat)heightForWidth:(CGFloat)width usingFont:(UIFont *)font
 {
