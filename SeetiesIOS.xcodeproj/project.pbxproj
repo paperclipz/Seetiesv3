@@ -898,8 +898,6 @@
 		8AC8F73B1BDA414E00DEF14A /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AC8F7021BDA414E00DEF14A /* ProfileViewController.xib */; };
 		8AC8F73C1BDA414E00DEF14A /* UserProfilePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8F7051BDA414E00DEF14A /* UserProfilePageViewController.m */; };
 		8AC8F73D1BDA414E00DEF14A /* UserProfilePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AC8F7061BDA414E00DEF14A /* UserProfilePageViewController.xib */; };
-		8AC8F73E1BDA414E00DEF14A /* NewProfileV2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8F7091BDA414E00DEF14A /* NewProfileV2ViewController.m */; };
-		8AC8F73F1BDA414E00DEF14A /* NewProfileV2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AC8F70A1BDA414E00DEF14A /* NewProfileV2ViewController.xib */; };
 		8AC8F7401BDA414E00DEF14A /* NewUserProfileV2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8F70C1BDA414E00DEF14A /* NewUserProfileV2ViewController.m */; };
 		8AC8F7411BDA414E00DEF14A /* NewUserProfileV2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AC8F70D1BDA414E00DEF14A /* NewUserProfileV2ViewController.xib */; };
 		8AC8F7421BDA414E00DEF14A /* ProfileV2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8F70F1BDA414E00DEF14A /* ProfileV2ViewController.m */; };
@@ -917,6 +915,8 @@
 		8AC8F7561BDDD44800DEF14A /* UIImageView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8F7551BDDD44800DEF14A /* UIImageView+Extension.m */; };
 		8AC8F75B1BDDD67600DEF14A /* ListingHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8F75A1BDDD67600DEF14A /* ListingHeaderView.m */; };
 		8AC8F75D1BDDD68500DEF14A /* ListingHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AC8F75C1BDDD68500DEF14A /* ListingHeaderView.xib */; };
+		8AD3CCA51C32A185006E58E5 /* NewLandingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD3CCA41C32A185006E58E5 /* NewLandingViewController.m */; };
+		8AD3CCA71C32A194006E58E5 /* NewLandingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD3CCA61C32A194006E58E5 /* NewLandingViewController.xib */; };
 		8AD6BA601B705DF20040437E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA5F1B705DF20040437E /* main.m */; };
 		8AD6BA631B705DF20040437E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA621B705DF20040437E /* AppDelegate.m */; };
 		8AD6BA661B705DF20040437E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA651B705DF20040437E /* ViewController.m */; };
@@ -2253,9 +2253,6 @@
 		8AC8F7041BDA414E00DEF14A /* UserProfilePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfilePageViewController.h; sourceTree = "<group>"; };
 		8AC8F7051BDA414E00DEF14A /* UserProfilePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfilePageViewController.m; sourceTree = "<group>"; };
 		8AC8F7061BDA414E00DEF14A /* UserProfilePageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfilePageViewController.xib; sourceTree = "<group>"; };
-		8AC8F7081BDA414E00DEF14A /* NewProfileV2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewProfileV2ViewController.h; sourceTree = "<group>"; };
-		8AC8F7091BDA414E00DEF14A /* NewProfileV2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewProfileV2ViewController.m; sourceTree = "<group>"; };
-		8AC8F70A1BDA414E00DEF14A /* NewProfileV2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewProfileV2ViewController.xib; sourceTree = "<group>"; };
 		8AC8F70B1BDA414E00DEF14A /* NewUserProfileV2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewUserProfileV2ViewController.h; sourceTree = "<group>"; };
 		8AC8F70C1BDA414E00DEF14A /* NewUserProfileV2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewUserProfileV2ViewController.m; sourceTree = "<group>"; };
 		8AC8F70D1BDA414E00DEF14A /* NewUserProfileV2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewUserProfileV2ViewController.xib; sourceTree = "<group>"; };
@@ -2282,6 +2279,9 @@
 		8AC8F7591BDDD67600DEF14A /* ListingHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListingHeaderView.h; sourceTree = "<group>"; };
 		8AC8F75A1BDDD67600DEF14A /* ListingHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListingHeaderView.m; sourceTree = "<group>"; };
 		8AC8F75C1BDDD68500DEF14A /* ListingHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListingHeaderView.xib; sourceTree = "<group>"; };
+		8AD3CCA31C32A185006E58E5 /* NewLandingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewLandingViewController.h; sourceTree = "<group>"; };
+		8AD3CCA41C32A185006E58E5 /* NewLandingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewLandingViewController.m; sourceTree = "<group>"; };
+		8AD3CCA61C32A194006E58E5 /* NewLandingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewLandingViewController.xib; sourceTree = "<group>"; };
 		8AD6BA5A1B705DF20040437E /* SeetiesIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeetiesIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AD6BA5E1B705DF20040437E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8AD6BA5F1B705DF20040437E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -4809,9 +4809,6 @@
 		8AC8F7071BDA414E00DEF14A /* OldProfile */ = {
 			isa = PBXGroup;
 			children = (
-				8AC8F7081BDA414E00DEF14A /* NewProfileV2ViewController.h */,
-				8AC8F7091BDA414E00DEF14A /* NewProfileV2ViewController.m */,
-				8AC8F70A1BDA414E00DEF14A /* NewProfileV2ViewController.xib */,
 				8AC8F70B1BDA414E00DEF14A /* NewUserProfileV2ViewController.h */,
 				8AC8F70C1BDA414E00DEF14A /* NewUserProfileV2ViewController.m */,
 				8AC8F70D1BDA414E00DEF14A /* NewUserProfileV2ViewController.xib */,
@@ -4869,6 +4866,16 @@
 				8AC8F75C1BDDD68500DEF14A /* ListingHeaderView.xib */,
 			);
 			path = ReusableView;
+			sourceTree = "<group>";
+		};
+		8AD3CC9F1C32A0F1006E58E5 /* New_LandingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8AD3CCA31C32A185006E58E5 /* NewLandingViewController.h */,
+				8AD3CCA41C32A185006E58E5 /* NewLandingViewController.m */,
+				8AD3CCA61C32A194006E58E5 /* NewLandingViewController.xib */,
+			);
+			path = New_LandingViewController;
 			sourceTree = "<group>";
 		};
 		8AD6BA511B705DF20040437E = {
@@ -5082,6 +5089,7 @@
 		8AD6BD661B706CF30040437E /* LandingPage */ = {
 			isa = PBXGroup;
 			children = (
+				8AD3CC9F1C32A0F1006E58E5 /* New_LandingViewController */,
 				8AD6BD671B706CF30040437E /* LandingV2ViewController.h */,
 				8AD6BD681B706CF30040437E /* LandingV2ViewController.m */,
 				8AD6BD691B706CF30040437E /* LandingV2ViewController.xib */,
@@ -5810,6 +5818,7 @@
 				8A6CCE6E1C18075800BCD54E /* ProfileCollectionAddIcon@3x.png in Resources */,
 				8A6CCCCE1C18075800BCD54E /* iTunesArtwork@2x.png in Resources */,
 				8A6CCD6C1C18075800BCD54E /* ExploreOverlay@2x.png in Resources */,
+				8AD3CCA71C32A194006E58E5 /* NewLandingViewController.xib in Resources */,
 				8A3F35671BF5E89D002B704C /* SuggestedCollectionPostsViewController.xib in Resources */,
 				8A6CCE3E1C18075800BCD54E /* PostLocationIcon@3x.png in Resources */,
 				8A6CCCB81C18075800BCD54E /* ErrorIcon@3x.png in Resources */,
@@ -5872,7 +5881,6 @@
 				8A6CCD801C18075800BCD54E /* CollectSimplifiedChineseBtn@2x.png in Resources */,
 				8A114CA01BE73F5D006AE3F0 /* KVNProgressView.xib in Resources */,
 				8A6CCDA01C18075800BCD54E /* GreyShareIcon@2x.png in Resources */,
-				8AC8F73F1BDA414E00DEF14A /* NewProfileV2ViewController.xib in Resources */,
 				8A6CCD8E1C18075800BCD54E /* Distance3Icon@2x.png in Resources */,
 				8A6CCDAF1C18075800BCD54E /* ShareGoIcon@2x.png in Resources */,
 				8A6CCD071C18075800BCD54E /* NoPhotoInCollection@2x.png in Resources */,
@@ -6658,7 +6666,6 @@
 				8AC8F7421BDA414E00DEF14A /* ProfileV2ViewController.m in Sources */,
 				8AD6C1151B706CF30040437E /* FSOperation.m in Sources */,
 				8A114CCA1BE73F5D006AE3F0 /* NMBottomTabBar.m in Sources */,
-				8AC8F73E1BDA414E00DEF14A /* NewProfileV2ViewController.m in Sources */,
 				8A6BB40F1BF0A412005AA1B3 /* UITableView+Extension.m in Sources */,
 				8AD6C1161B706CF30040437E /* FSWebLogin.m in Sources */,
 				8A6BB4341BF0C338005AA1B3 /* MZTransition.m in Sources */,
@@ -6710,6 +6717,7 @@
 				8AEDBFBB1C2031BA000BD2FF /* SeShopCategoryModel.m in Sources */,
 				8A6BB4301BF0C338005AA1B3 /* MZFormSheetPresentationViewControllerAnimator.m in Sources */,
 				8A114CAA1BE73F5D006AE3F0 /* CRZoomScrollView.m in Sources */,
+				8AD3CCA51C32A185006E58E5 /* NewLandingViewController.m in Sources */,
 				8A114C801BE73F5D006AE3F0 /* BKForwardingTextField.m in Sources */,
 				8AD6C0AB1B706CF30040437E /* InviteFrenViewController.m in Sources */,
 				8A114CD41BE73F5D006AE3F0 /* CommonCollectionViewCell.m in Sources */,

@@ -7,6 +7,10 @@
 //
 
 #import "LandingV2ViewController.h"
+
+#import "AsyncImageView.h"
+#import "CRMotionView.h"
+
 @interface LandingV2ViewController ()<UIScrollViewDelegate>
 {
     
@@ -70,6 +74,9 @@
 @property(nonatomic,strong)PTellUsYourCityViewController* pTellUsYourCityViewController;
 @property(nonatomic,strong)PInterestV2ViewController* pInterestV2ViewController;
 @property(nonatomic,strong)PFollowTheExpertsViewController* pFollowTheExpertsViewController;
+
+
+@property(nonatomic,strong)UINavigationController* navRootViewController;
 
 @end
 
@@ -504,6 +511,30 @@
 
 #pragma mark - Declaration
 
+-(UINavigationController*)navRootViewController
+{
+    if (!_navRootViewController) {
+        _navRootViewController = [[UINavigationController alloc]initWithRootViewController:self.expertLoginViewController];
+        [_navRootViewController setNavigationBarHidden:YES];
+
+    }
+    
+    return _navRootViewController;
+   
+}
+-(ExpertLoginViewController*)expertLoginViewController
+{
+    if (!_expertLoginViewController) {
+        _expertLoginViewController = [ExpertLoginViewController new];
+        __weak typeof (self)weakSelf = self;
+        _expertLoginViewController.backFromExpertLoginBlock = ^(id object)
+        {
+            [weakSelf dismissViewControllerAnimated:YES completion:nil];
+        };
+    }
+    return _expertLoginViewController;
+}
+
 -(ProfileViewController*)profileViewController
 {
     if (!_profileViewController) {
@@ -774,16 +805,6 @@
     return _recommendationViewController;
 }
 
--(SelectImageViewController*)selectImageViewController
-{
-    if(!_selectImageViewController){
-        
-        _selectImageViewController = [SelectImageViewController new];
-    }
-    return _selectImageViewController;
-}
-
-
 -(NotificationViewController*)notificationViewController
 {
     if(!_notificationViewController){
@@ -793,44 +814,14 @@
     return _notificationViewController;
 }
 
--(NewProfileV2ViewController*)userProfilePageViewController
-{
-    if(!_userProfilePageViewController){
-        
-        _userProfilePageViewController = [NewProfileV2ViewController new];
-        
-        __weak typeof (self)weakSelf = self;
-        _userProfilePageViewController.btnRecommendationClickBlock = ^(id object)
-        {
-            
-            [weakSelf gotoRecommendationPage];
-
-            
-        };
-    }
-    return _userProfilePageViewController;
-}
 
 #pragma mark - IBAction
--(IBAction)BtnExpertLoginClicked:(id)sender{
+-(IBAction)btnLoginClicked:(id)sender{
     
-    ExpertLoginViewController *ExpertLoginView = [[ExpertLoginViewController alloc]init];
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromRight;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self presentViewController:ExpertLoginView animated:NO completion:nil];
-    
-    
-    __weak typeof (self)weakSelf = self;
-    ExpertLoginView.backFromExpertLoginBlock = ^(id object)
-    {
-        [weakSelf dismissViewControllerAnimated:YES completion:nil];
-    };
-    
+    [self.navRootViewController setViewControllers:@[self.expertLoginViewController]];
+    [self presentViewController:self.navRootViewController animated:YES completion:nil];
 }
+
 -(IBAction)btnWhyWeUseFacebookClicked:(id)sender{
     WhyWeUseFBViewController *WhyWeUseFBView = [[WhyWeUseFBViewController alloc]init];
     CATransition *transition = [CATransition animation];
@@ -842,11 +833,11 @@
     [self presentViewController:WhyWeUseFBView animated:NO completion:nil];
 }
 -(IBAction)btnSignupWithEmailClicked:(id)sender{
-   
-    self.mainNavigationController = [[UINavigationController alloc]initWithRootViewController:self.signupViewController];
-    [_mainNavigationController setNavigationBarHidden:YES];
 
-    [self presentViewController:self.mainNavigationController animated:YES completion:nil];
+    
+    [self.navRootViewController setViewControllers:@[self.signupViewController]];
+    [self presentViewController:self.navRootViewController animated:YES completion:nil];
+
 }
 
 -(IBAction)btnFacebookClicked:(id)sender{

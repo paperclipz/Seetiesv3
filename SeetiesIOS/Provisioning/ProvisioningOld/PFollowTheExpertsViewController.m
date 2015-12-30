@@ -19,7 +19,6 @@
 #import "LeveyTabBarController.h"
 
 #import "FeedViewController.h"
-#import "NewProfileV2ViewController.h"
 #import "LanguageManager.h"
 #import "Locale.h"
 @interface PFollowTheExpertsViewController ()<CLLocationManagerDelegate>
