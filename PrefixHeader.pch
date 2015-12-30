@@ -16,11 +16,60 @@
 #import "SConstant.h"
 #import "Utils.h"
 #import "JSONKit.h"
+#import "ConnectionManager.h"
+#import "UrlDataClass.h"
+#import "LanguageManager.h"
+#import "Localisator.h"
+#import "Model.h"
+#import "UIAlertView+Blocks.h"
+#import "DataManager.h"
+#import "TSMessage.h"
+#import "BaseViewController.h"
+#import "Foursquare2.h"
+#import "FourSquareModel.h"
+#import "CommonTableViewCell.h"
+#import "IQKeyboardManager.h"
+#import "CommonViewController.h"
+#import "CommonView.h"
+#import "LoadingManager.h"
+#import <GoogleMaps/GoogleMaps.h>
+#import "SearchManager.h"
+#import "TPKeyboardAvoidingScrollView.h"
+#import "ActionSheetPicker.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+#import "MZFormSheetPresentationViewController.h"
+#import "BOString.h"
+//for currency Usage
+#import "BKCurrencyTextField.h"
+#import <AviarySDK/AviarySDK.h>
+//===============Category Helper=================
+#import "NSString+Extra.h"
+#import "UIView+Extension.h"
+#import "UIImage+FX.h"
+#import "CustomFont.h"
+
+#import "NSDictionary+STHelper.h"
+#import "UIColor+Extension.h"
+#import "iOSBlocks.h"
+#import "UITextView+Placeholder.h"
+#import "UIView+RoundedCorners.h"
+#import "NSObject+Extension.h"
+#import "UIImageView+Extension.h"
+#import "NSArray+Extension.h"
+#import "MapManager.h"
+
+//===============Model=================
+#import "RecommendationModel.h"
+#import "Locale.h"
+#import "SeetiesIOS-Swift.h"
 
 #endif
 
 
+//check whether it uses simulator 
+#if TARGET_IPHONE_SIMULATOR
 #define IS_IN_DEBUG_MODE
+#endif
 
 #ifndef IS_IN_DEBUG_MODE
 #undef NSLog

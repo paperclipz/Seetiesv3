@@ -1,0 +1,6 @@
+framework module A3ParallaxScrollView {
+  umbrella header "A3ParallaxScrollView-umbrella.h"
+
+  export *
+  module * { export * }
+}

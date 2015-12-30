@@ -1,10 +1,10 @@
-/* 
-  Localizable.strings
-  SeetiesIOS
-
-  Created by Chong Chee Yong on 10/20/14.
-  Copyright (c) 2014 Ahyong87. All rights reserved.
-*/
+/*
+ Localizable.strings
+ SeetiesIOS
+ 
+ Created by Chong Chee Yong on 10/20/14.
+ Copyright (c) 2014 Ahyong87. All rights reserved.
+ */
 
 
 "ExpertLogin_Username" = "Username / Email Address";
@@ -25,7 +25,7 @@
 "WhyWeUserFB_Detail" = "It makes sign in super duper fast, one less password to remember. \n\n\nAnd you can instantly share many wonderful things with your friends.";
 "WhyWeUserFB_Privacy" = "YOUR PRIVACY IS HIGHLY RESPECTED. NOTHING WILL BE POSTED WITHOUT YOUR PERMISSION.";
 
-"LandingPage_MainText" = "Your mobile citypass for living and traveling like a local.";
+"LandingPage_MainText" = "Explore the Best Places In Your City";
 "LandingPage_ContinueFacebook" = "Continue with Facebook";
 "LandingPage_WhyUseFacebook" = "Why we use facebook";
 "LandingPage_Login" = "Log In";
@@ -42,16 +42,19 @@
 "SettingsPage_AboutSeeties" = "About Seeties";
 "SettingsPage_TermsofUse" = "Terms of Use";
 "SettingsPage_PrivacyPolicy" = "Privacy Policy";
-"SettingsPage_Feedback" = "Feedback";
+"SettingsPage_Feedback" = "Send Feedback";
 "SettingsPage_Checkforupdates" = "Check for updates";
 "SettingsPage_LogOut" = "Log Out";
+"SettingsPage_Cancel" = "Cancel";
 
 "ExplorePage_Title" = "Weekly Top 10";
 "ExplorePage_SubTitle" = "Top recommendations of the week from featured countries";
+"ExplorePage_SecondTitle" = "The best recommendations of the week from Seetizen Experts in";
+
 
 "MainTab_Feed" = "Home";
 "MainTab_Explore" = "Explore";
-"MainTab_Like" = "Like";
+"MainTab_Like" = "Likes";
 "MainTab_Profile" = "Profile";
 
 "Provisioning_PTnC_1" = "Spice up your city life!";
@@ -67,7 +70,7 @@
 "Provisioning_PTellUsYourCityView_2" = "Enter a more precise location (eg: area, town) to enjoy better user experience in Seeties";
 "Provisioning_PTellUsYourCityView_3" = "Search address";
 "Provisioning_PTellUsYourCityView_4" = "Enter your city";
-"Provisioning_PTellUsYourCityView_5" = "Search location";
+"Provisioning_PTellUsYourCityView_5" = "Search your address";
 "Provisioning_PTellUsYourCityView_6" = "Choose language";
 "Provisioning_PTellUsYourCityView_7" = "Choose the content language you want to read.";
 "Provisioning_PTellUsYourCityView_8" = "Continue";
@@ -79,25 +82,924 @@
 "Provisioning_PFollowTheExpertsView_Title" = "Meet the Local Bloggers";
 "Provisioning_PFollowTheExpertsView_SubTitle" = "Also known as Seetizen Experts, they love to write and share quality local recommendations";
 
-"Art" = "Art & Entertainment";
-"Beauty" = "Beauty & Fashion";
-"Food" = "Food & Drinks";
-"Outdoor" = "Outdoor & Sport";
+"Food & Drink" = "Food & Drink";
+"For Her" = "For Her";
+"For Him" = "For Him";
+"Art " = "Art";
+"Leisure & Entertainment" = "Leisure & Entertainment";
 "Staycation" = "Staycation";
-"Product" = "Product";
+"Landmark & Culture" = "Landmark & Culture";
 "Nightlife" = "Nightlife";
-"Culture" = "Culture & Landmark";
-"Kitchen" = "Kitchen Recipe";
+"Sport" = "Sport";
+"YOLO" = "YOLO";
 
 "NearbyImg" = "Nearby.png";
 "LocalImg" = "Local.png";
 "ForeignLandImg" = "ForeignLand.png";
 "ExpertsImg" = "ExpertsLabel.png";
 
+"EditProfilePhoto" = "Edit Profile Photo";
+"EditCoverBackground" = "Edit Cover Background";
+"ShareToFacebook" = "Share to Facebook";
+"CopyLink" = "Copy link";
+
+"EditProfileText" = "Edit Profile";
+"EditProfileSubText" = "PUBLIC PROFILE";
+"EditProfileUsername" = "Username";
+"EditProfileFullname" = "Full name";
+"EditProfileWebsite" = "Website";
+"EditProfileBio" = "Bio";
+"EditProfileLocation" = "Location";
+"EditProfileSave" = "Save";
+
+"Selectyourinterest" = "Select your interest";
+"Primary" = "Primary";
+"Secondary" = "Secondary";
+"AppLangauge" = "App language";
+"ChangePassword" = "Change Password";
+"Gender" = "Gender";
+"Birthday" = "Birthday";
+"Deactivateaccount" = "Deactivate account";
+"Male" = "Male";
+"Female" = "Female";
+
+"Gotosite" = "Go to site";
+"Likes" = "Like";
+"CommentsBig" = "Comment";
+
+"MoreRecommendations" = "More Recommendations";
+"ExploreMore" = "Explore More";
+
+"Followers" = "Followers";
+"Following" = "Following";
+
+"EditProfilePhoto" = "Edit Profile Photo";
+"EditCoverPhoto" = "Edit Cover Background";
+
+"ChangePassword" = "Change Password";
+"CurrentPassword" = "Current password";
+"NewPassword" = "New password";
+"NewPasswordAgain" = "Confirm new password";
+"Submit" = "Submit";
+
+"FeedbackDetail" = "Tell us what changes you'd like to see, or bugs you've discovered";
+"IncludeScreenshot" = "Include screenshot";
+
+"ForgotPassword" = "Forgot Password?";
+"ForgotPasswordDetail" = "We can help you reset your password using your Seeties username or the email address linked to your account";
+"ResetPassword" = "Reset Password";
+
+"Notification" = "Notification";
+
+"Search" = "Search";
+
+"GoodDay" = "Good day";
+"WhatWouldyouiketodo" = "what would you like to do?";
+"Recommend" = "Recommend";
+"SometingOnSeeties" = "something on Seeties";
+"GotoDrafts" = "Go to Drafts";
+
+"Changesearchlocation" = "Change search location";
+"searchlocation" = "Search location";
+"Currentlocation" = "Current location";
+"SEARCHHISTORY" = "SEARCH HISTORY";
+"SearchData" = "Search Result";
+"findPeople" = "Find People";
+"People" = "People";
+"SortBy" = "Sort By";
+"MostRecent" = "Recent";
+"Popular" = "Popularity";
+"Distance" = "Distance";
+
+"Drafts" = "Drafts";
+"Done" = "DONE";
+
+"Chooseacategory" = "Choose a category";
+"Addlocation" = "Add location";
+"Extras" = "Extras";
+"Publish" = "Publish";
+"EditLocation" = "Edit location";
+"PLACENAME" = "PLACE NAME";
+"LOCATIONADDRESS" = "LOCATION ADDRESS";
+
+"Tags" = "TAGS";
+"TagsDetail" = "comma,separated, tags (e.g., japanese food, jogging track, perfume, salsa, coffee)";
+"AlsoShareto" = "ALSO SHARE TO...";
+"URL" = "URL";
+
+"TapToChange" = "Tap to change";
+"ORSEARCHBYCATEGORY" = "OR SEARCH BY CATEGORY";
+"Recommendationsorpeople" = "Recommendations or People";
+"FindPeopleName" = "Find people name";
+"SelectPhotos" = "Select Photos";
+"SelectCategory" = "Select category";
+"Positionyoulocation" = "Drag the map & press hold to pin a location";
+"LocationOnMap" = "Location on map";
+"Tapheretopin" = "Tap here to pin at the correct location";
+
+"Howdoyouwanttodoaddimage" = "How do you want to do add image?";
+"PhotoLibrary" = "Photo Library";
+"Camera" = "Camera";
+"PleaseWait" = "Please wait...";
+
+"Directions" = "Directions";
+"Comments" = "Comments";
+"Send" = "Send";
+
+"SaveasDraft" = "Save draft";
+"Discard" = "Discard";
+"Doyouwantsave" = "Do you want to save this recommendation as draft?";
+"ContentLanguage" = "CONTENT LANGUAGE";
+"NearbySuggestions" = "Nearby Suggestions";
+"Searchforaplace" = "Search for a place";
+
+"FOLLOWERS" = "FOLLOWERS";
+"FOLLOWING" = "FOLLOWING";
+
+"SearchNearby" = "SEARCH NEARBY";
+"Suggestions" = "SUGGESTIONS";
+"TypetoSearch" = "Search for pizza, martini, bowling, ...";
+"Entersearchlocation" = "Search";
+"ORADDACATEGORYBELOW" = "Or add categories below";
+"TaptoEdit" = "Tap to edit";
+
+"SkipButton" = "SKIP";
+"DoneButton" = "Done";
+
+"WelcometoSeeties" = "Welcome to Seeties! ";
+"Seewhypeopleloveus" = "See why people love us.";
+"Slideformore" = "SLIDE FOR MORE";
+"Recommend" = "Recommend local places & travels";
+"Shareyourstories" = "Share your stories and people will follow you.";
+"Friends" = "Friends and nearby places";
+"Seewhatyourfriends" = "See what your friends recommend and find the best nearby places to eat and play. ";
+"AnewWay" = "A new way to discover Asia";
+"Eatwhere" = "Eat where locals eat and go where locals hangout. You can find local festivals too. ";
+"Allofyour" = "All of your best in one place";
+"Keepyourbestcity" = "Keep your best city life and travel moments. People follow you to find inspirations.";
+
+
+"Feed" = "Friends";
+"NearBy" = "Nearby";
+"Share" = "SHARE";
+
+"TopRecommendations" = "Trending Now";
+"FeaturedUserin" = "More Friends, More Fun!";
+
+"Posts" = "Posts";
+
+"Brightness" = "Brightness";
+"Crop" = "Crop";
+"Reset" = "Reset";
+"Rotate" = "Rotate";
+"Whereisthis" = "Where is this?";
+"SkipAndDone" = "SKIP & DONE";
+"Publish" = "Publish";
+"Addtag" = "Add tag";
+"youcanchoose2" = "You can choose 2 relevant ones";
+"ChooseCategories" = "Choose categories";
+
+"Price" = "Price";
+"Tellushowmuch" = "How much?";
+
+"AddContact" = "Phone";
+"TellusContact" = "Add phone number";
+
+"Addfb" = "Add Facebook/ URL";
+"AddPrice" = "Add price";
+"AddPhoneNumber" = "Add phone number";
+"link" = "Link";
+"TellusLink" = "Add link";
+"AddLink" = "Add link";
+
+"TellStory" = "TELL STORY";
+"Chooseuptp10photo" = "Choose up to 10 Photos";
+"Suggestions" = "SUGGESTIONS";
+"ConfirmLocation" = "Contact Information";
+
+
+"Writeacaptionhere" = "Add caption...";
+"Toomuchwhitespacehere" = "Too much white space here!";
+"Recommendsomethingcoolnow" = "Recommend something cool now";
+
+"Edit" = "Edit";
+"Delete" = "Delete";
+"ShowMore" = "SHOW MORE";
+"ShowLess" = "SHOW LESS";
+
+"Festival" = "Festivals";
+"DiscovertheColors" = "Discover the Colors of Asia";
+
+"Filter" = "Filter";
+"ChooseacategoryBig" = "SELECT A CATEGORY";
+"SortByBig" = "Sort By";
+
+"KM" = "KM";
+"Within" = "Within";
+
+"SelectAll" = "Select All";
+"UnSelectAll" = "Unselect All";
+
+"DeletePost" = "Are you sure you want to delete post?";
+"Delete1" = "Delete";
+
+"likeText_1" = "liked this";
+"likeText_and" = "and";
+"likeText_and_2" = "and";
+"likeText_andOther" = "other liked this";
+
+"Unfollow" = "Unfollow";
+"StopFollowing" = "Stop following";
+"GoogleText" = "Tap the translation icon to see the content in English. ";
+"Dontshowagain" = "Don't show again";
+
+"ApplyFilter" = "APPLY FILTER";
+"ErrorConnection" = "Connection Error";
+"NoData" = "Please check your wifi or data network";
+"SomethingError" = "An unknown error occurred. Please try again in a while.";
+
+"NoNotification" = "You have no notification yet";
+"NoNotificationDetail" = "Get notified when people like or comment your recommendation";
+
+
+"Recommend" = "Recommend";
+"RecommendSaveDraft" = "Save draft";
+"ShowQualityRecommendation" = "Making your recommendation a Quality Recommendation is easy.";
+"ShowQR_Title" = "A Quality Recommendation";
+"ShowQR_Detail" = "For Quality Recommendation: Simply write a minimum of 300 characters, short but concise!";
+"Next" = "Next";
+"AddBlogLink" = "Add Blog Link";
+"AskExit" = "Are you sure you want to exit?";
+"AskSaveDraft" = "Save Draft";
+"Exit" = "Exit";
+
+"ConfirmPlace_Search" = "Search Again";
+"ConfirmPlace_Text" = "Got the wrong place?";
+
+"Currency" = "Select Currency";
+"pax" = "per pax";
+
+"EmailError" = "Sorry this doesn't look like a valid email";
+"UsernameError" = "Username must be at least 6 characters";
+"PasswordError" = "Your password is too short, minimum is 8 characters";
+
+"LimitExceed" = "Limit Exceed";
+"LimitText" = "You cannot select more than 2 Categories.";
+"SelectPhoto" = "Please select photos first";
+"TypeToSearch_Place" = "Type to search for places";
+"MaximumPhoto" = "Maximum 10 photos.";
+
+"SavePhotoChange" = "Save photo changes?";
+"Photo_Yes" = "Yes";
+"Photo_No" = "No";
+"DoYouWantDelete" = "Are you sure you want to delete this photo?";
+
+"Searchpeople" = "Search by username, full name";
+"NearbyResult" = "Nearby Result";
+"SearchResult" = "Search Result";
+"Letsgo" = "Let's go!";
+
+"FindFriends" = "Invite Friends";
+"Feelinglonelyonseeties" = "Seeties is more fun when you use it to explore best nearby places with your friends. ";
+"InviteFacebook" = "Invite Facebook Friends";
+"xFriendsOnSeeties" = "friends on Seeties";
+"FollowAll" = "Follow all";
+"Suggestionsforyou" = "Suggestions for you";
+"InviteFriends" = "Invite Friends";
+"Inviteall" = "Invite all";
+"Invite" = "Invite";
+"ConnectyouFacebook" = "Connect your Facebook to find your friends on Seeties";
+"ConnectToFacebook" = "Connect to Facebook";
+"EasilySendaLink" = "You can also invite your best friends via the apps below. ";
+"InViaFacebook" = "Facebook Messenger";
+"InViaWhatsapp" = "Whatsapp";
+"InViaWeChat" = "WeChat";
+"InViaLine" = "LINE";
+"Buildyournetwork" = "Build your network!";
+"Findorinviteyourfriends" = "Invite your friends";
+
+"HoldNDragTheThumbnails" = "Hold & drag the thumbnails to reorder the photos. The first photo will set as the cover.";
+"Dragthemap" = "Drag the map and hold to pin a location.";
+"Addthisplace" = "Add this place?";
+"Cannotfindinthelist" = "Cannot fine your location in the list? Add a new location now.";
+"Addplacename" = "add place name";
+"AddAddress" = "add address";
+"tapthemaptoadjustpin" = "Drag the map and pin a location";
+"Pleasefillinplacename" = "Please fill in a place name and address";
+
+"NearbyRecommendations" = "Nearby Recommendations";
+"InViaSMS" = "Send SMS";
+
+"SendMessage" = "Check out Seeties and let’s explore the best nearby places to eat, play and travel together. It’s awesome.";
+
+"DeleteMessage" = "Are you sure you want to delete this comment?";
+"NoComment" = "No Comment yet";
+"FristComment" = "Be the first to comment";
+"Oops" = "Oops!";
+"PleaseSelectatleast1category" = "Please select at least 1 category.";
+"NoResultFound" = "No Result Found";
+"Pleasetryadiffrentsearch" = "Please try a different search";
+"SeeallComment" = "See all comments";
+"Error" = "Error";
 
 
 
+////////////////////////////////////////////////////////////////////// NEW as of OCtober 2015 /////////////////////////////////////////////////////////////////
+
+"qrimage"="English.png";
+
+"Discover the best places to eat, play, and shop."= "Discover the best places to eat, play, and shop.";
+"Create your personal collections."= "Create your personal collections.";
+""= "";
+"Recommend your favourite places and best experiences."= "Recommend your favourite places and best experiences.";
+""= "";
+"Share your collections with your buddies."= "Share your collections with your buddies.";
+"Let's rock n' roll!"= "Let's rock n' roll!";
+""= "";
+"Terms of Use & Privacy Notice."= "Terms of Use & Privacy Notice.";
+""= "";
+""= "";
+"Username / Email Address"= "Username / Email Address";
+"Password"= "Password";
+"Log in"= "Log in";
+"Forgot password?"= "Forgot password?";
+"Oops! It seems like you've missed out your username / password."= "Oops! It seems like you've missed out your username / password.";
+""= "";
+""= "";
+"Email Address"= "Email Address";
+"Create your username"= "Create your username";
+"Password"= "Password";
+"Create"= "Create";
+"Yikes. Your password must be at least 8 characters."= "Yikes. Your password must be at least 8 characters.";
+""= "";
+"You'll receive instructions to reset your password in your mailbox as soon as we're done here!"= "You'll receive instructions to reset your password in your mailbox as soon as we're done here!";
+"Username / Email Address"= "Username / Email Address";
+"Reset my password"= "Reset my password";
+"Log in"= "Log in";
+"Sign up"= "Sign up";
+""= "";
+"What are you interested in?"= "What are you interested in?";
+"Let's go!"= "Let's go!";
+""= "";
+"Saved drafts"= "Saved drafts";
+"Write a recommendation"= "Write a recommendation";
+""= "";
+"Hello good looking. Welcome to Seetiessss! 💩"= "Hello good looking. Welcome to Seetiessss! 💩";
+""= "";
+"Feed"= "Feed";
+"Nearby"= "Nearby";
+"Collect"= "Collect";
+"Get more buddies"= "Get more buddies";
+"Invite my buddies!"= "Invite my buddies!";
+"Suggested local recommendations"= "Suggested local recommendations";
+"Deals near you"= "Deals near you";
+"Suggested foreign recommendations"= "Suggested foreign recommendations";
+"See more from {!username}"= "See more from {!username}";
+"Like these recommendations?"= "Like these recommendations?";
+"Follow this Seetizen for more"= "Follow this Seetizen for more";
+"Want a deal? Browse vouchers"= "Want a deal? Browse vouchers";
+"Check it out!"= "Check it out!";
+"Meet & greet other Seetizens"= "Meet & greet other Seetizens";
+"Your fellow Facebook Seetizen"= "Your fellow Facebook Seetizen";
+"Hang on. It's loading!"= "Hang on. It's loading!";
+""= "";
+"Collected in {!collection name}"= "Collected in {!collection name}";
+""= "";
+""= "";
+"Hello good looking. Welcome to Seetiessss! 💩"= "Hello good looking. Welcome to Seetiessss! 💩";
+"Pronounced as 'Cities', only 10x funkier, Seeties is about finding, collecting and recommending the best places to eat, play and shop in the city around you. Set up your home location to give and receive the best recommendations near you!"= "Pronounced as 'Cities', only 10x funkier, Seeties is about finding, collecting and recommending the best places to eat, play and shop in the city around you. Set up your home location to give and receive the best recommendations near you!";
+"Set my location"= "Set my location";
+""= "";
+"Share with my buddies!"= "Share with my buddies!";
+""= "";
+""= "";
+"Translate"= "Translate";
+"Read Original"= "Read Original";
+"{!language}"= "{!language}";
+"English by Google Translate"= "English by Google Translate";
+"No thanks!"= "No thanks!";
+"Language translations use Google Translate and may not be completely accurate."= "Language translations use Google Translate and may not be completely accurate.";
+""= "";
+"Follow"= "Follow";
+"Following"= "Following";
+"See all activities"= "See all activities";
+""= "";
+"About the place"= "About the place";
+"Getting here"= "Getting here";
+"Read more"= "Read more";
+""= "";
+"Nearby recommendations"= "Nearby recommendations";
+"See it all!"= "See it all!";
+""= "";
+"Slide down to exit preview"= "Slide down to exit preview";
+""= "";
+"All Activities"= "All Activities";
+"Comments"= "Comments";
+"Write a comment"= "Write a comment";
+"Done!"= "Done!";
+"You've deleted a comment. Tap to undo."= "You've deleted a comment. Tap to undo.";
+"There are no comments yet."= "There are no comments yet.";
+"Be the first to comment"= "Be the first to comment";
+"Write a comment"= "Write a comment";
+"Collections"= "Collections";
+"{!username} collected this into {!collection name}"= "{!username} collected this into {!collection name}";
+"Aww. No one's collected this."= "Aww. No one's collected this.";
+"Likes"= "Likes";
+"Be the first to like"= "Be the first to like";
+""= "";
+"(per person)"= "(per person)";
+"Business hours as per local time"= "Business hours as per local time";
+""= "";
+"Edit"= "Edit";
+"Delete"= "Delete";
+"Report"= "Report";
+"Cancel"= "Cancel";
+""= "";
+"Report this"= "Report this";
+"Inappropriate content"= "Inappropriate content";
+"This post has content that violates terms & conditions in Seeties."= "This post has content that violates terms & conditions in Seeties.";
+"Copywriting infringement"= "Copywriting infringement";
+"This post uses copyrighted works without permission."= "This post uses copyrighted works without permission.";
+"Others"= "Others";
+"Please specify"= "Please specify";
+""= "";
+"Delete this!"= "Delete this!";
+"Are you super sure about deleting this recommendation?"= "Are you super sure about deleting this recommendation?";
+"Yeah!"= "Yeah!";
+"Maybe not."= "Maybe not.";
+""= "";
+""= "";
+"Edit Post"= "Edit Post";
+"{!number} Photos"= "{!number} Photos";
+"Title (optional)"= "Title (optional)";
+"Share your thoughts!"= "Share your thoughts!";
+""= "";
+"Let's get going!"= "Let's get going!";
+""= "";
+""= "";
+"Nearby"= "Nearby";
+"{!username} liked this"= "{!username} liked this";
+"Open"= "Open";
+"Closed"= "Closed";
+"{!username} collected this in {!collection name}"= "{!username} collected this in {!collection name}";
+""= "";
+""= "";
+"Send to buddies in Seeties"= "Send to buddies in Seeties";
+"Your buddies will be notified of this collection you've shared."= "Your buddies will be notified of this collection you've shared.";
+""= "";
+"Send via other apps"= "Send via other apps";
+"Copy Link"= "Copy Link";
+""= "";
+""= "";
+"Leave a note"= "Leave a note";
+""= "";
+"Pick a collection"= "Pick a collection";
+"Create a new collection"= "Create a new collection";
+"Psst! Looks like you already collected this."= "Psst! Looks like you already collected this.";
+""= "";
+"New Collection"= "New Collection";
+"Collection title"= "Collection title";
+"eg= Top 10 coffee hideouts in KL, Best spas in Bangkok"= "eg= Top 10 coffee hideouts in KL, Best spas in Bangkok";
+"Collection description"= "Collection description";
+"Add a description to your collection"= "Add a description to your collection";
+"Tag it"= "Tag it";
+"Add a new or existing tag"= "Add a new or existing tag";
+""= "";
+"Collected in {!collection name}"= "Collected in {!collection name}";
+"Share it"= "Share it";
+""= "";
+""= "";
+"Hey there! Do enable location to give & receive the best recommendations and deals near you."= "Hey there! Do enable location to give & receive the best recommendations and deals near you.";
+"Allow location access"= "Allow location access";
+""= "";
+"You can change this setting in your Location Service"= "You can change this setting in your Location Service";
+""= "";
+""= "";
+"Draft"= "Draft";
+"Last edited"= "Last edited";
+"Quick tip! Swipe a draft to delete."= "Quick tip! Swipe a draft to delete.";
+""= "";
+""= "";
+"Select photos"= "Select photos";
+"Tap to change"= "Tap to change";
+"Psst! Pick your 10 best photos only."= "Psst! Pick your 10 best photos only.";
+""= "";
+"Where is this?"= "Where is this?";
+"Search for a place"= "Search for a place";
+"Nearby"= "Nearby";
+""= "";
+"Drop a new pin!"= "Drop a new pin!";
+"Add this place?"= "Add this place?";
+""= "";
+"Add a new place"= "Add a new place";
+"Tap the map to drop a pin"= "Tap the map to drop a pin";
+"Place Name"= "Place Name";
+"Address"= "Address";
+"URL / Facebook Page"= "URL / Facebook Page";
+"Phone No."= "Phone No.";
+"Price range"= "Price range";
+"Select Currency"= "Select Currency";
+"Per person"= "Per person";
+"Business Hours"= "Business Hours";
+"Edit Business Hours"= "Edit Business Hours";
+""= "";
+"Edit Business Hours"= "Edit Business Hours";
+"Business hours as per local time"= "Business hours as per local time";
+"From"= "From";
+"To"= "To";
+"Mon"= "Mon";
+"Tue"= "Tue";
+"Wed"= "Wed";
+"Thu"= "Thu";
+"Fri"= "Fri";
+"Sat"= "Sat";
+"Sun"= "Sun";
+""= "";
+"Edit Place Info"= "Edit Place Info";
+"b"= "b";
+"Change location"= "Change location";
+""= "";
+"Locate on map"= "Locate on map";
+"Tap the map to drop a pin at the correct location"= "Tap the map to drop a pin at the correct location";
+"Zoom in closer for a better view!"= "Zoom in closer for a better view!";
+"Drag the map and hold to pin your location"= "Drag the map and hold to pin your location";
+"How does this look?"= "How does this look?";
+"Zoom in closer for a better view!"= "Zoom in closer for a better view!";
+""= "";
+"Edit Post"= "Edit Post";
+"Publish"= "Publish";
+"{!number} photos"= "{!number} photos";
+"Title (Optional)"= "Title (Optional)";
+"Share your thoughts"= "Share your thoughts";
+"Add URL"= "Add URL";
+"No thanks!"= "No thanks!";
+"Done!"= "Done!";
+""= "";
+"New Recommendation"= "New Recommendation";
+"You are quiting the editor. Save changes?"= "You are quiting the editor. Save changes?";
+"Discard"= "Discard";
+"Cancel"= "Cancel";
+"Save"= "Save";
+""= "";
+"Select 2 categories"= "Select 2 categories";
+"Publish Now"= "Publish Now";
+""= "";
+"Edit Photos"= "Edit Photos";
+"Add caption"= "Add caption";
+"Edit"= "Edit";
+""= "";
+"Make it a Star Recommendation!"= "Make it a Star Recommendation!";
+"A Star Recommendation makes your local recommendation famous by suggesting it on the feed across all our countries. Make yours a Star Recommendation in 3 easy steps."= "A Star Recommendation makes your local recommendation famous by suggesting it on the feed across all our countries. Make yours a Star Recommendation in 3 easy steps.";
+"Give your recommendation a good title"= "Give your recommendation a good title";
+"Write no less than 300 characters!"= "Write no less than 300 characters!";
+"Finish it with 5 or more photos."= "Finish it with 5 or more photos.";
+"Title"= "Title";
+"300 Characters"= "300 Characters";
+"At least 5 Photos"= "At least 5 Photos";
+""= "";
+"Posting…"= "Posting…";
+"Uh-oh. Something went wrong. Tap to retry."= "Uh-oh. Something went wrong. Tap to retry.";
+""= "";
+""= "";
+"Edit Profile"= "Edit Profile";
+"{!number} Followers"= "{!number} Followers";
+"{!number} Followings"= "{!number} Followings";
+"Add home location"= "Add home location";
+"How would you describe yourself?"= "How would you describe yourself?";
+"Tag it"= "Tag it";
+""= "";
+"Tap to set up your email address"= "Tap to set up your email address";
+""= "";
+"Collections"= "Collections";
+"{!number} Collections"= "{!number} Collections";
+"More food journeys, roadtrips, or parties to hit? Collect and share!"= "More food journeys, roadtrips, or parties to hit? Collect and share!";
+"New Collection"= "New Collection";
+""= "";
+"Posts"= "Posts";
+"{!number} Posts"= "{!number} Posts";
+"{!number} views"= "{!number} views";
+"There's nothing 'ere, yet."= "There's nothing 'ere, yet.";
+"Would you like to start a post? (="= "Would you like to start a post? (=";
+"New Post"= "New Post";
+""= "";
+"Likes"= "Likes";
+"{!number} Likes"= "{!number} Likes";
+"There's nothing 'ere, yet."= "There's nothing 'ere, yet.";
+"Check back soon!"= "Check back soon!";
+""= "";
+"Follow"= "Follow";
+"Following"= "Following";
+""= "";
+"Unfollow user"= "Unfollow user";
+"Are you sure you want to quit following {!username}?"= "Are you sure you want to quit following {!username}?";
+"Maybe not."= "Maybe not.";
+"Yeah!"= "Yeah!";
+""= "";
+""= "";
+"Search"= "Search";
+"Search History"= "Search History";
+"Cancel"= "Cancel";
+""= "";
+"Suggested places"= "Suggested places";
+"Suggested search"= "Suggested search";
+"Suggested Seetizens"= "Suggested Seetizens";
+""= "";
+"{!number} Posts"= "{!number} Posts";
+"Open"= "Open";
+"Closed"= "Closed";
+"{!number} Seetizens"= "{!number} Seetizens";
+""= "";
+"Add a location?"= "Add a location?";
+""= "";
+"Filter"= "Filter";
+"Sort by"= "Sort by";
+"Popular"= "Popular";
+"Distance"= "Distance";
+"Filter by"= "Filter by";
+""= "";
+"Sorry, we couldn't figure out {!keyword}"= "Sorry, we couldn't figure out {!keyword}";
+""= "";
+""= "";
+""= "";
+"Indonesia"= "Indonesia";
+"Malaysia"= "Malaysia";
+"Philippines"= "Philippines";
+"Singapore"= "Singapore";
+"Taiwan"= "Taiwan";
+"Thailand"= "Thailand";
+"Rest of the World"= "Rest of the World";
+""= "";
+""= "";
+"Festivals"= "Festivals";
+"Discover the colours of {!country}"= "Discover the colours of {!country}";
+"Check it out"= "Check it out";
+""= "";
+"Trending"= "Trending";
+"Open"= "Open";
+"Closed"= "Closed";
+"Discover People"= "Discover People";
+""= "";
+""= "";
+"Settings"= "Settings";
+"Profile"= "Profile";
+"Edit Profile"= "Edit Profile";
+"Edit Interest"= "Edit Interest";
+"Account Settings"= "Account Settings";
+"Push Notification Settings"= "Push Notification Settings";
+""= "";
+"Be a Seetizen!"= "Be a Seetizen!";
+"Email Address"= "Email Address";
+"Your email goes here!"= "Your email goes here!";
+"Password"= "Password";
+"Create a password (at least 8 characters)"= "Create a password (at least 8 characters)";
+""= "";
+"Support"= "Support";
+"About Seeties"= "About Seeties";
+"Terms of Use"= "Terms of Use";
+"Privacy Policy"= "Privacy Policy";
+"Send Feedback"= "Send Feedback";
+""= "";
+"Log out"= "Log out";
+"Sign out of Seeties"= "Sign out of Seeties";
+""= "";
+"Log out"= "Log out";
+"Are you sure you want to sign out of Seeties?"= "Are you sure you want to sign out of Seeties?";
+"Maybe not."= "Maybe not.";
+"Yeah!"= "Yeah!";
+""= "";
+""= "";
+"Edit Profile"= "Edit Profile";
+"Username"= "Username";
+"Name"= "Name";
+"Location"= "Location";
+"Website"= "Website";
+"Separate tags with space. Eg. Foodie, photographer, gym buff etc."= "Separate tags with space. Eg. Foodie, photographer, gym buff etc.";
+"About me"= "About me";
+""= "";
+"Personal Information"= "Personal Information";
+"ddmmyyyy"= "ddmmyyyy";
+"Gender"= "Gender";
+""= "";
+"Unsaved Changes"= "Unsaved Changes";
+"You have unsaved changes. Are you sure about quiting?"= "You have unsaved changes. Are you sure about quiting?";
+"Yeah!"= "Yeah!";
+"Maybe not."= "Maybe not.";
+""= "";
+"Edit Interest"= "Edit Interest";
+"What are your interests?"= "What are your interests?";
+""= "";
+"Account Settings"= "Account Settings";
+"Language"= "Language";
+"Primary Language"= "Primary Language";
+"Secondary Language"= "Secondary Language";
+"App Language"= "App Language";
+"Account"= "Account";
+"Email Address"= "Email Address";
+"Change Password"= "Change Password";
+"Connect to Facebook"= "Connect to Facebook";
+"Connect to Instagram"= "Connect to Instagram";
+"Others"= "Others";
+"Delete Account"= "Delete Account";
+"Push Notification"= "Push Notification";
+"Email"= "Email";
+"Subscribe to newsletter"= "Subscribe to newsletter";
+"Buddies"= "Buddies";
+"Buddies liked posts"= "Buddies liked posts";
+"Buddies followed people"= "Buddies followed people";
+"Buddies shared your collection"= "Buddies shared your collection";
+"Buddies shared a collection with you"= "Buddies shared a collection with you";
+"You"= "You";
+"You've been followed"= "You've been followed";
+"You've been mentioned"= "You've been mentioned";
+"You've been liked"= "You've been liked";
+""= "";
+""= "";
+"Activity"= "Activity";
+"Notifications"= "Notifications";
+"{!username} liked your post from {!location name}"= "{!username} liked your post from {!location name}";
+"{!username} & {!number} others liked your post from {!location name}"= "{!username} & {!number} others liked your post from {!location name}";
+"{!username} started following you"= "{!username} started following you";
+"{!username} commented on your post from [!location name}"= "{!username} commented on your post from [!location name}";
+"{!username} collected your post from {!collection name}"= "{!username} collected your post from {!collection name}";
+""= "";
+"Following"= "Following";
+"{!username} liked {!username}'s post from {!location name}"= "{!username} liked {!username}'s post from {!location name}";
+"{!username} liked {!number} posts"= "{!username} liked {!number} posts";
+"{!username}, {!username} & {!username} liked {!username}'s post from {!location name}"= "{!username}, {!username} & {!username} liked {!username}'s post from {!location name}";
+"{!username} & {!username} liked {!username}'s post from {!location name}"= "{!username} & {!username} liked {!username}'s post from {!location name}";
+"{!username}, {!username} & {!number} others liked {!username}'s post from {!location name}"= "{!username}, {!username} & {!number} others liked {!username}'s post from {!location name}";
+"{!username} started following {!username}"= "{!username} started following {!username}";
+"{!username} started following {!username}, {!username} & {!username}"= "{!username} started following {!username}, {!username} & {!username}";
+"{!username} started to following {!username}, {!username} & {!number} others"= "{!username} started to following {!username}, {!username} & {!number} others";
+"{!username} & {!username} started following {!username}"= "{!username} & {!username} started following {!username}";
+"{!username}, {!username} & {!username} started following {!username}"= "{!username}, {!username} & {!username} started following {!username}";
+"{!username}, {!username} & {!number} others started following {!username}"= "{!username}, {!username} & {!number} others started following {!username}";
+"{!username} collected {!number} pots"= "{!username} collected {!number} pots";
+"{!username} collected a post from {!location name} into {!number} collections"= "{!username} collected a post from {!location name} into {!number} collections";
+"{!username} collected {!username}'s post from {!location name} to {!username}'s collection"= "{!username} collected {!username}'s post from {!location name} to {!username}'s collection";
+""= "";
+"Posts liked by {!username}"= "Posts liked by {!username}";
+"Collected by {!username}"= "Collected by {!username}";
+"Followed by {!username}"= "Followed by {!username}";
+""= "";
+""= "";
+"Invite buddies!"= "Invite buddies!";
+"The more, the merrier!"= "The more, the merrier!";
+""= "";
+"via Whatsapp"= "via Whatsapp";
+"via Messenger"= "via Messenger";
+"via LINE"= "via LINE";
+"via Facebook"= "via Facebook";
+"via Wechat"= "via Wechat";
+"Send email"= "Send email";
+"Send SMS"= "Send SMS";
+"Copy Link"= "Copy Link";
+""= "";
+"Find my buddies"= "Find my buddies";
+""= "";
+"Connect with Facebook to find your buddies"= "Connect with Facebook to find your buddies";
+"Connect with Facebook"= "Connect with Facebook";
+""= "";
+"Connect with Instagram to find your buddies"= "Connect with Instagram to find your buddies";
+"Connect with Instagram"= "Connect with Instagram";
+""= "";
+"{!number} buddies on Seeties"= "{!number} buddies on Seeties";
+"Follow them all!"= "Follow them all!";
+""= "";
+""= "";
+"Do you like what we've done?"= "Do you like what we've done?";
+"Rate us now"= "Rate us now";
+"Not now"= "Not now";
+""= "";
+""= "";
+"See your buddies' latest share on Feed"= "See your buddies' latest share on Feed";
+"Got it"= "Got it";
+""= "";
+"What's a Star Recommendation?"= "What's a Star Recommendation?";
+"A Star Recommendation makes your local recommendation famous by suggesting it on the feed across all our countries. In just 3 simple steps, you can make yours a Star Recommendation. Try it!"= "A Star Recommendation makes your local recommendation famous by suggesting it on the feed across all our countries. In just 3 simple steps, you can make yours a Star Recommendation. Try it!";
+"Got it"= "Got it";
+""= "";
+"Check out places recommended near you!"= "Check out places recommended near you!";
+"Got it"= "Got it";
+""= "";
+"Recommend your favourite places!"= "Recommend your favourite places!";
+"Got it"= "Got it";
+""= "";
+"Follow buddies to stay in the loop."= "Follow buddies to stay in the loop.";
+"Got it!"= "Got it!";
+""= "";
+"Make it easier for other Seetizens to find you by enhancing your profile!"= "Make it easier for other Seetizens to find you by enhancing your profile!";
+"Got it!"= "Got it!";
+""= "";
+"Full screen mode for better readibility."= "Full screen mode for better readibility.";
+"Got it!"= "Got it!";
+""= "";
+"Swipe to see more photos!"= "Swipe to see more photos!";
+"Got it!"= "Got it!";
+""= "";
+"Tap and hold to reorder photos. First photo will be set as post cover!"= "Tap and hold to reorder photos. First photo will be set as post cover!";
+"Got it!"= "Got it!";
+""= "";
+"Tap to read photo captions."= "Tap to read photo captions.";
+"Got it!"= "Got it!";
+""= "";
+""= "";
+"Uh oh. We sense a weak connection and can't refresh."= "Uh oh. We sense a weak connection and can't refresh.";
+"Try Again"= "Try Again";
+""= "";
+"Uh oh. We sense a weak connection and can't refresh."= "Uh oh. We sense a weak connection and can't refresh.";
+"Try Again"= "Try Again";
+""= "";
+"Uh oh. We sense a weak connection and can't refresh."= "Uh oh. We sense a weak connection and can't refresh.";
+"Try Again"= "Try Again";
+""= "";
+"Be patient!"= "Be patient!";
+"You'll be notified when someone's liked, commented on or collected your post. (="= "You'll be notified when someone's liked, commented on or collected your post. (=";
+""= "";
+""= "";
+"Collect this"= "Collect this";
+"Leave a note"= "Leave a note";
+"Collect to…"= "Collect to…";
+"New Collection"= "New Collection";
+"Psst! Looks like you already collected this."= "Psst! Looks like you already collected this.";
+""= "";
+"by {!username}"= "by {!username}";
+"Updated on"= "Updated on";
+""= "";
+"Send to"= "Send to";
+""= "";
+"Edit Collection"= "Edit Collection";
+"Edit"= "Edit";
+"Add section"= "Add section";
+"Name this section"= "Name this section";
+"Cancel"= "Cancel";
+"Done!"= "Done!";
+""= "";
+"Add new collection"= "Add new collection";
+"Collection title"= "Collection title";
+"eg= Top 10 coffee hideouts in KL, Best spas in Bangkok"= "eg= Top 10 coffee hideouts in KL, Best spas in Bangkok";
+"Collection description"= "Collection description";
+"Write a description"= "Write a description";
+""= "";
+"Tag it"= "Tag it";
+"Add a new or existing tag"= "Add a new or existing tag";
+"Tap on suggestions to add to your tags"= "Tap on suggestions to add to your tags";
+""= "";
+"Set as public"= "Set as public";
+"You will not be able to change your privacy settings for this collection once it goes public."= "You will not be able to change your privacy settings for this collection once it goes public.";
+""= "";
+"Share this collection"= "Share this collection";
+""= "";
+"Send to buddies on Seeties"= "Send to buddies on Seeties";
+"Your buddies will be notified of this collection you've shared."= "Your buddies will be notified of this collection you've shared.";
+""= "";
+"Send via other apps"= "Send via other apps";
+"Copy link"= "Copy link";
+"Email"= "Email";
+"Others"= "Others";
+""= "";
+"Share with your buddies!"= "Share with your buddies!";
+"Wanna say something?"= "Wanna say something?";
+"Send to…"= "Send to…";
+"Username / name"= "Username / name";
+""= "";
+""= "";
+""= "";
+"Continue with"= "Continue with";
+"Not now"= "Not now";
+"Collect this"= "Collect this";
+"Pick a collection"= "Pick a collection";
+"Create a new collection"= "Create a new collection";
 
 
 
+"CollectBtn.png" = "CollectBtn.png";
+
+"PNearby" = "Nearby";
+"PExplore goodies around you." = "Explore goodies around you.";
+"PRecommend" = "Recommend";
+"PShare your thoughts with friends." = "Share your thoughts with friends.";
+
+"PCollect In" = "Collect In";
+"PPersonalize your collection." = "Personalize your collection.";
+"PCollect" = "Collect";
+"PCollect post here!" = "Collect post here!";
+"PFollow" = "Follow";
+"PSee more from your favourite Seetizens." = "See more from your favourite Seetizens.";
+
+"PEdit Profile" = "Edit Profile";
+"PPeople know you and find you better." = "People know you and find you better.";
+"PCollections" = "Collections";
+"PView your collections here." = "View your collections here.";
+
+"PAdd URL" = "Add URL";
+"PDrive traffic to your page or blog." = "Drive traffic to your page or blog.";
+"PSave" = "Save";
+"PFinish it later." = "Finish it later.";
+
+"PTranslate" = "Translate";
+"PNo more language barrier" = "No more language barrier";
+
+"PSkip" = "Skip";
+"PDone" = "Done";
 

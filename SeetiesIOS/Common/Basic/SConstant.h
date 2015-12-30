@@ -1,0 +1,134 @@
+//
+//  SConstant.h
+//  SeetiesIOS
+//
+//  Created by Evan Beh on 8/3/15.
+//
+
+#import <Foundation/Foundation.h>
+
+#define API_VERSION @"2.3"
+
+@interface SConstant : NSObject
+
+
+typedef enum
+{
+    ServerRequestTypeLogin = 1,
+    ServerRequestTypeNewsFeed = 2,
+    ServerRequestTypeGetLanguage = 3,
+    ServerRequestTypeGetApiVersion = 4,
+    ServerRequestTypeGetExplore = 5,
+    ServerRequestTypeGoogleSearch,
+    ServerRequestType4SquareSearch,
+    ServerRequestTypeGoogleSearchWithDetail,
+    ServerRequestTypeGetRecommendationDraft,
+    ServerRequestTypePostCreatePost,
+    ServerRequestTypePostDeletePost,
+    ServerRequestTypePostSaveDraft,
+    ServerRequestTypeGetPostInfo,
+    ServerRequestTypeGetGeoIP,
+    ServerRequestTypeGetCategories,
+    
+    // ========== Collection ========== //
+    ServerRequestTypeGetCollectionInfo,
+    ServerRequestTypePostCreateCollection,
+    ServerRequestTypeGetTagsSuggestion,
+    ServerRequestTypeGetUserCollections,
+    ServerRequestTypeGetUserFollowingCollections,
+    ServerRequestTypeGetUserSuggestedCollections,
+    ServerRequestTypeGetUserPosts,
+    ServerRequestTypeGetUserLikes,
+    ServerRequestTypeDeleteCollection,
+    ServerRequestTypePostFollowCollection,
+    ServerRequestTypePostShareCollection,
+    // ========== Collection ========== //
+    // ========== User Info ========== //
+    ServerRequestTypeGetUserInfo,
+    ServerRequestTypePostFollowUser,
+    // ========== User Info ========== //
+
+    
+    // ========== SEETIES SHOP ========== //
+
+    ServerRequestTypeGetSeetiShopDetail,
+    ServerRequestTypeGetSeetiShopCollection,
+    ServerRequestTypeGetSeetiShopPhoto,
+    ServerRequestTypeGetSeetoShopNearbyShop,
+    ServerRequestTypeGetSeetoShopRecommendations,
+    ServerRequestTypeGetSeetoShopTranslation,
+    // ========== SEETIES SHOP ========== //
+
+    
+}ServerRequestType;
+
+typedef enum
+{
+    ViewTypeNewsFeed = 1,
+    ViewTypeExplore = 2,
+    ViewTypeNitification = 3,
+    ViewTypeExploreProfile
+    
+}ViewType;
+
+extern NSString *const SERVER_PATH_LIVE;
+extern NSString *const SERVER_PATH_DEV;
+extern NSString *const SERVER_SUBPATH;
+extern NSString *const IP_URL_PATH;
+
+//=============== social media key =================//
+extern NSString *const GOOGLE_API_KEY;
+extern NSString *const GOOGLE_PLACE_AUTOCOMPLETE_API;
+extern NSString *const GOOGLE_PLACE_DETAILS_API;
+
+extern NSString *const kAFAviaryAPIKey;
+extern NSString *const kAFAviarySecret;
+
+@end
+
+#define TOKEN_2_0 @"JDJ5JDEwJDZyamE0MlZKbTNKbHpDSElxR0dpUGVnbkJQMzdzRC40eDJna2M3RlJiVFZVbnJzRVpTQTNt"
+
+// ======================= LANGUAGE CODE ========================//
+#define ENGLISH_CODE @"530b0ab26424400c76000003"
+#define CHINESE_CODE @"530b0aa16424400c76000002"
+#define TAIWAN_CODE @"530d5e9b642440d128000018"
+#define INDONESIA_CODE @"53672e863efa3f857f8b4ed2"
+#define FILIPINES_CODE @"539fbb273efa3fde3f8b4567"
+#define THAI_CODE @"544481503efa3ff1588b4567"
+// ======================= LANGUAGE CODE ========================//
+
+// NSUserDefaults keys
+#define DEFAULTS_KEY_LANGUAGE_CODE @"LanguageCode" // The key against which to store the selected language code.
+
+/*
+ * Custom localised string macro, functioning in a similar way to the standard NSLocalisedString().
+ */
+#define CustomLocalisedString(key, comment) \
+[[LanguageManager sharedLanguageManager] getTranslationForKey:key]
+#define LocalisedString(key) \
+[[LanguageManager sharedLanguageManager] getTranslationForKey:key]
+
+#define ErrorTitle @"error"
+#define GoodNetwork YES
+
+#define BORDER_WIDTH 1.0f
+
+#define NOTIFICAION_TYPE_REFRESH_COLLECTION @"collection"
+#define NOTIFICAION_TYPE_REFRESH_POST @"post"
+#define NOTIFICAION_TYPE_REFRESH_LIKES @"likes"
+#define NOTIFICAION_TYPE_REFRESH_PROFILE @"profile"
+
+
+// ================== seeties shop ================//
+#define VIEW_PADDING 10.0f
+#define TRANSITION_DURTION 0.3f
+
+
+#if TARGET_IPHONE_SIMULATOR
+static BOOL IS_SIMULATOR = YES;
+
+#else
+static BOOL IS_SIMULATOR = NO;
+#endif
+
+

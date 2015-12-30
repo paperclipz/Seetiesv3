@@ -1,9 +1,10 @@
 
+//
 //  main.m
 //  SeetiesIOS
 //
-//  Created by Chong Chee Yong on 10/14/14.
-//  Copyright (c) 2014 Ahyong87. All rights reserved.
+//  Created by Evan Beh on 8/4/15.
+//  Copyright (c) 2015 Stylar Network. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -14,3 +15,5 @@ int main(int argc, char * argv[]) {
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }
 }
+
+

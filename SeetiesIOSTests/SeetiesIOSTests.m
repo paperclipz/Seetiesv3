@@ -2,8 +2,8 @@
 //  SeetiesIOSTests.m
 //  SeetiesIOSTests
 //
-//  Created by Chong Chee Yong on 10/14/14.
-//  Copyright (c) 2014 Ahyong87. All rights reserved.
+//  Created by Evan Beh on 8/4/15.
+//  Copyright (c) 2015 Stylar Network. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
