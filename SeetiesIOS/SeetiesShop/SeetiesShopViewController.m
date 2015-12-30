@@ -143,7 +143,7 @@
     [self.arrViews addObject:self.seRecommendations];
     
     if (![Utils stringIsNilOrEmpty:self.seetiesID]) {
-        [self.arrViews addObject:self.seNearbySeetishop];
+  //      [self.arrViews addObject:self.seNearbySeetishop];
 
     }
   
@@ -155,7 +155,7 @@
     [self.seRecommendations initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
     
     if (![Utils stringIsNilOrEmpty:self.seetiesID]) {
-       [self.seNearbySeetishop initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
+    //   [self.seNearbySeetishop initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
     }
 }
 -(void)addViews
@@ -508,7 +508,16 @@
     _shareV2ViewController = nil;
     UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
     [naviVC setNavigationBarHidden:YES animated:NO];
-    [self.shareV2ViewController share:@"" title:shopModel.name imagURL:@"" shareType:ShareTypeSeetiesShop shareID:shopModel.seetishop_id userID:@""];
+    
+    if (![Utils isStringNull:shopModel.seetishop_id]) {
+        [self.shareV2ViewController share:@"" title:shopModel.name imagURL:@"" shareType:ShareTypeSeetiesShop shareID:shopModel.seetishop_id userID:@""];
+
+    }
+    else{
+        [self.shareV2ViewController share:@"" title:shopModel.name imagURL:@"" shareType:ShareTypeNonSeetiesShop shareID:self.placeID userID:@"" postID:self.postID];
+
+    }
+    
     MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
     formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
     formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;

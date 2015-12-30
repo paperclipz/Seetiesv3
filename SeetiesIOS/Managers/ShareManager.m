@@ -24,6 +24,7 @@
 @property(nonatomic,strong)NSString* shareID;
 @property(nonatomic,strong)NSString* postTitle;
 @property(nonatomic,strong)NSString* postImageURL;
+@property(nonatomic,strong)NSString* postID;
 
 
 @property(nonatomic,strong)MGInstagram* instagram;
@@ -44,7 +45,7 @@
     
     return self;
 }
--(void)shareFacebook:(NSString*)title message:(NSString*)description imageURL:(NSString*)imageURL shareType:(ShareType)type shareID:(NSString*)shareID delegate:(UIViewController*)vc
+-(void)shareFacebook:(NSString*)title message:(NSString*)description imageURL:(NSString*)imageURL shareType:(ShareType)type shareID:(NSString*)shareID PostID:(NSString*)postID delegate:(UIViewController*)vc
 {
     NSString* caption = @"SEEITES";
 
@@ -53,6 +54,7 @@
     self.shareID = shareID;
     self.postDescription = description;
     viewController = vc;
+    self.postID = postID;
     
     postImageView = [UIImageView new];
     [postImageView sd_setImageWithPreviousCachedImageWithURL:[NSURL URLWithString:self.postImageURL] andPlaceholderImage:[UIImage imageNamed:@"NoImage.png"] options:SDWebImageHighPriority progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
@@ -158,7 +160,7 @@
    
 }
 
--(void)shareOnLINE:(NSString*)title message:(NSString*)description imageURL:(NSString*)imageURL shareType:(ShareType)type shareID:(NSString*)shareID delegate:(UIViewController*)vc
+-(void)shareOnLINE:(NSString*)title message:(NSString*)description imageURL:(NSString*)imageURL shareType:(ShareType)type shareID:(NSString*)shareID PostID:(NSString*)postID delegate:(UIViewController*)vc
 {
     
     self.postTitle = title;
@@ -166,6 +168,7 @@
     self.shareID = shareID;
     self.postDescription = description;
     viewController = vc;
+    self.postID = postID;
   
     NSString* message = [self getShareMessage:type appendURL:YES];
 
@@ -186,7 +189,7 @@
     }
 }
 
--(void)shareOnMessanger:(NSString*)title message:(NSString*)description imageURL:(NSString*)imageURL shareType:(ShareType)type shareID:(NSString*)shareID delegate:(UIViewController*)vc
+-(void)shareOnMessanger:(NSString*)title message:(NSString*)description imageURL:(NSString*)imageURL shareType:(ShareType)type shareID:(NSString*)shareID PostID:(NSString*)postID delegate:(UIViewController*)vc
 {
     
     self.postTitle = title;
@@ -195,6 +198,8 @@
     NSString* caption = @"SEETIES.ME";
     self.postDescription = description;
     viewController = vc;
+    self.postID = postID;
+    
     NSString* message = [self getShareMessage:type appendURL:YES];
     NSString* finalLink = [self getShareLink:type];
     FBSDKShareLinkContent *content = [[FBSDKShareLinkContent alloc] init];
@@ -206,7 +211,7 @@
     
 }
 
--(void)shareOnWhatsapp:(NSString*)title message:(NSString*)description imageURL:(NSString*)imageURL shareType:(ShareType)type shareID:(NSString*)shareID delegate:(UIViewController*)vc
+-(void)shareOnWhatsapp:(NSString*)title message:(NSString*)description imageURL:(NSString*)imageURL shareType:(ShareType)type shareID:(NSString*)shareID PostID:(NSString*)postID delegate:(UIViewController*)vc
 {
     
     self.postTitle = title;
@@ -214,7 +219,8 @@
     self.shareID = shareID;
     self.postDescription = description;
     viewController = vc;
-
+    self.postID = postID;
+    
     NSString* message = [self getShareMessage:type appendURL:YES];
 
     NSString *ShareText = message;
@@ -234,12 +240,12 @@
 }
 #define ROOTVIEW [[[UIApplication sharedApplication] keyWindow] rootViewController]
 
--(void)shareWithCopyLink:(ShareType)type shareID:(NSString*)shareID delegate:(UIViewController*)vc
+-(void)shareWithCopyLink:(ShareType)type shareID:(NSString*)shareID PostID:(NSString*)postID delegate:(UIViewController*)vc
 {
     self.shareID = shareID;
     viewController = vc;
     NSString* message = [self getShareMessage:type appendURL:YES];
-
+    self.postID = postID;
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = message;
     
@@ -256,12 +262,12 @@
 
 }
 
--(void)shareOnEmail:(ShareType)type viewController:(UIViewController*)vc shareID:(NSString*)shareID
+-(void)shareOnEmail:(ShareType)type viewController:(UIViewController*)vc shareID:(NSString*)shareID PostID:(NSString*)postID
 {
     
     viewController = vc;
     self.shareID = shareID;
-    
+    self.postID = postID;
     
     if ([MFMailComposeViewController canSendMail])
     {
@@ -355,6 +361,7 @@
             
         }
             break;
+        
     }
     
     return message;
@@ -365,36 +372,50 @@
 {
     NSString* seetiesLink = @"https://seeties.me/";
     NSString* subLink;
+    NSString* finalLink;
     switch (type) {
             
         default:
         case ShareTypePost:
         {
             subLink = @"post/";
-            
+            finalLink = [NSString stringWithFormat:@"%@%@%@",seetiesLink,subLink,self.shareID];
+
         }
             break;
         case ShareTypeCollection:
         {
             subLink = @"collections/";
-           
+            finalLink = [NSString stringWithFormat:@"%@%@%@",seetiesLink,subLink,self.shareID];
+
         }
             break;
         case ShareTypePostUser:
         {
             subLink = @"";
-            
+            finalLink = [NSString stringWithFormat:@"%@%@%@",seetiesLink,subLink,self.shareID];
+
         }
+            break;
+
         case ShareTypeSeetiesShop:
         {
             subLink = @"seetishops/";
-            
+            finalLink = [NSString stringWithFormat:@"%@%@%@",seetiesLink,subLink,self.shareID];
+
+        }
+            break;
+
+        case ShareTypeNonSeetiesShop:
+        {
+            subLink = @"seetishops/";
+            finalLink = [NSString stringWithFormat:@"%@%@%@/%@",seetiesLink,subLink,self.shareID,self.postID];
+
         }
 
             break;
     }
 
-    NSString* finalLink = [NSString stringWithFormat:@"%@%@%@",seetiesLink,subLink,self.shareID];
 
     return finalLink;
 }
