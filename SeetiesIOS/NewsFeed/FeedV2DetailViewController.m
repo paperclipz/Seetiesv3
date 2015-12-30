@@ -3815,7 +3815,10 @@
     _shareV2ViewController = nil;
     UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
     [naviVC setNavigationBarHidden:YES animated:NO];
-    [self.shareV2ViewController share:@"" title:GetTitle imagURL:UrlArray[0] shareType:ShareTypeFacebookPost shareID:GetPostID];
+    
+    
+    [self.shareV2ViewController share:@"" title:GetTitle imagURL:UrlArray[0] shareType:ShareTypePost shareID:GetPostID userID:GetUserUid];
+    
       MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
     formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
     formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
@@ -4565,16 +4568,13 @@
     
     CollectionViewController *OpenCollectionView = [[CollectionViewController alloc]init];
     [self.navigationController pushViewController:OpenCollectionView animated:YES];
-    [OpenCollectionView GetCollectionID:[arrCollectionID objectAtIndex:getbuttonIDN] GetPermision:@"User"];
+    [OpenCollectionView GetCollectionID:[arrCollectionID objectAtIndex:getbuttonIDN] GetPermision:@"User" GetUserUid:GetUserUid];
 }
 -(IBAction)CollectionUserProfileOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSString *Getname = [[NSString alloc]initWithFormat:@"%@",[arrUsername objectAtIndex:getbuttonIDN]];
     NSLog(@"CollectionUserProfileOnClick Getname is %@",Getname);
     
-//    NewUserProfileV2ViewController *NewUserProfileV2View = [[NewUserProfileV2ViewController alloc] initWithNibName:@"NewUserProfileV2ViewController" bundle:nil];
-//    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
-//    [NewUserProfileV2View GetUserName:Getname];
     _profileViewController = nil;
     [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[arrUserID objectAtIndex:getbuttonIDN]];
     [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
