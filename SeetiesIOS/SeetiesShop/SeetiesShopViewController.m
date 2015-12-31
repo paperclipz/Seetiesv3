@@ -518,6 +518,10 @@
 
     }
     
+    SLog(@"self.placeID == %@",self.placeID);
+    SLog(@"self.postID == %@",self.postID);
+    SLog(@"shopModel.seetishop_id == %@",shopModel.seetishop_id);
+    
     MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
     formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
     formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
