@@ -9,6 +9,7 @@
 #import "CT3_NewsFeedViewController.h"
 #import "FeedTableViewCell.h"
 #import "FeedSquareCollectionViewCell.h"
+#import "QuickBrowserCollectionTableViewCell.h"
 
 @interface CT3_NewsFeedViewController ()<UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 /*IBOUTLET*/
@@ -17,10 +18,25 @@
 @property (strong, nonatomic) IBOutlet UIView *ibHeaderView;
 @property (weak, nonatomic) IBOutlet UICollectionView *ibIntroCollectionView;
 @property (weak, nonatomic) IBOutlet UIView *lastView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constantQuickBrowseHeight;
+@property (weak, nonatomic) IBOutlet UICollectionView *ibQuickBrowseCollectionView;
 @end
 
 @implementation CT3_NewsFeedViewController
+- (IBAction)btnTestCliked:(id)sender {
+    
+    [self.navigationController pushViewController:self.meViewController animated:YES];
+}
 
+#pragma mark - Declaration
+
+-(CT3_MeViewController*)meViewController
+{
+    if (!_meViewController) {
+        _meViewController = [CT3_MeViewController new];
+    }
+    return _meViewController;
+}
 #pragma mark - DEFAULT
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,6 +58,10 @@
     self.ibTableView.delegate = self;
     self.ibTableView.dataSource = self;
     [self.ibTableView registerClass:[FeedTableViewCell class] forCellReuseIdentifier:@"FeedTableViewCell"];
+    
+    [self.ibQuickBrowseCollectionView registerClass:[QuickBrowserCollectionTableViewCell class] forCellWithReuseIdentifier:@"QuickBrowserCollectionTableViewCell"];
+    self.ibQuickBrowseCollectionView.delegate = self;
+    self.ibQuickBrowseCollectionView.dataSource = self;
 }
 
 -(void)initCollectionViewDelegate
@@ -51,9 +71,18 @@
     self.ibIntroCollectionView.dataSource = self;
     [self.ibIntroCollectionView registerClass:[FeedSquareCollectionViewCell class] forCellWithReuseIdentifier:@"FeedSquareCollectionViewCell"];
     
+    self.ibQuickBrowseCollectionView.delegate = self;
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+#pragma mark - ADJUST VIEW
+
+-(void)adjustView
+{
+    
 }
 
 #pragma mark - Request Server
@@ -74,7 +103,6 @@
     
 }
 
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
@@ -86,9 +114,6 @@
 
     }
 }
-
-// Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
-// Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -125,15 +150,34 @@
 #pragma mark - CollectionView Delegate
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 10;
+    
+    if (collectionView == self.ibIntroCollectionView) {
+        return 10;
+
+    }
+    else{
+        return 20;
+    
+    }
+    
+    
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    FeedSquareCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"FeedSquareCollectionViewCell" forIndexPath:indexPath];
     
-    return cell;
+    if (collectionView == self.ibIntroCollectionView) {
+        FeedSquareCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"FeedSquareCollectionViewCell" forIndexPath:indexPath];
+        return cell;
+
+    }
+    else{
+    
+        QuickBrowserCollectionTableViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"QuickBrowserCollectionTableViewCell" forIndexPath:indexPath];
+        return cell;
+    }
+    
 }
 
 

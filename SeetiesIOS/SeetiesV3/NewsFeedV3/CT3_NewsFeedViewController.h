@@ -7,7 +7,9 @@
 //
 
 #import "CommonViewController.h"
+#import "CT3_MeViewController.h"
 
 @interface CT3_NewsFeedViewController : BaseViewController
 
+@property(nonatomic,strong)CT3_MeViewController* meViewController;
 @end

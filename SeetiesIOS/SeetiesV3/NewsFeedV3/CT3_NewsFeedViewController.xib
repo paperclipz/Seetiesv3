@@ -8,8 +8,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CT3_NewsFeedViewController">
             <connections>
+                <outlet property="constantQuickBrowseHeight" destination="QvN-Wc-Svl" id="TAe-ev-PtH"/>
                 <outlet property="ibHeaderView" destination="ob0-3K-ldY" id="6Jr-VE-I5l"/>
                 <outlet property="ibIntroCollectionView" destination="ZoL-39-H66" id="mXt-hA-lBJ"/>
+                <outlet property="ibQuickBrowseCollectionView" destination="IgP-nI-qMI" id="ku6-px-HRC"/>
                 <outlet property="ibTableView" destination="Wbq-uL-miH" id="Qo1-tM-sfW"/>
                 <outlet property="lastView" destination="ANU-A0-zYA" id="G20-Wi-Iyc"/>
                 <outlet property="lblTitle" destination="kLE-xl-KPh" id="949-wh-0St"/>
@@ -33,6 +35,13 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fZz-xx-vDW">
+                            <rect key="frame" x="8" y="14" width="46" height="30"/>
+                            <state key="normal" title="Button"/>
+                            <connections>
+                                <action selector="btnTestCliked:" destination="-1" eventType="touchUpInside" id="0Wa-ex-nY9"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -61,7 +70,7 @@
             <point key="canvasLocation" x="614" y="215"/>
         </view>
         <view contentMode="scaleToFill" id="ob0-3K-ldY">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="686"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MAP-tq-cPq">
@@ -224,22 +233,59 @@
                         <constraint firstItem="zmb-He-L6J" firstAttribute="leading" secondItem="ANU-A0-zYA" secondAttribute="leading" id="vym-es-hA5"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dh1-d4-WaM">
+                    <rect key="frame" x="0.0" y="356" width="320" height="200"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quick Browse" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Pt-EK-9nf">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="42"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="42" id="zun-4h-I2G"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="200" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="IgP-nI-qMI">
+                            <rect key="frame" x="8" y="42" width="304" height="150"/>
+                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="EK3-ZF-Row">
+                                <size key="itemSize" width="100" height="100"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="0.0" minY="5" maxX="0.0" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                        </collectionView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="IgP-nI-qMI" secondAttribute="bottom" constant="8" id="1t5-6J-Vhs"/>
+                        <constraint firstAttribute="trailing" secondItem="IgP-nI-qMI" secondAttribute="trailing" constant="8" id="330-Qz-8K2"/>
+                        <constraint firstItem="IgP-nI-qMI" firstAttribute="leading" secondItem="dh1-d4-WaM" secondAttribute="leading" constant="8" id="EdQ-qO-XZ9"/>
+                        <constraint firstItem="IgP-nI-qMI" firstAttribute="top" secondItem="4Pt-EK-9nf" secondAttribute="bottom" id="Jve-dm-9IU"/>
+                        <constraint firstAttribute="trailing" secondItem="4Pt-EK-9nf" secondAttribute="trailing" id="OcE-P0-gqN"/>
+                        <constraint firstAttribute="height" constant="200" id="QvN-Wc-Svl"/>
+                        <constraint firstItem="4Pt-EK-9nf" firstAttribute="top" secondItem="dh1-d4-WaM" secondAttribute="top" id="Ttd-CH-RzA"/>
+                        <constraint firstItem="4Pt-EK-9nf" firstAttribute="leading" secondItem="dh1-d4-WaM" secondAttribute="leading" id="xOs-w3-e6p"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="dh1-d4-WaM" firstAttribute="top" secondItem="ANU-A0-zYA" secondAttribute="bottom" constant="8" id="ABn-QZ-jco"/>
+                <constraint firstAttribute="trailing" secondItem="dh1-d4-WaM" secondAttribute="trailing" id="CBl-Vq-s3C"/>
                 <constraint firstItem="MAP-tq-cPq" firstAttribute="top" secondItem="ob0-3K-ldY" secondAttribute="top" id="GPE-yG-m3g"/>
                 <constraint firstAttribute="trailing" secondItem="dQW-X5-7Rh" secondAttribute="trailing" id="GWN-2e-4fr"/>
                 <constraint firstItem="dQW-X5-7Rh" firstAttribute="top" secondItem="MAP-tq-cPq" secondAttribute="bottom" id="J7X-XG-R0P"/>
                 <constraint firstItem="ANU-A0-zYA" firstAttribute="top" secondItem="dQW-X5-7Rh" secondAttribute="bottom" id="MVK-TJ-XJE"/>
                 <constraint firstItem="ANU-A0-zYA" firstAttribute="leading" secondItem="ob0-3K-ldY" secondAttribute="leading" id="O5O-jo-MbQ"/>
                 <constraint firstAttribute="trailing" secondItem="ANU-A0-zYA" secondAttribute="trailing" id="PwO-e3-DHP"/>
+                <constraint firstItem="dh1-d4-WaM" firstAttribute="leading" secondItem="ob0-3K-ldY" secondAttribute="leading" id="TcD-h0-ekv"/>
                 <constraint firstItem="MAP-tq-cPq" firstAttribute="leading" secondItem="ob0-3K-ldY" secondAttribute="leading" id="a3q-ZY-kLX"/>
                 <constraint firstAttribute="trailing" secondItem="MAP-tq-cPq" secondAttribute="trailing" id="dgm-sY-ze3"/>
                 <constraint firstItem="dQW-X5-7Rh" firstAttribute="leading" secondItem="ob0-3K-ldY" secondAttribute="leading" id="rle-dB-hI7"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="981" y="305.5"/>
+            <point key="canvasLocation" x="981" y="389"/>
         </view>
     </objects>
 </document>

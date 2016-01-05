@@ -1132,6 +1132,10 @@
 		8AF999311C3A77A4000314E4 /* FeedSquareCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF9992F1C3A77A4000314E4 /* FeedSquareCollectionViewCell.xib */; };
 		8AF999361C3A891D000314E4 /* CT3_LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF999341C3A891D000314E4 /* CT3_LoginViewController.m */; };
 		8AF999371C3A891D000314E4 /* CT3_LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF999351C3A891D000314E4 /* CT3_LoginViewController.xib */; };
+		8AF999411C3B9CCD000314E4 /* QuickBrowserCollectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF9993F1C3B9CCD000314E4 /* QuickBrowserCollectionTableViewCell.m */; };
+		8AF999421C3B9CCD000314E4 /* QuickBrowserCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF999401C3B9CCD000314E4 /* QuickBrowserCollectionTableViewCell.xib */; };
+		8AF9994A1C3BBB45000314E4 /* CT3_MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF999481C3BBB45000314E4 /* CT3_MeViewController.m */; };
+		8AF9994B1C3BBB45000314E4 /* CT3_MeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF999491C3BBB45000314E4 /* CT3_MeViewController.xib */; };
 		C5AFD557B47280FB16C39985 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9C815292A4ED6F2408E5E5 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -2644,6 +2648,12 @@
 		8AF999331C3A891D000314E4 /* CT3_LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CT3_LoginViewController.h; sourceTree = "<group>"; };
 		8AF999341C3A891D000314E4 /* CT3_LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CT3_LoginViewController.m; sourceTree = "<group>"; };
 		8AF999351C3A891D000314E4 /* CT3_LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CT3_LoginViewController.xib; sourceTree = "<group>"; };
+		8AF9993E1C3B9CCD000314E4 /* QuickBrowserCollectionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickBrowserCollectionTableViewCell.h; sourceTree = "<group>"; };
+		8AF9993F1C3B9CCD000314E4 /* QuickBrowserCollectionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickBrowserCollectionTableViewCell.m; sourceTree = "<group>"; };
+		8AF999401C3B9CCD000314E4 /* QuickBrowserCollectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickBrowserCollectionTableViewCell.xib; sourceTree = "<group>"; };
+		8AF999471C3BBB45000314E4 /* CT3_MeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CT3_MeViewController.h; sourceTree = "<group>"; };
+		8AF999481C3BBB45000314E4 /* CT3_MeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CT3_MeViewController.m; sourceTree = "<group>"; };
+		8AF999491C3BBB45000314E4 /* CT3_MeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CT3_MeViewController.xib; sourceTree = "<group>"; };
 		A6BFDB1BE373200E64D8CBE7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CAB2B54F0EC79309593A3C4C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -4599,6 +4609,7 @@
 		8A7CEEC41C33F818005A3515 /* SeetiesV3 */ = {
 			isa = PBXGroup;
 			children = (
+				8AF999431C3BBB06000314E4 /* PreProfileV3 */,
 				8AF999381C3B7584000314E4 /* ListingV3 */,
 				8AF999321C3A88ED000314E4 /* LoginV3 */,
 				8AF9991A1C3A5105000314E4 /* LandingV3 */,
@@ -5625,6 +5636,9 @@
 				8AF9992D1C3A77A4000314E4 /* FeedSquareCollectionViewCell.h */,
 				8AF9992E1C3A77A4000314E4 /* FeedSquareCollectionViewCell.m */,
 				8AF9992F1C3A77A4000314E4 /* FeedSquareCollectionViewCell.xib */,
+				8AF9993E1C3B9CCD000314E4 /* QuickBrowserCollectionTableViewCell.h */,
+				8AF9993F1C3B9CCD000314E4 /* QuickBrowserCollectionTableViewCell.m */,
+				8AF999401C3B9CCD000314E4 /* QuickBrowserCollectionTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -5684,6 +5698,16 @@
 			children = (
 			);
 			path = WalletListing;
+			sourceTree = "<group>";
+		};
+		8AF999431C3BBB06000314E4 /* PreProfileV3 */ = {
+			isa = PBXGroup;
+			children = (
+				8AF999471C3BBB45000314E4 /* CT3_MeViewController.h */,
+				8AF999481C3BBB45000314E4 /* CT3_MeViewController.m */,
+				8AF999491C3BBB45000314E4 /* CT3_MeViewController.xib */,
+			);
+			path = PreProfileV3;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -5860,6 +5884,7 @@
 				8A7B9CE11BBD387000D7F604 /* EnbleLocationViewController.xib in Resources */,
 				8A6CCD4A1C18075800BCD54E /* TagsIcon@3x.png in Resources */,
 				8A6CCE1A1C18075800BCD54E /* NotificationBySeeties@3x.png in Resources */,
+				8AF9994B1C3BBB45000314E4 /* CT3_MeViewController.xib in Resources */,
 				8A6CCE8F1C18075800BCD54E /* TimeIcon@2x.png in Resources */,
 				8AD6C2A21B7072FB0040437E /* RecommendV2ViewController.xib in Resources */,
 				8A6CCD4D1C18075800BCD54E /* WebsiteLinkIcon@2x.png in Resources */,
@@ -6257,6 +6282,7 @@
 				8A114CE91BE75CA0006AE3F0 /* CollectionViewController.xib in Resources */,
 				8A6CCE221C18075800BCD54E /* NotificationLike@3x.png in Resources */,
 				8A6CCCCB1C18075800BCD54E /* Icon-Small@3x.png in Resources */,
+				8AF999421C3B9CCD000314E4 /* QuickBrowserCollectionTableViewCell.xib in Resources */,
 				8A6CCDE41C18075800BCD54E /* YoloIcon@3x.png in Resources */,
 				8A6CCCFE1C18075800BCD54E /* GridViewInactive@3x.png in Resources */,
 				8A6CCE5E1C18075800BCD54E /* NewLikesIcon@3x.png in Resources */,
@@ -6646,6 +6672,7 @@
 				8A9F25CE1B8ED8BC00BB13BA /* EditHoursViewController.m in Sources */,
 				8AD6BE591B706CF30040437E /* DoImagePickerController.m in Sources */,
 				8A114C9A1BE73F5D006AE3F0 /* JTSSimpleImageDownloader.m in Sources */,
+				8AF999411C3B9CCD000314E4 /* QuickBrowserCollectionTableViewCell.m in Sources */,
 				8AD6C0BB1B706CF30040437E /* WhyWeUseFBViewController.m in Sources */,
 				8A993CCB1C2960D5009359E2 /* NSArray+Extension.m in Sources */,
 				8A3757B71B847C7A009DB7D4 /* AddNewPlaceViewController.m in Sources */,
@@ -6723,6 +6750,7 @@
 				8AEDBFAA1C2031BA000BD2FF /* OpeningPeriodModel.m in Sources */,
 				8AD6C2931B7072FB0040437E /* ChooseCategoryViewController.m in Sources */,
 				8A114CC61BE73F5D006AE3F0 /* UIImageView+MKNetworkKitAdditions.m in Sources */,
+				8AF9994A1C3BBB45000314E4 /* CT3_MeViewController.m in Sources */,
 				8AD6C0AD1B706CF30040437E /* LandingV2ViewController.m in Sources */,
 				8AF53F1B1BD8850E00AF6C9E /* NSObject+Extension.m in Sources */,
 				8AD6BE231B706CF30040437E /* NSMutableArray+MoveArray.m in Sources */,
