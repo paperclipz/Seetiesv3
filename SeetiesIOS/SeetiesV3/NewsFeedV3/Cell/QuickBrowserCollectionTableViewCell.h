@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface QuickBrowserCollectionTableViewCell : UICollectionViewCell
+@interface QuickBrowserCollectionTableViewCell : CommonCollectionViewCell
 
 @end

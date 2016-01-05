@@ -13,7 +13,7 @@
                 <outlet property="ibIntroCollectionView" destination="ZoL-39-H66" id="mXt-hA-lBJ"/>
                 <outlet property="ibQuickBrowseCollectionView" destination="IgP-nI-qMI" id="ku6-px-HRC"/>
                 <outlet property="ibTableView" destination="Wbq-uL-miH" id="Qo1-tM-sfW"/>
-                <outlet property="lastView" destination="ANU-A0-zYA" id="G20-Wi-Iyc"/>
+                <outlet property="lastView" destination="dh1-d4-WaM" id="jHu-oI-eFz"/>
                 <outlet property="lblTitle" destination="kLE-xl-KPh" id="949-wh-0St"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -234,7 +234,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dh1-d4-WaM">
-                    <rect key="frame" x="0.0" y="356" width="320" height="200"/>
+                    <rect key="frame" x="0.0" y="356" width="320" height="400"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quick Browse" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Pt-EK-9nf">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="42"/>
@@ -246,7 +246,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="200" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="IgP-nI-qMI">
-                            <rect key="frame" x="8" y="42" width="304" height="150"/>
+                            <rect key="frame" x="8" y="42" width="304" height="350"/>
                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="EK3-ZF-Row">
                                 <size key="itemSize" width="100" height="100"/>
                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -262,7 +262,7 @@
                         <constraint firstItem="IgP-nI-qMI" firstAttribute="leading" secondItem="dh1-d4-WaM" secondAttribute="leading" constant="8" id="EdQ-qO-XZ9"/>
                         <constraint firstItem="IgP-nI-qMI" firstAttribute="top" secondItem="4Pt-EK-9nf" secondAttribute="bottom" id="Jve-dm-9IU"/>
                         <constraint firstAttribute="trailing" secondItem="4Pt-EK-9nf" secondAttribute="trailing" id="OcE-P0-gqN"/>
-                        <constraint firstAttribute="height" constant="200" id="QvN-Wc-Svl"/>
+                        <constraint firstAttribute="height" constant="400" id="QvN-Wc-Svl"/>
                         <constraint firstItem="4Pt-EK-9nf" firstAttribute="top" secondItem="dh1-d4-WaM" secondAttribute="top" id="Ttd-CH-RzA"/>
                         <constraint firstItem="4Pt-EK-9nf" firstAttribute="leading" secondItem="dh1-d4-WaM" secondAttribute="leading" id="xOs-w3-e6p"/>
                     </constraints>

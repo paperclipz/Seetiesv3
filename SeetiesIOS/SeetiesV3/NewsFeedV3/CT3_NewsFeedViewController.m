@@ -50,7 +50,7 @@
     [self initTableViewDelegate];
     [self initCollectionViewDelegate];
     
-    [self.ibHeaderView setHeight:self.lastView.frame.size.height + self.lastView.frame.origin.y];
+    [self adjustView];
 }
 
 -(void)initTableViewDelegate
@@ -59,9 +59,7 @@
     self.ibTableView.dataSource = self;
     [self.ibTableView registerClass:[FeedTableViewCell class] forCellReuseIdentifier:@"FeedTableViewCell"];
     
-    [self.ibQuickBrowseCollectionView registerClass:[QuickBrowserCollectionTableViewCell class] forCellWithReuseIdentifier:@"QuickBrowserCollectionTableViewCell"];
-    self.ibQuickBrowseCollectionView.delegate = self;
-    self.ibQuickBrowseCollectionView.dataSource = self;
+
 }
 
 -(void)initCollectionViewDelegate
@@ -71,8 +69,10 @@
     self.ibIntroCollectionView.dataSource = self;
     [self.ibIntroCollectionView registerClass:[FeedSquareCollectionViewCell class] forCellWithReuseIdentifier:@"FeedSquareCollectionViewCell"];
     
+    [self.ibQuickBrowseCollectionView registerClass:[QuickBrowserCollectionTableViewCell class] forCellWithReuseIdentifier:@"QuickBrowserCollectionTableViewCell"];
     self.ibQuickBrowseCollectionView.delegate = self;
-    
+    self.ibQuickBrowseCollectionView.dataSource = self;
+    self.ibQuickBrowseCollectionView.backgroundColor = [UIColor clearColor];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -82,6 +82,11 @@
 
 -(void)adjustView
 {
+    self.constantQuickBrowseHeight.constant = 1000;
+    [self.ibHeaderView setHeight:(self.lastView.frame.size.height + self.lastView.frame.origin.y)];
+    [self.ibHeaderView refreshConstraint];
+    [self.ibTableView reloadData];
+  // CGSize apple = [self.ibTableView intrinsicContentSize];
     
 }
 
@@ -152,11 +157,11 @@
 {
     
     if (collectionView == self.ibIntroCollectionView) {
-        return 10;
+        return 1;
 
     }
     else{
-        return 20;
+        return 3;
     
     }
     
