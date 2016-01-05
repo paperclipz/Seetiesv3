@@ -49,6 +49,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+}
 - (UIStatusBarStyle) preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
@@ -58,26 +61,6 @@
 -(IBAction)AllowButtonOnClick:(id)sender{
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
     
-//    self.locationManager = [[CLLocationManager alloc]init];
-//    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-//    self.locationManager.delegate = self;
-//    self.locationManager.distanceFilter = 10;
-//    if(IS_OS_8_OR_LATER){
-//        NSUInteger code = [CLLocationManager authorizationStatus];
-//        if (code == kCLAuthorizationStatusNotDetermined && ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)] || [self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])) {
-//            // choose one request according to your business.
-//            if([[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationAlwaysUsageDescription"]){
-//                [self.locationManager requestAlwaysAuthorization];
-//                [self.locationManager startUpdatingLocation];
-//            } else if([[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationWhenInUseUsageDescription"]) {
-//                [self.locationManager  requestWhenInUseAuthorization];
-//                [self.locationManager startUpdatingLocation];
-//            } else {
-//                NSLog(@"Info.plist does not contain NSLocationAlwaysUsageDescription or NSLocationWhenInUseUsageDescription");
-//            }
-//        }
-//    }
-//    [self.locationManager startUpdatingLocation];
 }
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
@@ -113,5 +96,26 @@
     }
     NSLog(@"no location get feed data");
     [manager stopUpdatingLocation];
+}
+- (void)locationManager:(CLLocationManager*)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+    switch (status) {
+        case kCLAuthorizationStatusNotDetermined: {
+            NSLog(@"User still thinking granting location access!");
+            [self.locationManager startUpdatingLocation]; // this will access location automatically if user granted access manually. and will not show apple's request alert twice. (Tested)
+        } break;
+        case kCLAuthorizationStatusDenied: {
+            NSLog(@"User denied location access request!!");
+            NSLog(@"To re-enable, please go to Settings and turn on Location Service for this app.");
+            [self.locationManager stopUpdatingLocation];
+        } break;
+        case kCLAuthorizationStatusAuthorizedWhenInUse:
+        case kCLAuthorizationStatusAuthorizedAlways: {
+            // clear text
+            NSLog(@"Got Location");
+            [self.locationManager startUpdatingLocation]; //Will update location immediately
+        } break;
+        default:
+            break;
+    }
 }
 @end
