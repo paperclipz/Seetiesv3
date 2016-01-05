@@ -1136,6 +1136,8 @@
 		8AF999421C3B9CCD000314E4 /* QuickBrowserCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF999401C3B9CCD000314E4 /* QuickBrowserCollectionTableViewCell.xib */; };
 		8AF9994A1C3BBB45000314E4 /* CT3_MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF999481C3BBB45000314E4 /* CT3_MeViewController.m */; };
 		8AF9994B1C3BBB45000314E4 /* CT3_MeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF999491C3BBB45000314E4 /* CT3_MeViewController.xib */; };
+		8AF9994F1C3BD20F000314E4 /* WalletListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF9994D1C3BD20F000314E4 /* WalletListingViewController.m */; };
+		8AF999501C3BD20F000314E4 /* WalletListingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF9994E1C3BD20F000314E4 /* WalletListingViewController.xib */; };
 		C5AFD557B47280FB16C39985 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9C815292A4ED6F2408E5E5 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -2654,6 +2656,9 @@
 		8AF999471C3BBB45000314E4 /* CT3_MeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CT3_MeViewController.h; sourceTree = "<group>"; };
 		8AF999481C3BBB45000314E4 /* CT3_MeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CT3_MeViewController.m; sourceTree = "<group>"; };
 		8AF999491C3BBB45000314E4 /* CT3_MeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CT3_MeViewController.xib; sourceTree = "<group>"; };
+		8AF9994C1C3BD20F000314E4 /* WalletListingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalletListingViewController.h; sourceTree = "<group>"; };
+		8AF9994D1C3BD20F000314E4 /* WalletListingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalletListingViewController.m; sourceTree = "<group>"; };
+		8AF9994E1C3BD20F000314E4 /* WalletListingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WalletListingViewController.xib; sourceTree = "<group>"; };
 		A6BFDB1BE373200E64D8CBE7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CAB2B54F0EC79309593A3C4C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -5696,6 +5701,9 @@
 		8AF9993D1C3B7584000314E4 /* WalletListing */ = {
 			isa = PBXGroup;
 			children = (
+				8AF9994C1C3BD20F000314E4 /* WalletListingViewController.h */,
+				8AF9994D1C3BD20F000314E4 /* WalletListingViewController.m */,
+				8AF9994E1C3BD20F000314E4 /* WalletListingViewController.xib */,
 			);
 			path = WalletListing;
 			sourceTree = "<group>";
@@ -6067,6 +6075,7 @@
 				8A6CCDAC1C18075800BCD54E /* RateUs.png in Resources */,
 				8A6CCE971C18075800BCD54E /* SSBlueDirectionIcon@2x.png in Resources */,
 				8AD6C0C31B706CF30040437E /* FullImageViewController.xib in Resources */,
+				8AF999501C3BD20F000314E4 /* WalletListingViewController.xib in Resources */,
 				8A6CCCF91C18075800BCD54E /* FollowingCollectionTradChiIcon@2x.png in Resources */,
 				8A6CCE151C18075800BCD54E /* WhiteSeetiesLogo@2x.png in Resources */,
 				8A6CCD011C18075800BCD54E /* ListViewInactive@2x.png in Resources */,
@@ -6939,6 +6948,7 @@
 				8A114CE61BE75CA0006AE3F0 /* AddCollectionDataViewController.m in Sources */,
 				8AD6BE4F1B706CF30040437E /* ExploreViewController.m in Sources */,
 				8A114CD21BE73F5D006AE3F0 /* UrlDataClass.m in Sources */,
+				8AF9994F1C3BD20F000314E4 /* WalletListingViewController.m in Sources */,
 				8AD6C2811B7072FB0040437E /* AddHourViewController.m in Sources */,
 				8AD6C0C21B706CF30040437E /* FullImageViewController.m in Sources */,
 				0B99C2001BCBA1F1006D7E63 /* AnnounceViewController.m in Sources */,
