@@ -382,6 +382,11 @@
             
             break;
             
+        case ServerRequestTypeGetNewsFeed:
+            str = [NSString stringWithFormat:@"/%@/feed/v2",API_VERION_URL];
+
+            break;
+            
         case ServerRequestTypeGetLanguage:
             
             str = [NSString stringWithFormat:@"/%@/system/languages",API_VERION_URL];
@@ -465,7 +470,6 @@
 -(void)storeServerData:(id)obj requestType:(ServerRequestType)type
 {
 
-
     [LoadingManager hide];
 
     //make checking for status fail or success here
@@ -475,6 +479,10 @@
         case ServerRequestTypeGetApiVersion:
             self.dataManager.apiVersionModel = [[ApiVersionModel alloc]initWithDictionary:obj error:nil];
             [self processApiversion];
+            
+            break;
+            
+        case ServerRequestTypeGetNewsFeed:
             
             break;
             

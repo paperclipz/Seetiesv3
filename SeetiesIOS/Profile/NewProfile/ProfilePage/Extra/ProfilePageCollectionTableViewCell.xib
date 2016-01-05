@@ -23,7 +23,7 @@
                                 <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Someone Collection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kHj-jv-4sW">
-                                <rect key="frame" x="33" y="117" width="146.5" height="21"/>
+                                <rect key="frame" x="33" y="117" width="147" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="mC9-fF-UTc"/>
                                 </constraints>

@@ -123,7 +123,6 @@
         }
     }
     
-    
     if (self.profileType == ProfileViewTypeOwn) {
         [self.btnEdit setTitle:LocalisedString(@"Edit") forState:UIControlStateNormal];
         [Utils setRoundBorder:self.ibInnerContentView color:LINE_COLOR borderRadius:5.0f];
@@ -131,7 +130,6 @@
         
         [self.btnEdit setImage:nil forState:UIControlStateNormal];
         [self.btnEdit setImage:nil forState:UIControlStateSelected];
-
 
     }
     else{

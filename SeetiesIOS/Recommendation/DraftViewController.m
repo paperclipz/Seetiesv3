@@ -170,7 +170,7 @@
                            @"offset":@(self.draftsModel.offset + self.draftsModel.limit)
                            
                            };
-    
+  
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetRecommendationDraft param:dict appendString:nil completeHandler:^(id object) {
         
         self.draftsModel = [[ConnectionManager dataManager]draftsModel];
@@ -213,8 +213,9 @@
         {
             EditPostViewController* obj  = (EditPostViewController*)object;
             obj = nil;
-            _arrDraftList = nil;
             _draftsModel = nil;
+            _arrDraftList = nil;
+            [weakSelf.tableView reloadData];
             [weakSelf requestServerForDraft];
         
         };

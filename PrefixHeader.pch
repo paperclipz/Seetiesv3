@@ -62,6 +62,8 @@
 #import "RecommendationModel.h"
 #import "Locale.h"
 #import "SeetiesIOS-Swift.h"
+#import "CoreModel.h"
+
 
 #endif
 

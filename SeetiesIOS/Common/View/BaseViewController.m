@@ -16,25 +16,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-  
+
     // Do any additional setup after loading the view.
 }
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.leveyTabBarController.tabBar.hidden = NO;
+    
+//    [UIView animateWithDuration:0.2 animations:^{
+//        [self.leveyTabBarController.tabBar setY:self.view.frame.size.height - self.leveyTabBarController.tabBar.frame.size.height];
+//    }];
+}
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    self.leveyTabBarController.tabBar.hidden = YES;
+
+}
+//-(void)viewDidDisappear:(BOOL)animated
+//{
+//    [UIView animateWithDuration:ANIMATION_DURATION animations:^{
+//        [self.leveyTabBarController.tabBar setY:self.view.frame.size.height];
+//    }];
+//}
+//
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(id)initWithTabController:(LeveyTabBarController*)controller
-{
-    if (self = [super init]) {
-        self.leveyTabBarController = controller;
-    }
-    
-    return self;
-
 }
 
 -(id)init{

@@ -8,14 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "GAITrackedViewController.h"
-#import "LeveyTabBarController.h"
 #import "CommonViewController.h"
 
 @interface BaseViewController : CommonViewController
 
-
-@property(nonatomic,strong)LeveyTabBarController* leveyTabBarController;
--(void)changeTransition:(UINavigationController*)nav;
 -(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated;
 @property(nonatomic,strong)UINavigationController* navController;
 @end

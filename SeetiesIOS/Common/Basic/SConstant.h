@@ -15,7 +15,7 @@
 typedef enum
 {
     ServerRequestTypeLogin = 1,
-    ServerRequestTypeNewsFeed = 2,
+    ServerRequestTypeGetNewsFeed = 2,
     ServerRequestTypeGetLanguage = 3,
     ServerRequestTypeGetApiVersion = 4,
     ServerRequestTypeGetExplore = 5,

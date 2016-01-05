@@ -29,14 +29,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // self.transitioningDelegate = self;
-    // self.modalPresentationStyle = UIModalPresentationCustom;
-    // Do any additional setup after loading the view.
 }
 
 -(void)applyTabBarContraint
 {
-    
     if (self.bottomConstraint) {
         self.bottomConstraint.constant = TAB_BAR_HEIGHT;
     }

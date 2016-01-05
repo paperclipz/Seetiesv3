@@ -40,6 +40,7 @@ pod 'ViewMonitor'
 pod 'MGInstagram'
 pod 'MHVideoPhotoGallery'
 
+pod 'ESTabBarController'
 #================ debugging =====================#
 #pod 'CocoaLumberjack'
 

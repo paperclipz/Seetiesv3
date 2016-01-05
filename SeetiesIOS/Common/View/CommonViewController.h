@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 //#import "PresentingAnimationController.h"
 //#import "DismissingAnimationController.h"
-@interface CommonViewController : GAITrackedViewController<UIViewControllerTransitioningDelegate>
+#import "LeveyTabBarController.h"
+
+@interface CommonViewController : GAITrackedViewController<UIViewControllerTransitioningDelegate,LeveyTabBarControllerDelegate>
 -(void)applyTabBarContraint;
 @property(nonatomic,copy)IDBlock btnBackBlock;
 

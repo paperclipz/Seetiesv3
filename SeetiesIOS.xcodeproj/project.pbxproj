@@ -162,10 +162,6 @@
 		8A114CEA1BE75CA0006AE3F0 /* NewCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114CE41BE75CA0006AE3F0 /* NewCollectionViewController.m */; };
 		8A114CEB1BE75CA0006AE3F0 /* NewCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A114CE51BE75CA0006AE3F0 /* NewCollectionViewController.xib */; };
 		8A11513E1BE777FD006AE3F0 /* UIScrollView+VGParallaxHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A11513D1BE777FD006AE3F0 /* UIScrollView+VGParallaxHeader.m */; };
-		8A1254131BC4F31A00AA4120 /* NewsFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A1254111BC4F31A00AA4120 /* NewsFeedViewController.m */; };
-		8A1254141BC4F31A00AA4120 /* NewsFeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A1254121BC4F31A00AA4120 /* NewsFeedViewController.xib */; };
-		8A1254181BC4F46500AA4120 /* NewsFeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A1254171BC4F46500AA4120 /* NewsFeedTableViewCell.m */; };
-		8A12541A1BC4F46F00AA4120 /* NewsFeedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A1254191BC4F46F00AA4120 /* NewsFeedTableViewCell.xib */; };
 		8A2E2C141B79E7A30010895E /* RecommendationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E2C121B79E7A30010895E /* RecommendationViewController.m */; };
 		8A2E2C151B79E7A30010895E /* RecommendationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A2E2C131B79E7A30010895E /* RecommendationViewController.xib */; };
 		8A2E2CE21B81CFE40010895E /* STSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E2CE01B81CFE40010895E /* STSearchViewController.m */; };
@@ -839,6 +835,9 @@
 		8A7420EC1B82F7D5005DA654 /* LoadingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7420EB1B82F7D5005DA654 /* LoadingManager.m */; };
 		8A7B9CE01BBD387000D7F604 /* EnbleLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7B9CDE1BBD387000D7F604 /* EnbleLocationViewController.m */; };
 		8A7B9CE11BBD387000D7F604 /* EnbleLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A7B9CDF1BBD387000D7F604 /* EnbleLocationViewController.xib */; };
+		8A7CEEC31C33E924005A3515 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BA671B705DF20040437E /* Main.storyboard */; };
+		8A7CEEC91C34CBB4005A3515 /* CT3_NewsFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7CEEC71C34CBB4005A3515 /* CT3_NewsFeedViewController.m */; };
+		8A7CEECA1C34CBB4005A3515 /* CT3_NewsFeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A7CEEC81C34CBB4005A3515 /* CT3_NewsFeedViewController.xib */; };
 		8A83CCBD1BD5ED5900C8B52C /* detox water.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8A83CCBC1BD5ED5900C8B52C /* detox water.jpg */; };
 		8A8475251BC5274C006DD614 /* UILabel+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A8475241BC5274C006DD614 /* UILabel+Extra.m */; };
 		8A84752B1BC52C0B006DD614 /* UITextField+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A84752A1BC52C0B006DD614 /* UITextField+Extra.m */; };
@@ -915,8 +914,6 @@
 		8AC8F7561BDDD44800DEF14A /* UIImageView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8F7551BDDD44800DEF14A /* UIImageView+Extension.m */; };
 		8AC8F75B1BDDD67600DEF14A /* ListingHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8F75A1BDDD67600DEF14A /* ListingHeaderView.m */; };
 		8AC8F75D1BDDD68500DEF14A /* ListingHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AC8F75C1BDDD68500DEF14A /* ListingHeaderView.xib */; };
-		8AD3CCA51C32A185006E58E5 /* NewLandingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD3CCA41C32A185006E58E5 /* NewLandingViewController.m */; };
-		8AD3CCA71C32A194006E58E5 /* NewLandingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD3CCA61C32A194006E58E5 /* NewLandingViewController.xib */; };
 		8AD6BA601B705DF20040437E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA5F1B705DF20040437E /* main.m */; };
 		8AD6BA631B705DF20040437E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA621B705DF20040437E /* AppDelegate.m */; };
 		8AD6BA661B705DF20040437E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA651B705DF20040437E /* ViewController.m */; };
@@ -1124,6 +1121,17 @@
 		8AF39CDC1BC66536009C7F26 /* UITableView+NXEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF39CDB1BC66536009C7F26 /* UITableView+NXEmptyView.m */; };
 		8AF53EFC1BD65F5A00AF6C9E /* UIView+RoundedCorners.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF53EFB1BD65F5A00AF6C9E /* UIView+RoundedCorners.m */; };
 		8AF53F1B1BD8850E00AF6C9E /* NSObject+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF53F1A1BD8850E00AF6C9E /* NSObject+Extension.m */; };
+		8AF999121C3A2928000314E4 /* NewsFeedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF999111C3A2928000314E4 /* NewsFeedModel.m */; };
+		8AF999151C3A2ADD000314E4 /* PagingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF999141C3A2ADD000314E4 /* PagingModel.m */; };
+		8AF999191C3A2C76000314E4 /* PaginationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF999181C3A2C76000314E4 /* PaginationModel.m */; };
+		8AF9991E1C3A5105000314E4 /* NewLandingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF9991C1C3A5105000314E4 /* NewLandingViewController.m */; };
+		8AF9991F1C3A5105000314E4 /* NewLandingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF9991D1C3A5105000314E4 /* NewLandingViewController.xib */; };
+		8AF999281C3A6BF2000314E4 /* FeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF999271C3A6BF2000314E4 /* FeedTableViewCell.m */; };
+		8AF9992C1C3A6C09000314E4 /* FeedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF9992B1C3A6C09000314E4 /* FeedTableViewCell.xib */; };
+		8AF999301C3A77A4000314E4 /* FeedSquareCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF9992E1C3A77A4000314E4 /* FeedSquareCollectionViewCell.m */; };
+		8AF999311C3A77A4000314E4 /* FeedSquareCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF9992F1C3A77A4000314E4 /* FeedSquareCollectionViewCell.xib */; };
+		8AF999361C3A891D000314E4 /* CT3_LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF999341C3A891D000314E4 /* CT3_LoginViewController.m */; };
+		8AF999371C3A891D000314E4 /* CT3_LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF999351C3A891D000314E4 /* CT3_LoginViewController.xib */; };
 		C5AFD557B47280FB16C39985 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9C815292A4ED6F2408E5E5 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -1138,7 +1146,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0B1D9F261BE2317700AAE8CE /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		0B1D9F261BE2317700AAE8CE /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "../Launch Screen.storyboard"; sourceTree = "<group>"; };
 		0B3FF10C1BB131A20014AF2E /* NearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyViewController.h; sourceTree = "<group>"; };
 		0B3FF10D1BB131A20014AF2E /* NearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyViewController.m; sourceTree = "<group>"; };
 		0B3FF10E1BB131A20014AF2E /* NearbyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NearbyViewController.xib; sourceTree = "<group>"; };
@@ -1411,12 +1419,6 @@
 		8A114CE51BE75CA0006AE3F0 /* NewCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewCollectionViewController.xib; sourceTree = "<group>"; };
 		8A11513C1BE777FD006AE3F0 /* UIScrollView+VGParallaxHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+VGParallaxHeader.h"; sourceTree = "<group>"; };
 		8A11513D1BE777FD006AE3F0 /* UIScrollView+VGParallaxHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+VGParallaxHeader.m"; sourceTree = "<group>"; };
-		8A1254101BC4F31A00AA4120 /* NewsFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedViewController.h; sourceTree = "<group>"; };
-		8A1254111BC4F31A00AA4120 /* NewsFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFeedViewController.m; sourceTree = "<group>"; };
-		8A1254121BC4F31A00AA4120 /* NewsFeedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsFeedViewController.xib; sourceTree = "<group>"; };
-		8A1254161BC4F46500AA4120 /* NewsFeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedTableViewCell.h; sourceTree = "<group>"; };
-		8A1254171BC4F46500AA4120 /* NewsFeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFeedTableViewCell.m; sourceTree = "<group>"; };
-		8A1254191BC4F46F00AA4120 /* NewsFeedTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsFeedTableViewCell.xib; sourceTree = "<group>"; };
 		8A2E2C111B79E7A30010895E /* RecommendationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendationViewController.h; sourceTree = "<group>"; };
 		8A2E2C121B79E7A30010895E /* RecommendationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendationViewController.m; sourceTree = "<group>"; };
 		8A2E2C131B79E7A30010895E /* RecommendationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendationViewController.xib; sourceTree = "<group>"; };
@@ -2160,6 +2162,9 @@
 		8A7B9CDD1BBD387000D7F604 /* EnbleLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnbleLocationViewController.h; sourceTree = "<group>"; };
 		8A7B9CDE1BBD387000D7F604 /* EnbleLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnbleLocationViewController.m; sourceTree = "<group>"; };
 		8A7B9CDF1BBD387000D7F604 /* EnbleLocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EnbleLocationViewController.xib; sourceTree = "<group>"; };
+		8A7CEEC61C34CBB4005A3515 /* CT3_NewsFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CT3_NewsFeedViewController.h; sourceTree = "<group>"; };
+		8A7CEEC71C34CBB4005A3515 /* CT3_NewsFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CT3_NewsFeedViewController.m; sourceTree = "<group>"; };
+		8A7CEEC81C34CBB4005A3515 /* CT3_NewsFeedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CT3_NewsFeedViewController.xib; sourceTree = "<group>"; };
 		8A83CCBC1BD5ED5900C8B52C /* detox water.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "detox water.jpg"; sourceTree = "<group>"; };
 		8A8475231BC5274C006DD614 /* UILabel+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Extra.h"; sourceTree = "<group>"; };
 		8A8475241BC5274C006DD614 /* UILabel+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Extra.m"; sourceTree = "<group>"; };
@@ -2210,7 +2215,7 @@
 		8ABA51F61C10329600A3DC15 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
 		8ABA51F71C10329600A3DC15 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
 		8ABA51F81C10329600A3DC15 /* PhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoViewController.xib; sourceTree = "<group>"; };
-		8AC8F63B1BDA309D00DEF14A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		8AC8F63B1BDA309D00DEF14A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		8AC8F6D71BDA414E00DEF14A /* CollectionListingTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionListingTabViewController.h; sourceTree = "<group>"; };
 		8AC8F6D81BDA414E00DEF14A /* CollectionListingTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionListingTabViewController.m; sourceTree = "<group>"; };
 		8AC8F6D91BDA414E00DEF14A /* CollectionListingTabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionListingTabViewController.xib; sourceTree = "<group>"; };
@@ -2279,9 +2284,6 @@
 		8AC8F7591BDDD67600DEF14A /* ListingHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListingHeaderView.h; sourceTree = "<group>"; };
 		8AC8F75A1BDDD67600DEF14A /* ListingHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListingHeaderView.m; sourceTree = "<group>"; };
 		8AC8F75C1BDDD68500DEF14A /* ListingHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListingHeaderView.xib; sourceTree = "<group>"; };
-		8AD3CCA31C32A185006E58E5 /* NewLandingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewLandingViewController.h; sourceTree = "<group>"; };
-		8AD3CCA41C32A185006E58E5 /* NewLandingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewLandingViewController.m; sourceTree = "<group>"; };
-		8AD3CCA61C32A194006E58E5 /* NewLandingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewLandingViewController.xib; sourceTree = "<group>"; };
 		8AD6BA5A1B705DF20040437E /* SeetiesIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeetiesIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AD6BA5E1B705DF20040437E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8AD6BA5F1B705DF20040437E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -2623,6 +2625,25 @@
 		8AF53EFB1BD65F5A00AF6C9E /* UIView+RoundedCorners.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+RoundedCorners.m"; sourceTree = "<group>"; };
 		8AF53F191BD8850E00AF6C9E /* NSObject+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Extension.h"; sourceTree = "<group>"; };
 		8AF53F1A1BD8850E00AF6C9E /* NSObject+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Extension.m"; sourceTree = "<group>"; };
+		8AF999101C3A2928000314E4 /* NewsFeedModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedModel.h; sourceTree = "<group>"; };
+		8AF999111C3A2928000314E4 /* NewsFeedModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFeedModel.m; sourceTree = "<group>"; };
+		8AF999131C3A2ADD000314E4 /* PagingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagingModel.h; sourceTree = "<group>"; };
+		8AF999141C3A2ADD000314E4 /* PagingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagingModel.m; sourceTree = "<group>"; };
+		8AF999161C3A2BB1000314E4 /* CoreModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreModel.h; sourceTree = "<group>"; };
+		8AF999171C3A2C76000314E4 /* PaginationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaginationModel.h; sourceTree = "<group>"; };
+		8AF999181C3A2C76000314E4 /* PaginationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaginationModel.m; sourceTree = "<group>"; };
+		8AF9991B1C3A5105000314E4 /* NewLandingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewLandingViewController.h; sourceTree = "<group>"; };
+		8AF9991C1C3A5105000314E4 /* NewLandingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewLandingViewController.m; sourceTree = "<group>"; };
+		8AF9991D1C3A5105000314E4 /* NewLandingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewLandingViewController.xib; sourceTree = "<group>"; };
+		8AF999261C3A6BF2000314E4 /* FeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedTableViewCell.h; sourceTree = "<group>"; };
+		8AF999271C3A6BF2000314E4 /* FeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedTableViewCell.m; sourceTree = "<group>"; };
+		8AF9992B1C3A6C09000314E4 /* FeedTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedTableViewCell.xib; sourceTree = "<group>"; };
+		8AF9992D1C3A77A4000314E4 /* FeedSquareCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedSquareCollectionViewCell.h; sourceTree = "<group>"; };
+		8AF9992E1C3A77A4000314E4 /* FeedSquareCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedSquareCollectionViewCell.m; sourceTree = "<group>"; };
+		8AF9992F1C3A77A4000314E4 /* FeedSquareCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedSquareCollectionViewCell.xib; sourceTree = "<group>"; };
+		8AF999331C3A891D000314E4 /* CT3_LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CT3_LoginViewController.h; sourceTree = "<group>"; };
+		8AF999341C3A891D000314E4 /* CT3_LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CT3_LoginViewController.m; sourceTree = "<group>"; };
+		8AF999351C3A891D000314E4 /* CT3_LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CT3_LoginViewController.xib; sourceTree = "<group>"; };
 		A6BFDB1BE373200E64D8CBE7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CAB2B54F0EC79309593A3C4C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -3446,22 +3467,8 @@
 			isa = PBXGroup;
 			children = (
 				8A3F355B1BF5E89D002B704C /* NewsFeed_SuggestedCollection */,
-				8A1254151BC4F44A00AA4120 /* Extra */,
-				8A1254101BC4F31A00AA4120 /* NewsFeedViewController.h */,
-				8A1254111BC4F31A00AA4120 /* NewsFeedViewController.m */,
-				8A1254121BC4F31A00AA4120 /* NewsFeedViewController.xib */,
 			);
 			path = NEW_newsFeed;
-			sourceTree = "<group>";
-		};
-		8A1254151BC4F44A00AA4120 /* Extra */ = {
-			isa = PBXGroup;
-			children = (
-				8A1254161BC4F46500AA4120 /* NewsFeedTableViewCell.h */,
-				8A1254171BC4F46500AA4120 /* NewsFeedTableViewCell.m */,
-				8A1254191BC4F46F00AA4120 /* NewsFeedTableViewCell.xib */,
-			);
-			name = Extra;
 			sourceTree = "<group>";
 		};
 		8A2E2CE71B81E1360010895E /* Extra */ = {
@@ -4589,6 +4596,28 @@
 			name = SeetiShopListing;
 			sourceTree = "<group>";
 		};
+		8A7CEEC41C33F818005A3515 /* SeetiesV3 */ = {
+			isa = PBXGroup;
+			children = (
+				8AF999381C3B7584000314E4 /* ListingV3 */,
+				8AF999321C3A88ED000314E4 /* LoginV3 */,
+				8AF9991A1C3A5105000314E4 /* LandingV3 */,
+				8A7CEEC51C33F825005A3515 /* NewsFeedV3 */,
+			);
+			path = SeetiesV3;
+			sourceTree = "<group>";
+		};
+		8A7CEEC51C33F825005A3515 /* NewsFeedV3 */ = {
+			isa = PBXGroup;
+			children = (
+				8AF999201C3A5BC6000314E4 /* Cell */,
+				8A7CEEC61C34CBB4005A3515 /* CT3_NewsFeedViewController.h */,
+				8A7CEEC71C34CBB4005A3515 /* CT3_NewsFeedViewController.m */,
+				8A7CEEC81C34CBB4005A3515 /* CT3_NewsFeedViewController.xib */,
+			);
+			path = NewsFeedV3;
+			sourceTree = "<group>";
+		};
 		8A8475321BC52D0D006DD614 /* SystemOverride */ = {
 			isa = PBXGroup;
 			children = (
@@ -4868,21 +4897,9 @@
 			path = ReusableView;
 			sourceTree = "<group>";
 		};
-		8AD3CC9F1C32A0F1006E58E5 /* New_LandingViewController */ = {
-			isa = PBXGroup;
-			children = (
-				8AD3CCA31C32A185006E58E5 /* NewLandingViewController.h */,
-				8AD3CCA41C32A185006E58E5 /* NewLandingViewController.m */,
-				8AD3CCA61C32A194006E58E5 /* NewLandingViewController.xib */,
-			);
-			path = New_LandingViewController;
-			sourceTree = "<group>";
-		};
 		8AD6BA511B705DF20040437E = {
 			isa = PBXGroup;
 			children = (
-				0B1D9F261BE2317700AAE8CE /* Launch Screen.storyboard */,
-				8AC8F63B1BDA309D00DEF14A /* Default-568h@2x.png */,
 				8AD6BA5C1B705DF20040437E /* SeetiesIOS */,
 				8AD6BA761B705DF30040437E /* SeetiesIOSTests */,
 				8AD6BA5B1B705DF20040437E /* Products */,
@@ -4903,6 +4920,10 @@
 		8AD6BA5C1B705DF20040437E /* SeetiesIOS */ = {
 			isa = PBXGroup;
 			children = (
+				8AC8F63B1BDA309D00DEF14A /* Default-568h@2x.png */,
+				0B1D9F261BE2317700AAE8CE /* Launch Screen.storyboard */,
+				8AD6BA671B705DF20040437E /* Main.storyboard */,
+				8A7CEEC41C33F818005A3515 /* SeetiesV3 */,
 				8A993CD01C322E5D009359E2 /* Testing */,
 				8AD6BAF41B706CF10040437E /* FRAMEWORK */,
 				8AD6BA961B706CF10040437E /* CATEGORY */,
@@ -4933,7 +4954,6 @@
 				8AD6BA621B705DF20040437E /* AppDelegate.m */,
 				8AD6BA641B705DF20040437E /* ViewController.h */,
 				8AD6BA651B705DF20040437E /* ViewController.m */,
-				8AD6BA671B705DF20040437E /* Main.storyboard */,
 				8AD6BA6A1B705DF20040437E /* Images.xcassets */,
 				8AD6BA6C1B705DF20040437E /* LaunchScreen.xib */,
 				8A69E0ED1C0405DD00224BB4 /* SeetiesIOS-Bridging-Header.h */,
@@ -5089,7 +5109,6 @@
 		8AD6BD661B706CF30040437E /* LandingPage */ = {
 			isa = PBXGroup;
 			children = (
-				8AD3CC9F1C32A0F1006E58E5 /* New_LandingViewController */,
 				8AD6BD671B706CF30040437E /* LandingV2ViewController.h */,
 				8AD6BD681B706CF30040437E /* LandingV2ViewController.m */,
 				8AD6BD691B706CF30040437E /* LandingV2ViewController.xib */,
@@ -5462,6 +5481,8 @@
 		8AEDBF761C2031BA000BD2FF /* MODELS */ = {
 			isa = PBXGroup;
 			children = (
+				8AF999161C3A2BB1000314E4 /* CoreModel.h */,
+				8AF9990F1C3A2905000314E4 /* NewsFeedModel */,
 				8AEDBFC01C2031EB000BD2FF /* SeetiesModel */,
 				8AEDBF771C2031BA000BD2FF /* ApiVersionModel.h */,
 				8AEDBF781C2031BA000BD2FF /* ApiVersionModel.m */,
@@ -5512,6 +5533,10 @@
 				8AEDBF7F1C2031BA000BD2FF /* RecommendationModel.m */,
 				8AEDBF801C2031BA000BD2FF /* RecommendationVenueModel.h */,
 				8AEDBF811C2031BA000BD2FF /* RecommendationVenueModel.m */,
+				8AF999131C3A2ADD000314E4 /* PagingModel.h */,
+				8AF999141C3A2ADD000314E4 /* PagingModel.m */,
+				8AF999171C3A2C76000314E4 /* PaginationModel.h */,
+				8AF999181C3A2C76000314E4 /* PaginationModel.m */,
 			);
 			path = AppModel;
 			sourceTree = "<group>";
@@ -5570,6 +5595,95 @@
 				8AF53F1A1BD8850E00AF6C9E /* NSObject+Extension.m */,
 			);
 			name = "NSObject+Extension";
+			sourceTree = "<group>";
+		};
+		8AF9990F1C3A2905000314E4 /* NewsFeedModel */ = {
+			isa = PBXGroup;
+			children = (
+				8AF999101C3A2928000314E4 /* NewsFeedModel.h */,
+				8AF999111C3A2928000314E4 /* NewsFeedModel.m */,
+			);
+			path = NewsFeedModel;
+			sourceTree = "<group>";
+		};
+		8AF9991A1C3A5105000314E4 /* LandingV3 */ = {
+			isa = PBXGroup;
+			children = (
+				8AF9991B1C3A5105000314E4 /* NewLandingViewController.h */,
+				8AF9991C1C3A5105000314E4 /* NewLandingViewController.m */,
+				8AF9991D1C3A5105000314E4 /* NewLandingViewController.xib */,
+			);
+			path = LandingV3;
+			sourceTree = "<group>";
+		};
+		8AF999201C3A5BC6000314E4 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				8AF999261C3A6BF2000314E4 /* FeedTableViewCell.h */,
+				8AF999271C3A6BF2000314E4 /* FeedTableViewCell.m */,
+				8AF9992B1C3A6C09000314E4 /* FeedTableViewCell.xib */,
+				8AF9992D1C3A77A4000314E4 /* FeedSquareCollectionViewCell.h */,
+				8AF9992E1C3A77A4000314E4 /* FeedSquareCollectionViewCell.m */,
+				8AF9992F1C3A77A4000314E4 /* FeedSquareCollectionViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		8AF999321C3A88ED000314E4 /* LoginV3 */ = {
+			isa = PBXGroup;
+			children = (
+				8AF999331C3A891D000314E4 /* CT3_LoginViewController.h */,
+				8AF999341C3A891D000314E4 /* CT3_LoginViewController.m */,
+				8AF999351C3A891D000314E4 /* CT3_LoginViewController.xib */,
+			);
+			path = LoginV3;
+			sourceTree = "<group>";
+		};
+		8AF999381C3B7584000314E4 /* ListingV3 */ = {
+			isa = PBXGroup;
+			children = (
+				8AF999391C3B7584000314E4 /* PeopleListing */,
+				8AF9993A1C3B7584000314E4 /* PostListing */,
+				8AF9993B1C3B7584000314E4 /* ShopListing */,
+				8AF9993C1C3B7584000314E4 /* VoucherListing */,
+				8AF9993D1C3B7584000314E4 /* WalletListing */,
+			);
+			path = ListingV3;
+			sourceTree = "<group>";
+		};
+		8AF999391C3B7584000314E4 /* PeopleListing */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PeopleListing;
+			sourceTree = "<group>";
+		};
+		8AF9993A1C3B7584000314E4 /* PostListing */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PostListing;
+			sourceTree = "<group>";
+		};
+		8AF9993B1C3B7584000314E4 /* ShopListing */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ShopListing;
+			sourceTree = "<group>";
+		};
+		8AF9993C1C3B7584000314E4 /* VoucherListing */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = VoucherListing;
+			sourceTree = "<group>";
+		};
+		8AF9993D1C3B7584000314E4 /* WalletListing */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = WalletListing;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -5663,6 +5777,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A7CEEC31C33E924005A3515 /* Main.storyboard in Resources */,
 				8A6CCDA21C18075800BCD54E /* LikedIcon@2x.png in Resources */,
 				8A6CCE121C18075800BCD54E /* Walkthrough2.png in Resources */,
 				8A6CCCB71C18075800BCD54E /* ErrorIcon@2x.png in Resources */,
@@ -5818,7 +5933,6 @@
 				8A6CCE6E1C18075800BCD54E /* ProfileCollectionAddIcon@3x.png in Resources */,
 				8A6CCCCE1C18075800BCD54E /* iTunesArtwork@2x.png in Resources */,
 				8A6CCD6C1C18075800BCD54E /* ExploreOverlay@2x.png in Resources */,
-				8AD3CCA71C32A194006E58E5 /* NewLandingViewController.xib in Resources */,
 				8A3F35671BF5E89D002B704C /* SuggestedCollectionPostsViewController.xib in Resources */,
 				8A6CCE3E1C18075800BCD54E /* PostLocationIcon@3x.png in Resources */,
 				8A6CCCB81C18075800BCD54E /* ErrorIcon@3x.png in Resources */,
@@ -5855,6 +5969,7 @@
 				8A6CCECA1C18075800BCD54E /* ExploreIcon@3x.png in Resources */,
 				8A6CCD9D1C18075800BCD54E /* FollowIcon@3x.png in Resources */,
 				8A6CCE921C18075800BCD54E /* YellowCollect@3x.png in Resources */,
+				8AF999311C3A77A4000314E4 /* FeedSquareCollectionViewCell.xib in Resources */,
 				8A6CCDC71C18075800BCD54E /* AbroadIcon@2x.png in Resources */,
 				8A6CCCDD1C18075800BCD54E /* CollectionLink@2x.png in Resources */,
 				8A6CCDD91C18075800BCD54E /* LocalIcon@2x.png in Resources */,
@@ -5934,7 +6049,6 @@
 				8A6CCE3A1C18075800BCD54E /* PostCommentIcon@3x.png in Resources */,
 				8A6CCCAD1C18075800BCD54E /* SelectPhotoArrow@2x.png in Resources */,
 				8A6CCEDD1C18075800BCD54E /* WalkthroughEditPost.png in Resources */,
-				8A12541A1BC4F46F00AA4120 /* NewsFeedTableViewCell.xib in Resources */,
 				8A6CCE641C18075800BCD54E /* NoLikeIcon@2x.png in Resources */,
 				8A6CCED51C18075800BCD54E /* ProfileIcon@2x.png in Resources */,
 				8A6CCD781C18075800BCD54E /* CollectBtn@2x.png in Resources */,
@@ -6049,7 +6163,6 @@
 				8A6CCE7D1C18075800BCD54E /* ProfileShareIcon@2x.png in Resources */,
 				8A6CCE291C18075800BCD54E /* BluePin@2x.png in Resources */,
 				8AD6C0FF1B706CF30040437E /* SearchViewV2Controller.xib in Resources */,
-				8A1254141BC4F31A00AA4120 /* NewsFeedViewController.xib in Resources */,
 				8A6CCD171C18075800BCD54E /* DeleteIconSwipe@2x.png in Resources */,
 				8AD6C2AA1B7072FB0040437E /* WhereIsThisViewController.xib in Resources */,
 				8A6CCE171C18075800BCD54E /* WrongFill@2x.png in Resources */,
@@ -6064,6 +6177,7 @@
 				8A6CCD231C18075800BCD54E /* BigAddIcon@2x.png in Resources */,
 				8A6CCE1C1C18075800BCD54E /* NotificationCollect@3x.png in Resources */,
 				8A6CCCEB1C18075800BCD54E /* FollowCollectionSimplifiedChiIcon@2x.png in Resources */,
+				8AF999371C3A891D000314E4 /* CT3_LoginViewController.xib in Resources */,
 				8A6CCE831C18075800BCD54E /* AutoComplete@2x.png in Resources */,
 				8A6CCEC41C18075800BCD54E /* SimplifiedChinese.png in Resources */,
 				8A6CCCBA1C18075800BCD54E /* PinInMap@3x.png in Resources */,
@@ -6174,6 +6288,7 @@
 				8A6CCD611C18075800BCD54E /* ExploreCollectionImg1.png in Resources */,
 				8A6CCE4D1C18075800BCD54E /* DefaultProfilePic@2x.png in Resources */,
 				8A114CBA1BE73F5D006AE3F0 /* buttonbg@2x.png in Resources */,
+				8AF9991F1C3A5105000314E4 /* NewLandingViewController.xib in Resources */,
 				8A6CCD391C18075800BCD54E /* AboutIcon@2x.png in Resources */,
 				8A6CCDC41C18075800BCD54E /* OtherLogo@3x.png in Resources */,
 				8A6CCD591C18075800BCD54E /* NoResult@2x.png in Resources */,
@@ -6339,9 +6454,11 @@
 				8A6CCDED1C18075800BCD54E /* InstagramBtnActive@2x.png in Resources */,
 				8A6CCCC11C18075800BCD54E /* Icon-72@2x.png in Resources */,
 				8A6CCE891C18075800BCD54E /* SearchLocationBar@2x.png in Resources */,
+				8AF9992C1C3A6C09000314E4 /* FeedTableViewCell.xib in Resources */,
 				8A6CCDDF1C18075800BCD54E /* SportIcon@2x.png in Resources */,
 				0B40B3FF1C2164C9002D4ECB /* SSDefaultLogo@2x.png in Resources */,
 				8A6CCE681C18075800BCD54E /* PostIcon@3x.png in Resources */,
+				8A7CEECA1C34CBB4005A3515 /* CT3_NewsFeedViewController.xib in Resources */,
 				8A6CCEC71C18075800BCD54E /* CloseBtn@2x.png in Resources */,
 				8AD6C0D71B706CF30040437E /* PSelectYourInterestViewController.xib in Resources */,
 				8A6CCDDD1C18075800BCD54E /* ShowAllIcon@2x.png in Resources */,
@@ -6484,7 +6601,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A1254131BC4F31A00AA4120 /* NewsFeedViewController.m in Sources */,
 				8A45123C1BDE2C97008DE870 /* LikeListingCollectionViewCell.m in Sources */,
 				8AD6C29B1B7072FB0040437E /* PublishMainViewController.m in Sources */,
 				8A0F50B11C0C3B5B002B1E22 /* SeShopDetailView.m in Sources */,
@@ -6506,7 +6622,7 @@
 				8AD6BE4B1B706CF30040437E /* ExploreCountryV2ViewController.m in Sources */,
 				8AD6C10A1B706CF30040437E /* FeedbackViewController.m in Sources */,
 				8A114CB31BE73F5D006AE3F0 /* NSAttributedString+DVSTracking.m in Sources */,
-				8A1254181BC4F46500AA4120 /* NewsFeedTableViewCell.m in Sources */,
+				8AF9991E1C3A5105000314E4 /* NewLandingViewController.m in Sources */,
 				8A114CA31BE73F5D006AE3F0 /* PECropView.m in Sources */,
 				8A6CCEE91C1982D500BCD54E /* SeetiShopListingViewController.m in Sources */,
 				8A114CB61BE73F5D006AE3F0 /* BHExpandingTextView.m in Sources */,
@@ -6523,6 +6639,7 @@
 				8A114C891BE73F5D006AE3F0 /* CAPSPageMenu.m in Sources */,
 				8A3409D11B8B0DCB009B66C3 /* UIImage+Scaling.m in Sources */,
 				8AD6C0F41B706CF30040437E /* SearchChangeLocationViewController.m in Sources */,
+				8AF999151C3A2ADD000314E4 /* PagingModel.m in Sources */,
 				8AD6C0D01B706CF30040437E /* PInterestV2ViewController.m in Sources */,
 				0BA94DCB1BEAFA64003AB2E4 /* SuggestedCollectionsViewController.m in Sources */,
 				8A114CA91BE73F5D006AE3F0 /* CRMotionView.m in Sources */,
@@ -6549,6 +6666,7 @@
 				8A114C981BE73F5D006AE3F0 /* JTSImageInfo.m in Sources */,
 				8A3409411B8AD06A009B66C3 /* UIImage+Blurring.m in Sources */,
 				8AF292521C32448E00EF48EB /* UIImage+Extension.m in Sources */,
+				8AF999281C3A6BF2000314E4 /* FeedTableViewCell.m in Sources */,
 				8AEDBFBF1C2031BA000BD2FF /* UserDefaultModel.m in Sources */,
 				8AD6C28D1B7072FB0040437E /* LocationOnMapViewController.m in Sources */,
 				8AD6C0DA1B706CF30040437E /* PTnCViewController.m in Sources */,
@@ -6626,6 +6744,7 @@
 				0BBFE08C1B9FCC00004B17E9 /* EditProfileViewController.m in Sources */,
 				8A34094A1B8AD06A009B66C3 /* UIView+Screenshot.m in Sources */,
 				8A114CAD1BE73F5D006AE3F0 /* FSVenue.m in Sources */,
+				8AF999361C3A891D000314E4 /* CT3_LoginViewController.m in Sources */,
 				8AC8F7241BDA414E00DEF14A /* CollectionListingViewController.m in Sources */,
 				8A114CB51BE73F5D006AE3F0 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				8A114CD61BE73F5D006AE3F0 /* CommonView.m in Sources */,
@@ -6664,6 +6783,7 @@
 				8A114C881BE73F5D006AE3F0 /* UITableViewController+BMXSwipableCellSupport.m in Sources */,
 				8A3F35681BF5E89D002B704C /* SuggestedCollectionPostTableViewCell.m in Sources */,
 				8AC8F7421BDA414E00DEF14A /* ProfileV2ViewController.m in Sources */,
+				8AF999121C3A2928000314E4 /* NewsFeedModel.m in Sources */,
 				8AD6C1151B706CF30040437E /* FSOperation.m in Sources */,
 				8A114CCA1BE73F5D006AE3F0 /* NMBottomTabBar.m in Sources */,
 				8A6BB40F1BF0A412005AA1B3 /* UITableView+Extension.m in Sources */,
@@ -6711,19 +6831,21 @@
 				8AC8F74C1BDA414E00DEF14A /* EditTagCollectionViewCell.m in Sources */,
 				8AEDBFAD1C2031BA000BD2FF /* CategoriesModel.m in Sources */,
 				8A69E0F81C0412D800224BB4 /* ShareV2CollectionViewCell.swift in Sources */,
+				8AF999191C3A2C76000314E4 /* PaginationModel.m in Sources */,
 				8AEDBFB51C2031BA000BD2FF /* Model.m in Sources */,
 				8A114C971BE73F5D006AE3F0 /* JTSAnimatedGIFUtility.m in Sources */,
 				0B6A54E01BB51F84005B9D6B /* ReportViewController.m in Sources */,
 				8AEDBFBB1C2031BA000BD2FF /* SeShopCategoryModel.m in Sources */,
 				8A6BB4301BF0C338005AA1B3 /* MZFormSheetPresentationViewControllerAnimator.m in Sources */,
+				8A7CEEC91C34CBB4005A3515 /* CT3_NewsFeedViewController.m in Sources */,
 				8A114CAA1BE73F5D006AE3F0 /* CRZoomScrollView.m in Sources */,
-				8AD3CCA51C32A185006E58E5 /* NewLandingViewController.m in Sources */,
 				8A114C801BE73F5D006AE3F0 /* BKForwardingTextField.m in Sources */,
 				8AD6C0AB1B706CF30040437E /* InviteFrenViewController.m in Sources */,
 				8A114CD41BE73F5D006AE3F0 /* CommonCollectionViewCell.m in Sources */,
 				8A6CCEEE1C19837100BCD54E /* SeetiShopListTableViewCell.m in Sources */,
 				8AD6C1001B706CF30040437E /* AccountSettingViewController.m in Sources */,
 				8A11513E1BE777FD006AE3F0 /* UIScrollView+VGParallaxHeader.m in Sources */,
+				8AF999301C3A77A4000314E4 /* FeedSquareCollectionViewCell.m in Sources */,
 				8A2E2C141B79E7A30010895E /* RecommendationViewController.m in Sources */,
 				8AEDBFB61C2031BA000BD2FF /* PostModel.m in Sources */,
 				8A114CD81BE73F5D006AE3F0 /* ZFTokenField.m in Sources */,
