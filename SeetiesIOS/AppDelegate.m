@@ -409,7 +409,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     ApiVersionModel* model =[[ConnectionManager dataManager] apiVersionModel] ;
-    [defaults setObject:model.production?@"1":@"0" forKey:@"CheckAPI"];
+   [defaults setObject:model.production?@"1":@"0" forKey:@"CheckAPI"];
     [defaults synchronize];
     
     //Check version if same then proceed, if not same then promp error and also proceed to landing

@@ -41,12 +41,11 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
       //  shareToFrenVC = ShareV2ViewController.init(nibName: "ShareToFrenViewController", bundle: nil)
       //  self.navigationController!.pushViewController(shareToFrenVC, animated: true)
         self.shareToFrenVC = ShareToFrenViewController(nibName: "ShareToFrenViewController", bundle: nil)
-//        if(self.shareType == ShareTypePost){
-//        self.shareToFrenVC.GetPostsID(self.shareID, getCollectionID: nil, getUserID: userID, getType: self.shareType!)
-//        }else{
-//        self.shareToFrenVC.GetPostsID(nil, getCollectionID: self.shareID, getUserID: userID)
-//        }
-        self.shareToFrenVC.GetID(self.shareID, getUserID: userID, getType: self.shareType!)
+        
+        self.shareToFrenVC.GetID(self.shareID, getUserID: userID, getType: self.shareType!, getPostID: self.postID)
+        
+
+        
         self.presentViewController(self.shareToFrenVC, animated: true, completion: nil)
        // self.navigationController!.pushViewController(self.shareToFrenVC, animated: true)
 
