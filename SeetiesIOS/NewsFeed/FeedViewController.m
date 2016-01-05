@@ -5482,7 +5482,6 @@
         if (buttonIndex == [alertView cancelButtonIndex]){
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             NSString *GetBackCheckAPI = [defaults objectForKey:@"CheckAPI"];
-            //NSString *GetBackAPIVersion = [defaults objectForKey:@"APIVersionSet"];
             
             
             NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
@@ -5518,7 +5517,6 @@
             
             //save back
             [defaults setObject:GetBackCheckAPI forKey:@"CheckAPI"];
-            //[defaults setObject:GetBackAPIVersion forKey:@"APIVersionSet"];
             [defaults synchronize];
             
             

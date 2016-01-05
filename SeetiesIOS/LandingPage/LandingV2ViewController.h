@@ -16,7 +16,6 @@
 #import "InstagramLoginWebViewController.h"
 #import "LeveyTabBarController.h"
 #import "Locale.h"
-#import "NewsFeedViewController.h"
 #import "NotificationViewController.h"
 #import "OpenWebViewController.h"
 #import "PFollowTheExpertsViewController.h"
@@ -57,8 +56,6 @@
 @property(nonatomic,strong)LeveyTabBarController *leveyTabBarController;
 
 @property(nonatomic,strong)UILabel* ShowNotificationCount;
-
-@property(nonatomic,strong)NewsFeedViewController* newsFeedViewController;
 
 @property(nonatomic,strong)ProfileViewController* profileViewController;
 

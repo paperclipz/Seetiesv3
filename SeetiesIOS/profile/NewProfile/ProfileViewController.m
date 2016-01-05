@@ -181,6 +181,7 @@
 
 - (IBAction)btnSettingClicked:(id)sender {
     [self SaveProfileData];
+    _settingsViewController = nil;
     [self.navigationController pushViewController:self.settingsViewController animated:YES];
     
 }

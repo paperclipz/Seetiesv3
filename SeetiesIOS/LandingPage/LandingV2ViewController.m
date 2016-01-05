@@ -356,8 +356,6 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *CheckProvisioningStatus = [defaults objectForKey:@"CheckProvisioningStatus"];
     NSLog(@"CheckProvisioningStatus is %@",CheckProvisioningStatus);
-    NSString *APIVersionSet = [defaults objectForKey:@"APIVersionSet"];
-    NSLog(@"APIVersionSet is %@",APIVersionSet);
     NSTimer *RandomTimer;
 
     if ([Utils isLogin]) {
@@ -550,14 +548,6 @@
     return _profileViewController;
 }
 
--(NewsFeedViewController*)newsFeedViewController
-{
-    if (!_newsFeedViewController) {
-     //   _newsFeedViewController = [NewsFeedViewController new];
-    }
-    
-    return _newsFeedViewController;
-}
 -(PTnCViewController*)pTnCViewController
 {
     if (!_pTnCViewController) {

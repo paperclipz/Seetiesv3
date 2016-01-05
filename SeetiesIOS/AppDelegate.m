@@ -9,47 +9,14 @@
 #import "AppDelegate.h"
 #import "LandingV2ViewController.h"
 #import "GAI.h"
-#import "Foursquare2.h"
-#import "PTnCViewController.h"
-#import "PTellUsYourCityViewController.h"
-#import "PFollowTheExpertsViewController.h"
-#import "PSelectYourInterestViewController.h"
-#import "SearchViewController.h"
-#import "AccountSettingViewController.h"
-#import "CommentViewController.h"
-#import "PublishViewController.h"
-#import "PublishMainViewController.h"
-#import "AddLocationViewController.h"
-
 #import "LanguageManager.h"
 #import "Locale.h"
-#import "SearchViewV2.h"
-#import "WhereIsThisViewController.h"
-#import "AddPriceViewController.h"
-#import "PSearchLocationViewController.h"
-#import "SettingsViewController.h"
-#import "Filter2ViewController.h"
-#import "NotificationViewController.h"
-
 #import <Parse/Parse.h>
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
-
-#import "SelectImageViewController.h"
-#import "FeedV2ViewController.h"
-#import "ExploreViewController.h"
-#import "Explore2ViewController.h"
-#import "ProfileV2ViewController.h"
-#import "TellaStoryViewController.h"
-
-#import "PInterestV2ViewController.h"
-
-#import "DoImagePickerController.h"
-#import "FeedViewController.h"
-
-#import "AFNetworkActivityLogger.h"
-
 #import <sys/utsname.h>
+#import "NewLandingViewController.h"
+
 @import ViewMonitor;
 @interface AppDelegate ()
 
@@ -72,7 +39,23 @@
                                       secret:@"T5XT0AVNHLLO1NMXRNFCDBYGA453E12CTVN0WOSIHREEZTWA"
                                  callbackURL:@"testapp123://foursquare"];
     [GMSServices provideAPIKey:GOOGLE_API_KEY];
-   // [ViewMonitor start];
+    //Optional: automatically send uncaught exceptions to Google Analytics.
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
+    [GAI sharedInstance].dispatchInterval = 30;
+    // Optional: set Logger to VERBOSE for debug information.
+    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
+    // Initialize tracker. Replace with your tracking ID.
+    [[GAI sharedInstance] trackerWithTrackingId:@"UA-45737845-4"];
+
+    // [ViewMonitor start];
+
+
+}
+
+-(void)configureSetup
+{
+    [[IQKeyboardManager sharedManager] setToolbarManageBehaviour:IQAutoToolbarByPosition];
 
 
 }
@@ -89,35 +72,16 @@
 
 }
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
-    NSSetUncaughtExceptionHandler(&myExceptionHandler);
-    
-   // [[AFNetworkActivityLogger sharedLogger] startLogging];
-   // [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelDebug];
-    
-    [[IQKeyboardManager sharedManager] setToolbarManageBehaviour:IQAutoToolbarByPosition];
-
-    [self registrationForApi];
-    
-//    NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
-//    SETLANGUAGE(@"zh-Hans");
-//    SLog(@"language supported : == %@",LOCALIZATION(@"ExpertLogin_Username"));
-    
-    [self configureNotificaiton:application];
-    [self requestForApiVersion];
-
-    
+-(void)checkCurrentAppLanguage
+{
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:API_VERSION forKey:@"APIVersionSet"];
-    [userDefaults synchronize];
+
     
     LanguageManager *languageManager = [LanguageManager sharedLanguageManager];
     NSLog(@"===========  Language : %@  ===========", [[[NSBundle mainBundle] preferredLocalizations] objectAtIndex:0]);
     NSLog(@"===========  Region: %@  =========== ", [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]);
     
-  
+    
     // Check whether the language code has already been set.
     if (![userDefaults stringForKey:DEFAULTS_KEY_LANGUAGE_CODE]) {
         
@@ -178,16 +142,23 @@
         NSLog(@"DEFAULTS_KEY_LANGUAGE_CODE = %@",DEFAULTS_KEY_LANGUAGE_CODE);
         NSLog(@"The language has already been set :)");
     }
+
+}
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+   
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    NSSetUncaughtExceptionHandler(&myExceptionHandler);
+    
+
+    [self registrationForApi];
+    [self configureNotificaiton:application];
+    [self configureSetup];
+    [self requestForApiVersion];
+    [self checkCurrentAppLanguage];
     
     
-    // Optional: automatically send uncaught exceptions to Google Analytics.
-//    [GAI sharedInstance].trackUncaughtExceptions = YES;
-//    // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
-//    [GAI sharedInstance].dispatchInterval = 30;
-//    // Optional: set Logger to VERBOSE for debug information.
-//    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
-//    // Initialize tracker. Replace with your tracking ID.
-//    [[GAI sharedInstance] trackerWithTrackingId:@"UA-45737845-4"];
     
     if (![Utils isLogin]) {
       
@@ -423,27 +394,13 @@
 
 -(void)requestForApiVersion{
     
-//    self.window.rootViewController = self.landingV2ViewController;
-//    self.window.backgroundColor = [UIColor whiteColor];
-//    [self.window makeKeyAndVisible];
-//
-//    return;
+    
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetApiVersion param:nil  appendString:nil completeHandler:^(id object) {
         [self processAPIVersion];
 
     } errorBlock:^(id object) {
     }];
   
-}
-#pragma mark - Declaration
--(LandingV2ViewController*)landingV2ViewController
-{
-    if(!_landingV2ViewController)
-    {
-        _landingV2ViewController = [LandingV2ViewController new];
-    }
-    
-    return _landingV2ViewController;
 }
 
 #pragma mark -  connection processing
@@ -471,10 +428,8 @@
                           }];        
     }
    
-    
-    //PFollowTheExpertsViewController *SeeView = [[PFollowTheExpertsViewController alloc]init];
-    
-    self.window.rootViewController = self.landingV2ViewController;//self.landingV2ViewController
+    NewLandingViewController* landingViewController = [NewLandingViewController new];
+    self.window.rootViewController = landingViewController;//self.landingV2ViewController
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 
@@ -504,5 +459,14 @@ NSString* deviceName()
 }
 
 
-
+#pragma mark - Declaration
+-(LandingV2ViewController*)landingV2ViewController
+{
+    if(!_landingV2ViewController)
+    {
+        _landingV2ViewController = [LandingV2ViewController new];
+    }
+    
+    return _landingV2ViewController;
+}
 @end

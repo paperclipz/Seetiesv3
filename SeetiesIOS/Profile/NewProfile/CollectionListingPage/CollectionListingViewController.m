@@ -81,6 +81,7 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
     [self.myCollectionListingViewController reloadView];
     [self.followingCollectionListingViewController reloadView];
 }

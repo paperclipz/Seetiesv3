@@ -704,7 +704,6 @@
         if ([statusString isEqualToString:@"ok"]) {
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             NSString *GetBackCheckAPI = [defaults objectForKey:@"CheckAPI"];
-            NSString *GetBackAPIVersion = [defaults objectForKey:@"APIVersionSet"];
             
             //cancel clicked ...do your action
             NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
@@ -741,7 +740,6 @@
             
             //save back
             [defaults setObject:GetBackCheckAPI forKey:@"CheckAPI"];
-            [defaults setObject:GetBackAPIVersion forKey:@"APIVersionSet"];
             [defaults synchronize];
             
             
