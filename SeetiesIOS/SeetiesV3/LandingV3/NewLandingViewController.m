@@ -26,6 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
+    [self requestServerForLanguageList];
     
     
     // Do any additional setup after loading the view.
@@ -38,6 +39,22 @@
 
 
 #pragma mark - Declaration
+
+-(CT3_LoginViewController*)loginViewController
+{
+    if (!_loginViewController) {
+        _loginViewController = [CT3_LoginViewController new];
+        
+        __weak typeof (self)weakSelf = self;
+        _loginViewController.didFinishLoginBlock = ^(void)
+        {
+            [weakSelf.newsFeedViewController refreshViewAfterLogin];
+        };
+    }
+    
+    return _loginViewController;
+}
+
 -(LeveyTabBarController*)leveyTabBarController
 {
     
@@ -85,6 +102,13 @@
 {
     if (!_newsFeedViewController) {
         _newsFeedViewController = [CT3_NewsFeedViewController new];
+        
+        __weak typeof (self)weakSelf = self;
+        _newsFeedViewController.btnLoginClickedBlock = ^(void)
+        {
+            [weakSelf.navigationController pushViewController:weakSelf.loginViewController animated:YES];
+        };
+
     }
     return _newsFeedViewController;
 }
@@ -126,6 +150,20 @@
     }
     
     return YES;
+}
+
+-(void)requestServerForLanguageList{
+    
+    [LoadingManager show];
+    
+    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetLanguage param:nil appendString:nil completeHandler:^(id object) {
+        
+        
+    } errorBlock:^(id object) {
+        
+        
+    }];
+    
 }
 
 @end

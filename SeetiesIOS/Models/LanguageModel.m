@@ -10,14 +10,13 @@
 
 @implementation LanguageModel
 
-//+(JSONKeyMapper*)keyMapper
-//{
-//    return [[JSONKeyMapper alloc] initWithDictionary:@{
-//                                                       @"order_id": @"id",
-//                                                       @"order_details.name": @"productName",
-//                                                       @"order_details.price.usd": @"price"
-//                                                       }];
-//}
++(JSONKeyMapper*)keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{
+                                                       @"langID": @"id",
+                                                     
+                                                       }];
+}
 
 @end
 
