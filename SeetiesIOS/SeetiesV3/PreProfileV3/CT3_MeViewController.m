@@ -15,7 +15,9 @@
 @implementation CT3_MeViewController
 - (IBAction)btnTestClicked:(id)sender {
 }
-
+- (IBAction)btnTestShopListingClicked:(id)sender {
+    [self.navigationController pushViewController:self.shopListingViewController animated:YES];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -35,5 +37,11 @@
     // Pass the selected object to the new view controller.
 }
 */
-
+-(ShopListingViewController*)shopListingViewController
+{
+    if (!_shopListingViewController) {
+        _shopListingViewController = [ShopListingViewController new];
+    }
+    return _shopListingViewController;
+}
 @end
