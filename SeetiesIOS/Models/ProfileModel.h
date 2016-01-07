@@ -29,6 +29,18 @@
 @property(nonatomic,assign)BOOL following;
 @property(nonatomic,strong)NSString* uid;
 
+
+@property (nonatomic,strong)NSArray* categories;
+@property (nonatomic,strong)NSString* crawler;
+
+@property (nonatomic,strong)NSString* email;
+@property (nonatomic,strong)NSString* token;
+@property (nonatomic,strong)NSString* role;
+@property (nonatomic,strong)LanguageModel* system_language;
+@property (nonatomic,strong)NSString* provisioning;
+@property (nonatomic,strong)NSString* fb_id;
+@property (nonatomic,strong)NSString* insta_id;
+
 @end
 
 @interface ProfilePostModel : Model
@@ -40,3 +52,4 @@
 @property(nonatomic,strong)ShopsModel* userPostData;
 
 @end
+

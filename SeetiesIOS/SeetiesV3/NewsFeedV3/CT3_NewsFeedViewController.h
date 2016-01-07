@@ -12,4 +12,8 @@
 @interface CT3_NewsFeedViewController : BaseViewController
 
 @property(nonatomic,strong)CT3_MeViewController* meViewController;
+@property(nonatomic,copy)VoidBlock btnLoginClickedBlock;
+
+-(void)refreshViewAfterLogin;
+
 @end

@@ -1144,6 +1144,9 @@
 		8AF9994B1C3BBB45000314E4 /* CT3_MeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF999491C3BBB45000314E4 /* CT3_MeViewController.xib */; };
 		8AF9994F1C3BD20F000314E4 /* WalletListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF9994D1C3BD20F000314E4 /* WalletListingViewController.m */; };
 		8AF999501C3BD20F000314E4 /* WalletListingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF9994E1C3BD20F000314E4 /* WalletListingViewController.xib */; };
+		8AF999531C3CC5E6000314E4 /* FacebookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF999521C3CC5E6000314E4 /* FacebookModel.m */; };
+		8AF999601C3E20C4000314E4 /* FeedType_One_TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF9995F1C3E20C4000314E4 /* FeedType_One_TableViewCell.m */; };
+		8AF999621C3E20D7000314E4 /* FeedType_One_TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF999611C3E20D7000314E4 /* FeedType_One_TableViewCell.xib */; };
 		C5AFD557B47280FB16C39985 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9C815292A4ED6F2408E5E5 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -2650,7 +2653,6 @@
 		8AF999111C3A2928000314E4 /* NewsFeedModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFeedModel.m; sourceTree = "<group>"; };
 		8AF999131C3A2ADD000314E4 /* PagingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagingModel.h; sourceTree = "<group>"; };
 		8AF999141C3A2ADD000314E4 /* PagingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagingModel.m; sourceTree = "<group>"; };
-		8AF999161C3A2BB1000314E4 /* CoreModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreModel.h; sourceTree = "<group>"; };
 		8AF999171C3A2C76000314E4 /* PaginationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaginationModel.h; sourceTree = "<group>"; };
 		8AF999181C3A2C76000314E4 /* PaginationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaginationModel.m; sourceTree = "<group>"; };
 		8AF9991B1C3A5105000314E4 /* NewLandingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewLandingViewController.h; sourceTree = "<group>"; };
@@ -2674,6 +2676,11 @@
 		8AF9994C1C3BD20F000314E4 /* WalletListingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalletListingViewController.h; sourceTree = "<group>"; };
 		8AF9994D1C3BD20F000314E4 /* WalletListingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalletListingViewController.m; sourceTree = "<group>"; };
 		8AF9994E1C3BD20F000314E4 /* WalletListingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WalletListingViewController.xib; sourceTree = "<group>"; };
+		8AF999511C3CC5E6000314E4 /* FacebookModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookModel.h; sourceTree = "<group>"; };
+		8AF999521C3CC5E6000314E4 /* FacebookModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookModel.m; sourceTree = "<group>"; };
+		8AF9995E1C3E20C4000314E4 /* FeedType_One_TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedType_One_TableViewCell.h; sourceTree = "<group>"; };
+		8AF9995F1C3E20C4000314E4 /* FeedType_One_TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedType_One_TableViewCell.m; sourceTree = "<group>"; };
+		8AF999611C3E20D7000314E4 /* FeedType_One_TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedType_One_TableViewCell.xib; sourceTree = "<group>"; };
 		A6BFDB1BE373200E64D8CBE7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CAB2B54F0EC79309593A3C4C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -5528,7 +5535,6 @@
 		8AEDBF761C2031BA000BD2FF /* MODELS */ = {
 			isa = PBXGroup;
 			children = (
-				8AF999161C3A2BB1000314E4 /* CoreModel.h */,
 				8AF9990F1C3A2905000314E4 /* NewsFeedModel */,
 				8AEDBFC01C2031EB000BD2FF /* SeetiesModel */,
 				8AEDBF771C2031BA000BD2FF /* ApiVersionModel.h */,
@@ -5584,6 +5590,8 @@
 				8AF999141C3A2ADD000314E4 /* PagingModel.m */,
 				8AF999171C3A2C76000314E4 /* PaginationModel.h */,
 				8AF999181C3A2C76000314E4 /* PaginationModel.m */,
+				8AF999511C3CC5E6000314E4 /* FacebookModel.h */,
+				8AF999521C3CC5E6000314E4 /* FacebookModel.m */,
 			);
 			path = AppModel;
 			sourceTree = "<group>";
@@ -5675,6 +5683,9 @@
 				8AF9993E1C3B9CCD000314E4 /* QuickBrowserCollectionTableViewCell.h */,
 				8AF9993F1C3B9CCD000314E4 /* QuickBrowserCollectionTableViewCell.m */,
 				8AF999401C3B9CCD000314E4 /* QuickBrowserCollectionTableViewCell.xib */,
+				8AF9995E1C3E20C4000314E4 /* FeedType_One_TableViewCell.h */,
+				8AF9995F1C3E20C4000314E4 /* FeedType_One_TableViewCell.m */,
+				8AF999611C3E20D7000314E4 /* FeedType_One_TableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -6289,6 +6300,7 @@
 				8A6CCEB21C18075800BCD54E /* BlackBack@2x.png in Resources */,
 				8A6CCECF1C18075800BCD54E /* FeedIconActive@2x.png in Resources */,
 				8AD6C0AE1B706CF30040437E /* LandingV2ViewController.xib in Resources */,
+				8AF999621C3E20D7000314E4 /* FeedType_One_TableViewCell.xib in Resources */,
 				8A0F50CF1C0D52BB002B1E22 /* PhotoCollectionViewCell.xib in Resources */,
 				8ABA51F51C0FE7F000A3DC15 /* PhotoListViewController.xib in Resources */,
 				0B5AA6AE1C3E6BE2000DDA0F /* ShopTableViewCell.xib in Resources */,
@@ -6695,6 +6707,7 @@
 				8A114CC81BE73F5D006AE3F0 /* MKNetworkOperation.m in Sources */,
 				8A9F25DD1B90002B00BB13BA /* CustomPickerViewController.m in Sources */,
 				8A2E2CE21B81CFE40010895E /* STSearchViewController.m in Sources */,
+				8AF999601C3E20C4000314E4 /* FeedType_One_TableViewCell.m in Sources */,
 				8A65842A1B96ED7300BC86B9 /* EditPhotoManager.m in Sources */,
 				8AC8F7461BDA414E00DEF14A /* EditCollectionDetailViewController.m in Sources */,
 				8A3757C61B8583ED009DB7D4 /* UIFont+SystemFontOverride.m in Sources */,
@@ -6830,6 +6843,7 @@
 				8A7420EC1B82F7D5005DA654 /* LoadingManager.m in Sources */,
 				8A3409431B8AD06A009B66C3 /* UIImage+Filtering.m in Sources */,
 				8AD6BE491B706CF30040437E /* Explore2ViewController.m in Sources */,
+				8AF999531C3CC5E6000314E4 /* FacebookModel.m in Sources */,
 				8AD6C0B31B706CF30040437E /* ConnectionManager.m in Sources */,
 				8A65843D1B9850CE00BC86B9 /* DraftViewController.m in Sources */,
 				8A114C9D1BE73F5D006AE3F0 /* UIImage+KVNEmpty.m in Sources */,

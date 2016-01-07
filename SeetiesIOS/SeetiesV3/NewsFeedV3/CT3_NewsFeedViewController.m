@@ -11,6 +11,7 @@
 #import "FeedSquareCollectionViewCell.h"
 #import "QuickBrowserCollectionTableViewCell.h"
 
+#define NUMBER_OF_SECTION 2
 @interface CT3_NewsFeedViewController ()<UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 /*IBOUTLET*/
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
@@ -20,16 +21,44 @@
 @property (weak, nonatomic) IBOutlet UIView *lastView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constantQuickBrowseHeight;
 @property (weak, nonatomic) IBOutlet UICollectionView *ibQuickBrowseCollectionView;
+
+
+/* Model */
+@property(nonatomic,strong)NSMutableArray* arrayNewsFeed;
+/* Model */
+
 @end
 
 @implementation CT3_NewsFeedViewController
+- (IBAction)btnLoginClicked:(id)sender {
+    
+    
+    //use this block if feeds api return token session over or app not login
+    if (self.btnLoginClickedBlock) {
+        self.btnLoginClickedBlock();
+    }
+    
+}
 - (IBAction)btnTestCliked:(id)sender {
     
     [self.navigationController pushViewController:self.meViewController animated:YES];
 }
 
+-(void)refreshViewAfterLogin
+{
+    [self requestServerForNewsFeed];
+}
+
 #pragma mark - Declaration
 
+-(NSMutableArray*)arrayNewsFeed
+{
+    if (!_arrayNewsFeed) {
+        _arrayNewsFeed = [NSMutableArray new];
+    }
+    
+    return _arrayNewsFeed;
+}
 -(CT3_MeViewController*)meViewController
 {
     if (!_meViewController) {
@@ -39,9 +68,10 @@
 }
 #pragma mark - DEFAULT
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
-  //  [self requestServerForNewsFeed];
     [self initSelfView];
+    [self refreshViewAfterLogin];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -82,9 +112,10 @@
 
 -(void)adjustView
 {
-    self.constantQuickBrowseHeight.constant = 1000;
-    [self.ibHeaderView setHeight:(self.lastView.frame.size.height + self.lastView.frame.origin.y)];
+    
+    self.constantQuickBrowseHeight.constant = 42 + 105*(2);
     [self.ibHeaderView refreshConstraint];
+    [self.ibHeaderView setHeight:(self.lastView.frame.size.height + self.lastView.frame.origin.y)];
     [self.ibTableView reloadData];
   // CGSize apple = [self.ibTableView intrinsicContentSize];
     
@@ -99,9 +130,11 @@
                            @"limit" : @"",
                            };
     
-    
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetNewsFeed param:dict appendString:@"" completeHandler:^(id object) {
         
+        NewsFeedModels* model = [[ConnectionManager dataManager] newsFeedModels];
+        [self.arrayNewsFeed addObjectsFromArray:model.items];
+        [self.ibTableView reloadData];
     } errorBlock:^(id object) {
         
     }];
@@ -114,7 +147,7 @@
     if (section == 0) {
         return 0;
     }
-    else{
+    else{// this is newsfeed row count
         return 20;
 
     }
@@ -149,7 +182,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return NUMBER_OF_SECTION;
 }
 
 #pragma mark - CollectionView Delegate
@@ -161,10 +194,9 @@
 
     }
     else{
-        return 3;
+        return 6;
     
     }
-    
     
 }
 

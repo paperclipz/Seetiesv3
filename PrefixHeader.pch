@@ -17,23 +17,15 @@
 #import "Utils.h"
 #import "JSONKit.h"
 #import "ConnectionManager.h"
-#import "UrlDataClass.h"
-#import "LanguageManager.h"
-#import "Localisator.h"
-#import "Model.h"
-#import "UIAlertView+Blocks.h"
 #import "DataManager.h"
+#import "UrlDataClass.h"
+#import "Localisator.h"
 #import "TSMessage.h"
 #import "BaseViewController.h"
-#import "Foursquare2.h"
-#import "FourSquareModel.h"
 #import "CommonTableViewCell.h"
-#import "IQKeyboardManager.h"
 #import "CommonViewController.h"
 #import "CommonView.h"
-#import "LoadingManager.h"
 #import <GoogleMaps/GoogleMaps.h>
-#import "SearchManager.h"
 #import "TPKeyboardAvoidingScrollView.h"
 #import "ActionSheetPicker.h"
 #import <SDWebImage/UIImageView+WebCache.h>
@@ -48,6 +40,7 @@
 #import "UIView+Extension.h"
 #import "UIImage+FX.h"
 #import "CustomFont.h"
+#import "UIAlertView+Blocks.h"
 
 #import "NSDictionary+STHelper.h"
 #import "UIColor+Extension.h"
@@ -57,13 +50,23 @@
 #import "NSObject+Extension.h"
 #import "UIImageView+Extension.h"
 #import "NSArray+Extension.h"
-#import "MapManager.h"
 
 //===============Model=================
+#import "Model.h"
+#import "FourSquareModel.h"
+#import "Foursquare2.h"
+
 #import "RecommendationModel.h"
 #import "Locale.h"
 #import "SeetiesIOS-Swift.h"
-#import "CoreModel.h"
+
+
+//===============Manager=================
+#import "MapManager.h"
+#import "LanguageManager.h"
+#import "LoadingManager.h"
+#import "SearchManager.h"
+#import "IQKeyboardManager.h"
 
 
 #endif
