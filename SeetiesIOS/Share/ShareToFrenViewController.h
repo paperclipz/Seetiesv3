@@ -40,7 +40,9 @@
     NSString *ShareUserUID;
     NSString *GetShareID;
     NSString *GetUserID;
+    NSString *GetPostID;
     NSInteger GetType;
 }
--(void)GetID:(NSString *)ID GetUserID:(NSString *)userID GetType:(ShareType)type;
+-(void)GetID:(NSString *)ID GetUserID:(NSString *)userID GetType:(ShareType)type GetPostID:(NSString *)postID;
+
 @end

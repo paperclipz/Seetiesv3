@@ -134,6 +134,8 @@
     BTranslation = NO;
     [self initTableViewDelegate];
     
+    self.btnTranslate.hidden = [Utils isStringNull:self.seShopModel.seetishop_id];
+    
     if ([self.seShopModel.language isEqualToString:[Utils getDeviceAppLanguageCode]]) {
         self.btnTranslate.hidden = YES;
     }
@@ -446,6 +448,8 @@
     self.seShopModel = shopModel;
     self.seetiesID = self.seShopModel.seetishop_id;
     self.placeID = self.seShopModel.location.place_id;
+    
+
 }
 
 - (IBAction)btnTranslationClicked:(id)sender{

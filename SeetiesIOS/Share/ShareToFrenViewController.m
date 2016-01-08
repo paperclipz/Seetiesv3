@@ -46,12 +46,13 @@
     SearchKeywordField.delegate = self;
     [self GetFriendsList];
 }
--(void)GetID:(NSString *)ID GetUserID:(NSString *)userID GetType:(ShareType)type{
+-(void)GetID:(NSString *)ID GetUserID:(NSString *)userID GetType:(ShareType)type GetPostID:(NSString *)postID{
 
     GetShareID = ID;
     GetUserID = userID;
     GetType = type;
-    
+    GetPostID = postID;
+
     NSLog(@"GetShareID is %@ and GetUserID is %@ GetType is %li",GetShareID,GetUserID,(long)GetType);
 }
 //-(void)GetPostsID:(NSString *)PostID GetCollectionID:(NSString *)CollectionID GetUserID:(NSString *)userID GetType:(NSString *)type{
@@ -350,6 +351,8 @@
     [self SendCollectionToFriend];
     }else if(GetType == ShareTypeSeetiesShop){
         [self SendSeetiShopToFriend];
+    }else if(GetType == ShareTypeNonSeetiesShop){
+        [self SendSeetiShopToFriend];
     }
     
 //    if ([GetPostsID length] == 0 || [GetPostsID isEqualToString:@""] || [GetPostsID isEqualToString:@"(null)"] || [GetPostsID isEqualToString:@"<null>"]) {
@@ -469,7 +472,8 @@
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
     
     //Server Address URL
-    NSString *urlString = [[NSString alloc]initWithFormat:@"%@/seetishops/%@/share",DataUrl.UserWallpaper_Url,GetShareID];
+    NSString *urlString = [[NSString alloc]initWithFormat:@"%@seetishops/%@/share",DataUrl.UserWallpaper_Url,GetShareID];
+
     NSLog(@"urlString is %@",urlString);
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:urlString]];
@@ -499,7 +503,18 @@
     [body appendData:[[NSString stringWithFormat:@"%@",ShareUserUID] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     
-    
+    if(GetType == ShareTypeNonSeetiesShop){
+        //parameter second
+        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        //Attaching the key name @"parameter_second" to the post body
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"post_id\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+        //Attaching the content to be posted ( ParameterSecond )
+        [body appendData:[[NSString stringWithFormat:@"%@",GetPostID] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    }else{
+        
+    }
+
     
     //close form
     [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];

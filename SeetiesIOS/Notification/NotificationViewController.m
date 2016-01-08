@@ -264,13 +264,16 @@
             NSDictionary *GetAllData = [res valueForKey:@"data"];
             NSDictionary *GetNotificationsData = [GetAllData valueForKey:@"notifications"];
             NSDictionary *GetPaging = [GetAllData valueForKey:@"paging"];
-            GetNextPaging = [[NSString alloc]initWithFormat:@"%@",[GetPaging objectForKey:@"next"]];
+            GetNextPaging = [[NSString alloc]initWithFormat:@"%@",[GetPaging valueForKey:@"next"]];
             NSLog(@"GetNextPaging is %@",GetNextPaging);
             
-            CheckNotificationData = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"total_count"]];
+            CheckNotificationData = [[NSString alloc]initWithFormat:@"%@",[GetNotificationsData objectForKey:@"total_count"]];
             if ([CheckNotificationData isEqualToString:@"0"]) {
                 ShowNoDataView.hidden = NO;
+            }else{
+                ShowNoDataView.hidden = YES;
             }
+
 
             NSDictionary *GetNotificationsResultData = [GetNotificationsData valueForKey:@"result"];
             NSDictionary *UserInfoData = [GetNotificationsResultData valueForKey:@"user_thumbnail"];

@@ -3039,7 +3039,7 @@
         
         UIButton *ViewSeetishopButton = [[UIButton alloc]init];
         ViewSeetishopButton.frame = CGRectMake(0, GetMessageHeight + 1, screenWidth, 50);
-        [ViewSeetishopButton setTitle:@"View Seetishop" forState:UIControlStateNormal];
+        [ViewSeetishopButton setTitle:LocalisedString(@"View shop") forState:UIControlStateNormal];
         [ViewSeetishopButton setBackgroundColor:[UIColor clearColor]];
         [ViewSeetishopButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
         [ViewSeetishopButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];

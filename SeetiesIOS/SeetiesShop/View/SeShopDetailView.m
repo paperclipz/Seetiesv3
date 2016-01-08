@@ -172,6 +172,7 @@
     
     if (self.seShopModel.wallpapers.count >0) {
         NSDictionary* wallpaperDict = self.seShopModel.wallpapers[0];
+        
         [self.ibImgProfileBackground sd_setImageCroppedWithURL:[NSURL URLWithString:[wallpaperDict objectForKey:@"m"]] completed:^(UIImage *image){
             
             if (!image) {
@@ -185,7 +186,10 @@
     
     if (self.seShopModel.profile_photo_images) {
         [self.ibImgProfile sd_setImageCroppedWithURL:[NSURL URLWithString:self.seShopModel.profile_photo_images[@"m"]] completed:^(UIImage *image){
-            
+           
+            if (!image) {
+                self.ibImgProfile.image = [UIImage imageNamed:@"SsDefaultDisplayPhoto.png"];
+            }
         }];
     }
     
@@ -414,7 +418,7 @@
 //}
 -(void)initData:(NSString*)seetiesID PlaceID:(NSString*)placeID PostID:(NSString*)postID
 {
-
+    
     self.seetiesID = seetiesID;
     self.placeID = placeID;
     self.postID = postID;
@@ -529,13 +533,14 @@
 {
     
     NSDictionary* dict = @{@"token":[Utils getAppToken],
-             @"seetishop_id":self.seetiesID,
+             @"seetishop_id":[Utils isStringNull:self.seetiesID]?@"":self.seetiesID,
              };
     
     NSString* appendString;
 
     appendString = [NSString stringWithFormat:@"%@/translate",self.seetiesID];
-    
+    SLog(@"%@",appendString);
+
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetoShopTranslation param:dict appendString:appendString completeHandler:^(id object) {
     
         NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object[@"data"]];

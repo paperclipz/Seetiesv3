@@ -29,6 +29,8 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
     var postURL: String = ""
     var shareID: String = ""
     var userID: String = ""
+    var postID: String = ""
+
 
     var shareType:ShareType?
     var shareManager:ShareManager?
@@ -40,12 +42,9 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
       //  shareToFrenVC = ShareV2ViewController.init(nibName: "ShareToFrenViewController", bundle: nil)
       //  self.navigationController!.pushViewController(shareToFrenVC, animated: true)
         self.shareToFrenVC = ShareToFrenViewController(nibName: "ShareToFrenViewController", bundle: nil)
-//        if(self.shareType == ShareTypePost){
-//        self.shareToFrenVC.GetPostsID(self.shareID, getCollectionID: nil, getUserID: userID, getType: self.shareType!)
-//        }else{
-//        self.shareToFrenVC.GetPostsID(nil, getCollectionID: self.shareID, getUserID: userID)
-//        }
-        self.shareToFrenVC.GetID(self.shareID, getUserID: userID, getType: self.shareType!)
+        self.shareToFrenVC.GetID(self.shareID, getUserID: userID, getType: self.shareType!, getPostID: self.postID)
+
+      //  self.shareToFrenVC.GetID(self.shareID, getUserID: userID, getType: self.shareType!)
         self.presentViewController(self.shareToFrenVC, animated: true, completion: nil)
        // self.navigationController!.pushViewController(self.shareToFrenVC, animated: true)
 
@@ -103,6 +102,21 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
     }
     */
     //MARK: - CollectionView Delegate
+    func share(message:String,title:String, imagURL:String, shareType:ShareType, shareID:String, userID:String, postID:String)
+    {
+        self.postMessage = message
+        self.postTitle = title
+        self.imageURL = imagURL
+        self.shareType = shareType
+        self.shareID = shareID
+        self.userID = userID;
+        self.viewController = self;
+        self.postID = postID;
+        
+    }
+    
+    
+
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return arrImages.count
@@ -177,7 +191,8 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
     func shareFacebook()
     {
        // shareManager?.shareFacebook(self.postTitle, message: self.postMessage, shareType: ShareTypeFacebookPost, userID: self.userID, delegate: self)
-        shareManager?.shareFacebook(self.postTitle, message: self.postMessage, imageURL: self.imageURL, shareType: self.shareType!, shareID: self.shareID, delegate: viewController)
+        shareManager?.shareFacebook(self.postTitle, message: self.postMessage, imageURL: self.imageURL, shareType: self.shareType!, shareID: self.shareID,postID:self.postID, delegate: viewController)
+
         //param.link = NSURL(string:postURL as String)
     }
     
@@ -188,28 +203,33 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
     
     func shareLine()
     {
-        shareManager?.shareOnLINE(self.postTitle, message: self.postMessage, imageURL: self.imageURL, shareType: self.shareType!, shareID: self.shareID, delegate: viewController)
+        shareManager?.shareOnLINE(self.postTitle, message: self.postMessage, imageURL: self.imageURL, shareType: self.shareType!, shareID: self.shareID,postID:self.postID, delegate: viewController)
+
     }
     
     func shareMessanger()
     {
-        shareManager?.shareOnMessanger(self.postTitle, message: self.postMessage, imageURL: self.imageURL, shareType: self.shareType!, shareID:self.shareID, delegate: viewController);
+        shareManager?.shareOnMessanger(self.postTitle, message: self.postMessage, imageURL: self.imageURL, shareType: self.shareType!, shareID:self.shareID,postID:self.postID, delegate: viewController);
+
     }
     
     func shareWhatsapp()
     {
-        shareManager?.shareOnWhatsapp(self.postTitle, message: self.postMessage, imageURL: self.imageURL, shareType: self.shareType!, shareID: self.shareID, delegate: viewController)
+        shareManager?.shareOnWhatsapp(self.postTitle, message: self.postMessage, imageURL: self.imageURL, shareType: self.shareType!, shareID: self.shareID,postID:self.postID, delegate: viewController)
+
     }
     
     func shareCopyLink()
     {
-        shareManager?.shareWithCopyLink(self.shareType!, shareID: self.shareID, delegate: viewController)
+        shareManager?.shareWithCopyLink(self.shareType!, shareID: self.shareID,postID:self.postID, delegate: viewController)
+
     
     }
     
     func shareEmail()
     {
-        shareManager?.shareOnEmail(self.shareType!, viewController: self.viewController,shareID: self.shareID)
+        shareManager?.shareOnEmail(self.shareType!, viewController: self.viewController,shareID: self.shareID,  postID:self.postID)
+
     }
 
 }
