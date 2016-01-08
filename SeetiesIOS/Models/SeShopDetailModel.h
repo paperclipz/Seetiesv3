@@ -11,6 +11,7 @@
 #import "PriceModel.h"
 #import "OpeningPeriodModel.h"
 #import "SeShopCategoryModel.h"
+#import "Location.h"
 
 @class DraftModel;
 

@@ -11,6 +11,7 @@
 #import "DraftModel.h"
 #import "PriceModel.h"
 #import "SeShopPhotoModel.h"
+#import "Location.h"
 
 @protocol ShopModel
 @end

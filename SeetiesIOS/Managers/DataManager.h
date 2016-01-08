@@ -14,7 +14,7 @@
 #import "SearchModel.h"
 #import "EditPhotoModel.h"
 #import "FourSquareModel.h"
-#import "DraftModel.h"
+
 #import "CategoriesModel.h"
 #import "PostModel.h"
 #import "RecommendationModel.h"
@@ -22,11 +22,10 @@
 #import "ProfileModel.h"
 #import "SeShopDetailModel.h"
 #import "SeShopPhotoModel.h"
-#import "NewsFeedModel.h"
 #import "FacebookModel.h"
 
 @class FacebookModel;
-
+@class  DraftsModel;
 typedef void(^BoolBlock) (BOOL isCollected);
 typedef void(^CompletionVoidBlock) (void);
 
@@ -68,7 +67,7 @@ typedef void(^CompletionVoidBlock) (void);
 
 /* ================================ News Feed ================================ */
 
-@property(nonatomic,strong)NewsFeedModels* newsFeedModels;
+//@property(nonatomic,strong)NewsFeedModels* newsFeedModels;
 
 
 +(RecommendationModel*)getSampleRecommendation;

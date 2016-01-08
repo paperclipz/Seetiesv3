@@ -15,69 +15,6 @@
 
 
 
-@implementation Location
-+(BOOL)propertyIsOptional:(NSString*)propertyName
-{
-    return YES;
-}
-+(JSONKeyMapper*)keyMapper
-{
-    return [[JSONKeyMapper alloc] initWithDictionary:@{
-                                                       @"address_components.administrative_area_level_1" : @"administrative_area_level_1",
-                                                       @"address_components.country" : @"country",
-                                                       @"address_components.locality" : @"locality",
-                                                       @"address_components.political" : @"political",
-                                                       @"address_components.postal_code" : @"postal_code",
-                                                       @"address_components.route" : @"route",
-                                                       @"address_components.sublocality" : @"sublocality"
-
-                                                       }];
-}
-
-@end
-
-
-
-
-
-@implementation PhotoModel
-
-+(BOOL)propertyIsOptional:(NSString*)propertyName
-{
-    return YES;
-}
-+(JSONKeyMapper*)keyMapper
-{
-    return [[JSONKeyMapper alloc] initWithDictionary:@{
-                                                       @"s.url" :@"imageURL",
-                                                       @"s.resolution.w":@"imageWidth",
-                                                       @"s.resolution.h":@"imageHeight"
-                                                       
-                                                       }];
-}
-
-
--(id) copyWithZone: (NSZone *) zone
-{
-    PhotoModel *modelCopy = [[PhotoModel allocWithZone: zone] init];
-    modelCopy.tags = [_tags mutableCopy];
-    modelCopy.photo_id = [_photo_id mutableCopy];
-    modelCopy.caption = [_caption mutableCopy];
-    modelCopy.position = _position;
-    modelCopy.imageURL = [_imageURL mutableCopy];
-    modelCopy.image = _image;
-    
-    return modelCopy;
-
-}
-
-@end
-
-
-
-
-
-
 @interface DraftModel ()
 
 @property(nonatomic,strong)NSDictionary* title;

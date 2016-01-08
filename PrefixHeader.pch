@@ -52,7 +52,6 @@
 #import "NSArray+Extension.h"
 
 //===============Model=================
-#import "Model.h"
 #import "FourSquareModel.h"
 #import "Foursquare2.h"
 
@@ -68,6 +67,7 @@
 #import "SearchManager.h"
 #import "IQKeyboardManager.h"
 
+#import "CoreModel.h"
 
 #endif
 

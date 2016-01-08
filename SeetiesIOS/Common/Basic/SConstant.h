@@ -73,23 +73,6 @@ typedef enum
     
 }ViewType;
 
-typedef enum
-{
-    FeedType_Following_Post = 1,
-    FeedType_Local_Quality_Post = 2,
-    FeedType_Abroad_Quality_Post,
-    FeedType_Announcement,
-    FeedType_Announcement_Welcome,
-    FeedType_Announcement_Campaign,
-    FeedType_Suggestion_Featured,
-    FeedType_Suggestion_Friend,
-    FeedType_Deal,
-    FeedType_Invite_Friend,
-    FeedType_Country_Promotion,
-    FeedType_Collect_Suggestion,
-    FeedType_Following_Collection,
-    
-}FeedType;
 
 extern NSString *const SERVER_PATH_LIVE;
 extern NSString *const SERVER_PATH_DEV;

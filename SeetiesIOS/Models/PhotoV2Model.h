@@ -1,13 +1,13 @@
 //
-//  FeedType_One_TableViewCell.m
+//  PhotoV2Model.h
 //  SeetiesIOS
 //
 //  Created by Evan Beh on 1/7/16.
 //  Copyright © 2016 Stylar Network. All rights reserved.
 //
 
-#import "FeedType_One_TableViewCell.h"
+#import <JSONModel/JSONModel.h>
 
-@implementation FeedType_One_TableViewCell
+@interface PhotoV2Model : JSONModel
 
 @end

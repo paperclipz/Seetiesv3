@@ -431,7 +431,7 @@
     NewLandingViewController* landingViewController = [NewLandingViewController new];
     UINavigationController* navigationController = [[UINavigationController alloc]initWithRootViewController:landingViewController];
     navigationController.navigationBar.hidden = YES;
-    self.window.rootViewController = navigationController;//self.landingV2ViewController
+    self.window.rootViewController = self.landingV2ViewController;//self.landingV2ViewController
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 

@@ -172,6 +172,7 @@
     
     if (self.seShopModel.wallpapers.count >0) {
         NSDictionary* wallpaperDict = self.seShopModel.wallpapers[0];
+        
         [self.ibImgProfileBackground sd_setImageCroppedWithURL:[NSURL URLWithString:[wallpaperDict objectForKey:@"m"]] completed:^(UIImage *image){
             
             if (!image) {
@@ -185,7 +186,10 @@
     
     if (self.seShopModel.profile_photo_images) {
         [self.ibImgProfile sd_setImageCroppedWithURL:[NSURL URLWithString:self.seShopModel.profile_photo_images[@"m"]] completed:^(UIImage *image){
-            
+           
+            if (!image) {
+                self.ibImgProfile.image = [UIImage imageNamed:@"SsDefaultDisplayPhoto.png"];
+            }
         }];
     }
     

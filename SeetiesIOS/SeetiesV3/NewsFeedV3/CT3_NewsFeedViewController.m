@@ -10,6 +10,8 @@
 #import "FeedTableViewCell.h"
 #import "FeedSquareCollectionViewCell.h"
 #import "QuickBrowserCollectionTableViewCell.h"
+#import "FeedType_FollowingPostTblCell.h"
+#import "FeedType_Two_TableViewCell.h"
 
 #define NUMBER_OF_SECTION 2
 @interface CT3_NewsFeedViewController ()<UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
@@ -75,6 +77,12 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.ibTableView reloadData];
+}
+
 -(void)initSelfView
 {
     [self initTableViewDelegate];
@@ -87,8 +95,9 @@
 {
     self.ibTableView.delegate = self;
     self.ibTableView.dataSource = self;
-    [self.ibTableView registerClass:[FeedTableViewCell class] forCellReuseIdentifier:@"FeedTableViewCell"];
     
+    self.ibTableView.estimatedRowHeight = [FeedType_Two_TableViewCell getHeight];
+    self.ibTableView.rowHeight = UITableViewAutomaticDimension;
 
 }
 
@@ -132,8 +141,8 @@
     
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetNewsFeed param:dict appendString:@"" completeHandler:^(id object) {
         
-        NewsFeedModels* model = [[ConnectionManager dataManager] newsFeedModels];
-        [self.arrayNewsFeed addObjectsFromArray:model.items];
+      //  NewsFeedModels* model = [[ConnectionManager dataManager] newsFeedModels];
+      //  [self.arrayNewsFeed addObjectsFromArray:model.items];
         [self.ibTableView reloadData];
     } errorBlock:^(id object) {
         
@@ -148,16 +157,61 @@
         return 0;
     }
     else{// this is newsfeed row count
-        return 20;
+       // return self.arrayNewsFeed.count;
+        return 5;
 
     }
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewAutomaticDimension;
+}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    FeedTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"FeedTableViewCell" forIndexPath:indexPath];
     
-    return cell;
+    int type = 1;
+    
+    switch (type) {
+        case 1:
+        {
+            /*Following Post*/
+            static NSString *CellIdentifier = @"Cell";
+            FeedType_FollowingPostTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if (cell == nil) {
+                cell = [[FeedType_FollowingPostTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+            }
+           // [cell initData:self.arrayNewsFeed[indexPath.row]];
+          
+            [cell refreshConstraint];
+            
+            
+            //Configure cell
+            return cell;
+
+        }
+            break;
+        case 2:
+        {
+            /*Following Post*/
+            static NSString *CellIdentifier = @"Cell";
+            FeedType_Two_TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if (cell == nil) {
+                cell = [[FeedType_Two_TableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+            }
+            //Configure cell
+            return cell;
+            
+        }
+            break;
+
+            
+        default:
+            return nil;
+            break;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

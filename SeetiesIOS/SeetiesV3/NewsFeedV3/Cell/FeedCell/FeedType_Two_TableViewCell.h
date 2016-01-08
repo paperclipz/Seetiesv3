@@ -1,5 +1,5 @@
 //
-//  FeedType_One_TableViewCell.h
+//  FeedType_Two_TableViewCell.h
 //  SeetiesIOS
 //
 //  Created by Evan Beh on 1/7/16.
@@ -7,7 +7,8 @@
 //
 
 #import "CommonTableViewCell.h"
+#import "CTFeedModel.h"
 
-@interface FeedType_One_TableViewCell : CommonTableViewCell
+@interface FeedType_Two_TableViewCell : CommonTableViewCell
 
 @end

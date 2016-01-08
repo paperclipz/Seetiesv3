@@ -7,7 +7,6 @@
 //
 
 #import "CommonTableViewCell.h"
-
 @interface FeedTableViewCell : CommonTableViewCell
 
 @end

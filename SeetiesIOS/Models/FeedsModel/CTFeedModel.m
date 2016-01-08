@@ -1,20 +1,21 @@
 //
-//  NewsFeedModel.m
+//  CTFeedModel.m
 //  SeetiesIOS
 //
-//  Created by Evan Beh on 1/4/16.
+//  Created by Evan Beh on 1/8/16.
 //  Copyright © 2016 Stylar Network. All rights reserved.
 //
 
-#import "NewsFeedModel.h"
+#import "CTFeedModel.h"
 
-@interface NewsFeedModel()
+
+
+@interface CTFeedModel()
 
 @property(nonatomic,strong)NSString* type;
 
 @end
-@implementation NewsFeedModel
-
+@implementation CTFeedModel
 
 +(BOOL)propertyIsOptional:(NSString*)propertyName
 {
@@ -33,7 +34,7 @@
                                                        @"data.like": @"like",
                                                        @"data.user_info": @"user_info",
                                                        @"data.type": @"type",
-
+                                                       
                                                        }];
 }
 
@@ -122,6 +123,4 @@
 {
     return YES;
 }
-
-
 @end
