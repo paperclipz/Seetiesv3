@@ -3,18 +3,39 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="cB6-8i-OxE" customClass="FeedType_CollectionSuggestedTblCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="169" id="cB6-8i-OxE" customClass="FeedType_CollectionSuggestedTblCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="169"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cB6-8i-OxE" id="omh-sc-Lwf">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="169"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="hOU-8t-tPz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="169"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9za-s7-tVq">
+                            <size key="itemSize" width="240" height="180"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="hOU-8t-tPz" firstAttribute="leading" secondItem="omh-sc-Lwf" secondAttribute="leadingMargin" constant="-8" id="9iP-FU-ilM"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="hOU-8t-tPz" secondAttribute="trailing" constant="-8" id="DyW-Q1-Dau"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="hOU-8t-tPz" secondAttribute="bottom" constant="-8" id="EJn-s2-KdQ"/>
+                    <constraint firstItem="hOU-8t-tPz" firstAttribute="top" secondItem="omh-sc-Lwf" secondAttribute="topMargin" constant="-8" id="YeG-GV-QMm"/>
+                </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="277" y="225"/>
+            <connections>
+                <outlet property="ibCollectionView" destination="hOU-8t-tPz" id="1JY-cs-sJH"/>
+            </connections>
+            <point key="canvasLocation" x="277" y="287.5"/>
         </tableViewCell>
     </objects>
 </document>

@@ -24,8 +24,7 @@
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *contentViewLeftConstraint;
 
 @property (weak, nonatomic) IBOutlet UIImageView *ibImage;
-@property (weak, nonatomic) IBOutlet UIButton *btnEdit;
-
+btnFollow
 @property (weak, nonatomic) IBOutlet UIView *wrapperIconView;
 
 @property (weak, nonatomic) IBOutlet UIView *ibContentWrapperview;

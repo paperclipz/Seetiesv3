@@ -22,36 +22,12 @@
                                 <rect key="frame" x="155" y="0.0" width="150" height="100"/>
                                 <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Someone Collection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kHj-jv-4sW">
-                                <rect key="frame" x="33" y="117" width="147" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="mC9-fF-UTc"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1032 people collected this" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7pi-1D-4rC">
-                                <rect key="frame" x="10" y="138" width="177" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="BHq-Xc-XH2"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EmptyCollection.png" translatesAutoresizingMaskIntoConstraints="NO" id="1l0-BW-VUP">
                                 <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
                                 <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="BSv-Uw-mwR"/>
                                 </constraints>
-                            </imageView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="CollectionOverlay.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZuT-nx-PRe" userLabel="CollectionOverlayA.png">
-                                <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
-                            </imageView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="CollectionOverlay.png" translatesAutoresizingMaskIntoConstraints="NO" id="dCT-4H-bvK" userLabel="CollectionOverlayB.png">
-                                <rect key="frame" x="155" y="1" width="148" height="99"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bl0-UK-jJ9">
                                 <rect key="frame" x="208" y="117" width="88" height="42"/>
@@ -79,6 +55,30 @@
                                     <action selector="btnShareClicked:" destination="ZWw-DX-Gtz" eventType="touchUpInside" id="quC-yY-wHt"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Someone Collection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kHj-jv-4sW">
+                                <rect key="frame" x="33" y="117" width="147" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="mC9-fF-UTc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1032 people collected this" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7pi-1D-4rC">
+                                <rect key="frame" x="10" y="138" width="177" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="BHq-Xc-XH2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="CollectionOverlay.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZuT-nx-PRe" userLabel="CollectionOverlayA.png">
+                                <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="CollectionOverlay.png" translatesAutoresizingMaskIntoConstraints="NO" id="dCT-4H-bvK" userLabel="CollectionOverlayB.png">
+                                <rect key="frame" x="155" y="1" width="148" height="99"/>
+                            </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="PrivateCollectionIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="1t0-2b-t7N">
                                 <rect key="frame" x="8" y="117" width="17" height="20"/>
                                 <constraints>

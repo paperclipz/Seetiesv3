@@ -7,7 +7,13 @@
 //
 
 #import "FeedType_CollectionSuggestedTblCell.h"
+#import "ProfilePageCollectionTableViewCell.h"
 
+@interface FeedType_CollectionSuggestedTblCell()<UICollectionViewDataSource,UICollectionViewDelegate>
+@property (weak, nonatomic) IBOutlet UICollectionView *ibCollectionView;
+
+
+@end
 @implementation FeedType_CollectionSuggestedTblCell
 
 /*
@@ -17,5 +23,30 @@
     // Drawing code
 }
 */
+
+-(void)initSelfView
+{
+    [self initCollectionViewDelegate];
+}
+
+-(void)initCollectionViewDelegate
+{
+    self.ibCollectionView.delegate = self;
+    self.ibCollectionView.dataSource = self;
+    [self.ibCollectionView registerClass:[ProfilePageCollectionTableViewCell class] forCellWithReuseIdentifier:@"ProfilePageCollectionTableViewCell"];
+}
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return 10;
+}
+
+// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    ProfilePageCollectionTableViewCell* cell = (ProfilePageCollectionTableViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:@"ProfilePageCollectionTableViewCell" forIndexPath:indexPath];
+    
+    return cell;
+}
+
 
 @end
