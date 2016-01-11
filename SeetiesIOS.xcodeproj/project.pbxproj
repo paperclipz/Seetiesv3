@@ -1157,6 +1157,14 @@
 		8AF9994B1C3BBB45000314E4 /* CT3_MeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF999491C3BBB45000314E4 /* CT3_MeViewController.xib */; };
 		8AF9994F1C3BD20F000314E4 /* WalletListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF9994D1C3BD20F000314E4 /* WalletListingViewController.m */; };
 		8AF999501C3BD20F000314E4 /* WalletListingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF9994E1C3BD20F000314E4 /* WalletListingViewController.xib */; };
+		C233656B1C3CC9B400E88261 /* WalletVoucherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C23365691C3CC9B400E88261 /* WalletVoucherCell.m */; };
+		C233656C1C3CC9B400E88261 /* WalletVoucherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C233656A1C3CC9B400E88261 /* WalletVoucherCell.xib */; };
+		C23365701C3D111E00E88261 /* VoucherFilterCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C233656E1C3D111E00E88261 /* VoucherFilterCellTableViewCell.m */; };
+		C23365711C3D111E00E88261 /* VoucherFilterCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C233656F1C3D111E00E88261 /* VoucherFilterCellTableViewCell.xib */; };
+		C24AE2221C435D7100B96317 /* VoucherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C24AE2201C435D7100B96317 /* VoucherCell.m */; };
+		C24AE2231C435D7100B96317 /* VoucherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24AE2211C435D7100B96317 /* VoucherCell.xib */; };
+		C24AE2271C43700700B96317 /* VoucherListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24AE2251C43700700B96317 /* VoucherListingViewController.m */; };
+		C24AE2281C43700700B96317 /* VoucherListingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24AE2261C43700700B96317 /* VoucherListingViewController.xib */; };
 		8AF999531C3CC5E6000314E4 /* FacebookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF999521C3CC5E6000314E4 /* FacebookModel.m */; };
 		8AF9996B1C3E4868000314E4 /* FeedType_Two_TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF9996A1C3E4868000314E4 /* FeedType_Two_TableViewCell.m */; };
 		8AF9996D1C3E487C000314E4 /* FeedType_Two_TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF9996C1C3E487C000314E4 /* FeedType_Two_TableViewCell.xib */; };
@@ -2716,6 +2724,18 @@
 		8AF9996C1C3E487C000314E4 /* FeedType_Two_TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedType_Two_TableViewCell.xib; sourceTree = "<group>"; };
 		8AF9996F1C3E6569000314E4 /* CoreModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreModel.h; sourceTree = "<group>"; };
 		A6BFDB1BE373200E64D8CBE7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		C23365681C3CC9B400E88261 /* WalletVoucherCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalletVoucherCell.h; sourceTree = "<group>"; };
+		C23365691C3CC9B400E88261 /* WalletVoucherCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalletVoucherCell.m; sourceTree = "<group>"; };
+		C233656A1C3CC9B400E88261 /* WalletVoucherCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WalletVoucherCell.xib; sourceTree = "<group>"; };
+		C233656D1C3D111E00E88261 /* VoucherFilterCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoucherFilterCellTableViewCell.h; sourceTree = "<group>"; };
+		C233656E1C3D111E00E88261 /* VoucherFilterCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoucherFilterCellTableViewCell.m; sourceTree = "<group>"; };
+		C233656F1C3D111E00E88261 /* VoucherFilterCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VoucherFilterCellTableViewCell.xib; sourceTree = "<group>"; };
+		C24AE21F1C435D7100B96317 /* VoucherCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoucherCell.h; sourceTree = "<group>"; };
+		C24AE2201C435D7100B96317 /* VoucherCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoucherCell.m; sourceTree = "<group>"; };
+		C24AE2211C435D7100B96317 /* VoucherCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VoucherCell.xib; sourceTree = "<group>"; };
+		C24AE2241C43700700B96317 /* VoucherListingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoucherListingViewController.h; sourceTree = "<group>"; };
+		C24AE2251C43700700B96317 /* VoucherListingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoucherListingViewController.m; sourceTree = "<group>"; };
+		C24AE2261C43700700B96317 /* VoucherListingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VoucherListingViewController.xib; sourceTree = "<group>"; };
 		CAB2B54F0EC79309593A3C4C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -5764,6 +5784,12 @@
 		8AF9993C1C3B7584000314E4 /* VoucherListing */ = {
 			isa = PBXGroup;
 			children = (
+				C24AE21F1C435D7100B96317 /* VoucherCell.h */,
+				C24AE2201C435D7100B96317 /* VoucherCell.m */,
+				C24AE2211C435D7100B96317 /* VoucherCell.xib */,
+				C24AE2241C43700700B96317 /* VoucherListingViewController.h */,
+				C24AE2251C43700700B96317 /* VoucherListingViewController.m */,
+				C24AE2261C43700700B96317 /* VoucherListingViewController.xib */,
 			);
 			path = VoucherListing;
 			sourceTree = "<group>";
@@ -5774,6 +5800,12 @@
 				8AF9994C1C3BD20F000314E4 /* WalletListingViewController.h */,
 				8AF9994D1C3BD20F000314E4 /* WalletListingViewController.m */,
 				8AF9994E1C3BD20F000314E4 /* WalletListingViewController.xib */,
+				C23365681C3CC9B400E88261 /* WalletVoucherCell.h */,
+				C23365691C3CC9B400E88261 /* WalletVoucherCell.m */,
+				C233656A1C3CC9B400E88261 /* WalletVoucherCell.xib */,
+				C233656D1C3D111E00E88261 /* VoucherFilterCellTableViewCell.h */,
+				C233656E1C3D111E00E88261 /* VoucherFilterCellTableViewCell.m */,
+				C233656F1C3D111E00E88261 /* VoucherFilterCellTableViewCell.xib */,
 			);
 			path = WalletListing;
 			sourceTree = "<group>";
@@ -6215,6 +6247,7 @@
 				8A6CCEE11C18075800BCD54E /* WalkthroughPostDetails.png in Resources */,
 				8A6CCD331C18075800BCD54E /* LocationBtn@2x.png in Resources */,
 				8A6CCE881C18075800BCD54E /* SearchBarIcon@3x.png in Resources */,
+				C233656C1C3CC9B400E88261 /* WalletVoucherCell.xib in Resources */,
 				8A6CCCB51C18075800BCD54E /* EditHoursIcon@2x.png in Resources */,
 				8A6CCEDA1C18075800BCD54E /* RecommendBtn@3x.png in Resources */,
 				8A6CCE2E1C18075800BCD54E /* BlueTime@3x.png in Resources */,
@@ -6298,6 +6331,7 @@
 				8A6CCE291C18075800BCD54E /* BluePin@2x.png in Resources */,
 				8AD6C0FF1B706CF30040437E /* SearchViewV2Controller.xib in Resources */,
 				8A6CCD171C18075800BCD54E /* DeleteIconSwipe@2x.png in Resources */,
+				C24AE2281C43700700B96317 /* VoucherListingViewController.xib in Resources */,
 				8AD6C2AA1B7072FB0040437E /* WhereIsThisViewController.xib in Resources */,
 				8A6CCE171C18075800BCD54E /* WrongFill@2x.png in Resources */,
 				8A6CCE161C18075800BCD54E /* WhiteSeetiesLogo@3x.png in Resources */,
@@ -6611,6 +6645,7 @@
 				8A6CCE361C18075800BCD54E /* MoreIcon@3x.png in Resources */,
 				8A6CCD8C1C18075800BCD54E /* Distance2Icon@2x.png in Resources */,
 				8A00979D1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib in Resources */,
+				C23365711C3D111E00E88261 /* VoucherFilterCellTableViewCell.xib in Resources */,
 				8A6CCE511C18075800BCD54E /* EmptyCollection@2x.png in Resources */,
 				8A6CCCBE1C18075800BCD54E /* Icon-60@2x.png in Resources */,
 				8A6CCDA91C18075800BCD54E /* NearbyIcon@3x.png in Resources */,
@@ -6657,6 +6692,7 @@
 				8A3409101B872B31009B66C3 /* EditPostViewController.xib in Resources */,
 				0BE340241B73021B00F49625 /* ProximaNovaSoft-Bold.ttf in Resources */,
 				8A6CCCEF1C18075800BCD54E /* FollowCollectionTradChiIcon@2x.png in Resources */,
+				C24AE2231C435D7100B96317 /* VoucherCell.xib in Resources */,
 				8A6CCD361C18075800BCD54E /* SaveDraftBtn@3x.png in Resources */,
 				8A6CCDB31C18075800BCD54E /* ShareToIcon@2x.png in Resources */,
 				8AD6C0F51B706CF30040437E /* SearchChangeLocationViewController.xib in Resources */,
@@ -6818,6 +6854,7 @@
 				8AD6C0DA1B706CF30040437E /* PTnCViewController.m in Sources */,
 				8AD6C1121B706CF30040437E /* Foursquare2.m in Sources */,
 				0BC8A0EF1C0D585F00EB8548 /* SeNearbySeetishop.m in Sources */,
+				C23365701C3D111E00E88261 /* VoucherFilterCellTableViewCell.m in Sources */,
 				8AD6C0F61B706CF30040437E /* SearchDetailViewController.m in Sources */,
 				8A7360FE1C080C7100A64824 /* UITableviewPaging.m in Sources */,
 				8A9F258A1B8D69E100BB13BA /* SearchTableViewController.m in Sources */,
@@ -6840,6 +6877,7 @@
 				8AF53EFC1BD65F5A00AF6C9E /* UIView+RoundedCorners.m in Sources */,
 				8A993CCE1C2A8113009359E2 /* MapManager.m in Sources */,
 				8A114C771BE73F5D006AE3F0 /* AUIAutoGrowingTextView.m in Sources */,
+				C24AE2271C43700700B96317 /* VoucherListingViewController.m in Sources */,
 				8A03487E1C1579640015E606 /* NSString+Extra.m in Sources */,
 				8A114CA81BE73F5D006AE3F0 /* AsyncImageView.m in Sources */,
 				8A114CD01BE73F5D006AE3F0 /* TLTagsControl.m in Sources */,
@@ -6860,6 +6898,7 @@
 				8A6BB42C1BF0C338005AA1B3 /* MZFormSheetContentSizingNavigationController.m in Sources */,
 				8A114CC01BE73F5D006AE3F0 /* NSAlert+MKNetworkKitAdditions.m in Sources */,
 				8A3409451B8AD06A009B66C3 /* UIImage+Reflection.m in Sources */,
+				C233656B1C3CC9B400E88261 /* WalletVoucherCell.m in Sources */,
 				8A114CCD1BE73F5D006AE3F0 /* UIImage+ImageEffects.m in Sources */,
 				8A5430101B8C1646009EFFF4 /* MapViewController.m in Sources */,
 				8AD6C1131B706CF30040437E /* FSKeychain.m in Sources */,
@@ -6904,6 +6943,7 @@
 				8AEDBFAF1C2031BA000BD2FF /* EditPhotoModel.m in Sources */,
 				8A114C921BE73F5D006AE3F0 /* FloatingIndicatorView.m in Sources */,
 				8AD6C2891B7072FB0040437E /* ConfirmPlaceViewController.m in Sources */,
+				C24AE2221C435D7100B96317 /* VoucherCell.m in Sources */,
 				8A317C041BE1C5620010CAEE /* ShareToFrenViewController.m in Sources */,
 				8AD6C1041B706CF30040437E /* EditInterestV2ViewController.m in Sources */,
 				8AEDBFBC1C2031BA000BD2FF /* SeShopDetailModel.m in Sources */,

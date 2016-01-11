@@ -8,6 +8,7 @@
 
 #import "CommonViewController.h"
 #import "CT3_MeViewController.h"
+#import "VoucherListingViewController.h"
 
 @interface CT3_NewsFeedViewController : BaseViewController
 
