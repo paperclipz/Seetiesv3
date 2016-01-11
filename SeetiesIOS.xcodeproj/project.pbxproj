@@ -1155,6 +1155,9 @@
 		8AF9994B1C3BBB45000314E4 /* CT3_MeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF999491C3BBB45000314E4 /* CT3_MeViewController.xib */; };
 		8AF9994F1C3BD20F000314E4 /* WalletListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF9994D1C3BD20F000314E4 /* WalletListingViewController.m */; };
 		8AF999501C3BD20F000314E4 /* WalletListingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF9994E1C3BD20F000314E4 /* WalletListingViewController.xib */; };
+		8AF999531C3CC5E6000314E4 /* FacebookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF999521C3CC5E6000314E4 /* FacebookModel.m */; };
+		8AF9996B1C3E4868000314E4 /* FeedType_Two_TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF9996A1C3E4868000314E4 /* FeedType_Two_TableViewCell.m */; };
+		8AF9996D1C3E487C000314E4 /* FeedType_Two_TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF9996C1C3E487C000314E4 /* FeedType_Two_TableViewCell.xib */; };
 		C233656B1C3CC9B400E88261 /* WalletVoucherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C23365691C3CC9B400E88261 /* WalletVoucherCell.m */; };
 		C233656C1C3CC9B400E88261 /* WalletVoucherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C233656A1C3CC9B400E88261 /* WalletVoucherCell.xib */; };
 		C23365701C3D111E00E88261 /* VoucherFilterCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C233656E1C3D111E00E88261 /* VoucherFilterCellTableViewCell.m */; };
@@ -1163,9 +1166,14 @@
 		C24AE2231C435D7100B96317 /* VoucherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24AE2211C435D7100B96317 /* VoucherCell.xib */; };
 		C24AE2271C43700700B96317 /* VoucherListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24AE2251C43700700B96317 /* VoucherListingViewController.m */; };
 		C24AE2281C43700700B96317 /* VoucherListingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24AE2261C43700700B96317 /* VoucherListingViewController.xib */; };
-		8AF999531C3CC5E6000314E4 /* FacebookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF999521C3CC5E6000314E4 /* FacebookModel.m */; };
-		8AF9996B1C3E4868000314E4 /* FeedType_Two_TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF9996A1C3E4868000314E4 /* FeedType_Two_TableViewCell.m */; };
-		8AF9996D1C3E487C000314E4 /* FeedType_Two_TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF9996C1C3E487C000314E4 /* FeedType_Two_TableViewCell.xib */; };
+		C24AE2341C43B0DD00B96317 /* slider-default7-handle.png in Resources */ = {isa = PBXBuildFile; fileRef = C24AE22C1C43B0DD00B96317 /* slider-default7-handle.png */; };
+		C24AE2351C43B0DD00B96317 /* slider-default7-handle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C24AE22D1C43B0DD00B96317 /* slider-default7-handle@2x.png */; };
+		C24AE2361C43B0DD00B96317 /* slider-default7-track.png in Resources */ = {isa = PBXBuildFile; fileRef = C24AE22E1C43B0DD00B96317 /* slider-default7-track.png */; };
+		C24AE2371C43B0DD00B96317 /* slider-default7-track@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C24AE22F1C43B0DD00B96317 /* slider-default7-track@2x.png */; };
+		C24AE2381C43B0DD00B96317 /* slider-default7-trackBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = C24AE2301C43B0DD00B96317 /* slider-default7-trackBackground.png */; };
+		C24AE2391C43B0DD00B96317 /* slider-default7-trackBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C24AE2311C43B0DD00B96317 /* slider-default7-trackBackground@2x.png */; };
+		C24AE23A1C43B0DD00B96317 /* slider-default7-trackCrossedOver.png in Resources */ = {isa = PBXBuildFile; fileRef = C24AE2321C43B0DD00B96317 /* slider-default7-trackCrossedOver.png */; };
+		C24AE23B1C43B0DD00B96317 /* slider-default7-trackCrossedOver@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C24AE2331C43B0DD00B96317 /* slider-default7-trackCrossedOver@2x.png */; };
 		C5AFD557B47280FB16C39985 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9C815292A4ED6F2408E5E5 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -2731,6 +2739,14 @@
 		C24AE2241C43700700B96317 /* VoucherListingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoucherListingViewController.h; sourceTree = "<group>"; };
 		C24AE2251C43700700B96317 /* VoucherListingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoucherListingViewController.m; sourceTree = "<group>"; };
 		C24AE2261C43700700B96317 /* VoucherListingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VoucherListingViewController.xib; sourceTree = "<group>"; };
+		C24AE22C1C43B0DD00B96317 /* slider-default7-handle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-handle.png"; sourceTree = "<group>"; };
+		C24AE22D1C43B0DD00B96317 /* slider-default7-handle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-handle@2x.png"; sourceTree = "<group>"; };
+		C24AE22E1C43B0DD00B96317 /* slider-default7-track.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-track.png"; sourceTree = "<group>"; };
+		C24AE22F1C43B0DD00B96317 /* slider-default7-track@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-track@2x.png"; sourceTree = "<group>"; };
+		C24AE2301C43B0DD00B96317 /* slider-default7-trackBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-trackBackground.png"; sourceTree = "<group>"; };
+		C24AE2311C43B0DD00B96317 /* slider-default7-trackBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-trackBackground@2x.png"; sourceTree = "<group>"; };
+		C24AE2321C43B0DD00B96317 /* slider-default7-trackCrossedOver.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-trackCrossedOver.png"; sourceTree = "<group>"; };
+		C24AE2331C43B0DD00B96317 /* slider-default7-trackCrossedOver@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-trackCrossedOver@2x.png"; sourceTree = "<group>"; };
 		CAB2B54F0EC79309593A3C4C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -2985,6 +3001,7 @@
 		8A114B871BE73F5C006AE3F0 /* COMMON */ = {
 			isa = PBXGroup;
 			children = (
+				C24AE22A1C43AF0100B96317 /* RangeSlider */,
 				8A988FB61C29049800D0F0EF /* WMATweetView */,
 				8A6BB4101BF0C338005AA1B3 /* MZFormSheetPresentationController */,
 				8A11513B1BE777FD006AE3F0 /* VGParallaxHeader */,
@@ -3875,6 +3892,7 @@
 		8A6CCA421C18075700BCD54E /* Misc */ = {
 			isa = PBXGroup;
 			children = (
+				C24AE22B1C43B06A00B96317 /* RangeSlider */,
 				8A6CCA431C18075700BCD54E /* 1.png */,
 				8A6CCA441C18075700BCD54E /* 2.png */,
 				8A6CCA451C18075700BCD54E /* 3.png */,
@@ -5840,6 +5858,28 @@
 			path = FeedCell;
 			sourceTree = "<group>";
 		};
+		C24AE22A1C43AF0100B96317 /* RangeSlider */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = RangeSlider;
+			sourceTree = "<group>";
+		};
+		C24AE22B1C43B06A00B96317 /* RangeSlider */ = {
+			isa = PBXGroup;
+			children = (
+				C24AE22C1C43B0DD00B96317 /* slider-default7-handle.png */,
+				C24AE22D1C43B0DD00B96317 /* slider-default7-handle@2x.png */,
+				C24AE22E1C43B0DD00B96317 /* slider-default7-track.png */,
+				C24AE22F1C43B0DD00B96317 /* slider-default7-track@2x.png */,
+				C24AE2301C43B0DD00B96317 /* slider-default7-trackBackground.png */,
+				C24AE2311C43B0DD00B96317 /* slider-default7-trackBackground@2x.png */,
+				C24AE2321C43B0DD00B96317 /* slider-default7-trackCrossedOver.png */,
+				C24AE2331C43B0DD00B96317 /* slider-default7-trackCrossedOver@2x.png */,
+			);
+			path = RangeSlider;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -5959,6 +5999,7 @@
 				8A6CCE601C18075800BCD54E /* NewPostsIcon@3x.png in Resources */,
 				8A6CCCF61C18075800BCD54E /* FollowingCollectionSimplifiedChiIcon@3x.png in Resources */,
 				8A6CCDFA1C18075800BCD54E /* InviteGraphic@3x.png in Resources */,
+				C24AE2381C43B0DD00B96317 /* slider-default7-trackBackground.png in Resources */,
 				8A6CCCC91C18075800BCD54E /* Icon-Small.png in Resources */,
 				8A6CCE021C18075800BCD54E /* InviteWhatsappIcon@3x.png in Resources */,
 				8AC8F7491BDA414E00DEF14A /* EditCollectionViewController.xib in Resources */,
@@ -5998,6 +6039,7 @@
 				8A6CCDE61C18075800BCD54E /* ConnectWithFacebook@3x.png in Resources */,
 				8A6CCDD11C18075800BCD54E /* ForHerIcon@2x.png in Resources */,
 				8A6CCD991C18075800BCD54E /* FeedSuggestionFollow@3x.png in Resources */,
+				C24AE23A1C43B0DD00B96317 /* slider-default7-trackCrossedOver.png in Resources */,
 				8A6CCD5C1C18075800BCD54E /* TryAgainBtn@3x.png in Resources */,
 				8A6CCDC51C18075800BCD54E /* WelcomeLogo@2x.png in Resources */,
 				8A6CCE941C18075800BCD54E /* YellowCollected@3x.png in Resources */,
@@ -6133,6 +6175,7 @@
 				8A6CCD7C1C18075800BCD54E /* CollectIndoBtn@2x.png in Resources */,
 				8A6CCE751C18075800BCD54E /* ProfileLocationIcon@2x.png in Resources */,
 				8A6CCEA71C18075800BCD54E /* SSWhiteTranslateIcon@3x.png in Resources */,
+				C24AE2341C43B0DD00B96317 /* slider-default7-handle.png in Resources */,
 				8AC8F7271BDA414E00DEF14A /* PostListingTableViewCell.xib in Resources */,
 				8A6CCD461C18075800BCD54E /* LocationIcon@3x.png in Resources */,
 				8A6CCCB11C18075800BCD54E /* BackIcon@2x.png in Resources */,
@@ -6298,6 +6341,7 @@
 				8A6CCDEC1C18075800BCD54E /* FacebookBtnInactive@3x.png in Resources */,
 				8A6CCE901C18075800BCD54E /* TimeIcon@3x.png in Resources */,
 				8A6CCCE71C18075800BCD54E /* FollowCollectionBahasaIndoIcon@2x.png in Resources */,
+				C24AE2371C43B0DD00B96317 /* slider-default7-track@2x.png in Resources */,
 				8A6CCE6C1C18075800BCD54E /* PrivateCollectionIcon@3x.png in Resources */,
 				8A6CCDC81C18075800BCD54E /* AbroadIcon@3x.png in Resources */,
 				8A6CCDDA1C18075800BCD54E /* LocalIcon@3x.png in Resources */,
@@ -6376,6 +6420,7 @@
 				8A6CCE2F1C18075800BCD54E /* ChangePlaceIcon@2x.png in Resources */,
 				8AD6C2A41B7072FB0040437E /* SelectImageViewController.xib in Resources */,
 				8AD6C0B01B706CF30040437E /* ExpertLoginViewController.xib in Resources */,
+				C24AE2361C43B0DD00B96317 /* slider-default7-track.png in Resources */,
 				8A6CCD351C18075800BCD54E /* SaveDraftBtn@2x.png in Resources */,
 				8A6CCD3E1C18075800BCD54E /* BrithdayIcon@3x.png in Resources */,
 				8A6CCE3F1C18075800BCD54E /* PostOverlay@2x.png in Resources */,
@@ -6567,6 +6612,7 @@
 				8A6CCDDC1C18075800BCD54E /* NightlifeIcon@3x.png in Resources */,
 				8A6CCD301C18075800BCD54E /* CloseIcon@3x.png in Resources */,
 				0B5AA6A41C3CBF31000DDA0F /* ShopListingViewController.xib in Resources */,
+				C24AE2351C43B0DD00B96317 /* slider-default7-handle@2x.png in Resources */,
 				8AD6C0BD1B706CF30040437E /* CommentViewController.xib in Resources */,
 				8A6CCD321C18075800BCD54E /* EditPostOverlay@3x.png in Resources */,
 				8A6CCE321C18075800BCD54E /* DirectionIcon@3x.png in Resources */,
@@ -6597,6 +6643,7 @@
 				8A6CCE771C18075800BCD54E /* ProfileOverlay@2x.png in Resources */,
 				8AD6C0B61B706CF30040437E /* InstagramLoginWebViewController.xib in Resources */,
 				8A6CCEAD1C18075800BCD54E /* CameraIcon@3x.png in Resources */,
+				C24AE2391C43B0DD00B96317 /* slider-default7-trackBackground@2x.png in Resources */,
 				8A6CCD3F1C18075800BCD54E /* EditCoverPhoto@2x.png in Resources */,
 				8A6CCDB91C18075800BCD54E /* VoucherImg.png in Resources */,
 				8AD6BE501B706CF30040437E /* ExploreViewController.xib in Resources */,
@@ -6692,6 +6739,7 @@
 				8A6CCE9E1C18075800BCD54E /* SSFacebookIcon@2x.png in Resources */,
 				8A6CCE0F1C18075800BCD54E /* SeetiesLogo@2x.png in Resources */,
 				8A6CCDE01C18075800BCD54E /* SportIcon@3x.png in Resources */,
+				C24AE23B1C43B0DD00B96317 /* slider-default7-trackCrossedOver@2x.png in Resources */,
 				8A6CCE9D1C18075800BCD54E /* SsDefaultDisplayPhoto@3x.png in Resources */,
 				8AC8F73B1BDA414E00DEF14A /* ProfileViewController.xib in Resources */,
 				8AD6C0C91B706CF30040437E /* NotificationViewController.xib in Resources */,
