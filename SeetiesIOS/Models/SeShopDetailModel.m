@@ -51,7 +51,10 @@
         
         NSString* tempPrice = [NSString stringWithFormat:@"%@ %@",_price.code,_price.value];
         [temp setObject:tempPrice forKey:Price];
-        [self.arrayInfo addObject:temp];
+        
+        if (![Utils isStringNull:_price.value]) {
+            [self.arrayInfo addObject:temp];
+        }
 
     }
     

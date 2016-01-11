@@ -254,13 +254,13 @@
                             </constraints>
                         </imageView>
                         <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="LHG-yv-1Iz">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="147"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="147" id="Gj3-3Y-Ejn"/>
+                                <constraint firstAttribute="height" constant="150" id="Gj3-3Y-Ejn"/>
                             </constraints>
                         </mapView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ab-eU-31z" userLabel="mapInfoView">
-                            <rect key="frame" x="15" y="74" width="290" height="58"/>
+                            <rect key="frame" x="15" y="77" width="290" height="58"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="...." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5uy-r3-aYB">
                                     <rect key="frame" x="10" y="0.0" width="206" height="58"/>
@@ -301,7 +301,7 @@
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nearby Public Transportation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PrS-Nz-WcK">
-                            <rect key="frame" x="20" y="157" width="290" height="21"/>
+                            <rect key="frame" x="20" y="160" width="290" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="eL1-ZO-fcO"/>
                             </constraints>
@@ -310,7 +310,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kelana Jaya LRT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="REW-ZP-o6h">
-                            <rect key="frame" x="20" y="178" width="290" height="21"/>
+                            <rect key="frame" x="20" y="181" width="290" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="0DT-X4-JQe"/>
                                 <constraint firstAttribute="height" constant="21" id="214-us-Vvi"/>
@@ -626,6 +626,7 @@
             <connections>
                 <outlet property="btnMoreInfo" destination="SUu-pX-80K" id="r9V-P0-qDx"/>
                 <outlet property="btnSeeAll" destination="5Nu-wM-PN6" id="63q-Aw-GIa"/>
+                <outlet property="constTitleDescriptionHeight" destination="2hz-Rj-jvc" id="UXc-pR-FWy"/>
                 <outlet property="constantMapMainView" destination="X8N-A7-fgq" id="wPL-QC-eQa"/>
                 <outlet property="ibCollectionView" destination="1WH-ls-phI" id="mh2-16-aRn"/>
                 <outlet property="ibImageVerified" destination="VX2-Kx-7mO" id="07Z-Pc-OKj"/>

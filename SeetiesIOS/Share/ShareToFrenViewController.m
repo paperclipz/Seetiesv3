@@ -255,14 +255,16 @@
         NSLog(@"statusString is %@",statusString);
         
         if ([statusString isEqualToString:@"ok"]) {
-            [TSMessage showNotificationWithTitle:@"System" subtitle:LocalisedString(@"Success Send to Friends") type:TSMessageNotificationTypeSuccess];
-            
-            if (self.navigationController) {
-                [self.navigationController popViewControllerAnimated:YES];
-            }
-            else{
-                [self dismissViewControllerAnimated:YES completion:nil];
-            }
+
+            [UIAlertView showWithTitle:@"System" message:LocalisedString(@"Success Send to Friends") cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                if (self.navigationController) {
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+                else{
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                }
+            }];
+           
         }else{
             
             NSString *MessageString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"message"]];

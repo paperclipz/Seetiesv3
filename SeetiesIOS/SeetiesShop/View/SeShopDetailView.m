@@ -14,10 +14,12 @@
 
 #define Info_Footer_HEader_Height 54+54;
 #define MapMainViewHeight 210;
+#define MapMainViewHeightWithoutDescription 150;
 
 @interface SeShopDetailView()<UITableViewDataSource,UITableViewDelegate, UICollectionViewDataSource,UICollectionViewDelegate,MKMapViewDelegate>
 {
    
+    __weak IBOutlet NSLayoutConstraint *constTitleDescriptionHeight;
     __weak IBOutlet NSLayoutConstraint *constantMapMainView;
     __weak IBOutlet NSLayoutConstraint *photoHeightConstraint;
     __weak IBOutlet UILabel *lblPhotoCount;
@@ -208,13 +210,31 @@
 
     }
 
-    constantMapMainView.constant = MapMainViewHeight;
+    if ([Utils isStringNull:self.seShopModel.nearby_public_transport]) {
+        MapMainViewHeightWithoutDescription
+        constantMapMainView.constant = MapMainViewHeightWithoutDescription;
+    }
+    else{
+        constantMapMainView.constant = MapMainViewHeight;
+
+    }
     [self setNeedsUpdateConstraints];
     [self layoutIfNeeded];
     [self setHeight:self.ibMapMainView.frame.size.height + self.ibMapMainView.frame.origin.y + VIEW_PADDING];
     
     self.lblShopName.text = self.seShopModel.name;
-    self.lblShopCategory.text = self.seShopModel.category.title;
+    
+  
+    if ([Utils isStringNull:self.seShopModel.category.title]) {
+        constTitleDescriptionHeight.constant = 0;
+        
+    }
+    else {
+        self.lblShopCategory.text = self.seShopModel.category.title;
+        constTitleDescriptionHeight.constant = 21;
+
+    }
+
     
     self.lblAddress.text = self.seShopModel.location.formatted_address;
     self.lblNearbyPublicTransport.text = self.seShopModel.nearby_public_transport;
@@ -246,9 +266,10 @@
 
     }
     else{
-        self.lblDistanceIndicator.text = LocalisedString(@"Swim or Fly");
+        self.lblDistanceIndicator.text = self.seShopModel.location.administrative_area_level_1;
 
     }
+    
     CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([self.seShopModel.location.lat doubleValue], [self.seShopModel.location.lng doubleValue]);
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 500, 500);
     
