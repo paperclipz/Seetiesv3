@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="149" id="Np2-kW-f9g" customClass="FeedType_CountryPromotionTblCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="149"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Np2-kW-f9g" id="YkZ-G4-zrR">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="148.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="detox water.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="qog-SW-K5I">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="149"/>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="qog-SW-K5I" firstAttribute="leading" secondItem="YkZ-G4-zrR" secondAttribute="leadingMargin" constant="-8" id="AyN-5A-Uhj"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="qog-SW-K5I" secondAttribute="bottom" constant="-8" id="U0Z-g6-uk2"/>
+                    <constraint firstItem="qog-SW-K5I" firstAttribute="top" secondItem="YkZ-G4-zrR" secondAttribute="topMargin" constant="-8" id="fbb-pR-yx8"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="qog-SW-K5I" secondAttribute="trailing" constant="-8" id="nMq-yB-aEt"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="ibImageView" destination="qog-SW-K5I" id="BbR-s8-SZ5"/>
+            </connections>
+            <point key="canvasLocation" x="325" y="373.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="detox water.jpg" width="640" height="360"/>
+    </resources>
+</document>

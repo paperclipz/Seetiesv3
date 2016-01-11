@@ -12,9 +12,6 @@
 
 @class ProfileModel;
 
-
-
-
 @protocol PhotoModel
 @end
 

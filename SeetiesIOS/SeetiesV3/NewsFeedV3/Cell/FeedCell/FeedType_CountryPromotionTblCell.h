@@ -1,5 +1,7 @@
+
+
 //
-//  FeedType_FollowingPostTblCell.h
+//  FeedType_CountryPromotionTblCell.h
 //  SeetiesIOS
 //
 //  Created by Evan Beh on 1/8/16.
@@ -8,7 +10,7 @@
 
 #import "CommonTableViewCell.h"
 
-@interface FeedType_FollowingPostTblCell : CommonTableViewCell
--(void)initData:(CTFeedTypeModel*)model;
+@interface FeedType_CountryPromotionTblCell : CommonTableViewCell
+-(void)initData:(CTFeedModel*)model;
 
 @end

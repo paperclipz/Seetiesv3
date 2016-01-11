@@ -30,8 +30,9 @@ typedef enum
     
 }FeedType;
 
-//#import "PaginationModel.h"
+#import "PaginationModel.h"
 @protocol CTFeedModel @end
+@protocol CTFeedTypeModel @end
 
 
 
@@ -46,11 +47,20 @@ typedef enum
 @property(nonatomic,assign)BOOL like;
 @property(nonatomic,strong)ProfileModel* user_info;
 @property(nonatomic,strong)NSArray<PhotoModel>* photos;
-@property(nonatomic,assign)FeedType feedType;//non json attributes
+@property(nonatomic,strong)NSString* image;
+@property(nonatomic,strong)NSString* postDescription;
+
 
 @end
-@interface NewsFeedModels : Model
 
-@property(nonatomic,strong)NSArray<CTFeedModel>* items;
+@interface CTFeedTypeModel : JSONModel
+@property(nonatomic,assign)FeedType feedType;//non json attributes
+@property(nonatomic,strong)CTFeedModel* data;
+
+@end
+
+@interface NewsFeedModels : PaginationModel
+
+@property(nonatomic,strong)NSArray<CTFeedTypeModel>* items;
 
 @end

@@ -38,7 +38,6 @@ pod 'PureLayout'
 pod 'MZAppearance'
 pod 'ViewMonitor'
 pod 'MGInstagram'
-pod 'MHVideoPhotoGallery'
 
 pod 'ESTabBarController'
 #================ debugging =====================#

@@ -26,6 +26,7 @@
 
 @class FacebookModel;
 @class  DraftsModel;
+@class NewsFeedModels;
 typedef void(^BoolBlock) (BOOL isCollected);
 typedef void(^CompletionVoidBlock) (void);
 
@@ -67,7 +68,7 @@ typedef void(^CompletionVoidBlock) (void);
 
 /* ================================ News Feed ================================ */
 
-//@property(nonatomic,strong)NewsFeedModels* newsFeedModels;
+@property(nonatomic,strong)NewsFeedModels* newsFeedModels;
 
 
 +(RecommendationModel*)getSampleRecommendation;

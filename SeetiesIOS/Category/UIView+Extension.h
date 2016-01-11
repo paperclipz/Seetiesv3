@@ -16,5 +16,5 @@
 -(void)setX:(float)X;
 -(void)setY:(float)Y;
 -(void)refreshConstraint;
-
+-(void)prefix_addUpperBorder;
 @end

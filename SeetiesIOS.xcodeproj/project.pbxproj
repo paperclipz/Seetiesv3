@@ -876,6 +876,14 @@
 		8ABA51F51C0FE7F000A3DC15 /* PhotoListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ABA51F31C0FE7F000A3DC15 /* PhotoListViewController.xib */; };
 		8ABA51F91C10329600A3DC15 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ABA51F71C10329600A3DC15 /* PhotoViewController.m */; };
 		8ABA51FA1C10329600A3DC15 /* PhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ABA51F81C10329600A3DC15 /* PhotoViewController.xib */; };
+		8AC10C271C3FCC2800EE9CC5 /* FeedType_CountryPromotionTblCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC10C261C3FCC2800EE9CC5 /* FeedType_CountryPromotionTblCell.m */; };
+		8AC10C291C3FCC5300EE9CC5 /* FeedType_CountryPromotionTblCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AC10C281C3FCC5300EE9CC5 /* FeedType_CountryPromotionTblCell.xib */; };
+		8AC10C2F1C438E1600EE9CC5 /* FeedType_InviteFriendTblCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC10C2E1C438E1600EE9CC5 /* FeedType_InviteFriendTblCell.m */; };
+		8AC10C311C438E2600EE9CC5 /* FeedType_InviteFriendTblCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AC10C301C438E2600EE9CC5 /* FeedType_InviteFriendTblCell.xib */; };
+		8AC10C341C438F3100EE9CC5 /* FeedType_AnnouncementWelcomeTblCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC10C331C438F3100EE9CC5 /* FeedType_AnnouncementWelcomeTblCell.m */; };
+		8AC10C361C438F3F00EE9CC5 /* FeedType_AnnouncementWelcomeTblCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AC10C351C438F3F00EE9CC5 /* FeedType_AnnouncementWelcomeTblCell.xib */; };
+		8AC10C391C43932B00EE9CC5 /* FeedType_CollectionSuggestedTblCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC10C381C43932B00EE9CC5 /* FeedType_CollectionSuggestedTblCell.m */; };
+		8AC10C3B1C43933A00EE9CC5 /* FeedType_CollectionSuggestedTblCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AC10C3A1C43933A00EE9CC5 /* FeedType_CollectionSuggestedTblCell.xib */; };
 		8AC8F63C1BDA309D00DEF14A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AC8F63B1BDA309D00DEF14A /* Default-568h@2x.png */; };
 		8AC8F7221BDA414E00DEF14A /* CollectionListingTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8F6D81BDA414E00DEF14A /* CollectionListingTabViewController.m */; };
 		8AC8F7231BDA414E00DEF14A /* CollectionListingTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AC8F6D91BDA414E00DEF14A /* CollectionListingTabViewController.xib */; };
@@ -2245,6 +2253,18 @@
 		8ABA51F61C10329600A3DC15 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
 		8ABA51F71C10329600A3DC15 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
 		8ABA51F81C10329600A3DC15 /* PhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoViewController.xib; sourceTree = "<group>"; };
+		8AC10C251C3FCC2800EE9CC5 /* FeedType_CountryPromotionTblCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedType_CountryPromotionTblCell.h; sourceTree = "<group>"; };
+		8AC10C261C3FCC2800EE9CC5 /* FeedType_CountryPromotionTblCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedType_CountryPromotionTblCell.m; sourceTree = "<group>"; };
+		8AC10C281C3FCC5300EE9CC5 /* FeedType_CountryPromotionTblCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedType_CountryPromotionTblCell.xib; sourceTree = "<group>"; };
+		8AC10C2D1C438E1600EE9CC5 /* FeedType_InviteFriendTblCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedType_InviteFriendTblCell.h; sourceTree = "<group>"; };
+		8AC10C2E1C438E1600EE9CC5 /* FeedType_InviteFriendTblCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedType_InviteFriendTblCell.m; sourceTree = "<group>"; };
+		8AC10C301C438E2600EE9CC5 /* FeedType_InviteFriendTblCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedType_InviteFriendTblCell.xib; sourceTree = "<group>"; };
+		8AC10C321C438F3100EE9CC5 /* FeedType_AnnouncementWelcomeTblCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedType_AnnouncementWelcomeTblCell.h; sourceTree = "<group>"; };
+		8AC10C331C438F3100EE9CC5 /* FeedType_AnnouncementWelcomeTblCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedType_AnnouncementWelcomeTblCell.m; sourceTree = "<group>"; };
+		8AC10C351C438F3F00EE9CC5 /* FeedType_AnnouncementWelcomeTblCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedType_AnnouncementWelcomeTblCell.xib; sourceTree = "<group>"; };
+		8AC10C371C43932B00EE9CC5 /* FeedType_CollectionSuggestedTblCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedType_CollectionSuggestedTblCell.h; sourceTree = "<group>"; };
+		8AC10C381C43932B00EE9CC5 /* FeedType_CollectionSuggestedTblCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedType_CollectionSuggestedTblCell.m; sourceTree = "<group>"; };
+		8AC10C3A1C43933A00EE9CC5 /* FeedType_CollectionSuggestedTblCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedType_CollectionSuggestedTblCell.xib; sourceTree = "<group>"; };
 		8AC8F63B1BDA309D00DEF14A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		8AC8F6D71BDA414E00DEF14A /* CollectionListingTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionListingTabViewController.h; sourceTree = "<group>"; };
 		8AC8F6D81BDA414E00DEF14A /* CollectionListingTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionListingTabViewController.m; sourceTree = "<group>"; };
@@ -5772,6 +5792,18 @@
 				8A8C2DFB1C3F805700767463 /* FeedType_FollowingPostTblCell.h */,
 				8A8C2DFC1C3F805700767463 /* FeedType_FollowingPostTblCell.m */,
 				8A8C2DFE1C3F806400767463 /* FeedType_FollowingPostTblCell.xib */,
+				8AC10C251C3FCC2800EE9CC5 /* FeedType_CountryPromotionTblCell.h */,
+				8AC10C261C3FCC2800EE9CC5 /* FeedType_CountryPromotionTblCell.m */,
+				8AC10C281C3FCC5300EE9CC5 /* FeedType_CountryPromotionTblCell.xib */,
+				8AC10C2D1C438E1600EE9CC5 /* FeedType_InviteFriendTblCell.h */,
+				8AC10C2E1C438E1600EE9CC5 /* FeedType_InviteFriendTblCell.m */,
+				8AC10C301C438E2600EE9CC5 /* FeedType_InviteFriendTblCell.xib */,
+				8AC10C321C438F3100EE9CC5 /* FeedType_AnnouncementWelcomeTblCell.h */,
+				8AC10C331C438F3100EE9CC5 /* FeedType_AnnouncementWelcomeTblCell.m */,
+				8AC10C351C438F3F00EE9CC5 /* FeedType_AnnouncementWelcomeTblCell.xib */,
+				8AC10C371C43932B00EE9CC5 /* FeedType_CollectionSuggestedTblCell.h */,
+				8AC10C381C43932B00EE9CC5 /* FeedType_CollectionSuggestedTblCell.m */,
+				8AC10C3A1C43933A00EE9CC5 /* FeedType_CollectionSuggestedTblCell.xib */,
 			);
 			path = FeedCell;
 			sourceTree = "<group>";
@@ -6101,6 +6133,7 @@
 				8AD6C29E1B7072FB0040437E /* PublishViewController.xib in Resources */,
 				8A6CCCF31C18075800BCD54E /* FollowingCollectionIcon@2x.png in Resources */,
 				8A6CCDF41C18075800BCD54E /* InviteBtnInactive@3x.png in Resources */,
+				8AC10C3B1C43933A00EE9CC5 /* FeedType_CollectionSuggestedTblCell.xib in Resources */,
 				8A6CCD981C18075800BCD54E /* FeedSuggestionFollow@2x.png in Resources */,
 				8A6CCDC11C18075800BCD54E /* EventLogo@2x.png in Resources */,
 				8A65843E1B9850CE00BC86B9 /* DraftViewController.xib in Resources */,
@@ -6338,6 +6371,7 @@
 				8A6CCCA91C18075800BCD54E /* NearbyBackground.png in Resources */,
 				8A6CCCEE1C18075800BCD54E /* FollowCollectionThaiIcon@3x.png in Resources */,
 				8A6CCE8E1C18075800BCD54E /* SuggestionSearchIcon@3x.png in Resources */,
+				8AC10C291C3FCC5300EE9CC5 /* FeedType_CountryPromotionTblCell.xib in Resources */,
 				8AD6C10B1B706CF30040437E /* FeedbackViewController.xib in Resources */,
 				8AD6C1191B706CF30040437E /* pin@2x.png in Resources */,
 				8AD6BE5A1B706CF30040437E /* DoImagePickerController.xib in Resources */,
@@ -6410,6 +6444,7 @@
 				8A6CCEA81C18075800BCD54E /* SSWhiteVerifiedIcon@2x.png in Resources */,
 				8AD6C0BA1B706CF30040437E /* ShowFollowerAndFollowingViewController.xib in Resources */,
 				8A6CCECB1C18075800BCD54E /* ExploreIconActive@2x.png in Resources */,
+				8AC10C311C438E2600EE9CC5 /* FeedType_InviteFriendTblCell.xib in Resources */,
 				8A6CCE1D1C18075800BCD54E /* NotificationComment@2x.png in Resources */,
 				8A6CCE5F1C18075800BCD54E /* NewPostsIcon@2x.png in Resources */,
 				8A6CCE5D1C18075800BCD54E /* NewLikesIcon@2x.png in Resources */,
@@ -6577,6 +6612,7 @@
 				8A6CCD1A1C18075800BCD54E /* EditIconSwipe@3x.png in Resources */,
 				8AD6C2941B7072FB0040437E /* ChooseCategoryViewController.xib in Resources */,
 				8A6CCCE11C18075800BCD54E /* CollectionPostIcon@2x.png in Resources */,
+				8AC10C361C438F3F00EE9CC5 /* FeedType_AnnouncementWelcomeTblCell.xib in Resources */,
 				8A5430111B8C1646009EFFF4 /* MapViewController.xib in Resources */,
 				8AC8F72F1BDA414E00DEF14A /* ProfilePageCollectionHeaderView.xib in Resources */,
 				8A6CCD2A1C18075800BCD54E /* AddLanguageBtn@3x.png in Resources */,
@@ -6753,11 +6789,13 @@
 				8A34090F1B872B31009B66C3 /* EditPostViewController.m in Sources */,
 				8A6BB4321BF0C338005AA1B3 /* MZFormSheetPresentationViewControllerSegue.m in Sources */,
 				8A114CEA1BE75CA0006AE3F0 /* NewCollectionViewController.m in Sources */,
+				8AC10C391C43932B00EE9CC5 /* FeedType_CollectionSuggestedTblCell.m in Sources */,
 				8A0F50C11C0C3F08002B1E22 /* SeShopDetailTableViewCell.m in Sources */,
 				0BBFE04F1B9D624C004B17E9 /* EditProfileV2ViewController.m in Sources */,
 				8AD6BE4D1B706CF30040437E /* ExploreCountryViewController.m in Sources */,
 				8A9F25D31B8EF60C00BB13BA /* EditHourTableViewCell.m in Sources */,
 				8AD6C0F81B706CF30040437E /* SearchResultV2ViewController.m in Sources */,
+				8AC10C341C438F3100EE9CC5 /* FeedType_AnnouncementWelcomeTblCell.m in Sources */,
 				8A4AC4B71C0C369B00968781 /* SeetiesShopViewController.m in Sources */,
 				8A114CAB1BE73F5D006AE3F0 /* UIScrollView+CRScrollIndicator.m in Sources */,
 				8A3F35641BF5E89D002B704C /* SuggestedCollectionCollectionsViewController.m in Sources */,
@@ -6788,6 +6826,7 @@
 				8AD6C81D1B73382E0040437E /* Localisator.m in Sources */,
 				0B40B3FB1C1FD2A7002D4ECB /* SeRecommendationsSeeAllViewController.m in Sources */,
 				8AC8F72C1BDA414E00DEF14A /* ProfilePageCollectionFooterTableViewCell.m in Sources */,
+				8AC10C271C3FCC2800EE9CC5 /* FeedType_CountryPromotionTblCell.m in Sources */,
 				8A6584371B981C0E00BC86B9 /* CategoryCollectionViewCell.m in Sources */,
 				8AF53EFC1BD65F5A00AF6C9E /* UIView+RoundedCorners.m in Sources */,
 				8A993CCE1C2A8113009359E2 /* MapManager.m in Sources */,
@@ -6831,6 +6870,7 @@
 				8AF2C2791B9EA3B800B0A7F1 /* NSDictionary+STHelper.m in Sources */,
 				8AD6C2991B7072FB0040437E /* ExtasViewController.m in Sources */,
 				8AD6C2971B7072FB0040437E /* EditLocationViewController.m in Sources */,
+				8AC10C2F1C438E1600EE9CC5 /* FeedType_InviteFriendTblCell.m in Sources */,
 				8AEDBFBE1C2031BA000BD2FF /* TagModel.m in Sources */,
 				8A114C9F1BE73F5D006AE3F0 /* KVNProgress.m in Sources */,
 				8A114CC71BE73F5D006AE3F0 /* MKNetworkEngine.m in Sources */,
