@@ -37,7 +37,8 @@
 
 @implementation CT3_NewsFeedViewController
 - (IBAction)btnGrabNowClicked:(id)sender {
-    
+    VoucherListingViewController *voucherListingController = [[VoucherListingViewController alloc] init];
+    [self.navigationController pushViewController:voucherListingController animated:YES];
     
 }
 - (IBAction)btnLoginClicked:(id)sender {
@@ -56,7 +57,7 @@
 
 -(void)refreshViewAfterLogin
 {
-    [self requestServerForNewsFeed];
+    //[self requestServerForNewsFeed];
 }
 
 #pragma mark - Declaration

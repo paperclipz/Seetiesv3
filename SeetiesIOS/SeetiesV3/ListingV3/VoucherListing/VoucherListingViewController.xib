@@ -106,9 +106,13 @@
                         <constraint firstItem="NcM-XJ-IKC" firstAttribute="leading" secondItem="V2j-uV-Uox" secondAttribute="leading" constant="8" id="lvf-zJ-RTF"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vEe-3n-SBv" userLabel="voucher table">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="190" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vEe-3n-SBv" userLabel="voucher table">
                     <rect key="frame" x="0.0" y="114" width="320" height="454"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="twe-MW-9nk"/>
+                        <outlet property="delegate" destination="-1" id="y9a-PV-SjS"/>
+                    </connections>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
