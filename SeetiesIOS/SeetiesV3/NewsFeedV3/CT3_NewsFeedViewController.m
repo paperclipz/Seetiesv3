@@ -11,6 +11,13 @@
 #import "FeedSquareCollectionViewCell.h"
 #import "QuickBrowserCollectionTableViewCell.h"
 
+#import "FeedType_FollowingPostTblCell.h"
+#import "FeedType_Two_TableViewCell.h"
+#import "FeedType_CountryPromotionTblCell.h"
+#import "FeedType_InviteFriendTblCell.h"
+#import "FeedType_AnnouncementWelcomeTblCell.h"
+
+#define NUMBER_OF_SECTION 2
 @interface CT3_NewsFeedViewController ()<UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 /*IBOUTLET*/
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
@@ -20,16 +27,48 @@
 @property (weak, nonatomic) IBOutlet UIView *lastView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constantQuickBrowseHeight;
 @property (weak, nonatomic) IBOutlet UICollectionView *ibQuickBrowseCollectionView;
+
+
+/* Model */
+@property(nonatomic,strong)NSMutableArray* arrayNewsFeed;
+/* Model */
+
 @end
 
 @implementation CT3_NewsFeedViewController
+- (IBAction)btnGrabNowClicked:(id)sender {
+    
+    
+}
+- (IBAction)btnLoginClicked:(id)sender {
+    
+    
+    //use this block if feeds api return token session over or app not login
+    if (self.btnLoginClickedBlock) {
+        self.btnLoginClickedBlock();
+    }
+    
+}
 - (IBAction)btnTestCliked:(id)sender {
     
     [self.navigationController pushViewController:self.meViewController animated:YES];
 }
 
+-(void)refreshViewAfterLogin
+{
+    [self requestServerForNewsFeed];
+}
+
 #pragma mark - Declaration
 
+-(NSMutableArray*)arrayNewsFeed
+{
+    if (!_arrayNewsFeed) {
+        _arrayNewsFeed = [NSMutableArray new];
+    }
+    
+    return _arrayNewsFeed;
+}
 -(CT3_MeViewController*)meViewController
 {
     if (!_meViewController) {
@@ -39,10 +78,17 @@
 }
 #pragma mark - DEFAULT
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
-  //  [self requestServerForNewsFeed];
     [self initSelfView];
+    [self refreshViewAfterLogin];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.ibTableView reloadData];
 }
 
 -(void)initSelfView
@@ -57,8 +103,9 @@
 {
     self.ibTableView.delegate = self;
     self.ibTableView.dataSource = self;
-    [self.ibTableView registerClass:[FeedTableViewCell class] forCellReuseIdentifier:@"FeedTableViewCell"];
     
+    self.ibTableView.estimatedRowHeight = [FeedType_Two_TableViewCell getHeight];
+    self.ibTableView.rowHeight = UITableViewAutomaticDimension;
 
 }
 
@@ -82,9 +129,10 @@
 
 -(void)adjustView
 {
-    self.constantQuickBrowseHeight.constant = 1000;
-    [self.ibHeaderView setHeight:(self.lastView.frame.size.height + self.lastView.frame.origin.y)];
+    
+    self.constantQuickBrowseHeight.constant = 42 + 105*(2);
     [self.ibHeaderView refreshConstraint];
+    [self.ibHeaderView setHeight:(self.lastView.frame.size.height + self.lastView.frame.origin.y)];
     [self.ibTableView reloadData];
   // CGSize apple = [self.ibTableView intrinsicContentSize];
     
@@ -99,9 +147,11 @@
                            @"limit" : @"",
                            };
     
-    
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetNewsFeed param:dict appendString:@"" completeHandler:^(id object) {
         
+        NewsFeedModels* model = [[ConnectionManager dataManager] newsFeedModels];
+        [self.arrayNewsFeed addObjectsFromArray:model.items];
+        [self.ibTableView reloadData];
     } errorBlock:^(id object) {
         
     }];
@@ -114,17 +164,98 @@
     if (section == 0) {
         return 0;
     }
-    else{
-        return 20;
+    else{// this is newsfeed row count
+        return self.arrayNewsFeed.count;
 
     }
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewAutomaticDimension;
+}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    FeedTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"FeedTableViewCell" forIndexPath:indexPath];
+
+  
     
-    return cell;
+    CTFeedTypeModel* typeModel = self.arrayNewsFeed[indexPath.row];
+
+    switch (typeModel.feedType) {
+        case FeedType_Following_Post:
+        {
+            /*Following Post*/
+            static NSString *CellIdentifier = @"FeedType_FollowingPostTblCell";
+            FeedType_FollowingPostTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if (cell == nil) {
+                cell = [[FeedType_FollowingPostTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+            }
+            
+            [cell initData:typeModel];
+          
+            [cell refreshConstraint];
+            
+            
+            //Configure cell
+            return cell;
+
+        }
+            break;
+        case FeedType_Deal:
+        {
+            /*Following Post*/
+            static NSString *CellIdentifier = @"FeedType_Two_TableViewCell";
+            FeedType_Two_TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if (cell == nil) {
+                cell = [[FeedType_Two_TableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+            }
+            //Configure cell
+            return cell;
+            
+        }
+            break;
+        default:
+        case FeedType_Country_Promotion:
+        {
+            static NSString *CellIdentifier = @"FeedType_CountryPromotionTblCell";
+            FeedType_CountryPromotionTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if (cell == nil) {
+                cell = [[FeedType_CountryPromotionTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+            }
+            //Configure cell
+            return cell;
+            
+        }
+            break;
+
+        case FeedType_Invite_Friend:
+        {
+            static NSString *CellIdentifier = @"FeedType_InviteFriendTblCell";
+            FeedType_InviteFriendTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if (cell == nil) {
+                cell = [[FeedType_InviteFriendTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+            }
+            return cell;
+            break;
+
+        }
+        case FeedType_Announcement_Welcome:
+        {
+            static NSString *CellIdentifier = @"FeedType_AnnouncementWelcomeTblCell";
+            FeedType_AnnouncementWelcomeTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if (cell == nil) {
+                cell = [[FeedType_AnnouncementWelcomeTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+            }
+            return cell;
+            break;
+            
+        }
+
+
+
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -149,7 +280,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return NUMBER_OF_SECTION;
 }
 
 #pragma mark - CollectionView Delegate
@@ -161,10 +292,9 @@
 
     }
     else{
-        return 3;
+        return 6;
     
     }
-    
     
 }
 

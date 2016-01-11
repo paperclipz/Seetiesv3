@@ -7,6 +7,7 @@
 //
 
 #import <JSONModel/JSONModel.h>
+#import "PagingModel.h"
 
 @interface PaginationModel : JSONModel
 @property(nonatomic,strong)PagingModel* paging;

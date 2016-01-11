@@ -376,6 +376,10 @@
             self.btnTranslateWidthConstraint.constant = 40;
 
         }
+        
+        
+        btnTranslate.hidden = [Utils isStringNull:self.seShopModel.seetishop_id];
+        
         self.btnShareWidthConstraint.constant = 40;
         [btnTranslate setNeedsUpdateConstraints];
         [btnTranslate layoutIfNeeded];

@@ -10,4 +10,5 @@
 
 @interface CT3_LoginViewController : CommonViewController
 
+@property(nonatomic,copy)VoidBlock didFinishLoginBlock;
 @end

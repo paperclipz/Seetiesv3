@@ -7,6 +7,7 @@
 //
 
 #import "DataManager.h"
+#import "DraftModel.h"
 
 
 

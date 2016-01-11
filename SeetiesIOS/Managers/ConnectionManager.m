@@ -381,7 +381,14 @@
         case ServerRequestTypeLogin:
             
             break;
+        case ServerRequestTypeLoginFacebook:
+            str = [NSString stringWithFormat:@"/%@/login/facebook",API_VERION_URL];
+
+            break;
+        case ServerRequestTypeLoginInstagram:
+            str = [NSString stringWithFormat:@"/%@/login/instagram",API_VERION_URL];
             
+            break;
         case ServerRequestTypeGetNewsFeed:
             str = [NSString stringWithFormat:@"/%@/feed/v2",API_VERION_URL];
 
@@ -476,6 +483,20 @@
     switch (type) {
         case ServerRequestTypeLogin:
             break;
+            
+        case ServerRequestTypeLoginFacebook:
+        {
+            NSDictionary* dict = obj[@"data"];
+
+            self.dataManager.userLoginProfileModel = [[ProfileModel alloc]initWithDictionary:dict error:nil];
+        }
+            break;
+            
+        case ServerRequestTypeLoginInstagram:
+            
+            break;
+
+            
         case ServerRequestTypeGetApiVersion:
             self.dataManager.apiVersionModel = [[ApiVersionModel alloc]initWithDictionary:obj error:nil];
             [self processApiversion];
@@ -483,7 +504,10 @@
             break;
             
         case ServerRequestTypeGetNewsFeed:
-            
+        {
+            NSDictionary* dict = obj[@"data"];
+            self.dataManager.newsFeedModels = [[NewsFeedModels alloc]initWithDictionary:dict error:nil];
+        }
             break;
             
         case ServerRequestTypeGetLanguage:

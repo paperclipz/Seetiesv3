@@ -7,7 +7,7 @@
 //
 
 #import "CommonViewController.h"
-
+#import "ShopListingViewController.h"
 @interface CT3_MeViewController : CommonViewController
-
+@property(nonatomic,strong)ShopListingViewController* shopListingViewController;
 @end

@@ -7,24 +7,26 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import "ApiVersionModel.h"
 #import "LanguageModel.h"
 #import "ExploreCountryModel.h"
 #import "SearchModel.h"
 #import "EditPhotoModel.h"
 #import "FourSquareModel.h"
-#import "DraftModel.h"
+
 #import "CategoriesModel.h"
 #import "PostModel.h"
-
 #import "RecommendationModel.h"
-
 #import "TagModel.h"
 #import "ProfileModel.h"
 #import "SeShopDetailModel.h"
 #import "SeShopPhotoModel.h"
+#import "FacebookModel.h"
 
-
+@class FacebookModel;
+@class  DraftsModel;
+@class NewsFeedModels;
 typedef void(^BoolBlock) (BOOL isCollected);
 typedef void(^CompletionVoidBlock) (void);
 
@@ -32,7 +34,12 @@ typedef void(^CompletionVoidBlock) (void);
 + (id)Instance;
 +(NSArray*)getSampleObject;
 
+
+@property(nonatomic,strong)ProfileModel* userLoginProfileModel;//model from login
+
 @property(nonatomic,strong)ApiVersionModel* apiVersionModel;
+@property(nonatomic,strong)FacebookModel* facebookLoginModel;
+
 @property(nonatomic,strong)LanguageModels* languageModels;
 @property(nonatomic,strong)ExploreCountryModels* exploreCountryModels;
 @property(nonatomic,strong)FourSquareModel* fourSquareVenueModel;
@@ -47,7 +54,7 @@ typedef void(^CompletionVoidBlock) (void);
 
 
 @property(nonatomic,strong)TagModel* tagModel;
-@property(nonatomic,strong)ProfileModel* userProfileModel;
+@property(nonatomic,strong)ProfileModel* userProfileModel;//model from proifle page. has additional follow and following
 @property(nonatomic,strong)CollectionsModel* userCollectionsModel;
 @property(nonatomic,strong)CollectionsModel* userFollowingCollectionsModel;
 @property(nonatomic,strong)CollectionsModel* userSuggestedCollectionsModel;
@@ -57,6 +64,11 @@ typedef void(^CompletionVoidBlock) (void);
 @property(nonatomic,strong)SeShopDetailModel* seShopDetailModel;
 @property(nonatomic,strong)SeetiShopsModel* seNearbyShopModel;
 @property(nonatomic,strong)SeetiShopsModel* seNearbyShopListingModel;
+
+
+/* ================================ News Feed ================================ */
+
+@property(nonatomic,strong)NewsFeedModels* newsFeedModels;
 
 
 +(RecommendationModel*)getSampleRecommendation;

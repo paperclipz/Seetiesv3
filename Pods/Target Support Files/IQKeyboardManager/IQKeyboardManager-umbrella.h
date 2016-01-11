@@ -9,7 +9,6 @@
 #import "IQKeyboardManagerConstantsInternal.h"
 #import "IQKeyboardManager.h"
 #import "IQKeyboardReturnKeyHandler.h"
-#import "IQSegmentedNextPrevious.h"
 #import "IQTextView.h"
 #import "IQBarButtonItem.h"
 #import "IQTitleBarButtonItem.h"
