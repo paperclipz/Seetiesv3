@@ -1174,6 +1174,12 @@
 		C24AE2391C43B0DD00B96317 /* slider-default7-trackBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C24AE2311C43B0DD00B96317 /* slider-default7-trackBackground@2x.png */; };
 		C24AE23A1C43B0DD00B96317 /* slider-default7-trackCrossedOver.png in Resources */ = {isa = PBXBuildFile; fileRef = C24AE2321C43B0DD00B96317 /* slider-default7-trackCrossedOver.png */; };
 		C24AE23B1C43B0DD00B96317 /* slider-default7-trackCrossedOver@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C24AE2331C43B0DD00B96317 /* slider-default7-trackCrossedOver@2x.png */; };
+		C24AE2401C43B93100B96317 /* GeneralFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24AE23E1C43B93100B96317 /* GeneralFilterViewController.m */; };
+		C24AE2411C43B93100B96317 /* GeneralFilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24AE23F1C43B93100B96317 /* GeneralFilterViewController.xib */; };
+		C24AE2451C43BC7400B96317 /* FilterBudgetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C24AE2431C43BC7400B96317 /* FilterBudgetCell.m */; };
+		C24AE2461C43BC7400B96317 /* FilterBudgetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24AE2441C43BC7400B96317 /* FilterBudgetCell.xib */; };
+		C24AE24A1C43BCA400B96317 /* FilterCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C24AE2481C43BCA400B96317 /* FilterCategoryCell.m */; };
+		C24AE24B1C43BCA400B96317 /* FilterCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24AE2491C43BCA400B96317 /* FilterCategoryCell.xib */; };
 		C5AFD557B47280FB16C39985 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9C815292A4ED6F2408E5E5 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -2747,6 +2753,15 @@
 		C24AE2311C43B0DD00B96317 /* slider-default7-trackBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-trackBackground@2x.png"; sourceTree = "<group>"; };
 		C24AE2321C43B0DD00B96317 /* slider-default7-trackCrossedOver.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-trackCrossedOver.png"; sourceTree = "<group>"; };
 		C24AE2331C43B0DD00B96317 /* slider-default7-trackCrossedOver@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-trackCrossedOver@2x.png"; sourceTree = "<group>"; };
+		C24AE23D1C43B93100B96317 /* GeneralFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralFilterViewController.h; sourceTree = "<group>"; };
+		C24AE23E1C43B93100B96317 /* GeneralFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralFilterViewController.m; sourceTree = "<group>"; };
+		C24AE23F1C43B93100B96317 /* GeneralFilterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeneralFilterViewController.xib; sourceTree = "<group>"; };
+		C24AE2421C43BC7400B96317 /* FilterBudgetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterBudgetCell.h; sourceTree = "<group>"; };
+		C24AE2431C43BC7400B96317 /* FilterBudgetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterBudgetCell.m; sourceTree = "<group>"; };
+		C24AE2441C43BC7400B96317 /* FilterBudgetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterBudgetCell.xib; sourceTree = "<group>"; };
+		C24AE2471C43BCA400B96317 /* FilterCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterCategoryCell.h; sourceTree = "<group>"; };
+		C24AE2481C43BCA400B96317 /* FilterCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterCategoryCell.m; sourceTree = "<group>"; };
+		C24AE2491C43BCA400B96317 /* FilterCategoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterCategoryCell.xib; sourceTree = "<group>"; };
 		CAB2B54F0EC79309593A3C4C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -5771,6 +5786,7 @@
 		8AF999381C3B7584000314E4 /* ListingV3 */ = {
 			isa = PBXGroup;
 			children = (
+				C24AE23C1C43B8DA00B96317 /* Filter */,
 				0B5AA69F1C3CBF1B000DDA0F /* ShopListing */,
 				8AF999391C3B7584000314E4 /* PeopleListing */,
 				8AF9993A1C3B7584000314E4 /* PostListing */,
@@ -5878,6 +5894,22 @@
 				C24AE2331C43B0DD00B96317 /* slider-default7-trackCrossedOver@2x.png */,
 			);
 			path = RangeSlider;
+			sourceTree = "<group>";
+		};
+		C24AE23C1C43B8DA00B96317 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				C24AE23D1C43B93100B96317 /* GeneralFilterViewController.h */,
+				C24AE23E1C43B93100B96317 /* GeneralFilterViewController.m */,
+				C24AE23F1C43B93100B96317 /* GeneralFilterViewController.xib */,
+				C24AE2421C43BC7400B96317 /* FilterBudgetCell.h */,
+				C24AE2431C43BC7400B96317 /* FilterBudgetCell.m */,
+				C24AE2441C43BC7400B96317 /* FilterBudgetCell.xib */,
+				C24AE2471C43BCA400B96317 /* FilterCategoryCell.h */,
+				C24AE2481C43BCA400B96317 /* FilterCategoryCell.m */,
+				C24AE2491C43BCA400B96317 /* FilterCategoryCell.xib */,
+			);
+			path = Filter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -6102,6 +6134,7 @@
 				8A6CCE411C18075800BCD54E /* PostViewIcon@2x.png in Resources */,
 				8A6CCEDC1C18075800BCD54E /* WriteRecommendationIcon@3x.png in Resources */,
 				8AD6C0C71B706CF30040437E /* NearByRecommtationViewController.xib in Resources */,
+				C24AE2411C43B93100B96317 /* GeneralFilterViewController.xib in Resources */,
 				8A6CCE491C18075800BCD54E /* CollectionIcon@2x.png in Resources */,
 				8A6CCD121C18075800BCD54E /* WhiteCollect@3x.png in Resources */,
 				8AD6C1171B706CF30040437E /* FSWebLogin.xib in Resources */,
@@ -6549,7 +6582,9 @@
 				8A6CCE211C18075800BCD54E /* NotificationLike@2x.png in Resources */,
 				8A6CCD181C18075800BCD54E /* DeleteIconSwipe@3x.png in Resources */,
 				8A69E0F51C04066100224BB4 /* ShareV2ViewController.xib in Resources */,
+				C24AE24B1C43BCA400B96317 /* FilterCategoryCell.xib in Resources */,
 				8A6CCDCA1C18075800BCD54E /* ArtIcon@3x.png in Resources */,
+				C24AE2461C43BC7400B96317 /* FilterBudgetCell.xib in Resources */,
 				8AC8F72D1BDA414E00DEF14A /* ProfilePageCollectionFooterTableViewCell.xib in Resources */,
 				8AC8F7431BDA414E00DEF14A /* ProfileV2ViewController.xib in Resources */,
 				8A6CCE661C18075800BCD54E /* NoPostIcon@3x.png in Resources */,
@@ -6957,6 +6992,7 @@
 				8AF2C2791B9EA3B800B0A7F1 /* NSDictionary+STHelper.m in Sources */,
 				8AD6C2991B7072FB0040437E /* ExtasViewController.m in Sources */,
 				8AD6C2971B7072FB0040437E /* EditLocationViewController.m in Sources */,
+				C24AE2451C43BC7400B96317 /* FilterBudgetCell.m in Sources */,
 				8AC10C2F1C438E1600EE9CC5 /* FeedType_InviteFriendTblCell.m in Sources */,
 				8AEDBFBE1C2031BA000BD2FF /* TagModel.m in Sources */,
 				8A114C9F1BE73F5D006AE3F0 /* KVNProgress.m in Sources */,
@@ -7142,6 +7178,7 @@
 				8A69E0EC1BFF26A000224BB4 /* NSString+Extension.m in Sources */,
 				8AD6C2831B7072FB0040437E /* AddLinkViewController.m in Sources */,
 				8A114CE81BE75CA0006AE3F0 /* CollectionViewController.m in Sources */,
+				C24AE2401C43B93100B96317 /* GeneralFilterViewController.m in Sources */,
 				8AD6C0FC1B706CF30040437E /* SearchViewV2.m in Sources */,
 				8A114CE61BE75CA0006AE3F0 /* AddCollectionDataViewController.m in Sources */,
 				8AD6BE4F1B706CF30040437E /* ExploreViewController.m in Sources */,
@@ -7157,6 +7194,7 @@
 				8A993CC41C290CE4009359E2 /* UITextView+Extension.swift in Sources */,
 				8A114C941BE73F5D006AE3F0 /* FXImageView.m in Sources */,
 				0BBFE0541B9D6260004B17E9 /* NotificationSettingsViewController.m in Sources */,
+				C24AE24A1C43BCA400B96317 /* FilterCategoryCell.m in Sources */,
 				8A4509921BAFF7C000A868CD /* UIColor+Extension.m in Sources */,
 				8AEDBFA91C2031BA000BD2FF /* EditHourModel.m in Sources */,
 				0BBFE08A1B9FCC00004B17E9 /* EditInterestViewController.m in Sources */,
