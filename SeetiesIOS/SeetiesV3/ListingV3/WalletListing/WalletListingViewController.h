@@ -7,7 +7,10 @@
 //
 
 #import "CommonViewController.h"
+#import "WalletVoucherCell.h"
+#import "VoucherFilterCellTableViewCell.h"
 
-@interface WalletListingViewController : CommonViewController
+@interface WalletListingViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate>
+
 
 @end
