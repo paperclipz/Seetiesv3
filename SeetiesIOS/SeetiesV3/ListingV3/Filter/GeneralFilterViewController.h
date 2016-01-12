@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FilterCategoryCell.h"
 
-@interface GeneralFilterViewController : UIViewController
+@interface GeneralFilterViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @end

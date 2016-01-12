@@ -34,4 +34,21 @@
 }
 */
 
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 3;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    FilterCategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CategoryCell"];
+    
+    if (!cell) {
+        [tableView registerNib:[UINib nibWithNibName:@"FilterCategoryCell" bundle:nil] forCellReuseIdentifier:@"CategoryCell"];
+        cell = [tableView dequeueReusableCellWithIdentifier:@"CategoryCell"];
+    }
+    
+    return cell;
+}
+
+
 @end

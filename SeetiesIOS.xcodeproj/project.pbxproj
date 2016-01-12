@@ -1166,14 +1166,6 @@
 		C24AE2231C435D7100B96317 /* VoucherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24AE2211C435D7100B96317 /* VoucherCell.xib */; };
 		C24AE2271C43700700B96317 /* VoucherListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24AE2251C43700700B96317 /* VoucherListingViewController.m */; };
 		C24AE2281C43700700B96317 /* VoucherListingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24AE2261C43700700B96317 /* VoucherListingViewController.xib */; };
-		C24AE2341C43B0DD00B96317 /* slider-default7-handle.png in Resources */ = {isa = PBXBuildFile; fileRef = C24AE22C1C43B0DD00B96317 /* slider-default7-handle.png */; };
-		C24AE2351C43B0DD00B96317 /* slider-default7-handle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C24AE22D1C43B0DD00B96317 /* slider-default7-handle@2x.png */; };
-		C24AE2361C43B0DD00B96317 /* slider-default7-track.png in Resources */ = {isa = PBXBuildFile; fileRef = C24AE22E1C43B0DD00B96317 /* slider-default7-track.png */; };
-		C24AE2371C43B0DD00B96317 /* slider-default7-track@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C24AE22F1C43B0DD00B96317 /* slider-default7-track@2x.png */; };
-		C24AE2381C43B0DD00B96317 /* slider-default7-trackBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = C24AE2301C43B0DD00B96317 /* slider-default7-trackBackground.png */; };
-		C24AE2391C43B0DD00B96317 /* slider-default7-trackBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C24AE2311C43B0DD00B96317 /* slider-default7-trackBackground@2x.png */; };
-		C24AE23A1C43B0DD00B96317 /* slider-default7-trackCrossedOver.png in Resources */ = {isa = PBXBuildFile; fileRef = C24AE2321C43B0DD00B96317 /* slider-default7-trackCrossedOver.png */; };
-		C24AE23B1C43B0DD00B96317 /* slider-default7-trackCrossedOver@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C24AE2331C43B0DD00B96317 /* slider-default7-trackCrossedOver@2x.png */; };
 		C24AE2401C43B93100B96317 /* GeneralFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24AE23E1C43B93100B96317 /* GeneralFilterViewController.m */; };
 		C24AE2411C43B93100B96317 /* GeneralFilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24AE23F1C43B93100B96317 /* GeneralFilterViewController.xib */; };
 		C24AE2451C43BC7400B96317 /* FilterBudgetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C24AE2431C43BC7400B96317 /* FilterBudgetCell.m */; };
@@ -2745,14 +2737,6 @@
 		C24AE2241C43700700B96317 /* VoucherListingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoucherListingViewController.h; sourceTree = "<group>"; };
 		C24AE2251C43700700B96317 /* VoucherListingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoucherListingViewController.m; sourceTree = "<group>"; };
 		C24AE2261C43700700B96317 /* VoucherListingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VoucherListingViewController.xib; sourceTree = "<group>"; };
-		C24AE22C1C43B0DD00B96317 /* slider-default7-handle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-handle.png"; sourceTree = "<group>"; };
-		C24AE22D1C43B0DD00B96317 /* slider-default7-handle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-handle@2x.png"; sourceTree = "<group>"; };
-		C24AE22E1C43B0DD00B96317 /* slider-default7-track.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-track.png"; sourceTree = "<group>"; };
-		C24AE22F1C43B0DD00B96317 /* slider-default7-track@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-track@2x.png"; sourceTree = "<group>"; };
-		C24AE2301C43B0DD00B96317 /* slider-default7-trackBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-trackBackground.png"; sourceTree = "<group>"; };
-		C24AE2311C43B0DD00B96317 /* slider-default7-trackBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-trackBackground@2x.png"; sourceTree = "<group>"; };
-		C24AE2321C43B0DD00B96317 /* slider-default7-trackCrossedOver.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-trackCrossedOver.png"; sourceTree = "<group>"; };
-		C24AE2331C43B0DD00B96317 /* slider-default7-trackCrossedOver@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-trackCrossedOver@2x.png"; sourceTree = "<group>"; };
 		C24AE23D1C43B93100B96317 /* GeneralFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralFilterViewController.h; sourceTree = "<group>"; };
 		C24AE23E1C43B93100B96317 /* GeneralFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralFilterViewController.m; sourceTree = "<group>"; };
 		C24AE23F1C43B93100B96317 /* GeneralFilterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeneralFilterViewController.xib; sourceTree = "<group>"; };
@@ -3907,7 +3891,6 @@
 		8A6CCA421C18075700BCD54E /* Misc */ = {
 			isa = PBXGroup;
 			children = (
-				C24AE22B1C43B06A00B96317 /* RangeSlider */,
 				8A6CCA431C18075700BCD54E /* 1.png */,
 				8A6CCA441C18075700BCD54E /* 2.png */,
 				8A6CCA451C18075700BCD54E /* 3.png */,
@@ -5881,21 +5864,6 @@
 			path = RangeSlider;
 			sourceTree = "<group>";
 		};
-		C24AE22B1C43B06A00B96317 /* RangeSlider */ = {
-			isa = PBXGroup;
-			children = (
-				C24AE22C1C43B0DD00B96317 /* slider-default7-handle.png */,
-				C24AE22D1C43B0DD00B96317 /* slider-default7-handle@2x.png */,
-				C24AE22E1C43B0DD00B96317 /* slider-default7-track.png */,
-				C24AE22F1C43B0DD00B96317 /* slider-default7-track@2x.png */,
-				C24AE2301C43B0DD00B96317 /* slider-default7-trackBackground.png */,
-				C24AE2311C43B0DD00B96317 /* slider-default7-trackBackground@2x.png */,
-				C24AE2321C43B0DD00B96317 /* slider-default7-trackCrossedOver.png */,
-				C24AE2331C43B0DD00B96317 /* slider-default7-trackCrossedOver@2x.png */,
-			);
-			path = RangeSlider;
-			sourceTree = "<group>";
-		};
 		C24AE23C1C43B8DA00B96317 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
@@ -6031,7 +5999,6 @@
 				8A6CCE601C18075800BCD54E /* NewPostsIcon@3x.png in Resources */,
 				8A6CCCF61C18075800BCD54E /* FollowingCollectionSimplifiedChiIcon@3x.png in Resources */,
 				8A6CCDFA1C18075800BCD54E /* InviteGraphic@3x.png in Resources */,
-				C24AE2381C43B0DD00B96317 /* slider-default7-trackBackground.png in Resources */,
 				8A6CCCC91C18075800BCD54E /* Icon-Small.png in Resources */,
 				8A6CCE021C18075800BCD54E /* InviteWhatsappIcon@3x.png in Resources */,
 				8AC8F7491BDA414E00DEF14A /* EditCollectionViewController.xib in Resources */,
@@ -6071,7 +6038,6 @@
 				8A6CCDE61C18075800BCD54E /* ConnectWithFacebook@3x.png in Resources */,
 				8A6CCDD11C18075800BCD54E /* ForHerIcon@2x.png in Resources */,
 				8A6CCD991C18075800BCD54E /* FeedSuggestionFollow@3x.png in Resources */,
-				C24AE23A1C43B0DD00B96317 /* slider-default7-trackCrossedOver.png in Resources */,
 				8A6CCD5C1C18075800BCD54E /* TryAgainBtn@3x.png in Resources */,
 				8A6CCDC51C18075800BCD54E /* WelcomeLogo@2x.png in Resources */,
 				8A6CCE941C18075800BCD54E /* YellowCollected@3x.png in Resources */,
@@ -6208,7 +6174,6 @@
 				8A6CCD7C1C18075800BCD54E /* CollectIndoBtn@2x.png in Resources */,
 				8A6CCE751C18075800BCD54E /* ProfileLocationIcon@2x.png in Resources */,
 				8A6CCEA71C18075800BCD54E /* SSWhiteTranslateIcon@3x.png in Resources */,
-				C24AE2341C43B0DD00B96317 /* slider-default7-handle.png in Resources */,
 				8AC8F7271BDA414E00DEF14A /* PostListingTableViewCell.xib in Resources */,
 				8A6CCD461C18075800BCD54E /* LocationIcon@3x.png in Resources */,
 				8A6CCCB11C18075800BCD54E /* BackIcon@2x.png in Resources */,
@@ -6374,7 +6339,6 @@
 				8A6CCDEC1C18075800BCD54E /* FacebookBtnInactive@3x.png in Resources */,
 				8A6CCE901C18075800BCD54E /* TimeIcon@3x.png in Resources */,
 				8A6CCCE71C18075800BCD54E /* FollowCollectionBahasaIndoIcon@2x.png in Resources */,
-				C24AE2371C43B0DD00B96317 /* slider-default7-track@2x.png in Resources */,
 				8A6CCE6C1C18075800BCD54E /* PrivateCollectionIcon@3x.png in Resources */,
 				8A6CCDC81C18075800BCD54E /* AbroadIcon@3x.png in Resources */,
 				8A6CCDDA1C18075800BCD54E /* LocalIcon@3x.png in Resources */,
@@ -6453,7 +6417,6 @@
 				8A6CCE2F1C18075800BCD54E /* ChangePlaceIcon@2x.png in Resources */,
 				8AD6C2A41B7072FB0040437E /* SelectImageViewController.xib in Resources */,
 				8AD6C0B01B706CF30040437E /* ExpertLoginViewController.xib in Resources */,
-				C24AE2361C43B0DD00B96317 /* slider-default7-track.png in Resources */,
 				8A6CCD351C18075800BCD54E /* SaveDraftBtn@2x.png in Resources */,
 				8A6CCD3E1C18075800BCD54E /* BrithdayIcon@3x.png in Resources */,
 				8A6CCE3F1C18075800BCD54E /* PostOverlay@2x.png in Resources */,
@@ -6647,7 +6610,6 @@
 				8A6CCDDC1C18075800BCD54E /* NightlifeIcon@3x.png in Resources */,
 				8A6CCD301C18075800BCD54E /* CloseIcon@3x.png in Resources */,
 				0B5AA6A41C3CBF31000DDA0F /* ShopListingViewController.xib in Resources */,
-				C24AE2351C43B0DD00B96317 /* slider-default7-handle@2x.png in Resources */,
 				8AD6C0BD1B706CF30040437E /* CommentViewController.xib in Resources */,
 				8A6CCD321C18075800BCD54E /* EditPostOverlay@3x.png in Resources */,
 				8A6CCE321C18075800BCD54E /* DirectionIcon@3x.png in Resources */,
@@ -6678,7 +6640,6 @@
 				8A6CCE771C18075800BCD54E /* ProfileOverlay@2x.png in Resources */,
 				8AD6C0B61B706CF30040437E /* InstagramLoginWebViewController.xib in Resources */,
 				8A6CCEAD1C18075800BCD54E /* CameraIcon@3x.png in Resources */,
-				C24AE2391C43B0DD00B96317 /* slider-default7-trackBackground@2x.png in Resources */,
 				8A6CCD3F1C18075800BCD54E /* EditCoverPhoto@2x.png in Resources */,
 				8A6CCDB91C18075800BCD54E /* VoucherImg.png in Resources */,
 				8AD6BE501B706CF30040437E /* ExploreViewController.xib in Resources */,
@@ -6774,7 +6735,6 @@
 				8A6CCE9E1C18075800BCD54E /* SSFacebookIcon@2x.png in Resources */,
 				8A6CCE0F1C18075800BCD54E /* SeetiesLogo@2x.png in Resources */,
 				8A6CCDE01C18075800BCD54E /* SportIcon@3x.png in Resources */,
-				C24AE23B1C43B0DD00B96317 /* slider-default7-trackCrossedOver@2x.png in Resources */,
 				8A6CCE9D1C18075800BCD54E /* SsDefaultDisplayPhoto@3x.png in Resources */,
 				8AC8F73B1BDA414E00DEF14A /* ProfileViewController.xib in Resources */,
 				8AD6C0C91B706CF30040437E /* NotificationViewController.xib in Resources */,
