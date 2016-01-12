@@ -32,6 +32,8 @@ pod 'UITextView+Placeholder'
 pod 'iOSBlocks/Cocoa'
 pod 'DBCamera', '~> 2.4'
 pod 'A3ParallaxScrollView', '~> 1.0'
+pod 'PDKTStickySectionHeadersCollectionViewLayout'
+pod 'NMRangeSlider'
 
 pod 'APParallaxHeader'
 pod 'PureLayout'
