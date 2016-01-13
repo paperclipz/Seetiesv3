@@ -57,9 +57,8 @@
     self.postID = postID;
     
     postImageView = [UIImageView new];
-    [postImageView sd_setImageWithPreviousCachedImageWithURL:[NSURL URLWithString:self.postImageURL] andPlaceholderImage:[UIImage imageNamed:@"NoImage.png"] options:SDWebImageHighPriority progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-      
-        SLog(@"image finish load");
+    [postImageView sd_setImageWithPreviousCachedImageWithURL:[NSURL URLWithString:self.postImageURL] placeholderImage:[UIImage imageNamed:@"NoImage.png"] options:SDWebImageHighPriority progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL){
+    SLog(@"image finish load");
     }];
     
     NSString* message = [self getShareMessage:type appendURL:YES];

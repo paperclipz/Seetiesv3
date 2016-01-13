@@ -12,6 +12,7 @@
 @property NSArray *voucherArray;
 @property (weak, nonatomic) IBOutlet UILabel *ibUserLocationLbl;
 @property (weak, nonatomic) IBOutlet UITableView *ibVoucherTable;
+@property (weak, nonatomic) IBOutlet UIView *ibFilterView;
 
 @end
 
@@ -52,6 +53,29 @@
     }
     
     return voucherCell;
+}
+
+- (IBAction)filterClicked:(id)sender {
+    NSInteger filterTag = 1001;
+    UIView *filterView = [self.view viewWithTag:filterTag];
+    
+    if (filterView == nil) {
+        GeneralFilterViewController *filterController = [[GeneralFilterViewController alloc] init];
+        CGFloat yOrigin = self.ibFilterView.frame.origin.y + self.ibFilterView.frame.size.height;
+        CGFloat filterHeight = self.view.frame.size.height - yOrigin;
+        CGRect filterRect = CGRectMake(0, yOrigin, self.view.frame.size.width, filterHeight);
+        filterController.view.frame = filterRect;
+        filterController.view.tag = filterTag;
+        [self.view addSubview:filterController.view];
+    }
+    else{
+        if (filterView.hidden) {
+            filterView.hidden = NO;
+        }
+        else{
+            filterView.hidden = YES;
+        }
+    }
 }
 
 @end
