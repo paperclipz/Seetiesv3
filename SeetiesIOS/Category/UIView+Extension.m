@@ -50,4 +50,12 @@
     [self setNeedsUpdateConstraints];
     [self layoutIfNeeded];
 }
+
+- (void)prefix_addUpperBorder
+{
+    CALayer *upperBorder = [CALayer layer];
+    upperBorder.backgroundColor = [[UIColor greenColor] CGColor];
+    upperBorder.frame = CGRectMake(0, 0, CGRectGetWidth(self.frame), 1.0f);
+    [self.layer addSublayer:upperBorder];
+}
 @end

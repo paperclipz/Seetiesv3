@@ -8,14 +8,8 @@
 
 #import "CTFeedModel.h"
 
-
-
-@interface CTFeedModel()
-
-@property(nonatomic,strong)NSString* type;
-
-@end
 @implementation CTFeedModel
+
 
 +(BOOL)propertyIsOptional:(NSString*)propertyName
 {
@@ -25,17 +19,23 @@
 +(JSONKeyMapper*)keyMapper
 {
     return [[JSONKeyMapper alloc] initWithDictionary:@{
-                                                       @"data.location": @"location",
-                                                       @"data.place_name": @"place_name",
-                                                       @"data.place_formatted_address": @"place_formatted_address",
-                                                       @"data.seetishop_id": @"seetishop_id",
-                                                       @"data.collection_count": @"collection_count",
-                                                       @"data.total_comments": @"total_comments",
-                                                       @"data.like": @"like",
-                                                       @"data.user_info": @"user_info",
-                                                       @"data.type": @"type",
-                                                       
+                                                       @"description": @"postDescription",
+
                                                        }];
+}
+
+@end
+
+@interface CTFeedTypeModel()
+
+@property(nonatomic,strong)NSString* type;
+@end
+
+@implementation CTFeedTypeModel
+
++(BOOL)propertyIsOptional:(NSString*)propertyName
+{
+    return YES;
 }
 
 -(FeedType)feedType

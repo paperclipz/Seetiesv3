@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryCell" id="KGk-i7-Jjw" customClass="FilterCategoryCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YIL-P1-bN4" userLabel="column 1">
+                        <rect key="frame" x="8" y="7" width="96" height="30"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w8a-sT-ft5" userLabel="column 2">
+                        <rect key="frame" x="112" y="7" width="96" height="30"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zfO-r5-7ku" userLabel="column 3">
+                        <rect key="frame" x="216" y="7" width="96" height="30"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="zfO-r5-7ku" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="8lf-bb-uSy"/>
+                    <constraint firstItem="w8a-sT-ft5" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="HS7-D3-3VM"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="YIL-P1-bN4" secondAttribute="leading" id="YZR-1H-qix"/>
+                    <constraint firstItem="YIL-P1-bN4" firstAttribute="width" secondItem="w8a-sT-ft5" secondAttribute="width" id="YdO-a9-hcG"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="zfO-r5-7ku" secondAttribute="trailing" id="jMM-mP-Jjn"/>
+                    <constraint firstItem="YIL-P1-bN4" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="p1s-bb-szs"/>
+                    <constraint firstItem="w8a-sT-ft5" firstAttribute="leading" secondItem="YIL-P1-bN4" secondAttribute="trailing" constant="8" id="q0D-BM-2VZ"/>
+                    <constraint firstItem="zfO-r5-7ku" firstAttribute="leading" secondItem="w8a-sT-ft5" secondAttribute="trailing" constant="8" id="vvm-ie-dDM"/>
+                    <constraint firstItem="YIL-P1-bN4" firstAttribute="width" secondItem="zfO-r5-7ku" secondAttribute="width" id="w1l-uY-gKA"/>
+                </constraints>
+            </tableViewCellContentView>
+        </tableViewCell>
+    </objects>
+</document>

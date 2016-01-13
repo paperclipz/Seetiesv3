@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="70" id="KGk-i7-Jjw" customClass="SeetizensTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="DefaultProfilePic.png" translatesAutoresizingMaskIntoConstraints="NO" id="WYM-KQ-r4q">
+                        <rect key="frame" x="10" y="10" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="HZj-j6-xc3"/>
+                            <constraint firstAttribute="height" constant="50" id="NtD-cw-ptu"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wew-wG-aBl">
+                        <rect key="frame" x="68" y="10" width="193" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="193" id="3Tv-Nr-eH8"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="3Tv-Nr-eH8"/>
+                            </mask>
+                        </variation>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fwu-dr-qs4">
+                        <rect key="frame" x="250" y="10" width="70" height="48"/>
+                        <state key="normal" image="ExploreFollow.png"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="WYM-KQ-r4q" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="30f-qD-gkw"/>
+                    <constraint firstItem="fwu-dr-qs4" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Hu2-qv-U8S"/>
+                    <constraint firstItem="fwu-dr-qs4" firstAttribute="top" secondItem="WYM-KQ-r4q" secondAttribute="top" id="I0E-Rj-Czs"/>
+                    <constraint firstItem="fwu-dr-qs4" firstAttribute="top" secondItem="Wew-wG-aBl" secondAttribute="top" id="Jjq-tN-Zw8"/>
+                    <constraint firstItem="Wew-wG-aBl" firstAttribute="leading" secondItem="WYM-KQ-r4q" secondAttribute="trailing" constant="8" id="Sib-oy-QpY"/>
+                    <constraint firstItem="Wew-wG-aBl" firstAttribute="bottom" secondItem="WYM-KQ-r4q" secondAttribute="bottom" id="Wdi-I1-lvp"/>
+                    <constraint firstItem="fwu-dr-qs4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="242" id="cys-i0-Bbu"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="fwu-dr-qs4" secondAttribute="trailing" constant="-8" id="equ-4p-1rd"/>
+                    <constraint firstItem="Wew-wG-aBl" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="evf-Ib-tYS"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Wew-wG-aBl" secondAttribute="trailing" constant="51" id="lWn-XR-iJC"/>
+                    <constraint firstItem="Wew-wG-aBl" firstAttribute="leading" secondItem="WYM-KQ-r4q" secondAttribute="trailing" constant="8" symbolic="YES" id="qfp-DC-rbm"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="cys-i0-Bbu"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="480" y="402"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="DefaultProfilePic.png" width="83" height="83"/>
+        <image name="ExploreFollow.png" width="70" height="48"/>
+    </resources>
+</document>

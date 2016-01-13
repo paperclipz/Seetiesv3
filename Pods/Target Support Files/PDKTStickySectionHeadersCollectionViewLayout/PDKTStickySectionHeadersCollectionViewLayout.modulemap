@@ -1,0 +1,6 @@
+framework module PDKTStickySectionHeadersCollectionViewLayout {
+  umbrella header "PDKTStickySectionHeadersCollectionViewLayout-umbrella.h"
+
+  export *
+  module * { export * }
+}

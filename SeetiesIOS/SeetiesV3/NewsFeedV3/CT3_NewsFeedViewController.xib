@@ -151,6 +151,9 @@
                                         <constraint firstAttribute="height" constant="30" id="JiK-yV-hpH"/>
                                     </constraints>
                                     <state key="normal" title="Grab Now"/>
+                                    <connections>
+                                        <action selector="btnGrabNowClicked:" destination="-1" eventType="touchUpInside" id="nsa-FQ-Mpa"/>
+                                    </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="asdasdsdasdasdasdasdasdasdsad" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bv5-kt-S2o">
                                     <rect key="frame" x="27" y="75" width="267" height="21"/>

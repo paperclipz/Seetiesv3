@@ -15,7 +15,7 @@
 @property(nonatomic,assign)int position;
 @property(nonatomic,strong)NSString* imageURL;
 @property(nonatomic,strong)UIImage* image;
-@property(nonatomic,strong)NSString* imageWidth;
-@property(nonatomic,strong)NSString* imageHeight;
+@property(nonatomic,assign)float imageWidth;
+@property(nonatomic,assign)float imageHeight;
 -(id) copyWithZone: (NSZone *) zone;
 @end

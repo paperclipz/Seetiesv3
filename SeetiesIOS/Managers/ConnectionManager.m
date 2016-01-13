@@ -504,7 +504,10 @@
             break;
             
         case ServerRequestTypeGetNewsFeed:
-            
+        {
+            NSDictionary* dict = obj[@"data"];
+            self.dataManager.newsFeedModels = [[NewsFeedModels alloc]initWithDictionary:dict error:nil];
+        }
             break;
             
         case ServerRequestTypeGetLanguage:

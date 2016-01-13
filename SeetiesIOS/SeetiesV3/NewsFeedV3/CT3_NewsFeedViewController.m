@@ -10,8 +10,12 @@
 #import "FeedTableViewCell.h"
 #import "FeedSquareCollectionViewCell.h"
 #import "QuickBrowserCollectionTableViewCell.h"
+
 #import "FeedType_FollowingPostTblCell.h"
 #import "FeedType_Two_TableViewCell.h"
+#import "FeedType_CountryPromotionTblCell.h"
+#import "FeedType_InviteFriendTblCell.h"
+#import "FeedType_AnnouncementWelcomeTblCell.h"
 
 #define NUMBER_OF_SECTION 2
 @interface CT3_NewsFeedViewController ()<UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
@@ -32,6 +36,11 @@
 @end
 
 @implementation CT3_NewsFeedViewController
+- (IBAction)btnGrabNowClicked:(id)sender {
+    VoucherListingViewController *voucherListingController = [[VoucherListingViewController alloc] init];
+    [self.navigationController pushViewController:voucherListingController animated:YES];
+    
+}
 - (IBAction)btnLoginClicked:(id)sender {
     
     
@@ -48,7 +57,7 @@
 
 -(void)refreshViewAfterLogin
 {
-    [self requestServerForNewsFeed];
+    //[self requestServerForNewsFeed];
 }
 
 #pragma mark - Declaration
@@ -141,8 +150,8 @@
     
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetNewsFeed param:dict appendString:@"" completeHandler:^(id object) {
         
-      //  NewsFeedModels* model = [[ConnectionManager dataManager] newsFeedModels];
-      //  [self.arrayNewsFeed addObjectsFromArray:model.items];
+        NewsFeedModels* model = [[ConnectionManager dataManager] newsFeedModels];
+        [self.arrayNewsFeed addObjectsFromArray:model.items];
         [self.ibTableView reloadData];
     } errorBlock:^(id object) {
         
@@ -157,8 +166,7 @@
         return 0;
     }
     else{// this is newsfeed row count
-       // return self.arrayNewsFeed.count;
-        return 5;
+        return self.arrayNewsFeed.count;
 
     }
 }
@@ -171,19 +179,22 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
+  
     
-    int type = 1;
-    
-    switch (type) {
-        case 1:
+    CTFeedTypeModel* typeModel = self.arrayNewsFeed[indexPath.row];
+
+    switch (typeModel.feedType) {
+        case FeedType_Following_Post:
         {
             /*Following Post*/
-            static NSString *CellIdentifier = @"Cell";
+            static NSString *CellIdentifier = @"FeedType_FollowingPostTblCell";
             FeedType_FollowingPostTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             if (cell == nil) {
                 cell = [[FeedType_FollowingPostTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
             }
-           // [cell initData:self.arrayNewsFeed[indexPath.row]];
+            
+            [cell initData:typeModel];
           
             [cell refreshConstraint];
             
@@ -193,10 +204,10 @@
 
         }
             break;
-        case 2:
+        case FeedType_Deal:
         {
             /*Following Post*/
-            static NSString *CellIdentifier = @"Cell";
+            static NSString *CellIdentifier = @"FeedType_Two_TableViewCell";
             FeedType_Two_TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             if (cell == nil) {
                 cell = [[FeedType_Two_TableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
@@ -206,11 +217,45 @@
             
         }
             break;
-
-            
         default:
-            return nil;
+        case FeedType_Country_Promotion:
+        {
+            static NSString *CellIdentifier = @"FeedType_CountryPromotionTblCell";
+            FeedType_CountryPromotionTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if (cell == nil) {
+                cell = [[FeedType_CountryPromotionTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+            }
+            //Configure cell
+            return cell;
+            
+        }
             break;
+
+        case FeedType_Invite_Friend:
+        {
+            static NSString *CellIdentifier = @"FeedType_InviteFriendTblCell";
+            FeedType_InviteFriendTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if (cell == nil) {
+                cell = [[FeedType_InviteFriendTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+            }
+            return cell;
+            break;
+
+        }
+        case FeedType_Announcement_Welcome:
+        {
+            static NSString *CellIdentifier = @"FeedType_AnnouncementWelcomeTblCell";
+            FeedType_AnnouncementWelcomeTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if (cell == nil) {
+                cell = [[FeedType_AnnouncementWelcomeTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+            }
+            return cell;
+            break;
+            
+        }
+
+
+
     }
 }
 

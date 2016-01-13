@@ -38,16 +38,20 @@
     [Foursquare2 setupFoursquareWithClientId:@"V0RPRPAUHB1ZCFSKOXKNM0JA3Q1RN1QUBK14RZFOUYY15I4R"
                                       secret:@"T5XT0AVNHLLO1NMXRNFCDBYGA453E12CTVN0WOSIHREEZTWA"
                                  callbackURL:@"testapp123://foursquare"];
-    [GMSServices provideAPIKey:GOOGLE_API_KEY];
-    //Optional: automatically send uncaught exceptions to Google Analytics.
-    [GAI sharedInstance].trackUncaughtExceptions = YES;
-    // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
-    [GAI sharedInstance].dispatchInterval = 30;
-    // Optional: set Logger to VERBOSE for debug information.
-    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
-    // Initialize tracker. Replace with your tracking ID.
-    [[GAI sharedInstance] trackerWithTrackingId:@"UA-45737845-4"];
+  
 
+    if (!IS_SIMULATOR) {
+        [GMSServices provideAPIKey:GOOGLE_API_KEY];
+        //Optional: automatically send uncaught exceptions to Google Analytics.
+        [GAI sharedInstance].trackUncaughtExceptions = YES;
+        // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
+        [GAI sharedInstance].dispatchInterval = 30;
+        // Optional: set Logger to VERBOSE for debug information.
+        [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
+        // Initialize tracker. Replace with your tracking ID.
+        [[GAI sharedInstance] trackerWithTrackingId:@"UA-45737845-4"];
+    }
+   
     // [ViewMonitor start];
 
 
@@ -431,7 +435,7 @@
     NewLandingViewController* landingViewController = [NewLandingViewController new];
     UINavigationController* navigationController = [[UINavigationController alloc]initWithRootViewController:landingViewController];
     navigationController.navigationBar.hidden = YES;
-    self.window.rootViewController = self.landingV2ViewController;//self.landingV2ViewController
+    self.window.rootViewController = navigationController;//self.landingV2ViewController
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 

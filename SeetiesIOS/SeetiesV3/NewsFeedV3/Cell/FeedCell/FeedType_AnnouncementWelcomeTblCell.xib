@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="363" id="8mP-0R-zvR" customClass="FeedType_AnnouncementWelcomeTblCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="363"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8mP-0R-zvR" id="5Ic-eC-6I2">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="363"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IrS-g5-U1M">
+                        <rect key="frame" x="8" y="8" width="304" height="283"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="283" id="PIi-Nl-Azf"/>
+                            <constraint firstAttribute="height" constant="283" id="uCc-qR-bzH"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="uCc-qR-bzH"/>
+                            </mask>
+                        </variation>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fly With Seeties" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUu-kU-ILf">
+                        <rect key="frame" x="14" y="311" width="298" height="24"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="uUu-kU-ILf" firstAttribute="trailing" secondItem="5Ic-eC-6I2" secondAttribute="trailingMargin" id="MAI-Cd-s4C"/>
+                    <constraint firstItem="IrS-g5-U1M" firstAttribute="leading" secondItem="5Ic-eC-6I2" secondAttribute="leadingMargin" id="Qfp-7w-8vL"/>
+                    <constraint firstItem="uUu-kU-ILf" firstAttribute="leading" secondItem="5Ic-eC-6I2" secondAttribute="leadingMargin" constant="6" id="YwP-XE-6ei"/>
+                    <constraint firstItem="IrS-g5-U1M" firstAttribute="top" secondItem="5Ic-eC-6I2" secondAttribute="topMargin" id="Z8r-v1-gMg"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="uUu-kU-ILf" secondAttribute="bottom" constant="20" id="dxY-Oy-Vdg"/>
+                    <constraint firstItem="uUu-kU-ILf" firstAttribute="top" secondItem="IrS-g5-U1M" secondAttribute="bottom" constant="20" id="pOh-p7-Olo"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="IrS-g5-U1M" secondAttribute="trailing" id="poX-UC-BuW"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="ibImageView" destination="IrS-g5-U1M" id="bpG-VI-UA0"/>
+                <outlet property="lblTitle" destination="uUu-kU-ILf" id="3Hp-nB-1c9"/>
+            </connections>
+            <point key="canvasLocation" x="403" y="478.5"/>
+        </tableViewCell>
+    </objects>
+</document>

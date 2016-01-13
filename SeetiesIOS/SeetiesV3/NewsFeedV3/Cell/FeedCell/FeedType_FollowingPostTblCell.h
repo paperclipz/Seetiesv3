@@ -9,6 +9,6 @@
 #import "CommonTableViewCell.h"
 
 @interface FeedType_FollowingPostTblCell : CommonTableViewCell
--(void)initData:(CTFeedModel*)model;
+-(void)initData:(CTFeedTypeModel*)model;
 
 @end

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WalletVoucherCell" rowHeight="190" id="KGk-i7-Jjw" customClass="WalletVoucherCell">
+            <rect key="frame" x="0.0" y="0.0" width="573" height="190"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="573" height="189.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="detox water.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="fUJ-VL-T90" userLabel="voucher image">
+                        <rect key="frame" x="0.0" y="0.0" width="573" height="95"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="95" id="7AN-hB-lbK"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voucher Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u04-yq-o0b" userLabel="voucher title">
+                        <rect key="frame" x="8" y="103" width="457" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="6Bf-8p-C8b"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voucher Shop" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4sr-Y9-XxY" userLabel="voucher shop">
+                        <rect key="frame" x="8" y="132" width="507" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="fnt-y7-DB3"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expiry" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K9w-Q1-xvq" userLabel="voucher expiry">
+                        <rect key="frame" x="8" y="161" width="507" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="fU4-0a-hf5"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="09G-mu-Hfi" userLabel="cancel voucher">
+                        <rect key="frame" x="494" y="8" width="71" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="QTL-cC-aKe"/>
+                            <constraint firstAttribute="width" constant="71" id="ZGQ-ue-KWO"/>
+                        </constraints>
+                        <state key="normal" title="Delete">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Best deal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CoZ-p6-6hj" userLabel="best deal">
+                        <rect key="frame" x="8" y="8" width="94" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l9X-a6-9HS" userLabel="redeem voucher">
+                        <rect key="frame" x="499" y="128" width="66" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="66" id="QBu-8I-vfv"/>
+                            <constraint firstAttribute="height" constant="30" id="oyj-Zx-fjk"/>
+                        </constraints>
+                        <state key="normal" title="Redeem"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="u04-yq-o0b" firstAttribute="top" secondItem="fUJ-VL-T90" secondAttribute="bottom" constant="8" id="351-Mp-bSg"/>
+                    <constraint firstItem="4sr-Y9-XxY" firstAttribute="top" secondItem="u04-yq-o0b" secondAttribute="bottom" constant="8" id="75W-tF-Akv"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="u04-yq-o0b" secondAttribute="trailing" constant="100" id="7wi-n6-6AQ"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="09G-mu-Hfi" secondAttribute="bottom" constant="151.5" id="BHi-6q-dFb"/>
+                    <constraint firstItem="fUJ-VL-T90" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="BIJ-79-DD6"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="K9w-Q1-xvq" secondAttribute="trailing" constant="50" id="ES8-0U-02n"/>
+                    <constraint firstItem="l9X-a6-9HS" firstAttribute="centerY" secondItem="4sr-Y9-XxY" secondAttribute="centerY" id="HXJ-Ve-oFR"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="09G-mu-Hfi" secondAttribute="trailing" id="LcL-7X-s0s"/>
+                    <constraint firstAttribute="topMargin" secondItem="09G-mu-Hfi" secondAttribute="top" id="M1m-C3-SvA"/>
+                    <constraint firstItem="l9X-a6-9HS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="120" id="Y4W-I3-mnU"/>
+                    <constraint firstItem="09G-mu-Hfi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="486" id="aiZ-DM-5KI"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="4sr-Y9-XxY" secondAttribute="leading" id="d4n-tY-1lJ"/>
+                    <constraint firstItem="fUJ-VL-T90" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="dHb-Dr-R5L"/>
+                    <constraint firstItem="K9w-Q1-xvq" firstAttribute="top" secondItem="4sr-Y9-XxY" secondAttribute="bottom" constant="8" id="gVf-p5-WGw"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="fUJ-VL-T90" secondAttribute="trailing" constant="-8" id="iih-rb-cNo"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="l9X-a6-9HS" secondAttribute="bottom" constant="23.5" id="kL0-Dq-Veu"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="K9w-Q1-xvq" secondAttribute="leading" id="nxR-4w-eP5"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="u04-yq-o0b" secondAttribute="leading" id="pKK-ND-qk2"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="l9X-a6-9HS" secondAttribute="trailing" id="q9X-dD-bm6"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="4sr-Y9-XxY" secondAttribute="trailing" constant="50" id="xKT-F9-oN2"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="BHi-6q-dFb"/>
+                        <exclude reference="aiZ-DM-5KI"/>
+                        <exclude reference="Y4W-I3-mnU"/>
+                        <exclude reference="kL0-Dq-Veu"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="ibBestDealLbl" destination="CoZ-p6-6hj" id="zsc-YE-zw5"/>
+                <outlet property="ibVoucherExpiryLbl" destination="K9w-Q1-xvq" id="hia-i9-SbL"/>
+                <outlet property="ibVoucherImg" destination="fUJ-VL-T90" id="muy-E3-Gqq"/>
+                <outlet property="ibVoucherShopLbl" destination="4sr-Y9-XxY" id="jqr-aI-ocg"/>
+                <outlet property="ibVoucherTitleLbl" destination="u04-yq-o0b" id="d7L-dV-KWj"/>
+            </connections>
+            <point key="canvasLocation" x="570.5" y="447"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="detox water.jpg" width="640" height="360"/>
+    </resources>
+</document>
