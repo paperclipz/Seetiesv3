@@ -30,6 +30,7 @@ PODS:
   - DBCamera (2.4.1):
     - GPUImage (~> 0.1)
   - ESTabBarController (0.1.2)
+  - GoogleMaps (1.11.1)
   - GPUImage (0.1.7)
   - HexColors (2.3.0)
   - HMSegmentedControl (1.5.2)
@@ -72,6 +73,7 @@ DEPENDENCIES:
   - CLLocationManager-blocks
   - DBCamera (~> 2.4)
   - ESTabBarController
+  - GoogleMaps
   - HMSegmentedControl
   - iOSBlocks/Cocoa
   - IQKeyboardManager
@@ -110,6 +112,7 @@ SPEC CHECKSUMS:
   CLLocationManager-blocks: ae34b44992b3d26de10d27d51043a123444efb1b
   DBCamera: 7a4343a541e1264610f9f33176552b93170a843e
   ESTabBarController: ef57e22d9835c7142d3681d38ac158006c40465f
+  GoogleMaps: c947160008f414c66707a5ea60f35e92055c7670
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
   HexColors: 6ad3947c3447a055a3aa8efa859def096351fe5f
   HMSegmentedControl: 83b9686022d2176fb6457d2bdb61e5d6393fed7d
