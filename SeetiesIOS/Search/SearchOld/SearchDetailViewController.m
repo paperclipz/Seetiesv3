@@ -210,7 +210,7 @@
     
     [self InitView];
     
-    [self SendSearchKeywordData];
+ //   [self SendSearchKeywordData];
     
     ShowSearchLocationView.frame = CGRectMake(0, 95, screenWidth, screenHeight - 95);
     ShowSearchLocationView.hidden = YES;
@@ -1160,12 +1160,13 @@
 -(void)InitView{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
+    NSString *TempStringShop = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Shop")];
     NSString *TempStringCollection = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"PCollections")];
     NSString *TempStringPosts = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Posts")];
     NSString *TempStringPeople = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Seetizens")];
     
     //NSArray *itemArray = [NSArray arrayWithObjects:TempStringPosts, TempStringPeople, nil];
-    NSArray *itemArray = [NSArray arrayWithObjects:TempStringCollection,TempStringPosts, TempStringPeople, nil];
+    NSArray *itemArray = [NSArray arrayWithObjects:TempStringShop,TempStringCollection,TempStringPosts, TempStringPeople, nil];
     UISegmentedControl *ProfileControl = [[UISegmentedControl alloc]initWithItems:itemArray];
     ProfileControl.frame = CGRectMake(15, 105, screenWidth - 30, 33);
     [ProfileControl addTarget:self action:@selector(segmentAction:) forControlEvents: UIControlEventValueChanged];
@@ -1220,57 +1221,61 @@
     
     switch (segment.selectedSegmentIndex) {
         case 0:
-            SegmentedControlCheck = 2;
-            NSLog(@"CollectionView Click");
-            PostsView.hidden = YES;
-            PeopleView.hidden = YES;
-            CollectionView.hidden = NO;
-            if (CheckCollectionInitView == 0) {
-                CheckCollectionInitView = 1;
-                [self GetCollectionData];
-            }else{
-                CGSize contentSize = MainScroll.frame.size;
-                contentSize.height = heightcheck + CollectionView.frame.size.height;
-                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-                MainScroll.contentSize = contentSize;
-            }
+           // SegmentedControlCheck = 2;
+            NSLog(@"Shop Click");
             break;
         case 1:
-            SegmentedControlCheck = 0;
+         //   SegmentedControlCheck = 2;
+            NSLog(@"CollectionView Click");
+//            PostsView.hidden = YES;
+//            PeopleView.hidden = YES;
+//            CollectionView.hidden = NO;
+//            if (CheckCollectionInitView == 0) {
+//                CheckCollectionInitView = 1;
+//                [self GetCollectionData];
+//            }else{
+//                CGSize contentSize = MainScroll.frame.size;
+//                contentSize.height = heightcheck + CollectionView.frame.size.height;
+//                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+//                MainScroll.contentSize = contentSize;
+//            }
+            break;
+        case 2:
+           // SegmentedControlCheck = 0;
             NSLog(@"PostView click");
-            PostsView.hidden = NO;
-            PeopleView.hidden = YES;
-            CollectionView.hidden = YES;
-           // [self InitPostsDataView];
-            
-            if (CheckPostsInitView == 0) {
-                [self SendSearchKeywordData];
-            }else{
-                CGSize contentSize = MainScroll.frame.size;
-                contentSize.height = heightcheck + PostsView.frame.size.height;
-                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-                MainScroll.contentSize = contentSize;
-            }
+//            PostsView.hidden = NO;
+//            PeopleView.hidden = YES;
+//            CollectionView.hidden = YES;
+//           // [self InitPostsDataView];
+//            
+//            if (CheckPostsInitView == 0) {
+//                [self SendSearchKeywordData];
+//            }else{
+//                CGSize contentSize = MainScroll.frame.size;
+//                contentSize.height = heightcheck + PostsView.frame.size.height;
+//                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+//                MainScroll.contentSize = contentSize;
+//            }
             
 
             
             break;
-        case 2:
-            SegmentedControlCheck = 1;
+        case 3:
+          //  SegmentedControlCheck = 1;
             NSLog(@"PeopleView click");
-            PostsView.hidden = YES;
-            PeopleView.hidden = NO;
-            CollectionView.hidden = YES;
-            if (CheckUserInitView == 0) {
-                CheckUserInitView = 1;
-                //[self initPeopleDataView];
-                [self GetAllUserData];
-            }else{
-                CGSize contentSize = MainScroll.frame.size;
-                contentSize.height = heightcheck + PeopleView.frame.size.height;
-                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-                MainScroll.contentSize = contentSize;
-            }
+//            PostsView.hidden = YES;
+//            PeopleView.hidden = NO;
+//            CollectionView.hidden = YES;
+//            if (CheckUserInitView == 0) {
+//                CheckUserInitView = 1;
+//                //[self initPeopleDataView];
+//                [self GetAllUserData];
+//            }else{
+//                CGSize contentSize = MainScroll.frame.size;
+//                contentSize.height = heightcheck + PeopleView.frame.size.height;
+//                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+//                MainScroll.contentSize = contentSize;
+//            }
             
             
             
