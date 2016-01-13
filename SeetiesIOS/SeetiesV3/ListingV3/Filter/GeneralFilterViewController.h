@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FilterCategoryCell.h"
+#import "FilterCategoryCollectionCell.h"
+#import "FilterHeaderCollectionReusableView.h"
 
-@interface GeneralFilterViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface GeneralFilterViewController : CommonViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @end

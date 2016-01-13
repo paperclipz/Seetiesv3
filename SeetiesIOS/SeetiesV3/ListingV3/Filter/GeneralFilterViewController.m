@@ -9,6 +9,7 @@
 #import "GeneralFilterViewController.h"
 
 @interface GeneralFilterViewController ()
+@property (weak, nonatomic) IBOutlet UICollectionView *ibFilterCollection;
 
 @end
 
@@ -17,6 +18,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    [self.ibFilterCollection registerNib:[UINib nibWithNibName:@"FilterCategoryCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"FilterCategoryCollectionCell"];
+    [self.ibFilterCollection registerNib:[UINib nibWithNibName:@"FilterHeaderCollectionReusableView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"filterHeader"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,20 +38,29 @@
 }
 */
 
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return 5;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    FilterCategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CategoryCell"];
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    FilterCategoryCollectionCell *categoryCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"FilterCategoryCollectionCell" forIndexPath:indexPath];
     
-    if (!cell) {
-        [tableView registerNib:[UINib nibWithNibName:@"FilterCategoryCell" bundle:nil] forCellReuseIdentifier:@"CategoryCell"];
-        cell = [tableView dequeueReusableCellWithIdentifier:@"CategoryCell"];
-    }
+    return categoryCell;
+}
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return 6;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    CGFloat width = (collectionView.frame.size.width-20)/3;
+    return CGSizeMake(width, 30);
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+    FilterHeaderCollectionReusableView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"filterHeader" forIndexPath:indexPath];
     
-    return cell;
+    return header;
 }
 
 

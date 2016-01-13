@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FilterCategoryCell : UITableViewCell
+@interface FilterCategoryCollectionCell : CommonCollectionViewCell
 
 @end

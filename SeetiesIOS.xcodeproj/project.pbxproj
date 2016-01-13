@@ -1158,6 +1158,8 @@
 		8AF999531C3CC5E6000314E4 /* FacebookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF999521C3CC5E6000314E4 /* FacebookModel.m */; };
 		8AF9996B1C3E4868000314E4 /* FeedType_Two_TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF9996A1C3E4868000314E4 /* FeedType_Two_TableViewCell.m */; };
 		8AF9996D1C3E487C000314E4 /* FeedType_Two_TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF9996C1C3E487C000314E4 /* FeedType_Two_TableViewCell.xib */; };
+		C227C2DF1C45141400CA0DFF /* FilterHeaderCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = C227C2DD1C45141400CA0DFF /* FilterHeaderCollectionReusableView.m */; };
+		C227C2E01C45141400CA0DFF /* FilterHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C227C2DE1C45141400CA0DFF /* FilterHeaderCollectionReusableView.xib */; };
 		C233656B1C3CC9B400E88261 /* WalletVoucherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C23365691C3CC9B400E88261 /* WalletVoucherCell.m */; };
 		C233656C1C3CC9B400E88261 /* WalletVoucherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C233656A1C3CC9B400E88261 /* WalletVoucherCell.xib */; };
 		C23365701C3D111E00E88261 /* VoucherFilterCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C233656E1C3D111E00E88261 /* VoucherFilterCellTableViewCell.m */; };
@@ -1170,8 +1172,8 @@
 		C24AE2411C43B93100B96317 /* GeneralFilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24AE23F1C43B93100B96317 /* GeneralFilterViewController.xib */; };
 		C24AE2451C43BC7400B96317 /* FilterBudgetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C24AE2431C43BC7400B96317 /* FilterBudgetCell.m */; };
 		C24AE2461C43BC7400B96317 /* FilterBudgetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24AE2441C43BC7400B96317 /* FilterBudgetCell.xib */; };
-		C24AE24A1C43BCA400B96317 /* FilterCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C24AE2481C43BCA400B96317 /* FilterCategoryCell.m */; };
-		C24AE24B1C43BCA400B96317 /* FilterCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24AE2491C43BCA400B96317 /* FilterCategoryCell.xib */; };
+		C24AE24A1C43BCA400B96317 /* FilterCategoryCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C24AE2481C43BCA400B96317 /* FilterCategoryCollectionCell.m */; };
+		C24AE24B1C43BCA400B96317 /* FilterCategoryCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24AE2491C43BCA400B96317 /* FilterCategoryCollectionCell.xib */; };
 		C5AFD557B47280FB16C39985 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9C815292A4ED6F2408E5E5 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -2725,6 +2727,9 @@
 		8AF9996C1C3E487C000314E4 /* FeedType_Two_TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedType_Two_TableViewCell.xib; sourceTree = "<group>"; };
 		8AF9996F1C3E6569000314E4 /* CoreModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreModel.h; sourceTree = "<group>"; };
 		A6BFDB1BE373200E64D8CBE7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		C227C2DC1C45141400CA0DFF /* FilterHeaderCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterHeaderCollectionReusableView.h; sourceTree = "<group>"; };
+		C227C2DD1C45141400CA0DFF /* FilterHeaderCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterHeaderCollectionReusableView.m; sourceTree = "<group>"; };
+		C227C2DE1C45141400CA0DFF /* FilterHeaderCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterHeaderCollectionReusableView.xib; sourceTree = "<group>"; };
 		C23365681C3CC9B400E88261 /* WalletVoucherCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalletVoucherCell.h; sourceTree = "<group>"; };
 		C23365691C3CC9B400E88261 /* WalletVoucherCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalletVoucherCell.m; sourceTree = "<group>"; };
 		C233656A1C3CC9B400E88261 /* WalletVoucherCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WalletVoucherCell.xib; sourceTree = "<group>"; };
@@ -2743,9 +2748,9 @@
 		C24AE2421C43BC7400B96317 /* FilterBudgetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterBudgetCell.h; sourceTree = "<group>"; };
 		C24AE2431C43BC7400B96317 /* FilterBudgetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterBudgetCell.m; sourceTree = "<group>"; };
 		C24AE2441C43BC7400B96317 /* FilterBudgetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterBudgetCell.xib; sourceTree = "<group>"; };
-		C24AE2471C43BCA400B96317 /* FilterCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterCategoryCell.h; sourceTree = "<group>"; };
-		C24AE2481C43BCA400B96317 /* FilterCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterCategoryCell.m; sourceTree = "<group>"; };
-		C24AE2491C43BCA400B96317 /* FilterCategoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterCategoryCell.xib; sourceTree = "<group>"; };
+		C24AE2471C43BCA400B96317 /* FilterCategoryCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterCategoryCollectionCell.h; sourceTree = "<group>"; };
+		C24AE2481C43BCA400B96317 /* FilterCategoryCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterCategoryCollectionCell.m; sourceTree = "<group>"; };
+		C24AE2491C43BCA400B96317 /* FilterCategoryCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterCategoryCollectionCell.xib; sourceTree = "<group>"; };
 		CAB2B54F0EC79309593A3C4C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -5873,9 +5878,12 @@
 				C24AE2421C43BC7400B96317 /* FilterBudgetCell.h */,
 				C24AE2431C43BC7400B96317 /* FilterBudgetCell.m */,
 				C24AE2441C43BC7400B96317 /* FilterBudgetCell.xib */,
-				C24AE2471C43BCA400B96317 /* FilterCategoryCell.h */,
-				C24AE2481C43BCA400B96317 /* FilterCategoryCell.m */,
-				C24AE2491C43BCA400B96317 /* FilterCategoryCell.xib */,
+				C24AE2471C43BCA400B96317 /* FilterCategoryCollectionCell.h */,
+				C24AE2481C43BCA400B96317 /* FilterCategoryCollectionCell.m */,
+				C24AE2491C43BCA400B96317 /* FilterCategoryCollectionCell.xib */,
+				C227C2DC1C45141400CA0DFF /* FilterHeaderCollectionReusableView.h */,
+				C227C2DD1C45141400CA0DFF /* FilterHeaderCollectionReusableView.m */,
+				C227C2DE1C45141400CA0DFF /* FilterHeaderCollectionReusableView.xib */,
 			);
 			path = Filter;
 			sourceTree = "<group>";
@@ -6112,6 +6120,7 @@
 				8A6CCDBF1C18075800BCD54E /* CampaignLogo@2x.png in Resources */,
 				8A6CCDAD1C18075800BCD54E /* SearchIcon@2x.png in Resources */,
 				8A6CCD001C18075800BCD54E /* ListViewActive@3x.png in Resources */,
+				C227C2E01C45141400CA0DFF /* FilterHeaderCollectionReusableView.xib in Resources */,
 				8A6CCD561C18075800BCD54E /* NoActivity@3x.png in Resources */,
 				8AD6BE4C1B706CF30040437E /* ExploreCountryV2ViewController.xib in Resources */,
 				8A6CCCCD1C18075800BCD54E /* Icon@2x.png in Resources */,
@@ -6545,7 +6554,7 @@
 				8A6CCE211C18075800BCD54E /* NotificationLike@2x.png in Resources */,
 				8A6CCD181C18075800BCD54E /* DeleteIconSwipe@3x.png in Resources */,
 				8A69E0F51C04066100224BB4 /* ShareV2ViewController.xib in Resources */,
-				C24AE24B1C43BCA400B96317 /* FilterCategoryCell.xib in Resources */,
+				C24AE24B1C43BCA400B96317 /* FilterCategoryCollectionCell.xib in Resources */,
 				8A6CCDCA1C18075800BCD54E /* ArtIcon@3x.png in Resources */,
 				C24AE2461C43BC7400B96317 /* FilterBudgetCell.xib in Resources */,
 				8AC8F72D1BDA414E00DEF14A /* ProfilePageCollectionFooterTableViewCell.xib in Resources */,
@@ -7070,6 +7079,7 @@
 				8A114CAA1BE73F5D006AE3F0 /* CRZoomScrollView.m in Sources */,
 				8A114C801BE73F5D006AE3F0 /* BKForwardingTextField.m in Sources */,
 				8AD6C0AB1B706CF30040437E /* InviteFrenViewController.m in Sources */,
+				C227C2DF1C45141400CA0DFF /* FilterHeaderCollectionReusableView.m in Sources */,
 				8A114CD41BE73F5D006AE3F0 /* CommonCollectionViewCell.m in Sources */,
 				8A6CCEEE1C19837100BCD54E /* SeetiShopListTableViewCell.m in Sources */,
 				8AD6C1001B706CF30040437E /* AccountSettingViewController.m in Sources */,
@@ -7154,7 +7164,7 @@
 				8A993CC41C290CE4009359E2 /* UITextView+Extension.swift in Sources */,
 				8A114C941BE73F5D006AE3F0 /* FXImageView.m in Sources */,
 				0BBFE0541B9D6260004B17E9 /* NotificationSettingsViewController.m in Sources */,
-				C24AE24A1C43BCA400B96317 /* FilterCategoryCell.m in Sources */,
+				C24AE24A1C43BCA400B96317 /* FilterCategoryCollectionCell.m in Sources */,
 				8A4509921BAFF7C000A868CD /* UIColor+Extension.m in Sources */,
 				8AEDBFA91C2031BA000BD2FF /* EditHourModel.m in Sources */,
 				0BBFE08A1B9FCC00004B17E9 /* EditInterestViewController.m in Sources */,
