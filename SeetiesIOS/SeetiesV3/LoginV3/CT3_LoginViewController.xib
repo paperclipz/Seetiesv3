@@ -29,6 +29,13 @@
                         <action selector="btnFacebookClicked:" destination="-1" eventType="touchUpInside" id="3yr-uW-qV3"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oL5-oP-BVN">
+                    <rect key="frame" x="105" y="424" width="91" height="30"/>
+                    <state key="normal" title="Normal Login"/>
+                    <connections>
+                        <action selector="btnLoginClicked:" destination="-1" eventType="touchUpInside" id="cg0-2L-IOA"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

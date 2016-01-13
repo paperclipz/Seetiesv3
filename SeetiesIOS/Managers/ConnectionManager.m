@@ -379,7 +379,8 @@
     NSString* str;
     switch (type) {
         case ServerRequestTypeLogin:
-            
+            str = [NSString stringWithFormat:@"/%@/login",API_VERION_URL];
+
             break;
         case ServerRequestTypeLoginFacebook:
             str = [NSString stringWithFormat:@"/%@/login/facebook",API_VERION_URL];
@@ -482,6 +483,11 @@
     //make checking for status fail or success here
     switch (type) {
         case ServerRequestTypeLogin:
+        {
+            NSDictionary* dict = obj[@"data"];
+            self.dataManager.userLoginProfileModel = [[ProfileModel alloc]initWithDictionary:dict error:nil];
+        }
+
             break;
             
         case ServerRequestTypeLoginFacebook:

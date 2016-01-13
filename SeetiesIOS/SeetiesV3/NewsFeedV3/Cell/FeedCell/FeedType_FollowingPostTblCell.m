@@ -12,6 +12,7 @@
 @property (nonatomic,strong)CTFeedTypeModel* newsFeedTypeModel;
 @property (weak, nonatomic) IBOutlet UIImageView *ibPostImageView;
 @property (weak, nonatomic) IBOutlet UIView *ibSuggestedView;
+@property (weak, nonatomic) IBOutlet UIImageView *ibProfileImageView;
 
 /*constraint*/
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constImageHeight;
@@ -40,6 +41,7 @@
 -(void)initSelfView
 {
     [Utils setRoundBorder:self.ibBorderView color:[UIColor grayColor] borderRadius:5.0f borderWidth:1.0f];
+    [Utils setRoundBorder:self.ibProfileImageView color:[UIColor grayColor] borderRadius:self.ibProfileImageView.frame.size.width/2 borderWidth:1.0f];
 
 }
 /*Only Control Promotion uses images, other use photos*/
@@ -64,14 +66,22 @@
 
     }
     
-//    self.constSuggestViewHeight.constant = 0;
-//    self.lblUsername.text = feedModel.user_info.username;
-//    self.lblDistance.text = @(feedModel.location.distance).stringValue;
-//    self.lblTitle.text = feedModel.place_name;
-//    self.lblLocation.text = feedModel.location.name;
-//    self.lblDescription.text = feedModel.postDescription;
-    self.lblDescription.text = @"asdasodaisdoasidoasidaosdiasodisodiasodiasodasidoasidoasidasoidsaodisodiasopdasodiasodiasodasidosaidoasidosadiasodiasodiasdoiasdoasidoasidoasidasodiasodiasodiasoi";
+    if (self.newsFeedTypeModel.tempType == FeedType_Local_Quality_Post) {
+        self.constSuggestViewHeight.constant = 44;
 
+    }
+    else{
+        self.constSuggestViewHeight.constant = 0;
+    }
+    
+    self.lblUsername.text = feedModel.user_info.username;
+    self.lblDistance.text = @(feedModel.location.distance).stringValue;
+    self.lblTitle.text = feedModel.place_name;
+    self.lblLocation.text = feedModel.location.name;
+    self.lblDescription.text = feedModel.postDescription;
+
+    [self.ibProfileImageView sd_setImageWithURL:[NSURL URLWithString:feedModel.user_info.profile_photo_images]];
+    
 
 }
 

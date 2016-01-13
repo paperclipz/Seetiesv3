@@ -28,6 +28,11 @@
 
 @end
 @implementation CollectionsCollectionViewCell
+- (IBAction)btnFollowClicked:(id)sender {
+    
+    UIButton* btn = (UIButton*)sender;
+    [btn setSelected:!btn.selected];
+}
 
 -(void)initSelfView
 {
@@ -48,6 +53,12 @@
     return 190.0f;
 }
 
+-(void)initData
+{
+    [self.ibImageViewA sd_setImageWithURL:[NSURL URLWithString:@"http://www.planwallpaper.com/static/images/best_modern_city_wallpaper_hd.jpg"]];
+    [self.ibImageViewB sd_setImageWithURL:[NSURL URLWithString:@"http://thewallpaperhost.com/wp-content/uploads/0382763769f46da4ff3c6644eeac648c_large.jpeg"]];
+
+}
 -(void)initData:(CollectionModel*)model profileType:(ProfileViewType)type
 {
     
@@ -109,10 +120,13 @@
         [self.btnFollow setTitle:@"" forState:UIControlStateSelected];
         
         [DataManager getCollectionFollowing:self.model.collection_id HasCollected:^(BOOL isCollected) {
-            [self setFollowButtonSelected:isCollected button:self.btnFollow];
             
+            [self.btnFollow setSelected:isCollected];
         } completion:^{
-            [self setFollowButtonSelected:self.model.following button:self.btnFollow];
+            
+            [self.btnFollow setSelected:self.model.following];
+
+
         }];
     }
     
@@ -125,11 +139,5 @@
     
 }
 
--(void)setFollowButtonSelected:(BOOL)selected button:(UIButton*)button
-{
-    button.selected = selected;
-    // button.backgroundColor = selected?[UIColor whiteColor]:SELECTED_GREEN;
-    
-}
 
 @end

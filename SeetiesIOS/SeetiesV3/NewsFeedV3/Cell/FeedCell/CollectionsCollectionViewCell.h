@@ -9,13 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface CollectionsCollectionViewCell : CommonCollectionViewCell
-+(int)getHeight;
+
 -(void)initData:(CollectionModel*)model profileType:(ProfileViewType)type;
+-(void)initData;
 
 @property(nonatomic,copy)VoidBlock btnEditClickedBlock;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblNoOfCollection;
--(void)setFollowButtonSelected:(BOOL)selected button:(UIButton*)button;
 
 @property(nonatomic,copy)VoidBlock btnFollowBlock;
 @property(nonatomic,copy)VoidBlock btnShareClicked;

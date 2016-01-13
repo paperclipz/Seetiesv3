@@ -7,7 +7,7 @@
 //
 
 #import "FeedType_CollectionSuggestedTblCell.h"
-#import "ProfilePageCollectionTableViewCell.h"
+#import "CollectionsCollectionViewCell.h"
 
 @interface FeedType_CollectionSuggestedTblCell()<UICollectionViewDataSource,UICollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *ibCollectionView;
@@ -33,7 +33,7 @@
 {
     self.ibCollectionView.delegate = self;
     self.ibCollectionView.dataSource = self;
-    [self.ibCollectionView registerClass:[ProfilePageCollectionTableViewCell class] forCellWithReuseIdentifier:@"ProfilePageCollectionTableViewCell"];
+    [self.ibCollectionView registerClass:[CollectionsCollectionViewCell class] forCellWithReuseIdentifier:@"CollectionsCollectionViewCell"];
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
@@ -43,9 +43,17 @@
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    ProfilePageCollectionTableViewCell* cell = (ProfilePageCollectionTableViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:@"ProfilePageCollectionTableViewCell" forIndexPath:indexPath];
+    CollectionsCollectionViewCell* cell = (CollectionsCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:@"CollectionsCollectionViewCell" forIndexPath:indexPath];
     
+    [cell initData];
     return cell;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    CGRect frame = [Utils getDeviceScreenSize];
+    
+    return CGSizeMake(frame.size.width-50, 190);
 }
 
 

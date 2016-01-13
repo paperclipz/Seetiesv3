@@ -8,6 +8,9 @@
 
 #import "CommonCollectionViewCell.h"
 
+@interface CommonCollectionViewCell()
+@property(nonatomic,weak)IBOutlet UIView* borderView;
+@end
 @implementation CommonCollectionViewCell
 
 
@@ -54,7 +57,9 @@
 
 -(void)initSelfView
 {
-    
+    if (self.borderView) {
+        [Utils setRoundBorder:self.borderView color:LINE_COLOR borderRadius:(5.0f)];
+    }
 }
 
 @end

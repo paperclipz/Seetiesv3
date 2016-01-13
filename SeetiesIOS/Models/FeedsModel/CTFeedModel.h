@@ -55,6 +55,8 @@ typedef enum
 
 @interface CTFeedTypeModel : JSONModel
 @property(nonatomic,assign)FeedType feedType;//non json attributes
+@property(nonatomic,assign)FeedType tempType;//non json attributes
+
 @property(nonatomic,strong)CTFeedModel* data;
 
 @end

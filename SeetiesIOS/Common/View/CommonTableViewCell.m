@@ -8,6 +8,10 @@
 
 #import "CommonTableViewCell.h"
 
+@interface CommonTableViewCell()
+
+@property(nonatomic,weak)IBOutlet UIView *borderView;
+@end
 @implementation CommonTableViewCell
 
 +(float)getHeight
@@ -46,7 +50,9 @@
 
 -(void)initSelfView
 {
-
+    if (self.borderView) {
+        [Utils setRoundBorder:self.borderView color:OUTLINE_COLOR borderRadius:5.0f];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
