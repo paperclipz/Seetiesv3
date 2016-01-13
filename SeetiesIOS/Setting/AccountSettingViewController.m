@@ -21,7 +21,15 @@
 #import "LanguageManager.h"
 #import "Locale.h"
 
-@interface AccountSettingViewController ()
+@interface AccountSettingViewController (){
+
+    NSString *InstagramOnClickListen;
+    NSString *GetFB_Token;
+    
+    NSInteger StatusForFacebook;
+    NSInteger StatusForInstagram;
+    
+}
 @end
 
 @implementation AccountSettingViewController
@@ -56,6 +64,8 @@
     
     FacebookSwitch.frame = CGRectMake(screenWidth - 51 - 10, 390, 51, 31);
     InstagramSwitch.frame = CGRectMake(screenWidth - 51- 10, 431, 51, 31);
+    [FacebookSwitch addTarget:self action:@selector(setFacebookState:) forControlEvents:UIControlEventValueChanged];
+    [InstagramSwitch addTarget:self action:@selector(setInstagramState:) forControlEvents:UIControlEventValueChanged];
     DataUrl = [[UrlDataClass alloc]init];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -69,10 +79,12 @@
     
     if ([GetFBID isEqualToString:@""] || [GetFBID length] == 0 || [GetFBID isEqualToString:@"<null>"]) {
         [FacebookSwitch setOn:NO];
+        StatusForFacebook = 0;
     }
     
     if ([GetInstaID isEqualToString:@""] || [GetInstaID length] == 0 || [GetInstaID isEqualToString:@"<null>"]) {
         [InstagramSwitch setOn:NO];
+        StatusForInstagram = 0;
     }
     
     NSLog(@"Init GetLanguage1 == %@",GetLanguage1);
@@ -182,6 +194,20 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.screenName = @"IOS Account Setting Page";
+    
+    if ([InstagramOnClickListen isEqualToString:@"YES"]) {
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        GetInstaID = [defaults objectForKey:@"InstagramID"];
+       // GetInstagramToken = [defaults objectForKey:@"InstagramToken"];
+        
+        if ([GetInstaID isEqualToString:@""] || [GetInstaID length] == 0 || [GetInstaID isEqualToString:@"<null>"]) {
+            [InstagramSwitch setOn:NO];
+            StatusForInstagram = 0;
+        }
+    }else{
+        
+    }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -197,6 +223,88 @@
     //[self presentViewController:ListingDetail animated:NO completion:nil];
     [self dismissViewControllerAnimated:NO completion:nil];
 }
+- (void)setFacebookState:(id)sender
+{
+    BOOL state = [sender isOn];
+    NSString *rez = state == YES ? @"YES" : @"NO";
+    NSLog(@"setFacebookState rez = %@",rez);
+    
+    if ([rez isEqualToString:@"YES"]) {
+        StatusForFacebook = 1;
+        [self ConnectFacebook];
+    }else{
+        StatusForFacebook = 2;
+    }
+}
+- (void)setInstagramState:(id)sender
+{
+    BOOL state = [sender isOn];
+    NSString *rez = state == YES ? @"YES" : @"NO";
+    NSLog(@"setInstagramState rez = %@",rez);
+    
+    if ([rez isEqualToString:@"YES"]) {
+        StatusForInstagram = 1;
+        [self ConnectInstagram];
+    }else{
+        StatusForInstagram = 2;
+    }
+}
+
+-(void)ConnectFacebook{
+    [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email", @"user_friends",@"user_birthday"]
+                                       allowLoginUI:YES
+                                  completionHandler:
+     ^(FBSession *session, FBSessionState state, NSError *error) {
+         
+         switch (state) {
+             case FBSessionStateOpen:{
+                 [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error) {
+                     if (error) {
+                         NSLog(@"error:%@",error);
+                     }else{
+                         // retrive user's details at here as shown below
+                         NSLog(@"all information is %@",user);
+                         GetFBID = (NSString *)[user valueForKey:@"id"];
+                         
+                         [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *FBuser, NSError *error) {
+                             if (error) {
+                                 // Handle error
+                             }else {
+                                 GetFB_Token = [FBSession activeSession].accessTokenData.accessToken;
+                                 NSLog(@"GetToken is %@",GetFB_Token);
+                                 
+                             //    [self UploadInformationToServer];
+                                 
+                             }
+                         }];
+                         
+                     }
+                 }];
+                 break;
+             }
+             case FBSessionStateClosed:
+             case FBSessionStateClosedLoginFailed:
+                 [FBSession.activeSession closeAndClearTokenInformation];
+                 break;
+                 
+             default:
+                 break;
+         }
+         
+         // Retrieve the app delegate
+         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+         // Call the app delegate's sessionStateChanged:state:error method to handle session state changes
+         [appDelegate sessionStateChanged:session state:state error:error];
+         
+     }];
+}
+-(void)ConnectInstagram{
+
+    InstagramOnClickListen = @"YES";
+    InstagramLoginWebViewController *WebViewLogin = [[InstagramLoginWebViewController alloc]init];
+    [self presentViewController:WebViewLogin animated:YES completion:nil];
+}
+
 // tell the picker how many components it will have
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     return 1;
@@ -500,6 +608,48 @@
         [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     }
     
+    if (StatusForFacebook == 1) {
+        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        //Attaching the key name @"parameter_first" to the post body
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"fb_id\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+        //Attaching the content to be posted ( ParameterFirst )
+        [body appendData:[[NSString stringWithFormat:@"%@",GetFBID] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+        
+        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        //Attaching the key name @"parameter_first" to the post body
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"fb_token\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+        //Attaching the content to be posted ( ParameterFirst )
+        [body appendData:[[NSString stringWithFormat:@"%@",GetFB_Token] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    }else if (StatusForFacebook == 2){
+        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        //Attaching the key name @"parameter_first" to the post body
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"fb_id\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+        //Attaching the content to be posted ( ParameterFirst )
+        [body appendData:[[NSString stringWithFormat:@""] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    }else{
+    
+    }
+    
+    if (StatusForInstagram == 1) {
+        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        //Attaching the key name @"parameter_first" to the post body
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"insta_id\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+        //Attaching the content to be posted ( ParameterFirst )
+        [body appendData:[[NSString stringWithFormat:@"%@",GetInstaID] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    }else if(StatusForInstagram == 2){
+        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        //Attaching the key name @"parameter_first" to the post body
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"insta_id\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+        //Attaching the content to be posted ( ParameterFirst )
+        [body appendData:[[NSString stringWithFormat:@""] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    }else{
+    
+    }
     
     
     
@@ -576,6 +726,10 @@
                 
                 NSString *Getemail = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"email"]];
                 NSLog(@"Getemail is %@",Getemail);
+                NSString *Getfbid = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"fb_id"]];
+                NSLog(@"Getfbid %@",Getfbid);
+                NSString *Getinstaid = [[NSString alloc]initWithFormat:@"%@",[GetAllData objectForKey:@"insta_id"]];
+                NSLog(@"Getinstaid is %@",Getinstaid);
                 
                 NSDictionary *SystemLanguageData = [GetAllData valueForKey:@"system_language"];
                 NSString *GetSystemLanguage_ = [[NSString alloc]initWithFormat:@"%@",[SystemLanguageData objectForKey:@"origin_caption"]];
@@ -637,7 +791,6 @@
                 NSString *CheckGetUserProfile = @"false";
                 
                 
-                
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                 NSString *TempCheckSystemLanguage = [[NSString alloc]initWithFormat:@"%@",[defaults objectForKey:@"UserData_SystemLanguage"]];
                 NSLog(@"TempCheckSystemLanguage is %@",TempCheckSystemLanguage);
@@ -648,6 +801,8 @@
                     [defaults setObject:GetLanguage_1 forKey:@"UserData_Language1"];
                     [defaults setObject:GetLanguage_2 forKey:@"UserData_Language2"];
                     [defaults setObject:GetUserSelectLanguagesArray forKey:@"GetUserSelectLanguagesArray"];
+                    [defaults setObject:Getfbid forKey:@"UserData_FbID"];
+                    [defaults setObject:Getinstaid forKey:@"UserData_instaID"];
                     [defaults synchronize];
                     
                     CATransition *transition = [CATransition animation];
@@ -665,6 +820,8 @@
                     [defaults setObject:GetLanguage_1 forKey:@"UserData_Language1"];
                     [defaults setObject:GetLanguage_2 forKey:@"UserData_Language2"];
                     [defaults setObject:GetUserSelectLanguagesArray forKey:@"GetUserSelectLanguagesArray"];
+                    [defaults setObject:Getfbid forKey:@"UserData_FbID"];
+                    [defaults setObject:Getinstaid forKey:@"UserData_instaID"];
                     [defaults synchronize];
                     
                     LandingV2ViewController *LandingView = [[LandingV2ViewController alloc]init];
