@@ -83,7 +83,7 @@
     MainScroll.frame = CGRectMake(0, 64, screenWidth, screenHeight);
     ShowTitle.frame = CGRectMake(15, 20, screenWidth - 30, 44);
     BarImage.frame = CGRectMake(0, 0, screenWidth, 64);
-    tblview.frame = CGRectMake(0, 64,screenWidth , screenHeight);
+    tblview.frame = CGRectMake(0, 64,screenWidth , screenHeight - 114);
 
 }
 -(IBAction)BackButton:(id)sender{
