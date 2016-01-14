@@ -432,6 +432,7 @@
                           }];        
     }
    
+    
     NewLandingViewController* landingViewController = [NewLandingViewController new];
     UINavigationController* navigationController = [[UINavigationController alloc]initWithRootViewController:landingViewController];
     navigationController.navigationBar.hidden = YES;

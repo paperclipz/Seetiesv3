@@ -8,7 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="127" id="gVv-t7-0Vg" customClass="FeedType_InviteFriendTblCell">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedType_InviteFriendTblCell" rowHeight="127" id="gVv-t7-0Vg" customClass="FeedType_InviteFriendTblCell">
             <rect key="frame" x="0.0" y="0.0" width="320" height="127"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gVv-t7-0Vg" id="O1Z-LP-Y0V">
@@ -16,14 +16,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="InviteFriendsBgImg.png" translatesAutoresizingMaskIntoConstraints="NO" id="djU-Lw-4aa">
-                        <rect key="frame" x="8" y="8" width="304" height="111"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="127"/>
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottomMargin" secondItem="djU-Lw-4aa" secondAttribute="bottom" id="Hvv-K9-0FX"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="djU-Lw-4aa" secondAttribute="trailing" id="Pyg-NV-cs3"/>
-                    <constraint firstItem="djU-Lw-4aa" firstAttribute="leading" secondItem="O1Z-LP-Y0V" secondAttribute="leadingMargin" id="ehS-mY-yfU"/>
-                    <constraint firstItem="djU-Lw-4aa" firstAttribute="top" secondItem="O1Z-LP-Y0V" secondAttribute="topMargin" id="ukf-TU-BT1"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="djU-Lw-4aa" secondAttribute="bottom" constant="-8" id="Hvv-K9-0FX"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="djU-Lw-4aa" secondAttribute="trailing" constant="-8" id="Pyg-NV-cs3"/>
+                    <constraint firstItem="djU-Lw-4aa" firstAttribute="leading" secondItem="O1Z-LP-Y0V" secondAttribute="leadingMargin" constant="-8" id="ehS-mY-yfU"/>
+                    <constraint firstItem="djU-Lw-4aa" firstAttribute="top" secondItem="O1Z-LP-Y0V" secondAttribute="topMargin" constant="-8" id="ukf-TU-BT1"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

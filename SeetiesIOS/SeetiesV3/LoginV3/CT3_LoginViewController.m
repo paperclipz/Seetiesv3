@@ -33,6 +33,11 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)btnLoginClicked:(id)sender {
+    
+    [self requestServerForLogin];
+}
+
 -(IBAction)btnFacebookClicked:(id)sender{
     
     [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email", @"user_friends",@"user_birthday"]
@@ -102,6 +107,29 @@
 }
 
 #pragma mark - Server Request
+-(void)requestServerForLogin{
+ 
+    [LoadingManager show];
+    
+    NSDictionary* dict = @{@"login_id" : @"paperclipz",
+                           @"password" : @"12345678",
+                           @"device_type" : @"2"};
+    
+    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypeLogin param:dict completeHandler:^(id object) {
+        
+        
+        if (self.didFinishLoginBlock) {
+            self.didFinishLoginBlock();
+        }
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        
+    } errorBlock:^(id object) {
+        
+    }];
+
+    
+}
+
 -(void)requestServerForFacebookLogin{
 
 

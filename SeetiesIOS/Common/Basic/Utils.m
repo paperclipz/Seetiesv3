@@ -35,7 +35,8 @@
 +(NSString*)getAppToken
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    return [defaults objectForKey:@"ExpertToken"];
+    NSString* token = [defaults objectForKey:@"ExpertToken"]?[defaults objectForKey:@"ExpertToken"]:@"";
+    return token;
 }
 +(NSString*)getUserID
 {

@@ -16,24 +16,24 @@ typedef enum
 {
     FeedType_Following_Post = 1,
     FeedType_Local_Quality_Post = 2,
-    FeedType_Abroad_Quality_Post,
-    FeedType_Announcement,
-    FeedType_Announcement_Welcome,
-    FeedType_Announcement_Campaign,
-    FeedType_Suggestion_Featured,
-    FeedType_Suggestion_Friend,
-    FeedType_Deal,
-    FeedType_Invite_Friend,
-    FeedType_Country_Promotion,
-    FeedType_Collect_Suggestion,
-    FeedType_Following_Collection,
+    FeedType_Abroad_Quality_Post = 3,
+    FeedType_Announcement = 4,
+    FeedType_Announcement_Welcome = 5,
+    FeedType_Announcement_Campaign = 6,
+    FeedType_Suggestion_Featured = 7,
+    FeedType_Suggestion_Friend = 8,
+    FeedType_Deal = 9,
+    FeedType_Invite_Friend = 10,
+    FeedType_Country_Promotion = 11,
+    FeedType_Collect_Suggestion = 12,
+    FeedType_Following_Collection = 13,
     
 }FeedType;
 
 #import "PaginationModel.h"
 @protocol CTFeedModel @end
 @protocol CTFeedTypeModel @end
-
+@protocol CTFeedCollectionModel @end
 
 
 @interface CTFeedModel : JSONModel
@@ -49,18 +49,33 @@ typedef enum
 @property(nonatomic,strong)NSArray<PhotoModel>* photos;
 @property(nonatomic,strong)NSString* image;
 @property(nonatomic,strong)NSString* postDescription;
+@property(nonatomic,strong)NSString* post_id;
 
+@end
+
+@interface CTFeedCollectionModel : JSONModel
+
+@property(nonatomic,strong)NSArray<CollectionModel>* arrCollection;
 
 @end
 
 @interface CTFeedTypeModel : JSONModel
 @property(nonatomic,assign)FeedType feedType;//non json attributes
-@property(nonatomic,strong)CTFeedModel* data;
+@property(nonatomic,assign)FeedType tempType;//non json attributes
+
+@property(nonatomic,strong)CTFeedModel<Ignore>* newsFeedData;
+@property(nonatomic,strong)NSArray<CollectionModel>* arrCollections;
+@property(nonatomic,strong)NSArray<ProfileModel *>* arrSuggestedFeature;
+
+//@property(nonatomic,strong)NSArray<CollectionModel>* arrCollection;
 
 @end
+
+
 
 @interface NewsFeedModels : PaginationModel
 
 @property(nonatomic,strong)NSArray<CTFeedTypeModel>* items;
+
 
 @end

@@ -9,5 +9,9 @@
 #import "PagingModel.h"
 
 @implementation PagingModel
++(BOOL)propertyIsOptional:(NSString*)propertyName
+{
+    return YES;
+}
 
 @end

@@ -24,4 +24,16 @@
 }
 */
 
+-(void)initData:(CTFeedTypeModel*)model
+{
+    
+    if(model.tempType == FeedType_Announcement_Campaign)
+    {
+     self.lblTitle.text = @"";
+    }
+    else{
+     self.lblTitle.text = @"adasdjadasdjasdoiajdiaosdjsaiodjsaiodjadasdjasdoiajdiaosdjsaiodjsaiodjadasdjasdoiajdiaosdjsaiodjsaiodjadasdjasdoiajdiaosdjsaiodjsaiodjadasdjasdoiajdiaosdjsaiodjsaiodjasdoiajdiaosdjsaiodjsaiodj";
+    }
+   
+}
 @end

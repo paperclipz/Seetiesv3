@@ -60,6 +60,12 @@ typedef enum
     ServerRequestTypeGetSeetoShopRecommendations,
     ServerRequestTypeGetSeetoShopTranslation,
     // ========== SEETIES SHOP ========== //
+    
+    /*LIKE A POST*/
+    ServerRequestTypePostLikeAPost,
+    ServerRequestTypeDeleteLikeAPost,
+    
+    /*LIKE A POST*/
 
     
 }ServerRequestType;
@@ -133,5 +139,7 @@ static BOOL IS_SIMULATOR = YES;
 #else
 static BOOL IS_SIMULATOR = NO;
 #endif
+
+#define TOKEN @"ExpertToken"
 
 
