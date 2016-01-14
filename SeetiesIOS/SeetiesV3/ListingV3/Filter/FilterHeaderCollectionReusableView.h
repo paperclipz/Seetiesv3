@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface FilterHeaderCollectionReusableView : UICollectionReusableView
-
+-(void)setHeaderText:(NSString*)text;
 @end

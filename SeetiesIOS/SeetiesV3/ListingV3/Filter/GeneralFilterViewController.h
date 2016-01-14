@@ -12,5 +12,5 @@
 #import "FilterHeaderCollectionReusableView.h"
 
 @interface GeneralFilterViewController : CommonViewController <UICollectionViewDataSource, UICollectionViewDelegate>
-
+-(id)initWithFilter:(NSArray*)filterArray;
 @end

@@ -10,6 +10,7 @@
 
 @interface GeneralFilterViewController ()
 @property (weak, nonatomic) IBOutlet UICollectionView *ibFilterCollection;
+@property (strong, nonatomic) NSArray *filterArray;
 
 @end
 
@@ -22,6 +23,25 @@
     [self.ibFilterCollection registerNib:[UINib nibWithNibName:@"FilterCategoryCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"FilterCategoryCollectionCell"];
     [self.ibFilterCollection registerNib:[UINib nibWithNibName:@"FilterBudgetCell" bundle:nil] forCellWithReuseIdentifier:@"FilterBudgetCell"];
     [self.ibFilterCollection registerNib:[UINib nibWithNibName:@"FilterHeaderCollectionReusableView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"FilterHeaderCollectionReusableView"];
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _filterArray = nil;
+    }
+    return self;
+}
+
+-(id)initWithFilter:(NSArray *)filterArray{
+    self = [super init];
+    
+    if (self) {
+        _filterArray = filterArray;
+    }
+    
+    return self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,39 +60,51 @@
 */
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    if (section==0) {
+    NSDictionary *filterDict = [self.filterArray objectAtIndex:section];
+    NSString *type = [filterDict objectForKey:@"type"];
+    
+    if ([type isEqualToString:@"Price"]) {
         return 1;
     }
     else{
-        return 6;
+        return ((NSArray*)[filterDict objectForKey:@"array"]).count;
     }
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger row = indexPath.row;
     NSInteger section = indexPath.section;
+    NSDictionary *filterDict = [self.filterArray objectAtIndex:section];
+    NSString *type = [filterDict objectForKey:@"type"];
     
-    if (section==0 && row == 0) {
+    if ([type isEqualToString:@"Price"]) {
         FilterBudgetCell *budgetCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"FilterBudgetCell" forIndexPath:indexPath];
-        [budgetCell configureSliderWithMinValue:0 maxValue:100 stepValue:5 stepValueContinuously:YES];
+        NSInteger minValue = [[filterDict objectForKey:@"min"] intValue];
+        NSInteger maxValue = [[filterDict objectForKey:@"max"] intValue];
+        [budgetCell configureSliderWithMinValue:minValue maxValue:maxValue stepValue:5 stepValueContinuously:YES];
         
         return budgetCell;
     }
     else{
         FilterCategoryCollectionCell *categoryCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"FilterCategoryCollectionCell" forIndexPath:indexPath];
-    
+        NSArray *array = [filterDict objectForKey:@"array"];
+        NSString *catText = [array objectAtIndex:row];
+        [categoryCell setButtonText:catText];
+        
         return categoryCell;
     }
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 6;
+    return self.filterArray.count;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger section = indexPath.section;
+    NSDictionary *filterDict = [self.filterArray objectAtIndex:section];
+    NSString *type = [filterDict objectForKey:@"type"];
     
-    if (section==0) {
+    if ([type isEqualToString:@"Price"]) {
         return CGSizeMake(collectionView.frame.size.width-10, 80);
     }
     else{
@@ -82,7 +114,12 @@
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+    NSInteger section = indexPath.section;
+    NSDictionary *filterDict = [self.filterArray objectAtIndex:section];
+    NSString *type = [filterDict objectForKey:@"type"];
+    
     FilterHeaderCollectionReusableView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"FilterHeaderCollectionReusableView" forIndexPath:indexPath];
+    [header setHeaderText:type];
     
     return header;
 }
