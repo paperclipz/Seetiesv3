@@ -5140,8 +5140,8 @@
 		8AD6BA5C1B705DF20040437E /* SeetiesIOS */ = {
 			isa = PBXGroup;
 			children = (
-				8AC8F63B1BDA309D00DEF14A /* Default-568h@2x.png */,
 				0B1D9F261BE2317700AAE8CE /* Launch Screen.storyboard */,
+				8AC8F63B1BDA309D00DEF14A /* Default-568h@2x.png */,
 				8AD6BA671B705DF20040437E /* Main.storyboard */,
 				8A7CEEC41C33F818005A3515 /* SeetiesV3 */,
 				8A993CD01C322E5D009359E2 /* Testing */,
