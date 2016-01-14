@@ -24,12 +24,13 @@
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *contentViewLeftConstraint;
 
 @property (weak, nonatomic) IBOutlet UIImageView *ibImage;
-@property (weak, nonatomic) IBOutlet UIButton *btnEdit;
 
 @property (weak, nonatomic) IBOutlet UIView *wrapperIconView;
 
 @property (weak, nonatomic) IBOutlet UIView *ibContentWrapperview;
 @property (weak, nonatomic) IBOutlet UILabel *lblWordCount;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnEdit;
 
 @end
 

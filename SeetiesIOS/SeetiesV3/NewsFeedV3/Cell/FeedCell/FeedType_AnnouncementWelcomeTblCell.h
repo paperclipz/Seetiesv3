@@ -9,5 +9,6 @@
 #import "CommonTableViewCell.h"
 
 @interface FeedType_AnnouncementWelcomeTblCell : CommonTableViewCell
+-(void)initData:(CTFeedTypeModel*)model;
 
 @end

@@ -26,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
-    [self requestServerForLanguageList];
+   // [self requestServerForLanguageList];
     
     
     // Do any additional setup after loading the view.
@@ -48,11 +48,22 @@
         __weak typeof (self)weakSelf = self;
         _loginViewController.didFinishLoginBlock = ^(void)
         {
-            [weakSelf.newsFeedViewController refreshViewAfterLogin];
+            [weakSelf processLogin];
         };
     }
     
     return _loginViewController;
+}
+
+-(void)processLogin
+{
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    ProfileModel* model = [[ConnectionManager dataManager]userLoginProfileModel];
+    [defaults setObject:model.token forKey:TOKEN];
+
+     [self.newsFeedViewController refreshViewAfterLogin];
+
 }
 
 -(LeveyTabBarController*)leveyTabBarController

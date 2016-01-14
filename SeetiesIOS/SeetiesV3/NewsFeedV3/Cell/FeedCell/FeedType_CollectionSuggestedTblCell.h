@@ -9,5 +9,6 @@
 #import "CommonTableViewCell.h"
 
 @interface FeedType_CollectionSuggestedTblCell : CommonTableViewCell
+-(void)initData:(NSArray<CollectionModel>*)array;
 
 @end
