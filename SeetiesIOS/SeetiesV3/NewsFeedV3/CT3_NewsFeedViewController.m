@@ -37,6 +37,8 @@
 
 /* Model */
 @property(nonatomic,strong)NSMutableArray* arrayNewsFeed;
+@property(nonatomic,strong)NewsFeedModels* newsFeedModels;
+
 /* Model */
 
 @end
@@ -88,8 +90,8 @@
     
     [super viewDidLoad];
     [self initSelfView];
-   // [self refreshViewAfterLogin];
-    [self getDummyData];
+    [self refreshViewAfterLogin];
+  //  [self getDummyData];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -146,27 +148,7 @@
     
 }
 
-#pragma mark - Request Server
-
--(void)requestServerForNewsFeed
-{
-    SLog(@"token :%@",[Utils getAppToken]);
-    NSDictionary* dict = @{@"token" : [Utils getAppToken],
-                           @"offset" : @"",
-                           @"limit" : @"",
-                           };
-    
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetNewsFeed param:dict appendString:@"" completeHandler:^(id object) {
-        
-        NewsFeedModels* model = [[ConnectionManager dataManager] newsFeedModels];
-        [self.arrayNewsFeed addObjectsFromArray:model.items];
-        [self.ibTableView reloadData];
-    } errorBlock:^(id object) {
-        
-    }];
-    
-}
-
+#pragma mark - TableView Delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
@@ -183,9 +165,9 @@
 {
     CTFeedTypeModel* typeModel = self.arrayNewsFeed[indexPath.row];
 
-    switch (typeModel.tempType) {
+    switch (typeModel.feedType) {
         case FeedType_Collect_Suggestion:
-            return 270.0f;
+            return [FeedType_CollectionSuggestedTblCell getHeight];
             break;
             
         case FeedType_Abroad_Quality_Post:
@@ -201,17 +183,25 @@
 
         }
             break;
+        case FeedType_Country_Promotion:
+        {
+            int cellheight = [FeedType_CountryPromotionTblCell getHeight];
+            return cellheight;
+        }
+            break;
             
         case FeedType_Following_Post:
         case FeedType_Announcement_Welcome:
         case FeedType_Announcement_Campaign:
-        case FeedType_Country_Promotion:
 
             return UITableViewAutomaticDimension;
             break;
         case FeedType_Following_Collection:
             
             return [FeedType_FollowingCollectionTblCell getHeight];
+            break;
+        case FeedType_Invite_Friend:
+            return [FeedType_InviteFriendTblCell getHeight];
             break;
         default:
             return UITableViewAutomaticDimension;
@@ -224,7 +214,7 @@
 {
     CTFeedTypeModel* typeModel = self.arrayNewsFeed[indexPath.row];
 
-    switch (typeModel.tempType) {
+    switch (typeModel.feedType) {
         case FeedType_Following_Post:
         case FeedType_Local_Quality_Post:
         {
@@ -266,6 +256,7 @@
             if (cell == nil) {
                 cell = [[FeedType_CountryPromotionTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
             }
+            [cell initData:typeModel];
             //Configure cell
             return cell;
             
@@ -310,6 +301,7 @@
                 cell = [[FeedType_CollectionSuggestedTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
             }
             
+            [cell initData:typeModel.arrCollections];
             return cell;
             break;
             
@@ -423,6 +415,14 @@
     typeModel13.tempType = (FeedType)13;
     [self.arrayNewsFeed addObject:typeModel13];
     
+    CTFeedTypeModel* typeModel13a = [CTFeedTypeModel new];
+    typeModel13a.tempType = (FeedType)13;
+    [self.arrayNewsFeed addObject:typeModel13a];
+    
+    CTFeedTypeModel* typeModel13b = [CTFeedTypeModel new];
+    typeModel13b.tempType = (FeedType)13;
+    [self.arrayNewsFeed addObject:typeModel13b];
+    
     CTFeedTypeModel* typeModel5 = [CTFeedTypeModel new];
     typeModel5.tempType = (FeedType)5;
     [self.arrayNewsFeed addObject:typeModel5];
@@ -461,11 +461,55 @@
     CTFeedTypeModel* aaa = [CTFeedTypeModel new];
     aaa.tempType = (FeedType)3;
     [self.arrayNewsFeed addObject:aaa];
-
-    
 //    CTFeedTypeModel* typeModel3 = [CTFeedTypeModel new];
 //    typeModel3.tempType = (FeedType)3;
 //    [self.arrayNewsFeed addObject:typeModel3];
 }
 
+#pragma mark - Request Server
+
+-(void)requestServerForNewsFeed
+{
+    SLog(@"token :%@",[Utils getAppToken]);
+    NSDictionary* dict = @{@"token" : [Utils getAppToken],
+                           @"offset":@(self.newsFeedModels.offset + self.newsFeedModels.limit),
+                           @"limit" : @(ARRAY_LIST_SIZE)
+                           };
+    
+    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetNewsFeed param:dict appendString:@"" completeHandler:^(id object) {
+        
+        NewsFeedModels* model = [[ConnectionManager dataManager] newsFeedModels];
+        self.newsFeedModels = model;
+        [self.arrayNewsFeed addObjectsFromArray:model.items];
+        [self.ibTableView reloadData];
+    } errorBlock:^(id object) {
+        
+    }];
+    
+}
+//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+//    float bottomEdge = scrollView.contentOffset.x + scrollView.frame.size.width;
+//    
+//    float reload_distance = 10;
+//    if (bottomEdge >= scrollView.contentSize.width -  reload_distance) {
+//        
+//        if(![Utils isStringNull:self.newsFeedModels.paging.next])
+//        {
+//            [self requestServerForNewsFeed];
+//        }
+//      
+//    }
+//}
+
+
+- (void)scrollViewDidScroll: (UIScrollView *)scroll {
+    // UITableView only moves in one direction, y axis
+    CGFloat currentOffset = scroll.contentOffset.y;
+    CGFloat maximumOffset = scroll.contentSize.height - scroll.frame.size.height;
+    
+    // Change 10.0 to adjust the distance from bottom
+    if (maximumOffset - currentOffset <= 10.0) {
+        [self requestServerForNewsFeed];
+    }
+}
 @end

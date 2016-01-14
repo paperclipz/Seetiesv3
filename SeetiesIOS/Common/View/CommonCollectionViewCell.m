@@ -16,6 +16,9 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    if (self.borderView) {
+        [Utils setRoundBorder:self.borderView color:LINE_COLOR borderRadius:(5.0f)];
+    }
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -57,9 +60,7 @@
 
 -(void)initSelfView
 {
-    if (self.borderView) {
-        [Utils setRoundBorder:self.borderView color:LINE_COLOR borderRadius:(5.0f)];
-    }
+   
 }
 
 @end

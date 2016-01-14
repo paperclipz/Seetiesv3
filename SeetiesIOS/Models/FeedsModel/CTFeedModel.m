@@ -26,12 +26,77 @@
 
 @end
 
-@interface CTFeedTypeModel()
+@implementation CTFeedCollectionModel
 
++(JSONKeyMapper*)keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{
+                                                       @"data": @"arrCollection",
+                                                       
+                                                       }];
+}
+
+
+@end
+@interface CTFeedTypeModel()
+@property(nonatomic,strong)NSDictionary* data;
 @property(nonatomic,strong)NSString* type;
 @end
 
 @implementation CTFeedTypeModel
+
+
+-(CTFeedModel*)newsFeedData
+{
+    
+    if (!_newsFeedData) {
+        _newsFeedData = [[CTFeedModel alloc]initWithDictionary:_data error:nil];
+
+    }
+    return _newsFeedData;
+}
+
+-(NSArray<CollectionModel>*)arrCollections
+{
+    if (!_arrCollections) {
+        
+        NSMutableArray* arrTemp = [NSMutableArray new];
+
+        for (NSDictionary* key in _data)
+        {
+            CollectionModel* model = [[CollectionModel alloc]initWithDictionary:key error:nil];
+            
+            [arrTemp addObject:model];
+        
+        }
+        
+        _arrCollections = [NSMutableArray arrayWithArray:arrTemp];
+    }
+    
+    return _arrCollections;
+}
+
+-(NSArray<ProfileModel*>*)arrSuggestedFeature
+{
+    if (!_arrSuggestedFeature) {
+        
+        NSMutableArray* arrTemp = [NSMutableArray new];
+        for (NSDictionary* key in _data)
+        {
+            CollectionModel* model = [[CollectionModel alloc]initWithDictionary:key error:nil];
+            
+            [arrTemp addObject:model];
+            
+        }
+        
+        _arrSuggestedFeature = [NSMutableArray arrayWithArray:arrTemp];
+
+    }
+
+    
+    return _arrSuggestedFeature;
+}
+
 
 +(BOOL)propertyIsOptional:(NSString*)propertyName
 {

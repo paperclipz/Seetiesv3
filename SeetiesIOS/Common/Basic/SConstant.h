@@ -60,6 +60,12 @@ typedef enum
     ServerRequestTypeGetSeetoShopRecommendations,
     ServerRequestTypeGetSeetoShopTranslation,
     // ========== SEETIES SHOP ========== //
+    
+    /*LIKE A POST*/
+    ServerRequestTypePostLikeAPost,
+    ServerRequestTypeDeleteLikeAPost,
+    
+    /*LIKE A POST*/
 
     
 }ServerRequestType;

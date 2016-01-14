@@ -77,4 +77,8 @@ typedef void(^CompletionVoidBlock) (void);
 +(void)setCollectionFollowing:(NSString*)collectionID isFollowing:(BOOL)following;//to set collection is collected and store after request from server
 +(BOOL)isCollectionFollowed:(NSString*)collectionID isFollowing:(BOOL)isFollowing;//to check collection is collected to request from server
 
+/*likes*/
++(void)setPostLikes:(NSString*)postID isLiked:(BOOL)liked;
++(void)getPostLikes:(NSString*)postID isLiked:(BoolBlock)isLikedBlock NotLikeBlock:(CompletionVoidBlock)notCollectedBlock;
+
 @end

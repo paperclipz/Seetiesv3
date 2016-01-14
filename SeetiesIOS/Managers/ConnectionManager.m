@@ -9,6 +9,7 @@
 #import "ConnectionManager.h"
 #import "NSArray+JSON.h"
 #define API_VERION_URL @"v2.3"
+#define IS_SIMULATOR YES
 @interface ConnectionManager()
 @property (strong, nonatomic) DataManager *dataManager;
 
@@ -171,7 +172,7 @@
     
     NSString* fullURL;
 
-    if (appendString) {
+      if (appendString) {
         fullURL = [NSString stringWithFormat:@"%@/%@",[self getFullURLwithType:type],appendString];
         
     }
@@ -179,6 +180,15 @@
     {
         fullURL = [self getFullURLwithType:type];
     }
+    
+    if (IS_SIMULATOR && type == ServerRequestTypeGetNewsFeed) {
+        [self storeServerData:[self getJsonForType:type] requestType:type withURL:fullURL];
+        if (completeBlock) {
+            completeBlock(nil);
+        }
+        return;
+    }
+
     
     SLog(@"\n\n ===== [REQUEST SERVER WITH GET][URL] : %@ \n [REQUEST JSON] : %@\n\n",fullURL,[dict bv_jsonStringWithPrettyPrint:YES]);
     
@@ -462,6 +472,11 @@
              str = API_VERION_URL;
             break;
             
+        case ServerRequestTypePostLikeAPost:
+        case ServerRequestTypeDeleteLikeAPost:
+            str = [NSString stringWithFormat:@"/%@/post",API_VERION_URL];
+            break;
+            
     }
     
     return [NSString stringWithFormat:@"https://%@/%@",self.serverPath,str];
@@ -698,6 +713,23 @@
             SLog(@"the return result is :%@",obj);
             break;
     }
+}
+
+-(id)getJsonForType:(ServerRequestType)type
+{
+    NSDictionary* localDict;
+    
+    NSString *textPAth = [[NSBundle mainBundle] pathForResource:@"feed" ofType:@"json"];
+    
+    NSError *error;
+    NSString *content = [NSString stringWithContentsOfFile:textPAth encoding:NSUTF8StringEncoding error:&error];  //error checking omitted
+//    NSError *jsonError;
+
+    NSData *data = [content dataUsingEncoding:NSUTF8StringEncoding];
+    localDict = [NSJSONSerialization JSONObjectWithData:data
+                                                   options:NSJSONReadingMutableContainers
+                                                     error:&error];
+    return localDict;
 }
 
 

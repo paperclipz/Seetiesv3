@@ -11,6 +11,6 @@
 #import "CommonTableViewCell.h"
 
 @interface FeedType_CountryPromotionTblCell : CommonTableViewCell
--(void)initData:(CTFeedModel*)model;
+-(void)initData:(CTFeedTypeModel*)model;
 
 @end

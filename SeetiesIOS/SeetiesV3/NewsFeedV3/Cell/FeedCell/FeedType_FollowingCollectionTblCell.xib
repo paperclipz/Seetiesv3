@@ -130,23 +130,32 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="ngR-dL-ToX">
                                         <rect key="frame" x="0.0" y="0.0" width="262" height="371"/>
                                     </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1.png" translatesAutoresizingMaskIntoConstraints="NO" id="cDT-o2-c2E">
+                                        <rect key="frame" x="267" y="250" width="100" height="120"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="3Qi-eU-ZdR" firstAttribute="top" secondItem="dX3-Uy-PLK" secondAttribute="bottom" constant="5" id="3sa-4L-nyC"/>
                                     <constraint firstItem="3Qi-eU-ZdR" firstAttribute="height" secondItem="dX3-Uy-PLK" secondAttribute="height" id="7w3-j8-3gg"/>
+                                    <constraint firstItem="cDT-o2-c2E" firstAttribute="top" secondItem="3Qi-eU-ZdR" secondAttribute="top" id="E9u-MH-Vfu"/>
                                     <constraint firstItem="ngR-dL-ToX" firstAttribute="leading" secondItem="1R0-oW-snz" secondAttribute="leading" id="FOs-t0-qL2"/>
+                                    <constraint firstItem="cDT-o2-c2E" firstAttribute="trailing" secondItem="3Qi-eU-ZdR" secondAttribute="trailing" id="MNA-4N-bfy"/>
                                     <constraint firstAttribute="bottom" secondItem="ngR-dL-ToX" secondAttribute="bottom" id="OGe-yW-oiy"/>
                                     <constraint firstAttribute="trailing" secondItem="dX3-Uy-PLK" secondAttribute="trailing" id="RGZ-2t-LwF"/>
+                                    <constraint firstItem="cDT-o2-c2E" firstAttribute="bottom" secondItem="3Qi-eU-ZdR" secondAttribute="bottom" id="Rdv-MS-iDJ"/>
                                     <constraint firstAttribute="trailing" secondItem="3Qi-eU-ZdR" secondAttribute="trailing" id="RiQ-y5-PH8"/>
                                     <constraint firstAttribute="bottom" secondItem="dX3-Uy-PLK" secondAttribute="bottom" id="RoX-34-lGx"/>
                                     <constraint firstItem="Lid-LI-bKL" firstAttribute="top" secondItem="1R0-oW-snz" secondAttribute="top" id="Sqp-D8-QfW"/>
                                     <constraint firstAttribute="trailing" secondItem="Lid-LI-bKL" secondAttribute="trailing" id="Wzf-sE-T2q"/>
+                                    <constraint firstItem="cDT-o2-c2E" firstAttribute="height" secondItem="3Qi-eU-ZdR" secondAttribute="height" id="Z3q-3a-1ON"/>
                                     <constraint firstItem="dX3-Uy-PLK" firstAttribute="width" secondItem="Lid-LI-bKL" secondAttribute="width" id="aRR-aL-NA1"/>
+                                    <constraint firstItem="cDT-o2-c2E" firstAttribute="leading" secondItem="3Qi-eU-ZdR" secondAttribute="leading" id="bZ0-3W-w2t"/>
                                     <constraint firstItem="Lid-LI-bKL" firstAttribute="leading" secondItem="ngR-dL-ToX" secondAttribute="trailing" constant="5" id="diX-Gx-dSl"/>
                                     <constraint firstItem="dX3-Uy-PLK" firstAttribute="top" secondItem="Lid-LI-bKL" secondAttribute="bottom" constant="5" id="f83-v4-Ybo"/>
                                     <constraint firstItem="dX3-Uy-PLK" firstAttribute="height" secondItem="Lid-LI-bKL" secondAttribute="height" constant="-1" id="nMG-NW-rko"/>
                                     <constraint firstItem="3Qi-eU-ZdR" firstAttribute="width" secondItem="dX3-Uy-PLK" secondAttribute="width" id="nUh-VF-LUe"/>
+                                    <constraint firstItem="cDT-o2-c2E" firstAttribute="width" secondItem="3Qi-eU-ZdR" secondAttribute="width" id="qDf-OY-Glu"/>
                                     <constraint firstItem="ngR-dL-ToX" firstAttribute="top" secondItem="1R0-oW-snz" secondAttribute="top" id="rw8-CQ-JgS"/>
                                     <constraint firstItem="dX3-Uy-PLK" firstAttribute="height" secondItem="Lid-LI-bKL" secondAttribute="height" id="zhY-gU-PLI"/>
                                 </constraints>
@@ -192,6 +201,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="1.png" width="80" height="80"/>
         <image name="NoImage.png" width="800" height="800"/>
         <image name="NoPhotoInCollection.png" width="60" height="50"/>
         <image name="NotificationShare.png" width="22" height="27"/>

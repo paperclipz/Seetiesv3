@@ -8,23 +8,20 @@
 
 #import "CollectionsCollectionViewCell.h"
 
-#define NO_LOCK_CONSTRSINT_CONSTANT 10.0f
-#define LOCK_CONSTRSINT_CONSTANT 33.0f
+#define NO_LOCK_CONSTRSINT_CONSTANT 0.0f
+#define LOCK_CONSTRSINT_CONSTANT 30.0f
 
 @interface CollectionsCollectionViewCell()
 {
     
-    __weak IBOutlet NSLayoutConstraint *ibCollectionNameLeadingConstraint;
+    __weak IBOutlet NSLayoutConstraint *constLockWidth;
     
 }
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageViewA;
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageViewB;
 @property (strong, nonatomic) CollectionModel *model;
-@property (weak, nonatomic) IBOutlet UIView *ibInnerContentView;
 @property (weak, nonatomic) IBOutlet UIButton *btnFollow;
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageLock;
-
-@property (assign, nonatomic)ProfileViewType profileType;
 
 @end
 @implementation CollectionsCollectionViewCell
@@ -59,11 +56,10 @@
     [self.ibImageViewB sd_setImageWithURL:[NSURL URLWithString:@"http://thewallpaperhost.com/wp-content/uploads/0382763769f46da4ff3c6644eeac648c_large.jpeg"]];
 
 }
--(void)initData:(CollectionModel*)model profileType:(ProfileViewType)type
+-(void)initData:(CollectionModel*)model
 {
     
     self.model = model;
-    self.profileType = type;
     
     self.lblTitle.text = self.model.name;
     self.lblNoOfCollection.text = [NSString stringWithFormat:@"%d %@",self.model.collection_posts_count,LocalisedString(@"Recommendations")];
@@ -101,17 +97,8 @@
         }
     }
     
-    if (self.profileType == ProfileViewTypeOwn) {
-        [self.btnFollow setTitle:LocalisedString(@"Edit") forState:UIControlStateNormal];
-        [Utils setRoundBorder:self.ibInnerContentView color:LINE_COLOR borderRadius:5.0f];
-        [Utils setRoundBorder:self.btnFollow color:LINE_COLOR borderRadius:self.btnFollow.frame.size.height/2];
-        
-        [self.btnFollow setImage:nil forState:UIControlStateNormal];
-        [self.btnFollow setImage:nil forState:UIControlStateSelected];
-        
-    }
-    else{
-        [Utils setRoundBorder:self.ibInnerContentView color:LINE_COLOR borderRadius:5.0f];
+    
+    
         [Utils setRoundBorder:self.btnFollow color:[UIColor clearColor] borderRadius:0];
         
         [self.btnFollow setImage:[UIImage imageNamed:LocalisedString(@"FollowCollectionIcon.png")] forState:UIControlStateNormal];
@@ -126,13 +113,13 @@
             
             [self.btnFollow setSelected:self.model.following];
 
+            
 
         }];
-    }
     
     [UIView transitionWithView:self duration:TRANSITION_DURTION options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
         self.ibImageLock.hidden = !self.model.isPrivate;
-        ibCollectionNameLeadingConstraint.constant =self.model.isPrivate?LOCK_CONSTRSINT_CONSTANT:NO_LOCK_CONSTRSINT_CONSTANT;
+        constLockWidth.constant =self.model.isPrivate?LOCK_CONSTRSINT_CONSTANT:NO_LOCK_CONSTRSINT_CONSTANT;
         [self.ibImageLock refreshConstraint];
     } completion:nil];
     

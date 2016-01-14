@@ -11,7 +11,8 @@
 
 @interface FeedType_CollectionSuggestedTblCell()<UICollectionViewDataSource,UICollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *ibCollectionView;
-
+@property (nonatomic,strong)CTFeedTypeModel* feedTypeModel;
+@property (nonatomic,copy)NSArray<CollectionModel>* arrCollections;
 
 @end
 @implementation FeedType_CollectionSuggestedTblCell
@@ -24,6 +25,12 @@
 }
 */
 
+-(void)initData:(NSArray<CollectionModel>*)array
+{
+    self.arrCollections = array;
+    [self.ibCollectionView reloadData];
+}
+
 -(void)initSelfView
 {
     [self initCollectionViewDelegate];
@@ -34,10 +41,11 @@
     self.ibCollectionView.delegate = self;
     self.ibCollectionView.dataSource = self;
     [self.ibCollectionView registerClass:[CollectionsCollectionViewCell class] forCellWithReuseIdentifier:@"CollectionsCollectionViewCell"];
+    self.ibCollectionView.backgroundColor = [UIColor clearColor];
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 10;
+    return self.arrCollections.count;
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
@@ -45,7 +53,8 @@
 {
     CollectionsCollectionViewCell* cell = (CollectionsCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:@"CollectionsCollectionViewCell" forIndexPath:indexPath];
     
-    [cell initData];
+    CollectionModel* model = self.arrCollections[indexPath.row];
+    [cell initData:model];
     return cell;
 }
 

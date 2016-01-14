@@ -12,4 +12,6 @@
 @interface PaginationModel : JSONModel
 @property(nonatomic,strong)PagingModel* paging;
 @property(nonatomic,assign)int offset;
+@property(nonatomic,assign)int limit;
+
 @end

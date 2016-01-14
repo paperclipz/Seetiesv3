@@ -14,6 +14,8 @@
 @interface DataManager()
 
 @property(nonatomic,strong)NSMutableDictionary* dictCollections;
+@property(nonatomic,strong)NSMutableDictionary* dictLikes;
+
 @property(nonatomic,copy)BoolBlock boolBlock;
 
 
@@ -80,6 +82,52 @@
     
     return _dictCollections;
 }
+
+-(NSMutableDictionary*)dictLikes
+{
+    if (!_dictLikes) {
+        _dictLikes = [NSMutableDictionary new];
+    }
+    
+    return _dictLikes;
+}
+
+
+
+#pragma mark - Likes Local Storage
+
++(void)getPostLikes:(NSString*)postID isLiked:(BoolBlock)isLikedBlock NotLikeBlock:(CompletionVoidBlock)notCollectedBlock
+{
+    BOOL isTempLikes = NO;
+    
+    DataManager* dataManager = [DataManager Instance];
+    
+    if ([[dataManager.dictLikes allKeys]containsObject:postID]) {
+        
+        isTempLikes = [[dataManager.dictLikes objectForKey:postID]boolValue];
+        
+        if (isLikedBlock) {
+            isLikedBlock(isTempLikes);
+        }
+        
+    }
+    else{
+        if (notCollectedBlock) {
+            notCollectedBlock();
+        }
+    }
+    
+}
++(void)setPostLikes:(NSString*)postID isLiked:(BOOL)liked
+{
+    DataManager* dataManager = [DataManager Instance];
+    
+    [dataManager.dictLikes setValue:[NSNumber numberWithBool:liked] forKey:postID];
+    
+}
+
+
+#pragma mark - Collection Local Storage
 +(void)getCollectionFollowing:(NSString*)collectionID HasCollected:(BoolBlock)isCollected completion:(CompletionVoidBlock)completionBlock
 {
     BOOL isTempCollected = NO;
@@ -129,5 +177,7 @@
     [dataManager.dictCollections setValue:[NSNumber numberWithBool:following] forKey:collectionID];
 
 }
+
+
 
 @end

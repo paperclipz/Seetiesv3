@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ibPostImageView;
 @property (weak, nonatomic) IBOutlet UIView *ibSuggestedView;
 @property (weak, nonatomic) IBOutlet UIImageView *ibProfileImageView;
+@property (weak, nonatomic) IBOutlet UIButton *btnLike;
 
 /*constraint*/
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constImageHeight;
@@ -37,6 +38,18 @@
     // Drawing code
 }
 */
+- (IBAction)btnLikeClicked:(id)sender {
+    
+    
+    if (self.btnLike.selected) {
+        [self requestServerToUnlikePost];
+
+    }
+    else{
+        [self requestServerToLikePost];
+
+    }
+}
 
 -(void)initSelfView
 {
@@ -50,16 +63,16 @@
 
 //    [self.ibPostImageView setStandardBorder];
     self.newsFeedTypeModel = model;
-    CTFeedModel* feedModel = self.newsFeedTypeModel.data;
+    CTFeedModel* feedModel = self.newsFeedTypeModel.newsFeedData;
     if (self.newsFeedTypeModel.feedType == FeedType_Country_Promotion) {
-        [self.ibPostImageView sd_setImageCroppedWithURL:[NSURL URLWithString:self.newsFeedTypeModel.data.image] completed:nil];
+        [self.ibPostImageView sd_setImageCroppedWithURL:[NSURL URLWithString:self.newsFeedTypeModel.newsFeedData.image] completed:nil];
 
     }
     
     else{
         
         if (![Utils isArrayNull:feedModel.photos]) {
-            PhotoModel* pModel = self.newsFeedTypeModel.data.photos[0];
+            PhotoModel* pModel = self.newsFeedTypeModel.newsFeedData.photos[0];
             [self.ibPostImageView sd_setImageCroppedWithURL:[NSURL URLWithString:pModel.imageURL] completed:nil];
 
         }
@@ -75,14 +88,27 @@
     }
     
     self.lblUsername.text = feedModel.user_info.username;
-    self.lblDistance.text = @(feedModel.location.distance).stringValue;
+    
+    if (feedModel.location.distance == 0) {
+        self.lblDistance.text = @"";
+
+    }
+    else{
+        self.lblDistance.text = @(feedModel.location.distance).stringValue;
+
+    }
+    
     self.lblTitle.text = feedModel.place_name;
-    self.lblLocation.text = feedModel.location.name;
-    self.lblDescription.text = feedModel.postDescription;
+    self.lblLocation.text = feedModel.location.locality;
+    
+    self.lblLocation.text = [NSString stringWithFormat:@"%@ • %@",feedModel.location.locality,feedModel.location.country];
+
+    self.lblDescription.text = @"";
 
     [self.ibProfileImageView sd_setImageWithURL:[NSURL URLWithString:feedModel.user_info.profile_photo_images]];
     
-
+    [self refreshData];
+    
 }
 
 
@@ -95,5 +121,58 @@
     calcHeight = imageView.frame.size.width/width * height;
     
     return calcHeight;
+}
+
+
+-(void)refreshData
+{
+    
+    [DataManager getPostLikes:self.newsFeedTypeModel.newsFeedData.post_id isLiked:^(BOOL isCollected) {
+        
+        self.btnLike.selected = isCollected;
+    } NotLikeBlock:^{
+        
+        self.btnLike.selected = self.newsFeedTypeModel.newsFeedData.like;
+    }];
+}
+-(void)requestServerToLikePost
+{
+    NSString* appendString = [NSString stringWithFormat:@"%@/like",self.newsFeedTypeModel.newsFeedData.post_id];
+    NSDictionary* dict = @{@"token" : [Utils getAppToken],
+                           @"post_id" : self.newsFeedTypeModel.newsFeedData.post_id,
+                           };
+    
+    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostLikeAPost param:dict appendString:appendString meta:nil completeHandler:^(id object) {
+      
+        NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object];
+        
+        BOOL isLiked = [returnDict[@"data"][@"like"] boolValue];
+
+        [DataManager setPostLikes:self.newsFeedTypeModel.newsFeedData.post_id isLiked:isLiked];
+        [self refreshData];
+        
+    } errorBlock:^(id object) {
+        
+    }];
+}
+
+-(void)requestServerToUnlikePost
+{
+    NSString* appendString = [NSString stringWithFormat:@"%@/like",self.newsFeedTypeModel.newsFeedData.post_id];
+    NSDictionary* dict = @{@"token" : [Utils getAppToken],
+                           @"post_id" : self.newsFeedTypeModel.newsFeedData.post_id,
+                           };
+    
+    [[ConnectionManager Instance]requestServerWithDelete:ServerRequestTypeDeleteLikeAPost param:dict appendString:appendString completeHandler:^(id object) {
+        NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object];
+        
+        
+        BOOL isLiked = [returnDict[@"data"][@"like"] boolValue];
+        [DataManager setPostLikes:self.newsFeedTypeModel.newsFeedData.post_id isLiked:isLiked];
+        [self refreshData];
+        
+    } errorBlock:^(id object) {
+        
+    }];
 }
 @end

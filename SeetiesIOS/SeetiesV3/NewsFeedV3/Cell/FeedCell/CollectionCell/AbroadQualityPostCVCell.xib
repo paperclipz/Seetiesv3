@@ -114,6 +114,9 @@
                 <constraint firstAttribute="trailing" secondItem="ljL-lr-gXc" secondAttribute="trailing" constant="8" id="rKR-bL-ME7"/>
             </constraints>
             <size key="customSize" width="281" height="389"/>
+            <connections>
+                <outlet property="borderView" destination="ljL-lr-gXc" id="zV2-hb-hcm"/>
+            </connections>
             <point key="canvasLocation" x="298.5" y="384.5"/>
         </collectionViewCell>
     </objects>

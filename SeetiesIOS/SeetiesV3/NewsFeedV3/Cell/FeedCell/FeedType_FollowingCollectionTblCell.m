@@ -23,10 +23,40 @@
 
 -(void)initSelfView
 {
+    
+    int numberOfPhoto = 4;
     [Utils setRoundBorder:self.btnShare color:OUTLINE_COLOR borderRadius:self.btnShare.frame.size.height/2];
     
-    self.constImgWidth.constant = self.ibImgContentView.frame.size.width/5*2;
-    self.constImgHeight.constant = (self.ibImgContentView.frame.size.height/1);
+    
+    switch (numberOfPhoto) {
+        case 1:
+            self.constImgWidth.constant = 0;
+            self.constImgHeight.constant = (self.ibImgContentView.frame.size.height/1);
+
+            break;
+            
+        case 2:
+            self.constImgWidth.constant = self.ibImgContentView.frame.size.width/5*2;
+            self.constImgHeight.constant = (self.ibImgContentView.frame.size.height/1);
+            
+            break;
+        case 3:
+            self.constImgWidth.constant = self.ibImgContentView.frame.size.width/5*2;
+            self.constImgHeight.constant = (self.ibImgContentView.frame.size.height/2);
+            
+            break;
+            
+        case 4:
+            self.constImgWidth.constant = self.ibImgContentView.frame.size.width/5*2;
+            self.constImgHeight.constant = (self.ibImgContentView.frame.size.height/3);
+            
+            break;
+            
+            
+        default:
+            break;
+    }
+   
     [Utils setRoundBorder:self.self.ibImgContentView color:OUTLINE_COLOR borderRadius:5.0f];
     
 }

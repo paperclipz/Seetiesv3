@@ -14,11 +14,11 @@
 
 @end
 @implementation FeedType_CountryPromotionTblCell
--(void)initData:(CTFeedModel*)model
+-(void)initData:(CTFeedTypeModel*)model
 {
 
-    self.newsFeedModel = model;
- //   [self.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:self.newsFeedModel.image] completed:nil];
+    self.newsFeedModel = model.newsFeedData;
+    [self.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:self.newsFeedModel.image] completed:nil];
 
 }
 /*

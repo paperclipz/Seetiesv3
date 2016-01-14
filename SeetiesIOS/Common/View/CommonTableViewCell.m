@@ -23,6 +23,9 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    if (self.borderView) {
+        [Utils setRoundBorder:self.borderView color:OUTLINE_COLOR borderRadius:5.0f];
+    }
 }
 
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -50,9 +53,7 @@
 
 -(void)initSelfView
 {
-    if (self.borderView) {
-        [Utils setRoundBorder:self.borderView color:OUTLINE_COLOR borderRadius:5.0f];
-    }
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -28,8 +28,8 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="rj2-6E-sZc"/>
                                         <exclude reference="T4q-RV-aNy"/>
+                                        <exclude reference="rj2-6E-sZc"/>
                                     </mask>
                                 </variation>
                             </imageView>

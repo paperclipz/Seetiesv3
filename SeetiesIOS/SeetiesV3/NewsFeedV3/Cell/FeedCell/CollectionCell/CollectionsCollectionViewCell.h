@@ -10,7 +10,7 @@
 
 @interface CollectionsCollectionViewCell : CommonCollectionViewCell
 
--(void)initData:(CollectionModel*)model profileType:(ProfileViewType)type;
+-(void)initData:(CollectionModel*)model;
 -(void)initData;
 
 @property(nonatomic,copy)VoidBlock btnEditClickedBlock;

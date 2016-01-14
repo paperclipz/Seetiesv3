@@ -51,7 +51,7 @@
                                 <state key="normal" title="Button"/>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="0O7-cn-4Oo">
-                                <rect key="frame" x="10" y="60" width="96.5" height="96.5"/>
+                                <rect key="frame" x="10" y="60" width="97" height="97"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="Tym-8e-WZG"/>
                                     <constraint firstAttribute="width" constant="89" id="bZC-RN-SXc"/>
@@ -65,13 +65,13 @@
                                 </variation>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="oSn-k8-sif">
-                                <rect key="frame" x="114.5" y="60" width="96.5" height="96.5"/>
+                                <rect key="frame" x="115" y="60" width="97" height="97"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="m4x-op-8tj">
-                                <rect key="frame" x="219" y="60" width="96.5" height="96.5"/>
+                                <rect key="frame" x="219" y="60" width="97" height="97"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="gx7-0c-G0M">
-                                <rect key="frame" x="323.5" y="60" width="96.5" height="96.5"/>
+                                <rect key="frame" x="324" y="60" width="97" height="97"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
