@@ -36,6 +36,20 @@
                         <action selector="btnTestShopListingClicked:" destination="-1" eventType="touchUpInside" id="gA1-IM-gB7"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XBG-a7-7aY">
+                    <rect key="frame" x="117" y="209" width="98" height="30"/>
+                    <state key="normal" title="Search Listing"/>
+                    <connections>
+                        <action selector="btnTestSearchListingCliked:" destination="-1" eventType="touchUpInside" id="xQq-Lp-AeA"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0eC-P6-Xyk">
+                    <rect key="frame" x="127" y="247" width="79" height="30"/>
+                    <state key="normal" title="Connection"/>
+                    <connections>
+                        <action selector="btnTestConnectionsClicked:" destination="-1" eventType="touchUpInside" id="y6t-bQ-wtT"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

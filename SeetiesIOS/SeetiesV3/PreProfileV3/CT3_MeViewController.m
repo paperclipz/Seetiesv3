@@ -18,6 +18,12 @@
 - (IBAction)btnTestShopListingClicked:(id)sender {
     [self.navigationController pushViewController:self.shopListingViewController animated:YES];
 }
+-(IBAction)btnTestSearchListingCliked:(id)sender{
+[self.navigationController pushViewController:self.ct3_SearchListingViewController animated:YES];
+}
+-(IBAction)btnTestConnectionsClicked:(id)sender{
+[self.navigationController pushViewController:self.connectionsViewController animated:YES];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -43,5 +49,19 @@
         _shopListingViewController = [ShopListingViewController new];
     }
     return _shopListingViewController;
+}
+-(CT3_SearchListingViewController*)ct3_SearchListingViewController
+{
+    if (!_ct3_SearchListingViewController) {
+        _ct3_SearchListingViewController = [CT3_SearchListingViewController new];
+    }
+    return _ct3_SearchListingViewController;
+}
+-(ConnectionsViewController*)connectionsViewController
+{
+    if (!_connectionsViewController) {
+        _connectionsViewController = [ConnectionsViewController new];
+    }
+    return _connectionsViewController;
 }
 @end
