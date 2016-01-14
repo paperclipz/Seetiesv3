@@ -16,15 +16,23 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YIL-P1-bN4" userLabel="button">
-                        <rect key="frame" x="8" y="7" width="104" height="30"/>
+                        <rect key="frame" x="0.0" y="0.0" width="120" height="44"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <state key="normal" title="Button"/>
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="leadingMargin" secondItem="YIL-P1-bN4" secondAttribute="leading" id="YZR-1H-qix"/>
+                    <constraint firstItem="YIL-P1-bN4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="GzH-ca-2c2"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="YIL-P1-bN4" secondAttribute="bottom" constant="-8" id="SQU-T8-7cc"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="YIL-P1-bN4" secondAttribute="leading" constant="8" id="YZR-1H-qix"/>
                     <constraint firstItem="YIL-P1-bN4" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="p1s-bb-szs"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="YIL-P1-bN4" secondAttribute="trailing" id="rgG-Ny-8Nk"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="YIL-P1-bN4" secondAttribute="trailing" constant="-8" id="rgG-Ny-8Nk"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="p1s-bb-szs"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <point key="canvasLocation" x="427" y="343"/>
         </tableViewCell>

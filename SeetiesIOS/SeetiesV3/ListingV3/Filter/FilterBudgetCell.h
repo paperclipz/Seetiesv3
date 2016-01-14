@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NMRangeSlider.h"
 
-@interface FilterBudgetCell : UITableViewCell
+@interface FilterBudgetCell : CommonCollectionViewCell
+-(void)configureSliderWithMinValue:(NSInteger)minValue maxValue:(NSInteger)maxValue stepValue:(NSInteger)stepValue stepValueContinuously:(BOOL)continuous;
+-(void)setLowerValue:(NSInteger)lowerValue;
+-(void)setUpperValue:(NSInteger)upperValue;
 
 @end
