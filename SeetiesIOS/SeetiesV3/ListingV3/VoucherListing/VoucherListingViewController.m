@@ -13,7 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *ibUserLocationLbl;
 @property (weak, nonatomic) IBOutlet UITableView *ibVoucherTable;
 @property (weak, nonatomic) IBOutlet UIView *ibFilterView;
-
+@property (strong, nonatomic)GeneralFilterViewController* filterController;
 @end
 
 @implementation VoucherListingViewController
@@ -23,6 +23,7 @@
     // Do any additional setup after loading the view from its nib.
     
     _voucherArray = @[@"1",@"2",@"3",@"4"];
+    [self.ibVoucherTable registerNib:[UINib nibWithNibName:@"VoucherCell" bundle:nil] forCellReuseIdentifier:@"VoucherCell"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,35 +48,29 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     VoucherCell *voucherCell = [tableView dequeueReusableCellWithIdentifier:@"VoucherCell"];
     
-    if (!voucherCell) {
-        [tableView registerNib:[UINib nibWithNibName:@"VoucherCell" bundle:nil] forCellReuseIdentifier:@"VoucherCell"];
-        voucherCell = [tableView dequeueReusableCellWithIdentifier:@"VoucherCell"];
-    }
-    
     return voucherCell;
 }
 
 - (IBAction)filterClicked:(id)sender {
-    NSInteger filterTag = 1001;
-    UIView *filterView = [self.view viewWithTag:filterTag];
-    
-    if (filterView == nil) {
-        GeneralFilterViewController *filterController = [[GeneralFilterViewController alloc] init];
-        CGFloat yOrigin = self.ibFilterView.frame.origin.y + self.ibFilterView.frame.size.height;
-        CGFloat filterHeight = self.view.frame.size.height - yOrigin;
-        CGRect filterRect = CGRectMake(0, yOrigin, self.view.frame.size.width, filterHeight);
-        filterController.view.frame = filterRect;
-        filterController.view.tag = filterTag;
-        [self.view addSubview:filterController.view];
-    }
-    else{
-        if (filterView.hidden) {
-            filterView.hidden = NO;
-        }
-        else{
-            filterView.hidden = YES;
-        }
-    }
+    [self.navigationController presentViewController:[GeneralFilterViewController new] animated:YES completion:nil];
+//    self.filterController.view.hidden =  !self.filterController.view.hidden;
 }
 
+-(GeneralFilterViewController*)filterController
+{
+    if (!_filterController) {
+        _filterController = [GeneralFilterViewController new];
+        
+        [self.view addSubview:_filterController.view];
+        
+        _filterController.view.hidden = YES;
+        CGFloat yOrigin = self.ibFilterView.frame.origin.y + self.ibFilterView.frame.size.height;
+        [_filterController.view setY:yOrigin];
+        [_filterController.view setHeight:self.view.frame.size.height - yOrigin];        
+        [_filterController.view setWidth:self.view.frame.size.width];
+
+    }
+    
+    return _filterController;
+}
 @end
