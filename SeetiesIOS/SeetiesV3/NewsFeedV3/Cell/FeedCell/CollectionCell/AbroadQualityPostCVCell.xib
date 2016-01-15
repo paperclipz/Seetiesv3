@@ -116,6 +116,13 @@
             <size key="customSize" width="281" height="389"/>
             <connections>
                 <outlet property="borderView" destination="ljL-lr-gXc" id="zV2-hb-hcm"/>
+                <outlet property="ibImageView" destination="rdf-4s-8oQ" id="o7k-9z-toi"/>
+                <outlet property="ibProfileImage" destination="dh9-ux-Uhj" id="RWR-sk-K2d"/>
+                <outlet property="lblDescription" destination="P5l-rm-bCe" id="z11-q8-WRw"/>
+                <outlet property="lblDistance" destination="1Fm-tl-8yX" id="ye8-XL-iiv"/>
+                <outlet property="lblLocation" destination="P5l-rm-bCe" id="JoL-XI-hTx"/>
+                <outlet property="lblName" destination="Lob-2Z-LIO" id="5h0-GD-ntQ"/>
+                <outlet property="lblTitle" destination="2vw-yg-hmU" id="Iz4-ji-Brg"/>
             </connections>
             <point key="canvasLocation" x="298.5" y="384.5"/>
         </collectionViewCell>

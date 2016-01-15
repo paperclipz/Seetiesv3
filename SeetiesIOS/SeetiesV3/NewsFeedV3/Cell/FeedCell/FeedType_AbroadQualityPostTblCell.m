@@ -11,7 +11,7 @@
 
 @interface FeedType_AbroadQualityPostTblCell()<UICollectionViewDataSource,UICollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *ibCollectionview;
-
+@property (nonatomic,strong)NSArray<DraftModel>* arrPosts;
 @end
 @implementation FeedType_AbroadQualityPostTblCell
 
@@ -19,7 +19,11 @@
     // Initialization code
 }
 
-
+-(void)initData:(NSArray<DraftModel>*)array
+{
+    self.arrPosts = array;
+    [self.ibCollectionview reloadData];
+}
 -(void)initSelfView
 {
     [self initCollectionViewDelegate];
@@ -41,7 +45,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 5;
+    return self.arrPosts.count;
     
 }
 
@@ -51,6 +55,9 @@
     
     AbroadQualityPostCVCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AbroadQualityPostCVCell" forIndexPath:indexPath];
     
+    DraftModel* model = self.arrPosts[indexPath.row];
+    
+    [cell initData:model];
     return cell;
 }
 

@@ -80,5 +80,8 @@ typedef void(^CompletionVoidBlock) (void);
 /*likes*/
 +(void)setPostLikes:(NSString*)postID isLiked:(BOOL)liked;
 +(void)getPostLikes:(NSString*)postID isLiked:(BoolBlock)isLikedBlock NotLikeBlock:(CompletionVoidBlock)notCollectedBlock;
++(void)getPostCollected:(NSString*)postID isCollected:(BoolBlock)isCollectedBlock PostNotCollectedBlock:(CompletionVoidBlock)notCollectedBlock;
++(void)setPostsCollected:(NSString*)postID isPostCollected:(BOOL)collected;
+
 
 @end

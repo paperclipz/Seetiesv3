@@ -27,8 +27,12 @@
 @implementation CollectionsCollectionViewCell
 - (IBAction)btnFollowClicked:(id)sender {
     
-    UIButton* btn = (UIButton*)sender;
-    [btn setSelected:!btn.selected];
+//    UIButton* btn = (UIButton*)sender;
+//    [btn setSelected:!btn.selected];
+    
+    if (self.btnFollowBlock) {
+        self.btnFollowBlock();
+    }
 }
 
 -(void)initSelfView
@@ -125,6 +129,7 @@
     
     
 }
+
 
 
 @end

@@ -114,6 +114,12 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalCompressionResistancePriority="650" image="NoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="3Qi-eU-ZdR">
                                         <rect key="frame" x="267" y="250" width="100" height="120"/>
                                     </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="ngR-dL-ToX">
+                                        <rect key="frame" x="0.0" y="0.0" width="262" height="371"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1.png" translatesAutoresizingMaskIntoConstraints="NO" id="cDT-o2-c2E">
+                                        <rect key="frame" x="267" y="250" width="100" height="120"/>
+                                    </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="Lid-LI-bKL">
                                         <rect key="frame" x="267" y="0.0" width="100" height="120"/>
                                         <constraints>
@@ -126,12 +132,6 @@
                                                 <exclude reference="QbY-mr-i7n"/>
                                             </mask>
                                         </variation>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="ngR-dL-ToX">
-                                        <rect key="frame" x="0.0" y="0.0" width="262" height="371"/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1.png" translatesAutoresizingMaskIntoConstraints="NO" id="cDT-o2-c2E">
-                                        <rect key="frame" x="267" y="250" width="100" height="120"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -195,6 +195,10 @@
                 <outlet property="constImgHeight" destination="WjR-cs-CSJ" id="pkX-4z-BK3"/>
                 <outlet property="constImgWidth" destination="RCo-HT-Csh" id="v6A-Sd-dhT"/>
                 <outlet property="ibBorderView" destination="IKq-2B-Ii8" id="8Px-Ip-idE"/>
+                <outlet property="ibImageFour" destination="cDT-o2-c2E" id="2GP-W4-kQl"/>
+                <outlet property="ibImageOne" destination="ngR-dL-ToX" id="PbF-Gs-0NK"/>
+                <outlet property="ibImageThree" destination="dX3-Uy-PLK" id="1FT-rg-T4m"/>
+                <outlet property="ibImageTwo" destination="Lid-LI-bKL" id="jD6-o6-KJg"/>
                 <outlet property="ibImgContentView" destination="1R0-oW-snz" id="pa9-AK-auf"/>
             </connections>
             <point key="canvasLocation" x="464.5" y="451.5"/>

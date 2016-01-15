@@ -15,6 +15,8 @@
 
 @property(nonatomic,strong)NSMutableDictionary* dictCollections;
 @property(nonatomic,strong)NSMutableDictionary* dictLikes;
+@property(nonatomic,strong)NSMutableDictionary* dictPosts;
+
 
 @property(nonatomic,copy)BoolBlock boolBlock;
 
@@ -93,6 +95,37 @@
 }
 
 
+#pragma mark - Posts Local Storage
++(void)getPostCollected:(NSString*)postID isCollected:(BoolBlock)isCollectedBlock PostNotCollectedBlock:(CompletionVoidBlock)notCollectedBlock
+{
+    BOOL isTempPosts = NO;
+    
+    DataManager* dataManager = [DataManager Instance];
+    
+    if ([[dataManager.dictPosts allKeys]containsObject:postID]) {
+        
+        isTempPosts = [[dataManager.dictLikes objectForKey:postID]boolValue];
+        
+        if (isCollectedBlock) {
+            isCollectedBlock(isTempPosts);
+        }
+        
+    }
+    else{
+        if (notCollectedBlock) {
+            notCollectedBlock();
+        }
+    }
+    
+}
+/*post collected to default*/
++(void)setPostsCollected:(NSString*)postID isPostCollected:(BOOL)collected
+{
+    DataManager* dataManager = [DataManager Instance];
+    
+    [dataManager.dictPosts setValue:[NSNumber numberWithBool:collected] forKey:postID];
+    
+}
 
 #pragma mark - Likes Local Storage
 

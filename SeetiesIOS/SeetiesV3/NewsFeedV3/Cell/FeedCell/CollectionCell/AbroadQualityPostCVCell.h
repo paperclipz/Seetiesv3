@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface AbroadQualityPostCVCell : CommonCollectionViewCell
+-(void)initData:(DraftModel*)model;
 
 @end

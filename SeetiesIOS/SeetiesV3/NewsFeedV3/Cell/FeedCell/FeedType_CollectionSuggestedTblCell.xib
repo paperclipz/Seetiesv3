@@ -56,17 +56,29 @@
                                     <constraint firstAttribute="width" constant="30" id="tRQ-9Z-5rh"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oCJ-LA-zZs">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="iKa-Qv-F3i"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="btnSeeAllClicked:" destination="cB6-8i-OxE" eventType="touchUpInside" id="271-mf-PlX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="NIj-Cs-mN1" firstAttribute="leading" secondItem="Wey-XG-cet" secondAttribute="trailing" constant="10" id="1ax-Du-olc"/>
                             <constraint firstAttribute="height" constant="40" id="79k-iE-3Fe"/>
+                            <constraint firstAttribute="trailing" secondItem="oCJ-LA-zZs" secondAttribute="trailing" id="9y9-eF-LKj"/>
                             <constraint firstItem="WVE-vA-aqn" firstAttribute="centerY" secondItem="KAK-Yx-w26" secondAttribute="centerY" id="AJb-rC-wKD"/>
                             <constraint firstItem="Wey-XG-cet" firstAttribute="centerY" secondItem="KAK-Yx-w26" secondAttribute="centerY" id="K4A-TV-1h0"/>
                             <constraint firstItem="NIj-Cs-mN1" firstAttribute="centerY" secondItem="WVE-vA-aqn" secondAttribute="centerY" id="Riq-R4-8PU"/>
                             <constraint firstItem="WVE-vA-aqn" firstAttribute="leading" secondItem="NIj-Cs-mN1" secondAttribute="trailing" constant="8" id="bUG-EO-6SF"/>
                             <constraint firstItem="Wey-XG-cet" firstAttribute="leading" secondItem="KAK-Yx-w26" secondAttribute="leading" constant="8" id="d2b-Q3-W3c"/>
                             <constraint firstAttribute="trailing" secondItem="WVE-vA-aqn" secondAttribute="trailing" constant="8" id="khS-Ql-CBn"/>
+                            <constraint firstItem="oCJ-LA-zZs" firstAttribute="top" secondItem="KAK-Yx-w26" secondAttribute="top" id="pXc-Ss-le2"/>
+                            <constraint firstItem="oCJ-LA-zZs" firstAttribute="leading" secondItem="KAK-Yx-w26" secondAttribute="leading" id="sGp-rG-BuG"/>
                         </constraints>
                     </view>
                 </subviews>

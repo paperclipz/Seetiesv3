@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface FeedType_FollowingCollectionTblCell : CommonTableViewCell
+-(void)initData:(CollectionModel*)model;
 
 @end

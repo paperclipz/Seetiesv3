@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface FeedType_AbroadQualityPostTblCell : CommonTableViewCell
-
+-(void)initData:(NSArray<DraftModel>*)array;
 @end
