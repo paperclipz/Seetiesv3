@@ -468,7 +468,7 @@
         case ServerRequestTypePostFollowUser:
         case ServerRequestTypePostFollowCollection:
         case ServerRequestTypePutCollectPost:
-
+        case ServerRequestTypePostCreateCollection:
         default:
              str = API_VERION_URL;
             break;

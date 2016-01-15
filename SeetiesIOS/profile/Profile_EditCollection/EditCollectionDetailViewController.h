@@ -11,6 +11,7 @@
 
 @interface EditCollectionDetailViewController : CommonViewController<UICollectionViewDataSource,UICollectionViewDelegate>
 -(void)initData:(CollectionModel*)model;
+-(void)initDataWithUserID:(NSString*)userID;
 
 @property(nonatomic,copy)IDBlock btnDoneBlock;
 @property(nonatomic,copy)VoidBlock btnCancelBlock;

@@ -22,6 +22,7 @@
 @property(nonatomic,strong)ProfileModel* profileModel;
 @property(nonatomic,assign)int viewPage;
 @property (weak, nonatomic) IBOutlet UIButton *btnAddMore;
+@property (strong, nonatomic)EditCollectionDetailViewController *collectionDetailController;
 
 @end
 
@@ -30,10 +31,14 @@
 
 - (IBAction)btnAddMoreClicked:(id)sender {
     
-    _newCollectionViewController = nil;
+//    _newCollectionViewController = nil;
 
     //[self.navigationController pushViewController:self.newCollectionViewController animated:YES];
-    [self presentViewController:self.newCollectionViewController animated:YES completion:nil];
+//    [self presentViewController:self.newCollectionViewController animated:YES completion:nil];
+    
+    _collectionDetailController = [EditCollectionDetailViewController new];
+    [self.collectionDetailController initDataWithUserID:[Utils getUserID]];
+    [self.navigationController presentViewController:self.collectionDetailController animated:YES completion:nil];
 }
 
 - (IBAction)btnSegmentedClicked:(id)sender {
