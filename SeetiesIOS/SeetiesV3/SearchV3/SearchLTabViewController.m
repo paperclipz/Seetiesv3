@@ -102,6 +102,10 @@
         return cell;
     }else{
         SeetizensTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"SeetizensTableViewCell"];
+        cell.btnFollowBlock = ^(void)
+        {
+            NSLog(@"FollowButton Click");
+        };
         return cell;
     }
 

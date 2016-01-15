@@ -13,6 +13,7 @@
 #import "Explore2ViewController.h"
 #import "CT3_NewsFeedViewController.h"
 #import "CT3_LoginViewController.h"
+#import "CT3_MoreViewController.h"
 
 @interface NewLandingViewController : UIViewController<LeveyTabBarControllerDelegate>
 
@@ -21,5 +22,5 @@
 @property(nonatomic,strong)CT3_NewsFeedViewController* newsFeedViewController;
 @property(nonatomic,strong)LeveyTabBarController* leveyTabBarController;
 @property(nonatomic,strong)CT3_LoginViewController* loginViewController;
-
+@property(nonatomic,strong)CT3_MoreViewController* ct3_MoreViewController;
 @end

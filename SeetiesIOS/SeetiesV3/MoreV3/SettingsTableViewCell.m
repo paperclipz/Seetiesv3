@@ -1,18 +1,16 @@
 //
-//  ShopTableViewCell.m
+//  SettingsTableViewCell.m
 //  SeetiesIOS
 //
-//  Created by Seeties IOS on 07/01/2016.
+//  Created by Seeties IOS on 15/01/2016.
 //  Copyright © 2016 Stylar Network. All rights reserved.
 //
 
-#import "ShopTableViewCell.h"
-
-@interface ShopTableViewCell()
+#import "SettingsTableViewCell.h"
+@interface SettingsTableViewCell()
 
 @end
-@implementation ShopTableViewCell
-
+@implementation SettingsTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code
@@ -24,9 +22,4 @@
     // Configure the view for the selected state
 }
 
-
-+(float)getHeightWithoutImage
-{
-    return 110;
-}
 @end

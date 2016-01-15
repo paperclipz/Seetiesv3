@@ -16,6 +16,14 @@
 		0B40B4001C2164C9002D4ECB /* SSDefaultLogo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B40B3FE1C2164C9002D4ECB /* SSDefaultLogo@3x.png */; };
 		0B6A54E01BB51F84005B9D6B /* ReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6A54DE1BB51F84005B9D6B /* ReportViewController.m */; };
 		0B6A54E11BB51F84005B9D6B /* ReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B6A54DF1BB51F84005B9D6B /* ReportViewController.xib */; };
+		0B6AEA6A1C47B7CF009B7D33 /* ConnectionsTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6AEA651C47B7CF009B7D33 /* ConnectionsTabViewController.m */; };
+		0B6AEA6B1C47B7CF009B7D33 /* ConnectionsTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B6AEA661C47B7CF009B7D33 /* ConnectionsTabViewController.xib */; };
+		0B6AEA6C1C47B7CF009B7D33 /* ConnectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6AEA681C47B7CF009B7D33 /* ConnectionsViewController.m */; };
+		0B6AEA6D1C47B7CF009B7D33 /* ConnectionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B6AEA691C47B7CF009B7D33 /* ConnectionsViewController.xib */; };
+		0B6AEA811C48E502009B7D33 /* CT3_MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6AEA7F1C48E502009B7D33 /* CT3_MoreViewController.m */; };
+		0B6AEA821C48E502009B7D33 /* CT3_MoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B6AEA801C48E502009B7D33 /* CT3_MoreViewController.xib */; };
+		0B6AEA861C48ED6A009B7D33 /* SettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6AEA841C48ED6A009B7D33 /* SettingsTableViewCell.m */; };
+		0B6AEA871C48ED6A009B7D33 /* SettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B6AEA851C48ED6A009B7D33 /* SettingsTableViewCell.xib */; };
 		0B99C2001BCBA1F1006D7E63 /* AnnounceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B99C1FE1BCBA1F0006D7E63 /* AnnounceViewController.m */; };
 		0B99C2011BCBA1F1006D7E63 /* AnnounceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B99C1FF1BCBA1F0006D7E63 /* AnnounceViewController.xib */; };
 		0BA1CB2F1B85AEFA009FFD3E /* Explore2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA1CB2E1B85AEFA009FFD3E /* Explore2ViewController.xib */; };
@@ -1248,6 +1256,18 @@
 		0B6A54DD1BB51F84005B9D6B /* ReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportViewController.h; sourceTree = "<group>"; };
 		0B6A54DE1BB51F84005B9D6B /* ReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportViewController.m; sourceTree = "<group>"; };
 		0B6A54DF1BB51F84005B9D6B /* ReportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReportViewController.xib; sourceTree = "<group>"; };
+		0B6AEA641C47B7CF009B7D33 /* ConnectionsTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionsTabViewController.h; sourceTree = "<group>"; };
+		0B6AEA651C47B7CF009B7D33 /* ConnectionsTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionsTabViewController.m; sourceTree = "<group>"; };
+		0B6AEA661C47B7CF009B7D33 /* ConnectionsTabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectionsTabViewController.xib; sourceTree = "<group>"; };
+		0B6AEA671C47B7CF009B7D33 /* ConnectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionsViewController.h; sourceTree = "<group>"; };
+		0B6AEA681C47B7CF009B7D33 /* ConnectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionsViewController.m; sourceTree = "<group>"; };
+		0B6AEA691C47B7CF009B7D33 /* ConnectionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectionsViewController.xib; sourceTree = "<group>"; };
+		0B6AEA7E1C48E502009B7D33 /* CT3_MoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CT3_MoreViewController.h; sourceTree = "<group>"; };
+		0B6AEA7F1C48E502009B7D33 /* CT3_MoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CT3_MoreViewController.m; sourceTree = "<group>"; };
+		0B6AEA801C48E502009B7D33 /* CT3_MoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CT3_MoreViewController.xib; sourceTree = "<group>"; };
+		0B6AEA831C48ED6A009B7D33 /* SettingsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewCell.h; sourceTree = "<group>"; };
+		0B6AEA841C48ED6A009B7D33 /* SettingsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewCell.m; sourceTree = "<group>"; };
+		0B6AEA851C48ED6A009B7D33 /* SettingsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsTableViewCell.xib; sourceTree = "<group>"; };
 		0B99C1FD1BCBA1F0006D7E63 /* AnnounceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnounceViewController.h; sourceTree = "<group>"; };
 		0B99C1FE1BCBA1F0006D7E63 /* AnnounceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnounceViewController.m; sourceTree = "<group>"; };
 		0B99C1FF1BCBA1F0006D7E63 /* AnnounceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnnounceViewController.xib; sourceTree = "<group>"; };
@@ -2969,6 +2989,32 @@
 				0B6A54DF1BB51F84005B9D6B /* ReportViewController.xib */,
 			);
 			path = Report;
+			sourceTree = "<group>";
+		};
+		0B6AEA631C47B7CF009B7D33 /* Connections */ = {
+			isa = PBXGroup;
+			children = (
+				0B6AEA641C47B7CF009B7D33 /* ConnectionsTabViewController.h */,
+				0B6AEA651C47B7CF009B7D33 /* ConnectionsTabViewController.m */,
+				0B6AEA661C47B7CF009B7D33 /* ConnectionsTabViewController.xib */,
+				0B6AEA671C47B7CF009B7D33 /* ConnectionsViewController.h */,
+				0B6AEA681C47B7CF009B7D33 /* ConnectionsViewController.m */,
+				0B6AEA691C47B7CF009B7D33 /* ConnectionsViewController.xib */,
+			);
+			path = Connections;
+			sourceTree = "<group>";
+		};
+		0B6AEA7D1C48E4EB009B7D33 /* MoreV3 */ = {
+			isa = PBXGroup;
+			children = (
+				0B6AEA7E1C48E502009B7D33 /* CT3_MoreViewController.h */,
+				0B6AEA7F1C48E502009B7D33 /* CT3_MoreViewController.m */,
+				0B6AEA801C48E502009B7D33 /* CT3_MoreViewController.xib */,
+				0B6AEA831C48ED6A009B7D33 /* SettingsTableViewCell.h */,
+				0B6AEA841C48ED6A009B7D33 /* SettingsTableViewCell.m */,
+				0B6AEA851C48ED6A009B7D33 /* SettingsTableViewCell.xib */,
+			);
+			path = MoreV3;
 			sourceTree = "<group>";
 		};
 		0BBFE0801B9FCC00004B17E9 /* Old Settings */ = {
@@ -5806,6 +5852,7 @@
 		8AFA514B1C47B4AB00E7920E /* SeetiesV3 */ = {
 			isa = PBXGroup;
 			children = (
+				0B6AEA7D1C48E4EB009B7D33 /* MoreV3 */,
 				8AFA514C1C47B4AB00E7920E /* Json */,
 				8AFA514E1C47B4AB00E7920E /* LandingV3 */,
 				8AFA51521C47B4AB00E7920E /* ListingV3 */,
@@ -6018,6 +6065,7 @@
 		8AFA51B51C47B4AB00E7920E /* PreProfileV3 */ = {
 			isa = PBXGroup;
 			children = (
+				0B6AEA631C47B7CF009B7D33 /* Connections */,
 				8AFA51B61C47B4AB00E7920E /* CT3_MeViewController.h */,
 				8AFA51B71C47B4AB00E7920E /* CT3_MeViewController.m */,
 				8AFA51B81C47B4AB00E7920E /* CT3_MeViewController.xib */,
@@ -6344,6 +6392,7 @@
 				8A6CCDB41C18075800BCD54E /* ShareToIcon@3x.png in Resources */,
 				8AD6C8161B709A450040437E /* SettingsViewController.xib in Resources */,
 				8A2E2CE31B81CFE40010895E /* STSearchViewController.xib in Resources */,
+				0B6AEA6D1C47B7CF009B7D33 /* ConnectionsViewController.xib in Resources */,
 				8AFA52081C47B4AB00E7920E /* PostsTableViewCell.xib in Resources */,
 				8A6584331B981B4E00BC86B9 /* CategorySelectionViewController.xib in Resources */,
 				0BBFE08B1B9FCC00004B17E9 /* EditInterestViewController.xib in Resources */,
@@ -6549,6 +6598,7 @@
 				8A6CCDF81C18075800BCD54E /* InviteFriendsGraphic.png in Resources */,
 				8A6CCA3F1C17E5A800BCD54E /* SeShopFeatureTableViewCell.xib in Resources */,
 				8A6CCE521C18075800BCD54E /* EmptyCollection@3x.png in Resources */,
+				0B6AEA821C48E502009B7D33 /* CT3_MoreViewController.xib in Resources */,
 				8A6CCDA41C18075800BCD54E /* LocationInfoIcon@2x.png in Resources */,
 				8A6CCDD01C18075800BCD54E /* FoodDrinkIcon@3x.png in Resources */,
 				8A6CCD831C18075800BCD54E /* CollectThaiBtn@3x.png in Resources */,
@@ -6884,6 +6934,7 @@
 				8A6CCD911C18075800BCD54E /* Distance4Icon@3x.png in Resources */,
 				8A6CCDD61C18075800BCD54E /* LandmarkCultureIcon@3x.png in Resources */,
 				8A6CCDFF1C18075800BCD54E /* InviteWechatIcon@2x.png in Resources */,
+				0B6AEA6B1C47B7CF009B7D33 /* ConnectionsTabViewController.xib in Resources */,
 				8A6CCE191C18075800BCD54E /* NotificationBySeeties@2x.png in Resources */,
 				8A6CCD041C18075800BCD54E /* MapBtn@3x.png in Resources */,
 				8A6CCDCE1C18075800BCD54E /* FollowingOnlyIcon@3x.png in Resources */,
@@ -6996,6 +7047,7 @@
 				8A6CCD361C18075800BCD54E /* SaveDraftBtn@3x.png in Resources */,
 				8A6CCDB31C18075800BCD54E /* ShareToIcon@2x.png in Resources */,
 				8AD6C0F51B706CF30040437E /* SearchChangeLocationViewController.xib in Resources */,
+				0B6AEA871C48ED6A009B7D33 /* SettingsTableViewCell.xib in Resources */,
 				8A6CCCA21C18075800BCD54E /* 2.png in Resources */,
 				C238E3331C4649AA00570A25 /* slider-default7-trackBackground.png in Resources */,
 				8A6CCD651C18075800BCD54E /* ExploreFollow@3x.png in Resources */,
@@ -7085,6 +7137,7 @@
 				8A45123C1BDE2C97008DE870 /* LikeListingCollectionViewCell.m in Sources */,
 				8AD6C29B1B7072FB0040437E /* PublishMainViewController.m in Sources */,
 				8A0F50B11C0C3B5B002B1E22 /* SeShopDetailView.m in Sources */,
+				0B6AEA6C1C47B7CF009B7D33 /* ConnectionsViewController.m in Sources */,
 				8AC8F7281BDA414E00DEF14A /* PostListingViewController.m in Sources */,
 				8A3409441B8AD06A009B66C3 /* UIImage+Masking.m in Sources */,
 				8AD6BE561B706CF30040437E /* AssetHelper.m in Sources */,
@@ -7175,6 +7228,7 @@
 				8AC8F72C1BDA414E00DEF14A /* ProfilePageCollectionFooterTableViewCell.m in Sources */,
 				8A6584371B981C0E00BC86B9 /* CategoryCollectionViewCell.m in Sources */,
 				8AF53EFC1BD65F5A00AF6C9E /* UIView+RoundedCorners.m in Sources */,
+				0B6AEA811C48E502009B7D33 /* CT3_MoreViewController.m in Sources */,
 				8A993CCE1C2A8113009359E2 /* MapManager.m in Sources */,
 				8A114C771BE73F5D006AE3F0 /* AUIAutoGrowingTextView.m in Sources */,
 				8A03487E1C1579640015E606 /* NSString+Extra.m in Sources */,
@@ -7194,6 +7248,7 @@
 				8AC8F7441BDA414E00DEF14A /* UserProfileV2ViewController.m in Sources */,
 				0BBFE08E1B9FCC00004B17E9 /* SubmitProfileViewController.m in Sources */,
 				8AD6C0C81B706CF30040437E /* NotificationViewController.m in Sources */,
+				0B6AEA861C48ED6A009B7D33 /* SettingsTableViewCell.m in Sources */,
 				8A114CD11BE73F5D006AE3F0 /* UIImageViewModeScaleAspect.m in Sources */,
 				8AFA51ED1C47B4AB00E7920E /* FeedType_CollectionSuggestedTblCell.m in Sources */,
 				8A114CDB1BE73FBF006AE3F0 /* UIScrollView+IBFloatingHeader.m in Sources */,
@@ -7348,6 +7403,7 @@
 				8AD6C0AB1B706CF30040437E /* InviteFrenViewController.m in Sources */,
 				8A114CD41BE73F5D006AE3F0 /* CommonCollectionViewCell.m in Sources */,
 				8A6CCEEE1C19837100BCD54E /* SeetiShopListTableViewCell.m in Sources */,
+				0B6AEA6A1C47B7CF009B7D33 /* ConnectionsTabViewController.m in Sources */,
 				8AD6C1001B706CF30040437E /* AccountSettingViewController.m in Sources */,
 				8A11513E1BE777FD006AE3F0 /* UIScrollView+VGParallaxHeader.m in Sources */,
 				8A2E2C141B79E7A30010895E /* RecommendationViewController.m in Sources */,
@@ -7542,6 +7598,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "3dc8c860-008f-4306-9b2e-2cf9de849459";
@@ -7581,6 +7638,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "3dc8c860-008f-4306-9b2e-2cf9de849459";

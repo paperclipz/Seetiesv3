@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface SeetizensTableViewCell : CommonTableViewCell
+-(void)setFollowButtonSelected:(BOOL)selected button:(UIButton*)button;
 
+@property(nonatomic,copy)VoidBlock btnFollowBlock;
 @end
