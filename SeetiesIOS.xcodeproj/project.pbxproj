@@ -6984,7 +6984,7 @@
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Live;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
@@ -7023,7 +7023,7 @@
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Live;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
