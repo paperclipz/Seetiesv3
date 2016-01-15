@@ -8,6 +8,7 @@
 
 #import "CommonViewController.h"
 #import "ShopListingViewController.h"
+#import "WalletListingViewController.h"
 @interface CT3_MeViewController : CommonViewController
 @property(nonatomic,strong)ShopListingViewController* shopListingViewController;
 @end
