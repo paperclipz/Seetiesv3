@@ -8,36 +8,6 @@
 
 #import "CTFeedModel.h"
 
-@implementation CTFeedModel
-
-
-+(BOOL)propertyIsOptional:(NSString*)propertyName
-{
-    return YES;
-}
-
-+(JSONKeyMapper*)keyMapper
-{
-    return [[JSONKeyMapper alloc] initWithDictionary:@{
-                                                       @"description": @"postDescription",
-
-                                                       }];
-}
-
-@end
-
-@implementation CTFeedCollectionModel
-
-+(JSONKeyMapper*)keyMapper
-{
-    return [[JSONKeyMapper alloc] initWithDictionary:@{
-                                                       @"data": @"arrCollection",
-                                                       
-                                                       }];
-}
-
-
-@end
 @interface CTFeedTypeModel()
 @property(nonatomic,strong)NSDictionary* data;
 @property(nonatomic,strong)NSString* type;
@@ -46,11 +16,11 @@
 @implementation CTFeedTypeModel
 
 
--(CTFeedModel*)newsFeedData
+-(DraftModel*)newsFeedData
 {
     
     if (!_newsFeedData) {
-        _newsFeedData = [[CTFeedModel alloc]initWithDictionary:_data error:nil];
+        _newsFeedData = [[DraftModel alloc]initWithDictionary:_data error:nil];
 
     }
     return _newsFeedData;
@@ -83,7 +53,7 @@
         NSMutableArray* arrTemp = [NSMutableArray new];
         for (NSDictionary* key in _data)
         {
-            CollectionModel* model = [[CollectionModel alloc]initWithDictionary:key error:nil];
+            ProfileModel* model = [[ProfileModel alloc]initWithDictionary:key error:nil];
             
             [arrTemp addObject:model];
             

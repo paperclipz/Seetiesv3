@@ -9,7 +9,7 @@
 #import "FeedType_Two_TableViewCell.h"
 
 @interface FeedType_Two_TableViewCell()
-@property (nonatomic,strong)CTFeedModel* newsFeedModel;
+@property (nonatomic,strong)DraftModel* newsFeedModel;
 @property (weak, nonatomic) IBOutlet UIImageView *ibPostImageView;
 @property (weak, nonatomic) IBOutlet UILabel *lblDescription;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constImageHeight;
@@ -17,7 +17,7 @@
 
 @implementation FeedType_Two_TableViewCell
 
--(void)initData:(CTFeedModel*)model
+-(void)initData:(DraftModel*)model
 {
    
     self.newsFeedModel = model;

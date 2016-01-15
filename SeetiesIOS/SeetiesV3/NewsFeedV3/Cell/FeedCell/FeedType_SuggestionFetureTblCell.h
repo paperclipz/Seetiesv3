@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface FeedType_SuggestionFetureTblCell : CommonTableViewCell
+-(void)initData:(NSArray<ProfileModel*>*)array;
 
 @end

@@ -31,7 +31,8 @@
 +(JSONKeyMapper*)keyMapper
 {
     return [[JSONKeyMapper alloc] initWithDictionary:@{
-                                                       @"photos" :@"arrPhotos"
+                                                       @"photos" :@"arrPhotos",
+                                                       @"description": @"postDescription",
 
                                                        }];
 }

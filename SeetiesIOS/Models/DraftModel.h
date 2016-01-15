@@ -26,26 +26,35 @@
 @end
 
 @interface DraftModel : Model
+
+@property(nonatomic,strong)NSString* name;
+@property(nonatomic,strong)ProfileModel* user_info;
+@property(nonatomic,strong)NSString* seetishop_id;
+
+@property(nonatomic,assign)int collection_count;
+@property(nonatomic,assign)int total_comments;
+@property(nonatomic,strong)NSString* image;
+@property(nonatomic,strong)NSString* postDescription;
 @property(nonatomic,strong)NSDictionary* contents;
 @property(nonatomic,strong)NSArray* arrCustomPost;//using content_languages to process
 @property(nonatomic,strong)NSArray* arrPost;//using title key to process
-@property(nonatomic,strong)NSString* place_name;
-
 @property(nonatomic,strong)NSArray<PhotoModel>* arrPhotos;
 @property(nonatomic,strong)NSString* link;
 @property(nonatomic,strong)NSString* post_id;
-@property(nonatomic,strong)Location* location;
 @property(nonatomic,strong)NSArray* category;
-
-//@property(nonatomic,strong)NSString* imageURL;//take Small size images
-@property(nonatomic,strong)NSString* name;
-@property(nonatomic,strong)NSString* distance;
 @property(nonatomic,strong)NSString* collection_note;
 @property(nonatomic,strong)NSString* view_count;
 @property(nonatomic,strong)NSArray* content_languages;
-@property(nonatomic,strong)ProfileModel* user_info;
 @property(nonatomic,strong)NSString* like;
 @property(nonatomic,strong)NSString* collect;
+
+
+/*Location*/
+@property(nonatomic,strong)NSString* place_name;
+
+@property(nonatomic,strong)Location* location;
+@property(nonatomic,strong)NSString* distance;
+@property(nonatomic,strong)NSString* place_formatted_address;
 
 -(void)process;
 -(void)customProcess;

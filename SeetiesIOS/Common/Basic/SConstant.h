@@ -44,6 +44,7 @@ typedef enum
     ServerRequestTypeDeleteCollection,
     ServerRequestTypePostFollowCollection,
     ServerRequestTypePostShareCollection,
+    ServerRequestTypePutCollectPost,
     // ========== Collection ========== //
     // ========== User Info ========== //
     ServerRequestTypeGetUserInfo,
@@ -78,6 +79,24 @@ typedef enum
     ViewTypeExploreProfile
     
 }ViewType;
+
+typedef enum
+{
+    FeedType_Following_Post = 1,
+    FeedType_Local_Quality_Post = 2,
+    FeedType_Abroad_Quality_Post = 3,
+    FeedType_Announcement = 4,
+    FeedType_Announcement_Welcome = 5,
+    FeedType_Announcement_Campaign = 6,
+    FeedType_Suggestion_Featured = 7,
+    FeedType_Suggestion_Friend = 8,
+    FeedType_Deal = 9,
+    FeedType_Invite_Friend = 10,
+    FeedType_Country_Promotion = 11,
+    FeedType_Collect_Suggestion = 12,
+    FeedType_Following_Collection = 13,
+    
+}FeedType;
 
 
 extern NSString *const SERVER_PATH_LIVE;
@@ -141,5 +160,7 @@ static BOOL IS_SIMULATOR = NO;
 #endif
 
 #define TOKEN @"ExpertToken"
+#define USERID @"Useruid"
+
 
 

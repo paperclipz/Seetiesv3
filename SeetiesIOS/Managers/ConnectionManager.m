@@ -335,9 +335,8 @@
          [LoadingManager hide];
 
      }];
-    
-    
 }
+
 -(void)requestServerWithPut:(ServerRequestType)type param:(NSDictionary*)dict appendString:(NSString*)appendString completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
 {
     
@@ -468,6 +467,8 @@
         case ServerRequestTypeGetUserLikes:
         case ServerRequestTypePostFollowUser:
         case ServerRequestTypePostFollowCollection:
+        case ServerRequestTypePutCollectPost:
+
         default:
              str = API_VERION_URL;
             break;
@@ -706,6 +707,8 @@
             SLog(@"the ServerRequestTypeGetSeetoShopTranslation result is :%@",obj);
 
         }
+            break;
+        case ServerRequestTypePutCollectPost:
             break;
             
         default:

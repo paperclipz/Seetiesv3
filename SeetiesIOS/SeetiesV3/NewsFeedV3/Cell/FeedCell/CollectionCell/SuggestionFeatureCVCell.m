@@ -8,7 +8,10 @@
 
 #import "SuggestionFeatureCVCell.h"
 @interface SuggestionFeatureCVCell()
-
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+@property(nonatomic,strong)ProfileModel* profileModel;
+@property (weak, nonatomic) IBOutlet UIImageView *ibProfilePhoto;
+@property (weak, nonatomic) IBOutlet UILabel *lblDescription;
 @end
 
 @implementation SuggestionFeatureCVCell
@@ -17,4 +20,15 @@
     // Initialization code
 }
 
+
+-(void)initData:(ProfileModel*)model
+{
+    self.profileModel = model;
+    self.lblTitle.text = self.profileModel.name;
+    [self.ibProfilePhoto sd_setImageWithURL:[NSURL URLWithString:self.profileModel.profile_photo_images]];
+    
+    
+    
+    
+}
 @end
