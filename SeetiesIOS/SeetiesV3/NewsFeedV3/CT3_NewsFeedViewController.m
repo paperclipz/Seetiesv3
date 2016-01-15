@@ -22,6 +22,7 @@
 
 #import "FeedType_FollowingCollectionTblCell.h"
 
+#import "AddCollectionDataViewController.h"
 
 #define NUMBER_OF_SECTION 2
 @interface CT3_NewsFeedViewController ()<UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
@@ -40,6 +41,11 @@
 @property(nonatomic,strong)NewsFeedModels* newsFeedModels;
 
 /* Model */
+
+/*Controller*/
+@property(nonatomic,strong)AddCollectionDataViewController* collectPostToCollectionVC;
+/*Controller*/
+
 
 @end
 
@@ -70,6 +76,13 @@
 
 #pragma mark - Declaration
 
+-(AddCollectionDataViewController*)collectPostToCollectionVC
+{
+    if (!_collectPostToCollectionVC) {
+        _collectPostToCollectionVC = [AddCollectionDataViewController new];
+    }
+    return _collectPostToCollectionVC;
+}
 -(NSMutableArray*)arrayNewsFeed
 {
     if (!_arrayNewsFeed) {
@@ -178,8 +191,10 @@
         case FeedType_Suggestion_Friend:
         {
             
-            CGRect frame = [Utils getDeviceScreenSize];
-            return (frame.size.width/4) + 58 + 60;
+            
+            return 0;
+           // CGRect frame = [Utils getDeviceScreenSize];
+            //return (frame.size.width/4) + 58 + 60;
 
         }
             break;
@@ -226,7 +241,19 @@
             }
             
             [cell initData:typeModel];
-          
+            __weak typeof (self)weakSelf = self;
+            cell.btnCollectionDidClickedBlock = ^(void)
+            {
+              
+                [weakSelf showCollectToCollectionView:typeModel.newsFeedData];
+            };
+            
+            cell.btnCollectionQuickClickedBlock = ^(void)
+            {
+            
+                [weakSelf requestServerForQuickCollection:typeModel.newsFeedData.post_id];
+            };
+
             [cell refreshConstraint];
             
             
@@ -328,6 +355,7 @@
                 cell = [[FeedType_SuggestionFetureTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
             }
             
+            [cell initData:typeModel.arrSuggestedFeature];
             return cell;
             break;
             
@@ -466,7 +494,36 @@
 //    [self.arrayNewsFeed addObject:typeModel3];
 }
 
+#pragma mark - SHOW OTHER VIEW
+-(void)showCollectToCollectionView:(DraftModel*)model
+{
+    
+    [self.navigationController presentViewController:self.collectPostToCollectionVC animated:YES completion:^{
+        PhotoModel*pModel;
+        if (![Utils isArrayNull:model.arrPhotos]) {
+            pModel = model.arrPhotos[0];
+        }
+        [self.collectPostToCollectionVC GetPostID:model.post_id GetImageData:pModel.imageURL];
+    }];
+    
+}
 #pragma mark - Request Server
+
+-(void)requestServerForQuickCollection:(NSString*)postID
+{
+    
+    NSString* appendString = [NSString stringWithFormat:@""];
+    NSDictionary* dict = @{@"collection_id" : @"0",
+                           @"token" : [Utils getAppToken],
+                           @"posts" : @""
+                           };
+    
+    [[ConnectionManager Instance]requestServerWithPut:ServerRequestTypePutCollectPost param:dict appendString:appendString completeHandler:^(id object) {
+        
+    } errorBlock:^(id object) {
+        
+    }];
+}
 
 -(void)requestServerForNewsFeed
 {
@@ -487,6 +544,7 @@
     }];
     
 }
+
 //- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
 //    float bottomEdge = scrollView.contentOffset.x + scrollView.frame.size.width;
 //    

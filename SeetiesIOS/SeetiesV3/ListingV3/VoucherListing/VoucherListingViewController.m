@@ -52,8 +52,25 @@
 }
 
 - (IBAction)filterClicked:(id)sender {
-    [self.navigationController presentViewController:[GeneralFilterViewController new] animated:YES completion:nil];
+    GeneralFilterViewController *filterController = [[GeneralFilterViewController alloc] initWithFilter:[self getDummy]];
+    [self.navigationController presentViewController:filterController animated:YES completion:nil];
 //    self.filterController.view.hidden =  !self.filterController.view.hidden;
+}
+
+-(NSArray*)getDummy{
+    NSDictionary *catFilter = [[NSDictionary alloc] initWithObjectsAndKeys:
+                               @"Category", @"type",
+                               @[@"1", @"2", @"3", @"4", @"5"], @"array", nil];
+    NSDictionary *sortFilter = [[NSDictionary alloc] initWithObjectsAndKeys:
+                               @"Sort", @"type",
+                               @[@"1", @"2", @"3"], @"array", nil];
+    NSDictionary *priceFilter = [[NSDictionary alloc] initWithObjectsAndKeys:
+                               @"Price", @"type",
+                               @"0", @"min",
+                               @"100", @"max", nil];
+    
+    NSArray *filterArray = @[sortFilter, catFilter, priceFilter];
+    return filterArray;
 }
 
 -(GeneralFilterViewController*)filterController

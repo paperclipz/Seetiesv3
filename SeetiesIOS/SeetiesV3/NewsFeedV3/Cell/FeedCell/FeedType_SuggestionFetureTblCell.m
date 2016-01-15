@@ -12,10 +12,16 @@
 @interface FeedType_SuggestionFetureTblCell()<UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *ibCollectionView;
+@property (weak, nonatomic) NSArray<ProfileModel*> *arrSuggestedFeatures;
 
 @end
 @implementation FeedType_SuggestionFetureTblCell
 
+-(void)initData:(NSArray<ProfileModel*>*)array
+{
+    self.arrSuggestedFeatures = array;
+    [self.ibCollectionView reloadData];
+}
 -(void)initSelfView
 {
     [self initCollectionViewDelegate];
@@ -42,7 +48,7 @@
 #pragma mark - CollectionView Delegate
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 3;
+    return self.arrSuggestedFeatures.count;
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
@@ -50,6 +56,8 @@
 {
     SuggestionFeatureCVCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"SuggestionFeatureCVCell" forIndexPath:indexPath];
     
+    ProfileModel* model = self.arrSuggestedFeatures[indexPath.row];
+    [cell initData:model];
     return cell;
 }
 

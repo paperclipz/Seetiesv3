@@ -9,7 +9,7 @@
 #import "FeedType_CountryPromotionTblCell.h"
 @interface FeedType_CountryPromotionTblCell()
 
-@property (nonatomic,strong)CTFeedModel* newsFeedModel;
+@property (nonatomic,strong)DraftModel* newsFeedModel;
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
 
 @end

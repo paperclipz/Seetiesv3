@@ -20,4 +20,8 @@
     // Initialization code
 }
 
+-(void)setHeaderText:(NSString*)text{
+    self.ibHeaderLbl.text = text;
+}
+
 @end

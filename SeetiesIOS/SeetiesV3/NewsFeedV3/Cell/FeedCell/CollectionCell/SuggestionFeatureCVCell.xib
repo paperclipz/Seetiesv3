@@ -121,6 +121,9 @@
             <size key="customSize" width="342" height="178"/>
             <connections>
                 <outlet property="borderView" destination="hbi-1R-ZvQ" id="Jpm-I7-kY8"/>
+                <outlet property="ibProfilePhoto" destination="9HN-9p-cDK" id="hpF-mg-aUL"/>
+                <outlet property="lblDescription" destination="3gn-S2-XCj" id="nZe-76-ykk"/>
+                <outlet property="lblTitle" destination="Lg8-Sv-XEj" id="59n-5c-EIE"/>
             </connections>
             <point key="canvasLocation" x="332" y="278.5"/>
         </collectionViewCell>

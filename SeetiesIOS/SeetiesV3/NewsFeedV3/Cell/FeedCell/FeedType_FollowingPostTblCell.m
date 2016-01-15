@@ -19,8 +19,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constImageHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constSuggestViewHeight;
 
-@property (weak, nonatomic) IBOutlet UIView *ibBorderView;
-
 /*Xib outlet*/
 @property (weak, nonatomic) IBOutlet UILabel *lblUsername;
 @property (weak, nonatomic) IBOutlet UILabel *lblDistance;
@@ -38,6 +36,18 @@
     // Drawing code
 }
 */
+- (IBAction)btnDirectCollectClicked:(id)sender {
+    
+    if (self.btnCollectionQuickClickedBlock) {
+        self.btnCollectionQuickClickedBlock();
+    }
+}
+- (IBAction)btnCollectToListClicked:(id)sender {
+    
+    if (self.btnCollectionDidClickedBlock) {
+        self.btnCollectionDidClickedBlock(nil);
+    }
+}
 - (IBAction)btnLikeClicked:(id)sender {
     
     
@@ -53,7 +63,6 @@
 
 -(void)initSelfView
 {
-    [Utils setRoundBorder:self.ibBorderView color:[UIColor grayColor] borderRadius:5.0f borderWidth:1.0f];
     [Utils setRoundBorder:self.ibProfileImageView color:[UIColor grayColor] borderRadius:self.ibProfileImageView.frame.size.width/2 borderWidth:1.0f];
 
 }
@@ -63,7 +72,7 @@
 
 //    [self.ibPostImageView setStandardBorder];
     self.newsFeedTypeModel = model;
-    CTFeedModel* feedModel = self.newsFeedTypeModel.newsFeedData;
+    DraftModel* feedModel = self.newsFeedTypeModel.newsFeedData;
     if (self.newsFeedTypeModel.feedType == FeedType_Country_Promotion) {
         [self.ibPostImageView sd_setImageCroppedWithURL:[NSURL URLWithString:self.newsFeedTypeModel.newsFeedData.image] completed:nil];
 
@@ -71,8 +80,8 @@
     
     else{
         
-        if (![Utils isArrayNull:feedModel.photos]) {
-            PhotoModel* pModel = self.newsFeedTypeModel.newsFeedData.photos[0];
+        if (![Utils isArrayNull:feedModel.arrPhotos]) {
+            PhotoModel* pModel = self.newsFeedTypeModel.newsFeedData.arrPhotos[0];
             [self.ibPostImageView sd_setImageCroppedWithURL:[NSURL URLWithString:pModel.imageURL] completed:nil];
 
         }
@@ -89,7 +98,7 @@
     
     self.lblUsername.text = feedModel.user_info.username;
     
-    if (feedModel.location.distance == 0) {
+    if (feedModel.location.distance <= 0) {
         self.lblDistance.text = @"";
 
     }

@@ -13,7 +13,9 @@
 @end
 
 @implementation CT3_MeViewController
-- (IBAction)btnTestClicked:(id)sender {
+- (IBAction)btnTestWalletListingClicked:(id)sender {
+    WalletListingViewController *walletController = [WalletListingViewController new];
+    [self.navigationController pushViewController:walletController animated:YES];
 }
 - (IBAction)btnTestShopListingClicked:(id)sender {
     [self.navigationController pushViewController:self.shopListingViewController animated:YES];

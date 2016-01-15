@@ -10,6 +10,8 @@
 #import "DraftModel.h"
 #import "SeNearbyShopModel.h"
 
+@class DraftModel;
+
 @interface ProfileModel : Model
 
 @property(nonatomic,assign)int following_count;
@@ -41,6 +43,7 @@
 @property (nonatomic,strong)NSString* fb_id;
 @property (nonatomic,strong)NSString* insta_id;
 
+@property (nonatomic,strong)NSArray<DraftModel>* posts;
 @end
 
 @interface ProfilePostModel : Model

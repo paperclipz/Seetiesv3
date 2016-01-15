@@ -7,8 +7,12 @@
 //
 
 #import "CommonTableViewCell.h"
+//typedef void (^PostIDBlock)(NSString *image);
 
 @interface FeedType_FollowingPostTblCell : CommonTableViewCell
 -(void)initData:(CTFeedTypeModel*)model;
+
+@property(nonatomic,strong)VoidBlock btnCollectionDidClickedBlock;
+@property(nonatomic,strong)VoidBlock btnCollectionQuickClickedBlock;
 
 @end
