@@ -7,6 +7,10 @@
 //
 
 #import "FilterCategoryCollectionCell.h"
+@interface FilterCategoryCollectionCell()
+@property (weak, nonatomic) IBOutlet UIButton *ibCategoryBtn;
+
+@end
 
 @implementation FilterCategoryCollectionCell
 
@@ -14,4 +18,7 @@
     // Initialization code
 }
 
+-(void)setButtonText:(NSString *)text{
+    [self.ibCategoryBtn setTitle:text forState:UIControlStateNormal];
+}
 @end

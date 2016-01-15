@@ -16,10 +16,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Am-X4-8jf">
-                    <rect key="frame" x="211" y="40" width="46" height="30"/>
-                    <state key="normal" title="Button"/>
+                    <rect key="frame" x="178" y="40" width="102" height="30"/>
+                    <state key="normal" title="Wallet Listing"/>
                     <connections>
-                        <action selector="btnTestClicked:" destination="-1" eventType="touchUpInside" id="qLd-Dk-fuB"/>
+                        <action selector="btnTestWalletListingClicked:" destination="-1" eventType="touchUpInside" id="boD-m1-ZoO"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dTk-rA-MCx">

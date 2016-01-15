@@ -34,6 +34,9 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="ibCategoryBtn" destination="YIL-P1-bN4" id="Hmm-LP-XrN"/>
+            </connections>
             <point key="canvasLocation" x="427" y="343"/>
         </tableViewCell>
     </objects>

@@ -10,4 +10,5 @@
 
 @interface FilterCategoryCollectionCell : CommonCollectionViewCell
 
+-(void)setButtonText:(NSString*)text;
 @end
