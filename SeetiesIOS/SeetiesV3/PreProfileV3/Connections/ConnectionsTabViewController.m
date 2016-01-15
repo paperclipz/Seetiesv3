@@ -47,6 +47,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SeetizensTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"SeetizensTableViewCell"];
+    
+    cell.btnFollowBlock = ^(void)
+    {
+        NSLog(@"FollowButton Click");
+    };
     return cell;
 }
 

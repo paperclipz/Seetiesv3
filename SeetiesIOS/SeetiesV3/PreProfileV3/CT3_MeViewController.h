@@ -9,7 +9,7 @@
 #import "CommonViewController.h"
 #import "ShopListingViewController.h"
 #import "CT3_SearchListingViewController.h"
-#import "ConnectionsViewController.h"
+#import "Connections/ConnectionsViewController.h"
 @interface CT3_MeViewController : CommonViewController
 @property(nonatomic,strong)ShopListingViewController* shopListingViewController;
 @property(nonatomic,strong)CT3_SearchListingViewController* ct3_SearchListingViewController;

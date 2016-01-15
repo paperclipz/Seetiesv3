@@ -76,7 +76,7 @@
         _firstViewController.navigationBar.hidden = YES;
         _secondViewController = [[UINavigationController alloc]initWithRootViewController:self.explore2ViewController];
         _secondViewController.navigationBar.hidden = YES;
-        _thirdViewController = [[UINavigationController alloc]initWithRootViewController:self.profileViewController];
+        _thirdViewController = [[UINavigationController alloc]initWithRootViewController:self.ct3_MoreViewController];
         _thirdViewController.navigationBar.hidden = YES;
 
 
@@ -107,6 +107,13 @@
         _profileViewController = [ProfileViewController new];
     }
     return _profileViewController;
+}
+-(CT3_MoreViewController*)ct3_MoreViewController
+{
+    if (!_ct3_MoreViewController) {
+        _ct3_MoreViewController = [CT3_MoreViewController new];
+    }
+    return _ct3_MoreViewController;
 }
 
 -(CT3_NewsFeedViewController*)newsFeedViewController
@@ -155,10 +162,10 @@
 - (BOOL)tabBarController:(LeveyTabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController atIndex:(NSInteger)index
 {
     
-    if (index == 2)
-    {
-        [self.profileViewController requestAllDataWithType:ProfileViewTypeOwn UserID:[Utils getUserID]];
-    }
+//    if (index == 2)
+//    {
+//        [self.profileViewController requestAllDataWithType:ProfileViewTypeOwn UserID:[Utils getUserID]];
+//    }
     
     return YES;
 }
