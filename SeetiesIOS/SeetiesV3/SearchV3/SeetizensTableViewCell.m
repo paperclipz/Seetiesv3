@@ -7,6 +7,9 @@
 //
 
 #import "SeetizensTableViewCell.h"
+@interface SeetizensTableViewCell()
+@property (weak, nonatomic) IBOutlet UIButton *btnFollow;
+@end
 
 @implementation SeetizensTableViewCell
 
@@ -19,5 +22,16 @@
 
     // Configure the view for the selected state
 }
-
+- (IBAction)btnFollowClicked:(id)sender {
+    
+    if (_btnFollowBlock) {
+        self.btnFollowBlock();
+    }
+}
+-(void)setFollowButtonSelected:(BOOL)selected button:(UIButton*)button
+{
+    button.selected = selected;
+    // button.backgroundColor = selected?[UIColor whiteColor]:SELECTED_GREEN;
+    
+}
 @end

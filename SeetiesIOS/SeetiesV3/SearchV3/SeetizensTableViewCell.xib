@@ -39,6 +39,10 @@
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fwu-dr-qs4">
                         <rect key="frame" x="250" y="10" width="70" height="48"/>
                         <state key="normal" image="ExploreFollow.png"/>
+                        <state key="selected" image="ExploreFollowing.png"/>
+                        <connections>
+                            <action selector="btnFollowClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="QId-Df-leV"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>
@@ -60,11 +64,15 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="btnFollow" destination="fwu-dr-qs4" id="bw6-ad-hbV"/>
+            </connections>
             <point key="canvasLocation" x="480" y="402"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="DefaultProfilePic.png" width="83" height="83"/>
         <image name="ExploreFollow.png" width="70" height="48"/>
+        <image name="ExploreFollowing.png" width="70" height="48"/>
     </resources>
 </document>
