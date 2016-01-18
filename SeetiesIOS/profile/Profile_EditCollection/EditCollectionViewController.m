@@ -421,7 +421,8 @@
     if (_refreshBlock) {
         self.refreshBlock();
     }
-    [self btnBackClicked:nil];
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
 
 }
 

@@ -437,7 +437,16 @@ typedef enum{
     }
     
     [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostCreateCollection param:dict appendString:appendString meta:nil completeHandler:^(id object) {
-        [self dismissViewControllerAnimated:YES completion:nil];
+       
+        [self dismissViewControllerAnimated:YES completion:^{
+            
+            if (self.viewDidRefreshCollectionBlock) {
+                self.viewDidRefreshCollectionBlock();
+            }
+            
+        }];
+       
+        
     } errorBlock:^(id object) {
         
     }];

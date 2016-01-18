@@ -22,5 +22,6 @@ typedef void (^DidSelectCollectionRowBlock)(CollectionModel* model);
 
 @property(nonatomic,strong)NSString* userID;
 -(void)reloadView;
+-(void)refreshRequest;
 
 @end
