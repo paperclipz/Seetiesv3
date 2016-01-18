@@ -422,6 +422,7 @@
         self.refreshBlock();
     }
     
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:self];
     [self.navigationController popToRootViewControllerAnimated:YES];
 
 }
