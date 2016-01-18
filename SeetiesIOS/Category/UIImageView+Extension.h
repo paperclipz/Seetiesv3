@@ -14,5 +14,6 @@ typedef void(^ImageBlock) (UIImage* image);
 -(void)setStandardBorder;
 -(void)sd_setImageCroppedWithURL:(NSURL *)url completed:(ImageBlock)block;
 -(void)tintWithOverlay;
+-(void)setRoundedBorder;
 
 @end

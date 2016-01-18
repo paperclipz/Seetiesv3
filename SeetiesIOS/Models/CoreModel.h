@@ -13,3 +13,7 @@
 #import "CTFeedModel.h"
 
 
+/*Declare custom block for model type*/
+typedef void (^PostBlock)(DraftModel* postModel);
+
+

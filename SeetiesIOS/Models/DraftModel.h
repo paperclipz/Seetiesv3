@@ -18,6 +18,7 @@
 @protocol DraftModel
 @end
 
+
 @interface Post : NSObject
 @property(nonatomic,strong)NSString* title;
 @property(nonatomic,strong)NSString* message;
@@ -47,7 +48,6 @@
 @property(nonatomic,strong)NSArray* content_languages;
 @property(nonatomic,strong)NSString* like;
 @property(nonatomic,strong)NSString* collect;
-
 
 /*Location*/
 @property(nonatomic,strong)NSString* place_name;
