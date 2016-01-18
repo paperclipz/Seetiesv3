@@ -9,7 +9,7 @@
 #import "ConnectionManager.h"
 #import "NSArray+JSON.h"
 #define API_VERION_URL @"v2.3"
-#define IS_SIMULATOR YES
+#define IS_SIMULATOR NO
 @interface ConnectionManager()
 @property (strong, nonatomic) DataManager *dataManager;
 
@@ -468,7 +468,7 @@
         case ServerRequestTypePostFollowUser:
         case ServerRequestTypePostFollowCollection:
         case ServerRequestTypePutCollectPost:
-
+        case ServerRequestTypePostCreateCollection:
         default:
              str = API_VERION_URL;
             break;

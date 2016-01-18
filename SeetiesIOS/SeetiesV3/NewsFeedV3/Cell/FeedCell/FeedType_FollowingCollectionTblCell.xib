@@ -21,20 +21,20 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8QO-Z5-OiG">
                                 <rect key="frame" x="0.0" y="0.0" width="367" height="50"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoPhotoInCollection.png" translatesAutoresizingMaskIntoConstraints="NO" id="Zrx-tp-NnO">
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="YellowCollected.png" translatesAutoresizingMaskIntoConstraints="NO" id="Zrx-tp-NnO">
                                         <rect key="frame" x="10" y="10" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="EmU-eA-uXX"/>
                                             <constraint firstAttribute="width" constant="30" id="P0O-zm-lRy"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lV6-Mq-0vP">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="asdasdsadadsadsadasdasdsadsadasdasdasdasda" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lV6-Mq-0vP">
                                         <rect key="frame" x="48" y="3" width="311" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="eq7-d4-s2j"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -84,6 +84,9 @@
                                         <state key="normal" title="Share" image="NotificationShare.png">
                                             <color key="titleColor" red="0.56315104169999997" green="0.56315104169999997" blue="0.56315104169999997" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="btnShareClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="SyW-BZ-hdO"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -114,6 +117,12 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalCompressionResistancePriority="650" image="NoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="3Qi-eU-ZdR">
                                         <rect key="frame" x="267" y="250" width="100" height="120"/>
                                     </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="ngR-dL-ToX">
+                                        <rect key="frame" x="0.0" y="0.0" width="262" height="371"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1.png" translatesAutoresizingMaskIntoConstraints="NO" id="cDT-o2-c2E">
+                                        <rect key="frame" x="267" y="250" width="100" height="120"/>
+                                    </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="Lid-LI-bKL">
                                         <rect key="frame" x="267" y="0.0" width="100" height="120"/>
                                         <constraints>
@@ -126,12 +135,6 @@
                                                 <exclude reference="QbY-mr-i7n"/>
                                             </mask>
                                         </variation>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="ngR-dL-ToX">
-                                        <rect key="frame" x="0.0" y="0.0" width="262" height="371"/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1.png" translatesAutoresizingMaskIntoConstraints="NO" id="cDT-o2-c2E">
-                                        <rect key="frame" x="267" y="250" width="100" height="120"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -195,7 +198,14 @@
                 <outlet property="constImgHeight" destination="WjR-cs-CSJ" id="pkX-4z-BK3"/>
                 <outlet property="constImgWidth" destination="RCo-HT-Csh" id="v6A-Sd-dhT"/>
                 <outlet property="ibBorderView" destination="IKq-2B-Ii8" id="8Px-Ip-idE"/>
+                <outlet property="ibImageFour" destination="cDT-o2-c2E" id="2GP-W4-kQl"/>
+                <outlet property="ibImageOne" destination="ngR-dL-ToX" id="PbF-Gs-0NK"/>
+                <outlet property="ibImageThree" destination="dX3-Uy-PLK" id="1FT-rg-T4m"/>
+                <outlet property="ibImageTwo" destination="Lid-LI-bKL" id="jD6-o6-KJg"/>
                 <outlet property="ibImgContentView" destination="1R0-oW-snz" id="pa9-AK-auf"/>
+                <outlet property="lblCollectionName" destination="43R-BD-nlP" id="YP9-Ub-Yqq"/>
+                <outlet property="lblNoOfRecommendations" destination="j4l-Jz-Cx2" id="i4Q-SK-Snz"/>
+                <outlet property="lblTitle" destination="lV6-Mq-0vP" id="JhF-Jk-thF"/>
             </connections>
             <point key="canvasLocation" x="464.5" y="451.5"/>
         </tableViewCell>
@@ -203,7 +213,7 @@
     <resources>
         <image name="1.png" width="80" height="80"/>
         <image name="NoImage.png" width="800" height="800"/>
-        <image name="NoPhotoInCollection.png" width="60" height="50"/>
         <image name="NotificationShare.png" width="22" height="27"/>
+        <image name="YellowCollected.png" width="57" height="57"/>
     </resources>
 </document>

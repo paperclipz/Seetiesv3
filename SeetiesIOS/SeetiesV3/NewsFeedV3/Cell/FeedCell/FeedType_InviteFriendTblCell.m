@@ -8,9 +8,11 @@
 
 #import "FeedType_InviteFriendTblCell.h"
 @interface FeedType_InviteFriendTblCell()
+
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
 
 @end
+
 @implementation FeedType_InviteFriendTblCell
 
 /*
@@ -20,5 +22,14 @@
     // Drawing code
 }
 */
+
+-(void)initData:(NSDictionary*)data
+{
+    NSString* imageURL = data[@"image"];
+    
+    if (imageURL) {
+        [self.ibImageView sd_setImageWithURL:[NSURL URLWithString:imageURL]];
+    }
+}
 
 @end

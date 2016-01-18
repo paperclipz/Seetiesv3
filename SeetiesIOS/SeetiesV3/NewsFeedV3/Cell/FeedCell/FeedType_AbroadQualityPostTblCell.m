@@ -11,7 +11,9 @@
 
 @interface FeedType_AbroadQualityPostTblCell()<UICollectionViewDataSource,UICollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *ibCollectionview;
-
+@property (weak, nonatomic) IBOutlet UIImageView *ibProfileImage;
+@property (nonatomic,strong)NSArray<DraftModel>* arrPosts;
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @end
 @implementation FeedType_AbroadQualityPostTblCell
 
@@ -19,7 +21,12 @@
     // Initialization code
 }
 
-
+-(void)initData:(NSArray<DraftModel>*)array
+{
+    self.arrPosts = array;
+    [self.ibCollectionview reloadData];
+    self.lblTitle.text = LocalisedString(@"Suggested foreign recommendation");
+}
 -(void)initSelfView
 {
     [self initCollectionViewDelegate];
@@ -41,7 +48,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 5;
+    return self.arrPosts.count;
     
 }
 
@@ -51,7 +58,29 @@
     
     AbroadQualityPostCVCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AbroadQualityPostCVCell" forIndexPath:indexPath];
     
+    DraftModel* model = self.arrPosts[indexPath.row];
+    
+    [cell initData:model];
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    DraftModel* model = self.arrPosts[indexPath.row];
+    if (self.didSelectPostBlock) {
+        self.didSelectPostBlock(model);
+    }
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGRect frame = [Utils getDeviceScreenSize];
+    
+    
+    float cellSize = frame.size.width - 20;
+    
+    return CGSizeMake(cellSize, 404);
 }
 
 

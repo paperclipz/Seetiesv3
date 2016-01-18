@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface FeedType_FollowingCollectionTblCell : CommonTableViewCell
+-(void)initData:(CollectionModel*)model;
 
+@property(nonatomic,copy)VoidBlock btnShareCollectionClickedBlock;
 @end

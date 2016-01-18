@@ -22,6 +22,7 @@
 @property(nonatomic,strong)ProfileModel* profileModel;
 @property(nonatomic,assign)int viewPage;
 @property (weak, nonatomic) IBOutlet UIButton *btnAddMore;
+@property (strong, nonatomic)EditCollectionDetailViewController *collectionDetailController;
 
 @end
 
@@ -30,10 +31,14 @@
 
 - (IBAction)btnAddMoreClicked:(id)sender {
     
-    _newCollectionViewController = nil;
+//    _newCollectionViewController = nil;
 
     //[self.navigationController pushViewController:self.newCollectionViewController animated:YES];
-    [self presentViewController:self.newCollectionViewController animated:YES completion:nil];
+//    [self presentViewController:self.newCollectionViewController animated:YES completion:nil];
+    
+    _collectionDetailController = nil;
+    [self.collectionDetailController initDataWithUserID:[Utils getUserID]];
+    [self.navigationController presentViewController:self.collectionDetailController animated:YES completion:nil];
 }
 
 - (IBAction)btnSegmentedClicked:(id)sender {
@@ -168,6 +173,22 @@
  }
  */
 #pragma mark - Declaration
+
+-(EditCollectionDetailViewController*)collectionDetailController
+{
+    if (!_collectionDetailController) {
+        _collectionDetailController = [EditCollectionDetailViewController new];
+        
+        __weak typeof (self)weakself = self;
+        _collectionDetailController.viewDidRefreshCollectionBlock = ^(void)
+        {
+            [weakself.myCollectionListingViewController refreshRequest];
+
+        };
+    }
+    return _collectionDetailController;
+}
+
 -(NewCollectionViewController*)newCollectionViewController
 {
     if (!_newCollectionViewController) {
@@ -230,6 +251,11 @@
 {
     if (!_editCollectionViewController) {
         _editCollectionViewController = [EditCollectionViewController new];
+        __weak typeof (self)weakSelf = self;
+        _editCollectionViewController.refreshBlock = ^(void)
+        {
+            [weakSelf.myCollectionListingViewController refreshRequest];
+        };
     }
     
     return _editCollectionViewController;

@@ -25,7 +25,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblLocation;
 @property (weak, nonatomic) IBOutlet UILabel *lblDescription;
+@property (weak, nonatomic) IBOutlet UIButton *btnQuickCollect;
 
+@property (weak, nonatomic) IBOutlet UIImageView *ibCollectionImage;
 @end
 @implementation FeedType_FollowingPostTblCell
 
@@ -36,20 +38,27 @@
     // Drawing code
 }
 */
+- (IBAction)btnShareClicked:(id)sender {
+    
+    if (self.btnPostShareClickedBlock) {
+        self.btnPostShareClickedBlock();
+    }
+}
 - (IBAction)btnDirectCollectClicked:(id)sender {
     
     if (self.btnCollectionQuickClickedBlock) {
         self.btnCollectionQuickClickedBlock();
     }
 }
+
 - (IBAction)btnCollectToListClicked:(id)sender {
     
     if (self.btnCollectionDidClickedBlock) {
         self.btnCollectionDidClickedBlock(nil);
     }
 }
+
 - (IBAction)btnLikeClicked:(id)sender {
-    
     
     if (self.btnLike.selected) {
         [self requestServerToUnlikePost];
@@ -63,6 +72,7 @@
 
 -(void)initSelfView
 {
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     [Utils setRoundBorder:self.ibProfileImageView color:[UIColor grayColor] borderRadius:self.ibProfileImageView.frame.size.width/2 borderWidth:1.0f];
 
 }
@@ -70,7 +80,6 @@
 -(void)initData:(CTFeedTypeModel*)model
 {
 
-//    [self.ibPostImageView setStandardBorder];
     self.newsFeedTypeModel = model;
     DraftModel* feedModel = self.newsFeedTypeModel.newsFeedData;
     if (self.newsFeedTypeModel.feedType == FeedType_Country_Promotion) {
@@ -116,6 +125,33 @@
 
     [self.ibProfileImageView sd_setImageWithURL:[NSURL URLWithString:feedModel.user_info.profile_photo_images]];
     
+    [DataManager getPostCollected:feedModel.post_id isCollected:^(BOOL isCollected) {
+        
+        if (isCollected) {
+            self.ibCollectionImage.image = [UIImage imageNamed:@"CollectedBtn.png"];
+            self.btnQuickCollect.hidden = isCollected;
+
+        }
+        else{
+            self.ibCollectionImage.image = [UIImage imageNamed:@"CollectBtn.png"];
+            self.btnQuickCollect.hidden = !isCollected;
+
+        }
+        
+    } PostNotCollectedBlock:^{
+        if ([feedModel.collect isEqualToString:@"1"]) {
+            self.ibCollectionImage.image = [UIImage imageNamed:@"CollectedBtn.png"];
+            self.btnQuickCollect.hidden = YES;
+
+        }
+        else{
+            self.ibCollectionImage.image = [UIImage imageNamed:@"CollectBtn.png"];
+            self.btnQuickCollect.hidden = NO;
+
+        }
+
+        
+    }];
     [self refreshData];
     
 }

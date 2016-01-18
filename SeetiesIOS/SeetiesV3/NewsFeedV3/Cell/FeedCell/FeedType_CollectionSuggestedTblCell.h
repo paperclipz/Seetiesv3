@@ -8,7 +8,12 @@
 
 #import "CommonTableViewCell.h"
 
+typedef void(^CollectionBlock) (CollectionModel* model);
+
 @interface FeedType_CollectionSuggestedTblCell : CommonTableViewCell
 -(void)initData:(NSArray<CollectionModel>*)array;
+
+@property(nonatomic,copy)VoidBlock btnSeeAllSuggestedCollectionClickBlock;
+@property(nonatomic,copy)CollectionBlock didSelectCollectionBlock;
 
 @end

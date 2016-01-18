@@ -27,6 +27,9 @@
 @property(nonatomic,strong)DraftModel<Ignore>* newsFeedData;
 @property(nonatomic,strong)NSArray<CollectionModel>* arrCollections;
 @property(nonatomic,strong)NSArray<ProfileModel *>* arrSuggestedFeature;
+@property(nonatomic,strong)NSArray<DraftModel>* arrPosts;
+@property(nonatomic,strong)CollectionModel<Ignore>* followingCollectionData;
+@property(nonatomic,strong)NSDictionary* dictData;
 
 //@property(nonatomic,strong)NSArray<CollectionModel>* arrCollection;
 

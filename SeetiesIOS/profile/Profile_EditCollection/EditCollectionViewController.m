@@ -421,7 +421,9 @@
     if (_refreshBlock) {
         self.refreshBlock();
     }
-    [self btnBackClicked:nil];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:self];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 
 }
 

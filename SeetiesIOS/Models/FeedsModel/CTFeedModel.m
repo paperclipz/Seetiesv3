@@ -68,6 +68,47 @@
 }
 
 
+-(NSArray<DraftModel>*)arrPosts
+{
+    if (!_arrPosts) {
+        
+        NSMutableArray* arrTemp = [NSMutableArray new];
+        for (NSDictionary* key in _data)
+        {
+            DraftModel* model = [[DraftModel alloc]initWithDictionary:key error:nil];
+            
+            [arrTemp addObject:model];
+            
+        }
+        
+        _arrPosts = [NSMutableArray arrayWithArray:arrTemp];
+        
+    }
+    
+    return _arrPosts;
+}
+
+-(CollectionModel*)followingCollectionData
+{
+    NSError* err = nil;
+    if (!_followingCollectionData) {
+        _followingCollectionData = [[CollectionModel alloc]initWithDictionary:_data error:&err];
+        
+        SLog(@"%@",err);
+    }
+    
+    return _followingCollectionData;
+}
+
+-(NSDictionary*)dictData
+{
+    if (!_dictData) {
+        _dictData = _data;
+    }
+    
+    return _dictData;
+}
+
 +(BOOL)propertyIsOptional:(NSString*)propertyName
 {
     return YES;

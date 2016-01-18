@@ -37,6 +37,14 @@
     [super viewDidLoad];
     [self initSelfView];
     
+    [self refreshRequest];
+}
+
+-(void)refreshRequest
+{
+    [self.arrCollections removeAllObjects];
+    [self.ibTableView reloadData];
+    _userCollectionsModel = nil;
     
     switch (self.collectionListingType) {
         default:
@@ -61,6 +69,7 @@
             [self requestServerForSeetiesCollection];
             break;
     }
+
 }
 
 - (void)didReceiveMemoryWarning {

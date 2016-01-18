@@ -23,9 +23,16 @@
 #import "FeedType_FollowingCollectionTblCell.h"
 
 #import "AddCollectionDataViewController.h"
+#import "FeedV2DetailViewController.h"
+#import "CollectionListingViewController.h"
+#import "CollectionViewController.h"
+#import "InviteFrenViewController.h"
 
 #define NUMBER_OF_SECTION 2
 @interface CT3_NewsFeedViewController ()<UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
+{
+    BOOL isMiddleOfLoadingServer;
+}
 /*IBOUTLET*/
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
@@ -44,6 +51,13 @@
 
 /*Controller*/
 @property(nonatomic,strong)AddCollectionDataViewController* collectPostToCollectionVC;
+@property(nonatomic,strong)ShareV2ViewController* shareV2ViewController;
+@property(nonatomic,strong)FeedV2DetailViewController* feedV2DetailViewController;
+@property(nonatomic,strong)CollectionListingViewController* collectionListingViewController;
+@property(nonatomic,strong)CollectionViewController* displayCollectionViewController;
+@property(nonatomic,strong)InviteFrenViewController* inviteFrenViewController;
+
+
 /*Controller*/
 
 
@@ -76,6 +90,47 @@
 
 #pragma mark - Declaration
 
+-(InviteFrenViewController*)inviteFrenViewController
+{
+    if (!_inviteFrenViewController) {
+        _inviteFrenViewController = [InviteFrenViewController new];
+    }
+    
+    return _inviteFrenViewController;
+}
+-(CollectionViewController*)displayCollectionViewController
+{
+    if (!_displayCollectionViewController) {
+        _displayCollectionViewController = [CollectionViewController new];
+    }
+    
+    return _displayCollectionViewController;
+}
+
+-(CollectionListingViewController*)collectionListingViewController
+{
+    if (!_collectionListingViewController) {
+        _collectionListingViewController = [CollectionListingViewController new];
+    }
+    
+    return _collectionListingViewController;
+}
+
+-(FeedV2DetailViewController*)feedV2DetailViewController
+{
+    if (!_feedV2DetailViewController) {
+        _feedV2DetailViewController = [FeedV2DetailViewController new];
+    }
+    
+    return _feedV2DetailViewController;
+}
+-(ShareV2ViewController*)shareV2ViewController
+{
+    if (!_shareV2ViewController) {
+        _shareV2ViewController = [ShareV2ViewController new];
+    }
+    return _shareV2ViewController;
+}
 -(AddCollectionDataViewController*)collectPostToCollectionVC
 {
     if (!_collectPostToCollectionVC) {
@@ -111,7 +166,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.ibTableView reloadData];
+  //  [self.ibTableView reloadData];
 }
 
 -(void)initSelfView
@@ -120,6 +175,7 @@
     [self initCollectionViewDelegate];
     
     [self adjustView];
+    isMiddleOfLoadingServer = NO;
 }
 
 -(void)initTableViewDelegate
@@ -127,7 +183,7 @@
     self.ibTableView.delegate = self;
     self.ibTableView.dataSource = self;
     
-    self.ibTableView.estimatedRowHeight = [FeedType_Two_TableViewCell getHeight];
+    self.ibTableView.estimatedRowHeight = [FeedType_FollowingPostTblCell getHeight];
     self.ibTableView.rowHeight = UITableViewAutomaticDimension;
 
 }
@@ -218,6 +274,8 @@
         case FeedType_Invite_Friend:
             return [FeedType_InviteFriendTblCell getHeight];
             break;
+        case FeedType_Deal:
+            return 0;
         default:
             return UITableViewAutomaticDimension;
             break;
@@ -241,19 +299,43 @@
             }
             
             [cell initData:typeModel];
+            
+            DraftModel* feedModel = typeModel.newsFeedData;
             __weak typeof (self)weakSelf = self;
             cell.btnCollectionDidClickedBlock = ^(void)
             {
               
-                [weakSelf showCollectToCollectionView:typeModel.newsFeedData];
+                [weakSelf showCollectToCollectionView:feedModel];
             };
             
             cell.btnCollectionQuickClickedBlock = ^(void)
             {
-            
-                [weakSelf requestServerForQuickCollection:typeModel.newsFeedData.post_id];
+                [weakSelf requestServerForQuickCollection:feedModel];
             };
 
+            cell.btnPostShareClickedBlock = ^(void)
+            {
+            
+                _shareV2ViewController = nil;
+                UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
+                [naviVC setNavigationBarHidden:YES animated:NO];
+              
+                NSString* imageURL;
+              
+                if ([Utils isArrayNull:feedModel.arrPhotos]) {
+                    PhotoModel* pModel = feedModel.arrPhotos[0];
+                    imageURL = pModel.imageURL;
+                }
+                
+                [self.shareV2ViewController share:@"" title:feedModel.postDescription imagURL:imageURL shareType:ShareTypePost shareID:feedModel.post_id userID:feedModel.user_info.uid];
+                MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
+                formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
+                formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
+                formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
+                [self presentViewController:formSheetController animated:YES completion:nil];
+                
+            };
+            
             [cell refreshConstraint];
             
             
@@ -297,6 +379,8 @@
             if (cell == nil) {
                 cell = [[FeedType_InviteFriendTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
             }
+            
+            [cell initData:typeModel.dictData];
             return cell;
             break;
 
@@ -329,6 +413,22 @@
             }
             
             [cell initData:typeModel.arrCollections];
+            
+            __weak typeof(self) weakSelf = self;
+            cell.btnSeeAllSuggestedCollectionClickBlock = ^(void)
+            {
+                
+                
+                ProfileModel* model = [ProfileModel new];
+                model.uid = [Utils getUserID];
+                [weakSelf showCollectionListingView:model];
+            };
+            
+            cell.didSelectCollectionBlock = ^(CollectionModel* model)
+            {
+                [weakSelf showCollectioPageView:model];
+            };
+            
             return cell;
             break;
             
@@ -342,6 +442,11 @@
                 cell = [[FeedType_AbroadQualityPostTblCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             }
             
+            [cell initData:typeModel.arrPosts];
+            cell.didSelectPostBlock = ^(DraftModel* model)
+            {
+                [self showPostDetailView:model];
+            };
             return cell;
             break;
             
@@ -368,6 +473,36 @@
             if (cell == nil) {
                 cell = [[FeedType_FollowingCollectionTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
             }
+            
+            
+            CollectionModel* collModel = typeModel.followingCollectionData;
+            [cell initData:collModel];
+            cell.btnShareCollectionClickedBlock = ^(void)
+            {
+                _shareV2ViewController = nil;
+                UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
+                [naviVC setNavigationBarHidden:YES animated:NO];
+                
+                NSString* imageURL;
+                if ([Utils isArrayNull:collModel.arrayFollowingCollectionPost]) {
+                    
+                    DraftModel* postModel = collModel.arrayFollowingCollectionPost[0];
+                    
+                    if ([Utils isArrayNull:postModel.arrPhotos]) {
+                        PhotoModel* pModel = postModel.arrPhotos[0];
+                        imageURL = pModel.imageURL;
+
+                    }
+                }
+                
+                [self.shareV2ViewController share:@"" title:typeModel.followingCollectionData.name imagURL:imageURL shareType:ShareTypeCollection shareID:collModel.collection_id userID:collModel.user_info.uid];
+                MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
+                formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
+                formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
+                formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
+                [self presentViewController:formSheetController animated:YES completion:nil];
+
+            };
             
             return cell;
             break;
@@ -400,6 +535,36 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return NUMBER_OF_SECTION;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    if (indexPath.section == 0) {
+        
+    }
+    else
+    {
+        CTFeedTypeModel* feedTypeModel = self.arrayNewsFeed[indexPath.row];
+        
+        
+        switch (feedTypeModel.feedType) {
+            case FeedType_Following_Post:
+            {
+                [self showPostDetailView:feedTypeModel.newsFeedData];
+              
+            }
+                break;
+            case FeedType_Invite_Friend:
+                [self showInvitefriendView];
+                break;
+            default:
+                break;
+        }
+     
+        
+    }
+    
 }
 
 #pragma mark - CollectionView Delegate
@@ -495,9 +660,45 @@
 }
 
 #pragma mark - SHOW OTHER VIEW
--(void)showCollectToCollectionView:(DraftModel*)model
+
+-(void)showInvitefriendView
+{
+    _inviteFrenViewController  = nil;
+    [self.navigationController pushViewController:self.inviteFrenViewController animated:YES];
+}
+
+-(void)showPostDetailView:(DraftModel*)draftModel
+{
+    _feedV2DetailViewController = nil;
+    [self.navigationController pushViewController:self.feedV2DetailViewController animated:YES onCompletion:^{
+        
+        [self.feedV2DetailViewController GetPostID:draftModel.post_id];
+    }];
+}
+-(void)showCollectioPageView:(CollectionModel*)model
+{
+    _displayCollectionViewController = nil;
+    [self.navigationController pushViewController:self.displayCollectionViewController animated:YES onCompletion:^{
+        [self.displayCollectionViewController GetCollectionID:model.collection_id GetPermision:@"Others" GetUserUid:model.user_info.uid];
+    }];
+
+}
+
+-(void)showCollectionListingView:(ProfileModel*)model
 {
     
+    _collectionListingViewController = nil;
+    
+    [self.collectionListingViewController setType:ProfileViewTypeOthers ProfileModel:model NumberOfPage:1 collectionType:CollectionListingTypeSuggestion];
+
+    [self.navigationController pushViewController:self.collectionListingViewController animated:YES onCompletion:^{
+        
+      
+    }];
+}
+-(void)showCollectToCollectionView:(DraftModel*)model
+{
+    _collectPostToCollectionVC = nil;
     [self.navigationController presentViewController:self.collectPostToCollectionVC animated:YES completion:^{
         PhotoModel*pModel;
         if (![Utils isArrayNull:model.arrPhotos]) {
@@ -509,16 +710,25 @@
 }
 #pragma mark - Request Server
 
--(void)requestServerForQuickCollection:(NSString*)postID
+-(void)requestServerForQuickCollection:(DraftModel*)model
 {
+
+    NSDictionary* dictPost =  @{@"id": model.post_id};
+
     
-    NSString* appendString = [NSString stringWithFormat:@""];
+    NSArray* array = @[dictPost];
+    
+    NSString* appendString = [NSString stringWithFormat:@"%@/collections/0/collect",[Utils getUserID]];
     NSDictionary* dict = @{@"collection_id" : @"0",
                            @"token" : [Utils getAppToken],
-                           @"posts" : @""
+                           @"posts" : array,
                            };
     
     [[ConnectionManager Instance]requestServerWithPut:ServerRequestTypePutCollectPost param:dict appendString:appendString completeHandler:^(id object) {
+
+        model.collect = @"1";
+        [TSMessage showNotificationInViewController:self title:LocalisedString(@"System") subtitle:LocalisedString(@"Successfully collected to default Collection") type:TSMessageNotificationTypeSuccess];
+        [self.ibTableView reloadData];
         
     } errorBlock:^(id object) {
         
@@ -527,21 +737,28 @@
 
 -(void)requestServerForNewsFeed
 {
-    SLog(@"token :%@",[Utils getAppToken]);
-    NSDictionary* dict = @{@"token" : [Utils getAppToken],
-                           @"offset":@(self.newsFeedModels.offset + self.newsFeedModels.limit),
-                           @"limit" : @(ARRAY_LIST_SIZE)
-                           };
     
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetNewsFeed param:dict appendString:@"" completeHandler:^(id object) {
+    if (!isMiddleOfLoadingServer) {
+        SLog(@"token :%@",[Utils getAppToken]);
+        NSDictionary* dict = @{@"token" : [Utils getAppToken],
+                               @"offset":@(self.newsFeedModels.offset + self.newsFeedModels.limit),
+                               @"limit" : @(ARRAY_LIST_SIZE)
+                               };
         
-        NewsFeedModels* model = [[ConnectionManager dataManager] newsFeedModels];
-        self.newsFeedModels = model;
-        [self.arrayNewsFeed addObjectsFromArray:model.items];
-        [self.ibTableView reloadData];
-    } errorBlock:^(id object) {
-        
-    }];
+        isMiddleOfLoadingServer = YES;
+        [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetNewsFeed param:dict appendString:@"" completeHandler:^(id object) {
+            isMiddleOfLoadingServer = NO;
+
+            NewsFeedModels* model = [[ConnectionManager dataManager] newsFeedModels];
+            self.newsFeedModels = model;
+            [self.arrayNewsFeed addObjectsFromArray:model.items];
+            [self.ibTableView reloadData];
+        } errorBlock:^(id object) {
+            isMiddleOfLoadingServer = NO;
+
+        }];
+
+    }
     
 }
 

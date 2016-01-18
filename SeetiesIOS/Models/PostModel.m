@@ -26,6 +26,7 @@
 {
     return [[JSONKeyMapper alloc] initWithDictionary:@{
                                                        @"collection_posts.posts": @"arrayPost",
+                                                       @"new_collection_posts": @"arrayFollowingCollectionPost",
                                                        @"description": @"postDesc",
                                                        @"is_private": @"isPrivate",
                                                        @"tags":@"tagList",
