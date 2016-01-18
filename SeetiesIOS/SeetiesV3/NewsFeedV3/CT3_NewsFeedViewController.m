@@ -26,6 +26,7 @@
 #import "FeedV2DetailViewController.h"
 #import "CollectionListingViewController.h"
 #import "CollectionViewController.h"
+#import "InviteFrenViewController.h"
 
 #define NUMBER_OF_SECTION 2
 @interface CT3_NewsFeedViewController ()<UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
@@ -54,6 +55,8 @@
 @property(nonatomic,strong)FeedV2DetailViewController* feedV2DetailViewController;
 @property(nonatomic,strong)CollectionListingViewController* collectionListingViewController;
 @property(nonatomic,strong)CollectionViewController* displayCollectionViewController;
+@property(nonatomic,strong)InviteFrenViewController* inviteFrenViewController;
+
 
 /*Controller*/
 
@@ -87,6 +90,14 @@
 
 #pragma mark - Declaration
 
+-(InviteFrenViewController*)inviteFrenViewController
+{
+    if (!_inviteFrenViewController) {
+        _inviteFrenViewController = [InviteFrenViewController new];
+    }
+    
+    return _inviteFrenViewController;
+}
 -(CollectionViewController*)displayCollectionViewController
 {
     if (!_displayCollectionViewController) {
@@ -155,7 +166,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.ibTableView reloadData];
+  //  [self.ibTableView reloadData];
 }
 
 -(void)initSelfView
@@ -263,6 +274,8 @@
         case FeedType_Invite_Friend:
             return [FeedType_InviteFriendTblCell getHeight];
             break;
+        case FeedType_Deal:
+            return 0;
         default:
             return UITableViewAutomaticDimension;
             break;
@@ -366,6 +379,8 @@
             if (cell == nil) {
                 cell = [[FeedType_InviteFriendTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
             }
+            
+            [cell initData:typeModel.dictData];
             return cell;
             break;
 
@@ -427,8 +442,11 @@
                 cell = [[FeedType_AbroadQualityPostTblCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             }
             
-            
             [cell initData:typeModel.arrPosts];
+            cell.didSelectPostBlock = ^(DraftModel* model)
+            {
+                [self showPostDetailView:model];
+            };
             return cell;
             break;
             
@@ -456,7 +474,36 @@
                 cell = [[FeedType_FollowingCollectionTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
             }
             
-            [cell initData:typeModel.followingCollectionData];
+            
+            CollectionModel* collModel = typeModel.followingCollectionData;
+            [cell initData:collModel];
+            cell.btnShareCollectionClickedBlock = ^(void)
+            {
+                _shareV2ViewController = nil;
+                UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
+                [naviVC setNavigationBarHidden:YES animated:NO];
+                
+                NSString* imageURL;
+                if ([Utils isArrayNull:collModel.arrayFollowingCollectionPost]) {
+                    
+                    DraftModel* postModel = collModel.arrayFollowingCollectionPost[0];
+                    
+                    if ([Utils isArrayNull:postModel.arrPhotos]) {
+                        PhotoModel* pModel = postModel.arrPhotos[0];
+                        imageURL = pModel.imageURL;
+
+                    }
+                }
+                
+                [self.shareV2ViewController share:@"" title:typeModel.followingCollectionData.name imagURL:imageURL shareType:ShareTypeCollection shareID:collModel.collection_id userID:collModel.user_info.uid];
+                MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
+                formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
+                formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
+                formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
+                [self presentViewController:formSheetController animated:YES completion:nil];
+
+            };
+            
             return cell;
             break;
             
@@ -504,14 +551,13 @@
         switch (feedTypeModel.feedType) {
             case FeedType_Following_Post:
             {
-                _feedV2DetailViewController = nil;
-                [self.navigationController pushViewController:self.feedV2DetailViewController animated:YES onCompletion:^{
-                    
-                    [self.feedV2DetailViewController GetPostID:feedTypeModel.newsFeedData.post_id];
-                }];
+                [self showPostDetailView:feedTypeModel.newsFeedData];
+              
             }
                 break;
-                
+            case FeedType_Invite_Friend:
+                [self showInvitefriendView];
+                break;
             default:
                 break;
         }
@@ -615,6 +661,20 @@
 
 #pragma mark - SHOW OTHER VIEW
 
+-(void)showInvitefriendView
+{
+    _inviteFrenViewController  = nil;
+    [self.navigationController pushViewController:self.inviteFrenViewController animated:YES];
+}
+
+-(void)showPostDetailView:(DraftModel*)draftModel
+{
+    _feedV2DetailViewController = nil;
+    [self.navigationController pushViewController:self.feedV2DetailViewController animated:YES onCompletion:^{
+        
+        [self.feedV2DetailViewController GetPostID:draftModel.post_id];
+    }];
+}
 -(void)showCollectioPageView:(CollectionModel*)model
 {
     _displayCollectionViewController = nil;

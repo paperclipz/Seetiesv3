@@ -12,10 +12,10 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="127"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gVv-t7-0Vg" id="O1Z-LP-Y0V">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="126.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="127"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="InviteFriendsBgImg.png" translatesAutoresizingMaskIntoConstraints="NO" id="djU-Lw-4aa">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="djU-Lw-4aa">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="127"/>
                     </imageView>
                 </subviews>
@@ -33,6 +33,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="InviteFriendsBgImg.png" width="1242" height="968"/>
+        <image name="NoImage.png" width="800" height="800"/>
     </resources>
 </document>

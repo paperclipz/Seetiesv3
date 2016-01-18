@@ -18,6 +18,5 @@
 @interface InviteFrenViewController : UIViewController<ABPeoplePickerNavigationControllerDelegate,UITableViewDataSource,UITableViewDelegate,FBSDKAppInviteDialogDelegate,MFMailComposeViewControllerDelegate,UIScrollViewDelegate,MFMessageComposeViewControllerDelegate>
 
 
-@property(nonatomic,strong)ProfileViewController* profileViewController;
 
 @end

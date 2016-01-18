@@ -85,10 +85,8 @@
         
     }
     
-    
     return _arrPosts;
 }
-
 
 -(CollectionModel*)followingCollectionData
 {
@@ -101,6 +99,16 @@
     
     return _followingCollectionData;
 }
+
+-(NSDictionary*)dictData
+{
+    if (!_dictData) {
+        _dictData = _data;
+    }
+    
+    return _dictData;
+}
+
 +(BOOL)propertyIsOptional:(NSString*)propertyName
 {
     return YES;

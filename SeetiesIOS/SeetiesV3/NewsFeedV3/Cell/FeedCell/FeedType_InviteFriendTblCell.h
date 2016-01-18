@@ -9,5 +9,6 @@
 #import "CommonTableViewCell.h"
 
 @interface FeedType_InviteFriendTblCell : CommonTableViewCell
+-(void)initData:(NSDictionary*)data;
 
 @end

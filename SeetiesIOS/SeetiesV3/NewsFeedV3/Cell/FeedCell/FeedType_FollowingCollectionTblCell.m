@@ -19,11 +19,21 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageTwo;
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageThree;
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageFour;
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+@property (weak, nonatomic) IBOutlet UILabel *lblCollectionName;
+@property (weak, nonatomic) IBOutlet UILabel *lblNoOfRecommendations;
 @end
 @implementation FeedType_FollowingCollectionTblCell
 
 - (void)awakeFromNib {
     // Initialization code
+}
+- (IBAction)btnShareClicked:(id)sender {
+    
+    if (self.btnShareCollectionClickedBlock) {
+        self.btnShareCollectionClickedBlock();
+    }
+    
 }
 
 -(void)initData:(CollectionModel*)model
@@ -32,43 +42,83 @@
     
     int numberOfPhoto = (int)self.collectionModel.arrayFollowingCollectionPost.count;
 
-    DraftModel* draftModel = self.collectionModel.arrayFollowingCollectionPost[0];
     [Utils setRoundBorder:self.btnShare color:OUTLINE_COLOR borderRadius:self.btnShare.frame.size.height/2];
     
 
+    self.lblTitle.text = [NSString stringWithFormat:@"%@ %@ %d %@ %@",self.collectionModel.user_info.username,LocalisedString(@"Collected"),self.collectionModel.new_collection_posts_count,LocalisedString(@"in"),self.collectionModel.name];
+    self.lblCollectionName.text = self.collectionModel.name;
+    self.lblNoOfRecommendations.text = [NSString stringWithFormat:@"%d %@",self.collectionModel.collection_posts_count,LocalisedString(@"Recommendations")];
+    
+    switch (numberOfPhoto) {
+        case 4:
+        {
+            DraftModel* draftModelFour = self.collectionModel.arrayFollowingCollectionPost[3];
+            PhotoModel* pModel = draftModelFour.arrPhotos[0];
+            [self.ibImageFour sd_setImageCroppedWithURL:[NSURL URLWithString:pModel.imageURL] completed:nil];
+
+
+        }
+        case 3:
+        {
+            DraftModel* draftModelThree = self.collectionModel.arrayFollowingCollectionPost[2];
+            PhotoModel* pModel = draftModelThree.arrPhotos[0];
+            [self.ibImageThree sd_setImageCroppedWithURL:[NSURL URLWithString:pModel.imageURL] completed:nil];
+            
+        }
+            
+        case 2:
+        {
+            DraftModel* draftModelTwo = self.collectionModel.arrayFollowingCollectionPost[1];
+            PhotoModel* pModel = draftModelTwo.arrPhotos[0];
+            [self.ibImageTwo sd_setImageCroppedWithURL:[NSURL URLWithString:pModel.imageURL] completed:nil];
+            
+            
+        }
+            
+        case 1:
+        {
+            DraftModel* draftModelOne = self.collectionModel.arrayFollowingCollectionPost[0];
+            PhotoModel* pModel = draftModelOne.arrPhotos[0];
+            [self.ibImageOne sd_setImageCroppedWithURL:[NSURL URLWithString:pModel.imageURL] completed:nil];
+            
+            
+        }
+            break;
+            
+        default:
+            break;
+    }
     switch (numberOfPhoto) {
         case 1:
+        {
             self.constImgWidth.constant = 0;
             self.constImgHeight.constant = (self.ibImgContentView.frame.size.height/1);
-            [self.ibImageOne sd_setImageCroppedWithURL:[NSURL URLWithString:draftModel.arrPhotos[0]] completed:nil];
-
+            
+        }
             break;
             
         case 2:
+        {
             self.constImgWidth.constant = self.ibImgContentView.frame.size.width/5*2;
             self.constImgHeight.constant = (self.ibImgContentView.frame.size.height/1);
-            [self.ibImageOne sd_setImageCroppedWithURL:[NSURL URLWithString:draftModel.arrPhotos[0]] completed:nil];
-            [self.ibImageTwo sd_setImageCroppedWithURL:[NSURL URLWithString:draftModel.arrPhotos[1]] completed:nil];
-
+            
+          
+        }
             break;
         case 3:
+        {
             self.constImgWidth.constant = self.ibImgContentView.frame.size.width/5*2;
             self.constImgHeight.constant = (self.ibImgContentView.frame.size.height/2);
-            [self.ibImageOne sd_setImageCroppedWithURL:[NSURL URLWithString:draftModel.arrPhotos[0]] completed:nil];
-            [self.ibImageTwo sd_setImageCroppedWithURL:[NSURL URLWithString:draftModel.arrPhotos[1]] completed:nil];
-            [self.ibImageThree sd_setImageCroppedWithURL:[NSURL URLWithString:draftModel.arrPhotos[2]] completed:nil];
-            
+           
+        }
 
             break;
             
         case 4:
+        {
             self.constImgWidth.constant = self.ibImgContentView.frame.size.width/5*2;
             self.constImgHeight.constant = (self.ibImgContentView.frame.size.height/3);
-            [self.ibImageOne sd_setImageCroppedWithURL:[NSURL URLWithString:draftModel.arrPhotos[0]] completed:nil];
-            [self.ibImageTwo sd_setImageCroppedWithURL:[NSURL URLWithString:draftModel.arrPhotos[1]] completed:nil];
-            [self.ibImageThree sd_setImageCroppedWithURL:[NSURL URLWithString:draftModel.arrPhotos[2]] completed:nil];
-            [self.ibImageFour sd_setImageCroppedWithURL:[NSURL URLWithString:draftModel.arrPhotos[3]] completed:nil];
-
+        }
             break;
             
             
@@ -82,6 +132,7 @@
 {
     
    
+    
    
     [Utils setRoundBorder:self.self.ibImgContentView color:OUTLINE_COLOR borderRadius:5.0f];
     

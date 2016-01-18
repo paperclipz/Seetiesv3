@@ -20,9 +20,6 @@
 
 @implementation AbroadQualityPostCVCell
 
-- (void)awakeFromNib {
-    // Initialization code
-}
 
 -(void)initData:(DraftModel*)model
 {
@@ -48,10 +45,23 @@
     
     self.lblTitle.text = model.place_name;
     self.lblLocation.text = [NSString stringWithFormat:@"%@ • %@",model.location.locality,model.location.country];
-    self.lblDescription.text = model.postDescription;
+    
+    NSString* contentLanguage = self.postModel.content_languages[0];
+    NSString* postDesc;
+    
+    if (![Utils isStringNull:contentLanguage]) {
+        postDesc = self.postModel.contents[contentLanguage][@"title"];
+    }
 
+    self.lblDescription.text = postDesc;
+
+    [self.ibProfileImage sd_setImageWithURL:[NSURL URLWithString:self.postModel.user_info.profile_photo_images]];
 }
 
+-(void)initSelfView
+{
+    [self.ibProfileImage setRoundedBorder];
+}
 
 
 @end

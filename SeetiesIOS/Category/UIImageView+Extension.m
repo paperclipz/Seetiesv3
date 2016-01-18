@@ -46,4 +46,10 @@
     }];
 
 }
+
+
+-(void)setRoundedBorder
+{
+    [Utils setRoundBorder:self color:[UIColor clearColor] borderRadius:self.frame.size.width/2];
+}
 @end
