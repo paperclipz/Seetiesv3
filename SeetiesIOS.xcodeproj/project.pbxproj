@@ -55,6 +55,8 @@
 		0BFB21A51C2A8E0200EE9D84 /* featureNo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BFB21A11C2A8E0200EE9D84 /* featureNo@3x.png */; };
 		0BFB21A61C2A8E0200EE9D84 /* featureYes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BFB21A21C2A8E0200EE9D84 /* featureYes@2x.png */; };
 		0BFB21A71C2A8E0200EE9D84 /* featureYes@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BFB21A31C2A8E0200EE9D84 /* featureYes@3x.png */; };
+		8A0035261C4E2F51002BD9A3 /* CTWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0035241C4E2F51002BD9A3 /* CTWebViewController.m */; };
+		8A0035271C4E2F51002BD9A3 /* CTWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0035251C4E2F51002BD9A3 /* CTWebViewController.xib */; };
 		8A00979B1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A00979A1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m */; };
 		8A00979D1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A00979C1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib */; };
 		8A0348791C154F9C0015E606 /* SeetiesMoreInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0348771C154F9C0015E606 /* SeetiesMoreInfoViewController.m */; };
@@ -1096,6 +1098,8 @@
 		8AD6C8301B737AAB0040437E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C82F1B737AAB0040437E /* SystemConfiguration.framework */; };
 		8AD6C8331B7454290040437E /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6C8321B7454290040437E /* UIAlertView+Blocks.m */; };
 		8AD6C87E1B74AAE90040437E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C87D1B74AAE90040437E /* QuartzCore.framework */; };
+		8ADD46FF1C4CE9C000AEAE2B /* UILabel+Exntension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ADD46FE1C4CE9C000AEAE2B /* UILabel+Exntension.m */; };
+		8ADD47031C4CFD6D00AEAE2B /* AnnouncementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ADD47021C4CFD6D00AEAE2B /* AnnouncementModel.m */; };
 		8AEDBFA81C2031BA000BD2FF /* ApiVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AEDBF781C2031BA000BD2FF /* ApiVersionModel.m */; };
 		8AEDBFA91C2031BA000BD2FF /* EditHourModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AEDBF7B1C2031BA000BD2FF /* EditHourModel.m */; };
 		8AEDBFAA1C2031BA000BD2FF /* OpeningPeriodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AEDBF7D1C2031BA000BD2FF /* OpeningPeriodModel.m */; };
@@ -1311,6 +1315,9 @@
 		0BFB21A21C2A8E0200EE9D84 /* featureYes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "featureYes@2x.png"; path = "SeetiesIOS/SEETIES_ASSETS/SeetiesArtWork/SeetiShop/featureYes@2x.png"; sourceTree = SOURCE_ROOT; };
 		0BFB21A31C2A8E0200EE9D84 /* featureYes@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "featureYes@3x.png"; path = "SeetiesIOS/SEETIES_ASSETS/SeetiesArtWork/SeetiShop/featureYes@3x.png"; sourceTree = SOURCE_ROOT; };
 		0D9C815292A4ED6F2408E5E5 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A0035231C4E2F51002BD9A3 /* CTWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTWebViewController.h; sourceTree = "<group>"; };
+		8A0035241C4E2F51002BD9A3 /* CTWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTWebViewController.m; sourceTree = "<group>"; };
+		8A0035251C4E2F51002BD9A3 /* CTWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTWebViewController.xib; sourceTree = "<group>"; };
 		8A0097991B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomEditPhotoTableViewCell.h; sourceTree = "<group>"; };
 		8A00979A1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomEditPhotoTableViewCell.m; sourceTree = "<group>"; };
 		8A00979C1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomEditPhotoTableViewCell.xib; sourceTree = "<group>"; };
@@ -2669,6 +2676,10 @@
 		8AD6C8311B7454290040437E /* UIAlertView+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Blocks.h"; sourceTree = "<group>"; };
 		8AD6C8321B7454290040437E /* UIAlertView+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Blocks.m"; sourceTree = "<group>"; };
 		8AD6C87D1B74AAE90040437E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		8ADD46FD1C4CE9C000AEAE2B /* UILabel+Exntension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Exntension.h"; sourceTree = "<group>"; };
+		8ADD46FE1C4CE9C000AEAE2B /* UILabel+Exntension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Exntension.m"; sourceTree = "<group>"; };
+		8ADD47011C4CFD6D00AEAE2B /* AnnouncementModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnouncementModel.h; sourceTree = "<group>"; };
+		8ADD47021C4CFD6D00AEAE2B /* AnnouncementModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnouncementModel.m; sourceTree = "<group>"; };
 		8AEDBF771C2031BA000BD2FF /* ApiVersionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiVersionModel.h; sourceTree = "<group>"; };
 		8AEDBF781C2031BA000BD2FF /* ApiVersionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiVersionModel.m; sourceTree = "<group>"; };
 		8AEDBF7A1C2031BA000BD2FF /* EditHourModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditHourModel.h; sourceTree = "<group>"; };
@@ -5235,6 +5246,7 @@
 		8AD6BA961B706CF10040437E /* CATEGORY */ = {
 			isa = PBXGroup;
 			children = (
+				8ADD47001C4CE9C600AEAE2B /* UILabel+Extension */,
 				8AF2924F1C32447600EF48EB /* UIImage+Extension */,
 				8A993CC51C296085009359E2 /* NSarray+Extension */,
 				8A41471B1C23E14C00D633D1 /* NSDictionary+Extension */,
@@ -5717,6 +5729,15 @@
 			path = SeetiesIOS/Recommendation;
 			sourceTree = SOURCE_ROOT;
 		};
+		8ADD47001C4CE9C600AEAE2B /* UILabel+Extension */ = {
+			isa = PBXGroup;
+			children = (
+				8ADD46FD1C4CE9C000AEAE2B /* UILabel+Exntension.h */,
+				8ADD46FE1C4CE9C000AEAE2B /* UILabel+Exntension.m */,
+			);
+			name = "UILabel+Extension";
+			sourceTree = "<group>";
+		};
 		8AEDBF761C2031BA000BD2FF /* MODELS */ = {
 			isa = PBXGroup;
 			children = (
@@ -5754,6 +5775,8 @@
 				8AEDBFA51C2031BA000BD2FF /* TagModel.m */,
 				8AEDBFA61C2031BA000BD2FF /* UserDefaultModel.h */,
 				8AEDBFA71C2031BA000BD2FF /* UserDefaultModel.m */,
+				8ADD47011C4CFD6D00AEAE2B /* AnnouncementModel.h */,
+				8ADD47021C4CFD6D00AEAE2B /* AnnouncementModel.m */,
 			);
 			name = MODELS;
 			path = Models;
@@ -5990,6 +6013,9 @@
 				8AFA51B21C47B4AB00E7920E /* CT3_NewsFeedViewController.h */,
 				8AFA51B31C47B4AB00E7920E /* CT3_NewsFeedViewController.m */,
 				8AFA51B41C47B4AB00E7920E /* CT3_NewsFeedViewController.xib */,
+				8A0035231C4E2F51002BD9A3 /* CTWebViewController.h */,
+				8A0035241C4E2F51002BD9A3 /* CTWebViewController.m */,
+				8A0035251C4E2F51002BD9A3 /* CTWebViewController.xib */,
 			);
 			path = NewsFeedV3;
 			sourceTree = "<group>";
@@ -6970,6 +6996,7 @@
 				8AD6C28E1B7072FB0040437E /* LocationOnMapViewController.xib in Resources */,
 				8A6CCD971C18075800BCD54E /* FeedOverlay@3x.png in Resources */,
 				8A4AC4B81C0C369B00968781 /* SeetiesShopViewController.xib in Resources */,
+				8A0035271C4E2F51002BD9A3 /* CTWebViewController.xib in Resources */,
 				8A6CCD201C18075800BCD54E /* WriteRecommendationIcon@3x.png in Resources */,
 				8AD6C0F71B706CF30040437E /* SearchDetailViewController.xib in Resources */,
 				8A6CCDC91C18075800BCD54E /* ArtIcon@2x.png in Resources */,
@@ -7205,6 +7232,7 @@
 				8A3409411B8AD06A009B66C3 /* UIImage+Blurring.m in Sources */,
 				8AF292521C32448E00EF48EB /* UIImage+Extension.m in Sources */,
 				8AEDBFBF1C2031BA000BD2FF /* UserDefaultModel.m in Sources */,
+				8ADD46FF1C4CE9C000AEAE2B /* UILabel+Exntension.m in Sources */,
 				8AD6C28D1B7072FB0040437E /* LocationOnMapViewController.m in Sources */,
 				8AD6C0DA1B706CF30040437E /* PTnCViewController.m in Sources */,
 				8AD6C1121B706CF30040437E /* Foursquare2.m in Sources */,
@@ -7263,6 +7291,7 @@
 				8AEDBFB11C2031BA000BD2FF /* FourSquareModel.m in Sources */,
 				8A114C761BE73F5D006AE3F0 /* AFNetworkActivityLogger.m in Sources */,
 				8A00979B1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m in Sources */,
+				8A0035261C4E2F51002BD9A3 /* CTWebViewController.m in Sources */,
 				8A114C961BE73F5D006AE3F0 /* JSONKit.m in Sources */,
 				8AEDBFAA1C2031BA000BD2FF /* OpeningPeriodModel.m in Sources */,
 				8AD6C2931B7072FB0040437E /* ChooseCategoryViewController.m in Sources */,
@@ -7338,6 +7367,7 @@
 				8A3F35681BF5E89D002B704C /* SuggestedCollectionPostTableViewCell.m in Sources */,
 				8AFA51CD1C47B4AB00E7920E /* FilterHeaderCollectionReusableView.m in Sources */,
 				8AC8F7421BDA414E00DEF14A /* ProfileV2ViewController.m in Sources */,
+				8ADD47031C4CFD6D00AEAE2B /* AnnouncementModel.m in Sources */,
 				8AD6C1151B706CF30040437E /* FSOperation.m in Sources */,
 				8AFA51E71C47B4AB00E7920E /* SuggestionFeatureCVCell.m in Sources */,
 				8A114CCA1BE73F5D006AE3F0 /* NMBottomTabBar.m in Sources */,

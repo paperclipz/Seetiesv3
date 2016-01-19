@@ -88,4 +88,34 @@
     
     ShowContent.text = GetContentString;
 }
+
+-(void)initData:(CTFeedTypeModel*)model
+{
+    AnnouncementModel* aModel = model.announcementData;
+    ShowBigImage.contentMode = UIViewContentModeScaleAspectFill;
+    ShowBigImage.layer.masksToBounds = YES;
+    if ([Utils isStringNull:aModel.photo]) {
+        ShowBigImage.image = [UIImage imageNamed:@"NoImage.png"];
+    }else{
+        NSURL *url_NearbySmall = [NSURL URLWithString:aModel.photo];
+        [ShowBigImage sd_setImageCroppedWithURL:url_NearbySmall completed:nil];
+    }
+    
+    ShowContent.text = aModel.desc[[Utils getDeviceAppLanguageCode]];
+    
+    NSString* iconImage;
+    switch (model.feedType) {
+       
+        case FeedType_Announcement_Campaign:
+            iconImage = @"CampaignLogo.png";
+            break;
+        default:
+
+        case FeedType_Announcement:
+            iconImage = @"AnnounceLogo.png";
+            break;
+            
+    }
+    ShowIcon.image = [UIImage imageNamed:iconImage];
+}
 @end

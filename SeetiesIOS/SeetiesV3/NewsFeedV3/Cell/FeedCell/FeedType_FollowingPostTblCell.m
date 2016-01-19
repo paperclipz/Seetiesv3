@@ -38,6 +38,11 @@
     // Drawing code
 }
 */
+- (IBAction)btnProfileClicked:(id)sender {
+    if (self.btnProfileClickedBlock) {
+        self.btnProfileClickedBlock(self.newsFeedTypeModel.newsFeedData.user_info);
+    }
+}
 - (IBAction)btnShareClicked:(id)sender {
     
     if (self.btnPostShareClickedBlock) {
@@ -121,7 +126,9 @@
     
     self.lblLocation.text = [NSString stringWithFormat:@"%@ • %@",feedModel.location.locality,feedModel.location.country];
 
-    self.lblDescription.text = @"";
+    
+ 
+    [self.lblDescription setStandardText:[feedModel getPostDescription]];
 
     [self.ibProfileImageView sd_setImageWithURL:[NSURL URLWithString:feedModel.user_info.profile_photo_images]];
     

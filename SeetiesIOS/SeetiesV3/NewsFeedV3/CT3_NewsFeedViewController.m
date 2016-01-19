@@ -27,6 +27,10 @@
 #import "CollectionListingViewController.h"
 #import "CollectionViewController.h"
 #import "InviteFrenViewController.h"
+#import "ProfileViewController.h"
+#import "AnnounceViewController.h"
+#import "CTWebViewController.h"
+
 
 #define NUMBER_OF_SECTION 2
 @interface CT3_NewsFeedViewController ()<UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
@@ -56,7 +60,9 @@
 @property(nonatomic,strong)CollectionListingViewController* collectionListingViewController;
 @property(nonatomic,strong)CollectionViewController* displayCollectionViewController;
 @property(nonatomic,strong)InviteFrenViewController* inviteFrenViewController;
-
+@property(nonatomic,strong)ProfileViewController* profileViewController;
+@property(nonatomic,strong)AnnounceViewController* announceViewController;
+@property(nonatomic,strong)CTWebViewController* ctWebViewController;
 
 /*Controller*/
 
@@ -89,6 +95,32 @@
 }
 
 #pragma mark - Declaration
+
+-(CTWebViewController*)ctWebViewController
+{
+    if (!_ctWebViewController) {
+        _ctWebViewController = [CTWebViewController new];
+    }
+    
+    return _ctWebViewController;
+}
+
+-(AnnounceViewController*)announceViewController
+{
+    if (!_announceViewController) {
+        _announceViewController = [AnnounceViewController new];
+    }
+    
+    return _announceViewController;
+}
+
+-(ProfileViewController*)profileViewController
+{
+    if (!_profileViewController) {
+        _profileViewController =[ProfileViewController new];
+    }
+    return _profileViewController;
+}
 
 -(InviteFrenViewController*)inviteFrenViewController
 {
@@ -248,7 +280,7 @@
         {
             
             
-            return 0;
+            return [FeedType_SuggestionFetureTblCell getHeight];
            // CGRect frame = [Utils getDeviceScreenSize];
             //return (frame.size.width/4) + 58 + 60;
 
@@ -299,6 +331,11 @@
             }
             
             [cell initData:typeModel];
+            cell.btnProfileClickedBlock = ^(ProfileModel* pModel)
+            {
+                [self showProfilePageView:pModel];
+                
+            };
             
             DraftModel* feedModel = typeModel.newsFeedData;
             __weak typeof (self)weakSelf = self;
@@ -447,6 +484,12 @@
             {
                 [self showPostDetailView:model];
             };
+            
+            cell.btnProfileClickedBlock = ^(ProfileModel* model)
+            {
+                [self showProfilePageView:model];
+            };
+            
             return cell;
             break;
             
@@ -461,6 +504,10 @@
             }
             
             [cell initData:typeModel.arrSuggestedFeature];
+            cell.didSelectprofileBlock = ^(ProfileModel* model)
+            {
+                [self showProfilePageView:model];
+            };
             return cell;
             break;
             
@@ -558,6 +605,46 @@
             case FeedType_Invite_Friend:
                 [self showInvitefriendView];
                 break;
+            case FeedType_Announcement_Welcome:
+                
+                break;
+            case FeedType_Announcement:
+            case FeedType_Announcement_Campaign:
+            {
+                AnnouncementModel* aModel = feedTypeModel.announcementData;
+                
+                switch (aModel.annType) {
+                    case AnnouncementType_User:
+                    {
+                        ProfileModel* model = [ProfileModel new];
+                        model.uid = aModel.relatedID;
+                        [self showProfilePageView:model];
+
+                    }
+                        break;
+                        
+                    case AnnouncementType_Post:
+                    {
+                        DraftModel* dModel = [DraftModel new];
+                        dModel.post_id = aModel.relatedID;
+                        [self showPostDetailView:dModel];
+                    }
+                        
+                        break;
+                    case AnnouncementType_NA:
+                        
+                        [self showAnnouncementView:feedTypeModel];
+                        
+                        break;
+                    default:
+                    case AnnouncementType_URL:
+                    {
+                        [self showWebView:aModel];
+                    }
+                        break;
+                }
+               
+            }
             default:
                 break;
         }
@@ -661,12 +748,50 @@
 
 #pragma mark - SHOW OTHER VIEW
 
+-(void)showWebView:(AnnouncementModel*)model
+{
+    _ctWebViewController = nil;
+
+    [self.navigationController pushViewController:self.ctWebViewController animated:YES onCompletion:^{
+        [self.ctWebViewController initData:model];
+    }];
+     
+    
+}
+-(void)showProfilePageView:(ProfileModel*)pModel
+{
+    _profileViewController = nil;
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        
+        
+        if ([pModel.uid isEqualToString:[Utils getUserID]]) {
+            [self.profileViewController requestAllDataWithType:ProfileViewTypeOwn UserID:[Utils getUserID]];
+
+        }
+        else{
+            [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:pModel.uid];
+
+        }
+
+    }];
+
+}
 -(void)showInvitefriendView
 {
     _inviteFrenViewController  = nil;
     [self.navigationController pushViewController:self.inviteFrenViewController animated:YES];
 }
 
+
+-(void)showAnnouncementView:(CTFeedTypeModel*)model
+{
+    _announceViewController = nil;
+    
+    [self.navigationController pushViewController:self.announceViewController animated:YES onCompletion:^{
+    
+        [self.announceViewController initData:model];
+    }];
+}
 -(void)showPostDetailView:(DraftModel*)draftModel
 {
     _feedV2DetailViewController = nil;

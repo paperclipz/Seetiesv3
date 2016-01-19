@@ -8,6 +8,132 @@
         "total_items" : 1936,
         "items" : [
                    {
+                   "type": "announcement",
+                   "data": {
+                   "title": {
+                   "530b0ab26424400c76000003": "Bonjour!",
+                   "544481503efa3ff1588b4567": "ss",
+                   "53672e863 efa3f857f8b4ed2": "ss",
+                   "530 d5e9b642440d128000018": "ss",
+                   "530 b0aa16424400c76000002": "dd"
+                   },
+                   "description": {
+                   "530b0ab26424400c76000003": "This is a sample announcement",
+                   "544481503efa3ff1588b4567": "sss",
+                   "53672e863efa3f857f8b4ed2": "ss",
+                   "530d5e9b642440d128000018": "ss",
+                   "530b0aa16424400c76000002": "dd"
+                   },
+                   "related": {
+                   "type": "user",
+                   "photo": "https://dev-seeties.s3-ap-southeast-1.amazonaws.com/announcements/5612204e1c4d5bbc2c8b4ac9/561220ae1c4d5b0a2f8b4650?r=0CdG",
+                   "id": "c0074194f7f249532b647229daaf69ee",
+                   "username": "colleenaya",
+                   "photos": []
+                   }
+                   }
+                   },
+                   {
+                   "type": "announcement_campaign",
+                   "data": {
+                   "title": {
+                   "530b0ab26424400c76000003": "Super Deals",
+                   "530d5e9b642440d128000018": "dd",
+                   "530b0aa16424400c76000002": "dd",
+                   "53672e863efa3f857f8b4ed2": "ww",
+                   "544481503efa3ff1588b4567": "wwd"
+                   },
+                   "description": {
+                   "530b0ab26424400c76000003": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                   "530d5e9b642440d128000018": "dd",
+                   "530b0aa16424400c76000002": "www",
+                   "53672e863efa3f857f8b4ed2": "www",
+                   "544481503efa3ff1588b4567": "ddd"
+                   },
+                   "related": {
+                   "type": "N/A",
+                   "photo": "https://dev-seeties.s3-ap-southeast-1.amazonaws.com/announcements/565c2ba2f9df24aa098b4607/565c2ba3f9df24aa098b4608?r=lncW",
+                   "id": "",
+                   "photos": {
+                   "s": "https://dev-seeties.s3-ap-southeast-1.amazonaws.com/announcements/565c2ba2f9df24aa098b4607/565c2ba3f9df24aa098b4608?r=lncW",
+                   "m": "https://dev-seeties.s3-ap-southeast-1.amazonaws.com/announcements/565c2ba2f9df24aa098b4607/565c2ba3f9df24aa098b4609?r=ROuR",
+                   "l": "https://dev-seeties.s3-ap-southeast-1.amazonaws.com/announcements/565c2ba2f9df24aa098b4607/565c2ba3f9df24aa098b460a?r=lLnv"
+                   },
+                   "username": ""
+                   }
+                   }
+                   },
+                   {
+                   "type": "announcement_campaign",
+                   "data": {
+                   "title": {
+                   "530b0ab26424400c76000003": "In-Feed Announcement campaign Post",
+                   "530b0aa16424400c76000002": "In-Feed Announcement 樣本 帖文"
+                   },
+                   "description": {
+                   "530b0ab26424400c76000003": "In-Feed Announcement campaign Post",
+                   "530b0aa16424400c76000002": "In-Feed Announcement 樣本 帖文"
+                   },
+                   "related": {
+                   "type": "post",
+                   "photo": "https://dev-seeties.s3-ap-southeast-1.amazonaws.com/announcements/55ffccc91c4d5bea548b458a/55ffb67c1c4d5b4d3e8b457b?r=4DZe",
+                   "id": "55bf2c248acc43f20b8b458c",
+                   "username": "",
+                   "photos": []
+                   }
+                   }
+                   },
+                   {
+                   "type": "announcement_campaign",
+                   "data": {
+                   "title": {
+                   "530b0ab26424400c76000003": "In-Feed Announcement campaign URL",
+                   "530b0aa16424400c76000002": "In-Feed Announcement 樣本 URL"
+                   },
+                   "description": {
+                   "530b0ab26424400c76000003": "URL",
+                   "530b0aa16424400c76000002": "樣本 URL"
+                   },
+                   "related": {
+                   "type": "url",
+                   "photo": "https://dev-seeties.s3-ap-southeast-1.amazonaws.com/announcements/55ffcd1a1c4d5bb3088b4584/55ffb67c1c4d5b4d3e8b457b?r=w7yj",
+                   "id": "https://www.facebook.com/seeties.me",
+                   "username": "",
+                   "photos": []
+                   }
+                   }
+                   },
+                   {
+                   "type" : "announcement_campaign",
+                   "data" : {
+                   "title" : {
+                   "544481503efa3ff1588b4567" : "wwd",
+                   "530b0ab26424400c76000003" : "Super Deals",
+                   "530d5e9b642440d128000018" : "dd",
+                   "530b0aa16424400c76000002" : "dd",
+                   "53672e863efa3f857f8b4ed2" : "ww"
+                   },
+                   "related" : {
+                   "photos" : {
+                   "s" : "https:\/\/dev-seeties.s3-ap-southeast-1.amazonaws.com\/announcements\/565c2ba2f9df24aa098b4607\/565c2ba3f9df24aa098b4608?r=yx0u",
+                   "m" : "https:\/\/dev-seeties.s3-ap-southeast-1.amazonaws.com\/announcements\/565c2ba2f9df24aa098b4607\/565c2ba3f9df24aa098b4609?r=GAl0",
+                   "l" : "https:\/\/dev-seeties.s3-ap-southeast-1.amazonaws.com\/announcements\/565c2ba2f9df24aa098b4607\/565c2ba3f9df24aa098b460a?r=WnPX"
+                   },
+                   "id" : "",
+                   "username" : "",
+                   "type" : "N\/A",
+                   "photo" : "https:\/\/dev-seeties.s3-ap-southeast-1.amazonaws.com\/announcements\/565c2ba2f9df24aa098b4607\/565c2ba3f9df24aa098b4608?r=yx0u"
+                   },
+                   "description" : {
+                   "544481503efa3ff1588b4567" : "ddd",
+                   "530b0ab26424400c76000003" : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                   "530d5e9b642440d128000018" : "dd",
+                   "530b0aa16424400c76000002" : "www",
+                   "53672e863efa3f857f8b4ed2" : "www"
+                   }
+                   }
+                   },
+                   {
                    "type" : "abroad_quality_post",
                    "data" : [
                              {

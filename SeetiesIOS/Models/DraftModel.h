@@ -55,6 +55,7 @@
 @property(nonatomic,strong)Location* location;
 @property(nonatomic,strong)NSString* distance;
 @property(nonatomic,strong)NSString* place_formatted_address;
+-(NSString*)getPostDescription;
 
 -(void)process;
 -(void)customProcess;

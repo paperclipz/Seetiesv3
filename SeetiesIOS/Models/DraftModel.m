@@ -71,6 +71,20 @@
     self.arrCustomPost = [[NSArray alloc]initWithArray:array];
 }
 
+/*get the first language description*/
+-(NSString*)getPostDescription
+{
+    NSString* desc = @"";
+    if(![Utils isArrayNull:_content_languages])
+    {
+        NSString* contentLanguage = _content_languages[0];
+        NSDictionary* content = _contents[contentLanguage];
+        desc = content[@"message"];
+    }
+    
+    return desc;
+   
+}
 
 @end
 

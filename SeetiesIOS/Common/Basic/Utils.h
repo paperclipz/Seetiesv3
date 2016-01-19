@@ -161,8 +161,9 @@ typedef enum {
 +(BOOL)isArrayNull:(NSArray*)array;
 
 +(NSString*)getDistance:(float)distance Locality:(NSString*)local;
-+(NSString*)getDeviceAppLanguageCode;
 
++(NSString*)getDeviceAppLanguageCode;
++(NSString*)getDeviceDefaultLanguageCode;
 
 #define ARRAY_LIST_SIZE 10.0f
 #define LIKES_LIST_SIZE 30.0f

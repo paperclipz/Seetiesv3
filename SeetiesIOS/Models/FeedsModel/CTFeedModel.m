@@ -109,6 +109,14 @@
     return _dictData;
 }
 
+-(AnnouncementModel*)announcementData
+{
+    if (!_announcementData) {
+        _announcementData = [[AnnouncementModel alloc]initWithDictionary:_data error:nil];;
+    }
+    return _announcementData;
+}
+
 +(BOOL)propertyIsOptional:(NSString*)propertyName
 {
     return YES;

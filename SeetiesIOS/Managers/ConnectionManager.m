@@ -9,7 +9,7 @@
 #import "ConnectionManager.h"
 #import "NSArray+JSON.h"
 #define API_VERION_URL @"v2.3"
-#define IS_SIMULATOR NO
+#define IS_SIMULATOR YES
 @interface ConnectionManager()
 @property (strong, nonatomic) DataManager *dataManager;
 
@@ -502,6 +502,15 @@
         {
             NSDictionary* dict = obj[@"data"];
             self.dataManager.userLoginProfileModel = [[ProfileModel alloc]initWithDictionary:dict error:nil];
+            
+            if (self.dataManager.userLoginProfileModel) {
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                [defaults setObject:self.dataManager.userLoginProfileModel.token forKey:TOKEN];
+                [defaults setObject:self.dataManager.userLoginProfileModel.uid forKey:USERID];
+                [defaults setObject:self.dataManager.userLoginProfileModel.system_language.caption forKey:KEY_SYSTEM_LANG];
+
+                [defaults synchronize];
+            }
         }
 
             break;
@@ -527,8 +536,10 @@
             
         case ServerRequestTypeGetNewsFeed:
         {
+            
             NSDictionary* dict = obj[@"data"];
             self.dataManager.newsFeedModels = [[NewsFeedModels alloc]initWithDictionary:dict error:nil];
+            
         }
             break;
             

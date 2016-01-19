@@ -50,6 +50,7 @@
 #import "NSObject+Extension.h"
 #import "UIImageView+Extension.h"
 #import "NSArray+Extension.h"
+#import "UILabel+Exntension.h"
 
 //===============Model=================
 #import "FourSquareModel.h"

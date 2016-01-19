@@ -35,7 +35,7 @@
 +(NSString*)getAppToken
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString* token = [defaults objectForKey:@"ExpertToken"]?[defaults objectForKey:@"ExpertToken"]:@"";
+    NSString* token = [defaults objectForKey:TOKEN]?[defaults objectForKey:TOKEN]:@"";
     return token;
 }
 +(NSString*)getUserID
@@ -457,7 +457,11 @@
 +(NSString*)getDeviceAppLanguageCode
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *userLanguage = [defaults objectForKey:@"UserData_SystemLanguage"];
+    NSString* userLanguage = [defaults objectForKey:KEY_SYSTEM_LANG];
+
+    if ([Utils isStringNull:userLanguage]) {
+        userLanguage = [Utils getDeviceDefaultLanguageCode];
+    }
     
     if (userLanguage) {
         if ([userLanguage isEqualToString:@"English"]) {
@@ -482,6 +486,17 @@
     return nil;
     
 }
+
+/*get device language not app language*/
++(NSString*)getDeviceDefaultLanguageCode
+{
+    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+ 
+    return  [Utils getLanguageCodeFromLocale:language];
+
+}
+
+
 
 +(NSString*)getDistance:(float)distance Locality:(NSString*)local
 {

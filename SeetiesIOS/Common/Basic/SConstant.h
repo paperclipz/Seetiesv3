@@ -98,6 +98,15 @@ typedef enum
     
 }FeedType;
 
+typedef enum
+{
+    AnnouncementType_User = 1,
+    AnnouncementType_Post = 2,
+    AnnouncementType_URL = 3,
+    AnnouncementType_NA = 4
+    
+}AnnouncementType;
+
 
 extern NSString *const SERVER_PATH_LIVE;
 extern NSString *const SERVER_PATH_DEV;
@@ -159,8 +168,12 @@ static BOOL IS_SIMULATOR = YES;
 static BOOL IS_SIMULATOR = NO;
 #endif
 
+
+/*NSUserDefaults key*/
 #define TOKEN @"ExpertToken"
 #define USERID @"Useruid"
+#define KEY_SYSTEM_LANG @"system_language"
+/*NSUserDefaults key*/
 
 
 

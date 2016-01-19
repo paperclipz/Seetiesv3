@@ -12,4 +12,6 @@
 @interface FeedType_AbroadQualityPostTblCell : CommonTableViewCell
 -(void)initData:(NSArray<DraftModel>*)array;
 @property(nonatomic,copy)PostBlock didSelectPostBlock;
+@property(nonatomic,strong)ProfileBlock btnProfileClickedBlock;
+
 @end
