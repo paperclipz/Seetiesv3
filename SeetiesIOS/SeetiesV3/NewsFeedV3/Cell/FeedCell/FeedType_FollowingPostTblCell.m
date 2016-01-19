@@ -87,22 +87,22 @@
 
     self.newsFeedTypeModel = model;
     DraftModel* feedModel = self.newsFeedTypeModel.newsFeedData;
-    if (self.newsFeedTypeModel.feedType == FeedType_Country_Promotion) {
-        [self.ibPostImageView sd_setImageCroppedWithURL:[NSURL URLWithString:self.newsFeedTypeModel.newsFeedData.image] completed:nil];
-
-    }
-    
-    else{
+//    if (self.newsFeedTypeModel.feedType == FeedType_Country_Promotion) {
+//        [self.ibPostImageView sd_setImageCroppedWithURL:[NSURL URLWithString:self.newsFeedTypeModel.newsFeedData.image] completed:nil];
+//
+//    }
+//    
+//    else{
+//        
+//       
+//
+//    }
+    if (![Utils isArrayNull:feedModel.arrPhotos]) {
+        PhotoModel* pModel = self.newsFeedTypeModel.newsFeedData.arrPhotos[0];
+        [self.ibPostImageView sd_setImageCroppedWithURL:[NSURL URLWithString:pModel.imageURL] completed:nil];
         
-        if (![Utils isArrayNull:feedModel.arrPhotos]) {
-            PhotoModel* pModel = self.newsFeedTypeModel.newsFeedData.arrPhotos[0];
-            [self.ibPostImageView sd_setImageCroppedWithURL:[NSURL URLWithString:pModel.imageURL] completed:nil];
-
-        }
-
     }
-    
-    if (self.newsFeedTypeModel.tempType == FeedType_Local_Quality_Post) {
+    if (self.newsFeedTypeModel.feedType == FeedType_Local_Quality_Post) {
         self.constSuggestViewHeight.constant = 44;
 
     }

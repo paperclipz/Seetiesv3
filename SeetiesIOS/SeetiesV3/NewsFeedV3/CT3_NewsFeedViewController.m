@@ -36,6 +36,7 @@ static NSCache* heightCache = nil;
 @interface CT3_NewsFeedViewController ()<UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 {
     BOOL isMiddleOfLoadingServer;
+    __weak IBOutlet UIActivityIndicatorView *ibActivityIndicator;
 }
 /*IBOUTLET*/
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
@@ -50,6 +51,8 @@ static NSCache* heightCache = nil;
 /* Model */
 @property(nonatomic,strong)NSMutableArray* arrayNewsFeed;
 @property(nonatomic,strong)NewsFeedModels* newsFeedModels;
+
+@property (strong, nonatomic) IBOutlet UIView *ibFooterView;
 
 /* Model */
 
@@ -215,6 +218,8 @@ static NSCache* heightCache = nil;
     
     [self adjustView];
     isMiddleOfLoadingServer = NO;
+    
+    [self initFooterView];
 }
 
 -(void)initTableViewDelegate
@@ -274,7 +279,7 @@ static NSCache* heightCache = nil;
   
     NSNumber* heightValue = [heightCache objectForKey:[NSString stringWithFormat:@"%@",indexPath]];
     if (heightValue != 0) {
-        return [heightValue floatValue];
+            return [heightValue floatValue];
     }
     //    CGRect frame = [tableView rectForRowAtIndexPath:indexPath];
     //    float height = frame.size.height;
@@ -333,7 +338,6 @@ static NSCache* heightCache = nil;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     
     CTFeedTypeModel* typeModel = self.arrayNewsFeed[indexPath.row];
 
@@ -612,10 +616,12 @@ static NSCache* heightCache = nil;
     else
     {
         CTFeedTypeModel* feedTypeModel = self.arrayNewsFeed[indexPath.row];
+        FeedType type = feedTypeModel.feedType;
         
-        
-        switch (feedTypeModel.feedType) {
+        switch (type) {
             case FeedType_Following_Post:
+            case FeedType_Local_Quality_Post:
+
             {
                 [self showPostDetailView:feedTypeModel.newsFeedData];
               
@@ -624,9 +630,19 @@ static NSCache* heightCache = nil;
             case FeedType_Invite_Friend:
                 [self showInvitefriendView];
                 break;
+                
             case FeedType_Announcement_Welcome:
                 
                 break;
+                
+            case FeedType_Following_Collection:
+            {
+                CollectionModel* collModel = feedTypeModel.followingCollectionData;
+                [self showCollectioPageView:collModel];
+                
+            }
+                break;
+                
             case FeedType_Announcement:
             case FeedType_Announcement_Campaign:
             {
@@ -655,6 +671,7 @@ static NSCache* heightCache = nil;
                         [self showAnnouncementView:feedTypeModel];
                         
                         break;
+                   
                     default:
                     case AnnouncementType_URL:
                     {
@@ -908,7 +925,7 @@ static NSCache* heightCache = nil;
         SLog(@"token :%@",[Utils getAppToken]);
         NSDictionary* dict = @{@"token" : [Utils getAppToken],
                                @"offset":@(self.newsFeedModels.offset + self.newsFeedModels.limit),
-                               @"limit" : @(ARRAY_LIST_SIZE)
+                               @"limit" : @(LIKES_LIST_SIZE)
                                };
         
         isMiddleOfLoadingServer = YES;
@@ -919,6 +936,8 @@ static NSCache* heightCache = nil;
             self.newsFeedModels = model;
             [self.arrayNewsFeed addObjectsFromArray:model.items];
             [self.ibTableView reloadData];
+            
+            [(UIActivityIndicatorView *)[self.ibFooterView viewWithTag:10] stopAnimating];
         } errorBlock:^(id object) {
             isMiddleOfLoadingServer = NO;
 
@@ -928,29 +947,40 @@ static NSCache* heightCache = nil;
     
 }
 
-//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-//    float bottomEdge = scrollView.contentOffset.x + scrollView.frame.size.width;
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    float bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
+    
+    float reload_distance = 100;
+    if (bottomEdge >= scrollView.contentSize.height -  reload_distance) {
+        
+        if(![Utils isStringNull:self.newsFeedModels.paging.next])
+        {
+            [(UIActivityIndicatorView *)[self.ibFooterView viewWithTag:10] startAnimating];
+
+            [self requestServerForNewsFeed];
+        }
+      
+    }
+}
+
+
+//- (void)scrollViewDidScroll: (UIScrollView *)scroll {
+//    // UITableView only moves in one direction, y axis
+//    CGFloat currentOffset = scroll.contentOffset.y;
+//    CGFloat maximumOffset = scroll.contentSize.height - scroll.frame.size.height;
 //    
-//    float reload_distance = 10;
-//    if (bottomEdge >= scrollView.contentSize.width -  reload_distance) {
-//        
-//        if(![Utils isStringNull:self.newsFeedModels.paging.next])
-//        {
-//            [self requestServerForNewsFeed];
-//        }
-//      
+//    // Change 10.0 to adjust the distance from bottom
+//    if (maximumOffset - currentOffset <= self.view.frame.size.height/2) {
+//        [self requestServerForNewsFeed];
 //    }
 //}
 
+-(void)initFooterView
+{
+    ibActivityIndicator.tag = 10;
+    ibActivityIndicator.hidesWhenStopped = YES;
+    self.ibTableView.tableFooterView = self.ibFooterView;
 
-- (void)scrollViewDidScroll: (UIScrollView *)scroll {
-    // UITableView only moves in one direction, y axis
-    CGFloat currentOffset = scroll.contentOffset.y;
-    CGFloat maximumOffset = scroll.contentSize.height - scroll.frame.size.height;
-    
-    // Change 10.0 to adjust the distance from bottom
-    if (maximumOffset - currentOffset <= 10.0) {
-        [self requestServerForNewsFeed];
-    }
 }
+
 @end

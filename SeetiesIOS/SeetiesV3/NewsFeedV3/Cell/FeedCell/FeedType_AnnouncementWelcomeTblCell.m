@@ -17,19 +17,10 @@
 @end
 @implementation FeedType_AnnouncementWelcomeTblCell
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
-
 -(void)initData:(CTFeedTypeModel*)model
 {
     self.annModel = model.announcementData;
     self.lblTitle.text = self.annModel.title[[Utils getDeviceAppLanguageCode]];
-
 //    if(model.feedType == FeedType_Announcement_Campaign)
 //    {
 //        self.lblTitle.text = self.annModel.title[[Utils getDeviceAppLanguageCode]];

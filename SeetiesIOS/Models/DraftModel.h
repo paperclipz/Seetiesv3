@@ -46,7 +46,7 @@
 @property(nonatomic,strong)NSString* collection_note;
 @property(nonatomic,strong)NSString* view_count;
 @property(nonatomic,strong)NSArray* content_languages;
-@property(nonatomic,strong)NSString* like;
+@property(nonatomic,assign)BOOL like;
 @property(nonatomic,strong)NSString* collect;
 
 /*Location*/
