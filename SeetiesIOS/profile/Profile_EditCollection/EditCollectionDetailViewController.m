@@ -437,7 +437,7 @@ typedef enum{
     }
     
     [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostCreateCollection param:dict appendString:appendString meta:nil completeHandler:^(id object) {
-       
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:self];
         [self dismissViewControllerAnimated:YES completion:^{
             
             if (self.viewDidRefreshCollectionBlock) {
