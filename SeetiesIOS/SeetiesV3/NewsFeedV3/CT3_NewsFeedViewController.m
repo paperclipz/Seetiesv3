@@ -30,7 +30,7 @@
 #import "ProfileViewController.h"
 #import "AnnounceViewController.h"
 #import "CTWebViewController.h"
-
+static NSCache* heightCache = nil;
 
 #define NUMBER_OF_SECTION 2
 @interface CT3_NewsFeedViewController ()<UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
@@ -46,7 +46,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constantQuickBrowseHeight;
 @property (weak, nonatomic) IBOutlet UICollectionView *ibQuickBrowseCollectionView;
 
-
+@property(nonatomic,strong)NSMutableArray* arrCacheHeight;
 /* Model */
 @property(nonatomic,strong)NSMutableArray* arrayNewsFeed;
 @property(nonatomic,strong)NewsFeedModels* newsFeedModels;
@@ -96,6 +96,13 @@
 
 #pragma mark - Declaration
 
+-(NSMutableArray*)arrCacheHeight
+{
+    if (!_arrCacheHeight) {
+        _arrCacheHeight = [NSMutableArray new];
+    }
+    return _arrCacheHeight;
+}
 -(CTWebViewController*)ctWebViewController
 {
     if (!_ctWebViewController) {
@@ -264,6 +271,15 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+  
+    NSNumber* heightValue = [heightCache objectForKey:[NSString stringWithFormat:@"%@",indexPath]];
+    if (heightValue != 0) {
+        return [heightValue floatValue];
+    }
+    //    CGRect frame = [tableView rectForRowAtIndexPath:indexPath];
+    //    float height = frame.size.height;
+    //  NSLog(@"row height (bbb) : %f", height);
+    
     CTFeedTypeModel* typeModel = self.arrayNewsFeed[indexPath.row];
 
     switch (typeModel.feedType) {
@@ -317,8 +333,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    
     CTFeedTypeModel* typeModel = self.arrayNewsFeed[indexPath.row];
 
+    
     switch (typeModel.feedType) {
         case FeedType_Following_Post:
         case FeedType_Local_Quality_Post:
@@ -653,6 +672,28 @@
     }
     
 }
+
+- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        heightCache = [NSCache new];
+    });
+    
+    NSAssert(heightCache, @"Height cache must exist");
+    
+    NSString* key = [NSString stringWithFormat:@"%@",indexPath]; //Create a unique key here
+    NSNumber* cachedValue = [heightCache objectForKey: key];
+    
+    if(!cachedValue)
+    {
+        CGSize size = cell.frame.size;
+        [heightCache setObject: [NSNumber numberWithFloat: size.height] forKey: key];
+    }
+}
+
 
 #pragma mark - CollectionView Delegate
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
