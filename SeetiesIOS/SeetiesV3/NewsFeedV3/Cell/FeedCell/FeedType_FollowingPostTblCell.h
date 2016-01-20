@@ -15,5 +15,6 @@
 @property(nonatomic,strong)VoidBlock btnCollectionDidClickedBlock;
 @property(nonatomic,strong)VoidBlock btnCollectionQuickClickedBlock;
 @property(nonatomic,strong)VoidBlock btnPostShareClickedBlock;
+@property(nonatomic,strong)ProfileBlock btnProfileClickedBlock;
 
 @end

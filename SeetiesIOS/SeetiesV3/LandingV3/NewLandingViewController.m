@@ -57,13 +57,7 @@
 
 -(void)processLogin
 {
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    ProfileModel* model = [[ConnectionManager dataManager]userLoginProfileModel];
-    [defaults setObject:model.token forKey:TOKEN];
-    [defaults setObject:model.uid forKey:USERID];
      [self.newsFeedViewController refreshViewAfterLogin];
-
 }
 
 -(LeveyTabBarController*)leveyTabBarController

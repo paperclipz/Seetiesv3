@@ -10,7 +10,10 @@
 
 @implementation UIImage(Extra)
 
-
+-(UIImage*)getPlaceHolderImage
+{
+    return [UIImage imageNamed:@"NoImage.png"];
+}
 // Tint the image, default to half transparency if given an opaque colour.
 - (UIImage *)imageWithTint:(UIColor *)tintColor {
     CGFloat white, alpha;

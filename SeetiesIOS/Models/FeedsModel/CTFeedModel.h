@@ -12,7 +12,7 @@
 //@class ProfileModel;
 //@class PhotoModel;
 @class DraftModel;
-
+@class AnnouncementModel;
 
 #import "PaginationModel.h"
 @protocol CTFeedTypeModel @end
@@ -30,6 +30,7 @@
 @property(nonatomic,strong)NSArray<DraftModel>* arrPosts;
 @property(nonatomic,strong)CollectionModel<Ignore>* followingCollectionData;
 @property(nonatomic,strong)NSDictionary* dictData;
+@property(nonatomic,strong)AnnouncementModel* announcementData;
 
 //@property(nonatomic,strong)NSArray<CollectionModel>* arrCollection;
 

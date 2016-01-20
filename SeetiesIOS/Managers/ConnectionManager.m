@@ -378,6 +378,18 @@
     
 }
 
++(NSString*)getServerPath
+{
+    
+    
+    if ([ConnectionManager dataManager].apiVersionModel.production) {
+        return SERVER_PATH_LINK_LIVE;
+    }
+    else{
+        return SERVER_PATH_LINK_DEV;
+    }
+}
+
 -(void)processApiversion
 {
     self.serverPath = self.dataManager.apiVersionModel.production?SERVER_PATH_LIVE:SERVER_PATH_DEV;
@@ -502,6 +514,15 @@
         {
             NSDictionary* dict = obj[@"data"];
             self.dataManager.userLoginProfileModel = [[ProfileModel alloc]initWithDictionary:dict error:nil];
+            
+            if (self.dataManager.userLoginProfileModel) {
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                [defaults setObject:self.dataManager.userLoginProfileModel.token forKey:TOKEN];
+                [defaults setObject:self.dataManager.userLoginProfileModel.uid forKey:USERID];
+                [defaults setObject:self.dataManager.userLoginProfileModel.system_language.caption forKey:KEY_SYSTEM_LANG];
+
+                [defaults synchronize];
+            }
         }
 
             break;
@@ -527,8 +548,10 @@
             
         case ServerRequestTypeGetNewsFeed:
         {
+            
             NSDictionary* dict = obj[@"data"];
             self.dataManager.newsFeedModels = [[NewsFeedModels alloc]initWithDictionary:dict error:nil];
+            
         }
             break;
             

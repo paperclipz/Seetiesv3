@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 //protocol ShareV2ViewController {
 //    
 //    func share(postID:String, message:String,title:String, imagURL:String, shareType:ShareType, userID:String)
@@ -17,6 +16,8 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
     @IBOutlet weak var ibCollectionView: UICollectionView!
     @IBOutlet weak var ShareFrenView: UIView!
     
+    @IBOutlet weak var lblDesc: UILabel!
+    @IBOutlet weak var lblTitle: UILabel!
     var viewController = UIViewController()
 
     var shareToFrenVC = ShareToFrenViewController()
@@ -71,6 +72,8 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
     
     func initSelfView()
     {
+        self.lblTitle.text = LanguageManager.sharedLanguageManager().getTranslationForKey("Send to friends in Seeties");
+        self.lblDesc.text = LanguageManager.sharedLanguageManager().getTranslationForKey("Your friend will receive in notification.");
         
         self.view.bounds = CGRectMake(0, 0, Utils.getDeviceScreenSize().size.width, Utils.getDeviceScreenSize().size.height)
         self.view.setNeedsLayout()

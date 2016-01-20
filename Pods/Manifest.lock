@@ -51,6 +51,9 @@ PODS:
   - MGSwipeTableCell (1.5.3)
   - MZAppearance (1.1.6)
   - PureLayout (3.0.1)
+  - RZCellSizeManager (1.1.2):
+    - RZCellSizeManager/Core (= 1.1.2)
+  - RZCellSizeManager/Core (1.1.2)
   - SDWebImage (3.7.4):
     - SDWebImage/Core (= 3.7.4)
   - SDWebImage/Core (3.7.4)
@@ -81,6 +84,7 @@ DEPENDENCIES:
   - MGSwipeTableCell
   - MZAppearance
   - PureLayout
+  - RZCellSizeManager (~> 1.1)
   - SDWebImage
   - SVPullToRefresh
   - TSMessages (from `https://github.com/KrauseFx/TSMessages.git`)
@@ -120,6 +124,7 @@ SPEC CHECKSUMS:
   MGSwipeTableCell: 5ae3b9a15efda26b201adc8676b24040febe6ff6
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
+  RZCellSizeManager: 04bd83953cb5a427ae3d9e430045a15ee4789699
   SDWebImage: 247edd7dd80dd6124197b0d6a17846fe9d1df968
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   TSMessages: 6e403b790139636c15ab4f51946537095e03e79c

@@ -175,7 +175,7 @@
 
     for (int i = 0; i < [self.arrPostListing count]; i++) {
         DraftModel* model = self.arrPostListing[i];
-        [self.arrPostLike addObject:model.like];
+        [self.arrPostLike addObject:model.like?@"1":@"0"];
         [self.arrPostCollect addObject:model.collect];
         
         NSLog(@"self.arrPostLike == %@",self.arrPostLike);

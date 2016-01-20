@@ -1074,4 +1074,8 @@
 "Features" = "บริการ";
 "Available" = "มี";
 "Not Available" = "ไม่มี ";
+"Send to buddies on Seeties" = "ส่งหาเพื่อนใน Seeties";
+"Your friend will recieve in notification." = "เมื่อคุณแชร์คอลเลคชันนี้ เราจะแจ้งไปยังเพื่อนของคุณ.";
+
+
 

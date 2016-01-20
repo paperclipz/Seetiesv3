@@ -12,12 +12,15 @@
 @property(nonatomic,strong)ProfileModel* profileModel;
 @property (weak, nonatomic) IBOutlet UIImageView *ibProfilePhoto;
 @property (weak, nonatomic) IBOutlet UILabel *lblDescription;
+@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *arrIBImages;
 @end
 
 @implementation SuggestionFeatureCVCell
 
 - (void)awakeFromNib {
     // Initialization code
+    [super awakeFromNib];
+    [self.ibProfilePhoto setRoundedBorder];
 }
 
 
@@ -25,10 +28,47 @@
 {
     self.profileModel = model;
     self.lblTitle.text = self.profileModel.name;
-    [self.ibProfilePhoto sd_setImageWithURL:[NSURL URLWithString:self.profileModel.profile_photo_images]];
     
+    if (![Utils isStringNull:self.profileModel.profile_photo_images]) {
+        [self.ibProfilePhoto sd_setImageWithURL:[NSURL URLWithString:self.profileModel.profile_photo_images]];
+
+    }
+    else{
+        self.ibProfilePhoto.image = [UIImage imageNamed:@"NoImage.png"];
+    }
     
+    self.lblDescription.text = LocalisedString(@"Follow this Seetizen for more");
+ 
+    for (int  i = 0; i<self.arrIBImages.count; i++) {
+        
+        if (self.profileModel.posts.count>i) {
+            
+            DraftModel*dModel = self.profileModel.posts[i];
+            
+
+
+            
+            if (![Utils isArrayNull:dModel.arrPhotos]) {
+                
+                PhotoModel* pModel = dModel.arrPhotos[0];
+                UIImageView* imgView = self.arrIBImages[i];
+                [imgView setStandardBorder];
+              //  [imgView sd_setImageCroppedWithURL:[NSURL URLWithString:pModel.imageURL] completed:nil];
+                [imgView sd_setImageWithURL:[NSURL URLWithString:pModel.imageURL] placeholderImage:[UIImage imageNamed:@"NoImage.png"]];
+            }
+          
+        }
+        else
+        {
+            
+            UIImageView* imgView = self.arrIBImages[i];
+            
+            imgView.image = [UIImage imageNamed:@"NoImage.png"];
+        }
+        
+    }
     
-    
-}
+ }
+
+
 @end

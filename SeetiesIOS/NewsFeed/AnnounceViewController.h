@@ -10,4 +10,7 @@
 #import "AsyncImageView.h"
 @interface AnnounceViewController : UIViewController<UIScrollViewDelegate>
 -(void)GetDisplayImage:(NSString *)ImageData GetContent:(NSString *)content;
+
+/*new implementation using annoucement model 19/jan/2016*/
+-(void)initData:(CTFeedTypeModel*)model;
 @end

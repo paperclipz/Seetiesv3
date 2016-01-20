@@ -11,9 +11,12 @@
 #import "OpeningPeriodModel.h"
 #import "ProfileModel.h"
 #import "CTFeedModel.h"
+#import "AnnouncementModel.h"
+#import "LanguageModel.h"
 
 
 /*Declare custom block for model type*/
 typedef void (^PostBlock)(DraftModel* postModel);
+typedef void (^ProfileBlock)(ProfileModel* profileModel);
 
 

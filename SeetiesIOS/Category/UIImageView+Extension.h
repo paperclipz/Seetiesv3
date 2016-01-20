@@ -15,5 +15,6 @@ typedef void(^ImageBlock) (UIImage* image);
 -(void)sd_setImageCroppedWithURL:(NSURL *)url completed:(ImageBlock)block;
 -(void)tintWithOverlay;
 -(void)setRoundedBorder;
+-(void)sd_setImageCroppedWithURL:(NSURL *)url withPlaceHolder:(UIImage*)placeholderImage completed:(ImageBlock)block;
 
 @end

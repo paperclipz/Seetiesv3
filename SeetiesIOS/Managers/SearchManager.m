@@ -275,6 +275,7 @@
 //    }];
 //}
 
+/*tempCurrentLocation is an optional field*/
 -(void)getSearchLocationFromGoogle:(CLLocation*)tempCurrentLocation input:(NSString*)textInput completionBlock:(IDBlock)completionBlock
 {
     

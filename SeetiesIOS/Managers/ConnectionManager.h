@@ -20,6 +20,8 @@ typedef void (^IErrorBlock)(id object);
 @property(nonatomic,strong)NSString* serverPath;
 @property(nonatomic,strong)NSString* subPath;
 
++(NSString*)getServerPath;
+
 +(id)Instance;
 +(DataManager*)dataManager;
 @property(strong,nonatomic)AFHTTPRequestOperationManager* manager;
