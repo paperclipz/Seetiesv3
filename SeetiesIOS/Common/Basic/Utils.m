@@ -417,6 +417,11 @@
     return [UIColor lightGrayColor];
 }
 
++(UIImage*)getPlaceHolderImage
+{
+    return [UIImage imageNamed:@"NoImage.png"];
+}
+
 +(NSURL*)getPrefixedURLFromString:(NSString*)url
 {
     NSString *myURLString = url;

@@ -107,7 +107,8 @@ typedef enum
     
 }AnnouncementType;
 
-
+extern NSString *const SERVER_PATH_LINK_LIVE;
+extern NSString *const SERVER_PATH_LINK_DEV;
 extern NSString *const SERVER_PATH_LIVE;
 extern NSString *const SERVER_PATH_DEV;
 extern NSString *const SERVER_SUBPATH;

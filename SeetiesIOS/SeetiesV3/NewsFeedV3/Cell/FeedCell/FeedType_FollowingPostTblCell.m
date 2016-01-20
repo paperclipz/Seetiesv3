@@ -9,6 +9,10 @@
 #import "FeedType_FollowingPostTblCell.h"
 
 @interface FeedType_FollowingPostTblCell()
+{
+
+    __weak IBOutlet NSLayoutConstraint *constTitleHeight;
+}
 @property (nonatomic,strong)CTFeedTypeModel* newsFeedTypeModel;
 @property (weak, nonatomic) IBOutlet UIImageView *ibPostImageView;
 @property (weak, nonatomic) IBOutlet UIView *ibSuggestedView;
@@ -121,7 +125,14 @@
 
     }
     
-    self.lblTitle.text = feedModel.place_name;
+    if ([Utils isStringNull:[feedModel getPostTitle]]) {
+        constTitleHeight.constant = 0;
+    }
+    else {
+        constTitleHeight.constant = 30;
+    }
+    
+    self.lblTitle.text = [feedModel getPostTitle];
     self.lblLocation.text = feedModel.location.locality;
     
     self.lblLocation.text = [NSString stringWithFormat:@"%@ • %@",feedModel.location.locality,feedModel.location.country];

@@ -29,7 +29,6 @@
 //     self.lblTitle.text = @"";
 //    }
 //    
-    [self.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:self.annModel.photo] completed:nil];
-   
+    [self.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:self.annModel.photo] withPlaceHolder:[Utils getPlaceHolderImage] completed:nil];
 }
 @end

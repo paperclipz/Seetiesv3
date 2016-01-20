@@ -20,4 +20,7 @@ NSString *const GOOGLE_PLACE_DETAILS_API = @"https://maps.googleapis.com/maps/ap
 NSString * const kAFAviaryAPIKey = @"b42bd0c6f4c5104f";
 NSString * const kAFAviarySecret = @"80ee1b7f54c2ed86";
 
+
+NSString *const SERVER_PATH_LINK_LIVE = @"seeties.me";
+NSString *const SERVER_PATH_LINK_DEV = @"itcave.seeties.me";
 @end

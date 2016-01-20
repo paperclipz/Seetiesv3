@@ -382,12 +382,12 @@ static NSCache* heightCache = nil;
               
                 NSString* imageURL;
               
-                if ([Utils isArrayNull:feedModel.arrPhotos]) {
+                if (![Utils isArrayNull:feedModel.arrPhotos]) {
                     PhotoModel* pModel = feedModel.arrPhotos[0];
                     imageURL = pModel.imageURL;
                 }
                 
-                [self.shareV2ViewController share:@"" title:feedModel.postDescription imagURL:imageURL shareType:ShareTypePost shareID:feedModel.post_id userID:feedModel.user_info.uid];
+                [self.shareV2ViewController share:@"" title:[feedModel getPostTitle] imagURL:imageURL shareType:ShareTypePost shareID:feedModel.post_id userID:feedModel.user_info.uid];
                 MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
                 formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
                 formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
@@ -947,33 +947,38 @@ static NSCache* heightCache = nil;
     
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    float bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
+//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+//    float bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
+//    
+//    float reload_distance = 100;
+//    if (bottomEdge >= scrollView.contentSize.height -  reload_distance) {
+//        
+//        if(![Utils isStringNull:self.newsFeedModels.paging.next])
+//        {
+//            [(UIActivityIndicatorView *)[self.ibFooterView viewWithTag:10] startAnimating];
+//
+//            [self requestServerForNewsFeed];
+//        }
+//      
+//    }
+//}
+
+
+- (void)scrollViewDidScroll: (UIScrollView *)scroll {
+    // UITableView only moves in one direction, y axis
+    CGFloat currentOffset = scroll.contentOffset.y;
+    CGFloat maximumOffset = scroll.contentSize.height - scroll.frame.size.height;
     
-    float reload_distance = 100;
-    if (bottomEdge >= scrollView.contentSize.height -  reload_distance) {
-        
+    // Change 10.0 to adjust the distance from bottom
+    if (maximumOffset - currentOffset <= self.view.frame.size.height/2) {
+       
         if(![Utils isStringNull:self.newsFeedModels.paging.next])
         {
             [(UIActivityIndicatorView *)[self.ibFooterView viewWithTag:10] startAnimating];
-
+            
             [self requestServerForNewsFeed];
-        }
-      
-    }
+        }    }
 }
-
-
-//- (void)scrollViewDidScroll: (UIScrollView *)scroll {
-//    // UITableView only moves in one direction, y axis
-//    CGFloat currentOffset = scroll.contentOffset.y;
-//    CGFloat maximumOffset = scroll.contentSize.height - scroll.frame.size.height;
-//    
-//    // Change 10.0 to adjust the distance from bottom
-//    if (maximumOffset - currentOffset <= self.view.frame.size.height/2) {
-//        [self requestServerForNewsFeed];
-//    }
-//}
 
 -(void)initFooterView
 {

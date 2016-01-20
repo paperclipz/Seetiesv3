@@ -59,7 +59,8 @@
 
 -(void)process;
 -(void)customProcess;
-
+/*use to get the first language in array's title*/
+-(NSString*)getPostTitle;
 @end
 
 @interface DraftsModel : Model

@@ -378,6 +378,18 @@
     
 }
 
++(NSString*)getServerPath
+{
+    
+    
+    if ([ConnectionManager dataManager].apiVersionModel.production) {
+        return SERVER_PATH_LINK_LIVE;
+    }
+    else{
+        return SERVER_PATH_LINK_DEV;
+    }
+}
+
 -(void)processApiversion
 {
     self.serverPath = self.dataManager.apiVersionModel.production?SERVER_PATH_LIVE:SERVER_PATH_DEV;

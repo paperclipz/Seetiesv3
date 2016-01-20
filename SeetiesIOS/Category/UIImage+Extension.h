@@ -12,5 +12,6 @@
 //- (UIImage *)imageWithTint:(UIColor *)tintColor;
 //- (UIImage *)imageWithTint:(UIColor *)tintColor alpha:(CGFloat)alpha;
 //- (UIImage*)imageWithColorOverlay:(UIColor*)colorOverlay;
+-(UIImage*)getPlaceHolderImage;
 
 @end

@@ -36,6 +36,20 @@
                                                        }];
 }
 
+-(NSString*)getPostTitle{
+   
+    NSString* tempTitle = @"";
+    
+    if (![Utils isArrayNull:_content_languages])
+    {
+        NSString* langCode = _content_languages[0];
+        NSDictionary* content = _contents[langCode];
+        tempTitle = content[@"title"];
+    }
+    return tempTitle;
+
+}
+
 -(void)process// For getting Draft title and message WITHOUT using "content_languages"
 {
     NSMutableArray* array = [NSMutableArray new];

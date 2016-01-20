@@ -3096,6 +3096,13 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8A0035281C4F2D81002BD9A3 /* DealCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DealCell;
+			sourceTree = "<group>";
+		};
 		8A03487B1C15793A0015E606 /* NSString+Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -6023,6 +6030,7 @@
 		8AFA51821C47B4AB00E7920E /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				8A0035281C4F2D81002BD9A3 /* DealCell */,
 				8AFA51831C47B4AB00E7920E /* FeedCell */,
 				8AFA51A91C47B4AB00E7920E /* FeedSquareCollectionViewCell.h */,
 				8AFA51AA1C47B4AB00E7920E /* FeedSquareCollectionViewCell.m */,
