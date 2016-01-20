@@ -20,6 +20,11 @@
 
 @implementation AbroadQualityPostCVCell
 
+- (IBAction)btnProfileClicked:(id)sender {
+    if (self.btnProfileClickedBlock) {
+        self.btnProfileClickedBlock(self.postModel.user_info);
+    }
+}
 
 -(void)initData:(DraftModel*)model
 {
@@ -53,7 +58,7 @@
         postDesc = self.postModel.contents[contentLanguage][@"title"];
     }
 
-    self.lblDescription.text = postDesc;
+    [self.lblDescription setStandardText:postDesc];
 
     [self.ibProfileImage sd_setImageWithURL:[NSURL URLWithString:self.postModel.user_info.profile_photo_images]];
 }

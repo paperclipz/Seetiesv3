@@ -117,11 +117,12 @@ typedef enum {
 +(int)getWeekInteger:(NSString*)week;
 // ========================  Day ==========================
 
+#pragma mark - UI
 +(void)setButtonWithBorder:button;
 +(void)setButtonWithBorder:(UIButton*)button color:(UIColor*)color;
 +(void)setRoundBorder:(UIView*)view color:(UIColor*)color borderRadius:(float)borderRadius;
 +(void)setRoundBorder:(UIView*)view color:(UIColor*)color borderRadius:(float)borderRadius borderWidth:(float)borderWidth;
-
++(UIImage*)getPlaceHolderImage;
 
 // ========================  FONT ==========================
 +(UIFont*)defaultFont;
@@ -136,6 +137,7 @@ typedef enum {
 
 
 // =====================  CURRENCY =========================
+#pragma mark - CURRENCY
 +(NSString*)currencyCode:(NSString*)currency;
 +(NSString*)currencyString:(NSString*)code;
 
@@ -153,7 +155,7 @@ typedef enum {
 
 // =====================  currency =========================
 
-//easy conversion to jsonstring
+#pragma mark - JSON CONVERTER
 +(NSString*)convertToJsonString:(NSDictionary*)dict;
 +(BOOL)stringIsNilOrEmpty:(NSString*)aString;
 +(NSURL*)getPrefixedURLFromString:(NSString*)url;
@@ -161,8 +163,9 @@ typedef enum {
 +(BOOL)isArrayNull:(NSArray*)array;
 
 +(NSString*)getDistance:(float)distance Locality:(NSString*)local;
-+(NSString*)getDeviceAppLanguageCode;
 
++(NSString*)getDeviceAppLanguageCode;
++(NSString*)getDeviceDefaultLanguageCode;
 
 #define ARRAY_LIST_SIZE 10.0f
 #define LIKES_LIST_SIZE 30.0f

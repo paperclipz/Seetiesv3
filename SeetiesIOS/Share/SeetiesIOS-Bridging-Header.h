@@ -6,3 +6,4 @@
 #import "ShareToFrenViewController.h"
 #import "ShareManager.h"
 #import "Utils.h"
+#import "LanguageManager.h"

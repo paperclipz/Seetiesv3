@@ -27,25 +27,41 @@
 #import "CollectionListingViewController.h"
 #import "CollectionViewController.h"
 #import "InviteFrenViewController.h"
+#import "ProfileViewController.h"
+#import "AnnounceViewController.h"
+#import "CTWebViewController.h"
 
+#import "DealType_mainTblCell.h"
+#import "DealType_QuickBrowseTblCell.h"
+#import "DealType_DealOTDTblCell.h"
+#import "DealType_YourWalletTblCell.h"
+#import "SearchViewV2Controller.h"
+
+
+static NSCache* heightCache = nil;
+#define TopBarHeight 64.0f
 #define NUMBER_OF_SECTION 2
 @interface CT3_NewsFeedViewController ()<UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 {
     BOOL isMiddleOfLoadingServer;
+    __weak IBOutlet UIActivityIndicatorView *ibActivityIndicator;
+    __weak IBOutlet UIImageView *ibHeaderBackgroundView;
+    __weak IBOutlet NSLayoutConstraint *constTopScrollView;
 }
 /*IBOUTLET*/
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
-@property (strong, nonatomic) IBOutlet UIView *ibHeaderView;
 @property (weak, nonatomic) IBOutlet UICollectionView *ibIntroCollectionView;
 @property (weak, nonatomic) IBOutlet UIView *lastView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constantQuickBrowseHeight;
 @property (weak, nonatomic) IBOutlet UICollectionView *ibQuickBrowseCollectionView;
 
-
+@property(nonatomic,strong)NSMutableArray* arrCacheHeight;
 /* Model */
 @property(nonatomic,strong)NSMutableArray* arrayNewsFeed;
 @property(nonatomic,strong)NewsFeedModels* newsFeedModels;
+
+@property (strong, nonatomic) IBOutlet UIView *ibFooterView;
 
 /* Model */
 
@@ -56,6 +72,10 @@
 @property(nonatomic,strong)CollectionListingViewController* collectionListingViewController;
 @property(nonatomic,strong)CollectionViewController* displayCollectionViewController;
 @property(nonatomic,strong)InviteFrenViewController* inviteFrenViewController;
+@property(nonatomic,strong)ProfileViewController* profileViewController;
+@property(nonatomic,strong)AnnounceViewController* announceViewController;
+@property(nonatomic,strong)CTWebViewController* ctWebViewController;
+@property(nonatomic,strong)SearchViewV2Controller* searchViewV2Controller;
 
 
 /*Controller*/
@@ -64,6 +84,11 @@
 @end
 
 @implementation CT3_NewsFeedViewController
+- (IBAction)btnSearchClicked:(id)sender {
+    
+    [self.navigationController pushViewController:self.searchViewV2Controller animated:YES];
+}
+
 - (IBAction)btnGrabNowClicked:(id)sender {
     VoucherListingViewController *voucherListingController = [[VoucherListingViewController alloc] init];
     [self.navigationController pushViewController:voucherListingController animated:YES];
@@ -80,7 +105,7 @@
 }
 - (IBAction)btnTestCliked:(id)sender {
     
-    [self.navigationController pushViewController:self.meViewController animated:YES];
+    [self presentViewController:self.searchLocationViewController animated:YES completion:nil];
 }
 
 -(void)refreshViewAfterLogin
@@ -89,6 +114,48 @@
 }
 
 #pragma mark - Declaration
+
+-(SearchViewV2Controller*)searchViewV2Controller
+{
+    if (!_searchViewV2Controller) {
+        _searchViewV2Controller = [SearchViewV2Controller new];
+    }
+    
+    return _searchViewV2Controller;
+}
+
+-(NSMutableArray*)arrCacheHeight
+{
+    if (!_arrCacheHeight) {
+        _arrCacheHeight = [NSMutableArray new];
+    }
+    return _arrCacheHeight;
+}
+-(CTWebViewController*)ctWebViewController
+{
+    if (!_ctWebViewController) {
+        _ctWebViewController = [CTWebViewController new];
+    }
+    
+    return _ctWebViewController;
+}
+
+-(AnnounceViewController*)announceViewController
+{
+    if (!_announceViewController) {
+        _announceViewController = [AnnounceViewController new];
+    }
+    
+    return _announceViewController;
+}
+
+-(ProfileViewController*)profileViewController
+{
+    if (!_profileViewController) {
+        _profileViewController =[ProfileViewController new];
+    }
+    return _profileViewController;
+}
 
 -(InviteFrenViewController*)inviteFrenViewController
 {
@@ -153,6 +220,14 @@
     }
     return _meViewController;
 }
+
+-(SearchLocationViewController*)searchLocationViewController{
+    if (!_searchLocationViewController) {
+        _searchLocationViewController = [SearchLocationViewController new];
+    }
+    return _searchLocationViewController;
+}
+
 #pragma mark - DEFAULT
 - (void)viewDidLoad {
     
@@ -171,11 +246,17 @@
 
 -(void)initSelfView
 {
+ 
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    constTopScrollView.constant = TopBarHeight;
+
+    ibHeaderBackgroundView.alpha = 0;
     [self initTableViewDelegate];
     [self initCollectionViewDelegate];
     
-    [self adjustView];
     isMiddleOfLoadingServer = NO;
+    
+    [self initFooterView];
 }
 
 -(void)initTableViewDelegate
@@ -206,23 +287,23 @@
 
 #pragma mark - ADJUST VIEW
 
--(void)adjustView
-{
-    
-    self.constantQuickBrowseHeight.constant = 42 + 105*(2);
-    [self.ibHeaderView refreshConstraint];
-    [self.ibHeaderView setHeight:(self.lastView.frame.size.height + self.lastView.frame.origin.y)];
-    [self.ibTableView reloadData];
-  // CGSize apple = [self.ibTableView intrinsicContentSize];
-    
-}
+//-(void)adjustView
+//{
+//    
+//    self.constantQuickBrowseHeight.constant = 42 + 105*(2);
+//    [self.ibHeaderView refreshConstraint];
+//    [self.ibHeaderView setHeight:(self.lastView.frame.size.height + self.lastView.frame.origin.y)];
+//    [self.ibTableView reloadData];
+//  // CGSize apple = [self.ibTableView intrinsicContentSize];
+//    
+//}
 
 #pragma mark - TableView Delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
     if (section == 0) {
-        return 0;
+        return 4;
     }
     else{// this is newsfeed row count
         return self.arrayNewsFeed.count;
@@ -232,305 +313,431 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CTFeedTypeModel* typeModel = self.arrayNewsFeed[indexPath.row];
+  
+    if (indexPath.section == 0) {
+        
+        switch (indexPath.row) {
+            case 0:
+                return [DealType_mainTblCell getHeight];
+                break;
+                
+            case 1:
+            {
+                CGRect frame = [Utils getDeviceScreenSize];
+                
+                float cellWidth = (frame.size.width/3) - 3;
+                
+                float titleHeight = 60.0f;
+                
+                return cellWidth + titleHeight + 10;
+            }
+                break;
+                
+            case 2:
+            {
+                return [DealType_DealOTDTblCell getHeight];
+            }
+                break;
+                
+            case 3:
+            {
+                return [DealType_YourWalletTblCell getHeight];
+            }
+                break;
 
-    switch (typeModel.feedType) {
-        case FeedType_Collect_Suggestion:
-            return [FeedType_CollectionSuggestedTblCell getHeight];
-            break;
-            
-        case FeedType_Abroad_Quality_Post:
-            return [FeedType_AbroadQualityPostTblCell getHeight];
-            break;
-            
-        case FeedType_Suggestion_Featured:
-        case FeedType_Suggestion_Friend:
-        {
-            
-            
-            return 0;
-           // CGRect frame = [Utils getDeviceScreenSize];
-            //return (frame.size.width/4) + 58 + 60;
-
+            default:
+                return 100;
+                break;
         }
-            break;
-        case FeedType_Country_Promotion:
-        {
-            int cellheight = [FeedType_CountryPromotionTblCell getHeight];
-            return cellheight;
-        }
-            break;
-            
-        case FeedType_Following_Post:
-        case FeedType_Announcement_Welcome:
-        case FeedType_Announcement_Campaign:
-
-            return UITableViewAutomaticDimension;
-            break;
-        case FeedType_Following_Collection:
-            
-            return [FeedType_FollowingCollectionTblCell getHeight];
-            break;
-        case FeedType_Invite_Friend:
-            return [FeedType_InviteFriendTblCell getHeight];
-            break;
-        case FeedType_Deal:
-            return 0;
-        default:
-            return UITableViewAutomaticDimension;
-            break;
+     
     }
-}
+    
+    else{
+        NSNumber* heightValue = [heightCache objectForKey:[NSString stringWithFormat:@"%@",indexPath]];
+        if (heightValue != 0) {
+            return [heightValue floatValue];
+        }
+        //    CGRect frame = [tableView rectForRowAtIndexPath:indexPath];
+        //    float height = frame.size.height;
+        //  NSLog(@"row height (bbb) : %f", height);
+        
+        CTFeedTypeModel* typeModel = self.arrayNewsFeed[indexPath.row];
+        
+        switch (typeModel.feedType) {
+            case FeedType_Collect_Suggestion:
+                return [FeedType_CollectionSuggestedTblCell getHeight];
+                break;
+                
+            case FeedType_Abroad_Quality_Post:
+                return [FeedType_AbroadQualityPostTblCell getHeight];
+                break;
+                
+            case FeedType_Suggestion_Featured:
+            case FeedType_Suggestion_Friend:
+            {
+                
+                
+                return [FeedType_SuggestionFetureTblCell getHeight];
+                // CGRect frame = [Utils getDeviceScreenSize];
+                //return (frame.size.width/4) + 58 + 60;
+                
+            }
+                break;
+            case FeedType_Country_Promotion:
+            {
+                int cellheight = [FeedType_CountryPromotionTblCell getHeight];
+                return cellheight;
+            }
+                break;
+                
+            case FeedType_Following_Post:
+            case FeedType_Announcement_Welcome:
+            case FeedType_Announcement_Campaign:
+                
+                return UITableViewAutomaticDimension;
+                break;
+            case FeedType_Following_Collection:
+                
+                return [FeedType_FollowingCollectionTblCell getHeight];
+                break;
+            case FeedType_Invite_Friend:
+                return [FeedType_InviteFriendTblCell getHeight];
+                break;
+            case FeedType_Deal:
+                return 0;
+            default:
+                return UITableViewAutomaticDimension;
+                break;
+        }
+
+    }
+  }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CTFeedTypeModel* typeModel = self.arrayNewsFeed[indexPath.row];
-
-    switch (typeModel.feedType) {
-        case FeedType_Following_Post:
-        case FeedType_Local_Quality_Post:
-        {
-            /*Following Post*/
-            static NSString *CellIdentifier = @"FeedType_FollowingPostTblCell";
-            FeedType_FollowingPostTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            if (cell == nil) {
-                cell = [[FeedType_FollowingPostTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-            }
-            
-            [cell initData:typeModel];
-            
-            DraftModel* feedModel = typeModel.newsFeedData;
-            __weak typeof (self)weakSelf = self;
-            cell.btnCollectionDidClickedBlock = ^(void)
+    
+    if (indexPath.section == 0) {
+        
+        switch (indexPath.row) {
+            default:
+            case 0:
             {
-              
-                [weakSelf showCollectToCollectionView:feedModel];
-            };
-            
-            cell.btnCollectionQuickClickedBlock = ^(void)
-            {
-                [weakSelf requestServerForQuickCollection:feedModel];
-            };
-
-            cell.btnPostShareClickedBlock = ^(void)
-            {
-            
-                _shareV2ViewController = nil;
-                UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
-                [naviVC setNavigationBarHidden:YES animated:NO];
-              
-                NSString* imageURL;
-              
-                if ([Utils isArrayNull:feedModel.arrPhotos]) {
-                    PhotoModel* pModel = feedModel.arrPhotos[0];
-                    imageURL = pModel.imageURL;
+                static NSString *CellIdentifier = @"DealType_mainTblCell";
+                DealType_mainTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                if (cell == nil) {
+                    cell = [[DealType_mainTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
                 }
                 
-                [self.shareV2ViewController share:@"" title:feedModel.postDescription imagURL:imageURL shareType:ShareTypePost shareID:feedModel.post_id userID:feedModel.user_info.uid];
-                MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
-                formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
-                formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
-                formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
-                [self presentViewController:formSheetController animated:YES completion:nil];
-                
-            };
-            
-            [cell refreshConstraint];
-            
-            
-            //Configure cell
-            return cell;
+                constTopScrollView.constant = 0;
 
-        }
-            break;
-        case FeedType_Deal:
-        {
-            /*Following Post*/
-            static NSString *CellIdentifier = @"FeedType_Two_TableViewCell";
-            FeedType_Two_TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            if (cell == nil) {
-                cell = [[FeedType_Two_TableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+                return cell;
             }
-            //Configure cell
-            return cell;
-            
-        }
-            break;
-        default:
-        case FeedType_Country_Promotion:
-        {
-            static NSString *CellIdentifier = @"FeedType_CountryPromotionTblCell";
-            FeedType_CountryPromotionTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            if (cell == nil) {
-                cell = [[FeedType_CountryPromotionTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-            }
-            [cell initData:typeModel];
-            //Configure cell
-            return cell;
-            
-        }
-            break;
-
-        case FeedType_Invite_Friend:
-        {
-            static NSString *CellIdentifier = @"FeedType_InviteFriendTblCell";
-            FeedType_InviteFriendTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            if (cell == nil) {
-                cell = [[FeedType_InviteFriendTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-            }
-            
-            [cell initData:typeModel.dictData];
-            return cell;
-            break;
-
-        }
-        case FeedType_Announcement_Welcome:
-        case FeedType_Announcement_Campaign:
-        case FeedType_Announcement:
-
-        {
-            static NSString *CellIdentifier = @"FeedType_AnnouncementWelcomeTblCell";
-            FeedType_AnnouncementWelcomeTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            if (cell == nil) {
-                cell = [[FeedType_AnnouncementWelcomeTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-            }
-            
-            [cell initData:typeModel];
-            [cell refreshConstraint];
-
-            return cell;
-            break;
-            
-        }
-            
-        case FeedType_Collect_Suggestion:
-        {
-            static NSString *CellIdentifier = @"FeedType_CollectionSuggestedTblCell";
-            FeedType_CollectionSuggestedTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            if (cell == nil) {
-                cell = [[FeedType_CollectionSuggestedTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-            }
-            
-            [cell initData:typeModel.arrCollections];
-            
-            __weak typeof(self) weakSelf = self;
-            cell.btnSeeAllSuggestedCollectionClickBlock = ^(void)
+            case 1:
             {
+                static NSString *CellIdentifier = @"DealType_QuickBrowseTblCell";
+                DealType_QuickBrowseTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                if (cell == nil) {
+                    cell = [[DealType_QuickBrowseTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+                }
                 
-                
-                ProfileModel* model = [ProfileModel new];
-                model.uid = [Utils getUserID];
-                [weakSelf showCollectionListingView:model];
-            };
-            
-            cell.didSelectCollectionBlock = ^(CollectionModel* model)
-            {
-                [weakSelf showCollectioPageView:model];
-            };
-            
-            return cell;
-            break;
-            
-        }
-        case FeedType_Abroad_Quality_Post:
-        {
+                return cell;
 
-            static NSString *CellIdentifier = @"FeedType_AbroadQualityPostTblCell";
-            FeedType_AbroadQualityPostTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            if (cell == nil) {
-                cell = [[FeedType_AbroadQualityPostTblCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             }
-            
-            [cell initData:typeModel.arrPosts];
-            cell.didSelectPostBlock = ^(DraftModel* model)
+                break;
+            case 2:
             {
-                [self showPostDetailView:model];
-            };
-            return cell;
-            break;
-            
-        }
-        case FeedType_Suggestion_Featured:
-        case FeedType_Suggestion_Friend:
-        {
-            static NSString *CellIdentifier = @"FeedType_SuggestionFetureTblCell";
-            FeedType_SuggestionFetureTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            if (cell == nil) {
-                cell = [[FeedType_SuggestionFetureTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-            }
-            
-            [cell initData:typeModel.arrSuggestedFeature];
-            return cell;
-            break;
-            
-        }
-            
-        case FeedType_Following_Collection:
-        {
-            static NSString *CellIdentifier = @"FeedType_FollowingCollectionTblCell";
-            FeedType_FollowingCollectionTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            if (cell == nil) {
-                cell = [[FeedType_FollowingCollectionTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-            }
-            
-            
-            CollectionModel* collModel = typeModel.followingCollectionData;
-            [cell initData:collModel];
-            cell.btnShareCollectionClickedBlock = ^(void)
-            {
-                _shareV2ViewController = nil;
-                UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
-                [naviVC setNavigationBarHidden:YES animated:NO];
+                static NSString *CellIdentifier = @"DealType_DealOTDTblCell";
+                DealType_DealOTDTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                if (cell == nil) {
+                    cell = [[DealType_DealOTDTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+                }
                 
-                NSString* imageURL;
-                if ([Utils isArrayNull:collModel.arrayFollowingCollectionPost]) {
+                return cell;
+                
+            }
+                
+            case 3:
+            {
+                static NSString *CellIdentifier = @"DealType_YourWalletTblCell";
+                DealType_YourWalletTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                if (cell == nil) {
+                    cell = [[DealType_YourWalletTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+                }
+                
+                return cell;
+                
+            }
+
+                break;
+        }
+    }
+    
+    else{
+        CTFeedTypeModel* typeModel = self.arrayNewsFeed[indexPath.row];
+        
+        
+        switch (typeModel.feedType) {
+            case FeedType_Following_Post:
+            case FeedType_Local_Quality_Post:
+            {
+                /*Following Post*/
+                static NSString *CellIdentifier = @"FeedType_FollowingPostTblCell";
+                FeedType_FollowingPostTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                if (cell == nil) {
+                    cell = [[FeedType_FollowingPostTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+                }
+                
+                [cell initData:typeModel];
+                cell.btnProfileClickedBlock = ^(ProfileModel* pModel)
+                {
+                    [self showProfilePageView:pModel];
                     
-                    DraftModel* postModel = collModel.arrayFollowingCollectionPost[0];
+                };
+                
+                DraftModel* feedModel = typeModel.newsFeedData;
+                __weak typeof (self)weakSelf = self;
+                cell.btnCollectionDidClickedBlock = ^(void)
+                {
                     
-                    if ([Utils isArrayNull:postModel.arrPhotos]) {
-                        PhotoModel* pModel = postModel.arrPhotos[0];
+                    [weakSelf showCollectToCollectionView:feedModel];
+                };
+                
+                cell.btnCollectionQuickClickedBlock = ^(void)
+                {
+                    [weakSelf requestServerForQuickCollection:feedModel];
+                };
+                
+                cell.btnPostShareClickedBlock = ^(void)
+                {
+                    
+                    _shareV2ViewController = nil;
+                    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
+                    [naviVC setNavigationBarHidden:YES animated:NO];
+                    
+                    NSString* imageURL;
+                    
+                    if (![Utils isArrayNull:feedModel.arrPhotos]) {
+                        PhotoModel* pModel = feedModel.arrPhotos[0];
                         imageURL = pModel.imageURL;
-
                     }
+                    
+                    [self.shareV2ViewController share:@"" title:[feedModel getPostTitle] imagURL:imageURL shareType:ShareTypePost shareID:feedModel.post_id userID:feedModel.user_info.uid];
+                    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
+                    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
+                    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
+                    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
+                    [self presentViewController:formSheetController animated:YES completion:nil];
+                    
+                };
+                
+                [cell refreshConstraint];
+                
+                
+                //Configure cell
+                return cell;
+                
+            }
+                break;
+            case FeedType_Deal:
+            {
+                /*Following Post*/
+                static NSString *CellIdentifier = @"FeedType_Two_TableViewCell";
+                FeedType_Two_TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                if (cell == nil) {
+                    cell = [[FeedType_Two_TableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+                }
+                //Configure cell
+                return cell;
+                
+            }
+                break;
+            default:
+            case FeedType_Country_Promotion:
+            {
+                static NSString *CellIdentifier = @"FeedType_CountryPromotionTblCell";
+                FeedType_CountryPromotionTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                if (cell == nil) {
+                    cell = [[FeedType_CountryPromotionTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+                }
+                [cell initData:typeModel];
+                //Configure cell
+                return cell;
+                
+            }
+                break;
+                
+            case FeedType_Invite_Friend:
+            {
+                static NSString *CellIdentifier = @"FeedType_InviteFriendTblCell";
+                FeedType_InviteFriendTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                if (cell == nil) {
+                    cell = [[FeedType_InviteFriendTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
                 }
                 
-                [self.shareV2ViewController share:@"" title:typeModel.followingCollectionData.name imagURL:imageURL shareType:ShareTypeCollection shareID:collModel.collection_id userID:collModel.user_info.uid];
-                MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
-                formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
-                formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
-                formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
-                [self presentViewController:formSheetController animated:YES completion:nil];
-
-            };
-            
-            return cell;
-            break;
-            
+                [cell initData:typeModel.dictData];
+                return cell;
+                break;
+                
+            }
+            case FeedType_Announcement_Welcome:
+            case FeedType_Announcement_Campaign:
+            case FeedType_Announcement:
+                
+            {
+                static NSString *CellIdentifier = @"FeedType_AnnouncementWelcomeTblCell";
+                FeedType_AnnouncementWelcomeTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                if (cell == nil) {
+                    cell = [[FeedType_AnnouncementWelcomeTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+                }
+                
+                [cell initData:typeModel];
+                [cell refreshConstraint];
+                
+                return cell;
+                break;
+                
+            }
+                
+            case FeedType_Collect_Suggestion:
+            {
+                static NSString *CellIdentifier = @"FeedType_CollectionSuggestedTblCell";
+                FeedType_CollectionSuggestedTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                if (cell == nil) {
+                    cell = [[FeedType_CollectionSuggestedTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+                }
+                
+                [cell initData:typeModel.arrCollections];
+                
+                __weak typeof(self) weakSelf = self;
+                cell.btnSeeAllSuggestedCollectionClickBlock = ^(void)
+                {
+                    
+                    
+                    ProfileModel* model = [ProfileModel new];
+                    model.uid = [Utils getUserID];
+                    [weakSelf showCollectionListingView:model];
+                };
+                
+                cell.didSelectCollectionBlock = ^(CollectionModel* model)
+                {
+                    [weakSelf showCollectioPageView:model];
+                };
+                
+                return cell;
+                break;
+                
+            }
+            case FeedType_Abroad_Quality_Post:
+            {
+                
+                static NSString *CellIdentifier = @"FeedType_AbroadQualityPostTblCell";
+                FeedType_AbroadQualityPostTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                if (cell == nil) {
+                    cell = [[FeedType_AbroadQualityPostTblCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+                }
+                
+                [cell initData:typeModel.arrPosts];
+                cell.didSelectPostBlock = ^(DraftModel* model)
+                {
+                    [self showPostDetailView:model];
+                };
+                
+                cell.btnProfileClickedBlock = ^(ProfileModel* model)
+                {
+                    [self showProfilePageView:model];
+                };
+                
+                return cell;
+                break;
+                
+            }
+            case FeedType_Suggestion_Featured:
+            case FeedType_Suggestion_Friend:
+            {
+                static NSString *CellIdentifier = @"FeedType_SuggestionFetureTblCell";
+                FeedType_SuggestionFetureTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                if (cell == nil) {
+                    cell = [[FeedType_SuggestionFetureTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+                }
+                
+                [cell initData:typeModel.arrSuggestedFeature];
+                cell.didSelectprofileBlock = ^(ProfileModel* model)
+                {
+                    [self showProfilePageView:model];
+                };
+                return cell;
+                break;
+                
+            }
+                
+            case FeedType_Following_Collection:
+            {
+                static NSString *CellIdentifier = @"FeedType_FollowingCollectionTblCell";
+                FeedType_FollowingCollectionTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                if (cell == nil) {
+                    cell = [[FeedType_FollowingCollectionTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+                }
+                
+                
+                CollectionModel* collModel = typeModel.followingCollectionData;
+                [cell initData:collModel];
+                cell.btnShareCollectionClickedBlock = ^(void)
+                {
+                    _shareV2ViewController = nil;
+                    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
+                    [naviVC setNavigationBarHidden:YES animated:NO];
+                    
+                    NSString* imageURL;
+                    if ([Utils isArrayNull:collModel.arrayFollowingCollectionPost]) {
+                        
+                        DraftModel* postModel = collModel.arrayFollowingCollectionPost[0];
+                        
+                        if ([Utils isArrayNull:postModel.arrPhotos]) {
+                            PhotoModel* pModel = postModel.arrPhotos[0];
+                            imageURL = pModel.imageURL;
+                            
+                        }
+                    }
+                    
+                    [self.shareV2ViewController share:@"" title:typeModel.followingCollectionData.name imagURL:imageURL shareType:ShareTypeCollection shareID:collModel.collection_id userID:collModel.user_info.uid];
+                    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
+                    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
+                    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
+                    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
+                    [self presentViewController:formSheetController animated:YES completion:nil];
+                    
+                };
+                
+                return cell;
+                break;
+                
+            }
+                
         }
-
     }
+   
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    if (section == 0) {
-        return self.ibHeaderView.frame.size.height;
-    }
-    else{
-        return 0;
-    }
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//{
+//    if (section == 0) {
+//        return self.ibHeaderView.frame.size.height;
+//    }
+//    else{
+//        return 0;
+//    }
+//}
 
-- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    if (section == 0) {
-        return self.ibHeaderView;
-    }
-    else{
-        return nil;
-    }
-}
+//- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    if (section == 0) {
+//        return self.ibHeaderView;
+//    }
+//    else{
+//        return nil;
+//    }
+//}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -546,10 +753,12 @@
     else
     {
         CTFeedTypeModel* feedTypeModel = self.arrayNewsFeed[indexPath.row];
+        FeedType type = feedTypeModel.feedType;
         
-        
-        switch (feedTypeModel.feedType) {
+        switch (type) {
             case FeedType_Following_Post:
+            case FeedType_Local_Quality_Post:
+
             {
                 [self showPostDetailView:feedTypeModel.newsFeedData];
               
@@ -558,6 +767,57 @@
             case FeedType_Invite_Friend:
                 [self showInvitefriendView];
                 break;
+                
+            case FeedType_Announcement_Welcome:
+                
+                break;
+                
+            case FeedType_Following_Collection:
+            {
+                CollectionModel* collModel = feedTypeModel.followingCollectionData;
+                [self showCollectioPageView:collModel];
+                
+            }
+                break;
+                
+            case FeedType_Announcement:
+            case FeedType_Announcement_Campaign:
+            {
+                AnnouncementModel* aModel = feedTypeModel.announcementData;
+                
+                switch (aModel.annType) {
+                    case AnnouncementType_User:
+                    {
+                        ProfileModel* model = [ProfileModel new];
+                        model.uid = aModel.relatedID;
+                        [self showProfilePageView:model];
+
+                    }
+                        break;
+                        
+                    case AnnouncementType_Post:
+                    {
+                        DraftModel* dModel = [DraftModel new];
+                        dModel.post_id = aModel.relatedID;
+                        [self showPostDetailView:dModel];
+                    }
+                        
+                        break;
+                    case AnnouncementType_NA:
+                        
+                        [self showAnnouncementView:feedTypeModel];
+                        
+                        break;
+                   
+                    default:
+                    case AnnouncementType_URL:
+                    {
+                        [self showWebView:aModel];
+                    }
+                        break;
+                }
+               
+            }
             default:
                 break;
         }
@@ -566,6 +826,28 @@
     }
     
 }
+
+- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        heightCache = [NSCache new];
+    });
+    
+    NSAssert(heightCache, @"Height cache must exist");
+    
+    NSString* key = [NSString stringWithFormat:@"%@",indexPath]; //Create a unique key here
+    NSNumber* cachedValue = [heightCache objectForKey: key];
+    
+    if(!cachedValue)
+    {
+        CGSize size = cell.frame.size;
+        [heightCache setObject: [NSNumber numberWithFloat: size.height] forKey: key];
+    }
+}
+
 
 #pragma mark - CollectionView Delegate
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -661,12 +943,50 @@
 
 #pragma mark - SHOW OTHER VIEW
 
+-(void)showWebView:(AnnouncementModel*)model
+{
+    _ctWebViewController = nil;
+
+    [self.navigationController pushViewController:self.ctWebViewController animated:YES onCompletion:^{
+        [self.ctWebViewController initData:model];
+    }];
+     
+    
+}
+-(void)showProfilePageView:(ProfileModel*)pModel
+{
+    _profileViewController = nil;
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        
+        
+        if ([pModel.uid isEqualToString:[Utils getUserID]]) {
+            [self.profileViewController requestAllDataWithType:ProfileViewTypeOwn UserID:[Utils getUserID]];
+
+        }
+        else{
+            [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:pModel.uid];
+
+        }
+
+    }];
+
+}
 -(void)showInvitefriendView
 {
     _inviteFrenViewController  = nil;
     [self.navigationController pushViewController:self.inviteFrenViewController animated:YES];
 }
 
+
+-(void)showAnnouncementView:(CTFeedTypeModel*)model
+{
+    _announceViewController = nil;
+    
+    [self.navigationController pushViewController:self.announceViewController animated:YES onCompletion:^{
+    
+        [self.announceViewController initData:model];
+    }];
+}
 -(void)showPostDetailView:(DraftModel*)draftModel
 {
     _feedV2DetailViewController = nil;
@@ -742,7 +1062,7 @@
         SLog(@"token :%@",[Utils getAppToken]);
         NSDictionary* dict = @{@"token" : [Utils getAppToken],
                                @"offset":@(self.newsFeedModels.offset + self.newsFeedModels.limit),
-                               @"limit" : @(ARRAY_LIST_SIZE)
+                               @"limit" : @(LIKES_LIST_SIZE)
                                };
         
         isMiddleOfLoadingServer = YES;
@@ -753,6 +1073,8 @@
             self.newsFeedModels = model;
             [self.arrayNewsFeed addObjectsFromArray:model.items];
             [self.ibTableView reloadData];
+            
+            [(UIActivityIndicatorView *)[self.ibFooterView viewWithTag:10] stopAnimating];
         } errorBlock:^(id object) {
             isMiddleOfLoadingServer = NO;
 
@@ -763,13 +1085,15 @@
 }
 
 //- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-//    float bottomEdge = scrollView.contentOffset.x + scrollView.frame.size.width;
+//    float bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
 //    
-//    float reload_distance = 10;
-//    if (bottomEdge >= scrollView.contentSize.width -  reload_distance) {
+//    float reload_distance = 100;
+//    if (bottomEdge >= scrollView.contentSize.height -  reload_distance) {
 //        
 //        if(![Utils isStringNull:self.newsFeedModels.paging.next])
 //        {
+//            [(UIActivityIndicatorView *)[self.ibFooterView viewWithTag:10] startAnimating];
+//
 //            [self requestServerForNewsFeed];
 //        }
 //      
@@ -777,14 +1101,48 @@
 //}
 
 
-- (void)scrollViewDidScroll: (UIScrollView *)scroll {
+- (void)scrollViewDidScroll: (UIScrollView *)scrollView {
     // UITableView only moves in one direction, y axis
-    CGFloat currentOffset = scroll.contentOffset.y;
-    CGFloat maximumOffset = scroll.contentSize.height - scroll.frame.size.height;
+    CGFloat currentOffset = scrollView.contentOffset.y;
+    CGFloat maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height;
     
     // Change 10.0 to adjust the distance from bottom
-    if (maximumOffset - currentOffset <= 10.0) {
-        [self requestServerForNewsFeed];
+    if (maximumOffset - currentOffset <= self.view.frame.size.height/2) {
+       
+        if(![Utils isStringNull:self.newsFeedModels.paging.next])
+        {
+            [(UIActivityIndicatorView *)[self.ibFooterView viewWithTag:10] startAnimating];
+            
+            [self requestServerForNewsFeed];
+        }
     }
+    
+    SLog(@"GG : %f",scrollView.contentOffset.y);
+    /*for top navigation bar alpha setting*/
+    int profileBackgroundHeight = TopBarHeight;
+   
+    if (scrollView.contentOffset.y > profileBackgroundHeight)
+    {
+        ibHeaderBackgroundView.alpha = 1;
+        
+        
+        
+    }
+    else{
+        float adjustment = (scrollView.contentOffset.y
+                            )/(profileBackgroundHeight);
+        // SLog(@"adjustment : %f",adjustment);
+        ibHeaderBackgroundView.alpha = adjustment;
+    }
+
 }
+
+-(void)initFooterView
+{
+    ibActivityIndicator.tag = 10;
+    ibActivityIndicator.hidesWhenStopped = YES;
+    self.ibTableView.tableFooterView = self.ibFooterView;
+
+}
+
 @end

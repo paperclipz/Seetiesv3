@@ -11,4 +11,5 @@
 @interface FeedType_SuggestionFetureTblCell : CommonTableViewCell
 -(void)initData:(NSArray<ProfileModel*>*)array;
 
+@property(nonatomic,copy)ProfileBlock didSelectprofileBlock;
 @end

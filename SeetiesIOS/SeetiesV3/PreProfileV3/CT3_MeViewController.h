@@ -11,8 +11,14 @@
 #import "CT3_SearchListingViewController.h"
 #import "Connections/ConnectionsViewController.h"
 #import "WalletListingViewController.h"
+#import "ProfileViewController.h"
+#import "CollectionListingViewController.h"
+
 @interface CT3_MeViewController : CommonViewController
 @property(nonatomic,strong)ShopListingViewController* shopListingViewController;
 @property(nonatomic,strong)CT3_SearchListingViewController* ct3_SearchListingViewController;
 @property(nonatomic,strong)ConnectionsViewController* connectionsViewController;
+@property(nonatomic,strong)ProfileViewController* profileViewController;
+@property(nonatomic, strong)WalletListingViewController *walletListingViewController;
+@property(nonatomic, strong)CollectionListingViewController *collectionListingViewController;
 @end

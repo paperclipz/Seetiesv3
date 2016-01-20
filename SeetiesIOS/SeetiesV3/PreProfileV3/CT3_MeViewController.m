@@ -9,25 +9,53 @@
 #import "CT3_MeViewController.h"
 
 @interface CT3_MeViewController ()
+@property (weak, nonatomic) IBOutlet UIScrollView *ibMainScrollView;
+@property (strong, nonatomic) IBOutlet UIView *ibContentView;
+@property (weak, nonatomic) IBOutlet UILabel *ibHeaderTitle;
+@property (weak, nonatomic) IBOutlet UIImageView *ibProfileImg;
+@property (weak, nonatomic) IBOutlet UILabel *ibProfileName;
+@property (weak, nonatomic) IBOutlet UILabel *ibViewProfileLbl;
+@property (weak, nonatomic) IBOutlet UILabel *ibWalletLbl;
+@property (weak, nonatomic) IBOutlet UILabel *ibCollectionLbl;
+@property (weak, nonatomic) IBOutlet UILabel *ibInviteLbl;
+@property (weak, nonatomic) IBOutlet UILabel *ibPromoLbl;
 
 @end
 
 @implementation CT3_MeViewController
 - (IBAction)btnTestWalletListingClicked:(id)sender {
-    WalletListingViewController *walletController = [WalletListingViewController new];
-    [self.navigationController pushViewController:walletController animated:YES];
+    [self.navigationController pushViewController:self.walletListingViewController animated:YES];
 }
+
 - (IBAction)btnTestShopListingClicked:(id)sender {
     [self.navigationController pushViewController:self.shopListingViewController animated:YES];
 }
+
 -(IBAction)btnTestSearchListingCliked:(id)sender{
-[self.navigationController pushViewController:self.ct3_SearchListingViewController animated:YES];
+    [self.navigationController pushViewController:self.ct3_SearchListingViewController animated:YES];
 }
+
 -(IBAction)btnTestConnectionsClicked:(id)sender{
-[self.navigationController pushViewController:self.connectionsViewController animated:YES];
+    [self.navigationController pushViewController:self.connectionsViewController animated:YES];
 }
+
+- (IBAction)btnCollectionListingClicked:(id)sender {
+    
+    _collectionListingViewController = nil;
+    ProfileModel* pModel = [ProfileModel new];
+    pModel.uid = [Utils getUserID];
+    [self.collectionListingViewController setType:ProfileViewTypeOwn ProfileModel:pModel NumberOfPage:2];
+    [self.navigationController pushViewController:self.collectionListingViewController animated:YES];
+}
+
+- (IBAction)btnProfileClicked:(id)sender {
+    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[Utils getUserID]];
+    [self.navigationController pushViewController:self.profileViewController animated:YES];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self initSelfView];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -45,6 +73,14 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+-(void)initSelfView{
+    [self.ibMainScrollView addSubview:self.ibContentView];
+    [self.ibContentView adjustToScreenWidth];
+
+}
+
+#pragma mark Declaration
 -(ShopListingViewController*)shopListingViewController
 {
     if (!_shopListingViewController) {
@@ -52,6 +88,7 @@
     }
     return _shopListingViewController;
 }
+
 -(CT3_SearchListingViewController*)ct3_SearchListingViewController
 {
     if (!_ct3_SearchListingViewController) {
@@ -59,11 +96,33 @@
     }
     return _ct3_SearchListingViewController;
 }
+
 -(ConnectionsViewController*)connectionsViewController
 {
     if (!_connectionsViewController) {
         _connectionsViewController = [ConnectionsViewController new];
     }
     return _connectionsViewController;
+}
+
+-(ProfileViewController*)profileViewController{
+    if (!_profileViewController) {
+        _profileViewController = [ProfileViewController new];
+    }
+    return _profileViewController;
+}
+
+-(WalletListingViewController*)walletListingViewController{
+    if (!_walletListingViewController) {
+        _walletListingViewController = [WalletListingViewController new];
+    }
+    return _walletListingViewController;
+}
+
+-(CollectionListingViewController*)collectionListingViewController{
+    if (!_collectionListingViewController) {
+        _collectionListingViewController = [CollectionListingViewController new];
+    }
+    return _collectionListingViewController;
 }
 @end

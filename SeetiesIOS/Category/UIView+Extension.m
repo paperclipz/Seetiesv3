@@ -58,4 +58,9 @@
     upperBorder.frame = CGRectMake(0, 0, CGRectGetWidth(self.frame), 1.0f);
     [self.layer addSublayer:upperBorder];
 }
+
+-(void)setSideCurveBorder
+{
+    [Utils setRoundBorder:self color:[UIColor clearColor] borderRadius:self.frame.size.height/2];
+}
 @end

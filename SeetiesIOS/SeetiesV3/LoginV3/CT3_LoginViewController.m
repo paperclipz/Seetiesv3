@@ -117,7 +117,6 @@
     
     [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypeLogin param:dict completeHandler:^(id object) {
         
-        
         if (self.didFinishLoginBlock) {
             self.didFinishLoginBlock();
         }
@@ -143,7 +142,7 @@
     
     [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypeLoginFacebook param:dict completeHandler:^(id object) {
         
-        
+
         if (self.didFinishLoginBlock) {
             self.didFinishLoginBlock();
         }
@@ -154,6 +153,7 @@
     }];
     
 }
+
 
 
 @end

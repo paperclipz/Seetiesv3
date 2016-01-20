@@ -60,6 +60,7 @@
     
     DraftModel* model = self.arrPosts[indexPath.row];
     
+    cell.btnProfileClickedBlock = self.btnProfileClickedBlock;
     [cell initData:model];
     return cell;
 }

@@ -57,13 +57,7 @@
 
 -(void)processLogin
 {
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    ProfileModel* model = [[ConnectionManager dataManager]userLoginProfileModel];
-    [defaults setObject:model.token forKey:TOKEN];
-    [defaults setObject:model.uid forKey:USERID];
      [self.newsFeedViewController refreshViewAfterLogin];
-
 }
 
 -(LeveyTabBarController*)leveyTabBarController
@@ -74,7 +68,7 @@
         
         _firstViewController = [[UINavigationController alloc]initWithRootViewController:self.newsFeedViewController];
         _firstViewController.navigationBar.hidden = YES;
-        _secondViewController = [[UINavigationController alloc]initWithRootViewController:self.profileViewController];
+        _secondViewController = [[UINavigationController alloc]initWithRootViewController:self.ct3MeViewController];
         _secondViewController.navigationBar.hidden = YES;
         _thirdViewController = [[UINavigationController alloc]initWithRootViewController:self.ct3_MoreViewController];
         _thirdViewController.navigationBar.hidden = YES;
@@ -131,6 +125,13 @@
     return _newsFeedViewController;
 }
 
+-(CT3_MeViewController*)ct3MeViewController{
+    if (!_ct3MeViewController) {
+        _ct3MeViewController = [CT3_MeViewController new];
+    }
+    return _ct3MeViewController;
+}
+
 -(NSArray*)arrTabImages
 {
     NSMutableDictionary *imgDic = [NSMutableDictionary dictionaryWithCapacity:3];
@@ -162,10 +163,10 @@
 - (BOOL)tabBarController:(LeveyTabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController atIndex:(NSInteger)index
 {
     
-    if (index == 1)
-    {
-        [self.profileViewController requestAllDataWithType:ProfileViewTypeOwn UserID:[Utils getUserID]];
-    }
+//    if (index == 1)
+//    {
+//        [self.profileViewController requestAllDataWithType:ProfileViewTypeOwn UserID:[Utils getUserID]];
+//    }
     
     return YES;
 }

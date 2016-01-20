@@ -10,5 +10,6 @@
 
 @interface AbroadQualityPostCVCell : CommonCollectionViewCell
 -(void)initData:(DraftModel*)model;
+@property(nonatomic,strong)ProfileBlock btnProfileClickedBlock;
 
 @end

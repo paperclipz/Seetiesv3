@@ -46,7 +46,7 @@
 @property(nonatomic,strong)NSString* collection_note;
 @property(nonatomic,strong)NSString* view_count;
 @property(nonatomic,strong)NSArray* content_languages;
-@property(nonatomic,strong)NSString* like;
+@property(nonatomic,assign)BOOL like;
 @property(nonatomic,strong)NSString* collect;
 
 /*Location*/
@@ -55,10 +55,12 @@
 @property(nonatomic,strong)Location* location;
 @property(nonatomic,strong)NSString* distance;
 @property(nonatomic,strong)NSString* place_formatted_address;
+-(NSString*)getPostDescription;
 
 -(void)process;
 -(void)customProcess;
-
+/*use to get the first language in array's title*/
+-(NSString*)getPostTitle;
 @end
 
 @interface DraftsModel : Model

@@ -95,10 +95,26 @@ typedef enum
     FeedType_Country_Promotion = 11,
     FeedType_Collect_Suggestion = 12,
     FeedType_Following_Collection = 13,
+    FeedType_Deal_Main = 14,
+    FeedType_Deal_QuickBrowse = 15,
+    FeedType_Deal_DealOfTheDay = 16,
+    FeedType_Deal_YourWallet = 17,
+    
     
 }FeedType;
 
 
+typedef enum
+{
+    AnnouncementType_User = 1,
+    AnnouncementType_Post = 2,
+    AnnouncementType_URL = 3,
+    AnnouncementType_NA = 4
+    
+}AnnouncementType;
+
+extern NSString *const SERVER_PATH_LINK_LIVE;
+extern NSString *const SERVER_PATH_LINK_DEV;
 extern NSString *const SERVER_PATH_LIVE;
 extern NSString *const SERVER_PATH_DEV;
 extern NSString *const SERVER_SUBPATH;
@@ -159,8 +175,12 @@ static BOOL IS_SIMULATOR = YES;
 static BOOL IS_SIMULATOR = NO;
 #endif
 
+
+/*NSUserDefaults key*/
 #define TOKEN @"ExpertToken"
 #define USERID @"Useruid"
+#define KEY_SYSTEM_LANG @"system_language"
+/*NSUserDefaults key*/
 
 
 

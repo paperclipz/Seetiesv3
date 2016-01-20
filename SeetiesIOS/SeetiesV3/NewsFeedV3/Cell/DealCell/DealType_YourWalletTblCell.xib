@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="81" id="KGk-i7-Jjw" customClass="DealType_YourWalletTblCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="81"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="80.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sKi-en-qHn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="73"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u36-7n-mil">
+                                <rect key="frame" x="10" y="17" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="j7z-aF-l81"/>
+                                    <constraint firstAttribute="width" constant="40" id="mwk-Gt-gUJ"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Wallet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vq5-mL-X70">
+                                <rect key="frame" x="58" y="17" width="164" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="jrj-BG-z4a"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PHQ-Pc-mYo">
+                                <rect key="frame" x="232" y="17" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="MKA-S2-ZSq"/>
+                                    <constraint firstAttribute="height" constant="40" id="VVa-VX-caq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ArrowBtn.png" translatesAutoresizingMaskIntoConstraints="NO" id="sPD-tq-p1b">
+                                <rect key="frame" x="272" y="17" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="C50-6x-tFh"/>
+                                    <constraint firstAttribute="height" constant="40" id="FHA-DX-wUS"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check this out" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kg0-Ax-L2D">
+                                <rect key="frame" x="58" y="36" width="164" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="FSh-OY-NUB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="u36-7n-mil" firstAttribute="centerY" secondItem="sKi-en-qHn" secondAttribute="centerY" id="0Yg-eJ-UYk"/>
+                            <constraint firstItem="u36-7n-mil" firstAttribute="height" secondItem="sKi-en-qHn" secondAttribute="height" id="6mP-Xk-usV"/>
+                            <constraint firstItem="PHQ-Pc-mYo" firstAttribute="leading" secondItem="vq5-mL-X70" secondAttribute="trailing" constant="10" id="AE8-L7-hLz"/>
+                            <constraint firstItem="u36-7n-mil" firstAttribute="leading" secondItem="sKi-en-qHn" secondAttribute="leading" constant="10" id="Hip-8D-HvZ"/>
+                            <constraint firstItem="u36-7n-mil" firstAttribute="centerY" secondItem="sKi-en-qHn" secondAttribute="centerY" id="PRh-0h-O8U"/>
+                            <constraint firstAttribute="trailing" secondItem="sPD-tq-p1b" secondAttribute="trailing" constant="8" id="S5z-4C-1Bj"/>
+                            <constraint firstItem="sPD-tq-p1b" firstAttribute="centerY" secondItem="sKi-en-qHn" secondAttribute="centerY" id="Wgl-LY-wux"/>
+                            <constraint firstItem="PHQ-Pc-mYo" firstAttribute="centerY" secondItem="sPD-tq-p1b" secondAttribute="centerY" id="cde-Ex-SIp"/>
+                            <constraint firstItem="vq5-mL-X70" firstAttribute="leading" secondItem="u36-7n-mil" secondAttribute="trailing" constant="8" id="gou-Gx-BKd"/>
+                            <constraint firstItem="PHQ-Pc-mYo" firstAttribute="leading" secondItem="kg0-Ax-L2D" secondAttribute="trailing" constant="10" id="pog-1c-RBO"/>
+                            <constraint firstItem="sPD-tq-p1b" firstAttribute="leading" secondItem="PHQ-Pc-mYo" secondAttribute="trailing" id="w0D-qQ-ayd"/>
+                            <constraint firstItem="vq5-mL-X70" firstAttribute="top" secondItem="u36-7n-mil" secondAttribute="top" id="yIn-sB-30M"/>
+                            <constraint firstItem="kg0-Ax-L2D" firstAttribute="leading" secondItem="u36-7n-mil" secondAttribute="trailing" constant="8" id="zhn-0Z-e4V"/>
+                            <constraint firstItem="kg0-Ax-L2D" firstAttribute="bottom" secondItem="u36-7n-mil" secondAttribute="bottom" id="zmV-dp-HWC"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="6mP-Xk-usV"/>
+                                <exclude reference="PRh-0h-O8U"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="sKi-en-qHn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="MEN-Un-kHK"/>
+                    <constraint firstItem="sKi-en-qHn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="ZWb-X7-g4J"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="sKi-en-qHn" secondAttribute="trailing" constant="-8" id="iJT-eF-YjU"/>
+                    <constraint firstItem="sKi-en-qHn" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="mbZ-pR-0Ki"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
+            <connections>
+                <outlet property="lblCount" destination="PHQ-Pc-mYo" id="Pcb-wm-C2X"/>
+            </connections>
+            <point key="canvasLocation" x="484" y="256.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ArrowBtn.png" width="30" height="30"/>
+    </resources>
+</document>

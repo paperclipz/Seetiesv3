@@ -9,6 +9,10 @@
 #import "FeedType_FollowingPostTblCell.h"
 
 @interface FeedType_FollowingPostTblCell()
+{
+
+    __weak IBOutlet NSLayoutConstraint *constTitleHeight;
+}
 @property (nonatomic,strong)CTFeedTypeModel* newsFeedTypeModel;
 @property (weak, nonatomic) IBOutlet UIImageView *ibPostImageView;
 @property (weak, nonatomic) IBOutlet UIView *ibSuggestedView;
@@ -38,6 +42,11 @@
     // Drawing code
 }
 */
+- (IBAction)btnProfileClicked:(id)sender {
+    if (self.btnProfileClickedBlock) {
+        self.btnProfileClickedBlock(self.newsFeedTypeModel.newsFeedData.user_info);
+    }
+}
 - (IBAction)btnShareClicked:(id)sender {
     
     if (self.btnPostShareClickedBlock) {
@@ -82,22 +91,22 @@
 
     self.newsFeedTypeModel = model;
     DraftModel* feedModel = self.newsFeedTypeModel.newsFeedData;
-    if (self.newsFeedTypeModel.feedType == FeedType_Country_Promotion) {
-        [self.ibPostImageView sd_setImageCroppedWithURL:[NSURL URLWithString:self.newsFeedTypeModel.newsFeedData.image] completed:nil];
-
-    }
-    
-    else{
+//    if (self.newsFeedTypeModel.feedType == FeedType_Country_Promotion) {
+//        [self.ibPostImageView sd_setImageCroppedWithURL:[NSURL URLWithString:self.newsFeedTypeModel.newsFeedData.image] completed:nil];
+//
+//    }
+//    
+//    else{
+//        
+//       
+//
+//    }
+    if (![Utils isArrayNull:feedModel.arrPhotos]) {
+        PhotoModel* pModel = self.newsFeedTypeModel.newsFeedData.arrPhotos[0];
+        [self.ibPostImageView sd_setImageCroppedWithURL:[NSURL URLWithString:pModel.imageURL] completed:nil];
         
-        if (![Utils isArrayNull:feedModel.arrPhotos]) {
-            PhotoModel* pModel = self.newsFeedTypeModel.newsFeedData.arrPhotos[0];
-            [self.ibPostImageView sd_setImageCroppedWithURL:[NSURL URLWithString:pModel.imageURL] completed:nil];
-
-        }
-
     }
-    
-    if (self.newsFeedTypeModel.tempType == FeedType_Local_Quality_Post) {
+    if (self.newsFeedTypeModel.feedType == FeedType_Local_Quality_Post) {
         self.constSuggestViewHeight.constant = 44;
 
     }
@@ -116,12 +125,21 @@
 
     }
     
-    self.lblTitle.text = feedModel.place_name;
+    if ([Utils isStringNull:[feedModel getPostTitle]]) {
+        constTitleHeight.constant = 0;
+    }
+    else {
+        constTitleHeight.constant = 30;
+    }
+    
+    self.lblTitle.text = [feedModel getPostTitle];
     self.lblLocation.text = feedModel.location.locality;
     
     self.lblLocation.text = [NSString stringWithFormat:@"%@ • %@",feedModel.location.locality,feedModel.location.country];
 
-    self.lblDescription.text = @"";
+    
+ 
+    [self.lblDescription setStandardText:[feedModel getPostDescription]];
 
     [self.ibProfileImageView sd_setImageWithURL:[NSURL URLWithString:feedModel.user_info.profile_photo_images]];
     

@@ -13,6 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UICollectionView *ibCollectionView;
 @property (weak, nonatomic) NSArray<ProfileModel*> *arrSuggestedFeatures;
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 
 @end
 @implementation FeedType_SuggestionFetureTblCell
@@ -21,6 +22,7 @@
 {
     self.arrSuggestedFeatures = array;
     [self.ibCollectionView reloadData];
+    self.lblTitle.text = LocalisedString(@"Your friends are on Seeties");
 }
 -(void)initSelfView
 {
@@ -68,6 +70,14 @@
     CGRect frame = [Utils getDeviceScreenSize];
     float suggestedFrameSize = (frame.size.width);
     return CGSizeMake(suggestedFrameSize - 40, (suggestedFrameSize/4) + 66);
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    ProfileModel* model = self.arrSuggestedFeatures[indexPath.row];
+    if (self.didSelectprofileBlock) {
+        self.didSelectprofileBlock(model);
+    }
 }
 
 

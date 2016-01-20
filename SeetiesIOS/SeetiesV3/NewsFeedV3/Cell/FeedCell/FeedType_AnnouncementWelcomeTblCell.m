@@ -12,28 +12,23 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
+@property (strong, nonatomic)AnnouncementModel* annModel;
 
 @end
 @implementation FeedType_AnnouncementWelcomeTblCell
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
-
 -(void)initData:(CTFeedTypeModel*)model
 {
-    
-    if(model.tempType == FeedType_Announcement_Campaign)
-    {
-     self.lblTitle.text = @"";
-    }
-    else{
-     self.lblTitle.text = @"adasdjadasdjasdoiajdiaosdjsaiodjsaiodjadasdjasdoiajdiaosdjsaiodjsaiodjadasdjasdoiajdiaosdjsaiodjsaiodjadasdjasdoiajdiaosdjsaiodjsaiodjadasdjasdoiajdiaosdjsaiodjsaiodjasdoiajdiaosdjsaiodjsaiodj";
-    }
-   
+    self.annModel = model.announcementData;
+    self.lblTitle.text = self.annModel.title[[Utils getDeviceAppLanguageCode]];
+//    if(model.feedType == FeedType_Announcement_Campaign)
+//    {
+//        self.lblTitle.text = self.annModel.title[[Utils getDeviceAppLanguageCode]];
+//    }
+//    else{
+//     self.lblTitle.text = @"";
+//    }
+//    
+    [self.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:self.annModel.photo] withPlaceHolder:[Utils getPlaceHolderImage] completed:nil];
 }
 @end
