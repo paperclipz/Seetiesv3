@@ -80,7 +80,7 @@
 }
 - (IBAction)btnTestCliked:(id)sender {
     
-    [self.navigationController pushViewController:self.meViewController animated:YES];
+    [self presentViewController:self.searchLocationViewController animated:YES completion:nil];
 }
 
 -(void)refreshViewAfterLogin
@@ -153,6 +153,14 @@
     }
     return _meViewController;
 }
+
+-(SearchLocationViewController*)searchLocationViewController{
+    if (!_searchLocationViewController) {
+        _searchLocationViewController = [SearchLocationViewController new];
+    }
+    return _searchLocationViewController;
+}
+
 #pragma mark - DEFAULT
 - (void)viewDidLoad {
     
