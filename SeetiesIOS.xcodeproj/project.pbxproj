@@ -57,6 +57,18 @@
 		0BFB21A71C2A8E0200EE9D84 /* featureYes@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BFB21A31C2A8E0200EE9D84 /* featureYes@3x.png */; };
 		8A0035261C4E2F51002BD9A3 /* CTWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0035241C4E2F51002BD9A3 /* CTWebViewController.m */; };
 		8A0035271C4E2F51002BD9A3 /* CTWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0035251C4E2F51002BD9A3 /* CTWebViewController.xib */; };
+		8A00352B1C4F4BD6002BD9A3 /* DealType_mainTblCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A00352A1C4F4BD6002BD9A3 /* DealType_mainTblCell.m */; };
+		8A00352D1C4F4BE2002BD9A3 /* DealType_mainTblCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A00352C1C4F4BE2002BD9A3 /* DealType_mainTblCell.xib */; };
+		8A0035321C4F4D76002BD9A3 /* DealMainCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0035301C4F4D76002BD9A3 /* DealMainCollectionViewCell.m */; };
+		8A0035331C4F4D76002BD9A3 /* DealMainCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0035311C4F4D76002BD9A3 /* DealMainCollectionViewCell.xib */; };
+		8A0035371C4F5E7D002BD9A3 /* DealType_QuickBrowseTblCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0035351C4F5E7D002BD9A3 /* DealType_QuickBrowseTblCell.m */; };
+		8A0035381C4F5E7D002BD9A3 /* DealType_QuickBrowseTblCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0035361C4F5E7D002BD9A3 /* DealType_QuickBrowseTblCell.xib */; };
+		8A00353C1C4F5EB4002BD9A3 /* QuickBrowseCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A00353A1C4F5EB4002BD9A3 /* QuickBrowseCVCell.m */; };
+		8A00353D1C4F5EB4002BD9A3 /* QuickBrowseCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A00353B1C4F5EB4002BD9A3 /* QuickBrowseCVCell.xib */; };
+		8A0035411C4F6E72002BD9A3 /* DealType_DealOTDTblCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A00353F1C4F6E72002BD9A3 /* DealType_DealOTDTblCell.m */; };
+		8A0035421C4F6E72002BD9A3 /* DealType_DealOTDTblCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0035401C4F6E72002BD9A3 /* DealType_DealOTDTblCell.xib */; };
+		8A0035461C4F7ABB002BD9A3 /* DealType_YourWalletTblCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0035441C4F7ABB002BD9A3 /* DealType_YourWalletTblCell.m */; };
+		8A0035471C4F7ABB002BD9A3 /* DealType_YourWalletTblCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0035451C4F7ABB002BD9A3 /* DealType_YourWalletTblCell.xib */; };
 		8A00979B1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A00979A1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m */; };
 		8A00979D1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A00979C1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib */; };
 		8A0348791C154F9C0015E606 /* SeetiesMoreInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0348771C154F9C0015E606 /* SeetiesMoreInfoViewController.m */; };
@@ -1318,6 +1330,24 @@
 		8A0035231C4E2F51002BD9A3 /* CTWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTWebViewController.h; sourceTree = "<group>"; };
 		8A0035241C4E2F51002BD9A3 /* CTWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTWebViewController.m; sourceTree = "<group>"; };
 		8A0035251C4E2F51002BD9A3 /* CTWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTWebViewController.xib; sourceTree = "<group>"; };
+		8A0035291C4F4BD6002BD9A3 /* DealType_mainTblCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealType_mainTblCell.h; sourceTree = "<group>"; };
+		8A00352A1C4F4BD6002BD9A3 /* DealType_mainTblCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealType_mainTblCell.m; sourceTree = "<group>"; };
+		8A00352C1C4F4BE2002BD9A3 /* DealType_mainTblCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DealType_mainTblCell.xib; sourceTree = "<group>"; };
+		8A00352F1C4F4D76002BD9A3 /* DealMainCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealMainCollectionViewCell.h; sourceTree = "<group>"; };
+		8A0035301C4F4D76002BD9A3 /* DealMainCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealMainCollectionViewCell.m; sourceTree = "<group>"; };
+		8A0035311C4F4D76002BD9A3 /* DealMainCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DealMainCollectionViewCell.xib; sourceTree = "<group>"; };
+		8A0035341C4F5E7D002BD9A3 /* DealType_QuickBrowseTblCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealType_QuickBrowseTblCell.h; sourceTree = "<group>"; };
+		8A0035351C4F5E7D002BD9A3 /* DealType_QuickBrowseTblCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealType_QuickBrowseTblCell.m; sourceTree = "<group>"; };
+		8A0035361C4F5E7D002BD9A3 /* DealType_QuickBrowseTblCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DealType_QuickBrowseTblCell.xib; sourceTree = "<group>"; };
+		8A0035391C4F5EB4002BD9A3 /* QuickBrowseCVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickBrowseCVCell.h; sourceTree = "<group>"; };
+		8A00353A1C4F5EB4002BD9A3 /* QuickBrowseCVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickBrowseCVCell.m; sourceTree = "<group>"; };
+		8A00353B1C4F5EB4002BD9A3 /* QuickBrowseCVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickBrowseCVCell.xib; sourceTree = "<group>"; };
+		8A00353E1C4F6E72002BD9A3 /* DealType_DealOTDTblCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealType_DealOTDTblCell.h; sourceTree = "<group>"; };
+		8A00353F1C4F6E72002BD9A3 /* DealType_DealOTDTblCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealType_DealOTDTblCell.m; sourceTree = "<group>"; };
+		8A0035401C4F6E72002BD9A3 /* DealType_DealOTDTblCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DealType_DealOTDTblCell.xib; sourceTree = "<group>"; };
+		8A0035431C4F7ABB002BD9A3 /* DealType_YourWalletTblCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealType_YourWalletTblCell.h; sourceTree = "<group>"; };
+		8A0035441C4F7ABB002BD9A3 /* DealType_YourWalletTblCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealType_YourWalletTblCell.m; sourceTree = "<group>"; };
+		8A0035451C4F7ABB002BD9A3 /* DealType_YourWalletTblCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DealType_YourWalletTblCell.xib; sourceTree = "<group>"; };
 		8A0097991B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomEditPhotoTableViewCell.h; sourceTree = "<group>"; };
 		8A00979A1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomEditPhotoTableViewCell.m; sourceTree = "<group>"; };
 		8A00979C1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomEditPhotoTableViewCell.xib; sourceTree = "<group>"; };
@@ -3099,8 +3129,34 @@
 		8A0035281C4F2D81002BD9A3 /* DealCell */ = {
 			isa = PBXGroup;
 			children = (
+				8A00352E1C4F4D3E002BD9A3 /* CollectionCell */,
+				8A0035291C4F4BD6002BD9A3 /* DealType_mainTblCell.h */,
+				8A00352A1C4F4BD6002BD9A3 /* DealType_mainTblCell.m */,
+				8A00352C1C4F4BE2002BD9A3 /* DealType_mainTblCell.xib */,
+				8A0035341C4F5E7D002BD9A3 /* DealType_QuickBrowseTblCell.h */,
+				8A0035351C4F5E7D002BD9A3 /* DealType_QuickBrowseTblCell.m */,
+				8A0035361C4F5E7D002BD9A3 /* DealType_QuickBrowseTblCell.xib */,
+				8A00353E1C4F6E72002BD9A3 /* DealType_DealOTDTblCell.h */,
+				8A00353F1C4F6E72002BD9A3 /* DealType_DealOTDTblCell.m */,
+				8A0035401C4F6E72002BD9A3 /* DealType_DealOTDTblCell.xib */,
+				8A0035431C4F7ABB002BD9A3 /* DealType_YourWalletTblCell.h */,
+				8A0035441C4F7ABB002BD9A3 /* DealType_YourWalletTblCell.m */,
+				8A0035451C4F7ABB002BD9A3 /* DealType_YourWalletTblCell.xib */,
 			);
 			path = DealCell;
+			sourceTree = "<group>";
+		};
+		8A00352E1C4F4D3E002BD9A3 /* CollectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				8A00352F1C4F4D76002BD9A3 /* DealMainCollectionViewCell.h */,
+				8A0035301C4F4D76002BD9A3 /* DealMainCollectionViewCell.m */,
+				8A0035311C4F4D76002BD9A3 /* DealMainCollectionViewCell.xib */,
+				8A0035391C4F5EB4002BD9A3 /* QuickBrowseCVCell.h */,
+				8A00353A1C4F5EB4002BD9A3 /* QuickBrowseCVCell.m */,
+				8A00353B1C4F5EB4002BD9A3 /* QuickBrowseCVCell.xib */,
+			);
+			path = CollectionCell;
 			sourceTree = "<group>";
 		};
 		8A03487B1C15793A0015E606 /* NSString+Extension */ = {
@@ -6318,6 +6374,7 @@
 				8A6CCEC91C18075800BCD54E /* ExploreIcon@2x.png in Resources */,
 				8A6CCED41C18075800BCD54E /* NotificationIconActive@3x.png in Resources */,
 				8AFA51F21C47B4AB00E7920E /* FeedType_FollowingCollectionTblCell.xib in Resources */,
+				8A0035471C4F7ABB002BD9A3 /* DealType_YourWalletTblCell.xib in Resources */,
 				8A6CCDA11C18075800BCD54E /* GreyShareIcon@3x.png in Resources */,
 				8A6584431B9851D300BC86B9 /* DraftTableViewCell.xib in Resources */,
 				8AD6C0B81B706CF30040437E /* OpenWebViewController.xib in Resources */,
@@ -6403,6 +6460,7 @@
 				8A6CCD871C18075800BCD54E /* CommentIcon@3x.png in Resources */,
 				8A6CCE7B1C18075800BCD54E /* ProfileSettingsIcon@2x.png in Resources */,
 				8A6CCD6A1C18075800BCD54E /* ExploreLikeIcon@2x.png in Resources */,
+				8A00353D1C4F5EB4002BD9A3 /* QuickBrowseCVCell.xib in Resources */,
 				8A6CCE591C18075800BCD54E /* LikeIcon@2x.png in Resources */,
 				8AFA51DE1C47B4AB00E7920E /* WalletListingViewController.xib in Resources */,
 				8AD6C11B1B706CF30040437E /* poweredByFoursquare_gray@2x.png in Resources */,
@@ -6531,6 +6589,7 @@
 				8AD6C29E1B7072FB0040437E /* PublishViewController.xib in Resources */,
 				8A6CCCF31C18075800BCD54E /* FollowingCollectionIcon@2x.png in Resources */,
 				8A6CCDF41C18075800BCD54E /* InviteBtnInactive@3x.png in Resources */,
+				8A0035381C4F5E7D002BD9A3 /* DealType_QuickBrowseTblCell.xib in Resources */,
 				8A6CCD981C18075800BCD54E /* FeedSuggestionFollow@2x.png in Resources */,
 				8A6CCDC11C18075800BCD54E /* EventLogo@2x.png in Resources */,
 				8A65843E1B9850CE00BC86B9 /* DraftViewController.xib in Resources */,
@@ -6839,6 +6898,7 @@
 				8A6CCD5E1C18075800BCD54E /* CloseStatus@3x.png in Resources */,
 				8A6CCDDE1C18075800BCD54E /* ShowAllIcon@3x.png in Resources */,
 				8A6CCE7A1C18075800BCD54E /* ProfileSearchBar@3x.png in Resources */,
+				8A0035421C4F6E72002BD9A3 /* DealType_DealOTDTblCell.xib in Resources */,
 				8A4512351BDE2BEC008DE870 /* LikesListingViewController.xib in Resources */,
 				8A114CBB1BE73F5D006AE3F0 /* textbg.png in Resources */,
 				8A6CCED21C18075800BCD54E /* NotificationIcon@3x.png in Resources */,
@@ -6944,6 +7004,7 @@
 				C238E3271C4649AA00570A25 /* slider-default-handle.png in Resources */,
 				8A6CCCE81C18075800BCD54E /* FollowCollectionBahasaIndoIcon@3x.png in Resources */,
 				8A6CCE0E1C18075800BCD54E /* LoginInstagramIcon@3x.png in Resources */,
+				8A0035331C4F4D76002BD9A3 /* DealMainCollectionViewCell.xib in Resources */,
 				8A6CCE011C18075800BCD54E /* InviteWhatsappIcon@2x.png in Resources */,
 				8A6CCCBD1C18075800BCD54E /* Icon-60.png in Resources */,
 				8A6CCE101C18075800BCD54E /* SeetiesLogo@3x.png in Resources */,
@@ -7036,6 +7097,7 @@
 				8A6CCD9A1C18075800BCD54E /* FilterIcon@2x.png in Resources */,
 				8A6CCDF11C18075800BCD54E /* InviteBtnActive@2x.png in Resources */,
 				8AFA51C81C47B4AB00E7920E /* NewLandingViewController.xib in Resources */,
+				8A00352D1C4F4BE2002BD9A3 /* DealType_mainTblCell.xib in Resources */,
 				8A6CCE911C18075800BCD54E /* YellowCollect@2x.png in Resources */,
 				8A6CCD1A1C18075800BCD54E /* EditIconSwipe@3x.png in Resources */,
 				8AD6C2941B7072FB0040437E /* ChooseCategoryViewController.xib in Resources */,
@@ -7297,6 +7359,7 @@
 				8A5430101B8C1646009EFFF4 /* MapViewController.m in Sources */,
 				8AD6C1131B706CF30040437E /* FSKeychain.m in Sources */,
 				8AEDBFB11C2031BA000BD2FF /* FourSquareModel.m in Sources */,
+				8A00353C1C4F5EB4002BD9A3 /* QuickBrowseCVCell.m in Sources */,
 				8A114C761BE73F5D006AE3F0 /* AFNetworkActivityLogger.m in Sources */,
 				8A00979B1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m in Sources */,
 				8A0035261C4E2F51002BD9A3 /* CTWebViewController.m in Sources */,
@@ -7346,6 +7409,7 @@
 				8A8475251BC5274C006DD614 /* UILabel+Extra.m in Sources */,
 				8AD6C0BC1B706CF30040437E /* CommentViewController.m in Sources */,
 				8ABA51F91C10329600A3DC15 /* PhotoViewController.m in Sources */,
+				8A0035321C4F4D76002BD9A3 /* DealMainCollectionViewCell.m in Sources */,
 				8AFA51F11C47B4AB00E7920E /* FeedType_FollowingCollectionTblCell.m in Sources */,
 				8A114CA41BE73F5D006AE3F0 /* PECropViewController.m in Sources */,
 				C238E33F1C4649AA00570A25 /* NMRangeSlider.m in Sources */,
@@ -7396,6 +7460,7 @@
 				8A4512341BDE2BEC008DE870 /* LikesListingViewController.m in Sources */,
 				8AFA51FB1C47B4AB00E7920E /* FeedSquareCollectionViewCell.m in Sources */,
 				8A114CCC1BE73F5D006AE3F0 /* ParallaxHeaderView.m in Sources */,
+				8A00352B1C4F4BD6002BD9A3 /* DealType_mainTblCell.m in Sources */,
 				8A114C831BE73F5D006AE3F0 /* BMXDataItem.m in Sources */,
 				8AF2C2D21BA27EDE00B0A7F1 /* UIImage+Tint.m in Sources */,
 				8AC8F7221BDA414E00DEF14A /* CollectionListingTabViewController.m in Sources */,
@@ -7459,6 +7524,7 @@
 				8A114CD31BE73F5D006AE3F0 /* BaseViewController.m in Sources */,
 				8AFA52091C47B4AB00E7920E /* SearchLTabViewController.m in Sources */,
 				8A3757E41B85D635009DB7D4 /* EditPhotoViewController.m in Sources */,
+				8A0035411C4F6E72002BD9A3 /* DealType_DealOTDTblCell.m in Sources */,
 				8AC8F7481BDA414E00DEF14A /* EditCollectionViewController.m in Sources */,
 				8A114C7B1BE73F5D006AE3F0 /* BKCardNumberField.m in Sources */,
 				8ABA51F01C0F042000A3DC15 /* UINavigationController+Transition.m in Sources */,
@@ -7469,6 +7535,7 @@
 				8AD6C0C61B706CF30040437E /* NearByRecommtationViewController.m in Sources */,
 				8A114C7A1BE73F5D006AE3F0 /* BKCardExpiryField.m in Sources */,
 				8AD6BA631B705DF20040437E /* AppDelegate.m in Sources */,
+				8A0035371C4F5E7D002BD9A3 /* DealType_QuickBrowseTblCell.m in Sources */,
 				8AEDBFBA1C2031BA000BD2FF /* SeNearbyShopModel.m in Sources */,
 				8A3408ED1B86EA4B009B66C3 /* UITableView+LongPressReorder.m in Sources */,
 				8AD6C2911B7072FB0040437E /* ChangeSearchLocationViewController.m in Sources */,
@@ -7524,6 +7591,7 @@
 				8AF39CDC1BC66536009C7F26 /* UITableView+NXEmptyView.m in Sources */,
 				8AFA51EF1C47B4AB00E7920E /* FeedType_CountryPromotionTblCell.m in Sources */,
 				8A317C061BE1C5620010CAEE /* ShareViewController.m in Sources */,
+				8A0035461C4F7ABB002BD9A3 /* DealType_YourWalletTblCell.m in Sources */,
 				8A3409CF1B8B0DCB009B66C3 /* UIImage+Resize.m in Sources */,
 				8A993CC41C290CE4009359E2 /* UITextView+Extension.swift in Sources */,
 				8A114C941BE73F5D006AE3F0 /* FXImageView.m in Sources */,

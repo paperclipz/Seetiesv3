@@ -95,8 +95,14 @@ typedef enum
     FeedType_Country_Promotion = 11,
     FeedType_Collect_Suggestion = 12,
     FeedType_Following_Collection = 13,
+    FeedType_Deal_Main = 14,
+    FeedType_Deal_QuickBrowse = 15,
+    FeedType_Deal_DealOfTheDay = 16,
+    FeedType_Deal_YourWallet = 17,
+    
     
 }FeedType;
+
 
 typedef enum
 {

@@ -17,4 +17,6 @@
 -(void)setY:(float)Y;
 -(void)refreshConstraint;
 -(void)prefix_addUpperBorder;
+-(void)setSideCurveBorder;
+
 @end
