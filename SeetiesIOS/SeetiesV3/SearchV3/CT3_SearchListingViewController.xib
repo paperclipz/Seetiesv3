@@ -8,7 +8,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CT3_SearchListingViewController">
             <connections>
+                <outlet property="ibLocationTableView" destination="Oft-NT-KdD" id="OPh-GL-DPf"/>
+                <outlet property="ibLocationText" destination="Zmd-g1-JdJ" id="ar8-Qp-gpn"/>
+                <outlet property="ibLocationView" destination="B7Y-6D-e5h" id="tb4-q0-sme"/>
                 <outlet property="ibScrollView" destination="ed9-Gn-4kz" id="nNo-xt-LVa"/>
+                <outlet property="ibSearchText" destination="Lqz-nu-XTy" id="aqp-BO-Lgu"/>
                 <outlet property="ibSegmentedControl" destination="65a-RL-bLb" id="avK-1M-MEb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -80,21 +84,56 @@
                     <rect key="frame" x="0.0" y="139" width="320" height="429"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                 </scrollView>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B7Y-6D-e5h">
+                    <rect key="frame" x="0.0" y="95" width="320" height="473"/>
+                    <subviews>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Oft-NT-KdD">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="473"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="lo0-ry-EQ3"/>
+                                <outlet property="delegate" destination="-1" id="iFN-03-8Sx"/>
+                            </connections>
+                        </tableView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="Oft-NT-KdD" firstAttribute="top" secondItem="B7Y-6D-e5h" secondAttribute="top" id="3oR-2x-cKB"/>
+                        <constraint firstAttribute="bottom" secondItem="Oft-NT-KdD" secondAttribute="bottom" id="82y-yx-gx8"/>
+                        <constraint firstAttribute="trailing" secondItem="Oft-NT-KdD" secondAttribute="trailing" id="hFc-G4-24h"/>
+                        <constraint firstItem="Oft-NT-KdD" firstAttribute="leading" secondItem="B7Y-6D-e5h" secondAttribute="leading" id="uHq-9y-Yw1"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="B7Y-6D-e5h" secondAttribute="trailing" id="6kc-QI-lQI"/>
                 <constraint firstAttribute="trailing" secondItem="65a-RL-bLb" secondAttribute="trailing" constant="8" id="7HP-GI-ovf"/>
                 <constraint firstItem="4xE-PA-eq6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="B9A-Ii-ezX"/>
+                <constraint firstItem="B7Y-6D-e5h" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="139" id="Ejy-xj-QSG"/>
                 <constraint firstItem="ed9-Gn-4kz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="139" id="GAQ-O2-3td"/>
                 <constraint firstItem="65a-RL-bLb" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="103" id="GTr-mi-NcL"/>
                 <constraint firstAttribute="trailing" secondItem="ed9-Gn-4kz" secondAttribute="trailing" id="GkT-hI-gfU"/>
+                <constraint firstAttribute="bottom" secondItem="B7Y-6D-e5h" secondAttribute="bottom" id="Kyc-TZ-Z19"/>
                 <constraint firstAttribute="trailing" secondItem="4xE-PA-eq6" secondAttribute="trailing" id="Mp6-cx-Uu7"/>
+                <constraint firstItem="B7Y-6D-e5h" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="PLU-K6-uSM"/>
+                <constraint firstItem="B7Y-6D-e5h" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="95" id="SfD-bm-VTz"/>
                 <constraint firstAttribute="bottom" secondItem="ed9-Gn-4kz" secondAttribute="bottom" id="bp3-SX-7E1"/>
                 <constraint firstItem="4xE-PA-eq6" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="eEm-2q-gQN"/>
+                <constraint firstAttribute="bottom" secondItem="B7Y-6D-e5h" secondAttribute="bottom" id="fhk-rO-RSQ"/>
+                <constraint firstAttribute="trailing" secondItem="B7Y-6D-e5h" secondAttribute="trailing" id="h9O-qE-RGb"/>
+                <constraint firstItem="B7Y-6D-e5h" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="n7f-pE-Mdc"/>
                 <constraint firstItem="65a-RL-bLb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="oC1-4i-iPZ"/>
                 <constraint firstItem="ed9-Gn-4kz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="rxm-qb-NH1"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="Ejy-xj-QSG"/>
+                    <exclude reference="Kyc-TZ-Z19"/>
+                    <exclude reference="h9O-qE-RGb"/>
+                    <exclude reference="n7f-pE-Mdc"/>
+                </mask>
+            </variation>
         </view>
     </objects>
     <resources>
