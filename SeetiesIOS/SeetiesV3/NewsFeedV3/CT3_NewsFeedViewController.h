@@ -9,10 +9,12 @@
 #import "CommonViewController.h"
 #import "CT3_MeViewController.h"
 #import "VoucherListingViewController.h"
+#import "SearchLocationViewController.h"
 
 @interface CT3_NewsFeedViewController : BaseViewController
 
 @property(nonatomic,strong)CT3_MeViewController* meViewController;
+@property(nonatomic, strong) SearchLocationViewController *searchLocationViewController;
 @property(nonatomic,copy)VoidBlock btnLoginClickedBlock;
 
 -(void)refreshViewAfterLogin;

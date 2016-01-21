@@ -1247,6 +1247,10 @@
 		C238E33D1C4649AA00570A25 /* slider-metal-trackBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = C238E3211C4649AA00570A25 /* slider-metal-trackBackground.png */; };
 		C238E33E1C4649AA00570A25 /* slider-metal-trackBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C238E3221C4649AA00570A25 /* slider-metal-trackBackground@2x.png */; };
 		C238E33F1C4649AA00570A25 /* NMRangeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = C238E3241C4649AA00570A25 /* NMRangeSlider.m */; };
+		C25B50331C4E277D0027283E /* SearchLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C25B50311C4E277D0027283E /* SearchLocationViewController.m */; };
+		C25B50341C4E277D0027283E /* SearchLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25B50321C4E277D0027283E /* SearchLocationViewController.xib */; };
+		C2FB1CDF1C4F7A3B004AE990 /* SearchLocationAreaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FB1CDD1C4F7A3B004AE990 /* SearchLocationAreaCell.m */; };
+		C2FB1CE01C4F7A3B004AE990 /* SearchLocationAreaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FB1CDE1C4F7A3B004AE990 /* SearchLocationAreaCell.xib */; };
 		C5AFD557B47280FB16C39985 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9C815292A4ED6F2408E5E5 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -2922,6 +2926,12 @@
 		C238E3221C4649AA00570A25 /* slider-metal-trackBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-metal-trackBackground@2x.png"; sourceTree = "<group>"; };
 		C238E3231C4649AA00570A25 /* NMRangeSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMRangeSlider.h; sourceTree = "<group>"; };
 		C238E3241C4649AA00570A25 /* NMRangeSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMRangeSlider.m; sourceTree = "<group>"; };
+		C25B50301C4E277D0027283E /* SearchLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchLocationViewController.h; sourceTree = "<group>"; };
+		C25B50311C4E277D0027283E /* SearchLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchLocationViewController.m; sourceTree = "<group>"; };
+		C25B50321C4E277D0027283E /* SearchLocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchLocationViewController.xib; sourceTree = "<group>"; };
+		C2FB1CDC1C4F7A3B004AE990 /* SearchLocationAreaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchLocationAreaCell.h; sourceTree = "<group>"; };
+		C2FB1CDD1C4F7A3B004AE990 /* SearchLocationAreaCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchLocationAreaCell.m; sourceTree = "<group>"; };
+		C2FB1CDE1C4F7A3B004AE990 /* SearchLocationAreaCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchLocationAreaCell.xib; sourceTree = "<group>"; };
 		CAB2B54F0EC79309593A3C4C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -6191,6 +6201,12 @@
 				8AFA51C31C47B4AB00E7920E /* SeetizensTableViewCell.h */,
 				8AFA51C41C47B4AB00E7920E /* SeetizensTableViewCell.m */,
 				8AFA51C51C47B4AB00E7920E /* SeetizensTableViewCell.xib */,
+				C25B50301C4E277D0027283E /* SearchLocationViewController.h */,
+				C25B50311C4E277D0027283E /* SearchLocationViewController.m */,
+				C25B50321C4E277D0027283E /* SearchLocationViewController.xib */,
+				C2FB1CDC1C4F7A3B004AE990 /* SearchLocationAreaCell.h */,
+				C2FB1CDD1C4F7A3B004AE990 /* SearchLocationAreaCell.m */,
+				C2FB1CDE1C4F7A3B004AE990 /* SearchLocationAreaCell.xib */,
 			);
 			path = SearchV3;
 			sourceTree = "<group>";
@@ -6442,6 +6458,7 @@
 				8A6CCE1A1C18075800BCD54E /* NotificationBySeeties@3x.png in Resources */,
 				8A6CCE8F1C18075800BCD54E /* TimeIcon@2x.png in Resources */,
 				8AD6C2A21B7072FB0040437E /* RecommendV2ViewController.xib in Resources */,
+				C25B50341C4E277D0027283E /* SearchLocationViewController.xib in Resources */,
 				8A6CCD4D1C18075800BCD54E /* WebsiteLinkIcon@2x.png in Resources */,
 				8A6CCEC61C18075800BCD54E /* TraditionalChinese.png in Resources */,
 				8A6CCD501C18075800BCD54E /* CollectionNoPhoto@3x.png in Resources */,
@@ -6819,6 +6836,7 @@
 				8AD6C2881B7072FB0040437E /* BrightnessViewController.xib in Resources */,
 				8A6CCE761C18075800BCD54E /* ProfileLocationIcon@3x.png in Resources */,
 				C238E3291C4649AA00570A25 /* slider-default-track.png in Resources */,
+				C2FB1CE01C4F7A3B004AE990 /* SearchLocationAreaCell.xib in Resources */,
 				8A6CCDD51C18075800BCD54E /* LandmarkCultureIcon@2x.png in Resources */,
 				8A6CCD2F1C18075800BCD54E /* CloseIcon@2x.png in Resources */,
 				8A6CCE271C18075800BCD54E /* BluePhone@2x.png in Resources */,
@@ -7591,12 +7609,14 @@
 				8AD6C2831B7072FB0040437E /* AddLinkViewController.m in Sources */,
 				8A114CE81BE75CA0006AE3F0 /* CollectionViewController.m in Sources */,
 				8AFA51E11C47B4AB00E7920E /* CT3_LoginViewController.m in Sources */,
+				C25B50331C4E277D0027283E /* SearchLocationViewController.m in Sources */,
 				8AD6C0FC1B706CF30040437E /* SearchViewV2.m in Sources */,
 				8A114CE61BE75CA0006AE3F0 /* AddCollectionDataViewController.m in Sources */,
 				8A295FD11C50A50F00747DBA /* UITabBar+Extension.m in Sources */,
 				8AD6BE4F1B706CF30040437E /* ExploreViewController.m in Sources */,
 				8A114CD21BE73F5D006AE3F0 /* UrlDataClass.m in Sources */,
 				8AFA520B1C47B4AB00E7920E /* SeetizensTableViewCell.m in Sources */,
+				C2FB1CDF1C4F7A3B004AE990 /* SearchLocationAreaCell.m in Sources */,
 				8AD6C2811B7072FB0040437E /* AddHourViewController.m in Sources */,
 				8AD6C0C21B706CF30040437E /* FullImageViewController.m in Sources */,
 				0B99C2001BCBA1F1006D7E63 /* AnnounceViewController.m in Sources */,
