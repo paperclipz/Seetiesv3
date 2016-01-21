@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "SearchLocationAreaCell.h"
+#import "SearchManager.h"
+#import "SearchModel.h"
 
 @interface SearchLocationViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate>
-
+@property(nonatomic, copy)VoidBlock refreshLocation;
 @end
