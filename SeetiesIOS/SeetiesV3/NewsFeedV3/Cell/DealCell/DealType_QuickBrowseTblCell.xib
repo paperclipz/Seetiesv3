@@ -18,7 +18,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yL5-p7-B0I">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="place_picker_search_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="0bL-RR-SEC">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SearchBarIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="0bL-RR-SEC">
                                 <rect key="frame" x="10" y="10" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="b5a-96-zca"/>
@@ -95,6 +95,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="place_picker_search_icon.png" width="19" height="19"/>
+        <image name="SearchBarIcon.png" width="30" height="30"/>
     </resources>
 </document>

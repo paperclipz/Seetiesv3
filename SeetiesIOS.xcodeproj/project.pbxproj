@@ -184,6 +184,7 @@
 		8A114CEA1BE75CA0006AE3F0 /* NewCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114CE41BE75CA0006AE3F0 /* NewCollectionViewController.m */; };
 		8A114CEB1BE75CA0006AE3F0 /* NewCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A114CE51BE75CA0006AE3F0 /* NewCollectionViewController.xib */; };
 		8A11513E1BE777FD006AE3F0 /* UIScrollView+VGParallaxHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A11513D1BE777FD006AE3F0 /* UIScrollView+VGParallaxHeader.m */; };
+		8A295FD11C50A50F00747DBA /* UITabBar+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A295FD01C50A50F00747DBA /* UITabBar+Extension.m */; };
 		8A2E2C141B79E7A30010895E /* RecommendationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E2C121B79E7A30010895E /* RecommendationViewController.m */; };
 		8A2E2C151B79E7A30010895E /* RecommendationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A2E2C131B79E7A30010895E /* RecommendationViewController.xib */; };
 		8A2E2CE21B81CFE40010895E /* STSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E2CE01B81CFE40010895E /* STSearchViewController.m */; };
@@ -1566,6 +1567,8 @@
 		8A114CE51BE75CA0006AE3F0 /* NewCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewCollectionViewController.xib; sourceTree = "<group>"; };
 		8A11513C1BE777FD006AE3F0 /* UIScrollView+VGParallaxHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+VGParallaxHeader.h"; sourceTree = "<group>"; };
 		8A11513D1BE777FD006AE3F0 /* UIScrollView+VGParallaxHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+VGParallaxHeader.m"; sourceTree = "<group>"; };
+		8A295FCF1C50A50F00747DBA /* UITabBar+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBar+Extension.h"; sourceTree = "<group>"; };
+		8A295FD01C50A50F00747DBA /* UITabBar+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+Extension.m"; sourceTree = "<group>"; };
 		8A2E2C111B79E7A30010895E /* RecommendationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendationViewController.h; sourceTree = "<group>"; };
 		8A2E2C121B79E7A30010895E /* RecommendationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendationViewController.m; sourceTree = "<group>"; };
 		8A2E2C131B79E7A30010895E /* RecommendationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendationViewController.xib; sourceTree = "<group>"; };
@@ -3806,6 +3809,15 @@
 			path = NEW_newsFeed;
 			sourceTree = "<group>";
 		};
+		8A295FCE1C50A4EB00747DBA /* UITabbar+Extension */ = {
+			isa = PBXGroup;
+			children = (
+				8A295FCF1C50A50F00747DBA /* UITabBar+Extension.h */,
+				8A295FD01C50A50F00747DBA /* UITabBar+Extension.m */,
+			);
+			name = "UITabbar+Extension";
+			sourceTree = "<group>";
+		};
 		8A2E2CE71B81E1360010895E /* Extra */ = {
 			isa = PBXGroup;
 			children = (
@@ -5309,6 +5321,7 @@
 		8AD6BA961B706CF10040437E /* CATEGORY */ = {
 			isa = PBXGroup;
 			children = (
+				8A295FCE1C50A4EB00747DBA /* UITabbar+Extension */,
 				8ADD47001C4CE9C600AEAE2B /* UILabel+Extension */,
 				8AF2924F1C32447600EF48EB /* UIImage+Extension */,
 				8A993CC51C296085009359E2 /* NSarray+Extension */,
@@ -7580,6 +7593,7 @@
 				8AFA51E11C47B4AB00E7920E /* CT3_LoginViewController.m in Sources */,
 				8AD6C0FC1B706CF30040437E /* SearchViewV2.m in Sources */,
 				8A114CE61BE75CA0006AE3F0 /* AddCollectionDataViewController.m in Sources */,
+				8A295FD11C50A50F00747DBA /* UITabBar+Extension.m in Sources */,
 				8AD6BE4F1B706CF30040437E /* ExploreViewController.m in Sources */,
 				8A114CD21BE73F5D006AE3F0 /* UrlDataClass.m in Sources */,
 				8AFA520B1C47B4AB00E7920E /* SeetizensTableViewCell.m in Sources */,

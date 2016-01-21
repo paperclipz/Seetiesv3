@@ -16,5 +16,6 @@
 @property(nonatomic,copy)VoidBlock btnLoginClickedBlock;
 
 -(void)refreshViewAfterLogin;
+-(void)scrollToTop;
 
 @end

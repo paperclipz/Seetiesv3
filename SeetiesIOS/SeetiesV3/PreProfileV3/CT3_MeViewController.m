@@ -77,6 +77,7 @@
 -(void)initSelfView{
     [self.ibMainScrollView addSubview:self.ibContentView];
     [self.ibContentView adjustToScreenWidth];
+    
 
 }
 

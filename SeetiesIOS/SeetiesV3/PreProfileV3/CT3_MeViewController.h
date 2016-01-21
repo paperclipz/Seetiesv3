@@ -14,7 +14,7 @@
 #import "ProfileViewController.h"
 #import "CollectionListingViewController.h"
 
-@interface CT3_MeViewController : CommonViewController
+@interface CT3_MeViewController : BaseViewController
 @property(nonatomic,strong)ShopListingViewController* shopListingViewController;
 @property(nonatomic,strong)CT3_SearchListingViewController* ct3_SearchListingViewController;
 @property(nonatomic,strong)ConnectionsViewController* connectionsViewController;

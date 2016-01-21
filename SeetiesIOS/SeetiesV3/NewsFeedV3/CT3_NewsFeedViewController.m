@@ -38,6 +38,7 @@
 #import "SearchViewV2Controller.h"
 
 
+
 static NSCache* heightCache = nil;
 #define TopBarHeight 64.0f
 #define NUMBER_OF_SECTION 2
@@ -47,6 +48,7 @@ static NSCache* heightCache = nil;
     __weak IBOutlet UIActivityIndicatorView *ibActivityIndicator;
     __weak IBOutlet UIImageView *ibHeaderBackgroundView;
     __weak IBOutlet NSLayoutConstraint *constTopScrollView;
+    
 }
 /*IBOUTLET*/
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
@@ -187,6 +189,7 @@ static NSCache* heightCache = nil;
 {
     if (!_feedV2DetailViewController) {
         _feedV2DetailViewController = [FeedV2DetailViewController new];
+
     }
     
     return _feedV2DetailViewController;
@@ -226,6 +229,7 @@ static NSCache* heightCache = nil;
     [super viewDidLoad];
     [self initSelfView];
     [self refreshViewAfterLogin];
+
   //  [self getDummyData];
     // Do any additional setup after loading the view from its nib.
 }
@@ -239,6 +243,7 @@ static NSCache* heightCache = nil;
 -(void)initSelfView
 {
  
+    
     self.automaticallyAdjustsScrollViewInsets = NO;
     constTopScrollView.constant = TopBarHeight;
 
@@ -1054,7 +1059,7 @@ static NSCache* heightCache = nil;
         SLog(@"token :%@",[Utils getAppToken]);
         NSDictionary* dict = @{@"token" : [Utils getAppToken],
                                @"offset":@(self.newsFeedModels.offset + self.newsFeedModels.limit),
-                               @"limit" : @(LIKES_LIST_SIZE)
+                               @"limit" : @(5)
                                };
         
         isMiddleOfLoadingServer = YES;
@@ -1109,16 +1114,13 @@ static NSCache* heightCache = nil;
         }
     }
     
-    SLog(@"GG : %f",scrollView.contentOffset.y);
     /*for top navigation bar alpha setting*/
     int profileBackgroundHeight = TopBarHeight;
    
     if (scrollView.contentOffset.y > profileBackgroundHeight)
     {
         ibHeaderBackgroundView.alpha = 1;
-        
-        
-        
+                
     }
     else{
         float adjustment = (scrollView.contentOffset.y
@@ -1137,4 +1139,8 @@ static NSCache* heightCache = nil;
 
 }
 
+-(void)scrollToTop
+{
+    [self.ibTableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+}
 @end

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CT3_MoreViewController : CommonViewController
+@interface CT3_MoreViewController : BaseViewController
 
 @end
