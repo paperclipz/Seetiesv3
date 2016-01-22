@@ -51,12 +51,34 @@
     [self layoutIfNeeded];
 }
 
-- (void)prefix_addUpperBorder
+- (void)prefix_addUpperBorder:(UIColor*)color
 {
     CALayer *upperBorder = [CALayer layer];
-    upperBorder.backgroundColor = [[UIColor greenColor] CGColor];
-    upperBorder.frame = CGRectMake(0, 0, CGRectGetWidth(self.frame), 1.0f);
+    upperBorder.backgroundColor = [color CGColor];
+    upperBorder.frame = CGRectMake(0, 0, self.frame.size.width, 1.0f);
     [self.layer addSublayer:upperBorder];
+}
+
+-(void)prefix_addLowerBorder:(UIColor*)color{
+    SLog(@"view border width: %f", self.frame.size.width);
+    CALayer *lowerBorder = [CALayer layer];
+    lowerBorder.backgroundColor = [color CGColor];
+    lowerBorder.frame = CGRectMake(0, self.frame.size.height-1, self.frame.size.width, 1.0f);
+    [self.layer addSublayer:lowerBorder];
+}
+
+-(void)prefix_addLeftBorder:(UIColor*)color{
+    CALayer *leftBorder = [CALayer layer];
+    leftBorder.backgroundColor = [color CGColor];
+    leftBorder.frame = CGRectMake(0, 0, 1.0f, self.frame.size.height);
+    [self.layer addSublayer:leftBorder];
+}
+
+-(void)prefix_addRightBorder:(UIColor*)color{
+    CALayer *rightBorder = [CALayer layer];
+    rightBorder.backgroundColor = [color CGColor];
+    rightBorder.frame = CGRectMake(self.frame.size.width-1, 0, 1.0f, self.frame.size.height);
+    [self.layer addSublayer:rightBorder];
 }
 
 -(void)setSideCurveBorder

@@ -16,7 +16,10 @@
 -(void)setX:(float)X;
 -(void)setY:(float)Y;
 -(void)refreshConstraint;
--(void)prefix_addUpperBorder;
+-(void)prefix_addUpperBorder:(UIColor*)color;
+-(void)prefix_addLowerBorder:(UIColor*)color;
+-(void)prefix_addLeftBorder:(UIColor*)color;
+-(void)prefix_addRightBorder:(UIColor*)color;
 -(void)setSideCurveBorder;
 
 @end

@@ -19,24 +19,17 @@
 @property (weak, nonatomic) IBOutlet UILabel *ibCollectionLbl;
 @property (weak, nonatomic) IBOutlet UILabel *ibInviteLbl;
 @property (weak, nonatomic) IBOutlet UILabel *ibPromoLbl;
+@property (weak, nonatomic) IBOutlet UIView *ibProfileView;
+@property (weak, nonatomic) IBOutlet UIView *ibWalletView;
+@property (weak, nonatomic) IBOutlet UIView *ibCollectionView;
+@property (weak, nonatomic) IBOutlet UIView *ibInviteFriendsView;
+@property (weak, nonatomic) IBOutlet UIView *ibPromoCodeView;
 
 @end
 
 @implementation CT3_MeViewController
-- (IBAction)btnTestWalletListingClicked:(id)sender {
+- (IBAction)btnWalletListingClicked:(id)sender {
     [self.navigationController pushViewController:self.walletListingViewController animated:YES];
-}
-
-- (IBAction)btnTestShopListingClicked:(id)sender {
-    [self.navigationController pushViewController:self.shopListingViewController animated:YES];
-}
-
--(IBAction)btnTestSearchListingCliked:(id)sender{
-    [self.navigationController pushViewController:self.ct3_SearchListingViewController animated:YES];
-}
-
--(IBAction)btnTestConnectionsClicked:(id)sender{
-    [self.navigationController pushViewController:self.connectionsViewController animated:YES];
 }
 
 - (IBAction)btnCollectionListingClicked:(id)sender {
@@ -53,10 +46,20 @@
     [self.navigationController pushViewController:self.profileViewController animated:YES];
 }
 
+- (IBAction)btnNotificationClicked:(id)sender {
+}
+
+- (IBAction)btnInviteClicked:(id)sender {
+}
+
+- (IBAction)btnPromoClicked:(id)sender {
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initSelfView];
     // Do any additional setup after loading the view from its nib.
+    [self initSelfView];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -75,35 +78,48 @@
 */
 
 -(void)initSelfView{
+    
     [self.ibMainScrollView addSubview:self.ibContentView];
-    [self.ibContentView adjustToScreenWidth];
+    
+//    self.ibContentView.translatesAutoresizingMaskIntoConstraints = NO;
+//    self.ibMainScrollView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    NSLayoutConstraint *leading = [NSLayoutConstraint constraintWithItem:self.ibContentView attribute:NSLayoutAttributeLeading relatedBy:0 toItem:self.ibMainScrollView attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0];
+    NSLayoutConstraint *trailing = [NSLayoutConstraint constraintWithItem:self.ibContentView attribute:NSLayoutAttributeTrailing relatedBy:0 toItem:self.ibMainScrollView attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0];
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.ibContentView attribute:NSLayoutAttributeTop relatedBy:0 toItem:self.ibMainScrollView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
+    NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:self.ibContentView attribute:NSLayoutAttributeBottom relatedBy:0 toItem:self.ibMainScrollView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
+    
+    [self.ibMainScrollView addConstraints:@[leading, trailing, top, bottom]];
+//    [self.ibMainScrollView setContentSize:CGSizeMake(self.ibMainScrollView.frame.size.width, self.ibMainScrollView.frame.size.height)];
+    
+    SLog(@"scrollview width: %f", self.ibMainScrollView.frame.size.width);
+    SLog(@"contentview width: %f", self.ibContentView.frame.size.width);
+    
+    [self.ibProfileView prefix_addLowerBorder:[UIColor lightGrayColor]];
 
+    [self.ibWalletView prefix_addUpperBorder:[UIColor lightGrayColor]];
+    [self.ibWalletView prefix_addRightBorder:[UIColor lightGrayColor]];
+    [self.ibWalletView prefix_addLowerBorder:[UIColor lightGrayColor]];
+    
+    [self.ibCollectionView prefix_addUpperBorder:[UIColor lightGrayColor]];
+    [self.ibCollectionView prefix_addLeftBorder:[UIColor lightGrayColor]];
+    [self.ibCollectionView prefix_addLowerBorder:[UIColor lightGrayColor]];
+    
+    [self.ibInviteFriendsView prefix_addUpperBorder:[UIColor lightGrayColor]];
+    [self.ibInviteFriendsView prefix_addLowerBorder:[UIColor lightGrayColor]];
+    
+    [self.ibPromoCodeView prefix_addUpperBorder:[UIColor lightGrayColor]];
+    [self.ibPromoCodeView prefix_addLowerBorder:[UIColor lightGrayColor]];
 }
+
+-(void)viewDidAppear:(BOOL)animated{
+//    [self.view layoutIfNeeded];
+//    [self initSelfView];
+}
+
+
 
 #pragma mark Declaration
--(ShopListingViewController*)shopListingViewController
-{
-    if (!_shopListingViewController) {
-        _shopListingViewController = [ShopListingViewController new];
-    }
-    return _shopListingViewController;
-}
-
--(CT3_SearchListingViewController*)ct3_SearchListingViewController
-{
-    if (!_ct3_SearchListingViewController) {
-        _ct3_SearchListingViewController = [CT3_SearchListingViewController new];
-    }
-    return _ct3_SearchListingViewController;
-}
-
--(ConnectionsViewController*)connectionsViewController
-{
-    if (!_connectionsViewController) {
-        _connectionsViewController = [ConnectionsViewController new];
-    }
-    return _connectionsViewController;
-}
 
 -(ProfileViewController*)profileViewController{
     if (!_profileViewController) {
