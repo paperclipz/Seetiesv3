@@ -102,7 +102,7 @@
     if(!_shopListingTableViewController)
     {
         _shopListingTableViewController = [SearchLTabViewController new];
-        _shopListingTableViewController.TabType = @"Shops";
+        _shopListingTableViewController.searchListingType = SearchListingTypeShop;
     }
     return _shopListingTableViewController;
 }
@@ -110,7 +110,7 @@
     if(!_collectionListingTableViewController)
     {
         _collectionListingTableViewController = [SearchLTabViewController new];
-        _collectionListingTableViewController.TabType = @"Collection";
+        _collectionListingTableViewController.searchListingType = SearchsListingTypeCollections;
     }
     return _collectionListingTableViewController;
 }
@@ -118,7 +118,7 @@
     if(!_PostsListingTableViewController)
     {
         _PostsListingTableViewController = [SearchLTabViewController new];
-        _PostsListingTableViewController.TabType = @"Posts";
+        _PostsListingTableViewController.searchListingType = SearchsListingTypePosts;
     }
     return _PostsListingTableViewController;
 }
@@ -126,7 +126,7 @@
     if(!_SeetizensListingTableViewController)
     {
         _SeetizensListingTableViewController = [SearchLTabViewController new];
-        _SeetizensListingTableViewController.TabType = @"Seetizens";
+        _SeetizensListingTableViewController.searchListingType = SearchsListingTypeSeetizens;
     }
     return _SeetizensListingTableViewController;
 }

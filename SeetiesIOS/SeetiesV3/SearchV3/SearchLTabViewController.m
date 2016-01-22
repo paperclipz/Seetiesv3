@@ -18,11 +18,21 @@
 @end
 
 @implementation SearchLTabViewController
+-(void)viewDidAppear:(BOOL)animated
+{
+   // [self reloadView];
+}
 
+-(void)reloadView
+{
+    [self.ibTableView reloadData];
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self initSelfView];
+    [self refreshRequest];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,40 +44,69 @@
     self.ibTableView.delegate = self;
     self.ibTableView.dataSource = self;
     
-    if ([self.TabType isEqualToString:@"Shops"]) {
-        self.constFilterHeight.constant = 50;
-        [self.ibTableView registerClass:[ShopTableViewCell class] forCellReuseIdentifier:@"ShopTableViewCell"];
-    }else if ([self.TabType isEqualToString:@"Collection"]){
-        self.constFilterHeight.constant = 50;
-        [self.ibTableView registerClass:[ProfilePageCollectionTableViewCell class] forCellReuseIdentifier:@"ProfilePageCollectionTableViewCell"];
-    }else if ([self.TabType isEqualToString:@"Posts"]){
-        self.constFilterHeight.constant = 0;
-        [self.ibTableView registerClass:[PostsTableViewCell class] forCellReuseIdentifier:@"PostsTableViewCell"];
-    }else{
-        self.constFilterHeight.constant = 0;
-        [self.ibTableView registerClass:[SeetizensTableViewCell class] forCellReuseIdentifier:@"SeetizensTableViewCell"];
+    switch (self.searchListingType) {
+        default:
+        case SearchListingTypeShop:
+            self.constFilterHeight.constant = 50;
+            [self.ibTableView registerClass:[ShopTableViewCell class] forCellReuseIdentifier:@"ShopTableViewCell"];
+            break;
+        case SearchsListingTypeCollections:
+            self.constFilterHeight.constant = 50;
+            [self.ibTableView registerClass:[ProfilePageCollectionTableViewCell class] forCellReuseIdentifier:@"ProfilePageCollectionTableViewCell"];
+            break;
+        case SearchsListingTypePosts:
+            self.constFilterHeight.constant = 0;
+            [self.ibTableView registerClass:[PostsTableViewCell class] forCellReuseIdentifier:@"PostsTableViewCell"];
+            break;
+        case SearchsListingTypeSeetizens:
+            self.constFilterHeight.constant = 0;
+            [self.ibTableView registerClass:[SeetizensTableViewCell class] forCellReuseIdentifier:@"SeetizensTableViewCell"];
+            break;
     }
     
     
 }
+-(void)refreshRequest{
+    switch (self.searchListingType) {
+        default:
+        case SearchListingTypeShop:
+            break;
+        case SearchsListingTypeCollections:
+            break;
+        case SearchsListingTypePosts:
+            break;
+        case SearchsListingTypeSeetizens:
+            break;
+    }
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([self.TabType isEqualToString:@"Shops"]) {
-        
-        if (indexPath.row == 2) {
-            return [ShopTableViewCell getHeightWithoutImage];
-            
-        }
-        else{
-            return [ShopTableViewCell getHeight];
-            
-        }
-    }else if ([self.TabType isEqualToString:@"Collection"]){
-        return [ProfilePageCollectionTableViewCell getHeight];
-    }else if ([self.TabType isEqualToString:@"Posts"]){
-        return [PostsTableViewCell getHeight];
-    }else{
-        return [SeetizensTableViewCell getHeight];
+
+    
+    switch (self.searchListingType) {
+        default:
+        case SearchListingTypeShop:
+            if (indexPath.row == 2) {
+                return [ShopTableViewCell getHeightWithoutImage];
+                
+            }
+            else{
+                return [ShopTableViewCell getHeight];
+                
+            }
+            break;
+        case SearchsListingTypeCollections:
+
+            return [ProfilePageCollectionTableViewCell getHeight];
+            break;
+        case SearchsListingTypePosts:
+
+            return [PostsTableViewCell getHeight];
+            break;
+        case SearchsListingTypeSeetizens:
+
+            return [SeetizensTableViewCell getHeight];
+            break;
     }
     
     
@@ -81,65 +120,49 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([self.TabType isEqualToString:@"Shops"]) {
-        ShopTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"ShopTableViewCell"];
-        
-        if (indexPath.row == 2) {
-            // [cell setIsOpen:model.location.opening_hours.open_now];
+
+    switch (self.searchListingType) {
+        default:
+        case SearchListingTypeShop:
+        {
+            ShopTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"ShopTableViewCell"];
             
-            cell.ibDealView.hidden = YES;
+            if (indexPath.row == 2) {
+                // [cell setIsOpen:model.location.opening_hours.open_now];
+                
+                cell.ibDealView.hidden = YES;
+                
+            }else{
+                cell.ibDealView.hidden = NO;
+            }
             
-        }else{
-            cell.ibDealView.hidden = NO;
+            return cell;
         }
-        
-        return cell;
-    }else if ([self.TabType isEqualToString:@"Collection"]){
-        ProfilePageCollectionTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"ProfilePageCollectionTableViewCell"];
-        return cell;
-    }else if ([self.TabType isEqualToString:@"Posts"]){
-        PostsTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"PostsTableViewCell"];
-        return cell;
-    }else{
-        SeetizensTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"SeetizensTableViewCell"];
-        cell.btnFollowBlock = ^(void)
+            break;
+        case SearchsListingTypeCollections:
+        {
+            ProfilePageCollectionTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"ProfilePageCollectionTableViewCell"];
+            return cell;
+        }
+            break;
+        case SearchsListingTypePosts:
+        {
+            PostsTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"PostsTableViewCell"];
+            return cell;
+        }
+            break;
+        case SearchsListingTypeSeetizens:
+        {
+            SeetizensTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"SeetizensTableViewCell"];
+            cell.btnFollowBlock = ^(void)
         {
             NSLog(@"FollowButton Click");
         };
-        return cell;
+            return cell;
+        }
+            
+            break;
     }
-
-    
-    
-    //    CollectionModel* collModel = self.arrCollections[indexPath.row];
-    //
-    //    NSString* userID = [Utils getUserID];
-    //
-    //    if ([collModel.user_info.uid isEqualToString:userID]) {
-    //
-    //        [cell initData:collModel profileType:ProfileViewTypeOwn];
-    //    }
-    //
-    //    else{
-    //        [cell initData:collModel profileType:ProfileViewTypeOthers];
-    //
-    //    }
-    //
-    //    __weak CollectionModel* weakModel =collModel;
-    //
-    //    cell.btnEditClickedBlock = ^(void)
-    //    {
-    //        if (_didSelectEdiCollectionRowBlock) {
-    //            self.didSelectEdiCollectionRowBlock(weakModel);
-    //        }
-    //    };
-    //
-    //    cell.btnFollowBlock = ^(void)
-    //    {
-    //        [self requestServerToFollowFromOthersCollection:weakModel];
-    //    };
-    
-    //  return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

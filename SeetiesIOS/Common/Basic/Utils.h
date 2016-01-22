@@ -79,6 +79,16 @@ typedef enum {
 
 typedef enum {
     
+    SearchListingTypeShop,
+    SearchsListingTypeCollections,
+    SearchsListingTypePosts,
+    SearchsListingTypeSeetizens
+    
+    
+} SearchListingType;
+
+typedef enum {
+    
     SeetiesShopTypeDetail,
     SeetiesShopTypeMap,
     SeetiesShopTypeDeal,

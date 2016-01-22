@@ -20,7 +20,7 @@
 @implementation ConnectionsTabViewController
 -(void)viewDidAppear:(BOOL)animated
 {
-  //  [self reloadView];
+    //[self reloadView];
 }
 
 -(void)reloadView
