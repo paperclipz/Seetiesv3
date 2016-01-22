@@ -28,4 +28,13 @@
 
 @property(nonatomic,strong)NSArray<UserModel >* follower;
 @property(nonatomic,strong)NSArray<UserModel >* following;
+@property(nonatomic,assign)int total_page;
+@property(nonatomic,assign)int total_result;
+@property(nonatomic,assign)int page;
+
+@property(nonatomic,strong)NSString* next;
+@property(nonatomic,strong)NSString* previous;
+@property(nonatomic,assign)int offset;
+@property(nonatomic,assign)int total_collections;
+@property(nonatomic,assign)int limit;
 @end

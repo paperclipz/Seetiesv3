@@ -9,6 +9,9 @@
 #import "ConnectionsTabViewController.h"
 #import "SeetizensTableViewCell.h"
 @interface ConnectionsTabViewController ()
+{
+    BOOL isMiddleOfCallingServer;
+}
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 @property(nonatomic,strong)UsersModel* usersModel;
 @property(nonatomic,strong)NSMutableArray* arrUsers;
@@ -48,13 +51,16 @@
     
 }
 -(void)refreshRequest{
-    if ([self.TabType isEqualToString:@"Follower"]) {
-        [self requestServerForUserFollower];
-        
-    }else if ([self.TabType isEqualToString:@"Following"]){
-        [self requestServerForUserFollowing];
-    }else{
-        
+    switch (self.usersListingType) {
+        default:
+        case UsersListingTypeFollower:
+            [self requestServerForUserFollower];
+            
+            break;
+        case UsersListingTypeFollowing:
+            [self requestServerForUserFollowing];
+            
+            break;
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -106,45 +112,49 @@
 }
 -(void)requestServerForUserFollower{
     SLog(@"requestServerForUserFollower work");
+    isMiddleOfCallingServer = true;
     //need to input token for own profile private collection, no token is get other people public collection
     NSString* appendString = [NSString stringWithFormat:@"%@/follower",self.userID];
     
-    NSDictionary* dict = @{@"page":@"1",
+    NSDictionary* dict = @{@"page":self.usersModel.page?@(self.usersModel.page + 1):@1,
                            @"list_size":@(ARRAY_LIST_SIZE),
                            @"token":[Utils getAppToken],
                            @"uid":self.userID
                            };
     
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeUserFollower param:dict appendString:appendString completeHandler:^(id object) {
+        isMiddleOfCallingServer = false;
         self.usersModel = [[ConnectionManager dataManager]usersModel];
         
         [self.arrUsers addObjectsFromArray:self.usersModel.follower];
         SLog(@"UID == %@",[self.arrUsers[0] userUID]);
         [self.ibTableView reloadData];
     } errorBlock:^(id object) {
-       
+       isMiddleOfCallingServer = false;
         
     }];
 }
 -(void)requestServerForUserFollowing{
     SLog(@"requestServerForUserFollowing work");
+    isMiddleOfCallingServer = true;
     //need to input token for own profile private collection, no token is get other people public collection
     NSString* appendString = [NSString stringWithFormat:@"%@/following",self.userID];
     
-    NSDictionary* dict = @{@"page":@"1",
+    NSDictionary* dict = @{@"page":self.usersModel.page?@(self.usersModel.page + 1):@1,
                            @"list_size":@(ARRAY_LIST_SIZE),
                            @"token":[Utils getAppToken],
                            @"uid":self.userID
                            };
     
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeUserFollower param:dict appendString:appendString completeHandler:^(id object) {
+        isMiddleOfCallingServer = false;
         self.usersModel = [[ConnectionManager dataManager]usersModel];
         
         [self.arrUsers addObjectsFromArray:self.usersModel.following];
         [self.ibTableView reloadData];
     } errorBlock:^(id object) {
         
-        
+        isMiddleOfCallingServer = false;
     }];
 }
 -(NSMutableArray*)arrUsers
@@ -208,6 +218,45 @@
                 
             }
         }];
+        
+    }
+}
+#pragma mark - UIScrollView Delegate
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    
+    CGPoint offset = scrollView.contentOffset;
+    CGRect bounds = scrollView.bounds;
+    CGSize size = scrollView.contentSize;
+    UIEdgeInsets inset = scrollView.contentInset;
+    float y = offset.y + bounds.size.height - inset.bottom;
+    float h = size.height;
+    
+    float reload_distance = 10;
+    if(y >= h - reload_distance) {
+        
+        if (!isMiddleOfCallingServer) {
+            
+            if(self.usersListingType == UsersListingTypeFollower)
+            {
+                if (self.usersModel.total_page > self.usersModel.page) {
+                    
+                    [self requestServerForUserFollower];
+                }
+                
+            }
+            else if(self.usersListingType == UsersListingTypeFollowing)
+            {
+                if (self.usersModel.total_page > self.usersModel.page) {
+                    
+                    [self requestServerForUserFollowing];
+                }
+                
+            }
+        }
+        
+        
         
     }
 }

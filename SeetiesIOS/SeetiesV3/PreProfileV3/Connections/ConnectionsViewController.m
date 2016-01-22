@@ -64,7 +64,7 @@
     if(!_FollowerConnectionsTabViewController)
     {
         _FollowerConnectionsTabViewController = [ConnectionsTabViewController new];
-        _FollowerConnectionsTabViewController.TabType = @"Follower";
+        _FollowerConnectionsTabViewController.usersListingType = UsersListingTypeFollower;
         _FollowerConnectionsTabViewController.userID = self.userID;
         __weak typeof (self)weakSelf = self;
         
@@ -82,7 +82,7 @@
     if(!_FollowingConnectionsTabViewController)
     {
         _FollowingConnectionsTabViewController = [ConnectionsTabViewController new];
-        _FollowingConnectionsTabViewController.TabType = @"Following";
+        _FollowingConnectionsTabViewController.usersListingType = UsersListingTypeFollowing;
         _FollowingConnectionsTabViewController.userID = self.userID;
         
         __weak typeof (self)weakSelf = self;
