@@ -64,6 +64,17 @@
     if(!_FollowerConnectionsTabViewController)
     {
         _FollowerConnectionsTabViewController = [ConnectionsTabViewController new];
+        _FollowerConnectionsTabViewController.TabType = @"Follower";
+        _FollowerConnectionsTabViewController.userID = self.userID;
+        __weak typeof (self)weakSelf = self;
+        
+        _FollowerConnectionsTabViewController.didSelectUserRowBlock = ^(NSString* userid)
+        {
+            _profileViewController = nil;
+            [weakSelf.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:userid];
+            [weakSelf.navigationController pushViewController:weakSelf.profileViewController animated:YES];
+
+        };
     }
     return _FollowerConnectionsTabViewController;
 }
@@ -71,7 +82,26 @@
     if(!_FollowingConnectionsTabViewController)
     {
         _FollowingConnectionsTabViewController = [ConnectionsTabViewController new];
+        _FollowingConnectionsTabViewController.TabType = @"Following";
+        _FollowingConnectionsTabViewController.userID = self.userID;
+        
+        __weak typeof (self)weakSelf = self;
+        
+        _FollowingConnectionsTabViewController.didSelectUserRowBlock = ^(NSString* userid)
+        {
+            _profileViewController = nil;
+            [weakSelf.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:userid];
+            [weakSelf.navigationController pushViewController:weakSelf.profileViewController animated:YES];
+            
+        };
     }
     return _FollowingConnectionsTabViewController;
+}
+-(ProfileViewController*)profileViewController
+{
+    if(!_profileViewController)
+        _profileViewController = [ProfileViewController new];
+    
+    return _profileViewController;
 }
 @end

@@ -14,6 +14,7 @@
 		0B40B3FC1C1FD2A7002D4ECB /* SeRecommendationsSeeAllViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B40B3FA1C1FD2A7002D4ECB /* SeRecommendationsSeeAllViewController.xib */; };
 		0B40B3FF1C2164C9002D4ECB /* SSDefaultLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B40B3FD1C2164C9002D4ECB /* SSDefaultLogo@2x.png */; };
 		0B40B4001C2164C9002D4ECB /* SSDefaultLogo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B40B3FE1C2164C9002D4ECB /* SSDefaultLogo@3x.png */; };
+		0B497B041C509579004989DF /* UsersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B497B031C509579004989DF /* UsersModel.m */; };
 		0B6A54E01BB51F84005B9D6B /* ReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6A54DE1BB51F84005B9D6B /* ReportViewController.m */; };
 		0B6A54E11BB51F84005B9D6B /* ReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B6A54DF1BB51F84005B9D6B /* ReportViewController.xib */; };
 		0B6AEA6A1C47B7CF009B7D33 /* ConnectionsTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6AEA651C47B7CF009B7D33 /* ConnectionsTabViewController.m */; };
@@ -1273,6 +1274,8 @@
 		0B40B3FA1C1FD2A7002D4ECB /* SeRecommendationsSeeAllViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeRecommendationsSeeAllViewController.xib; sourceTree = "<group>"; };
 		0B40B3FD1C2164C9002D4ECB /* SSDefaultLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SSDefaultLogo@2x.png"; path = "SeetiesIOS/SEETIES_ASSETS/SeetiesArtWork/SeetiShop/SSDefaultLogo@2x.png"; sourceTree = SOURCE_ROOT; };
 		0B40B3FE1C2164C9002D4ECB /* SSDefaultLogo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SSDefaultLogo@3x.png"; path = "SeetiesIOS/SEETIES_ASSETS/SeetiesArtWork/SeetiShop/SSDefaultLogo@3x.png"; sourceTree = SOURCE_ROOT; };
+		0B497B021C509579004989DF /* UsersModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersModel.h; sourceTree = "<group>"; };
+		0B497B031C509579004989DF /* UsersModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsersModel.m; sourceTree = "<group>"; };
 		0B6A54DD1BB51F84005B9D6B /* ReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportViewController.h; sourceTree = "<group>"; };
 		0B6A54DE1BB51F84005B9D6B /* ReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportViewController.m; sourceTree = "<group>"; };
 		0B6A54DF1BB51F84005B9D6B /* ReportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReportViewController.xib; sourceTree = "<group>"; };
@@ -5850,6 +5853,8 @@
 				8AEDBFA71C2031BA000BD2FF /* UserDefaultModel.m */,
 				8ADD47011C4CFD6D00AEAE2B /* AnnouncementModel.h */,
 				8ADD47021C4CFD6D00AEAE2B /* AnnouncementModel.m */,
+				0B497B021C509579004989DF /* UsersModel.h */,
+				0B497B031C509579004989DF /* UsersModel.m */,
 			);
 			name = MODELS;
 			path = Models;
@@ -7579,6 +7584,7 @@
 				8A3757DB1B85B606009DB7D4 /* AddNewPlaceSubView.m in Sources */,
 				8A114CC21BE73F5D006AE3F0 /* NSDate+RFC1123.m in Sources */,
 				8AD6BA601B705DF20040437E /* main.m in Sources */,
+				0B497B041C509579004989DF /* UsersModel.m in Sources */,
 				8A114C841BE73F5D006AE3F0 /* BMXSwipableCell+ConfigureCell.m in Sources */,
 				8AFA52011C47B4AB00E7920E /* CT3_NewsFeedViewController.m in Sources */,
 				8AFA51D51C47B4AB00E7920E /* ShopTableViewCell.m in Sources */,

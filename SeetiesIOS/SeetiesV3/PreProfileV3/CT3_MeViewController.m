@@ -36,6 +36,8 @@
 }
 
 -(IBAction)btnTestConnectionsClicked:(id)sender{
+
+    self.connectionsViewController.userID = [Utils getUserID];
     [self.navigationController pushViewController:self.connectionsViewController animated:YES];
 }
 

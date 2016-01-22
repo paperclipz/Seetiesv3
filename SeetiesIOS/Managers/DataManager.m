@@ -14,6 +14,7 @@
 @interface DataManager()
 
 @property(nonatomic,strong)NSMutableDictionary* dictCollections;
+@property(nonatomic,strong)NSMutableDictionary* dictUser;
 @property(nonatomic,strong)NSMutableDictionary* dictLikes;
 @property(nonatomic,strong)NSMutableDictionary* dictPosts;
 
@@ -209,6 +210,35 @@
 
     [dataManager.dictCollections setValue:[NSNumber numberWithBool:following] forKey:collectionID];
 
+}
+
+
++(BOOL)isUserFollowed:(NSString*)UserID isFollowing:(BOOL)isFollowing
+{
+    
+    BOOL isCollected = isFollowing;
+    DataManager* dataManager = [DataManager Instance];
+    if ([[dataManager.dictUser allKeys]containsObject:UserID]) {
+        isCollected = [[dataManager.dictCollections objectForKey:UserID]boolValue];
+        
+    }
+    else{
+        
+        [DataManager setCollectionFollowing:UserID isFollowing:isFollowing];
+    }
+    
+    return isCollected;
+    
+    
+}
+
+
++(void)setUserFollowing:(NSString*)UserID isFollowing:(BOOL)following
+{
+    DataManager* dataManager = [DataManager Instance];
+    
+    [dataManager.dictUser setValue:[NSNumber numberWithBool:following] forKey:UserID];
+    
 }
 
 

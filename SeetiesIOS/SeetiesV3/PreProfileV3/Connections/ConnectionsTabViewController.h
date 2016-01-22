@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void (^DidSelectUserRowBlock)(NSString *userid);
 @interface ConnectionsTabViewController : CommonViewController <UITableViewDataSource,UITableViewDelegate>
+@property(nonatomic,copy)DidSelectUserRowBlock didSelectUserRowBlock;
 
+@property(nonatomic,strong)NSString* TabType;
+@property(nonatomic,strong)NSString* userID;
+-(void)reloadView;
+-(void)refreshRequest;
 @end

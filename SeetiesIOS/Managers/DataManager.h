@@ -23,6 +23,7 @@
 #import "SeShopDetailModel.h"
 #import "SeShopPhotoModel.h"
 #import "FacebookModel.h"
+#import "UsersModel.h"
 
 @class FacebookModel;
 @class  DraftsModel;
@@ -64,7 +65,7 @@ typedef void(^CompletionVoidBlock) (void);
 @property(nonatomic,strong)SeShopDetailModel* seShopDetailModel;
 @property(nonatomic,strong)SeetiShopsModel* seNearbyShopModel;
 @property(nonatomic,strong)SeetiShopsModel* seNearbyShopListingModel;
-
+@property(nonatomic,strong)UsersModel* usersModel;
 
 /* ================================ News Feed ================================ */
 
@@ -83,5 +84,7 @@ typedef void(^CompletionVoidBlock) (void);
 +(void)getPostCollected:(NSString*)postID isCollected:(BoolBlock)isCollectedBlock PostNotCollectedBlock:(CompletionVoidBlock)notCollectedBlock;
 +(void)setPostsCollected:(NSString*)postID isPostCollected:(BOOL)collected;
 
++(BOOL)isUserFollowed:(NSString*)UserID isFollowing:(BOOL)isFollowing;
 
++(void)setUserFollowing:(NSString*)UserID isFollowing:(BOOL)following;
 @end
