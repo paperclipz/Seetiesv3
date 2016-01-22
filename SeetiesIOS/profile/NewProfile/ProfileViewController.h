@@ -26,7 +26,7 @@
 @class ShowFollowerAndFollowingViewController;
 @class SearchDetailViewController;
 @class CollectionViewController;
-@interface ProfileViewController : BaseViewController<TLTagsControlDelegate>
+@interface ProfileViewController : CommonViewController<TLTagsControlDelegate>
 
 @property(nonatomic,strong)CollectionViewController* collectionViewController;
 @property(nonatomic,strong)CollectionListingViewController* collectionListingViewController;

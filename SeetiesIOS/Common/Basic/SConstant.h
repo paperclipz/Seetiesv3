@@ -175,12 +175,17 @@ static BOOL IS_SIMULATOR = YES;
 static BOOL IS_SIMULATOR = NO;
 #endif
 
-
 /*NSUserDefaults key*/
 #define TOKEN @"ExpertToken"
 #define USERID @"Useruid"
 #define KEY_SYSTEM_LANG @"system_language"
 /*NSUserDefaults key*/
+
+
+#pragma mark - DEFINE UI
+
+#define TAB_BAR_HEIGHT 60.0f
+
 
 
 

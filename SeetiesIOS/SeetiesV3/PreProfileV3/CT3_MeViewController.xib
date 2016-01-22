@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -7,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CT3_MeViewController">
             <connections>
+                <outlet property="constTabbarHeight" destination="ZTc-hA-HM8" id="FNZ-1E-cdJ"/>
                 <outlet property="ibCollectionLbl" destination="8Pz-6s-Muv" id="UnD-pP-xsa"/>
                 <outlet property="ibCollectionView" destination="Ruy-SJ-sPw" id="1uO-nB-ezo"/>
                 <outlet property="ibContentView" destination="M7j-ex-CwS" id="2r4-Z8-UBM"/>

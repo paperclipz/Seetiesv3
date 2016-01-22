@@ -106,8 +106,16 @@
   //  SearchTblView.hidden = YES;
     //remaining Code'll go here
     
-   // [self dismissViewControllerAnimated:YES completion:nil];
-    [self.navigationController popViewControllerAnimated:NO];
+    
+    if (self.navigationController) {
+        [self.navigationController popViewControllerAnimated:YES];
+
+    }
+    else
+    {
+         [self dismissViewControllerAnimated:YES completion:nil];
+
+    }
 }
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {

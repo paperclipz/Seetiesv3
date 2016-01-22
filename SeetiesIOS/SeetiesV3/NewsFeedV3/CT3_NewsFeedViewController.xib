@@ -8,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CT3_NewsFeedViewController">
             <connections>
+                <outlet property="constTabbarHeight" destination="6ml-ll-N3l" id="wsg-EK-TbM"/>
                 <outlet property="constTopScrollView" destination="0HG-Hu-44k" id="jOS-Ob-PYL"/>
                 <outlet property="constantQuickBrowseHeight" destination="QvN-Wc-Svl" id="TAe-ev-PtH"/>
                 <outlet property="ibActivityIndicator" destination="c5e-Bg-xKS" id="fsU-ra-Tky"/>
@@ -21,12 +22,12 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+        <view clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wbq-uL-miH">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="JvL-2B-p2d"/>
@@ -78,10 +79,10 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="Wbq-uL-miH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="0HG-Hu-44k"/>
-                <constraint firstAttribute="bottom" secondItem="Wbq-uL-miH" secondAttribute="bottom" constant="50" id="6ml-ll-N3l"/>
+                <constraint firstAttribute="bottom" secondItem="Wbq-uL-miH" secondAttribute="bottom" id="6ml-ll-N3l"/>
                 <constraint firstItem="Wbq-uL-miH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="83M-hP-bqh"/>
                 <constraint firstAttribute="trailing" secondItem="WXj-z2-K1x" secondAttribute="trailing" id="LiD-TC-Y85"/>
                 <constraint firstItem="WXj-z2-K1x" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="QN0-g5-AYb"/>

@@ -11,7 +11,7 @@
 #import "ProfileViewController.h"
 #import "CollectionListingViewController.h"
 
-@interface CT3_MeViewController : CommonViewController
+@interface CT3_MeViewController : BaseViewController
 @property(nonatomic,strong)ProfileViewController* profileViewController;
 @property(nonatomic, strong)WalletListingViewController *walletListingViewController;
 @property(nonatomic, strong)CollectionListingViewController *collectionListingViewController;
