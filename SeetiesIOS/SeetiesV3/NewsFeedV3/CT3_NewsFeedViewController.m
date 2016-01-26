@@ -78,6 +78,8 @@ static NSCache* heightCache = nil;
 @property(nonatomic,strong)AnnounceViewController* announceViewController;
 @property(nonatomic,strong)CTWebViewController* ctWebViewController;
 @property(nonatomic,strong)SearchViewV2Controller* searchViewV2Controller;
+@property(nonatomic,strong)VoucherListingViewController* voucherListingViewController;
+
 
 
 /*Controller*/
@@ -117,7 +119,16 @@ static NSCache* heightCache = nil;
 
 #pragma mark - Declaration
 
--(SearchViewV2Controller*)searchViewV2Controller
+-(VoucherListingViewController*)voucherListingViewController
+{
+    if (!_voucherListingViewController) {
+        _voucherListingViewController = [VoucherListingViewController new];
+    }
+    
+    return _voucherListingViewController;
+}
+-
+(SearchViewV2Controller*)searchViewV2Controller
 {
     if (!_searchViewV2Controller) {
         _searchViewV2Controller = [SearchViewV2Controller new];
@@ -754,6 +765,16 @@ static NSCache* heightCache = nil;
     
     if (indexPath.section == 0) {
         
+        switch (indexPath.row) {
+            case 2:
+                
+                [self.navigationController pushViewController:self.voucherListingViewController animated:YES];
+                
+                break;
+                
+            default:
+                break;
+        }
     }
     else
     {

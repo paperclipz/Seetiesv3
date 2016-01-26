@@ -7,18 +7,16 @@
 //
 
 #import "CommonViewController.h"
-#import "ShopListingViewController.h"
-#import "CT3_SearchListingViewController.h"
-#import "Connections/ConnectionsViewController.h"
 #import "WalletListingViewController.h"
 #import "ProfileViewController.h"
 #import "CollectionListingViewController.h"
+#import "NotificationViewController.h"
+#import "InviteFrenViewController.h"
 
 @interface CT3_MeViewController : BaseViewController
-@property(nonatomic,strong)ShopListingViewController* shopListingViewController;
-@property(nonatomic,strong)CT3_SearchListingViewController* ct3_SearchListingViewController;
-@property(nonatomic,strong)ConnectionsViewController* connectionsViewController;
 @property(nonatomic,strong)ProfileViewController* profileViewController;
 @property(nonatomic, strong)WalletListingViewController *walletListingViewController;
 @property(nonatomic, strong)CollectionListingViewController *collectionListingViewController;
+@property(nonatomic)NotificationViewController *notificationViewController;
+@property(nonatomic)InviteFrenViewController *inviteFriendViewController;
 @end
