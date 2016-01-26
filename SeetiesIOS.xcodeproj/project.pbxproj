@@ -1249,6 +1249,10 @@
 		C238E33F1C4649AA00570A25 /* NMRangeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = C238E3241C4649AA00570A25 /* NMRangeSlider.m */; };
 		C25B50331C4E277D0027283E /* SearchLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C25B50311C4E277D0027283E /* SearchLocationViewController.m */; };
 		C25B50341C4E277D0027283E /* SearchLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25B50321C4E277D0027283E /* SearchLocationViewController.xib */; };
+		C2C157161C574BB6007608FC /* PromoCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C157141C574BB6007608FC /* PromoCodeViewController.m */; };
+		C2C157171C574BB6007608FC /* PromoCodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2C157151C574BB6007608FC /* PromoCodeViewController.xib */; };
+		C2C1571B1C5788DC007608FC /* RedemptionSuccessfulViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C157191C5788DC007608FC /* RedemptionSuccessfulViewController.m */; };
+		C2C1571C1C5788DC007608FC /* RedemptionSuccessfulViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2C1571A1C5788DC007608FC /* RedemptionSuccessfulViewController.xib */; };
 		C2FB1CDF1C4F7A3B004AE990 /* SearchLocationAreaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FB1CDD1C4F7A3B004AE990 /* SearchLocationAreaCell.m */; };
 		C2FB1CE01C4F7A3B004AE990 /* SearchLocationAreaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FB1CDE1C4F7A3B004AE990 /* SearchLocationAreaCell.xib */; };
 		C5AFD557B47280FB16C39985 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9C815292A4ED6F2408E5E5 /* Pods.framework */; };
@@ -2929,6 +2933,12 @@
 		C25B50301C4E277D0027283E /* SearchLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchLocationViewController.h; sourceTree = "<group>"; };
 		C25B50311C4E277D0027283E /* SearchLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchLocationViewController.m; sourceTree = "<group>"; };
 		C25B50321C4E277D0027283E /* SearchLocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchLocationViewController.xib; sourceTree = "<group>"; };
+		C2C157131C574BB6007608FC /* PromoCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromoCodeViewController.h; sourceTree = "<group>"; };
+		C2C157141C574BB6007608FC /* PromoCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromoCodeViewController.m; sourceTree = "<group>"; };
+		C2C157151C574BB6007608FC /* PromoCodeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PromoCodeViewController.xib; sourceTree = "<group>"; };
+		C2C157181C5788DC007608FC /* RedemptionSuccessfulViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedemptionSuccessfulViewController.h; sourceTree = "<group>"; };
+		C2C157191C5788DC007608FC /* RedemptionSuccessfulViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedemptionSuccessfulViewController.m; sourceTree = "<group>"; };
+		C2C1571A1C5788DC007608FC /* RedemptionSuccessfulViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedemptionSuccessfulViewController.xib; sourceTree = "<group>"; };
 		C2FB1CDC1C4F7A3B004AE990 /* SearchLocationAreaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchLocationAreaCell.h; sourceTree = "<group>"; };
 		C2FB1CDD1C4F7A3B004AE990 /* SearchLocationAreaCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchLocationAreaCell.m; sourceTree = "<group>"; };
 		C2FB1CDE1C4F7A3B004AE990 /* SearchLocationAreaCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchLocationAreaCell.xib; sourceTree = "<group>"; };
@@ -5961,6 +5971,7 @@
 		8AFA514B1C47B4AB00E7920E /* SeetiesV3 */ = {
 			isa = PBXGroup;
 			children = (
+				C2C157111C574B5E007608FC /* Others */,
 				0B6AEA7D1C48E4EB009B7D33 /* MoreV3 */,
 				8AFA514C1C47B4AB00E7920E /* Json */,
 				8AFA514E1C47B4AB00E7920E /* LandingV3 */,
@@ -6277,6 +6288,27 @@
 			path = RangeSlider;
 			sourceTree = "<group>";
 		};
+		C2C157111C574B5E007608FC /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				C2C157121C574B5E007608FC /* VoucherRedemption */,
+			);
+			path = Others;
+			sourceTree = "<group>";
+		};
+		C2C157121C574B5E007608FC /* VoucherRedemption */ = {
+			isa = PBXGroup;
+			children = (
+				C2C157131C574BB6007608FC /* PromoCodeViewController.h */,
+				C2C157141C574BB6007608FC /* PromoCodeViewController.m */,
+				C2C157151C574BB6007608FC /* PromoCodeViewController.xib */,
+				C2C157181C5788DC007608FC /* RedemptionSuccessfulViewController.h */,
+				C2C157191C5788DC007608FC /* RedemptionSuccessfulViewController.m */,
+				C2C1571A1C5788DC007608FC /* RedemptionSuccessfulViewController.xib */,
+			);
+			path = VoucherRedemption;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -6569,6 +6601,7 @@
 				8A6CCE691C18075800BCD54E /* PostSmallPin@2x.png in Resources */,
 				8A6CCD1E1C18075800BCD54E /* DraftsIcon@3x.png in Resources */,
 				8AFA51E61C47B4AB00E7920E /* CollectionsCollectionViewCell.xib in Resources */,
+				C2C1571C1C5788DC007608FC /* RedemptionSuccessfulViewController.xib in Resources */,
 				8A6CCE051C18075800BCD54E /* CorrectFill@2x.png in Resources */,
 				8A6CCD061C18075800BCD54E /* MoreBtn@3x.png in Resources */,
 				8A6CCE421C18075800BCD54E /* PostViewIcon@3x.png in Resources */,
@@ -7145,6 +7178,7 @@
 				8A6CCCE61C18075800BCD54E /* DeleteCollection@3x.png in Resources */,
 				8A6CCE1F1C18075800BCD54E /* NotificationFollow@2x.png in Resources */,
 				8AC8F7471BDA414E00DEF14A /* EditCollectionDetailViewController.xib in Resources */,
+				C2C157171C574BB6007608FC /* PromoCodeViewController.xib in Resources */,
 				8A6CCE7F1C18075800BCD54E /* ViewIcon@2x.png in Resources */,
 				8A6CCD8A1C18075800BCD54E /* Distance1Icon@2x.png in Resources */,
 				8AB76D211BB8FBAF007DB972 /* ArticleViewController.xib in Resources */,
@@ -7278,6 +7312,7 @@
 				8A114CC91BE73F5D006AE3F0 /* Reachability.m in Sources */,
 				8AD6C2A91B7072FB0040437E /* WhereIsThisViewController.m in Sources */,
 				8AD6C0BE1B706CF30040437E /* FeedV2DetailViewController.m in Sources */,
+				C2C1571B1C5788DC007608FC /* RedemptionSuccessfulViewController.m in Sources */,
 				8AEDBFB91C2031BA000BD2FF /* SearchModel.m in Sources */,
 				8AD6BE241B706CF30040437E /* UIIimage+Extra.m in Sources */,
 				8A41471E1C23E18D00D633D1 /* NSDictionary+Extra.m in Sources */,
@@ -7641,6 +7676,7 @@
 				8A114CA51BE73F5D006AE3F0 /* PEResizeControl.m in Sources */,
 				8AB83A7C1BD49CED00715B69 /* UIView+Extension.m in Sources */,
 				8A114CB21BE73F5D006AE3F0 /* LLARingSpinnerView.m in Sources */,
+				C2C157161C574BB6007608FC /* PromoCodeViewController.m in Sources */,
 				8AC8F7381BDA414E00DEF14A /* ProfileCollectionViewController.m in Sources */,
 				8A0F50CD1C0D52AE002B1E22 /* PhotoCollectionViewCell.m in Sources */,
 				8AD6C2A11B7072FB0040437E /* RecommendV2ViewController.m in Sources */,
