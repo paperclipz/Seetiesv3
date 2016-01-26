@@ -422,8 +422,8 @@
     self.seetiesID = seetiesID;
     self.placeID = placeID;
     self.postID = postID;
-    self.shoplat = [[SearchManager Instance]getLocation].coordinate.latitude;
-    self.shopLgn = [[SearchManager Instance]getLocation].coordinate.longitude;
+    self.shoplat = [[SearchManager Instance]getAppLocation].coordinate.latitude;
+    self.shopLgn = [[SearchManager Instance]getAppLocation].coordinate.longitude;
 
     
     [Utils setRoundBorder:self.ibMapInfoView color:OUTLINE_COLOR borderRadius:5.0f];

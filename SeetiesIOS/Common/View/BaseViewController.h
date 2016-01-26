@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "GAITrackedViewController.h"
-#import "CommonViewController.h"
 
-@interface BaseViewController : CommonViewController
+@interface BaseViewController : GAITrackedViewController
 
--(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated;
+//-(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated;
 @property(nonatomic,strong)UINavigationController* navController;
+
 @end

@@ -16,7 +16,7 @@
 #import "LikesListingViewController.h"
 #import "EditProfileV2ViewController.h"
 #import "SearchViewV2Controller.h"
-#import "ConnectionsViewController.h"
+#import "ShowFollowerAndFollowingViewController.h"
 #import "SearchDetailViewController.h"
 #import "ShareViewController.h"
 #import "FeedV2DetailViewController.h"
@@ -26,8 +26,7 @@
 @class ShowFollowerAndFollowingViewController;
 @class SearchDetailViewController;
 @class CollectionViewController;
-@class ConnectionsViewController;
-@interface ProfileViewController : BaseViewController<TLTagsControlDelegate>
+@interface ProfileViewController : CommonViewController<TLTagsControlDelegate>
 
 @property(nonatomic,strong)CollectionViewController* collectionViewController;
 @property(nonatomic,strong)CollectionListingViewController* collectionListingViewController;
@@ -37,7 +36,7 @@
 @property(nonatomic,strong)LikesListingViewController* likesListingViewController;
 @property(nonatomic,strong)EditProfileV2ViewController* editProfileV2ViewController;
 @property(nonatomic,strong)SearchViewV2Controller* searchViewV2Controller;
-@property(nonatomic,strong)ConnectionsViewController* connectionsViewController;
+@property(nonatomic,strong)ShowFollowerAndFollowingViewController* showFollowerAndFollowingViewController;
 @property(nonatomic,strong)SearchDetailViewController* searchDetailViewController;
 @property(nonatomic,copy)VoidBlock btnAddMorePostClickedBlock;
 @property(nonatomic,strong)ShareViewController* shareViewController;

@@ -8,15 +8,18 @@
 
 #import "NewLandingViewController.h"
 #import <ESTabBarController/ESTabBarController.h>
+#import "UITabBar+Extension.h"
 
-@interface NewLandingViewController()
+@interface NewLandingViewController()<UITabBarControllerDelegate>
 
 /*navigation controller*/
 @property (strong)UINavigationController* firstViewController;
 @property (strong)UINavigationController* secondViewController;
 @property (strong)UINavigationController* thirdViewController;
 
+@property (nonatomic,strong)NSArray* arryViewController;
 
+@property (strong, nonatomic) IBOutlet UITabBarController *tabBarController;
 
 @end
 
@@ -25,21 +28,53 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initSelfView];
-   // [self requestServerForLanguageList];
+   // [self initSelfView];
+ [self requestServerForLanguageList];
     
+ 
+    [self.view addSubview:self.tabBarController.view];
+}
+
+-(UITabBarController*)tabBarController
+{
+    if (!_tabBarController) {
+        _tabBarController = [[UITabBarController alloc]init];
+        _tabBarController.viewControllers = self.arryViewController;
+        
+        [[UITabBar appearance] setTintColor:DEVICE_COLOR];
+        [[UITabBar appearance] setBarTintColor:[UIColor whiteColor]];
+        _tabBarController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+        [_tabBarController.tabBar setValue:@(YES) forKeyPath:@"_hidesShadow"];
+        _tabBarController.delegate = self;
+
+    }
     
-    // Do any additional setup after loading the view.
+    return _tabBarController;
 }
 -(void)initSelfView
 {
     [self.view addSubview:self.leveyTabBarController.view];
-}
-
-
+   }
 
 #pragma mark - Declaration
 
+-(NSArray*)arryViewController
+{
+    if (!_arryViewController) {
+        
+        _firstViewController = [[UINavigationController alloc]initWithRootViewController:self.newsFeedViewController];
+        _firstViewController.navigationBar.hidden = YES;
+        _secondViewController = [[UINavigationController alloc]initWithRootViewController:self.ct3MeViewController];
+        _secondViewController.navigationBar.hidden = YES;
+        _thirdViewController = [[UINavigationController alloc]initWithRootViewController:self.ct3_MoreViewController];
+        _thirdViewController.navigationBar.hidden = YES;
+        
+    
+        _arryViewController = @[self.firstViewController,self.secondViewController,self.thirdViewController];
+    }
+    
+    return _arryViewController;
+}
 -(CT3_LoginViewController*)loginViewController
 {
     if (!_loginViewController) {
@@ -106,6 +141,12 @@
 {
     if (!_ct3_MoreViewController) {
         _ct3_MoreViewController = [CT3_MoreViewController new];
+        UITabBarItem *item2 = [[UITabBarItem alloc]initWithTitle:nil image:[UIImage imageNamed:@"BlueTime.png"] selectedImage:[UIImage imageNamed:@"BlueTime.png"]];
+        _ct3_MoreViewController.tabBarItem = item2;
+
+        _ct3_MoreViewController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, -5);
+        _ct3_MoreViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(0, -1.0f, 0, 1);
+
     }
     return _ct3_MoreViewController;
 }
@@ -114,20 +155,33 @@
 {
     if (!_newsFeedViewController) {
         _newsFeedViewController = [CT3_NewsFeedViewController new];
+
+        UITabBarItem *item2 = [[UITabBarItem alloc]initWithTitle:nil image:[UIImage imageNamed:@"BlueTime.png"] selectedImage:[UIImage imageNamed:@"BlueTime.png"]];
+        _newsFeedViewController.tabBarItem = item2;
         
+        _newsFeedViewController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, -5);
+
+        _newsFeedViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(0, -1.0f, 0, 1);
+
         __weak typeof (self)weakSelf = self;
         _newsFeedViewController.btnLoginClickedBlock = ^(void)
         {
             [weakSelf.navigationController pushViewController:weakSelf.loginViewController animated:YES];
         };
-
     }
+    
     return _newsFeedViewController;
 }
 
 -(CT3_MeViewController*)ct3MeViewController{
     if (!_ct3MeViewController) {
         _ct3MeViewController = [CT3_MeViewController new];
+        UITabBarItem *item2 = [[UITabBarItem alloc]initWithTitle:nil image:[UIImage imageNamed:@"ProfileIcon"] selectedImage:[UIImage imageNamed:@"ProfileIcon"]];
+        _ct3MeViewController.tabBarItem = item2;
+
+        _ct3MeViewController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, -5);
+        _ct3MeViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(0, -2.0f, 0, 2);
+
     }
     return _ct3MeViewController;
 }
@@ -184,5 +238,13 @@
     }];
     
 }
-
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
+{
+    if (viewController == tabBarController.selectedViewController) {
+        
+        [self.newsFeedViewController scrollToTop];
+    }
+    
+    return YES;
+}
 @end

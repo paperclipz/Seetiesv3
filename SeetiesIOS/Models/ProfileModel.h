@@ -44,6 +44,7 @@
 
 @property (nonatomic,strong)NSArray<DraftModel>* posts;
 
+@property(nonatomic)NSArray<LanguageModel>* languages;
 @end
 
 @interface ProfilePostModel : Model

@@ -14,7 +14,7 @@
 #import "ShowFollowerAndFollowingViewController.h"
 @class ProfileViewController;
 @class ShowFollowerAndFollowingViewController;
-@interface CollectionViewController : UIViewController<UIScrollViewDelegate>
+@interface CollectionViewController : CommonViewController<UIScrollViewDelegate>
 
 @property(nonatomic,strong)ShowFollowerAndFollowingViewController* showFollowerAndFollowingViewController;
 @property(nonatomic,strong)ProfileViewController* profileViewController;

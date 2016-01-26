@@ -46,8 +46,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
-     self.sManager = [SearchManager Instance];
-    [self performSearch];
+    self.sManager = [SearchManager Instance];
+
+    if (!self.location) {
+        self.location = [self.sManager getAppLocation];
+    }
+    [self requestSearch];
 }
 
 -(void)initSelfView
@@ -147,46 +151,18 @@
 -(void)initWithLocation:(CLLocation*)location
 {
     [LoadingManager show];
-    // must go throught this mark inorder to have location.
    
     self.location = location;
     
 }
 
--(void)performSearch
-{
-    if(!self.location)
-    {
-                
-        [self.sManager getCoordinateFromGPSThenWifi:^(CLLocation *currentLocation) {
-            
-            self.location = currentLocation;
-            [self requestSearch];
-            
-            
-        } errorBlock:^(NSString *status) {
-           
-            [TSMessage showNotificationInViewController:self title:@"system" subtitle:@"No Internet Connection" type:TSMessageNotificationTypeWarning];
-            [LoadingManager hide];
-        }];
-    }
-    else{
-        [self requestSearch];
-        [LoadingManager hide];
-
-    }
-
-}
-
 -(void)getFourSquareSuggestionPlaces
 {
     self.type = SearchTypeFourSquare;
-
     
     [self.sManager getSuggestedLocationFromFoursquare:self.location input:self.txtSearch.text completionBlock:^(id object) {
 
         self.nearbyVenues = [[[DataManager Instance]fourSquareVenueModel] items];
-      //  self.nearbyVenues = [[DataManager Instance] fourSqureVenueList];
 
         [self refreshViewFourSquare];
     }];

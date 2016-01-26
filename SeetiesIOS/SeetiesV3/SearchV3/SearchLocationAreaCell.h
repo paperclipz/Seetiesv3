@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SearchLocationAreaCell : UITableViewCell
+@interface SearchLocationAreaCell : CommonTableViewCell
 
 -(void)setAreaTitle:(NSString*)title;
 -(void)setHasDeals:(BOOL)hasDeals;

@@ -19,26 +19,19 @@
 @property (weak, nonatomic) IBOutlet UILabel *ibCollectionLbl;
 @property (weak, nonatomic) IBOutlet UILabel *ibInviteLbl;
 @property (weak, nonatomic) IBOutlet UILabel *ibPromoLbl;
-
+@property (weak, nonatomic) IBOutlet UIView *ibProfileView;
+@property (weak, nonatomic) IBOutlet UIView *ibWalletView;
+@property (weak, nonatomic) IBOutlet UIView *ibCollectionView;
+@property (weak, nonatomic) IBOutlet UIView *ibInviteFriendsView;
+@property (weak, nonatomic) IBOutlet UIView *ibPromoCodeView;
+@property (weak, nonatomic) IBOutlet UIImageView *ibWalletIcon;
+@property (weak, nonatomic) IBOutlet UIImageView *ibCollectionIcon;
+@property (weak, nonatomic) IBOutlet UILabel *ibNotificationCountLbl;
 @end
 
 @implementation CT3_MeViewController
-- (IBAction)btnTestWalletListingClicked:(id)sender {
+- (IBAction)btnWalletListingClicked:(id)sender {
     [self.navigationController pushViewController:self.walletListingViewController animated:YES];
-}
-
-- (IBAction)btnTestShopListingClicked:(id)sender {
-    [self.navigationController pushViewController:self.shopListingViewController animated:YES];
-}
-
--(IBAction)btnTestSearchListingCliked:(id)sender{
-    [self.navigationController pushViewController:self.ct3_SearchListingViewController animated:YES];
-}
-
--(IBAction)btnTestConnectionsClicked:(id)sender{
-
-    self.connectionsViewController.userID = [Utils getUserID];
-    [self.navigationController pushViewController:self.connectionsViewController animated:YES];
 }
 
 - (IBAction)btnCollectionListingClicked:(id)sender {
@@ -55,10 +48,22 @@
     [self.navigationController pushViewController:self.profileViewController animated:YES];
 }
 
+- (IBAction)btnNotificationClicked:(id)sender {
+    [self.navigationController pushViewController:self.notificationViewController animated:YES];
+}
+
+- (IBAction)btnInviteClicked:(id)sender {
+    [self.navigationController pushViewController:self.inviteFriendViewController animated:YES];
+}
+
+- (IBAction)btnPromoClicked:(id)sender {
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initSelfView];
     // Do any additional setup after loading the view from its nib.
+    [self initSelfView];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -77,35 +82,29 @@
 */
 
 -(void)initSelfView{
-    [self.ibMainScrollView addSubview:self.ibContentView];
-    [self.ibContentView adjustToScreenWidth];
-
+    
+    SLog(@"scrollview width: %f", self.ibMainScrollView.frame.size.width);
+    SLog(@"contentview width: %f", self.ibContentView.frame.size.width);
+    
+    [self.ibProfileImg setRoundedBorder];
+    [self.ibWalletIcon setRoundedBorder];
+    [self.ibCollectionIcon setRoundedBorder];
+    [Utils setRoundBorder:self.ibNotificationCountLbl color:[UIColor clearColor] borderRadius:self.ibNotificationCountLbl.frame.size.width/2];
+    
+    [self.ibProfileView prefix_addLowerBorder:[UIColor lightGrayColor]];
+    [Utils setRoundBorder:self.ibWalletView color:[UIColor redColor] borderRadius:5.0f];
+    
+    [self.ibWalletView setStandardBorder];
+    [self.ibCollectionView setStandardBorder];
+    
+    [self.ibInviteFriendsView prefix_addUpperBorder:[UIColor lightGrayColor]];
+    [self.ibInviteFriendsView prefix_addLowerBorder:[UIColor lightGrayColor]];
+    
+    [self.ibPromoCodeView prefix_addUpperBorder:[UIColor lightGrayColor]];
+    [self.ibPromoCodeView prefix_addLowerBorder:[UIColor lightGrayColor]];
 }
 
 #pragma mark Declaration
--(ShopListingViewController*)shopListingViewController
-{
-    if (!_shopListingViewController) {
-        _shopListingViewController = [ShopListingViewController new];
-    }
-    return _shopListingViewController;
-}
-
--(CT3_SearchListingViewController*)ct3_SearchListingViewController
-{
-    if (!_ct3_SearchListingViewController) {
-        _ct3_SearchListingViewController = [CT3_SearchListingViewController new];
-    }
-    return _ct3_SearchListingViewController;
-}
-
--(ConnectionsViewController*)connectionsViewController
-{
-    if (!_connectionsViewController) {
-        _connectionsViewController = [ConnectionsViewController new];
-    }
-    return _connectionsViewController;
-}
 
 -(ProfileViewController*)profileViewController{
     if (!_profileViewController) {
@@ -126,5 +125,19 @@
         _collectionListingViewController = [CollectionListingViewController new];
     }
     return _collectionListingViewController;
+}
+
+-(NotificationViewController*)notificationViewController{
+    if (!_notificationViewController) {
+        _notificationViewController = [NotificationViewController new];
+    }
+    return _notificationViewController;
+}
+
+-(InviteFrenViewController*)inviteFriendViewController{
+    if (!_inviteFriendViewController) {
+        _inviteFriendViewController = [InviteFrenViewController new];
+    }
+    return _inviteFriendViewController;
 }
 @end

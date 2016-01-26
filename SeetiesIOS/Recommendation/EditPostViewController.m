@@ -58,16 +58,22 @@
 @implementation EditPostViewController
 
 #pragma mark - IBACTION
+
 - (IBAction)btnEditPhotoClicked:(id)sender {
     
     [self saveData];
     
     
     _editPhotoViewController = nil;
+
+    UINavigationController* navigationController = [[UINavigationController alloc]initWithRootViewController:self.editPhotoViewController];;
     
+    [navigationController setNavigationBarHidden:YES animated:NO];
+
     [self.editPhotoViewController initData:self.recommendationModel];
     
-    [self presentViewController:self.editPhotoViewController animated:YES completion:nil];
+    [self presentViewController:navigationController animated:YES completion:nil];
+    
     __weak typeof (self)weakSelf = self;
     self.editPhotoViewController.doneBlock = ^(NSArray* arrayImages,NSArray* arrDeleteImages)
     {
@@ -272,18 +278,19 @@
         default:
         {
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            NSString* langOne = [defaults objectForKey:@"UserData_Language1"];
-            NSString* langTwo = [defaults objectForKey:@"UserData_Language2"];
+            NSString* langOne = [defaults objectForKey:KEY_LANGUAGE_ONE];
+            NSString* langTwo = [defaults objectForKey:KEY_LANGUAGE_TWO];
             
-            self.recommendationModel.postMainLanguage = [Utils getLanguageCode:langOne];
-            [self.postSegmentedControl setTitle:langOne forSegmentAtIndex:0];
+            self.recommendationModel.postMainLanguage = langOne;
+            [self.postSegmentedControl setTitle:[Utils getLanguageName:langOne] forSegmentAtIndex:0];
             
-            if (!langTwo || [langTwo isEqualToString:@""]) {
+            if ([Utils isStringNull:langTwo]) {
                 [self setHasDualLanguage:NO];
             }
+            
             else{
-                [self.postSegmentedControl setTitle:langTwo forSegmentAtIndex:1];
-                self.recommendationModel.postSeconLanguage = [Utils getLanguageCode:langTwo];
+                [self.postSegmentedControl setTitle:[Utils getLanguageName:langTwo] forSegmentAtIndex:1];
+                self.recommendationModel.postSeconLanguage = langTwo;
                 [self setHasDualLanguage:YES];
 
             }
@@ -518,7 +525,7 @@
         __weak typeof (self)weakSelf = self;
         _editPhotoViewController.editPhotoBackClickedBlock = ^(id block)
         {
-          //  weakSelf.recommendationModel = weakSelf.tempSavedRecommendationModel;
+            weakSelf.recommendationModel = weakSelf.tempSavedRecommendationModel;
             
         };
     }
@@ -652,6 +659,10 @@
 {
     
     SLog(@"buttonDoneAction");
+    if (self.navigationController) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
     [self dismissViewControllerAnimated:YES completion:nil];
     
     if (_editPostDoneBlock) {

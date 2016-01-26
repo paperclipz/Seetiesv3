@@ -16,7 +16,12 @@
 -(void)setX:(float)X;
 -(void)setY:(float)Y;
 -(void)refreshConstraint;
--(void)prefix_addUpperBorder;
--(void)setSideCurveBorder;
+-(void)prefix_addUpperBorder:(UIColor*)color;
+-(void)prefix_addLowerBorder:(UIColor*)color;
+-(void)prefix_addLeftBorder:(UIColor*)color;
+-(void)prefix_addRightBorder:(UIColor*)color;
+-(void)setSideCurveBorder;// left right round
+-(void)setRoundedBorder; // full round
+-(void)setStandardBorder;// 4 side border curve
 
 @end

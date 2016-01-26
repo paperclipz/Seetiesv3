@@ -52,8 +52,12 @@
 }
 
 - (IBAction)filterClicked:(id)sender {
+    
+    
     GeneralFilterViewController *filterController = [[GeneralFilterViewController alloc] initWithFilter:[self getDummy]];
-    [self.navigationController presentViewController:filterController animated:YES completion:nil];
+    
+    UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:filterController];
+    [self presentViewController:nav animated:YES completion:nil];
 //    self.filterController.view.hidden =  !self.filterController.view.hidden;
 }
 
@@ -69,7 +73,31 @@
                                @"0", @"min",
                                @"100", @"max", nil];
     
-    NSArray *filterArray = @[sortFilter, catFilter, priceFilter];
+    NSDictionary *priceFilter1 = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                 @"Price", @"type",
+                                 @"0", @"min",
+                                 @"100", @"max", nil];
+
+    
+    NSDictionary *priceFilter2 = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                 @"Price", @"type",
+                                 @"0", @"min",
+                                 @"100", @"max", nil];
+
+    
+    NSDictionary *priceFilter3 = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                 @"Price", @"type",
+                                 @"0", @"min",
+                                 @"100", @"max", nil];
+
+    
+    NSDictionary *priceFilter4 = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                 @"Price", @"type",
+                                 @"0", @"min",
+                                 @"100", @"max", nil];
+
+    
+    NSArray *filterArray = @[sortFilter, catFilter, priceFilter,priceFilter1,priceFilter2,priceFilter3,priceFilter4];
     return filterArray;
 }
 

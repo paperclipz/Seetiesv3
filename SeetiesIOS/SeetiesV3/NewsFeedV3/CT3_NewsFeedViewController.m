@@ -38,6 +38,7 @@
 #import "SearchViewV2Controller.h"
 
 
+
 static NSCache* heightCache = nil;
 #define TopBarHeight 64.0f
 #define NUMBER_OF_SECTION 2
@@ -47,6 +48,7 @@ static NSCache* heightCache = nil;
     __weak IBOutlet UIActivityIndicatorView *ibActivityIndicator;
     __weak IBOutlet UIImageView *ibHeaderBackgroundView;
     __weak IBOutlet NSLayoutConstraint *constTopScrollView;
+    
 }
 /*IBOUTLET*/
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
@@ -76,6 +78,8 @@ static NSCache* heightCache = nil;
 @property(nonatomic,strong)AnnounceViewController* announceViewController;
 @property(nonatomic,strong)CTWebViewController* ctWebViewController;
 @property(nonatomic,strong)SearchViewV2Controller* searchViewV2Controller;
+@property(nonatomic,strong)VoucherListingViewController* voucherListingViewController;
+
 
 
 /*Controller*/
@@ -115,7 +119,16 @@ static NSCache* heightCache = nil;
 
 #pragma mark - Declaration
 
--(SearchViewV2Controller*)searchViewV2Controller
+-(VoucherListingViewController*)voucherListingViewController
+{
+    if (!_voucherListingViewController) {
+        _voucherListingViewController = [VoucherListingViewController new];
+    }
+    
+    return _voucherListingViewController;
+}
+-
+(SearchViewV2Controller*)searchViewV2Controller
 {
     if (!_searchViewV2Controller) {
         _searchViewV2Controller = [SearchViewV2Controller new];
@@ -187,6 +200,7 @@ static NSCache* heightCache = nil;
 {
     if (!_feedV2DetailViewController) {
         _feedV2DetailViewController = [FeedV2DetailViewController new];
+
     }
     
     return _feedV2DetailViewController;
@@ -234,6 +248,7 @@ static NSCache* heightCache = nil;
     [super viewDidLoad];
     [self initSelfView];
     [self refreshViewAfterLogin];
+
   //  [self getDummyData];
     // Do any additional setup after loading the view from its nib.
 }
@@ -247,6 +262,7 @@ static NSCache* heightCache = nil;
 -(void)initSelfView
 {
  
+    
     self.automaticallyAdjustsScrollViewInsets = NO;
     constTopScrollView.constant = TopBarHeight;
 
@@ -749,6 +765,16 @@ static NSCache* heightCache = nil;
     
     if (indexPath.section == 0) {
         
+        switch (indexPath.row) {
+            case 2:
+                
+                [self.navigationController pushViewController:self.voucherListingViewController animated:YES];
+                
+                break;
+                
+            default:
+                break;
+        }
     }
     else
     {
@@ -1062,7 +1088,7 @@ static NSCache* heightCache = nil;
         SLog(@"token :%@",[Utils getAppToken]);
         NSDictionary* dict = @{@"token" : [Utils getAppToken],
                                @"offset":@(self.newsFeedModels.offset + self.newsFeedModels.limit),
-                               @"limit" : @(LIKES_LIST_SIZE)
+                               @"limit" : @(5)
                                };
         
         isMiddleOfLoadingServer = YES;
@@ -1117,16 +1143,13 @@ static NSCache* heightCache = nil;
         }
     }
     
-    SLog(@"GG : %f",scrollView.contentOffset.y);
     /*for top navigation bar alpha setting*/
     int profileBackgroundHeight = TopBarHeight;
    
     if (scrollView.contentOffset.y > profileBackgroundHeight)
     {
         ibHeaderBackgroundView.alpha = 1;
-        
-        
-        
+                
     }
     else{
         float adjustment = (scrollView.contentOffset.y
@@ -1145,4 +1168,8 @@ static NSCache* heightCache = nil;
 
 }
 
+-(void)scrollToTop
+{
+    [self.ibTableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+}
 @end
