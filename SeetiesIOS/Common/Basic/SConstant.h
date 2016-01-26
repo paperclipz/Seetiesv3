@@ -179,6 +179,10 @@ static BOOL IS_SIMULATOR = NO;
 #define TOKEN @"ExpertToken"
 #define USERID @"Useruid"
 #define KEY_SYSTEM_LANG @"system_language"
+
+#define KEY_LANGUAGE_ONE @"lang_one"
+#define KEY_LANGUAGE_TWO @"lang_two"
+
 /*NSUserDefaults key*/
 
 

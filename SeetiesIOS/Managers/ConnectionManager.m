@@ -515,12 +515,21 @@
             NSDictionary* dict = obj[@"data"];
             self.dataManager.userLoginProfileModel = [[ProfileModel alloc]initWithDictionary:dict error:nil];
             
-            if (self.dataManager.userLoginProfileModel) {
+            ProfileModel* model = self.dataManager.userLoginProfileModel;
+            if (model) {
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                [defaults setObject:self.dataManager.userLoginProfileModel.token forKey:TOKEN];
-                [defaults setObject:self.dataManager.userLoginProfileModel.uid forKey:USERID];
-                [defaults setObject:self.dataManager.userLoginProfileModel.system_language.caption forKey:KEY_SYSTEM_LANG];
+                [defaults setObject:model.token forKey:TOKEN];
+                [defaults setObject:model.uid forKey:USERID];
+                [defaults setObject:model.system_language.caption forKey:KEY_SYSTEM_LANG];
 
+                if (![Utils isArrayNull:model.languages]) {
+                    [defaults setObject:[model.languages[0] langID] forKey:KEY_LANGUAGE_ONE];
+                   
+                    if (model.languages.count>=1) {
+                        [defaults setObject:[model.languages[1] langID] forKey:KEY_LANGUAGE_TWO];
+                    }
+                }
+                
                 [defaults synchronize];
             }
         }

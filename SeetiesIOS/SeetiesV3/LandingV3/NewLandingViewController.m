@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    // [self initSelfView];
-   // [self requestServerForLanguageList];
+ [self requestServerForLanguageList];
     
  
     [self.view addSubview:self.tabBarController.view];

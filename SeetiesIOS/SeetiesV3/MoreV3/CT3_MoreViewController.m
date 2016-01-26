@@ -8,11 +8,17 @@
 
 #import "CT3_MoreViewController.h"
 #import "SettingsTableViewCell.h"
-@interface CT3_MoreViewController ()<UITableViewDataSource,UITableViewDelegate>{
+#import "RecommendationViewController.h"
+#import "DoImagePickerController.h"
+#import "DraftAndRecommendationDelegate.h"
 
-    NSMutableArray *dataArray;
-}
+@interface CT3_MoreViewController ()<UITableViewDataSource,UITableViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
+@property (nonatomic,strong)RecommendationViewController* recommendationViewController;
+@property (nonatomic,strong)DoImagePickerController* imagePickerViewController;
+@property (nonatomic,strong)NSArray* arrData;
+@property(nonatomic)DraftAndRecommendationDelegate* recommendDelegate;
 @end
 
 @implementation CT3_MoreViewController
@@ -20,47 +26,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self InitSelfView];
+    [self initSelfView];
+    
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
--(void)InitSelfView{
+-(void)initSelfView{
     
     self.ibTableView.delegate = self;
     self.ibTableView.dataSource = self;
     [self.ibTableView registerClass:[SettingsTableViewCell class] forCellReuseIdentifier:@"SettingsTableViewCell"];
-
-    //Initialize the dataArray
-    dataArray = [[NSMutableArray alloc] init];
     
-    NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:LocalisedString(@"Add Place"), LocalisedString(@"Recommend"),LocalisedString(@"Drafts"), nil];//@"Notification Settings"
-    NSDictionary *firstItemsArrayDict = [NSDictionary dictionaryWithObject:firstItemsArray forKey:@"data"];
-    [dataArray addObject:firstItemsArrayDict];
-    
-    //Second section data
-    NSArray *secondItemsArray = [[NSArray alloc] initWithObjects:LocalisedString(@"Account Settings"), LocalisedString(@"Rate Us"),LocalisedString(@"About"),LocalisedString(@"Feedback"), nil];
-    NSDictionary *secondItemsArrayDict = [NSDictionary dictionaryWithObject:secondItemsArray forKey:@"data"];
-    [dataArray addObject:secondItemsArrayDict];
-    
-    //Second section data
-    NSArray *threeItemsArray = [[NSArray alloc] initWithObjects:LocalisedString(@"Sign out of Seeties"), nil];
-    NSDictionary *threeItemsArrayDict = [NSDictionary dictionaryWithObject:threeItemsArray forKey:@"data"];
-    [dataArray addObject:threeItemsArrayDict];
+    self.recommendDelegate = [DraftAndRecommendationDelegate new];
+   
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [dataArray count];
+    return self.arrData.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    //Number of rows it should expect should be based on the section
-    NSDictionary *dictionary = [dataArray objectAtIndex:section];
-    NSArray *array = [dictionary objectForKey:@"data"];
-    return [array count];
+    NSArray* tempArray = self.arrData[section];
+    return tempArray.count;
 }
+
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     
     if(section == 0)
@@ -71,89 +64,102 @@
         return LocalisedString(@"Log out");
     return 0;
 }
-//-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-//    if (section == 0) {
-//        // 1. The view for the header
-//        UIView* headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 10, tableView.frame.size.width, 22)];
-//        
-//        
-//        // 3. Add a label
-//        UILabel* headerLabel = [[UILabel alloc] init];
-//        headerLabel.frame = CGRectMake(15, 30, tableView.frame.size.width - 5, 22);
-//        headerLabel.backgroundColor = [UIColor clearColor];
-//        headerLabel.textColor = [UIColor darkGrayColor];
-//        headerLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
-//        headerLabel.text = LocalisedString(@"Shortcut");
-//        headerLabel.textAlignment = NSTextAlignmentLeft;
-//        
-//        // 4. Add the label to the header view
-//        [headerView addSubview:headerLabel];
-//        
-//        
-//        // 5. Finally return
-//        return headerView;
-//    }
-//    
-//    if (section == 1) {
-//        // 1. The view for the header
-//        UIView* headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 10, tableView.frame.size.width, 22)];
-//        
-//        
-//        // 3. Add a label
-//        UILabel* headerLabel = [[UILabel alloc] init];
-//        headerLabel.frame = CGRectMake(15, 5, tableView.frame.size.width - 5, 30);
-//        headerLabel.backgroundColor = [UIColor clearColor];
-//        headerLabel.textColor = [UIColor darkGrayColor];
-//        headerLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
-//        headerLabel.text = LocalisedString(@"Others");
-//        headerLabel.textAlignment = NSTextAlignmentLeft;
-//        
-//        // 4. Add the label to the header view
-//        [headerView addSubview:headerLabel];
-//        
-//        
-//        // 5. Finally return
-//        return headerView;
-//    }
-//    if (section == 2) {
-//        // 1. The view for the header
-//        UIView* headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 10, tableView.frame.size.width, 22)];
-//        
-//        
-//        // 3. Add a label
-//        UILabel* headerLabel = [[UILabel alloc] init];
-//        headerLabel.frame = CGRectMake(15, 5, tableView.frame.size.width - 5, 30);
-//        headerLabel.backgroundColor = [UIColor clearColor];
-//        headerLabel.textColor = [UIColor darkGrayColor];
-//        headerLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
-//        headerLabel.text = @"";
-//        headerLabel.textAlignment = NSTextAlignmentLeft;
-//        
-//        // 4. Add the label to the header view
-//        [headerView addSubview:headerLabel];
-//        
-//        
-//        // 5. Finally return
-//        return headerView;
-//    }
-//    
-//    return 0;
-//}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     SettingsTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsTableViewCell"];
-    NSDictionary *dictionary = [dataArray objectAtIndex:indexPath.section];
-    NSArray *array = [dictionary objectForKey:@"data"];
-    NSString *cellValue = [array objectAtIndex:indexPath.row];
-    cell.lblTitle.text = cellValue;
+    NSArray* temArray= self.arrData[indexPath.section];
+    NSString* text = temArray[indexPath.row];
+    cell.lblTitle.text = text;
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    switch (indexPath.section) {
+        case 0://shortcut
+            switch (indexPath.row) {
+                case 0://add place
+                    
+                    break;
+                case 1://recommend
+                    [self gotoRecommendationPage];
+                    break;
+                    break;
+                case 2://draft
+                    [self gotoDraftPage];
+                    break;
+                    
+                default:
+                    break;
+            }
+
+            
+            break;
+            
+        case 1://others
+        {
+            
+        }
+            
+            break;
+            
+        case 2://logout
+            
+            
+            break;
+            
+        default:
+            break;
+    }
+    
     NSLog(@"indexPath.section IS %ld",(long)indexPath.section);
+    [self.ibTableView deselectRowAtIndexPath:indexPath animated:YES];
+
 }
 
+
+#pragma mark - Declaration
+
+-(NSArray*)arrData
+{
+    if (!_arrData) {
+        NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:@"Add Place",@"Recommend",@"Drafts", nil];//@"Notification Settings"
+        NSArray *secondItemsArray = [[NSArray alloc] initWithObjects:@"Account Settings", @"Rate Us",@"About",@"Feedback", nil];
+        NSArray *threeItemsArray = [[NSArray alloc] initWithObjects:@"Sign out of Seeties", nil];
+
+        _arrData = @[firstItemsArray,secondItemsArray,threeItemsArray];
+    }
+  
+    return _arrData;
+
+}
+-(RecommendationViewController*)recommendationViewController
+{
+    if (!_recommendationViewController) {
+        _recommendationViewController = [RecommendationViewController new];
+    }
+    
+    return _recommendationViewController;
+}
+
+-(void)gotoDraftPage
+{
+    
+    [self.recommendDelegate showDraftView:self];
+    // go to draft
+}
+
+-(void)gotoRecommendationPage
+{
+    
+//    UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:self.recommendationViewController];
+//    
+//    [self presentViewController:nav animated:YES completion:nil];
+//    [self.recommendationViewController initData:2 sender:nav];
+    
+    [self.recommendDelegate showRecommendationView:self];
+
+}
 @end

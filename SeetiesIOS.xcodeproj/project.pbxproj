@@ -184,6 +184,7 @@
 		8A114CEA1BE75CA0006AE3F0 /* NewCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114CE41BE75CA0006AE3F0 /* NewCollectionViewController.m */; };
 		8A114CEB1BE75CA0006AE3F0 /* NewCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A114CE51BE75CA0006AE3F0 /* NewCollectionViewController.xib */; };
 		8A11513E1BE777FD006AE3F0 /* UIScrollView+VGParallaxHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A11513D1BE777FD006AE3F0 /* UIScrollView+VGParallaxHeader.m */; };
+		8A26D1091C51FFB800A50944 /* DraftAndRecommendationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A26D1081C51FFB800A50944 /* DraftAndRecommendationDelegate.m */; };
 		8A295FD11C50A50F00747DBA /* UITabBar+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A295FD01C50A50F00747DBA /* UITabBar+Extension.m */; };
 		8A2E2C141B79E7A30010895E /* RecommendationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E2C121B79E7A30010895E /* RecommendationViewController.m */; };
 		8A2E2C151B79E7A30010895E /* RecommendationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A2E2C131B79E7A30010895E /* RecommendationViewController.xib */; };
@@ -1571,6 +1572,8 @@
 		8A114CE51BE75CA0006AE3F0 /* NewCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewCollectionViewController.xib; sourceTree = "<group>"; };
 		8A11513C1BE777FD006AE3F0 /* UIScrollView+VGParallaxHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+VGParallaxHeader.h"; sourceTree = "<group>"; };
 		8A11513D1BE777FD006AE3F0 /* UIScrollView+VGParallaxHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+VGParallaxHeader.m"; sourceTree = "<group>"; };
+		8A26D1071C51FFB800A50944 /* DraftAndRecommendationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DraftAndRecommendationDelegate.h; sourceTree = "<group>"; };
+		8A26D1081C51FFB800A50944 /* DraftAndRecommendationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DraftAndRecommendationDelegate.m; sourceTree = "<group>"; };
 		8A295FCF1C50A50F00747DBA /* UITabBar+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBar+Extension.h"; sourceTree = "<group>"; };
 		8A295FD01C50A50F00747DBA /* UITabBar+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+Extension.m"; sourceTree = "<group>"; };
 		8A2E2C111B79E7A30010895E /* RecommendationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendationViewController.h; sourceTree = "<group>"; };
@@ -3067,6 +3070,8 @@
 				0B6AEA831C48ED6A009B7D33 /* SettingsTableViewCell.h */,
 				0B6AEA841C48ED6A009B7D33 /* SettingsTableViewCell.m */,
 				0B6AEA851C48ED6A009B7D33 /* SettingsTableViewCell.xib */,
+				8A26D1071C51FFB800A50944 /* DraftAndRecommendationDelegate.h */,
+				8A26D1081C51FFB800A50944 /* DraftAndRecommendationDelegate.m */,
 			);
 			path = MoreV3;
 			sourceTree = "<group>";
@@ -7548,6 +7553,7 @@
 				8AD6C0FE1B706CF30040437E /* SearchViewV2Controller.m in Sources */,
 				8A45097A1BAC012600A868CD /* NSArray+JSON.m in Sources */,
 				8AD6C0C01B706CF30040437E /* FeedV2ViewController.m in Sources */,
+				8A26D1091C51FFB800A50944 /* DraftAndRecommendationDelegate.m in Sources */,
 				8AEDBFAB1C2031BA000BD2FF /* RecommendationModel.m in Sources */,
 				8AD6C8291B736C000040437E /* DataManager.m in Sources */,
 				8A6BB42D1BF0C338005AA1B3 /* MZFormSheetContentSizingNavigationControllerAnimator.m in Sources */,

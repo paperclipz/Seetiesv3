@@ -84,11 +84,10 @@
     if (self.navigationController) {
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
-    else{
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
+    [self dismissViewControllerAnimated:YES completion:nil];
 
 }
+
 - (IBAction)btnBackClicked:(id)sender {
     
     
