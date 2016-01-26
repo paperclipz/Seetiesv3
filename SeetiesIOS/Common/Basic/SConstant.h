@@ -67,7 +67,16 @@ typedef enum
     ServerRequestTypeDeleteLikeAPost,
     
     /*LIKE A POST*/
-
+    
+    
+    /*SEARCH*/
+    ServerRequestTypeSearchPosts,
+    ServerRequestTypeSearchUsers,
+    ServerRequestTypeSearchCollections,
+    
+    /*User Follower / Following*/
+    ServerRequestTypeUserFollower,
+    ServerRequestTypeUserFollowing,
     
 }ServerRequestType;
 

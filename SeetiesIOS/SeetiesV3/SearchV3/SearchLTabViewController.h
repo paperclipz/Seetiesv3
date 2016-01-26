@@ -10,5 +10,5 @@
 
 @interface SearchLTabViewController : CommonViewController <UITableViewDataSource,UITableViewDelegate>
 
-@property(nonatomic,strong)NSString* TabType;
+@property(nonatomic,assign)SearchListingType searchListingType;
 @end

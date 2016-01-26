@@ -71,6 +71,24 @@ typedef enum {
 
 typedef enum {
     
+    UsersListingTypeFollower,
+    UsersListingTypeFollowing
+
+    
+} UsersListingType;
+
+typedef enum {
+    
+    SearchListingTypeShop,
+    SearchsListingTypeCollections,
+    SearchsListingTypePosts,
+    SearchsListingTypeSeetizens
+    
+    
+} SearchListingType;
+
+typedef enum {
+    
     SeetiesShopTypeDetail,
     SeetiesShopTypeMap,
     SeetiesShopTypeDeal,

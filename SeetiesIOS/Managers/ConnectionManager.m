@@ -481,6 +481,8 @@
         case ServerRequestTypePostFollowCollection:
         case ServerRequestTypePutCollectPost:
         case ServerRequestTypePostCreateCollection:
+        case ServerRequestTypeUserFollower:
+        case ServerRequestTypeUserFollowing:
         default:
              str = API_VERION_URL;
             break;
@@ -488,6 +490,11 @@
         case ServerRequestTypePostLikeAPost:
         case ServerRequestTypeDeleteLikeAPost:
             str = [NSString stringWithFormat:@"/%@/post",API_VERION_URL];
+            break;
+        case ServerRequestTypeSearchPosts:
+        case ServerRequestTypeSearchUsers:
+        case ServerRequestTypeSearchCollections:
+            str = [NSString stringWithFormat:@"/%@/search",API_VERION_URL];
             break;
             
     }
@@ -652,6 +659,7 @@
         }
             break;
         case ServerRequestTypeGetUserCollections:
+        case ServerRequestTypeSearchCollections:
         {
             
             NSDictionary* dict = obj[@"data"];
@@ -741,6 +749,21 @@
         }
             break;
         case ServerRequestTypePutCollectPost:
+            break;
+        case ServerRequestTypeSearchPosts:
+        {
+            NSDictionary* dict = obj[@"data"];
+            self.dataManager.userProfilePostModel = [[ProfilePostModel alloc]initWithDictionary:dict error:nil];
+            [self.dataManager.userProfilePostModel.userPostData process];
+        }
+            break;
+        case ServerRequestTypeUserFollower:
+        case ServerRequestTypeUserFollowing:
+        case ServerRequestTypeSearchUsers:
+        {
+            NSDictionary* dict = obj[@"data"];
+            self.dataManager.usersModel = [[UsersModel alloc]initWithDictionary:dict error:nil];
+        }
             break;
             
         default:

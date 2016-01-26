@@ -15,64 +15,63 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="DefaultProfilePic.png" translatesAutoresizingMaskIntoConstraints="NO" id="WYM-KQ-r4q">
-                        <rect key="frame" x="10" y="10" width="50" height="50"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="50" id="HZj-j6-xc3"/>
-                            <constraint firstAttribute="height" constant="50" id="NtD-cw-ptu"/>
-                        </constraints>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wew-wG-aBl">
-                        <rect key="frame" x="68" y="10" width="193" height="50"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="193" id="3Tv-Nr-eH8"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="3Tv-Nr-eH8"/>
-                            </mask>
-                        </variation>
-                    </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fwu-dr-qs4">
                         <rect key="frame" x="250" y="10" width="70" height="48"/>
-                        <state key="normal" image="ExploreFollow.png"/>
-                        <state key="selected" image="ExploreFollowing.png"/>
+                        <state key="normal" image="FollowIcon.png"/>
+                        <state key="selected" image="FollowingIcon.png"/>
                         <connections>
                             <action selector="btnFollowClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="QId-Df-leV"/>
                         </connections>
                     </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="J7X-Xm-Bfz">
+                        <rect key="frame" x="10" y="10" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="nCL-mR-weL"/>
+                            <constraint firstAttribute="width" constant="50" id="w4n-eu-YxO"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Thj-cU-n5a">
+                        <rect key="frame" x="68" y="0.0" width="190" height="70"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="190" id="2Pb-ua-thE"/>
+                            <constraint firstAttribute="height" constant="70" id="PIY-jl-z97"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="WYM-KQ-r4q" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="30f-qD-gkw"/>
+                    <constraint firstItem="fwu-dr-qs4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="0w4-Ia-nZP"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="fwu-dr-qs4" secondAttribute="trailing" constant="-8" id="DV9-LC-Vhi"/>
+                    <constraint firstItem="fwu-dr-qs4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="242" id="EtF-1P-Xbi"/>
                     <constraint firstItem="fwu-dr-qs4" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Hu2-qv-U8S"/>
-                    <constraint firstItem="fwu-dr-qs4" firstAttribute="top" secondItem="WYM-KQ-r4q" secondAttribute="top" id="I0E-Rj-Czs"/>
-                    <constraint firstItem="fwu-dr-qs4" firstAttribute="top" secondItem="Wew-wG-aBl" secondAttribute="top" id="Jjq-tN-Zw8"/>
-                    <constraint firstItem="Wew-wG-aBl" firstAttribute="leading" secondItem="WYM-KQ-r4q" secondAttribute="trailing" constant="8" id="Sib-oy-QpY"/>
-                    <constraint firstItem="Wew-wG-aBl" firstAttribute="bottom" secondItem="WYM-KQ-r4q" secondAttribute="bottom" id="Wdi-I1-lvp"/>
+                    <constraint firstItem="Thj-cU-n5a" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="60" id="Lyl-Wg-lMd"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="fwu-dr-qs4" secondAttribute="bottom" constant="3" id="RtV-sM-ZQJ"/>
+                    <constraint firstItem="Thj-cU-n5a" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="cUW-BT-ite"/>
                     <constraint firstItem="fwu-dr-qs4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="242" id="cys-i0-Bbu"/>
+                    <constraint firstItem="J7X-Xm-Bfz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="dNd-Pr-5hp"/>
                     <constraint firstAttribute="trailingMargin" secondItem="fwu-dr-qs4" secondAttribute="trailing" constant="-8" id="equ-4p-1rd"/>
-                    <constraint firstItem="Wew-wG-aBl" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="evf-Ib-tYS"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="Wew-wG-aBl" secondAttribute="trailing" constant="51" id="lWn-XR-iJC"/>
-                    <constraint firstItem="Wew-wG-aBl" firstAttribute="leading" secondItem="WYM-KQ-r4q" secondAttribute="trailing" constant="8" symbolic="YES" id="qfp-DC-rbm"/>
+                    <constraint firstItem="J7X-Xm-Bfz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="rnp-R2-vkv"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
+                        <exclude reference="Hu2-qv-U8S"/>
                         <exclude reference="cys-i0-Bbu"/>
+                        <exclude reference="equ-4p-1rd"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="btnFollow" destination="fwu-dr-qs4" id="bw6-ad-hbV"/>
+                <outlet property="ibImageUserProfile" destination="J7X-Xm-Bfz" id="paj-mG-8FW"/>
+                <outlet property="ibLabelUsername" destination="Thj-cU-n5a" id="yYj-rb-ThE"/>
             </connections>
             <point key="canvasLocation" x="480" y="402"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="DefaultProfilePic.png" width="83" height="83"/>
-        <image name="ExploreFollow.png" width="70" height="48"/>
-        <image name="ExploreFollowing.png" width="70" height="48"/>
+        <image name="FollowIcon.png" width="47" height="47"/>
+        <image name="FollowingIcon.png" width="47" height="47"/>
     </resources>
 </document>
