@@ -85,4 +85,17 @@
 {
     [Utils setRoundBorder:self color:[UIColor clearColor] borderRadius:self.frame.size.height/2];
 }
+
+
+-(void)setRoundedBorder
+{
+    [Utils setRoundBorder:self color:[UIColor clearColor] borderRadius:self.frame.size.width/2];
+}
+
+-(void)setStandardBorder
+{
+    [Utils setRoundBorder:self color:LINE_COLOR borderRadius:5.0f];
+    
+}
+
 @end

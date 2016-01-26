@@ -28,11 +28,6 @@
     self.backgroundColor = UIColorFromRGB(238, 238, 238, 1);
 }
 
--(void)setStandardBorder
-{
-    [Utils setRoundBorder:self color:LINE_COLOR borderRadius:5.0f];
-
-}
 
 -(void)sd_setImageCroppedWithURL:(NSURL *)url completed:(ImageBlock)block
 {
@@ -60,9 +55,4 @@
     
 }
 
-
--(void)setRoundedBorder
-{
-    [Utils setRoundBorder:self color:[UIColor clearColor] borderRadius:self.frame.size.width/2];
-}
 @end

@@ -24,7 +24,9 @@
 @property (weak, nonatomic) IBOutlet UIView *ibCollectionView;
 @property (weak, nonatomic) IBOutlet UIView *ibInviteFriendsView;
 @property (weak, nonatomic) IBOutlet UIView *ibPromoCodeView;
-
+@property (weak, nonatomic) IBOutlet UIImageView *ibWalletIcon;
+@property (weak, nonatomic) IBOutlet UIImageView *ibCollectionIcon;
+@property (weak, nonatomic) IBOutlet UILabel *ibNotificationCountLbl;
 @end
 
 @implementation CT3_MeViewController
@@ -47,9 +49,11 @@
 }
 
 - (IBAction)btnNotificationClicked:(id)sender {
+    [self.navigationController pushViewController:self.notificationViewController animated:YES];
 }
 
 - (IBAction)btnInviteClicked:(id)sender {
+    [self.navigationController pushViewController:self.inviteFriendViewController animated:YES];
 }
 
 - (IBAction)btnPromoClicked:(id)sender {
@@ -79,31 +83,19 @@
 
 -(void)initSelfView{
     
-    [self.ibMainScrollView addSubview:self.ibContentView];
-    
-//    self.ibContentView.translatesAutoresizingMaskIntoConstraints = NO;
-//    self.ibMainScrollView.translatesAutoresizingMaskIntoConstraints = NO;
-    
-    NSLayoutConstraint *leading = [NSLayoutConstraint constraintWithItem:self.ibContentView attribute:NSLayoutAttributeLeading relatedBy:0 toItem:self.ibMainScrollView attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0];
-    NSLayoutConstraint *trailing = [NSLayoutConstraint constraintWithItem:self.ibContentView attribute:NSLayoutAttributeTrailing relatedBy:0 toItem:self.ibMainScrollView attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0];
-    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.ibContentView attribute:NSLayoutAttributeTop relatedBy:0 toItem:self.ibMainScrollView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
-    NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:self.ibContentView attribute:NSLayoutAttributeBottom relatedBy:0 toItem:self.ibMainScrollView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
-    
-    [self.ibMainScrollView addConstraints:@[leading, trailing, top, bottom]];
-//    [self.ibMainScrollView setContentSize:CGSizeMake(self.ibMainScrollView.frame.size.width, self.ibMainScrollView.frame.size.height)];
-    
     SLog(@"scrollview width: %f", self.ibMainScrollView.frame.size.width);
     SLog(@"contentview width: %f", self.ibContentView.frame.size.width);
     
-    [self.ibProfileView prefix_addLowerBorder:[UIColor lightGrayColor]];
-
-    [self.ibWalletView prefix_addUpperBorder:[UIColor lightGrayColor]];
-    [self.ibWalletView prefix_addRightBorder:[UIColor lightGrayColor]];
-    [self.ibWalletView prefix_addLowerBorder:[UIColor lightGrayColor]];
+    [self.ibProfileImg setRoundedBorder];
+    [self.ibWalletIcon setRoundedBorder];
+    [self.ibCollectionIcon setRoundedBorder];
+    [Utils setRoundBorder:self.ibNotificationCountLbl color:[UIColor clearColor] borderRadius:self.ibNotificationCountLbl.frame.size.width/2];
     
-    [self.ibCollectionView prefix_addUpperBorder:[UIColor lightGrayColor]];
-    [self.ibCollectionView prefix_addLeftBorder:[UIColor lightGrayColor]];
-    [self.ibCollectionView prefix_addLowerBorder:[UIColor lightGrayColor]];
+    [self.ibProfileView prefix_addLowerBorder:[UIColor lightGrayColor]];
+    [Utils setRoundBorder:self.ibWalletView color:[UIColor redColor] borderRadius:5.0f];
+    
+    [self.ibWalletView setStandardBorder];
+    [self.ibCollectionView setStandardBorder];
     
     [self.ibInviteFriendsView prefix_addUpperBorder:[UIColor lightGrayColor]];
     [self.ibInviteFriendsView prefix_addLowerBorder:[UIColor lightGrayColor]];
@@ -111,13 +103,6 @@
     [self.ibPromoCodeView prefix_addUpperBorder:[UIColor lightGrayColor]];
     [self.ibPromoCodeView prefix_addLowerBorder:[UIColor lightGrayColor]];
 }
-
--(void)viewDidAppear:(BOOL)animated{
-//    [self.view layoutIfNeeded];
-//    [self initSelfView];
-}
-
-
 
 #pragma mark Declaration
 
@@ -140,5 +125,19 @@
         _collectionListingViewController = [CollectionListingViewController new];
     }
     return _collectionListingViewController;
+}
+
+-(NotificationViewController*)notificationViewController{
+    if (!_notificationViewController) {
+        _notificationViewController = [NotificationViewController new];
+    }
+    return _notificationViewController;
+}
+
+-(InviteFrenViewController*)inviteFriendViewController{
+    if (!_inviteFriendViewController) {
+        _inviteFriendViewController = [InviteFrenViewController new];
+    }
+    return _inviteFriendViewController;
 }
 @end
