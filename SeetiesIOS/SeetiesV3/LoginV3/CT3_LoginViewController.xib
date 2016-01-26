@@ -7,6 +7,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CT3_LoginViewController">
             <connections>
+                <outlet property="ibImageView" destination="jdf-nV-fNL" id="wuo-Tj-fjL"/>
+                <outlet property="lblFacebook" destination="vcG-kC-xi2" id="rvv-T7-FOL"/>
+                <outlet property="lblInstagram" destination="t6b-cD-pS6" id="or3-kt-Sfe"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,30 +18,126 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TB9-YP-yWd">
-                    <rect key="frame" x="15" y="17" width="46" height="30"/>
-                    <state key="normal" title="Button"/>
-                    <connections>
-                        <action selector="btnBackClicked:" destination="-1" eventType="touchUpInside" id="lpE-Yx-53a"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vcG-kC-xi2">
-                    <rect key="frame" x="60" y="419" width="34" height="30"/>
-                    <state key="normal" title="login"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jdf-nV-fNL">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                </imageView>
+                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vcG-kC-xi2">
+                    <rect key="frame" x="20" y="395" width="130" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="eWq-Ms-BfC"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <state key="normal" title="Facebook" image="LoginFacebookIcon.png">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
                     <connections>
                         <action selector="btnFacebookClicked:" destination="-1" eventType="touchUpInside" id="3yr-uW-qV3"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oL5-oP-BVN">
-                    <rect key="frame" x="105" y="424" width="91" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oL5-oP-BVN">
+                    <rect key="frame" x="165" y="436" width="135" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="w1L-YD-FrP"/>
+                    </constraints>
                     <state key="normal" title="Normal Login"/>
                     <connections>
                         <action selector="btnLoginClicked:" destination="-1" eventType="touchUpInside" id="cg0-2L-IOA"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t6b-cD-pS6">
+                    <rect key="frame" x="170" y="397" width="130" height="40"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <state key="normal" title="Instagram" image="InstagramBtnInactive.png"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q1X-vP-vhI">
+                    <rect key="frame" x="20" y="436" width="135" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="Qqr-AK-Kk0"/>
+                    </constraints>
+                    <state key="normal" title="Sign up">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="btnSignupClicked:" destination="-1" eventType="touchUpInside" id="k8u-zD-Wt1"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms of Use &amp; Privacy Notice" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aRb-Kr-MAb">
+                    <rect key="frame" x="10" y="539" width="300" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="FfH-Zc-IyI"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hz3-yB-gbd">
+                    <rect key="frame" x="10" y="501" width="300" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="FBQ-i3-kSZ"/>
+                    </constraints>
+                    <state key="normal" title="Continue without login"/>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WHu-ND-0o9">
+                    <rect key="frame" x="152" y="476" width="16" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Continue with" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7rR-Qc-xUn">
+                    <rect key="frame" x="108" y="368" width="106" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TB9-YP-yWd">
+                    <rect key="frame" x="20" y="45" width="46" height="30"/>
+                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="btnBackClicked:" destination="-1" eventType="touchUpInside" id="lpE-Yx-53a"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Q1X-vP-vhI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="1f8-xA-08u"/>
+                <constraint firstAttribute="trailing" secondItem="jdf-nV-fNL" secondAttribute="trailing" id="5CA-U1-YGl"/>
+                <constraint firstItem="aRb-Kr-MAb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="8JT-67-q2m"/>
+                <constraint firstItem="hz3-yB-gbd" firstAttribute="top" secondItem="WHu-ND-0o9" secondAttribute="bottom" constant="5" id="9n8-rv-9T4"/>
+                <constraint firstItem="jdf-nV-fNL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="AMb-y9-dY1"/>
+                <constraint firstItem="oL5-oP-BVN" firstAttribute="leading" secondItem="Q1X-vP-vhI" secondAttribute="trailing" constant="10" id="BDB-HG-NSx"/>
+                <constraint firstItem="Q1X-vP-vhI" firstAttribute="top" secondItem="vcG-kC-xi2" secondAttribute="bottom" constant="-3" id="DnF-qo-KXI"/>
+                <constraint firstItem="vcG-kC-xi2" firstAttribute="width" secondItem="t6b-cD-pS6" secondAttribute="width" id="H0p-yt-wtz"/>
+                <constraint firstAttribute="trailing" secondItem="aRb-Kr-MAb" secondAttribute="trailing" constant="10" id="HgY-Oc-PtU"/>
+                <constraint firstItem="WHu-ND-0o9" firstAttribute="top" secondItem="oL5-oP-BVN" secondAttribute="bottom" constant="10" id="La8-yK-tvo"/>
+                <constraint firstItem="vcG-kC-xi2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="NRT-mb-gzb"/>
+                <constraint firstItem="Q1X-vP-vhI" firstAttribute="width" secondItem="oL5-oP-BVN" secondAttribute="width" id="QsG-74-T9C"/>
+                <constraint firstItem="7rR-Qc-xUn" firstAttribute="centerX" secondItem="jdf-nV-fNL" secondAttribute="centerX" id="Sp9-nU-VCq"/>
+                <constraint firstItem="vcG-kC-xi2" firstAttribute="top" secondItem="7rR-Qc-xUn" secondAttribute="bottom" constant="6" id="Uky-Fc-vyi"/>
+                <constraint firstItem="hz3-yB-gbd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="edb-yF-VtE"/>
+                <constraint firstItem="t6b-cD-pS6" firstAttribute="leading" secondItem="vcG-kC-xi2" secondAttribute="trailing" constant="20" id="fzU-dU-DnU"/>
+                <constraint firstItem="oL5-oP-BVN" firstAttribute="top" secondItem="t6b-cD-pS6" secondAttribute="bottom" constant="-1" id="g3b-HC-SGI"/>
+                <constraint firstItem="jdf-nV-fNL" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="gXU-87-ZIw"/>
+                <constraint firstAttribute="bottom" secondItem="jdf-nV-fNL" secondAttribute="bottom" id="gkG-D8-Alx"/>
+                <constraint firstItem="WHu-ND-0o9" firstAttribute="top" secondItem="Q1X-vP-vhI" secondAttribute="bottom" constant="10" id="ilZ-pT-qUy"/>
+                <constraint firstAttribute="trailing" secondItem="t6b-cD-pS6" secondAttribute="trailing" constant="20" id="jrE-tj-HZn"/>
+                <constraint firstItem="WHu-ND-0o9" firstAttribute="centerX" secondItem="hz3-yB-gbd" secondAttribute="centerX" id="nVl-qS-JMA"/>
+                <constraint firstItem="aRb-Kr-MAb" firstAttribute="leading" secondItem="hz3-yB-gbd" secondAttribute="trailing" constant="-221" id="qIm-k5-UxU"/>
+                <constraint firstAttribute="trailing" secondItem="hz3-yB-gbd" secondAttribute="trailing" constant="10" id="tdD-NC-P58"/>
+                <constraint firstAttribute="trailing" secondItem="oL5-oP-BVN" secondAttribute="trailing" constant="20" id="tl0-kp-Lp5"/>
+                <constraint firstItem="aRb-Kr-MAb" firstAttribute="top" secondItem="hz3-yB-gbd" secondAttribute="bottom" constant="8" id="tqf-He-Ndd"/>
+                <constraint firstAttribute="bottom" secondItem="aRb-Kr-MAb" secondAttribute="bottom" constant="8" id="xLY-HE-ha1"/>
+            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="qIm-k5-UxU"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="525" y="246"/>
         </view>
     </objects>
+    <resources>
+        <image name="InstagramBtnInactive.png" width="40" height="40"/>
+        <image name="LoginFacebookIcon.png" width="44" height="44"/>
+    </resources>
 </document>

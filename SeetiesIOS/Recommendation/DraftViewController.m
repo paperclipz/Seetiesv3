@@ -142,7 +142,9 @@
     _editPostViewController = nil;
     [self.editPostViewController initDataDraft:draftModel];
 
-    [self.navigationController pushViewController:self.editPostViewController animated:YES];
+    [self.navigationController pushViewController:self.editPostViewController animated:YES onCompletion:^{
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }];
 
 }
 

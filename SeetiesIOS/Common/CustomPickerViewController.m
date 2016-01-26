@@ -111,9 +111,9 @@
 
 -(void)show
 {
-    
     [self show:self.view transparentView:self.ibTransparentView MovingContentView:self.ibFullContentView];
 }
+
 -(void)hideWithAnimation:(BOOL)isAnimate
 {
     [self hideWithAnimation:isAnimate MainView:self.view transparentView:self.ibTransparentView MovingContentView:self.ibFullContentView];

@@ -13,8 +13,7 @@
 +(JSONKeyMapper*)keyMapper
 {
     return [[JSONKeyMapper alloc] initWithDictionary:@{
-                                                       @"langID": @"id",
-                                                     
+                                                       @"id": @"langID",
                                                        }];
 }
 

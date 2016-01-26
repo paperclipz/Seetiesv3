@@ -481,6 +481,8 @@
         case ServerRequestTypePostFollowCollection:
         case ServerRequestTypePutCollectPost:
         case ServerRequestTypePostCreateCollection:
+        case ServerRequestTypeUserFollower:
+        case ServerRequestTypeUserFollowing:
         default:
              str = API_VERION_URL;
             break;
@@ -488,6 +490,11 @@
         case ServerRequestTypePostLikeAPost:
         case ServerRequestTypeDeleteLikeAPost:
             str = [NSString stringWithFormat:@"/%@/post",API_VERION_URL];
+            break;
+        case ServerRequestTypeSearchPosts:
+        case ServerRequestTypeSearchUsers:
+        case ServerRequestTypeSearchCollections:
+            str = [NSString stringWithFormat:@"/%@/search",API_VERION_URL];
             break;
             
     }
@@ -515,12 +522,21 @@
             NSDictionary* dict = obj[@"data"];
             self.dataManager.userLoginProfileModel = [[ProfileModel alloc]initWithDictionary:dict error:nil];
             
-            if (self.dataManager.userLoginProfileModel) {
+            ProfileModel* model = self.dataManager.userLoginProfileModel;
+            if (model) {
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                [defaults setObject:self.dataManager.userLoginProfileModel.token forKey:TOKEN];
-                [defaults setObject:self.dataManager.userLoginProfileModel.uid forKey:USERID];
-                [defaults setObject:self.dataManager.userLoginProfileModel.system_language.caption forKey:KEY_SYSTEM_LANG];
+                [defaults setObject:model.token forKey:TOKEN];
+                [defaults setObject:model.uid forKey:USERID];
+                [defaults setObject:model.system_language.caption forKey:KEY_SYSTEM_LANG];
 
+                if (![Utils isArrayNull:model.languages]) {
+                    [defaults setObject:[model.languages[0] langID] forKey:KEY_LANGUAGE_ONE];
+                   
+                    if (model.languages.count>=1) {
+                        [defaults setObject:[model.languages[1] langID] forKey:KEY_LANGUAGE_TWO];
+                    }
+                }
+                
                 [defaults synchronize];
             }
         }
@@ -643,6 +659,7 @@
         }
             break;
         case ServerRequestTypeGetUserCollections:
+        case ServerRequestTypeSearchCollections:
         {
             
             NSDictionary* dict = obj[@"data"];
@@ -732,6 +749,21 @@
         }
             break;
         case ServerRequestTypePutCollectPost:
+            break;
+        case ServerRequestTypeSearchPosts:
+        {
+            NSDictionary* dict = obj[@"data"];
+            self.dataManager.userProfilePostModel = [[ProfilePostModel alloc]initWithDictionary:dict error:nil];
+            [self.dataManager.userProfilePostModel.userPostData process];
+        }
+            break;
+        case ServerRequestTypeUserFollower:
+        case ServerRequestTypeUserFollowing:
+        case ServerRequestTypeSearchUsers:
+        {
+            NSDictionary* dict = obj[@"data"];
+            self.dataManager.usersModel = [[UsersModel alloc]initWithDictionary:dict error:nil];
+        }
             break;
             
         default:

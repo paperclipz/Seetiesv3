@@ -38,23 +38,25 @@
         case 1:
         {
             [self.draftViewController initData];
-            self.navRecommendationViewController = [[UINavigationController alloc]initWithRootViewController:self.draftViewController];
-            [self.navRecommendationViewController setNavigationBarHidden:YES];
-
-
+           // self.navRecommendationViewController = [[UINavigationController alloc]initWithRootViewController:self.draftViewController];
+            [self.view addSubview:self.draftViewController.view];
+           // [self.navRecommendationViewController setNavigationBarHidden:YES];
+            
         }
             break;
             
         default:
         {
             _doImagePickerController = nil;
-             self.navRecommendationViewController = [[UINavigationController alloc]initWithRootViewController:self.doImagePickerController];
+            // self.navRecommendationViewController = [[UINavigationController alloc]initWithRootViewController:self.doImagePickerController];
+            [self.view addSubview:self.doImagePickerController.view];
+
         }
             break;
     }
     
-    [self.navRecommendationViewController setNavigationBarHidden:YES];
-    [sender presentViewController:self.navRecommendationViewController animated:YES completion:nil];
+    [self.navigationController setNavigationBarHidden:YES];
+ //   [sender presentViewController:self.navRecommendationViewController animated:YES completion:nil];
 
 }
 
@@ -77,6 +79,8 @@
 -(void)dismissView
 {
     if (self.backBlock) {
+        
+        [self.navigationController popViewControllerAnimated:YES];
         self.backBlock(self);
     }
 }
@@ -126,8 +130,8 @@
 {
     _stSearchViewController = nil;
     [_stSearchViewController setViewNew];
-    [self.doImagePickerController.navigationController pushViewController:self.stSearchViewController animated:YES];
     [self.stSearchViewController initWithLocation:location];
+    [self.navigationController pushViewController:self.stSearchViewController animated:YES];
 }
 
 -(void)showEditPostView
@@ -138,7 +142,6 @@
         [self resetView];
     }];
 }
-
 
 #pragma mark - Declaration
 
@@ -169,7 +172,7 @@
         {
             
             weakSelf.recommendModel.reccomendVenueModel = model;
-            [weakSelf.navRecommendationViewController dismissViewControllerAnimated:YES completion:^{
+            [weakSelf dismissViewControllerAnimated:YES completion:^{
                 [weakSelf showEditPostView];
                 
             }];
@@ -177,7 +180,7 @@
         
         _stSearchViewController.btnAddNewPlaceBlock = ^(id object)
         {
-            [weakSelf.navRecommendationViewController pushViewController:weakSelf.addNewPlaceViewController animated:YES];
+            [weakSelf.navigationController pushViewController:weakSelf.addNewPlaceViewController animated:YES];
           //  wealSelf.addNewPlaceViewController.title
             weakSelf.addNewPlaceViewController.title = @"Add New Place";
         };

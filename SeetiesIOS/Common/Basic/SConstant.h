@@ -67,7 +67,16 @@ typedef enum
     ServerRequestTypeDeleteLikeAPost,
     
     /*LIKE A POST*/
-
+    
+    
+    /*SEARCH*/
+    ServerRequestTypeSearchPosts,
+    ServerRequestTypeSearchUsers,
+    ServerRequestTypeSearchCollections,
+    
+    /*User Follower / Following*/
+    ServerRequestTypeUserFollower,
+    ServerRequestTypeUserFollowing,
     
 }ServerRequestType;
 
@@ -120,6 +129,11 @@ extern NSString *const SERVER_PATH_DEV;
 extern NSString *const SERVER_SUBPATH;
 extern NSString *const IP_URL_PATH;
 
+
+extern NSString *const URL_ABOUT_US;
+extern NSString *const URL_TERM_OF_USE;
+extern NSString *const URL_PRIVACY_POLICY;
+
 //=============== social media key =================//
 extern NSString *const GOOGLE_API_KEY;
 extern NSString *const GOOGLE_PLACE_AUTOCOMPLETE_API;
@@ -130,6 +144,9 @@ extern NSString *const kAFAviarySecret;
 
 @end
 
+
+
+    
 #define TOKEN_2_0 @"JDJ5JDEwJDZyamE0MlZKbTNKbHpDSElxR0dpUGVnbkJQMzdzRC40eDJna2M3RlJiVFZVbnJzRVpTQTNt"
 
 // ======================= LANGUAGE CODE ========================//
@@ -179,6 +196,10 @@ static BOOL IS_SIMULATOR = NO;
 #define TOKEN @"ExpertToken"
 #define USERID @"Useruid"
 #define KEY_SYSTEM_LANG @"system_language"
+
+#define KEY_LANGUAGE_ONE @"lang_one"
+#define KEY_LANGUAGE_TWO @"lang_two"
+
 /*NSUserDefaults key*/
 
 

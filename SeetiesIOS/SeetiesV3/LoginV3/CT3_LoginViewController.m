@@ -7,16 +7,48 @@
 //
 
 #import "CT3_LoginViewController.h"
+#import "LoginPageViewController.h"
+#import "SignUpViewController.h"
+#import "PInterestV2ViewController.h"
 
 @interface CT3_LoginViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
+@property (nonatomic) LoginPageViewController* loginPageViewController;
+@property(nonatomic)SignUpViewController* signUpViewController;
+@property(nonatomic)PInterestV2ViewController* pInterestV2ViewController;
+@property (weak, nonatomic) IBOutlet UIButton *lblFacebook;
+@property (weak, nonatomic) IBOutlet UIButton *lblInstagram;
 
 @end
 
 @implementation CT3_LoginViewController
 
+- (IBAction)btnSignupClicked:(id)sender {
+    
+    [self.navigationController pushViewController:self.signUpViewController animated:YES];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self initSelfView];
     // Do any additional setup after loading the view from its nib.
+}
+
+-(void)initSelfView
+{
+    self.ibImageView.animationImages = [NSArray arrayWithObjects:
+                                         [UIImage imageNamed:@"Walkthrough1.png"],
+                                         [UIImage imageNamed:@"Walkthrough2.png"],
+                                         [UIImage imageNamed:@"Walkthrough3.png"],
+                                         [UIImage imageNamed:@"Walkthrough4.png"], nil];
+    self.ibImageView.animationDuration = 5.0f;
+    self.ibImageView.animationRepeatCount = 0;
+    [self.ibImageView startAnimating];
+    
+    [Utils setRoundBorder:self.lblFacebook color:[UIColor whiteColor] borderRadius:5.0f borderWidth:1.0f];
+    [Utils setRoundBorder:self.lblInstagram color:[UIColor whiteColor] borderRadius:5.0f borderWidth:1.0f];
+
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -35,7 +67,8 @@
 */
 - (IBAction)btnLoginClicked:(id)sender {
     
-    [self requestServerForLogin];
+    
+    [self.navigationController pushViewController:self.loginPageViewController animated:YES];
 }
 
 -(IBAction)btnFacebookClicked:(id)sender{
@@ -105,14 +138,58 @@
     //    }
     
 }
+#pragma mark - Declaration
+
+-(PInterestV2ViewController*)pInterestV2ViewController
+{
+    if (!_pInterestV2ViewController) {
+        _pInterestV2ViewController = [PInterestV2ViewController new];
+    }
+    
+    return _pInterestV2ViewController;
+}
+
+-(SignUpViewController*)signUpViewController
+{
+    if (!_signUpViewController) {
+        _signUpViewController = [SignUpViewController new];
+        _signUpViewController.signUpClickBlock = ^(NSString* username, NSString* password,NSString* email)
+        {
+            
+            
+        };
+    }
+    
+    return _signUpViewController;
+}
+
+-(LoginPageViewController*)loginPageViewController
+{
+    if (!_loginPageViewController) {
+        _loginPageViewController = [LoginPageViewController new];
+        
+        
+        __weak typeof (self)weakSelf = self;
+        _loginPageViewController.btnLoginClickedBlock = ^(NSString* username,NSString* password)
+        {
+            
+            [weakSelf requestServerForLogin:username Password:password];
+
+        };
+
+    }
+    
+    return _loginPageViewController;
+}
 
 #pragma mark - Server Request
--(void)requestServerForLogin{
+-(void)requestServerForLogin:(NSString*)userName Password:(NSString*)password
+{
  
     [LoadingManager show];
     
-    NSDictionary* dict = @{@"login_id" : @"paperclipz",
-                           @"password" : @"12345678",
+    NSDictionary* dict = @{@"login_id" : userName,
+                           @"password" : password,
                            @"device_type" : @"2"};
     
     [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypeLogin param:dict completeHandler:^(id object) {
@@ -130,7 +207,6 @@
 }
 
 -(void)requestServerForFacebookLogin{
-
 
     [LoadingManager show];
     FacebookModel* model = [[ConnectionManager dataManager]facebookLoginModel];
@@ -154,6 +230,10 @@
     
 }
 
+-(void)forgetPassword
+{
+
+}
 
 
 @end

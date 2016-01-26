@@ -13,4 +13,14 @@
 @property(nonatomic,strong)SearchLTabViewController *collectionListingTableViewController;
 @property(nonatomic,strong)SearchLTabViewController *PostsListingTableViewController;
 @property(nonatomic,strong)SearchLTabViewController *SeetizensListingTableViewController;
+
+@property(nonatomic,strong)NSString* SearchText;
+@property(nonatomic,strong)NSString* LocationName;
+
+@property(nonatomic,strong)NSString* Getlat;
+@property(nonatomic,strong)NSString* Getlong;
+
+@property(nonatomic,strong)NSString* GetCurrentlat;
+@property(nonatomic,strong)NSString* GetCurrentLong;
+
 @end

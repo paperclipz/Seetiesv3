@@ -47,7 +47,7 @@
 
 }
 
--(CLLocation*)getLocation
+-(CLLocation*)getAppLocation
 {
     if (self.GPSLocation) {
         return self.GPSLocation;
@@ -135,8 +135,6 @@
 
 -(void)getSuggestedLocationFromFoursquare:(CLLocation*)tempCurrentLocation input:(NSString*)input completionBlock:(IDBlock)completionBlock
 {
-   // [LoadingManager showWithTitle:[NSString stringWithFormat:@"%@ foursquare",LocalisedString(@"Searching...")]];
-
     SLog(@"long : %f  || lat: %f",tempCurrentLocation.coordinate.longitude,tempCurrentLocation.coordinate.latitude);
 
     if (tempCurrentLocation) {
@@ -164,87 +162,38 @@
     }
     else{
    
-        [self getCoordinateFromGPSThenWifi:^(CLLocation *currentLocation) {
-        
-        [Foursquare2 venueExploreRecommendedNearByLatitude:@(tempCurrentLocation.coordinate.latitude) longitude:@(tempCurrentLocation.coordinate.longitude) near:nil accuracyLL:nil altitude:nil accuracyAlt:nil query:input limit:nil offset:nil radius:@(10000) section:nil novelty:nil sortByDistance:nil openNow:nil venuePhotos:nil price:nil callback:^(BOOL success, id result){
+        [self getCoordinateFromWifi:^(CLLocation *currentLocation) {
             
-            if(success)
-            {
-                [self.connManager storeServerData:result requestType:ServerRequestType4SquareSearch];
+            [Foursquare2 venueExploreRecommendedNearByLatitude:@(currentLocation.coordinate.latitude) longitude:@(currentLocation.coordinate.longitude) near:nil accuracyLL:nil altitude:nil accuracyAlt:nil query:input limit:nil offset:nil radius:@(10000) section:nil novelty:nil sortByDistance:nil openNow:nil venuePhotos:nil price:nil callback:^(BOOL success, id result){
                 
-                if (completionBlock) {
-                    completionBlock(result);
+                if(success)
+                {
+                    [self.connManager storeServerData:result requestType:ServerRequestType4SquareSearch];
+                    
+                    if (completionBlock) {
+                        completionBlock(result);
+                    }
+                    
                 }
+                else{
+                    
+                    SLog(@"NO Result FOUND");
+                }
+                SLog(@"fourSquare response : %@",result);
+                //       [LoadingManager hide];
+                [LoadingManager hide];
                 
-            }
-            else{
-                
-                SLog(@"NO Result FOUND");
-            }
-            SLog(@"fourSquare response : %@",result);
-            //       [LoadingManager hide];
+            }];
+
+            
+        } errorBlock:^(NSString *status) {
             [LoadingManager hide];
-
+            
+            SLog(@"ERROR");
         }];
-        
-        
-    } errorBlock:^(NSString *status) {
-        [LoadingManager hide];
-
-        SLog(@"ERROR");
-    }];
+    
     }
     
-   
- //   tempCurrentLocation.coordinate.latitude = [NSNumber numberWithDouble:3.1333] ;
- //   tempCurrentLocation.coordinate.longitude = [NSNumber numberWithFloat:101.7000];
-    
-//    [Foursquare2 venueSearchNearByLatitude:@(tempCurrentLocation.coordinate.latitude)
-//                                 longitude:@(tempCurrentLocation.coordinate.longitude)
-//                                     query:input
-//                                     limit:nil
-//                                    intent:intentCheckin
-//                                    radius:@(5000)
-//                                categoryId:nil
-//                                  callback:^(BOOL success, id result){
-//                                      if (success) {
-//                                          
-//                                          [self.connManager storeServerData:result requestType:ServerRequestType4SquareSearch];
-//
-//                                          if (completionBlock) {
-//                                              
-//                                              completionBlock(result);
-//                                              
-//                                          }
-//
-////                                          NSDictionary *dic = result;
-////                                          NSArray *venues = [dic valueForKeyPath:@"response.venues"];
-////                                          NSLog(@"venues is %@",venues);
-////                                          FSConverter *converter = [[FSConverter alloc]init];
-////                                          self.nearbyVenues = [converter convertToObjects:venues];
-////                                          [tblview reloadData];
-////                                          // [self proccessAnnotations];
-////                                          [ShowNearByActivity stopAnimating];
-////                                          GetLocationArray = nil;
-////                                          GetreferralIdArray = nil;
-////                                          AddressArray = nil;
-////                                          CityArray = nil;
-////                                          CountryArray = nil;
-////                                          latArray = nil;
-////                                          lngArray = nil;
-////                                          StateArray = nil;
-////                                          formattedAddressArray = nil;
-////                                          postalCodeArray = nil;
-////                                          GetLocationArray = [[NSMutableArray alloc] initWithCapacity:[venues count]];
-////                                          GetreferralIdArray = [[NSMutableArray alloc] initWithCapacity:[venues count]];
-////                                          //                                          NSDictionary *Alldata = [dic valueForKey:@"categories"];
-////                                          //                                          NSLog(@"Alldata is %@",Alldata);
-////                                          //                                          NSDictionary *Getlocationdata = [venues valueForKey:@"location"];
-////                                          //                                          NSLog(@"Getlocationdata is %@",Getlocationdata);
-////
-//                                      }
-//                                      
-//                                      }];
 }
 
 -(NSString*)coordinateToString:(CLLocation*)location

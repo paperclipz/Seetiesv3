@@ -18,11 +18,11 @@ typedef void(^SearchManagerFailBlock)(NSString *status);
 
 @interface SearchManager : NSObject<CLLocationManagerDelegate>
 + (id)Instance;
-@property(strong,nonatomic)CLLocation* location;
-@property(strong,nonatomic)CLLocation* wifiLocation;
-@property(strong,nonatomic)CLLocation* GPSLocation;//new feature
+@property(nonatomic)CLLocation* location;
+@property(nonatomic)CLLocation* wifiLocation;
+@property(nonatomic)CLLocation* GPSLocation;//new feature
 
--(CLLocation*)getLocation;
+-(CLLocation*)getAppLocation;
 -(void)startSearchGPSLocation;
 -(void)startGetWifiLocation;
 

@@ -44,11 +44,15 @@
 
 @property (nonatomic,strong)NSArray<DraftModel>* posts;
 
+@property(nonatomic,strong)NSArray<LanguageModel>* languages;
+
+
 @end
 
 @interface ProfilePostModel : Model
 
 @property(nonatomic,strong)DraftsModel* userPostData;
+@property(nonatomic,strong)DraftsModel* recommendations;
 @end
 
 @interface SeetiShopsModel : Model

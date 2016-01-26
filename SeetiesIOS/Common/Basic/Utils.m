@@ -8,9 +8,26 @@
 #import "Utils.h"
 
 @implementation Utils
+
++(BOOL)isGuestMode
 {
+//    if ([Utils checkUserIsLogin]) {
+//        return YES;
+//    }
+//    else{
+//        return NO;
+//    }
     
+    return YES;
 }
+
++(void)setLogout
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:nil forKey:TOKEN];
+    [defaults synchronize];
+}
+
 +(BOOL)isLogin
 {
     BOOL isSuccessLogin = false;
@@ -32,6 +49,21 @@
     [defaults setObject:CheckLogin forKey:@"CheckLogin"];
 
 }
+/*new checking for login using token |Experimental as of 26/1/2016|*/
++(BOOL)checkUserIsLogin
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString* token = [defaults objectForKey:TOKEN];
+ 
+    if ([Utils isStringNull:token]) {
+        return nil;
+    }
+    else{
+        return token;
+    }
+
+}
+
 +(NSString*)getAppToken
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -43,6 +75,8 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     return [defaults objectForKey:@"Useruid"];
 }
+
+
 
 +(NSString*)getWeekName:(int)integer
 {
@@ -326,40 +360,46 @@
 +(NSString*)getLanguageName:(NSString*)code
 {
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSMutableArray *LanguageID_Array = [defaults objectForKey:@"LanguageData_ID"];
-    NSMutableArray *LanguageName_Array = [defaults objectForKey:@"LanguageData_Name"];
+    LanguageModels* langmodels = [[ConnectionManager dataManager]languageModels];
+  
+    NSString* languageStr = @"";
     
-    for (int i = 0; i< LanguageName_Array.count; i++) {
-        if ([code isEqualToString:LanguageID_Array[i]]) {
+    for (int i = 0; i<langmodels.languages.count; i++) {
+     
+        LanguageModel* model = langmodels.languages[i];
+     
+        if ([model.langID isEqualToString:code]) {
             
-            return LanguageName_Array[i];
+            languageStr = model.origin_caption;
+            break;
         }
+        
+
     }
-    return nil;
+    return languageStr;
 }
 
 +(NSString*)getLanguageCode:(NSString*)name
 {
-    NSString* tempName = name;
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSMutableArray *LanguageID_Array = [defaults objectForKey:@"LanguageData_ID"];
-    NSMutableArray *LanguageName_Array = [defaults objectForKey:@"LanguageData_Name"];
     
-    if ([tempName isEqualToString:TAIWAN_STR] || [tempName isEqualToString:CHINESE_STR]) {
-        return CHINESE_CODE;
+    LanguageModels* langmodels = [[ConnectionManager dataManager]languageModels];
+    
+    NSString* langCode = @"";
+
+    for (int i = 0; i<langmodels.languages.count; i++) {
+        
+        LanguageModel* model = langmodels.languages[i];
+        
+        if ([model.origin_caption isEqualToString:name]) {
+            
+            langCode = model.langID;
+            break;
+        }
         
     }
+    return langCode;
     
-    for (int i = 0; i< LanguageName_Array.count; i++) {
-        if ([tempName isEqualToString:LanguageName_Array[i]]) {
-            
-            return LanguageID_Array[i];
-        }
-    }
-    
-    return LanguageID_Array[0];
-    
+
 }
 
 #pragma mark - UI Utilities

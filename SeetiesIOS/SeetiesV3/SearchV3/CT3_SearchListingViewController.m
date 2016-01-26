@@ -20,6 +20,8 @@
 @property(nonatomic,strong)SearchModel* searchModel;
 @property (nonatomic,strong)CLLocation* location;
 @property (nonatomic,strong)SearchManager* sManager;
+
+
 @end
 
 @implementation CT3_SearchListingViewController
@@ -43,6 +45,8 @@
     self.ibSearchText.delegate = self;
     self.ibSearchText.placeholder = LocalisedString(@"Search");
     self.ibLocationText.placeholder = LocalisedString(@"Add a location?");
+    self.ibSearchText.text = self.SearchText;
+    self.ibLocationText.text = self.LocationName;
     
     CGRect frame = [Utils getDeviceScreenSize];
     [self.ibScrollView setWidth:frame.size.width];
@@ -100,7 +104,7 @@
     if(!_shopListingTableViewController)
     {
         _shopListingTableViewController = [SearchLTabViewController new];
-        _shopListingTableViewController.TabType = @"Shops";
+        _shopListingTableViewController.searchListingType = SearchListingTypeShop;
     }
     return _shopListingTableViewController;
 }
@@ -108,7 +112,7 @@
     if(!_collectionListingTableViewController)
     {
         _collectionListingTableViewController = [SearchLTabViewController new];
-        _collectionListingTableViewController.TabType = @"Collection";
+        _collectionListingTableViewController.searchListingType = SearchsListingTypeCollections;
     }
     return _collectionListingTableViewController;
 }
@@ -116,7 +120,7 @@
     if(!_PostsListingTableViewController)
     {
         _PostsListingTableViewController = [SearchLTabViewController new];
-        _PostsListingTableViewController.TabType = @"Posts";
+        _PostsListingTableViewController.searchListingType = SearchsListingTypePosts;
     }
     return _PostsListingTableViewController;
 }
@@ -124,7 +128,7 @@
     if(!_SeetizensListingTableViewController)
     {
         _SeetizensListingTableViewController = [SearchLTabViewController new];
-        _SeetizensListingTableViewController.TabType = @"Seetizens";
+        _SeetizensListingTableViewController.searchListingType = SearchsListingTypeSeetizens;
     }
     return _SeetizensListingTableViewController;
 }
@@ -177,6 +181,7 @@
         if ([self.ibSearchText.text length] == 0) {
 
         }else{
+          //  [self requestServerForSearch];
  
         }
     }else if(textField == self.ibLocationText){
@@ -306,4 +311,7 @@
     } errorBlock:nil];
     
 }
+
+
+
 @end

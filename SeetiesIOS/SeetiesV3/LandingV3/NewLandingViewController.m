@@ -29,7 +29,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    // [self initSelfView];
-   // [self requestServerForLanguageList];
+    [self requestServerForLanguageList];
+    [self requestServerForUserInfo];
     
  
     [self.view addSubview:self.tabBarController.view];
@@ -223,6 +224,24 @@
 //    }
     
     return YES;
+}
+
+#pragma mark - Request Server
+-(void)requestServerForUserInfo
+{
+    NSString* appendString = [NSString stringWithFormat:@"%@",@"me"];
+    
+    NSDictionary* dict = @{@"uid":@"me",
+                           @"token":[Utils getAppToken]
+                           };
+    
+    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserInfo param:dict appendString:appendString completeHandler:^(id object) {
+        
+        SLog(@"Sucess Retreive User Data");
+        
+    } errorBlock:^(id object) {
+        
+    }];
 }
 
 -(void)requestServerForLanguageList{

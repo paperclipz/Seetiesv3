@@ -115,21 +115,26 @@
 #pragma mark - IBACTION
 - (IBAction)btnFollowingClicked:(id)sender {
     
-    _showFollowerAndFollowingViewController = nil;
-    [self.navigationController pushViewController:self.showFollowerAndFollowingViewController animated:YES onCompletion:^{
-        [self.showFollowerAndFollowingViewController GetToken:[Utils getAppToken] GetUID:self.userID GetType:@"Following"];
-        
-    }];
+    _connectionsViewController = nil;
+//    [self.navigationController pushViewController:self.connectionsViewController animated:YES onCompletion:^{
+//        //[self.showFollowerAndFollowingViewController GetToken:[Utils getAppToken] GetUID:self.userID GetType:@"Following"];
+//        self.connectionsViewController.userID = self.userID;
+//        
+//    }];
+    self.connectionsViewController.userID = self.userID;
+    [self.navigationController pushViewController:self.connectionsViewController animated:YES];
     
 }
 - (IBAction)btnFollowerClicked:(id)sender {
     
-    _showFollowerAndFollowingViewController = nil;
-    [self.navigationController pushViewController:self.showFollowerAndFollowingViewController animated:YES onCompletion:^{
-        [self.showFollowerAndFollowingViewController GetToken:[Utils getAppToken] GetUID:self.userID GetType:@"Follower"];
-        
-    }];
-    
+    _connectionsViewController = nil;
+//    [self.navigationController pushViewController:self.connectionsViewController animated:YES onCompletion:^{
+//      //  [self.showFollowerAndFollowingViewController GetToken:[Utils getAppToken] GetUID:self.userID GetType:@"Follower"];
+//        self.connectionsViewController.userID = self.userID;
+//        
+//    }];
+    self.connectionsViewController.userID = self.userID;
+    [self.navigationController pushViewController:self.connectionsViewController animated:YES];
 }
 
 - (IBAction)handleTap:(UITapGestureRecognizer *)sender {
@@ -934,14 +939,14 @@
     return _searchDetailViewController;
 }
 
--(ShowFollowerAndFollowingViewController*)showFollowerAndFollowingViewController
+-(ConnectionsViewController*)connectionsViewController
 {
     
-    if (!_showFollowerAndFollowingViewController) {
-        _showFollowerAndFollowingViewController = [ShowFollowerAndFollowingViewController new];
+    if (!_connectionsViewController) {
+        _connectionsViewController = [ConnectionsViewController new];
     }
     
-    return _showFollowerAndFollowingViewController;
+    return _connectionsViewController;
 }
 
 -(SearchViewV2Controller*)searchViewV2Controller
