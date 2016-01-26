@@ -11,6 +11,9 @@
 #import "RecommendationViewController.h"
 #import "DoImagePickerController.h"
 #import "DraftAndRecommendationDelegate.h"
+#import "FeedbackViewController.h"
+#import "AccountSettingViewController.h"
+#import "CTWebViewController.h"
 
 @interface CT3_MoreViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -19,6 +22,10 @@
 @property (nonatomic,strong)DoImagePickerController* imagePickerViewController;
 @property (nonatomic,strong)NSArray* arrData;
 @property(nonatomic)DraftAndRecommendationDelegate* recommendDelegate;
+@property(nonatomic)FeedbackViewController* feedbackViewController;
+@property(nonatomic)AccountSettingViewController* accountSettingViewController;
+@property(nonatomic)CTWebViewController* ctWebViewController;
+
 @end
 
 @implementation CT3_MoreViewController
@@ -69,7 +76,7 @@
     
     SettingsTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsTableViewCell"];
     NSArray* temArray= self.arrData[indexPath.section];
-    NSString* text = temArray[indexPath.row];
+    NSString* text = LocalisedString(temArray[indexPath.row]);
     cell.lblTitle.text = text;
     
     return cell;
@@ -100,13 +107,74 @@
             
         case 1://others
         {
+            NSArray* temArray= self.arrData[indexPath.section];
+            NSString* text = temArray[indexPath.row];
             
+            SWITCH(text){
+            
+                CASE (@"Rate Us"){
+                  
+                    _ctWebViewController = nil;
+                    
+                    [self.navigationController pushViewController:self.ctWebViewController animated:YES onCompletion:^{
+                        
+                        [self.ctWebViewController initDataWithURL:URL_ABOUT_US andTitle:text];
+                    }];
+
+                    break;
+                }
+                
+                CASE (@"About")
+                {
+                    _ctWebViewController = nil;
+                    [self.navigationController pushViewController:self.ctWebViewController animated:YES onCompletion:^{
+                        
+                        [self.ctWebViewController initDataWithURL:URL_ABOUT_US andTitle:text];
+                    }];
+                    
+                    break;
+                    
+                    
+                }
+                CASE (@"Feedback")
+                {
+                    
+                    [self.navigationController pushViewController:self.feedbackViewController animated:YES];
+                    break;
+                    
+                    
+                }
+                CASE (@"Account Settings")
+                {
+                    [self.navigationController pushViewController:self.accountSettingViewController animated:YES];
+                    break;
+                    
+                    
+                }
+                
+                DEFAULT
+                {
+
+                    break;
+
+                    
+                }
+            }
         }
             
             break;
             
         case 2://logout
             
+            switch (indexPath.row) {
+                case 0:
+                default:
+                    
+                //logout
+                    
+                    [self logout];
+                    break;
+            }
             
             break;
             
@@ -122,19 +190,57 @@
 
 #pragma mark - Declaration
 
--(NSArray*)arrData
+-(CTWebViewController*)ctWebViewController
+{
+    if (!_ctWebViewController) {
+        _ctWebViewController = [CTWebViewController new];
+    }
+    return _ctWebViewController;
+}
+
+-(AccountSettingViewController*)accountSettingViewController
+{
+    if (!_accountSettingViewController) {
+        _accountSettingViewController = [AccountSettingViewController new];
+    }
+    
+    return _accountSettingViewController;
+}
+
+-(FeedbackViewController*)feedbackViewController
+{
+    if (!_feedbackViewController) {
+        _feedbackViewController = [FeedbackViewController new];
+    }
+    
+    return _feedbackViewController;
+}
+
+
+-(
+  NSArray*)arrData
 {
     if (!_arrData) {
-        NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:@"Add Place",@"Recommend",@"Drafts", nil];//@"Notification Settings"
-        NSArray *secondItemsArray = [[NSArray alloc] initWithObjects:@"Account Settings", @"Rate Us",@"About",@"Feedback", nil];
-        NSArray *threeItemsArray = [[NSArray alloc] initWithObjects:@"Sign out of Seeties", nil];
+        
+        if (![Utils isGuestMode]) {
+            NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:@"Add Place",@"Recommend",@"Drafts", nil];//@"Notification Settings"
+            NSArray *secondItemsArray = [[NSArray alloc] initWithObjects:@"Account Settings", @"Rate Us",@"About",@"Feedback", nil];
+            NSArray *threeItemsArray = [[NSArray alloc] initWithObjects:@"Sign out", nil];
+            _arrData = @[firstItemsArray,secondItemsArray,threeItemsArray];
 
-        _arrData = @[firstItemsArray,secondItemsArray,threeItemsArray];
+        }
+        else
+        {
+            NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:@"Add Place",@"Recommend",@"Drafts", nil];//@"Notification Settings"
+            NSArray *secondItemsArray = [[NSArray alloc] initWithObjects:@"Rate Us",@"About",@"Feedback", nil];
+            //NSArray *threeItemsArray = [[NSArray alloc] initWithObjects:@"Sign out", nil];
+            _arrData = @[firstItemsArray,secondItemsArray];
+        }
     }
-  
     return _arrData;
-
 }
+
+
 -(RecommendationViewController*)recommendationViewController
 {
     if (!_recommendationViewController) {
@@ -146,7 +252,6 @@
 
 -(void)gotoDraftPage
 {
-    
     [self.recommendDelegate showDraftView:self];
     // go to draft
 }
@@ -155,11 +260,18 @@
 {
     
 //    UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:self.recommendationViewController];
-//    
 //    [self presentViewController:nav animated:YES completion:nil];
 //    [self.recommendationViewController initData:2 sender:nav];
     
     [self.recommendDelegate showRecommendationView:self];
 
+}
+
+-(void)logout
+{
+    
+    
+    
+   // [];
 }
 @end

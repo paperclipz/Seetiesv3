@@ -8,9 +8,26 @@
 #import "Utils.h"
 
 @implementation Utils
+
++(BOOL)isGuestMode
 {
+//    if ([Utils checkUserIsLogin]) {
+//        return YES;
+//    }
+//    else{
+//        return NO;
+//    }
     
+    return YES;
 }
+
++(void)setLogout
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:nil forKey:TOKEN];
+    [defaults synchronize];
+}
+
 +(BOOL)isLogin
 {
     BOOL isSuccessLogin = false;
@@ -32,6 +49,21 @@
     [defaults setObject:CheckLogin forKey:@"CheckLogin"];
 
 }
+/*new checking for login using token |Experimental as of 26/1/2016|*/
++(BOOL)checkUserIsLogin
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString* token = [defaults objectForKey:TOKEN];
+ 
+    if ([Utils isStringNull:token]) {
+        return nil;
+    }
+    else{
+        return token;
+    }
+
+}
+
 +(NSString*)getAppToken
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -43,6 +75,8 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     return [defaults objectForKey:@"Useruid"];
 }
+
+
 
 +(NSString*)getWeekName:(int)integer
 {

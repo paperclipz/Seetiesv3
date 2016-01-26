@@ -12,6 +12,7 @@
 @interface CommonViewController ()
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 
+
 @end
 
 @implementation CommonViewController
@@ -28,8 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-}
+    }
 
 
 
