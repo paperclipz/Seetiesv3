@@ -28,6 +28,7 @@
 
 @property(nonatomic,strong)NSArray<UserModel >* follower;
 @property(nonatomic,strong)NSArray<UserModel >* following;
+@property(nonatomic,strong)NSArray<UserModel >* experts;
 @property(nonatomic,assign)int total_page;
 @property(nonatomic,assign)int total_result;
 @property(nonatomic,assign)int page;

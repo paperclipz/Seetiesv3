@@ -32,7 +32,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ku0-os-NT3">
                                 <rect key="frame" x="50" y="10" width="189" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nlY-JH-MNj">
@@ -57,13 +57,13 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BFd-XO-SBk">
                                 <rect key="frame" x="98" y="68" width="131" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtY-Ns-zGq">
                                 <rect key="frame" x="98" y="97" width="131" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -96,7 +96,7 @@
                         </constraints>
                     </view>
                 </subviews>
-                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstAttribute="bottomMargin" secondItem="OcM-16-qDa" secondAttribute="bottom" constant="5" id="OjW-3D-awU"/>
                     <constraint firstItem="OcM-16-qDa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="Slw-KF-dAB"/>
@@ -104,6 +104,14 @@
                     <constraint firstAttribute="trailingMargin" secondItem="OcM-16-qDa" secondAttribute="trailing" constant="5" id="l3l-H1-tQD"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="ibImageUser" destination="J2O-0o-d7T" id="UnC-bL-13E"/>
+                <outlet property="ibImageView" destination="KkY-ud-w5n" id="QDK-8o-FRs"/>
+                <outlet property="ibInnerContentView" destination="OcM-16-qDa" id="RBs-I8-KAs"/>
+                <outlet property="lblLocation" destination="dtY-Ns-zGq" id="oGa-CG-r83"/>
+                <outlet property="lblTitle" destination="BFd-XO-SBk" id="Ibe-nJ-ovO"/>
+                <outlet property="lblUsername" destination="Ku0-os-NT3" id="H0d-aQ-eAy"/>
+            </connections>
             <point key="canvasLocation" x="645" y="383"/>
         </tableViewCell>
     </objects>

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UrlDataClass.h"
+#import "CT3_SearchListingViewController.h"
 @interface SearchViewV2Controller : UIViewController<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate>{
 
     IBOutlet UISearchBar *mySearchBar;
@@ -40,5 +41,5 @@
     NSString *lonPoint;
 
 }
-
+@property(nonatomic,strong)CT3_SearchListingViewController* ct3_SearchListingViewController;
 @end

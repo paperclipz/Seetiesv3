@@ -70,7 +70,9 @@ typedef enum
     
     
     /*SEARCH*/
-    ServerRequestTypeSearch,
+    ServerRequestTypeSearchPosts,
+    ServerRequestTypeSearchUsers,
+    ServerRequestTypeSearchCollections,
     
     /*User Follower / Following*/
     ServerRequestTypeUserFollower,

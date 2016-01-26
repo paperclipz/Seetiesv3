@@ -32,12 +32,12 @@
     CGRect frame = [Utils getDeviceScreenSize];
     [self.ibScrollView setWidth:frame.size.width];
     [self.FollowerConnectionsTabViewController.view setWidth:frame.size.width];
-    [self.FollowerConnectionsTabViewController.view setHeight:self.ibScrollView.frame.size.height - 50];
+    [self.FollowerConnectionsTabViewController.view setHeight:self.ibScrollView.frame.size.height];
     [self.ibScrollView addSubview:self.FollowerConnectionsTabViewController.view];
     self.ibScrollView.contentSize = CGSizeMake(frame.size.width, self.ibScrollView.frame.size.height);
     
     [self.FollowingConnectionsTabViewController.view setWidth:frame.size.width];
-    [self.FollowingConnectionsTabViewController.view setHeight:self.ibScrollView.frame.size.height - 50];
+    [self.FollowingConnectionsTabViewController.view setHeight:self.ibScrollView.frame.size.height];
     [self.ibScrollView addSubview:self.FollowingConnectionsTabViewController.view];
     self.ibScrollView.contentSize = CGSizeMake(frame.size.width*2, self.ibScrollView.frame.size.height);
     self.ibScrollView.pagingEnabled = YES;

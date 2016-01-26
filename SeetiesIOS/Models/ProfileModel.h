@@ -49,6 +49,7 @@
 @interface ProfilePostModel : Model
 
 @property(nonatomic,strong)DraftsModel* userPostData;
+@property(nonatomic,strong)DraftsModel* recommendations;
 @end
 
 @interface SeetiShopsModel : Model

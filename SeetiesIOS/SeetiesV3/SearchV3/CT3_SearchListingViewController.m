@@ -21,7 +21,7 @@
 @property (nonatomic,strong)CLLocation* location;
 @property (nonatomic,strong)SearchManager* sManager;
 
-@property(nonatomic,strong)ProfilePostModel* userProfilePostModel;
+
 @end
 
 @implementation CT3_SearchListingViewController
@@ -45,6 +45,8 @@
     self.ibSearchText.delegate = self;
     self.ibSearchText.placeholder = LocalisedString(@"Search");
     self.ibLocationText.placeholder = LocalisedString(@"Add a location?");
+    self.ibSearchText.text = self.SearchText;
+    self.ibLocationText.text = self.LocationName;
     
     CGRect frame = [Utils getDeviceScreenSize];
     [self.ibScrollView setWidth:frame.size.width];
@@ -179,7 +181,7 @@
         if ([self.ibSearchText.text length] == 0) {
 
         }else{
-            [self requestServerForSearch];
+          //  [self requestServerForSearch];
  
         }
     }else if(textField == self.ibLocationText){
@@ -310,29 +312,6 @@
     
 }
 
-//Search
 
--(void)requestServerForSearch
-{
-    SLog(@"requestServerForSearch work ?");
-    
-    NSDictionary* dict;
-    NSString* appendString = [[NSString alloc]initWithFormat:@"?token=%@&keyword=%@&sort=%@",[Utils getAppToken],@"Coffee",@"3"];
-        
-    
-    
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeSearch param:dict appendString:appendString completeHandler:^(id object) {
-        self.userProfilePostModel = [[ConnectionManager dataManager]userProfilePostModel];
-//        self.arrPostListing = nil;
-//        [self.arrPostListing addObjectsFromArray:self.userProfilePostModel.userPostData.posts];
-        SLog(@"%@",self.userProfilePostModel);
-        SLog(@"requestServerForSearch");
-
-    } errorBlock:^(id object) {
-        
-        
-    }];
-    
-}
 
 @end

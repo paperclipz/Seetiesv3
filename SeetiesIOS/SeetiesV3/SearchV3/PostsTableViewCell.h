@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface PostsTableViewCell : CommonTableViewCell
-
+-(void)initData:(DraftModel*)model;
 @end
