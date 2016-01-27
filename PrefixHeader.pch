@@ -52,6 +52,8 @@
 #import "NSArray+Extension.h"
 #import "UILabel+Exntension.h"
 
+#import "UINavigationViewController+Extra.h"
+
 //===============Model=================
 #import "FourSquareModel.h"
 #import "Foursquare2.h"
@@ -69,7 +71,7 @@
 #import "IQKeyboardManager.h"
 
 #import "CoreModel.h"
-
+#import "MessageManager.h"
 #endif
 
 

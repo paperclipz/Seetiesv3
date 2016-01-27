@@ -151,4 +151,9 @@
     }
     return _promoCodeViewController;
 }
+
+-(void)reloadData
+{
+    
+}
 @end

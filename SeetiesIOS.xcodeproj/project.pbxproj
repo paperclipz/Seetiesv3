@@ -1152,6 +1152,10 @@
 		8AF6FDC21C5776E1005AAE5D /* LoginPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF6FDC01C5776E1005AAE5D /* LoginPageViewController.xib */; };
 		8AF6FDCB1C586480005AAE5D /* SignupPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6FDC91C586480005AAE5D /* SignupPageViewController.m */; };
 		8AF6FDCC1C586480005AAE5D /* SignupPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF6FDCA1C586480005AAE5D /* SignupPageViewController.xib */; };
+		8AF6FDCF1C587958005AAE5D /* RegisterObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6FDCE1C587958005AAE5D /* RegisterObject.m */; };
+		8AF6FDD31C58955B005AAE5D /* UINavigationViewController+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6FDD21C58955B005AAE5D /* UINavigationViewController+Extra.m */; };
+		8AF6FDD61C589C64005AAE5D /* MessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6FDD51C589C64005AAE5D /* MessageManager.m */; };
+		8AF6FDD91C58AC83005AAE5D /* InstagramModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6FDD81C58AC83005AAE5D /* InstagramModel.m */; };
 		8AF999151C3A2ADD000314E4 /* PagingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF999141C3A2ADD000314E4 /* PagingModel.m */; };
 		8AF999191C3A2C76000314E4 /* PaginationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF999181C3A2C76000314E4 /* PaginationModel.m */; };
 		8AF999531C3CC5E6000314E4 /* FacebookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF999521C3CC5E6000314E4 /* FacebookModel.m */; };
@@ -2804,6 +2808,14 @@
 		8AF6FDC81C586480005AAE5D /* SignupPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupPageViewController.h; sourceTree = "<group>"; };
 		8AF6FDC91C586480005AAE5D /* SignupPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupPageViewController.m; sourceTree = "<group>"; };
 		8AF6FDCA1C586480005AAE5D /* SignupPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignupPageViewController.xib; sourceTree = "<group>"; };
+		8AF6FDCD1C587958005AAE5D /* RegisterObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterObject.h; sourceTree = "<group>"; };
+		8AF6FDCE1C587958005AAE5D /* RegisterObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterObject.m; sourceTree = "<group>"; };
+		8AF6FDD11C58955B005AAE5D /* UINavigationViewController+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationViewController+Extra.h"; sourceTree = "<group>"; };
+		8AF6FDD21C58955B005AAE5D /* UINavigationViewController+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationViewController+Extra.m"; sourceTree = "<group>"; };
+		8AF6FDD41C589C64005AAE5D /* MessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageManager.h; sourceTree = "<group>"; };
+		8AF6FDD51C589C64005AAE5D /* MessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageManager.m; sourceTree = "<group>"; };
+		8AF6FDD71C58AC83005AAE5D /* InstagramModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstagramModel.h; sourceTree = "<group>"; };
+		8AF6FDD81C58AC83005AAE5D /* InstagramModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagramModel.m; sourceTree = "<group>"; };
 		8AF999131C3A2ADD000314E4 /* PagingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagingModel.h; sourceTree = "<group>"; };
 		8AF999141C3A2ADD000314E4 /* PagingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagingModel.m; sourceTree = "<group>"; };
 		8AF999171C3A2C76000314E4 /* PaginationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaginationModel.h; sourceTree = "<group>"; };
@@ -5359,6 +5371,7 @@
 		8AD6BA961B706CF10040437E /* CATEGORY */ = {
 			isa = PBXGroup;
 			children = (
+				8AF6FDD01C58952E005AAE5D /* UINavigationContoller+Extension */,
 				8A295FCE1C50A4EB00747DBA /* UITabbar+Extension */,
 				8ADD47001C4CE9C600AEAE2B /* UILabel+Extension */,
 				8AF2924F1C32447600EF48EB /* UIImage+Extension */,
@@ -5515,6 +5528,8 @@
 				8A69E0FC1C046DF900224BB4 /* ShareManager.m */,
 				8A993CCC1C2A8113009359E2 /* MapManager.h */,
 				8A993CCD1C2A8113009359E2 /* MapManager.m */,
+				8AF6FDD41C589C64005AAE5D /* MessageManager.h */,
+				8AF6FDD51C589C64005AAE5D /* MessageManager.m */,
 			);
 			name = MANAGER;
 			path = Managers;
@@ -5893,6 +5908,8 @@
 				8ADD47021C4CFD6D00AEAE2B /* AnnouncementModel.m */,
 				0B497B021C509579004989DF /* UsersModel.h */,
 				0B497B031C509579004989DF /* UsersModel.m */,
+				8AF6FDD71C58AC83005AAE5D /* InstagramModel.h */,
+				8AF6FDD81C58AC83005AAE5D /* InstagramModel.m */,
 			);
 			name = MODELS;
 			path = Models;
@@ -5915,6 +5932,8 @@
 				8AF999181C3A2C76000314E4 /* PaginationModel.m */,
 				8AF999511C3CC5E6000314E4 /* FacebookModel.h */,
 				8AF999521C3CC5E6000314E4 /* FacebookModel.m */,
+				8AF6FDCD1C587958005AAE5D /* RegisterObject.h */,
+				8AF6FDCE1C587958005AAE5D /* RegisterObject.m */,
 			);
 			path = AppModel;
 			sourceTree = "<group>";
@@ -5986,6 +6005,15 @@
 				8AF53F1A1BD8850E00AF6C9E /* NSObject+Extension.m */,
 			);
 			name = "NSObject+Extension";
+			sourceTree = "<group>";
+		};
+		8AF6FDD01C58952E005AAE5D /* UINavigationContoller+Extension */ = {
+			isa = PBXGroup;
+			children = (
+				8AF6FDD11C58955B005AAE5D /* UINavigationViewController+Extra.h */,
+				8AF6FDD21C58955B005AAE5D /* UINavigationViewController+Extra.m */,
+			);
+			name = "UINavigationContoller+Extension";
 			sourceTree = "<group>";
 		};
 		8AFA514B1C47B4AB00E7920E /* SeetiesV3 */ = {
@@ -7411,6 +7439,7 @@
 				8A114CBF1BE73F5D006AE3F0 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				8A6BB4331BF0C338005AA1B3 /* MZMethodSwizzler.m in Sources */,
 				8AD6C28F1B7072FB0040437E /* AddLocationViewController.m in Sources */,
+				8AF6FDD91C58AC83005AAE5D /* InstagramModel.m in Sources */,
 				8A8475311BC52CCF006DD614 /* UITextView+Extra.m in Sources */,
 				8AD6BE571B706CF30040437E /* DoAlbumCell.m in Sources */,
 				8AD6C2951B7072FB0040437E /* DraftsViewController.m in Sources */,
@@ -7593,6 +7622,7 @@
 				8A114C971BE73F5D006AE3F0 /* JTSAnimatedGIFUtility.m in Sources */,
 				8AFA52071C47B4AB00E7920E /* PostsTableViewCell.m in Sources */,
 				0B6A54E01BB51F84005B9D6B /* ReportViewController.m in Sources */,
+				8AF6FDD31C58955B005AAE5D /* UINavigationViewController+Extra.m in Sources */,
 				8AEDBFBB1C2031BA000BD2FF /* SeShopCategoryModel.m in Sources */,
 				8A6BB4301BF0C338005AA1B3 /* MZFormSheetPresentationViewControllerAnimator.m in Sources */,
 				8A114CAA1BE73F5D006AE3F0 /* CRZoomScrollView.m in Sources */,
@@ -7646,6 +7676,7 @@
 				8A84752E1BC52C50006DD614 /* UIButton+Extra.m in Sources */,
 				8A6584411B9851C200BC86B9 /* DraftTableViewCell.m in Sources */,
 				8AFA52051C47B4AB00E7920E /* CT3_SearchListingViewController.m in Sources */,
+				8AF6FDD61C589C64005AAE5D /* MessageManager.m in Sources */,
 				8A3F35661BF5E89D002B704C /* SuggestedCollectionPostsViewController.m in Sources */,
 				8AD6C1141B706CF30040437E /* FSOAuthNoAppStore.m in Sources */,
 				8AD6C8331B7454290040437E /* UIAlertView+Blocks.m in Sources */,
@@ -7671,6 +7702,7 @@
 				8A114CC41BE73F5D006AE3F0 /* NSString+MKNetworkKitAdditions.m in Sources */,
 				8AD6C0D61B706CF30040437E /* PSelectYourInterestViewController.m in Sources */,
 				8AFA51FD1C47B4AB00E7920E /* FeedTableViewCell.m in Sources */,
+				8AF6FDCF1C587958005AAE5D /* RegisterObject.m in Sources */,
 				8A69E0EC1BFF26A000224BB4 /* NSString+Extension.m in Sources */,
 				8AD6C2831B7072FB0040437E /* AddLinkViewController.m in Sources */,
 				8A114CE81BE75CA0006AE3F0 /* CollectionViewController.m in Sources */,

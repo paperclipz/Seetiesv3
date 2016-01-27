@@ -25,4 +25,8 @@
 @property(nonatomic,strong)CT3_LoginViewController* loginViewController;
 @property(nonatomic,strong)CT3_MoreViewController* ct3_MoreViewController;
 @property(nonatomic, strong)CT3_MeViewController *ct3MeViewController;
+
+-(void)showLoginView;
+-(void)reloadData;
+
 @end

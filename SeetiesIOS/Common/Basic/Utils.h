@@ -111,6 +111,8 @@ typedef enum {
 +(NSString*)getUserID;
 +(BOOL)isGuestMode;
 +(BOOL)checkUserIsLogin;//new check user login using token
++(void)setLogout;
++(void)reloadAppView;
 
 
 #define UIColorFromRGB(r,g,b,a)  [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
@@ -153,6 +155,8 @@ typedef enum {
 
 // =====================  VALIDATION =======================
 + (BOOL) validateUrl: (NSString *) candidat;
++ (BOOL) validateEmail: (NSString *) candidate;
+
 // =====================  Validation =======================
 
 
@@ -205,4 +209,8 @@ typedef enum {
 
 // ======================================   Prompt Message      ============================
 #define SUCCESSFUL_COLLECTED @"Successful Collected"
+
+#pragma mark - LOGIN
++(void)showLogin;
+
 @end

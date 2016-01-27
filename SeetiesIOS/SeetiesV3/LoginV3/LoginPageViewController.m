@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UIView *ibUserContentView;
 @property (weak, nonatomic) IBOutlet UIView *ibPasswordContentView;
 @property (weak, nonatomic) IBOutlet UIButton *btnLogin;
+@property (weak, nonatomic) IBOutlet UIButton *btnForgetPassword;
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @end
 
 @implementation LoginPageViewController
@@ -22,7 +24,10 @@
 - (IBAction)btnLoginClicked:(id)sender {
     
     if (self.btnLoginClickedBlock) {
-        self.btnLoginClickedBlock(self.lblUserName.text,self.lblPassword.text);
+        if ([self validate]) {
+            self.btnLoginClickedBlock(self.lblUserName.text,self.lblPassword.text);
+
+        }
     }
 }
 
@@ -31,17 +36,48 @@
     [self initSelfView];
 }
 
+-(BOOL)validate
+{
+    
+    if (self.lblPassword.text.length <7) {
+        
+        [MessageManager showMessage:LOCALIZATION(@"system") SubTitle:LOCALIZATION(@"Password should be more than 8 character") Type:TSMessageNotificationTypeError];
+        
+        return false;
+    }
+    else if(self.lblUserName.text.length<=1)
+    {
+        [MessageManager showMessage:LOCALIZATION(@"system") SubTitle:LOCALIZATION(@"Username should be more than 1 character") Type:TSMessageNotificationTypeError];
+        return false;
+
+    }
+    
+    return YES;
+}
+
 -(void)initSelfView
 {
     self.lblUserName.placeholder = LocalisedString(@"username/ email address");
     self.lblPassword.placeholder = LocalisedString(@"password");
     
-    [Utils setRoundBorder:self.ibUserContentView color:TEXT_GRAY_COLOR borderRadius:self.ibUserContentView.frame.size.height/2 borderWidth:1.0f];
-    [Utils setRoundBorder:self.ibPasswordContentView color:TEXT_GRAY_COLOR borderRadius:self.ibPasswordContentView.frame.size.height/2 borderWidth:1.0f];
+    [Utils setRoundBorder:self.ibUserContentView color:LINE_COLOR borderRadius:self.ibUserContentView.frame.size.height/2 borderWidth:1.0f];
+    [Utils setRoundBorder:self.ibPasswordContentView color:LINE_COLOR borderRadius:self.ibPasswordContentView.frame.size.height/2 borderWidth:1.0f];
     [Utils setRoundBorder:self.btnLogin color:[UIColor clearColor] borderRadius:self.btnLogin.frame.size.height/2 borderWidth:1.0f];
 
+    [self.btnLogin setSideCurveBorder];
 }
 
+
+-(void)changeLanguage
+{
+    self.lblUserName.placeholder = LocalisedString(@"username/ email address");
+    self.lblPassword.placeholder = LocalisedString(@"password");
+
+    self.lblTitle.text = LocalisedString(@"Log In");
+    [self.btnLogin setTitle:LocalisedString(@"Log In") forState:UIControlStateNormal];
+    [self.btnForgetPassword setTitle:LocalisedString(@"Forget password?") forState:UIControlStateNormal];
+
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

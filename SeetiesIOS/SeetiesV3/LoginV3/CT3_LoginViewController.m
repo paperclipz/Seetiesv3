@@ -10,6 +10,7 @@
 #import "LoginPageViewController.h"
 #import "SignupPageViewController.h"
 #import "PInterestV2ViewController.h"
+#import "CTWebViewController.h"
 
 @interface CT3_LoginViewController ()
 {
@@ -23,10 +24,31 @@
 @property(nonatomic)PInterestV2ViewController* pInterestV2ViewController;
 @property (weak, nonatomic) IBOutlet UIButton *lblFacebook;
 @property (weak, nonatomic) IBOutlet UIButton *lblInstagram;
+@property (nonatomic)CTWebViewController* webViewController;
 
 @end
 
 @implementation CT3_LoginViewController
+- (IBAction)btnInstagramClicked:(id)sender {
+    
+    __weak typeof (self)weakSelf = self;
+    self.webViewController.didFinishLoadConnectionBlock = ^(void)
+    {
+        [weakSelf requestServerForInstagramLogin];
+    };
+
+    
+    [self.navigationController pushViewController:self.webViewController animated:YES onCompletion:^{
+        [self.webViewController initDataForInstagram];
+       
+        
+    }];
+
+}
+- (IBAction)btnContinueWithoutLoginClicked:(id)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (IBAction)btnSignupClicked:(id)sender {
     
@@ -44,7 +66,7 @@
 {
     
 
-    imageArray = @[[UIImage imageNamed:@"Walkthrough1.png"],[UIImage imageNamed:@"Walkthrough2.png"],[UIImage imageNamed:@"Walkthrough3.png"]];
+    imageArray = @[[UIImage imageNamed:@"Walkthrough1.png"],[UIImage imageNamed:@"Walkthrough2.png"],[UIImage imageNamed:@"Walkthrough3.png"],[UIImage imageNamed:@"Walkthrough4.png"]];
 
     [self animateImages];
 
@@ -84,7 +106,6 @@
 }
 */
 - (IBAction)btnLoginClicked:(id)sender {
-    
     
     [self.navigationController pushViewController:self.loginPageViewController animated:YES];
 }
@@ -158,6 +179,17 @@
 }
 #pragma mark - Declaration
 
+-(CTWebViewController*)webViewController
+{
+    
+    if(!_webViewController)
+    {
+        _webViewController = [CTWebViewController new];
+        
+    }
+    
+    return _webViewController;
+}
 -(PInterestV2ViewController*)pInterestV2ViewController
 {
     if (!_pInterestV2ViewController) {
@@ -171,9 +203,11 @@
 {
     if (!_signUpViewController) {
         _signUpViewController = [SignupPageViewController new];
+        
+        __weak typeof (self)weakSelf = self;
         _signUpViewController.signUpClickBlock = ^(NSString* username, NSString* password,NSString* email)
         {
-            
+            [weakSelf requestServerForRegisterWithUserName:username Password:password Email:email];
             
         };
     }
@@ -215,7 +249,7 @@
         if (self.didFinishLoginBlock) {
             self.didFinishLoginBlock();
         }
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
         
     } errorBlock:^(id object) {
         
@@ -232,7 +266,7 @@
     NSDictionary* dict = @{@"fb_id" : model.uID,
                            @"fb_token" : model.fbToken,
                            @"role" : @"user",
-                           @"device_type" : @"2"};
+                           @"device_type" : @(DEVICE_TYPE)};
     
     [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypeLoginFacebook param:dict completeHandler:^(id object) {
         
@@ -240,12 +274,64 @@
         if (self.didFinishLoginBlock) {
             self.didFinishLoginBlock();
         }
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
 
     } errorBlock:^(id object) {
         
     }];
     
+}
+
+
+-(void)requestServerForRegisterWithUserName:(NSString*)username Password:(NSString*)password Email:(NSString*)email
+{
+    NSDictionary* dict = @{@"email" : email,
+                           @"username" : username,
+                           @"password" : password,
+                           @"role" : @"user",
+                           @"device_type" : @(DEVICE_TYPE),
+                           
+                           };
+    
+    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypeRegister param:dict completeHandler:^(id object) {
+        
+        NSDictionary* dict = [[NSDictionary alloc]initWithDictionary:object];
+        if ([dict[@"status"] isEqualToString:@"ok"]) {
+            [self requestServerForLogin:username Password:password];
+        }
+        else{
+        
+            SLog(@"error : %@",dict[@"message"]);
+            
+        }
+        
+    } errorBlock:^(id object) {
+        
+    }];
+    
+}
+
+-(void)requestServerForInstagramLogin
+{
+    
+    InstagramModel* model = [[ConnectionManager dataManager]instagramModel];
+
+    NSDictionary* dict = @{@"insta_id" : model.userID,
+                           @"insta_token" : model.access_token,
+                           @"device_type" : @(DEVICE_TYPE),
+                           };
+    
+    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypeLoginInstagram param:dict completeHandler:^(id object) {
+        
+        if (self.didFinishLoginBlock) {
+            self.didFinishLoginBlock();
+        }
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
+        
+    } errorBlock:^(id object) {
+        
+    }];
 }
 
 -(void)forgetPassword

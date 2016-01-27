@@ -148,7 +148,9 @@
 {
     
     NSString* fullURL = [self getFullURLwithType:type];
-    NSLog(@"\n\n ===== Request Server ===== : %@ \n\n Request Json : %@",fullURL,[dict JSONString]);
+    
+    SLog(@"\n\n ===== [REQUEST SERVER WITH POST][URL] : %@ \n [REQUEST JSON] : %@\n\n",fullURL,[dict bv_jsonStringWithPrettyPrint:YES]);
+
     
     [self.manager POST:fullURL parameters:dict
                success:^(AFHTTPRequestOperation *operation, id responseObject)
@@ -400,25 +402,35 @@
     NSString* str;
     switch (type) {
         case ServerRequestTypeLogin:
-            str = [NSString stringWithFormat:@"/%@/login",API_VERION_URL];
+            str = [NSString stringWithFormat:@"%@/login",API_VERION_URL];
 
             break;
         case ServerRequestTypeLoginFacebook:
-            str = [NSString stringWithFormat:@"/%@/login/facebook",API_VERION_URL];
+            str = [NSString stringWithFormat:@"%@/login/facebook",API_VERION_URL];
 
             break;
         case ServerRequestTypeLoginInstagram:
-            str = [NSString stringWithFormat:@"/%@/login/instagram",API_VERION_URL];
+            str = [NSString stringWithFormat:@"%@/login/instagram",API_VERION_URL];
             
             break;
+            
+        case ServerRequestTypeRegister:
+            str = [NSString stringWithFormat:@"%@/register",API_VERION_URL];
+
+            break;
+        case ServerRequestTypeGetLogout:
+            str = [NSString stringWithFormat:@"%@/logout",API_VERION_URL];
+
+            break;
+            
         case ServerRequestTypeGetNewsFeed:
-            str = [NSString stringWithFormat:@"/%@/feed/v2",API_VERION_URL];
+            str = [NSString stringWithFormat:@"%@/feed/v2",API_VERION_URL];
 
             break;
             
         case ServerRequestTypeGetLanguage:
             
-            str = [NSString stringWithFormat:@"/%@/system/languages",API_VERION_URL];
+            str = [NSString stringWithFormat:@"%@/system/languages",API_VERION_URL];
             break;
         case ServerRequestTypeGetApiVersion:
             
@@ -440,13 +452,13 @@
             break;
             
         case ServerRequestTypeGetRecommendationDraft:
-            str = [NSString stringWithFormat:@"%@/draft",API_VERION_URL];
+            str = [NSString stringWithFormat:@"%@draft",API_VERION_URL];
 
             break;
             
             case ServerRequestTypeGetGeoIP:
             
-            return [NSString stringWithFormat:@"https://geoip.seeties.me/geoip/"];
+            return [NSString stringWithFormat:@"https://geoip.seeties.me/geoip"];
 
             break;
             
@@ -489,12 +501,12 @@
             
         case ServerRequestTypePostLikeAPost:
         case ServerRequestTypeDeleteLikeAPost:
-            str = [NSString stringWithFormat:@"/%@/post",API_VERION_URL];
+            str = [NSString stringWithFormat:@"%@/post",API_VERION_URL];
             break;
         case ServerRequestTypeSearchPosts:
         case ServerRequestTypeSearchUsers:
         case ServerRequestTypeSearchCollections:
-            str = [NSString stringWithFormat:@"/%@/search",API_VERION_URL];
+            str = [NSString stringWithFormat:@"%@/search",API_VERION_URL];
             break;
             
     }
@@ -510,6 +522,28 @@
     [self storeServerData:obj requestType:type];
 }
 
+-(void)processLogin
+{
+    ProfileModel* model = self.dataManager.userLoginProfileModel;
+    if (model) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:model.token forKey:TOKEN];
+        [defaults setObject:model.uid forKey:USERID];
+        [defaults setObject:model.system_language.caption forKey:KEY_SYSTEM_LANG];
+        
+        if (![Utils isArrayNull:model.languages]) {
+            [defaults setObject:[model.languages[0] langID] forKey:KEY_LANGUAGE_ONE];
+            
+            if (model.languages.count>=2) {
+                [defaults setObject:[model.languages[1] langID] forKey:KEY_LANGUAGE_TWO];
+            }
+        }
+        
+        [defaults synchronize];
+    }
+
+}
+
 -(void)storeServerData:(id)obj requestType:(ServerRequestType)type
 {
 
@@ -521,24 +555,8 @@
         {
             NSDictionary* dict = obj[@"data"];
             self.dataManager.userLoginProfileModel = [[ProfileModel alloc]initWithDictionary:dict error:nil];
-            
-            ProfileModel* model = self.dataManager.userLoginProfileModel;
-            if (model) {
-                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                [defaults setObject:model.token forKey:TOKEN];
-                [defaults setObject:model.uid forKey:USERID];
-                [defaults setObject:model.system_language.caption forKey:KEY_SYSTEM_LANG];
-
-                if (![Utils isArrayNull:model.languages]) {
-                    [defaults setObject:[model.languages[0] langID] forKey:KEY_LANGUAGE_ONE];
-                   
-                    if (model.languages.count>=1) {
-                        [defaults setObject:[model.languages[1] langID] forKey:KEY_LANGUAGE_TWO];
-                    }
-                }
-                
-                [defaults synchronize];
-            }
+            [self processLogin];
+           
         }
 
             break;
@@ -548,13 +566,25 @@
             NSDictionary* dict = obj[@"data"];
 
             self.dataManager.userLoginProfileModel = [[ProfileModel alloc]initWithDictionary:dict error:nil];
+            [self processLogin];
+
         }
             break;
             
         case ServerRequestTypeLoginInstagram:
-            
+        {
+            NSDictionary* dict = obj[@"data"];
+
+            self.dataManager.userLoginProfileModel = [[ProfileModel alloc]initWithDictionary:dict error:nil];
+            [self processLogin];
+
+        }
             break;
 
+            
+        case ServerRequestTypeRegister:
+            
+            break;
             
         case ServerRequestTypeGetApiVersion:
             self.dataManager.apiVersionModel = [[ApiVersionModel alloc]initWithDictionary:obj error:nil];

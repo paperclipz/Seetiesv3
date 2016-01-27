@@ -29,6 +29,10 @@
 @end
 
 @implementation CT3_MoreViewController
+- (IBAction)btnTestClicked:(id)sender {
+    
+    [Utils showLogin];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -217,8 +221,7 @@
 }
 
 
--(
-  NSArray*)arrData
+-(NSArray*)arrData
 {
     if (!_arrData) {
         
@@ -269,9 +272,36 @@
 
 -(void)logout
 {
-    
-    
+    [self serverRequestLogout];
+   
     
    // [];
+}
+
+#pragma mark - Server Request
+
+-(void)serverRequestLogout
+{
+    NSDictionary* dict = @{@"" : [Utils getAppToken],
+                           
+                           };
+    
+    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetLogout param:dict appendString:nil completeHandler:^(id object) {
+        
+        [Utils setLogout];
+//        _arrData = nil;
+//        [self.ibTableView reloadData];
+        
+    } errorBlock:^(id object) {
+        
+    }];
+}
+
+-(void)reloadData
+{
+    SLog(@"ggwp");
+    _arrData = nil;
+    [self.ibTableView reloadData];
+
 }
 @end

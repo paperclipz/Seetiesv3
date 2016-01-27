@@ -15,7 +15,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtEmail;
 @property (weak, nonatomic) IBOutlet UITextField *txtPassword;
 @property (weak, nonatomic) IBOutlet UIView *ibContentPassword;
-@property (weak, nonatomic) IBOutlet UIButton *btnSubmit;
+@property (weak, nonatomic) IBOutlet UIButton *btnSignup;
+@property (weak, nonatomic) IBOutlet UIButton *btnForgetPassword;
 
 @end
 
@@ -23,10 +24,37 @@
 - (IBAction)btnSubmitClicked:(id)sender {
     
     if (self.signUpClickBlock) {
-        self.signUpClickBlock(self.txtUserName.text,self.txtPassword.text,self.txtEmail.text);
+        if ([self validate]) {
+            self.signUpClickBlock(self.txtUserName.text,self.txtPassword.text,self.txtEmail.text);
+
+        }
     }
 }
 
+-(BOOL)validate
+{
+    
+    if (self.txtPassword.text.length <7) {
+        
+        [TSMessage showNotificationInViewController:self title:LOCALIZATION(@"system") subtitle:LOCALIZATION(@"Password should be more than 8 character") type:TSMessageNotificationTypeError];
+        
+        return false;
+    }
+    else if(self.txtUserName.text.length<=1)
+    {
+        [TSMessage showNotificationInViewController:self title:LOCALIZATION(@"system") subtitle:LOCALIZATION(@"Username should be more than 1 character") type:TSMessageNotificationTypeError];
+
+        return false;
+        
+    }
+    else if(![Utils validateEmail:self.txtEmail.text])
+    {
+        [TSMessage showNotificationInViewController:self title:LOCALIZATION(@"system") subtitle:LOCALIZATION(@"Not valid email address") type:TSMessageNotificationTypeError];
+
+    }
+    
+    return YES;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
@@ -35,17 +63,28 @@
 
 -(void)initSelfView
 {
-    [Utils setRoundBorder:self.ibContentUserName color:TEXT_GRAY_COLOR borderRadius:self.ibContentUserName.frame.size.height/2 borderWidth:1.0f];
-    [Utils setRoundBorder:self.ibContentEmail color:TEXT_GRAY_COLOR borderRadius:self.ibContentEmail.frame.size.height/2 borderWidth:1.0f];
-    [Utils setRoundBorder:self.ibContentPassword color:TEXT_GRAY_COLOR borderRadius:self.ibContentPassword.frame.size.height/2 borderWidth:1.0f];
-    [Utils setRoundBorder:self.btnSubmit color:[UIColor clearColor] borderRadius:self.btnSubmit.frame.size.height/2 borderWidth:1.0f];
-    
+    [self changeLanguage];
+    [Utils setRoundBorder:self.ibContentUserName color:LINE_COLOR borderRadius:self.ibContentUserName.frame.size.height/2 borderWidth:1.0f];
+    [Utils setRoundBorder:self.ibContentEmail color:LINE_COLOR borderRadius:self.ibContentEmail.frame.size.height/2 borderWidth:1.0f];
+    [Utils setRoundBorder:self.ibContentPassword color:LINE_COLOR borderRadius:self.ibContentPassword.frame.size.height/2 borderWidth:1.0f];
+    [self.btnSignup setSideCurveBorder];
 }
 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)changeLanguage
+{
+    self.txtUserName.placeholder = LocalisedString(@"username/ email address");
+    self.txtPassword.placeholder = LocalisedString(@"password");
+    self.txtEmail.placeholder = LocalisedString(@"email address");
+
+    [self.btnSignup setTitle:LocalisedString(@"Submit") forState:UIControlStateNormal];
+    [self.btnForgetPassword setTitle:LocalisedString(@"Forget password?") forState:UIControlStateNormal];
+
 }
 
 /*
