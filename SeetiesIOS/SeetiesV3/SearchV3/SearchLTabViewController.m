@@ -196,7 +196,7 @@
             cell.btnFollowBlock = ^(void)
             {
                 NSLog(@"FollowButton Click");
-              //  [self requestServerToFollowFromOthers:collModel];
+                [self requestServerToFollowFromOthers:collModel];
             };
             return cell;
         }
@@ -207,11 +207,34 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //
-    //    CollectionModel* model = self.arrCollections[indexPath.row];
-    //    if (_didSelectDisplayCollectionRowBlock) {
-    //        self.didSelectDisplayCollectionRowBlock(model);
-    //    }
+    
+
+    
+    switch (self.searchListingType) {
+        default:
+        case SearchListingTypeShop:
+        {
+        }
+            break;
+        case SearchsListingTypeCollections:
+        {
+        }
+            break;
+        case SearchsListingTypePosts:
+        {
+        }
+            break;
+        case SearchsListingTypeSeetizens:
+        {
+            UserModel* collModel = self.arrUsers[indexPath.row];
+            
+            if (_didSelectUserRowBlock) {
+                self.didSelectUserRowBlock(collModel.userUID);
+            }
+        }
+            
+            break;
+    }
 }
 
 -(NSMutableArray*)arrPosts
@@ -294,5 +317,61 @@
         
         
     }];
+}
+-(void)requestServerToFollowFromOthers:(UserModel*)colModel
+{
+    
+    NSString* appendString = [NSString stringWithFormat:@"%@/follow",colModel.userUID];
+    NSDictionary* dict = @{@"uid":colModel.userUID,
+                           @"token":[Utils getAppToken]
+                           };
+    
+    if (![DataManager isUserFollowed:colModel.userUID isFollowing:colModel.following]) {
+        
+        
+        [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostFollowUser param:dict appendString:appendString meta:nil completeHandler:^(id object) {
+            
+            NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object[@"data"]];
+            BOOL following = [[returnDict objectForKey:@"following"] boolValue];
+            colModel.following = following;
+            [DataManager setCollectionFollowing:colModel.userUID isFollowing:following];
+            [self.ibTableView reloadData];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:nil];
+            
+            
+        } errorBlock:^(id object) {
+            
+        }];
+        
+    }
+    else{// TO UNFOLLOW
+        
+        [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Are You Sure You Want To Unfollow") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"YES"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+            
+            if (buttonIndex == [alertView cancelButtonIndex]) {
+                NSLog(@"Cancelled");
+                
+            } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:LocalisedString(@"YES")]) {
+                
+                
+                [[ConnectionManager Instance]requestServerWithDelete:ServerRequestTypePostFollowUser param:dict appendString:appendString completeHandler:^(id object) {
+                    
+                    NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object];
+                    BOOL following = [[returnDict objectForKey:@"following"] boolValue];
+                    //dont delete the collection instead change the status only
+                    colModel.following = following;
+                    [DataManager setCollectionFollowing:colModel.userUID isFollowing:following];
+                    
+                    [self.ibTableView reloadData];
+                    
+                    
+                } errorBlock:^(id object) {
+                }];
+                
+                
+            }
+        }];
+        
+    }
 }
 @end

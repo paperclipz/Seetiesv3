@@ -129,6 +129,15 @@
     {
         _SeetizensListingTableViewController = [SearchLTabViewController new];
         _SeetizensListingTableViewController.searchListingType = SearchsListingTypeSeetizens;
+        __weak typeof (self)weakSelf = self;
+        
+        _SeetizensListingTableViewController.didSelectUserRowBlock = ^(NSString* userid)
+        {
+            _profileViewController = nil;
+            [weakSelf.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:userid];
+            [weakSelf.navigationController pushViewController:weakSelf.profileViewController animated:YES];
+            
+        };
     }
     return _SeetizensListingTableViewController;
 }
@@ -311,7 +320,13 @@
     } errorBlock:nil];
     
 }
-
+-(ProfileViewController*)profileViewController
+{
+    if(!_profileViewController)
+        _profileViewController = [ProfileViewController new];
+    
+    return _profileViewController;
+}
 
 
 @end
