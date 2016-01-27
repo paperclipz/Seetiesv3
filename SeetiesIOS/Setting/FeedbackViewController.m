@@ -12,6 +12,26 @@
 #import "LanguageManager.h"
 #import "Locale.h"
 @interface FeedbackViewController ()
+{
+    IBOutlet TPKeyboardAvoidingScrollView *Scrollview;
+    IBOutlet UITextField *EmailField;
+    IBOutlet UITextView *FeedbackField;
+    IBOutlet UIImageView *AddImageDone;
+    IBOutlet UILabel *TitleLabel;
+    IBOutlet UIButton *SubmitButton;
+    IBOutlet UIButton *AddImageButton;
+    IBOutlet UIImageView *BarImage;
+    
+    NSString *SystemString;
+    
+    UrlDataClass *DataUrl;
+    NSMutableData *webData;
+    
+    UIImage *GetImageData;
+    
+    IBOutlet UIButton *TextBack;
+    IBOutlet UIImageView *LoginBack;
+}
 @property (nonatomic, strong) LLARingSpinnerView *spinnerView;
 @end
 
@@ -73,13 +93,10 @@
     // Dispose of any resources that can be recreated.
 }
 -(IBAction)BackButton:(id)sender{
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromLeft;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    //[self presentViewController:ListingDetail animated:NO completion:nil];
+   
+    if (self.navigationController) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
     [self dismissViewControllerAnimated:NO completion:nil];
 }
 - (void)textViewDidBeginEditing:(UITextView *)textView

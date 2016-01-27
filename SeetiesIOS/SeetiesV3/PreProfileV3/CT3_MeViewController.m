@@ -30,6 +30,8 @@
 @end
 
 @implementation CT3_MeViewController
+
+#pragma mark IBAction
 - (IBAction)btnWalletListingClicked:(id)sender {
     [self.navigationController pushViewController:self.walletListingViewController animated:YES];
 }
@@ -57,8 +59,10 @@
 }
 
 - (IBAction)btnPromoClicked:(id)sender {
+    [self.promoCodeViewController showView];
 }
 
+#pragma mark InitMethod
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -82,9 +86,6 @@
 */
 
 -(void)initSelfView{
-    
-    SLog(@"scrollview width: %f", self.ibMainScrollView.frame.size.width);
-    SLog(@"contentview width: %f", self.ibContentView.frame.size.width);
     
     [self.ibProfileImg setRoundedBorder];
     [self.ibWalletIcon setRoundedBorder];
@@ -139,5 +140,15 @@
         _inviteFriendViewController = [InviteFrenViewController new];
     }
     return _inviteFriendViewController;
+}
+
+-(PromoCodeViewController*)promoCodeViewController{
+    if (!_promoCodeViewController) {
+        _promoCodeViewController = [PromoCodeViewController new];
+        [_promoCodeViewController.view setFrame:self.view.frame];
+        [_promoCodeViewController.view setNeedsLayout];
+        [self.view addSubview:_promoCodeViewController.view];
+    }
+    return _promoCodeViewController;
 }
 @end

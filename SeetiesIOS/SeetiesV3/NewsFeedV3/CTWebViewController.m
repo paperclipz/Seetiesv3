@@ -35,6 +35,13 @@
     
 
 }
+
+-(void)initDataWithURL:(NSString *)url andTitle:(NSString*)title
+{
+    self.lblTitle.text = LocalisedString(title);
+    [self.ibWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
+
+}
 /*
 #pragma mark - Navigation
 

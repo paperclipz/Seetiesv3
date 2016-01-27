@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PromoCodeViewController">
+            <connections>
+                <outlet property="ibContentView" destination="xew-oc-3rg" id="tnb-TV-Muc"/>
+                <outlet property="ibOuterCloseBtn" destination="KNO-m2-oes" id="tls-lS-Ki0"/>
+                <outlet property="ibOuterContentView" destination="pxE-YJ-5pk" id="0gc-d6-rha"/>
+                <outlet property="ibPromoCodeText" destination="mWd-Bc-dOc" id="2fI-zp-gXf"/>
+                <outlet property="ibTitleLbl" destination="Asm-Of-OLL" id="CqB-nZ-86X"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" clipsSubviews="YES" alpha="0.59999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KNO-m2-oes" userLabel="outer close button">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <action selector="buttonCloseClicked:" destination="-1" eventType="touchUpInside" id="O6Y-ba-nF9"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pxE-YJ-5pk" userLabel="wrap content view">
+                    <rect key="frame" x="135" y="85" width="330" height="430"/>
+                    <subviews>
+                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xew-oc-3rg" userLabel="content view">
+                            <rect key="frame" x="15" y="15" width="300" height="400"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uYu-rN-8el">
+                                    <rect key="frame" x="0.0" y="350" width="300" height="50"/>
+                                    <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="aED-e1-zOM"/>
+                                    </constraints>
+                                    <state key="normal" title="Submit">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="buttonSubmitClicked:" destination="-1" eventType="touchUpInside" id="nbq-AI-ehW"/>
+                                    </connections>
+                                </button>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mWd-Bc-dOc">
+                                    <rect key="frame" x="20" y="300" width="260" height="30"/>
+                                    <color key="backgroundColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="30" id="O3H-Ni-Xh4"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Promo Code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Asm-Of-OLL">
+                                    <rect key="frame" x="10" y="259" width="280" height="21"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="21" id="TYp-or-tWH"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VoucherImg.png" translatesAutoresizingMaskIntoConstraints="NO" id="58F-n6-bnI">
+                                    <rect key="frame" x="10" y="10" width="280" height="229"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="Asm-Of-OLL" secondAttribute="trailing" constant="10" id="1Mm-Yj-9fx"/>
+                                <constraint firstItem="58F-n6-bnI" firstAttribute="top" secondItem="xew-oc-3rg" secondAttribute="top" constant="10" id="4cr-3Y-fFh"/>
+                                <constraint firstAttribute="width" constant="300" id="Bxa-UH-kFG"/>
+                                <constraint firstItem="uYu-rN-8el" firstAttribute="top" secondItem="mWd-Bc-dOc" secondAttribute="bottom" constant="20" id="HkX-Rs-dPa"/>
+                                <constraint firstItem="uYu-rN-8el" firstAttribute="leading" secondItem="xew-oc-3rg" secondAttribute="leading" id="I8c-6m-fSu"/>
+                                <constraint firstItem="mWd-Bc-dOc" firstAttribute="leading" secondItem="xew-oc-3rg" secondAttribute="leading" constant="20" id="LIN-tk-MYT"/>
+                                <constraint firstItem="mWd-Bc-dOc" firstAttribute="top" secondItem="Asm-Of-OLL" secondAttribute="bottom" constant="20" id="X60-et-QOy"/>
+                                <constraint firstAttribute="trailing" secondItem="uYu-rN-8el" secondAttribute="trailing" id="Xf2-e4-0WM"/>
+                                <constraint firstAttribute="trailing" secondItem="mWd-Bc-dOc" secondAttribute="trailing" constant="20" id="e0V-3Z-Mhd"/>
+                                <constraint firstAttribute="trailing" secondItem="58F-n6-bnI" secondAttribute="trailing" constant="10" id="g1o-5E-mdA"/>
+                                <constraint firstAttribute="bottom" secondItem="uYu-rN-8el" secondAttribute="bottom" id="m2S-Oo-YWG"/>
+                                <constraint firstItem="Asm-Of-OLL" firstAttribute="leading" secondItem="xew-oc-3rg" secondAttribute="leading" constant="10" id="nCx-fZ-Hrk"/>
+                                <constraint firstItem="Asm-Of-OLL" firstAttribute="top" secondItem="58F-n6-bnI" secondAttribute="bottom" constant="20" id="nki-s2-E5E"/>
+                                <constraint firstAttribute="height" constant="400" id="pfd-11-7qe"/>
+                                <constraint firstItem="58F-n6-bnI" firstAttribute="leading" secondItem="xew-oc-3rg" secondAttribute="leading" constant="10" id="x9a-3i-04j"/>
+                            </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="Bxa-UH-kFG"/>
+                                    <exclude reference="pfd-11-7qe"/>
+                                </mask>
+                            </variation>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vr3-WA-p9J" userLabel="close button">
+                            <rect key="frame" x="300" y="0.0" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="c5E-JQ-ugS"/>
+                                <constraint firstAttribute="width" constant="30" id="kBY-YH-UL0"/>
+                            </constraints>
+                            <state key="normal" image="CloseBtn.png"/>
+                            <connections>
+                                <action selector="buttonCloseClicked:" destination="-1" eventType="touchUpInside" id="PUi-eJ-WKj"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="xew-oc-3rg" secondAttribute="bottom" constant="15" id="11D-6v-veM"/>
+                        <constraint firstAttribute="trailing" secondItem="vr3-WA-p9J" secondAttribute="trailing" id="4l5-hJ-ydJ"/>
+                        <constraint firstItem="xew-oc-3rg" firstAttribute="leading" secondItem="pxE-YJ-5pk" secondAttribute="leading" constant="15" id="9cU-0w-uVs"/>
+                        <constraint firstItem="vr3-WA-p9J" firstAttribute="top" secondItem="pxE-YJ-5pk" secondAttribute="top" id="KNT-aY-A56"/>
+                        <constraint firstItem="xew-oc-3rg" firstAttribute="top" secondItem="pxE-YJ-5pk" secondAttribute="top" constant="15" id="b0S-U2-h4R"/>
+                        <constraint firstAttribute="trailing" secondItem="xew-oc-3rg" secondAttribute="trailing" constant="15" id="b0i-if-hW9"/>
+                        <constraint firstAttribute="width" constant="330" id="s5R-Cf-E5a"/>
+                        <constraint firstAttribute="height" constant="430" id="xGb-UV-AdG"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="KNO-m2-oes" secondAttribute="trailing" id="MiE-nk-Npb"/>
+                <constraint firstItem="KNO-m2-oes" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="277" id="XDg-Eg-aOE"/>
+                <constraint firstItem="KNO-m2-oes" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Zch-u9-T6k"/>
+                <constraint firstAttribute="bottom" secondItem="KNO-m2-oes" secondAttribute="bottom" id="cCe-C8-biL"/>
+                <constraint firstItem="pxE-YJ-5pk" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="hEn-PX-HwL"/>
+                <constraint firstItem="KNO-m2-oes" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="p8s-qt-0sO"/>
+                <constraint firstItem="pxE-YJ-5pk" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="ysZ-i2-ccW"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="XDg-Eg-aOE"/>
+                </mask>
+            </variation>
+        </view>
+    </objects>
+    <resources>
+        <image name="CloseBtn.png" width="50" height="50"/>
+        <image name="VoucherImg.png" width="1242" height="651"/>
+    </resources>
+</document>

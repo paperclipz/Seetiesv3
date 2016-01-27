@@ -12,6 +12,5 @@
 @interface BaseViewController : GAITrackedViewController
 
 //-(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated;
-@property(nonatomic,strong)UINavigationController* navController;
 
 @end

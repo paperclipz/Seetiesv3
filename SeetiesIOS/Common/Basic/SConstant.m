@@ -23,4 +23,11 @@ NSString * const kAFAviarySecret = @"80ee1b7f54c2ed86";
 
 NSString *const SERVER_PATH_LINK_LIVE = @"seeties.me";
 NSString *const SERVER_PATH_LINK_DEV = @"itcave.seeties.me";
+
+NSString *const URL_ABOUT_US = @"https://seeties.me/about";
+NSString *const URL_TERM_OF_USE = @"https://seeties.me/terms";
+NSString *const URL_PRIVACY_POLICY = @"https://seeties.me/privacy";
+
+
 @end
+

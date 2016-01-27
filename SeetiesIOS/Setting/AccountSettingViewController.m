@@ -188,14 +188,15 @@
     // Dispose of any resources that can be recreated.
 }
 -(IBAction)BackButton:(id)sender{
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromLeft;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    //[self presentViewController:ListingDetail animated:NO completion:nil];
-    [self dismissViewControllerAnimated:NO completion:nil];
+    
+
+    if (self.navigationController) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    
 }
 // tell the picker how many components it will have
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {

@@ -33,10 +33,7 @@
 -(id)init{
     
     if (self = [super init]) {
-        self.navController = [[UINavigationController alloc]initWithRootViewController:self];
-        [[self navController] setNavigationBarHidden:YES animated:NO];
         self.hidesBottomBarWhenPushed = NO;
-
     }
     
     return self;

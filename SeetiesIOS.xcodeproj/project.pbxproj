@@ -1148,6 +1148,10 @@
 		8AF39CDC1BC66536009C7F26 /* UITableView+NXEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF39CDB1BC66536009C7F26 /* UITableView+NXEmptyView.m */; };
 		8AF53EFC1BD65F5A00AF6C9E /* UIView+RoundedCorners.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF53EFB1BD65F5A00AF6C9E /* UIView+RoundedCorners.m */; };
 		8AF53F1B1BD8850E00AF6C9E /* NSObject+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF53F1A1BD8850E00AF6C9E /* NSObject+Extension.m */; };
+		8AF6FDC11C5776E1005AAE5D /* LoginPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6FDBF1C5776E1005AAE5D /* LoginPageViewController.m */; };
+		8AF6FDC21C5776E1005AAE5D /* LoginPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF6FDC01C5776E1005AAE5D /* LoginPageViewController.xib */; };
+		8AF6FDCB1C586480005AAE5D /* SignupPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6FDC91C586480005AAE5D /* SignupPageViewController.m */; };
+		8AF6FDCC1C586480005AAE5D /* SignupPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF6FDCA1C586480005AAE5D /* SignupPageViewController.xib */; };
 		8AF999151C3A2ADD000314E4 /* PagingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF999141C3A2ADD000314E4 /* PagingModel.m */; };
 		8AF999191C3A2C76000314E4 /* PaginationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF999181C3A2C76000314E4 /* PaginationModel.m */; };
 		8AF999531C3CC5E6000314E4 /* FacebookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF999521C3CC5E6000314E4 /* FacebookModel.m */; };
@@ -1251,6 +1255,10 @@
 		C238E33F1C4649AA00570A25 /* NMRangeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = C238E3241C4649AA00570A25 /* NMRangeSlider.m */; };
 		C25B50331C4E277D0027283E /* SearchLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C25B50311C4E277D0027283E /* SearchLocationViewController.m */; };
 		C25B50341C4E277D0027283E /* SearchLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25B50321C4E277D0027283E /* SearchLocationViewController.xib */; };
+		C2C157161C574BB6007608FC /* PromoCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C157141C574BB6007608FC /* PromoCodeViewController.m */; };
+		C2C157171C574BB6007608FC /* PromoCodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2C157151C574BB6007608FC /* PromoCodeViewController.xib */; };
+		C2C1571B1C5788DC007608FC /* RedemptionSuccessfulViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C157191C5788DC007608FC /* RedemptionSuccessfulViewController.m */; };
+		C2C1571C1C5788DC007608FC /* RedemptionSuccessfulViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2C1571A1C5788DC007608FC /* RedemptionSuccessfulViewController.xib */; };
 		C2FB1CDF1C4F7A3B004AE990 /* SearchLocationAreaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FB1CDD1C4F7A3B004AE990 /* SearchLocationAreaCell.m */; };
 		C2FB1CE01C4F7A3B004AE990 /* SearchLocationAreaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FB1CDE1C4F7A3B004AE990 /* SearchLocationAreaCell.xib */; };
 		C5AFD557B47280FB16C39985 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9C815292A4ED6F2408E5E5 /* Pods.framework */; };
@@ -2790,6 +2798,12 @@
 		8AF53EFB1BD65F5A00AF6C9E /* UIView+RoundedCorners.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+RoundedCorners.m"; sourceTree = "<group>"; };
 		8AF53F191BD8850E00AF6C9E /* NSObject+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Extension.h"; sourceTree = "<group>"; };
 		8AF53F1A1BD8850E00AF6C9E /* NSObject+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Extension.m"; sourceTree = "<group>"; };
+		8AF6FDBE1C5776E1005AAE5D /* LoginPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginPageViewController.h; sourceTree = "<group>"; };
+		8AF6FDBF1C5776E1005AAE5D /* LoginPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginPageViewController.m; sourceTree = "<group>"; };
+		8AF6FDC01C5776E1005AAE5D /* LoginPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginPageViewController.xib; sourceTree = "<group>"; };
+		8AF6FDC81C586480005AAE5D /* SignupPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupPageViewController.h; sourceTree = "<group>"; };
+		8AF6FDC91C586480005AAE5D /* SignupPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupPageViewController.m; sourceTree = "<group>"; };
+		8AF6FDCA1C586480005AAE5D /* SignupPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignupPageViewController.xib; sourceTree = "<group>"; };
 		8AF999131C3A2ADD000314E4 /* PagingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagingModel.h; sourceTree = "<group>"; };
 		8AF999141C3A2ADD000314E4 /* PagingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagingModel.m; sourceTree = "<group>"; };
 		8AF999171C3A2C76000314E4 /* PaginationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaginationModel.h; sourceTree = "<group>"; };
@@ -2935,6 +2949,12 @@
 		C25B50301C4E277D0027283E /* SearchLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchLocationViewController.h; sourceTree = "<group>"; };
 		C25B50311C4E277D0027283E /* SearchLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchLocationViewController.m; sourceTree = "<group>"; };
 		C25B50321C4E277D0027283E /* SearchLocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchLocationViewController.xib; sourceTree = "<group>"; };
+		C2C157131C574BB6007608FC /* PromoCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromoCodeViewController.h; sourceTree = "<group>"; };
+		C2C157141C574BB6007608FC /* PromoCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromoCodeViewController.m; sourceTree = "<group>"; };
+		C2C157151C574BB6007608FC /* PromoCodeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PromoCodeViewController.xib; sourceTree = "<group>"; };
+		C2C157181C5788DC007608FC /* RedemptionSuccessfulViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedemptionSuccessfulViewController.h; sourceTree = "<group>"; };
+		C2C157191C5788DC007608FC /* RedemptionSuccessfulViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedemptionSuccessfulViewController.m; sourceTree = "<group>"; };
+		C2C1571A1C5788DC007608FC /* RedemptionSuccessfulViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedemptionSuccessfulViewController.xib; sourceTree = "<group>"; };
 		C2FB1CDC1C4F7A3B004AE990 /* SearchLocationAreaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchLocationAreaCell.h; sourceTree = "<group>"; };
 		C2FB1CDD1C4F7A3B004AE990 /* SearchLocationAreaCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchLocationAreaCell.m; sourceTree = "<group>"; };
 		C2FB1CDE1C4F7A3B004AE990 /* SearchLocationAreaCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchLocationAreaCell.xib; sourceTree = "<group>"; };
@@ -5971,6 +5991,7 @@
 		8AFA514B1C47B4AB00E7920E /* SeetiesV3 */ = {
 			isa = PBXGroup;
 			children = (
+				C2C157111C574B5E007608FC /* Others */,
 				0B6AEA7D1C48E4EB009B7D33 /* MoreV3 */,
 				8AFA514C1C47B4AB00E7920E /* Json */,
 				8AFA514E1C47B4AB00E7920E /* LandingV3 */,
@@ -6098,6 +6119,12 @@
 				8AFA517E1C47B4AB00E7920E /* CT3_LoginViewController.h */,
 				8AFA517F1C47B4AB00E7920E /* CT3_LoginViewController.m */,
 				8AFA51801C47B4AB00E7920E /* CT3_LoginViewController.xib */,
+				8AF6FDBE1C5776E1005AAE5D /* LoginPageViewController.h */,
+				8AF6FDBF1C5776E1005AAE5D /* LoginPageViewController.m */,
+				8AF6FDC01C5776E1005AAE5D /* LoginPageViewController.xib */,
+				8AF6FDC81C586480005AAE5D /* SignupPageViewController.h */,
+				8AF6FDC91C586480005AAE5D /* SignupPageViewController.m */,
+				8AF6FDCA1C586480005AAE5D /* SignupPageViewController.xib */,
 			);
 			path = LoginV3;
 			sourceTree = "<group>";
@@ -6285,6 +6312,27 @@
 			children = (
 			);
 			path = RangeSlider;
+			sourceTree = "<group>";
+		};
+		C2C157111C574B5E007608FC /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				C2C157121C574B5E007608FC /* VoucherRedemption */,
+			);
+			path = Others;
+			sourceTree = "<group>";
+		};
+		C2C157121C574B5E007608FC /* VoucherRedemption */ = {
+			isa = PBXGroup;
+			children = (
+				C2C157131C574BB6007608FC /* PromoCodeViewController.h */,
+				C2C157141C574BB6007608FC /* PromoCodeViewController.m */,
+				C2C157151C574BB6007608FC /* PromoCodeViewController.xib */,
+				C2C157181C5788DC007608FC /* RedemptionSuccessfulViewController.h */,
+				C2C157191C5788DC007608FC /* RedemptionSuccessfulViewController.m */,
+				C2C1571A1C5788DC007608FC /* RedemptionSuccessfulViewController.xib */,
+			);
+			path = VoucherRedemption;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -6559,6 +6607,7 @@
 				8A114CE71BE75CA0006AE3F0 /* AddCollectionDataViewController.xib in Resources */,
 				8A6CCD241C18075800BCD54E /* BigAddIcon@3x.png in Resources */,
 				8A6CCE9F1C18075800BCD54E /* SSFacebookIcon@3x.png in Resources */,
+				8AF6FDC21C5776E1005AAE5D /* LoginPageViewController.xib in Resources */,
 				8A6CCD9E1C18075800BCD54E /* FollowingIcon@2x.png in Resources */,
 				8AFA51F61C47B4AB00E7920E /* FeedType_InviteFriendTblCell.xib in Resources */,
 				8A45123D1BDE2C97008DE870 /* LikeListingCollectionViewCell.xib in Resources */,
@@ -6579,6 +6628,7 @@
 				8A6CCE691C18075800BCD54E /* PostSmallPin@2x.png in Resources */,
 				8A6CCD1E1C18075800BCD54E /* DraftsIcon@3x.png in Resources */,
 				8AFA51E61C47B4AB00E7920E /* CollectionsCollectionViewCell.xib in Resources */,
+				C2C1571C1C5788DC007608FC /* RedemptionSuccessfulViewController.xib in Resources */,
 				8A6CCE051C18075800BCD54E /* CorrectFill@2x.png in Resources */,
 				8A6CCD061C18075800BCD54E /* MoreBtn@3x.png in Resources */,
 				8A6CCE421C18075800BCD54E /* PostViewIcon@3x.png in Resources */,
@@ -6656,6 +6706,7 @@
 				8A9F25D51B8EF61900BB13BA /* EditHourTableViewCell.xib in Resources */,
 				C238E33D1C4649AA00570A25 /* slider-metal-trackBackground.png in Resources */,
 				8AD6C2981B7072FB0040437E /* EditLocationViewController.xib in Resources */,
+				8AF6FDCC1C586480005AAE5D /* SignupPageViewController.xib in Resources */,
 				8A6CCE0A1C18075800BCD54E /* GreyBackBtn@3x.png in Resources */,
 				8A6CCE251C18075800BCD54E /* BlueLink@2x.png in Resources */,
 				8A6CCD8F1C18075800BCD54E /* Distance3Icon@3x.png in Resources */,
@@ -7155,6 +7206,7 @@
 				8A6CCCE61C18075800BCD54E /* DeleteCollection@3x.png in Resources */,
 				8A6CCE1F1C18075800BCD54E /* NotificationFollow@2x.png in Resources */,
 				8AC8F7471BDA414E00DEF14A /* EditCollectionDetailViewController.xib in Resources */,
+				C2C157171C574BB6007608FC /* PromoCodeViewController.xib in Resources */,
 				8A6CCE7F1C18075800BCD54E /* ViewIcon@2x.png in Resources */,
 				8A6CCD8A1C18075800BCD54E /* Distance1Icon@2x.png in Resources */,
 				8AB76D211BB8FBAF007DB972 /* ArticleViewController.xib in Resources */,
@@ -7288,6 +7340,7 @@
 				8A114CC91BE73F5D006AE3F0 /* Reachability.m in Sources */,
 				8AD6C2A91B7072FB0040437E /* WhereIsThisViewController.m in Sources */,
 				8AD6C0BE1B706CF30040437E /* FeedV2DetailViewController.m in Sources */,
+				C2C1571B1C5788DC007608FC /* RedemptionSuccessfulViewController.m in Sources */,
 				8AEDBFB91C2031BA000BD2FF /* SearchModel.m in Sources */,
 				8AD6BE241B706CF30040437E /* UIIimage+Extra.m in Sources */,
 				8A41471E1C23E18D00D633D1 /* NSDictionary+Extra.m in Sources */,
@@ -7579,6 +7632,7 @@
 				8AD6BA631B705DF20040437E /* AppDelegate.m in Sources */,
 				8A0035371C4F5E7D002BD9A3 /* DealType_QuickBrowseTblCell.m in Sources */,
 				8AEDBFBA1C2031BA000BD2FF /* SeNearbyShopModel.m in Sources */,
+				8AF6FDCB1C586480005AAE5D /* SignupPageViewController.m in Sources */,
 				8A3408ED1B86EA4B009B66C3 /* UITableView+LongPressReorder.m in Sources */,
 				8AD6C2911B7072FB0040437E /* ChangeSearchLocationViewController.m in Sources */,
 				8AD6C27F1B7072FB0040437E /* AddContactViewController.m in Sources */,
@@ -7635,6 +7689,7 @@
 				8AFA52031C47B4AB00E7920E /* CT3_MeViewController.m in Sources */,
 				8AD6C10E1B706CF30040437E /* SettingsViewController.m in Sources */,
 				8AF39CDC1BC66536009C7F26 /* UITableView+NXEmptyView.m in Sources */,
+				8AF6FDC11C5776E1005AAE5D /* LoginPageViewController.m in Sources */,
 				8AFA51EF1C47B4AB00E7920E /* FeedType_CountryPromotionTblCell.m in Sources */,
 				8A317C061BE1C5620010CAEE /* ShareViewController.m in Sources */,
 				8A0035461C4F7ABB002BD9A3 /* DealType_YourWalletTblCell.m in Sources */,
@@ -7653,6 +7708,7 @@
 				8A114CA51BE73F5D006AE3F0 /* PEResizeControl.m in Sources */,
 				8AB83A7C1BD49CED00715B69 /* UIView+Extension.m in Sources */,
 				8A114CB21BE73F5D006AE3F0 /* LLARingSpinnerView.m in Sources */,
+				C2C157161C574BB6007608FC /* PromoCodeViewController.m in Sources */,
 				8AC8F7381BDA414E00DEF14A /* ProfileCollectionViewController.m in Sources */,
 				8A0F50CD1C0D52AE002B1E22 /* PhotoCollectionViewCell.m in Sources */,
 				8AD6C2A11B7072FB0040437E /* RecommendV2ViewController.m in Sources */,

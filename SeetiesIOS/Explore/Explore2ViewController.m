@@ -408,7 +408,6 @@
     [FestivalButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15]];
     [ibScrollViewCountry addSubview:FestivalButton];
     
-    
     [ibScrollViewCountry setContentSize:CGSizeMake(320, heightGet + TempImage.size.height + 10)];
     
     [ShowActivity stopAnimating];
