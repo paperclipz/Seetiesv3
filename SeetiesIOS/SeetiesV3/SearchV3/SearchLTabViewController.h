@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void (^DidSelectUserRowBlock)(NSString *userid);
 @interface SearchLTabViewController : CommonViewController <UITableViewDataSource,UITableViewDelegate>
 
+@property(nonatomic,copy)DidSelectUserRowBlock didSelectUserRowBlock;
 @property(nonatomic,assign)SearchListingType searchListingType;
 @end
