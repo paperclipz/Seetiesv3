@@ -8,13 +8,18 @@
 
 #import "CT3_LoginViewController.h"
 #import "LoginPageViewController.h"
-#import "SignUpViewController.h"
+#import "SignupPageViewController.h"
 #import "PInterestV2ViewController.h"
 
 @interface CT3_LoginViewController ()
+{
+    NSArray* imageArray;
+    int varietyImageAnimationIndex;
+
+}
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
 @property (nonatomic) LoginPageViewController* loginPageViewController;
-@property(nonatomic)SignUpViewController* signUpViewController;
+@property(nonatomic)SignupPageViewController* signUpViewController;
 @property(nonatomic)PInterestV2ViewController* pInterestV2ViewController;
 @property (weak, nonatomic) IBOutlet UIButton *lblFacebook;
 @property (weak, nonatomic) IBOutlet UIButton *lblInstagram;
@@ -31,25 +36,38 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
+    varietyImageAnimationIndex = 1;
     // Do any additional setup after loading the view from its nib.
 }
 
 -(void)initSelfView
 {
-    self.ibImageView.animationImages = [NSArray arrayWithObjects:
-                                         [UIImage imageNamed:@"Walkthrough1.png"],
-                                         [UIImage imageNamed:@"Walkthrough2.png"],
-                                         [UIImage imageNamed:@"Walkthrough3.png"],
-                                         [UIImage imageNamed:@"Walkthrough4.png"], nil];
-    self.ibImageView.animationDuration = 5.0f;
-    self.ibImageView.animationRepeatCount = 0;
-    [self.ibImageView startAnimating];
     
+
+    imageArray = @[[UIImage imageNamed:@"Walkthrough1.png"],[UIImage imageNamed:@"Walkthrough2.png"],[UIImage imageNamed:@"Walkthrough3.png"]];
+
+    [self animateImages];
+
     [Utils setRoundBorder:self.lblFacebook color:[UIColor whiteColor] borderRadius:5.0f borderWidth:1.0f];
     [Utils setRoundBorder:self.lblInstagram color:[UIColor whiteColor] borderRadius:5.0f borderWidth:1.0f];
 
     
 }
+
+-(void)animateImages
+{
+    varietyImageAnimationIndex++;
+    
+    [UIView transitionWithView:self.ibImageView
+                      duration:3.0f
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+                        self.ibImageView.image = [imageArray objectAtIndex:varietyImageAnimationIndex % [imageArray count]];
+                    } completion:^(BOOL finished) {
+                        [self animateImages];
+                    }];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -149,10 +167,10 @@
     return _pInterestV2ViewController;
 }
 
--(SignUpViewController*)signUpViewController
+-(SignupPageViewController*)signUpViewController
 {
     if (!_signUpViewController) {
-        _signUpViewController = [SignUpViewController new];
+        _signUpViewController = [SignupPageViewController new];
         _signUpViewController.signUpClickBlock = ^(NSString* username, NSString* password,NSString* email)
         {
             

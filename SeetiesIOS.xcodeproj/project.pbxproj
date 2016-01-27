@@ -1150,8 +1150,8 @@
 		8AF53F1B1BD8850E00AF6C9E /* NSObject+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF53F1A1BD8850E00AF6C9E /* NSObject+Extension.m */; };
 		8AF6FDC11C5776E1005AAE5D /* LoginPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6FDBF1C5776E1005AAE5D /* LoginPageViewController.m */; };
 		8AF6FDC21C5776E1005AAE5D /* LoginPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF6FDC01C5776E1005AAE5D /* LoginPageViewController.xib */; };
-		8AF6FDC61C5782DB005AAE5D /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6FDC41C5782DB005AAE5D /* SignUpViewController.m */; };
-		8AF6FDC71C5782DB005AAE5D /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF6FDC51C5782DB005AAE5D /* SignUpViewController.xib */; };
+		8AF6FDCB1C586480005AAE5D /* SignupPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6FDC91C586480005AAE5D /* SignupPageViewController.m */; };
+		8AF6FDCC1C586480005AAE5D /* SignupPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF6FDCA1C586480005AAE5D /* SignupPageViewController.xib */; };
 		8AF999151C3A2ADD000314E4 /* PagingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF999141C3A2ADD000314E4 /* PagingModel.m */; };
 		8AF999191C3A2C76000314E4 /* PaginationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF999181C3A2C76000314E4 /* PaginationModel.m */; };
 		8AF999531C3CC5E6000314E4 /* FacebookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF999521C3CC5E6000314E4 /* FacebookModel.m */; };
@@ -2801,9 +2801,9 @@
 		8AF6FDBE1C5776E1005AAE5D /* LoginPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginPageViewController.h; sourceTree = "<group>"; };
 		8AF6FDBF1C5776E1005AAE5D /* LoginPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginPageViewController.m; sourceTree = "<group>"; };
 		8AF6FDC01C5776E1005AAE5D /* LoginPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginPageViewController.xib; sourceTree = "<group>"; };
-		8AF6FDC31C5782DB005AAE5D /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
-		8AF6FDC41C5782DB005AAE5D /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
-		8AF6FDC51C5782DB005AAE5D /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
+		8AF6FDC81C586480005AAE5D /* SignupPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupPageViewController.h; sourceTree = "<group>"; };
+		8AF6FDC91C586480005AAE5D /* SignupPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupPageViewController.m; sourceTree = "<group>"; };
+		8AF6FDCA1C586480005AAE5D /* SignupPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignupPageViewController.xib; sourceTree = "<group>"; };
 		8AF999131C3A2ADD000314E4 /* PagingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagingModel.h; sourceTree = "<group>"; };
 		8AF999141C3A2ADD000314E4 /* PagingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagingModel.m; sourceTree = "<group>"; };
 		8AF999171C3A2C76000314E4 /* PaginationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaginationModel.h; sourceTree = "<group>"; };
@@ -6122,9 +6122,9 @@
 				8AF6FDBE1C5776E1005AAE5D /* LoginPageViewController.h */,
 				8AF6FDBF1C5776E1005AAE5D /* LoginPageViewController.m */,
 				8AF6FDC01C5776E1005AAE5D /* LoginPageViewController.xib */,
-				8AF6FDC31C5782DB005AAE5D /* SignUpViewController.h */,
-				8AF6FDC41C5782DB005AAE5D /* SignUpViewController.m */,
-				8AF6FDC51C5782DB005AAE5D /* SignUpViewController.xib */,
+				8AF6FDC81C586480005AAE5D /* SignupPageViewController.h */,
+				8AF6FDC91C586480005AAE5D /* SignupPageViewController.m */,
+				8AF6FDCA1C586480005AAE5D /* SignupPageViewController.xib */,
 			);
 			path = LoginV3;
 			sourceTree = "<group>";
@@ -6689,7 +6689,6 @@
 				8A9F25E31B90414800BB13BA /* EditPostDetailVIew.xib in Resources */,
 				8A6CCDB81C18075800BCD54E /* TitleBar@3x.png in Resources */,
 				8AFA51C61C47B4AB00E7920E /* feed.json in Resources */,
-				8AF6FDC71C5782DB005AAE5D /* SignUpViewController.xib in Resources */,
 				8A6CCD621C18075800BCD54E /* ExploreCollectionImg2.png in Resources */,
 				8A6CCD5A1C18075800BCD54E /* NoResult@3x.png in Resources */,
 				C238E32E1C4649AA00570A25 /* slider-default_trackBackground@2x.png in Resources */,
@@ -6707,6 +6706,7 @@
 				8A9F25D51B8EF61900BB13BA /* EditHourTableViewCell.xib in Resources */,
 				C238E33D1C4649AA00570A25 /* slider-metal-trackBackground.png in Resources */,
 				8AD6C2981B7072FB0040437E /* EditLocationViewController.xib in Resources */,
+				8AF6FDCC1C586480005AAE5D /* SignupPageViewController.xib in Resources */,
 				8A6CCE0A1C18075800BCD54E /* GreyBackBtn@3x.png in Resources */,
 				8A6CCE251C18075800BCD54E /* BlueLink@2x.png in Resources */,
 				8A6CCD8F1C18075800BCD54E /* Distance3Icon@3x.png in Resources */,
@@ -7515,7 +7515,6 @@
 				8AF999531C3CC5E6000314E4 /* FacebookModel.m in Sources */,
 				8AD6C0B31B706CF30040437E /* ConnectionManager.m in Sources */,
 				8A65843D1B9850CE00BC86B9 /* DraftViewController.m in Sources */,
-				8AF6FDC61C5782DB005AAE5D /* SignUpViewController.m in Sources */,
 				8AFA51C91C47B4AB00E7920E /* FilterBudgetCell.m in Sources */,
 				8A114C9D1BE73F5D006AE3F0 /* UIImage+KVNEmpty.m in Sources */,
 				8A114C991BE73F5D006AE3F0 /* JTSImageViewController.m in Sources */,
@@ -7633,6 +7632,7 @@
 				8AD6BA631B705DF20040437E /* AppDelegate.m in Sources */,
 				8A0035371C4F5E7D002BD9A3 /* DealType_QuickBrowseTblCell.m in Sources */,
 				8AEDBFBA1C2031BA000BD2FF /* SeNearbyShopModel.m in Sources */,
+				8AF6FDCB1C586480005AAE5D /* SignupPageViewController.m in Sources */,
 				8A3408ED1B86EA4B009B66C3 /* UITableView+LongPressReorder.m in Sources */,
 				8AD6C2911B7072FB0040437E /* ChangeSearchLocationViewController.m in Sources */,
 				8AD6C27F1B7072FB0040437E /* AddContactViewController.m in Sources */,

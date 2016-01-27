@@ -16,6 +16,7 @@
 #import "ProfileNoItemTableViewCell.h"
 #import "JTSImageViewController.h"
 #import "UITableView+Extension.h"
+#import "ConnectionsViewController.h"
 
 @interface ProfileViewController ()<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate,UIScrollViewDelegate>
 {
@@ -63,7 +64,6 @@
 @property (nonatomic,strong)UIImageView* loadingImageView;
 @property (nonatomic,assign)ProfileViewType profileViewType;
 @property (nonatomic,strong)NSString* userID;
-
 // =======  MODEL   =======
 
 @end

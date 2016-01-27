@@ -1,14 +1,14 @@
 //
-//  SignUpViewController.m
+//  SignupPageViewController.m
 //  SeetiesIOS
 //
-//  Created by Evan Beh on 1/26/16.
+//  Created by Evan Beh on 1/27/16.
 //  Copyright © 2016 Stylar Network. All rights reserved.
 //
 
-#import "SignUpViewController.h"
+#import "SignupPageViewController.h"
 
-@interface SignUpViewController ()
+@interface SignupPageViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *txtUserName;
 @property (weak, nonatomic) IBOutlet UIView *ibContentUserName;
 @property (weak, nonatomic) IBOutlet UIView *ibContentEmail;
@@ -19,7 +19,7 @@
 
 @end
 
-@implementation SignUpViewController
+@implementation SignupPageViewController
 - (IBAction)btnSubmitClicked:(id)sender {
     
     if (self.signUpClickBlock) {
@@ -39,7 +39,7 @@
     [Utils setRoundBorder:self.ibContentEmail color:TEXT_GRAY_COLOR borderRadius:self.ibContentEmail.frame.size.height/2 borderWidth:1.0f];
     [Utils setRoundBorder:self.ibContentPassword color:TEXT_GRAY_COLOR borderRadius:self.ibContentPassword.frame.size.height/2 borderWidth:1.0f];
     [Utils setRoundBorder:self.btnSubmit color:[UIColor clearColor] borderRadius:self.btnSubmit.frame.size.height/2 borderWidth:1.0f];
-
+    
 }
 
 
@@ -49,13 +49,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
