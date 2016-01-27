@@ -10,4 +10,9 @@
 
 @interface PostsTableViewCell : CommonTableViewCell
 -(void)initData:(DraftModel*)model;
+
+@property(nonatomic,copy)VoidBlock btnFollowBlock;
+@property(nonatomic,copy)VoidBlock btnCollectionBlock;
+@property(nonatomic,copy)VoidBlock btnCollectionOpenViewBlock;
+@property(nonatomic,copy)VoidBlock btnUserProfileBlock;
 @end
