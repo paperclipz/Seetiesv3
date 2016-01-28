@@ -145,51 +145,51 @@
     
     
 }
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
-{
-    NSLog(@"didUpdateToLocation: %@", newLocation);
-    CLLocation *location = newLocation;
-    
-    if (location != nil) {
-        latPoint = [NSString stringWithFormat:@"%f", location.coordinate.latitude];
-        lonPoint = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
-        
-        NSLog(@"lat is %@ : lon is %@",latPoint, lonPoint);
-        //Now you know the location has been found, do other things, call others methods here
-        [self.locationManager stopUpdatingLocation];
-        
-        NSLog(@"got location get feed data");
-        
-       [self UpdateUserDataToServer];
-    }else{
-        
-    }
-}
--(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
-    
-    NSLog(@"%@",error.userInfo);
-    
-    if([CLLocationManager locationServicesEnabled]){
-        
-        NSLog(@"Location Services Enabled");
-        
-        if([CLLocationManager authorizationStatus]==kCLAuthorizationStatusDenied){
-            UIAlertView    *alert = [[UIAlertView alloc] initWithTitle:@"App Permission Denied"
-                                                               message:@"To re-enable, please go to Settings and turn on Location Service for this app."
-                                                              delegate:nil
-                                                     cancelButtonTitle:@"OK"
-                                                     otherButtonTitles:nil];
-            [alert show];
-            
-        }
-    }else{
-    }
-    NSLog(@"no location get feed data");
-    [manager stopUpdatingLocation];
-    
-    [self UpdateUserDataToServer];
-    
-}
+//- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+//{
+//    NSLog(@"didUpdateToLocation: %@", newLocation);
+//    CLLocation *location = newLocation;
+//    
+//    if (location != nil) {
+//        latPoint = [NSString stringWithFormat:@"%f", location.coordinate.latitude];
+//        lonPoint = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
+//        
+//        NSLog(@"lat is %@ : lon is %@",latPoint, lonPoint);
+//        //Now you know the location has been found, do other things, call others methods here
+//        [self.locationManager stopUpdatingLocation];
+//        
+//        NSLog(@"got location get feed data");
+//        
+//     //  [self UpdateUserDataToServer];
+//    }else{
+//        
+//    }
+//}
+//-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+//    
+//    NSLog(@"%@",error.userInfo);
+//    
+//    if([CLLocationManager locationServicesEnabled]){
+//        
+//        NSLog(@"Location Services Enabled");
+//        
+//        if([CLLocationManager authorizationStatus]==kCLAuthorizationStatusDenied){
+//            UIAlertView    *alert = [[UIAlertView alloc] initWithTitle:@"App Permission Denied"
+//                                                               message:@"To re-enable, please go to Settings and turn on Location Service for this app."
+//                                                              delegate:nil
+//                                                     cancelButtonTitle:@"OK"
+//                                                     otherButtonTitles:nil];
+//            [alert show];
+//            
+//        }
+//    }else{
+//    }
+//    NSLog(@"no location get feed data");
+//    [manager stopUpdatingLocation];
+//    
+//   // [self UpdateUserDataToServer];
+//    
+//}
 //- (BOOL)prefersStatusBarHidden {
 //    return YES;
 //}
@@ -350,34 +350,25 @@
         [defaults setObject:GetInstaID forKey:@"UserData_instaID"];
         [defaults synchronize];
         
-        
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+
 //        NSTimer *RandomTimer;
 //        //    //2 sec to show button.
 //        RandomTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(changeview) userInfo:nil repeats:NO];
     }
 }
 
--(IBAction)DoneButton:(id)sender{
-    NSString *CheckStatus = @"0";
-    NSString *CheckLogin = [[NSString alloc]initWithFormat:@"LoginDone"];
-    NSString *CheckNewUser = @"NewUser";
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:CheckStatus forKey:@"CheckProvisioningStatus"];
-    [defaults setObject:CheckLogin forKey:@"CheckLogin"];
-    [defaults setObject:CheckNewUser forKey:@"CheckNewUser"];
-    [defaults synchronize];
-
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-}
-
 -(void)UpdateUserDataToServer{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *GetExpertToken = [Utils getAppToken];
     NSString *GetProvisioning_Interest_ID = [defaults objectForKey:@"Provisioning_Interest"];
     NSString *GetLocationJson = [defaults objectForKey:@"Provisioning_FullJson"];
-    NSString *Getuid = [defaults objectForKey:@"Useruid"];
-    NSString *GetLang01 = [defaults objectForKey:@"Provisioning_SelectLanguage01"];
-    NSString *GetLang02 = [defaults objectForKey:@"Provisioning_SelectLanguage02"];
+    NSString *Getuid = [Utils getUserID];
+    
+    NSString *GetLang01 = [Utils getDeviceAppLanguageCode];
+
+
+    /*check the nsuser default return any , if not take from device language and update*/
     NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
     NSLog(@"PFollow language is %@",language);
     NSString *GetSystemLanguage;
@@ -404,26 +395,13 @@
         GetLang01 = @"530b0ab26424400c76000003";
     }
    
-//    NSMutableArray *GetlanguageCodeArray = [defaults objectForKey:@"LanguageData_Code"];
-//    NSMutableArray *GetlanguageIDArray = [defaults objectForKey:@"LanguageData_ID"];
-//    NSString *GetSystemLanguageData;
-//    for (int i = 0; i < [GetlanguageCodeArray count]; i++) {
-//        NSString *GetLanguageCode = [[NSString alloc]initWithFormat:@"%@",[GetlanguageCodeArray objectAtIndex:i]];
-//        
-//        if ([GetLanguageCode isEqualToString:language]) {
-//            GetSystemLanguageData = [[NSString alloc]initWithFormat:@"%@",[GetlanguageIDArray objectAtIndex:i]];
-//            break;
-//        }else{
-//        GetSystemLanguageData = @"530b0ab26424400c76000003";
-//        }
-//    }
-    
+
     NSLog(@"GetExpertToken is %@",GetExpertToken);
     NSLog(@"GetProvisioning_Interest_ID is %@",GetProvisioning_Interest_ID);
     NSLog(@"GetLocationJson is %@",GetLocationJson);
     NSLog(@"Getuid is %@",Getuid);
     NSLog(@"GetLang01 is %@",GetLang01);
-    NSLog(@"GetLang02 is %@",GetLang02);
+   // NSLog(@"GetLang02 is %@",GetLang02);
     
     if ([GetLocationJson length] == 0 || [GetLocationJson isEqualToString:@"(null)"]) {
         GetLocationJson = @"";
@@ -504,25 +482,23 @@
 //    }
     
     
-    if ([lonPoint length] == 0 || [lonPoint isEqualToString:@"(null)"] || [lonPoint isEqualToString:@"None"]) {
-        
-    }else{
+
         [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
         //Attaching the key name @"parameter_second" to the post body
         [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"lat\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
         //Attaching the content to be posted ( ParameterSecond )
-        [body appendData:[[NSString stringWithFormat:@"%@",latPoint] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+        CLLocation* location  = [[SearchManager Instance]getAppLocation];
+    
+        [body appendData:[[NSString stringWithFormat:@"%@",@(location.coordinate.latitude)] dataUsingEncoding:NSUTF8StringEncoding]];
         [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
         
         [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
         //Attaching the key name @"parameter_second" to the post body
         [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"lng\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
         //Attaching the content to be posted ( ParameterSecond )
-        [body appendData:[[NSString stringWithFormat:@"%@",lonPoint] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"%@",@(location.coordinate.longitude)] dataUsingEncoding:NSUTF8StringEncoding]];
         [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    }
-    
-
     
     
     //close form
@@ -584,6 +560,8 @@
     [defaults setObject:CheckNewUser forKey:@"CheckNewUser"];
     [defaults synchronize];
     
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    [self UpdateUserDataToServer];
+
 }
+
 @end

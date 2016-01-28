@@ -11,6 +11,7 @@
 #import "SignupPageViewController.h"
 #import "PInterestV2ViewController.h"
 #import "CTWebViewController.h"
+#import "PInterestV2ViewController.h"
 
 @interface CT3_LoginViewController ()
 {
@@ -178,7 +179,14 @@
     
 }
 #pragma mark - Declaration
-
+-(PInterestV2ViewController*)pInterestV2ViewController
+{
+    if (!_pInterestV2ViewController) {
+        _pInterestV2ViewController = [PInterestV2ViewController new];
+    }
+    
+    return _pInterestV2ViewController;
+}
 -(CTWebViewController*)webViewController
 {
     
@@ -189,14 +197,6 @@
     }
     
     return _webViewController;
-}
--(PInterestV2ViewController*)pInterestV2ViewController
-{
-    if (!_pInterestV2ViewController) {
-        _pInterestV2ViewController = [PInterestV2ViewController new];
-    }
-    
-    return _pInterestV2ViewController;
 }
 
 -(SignupPageViewController*)signUpViewController
@@ -225,7 +225,7 @@
         _loginPageViewController.btnLoginClickedBlock = ^(NSString* username,NSString* password)
         {
             
-            [weakSelf requestServerForLogin:username Password:password];
+            [weakSelf requestServerForLogin:username Password:password OnComplete:nil];
 
         };
 
@@ -235,7 +235,7 @@
 }
 
 #pragma mark - Server Request
--(void)requestServerForLogin:(NSString*)userName Password:(NSString*)password
+-(void)requestServerForLogin:(NSString*)userName Password:(NSString*)password OnComplete:(VoidBlock)onComplete
 {
  
     [LoadingManager show];
@@ -249,6 +249,13 @@
         if (self.didFinishLoginBlock) {
             self.didFinishLoginBlock();
         }
+        
+        if (onComplete) {
+            onComplete();
+            
+            return;
+        }
+        
         [self dismissViewControllerAnimated:YES completion:nil];
         
     } errorBlock:^(id object) {
@@ -297,7 +304,10 @@
         
         NSDictionary* dict = [[NSDictionary alloc]initWithDictionary:object];
         if ([dict[@"status"] isEqualToString:@"ok"]) {
-            [self requestServerForLogin:username Password:password];
+            [self requestServerForLogin:username Password:password OnComplete:^{
+                
+                [self showUserInterestPage];
+            }];
         }
         else{
         
@@ -334,6 +344,10 @@
     }];
 }
 
+-(void)showUserInterestPage
+{
+    [self.navigationController pushViewController:self.pInterestV2ViewController animated:YES];
+}
 -(void)forgetPassword
 {
 

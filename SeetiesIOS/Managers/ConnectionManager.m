@@ -8,7 +8,7 @@
 
 #import "ConnectionManager.h"
 #import "NSArray+JSON.h"
-#define API_VERION_URL @"v2.3"
+#define API_VERION_URL @"v3.0"
 #define IS_SIMULATOR NO
 @interface ConnectionManager()
 @property (strong, nonatomic) DataManager *dataManager;
@@ -452,7 +452,7 @@
             break;
             
         case ServerRequestTypeGetRecommendationDraft:
-            str = [NSString stringWithFormat:@"%@draft",API_VERION_URL];
+            str = [NSString stringWithFormat:@"%@/draft",API_VERION_URL];
 
             break;
             

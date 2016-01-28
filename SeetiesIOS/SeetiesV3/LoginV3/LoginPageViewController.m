@@ -7,8 +7,11 @@
 //
 
 #import "LoginPageViewController.h"
+#import "ForgotPasswordViewController.h"
 
 @interface LoginPageViewController ()
+@property(nonatomic)ForgotPasswordViewController* forgotPasswordViewController;
+
 @property (weak, nonatomic) IBOutlet UITextField *lblUserName;
 @property (weak, nonatomic) IBOutlet UITextField *lblPassword;
 @property (weak, nonatomic) IBOutlet UIView *ibUserContentView;
@@ -20,7 +23,11 @@
 
 @implementation LoginPageViewController
 - (IBAction)btnForgetPassword:(id)sender {
+    
+    _forgotPasswordViewController = nil;
+    [self.navigationController pushViewController:self.forgotPasswordViewController animated:YES];
 }
+
 - (IBAction)btnLoginClicked:(id)sender {
     
     if (self.btnLoginClickedBlock) {
@@ -92,5 +99,16 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - Declaration
+
+-(ForgotPasswordViewController*)forgotPasswordViewController
+{
+    if (!_forgotPasswordViewController) {
+        _forgotPasswordViewController = [ForgotPasswordViewController new];
+    }
+    
+    return _forgotPasswordViewController;
+}
 
 @end

@@ -20,8 +20,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XDK-8P-uNu">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="299-1f-ZwB">
-                            <rect key="frame" x="-5" y="20" width="40" height="40"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CloseIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="299-1f-ZwB">
+                            <rect key="frame" x="0.0" y="20" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="8ti-to-VKd"/>
                                 <constraint firstAttribute="width" constant="40" id="cLb-MR-yxv"/>
@@ -97,9 +97,9 @@
                         <constraint firstItem="OFa-HN-cUk" firstAttribute="leading" secondItem="Rih-JJ-9Tr" secondAttribute="trailing" constant="10" id="MRQ-3h-5K4"/>
                         <constraint firstItem="yjV-Rn-dF0" firstAttribute="leading" secondItem="XDK-8P-uNu" secondAttribute="leading" id="SzH-Va-2j9"/>
                         <constraint firstAttribute="trailing" secondItem="OFa-HN-cUk" secondAttribute="trailing" constant="10" id="URZ-x2-tWZ"/>
-                        <constraint firstItem="nMV-lZ-Sfk" firstAttribute="leading" secondItem="299-1f-ZwB" secondAttribute="trailing" constant="-35" id="Zqb-FW-6sN"/>
+                        <constraint firstItem="nMV-lZ-Sfk" firstAttribute="leading" secondItem="299-1f-ZwB" secondAttribute="trailing" constant="-40" id="Zqb-FW-6sN"/>
                         <constraint firstItem="Rih-JJ-9Tr" firstAttribute="top" secondItem="XDK-8P-uNu" secondAttribute="top" constant="20" id="fgx-5T-wgH"/>
-                        <constraint firstItem="299-1f-ZwB" firstAttribute="leading" secondItem="XDK-8P-uNu" secondAttribute="leading" constant="-5" id="hzw-pu-0rf"/>
+                        <constraint firstItem="299-1f-ZwB" firstAttribute="leading" secondItem="XDK-8P-uNu" secondAttribute="leading" id="hzw-pu-0rf"/>
                         <constraint firstItem="Fse-RL-rlN" firstAttribute="leading" secondItem="ojr-cE-RWi" secondAttribute="trailing" constant="2" id="izr-bM-zQI"/>
                         <constraint firstItem="299-1f-ZwB" firstAttribute="top" secondItem="nMV-lZ-Sfk" secondAttribute="top" constant="-9" id="joB-yN-7TE"/>
                         <constraint firstItem="ojr-cE-RWi" firstAttribute="top" secondItem="XDK-8P-uNu" secondAttribute="top" id="lIb-52-3s9"/>
@@ -136,8 +136,8 @@
         </view>
     </objects>
     <resources>
-        <image name="BackIcon.png" width="40" height="40"/>
         <image name="BigAddIcon.png" width="60" height="60"/>
+        <image name="CloseIcon.png" width="40" height="40"/>
         <image name="TickIcon.png" width="40" height="40"/>
     </resources>
 </document>

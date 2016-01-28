@@ -207,6 +207,7 @@
     
     self.editPostType = EditPostTypeDraftNew;
     self.recommendationModel = model;
+    self.tempSavedRecommendationModel = self.recommendationModel;
 
 }
 
@@ -215,16 +216,18 @@
     
     self.editPostType = EditPostTypeDraft;
     self.recommendationModel = [[RecommendationModel alloc]initWithDraftModel:model];
-    
+    self.tempSavedRecommendationModel = self.recommendationModel;
+
    
 }
-
 
 -(void)initDataPostEdit:(DraftModel*)model
 {
 
     self.editPostType = EditPostTypePostEdit;
     self.recommendationModel = [[RecommendationModel alloc]initWithDraftModel:model];
+    self.tempSavedRecommendationModel = self.recommendationModel;
+
 }
 
 - (void)viewDidLoad {
