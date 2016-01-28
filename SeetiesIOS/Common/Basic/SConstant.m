@@ -29,5 +29,9 @@ NSString *const URL_TERM_OF_USE = @"https://seeties.me/terms";
 NSString *const URL_PRIVACY_POLICY = @"https://seeties.me/privacy";
 
 
+NSString *const Insta_Client_ID = @"ab7f100c649f43838358f36abed5033f";
+NSString *const Insta_Client_Secret = @"b3e6ef4fb2094b60b9c44e204d24b476";
+NSString *const Insta_Client_callback = @"https://seeties.me";
+
 @end
 

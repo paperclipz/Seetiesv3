@@ -6,19 +6,19 @@
 //  Copyright (c) 2015 Ahyong87. All rights reserved.
 //
 #import "Utils.h"
+#import "AppDelegate.h"
 
 @implementation Utils
 
 +(BOOL)isGuestMode
 {
-//    if ([Utils checkUserIsLogin]) {
-//        return YES;
-//    }
-//    else{
-//        return NO;
-//    }
+    if ([Utils checkUserIsLogin]) {
+        return NO;
+    }
+    else{
+        return YES;
+    }
     
-    return YES;
 }
 
 +(void)setLogout
@@ -26,6 +26,21 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:nil forKey:TOKEN];
     [defaults synchronize];
+    
+    AppDelegate *appdelegate;
+    
+    appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [Utils reloadAppView];
+    [appdelegate.landingViewController showLoginView];
+
+}
+
++(void)reloadAppView
+{
+    AppDelegate *appdelegate;
+    
+    appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [appdelegate.landingViewController reloadData];
 }
 
 +(BOOL)isLogin
@@ -56,10 +71,10 @@
     NSString* token = [defaults objectForKey:TOKEN];
  
     if ([Utils isStringNull:token]) {
-        return nil;
+        return NO;
     }
     else{
-        return token;
+        return YES;
     }
 
 }
@@ -164,6 +179,12 @@
     return [urlTest evaluateWithObject:candidate];
 }
 
++ (BOOL) validateEmail: (NSString *) candidate {
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    
+    return [emailTest evaluateWithObject:candidate];
+}
 
 +(NSString*)currencyCode:(NSString*)currency
 {
@@ -582,5 +603,15 @@
     
     return strDistance;
     
+}
+
++(void)showLogin
+{
+    AppDelegate *appdelegate;
+    
+    appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    
+    [appdelegate.landingViewController showLoginView];
+
 }
 @end

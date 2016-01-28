@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "GAITrackedViewController.h"
 
+
 @interface BaseViewController : GAITrackedViewController
 
+-(void)reloadData;
 //-(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated;
-
 @end
+

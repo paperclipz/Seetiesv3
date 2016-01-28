@@ -37,6 +37,7 @@
 #import "DealType_YourWalletTblCell.h"
 #import "SearchViewV2Controller.h"
 
+#import "AppDelegate.h"
 
 
 static NSCache* heightCache = nil;
@@ -89,7 +90,6 @@ static NSCache* heightCache = nil;
 
 @implementation CT3_NewsFeedViewController
 - (IBAction)btnSearchClicked:(id)sender {
-    
     [self.navigationController pushViewController:self.searchViewV2Controller animated:YES];
 }
 
@@ -109,11 +109,19 @@ static NSCache* heightCache = nil;
 }
 - (IBAction)btnTestCliked:(id)sender {
     
-    [self presentViewController:self.searchLocationViewController animated:YES completion:nil];
+   
+    //[self presentViewController:self.searchLocationViewController animated:YES completion:nil];
 }
 
 -(void)refreshViewAfterLogin
 {
+    self.newsFeedModels = nil;
+    
+    if (![Utils isArrayNull:self.arrayNewsFeed]) {
+        [self.arrayNewsFeed removeAllObjects];
+        [self.ibTableView reloadData];
+    }
+   
     [self requestServerForNewsFeed];
 }
 
@@ -1172,4 +1180,11 @@ static NSCache* heightCache = nil;
 {
     [self.ibTableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
 }
+
+-(void)reloadData
+{
+    [self scrollToTop];
+    [self refreshViewAfterLogin];
+}
+
 @end

@@ -74,9 +74,9 @@
 }
 - (IBAction)btnAddNewClicked:(id)sender {
     
-    [self presentViewController:self.imagePickerViewController animated:YES completion:^{
-        
-    }];
+    _imagePickerViewController = nil;
+    [self.navigationController pushViewController:self.imagePickerViewController animated:YES];
+ 
 }
 
 -(void)dismissView
@@ -206,19 +206,23 @@
 
     [self addRow:tempArray];
     
-    [self.imagePickerViewController dismissViewControllerAnimated:YES completion:^{
-        
+    [self.navigationController popToViewController:self animated:YES onCompletion:^{
         _imagePickerViewController = nil;
+
     }];
+   
     
 }
 
 
 - (void)didCancelDoImagePickerController
 {
-    [self.imagePickerViewController dismissViewControllerAnimated:YES completion:^{
+    
+    [self.navigationController popToViewController:self animated:YES onCompletion:^{
         _imagePickerViewController = nil;
+        
     }];
+
 }
 
 

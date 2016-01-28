@@ -26,6 +26,7 @@
 @class SearchDetailViewController;
 @class CollectionViewController;
 @class SearchViewV2Controller;
+
 @interface ProfileViewController : CommonViewController<TLTagsControlDelegate>
 
 @property(nonatomic,strong)CollectionViewController* collectionViewController;
