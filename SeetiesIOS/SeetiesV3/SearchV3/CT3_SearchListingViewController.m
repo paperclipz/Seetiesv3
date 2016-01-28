@@ -7,6 +7,7 @@
 //
 
 #import "CT3_SearchListingViewController.h"
+#import "AddCollectionDataViewController.h"
 @interface CT3_SearchListingViewController ()<UIScrollViewDelegate,UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>{
 
 }
@@ -20,7 +21,9 @@
 @property(nonatomic,strong)SearchModel* searchModel;
 @property (nonatomic,strong)CLLocation* location;
 @property (nonatomic,strong)SearchManager* sManager;
+@property(nonatomic,assign)ProfileViewType profileType;
 
+@property(nonatomic,strong)AddCollectionDataViewController* collectPostToCollectionVC;
 
 @end
 
@@ -40,6 +43,9 @@
 }
 -(void)InitSelfView{
     //self.ibScrollView.contentSize = CGSizeMake(850, 50);
+    
+    self.GetCurrentlat = @([[SearchManager Instance]getAppLocation].coordinate.latitude).stringValue;
+    self.GetCurrentLong = @([[SearchManager Instance]getAppLocation].coordinate.longitude).stringValue;
     
     self.ibLocationText.delegate = self;
     self.ibSearchText.delegate = self;
@@ -113,6 +119,18 @@
     {
         _collectionListingTableViewController = [SearchLTabViewController new];
         _collectionListingTableViewController.searchListingType = SearchsListingTypeCollections;
+        _collectionListingTableViewController.getSearchText = self.ibSearchText.text;
+        __weak typeof (self)weakSelf = self;
+        
+        _collectionListingTableViewController.didSelectDisplayCollectionRowBlock = ^(CollectionModel* model)
+        {
+           // [weakSelf showCollectionDisplayViewWithCollectionID:model.collection_id ProfileType:ProfileViewTypeOthers];
+            _collectionViewController = nil;
+            [weakSelf.collectionViewController GetCollectionID:model.collection_id GetPermision:@"Others" GetUserUid:model.user_info.uid];
+            [weakSelf.navigationController pushViewController:weakSelf.collectionViewController animated:YES];
+        };
+        
+
     }
     return _collectionListingTableViewController;
 }
@@ -121,6 +139,40 @@
     {
         _PostsListingTableViewController = [SearchLTabViewController new];
         _PostsListingTableViewController.searchListingType = SearchsListingTypePosts;
+        _PostsListingTableViewController.getSearchText = self.ibSearchText.text;
+        _PostsListingTableViewController.Getlat = self.Getlat;
+        _PostsListingTableViewController.Getlong = self.Getlong;
+        _PostsListingTableViewController.GetCurrentlat = self.GetCurrentlat;
+        _PostsListingTableViewController.GetCurrentLong = self.GetCurrentLong;
+        
+        __weak typeof (self)weakSelf = self;
+        
+        _PostsListingTableViewController.didSelectPostsRowBlock = ^(NSString* postid)
+        {
+            _feedV2DetailViewController = nil;
+            [weakSelf.feedV2DetailViewController GetPostID:postid];
+            [weakSelf.navigationController pushViewController:weakSelf.feedV2DetailViewController animated:YES];
+            
+        };
+        
+        _PostsListingTableViewController.didSelectUserRowBlock = ^(NSString* userid)
+        {
+            _profileViewController = nil;
+            [weakSelf.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:userid];
+            [weakSelf.navigationController pushViewController:weakSelf.profileViewController animated:YES];
+            
+        };
+        _PostsListingTableViewController.didSelectCollectionOpenViewBlock = ^(DraftModel* model)
+        {
+            _collectPostToCollectionVC = nil;
+            [weakSelf.navigationController presentViewController:weakSelf.collectPostToCollectionVC animated:YES completion:^{
+                PhotoModel*pModel;
+                if (![Utils isArrayNull:model.arrPhotos]) {
+                    pModel = model.arrPhotos[0];
+                }
+                [weakSelf.collectPostToCollectionVC GetPostID:model.post_id GetImageData:pModel.imageURL];
+            }];
+        };
     }
     return _PostsListingTableViewController;
 }
@@ -129,6 +181,7 @@
     {
         _SeetizensListingTableViewController = [SearchLTabViewController new];
         _SeetizensListingTableViewController.searchListingType = SearchsListingTypeSeetizens;
+        _SeetizensListingTableViewController.getSearchText = self.ibSearchText.text;
         __weak typeof (self)weakSelf = self;
         
         _SeetizensListingTableViewController.didSelectUserRowBlock = ^(NSString* userid)
@@ -190,7 +243,18 @@
         if ([self.ibSearchText.text length] == 0) {
 
         }else{
-          //  [self requestServerForSearch];
+            
+            self.PostsListingTableViewController.getSearchText = self.ibSearchText.text;
+            _PostsListingTableViewController.Getlat = self.Getlat;
+            _PostsListingTableViewController.Getlong = self.Getlong;
+            _PostsListingTableViewController.GetCurrentlat = self.GetCurrentlat;
+            _PostsListingTableViewController.GetCurrentLong = self.GetCurrentLong;
+            
+            self.SeetizensListingTableViewController.getSearchText = self.ibSearchText.text;
+            self.collectionListingTableViewController.getSearchText = self.ibSearchText.text;
+            [self.PostsListingTableViewController refreshRequest];
+            [self.SeetizensListingTableViewController refreshRequest];
+            [self.collectionListingTableViewController refreshRequest];
  
         }
     }else if(textField == self.ibLocationText){
@@ -310,6 +374,10 @@
         RecommendationVenueModel* recommendationVenueModel  = [RecommendationVenueModel new];
         SLog(@"recommendationVenueModel == %@",recommendationVenueModel);
         [recommendationVenueModel processGoogleModel:googleSearchDetailModel];
+        
+        self.Getlat = recommendationVenueModel.lat;
+        self.Getlong = recommendationVenueModel.lng;
+        
         [self.ibSearchText resignFirstResponder];
         [self.ibLocationText resignFirstResponder];
         self.ibLocationView.hidden = YES;
@@ -320,6 +388,27 @@
     } errorBlock:nil];
     
 }
+-(void)showCollectionDisplayViewWithCollectionID:(CollectionModel*)colModel ProfileType:(ProfileViewType)profileType
+{
+    _collectionViewController = nil;
+    if (self.profileType == ProfileViewTypeOwn) {
+        [self.collectionViewController GetCollectionID:colModel.collection_id GetPermision:@"self" GetUserUid:colModel.user_info.uid];
+        
+    }
+    else{
+        
+        [self.collectionViewController GetCollectionID:colModel.collection_id GetPermision:@"Others" GetUserUid:colModel.user_info.uid];
+    }
+    
+    [self.navigationController pushViewController:self.collectionViewController animated:YES];
+}
+-(FeedV2DetailViewController*)feedV2DetailViewController
+{
+    if(!_feedV2DetailViewController)
+        _feedV2DetailViewController = [FeedV2DetailViewController new];
+    
+    return _feedV2DetailViewController;
+}
 -(ProfileViewController*)profileViewController
 {
     if(!_profileViewController)
@@ -327,6 +416,20 @@
     
     return _profileViewController;
 }
+-(CollectionViewController*)collectionViewController
+{
+    if (!_collectionViewController) {
+        _collectionViewController = [CollectionViewController new];
+    }
+    
+    return _collectionViewController;
+}
 
-
+-(AddCollectionDataViewController*)collectPostToCollectionVC
+{
+    if (!_collectPostToCollectionVC) {
+        _collectPostToCollectionVC = [AddCollectionDataViewController new];
+    }
+    return _collectPostToCollectionVC;
+}
 @end

@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "SearchLTabViewController.h"
 #import "ProfileViewController.h"
+#import "CollectionViewController.h"
+#import "FeedV2DetailViewController.h"
+@class CollectionViewController;
+@class SearchLTabViewController;
 @interface CT3_SearchListingViewController : CommonViewController
 @property(nonatomic,strong)SearchLTabViewController *shopListingTableViewController;
 @property(nonatomic,strong)SearchLTabViewController *collectionListingTableViewController;
@@ -16,6 +20,8 @@
 @property(nonatomic,strong)SearchLTabViewController *SeetizensListingTableViewController;
 
 @property(nonatomic,strong)ProfileViewController* profileViewController;
+@property(nonatomic,strong)CollectionViewController* collectionViewController;
+@property(nonatomic, strong)FeedV2DetailViewController* feedV2DetailViewController;
 
 @property(nonatomic,strong)NSString* SearchText;
 @property(nonatomic,strong)NSString* LocationName;

@@ -7,7 +7,10 @@
 //
 
 #import "PostsTableViewCell.h"
-@interface PostsTableViewCell()
+@interface PostsTableViewCell(){
+
+    BOOL IsQuickCollect;
+}
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblLocation;
@@ -15,6 +18,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblUsername;
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageUser;
 @property (weak, nonatomic) IBOutlet UIView *ibInnerContentView;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnFollow;
+@property (weak, nonatomic) IBOutlet UIButton *btnCollection;
+@property (weak, nonatomic) IBOutlet UIButton *btnUserProfile;
+
 @property(nonatomic,strong)DraftModel* model;
 
 @end
@@ -22,12 +30,37 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    IsQuickCollect = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+- (IBAction)btnFollowClicked:(id)sender {
+    
+    if (_btnFollowBlock) {
+        self.btnFollowBlock();
+    }
+}
+- (IBAction)btnCollectionClicked:(id)sender {
+    if (IsQuickCollect == YES) {
+        if (_btnCollectionBlock) {
+            self.btnCollectionBlock();
+        }
+    }else{
+        if (_btnCollectionOpenViewBlock) {
+            self.btnCollectionOpenViewBlock();
+        }
+    }
+
+}
+- (IBAction)btnUserProfileClicked:(id)sender {
+    
+    if (_btnUserProfileBlock) {
+        self.btnUserProfileBlock();
+    }
 }
 -(void)initData:(DraftModel*)model
 {
@@ -57,6 +90,24 @@
         
         self.lblTitle.text  = postModel.title;
         
+    }
+    
+    if (model.user_info.following == YES) {
+        [self.btnFollow setImage:[UIImage imageNamed:@"FollowingIcon.png"] forState:UIControlStateNormal];
+        [self.btnFollow setImage:[UIImage imageNamed:@"FollowIcon.png"] forState:UIControlStateSelected];
+    }else{
+        [self.btnFollow setImage:[UIImage imageNamed:@"FollowIcon.png"] forState:UIControlStateNormal];
+        [self.btnFollow setImage:[UIImage imageNamed:@"FollowingIcon.png"] forState:UIControlStateSelected];
+    }
+    
+    if ([model.collect isEqualToString:@"1"]) {
+        [self.btnCollection setImage:[UIImage imageNamed:@"YellowCollected.png"] forState:UIControlStateNormal];
+        [self.btnCollection setImage:[UIImage imageNamed:@"YellowCollect.png"] forState:UIControlStateSelected];
+        IsQuickCollect = NO;
+    }else{
+        [self.btnCollection setImage:[UIImage imageNamed:@"YellowCollect.png"] forState:UIControlStateNormal];
+        [self.btnCollection setImage:[UIImage imageNamed:@"YellowCollected.png"] forState:UIControlStateSelected];
+        IsQuickCollect = YES;
     }
     
     
