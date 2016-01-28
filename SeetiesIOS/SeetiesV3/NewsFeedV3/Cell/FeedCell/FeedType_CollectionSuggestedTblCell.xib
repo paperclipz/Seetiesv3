@@ -11,14 +11,15 @@
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FeedType_CollectionSuggestedTblCell" rowHeight="243" id="cB6-8i-OxE" customClass="FeedType_CollectionSuggestedTblCell">
             <rect key="frame" x="0.0" y="0.0" width="320" height="243"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cB6-8i-OxE" id="omh-sc-Lwf">
+            <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cB6-8i-OxE" id="omh-sc-Lwf">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="242.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="hOU-8t-tPz">
-                        <rect key="frame" x="0.0" y="40" width="320" height="190"/>
+                        <rect key="frame" x="0.0" y="39" width="320" height="195"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="190" id="twX-qI-Tvx"/>
+                            <constraint firstAttribute="height" constant="195" id="twX-qI-Tvx"/>
                         </constraints>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="9za-s7-tVq">
                             <size key="itemSize" width="240" height="190"/>
@@ -35,8 +36,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="qKF-8V-Z1L"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="See all" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NIj-Cs-mN1">
@@ -45,8 +46,8 @@
                                     <constraint firstAttribute="height" constant="21" id="8Hc-OV-hbz"/>
                                     <constraint firstAttribute="width" constant="51" id="Xwn-OU-6cB"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ArrowBtn.png" translatesAutoresizingMaskIntoConstraints="NO" id="WVE-vA-aqn">
@@ -94,12 +95,13 @@
                         </variation>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="KAK-Yx-w26" firstAttribute="top" secondItem="omh-sc-Lwf" secondAttribute="topMargin" constant="-8" id="1uP-RS-Rea"/>
                     <constraint firstItem="hOU-8t-tPz" firstAttribute="leading" secondItem="omh-sc-Lwf" secondAttribute="leadingMargin" constant="-8" id="9iP-FU-ilM"/>
                     <constraint firstAttribute="trailingMargin" secondItem="hOU-8t-tPz" secondAttribute="trailing" constant="-8" id="DyW-Q1-Dau"/>
                     <constraint firstAttribute="bottomMargin" secondItem="hOU-8t-tPz" secondAttribute="bottom" constant="-8" id="EJn-s2-KdQ"/>
-                    <constraint firstItem="hOU-8t-tPz" firstAttribute="top" secondItem="KAK-Yx-w26" secondAttribute="bottom" id="OPH-PV-YAq"/>
+                    <constraint firstItem="hOU-8t-tPz" firstAttribute="top" secondItem="KAK-Yx-w26" secondAttribute="bottom" constant="-1" id="OPH-PV-YAq"/>
                     <constraint firstItem="KAK-Yx-w26" firstAttribute="leading" secondItem="omh-sc-Lwf" secondAttribute="leadingMargin" constant="-8" id="azP-qe-4tT"/>
                     <constraint firstItem="WVE-vA-aqn" firstAttribute="centerY" secondItem="omh-sc-Lwf" secondAttribute="centerY" id="dAJ-e2-NXF"/>
                     <constraint firstAttribute="trailingMargin" secondItem="KAK-Yx-w26" secondAttribute="trailing" constant="-8" id="zac-cy-wcR"/>
@@ -111,6 +113,7 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="borderView" destination="omh-sc-Lwf" id="9ZN-f7-EfJ"/>
                 <outlet property="ibCollectionView" destination="hOU-8t-tPz" id="1JY-cs-sJH"/>

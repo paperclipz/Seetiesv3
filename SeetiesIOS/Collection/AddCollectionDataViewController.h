@@ -10,39 +10,6 @@
 #import "TPKeyboardAvoidingScrollView.h"
 #import "AsyncImageView.h"
 #import "UrlDataClass.h"
-@interface AddCollectionDataViewController : UIViewController<UIScrollViewDelegate,UITextViewDelegate,UITableViewDataSource,UITableViewDelegate>{
-
-    IBOutlet TPKeyboardAvoidingScrollView *MainScroll;
-    IBOutlet UIButton *BackButton;
-    IBOutlet AsyncImageView *PostImg;
-    IBOutlet UITextView *NoteTextView;
-    IBOutlet UITableView *tblview;
-    IBOutlet UILabel *ShowNoteTextCount;
-    IBOutlet UIButton *BackgroundBlackButton;
-    IBOutlet UIScrollView *TextScroll;
-    IBOutlet UILabel *ShowExistingText;
-    
-    NSString *GetPostID;
-    NSString *GetImageData;
-    NSString *GetCollectionID;
-    
-    UrlDataClass *DataUrl;
-    NSMutableData *webData;
-    NSURLConnection *theConnection_CollectionData;
-    NSURLConnection *theConnection_QuickCollect;
-    
-    NSMutableArray *CollectionData_IDArray;
-    NSMutableArray *CollectionData_TitleArray;
-    NSMutableArray *ExistingCollectionData_TitleArray;
-    
-    IBOutlet UIActivityIndicatorView *ShowActivity;
-    
-    BOOL CheckReflash;
-    
-    IBOutlet UILabel *CollectThisTitle;
-    IBOutlet UILabel *PickaCollectionTitle;
-    IBOutlet UIButton *CreateCollectionButton;
-}
+@interface AddCollectionDataViewController : UIViewController<UIScrollViewDelegate,UITextViewDelegate,UITableViewDataSource,UITableViewDelegate>
 -(void)GetPostID:(NSString *)PostID GetImageData:(NSString *)ImageData;
--(IBAction)CreateCollectionButton:(id)sender;
 @end

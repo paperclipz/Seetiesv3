@@ -180,7 +180,7 @@
         _collectionDetailController = [EditCollectionDetailViewController new];
         
         __weak typeof (self)weakself = self;
-        _collectionDetailController.viewDidRefreshCollectionBlock = ^(void)
+        _collectionDetailController.btnDoneBlock = ^(id object)
         {
             [weakself.myCollectionListingViewController refreshRequest];
 

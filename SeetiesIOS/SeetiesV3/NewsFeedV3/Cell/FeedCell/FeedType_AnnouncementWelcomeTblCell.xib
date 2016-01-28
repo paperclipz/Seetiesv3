@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LBb-ph-GUb">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="363"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="355"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="08G-aX-R73">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="298"/>
@@ -34,18 +34,19 @@
                                 </variation>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="asdadasd" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UmW-0c-RNe">
-                                <rect key="frame" x="10" y="303" width="300" height="55"/>
+                                <rect key="frame" x="10" y="303" width="300" height="42"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" id="IoR-FB-G0T"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="UmW-0c-RNe" secondAttribute="bottom" constant="5" id="8IQ-GF-NF3"/>
+                            <constraint firstAttribute="bottom" secondItem="UmW-0c-RNe" secondAttribute="bottom" constant="10" id="8IQ-GF-NF3"/>
                             <constraint firstItem="08G-aX-R73" firstAttribute="top" secondItem="LBb-ph-GUb" secondAttribute="top" id="ALe-3R-6W2"/>
                             <constraint firstAttribute="trailing" secondItem="08G-aX-R73" secondAttribute="trailing" id="MTu-ae-SSO"/>
                             <constraint firstItem="UmW-0c-RNe" firstAttribute="leading" secondItem="LBb-ph-GUb" secondAttribute="leading" constant="10" id="Ttn-vG-shE"/>
@@ -59,10 +60,10 @@
                     <constraint firstAttribute="trailingMargin" secondItem="LBb-ph-GUb" secondAttribute="trailing" constant="-8" id="Aza-lk-Re3"/>
                     <constraint firstItem="LBb-ph-GUb" firstAttribute="top" secondItem="5Ic-eC-6I2" secondAttribute="topMargin" constant="-8" id="SZ8-vc-OWg"/>
                     <constraint firstItem="LBb-ph-GUb" firstAttribute="leading" secondItem="5Ic-eC-6I2" secondAttribute="leadingMargin" constant="-8" id="Vyf-bS-Mqy"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="LBb-ph-GUb" secondAttribute="bottom" constant="-8" id="aWM-H5-Y2Q"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="LBb-ph-GUb" secondAttribute="bottom" id="aWM-H5-Y2Q"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.56315104169999997" green="0.56315104169999997" blue="0.56315104169999997" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="ibImageView" destination="08G-aX-R73" id="z7o-B6-EWi"/>
                 <outlet property="lblTitle" destination="UmW-0c-RNe" id="JdL-GV-Dh1"/>

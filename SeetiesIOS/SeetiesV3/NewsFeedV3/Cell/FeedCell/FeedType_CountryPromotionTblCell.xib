@@ -16,20 +16,26 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="qog-SW-K5I">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="149"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="141"/>
                         <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="149" id="XcY-Bh-SRi"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="XcY-Bh-SRi"/>
+                            </mask>
+                        </variation>
                     </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="qog-SW-K5I" firstAttribute="leading" secondItem="YkZ-G4-zrR" secondAttribute="leadingMargin" constant="-8" id="AyN-5A-Uhj"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="qog-SW-K5I" secondAttribute="bottom" constant="-8" id="U0Z-g6-uk2"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="qog-SW-K5I" secondAttribute="bottom" id="U0Z-g6-uk2"/>
                     <constraint firstItem="qog-SW-K5I" firstAttribute="top" secondItem="YkZ-G4-zrR" secondAttribute="topMargin" constant="-8" id="fbb-pR-yx8"/>
                     <constraint firstAttribute="trailingMargin" secondItem="qog-SW-K5I" secondAttribute="trailing" constant="-8" id="nMq-yB-aEt"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="ibImageView" destination="qog-SW-K5I" id="BbR-s8-SZ5"/>
             </connections>
