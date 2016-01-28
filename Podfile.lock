@@ -54,6 +54,7 @@ PODS:
   - SDWebImage (3.7.4):
     - SDWebImage/Core (= 3.7.4)
   - SDWebImage/Core (3.7.4)
+  - STPopup (1.6.0)
   - SVPullToRefresh (0.4.1)
   - TSMessages (0.9.13):
     - HexColors (~> 2.3.0)
@@ -82,6 +83,7 @@ DEPENDENCIES:
   - MZAppearance
   - PureLayout
   - SDWebImage
+  - STPopup
   - SVPullToRefresh
   - TSMessages (from `https://github.com/KrauseFx/TSMessages.git`)
   - TTTAttributedLabel
@@ -121,10 +123,11 @@ SPEC CHECKSUMS:
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
   SDWebImage: 247edd7dd80dd6124197b0d6a17846fe9d1df968
+  STPopup: 7975883c48560e4cb16ea1c6f351312ed2cd2bc0
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   TSMessages: 6e403b790139636c15ab4f51946537095e03e79c
   TTTAttributedLabel: 6f3174aef8e738f44dff97c2eb7d8184f6ab6277
   UITextView+Placeholder: 672ce543356b5b5787f354415bc3b132d47f0362
   ViewMonitor: 3bf94bdead583c7ed08fdab9212fe08661173477
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0
