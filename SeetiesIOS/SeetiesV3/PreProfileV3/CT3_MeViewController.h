@@ -12,7 +12,8 @@
 #import "CollectionListingViewController.h"
 #import "NotificationViewController.h"
 #import "InviteFrenViewController.h"
-#import "PromoCodeViewController.h"
+#import "PromoPopOutViewController.h"
+#import "STPopup.h"
 
 @interface CT3_MeViewController : BaseViewController
 @property(nonatomic,strong)ProfileViewController* profileViewController;
@@ -20,5 +21,5 @@
 @property(nonatomic, strong)CollectionListingViewController *collectionListingViewController;
 @property(nonatomic)NotificationViewController *notificationViewController;
 @property(nonatomic)InviteFrenViewController *inviteFriendViewController;
-@property(nonatomic)PromoCodeViewController *promoCodeViewController;
+@property(nonatomic)PromoPopOutViewController *promoCodeViewController;
 @end
