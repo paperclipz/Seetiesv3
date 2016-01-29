@@ -1156,6 +1156,17 @@
 		8AF6FDD31C58955B005AAE5D /* UINavigationViewController+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6FDD21C58955B005AAE5D /* UINavigationViewController+Extra.m */; };
 		8AF6FDD61C589C64005AAE5D /* MessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6FDD51C589C64005AAE5D /* MessageManager.m */; };
 		8AF6FDD91C58AC83005AAE5D /* InstagramModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6FDD81C58AC83005AAE5D /* InstagramModel.m */; };
+		8AF6FDDD1C5A16A0005AAE5D /* SeetiesProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6FDDC1C5A16A0005AAE5D /* SeetiesProfileView.m */; };
+		8AF6FDDF1C5A16B0005AAE5D /* SeetiesProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF6FDDE1C5A16B0005AAE5D /* SeetiesProfileView.xib */; };
+		8AF6FDEA1C5A289B005AAE5D /* SeDealsFeaturedTblCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6FDE81C5A289B005AAE5D /* SeDealsFeaturedTblCell.m */; };
+		8AF6FDEB1C5A289B005AAE5D /* SeDealsFeaturedTblCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF6FDE91C5A289B005AAE5D /* SeDealsFeaturedTblCell.xib */; };
+		8AF6FDEF1C5B08A3005AAE5D /* DealRedeemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6FDED1C5B08A3005AAE5D /* DealRedeemViewController.m */; };
+		8AF6FDF01C5B08A3005AAE5D /* DealRedeemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF6FDEE1C5B08A3005AAE5D /* DealRedeemViewController.xib */; };
+		8AF6FDF61C5B54F1005AAE5D /* UpperCard.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF6FDF11C5B54F1005AAE5D /* UpperCard.png */; };
+		8AF6FDF71C5B54F1005AAE5D /* RedeemSuccessMsg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF6FDF21C5B54F1005AAE5D /* RedeemSuccessMsg.png */; };
+		8AF6FDF81C5B54F1005AAE5D /* SwipeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF6FDF31C5B54F1005AAE5D /* SwipeButton.png */; };
+		8AF6FDF91C5B54F1005AAE5D /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF6FDF41C5B54F1005AAE5D /* Background.png */; };
+		8AF6FDFA1C5B54F1005AAE5D /* LowerCard.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF6FDF51C5B54F1005AAE5D /* LowerCard.png */; };
 		8AF999151C3A2ADD000314E4 /* PagingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF999141C3A2ADD000314E4 /* PagingModel.m */; };
 		8AF999191C3A2C76000314E4 /* PaginationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF999181C3A2C76000314E4 /* PaginationModel.m */; };
 		8AF999531C3CC5E6000314E4 /* FacebookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF999521C3CC5E6000314E4 /* FacebookModel.m */; };
@@ -2816,6 +2827,20 @@
 		8AF6FDD51C589C64005AAE5D /* MessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageManager.m; sourceTree = "<group>"; };
 		8AF6FDD71C58AC83005AAE5D /* InstagramModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstagramModel.h; sourceTree = "<group>"; };
 		8AF6FDD81C58AC83005AAE5D /* InstagramModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagramModel.m; sourceTree = "<group>"; };
+		8AF6FDDB1C5A16A0005AAE5D /* SeetiesProfileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeetiesProfileView.h; sourceTree = "<group>"; };
+		8AF6FDDC1C5A16A0005AAE5D /* SeetiesProfileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeetiesProfileView.m; sourceTree = "<group>"; };
+		8AF6FDDE1C5A16B0005AAE5D /* SeetiesProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeetiesProfileView.xib; sourceTree = "<group>"; };
+		8AF6FDE71C5A289B005AAE5D /* SeDealsFeaturedTblCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeDealsFeaturedTblCell.h; sourceTree = "<group>"; };
+		8AF6FDE81C5A289B005AAE5D /* SeDealsFeaturedTblCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeDealsFeaturedTblCell.m; sourceTree = "<group>"; };
+		8AF6FDE91C5A289B005AAE5D /* SeDealsFeaturedTblCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeDealsFeaturedTblCell.xib; sourceTree = "<group>"; };
+		8AF6FDEC1C5B08A3005AAE5D /* DealRedeemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealRedeemViewController.h; sourceTree = "<group>"; };
+		8AF6FDED1C5B08A3005AAE5D /* DealRedeemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealRedeemViewController.m; sourceTree = "<group>"; };
+		8AF6FDEE1C5B08A3005AAE5D /* DealRedeemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DealRedeemViewController.xib; sourceTree = "<group>"; };
+		8AF6FDF11C5B54F1005AAE5D /* UpperCard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UpperCard.png; sourceTree = "<group>"; };
+		8AF6FDF21C5B54F1005AAE5D /* RedeemSuccessMsg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RedeemSuccessMsg.png; sourceTree = "<group>"; };
+		8AF6FDF31C5B54F1005AAE5D /* SwipeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SwipeButton.png; sourceTree = "<group>"; };
+		8AF6FDF41C5B54F1005AAE5D /* Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Background.png; sourceTree = "<group>"; };
+		8AF6FDF51C5B54F1005AAE5D /* LowerCard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LowerCard.png; sourceTree = "<group>"; };
 		8AF999131C3A2ADD000314E4 /* PagingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagingModel.h; sourceTree = "<group>"; };
 		8AF999141C3A2ADD000314E4 /* PagingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagingModel.m; sourceTree = "<group>"; };
 		8AF999171C3A2C76000314E4 /* PaginationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaginationModel.h; sourceTree = "<group>"; };
@@ -3262,6 +3287,9 @@
 				8A0F50D11C0EAD9A002B1E22 /* SeDealsTableViewCell.h */,
 				8A0F50D21C0EAD9A002B1E22 /* SeDealsTableViewCell.m */,
 				8A0F50D31C0EAD9A002B1E22 /* SeDealsTableViewCell.xib */,
+				8AF6FDE71C5A289B005AAE5D /* SeDealsFeaturedTblCell.h */,
+				8AF6FDE81C5A289B005AAE5D /* SeDealsFeaturedTblCell.m */,
+				8AF6FDE91C5A289B005AAE5D /* SeDealsFeaturedTblCell.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -4055,6 +4083,7 @@
 		8A4AC4B31C0C367B00968781 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8AF6FDDA1C5A164B005AAE5D /* seetiesProfile */,
 				0BC8A0F21C0D932000EB8548 /* seetiesRecommendations */,
 				0BC8A0EC1C0D584200EB8548 /* seetiesNearbySeetishop */,
 				0BC8A0E61C0D4A9200EB8548 /* seetiesCollection */,
@@ -4170,6 +4199,11 @@
 		8A6CCA421C18075700BCD54E /* Misc */ = {
 			isa = PBXGroup;
 			children = (
+				8AF6FDF11C5B54F1005AAE5D /* UpperCard.png */,
+				8AF6FDF21C5B54F1005AAE5D /* RedeemSuccessMsg.png */,
+				8AF6FDF31C5B54F1005AAE5D /* SwipeButton.png */,
+				8AF6FDF41C5B54F1005AAE5D /* Background.png */,
+				8AF6FDF51C5B54F1005AAE5D /* LowerCard.png */,
 				8A6CCA431C18075700BCD54E /* 1.png */,
 				8A6CCA441C18075700BCD54E /* 2.png */,
 				8A6CCA451C18075700BCD54E /* 3.png */,
@@ -6016,9 +6050,38 @@
 			name = "UINavigationContoller+Extension";
 			sourceTree = "<group>";
 		};
+		8AF6FDDA1C5A164B005AAE5D /* seetiesProfile */ = {
+			isa = PBXGroup;
+			children = (
+				8AF6FDDB1C5A16A0005AAE5D /* SeetiesProfileView.h */,
+				8AF6FDDC1C5A16A0005AAE5D /* SeetiesProfileView.m */,
+				8AF6FDDE1C5A16B0005AAE5D /* SeetiesProfileView.xib */,
+			);
+			name = seetiesProfile;
+			sourceTree = "<group>";
+		};
+		8AF6FDE01C5A276E005AAE5D /* DealV3 */ = {
+			isa = PBXGroup;
+			children = (
+				8AF6FDE11C5A277E005AAE5D /* Cell */,
+				8AF6FDEC1C5B08A3005AAE5D /* DealRedeemViewController.h */,
+				8AF6FDED1C5B08A3005AAE5D /* DealRedeemViewController.m */,
+				8AF6FDEE1C5B08A3005AAE5D /* DealRedeemViewController.xib */,
+			);
+			path = DealV3;
+			sourceTree = "<group>";
+		};
+		8AF6FDE11C5A277E005AAE5D /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		8AFA514B1C47B4AB00E7920E /* SeetiesV3 */ = {
 			isa = PBXGroup;
 			children = (
+				8AF6FDE01C5A276E005AAE5D /* DealV3 */,
 				C2C157111C574B5E007608FC /* Others */,
 				0B6AEA7D1C48E4EB009B7D33 /* MoreV3 */,
 				8AFA514C1C47B4AB00E7920E /* Json */,
@@ -6645,8 +6708,10 @@
 				8A6CCE071C18075800BCD54E /* EyesCheck@2x.png in Resources */,
 				8A6CCD961C18075800BCD54E /* FeedOverlay@2x.png in Resources */,
 				8A03487A1C154F9C0015E606 /* SeetiesMoreInfoViewController.xib in Resources */,
+				8AF6FDFA1C5B54F1005AAE5D /* LowerCard.png in Resources */,
 				8A6CCE1E1C18075800BCD54E /* NotificationComment@3x.png in Resources */,
 				8A6CCCD81C18075800BCD54E /* CollectionCrossBtn@3x.png in Resources */,
+				8AF6FDF71C5B54F1005AAE5D /* RedeemSuccessMsg.png in Resources */,
 				8A6CCE461C18075800BCD54E /* TranslateArrow@3x.png in Resources */,
 				8A6CCDB01C18075800BCD54E /* ShareGoIcon@3x.png in Resources */,
 				8A6CCE281C18075800BCD54E /* BluePhone@3x.png in Resources */,
@@ -6671,6 +6736,7 @@
 				8A6CCCDD1C18075800BCD54E /* CollectionLink@2x.png in Resources */,
 				8A6CCDD91C18075800BCD54E /* LocalIcon@2x.png in Resources */,
 				8A6CCDD41C18075800BCD54E /* ForHimIcon@3x.png in Resources */,
+				8AF6FDF81C5B54F1005AAE5D /* SwipeButton.png in Resources */,
 				8A6CCE571C18075800BCD54E /* FollowingBtn@2x.png in Resources */,
 				8A6CCD7C1C18075800BCD54E /* CollectIndoBtn@2x.png in Resources */,
 				8A6CCE751C18075800BCD54E /* ProfileLocationIcon@2x.png in Resources */,
@@ -6718,6 +6784,7 @@
 				8A6CCDB81C18075800BCD54E /* TitleBar@3x.png in Resources */,
 				8AFA51C61C47B4AB00E7920E /* feed.json in Resources */,
 				8A6CCD621C18075800BCD54E /* ExploreCollectionImg2.png in Resources */,
+				8AF6FDF01C5B08A3005AAE5D /* DealRedeemViewController.xib in Resources */,
 				8A6CCD5A1C18075800BCD54E /* NoResult@3x.png in Resources */,
 				C238E32E1C4649AA00570A25 /* slider-default_trackBackground@2x.png in Resources */,
 				8A6CCD641C18075800BCD54E /* ExploreFollow@2x.png in Resources */,
@@ -6748,6 +6815,7 @@
 				8A6CCCF91C18075800BCD54E /* FollowingCollectionTradChiIcon@2x.png in Resources */,
 				8A6CCE151C18075800BCD54E /* WhiteSeetiesLogo@2x.png in Resources */,
 				8A6CCD011C18075800BCD54E /* ListViewInactive@2x.png in Resources */,
+				8AF6FDF91C5B54F1005AAE5D /* Background.png in Resources */,
 				8AD6C2901B7072FB0040437E /* AddLocationViewController.xib in Resources */,
 				8A6CCE3A1C18075800BCD54E /* PostCommentIcon@3x.png in Resources */,
 				8AFA51D41C47B4AB00E7920E /* ShopListingViewController.xib in Resources */,
@@ -7097,6 +7165,7 @@
 				8A6CCE501C18075800BCD54E /* EditProfileSmiley@3x.png in Resources */,
 				8A6CCE671C18075800BCD54E /* PostIcon@2x.png in Resources */,
 				8A6CCCD71C18075800BCD54E /* CollectionCrossBtn@2x.png in Resources */,
+				8AF6FDDF1C5A16B0005AAE5D /* SeetiesProfileView.xib in Resources */,
 				8A6CCEB11C18075800BCD54E /* SelectPhotoArrow@3x.png in Resources */,
 				8A6CCEC51C18075800BCD54E /* Thai.png in Resources */,
 				8A6CCCF41C18075800BCD54E /* FollowingCollectionIcon@3x.png in Resources */,
@@ -7154,6 +7223,7 @@
 				8A6CCD041C18075800BCD54E /* MapBtn@3x.png in Resources */,
 				8A6CCDCE1C18075800BCD54E /* FollowingOnlyIcon@3x.png in Resources */,
 				8A6CCED31C18075800BCD54E /* NotificationIconActive@2x.png in Resources */,
+				8AF6FDEB1C5A289B005AAE5D /* SeDealsFeaturedTblCell.xib in Resources */,
 				8A6CCE2A1C18075800BCD54E /* BluePin@3x.png in Resources */,
 				8A6CCE8A1C18075800BCD54E /* SearchLocationBar@3x.png in Resources */,
 				8A114CBD1BE73F5D006AE3F0 /* toolbarbg.png in Resources */,
@@ -7175,6 +7245,7 @@
 				8A6CCED61C18075800BCD54E /* ProfileIcon@3x.png in Resources */,
 				C238E3341C4649AA00570A25 /* slider-default7-trackBackground@2x.png in Resources */,
 				8A6CCDC61C18075800BCD54E /* WelcomeLogo@3x.png in Resources */,
+				8AF6FDF61C5B54F1005AAE5D /* UpperCard.png in Resources */,
 				8A6CCCF51C18075800BCD54E /* FollowingCollectionSimplifiedChiIcon@2x.png in Resources */,
 				8A6CCE401C18075800BCD54E /* PostOverlay@3x.png in Resources */,
 				8A6CCDF01C18075800BCD54E /* InstagramBtnInactive@3x.png in Resources */,
@@ -7409,6 +7480,7 @@
 				8A3409461B8AD06A009B66C3 /* UIImage+Resizing.m in Sources */,
 				8A34090F1B872B31009B66C3 /* EditPostViewController.m in Sources */,
 				8A6BB4321BF0C338005AA1B3 /* MZFormSheetPresentationViewControllerSegue.m in Sources */,
+				8AF6FDDD1C5A16A0005AAE5D /* SeetiesProfileView.m in Sources */,
 				8A114CEA1BE75CA0006AE3F0 /* NewCollectionViewController.m in Sources */,
 				8A0F50C11C0C3F08002B1E22 /* SeShopDetailTableViewCell.m in Sources */,
 				0BBFE04F1B9D624C004B17E9 /* EditProfileV2ViewController.m in Sources */,
@@ -7639,6 +7711,7 @@
 				8AB76D201BB8FBAF007DB972 /* ArticleViewController.m in Sources */,
 				8A69E0F41C04066100224BB4 /* ShareV2ViewController.swift in Sources */,
 				8AD6C0FE1B706CF30040437E /* SearchViewV2Controller.m in Sources */,
+				8AF6FDEF1C5B08A3005AAE5D /* DealRedeemViewController.m in Sources */,
 				8A45097A1BAC012600A868CD /* NSArray+JSON.m in Sources */,
 				8AD6C0C01B706CF30040437E /* FeedV2ViewController.m in Sources */,
 				8A26D1091C51FFB800A50944 /* DraftAndRecommendationDelegate.m in Sources */,
@@ -7713,6 +7786,7 @@
 				8A295FD11C50A50F00747DBA /* UITabBar+Extension.m in Sources */,
 				8AD6BE4F1B706CF30040437E /* ExploreViewController.m in Sources */,
 				8A114CD21BE73F5D006AE3F0 /* UrlDataClass.m in Sources */,
+				8AF6FDEA1C5A289B005AAE5D /* SeDealsFeaturedTblCell.m in Sources */,
 				8AFA520B1C47B4AB00E7920E /* SeetizensTableViewCell.m in Sources */,
 				C2FB1CDF1C4F7A3B004AE990 /* SearchLocationAreaCell.m in Sources */,
 				8AD6C2811B7072FB0040437E /* AddHourViewController.m in Sources */,

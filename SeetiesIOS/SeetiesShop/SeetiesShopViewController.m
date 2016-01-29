@@ -26,6 +26,8 @@
 #import "SeRecommendationsSeeAllViewController.h"
 #import "ProfileViewController.h"
 
+#import "SeetiesProfileView.h"
+
 @interface SeetiesShopViewController ()<UIScrollViewDelegate>
 {
     
@@ -56,6 +58,7 @@
 @property (nonatomic,strong)SeCollectionView* seCollectionView;
 @property (nonatomic,strong)SeRecommendations* seRecommendations;
 @property (nonatomic,strong)SeNearbySeetishop* seNearbySeetishop;
+@property (nonatomic,strong)SeetiesProfileView* seProfileView;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *ibScrollView;
 @property(nonatomic,assign)SeetiesShopType seetiesType;
@@ -138,6 +141,7 @@
 }
 -(void)setupViews
 {
+    [self.arrViews addObject:self.seProfileView];
     [self.arrViews addObject:self.seShopDetailView];
     [self.arrViews addObject:self.seCollectionView];
     [self.arrViews addObject:self.seRecommendations];
@@ -204,6 +208,18 @@
 
 #pragma mark - Declaration
 
+-(SeetiesProfileView*)seProfileView
+{
+    if (!_seProfileView) {
+        _seProfileView = [SeetiesProfileView initializeCustomView];
+        [_seProfileView setWidth:self.view.frame.size.width];
+        [_seProfileView setNeedsUpdateConstraints];
+        [_seProfileView layoutIfNeeded];
+
+    }
+    
+    return _seProfileView;
+}
 -(ShareV2ViewController*)shareV2ViewController
 {
     if (!_shareV2ViewController) {

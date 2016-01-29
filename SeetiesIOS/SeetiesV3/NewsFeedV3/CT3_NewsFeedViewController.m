@@ -38,6 +38,8 @@
 #import "SearchViewV2Controller.h"
 
 #import "AppDelegate.h"
+#import "SeetiesShopViewController.h"
+#import "DealRedeemViewController.h"
 
 
 static NSCache* heightCache = nil;
@@ -81,7 +83,7 @@ static NSCache* heightCache = nil;
 @property(nonatomic,strong)SearchViewV2Controller* searchViewV2Controller;
 @property(nonatomic,strong)VoucherListingViewController* voucherListingViewController;
 
-
+@property(nonatomic)DealRedeemViewController* dealRedeemViewController;
 
 /*Controller*/
 
@@ -89,6 +91,8 @@ static NSCache* heightCache = nil;
 @end
 
 @implementation CT3_NewsFeedViewController
+
+#pragma mark -IBACTION
 - (IBAction)btnSearchClicked:(id)sender {
     [self.navigationController pushViewController:self.searchViewV2Controller animated:YES];
 }
@@ -109,7 +113,11 @@ static NSCache* heightCache = nil;
 }
 - (IBAction)btnTestCliked:(id)sender {
     
+   // SeetiesShopViewController* temp = [SeetiesShopViewController new];
    
+   // [temp initDataWithSeetiesID:@"56603c9af9df245c7b8b4572"];
+    _dealRedeemViewController = nil;
+    [self.navigationController pushViewController:self.dealRedeemViewController animated:YES];
     //[self presentViewController:self.searchLocationViewController animated:YES completion:nil];
 }
 
@@ -126,6 +134,14 @@ static NSCache* heightCache = nil;
 }
 
 #pragma mark - Declaration
+
+-(DealRedeemViewController*)dealRedeemViewController
+{
+    if (!_dealRedeemViewController) {
+        _dealRedeemViewController = [DealRedeemViewController new];
+    }
+    return _dealRedeemViewController;
+}
 
 -(VoucherListingViewController*)voucherListingViewController
 {
