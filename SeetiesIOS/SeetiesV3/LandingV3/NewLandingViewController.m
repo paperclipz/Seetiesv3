@@ -13,9 +13,10 @@
 @interface NewLandingViewController()<UITabBarControllerDelegate>
 
 /*navigation controller*/
-@property (strong)UINavigationController* firstViewController;
-@property (strong)UINavigationController* secondViewController;
-@property (strong)UINavigationController* thirdViewController;
+@property (nonatomic)UINavigationController* firstViewController;
+@property (nonatomic)UINavigationController* secondViewController;
+@property (nonatomic)UINavigationController* thirdViewController;
+@property (nonatomic, strong)UINavigationController* navLoginViewController;
 
 @property (nonatomic,strong)NSArray* arryViewController;
 
@@ -52,6 +53,21 @@
     
     return _tabBarController;
 }
+
+-(void)reloadData
+{
+//    [self.tabBarController.view removeFromSuperview];
+//    _arryViewController = nil;
+//    [self.view addSubview:self.tabBarController.view];
+    
+    
+    [self.newsFeedViewController reloadData];
+    [self.ct3_MoreViewController reloadData];
+    [self.ct3MeViewController reloadData];
+
+
+    
+}
 -(void)initSelfView
 {
     [self.view addSubview:self.leveyTabBarController.view];
@@ -59,14 +75,28 @@
 
 #pragma mark - Declaration
 
+-(UINavigationController*)navLoginViewController
+{
+    if (!_navLoginViewController) {
+        _loginViewController = nil;
+        _navLoginViewController = [[UINavigationController alloc]initWithRootViewController:self.loginViewController];
+        [_navLoginViewController hideStatusBar];
+
+    }
+    
+    return _navLoginViewController;
+}
+
 -(NSArray*)arryViewController
 {
     if (!_arryViewController) {
-        
+        _newsFeedViewController = nil;
         _firstViewController = [[UINavigationController alloc]initWithRootViewController:self.newsFeedViewController];
         _firstViewController.navigationBar.hidden = YES;
+        _ct3MeViewController = nil;
         _secondViewController = [[UINavigationController alloc]initWithRootViewController:self.ct3MeViewController];
         _secondViewController.navigationBar.hidden = YES;
+        _ct3_MoreViewController = nil;
         _thirdViewController = [[UINavigationController alloc]initWithRootViewController:self.ct3_MoreViewController];
         _thirdViewController.navigationBar.hidden = YES;
         
@@ -76,6 +106,7 @@
     
     return _arryViewController;
 }
+
 -(CT3_LoginViewController*)loginViewController
 {
     if (!_loginViewController) {
@@ -93,7 +124,10 @@
 
 -(void)processLogin
 {
-     [self.newsFeedViewController refreshViewAfterLogin];
+    [Utils reloadAppView];
+    self.tabBarController.selectedIndex = 0;
+    [MessageManager showMessage:LocalisedString(@"system") SubTitle:@"Login Successfully" Type:TSMessageNotificationTypeSuccess];
+   // [self.newsFeedViewController refreshViewAfterLogin];
 }
 
 -(LeveyTabBarController*)leveyTabBarController
@@ -164,10 +198,11 @@
 
         _newsFeedViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(0, -1.0f, 0, 1);
 
-        __weak typeof (self)weakSelf = self;
+        //__weak typeof (self)weakSelf = self;
         _newsFeedViewController.btnLoginClickedBlock = ^(void)
         {
-            [weakSelf.navigationController pushViewController:weakSelf.loginViewController animated:YES];
+            //[weakSelf showLoginView];
+            [Utils showLogin];
         };
     }
     
@@ -226,6 +261,19 @@
     return YES;
 }
 
+
+#pragma mark - Show View
+
+-(void)showLoginView
+{
+    _navLoginViewController = nil;
+
+    [self presentViewController:self.navLoginViewController animated:YES completion:nil];
+
+
+}
+
+
 #pragma mark - Request Server
 -(void)requestServerForUserInfo
 {
@@ -266,4 +314,6 @@
     
     return YES;
 }
+
+
 @end

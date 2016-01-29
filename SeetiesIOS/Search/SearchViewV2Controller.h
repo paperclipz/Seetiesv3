@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "UrlDataClass.h"
 #import "CT3_SearchListingViewController.h"
+
+@class CT3_SearchListingViewController;
 @interface SearchViewV2Controller : UIViewController<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate>{
 
     IBOutlet UISearchBar *mySearchBar;

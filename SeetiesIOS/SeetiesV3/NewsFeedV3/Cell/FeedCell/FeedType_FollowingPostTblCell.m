@@ -13,6 +13,7 @@
 
     __weak IBOutlet NSLayoutConstraint *constTitleHeight;
 }
+@property (weak, nonatomic) IBOutlet UIImageView *ibImgDistance;
 @property (nonatomic,strong)CTFeedTypeModel* newsFeedTypeModel;
 @property (weak, nonatomic) IBOutlet UIImageView *ibPostImageView;
 @property (weak, nonatomic) IBOutlet UIView *ibSuggestedView;
@@ -170,6 +171,26 @@
 
         
     }];
+    
+    if (feedModel.location.distance <=3) {
+        self.ibImgDistance.image = [UIImage imageNamed:@"Distance1Icon.png"];
+    }
+    else if(feedModel.location.distance<=15)
+    {
+        self.ibImgDistance.image = [UIImage imageNamed:@"Distance2Icon.png"];
+
+    }
+    else if(feedModel.location.distance<=300)
+    {
+        self.ibImgDistance.image = [UIImage imageNamed:@"Distance3Icon.png"];
+        
+    }
+    else if(feedModel.location.distance<=1500)
+    {
+        self.ibImgDistance.image = [UIImage imageNamed:@"Distance4Icon.png"];
+        
+    }
+    
     [self refreshData];
     
 }

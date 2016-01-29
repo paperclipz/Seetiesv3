@@ -15,6 +15,5 @@
 
 @property(nonatomic,copy)IDBlock btnDoneBlock;
 @property(nonatomic,copy)VoidBlock btnCancelBlock;
-@property(nonatomic,copy)VoidBlock viewDidRefreshCollectionBlock;
 
 @end

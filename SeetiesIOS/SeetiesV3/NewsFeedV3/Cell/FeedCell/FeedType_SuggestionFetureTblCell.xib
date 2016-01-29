@@ -23,12 +23,12 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="zKC-SF-LZz"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                 <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="bY8-41-Y5f" firstAttribute="centerY" secondItem="wJt-hb-k88" secondAttribute="centerY" id="QUB-MY-43U"/>
                             <constraint firstAttribute="height" constant="50" id="elC-rM-9mh"/>
@@ -39,7 +39,7 @@
                     </view>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Jz1-xl-0FU">
                         <rect key="frame" x="0.0" y="50" width="320" height="153"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="152" id="XOK-kd-Jd9"/>
                         </constraints>
@@ -66,7 +66,7 @@
                     <constraint firstItem="wJt-hb-k88" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="z25-vH-nvX"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="ibCollectionView" destination="Jz1-xl-0FU" id="VkF-3h-Cwm"/>
                 <outlet property="lblTitle" destination="bY8-41-Y5f" id="KFf-Kc-HkG"/>

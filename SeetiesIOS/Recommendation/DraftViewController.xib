@@ -23,7 +23,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Re1-a0-mFK">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CloseIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="laB-V3-voD">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="laB-V3-voD">
                             <rect key="frame" x="0.0" y="20" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="Tnh-9x-RSE"/>
@@ -151,7 +151,7 @@
         </view>
     </objects>
     <resources>
-        <image name="CloseIcon.png" width="40" height="40"/>
+        <image name="BackIcon.png" width="40" height="40"/>
         <image name="NoDraft.png" width="90" height="90"/>
     </resources>
 </document>

@@ -9,14 +9,15 @@
 #import <UIKit/UIKit.h>
 #import <FacebookSDK/FacebookSDK.h>
 #import "UrlDataClass.h"
+#import "NewLandingViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>{
     
     UrlDataClass *DataUrl;
     NSMutableData *webData;
 }
-
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic)NewLandingViewController* landingViewController;
 - (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state error:(NSError *)error;
 
 

@@ -16,7 +16,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8yp-f4-F9D">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="544"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bz9-Sg-KiQ">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
@@ -26,7 +26,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="tod-tq-P6Z"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -66,13 +66,14 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="8yp-f4-F9D" secondAttribute="trailing" constant="-8" id="7H5-aG-JbH"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="8yp-f4-F9D" secondAttribute="bottom" constant="-89.5" id="C0y-BZ-5Z0"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="8yp-f4-F9D" secondAttribute="bottom" id="C0y-BZ-5Z0"/>
                     <constraint firstItem="8yp-f4-F9D" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="PVq-TO-qtY"/>
                     <constraint firstItem="8yp-f4-F9D" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="cn1-T6-lkC"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
+                <outlet property="borderView" destination="H2p-sc-9uM" id="GJW-zK-s9B"/>
                 <outlet property="ibCollectionview" destination="jKQ-XV-4xC" id="baY-1f-WG5"/>
                 <outlet property="lblTitle" destination="mH5-x5-dTl" id="26g-6l-aNI"/>
             </connections>

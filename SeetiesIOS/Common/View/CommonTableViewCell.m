@@ -24,7 +24,7 @@
 - (void)awakeFromNib {
     // Initialization code
     if (self.borderView) {
-        [Utils setRoundBorder:self.borderView color:OUTLINE_COLOR borderRadius:5.0f];
+        [Utils setRoundBorder:self.borderView color:OUTLINE_COLOR borderRadius:0];
     }
 }
 

@@ -20,7 +20,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jcG-pP-p15">
                                 <rect key="frame" x="0.0" y="50" width="294" height="1"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultProfilePic.png" translatesAutoresizingMaskIntoConstraints="NO" id="J2O-0o-d7T">
                                 <rect key="frame" x="10" y="10" width="30" height="30"/>
@@ -42,6 +42,9 @@
                                     <constraint firstAttribute="width" constant="47" id="XAB-Lw-wuh"/>
                                 </constraints>
                                 <state key="normal" image="FollowIcon.png"/>
+                                <connections>
+                                    <action selector="btnFollowClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ybk-AF-dBK"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="KkY-ud-w5n">
                                 <rect key="frame" x="10" y="57" width="80" height="80"/>
@@ -53,6 +56,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0PP-2X-rD6">
                                 <rect key="frame" x="237" y="68" width="57" height="57"/>
                                 <state key="normal" image="YellowCollect.png"/>
+                                <connections>
+                                    <action selector="btnCollectionClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="nqM-hk-O7M"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BFd-XO-SBk">
                                 <rect key="frame" x="98" y="68" width="131" height="21"/>
@@ -66,8 +72,19 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2wv-hA-YBm">
+                                <rect key="frame" x="10" y="5" width="219" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="J4Y-Rh-b9X"/>
+                                    <constraint firstAttribute="width" constant="219" id="KmV-LR-jZ1"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="btnUserProfileClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="pL5-eM-p8D"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="BFd-XO-SBk" firstAttribute="leading" secondItem="OcM-16-qDa" secondAttribute="leading" constant="98" id="1Xc-RX-nKB"/>
                             <constraint firstAttribute="trailing" secondItem="nlY-JH-MNj" secondAttribute="trailing" id="22G-Zz-2W6"/>
@@ -78,11 +95,14 @@
                             <constraint firstItem="dtY-Ns-zGq" firstAttribute="leading" secondItem="OcM-16-qDa" secondAttribute="leading" constant="98" id="CHX-Yz-2Kt"/>
                             <constraint firstItem="dtY-Ns-zGq" firstAttribute="top" secondItem="OcM-16-qDa" secondAttribute="top" constant="97" id="CyR-XV-yCe"/>
                             <constraint firstAttribute="trailing" secondItem="Ku0-os-NT3" secondAttribute="trailing" constant="55" id="DrW-cA-Vte"/>
+                            <constraint firstItem="2wv-hA-YBm" firstAttribute="leading" secondItem="OcM-16-qDa" secondAttribute="leading" constant="10" id="G0V-45-gRv"/>
                             <constraint firstAttribute="trailing" secondItem="BFd-XO-SBk" secondAttribute="trailing" constant="65" id="N2a-pJ-uFV"/>
                             <constraint firstAttribute="bottom" secondItem="Ku0-os-NT3" secondAttribute="bottom" constant="103" id="UKx-po-48x"/>
                             <constraint firstItem="Ku0-os-NT3" firstAttribute="top" secondItem="OcM-16-qDa" secondAttribute="top" constant="10" id="Xqs-e3-wsd"/>
+                            <constraint firstAttribute="trailing" secondItem="2wv-hA-YBm" secondAttribute="trailing" constant="65" id="bSm-0V-8M8"/>
                             <constraint firstAttribute="trailing" secondItem="dtY-Ns-zGq" secondAttribute="trailing" constant="65" id="bXD-f6-14B"/>
                             <constraint firstItem="KkY-ud-w5n" firstAttribute="top" secondItem="OcM-16-qDa" secondAttribute="top" constant="57" id="fA4-sb-QbT"/>
+                            <constraint firstItem="2wv-hA-YBm" firstAttribute="top" secondItem="OcM-16-qDa" secondAttribute="top" constant="5" id="hKW-8L-cxL"/>
                             <constraint firstAttribute="trailing" secondItem="0PP-2X-rD6" secondAttribute="trailing" id="iSe-3D-70h"/>
                             <constraint firstItem="KkY-ud-w5n" firstAttribute="leading" secondItem="OcM-16-qDa" secondAttribute="leading" constant="10" id="luH-NN-jDJ"/>
                             <constraint firstAttribute="bottom" secondItem="BFd-XO-SBk" secondAttribute="bottom" constant="54" id="o3H-55-hbC"/>
@@ -94,17 +114,31 @@
                             <constraint firstItem="J2O-0o-d7T" firstAttribute="leading" secondItem="OcM-16-qDa" secondAttribute="leading" constant="10" id="xd9-ff-OWe"/>
                             <constraint firstItem="Ku0-os-NT3" firstAttribute="leading" secondItem="OcM-16-qDa" secondAttribute="leading" constant="50" id="z43-ps-kFy"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="bSm-0V-8M8"/>
+                            </mask>
+                        </variation>
                     </view>
                 </subviews>
-                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
+                    <constraint firstItem="2wv-hA-YBm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="15" id="ORf-0c-HMS"/>
                     <constraint firstAttribute="bottomMargin" secondItem="OcM-16-qDa" secondAttribute="bottom" constant="5" id="OjW-3D-awU"/>
                     <constraint firstItem="OcM-16-qDa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="Slw-KF-dAB"/>
                     <constraint firstItem="OcM-16-qDa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="YXA-FM-jFe"/>
                     <constraint firstAttribute="trailingMargin" secondItem="OcM-16-qDa" secondAttribute="trailing" constant="5" id="l3l-H1-tQD"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="ORf-0c-HMS"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
+                <outlet property="btnCollection" destination="0PP-2X-rD6" id="0l5-fi-rNu"/>
+                <outlet property="btnFollow" destination="nlY-JH-MNj" id="ohV-fj-yiM"/>
+                <outlet property="btnUserProfile" destination="2wv-hA-YBm" id="uvp-uU-Ct2"/>
                 <outlet property="ibImageUser" destination="J2O-0o-d7T" id="UnC-bL-13E"/>
                 <outlet property="ibImageView" destination="KkY-ud-w5n" id="QDK-8o-FRs"/>
                 <outlet property="ibInnerContentView" destination="OcM-16-qDa" id="RBs-I8-KAs"/>

@@ -8,8 +8,43 @@
 
 #import "AddCollectionDataViewController.h"
 #import "NewCollectionViewController.h"
-@interface AddCollectionDataViewController ()
+#import "EditCollectionDetailViewController.h"
 
+@interface AddCollectionDataViewController ()
+{
+
+    IBOutlet TPKeyboardAvoidingScrollView *MainScroll;
+    IBOutlet UIButton *BackButton;
+    IBOutlet AsyncImageView *PostImg;
+    IBOutlet UITextView *NoteTextView;
+    IBOutlet UITableView *tblview;
+    IBOutlet UILabel *ShowNoteTextCount;
+    IBOutlet UIButton *BackgroundBlackButton;
+    IBOutlet UIScrollView *TextScroll;
+    IBOutlet UILabel *ShowExistingText;
+    
+    NSString *GetPostID;
+    NSString *GetImageData;
+    NSString *GetCollectionID;
+    
+    UrlDataClass *DataUrl;
+    NSMutableData *webData;
+    NSURLConnection *theConnection_CollectionData;
+    NSURLConnection *theConnection_QuickCollect;
+    
+    NSMutableArray *CollectionData_IDArray;
+    NSMutableArray *CollectionData_TitleArray;
+    NSMutableArray *ExistingCollectionData_TitleArray;
+    
+    IBOutlet UIActivityIndicatorView *ShowActivity;
+    
+    BOOL CheckReflash;
+    
+    IBOutlet UILabel *CollectThisTitle;
+    IBOutlet UILabel *PickaCollectionTitle;
+    IBOutlet UIButton *CreateCollectionButton;
+}
+@property(nonatomic)EditCollectionDetailViewController* editCollectionDetailViewController;
 @end
 
 @implementation AddCollectionDataViewController
@@ -64,9 +99,7 @@
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [IQKeyboardManager sharedManager].enableAutoToolbar = false;
-    if (CheckReflash == YES) {
-        [self GetUserCollections];
-    }
+    
 }
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
@@ -93,9 +126,9 @@
 
 -(void)GetUserCollections{
     [ShowActivity startAnimating];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *Getuid = [defaults objectForKey:@"Useruid"];
-    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *Getuid = [Utils getUserID];
+    NSString *GetExpertToken = [Utils getAppToken];
+    
     NSString *FullString = [[NSString alloc]initWithFormat:@"%@%@/collections?token=%@&list_size=50&post_id=%@",DataUrl.UserWallpaper_Url,Getuid,GetExpertToken,GetPostID];
     
     
@@ -193,12 +226,14 @@
         NSLog(@"statusString is %@",statusString);
         
         if ([statusString isEqualToString:@"ok"]) {
-            [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success add to Collections" type:TSMessageNotificationTypeSuccess];
+            [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Success add to Collections") Type:TSMessageNotificationTypeSuccess];
             [self dismissViewControllerAnimated:YES completion:nil];
         }else{
             
             NSString *MessageString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"message"]];
-            [TSMessage showNotificationInViewController:self title:@"" subtitle:MessageString type:TSMessageNotificationTypeError];
+
+            [MessageManager showMessage:LocalisedString(@"system") SubTitle:MessageString Type:TSMessageNotificationTypeError];
+
         }
     }
     
@@ -350,10 +385,15 @@
 }
 -(IBAction)CreateCollectionButton:(id)sender{
     CheckReflash = YES;
-    NewCollectionViewController *NewCollectionView = [[NewCollectionViewController alloc]init];
-    [self presentViewController:NewCollectionView animated:YES completion:nil];
-   // [self.view.window.rootViewController presentViewController:NewCollectionView animated:YES completion:nil];
+    
+    _editCollectionDetailViewController = nil;
+    [self.editCollectionDetailViewController initDataWithUserID:[Utils getUserID]];
+   // NewCollectionViewController *NewCollectionView = [[NewCollectionViewController alloc]init];
+    
+    [self presentViewController:self.editCollectionDetailViewController animated:YES completion:nil];
+    
 }
+
 -(void)DrawExistingText{
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
@@ -392,5 +432,22 @@
 
 }
 
+
+#pragma mark - Declaration
+
+-(EditCollectionDetailViewController*)editCollectionDetailViewController
+{
+    if (!_editCollectionDetailViewController) {
+        _editCollectionDetailViewController = [EditCollectionDetailViewController new];
+        __weak typeof (self)weakSelf = self;
+        _editCollectionDetailViewController.btnDoneBlock = ^(id object)
+        {
+            [weakSelf GetUserCollections];
+
+        };
+    }
+    
+    return _editCollectionDetailViewController;
+}
 
 @end

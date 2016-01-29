@@ -65,6 +65,10 @@
     [self.tableView registerClass:[DraftTableViewCell class] forCellReuseIdentifier:@"DraftTableViewCell"];
     [self.tableView addPullToRefreshWithActionHandler:^{
         [self.loadingImageView startAnimating];
+        
+        [self.arrDraftList removeAllObjects];
+        self.draftsModel = nil;
+       // [self.tableView reloadData];
         [self requestServerForDraft];
         [self.tableView.pullToRefreshView performSelector:@selector(stopAnimating) withObject:nil afterDelay:30];
         

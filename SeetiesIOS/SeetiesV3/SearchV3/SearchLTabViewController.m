@@ -11,7 +11,11 @@
 #import "ShopTableViewCell.h"
 #import "SeetizensTableViewCell.h"
 #import "PostsTableViewCell.h"
+#import "AddCollectionDataViewController.h"
 @interface SearchLTabViewController ()
+{
+    BOOL isMiddleOfCallingServer;
+}
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constFilterHeight;
 @property (weak, nonatomic) IBOutlet UIView *FilterView;
@@ -20,6 +24,8 @@
 @property(nonatomic,strong)ProfilePostModel* userProfilePostModel;
 @property(nonatomic,strong)UsersModel* usersModel;
 @property(nonatomic,strong)CollectionsModel* userCollectionsModel;
+
+
 
 @property(nonatomic,strong)NSMutableArray* arrPosts;
 @property(nonatomic,strong)NSMutableArray* arrUsers;
@@ -52,6 +58,23 @@
 {
     self.ibTableView.delegate = self;
     self.ibTableView.dataSource = self;
+    
+    if ([Utils isStringNull:self.getSearchText]) {
+        self.getSearchText = @"";
+    }
+    if ([Utils isStringNull:self.Getlat]) {
+        self.Getlat = @"";
+    }
+    if ([Utils isStringNull:self.Getlong]) {
+        self.Getlong = @"";
+    }
+    if ([Utils isStringNull:self.GetCurrentlat]) {
+        self.GetCurrentlat= @"";
+    }
+    if ([Utils isStringNull:self.GetCurrentLong]) {
+        self.GetCurrentLong = @"";
+    }
+    
     
     switch (self.searchListingType) {
         default:
@@ -182,7 +205,32 @@
         case SearchsListingTypePosts:
         {
             PostsTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"PostsTableViewCell"];
-            [cell initData:self.arrPosts[indexPath.row]];
+            DraftModel* collModel = self.arrPosts[indexPath.row];
+            [cell initData:collModel];
+            cell.btnFollowBlock = ^(void)
+            {
+               SLog(@"btnFollowBlock Click");
+                [self requestServerToFollowFromOthersPosts:collModel];
+            };
+            cell.btnCollectionBlock = ^(void)
+            {
+                SLog(@"btnCollectionBlock Click");
+                [self requestServerForQuickCollection:collModel];
+            };
+            cell.btnCollectionOpenViewBlock = ^(void)
+            {
+                SLog(@"btnCollectionOpenViewBlock Click");
+                if (_didSelectCollectionOpenViewBlock) {
+                    self.didSelectCollectionOpenViewBlock(collModel);
+                }
+            };
+            cell.btnUserProfileBlock = ^(void)
+            {
+                SLog(@"btnUserProfileBlock Click");
+                if (_didSelectUserRowBlock) {
+                    self.didSelectUserRowBlock(collModel.user_info.uid);
+                }
+            };
             return cell;
         }
             break;
@@ -196,7 +244,7 @@
             cell.btnFollowBlock = ^(void)
             {
                 NSLog(@"FollowButton Click");
-              //  [self requestServerToFollowFromOthers:collModel];
+                [self requestServerToFollowFromOthers:collModel];
             };
             return cell;
         }
@@ -207,11 +255,42 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //
-    //    CollectionModel* model = self.arrCollections[indexPath.row];
-    //    if (_didSelectDisplayCollectionRowBlock) {
-    //        self.didSelectDisplayCollectionRowBlock(model);
-    //    }
+    
+
+    
+    switch (self.searchListingType) {
+        default:
+        case SearchListingTypeShop:
+        {
+        }
+            break;
+        case SearchsListingTypeCollections:
+        {
+            CollectionModel* model = self.arrCollections[indexPath.row];
+            if (_didSelectDisplayCollectionRowBlock) {
+                self.didSelectDisplayCollectionRowBlock(model);
+            }
+        }
+            break;
+        case SearchsListingTypePosts:
+        {
+            DraftModel* model = self.arrPosts[indexPath.row];
+            if (_didSelectPostsRowBlock) {
+                self.didSelectPostsRowBlock(model.post_id);
+            }
+        }
+            break;
+        case SearchsListingTypeSeetizens:
+        {
+            UserModel* collModel = self.arrUsers[indexPath.row];
+            
+            if (_didSelectUserRowBlock) {
+                self.didSelectUserRowBlock(collModel.userUID);
+            }
+        }
+            
+            break;
+    }
 }
 
 -(NSMutableArray*)arrPosts
@@ -244,8 +323,19 @@
 {
     SLog(@"requestServerForSearch work ?");
     
-    NSDictionary* dict;
-    NSString* appendString = [[NSString alloc]initWithFormat:@"?token=%@&keyword=%@&sort=%@",[Utils getAppToken],@"Coffee",@"3"];
+  //  NSDictionary* dict;
+    NSString* appendString = @"";
+    
+    NSDictionary* dict = @{@"page":self.userProfilePostModel.userPostData.page?@(self.userProfilePostModel.userPostData.page + 1):@1,
+                           @"list_size":@(ARRAY_LIST_SIZE),
+                           @"token":[Utils getAppToken],
+                           @"keyword":self.getSearchText,
+                           @"sort":@"3",
+                           @"lat":self.Getlat,
+                           @"lng":self.Getlong,
+                           @"current_lat":self.GetCurrentlat,
+                           @"current_lng":self.GetCurrentLong
+                           };
     
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeSearchPosts param:dict appendString:appendString completeHandler:^(id object) {
         self.userProfilePostModel = [[ConnectionManager dataManager]userProfilePostModel];
@@ -262,12 +352,18 @@
 -(void)requestServerForSearchUser{
     SLog(@"requestServerForSearchUser work ?");
     
-    NSDictionary* dict;
-    NSString* appendString = [[NSString alloc]initWithFormat:@"user?token=%@&keyword=%@",[Utils getAppToken],@"Coffee"];
+  //  NSDictionary* dict;
+  //  NSString* appendString = [[NSString alloc]initWithFormat:@"user?token=%@&keyword=%@",[Utils getAppToken],self.getSearchText];
+    NSString* appendString = [[NSString alloc]initWithFormat:@"user"];
+    NSDictionary* dict = @{@"page":self.usersModel.page?@(self.usersModel.page + 1):@1,
+                           @"list_size":@(ARRAY_LIST_SIZE),
+                           @"token":[Utils getAppToken],
+                           @"keyword":self.getSearchText
+                           };
 
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeSearchUsers param:dict appendString:appendString completeHandler:^(id object) {
         self.usersModel = [[ConnectionManager dataManager]usersModel];
-        
+        self.arrUsers = nil;
         [self.arrUsers addObjectsFromArray:self.usersModel.experts];
 
         [self.ibTableView reloadData];
@@ -280,12 +376,18 @@
 -(void)requestServerForSearchCollection{
     SLog(@"requestServerForSearchCollection work ?");
     
-    NSDictionary* dict;
-    NSString* appendString = [[NSString alloc]initWithFormat:@"collections?token=%@&keyword=%@",[Utils getAppToken],@"Coffee"];
+   // NSDictionary* dict;
+    //NSString* appendString = [[NSString alloc]initWithFormat:@"collections?token=%@&keyword=%@",[Utils getAppToken],self.getSearchText];
+    NSString* appendString = [[NSString alloc]initWithFormat:@"collections"];
+    NSDictionary* dict = @{@"keyword":self.getSearchText,
+                           @"limit":@(ARRAY_LIST_SIZE),
+                           @"offset":@(self.userCollectionsModel.offset + self.userCollectionsModel.limit),
+                           @"token":[Utils getAppToken],
+                           };
     
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeSearchCollections param:dict appendString:appendString completeHandler:^(id object) {
         self.userCollectionsModel = [[ConnectionManager dataManager]userCollectionsModel];
-        
+        self.arrCollections = nil;
         [self.arrCollections addObjectsFromArray:self.userCollectionsModel.arrSuggestedCollection];
         
         [self.ibTableView reloadData];
@@ -295,4 +397,196 @@
         
     }];
 }
+-(void)requestServerToFollowFromOthers:(UserModel*)colModel
+{
+    
+    NSString* appendString = [NSString stringWithFormat:@"%@/follow",colModel.userUID];
+    NSDictionary* dict = @{@"uid":colModel.userUID,
+                           @"token":[Utils getAppToken]
+                           };
+    
+    if (![DataManager isUserFollowed:colModel.userUID isFollowing:colModel.following]) {
+        
+        
+        [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostFollowUser param:dict appendString:appendString meta:nil completeHandler:^(id object) {
+            
+            NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object[@"data"]];
+            BOOL following = [[returnDict objectForKey:@"following"] boolValue];
+            colModel.following = following;
+            [DataManager setCollectionFollowing:colModel.userUID isFollowing:following];
+            [self.ibTableView reloadData];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:nil];
+            
+            
+        } errorBlock:^(id object) {
+            
+        }];
+        
+    }
+    else{// TO UNFOLLOW
+        
+        [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Are You Sure You Want To Unfollow") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"YES"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+            
+            if (buttonIndex == [alertView cancelButtonIndex]) {
+                NSLog(@"Cancelled");
+                
+            } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:LocalisedString(@"YES")]) {
+                
+                
+                [[ConnectionManager Instance]requestServerWithDelete:ServerRequestTypePostFollowUser param:dict appendString:appendString completeHandler:^(id object) {
+                    
+                    NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object];
+                    BOOL following = [[returnDict objectForKey:@"following"] boolValue];
+                    //dont delete the collection instead change the status only
+                    colModel.following = following;
+                    [DataManager setCollectionFollowing:colModel.userUID isFollowing:following];
+                    
+                    [self.ibTableView reloadData];
+                    
+                    
+                } errorBlock:^(id object) {
+                }];
+                
+                
+            }
+        }];
+        
+    }
+}
+-(ProfileViewController*)profileViewController
+{
+    if(!_profileViewController)
+        _profileViewController = [ProfileViewController new];
+    
+    return _profileViewController;
+}
+-(void)requestServerToFollowFromOthersPosts:(DraftModel*)colModel
+{
+    
+    NSString* appendString = [NSString stringWithFormat:@"%@/follow",colModel.user_info.uid];
+    NSDictionary* dict = @{@"uid":colModel.user_info.uid,
+                           @"token":[Utils getAppToken]
+                           };
+    
+    if (![DataManager isUserFollowed:colModel.user_info.uid isFollowing:colModel.user_info.following]) {
+        
+        
+        [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostFollowUser param:dict appendString:appendString meta:nil completeHandler:^(id object) {
+            
+            NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object[@"data"]];
+            BOOL following = [[returnDict objectForKey:@"following"] boolValue];
+            colModel.user_info.following = following;
+            [DataManager setCollectionFollowing:colModel.user_info.uid isFollowing:following];
+            [self.ibTableView reloadData];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:nil];
+            
+            
+        } errorBlock:^(id object) {
+            
+        }];
+        
+    }
+    else{// TO UNFOLLOW
+        
+        [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Are You Sure You Want To Unfollow") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"YES"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+            
+            if (buttonIndex == [alertView cancelButtonIndex]) {
+                NSLog(@"Cancelled");
+                
+            } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:LocalisedString(@"YES")]) {
+                
+                
+                [[ConnectionManager Instance]requestServerWithDelete:ServerRequestTypePostFollowUser param:dict appendString:appendString completeHandler:^(id object) {
+                    
+                    NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object];
+                    BOOL following = [[returnDict objectForKey:@"following"] boolValue];
+                    //dont delete the collection instead change the status only
+                    colModel.user_info.following = following;
+                    [DataManager setCollectionFollowing:colModel.user_info.uid isFollowing:following];
+                    
+                    [self.ibTableView reloadData];
+                    
+                    
+                } errorBlock:^(id object) {
+                }];
+                
+                
+            }
+        }];
+        
+    }
+}
+-(void)requestServerForQuickCollection:(DraftModel*)model
+{
+    
+    NSDictionary* dictPost =  @{@"id": model.post_id};
+    
+    
+    NSArray* array = @[dictPost];
+    
+    NSString* appendString = [NSString stringWithFormat:@"%@/collections/0/collect",[Utils getUserID]];
+    NSDictionary* dict = @{@"collection_id" : @"0",
+                           @"token" : [Utils getAppToken],
+                           @"posts" : array,
+                           };
+    
+    [[ConnectionManager Instance]requestServerWithPut:ServerRequestTypePutCollectPost param:dict appendString:appendString completeHandler:^(id object) {
+        
+        model.collect = @"1";
+        [TSMessage showNotificationInViewController:self title:LocalisedString(@"System") subtitle:LocalisedString(@"Successfully collected to default Collection") type:TSMessageNotificationTypeSuccess];
+        [self.ibTableView reloadData];
+        
+    } errorBlock:^(id object) {
+        
+    }];
+}
+
+
+#pragma mark - UIScrollView Delegate
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    
+    CGPoint offset = scrollView.contentOffset;
+    CGRect bounds = scrollView.bounds;
+    CGSize size = scrollView.contentSize;
+    UIEdgeInsets inset = scrollView.contentInset;
+    float y = offset.y + bounds.size.height - inset.bottom;
+    float h = size.height;
+    
+    float reload_distance = 10;
+    if(y >= h - reload_distance) {
+        
+        if (!isMiddleOfCallingServer) {
+            
+            if (self.searchListingType == SearchsListingTypeCollections) {
+                if (self.userCollectionsModel.total_page > self.userCollectionsModel.page) {
+                    
+                    [self requestServerForSearchCollection];
+                }
+                
+            }else if(self.searchListingType == SearchsListingTypeSeetizens){
+                 if (self.usersModel.total_page > self.usersModel.page) {
+                    
+                    [self requestServerForSearchUser];
+                }
+                
+            }else if(self.searchListingType == SearchsListingTypePosts){
+                if (self.userProfilePostModel.userPostData.total_page > self.userProfilePostModel.userPostData.page) {
+                    
+                    [self requestServerForSearchPosts];
+                }
+            }
+            
+            
+            
+            
+        }
+        
+        
+        
+    }
+}
+
+
 @end

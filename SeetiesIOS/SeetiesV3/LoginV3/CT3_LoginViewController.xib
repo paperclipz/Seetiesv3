@@ -48,6 +48,9 @@
                     <rect key="frame" x="170" y="397" width="130" height="40"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                     <state key="normal" title="Instagram" image="InstagramBtnInactive.png"/>
+                    <connections>
+                        <action selector="btnInstagramClicked:" destination="-1" eventType="touchUpInside" id="0e4-rO-Vpy"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q1X-vP-vhI">
                     <rect key="frame" x="20" y="436" width="135" height="30"/>
@@ -76,6 +79,9 @@
                         <constraint firstAttribute="height" constant="30" id="FBQ-i3-kSZ"/>
                     </constraints>
                     <state key="normal" title="Continue without login"/>
+                    <connections>
+                        <action selector="btnContinueWithoutLoginClicked:" destination="-1" eventType="touchUpInside" id="PUu-bi-DqE"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WHu-ND-0o9">
                     <rect key="frame" x="152" y="476" width="16" height="21"/>

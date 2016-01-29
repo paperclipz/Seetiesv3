@@ -40,7 +40,7 @@ pod 'PureLayout'
 pod 'MZAppearance'
 pod 'ViewMonitor'
 pod 'MGInstagram'
-
+pod 'InstagramKit', '~> 3.0'
 pod 'ESTabBarController'
 #================ debugging =====================#
 #pod 'CocoaLumberjack'

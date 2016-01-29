@@ -11,5 +11,7 @@
 @interface CTWebViewController : CommonViewController
 -(void)initData:(AnnouncementModel*)model;
 -(void)initDataWithURL:(NSString *)url andTitle:(NSString*)title;
+-(void)initDataForInstagram;
 
+@property(nonatomic,copy)VoidBlock didFinishLoadConnectionBlock;
 @end

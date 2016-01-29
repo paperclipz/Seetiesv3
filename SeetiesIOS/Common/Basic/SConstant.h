@@ -7,16 +7,22 @@
 
 #import <Foundation/Foundation.h>
 
-#define API_VERSION @"2.3"
+#define API_VERSION @"3.0"
 
 @interface SConstant : NSObject
 
 
 typedef enum
 {
+    /*Login*/
     ServerRequestTypeLogin = 1,
     ServerRequestTypeLoginFacebook,
     ServerRequestTypeLoginInstagram,
+    ServerRequestTypeRegister,
+    ServerRequestTypeGetLogout,
+    /*Login*/
+
+    
     ServerRequestTypeGetNewsFeed,
     ServerRequestTypeGetLanguage,
     ServerRequestTypeGetApiVersion,
@@ -142,11 +148,15 @@ extern NSString *const GOOGLE_PLACE_DETAILS_API;
 extern NSString *const kAFAviaryAPIKey;
 extern NSString *const kAFAviarySecret;
 
+extern NSString *const Insta_Client_ID;
+extern NSString *const Insta_Client_Secret;
+extern NSString *const Insta_Client_callback;
+
 @end
 
 
 
-    
+
 #define TOKEN_2_0 @"JDJ5JDEwJDZyamE0MlZKbTNKbHpDSElxR0dpUGVnbkJQMzdzRC40eDJna2M3RlJiVFZVbnJzRVpTQTNt"
 
 // ======================= LANGUAGE CODE ========================//
@@ -206,6 +216,9 @@ static BOOL IS_SIMULATOR = NO;
 #pragma mark - DEFINE UI
 
 #define TAB_BAR_HEIGHT 60.0f
+
+#pragma mark - API KEY
+#define DEVICE_TYPE 2
 
 
 

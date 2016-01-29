@@ -28,12 +28,16 @@
 @class FacebookModel;
 @class  DraftsModel;
 @class NewsFeedModels;
+@class InstagramModel;
 typedef void(^BoolBlock) (BOOL isCollected);
 typedef void(^CompletionVoidBlock) (void);
 
 @interface DataManager : NSObject
 + (id)Instance;
 +(NSArray*)getSampleObject;
+
+/*Login*/
+@property(nonatomic,strong)InstagramModel* instagramModel;//model from login
 
 
 @property(nonatomic,strong)ProfileModel* userLoginProfileModel;//model from login

@@ -13,6 +13,7 @@
 #import "CTFeedModel.h"
 #import "AnnouncementModel.h"
 #import "LanguageModel.h"
+#import "InstagramModel.h"
 
 
 /*Declare custom block for model type*/

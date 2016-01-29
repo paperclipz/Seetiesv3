@@ -34,6 +34,11 @@ PODS:
   - GPUImage (0.1.7)
   - HexColors (2.3.0)
   - HMSegmentedControl (1.5.2)
+  - InstagramKit (3.7):
+    - AFNetworking (~> 2.0)
+    - InstagramKit/Exclude-UICKeyChainStore (= 3.7)
+  - InstagramKit/Exclude-UICKeyChainStore (3.7):
+    - AFNetworking (~> 2.0)
   - iOSBlocks/Cocoa (1.2):
     - iOSBlocks/CoreLocation
     - iOSBlocks/Foundation
@@ -74,6 +79,7 @@ DEPENDENCIES:
   - ESTabBarController
   - GoogleMaps
   - HMSegmentedControl
+  - InstagramKit (~> 3.0)
   - iOSBlocks/Cocoa
   - IQKeyboardManager
   - JSONModel
@@ -114,6 +120,7 @@ SPEC CHECKSUMS:
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
   HexColors: 6ad3947c3447a055a3aa8efa859def096351fe5f
   HMSegmentedControl: 83b9686022d2176fb6457d2bdb61e5d6393fed7d
+  InstagramKit: bbbd15baeac2d32b2915d2d89319ad90bacd5912
   iOSBlocks: a52cab17a30314e91b2c85ea4c65f84d19826676
   IQKeyboardManager: 128bcb96b3ec03ff87942cdd7fa7f44491aa3d08
   JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
