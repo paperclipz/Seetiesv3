@@ -16,16 +16,17 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="djU-Lw-4aa">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="127"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="119"/>
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottomMargin" secondItem="djU-Lw-4aa" secondAttribute="bottom" constant="-8" id="Hvv-K9-0FX"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="djU-Lw-4aa" secondAttribute="bottom" id="Hvv-K9-0FX"/>
                     <constraint firstAttribute="trailingMargin" secondItem="djU-Lw-4aa" secondAttribute="trailing" constant="-8" id="Pyg-NV-cs3"/>
                     <constraint firstItem="djU-Lw-4aa" firstAttribute="leading" secondItem="O1Z-LP-Y0V" secondAttribute="leadingMargin" constant="-8" id="ehS-mY-yfU"/>
                     <constraint firstItem="djU-Lw-4aa" firstAttribute="top" secondItem="O1Z-LP-Y0V" secondAttribute="topMargin" constant="-8" id="ukf-TU-BT1"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="ibImageView" destination="djU-Lw-4aa" id="Fed-F3-72J"/>
             </connections>

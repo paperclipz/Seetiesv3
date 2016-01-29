@@ -440,8 +440,8 @@ typedef enum{
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:self];
         [self dismissViewControllerAnimated:YES completion:^{
             
-            if (self.viewDidRefreshCollectionBlock) {
-                self.viewDidRefreshCollectionBlock();
+            if (self.btnDoneBlock) {
+                self.btnDoneBlock(nil);
             }
             
         }];
