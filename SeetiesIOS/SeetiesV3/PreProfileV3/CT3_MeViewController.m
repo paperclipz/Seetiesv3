@@ -27,6 +27,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ibWalletIcon;
 @property (weak, nonatomic) IBOutlet UIImageView *ibCollectionIcon;
 @property (weak, nonatomic) IBOutlet UILabel *ibNotificationCountLbl;
+
+@property(nonatomic)STPopupController *popupCTController;
 @end
 
 @implementation CT3_MeViewController
@@ -59,7 +61,20 @@
 }
 
 - (IBAction)btnPromoClicked:(id)sender {
-    [self.promoCodeViewController showView];
+    
+    PromoPopOutViewController* promoPopoutVC = [PromoPopOutViewController new];
+    [promoPopoutVC setViewType:EnterPromoViewType];
+    
+    _popupCTController = [[STPopupController alloc]initWithRootViewController:promoPopoutVC];
+    _popupCTController.containerView.backgroundColor = [UIColor clearColor];
+    [_popupCTController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewDidTap)]];
+    [_popupCTController presentInViewController:self];
+    [_popupCTController setNavigationBarHidden:YES];
+   
+}
+
+-(IBAction)backgroundViewDidTap{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark InitMethod
@@ -142,12 +157,9 @@
     return _inviteFriendViewController;
 }
 
--(PromoCodeViewController*)promoCodeViewController{
+-(PromoPopOutViewController*)promoCodeViewController{
     if (!_promoCodeViewController) {
-        _promoCodeViewController = [PromoCodeViewController new];
-        [_promoCodeViewController.view setFrame:self.view.frame];
-        [_promoCodeViewController.view setNeedsLayout];
-        [self.view addSubview:_promoCodeViewController.view];
+        _promoCodeViewController = [PromoPopOutViewController new];
     }
     return _promoCodeViewController;
 }

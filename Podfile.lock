@@ -48,7 +48,7 @@ PODS:
   - iOSBlocks/Foundation (1.2)
   - iOSBlocks/MessageUI (1.2)
   - iOSBlocks/UIKit (1.2)
-  - IQKeyboardManager (3.3.5)
+  - IQKeyboardManager (3.3.6)
   - JSONModel (1.2.0)
   - LPGoogleFunctions (1.2.3):
     - AFNetworking (~> 2.0)
@@ -56,14 +56,15 @@ PODS:
   - MGSwipeTableCell (1.5.3)
   - MZAppearance (1.1.6)
   - PureLayout (3.0.1)
-  - SDWebImage (3.7.4):
-    - SDWebImage/Core (= 3.7.4)
-  - SDWebImage/Core (3.7.4)
+  - SDWebImage (3.7.5):
+    - SDWebImage/Core (= 3.7.5)
+  - SDWebImage/Core (3.7.5)
+  - STPopup (1.6.0)
   - SVPullToRefresh (0.4.1)
   - TSMessages (0.9.13):
     - HexColors (~> 2.3.0)
-  - TTTAttributedLabel (1.13.3)
-  - UITextView+Placeholder (1.1.0)
+  - TTTAttributedLabel (1.13.4)
+  - UITextView+Placeholder (1.1.1)
   - ViewMonitor (1.0.9)
 
 DEPENDENCIES:
@@ -88,6 +89,7 @@ DEPENDENCIES:
   - MZAppearance
   - PureLayout
   - SDWebImage
+  - STPopup
   - SVPullToRefresh
   - TSMessages (from `https://github.com/KrauseFx/TSMessages.git`)
   - TTTAttributedLabel
@@ -120,18 +122,19 @@ SPEC CHECKSUMS:
   HMSegmentedControl: 83b9686022d2176fb6457d2bdb61e5d6393fed7d
   InstagramKit: bbbd15baeac2d32b2915d2d89319ad90bacd5912
   iOSBlocks: a52cab17a30314e91b2c85ea4c65f84d19826676
-  IQKeyboardManager: 128bcb96b3ec03ff87942cdd7fa7f44491aa3d08
+  IQKeyboardManager: 037cf3aec1d0a045108859a47818714eb1bfc149
   JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
   LPGoogleFunctions: c78171de55b164e8e5dbf6b4bba477980771211a
   MGInstagram: c85a061e25b053ad1cb1227675e238ce6cc50221
   MGSwipeTableCell: 5ae3b9a15efda26b201adc8676b24040febe6ff6
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
-  SDWebImage: 247edd7dd80dd6124197b0d6a17846fe9d1df968
+  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+  STPopup: 7975883c48560e4cb16ea1c6f351312ed2cd2bc0
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   TSMessages: 6e403b790139636c15ab4f51946537095e03e79c
-  TTTAttributedLabel: 6f3174aef8e738f44dff97c2eb7d8184f6ab6277
-  UITextView+Placeholder: 672ce543356b5b5787f354415bc3b132d47f0362
+  TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
+  UITextView+Placeholder: a6fc3e0378f3870036ec562a7537cbf6dbae4bf6
   ViewMonitor: 3bf94bdead583c7ed08fdab9212fe08661173477
 
 COCOAPODS: 0.39.0

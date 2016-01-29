@@ -33,6 +33,7 @@ pod 'iOSBlocks/Cocoa'
 pod 'DBCamera', '~> 2.4'
 pod 'A3ParallaxScrollView', '~> 1.0'
 #pod 'NMRangeSlider'
+pod 'STPopup'
 
 pod 'APParallaxHeader'
 pod 'PureLayout'
