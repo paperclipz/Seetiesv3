@@ -28,7 +28,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ibCollectionIcon;
 @property (weak, nonatomic) IBOutlet UILabel *ibNotificationCountLbl;
 
-@property(nonatomic)NSMutableArray* arrViewControllers;
 @property(nonatomic)STPopupController *popupCTController;
 @end
 
@@ -67,6 +66,7 @@
     [promoPopoutVC setViewType:EnterPromoViewType];
     
     _popupCTController = [[STPopupController alloc]initWithRootViewController:promoPopoutVC];
+    _popupCTController.containerView.backgroundColor = [UIColor clearColor];
     [_popupCTController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewDidTap)]];
     [_popupCTController presentInViewController:self];
     [_popupCTController setNavigationBarHidden:YES];

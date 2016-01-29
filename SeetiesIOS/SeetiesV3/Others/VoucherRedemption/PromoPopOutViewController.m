@@ -12,17 +12,23 @@
 @property (strong, nonatomic) IBOutlet UIView *ibEnterPromoView;
 @property (weak, nonatomic) IBOutlet UITextField *ibPromoCodeText;
 @property (weak, nonatomic) IBOutlet UILabel *ibTitleLbl;
-@property (weak, nonatomic) IBOutlet UIView *ibContentView;
+@property (weak, nonatomic) IBOutlet UIView *ibEnterPromoContentView;
+
 @property (strong, nonatomic) IBOutlet UIView *ibRedemptionSuccessfulView;
+@property (weak, nonatomic) IBOutlet UIView *ibRedemptionSuccessfulContentView;
 
 @property (strong, nonatomic) IBOutlet UIView *ibChooseShopView;
+@property (weak, nonatomic) IBOutlet UIView *ibChooseShopContentView;
 @property (weak, nonatomic) IBOutlet UITableView *ibShopTable;
 
 @property (strong, nonatomic) IBOutlet UIView *ibEnterPhoneView;
+@property (weak, nonatomic) IBOutlet UIView *ibEnterPhoneContentView;
 
 @property (strong, nonatomic) IBOutlet UIView *ibEnterVerificationView;
+@property (weak, nonatomic) IBOutlet UIView *ibEnterVerificationContentView;
 
 @property (strong, nonatomic) IBOutlet UIView *ibVerifiedView;
+@property (weak, nonatomic) IBOutlet UIView *ibVerifiedContentView;
 
 @property(nonatomic,assign)PopOutViewType viewType;
 @property(nonatomic) NSMutableArray *dummyOutlet;
@@ -50,7 +56,6 @@
     // Do any additional setup after loading the view from its nib.
 //    self.contentSizeInPopup = [self getMainView].frame.size;
 
-//    [self adjustFrameSize];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,21 +65,12 @@
 
 -(void)initSelfView{
     self.dummyOutlet = [[NSMutableArray alloc] init];
-    for (int i=0; i<10; i++) {
+    for (int i=0; i<8; i++) {
         NSDictionary *outletDict = @{@"imageName" : @"Icon-60.png",
                                      @"outletName" : [NSString stringWithFormat:@"Seeties shop %d", i],
                                      @"outletAddress" : @"123, Jalan 123, Solaris Duutamas, Subang Jaya, Selangor",
                                      @"isChecked" : @NO};
         [self.dummyOutlet addObject:outletDict];
-    }
-}
-
--(void)adjustFrameSize{
-    if (self.viewType == ChooseShopViewType) {
-        if (self.dummyOutlet.count==1) {
-            self.contentSizeInPopup = CGSizeMake(300, 300);
-        }
-        
     }
 }
 
@@ -87,10 +83,6 @@
     // Pass the selected object to the new view controller.
 }
 */
-
--(void)viewDidLayoutSubviews{
-//    [self.ibContentView setRoundedBorder];
-}
 
 -(void)setViewType:(PopOutViewType)viewType{
     _viewType = viewType;
@@ -105,6 +97,7 @@
 -(UIView*)getMainView{
     switch (self.viewType) {
         case EnterPromoViewType:
+            [self.ibEnterPromoContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             return self.ibEnterPromoView;
             
         case ChooseShopViewType:
@@ -112,39 +105,45 @@
             self.ibShopTable.estimatedRowHeight = [PromoOutletCell getHeight];
             self.ibShopTable.rowHeight = UITableViewAutomaticDimension;
             
-            int counter =4;
-            float getHeight = self.dummyOutlet.count>counter?[PromoOutletCell getHeight]*counter:[PromoOutletCell getHeight]*self.dummyOutlet.count;
+            int counter = 4;
+            float headerAndFooterHeight = 140;
+            float tableHeight = self.dummyOutlet.count>counter? [PromoOutletCell getHeight]*counter : [PromoOutletCell getHeight]*self.dummyOutlet.count;
             
-            self.contentSizeInPopup = CGSizeMake(self.view.frame.size.width, getHeight+140);
-
+            self.contentSizeInPopup = CGSizeMake(self.view.frame.size.width, tableHeight+headerAndFooterHeight);
+            [self.ibChooseShopContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             return self.ibChooseShopView;
             
         case RedemptionSuccessfulViewType:
+            [self.ibRedemptionSuccessfulContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             return self.ibRedemptionSuccessfulView;
             
         case EnterPhoneViewType:
+            [self.ibEnterPhoneContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             return self.ibEnterPhoneView;
             
         case EnterVerificationViewType:
+            [self.ibEnterVerificationContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             return self.ibEnterVerificationView;
             
         case VerifiedViewType:
+            [self.ibVerifiedContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             return self.ibVerifiedView;
             
         default:
+            [self.ibEnterPromoContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             return self.ibEnterPromoView;
     }
 }
 
 - (IBAction)buttonSubmitClicked:(id)sender {
   
-    PopOutViewType nextType;
+    PopOutViewType nextView;
  
     switch (self.viewType) {
         case EnterPromoViewType:
         {
             if (YES) {
-                nextType = RedemptionSuccessfulViewType;
+                nextView = ChooseShopViewType;
             }
         }
             break;
@@ -152,14 +151,14 @@
         case RedemptionSuccessfulViewType:
         {
             if (YES) {
-                nextType = ChooseShopViewType;
+                nextView = QuitViewType;
             }
         }
             break;
         case ChooseShopViewType:
         {
             if (YES) {
-                nextType = VerifiedViewType;
+                nextView = EnterPhoneViewType;
             }
         }
             break;
@@ -167,7 +166,7 @@
         case EnterPhoneViewType:
         {
             if (YES) {
-                nextType = QuitViewType;
+                nextView = EnterVerificationViewType;
             }
         }
             break;
@@ -175,7 +174,7 @@
         case EnterVerificationViewType:
         {
             if (YES) {
-                nextType = QuitViewType;
+                nextView = VerifiedViewType;
             }
         }
             break;
@@ -183,7 +182,7 @@
         case VerifiedViewType:
         {
             if (YES) {
-                nextType = QuitViewType;
+                nextView = RedemptionSuccessfulViewType;
             }
         }
             break;
@@ -191,23 +190,24 @@
         case QuitViewType:
         {
             if (YES) {
-                nextType = QuitViewType;
+                nextView = QuitViewType;
             }
         }
             break;
 
         default:
-            nextType = EnterPromoViewType;
+            nextView = EnterPromoViewType;
 
             break;
     }
     
-    if (nextType == QuitViewType) {
+    if (nextView == QuitViewType) {
         [self.popupController dismiss];
     }
     else{
         PromoPopOutViewController* nextVC = [PromoPopOutViewController new];
-        [nextVC setViewType:nextType];
+        [nextVC setViewType:nextView];
+//        self.popupController.containerView.backgroundColor = [UIColor clearColor];
         [self.popupController pushViewController:nextVC animated:YES];
 
     }
@@ -215,7 +215,6 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    SLog(@"Number of rows: %d", self.dummyOutlet.count);
     return self.dummyOutlet.count;
 }
 
@@ -234,16 +233,6 @@
     
     return outletCell;
 }
-//- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    if (indexPath.row == self.dummyOutlet.count-1) {
-//        
-//        CGSize frameSize = tableView.contentSize;
-//        self.contentSizeInPopup = CGSizeMake(self.view.frame.size.width, frameSize.height+140);
-//
-//    }
-//}
-//
 
 
 @end
