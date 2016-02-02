@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "VoucherCell.h"
 #import "GeneralFilterViewController.h"
+#import "DealDetailsViewController.h"
 
 @interface VoucherListingViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate>
 

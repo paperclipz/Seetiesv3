@@ -8,10 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum{
+    SelectionOutletCellType,
+    NonSelectionOutletCellType
+} PromoOutletCellType;
+
 @interface PromoOutletCell : CommonTableViewCell
 -(void)setOutletImage:(UIImage*)image;
 -(void)setOutletTitle:(NSString*)title;
 -(void)setOutletAddress:(NSString*)address;
 -(void)setOutletIsChecked:(BOOL)isChecked;
-
+-(void)setOutletCellType:(PromoOutletCellType)cellType;
 @end

@@ -13,7 +13,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *ibUserLocationLbl;
 @property (weak, nonatomic) IBOutlet UITableView *ibVoucherTable;
 @property (weak, nonatomic) IBOutlet UIView *ibFilterView;
+
 @property (strong, nonatomic)GeneralFilterViewController* filterController;
+@property (nonatomic) DealDetailsViewController *dealDetailsViewController;
 @end
 
 @implementation VoucherListingViewController
@@ -41,16 +43,6 @@
 }
 */
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.voucherArray.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    VoucherCell *voucherCell = [tableView dequeueReusableCellWithIdentifier:@"VoucherCell"];
-    
-    return voucherCell;
-}
-
 - (IBAction)filterClicked:(id)sender {
     
     
@@ -58,7 +50,7 @@
     
     UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:filterController];
     [self presentViewController:nav animated:YES completion:nil];
-//    self.filterController.view.hidden =  !self.filterController.view.hidden;
+    //    self.filterController.view.hidden =  !self.filterController.view.hidden;
 }
 
 -(NSArray*)getDummy{
@@ -101,6 +93,7 @@
     return filterArray;
 }
 
+#pragma mark - Declaration
 -(GeneralFilterViewController*)filterController
 {
     if (!_filterController) {
@@ -118,4 +111,28 @@
     
     return _filterController;
 }
+
+-(DealDetailsViewController*)dealDetailsViewController{
+    if (!_dealDetailsViewController) {
+        _dealDetailsViewController = [DealDetailsViewController new];
+    }
+    return _dealDetailsViewController;
+}
+
+#pragma mark - TableView
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.voucherArray.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    VoucherCell *voucherCell = [tableView dequeueReusableCellWithIdentifier:@"VoucherCell"];
+    
+    return voucherCell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self.dealDetailsViewController setDealDetailsViewType:UncollectedDealDetailsView];
+    [self.navigationController pushViewController:self.dealDetailsViewController animated:YES];
+}
+
 @end
