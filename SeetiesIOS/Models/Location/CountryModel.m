@@ -18,4 +18,13 @@
     return YES;
 }
 
+-(NSMutableArray*)arrArea
+{
+    if (!_arrArea) {
+        
+      _arrArea  = [NSMutableArray new];
+        
+    }
+    return _arrArea;
+}
 @end

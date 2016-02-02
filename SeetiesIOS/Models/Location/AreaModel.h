@@ -8,7 +8,7 @@
 
 #import <JSONModel/JSONModel.h>
 
-@interface AreaModel : JSONModel
+@interface AreaModel : PaginationModel
 @property(nonatomic,assign)NSArray<PlacesModel>*result;
 
 @end

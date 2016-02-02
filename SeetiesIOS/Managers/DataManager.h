@@ -78,6 +78,7 @@ typedef void(^CompletionVoidBlock) (void);
 @property(nonatomic,strong)CountriesModel* countriesModel;
 
 
+
 +(RecommendationModel*)getSampleRecommendation;
 +(EditPhotoModel*)getSampleEditPhotoModel;
 +(void)getCollectionFollowing:(NSString*)collectionID HasCollected:(BoolBlock)isCollected completion:(CompletionVoidBlock)completionBlock;//get collection is collected to show in view
