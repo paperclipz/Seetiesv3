@@ -50,8 +50,12 @@
         [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
         // Initialize tracker. Replace with your tracking ID.
         [[GAI sharedInstance] trackerWithTrackingId:@"UA-45737845-4"];
+        
     }
    
+    [[SearchManager Instance]startSearchGPSLocation];
+    [[SearchManager Instance]startGetWifiLocation];
+
     // [ViewMonitor start];
 
 

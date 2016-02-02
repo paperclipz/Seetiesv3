@@ -14,6 +14,8 @@
 #import "AnnouncementModel.h"
 #import "LanguageModel.h"
 #import "InstagramModel.h"
+#import "CountriesModel.h"
+#import "AreaModel.h"
 
 
 /*Declare custom block for model type*/

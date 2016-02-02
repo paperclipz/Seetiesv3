@@ -18,10 +18,13 @@
     BOOL activateDropEffect;
 
 }
-@property (weak, nonatomic) IBOutlet UIView *btnSwipy;
+@property (weak, nonatomic) IBOutlet UIImageView *ibImgDeal;
+@property (weak, nonatomic) IBOutlet UIView *ibDescBorderView;
+
 @property (weak, nonatomic) IBOutlet UIView *ibSwipeView;
-@property (weak, nonatomic) IBOutlet UIView *ibTestView;
 @property (nonatomic, strong) UIDynamicAnimator *animator;
+@property (weak, nonatomic) IBOutlet UIView *ibBottomView;
+@property (weak, nonatomic) IBOutlet UIView *ibTopView;
 @end
 
 @implementation DealRedeemViewController
@@ -33,15 +36,18 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
-    
-    
-
+    [self.ibImgDeal sd_setImageCroppedWithURL:[NSURL URLWithString:@"http://www.mas23tv.com/wp-content/uploads/2015/04/bebe-insta....jpg"] completed:^(UIImage *image) {
+        
+        self.ibImgDeal.image = image;
+    }];
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     activationDistance = 200;
-   
-  }
+    [Utils setRoundBorder:self.ibDescBorderView color:[UIColor whiteColor] borderRadius:5.0f borderWidth:1.0f];
+    self.ibDescBorderView.alpha = 0;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -63,7 +69,7 @@
     CGPoint touchLocation = [touch locationInView:touch.view];
     if ([[touch.view class] isSubclassOfClass:[UIView class]]) {
         
-        if (touch.view == self.btnSwipy) {
+        if (touch.view == self.ibSwipeView) {
             dragging = YES;
             activateDropEffect = NO;
             oldX = touchLocation.x;
@@ -84,21 +90,31 @@
     
     [UIView animateWithDuration:0.5 animations:^{
         
-        if (touch.view == self.btnSwipy) {
-            label.frame = oldFrame;
+        if (touch.view == self.ibSwipeView) {
+            
+            if (!activateDropEffect) {
+                label.frame = oldFrame;
+            }
         }
         
     }];
+    
     dragging = NO;
     
     if (activateDropEffect) {
-        UIGravityBehavior *gravityBehaviour = [[UIGravityBehavior alloc] initWithItems:@[self.ibSwipeView]];
-        //  gravityBehaviour.gravityDirection = CGVectorMake(0, 5);
+        UIGravityBehavior *gravityBehaviour = [[UIGravityBehavior alloc] initWithItems:@[self.ibBottomView]];
+          gravityBehaviour.gravityDirection = CGVectorMake(0, 5);
         [self.animator addBehavior:gravityBehaviour];
         
-        UIDynamicItemBehavior *itemBehaviour = [[UIDynamicItemBehavior alloc] initWithItems:@[self.ibSwipeView]];
-        [itemBehaviour addAngularVelocity:M_PI_2 forItem:self.ibSwipeView];
+        UIDynamicItemBehavior *itemBehaviour = [[UIDynamicItemBehavior alloc] initWithItems:@[self.ibBottomView]];
+        [itemBehaviour addAngularVelocity:-M_PI_2 forItem:self.ibBottomView];
         [self.animator addBehavior:itemBehaviour];
+        
+        [UIView animateWithDuration:1.0f animations:^{
+           
+            self.ibDescBorderView.alpha = 1;
+
+        }];
     }
 }
 
@@ -107,13 +123,17 @@
     CGPoint touchLocation = [touch locationInView:touch.view];
     if ([[touch.view class] isSubclassOfClass:[UIView class]]) {
         UIView *label = touch.view;
-        if (touch.view == self.btnSwipy) {
+        if (touch.view == self.ibSwipeView) {
             
             if (dragging) {
                 CGRect frame = label.frame;
                 
-                if (frame.origin.x <= self.ibSwipeView.frame.size.width - frame.size.width - 10) {
+                if (frame.origin.x <= self.ibBottomView.frame.size.width - frame.size.width -10) {
                     frame.origin.x = label.frame.origin.x + touchLocation.x - oldX;
+                }
+                
+                if (frame.origin.x <oldFrame.origin.x) {
+                    frame = oldFrame;
                 }
                 
                 frame.origin.y = label.frame.origin.y;
@@ -124,11 +144,6 @@
                     SLog(@"activated");
                     activateDropEffect = YES;
                 }
-                
-                //--------------------------------------------------------
-                // Make sure we stay within the bounds of the parent view
-                //--------------------------------------------------------
-                
             }
         }
         

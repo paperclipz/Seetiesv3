@@ -508,6 +508,15 @@
         case ServerRequestTypeSearchCollections:
             str = [NSString stringWithFormat:@"%@/search",API_VERION_URL];
             break;
+        case ServerRequestTypeGetHomeCountry:
+            str = [NSString stringWithFormat:@"%@/home/countries",API_VERION_URL];
+
+            break;
+            
+        case ServerRequestTypeGetHomeCountryPlace:
+            str = [NSString stringWithFormat:@"%@/home/countries",API_VERION_URL];
+            
+            break;
             
     }
     
@@ -795,7 +804,23 @@
             self.dataManager.usersModel = [[UsersModel alloc]initWithDictionary:dict error:nil];
         }
             break;
+        case ServerRequestTypeGetHomeCountry:
+        {
+            NSDictionary* dict = obj[@"data"];
+
+            self.dataManager.countriesModel = [[CountriesModel alloc]initWithDictionary:dict error:nil];
+        }
+            break;
             
+        case ServerRequestTypeGetHomeCountryPlace:
+        {
+            NSDictionary* dict = obj[@"data"];
+
+            AreaModel* model = [[AreaModel alloc]initWithDictionary:dict error:nil];
+            
+            SLog(@"%@",model);
+        }
+            break;
         default:
             
             SLog(@"the return result is :%@",obj);

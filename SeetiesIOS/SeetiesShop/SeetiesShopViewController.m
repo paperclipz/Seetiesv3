@@ -141,13 +141,12 @@
 }
 -(void)setupViews
 {
-    [self.arrViews addObject:self.seProfileView];
     [self.arrViews addObject:self.seShopDetailView];
     [self.arrViews addObject:self.seCollectionView];
     [self.arrViews addObject:self.seRecommendations];
     
     if (![Utils stringIsNilOrEmpty:self.seetiesID]) {
-  //      [self.arrViews addObject:self.seNearbySeetishop];
+        [self.arrViews addObject:self.seNearbySeetishop];
 
     }
   
@@ -159,7 +158,7 @@
     [self.seRecommendations initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
     
     if (![Utils stringIsNilOrEmpty:self.seetiesID]) {
-    //   [self.seNearbySeetishop initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
+       [self.seNearbySeetishop initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
     }
 }
 -(void)addViews

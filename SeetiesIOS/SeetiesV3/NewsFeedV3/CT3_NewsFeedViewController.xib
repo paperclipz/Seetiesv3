@@ -41,13 +41,6 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                             <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                         </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fZz-xx-vDW">
-                            <rect key="frame" x="8" y="13" width="46" height="30"/>
-                            <state key="normal" title="Button"/>
-                            <connections>
-                                <action selector="btnTestCliked:" destination="-1" eventType="touchUpInside" id="0Wa-ex-nY9"/>
-                            </connections>
-                        </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4lt-Mw-mdg">
                             <rect key="frame" x="8" y="34" width="34" height="30"/>
                             <state key="normal" title="login"/>
@@ -64,6 +57,20 @@
                             <state key="normal" image="SearchIcon.png"/>
                             <connections>
                                 <action selector="btnSearchClicked:" destination="-1" eventType="touchUpInside" id="knu-xc-YWe"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sKt-5r-f72">
+                            <rect key="frame" x="100" y="26" width="59" height="30"/>
+                            <state key="normal" title="Location"/>
+                            <connections>
+                                <action selector="btnSearchLocationClicked:" destination="-1" eventType="touchUpInside" id="woF-IO-Vyk"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fZz-xx-vDW">
+                            <rect key="frame" x="198" y="34" width="46" height="30"/>
+                            <state key="normal" title="Button"/>
+                            <connections>
+                                <action selector="btnTestCliked:" destination="-1" eventType="touchUpInside" id="0Wa-ex-nY9"/>
                             </connections>
                         </button>
                     </subviews>

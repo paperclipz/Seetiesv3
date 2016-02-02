@@ -34,7 +34,7 @@
 -(void)locationManager:(CLLocationManager *)manager
     didUpdateLocations:(NSArray *)locations {
    
-    self.location = locations[0];
+    self.GPSLocation = locations[0];
     [self.manager stopUpdatingLocation];
 }
 

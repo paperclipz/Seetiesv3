@@ -110,7 +110,6 @@
         if (isCollectedBlock) {
             isCollectedBlock(isTempPosts);
         }
-        
     }
     else{
         if (notCollectedBlock) {

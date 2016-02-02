@@ -84,6 +84,10 @@ typedef enum
     ServerRequestTypeUserFollower,
     ServerRequestTypeUserFollowing,
     
+    /*Get Country*/
+    ServerRequestTypeGetHomeCountry,
+    ServerRequestTypeGetHomeCountryPlace,
+    
 }ServerRequestType;
 
 typedef enum

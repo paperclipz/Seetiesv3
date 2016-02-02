@@ -40,7 +40,9 @@
 #import "AppDelegate.h"
 #import "SeetiesShopViewController.h"
 #import "DealRedeemViewController.h"
-
+#import "CT3_MeViewController.h"
+#import "VoucherListingViewController.h"
+#import "SearchLocationViewController.h"
 
 static NSCache* heightCache = nil;
 #define TopBarHeight 64.0f
@@ -84,15 +86,22 @@ static NSCache* heightCache = nil;
 @property(nonatomic,strong)VoucherListingViewController* voucherListingViewController;
 
 @property(nonatomic)DealRedeemViewController* dealRedeemViewController;
-
+@property(nonatomic,strong)CT3_MeViewController* meViewController;
+@property(nonatomic, strong) SearchLocationViewController *searchLocationViewController;
 /*Controller*/
-
 
 @end
 
 @implementation CT3_NewsFeedViewController
 
 #pragma mark -IBACTION
+
+- (IBAction)btnSearchLocationClicked:(id)sender {
+    
+    _searchLocationViewController = nil;
+    [self.navigationController pushViewController:self.searchLocationViewController animated:YES];
+}
+
 - (IBAction)btnSearchClicked:(id)sender {
     [self.navigationController pushViewController:self.searchViewV2Controller animated:YES];
 }
@@ -104,7 +113,6 @@ static NSCache* heightCache = nil;
 }
 - (IBAction)btnLoginClicked:(id)sender {
     
-    
     //use this block if feeds api return token session over or app not login
     if (self.btnLoginClickedBlock) {
         self.btnLoginClickedBlock();
@@ -113,12 +121,15 @@ static NSCache* heightCache = nil;
 }
 - (IBAction)btnTestCliked:(id)sender {
     
-   // SeetiesShopViewController* temp = [SeetiesShopViewController new];
+    SeetiesShopViewController* temp = [SeetiesShopViewController new];
    
-   // [temp initDataWithSeetiesID:@"56603c9af9df245c7b8b4572"];
+    //UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:temp];
+    [temp initDataWithSeetiesID:@"56397e301c4d5be92e8b4711"];
+    [self presentViewController:temp animated:YES completion:nil];
+    
     _dealRedeemViewController = nil;
-    [self.navigationController pushViewController:self.dealRedeemViewController animated:YES];
-    //[self presentViewController:self.searchLocationViewController animated:YES completion:nil];
+  //  [self.navigationController pushViewController:self.dealRedeemViewController animated:YES];
+
 }
 
 -(void)refreshViewAfterLogin
@@ -260,6 +271,7 @@ static NSCache* heightCache = nil;
 }
 
 -(SearchLocationViewController*)searchLocationViewController{
+ 
     if (!_searchLocationViewController) {
         _searchLocationViewController = [SearchLocationViewController new];
     }

@@ -11,13 +11,14 @@
 #import "SeShopDetailTableViewCell.h"
 #import "PhotoCollectionViewCell.h"
 #import "NSDictionary+Extra.h"
+#import "SeDealsFeaturedTblCell.h"
 
-#define Info_Footer_HEader_Height 54+54;
 #define MapMainViewHeight 210;
 
 @interface SeShopDetailView()<UITableViewDataSource,UITableViewDelegate, UICollectionViewDataSource,UICollectionViewDelegate,MKMapViewDelegate>
 {
    
+    __weak IBOutlet NSLayoutConstraint *constDealHeight;
     __weak IBOutlet NSLayoutConstraint *constantMapMainView;
     __weak IBOutlet NSLayoutConstraint *photoHeightConstraint;
     __weak IBOutlet UILabel *lblPhotoCount;
@@ -63,7 +64,9 @@
 //================== MAP =======================//
 
 @property (weak, nonatomic) IBOutlet UILabel *lblNearbyPublicTransport;
+@property (weak, nonatomic) IBOutlet UITableView *ibDealTableView;
 
+@property (weak, nonatomic) IBOutlet UIView *ibDealHeaderView;
 @property (weak, nonatomic) IBOutlet UILabel *lblAddress;
 @property(nonatomic,assign)MKCoordinateRegion region;
 @property(strong,nonatomic)MKPointAnnotation* annotation;
@@ -146,6 +149,8 @@
     [self.ibMapView addGestureRecognizer:tgr];
    
     [self changeLanguage];
+    
+    [self.ibDealHeaderView setSquareBorder];
 }
 
 -(void)initTableViewDelegate
@@ -153,6 +158,10 @@
     self.ibTableView.delegate = self;
     self.ibTableView.dataSource = self;
     [self.ibTableView registerClass:[SeShopDetailTableViewCell class] forCellReuseIdentifier:@"SeShopDetailTableViewCell"];
+    
+    self.ibDealTableView.delegate = self;
+    self.ibDealTableView.dataSource = self;
+    [self.ibDealTableView registerClass:[SeDealsFeaturedTblCell class] forCellReuseIdentifier:@"SeDealsFeaturedTblCell"];
 }
 
 -(void)initCollectionViewDelegate
@@ -193,8 +202,9 @@
         }];
     }
     
-    float constant =  (self.arrayList.count*[SeShopDetailTableViewCell getHeight]) + Info_Footer_HEader_Height;
-    tableviewConstraint.constant = constant;
+    // 8 for bottom padding 54 each for top and bottom bar
+    float constantHeight =  (self.arrayList.count*[SeShopDetailTableViewCell getHeight])+ 8 + 54 + 54;
+    tableviewConstraint.constant = constantHeight;
     
     if (self.arrayList.count == 0) {
         tableviewConstraint.constant = 0;
@@ -208,6 +218,7 @@
 
     }
 
+    constDealHeight.constant = self.ibDealHeaderView.frame.size.height + [SeDealsFeaturedTblCell getHeight]* 2;
     constantMapMainView.constant = MapMainViewHeight;
     [self setNeedsUpdateConstraints];
     [self layoutIfNeeded];
@@ -276,26 +287,68 @@
 
 #pragma mark - UITableViewDelegate
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    
+    if (self.ibDealTableView == tableView) {
+        return self.ibDealHeaderView.frame.size.height;
+    }
+    
+    return 0;
+}
+
+- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (self.ibDealTableView == tableView) {
+        return self.ibDealHeaderView;
+    }
+        return nil;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.arrayList.count;
+    
+    if (self.ibTableView == tableView) {
+      return self.arrayList.count;
+    }
+    else
+    {
+        return 2;
+
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SeShopDetailTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"SeShopDetailTableViewCell"];
     
-    
-    NSDictionary* dict = self.arrayList[indexPath.row];
-    NSArray* keys = [dict allKeys];
-    
-    NSString* key = keys[0];
+    if (self.ibTableView == tableView) {
+        SeShopDetailTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"SeShopDetailTableViewCell"];
+        
+        NSDictionary* dict = self.arrayList[indexPath.row];
+        
+        NSArray* keys = [dict allKeys];
+        
+        NSString* key = keys[0];
+        
+        cell.lblTitle.text = LocalisedString(key);
+        [cell setImage:key];
+        cell.lblDesc.text = [dict objectForKey:key];
+        
+        return cell;
 
-    cell.lblTitle.text = LocalisedString(key);
-    [cell setImage:key];
-    cell.lblDesc.text = [dict objectForKey:key];
+    }
 
-    return cell;
+    else
+    {
+        SeDealsFeaturedTblCell* cell = [tableView dequeueReusableCellWithIdentifier:@"SeDealsFeaturedTblCell"];
+        
+        return cell;
+
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

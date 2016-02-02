@@ -29,6 +29,7 @@
 @class  DraftsModel;
 @class NewsFeedModels;
 @class InstagramModel;
+@class CountriesModel;
 typedef void(^BoolBlock) (BOOL isCollected);
 typedef void(^CompletionVoidBlock) (void);
 
@@ -74,6 +75,7 @@ typedef void(^CompletionVoidBlock) (void);
 /* ================================ News Feed ================================ */
 
 @property(nonatomic,strong)NewsFeedModels* newsFeedModels;
+@property(nonatomic,strong)CountriesModel* countriesModel;
 
 
 +(RecommendationModel*)getSampleRecommendation;

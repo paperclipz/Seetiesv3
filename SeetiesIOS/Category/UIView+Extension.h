@@ -23,5 +23,6 @@
 -(void)setSideCurveBorder;// left right round
 -(void)setRoundedBorder; // full round
 -(void)setStandardBorder;// 4 side border curve
+-(void)setSquareBorder;
 
 @end
