@@ -937,6 +937,7 @@
 		8AC8F7561BDDD44800DEF14A /* UIImageView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8F7551BDDD44800DEF14A /* UIImageView+Extension.m */; };
 		8AC8F75B1BDDD67600DEF14A /* ListingHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8F75A1BDDD67600DEF14A /* ListingHeaderView.m */; };
 		8AC8F75D1BDDD68500DEF14A /* ListingHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AC8F75C1BDDD68500DEF14A /* ListingHeaderView.xib */; };
+		8AD50D611C61F0F900C9D952 /* DealModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD50D601C61F0F900C9D952 /* DealModel.m */; };
 		8AD6BA601B705DF20040437E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA5F1B705DF20040437E /* main.m */; };
 		8AD6BA631B705DF20040437E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA621B705DF20040437E /* AppDelegate.m */; };
 		8AD6BA661B705DF20040437E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA651B705DF20040437E /* ViewController.m */; };
@@ -1253,7 +1254,6 @@
 		C20872981C59D1FA0063F203 /* PromoOutletCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20872961C59D1FA0063F203 /* PromoOutletCell.xib */; };
 		C22D125C1C608D0200EA1895 /* TagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C22D125A1C608D0200EA1895 /* TagCell.m */; };
 		C22D125D1C608D0200EA1895 /* TagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22D125B1C608D0200EA1895 /* TagCell.xib */; };
-		C23042DE1C61E459001008CB /* DealModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C23042DD1C61E459001008CB /* DealModel.m */; };
 		C238E3251C4649AA00570A25 /* slider-default-handle-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = C238E3071C4649AA00570A25 /* slider-default-handle-highlighted.png */; };
 		C238E3261C4649AA00570A25 /* slider-default-handle-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C238E3081C4649AA00570A25 /* slider-default-handle-highlighted@2x.png */; };
 		C238E3271C4649AA00570A25 /* slider-default-handle.png in Resources */ = {isa = PBXBuildFile; fileRef = C238E3091C4649AA00570A25 /* slider-default-handle.png */; };
@@ -2481,6 +2481,8 @@
 		8AC8F7591BDDD67600DEF14A /* ListingHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListingHeaderView.h; sourceTree = "<group>"; };
 		8AC8F75A1BDDD67600DEF14A /* ListingHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListingHeaderView.m; sourceTree = "<group>"; };
 		8AC8F75C1BDDD68500DEF14A /* ListingHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListingHeaderView.xib; sourceTree = "<group>"; };
+		8AD50D5F1C61F0F900C9D952 /* DealModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealModel.h; sourceTree = "<group>"; };
+		8AD50D601C61F0F900C9D952 /* DealModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealModel.m; sourceTree = "<group>"; };
 		8AD6BA5A1B705DF20040437E /* SeetiesIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeetiesIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AD6BA5E1B705DF20040437E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8AD6BA5F1B705DF20040437E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -2991,8 +2993,6 @@
 		C22D12591C608D0200EA1895 /* TagCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagCell.h; sourceTree = "<group>"; };
 		C22D125A1C608D0200EA1895 /* TagCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagCell.m; sourceTree = "<group>"; };
 		C22D125B1C608D0200EA1895 /* TagCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagCell.xib; sourceTree = "<group>"; };
-		C23042DC1C61E459001008CB /* DealModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealModel.h; sourceTree = "<group>"; };
-		C23042DD1C61E459001008CB /* DealModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealModel.m; sourceTree = "<group>"; };
 		C238E3071C4649AA00570A25 /* slider-default-handle-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-handle-highlighted.png"; sourceTree = "<group>"; };
 		C238E3081C4649AA00570A25 /* slider-default-handle-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-handle-highlighted@2x.png"; sourceTree = "<group>"; };
 		C238E3091C4649AA00570A25 /* slider-default-handle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-handle.png"; sourceTree = "<group>"; };
@@ -5353,6 +5353,15 @@
 			path = ReusableView;
 			sourceTree = "<group>";
 		};
+		8AD50D5E1C61F0F900C9D952 /* Deal */ = {
+			isa = PBXGroup;
+			children = (
+				8AD50D5F1C61F0F900C9D952 /* DealModel.h */,
+				8AD50D601C61F0F900C9D952 /* DealModel.m */,
+			);
+			path = Deal;
+			sourceTree = "<group>";
+		};
 		8AD6BA511B705DF20040437E = {
 			isa = PBXGroup;
 			children = (
@@ -5954,6 +5963,7 @@
 				8AF9996F1C3E6569000314E4 /* CoreModel.h */,
 				8AEDBF921C2031BA000BD2FF /* Model.h */,
 				8AEDBF931C2031BA000BD2FF /* Model.m */,
+				8AD50D5E1C61F0F900C9D952 /* Deal */,
 				8AF6FE011C5F3E9C005AAE5D /* Location */,
 				8AF33A3A1C3F67E1000A2021 /* FeedsModel */,
 				8AEDBFC01C2031EB000BD2FF /* SeetiesModel */,
@@ -5992,8 +6002,6 @@
 				0B497B031C509579004989DF /* UsersModel.m */,
 				8AF6FDD71C58AC83005AAE5D /* InstagramModel.h */,
 				8AF6FDD81C58AC83005AAE5D /* InstagramModel.m */,
-				C23042DC1C61E459001008CB /* DealModel.h */,
-				C23042DD1C61E459001008CB /* DealModel.m */,
 			);
 			name = MODELS;
 			path = Models;
@@ -7856,7 +7864,6 @@
 				8AD6C1141B706CF30040437E /* FSOAuthNoAppStore.m in Sources */,
 				8AD6C8331B7454290040437E /* UIAlertView+Blocks.m in Sources */,
 				8AB813C31BC23ECE002F5F06 /* UploadManager.m in Sources */,
-				C23042DE1C61E459001008CB /* DealModel.m in Sources */,
 				8AC8F7321BDA414E00DEF14A /* ProfilePagePostCollectionViewCell.m in Sources */,
 				8A114C7E1BE73F5D006AE3F0 /* BKCardPatternInfo.m in Sources */,
 				8AC8F7361BDA414E00DEF14A /* ProfileCollectionPageTableViewCell.m in Sources */,
@@ -7869,6 +7876,7 @@
 				8AFA52011C47B4AB00E7920E /* CT3_NewsFeedViewController.m in Sources */,
 				8AFA51D51C47B4AB00E7920E /* ShopTableViewCell.m in Sources */,
 				8A3409481B8AD06A009B66C3 /* UIImage+Saving.m in Sources */,
+				8AD50D611C61F0F900C9D952 /* DealModel.m in Sources */,
 				8A988FB91C29049800D0F0EF /* WMATweetView.m in Sources */,
 				8A0348791C154F9C0015E606 /* SeetiesMoreInfoViewController.m in Sources */,
 				8AD6C2291B706FA10040437E /* NSString+ChangeAsciiString.m in Sources */,
