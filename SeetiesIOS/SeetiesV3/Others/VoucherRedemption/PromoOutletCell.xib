@@ -92,6 +92,7 @@
                 </variation>
             </tableViewCellContentView>
             <connections>
+                <outlet property="ibArrowImg" destination="L8U-m8-BTJ" id="GpK-25-TWw"/>
                 <outlet property="ibIsSelectedImg" destination="Yg2-Go-FAN" id="xwR-xo-a1F"/>
                 <outlet property="ibOutletAddress" destination="ax9-A3-MeC" id="XOY-5m-sP0"/>
                 <outlet property="ibOutletImg" destination="K6D-zC-qUx" id="lM4-Zy-3b1"/>

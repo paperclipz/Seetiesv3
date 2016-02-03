@@ -14,9 +14,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *ibVoucherTag2Lbl;
 @property (weak, nonatomic) IBOutlet UILabel *ibVoucherTag3Lbl;
 @property (weak, nonatomic) IBOutlet UILabel *ibVoucherTopLeftLbl;
+@property (weak, nonatomic) IBOutlet UILabel *ibVoucherTopLeftSecondLbl;
 @property (weak, nonatomic) IBOutlet UILabel *ibVoucherTitleLbl;
 @property (weak, nonatomic) IBOutlet UILabel *ibVoucherShopLbl;
-@property (weak, nonatomic) IBOutlet UILabel *ibVoucherLeftLbl;
+@property (weak, nonatomic) IBOutlet UIButton *ibVoucherCollectBtn;
+@property (weak, nonatomic) IBOutlet UIView *ibVoucherBlackOverylay;
+@property (weak, nonatomic) IBOutlet UIImageView *ibOverlayIcon;
+@property (weak, nonatomic) IBOutlet UILabel *ibVoucherOverlayTitle;
 
 @end
 

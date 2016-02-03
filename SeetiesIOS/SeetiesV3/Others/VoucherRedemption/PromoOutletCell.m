@@ -13,6 +13,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *ibOutletTitle;
 @property (weak, nonatomic) IBOutlet UILabel *ibOutletAddress;
 @property (weak, nonatomic) IBOutlet UIImageView *ibIsSelectedImg;
+@property (weak, nonatomic) IBOutlet UIImageView *ibArrowImg;
+
+@property(nonatomic, assign) PromoOutletCellType cellType;
 
 @end
 
@@ -20,6 +23,12 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    if (self.cellType == SelectionOutletCellType) {
+        _ibArrowImg.hidden = YES;
+    }
+    else{
+        _ibArrowImg.hidden = NO;
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -42,6 +51,10 @@
 
 -(void)setOutletIsChecked:(BOOL)isChecked{
     _ibIsSelectedImg.hidden = !isChecked;
+}
+
+-(void)setOutletCellType:(PromoOutletCellType)cellType{
+    _cellType = cellType;
 }
 
 @end

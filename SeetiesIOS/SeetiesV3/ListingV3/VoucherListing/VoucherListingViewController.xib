@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VoucherListingViewController">
             <connections>
-                <outlet property="ibFilterView" destination="V2j-uV-Uox" id="olD-rQ-WH4"/>
                 <outlet property="ibUserLocationLbl" destination="KB9-ER-GDk" id="7Jm-Qn-RFC"/>
                 <outlet property="ibVoucherTable" destination="vEe-3n-SBv" id="VUM-tK-L0O"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -18,7 +17,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I2e-bV-XI7">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I2e-bV-XI7" userLabel="header">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="wJH-T7-Mrw">
@@ -51,12 +50,23 @@
                             <rect key="frame" x="40" y="18" width="240" height="46"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="msM-T5-Qek" userLabel="search button">
-                            <rect key="frame" x="270" y="14" width="50" height="50"/>
+                            <rect key="frame" x="220" y="14" width="50" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="50" id="747-d6-OOm"/>
                                 <constraint firstAttribute="height" constant="50" id="K7o-lJ-w0V"/>
                             </constraints>
                             <state key="normal" image="SearchIcon.png"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aZJ-d8-8P6" userLabel="filter button">
+                            <rect key="frame" x="270" y="14" width="50" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="Edj-O7-EBR"/>
+                                <constraint firstAttribute="width" constant="50" id="i3G-6d-ONb"/>
+                            </constraints>
+                            <state key="normal" image="FilterIcon.png"/>
+                            <connections>
+                                <action selector="filterClicked:" destination="-1" eventType="touchUpInside" id="4Kr-aV-nAE"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -74,10 +84,13 @@
                         <constraint firstItem="PgP-Mz-cA7" firstAttribute="bottom" secondItem="KB9-ER-GDk" secondAttribute="bottom" id="YgT-Cb-f8i"/>
                         <constraint firstItem="PgP-Mz-cA7" firstAttribute="trailing" secondItem="KB9-ER-GDk" secondAttribute="trailing" id="bkx-gW-qn9"/>
                         <constraint firstItem="PgP-Mz-cA7" firstAttribute="centerY" secondItem="I2e-bV-XI7" secondAttribute="centerY" id="ggE-KY-Yu6"/>
+                        <constraint firstAttribute="trailing" secondItem="aZJ-d8-8P6" secondAttribute="trailing" id="kM6-Xs-rEG"/>
                         <constraint firstItem="PgP-Mz-cA7" firstAttribute="leading" secondItem="KB9-ER-GDk" secondAttribute="leading" id="md4-db-GbX"/>
+                        <constraint firstItem="aZJ-d8-8P6" firstAttribute="leading" secondItem="msM-T5-Qek" secondAttribute="trailing" id="okv-hd-vwq"/>
                         <constraint firstItem="KB9-ER-GDk" firstAttribute="leading" secondItem="I2e-bV-XI7" secondAttribute="leading" constant="40" id="onx-qK-lak"/>
                         <constraint firstAttribute="height" constant="64" id="qzp-N1-tWS"/>
                         <constraint firstAttribute="trailing" secondItem="KB9-ER-GDk" secondAttribute="trailing" constant="40" id="tbh-2L-hgd"/>
+                        <constraint firstAttribute="bottom" secondItem="aZJ-d8-8P6" secondAttribute="bottom" id="tcE-gk-wZb"/>
                         <constraint firstItem="KB9-ER-GDk" firstAttribute="centerY" secondItem="I2e-bV-XI7" secondAttribute="centerY" constant="7.5" id="yf6-Wq-1SU"/>
                     </constraints>
                     <variation key="default">
@@ -85,33 +98,73 @@
                             <exclude reference="XFL-Ch-fPA"/>
                             <exclude reference="YgT-Cb-f8i"/>
                             <exclude reference="ggE-KY-Yu6"/>
+                            <exclude reference="Qrp-Kr-qXA"/>
                         </mask>
                     </variation>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V2j-uV-Uox" userLabel="filter">
-                    <rect key="frame" x="0.0" y="64" width="320" height="40"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vzi-NU-OdU" userLabel="wallet footer">
+                    <rect key="frame" x="0.0" y="508" width="320" height="60"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NcM-XJ-IKC">
-                            <rect key="frame" x="8" y="8" width="304" height="24"/>
-                            <state key="normal" title="Filter">
-                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="filterClicked:" destination="-1" eventType="touchUpInside" id="2qq-Se-9xK"/>
-                            </connections>
-                        </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-60.png" translatesAutoresizingMaskIntoConstraints="NO" id="wXs-2x-Sya" userLabel="wallet icon">
+                            <rect key="frame" x="8" y="10" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="1fz-W1-zRR"/>
+                                <constraint firstAttribute="height" constant="40" id="p8w-zn-IeF"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TL0-PQ-q1H" userLabel="voucher count">
+                            <rect key="frame" x="242" y="20" width="40" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="JDf-lr-FsW"/>
+                                <constraint firstAttribute="height" constant="21" id="e8l-PZ-4dR"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ArrowBtn.png" translatesAutoresizingMaskIntoConstraints="NO" id="bvE-vN-sUM" userLabel="arrow icon">
+                            <rect key="frame" x="282" y="15" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="8Ts-Uf-ETO"/>
+                                <constraint firstAttribute="height" constant="30" id="Vi7-I6-ghf"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voucher Wallet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EaS-vd-HRF" userLabel="voucher wallet">
+                            <rect key="frame" x="53" y="20" width="189" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="iGn-GZ-qRx"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="LH7-QP-kbw"/>
-                        <constraint firstAttribute="bottom" secondItem="NcM-XJ-IKC" secondAttribute="bottom" constant="8" id="PNh-MO-Q9K"/>
-                        <constraint firstItem="NcM-XJ-IKC" firstAttribute="top" secondItem="V2j-uV-Uox" secondAttribute="top" constant="8" id="e8b-k3-alW"/>
-                        <constraint firstAttribute="trailing" secondItem="NcM-XJ-IKC" secondAttribute="trailing" constant="8" id="g1C-ky-lP8"/>
-                        <constraint firstItem="NcM-XJ-IKC" firstAttribute="leading" secondItem="V2j-uV-Uox" secondAttribute="leading" constant="8" id="lvf-zJ-RTF"/>
+                        <constraint firstItem="EaS-vd-HRF" firstAttribute="leading" secondItem="wXs-2x-Sya" secondAttribute="trailing" constant="5" id="1jw-Tc-oRX"/>
+                        <constraint firstItem="wXs-2x-Sya" firstAttribute="centerY" secondItem="Vzi-NU-OdU" secondAttribute="centerY" id="4Sd-mf-Jk6"/>
+                        <constraint firstItem="bvE-vN-sUM" firstAttribute="leading" secondItem="EaS-vd-HRF" secondAttribute="trailing" constant="5" id="AaC-Yu-HKh"/>
+                        <constraint firstItem="bvE-vN-sUM" firstAttribute="leading" secondItem="TL0-PQ-q1H" secondAttribute="trailing" id="CMk-E2-b0Q"/>
+                        <constraint firstItem="TL0-PQ-q1H" firstAttribute="leading" secondItem="EaS-vd-HRF" secondAttribute="trailing" id="Drs-th-kZn"/>
+                        <constraint firstItem="EaS-vd-HRF" firstAttribute="leading" secondItem="Vzi-NU-OdU" secondAttribute="leading" constant="99" id="Nwf-JV-mOg"/>
+                        <constraint firstItem="TL0-PQ-q1H" firstAttribute="centerY" secondItem="Vzi-NU-OdU" secondAttribute="centerY" id="Tqe-9T-rxV"/>
+                        <constraint firstAttribute="height" constant="60" id="ePM-Fm-4d2"/>
+                        <constraint firstItem="wXs-2x-Sya" firstAttribute="leading" secondItem="Vzi-NU-OdU" secondAttribute="leading" constant="8" id="frg-RL-5lG"/>
+                        <constraint firstAttribute="trailing" secondItem="bvE-vN-sUM" secondAttribute="trailing" constant="8" id="h91-1R-wxg"/>
+                        <constraint firstItem="bvE-vN-sUM" firstAttribute="centerY" secondItem="Vzi-NU-OdU" secondAttribute="centerY" id="id6-E0-zna"/>
+                        <constraint firstItem="EaS-vd-HRF" firstAttribute="top" secondItem="wXs-2x-Sya" secondAttribute="bottom" constant="-74" id="ilh-VC-22i"/>
+                        <constraint firstItem="EaS-vd-HRF" firstAttribute="centerY" secondItem="Vzi-NU-OdU" secondAttribute="centerY" id="uWb-pl-r1V"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="Nwf-JV-mOg"/>
+                            <exclude reference="ilh-VC-22i"/>
+                            <exclude reference="AaC-Yu-HKh"/>
+                        </mask>
+                    </variation>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="190" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vEe-3n-SBv" userLabel="voucher table">
-                    <rect key="frame" x="0.0" y="114" width="320" height="454"/>
+                    <rect key="frame" x="0.0" y="64" width="320" height="444"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="twe-MW-9nk"/>
@@ -122,21 +175,30 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="I2e-bV-XI7" secondAttribute="trailing" id="7hH-vh-pib"/>
+                <constraint firstItem="Vzi-NU-OdU" firstAttribute="top" secondItem="vEe-3n-SBv" secondAttribute="bottom" id="KdW-hY-GQd"/>
                 <constraint firstItem="vEe-3n-SBv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="PME-c0-d57"/>
                 <constraint firstAttribute="trailing" secondItem="vEe-3n-SBv" secondAttribute="trailing" id="RQh-AV-14l"/>
+                <constraint firstItem="vEe-3n-SBv" firstAttribute="top" secondItem="I2e-bV-XI7" secondAttribute="bottom" id="SsY-WT-KdR"/>
                 <constraint firstItem="I2e-bV-XI7" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="dm2-83-5kh"/>
-                <constraint firstItem="vEe-3n-SBv" firstAttribute="top" secondItem="V2j-uV-Uox" secondAttribute="bottom" constant="10" id="hme-yJ-LfL"/>
-                <constraint firstAttribute="trailing" secondItem="V2j-uV-Uox" secondAttribute="trailing" id="oGv-pc-WMM"/>
-                <constraint firstItem="V2j-uV-Uox" firstAttribute="top" secondItem="I2e-bV-XI7" secondAttribute="bottom" id="q0b-5y-3x5"/>
+                <constraint firstItem="Vzi-NU-OdU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gJx-Ty-QW7"/>
+                <constraint firstAttribute="bottom" secondItem="Vzi-NU-OdU" secondAttribute="bottom" id="i4Y-HN-lZ1"/>
+                <constraint firstAttribute="trailing" secondItem="Vzi-NU-OdU" secondAttribute="trailing" id="o99-QE-wjT"/>
                 <constraint firstAttribute="bottom" secondItem="vEe-3n-SBv" secondAttribute="bottom" id="ru1-JH-vur"/>
-                <constraint firstItem="V2j-uV-Uox" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zAe-yx-9jR"/>
                 <constraint firstItem="I2e-bV-XI7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zqX-WU-6wZ"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="ru1-JH-vur"/>
+                </mask>
+            </variation>
         </view>
     </objects>
     <resources>
+        <image name="ArrowBtn.png" width="30" height="30"/>
         <image name="BackIcon.png" width="40" height="40"/>
+        <image name="FilterIcon.png" width="40" height="40"/>
+        <image name="Icon-60.png" width="60" height="60"/>
         <image name="SearchIcon.png" width="40" height="40"/>
     </resources>
 </document>
