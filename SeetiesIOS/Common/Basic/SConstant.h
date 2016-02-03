@@ -88,6 +88,10 @@ typedef enum
     ServerRequestTypeGetHomeCountry,
     ServerRequestTypeGetHomeCountryPlace,
     
+    /*HOME*/
+    ServerRequestTypeGetHome,
+    ServerRequestTypeGetHomeSuperDeal,
+    
 }ServerRequestType;
 
 typedef enum

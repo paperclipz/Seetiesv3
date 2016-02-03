@@ -28,6 +28,10 @@
 @end
 
 @implementation SearchLocationViewController
+- (IBAction)btnutoDetectClicked:(id)sender {
+    
+    [self getGoogleGeoCode];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -249,6 +253,23 @@
 }
 
 #pragma mark - Request Server
+-(void)getGoogleGeoCode
+{
+    [self.searchManager getGoogleGeoCode:self.userLocation completionBlock:^(id object) {
+       
+        NSDictionary* temp = [[NSDictionary alloc]initWithDictionary:object];
+        NSArray* arrayLocations = [temp valueForKey:@"results"];
+        NSDictionary* tempLocation = arrayLocations[0];
+        
+        SearchLocationDetailModel* model = [[SearchLocationDetailModel alloc]initWithDictionary:tempLocation error:nil];
+        [model process];
+//        model.country;
+//        model.route;
+//        model.address_components;
+//        SLog(@"%@",model);
+
+    }];
+}
 -(void)getGoogleSearchPlaces
 {
     [self.searchManager getSearchLocationFromGoogle:self.userLocation input:self.ibSearchTxtField.text completionBlock:^(id object) {

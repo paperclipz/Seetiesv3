@@ -518,6 +518,11 @@
             
             break;
             
+        case ServerRequestTypeGetHome:
+            str = [NSString stringWithFormat:@"%@/home",API_VERION_URL];
+            
+            break;
+            
     }
     
     return [NSString stringWithFormat:@"https://%@/%@",self.serverPath,str];
@@ -820,6 +825,10 @@
             
           //  SLog(@"%@",model);
         }
+            break;
+            
+        case ServerRequestTypeGetHome:
+            
             break;
         default:
             

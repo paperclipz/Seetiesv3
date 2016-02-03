@@ -138,6 +138,8 @@ typedef enum {
 
 +(NSString*)getWeekName:(int)integer;
 +(int)getWeekInteger:(NSString*)week;
++(NSString*)getTimeZone;
+
 // ========================  Day ==========================
 
 #pragma mark - UI

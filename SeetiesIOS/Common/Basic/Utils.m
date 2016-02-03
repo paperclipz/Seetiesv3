@@ -614,4 +614,74 @@
     [appdelegate.landingViewController showLoginView];
 
 }
+
++(NSString*)getTimeZone
+{
+    //int utcTimeZone = (int)[[NSTimeZone localTimeZone] secondsFromGMT] / 3600;
+    
+    NSDateFormatter *localTimeZoneFormatter = [NSDateFormatter new];
+    localTimeZoneFormatter.timeZone = [NSTimeZone localTimeZone];
+    localTimeZoneFormatter.dateFormat = @"Z";
+    NSString *localTimeZoneOffset = [localTimeZoneFormatter stringFromDate:[NSDate date]];
+    
+    return localTimeZoneOffset;
+//    NSString* strUTC;
+//    switch (utcTimeZone) {
+//        case 0:
+//            
+//            strUTC = @"";
+//            break;
+//            
+//        case 1:
+//            
+//            break;
+//            
+//        case 2:
+//            
+//            break;
+//            
+//        case 3:
+//            
+//            break;
+//        
+//            
+//        case 4:
+//            
+//            break;
+//            
+//        case 5:
+//            
+//            break;
+//            
+//        case 6:
+//            
+//            break;
+//        case 7:
+//            
+//            break;
+//
+//        default:
+//        case 8:
+//            
+//            break;
+//
+//        case 9:
+//            
+//            break;
+//
+//        case 10:
+//            
+//            break;
+//
+//        case 11:
+//            
+//            break;
+//
+//        case 12:
+//            
+//            break;
+//
+//    }
+
+}
 @end

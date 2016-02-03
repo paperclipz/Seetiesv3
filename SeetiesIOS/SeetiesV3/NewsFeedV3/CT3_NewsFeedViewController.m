@@ -297,8 +297,7 @@ static NSCache* heightCache = nil;
 
 -(void)initSelfView
 {
- 
-    
+    [self requestServerForHome];
     self.automaticallyAdjustsScrollViewInsets = NO;
     constTopScrollView.constant = TopBarHeight;
 
@@ -1144,6 +1143,27 @@ static NSCache* heightCache = nil;
 
     }
     
+}
+
+-(void)requestServerForHome
+{
+    
+    NSDictionary* dict = @{@"timezone_offset" : [Utils getTimeZone],
+                           @"type" : @"none",
+                           @"lat" : @"",
+                           @"lng" : @"",
+                           @"place_id" : @"",
+                           @"token" : [Utils getAppToken],
+                           @"address_components" : @"",
+                           };
+    
+    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetHome param:dict appendString:nil completeHandler:^(id object) {
+        
+    } errorBlock:^(id object) {
+        
+    }];
+  
+
 }
 
 //- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {

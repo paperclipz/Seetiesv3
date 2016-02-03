@@ -48,7 +48,7 @@
 @property(nonatomic,strong)NSString* lng;
 
 @property(nonatomic,strong)NSString<Optional>* state;
-@property(nonatomic,strong)NSString<Optional>* city;
+@property(nonatomic,strong)NSString<Optional>* city;//locality
 @property(nonatomic,strong)NSString<Optional>* route;
 @property(nonatomic,strong)NSString<Optional>* country;
 @property(nonatomic,strong)NSString<Optional>* postal_code;

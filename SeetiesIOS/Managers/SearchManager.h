@@ -18,9 +18,9 @@ typedef void(^SearchManagerFailBlock)(NSString *status);
 
 @interface SearchManager : NSObject<CLLocationManagerDelegate>
 + (id)Instance;
-@property(nonatomic)CLLocation* location;
-@property(nonatomic)CLLocation* wifiLocation;
-@property(nonatomic)CLLocation* GPSLocation;//new feature
+@property(nonatomic,strong)CLLocation* location;
+@property(nonatomic,strong)CLLocation* wifiLocation;
+@property(nonatomic,strong)CLLocation* GPSLocation;//new feature
 
 -(CLLocation*)getAppLocation;
 -(void)startSearchGPSLocation;
@@ -34,5 +34,6 @@ typedef void(^SearchManagerFailBlock)(NSString *status);
 //-(void)getSuggestedLocationFromGoogle:(CLLocation*)tempCurrentLocation completionBlock:(IDBlock)completionBlock;
 -(void)getSearchLocationFromGoogle:(CLLocation*)tempCurrentLocation input:(NSString*)textInput completionBlock:(IDBlock)completionBlock;
 -(void)getCoordinateFromGPSThenWifi:(SearchManagerSuccessBlock)successBlock errorBlock:(SearchManagerFailBlock)errorBlock;
+-(void)getGoogleGeoCode:(CLLocation*)tempCurrentLocation completionBlock:(IDBlock)completionBlock;
 
 @end

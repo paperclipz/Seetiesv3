@@ -173,6 +173,13 @@
                         <outlet property="delegate" destination="-1" id="7kK-Z8-kR4"/>
                     </connections>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pDV-R3-Xee">
+                    <rect key="frame" x="0.0" y="120" width="320" height="60"/>
+                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="btnutoDetectClicked:" destination="-1" eventType="touchUpInside" id="6rQ-bA-BcN"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -185,14 +192,18 @@
                 <constraint firstItem="o0r-TB-YhJ" firstAttribute="width" secondItem="iUL-G6-q0D" secondAttribute="height" multiplier="1:3" id="DBO-X9-vf0"/>
                 <constraint firstItem="o0r-TB-YhJ" firstAttribute="width" secondItem="iUL-G6-q0D" secondAttribute="height" multiplier="1:3" id="EOe-pR-2W4"/>
                 <constraint firstAttribute="trailing" secondItem="F2M-i7-pnI" secondAttribute="trailing" id="Egs-oS-SJY"/>
+                <constraint firstItem="pDV-R3-Xee" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Gnu-gc-k5X"/>
                 <constraint firstAttribute="bottom" secondItem="iUL-G6-q0D" secondAttribute="bottom" id="IIH-7Q-6yd"/>
+                <constraint firstAttribute="trailing" secondItem="pDV-R3-Xee" secondAttribute="trailing" id="ILU-pQ-IeZ"/>
                 <constraint firstAttribute="bottom" secondItem="o0r-TB-YhJ" secondAttribute="bottom" id="If4-6B-sYV"/>
                 <constraint firstItem="iUL-G6-q0D" firstAttribute="top" secondItem="F2M-i7-pnI" secondAttribute="bottom" id="MxY-Of-wmJ"/>
                 <constraint firstItem="iUL-G6-q0D" firstAttribute="leading" secondItem="o0r-TB-YhJ" secondAttribute="trailing" id="NTI-xN-jsg"/>
                 <constraint firstItem="F2M-i7-pnI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Pfe-bR-hGX"/>
                 <constraint firstAttribute="bottom" secondItem="mw0-bq-tIH" secondAttribute="bottom" id="Quw-7L-oLa"/>
+                <constraint firstItem="o0r-TB-YhJ" firstAttribute="top" secondItem="pDV-R3-Xee" secondAttribute="bottom" id="WqA-7Y-Mus"/>
                 <constraint firstItem="EUG-6q-JiX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="aQu-f9-PPv"/>
                 <constraint firstItem="o0r-TB-YhJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bRM-2E-NVk"/>
+                <constraint firstItem="pDV-R3-Xee" firstAttribute="top" secondItem="EUG-6q-JiX" secondAttribute="bottom" id="biW-rD-VNP"/>
                 <constraint firstItem="o0r-TB-YhJ" firstAttribute="width" secondItem="iUL-G6-q0D" secondAttribute="width" multiplier="0.5" id="opK-j6-Afe"/>
                 <constraint firstAttribute="trailing" secondItem="EUG-6q-JiX" secondAttribute="trailing" id="sHP-Uq-4WL"/>
                 <constraint firstAttribute="trailing" secondItem="mw0-bq-tIH" secondAttribute="trailing" id="sUK-G1-POJ"/>
@@ -206,6 +217,7 @@
                     <exclude reference="CEm-aL-bzf"/>
                 </mask>
             </variation>
+            <point key="canvasLocation" x="466" y="211"/>
         </view>
     </objects>
     <resources>

@@ -249,6 +249,28 @@
     } ];
 }
 
+-(void)getGoogleGeoCode:(CLLocation*)tempCurrentLocation completionBlock:(IDBlock)completionBlock
+{
+
+    NSString* googleAPI = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?sensor=true&latlng=%@,%@&key=%@",@"3.1333",@"101.7000",GOOGLE_API_KEY];
+ //   NSDictionary* dict = @{@"latlng" :@"40.714,-73.9614",
+  //                         @"key" : GOOGLE_API_KEY};
+    
+    
+    [[ConnectionManager Instance]requestServerWithPost:YES customURL:googleAPI requestType:ServerRequestTypeGoogleSearch param:nil completeHandler:^(id object) {
+        if(completionBlock)
+        {
+            completionBlock(object);
+        }
+        
+        [LoadingManager hide];
+        
+    } errorBlock:^(id object) {
+        [LoadingManager hide];
+        
+    } ];
+}
+
 
 -(void)getCoordinateFromWifi:(SearchManagerSuccessBlock)successBlock errorBlock:(SearchManagerFailBlock)errorBlock
 {
