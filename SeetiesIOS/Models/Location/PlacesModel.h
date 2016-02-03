@@ -13,7 +13,8 @@
 @end
 
 @interface PlacesModel : Model
-@property(nonatomic,strong)NSArray<PlaceModel>* places;
+@property(nonatomic,strong)NSMutableArray<PlaceModel>* places;
+
 @property(nonatomic,strong)NSString* area_name;
 
 @end

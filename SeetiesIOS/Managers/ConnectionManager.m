@@ -818,7 +818,7 @@
 
             AreaModel* model = [[AreaModel alloc]initWithDictionary:dict error:nil];
             
-            SLog(@"%@",model);
+          //  SLog(@"%@",model);
         }
             break;
         default:

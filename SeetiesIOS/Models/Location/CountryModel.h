@@ -13,10 +13,12 @@
 @protocol PlacesModel
 @end
 
-@interface CountryModel : JSONModel
-@property(nonatomic,strong)NSString* status;
+@interface CountryModel : PaginationModel
 
+@property(nonatomic,strong)NSString* status;
 @property(nonatomic,strong)NSString* name;
 @property(nonatomic,assign)int country_id;
+@property(nonatomic,strong)NSMutableArray* arrArea;
+@property(nonatomic,strong)NSMutableArray* arrCountryName;
 
 @end

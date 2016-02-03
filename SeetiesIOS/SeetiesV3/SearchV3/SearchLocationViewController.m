@@ -23,6 +23,8 @@
 
 @property (nonatomic, strong) CountriesModel *countriesModel;
 
+@property (nonatomic, strong) CountryModel *currentSelectedCountry;
+
 @end
 
 @implementation SearchLocationViewController
@@ -32,18 +34,17 @@
     self.userLocation = [[SearchManager Instance] getAppLocation];
     [self initSelfView];
     
-    //[self requestServerForCountry];
-    [self requestServerForCountryPlaces:@"1"];
+    [self requestServerForCountry];
     // Do any additional setup after loading the view from its nib.
     
 }
 
 -(void)initSelfView{
-    NSArray *pj = @[@"All of Petaling Jaya", @"Damansara Jaya", @"Damansara Kim", @"Petaling Jaya"];
-    NSArray *sj = @[@"All of Subang Jaya", @"SS 15", @"One City", @"Subang Jaya"];
-    NSArray *other = @[@"Georgetown", @"Ipoh", @"Other Cities"];
+//    NSArray *pj = @[@"All of Petaling Jaya", @"Damansara Jaya", @"Damansara Kim", @"Petaling Jaya"];
+//    NSArray *sj = @[@"All of Subang Jaya", @"SS 15", @"One City", @"Subang Jaya"];
+//    NSArray *other = @[@"Georgetown", @"Ipoh", @"Other Cities"];
     
-    _cityArray = @[pj, sj, other];
+   // _cityArray = @[pj, sj, other];
     self.hasSelectedCountry = NO;
     
     [self.ibAreaTable registerNib:[UINib nibWithNibName:@"SearchLocationAreaCell" bundle:nil] forCellReuseIdentifier:@"SearchLocationAreaCell"];
@@ -78,7 +79,12 @@
         return self.arrCountries.count;
     }
     else if (tableView == self.ibAreaTable){
-        return self.hasSelectedCountry? [[self.cityArray objectAtIndex:section] count]-1 : 0;
+        
+        NSIndexPath *selectedIndexPath = [self.ibCountryTable indexPathForSelectedRow];
+
+        CountryModel* cModel = self.arrCountries[selectedIndexPath.row];
+        PlacesModel* pModel = cModel.arrArea[section];
+        return pModel.places.count;
     }
     else if (tableView == self.ibSearchTable){
         return self.searchModel.predictions.count;
@@ -88,14 +94,28 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if(tableView == self.ibAreaTable){
-        return self.cityArray.count;
+        NSIndexPath *selectedIndexPath = [self.ibCountryTable indexPathForSelectedRow];
+
+        if (selectedIndexPath) {
+            CountryModel* cModel = self.arrCountries[selectedIndexPath.row];
+            return cModel.arrArea.count;
+        }
+        else{
+            return 0;
+        }
+        
     }
     return 1;
 }
 
 - (nullable NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     if (tableView == self.ibAreaTable) {
-        return self.hasSelectedCountry? [[self.cityArray objectAtIndex:section] lastObject] : nil;
+        
+        NSIndexPath *selectedIndexPath = [self.ibCountryTable indexPathForSelectedRow];
+        CountryModel* cModel = self.arrCountries[selectedIndexPath.row];
+        PlacesModel* pModel = cModel.arrArea[section];
+        
+        return pModel.area_name;
     }
     return nil;
 }
@@ -113,8 +133,12 @@
     }
     else if (tableView == self.ibAreaTable){
         SearchLocationAreaCell *areaCell = [tableView dequeueReusableCellWithIdentifier:@"SearchLocationAreaCell"];
-        NSString *title = [[self.cityArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-        [areaCell setAreaTitle:title];
+       
+        NSIndexPath *selectedIndexPath = [self.ibCountryTable indexPathForSelectedRow];
+        CountryModel* cModel = self.arrCountries[selectedIndexPath.row];
+        PlacesModel* psModel = cModel.arrArea[indexPath.section];
+        PlaceModel* pModel = psModel.places[indexPath.row];
+        [areaCell setAreaTitle:pModel.name];
         
         return areaCell;
     }
@@ -135,11 +159,17 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == self.ibCountryTable) {
         
-        NSString* countrID = self.arrCountries[indexPath.row];
-        [self requestServerForCountryPlaces:countrID];
-        self.hasSelectedCountry = YES;
+        CountryModel* countryModel = self.arrCountries[indexPath.row];
+        self.currentSelectedCountry = countryModel;
         
-        //[self.ibAreaTable reloadData];
+        
+        if ([Utils isArrayNull:countryModel.arrArea]) {
+            [self requestServerForCountryPlaces:countryModel];
+        }
+        else{
+            [self.ibAreaTable reloadData];
+        }
+
     }
     else if (tableView == self.ibAreaTable){
         SLog(@"Clicked: %ld,%ld", indexPath.section, indexPath.row);
@@ -245,24 +275,103 @@
     }];
 }
 
--(void)requestServerForCountryPlaces:(NSString*)countryID
+
+-(void)processPlaces:(AreaModel*)aModel ForCountry:(CountryModel*)cModel
 {
-    NSDictionary* dict = @{@"country_id":countryID,
-                           @"offset":@"1",
-                           @"limit":@"10"};
     
-    NSString* appendString = [NSString stringWithFormat:@"%@/places",countryID];
+    
+    if ([Utils isArrayNull:cModel.arrArea]) {
+        [cModel.arrArea addObjectsFromArray:aModel.result];
+        return;
+    }
+    
+    NSMutableArray* arrTemp = [NSMutableArray new];
+        for (int i = 0; i<aModel.result.count; i++) {
+            
+            PlacesModel* psaModel = aModel.result[i];
+            
+            BOOL isNeedAddNewArea = NO;
+           
+            for (int j = 0; j<cModel.arrArea.count; j++) {
+                
+                isNeedAddNewArea = YES;
+
+                PlacesModel* pscModel = cModel.arrArea[j];
+                if ([pscModel.area_name isEqualToString:psaModel.area_name]) {
+                    
+                    [pscModel.places addObjectsFromArray:psaModel.places];
+                    isNeedAddNewArea = NO;
+                    break;
+                }
+              
+            }
+            
+            if (isNeedAddNewArea) {
+                [arrTemp addObject:psaModel];
+
+            }
+
+        }
+    
+    [cModel.arrArea addObjectsFromArray:arrTemp];
+        
+    cModel.paging = aModel.paging;
+    cModel.limit = aModel.limit;
+    cModel.offset = aModel.offset;
+    cModel.total_count = aModel.total_count;
+}
+
+-(void)requestServerForCountryPlaces:(CountryModel*)countryModel
+{
+    NSDictionary* dict = @{@"country_id":@(countryModel.country_id),
+                           @"offset":@(countryModel.offset + countryModel.limit),
+                           @"limit":@"10"};
+
+    NSString* appendString = [NSString stringWithFormat:@"%i/places",countryModel.country_id];
     
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetHomeCountryPlace param:dict appendString:appendString completeHandler:^(id object) {
         
-        
-       // [self.arrCountries addObjectsFromArray:self.countriesModel.countries];
-        
+        NSDictionary* dict = object[@"data"];
+        AreaModel* model = [[AreaModel alloc]initWithDictionary:dict error:nil];
+        [self processPlaces:model ForCountry:countryModel];
+      
         [self.ibAreaTable reloadData];
         
     } errorBlock:^(id object) {
         
     }];
+}
+
+
+- (void)scrollViewDidScroll: (UIScrollView *)scrollView {
+    // UITableView only moves in one direction, y axis
+    CGFloat currentOffset = scrollView.contentOffset.y;
+    CGFloat maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height;
+    
+    // Change 10.0 to adjust the distance from bottom
+    if (maximumOffset - currentOffset <= self.ibAreaTable.frame.size.height/2) {
+
+        if(![Utils isStringNull:self.currentSelectedCountry.paging.next])
+        {
+            [self requestServerForCountryPlaces:self.currentSelectedCountry];
+        }
+    }
+    
+//    /*for top navigation bar alpha setting*/
+//    int profileBackgroundHeight = TopBarHeight;
+//    
+//    if (scrollView.contentOffset.y > profileBackgroundHeight)
+//    {
+//        ibHeaderBackgroundView.alpha = 1;
+//        
+//    }
+//    else{
+//        float adjustment = (scrollView.contentOffset.y
+//                            )/(profileBackgroundHeight);
+//        // SLog(@"adjustment : %f",adjustment);
+//        ibHeaderBackgroundView.alpha = adjustment;
+//    }
+    
 }
 
 
