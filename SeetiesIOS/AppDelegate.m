@@ -165,8 +165,8 @@
     [self configureSetup];
     [self requestForApiVersion];
     [self checkCurrentAppLanguage];
-    
-    
+    [self showWindow];
+
     
     if (![Utils isLogin]) {
       
@@ -423,7 +423,6 @@
     //Check version if same then proceed, if not same then promp error and also proceed to landing
     if (![model.version isEqualToString:API_VERSION]) {
       
-        
         [UIAlertView showWithTitle:model.title
                            message:model.message
                  cancelButtonTitle:@"OK"
@@ -436,16 +435,19 @@
                           }];        
     }
    
-    
+  
+
+}
+
+-(void)showWindow
+{
     self.landingViewController = [NewLandingViewController new];
     UINavigationController* navigationController = [[UINavigationController alloc]initWithRootViewController:self.landingViewController];
     navigationController.navigationBar.hidden = YES;
     self.window.rootViewController = navigationController;//self.landingV2ViewController
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-
 }
-
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {

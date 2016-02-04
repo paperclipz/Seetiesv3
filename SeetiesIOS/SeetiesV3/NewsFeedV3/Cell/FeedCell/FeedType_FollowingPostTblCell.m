@@ -48,6 +48,7 @@
         self.btnProfileClickedBlock(self.newsFeedTypeModel.newsFeedData.user_info);
     }
 }
+
 - (IBAction)btnShareClicked:(id)sender {
     
     if (self.btnPostShareClickedBlock) {

@@ -938,6 +938,9 @@
 		8AC8F75B1BDDD67600DEF14A /* ListingHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8F75A1BDDD67600DEF14A /* ListingHeaderView.m */; };
 		8AC8F75D1BDDD68500DEF14A /* ListingHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AC8F75C1BDDD68500DEF14A /* ListingHeaderView.xib */; };
 		8AD50D611C61F0F900C9D952 /* DealModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD50D601C61F0F900C9D952 /* DealModel.m */; };
+		8AD50D651C61F23400C9D952 /* HomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD50D641C61F23400C9D952 /* HomeModel.m */; };
+		8AD50D691C63146A00C9D952 /* PhotoCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD50D671C63146A00C9D952 /* PhotoCVCell.m */; };
+		8AD50D6A1C63146A00C9D952 /* PhotoCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD50D681C63146A00C9D952 /* PhotoCVCell.xib */; };
 		8AD6BA601B705DF20040437E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA5F1B705DF20040437E /* main.m */; };
 		8AD6BA631B705DF20040437E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA621B705DF20040437E /* AppDelegate.m */; };
 		8AD6BA661B705DF20040437E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA651B705DF20040437E /* ViewController.m */; };
@@ -2483,6 +2486,11 @@
 		8AC8F75C1BDDD68500DEF14A /* ListingHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListingHeaderView.xib; sourceTree = "<group>"; };
 		8AD50D5F1C61F0F900C9D952 /* DealModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealModel.h; sourceTree = "<group>"; };
 		8AD50D601C61F0F900C9D952 /* DealModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealModel.m; sourceTree = "<group>"; };
+		8AD50D631C61F23400C9D952 /* HomeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeModel.h; sourceTree = "<group>"; };
+		8AD50D641C61F23400C9D952 /* HomeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeModel.m; sourceTree = "<group>"; };
+		8AD50D661C63146A00C9D952 /* PhotoCVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCVCell.h; sourceTree = "<group>"; };
+		8AD50D671C63146A00C9D952 /* PhotoCVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCVCell.m; sourceTree = "<group>"; };
+		8AD50D681C63146A00C9D952 /* PhotoCVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoCVCell.xib; sourceTree = "<group>"; };
 		8AD6BA5A1B705DF20040437E /* SeetiesIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeetiesIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AD6BA5E1B705DF20040437E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8AD6BA5F1B705DF20040437E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -3277,6 +3285,9 @@
 				8A0035391C4F5EB4002BD9A3 /* QuickBrowseCVCell.h */,
 				8A00353A1C4F5EB4002BD9A3 /* QuickBrowseCVCell.m */,
 				8A00353B1C4F5EB4002BD9A3 /* QuickBrowseCVCell.xib */,
+				8AD50D661C63146A00C9D952 /* PhotoCVCell.h */,
+				8AD50D671C63146A00C9D952 /* PhotoCVCell.m */,
+				8AD50D681C63146A00C9D952 /* PhotoCVCell.xib */,
 			);
 			path = CollectionCell;
 			sourceTree = "<group>";
@@ -5362,6 +5373,15 @@
 			path = Deal;
 			sourceTree = "<group>";
 		};
+		8AD50D621C61F21400C9D952 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				8AD50D631C61F23400C9D952 /* HomeModel.h */,
+				8AD50D641C61F23400C9D952 /* HomeModel.m */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		8AD6BA511B705DF20040437E = {
 			isa = PBXGroup;
 			children = (
@@ -5963,6 +5983,7 @@
 				8AF9996F1C3E6569000314E4 /* CoreModel.h */,
 				8AEDBF921C2031BA000BD2FF /* Model.h */,
 				8AEDBF931C2031BA000BD2FF /* Model.m */,
+				8AD50D621C61F21400C9D952 /* Home */,
 				8AD50D5E1C61F0F900C9D952 /* Deal */,
 				8AF6FE011C5F3E9C005AAE5D /* Location */,
 				8AF33A3A1C3F67E1000A2021 /* FeedsModel */,
@@ -6642,6 +6663,7 @@
 				8A6CCDFA1C18075800BCD54E /* InviteGraphic@3x.png in Resources */,
 				8A6CCCC91C18075800BCD54E /* Icon-Small.png in Resources */,
 				8A6CCE021C18075800BCD54E /* InviteWhatsappIcon@3x.png in Resources */,
+				8AD50D6A1C63146A00C9D952 /* PhotoCVCell.xib in Resources */,
 				8AC8F7491BDA414E00DEF14A /* EditCollectionViewController.xib in Resources */,
 				8A114C931BE73F5D006AE3F0 /* FloatingIndicatorView.xib in Resources */,
 				8A6CCEC91C18075800BCD54E /* ExploreIcon@2x.png in Resources */,
@@ -7665,6 +7687,7 @@
 				8A114C961BE73F5D006AE3F0 /* JSONKit.m in Sources */,
 				8AEDBFAA1C2031BA000BD2FF /* OpeningPeriodModel.m in Sources */,
 				8AD6C2931B7072FB0040437E /* ChooseCategoryViewController.m in Sources */,
+				8AD50D651C61F23400C9D952 /* HomeModel.m in Sources */,
 				8A114CC61BE73F5D006AE3F0 /* UIImageView+MKNetworkKitAdditions.m in Sources */,
 				8AD6C0AD1B706CF30040437E /* LandingV2ViewController.m in Sources */,
 				8AF53F1B1BD8850E00AF6C9E /* NSObject+Extension.m in Sources */,
@@ -7695,6 +7718,7 @@
 				8A114CB11BE73F5D006AE3F0 /* LeveyTabBarController.m in Sources */,
 				8A69E0FD1C046DF900224BB4 /* ShareManager.m in Sources */,
 				8AFA51F51C47B4AB00E7920E /* FeedType_InviteFriendTblCell.m in Sources */,
+				8AD50D691C63146A00C9D952 /* PhotoCVCell.m in Sources */,
 				8AEDBFAF1C2031BA000BD2FF /* EditPhotoModel.m in Sources */,
 				8A114C921BE73F5D006AE3F0 /* FloatingIndicatorView.m in Sources */,
 				8AFA51DD1C47B4AB00E7920E /* WalletListingViewController.m in Sources */,

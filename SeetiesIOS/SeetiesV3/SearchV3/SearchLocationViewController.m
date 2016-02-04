@@ -335,7 +335,7 @@
         }
     
     [cModel.arrArea addObjectsFromArray:arrTemp];
-        
+    
     cModel.paging = aModel.paging;
     cModel.limit = aModel.limit;
     cModel.offset = aModel.offset;

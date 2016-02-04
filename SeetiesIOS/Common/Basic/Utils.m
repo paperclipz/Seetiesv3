@@ -684,4 +684,25 @@
 //    }
 
 }
+
+#pragma mark - SYSTEM PREFERENCE
+
++(void)setIsDevelopment:(BOOL)isDev
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    [defaults setBool:isDev forKey:KEY_PRODUCTION];
+    
+    [defaults synchronize];
+}
+
++(BOOL)getIsDevelopment
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    BOOL isDev =  [defaults objectForKey:KEY_PRODUCTION];
+
+    return isDev;
+}
+
 @end

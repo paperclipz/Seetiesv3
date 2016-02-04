@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -7,11 +7,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CT3_MeViewController">
             <connections>
+                <outlet property="btnLogin" destination="PTW-dJ-pGf" id="8KR-6S-ROD"/>
                 <outlet property="ibCollectionIcon" destination="mCK-kL-L9O" id="V90-0D-OEu"/>
                 <outlet property="ibCollectionLbl" destination="8Pz-6s-Muv" id="UnD-pP-xsa"/>
                 <outlet property="ibCollectionView" destination="Ruy-SJ-sPw" id="1uO-nB-ezo"/>
                 <outlet property="ibContentView" destination="M7j-ex-CwS" id="2r4-Z8-UBM"/>
+                <outlet property="ibGuestView" destination="6wc-bF-QIY" id="gBo-aE-TCH"/>
                 <outlet property="ibHeaderTitle" destination="Clc-9c-SaE" id="zbu-N8-73Z"/>
+                <outlet property="ibHeaderView" destination="FCf-GI-pJP" id="n5k-AL-Rln"/>
                 <outlet property="ibInviteFriendsView" destination="z1I-jJ-gWF" id="NNU-dX-4vn"/>
                 <outlet property="ibInviteLbl" destination="KTc-Qm-jjV" id="tNq-lt-V9t"/>
                 <outlet property="ibMainScrollView" destination="GVD-M8-HVv" id="ui9-qn-fy7"/>
@@ -490,6 +493,72 @@
             <point key="canvasLocation" x="413" y="165"/>
         </view>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="6wc-bF-QIY">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="detox water.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="YvM-HW-lRS">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="328"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="328" id="meD-Wy-vBe"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Join us now to explore more exciting features!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B1J-TM-0ka">
+                    <rect key="frame" x="20" y="338" width="560" height="42"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="42" id="rgP-Ih-uex"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PTW-dJ-pGf">
+                    <rect key="frame" x="20" y="388" width="560" height="30"/>
+                    <color key="backgroundColor" red="0.61176470589999998" green="0.80000000000000004" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="EU7-ZR-eeE"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <state key="normal" title="Get Started">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="EU7-ZR-eeE"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <action selector="btnLoginClicked:" destination="-1" eventType="touchUpInside" id="ZKe-W6-LTd"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log in or sign up to get started" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2gm-6M-kfn">
+                    <rect key="frame" x="20" y="450" width="560" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="ogc-Nk-mM5"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="PTW-dJ-pGf" firstAttribute="centerX" secondItem="B1J-TM-0ka" secondAttribute="centerX" id="1YI-Z1-MJQ"/>
+                <constraint firstItem="B1J-TM-0ka" firstAttribute="leading" secondItem="6wc-bF-QIY" secondAttribute="leading" constant="20" id="5Rm-1C-m8y"/>
+                <constraint firstAttribute="trailing" secondItem="2gm-6M-kfn" secondAttribute="trailing" constant="20" id="BAB-K9-95I"/>
+                <constraint firstItem="PTW-dJ-pGf" firstAttribute="leading" secondItem="B1J-TM-0ka" secondAttribute="leading" id="D1p-Wb-HuC"/>
+                <constraint firstAttribute="trailing" secondItem="YvM-HW-lRS" secondAttribute="trailing" id="GYO-Mv-BPQ"/>
+                <constraint firstItem="YvM-HW-lRS" firstAttribute="top" secondItem="6wc-bF-QIY" secondAttribute="top" id="KBT-Ly-Sfd"/>
+                <constraint firstItem="PTW-dJ-pGf" firstAttribute="trailing" secondItem="B1J-TM-0ka" secondAttribute="trailing" id="RTx-tu-Tvd"/>
+                <constraint firstItem="B1J-TM-0ka" firstAttribute="top" secondItem="YvM-HW-lRS" secondAttribute="bottom" constant="10" id="UxN-w9-Bvj"/>
+                <constraint firstAttribute="trailing" secondItem="B1J-TM-0ka" secondAttribute="trailing" constant="20" id="W93-Yz-PRQ"/>
+                <constraint firstItem="2gm-6M-kfn" firstAttribute="top" secondItem="PTW-dJ-pGf" secondAttribute="bottom" constant="32" id="eFy-Xw-49r"/>
+                <constraint firstItem="YvM-HW-lRS" firstAttribute="leading" secondItem="6wc-bF-QIY" secondAttribute="leading" id="qL1-cR-huz"/>
+                <constraint firstItem="PTW-dJ-pGf" firstAttribute="top" secondItem="B1J-TM-0ka" secondAttribute="bottom" constant="8" id="r7y-CV-w8s"/>
+                <constraint firstItem="2gm-6M-kfn" firstAttribute="leading" secondItem="6wc-bF-QIY" secondAttribute="leading" constant="20" id="rdn-2z-gFt"/>
+            </constraints>
+            <point key="canvasLocation" x="1025" y="165"/>
+        </view>
     </objects>
     <resources>
         <image name="AddIcon.png" width="40" height="40"/>
@@ -497,5 +566,6 @@
         <image name="Icon-60.png" width="60" height="60"/>
         <image name="Icon-76.png" width="76" height="76"/>
         <image name="NotificationIcon.png" width="50" height="50"/>
+        <image name="detox water.jpg" width="640" height="360"/>
     </resources>
 </document>
