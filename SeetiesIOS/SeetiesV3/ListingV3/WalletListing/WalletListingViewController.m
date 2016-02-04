@@ -24,10 +24,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    _voucherArray = @[@"1",@"2",@"3",@"4"];
+    _voucherArray = @[@"1",@"2",@"1",@"2"];
     _filterArray = @[@"1",@"2",@"3",@"4",@"5"];
     
     //[self initData];
+    self.ibTableView.estimatedRowHeight = [WalletVoucherCell getHeight];
+    self.ibTableView.rowHeight = UITableViewAutomaticDimension;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,10 +57,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (tableView == self.ibTableView) {
-        return self.voucherArray.count;
-    }
-    else if (tableView == self.ibFilterTable){
-        return self.filterArray.count;
+//        return self.voucherArray.count;
+        return 20;
+
     }
     
     return 0;
@@ -87,6 +89,10 @@
     }
     
     return nil;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewAutomaticDimension;
 }
 
 - (IBAction)filterBtnClicked:(id)sender {

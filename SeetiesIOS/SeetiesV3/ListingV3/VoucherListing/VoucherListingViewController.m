@@ -16,6 +16,7 @@
 
 @property (strong, nonatomic)GeneralFilterViewController* filterController;
 @property (nonatomic) DealDetailsViewController *dealDetailsViewController;
+@property (nonatomic) WalletListingViewController *walletListingViewController;
 @end
 
 @implementation VoucherListingViewController
@@ -26,6 +27,9 @@
     
     _voucherArray = @[@"1",@"2",@"3",@"4"];
     [self.ibVoucherTable registerNib:[UINib nibWithNibName:@"VoucherCell" bundle:nil] forCellReuseIdentifier:@"VoucherCell"];
+    
+    self.ibVoucherTable.estimatedRowHeight = [VoucherCell getHeight];
+    self.ibVoucherTable.rowHeight = UITableViewAutomaticDimension;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,6 +55,10 @@
     UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:filterController];
     [self presentViewController:nav animated:YES completion:nil];
     //    self.filterController.view.hidden =  !self.filterController.view.hidden;
+}
+
+- (IBAction)footerBtnClicked:(id)sender {
+    [self.navigationController pushViewController:self.walletListingViewController animated:YES];
 }
 
 -(NSArray*)getDummy{
@@ -119,6 +127,13 @@
     return _dealDetailsViewController;
 }
 
+-(WalletListingViewController*)walletListingViewController{
+    if(!_walletListingViewController){
+        _walletListingViewController = [WalletListingViewController new];
+    }
+    return _walletListingViewController;
+}
+
 #pragma mark - TableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.voucherArray.count;
@@ -133,6 +148,22 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self.dealDetailsViewController setDealDetailsViewType:UncollectedDealDetailsView];
     [self.navigationController pushViewController:self.dealDetailsViewController animated:YES];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewAutomaticDimension;
+}
+
+#pragma mark - RequestServer
+-(void)requestServerForDealListing{
+    
+//    NSDictionary *dict =
+    
+//    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSuperDeals param:<#(NSDictionary *)#> appendString:nil completeHandler:^(id object) {
+//        <#code#>
+//    } errorBlock:^(id object) {
+//        <#code#>
+//    }]
 }
 
 @end

@@ -24,6 +24,7 @@
 #import "SeShopPhotoModel.h"
 #import "FacebookModel.h"
 #import "UsersModel.h"
+#import "DealsModel.h"
 
 @class FacebookModel;
 @class  DraftsModel;
@@ -71,6 +72,7 @@ typedef void(^CompletionVoidBlock) (void);
 @property(nonatomic,strong)SeetiShopsModel* seNearbyShopModel;
 @property(nonatomic,strong)SeetiShopsModel* seNearbyShopListingModel;
 @property(nonatomic,strong)UsersModel* usersModel;
+@property(nonatomic,strong)DealsModel* dealsModel;
 
 /* ================================ News Feed ================================ */
 

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DealDetailsViewController">
@@ -45,7 +45,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cosans Coffee, SS2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJI-EM-Yfv">
-                            <rect key="frame" x="45" y="20" width="555" height="21"/>
+                            <rect key="frame" x="45" y="20" width="470" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="eQc-Sn-SCb"/>
                             </constraints>
@@ -54,7 +54,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50% OFF for All Coffee" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="krF-8U-zfo">
-                            <rect key="frame" x="45" y="41" width="437" height="21"/>
+                            <rect key="frame" x="45" y="41" width="470" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="Dxz-KV-iEX"/>
                             </constraints>
@@ -82,28 +82,24 @@
                                 <action selector="btnBackClicked:" destination="-1" eventType="touchUpInside" id="kGf-Sh-UHB"/>
                             </connections>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ShareToIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="jKb-Ct-nKz" userLabel="share icon">
-                            <rect key="frame" x="550" y="20" width="40" height="40"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4at-IQ-F61" userLabel="share button">
+                            <rect key="frame" x="555" y="19" width="40" height="40"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="40" id="3O4-Zg-KCP"/>
-                                <constraint firstAttribute="width" constant="40" id="LCK-Pe-Dqx"/>
+                                <constraint firstAttribute="height" constant="40" id="Hkz-8g-c0K"/>
+                                <constraint firstAttribute="width" constant="40" id="IYx-OD-bC0"/>
                             </constraints>
-                        </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TranslateIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="CP5-zl-RCo" userLabel="translate icon">
-                            <rect key="frame" x="490" y="20" width="40" height="40"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="40" id="7od-et-EZr"/>
-                                <constraint firstAttribute="height" constant="40" id="tnX-m9-jxs"/>
-                            </constraints>
-                        </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4at-IQ-F61" userLabel="share button">
-                            <rect key="frame" x="550" y="20" width="50" height="40"/>
+                            <state key="normal" image="ProfileShareIcon.png"/>
                             <connections>
                                 <action selector="buttonShareClicked:" destination="-1" eventType="touchUpInside" id="kDx-K6-e0U"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eWg-5I-Bla" userLabel="translate button">
-                            <rect key="frame" x="490" y="20" width="40" height="40"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eWg-5I-Bla" userLabel="translate button">
+                            <rect key="frame" x="525" y="26" width="25" height="26"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="26" id="hHr-g8-RXY"/>
+                                <constraint firstAttribute="width" constant="25" id="i0w-o6-kev"/>
+                            </constraints>
+                            <state key="normal" image="SSWhiteTranslateIcon.png"/>
                             <connections>
                                 <action selector="buttonTranslateClicked:" destination="-1" eventType="touchUpInside" id="xN8-M3-YU1"/>
                             </connections>
@@ -111,46 +107,38 @@
                     </subviews>
                     <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstItem="eWg-5I-Bla" firstAttribute="top" secondItem="CP5-zl-RCo" secondAttribute="top" id="0zU-PK-9HF"/>
                         <constraint firstItem="nxV-MF-gmS" firstAttribute="leading" secondItem="Zwl-jM-B7w" secondAttribute="leading" constant="-5" id="1Sf-Yc-IVx"/>
                         <constraint firstItem="4at-IQ-F61" firstAttribute="top" secondItem="Zwl-jM-B7w" secondAttribute="top" constant="20" id="3JL-nu-aOH"/>
                         <constraint firstItem="QJI-EM-Yfv" firstAttribute="top" secondItem="nxV-MF-gmS" secondAttribute="top" id="5cz-2z-C28"/>
-                        <constraint firstItem="jKb-Ct-nKz" firstAttribute="leading" secondItem="CP5-zl-RCo" secondAttribute="trailing" constant="20" id="5fk-xJ-zCQ"/>
-                        <constraint firstAttribute="trailing" secondItem="jKb-Ct-nKz" secondAttribute="trailing" constant="10" id="8Uw-gz-Dip"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="64" id="8rp-KY-j5W"/>
-                        <constraint firstItem="4at-IQ-F61" firstAttribute="bottom" secondItem="jKb-Ct-nKz" secondAttribute="bottom" id="AqY-4B-PYr"/>
-                        <constraint firstAttribute="trailing" secondItem="4at-IQ-F61" secondAttribute="trailing" id="DbJ-VR-DWn"/>
+                        <constraint firstAttribute="trailing" secondItem="4at-IQ-F61" secondAttribute="trailing" constant="5" id="DbJ-VR-DWn"/>
                         <constraint firstItem="QJI-EM-Yfv" firstAttribute="leading" secondItem="nxV-MF-gmS" secondAttribute="trailing" constant="-35" id="ENS-4c-QIg"/>
-                        <constraint firstItem="jKb-Ct-nKz" firstAttribute="top" secondItem="nxV-MF-gmS" secondAttribute="top" id="HoT-41-iEu"/>
-                        <constraint firstItem="eWg-5I-Bla" firstAttribute="trailing" secondItem="CP5-zl-RCo" secondAttribute="trailing" id="MkG-va-wQ0"/>
                         <constraint firstItem="QJI-EM-Yfv" firstAttribute="leading" secondItem="nxV-MF-gmS" secondAttribute="trailing" constant="10" id="PjO-LK-eec"/>
-                        <constraint firstItem="4at-IQ-F61" firstAttribute="trailing" secondItem="jKb-Ct-nKz" secondAttribute="trailing" id="Rj2-ic-dLM"/>
+                        <constraint firstAttribute="bottom" secondItem="eWg-5I-Bla" secondAttribute="bottom" constant="20" symbolic="YES" id="QAs-rF-LfG"/>
                         <constraint firstAttribute="trailing" secondItem="QJI-EM-Yfv" secondAttribute="trailing" id="TMZ-wk-dZe"/>
-                        <constraint firstItem="CP5-zl-RCo" firstAttribute="leading" secondItem="krF-8U-zfo" secondAttribute="trailing" constant="8" id="UOT-ir-O3d"/>
+                        <constraint firstItem="eWg-5I-Bla" firstAttribute="leading" secondItem="QJI-EM-Yfv" secondAttribute="trailing" constant="10" id="UM9-vx-9vy"/>
                         <constraint firstAttribute="bottom" secondItem="nxV-MF-gmS" secondAttribute="bottom" constant="4" id="XcL-V8-MxQ"/>
                         <constraint firstAttribute="bottom" secondItem="QJI-EM-Yfv" secondAttribute="bottom" constant="14" id="YOP-4E-Fw0"/>
+                        <constraint firstItem="4at-IQ-F61" firstAttribute="leading" secondItem="eWg-5I-Bla" secondAttribute="trailing" constant="5" id="YkN-Pf-Wxe"/>
+                        <constraint firstItem="eWg-5I-Bla" firstAttribute="centerY" secondItem="4at-IQ-F61" secondAttribute="centerY" id="clx-Hg-fuA"/>
                         <constraint firstItem="sN2-4V-EGP" firstAttribute="leading" secondItem="Zwl-jM-B7w" secondAttribute="leading" id="dUc-hp-SWz"/>
                         <constraint firstAttribute="trailing" secondItem="krF-8U-zfo" secondAttribute="trailing" constant="23" id="eAC-W9-chk"/>
-                        <constraint firstItem="eWg-5I-Bla" firstAttribute="bottom" secondItem="CP5-zl-RCo" secondAttribute="bottom" id="eMj-PV-cIX"/>
-                        <constraint firstItem="4at-IQ-F61" firstAttribute="top" secondItem="jKb-Ct-nKz" secondAttribute="top" id="f9K-hB-bSS"/>
                         <constraint firstAttribute="height" constant="64" id="fFc-jH-UXo"/>
+                        <constraint firstItem="eWg-5I-Bla" firstAttribute="leading" secondItem="krF-8U-zfo" secondAttribute="trailing" constant="10" id="gLb-b2-J8O"/>
                         <constraint firstItem="krF-8U-zfo" firstAttribute="top" secondItem="QJI-EM-Yfv" secondAttribute="bottom" id="nyc-Kq-GAS"/>
-                        <constraint firstItem="4at-IQ-F61" firstAttribute="top" secondItem="jKb-Ct-nKz" secondAttribute="top" id="tmF-Qg-p32"/>
+                        <constraint firstAttribute="bottom" secondItem="4at-IQ-F61" secondAttribute="bottom" constant="5" id="s9i-mD-ZbY"/>
                         <constraint firstItem="sN2-4V-EGP" firstAttribute="top" secondItem="Zwl-jM-B7w" secondAttribute="top" id="txq-OB-iFm"/>
-                        <constraint firstItem="eWg-5I-Bla" firstAttribute="leading" secondItem="CP5-zl-RCo" secondAttribute="leading" id="vha-b0-Ph4"/>
                         <constraint firstItem="krF-8U-zfo" firstAttribute="leading" secondItem="nxV-MF-gmS" secondAttribute="trailing" constant="10" id="w6u-JH-7Af"/>
-                        <constraint firstItem="4at-IQ-F61" firstAttribute="leading" secondItem="jKb-Ct-nKz" secondAttribute="leading" id="whC-aI-l0h"/>
-                        <constraint firstItem="CP5-zl-RCo" firstAttribute="top" secondItem="nxV-MF-gmS" secondAttribute="top" id="y84-wr-sgQ"/>
                         <constraint firstItem="nxV-MF-gmS" firstAttribute="top" secondItem="sN2-4V-EGP" secondAttribute="bottom" constant="-44" id="zs4-k2-mpj"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="ENS-4c-QIg"/>
+                            <exclude reference="TMZ-wk-dZe"/>
                             <exclude reference="YOP-4E-Fw0"/>
                             <exclude reference="eAC-W9-chk"/>
+                            <exclude reference="QAs-rF-LfG"/>
                             <exclude reference="3JL-nu-aOH"/>
-                            <exclude reference="Rj2-ic-dLM"/>
-                            <exclude reference="f9K-hB-bSS"/>
                         </mask>
                     </variation>
                 </view>
@@ -944,9 +932,9 @@
         <image name="BackIcon.png" width="40" height="40"/>
         <image name="Check.png" width="70" height="70"/>
         <image name="Icon-60.png" width="60" height="60"/>
-        <image name="ShareToIcon.png" width="37" height="37"/>
+        <image name="ProfileShareIcon.png" width="40" height="40"/>
+        <image name="SSWhiteTranslateIcon.png" width="25" height="26"/>
         <image name="TimeIcon.png" width="30" height="30"/>
-        <image name="TranslateIcon.png" width="42" height="42"/>
         <image name="detox water.jpg" width="640" height="360"/>
     </resources>
 </document>

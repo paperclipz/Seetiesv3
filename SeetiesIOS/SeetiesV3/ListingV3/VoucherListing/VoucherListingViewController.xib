@@ -138,6 +138,12 @@
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vrz-mR-wx7" userLabel="footer btn">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                            <connections>
+                                <action selector="footerBtnClicked:" destination="-1" eventType="touchUpInside" id="BHW-om-Glx"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -149,10 +155,14 @@
                         <constraint firstItem="EaS-vd-HRF" firstAttribute="leading" secondItem="Vzi-NU-OdU" secondAttribute="leading" constant="99" id="Nwf-JV-mOg"/>
                         <constraint firstItem="TL0-PQ-q1H" firstAttribute="centerY" secondItem="Vzi-NU-OdU" secondAttribute="centerY" id="Tqe-9T-rxV"/>
                         <constraint firstAttribute="height" constant="60" id="ePM-Fm-4d2"/>
+                        <constraint firstItem="Vrz-mR-wx7" firstAttribute="leading" secondItem="Vzi-NU-OdU" secondAttribute="leading" id="f54-bi-8yT"/>
                         <constraint firstItem="wXs-2x-Sya" firstAttribute="leading" secondItem="Vzi-NU-OdU" secondAttribute="leading" constant="8" id="frg-RL-5lG"/>
+                        <constraint firstAttribute="bottom" secondItem="Vrz-mR-wx7" secondAttribute="bottom" id="g4L-FF-cim"/>
+                        <constraint firstAttribute="trailing" secondItem="Vrz-mR-wx7" secondAttribute="trailing" id="gTD-TS-eii"/>
                         <constraint firstAttribute="trailing" secondItem="bvE-vN-sUM" secondAttribute="trailing" constant="8" id="h91-1R-wxg"/>
                         <constraint firstItem="bvE-vN-sUM" firstAttribute="centerY" secondItem="Vzi-NU-OdU" secondAttribute="centerY" id="id6-E0-zna"/>
                         <constraint firstItem="EaS-vd-HRF" firstAttribute="top" secondItem="wXs-2x-Sya" secondAttribute="bottom" constant="-74" id="ilh-VC-22i"/>
+                        <constraint firstItem="Vrz-mR-wx7" firstAttribute="top" secondItem="Vzi-NU-OdU" secondAttribute="top" id="okH-N5-hSv"/>
                         <constraint firstItem="EaS-vd-HRF" firstAttribute="centerY" secondItem="Vzi-NU-OdU" secondAttribute="centerY" id="uWb-pl-r1V"/>
                     </constraints>
                     <variation key="default">
