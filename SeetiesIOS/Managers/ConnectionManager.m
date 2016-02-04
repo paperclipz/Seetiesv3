@@ -518,6 +518,9 @@
             
             break;
             
+        case ServerRequestTypeGetSuperDeals:
+            str = [NSString stringWithFormat:@"%@/home/superdeals", API_VERION_URL];
+            
     }
     
     return [NSString stringWithFormat:@"https://%@/%@",self.serverPath,str];
@@ -833,6 +836,14 @@
             NSDictionary* dict = obj[@"data"];
 
             self.dataManager.homeModel = [[HomeModel alloc]initWithDictionary:dict error:nil];
+        }
+            break;
+            
+        case ServerRequestTypeGetSuperDeals:
+        {
+            NSDictionary *dict = obj[@"data"];
+            self.dataManager.dealsModel = [[DealsModel alloc] initWithDictionary:dict error:nil];
+            
         }
             break;
         default:

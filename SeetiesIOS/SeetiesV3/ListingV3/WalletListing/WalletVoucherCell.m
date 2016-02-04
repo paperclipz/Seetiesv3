@@ -13,7 +13,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *ibVoucherTitleLbl;
 @property (weak, nonatomic) IBOutlet UILabel *ibVoucherShopLbl;
 @property (weak, nonatomic) IBOutlet UILabel *ibVoucherExpiryLbl;
-@property (weak, nonatomic) IBOutlet UILabel *ibBestDealLbl;
+@property (weak, nonatomic) IBOutlet UILabel *ibDealUsageLbl;
+@property (weak, nonatomic) IBOutlet UIButton *ibRedeemBtn;
 
 @end
 
@@ -21,6 +22,8 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    [self.ibRedeemBtn setSideCurveBorder];
+    [self.ibDealUsageLbl setSideCurveBorder];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -28,5 +31,6 @@
 
     // Configure the view for the selected state
 }
+
 
 @end

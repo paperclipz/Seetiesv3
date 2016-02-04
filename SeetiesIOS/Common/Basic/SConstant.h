@@ -92,6 +92,9 @@ typedef enum
     ServerRequestTypeGetHome,
     ServerRequestTypeGetHomeSuperDeal,
     
+    //===DEALS===//
+    ServerRequestTypeGetSuperDeals
+    
 }ServerRequestType;
 
 typedef enum
