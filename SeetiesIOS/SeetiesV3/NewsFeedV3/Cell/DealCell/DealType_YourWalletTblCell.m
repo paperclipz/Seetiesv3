@@ -28,4 +28,9 @@
     [Utils setRoundBorder:self.lblCount color:OUTLINE_COLOR borderRadius:self.lblCount.frame.size.width/2];
 }
 
+-(void)initData:(int)walletCount
+{
+    self.lblCount.text = [NSString stringWithFormat:@"%d",walletCount];
+}
+
 @end

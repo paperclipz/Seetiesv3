@@ -29,6 +29,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *ibNotificationCountLbl;
 
 @property(nonatomic)STPopupController *popupCTController;
+@property (weak, nonatomic) IBOutlet UIView *ibHeaderView;
+
+@property (strong, nonatomic) IBOutlet UIView *ibGuestView;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnLogin;
 @end
 
 @implementation CT3_MeViewController
@@ -36,6 +41,11 @@
 #pragma mark IBAction
 - (IBAction)btnWalletListingClicked:(id)sender {
     [self.navigationController pushViewController:self.walletListingViewController animated:YES];
+}
+- (IBAction)btnLoginClicked:(id)sender {
+    
+    
+    [Utils showLogin];
 }
 
 - (IBAction)btnCollectionListingClicked:(id)sender {
@@ -118,11 +128,27 @@
     
     [self.ibPromoCodeView prefix_addUpperBorder:[UIColor lightGrayColor]];
     [self.ibPromoCodeView prefix_addLowerBorder:[UIColor lightGrayColor]];
+    
+    [self.view addSubview:self.ibGuestView];
+    self.ibGuestView.frame = CGRectMake(0, self.ibHeaderView.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.ibHeaderView.frame.size.height);
+    [self.ibGuestView adjustToScreenWidth];
+    
+    [self.btnLogin setSideCurveBorder];
+    
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    
+    self.ibGuestView.hidden = ![Utils isGuestMode];
+  
 }
 
 #pragma mark Declaration
 
 -(ProfileViewController*)profileViewController{
+    
     if (!_profileViewController) {
         _profileViewController = [ProfileViewController new];
     }

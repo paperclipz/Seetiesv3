@@ -215,4 +215,8 @@ typedef enum {
 #pragma mark - LOGIN
 +(void)showLogin;
 
+#pragma mark - SYSTEM
++(void)setIsDevelopment:(BOOL)isDev;
++(BOOL)getIsDevelopment;
+
 @end

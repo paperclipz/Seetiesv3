@@ -64,11 +64,13 @@ static NSCache* heightCache = nil;
 @property (weak, nonatomic) IBOutlet UICollectionView *ibQuickBrowseCollectionView;
 
 @property(nonatomic,strong)NSMutableArray* arrCacheHeight;
+@property (strong, nonatomic) IBOutlet UIView *ibFooterView;
+
 /* Model */
 @property(nonatomic,strong)NSMutableArray* arrayNewsFeed;
 @property(nonatomic,strong)NewsFeedModels* newsFeedModels;
+@property(nonatomic,strong)HomeModel* homeModel;
 
-@property (strong, nonatomic) IBOutlet UIView *ibFooterView;
 
 /* Model */
 
@@ -504,10 +506,14 @@ static NSCache* heightCache = nil;
                     cell = [[DealType_DealOTDTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
                 }
                 
+                if (self.homeModel) {
+                    [cell initData:self.homeModel.superdeals];
+
+                }
                 return cell;
                 
             }
-                
+                break;
             case 3:
             {
                 static NSString *CellIdentifier = @"DealType_YourWalletTblCell";
@@ -516,6 +522,10 @@ static NSCache* heightCache = nil;
                     cell = [[DealType_YourWalletTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
                 }
                 
+                if (self.homeModel) {
+                    [cell initData:self.homeModel.wallet_count];
+
+                }
                 return cell;
                 
             }
@@ -890,7 +900,23 @@ static NSCache* heightCache = nil;
 
 - (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath*)indexPath
 {
+    if (indexPath.section == 0) {
+        
+        switch (indexPath.row) {
+            default:
+                break;
+            case 2:
+            {
+                DealType_DealOTDTblCell *tempCell = (DealType_DealOTDTblCell*)cell;
+                [tempCell stopAnimationScrolling];
+            }
+                
+                break;
+                
+        }
     
+    }
+   
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -1159,11 +1185,11 @@ static NSCache* heightCache = nil;
     
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetHome param:dict appendString:nil completeHandler:^(id object) {
         
+        self.homeModel = [[ConnectionManager dataManager]homeModel];
+        
     } errorBlock:^(id object) {
         
     }];
-  
-
 }
 
 //- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {

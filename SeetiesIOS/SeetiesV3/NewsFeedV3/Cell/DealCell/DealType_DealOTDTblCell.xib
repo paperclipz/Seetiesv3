@@ -8,20 +8,25 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="154" id="KGk-i7-Jjw" customClass="DealType_DealOTDTblCell">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DealType_DealOTDTblCell" rowHeight="154" id="KGk-i7-Jjw" customClass="DealType_DealOTDTblCell">
             <rect key="frame" x="0.0" y="0.0" width="320" height="154"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="154"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="153.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="33J-tV-tSs">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="146"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collect Now" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VSw-32-C34">
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="pXO-eK-9tg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="154"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="dDJ-TM-Xlg">
+                            <size key="itemSize" width="320" height="150"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View all" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VSw-32-C34">
                         <rect key="frame" x="100" y="60" width="120" height="35"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="35" id="nhY-fS-6ga"/>
                             <constraint firstAttribute="width" constant="120" id="pBV-ua-U9q"/>
@@ -32,21 +37,19 @@
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="pXO-eK-9tg" secondAttribute="trailing" constant="-8" id="2UI-9h-zec"/>
                     <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="VSw-32-C34" secondAttribute="trailing" constant="105" id="CbC-oB-cCS"/>
-                    <constraint firstItem="33J-tV-tSs" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="Ftt-jb-BS4"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="33J-tV-tSs" secondAttribute="bottom" id="JXG-Mb-sxa"/>
-                    <constraint firstItem="VSw-32-C34" firstAttribute="centerY" secondItem="33J-tV-tSs" secondAttribute="centerY" id="Qmi-Vl-fej"/>
+                    <constraint firstItem="VSw-32-C34" firstAttribute="centerX" secondItem="pXO-eK-9tg" secondAttribute="centerX" id="Djw-SL-Ils"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="pXO-eK-9tg" secondAttribute="bottom" constant="-8" id="OKv-ed-5pA"/>
                     <constraint firstItem="VSw-32-C34" firstAttribute="leading" relation="lessThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="106" id="TKC-NI-mpO"/>
-                    <constraint firstItem="33J-tV-tSs" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="WDz-Cv-Xkq"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="33J-tV-tSs" secondAttribute="trailing" constant="-8" id="Wq5-ow-MVl"/>
-                    <constraint firstItem="VSw-32-C34" firstAttribute="centerX" secondItem="33J-tV-tSs" secondAttribute="centerX" id="gNg-hm-8bf"/>
+                    <constraint firstItem="pXO-eK-9tg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="ZUH-uu-YaY"/>
+                    <constraint firstItem="pXO-eK-9tg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="oqP-VD-h1X"/>
                     <constraint firstItem="VSw-32-C34" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="tRD-4R-o1S"/>
                     <constraint firstItem="VSw-32-C34" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="73" id="xKF-YD-coF"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
                         <exclude reference="CbC-oB-cCS"/>
-                        <exclude reference="Qmi-Vl-fej"/>
                         <exclude reference="TKC-NI-mpO"/>
                         <exclude reference="xKF-YD-coF"/>
                     </mask>
@@ -54,9 +57,10 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
+                <outlet property="ibCollectionView" destination="pXO-eK-9tg" id="8aR-D3-KQN"/>
                 <outlet property="lblCollectNow" destination="VSw-32-C34" id="r3d-8L-E5J"/>
             </connections>
-            <point key="canvasLocation" x="411" y="273"/>
+            <point key="canvasLocation" x="454" y="319"/>
         </tableViewCell>
     </objects>
 </document>

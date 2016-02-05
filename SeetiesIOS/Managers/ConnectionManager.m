@@ -41,6 +41,12 @@
     return self;
 }
 
+-(NSString*)serverPath
+{
+    BOOL isDev = [Utils getIsDevelopment];
+    return isDev?SERVER_PATH_DEV:SERVER_PATH_LINK_LIVE;
+}
+
 -(AFHTTPRequestOperationManager*)manager
 {
     if(!_manager)
@@ -380,21 +386,9 @@
     
 }
 
-+(NSString*)getServerPath
-{
-    
-    
-    if ([ConnectionManager dataManager].apiVersionModel.production) {
-        return SERVER_PATH_LINK_LIVE;
-    }
-    else{
-        return SERVER_PATH_LINK_DEV;
-    }
-}
-
 -(void)processApiversion
 {
-    self.serverPath = self.dataManager.apiVersionModel.production?SERVER_PATH_LIVE:SERVER_PATH_DEV;
+    [Utils setIsDevelopment:!self.dataManager.apiVersionModel.production];
 }
 
 -(NSString*)getFullURLwithType:(ServerRequestType)type
@@ -435,6 +429,7 @@
         case ServerRequestTypeGetApiVersion:
             
             str = [NSString stringWithFormat:@"%@/system/apiversion?device_type=2",API_VERION_URL];
+            return [NSString stringWithFormat:@"https://%@/%@",SERVER_PATH_DEV,str];
 
             break;
         case ServerRequestTypeGetExplore:
@@ -604,9 +599,11 @@
             break;
             
         case ServerRequestTypeGetApiVersion:
+        {
             self.dataManager.apiVersionModel = [[ApiVersionModel alloc]initWithDictionary:obj error:nil];
-            [self processApiversion];
             
+            [self processApiversion];
+        }
             break;
             
         case ServerRequestTypeGetNewsFeed:
@@ -614,6 +611,9 @@
             
             NSDictionary* dict = obj[@"data"];
             self.dataManager.newsFeedModels = [[NewsFeedModels alloc]initWithDictionary:dict error:nil];
+            
+            
+            
             
         }
             break;
@@ -824,14 +824,19 @@
         {
             NSDictionary* dict = obj[@"data"];
 
-            AreaModel* model = [[AreaModel alloc]initWithDictionary:dict error:nil];
+         //   AreaModel* model = [[AreaModel alloc]initWithDictionary:dict error:nil];
             
           //  SLog(@"%@",model);
         }
             break;
             
         case ServerRequestTypeGetHome:
+        {
             
+            NSDictionary* dict = obj[@"data"];
+
+            self.dataManager.homeModel = [[HomeModel alloc]initWithDictionary:dict error:nil];
+        }
             break;
             
         case ServerRequestTypeGetSuperDeals:
