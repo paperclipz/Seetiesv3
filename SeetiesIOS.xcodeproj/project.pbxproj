@@ -1200,8 +1200,6 @@
 		8AFA51D81C47B4AB00E7920E /* VoucherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFA516F1C47B4AB00E7920E /* VoucherCell.xib */; };
 		8AFA51D91C47B4AB00E7920E /* VoucherListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFA51711C47B4AB00E7920E /* VoucherListingViewController.m */; };
 		8AFA51DA1C47B4AB00E7920E /* VoucherListingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFA51721C47B4AB00E7920E /* VoucherListingViewController.xib */; };
-		8AFA51DB1C47B4AB00E7920E /* VoucherFilterCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFA51751C47B4AB00E7920E /* VoucherFilterCellTableViewCell.m */; };
-		8AFA51DC1C47B4AB00E7920E /* VoucherFilterCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFA51761C47B4AB00E7920E /* VoucherFilterCellTableViewCell.xib */; };
 		8AFA51DD1C47B4AB00E7920E /* WalletListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFA51781C47B4AB00E7920E /* WalletListingViewController.m */; };
 		8AFA51DE1C47B4AB00E7920E /* WalletListingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFA51791C47B4AB00E7920E /* WalletListingViewController.xib */; };
 		8AFA51DF1C47B4AB00E7920E /* WalletVoucherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFA517B1C47B4AB00E7920E /* WalletVoucherCell.m */; };
@@ -1288,6 +1286,12 @@
 		C24384101C5B781500ACEBF8 /* DealDetailsAvailabilityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24384081C5B781500ACEBF8 /* DealDetailsAvailabilityCell.xib */; };
 		C25B50331C4E277D0027283E /* SearchLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C25B50311C4E277D0027283E /* SearchLocationViewController.m */; };
 		C25B50341C4E277D0027283E /* SearchLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25B50321C4E277D0027283E /* SearchLocationViewController.xib */; };
+		C26676161C6445290021B6B0 /* WalletHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C26676141C6445290021B6B0 /* WalletHeaderCell.m */; };
+		C26676171C6445290021B6B0 /* WalletHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C26676151C6445290021B6B0 /* WalletHeaderCell.xib */; };
+		C266761C1C6483030021B6B0 /* RedemptionHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C266761A1C6483030021B6B0 /* RedemptionHistoryViewController.m */; };
+		C266761D1C6483030021B6B0 /* RedemptionHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C266761B1C6483030021B6B0 /* RedemptionHistoryViewController.xib */; };
+		C26676211C6485400021B6B0 /* RedemptionHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C266761F1C6485400021B6B0 /* RedemptionHistoryCell.m */; };
+		C26676221C6485400021B6B0 /* RedemptionHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C26676201C6485400021B6B0 /* RedemptionHistoryCell.xib */; };
 		C28469B91C5F6FCD00B38885 /* NearbyShopsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C28469B71C5F6FCD00B38885 /* NearbyShopsCell.m */; };
 		C28469BA1C5F6FCD00B38885 /* NearbyShopsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C28469B81C5F6FCD00B38885 /* NearbyShopsCell.xib */; };
 		C2C157161C574BB6007608FC /* PromoPopOutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C157141C574BB6007608FC /* PromoPopOutViewController.m */; };
@@ -2912,9 +2916,6 @@
 		8AFA51701C47B4AB00E7920E /* VoucherListingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoucherListingViewController.h; sourceTree = "<group>"; };
 		8AFA51711C47B4AB00E7920E /* VoucherListingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoucherListingViewController.m; sourceTree = "<group>"; };
 		8AFA51721C47B4AB00E7920E /* VoucherListingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VoucherListingViewController.xib; sourceTree = "<group>"; };
-		8AFA51741C47B4AB00E7920E /* VoucherFilterCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoucherFilterCellTableViewCell.h; sourceTree = "<group>"; };
-		8AFA51751C47B4AB00E7920E /* VoucherFilterCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoucherFilterCellTableViewCell.m; sourceTree = "<group>"; };
-		8AFA51761C47B4AB00E7920E /* VoucherFilterCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VoucherFilterCellTableViewCell.xib; sourceTree = "<group>"; };
 		8AFA51771C47B4AB00E7920E /* WalletListingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalletListingViewController.h; sourceTree = "<group>"; };
 		8AFA51781C47B4AB00E7920E /* WalletListingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalletListingViewController.m; sourceTree = "<group>"; };
 		8AFA51791C47B4AB00E7920E /* WalletListingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WalletListingViewController.xib; sourceTree = "<group>"; };
@@ -3033,6 +3034,15 @@
 		C25B50301C4E277D0027283E /* SearchLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchLocationViewController.h; sourceTree = "<group>"; };
 		C25B50311C4E277D0027283E /* SearchLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchLocationViewController.m; sourceTree = "<group>"; };
 		C25B50321C4E277D0027283E /* SearchLocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchLocationViewController.xib; sourceTree = "<group>"; };
+		C26676131C6445290021B6B0 /* WalletHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalletHeaderCell.h; sourceTree = "<group>"; };
+		C26676141C6445290021B6B0 /* WalletHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalletHeaderCell.m; sourceTree = "<group>"; };
+		C26676151C6445290021B6B0 /* WalletHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WalletHeaderCell.xib; sourceTree = "<group>"; };
+		C26676191C6483030021B6B0 /* RedemptionHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedemptionHistoryViewController.h; sourceTree = "<group>"; };
+		C266761A1C6483030021B6B0 /* RedemptionHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedemptionHistoryViewController.m; sourceTree = "<group>"; };
+		C266761B1C6483030021B6B0 /* RedemptionHistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedemptionHistoryViewController.xib; sourceTree = "<group>"; };
+		C266761E1C6485400021B6B0 /* RedemptionHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedemptionHistoryCell.h; sourceTree = "<group>"; };
+		C266761F1C6485400021B6B0 /* RedemptionHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedemptionHistoryCell.m; sourceTree = "<group>"; };
+		C26676201C6485400021B6B0 /* RedemptionHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedemptionHistoryCell.xib; sourceTree = "<group>"; };
 		C28469B61C5F6FCD00B38885 /* NearbyShopsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyShopsCell.h; sourceTree = "<group>"; };
 		C28469B71C5F6FCD00B38885 /* NearbyShopsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyShopsCell.m; sourceTree = "<group>"; };
 		C28469B81C5F6FCD00B38885 /* NearbyShopsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NearbyShopsCell.xib; sourceTree = "<group>"; };
@@ -6275,15 +6285,16 @@
 		8AFA51731C47B4AB00E7920E /* WalletListing */ = {
 			isa = PBXGroup;
 			children = (
-				8AFA51741C47B4AB00E7920E /* VoucherFilterCellTableViewCell.h */,
-				8AFA51751C47B4AB00E7920E /* VoucherFilterCellTableViewCell.m */,
-				8AFA51761C47B4AB00E7920E /* VoucherFilterCellTableViewCell.xib */,
+				C26676181C6482D50021B6B0 /* History */,
 				8AFA51771C47B4AB00E7920E /* WalletListingViewController.h */,
 				8AFA51781C47B4AB00E7920E /* WalletListingViewController.m */,
 				8AFA51791C47B4AB00E7920E /* WalletListingViewController.xib */,
 				8AFA517A1C47B4AB00E7920E /* WalletVoucherCell.h */,
 				8AFA517B1C47B4AB00E7920E /* WalletVoucherCell.m */,
 				8AFA517C1C47B4AB00E7920E /* WalletVoucherCell.xib */,
+				C26676131C6445290021B6B0 /* WalletHeaderCell.h */,
+				C26676141C6445290021B6B0 /* WalletHeaderCell.m */,
+				C26676151C6445290021B6B0 /* WalletHeaderCell.xib */,
 			);
 			path = WalletListing;
 			sourceTree = "<group>";
@@ -6505,6 +6516,19 @@
 			path = RangeSlider;
 			sourceTree = "<group>";
 		};
+		C26676181C6482D50021B6B0 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				C26676191C6483030021B6B0 /* RedemptionHistoryViewController.h */,
+				C266761A1C6483030021B6B0 /* RedemptionHistoryViewController.m */,
+				C266761B1C6483030021B6B0 /* RedemptionHistoryViewController.xib */,
+				C266761E1C6485400021B6B0 /* RedemptionHistoryCell.h */,
+				C266761F1C6485400021B6B0 /* RedemptionHistoryCell.m */,
+				C26676201C6485400021B6B0 /* RedemptionHistoryCell.xib */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
 		C2C157111C574B5E007608FC /* Others */ = {
 			isa = PBXGroup;
 			children = (
@@ -6699,7 +6723,6 @@
 				8A6CCD841C18075800BCD54E /* CollectTraditonalChineseBtn@2x.png in Resources */,
 				8AD6C10D1B706CF30040437E /* ForgotPasswordViewController.xib in Resources */,
 				8A6CCDD21C18075800BCD54E /* ForHerIcon@3x.png in Resources */,
-				8AFA51DC1C47B4AB00E7920E /* VoucherFilterCellTableViewCell.xib in Resources */,
 				8A0F50B31C0C3B71002B1E22 /* SeShopDetailView.xib in Resources */,
 				8A114CA61BE73F5D006AE3F0 /* PEPhotoCropEditor.bundle in Resources */,
 				8A7B9CE11BBD387000D7F604 /* EnbleLocationViewController.xib in Resources */,
@@ -6977,6 +7000,7 @@
 				8A6CCCAE1C18075800BCD54E /* TitleBar@2x.png in Resources */,
 				0BA1CB2F1B85AEFA009FFD3E /* Explore2ViewController.xib in Resources */,
 				8A6CCDF81C18075800BCD54E /* InviteFriendsGraphic.png in Resources */,
+				C26676171C6445290021B6B0 /* WalletHeaderCell.xib in Resources */,
 				8A6CCA3F1C17E5A800BCD54E /* SeShopFeatureTableViewCell.xib in Resources */,
 				8A6CCE521C18075800BCD54E /* EmptyCollection@3x.png in Resources */,
 				0B6AEA821C48E502009B7D33 /* CT3_MoreViewController.xib in Resources */,
@@ -7100,6 +7124,7 @@
 				8A6CCDD51C18075800BCD54E /* LandmarkCultureIcon@2x.png in Resources */,
 				8A6CCD2F1C18075800BCD54E /* CloseIcon@2x.png in Resources */,
 				8A6CCE271C18075800BCD54E /* BluePhone@2x.png in Resources */,
+				C26676221C6485400021B6B0 /* RedemptionHistoryCell.xib in Resources */,
 				8A6CCE5C1C18075800BCD54E /* NewCollectionsIcon@3x.png in Resources */,
 				8A6CCE8C1C18075800BCD54E /* SearchLocationIcon@3x.png in Resources */,
 				8A6CCD0E1C18075800BCD54E /* TranslateIcon@3x.png in Resources */,
@@ -7295,6 +7320,7 @@
 				8AD6C29C1B7072FB0040437E /* PublishMainViewController.xib in Resources */,
 				8A6CCDAB1C18075800BCD54E /* NearbyImg.png in Resources */,
 				8A6CCD0F1C18075800BCD54E /* Uncheck@2x.png in Resources */,
+				C266761D1C6483030021B6B0 /* RedemptionHistoryViewController.xib in Resources */,
 				8A6CCEE01C18075800BCD54E /* WalkthroughPost.png in Resources */,
 				C238E3271C4649AA00570A25 /* slider-default-handle.png in Resources */,
 				8A6CCCE81C18075800BCD54E /* FollowCollectionBahasaIndoIcon@3x.png in Resources */,
@@ -7576,7 +7602,6 @@
 				8AD6C0F41B706CF30040437E /* SearchChangeLocationViewController.m in Sources */,
 				8AF999151C3A2ADD000314E4 /* PagingModel.m in Sources */,
 				8AD6C0D01B706CF30040437E /* PInterestV2ViewController.m in Sources */,
-				8AFA51DB1C47B4AB00E7920E /* VoucherFilterCellTableViewCell.m in Sources */,
 				0BA94DCB1BEAFA64003AB2E4 /* SuggestedCollectionsViewController.m in Sources */,
 				8A114CA91BE73F5D006AE3F0 /* CRMotionView.m in Sources */,
 				8A9F25CE1B8ED8BC00BB13BA /* EditHoursViewController.m in Sources */,
@@ -7676,6 +7701,7 @@
 				8AF53F1B1BD8850E00AF6C9E /* NSObject+Extension.m in Sources */,
 				8AD6BE231B706CF30040437E /* NSMutableArray+MoveArray.m in Sources */,
 				8A6BB42E1BF0C338005AA1B3 /* MZFormSheetPresentationController.m in Sources */,
+				C26676211C6485400021B6B0 /* RedemptionHistoryCell.m in Sources */,
 				8AC8F73A1BDA414E00DEF14A /* ProfileViewController.m in Sources */,
 				8AF2C2791B9EA3B800B0A7F1 /* NSDictionary+STHelper.m in Sources */,
 				8AD6C2991B7072FB0040437E /* ExtasViewController.m in Sources */,
@@ -7852,6 +7878,7 @@
 				8AF6FDCB1C586480005AAE5D /* SignupPageViewController.m in Sources */,
 				8AF030C51C5F6CE400817E2F /* PlaceModel.m in Sources */,
 				8A3408ED1B86EA4B009B66C3 /* UITableView+LongPressReorder.m in Sources */,
+				C26676161C6445290021B6B0 /* WalletHeaderCell.m in Sources */,
 				8AD6C2911B7072FB0040437E /* ChangeSearchLocationViewController.m in Sources */,
 				8AD6C27F1B7072FB0040437E /* AddContactViewController.m in Sources */,
 				0BC9B38A1B7DD287008334FF /* FeedViewController.m in Sources */,
@@ -7934,6 +7961,7 @@
 				8A114CB21BE73F5D006AE3F0 /* LLARingSpinnerView.m in Sources */,
 				C2C157161C574BB6007608FC /* PromoPopOutViewController.m in Sources */,
 				8AC8F7381BDA414E00DEF14A /* ProfileCollectionViewController.m in Sources */,
+				C266761C1C6483030021B6B0 /* RedemptionHistoryViewController.m in Sources */,
 				8A0F50CD1C0D52AE002B1E22 /* PhotoCollectionViewCell.m in Sources */,
 				8AD6C2A11B7072FB0040437E /* RecommendV2ViewController.m in Sources */,
 				8A45096F1BA801D400A868CD /* STAddNewTableViewCell.m in Sources */,

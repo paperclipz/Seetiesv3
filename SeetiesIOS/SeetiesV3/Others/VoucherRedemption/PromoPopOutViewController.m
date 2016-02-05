@@ -30,6 +30,9 @@
 @property (strong, nonatomic) IBOutlet UIView *ibVerifiedView;
 @property (weak, nonatomic) IBOutlet UIView *ibVerifiedContentView;
 
+@property (strong, nonatomic) IBOutlet UIView *ibErrorView;
+@property (weak, nonatomic) IBOutlet UIView *ibErrorContentView;
+
 @property(nonatomic,assign)PopOutViewType viewType;
 @property(nonatomic) NSMutableArray *dummyOutlet;
 @end
@@ -129,6 +132,10 @@
             [self.ibVerifiedContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             return self.ibVerifiedView;
             
+        case ErrorViewType:
+            [self.ibErrorContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
+            return self.ibErrorView;
+            
         default:
             [self.ibEnterPromoContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             return self.ibEnterPromoView;
@@ -183,6 +190,14 @@
         {
             if (YES) {
                 nextView = RedemptionSuccessfulViewType;
+            }
+        }
+            break;
+            
+        case ErrorViewType:
+        {
+            if (YES) {
+                nextView = QuitViewType;
             }
         }
             break;

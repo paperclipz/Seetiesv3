@@ -10,13 +10,11 @@
 
 @interface WalletListingViewController ()
 @property NSArray *voucherArray;
-@property NSArray *filterArray;
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 @property (weak, nonatomic) IBOutlet UIButton *ibFooterBtn;
-@property (weak, nonatomic) IBOutlet UITableView *ibFilterTable;
-@property (weak, nonatomic) IBOutlet UIView *ibFilterView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibFilterTableHeightConstraint;
 
+@property (nonatomic)PromoPopOutViewController *promoPopOutViewController;
+@property(nonatomic)RedemptionHistoryViewController *redemptionHistoryViewController;
 @end
 
 @implementation WalletListingViewController
@@ -24,10 +22,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    _voucherArray = @[@"1",@"2",@"1",@"2"];
-    _filterArray = @[@"1",@"2",@"3",@"4",@"5"];
+    [self initData];
     
-    //[self initData];
+    [self.ibTableView registerNib:[UINib nibWithNibName:@"WalletVoucherCell" bundle:nil] forCellReuseIdentifier:@"WalletVoucherCell"];
     self.ibTableView.estimatedRowHeight = [WalletVoucherCell getHeight];
     self.ibTableView.rowHeight = UITableViewAutomaticDimension;
     
@@ -39,10 +36,9 @@
 }
 
 -(void)initData{
-    if (!self.voucherArray) {
-        self.voucherArray = [[NSMutableArray alloc] init];
-    }
+    NSArray *dummyArray = @[@"",@"",@"",@"",@"",@"",@""];
     
+    _voucherArray = @[dummyArray, dummyArray, dummyArray, dummyArray];
 }
 
 /*
@@ -55,37 +51,21 @@
 }
 */
 
+#pragma mark - TableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (tableView == self.ibTableView) {
-//        return self.voucherArray.count;
-        return 20;
+        return ((NSArray*)[self.voucherArray objectAtIndex:section]).count;
 
     }
     
     return 0;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == self.ibTableView) {
         WalletVoucherCell *voucherCell = [tableView dequeueReusableCellWithIdentifier:@"WalletVoucherCell"];
-        
-        if (!voucherCell) {
-            [tableView registerNib:[UINib nibWithNibName:@"WalletVoucherCell" bundle:nil] forCellReuseIdentifier:@"WalletVoucherCell"];
-            voucherCell = [tableView dequeueReusableCellWithIdentifier:@"WalletVoucherCell"];
-        }
-        
+        voucherCell.delegate = self;
         return voucherCell;
-    }
-    else if (tableView == self.ibFilterTable){
-        VoucherFilterCellTableViewCell *filterCell = [tableView dequeueReusableCellWithIdentifier:@"VoucherFilterCell"];
-        
-        if (!filterCell) {
-            [tableView registerNib:[UINib nibWithNibName:@"VoucherFilterCellTableViewCell" bundle:nil] forCellReuseIdentifier:@"VoucherFilterCell"];
-            filterCell = [tableView dequeueReusableCellWithIdentifier:@"VoucherFilterCell"];
-        }
-        
-        return filterCell;
     }
     
     return nil;
@@ -95,19 +75,58 @@
     return UITableViewAutomaticDimension;
 }
 
-- (IBAction)filterBtnClicked:(id)sender {
-    if (self.ibFilterView.hidden) {
-        self.ibFilterView.hidden = NO;
-        [self adjustHeightOfFilterTable];
-    }
-    else{
-        self.ibFilterView.hidden = YES;
-    }
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return self.voucherArray.count;
 }
 
+- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section;{
+    WalletHeaderCell *header = [tableView dequeueReusableCellWithIdentifier:@"WalletHeaderCell"];
+    
+    if (!header) {
+        [tableView registerNib:[UINib nibWithNibName:@"WalletHeaderCell" bundle:nil] forCellReuseIdentifier:@"WalletHeaderCell"];
+        header = [tableView dequeueReusableCellWithIdentifier:@"WalletHeaderCell"];
+    }
+    
+    return header;
+}
+
+#pragma mark - IBAction
 - (IBAction)footerBtnClicked:(id)sender {
+    [self.promoPopOutViewController setViewType:EnterPromoViewType];
+    
+    STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:self.promoPopOutViewController];
+    popupController.containerView.backgroundColor = [UIColor clearColor];
+    [popupController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewDidTap)]];
+    [popupController presentInViewController:self];
+    [popupController setNavigationBarHidden:YES];
 }
 
+-(IBAction)backgroundViewDidTap{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)historyBtnClicked:(id)sender {
+    [self.navigationController pushViewController:self.redemptionHistoryViewController animated:YES];
+}
+
+-(void)redeemVoucherClicked:(DealModel*)deal{
+    //To do checking whether voucher can be redeemed
+//    if (YES) {
+//        
+//    }
+//    else{
+        [self.promoPopOutViewController setViewType:ErrorViewType];
+        
+        STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:self.promoPopOutViewController];
+        popupController.containerView.backgroundColor = [UIColor clearColor];
+        [popupController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewDidTap)]];
+        [popupController presentInViewController:self];
+        [popupController setNavigationBarHidden:YES];
+//    }
+    
+}
+
+/* ADJUST TABLEVIEW HEIGHT CODE
 - (void)adjustHeightOfFilterTable
 {
     CGFloat height = self.ibFilterTable.contentSize.height;
@@ -126,5 +145,21 @@
         self.ibFilterTableHeightConstraint.constant = height;
         [self.view setNeedsUpdateConstraints];
     }];
+}
+ */
+
+#pragma mark - Declaration
+-(PromoPopOutViewController*)promoPopOutViewController{
+    if (!_promoPopOutViewController) {
+        _promoPopOutViewController = [PromoPopOutViewController new];
+    }
+    return _promoPopOutViewController;
+}
+
+-(RedemptionHistoryViewController*)redemptionHistoryViewController{
+    if (!_redemptionHistoryViewController) {
+        _redemptionHistoryViewController = [RedemptionHistoryViewController new];
+    }
+    return _redemptionHistoryViewController;
 }
 @end

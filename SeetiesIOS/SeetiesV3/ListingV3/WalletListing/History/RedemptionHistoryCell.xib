@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="RedemptionHistoryCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="CuP-er-0zT" userLabel="deal image">
+                        <rect key="frame" x="8" y="16" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="O7U-hW-Xw6"/>
+                            <constraint firstAttribute="width" constant="50" id="rme-Ww-hmB"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50% OFF for All Coffee Drinks" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2WC-fw-1Bf" userLabel="deal title">
+                        <rect key="frame" x="66" y="16" width="246" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="Glv-nV-ZrL"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rekindle Cafe" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I76-R2-bKK" userLabel="outlet">
+                        <rect key="frame" x="78" y="37" width="234" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="dKQ-v4-BsK"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   REDEEMED ON 16 JAN 2016   " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UR5-6l-crt" userLabel="date redemption">
+                        <rect key="frame" x="66" y="63" width="207" height="21"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="3uJ-Pr-vl4"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LocationBtn.png" translatesAutoresizingMaskIntoConstraints="NO" id="gSg-9Z-eVT" userLabel="location icon">
+                        <rect key="frame" x="58" y="37" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="848-GS-bmq"/>
+                            <constraint firstAttribute="height" constant="20" id="Fn1-8L-CF2"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="gSg-9Z-eVT" firstAttribute="top" secondItem="2WC-fw-1Bf" secondAttribute="bottom" id="BYh-LW-2SM"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="UR5-6l-crt" secondAttribute="bottom" constant="8" id="FiT-53-OFp"/>
+                    <constraint firstItem="2WC-fw-1Bf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="8" id="MA4-O8-OUQ"/>
+                    <constraint firstItem="2WC-fw-1Bf" firstAttribute="leading" secondItem="CuP-er-0zT" secondAttribute="trailing" constant="8" id="Rnt-0a-mPZ"/>
+                    <constraint firstItem="UR5-6l-crt" firstAttribute="top" secondItem="I76-R2-bKK" secondAttribute="bottom" constant="5" id="TWy-va-Mbj"/>
+                    <constraint firstItem="CuP-er-0zT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="aMK-hM-Uhl"/>
+                    <constraint firstItem="gSg-9Z-eVT" firstAttribute="leading" secondItem="CuP-er-0zT" secondAttribute="trailing" id="ecb-fF-goC"/>
+                    <constraint firstItem="I76-R2-bKK" firstAttribute="top" secondItem="2WC-fw-1Bf" secondAttribute="bottom" id="mae-bj-spv"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="2WC-fw-1Bf" secondAttribute="trailing" id="mgs-sF-MAf"/>
+                    <constraint firstItem="UR5-6l-crt" firstAttribute="leading" secondItem="2WC-fw-1Bf" secondAttribute="leading" id="nQl-Fn-eX6"/>
+                    <constraint firstItem="I76-R2-bKK" firstAttribute="leading" secondItem="gSg-9Z-eVT" secondAttribute="trailing" id="ob4-P3-w1g"/>
+                    <constraint firstItem="CuP-er-0zT" firstAttribute="top" secondItem="2WC-fw-1Bf" secondAttribute="top" id="r9j-2r-xhg"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="I76-R2-bKK" secondAttribute="trailing" id="svl-ME-F6u"/>
+                    <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="UR5-6l-crt" secondAttribute="trailing" constant="8" id="uvo-8w-CrO"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="ibDealImage" destination="CuP-er-0zT" id="Gjp-yd-zPx"/>
+                <outlet property="ibDealOutletLbl" destination="I76-R2-bKK" id="cBt-Uu-AUk"/>
+                <outlet property="ibDealTitleLbl" destination="2WC-fw-1Bf" id="0DH-UW-c1d"/>
+                <outlet property="ibRedemptionDateLbl" destination="UR5-6l-crt" id="loU-Yq-gDD"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="LocationBtn.png" width="75" height="50"/>
+        <image name="NoImage.png" width="800" height="800"/>
+    </resources>
+</document>

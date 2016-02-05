@@ -7,8 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DealModel.h"
+
+@protocol WalletVoucherDelegate <NSObject>
+
+-(void)redeemVoucherClicked:(DealModel*)deal;
+
+@end
 
 @interface WalletVoucherCell : CommonTableViewCell
 
-
+@property(nonatomic)id<WalletVoucherDelegate> delegate;
 @end

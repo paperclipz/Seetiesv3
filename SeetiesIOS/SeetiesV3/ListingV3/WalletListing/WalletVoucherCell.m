@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *ibDealUsageLbl;
 @property (weak, nonatomic) IBOutlet UIButton *ibRedeemBtn;
 
+@property(nonatomic) DealModel *dealModel;
+
 @end
 
 @implementation WalletVoucherCell
@@ -32,5 +34,10 @@
     // Configure the view for the selected state
 }
 
+- (IBAction)redeemBtnClicked:(id)sender {
+    if (self.delegate) {
+        [self.delegate redeemVoucherClicked:self.dealModel];
+    }
+}
 
 @end
