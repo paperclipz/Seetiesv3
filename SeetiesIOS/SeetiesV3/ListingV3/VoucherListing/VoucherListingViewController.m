@@ -73,31 +73,13 @@
                                @"0", @"min",
                                @"100", @"max", nil];
     
-    NSDictionary *priceFilter1 = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                 @"Price", @"type",
+    NSDictionary *availabilityFilter = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                 @"Availability", @"type",
                                  @"0", @"min",
                                  @"100", @"max", nil];
 
     
-    NSDictionary *priceFilter2 = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                 @"Price", @"type",
-                                 @"0", @"min",
-                                 @"100", @"max", nil];
-
-    
-    NSDictionary *priceFilter3 = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                 @"Price", @"type",
-                                 @"0", @"min",
-                                 @"100", @"max", nil];
-
-    
-    NSDictionary *priceFilter4 = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                 @"Price", @"type",
-                                 @"0", @"min",
-                                 @"100", @"max", nil];
-
-    
-    NSArray *filterArray = @[sortFilter, catFilter, priceFilter,priceFilter1,priceFilter2,priceFilter3,priceFilter4];
+    NSArray *filterArray = @[sortFilter, catFilter, priceFilter,availabilityFilter];
     return filterArray;
 }
 

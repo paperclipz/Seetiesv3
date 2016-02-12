@@ -22,7 +22,9 @@
     
     [self.ibFilterCollection registerNib:[UINib nibWithNibName:@"FilterCategoryCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"FilterCategoryCollectionCell"];
     [self.ibFilterCollection registerNib:[UINib nibWithNibName:@"FilterBudgetCell" bundle:nil] forCellWithReuseIdentifier:@"FilterBudgetCell"];
+    [self.ibFilterCollection registerNib:[UINib nibWithNibName:@"FilterAvailabilityCell" bundle:nil] forCellWithReuseIdentifier:@"FilterAvailabilityCell"];
     [self.ibFilterCollection registerNib:[UINib nibWithNibName:@"FilterHeaderCollectionReusableView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"FilterHeaderCollectionReusableView"];
+    self.navigationController.navigationBarHidden = YES;
 }
 
 - (instancetype)init
@@ -59,11 +61,13 @@
 }
 */
 
+
+#pragma mark - CollectionView
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     NSDictionary *filterDict = [self.filterArray objectAtIndex:section];
     NSString *type = [filterDict objectForKey:@"type"];
     
-    if ([type isEqualToString:@"Price"]) {
+    if ([type isEqualToString:@"Price"] || [type isEqualToString:@"Availability"]) {
         return 1;
     }
     else{
@@ -85,6 +89,10 @@
         
         return budgetCell;
     }
+    else if ([type isEqualToString:@"Availability"]){
+        FilterAvailabilityCell *availabilityCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"FilterAvailabilityCell" forIndexPath:indexPath];
+        return availabilityCell;
+    }
     else{
         FilterCategoryCollectionCell *categoryCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"FilterCategoryCollectionCell" forIndexPath:indexPath];
         NSArray *array = [filterDict objectForKey:@"array"];
@@ -105,11 +113,14 @@
     NSString *type = [filterDict objectForKey:@"type"];
     
     if ([type isEqualToString:@"Price"]) {
-        return CGSizeMake(collectionView.frame.size.width-10, 80);
+        return CGSizeMake(collectionView.frame.size.width, 80);
+    }
+    else if ([type isEqualToString:@"Availability"]){
+        return CGSizeMake(collectionView.frame.size.width, 50);
     }
     else{
-        CGFloat width = (collectionView.frame.size.width-20)/3;
-        return CGSizeMake(width, 30);
+        CGFloat width = (collectionView.frame.size.width)/3;
+        return CGSizeMake(width, 52);
     }
 }
 
@@ -124,5 +135,16 @@
     return header;
 }
 
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
+    NSDictionary *filterDict = [self.filterArray objectAtIndex:section];
+    NSString *type = [filterDict objectForKey:@"type"];
+
+    if ([type isEqualToString:@"Availability"]) {
+        return CGSizeMake(0, 0);
+    }
+    else{
+        return CGSizeMake(collectionView.frame.size.width, 50);
+    }
+}
 
 @end

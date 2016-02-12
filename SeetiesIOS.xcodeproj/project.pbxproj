@@ -1297,6 +1297,8 @@
 		C26676221C6485400021B6B0 /* RedemptionHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C26676201C6485400021B6B0 /* RedemptionHistoryCell.xib */; };
 		C28469B91C5F6FCD00B38885 /* NearbyShopsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C28469B71C5F6FCD00B38885 /* NearbyShopsCell.m */; };
 		C28469BA1C5F6FCD00B38885 /* NearbyShopsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C28469B81C5F6FCD00B38885 /* NearbyShopsCell.xib */; };
+		C2AB4A5A1C6D8C900053FCA8 /* FilterAvailabilityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2AB4A581C6D8C900053FCA8 /* FilterAvailabilityCell.m */; };
+		C2AB4A5B1C6D8C900053FCA8 /* FilterAvailabilityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2AB4A591C6D8C900053FCA8 /* FilterAvailabilityCell.xib */; };
 		C2C157161C574BB6007608FC /* PromoPopOutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C157141C574BB6007608FC /* PromoPopOutViewController.m */; };
 		C2C157171C574BB6007608FC /* PromoPopOutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2C157151C574BB6007608FC /* PromoPopOutViewController.xib */; };
 		C2FB1CDF1C4F7A3B004AE990 /* SearchLocationAreaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FB1CDD1C4F7A3B004AE990 /* SearchLocationAreaCell.m */; };
@@ -3054,6 +3056,9 @@
 		C28469B61C5F6FCD00B38885 /* NearbyShopsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyShopsCell.h; sourceTree = "<group>"; };
 		C28469B71C5F6FCD00B38885 /* NearbyShopsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyShopsCell.m; sourceTree = "<group>"; };
 		C28469B81C5F6FCD00B38885 /* NearbyShopsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NearbyShopsCell.xib; sourceTree = "<group>"; };
+		C2AB4A571C6D8C900053FCA8 /* FilterAvailabilityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterAvailabilityCell.h; sourceTree = "<group>"; };
+		C2AB4A581C6D8C900053FCA8 /* FilterAvailabilityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterAvailabilityCell.m; sourceTree = "<group>"; };
+		C2AB4A591C6D8C900053FCA8 /* FilterAvailabilityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterAvailabilityCell.xib; sourceTree = "<group>"; };
 		C2C157131C574BB6007608FC /* PromoPopOutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromoPopOutViewController.h; sourceTree = "<group>"; };
 		C2C157141C574BB6007608FC /* PromoPopOutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromoPopOutViewController.m; sourceTree = "<group>"; };
 		C2C157151C574BB6007608FC /* PromoPopOutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PromoPopOutViewController.xib; sourceTree = "<group>"; };
@@ -6256,6 +6261,9 @@
 				8AFA515D1C47B4AB00E7920E /* GeneralFilterViewController.h */,
 				8AFA515E1C47B4AB00E7920E /* GeneralFilterViewController.m */,
 				8AFA515F1C47B4AB00E7920E /* GeneralFilterViewController.xib */,
+				C2AB4A571C6D8C900053FCA8 /* FilterAvailabilityCell.h */,
+				C2AB4A581C6D8C900053FCA8 /* FilterAvailabilityCell.m */,
+				C2AB4A591C6D8C900053FCA8 /* FilterAvailabilityCell.xib */,
 			);
 			path = Filter;
 			sourceTree = "<group>";
@@ -7122,6 +7130,7 @@
 				8A6CCEA11C18075800BCD54E /* SSFeaturesIcon@3x.png in Resources */,
 				8A6CCD2D1C18075800BCD54E /* CategoriesCheck@2x.png in Resources */,
 				8A6CCE7E1C18075800BCD54E /* ProfileShareIcon@3x.png in Resources */,
+				C2AB4A5B1C6D8C900053FCA8 /* FilterAvailabilityCell.xib in Resources */,
 				8A6CCEBB1C18075800BCD54E /* ShareIGIcon@3x.png in Resources */,
 				8A6CCDC01C18075800BCD54E /* CampaignLogo@3x.png in Resources */,
 				8A6CCD451C18075800BCD54E /* LocationIcon@2x.png in Resources */,
@@ -7902,6 +7911,7 @@
 				8AF6FDCB1C586480005AAE5D /* SignupPageViewController.m in Sources */,
 				8AF030C51C5F6CE400817E2F /* PlaceModel.m in Sources */,
 				8A3408ED1B86EA4B009B66C3 /* UITableView+LongPressReorder.m in Sources */,
+				C2AB4A5A1C6D8C900053FCA8 /* FilterAvailabilityCell.m in Sources */,
 				C26676161C6445290021B6B0 /* WalletHeaderCell.m in Sources */,
 				8AD6C2911B7072FB0040437E /* ChangeSearchLocationViewController.m in Sources */,
 				8AD6C27F1B7072FB0040437E /* AddContactViewController.m in Sources */,

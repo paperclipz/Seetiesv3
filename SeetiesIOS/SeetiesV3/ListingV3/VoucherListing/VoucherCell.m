@@ -28,6 +28,11 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    [self.ibVoucherCollectBtn setSideCurveBorder];
+    [self.ibVoucherTag1Lbl setSideCurveBorder];
+    [self.ibVoucherTag2Lbl setSideCurveBorder];
+    [self.ibVoucherTag3Lbl setSideCurveBorder];
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
