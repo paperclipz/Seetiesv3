@@ -12,12 +12,14 @@
 
 @property(nonatomic,strong) NSString * dID;
 @property(nonatomic,strong) NSString *title;
-@property(nonatomic,assign) NSInteger expired_in_days;
+@property(nonatomic,assign) NSString *expired_at;
 @property(nonatomic,assign) NSInteger total_available_vouchers;
 @property(nonatomic,strong) NSString *deal_type;
 @property(nonatomic,assign) float original_item_price;
 @property(nonatomic,assign) float discounted_item_price;
 @property(nonatomic,strong) NSArray<PhotoModel> *photos;
 @property(nonatomic,strong) NSArray<PhotoModel> *cover_photo;
+@property(nonatomic, strong) NSString *voucherID;
+@property(nonatomic, strong) NSString *voucher_status;
 
 @end

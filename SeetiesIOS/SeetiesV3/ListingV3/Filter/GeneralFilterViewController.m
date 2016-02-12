@@ -24,7 +24,7 @@
     [self.ibFilterCollection registerNib:[UINib nibWithNibName:@"FilterBudgetCell" bundle:nil] forCellWithReuseIdentifier:@"FilterBudgetCell"];
     [self.ibFilterCollection registerNib:[UINib nibWithNibName:@"FilterAvailabilityCell" bundle:nil] forCellWithReuseIdentifier:@"FilterAvailabilityCell"];
     [self.ibFilterCollection registerNib:[UINib nibWithNibName:@"FilterHeaderCollectionReusableView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"FilterHeaderCollectionReusableView"];
-    self.navigationController.navigationBarHidden = YES;
+//    self.navigationController.navigationBarHidden = YES;
 }
 
 - (instancetype)init

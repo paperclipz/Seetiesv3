@@ -11,6 +11,7 @@
 #import "GeneralFilterViewController.h"
 #import "DealDetailsViewController.h"
 #import "WalletListingViewController.h"
+#import "DealsModel.h"
 
 @interface VoucherListingViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate>
 
