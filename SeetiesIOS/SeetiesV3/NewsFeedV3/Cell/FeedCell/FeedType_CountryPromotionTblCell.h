@@ -12,5 +12,6 @@
 
 @interface FeedType_CountryPromotionTblCell : CommonTableViewCell
 -(void)initData:(CTFeedTypeModel*)model;
+-(void)initDataForHome:(AnnouncementModel*)model;
 
 @end

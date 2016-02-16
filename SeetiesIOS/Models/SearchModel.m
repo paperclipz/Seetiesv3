@@ -50,6 +50,12 @@
             
         }
         
+        if ([value isEqualToString:@"political"])
+        {
+            _political = dict[@"political"];
+            
+        }
+        
         if ([value isEqualToString:@"locality"])
         {
             _city = dict[@"long_name"];

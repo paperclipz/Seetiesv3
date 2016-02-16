@@ -10,10 +10,20 @@
 @interface FeedType_CountryPromotionTblCell()
 
 @property (nonatomic,strong)DraftModel* newsFeedModel;
+@property (nonatomic,strong)AnnouncementModel* announcementModel;
+
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
 
 @end
 @implementation FeedType_CountryPromotionTblCell
+
+-(void)initDataForHome:(AnnouncementModel*)model
+{
+    self.announcementModel = model;
+    [self.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:self.announcementModel.photo] completed:nil];
+
+}
+
 -(void)initData:(CTFeedTypeModel*)model
 {
 

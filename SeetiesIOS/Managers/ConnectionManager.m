@@ -391,6 +391,7 @@
     [Utils setIsDevelopment:!self.dataManager.apiVersionModel.production];
 }
 
+#pragma mark - SEETIES URL
 -(NSString*)getFullURLwithType:(ServerRequestType)type
 {
     NSString* str;
@@ -515,6 +516,10 @@
             
         case ServerRequestTypeGetHome:
             str = [NSString stringWithFormat:@"%@/home",API_VERION_URL];
+            
+            break;
+        case ServerRequestTypeGetHomeUpdater:
+            str = [NSString stringWithFormat:@"%@/home/update",API_VERION_URL];
             
             break;
             
@@ -834,7 +839,6 @@
         {
             
             NSDictionary* dict = obj[@"data"];
-
             self.dataManager.homeModel = [[HomeModel alloc]initWithDictionary:dict error:nil];
         }
             break;
@@ -845,6 +849,14 @@
             self.dataManager.dealsModel = [[DealsModel alloc] initWithDictionary:dict error:nil];
             
         }
+            break;
+            
+        case ServerRequestTypeGetHomeUpdater:
+        {
+            NSDictionary *dict = obj[@"data"];
+            self.dataManager.dealsModel = [[DealsModel alloc] initWithDictionary:dict error:nil];
+        }
+            
             break;
         default:
             

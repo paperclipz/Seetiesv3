@@ -51,24 +51,27 @@
     for (int i = 0; i<arrDeals.count; i++) {
         DealModel* model = arrDeals[i];
         
-        if (![Utils isArrayNull:model.cover_photo]) {
-            PhotoModel* pModel = model.cover_photo[0];
-            [arrImages addObject:pModel];
+        if (![Utils isStringNull:model.cover_photo.imageURL]) {
+            [arrImages addObject:model.cover_photo];
         }
     }
     
-    PhotoModel* model = [PhotoModel new];
-    model.imageURL = @"http://www.wallpapereast.com/static/images/b807c2282ab0a491bd5c5c1051c6d312_LebkKlA.jpg";
-    [arrImages addObject:model];
-    
-    PhotoModel* model1 = [PhotoModel new];
-    model1.imageURL = @"http://www.wallpapereast.com/static/images/HD-Wallpapers1_QlwttNW.jpeg";
-    [arrImages addObject:model1];
-
+//    PhotoModel* model = [PhotoModel new];
+//    model.imageURL = @"http://www.wallpapereast.com/static/images/b807c2282ab0a491bd5c5c1051c6d312_LebkKlA.jpg";
+//    [arrImages addObject:model];
+//    
+//    PhotoModel* model1 = [PhotoModel new];
+//    model1.imageURL = @"http://www.wallpapereast.com/static/images/HD-Wallpapers1_QlwttNW.jpeg";
+//    [arrImages addObject:model1];
+//
 
     
     [self.fadeTimer invalidate];
-    self.fadeTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(animateImages) userInfo:nil repeats:YES];
+   
+        if (arrImages.count>1) {
+        self.fadeTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(animateImages) userInfo:nil repeats:YES];
+
+    }
    
    // [self.ibCollectionView reloadData];
 }
@@ -83,10 +86,14 @@
     [UIView animateWithDuration:1.0
                      animations: ^{ [self.ibCollectionView reloadData]; }
                      completion:^(BOOL finished) {
-                         int counter = imageIndex % arrImages.count;
-                         NSIndexPath *iPath = [NSIndexPath indexPathForItem:counter inSection:0];
-                         [self.ibCollectionView scrollToItemAtIndexPath:iPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
-                         imageIndex ++;
+                         
+                         if (arrImages.count>0) {
+                             int counter = imageIndex % arrImages.count;
+                             NSIndexPath *iPath = [NSIndexPath indexPathForItem:counter inSection:0];
+                             [self.ibCollectionView scrollToItemAtIndexPath:iPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+                             imageIndex ++;
+                         }
+                        
                      }];
 }
 

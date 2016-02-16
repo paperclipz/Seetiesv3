@@ -44,6 +44,7 @@
 #import "VoucherListingViewController.h"
 #import "SearchLocationViewController.h"
 
+#import "UITableView+Extension.h"
 static NSCache* heightCache = nil;
 #define TopBarHeight 64.0f
 #define NUMBER_OF_SECTION 2
@@ -53,6 +54,12 @@ static NSCache* heightCache = nil;
     __weak IBOutlet UIActivityIndicatorView *ibActivityIndicator;
     __weak IBOutlet UIImageView *ibHeaderBackgroundView;
     __weak IBOutlet NSLayoutConstraint *constTopScrollView;
+    BOOL isFirstLoad;
+    
+    NSString* lastUpdatedLocation;
+    NSString* lastUpdatedDateTime;
+    BOOL updateLocation;
+    BOOL updateData;
     
 }
 /*IBOUTLET*/
@@ -70,6 +77,10 @@ static NSCache* heightCache = nil;
 @property(nonatomic,strong)NSMutableArray* arrayNewsFeed;
 @property(nonatomic,strong)NewsFeedModels* newsFeedModels;
 @property(nonatomic,strong)HomeModel* homeModel;
+@property(nonatomic,strong)NSMutableArray* arrHomeDeal;
+
+@property(nonatomic,strong)HomeLocationModel* currentHomeLocationModel;
+
 
 
 /* Model */
@@ -148,6 +159,14 @@ static NSCache* heightCache = nil;
 
 #pragma mark - Declaration
 
+-(NSMutableArray*)arrHomeDeal
+{
+    if (!_arrHomeDeal) {
+        _arrHomeDeal = [NSMutableArray new];
+    }
+    
+    return _arrHomeDeal;
+}
 -(DealRedeemViewController*)dealRedeemViewController
 {
     if (!_dealRedeemViewController) {
@@ -276,14 +295,40 @@ static NSCache* heightCache = nil;
  
     if (!_searchLocationViewController) {
         _searchLocationViewController = [SearchLocationViewController new];
+        __weak typeof (self)weakself = self;
+        _searchLocationViewController.homeLocationRefreshBlock = ^(HomeLocationModel* model)
+        {
+            weakself.currentHomeLocationModel = model;
+            [weakself requestServerForHome:model];
+            [weakself.searchLocationViewController.navigationController popViewControllerAnimated:YES];
+        };
+        
+        _searchLocationViewController.refreshAreaLocation = ^(PlaceModel* model)
+        {
+            
+            isFirstLoad = YES;
+            weakself.currentHomeLocationModel.longtitude = model.longtitude;
+            weakself.currentHomeLocationModel.latitude = model.latitude;
+            weakself.currentHomeLocationModel.place_id = model.place_id;
+            [weakself requestServerForHome:weakself.currentHomeLocationModel];
+
+        };
     }
+    
     return _searchLocationViewController;
 }
+
 
 #pragma mark - DEFAULT
 - (void)viewDidLoad {
     
+    isFirstLoad = YES;
     [super viewDidLoad];
+    
+    lastUpdatedDateTime = @"";
+    
+    lastUpdatedLocation = @"";
+    
     [self initSelfView];
     [self refreshViewAfterLogin];
 
@@ -294,12 +339,26 @@ static NSCache* heightCache = nil;
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    if (!isFirstLoad) {
+        [self requestServerForHomeUpdate:self.currentHomeLocationModel];
+    }
   //  [self.ibTableView reloadData];
 }
 
 -(void)initSelfView
 {
-    [self requestServerForHome];
+    HomeLocationModel* model = [HomeLocationModel new];
+    model.timezone = [Utils getTimeZone];
+    model.type = @"none";
+    model.latitude = @"";
+    model.longtitude = @"";
+    model.place_id = @"";
+    self.currentHomeLocationModel = model;
+
+    
+    [self requestServerForHome:model];
+    
     self.automaticallyAdjustsScrollViewInsets = NO;
     constTopScrollView.constant = TopBarHeight;
 
@@ -356,7 +415,7 @@ static NSCache* heightCache = nil;
 {
     
     if (section == 0) {
-        return 4;
+        return self.arrHomeDeal.count;
     }
     else{// this is newsfeed row count
         return self.arrayNewsFeed.count;
@@ -367,14 +426,16 @@ static NSCache* heightCache = nil;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   
+
     if (indexPath.section == 0) {
-        
-        switch (indexPath.row) {
-            case 0:
+        DealType type = [self.arrHomeDeal[indexPath.row] intValue];
+
+        switch (type) {
+            case DealType_Collection:
                 return [DealType_mainTblCell getHeight];
                 break;
                 
-            case 1:
+            case DealType_QuickBrowse:
             {
                 CGRect frame = [Utils getDeviceScreenSize];
                 
@@ -386,15 +447,20 @@ static NSCache* heightCache = nil;
             }
                 break;
                 
-            case 2:
+            case DealType_SuperDeal:
             {
                 return [DealType_DealOTDTblCell getHeight];
             }
                 break;
                 
-            case 3:
+            case DealType_Wallet:
             {
                 return [DealType_YourWalletTblCell getHeight];
+            }
+                break;
+            case DealType_Announcement:
+            {
+                return [FeedType_CountryPromotionTblCell getHeight];
             }
                 break;
 
@@ -472,9 +538,10 @@ static NSCache* heightCache = nil;
     
     if (indexPath.section == 0) {
         
-        switch (indexPath.row) {
+        DealType type = [self.arrHomeDeal[indexPath.row] intValue];
+        switch (type) {
             default:
-            case 0:
+            case DealType_Collection:
             {
                 static NSString *CellIdentifier = @"DealType_mainTblCell";
                 DealType_mainTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -486,7 +553,7 @@ static NSCache* heightCache = nil;
 
                 return cell;
             }
-            case 1:
+            case DealType_QuickBrowse:
             {
                 static NSString *CellIdentifier = @"DealType_QuickBrowseTblCell";
                 DealType_QuickBrowseTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -498,7 +565,7 @@ static NSCache* heightCache = nil;
 
             }
                 break;
-            case 2:
+            case DealType_SuperDeal:
             {
                 static NSString *CellIdentifier = @"DealType_DealOTDTblCell";
                 DealType_DealOTDTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -514,7 +581,7 @@ static NSCache* heightCache = nil;
                 
             }
                 break;
-            case 3:
+            case DealType_Wallet:
             {
                 static NSString *CellIdentifier = @"DealType_YourWalletTblCell";
                 DealType_YourWalletTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -526,6 +593,20 @@ static NSCache* heightCache = nil;
                     [cell initData:self.homeModel.wallet_count];
 
                 }
+                return cell;
+                
+            }
+                break;
+            case DealType_Announcement:
+            {
+                static NSString *CellIdentifier = @"FeedType_CountryPromotionTblCell";
+                FeedType_CountryPromotionTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                if (cell == nil) {
+                    cell = [[FeedType_CountryPromotionTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+                }
+                
+              //  [cell initDataForHome:self.homeModel.announcements[0]];
+                
                 return cell;
                 
             }
@@ -892,29 +973,21 @@ static NSCache* heightCache = nil;
             default:
                 break;
         }
-     
-        
     }
     
 }
 
 - (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath*)indexPath
 {
+    
     if (indexPath.section == 0) {
         
-        switch (indexPath.row) {
-            default:
-                break;
-            case 2:
-            {
-                DealType_DealOTDTblCell *tempCell = (DealType_DealOTDTblCell*)cell;
-                [tempCell stopAnimationScrolling];
-            }
-                
-                break;
-                
+        if ([cell isKindOfClass:[DealType_DealOTDTblCell class]]) {
+            DealType_DealOTDTblCell *tempCell = (DealType_DealOTDTblCell*)cell;
+
+            [tempCell stopAnimationScrolling];
+
         }
-    
     }
    
     
@@ -1155,7 +1228,7 @@ static NSCache* heightCache = nil;
         isMiddleOfLoadingServer = YES;
         [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetNewsFeed param:dict appendString:@"" completeHandler:^(id object) {
             isMiddleOfLoadingServer = NO;
-
+            isFirstLoad = NO;
             NewsFeedModels* model = [[ConnectionManager dataManager] newsFeedModels];
             self.newsFeedModels = model;
             [self.arrayNewsFeed addObjectsFromArray:model.items];
@@ -1171,14 +1244,14 @@ static NSCache* heightCache = nil;
     
 }
 
--(void)requestServerForHome
+-(void)requestServerForHome:(HomeLocationModel*)model
 {
     
-    NSDictionary* dict = @{@"timezone_offset" : [Utils getTimeZone],
-                           @"type" : @"none",
-                           @"lat" : @"",
-                           @"lng" : @"",
-                           @"place_id" : @"",
+    NSDictionary* dict = @{@"timezone_offset" : model.timezone,
+                           @"type" : model.type,
+                           @"lat" : model.latitude,
+                           @"lng" : model.longtitude,
+                           @"place_id" : model.place_id,
                            @"token" : [Utils getAppToken],
                            @"address_components" : @"",
                            };
@@ -1186,12 +1259,93 @@ static NSCache* heightCache = nil;
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetHome param:dict appendString:nil completeHandler:^(id object) {
         
         self.homeModel = [[ConnectionManager dataManager]homeModel];
+        HomeModel* model = self.homeModel;
+        
+        [self.arrHomeDeal removeAllObjects];
+        self.arrHomeDeal = nil;
+
+        [self.arrHomeDeal addObject:[NSNumber numberWithInt:DealType_Collection]];
+
+        if (![Utils isArrayNull:self.homeModel.superdeals]) {
+            [self.arrHomeDeal addObject:[NSNumber numberWithInt:DealType_SuperDeal]];
+ 
+        }
+        [self.arrHomeDeal addObject:[NSNumber numberWithInt:DealType_Wallet]];
+        [self.arrHomeDeal addObject:[NSNumber numberWithInt:DealType_QuickBrowse]];
+
+//        if (![Utils isArrayNull:self.homeModel.announcements]) {
+//            [self.arrHomeDeal addObject:[NSNumber numberWithInt:DealType_Announcement]];
+//
+//        }
+        [self.ibTableView reloadSectionDU:0 withRowAnimation:UITableViewRowAnimationNone];
+        
+       // [self.ibTableView reloadData];
+  
+    } errorBlock:^(id object) {
+        
+    }];
+}
+
+-(void)requestServerForHomeUpdate:(HomeLocationModel*)model
+{
+    CLLocation* location  = [[SearchManager Instance]getAppLocation];
+    
+    NSDictionary* dict = @{@"lat" : model.latitude,
+                           @"lng" : model.longtitude,
+                           @"place_id" : model.place_id,
+                           @"current_lat" : @(location.coordinate.latitude),
+                           @"current_lng" : @(location.coordinate.longitude),
+                           @"last_updated" : lastUpdatedDateTime,
+                           @"last_location_updated" : lastUpdatedLocation,
+                           @"token" : [Utils getAppToken]};
+    
+    
+    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetHomeUpdater param:dict appendString:nil completeHandler:^(id object) {
+        
+        NSDictionary* returnDict = object[@"data"];
+        
+        lastUpdatedLocation = returnDict[@"last_location_updated"];
+        lastUpdatedDateTime = returnDict[@"last_updated"];
+        
+        
+        updateLocation = [returnDict[@"update_location"] boolValue];
+        updateData = [returnDict[@"update_data"] boolValue];
+        [self processUpdater];
+
         
     } errorBlock:^(id object) {
         
     }];
 }
 
+-(void)processUpdater
+{
+    updateLocation = YES;
+    updateData = YES;
+    if (updateLocation) {
+        
+        [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Do You want to update your location") cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+            
+            SLog(@"buttonIndex = %ld",(long)buttonIndex);
+            if (buttonIndex == 1) {
+                
+                CLLocation* location  = [[SearchManager Instance]getAppLocation];
+                self.currentHomeLocationModel.longtitude = [NSString stringWithFormat:@"%f",location.coordinate.longitude];
+                self.currentHomeLocationModel.latitude = [NSString stringWithFormat:@"%f",location.coordinate.latitude];
+                [self requestServerForHome:self.currentHomeLocationModel];
+            }
+            else{
+                
+                if (updateData) {
+                    [self requestServerForHome:self.currentHomeLocationModel];
+
+                }
+
+                
+            }
+        }];
+    }
+}
 //- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
 //    float bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
 //    

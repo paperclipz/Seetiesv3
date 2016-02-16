@@ -11,6 +11,7 @@
             <connections>
                 <outlet property="ibAreaTable" destination="iUL-G6-q0D" id="LJ0-Bv-Gda"/>
                 <outlet property="ibCountryTable" destination="o0r-TB-YhJ" id="xDE-QB-eIH"/>
+                <outlet property="ibImgLocation" destination="AMa-vn-Oca" id="cXP-sc-JPx"/>
                 <outlet property="ibSearchTable" destination="mw0-bq-tIH" id="eFc-h4-5Me"/>
                 <outlet property="ibSearchTxtField" destination="yyv-H9-ABN" id="72R-m3-o4W"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -119,8 +120,9 @@
                                 <constraint firstAttribute="width" constant="50" id="du5-jL-8Tr"/>
                             </constraints>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LocationIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="AMa-vn-Oca" userLabel="location image">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_qu_direction_mylocation.png" translatesAutoresizingMaskIntoConstraints="NO" id="AMa-vn-Oca" userLabel="location image">
                             <rect key="frame" x="285" y="18" width="25" height="25"/>
+                            <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="25" id="1bi-YW-dgZ"/>
                                 <constraint firstAttribute="width" constant="25" id="6Ma-ge-ps1"/>
@@ -175,7 +177,6 @@
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pDV-R3-Xee">
                     <rect key="frame" x="0.0" y="120" width="320" height="60"/>
-                    <state key="normal" title="Button"/>
                     <connections>
                         <action selector="btnutoDetectClicked:" destination="-1" eventType="touchUpInside" id="6rQ-bA-BcN"/>
                     </connections>
@@ -222,7 +223,7 @@
     </objects>
     <resources>
         <image name="CloseIcon.png" width="40" height="40"/>
-        <image name="LocationIcon.png" width="30" height="30"/>
         <image name="SearchIcon.png" width="40" height="40"/>
+        <image name="ic_qu_direction_mylocation.png" width="24" height="24"/>
     </resources>
 </document>

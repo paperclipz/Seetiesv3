@@ -18,6 +18,7 @@
 #import "AreaModel.h"
 #import "DealModel.h"
 #import "HomeModel.h"
+#import "HomeLocationModel.h"
 
 
 /*Declare custom block for model type*/
