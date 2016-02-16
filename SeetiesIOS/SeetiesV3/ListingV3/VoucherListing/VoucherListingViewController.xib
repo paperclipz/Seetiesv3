@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="ibUserLocationLbl" destination="KB9-ER-GDk" id="7Jm-Qn-RFC"/>
                 <outlet property="ibVoucherTable" destination="vEe-3n-SBv" id="VUM-tK-L0O"/>
+                <outlet property="ibWalletCountLbl" destination="TL0-PQ-q1H" id="Mq3-KF-PrZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -47,13 +48,13 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deal of the Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qp8-Jp-ABW">
-                            <rect key="frame" x="40" y="38" width="123.5" height="20.5"/>
+                            <rect key="frame" x="40" y="38" width="124" height="21"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PgP-Mz-cA7" userLabel="location button">
-                            <rect key="frame" x="40" y="20" width="170" height="38.5"/>
+                            <rect key="frame" x="40" y="20" width="170" height="39"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="msM-T5-Qek" userLabel="search button">
                             <rect key="frame" x="220" y="14" width="50" height="50"/>
@@ -111,6 +112,9 @@
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
+                            <exclude reference="onx-qK-lak"/>
+                            <exclude reference="tbh-2L-hgd"/>
+                            <exclude reference="yf6-Wq-1SU"/>
                             <exclude reference="7GE-Fa-xt5"/>
                             <exclude reference="UcZ-mI-GCI"/>
                             <exclude reference="XFL-Ch-fPA"/>
@@ -118,9 +122,6 @@
                             <exclude reference="bkx-gW-qn9"/>
                             <exclude reference="ggE-KY-Yu6"/>
                             <exclude reference="md4-db-GbX"/>
-                            <exclude reference="onx-qK-lak"/>
-                            <exclude reference="tbh-2L-hgd"/>
-                            <exclude reference="yf6-Wq-1SU"/>
                             <exclude reference="Qrp-Kr-qXA"/>
                         </mask>
                     </variation>
@@ -158,7 +159,7 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voucher Wallet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EaS-vd-HRF" userLabel="voucher wallet">
-                            <rect key="frame" x="53" y="20" width="123.5" height="21"/>
+                            <rect key="frame" x="53" y="20" width="124" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="iGn-GZ-qRx"/>
                             </constraints>

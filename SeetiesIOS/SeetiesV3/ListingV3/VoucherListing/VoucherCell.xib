@@ -141,10 +141,10 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LocationBtn.png" translatesAutoresizingMaskIntoConstraints="NO" id="0is-RI-ebc" userLabel="local icon">
-                                                <rect key="frame" x="8" y="17" width="25" height="25"/>
+                                                <rect key="frame" x="8" y="17" width="25" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="25" id="Wq9-Hf-loX"/>
-                                                    <constraint firstAttribute="height" constant="25" id="apF-CB-pZH"/>
+                                                    <constraint firstAttribute="height" constant="20" id="apF-CB-pZH"/>
                                                 </constraints>
                                             </imageView>
                                         </subviews>
@@ -184,6 +184,9 @@
                                                 <exclude reference="saK-gr-e6m"/>
                                             </mask>
                                         </variation>
+                                        <connections>
+                                            <action selector="collectRedeemBtnClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="1QF-9o-Awn"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

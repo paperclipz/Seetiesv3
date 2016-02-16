@@ -520,6 +520,11 @@
             
         case ServerRequestTypeGetSuperDeals:
             str = [NSString stringWithFormat:@"%@/home/superdeals", API_VERION_URL];
+            break;
+            
+        case ServerRequestTypeCollectDeals:
+            str = [NSString stringWithFormat:@"%@/vouchers", API_VERION_URL];
+            break;
             
     }
     
@@ -846,6 +851,14 @@
             
         }
             break;
+            
+        case ServerRequestTypeCollectDeals:
+        {
+            NSDictionary *dict = obj[@"data"];
+            self.dataManager.dealModel = [[DealModel alloc] initWithDictionary:dict error:nil];
+        }
+            break;
+            
         default:
             
             SLog(@"the return result is :%@",obj);

@@ -232,10 +232,10 @@
 #pragma mark - UIScrollView Delegate
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    float bottomEdge = scrollView.contentOffset.x + scrollView.frame.size.width;
+    float bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
     
     float reload_distance = 10;
-    if (bottomEdge >= scrollView.contentSize.width -  reload_distance) {
+    if (bottomEdge >= scrollView.contentSize.height -  reload_distance) {
         
         if(![Utils isStringNull:self.draftsModel.next])
         {

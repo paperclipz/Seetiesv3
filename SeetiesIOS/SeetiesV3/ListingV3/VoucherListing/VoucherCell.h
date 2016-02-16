@@ -9,7 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "DealModel.h"
 
+@protocol VoucherCellDelegate <NSObject>
+
+-(void)voucherCollectRedeemClicked:(DealModel*)dealModel;
+
+@end
+
 @interface VoucherCell : CommonTableViewCell
+@property id<VoucherCellDelegate> voucherCellDelegate;
 -(void)setDealModel:(DealModel*)dealModel;
 
 @end

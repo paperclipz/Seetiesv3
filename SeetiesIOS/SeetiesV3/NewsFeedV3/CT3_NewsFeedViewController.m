@@ -109,8 +109,9 @@ static NSCache* heightCache = nil;
 }
 
 - (IBAction)btnGrabNowClicked:(id)sender {
-    VoucherListingViewController *voucherListingController = [[VoucherListingViewController alloc] init];
-    [self.navigationController pushViewController:voucherListingController animated:YES];
+//    VoucherListingViewController *voucherListingController = [[VoucherListingViewController alloc] init];
+    _voucherListingViewController = nil;
+    [self.navigationController pushViewController:self.voucherListingViewController animated:YES];
     
 }
 - (IBAction)btnLoginClicked:(id)sender {
@@ -812,7 +813,7 @@ static NSCache* heightCache = nil;
         
         switch (indexPath.row) {
             case 2:
-                
+                _voucherListingViewController = nil;
                 [self.navigationController pushViewController:self.voucherListingViewController animated:YES];
                 
                 break;
