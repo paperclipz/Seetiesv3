@@ -27,11 +27,16 @@
 #import "ProfileViewController.h"
 
 #import "SeetiesProfileView.h"
+#import "BranchOutletTblCell.h"
 
-@interface SeetiesShopViewController ()<UIScrollViewDelegate>
+@interface SeetiesShopViewController ()<UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate>
 {
     
+    IBOutlet UIView *ibBranchView;
+    IBOutlet UITableView *ibTblSelectOutletView;
     __weak IBOutlet UIButton *btnTranslate;
+    BOOL branchIsShow;
+
 }
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnTranslateWidthConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnShareWidthConstraint;
@@ -76,6 +81,31 @@
 @end
 
 @implementation SeetiesShopViewController
+- (IBAction)btnCloseBranchClicked:(id)sender {
+    
+    [self showBranchView:NO withAnimation:YES];
+
+}
+- (IBAction)btnBranchClicked:(id)sender {
+    
+    [self showBranchView:!branchIsShow withAnimation:YES];
+}
+
+-(void)showBranchView:(BOOL)isShow withAnimation:(BOOL)animated
+{
+    
+    [UIView animateWithDuration:animated?.5:0 animations:^{
+        branchIsShow = isShow;
+        if (isShow) {
+            
+            ibBranchView.alpha = 1;
+        }
+        else{
+            ibBranchView.alpha = 0;
+            
+        }}];
+   
+}
 - (IBAction)btnShareClicked:(id)sender {
     
     [self showShareView:self.seShopModel];
@@ -131,13 +161,21 @@
     self.ibScrollView.delegate = self;
     _arrViews = [NSMutableArray new];
     self.ibImgViewOtherPadding.alpha = 0;
+    [self.view addSubview:ibBranchView];
 
+    ibBranchView.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64);
+    [self showBranchView:NO withAnimation:NO];
+   
     
     [self setupViews];
     [self addViews];
     [self rearrangeView];
     [self setupViewData];
    
+    
+    ibTblSelectOutletView.delegate = self;
+    ibTblSelectOutletView.dataSource = self;
+    [ibTblSelectOutletView registerClass:[BranchOutletTblCell class] forCellReuseIdentifier:@"BranchOutletTblCell"];
 }
 -(void)setupViews
 {
@@ -548,26 +586,47 @@
     [self presentViewController:formSheetController animated:YES completion:nil];
     
 }
+
+#pragma mark - Table View
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 10;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    BranchOutletTblCell* cell = [tableView dequeueReusableCellWithIdentifier:@"BranchOutletTblCell"];
+    
+    return cell;
+}
+
+
+
 #pragma mark - UIScrollView
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     
-    int profileBackgroundHeight = 210;
-    if (scrollView.contentOffset.y <= profileBackgroundHeight) {
-        
-        float adjustment = (scrollView.contentOffset.y
-                            )/(profileBackgroundHeight);
-        self.ibImgViewOtherPadding.alpha = adjustment;
-        
+    if (scrollView == self.ibScrollView) {
+        int profileBackgroundHeight = 210;
+        if (scrollView.contentOffset.y <= profileBackgroundHeight) {
+            
+            float adjustment = (scrollView.contentOffset.y
+                                )/(profileBackgroundHeight);
+            self.ibImgViewOtherPadding.alpha = adjustment;
+            
+        }
+        else if (scrollView.contentOffset.y > profileBackgroundHeight)
+        {
+            self.ibImgViewOtherPadding.alpha = 1;
+            
+            
+            
+        }
+
     }
-    else if (scrollView.contentOffset.y > profileBackgroundHeight)
-    {
-        self.ibImgViewOtherPadding.alpha = 1;
-        
-        
-        
-    }
-}
+   }
 /*
 #pragma mark - Navigation
 

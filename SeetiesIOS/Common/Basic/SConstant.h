@@ -91,7 +91,7 @@ typedef enum
     /*HOME*/
     ServerRequestTypeGetHome,
     ServerRequestTypeGetHomeSuperDeal,
-    
+    ServerRequestTypeGetHomeUpdater,
     //===DEALS===//
     ServerRequestTypeGetSuperDeals,
     ServerRequestTypeCollectDeals
@@ -139,6 +139,17 @@ typedef enum
     AnnouncementType_NA = 4
     
 }AnnouncementType;
+
+typedef enum
+{
+    DealType_Announcement = 1,
+    DealType_Collection = 2,
+    DealType_SuperDeal = 3,
+    DealType_Greeting = 4,
+    DealType_QuickBrowse = 5,
+    DealType_Wallet = 6
+    
+}DealType;
 
 extern NSString *const SERVER_PATH_LINK_LIVE;
 extern NSString *const SERVER_PATH_LINK_DEV;

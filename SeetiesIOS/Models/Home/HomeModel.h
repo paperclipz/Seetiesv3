@@ -9,12 +9,16 @@
 #import <JSONModel/JSONModel.h>
 
 
-@protocol DealModel
-@end
+//@protocol DealModel
+//@end
 
+@protocol AnnouncementModel
+
+@end
 @interface HomeModel : JSONModel
 
 @property(nonatomic,assign)int wallet_count;
 @property(nonatomic,strong)NSArray<DealModel>* superdeals;
+@property(nonatomic,strong)NSArray<AnnouncementModel>* announcements;
 
 @end

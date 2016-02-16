@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AsyncImageView.h"
-@interface AnnounceViewController : UIViewController<UIScrollViewDelegate>
+@interface AnnounceViewController : CommonViewController
 -(void)GetDisplayImage:(NSString *)ImageData GetContent:(NSString *)content;
 
 /*new implementation using annoucement model 19/jan/2016*/

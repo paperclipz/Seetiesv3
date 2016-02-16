@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *ibCountryTable;
 @property (weak, nonatomic) IBOutlet UITableView *ibAreaTable;
 @property (weak, nonatomic) IBOutlet UITableView *ibSearchTable;
+@property (weak, nonatomic) IBOutlet UIImageView *ibImgLocation;
 
 @property (strong, nonatomic) NSMutableArray *arrCountries;
 @property (strong, nonatomic) NSArray *cityArray;
@@ -28,11 +29,35 @@
 @end
 
 @implementation SearchLocationViewController
+
+#pragma mark - IBACTION
 - (IBAction)btnutoDetectClicked:(id)sender {
     
-    [self getGoogleGeoCode];
+    if ([CLLocationManager isLocationUpdatesAvailable]) {
+        
+        self.userLocation = [self.searchManager getAppLocation];
+        [self getGoogleGeoCode];
+
+    }
+    else{
+        
+        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Please Enable Location Service") Type:TSMessageNotificationTypeError];
+    }
+
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    if ([CLLocationManager isLocationUpdatesAvailable]) {
+        self.ibImgLocation.image = [UIImage imageNamed:@"1.png"];
+
+    }
+    else{
+        self.ibImgLocation.image = [UIImage imageNamed:@"ic_qu_direction_mylocation.png"];
+
+    }
+}
+    
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.userLocation = [[SearchManager Instance] getAppLocation];
@@ -177,11 +202,18 @@
     }
     else if (tableView == self.ibAreaTable){
         SLog(@"Clicked: %ld,%ld", indexPath.section, indexPath.row);
-        [self dismissViewControllerAnimated:YES completion:^{
-            if (self.refreshLocation) {
-                self.refreshLocation();
-            }
+        
+        PlacesModel* psModel = self.currentSelectedCountry.arrArea[indexPath.section];
+        PlaceModel* pModel = psModel.places[indexPath.row];
+        
+        if (self.refreshAreaLocation) {
+            self.refreshAreaLocation(pModel);
+        }
+
+        [self.navigationController popToRootViewControllerAnimated:YES onCompletion:^{
+            
         }];
+    
     }
     else if (tableView == self.ibSearchTable){
         [self processDataForGoogleLocation:indexPath];
@@ -216,8 +248,8 @@
         
         [self.ibSearchTxtField resignFirstResponder];
         [self dismissViewControllerAnimated:YES completion:^{
-            if (self.refreshLocation) {
-                self.refreshLocation();
+            if (self.homeLocationRefreshBlock) {
+              //  self.homeLocationRefreshBlock();
             }
         }];
         
@@ -259,11 +291,32 @@
        
         NSDictionary* temp = [[NSDictionary alloc]initWithDictionary:object];
         NSArray* arrayLocations = [temp valueForKey:@"results"];
-        NSDictionary* tempLocation = arrayLocations[0];
         
-        SearchLocationDetailModel* model = [[SearchLocationDetailModel alloc]initWithDictionary:tempLocation error:nil];
-        [model process];
-//        model.country;
+        if (![Utils isArrayNull:arrayLocations]) {
+            NSDictionary* tempLocation = arrayLocations[0];
+            
+            SearchLocationDetailModel* model = [[SearchLocationDetailModel alloc]initWithDictionary:tempLocation error:nil];
+            [model process];
+            
+            HomeLocationModel* hModel = [HomeLocationModel new];
+            hModel.timezone = @"";
+            hModel.type = @"current";
+            hModel.latitude = model.lat;
+            hModel.longtitude = model.lng;
+            hModel.place_id = @"";
+            hModel.address_components.country = model.country;
+            hModel.address_components.route = model.route;
+            hModel.address_components.locality = model.city;
+            hModel.address_components.administrative_area_level_1 = model.state;
+            hModel.address_components.political = model.political;
+            
+            if (self.homeLocationRefreshBlock) {
+                self.homeLocationRefreshBlock(hModel);
+            }
+        }
+       
+
+        //        model.country;
 //        model.route;
 //        model.address_components;
 //        SLog(@"%@",model);
@@ -272,6 +325,8 @@
 }
 -(void)getGoogleSearchPlaces
 {
+    self.userLocation = [self.searchManager getAppLocation];
+
     [self.searchManager getSearchLocationFromGoogle:self.userLocation input:self.ibSearchTxtField.text completionBlock:^(id object) {
         if (object) {
             self.searchModel = [[DataManager Instance] googleSearchModel];

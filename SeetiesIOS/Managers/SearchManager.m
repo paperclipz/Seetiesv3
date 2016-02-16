@@ -35,7 +35,7 @@
     didUpdateLocations:(NSArray *)locations {
    
     self.GPSLocation = locations[0];
-    [self.manager stopUpdatingLocation];
+  //  [self.manager stopUpdatingLocation];
 }
 
 -(void)startSearchGPSLocation
@@ -44,7 +44,6 @@
     self.manager.delegate = self;
     [self.manager requestWhenInUseAuthorization];
     [self.manager startUpdatingLocation];
-
 }
 
 -(CLLocation*)getAppLocation
@@ -252,7 +251,10 @@
 -(void)getGoogleGeoCode:(CLLocation*)tempCurrentLocation completionBlock:(IDBlock)completionBlock
 {
 
-    NSString* googleAPI = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?sensor=true&latlng=%@,%@&key=%@",@"3.1333",@"101.7000",GOOGLE_API_KEY];
+   // NSString* googleAPI = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?sensor=true&latlng=%@,%@&key=%@",,@"101.7000",GOOGLE_API_KEY];
+    
+      NSString* googleAPI = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?sensor=true&latlng=%.4f,%.4f&key=%@",tempCurrentLocation.coordinate.latitude,tempCurrentLocation.coordinate.longitude,GOOGLE_API_KEY];
+    
  //   NSDictionary* dict = @{@"latlng" :@"40.714,-73.9614",
   //                         @"key" : GOOGLE_API_KEY};
     
@@ -270,7 +272,6 @@
         
     } ];
 }
-
 
 -(void)getCoordinateFromWifi:(SearchManagerSuccessBlock)successBlock errorBlock:(SearchManagerFailBlock)errorBlock
 {

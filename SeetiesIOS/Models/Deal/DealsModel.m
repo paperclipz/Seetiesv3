@@ -13,4 +13,9 @@
 +(JSONKeyMapper *)keyMapper{
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"result": @"deals"}];
 }
++(BOOL)propertyIsOptional:(NSString*)propertyName
+{
+    return YES;
+}
+
 @end

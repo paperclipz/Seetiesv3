@@ -17,6 +17,8 @@
 
 @end
 
+@class PhotoModel;
+
 @interface DealModel : JSONModel
 
 @property(nonatomic,strong) NSString * dID;
@@ -28,9 +30,12 @@
 @property(nonatomic,assign) float original_item_price;
 @property(nonatomic,assign) float discounted_item_price;
 @property(nonatomic,strong) NSArray<PhotoModel> *photos;
-@property(nonatomic,strong) NSArray<PhotoModel> *cover_photo;
+@property(nonatomic,strong) PhotoModel *cover_photo;
 @property(nonatomic, strong) NSString *voucherID;
 @property(nonatomic, strong) NSString *voucher_status;
 @property(nonatomic,strong)NSArray<SeShopDetailModel> *shops;
+
+@property(nonatomic, strong) NSString *seetishop_id;
+@property(nonatomic, strong) NSString *seetishop_name;
 
 @end

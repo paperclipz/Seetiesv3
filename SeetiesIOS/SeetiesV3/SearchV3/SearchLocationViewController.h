@@ -11,6 +11,11 @@
 #import "SearchManager.h"
 #import "SearchModel.h"
 
+typedef void (^HomeLocationRefreshBlock)(HomeLocationModel* model);
+typedef void (^AreaLocationREfreshBlock)(PlaceModel* model);
+
 @interface SearchLocationViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate>
-@property(nonatomic, copy)VoidBlock refreshLocation;
+@property(nonatomic, copy)AreaLocationREfreshBlock refreshAreaLocation;
+
+@property(nonatomic,copy)HomeLocationRefreshBlock homeLocationRefreshBlock;
 @end

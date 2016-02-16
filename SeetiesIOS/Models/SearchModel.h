@@ -52,6 +52,7 @@
 @property(nonatomic,strong)NSString<Optional>* route;
 @property(nonatomic,strong)NSString<Optional>* country;
 @property(nonatomic,strong)NSString<Optional>* postal_code;
+@property(nonatomic,strong)NSString<Optional>* political;
 
 @property(nonatomic,strong)NSDictionary<Optional>* address_components;
 
