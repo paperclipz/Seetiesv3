@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PromoPopOutViewController">
@@ -15,6 +15,8 @@
                 <outlet property="ibEnterPromoView" destination="i5M-Pr-FkT" id="HIN-zR-iom"/>
                 <outlet property="ibEnterVerificationContentView" destination="kNI-Er-E8B" id="dix-uC-PeS"/>
                 <outlet property="ibEnterVerificationView" destination="lWP-Mu-iJL" id="ue1-Mh-qvY"/>
+                <outlet property="ibErrorContentView" destination="lu6-op-zxh" id="ULz-9h-nLk"/>
+                <outlet property="ibErrorView" destination="DZf-rX-v5n" id="mq3-Kd-BJi"/>
                 <outlet property="ibPromoCodeText" destination="mWd-Bc-dOc" id="2fI-zp-gXf"/>
                 <outlet property="ibRedemptionSuccessfulContentView" destination="yXJ-ei-vHi" id="dO6-Uc-AdX"/>
                 <outlet property="ibRedemptionSuccessfulView" destination="0zv-Jo-8Xh" id="lEc-zX-aNC"/>
@@ -555,6 +557,102 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="1176" y="841.5"/>
+        </view>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="DZf-rX-v5n">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="394"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lu6-op-zxh" userLabel="content view">
+                    <rect key="frame" x="3" y="3" width="294" height="388"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9H2-bs-8HR">
+                            <rect key="frame" x="0.0" y="338" width="294" height="50"/>
+                            <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="SRz-7C-upy"/>
+                            </constraints>
+                            <state key="normal" title="OK">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="buttonSubmitClicked:" destination="-1" eventType="touchUpInside" id="YX4-3V-YKH"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cannot redeem at this moment" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pqN-bF-NYs" userLabel="title">
+                            <rect key="frame" x="10" y="261" width="274" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="6nc-ua-VXB"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can only redeem this deal on" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="btb-Mw-wfI" userLabel="desc">
+                            <rect key="frame" x="8" y="292" width="278" height="15"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="15" id="hbM-8P-lct"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="16 Feb 2016, 2:30pm - 9:00pm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YKr-L5-nsy" userLabel="desc details">
+                            <rect key="frame" x="8" y="307" width="278" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="OWF-8Q-AXZ"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="0.10980392160000001" green="0.64313725489999995" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VoucherImg.png" translatesAutoresizingMaskIntoConstraints="NO" id="eCo-U2-oeE">
+                            <rect key="frame" x="10" y="10" width="274" height="241"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="300" id="3CL-sf-7q8"/>
+                        <constraint firstItem="9H2-bs-8HR" firstAttribute="leading" secondItem="lu6-op-zxh" secondAttribute="leading" id="CNG-Wx-wxC"/>
+                        <constraint firstAttribute="height" constant="400" id="Dqm-Re-Xa1"/>
+                        <constraint firstAttribute="width" constant="300" id="EEl-dt-PDo"/>
+                        <constraint firstItem="9H2-bs-8HR" firstAttribute="top" secondItem="YKr-L5-nsy" secondAttribute="bottom" constant="10" id="I3W-1z-inr"/>
+                        <constraint firstItem="pqN-bF-NYs" firstAttribute="top" secondItem="eCo-U2-oeE" secondAttribute="bottom" constant="10" id="Lcx-Py-lEr"/>
+                        <constraint firstItem="pqN-bF-NYs" firstAttribute="leading" secondItem="lu6-op-zxh" secondAttribute="leading" constant="10" id="MV9-x7-2uB"/>
+                        <constraint firstAttribute="trailing" secondItem="9H2-bs-8HR" secondAttribute="trailing" id="YqA-bh-iDC"/>
+                        <constraint firstItem="YKr-L5-nsy" firstAttribute="leading" secondItem="lu6-op-zxh" secondAttribute="leading" constant="8" id="ZGX-a4-695"/>
+                        <constraint firstItem="YKr-L5-nsy" firstAttribute="top" secondItem="btb-Mw-wfI" secondAttribute="bottom" id="ZOM-SD-CVz"/>
+                        <constraint firstAttribute="bottom" secondItem="9H2-bs-8HR" secondAttribute="bottom" id="bof-gC-4e1"/>
+                        <constraint firstItem="btb-Mw-wfI" firstAttribute="leading" secondItem="lu6-op-zxh" secondAttribute="leading" constant="8" id="cwl-vr-sxg"/>
+                        <constraint firstAttribute="trailing" secondItem="pqN-bF-NYs" secondAttribute="trailing" constant="10" id="fap-hG-bZS"/>
+                        <constraint firstItem="9H2-bs-8HR" firstAttribute="top" secondItem="btb-Mw-wfI" secondAttribute="bottom" constant="40" id="gSs-P5-xzD"/>
+                        <constraint firstAttribute="height" constant="400" id="hDb-bK-ryl"/>
+                        <constraint firstAttribute="trailing" secondItem="eCo-U2-oeE" secondAttribute="trailing" constant="10" id="iqz-pi-oqY"/>
+                        <constraint firstItem="eCo-U2-oeE" firstAttribute="top" secondItem="lu6-op-zxh" secondAttribute="top" constant="10" id="kG0-iI-gRL"/>
+                        <constraint firstItem="eCo-U2-oeE" firstAttribute="leading" secondItem="lu6-op-zxh" secondAttribute="leading" constant="10" id="qIh-ZJ-i7I"/>
+                        <constraint firstItem="btb-Mw-wfI" firstAttribute="top" secondItem="pqN-bF-NYs" secondAttribute="bottom" constant="10" id="qKL-gI-wrr"/>
+                        <constraint firstAttribute="trailing" secondItem="YKr-L5-nsy" secondAttribute="trailing" constant="8" id="ulz-o5-Hb5"/>
+                        <constraint firstAttribute="trailing" secondItem="btb-Mw-wfI" secondAttribute="trailing" constant="8" id="yHc-oc-gMs"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="3CL-sf-7q8"/>
+                            <exclude reference="Dqm-Re-Xa1"/>
+                            <exclude reference="EEl-dt-PDo"/>
+                            <exclude reference="hDb-bK-ryl"/>
+                            <exclude reference="gSs-P5-xzD"/>
+                        </mask>
+                    </variation>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="lu6-op-zxh" secondAttribute="trailing" constant="3" id="QqE-2n-oCW"/>
+                <constraint firstAttribute="bottom" secondItem="lu6-op-zxh" secondAttribute="bottom" constant="3" id="dnJ-mw-YRH"/>
+                <constraint firstItem="lu6-op-zxh" firstAttribute="leading" secondItem="DZf-rX-v5n" secondAttribute="leading" constant="3" id="ev2-Qd-8qk"/>
+                <constraint firstItem="lu6-op-zxh" firstAttribute="top" secondItem="DZf-rX-v5n" secondAttribute="top" constant="3" id="ow9-xv-wYw"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="782" y="1303"/>
         </view>
     </objects>
     <resources>

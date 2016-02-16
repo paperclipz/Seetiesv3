@@ -16,9 +16,30 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    [self.ibCategoryBtn setSideCurveBorder];
+    [self.ibCategoryBtn.layer setBorderColor:LINE_COLOR.CGColor];
 }
 
 -(void)setButtonText:(NSString *)text{
     [self.ibCategoryBtn setTitle:text forState:UIControlStateNormal];
+}
+
+- (IBAction)categoryBtnClicked:(id)sender {
+    UIButton *button = (UIButton*)sender;
+    [self setButtonState:button];
+    button.selected = !button.selected;
+}
+
+-(void)setButtonState:(UIButton*)button{
+    if (button.selected) {
+        button.backgroundColor = [UIColor whiteColor];
+        button.titleLabel.textColor = TEXT_GRAY_COLOR;
+        [self.ibCategoryBtn.layer setBorderColor:LINE_COLOR.CGColor];
+    }
+    else{
+        button.backgroundColor = DEVICE_COLOR;
+        button.titleLabel.textColor = [UIColor whiteColor];
+        [self.ibCategoryBtn.layer setBorderColor:[UIColor clearColor].CGColor];
+    }
 }
 @end

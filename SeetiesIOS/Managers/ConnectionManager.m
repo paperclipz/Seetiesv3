@@ -845,7 +845,7 @@
             
         case ServerRequestTypeGetSuperDeals:
         {
-            NSDictionary *dict = obj[@"data"];
+            NSDictionary *dict = obj[@"data"][@"superdeals"];
             self.dataManager.dealsModel = [[DealsModel alloc] initWithDictionary:dict error:nil];
             
         }

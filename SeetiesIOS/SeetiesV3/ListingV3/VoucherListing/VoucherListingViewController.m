@@ -10,6 +10,7 @@
 
 @interface VoucherListingViewController ()
 @property NSArray *voucherArray;
+@property (nonatomic) DealsModel *dealsModel;
 @property (weak, nonatomic) IBOutlet UILabel *ibUserLocationLbl;
 @property (weak, nonatomic) IBOutlet UITableView *ibVoucherTable;
 @property (weak, nonatomic) IBOutlet UIView *ibFilterView;
@@ -25,11 +26,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    _voucherArray = @[@"1",@"2",@"3",@"4"];
+//    _voucherArray = @[@"1",@"2",@"3",@"4"];
     [self.ibVoucherTable registerNib:[UINib nibWithNibName:@"VoucherCell" bundle:nil] forCellReuseIdentifier:@"VoucherCell"];
     
     self.ibVoucherTable.estimatedRowHeight = [VoucherCell getHeight];
     self.ibVoucherTable.rowHeight = UITableViewAutomaticDimension;
+    
+    [self requestServerForDealListing];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,8 +56,8 @@
     GeneralFilterViewController *filterController = [[GeneralFilterViewController alloc] initWithFilter:[self getDummy]];
     
     UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:filterController];
+    nav.navigationBarHidden =  YES;
     [self presentViewController:nav animated:YES completion:nil];
-    //    self.filterController.view.hidden =  !self.filterController.view.hidden;
 }
 
 - (IBAction)footerBtnClicked:(id)sender {
@@ -73,31 +76,13 @@
                                @"0", @"min",
                                @"100", @"max", nil];
     
-    NSDictionary *priceFilter1 = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                 @"Price", @"type",
+    NSDictionary *availabilityFilter = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                 @"Availability", @"type",
                                  @"0", @"min",
                                  @"100", @"max", nil];
 
     
-    NSDictionary *priceFilter2 = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                 @"Price", @"type",
-                                 @"0", @"min",
-                                 @"100", @"max", nil];
-
-    
-    NSDictionary *priceFilter3 = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                 @"Price", @"type",
-                                 @"0", @"min",
-                                 @"100", @"max", nil];
-
-    
-    NSDictionary *priceFilter4 = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                 @"Price", @"type",
-                                 @"0", @"min",
-                                 @"100", @"max", nil];
-
-    
-    NSArray *filterArray = @[sortFilter, catFilter, priceFilter,priceFilter1,priceFilter2,priceFilter3,priceFilter4];
+    NSArray *filterArray = @[sortFilter, catFilter, priceFilter,availabilityFilter];
     return filterArray;
 }
 
@@ -136,11 +121,20 @@
 
 #pragma mark - TableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.voucherArray.count;
+//    return self.voucherArray.count;
+    if (self.dealsModel) {
+        return self.dealsModel.deals.count;
+    }
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     VoucherCell *voucherCell = [tableView dequeueReusableCellWithIdentifier:@"VoucherCell"];
+    
+    if (self.dealsModel) {
+        DealModel *deal = [self.dealsModel.deals objectAtIndex:indexPath.row];
+        [voucherCell setDealModel:deal];
+    }  
     
     return voucherCell;
 }
@@ -157,13 +151,23 @@
 #pragma mark - RequestServer
 -(void)requestServerForDealListing{
     
-//    NSDictionary *dict =
+    NSDictionary *dict = @{@"token":[Utils getAppToken],
+                           @"address_components":@"",
+                           @"lat":@"",
+                           @"lng":@"",
+                           @"type":@"search",
+                           @"timezone_offset":[Utils getTimeZone],
+                           @"place_id":@"",
+                           @"offset":@"1",
+                           @"limit":@"10"};
     
-//    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSuperDeals param:<#(NSDictionary *)#> appendString:nil completeHandler:^(id object) {
-//        <#code#>
-//    } errorBlock:^(id object) {
-//        <#code#>
-//    }]
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSuperDeals param:dict appendString:nil completeHandler:^(id object) {
+        DealsModel *model = [[ConnectionManager dataManager] dealsModel];
+        _dealsModel = model;
+        [self.ibVoucherTable reloadData];
+    } errorBlock:^(id object) {
+        
+    }];
 }
 
 @end

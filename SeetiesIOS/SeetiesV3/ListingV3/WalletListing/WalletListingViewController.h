@@ -8,9 +8,12 @@
 
 #import "CommonViewController.h"
 #import "WalletVoucherCell.h"
-#import "VoucherFilterCellTableViewCell.h"
+#import "PromoPopOutViewController.h"
+#import "STPopupController.h"
+#import "WalletHeaderCell.h"
+#import "RedemptionHistoryViewController.h"
 
-@interface WalletListingViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate>
+@interface WalletListingViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate, WalletVoucherDelegate>
 
 
 @end

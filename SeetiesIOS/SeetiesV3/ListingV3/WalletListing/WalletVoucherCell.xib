@@ -107,6 +107,9 @@
                                 <state key="normal" title="Redeem" image="LikeIcon.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="redeemBtnClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="xDF-ig-uFN"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

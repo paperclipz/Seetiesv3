@@ -10,7 +10,8 @@
 #import "FilterCategoryCollectionCell.h"
 #import "FilterBudgetCell.h"
 #import "FilterHeaderCollectionReusableView.h"
+#import "FilterAvailabilityCell.h"
 
-@interface GeneralFilterViewController : CommonViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface GeneralFilterViewController : CommonViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 -(id)initWithFilter:(NSArray*)filterArray;
 @end

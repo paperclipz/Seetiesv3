@@ -17,6 +17,7 @@ typedef enum{
     EnterPhoneViewType,
     EnterVerificationViewType,
     VerifiedViewType,
+    ErrorViewType,
     QuitViewType
 } PopOutViewType;
 

@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DealModel.h"
 
 @interface VoucherCell : CommonTableViewCell
+-(void)setDealModel:(DealModel*)dealModel;
 
 @end

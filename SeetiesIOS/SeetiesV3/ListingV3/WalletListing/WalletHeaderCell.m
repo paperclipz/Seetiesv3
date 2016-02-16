@@ -1,19 +1,19 @@
 //
-//  VoucherFilterCellTableViewCell.m
+//  WalletHeaderCell.m
 //  SeetiesIOS
 //
-//  Created by Lup Meng Poo on 06/01/2016.
+//  Created by Lup Meng Poo on 05/02/2016.
 //  Copyright © 2016 Stylar Network. All rights reserved.
 //
 
-#import "VoucherFilterCellTableViewCell.h"
+#import "WalletHeaderCell.h"
 
-@interface VoucherFilterCellTableViewCell()
-@property (weak, nonatomic) IBOutlet UILabel *ibFilterLbl;
+@interface WalletHeaderCell()
+@property (weak, nonatomic) IBOutlet UILabel *ibHeaderTitle;
 
 @end
 
-@implementation VoucherFilterCellTableViewCell
+@implementation WalletHeaderCell
 
 - (void)awakeFromNib {
     // Initialization code
@@ -23,6 +23,10 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+-(void)setHeaderTitle:(NSString*)title{
+    self.ibHeaderTitle.text = title;
 }
 
 @end

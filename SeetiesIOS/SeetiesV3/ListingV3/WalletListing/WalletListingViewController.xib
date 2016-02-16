@@ -7,9 +7,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WalletListingViewController">
             <connections>
-                <outlet property="ibFilterTable" destination="UUh-ub-QU1" id="LUJ-Ku-Ziz"/>
-                <outlet property="ibFilterTableHeightConstraint" destination="3ET-Rx-jQa" id="8VS-6x-R8f"/>
-                <outlet property="ibFilterView" destination="fta-m4-LuS" id="kOZ-CF-Ktx"/>
                 <outlet property="ibFooterBtn" destination="bRZ-GB-qwj" id="2WS-Lt-7Gy"/>
                 <outlet property="ibTableView" destination="Iyd-eR-Gia" id="doP-Lc-19c"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -57,6 +54,9 @@
                             </constraints>
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <state key="normal" image="TimeIcon.png"/>
+                            <connections>
+                                <action selector="historyBtnClicked:" destination="-1" eventType="touchUpInside" id="boK-xn-bFa"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -132,61 +132,6 @@
                 </mask>
             </variation>
             <point key="canvasLocation" x="564" y="424"/>
-        </view>
-        <view hidden="YES" contentMode="scaleToFill" id="fta-m4-LuS" userLabel="filter view">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <subviews>
-                <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nQn-Jb-eQy" userLabel="shade">
-                    <rect key="frame" x="0.0" y="34" width="600" height="566"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UUh-ub-QU1">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="34"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="34" id="3ET-Rx-jQa"/>
-                    </constraints>
-                    <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="3Bp-tl-AcK"/>
-                        <outlet property="delegate" destination="-1" id="er5-dc-ve3"/>
-                    </connections>
-                </tableView>
-            </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="nQn-Jb-eQy" firstAttribute="top" secondItem="UUh-ub-QU1" secondAttribute="bottom" id="3YP-wr-qho"/>
-                <constraint firstItem="UUh-ub-QU1" firstAttribute="top" secondItem="fta-m4-LuS" secondAttribute="top" id="BMq-54-v6x"/>
-                <constraint firstItem="UUh-ub-QU1" firstAttribute="leading" secondItem="fta-m4-LuS" secondAttribute="leading" id="Doz-lH-Ixg"/>
-                <constraint firstAttribute="trailing" secondItem="nQn-Jb-eQy" secondAttribute="trailing" id="IIq-Oo-y7y"/>
-                <constraint firstAttribute="trailing" secondItem="UUh-ub-QU1" secondAttribute="trailing" id="OMj-om-gOZ"/>
-                <constraint firstAttribute="bottom" secondItem="nQn-Jb-eQy" secondAttribute="bottom" id="QTT-yy-r0N"/>
-                <constraint firstItem="nQn-Jb-eQy" firstAttribute="leading" secondItem="fta-m4-LuS" secondAttribute="leading" id="ss6-4p-f5M"/>
-            </constraints>
-            <point key="canvasLocation" x="1117" y="1155"/>
-        </view>
-        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0qQ-Yb-cFJ" userLabel="filter">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-            <subviews>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XNH-oD-Be8">
-                    <rect key="frame" x="8" y="8" width="304" height="24"/>
-                    <state key="normal" title="Filter">
-                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="filterBtnClicked:" destination="-1" eventType="touchUpInside" id="mNY-8G-va9"/>
-                    </connections>
-                </button>
-            </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstAttribute="trailing" secondItem="XNH-oD-Be8" secondAttribute="trailing" constant="8" id="39k-Ww-di7"/>
-                <constraint firstAttribute="bottom" secondItem="XNH-oD-Be8" secondAttribute="bottom" constant="8" id="5FN-Hd-JRy"/>
-                <constraint firstAttribute="height" constant="40" id="9Tq-Pm-rSr"/>
-                <constraint firstItem="XNH-oD-Be8" firstAttribute="leading" secondItem="0qQ-Yb-cFJ" secondAttribute="leading" constant="8" id="dLK-SL-9fe"/>
-                <constraint firstItem="XNH-oD-Be8" firstAttribute="top" secondItem="0qQ-Yb-cFJ" secondAttribute="top" constant="8" id="iHn-r0-w27"/>
-            </constraints>
         </view>
     </objects>
     <resources>

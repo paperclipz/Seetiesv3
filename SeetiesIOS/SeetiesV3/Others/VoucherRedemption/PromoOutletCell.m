@@ -35,6 +35,7 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+    self.ibIsSelectedImg.hidden = !selected;
 }
 
 -(void)setOutletImage:(UIImage*)image{
