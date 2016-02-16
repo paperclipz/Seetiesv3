@@ -1183,6 +1183,8 @@
 		8AF6FE001C5B6F28005AAE5D /* DealRedeemBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AF6FDFF1C5B6F28005AAE5D /* DealRedeemBg.png */; };
 		8AF6FE041C5F3EB7005AAE5D /* CountryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6FE031C5F3EB7005AAE5D /* CountryModel.m */; };
 		8AF6FE071C5F3F36005AAE5D /* CountriesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6FE061C5F3F36005AAE5D /* CountriesModel.m */; };
+		8AF920D81C731D6400BC041D /* CT3_AnnouncementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF920D61C731D6400BC041D /* CT3_AnnouncementViewController.m */; };
+		8AF920D91C731D6400BC041D /* CT3_AnnouncementViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF920D71C731D6400BC041D /* CT3_AnnouncementViewController.xib */; };
 		8AF999151C3A2ADD000314E4 /* PagingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF999141C3A2ADD000314E4 /* PagingModel.m */; };
 		8AF999191C3A2C76000314E4 /* PaginationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF999181C3A2C76000314E4 /* PaginationModel.m */; };
 		8AF999531C3CC5E6000314E4 /* FacebookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF999521C3CC5E6000314E4 /* FacebookModel.m */; };
@@ -2899,6 +2901,9 @@
 		8AF6FE031C5F3EB7005AAE5D /* CountryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountryModel.m; sourceTree = "<group>"; };
 		8AF6FE051C5F3F36005AAE5D /* CountriesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountriesModel.h; sourceTree = "<group>"; };
 		8AF6FE061C5F3F36005AAE5D /* CountriesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountriesModel.m; sourceTree = "<group>"; };
+		8AF920D51C731D6400BC041D /* CT3_AnnouncementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CT3_AnnouncementViewController.h; sourceTree = "<group>"; };
+		8AF920D61C731D6400BC041D /* CT3_AnnouncementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CT3_AnnouncementViewController.m; sourceTree = "<group>"; };
+		8AF920D71C731D6400BC041D /* CT3_AnnouncementViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CT3_AnnouncementViewController.xib; sourceTree = "<group>"; };
 		8AF999131C3A2ADD000314E4 /* PagingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagingModel.h; sourceTree = "<group>"; };
 		8AF999141C3A2ADD000314E4 /* PagingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagingModel.m; sourceTree = "<group>"; };
 		8AF999171C3A2C76000314E4 /* PaginationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaginationModel.h; sourceTree = "<group>"; };
@@ -6224,9 +6229,20 @@
 			path = Location;
 			sourceTree = "<group>";
 		};
+		8AF920D41C731D4700BC041D /* AnnouncementV3 */ = {
+			isa = PBXGroup;
+			children = (
+				8AF920D51C731D6400BC041D /* CT3_AnnouncementViewController.h */,
+				8AF920D61C731D6400BC041D /* CT3_AnnouncementViewController.m */,
+				8AF920D71C731D6400BC041D /* CT3_AnnouncementViewController.xib */,
+			);
+			path = AnnouncementV3;
+			sourceTree = "<group>";
+		};
 		8AFA514B1C47B4AB00E7920E /* SeetiesV3 */ = {
 			isa = PBXGroup;
 			children = (
+				8AF920D41C731D4700BC041D /* AnnouncementV3 */,
 				8AF6FDE01C5A276E005AAE5D /* DealV3 */,
 				C2C157111C574B5E007608FC /* Others */,
 				0B6AEA7D1C48E4EB009B7D33 /* MoreV3 */,
@@ -7360,6 +7376,7 @@
 				8A6CCE7C1C18075800BCD54E /* ProfileSettingsIcon@3x.png in Resources */,
 				0BFB21A71C2A8E0200EE9D84 /* featureYes@3x.png in Resources */,
 				8A6CCEC81C18075800BCD54E /* CloseBtn@3x.png in Resources */,
+				8AF920D91C731D6400BC041D /* CT3_AnnouncementViewController.xib in Resources */,
 				8A6CCE791C18075800BCD54E /* ProfileSearchBar@2x.png in Resources */,
 				8A6CCDCB1C18075800BCD54E /* BlueTick@2x.png in Resources */,
 				C24383F51C5B5BF100ACEBF8 /* DealDetailsViewController.xib in Resources */,
@@ -7770,6 +7787,7 @@
 				8A114C9F1BE73F5D006AE3F0 /* KVNProgress.m in Sources */,
 				8A114CC71BE73F5D006AE3F0 /* MKNetworkEngine.m in Sources */,
 				8A6BB4351BF0C338005AA1B3 /* UIViewController+TargetViewController.m in Sources */,
+				8AF920D81C731D6400BC041D /* CT3_AnnouncementViewController.m in Sources */,
 				C24383F41C5B5BF100ACEBF8 /* DealDetailsViewController.m in Sources */,
 				8AC8F72E1BDA414E00DEF14A /* ProfilePageCollectionHeaderView.m in Sources */,
 				8AC8F73C1BDA414E00DEF14A /* UserProfilePageViewController.m in Sources */,

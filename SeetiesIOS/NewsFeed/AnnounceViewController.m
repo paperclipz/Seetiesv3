@@ -8,7 +8,7 @@
 
 #import "AnnounceViewController.h"
 
-@interface AnnounceViewController ()
+@interface AnnounceViewController ()<UIScrollViewDelegate>
 {
     
     IBOutlet UIScrollView *MainScroll;

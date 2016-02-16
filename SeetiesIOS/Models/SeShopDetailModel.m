@@ -88,7 +88,6 @@
             [temp setObject:_contact_number[0] forKey:Phone_Number];
             [self.arrayInfo addObject:temp];
         }
-       
     }
     
     if(![Utils isStringNull:_urlWebsite])//check URL/Link

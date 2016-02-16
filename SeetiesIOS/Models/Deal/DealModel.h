@@ -24,6 +24,6 @@
 @property(nonatomic, strong) NSString *voucher_status;
 
 @property(nonatomic, strong) NSString *seetishop_id;
-@property(nonatomic, strong) NSString *seetiesshop_name;
+@property(nonatomic, strong) NSString *seetishop_name;
 
 @end

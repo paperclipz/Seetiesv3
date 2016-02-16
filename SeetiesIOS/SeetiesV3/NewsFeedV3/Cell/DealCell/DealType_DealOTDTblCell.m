@@ -12,15 +12,26 @@
 @interface DealType_DealOTDTblCell()<UICollectionViewDataSource,UICollectionViewDelegate>
 {
     int imageIndex;
-    NSMutableArray* arrImages;
-
 
 }
 @property (weak, nonatomic) IBOutlet UICollectionView *ibCollectionView;
 @property (weak, nonatomic) IBOutlet UILabel *lblCollectNow;
 @property (nonatomic, strong) NSTimer *fadeTimer;
+@property (weak, nonatomic) IBOutlet UILabel *lblDealDescription;
+@property (weak, nonatomic) IBOutlet UILabel *lblShopName;
+
+@property(nonatomic)NSMutableArray* arrDeals;
 @end
 @implementation DealType_DealOTDTblCell
+
+
+-(NSMutableArray*)arrDeals
+{
+    if (!_arrDeals) {
+        _arrDeals = [NSMutableArray new];
+    }
+    return _arrDeals;
+}
 
 - (void)awakeFromNib {
     // Initialization code
@@ -35,9 +46,6 @@
 -(void)initSelfView
 {
     imageIndex = 0;
-    self.lblCollectNow.textColor = DEVICE_COLOR;
-    [self.lblCollectNow setSideCurveBorder];
-    arrImages = [NSMutableArray new];
     self.ibCollectionView.delegate = self;
     self.ibCollectionView.dataSource = self;
     [self.ibCollectionView registerClass:[PhotoCVCell class] forCellWithReuseIdentifier:@"PhotoCVCell"];
@@ -45,14 +53,13 @@
 
 -(void)initData:(NSArray*)arrDeals
 {
-    arrImages = nil;
-    arrImages = [NSMutableArray new];
     
     for (int i = 0; i<arrDeals.count; i++) {
         DealModel* model = arrDeals[i];
         
         if (![Utils isStringNull:model.cover_photo.imageURL]) {
-            [arrImages addObject:model.cover_photo];
+            
+            [self.arrDeals addObject:model];
         }
     }
     
@@ -68,7 +75,7 @@
     
     [self.fadeTimer invalidate];
    
-        if (arrImages.count>1) {
+        if (self.arrDeals.count>1) {
         self.fadeTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(animateImages) userInfo:nil repeats:YES];
 
     }
@@ -87,10 +94,10 @@
                      animations: ^{ [self.ibCollectionView reloadData]; }
                      completion:^(BOOL finished) {
                          
-                         if (arrImages.count>0) {
-                             int counter = imageIndex % arrImages.count;
+                         if (self.arrDeals.count>0) {
+                             int counter = imageIndex % self.arrDeals.count;
                              NSIndexPath *iPath = [NSIndexPath indexPathForItem:counter inSection:0];
-                             [self.ibCollectionView scrollToItemAtIndexPath:iPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+                             [self.ibCollectionView scrollToItemAtIndexPath:iPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
                              imageIndex ++;
                          }
                         
@@ -102,7 +109,7 @@
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return arrImages.count;
+    return self.arrDeals.count;
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
@@ -110,21 +117,17 @@
 {
     PhotoCVCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoCVCell" forIndexPath:indexPath];
     
-    PhotoModel* pModel = arrImages[indexPath.row];
-    if (pModel.image) {
-        cell.ibImageView.image = pModel.image;
-    }
-    else{
-        
-        [cell.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:pModel.imageURL] completed:^(UIImage *image) {
-            
-            pModel.image = image;
-        }];
-    }
-
     
+    [cell initData:self.arrDeals[indexPath.row]];
+    
+    cell.alpha = 0;
+    [UIView animateWithDuration:0.8f animations:^(void){
+        cell.alpha = 1;
+    }];
+
     return cell;
 }
 
 
 @end
+

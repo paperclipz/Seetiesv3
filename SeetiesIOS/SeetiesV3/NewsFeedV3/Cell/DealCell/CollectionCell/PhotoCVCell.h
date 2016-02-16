@@ -11,4 +11,6 @@
 @interface PhotoCVCell : CommonCollectionViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
 
+-(void)initData:(DealModel*)model;
+
 @end

@@ -43,6 +43,7 @@
 #import "CT3_MeViewController.h"
 #import "VoucherListingViewController.h"
 #import "SearchLocationViewController.h"
+#import "CT3_AnnouncementViewController.h"
 
 #import "UITableView+Extension.h"
 static NSCache* heightCache = nil;
@@ -101,6 +102,9 @@ static NSCache* heightCache = nil;
 @property(nonatomic)DealRedeemViewController* dealRedeemViewController;
 @property(nonatomic,strong)CT3_MeViewController* meViewController;
 @property(nonatomic, strong) SearchLocationViewController *searchLocationViewController;
+@property(nonatomic, strong) CT3_AnnouncementViewController *announcementViewController;
+
+
 /*Controller*/
 
 @end
@@ -158,6 +162,15 @@ static NSCache* heightCache = nil;
 }
 
 #pragma mark - Declaration
+
+-(CT3_AnnouncementViewController*)announcementViewController
+{
+    if (!_announcementViewController) {
+        _announcementViewController = [CT3_AnnouncementViewController new];
+    }
+    
+    return _announcementViewController;
+}
 
 -(NSMutableArray*)arrHomeDeal
 {
@@ -605,7 +618,7 @@ static NSCache* heightCache = nil;
                     cell = [[FeedType_CountryPromotionTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
                 }
                 
-              //  [cell initDataForHome:self.homeModel.announcements[0]];
+                [cell initDataForHome:self.homeModel.announcements[0]];
                 
                 return cell;
                 
@@ -888,14 +901,24 @@ static NSCache* heightCache = nil;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    DealType type = [self.arrHomeDeal[indexPath.row] intValue];
+
     if (indexPath.section == 0) {
         
-        switch (indexPath.row) {
-            case 2:
+        switch (type) {
+            case DealType_SuperDeal:
                 
                 [self.navigationController pushViewController:self.voucherListingViewController animated:YES];
                 
+                break;
+            case DealType_Announcement:
+            {
+                CTFeedTypeModel* typeModel = [CTFeedTypeModel new];
+                typeModel.feedType = FeedType_Announcement;
+                typeModel.announcementData = self.homeModel.announcements[0];
+                [self showNewAnnouncementView:typeModel];
+
+            }
                 break;
                 
             default:
@@ -957,7 +980,7 @@ static NSCache* heightCache = nil;
                         break;
                     case AnnouncementType_NA:
                         
-                        [self showAnnouncementView:feedTypeModel];
+                        [self showNewAnnouncementView:feedTypeModel];
                         
                         break;
                    
@@ -1137,7 +1160,15 @@ static NSCache* heightCache = nil;
     [self.navigationController pushViewController:self.inviteFrenViewController animated:YES];
 }
 
-
+-(void)showNewAnnouncementView:(CTFeedTypeModel*)model
+{
+    _announcementViewController = nil;
+    
+    [self.navigationController pushViewController:self.announcementViewController animated:YES onCompletion:^{
+        
+        [self.announcementViewController initData:model];
+    }];
+}
 -(void)showAnnouncementView:(CTFeedTypeModel*)model
 {
     _announceViewController = nil;
@@ -1259,8 +1290,6 @@ static NSCache* heightCache = nil;
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetHome param:dict appendString:nil completeHandler:^(id object) {
         
         self.homeModel = [[ConnectionManager dataManager]homeModel];
-        HomeModel* model = self.homeModel;
-        
         [self.arrHomeDeal removeAllObjects];
         self.arrHomeDeal = nil;
 
@@ -1273,11 +1302,13 @@ static NSCache* heightCache = nil;
         [self.arrHomeDeal addObject:[NSNumber numberWithInt:DealType_Wallet]];
         [self.arrHomeDeal addObject:[NSNumber numberWithInt:DealType_QuickBrowse]];
 
-//        if (![Utils isArrayNull:self.homeModel.announcements]) {
-//            [self.arrHomeDeal addObject:[NSNumber numberWithInt:DealType_Announcement]];
-//
-//        }
-        [self.ibTableView reloadSectionDU:0 withRowAnimation:UITableViewRowAnimationNone];
+        if (![Utils isArrayNull:self.homeModel.announcements]) {
+            [self.arrHomeDeal addObject:[NSNumber numberWithInt:DealType_Announcement]];
+
+        }
+        
+        [self.ibTableView reloadData];
+        //[self.ibTableView reloadSectionDU:0 withRowAnimation:UITableViewRowAnimationNone];
         
        // [self.ibTableView reloadData];
   
