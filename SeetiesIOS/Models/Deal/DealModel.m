@@ -19,7 +19,7 @@
                                                        @"voucher_info.id": @"voucherID",
                                                        @"voucher_info.status": @"voucher_status",
                                                        @"shop.id": @"seetishop_id",
-                                                       @"shop.name": @"seetiesshop_name",
+                                                       @"shop.name": @"seetishop_name",
 
                                                        }];
 }
