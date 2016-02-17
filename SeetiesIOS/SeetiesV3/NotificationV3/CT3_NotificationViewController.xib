@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CT3_NotificationViewController">
+            <connections>
+                <outlet property="ibContentView" destination="VbA-G3-eeg" id="JrG-VR-Nwv"/>
+                <outlet property="view" destination="yS3-Sg-2Ip" id="695-7o-EDD"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="yS3-Sg-2Ip">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w65-mC-m49">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ga5-sr-apO">
+                            <rect key="frame" x="-5" y="20" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="mGz-5W-fSr"/>
+                                <constraint firstAttribute="height" constant="40" id="pZM-Z3-7EU"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yRt-8O-vyG" userLabel="Back">
+                            <rect key="frame" x="0.0" y="0.0" width="44" height="64"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="64" id="FEi-oc-xaw"/>
+                                <constraint firstAttribute="width" constant="44" id="Opz-Rl-Qne"/>
+                            </constraints>
+                            <state key="normal">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="btnBackClicked:" destination="-1" eventType="touchUpInside" id="FfB-1D-UQv"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mmg-Kp-xXI">
+                            <rect key="frame" x="0.0" y="29" width="320" height="21"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="mmg-Kp-xXI" secondAttribute="bottom" constant="14" id="D9J-s6-rgc"/>
+                        <constraint firstItem="Ga5-sr-apO" firstAttribute="leading" secondItem="w65-mC-m49" secondAttribute="leading" constant="-5" id="HWt-Wu-dfr"/>
+                        <constraint firstItem="yRt-8O-vyG" firstAttribute="top" secondItem="w65-mC-m49" secondAttribute="top" id="Jw0-NY-8fK"/>
+                        <constraint firstItem="yRt-8O-vyG" firstAttribute="leading" secondItem="w65-mC-m49" secondAttribute="leading" id="eyh-Pn-W3k"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="64" id="kLv-ao-VKC"/>
+                        <constraint firstAttribute="bottom" secondItem="Ga5-sr-apO" secondAttribute="bottom" constant="4" id="kPS-gk-Lta"/>
+                        <constraint firstAttribute="height" constant="64" id="lWU-Oj-EkA"/>
+                        <constraint firstItem="mmg-Kp-xXI" firstAttribute="leading" secondItem="Ga5-sr-apO" secondAttribute="trailing" constant="-35" id="mUe-Wy-9aZ"/>
+                        <constraint firstAttribute="trailing" secondItem="mmg-Kp-xXI" secondAttribute="trailing" id="p0H-2h-u68"/>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="64" id="vUD-Vi-BcN"/>
+                        <constraint firstItem="mmg-Kp-xXI" firstAttribute="top" secondItem="Ga5-sr-apO" secondAttribute="top" constant="9" id="vYU-Eh-Emf"/>
+                        <constraint firstItem="Ga5-sr-apO" firstAttribute="top" secondItem="yRt-8O-vyG" secondAttribute="bottom" constant="-44" id="x5V-FN-ba5"/>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="64" id="xkg-Uk-iMv"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VbA-G3-eeg">
+                    <rect key="frame" x="0.0" y="63" width="320" height="505"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="w65-mC-m49" firstAttribute="leading" secondItem="yS3-Sg-2Ip" secondAttribute="leading" id="1cC-0n-4kx"/>
+                <constraint firstAttribute="trailing" secondItem="w65-mC-m49" secondAttribute="trailing" id="ARt-kl-z9f"/>
+                <constraint firstItem="w65-mC-m49" firstAttribute="top" secondItem="yS3-Sg-2Ip" secondAttribute="top" id="Pue-S5-F8c"/>
+                <constraint firstItem="VbA-G3-eeg" firstAttribute="top" secondItem="w65-mC-m49" secondAttribute="bottom" constant="-1" id="Sf6-Q8-DjI"/>
+                <constraint firstAttribute="trailing" secondItem="VbA-G3-eeg" secondAttribute="trailing" id="a13-MQ-niP"/>
+                <constraint firstAttribute="bottom" secondItem="VbA-G3-eeg" secondAttribute="bottom" id="bDj-eP-WxI"/>
+                <constraint firstItem="VbA-G3-eeg" firstAttribute="leading" secondItem="yS3-Sg-2Ip" secondAttribute="leading" id="rvg-XZ-xCs"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="373" y="-174"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="BackIcon.png" width="40" height="40"/>
+    </resources>
+</document>

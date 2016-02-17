@@ -12,11 +12,10 @@
 #import "LanguageManager.h"
 #import "Locale.h"
 #import <Parse/Parse.h>
-#import <Fabric/Fabric.h>
-#import <Crashlytics/Crashlytics.h>
 #import <sys/utsname.h>
 #import "NewLandingViewController.h"
 
+#define FABRIC_API_KEY @"506d5ee5657719d0cbaa94569d3352125456f169"
 @import ViewMonitor;
 @interface AppDelegate ()
 
@@ -33,7 +32,8 @@
     // [Parse setApplicationId:@"UDy6JpDrh7N6mWznTYusRruA8a1VrCLK2s5gCXZo" clientKey:@"cDs5Sml0kIzwplNSMOnXgV5LnJiAP0UK1Z2K5pZm"];
     // ****************************************************************************
     
-    [Fabric with:@[CrashlyticsKit]];
+
+
     [Parse setApplicationId:@"MMpGchSOutbiRC4KpHW47VLBFFQgv2jj5DIM4Qdi" clientKey:@"4kkfBL3btDWxoQN89WRBXVWYEUDZKD38XuzCakK7"];
     [Foursquare2 setupFoursquareWithClientId:@"V0RPRPAUHB1ZCFSKOXKNM0JA3Q1RN1QUBK14RZFOUYY15I4R"
                                       secret:@"T5XT0AVNHLLO1NMXRNFCDBYGA453E12CTVN0WOSIHREEZTWA"
@@ -166,7 +166,9 @@
     [self requestForApiVersion];
     [self checkCurrentAppLanguage];
     [self showWindow];
-
+   
+    [Fabric with:@[CrashlyticsKit]];
+    //[Crashlytics startWithAPIKey:FABRIC_API_KEY];
     
     if (![Utils isLogin]) {
       

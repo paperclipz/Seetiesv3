@@ -7,8 +7,11 @@
 //
 
 #import "CT3_MeViewController.h"
+#import "CT3_NotificationViewController.h"
 
 @interface CT3_MeViewController ()
+
+@property(nonatomic)CT3_NotificationViewController* ct3_notificationViewController;
 @property (weak, nonatomic) IBOutlet UIScrollView *ibMainScrollView;
 @property (strong, nonatomic) IBOutlet UIView *ibContentView;
 @property (weak, nonatomic) IBOutlet UILabel *ibHeaderTitle;
@@ -39,6 +42,12 @@
 @implementation CT3_MeViewController
 
 #pragma mark IBAction
+
+- (IBAction)btnTestClicked:(id)sender {
+    
+    [self.navigationController pushViewController:self.ct3_notificationViewController animated:YES];
+}
+
 - (IBAction)btnWalletListingClicked:(id)sender {
     [self.navigationController pushViewController:self.walletListingViewController animated:YES];
 }
@@ -147,6 +156,13 @@
 
 #pragma mark Declaration
 
+-(CT3_NotificationViewController*)ct3_notificationViewController
+{
+    if (!_ct3_notificationViewController) {
+        _ct3_notificationViewController = [CT3_NotificationViewController new];
+    }
+    return _ct3_notificationViewController;
+}
 -(ProfileViewController*)profileViewController{
     
     if (!_profileViewController) {
