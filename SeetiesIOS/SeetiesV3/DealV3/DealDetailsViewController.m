@@ -16,36 +16,55 @@
 
 @property (strong, nonatomic) IBOutlet UIView *ibHeaderView;
 @property (weak, nonatomic) IBOutlet UIView *ibHeaderContentView;
+@property (weak, nonatomic) IBOutlet UIImageView *ibHeaderDealImage;
+@property (weak, nonatomic) IBOutlet UILabel *ibHeaderDealExpiryLbl;
+@property (weak, nonatomic) IBOutlet UILabel *ibHeaderImageCountLbl;
 
 @property (strong, nonatomic) IBOutlet UIView *ibDealDetailsView;
 @property (weak, nonatomic) IBOutlet UIView *ibDealDetailsContentView;
 @property (weak, nonatomic) IBOutlet UICollectionView *ibTagCollection;
+@property (weak, nonatomic) IBOutlet UILabel *ibDealDetailsTitleLbl;
+@property (weak, nonatomic) IBOutlet UILabel *ibDealDetailsDesc;
+@property (weak, nonatomic) IBOutlet UILabel *ibDealDetailsDescLbl;
+@property (weak, nonatomic) IBOutlet UIView *ibDealDetailsRedemptionContentView;
 
 @property (strong, nonatomic) IBOutlet UIView *ibAvailabilityView;
 @property (weak, nonatomic) IBOutlet UIView *ibAvailabilityContentView;
 @property (weak, nonatomic) IBOutlet UITableView *ibAvailabilityTable;
+@property (weak, nonatomic) IBOutlet UILabel *ibAvailabilityTitle;
+@property (weak, nonatomic) IBOutlet UILabel *ibAvailabilityDesc;
 
 @property (strong, nonatomic) IBOutlet UIView *ibShopView;
 @property (weak, nonatomic) IBOutlet UIView *ibShopContentView;
 @property (weak, nonatomic) IBOutlet UITableView *ibShopTable;
+@property (weak, nonatomic) IBOutlet UILabel *ibShopTitle;
+@property (weak, nonatomic) IBOutlet UIButton *ibShopSeeMoreBtn;
 
 @property (strong, nonatomic) IBOutlet UIView *ibTnCView;
 @property (weak, nonatomic) IBOutlet UIView *ibTnCContentView;
 @property (weak, nonatomic) IBOutlet UITableView *ibTnCTable;
+@property (weak, nonatomic) IBOutlet UILabel *ibTnCTitle;
+@property (weak, nonatomic) IBOutlet UIButton *ibTnCReadMoreBtn;
 
 @property (strong, nonatomic) IBOutlet UIView *ibDealsView;
 @property (weak, nonatomic) IBOutlet UIView *ibDealsContentView;
 @property (weak, nonatomic) IBOutlet UITableView *ibDealsTable;
+@property (weak, nonatomic) IBOutlet UIView *ibDealsTitle;
+@property (weak, nonatomic) IBOutlet UIButton *ibDealsSeeMoreBtn;
 
 @property (strong, nonatomic) IBOutlet UIView *ibNearbyShopView;
 @property (weak, nonatomic) IBOutlet UIView *ibNearbyShopContentView;
 @property (weak, nonatomic) IBOutlet UICollectionView *ibNearbyShopCollection;
+@property (weak, nonatomic) IBOutlet UIView *ibNearbyShopTitle;
+@property (weak, nonatomic) IBOutlet UILabel *ibNearbyShopSeeMoreLbl;
 
 @property (strong, nonatomic) IBOutlet UIView *ibReportView;
 @property (weak, nonatomic) IBOutlet UIView *ibReportContentView;
+@property (weak, nonatomic) IBOutlet UILabel *ibReportLbl;
 
 @property(nonatomic, assign) DealDetailsViewType viewType;
 @property(nonatomic) NSArray *viewArray;
+@property(nonatomic) DealModel *dealModel;
 @end
 
 @implementation DealDetailsViewController
@@ -70,6 +89,7 @@
     [self.ibDealsTable registerNib:[UINib nibWithNibName:@"SeDealsFeaturedTblCell" bundle:nil] forCellReuseIdentifier:@"SeDealsFeaturedTblCell"];
     [self.ibNearbyShopCollection registerNib:[UINib nibWithNibName:@"NearbyShopsCell" bundle:nil] forCellWithReuseIdentifier:@"NearbyShopsCell"];
     
+    [self requestServerForDealInfo];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -94,6 +114,10 @@
 
 -(void)setDealDetailsViewType:(DealDetailsViewType)viewType{
     _viewType = viewType;
+}
+
+-(void)setDealModel:(DealModel *)dealModel{
+    _dealModel = dealModel;
 }
 
 -(void)initSelfView{
@@ -152,6 +176,25 @@
     
     self.ibMainContentHeightConstraint.constant = totalHeight;
     [self.view refreshConstraint];
+}
+
+-(void)updateViews{
+    if ([Utils stringIsNilOrEmpty:self.dealModel.cover_title]) {
+        self.ibHeaderTitleLbl.text = self.dealModel.title;
+    }
+    else{
+        self.ibHeaderTitleLbl.text = self.dealModel.cover_title;
+    }
+    
+    if (![Utils isArrayNull:self.dealModel.photos]) {
+        PhotoModel *photoModel = [self.dealModel.photos objectAtIndex:0];
+        [self.ibHeaderDealImage sd_setImageCroppedWithURL:[NSURL URLWithString:photoModel.imageURL] completed:^(UIImage *image) {
+            
+        }];
+    }
+    
+    [self updateViewFrame];
+    
 }
 
 -(void)drawBorders{
@@ -255,6 +298,20 @@
     }
     
     return nil;
+}
+
+#pragma mark - RequestServer
+-(void)requestServerForDealInfo{
+    NSDictionary *dict = @{@"token":[Utils getAppToken],
+                           @"deal_id": self.dealModel.dID};
+    
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSuperDeals param:dict appendString:self.dealModel.dID completeHandler:^(id object) {
+        DealModel *model = [[ConnectionManager dataManager] dealModel];
+        self.dealModel = model;
+        [self updateViews];
+    } errorBlock:^(id object) {
+        
+    }];
 }
 
 @end

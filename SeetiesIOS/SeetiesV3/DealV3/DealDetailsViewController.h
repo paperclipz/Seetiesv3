@@ -23,5 +23,6 @@ typedef enum{
 @interface DealDetailsViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 
 -(void)setDealDetailsViewType:(DealDetailsViewType)viewType;
+-(void)setDealModel:(DealModel *)dealModel;
 
 @end

@@ -908,11 +908,16 @@ static NSCache* heightCache = nil;
 
         switch (type) {
             case DealType_SuperDeal:
-                
+            {
                 _voucherListingViewController = nil;
                 [self.voucherListingViewController setWalletCount:self.homeModel.wallet_count];
-                [self.navigationController pushViewController:self.voucherListingViewController animated:YES];
-                
+                __weak typeof (self)weakSelf = self;
+                [self.navigationController pushViewController:self.voucherListingViewController animated:YES onCompletion:^{
+                    
+                    [weakSelf.voucherListingViewController requestServerForSuperDealListing];
+
+                }];
+            }
                 break;
             case DealType_Announcement:
             {
