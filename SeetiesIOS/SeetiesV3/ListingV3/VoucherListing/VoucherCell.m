@@ -46,22 +46,45 @@
 -(void)setDealModel:(DealModel *)dealModel{
     _dealModel = dealModel;
     
-    self.ibVoucherTitleLbl.text = self.dealModel.title;
-    PhotoModel *photoModel = [self.dealModel.photos objectAtIndex:0];
-    [self.ibVoucherImage setImageURL:[NSURL URLWithString:photoModel.imageURL]];
+    if (![Utils isStringNull:self.dealModel.cover_title]) {
+        self.ibVoucherTitleLbl.text = self.dealModel.cover_title;
+    }
+    else{
+        self.ibVoucherTitleLbl.text = self.dealModel.title;
+    }
+    
+    if (![Utils isArrayNull:self.dealModel.photos]) {
+        PhotoModel *photoModel = [self.dealModel.photos objectAtIndex:0];
+        [self.ibVoucherImage sd_setImageCroppedWithURL:[NSURL URLWithString:photoModel.imageURL] completed:^(UIImage *image) {
+            
+        }];
+    }
+    
+    if (![Utils isArrayNull:self.dealModel.shops]) {
+        SeShopDetailModel *shopModel = [self.dealModel.shops objectAtIndex:0];
+        self.ibVoucherShopLbl.text = shopModel.name;
+    }
+    
     [self setDealType];
     [self setRedeemCollect];
     [self setVoucherLeft];
-//    [self setDaysLeft];
+    [self setDaysLeft];
     
 }
 
 -(void)setDealType{
-    if ([self.dealModel.deal_type isEqualToString:@"free"]) {
-        self.ibDealTypeLbl.text = [NSString stringWithFormat:@"%@!", [self.dealModel.deal_type uppercaseString]];
+    if ([self.dealModel.deal_type isEqualToString:DEAL_TYPE_FREE]) {
+        self.ibDealTypeLbl.text = [NSString stringWithFormat:@"%@", [self.dealModel.deal_type uppercaseString]];
         self.ibDiscountLbl.hidden = YES;
     }
-    else if ([self.dealModel.deal_type isEqualToString:@"discount"]){
+    else if ([self.dealModel.deal_type isEqualToString:DEAL_TYPE_DISCOUNT]){
+        self.ibDiscountLbl.hidden = NO;
+        self.ibDealTypeLbl.text = [NSString stringWithFormat:@"RM%.2f", self.dealModel.discounted_item_price];
+        NSDictionary *attributes = @{NSStrikethroughStyleAttributeName:[NSNumber numberWithInt:NSUnderlineStyleSingle]};
+        NSAttributedString *attrText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"RM%.2f", self.dealModel.original_item_price] attributes:attributes];
+        self.ibDiscountLbl.attributedText = attrText;
+    }
+    else if ([self.dealModel.deal_type isEqualToString:DEAL_TYPE_PACKAGE]){
         self.ibDiscountLbl.hidden = NO;
         self.ibDealTypeLbl.text = [NSString stringWithFormat:@"RM%.2f", self.dealModel.discounted_item_price];
         NSDictionary *attributes = @{NSStrikethroughStyleAttributeName:[NSNumber numberWithInt:NSUnderlineStyleSingle]};
@@ -69,22 +92,24 @@
         self.ibDiscountLbl.attributedText = attrText;
     }
     else{
-        self.ibDealTypeLbl.text = self.dealModel.deal_type;
         self.ibDiscountLbl.hidden = YES;
+        self.ibDealTypeLbl.hidden = YES;
     }
 }
 
 -(void)setVoucherLeft{
     if (self.dealModel.total_available_vouchers > 0 && self.dealModel.total_available_vouchers <= 10) {
         self.ibVoucherLeftLbl.hidden = NO;
-        self.ibVoucherLeftLbl.text = [NSString stringWithFormat:@"   %ld Vouchers Left   ", self.dealModel.total_available_vouchers];
+        self.ibVoucherBlackOverylay.hidden = YES;
+        self.ibVoucherLeftLbl.text = [NSString stringWithFormat:@"   %ld %@   ", self.dealModel.total_available_vouchers, LocalisedString(@"Vouchers Left")];
     }
-    else if (self.dealModel.total_available_vouchers < 1){
+    else if (self.dealModel.total_available_vouchers == 0){
         self.ibVoucherLeftLbl.hidden = YES;
         self.ibVoucherBlackOverylay.hidden = NO;
     }
     else{
         self.ibVoucherLeftLbl.hidden = YES;
+        self.ibVoucherBlackOverylay.hidden = YES;
     }
 }
 
@@ -95,7 +120,18 @@
     }
     else{
         [self.ibVoucherCollectBtn setTitle:@"Redeem" forState:UIControlStateNormal];
+        [self.ibVoucherCollectBtn setBackgroundColor:[UIColor colorWithRed:239/255.0 green:83/255.0 blue:105/255.0 alpha:1]];
+    }
+}
+
+-(void)setCollectBtnSelectedState:(BOOL)isSelected{
+    if (isSelected) {
+        [self.ibVoucherCollectBtn setTitle:@"Redeem" forState:UIControlStateNormal];
         [self.ibVoucherCollectBtn setBackgroundColor:[UIColor colorWithRed:239.0f green:83.0f blue:105.0f alpha:1]];
+    }
+    else{
+        [self.ibVoucherCollectBtn setTitle:@"Collect" forState:UIControlStateNormal];
+        [self.ibVoucherCollectBtn setBackgroundColor:DEVICE_COLOR];
     }
 }
 
@@ -106,14 +142,20 @@
     
     NSCalendar *cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSDateComponents *components = [cal components:NSCalendarUnitDay fromDate:[NSDate new] toDate:expiryDate options:NSCalendarWrapComponents];
-    SLog(@"Days left: %ld", [components day]);
+//    SLog(@"Days left: %ld", [components day]);
     
     if ([components day] < 8) {
         self.ibDaysLeftLbl.hidden = NO;
-        self.ibDaysLeftLbl.text = [NSString stringWithFormat:@"%ld Days Left", [components day]];
+        self.ibDaysLeftLbl.text = [NSString stringWithFormat:@"%ld %@", [components day], LocalisedString(@"Days Left")];
     }
     else{
         self.ibDaysLeftLbl.hidden = YES;
+    }
+}
+
+- (IBAction)collectRedeemBtnClicked:(id)sender {
+    if (self.voucherCellDelegate) {
+        [self.voucherCellDelegate voucherCollectRedeemClicked:self.dealModel];
     }
 }
 

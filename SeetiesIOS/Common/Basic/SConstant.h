@@ -93,7 +93,8 @@ typedef enum
     ServerRequestTypeGetHomeSuperDeal,
     ServerRequestTypeGetHomeUpdater,
     //===DEALS===//
-    ServerRequestTypeGetSuperDeals
+    ServerRequestTypeGetSuperDeals,
+    ServerRequestTypeCollectDeals
     
 }ServerRequestType;
 

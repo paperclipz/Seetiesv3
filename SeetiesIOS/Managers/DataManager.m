@@ -17,7 +17,7 @@
 @property(nonatomic,strong)NSMutableDictionary* dictUser;
 @property(nonatomic,strong)NSMutableDictionary* dictLikes;
 @property(nonatomic,strong)NSMutableDictionary* dictPosts;
-
+@property(nonatomic,strong)NSMutableDictionary* dictVoucherCollections;
 
 @property(nonatomic,copy)BoolBlock boolBlock;
 

@@ -19,6 +19,7 @@
 @property(nonatomic,strong)NSString* name;
 
 @property(nonatomic,strong)NSString* seetishop_id;
+@property(nonatomic,strong)NSString* shopId;
 @property(nonatomic,strong)NSString* recommended_information;//best know for
 @property(nonatomic,strong)NSArray* contact_number;
 @property(nonatomic,strong)NSString* urlFacebook;
@@ -34,8 +35,6 @@
 @property(nonatomic,strong)NSArray* wallpapers;
 @property(nonatomic,strong)NSDictionary* profile_photo_images;
 @property(nonatomic,strong)NSString* language;
-
-
 
 -(void)process;
 

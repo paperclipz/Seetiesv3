@@ -21,9 +21,22 @@ typedef enum{
     QuitViewType
 } PopOutViewType;
 
+typedef enum{
+    NormalPopOutCondition,
+    ChooseShopOnlyPopOutCondition
+}PopOutCondition;
+
+@protocol PromoPopOutDelegate <NSObject>
+@optional
+-(void)chooseShopConfirmClicked:(DealModel*)dealModel forShop:(SeShopDetailModel*)shopModel;
+@end
+
 @interface PromoPopOutViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 @property(nonatomic,copy)VoidBlock updateFrame;
+@property id<PromoPopOutDelegate> promoPopOutDelegate;
 
 -(void)setViewType:(PopOutViewType)viewType;
-
+-(void)setPopOutCondition:(PopOutCondition)popOutCondition;
+-(void)setShopArray:(NSArray*)shopArray;
+-(void)setDealModel:(DealModel *)dealModel;
 @end

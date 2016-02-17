@@ -124,8 +124,9 @@ static NSCache* heightCache = nil;
 }
 
 - (IBAction)btnGrabNowClicked:(id)sender {
-    VoucherListingViewController *voucherListingController = [[VoucherListingViewController alloc] init];
-    [self.navigationController pushViewController:voucherListingController animated:YES];
+//    VoucherListingViewController *voucherListingController = [[VoucherListingViewController alloc] init];
+    _voucherListingViewController = nil;
+    [self.navigationController pushViewController:self.voucherListingViewController animated:YES];
     
 }
 - (IBAction)btnLoginClicked:(id)sender {
@@ -909,13 +910,15 @@ static NSCache* heightCache = nil;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DealType type = [self.arrHomeDeal[indexPath.row] intValue];
 
     if (indexPath.section == 0) {
-        
+        DealType type = [self.arrHomeDeal[indexPath.row] intValue];
+
         switch (type) {
             case DealType_SuperDeal:
                 
+                _voucherListingViewController = nil;
+                [self.voucherListingViewController setWalletCount:self.homeModel.wallet_count];
                 [self.navigationController pushViewController:self.voucherListingViewController animated:YES];
                 
                 break;
@@ -1005,7 +1008,6 @@ static NSCache* heightCache = nil;
                 break;
         }
     }
-    
 }
 
 - (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath*)indexPath

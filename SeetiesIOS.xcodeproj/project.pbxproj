@@ -1307,6 +1307,7 @@
 		C26676221C6485400021B6B0 /* RedemptionHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C26676201C6485400021B6B0 /* RedemptionHistoryCell.xib */; };
 		C28469B91C5F6FCD00B38885 /* NearbyShopsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C28469B71C5F6FCD00B38885 /* NearbyShopsCell.m */; };
 		C28469BA1C5F6FCD00B38885 /* NearbyShopsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C28469B81C5F6FCD00B38885 /* NearbyShopsCell.xib */; };
+		C295DCDB1C72C54300A1DED3 /* DealManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C295DCDA1C72C54300A1DED3 /* DealManager.m */; };
 		C2AB4A5A1C6D8C900053FCA8 /* FilterAvailabilityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2AB4A581C6D8C900053FCA8 /* FilterAvailabilityCell.m */; };
 		C2AB4A5B1C6D8C900053FCA8 /* FilterAvailabilityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2AB4A591C6D8C900053FCA8 /* FilterAvailabilityCell.xib */; };
 		C2C157161C574BB6007608FC /* PromoPopOutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C157141C574BB6007608FC /* PromoPopOutViewController.m */; };
@@ -3083,6 +3084,8 @@
 		C28469B61C5F6FCD00B38885 /* NearbyShopsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyShopsCell.h; sourceTree = "<group>"; };
 		C28469B71C5F6FCD00B38885 /* NearbyShopsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyShopsCell.m; sourceTree = "<group>"; };
 		C28469B81C5F6FCD00B38885 /* NearbyShopsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NearbyShopsCell.xib; sourceTree = "<group>"; };
+		C295DCD91C72C54300A1DED3 /* DealManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealManager.h; sourceTree = "<group>"; };
+		C295DCDA1C72C54300A1DED3 /* DealManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealManager.m; sourceTree = "<group>"; };
 		C2AB4A571C6D8C900053FCA8 /* FilterAvailabilityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterAvailabilityCell.h; sourceTree = "<group>"; };
 		C2AB4A581C6D8C900053FCA8 /* FilterAvailabilityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterAvailabilityCell.m; sourceTree = "<group>"; };
 		C2AB4A591C6D8C900053FCA8 /* FilterAvailabilityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterAvailabilityCell.xib; sourceTree = "<group>"; };
@@ -5722,6 +5725,8 @@
 				8A993CCD1C2A8113009359E2 /* MapManager.m */,
 				8AF6FDD41C589C64005AAE5D /* MessageManager.h */,
 				8AF6FDD51C589C64005AAE5D /* MessageManager.m */,
+				C295DCD91C72C54300A1DED3 /* DealManager.h */,
+				C295DCDA1C72C54300A1DED3 /* DealManager.m */,
 			);
 			name = MANAGER;
 			path = Managers;
@@ -7954,6 +7959,7 @@
 				8A114C871BE73F5D006AE3F0 /* UITableViewCell+ConfigureCell.m in Sources */,
 				8AD6C2A71B7072FB0040437E /* TellaStoryViewController.m in Sources */,
 				8AD6C0FA1B706CF30040437E /* SearchViewController.m in Sources */,
+				C295DCDB1C72C54300A1DED3 /* DealManager.m in Sources */,
 				8AC8F7261BDA414E00DEF14A /* PostListingTableViewCell.m in Sources */,
 				8AC8F74C1BDA414E00DEF14A /* EditTagCollectionViewCell.m in Sources */,
 				8AEDBFAD1C2031BA000BD2FF /* CategoriesModel.m in Sources */,

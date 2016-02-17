@@ -75,6 +75,7 @@ typedef void(^CompletionVoidBlock) (void);
 @property(nonatomic,strong)SeetiShopsModel* seNearbyShopListingModel;
 @property(nonatomic,strong)UsersModel* usersModel;
 @property(nonatomic,strong)DealsModel* dealsModel;
+@property(nonatomic,strong)DealModel* dealModel;
 
 /* ================================ News Feed ================================ */
 

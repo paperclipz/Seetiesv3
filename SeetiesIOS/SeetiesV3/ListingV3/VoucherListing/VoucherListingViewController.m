@@ -9,15 +9,21 @@
 #import "VoucherListingViewController.h"
 
 @interface VoucherListingViewController ()
-@property NSArray *voucherArray;
 @property (nonatomic) DealsModel *dealsModel;
+@property (nonatomic) NSMutableArray<DealModel*> *dealsArray;
+@property (nonatomic) BOOL isLoading;
+@property (nonatomic) int walletCount;
+@property (nonatomic) DealManager *dealManager;
+
 @property (weak, nonatomic) IBOutlet UILabel *ibUserLocationLbl;
 @property (weak, nonatomic) IBOutlet UITableView *ibVoucherTable;
 @property (weak, nonatomic) IBOutlet UIView *ibFilterView;
+@property (weak, nonatomic) IBOutlet UILabel *ibWalletCountLbl;
 
 @property (strong, nonatomic)GeneralFilterViewController* filterController;
 @property (nonatomic) DealDetailsViewController *dealDetailsViewController;
 @property (nonatomic) WalletListingViewController *walletListingViewController;
+@property (nonatomic) PromoPopOutViewController *promoPopOutViewController;
 @end
 
 @implementation VoucherListingViewController
@@ -26,11 +32,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-//    _voucherArray = @[@"1",@"2",@"3",@"4"];
+    _dealsArray = [[NSMutableArray alloc] init];
+    self.isLoading = NO;
+    [self.dealManager removeAllCollectedDeals];
     [self.ibVoucherTable registerNib:[UINib nibWithNibName:@"VoucherCell" bundle:nil] forCellReuseIdentifier:@"VoucherCell"];
     
     self.ibVoucherTable.estimatedRowHeight = [VoucherCell getHeight];
     self.ibVoucherTable.rowHeight = UITableViewAutomaticDimension;
+    [Utils setRoundBorder:self.ibWalletCountLbl color:OUTLINE_COLOR borderRadius:self.ibWalletCountLbl.frame.size.width/2];
+    self.ibWalletCountLbl.text = [NSString stringWithFormat:@"%d", self.walletCount];
     
     [self requestServerForDealListing];
 }
@@ -38,6 +48,10 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)setWalletCount:(int)walletCount{
+    _walletCount = walletCount;
 }
 
 /*
@@ -51,8 +65,7 @@
 */
 
 - (IBAction)filterClicked:(id)sender {
-    
-    
+  
     GeneralFilterViewController *filterController = [[GeneralFilterViewController alloc] initWithFilter:[self getDummy]];
     
     UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:filterController];
@@ -62,6 +75,10 @@
 
 - (IBAction)footerBtnClicked:(id)sender {
     [self.navigationController pushViewController:self.walletListingViewController animated:YES];
+}
+
+-(IBAction)backgroundViewDidTap{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(NSArray*)getDummy{
@@ -119,21 +136,38 @@
     return _walletListingViewController;
 }
 
+-(PromoPopOutViewController *)promoPopOutViewController{
+    if (!_promoPopOutViewController) {
+        _promoPopOutViewController = [PromoPopOutViewController new];
+    }
+    return _promoPopOutViewController;
+}
+
+-(DealManager *)dealManager{
+    return [DealManager Instance];
+}
+
 #pragma mark - TableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-//    return self.voucherArray.count;
-    if (self.dealsModel) {
-        return self.dealsModel.deals.count;
+    if (self.dealsArray) {
+        return self.dealsArray.count;
     }
     return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     VoucherCell *voucherCell = [tableView dequeueReusableCellWithIdentifier:@"VoucherCell"];
+    voucherCell.voucherCellDelegate = self;
     
-    if (self.dealsModel) {
-        DealModel *deal = [self.dealsModel.deals objectAtIndex:indexPath.row];
-        [voucherCell setDealModel:deal];
+    if (![Utils isArrayNull:self.dealsArray]) {
+        DealModel *deal = [self.dealsArray objectAtIndex:indexPath.row];
+        
+        if ([self.dealManager checkIfDealIsCollected:deal.dID]) {
+            [voucherCell setDealModel:[self.dealManager getCollectedDeal:deal.dID]];
+        }
+        else{
+            [voucherCell setDealModel:deal];
+        }
     }  
     
     return voucherCell;
@@ -148,8 +182,55 @@
     return UITableViewAutomaticDimension;
 }
 
+#pragma mark - DelegateImplemention
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    CGFloat currentOffset = self.ibVoucherTable.contentOffset.y;
+    CGFloat maximumOffset = self.ibVoucherTable.contentSize.height - self.ibVoucherTable.frame.size.height;
+    
+    
+    // Change 10.0 to adjust the distance from bottom
+    if (maximumOffset - currentOffset <= self.ibVoucherTable.frame.size.height/2) {
+        if(![Utils isStringNull:self.dealsModel.paging.next])
+        {
+//            [(UIActivityIndicatorView *)self.ibVoucherTable startAnimating];
+            [self requestServerForDealListing];
+        }
+    }
+}
+
+-(void)voucherCollectRedeemClicked:(DealModel *)dealModel{
+    if ([Utils isStringNull:dealModel.voucherID]) {
+        if (dealModel.shops.count == 1) {
+            SeShopDetailModel *shopModel = [dealModel.shops objectAtIndex:0];
+            [self requestServerToCollectVoucher:dealModel fromShop:shopModel];
+        }
+        else if(dealModel.shops.count > 1){
+            self.promoPopOutViewController = nil;
+            [self.promoPopOutViewController setViewType:ChooseShopViewType];
+            [self.promoPopOutViewController setPopOutCondition:ChooseShopOnlyPopOutCondition];
+            [self.promoPopOutViewController setDealModel:dealModel];
+            [self.promoPopOutViewController setShopArray:dealModel.shops];
+            self.promoPopOutViewController.promoPopOutDelegate = self;
+            
+            STPopupController *popOutController = [[STPopupController alloc]initWithRootViewController:self.promoPopOutViewController];
+            popOutController.containerView.backgroundColor = [UIColor clearColor];
+            [popOutController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewDidTap)]];
+            [popOutController presentInViewController:self];
+            [popOutController setNavigationBarHidden:YES];
+        }
+    }
+}
+
+-(void)chooseShopConfirmClicked:(DealModel *)dealModel forShop:(SeShopDetailModel *)shopModel{
+    [self requestServerToCollectVoucher:dealModel fromShop:shopModel];
+}
+
 #pragma mark - RequestServer
 -(void)requestServerForDealListing{
+    
+    if (self.isLoading) {
+        return;
+    }
     
     NSDictionary *dict = @{@"token":[Utils getAppToken],
                            @"address_components":@"",
@@ -158,12 +239,33 @@
                            @"type":@"search",
                            @"timezone_offset":[Utils getTimeZone],
                            @"place_id":@"",
-                           @"offset":@"1",
-                           @"limit":@"10"};
+                           @"offset":@(self.dealsModel.offset),
+                           @"limit":@(self.dealsModel.limit)};
     
+    self.isLoading = YES;
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSuperDeals param:dict appendString:nil completeHandler:^(id object) {
         DealsModel *model = [[ConnectionManager dataManager] dealsModel];
-        _dealsModel = model;
+        self.dealsModel = model;
+        [self.dealsArray addObjectsFromArray:self.dealsModel.deals];
+        [self.dealManager setAllCollectedDeals:self.dealsModel];
+        [self.ibVoucherTable reloadData];
+        self.isLoading = NO;
+    } errorBlock:^(id object) {
+        self.isLoading = NO;
+    }];
+}
+
+-(void)requestServerToCollectVoucher:(DealModel*)model fromShop:(SeShopDetailModel*)shopModel{
+    NSDictionary *dict = @{@"deal_id":model.dID,
+                           @"shop_id":shopModel.shopId,
+                           @"token": [Utils getAppToken]};
+    
+    [[ConnectionManager Instance] requestServerWithPost:ServerRequestTypeCollectDeals param:dict completeHandler:^(id object) {
+        DealModel *dealModel = [[ConnectionManager dataManager] dealModel];
+        [self.dealManager setCollectedDeal:dealModel.dID forDeal:dealModel];
+        self.walletCount++;
+        
+        self.ibWalletCountLbl.text = [NSString stringWithFormat:@"%d", self.walletCount];
         [self.ibVoucherTable reloadData];
     } errorBlock:^(id object) {
         
