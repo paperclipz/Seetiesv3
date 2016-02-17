@@ -167,8 +167,9 @@
     [self checkCurrentAppLanguage];
     [self showWindow];
    
+    [Crashlytics startWithAPIKey:FABRIC_API_KEY];
+
     [Fabric with:@[CrashlyticsKit]];
-    //[Crashlytics startWithAPIKey:FABRIC_API_KEY];
     
     if (![Utils isLogin]) {
       

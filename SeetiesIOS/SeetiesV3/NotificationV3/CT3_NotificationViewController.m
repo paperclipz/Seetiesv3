@@ -25,15 +25,13 @@
     [super viewDidLoad];
     [self initSelfView];
     
-   [[Crashlytics sharedInstance] crash];
-    
     // Do any additional setup after loading the view from its nib.
 }
 
 
 -(void)initSelfView
 {
- 
+   
       [self.ibContentView addSubview:self.cAPSPageMenu.view];
 
 }
