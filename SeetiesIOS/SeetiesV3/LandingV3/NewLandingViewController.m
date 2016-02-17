@@ -33,7 +33,6 @@
     [self requestServerForLanguageList];
     [self requestServerForUserInfo];
     
- 
     [self.view addSubview:self.tabBarController.view];
 }
 
@@ -127,6 +126,11 @@
     [Utils reloadAppView];
     self.tabBarController.selectedIndex = 0;
     [MessageManager showMessage:LocalisedString(@"system") SubTitle:@"Login Successfully" Type:TSMessageNotificationTypeSuccess];
+    
+    /*send crashlytics user UID to track crashes*/
+    ProfileModel* model = [[ConnectionManager dataManager]userLoginProfileModel];
+    [CrashlyticsKit setUserIdentifier:model.uid];
+
    // [self.newsFeedViewController refreshViewAfterLogin];
 }
 

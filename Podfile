@@ -42,6 +42,9 @@ pod 'ViewMonitor'
 pod 'MGInstagram'
 pod 'InstagramKit', '~> 3.0'
 pod 'ESTabBarController'
+pod 'Fabric'
+pod 'Crashlytics'
+#pod 'iCarousel'
 #================ debugging =====================#
 #pod 'CocoaLumberjack'
 

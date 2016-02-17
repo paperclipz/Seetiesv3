@@ -317,6 +317,15 @@ static NSCache* heightCache = nil;
             [weakself.searchLocationViewController.navigationController popViewControllerAnimated:YES];
         };
         
+        _searchLocationViewController.searchLocationRefreshBlock = ^(RecommendationVenueModel* model)
+        {
+            isFirstLoad = YES;
+            weakself.currentHomeLocationModel.longtitude = model.lng;
+            weakself.currentHomeLocationModel.latitude = model.lat;
+            weakself.currentHomeLocationModel.place_id = model.place_id;
+            [weakself requestServerForHome:weakself.currentHomeLocationModel];
+        };
+        
         _searchLocationViewController.refreshAreaLocation = ^(PlaceModel* model)
         {
             
@@ -363,7 +372,6 @@ static NSCache* heightCache = nil;
 -(void)initSelfView
 {
     HomeLocationModel* model = [HomeLocationModel new];
-    model.timezone = [Utils getTimeZone];
     model.type = @"none";
     model.latitude = @"";
     model.longtitude = @"";
@@ -1285,7 +1293,7 @@ static NSCache* heightCache = nil;
 -(void)requestServerForHome:(HomeLocationModel*)model
 {
     
-    NSDictionary* dict = @{@"timezone_offset" : model.timezone,
+    NSDictionary* dict = @{@"timezone_offset" : [Utils getTimeZone],
                            @"type" : model.type,
                            @"lat" : model.latitude,
                            @"lng" : model.longtitude,

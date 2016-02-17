@@ -44,7 +44,7 @@
 -(NSString*)serverPath
 {
     BOOL isDev = [Utils getIsDevelopment];
-    return isDev?SERVER_PATH_DEV:SERVER_PATH_LINK_LIVE;
+    return isDev?SERVER_PATH_DEV:SERVER_PATH_LIVE;
 }
 
 -(AFHTTPRequestOperationManager*)manager

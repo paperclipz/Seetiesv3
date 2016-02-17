@@ -32,6 +32,7 @@
 @implementation CT3_LoginViewController
 - (IBAction)btnInstagramClicked:(id)sender {
     
+    [self validateBeforeLogin];
     __weak typeof (self)weakSelf = self;
     self.webViewController.didFinishLoadConnectionBlock = ^(void)
     {
@@ -53,6 +54,8 @@
 
 - (IBAction)btnSignupClicked:(id)sender {
     
+    [self validateBeforeLogin];
+
     [self.navigationController pushViewController:self.signUpViewController animated:YES];
 }
 
@@ -61,6 +64,17 @@
     [self initSelfView];
     varietyImageAnimationIndex = 1;
     // Do any additional setup after loading the view from its nib.
+}
+
+-(void)validateBeforeLogin
+{
+    
+    BOOL isProduction = [Utils getIsDevelopment];
+    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+    
+    
+    [Utils setIsDevelopment:isProduction];
 }
 
 -(void)initSelfView
@@ -108,11 +122,15 @@
 */
 - (IBAction)btnLoginClicked:(id)sender {
     
+    [self validateBeforeLogin];
+
     [self.navigationController pushViewController:self.loginPageViewController animated:YES];
 }
 
 -(IBAction)btnFacebookClicked:(id)sender{
     
+    [self validateBeforeLogin];
+
     [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email", @"user_friends",@"user_birthday"]
                                        allowLoginUI:YES
                                   completionHandler:

@@ -891,6 +891,12 @@
 		8ABA51F51C0FE7F000A3DC15 /* PhotoListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ABA51F31C0FE7F000A3DC15 /* PhotoListViewController.xib */; };
 		8ABA51F91C10329600A3DC15 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ABA51F71C10329600A3DC15 /* PhotoViewController.m */; };
 		8ABA51FA1C10329600A3DC15 /* PhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ABA51F81C10329600A3DC15 /* PhotoViewController.xib */; };
+		8ABA7DE61C74219E00FB41F4 /* NotificationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ABA7DE41C74219E00FB41F4 /* NotificationTableViewController.m */; };
+		8ABA7DE71C74219E00FB41F4 /* NotificationTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ABA7DE51C74219E00FB41F4 /* NotificationTableViewController.xib */; };
+		8ABA7DEC1C7421FC00FB41F4 /* NotificationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ABA7DEA1C7421FC00FB41F4 /* NotificationTableViewCell.m */; };
+		8ABA7DED1C7421FC00FB41F4 /* NotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ABA7DEB1C7421FC00FB41F4 /* NotificationTableViewCell.xib */; };
+		8ABA7DF11C7422AA00FB41F4 /* CT3_NotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ABA7DEF1C7422AA00FB41F4 /* CT3_NotificationViewController.m */; };
+		8ABA7DF21C7422AA00FB41F4 /* CT3_NotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ABA7DF01C7422AA00FB41F4 /* CT3_NotificationViewController.xib */; };
 		8AC8F63C1BDA309D00DEF14A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AC8F63B1BDA309D00DEF14A /* Default-568h@2x.png */; };
 		8AC8F7221BDA414E00DEF14A /* CollectionListingTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8F6D81BDA414E00DEF14A /* CollectionListingTabViewController.m */; };
 		8AC8F7231BDA414E00DEF14A /* CollectionListingTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AC8F6D91BDA414E00DEF14A /* CollectionListingTabViewController.xib */; };
@@ -1047,8 +1053,6 @@
 		8AD6C12B1B706DFF0040437E /* libAdIdAccess.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C1291B706DFF0040437E /* libAdIdAccess.a */; };
 		8AD6C12C1B706DFF0040437E /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C12A1B706DFF0040437E /* libGoogleAnalyticsServices.a */; };
 		8AD6C2291B706FA10040437E /* NSString+ChangeAsciiString.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6C2271B706FA10040437E /* NSString+ChangeAsciiString.m */; };
-		8AD6C2301B7070A60040437E /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C22A1B7070A60040437E /* Crashlytics.framework */; };
-		8AD6C2311B7070A60040437E /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C22B1B7070A60040437E /* Fabric.framework */; };
 		8AD6C2321B7070A60040437E /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C22C1B7070A60040437E /* FacebookSDK.framework */; };
 		8AD6C2331B7070A60040437E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C22D1B7070A60040437E /* FBSDKCoreKit.framework */; };
 		8AD6C2341B7070A60040437E /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C22E1B7070A60040437E /* FBSDKShareKit.framework */; };
@@ -2431,6 +2435,15 @@
 		8ABA51F61C10329600A3DC15 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
 		8ABA51F71C10329600A3DC15 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
 		8ABA51F81C10329600A3DC15 /* PhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoViewController.xib; sourceTree = "<group>"; };
+		8ABA7DE31C74219E00FB41F4 /* NotificationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationTableViewController.h; sourceTree = "<group>"; };
+		8ABA7DE41C74219E00FB41F4 /* NotificationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationTableViewController.m; sourceTree = "<group>"; };
+		8ABA7DE51C74219E00FB41F4 /* NotificationTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationTableViewController.xib; sourceTree = "<group>"; };
+		8ABA7DE91C7421FC00FB41F4 /* NotificationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationTableViewCell.h; sourceTree = "<group>"; };
+		8ABA7DEA1C7421FC00FB41F4 /* NotificationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationTableViewCell.m; sourceTree = "<group>"; };
+		8ABA7DEB1C7421FC00FB41F4 /* NotificationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationTableViewCell.xib; sourceTree = "<group>"; };
+		8ABA7DEE1C7422AA00FB41F4 /* CT3_NotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CT3_NotificationViewController.h; sourceTree = "<group>"; };
+		8ABA7DEF1C7422AA00FB41F4 /* CT3_NotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CT3_NotificationViewController.m; sourceTree = "<group>"; };
+		8ABA7DF01C7422AA00FB41F4 /* CT3_NotificationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CT3_NotificationViewController.xib; sourceTree = "<group>"; };
 		8AC8F63B1BDA309D00DEF14A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		8AC8F6D71BDA414E00DEF14A /* CollectionListingTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionListingTabViewController.h; sourceTree = "<group>"; };
 		8AC8F6D81BDA414E00DEF14A /* CollectionListingTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionListingTabViewController.m; sourceTree = "<group>"; };
@@ -2686,8 +2699,6 @@
 		8AD6C12A1B706DFF0040437E /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
 		8AD6C2271B706FA10040437E /* NSString+ChangeAsciiString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ChangeAsciiString.m"; sourceTree = "<group>"; };
 		8AD6C2281B706FA10040437E /* NSString+ChangeAsciiString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ChangeAsciiString.h"; sourceTree = "<group>"; };
-		8AD6C22A1B7070A60040437E /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = SeetiesIOS/framework/Crashlytics.framework; sourceTree = "<group>"; };
-		8AD6C22B1B7070A60040437E /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = SeetiesIOS/framework/Fabric.framework; sourceTree = "<group>"; };
 		8AD6C22C1B7070A60040437E /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = SeetiesIOS/framework/FacebookSDK.framework; sourceTree = "<group>"; };
 		8AD6C22D1B7070A60040437E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = SeetiesIOS/framework/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		8AD6C22E1B7070A60040437E /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = SeetiesIOS/framework/FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -3126,8 +3137,6 @@
 				8AD6C12C1B706DFF0040437E /* libGoogleAnalyticsServices.a in Frameworks */,
 				8AD6C2321B7070A60040437E /* FacebookSDK.framework in Frameworks */,
 				8AD6C2331B7070A60040437E /* FBSDKCoreKit.framework in Frameworks */,
-				8AD6C2301B7070A60040437E /* Crashlytics.framework in Frameworks */,
-				8AD6C2311B7070A60040437E /* Fabric.framework in Frameworks */,
 				C5AFD557B47280FB16C39985 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3168,8 +3177,6 @@
 				8AD6C2B41B7079FA0040437E /* AssetsLibrary.framework */,
 				8AD6C2B21B7079B40040437E /* Accounts.framework */,
 				8AD6C2B01B7079AF0040437E /* Social.framework */,
-				8AD6C22A1B7070A60040437E /* Crashlytics.framework */,
-				8AD6C22B1B7070A60040437E /* Fabric.framework */,
 				8AD6C22C1B7070A60040437E /* FacebookSDK.framework */,
 				8AD6C22D1B7070A60040437E /* FBSDKCoreKit.framework */,
 				8AD6C22E1B7070A60040437E /* FBSDKShareKit.framework */,
@@ -5223,6 +5230,30 @@
 			path = "UINavigationController+Transition";
 			sourceTree = "<group>";
 		};
+		8ABA7DDD1C741FC500FB41F4 /* NotificationV3 */ = {
+			isa = PBXGroup;
+			children = (
+				8ABA7DE81C7421E300FB41F4 /* Cell */,
+				8ABA7DE31C74219E00FB41F4 /* NotificationTableViewController.h */,
+				8ABA7DE41C74219E00FB41F4 /* NotificationTableViewController.m */,
+				8ABA7DE51C74219E00FB41F4 /* NotificationTableViewController.xib */,
+				8ABA7DEE1C7422AA00FB41F4 /* CT3_NotificationViewController.h */,
+				8ABA7DEF1C7422AA00FB41F4 /* CT3_NotificationViewController.m */,
+				8ABA7DF01C7422AA00FB41F4 /* CT3_NotificationViewController.xib */,
+			);
+			path = NotificationV3;
+			sourceTree = "<group>";
+		};
+		8ABA7DE81C7421E300FB41F4 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				8ABA7DE91C7421FC00FB41F4 /* NotificationTableViewCell.h */,
+				8ABA7DEA1C7421FC00FB41F4 /* NotificationTableViewCell.m */,
+				8ABA7DEB1C7421FC00FB41F4 /* NotificationTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		8AC8F6D41BDA414E00DEF14A /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -6252,6 +6283,7 @@
 		8AFA514B1C47B4AB00E7920E /* SeetiesV3 */ = {
 			isa = PBXGroup;
 			children = (
+				8ABA7DDD1C741FC500FB41F4 /* NotificationV3 */,
 				8AF920D41C731D4700BC041D /* AnnouncementV3 */,
 				8AF6FDE01C5A276E005AAE5D /* DealV3 */,
 				C2C157111C574B5E007608FC /* Others */,
@@ -6647,6 +6679,7 @@
 				8AD6BA581B705DF20040437E /* Resources */,
 				CF411A798918D16B53259309 /* Copy Pods Resources */,
 				0CF38FDB5DF63307606F50B8 /* Embed Pods Frameworks */,
+				8ABA7DF31C7460AA00FB41F4 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -6841,6 +6874,7 @@
 				8A993CD51C322E5D009359E2 /* TestingViewController.xib in Resources */,
 				8A6CCCF81C18075800BCD54E /* FollowingCollectionThaiIcon@3x.png in Resources */,
 				8A6CCCCA1C18075800BCD54E /* Icon-Small@2x.png in Resources */,
+				8ABA7DF21C7422AA00FB41F4 /* CT3_NotificationViewController.xib in Resources */,
 				8A6CCEB01C18075800BCD54E /* SelectPhotoArrow@2x.png in Resources */,
 				8A6CCCC61C18075800BCD54E /* Icon-Small-40@3x.png in Resources */,
 				8A6CCD951C18075800BCD54E /* FeedLikeIcon@3x.png in Resources */,
@@ -7006,6 +7040,7 @@
 				8A6CCDB51C18075800BCD54E /* SuggestedCollectionsOverlay@2x.png in Resources */,
 				8A6CCE621C18075800BCD54E /* NoCollectionIcon@3x.png in Resources */,
 				8A6CCD511C18075800BCD54E /* CollectionNoPost@2x.png in Resources */,
+				8ABA7DE71C74219E00FB41F4 /* NotificationTableViewController.xib in Resources */,
 				8A9F25D51B8EF61900BB13BA /* EditHourTableViewCell.xib in Resources */,
 				C238E33D1C4649AA00570A25 /* slider-metal-trackBackground.png in Resources */,
 				8AD6C2981B7072FB0040437E /* EditLocationViewController.xib in Resources */,
@@ -7363,6 +7398,7 @@
 				8A6CCDB11C18075800BCD54E /* ShareSeetiesLogo@2x.png in Resources */,
 				8A6CCD0C1C18075800BCD54E /* ShareBase@3x.png in Resources */,
 				8A6CCCAF1C18075800BCD54E /* TitleBar@3x.png in Resources */,
+				8ABA7DED1C7421FC00FB41F4 /* NotificationTableViewCell.xib in Resources */,
 				8A6CCCD21C18075800BCD54E /* AddTagIcon@3x.png in Resources */,
 				8A6CCE741C18075800BCD54E /* ProfileFollowingIcon@3x.png in Resources */,
 				8A6CCEEF1C19837100BCD54E /* SeetiShopListTableViewCell.xib in Resources */,
@@ -7608,6 +7644,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		8ABA7DF31C7460AA00FB41F4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 506d5ee5657719d0cbaa94569d3352125456f169 394a8ea50138fd33729a23370f2403e109d724cf0a5a1890cee27bd6f8c23cc2";
+		};
 		CF411A798918D16B53259309 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -7744,6 +7793,7 @@
 				8AD6C81D1B73382E0040437E /* Localisator.m in Sources */,
 				0B40B3FB1C1FD2A7002D4ECB /* SeRecommendationsSeeAllViewController.m in Sources */,
 				8AC8F72C1BDA414E00DEF14A /* ProfilePageCollectionFooterTableViewCell.m in Sources */,
+				8ABA7DF11C7422AA00FB41F4 /* CT3_NotificationViewController.m in Sources */,
 				8A6584371B981C0E00BC86B9 /* CategoryCollectionViewCell.m in Sources */,
 				8AF53EFC1BD65F5A00AF6C9E /* UIView+RoundedCorners.m in Sources */,
 				0B6AEA811C48E502009B7D33 /* CT3_MoreViewController.m in Sources */,
@@ -7822,6 +7872,7 @@
 				8AFA51F51C47B4AB00E7920E /* FeedType_InviteFriendTblCell.m in Sources */,
 				8AD50D691C63146A00C9D952 /* PhotoCVCell.m in Sources */,
 				8AEDBFAF1C2031BA000BD2FF /* EditPhotoModel.m in Sources */,
+				8ABA7DEC1C7421FC00FB41F4 /* NotificationTableViewCell.m in Sources */,
 				8A114C921BE73F5D006AE3F0 /* FloatingIndicatorView.m in Sources */,
 				8AFA51DD1C47B4AB00E7920E /* WalletListingViewController.m in Sources */,
 				8AD6C2891B7072FB0040437E /* ConfirmPlaceViewController.m in Sources */,
@@ -7953,6 +8004,7 @@
 				8AD6C8291B736C000040437E /* DataManager.m in Sources */,
 				8A6BB42D1BF0C338005AA1B3 /* MZFormSheetContentSizingNavigationControllerAnimator.m in Sources */,
 				8AD6C0B71B706CF30040437E /* OpenWebViewController.m in Sources */,
+				8ABA7DE61C74219E00FB41F4 /* NotificationTableViewController.m in Sources */,
 				8A114CD31BE73F5D006AE3F0 /* BaseViewController.m in Sources */,
 				8AFA52091C47B4AB00E7920E /* SearchLTabViewController.m in Sources */,
 				8A3757E41B85D635009DB7D4 /* EditPhotoViewController.m in Sources */,

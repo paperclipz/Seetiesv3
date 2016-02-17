@@ -13,9 +13,12 @@
 
 typedef void (^HomeLocationRefreshBlock)(HomeLocationModel* model);
 typedef void (^AreaLocationREfreshBlock)(PlaceModel* model);
+typedef void (^SearchLocationRefreshBlock)(RecommendationVenueModel* model);
 
 @interface SearchLocationViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate>
 @property(nonatomic, copy)AreaLocationREfreshBlock refreshAreaLocation;
 
 @property(nonatomic,copy)HomeLocationRefreshBlock homeLocationRefreshBlock;
+@property(nonatomic,copy)SearchLocationRefreshBlock searchLocationRefreshBlock;
+
 @end

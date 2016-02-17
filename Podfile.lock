@@ -27,9 +27,12 @@ PODS:
   - AviarySDK (4.4.5)
   - BOString (0.10.0)
   - CLLocationManager-blocks (1.3.3)
+  - Crashlytics (3.6.0):
+    - Fabric (~> 1.6.3)
   - DBCamera (2.4.1):
     - GPUImage (~> 0.1)
   - ESTabBarController (0.1.2)
+  - Fabric (1.6.5)
   - GoogleMaps (1.11.1)
   - GPUImage (0.1.7)
   - HexColors (2.3.0)
@@ -75,8 +78,10 @@ DEPENDENCIES:
   - AviarySDK
   - BOString
   - CLLocationManager-blocks
+  - Crashlytics
   - DBCamera (~> 2.4)
   - ESTabBarController
+  - Fabric
   - GoogleMaps
   - HMSegmentedControl
   - InstagramKit (~> 3.0)
@@ -114,8 +119,10 @@ SPEC CHECKSUMS:
   AviarySDK: 311bdc7c2a81aee93ab1dc7bb5f3e4ef6ee52041
   BOString: b4c4df4f8a7f046c42a51c32629772dc2701fc47
   CLLocationManager-blocks: ae34b44992b3d26de10d27d51043a123444efb1b
+  Crashlytics: e4e8d02914f2608fbc7bf42b1a7af838b0db67a2
   DBCamera: 7a4343a541e1264610f9f33176552b93170a843e
   ESTabBarController: ef57e22d9835c7142d3681d38ac158006c40465f
+  Fabric: 338ffd3c2afcab120638907b4251189de9ad17b3
   GoogleMaps: c947160008f414c66707a5ea60f35e92055c7670
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
   HexColors: 6ad3947c3447a055a3aa8efa859def096351fe5f
