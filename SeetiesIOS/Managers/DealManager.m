@@ -36,7 +36,7 @@
 }
 
 -(void)setCollectedDeal:(NSString*)dealId forDeal:(DealModel*)dealModel{
-    [self.dealsDict setObject:dealId forKey:[dealModel toJSONString]];
+    [self.dealsDict setObject:[dealModel toJSONString] forKey:dealId];
 }
 
 -(BOOL)checkIfDealIsCollected:(NSString*)dealId{

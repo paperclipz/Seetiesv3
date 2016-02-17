@@ -46,9 +46,8 @@
 -(void)setDealModel:(DealModel *)dealModel{
     _dealModel = dealModel;
     
-    
-    if (![Utils isStringNull:self.dealModel.coverTitle]) {
-        self.ibVoucherTitleLbl.text = self.dealModel.coverTitle;
+    if (![Utils isStringNull:self.dealModel.cover_title]) {
+        self.ibVoucherTitleLbl.text = self.dealModel.cover_title;
     }
     else{
         self.ibVoucherTitleLbl.text = self.dealModel.title;

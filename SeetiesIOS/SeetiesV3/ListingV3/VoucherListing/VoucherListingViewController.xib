@@ -48,13 +48,13 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deal of the Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qp8-Jp-ABW">
-                            <rect key="frame" x="40" y="38" width="124" height="21"/>
+                            <rect key="frame" x="40" y="38" width="123.5" height="20.5"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PgP-Mz-cA7" userLabel="location button">
-                            <rect key="frame" x="40" y="20" width="170" height="39"/>
+                            <rect key="frame" x="40" y="20" width="170" height="38.5"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="msM-T5-Qek" userLabel="search button">
                             <rect key="frame" x="220" y="14" width="50" height="50"/>
@@ -137,10 +137,11 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TL0-PQ-q1H" userLabel="voucher count">
-                            <rect key="frame" x="262" y="20" width="20" height="21"/>
+                            <rect key="frame" x="242" y="10" width="40" height="40"/>
                             <constraints>
+                                <constraint firstAttribute="width" constant="40" id="EYE-bW-bAX"/>
                                 <constraint firstAttribute="width" constant="40" id="JDf-lr-FsW"/>
-                                <constraint firstAttribute="height" constant="21" id="e8l-PZ-4dR"/>
+                                <constraint firstAttribute="height" constant="40" id="e8l-PZ-4dR"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

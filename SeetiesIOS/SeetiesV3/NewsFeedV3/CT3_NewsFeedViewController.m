@@ -902,18 +902,15 @@ static NSCache* heightCache = nil;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DealType type = [self.arrHomeDeal[indexPath.row] intValue];
 
     if (indexPath.section == 0) {
-        
-
-        switch (indexPath.row) {
-            case 2:
-                _voucherListingViewController = nil;
+        DealType type = [self.arrHomeDeal[indexPath.row] intValue];
 
         switch (type) {
             case DealType_SuperDeal:
                 
+                _voucherListingViewController = nil;
+                [self.voucherListingViewController setWalletCount:self.homeModel.wallet_count];
                 [self.navigationController pushViewController:self.voucherListingViewController animated:YES];
                 
                 break;
@@ -929,8 +926,6 @@ static NSCache* heightCache = nil;
                 
             default:
                 break;
-        }
-        
         }
     }
     else

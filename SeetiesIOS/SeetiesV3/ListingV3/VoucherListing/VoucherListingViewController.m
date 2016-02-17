@@ -38,7 +38,8 @@
     
     self.ibVoucherTable.estimatedRowHeight = [VoucherCell getHeight];
     self.ibVoucherTable.rowHeight = UITableViewAutomaticDimension;
-    [self.ibWalletCountLbl setRoundedBorder];
+    [Utils setRoundBorder:self.ibWalletCountLbl color:OUTLINE_COLOR borderRadius:self.ibWalletCountLbl.frame.size.width/2];
+    self.ibWalletCountLbl.text = [NSString stringWithFormat:@"%d", self.walletCount];
     
     [self requestServerForDealListing];
 }
@@ -150,7 +151,7 @@
         DealModel *deal = [self.dealsArray objectAtIndex:indexPath.row];
         
         if ([self.dealManager checkIfDealIsCollected:deal.dID]) {
-            [voucherCell setDealModel:[[DealManager Instance] getCollectedDeal:deal.dID]];
+            [voucherCell setDealModel:[self.dealManager getCollectedDeal:deal.dID]];
         }
         else{
             [voucherCell setDealModel:deal];
@@ -178,7 +179,6 @@
     if (maximumOffset - currentOffset <= self.ibVoucherTable.frame.size.height/2) {
         if(![Utils isStringNull:self.dealsModel.paging.next])
         {
-            SLog(@"Offset: %d", self.dealsModel.offset);
 //            [(UIActivityIndicatorView *)self.ibVoucherTable startAnimating];
             [self requestServerForDealListing];
         }
@@ -189,7 +189,7 @@
     if ([Utils isStringNull:dealModel.voucherID]) {
         if (dealModel.shops.count == 1) {
             SeShopDetailModel *shopModel = [dealModel.shops objectAtIndex:0];
-            [self requestServerToCollectVoucher:dealModel.dID fromShop:shopModel.shopId];
+            [self requestServerToCollectVoucher:dealModel fromShop:shopModel.shopId];
         }
     }
 }
@@ -224,14 +224,17 @@
     }];
 }
 
--(void)requestServerToCollectVoucher:(NSString*)dealId fromShop:(NSString*)shopId{
-    NSDictionary *dict = @{@"deal_id":dealId,
+-(void)requestServerToCollectVoucher:(DealModel*)model fromShop:(NSString*)shopId{
+    NSDictionary *dict = @{@"deal_id":model.dID,
                            @"shop_id":shopId,
                            @"token": [Utils getAppToken]};
     
     [[ConnectionManager Instance] requestServerWithPost:ServerRequestTypeCollectDeals param:dict completeHandler:^(id object) {
         DealModel *dealModel = [[ConnectionManager dataManager] dealModel];
         [self.dealManager setCollectedDeal:dealModel.dID forDeal:dealModel];
+        self.walletCount++;
+        
+        self.ibWalletCountLbl.text = [NSString stringWithFormat:@"%d", self.walletCount];
         [self.ibVoucherTable reloadData];
     } errorBlock:^(id object) {
         

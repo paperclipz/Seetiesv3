@@ -23,7 +23,7 @@
 
 @property(nonatomic,strong) NSString * dID;
 @property(nonatomic,strong) NSString *title;
-@property(nonatomic,strong) NSString *coverTitle;
+@property(nonatomic,strong) NSString *cover_title;
 @property(nonatomic,strong) NSString *expired_at;
 @property(nonatomic,assign) NSInteger total_available_vouchers;
 @property(nonatomic,strong) NSString *deal_type;

@@ -15,7 +15,6 @@
                                                        @"deal_type_info.original_item_price": @"original_item_price",
                                                        @"deal_type_info.discounted_item_price": @"discounted_item_price",
                                                        @"id" : @"dID",
-                                                       @"cover_title" : @"title",
                                                        @"voucher_info.id": @"voucherID",
                                                        @"voucher_info.status": @"voucher_status",
                                                        @"shop.id": @"seetishop_id",
