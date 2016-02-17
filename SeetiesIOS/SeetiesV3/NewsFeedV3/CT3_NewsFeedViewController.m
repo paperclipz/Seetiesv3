@@ -930,6 +930,8 @@ static NSCache* heightCache = nil;
             default:
                 break;
         }
+        
+        }
     }
     else
     {
@@ -1003,7 +1005,6 @@ static NSCache* heightCache = nil;
                 break;
         }
     }
-    
 }
 
 - (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath*)indexPath
