@@ -15,6 +15,6 @@
 #import "DealManager.h"
 #import "PromoPopOutViewController.h"
 
-@interface VoucherListingViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate, VoucherCellDelegate>
+@interface VoucherListingViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate, VoucherCellDelegate, PromoPopOutDelegate>
 -(void)setWalletCount:(int)walletCount;
 @end

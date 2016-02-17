@@ -20,6 +20,7 @@
                 <outlet property="ibPromoCodeText" destination="mWd-Bc-dOc" id="2fI-zp-gXf"/>
                 <outlet property="ibRedemptionSuccessfulContentView" destination="yXJ-ei-vHi" id="dO6-Uc-AdX"/>
                 <outlet property="ibRedemptionSuccessfulView" destination="0zv-Jo-8Xh" id="lEc-zX-aNC"/>
+                <outlet property="ibShopDealLbl" destination="350-fJ-rjS" id="yVw-Xj-RWq"/>
                 <outlet property="ibShopTable" destination="pjR-4r-iZC" id="keU-JC-pHa"/>
                 <outlet property="ibTitleLbl" destination="Asm-Of-OLL" id="CqB-nZ-86X"/>
                 <outlet property="ibVerifiedContentView" destination="1ZY-v8-hJV" id="xmW-3z-AXf"/>

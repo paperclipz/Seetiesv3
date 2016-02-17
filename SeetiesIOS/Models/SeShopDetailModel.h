@@ -36,8 +36,6 @@
 @property(nonatomic,strong)NSDictionary* profile_photo_images;
 @property(nonatomic,strong)NSString* language;
 
-
-
 -(void)process;
 
 @end

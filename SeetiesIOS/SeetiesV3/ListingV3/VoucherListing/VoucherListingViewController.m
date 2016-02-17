@@ -23,6 +23,7 @@
 @property (strong, nonatomic)GeneralFilterViewController* filterController;
 @property (nonatomic) DealDetailsViewController *dealDetailsViewController;
 @property (nonatomic) WalletListingViewController *walletListingViewController;
+@property (nonatomic) PromoPopOutViewController *promoPopOutViewController;
 @end
 
 @implementation VoucherListingViewController
@@ -74,6 +75,10 @@
 
 - (IBAction)footerBtnClicked:(id)sender {
     [self.navigationController pushViewController:self.walletListingViewController animated:YES];
+}
+
+-(IBAction)backgroundViewDidTap{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(NSArray*)getDummy{
@@ -131,6 +136,13 @@
     return _walletListingViewController;
 }
 
+-(PromoPopOutViewController *)promoPopOutViewController{
+    if (!_promoPopOutViewController) {
+        _promoPopOutViewController = [PromoPopOutViewController new];
+    }
+    return _promoPopOutViewController;
+}
+
 -(DealManager *)dealManager{
     return [DealManager Instance];
 }
@@ -170,6 +182,7 @@
     return UITableViewAutomaticDimension;
 }
 
+#pragma mark - DelegateImplemention
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     CGFloat currentOffset = self.ibVoucherTable.contentOffset.y;
     CGFloat maximumOffset = self.ibVoucherTable.contentSize.height - self.ibVoucherTable.frame.size.height;
@@ -189,9 +202,27 @@
     if ([Utils isStringNull:dealModel.voucherID]) {
         if (dealModel.shops.count == 1) {
             SeShopDetailModel *shopModel = [dealModel.shops objectAtIndex:0];
-            [self requestServerToCollectVoucher:dealModel fromShop:shopModel.shopId];
+            [self requestServerToCollectVoucher:dealModel fromShop:shopModel];
+        }
+        else if(dealModel.shops.count > 1){
+            self.promoPopOutViewController = nil;
+            [self.promoPopOutViewController setViewType:ChooseShopViewType];
+            [self.promoPopOutViewController setPopOutCondition:ChooseShopOnlyPopOutCondition];
+            [self.promoPopOutViewController setDealModel:dealModel];
+            [self.promoPopOutViewController setShopArray:dealModel.shops];
+            self.promoPopOutViewController.promoPopOutDelegate = self;
+            
+            STPopupController *popOutController = [[STPopupController alloc]initWithRootViewController:self.promoPopOutViewController];
+            popOutController.containerView.backgroundColor = [UIColor clearColor];
+            [popOutController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewDidTap)]];
+            [popOutController presentInViewController:self];
+            [popOutController setNavigationBarHidden:YES];
         }
     }
+}
+
+-(void)chooseShopConfirmClicked:(DealModel *)dealModel forShop:(SeShopDetailModel *)shopModel{
+    [self requestServerToCollectVoucher:dealModel fromShop:shopModel];
 }
 
 #pragma mark - RequestServer
@@ -224,9 +255,9 @@
     }];
 }
 
--(void)requestServerToCollectVoucher:(DealModel*)model fromShop:(NSString*)shopId{
+-(void)requestServerToCollectVoucher:(DealModel*)model fromShop:(SeShopDetailModel*)shopModel{
     NSDictionary *dict = @{@"deal_id":model.dID,
-                           @"shop_id":shopId,
+                           @"shop_id":shopModel.shopId,
                            @"token": [Utils getAppToken]};
     
     [[ConnectionManager Instance] requestServerWithPost:ServerRequestTypeCollectDeals param:dict completeHandler:^(id object) {

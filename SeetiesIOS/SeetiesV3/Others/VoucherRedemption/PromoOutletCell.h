@@ -14,9 +14,6 @@ typedef enum{
 } PromoOutletCellType;
 
 @interface PromoOutletCell : CommonTableViewCell
--(void)setOutletImage:(UIImage*)image;
--(void)setOutletTitle:(NSString*)title;
--(void)setOutletAddress:(NSString*)address;
--(void)setOutletIsChecked:(BOOL)isChecked;
--(void)setOutletCellType:(PromoOutletCellType)cellType;
+-(void)setCellType:(PromoOutletCellType)cellType;
+-(void)setShopModel:(SeShopDetailModel *)shopModel;
 @end

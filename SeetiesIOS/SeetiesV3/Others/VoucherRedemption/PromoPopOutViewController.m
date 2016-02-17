@@ -20,6 +20,7 @@
 @property (strong, nonatomic) IBOutlet UIView *ibChooseShopView;
 @property (weak, nonatomic) IBOutlet UIView *ibChooseShopContentView;
 @property (weak, nonatomic) IBOutlet UITableView *ibShopTable;
+@property (weak, nonatomic) IBOutlet UILabel *ibShopDealLbl;
 
 @property (strong, nonatomic) IBOutlet UIView *ibEnterPhoneView;
 @property (weak, nonatomic) IBOutlet UIView *ibEnterPhoneContentView;
@@ -34,7 +35,9 @@
 @property (weak, nonatomic) IBOutlet UIView *ibErrorContentView;
 
 @property(nonatomic,assign)PopOutViewType viewType;
-@property(nonatomic) NSMutableArray *dummyOutlet;
+@property(nonatomic,assign)PopOutCondition popOutCondition;
+@property(nonatomic) NSArray *shopArray;
+@property(nonatomic) DealModel *dealModel;
 @end
 
 @implementation PromoPopOutViewController
@@ -67,14 +70,6 @@
 }
 
 -(void)initSelfView{
-    self.dummyOutlet = [[NSMutableArray alloc] init];
-    for (int i=0; i<8; i++) {
-        NSDictionary *outletDict = @{@"imageName" : @"Icon-60.png",
-                                     @"outletName" : [NSString stringWithFormat:@"Seeties shop %d", i],
-                                     @"outletAddress" : @"123, Jalan 123, Solaris Duutamas, Subang Jaya, Selangor",
-                                     @"isChecked" : @NO};
-        [self.dummyOutlet addObject:outletDict];
-    }
 }
 
 /*
@@ -90,6 +85,18 @@
 -(void)setViewType:(PopOutViewType)viewType{
     _viewType = viewType;
     
+}
+
+-(void)setPopOutCondition:(PopOutCondition)popOutCondition{
+    _popOutCondition = popOutCondition;
+}
+
+-(void)setShopArray:(NSArray *)shopArray{
+    _shopArray = shopArray;
+}
+
+-(void)setDealModel:(DealModel *)dealModel{
+    _dealModel = dealModel;
 }
 
 -(void)setMainViewToDisplay{
@@ -110,10 +117,17 @@
             
             int counter = 4;
             float headerAndFooterHeight = 140;
-            float tableHeight = self.dummyOutlet.count>counter? [PromoOutletCell getHeight]*counter : [PromoOutletCell getHeight]*self.dummyOutlet.count;
+            float tableHeight = self.shopArray.count>counter? [PromoOutletCell getHeight]*counter : [PromoOutletCell getHeight]*self.shopArray.count;
             
             self.contentSizeInPopup = CGSizeMake(self.view.frame.size.width, tableHeight+headerAndFooterHeight);
             [self.ibChooseShopContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
+            
+            if ([Utils isStringNull:self.dealModel.cover_title]) {
+                self.ibShopDealLbl.text = self.dealModel.title;
+            }
+            else{
+                self.ibShopDealLbl.text = self.dealModel.cover_title;
+            }
             return self.ibChooseShopView;
             
         case RedemptionSuccessfulViewType:
@@ -164,7 +178,17 @@
             break;
         case ChooseShopViewType:
         {
-            if (YES) {
+            if (self.popOutCondition == ChooseShopOnlyPopOutCondition) {
+                if (self.promoPopOutDelegate) {
+                    NSIndexPath *selectedIndexPath = [self.ibShopTable indexPathForSelectedRow];
+                    if (selectedIndexPath) {
+                        SeShopDetailModel *shopModel = [self.shopArray objectAtIndex:selectedIndexPath.row];
+                        [self.promoPopOutDelegate chooseShopConfirmClicked:self.dealModel forShop:shopModel];
+                        nextView = QuitViewType;
+                    }
+                }
+            }
+            else{
                 nextView = EnterPhoneViewType;
             }
         }
@@ -229,8 +253,12 @@
     
 }
 
+#pragma mark - TableView
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.dummyOutlet.count;
+    if (self.shopArray) {
+        return self.shopArray.count;
+    }
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -239,12 +267,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     PromoOutletCell *outletCell = [tableView dequeueReusableCellWithIdentifier:@"PromoOutletCell"];
-    
-    NSDictionary *tempOutlet = [self.dummyOutlet objectAtIndex:indexPath.row];
-    [outletCell setOutletTitle:[tempOutlet objectForKey:@"outletName"]];
-    [outletCell setOutletImage:[UIImage imageNamed:[tempOutlet objectForKey:@"imageName"]]];
-    [outletCell setOutletAddress:[tempOutlet objectForKey:@"outletAddress"]];
-    [outletCell setOutletIsChecked:[[tempOutlet objectForKey:@"isChecked"] boolValue]];
+    [outletCell setCellType:SelectionOutletCellType];
+    SeShopDetailModel *shopModel = [self.shopArray objectAtIndex:indexPath.row];
+    [outletCell setShopModel:shopModel];
     
     return outletCell;
 }

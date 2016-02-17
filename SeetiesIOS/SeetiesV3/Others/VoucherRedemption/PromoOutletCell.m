@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ibArrowImg;
 
 @property(nonatomic, assign) PromoOutletCellType cellType;
-
+@property(nonatomic) SeShopDetailModel *shopModel;
 @end
 
 @implementation PromoOutletCell
@@ -38,24 +38,15 @@
     self.ibIsSelectedImg.hidden = !selected;
 }
 
--(void)setOutletImage:(UIImage*)image{
-    [_ibOutletImg setImage:image];
-}
-
--(void)setOutletTitle:(NSString*)title{
-    _ibOutletTitle.text = title;
-}
-
--(void)setOutletAddress:(NSString*)address{
-    _ibOutletAddress.text = address;
-}
-
--(void)setOutletIsChecked:(BOOL)isChecked{
-    _ibIsSelectedImg.hidden = !isChecked;
-}
-
--(void)setOutletCellType:(PromoOutletCellType)cellType{
+-(void)setCellType:(PromoOutletCellType)cellType{
     _cellType = cellType;
+}
+
+-(void)setShopModel:(SeShopDetailModel *)shopModel{
+    _shopModel = shopModel;
+    
+    self.ibOutletTitle.text = self.shopModel.name;
+    self.ibOutletAddress.text = self.shopModel.location.formatted_address;
 }
 
 @end
