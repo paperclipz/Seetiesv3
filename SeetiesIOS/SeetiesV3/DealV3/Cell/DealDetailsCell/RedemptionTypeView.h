@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface RedemptionTypeView : CommonView
+@property (weak, nonatomic) IBOutlet UILabel *ibRedemptionTypeLbl;
 
 @end

@@ -35,11 +35,21 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
-    self.ibIsSelectedImg.hidden = !selected;
+    if (self.cellType == SelectionOutletCellType) {
+        self.ibIsSelectedImg.hidden = !selected;
+    }
+    
 }
 
 -(void)setCellType:(PromoOutletCellType)cellType{
     _cellType = cellType;
+    
+    if (self.cellType == SelectionOutletCellType) {
+        _ibArrowImg.hidden = YES;
+    }
+    else{
+        _ibArrowImg.hidden = NO;
+    }
 }
 
 -(void)setShopModel:(SeShopDetailModel *)shopModel{
@@ -47,6 +57,7 @@
     
     self.ibOutletTitle.text = self.shopModel.name;
     self.ibOutletAddress.text = self.shopModel.location.formatted_address;
+    
 }
 
 @end

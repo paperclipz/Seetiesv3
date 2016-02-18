@@ -176,6 +176,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     DealModel *dealModel = [self.dealsArray objectAtIndex:indexPath.row];
+    self.dealDetailsViewController = nil;
     [self.dealDetailsViewController setDealDetailsViewType:UncollectedDealDetailsView];
     [self.dealDetailsViewController setDealModel:dealModel];
     [self.navigationController pushViewController:self.dealDetailsViewController animated:YES];

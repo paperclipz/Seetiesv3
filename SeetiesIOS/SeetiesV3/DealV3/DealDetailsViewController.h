@@ -7,11 +7,11 @@
 //
 
 #import "CommonViewController.h"
-#import "TagCell.h"
 #import "DealDetailsAvailabilityCell.h"
 #import "PromoOutletCell.h"
 #import "SeDealsFeaturedTblCell.h"
 #import "NearbyShopsCell.h"
+#import "RedemptionTypeView.h"
 
 typedef enum{
     UncollectedDealDetailsView,

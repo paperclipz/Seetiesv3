@@ -60,7 +60,6 @@
 }
 
 -(void)prefix_addLowerBorder:(UIColor*)color{
-    SLog(@"view border width: %f", self.frame.size.width);
     CALayer *lowerBorder = [CALayer layer];
     lowerBorder.backgroundColor = [color CGColor];
     lowerBorder.frame = CGRectMake(0, self.frame.size.height-1, self.frame.size.width, 1.0f);
