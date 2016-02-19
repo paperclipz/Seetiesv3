@@ -17,4 +17,7 @@
 
 @interface VoucherListingViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate, VoucherCellDelegate, PromoPopOutDelegate>
 -(void)setWalletCount:(int)walletCount;
+-(void)requestServerForDealListing;
+-(void)requestServerForSuperDealListing;
+
 @end

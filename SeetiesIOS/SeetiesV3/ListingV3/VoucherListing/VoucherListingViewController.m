@@ -12,6 +12,7 @@
 @property (nonatomic) DealsModel *dealsModel;
 @property (nonatomic) NSMutableArray<DealModel*> *dealsArray;
 @property (nonatomic) BOOL isLoading;
+@property (nonatomic) BOOL  isCollecting;
 @property (nonatomic) int walletCount;
 @property (nonatomic) DealManager *dealManager;
 
@@ -34,6 +35,7 @@
     
     _dealsArray = [[NSMutableArray alloc] init];
     self.isLoading = NO;
+    self.isCollecting = NO;
     [self.dealManager removeAllCollectedDeals];
     [self.ibVoucherTable registerNib:[UINib nibWithNibName:@"VoucherCell" bundle:nil] forCellReuseIdentifier:@"VoucherCell"];
     
@@ -42,7 +44,6 @@
     [Utils setRoundBorder:self.ibWalletCountLbl color:OUTLINE_COLOR borderRadius:self.ibWalletCountLbl.frame.size.width/2];
     self.ibWalletCountLbl.text = [NSString stringWithFormat:@"%d", self.walletCount];
     
-    [self requestServerForDealListing];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -174,7 +175,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    DealModel *dealModel = [self.dealsArray objectAtIndex:indexPath.row];
+    self.dealDetailsViewController = nil;
     [self.dealDetailsViewController setDealDetailsViewType:UncollectedDealDetailsView];
+    [self.dealDetailsViewController setDealModel:dealModel];
     [self.navigationController pushViewController:self.dealDetailsViewController animated:YES];
 }
 
@@ -226,6 +230,35 @@
 }
 
 #pragma mark - RequestServer
+-(void)requestServerForSuperDealListing{
+    
+    if (self.isLoading) {
+        return;
+    }
+    
+    NSDictionary *dict = @{@"token":[Utils getAppToken],
+                           @"address_components":@"",
+                           @"lat":@"",
+                           @"lng":@"",
+                           @"type":@"search",
+                           @"timezone_offset":[Utils getTimeZone],
+                           @"place_id":@"",
+                           @"offset":@(self.dealsModel.offset),
+                           @"limit":@(self.dealsModel.limit)};
+    
+    self.isLoading = YES;
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSuperDeals param:dict appendString:nil completeHandler:^(id object) {
+        DealsModel *model = [[ConnectionManager dataManager] dealsModel];
+        self.dealsModel = model;
+        [self.dealsArray addObjectsFromArray:self.dealsModel.deals];
+        [self.dealManager setAllCollectedDeals:self.dealsModel];
+        [self.ibVoucherTable reloadData];
+        self.isLoading = NO;
+    } errorBlock:^(id object) {
+        self.isLoading = NO;
+    }];
+}
+
 -(void)requestServerForDealListing{
     
     if (self.isLoading) {
@@ -256,19 +289,25 @@
 }
 
 -(void)requestServerToCollectVoucher:(DealModel*)model fromShop:(SeShopDetailModel*)shopModel{
+    if (self.isCollecting) {
+        return;
+    }
+    
     NSDictionary *dict = @{@"deal_id":model.dID,
                            @"shop_id":shopModel.shopId,
                            @"token": [Utils getAppToken]};
     
-    [[ConnectionManager Instance] requestServerWithPost:ServerRequestTypeCollectDeals param:dict completeHandler:^(id object) {
+    self.isCollecting = YES;
+    [[ConnectionManager Instance] requestServerWithPost:ServerRequestTypePostCollectDeals param:dict completeHandler:^(id object) {
         DealModel *dealModel = [[ConnectionManager dataManager] dealModel];
         [self.dealManager setCollectedDeal:dealModel.dID forDeal:dealModel];
         self.walletCount++;
         
         self.ibWalletCountLbl.text = [NSString stringWithFormat:@"%d", self.walletCount];
         [self.ibVoucherTable reloadData];
+        self.isCollecting = NO;
     } errorBlock:^(id object) {
-        
+        self.isCollecting = NO;
     }];
 }
 

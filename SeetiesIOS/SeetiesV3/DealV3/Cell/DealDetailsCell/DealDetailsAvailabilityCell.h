@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface DealDetailsAvailabilityCell : CommonTableViewCell
-
+@property (weak, nonatomic) IBOutlet UILabel *ibDayLbl;
+@property (weak, nonatomic) IBOutlet UILabel *ibTimeLbl;
 @end

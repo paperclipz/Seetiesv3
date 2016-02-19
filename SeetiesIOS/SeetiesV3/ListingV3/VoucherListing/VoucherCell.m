@@ -79,16 +79,16 @@
     }
     else if ([self.dealModel.deal_type isEqualToString:DEAL_TYPE_DISCOUNT]){
         self.ibDiscountLbl.hidden = NO;
-        self.ibDealTypeLbl.text = [NSString stringWithFormat:@"RM%.2f", self.dealModel.discounted_item_price];
+        self.ibDealTypeLbl.text = [NSString stringWithFormat:@"%@ %@", LocalisedString(@"RM"), self.dealModel.discounted_item_price];
         NSDictionary *attributes = @{NSStrikethroughStyleAttributeName:[NSNumber numberWithInt:NSUnderlineStyleSingle]};
-        NSAttributedString *attrText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"RM%.2f", self.dealModel.original_item_price] attributes:attributes];
+        NSAttributedString *attrText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ %@", LocalisedString(@"RM"), self.dealModel.original_item_price] attributes:attributes];
         self.ibDiscountLbl.attributedText = attrText;
     }
     else if ([self.dealModel.deal_type isEqualToString:DEAL_TYPE_PACKAGE]){
         self.ibDiscountLbl.hidden = NO;
-        self.ibDealTypeLbl.text = [NSString stringWithFormat:@"RM%.2f", self.dealModel.discounted_item_price];
+        self.ibDealTypeLbl.text = [NSString stringWithFormat:@"%@ %@", LocalisedString(@"RM"), self.dealModel.discounted_item_price];
         NSDictionary *attributes = @{NSStrikethroughStyleAttributeName:[NSNumber numberWithInt:NSUnderlineStyleSingle]};
-        NSAttributedString *attrText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"RM%.2f", self.dealModel.original_item_price] attributes:attributes];
+        NSAttributedString *attrText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ %@", LocalisedString(@"RM"), self.dealModel.original_item_price] attributes:attributes];
         self.ibDiscountLbl.attributedText = attrText;
     }
     else{

@@ -1265,8 +1265,6 @@
 		8AFA520C1C47B4AB00E7920E /* SeetizensTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFA51C51C47B4AB00E7920E /* SeetizensTableViewCell.xib */; };
 		C20872971C59D1FA0063F203 /* PromoOutletCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C20872951C59D1FA0063F203 /* PromoOutletCell.m */; };
 		C20872981C59D1FA0063F203 /* PromoOutletCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20872961C59D1FA0063F203 /* PromoOutletCell.xib */; };
-		C22D125C1C608D0200EA1895 /* TagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C22D125A1C608D0200EA1895 /* TagCell.m */; };
-		C22D125D1C608D0200EA1895 /* TagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22D125B1C608D0200EA1895 /* TagCell.xib */; };
 		C23042E11C61F331001008CB /* DealsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C23042E01C61F331001008CB /* DealsModel.m */; };
 		C238E3251C4649AA00570A25 /* slider-default-handle-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = C238E3071C4649AA00570A25 /* slider-default-handle-highlighted.png */; };
 		C238E3261C4649AA00570A25 /* slider-default-handle-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C238E3081C4649AA00570A25 /* slider-default-handle-highlighted@2x.png */; };
@@ -1299,6 +1297,8 @@
 		C24383F51C5B5BF100ACEBF8 /* DealDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24383F31C5B5BF100ACEBF8 /* DealDetailsViewController.xib */; };
 		C243840F1C5B781500ACEBF8 /* DealDetailsAvailabilityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C24384071C5B781500ACEBF8 /* DealDetailsAvailabilityCell.m */; };
 		C24384101C5B781500ACEBF8 /* DealDetailsAvailabilityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24384081C5B781500ACEBF8 /* DealDetailsAvailabilityCell.xib */; };
+		C25A8B951C7487010046F80A /* RedemptionTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25A8B941C7487010046F80A /* RedemptionTypeView.xib */; };
+		C25A8B981C74872F0046F80A /* RedemptionTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C25A8B971C74872F0046F80A /* RedemptionTypeView.m */; };
 		C25B50331C4E277D0027283E /* SearchLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C25B50311C4E277D0027283E /* SearchLocationViewController.m */; };
 		C25B50341C4E277D0027283E /* SearchLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25B50321C4E277D0027283E /* SearchLocationViewController.xib */; };
 		C26676161C6445290021B6B0 /* WalletHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C26676141C6445290021B6B0 /* WalletHeaderCell.m */; };
@@ -3036,9 +3036,6 @@
 		C20872941C59D1FA0063F203 /* PromoOutletCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromoOutletCell.h; sourceTree = "<group>"; };
 		C20872951C59D1FA0063F203 /* PromoOutletCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromoOutletCell.m; sourceTree = "<group>"; };
 		C20872961C59D1FA0063F203 /* PromoOutletCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PromoOutletCell.xib; sourceTree = "<group>"; };
-		C22D12591C608D0200EA1895 /* TagCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagCell.h; sourceTree = "<group>"; };
-		C22D125A1C608D0200EA1895 /* TagCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagCell.m; sourceTree = "<group>"; };
-		C22D125B1C608D0200EA1895 /* TagCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagCell.xib; sourceTree = "<group>"; };
 		C23042DF1C61F331001008CB /* DealsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealsModel.h; sourceTree = "<group>"; };
 		C23042E01C61F331001008CB /* DealsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealsModel.m; sourceTree = "<group>"; };
 		C238E3071C4649AA00570A25 /* slider-default-handle-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-handle-highlighted.png"; sourceTree = "<group>"; };
@@ -3075,6 +3072,9 @@
 		C24384061C5B781500ACEBF8 /* DealDetailsAvailabilityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealDetailsAvailabilityCell.h; sourceTree = "<group>"; };
 		C24384071C5B781500ACEBF8 /* DealDetailsAvailabilityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealDetailsAvailabilityCell.m; sourceTree = "<group>"; };
 		C24384081C5B781500ACEBF8 /* DealDetailsAvailabilityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DealDetailsAvailabilityCell.xib; sourceTree = "<group>"; };
+		C25A8B941C7487010046F80A /* RedemptionTypeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedemptionTypeView.xib; sourceTree = "<group>"; };
+		C25A8B961C74872F0046F80A /* RedemptionTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedemptionTypeView.h; sourceTree = "<group>"; };
+		C25A8B971C74872F0046F80A /* RedemptionTypeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedemptionTypeView.m; sourceTree = "<group>"; };
 		C25B50301C4E277D0027283E /* SearchLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchLocationViewController.h; sourceTree = "<group>"; };
 		C25B50311C4E277D0027283E /* SearchLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchLocationViewController.m; sourceTree = "<group>"; };
 		C25B50321C4E277D0027283E /* SearchLocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchLocationViewController.xib; sourceTree = "<group>"; };
@@ -6628,9 +6628,9 @@
 				C28469B61C5F6FCD00B38885 /* NearbyShopsCell.h */,
 				C28469B71C5F6FCD00B38885 /* NearbyShopsCell.m */,
 				C28469B81C5F6FCD00B38885 /* NearbyShopsCell.xib */,
-				C22D12591C608D0200EA1895 /* TagCell.h */,
-				C22D125A1C608D0200EA1895 /* TagCell.m */,
-				C22D125B1C608D0200EA1895 /* TagCell.xib */,
+				C25A8B941C7487010046F80A /* RedemptionTypeView.xib */,
+				C25A8B961C74872F0046F80A /* RedemptionTypeView.h */,
+				C25A8B971C74872F0046F80A /* RedemptionTypeView.m */,
 			);
 			path = DealDetailsCell;
 			sourceTree = "<group>";
@@ -7163,7 +7163,6 @@
 				C20872981C59D1FA0063F203 /* PromoOutletCell.xib in Resources */,
 				8A6CCEB81C18075800BCD54E /* ShareFBIcon@2x.png in Resources */,
 				C238E32D1C4649AA00570A25 /* slider-default-trackCrossedOver@2x.png in Resources */,
-				C22D125D1C608D0200EA1895 /* TagCell.xib in Resources */,
 				8A6CCD0A1C18075800BCD54E /* PhotoPin@3x.png in Resources */,
 				8A6CCE481C18075800BCD54E /* AddPostBtn@3x.png in Resources */,
 				8A6CCEAF1C18075800BCD54E /* GoToEnd@3x.png in Resources */,
@@ -7230,6 +7229,7 @@
 				8A6CCEA11C18075800BCD54E /* SSFeaturesIcon@3x.png in Resources */,
 				8A6CCD2D1C18075800BCD54E /* CategoriesCheck@2x.png in Resources */,
 				8A6CCE7E1C18075800BCD54E /* ProfileShareIcon@3x.png in Resources */,
+				C25A8B951C7487010046F80A /* RedemptionTypeView.xib in Resources */,
 				C2AB4A5B1C6D8C900053FCA8 /* FilterAvailabilityCell.xib in Resources */,
 				8A6CCEBB1C18075800BCD54E /* ShareIGIcon@3x.png in Resources */,
 				8A6CCDC01C18075800BCD54E /* CampaignLogo@3x.png in Resources */,
@@ -7823,6 +7823,7 @@
 				8AEDBFAE1C2031BA000BD2FF /* DraftModel.m in Sources */,
 				8A6CCA3E1C17E5A800BCD54E /* SeShopFeatureTableViewCell.m in Sources */,
 				8AC8F7441BDA414E00DEF14A /* UserProfileV2ViewController.m in Sources */,
+				C25A8B981C74872F0046F80A /* RedemptionTypeView.m in Sources */,
 				0BBFE08E1B9FCC00004B17E9 /* SubmitProfileViewController.m in Sources */,
 				8AD6C0C81B706CF30040437E /* NotificationViewController.m in Sources */,
 				0B6AEA861C48ED6A009B7D33 /* SettingsTableViewCell.m in Sources */,
@@ -7951,7 +7952,6 @@
 				8A114C831BE73F5D006AE3F0 /* BMXDataItem.m in Sources */,
 				8AF2C2D21BA27EDE00B0A7F1 /* UIImage+Tint.m in Sources */,
 				8AC8F7221BDA414E00DEF14A /* CollectionListingTabViewController.m in Sources */,
-				C22D125C1C608D0200EA1895 /* TagCell.m in Sources */,
 				8AD6C2871B7072FB0040437E /* BrightnessViewController.m in Sources */,
 				8A34094F1B8AD267009B66C3 /* NYXImagesHelper.m in Sources */,
 				8AEDBFAC1C2031BA000BD2FF /* RecommendationVenueModel.m in Sources */,

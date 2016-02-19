@@ -7,11 +7,11 @@
 //
 
 #import "CommonViewController.h"
-#import "TagCell.h"
 #import "DealDetailsAvailabilityCell.h"
 #import "PromoOutletCell.h"
 #import "SeDealsFeaturedTblCell.h"
 #import "NearbyShopsCell.h"
+#import "RedemptionTypeView.h"
 
 typedef enum{
     UncollectedDealDetailsView,
@@ -23,5 +23,6 @@ typedef enum{
 @interface DealDetailsViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 
 -(void)setDealDetailsViewType:(DealDetailsViewType)viewType;
+-(void)setDealModel:(DealModel *)dealModel;
 
 @end

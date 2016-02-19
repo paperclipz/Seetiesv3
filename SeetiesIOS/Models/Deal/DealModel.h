@@ -13,6 +13,9 @@
 #define DEAL_TYPE_PACKAGE @"package"
 #define DEAL_TYPE_OTHERS @"others"
 
+#define REDEMPTION_TYPE_DINE_IN @"dine_in"
+#define REDEMPTION_TYPE_TAKE_AWAY @"take_away"
+
 @protocol SeShopDetailModel
 
 @end
@@ -25,15 +28,20 @@
 @property(nonatomic,strong) NSString *title;
 @property(nonatomic,strong) NSString *cover_title;
 @property(nonatomic,strong) NSString *expired_at;
+@property(nonatomic,strong) NSString *deal_desc;
 @property(nonatomic,assign) NSInteger total_available_vouchers;
 @property(nonatomic,strong) NSString *deal_type;
-@property(nonatomic,assign) float original_item_price;
-@property(nonatomic,assign) float discounted_item_price;
+@property(nonatomic,strong) NSString *original_item_price;
+@property(nonatomic,strong) NSString *discounted_item_price;
+@property(nonatomic,strong) NSString *discount_percentage;
+@property(nonatomic,strong) NSArray *redemption_type;
 @property(nonatomic,strong) NSArray<PhotoModel> *photos;
 @property(nonatomic,strong) PhotoModel *cover_photo;
 @property(nonatomic, strong) NSString *voucherID;
 @property(nonatomic, strong) NSString *voucher_status;
 @property(nonatomic,strong)NSArray<SeShopDetailModel> *shops;
+@property(nonatomic,assign) BOOL is_feature;
+@property(nonatomic, strong) NSDictionary *redemption_period_in_hour_text;
 
 @property(nonatomic, strong) NSString *seetishop_id;
 @property(nonatomic, strong) NSString *seetishop_name;

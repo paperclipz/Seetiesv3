@@ -8,6 +8,12 @@
 
 #import "DealDetailsAvailabilityCell.h"
 
+@interface DealDetailsAvailabilityCell()
+
+
+@property (nonatomic)NSDictionary *redemptionPeriod;
+@end
+
 @implementation DealDetailsAvailabilityCell
 
 - (void)awakeFromNib {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -16,7 +16,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13 Mar 2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xle-iB-XuV" userLabel="date">
-                        <rect key="frame" x="8" y="5" width="150" height="21"/>
+                        <rect key="frame" x="8" y="5" width="95" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="a6x-dS-UxG"/>
                         </constraints>
@@ -25,7 +25,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:00am - 5:30pm" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LRi-Ks-fBd" userLabel="time">
-                        <rect key="frame" x="163" y="5" width="149" height="21"/>
+                        <rect key="frame" x="169" y="5" width="143" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="RcP-TA-7OK"/>
                         </constraints>
@@ -38,11 +38,20 @@
                     <constraint firstAttribute="trailingMargin" secondItem="LRi-Ks-fBd" secondAttribute="trailing" id="5Qc-dM-VWt"/>
                     <constraint firstItem="Xle-iB-XuV" firstAttribute="width" secondItem="LRi-Ks-fBd" secondAttribute="width" id="FLJ-vT-paL"/>
                     <constraint firstAttribute="leadingMargin" secondItem="Xle-iB-XuV" secondAttribute="leading" id="LGe-4w-N6R"/>
-                    <constraint firstItem="LRi-Ks-fBd" firstAttribute="leading" secondItem="Xle-iB-XuV" secondAttribute="trailing" constant="5" id="O8q-aa-uJC"/>
+                    <constraint firstItem="LRi-Ks-fBd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Xle-iB-XuV" secondAttribute="trailing" constant="5" id="O8q-aa-uJC"/>
                     <constraint firstItem="LRi-Ks-fBd" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ang-Ie-nhL"/>
                     <constraint firstItem="Xle-iB-XuV" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="yGz-z6-Z21"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="FLJ-vT-paL"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="ibDayLbl" destination="Xle-iB-XuV" id="vyW-6h-8FD"/>
+                <outlet property="ibTimeLbl" destination="LRi-Ks-fBd" id="Zup-hK-DDQ"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>
