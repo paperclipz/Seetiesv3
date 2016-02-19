@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface NotificationTableViewCell : CommonTableViewCell
+-(void)initData:(NotificationModel*)model Type:(int)type;
 
 @end

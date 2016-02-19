@@ -7,6 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NotificationTableViewController">
             <connections>
+                <outlet property="ibActivityIndicator" destination="Yyp-iA-hmV" id="4f7-zn-MKx"/>
+                <outlet property="ibFooterView" destination="3or-dO-uHa" id="lm7-SP-l74"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,5 +22,22 @@
                 <outlet property="delegate" destination="-1" id="9aC-8N-iBw"/>
             </connections>
         </tableView>
+        <view tag="10" contentMode="scaleToFill" id="3or-dO-uHa">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="54"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Yyp-iA-hmV">
+                    <rect key="frame" x="150" y="17" width="20" height="20"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </activityIndicatorView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Yyp-iA-hmV" firstAttribute="centerY" secondItem="3or-dO-uHa" secondAttribute="centerY" id="1PV-ud-uHc"/>
+                <constraint firstItem="Yyp-iA-hmV" firstAttribute="centerX" secondItem="3or-dO-uHa" secondAttribute="centerX" id="D7h-Pq-XkH"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="1365" y="-42"/>
+        </view>
     </objects>
 </document>

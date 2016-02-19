@@ -42,8 +42,8 @@
                                 <constraint firstAttribute="width" constant="40" id="WID-2i-5db"/>
                             </constraints>
                         </imageView>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="paperclipz" placeholder="username/email address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BnV-h5-nTY">
-                            <rect key="frame" x="58" y="14" width="157" height="30"/>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="seanyap" placeholder="username/email address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BnV-h5-nTY">
+                            <rect key="frame" x="53" y="14" width="162" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="NpK-CS-Urc"/>
                             </constraints>
@@ -73,7 +73,7 @@
                                 <constraint firstAttribute="width" constant="40" id="xEa-Tj-9Nk"/>
                             </constraints>
                         </imageView>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="12345678" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="loW-qt-adt">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="92082214" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="loW-qt-adt">
                             <rect key="frame" x="58" y="14" width="157" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="iQC-kU-b8u"/>
