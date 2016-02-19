@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NotificationTableViewController : UITableViewController
 
+typedef void (^NotificationBlock)(NotificationModel* model);
+@interface NotificationTableViewController : UITableViewController
+-(void)requestServer:(int)viewType;
+@property(nonatomic,copy)NotificationBlock didSelectNotificationBlock;
 @end

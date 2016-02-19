@@ -531,6 +531,14 @@
             str = [NSString stringWithFormat:@"%@/vouchers", API_VERION_URL];
             break;
             
+        case ServerRequestTypeGetFollowingNotifictions:
+            str = [NSString stringWithFormat:@"%@/notifications/following", API_VERION_URL];
+            break;
+            
+        case ServerRequestTypeGetNotifications:
+            str = [NSString stringWithFormat:@"%@/notifications", API_VERION_URL];
+            break;
+            
         case ServerRequestTypeGetDealInfo:
             str = [NSString stringWithFormat:@"%@/deals", API_VERION_URL];
             break;
@@ -883,6 +891,27 @@
             
             break;
 
+        case ServerRequestTypeGetFollowingNotifictions:
+        {
+            NSDictionary* dict = obj[@"data"];
+            self.dataManager.followingNotificationModels = [[NotificationModels alloc]initWithDictionary:dict error:nil];
+        }
+            break;
+        case ServerRequestTypeGetNotifications:
+            
+        {
+            @try {
+                NSDictionary* dict = obj[@"data"][@"notifications"];
+                self.dataManager.notificationModels = [[NotificationModels alloc]initWithDictionary:dict error:nil];
+
+            }
+            @catch (NSException *exception) {
+                
+                SLog(@"NotificationModels Not Initialized");
+            }
+        }
+
+            break;
         default:
             
             SLog(@"the return result is :%@",obj);

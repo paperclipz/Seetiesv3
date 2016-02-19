@@ -37,6 +37,12 @@
 @property(nonatomic,strong)NSString* profile_picture;
 @property(nonatomic,strong)NSString* language;
 
+
+/*for notification purposes*/
+@property(nonatomic,strong)NSString* post_id;
+@property(nonatomic,strong)NSString* place_id;
+/*for notification purposes*/
+
 -(void)process;
 
 @end

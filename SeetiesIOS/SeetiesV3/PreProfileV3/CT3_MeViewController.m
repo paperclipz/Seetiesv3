@@ -45,6 +45,7 @@
 
 - (IBAction)btnTestClicked:(id)sender {
 
+    _ct3_notificationViewController = nil;
     [self.navigationController pushViewController:self.ct3_notificationViewController animated:YES];
 }
 

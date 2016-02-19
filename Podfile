@@ -44,6 +44,8 @@ pod 'InstagramKit', '~> 3.0'
 pod 'ESTabBarController'
 pod 'Fabric'
 pod 'Crashlytics'
+
+pod 'NSDate-Time-Ago'
 #pod 'iCarousel'
 #================ debugging =====================#
 #pod 'CocoaLumberjack'

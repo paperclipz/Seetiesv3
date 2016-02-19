@@ -19,6 +19,7 @@
 #import "DealModel.h"
 #import "HomeModel.h"
 #import "HomeLocationModel.h"
+#import "NotificationModels.h"
 
 
 /*Declare custom block for model type*/

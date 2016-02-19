@@ -29,6 +29,7 @@
 @property(nonatomic,strong)NSString* gender;
 @property(nonatomic,assign)BOOL following;
 @property(nonatomic,strong)NSString* uid;
+@property(nonatomic,strong)NSString* url;//use for notification user profile
 
 
 @property (nonatomic,strong)NSArray* categories;

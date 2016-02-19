@@ -861,6 +861,8 @@
 		8A7B9CE01BBD387000D7F604 /* EnbleLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7B9CDE1BBD387000D7F604 /* EnbleLocationViewController.m */; };
 		8A7B9CE11BBD387000D7F604 /* EnbleLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A7B9CDF1BBD387000D7F604 /* EnbleLocationViewController.xib */; };
 		8A7CEEC31C33E924005A3515 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BA671B705DF20040437E /* Main.storyboard */; };
+		8A7EDA7B1C747DE000A9E76E /* NotificationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7EDA7A1C747DE000A9E76E /* NotificationModel.m */; };
+		8A7EDA7E1C747EF000A9E76E /* NotificationModels.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7EDA7D1C747EF000A9E76E /* NotificationModels.m */; };
 		8A83CCBD1BD5ED5900C8B52C /* detox water.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8A83CCBC1BD5ED5900C8B52C /* detox water.jpg */; };
 		8A8475251BC5274C006DD614 /* UILabel+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A8475241BC5274C006DD614 /* UILabel+Extra.m */; };
 		8A84752B1BC52C0B006DD614 /* UITextField+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A84752A1BC52C0B006DD614 /* UITextField+Extra.m */; };
@@ -2383,6 +2385,10 @@
 		8A7B9CDD1BBD387000D7F604 /* EnbleLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnbleLocationViewController.h; sourceTree = "<group>"; };
 		8A7B9CDE1BBD387000D7F604 /* EnbleLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnbleLocationViewController.m; sourceTree = "<group>"; };
 		8A7B9CDF1BBD387000D7F604 /* EnbleLocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EnbleLocationViewController.xib; sourceTree = "<group>"; };
+		8A7EDA791C747DE000A9E76E /* NotificationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationModel.h; sourceTree = "<group>"; };
+		8A7EDA7A1C747DE000A9E76E /* NotificationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationModel.m; sourceTree = "<group>"; };
+		8A7EDA7C1C747EF000A9E76E /* NotificationModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationModels.h; sourceTree = "<group>"; };
+		8A7EDA7D1C747EF000A9E76E /* NotificationModels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationModels.m; sourceTree = "<group>"; };
 		8A83CCBC1BD5ED5900C8B52C /* detox water.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "detox water.jpg"; sourceTree = "<group>"; };
 		8A8475231BC5274C006DD614 /* UILabel+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Extra.h"; sourceTree = "<group>"; };
 		8A8475241BC5274C006DD614 /* UILabel+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Extra.m"; sourceTree = "<group>"; };
@@ -5130,6 +5136,17 @@
 			name = SeetiShopListing;
 			sourceTree = "<group>";
 		};
+		8A7EDA781C747D6C00A9E76E /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				8A7EDA791C747DE000A9E76E /* NotificationModel.h */,
+				8A7EDA7A1C747DE000A9E76E /* NotificationModel.m */,
+				8A7EDA7C1C747EF000A9E76E /* NotificationModels.h */,
+				8A7EDA7D1C747EF000A9E76E /* NotificationModels.m */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
 		8A8475321BC52D0D006DD614 /* SystemOverride */ = {
 			isa = PBXGroup;
 			children = (
@@ -6070,6 +6087,7 @@
 				8AF9996F1C3E6569000314E4 /* CoreModel.h */,
 				8AEDBF921C2031BA000BD2FF /* Model.h */,
 				8AEDBF931C2031BA000BD2FF /* Model.m */,
+				8A7EDA781C747D6C00A9E76E /* Notification */,
 				8AD50D621C61F21400C9D952 /* Home */,
 				8AD50D5E1C61F0F900C9D952 /* Deal */,
 				8AF6FE011C5F3E9C005AAE5D /* Location */,
@@ -7930,6 +7948,7 @@
 				8AFA51FB1C47B4AB00E7920E /* FeedSquareCollectionViewCell.m in Sources */,
 				8A114CCC1BE73F5D006AE3F0 /* ParallaxHeaderView.m in Sources */,
 				8A00352B1C4F4BD6002BD9A3 /* DealType_mainTblCell.m in Sources */,
+				8A7EDA7E1C747EF000A9E76E /* NotificationModels.m in Sources */,
 				8A114C831BE73F5D006AE3F0 /* BMXDataItem.m in Sources */,
 				8AF2C2D21BA27EDE00B0A7F1 /* UIImage+Tint.m in Sources */,
 				8AC8F7221BDA414E00DEF14A /* CollectionListingTabViewController.m in Sources */,
@@ -8075,6 +8094,7 @@
 				C2FB1CDF1C4F7A3B004AE990 /* SearchLocationAreaCell.m in Sources */,
 				8AD6C2811B7072FB0040437E /* AddHourViewController.m in Sources */,
 				8AD6C0C21B706CF30040437E /* FullImageViewController.m in Sources */,
+				8A7EDA7B1C747DE000A9E76E /* NotificationModel.m in Sources */,
 				0B99C2001BCBA1F1006D7E63 /* AnnounceViewController.m in Sources */,
 				8AFA52031C47B4AB00E7920E /* CT3_MeViewController.m in Sources */,
 				8AD6C10E1B706CF30040437E /* SettingsViewController.m in Sources */,

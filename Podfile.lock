@@ -58,6 +58,7 @@ PODS:
   - MGInstagram (0.1.0)
   - MGSwipeTableCell (1.5.3)
   - MZAppearance (1.1.6)
+  - NSDate-Time-Ago (1.0.1)
   - PureLayout (3.0.1)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
@@ -92,6 +93,7 @@ DEPENDENCIES:
   - MGInstagram
   - MGSwipeTableCell
   - MZAppearance
+  - NSDate-Time-Ago
   - PureLayout
   - SDWebImage
   - STPopup
@@ -135,6 +137,7 @@ SPEC CHECKSUMS:
   MGInstagram: c85a061e25b053ad1cb1227675e238ce6cc50221
   MGSwipeTableCell: 5ae3b9a15efda26b201adc8676b24040febe6ff6
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
+  NSDate-Time-Ago: e9de167d0659ebe465c273e833e7b582f061fc41
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   STPopup: 7975883c48560e4cb16ea1c6f351312ed2cd2bc0

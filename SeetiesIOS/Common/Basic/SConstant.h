@@ -95,6 +95,13 @@ typedef enum
     
     //===DEALS===//
     ServerRequestTypeGetSuperDeals,
+    ServerRequestTypeCollectDeals,
+    
+    /*Notifications*/
+    ServerRequestTypeGetFollowingNotifictions,
+    ServerRequestTypeGetNotifications,
+    /*Notifications*/
+
     ServerRequestTypePostCollectDeals,
     ServerRequestTypeGetDealInfo
     
@@ -152,6 +159,25 @@ typedef enum
     DealType_Wallet = 6
     
 }DealType;
+
+
+typedef enum
+{
+    NotificationType_Follow = 1,
+    NotificationType_Like = 2,
+    NotificationType_Mention = 3,
+    NotificationType_Comment = 4,
+    NotificationType_Collect = 5,
+    NotificationType_PostShared = 6,
+    NotificationType_CollectionShared = 7,
+    NotificationType_CollectionFollow = 8,
+    NotificationType_Seeties = 9,
+    NotificationType_SeetiesShared = 10,
+    NotificationType_Post = 11,
+    NotificationType_None = 12,
+    NotificationType_User = 13,
+    
+}NotificationType;
 
 extern NSString *const SERVER_PATH_LINK_LIVE;
 extern NSString *const SERVER_PATH_LINK_DEV;

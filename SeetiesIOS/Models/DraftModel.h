@@ -55,6 +55,11 @@
 @property(nonatomic,strong)Location* location;
 @property(nonatomic,strong)NSString* distance;
 @property(nonatomic,strong)NSString* place_formatted_address;
+
+/*notification*/
+@property(nonatomic,strong)NSString* postImageURL;
+/*notification*/
+
 -(NSString*)getPostDescription;
 
 -(void)process;
