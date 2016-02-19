@@ -16,9 +16,14 @@
 
 @property (strong, nonatomic) IBOutlet UIView *ibHeaderView;
 @property (weak, nonatomic) IBOutlet UIView *ibHeaderContentView;
-@property (weak, nonatomic) IBOutlet UIImageView *ibHeaderDealImage;
 @property (weak, nonatomic) IBOutlet UILabel *ibHeaderDealExpiryLbl;
 @property (weak, nonatomic) IBOutlet UILabel *ibHeaderImageCountLbl;
+@property (weak, nonatomic) IBOutlet UIScrollView *ibHeaderImageScrollView;
+@property (weak, nonatomic) IBOutlet UIView *ibHeaderImageContentView;
+@property (weak, nonatomic) IBOutlet UIView *ibHeaderBlackShadeView;
+@property (weak, nonatomic) IBOutlet UIImageView *ibHeaderBlackShadeIcon;
+@property (weak, nonatomic) IBOutlet UILabel *ibHeaderBlackShadeStatus;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibHeaderImageContentWidthConstraint;
 
 @property (strong, nonatomic) IBOutlet UIView *ibDealDetailsView;
 @property (weak, nonatomic) IBOutlet UIView *ibDealDetailsContentView;
@@ -42,12 +47,14 @@
 @property (weak, nonatomic) IBOutlet UITableView *ibShopTable;
 @property (weak, nonatomic) IBOutlet UILabel *ibShopTitle;
 @property (weak, nonatomic) IBOutlet UIButton *ibShopSeeMoreBtn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibShopSeeMoreHeightConstraint;
 
 @property (strong, nonatomic) IBOutlet UIView *ibTnCView;
 @property (weak, nonatomic) IBOutlet UIView *ibTnCContentView;
 @property (weak, nonatomic) IBOutlet UITableView *ibTnCTable;
 @property (weak, nonatomic) IBOutlet UILabel *ibTnCTitle;
 @property (weak, nonatomic) IBOutlet UIButton *ibTnCReadMoreBtn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibTnCSeeMoreHeightConstraint;
 
 @property (strong, nonatomic) IBOutlet UIView *ibDealsView;
 @property (weak, nonatomic) IBOutlet UIView *ibDealsContentView;
@@ -65,33 +72,30 @@
 @property (weak, nonatomic) IBOutlet UIView *ibReportContentView;
 @property (weak, nonatomic) IBOutlet UILabel *ibReportLbl;
 
-@property(nonatomic, assign) DealDetailsViewType viewType;
+@property (weak, nonatomic) IBOutlet UIView *ibFooterView;
+@property (weak, nonatomic) IBOutlet UILabel *ibFooterTitle;
+@property (weak, nonatomic) IBOutlet UIImageView *ibFooterIcon;
+
 @property(nonatomic) NSArray *viewArray;
 @property(nonatomic) DealModel *dealModel;
+@property(nonatomic) BOOL isProcessing;
+@property(nonatomic) DealManager *dealManager;
+@property(nonatomic) PromoPopOutViewController *promoPopOutViewController;
 @end
 
 @implementation DealDetailsViewController
 
--(instancetype)init{
-    self = [super self];
-    
-    if (self) {
-        _viewType = UncollectedDealDetailsView;
-    }
-    
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.isProcessing = NO;
     
     [self.ibAvailabilityTable registerNib:[UINib nibWithNibName:@"DealDetailsAvailabilityCell" bundle:nil] forCellReuseIdentifier:@"DealDetailsAvailabilityCell"];
     [self.ibShopTable registerNib:[UINib nibWithNibName:@"PromoOutletCell" bundle:nil] forCellReuseIdentifier:@"PromoOutletCell"];
     [self.ibDealsTable registerNib:[UINib nibWithNibName:@"SeDealsFeaturedTblCell" bundle:nil] forCellReuseIdentifier:@"SeDealsFeaturedTblCell"];
     [self.ibNearbyShopCollection registerNib:[UINib nibWithNibName:@"NearbyShopsCell" bundle:nil] forCellWithReuseIdentifier:@"NearbyShopsCell"];
     
-    [self requestServerForDealInfo];
+//    [self requestServerForDealInfo];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -102,6 +106,7 @@
 -(void)viewDidAppear:(BOOL)animated{
     [self initViewArray];
     [self initSelfView];
+    [self requestServerForDealInfo];
 }
 
 /*
@@ -114,36 +119,12 @@
 }
 */
 
--(void)setDealDetailsViewType:(DealDetailsViewType)viewType{
-    _viewType = viewType;
-}
-
 -(void)setDealModel:(DealModel *)dealModel{
     _dealModel = dealModel;
 }
 
 -(void)initSelfView{
     
-    switch (self.viewType) {
-        case UncollectedDealDetailsView:
-            
-            break;
-            
-        case CollectedDealDetailsView:
-            break;
-            
-        case RedeemedDealDetailsView:
-            break;
-            
-        case ExpiredDealDetailsView:
-            break;
-            
-        default:
-            break;
-    }
-    
-//    self.ibAvailabilityTable.estimatedRowHeight = [DealDetailsAvailabilityCell getHeight];
-//    self.ibAvailabilityTable.rowHeight = UITableViewAutomaticDimension;
     self.ibShopTable.estimatedRowHeight = [PromoOutletCell getHeight];
     self.ibShopTable.rowHeight = UITableViewAutomaticDimension;
     self.ibDealsTable.estimatedRowHeight = [SeDealsFeaturedTblCell getHeight];
@@ -159,12 +140,23 @@
     
     [self updateViewFrame];
     
-    [self drawBorders];
 }
 
 -(void)initViewArray{
     _viewArray = @[self.ibHeaderView, self.ibDealDetailsView, self.ibAvailabilityView, self.ibShopView, self.ibTnCView, self.ibDealsView , self.ibNearbyShopView, self.ibReportView];
     
+}
+
+#pragma mark - Declaration
+-(DealManager *)dealManager{
+    return [DealManager Instance];
+}
+
+-(PromoPopOutViewController *)promoPopOutViewController{
+    if (!_promoPopOutViewController) {
+        _promoPopOutViewController = [PromoPopOutViewController new];
+    }
+    return _promoPopOutViewController;
 }
 
 #pragma mark - UpdateView
@@ -179,6 +171,8 @@
     
     self.ibMainContentHeightConstraint.constant = totalHeight;
     [self.view refreshConstraint];
+    
+    [self drawBorders];
 }
 
 -(void)updateViews{
@@ -186,8 +180,8 @@
     [self updateDetailsView];
     [self updateAvailabilityView];
     [self updateShopView];
+    [self updateTnCView];
     [self updateViewFrame];
-    
 }
 
 -(void)updateHeaderView{
@@ -196,11 +190,19 @@
     ShopModel *shopModel = self.dealModel.shops[0];
     self.ibHeaderTitleLbl.text = shopModel.name;
     
+    CGFloat imageXOrigin = 0;
     if (![Utils isArrayNull:self.dealModel.photos]) {
-        PhotoModel *photoModel = [self.dealModel.photos objectAtIndex:0];
-        [self.ibHeaderDealImage sd_setImageCroppedWithURL:[NSURL URLWithString:photoModel.imageURL] completed:^(UIImage *image) {
-            self.ibHeaderImageCountLbl.text = [NSString stringWithFormat:@"%d/%lu", 1, (unsigned long)self.dealModel.photos.count];
-        }];
+        [self.ibHeaderImageScrollView refreshConstraint];
+        for (PhotoModel *photo in self.dealModel.photos) {
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(imageXOrigin, 0, self.ibHeaderImageScrollView.frame.size.width, self.ibHeaderImageContentView.frame.size.height)];
+            imageView.contentMode = UIViewContentModeScaleAspectFill;
+            imageView.clipsToBounds = YES;
+            [imageView sd_setImageCroppedWithURL:[NSURL URLWithString:photo.imageURL] completed:nil];
+            [self.ibHeaderImageContentView addSubview:imageView];
+            imageXOrigin += imageView.frame.size.width;
+        }
+        self.ibHeaderImageContentWidthConstraint.constant = imageXOrigin;
+        self.ibHeaderImageCountLbl.text = [NSString stringWithFormat:@"%d/%lu", 1, (unsigned long)self.dealModel.photos.count];
     }
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -208,6 +210,18 @@
     NSDate *expireDate = [dateFormatter dateFromString:self.dealModel.expired_at];
     [dateFormatter setDateFormat:@"dd MMM yyyy"];
     self.ibHeaderDealExpiryLbl.text = [NSString stringWithFormat:@"%@ %@", LocalisedString(@"Expires"), [dateFormatter stringFromDate:expireDate]];
+    
+    if ([self.dealModel.voucher_status isEqualToString:VOUCHER_STATUS_REDEEMED]) {
+        self.ibHeaderBlackShadeView.hidden = NO;
+        self.ibHeaderBlackShadeStatus.text = LocalisedString(@"Redeemed");
+    }
+    else if ([self.dealModel.voucher_status isEqualToString:VOUCHER_STATUS_EXPIRED]){
+        self.ibHeaderBlackShadeView.hidden = NO;
+        self.ibHeaderBlackShadeStatus.text = LocalisedString(@"Expired");
+    }
+    else{
+        self.ibHeaderBlackShadeView.hidden = YES;
+    }
 }
 
 -(void)updateDetailsView{
@@ -294,7 +308,9 @@
     }
     self.ibRedemptionContentViewHeightConstraint.constant = redemptionYOrigin;
     
-//    CGFloat contentHeight = self.ibDealDetailsRedemptionContentView.frame.origin.y + self.ibRedemptionContentViewHeightConstraint.constant + 15;
+//    CGFloat contentHeight = self.ibTagScrollViewHeightConstraint.constant + self.ibDealDetailsTitleLbl.frame.size.height + self.ibDealDetailsDescLbl.frame.size.height +
+//    self.ibDealDetailsDesc.frame.size.height + self.ibRedemptionContentViewHeightConstraint.constant + 15;
+//    self.ibDealDetailsRedemptionContentView.frame.origin.y + self.ibRedemptionContentViewHeightConstraint.constant + 15;
 //    SLog(@"%f = %f + %f", contentHeight, self.ibDealDetailsRedemptionContentView.frame.origin.y, self.ibRedemptionContentViewHeightConstraint.constant);
 //    self.ibDealDetailsView.frame = CGRectMake(self.ibDealDetailsView.frame.origin.x, self.ibDealDetailsView.frame.origin.y, self.ibDealDetailsView.frame.size.width, contentHeight);
 }
@@ -318,13 +334,73 @@
     float cellHeight = [PromoOutletCell getHeight];
     NSInteger numberOfShop = self.dealModel.shops.count;
     float tableHeight = cellHeight * numberOfShop;
-    CGFloat totalHeight = self.ibShopTable.frame.origin.y + tableHeight + self.ibShopSeeMoreBtn.frame.size.height + 20;
+    CGFloat totalHeight = self.ibShopTable.frame.origin.y + tableHeight + 20;
+    
+    if (self.dealModel.shops.count > 3) {
+        self.ibShopSeeMoreHeightConstraint.constant = 40;
+        self.ibShopSeeMoreBtn.hidden = NO;
+        totalHeight += self.ibShopSeeMoreHeightConstraint.constant;
+    }
+    else{
+        self.ibShopSeeMoreHeightConstraint.constant = 0;
+        self.ibShopSeeMoreBtn.hidden = YES;
+        totalHeight += self.ibShopSeeMoreHeightConstraint.constant;
+    }
     
     [self.ibShopView setHeight:totalHeight];
 }
 
+-(void)updateTnCView{
+    [self.ibTnCTable reloadData];
+    
+    float cellHeight = 44;
+    NSInteger numberOfTerms = self.dealModel.terms.count;
+    float tableHeight = cellHeight * numberOfTerms;
+    CGFloat totalHeight = self.ibTnCTable.frame.origin.y + tableHeight + 20;
+    
+    if (self.dealModel.terms.count > 5) {
+        self.ibTnCSeeMoreHeightConstraint.constant = 40;
+        self.ibTnCReadMoreBtn.hidden = NO;
+        totalHeight += self.ibTnCSeeMoreHeightConstraint.constant;
+    }
+    else{
+        self.ibTnCSeeMoreHeightConstraint.constant = 0;
+        self.ibTnCReadMoreBtn.hidden = YES;
+        totalHeight += self.ibTnCSeeMoreHeightConstraint.constant;
+    }
+    
+    [self.ibTnCView setHeight:totalHeight];
+}
+
+-(void)updateFooterView{
+    if ([self.dealModel.voucher_status isEqualToString:VOUCHER_STATUS_NONE]) {
+        [self.ibFooterView setBackgroundColor:DEVICE_COLOR];
+        self.ibFooterTitle.text = LocalisedString(@"Collect This Voucher");
+    }
+    else if([self.dealModel.voucher_status isEqualToString:VOUCHER_STATUS_COLLECTED]){
+        [self.ibFooterView setBackgroundColor:[UIColor colorWithRed:239/255.0 green:83/255.0 blue:105/255.0 alpha:1]];
+        self.ibFooterTitle.text = LocalisedString(@"Redeem Now");
+    }
+    else if([self.dealModel.voucher_status isEqualToString:VOUCHER_STATUS_REDEEMED]){
+        [self.ibFooterView setBackgroundColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
+        self.ibFooterTitle.text = LocalisedString(@"Redeem Now");
+    }
+    else if([self.dealModel.voucher_status isEqualToString:VOUCHER_STATUS_EXPIRED]){
+        [self.ibFooterView setBackgroundColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
+        self.ibFooterTitle.text = LocalisedString(@"Redeem Now");
+    }
+    else if([self.dealModel.voucher_status isEqualToString:VOUCHER_STATUS_CANCELLED]){
+        [self.ibFooterView setBackgroundColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
+        self.ibFooterTitle.text = LocalisedString(@"Collect This Voucher");
+    }
+    else{
+        [self.ibFooterView setBackgroundColor:[UIColor whiteColor]];
+        self.ibFooterTitle.text = @"";
+    }
+}
+
 -(void)drawBorders{
-    [self.ibMainContentView prefix_addLowerBorder:[UIColor lightGrayColor]];
+    [self.ibHeaderContentView prefix_addLowerBorder:[UIColor lightGrayColor]];
     
     [self.ibDealDetailsContentView prefix_addUpperBorder:[UIColor lightGrayColor]];
     [self.ibDealDetailsContentView prefix_addLowerBorder:[UIColor lightGrayColor]];
@@ -348,7 +424,49 @@
 
 - (IBAction)buttonShareClicked:(id)sender {
 }
+
 - (IBAction)buttonTranslateClicked:(id)sender {
+}
+
+- (IBAction)footerBtnClicked:(id)sender {
+    if ([self.dealModel.voucher_status isEqualToString:VOUCHER_STATUS_NONE]) {
+        if (self.dealModel.shops.count == 1) {
+            SeShopDetailModel *shopModel = [self.dealModel.shops objectAtIndex:0];
+            [self requestServerToCollectVoucher:shopModel];
+        }
+        else if(self.dealModel.shops.count > 1){
+            self.promoPopOutViewController = nil;
+            [self.promoPopOutViewController setViewType:ChooseShopViewType];
+            [self.promoPopOutViewController setPopOutCondition:ChooseShopOnlyPopOutCondition];
+            [self.promoPopOutViewController setDealModel:self.dealModel];
+            [self.promoPopOutViewController setShopArray:self.dealModel.shops];
+            self.promoPopOutViewController.promoPopOutDelegate = self;
+            
+            STPopupController *popOutController = [[STPopupController alloc]initWithRootViewController:self.promoPopOutViewController];
+            popOutController.containerView.backgroundColor = [UIColor clearColor];
+            [popOutController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewDidTap)]];
+            [popOutController presentInViewController:self];
+            [popOutController setNavigationBarHidden:YES];
+        }
+    }
+    else if([self.dealModel.voucher_status isEqualToString:VOUCHER_STATUS_COLLECTED]){
+    }
+    else if([self.dealModel.voucher_status isEqualToString:VOUCHER_STATUS_REDEEMED]){
+    }
+    else if([self.dealModel.voucher_status isEqualToString:VOUCHER_STATUS_EXPIRED]){
+    }
+    else if([self.dealModel.voucher_status isEqualToString:VOUCHER_STATUS_CANCELLED]){
+    }
+    else{
+    }
+}
+
+-(void)chooseShopConfirmClicked:(DealModel *)dealModel forShop:(SeShopDetailModel *)shopModel{
+    [self requestServerToCollectVoucher:shopModel];
+}
+
+-(IBAction)backgroundViewDidTap{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - TablewView
@@ -369,7 +487,12 @@
         return 3;
     }
     else if (tableView == self.ibTnCTable){
-        return 5;
+        if (self.dealModel.terms.count > 5) {
+            return 5;
+        }
+        else{
+            return self.dealModel.terms.count;
+        }
     }
     
     return 0;
@@ -394,7 +517,9 @@
         return [tableView dequeueReusableCellWithIdentifier:@"SeDealsFeaturedTblCell"];
     }
     else if (tableView == self.ibTnCTable){
-        return [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        cell.textLabel.text = [self.dealModel.terms objectAtIndex:indexPath.row];
+        return cell;
     }
     
     return nil;
@@ -411,10 +536,10 @@
         return UITableViewAutomaticDimension;
     }
     else if (tableView == self.ibTnCTable){
-        return UITableViewAutomaticDimension;
+        return 44;
     }
     
-    return 40;
+    return 44;
 }
 
 #pragma mark - CollectionView
@@ -434,6 +559,13 @@
     return nil;
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView;{
+    if (scrollView == self.ibHeaderImageScrollView) {
+        int page = scrollView.contentOffset.x / scrollView.frame.size.width;
+        self.ibHeaderImageCountLbl.text = [NSString stringWithFormat:@"%d/%lu", page+1, (unsigned long)self.dealModel.photos.count];
+    }
+}
+
 #pragma mark - RequestServer
 -(void)requestServerForDealInfo{
     NSDictionary *dict = @{@"token":[Utils getAppToken],
@@ -443,8 +575,35 @@
         DealModel *model = [[ConnectionManager dataManager] dealModel];
         self.dealModel = model;
         [self updateViews];
+        [self updateFooterView];
     } errorBlock:^(id object) {
         
+    }];
+}
+
+-(void)requestServerToCollectVoucher:(SeShopDetailModel*)shopModel{
+    if (self.isProcessing) {
+        return;
+    }
+    
+    NSDictionary *dict = @{@"deal_id":self.dealModel.dID,
+                           @"shop_id":shopModel.shopId,
+                           @"token": [Utils getAppToken]};
+    
+    self.isProcessing = YES;
+    [[ConnectionManager Instance] requestServerWithPost:ServerRequestTypePostCollectDeals param:dict completeHandler:^(id object) {
+        DealModel *dealModel = [[ConnectionManager dataManager] dealModel];
+        self.dealModel = dealModel;
+        [self.dealManager setCollectedDeal:dealModel.dID forDeal:dealModel];
+        
+//        self.walletCount++;
+//        
+//        self.ibWalletCountLbl.text = [NSString stringWithFormat:@"%d", self.walletCount];
+//        [self.ibVoucherTable reloadData];
+        [self updateFooterView];
+        self.isProcessing = NO;
+    } errorBlock:^(id object) {
+        self.isProcessing = NO;
     }];
 }
 

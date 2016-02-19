@@ -12,17 +12,11 @@
 #import "SeDealsFeaturedTblCell.h"
 #import "NearbyShopsCell.h"
 #import "RedemptionTypeView.h"
+#import "DealManager.h"
+#import "PromoPopOutViewController.h"
 
-typedef enum{
-    UncollectedDealDetailsView,
-    CollectedDealDetailsView,
-    RedeemedDealDetailsView,
-    ExpiredDealDetailsView
-} DealDetailsViewType;
+@interface DealDetailsViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, PromoPopOutDelegate>
 
-@interface DealDetailsViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
-
--(void)setDealDetailsViewType:(DealDetailsViewType)viewType;
 -(void)setDealModel:(DealModel *)dealModel;
 
 @end

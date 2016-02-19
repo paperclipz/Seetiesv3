@@ -34,6 +34,7 @@
 @property(nonatomic,strong)SeShopCategoryModel* category;
 @property(nonatomic,strong)NSArray* wallpapers;
 @property(nonatomic,strong)NSDictionary* profile_photo_images;
+@property(nonatomic,strong)NSString* profile_picture;
 @property(nonatomic,strong)NSString* language;
 
 -(void)process;

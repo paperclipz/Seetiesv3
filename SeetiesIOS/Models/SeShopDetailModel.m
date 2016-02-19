@@ -26,10 +26,10 @@
                                                        @"url.website": @"urlWebsite",
                                                        @"features.available" : @"arrFeatureAvaiable",
                                                        @"features.unavailable" : @"arrFeatureUnavaiable",
-                                                       @"id": @"shopId"
+                                                       @"id": @"shopId",
+                                                       @"profile_photo.picture": @"profile_picture"
                                                        }];
 }
-
 
 #define BestKnowFor @"Best known for"
 #define Price @"Price"

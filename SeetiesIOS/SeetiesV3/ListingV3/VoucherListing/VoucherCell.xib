@@ -13,13 +13,13 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="250"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="250"/>
+                <rect key="frame" x="0.0" y="0.0" width="480" height="249.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rh6-37-7gS" userLabel="upper view">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="140"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="detox water.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="iom-7V-9c6" userLabel="background image">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="detox water.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="iom-7V-9c6" userLabel="background image">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="140"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="95" id="oT5-b9-rnz"/>

@@ -16,6 +16,12 @@
 #define REDEMPTION_TYPE_DINE_IN @"dine_in"
 #define REDEMPTION_TYPE_TAKE_AWAY @"take_away"
 
+#define VOUCHER_STATUS_NONE @"none"
+#define VOUCHER_STATUS_CANCELLED @"cancelled"
+#define VOUCHER_STATUS_COLLECTED @"collected"
+#define VOUCHER_STATUS_EXPIRED @"expired"
+#define VOUCHER_STATUS_REDEEMED @"redeemed"
+
 @protocol SeShopDetailModel
 
 @end
@@ -42,6 +48,7 @@
 @property(nonatomic,strong)NSArray<SeShopDetailModel> *shops;
 @property(nonatomic,assign) BOOL is_feature;
 @property(nonatomic, strong) NSDictionary *redemption_period_in_hour_text;
+@property(nonatomic, strong) NSArray *terms;
 
 @property(nonatomic, strong) NSString *seetishop_id;
 @property(nonatomic, strong) NSString *seetishop_name;

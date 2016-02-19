@@ -57,7 +57,8 @@
     
     self.ibOutletTitle.text = self.shopModel.name;
     self.ibOutletAddress.text = self.shopModel.location.formatted_address;
-    
+    [self.ibOutletImg sd_setImageCroppedWithURL:[NSURL URLWithString:shopModel.profile_picture] completed:^(UIImage *image) {
+    }];
 }
 
 @end
