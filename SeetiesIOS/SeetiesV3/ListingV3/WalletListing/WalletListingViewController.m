@@ -17,7 +17,7 @@
 @property(nonatomic)RedemptionHistoryViewController *redemptionHistoryViewController;
 @property (nonatomic) DealDetailsViewController *dealDetailsViewController;
 
-@property(nonatomic) NSMutableArray *voucherArray;
+@property(nonatomic) NSMutableArray<DealModel*> *voucherArray;
 @property(nonatomic) DealsModel *dealsModel;
 @property(nonatomic) BOOL isLoading;
 @property(nonatomic) DealManager *dealManager;
@@ -55,24 +55,19 @@
 
 #pragma mark - TableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (tableView == self.ibTableView) {
+    if (![Utils isArrayNull:self.voucherArray]) {
         return self.voucherArray.count;
-
     }
     
     return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (tableView == self.ibTableView) {
-        WalletVoucherCell *voucherCell = [tableView dequeueReusableCellWithIdentifier:@"WalletVoucherCell"];
-        voucherCell.walletVoucherDelegate = self;
-        [voucherCell setDealModel:[self.voucherArray objectAtIndex:indexPath.row]];
+    WalletVoucherCell *voucherCell = [tableView dequeueReusableCellWithIdentifier:@"WalletVoucherCell"];
+    voucherCell.walletVoucherDelegate = self;
+    [voucherCell setDealModel:[self.voucherArray objectAtIndex:indexPath.row]];
         
-        return voucherCell;
-    }
-    
-    return nil;
+    return voucherCell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -102,7 +97,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        DealModel *deal = [self.voucherArray objectAtIndex:indexPath.row];
+        [self requestServerToDeleteVoucher:deal];
+    }
 }
 
 #pragma mark - IBAction
@@ -178,13 +176,6 @@
     return _redemptionHistoryViewController;
 }
 
--(NSMutableArray *)voucherArray{
-    if (!_voucherArray) {
-        _voucherArray = [[NSMutableArray alloc] init];
-    }
-    return _voucherArray;
-}
-
 -(DealDetailsViewController *)dealDetailsViewController{
     if (!_dealDetailsViewController) {
         _dealDetailsViewController = [DealDetailsViewController new];
@@ -197,6 +188,13 @@
         _dealManager = [DealManager Instance];
     }
     return _dealManager;
+}
+
+-(NSMutableArray<DealModel *> *)voucherArray{
+    if (!_voucherArray) {
+        _voucherArray = [[NSMutableArray alloc] init];
+    }
+    return _voucherArray;
 }
 
 #pragma mark - RequestServer
@@ -221,6 +219,23 @@
         self.isLoading = NO;
     } errorBlock:^(id object) {
         self.isLoading = NO;
+    }];
+}
+
+-(void)requestServerToDeleteVoucher:(DealModel*)deal{
+    NSDictionary *dict = @{@"voucher_id":deal.voucher_info.voucher_id,
+                           @"token": [Utils getAppToken]
+                           };
+    
+    NSString *appendString = deal.voucher_info.voucher_id;
+    
+    [[ConnectionManager Instance] requestServerWithDelete:ServerRequestTypeDeleteVoucher param:dict appendString:appendString completeHandler:^(id object) {
+        DealModel *model = [[ConnectionManager dataManager] dealModel];
+        [self.voucherArray removeObject:model];
+        [self.dealManager removeCollectedDeal:model.dID];
+        [self.ibTableView  reloadData];
+    } errorBlock:^(id object) {
+        
     }];
 }
 

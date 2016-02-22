@@ -37,6 +37,7 @@
 
 -(void)setCollectedDeal:(NSString*)dealId forDeal:(DealModel*)dealModel{
     [self.dealsDict setObject:[dealModel toJSONString] forKey:dealId];
+    [self saveCollectedDealsToDb];
 }
 
 -(BOOL)checkIfDealIsCollected:(NSString*)dealId{
@@ -50,10 +51,12 @@
 
 -(void)removeAllCollectedDeals{
     [self.dealsDict removeAllObjects];
+    [self saveCollectedDealsToDb];
 }
 
 -(void)removeCollectedDeal:(NSString*)dealId{
     [self.dealsDict removeObjectForKey:dealId];
+    [self saveCollectedDealsToDb];
 }
 
 -(void)saveCollectedDealsToDb{

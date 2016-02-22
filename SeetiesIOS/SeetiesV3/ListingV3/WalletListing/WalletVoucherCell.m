@@ -76,6 +76,14 @@
         self.ibVoucherExpiryLbl.textColor = [UIColor lightGrayColor];
     }
     
+    VoucherInfoModel *voucherModel = self.dealModel.voucher_info;
+    if (voucherModel.redeem_now) {
+        [self.ibRedeemBtn setBackgroundColor:[UIColor colorWithRed:232/255.0f green:86/255.0f blue:99/255.f alpha:1]];
+    }
+    else{
+        [self.ibRedeemBtn setBackgroundColor:[UIColor lightGrayColor]];
+    }
+    
 }
 
 - (IBAction)redeemBtnClicked:(id)sender {

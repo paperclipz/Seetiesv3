@@ -33,7 +33,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    _dealsArray = [[NSMutableArray alloc] init];
     self.isLoading = NO;
     self.isCollecting = NO;
     [self.dealManager removeAllCollectedDeals];
@@ -79,6 +78,7 @@
 }
 
 - (IBAction)footerBtnClicked:(id)sender {
+    self.walletListingViewController = nil;
     [self.navigationController pushViewController:self.walletListingViewController animated:YES];
 }
 
@@ -150,6 +150,13 @@
 
 -(DealManager *)dealManager{
     return [DealManager Instance];
+}
+
+-(NSMutableArray<DealModel *> *)dealsArray{
+    if (!_dealsArray) {
+        _dealsArray = [[NSMutableArray alloc] init];
+    }
+    return _dealsArray;
 }
 
 #pragma mark - TableView

@@ -28,4 +28,20 @@
     return YES;
 }
 
+-(BOOL)isEqual:(id)object{
+    if (object == nil) {
+        return NO;
+    }
+    if (![object isKindOfClass:DealModel.class]) {
+        return NO;
+    }
+    
+    DealModel *otherDealModel = (DealModel*)object;
+    return [otherDealModel.dID isEqualToString:self.dID]? YES : NO;
+}
+
+-(NSUInteger)hash{
+    return self.dID.hash;
+}
+
 @end

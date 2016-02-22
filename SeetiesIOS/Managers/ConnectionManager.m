@@ -543,6 +543,10 @@
             str = [NSString stringWithFormat:@"%@/deals", API_VERION_URL];
             break;
             
+        case ServerRequestTypeDeleteVoucher:
+            str = [NSString stringWithFormat:@"%@/vouchers", API_VERION_URL];
+            break;
+            
     }
     
     return [NSString stringWithFormat:@"https://%@/%@",self.serverPath,str];
@@ -886,6 +890,13 @@
         {
             NSDictionary *dict  = obj[@"data"][@"vouchers"];
             self.dataManager.dealsModel = [[DealsModel alloc] initWithDictionary:dict error:nil];
+        }
+            break;
+            
+        case ServerRequestTypeDeleteVoucher:
+        {
+            NSDictionary *dict = obj[@"data"];
+            self.dataManager.dealModel = [[DealModel alloc] initWithDictionary:dict error:nil];
         }
             break;
 
