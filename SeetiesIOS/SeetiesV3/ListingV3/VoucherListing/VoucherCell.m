@@ -140,13 +140,11 @@
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSDate *expiryDate = [dateFormatter dateFromString:self.dealModel.expired_at];
     
-    NSCalendar *cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    NSDateComponents *components = [cal components:NSCalendarUnitDay fromDate:[NSDate new] toDate:expiryDate options:NSCalendarWrapComponents];
-//    SLog(@"Days left: %ld", [components day]);
+    NSInteger numberOfDaysLeft = [Utils numberOfDaysLeft:expiryDate];
     
-    if ([components day] < 8) {
+    if (numberOfDaysLeft < 8) {
         self.ibDaysLeftLbl.hidden = NO;
-        self.ibDaysLeftLbl.text = [NSString stringWithFormat:@"%ld %@", [components day], LocalisedString(@"Days Left")];
+        self.ibDaysLeftLbl.text = [NSString stringWithFormat:@"%ld %@", numberOfDaysLeft, LocalisedString(@"Days Left")];
     }
     else{
         self.ibDaysLeftLbl.hidden = YES;

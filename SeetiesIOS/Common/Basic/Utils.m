@@ -685,6 +685,13 @@
 
 }
 
++(NSInteger)numberOfDaysLeft:(NSDate*)date{
+    NSCalendar *cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *components = [cal components:NSCalendarUnitDay fromDate:[NSDate new] toDate:date options:NSCalendarWrapComponents];
+    
+    return [components day];
+}
+
 #pragma mark - SYSTEM PREFERENCE
 
 +(void)setIsDevelopment:(BOOL)isDev

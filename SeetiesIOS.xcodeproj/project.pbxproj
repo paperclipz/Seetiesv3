@@ -1297,6 +1297,7 @@
 		C24383F51C5B5BF100ACEBF8 /* DealDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24383F31C5B5BF100ACEBF8 /* DealDetailsViewController.xib */; };
 		C243840F1C5B781500ACEBF8 /* DealDetailsAvailabilityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C24384071C5B781500ACEBF8 /* DealDetailsAvailabilityCell.m */; };
 		C24384101C5B781500ACEBF8 /* DealDetailsAvailabilityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24384081C5B781500ACEBF8 /* DealDetailsAvailabilityCell.xib */; };
+		C25810171C7ACC8700041A85 /* TagLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C25810161C7ACC8700041A85 /* TagLabel.m */; };
 		C25A8B951C7487010046F80A /* RedemptionTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25A8B941C7487010046F80A /* RedemptionTypeView.xib */; };
 		C25A8B981C74872F0046F80A /* RedemptionTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C25A8B971C74872F0046F80A /* RedemptionTypeView.m */; };
 		C25B50331C4E277D0027283E /* SearchLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C25B50311C4E277D0027283E /* SearchLocationViewController.m */; };
@@ -3072,6 +3073,8 @@
 		C24384061C5B781500ACEBF8 /* DealDetailsAvailabilityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealDetailsAvailabilityCell.h; sourceTree = "<group>"; };
 		C24384071C5B781500ACEBF8 /* DealDetailsAvailabilityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealDetailsAvailabilityCell.m; sourceTree = "<group>"; };
 		C24384081C5B781500ACEBF8 /* DealDetailsAvailabilityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DealDetailsAvailabilityCell.xib; sourceTree = "<group>"; };
+		C25810151C7ACC8700041A85 /* TagLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagLabel.h; sourceTree = "<group>"; };
+		C25810161C7ACC8700041A85 /* TagLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagLabel.m; sourceTree = "<group>"; };
 		C25A8B941C7487010046F80A /* RedemptionTypeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedemptionTypeView.xib; sourceTree = "<group>"; };
 		C25A8B961C74872F0046F80A /* RedemptionTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedemptionTypeView.h; sourceTree = "<group>"; };
 		C25A8B971C74872F0046F80A /* RedemptionTypeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedemptionTypeView.m; sourceTree = "<group>"; };
@@ -3943,6 +3946,8 @@
 				8A114C701BE73F5D006AE3F0 /* CommonView.m */,
 				8A114C711BE73F5D006AE3F0 /* CommonViewController.h */,
 				8A114C721BE73F5D006AE3F0 /* CommonViewController.m */,
+				C25810151C7ACC8700041A85 /* TagLabel.h */,
+				C25810161C7ACC8700041A85 /* TagLabel.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -7760,6 +7765,7 @@
 				8A3757B71B847C7A009DB7D4 /* AddNewPlaceViewController.m in Sources */,
 				8AC8F7561BDDD44800DEF14A /* UIImageView+Extension.m in Sources */,
 				8A3409461B8AD06A009B66C3 /* UIImage+Resizing.m in Sources */,
+				C25810171C7ACC8700041A85 /* TagLabel.m in Sources */,
 				8A34090F1B872B31009B66C3 /* EditPostViewController.m in Sources */,
 				8A6BB4321BF0C338005AA1B3 /* MZFormSheetPresentationViewControllerSegue.m in Sources */,
 				8AF6FDDD1C5A16A0005AAE5D /* SeetiesProfileView.m in Sources */,

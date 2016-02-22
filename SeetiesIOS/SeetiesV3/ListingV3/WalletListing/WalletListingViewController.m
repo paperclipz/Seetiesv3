@@ -9,12 +9,18 @@
 #import "WalletListingViewController.h"
 
 @interface WalletListingViewController ()
-@property NSArray *voucherArray;
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 @property (weak, nonatomic) IBOutlet UIButton *ibFooterBtn;
+@property (weak, nonatomic) IBOutlet UILabel *ibFooterLbl;
 
 @property (nonatomic)PromoPopOutViewController *promoPopOutViewController;
 @property(nonatomic)RedemptionHistoryViewController *redemptionHistoryViewController;
+@property (nonatomic) DealDetailsViewController *dealDetailsViewController;
+
+@property(nonatomic) NSMutableArray *voucherArray;
+@property(nonatomic) DealsModel *dealsModel;
+@property(nonatomic) BOOL isLoading;
+@property(nonatomic) DealManager *dealManager;
 @end
 
 @implementation WalletListingViewController
@@ -22,23 +28,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self initData];
     
     [self.ibTableView registerNib:[UINib nibWithNibName:@"WalletVoucherCell" bundle:nil] forCellReuseIdentifier:@"WalletVoucherCell"];
     self.ibTableView.estimatedRowHeight = [WalletVoucherCell getHeight];
     self.ibTableView.rowHeight = UITableViewAutomaticDimension;
+    
+    self.isLoading = NO;
+    [self requestServerForVoucherListing];
     
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(void)initData{
-    NSArray *dummyArray = @[@"",@"",@"",@"",@"",@"",@""];
-    
-    _voucherArray = @[dummyArray, dummyArray, dummyArray, dummyArray];
 }
 
 /*
@@ -54,7 +56,7 @@
 #pragma mark - TableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (tableView == self.ibTableView) {
-        return ((NSArray*)[self.voucherArray objectAtIndex:section]).count;
+        return self.voucherArray.count;
 
     }
     
@@ -64,7 +66,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == self.ibTableView) {
         WalletVoucherCell *voucherCell = [tableView dequeueReusableCellWithIdentifier:@"WalletVoucherCell"];
-        voucherCell.delegate = self;
+        voucherCell.walletVoucherDelegate = self;
+        [voucherCell setDealModel:[self.voucherArray objectAtIndex:indexPath.row]];
+        
         return voucherCell;
     }
     
@@ -76,7 +80,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.voucherArray.count;
+    return 1;
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section;{
@@ -88,6 +92,17 @@
     }
     
     return header;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    DealModel *dealModel = [self.voucherArray objectAtIndex:indexPath.row];
+    self.dealDetailsViewController = nil;
+    [self.dealDetailsViewController setDealModel:dealModel];
+    [self.navigationController pushViewController:self.dealDetailsViewController animated:YES];
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
 }
 
 #pragma mark - IBAction
@@ -162,4 +177,51 @@
     }
     return _redemptionHistoryViewController;
 }
+
+-(NSMutableArray *)voucherArray{
+    if (!_voucherArray) {
+        _voucherArray = [[NSMutableArray alloc] init];
+    }
+    return _voucherArray;
+}
+
+-(DealDetailsViewController *)dealDetailsViewController{
+    if (!_dealDetailsViewController) {
+        _dealDetailsViewController = [DealDetailsViewController new];
+    }
+    return _dealDetailsViewController;
+}
+
+-(DealManager *)dealManager{
+    if (!_dealManager) {
+        _dealManager = [DealManager Instance];
+    }
+    return _dealManager;
+}
+
+#pragma mark - RequestServer
+-(void)requestServerForVoucherListing{
+    if (self.isLoading) {
+        return;
+    }
+    
+    NSDictionary *dict = @{@"token":[Utils getAppToken],
+                           @"offset":@(self.dealsModel.offset),
+                           @"limit":@(self.dealsModel.limit)};
+    
+    NSString *appendString = [NSString stringWithFormat:@"%@/vouchers", [Utils getUserID]];
+    
+    self.isLoading = YES;
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetUserVouchersList param:dict appendString:appendString completeHandler:^(id object) {
+        DealsModel *model = [[ConnectionManager dataManager] dealsModel];
+        self.dealsModel = model;
+        [self.voucherArray addObjectsFromArray:self.dealsModel.deals];
+        [self.dealManager setAllCollectedDeals:self.dealsModel];
+        [self.ibTableView reloadData];
+        self.isLoading = NO;
+    } errorBlock:^(id object) {
+        self.isLoading = NO;
+    }];
+}
+
 @end

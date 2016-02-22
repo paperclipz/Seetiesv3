@@ -17,5 +17,6 @@
 
 @interface WalletVoucherCell : CommonTableViewCell
 
-@property(nonatomic)id<WalletVoucherDelegate> delegate;
+@property(nonatomic)id<WalletVoucherDelegate> walletVoucherDelegate;
+-(void)setDealModel:(DealModel *)dealModel;
 @end

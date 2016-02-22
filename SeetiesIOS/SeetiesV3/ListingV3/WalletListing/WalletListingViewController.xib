@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WalletListingViewController">
             <connections>
                 <outlet property="ibFooterBtn" destination="bRZ-GB-qwj" id="2WS-Lt-7Gy"/>
+                <outlet property="ibFooterLbl" destination="b41-zZ-lpA" id="t20-hM-Gq1"/>
                 <outlet property="ibTableView" destination="Iyd-eR-Gia" id="doP-Lc-19c"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -27,7 +28,7 @@
                                 <constraint firstAttribute="width" constant="40" id="hRS-cB-PNn"/>
                             </constraints>
                         </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FTB-t8-QOr">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FTB-t8-QOr" userLabel="back button">
                             <rect key="frame" x="0.0" y="0.0" width="44" height="64"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="64" id="1Vc-K8-Ual"/>
@@ -46,7 +47,7 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d1q-Vq-xRX">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d1q-Vq-xRX" userLabel="history button">
                             <rect key="frame" x="270" y="14" width="50" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="50" id="I2b-IK-mCd"/>
@@ -75,7 +76,7 @@
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="190" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Iyd-eR-Gia">
-                    <rect key="frame" x="8" y="72" width="304" height="446"/>
+                    <rect key="frame" x="8" y="64" width="304" height="454"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <connections>
@@ -86,10 +87,26 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HF0-bV-TrV" userLabel="footer">
                     <rect key="frame" x="0.0" y="518" width="320" height="50"/>
                     <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Promo Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b41-zZ-lpA">
+                            <rect key="frame" x="86" y="15" width="149" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="hw3-jV-Zl8"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-60.png" translatesAutoresizingMaskIntoConstraints="NO" id="YMy-Do-CfF">
+                            <rect key="frame" x="47" y="10" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="kMv-OP-47B"/>
+                                <constraint firstAttribute="width" constant="30" id="za4-U1-mX9"/>
+                            </constraints>
+                        </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRZ-GB-qwj">
-                            <rect key="frame" x="8" y="8" width="304" height="34"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                            <state key="normal" title="Enter Promo Code">
+                            <state key="normal">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -99,10 +116,16 @@
                     </subviews>
                     <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="bRZ-GB-qwj" secondAttribute="bottom" constant="8" id="9mf-Th-irX"/>
-                        <constraint firstItem="bRZ-GB-qwj" firstAttribute="top" secondItem="HF0-bV-TrV" secondAttribute="top" constant="8" id="NuE-HI-Gk6"/>
-                        <constraint firstItem="bRZ-GB-qwj" firstAttribute="leading" secondItem="HF0-bV-TrV" secondAttribute="leading" constant="8" id="VqW-XM-6QP"/>
-                        <constraint firstAttribute="trailing" secondItem="bRZ-GB-qwj" secondAttribute="trailing" constant="8" id="Y3F-Zn-THM"/>
+                        <constraint firstItem="YMy-Do-CfF" firstAttribute="centerY" secondItem="HF0-bV-TrV" secondAttribute="centerY" id="3YV-79-QYU"/>
+                        <constraint firstAttribute="bottom" secondItem="bRZ-GB-qwj" secondAttribute="bottom" id="9mf-Th-irX"/>
+                        <constraint firstItem="bRZ-GB-qwj" firstAttribute="top" secondItem="HF0-bV-TrV" secondAttribute="top" id="NuE-HI-Gk6"/>
+                        <constraint firstItem="bRZ-GB-qwj" firstAttribute="leading" secondItem="HF0-bV-TrV" secondAttribute="leading" id="VqW-XM-6QP"/>
+                        <constraint firstItem="b41-zZ-lpA" firstAttribute="leading" secondItem="YMy-Do-CfF" secondAttribute="trailing" constant="10" id="W7M-YI-lDT"/>
+                        <constraint firstAttribute="trailing" secondItem="bRZ-GB-qwj" secondAttribute="trailing" id="Y3F-Zn-THM"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="b41-zZ-lpA" secondAttribute="trailing" constant="8" id="aOQ-Cc-2dM"/>
+                        <constraint firstItem="b41-zZ-lpA" firstAttribute="centerX" secondItem="HF0-bV-TrV" secondAttribute="centerX" id="bAb-Hb-deo"/>
+                        <constraint firstItem="b41-zZ-lpA" firstAttribute="centerY" secondItem="HF0-bV-TrV" secondAttribute="centerY" id="pGT-mx-VE1"/>
+                        <constraint firstAttribute="height" constant="50" id="unY-As-Tb7"/>
                     </constraints>
                 </view>
             </subviews>
@@ -111,7 +134,7 @@
                 <constraint firstItem="m0e-uT-OXB" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="8qg-L2-FbF"/>
                 <constraint firstItem="HF0-bV-TrV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="220" id="Ct2-2B-Ejc"/>
                 <constraint firstAttribute="trailing" secondItem="m0e-uT-OXB" secondAttribute="trailing" id="DSN-wG-AhC"/>
-                <constraint firstItem="Iyd-eR-Gia" firstAttribute="top" secondItem="m0e-uT-OXB" secondAttribute="bottom" constant="8" id="Jgs-ti-6aF"/>
+                <constraint firstItem="Iyd-eR-Gia" firstAttribute="top" secondItem="m0e-uT-OXB" secondAttribute="bottom" id="Jgs-ti-6aF"/>
                 <constraint firstAttribute="trailing" secondItem="HF0-bV-TrV" secondAttribute="trailing" id="K5G-ek-psM"/>
                 <constraint firstItem="Iyd-eR-Gia" firstAttribute="top" secondItem="m0e-uT-OXB" secondAttribute="bottom" id="Ntm-57-qfk"/>
                 <constraint firstItem="Iyd-eR-Gia" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="T34-ed-pw1"/>
@@ -123,10 +146,11 @@
                 <constraint firstItem="HF0-bV-TrV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="lxV-Qw-cyf"/>
                 <constraint firstItem="HF0-bV-TrV" firstAttribute="top" secondItem="Iyd-eR-Gia" secondAttribute="bottom" id="yxX-X4-Rbg"/>
             </constraints>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="Ntm-57-qfk"/>
+                    <exclude reference="d85-UK-rL9"/>
                     <exclude reference="dt6-Pa-JZo"/>
                     <exclude reference="Ct2-2B-Ejc"/>
                 </mask>
@@ -136,6 +160,7 @@
     </objects>
     <resources>
         <image name="BackIcon.png" width="40" height="40"/>
+        <image name="Icon-60.png" width="60" height="60"/>
         <image name="TimeIcon.png" width="30" height="30"/>
     </resources>
 </document>

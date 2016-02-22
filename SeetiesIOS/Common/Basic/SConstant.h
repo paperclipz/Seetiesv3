@@ -95,15 +95,16 @@ typedef enum
     
     //===DEALS===//
     ServerRequestTypeGetSuperDeals,
-    ServerRequestTypeCollectDeals,
+    ServerRequestTypePostCollectDeals,
+    ServerRequestTypeGetDealInfo,
+    ServerRequestTypeGetUserVouchersList,
     
     /*Notifications*/
     ServerRequestTypeGetFollowingNotifictions,
     ServerRequestTypeGetNotifications,
     /*Notifications*/
 
-    ServerRequestTypePostCollectDeals,
-    ServerRequestTypeGetDealInfo
+    
     
 }ServerRequestType;
 

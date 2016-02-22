@@ -12,6 +12,7 @@
 #import "STPopupController.h"
 #import "WalletHeaderCell.h"
 #import "RedemptionHistoryViewController.h"
+#import "DealDetailsViewController.h"
 
 @interface WalletListingViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate, WalletVoucherDelegate>
 

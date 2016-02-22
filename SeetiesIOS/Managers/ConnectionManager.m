@@ -882,6 +882,12 @@
         }
             break;
             
+        case ServerRequestTypeGetUserVouchersList:
+        {
+            NSDictionary *dict  = obj[@"data"][@"vouchers"];
+            self.dataManager.dealsModel = [[DealsModel alloc] initWithDictionary:dict error:nil];
+        }
+            break;
 
         case ServerRequestTypeGetHomeUpdater:
         {

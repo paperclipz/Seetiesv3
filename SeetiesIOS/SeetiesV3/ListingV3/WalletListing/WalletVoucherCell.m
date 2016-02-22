@@ -34,9 +34,53 @@
     // Configure the view for the selected state
 }
 
+-(void)setDealModel:(DealModel *)dealModel{
+    _dealModel = dealModel;
+    
+    if ([Utils stringIsNilOrEmpty:self.dealModel.cover_title]) {
+        self.ibVoucherTitleLbl.text = self.dealModel.title;
+    }
+    else{
+        self.ibVoucherTitleLbl.text = self.dealModel.cover_title;
+    }
+    
+    SeShopDetailModel *shopModel = [self.dealModel.shops objectAtIndex:0];
+    self.ibVoucherShopLbl.text = shopModel.location.formatted_address;
+    if (![Utils isStringNull:shopModel.profile_picture]) {
+        [self.ibVoucherImg sd_setImageCroppedWithURL:[NSURL URLWithString:shopModel.profile_picture] completed:^(UIImage *image) {
+        }];
+    }
+    
+    if (self.dealModel.total_available_vouchers == -1) {
+        self.ibDealUsageLbl.text = LocalisedString(@"REUSABLE");
+        [self.ibDealUsageLbl setBackgroundColor:[UIColor colorWithRed:122/255.0f green:210/255.0f blue:27/255.0f alpha:1]];
+    }
+    else{
+        self.ibDealUsageLbl.text = LocalisedString(@"1 TIME USE");
+        [self.ibDealUsageLbl setBackgroundColor:[UIColor colorWithRed:253/255.0f green:175/255.0f blue:23/255.0f alpha:1]];
+    }
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *expiryDate = [dateFormatter dateFromString:self.dealModel.expired_at];
+    
+    NSInteger numberOfDaysLeft = [Utils numberOfDaysLeft:expiryDate];
+    
+    if (numberOfDaysLeft < 8) {
+        self.ibVoucherExpiryLbl.text = [NSString stringWithFormat:@"%@ %ld %@", LocalisedString(@"Expires in "), numberOfDaysLeft, LocalisedString(@"Days")];
+        self.ibVoucherExpiryLbl.textColor = [UIColor redColor];
+    }
+    else{
+        [dateFormatter setDateFormat:@"dd MMM yyyy"];
+        self.ibVoucherExpiryLbl.text = [NSString stringWithFormat:@"%@ %@", LocalisedString(@"Expires "), [dateFormatter stringFromDate:expiryDate]];
+        self.ibVoucherExpiryLbl.textColor = [UIColor lightGrayColor];
+    }
+    
+}
+
 - (IBAction)redeemBtnClicked:(id)sender {
-    if (self.delegate) {
-        [self.delegate redeemVoucherClicked:self.dealModel];
+    if (self.walletVoucherDelegate) {
+        [self.walletVoucherDelegate redeemVoucherClicked:self.dealModel];
     }
 }
 
