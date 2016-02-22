@@ -16,8 +16,6 @@
                                                        @"deal_type_info.discounted_item_price": @"discounted_item_price",
                                                        @"deal_type_info.percentage": @"discount_percentage",
                                                        @"id" : @"dID",
-                                                       @"voucher_info.id": @"voucherID",
-                                                       @"voucher_info.status": @"voucher_status",
                                                        @"shop.id": @"seetishop_id",
                                                        @"shop.name": @"seetishop_name",
                                                        @"description": @"deal_desc",

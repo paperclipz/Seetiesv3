@@ -206,7 +206,7 @@
 }
 
 -(void)voucherCollectRedeemClicked:(DealModel *)dealModel{
-    if ([Utils isStringNull:dealModel.voucherID]) {
+    if ([Utils isStringNull:dealModel.voucher_info.voucher_id]) {
         if (dealModel.shops.count == 1) {
             SeShopDetailModel *shopModel = [dealModel.shops objectAtIndex:0];
             [self requestServerToCollectVoucher:dealModel fromShop:shopModel];

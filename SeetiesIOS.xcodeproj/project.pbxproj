@@ -1298,6 +1298,7 @@
 		C243840F1C5B781500ACEBF8 /* DealDetailsAvailabilityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C24384071C5B781500ACEBF8 /* DealDetailsAvailabilityCell.m */; };
 		C24384101C5B781500ACEBF8 /* DealDetailsAvailabilityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24384081C5B781500ACEBF8 /* DealDetailsAvailabilityCell.xib */; };
 		C25810171C7ACC8700041A85 /* TagLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C25810161C7ACC8700041A85 /* TagLabel.m */; };
+		C258101A1C7AD89000041A85 /* VoucherInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C25810191C7AD89000041A85 /* VoucherInfoModel.m */; };
 		C25A8B951C7487010046F80A /* RedemptionTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25A8B941C7487010046F80A /* RedemptionTypeView.xib */; };
 		C25A8B981C74872F0046F80A /* RedemptionTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C25A8B971C74872F0046F80A /* RedemptionTypeView.m */; };
 		C25B50331C4E277D0027283E /* SearchLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C25B50311C4E277D0027283E /* SearchLocationViewController.m */; };
@@ -3075,6 +3076,8 @@
 		C24384081C5B781500ACEBF8 /* DealDetailsAvailabilityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DealDetailsAvailabilityCell.xib; sourceTree = "<group>"; };
 		C25810151C7ACC8700041A85 /* TagLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagLabel.h; sourceTree = "<group>"; };
 		C25810161C7ACC8700041A85 /* TagLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagLabel.m; sourceTree = "<group>"; };
+		C25810181C7AD89000041A85 /* VoucherInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoucherInfoModel.h; sourceTree = "<group>"; };
+		C25810191C7AD89000041A85 /* VoucherInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoucherInfoModel.m; sourceTree = "<group>"; };
 		C25A8B941C7487010046F80A /* RedemptionTypeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedemptionTypeView.xib; sourceTree = "<group>"; };
 		C25A8B961C74872F0046F80A /* RedemptionTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedemptionTypeView.h; sourceTree = "<group>"; };
 		C25A8B971C74872F0046F80A /* RedemptionTypeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedemptionTypeView.m; sourceTree = "<group>"; };
@@ -5462,6 +5465,8 @@
 				8AD50D601C61F0F900C9D952 /* DealModel.m */,
 				C23042DF1C61F331001008CB /* DealsModel.h */,
 				C23042E01C61F331001008CB /* DealsModel.m */,
+				C25810181C7AD89000041A85 /* VoucherInfoModel.h */,
+				C25810191C7AD89000041A85 /* VoucherInfoModel.m */,
 			);
 			path = Deal;
 			sourceTree = "<group>";
@@ -7882,6 +7887,7 @@
 				8AC8F7241BDA414E00DEF14A /* CollectionListingViewController.m in Sources */,
 				8A114CB51BE73F5D006AE3F0 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				8A114CD61BE73F5D006AE3F0 /* CommonView.m in Sources */,
+				C258101A1C7AD89000041A85 /* VoucherInfoModel.m in Sources */,
 				8A114CB11BE73F5D006AE3F0 /* LeveyTabBarController.m in Sources */,
 				8A69E0FD1C046DF900224BB4 /* ShareManager.m in Sources */,
 				8AFA51F51C47B4AB00E7920E /* FeedType_InviteFriendTblCell.m in Sources */,

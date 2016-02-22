@@ -7,6 +7,7 @@
 //
 
 #import <JSONModel/JSONModel.h>
+#import "VoucherInfoModel.h"
 
 #define DEAL_TYPE_DISCOUNT @"discount"
 #define DEAL_TYPE_FREE @"free"
@@ -16,13 +17,11 @@
 #define REDEMPTION_TYPE_DINE_IN @"dine_in"
 #define REDEMPTION_TYPE_TAKE_AWAY @"take_away"
 
-#define VOUCHER_STATUS_NONE @"none"
-#define VOUCHER_STATUS_CANCELLED @"cancelled"
-#define VOUCHER_STATUS_COLLECTED @"collected"
-#define VOUCHER_STATUS_EXPIRED @"expired"
-#define VOUCHER_STATUS_REDEEMED @"redeemed"
-
 @protocol SeShopDetailModel
+
+@end
+
+@protocol VoucherInfoModel
 
 @end
 
@@ -41,10 +40,9 @@
 @property(nonatomic,strong) NSString *discounted_item_price;
 @property(nonatomic,strong) NSString *discount_percentage;
 @property(nonatomic,strong) NSArray *redemption_type;
+@property(nonatomic,strong) VoucherInfoModel *voucher_info;
 @property(nonatomic,strong) NSArray<PhotoModel> *photos;
 @property(nonatomic,strong) PhotoModel *cover_photo;
-@property(nonatomic, strong) NSString *voucherID;
-@property(nonatomic, strong) NSString *voucher_status;
 @property(nonatomic,strong)NSArray<SeShopDetailModel> *shops;
 @property(nonatomic,assign) BOOL is_feature;
 @property(nonatomic, strong) NSDictionary *redemption_period_in_hour_text;

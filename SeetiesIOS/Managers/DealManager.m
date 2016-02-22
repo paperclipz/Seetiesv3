@@ -62,7 +62,7 @@
 
 -(void)setAllCollectedDeals:(DealsModel*)dealsModel{
     for (DealModel *dealModel in dealsModel.deals) {
-        if (![Utils isStringNull:dealModel.voucherID]) {
+        if (![Utils isStringNull:dealModel.voucher_info.voucher_id]) {
             [self.dealsDict setObject:[dealModel toJSONString] forKey:dealModel.dID];
         }
     }

@@ -114,7 +114,7 @@
 }
 
 -(void)setRedeemCollect{
-    if ([Utils isStringNull:self.dealModel.voucherID]) {
+    if ([Utils isStringNull:self.dealModel.voucher_info.voucher_id]) {
         [self.ibVoucherCollectBtn setTitle:@"Collect" forState:UIControlStateNormal];
         [self.ibVoucherCollectBtn setBackgroundColor:DEVICE_COLOR];
     }

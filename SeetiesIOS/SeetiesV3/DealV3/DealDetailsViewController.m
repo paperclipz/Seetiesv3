@@ -211,11 +211,11 @@
     [dateFormatter setDateFormat:@"dd MMM yyyy"];
     self.ibHeaderDealExpiryLbl.text = [NSString stringWithFormat:@"%@ %@", LocalisedString(@"Expires"), [dateFormatter stringFromDate:expireDate]];
     
-    if ([self.dealModel.voucher_status isEqualToString:VOUCHER_STATUS_REDEEMED]) {
+    if ([self.dealModel.voucher_info.status isEqualToString:VOUCHER_STATUS_REDEEMED]) {
         self.ibHeaderBlackShadeView.hidden = NO;
         self.ibHeaderBlackShadeStatus.text = LocalisedString(@"Redeemed");
     }
-    else if ([self.dealModel.voucher_status isEqualToString:VOUCHER_STATUS_EXPIRED]){
+    else if ([self.dealModel.voucher_info.status isEqualToString:VOUCHER_STATUS_EXPIRED]){
         self.ibHeaderBlackShadeView.hidden = NO;
         self.ibHeaderBlackShadeStatus.text = LocalisedString(@"Expired");
     }
@@ -373,23 +373,24 @@
 }
 
 -(void)updateFooterView{
-    if ([self.dealModel.voucher_status isEqualToString:VOUCHER_STATUS_NONE]) {
+    NSString *voucherStatus = self.dealModel.voucher_info.status;
+    if ([voucherStatus isEqualToString:VOUCHER_STATUS_NONE]) {
         [self.ibFooterView setBackgroundColor:DEVICE_COLOR];
         self.ibFooterTitle.text = LocalisedString(@"Collect This Voucher");
     }
-    else if([self.dealModel.voucher_status isEqualToString:VOUCHER_STATUS_COLLECTED]){
+    else if([voucherStatus isEqualToString:VOUCHER_STATUS_COLLECTED]){
         [self.ibFooterView setBackgroundColor:[UIColor colorWithRed:239/255.0 green:83/255.0 blue:105/255.0 alpha:1]];
         self.ibFooterTitle.text = LocalisedString(@"Redeem Now");
     }
-    else if([self.dealModel.voucher_status isEqualToString:VOUCHER_STATUS_REDEEMED]){
+    else if([voucherStatus isEqualToString:VOUCHER_STATUS_REDEEMED]){
         [self.ibFooterView setBackgroundColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
         self.ibFooterTitle.text = LocalisedString(@"Redeem Now");
     }
-    else if([self.dealModel.voucher_status isEqualToString:VOUCHER_STATUS_EXPIRED]){
+    else if([voucherStatus isEqualToString:VOUCHER_STATUS_EXPIRED]){
         [self.ibFooterView setBackgroundColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
         self.ibFooterTitle.text = LocalisedString(@"Redeem Now");
     }
-    else if([self.dealModel.voucher_status isEqualToString:VOUCHER_STATUS_CANCELLED]){
+    else if([voucherStatus isEqualToString:VOUCHER_STATUS_CANCELLED]){
         [self.ibFooterView setBackgroundColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
         self.ibFooterTitle.text = LocalisedString(@"Collect This Voucher");
     }
@@ -429,7 +430,8 @@
 }
 
 - (IBAction)footerBtnClicked:(id)sender {
-    if ([self.dealModel.voucher_status isEqualToString:VOUCHER_STATUS_NONE]) {
+    NSString *voucherStatus = self.dealModel.voucher_info.status;
+    if ([voucherStatus isEqualToString:VOUCHER_STATUS_NONE]) {
         if (self.dealModel.shops.count == 1) {
             SeShopDetailModel *shopModel = [self.dealModel.shops objectAtIndex:0];
             [self requestServerToCollectVoucher:shopModel];
@@ -449,13 +451,13 @@
             [popOutController setNavigationBarHidden:YES];
         }
     }
-    else if([self.dealModel.voucher_status isEqualToString:VOUCHER_STATUS_COLLECTED]){
+    else if([voucherStatus isEqualToString:VOUCHER_STATUS_COLLECTED]){
     }
-    else if([self.dealModel.voucher_status isEqualToString:VOUCHER_STATUS_REDEEMED]){
+    else if([voucherStatus isEqualToString:VOUCHER_STATUS_REDEEMED]){
     }
-    else if([self.dealModel.voucher_status isEqualToString:VOUCHER_STATUS_EXPIRED]){
+    else if([voucherStatus isEqualToString:VOUCHER_STATUS_EXPIRED]){
     }
-    else if([self.dealModel.voucher_status isEqualToString:VOUCHER_STATUS_CANCELLED]){
+    else if([voucherStatus isEqualToString:VOUCHER_STATUS_CANCELLED]){
     }
     else{
     }
