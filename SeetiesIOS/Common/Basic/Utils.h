@@ -105,6 +105,7 @@ typedef enum {
 //    
 //}SeetiesShopVerifyType;
 
+#pragma mark - app utils
 +(BOOL)isLogin;
 +(void)setIsLogin;
 +(NSString*)getAppToken;
@@ -113,6 +114,8 @@ typedef enum {
 +(BOOL)checkUserIsLogin;//new check user login using token
 +(void)setLogout;
 +(void)reloadAppView;
++(void)setParseToken:(NSData*)data;
++(void)registerParseAfterLogin:(NSString*)userID;
 
 
 #define UIColorFromRGB(r,g,b,a)  [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]

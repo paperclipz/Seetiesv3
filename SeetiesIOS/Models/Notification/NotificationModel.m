@@ -13,11 +13,32 @@
 @property(nonatomic,strong)NSString* type;
 @property(nonatomic,strong)NSDictionary* user;
 
+@property(nonatomic,strong)NSDictionary* collection;
 
+//following_user
 @end
 
 @implementation NotificationModel
 
+
+-(CollectionModel*)collectionInfo
+{
+    if (!_collectionInfo) {
+        _collectionInfo = [[CollectionModel alloc]initWithDictionary:_collection error:nil];
+    }
+    
+    return _collectionInfo;
+}
+
+
+-(NSDictionary*)followCollectionInfo
+{
+    if (!_followCollectionInfo) {
+        _followCollectionInfo = _collection;
+    }
+    
+    return _followCollectionInfo;
+}
 
 -(NotificationType)notType{
     
@@ -100,8 +121,8 @@
                                                        @"message": @"notificationMessage",
                                                        @"user.user_info" : @"tempUserProfiles",
                                                        @"user_thumbnail.url" : @"userProfileImage",
-                                                       @"post.post_info" : @"arrPosts"
-
+                                                       @"post.post_info" : @"arrPosts",
+                                                       @"following_user.user_info" : @"arrFollowingUsers"
                                                        
                                                        }];
 }

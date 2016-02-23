@@ -26,7 +26,6 @@
 
 @implementation NewLandingViewController
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
    // [self initSelfView];
@@ -34,6 +33,12 @@
     [self requestServerForUserInfo];
     
     [self.view addSubview:self.tabBarController.view];
+    
+    
+    if (![Utils checkUserIsLogin]) {
+        [Utils showLogin];
+
+    }
 }
 
 -(UITabBarController*)tabBarController

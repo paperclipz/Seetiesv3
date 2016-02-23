@@ -8,8 +8,23 @@
 
 #import "ProfileModel.h"
 
+
+@interface ProfileModel()
+@property(nonatomic,strong)NSString* user_id;
+
+@end
 @implementation ProfileModel
 
+-(NSString*)uid
+{
+    if (![Utils isStringNull:_uid]) {
+        return _uid;
+    }
+    else
+    {
+        return _user_id;
+    }
+}
 
 -(NSString*)getGender
 {

@@ -7,6 +7,7 @@
 //
 #import "Utils.h"
 #import "AppDelegate.h"
+#import <Parse/Parse.h>
 
 @implementation Utils
 
@@ -23,6 +24,12 @@
 
 +(void)setLogout
 {
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    NSString *parseToken = [[NSString alloc]initWithFormat:@"seeties_%@",[Utils getUserID]];
+    [currentInstallation removeObject:@"all" forKey:@"channels"];
+    [currentInstallation removeObject:parseToken forKey:@"channels"];
+    [currentInstallation saveInBackground];
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:nil forKey:TOKEN];
     [defaults synchronize];
@@ -57,13 +64,6 @@
     return isSuccessLogin;
 }
 
-+(void)setIsLogin
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *CheckLogin = [[NSString alloc]initWithFormat:@"LoginDone"];
-    [defaults setObject:CheckLogin forKey:@"CheckLogin"];
-
-}
 /*new checking for login using token |Experimental as of 26/1/2016|*/
 +(BOOL)checkUserIsLogin
 {
@@ -85,14 +85,78 @@
     NSString* token = [defaults objectForKey:TOKEN]?[defaults objectForKey:TOKEN]:@"";
     return token;
 }
+
 +(NSString*)getUserID
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    return [defaults objectForKey:@"Useruid"];
+    return [defaults objectForKey:USERID];
+}
+
++(void)setParseToken:(NSData*)data
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:data forKey:@"DeviceTokenPush"];
+    [defaults synchronize];
+    
+}
+
++(void)deleteParseToken
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:nil forKey:@"DeviceTokenPush"];
+    [defaults synchronize];
+}
+
++(NSData*)getParseToken
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSData* data =[defaults objectForKey:@"DeviceTokenPush"];
+    
+    return data;
 }
 
 
++(BOOL)isParseRegisered
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSData* data =[defaults objectForKey:@"DeviceTokenPush"];
+    
+    if (data) {
+        return YES;
+    }
+    else{
+        return NO;
+    }
+}
 
++(void)registerParseAfterLogin:(NSString*)userID
+{
+    if (![Utils isParseRegisered]) {
+        
+        PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+        NSString *parseToken = [[NSString alloc]initWithFormat:@"seeties_%@",userID];
+        
+        if ([Utils getUserID]) {
+            NSString *previousParseToken = [[NSString alloc]initWithFormat:@"seeties_%@",[Utils getUserID]];
+            [currentInstallation removeObject:@"all" forKey:@"channels"];
+            [currentInstallation removeObject:previousParseToken forKey:@"channels"];
+            [currentInstallation saveInBackground];
+        }
+        
+        if ([self getParseToken]) {
+            [currentInstallation setDeviceTokenFromData:[self getParseToken]];
+            currentInstallation.channels = @[parseToken,@"all"];
+            [currentInstallation saveInBackground];
+            
+        }
+        else
+        {
+            SLog(@"parse token not registed to user");
+        }
+    }
+}
+
+#pragma mark - Utilities
 +(NSString*)getWeekName:(int)integer
 {
     

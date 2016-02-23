@@ -539,6 +539,10 @@
             str = [NSString stringWithFormat:@"%@/notifications", API_VERION_URL];
             break;
             
+        case ServerRequestTypeGetNotificationCount:
+            str = [NSString stringWithFormat:@"%@/notifications/count", API_VERION_URL];
+            break;
+            
         case ServerRequestTypeGetDealInfo:
             str = [NSString stringWithFormat:@"%@/deals", API_VERION_URL];
             break;
@@ -564,6 +568,9 @@
 {
     ProfileModel* model = self.dataManager.userLoginProfileModel;
     if (model) {
+        
+        [Utils registerParseAfterLogin:model.uid];
+
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:model.token forKey:TOKEN];
         [defaults setObject:model.uid forKey:USERID];

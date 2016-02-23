@@ -13,6 +13,7 @@
 
 #import "FeedV2DetailViewController.h"
 #import "SeetiesShopViewController.h"
+#import "CollectionViewController.h"
 
 @interface CT3_NotificationViewController () 
 @property (nonatomic, strong) CAPSPageMenu *cAPSPageMenu;
@@ -27,6 +28,7 @@
 @property (nonatomic, strong) NotificationModels *followingNotificationsModels;
 @property (nonatomic, strong) ProfileViewController *profileViewController;
 @property (nonatomic, strong) SeetiesShopViewController *seetiesShopViewController;
+@property (nonatomic, strong) CollectionViewController *collectionViewController;
 
 @end
 
@@ -35,9 +37,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
-   // [self requestServerForFollowingNotifications];
+  
     [self.followingTableViewController requestServer:1];
-    [self.notificationTableViewController requestServer:2];
+   // [self.notificationTableViewController requestServer:2];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -54,6 +56,14 @@
 }
 
 #pragma mark - Declaration
+
+-(CollectionViewController*)collectionViewController
+{
+    if (!_collectionViewController) {
+        _collectionViewController = [CollectionViewController new];
+    }
+    return _collectionViewController;
+}
 
 -(SeetiesShopViewController*)seetiesShopViewController
 {
@@ -143,25 +153,13 @@
 
 -(void)processView:(NotificationModel*)model Type:(int)type
 {
-    //            FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
-    //            [self.navigationController pushViewController:FeedDetailView animated:YES];
-    //            [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
-    //        }else if ([GetType isEqualToString:@"mention"]){
-    //            FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController alloc]init];
-    //            [self.navigationController pushViewController:FeedDetailView animated:YES];
-    //            [FeedDetailView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN]];
-    //        }else if ([GetType isEqualToString:@"comment"]){
-    //            FeedV2DetailViewController *FeedDetailView = [[FeedV2DetailViewController a
-    //                                                           }else if([GetType isEqualToString:@"post_shared"]){
-
     
-    if (type == 1) {
-        
-        
-        [self showProfileView:model];
-        
-        return;
-    }
+//    if (type == 1) {
+//        
+//        [self showProfileView:model];
+//        
+//        return;
+//    }
     switch (model.notType) {
         case NotificationType_Mention:
         case NotificationType_Comment:
@@ -175,10 +173,54 @@
             
         case NotificationType_Follow:
         case NotificationType_Collect:
+        {
+            
+            if (type == 1) {
+                
+                @try {
+                    [self showProfileView:model.arrFollowingUsers[0]];
+
+                }
+                @catch (NSException *exception) {
+                    
+                    SLog(@"No array of following user given");
+                }
+
+            }
+            else{
+                [self showProfileView:model];
+
+            }
+
+        }
+            break;
         case NotificationType_CollectionShared:
         case NotificationType_CollectionFollow:
 
-            [self showProfileView:model];
+            
+            if (type == 1) {
+                
+                @try {
+                    NSDictionary* tempDict = model.followCollectionInfo[@"collection_info"][0];
+                    
+                    CollectionModel* cModel = [[CollectionModel alloc]initWithDictionary:tempDict error:nil];
+                    
+                    [self showCollectionView:cModel userID:cModel.user_info.uid];
+
+                }
+                @catch (NSException *exception) {
+                    
+                    SLog(@"Fail To Load Collection Info");
+                    [self showProfileView:model];
+
+                }
+               
+            }
+            else{
+                [self showCollectionView:model.collectionInfo userID:model.collectionInfo.user_info.uid];
+
+            }
+            
 
             break;
         case NotificationType_SeetiesShared:
@@ -217,6 +259,27 @@
         _feedDetailViewCOntroller = nil;
         [self.navigationController pushViewController:self.feedDetailViewCOntroller animated:YES];
         [self.feedDetailViewCOntroller GetPostID:postID];
+    }
+   
+}
+
+
+-(void)showCollectionView:(CollectionModel*)model userID:(NSString*)uID
+{
+    CollectionModel* colModel = model;
+    
+    if (![Utils isStringNull:colModel.collection_id]) {
+        _collectionViewController = nil;
+        if ([uID isEqualToString:[Utils getUserID]]) {
+            [self.collectionViewController GetCollectionID:colModel.collection_id GetPermision:@"self" GetUserUid:uID];
+            
+        }
+        else{
+            
+            [self.collectionViewController GetCollectionID:colModel.collection_id GetPermision:@"Others" GetUserUid:uID];
+        }
+        
+        [self.navigationController pushViewController:self.collectionViewController animated:YES];
     }
    
 }

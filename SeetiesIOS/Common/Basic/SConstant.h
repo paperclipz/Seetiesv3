@@ -103,6 +103,7 @@ typedef enum
     /*Notifications*/
     ServerRequestTypeGetFollowingNotifictions,
     ServerRequestTypeGetNotifications,
+    ServerRequestTypeGetNotificationCount,
     /*Notifications*/
 
     

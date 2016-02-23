@@ -20,5 +20,6 @@
 @property(nonatomic,assign)int wallet_count;
 @property(nonatomic,strong)NSArray<DealModel>* superdeals;
 @property(nonatomic,strong)NSArray<AnnouncementModel>* announcements;
+//@property(nonatomic,strong)NSArray<AnnouncementModel>* announcements;
 
 @end
