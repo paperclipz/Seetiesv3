@@ -70,14 +70,13 @@
 
 -(void)configureNotificaiton:(UIApplication*)application
 {
-    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
-        UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
-        [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
-        [[UIApplication sharedApplication] registerForRemoteNotifications];
-    } else {
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
-    }
-
+    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
+                                                    UIUserNotificationTypeBadge |
+                                                    UIUserNotificationTypeSound);
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
+                                                                             categories:nil];
+    [application registerUserNotificationSettings:settings];
+    [application registerForRemoteNotifications];
 }
 
 -(void)checkCurrentAppLanguage
@@ -340,50 +339,15 @@
     // Call the 'activateApp' method to log an app event for use in analytics and advertising reporting.
     [FBAppEvents activateApp];
 }
+
+
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    //    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-    //    [currentInstallation setDeviceTokenFromData:deviceToken];
-    //    currentInstallation.channels = @[@"global"];
-    //    [currentInstallation saveInBackground];
-    NSLog(@"deviceToken = %@",deviceToken);
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:deviceToken forKey:@"DeviceTokenPush"];
-    [defaults synchronize];
+
+    [Utils setParseToken:deviceToken];
     
-    
-    //    NSData *GetDeviceToken = [defaults objectForKey:@"DeviceTokenPush"];
-    //    NSString *GetUserUID = [defaults objectForKey:@"Useruid"];
-    //    NSLog(@"GetDeviceToken is %@",GetDeviceToken);
-    //    NSLog(@"GetUserUID is %@",GetUserUID);
-    //    if ([GetDeviceToken length] == 0 || GetDeviceToken == (id)[NSNull null] || GetDeviceToken.length == 0) {
-    //
-    //    }else{
-    //        NSString *Check = [defaults objectForKey:@"CheckGetPushToken"];
-    //        if ([Check isEqualToString:@"Done"]) {
-    //
-    //        }else{
-    //            if ([GetUserUID length] == 0 || GetUserUID == (id)[NSNull null] || GetUserUID.length == 0) {
-    //                PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-    //                [currentInstallation setDeviceTokenFromData:GetDeviceToken];
-    //                currentInstallation.channels = @[@"IOS_FirstLogin"];
-    //                [currentInstallation saveInBackground];
-    //            }else{
-    //                PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-    //                [currentInstallation setDeviceTokenFromData:GetDeviceToken];
-    //                NSString *tempTokenString = [[NSString alloc]initWithFormat:@"seeties_%@",GetUserUID];
-    //                currentInstallation.channels = @[tempTokenString,@"all"];
-    //                [currentInstallation saveInBackground];
-    //            //    NSLog(@"work here?");
-    //                NSString *TempString = @"Done";
-    //                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    //                [defaults setObject:TempString forKey:@"CheckGetPushToken"];
-    //                [defaults synchronize];
-    //            }
-    //
-    //        }
-    //
-    //    }
+  
 }
+
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
     if (error.code == 3010) {

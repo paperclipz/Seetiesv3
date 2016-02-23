@@ -25,4 +25,10 @@
 @property(nonatomic,strong)NSString* action;
 @property(nonatomic,strong)SeShopDetailModel* seetishop;
 
+@property(nonatomic,strong)CollectionModel* collectionInfo;
+
+//for following notification
+@property(nonatomic,strong)NSDictionary* followCollectionInfo;
+@property(nonatomic,strong)NSArray<ProfileModel>* arrFollowingUsers;
+
 @end

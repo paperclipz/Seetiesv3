@@ -15,6 +15,9 @@
 //}
 //
 //@end
+@interface CollectionModel()
+
+@end
 
 @implementation CollectionModel
 +(BOOL)propertyIsOptional:(NSString*)propertyName
@@ -32,7 +35,7 @@
                                                        @"tags":@"tagList",
                                                        @"collection_posts.total_page": @"total_page",
                                                        @"collection_posts.total_posts": @"total_posts",
-                                                       @"collection_posts.page": @"page"
+                                                       @"collection_posts.page": @"page",
                                                        }];
 }
 
@@ -43,6 +46,7 @@
     }
     return _deleted_posts;
 }
+
 -(void)process
 {
     

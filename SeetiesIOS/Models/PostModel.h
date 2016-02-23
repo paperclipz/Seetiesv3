@@ -50,6 +50,8 @@
 @property(nonatomic,assign)BOOL following;
 @property(nonatomic,strong)ProfileModel* user_info;
 
+@property(nonatomic,strong)NSString* author_uid;
+
 -(void)process;
 @end
 

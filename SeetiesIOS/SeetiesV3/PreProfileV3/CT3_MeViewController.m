@@ -55,7 +55,6 @@
 }
 - (IBAction)btnLoginClicked:(id)sender {
     
-    
     [Utils showLogin];
 }
 
@@ -74,7 +73,10 @@
 }
 
 - (IBAction)btnNotificationClicked:(id)sender {
-    [self.navigationController pushViewController:self.notificationViewController animated:YES];
+  //  [self.navigationController pushViewController:self.notificationViewController animated:YES];
+    
+    _ct3_notificationViewController = nil;
+    [self.navigationController pushViewController:self.ct3_notificationViewController animated:YES];
 }
 
 - (IBAction)btnInviteClicked:(id)sender {
@@ -153,6 +155,7 @@
 {
     
     self.ibGuestView.hidden = ![Utils isGuestMode];
+    [self requestServerForNotificationCount];
   
 }
 
@@ -212,4 +215,34 @@
 {
     
 }
+
+-(void)requestServerForNotificationCount
+{
+
+    NSDictionary* dict = @{@"token" : [Utils getAppToken]};
+    
+    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetNotificationCount param:dict appendString:nil completeHandler:^(id object) {
+        
+        NSDictionary* returnDict = object[@"data"];
+        
+        @try {
+            int notCount = [returnDict[@"total_new_notifications"] intValue];
+
+            [self setNotificationCount:notCount];
+
+        }
+        @catch (NSException *exception) {
+            SLog(@"server count not found");
+        }
+     
+    } errorBlock:^(id object) {
+        
+    }];
+}
+
+-(void)setNotificationCount:(int)count
+{
+    self.ibNotificationCountLbl.text = [NSString stringWithFormat:@"%d",count];
+}
+
 @end

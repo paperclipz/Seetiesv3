@@ -47,8 +47,9 @@
                                 <action selector="btnNotificationClicked:" destination="-1" eventType="touchUpInside" id="t49-yi-rET"/>
                             </connections>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NotificationIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="GbT-sa-fqG" userLabel="notification image">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NotificationIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="GbT-sa-fqG" userLabel="notification image">
                             <rect key="frame" x="550" y="12" width="40" height="40"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="AsY-CQ-Fis"/>
                                 <constraint firstAttribute="width" constant="40" id="EBa-6z-eJa"/>
@@ -74,7 +75,7 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rbe-4v-6jv">
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rbe-4v-6jv">
                             <rect key="frame" x="37" y="18" width="46" height="30"/>
                             <state key="normal" title="Button"/>
                             <connections>

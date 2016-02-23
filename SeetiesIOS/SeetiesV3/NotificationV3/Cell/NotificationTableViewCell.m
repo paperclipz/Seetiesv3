@@ -81,6 +81,7 @@
     NSString *start = model.date;
   
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSDate *capturedStartDate = [dateFormatter dateFromString: start];
     
