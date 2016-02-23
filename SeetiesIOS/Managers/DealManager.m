@@ -13,6 +13,12 @@
 @property (nonatomic) NSUserDefaults *userDefaults;
 @end
 
+/*
+ This manager only manages deals that have been collected.
+ Vouchers that have been collected will be saved locally and 
+ removed when voucher is deleted.
+ */
+
 @implementation DealManager
 
 +(id)Instance{

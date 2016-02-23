@@ -98,8 +98,13 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        DealModel *deal = [self.voucherArray objectAtIndex:indexPath.row];
-        [self requestServerToDeleteVoucher:deal];
+        [UIAlertView showWithTitle:LocalisedString(@"Remove Voucher") message:LocalisedString(@"Are you sure you want to remove this voucher?") cancelButtonTitle:LocalisedString(@"Maybe not!") otherButtonTitles:@[LocalisedString(@"Yes, sure!")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+            if (buttonIndex == 1) {
+                DealModel *deal = [self.voucherArray objectAtIndex:indexPath.row];
+                [self requestServerToDeleteVoucher:deal];
+            }
+            
+        }];
     }
 }
 
