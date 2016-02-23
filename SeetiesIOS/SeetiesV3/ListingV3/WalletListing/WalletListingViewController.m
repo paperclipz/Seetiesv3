@@ -230,9 +230,8 @@
     NSString *appendString = deal.voucher_info.voucher_id;
     
     [[ConnectionManager Instance] requestServerWithDelete:ServerRequestTypeDeleteVoucher param:dict appendString:appendString completeHandler:^(id object) {
-        DealModel *model = [[ConnectionManager dataManager] dealModel];
-        [self.voucherArray removeObject:model];
-        [self.dealManager removeCollectedDeal:model.dID];
+        [self.voucherArray removeObject:deal];
+        [self.dealManager removeCollectedDeal:deal.dID];
         [self.ibTableView  reloadData];
     } errorBlock:^(id object) {
         

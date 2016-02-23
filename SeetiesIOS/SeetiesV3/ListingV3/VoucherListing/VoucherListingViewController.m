@@ -178,6 +178,7 @@
             [voucherCell setDealModel:[self.dealManager getCollectedDeal:deal.dID]];
         }
         else{
+            deal.voucher_info.voucher_id = nil;
             [voucherCell setDealModel:deal];
         }
     }  
