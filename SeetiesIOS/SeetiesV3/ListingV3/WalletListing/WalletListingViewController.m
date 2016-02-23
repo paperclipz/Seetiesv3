@@ -16,6 +16,7 @@
 @property (nonatomic)PromoPopOutViewController *promoPopOutViewController;
 @property(nonatomic)RedemptionHistoryViewController *redemptionHistoryViewController;
 @property (nonatomic) DealDetailsViewController *dealDetailsViewController;
+@property (nonatomic)DealRedeemViewController *dealRedeemViewController;
 
 @property(nonatomic) NSMutableArray<DealModel*> *voucherArray;
 @property(nonatomic) DealsModel *dealsModel;
@@ -35,7 +36,6 @@
     
     self.isLoading = NO;
     [self requestServerForVoucherListing];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -128,11 +128,15 @@
 }
 
 -(void)redeemVoucherClicked:(DealModel*)deal{
-    //To do checking whether voucher can be redeemed
-//    if (YES) {
-//        
-//    }
-//    else{
+//    To do more checking whether voucher can be redeemed
+    
+    if (deal.voucher_info.redeem_now) {
+        self.dealRedeemViewController = nil;
+        [self.dealRedeemViewController setDealModel:deal];
+        self.dealRedeemViewController.dealRedeemDelegate = self;
+        [self presentViewController:self.dealRedeemViewController animated:YES completion:nil];
+    }
+    else{
         [self.promoPopOutViewController setViewType:ErrorViewType];
         
         STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:self.promoPopOutViewController];
@@ -140,8 +144,13 @@
         [popupController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewDidTap)]];
         [popupController presentInViewController:self];
         [popupController setNavigationBarHidden:YES];
-//    }
-    
+    }
+
+}
+
+-(void)onDealRedeemed:(DealModel *)dealModel{
+    [self.voucherArray removeObject:dealModel];
+    [self.ibTableView reloadData];
 }
 
 /* ADJUST TABLEVIEW HEIGHT CODE
@@ -200,6 +209,13 @@
         _voucherArray = [[NSMutableArray alloc] init];
     }
     return _voucherArray;
+}
+
+-(DealRedeemViewController *)dealRedeemViewController{
+    if (!_dealRedeemViewController) {
+        _dealRedeemViewController = [DealRedeemViewController new];
+    }
+    return _dealRedeemViewController;
 }
 
 #pragma mark - RequestServer

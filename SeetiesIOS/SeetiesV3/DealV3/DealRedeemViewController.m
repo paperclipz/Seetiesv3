@@ -24,22 +24,23 @@
 @property (weak, nonatomic) IBOutlet UIView *ibSwipeView;
 @property (nonatomic, strong) UIDynamicAnimator *animator;
 @property (weak, nonatomic) IBOutlet UIView *ibBottomView;
+@property (weak, nonatomic) IBOutlet UILabel *ibRedeemDateTime;
 @property (weak, nonatomic) IBOutlet UIView *ibTopView;
+@property (weak, nonatomic) IBOutlet UIImageView *ibShopImg;
+@property (weak, nonatomic) IBOutlet UILabel *ibShopTitle;
+@property (weak, nonatomic) IBOutlet UILabel *ibShopAddress;
+@property (weak, nonatomic) IBOutlet UILabel *ibDealTitle;
+
+@property(nonatomic) DealModel *dealModel;
+@property(nonatomic) DealManager *dealManager;
 @end
 
 @implementation DealRedeemViewController
-- (IBAction)btnBackClicked:(id)sender {
-    
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 -(void)viewDidAppear:(BOOL)animated
 {
     self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
-    [self.ibImgDeal sd_setImageCroppedWithURL:[NSURL URLWithString:@"http://www.mas23tv.com/wp-content/uploads/2015/04/bebe-insta....jpg"] completed:^(UIImage *image) {
-        
-        self.ibImgDeal.image = image;
-    }];
+    
 }
 
 - (void)viewDidLoad {
@@ -47,11 +48,30 @@
     activationDistance = 200;
     [Utils setRoundBorder:self.ibDescBorderView color:[UIColor whiteColor] borderRadius:5.0f borderWidth:1.0f];
     self.ibDescBorderView.alpha = 0;
+    
+    [self initSelfView];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)setDealModel:(DealModel *)dealModel{
+    _dealModel = dealModel;
+}
+
+-(void)initSelfView{
+    if (self.dealModel) {
+        SeShopDetailModel *shopModel = self.dealModel.voucher_info.shop_info;
+        self.ibShopTitle.text = shopModel.name;
+        self.ibShopAddress.text = shopModel.location.formatted_address;
+        [self.ibShopImg sd_setImageCroppedWithURL:[NSURL URLWithString:shopModel.profile_picture] completed:nil];
+        
+        PhotoModel *photo = self.dealModel.photos[0];
+        [self.ibImgDeal sd_setImageCroppedWithURL:[NSURL URLWithString:photo.imageURL] completed:nil];
+        self.ibDealTitle.text = self.dealModel.title;
+    }
 }
 
 /*
@@ -116,6 +136,11 @@
 
         }];
     }
+    
+    [self requestServerToRedeemVoucher];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd MMM yyyy, hh:mmaa"];
+    self.ibRedeemDateTime.text = [formatter stringFromDate:[[NSDate alloc] init]];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -149,4 +174,39 @@
         
     }
 }
+
+#pragma mark - Declaration
+-(DealManager *)dealManager{
+    if (!_dealManager) {
+        _dealManager = [DealManager Instance];
+    }
+    return _dealManager;
+}
+
+#pragma mark - RequestServer
+-(void)requestServerToRedeemVoucher{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    
+    NSDictionary *dict = @{@"voucher_id": self.dealModel.voucher_info.voucher_id,
+                           @"token": [Utils getAppToken],
+                           @"datetime": [formatter stringFromDate:[[NSDate alloc] init]]
+                           };
+    NSString *appendString = [NSString stringWithFormat:@"%@/redeem", self.dealModel.voucher_info.voucher_id];
+    
+    [[ConnectionManager Instance] requestServerWithPut:ServerRequestTypePutRedeemVoucher param:dict appendString:appendString completeHandler:^(id object) {
+        //Update previous page if it is not reusable
+        if (self.dealModel.total_available_vouchers != -1) {
+            [self.dealManager removeCollectedDeal:self.dealModel.dID];
+            
+            if (self.dealRedeemDelegate) {
+                [self.dealRedeemDelegate onDealRedeemed:self.dealModel];
+            }
+        }
+        
+    } errorBlock:^(id object) {
+        
+    }];
+}
+
 @end
