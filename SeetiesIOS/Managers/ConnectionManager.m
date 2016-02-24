@@ -533,6 +533,8 @@
             break;
             
         case ServerRequestTypePostCollectDeals:
+        case ServerRequestTypeDeleteVoucher:
+        case ServerRequestTypePutRedeemVoucher:
             str = [NSString stringWithFormat:@"%@/vouchers", API_VERION_URL];
             break;
             
@@ -550,10 +552,6 @@
             
         case ServerRequestTypeGetDealInfo:
             str = [NSString stringWithFormat:@"%@/deals", API_VERION_URL];
-            break;
-            
-        case ServerRequestTypeDeleteVoucher:
-            str = [NSString stringWithFormat:@"%@/vouchers", API_VERION_URL];
             break;
             
     }

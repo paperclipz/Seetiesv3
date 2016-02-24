@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DealRedeemViewController">
             <connections>
                 <outlet property="ibBottomView" destination="FRX-IV-Orm" id="ahs-Qx-1Fi"/>
+                <outlet property="ibDealTitle" destination="NSW-gB-Hig" id="oSU-AR-CNO"/>
                 <outlet property="ibDescBorderView" destination="TGy-Uf-mib" id="fcu-Ya-lNF"/>
                 <outlet property="ibImgDeal" destination="rl7-kF-Y0H" id="6xD-yk-Zz6"/>
+                <outlet property="ibRedeemDateTime" destination="fKC-ir-Fsh" id="Oor-si-8oP"/>
+                <outlet property="ibShopAddress" destination="c6E-GE-W0p" id="2Dn-yc-tce"/>
+                <outlet property="ibShopImg" destination="2oY-5p-x83" id="jA5-QN-a4B"/>
+                <outlet property="ibShopTitle" destination="urr-dD-1Yo" id="GSB-RQ-Xus"/>
                 <outlet property="ibSwipeView" destination="DGd-Lh-xup" id="VXc-9Q-x2r"/>
                 <outlet property="ibTopView" destination="DGd-Lh-xup" id="A86-Pi-mQK"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -235,7 +240,7 @@
                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <state key="normal" image="CollectionCrossBtn.png"/>
                     <connections>
-                        <action selector="btnBackClicked:" destination="-1" eventType="touchUpInside" id="yhF-pk-RLx"/>
+                        <action selector="btnBackClicked:" destination="-1" eventType="touchUpInside" id="vor-PK-bkB"/>
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flash this screen in the shop to worker or owner after swipe to redeem" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hm8-p1-4oN">

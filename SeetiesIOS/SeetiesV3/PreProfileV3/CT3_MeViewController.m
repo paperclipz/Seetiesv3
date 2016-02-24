@@ -50,6 +50,7 @@
 }
 
 - (IBAction)btnWalletListingClicked:(id)sender {
+    self.walletListingViewController = nil;
     [self.navigationController pushViewController:self.walletListingViewController animated:YES];
 }
 - (IBAction)btnLoginClicked:(id)sender {

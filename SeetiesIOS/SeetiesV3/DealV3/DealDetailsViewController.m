@@ -81,6 +81,7 @@
 @property(nonatomic) BOOL isProcessing;
 @property(nonatomic) DealManager *dealManager;
 @property(nonatomic) PromoPopOutViewController *promoPopOutViewController;
+@property(nonatomic) DealRedeemViewController *dealRedeemViewController;
 @end
 
 @implementation DealDetailsViewController
@@ -157,6 +158,13 @@
         _promoPopOutViewController = [PromoPopOutViewController new];
     }
     return _promoPopOutViewController;
+}
+
+-(DealRedeemViewController *)dealRedeemViewController{
+    if (!_dealRedeemViewController) {
+        _dealRedeemViewController = [DealRedeemViewController new];
+    }
+    return _dealRedeemViewController;
 }
 
 #pragma mark - UpdateView
@@ -423,6 +431,7 @@
     
 }
 
+#pragma mark - Delegate
 - (IBAction)buttonShareClicked:(id)sender {
 }
 
@@ -452,6 +461,10 @@
         }
     }
     else if([voucherStatus isEqualToString:VOUCHER_STATUS_COLLECTED]){
+        self.dealRedeemViewController = nil;
+        [self.dealRedeemViewController setDealModel:self.dealModel];
+        self.dealRedeemViewController.dealRedeemDelegate = self;
+        [self presentViewController:self.dealRedeemViewController animated:YES completion:nil];
     }
     else if([voucherStatus isEqualToString:VOUCHER_STATUS_REDEEMED]){
     }
@@ -469,6 +482,10 @@
 
 -(IBAction)backgroundViewDidTap{
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)onDealRedeemed:(DealModel *)dealModel{
+    
 }
 
 #pragma mark - TablewView
@@ -597,11 +614,6 @@
         DealModel *dealModel = [[ConnectionManager dataManager] dealModel];
         self.dealModel = dealModel;
         [self.dealManager setCollectedDeal:dealModel.dID forDeal:dealModel];
-        
-//        self.walletCount++;
-//        
-//        self.ibWalletCountLbl.text = [NSString stringWithFormat:@"%d", self.walletCount];
-//        [self.ibVoucherTable reloadData];
         [self updateFooterView];
         self.isProcessing = NO;
     } errorBlock:^(id object) {

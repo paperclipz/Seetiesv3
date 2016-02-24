@@ -44,7 +44,7 @@
         self.ibVoucherTitleLbl.text = self.dealModel.cover_title;
     }
     
-    SeShopDetailModel *shopModel = [self.dealModel.shops objectAtIndex:0];
+    SeShopDetailModel *shopModel = self.dealModel.voucher_info.shop_info;
     self.ibVoucherShopLbl.text = shopModel.location.formatted_address;
     if (![Utils isStringNull:shopModel.profile_picture]) {
         [self.ibVoucherImg sd_setImageCroppedWithURL:[NSURL URLWithString:shopModel.profile_picture] completed:^(UIImage *image) {

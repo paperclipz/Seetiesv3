@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DealManager.h"
+
+@protocol DealRedeemDelegate <NSObject>
+
+-(void)onDealRedeemed:(DealModel*)dealModel;
+
+@end
 
 @interface DealRedeemViewController : CommonViewController
+@property id<DealRedeemDelegate> dealRedeemDelegate;
 
+-(void)setDealModel:(DealModel *)dealModel;
 @end

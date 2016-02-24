@@ -41,11 +41,11 @@
     self.ibVoucherTable.estimatedRowHeight = [VoucherCell getHeight];
     self.ibVoucherTable.rowHeight = UITableViewAutomaticDimension;
     [Utils setRoundBorder:self.ibWalletCountLbl color:OUTLINE_COLOR borderRadius:self.ibWalletCountLbl.frame.size.width/2];
-    self.ibWalletCountLbl.text = [NSString stringWithFormat:@"%d", self.walletCount];
     
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    [self RequestServerForVouchersCount];
     [self.ibVoucherTable reloadData];
 }
 
@@ -178,6 +178,7 @@
             [voucherCell setDealModel:[self.dealManager getCollectedDeal:deal.dID]];
         }
         else{
+            deal.voucher_info.voucher_id = nil;
             [voucherCell setDealModel:deal];
         }
     }  
@@ -311,13 +312,23 @@
     [[ConnectionManager Instance] requestServerWithPost:ServerRequestTypePostCollectDeals param:dict completeHandler:^(id object) {
         DealModel *dealModel = [[ConnectionManager dataManager] dealModel];
         [self.dealManager setCollectedDeal:dealModel.dID forDeal:dealModel];
-        self.walletCount++;
-        
-        self.ibWalletCountLbl.text = [NSString stringWithFormat:@"%d", self.walletCount];
+        [self RequestServerForVouchersCount];
         [self.ibVoucherTable reloadData];
         self.isCollecting = NO;
     } errorBlock:^(id object) {
         self.isCollecting = NO;
+    }];
+}
+
+-(void)RequestServerForVouchersCount{
+    NSDictionary *dict = @{@"token": [Utils getAppToken]};
+    NSString *appendString = [NSString stringWithFormat:@"%@/vouchers/count", [Utils getUserID]];
+    
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetUserVouchersCount param:dict appendString:appendString completeHandler:^(id object) {
+        NSDictionary *dict = object[@"data"];
+        self.ibWalletCountLbl.text = [NSString stringWithFormat:@"%@", dict[@"count"]];
+    } errorBlock:^(id object) {
+        
     }];
 }
 

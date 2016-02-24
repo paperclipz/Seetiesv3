@@ -13,8 +13,9 @@
 #import "WalletHeaderCell.h"
 #import "RedemptionHistoryViewController.h"
 #import "DealDetailsViewController.h"
+#import "DealRedeemViewController.h"
 
-@interface WalletListingViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate, WalletVoucherDelegate>
+@interface WalletListingViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate, WalletVoucherDelegate, DealRedeemDelegate>
 
 
 @end

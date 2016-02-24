@@ -99,6 +99,8 @@ typedef enum
     ServerRequestTypeGetDealInfo,
     ServerRequestTypeGetUserVouchersList,
     ServerRequestTypeDeleteVoucher,
+    ServerRequestTypeGetUserVouchersCount,
+    ServerRequestTypePutRedeemVoucher,
     
     /*Notifications*/
     ServerRequestTypeGetFollowingNotifictions,
