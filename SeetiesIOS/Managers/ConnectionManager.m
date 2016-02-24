@@ -527,6 +527,7 @@
             str = [NSString stringWithFormat:@"%@/home/superdeals", API_VERION_URL];
             break;
             
+        case ServerRequestTypeGetVoucherInfo:
         case ServerRequestTypePostCollectDeals:
         case ServerRequestTypeDeleteVoucher:
         case ServerRequestTypePutRedeemVoucher:
@@ -885,6 +886,13 @@
             break;
             
         case ServerRequestTypeGetDealInfo:
+        {
+            NSDictionary *dict = obj[@"data"];
+            self.dataManager.dealModel = [[DealModel alloc] initWithDictionary:dict error:nil];
+        }
+            break;
+            
+        case ServerRequestTypeGetVoucherInfo:
         {
             NSDictionary *dict = obj[@"data"];
             self.dataManager.dealModel = [[DealModel alloc] initWithDictionary:dict error:nil];

@@ -93,7 +93,9 @@
     DealModel *dealModel = [self.voucherArray objectAtIndex:indexPath.row];
     self.dealDetailsViewController = nil;
     [self.dealDetailsViewController setDealModel:dealModel];
-    [self.navigationController pushViewController:self.dealDetailsViewController animated:YES];
+    [self.navigationController pushViewController:self.dealDetailsViewController animated:YES onCompletion:^{
+        [self.dealDetailsViewController setupView];
+    }];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{

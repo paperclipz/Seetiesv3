@@ -25,6 +25,7 @@
 @property (nonatomic) DealDetailsViewController *dealDetailsViewController;
 @property (nonatomic) WalletListingViewController *walletListingViewController;
 @property (nonatomic) PromoPopOutViewController *promoPopOutViewController;
+@property (nonatomic) DealRedeemViewController *dealRedeemViewController;
 @end
 
 @implementation VoucherListingViewController
@@ -159,6 +160,13 @@
     return _dealsArray;
 }
 
+-(DealRedeemViewController *)dealRedeemViewController{
+    if (!_dealRedeemViewController) {
+        _dealRedeemViewController = [DealRedeemViewController new];
+    }
+    return _dealRedeemViewController;
+}
+
 #pragma mark - TableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (self.dealsArray) {
@@ -190,7 +198,9 @@
     DealModel *dealModel = [self.dealsArray objectAtIndex:indexPath.row];
     self.dealDetailsViewController = nil;
     [self.dealDetailsViewController setDealModel:dealModel];
-    [self.navigationController pushViewController:self.dealDetailsViewController animated:YES];
+    [self.navigationController pushViewController:self.dealDetailsViewController animated:YES onCompletion:^{
+        [self.dealDetailsViewController setupView];
+    }];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -233,6 +243,11 @@
             [popOutController presentInViewController:self];
             [popOutController setNavigationBarHidden:YES];
         }
+    }
+    else{
+        self.dealRedeemViewController = nil;
+        [self.dealRedeemViewController setDealModel:dealModel];
+        [self presentViewController:self.dealRedeemViewController animated:YES completion:nil];
     }
 }
 
@@ -305,7 +320,7 @@
     }
     
     NSDictionary *dict = @{@"deal_id":model.dID,
-                           @"shop_id":shopModel.shopId,
+                           @"shop_id":shopModel.seetishop_id,
                            @"token": [Utils getAppToken]};
     
     self.isCollecting = YES;

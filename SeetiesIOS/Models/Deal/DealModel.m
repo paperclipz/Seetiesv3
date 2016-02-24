@@ -15,11 +15,13 @@
                                                        @"deal_type_info.original_item_price": @"original_item_price",
                                                        @"deal_type_info.discounted_item_price": @"discounted_item_price",
                                                        @"deal_type_info.percentage": @"discount_percentage",
-                                                       @"id" : @"dID",
+                                                       @"deal_id" : @"dID",
                                                        @"shop.id": @"seetishop_id",
                                                        @"shop.name": @"seetishop_name",
                                                        @"description": @"deal_desc",
-                                                       @"redemption_periods.periods_in_hours.period_text": @"redemption_period_in_hour_text"
+                                                       @"redemption_periods.periods_in_hours.period_text": @"redemption_period_in_hour_text",
+                                                       @"shop_group_info.seetishop_group_id": @"shop_group_id",
+                                                       @"shop_group_info.name": @"shop_group_name"
                                                        }];
 }
 

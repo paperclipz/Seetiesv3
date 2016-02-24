@@ -80,6 +80,7 @@
 @property(nonatomic) DealModel *dealModel;
 @property(nonatomic) BOOL isProcessing;
 @property(nonatomic) DealManager *dealManager;
+@property(nonatomic) NSArray<ShopModel*> *nearbyShopArray;
 @property(nonatomic) PromoPopOutViewController *promoPopOutViewController;
 @property(nonatomic) DealRedeemViewController *dealRedeemViewController;
 @end
@@ -96,7 +97,6 @@
     [self.ibDealsTable registerNib:[UINib nibWithNibName:@"SeDealsFeaturedTblCell" bundle:nil] forCellReuseIdentifier:@"SeDealsFeaturedTblCell"];
     [self.ibNearbyShopCollection registerNib:[UINib nibWithNibName:@"NearbyShopsCell" bundle:nil] forCellWithReuseIdentifier:@"NearbyShopsCell"];
     
-//    [self requestServerForDealInfo];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -104,10 +104,18 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)viewDidAppear:(BOOL)animated{
+
+-(void)setupView
+{
     [self initViewArray];
     [self initSelfView];
-    [self requestServerForDealInfo];
+    if ([Utils isStringNull:self.dealModel.voucher_info.voucher_id]) {
+        [self requestServerForDealInfo];
+    }
+    else{
+        [self requestServerForVoucherInfo];
+        
+    }
 }
 
 /*
@@ -131,7 +139,7 @@
     self.ibDealsTable.estimatedRowHeight = [SeDealsFeaturedTblCell getHeight];
     self.ibDealsTable.rowHeight = UITableViewAutomaticDimension;
     
-    if (self.viewArray && self.viewArray.count > 0) {
+    if (![Utils isArrayNull:self.viewArray]) {
         for (UIView *view in self.viewArray) {
 //            [view setHeight:0];
             [self.ibMainContentView addSubview:view];
@@ -167,6 +175,13 @@
     return _dealRedeemViewController;
 }
 
+-(NSArray<ShopModel *> *)nearbyShopArray{
+    if (!_nearbyShopArray) {
+        _nearbyShopArray = [[NSArray alloc] init];
+    }
+    return _nearbyShopArray;
+}
+
 #pragma mark - UpdateView
 -(void)updateViewFrame{
     float yAxis = self.ibMainContentView.frame.origin.y;
@@ -189,14 +204,25 @@
     [self updateAvailabilityView];
     [self updateShopView];
     [self updateTnCView];
+    [self updateNearbyShopView];
     [self updateViewFrame];
 }
 
 -(void)updateHeaderView{
     self.ibHeaderSubTitleLbl.text = self.dealModel.title;
     
-    ShopModel *shopModel = self.dealModel.shops[0];
-    self.ibHeaderTitleLbl.text = shopModel.name;
+    if ([self.dealModel.voucher_info.status isEqualToString:VOUCHER_STATUS_NONE]) {
+        if (![Utils isStringNull:self.dealModel.shop_group_name]) {
+            self.ibHeaderTitleLbl.text = self.dealModel.shop_group_name;
+        }
+        else{
+            SeShopDetailModel *shopModel = self.dealModel.shops[0];
+            self.ibHeaderTitleLbl.text = shopModel.name;
+        }
+    }
+    else{
+        self.ibHeaderTitleLbl.text = self.dealModel.voucher_info.shop_info.name;
+    }
     
     CGFloat imageXOrigin = 0;
     if (![Utils isArrayNull:self.dealModel.photos]) {
@@ -380,6 +406,12 @@
     [self.ibTnCView setHeight:totalHeight];
 }
 
+-(void)updateNearbyShopView{
+    [self.ibNearbyShopCollection reloadData];
+    
+    [self.ibNearbyShopView setHeight:265];
+}
+
 -(void)updateFooterView{
     NSString *voucherStatus = self.dealModel.voucher_info.status;
     if ([voucherStatus isEqualToString:VOUCHER_STATUS_NONE]) {
@@ -485,6 +517,7 @@
 }
 
 -(void)onDealRedeemed:(DealModel *)dealModel{
+    [self requestServerForVoucherInfo];
     
 }
 
@@ -564,7 +597,9 @@
 #pragma mark - CollectionView
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     if (collectionView == self.ibNearbyShopCollection){
-        return 3;
+        if (self.nearbyShopArray) {
+            return self.nearbyShopArray.count;
+        }
     }
     
     return 0;
@@ -572,10 +607,17 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     if (collectionView == self.ibNearbyShopCollection){
-        return [collectionView dequeueReusableCellWithReuseIdentifier:@"NearbyShopsCell" forIndexPath:indexPath];
+        NearbyShopsCell *shopCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"NearbyShopsCell" forIndexPath:indexPath];
+        ShopModel *shopModel = [self.nearbyShopArray objectAtIndex:indexPath.row];
+        [shopCell setShopModel:shopModel];
+        return shopCell;
     }
     
     return nil;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout  *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    return CGSizeMake((collectionView.frame.size.width-10)/3, 200);
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView;{
@@ -600,13 +642,34 @@
     }];
 }
 
+-(void)requestServerForVoucherInfo{
+    NSDictionary *dict = @{@"token":[Utils getAppToken],
+                           @"voucher_id": self.dealModel.voucher_info.voucher_id};
+    
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetVoucherInfo param:dict appendString:self.dealModel.voucher_info.voucher_id completeHandler:^(id object) {
+        DealModel *model = [[ConnectionManager dataManager] dealModel];
+        self.dealModel = model;
+        [self updateViews];
+        [self updateFooterView];
+        
+        if ([Utils isStringNull:self.dealModel.voucher_info.voucher_id]) {
+            [self requestServerForSeetiShopNearbyShop:self.dealModel.shops[0]];
+        }
+        else{
+            [self requestServerForSeetiShopNearbyShop:self.dealModel.voucher_info.shop_info];
+        }
+    } errorBlock:^(id object) {
+        
+    }];
+}
+
 -(void)requestServerToCollectVoucher:(SeShopDetailModel*)shopModel{
     if (self.isProcessing) {
         return;
     }
     
     NSDictionary *dict = @{@"deal_id":self.dealModel.dID,
-                           @"shop_id":shopModel.shopId,
+                           @"shop_id":shopModel.seetishop_id,
                            @"token": [Utils getAppToken]};
     
     self.isProcessing = YES;
@@ -618,6 +681,25 @@
         self.isProcessing = NO;
     } errorBlock:^(id object) {
         self.isProcessing = NO;
+    }];
+}
+
+-(void)requestServerForSeetiShopNearbyShop:(SeShopDetailModel*)shopModel
+{
+    NSString* appendString = [NSString stringWithFormat:@"%@/nearby/shops", shopModel.seetishop_id];
+    
+    NSDictionary* dict = @{@"limit":@"3",
+                           @"offset":@"1",
+                           @"lat" : shopModel.location.lat,
+                           @"lng" : shopModel.location.lng
+                           };
+    
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetoShopNearbyShop param:dict appendString:appendString completeHandler:^(id object) {
+        SeetiShopsModel *seetieShopModel = [[ConnectionManager dataManager]seNearbyShopModel];
+        self.nearbyShopArray = seetieShopModel.userPostData.shops;
+        [self updateViews];
+    } errorBlock:^(id object) {
+        
     }];
 }
 

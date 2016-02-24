@@ -47,6 +47,8 @@
 @property(nonatomic,assign) BOOL is_feature;
 @property(nonatomic, strong) NSDictionary *redemption_period_in_hour_text;
 @property(nonatomic, strong) NSArray *terms;
+@property(nonatomic, strong) NSString *shop_group_id;
+@property(nonatomic, strong) NSString *shop_group_name;
 
 @property(nonatomic, strong) NSString *seetishop_id;
 @property(nonatomic, strong) NSString *seetishop_name;
