@@ -58,8 +58,8 @@
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="thf-xC-LUf"/>
                         </constraints>
                     </view>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="bGX-oK-gTK">
-                        <rect key="frame" x="0.0" y="61" width="320" height="174"/>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="bGX-oK-gTK">
+                        <rect key="frame" x="0.0" y="60" width="320" height="174"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="176" id="0ln-lu-U5x"/>

@@ -30,7 +30,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnDeleteCollection;
 @property (strong, nonatomic)CollectionModel* collectionModel;
 @property (strong, nonatomic)NSString* collectionID;
-@property (assign, nonatomic)ProfileViewType profileType;
 
 @end
 
@@ -104,10 +103,9 @@
     } completion:nil];
 }
 
--(void)initData:(NSString*)collectionID ProfileType:(ProfileViewType)type
+-(void)initData:(NSString*)collectionID
 {
     self.collectionID = collectionID;
-    self.profileType = type;
 }
 
 -(void)initSelfView

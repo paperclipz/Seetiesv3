@@ -122,8 +122,8 @@
                                                        @"user.user_info" : @"tempUserProfiles",
                                                        @"user_thumbnail.url" : @"userProfileImage",
                                                        @"post.post_info" : @"arrPosts",
-                                                       @"following_user.user_info" : @"arrFollowingUsers"
-                                                       
+                                                       @"following_user.user_info" : @"arrFollowingUsers",
+                                                       @"collection.collection_info" : @"arrCollections",
                                                        }];
 }
 

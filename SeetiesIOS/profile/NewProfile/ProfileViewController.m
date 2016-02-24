@@ -846,7 +846,7 @@
 {
     _editCollectionViewController = nil;
     [LoadingManager show];
-    [self.editCollectionViewController initData:collID ProfileType:self.profileViewType];
+    [self.editCollectionViewController initData:collID];
     [LoadingManager show];
     [self.navigationController pushViewController:self.editCollectionViewController animated:YES];
 }
@@ -1290,9 +1290,23 @@
 
 -(void)assignCollectionData
 {
-    arrCollection = [[NSMutableArray alloc]initWithArray:self.userCollectionsModel.arrCollections];
-    [self.ibTableView reloadSectionDU:0 withRowAnimation:UITableViewRowAnimationAutomatic];
-    [self adjustTableView];
+    
+    
+   
+
+    @try {
+        [arrCollection removeAllObjects];
+        arrCollection = nil;
+        arrCollection = [[NSMutableArray alloc]initWithArray:self.userCollectionsModel.arrCollections];
+        [self.ibTableView reloadData];
+        [self adjustTableView];
+        
+    }
+    @catch (NSException *exception) {
+        SLog(@"assignCollectionData failed");
+    }
+   
+    
 }
 
 -(void)assignPostData

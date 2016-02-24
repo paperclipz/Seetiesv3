@@ -14,6 +14,7 @@
 #import "FeedV2DetailViewController.h"
 #import "SeetiesShopViewController.h"
 #import "CollectionViewController.h"
+#import "CollectionListingSinglePageViewController.h"
 
 @interface CT3_NotificationViewController () 
 @property (nonatomic, strong) CAPSPageMenu *cAPSPageMenu;
@@ -29,7 +30,7 @@
 @property (nonatomic, strong) ProfileViewController *profileViewController;
 @property (nonatomic, strong) SeetiesShopViewController *seetiesShopViewController;
 @property (nonatomic, strong) CollectionViewController *collectionViewController;
-
+@property(nonatomic)CollectionListingSinglePageViewController* collectionListingVC;
 @end
 
 @implementation CT3_NotificationViewController
@@ -39,7 +40,7 @@
     [self initSelfView];
   
     [self.followingTableViewController requestServer:1];
-   // [self.notificationTableViewController requestServer:2];
+    [self.notificationTableViewController requestServer:2];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -56,6 +57,14 @@
 }
 
 #pragma mark - Declaration
+
+-(CollectionListingSinglePageViewController*)collectionListingVC
+{
+    if (!_collectionListingVC) {
+        _collectionListingVC = [CollectionListingSinglePageViewController new];
+    }
+    return _collectionListingVC;
+}
 
 -(CollectionViewController*)collectionViewController
 {
@@ -127,6 +136,15 @@
         _followingTableViewController.didSelectNotificationBlock = ^(NotificationModel* model)
         {
             [weakself processView:model Type:1];
+            SLog(@"ww");
+
+        };
+        
+        _followingTableViewController.didSelectPostBlock = ^(NSString* postID)
+        {
+            [weakself showPostDetailView:postID];
+            
+            SLog(@"gg");
         };
 
     }
@@ -144,6 +162,11 @@
         _notificationTableViewController.didSelectNotificationBlock = ^(NotificationModel* model)
         {
             [weakself processView:model Type:2];
+        };
+        
+        _notificationTableViewController.didSelectPostBlock = ^(NSString* postID)
+        {
+            [weakself showPostDetailView:postID];
         };
 
     }
@@ -172,7 +195,6 @@
             break;
             
         case NotificationType_Follow:
-        case NotificationType_Collect:
         {
             
             if (type == 1) {
@@ -194,26 +216,19 @@
 
         }
             break;
+            
+        case NotificationType_Collect:
+        {
+            [self showProfileView:model];
+            break;
+        }
         case NotificationType_CollectionShared:
         case NotificationType_CollectionFollow:
 
             
             if (type == 1) {
                 
-                @try {
-                    NSDictionary* tempDict = model.followCollectionInfo[@"collection_info"][0];
-                    
-                    CollectionModel* cModel = [[CollectionModel alloc]initWithDictionary:tempDict error:nil];
-                    
-                    [self showCollectionView:cModel userID:cModel.user_info.uid];
-
-                }
-                @catch (NSException *exception) {
-                    
-                    SLog(@"Fail To Load Collection Info");
-                    [self showProfileView:model];
-
-                }
+                [self showCollectionListingView:model.arrCollections];
                
             }
             else{
@@ -251,7 +266,33 @@
     }
 
 }
-                                                           
+
+-(void)showCollectionListingView:(NSArray*)array
+{
+    
+    if (array.count >1) {
+        _collectionListingVC = nil;
+        [self.navigationController pushViewController:self.collectionListingVC animated:YES];
+        [self.collectionListingVC initData:array];
+
+    }
+    else{
+
+        @try {
+            CollectionModel* cModel = array[0];
+
+            [self showCollectionView:cModel userID:cModel.user_info.uid];
+
+        }
+        @catch (NSException *exception) {
+
+            SLog(@"Fail To Load Collection Info");
+
+        }
+
+    }
+  }
+
 -(void)showPostDetailView:(NSString*)postID
 {
     
@@ -263,23 +304,27 @@
    
 }
 
-
 -(void)showCollectionView:(CollectionModel*)model userID:(NSString*)uID
 {
     CollectionModel* colModel = model;
-    
+
     if (![Utils isStringNull:colModel.collection_id]) {
+        
         _collectionViewController = nil;
+
         if ([uID isEqualToString:[Utils getUserID]]) {
-            [self.collectionViewController GetCollectionID:colModel.collection_id GetPermision:@"self" GetUserUid:uID];
             
+            [self.collectionViewController GetCollectionID:colModel.collection_id GetPermision:@"self" GetUserUid:uID];
+            [self.navigationController pushViewController:self.collectionViewController animated:YES];
+
         }
         else{
             
             [self.collectionViewController GetCollectionID:colModel.collection_id GetPermision:@"Others" GetUserUid:uID];
+            [self.navigationController pushViewController:self.collectionViewController animated:YES];
+
         }
         
-        [self.navigationController pushViewController:self.collectionViewController animated:YES];
     }
    
 }

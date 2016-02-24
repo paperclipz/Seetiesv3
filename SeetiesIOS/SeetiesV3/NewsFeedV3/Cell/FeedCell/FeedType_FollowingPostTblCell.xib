@@ -13,7 +13,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="917"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2bn-Oz-Q3p" id="Fag-Oh-oTe">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="916.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="917"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fI7-dn-Cfe">
@@ -29,8 +29,8 @@
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="FeedOverlay.png" translatesAutoresizingMaskIntoConstraints="NO" id="9pL-to-G1E">
                                 <rect key="frame" x="0.0" y="-2" width="320" height="300"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="700" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RrY-uU-JJa">
-                                <rect key="frame" x="60" y="17" width="158" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" verticalCompressionResistancePriority="700" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RrY-uU-JJa">
+                                <rect key="frame" x="60" y="17" width="40" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="kSc-6u-Vh7"/>
                                 </constraints>
@@ -39,15 +39,15 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oTq-hF-Pm6">
-                                <rect key="frame" x="270" y="8" width="40" height="39"/>
+                                <rect key="frame" x="310" y="8" width="0.0" height="39"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="b1s-hn-Pfk"/>
+                                    <constraint firstAttribute="width" id="b1s-hn-Pfk"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQm-lQ-H1f">
-                                <rect key="frame" x="228" y="17" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQm-lQ-H1f">
+                                <rect key="frame" x="110" y="17" width="200" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="42" id="ZvN-hs-0jP"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="ZvN-hs-0jP"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <color key="textColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -100,7 +100,7 @@
                                             <action selector="btnLikeClicked:" destination="2bn-Oz-Q3p" eventType="touchUpInside" id="nmS-Kl-zx2"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LHh-FC-Q6J">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LHh-FC-Q6J">
                                         <rect key="frame" x="53" y="19" width="40" height="37"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="Zni-uU-CuX"/>

@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface QuickBrowseCVCell : CommonCollectionViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+@property (weak, nonatomic) IBOutlet UIImageView *ibImgLogo;
 
 @end

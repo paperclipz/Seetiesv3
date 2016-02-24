@@ -7,13 +7,20 @@
 //
 
 #import "QuickBrowseCVCell.h"
+@interface QuickBrowseCVCell()
+@property (weak, nonatomic) IBOutlet UIView *ibBorderView;
+
+@end
 
 @implementation QuickBrowseCVCell
 
 - (void)awakeFromNib {
     // Initialization code
     [super awakeFromNib];
+    
+    [Utils setRoundBorder:self.ibBorderView color:[UIColor clearColor] borderRadius:5.0f];
 
 }
+
 
 @end

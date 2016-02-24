@@ -13,4 +13,7 @@ typedef void (^NotificationBlock)(NotificationModel* model);
 @interface NotificationTableViewController : UITableViewController
 -(void)requestServer:(int)viewType;
 @property(nonatomic,copy)NotificationBlock didSelectNotificationBlock;
+
+@property(nonatomic,copy)RowPickedBlock didSelectPostBlock;
+
 @end

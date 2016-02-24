@@ -20,6 +20,7 @@
 #import "HomeModel.h"
 #import "HomeLocationModel.h"
 #import "NotificationModels.h"
+#import "QuickBrowseModel.h"
 
 
 /*Declare custom block for model type*/
