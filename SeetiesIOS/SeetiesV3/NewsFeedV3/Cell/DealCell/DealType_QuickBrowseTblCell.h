@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface DealType_QuickBrowseTblCell : CommonTableViewCell
+-(void)initData:(NSArray*)array;
 
 @end

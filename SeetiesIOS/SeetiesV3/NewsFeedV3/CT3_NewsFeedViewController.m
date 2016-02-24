@@ -583,6 +583,7 @@ static NSCache* heightCache = nil;
                     cell = [[DealType_QuickBrowseTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
                 }
                 
+                [cell initData:self.homeModel.quick_browse];
                 return cell;
 
             }
@@ -1266,9 +1267,13 @@ static NSCache* heightCache = nil;
     
     if (!isMiddleOfLoadingServer) {
         SLog(@"token :%@",[Utils getAppToken]);
+        
+        CLLocation* location  = [[SearchManager Instance]getAppLocation];
         NSDictionary* dict = @{@"token" : [Utils getAppToken],
                                @"offset":@(self.newsFeedModels.offset + self.newsFeedModels.limit),
-                               @"limit" : @(5)
+                               @"limit" : @(5),
+                               @"lat" : @(location.coordinate.latitude),
+                               @"lng" : @(location.coordinate.longitude),
                                };
         
         isMiddleOfLoadingServer = YES;
@@ -1315,8 +1320,11 @@ static NSCache* heightCache = nil;
  
         }
         [self.arrHomeDeal addObject:[NSNumber numberWithInt:DealType_Wallet]];
-        [self.arrHomeDeal addObject:[NSNumber numberWithInt:DealType_QuickBrowse]];
-
+        
+        if (![Utils isArrayNull:self.homeModel.quick_browse]) {
+            [self.arrHomeDeal addObject:[NSNumber numberWithInt:DealType_QuickBrowse]];
+        }
+       
         if (![Utils isArrayNull:self.homeModel.announcements]) {
             [self.arrHomeDeal addObject:[NSNumber numberWithInt:DealType_Announcement]];
 

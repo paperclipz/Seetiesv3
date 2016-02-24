@@ -96,7 +96,7 @@
     NotificationModel* model = self.arrNotifications[indexPath.row];
 
     [cell initData:model Type:viewType];
-
+    cell.didSelectPostAtIndexBlock = self.didSelectPostBlock;
    
     
     

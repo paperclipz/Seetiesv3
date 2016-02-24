@@ -150,5 +150,17 @@
     
     return cell;
 }
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.notificationModel.notType == NotificationType_Like) {
+        
+        
+        DraftModel* draftModel = self.notificationModel.arrPosts[indexPath.row];
+        if (self.didSelectPostAtIndexBlock) {
+            self.didSelectPostAtIndexBlock(draftModel.post_id);
+        }
+    }
+}
+
 
 @end

@@ -123,7 +123,9 @@
 
     }
     else{
-        self.lblDistance.text = @(feedModel.location.distance).stringValue;
+        
+        self.lblDistance.text = [Utils getDistance:feedModel.location.distance Locality:feedModel.location.locality];
+//        self.lblDistance.text = @(feedModel.location.distance).stringValue;
 
     }
     
@@ -169,28 +171,27 @@
             self.btnQuickCollect.hidden = NO;
 
         }
-
         
     }];
     
-    if (feedModel.location.distance <=3) {
-        self.ibImgDistance.image = [UIImage imageNamed:@"Distance1Icon.png"];
-    }
-    else if(feedModel.location.distance<=15)
-    {
-        self.ibImgDistance.image = [UIImage imageNamed:@"Distance2Icon.png"];
-
-    }
-    else if(feedModel.location.distance<=300)
-    {
-        self.ibImgDistance.image = [UIImage imageNamed:@"Distance3Icon.png"];
-        
-    }
-    else if(feedModel.location.distance<=1500)
-    {
-        self.ibImgDistance.image = [UIImage imageNamed:@"Distance4Icon.png"];
-        
-    }
+//    if (feedModel.location.distance <=3) {
+//        self.ibImgDistance.image = [UIImage imageNamed:@"Distance1Icon.png"];
+//    }
+//    else if(feedModel.location.distance<=15)
+//    {
+//        self.ibImgDistance.image = [UIImage imageNamed:@"Distance2Icon.png"];
+//
+//    }
+//    else if(feedModel.location.distance<=300)
+//    {
+//        self.ibImgDistance.image = [UIImage imageNamed:@"Distance3Icon.png"];
+//        
+//    }
+//    else if(feedModel.location.distance<=1500)
+//    {
+//        self.ibImgDistance.image = [UIImage imageNamed:@"Distance4Icon.png"];
+//        
+//    }
     
     [self refreshData];
     

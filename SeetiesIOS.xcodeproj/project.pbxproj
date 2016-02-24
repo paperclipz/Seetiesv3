@@ -244,6 +244,8 @@
 		8A5430101B8C1646009EFFF4 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A54300E1B8C1646009EFFF4 /* MapViewController.m */; };
 		8A5430111B8C1646009EFFF4 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A54300F1B8C1646009EFFF4 /* MapViewController.xib */; };
 		8A5CFE131C7C2F97004E2CBA /* QuickBrowseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CFE121C7C2F97004E2CBA /* QuickBrowseModel.m */; };
+		8A5CFE171C7C6D42004E2CBA /* CollectionListingSinglePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CFE151C7C6D42004E2CBA /* CollectionListingSinglePageViewController.m */; };
+		8A5CFE181C7C6D42004E2CBA /* CollectionListingSinglePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A5CFE161C7C6D42004E2CBA /* CollectionListingSinglePageViewController.xib */; };
 		8A65842A1B96ED7300BC86B9 /* EditPhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6584291B96ED7300BC86B9 /* EditPhotoManager.m */; };
 		8A6584321B981B4E00BC86B9 /* CategorySelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6584301B981B4E00BC86B9 /* CategorySelectionViewController.m */; };
 		8A6584331B981B4E00BC86B9 /* CategorySelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A6584311B981B4E00BC86B9 /* CategorySelectionViewController.xib */; };
@@ -1742,6 +1744,9 @@
 		8A54300F1B8C1646009EFFF4 /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		8A5CFE111C7C2F97004E2CBA /* QuickBrowseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickBrowseModel.h; sourceTree = "<group>"; };
 		8A5CFE121C7C2F97004E2CBA /* QuickBrowseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickBrowseModel.m; sourceTree = "<group>"; };
+		8A5CFE141C7C6D42004E2CBA /* CollectionListingSinglePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionListingSinglePageViewController.h; sourceTree = "<group>"; };
+		8A5CFE151C7C6D42004E2CBA /* CollectionListingSinglePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionListingSinglePageViewController.m; sourceTree = "<group>"; };
+		8A5CFE161C7C6D42004E2CBA /* CollectionListingSinglePageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionListingSinglePageViewController.xib; sourceTree = "<group>"; };
 		8A6584281B96ED7300BC86B9 /* EditPhotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPhotoManager.h; sourceTree = "<group>"; };
 		8A6584291B96ED7300BC86B9 /* EditPhotoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPhotoManager.m; sourceTree = "<group>"; };
 		8A65842F1B981B4E00BC86B9 /* CategorySelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategorySelectionViewController.h; sourceTree = "<group>"; };
@@ -5313,6 +5318,9 @@
 				8AC8F6DA1BDA414E00DEF14A /* CollectionListingViewController.h */,
 				8AC8F6DB1BDA414E00DEF14A /* CollectionListingViewController.m */,
 				8AC8F6DC1BDA414E00DEF14A /* CollectionListingViewController.xib */,
+				8A5CFE141C7C6D42004E2CBA /* CollectionListingSinglePageViewController.h */,
+				8A5CFE151C7C6D42004E2CBA /* CollectionListingSinglePageViewController.m */,
+				8A5CFE161C7C6D42004E2CBA /* CollectionListingSinglePageViewController.xib */,
 			);
 			path = CollectionListingPage;
 			sourceTree = "<group>";
@@ -7355,6 +7363,7 @@
 				8A6CCD611C18075800BCD54E /* ExploreCollectionImg1.png in Resources */,
 				8A6CCE4D1C18075800BCD54E /* DefaultProfilePic@2x.png in Resources */,
 				8A114CBA1BE73F5D006AE3F0 /* buttonbg@2x.png in Resources */,
+				8A5CFE181C7C6D42004E2CBA /* CollectionListingSinglePageViewController.xib in Resources */,
 				8A6CCD391C18075800BCD54E /* AboutIcon@2x.png in Resources */,
 				8A6CCDC41C18075800BCD54E /* OtherLogo@3x.png in Resources */,
 				8A6CCD591C18075800BCD54E /* NoResult@2x.png in Resources */,
@@ -7902,6 +7911,7 @@
 				8A114C921BE73F5D006AE3F0 /* FloatingIndicatorView.m in Sources */,
 				8AFA51DD1C47B4AB00E7920E /* WalletListingViewController.m in Sources */,
 				8AD6C2891B7072FB0040437E /* ConfirmPlaceViewController.m in Sources */,
+				8A5CFE171C7C6D42004E2CBA /* CollectionListingSinglePageViewController.m in Sources */,
 				8AFA51E31C47B4AB00E7920E /* AbroadQualityPostCVCell.m in Sources */,
 				8A317C041BE1C5620010CAEE /* ShareToFrenViewController.m in Sources */,
 				8AD6C1041B706CF30040437E /* EditInterestV2ViewController.m in Sources */,

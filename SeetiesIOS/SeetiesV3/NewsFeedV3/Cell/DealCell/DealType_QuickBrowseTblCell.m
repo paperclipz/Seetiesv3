@@ -11,9 +11,19 @@
 
 @interface DealType_QuickBrowseTblCell()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *ibCollectionView;
+
+@property (nonatomic)NSArray* arrQuickBrowse;
+
 @end
 
 @implementation DealType_QuickBrowseTblCell
+
+
+-(void)initData:(NSArray*)array
+{
+    self.arrQuickBrowse = array;
+    [self.ibCollectionView reloadData];
+}
 
 - (void)awakeFromNib {
     // Initialization code
@@ -39,13 +49,17 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 3;
+    return self.arrQuickBrowse.count;
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     QuickBrowseCVCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"QuickBrowseCVCell" forIndexPath:indexPath];
+    QuickBrowseModel* model = self.arrQuickBrowse[indexPath.row];
+    cell.lblTitle.text = model.name;
+    [cell.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:model.backgroundImage] completed:nil];
+    [cell.ibImgLogo sd_setImageWithURL:[NSURL URLWithString:model.logoImage]];
     
     return cell;
 }

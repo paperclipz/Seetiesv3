@@ -44,7 +44,9 @@
         
     }
     else{
-        self.lblDistance.text = @(model.location.distance).stringValue;
+        
+        
+        self.lblDistance.text = [Utils getDistance:model.location.distance Locality:model.location.locality];
 
     }
     

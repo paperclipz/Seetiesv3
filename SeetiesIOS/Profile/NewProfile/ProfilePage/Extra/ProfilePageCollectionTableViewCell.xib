@@ -43,18 +43,6 @@
                                     <action selector="btnEditClicked:" destination="ZWw-DX-Gtz" eventType="touchUpInside" id="E30-TZ-Opc"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sed-jd-NEw">
-                                <rect key="frame" x="254" y="0.0" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="3UA-Ue-egU"/>
-                                    <constraint firstAttribute="height" constant="50" id="5SH-Lk-F8w"/>
-                                </constraints>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" image="GreyShareIcon.png"/>
-                                <connections>
-                                    <action selector="btnShareClicked:" destination="ZWw-DX-Gtz" eventType="touchUpInside" id="quC-yY-wHt"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Someone Collection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kHj-jv-4sW">
                                 <rect key="frame" x="33" y="117" width="147" height="21"/>
                                 <constraints>
@@ -86,6 +74,18 @@
                                     <constraint firstAttribute="height" constant="20" id="zp5-Vf-fTQ"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sed-jd-NEw" userLabel="share">
+                                <rect key="frame" x="254" y="0.0" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="3UA-Ue-egU"/>
+                                    <constraint firstAttribute="height" constant="50" id="5SH-Lk-F8w"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" image="GreyShareIcon.png"/>
+                                <connections>
+                                    <action selector="btnShareClicked:" destination="ZWw-DX-Gtz" eventType="touchUpInside" id="quC-yY-wHt"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>

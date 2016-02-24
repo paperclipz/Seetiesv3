@@ -41,6 +41,11 @@
     return self;
 }
 
++(NSString*)getServerPath
+{
+    return [[ConnectionManager Instance]serverPath];
+}
+
 -(NSString*)serverPath
 {
     BOOL isDev = [Utils getIsDevelopment];

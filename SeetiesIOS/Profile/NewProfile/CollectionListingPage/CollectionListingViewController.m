@@ -240,7 +240,7 @@
         
         _followingCollectionListingViewController.didSelectDisplayCollectionRowBlock = ^(CollectionModel* model)
         {
-            [weakSelf showCollectionDisplayViewWithCollectionID:model.collection_id ProfileType:ProfileViewTypeOthers];
+            [weakSelf showCollectionDisplayViewWithCollectionID:model ProfileType:ProfileViewTypeOthers];
         };
     }
     
@@ -287,7 +287,7 @@
 -(void)showEditCollectionViewWithCollectionID:(NSString*)collID
 {
     _editCollectionViewController = nil;
-    [self.editCollectionViewController initData:collID ProfileType:self.profileType];
+    [self.editCollectionViewController initData:collID];
     // [LoadingManager show];
     [self.navigationController pushViewController:self.editCollectionViewController animated:YES];
 }

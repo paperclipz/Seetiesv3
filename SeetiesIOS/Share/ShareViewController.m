@@ -120,7 +120,6 @@
    
     [self dismissViewControllerAnimated:YES completion:nil];
 
-   
 }
 -(IBAction)FacebookButtonOnClick:(id)sender{
     NSLog(@"FacebookButtonOnClick");

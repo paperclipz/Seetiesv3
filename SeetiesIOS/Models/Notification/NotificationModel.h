@@ -31,4 +31,8 @@
 @property(nonatomic,strong)NSDictionary* followCollectionInfo;
 @property(nonatomic,strong)NSArray<ProfileModel>* arrFollowingUsers;
 
+
+//for collection Notification
+@property(nonatomic,strong)NSArray<CollectionModel>* arrCollections;
+
 @end
