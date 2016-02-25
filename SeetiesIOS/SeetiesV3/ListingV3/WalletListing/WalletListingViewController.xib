@@ -7,6 +7,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WalletListingViewController">
             <connections>
+                <outlet property="ibEmptyBtn" destination="dNI-ml-W0d" id="Qt9-jm-rlB"/>
+                <outlet property="ibEmptyDesc" destination="Y4l-sT-W1B" id="CLd-5k-Utq"/>
+                <outlet property="ibEmptyTitle" destination="bK1-0L-TUM" id="l6c-rW-dVF"/>
+                <outlet property="ibEmptyView" destination="nBc-es-yJ3" id="Iqq-xo-Plc"/>
                 <outlet property="ibFooterBtn" destination="bRZ-GB-qwj" id="2WS-Lt-7Gy"/>
                 <outlet property="ibFooterLbl" destination="b41-zZ-lpA" id="t20-hM-Gq1"/>
                 <outlet property="ibTableView" destination="Iyd-eR-Gia" id="doP-Lc-19c"/>
@@ -157,10 +161,79 @@
             </variation>
             <point key="canvasLocation" x="564" y="424"/>
         </view>
+        <view contentMode="scaleToFill" id="nBc-es-yJ3">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IAP-L3-PYe" userLabel="content view">
+                    <rect key="frame" x="50" y="100" width="500" height="400"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bK1-0L-TUM" userLabel="title">
+                            <rect key="frame" x="20" y="288" width="460" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="Ve8-ed-woq"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y4l-sT-W1B" userLabel="desc">
+                            <rect key="frame" x="20" y="319" width="460" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="gAY-ay-Ez3"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dNI-ml-W0d">
+                            <rect key="frame" x="20" y="350" width="460" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="185-wg-qL4"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <state key="normal" title="Check Deals of the Day"/>
+                            <connections>
+                                <action selector="emptyBtnClicked:" destination="-1" eventType="touchUpInside" id="Lrf-Rk-dlD"/>
+                            </connections>
+                        </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="NoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="L5T-3u-f0m">
+                            <rect key="frame" x="20" y="20" width="460" height="258"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="dNI-ml-W0d" secondAttribute="trailing" constant="20" id="3Sh-VJ-Fk8"/>
+                        <constraint firstItem="dNI-ml-W0d" firstAttribute="top" secondItem="Y4l-sT-W1B" secondAttribute="bottom" constant="10" id="3ug-Tv-gMy"/>
+                        <constraint firstAttribute="bottom" secondItem="dNI-ml-W0d" secondAttribute="bottom" constant="20" id="ASP-QZ-ao4"/>
+                        <constraint firstItem="Y4l-sT-W1B" firstAttribute="leading" secondItem="IAP-L3-PYe" secondAttribute="leading" constant="20" id="F7i-Zn-MK5"/>
+                        <constraint firstAttribute="trailing" secondItem="L5T-3u-f0m" secondAttribute="trailing" constant="20" id="PyC-jo-rTt"/>
+                        <constraint firstItem="bK1-0L-TUM" firstAttribute="leading" secondItem="IAP-L3-PYe" secondAttribute="leading" constant="20" id="gW2-LQ-5an"/>
+                        <constraint firstAttribute="trailing" secondItem="Y4l-sT-W1B" secondAttribute="trailing" constant="20" id="hu9-Es-tg8"/>
+                        <constraint firstItem="bK1-0L-TUM" firstAttribute="top" secondItem="L5T-3u-f0m" secondAttribute="bottom" constant="10" id="mPj-mx-MxH"/>
+                        <constraint firstItem="Y4l-sT-W1B" firstAttribute="top" secondItem="bK1-0L-TUM" secondAttribute="bottom" constant="10" id="nXn-kS-RIL"/>
+                        <constraint firstItem="L5T-3u-f0m" firstAttribute="leading" secondItem="IAP-L3-PYe" secondAttribute="leading" constant="20" id="sYY-ku-UYY"/>
+                        <constraint firstItem="L5T-3u-f0m" firstAttribute="top" secondItem="IAP-L3-PYe" secondAttribute="top" constant="20" id="sqX-te-GVr"/>
+                        <constraint firstItem="dNI-ml-W0d" firstAttribute="leading" secondItem="IAP-L3-PYe" secondAttribute="leading" constant="20" id="tSz-yf-e2P"/>
+                        <constraint firstAttribute="height" constant="400" id="yl4-3G-3qB"/>
+                        <constraint firstAttribute="trailing" secondItem="bK1-0L-TUM" secondAttribute="trailing" constant="20" id="zKB-p1-FF5"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="IAP-L3-PYe" firstAttribute="centerY" secondItem="nBc-es-yJ3" secondAttribute="centerY" id="BYD-qd-tfB"/>
+                <constraint firstAttribute="trailing" secondItem="IAP-L3-PYe" secondAttribute="trailing" constant="50" id="gZ9-eg-of0"/>
+                <constraint firstItem="IAP-L3-PYe" firstAttribute="leading" secondItem="nBc-es-yJ3" secondAttribute="leading" constant="50" id="jSr-TQ-2wV"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="1112" y="440"/>
+        </view>
     </objects>
     <resources>
         <image name="BackIcon.png" width="40" height="40"/>
         <image name="Icon-60.png" width="60" height="60"/>
+        <image name="NoImage.png" width="800" height="800"/>
         <image name="TimeIcon.png" width="30" height="30"/>
     </resources>
 </document>

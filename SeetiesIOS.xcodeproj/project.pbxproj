@@ -1312,6 +1312,7 @@
 		C266761D1C6483030021B6B0 /* RedemptionHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C266761B1C6483030021B6B0 /* RedemptionHistoryViewController.xib */; };
 		C26676211C6485400021B6B0 /* RedemptionHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C266761F1C6485400021B6B0 /* RedemptionHistoryCell.m */; };
 		C26676221C6485400021B6B0 /* RedemptionHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C26676201C6485400021B6B0 /* RedemptionHistoryCell.xib */; };
+		C278147A1C7EB908006F11B8 /* DealExpiryDateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C27814791C7EB908006F11B8 /* DealExpiryDateModel.m */; };
 		C28469B91C5F6FCD00B38885 /* NearbyShopsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C28469B71C5F6FCD00B38885 /* NearbyShopsCell.m */; };
 		C28469BA1C5F6FCD00B38885 /* NearbyShopsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C28469B81C5F6FCD00B38885 /* NearbyShopsCell.xib */; };
 		C295DCDB1C72C54300A1DED3 /* DealManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C295DCDA1C72C54300A1DED3 /* DealManager.m */; };
@@ -3101,6 +3102,8 @@
 		C266761E1C6485400021B6B0 /* RedemptionHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedemptionHistoryCell.h; sourceTree = "<group>"; };
 		C266761F1C6485400021B6B0 /* RedemptionHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedemptionHistoryCell.m; sourceTree = "<group>"; };
 		C26676201C6485400021B6B0 /* RedemptionHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedemptionHistoryCell.xib; sourceTree = "<group>"; };
+		C27814781C7EB908006F11B8 /* DealExpiryDateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealExpiryDateModel.h; sourceTree = "<group>"; };
+		C27814791C7EB908006F11B8 /* DealExpiryDateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealExpiryDateModel.m; sourceTree = "<group>"; };
 		C28469B61C5F6FCD00B38885 /* NearbyShopsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyShopsCell.h; sourceTree = "<group>"; };
 		C28469B71C5F6FCD00B38885 /* NearbyShopsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyShopsCell.m; sourceTree = "<group>"; };
 		C28469B81C5F6FCD00B38885 /* NearbyShopsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NearbyShopsCell.xib; sourceTree = "<group>"; };
@@ -6175,6 +6178,8 @@
 				8AF999521C3CC5E6000314E4 /* FacebookModel.m */,
 				8AF6FDCD1C587958005AAE5D /* RegisterObject.h */,
 				8AF6FDCE1C587958005AAE5D /* RegisterObject.m */,
+				C27814781C7EB908006F11B8 /* DealExpiryDateModel.h */,
+				C27814791C7EB908006F11B8 /* DealExpiryDateModel.m */,
 			);
 			path = AppModel;
 			sourceTree = "<group>";
@@ -7840,6 +7845,7 @@
 				8A3409421B8AD06A009B66C3 /* UIImage+Enhancing.m in Sources */,
 				8AFA51F31C47B4AB00E7920E /* FeedType_FollowingPostTblCell.m in Sources */,
 				8A114CB81BE73F5D006AE3F0 /* BHInputToolbar.m in Sources */,
+				C278147A1C7EB908006F11B8 /* DealExpiryDateModel.m in Sources */,
 				8AFA51EB1C47B4AB00E7920E /* FeedType_AnnouncementWelcomeTblCell.m in Sources */,
 				8AFA51D91C47B4AB00E7920E /* VoucherListingViewController.m in Sources */,
 				8A993CD41C322E5D009359E2 /* TestingViewController.m in Sources */,
