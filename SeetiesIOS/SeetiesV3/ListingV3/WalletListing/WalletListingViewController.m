@@ -36,6 +36,7 @@
     // Do any additional setup after loading the view from its nib.
     
     [self.ibTableView registerNib:[UINib nibWithNibName:@"WalletVoucherCell" bundle:nil] forCellReuseIdentifier:@"WalletVoucherCell"];
+    [self.ibTableView registerNib:[UINib nibWithNibName:@"WalletHeaderCell" bundle:nil] forHeaderFooterViewReuseIdentifier:@"WalletHeaderCell"];
     self.ibTableView.estimatedRowHeight = [WalletVoucherCell getHeight];
     self.ibTableView.rowHeight = UITableViewAutomaticDimension;
     
@@ -192,13 +193,13 @@
     return UITableViewAutomaticDimension;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 44;
+}
+
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section;{
-    WalletHeaderCell *header = [tableView dequeueReusableCellWithIdentifier:@"WalletHeaderCell"];
+    WalletHeaderCell *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"WalletHeaderCell"];
     
-    if (!header) {
-        [tableView registerNib:[UINib nibWithNibName:@"WalletHeaderCell" bundle:nil] forCellReuseIdentifier:@"WalletHeaderCell"];
-        header = [tableView dequeueReusableCellWithIdentifier:@"WalletHeaderCell"];
-    }
     DealExpiryDateModel *expiryModel = [self.voucherArray objectAtIndex:section];
     if ([expiryModel.expiryDate isEqualToString:@"new"]) {
         [header setHeaderTitle:LocalisedString(@"New!")];
@@ -249,6 +250,7 @@
 }
 
 - (IBAction)historyBtnClicked:(id)sender {
+    self.redemptionHistoryViewController = nil;
     [self.navigationController pushViewController:self.redemptionHistoryViewController animated:YES];
 }
 

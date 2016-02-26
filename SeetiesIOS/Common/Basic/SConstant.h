@@ -106,6 +106,7 @@ typedef enum
     ServerRequestTypeDeleteVoucher,
     ServerRequestTypeGetUserVouchersCount,
     ServerRequestTypePutRedeemVoucher,
+    ServerRequestTypeGetUserVouchersHistoryList,
     
     /*Notifications*/
     ServerRequestTypeGetFollowingNotifictions,

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WalletHeaderCell : UITableViewCell
+@interface WalletHeaderCell : UITableViewHeaderFooterView
 -(void)setHeaderTitle:(NSString*)title;
 @end

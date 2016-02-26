@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "RedemptionHistoryCell.h"
 #import "WalletHeaderCell.h"
+#import "DealExpiryDateModel.h"
+#import "DealDetailsViewController.h"
 
 @interface RedemptionHistoryViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate>
 

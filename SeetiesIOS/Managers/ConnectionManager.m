@@ -939,37 +939,20 @@
             break;
             
         case ServerRequestTypePostCollectDeals:
-        {
-            NSDictionary *dict = obj[@"data"];
-            self.dataManager.dealModel = [[DealModel alloc] initWithDictionary:dict error:nil];
-        }
-            break;
-            
+        case ServerRequestTypeDeleteVoucher:
+        case ServerRequestTypeGetVoucherInfo:
         case ServerRequestTypeGetDealInfo:
         {
             NSDictionary *dict = obj[@"data"];
             self.dataManager.dealModel = [[DealModel alloc] initWithDictionary:dict error:nil];
         }
             break;
-            
-        case ServerRequestTypeGetVoucherInfo:
-        {
-            NSDictionary *dict = obj[@"data"];
-            self.dataManager.dealModel = [[DealModel alloc] initWithDictionary:dict error:nil];
-        }
-            break;
-            
+        
+        case ServerRequestTypeGetUserVouchersHistoryList:
         case ServerRequestTypeGetUserVouchersList:
         {
             NSDictionary *dict  = obj[@"data"][@"vouchers"];
             self.dataManager.dealsModel = [[DealsModel alloc] initWithDictionary:dict error:nil];
-        }
-            break;
-            
-        case ServerRequestTypeDeleteVoucher:
-        {
-            NSDictionary *dict = obj[@"data"];
-            self.dataManager.dealModel = [[DealModel alloc] initWithDictionary:dict error:nil];
         }
             break;
             

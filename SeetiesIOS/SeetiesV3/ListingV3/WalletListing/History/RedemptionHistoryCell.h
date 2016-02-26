@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface RedemptionHistoryCell : CommonTableViewCell
-
+-(void)setVoucher:(DealModel *)voucher;
 @end
