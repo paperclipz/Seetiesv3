@@ -12,7 +12,7 @@
 #import "PriceModel.h"
 #import "SeShopPhotoModel.h"
 #import "Location.h"
-
+#import "PaginationModel.h"
 @protocol ShopModel
 @end
 @protocol ShopsModel
@@ -35,11 +35,9 @@
 @property(nonatomic,strong)NSArray<SePhotoModel>* arrPhotos;
 @end
 
-@interface ShopsModel : Model
+@interface ShopsModel : PaginationModel
 
 @property(nonatomic,strong)NSArray<ShopModel>* shops;
-@property(nonatomic,assign)int offset;
-@property(nonatomic,assign)int limit;
 @property(nonatomic,assign)int total_shops;
 @property(nonatomic,assign)int page;
 

@@ -10,5 +10,6 @@
 
 @interface BranchOutletTblCell : CommonTableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+@property (weak, nonatomic) IBOutlet UILabel *lblDesc;
 
 @end

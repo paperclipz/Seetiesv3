@@ -37,6 +37,8 @@
     __weak IBOutlet UIButton *btnTranslate;
     BOOL branchIsShow;
 
+    __weak IBOutlet UIButton *btnOutlet;
+    __weak IBOutlet UILabel *lblSelectOutlet;
 }
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnTranslateWidthConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnShareWidthConstraint;
@@ -70,6 +72,8 @@
 @property(nonatomic, strong)NSMutableArray* arrViews;
 @property (weak, nonatomic) IBOutlet UIImageView *ibImgViewOtherPadding;
 @property(nonatomic,assign)MKCoordinateRegion region;
+@property (weak, nonatomic) IBOutlet UILabel *lblShopGroupName;
+@property (weak, nonatomic) IBOutlet UILabel *lblShopName;
 
 @property(nonatomic,strong)NSString* seetiesID;
 @property(nonatomic,strong)NSString* placeID;
@@ -81,6 +85,10 @@
 @end
 
 @implementation SeetiesShopViewController
+
+#pragma mark - IBACTION
+
+
 - (IBAction)btnCloseBranchClicked:(id)sender {
     
     [self showBranchView:NO withAnimation:YES];
@@ -145,7 +153,6 @@
     
 }
 
-#pragma mark - IBACTION
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -158,9 +165,12 @@
 
 -(void)initSelfView
 {
+    [self changeLanguage];
     self.ibScrollView.delegate = self;
+    
+    btnOutlet.hidden = YES;
     _arrViews = [NSMutableArray new];
-    self.ibImgViewOtherPadding.alpha = 0;
+    //self.ibImgViewOtherPadding.alpha = 0;
     [self.view addSubview:ibBranchView];
 
     ibBranchView.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64);
@@ -400,6 +410,7 @@
             weakSelf.seShopModel = model;
             [weakSelf setHiddenVisible];
             [weakSelf rearrangeView];
+            [weakSelf refreshBranchView];
             
         };
         
@@ -415,6 +426,31 @@
     
     return _seShopDetailView;
 }
+
+-(void)refreshBranchView
+{
+    
+    @try {
+        if (self.seShopModel.shop_group_info && self.seShopModel.shop_group_info.other_branches > 0) {
+            btnOutlet.hidden = NO;
+            
+        }
+        
+        self.lblShopGroupName.text = self.seShopModel.shop_group_info.name;
+        
+       // SeShopDetailModel* model = self.seShopModel.shop_group_info.other_branches[0];
+        self.lblShopName.text = self.seShopModel.name;
+    }
+    
+    @catch (NSException *exception) {
+        
+    }
+    [ibTblSelectOutletView reloadData];
+    
+
+
+}
+
 -(void)setHiddenVisible
 {
     [UIView transitionWithView:self.btnShare duration:1.0f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
@@ -591,7 +627,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.seShopModel.shop_group_info.other_branches.count;
 }
 
 
@@ -599,34 +635,81 @@
 {
     BranchOutletTblCell* cell = [tableView dequeueReusableCellWithIdentifier:@"BranchOutletTblCell"];
     
+    @try {
+        SeShopDetailModel* model = self.seShopModel.shop_group_info.other_branches[indexPath.row];
+        cell.lblTitle.text = model.name;
+        
+        if (![Utils isStringNull:model.location.country]) {
+            
+            
+            if (![Utils isStringNull:model.location.locality]) {
+                cell.lblDesc.text = [NSString stringWithFormat:@"%@,%@",model.location.locality,model.location.country];
+
+            }else{
+                cell.lblDesc.text = model.location.country;
+
+            }
+
+        }
+        else{
+            cell.lblDesc.text = model.location.locality;
+
+        }
+
+    }
+    @catch (NSException *exception) {
+        SLog(@"parsing seetiesshop id fail in cellForRowAtIndexPath");
+
+    }
+    
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    _seetiesShopViewController = nil;
+    @try {
+        SeShopDetailModel* model = self.seShopModel.shop_group_info.other_branches[indexPath.row];
+        [self.seetiesShopViewController initDataWithSeetiesID:model.seetishop_id];
+        [self.navigationController pushViewController:self.seetiesShopViewController animated:YES];
+
+    }
+    @catch (NSException *exception) {
+        SLog(@"parsing seetiesshop id fail in didSelectRowAtIndexPath");
+    }
+    
+}
 
 
 #pragma mark - UIScrollView
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     
-    if (scrollView == self.ibScrollView) {
-        int profileBackgroundHeight = 210;
-        if (scrollView.contentOffset.y <= profileBackgroundHeight) {
-            
-            float adjustment = (scrollView.contentOffset.y
-                                )/(profileBackgroundHeight);
-            self.ibImgViewOtherPadding.alpha = adjustment;
-            
-        }
-        else if (scrollView.contentOffset.y > profileBackgroundHeight)
-        {
-            self.ibImgViewOtherPadding.alpha = 1;
-            
-            
-            
-        }
-
-    }
-   }
+//    if (scrollView == self.ibScrollView) {
+//        int profileBackgroundHeight = 210;
+//        if (scrollView.contentOffset.y <= profileBackgroundHeight) {
+//            
+//            float adjustment = (scrollView.contentOffset.y
+//                                )/(profileBackgroundHeight);
+//            self.ibImgViewOtherPadding.alpha = adjustment;
+//            
+//        }
+//        else if (scrollView.contentOffset.y > profileBackgroundHeight)
+//        {
+//            self.ibImgViewOtherPadding.alpha = 1;
+//            
+//            
+//            
+//        }
+//
+//    }
+   
+}
+#pragma  mark - Change Language
+-(void)changeLanguage
+{
+    lblSelectOutlet.text = LocalisedString(@"Select Outlet");
+}
 /*
 #pragma mark - Navigation
 

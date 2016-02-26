@@ -48,6 +48,7 @@
 #import "UITableView+Extension.h"
 
 #import "SelectCategoryViewController.h"
+#import "WalletListingViewController.h"
 
 static NSCache* heightCache = nil;
 #define TopBarHeight 64.0f
@@ -110,7 +111,7 @@ static NSCache* heightCache = nil;
 @property(nonatomic,strong)CT3_MeViewController* meViewController;
 @property(nonatomic, strong) SearchLocationViewController *searchLocationViewController;
 @property(nonatomic, strong) CT3_AnnouncementViewController *announcementViewController;
-
+@property(nonatomic)WalletListingViewController* walletListingViewController;
 
 /*Controller*/
 
@@ -146,15 +147,17 @@ static NSCache* heightCache = nil;
 }
 - (IBAction)btnTestCliked:(id)sender {
     
-    SelectCategoryViewController* asd = [SelectCategoryViewController new];
-    [self presentViewController:asd animated:YES completion:nil];
-//    SeetiesShopViewController* temp = [SeetiesShopViewController new];
-//   
-//    //UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:temp];
-//    [temp initDataWithSeetiesID:@"56397e301c4d5be92e8b4711"];
-//    [self presentViewController:temp animated:YES completion:nil];
+//    SelectCategoryViewController* asd = [SelectCategoryViewController new];
+//    [self presentViewController:asd animated:YES completion:nil];
+    SeetiesShopViewController* temp = [SeetiesShopViewController new];
+   
+    UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:temp];
     
-    _dealRedeemViewController = nil;
+    [nav.navigationBar setHidden:YES];
+    [temp initDataWithSeetiesID:@"56ab441c15772b70418b45e0"];
+    [self presentViewController:nav animated:YES completion:nil];
+    
+   // _dealRedeemViewController = nil;
   //  [self.navigationController pushViewController:self.dealRedeemViewController animated:YES];
 
 }
@@ -174,6 +177,15 @@ static NSCache* heightCache = nil;
 }
 
 #pragma mark - Declaration
+
+-(WalletListingViewController*)walletListingViewController
+{
+    if (!_walletListingViewController) {
+        _walletListingViewController = [WalletListingViewController new];
+    }
+    
+    return _walletListingViewController;
+}
 
 -(CT3_AnnouncementViewController*)announcementViewController
 {
@@ -961,6 +973,13 @@ static NSCache* heightCache = nil;
                 }];
             }
                 break;
+                
+            case DealType_Wallet:
+            {
+                _walletListingViewController = nil;
+                [self.navigationController pushViewController:self.walletListingViewController animated:YES];
+            }
+                break;
             case DealType_Announcement:
             {
                 CTFeedTypeModel* typeModel = [CTFeedTypeModel new];
@@ -1330,7 +1349,7 @@ static NSCache* heightCache = nil;
 {
     
     NSDictionary* dict = @{@"timezone_offset" : [Utils getTimeZone],
-                           @"type" : model.type,
+                           @"type" : @"none",
                            @"lat" : model.latitude,
                            @"lng" : model.longtitude,
                            @"place_id" : model.place_id,

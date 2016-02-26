@@ -57,10 +57,18 @@
     
     self.ibOutletTitle.text = self.shopModel.name;
     self.ibOutletAddress.text = self.shopModel.location.formatted_address;
-    if (![Utils isStringNull:shopModel.profile_picture]) {
-        [self.ibOutletImg sd_setImageCroppedWithURL:[NSURL URLWithString:shopModel.profile_picture] completed:^(UIImage *image) {
-        }];
+    
+    @try {
+        NSString* imageURL = shopModel.profile_photo[@"picture"];
+        if (![Utils isStringNull:imageURL]) {
+            [self.ibOutletImg sd_setImageCroppedWithURL:[NSURL URLWithString:imageURL] completed:^(UIImage *image) {
+            }];
+        }
     }
+    @catch (NSException *exception) {
+        SLog(@"assign image url fail");
+    }
+   
 }
 
 @end

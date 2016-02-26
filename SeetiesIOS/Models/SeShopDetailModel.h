@@ -14,6 +14,7 @@
 #import "Location.h"
 
 @class DraftModel;
+@class SeShopGroupModel;
 
 @interface SeShopDetailModel : Model
 @property(nonatomic,strong)NSString* name;
@@ -33,7 +34,6 @@
 @property(nonatomic,strong)SeShopCategoryModel* category;
 @property(nonatomic,strong)NSArray* wallpapers;
 @property(nonatomic,strong)NSDictionary* profile_photo_images;
-@property(nonatomic,strong)NSString* profile_picture;
 @property(nonatomic,strong)NSString* language;
 
 
@@ -41,6 +41,12 @@
 @property(nonatomic,strong)NSString* post_id;
 @property(nonatomic,strong)NSString* place_id;
 /*for notification purposes*/
+
+/*seetiesshop group info*/
+@property(nonatomic,strong)NSDictionary* profile_photo;
+@property(nonatomic,strong)SeShopGroupModel* shop_group_info;
+
+/*seetiesshop group info*/
 
 -(void)process;
 

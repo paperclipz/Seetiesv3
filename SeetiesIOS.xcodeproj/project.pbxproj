@@ -1058,6 +1058,7 @@
 		8A84C8CD1C7FF448006A0D76 /* WalkthroughPostDetails.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C5CE1C7FF448006A0D76 /* WalkthroughPostDetails.png */; };
 		8A84C8D21C7FFDF8006A0D76 /* UIWindow+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A84C8D11C7FFDF8006A0D76 /* UIWindow+Extra.m */; };
 		8A84C8D61C800A0C006A0D76 /* DealCollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A84C8D51C800A0C006A0D76 /* DealCollectionModel.m */; };
+		8A84C8D91C8036FD006A0D76 /* SeShopGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A84C8D81C8036FD006A0D76 /* SeShopGroupModel.m */; };
 		8A988FB91C29049800D0F0EF /* WMATweetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A988FB81C29049800D0F0EF /* WMATweetView.m */; };
 		8A993CC41C290CE4009359E2 /* UITextView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A993CC31C290CE4009359E2 /* UITextView+Extension.swift */; };
 		8A993CCB1C2960D5009359E2 /* NSArray+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A993CCA1C2960D5009359E2 /* NSArray+Extension.m */; };
@@ -2784,6 +2785,8 @@
 		8A84C8D11C7FFDF8006A0D76 /* UIWindow+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+Extra.m"; sourceTree = "<group>"; };
 		8A84C8D41C800A0C006A0D76 /* DealCollectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealCollectionModel.h; sourceTree = "<group>"; };
 		8A84C8D51C800A0C006A0D76 /* DealCollectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealCollectionModel.m; sourceTree = "<group>"; };
+		8A84C8D71C8036FD006A0D76 /* SeShopGroupModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeShopGroupModel.h; sourceTree = "<group>"; };
+		8A84C8D81C8036FD006A0D76 /* SeShopGroupModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeShopGroupModel.m; sourceTree = "<group>"; };
 		8A988FB71C29049800D0F0EF /* WMATweetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMATweetView.h; sourceTree = "<group>"; };
 		8A988FB81C29049800D0F0EF /* WMATweetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMATweetView.m; sourceTree = "<group>"; };
 		8A993CC31C290CE4009359E2 /* UITextView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Extension.swift"; sourceTree = "<group>"; };
@@ -6906,6 +6909,8 @@
 				8AEDBFA11C2031BA000BD2FF /* SeShopDetailModel.m */,
 				8AEDBFA21C2031BA000BD2FF /* SeShopPhotoModel.h */,
 				8AEDBFA31C2031BA000BD2FF /* SeShopPhotoModel.m */,
+				8A84C8D71C8036FD006A0D76 /* SeShopGroupModel.h */,
+				8A84C8D81C8036FD006A0D76 /* SeShopGroupModel.m */,
 			);
 			name = SeetiesModel;
 			sourceTree = "<group>";
@@ -8687,6 +8692,7 @@
 				8A114C891BE73F5D006AE3F0 /* CAPSPageMenu.m in Sources */,
 				C243840F1C5B781500ACEBF8 /* DealDetailsAvailabilityCell.m in Sources */,
 				8A3409D11B8B0DCB009B66C3 /* UIImage+Scaling.m in Sources */,
+				8A84C8D91C8036FD006A0D76 /* SeShopGroupModel.m in Sources */,
 				8AD6C0F41B706CF30040437E /* SearchChangeLocationViewController.m in Sources */,
 				8AF999151C3A2ADD000314E4 /* PagingModel.m in Sources */,
 				8AD6C0D01B706CF30040437E /* PInterestV2ViewController.m in Sources */,

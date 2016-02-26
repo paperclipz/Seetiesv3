@@ -13,6 +13,9 @@
 
 
 @interface SeetiShopListingViewController ()<UITableViewDataSource,UITableViewDelegate>
+{
+    BOOL isServerMiddleOfLoading;
+}
 @property(nonatomic,strong)SeetiesShopViewController* seetiesShopViewController;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
@@ -31,6 +34,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    isServerMiddleOfLoading= NO;
     // Do any additional setup after loading the view from its nib.
     [self initTableViewDelegate];
     
@@ -119,13 +123,17 @@
 
 -(void)requestServerForSeetiShopNearbyShop
 {
+    
+    if (isServerMiddleOfLoading) {
+        return;
+    }
     NSDictionary* dict;
     NSString* appendString;
     
     if (![Utils stringIsNilOrEmpty:self.seetiesID]) {
         appendString = [NSString stringWithFormat:@"%@/nearby/shops",self.seetiesID];
         dict = @{@"limit":@(ARRAY_LIST_SIZE),
-                 @"offset":@"1",
+                 @"offset":@(self.seetiShopsModel.userPostData.offset + self.seetiShopsModel.userPostData.limit),
                  @"lat" : @(self.shoplat),
                  @"lng" : @(self.shopLgn),
                  };
@@ -134,7 +142,7 @@
     else{
         appendString = [NSString stringWithFormat:@"%@/nearby/shops",self.placeID];
         dict = @{@"limit":@(ARRAY_LIST_SIZE),
-                 @"offset":@"1",
+                 @"offset":@(self.seetiShopsModel.userPostData.offset + self.seetiShopsModel.userPostData.limit),
                  @"post_id":self.postID,
                  @"lat" : @(self.shoplat),
                  @"lng" : @(self.shopLgn),
@@ -142,18 +150,19 @@
 
     }
     
-    [LoadingManager show];
+    isServerMiddleOfLoading = YES;
         [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetoShopNearbyShop param:dict appendString:appendString completeHandler:^(id object) {
             
             
             self.seetiShopsModel = [[ConnectionManager dataManager]seNearbyShopModel];
             [self.arrShopList addObjectsFromArray:self.seetiShopsModel.userPostData.shops];
             [self.ibTableView reloadData];
-            [LoadingManager hide];
+            isServerMiddleOfLoading = NO;
+
 
         } errorBlock:^(id object) {
             
-            [LoadingManager hide];
+            isServerMiddleOfLoading = NO;
 
         }];
         
@@ -165,6 +174,22 @@
         _arrShopList = [NSMutableArray new];
     }
     return _arrShopList;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    // UITableView only moves in one direction, y axis
+    CGFloat currentOffset = scrollView.contentOffset.y;
+    CGFloat maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height;
+    
+    // Change 10.0 to adjust the distance from bottom
+    if (maximumOffset - currentOffset <= self.view.frame.size.height/2) {
+        
+        if(![Utils isStringNull:self.seetiShopsModel.userPostData.paging.next])
+        {
+            [self requestServerForSeetiShopNearbyShop];
+        }
+    }
 }
 
 #pragma mark - Change Language

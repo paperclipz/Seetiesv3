@@ -271,8 +271,8 @@
                            @"type":@"search",
                            @"timezone_offset":[Utils getTimeZone],
                            @"place_id":@"",
-                           @"offset":@(self.dealsModel.offset),
-                           @"limit":@(self.dealsModel.limit)};
+                           @"offset":@(self.dealsModel.offset + self.dealsModel.limit),
+                           @"limit":@(ARRAY_LIST_SIZE)};
     
     self.isLoading = YES;
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSuperDeals param:dict appendString:nil completeHandler:^(id object) {
@@ -304,8 +304,8 @@
        
         dict = @{@"token":[Utils getAppToken],
                                @"deal_collection_id" : self.dealCollectionModel.deal_collection_id,
-                               @"offset":@(self.dealsModel.offset?self.dealsModel.offset:0),
-                               @"limit":@(10),
+                               @"offset":@(self.dealsModel.offset + self.dealsModel.limit),
+                               @"limit":@(ARRAY_LIST_SIZE),
                                };
 
     }

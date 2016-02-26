@@ -23,6 +23,7 @@
 #import "QuickBrowseModel.h"
 #import "AppInfoModel.h"
 #import "DealCollectionModel.h"
+#import "SeShopGroupModel.h"
 
 
 /*Declare custom block for model type*/

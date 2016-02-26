@@ -66,11 +66,21 @@
         SeShopDetailModel *shopModel = self.dealModel.voucher_info.shop_info;
         self.ibShopTitle.text = shopModel.name;
         self.ibShopAddress.text = shopModel.location.formatted_address;
-        [self.ibShopImg sd_setImageCroppedWithURL:[NSURL URLWithString:shopModel.profile_picture] completed:nil];
         
-        PhotoModel *photo = self.dealModel.photos[0];
-        [self.ibImgDeal sd_setImageCroppedWithURL:[NSURL URLWithString:photo.imageURL] completed:nil];
-        self.ibDealTitle.text = self.dealModel.title;
+       
+        @try {
+            NSString* imageURL = [NSString stringWithFormat:@"%@",shopModel.profile_photo];
+            [self.ibShopImg sd_setImageCroppedWithURL:[NSURL URLWithString:imageURL] completed:nil];
+
+            PhotoModel *photo = self.dealModel.photos[0];
+            [self.ibImgDeal sd_setImageCroppedWithURL:[NSURL URLWithString:photo.imageURL] completed:nil];
+            self.ibDealTitle.text = self.dealModel.title;
+        }
+        @catch (NSException *exception) {
+            SLog(@"assign profile_photo fail");
+        }
+        
+       
     }
 }
 
