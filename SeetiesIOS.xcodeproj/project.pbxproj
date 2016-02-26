@@ -1056,6 +1056,8 @@
 		8A84C8CB1C7FF448006A0D76 /* WalkthroughFeed2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C5CC1C7FF448006A0D76 /* WalkthroughFeed2.png */; };
 		8A84C8CC1C7FF448006A0D76 /* WalkthroughPost.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C5CD1C7FF448006A0D76 /* WalkthroughPost.png */; };
 		8A84C8CD1C7FF448006A0D76 /* WalkthroughPostDetails.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C5CE1C7FF448006A0D76 /* WalkthroughPostDetails.png */; };
+		8A84C8D21C7FFDF8006A0D76 /* UIWindow+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A84C8D11C7FFDF8006A0D76 /* UIWindow+Extra.m */; };
+		8A84C8D61C800A0C006A0D76 /* DealCollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A84C8D51C800A0C006A0D76 /* DealCollectionModel.m */; };
 		8A988FB91C29049800D0F0EF /* WMATweetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A988FB81C29049800D0F0EF /* WMATweetView.m */; };
 		8A993CC41C290CE4009359E2 /* UITextView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A993CC31C290CE4009359E2 /* UITextView+Extension.swift */; };
 		8A993CCB1C2960D5009359E2 /* NSArray+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A993CCA1C2960D5009359E2 /* NSArray+Extension.m */; };
@@ -2778,6 +2780,10 @@
 		8A84C5CC1C7FF448006A0D76 /* WalkthroughFeed2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WalkthroughFeed2.png; sourceTree = "<group>"; };
 		8A84C5CD1C7FF448006A0D76 /* WalkthroughPost.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WalkthroughPost.png; sourceTree = "<group>"; };
 		8A84C5CE1C7FF448006A0D76 /* WalkthroughPostDetails.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WalkthroughPostDetails.png; sourceTree = "<group>"; };
+		8A84C8D01C7FFDF8006A0D76 /* UIWindow+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+Extra.h"; sourceTree = "<group>"; };
+		8A84C8D11C7FFDF8006A0D76 /* UIWindow+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+Extra.m"; sourceTree = "<group>"; };
+		8A84C8D41C800A0C006A0D76 /* DealCollectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealCollectionModel.h; sourceTree = "<group>"; };
+		8A84C8D51C800A0C006A0D76 /* DealCollectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealCollectionModel.m; sourceTree = "<group>"; };
 		8A988FB71C29049800D0F0EF /* WMATweetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMATweetView.h; sourceTree = "<group>"; };
 		8A988FB81C29049800D0F0EF /* WMATweetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMATweetView.m; sourceTree = "<group>"; };
 		8A993CC31C290CE4009359E2 /* UITextView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Extension.swift"; sourceTree = "<group>"; };
@@ -3216,8 +3222,8 @@
 		8AEDBF911C2031BA000BD2FF /* Locale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Locale.m; sourceTree = "<group>"; };
 		8AEDBF921C2031BA000BD2FF /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 		8AEDBF931C2031BA000BD2FF /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
-		8AEDBF941C2031BA000BD2FF /* PostModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostModel.h; sourceTree = "<group>"; };
-		8AEDBF951C2031BA000BD2FF /* PostModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostModel.m; sourceTree = "<group>"; };
+		8AEDBF941C2031BA000BD2FF /* PostModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostModel.h; path = ../PostModel.h; sourceTree = "<group>"; };
+		8AEDBF951C2031BA000BD2FF /* PostModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostModel.m; path = ../PostModel.m; sourceTree = "<group>"; };
 		8AEDBF961C2031BA000BD2FF /* PriceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriceModel.h; sourceTree = "<group>"; };
 		8AEDBF971C2031BA000BD2FF /* PriceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriceModel.m; sourceTree = "<group>"; };
 		8AEDBF981C2031BA000BD2FF /* ProfileModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileModel.h; sourceTree = "<group>"; };
@@ -5866,6 +5872,26 @@
 			path = Walkthrough;
 			sourceTree = "<group>";
 		};
+		8A84C8CF1C7FFDE2006A0D76 /* UIWindow+Extension */ = {
+			isa = PBXGroup;
+			children = (
+				8A84C8D01C7FFDF8006A0D76 /* UIWindow+Extra.h */,
+				8A84C8D11C7FFDF8006A0D76 /* UIWindow+Extra.m */,
+			);
+			path = "UIWindow+Extension";
+			sourceTree = "<group>";
+		};
+		8A84C8D31C8009ED006A0D76 /* CollectionModel */ = {
+			isa = PBXGroup;
+			children = (
+				8AEDBF941C2031BA000BD2FF /* PostModel.h */,
+				8AEDBF951C2031BA000BD2FF /* PostModel.m */,
+				8A84C8D41C800A0C006A0D76 /* DealCollectionModel.h */,
+				8A84C8D51C800A0C006A0D76 /* DealCollectionModel.m */,
+			);
+			path = CollectionModel;
+			sourceTree = "<group>";
+		};
 		8A988FB61C29049800D0F0EF /* WMATweetView */ = {
 			isa = PBXGroup;
 			children = (
@@ -6293,6 +6319,7 @@
 		8AD6BA961B706CF10040437E /* CATEGORY */ = {
 			isa = PBXGroup;
 			children = (
+				8A84C8CF1C7FFDE2006A0D76 /* UIWindow+Extension */,
 				8AF6FDD01C58952E005AAE5D /* UINavigationContoller+Extension */,
 				8A295FCE1C50A4EB00747DBA /* UITabbar+Extension */,
 				8ADD47001C4CE9C600AEAE2B /* UILabel+Extension */,
@@ -6797,6 +6824,7 @@
 				8AF9996F1C3E6569000314E4 /* CoreModel.h */,
 				8AEDBF921C2031BA000BD2FF /* Model.h */,
 				8AEDBF931C2031BA000BD2FF /* Model.m */,
+				8A84C8D31C8009ED006A0D76 /* CollectionModel */,
 				8AF867981C7DA8B600B0195D /* AppInfo */,
 				8A7EDA781C747D6C00A9E76E /* Notification */,
 				8AD50D621C61F21400C9D952 /* Home */,
@@ -6821,8 +6849,6 @@
 				8AEDBF8F1C2031BA000BD2FF /* LanguageModel.m */,
 				8AEDBF901C2031BA000BD2FF /* Locale.h */,
 				8AEDBF911C2031BA000BD2FF /* Locale.m */,
-				8AEDBF941C2031BA000BD2FF /* PostModel.h */,
-				8AEDBF951C2031BA000BD2FF /* PostModel.m */,
 				8AEDBF961C2031BA000BD2FF /* PriceModel.h */,
 				8AEDBF971C2031BA000BD2FF /* PriceModel.m */,
 				8AEDBF981C2031BA000BD2FF /* ProfileModel.h */,
@@ -8802,6 +8828,7 @@
 				8AEDBFAF1C2031BA000BD2FF /* EditPhotoModel.m in Sources */,
 				8ABA7DEC1C7421FC00FB41F4 /* NotificationTableViewCell.m in Sources */,
 				8A114C921BE73F5D006AE3F0 /* FloatingIndicatorView.m in Sources */,
+				8A84C8D61C800A0C006A0D76 /* DealCollectionModel.m in Sources */,
 				8AFA51DD1C47B4AB00E7920E /* WalletListingViewController.m in Sources */,
 				8AD6C2891B7072FB0040437E /* ConfirmPlaceViewController.m in Sources */,
 				8A5CFE171C7C6D42004E2CBA /* CollectionListingSinglePageViewController.m in Sources */,
@@ -8920,6 +8947,7 @@
 				8A6CCEEE1C19837100BCD54E /* SeetiShopListTableViewCell.m in Sources */,
 				0B6AEA6A1C47B7CF009B7D33 /* ConnectionsTabViewController.m in Sources */,
 				8AD6C1001B706CF30040437E /* AccountSettingViewController.m in Sources */,
+				8A84C8D21C7FFDF8006A0D76 /* UIWindow+Extra.m in Sources */,
 				8A11513E1BE777FD006AE3F0 /* UIScrollView+VGParallaxHeader.m in Sources */,
 				8A2E2C141B79E7A30010895E /* RecommendationViewController.m in Sources */,
 				8AEDBFB61C2031BA000BD2FF /* PostModel.m in Sources */,

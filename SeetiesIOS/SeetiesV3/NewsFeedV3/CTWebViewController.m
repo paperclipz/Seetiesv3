@@ -50,7 +50,7 @@
 -(void)initDataForInstagram
 {
 
-    
+    [LoadingManager show];
     NSString *url = [NSString stringWithFormat:@"https://api.instagram.com/oauth/authorize/?client_id=%@&redirect_uri=%@&response_type=code",Insta_Client_ID,Insta_Client_callback];
     
     [self.ibWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
@@ -101,6 +101,8 @@
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     // [indicator stopAnimating];
+    [LoadingManager hide];
+
 }
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 

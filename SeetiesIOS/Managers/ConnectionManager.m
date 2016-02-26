@@ -159,11 +159,13 @@
      {
          [self storeServerData:responseObject requestType:type withURL:fullURL completionBlock:completeBlock errorBlock:error];
          
-         
+         [LoadingManager hide];
      }
                failure:
      ^(AFHTTPRequestOperation *operation, NSError *error) {
          NSLog(@"\n\n  Error: %@", error);
+         [LoadingManager hide];
+
      }];
     
     
@@ -545,6 +547,11 @@
             str = [NSString stringWithFormat:@"%@/home/superdeals", API_VERION_URL];
             break;
             
+        case ServerRequestTypeGetDealCollectionDeals:
+            str = [NSString stringWithFormat:@"%@/deal-collections", API_VERION_URL];
+
+            break;
+            
         case ServerRequestTypeGetVoucherInfo:
         case ServerRequestTypePostCollectDeals:
         case ServerRequestTypeDeleteVoucher:
@@ -596,6 +603,7 @@
             SLog(@"%@",dict[@"message"]);
             
             [MessageManager showMessage:LocalisedString(@"system") SubTitle:dict[@"message"] Type:TSMessageNotificationTypeError];
+            //[TSMessage show];
             
             hasError = YES;
             
@@ -933,6 +941,13 @@
         case ServerRequestTypeGetSuperDeals:
         {
             NSDictionary *dict = obj[@"data"][@"superdeals"];
+            self.dataManager.dealsModel = [[DealsModel alloc] initWithDictionary:dict error:nil];
+            
+        }
+            break;
+        case ServerRequestTypeGetDealCollectionDeals:
+        {
+            NSDictionary *dict = obj[@"data"][@"deals"];
             self.dataManager.dealsModel = [[DealsModel alloc] initWithDictionary:dict error:nil];
             
         }

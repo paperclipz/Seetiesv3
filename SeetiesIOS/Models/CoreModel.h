@@ -22,6 +22,7 @@
 #import "NotificationModels.h"
 #import "QuickBrowseModel.h"
 #import "AppInfoModel.h"
+#import "DealCollectionModel.h"
 
 
 /*Declare custom block for model type*/

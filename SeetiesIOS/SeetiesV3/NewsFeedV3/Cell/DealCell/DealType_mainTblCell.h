@@ -7,7 +7,9 @@
 //
 
 #import "CommonTableViewCell.h"
+typedef void (^DealCollectionBlock)(DealCollectionModel* model);
 
 @interface DealType_mainTblCell : CommonTableViewCell
-
+-(void)initData:(HomeModel*)model;
+@property(nonatomic,copy)DealCollectionBlock didSelectDealCollectionBlock;
 @end

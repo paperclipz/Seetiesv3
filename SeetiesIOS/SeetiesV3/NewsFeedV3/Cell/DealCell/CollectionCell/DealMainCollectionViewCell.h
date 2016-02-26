@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface DealMainCollectionViewCell : CommonCollectionViewCell
+-(void)initData:(DealCollectionModel*)model;
 
 @end

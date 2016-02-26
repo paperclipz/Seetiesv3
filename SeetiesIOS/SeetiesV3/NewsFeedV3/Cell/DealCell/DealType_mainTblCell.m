@@ -11,6 +11,8 @@
 
 @interface DealType_mainTblCell()<UICollectionViewDataSource,UICollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *ibCollectionView;
+@property (strong, nonatomic)NSArray* arrDealCollections;
+
 @end
 @implementation DealType_mainTblCell
 
@@ -21,6 +23,11 @@
     // Drawing code
 }
 */
+-(void)initData:(HomeModel*)model
+{
+    self.arrDealCollections = model.deal_collections;
+    [self.ibCollectionView reloadData];
+}
 
 -(void)initSelfView
 {
@@ -36,14 +43,30 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 4;
+    return self.arrDealCollections.count;
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     DealMainCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DealMainCollectionViewCell" forIndexPath:indexPath];
+    
+    DealCollectionModel* model = self.arrDealCollections[indexPath.row];
+    
+    [cell initData:model];
     return cell;
 }
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+
+    DealCollectionModel* model = self.arrDealCollections[indexPath.row];
+    
+    if (self.didSelectDealCollectionBlock) {
+        self.didSelectDealCollectionBlock(model);
+    }
+}
+
+
 
 @end

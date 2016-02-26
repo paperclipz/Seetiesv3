@@ -12,13 +12,12 @@
 //@protocol DealModel
 //@end
 
-@protocol AnnouncementModel
+@protocol AnnouncementModel@end
 
-@end
+@protocol QuickBrowseModel@end
 
-@protocol QuickBrowseModel
 
-@end
+@protocol DealCollectionModel@end
 
 @interface HomeModel : JSONModel
 
@@ -26,5 +25,6 @@
 @property(nonatomic,strong)NSArray<DealModel>* superdeals;
 @property(nonatomic,strong)NSArray<AnnouncementModel>* announcements;
 @property(nonatomic,strong)NSArray<QuickBrowseModel>* quick_browse;
+@property(nonatomic,strong)NSArray<DealCollectionModel>* deal_collections;
 
 @end
