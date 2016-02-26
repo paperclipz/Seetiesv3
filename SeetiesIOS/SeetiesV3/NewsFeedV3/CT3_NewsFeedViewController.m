@@ -592,7 +592,21 @@ static NSCache* heightCache = nil;
                 }
                 
                 constTopScrollView.constant = 0;
+                
+                [cell initData:self.homeModel];
+                 __weak typeof (self)weakSelf = self;
+                cell.didSelectDealCollectionBlock = ^(DealCollectionModel* model)
+                {
+                    _voucherListingViewController = nil;
+                    [self.voucherListingViewController setWalletCount:self.homeModel.wallet_count];
+                   
+                    [self.navigationController pushViewController:self.voucherListingViewController animated:YES onCompletion:^{
+                        
+                        [weakSelf.voucherListingViewController initData:model];
 
+                    }];
+                };
+                
                 return cell;
             }
             case DealType_QuickBrowse:
@@ -1330,7 +1344,10 @@ static NSCache* heightCache = nil;
         [self.arrHomeDeal removeAllObjects];
         self.arrHomeDeal = nil;
 
-        [self.arrHomeDeal addObject:[NSNumber numberWithInt:DealType_Collection]];
+        
+        if (self.homeModel.deal_collections) {
+            [self.arrHomeDeal addObject:[NSNumber numberWithInt:DealType_Collection]];
+        }
 
         if (![Utils isArrayNull:self.homeModel.superdeals]) {
             [self.arrHomeDeal addObject:[NSNumber numberWithInt:DealType_SuperDeal]];
@@ -1435,8 +1452,8 @@ static NSCache* heightCache = nil;
 //    }
 //}
 
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
     // UITableView only moves in one direction, y axis
     CGFloat currentOffset = scrollView.contentOffset.y;
     CGFloat maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height;

@@ -10,6 +10,8 @@
 
 @interface VoucherListingViewController ()
 @property (nonatomic) DealsModel *dealsModel;
+@property (nonatomic) DealCollectionModel *dealCollectionModel;
+
 @property (nonatomic) NSMutableArray<DealModel*> *dealsArray;
 @property (nonatomic) BOOL isLoading;
 @property (nonatomic) BOOL  isCollecting;
@@ -285,30 +287,45 @@
     }];
 }
 
+-(void)initData:(DealCollectionModel*)model
+{
+    self.dealCollectionModel = model;
+    
+    [self requestServerForDealListing];
+    
+}
 -(void)requestServerForDealListing{
     
     if (self.isLoading) {
         return;
     }
+    NSDictionary *dict;
+    @try {
+       
+        dict = @{@"token":[Utils getAppToken],
+                               @"deal_collection_id" : self.dealCollectionModel.deal_collection_id,
+                               @"offset":@(self.dealsModel.offset?self.dealsModel.offset:0),
+                               @"limit":@(10),
+                               };
+
+    }
+    @catch (NSException *exception) {
+        SLog(@"error passing model in requestServerForDealListing");
+    }
     
-    NSDictionary *dict = @{@"token":[Utils getAppToken],
-                           @"address_components":@"",
-                           @"lat":@"",
-                           @"lng":@"",
-                           @"type":@"search",
-                           @"timezone_offset":[Utils getTimeZone],
-                           @"place_id":@"",
-                           @"offset":@(self.dealsModel.offset),
-                           @"limit":@(self.dealsModel.limit)};
+    NSString* appendString = [NSString stringWithFormat:@"%@/deals",self.dealCollectionModel.deal_collection_id];
     
     self.isLoading = YES;
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSuperDeals param:dict appendString:nil completeHandler:^(id object) {
+    
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetDealCollectionDeals param:dict appendString:appendString completeHandler:^(id object) {
+        
         DealsModel *model = [[ConnectionManager dataManager] dealsModel];
         self.dealsModel = model;
         [self.dealsArray addObjectsFromArray:self.dealsModel.deals];
         [self.dealManager setAllCollectedDeals:self.dealsModel];
         [self.ibVoucherTable reloadData];
         self.isLoading = NO;
+        
     } errorBlock:^(id object) {
         self.isLoading = NO;
     }];

@@ -10,6 +10,8 @@
 
 @interface CommonCollectionViewCell()
 @property(nonatomic,weak)IBOutlet UIView* borderView;
+@property(nonatomic,weak)IBOutlet UIView* borderlessView;
+
 @end
 @implementation CommonCollectionViewCell
 
@@ -18,6 +20,10 @@
     // Initialization code
     if (self.borderView) {
         [Utils setRoundBorder:self.borderView color:LINE_COLOR borderRadius:(5.0f)];
+    }
+    
+    if (self.borderlessView) {
+        [Utils setRoundBorder:self.borderlessView color:[UIColor clearColor] borderRadius:(5.0f)];
     }
 }
 

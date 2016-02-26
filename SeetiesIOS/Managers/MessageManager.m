@@ -8,17 +8,15 @@
 
 #import "MessageManager.h"
 #import "AppDelegate.h"
+#import "UIWindow+Extra.h"
 
 @implementation MessageManager
 
 +(void)showMessage:(NSString*)title SubTitle:(NSString*)subtitle Type:(TSMessageNotificationType)type
 {
-    
-    AppDelegate *appdelegate;
-    
-    appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    
-    [TSMessage showNotificationInViewController:appdelegate.landingViewController title:title subtitle:subtitle type:type];
+
+    UIViewController* controller = [UIWindow topMostController];
+    [TSMessage showNotificationInViewController:controller title:title subtitle:subtitle type:type];
 
 }
 @end
