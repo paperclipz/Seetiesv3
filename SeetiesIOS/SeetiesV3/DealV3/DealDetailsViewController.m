@@ -325,6 +325,7 @@
     }
     
     float redemptionYOrigin = 0;
+    self.ibRedemptionContentViewHeightConstraint.constant = 0;
     for (NSString *type in self.dealModel.redemption_type) {
         RedemptionTypeView *redemptionTypeView = [RedemptionTypeView initializeCustomView];
         if ([type isEqualToString:REDEMPTION_TYPE_DINE_IN]) {
@@ -342,12 +343,10 @@
     }
     self.ibRedemptionContentViewHeightConstraint.constant = redemptionYOrigin;
     
-//    CGFloat contentHeight = self.ibTagScrollViewHeightConstraint.constant + self.ibDealDetailsTitleLbl.frame.size.height + self.ibDealDetailsDescLbl.frame.size.height +
-//    self.ibDealDetailsDesc.frame.size.height + self.ibRedemptionContentViewHeightConstraint.constant + 15;
-//    self.ibDealDetailsRedemptionContentView.frame.origin.y + self.ibRedemptionContentViewHeightConstraint.constant + 15;
-//    SLog(@"%f = %f + %f", contentHeight, self.ibDealDetailsRedemptionContentView.frame.origin.y, self.ibRedemptionContentViewHeightConstraint.constant);
-//    self.ibDealDetailsView.frame = CGRectMake(self.ibDealDetailsView.frame.origin.x, self.ibDealDetailsView.frame.origin.y, self.ibDealDetailsView.frame.size.width, contentHeight);
+    CGFloat contentHeight = self.ibDealDetailsRedemptionContentView.frame.origin.y + self.ibRedemptionContentViewHeightConstraint.constant + 15;
+    [self.ibDealDetailsView setHeight:contentHeight];
 }
+
 
 -(void)updateAvailabilityView{
     [self.ibAvailabilityTable reloadData];
@@ -407,9 +406,14 @@
 }
 
 -(void)updateNearbyShopView{
-    [self.ibNearbyShopCollection reloadData];
-    
-    [self.ibNearbyShopView setHeight:265];
+    if (self.nearbyShopArray.count > 0) {
+        [self.ibNearbyShopCollection reloadData];
+        
+        [self.ibNearbyShopView setHeight:265];
+    }
+    else{
+        [self.ibNearbyShopView setHeight:0];
+    }
 }
 
 -(void)updateFooterView{
@@ -653,7 +657,12 @@
         [self updateFooterView];
         
         if ([Utils isStringNull:self.dealModel.voucher_info.voucher_id]) {
-            [self requestServerForSeetiShopNearbyShop:self.dealModel.shops[0]];
+            if (self.dealModel.shops.count == 1) {
+                [self requestServerForSeetiShopNearbyShop:self.dealModel.shops[0]];
+            }
+            else{
+                [self.ibNearbyShopView setHeight:0];
+            }
         }
         else{
             [self requestServerForSeetiShopNearbyShop:self.dealModel.voucher_info.shop_info];
@@ -698,6 +707,7 @@
         SeetiShopsModel *seetieShopModel = [[ConnectionManager dataManager]seNearbyShopModel];
         self.nearbyShopArray = seetieShopModel.userPostData.shops;
         [self updateViews];
+        
     } errorBlock:^(id object) {
         
     }];

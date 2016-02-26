@@ -509,17 +509,22 @@
                                 </mask>
                             </variation>
                         </scrollView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" text="50% OFF for All Coffee Drinks" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VPR-R2-ztP" userLabel="deal title">
-                            <rect key="frame" x="8" y="50" width="584" height="30"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="50% OFF for All Coffee Drinks" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VPR-R2-ztP" userLabel="deal title">
+                            <rect key="frame" x="8" y="50" width="584" height="24"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="R8o-QE-0BA"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="R8o-QE-0BA"/>
+                                </mask>
+                            </variation>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duK-1v-5Wn" userLabel="desc title">
-                            <rect key="frame" x="8" y="85" width="584" height="21"/>
+                            <rect key="frame" x="8" y="79" width="584" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="ffW-fJ-fiM"/>
                             </constraints>
@@ -528,18 +533,24 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4x-ov-uHa" userLabel="description">
-                            <rect key="frame" x="8" y="111" width="584" height="21"/>
+                            <rect key="frame" x="8" y="105" width="584" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="xPb-lN-FbI"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="xPb-lN-FbI"/>
+                                </mask>
+                            </variation>
                         </label>
-                        <view contentMode="scaleToFill" verticalCompressionResistancePriority="748" translatesAutoresizingMaskIntoConstraints="NO" id="l7C-D2-XyF" userLabel="redemption type content view">
-                            <rect key="frame" x="8" y="137" width="584" height="448"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l7C-D2-XyF" userLabel="redemption type content view">
+                            <rect key="frame" x="8" y="131" width="584" height="0.0"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
+                                <constraint firstAttribute="height" id="Aey-4H-hO2"/>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="xeQ-XY-Obg"/>
                             </constraints>
                             <variation key="default">
@@ -568,6 +579,11 @@
                         <constraint firstItem="l7C-D2-XyF" firstAttribute="top" secondItem="y4x-ov-uHa" secondAttribute="bottom" constant="5" id="gZu-5h-13K"/>
                         <constraint firstItem="b55-bC-7Gz" firstAttribute="top" secondItem="JIp-V7-DfW" secondAttribute="top" id="gaj-9a-Dbm"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="0br-Ky-WBB"/>
+                        </mask>
+                    </variation>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
