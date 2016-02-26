@@ -26,7 +26,6 @@
                                                        @"url.website": @"urlWebsite",
                                                        @"features.available" : @"arrFeatureAvaiable",
                                                        @"features.unavailable" : @"arrFeatureUnavaiable",
-                                                       @"id": @"shopId",
                                                        @"profile_photo.picture": @"profile_picture"
                                                        }];
 }

@@ -10,4 +10,6 @@
 
 @interface NearbyShopsCell : CommonCollectionViewCell
 
+-(void)setShopModel:(ShopModel *)shopModel;
+
 @end

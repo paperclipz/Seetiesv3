@@ -900,9 +900,9 @@
                             </variation>
                         </view>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Rdq-yf-iuG" userLabel="nearby shop collection">
-                            <rect key="frame" x="8" y="48" width="584" height="529"/>
+                            <rect key="frame" x="0.0" y="48" width="600" height="537"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="XmC-7q-5VO">
+                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="5" id="XmC-7q-5VO">
                                 <size key="itemSize" width="50" height="50"/>
                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -916,13 +916,13 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="Rdq-yf-iuG" secondAttribute="bottom" constant="8" id="3B7-1J-BJs"/>
+                        <constraint firstAttribute="bottom" secondItem="Rdq-yf-iuG" secondAttribute="bottom" id="3B7-1J-BJs"/>
                         <constraint firstItem="Rdq-yf-iuG" firstAttribute="top" secondItem="Oai-qc-YQR" secondAttribute="bottom" constant="8" id="BiK-4J-K5D"/>
                         <constraint firstItem="Oai-qc-YQR" firstAttribute="top" secondItem="h3B-5k-J9N" secondAttribute="top" id="P6h-W9-kvu"/>
                         <constraint firstItem="Oai-qc-YQR" firstAttribute="leading" secondItem="h3B-5k-J9N" secondAttribute="leading" id="SZq-1f-mB9"/>
                         <constraint firstAttribute="trailing" secondItem="Oai-qc-YQR" secondAttribute="trailing" id="X8O-ul-42c"/>
-                        <constraint firstAttribute="trailing" secondItem="Rdq-yf-iuG" secondAttribute="trailing" constant="8" id="e77-v6-zfW"/>
-                        <constraint firstItem="Rdq-yf-iuG" firstAttribute="leading" secondItem="h3B-5k-J9N" secondAttribute="leading" constant="8" id="kxu-ff-QYw"/>
+                        <constraint firstAttribute="trailing" secondItem="Rdq-yf-iuG" secondAttribute="trailing" id="e77-v6-zfW"/>
+                        <constraint firstItem="Rdq-yf-iuG" firstAttribute="leading" secondItem="h3B-5k-J9N" secondAttribute="leading" id="kxu-ff-QYw"/>
                     </constraints>
                 </view>
             </subviews>

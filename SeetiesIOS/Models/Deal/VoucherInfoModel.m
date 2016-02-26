@@ -10,12 +10,6 @@
 
 @implementation VoucherInfoModel
 
-+(JSONKeyMapper *)keyMapper{
-    return [[JSONKeyMapper alloc] initWithDictionary:@{
-                                                       @"id": @"voucher_id"
-                                                       }];
-}
-
 +(BOOL)propertyIsOptional:(NSString*)propertyName
 {
     return YES;
