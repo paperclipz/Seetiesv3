@@ -7,6 +7,7 @@
 //
 
 #import "SearchLocationViewController.h"
+#import "CT3_EnableLocationViewController.h"
 
 @interface SearchLocationViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *ibSearchTxtField;
@@ -25,7 +26,9 @@
 @property (nonatomic, strong) CountriesModel *countriesModel;
 
 @property (nonatomic, strong) CountryModel *currentSelectedCountry;
-
+@property (weak, nonatomic) IBOutlet UIButton *btnClose;
+@property (weak, nonatomic) IBOutlet UIImageView *btnCloseImage;
+@property(nonatomic)CT3_EnableLocationViewController* enableLocationViewController;
 @end
 
 @implementation SearchLocationViewController
@@ -33,7 +36,7 @@
 #pragma mark - IBACTION
 - (IBAction)btnutoDetectClicked:(id)sender {
     
-    if ([CLLocationManager isLocationUpdatesAvailable]) {
+    if ([SearchManager isDeviceGPSTurnedOn]) {
         
         self.userLocation = [self.searchManager getAppLocation];
         [self getGoogleGeoCode];
@@ -41,7 +44,8 @@
     }
     else{
         
-        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Please Enable Location Service") Type:TSMessageNotificationTypeError];
+        [self presentViewController:self.enableLocationViewController animated:YES completion:nil];
+       // [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Please Enable Location Service") Type:TSMessageNotificationTypeError];
     }
 
 }
@@ -66,6 +70,13 @@
     [self requestServerForCountry];
     // Do any additional setup after loading the view from its nib.
     
+}
+
+
+-(void)hideBackButton
+{
+    self.btnClose.hidden = YES;
+    self.btnCloseImage.hidden = YES;
 }
 
 -(void)initSelfView{
@@ -275,6 +286,14 @@
 
 #pragma mark - Declaration
 
+-(CT3_EnableLocationViewController*)enableLocationViewController
+{
+    if (!_enableLocationViewController) {
+        _enableLocationViewController = [CT3_EnableLocationViewController new];
+    }
+    
+    return _enableLocationViewController;
+}
 -(NSMutableArray*)arrCountries
 {
     if (!_arrCountries) {
@@ -314,12 +333,6 @@
                 self.homeLocationRefreshBlock(hModel);
             }
         }
-       
-
-        //        model.country;
-//        model.route;
-//        model.address_components;
-//        SLog(@"%@",model);
 
     }];
 }

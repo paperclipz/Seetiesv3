@@ -33,6 +33,7 @@
 @class CountriesModel;
 @class HomeModel;
 @class NotificationModels;
+@class AppInfoModel;
 
 typedef void(^BoolBlock) (BOOL isCollected);
 typedef void(^CompletionVoidBlock) (void);
@@ -85,7 +86,7 @@ typedef void(^CompletionVoidBlock) (void);
 @property(nonatomic,strong)HomeModel* homeModel;
 @property(nonatomic,strong)NotificationModels* notificationModels;
 @property(nonatomic,strong)NotificationModels* followingNotificationModels;
-
+@property(nonatomic,strong)AppInfoModel* appInfoModel;
 
 +(RecommendationModel*)getSampleRecommendation;
 +(EditPhotoModel*)getSampleEditPhotoModel;

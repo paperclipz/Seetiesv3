@@ -282,8 +282,7 @@
 
 -(void)serverRequestLogout
 {
-    NSDictionary* dict = @{@"" : [Utils getAppToken],
-                           
+    NSDictionary* dict = @{@"token" : [Utils getAppToken],
                            };
     
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetLogout param:dict appendString:nil completeHandler:^(id object) {
@@ -299,7 +298,7 @@
 
 -(void)reloadData
 {
-    SLog(@"ggwp");
+    //SLog(@"ggwp");
     _arrData = nil;
     [self.ibTableView reloadData];
 

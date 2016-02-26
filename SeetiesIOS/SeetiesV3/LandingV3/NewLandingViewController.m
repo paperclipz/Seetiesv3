@@ -29,15 +29,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    // [self initSelfView];
-    [self requestServerForLanguageList];
-    [self requestServerForUserInfo];
     
     [self.view addSubview:self.tabBarController.view];
-    
+
+    [self requestServerForLanguageList];
     
     if (![Utils checkUserIsLogin]) {
         [Utils showLogin];
 
+    }
+    else{
+        
+        [self requestServerForUserInfo];
+        [Utils reloadAppView];
     }
 }
 
@@ -128,6 +132,8 @@
 
 -(void)processLogin
 {
+    
+    [self.navLoginViewController dismissViewControllerAnimated:YES completion:nil];
     [Utils reloadAppView];
     self.tabBarController.selectedIndex = 0;
     [MessageManager showMessage:LocalisedString(@"system") SubTitle:@"Login Successfully" Type:TSMessageNotificationTypeSuccess];
@@ -135,8 +141,9 @@
     /*send crashlytics user UID to track crashes*/
     ProfileModel* model = [[ConnectionManager dataManager]userLoginProfileModel];
     [CrashlyticsKit setUserIdentifier:model.uid];
+    
+    [self requestServerForUserInfo];
 
-   // [self.newsFeedViewController refreshViewAfterLogin];
 }
 
 -(LeveyTabBarController*)leveyTabBarController
@@ -318,7 +325,7 @@
 {
     if (viewController == tabBarController.selectedViewController) {
         
-        [self.newsFeedViewController scrollToTop];
+        [self.newsFeedViewController scrollToTop:YES];
     }
     
     return YES;

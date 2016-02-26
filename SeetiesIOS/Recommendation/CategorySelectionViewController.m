@@ -50,7 +50,7 @@
     for (int i = 0; i<self.arrCategories.count; i++) {
         CategoryModel* model = self.arrCategories[i];
         int selected;
-        int categories = model.id;
+        int categories = model.category_id;
 
         for (int j= 0; j<selectedArray.count; j++) {
             selected = [selectedArray[j] intValue];

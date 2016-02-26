@@ -107,7 +107,6 @@ typedef enum {
 
 #pragma mark - app utils
 +(BOOL)isLogin;
-+(void)setIsLogin;
 +(NSString*)getAppToken;
 +(NSString*)getUserID;
 +(BOOL)isGuestMode;
@@ -120,6 +119,8 @@ typedef enum {
 
 #define UIColorFromRGB(r,g,b,a)  [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 #define DEFAULT_BORDER_RADIUS 5.0f
+
+
 
 +(CGRect)getDeviceScreenSize;
 #define DEVICE_COLOR [UIColor colorWithRed: 41.0 / 255 green: 182.0 / 255 blue: 246.0 / 255 alpha: 1.0]
@@ -222,5 +223,14 @@ typedef enum {
 #pragma mark - SYSTEM
 +(void)setIsDevelopment:(BOOL)isDev;
 +(BOOL)getIsDevelopment;
+
+#pragma mark - LOCATION
+#define KEY_USER_PREF_MAIN_KEY @"user_pref_key"
+#define KEY_LATITUDE @"latitude_key"
+#define KEY_LONGTITUDE @"longtitude_key"
+#define KEY_LOCATION @"location_key"
++(NSDictionary*)getSavedUserLocation;
++(void)saveUserLocation:(NSString*)location Longtitude:(NSString*)longtitude Latitude:(NSString*)latitude;
+
 
 @end

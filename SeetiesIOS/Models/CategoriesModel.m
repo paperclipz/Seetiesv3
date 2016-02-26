@@ -20,7 +20,8 @@
 {
     return [[JSONKeyMapper alloc] initWithDictionary:@{
                                                        @"images.default": @"defaultImageUrl",
-                                                       @"images.selected": @"selectedImageUrl"
+                                                       @"images.selected": @"selectedImageUrl",
+                                                       @"id" : @"category_id",
                                                        }];
 }
 

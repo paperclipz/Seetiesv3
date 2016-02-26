@@ -12,6 +12,7 @@
 #import "CLLocationManager+blocks.h"
 #import "FSVenue.h"
 #import "FSConverter.h"
+typedef void (^LocationBlock)(CLLocation* location);
 
 typedef void(^SearchManagerSuccessBlock)(CLLocation *currentLocation);
 typedef void(^SearchManagerFailBlock)(NSString *status);
@@ -22,9 +23,12 @@ typedef void(^SearchManagerFailBlock)(NSString *status);
 @property(nonatomic,strong)CLLocation* wifiLocation;
 @property(nonatomic,strong)CLLocation* GPSLocation;//new feature
 
++(BOOL)isDeviceGPSTurnedOn;
+
 -(CLLocation*)getAppLocation;
 -(void)startSearchGPSLocation;
 -(void)startGetWifiLocation;
+-(void)startSearchGPSLocation:(LocationBlock)CompletionBlock;
 
 -(void)getSuggestedLocationFromFoursquare:(CLLocation*)tempCurrentLocation input:(NSString*)input completionBlock:(IDBlock)completionBlock;
 

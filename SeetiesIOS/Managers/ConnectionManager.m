@@ -37,7 +37,7 @@
     // ====== set to Live if wanna go production ======
     self.serverPath = SERVER_PATH_DEV;
     self.dataManager = [DataManager Instance];
-
+    
     return self;
 }
 
@@ -62,7 +62,7 @@
         _manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/html",@"text/plain",nil];
         _manager.securityPolicy.allowInvalidCertificates = YES;
         _manager.securityPolicy.validatesDomainName = NO;
-      //  _manager.responseSerializer =[AFJSONResponseSerializer serializerWithReadingOptions:NSJSONReadingAllowFragments];
+        //  _manager.responseSerializer =[AFJSONResponseSerializer serializerWithReadingOptions:NSJSONReadingAllowFragments];
         
     }
     
@@ -72,17 +72,17 @@
 
 //-(void)requestServer:(ServerRequestType)type completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error GetMethodAttachString:(NSString*)str
 //{
-//    
+//
 //    NSString* fullPath =[NSString stringWithFormat:@"%@/%@",[self getFullURLwithType:type],str];
 //    NSLog(@"Request Server [%@]",fullPath);
-//    
+//
 //    [self.manager POST:fullPath parameters:nil
 //               success:^(AFHTTPRequestOperation *operation, id responseObject)
 //     {
-//         
-//         
+//
+//
 //         [self storeServerData:responseObject requestType:type];
-//         
+//
 //         if (completeBlock) {
 //             completeBlock(responseObject);
 //             [self processApiversion];
@@ -92,8 +92,8 @@
 //     ^(AFHTTPRequestOperation *operation, NSError *error) {
 //         NSLog(@"Error: %@", error);
 //     }];
-//    
-//    
+//
+//
 //}
 
 -(void)requestServerWithPost:(bool)isPost customURL:(NSString*)url requestType:(ServerRequestType)type param:(NSDictionary*)dict completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
@@ -106,51 +106,42 @@
                    success:^(AFHTTPRequestOperation *operation, id responseObject)
          {
              
-             [self storeServerData:responseObject requestType:type withURL:url];
+             [self storeServerData:responseObject requestType:type withURL:url completionBlock:completeBlock errorBlock:error];
              
-             
-             if (completeBlock) {
-                 completeBlock(responseObject);
-
-             }
              [LoadingManager hide];
-
+             
              
          }
                    failure:
          ^(AFHTTPRequestOperation *operation, NSError *error) {
              NSLog(@"Error: %@", error);
              [LoadingManager hide];
-
+             
          }];
         
     }
     else{
-    
+        
         [self.manager GET:url parameters:dict
-                   success:^(AFHTTPRequestOperation *operation, id responseObject)
+                  success:^(AFHTTPRequestOperation *operation, id responseObject)
          {
              
-             [self storeServerData:responseObject requestType:type withURL:url];
-            
+             [self storeServerData:responseObject requestType:type withURL:url completionBlock:completeBlock errorBlock:error];
              
-             if (completeBlock) {
-                 completeBlock(responseObject);
-
-             }
+             
              [LoadingManager hide];
-
+             
              
          }
-                   failure:
+                  failure:
          ^(AFHTTPRequestOperation *operation, NSError *error) {
              NSLog(@"Error: %@", error);
              [LoadingManager hide];
-
+             
          }];
-
+        
     }
-   
+    
 }
 
 
@@ -161,15 +152,14 @@
     NSString* fullURL = [self getFullURLwithType:type];
     
     SLog(@"\n\n ===== [REQUEST SERVER WITH POST][URL] : %@ \n [REQUEST JSON] : %@\n\n",fullURL,[dict bv_jsonStringWithPrettyPrint:YES]);
-
+    
     
     [self.manager POST:fullURL parameters:dict
                success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
-         [self storeServerData:responseObject requestType:type withURL:fullURL];
-         if (completeBlock) {
-             completeBlock(responseObject);
-         }
+         [self storeServerData:responseObject requestType:type withURL:fullURL completionBlock:completeBlock errorBlock:error];
+         
+         
      }
                failure:
      ^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -184,8 +174,8 @@
 {
     
     NSString* fullURL;
-
-      if (appendString) {
+    
+    if (appendString) {
         fullURL = [NSString stringWithFormat:@"%@/%@",[self getFullURLwithType:type],appendString];
         
     }
@@ -195,32 +185,27 @@
     }
     
     if (IS_SIMULATOR && type == ServerRequestTypeGetNewsFeed) {
-        [self storeServerData:[self getJsonForType:type] requestType:type withURL:fullURL];
+        [self storeServerData:[self getJsonForType:type] requestType:type withURL:fullURL completionBlock:completeBlock errorBlock:errorBlock];
+        
         if (completeBlock) {
             completeBlock(nil);
         }
         return;
     }
-
     
-    SLog(@"\n\n ===== [REQUEST SERVER WITH GET][URL] : %@ \n [REQUEST JSON] : %@\n\n",fullURL,[dict bv_jsonStringWithPrettyPrint:YES]);
     
-
+   // SLog(@"\n\n ===== [REQUEST SERVER WITH GET][URL] : %@ \n [REQUEST JSON] : %@\n\n",fullURL,[dict bv_jsonStringWithPrettyPrint:YES]);
+    
+    
     [self.manager GET:fullURL parameters:dict
-               success:^(AFHTTPRequestOperation *operation, id responseObject)
+              success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
+         [self storeServerData:responseObject requestType:type withURL:fullURL completionBlock:completeBlock errorBlock:errorBlock];
          
-         [self storeServerData:responseObject requestType:type withURL:fullURL];
-         
-         
-         if (completeBlock) {
-             completeBlock(responseObject);
-
-         }
          [LoadingManager hide];
-
+         
      }
-               failure:
+              failure:
      ^(AFHTTPRequestOperation *operation, NSError *error) {
          
          if (errorBlock) {
@@ -231,20 +216,62 @@
      }];
     
 }
-
--(void)requestServerWithPost:(ServerRequestType)type param:(NSDictionary*)dict appendString:(NSString*)appendString meta:(NSArray*)arrMeta completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)errorBlock
+-(void)requestServerWithPost:(ServerRequestType)type param:(NSDictionary*)dict appendString:(NSString*)appendString completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)errorBlock
 {
-        [LoadingManager show];
-
+    [LoadingManager show];
+    
     NSString* fullURL;
     if (appendString) {
         
         fullURL = [NSString stringWithFormat:@"%@/%@",[self getFullURLwithType:type],appendString];
-
+        
     }
     
     else{
+        
+        fullURL = [self getFullURLwithType:type];
+    }
     
+    SLog(@"\n\n ===== Request Server ===== : %@ \n\n request Json : %@",fullURL,[dict bv_jsonStringWithPrettyPrint:YES]);
+    
+    [self.manager POST:fullURL parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        
+        
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        // NSDictionary* resDict = [[NSDictionary alloc]initWithDictionary:responseObject];
+        
+        [self storeServerData:responseObject requestType:type withURL:fullURL completionBlock:completeBlock errorBlock:errorBlock];
+        
+        
+        [LoadingManager hide];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        if (errorBlock) {
+            errorBlock(error);
+        }
+        
+        [LoadingManager hide];
+        
+        NSLog(@"\n\n  Error: %@ ***** %@", operation.responseString, error);
+    }];
+    
+}
+
+-(void)requestServerWithPost:(ServerRequestType)type param:(NSDictionary*)dict appendString:(NSString*)appendString meta:(NSArray*)arrMeta completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)errorBlock
+{
+    [LoadingManager show];
+    
+    NSString* fullURL;
+    if (appendString) {
+        
+        fullURL = [NSString stringWithFormat:@"%@/%@",[self getFullURLwithType:type],appendString];
+        
+    }
+    
+    else{
+        
         fullURL = [self getFullURLwithType:type];
     }
     
@@ -257,13 +284,13 @@
         for (int i = 0; i<arrMeta.count; i++) {
             
             PhotoModel* model = arrMeta[i];
-                       [formData appendPartWithFormData:[[@(i+1)stringValue]  dataUsingEncoding:NSUTF8StringEncoding] name:[NSString stringWithFormat:@"photos_meta[%d][position]",i]];
+            [formData appendPartWithFormData:[[@(i+1)stringValue]  dataUsingEncoding:NSUTF8StringEncoding] name:[NSString stringWithFormat:@"photos_meta[%d][position]",i]];
             [formData appendPartWithFormData:[model.caption?model.caption:@"" dataUsingEncoding:NSUTF8StringEncoding] name:[NSString stringWithFormat:@"photos_meta[%d][caption]",i]];
             
             if(model.photo_id)
             {
                 [formData appendPartWithFormData:[model.photo_id dataUsingEncoding:NSUTF8StringEncoding] name:[NSString stringWithFormat:@"photos_meta[%d][photo_id]",i]];
-
+                
             }
             else{
                 
@@ -271,34 +298,18 @@
                 if (imageData) {
                     [formData appendPartWithFileData:imageData name:[NSString stringWithFormat:@"photos[%d]",i] fileName:@"photo.jpg" mimeType:@"image/jpeg"];
                 }
-
-            
+                
+                
             }
-        
+            
         }
         
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSDictionary* resDict = [[NSDictionary alloc]initWithDictionary:responseObject];
-        
-        if (resDict[@"error"]) {
-            if (errorBlock) {
-                errorBlock(resDict[@"error"]);
-
-            }
-        }
-        else {
-            [self storeServerData:responseObject requestType:type withURL:fullURL];
-            if (completeBlock) {
-                completeBlock(responseObject);
-            }
-        }
-        
-
-       
+        [self storeServerData:responseObject requestType:type withURL:fullURL completionBlock:completeBlock errorBlock:errorBlock];
         
         [LoadingManager hide];
-
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
         if (errorBlock) {
@@ -306,15 +317,15 @@
         }
         
         [LoadingManager hide];
-
+        
         NSLog(@"\n\n  Error: %@ ***** %@", operation.responseString, error);
     }];
     
-   
+    
     
     [op setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
         NSLog(@"Wrote %lld/%lld", totalBytesWritten, totalBytesExpectedToWrite);
-
+        
     }];
     
     [op start];
@@ -325,28 +336,24 @@
 {
     
     NSString* fullURL = [NSString stringWithFormat:@"%@/%@",[self getFullURLwithType:type],appendString];
-
+    
     NSLog(@"\n\n ===== Request Server DELETE ===== : %@ \n\n Request Json : %@",fullURL,dict);
     
     [self.manager DELETE:fullURL parameters:dict
-              success:^(AFHTTPRequestOperation *operation, id responseObject)
+                 success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          
-         [self storeServerData:responseObject requestType:type withURL:fullURL];
+         [self storeServerData:responseObject requestType:type withURL:fullURL completionBlock:completeBlock errorBlock:error];
          
          
-         if (completeBlock) {
-             completeBlock(responseObject);
-
-         }
          [LoadingManager hide];
-
+         
      }
-              failure:
+                 failure:
      ^(AFHTTPRequestOperation *operation, NSError *error) {
          NSLog(@"Error: %@ ***** %@", operation.responseString, error);
          [LoadingManager hide];
-
+         
      }];
 }
 
@@ -354,7 +361,7 @@
 {
     
     
-        NSString* fullURL;
+    NSString* fullURL;
     
     if (appendString) {
         fullURL = [NSString stringWithFormat:@"%@/%@",[self getFullURLwithType:type],appendString];
@@ -372,21 +379,15 @@
               success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          
-         [self storeServerData:responseObject requestType:type withURL:fullURL];
+         [self storeServerData:responseObject requestType:type withURL:fullURL completionBlock:completeBlock errorBlock:error];
          
-         
-         if (completeBlock) {
-             completeBlock(responseObject);
-
-         }
-
      }
               failure:
      ^(AFHTTPRequestOperation *operation, NSError *error) {
          
          NSLog(@"\n\n Error: %@", error);
          [LoadingManager hide];
-
+         
      }];
     
 }
@@ -403,11 +404,11 @@
     switch (type) {
         case ServerRequestTypeLogin:
             str = [NSString stringWithFormat:@"%@/login",API_VERION_URL];
-
+            
             break;
         case ServerRequestTypeLoginFacebook:
             str = [NSString stringWithFormat:@"%@/login/facebook",API_VERION_URL];
-
+            
             break;
         case ServerRequestTypeLoginInstagram:
             str = [NSString stringWithFormat:@"%@/login/instagram",API_VERION_URL];
@@ -416,31 +417,41 @@
             
         case ServerRequestTypeRegister:
             str = [NSString stringWithFormat:@"%@/register",API_VERION_URL];
-
+            
             break;
         case ServerRequestTypeGetLogout:
             str = [NSString stringWithFormat:@"%@/logout",API_VERION_URL];
-
+            
             break;
             
         case ServerRequestTypeGetNewsFeed:
             str = [NSString stringWithFormat:@"%@/feed/v2",API_VERION_URL];
-
+            
+            break;
+            
+        case ServerRequestTypeGetAllAppInfo:
+            str = [NSString stringWithFormat:@"%@/system/update/all",API_VERION_URL];
+            
             break;
             
         case ServerRequestTypeGetLanguage:
             
-            str = [NSString stringWithFormat:@"%@/system/languages",API_VERION_URL];
+            str = [NSString stringWithFormat:@"%@/system/update/languages",API_VERION_URL];
+            break;
+            
+        case ServerRequestTypeGetCategory:
+            str = [NSString stringWithFormat:@"%@/system/update/category",API_VERION_URL];
+            
             break;
         case ServerRequestTypeGetApiVersion:
             
             str = [NSString stringWithFormat:@"%@/system/apiversion?device_type=2",API_VERION_URL];
             return [NSString stringWithFormat:@"https://%@/%@",SERVER_PATH_DEV,str];
-
+            
             break;
         case ServerRequestTypeGetExplore:
             str = [NSString stringWithFormat:@"%@/explore",API_VERION_URL];
-
+            
             break;
             
         case ServerRequestTypePostCreatePost:
@@ -448,28 +459,28 @@
         case ServerRequestTypeGetPostInfo:
         case ServerRequestTypePostSaveDraft:
             str = [NSString stringWithFormat:@"%@/post",API_VERION_URL];
-
+            
             
             break;
             
         case ServerRequestTypeGetRecommendationDraft:
             str = [NSString stringWithFormat:@"%@/draft",API_VERION_URL];
-
+            
             break;
             
-            case ServerRequestTypeGetGeoIP:
+        case ServerRequestTypeGetGeoIP:
             
             return [NSString stringWithFormat:@"https://geoip.seeties.me/geoip"];
-
+            
             break;
             
         case ServerRequestTypeGetCategories:
             str = [NSString stringWithFormat:@"%@/system/update/category",API_VERION_URL];
-
+            
             break;
         case ServerRequestTypeGetTagsSuggestion:
             str = [NSString stringWithFormat:@"%@/tags",API_VERION_URL];
-
+            
             
             break;
             
@@ -479,9 +490,9 @@
         case ServerRequestTypeGetSeetoShopNearbyShop:
         case ServerRequestTypeGetSeetoShopRecommendations:
         case ServerRequestTypeGetSeetoShopTranslation:
-
+            
             str = [NSString stringWithFormat:@"%@/seetishops",API_VERION_URL];
-
+            
             break;
             
         case ServerRequestTypeGetCollectionInfo:
@@ -496,8 +507,10 @@
         case ServerRequestTypePostCreateCollection:
         case ServerRequestTypeUserFollower:
         case ServerRequestTypeUserFollowing:
+        case ServerRequestTypePostProvisioning:
+            
         default:
-             str = API_VERION_URL;
+            str = API_VERION_URL;
             break;
             
         case ServerRequestTypePostLikeAPost:
@@ -511,7 +524,7 @@
             break;
         case ServerRequestTypeGetHomeCountry:
             str = [NSString stringWithFormat:@"%@/home/countries",API_VERION_URL];
-
+            
             break;
             
         case ServerRequestTypeGetHomeCountryPlace:
@@ -554,17 +567,59 @@
             str = [NSString stringWithFormat:@"%@/deals", API_VERION_URL];
             break;
             
+            
     }
     
     return [NSString stringWithFormat:@"https://%@/%@",self.serverPath,str];
     
 }
 
--(void)storeServerData:(id)obj requestType:(ServerRequestType)type withURL:(NSString*)url
+-(void)storeServerData:(id)obj requestType:(ServerRequestType)type withURL:(NSString*)url completionBlock:(IDBlock)completionBlock errorBlock:(IDBlock)errorBlock
 {
     NSLog(@"\n\n\n [SUCCESS RESPONSE RESULT URL : %@] \n%@ \n\n\n", url,[obj bv_jsonStringWithPrettyPrint:YES]);
-
+    
     [self storeServerData:obj requestType:type];
+    
+    NSDictionary* dict = [[NSDictionary alloc]initWithDictionary:obj];
+    
+    BOOL hasError = NO;
+    
+   
+    
+    @try {
+        
+        NSString* error = dict[@"error"];
+        
+        if (![Utils isStringNull:error]) {
+            
+            SLog(@"%@",dict[@"message"]);
+            
+            [MessageManager showMessage:LocalisedString(@"system") SubTitle:dict[@"message"] Type:TSMessageNotificationTypeError];
+            
+            hasError = YES;
+            
+        }
+        
+    }
+    @catch (NSException *exception) {
+        
+    }
+    
+    
+    if (hasError) {
+        if (errorBlock) {
+            errorBlock(dict);
+        }
+
+    }
+    else{
+    
+        if (completionBlock) {
+            completionBlock(dict);
+        }
+        
+    }
+   
 }
 
 -(void)processLogin
@@ -573,7 +628,7 @@
     if (model) {
         
         [Utils registerParseAfterLogin:model.uid];
-
+        
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:model.token forKey:TOKEN];
         [defaults setObject:model.uid forKey:USERID];
@@ -589,14 +644,14 @@
         
         [defaults synchronize];
     }
-
+    
 }
 
 -(void)storeServerData:(id)obj requestType:(ServerRequestType)type
 {
-
+    
     [LoadingManager hide];
-
+    
     //make checking for status fail or success here
     switch (type) {
         case ServerRequestTypeLogin:
@@ -604,31 +659,31 @@
             NSDictionary* dict = obj[@"data"];
             self.dataManager.userLoginProfileModel = [[ProfileModel alloc]initWithDictionary:dict error:nil];
             [self processLogin];
-           
+            
         }
-
+            
             break;
             
         case ServerRequestTypeLoginFacebook:
         {
             NSDictionary* dict = obj[@"data"];
-
+            
             self.dataManager.userLoginProfileModel = [[ProfileModel alloc]initWithDictionary:dict error:nil];
             [self processLogin];
-
+            
         }
             break;
             
         case ServerRequestTypeLoginInstagram:
         {
             NSDictionary* dict = obj[@"data"];
-
+            
             self.dataManager.userLoginProfileModel = [[ProfileModel alloc]initWithDictionary:dict error:nil];
             [self processLogin];
-
+            
         }
             break;
-
+            
             
         case ServerRequestTypeRegister:
             
@@ -659,7 +714,7 @@
             break;
             
         case ServerRequestTypeGetExplore:
-        
+            
             self.dataManager.exploreCountryModels = [[ExploreCountryModels alloc]initWithDictionary:obj error:nil];
             break;
             
@@ -698,20 +753,20 @@
             
         case ServerRequestTypePostDeletePost:
         {
-           
+            
         }
             break;
         case ServerRequestTypeGetCategories:
-        
+            
             self.dataManager.categoriesModel = [[CategoriesModel alloc]initWithDictionary:obj error:nil];
-           
+            
             break;
             
         case ServerRequestTypeGetCollectionInfo:
         {
             
             NSDictionary* dict = obj[@"data"];
-
+            
             self.dataManager.collectionModels = [[CollectionModel alloc]initWithDictionary:dict error:nil];
             [self.dataManager.collectionModels process];
         }
@@ -747,7 +802,7 @@
             
             NSDictionary* dict = obj[@"data"];
             self.dataManager.userCollectionsModel = [[CollectionsModel alloc]initWithDictionary:dict error:nil];
-
+            
         }
             break;
         case ServerRequestTypeGetUserInfo:
@@ -761,7 +816,7 @@
         {
             self.dataManager.userProfilePostModel = [[ProfilePostModel alloc]initWithDictionary:obj error:nil];
             [self.dataManager.userProfilePostModel.userPostData process];
-
+            
         }
             break;
             
@@ -769,7 +824,7 @@
         {
             self.dataManager.userProfileLikeModel = [[ProfilePostModel alloc]initWithDictionary:obj error:nil];
             [self.dataManager.userProfileLikeModel.userPostData process];
-
+            
         }
             break;
         case ServerRequestTypeGetUserFollowingCollections:
@@ -779,7 +834,7 @@
             self.dataManager.userFollowingCollectionsModel = [[CollectionsModel alloc]initWithDictionary:dict error:nil];
             
         }
-           
+            
             break;
             
         case ServerRequestTypeGetUserSuggestedCollections:
@@ -828,7 +883,7 @@
         case ServerRequestTypeGetSeetoShopTranslation:
         {
             SLog(@"the ServerRequestTypeGetSeetoShopTranslation result is :%@",obj);
-
+            
         }
             break;
         case ServerRequestTypePutCollectPost:
@@ -851,7 +906,7 @@
         case ServerRequestTypeGetHomeCountry:
         {
             NSDictionary* dict = obj[@"data"];
-
+            
             self.dataManager.countriesModel = [[CountriesModel alloc]initWithDictionary:dict error:nil];
         }
             break;
@@ -859,10 +914,10 @@
         case ServerRequestTypeGetHomeCountryPlace:
         {
             NSDictionary* dict = obj[@"data"];
-
-         //   AreaModel* model = [[AreaModel alloc]initWithDictionary:dict error:nil];
             
-          //  SLog(@"%@",model);
+            //   AreaModel* model = [[AreaModel alloc]initWithDictionary:dict error:nil];
+            
+            //  SLog(@"%@",model);
         }
             break;
             
@@ -909,7 +964,7 @@
             self.dataManager.dealModel = [[DealModel alloc] initWithDictionary:dict error:nil];
         }
             break;
-
+            
         case ServerRequestTypeGetHomeUpdater:
         {
             NSDictionary *dict = obj[@"data"];
@@ -917,7 +972,7 @@
         }
             
             break;
-
+            
         case ServerRequestTypeGetFollowingNotifictions:
         {
             NSDictionary* dict = obj[@"data"];
@@ -930,15 +985,24 @@
             @try {
                 NSDictionary* dict = obj[@"data"][@"notifications"];
                 self.dataManager.notificationModels = [[NotificationModels alloc]initWithDictionary:dict error:nil];
-
+                
             }
             @catch (NSException *exception) {
                 
                 SLog(@"NotificationModels Not Initialized");
             }
         }
-
+            
             break;
+            
+        case ServerRequestTypeGetAllAppInfo:
+            
+            self.dataManager.appInfoModel = [[AppInfoModel alloc]initWithDictionary:obj error:nil];
+            
+            break;
+            //        case ServerRequestTypePostProvisioning:
+            //
+            //            break;
         default:
             
             SLog(@"the return result is :%@",obj);
@@ -954,13 +1018,32 @@
     
     NSError *error;
     NSString *content = [NSString stringWithContentsOfFile:textPAth encoding:NSUTF8StringEncoding error:&error];  //error checking omitted
-//    NSError *jsonError;
-
+    //    NSError *jsonError;
+    
     NSData *data = [content dataUsingEncoding:NSUTF8StringEncoding];
     localDict = [NSJSONSerialization JSONObjectWithData:data
-                                                   options:NSJSONReadingMutableContainers
-                                                     error:&error];
+                                                options:NSJSONReadingMutableContainers
+                                                  error:&error];
     return localDict;
+}
+
+-(void)requestServerForAppInfo:(IDBlock)completionBlock FailBlock:(IErrorBlock)errorBlock
+{
+    
+    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetAllAppInfo param:nil appendString:nil completeHandler:^(id object) {
+        
+        if(completionBlock)
+        {
+            completionBlock(object);
+        }
+        
+    } errorBlock:^(id object) {
+        
+        if(errorBlock)
+        {
+            errorBlock(object);
+        }
+    }];
 }
 
 

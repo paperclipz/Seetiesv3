@@ -776,4 +776,29 @@
     return isDev;
 }
 
++(NSDictionary*)getSavedUserLocation
+{
+    /*dictionary consist of location, longtitude and latitude*/
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSDictionary* dict = [defaults objectForKey:KEY_USER_PREF_MAIN_KEY];
+    
+    return dict;
+    
+}
+
++(void)saveUserLocation:(NSString*)location Longtitude:(NSString*)longtitude Latitude:(NSString*)latitude
+{
+    
+    NSDictionary* dict = @{KEY_LOCATION:location,
+                           KEY_LONGTITUDE : longtitude,
+                           KEY_LATITUDE : latitude
+                           };
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:dict forKey:KEY_USER_PREF_MAIN_KEY];
+    
+    [defaults synchronize];
+
+}
+
 @end

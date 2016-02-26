@@ -235,7 +235,6 @@
                 [self showCollectionView:model.collectionInfo userID:model.collectionInfo.user_info.uid];
 
             }
-            
 
             break;
         case NotificationType_SeetiesShared:

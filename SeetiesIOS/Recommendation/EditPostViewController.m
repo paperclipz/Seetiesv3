@@ -774,7 +774,7 @@ static id ObjectOrNull(id object)
     
         CategoryModel* model = self.categoriesModel.categories[i];
         if (model.isSelected) {
-            [categoriesSelected addObject:@(model.id)];
+            [categoriesSelected addObject:@(model.category_id)];
 
         }
     }

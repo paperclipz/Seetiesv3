@@ -22,4 +22,5 @@
 @property(nonatomic)NotificationViewController *notificationViewController;
 @property(nonatomic)InviteFrenViewController *inviteFriendViewController;
 @property(nonatomic)PromoPopOutViewController *promoCodeViewController;
+
 @end

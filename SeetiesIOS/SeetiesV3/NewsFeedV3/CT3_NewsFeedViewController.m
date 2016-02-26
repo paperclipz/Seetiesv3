@@ -46,6 +46,9 @@
 #import "CT3_AnnouncementViewController.h"
 
 #import "UITableView+Extension.h"
+
+#import "SelectCategoryViewController.h"
+
 static NSCache* heightCache = nil;
 #define TopBarHeight 64.0f
 #define NUMBER_OF_SECTION 2
@@ -61,6 +64,10 @@ static NSCache* heightCache = nil;
     NSString* lastUpdatedDateTime;
     BOOL updateLocation;
     BOOL updateData;
+    
+    NSString* currentLatitude;
+    NSString* currentLongtitude;
+
     
 }
 /*IBOUTLET*/
@@ -139,18 +146,20 @@ static NSCache* heightCache = nil;
 }
 - (IBAction)btnTestCliked:(id)sender {
     
-    SeetiesShopViewController* temp = [SeetiesShopViewController new];
-   
-    //UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:temp];
-    [temp initDataWithSeetiesID:@"56397e301c4d5be92e8b4711"];
-    [self presentViewController:temp animated:YES completion:nil];
+    SelectCategoryViewController* asd = [SelectCategoryViewController new];
+    [self presentViewController:asd animated:YES completion:nil];
+//    SeetiesShopViewController* temp = [SeetiesShopViewController new];
+//   
+//    //UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:temp];
+//    [temp initDataWithSeetiesID:@"56397e301c4d5be92e8b4711"];
+//    [self presentViewController:temp animated:YES completion:nil];
     
     _dealRedeemViewController = nil;
   //  [self.navigationController pushViewController:self.dealRedeemViewController animated:YES];
 
 }
 
--(void)refreshViewAfterLogin
+-(void)reloadNewsFeed
 {
     self.newsFeedModels = nil;
     
@@ -158,8 +167,10 @@ static NSCache* heightCache = nil;
         [self.arrayNewsFeed removeAllObjects];
         [self.ibTableView reloadData];
     }
-   
-    [self requestServerForNewsFeed];
+    [heightCache removeAllObjects];
+    heightCache = nil;
+    heightCache = [NSCache new];
+    [self requestServerForNewsFeed:currentLatitude Longtitude:currentLongtitude];
 }
 
 #pragma mark - Declaration
@@ -314,7 +325,15 @@ static NSCache* heightCache = nil;
         {
             weakself.currentHomeLocationModel = model;
             [weakself requestServerForHome:model];
+            
+            currentLongtitude = model.longtitude;
+            currentLatitude = model.latitude;
+            [weakself reloadNewsFeed];
+            
             [weakself.searchLocationViewController.navigationController popViewControllerAnimated:YES];
+            
+            [Utils saveUserLocation:model.place_id Longtitude:model.longtitude Latitude:model.latitude];
+
         };
         
         _searchLocationViewController.searchLocationRefreshBlock = ^(RecommendationVenueModel* model)
@@ -324,6 +343,12 @@ static NSCache* heightCache = nil;
             weakself.currentHomeLocationModel.latitude = model.lat;
             weakself.currentHomeLocationModel.place_id = model.place_id;
             [weakself requestServerForHome:weakself.currentHomeLocationModel];
+            
+            currentLongtitude = model.lng;
+            currentLatitude = model.lat;
+            [weakself reloadNewsFeed];
+
+            [Utils saveUserLocation:model.place_id Longtitude:model.lng Latitude:model.lat];
         };
         
         _searchLocationViewController.refreshAreaLocation = ^(PlaceModel* model)
@@ -334,6 +359,12 @@ static NSCache* heightCache = nil;
             weakself.currentHomeLocationModel.latitude = model.latitude;
             weakself.currentHomeLocationModel.place_id = model.place_id;
             [weakself requestServerForHome:weakself.currentHomeLocationModel];
+            
+            currentLongtitude = model.longtitude;
+            currentLatitude = model.latitude;
+            [weakself reloadNewsFeed];
+
+            [Utils saveUserLocation:model.place_id Longtitude:model.longtitude Latitude:model.latitude];
 
         };
     }
@@ -353,7 +384,6 @@ static NSCache* heightCache = nil;
     lastUpdatedLocation = @"";
     
     [self initSelfView];
-    [self refreshViewAfterLogin];
 
   //  [self getDummyData];
     // Do any additional setup after loading the view from its nib.
@@ -366,20 +396,10 @@ static NSCache* heightCache = nil;
     if (!isFirstLoad) {
         [self requestServerForHomeUpdate:self.currentHomeLocationModel];
     }
-  //  [self.ibTableView reloadData];
 }
 
 -(void)initSelfView
 {
-    HomeLocationModel* model = [HomeLocationModel new];
-    model.type = @"none";
-    model.latitude = @"";
-    model.longtitude = @"";
-    model.place_id = @"";
-    self.currentHomeLocationModel = model;
-
-    
-    [self requestServerForHome:model];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     constTopScrollView.constant = TopBarHeight;
@@ -640,7 +660,6 @@ static NSCache* heightCache = nil;
     
     else{
         CTFeedTypeModel* typeModel = self.arrayNewsFeed[indexPath.row];
-        
         
         switch (typeModel.feedType) {
             case FeedType_Following_Post:
@@ -1080,7 +1099,6 @@ static NSCache* heightCache = nil;
     
 }
 
-
 -(void)getDummyData
 {
     self.arrayNewsFeed = [NSMutableArray new];
@@ -1262,22 +1280,21 @@ static NSCache* heightCache = nil;
     }];
 }
 
--(void)requestServerForNewsFeed
+-(void)requestServerForNewsFeed:(NSString*)latitude Longtitude:(NSString*)longtitude
 {
     
     if (!isMiddleOfLoadingServer) {
         SLog(@"token :%@",[Utils getAppToken]);
         
-        CLLocation* location  = [[SearchManager Instance]getAppLocation];
         NSDictionary* dict = @{@"token" : [Utils getAppToken],
                                @"offset":@(self.newsFeedModels.offset + self.newsFeedModels.limit),
                                @"limit" : @(5),
-                               @"lat" : @(location.coordinate.latitude),
-                               @"lng" : @(location.coordinate.longitude),
+                               @"lat" : latitude,
+                               @"lng" : longtitude,
                                };
         
         isMiddleOfLoadingServer = YES;
-        [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetNewsFeed param:dict appendString:@"" completeHandler:^(id object) {
+        [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetNewsFeed param:dict appendString:nil completeHandler:^(id object) {
             isMiddleOfLoadingServer = NO;
             isFirstLoad = NO;
             NewsFeedModels* model = [[ConnectionManager dataManager] newsFeedModels];
@@ -1342,6 +1359,8 @@ static NSCache* heightCache = nil;
 
 -(void)requestServerForHomeUpdate:(HomeLocationModel*)model
 {
+    
+    return;
     CLLocation* location  = [[SearchManager Instance]getAppLocation];
     
     NSDictionary* dict = @{@"lat" : model.latitude,
@@ -1374,8 +1393,8 @@ static NSCache* heightCache = nil;
 
 -(void)processUpdater
 {
-    updateLocation = YES;
-    updateData = YES;
+    //updateLocation = YES;
+    //updateData = YES;
     if (updateLocation) {
         
         [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Do You want to update your location") cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
@@ -1417,7 +1436,7 @@ static NSCache* heightCache = nil;
 //}
 
 
-- (void)scrollViewDidScroll: (UIScrollView *)scrollView {
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     // UITableView only moves in one direction, y axis
     CGFloat currentOffset = scrollView.contentOffset.y;
     CGFloat maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height;
@@ -1429,7 +1448,7 @@ static NSCache* heightCache = nil;
         {
             [(UIActivityIndicatorView *)[self.ibFooterView viewWithTag:10] startAnimating];
             
-            [self requestServerForNewsFeed];
+            [self requestServerForNewsFeed:currentLatitude Longtitude:currentLongtitude];
         }
     }
     
@@ -1458,15 +1477,87 @@ static NSCache* heightCache = nil;
 
 }
 
--(void)scrollToTop
+-(void)scrollToTop:(BOOL)animation
 {
-    [self.ibTableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+    [self.ibTableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:animation];
 }
 
+
+-(BOOL)validateLocalLocation
+{
+    
+    NSDictionary* dict = [Utils getSavedUserLocation];
+    
+    
+    @try {
+        if (dict) {
+            
+            NSString* latitude = dict[KEY_LATITUDE];
+            NSString* location = dict[KEY_LOCATION];
+            
+            if (![Utils isStringNull:location]) {
+                return YES;
+            }
+            else if(![Utils isStringNull:latitude])
+            {
+                return YES;
+                
+            }
+            
+        }
+
+    }
+    @catch (NSException *exception) {
+        return NO;
+
+    }
+    
+    return NO;
+    
+}
 -(void)reloadData
 {
-    [self scrollToTop];
-    [self refreshViewAfterLogin];
+    
+    if ([self validateLocalLocation]) {
+        
+        [self loadHomeData];
+        
+    }
+    
+    else{
+    
+        _searchLocationViewController = nil;
+        
+        [self.navigationController pushViewController:self.searchLocationViewController animated:NO onCompletion:^{
+            [self.searchLocationViewController hideBackButton];
+
+        }];
+    }
+}
+
+-(void)loadHomeData
+{
+    [self scrollToTop:NO];
+    
+    
+    if (![Utils isStringNull:[Utils getAppToken]]) {
+        
+        NSDictionary* dict = [Utils getSavedUserLocation];
+        
+        currentLatitude = dict[KEY_LATITUDE];
+        currentLongtitude = dict[KEY_LONGTITUDE];
+
+        [self reloadNewsFeed];
+        
+        HomeLocationModel* model = [HomeLocationModel new];
+        model.type = @"none";
+        model.latitude = dict[KEY_LATITUDE];
+        model.longtitude = dict[KEY_LONGTITUDE];
+        model.place_id = dict[KEY_LOCATION];
+        self.currentHomeLocationModel = model;
+        [self requestServerForHome:model];
+    }
+
 }
 
 @end

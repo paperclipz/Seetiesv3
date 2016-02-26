@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="ProximaNovaSoft-Bold.ttf">
+            <string>ProximaNovaSoft-Bold</string>
+            <string>ProximaNovaSoft-Bold</string>
+            <string>ProximaNovaSoft-Bold</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CT3_EnableLocationViewController">
+            <connections>
+                <outlet property="btnAllowAccess" destination="V7g-Ts-OGK" id="FRe-R6-REU"/>
+                <outlet property="btnNotNow" destination="FPy-L8-A8t" id="1LI-80-l9g"/>
+                <outlet property="lblDesc" destination="CSf-03-AAg" id="D6q-5X-SuF"/>
+                <outlet property="lblTitle" destination="zqj-y1-GLk" id="myq-Jg-kz3"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CHh-qX-Tip">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NearbyImg.png" translatesAutoresizingMaskIntoConstraints="NO" id="plO-lT-P8u">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="309"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="309" id="QgG-5z-XIF"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FPy-L8-A8t">
+                            <rect key="frame" x="55" y="472" width="210" height="30"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="lf5-Fz-pJH"/>
+                                <constraint firstAttribute="width" constant="210" id="ryW-jR-nsd"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="ProximaNovaSoft-Bold" family="Proxima Nova Soft" pointSize="15"/>
+                            <state key="normal" title="Not now"/>
+                            <connections>
+                                <action selector="btnNotNowClicked:" destination="-1" eventType="touchUpInside" id="3iD-cY-Dj5"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can adjust these settings in your Location Service too." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CSf-03-AAg">
+                            <rect key="frame" x="50" y="520" width="220" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="9NV-7A-G7p"/>
+                                <constraint firstAttribute="width" constant="220" id="9fE-vB-OPI"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="ProximaNovaSoft-Bold" family="Proxima Nova Soft" pointSize="15"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable location to get the best experience &amp; nearby suggestions" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zqj-y1-GLk">
+                            <rect key="frame" x="50" y="317" width="220" height="80"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="80" id="pwE-QR-GT9"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V7g-Ts-OGK">
+                            <rect key="frame" x="55" y="427" width="210" height="37"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="210" id="cdN-46-6du"/>
+                                <constraint firstAttribute="height" constant="37" id="otI-VC-JSB"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="ProximaNovaSoft-Bold" family="Proxima Nova Soft" pointSize="15"/>
+                            <state key="normal" title="Allow location access">
+                                <color key="titleColor" red="0.20000000000000001" green="0.70980392160000005" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="btnAllowAccessClicked:" destination="-1" eventType="touchUpInside" id="IrE-iu-e8K"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.20000000000000001" green="0.70980392160000005" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="zqj-y1-GLk" firstAttribute="leading" secondItem="CHh-qX-Tip" secondAttribute="leading" constant="50" id="6J8-0n-oGV"/>
+                        <constraint firstItem="V7g-Ts-OGK" firstAttribute="centerX" secondItem="CHh-qX-Tip" secondAttribute="centerX" id="6RZ-Qx-dNW"/>
+                        <constraint firstItem="zqj-y1-GLk" firstAttribute="top" secondItem="plO-lT-P8u" secondAttribute="bottom" constant="8" id="EPJ-W3-k2v"/>
+                        <constraint firstAttribute="trailing" secondItem="zqj-y1-GLk" secondAttribute="trailing" constant="50" id="RTy-7h-A6P"/>
+                        <constraint firstAttribute="trailing" secondItem="plO-lT-P8u" secondAttribute="trailing" id="SoT-O7-M1M"/>
+                        <constraint firstAttribute="bottom" secondItem="CSf-03-AAg" secondAttribute="bottom" constant="8" id="UGv-og-iem"/>
+                        <constraint firstItem="V7g-Ts-OGK" firstAttribute="top" secondItem="zqj-y1-GLk" secondAttribute="bottom" constant="30" id="XEg-oS-1uE"/>
+                        <constraint firstItem="plO-lT-P8u" firstAttribute="top" secondItem="CHh-qX-Tip" secondAttribute="top" id="Y5H-0M-Fko"/>
+                        <constraint firstItem="CSf-03-AAg" firstAttribute="centerX" secondItem="CHh-qX-Tip" secondAttribute="centerX" id="YOC-K4-VEF"/>
+                        <constraint firstItem="zqj-y1-GLk" firstAttribute="leading" secondItem="plO-lT-P8u" secondAttribute="leading" id="ZGa-9f-3fQ"/>
+                        <constraint firstItem="V7g-Ts-OGK" firstAttribute="top" secondItem="zqj-y1-GLk" secondAttribute="bottom" constant="30" id="btg-Yw-4KQ"/>
+                        <constraint firstItem="FPy-L8-A8t" firstAttribute="top" secondItem="V7g-Ts-OGK" secondAttribute="bottom" constant="8" id="s12-59-oe0"/>
+                        <constraint firstItem="plO-lT-P8u" firstAttribute="leading" secondItem="CHh-qX-Tip" secondAttribute="leading" id="vdR-VY-YrJ"/>
+                        <constraint firstItem="FPy-L8-A8t" firstAttribute="centerX" secondItem="CHh-qX-Tip" secondAttribute="centerX" id="zzT-bM-sbF"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="ZGa-9f-3fQ"/>
+                            <exclude reference="XEg-oS-1uE"/>
+                        </mask>
+                    </variation>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="CHh-qX-Tip" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="GmB-bT-IVX"/>
+                <constraint firstItem="CHh-qX-Tip" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="OXa-16-Hsd"/>
+                <constraint firstAttribute="bottom" secondItem="CHh-qX-Tip" secondAttribute="bottom" id="gDF-92-inP"/>
+                <constraint firstAttribute="trailing" secondItem="CHh-qX-Tip" secondAttribute="trailing" id="lbP-yU-ygS"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="NearbyImg.png" width="597" height="561"/>
+    </resources>
+</document>

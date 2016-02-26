@@ -359,7 +359,7 @@
     
     
     if (self.navigationController) {
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self.navigationController popViewControllerAnimated:YES];
     }
     else{
         [self dismissViewControllerAnimated:NO completion:nil];

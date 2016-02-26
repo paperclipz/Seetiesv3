@@ -327,9 +327,11 @@
 {
     
     if (self.profileViewType == ProfileViewTypeOwn) {
-        [self.ibScrollView.parallaxView addSubview:self.ibSettingContentView];
-        [self.ibScrollView.parallaxView bringSubviewToFront:self.ibSettingContentView];
-        [self.ibSettingContentView adjustToScreenWidth];
+        [self.ibScrollView.parallaxView addSubview:[UIView new]];
+        self.ibImgViewOtherPadding.alpha = 0;
+        //        [self.ibScrollView.parallaxView bringSubviewToFront:self.ibSettingOtherView];
+        [self.view addSubview:self.ibSettingOtherView];
+        [self.ibSettingOtherView adjustToScreenWidth];
     }
     else{
         
@@ -822,7 +824,6 @@
         [self didSelectFooterAtIndex:indexPath];
 
     }
-    
 }
 
 #pragma  mark - Show Collection - Post - Likes

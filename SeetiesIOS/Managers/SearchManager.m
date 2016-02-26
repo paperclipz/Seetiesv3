@@ -14,11 +14,32 @@
 @property(nonatomic,strong)ConnectionManager* connManager;
 @property(nonatomic,copy)SearchManagerFailBlock searchManagerFailBlock;
 
+@property(nonatomic,copy)LocationBlock didFinishSearchGPSLocationBlock;
 
 @end
 @implementation SearchManager
 
 
++(BOOL)isDeviceGPSTurnedOn
+{
+    if([CLLocationManager locationServicesEnabled] &&
+       [CLLocationManager authorizationStatus] != kCLAuthorizationStatusDenied) {
+
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+-(CLLocationManager*)manager
+{
+    if (!_manager) {
+        _manager = [CLLocationManager updateManagerWithAccuracy:50.0 locationAge:15.0 authorizationDesciption:CLLocationUpdateAuthorizationDescriptionAlways];
+        _manager.delegate = self;
+        [_manager requestWhenInUseAuthorization];
+    }
+    return _manager;
+}
 -(void)startGetWifiLocation
 {
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetGeoIP param:nil appendString:nil completeHandler:^(id object) {
@@ -28,24 +49,52 @@
     } errorBlock:^(id object) {
     
     }];
-
 }
 
--(void)locationManager:(CLLocationManager *)manager
-    didUpdateLocations:(NSArray *)locations {
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
    
     self.GPSLocation = locations[0];
+    
+    if (self.didFinishSearchGPSLocationBlock) {
+        self.didFinishSearchGPSLocationBlock(self.GPSLocation);
+        self.didFinishSearchGPSLocationBlock = nil;
+    }
   //  [self.manager stopUpdatingLocation];
+}
+-(void)startSearchGPSLocation:(LocationBlock)CompletionBlock
+{
+
+    self.didFinishSearchGPSLocationBlock = CompletionBlock;
 }
 
 -(void)startSearchGPSLocation
 {
-    self.manager = [CLLocationManager updateManagerWithAccuracy:50.0 locationAge:15.0 authorizationDesciption:CLLocationUpdateAuthorizationDescriptionAlways];
-    self.manager.delegate = self;
-    [self.manager requestWhenInUseAuthorization];
     [self.manager startUpdatingLocation];
 }
 
+#pragma mark - CLLocation Delegate
+- (void)locationManager:(CLLocationManager*)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+    switch (status) {
+        case kCLAuthorizationStatusNotDetermined: {
+            NSLog(@"User still thinking granting location access!");
+            [self.manager startUpdatingLocation]; // this will access location automatically if user granted access manually. and will not show apple's request alert twice. (Tested)
+        } break;
+        case kCLAuthorizationStatusDenied: {
+            NSLog(@"User denied location access request!!");
+            NSLog(@"To re-enable, please go to Settings and turn on Location Service for this app.");
+            [self.manager stopUpdatingLocation];
+        } break;
+        case kCLAuthorizationStatusAuthorizedWhenInUse:
+        case kCLAuthorizationStatusAuthorizedAlways: {
+            // clear text
+            NSLog(@"Got Location");
+            [self.manager startUpdatingLocation]; //Will update location immediately
+        } break;
+            
+        default:
+            break;
+    }
+}
 -(CLLocation*)getAppLocation
 {
     if (self.GPSLocation) {

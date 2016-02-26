@@ -22,10 +22,14 @@ typedef enum
     ServerRequestTypeGetLogout,
     /*Login*/
 
-    
     ServerRequestTypeGetNewsFeed,
+    ServerRequestTypeGetAllAppInfo,
+    ServerRequestTypePostProvisioning,
     ServerRequestTypeGetLanguage,
+    ServerRequestTypeGetCategory,
     ServerRequestTypeGetApiVersion,
+    
+    
     ServerRequestTypeGetExplore,
     ServerRequestTypeGoogleSearch,
     ServerRequestType4SquareSearch,

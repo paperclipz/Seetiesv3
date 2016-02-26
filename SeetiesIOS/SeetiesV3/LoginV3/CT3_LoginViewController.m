@@ -12,6 +12,7 @@
 #import "PInterestV2ViewController.h"
 #import "CTWebViewController.h"
 #import "PInterestV2ViewController.h"
+#import "SelectCategoryViewController.h"
 
 @interface CT3_LoginViewController ()
 {
@@ -26,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *lblFacebook;
 @property (weak, nonatomic) IBOutlet UIButton *lblInstagram;
 @property (nonatomic)CTWebViewController* webViewController;
+@property (nonatomic)SelectCategoryViewController* selectCategoryViewController;
 
 @end
 
@@ -68,13 +70,15 @@
 
 -(void)validateBeforeLogin
 {
-    
     BOOL isProduction = [Utils getIsDevelopment];
+    NSDictionary* dict = [Utils getSavedUserLocation];
+
     NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
     [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
     
-    
     [Utils setIsDevelopment:isProduction];
+    [Utils saveUserLocation:dict[KEY_LOCATION] Longtitude:dict[KEY_LONGTITUDE] Latitude:dict[KEY_LATITUDE]];
+
 }
 
 -(void)initSelfView
@@ -197,6 +201,15 @@
     
 }
 #pragma mark - Declaration
+
+-(SelectCategoryViewController*)selectCategoryViewController
+{
+    if (!_selectCategoryViewController) {
+        _selectCategoryViewController = [SelectCategoryViewController new];
+    }
+    return _selectCategoryViewController;
+}
+
 -(PInterestV2ViewController*)pInterestV2ViewController
 {
     if (!_pInterestV2ViewController) {
@@ -243,7 +256,13 @@
         _loginPageViewController.btnLoginClickedBlock = ^(NSString* username,NSString* password)
         {
             
-            [weakSelf requestServerForLogin:username Password:password OnComplete:nil];
+            [weakSelf requestServerForLogin:username Password:password OnComplete:^{
+                [weakSelf dismissViewControllerAnimated:YES completion:nil];
+
+                if (weakSelf.didFinishLoginBlock) {
+                    weakSelf.didFinishLoginBlock();
+                }
+            }];
 
         };
 
@@ -264,17 +283,11 @@
     
     [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypeLogin param:dict completeHandler:^(id object) {
         
-        if (self.didFinishLoginBlock) {
-            self.didFinishLoginBlock();
-        }
         
         if (onComplete) {
             onComplete();
-            
-            return;
         }
         
-        [self dismissViewControllerAnimated:YES completion:nil];
         
     } errorBlock:^(id object) {
         
@@ -324,12 +337,14 @@
         if ([dict[@"status"] isEqualToString:@"ok"]) {
             [self requestServerForLogin:username Password:password OnComplete:^{
                 
-                [self showUserInterestPage];
+                [self showSelectCategoryView];
             }];
         }
         else{
         
             SLog(@"error : %@",dict[@"message"]);
+            [TSMessage showNotificationInViewController:self.navigationController title:LocalisedString(@"system") subtitle:dict[@"message"] type:TSMessageNotificationTypeError];
+         //   [MessageManager showMessage:LocalisedString(@"system") SubTitle:dict[@"message"] Type:TSMessageNotificationTypeError];
             
         }
         
@@ -364,8 +379,18 @@
 
 -(void)showUserInterestPage
 {
+    _pInterestV2ViewController = nil;
     [self.navigationController pushViewController:self.pInterestV2ViewController animated:YES];
 }
+
+-(void)showSelectCategoryView
+{
+    _selectCategoryViewController = nil;
+    self.selectCategoryViewController.didFinishProvisioningBlock = self.didFinishLoginBlock;
+    [self.navigationController pushViewController:self.selectCategoryViewController animated:YES];
+    
+}
+
 -(void)forgetPassword
 {
 

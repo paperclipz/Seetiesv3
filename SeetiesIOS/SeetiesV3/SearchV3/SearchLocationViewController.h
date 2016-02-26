@@ -20,5 +20,5 @@ typedef void (^SearchLocationRefreshBlock)(RecommendationVenueModel* model);
 
 @property(nonatomic,copy)HomeLocationRefreshBlock homeLocationRefreshBlock;
 @property(nonatomic,copy)SearchLocationRefreshBlock searchLocationRefreshBlock;
-
+-(void)hideBackButton;
 @end

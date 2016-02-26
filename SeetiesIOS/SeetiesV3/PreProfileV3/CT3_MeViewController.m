@@ -68,7 +68,9 @@
 }
 
 - (IBAction)btnProfileClicked:(id)sender {
-    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[Utils getUserID]];
+    
+    _profileViewController = nil;
+    [self.profileViewController requestAllDataWithType:ProfileViewTypeOwn UserID:[Utils getUserID]];
     [self.navigationController pushViewController:self.profileViewController animated:YES];
 }
 
@@ -105,6 +107,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self initSelfView];
+    
+    ProfileModel* model = [[ConnectionManager dataManager]userLoginProfileModel];
+    self.ibProfileName.text = model.username;
 
 }
 
@@ -213,31 +218,39 @@
 
 -(void)reloadData
 {
-    
+    ProfileModel* model = [[ConnectionManager dataManager]userLoginProfileModel];
+    self.ibProfileName.text = model.username;
 }
 
+#pragma mark - Request Server
 -(void)requestServerForNotificationCount
 {
 
-    NSDictionary* dict = @{@"token" : [Utils getAppToken]};
+    NSString* token = [Utils getAppToken];
+    NSDictionary* dict = @{@"token" : token};
+
+    if (![Utils isStringNull:token]) {
+        
+        [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetNotificationCount param:dict appendString:nil completeHandler:^(id object) {
+            
+            NSDictionary* returnDict = object[@"data"];
+            
+            @try {
+                int notCount = [returnDict[@"total_new_notifications"] intValue];
+                
+                [self setNotificationCount:notCount];
+                
+            }
+            @catch (NSException *exception) {
+                SLog(@"server count not found");
+            }
+            
+        } errorBlock:^(id object) {
+            
+        }];
+    }
     
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetNotificationCount param:dict appendString:nil completeHandler:^(id object) {
-        
-        NSDictionary* returnDict = object[@"data"];
-        
-        @try {
-            int notCount = [returnDict[@"total_new_notifications"] intValue];
-
-            [self setNotificationCount:notCount];
-
-        }
-        @catch (NSException *exception) {
-            SLog(@"server count not found");
-        }
-     
-    } errorBlock:^(id object) {
-        
-    }];
+    
 }
 
 -(void)setNotificationCount:(int)count

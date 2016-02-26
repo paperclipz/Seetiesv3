@@ -9,6 +9,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchLocationViewController">
             <connections>
+                <outlet property="btnClose" destination="kOL-RL-WvR" id="ZO9-bo-JWh"/>
+                <outlet property="btnCloseImage" destination="blg-GC-v3s" id="64Z-yb-FrC"/>
                 <outlet property="ibAreaTable" destination="iUL-G6-q0D" id="LJ0-Bv-Gda"/>
                 <outlet property="ibCountryTable" destination="o0r-TB-YhJ" id="xDE-QB-eIH"/>
                 <outlet property="ibImgLocation" destination="AMa-vn-Oca" id="cXP-sc-JPx"/>
@@ -44,13 +46,6 @@
                                 <action selector="btnBackClicked:" destination="-1" eventType="touchUpInside" id="Cs6-hR-U6H"/>
                             </connections>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CloseIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="blg-GC-v3s" userLabel="close image">
-                            <rect key="frame" x="10" y="10" width="40" height="40"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="40" id="Pwi-uE-xIB"/>
-                                <constraint firstAttribute="width" constant="40" id="uLM-Zr-G1e"/>
-                            </constraints>
-                        </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dui-Op-7zL" userLabel="search view">
                             <rect key="frame" x="8" y="58" width="304" height="54"/>
                             <subviews>
@@ -84,6 +79,13 @@
                                 <constraint firstAttribute="trailing" secondItem="yyv-H9-ABN" secondAttribute="trailing" constant="8" id="VMU-7t-Xt6"/>
                             </constraints>
                         </view>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CloseIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="blg-GC-v3s" userLabel="close image">
+                            <rect key="frame" x="10" y="10" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="Pwi-uE-xIB"/>
+                                <constraint firstAttribute="width" constant="40" id="uLM-Zr-G1e"/>
+                            </constraints>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
