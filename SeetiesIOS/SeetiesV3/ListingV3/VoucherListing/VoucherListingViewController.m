@@ -272,8 +272,9 @@
                            @"timezone_offset":[Utils getTimeZone],
                            @"place_id":@"",
                            @"offset":@(self.dealsModel.offset + self.dealsModel.limit),
-                           @"limit":@(ARRAY_LIST_SIZE)};
-    
+                           @"limit":@(ARRAY_LIST_SIZE)
+                           };
+
     self.isLoading = YES;
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSuperDeals param:dict appendString:nil completeHandler:^(id object) {
         DealsModel *model = [[ConnectionManager dataManager] dealsModel];
