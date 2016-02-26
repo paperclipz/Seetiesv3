@@ -98,6 +98,22 @@
     }
 }
 
+#pragma mark - DelegateImplementation
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    CGFloat currentOffset = self.ibHistoryTable.contentOffset.y;
+    CGFloat maximumOffset = self.ibHistoryTable.contentSize.height - self.ibHistoryTable.frame.size.height;
+    
+    
+    // Change 10.0 to adjust the distance from bottom
+    if (maximumOffset - currentOffset <= self.ibHistoryTable.frame.size.height/2) {
+        if(![Utils isStringNull:self.dealsModel.paging.next])
+        {
+            //            [(UIActivityIndicatorView *)self.ibVoucherTable startAnimating];
+            [self requestServerForVouchersHistoryList];
+        }
+    }
+}
+
 /*
 #pragma mark - Navigation
 
@@ -188,8 +204,8 @@
     }
     
     NSDictionary *dict = @{@"token":[Utils getAppToken],
-                           @"offset":@(self.dealsModel.offset),
-                           @"limit":@(self.dealsModel.limit)};
+                           @"offset":@(self.dealsModel.offset+self.dealsModel.limit),
+                           @"limit":@(20)};
     
     NSString *appendString = [NSString stringWithFormat:@"%@/vouchers/history", [Utils getUserID]];
     

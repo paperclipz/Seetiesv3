@@ -12,6 +12,6 @@
 #import "DealExpiryDateModel.h"
 #import "DealDetailsViewController.h"
 
-@interface RedemptionHistoryViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate>
+@interface RedemptionHistoryViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
 
 @end

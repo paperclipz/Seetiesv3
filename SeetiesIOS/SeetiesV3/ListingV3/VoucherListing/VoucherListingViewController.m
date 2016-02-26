@@ -271,8 +271,8 @@
                            @"type":@"search",
                            @"timezone_offset":[Utils getTimeZone],
                            @"place_id":@"",
-                           @"offset":@(self.dealsModel.offset),
-                           @"limit":@(self.dealsModel.limit)};
+                           @"offset":@(self.dealsModel.offset+self.dealsModel.limit),
+                           @"limit":@(20)};
     
     self.isLoading = YES;
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSuperDeals param:dict appendString:nil completeHandler:^(id object) {

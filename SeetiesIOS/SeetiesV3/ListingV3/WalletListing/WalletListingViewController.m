@@ -381,8 +381,8 @@
     }
     
     NSDictionary *dict = @{@"token":[Utils getAppToken],
-                           @"offset":@(self.dealsModel.offset),
-                           @"limit":@(self.dealsModel.limit)};
+                           @"offset":@(self.dealsModel.offset+self.dealsModel.limit),
+                           @"limit":@(20)};
     
     NSString *appendString = [NSString stringWithFormat:@"%@/vouchers", [Utils getUserID]];
     
