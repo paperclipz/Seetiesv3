@@ -15,6 +15,8 @@
 #import "DealManager.h"
 #import "PromoPopOutViewController.h"
 #import "DealRedeemViewController.h"
+#import "SeetiesShopViewController.h"
+#import "SeetiShopListingViewController.h"
 
 @interface DealDetailsViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, PromoPopOutDelegate, DealRedeemDelegate>
 

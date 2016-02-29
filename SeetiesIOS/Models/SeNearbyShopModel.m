@@ -18,7 +18,8 @@
     return [[JSONKeyMapper alloc] initWithDictionary:@{
                                                        @"facebook" :@"urlFacebook",
                                                        @"wallpapers": @"arrPhotos",
-                                                       @"website" : @"urlWebsite"
+                                                       @"website" : @"urlWebsite",
+                                                       @"profile_photo.picture": @"profile_photo"
                                                        }];
 }
 

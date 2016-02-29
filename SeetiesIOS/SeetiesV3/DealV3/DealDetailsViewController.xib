@@ -42,7 +42,7 @@
                 <outlet property="ibMainContentView" destination="CQm-43-dC2" id="zxt-72-e41"/>
                 <outlet property="ibNearbyShopCollection" destination="Rdq-yf-iuG" id="vhK-H9-jn9"/>
                 <outlet property="ibNearbyShopContentView" destination="h3B-5k-J9N" id="gFG-gZ-Ect"/>
-                <outlet property="ibNearbyShopSeeMoreLbl" destination="0Rl-rg-2hg" id="wE2-XZ-ip2"/>
+                <outlet property="ibNearbyShopSeeMoreBtn" destination="McU-Nk-qHg" id="CIz-nq-Tdw"/>
                 <outlet property="ibNearbyShopTitle" destination="Oai-qc-YQR" id="K21-bY-ivr"/>
                 <outlet property="ibNearbyShopView" destination="B0e-U4-BAx" id="JG9-FK-fvy"/>
                 <outlet property="ibRedemptionContentViewHeightConstraint" destination="xeQ-XY-Obg" id="PTa-tg-2G6"/>
@@ -669,7 +669,7 @@
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lW3-qG-AMl" userLabel="shop table">
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lW3-qG-AMl" userLabel="shop table">
                             <rect key="frame" x="0.0" y="37" width="600" height="508"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -685,6 +685,9 @@
                             <state key="normal" title="see more">
                                 <color key="titleColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
+                            <connections>
+                                <action selector="shopSeeMoreBtnClicked:" destination="-1" eventType="touchUpInside" id="aA9-Us-3nK"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -876,41 +879,32 @@
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="see more" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Rl-rg-2hg">
-                                    <rect key="frame" x="521" y="10" width="71" height="21"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="150" id="L5L-85-72B"/>
-                                        <constraint firstAttribute="height" constant="21" id="ylZ-Zu-7KH"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                    <variation key="default">
-                                        <mask key="constraints">
-                                            <exclude reference="L5L-85-72B"/>
-                                        </mask>
-                                    </variation>
-                                </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="McU-Nk-qHg" userLabel="see more button">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
+                                    <rect key="frame" x="524" y="0.0" width="68" height="40"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                    <state key="normal" title="see more">
+                                        <color key="titleColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="nearbyShopSeeMoreBtnClicked:" destination="-1" eventType="touchUpInside" id="E5p-68-oOw"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="0Rl-rg-2hg" secondAttribute="trailing" constant="8" id="495-c6-1l5"/>
                                 <constraint firstItem="McU-Nk-qHg" firstAttribute="top" secondItem="Oai-qc-YQR" secondAttribute="top" id="6qz-Om-nsJ"/>
                                 <constraint firstAttribute="trailing" secondItem="x6p-hm-yLr" secondAttribute="trailing" constant="8" id="BpY-Mn-coh"/>
                                 <constraint firstItem="x6p-hm-yLr" firstAttribute="leading" secondItem="Oai-qc-YQR" secondAttribute="leading" constant="8" id="Mho-bB-9DT"/>
-                                <constraint firstItem="0Rl-rg-2hg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="x6p-hm-yLr" secondAttribute="trailing" constant="5" id="Uez-K4-iJt"/>
+                                <constraint firstItem="McU-Nk-qHg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="x6p-hm-yLr" secondAttribute="trailing" constant="5" id="Z3O-jN-qJd"/>
                                 <constraint firstItem="x6p-hm-yLr" firstAttribute="centerY" secondItem="Oai-qc-YQR" secondAttribute="centerY" id="gOp-qO-C9t"/>
                                 <constraint firstAttribute="height" constant="40" id="ike-Pn-oXk"/>
-                                <constraint firstItem="0Rl-rg-2hg" firstAttribute="centerY" secondItem="Oai-qc-YQR" secondAttribute="centerY" id="nva-Q2-lmM"/>
                                 <constraint firstAttribute="bottom" secondItem="McU-Nk-qHg" secondAttribute="bottom" id="rta-Ic-851"/>
                                 <constraint firstItem="McU-Nk-qHg" firstAttribute="leading" secondItem="Oai-qc-YQR" secondAttribute="leading" id="w79-52-Nkz"/>
-                                <constraint firstAttribute="trailing" secondItem="McU-Nk-qHg" secondAttribute="trailing" id="wfj-ac-8Y2"/>
+                                <constraint firstAttribute="trailing" secondItem="McU-Nk-qHg" secondAttribute="trailing" constant="8" id="wfj-ac-8Y2"/>
                             </constraints>
                             <variation key="default">
                                 <mask key="constraints">
+                                    <exclude reference="w79-52-Nkz"/>
                                     <exclude reference="BpY-Mn-coh"/>
                                 </mask>
                             </variation>

@@ -12,7 +12,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ibShopImage;
 @property (weak, nonatomic) IBOutlet UILabel *ibShopName;
 
-@property(nonatomic) ShopModel *shopModel;
+@property(nonatomic) SeShopDetailModel *shopModel;
 
 @end
 
@@ -23,11 +23,12 @@
     [self.ibShopImage setRoundedBorder];
 }
 
--(void)setShopModel:(ShopModel *)shopModel{
+-(void)setShopModel:(SeShopDetailModel *)shopModel{
     _shopModel = shopModel;
     
     
-    [self.ibShopImage sd_setImageCroppedWithURL:[NSURL URLWithString:self.shopModel.profile_photo] completed:nil];
+    [self.ibShopImage sd_setImageCroppedWithURL:[NSURL URLWithString:self.shopModel.profile_photo[@"picture"]] completed:nil];
+    [self.ibShopImage setRoundedBorder];
     self.ibShopName.text = self.shopModel.name;
 }
 

@@ -10,5 +10,5 @@
 
 @interface SeetiShopListingViewController : CommonViewController
 -(void)initData:(NSString*)seetiesID PlaceID:(NSString*)placeID PostID:(NSString*)postID;
-
+-(void)initWithArray:(NSMutableArray*)shopArray;
 @end

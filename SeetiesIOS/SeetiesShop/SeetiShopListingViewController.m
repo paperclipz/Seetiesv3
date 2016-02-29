@@ -38,12 +38,8 @@
     // Do any additional setup after loading the view from its nib.
     [self initTableViewDelegate];
     
-    [LoadingManager show];
-    
     self.shoplat = [[SearchManager Instance]getAppLocation].coordinate.latitude;
     self.shopLgn = [[SearchManager Instance]getAppLocation].coordinate.longitude;
-    [self requestServerForSeetiShopNearbyShop];
-
 }
 
 -(void)initTableViewDelegate
@@ -106,6 +102,14 @@
     self.seetiesID = seetiesID;
     self.placeID = placeID;
     self.postID = postID;
+    
+    [LoadingManager show];
+    [self requestServerForSeetiShopNearbyShop];
+}
+
+-(void)initWithArray:(NSMutableArray*)shopArray{
+    self.arrShopList = shopArray;
+    [self.ibTableView reloadData];
 }
 
 #pragma mark - Declaration
