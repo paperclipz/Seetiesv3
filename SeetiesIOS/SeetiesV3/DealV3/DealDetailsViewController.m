@@ -240,8 +240,8 @@
     self.ibHeaderSubTitleLbl.text = self.dealModel.title;
     
     if ([self.dealModel.voucher_info.status isEqualToString:VOUCHER_STATUS_NONE]) {
-        if (![Utils isStringNull:self.dealModel.shop_group_name]) {
-            self.ibHeaderTitleLbl.text = self.dealModel.shop_group_name;
+        if (![Utils isStringNull:self.dealModel.shop_group_info.name]) {
+            self.ibHeaderTitleLbl.text = self.dealModel.shop_group_info.name;
         }
         else{
             SeShopDetailModel *shopModel = self.dealModel.shops[0];
@@ -748,24 +748,14 @@
                            };
     
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetoShopNearbyShop param:dict appendString:appendString completeHandler:^(id object) {
-        SeetiShopsModel *seetieShopModel = [[ConnectionManager dataManager]seNearbyShopModel];
-        [self copyShopData:seetieShopModel.userPostData.shops];
+        SeShopsModel *seetieShopModel = [[ConnectionManager dataManager]seNearbyShopModel];
+        [self.nearbyShopArray addObjectsFromArray:seetieShopModel.shops];
         [self updateViews];
         [self.ibNearbyShopCollection reloadData];
         
     } errorBlock:^(id object) {
         
     }];
-}
-
--(void)copyShopData:(NSArray<ShopModel>*)shopsModel{
-    for (ShopModel *shopModel in shopsModel) {
-        SeShopDetailModel *newShopModel = [[SeShopDetailModel alloc] init];
-        newShopModel.seetishop_id = shopModel.seetishop_id;
-        newShopModel.name = shopModel.name;
-        newShopModel.profile_photo = @{@"picture": shopModel.profile_photo};
-        [self.nearbyShopArray addObject:newShopModel];
-    }
 }
 
 @end

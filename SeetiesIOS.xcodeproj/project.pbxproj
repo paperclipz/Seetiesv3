@@ -1337,7 +1337,6 @@
 		8AEDBFB71C2031BA000BD2FF /* PriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AEDBF971C2031BA000BD2FF /* PriceModel.m */; };
 		8AEDBFB81C2031BA000BD2FF /* ProfileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AEDBF991C2031BA000BD2FF /* ProfileModel.m */; };
 		8AEDBFB91C2031BA000BD2FF /* SearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AEDBF9B1C2031BA000BD2FF /* SearchModel.m */; };
-		8AEDBFBA1C2031BA000BD2FF /* SeNearbyShopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AEDBF9D1C2031BA000BD2FF /* SeNearbyShopModel.m */; };
 		8AEDBFBB1C2031BA000BD2FF /* SeShopCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AEDBF9F1C2031BA000BD2FF /* SeShopCategoryModel.m */; };
 		8AEDBFBC1C2031BA000BD2FF /* SeShopDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AEDBFA11C2031BA000BD2FF /* SeShopDetailModel.m */; };
 		8AEDBFBD1C2031BA000BD2FF /* SeShopPhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AEDBFA31C2031BA000BD2FF /* SeShopPhotoModel.m */; };
@@ -1485,6 +1484,7 @@
 		C24383F51C5B5BF100ACEBF8 /* DealDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24383F31C5B5BF100ACEBF8 /* DealDetailsViewController.xib */; };
 		C243840F1C5B781500ACEBF8 /* DealDetailsAvailabilityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C24384071C5B781500ACEBF8 /* DealDetailsAvailabilityCell.m */; };
 		C24384101C5B781500ACEBF8 /* DealDetailsAvailabilityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24384081C5B781500ACEBF8 /* DealDetailsAvailabilityCell.xib */; };
+		C2490A4A1C8450E800A43B3F /* SeShopsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2490A491C8450E800A43B3F /* SeShopsModel.m */; };
 		C25810171C7ACC8700041A85 /* TagLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C25810161C7ACC8700041A85 /* TagLabel.m */; };
 		C258101A1C7AD89000041A85 /* VoucherInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C25810191C7AD89000041A85 /* VoucherInfoModel.m */; };
 		C25A8B951C7487010046F80A /* RedemptionTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25A8B941C7487010046F80A /* RedemptionTypeView.xib */; };
@@ -3233,8 +3233,6 @@
 		8AEDBF991C2031BA000BD2FF /* ProfileModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileModel.m; sourceTree = "<group>"; };
 		8AEDBF9A1C2031BA000BD2FF /* SearchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchModel.h; sourceTree = "<group>"; };
 		8AEDBF9B1C2031BA000BD2FF /* SearchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchModel.m; sourceTree = "<group>"; };
-		8AEDBF9C1C2031BA000BD2FF /* SeNearbyShopModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeNearbyShopModel.h; sourceTree = "<group>"; };
-		8AEDBF9D1C2031BA000BD2FF /* SeNearbyShopModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeNearbyShopModel.m; sourceTree = "<group>"; };
 		8AEDBF9E1C2031BA000BD2FF /* SeShopCategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeShopCategoryModel.h; sourceTree = "<group>"; };
 		8AEDBF9F1C2031BA000BD2FF /* SeShopCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeShopCategoryModel.m; sourceTree = "<group>"; };
 		8AEDBFA01C2031BA000BD2FF /* SeShopDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeShopDetailModel.h; sourceTree = "<group>"; };
@@ -3460,6 +3458,8 @@
 		C24384061C5B781500ACEBF8 /* DealDetailsAvailabilityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealDetailsAvailabilityCell.h; sourceTree = "<group>"; };
 		C24384071C5B781500ACEBF8 /* DealDetailsAvailabilityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealDetailsAvailabilityCell.m; sourceTree = "<group>"; };
 		C24384081C5B781500ACEBF8 /* DealDetailsAvailabilityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DealDetailsAvailabilityCell.xib; sourceTree = "<group>"; };
+		C2490A481C8450E800A43B3F /* SeShopsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeShopsModel.h; sourceTree = "<group>"; };
+		C2490A491C8450E800A43B3F /* SeShopsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeShopsModel.m; sourceTree = "<group>"; };
 		C25810151C7ACC8700041A85 /* TagLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagLabel.h; sourceTree = "<group>"; };
 		C25810161C7ACC8700041A85 /* TagLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagLabel.m; sourceTree = "<group>"; };
 		C25810181C7AD89000041A85 /* VoucherInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoucherInfoModel.h; sourceTree = "<group>"; };
@@ -6901,8 +6901,6 @@
 		8AEDBFC01C2031EB000BD2FF /* SeetiesModel */ = {
 			isa = PBXGroup;
 			children = (
-				8AEDBF9C1C2031BA000BD2FF /* SeNearbyShopModel.h */,
-				8AEDBF9D1C2031BA000BD2FF /* SeNearbyShopModel.m */,
 				8AEDBF9E1C2031BA000BD2FF /* SeShopCategoryModel.h */,
 				8AEDBF9F1C2031BA000BD2FF /* SeShopCategoryModel.m */,
 				8AEDBFA01C2031BA000BD2FF /* SeShopDetailModel.h */,
@@ -6911,6 +6909,8 @@
 				8AEDBFA31C2031BA000BD2FF /* SeShopPhotoModel.m */,
 				8A84C8D71C8036FD006A0D76 /* SeShopGroupModel.h */,
 				8A84C8D81C8036FD006A0D76 /* SeShopGroupModel.m */,
+				C2490A481C8450E800A43B3F /* SeShopsModel.h */,
+				C2490A491C8450E800A43B3F /* SeShopsModel.m */,
 			);
 			name = SeetiesModel;
 			sourceTree = "<group>";
@@ -8709,6 +8709,7 @@
 				C25810171C7ACC8700041A85 /* TagLabel.m in Sources */,
 				8A34090F1B872B31009B66C3 /* EditPostViewController.m in Sources */,
 				8A6BB4321BF0C338005AA1B3 /* MZFormSheetPresentationViewControllerSegue.m in Sources */,
+				C2490A4A1C8450E800A43B3F /* SeShopsModel.m in Sources */,
 				8AF6FDDD1C5A16A0005AAE5D /* SeetiesProfileView.m in Sources */,
 				8A114CEA1BE75CA0006AE3F0 /* NewCollectionViewController.m in Sources */,
 				8A0F50C11C0C3F08002B1E22 /* SeShopDetailTableViewCell.m in Sources */,
@@ -8987,7 +8988,6 @@
 				8A114C7A1BE73F5D006AE3F0 /* BKCardExpiryField.m in Sources */,
 				8AD6BA631B705DF20040437E /* AppDelegate.m in Sources */,
 				8A0035371C4F5E7D002BD9A3 /* DealType_QuickBrowseTblCell.m in Sources */,
-				8AEDBFBA1C2031BA000BD2FF /* SeNearbyShopModel.m in Sources */,
 				8AF6FDCB1C586480005AAE5D /* SignupPageViewController.m in Sources */,
 				8AF030C51C5F6CE400817E2F /* PlaceModel.m in Sources */,
 				8A3408ED1B86EA4B009B66C3 /* UITableView+LongPressReorder.m in Sources */,

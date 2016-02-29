@@ -17,7 +17,7 @@
 
 }
 @property(nonatomic,strong)NSMutableArray* arrShop;
-@property (strong, nonatomic) SeetiShopsModel* seetiShopsModel;
+@property (strong, nonatomic) SeShopsModel* seetiShopsModel;
 @property(nonatomic,strong)NSString* seetiesID;
 @property(nonatomic,strong)NSString* placeID;
 @property(nonatomic,strong)NSString* postID;
@@ -73,7 +73,7 @@
     NSLog(@"GetWidth is %d",GetWidth);
     
     for (int i = 0 ; i < [self.arrShop count]; i++) {
-        ShopModel* shopModel = self.arrShop[i];
+        SeShopDetailModel* shopModel = self.arrShop[i];
         
         UIButton *TempButton = [[UIButton alloc]init];
         TempButton.frame = CGRectMake(25 + i * (GetWidth + 25), 0 , GetWidth ,200);
@@ -109,7 +109,7 @@
         
         if (![shopModel.profile_photo isNull]) {
             [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
-            NSString *ImageData1 = [[NSString alloc]initWithFormat:@"%@",shopModel.profile_photo];
+            NSString *ImageData1 = [[NSString alloc]initWithFormat:@"%@",shopModel.profile_photo[@"picture"]];
             if ([ImageData1 length] == 0) {
                 ShowUserProfileImage.image = [UIImage imageNamed:@"SSDefaultLogo.png"];
             }else{
@@ -168,7 +168,7 @@
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetoShopNearbyShop param:dict appendString:appendString completeHandler:^(id object) {
         
         self.seetiShopsModel = [[ConnectionManager dataManager]seNearbyShopModel];
-        [self.arrShop addObjectsFromArray:self.seetiShopsModel.userPostData.shops];
+        [self.arrShop addObjectsFromArray:self.seetiShopsModel.shops];
         [self.arrShop shuffledArray];
         [self InitNearByViewData];
         
@@ -193,7 +193,7 @@
     NSLog(@"SeetiShop OpenSeetiShopButtonOnClick");
     
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
-    ShopModel* model = self.arrShop[getbuttonIDN];
+    SeShopDetailModel* model = self.arrShop[getbuttonIDN];
     
     if (self.btnSeetiShopClickedBlock) {
         self.btnSeetiShopClickedBlock(model.seetishop_id);

@@ -45,7 +45,7 @@
     }
     
     self.lblDescription.text = self.dealModel.title;
-    self.lblName.text = self.dealModel.seetishop_name;
+    self.lblName.text = self.dealModel.shop_group_info.name;
     
 }
 @end

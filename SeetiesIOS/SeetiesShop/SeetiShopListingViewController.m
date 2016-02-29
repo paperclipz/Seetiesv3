@@ -20,7 +20,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
-@property (strong, nonatomic)SeetiShopsModel *seetiShopsModel;
+@property (strong, nonatomic)SeShopsModel *seetiShopsModel;
 @property(nonatomic,strong)NSString* seetiesID;
 @property(nonatomic,strong)NSString* placeID;
 @property(nonatomic,strong)NSString* postID;
@@ -63,12 +63,12 @@
 {
     SeetiShopListTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"SeetiShopListTableViewCell"];
     
-    ShopModel* model = self.arrShopList[indexPath.row];
+    SeShopDetailModel* model = self.arrShopList[indexPath.row];
     
     if (!model.profile_photo)
     {
        // PhotoModel* photoModel = model.arrPhotos[0];
-        [cell.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:model.profile_photo] completed:nil];
+        [cell.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:model.profile_photo[@"picture"]] completed:nil];
 
     }
     cell.lblTitle.text = model.name;
@@ -92,7 +92,7 @@
 {
     _seetiesShopViewController = nil;
     
-    ShopModel* model = self.arrShopList[indexPath.row];
+    SeShopDetailModel* model = self.arrShopList[indexPath.row];
     [self.seetiesShopViewController initDataWithSeetiesID:model.seetishop_id Latitude:[model.location.lat floatValue] Longitude:[model.location.lng floatValue]];
     [self.navigationController pushViewController:self.seetiesShopViewController animated:YES];
 }
@@ -137,7 +137,7 @@
     if (![Utils stringIsNilOrEmpty:self.seetiesID]) {
         appendString = [NSString stringWithFormat:@"%@/nearby/shops",self.seetiesID];
         dict = @{@"limit":@(ARRAY_LIST_SIZE),
-                 @"offset":@(self.seetiShopsModel.userPostData.offset + self.seetiShopsModel.userPostData.limit),
+                 @"offset":@(self.seetiShopsModel.offset + self.seetiShopsModel.limit),
                  @"lat" : @(self.shoplat),
                  @"lng" : @(self.shopLgn),
                  };
@@ -146,7 +146,7 @@
     else{
         appendString = [NSString stringWithFormat:@"%@/nearby/shops",self.placeID];
         dict = @{@"limit":@(ARRAY_LIST_SIZE),
-                 @"offset":@(self.seetiShopsModel.userPostData.offset + self.seetiShopsModel.userPostData.limit),
+                 @"offset":@(self.seetiShopsModel.offset + self.seetiShopsModel.limit),
                  @"post_id":self.postID,
                  @"lat" : @(self.shoplat),
                  @"lng" : @(self.shopLgn),
@@ -159,7 +159,7 @@
             
             
             self.seetiShopsModel = [[ConnectionManager dataManager]seNearbyShopModel];
-            [self.arrShopList addObjectsFromArray:self.seetiShopsModel.userPostData.shops];
+            [self.arrShopList addObjectsFromArray:self.seetiShopsModel.shops];
             [self.ibTableView reloadData];
             isServerMiddleOfLoading = NO;
 
@@ -189,7 +189,7 @@
     // Change 10.0 to adjust the distance from bottom
     if (maximumOffset - currentOffset <= self.view.frame.size.height/2) {
         
-        if(![Utils isStringNull:self.seetiShopsModel.userPostData.paging.next])
+        if(![Utils isStringNull:self.seetiShopsModel.paging.next])
         {
             [self requestServerForSeetiShopNearbyShop];
         }
