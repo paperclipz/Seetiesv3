@@ -8,12 +8,17 @@
 
 #import "RedemptionHistoryViewController.h"
 
+@protocol DealExpiryDateModel
+
+
+@end
+
 @interface RedemptionHistoryViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *ibHistoryTable;
 
 @property(nonatomic) BOOL isLoading;
 @property(nonatomic) DealsModel *dealsModel;
-@property(nonatomic) NSMutableArray<DealExpiryDateModel*> *voucherArray;
+@property(nonatomic) NSMutableArray<DealExpiryDateModel> *voucherArray;
 @property(nonatomic) DealDetailsViewController *dealDetailsViewController;
 
 @end
@@ -125,9 +130,9 @@
 */
 
 #pragma mark - Declaration
--(NSMutableArray<DealExpiryDateModel *> *)voucherArray{
+-(NSMutableArray<DealExpiryDateModel> *)voucherArray{
     if (!_voucherArray) {
-        _voucherArray = [[NSMutableArray alloc] init];
+        _voucherArray = [[NSMutableArray<DealExpiryDateModel> alloc] init];
     }
     return _voucherArray;
 }
