@@ -17,11 +17,11 @@
 #define REDEMPTION_TYPE_DINE_IN @"dine_in"
 #define REDEMPTION_TYPE_TAKE_AWAY @"take_away"
 
-@protocol SeShopDetailModel
+@protocol VoucherInfoModel
 
 @end
 
-@protocol VoucherInfoModel
+@protocol SeShopGroupModel
 
 @end
 
@@ -43,14 +43,10 @@
 @property(nonatomic,strong) VoucherInfoModel *voucher_info;
 @property(nonatomic,strong) NSArray<PhotoModel> *photos;
 @property(nonatomic,strong) PhotoModel *cover_photo;
-@property(nonatomic,strong)NSArray<SeShopDetailModel> *shops;
+@property(nonatomic,strong) NSArray<SeShopDetailModel> *shops;
+@property(nonatomic, strong) SeShopGroupModel *shop_group_info;
 @property(nonatomic,assign) BOOL is_feature;
 @property(nonatomic, strong) NSDictionary *redemption_period_in_hour_text;
 @property(nonatomic, strong) NSArray *terms;
-@property(nonatomic, strong) NSString *shop_group_id;
-@property(nonatomic, strong) NSString *shop_group_name;
-
-@property(nonatomic, strong) NSString *seetishop_id;
-@property(nonatomic, strong) NSString *seetishop_name;
 
 @end

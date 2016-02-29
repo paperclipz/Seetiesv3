@@ -66,7 +66,7 @@
 @property (weak, nonatomic) IBOutlet UIView *ibNearbyShopContentView;
 @property (weak, nonatomic) IBOutlet UICollectionView *ibNearbyShopCollection;
 @property (weak, nonatomic) IBOutlet UIView *ibNearbyShopTitle;
-@property (weak, nonatomic) IBOutlet UILabel *ibNearbyShopSeeMoreLbl;
+@property (weak, nonatomic) IBOutlet UIButton *ibNearbyShopSeeMoreBtn;
 
 @property (strong, nonatomic) IBOutlet UIView *ibReportView;
 @property (weak, nonatomic) IBOutlet UIView *ibReportContentView;
@@ -80,9 +80,11 @@
 @property(nonatomic) DealModel *dealModel;
 @property(nonatomic) BOOL isProcessing;
 @property(nonatomic) DealManager *dealManager;
-@property(nonatomic) NSArray<ShopModel*> *nearbyShopArray;
+@property(nonatomic) NSMutableArray<SeShopDetailModel> *nearbyShopArray;
 @property(nonatomic) PromoPopOutViewController *promoPopOutViewController;
 @property(nonatomic) DealRedeemViewController *dealRedeemViewController;
+@property(nonatomic) SeetiesShopViewController *seetiesShopViewController;
+@property(nonatomic) SeetiShopListingViewController *seetieShopListingViewController;
 @end
 
 @implementation DealDetailsViewController
@@ -134,11 +136,6 @@
 
 -(void)initSelfView{
     
-    self.ibShopTable.estimatedRowHeight = [PromoOutletCell getHeight];
-    self.ibShopTable.rowHeight = UITableViewAutomaticDimension;
-    self.ibDealsTable.estimatedRowHeight = [SeDealsFeaturedTblCell getHeight];
-    self.ibDealsTable.rowHeight = UITableViewAutomaticDimension;
-    
     if (![Utils isArrayNull:self.viewArray]) {
         for (UIView *view in self.viewArray) {
 //            [view setHeight:0];
@@ -153,7 +150,23 @@
 
 -(void)initViewArray{
     _viewArray = @[self.ibHeaderView, self.ibDealDetailsView, self.ibAvailabilityView, self.ibShopView, self.ibTnCView, self.ibDealsView , self.ibNearbyShopView, self.ibReportView];
-    
+  
+}
+
+#pragma mark - IBAction
+- (IBAction)shopSeeMoreBtnClicked:(id)sender {
+    self.seetieShopListingViewController = nil;
+    [self.navigationController pushViewController:self.seetieShopListingViewController animated:YES onCompletion:^{
+        NSMutableArray *copyOfShopModel = [[NSMutableArray alloc] initWithArray:self.dealModel.shops];
+        [self.seetieShopListingViewController initWithArray:copyOfShopModel];
+    }];
+}
+
+- (IBAction)nearbyShopSeeMoreBtnClicked:(id)sender {
+    self.seetieShopListingViewController = nil;
+    [self.navigationController pushViewController:self.seetieShopListingViewController animated:YES onCompletion:^{
+        [self.seetieShopListingViewController initWithArray:self.nearbyShopArray];
+    }];
 }
 
 #pragma mark - Declaration
@@ -175,11 +188,26 @@
     return _dealRedeemViewController;
 }
 
--(NSArray<ShopModel *> *)nearbyShopArray{
+-(NSMutableArray<SeShopDetailModel> *)nearbyShopArray{
     if (!_nearbyShopArray) {
-        _nearbyShopArray = [[NSArray alloc] init];
+        _nearbyShopArray = [[NSMutableArray<SeShopDetailModel> alloc] init];
     }
     return _nearbyShopArray;
+}
+
+-(SeetiesShopViewController *)seetiesShopViewController{
+    if (!_seetiesShopViewController) {
+        _seetiesShopViewController = [SeetiesShopViewController new];
+    }
+    return _seetiesShopViewController;
+}
+
+-(SeetiShopListingViewController *)seetieShopListingViewController{
+    if (!_seetieShopListingViewController) {
+        _seetieShopListingViewController = [SeetiShopListingViewController new];
+    }
+    
+    return _seetieShopListingViewController;
 }
 
 #pragma mark - UpdateView
@@ -212,8 +240,8 @@
     self.ibHeaderSubTitleLbl.text = self.dealModel.title;
     
     if ([self.dealModel.voucher_info.status isEqualToString:VOUCHER_STATUS_NONE]) {
-        if (![Utils isStringNull:self.dealModel.shop_group_name]) {
-            self.ibHeaderTitleLbl.text = self.dealModel.shop_group_name;
+        if (![Utils isStringNull:self.dealModel.shop_group_info.name]) {
+            self.ibHeaderTitleLbl.text = self.dealModel.shop_group_info.name;
         }
         else{
             SeShopDetailModel *shopModel = self.dealModel.shops[0];
@@ -325,6 +353,7 @@
     }
     
     float redemptionYOrigin = 0;
+    self.ibRedemptionContentViewHeightConstraint.constant = 0;
     for (NSString *type in self.dealModel.redemption_type) {
         RedemptionTypeView *redemptionTypeView = [RedemptionTypeView initializeCustomView];
         if ([type isEqualToString:REDEMPTION_TYPE_DINE_IN]) {
@@ -342,12 +371,10 @@
     }
     self.ibRedemptionContentViewHeightConstraint.constant = redemptionYOrigin;
     
-//    CGFloat contentHeight = self.ibTagScrollViewHeightConstraint.constant + self.ibDealDetailsTitleLbl.frame.size.height + self.ibDealDetailsDescLbl.frame.size.height +
-//    self.ibDealDetailsDesc.frame.size.height + self.ibRedemptionContentViewHeightConstraint.constant + 15;
-//    self.ibDealDetailsRedemptionContentView.frame.origin.y + self.ibRedemptionContentViewHeightConstraint.constant + 15;
-//    SLog(@"%f = %f + %f", contentHeight, self.ibDealDetailsRedemptionContentView.frame.origin.y, self.ibRedemptionContentViewHeightConstraint.constant);
-//    self.ibDealDetailsView.frame = CGRectMake(self.ibDealDetailsView.frame.origin.x, self.ibDealDetailsView.frame.origin.y, self.ibDealDetailsView.frame.size.width, contentHeight);
+    CGFloat contentHeight = self.ibDealDetailsRedemptionContentView.frame.origin.y + self.ibRedemptionContentViewHeightConstraint.constant + 15;
+    [self.ibDealDetailsView setHeight:contentHeight];
 }
+
 
 -(void)updateAvailabilityView{
     [self.ibAvailabilityTable reloadData];
@@ -355,7 +382,7 @@
     float cellHeight = [DealDetailsAvailabilityCell getHeight];
     NSInteger numberOfDays = self.dealModel.redemption_period_in_hour_text.allKeys.count;
     float tableHeight = cellHeight * numberOfDays;
-    CGFloat totalHeight = self.ibAvailabilityTable.frame.origin.y + tableHeight + 20;
+    CGFloat totalHeight = self.ibAvailabilityTable.frame.origin.y + tableHeight + 15;
     
     [self.ibAvailabilityView setHeight:totalHeight];
 }
@@ -368,18 +395,18 @@
     float cellHeight = [PromoOutletCell getHeight];
     NSInteger numberOfShop = self.dealModel.shops.count;
     float tableHeight = cellHeight * numberOfShop;
-    CGFloat totalHeight = self.ibShopTable.frame.origin.y + tableHeight + 20;
+    CGFloat totalHeight = self.ibShopTable.frame.origin.y + tableHeight + 15;
     
-    if (self.dealModel.shops.count > 3) {
+//    if (self.dealModel.shops.count > 3) {
         self.ibShopSeeMoreHeightConstraint.constant = 40;
         self.ibShopSeeMoreBtn.hidden = NO;
         totalHeight += self.ibShopSeeMoreHeightConstraint.constant;
-    }
-    else{
-        self.ibShopSeeMoreHeightConstraint.constant = 0;
-        self.ibShopSeeMoreBtn.hidden = YES;
-        totalHeight += self.ibShopSeeMoreHeightConstraint.constant;
-    }
+//    }
+//    else{
+//        self.ibShopSeeMoreHeightConstraint.constant = 0;
+//        self.ibShopSeeMoreBtn.hidden = YES;
+//        totalHeight += self.ibShopSeeMoreHeightConstraint.constant;
+//    }
     
     [self.ibShopView setHeight:totalHeight];
 }
@@ -390,7 +417,7 @@
     float cellHeight = 44;
     NSInteger numberOfTerms = self.dealModel.terms.count;
     float tableHeight = cellHeight * numberOfTerms;
-    CGFloat totalHeight = self.ibTnCTable.frame.origin.y + tableHeight + 20;
+    CGFloat totalHeight = self.ibTnCTable.frame.origin.y + tableHeight + 15;
     
     if (self.dealModel.terms.count > 5) {
         self.ibTnCSeeMoreHeightConstraint.constant = 40;
@@ -407,9 +434,13 @@
 }
 
 -(void)updateNearbyShopView{
-    [self.ibNearbyShopCollection reloadData];
     
-    [self.ibNearbyShopView setHeight:265];
+    if (self.nearbyShopArray.count > 0) {
+        [self.ibNearbyShopView setHeight:265];
+    }
+    else{
+        [self.ibNearbyShopView setHeight:0];
+    }
 }
 
 -(void)updateFooterView{
@@ -582,10 +613,10 @@
         return [DealDetailsAvailabilityCell getHeight];
     }
     else if (tableView == self.ibShopTable){
-        return UITableViewAutomaticDimension;
+        return [PromoOutletCell getHeight];
     }
     else if (tableView == self.ibDealsTable){
-        return UITableViewAutomaticDimension;
+        return [SeDealsFeaturedTblCell getHeight];
     }
     else if (tableView == self.ibTnCTable){
         return 44;
@@ -594,11 +625,23 @@
     return 44;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (tableView == self.ibShopTable){
+        SeShopDetailModel *shopModel = self.dealModel.shops[indexPath.row];
+        self.seetiesShopViewController = nil;
+        [self.seetiesShopViewController initDataWithSeetiesID:shopModel.seetishop_id];
+        [self.navigationController pushViewController:self.seetiesShopViewController animated:YES];
+    }
+    else if (tableView == self.ibDealsTable){
+    }
+}
+
 #pragma mark - CollectionView
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     if (collectionView == self.ibNearbyShopCollection){
         if (self.nearbyShopArray) {
-            return self.nearbyShopArray.count;
+            NSInteger count = self.nearbyShopArray.count;
+            return count;
         }
     }
     
@@ -608,7 +651,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     if (collectionView == self.ibNearbyShopCollection){
         NearbyShopsCell *shopCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"NearbyShopsCell" forIndexPath:indexPath];
-        ShopModel *shopModel = [self.nearbyShopArray objectAtIndex:indexPath.row];
+        SeShopDetailModel *shopModel = [self.nearbyShopArray objectAtIndex:indexPath.row];
         [shopCell setShopModel:shopModel];
         return shopCell;
     }
@@ -617,7 +660,16 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout  *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake((collectionView.frame.size.width-10)/3, 200);
+    return CGSizeMake((collectionView.frame.size.width-20)/3, 200);
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    if (collectionView == self.ibNearbyShopCollection) {
+        SeShopDetailModel *shopModel = self.nearbyShopArray[indexPath.row];
+        self.seetiesShopViewController = nil;
+        [self.seetiesShopViewController initDataWithSeetiesID:shopModel.seetishop_id];
+        [self.navigationController pushViewController:self.seetiesShopViewController animated:YES];
+    }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView;{
@@ -637,6 +689,11 @@
         self.dealModel = model;
         [self updateViews];
         [self updateFooterView];
+        
+        if (self.dealModel.shops.count == 1) {
+            [self requestServerForSeetiShopNearbyShop:self.dealModel.shops[0]];
+        }
+        
     } errorBlock:^(id object) {
         
     }];
@@ -652,12 +709,8 @@
         [self updateViews];
         [self updateFooterView];
         
-        if ([Utils isStringNull:self.dealModel.voucher_info.voucher_id]) {
-            [self requestServerForSeetiShopNearbyShop:self.dealModel.shops[0]];
-        }
-        else{
-            [self requestServerForSeetiShopNearbyShop:self.dealModel.voucher_info.shop_info];
-        }
+        [self requestServerForSeetiShopNearbyShop:self.dealModel.voucher_info.shop_info];
+        
     } errorBlock:^(id object) {
         
     }];
@@ -695,9 +748,11 @@
                            };
     
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetoShopNearbyShop param:dict appendString:appendString completeHandler:^(id object) {
-        SeetiShopsModel *seetieShopModel = [[ConnectionManager dataManager]seNearbyShopModel];
-        self.nearbyShopArray = seetieShopModel.userPostData.shops;
+        SeShopsModel *seetieShopModel = [[ConnectionManager dataManager]seNearbyShopModel];
+        [self.nearbyShopArray addObjectsFromArray:seetieShopModel.shops];
         [self updateViews];
+        [self.ibNearbyShopCollection reloadData];
+        
     } errorBlock:^(id object) {
         
     }];

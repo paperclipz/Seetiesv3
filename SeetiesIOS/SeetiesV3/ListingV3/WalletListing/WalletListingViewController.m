@@ -8,6 +8,10 @@
 
 #import "WalletListingViewController.h"
 
+@protocol DealExpiryDateModel
+
+@end
+
 @interface WalletListingViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 @property (weak, nonatomic) IBOutlet UIButton *ibFooterBtn;
@@ -23,7 +27,7 @@
 @property (nonatomic)DealRedeemViewController *dealRedeemViewController;
 @property (nonatomic) VoucherListingViewController *voucherListingViewController;
 
-@property(nonatomic) NSMutableArray<DealExpiryDateModel*> *voucherArray;
+@property(nonatomic) NSMutableArray<DealExpiryDateModel> *voucherArray;
 @property(nonatomic) DealsModel *dealsModel;
 @property(nonatomic) BOOL isLoading;
 @property(nonatomic) DealManager *dealManager;
@@ -353,9 +357,9 @@
     return _dealManager;
 }
 
--(NSMutableArray<DealExpiryDateModel *> *)voucherArray{
+-(NSMutableArray<DealExpiryDateModel> *)voucherArray{
     if (!_voucherArray) {
-        _voucherArray = [[NSMutableArray alloc] init];
+        _voucherArray = [[NSMutableArray<DealExpiryDateModel> alloc] init];
     }
     return _voucherArray;
 }

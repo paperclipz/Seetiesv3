@@ -8,7 +8,7 @@
 
 #import "Model.h"
 #import "DraftModel.h"
-#import "SeNearbyShopModel.h"
+#import "SeShopsModel.h"
 #import "PaginationModel.h"
 
 @class DraftModel;
@@ -55,10 +55,6 @@
 
 @property(nonatomic,strong)DraftsModel* userPostData;
 @property(nonatomic,strong)DraftsModel* recommendations;
-@end
-
-@interface SeetiShopsModel : JSONModel
-@property(nonatomic,strong)ShopsModel* userPostData;
 
 @end
 

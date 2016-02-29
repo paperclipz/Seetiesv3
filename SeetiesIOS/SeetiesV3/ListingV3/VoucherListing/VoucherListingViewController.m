@@ -12,7 +12,7 @@
 @property (nonatomic) DealsModel *dealsModel;
 @property (nonatomic) DealCollectionModel *dealCollectionModel;
 
-@property (nonatomic) NSMutableArray<DealModel*> *dealsArray;
+@property (nonatomic) NSMutableArray<DealModel> *dealsArray;
 @property (nonatomic) BOOL isLoading;
 @property (nonatomic) BOOL  isCollecting;
 @property (nonatomic) int walletCount;
@@ -155,9 +155,9 @@
     return [DealManager Instance];
 }
 
--(NSMutableArray<DealModel *> *)dealsArray{
+-(NSMutableArray<DealModel> *)dealsArray{
     if (!_dealsArray) {
-        _dealsArray = [[NSMutableArray alloc] init];
+        _dealsArray = [[NSMutableArray<DealModel> alloc] init];
     }
     return _dealsArray;
 }

@@ -890,7 +890,8 @@
             
         case ServerRequestTypeGetSeetoShopNearbyShop:
         {
-            self.dataManager.seNearbyShopModel = [[SeetiShopsModel alloc]initWithDictionary:obj error:nil];
+            NSDictionary *dict = obj[@"data"];
+            self.dataManager.seNearbyShopModel = [[SeShopsModel alloc]initWithDictionary:dict error:nil];
         }
             break;
         case ServerRequestTypeGetSeetoShopRecommendations:

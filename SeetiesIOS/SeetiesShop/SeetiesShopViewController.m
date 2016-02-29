@@ -575,8 +575,9 @@
         _seNearbySeetishop.btnSelectSeetiShopListBlock = ^(void)
         {
             _seetiShopListingViewController = nil;
-            [weakSelf.seetiShopListingViewController initData:weakSelf.seetiesID PlaceID:nil PostID:nil];
-            [weakSelf.navigationController pushViewController:weakSelf.seetiShopListingViewController animated:YES];
+            [weakSelf.navigationController pushViewController:weakSelf.seetiShopListingViewController animated:YES onCompletion:^{
+                [weakSelf.seetiShopListingViewController initData:weakSelf.seetiesID PlaceID:nil PostID:nil];
+            }];
             
         };
         
